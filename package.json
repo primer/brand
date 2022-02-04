@@ -1,0 +1,17 @@
+{
+  "name": "@primer/react-brand",
+  "version": "0.0.1",
+  "description": "React components for GitHub marketing websites",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/primer/react-brand.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/primer/react-brand/issues"
+  },
+  "homepage": "https://github.com/primer/react-brand#readme"
+}
