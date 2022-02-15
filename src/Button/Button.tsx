@@ -6,9 +6,10 @@ type Props = {
 };
 
 export function Button({ children }: Props) {
+  console.log(styles);
   return (
     <button className={styles.btn}>
-      <span className={styles.btn__text}>{children}</span>
+      <span className={styles.label}>{children}</span>
     </button>
   );
 }
