@@ -1,20 +1,18 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
-  "display": "React Library",
-  //"extends": "tsconfig/base.json",
   "compilerOptions": {
     "declaration": true,
     "target": "esnext",
     "module": "commonjs",
     "lib": ["esnext", "dom"],
     "emitDeclarationOnly": true,
+    "skipLibCheck": false,
     "strict": true,
     "noImplicitAny": false,
     "esModuleInterop": true,
     "moduleResolution": "node",
     "outDir": "lib",
-    "jsx": "preserve"
+    "jsx": "react"
   },
   "include": ["src/**/*.tsx", "src/**/*.ts"],
-  "exclude": ["dist", "build", "node_modules"]
+  "exclude": ["lib", "node_modules"]
 }

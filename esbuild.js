@@ -1,19 +1,24 @@
 const esbuild = require("esbuild");
 
+const sharedConfig = {
+  entryPoints: ["src/index.ts"],
+  bundle: true,
+  sourcemap: true,
+  minify: true,
+  legalComments: "none",
+  tsconfig: "tsconfig.build.json",
+};
+
 /**
  * ES Modules
  */
 esbuild
   .build({
-    entryPoints: ["src/index.ts"],
+    ...sharedConfig,
     outdir: "lib",
-    bundle: true,
-    sourcemap: true,
-    minify: true,
     splitting: true,
     format: "esm",
     target: ["esnext"],
-    legalComments: "none",
   })
   .catch(() => process.exit(1));
 
@@ -22,14 +27,9 @@ esbuild
  */
 esbuild
   .build({
-    entryPoints: ["src/index.ts"],
+    ...sharedConfig,
     outfile: "lib/index.cjs.js",
-    bundle: true,
-    sourcemap: true,
-    minify: true,
-    platform: "node",
     format: "cjs",
     target: ["node14"],
-    legalComments: "none",
   })
   .catch(() => process.exit(1));
