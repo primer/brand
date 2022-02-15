@@ -1,4 +1,9 @@
-import * as React from "react";
-export const Button = () => {
-  return <button>Boop</button>;
+import React from "react";
+
+type Props = {
+  children: React.ReactNode;
 };
+
+export function Button({ children }: Props) {
+  return <button>{children}</button>;
+}

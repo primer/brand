@@ -1,9 +1,27 @@
 {
   "name": "@primer/react-brand",
   "version": "0.0.1",
-  "main": "lib/index.js",
+  "author": "GitHub, Inc.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/primer/react-brand/issues"
+  },
+  "homepage": "https://github.com/primer/react-brand#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/primer/react-brand.git"
+  },
+  "engines": {
+    "npm": ">=8.0.0",
+    "node": ">=14.0.0"
+  },
+  "main": "lib/cjs/index.js",
   "module": "lib/index.js",
   "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "sideEffects": false,
   "scripts": {
     "clean": "rm -rf lib",
     "build:types": "tsc --project tsconfig.build.json",
@@ -30,22 +48,5 @@
   "peerDependencies": {
     "react": "^17.0.0",
     "react-dom": "^17.0.0"
-  },
-  "engines": {
-    "npm": ">=7.0.0",
-    "node": ">=14.0.0"
-  },
-  "packageManager": "npm@8.1.4",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/primer/react-brand.git"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/primer/react-brand/issues"
-  },
-  "homepage": "https://github.com/primer/react-brand#readme",
-  "files": [
-    "lib"
-  ]
+  }
 }
