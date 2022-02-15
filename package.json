@@ -1,10 +1,27 @@
 {
-  "name": "@primer/react-brand",
+  "name": "@primer/react-brand-monorepo",
   "version": "0.0.1",
-  "description": "React components for GitHub marketing websites",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "turbo run build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
+  "devDependencies": {
+    "prettier": "^2.5.1",
+    "turbo": "^1.1.2"
+  },
+  "engines": {
+    "npm": ">=7.0.0",
+    "node": ">=14.0.0"
+  },
+  "packageManager": "npm@8.1.4",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/primer/react-brand.git"
