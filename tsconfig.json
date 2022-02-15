@@ -11,8 +11,8 @@
     "esModuleInterop": true,
     "moduleResolution": "node",
     "outDir": "lib",
-    "jsx": "react"
+    "jsx": "react",
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
-  "include": ["src/**/*.tsx", "src/**/*.ts"],
-  "exclude": ["lib", "node_modules"]
+  "include": ["src/**/*"]
 }

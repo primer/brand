@@ -25,12 +25,15 @@
   "scripts": {
     "clean": "rm -rf lib",
     "build:types": "tsc --project tsconfig.build.json",
-    "build": "npm run clean && node ./esbuild.js && npm run build:types",
+    "build": "npm run clean && ts-node ./esbuild.ts && npm run build:types",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
+  "peerDependencies": {
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0"
+  },
   "devDependencies": {
-    "@babel/core": "^7.17.2",
     "@storybook/addon-actions": "^6.4.19",
     "@storybook/addon-essentials": "^6.4.19",
     "@storybook/addon-interactions": "^6.4.19",
@@ -39,14 +42,13 @@
     "@storybook/testing-library": "^0.0.9",
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
-    "babel-loader": "^8.2.3",
     "esbuild": "^0.14.21",
+    "esbuild-css-modules-plugin": "^2.1.2",
     "postcss": "^8.4.6",
+    "storybook-css-modules-preset": "^1.1.1",
+    "ts-node": "^10.5.0",
     "typescript": "^4.5.3",
+    "typescript-plugin-css-modules": "^3.4.0",
     "webpack": "^4.46.0"
-  },
-  "peerDependencies": {
-    "react": "^17.0.0",
-    "react-dom": "^17.0.0"
   }
 }

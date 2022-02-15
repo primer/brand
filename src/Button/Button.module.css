@@ -1,0 +1,12 @@
+::placeholder {
+  color: gray;
+}
+
+.btn {
+  border: none;
+  background-color: transparent;
+}
+
+.btn__text {
+  color: red;
+}
