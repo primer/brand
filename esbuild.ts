@@ -23,7 +23,7 @@ esbuild
     target: ["esnext"],
     plugins: [
       cssModulesPlugin({
-        inject: true,
+        v2: true,
       }),
     ],
   })
