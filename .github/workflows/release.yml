@@ -1,0 +1,14 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    name: Release
+    uses: primer/.github/.github/workflows/release.yml@main
+    secrets:
+      gh_token: ${{ secrets.GPR_AUTH_TOKEN_SHARED }}
+      npm_token: ${{ secrets.NPM_AUTH_TOKEN_SHARED }}
