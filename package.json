@@ -27,13 +27,16 @@
     "build:types": "tsc --project tsconfig.build.json",
     "build": "npm run clean && ts-node ./esbuild.ts && npm run build:types",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "release": "npm run build && changeset publish"
   },
   "peerDependencies": {
     "react": "^17.0.0",
     "react-dom": "^17.0.0"
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^0.4.3",
+    "@changesets/cli": "^2.21.0",
     "@storybook/addon-actions": "^6.4.19",
     "@storybook/addon-essentials": "^6.4.19",
     "@storybook/addon-interactions": "^6.4.19",
