@@ -1,9 +1,9 @@
-name: Release
+name: Release candidate
 
 on:
   push:
     branches:
-      - 'changeset-release/main'
+      - "changeset-release/main"
 
 jobs:
   release-candidate:
