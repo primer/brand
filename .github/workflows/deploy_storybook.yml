@@ -27,6 +27,7 @@ jobs:
             ${{ runner.os }}-node-
 
       - run: npm ci
+      - run: npm i react@v17 react-dom@v17 -D
       - run: npm run build-storybook
 
       - name: Deploy
