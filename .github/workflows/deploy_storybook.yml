@@ -10,6 +10,7 @@ on:
 
 jobs:
   build:
+    name: Open / Update Pull Request
     runs-on: ubuntu-latest
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     concurrency:
@@ -31,6 +32,7 @@ jobs:
             ${{ runner.os }}-node-
 
       - run: npm ci
+      # react is a lib peer-dep so installing these transiently
       - run: npm i react@v17 react-dom@v17 -D
       - run: npm run build-storybook
 
