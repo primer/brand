@@ -1,15 +1,15 @@
-const esbuild = require("esbuild");
-const cssModulesPlugin = require("esbuild-css-modules-plugin");
-const path = require("path");
+const esbuild = require('esbuild')
+const cssModulesPlugin = require('esbuild-css-modules-plugin')
+const path = require('path')
 
 const sharedConfig = {
-  entryPoints: ["src/index.ts"],
+  entryPoints: ['src/index.ts'],
   bundle: true,
   sourcemap: true,
   minify: true,
-  legalComments: "none",
-  tsconfig: "tsconfig.build.json",
-};
+  legalComments: 'none',
+  tsconfig: 'tsconfig.build.json'
+}
 
 /**
  * ES Modules
@@ -17,17 +17,17 @@ const sharedConfig = {
 esbuild
   .build({
     ...sharedConfig,
-    outdir: "lib",
+    outdir: 'lib',
     splitting: true,
-    format: "esm",
-    target: ["esnext"],
+    format: 'esm',
+    target: ['esnext'],
     plugins: [
       cssModulesPlugin({
-        v2: true,
-      }),
-    ],
+        v2: true
+      })
+    ]
   })
-  .catch(() => process.exit(1));
+  .catch(() => process.exit(1))
 
 /**
  * CommonJS
@@ -35,13 +35,13 @@ esbuild
 esbuild
   .build({
     ...sharedConfig,
-    outdir: "lib/cjs",
-    format: "cjs",
-    target: ["esnext"],
+    outdir: 'lib/cjs',
+    format: 'cjs',
+    target: ['esnext'],
     plugins: [
       cssModulesPlugin({
-        v2: true,
-      }),
-    ],
+        v2: true
+      })
+    ]
   })
-  .catch(() => process.exit(1));
+  .catch(() => process.exit(1))
