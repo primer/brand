@@ -1,17 +1,15 @@
-import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import React from 'react'
+import {ComponentStory, ComponentMeta} from '@storybook/react'
 
-import { Hero } from ".";
+import {Hero} from '.'
 
 export default {
-  title: "Components/Hero",
+  title: 'Components/Hero',
   component: Hero,
-  argTypes: {},
-} as ComponentMeta<typeof Hero>;
+  argTypes: {}
+} as ComponentMeta<typeof Hero>
 
-const Template: ComponentStory<typeof Hero> = (args) => (
-  <Hero {...args}>Test</Hero>
-);
+const Template: ComponentStory<typeof Hero> = args => <Hero {...args}>Test</Hero>
 
-export const Default = Template.bind({});
-Default.args = {};
+export const Default = Template.bind({})
+Default.args = {}
