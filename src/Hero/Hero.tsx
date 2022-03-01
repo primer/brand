@@ -1,14 +1,23 @@
-import React from "react";
-import styles from "./Hero.module.css";
+import React from 'react'
+import styles from './Hero.module.css'
 
-type Props = {
-  children: React.ReactNode;
-};
+export type HeroProps = {
+  title: string | React.ReactElement
+  description: string | React.ReactElement
+  align: 'start' | 'center' | 'end'
+}
 
-export function Hero({ children }: Props) {
+export function Hero({title, description, align = 'start'}: HeroProps) {
   return (
-    <div className={styles.hero}>
-      <span className={styles.heading}>{children}</span>
+    <div
+      className={styles.container}
+      style={{
+        /** @ts-ignore FIXME */
+        '--hero-align': align
+      }}
+    >
+      <h1 className={styles.title}>{title}</h1>
+      <p className={styles.description}>{description}</p>
     </div>
-  );
+  )
 }
