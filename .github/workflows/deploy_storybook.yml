@@ -1,4 +1,4 @@
-name: Deploy Storybook to Azure SWA
+name: Deploy Storybook to Azure
 on:
   push:
     branches:
@@ -9,8 +9,8 @@ on:
       - main
 
 jobs:
-  build:
-    name: Open / Update Pull Request
+  build-and-deploy_job:
+    name: Build and deploy
     runs-on: ubuntu-latest
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     concurrency:
@@ -44,11 +44,12 @@ jobs:
           action: "upload"
           app_location: "/"
           output_location: "/storybook-static"
+          skip_app_build: true
 
   close_pull_request_job:
+    name: Azure teardown and cleanup
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest
-    name: Close Pull Request
     steps:
       - name: Close Pull Request
         id: closepullrequest
