@@ -3,6 +3,7 @@ node_modules
 
 #output
 lib/
+storybook-static/
 
 # testing
 coverage
@@ -22,6 +23,3 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
-
-# turbo
-.turbo
