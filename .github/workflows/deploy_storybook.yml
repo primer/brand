@@ -34,7 +34,7 @@ jobs:
       - run: npm ci
       # react is a lib peer-dep so installing these transiently
       - run: npm i react@v17 react-dom@v17 -D
-      - run: npm run build-storybook
+      - run: npm run build:storybook
 
       - name: Build And Deploy
         uses: Azure/static-web-apps-deploy@v1
@@ -44,7 +44,6 @@ jobs:
           action: "upload"
           app_location: "/"
           output_location: "/storybook-static"
-          skip_app_build: true
 
   close_pull_request_job:
     name: Azure teardown and cleanup
