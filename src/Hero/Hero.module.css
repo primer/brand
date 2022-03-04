@@ -1,8 +1,10 @@
-/* TODO: Move this */
+/* TODO: Extract these global styles */
 :global body {
-  font-family: system-ui;
+  font-family: system-ui; /* TODO: Use Alliance No. 1 or Mona Sans */
   line-height: 1.5;
 }
+
+/* TODO: Replace hard-coded values with design tokens */
 
 .container {
   padding: 6rem 0;
