@@ -1,27 +1,21 @@
 name: Deploy Storybook to Azure
 on:
   push:
-    branches:
-      - main
-  pull_request:
-    types: [opened, synchronize, reopened, closed]
-    branches:
-      - main
 
 jobs:
-  build-and-deploy_job:
+  build_and_deploy:
     name: Build and deploy
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-      - name: Setup Node
+      - name: Set up Node
         uses: actions/setup-node@v2
         with:
-          node-version: "14"
+          node-version: '14'
 
       - name: Cache dependencies
         uses: actions/cache@v2
@@ -31,28 +25,54 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - run: npm ci
-      # react is a lib peer-dep so installing these transiently
-      - run: npm i react@v17 react-dom@v17 -D
-      - run: npm run build:storybook
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Build And Deploy
+      - name: Build Storybook
+        run: npm run build:storybook
+
+      - name: Set deployment environment
+        id: deployment-env
+        run: |
+          if [$GITHUB_REF_NAME == 'main']
+          then
+              echo "::set-output name=environment::Production"
+          else
+              echo "::set-output name=environment::Preview"
+          fi
+
+      - name: Create GitHub deployment
+        uses: chrnorm/deployment-action@v1.2.0
+        id: deployment
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          environment: ${{ steps.deployment-env.outputs.environment }}
+
+      - name: Deploy to Azure
+        id: azure-action
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_DEPLOYMENT_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          action: "upload"
-          app_location: "/"
-          output_location: "/storybook-static"
+          action: 'upload'
+          app_location: '/storybook-static'
+          output_location: ''
+          skip_app_build: true
 
-  close_pull_request_job:
-    name: Azure teardown and cleanup
-    if: github.event_name == 'pull_request' && github.event.action == 'closed'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Close Pull Request
-        id: closepullrequest
-        uses: Azure/static-web-apps-deploy@v1
+      - name: Update deployment status (success)
+        if: success()
+        uses: chrnorm/deployment-status@releases/v1
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_DEPLOYMENT_TOKEN }}
-          action: "close"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          environment_url: ${{ steps.azure-action.outputs.static_web_app_url }}
+          target_url: ${{ steps.azure-action.outputs.static_web_app_url }}
+          state: 'success'
+          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+
+      - name: Update deployment status (failure)
+        if: failure()
+        uses: chrnorm/deployment-status@releases/v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          state: 'failure'
+          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
