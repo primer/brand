@@ -32,7 +32,7 @@ jobs:
         run: npm run build:storybook
 
       - name: Tmp
-        run: echo $GITHUB_REF_NAME
+        run: echo $GITHUB_REF_NAME == 'main'
 
       - name: Set deployment environment
         id: deployment-env
