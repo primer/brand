@@ -36,12 +36,22 @@ jobs:
       - name: Build Storybook
         run: npm run build:storybook
 
+      - name: Set deployment environment
+        id: deployment-env
+        run: |
+          if [$GITHUB_REF_NAME == 'main']
+          then
+              echo "::set-output name=environment::Production"
+          else
+              echo "::set-output name=environment::Preview"
+          fi
+
       - name: Create GitHub deployment
         uses: chrnorm/deployment-action@v1.2.0
         id: deployment
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          environment: Preview
+          environment: ${{ steps.deployment-env.outputs.environment }}
 
       - name: Deploy to Azure
         id: azure-action
