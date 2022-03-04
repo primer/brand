@@ -11,7 +11,7 @@ export type HeroProps = {
 export function Hero({heading, description, align = 'start'}: HeroProps) {
   return (
     /* FIXME: `styles` is not type-safe */
-    <div className={classNames(styles.container, styles[align])}>
+    <div className={classNames(styles.container, styles[`align-${align}`])}>
       <h1 className={styles.heading}>{heading}</h1>
       <p className={styles.description}>{description}</p>
     </div>

@@ -12,12 +12,12 @@
   flex-direction: column;
 }
 
-.start {
+.align-start {
   align-items: start;
   text-align: left;
 }
 
-.center {
+.align-center {
   align-items: center;
   text-align: center;
 }
