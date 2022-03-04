@@ -38,6 +38,13 @@ jobs:
       - name: Build Storybook
         run: npm run build:storybook
 
+      - name: Create GitHub deployment
+        uses: chrnorm/deployment-action@v1.2.0
+        id: deployment
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          environment: Preview
+
       - name: Deploy to Azure
         id: azure-action
         uses: Azure/static-web-apps-deploy@v1
@@ -48,6 +55,24 @@ jobs:
           app_location: '/storybook-static'
           output_location: ''
           skip_app_build: true
+
+      - name: Update deployment status (success)
+        if: success()
+        uses: chrnorm/deployment-status@releases/v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          environment_url: ${{ steps.azure-action.outputs.static_web_app_url }}
+          target_url: ${{ steps.azure-action.outputs.static_web_app_url }}
+          state: 'success'
+          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+
+      - name: Update deployment status (failure)
+        if: failure()
+        uses: chrnorm/deployment-status@releases/v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          state: 'failure'
+          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
 
   clean_up:
     name: Clean up
