@@ -1,10 +1,10 @@
-name: Release
+name: Release canary
 
 on:
   push:
     branches-ignore:
       - main
-      - 'changeset-release/main'
+      - "changeset-release/main"
 
 jobs:
   release-canary:

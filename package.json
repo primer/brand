@@ -26,8 +26,8 @@
     "clean": "rm -rf lib",
     "build:types": "tsc --project tsconfig.build.json",
     "build": "npm run clean && ts-node ./esbuild.ts && npm run build:types",
+    "build:storybook": "build-storybook",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
     "release": "npm run build && changeset publish",
     "format": "prettier --write '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'"
   },
