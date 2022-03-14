@@ -2,16 +2,17 @@
   "compilerOptions": {
     "declaration": true,
     "target": "esnext",
-    "module": "commonjs",
+    "module": "esnext",
     "lib": ["esnext", "dom"],
-    "emitDeclarationOnly": true,
+    "emitDeclarationOnly": false,
     "skipLibCheck": false,
+    "sourceMap": true,
     "strict": true,
     "noImplicitAny": false,
     "esModuleInterop": true,
     "moduleResolution": "node",
     "outDir": "lib",
-    "jsx": "react",
+    "jsx": "react-jsx",
     "plugins": [{"name": "typescript-plugin-css-modules"}]
   },
   "include": ["src/**/*"]
