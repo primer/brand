@@ -1,11 +1,37 @@
-::placeholder {
-  color: gray;
+/* TODO: Extract these global styles */
+:global body {
+  font-family: system-ui; /* TODO: Use Alliance No. 1 or Mona Sans */
+  line-height: 1.5;
 }
 
-.hero {
-  padding: 20px;
+/* TODO: Replace hard-coded values with design tokens */
+
+.container {
+  padding: 6rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.align-start {
+  align-items: start;
+  text-align: left;
+}
+
+.align-center {
+  align-items: center;
+  text-align: center;
 }
 
 .heading {
-  color: black;
+  margin: 0;
+  font-size: 4.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  max-width: 20ch;
+}
+
+.description {
+  margin: 1.5rem 0 0;
+  font-size: 1.25rem;
+  max-width: 50ch;
 }
