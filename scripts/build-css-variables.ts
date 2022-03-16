@@ -141,7 +141,7 @@ function buildVarsForDataAttribute(colorModePrimitives: IColorMode, key): string
     const finalCSS = await formatVariables(cssVars)
     const outputDirs = ['../lib/', '../lib/css/']
     const outputDir = path.resolve(__dirname, '../lib/css')
-    const outputPath = outputDir + '/gh-variables.color'
+    const outputPath = outputDir + '/gh-variables.color.css'
 
     /**
      * Create the output dirs in case they haven't been created yet
