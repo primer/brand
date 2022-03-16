@@ -17,12 +17,14 @@ export const ThemeContext = createContext<ThemeContextProps>({colorMode: default
 
 export function ThemeProvider({colorMode = defaultMode, children}: ThemeProviderProps) {
   const [activeMode, setActiveMode] = useState(colorMode)
+
   useEffect(() => {
     if (colorMode === 'auto') {
       setActiveMode(getActiveAutoMode())
     } else if (activeMode !== colorMode) {
       setActiveMode(colorMode)
     }
+
     return onBrowserThemeChanged(setActiveMode)
   }, [colorMode, setActiveMode])
 

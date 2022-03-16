@@ -1,6 +1,5 @@
 import {ThemeProvider} from '../src'
 import styles from './preview.module.css'
-import {SunIcon, MoonIcon} from '@primer/octicons-react'
 
 export const globalTypes = {
   colorMode: {
