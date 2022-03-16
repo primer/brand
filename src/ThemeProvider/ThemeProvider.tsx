@@ -3,6 +3,9 @@ import {useState, useEffect, createContext} from 'react'
 export type ColorModes = 'light' | 'dark' | 'auto'
 
 export type ThemeContextProps = {
+  /*
+   * An explicit color mode value
+   */
   colorMode?: ColorModes
 }
 
@@ -15,6 +18,9 @@ const defaultMode = 'light'
 
 export const ThemeContext = createContext<ThemeContextProps>({colorMode: defaultMode})
 
+/**
+ * ThemeProvider is used to provide theme-related context to its child components.
+ */
 export function ThemeProvider({colorMode = defaultMode, children}: ThemeProviderProps) {
   const [activeMode, setActiveMode] = useState(colorMode)
 
