@@ -25,7 +25,7 @@
     "build:css-vars": "ts-node --skipIgnore ./scripts/build-css-variables.ts",
     "build:types": "tsc --project tsconfig.build.json",
     "build": "npm run build:css-types && npm run clean && npm run build:css-vars && webpack",
-    "build:storybook": "build-storybook",
+    "build:storybook": "npm run build:css-vars && build-storybook",
     "build:css-types": "tcm -p 'src/**/*.css' .",
     "start": "npm run start:css-types & start-storybook -p 6006",
     "start:css-types": "tcm -w -p 'src/**/*.css' .",
