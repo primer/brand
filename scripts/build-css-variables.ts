@@ -38,17 +38,17 @@ function recursivelyFlatten(currentObject, acc, previousKeyName) {
     let value = currentObject[key]
 
     if (value.constructor !== Object) {
-      if (previousKeyName === null || previousKeyName === '') {
+      if (!previousKeyName) {
         acc[`${prefix}-${key}`] = value
       } else {
-        if (key === null || key === '') {
+        if (!key) {
           acc[previousKeyName] = value
         } else {
           acc[previousKeyName + '-' + key] = value
         }
       }
     } else {
-      if (previousKeyName === null || (previousKeyName === '' && value.constructor === Object)) {
+      if (!previousKeyName && value.constructor === Object) {
         recursivelyFlatten(value, acc, `${prefix}-${key}`)
       } else {
         recursivelyFlatten(value, acc, previousKeyName + '-' + key)
