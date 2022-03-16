@@ -3,7 +3,7 @@
  * TODO: Move to a custom style-dictionary formatter inside @primer/primitives
  */
 
-const primitives = require('@primer/primitives').default as Primitives
+const primitives = require('@primer/primitives').default as IPrimitives
 const fs = require('fs')
 const path = require('path')
 const prettier = require('prettier')
@@ -20,7 +20,7 @@ interface IColorMode {
   [name: string]: IToken | IScale | string
 }
 
-type Primitives = {
+interface IPrimitives {
   colors: {
     light: IColorMode
     dark: IColorMode
