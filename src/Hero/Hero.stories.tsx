@@ -2,6 +2,8 @@ import React from 'react'
 import {ComponentStory, ComponentMeta} from '@storybook/react'
 
 import {Hero} from '.'
+import '../../lib/css-variables.css'
+import {ThemeProvider} from '..'
 
 export default {
   title: 'Components/Hero',

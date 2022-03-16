@@ -1,0 +1,15 @@
+[data-color-mode] > [data-color-mode] {
+  margin-left: 1rem;
+}
+
+.activeColorSchemeContainer {
+  padding: 2rem;
+  background-color: var(--gh-color-canvas-default);
+  color: var(--gh-color-fg-default);
+  border-radius: 5px;
+  border: 1px solid var(--gh-color-border-default);
+}
+
+.hint {
+  color: var(--gh-color-fg-muted);
+}
