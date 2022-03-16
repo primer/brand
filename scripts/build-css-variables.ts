@@ -1,87 +1,97 @@
-import primitives from '@primer/primitives'
-import fs from 'fs'
-import path from 'path'
-import prettier from 'prettier'
+/*
+ * IMPORTANT: This file generates /lib/css/gh-variables.color.css
+ * TODO: Move to a custom style-dictionary formatter inside @primer/primitives
+ */
+
+const primitives = require('@primer/primitives').default as Primitives
+const fs = require('fs')
+const path = require('path')
+const prettier = require('prettier')
+
+interface IScale {
+  [name: string]: string[]
+}
+
+interface IToken {
+  [name: string]: string
+}
+
+interface IColorMode {
+  [name: string]: IToken | IScale | string
+}
+
+type Primitives = {
+  colors: {
+    light: IColorMode
+    dark: IColorMode
+  }
+}
 
 const prefix = '--gh-color'
+const supportedModes = ['light', 'dark']
 
-function flattenHelper(currentObject, newObject, previousKeyName) {
+/**
+ * Recursively flattens raw Primitive data into a map of CSS variables
+ */
+function recursivelyFlatten(currentObject, acc, previousKeyName) {
   for (let key in currentObject) {
     let value = currentObject[key]
 
     if (value.constructor !== Object) {
       if (previousKeyName === null || previousKeyName === '') {
-        newObject[`${prefix}-${key}`] = value
+        acc[`${prefix}-${key}`] = value
       } else {
         if (key === null || key === '') {
-          newObject[previousKeyName] = value
+          acc[previousKeyName] = value
         } else {
-          newObject[previousKeyName + '-' + key] = value
+          acc[previousKeyName + '-' + key] = value
         }
       }
     } else {
       if (previousKeyName === null || (previousKeyName === '' && value.constructor === Object)) {
-        flattenHelper(value, newObject, `${prefix}-${key}`)
+        recursivelyFlatten(value, acc, `${prefix}-${key}`)
       } else {
-        flattenHelper(value, newObject, previousKeyName + '-' + key)
+        recursivelyFlatten(value, acc, previousKeyName + '-' + key)
       }
     }
   }
 }
 
-function composeCSSVariables(oldObject) {
-  const init = {}
+/**
+ * Converts raw Primitives data for color modes to CSS variables
+ * @param {IColorMode} a map of color primitives specific to a color mode
+ * @return {string} of css variables
+ */
+function composeCSSVariables(colorModeObject: IColorMode): string {
+  const varsMap = {}
   let cssVariables = ''
 
-  flattenHelper(oldObject, init, '')
+  // generate a valid map first
+  recursivelyFlatten(colorModeObject, varsMap, '')
 
-  for (let key in init) {
-    cssVariables += `${key}: ${init[key]};\n`
+  // then convert to string
+  for (let key in varsMap) {
+    cssVariables += `${key}: ${varsMap[key]};\n`
   }
 
   return cssVariables
 }
 
-async function formatVariables(variables: string) {
+/**
+ *
+ * @param {string} any unformatted string of css
+ * @returns {string} formatted string of css
+ */
+async function formatVariables(variables: string): Promise<string> {
   return prettier.format(variables, {semi: false, parser: 'css'})
 }
 
-;(async function buildCSSVars() {
-  const defaultMode = 'light'
-  const supportedModes = ['light', 'dark']
-  const cssVars = Object.keys(primitives.colors).reduce((acc: string, key: string) => {
-    // adds root variables
-    if (key === defaultMode) {
-      acc += buildRoot(primitives.colors[key])
-    }
-
-    // only add the data-attribute if the mode is supported
-    if (supportedModes.includes(key)) {
-      acc += buildVarsForDataAttribute(primitives.colors[key], key)
-    }
-    return acc
-  }, '')
-
-  try {
-    const finalCSS = await formatVariables(cssVars)
-    const filename = path.resolve(__dirname, '../lib/css-variables.css')
-    const cb = err => {
-      if (err) {
-        console.error('\x1b[31m', `error: writing to ${filename}`, '\x1b[31m')
-        return
-      }
-
-      console.log('\x1b[32m', `success: css variables written to ${filename}`, '\x1b[32m')
-    }
-    await fs.writeFile(filename, finalCSS, 'utf8', cb)
-  } catch (err) {
-    console.error('\x1b[31m', `error: generating css variables, ${err}`, '\x1b[31m')
-  }
-
-  return cssVars
-})()
-
-function buildRoot(defaultModePrimitives) {
+/**
+ * Return a string of CSS variables for the default color mode
+ * @param {IColorMode} a map of color primitives specific to the default color mode
+ * @returns {string} of css variables
+ */
+function buildRoot(defaultModePrimitives): string {
   const {scale, ...colors} = defaultModePrimitives
   const generatedVariables = composeCSSVariables(colors)
   return `
@@ -91,7 +101,12 @@ function buildRoot(defaultModePrimitives) {
     `
 }
 
-function buildVarsForDataAttribute(colorModePrimitives, key) {
+/**
+ * Return a string of CSS variables for all color modes using HTML data attributes
+ * @param {IColorMode} a map of color primitives specific to the default color mode
+ * @returns {string} of css variables
+ */
+function buildVarsForDataAttribute(colorModePrimitives: IColorMode, key): string {
   const {scale, ...colors} = colorModePrimitives
   const generatedVariables = composeCSSVariables(colors)
   return `
@@ -100,3 +115,59 @@ function buildVarsForDataAttribute(colorModePrimitives, key) {
           }
       `
 }
+
+/***
+ * Build CSS Variables - Self-invoking
+ * @description:
+ *   Transforms Primer Primitive colors and outputs them as CSS variables to the file system.
+ *   This is temporary until we have a longer-term solution in @primer/primitives.
+ */
+;(async function buildCSSVars() {
+  try {
+    const defaultMode = 'light'
+    const cssVars = Object.keys(primitives.colors).reduce((acc: string, key: string) => {
+      // adds root variables
+      if (key === defaultMode) {
+        acc += buildRoot(primitives.colors[key])
+      }
+
+      // only add the data-attribute if the mode is supported
+      if (supportedModes.includes(key)) {
+        acc += buildVarsForDataAttribute(primitives.colors[key], key)
+      }
+      return acc
+    }, '')
+
+    const finalCSS = await formatVariables(cssVars)
+    const outputDirs = ['../lib/', '../lib/css/']
+    const outputDir = path.resolve(__dirname, '../lib/css')
+    const outputPath = outputDir + '/gh-variables.color'
+
+    /**
+     * Create the output dirs in case they haven't been created yet
+     */
+    for (let dir of outputDirs) {
+      const outputDirPath = path.resolve(__dirname, dir)
+      if (!fs.existsSync(outputDirPath)) {
+        fs.mkdirSync(outputDirPath)
+      }
+    }
+
+    const cb = err => {
+      if (err) {
+        console.error('\x1b[31m', `Error: writing to ${outputPath} in file: ${path.basename(__filename)}`, '\x1b[31m')
+        throw new Error(`error: ${err}`)
+      }
+
+      console.log('\x1b[32m', `Success: css variables written to ${outputPath}\n\n`, '\x1b[32m')
+    }
+    await fs.writeFile(outputPath, finalCSS, 'utf8', cb)
+  } catch (err) {
+    console.error(
+      '\x1b[31m',
+      `Error: generating css variables in file: ${path.basename(__filename)},\n\n ${err}`,
+      '\x1b[31m'
+    )
+    throw new Error(`Error: ${err}`)
+  }
+})()

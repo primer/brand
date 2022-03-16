@@ -15,20 +15,20 @@
     "npm": ">=8.0.0",
     "node": ">=14.0.0"
   },
-  "main": "lib/cjs/index.js",
-  "module": "lib/index.js",
+  "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
     "lib"
   ],
-  "sideEffects": false,
   "scripts": {
     "clean": "rm -rf lib",
-    "build:css-vars": "ts-node ./scripts/build-css-variables.ts",
+    "build:css-vars": "ts-node --skipIgnore ./scripts/build-css-variables.ts",
     "build:types": "tsc --project tsconfig.build.json",
-    "build": "npm run clean && ts-node ./esbuild.ts && npm run build:types",
+    "build": "npm run build:css-types && npm run clean && npm run build:css-vars && webpack",
     "build:storybook": "build-storybook",
-    "storybook": "start-storybook -p 6006",
+    "build:css-types": "tcm -p 'src/**/*.css' .",
+    "start": "npm run start:css-types & start-storybook -p 6006",
+    "start:css-types": "tcm -w -p 'src/**/*.css' .",
     "release": "npm run build && changeset publish",
     "format": "prettier --write '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
     "lint": "eslint '**/*.{js,ts,tsx,md,mdx}' --max-warnings=0",
@@ -36,8 +36,8 @@
   },
   "prettier": "@github/prettier-config",
   "peerDependencies": {
-    "react": "^17.0.0",
-    "react-dom": "^17.0.0"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.3",
@@ -49,12 +49,18 @@
     "@storybook/addon-essentials": "^6.4.19",
     "@storybook/addon-interactions": "^6.4.19",
     "@storybook/addon-links": "^6.4.19",
+    "@storybook/builder-webpack5": "^6.4.19",
+    "@storybook/manager-webpack5": "^6.4.19",
     "@storybook/react": "^6.4.19",
     "@storybook/testing-library": "^0.0.9",
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
-    "esbuild": "^0.14.21",
-    "esbuild-css-modules-plugin": "^2.1.6",
+    "@types/webpack": "^4.41.25",
+    "autoprefixer": "^9.8.8",
+    "css-loader": "^5.2.7",
+    "postcss": "^8.4.7",
+    "postcss-loader": "^6.2.1",
+    "postcss-preset-env": "^7.4.2",
     "eslint": "7.28.0",
     "eslint-plugin-github": "4.1.3",
     "eslint-plugin-jsx-a11y": "6.4.1",
@@ -66,10 +72,13 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "storybook-css-modules-preset": "^1.1.1",
-    "ts-node": "^10.5.0",
+    "style-loader": "^3.3.1",
+    "ts-loader": "^9.2.7",
+    "typed-css-modules": "^0.7.0",
     "typescript": "^4.5.3",
     "typescript-plugin-css-modules": "^3.4.0",
-    "webpack": "^4.46.0"
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2"
   },
   "dependencies": {
     "clsx": "^1.1.1"
