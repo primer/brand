@@ -1,8 +1,8 @@
 import {ComponentStory, ComponentMeta} from '@storybook/react'
-import {ThemeProvider} from '.'
 import {SunIcon, MoonIcon} from '@primer/octicons-react'
+import {ThemeProvider} from '.'
 import {useTheme} from '..'
-import '../../lib/css-variables.css'
+
 import styles from './ThemeProvider.stories.module.css'
 
 function ActiveColorScheme() {

@@ -1,5 +1,6 @@
 import {ThemeProvider} from '../src'
 import styles from './preview.module.css'
+import '../lib/css/gh-variables.color.css'
 
 export const globalTypes = {
   colorMode: {
