@@ -1,3 +1,4 @@
+import React from 'react'
 import {ComponentStory, ComponentMeta} from '@storybook/react'
 import {SunIcon, MoonIcon} from '@primer/octicons-react'
 import {ThemeProvider} from '.'
@@ -24,32 +25,37 @@ export default {
 } as ComponentMeta<typeof ThemeProvider>
 
 export const Default: ComponentStory<typeof ThemeProvider> = args => {
-  console.log(args)
   return (
     <ThemeProvider {...args}>
-      <Container>
-        <ActiveColorScheme />
-      </Container>
-      <ControlsHint />
+      <>
+        <Container>
+          <ActiveColorScheme />
+        </Container>
+        <ControlsHint />
+      </>
     </ThemeProvider>
   )
 }
 
 export const Nested: ComponentStory<typeof ThemeProvider> = args => (
   <ThemeProvider {...args}>
-    <Container>
-      Parent: 'auto' (<ActiveColorScheme />)
-    </Container>
-    <ThemeProvider colorMode="dark">
+    <>
       <Container>
-        <MoonIcon /> Child: always 'dark'
+        Parent: 'auto' (<ActiveColorScheme />)
       </Container>
-      <ThemeProvider colorMode="light">
-        <Container>
-          <SunIcon /> Child: always 'light'
-        </Container>
+      <ThemeProvider colorMode="dark">
+        <>
+          <Container>
+            <MoonIcon /> Child: always 'dark'
+          </Container>
+          <ThemeProvider colorMode="light">
+            <Container>
+              <SunIcon /> Child: always 'light'
+            </Container>
+          </ThemeProvider>
+        </>
       </ThemeProvider>
-    </ThemeProvider>
-    <ControlsHint />
+      <ControlsHint />
+    </>
   </ThemeProvider>
 )
