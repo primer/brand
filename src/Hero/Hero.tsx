@@ -5,7 +5,7 @@ import styles from './Hero.module.css'
 export type HeroProps = {
   heading: string | React.ReactElement
   description: string | React.ReactElement
-  align: 'start' | 'center'
+  align?: 'start' | 'center'
 }
 
 export function Hero({heading, description, align = 'start'}: HeroProps) {
