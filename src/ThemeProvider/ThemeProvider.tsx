@@ -31,7 +31,7 @@ export function ThemeProvider({colorMode = defaultMode, children}: ThemeProvider
       setActiveMode(colorMode)
     }
 
-    return onBrowserThemeChanged(setActiveMode)
+    return handleSystemPreferenceChange(setActiveMode)
   }, [colorMode, setActiveMode])
 
   return (
@@ -48,7 +48,7 @@ const getActiveAutoMode = () => {
   return mql && mql.matches ? 'dark' : 'light'
 }
 
-const onBrowserThemeChanged = cb => {
+const handleSystemPreferenceChange = cb => {
   const mql = queryBrowserPreference()
   const changeHandler = e => cb(e.matches ? 'dark' : 'light')
   mql && mql.addEventListener('change', changeHandler)
