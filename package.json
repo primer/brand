@@ -25,6 +25,7 @@
     "build": "npm run build:css-types && npm run clean && webpack",
     "build:storybook": "build-storybook",
     "build:css-types": "tcm -p 'src/**/*.css' .",
+    "check": "tsc --noEmit",
     "clean": "rm -rf lib",
     "format": "prettier --write '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
     "release": "npm run build && changeset publish",
