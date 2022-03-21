@@ -12,11 +12,13 @@ const Template: ComponentStory<typeof LinkButton> = args => <LinkButton {...args
 export const Primary = Template.bind({})
 Primary.args = {
   variant: 'primary',
+  href: '#',
   children: 'Primary action'
 }
 
 export const Secondary = Template.bind({})
 Secondary.args = {
   variant: 'secondary',
+  href: '#',
   children: 'Secondary action'
 }
