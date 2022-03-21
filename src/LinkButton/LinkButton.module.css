@@ -1,12 +1,20 @@
-.link-button {
+.container {
   display: inline-block;
   padding: 1rem 1.5rem;
   font-size: 1.25rem;
   font-weight: 600;
   line-height: 1;
-  color: white;
-  background-color: black;
   text-decoration: none;
   border-radius: 6px;
   cursor: pointer;
+}
+
+.variant-primary {
+  color: white;
+  background-color: black;
+}
+
+.variant-secondary {
+  color: black;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
 }
