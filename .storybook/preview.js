@@ -36,7 +36,7 @@ export const globalTypes = {
 const withThemeProvider = (Story, context) => {
   if (context.globals.colorMode === 'all') {
     return (
-      <div className={styles.colorModeAll}>
+      <div className={styles['color-mode-all']}>
         <style
           dangerouslySetInnerHTML={{
             __html: `body { padding: 0 !important; }`
