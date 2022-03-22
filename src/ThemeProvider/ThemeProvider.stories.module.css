@@ -2,7 +2,7 @@
   margin-left: 1rem;
 }
 
-.activeColorSchemeContainer {
+.active-color-scheme {
   padding: 2rem;
   background-color: var(--gh-color-canvas-default);
   color: var(--gh-color-fg-default);

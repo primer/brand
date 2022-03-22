@@ -1,4 +1,4 @@
-import {useState, useEffect, createContext} from 'react'
+import {useState, useEffect, createContext, PropsWithChildren} from 'react'
 
 export enum ColorModesEnum {
   LIGHT = 'light',
@@ -6,18 +6,17 @@ export enum ColorModesEnum {
   AUTO = 'auto'
 }
 
-export type ColorModes = `${ColorModesEnum}`
+export type ColorMode = `${ColorModesEnum}`
 
 export type ThemeContextProps = {
   /*
    * An explicit color mode value
    */
-  colorMode?: ColorModes
+  colorMode?: ColorMode
 }
 
 export type ThemeProviderProps = {
-  children?: React.ReactElement
-  colorMode?: ColorModes
+  colorMode?: ColorMode
 }
 
 const defaultMode = ColorModesEnum.LIGHT
@@ -27,7 +26,7 @@ export const ThemeContext = createContext<ThemeContextProps>({colorMode: default
 /**
  * ThemeProvider is used to provide theme-related context to its child components.
  */
-export function ThemeProvider({colorMode = defaultMode, children}: ThemeProviderProps) {
+export function ThemeProvider({colorMode = defaultMode, children}: PropsWithChildren<ThemeProviderProps>) {
   const [activeMode, setActiveMode] = useState(colorMode)
 
   useEffect(() => {
@@ -38,7 +37,7 @@ export function ThemeProvider({colorMode = defaultMode, children}: ThemeProvider
     }
 
     return handleSystemPreferenceChange(setActiveMode)
-  }, [colorMode, setActiveMode])
+  }, [colorMode, activeMode, setActiveMode])
 
   return (
     <ThemeContext.Provider value={{colorMode: activeMode}}>
@@ -51,13 +50,13 @@ const queryBrowserPreference = () =>
   window.matchMedia && window.matchMedia(`(prefers-color-scheme: ${ColorModesEnum.DARK})`)
 
 const getActiveAutoMode = () => {
-  const mql: MediaQueryList = queryBrowserPreference()
-  return mql && mql.matches ? ColorModesEnum.DARK : ColorModesEnum.LIGHT
+  const mediaQueryList: MediaQueryList = queryBrowserPreference()
+  return mediaQueryList && mediaQueryList.matches ? ColorModesEnum.DARK : ColorModesEnum.LIGHT
 }
 
-const handleSystemPreferenceChange = cb => {
-  const mql = queryBrowserPreference()
-  const changeHandler = e => cb(e.matches ? ColorModesEnum.DARK : ColorModesEnum.LIGHT)
-  mql && mql.addEventListener('change', changeHandler)
-  return () => mql && mql.removeEventListener('change', changeHandler)
+const handleSystemPreferenceChange = callback => {
+  const mediaQueryList = queryBrowserPreference()
+  const changeHandler = event => callback(event.matches ? ColorModesEnum.DARK : ColorModesEnum.LIGHT)
+  mediaQueryList && mediaQueryList.addEventListener('change', changeHandler)
+  return () => mediaQueryList && mediaQueryList.removeEventListener('change', changeHandler)
 }

@@ -1,5 +1,5 @@
 declare const styles: {
-  readonly "activeColorSchemeContainer": string;
+  readonly "active-color-scheme": string;
   readonly "hint": string;
 };
 export = styles;

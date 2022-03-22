@@ -6,13 +6,13 @@ import {useTheme} from '..'
 
 import styles from './ThemeProvider.stories.module.css'
 
-function ActiveColorScheme() {
+function ActiveColorMode() {
   const {colorMode} = useTheme()
   return <span>Active global color mode: {colorMode}</span>
 }
 
 function Container({children}: {children: React.ReactNode}) {
-  return <section className={styles.activeColorSchemeContainer}>{children}</section>
+  return <section className={styles['active-color-scheme']}>{children}</section>
 }
 
 function ControlsHint() {
@@ -29,7 +29,7 @@ export const Default: ComponentStory<typeof ThemeProvider> = args => {
     <ThemeProvider {...args}>
       <>
         <Container>
-          <ActiveColorScheme />
+          <ActiveColorMode />
         </Container>
         <ControlsHint />
       </>
@@ -41,7 +41,7 @@ export const Nested: ComponentStory<typeof ThemeProvider> = args => (
   <ThemeProvider {...args}>
     <>
       <Container>
-        Parent: 'auto' (<ActiveColorScheme />)
+        Parent: 'auto' (<ActiveColorMode />)
       </Container>
       <ThemeProvider colorMode="dark">
         <>
