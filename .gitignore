@@ -6,6 +6,7 @@ lib/
 storybook-static/
 
 # testing
+.test/
 coverage
 
 # misc
