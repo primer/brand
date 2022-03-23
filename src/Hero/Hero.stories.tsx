@@ -2,7 +2,6 @@ import React from 'react'
 import {ComponentStory, ComponentMeta} from '@storybook/react'
 
 import {Hero} from '.'
-
 export default {
   title: 'Components/Hero',
   component: Hero
