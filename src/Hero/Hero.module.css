@@ -6,35 +6,78 @@
 
 /* TODO: Replace hard-coded values with design tokens */
 
-.container {
+.Hero {
   padding: 6rem 0;
   display: flex;
   flex-direction: column;
   background-color: var(--gh-color-canvas-default);
 }
 
-.align-start {
+.Hero--align-start {
   align-items: start;
   text-align: left;
 }
 
-.align-center {
+.Hero--align-center {
   align-items: center;
   text-align: center;
 }
 
-.heading {
+.Hero-heading {
   margin: 0;
-  font-size: 4.5rem;
+  font-size: 2.5rem;
   font-weight: 700;
   line-height: 1.1;
   max-width: 20ch;
   color: var(--gh-color-fg-default);
 }
 
-.description {
+.Hero-description {
   margin: 1.5rem 0 0;
-  font-size: 1.25rem;
+  font-size: 1rem;
   max-width: 50ch;
-  color: var(--gh-color-fg-default);
+  color: var(--gh-color-fg-muted);
+}
+
+.Hero-actions {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+}
+
+.Hero-actions > :not(:last-child) {
+  margin: 0 0 1rem;
+}
+
+/* Small breakpoint and up */
+@media screen and (min-width: 544px) {
+  .Hero {
+    padding: 10.75rem 0;
+  }
+
+  .Hero-heading {
+    font-size: 3.5rem;
+  }
+
+  .Hero-description {
+    font-size: 1.25rem;
+  }
+
+  .Hero-actions {
+    flex-direction: row;
+    width: auto;
+  }
+
+  .Hero-actions > :not(:last-child) {
+    margin: 0 1rem 0 0;
+  }
+}
+
+/* Medium breakpoint and up */
+@media screen and (min-width: 768px) {
+  .Hero-heading {
+    font-size: 4.5rem;
+  }
 }
