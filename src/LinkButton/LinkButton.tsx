@@ -2,11 +2,13 @@ import clsx from 'clsx'
 import React from 'react'
 import styles from './LinkButton.module.css'
 
-// QUESTION: Are buttons always links in marketing sites?
+// NOTE: We may rename this component `LinkStyledAsButton` or consolidate it into
+// a single polymorphic `Button` component that can render as a link or a button.
+// See this discussion for more details: https://github.com/github/design-infrastructure/discussions/2310
 
 export type LinkButtonProps = {
   href: string
-  variant?: 'primary' | 'secondary' // QUESTION: Should `secondary` be the default?
+  variant?: 'primary' | 'secondary'
 } & React.ComponentPropsWithoutRef<'a'>
 
 export function LinkButton({variant = 'secondary', className, ...props}: LinkButtonProps) {
