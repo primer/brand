@@ -7,8 +7,8 @@ import styles from './LinkButton.module.css'
 export type LinkButtonProps = {
   href: string
   variant?: 'primary' | 'secondary' // QUESTION: Should `secondary` be the default?
-} & Omit<React.ComponentPropsWithoutRef<'a'>, 'className'> // Omitting `className` to prevent style overrides
+} & React.ComponentPropsWithoutRef<'a'>
 
-export function LinkButton({variant = 'secondary', ...props}: LinkButtonProps) {
-  return <a className={clsx(styles.LinkButton, styles[`LinkButton--${variant}`])} {...props} />
+export function LinkButton({variant = 'secondary', className, ...props}: LinkButtonProps) {
+  return <a className={clsx(styles.LinkButton, styles[`LinkButton--${variant}`], className)} {...props} />
 }
