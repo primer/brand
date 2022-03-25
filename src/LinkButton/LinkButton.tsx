@@ -10,5 +10,5 @@ export type LinkButtonProps = {
 } & Omit<React.ComponentPropsWithoutRef<'a'>, 'className'> // Omitting `className` to prevent style overrides
 
 export function LinkButton({variant = 'secondary', ...props}: LinkButtonProps) {
-  return <a className={clsx(styles['container'], styles[`variant-${variant}`])} {...props} />
+  return <a className={clsx(styles.LinkButton, styles[`LinkButton--${variant}`])} {...props} />
 }

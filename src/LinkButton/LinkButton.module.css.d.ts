@@ -1,7 +1,7 @@
 declare const styles: {
-  readonly "container": string;
-  readonly "variant-primary": string;
-  readonly "variant-secondary": string;
+  readonly "LinkButton": string;
+  readonly "LinkButton--primary": string;
+  readonly "LinkButton--secondary": string;
 };
 export = styles;
 
