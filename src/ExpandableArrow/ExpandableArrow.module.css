@@ -1,0 +1,18 @@
+.ExpandableArrow {
+  transition: transform 200ms;
+  transform: translateX(0);
+}
+
+.ExpandableArrow--expanded {
+  transform: translateX(4px);
+}
+
+.ExpandableArrow-stem {
+  stroke-dasharray: 10;
+  stroke-dashoffset: 10;
+  transition: stroke-dashoffset 200ms;
+}
+
+.ExpandableArrow-stem--expanded {
+  stroke-dashoffset: 20;
+}
