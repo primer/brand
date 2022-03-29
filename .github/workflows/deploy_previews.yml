@@ -11,10 +11,9 @@
 # Note: for public repositories accepting forks, pull_request_target is the only safe trigger.
 #
 on:
-  pull_request_target:
   push:
-    branches:
-      - main
+    branches-ignore:
+      - 'main'
 
 # Required: Pages permissions
 permissions:
