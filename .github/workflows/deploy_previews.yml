@@ -11,9 +11,9 @@
 # Note: for public repositories accepting forks, pull_request_target is the only safe trigger.
 #
 on:
-  push:
-    branches-ignore:
-      - 'main'
+  pull_request:
+    branches:
+      - main
 
 # Required: Pages permissions
 permissions:
@@ -31,7 +31,7 @@ jobs:
       # Required: Checkout (current branch OR head reference for PRs)
       #
       - name: Checkout PR
-        if: ${{ github.event_name == 'pull_request_target' }}
+        if: ${{ github.event_name == 'pull_request' }}
         uses: actions/checkout@v2
         with:
           # For PRs make sure to checkout the PR branch
@@ -39,7 +39,7 @@ jobs:
           repository: ${{github.event.pull_request.head.repo.full_name}}
 
       - name: Checkout
-        if: ${{ github.event_name != 'pull_request_target' }}
+        if: ${{ github.event_name != 'pull_request' }}
         uses: actions/checkout@v2
 
       - name: Set up Node
@@ -76,7 +76,7 @@ jobs:
 
   #
   # Required: Deployment of the artifacts
-  # Switch to a preview deployment for the pull_request_target event.
+  # Switch to a preview deployment for the pull_request event.
   #
 
   deploy:
@@ -91,4 +91,4 @@ jobs:
         id: deployment
         uses: paper-spa/deploy-pages@810985b6c0e339f6b6677434bd15106a31bb1faa
         with:
-          preview: ${{ github.event_name == 'pull_request_target' }}
+          preview: ${{ github.event_name == 'pull_request' }}
