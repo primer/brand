@@ -1,0 +1,95 @@
+#
+# Expected repository setup
+#
+# 1. Pages is enabled and tracking a branch that does not contain anything
+# 2. The `github-pages` environment has been created and is protected (either via the "Selected branches" or "Protected branches" options)
+# 3. The repository is an actor on this feature flag: https://admin.github.com/devtools/feature_flags/pages_preview_deployments
+#
+
+#
+# Triggers
+# Note: for public repositories accepting forks, pull_request_target is the only safe trigger.
+#
+on:
+  pull_request_target:
+  push:
+    branches:
+      - main
+
+# Required: Pages permissions
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+name: Build & Deploy Pages Preview
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      #
+      # Required: Checkout (current branch OR head reference for PRs)
+      #
+      - name: Checkout PR
+        if: ${{ github.event_name == 'pull_request_target' }}
+        uses: actions/checkout@v2
+        with:
+          # For PRs make sure to checkout the PR branch
+          ref: ${{github.event.pull_request.head.ref}}
+          repository: ${{github.event.pull_request.head.repo.full_name}}
+
+      - name: Checkout
+        if: ${{ github.event_name != 'pull_request_target' }}
+        uses: actions/checkout@v2
+
+      - name: Set up Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Attempt build
+        run: npm run build
+
+      #
+      # Required: Pages artifacts creation
+      #
+
+      - name: Archive build output
+        run: 'tar --dereference --directory storybook-static -cvf artifact.tar .'
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@6673cd052c4cd6fcf4b4e6e60ea986c889389535
+        with:
+          name: github-pages
+          path: artifact.tar
+
+  #
+  # Required: Deployment of the artifacts
+  # Switch to a preview deployment for the pull_request_target event.
+  #
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: paper-spa/deploy-pages@810985b6c0e339f6b6677434bd15106a31bb1faa
+        with:
+          preview: ${{ github.event_name == 'pull_request_target' }}
