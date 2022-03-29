@@ -58,15 +58,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Attempt build
-        run: npm run build
+      - name: Attempt build storybook
+        run: npm run build:storybook
 
       #
       # Required: Pages artifacts creation
       #
 
       - name: Archive build output
-        run: 'tar --dereference --directory storybook-static -cvf artifact.tar .'
+        run: 'tar --dereference --directory storybook-static/ -cvf artifact.tar .'
 
       - name: Upload artifact
         uses: actions/upload-artifact@6673cd052c4cd6fcf4b4e6e60ea986c889389535
