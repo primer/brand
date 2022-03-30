@@ -51,7 +51,7 @@ jobs:
 
   deploy_prod_storybook:
     runs-on: ubuntu-latest
-    needs: build
+    needs: build_prod_storybook
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
