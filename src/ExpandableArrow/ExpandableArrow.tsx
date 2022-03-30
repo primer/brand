@@ -4,6 +4,7 @@ import styles from './ExpandableArrow.module.css'
 
 type ExpandableArrowProps = {
   className?: string
+  /** Animate between a chevron arrow and an arrow with a stem by toggling the value of `expanded` */
   expanded?: boolean
 }
 
