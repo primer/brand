@@ -24,6 +24,9 @@ name: Build & Deploy Pages Preview
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       #
       # Required: Checkout (current branch OR head reference for PRs)
@@ -35,10 +38,6 @@ jobs:
           # For PRs make sure to checkout the PR branch
           ref: ${{github.event.pull_request.head.ref}}
           repository: ${{github.event.pull_request.head.repo.full_name}}
-
-      - name: Checkout
-        # if: ${{ github.event_name != 'pull_request' }}
-        uses: actions/checkout@v2
 
       - name: Set up Node
         uses: actions/setup-node@v2
@@ -72,19 +71,6 @@ jobs:
           name: github-pages
           path: artifact.tar
 
-  #
-  # Required: Deployment of the artifacts
-  # Switch to a preview deployment for the pull_request event.
-  #
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: paper-spa/deploy-pages@main
