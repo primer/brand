@@ -14,9 +14,6 @@ jobs:
   build_prod_storybook:
     name: Build production Storybook
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout main
         if: ${{ github.event_name != 'pull_request_target' }}
