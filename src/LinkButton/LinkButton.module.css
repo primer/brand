@@ -1,5 +1,6 @@
 .LinkButton {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   padding: 1rem 1.5rem;
   font-size: 1.25rem;
   font-weight: 600;
@@ -7,6 +8,10 @@
   text-decoration: none;
   border-radius: 6px;
   cursor: pointer;
+}
+
+.LinkButton-arrow {
+  margin-left: 4px;
 }
 
 .LinkButton--primary {
