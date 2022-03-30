@@ -11,7 +11,7 @@ permissions:
   id-token: write
 
 jobs:
-  build_prod_storybook:
+  build:
     name: Build
     runs-on: ubuntu-latest
     steps:
@@ -46,10 +46,10 @@ jobs:
           name: github-pages
           path: artifact.tar
 
-  deploy_prod_storybook:
+  deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    needs: build_prod_storybook
+    needs: build
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
