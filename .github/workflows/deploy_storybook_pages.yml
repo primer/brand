@@ -1,3 +1,5 @@
+name: Build & Deploy Storybook to Pages
+
 on:
   pull_request_target:
   push:
@@ -8,8 +10,6 @@ permissions:
   contents: read
   pages: write
   id-token: write
-
-name: Build & Deploy Pages Preview
 
 jobs:
   build:
