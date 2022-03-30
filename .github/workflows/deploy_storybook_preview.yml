@@ -1,4 +1,4 @@
-name: Build & Deploy Storybook Preview to Pages
+name: Deploy Storybook Preview to Pages
 
 on:
   pull_request:
@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   build_preview:
-    name: Build preview Storybook
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout PR
@@ -48,7 +48,7 @@ jobs:
           path: artifact.tar
 
   deploy_preview:
-    name: Deploy preview Storybook
+    name: Deploy
     runs-on: ubuntu-latest
     needs: build_preview
     environment:
