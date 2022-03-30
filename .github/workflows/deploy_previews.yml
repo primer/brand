@@ -12,9 +12,6 @@
 #
 on:
   pull_request:
-  push:
-    branches:
-      - main
 
 # Required: Pages permissions
 permissions:
@@ -32,7 +29,7 @@ jobs:
       # Required: Checkout (current branch OR head reference for PRs)
       #
       - name: Checkout PR
-        if: ${{ github.event_name == 'pull_request' }}
+        # if: ${{ github.event_name == 'pull_request' }}
         uses: actions/checkout@v2
         with:
           # For PRs make sure to checkout the PR branch
@@ -40,7 +37,7 @@ jobs:
           repository: ${{github.event.pull_request.head.repo.full_name}}
 
       - name: Checkout
-        if: ${{ github.event_name != 'pull_request' }}
+        # if: ${{ github.event_name != 'pull_request' }}
         uses: actions/checkout@v2
 
       - name: Set up Node
@@ -92,4 +89,4 @@ jobs:
         id: deployment
         uses: paper-spa/deploy-pages@810985b6c0e339f6b6677434bd15106a31bb1faa
         with:
-          preview: ${{ github.event_name == 'pull_request' }}
+          preview: true
