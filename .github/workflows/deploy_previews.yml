@@ -67,7 +67,7 @@ jobs:
         run: 'tar --dereference --directory storybook-static/ -cvf artifact.tar .'
 
       - name: Upload artifact
-        uses: actions/upload-artifact@6673cd052c4cd6fcf4b4e6e60ea986c889389535
+        uses: actions/upload-artifact@main
         with:
           name: github-pages
           path: artifact.tar
@@ -87,6 +87,6 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: paper-spa/deploy-pages@810985b6c0e339f6b6677434bd15106a31bb1faa
+        uses: paper-spa/deploy-pages@main
         with:
           preview: true
