@@ -1,19 +1,9 @@
-#
-# Expected repository setup
-#
-# 1. Pages is enabled and tracking a branch that does not contain anything
-# 2. The `github-pages` environment has been created and is protected (either via the "Selected branches" or "Protected branches" options)
-# 3. The repository is an actor on this feature flag: https://admin.github.com/devtools/feature_flags/pages_preview_deployments
-#
-
-#
-# Triggers
-# Note: for public repositories accepting forks, pull_request_target is the only safe trigger.
-#
 on:
-  pull_request:
+  pull_request_target:
+  push:
+    branches:
+      - main
 
-# Required: Pages permissions
 permissions:
   contents: read
   pages: write
@@ -28,16 +18,16 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      #
-      # Required: Checkout (current branch OR head reference for PRs)
-      #
       - name: Checkout PR
-        # if: ${{ github.event_name == 'pull_request' }}
+        if: ${{ github.event_name == 'pull_request_target' }}
         uses: actions/checkout@v2
         with:
-          # For PRs make sure to checkout the PR branch
           ref: ${{github.event.pull_request.head.ref}}
           repository: ${{github.event.pull_request.head.repo.full_name}}
+
+      - name: Checkout main
+        if: ${{ github.event_name != 'pull_request_target' }}
+        uses: actions/checkout@v2
 
       - name: Set up Node
         uses: actions/setup-node@v2
@@ -58,10 +48,6 @@ jobs:
       - name: Attempt build storybook
         run: npm run build:storybook
 
-      #
-      # Required: Pages artifacts creation
-      #
-
       - name: Archive build output
         run: 'tar --dereference --directory storybook-static/ -cvf artifact.tar .'
 
@@ -71,8 +57,15 @@ jobs:
           name: github-pages
           path: artifact.tar
 
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: paper-spa/deploy-pages@main
         with:
-          preview: true
+          preview: ${{ github.event_name == 'pull_request_target' }}
