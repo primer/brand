@@ -1,11 +1,7 @@
-name: Build & Deploy Storybook to Pages
+name: Build & Deploy Storybook Preview to Pages
 
 on:
-  pull_request_target:
-  push:
-    branches:
-      - main
-      - rezrah/add-gh-pages-previews
+  pull_request:
 
 permissions:
   contents: read
@@ -13,22 +9,17 @@ permissions:
   id-token: write
 
 jobs:
-  build:
+  build_preview:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout PR
-        if: ${{ github.event_name == 'pull_request_target' }}
         uses: actions/checkout@v2
         with:
           ref: ${{github.event.pull_request.head.ref}}
           repository: ${{github.event.pull_request.head.repo.full_name}}
-
-      - name: Checkout main
-        if: ${{ github.event_name != 'pull_request_target' }}
-        uses: actions/checkout@v2
 
       - name: Set up Node
         uses: actions/setup-node@v2
@@ -58,7 +49,7 @@ jobs:
           name: github-pages
           path: artifact.tar
 
-  deploy:
+  deploy_preview:
     runs-on: ubuntu-latest
     needs: build
     environment:
@@ -69,4 +60,4 @@ jobs:
         id: deployment
         uses: paper-spa/deploy-pages@main
         with:
-          preview: ${{ github.event_name == 'pull_request_target' }}
+          preview: true
