@@ -13,8 +13,8 @@
 on:
   pull_request:
   push:
-  branches:
-    - main
+    branches:
+      - main
 
 # Required: Pages permissions
 permissions:
