@@ -1,9 +1,7 @@
-name: Deploy Storybook to production
+name: Deploy Storybook Preview to Pages
 
 on:
-  push:
-    branches:
-      - main
+  pull_request:
 
 permissions:
   contents: read
@@ -15,7 +13,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout main
+      - name: Checkout PR
         uses: actions/checkout@v2
 
       - name: Set up Node
@@ -58,4 +56,4 @@ jobs:
         id: deployment
         uses: paper-spa/deploy-pages@main
         with:
-          preview: false
+          preview: true
