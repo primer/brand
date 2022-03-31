@@ -1,9 +1,10 @@
 declare const styles: {
-  readonly "container": string;
-  readonly "align-start": string;
-  readonly "align-center": string;
-  readonly "heading": string;
-  readonly "description": string;
+  readonly "Hero": string;
+  readonly "Hero--align-start": string;
+  readonly "Hero--align-center": string;
+  readonly "Hero-heading": string;
+  readonly "Hero-description": string;
+  readonly "Hero-actions": string;
 };
 export = styles;
 

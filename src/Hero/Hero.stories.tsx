@@ -13,7 +13,11 @@ export const Default = Template.bind({})
 Default.args = {
   heading: 'This is my super sweet hero heading',
   description:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum.'
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum.',
+  primaryAction: {
+    text: 'Primary action',
+    href: '#'
+  }
 }
 
 export const Centered = Template.bind({})
@@ -21,7 +25,35 @@ Centered.args = {
   heading: 'This is my super sweet hero heading',
   description:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum.',
-  align: 'center'
+  align: 'center',
+  primaryAction: {
+    text: 'Primary action',
+    href: '#'
+  }
+}
+
+export const WithoutDescription = Template.bind({})
+WithoutDescription.args = {
+  heading: 'This is my super sweet hero heading',
+  primaryAction: {
+    text: 'Primary action',
+    href: '#'
+  }
+}
+
+export const WithSecondaryAction = Template.bind({})
+WithSecondaryAction.args = {
+  heading: 'This is my super sweet hero heading',
+  description:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum.',
+  primaryAction: {
+    text: 'Primary action',
+    href: '#'
+  },
+  secondaryAction: {
+    text: 'Secondary action',
+    href: '#'
+  }
 }
 
 export const Codespaces = Template.bind({})
@@ -34,7 +66,11 @@ Codespaces.args = {
     </>
   ),
   description: 'Visual Studio Code backed by high performance VMs that start in seconds.',
-  align: 'center'
+  align: 'center',
+  primaryAction: {
+    text: 'Get started',
+    href: '#'
+  }
 }
 
 export const Issues = Template.bind({})
@@ -42,5 +78,13 @@ Issues.args = {
   heading: 'Project planning for developers',
   description:
     'Create issues, break them into tasks, track relationships, add custom fields, and have conversations. Visualize large projects as spreadsheets or boards, and automate everything with code.',
-  align: 'center'
+  align: 'center',
+  primaryAction: {
+    text: 'Watch video',
+    href: '#'
+  },
+  secondaryAction: {
+    text: 'Start using project tables',
+    href: '#'
+  }
 }

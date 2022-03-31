@@ -1,7 +1,9 @@
 .LinkButton {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 1rem 1.5rem;
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 600;
   line-height: 1;
   text-decoration: none;
@@ -9,12 +11,28 @@
   cursor: pointer;
 }
 
+.LinkButton-arrow {
+  margin-left: 4px;
+}
+
 .LinkButton--primary {
-  color: white;
-  background-color: black;
+  color: var(--gh-color-fg-onEmphasis);
+  background-color: var(--gh-color-neutral-emphasisPlus);
 }
 
 .LinkButton--secondary {
-  color: black;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+  color: var(--gh-color-fg-default);
+  box-shadow: inset 0 0 0 1px var(--gh-color-border-default);
+  transition: box-shadow 200ms;
+}
+
+.LinkButton--secondary:hover {
+  box-shadow: inset 0 0 0 2px var(--gh-color-neutral-emphasisPlus);
+}
+
+/* Small breakpoint and up */
+@media screen and (min-width: 544px) {
+  .LinkButton {
+    font-size: 1.25rem;
+  }
 }
