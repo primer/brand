@@ -1,4 +1,4 @@
-import {useState, useEffect, createContext, PropsWithChildren} from 'react'
+import React, {useState, useEffect, createContext, PropsWithChildren} from 'react'
 
 export enum ColorModesEnum {
   LIGHT = 'light',

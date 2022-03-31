@@ -36,8 +36,8 @@
   },
   "prettier": "@github/prettier-config",
   "peerDependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react": ">=17.0.0 <= 18.0.0",
+    "react-dom": ">=17.0.0 <= 18.0.0"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.3",
@@ -67,6 +67,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.5.1",
     "jest-axe": "^6.0.0",
+    "mini-css-extract-plugin": "^2.6.0",
     "postcss": "^8.4.7",
     "postcss-loader": "^6.2.1",
     "postcss-preset-env": "^7.4.2",
