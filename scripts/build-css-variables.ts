@@ -1,3 +1,7 @@
+/* eslint eslint-comments/no-use: off */
+/* eslint-disable no-console */
+/* eslint-disable import/no-commonjs */
+/* eslint-disable @typescript-eslint/no-var-requires */
 /*
  * IMPORTANT: This file generates /lib/css/gh-variables.color.css
  * TODO: Move to a custom style-dictionary formatter inside @primer/primitives
@@ -122,6 +126,7 @@ function buildVarsForDataAttribute(colorModePrimitives: IColorMode, key): string
  *   Transforms Primer Primitive colors and outputs them as CSS variables to the file system.
  *   This is temporary until we have a longer-term solution in @primer/primitives.
  */
+// eslint-disable-next-line @typescript-eslint/no-extra-semi
 ;(async function buildCSSVars() {
   try {
     const defaultMode = 'light'

@@ -1,4 +1,4 @@
-import {useState, useEffect, createContext, PropsWithChildren} from 'react'
+import React, {useState, useEffect, createContext, PropsWithChildren} from 'react'
 
 export enum ColorModesEnum {
   LIGHT = 'light',
@@ -46,17 +46,16 @@ export function ThemeProvider({colorMode = defaultMode, children}: PropsWithChil
   )
 }
 
-const queryBrowserPreference = () =>
-  window.matchMedia && window.matchMedia(`(prefers-color-scheme: ${ColorModesEnum.DARK})`)
+const queryBrowserPreference = () => window.matchMedia(`(prefers-color-scheme: ${ColorModesEnum.DARK})`)
 
 const getActiveAutoMode = () => {
   const mediaQueryList: MediaQueryList = queryBrowserPreference()
-  return mediaQueryList && mediaQueryList.matches ? ColorModesEnum.DARK : ColorModesEnum.LIGHT
+  return mediaQueryList.matches ? ColorModesEnum.DARK : ColorModesEnum.LIGHT
 }
 
 const handleSystemPreferenceChange = callback => {
   const mediaQueryList = queryBrowserPreference()
   const changeHandler = event => callback(event.matches ? ColorModesEnum.DARK : ColorModesEnum.LIGHT)
-  mediaQueryList && mediaQueryList.addEventListener('change', changeHandler)
-  return () => mediaQueryList && mediaQueryList.removeEventListener('change', changeHandler)
+  mediaQueryList.addEventListener('change', changeHandler)
+  return () => mediaQueryList.removeEventListener('change', changeHandler)
 }
