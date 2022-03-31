@@ -1,3 +1,7 @@
+/* eslint eslint-comments/no-use: off */
+/* eslint-disable no-console */
+/* eslint-disable import/no-commonjs */
+/* eslint-disable @typescript-eslint/no-var-requires */
 /*
  * IMPORTANT: This file generates /lib/css/gh-variables.color.css
  * TODO: Move to a custom style-dictionary formatter inside @primer/primitives
@@ -34,8 +38,8 @@ const supportedModes = ['light', 'dark']
  * Recursively flattens raw Primitive data into a map of CSS variables
  */
 function recursivelyFlatten(currentObject, acc, previousKeyName) {
-  for (let key in currentObject) {
-    let value = currentObject[key]
+  for (const key in currentObject) {
+    const value = currentObject[key]
 
     if (value.constructor !== Object) {
       if (!previousKeyName) {
@@ -44,14 +48,14 @@ function recursivelyFlatten(currentObject, acc, previousKeyName) {
         if (!key) {
           acc[previousKeyName] = value
         } else {
-          acc[previousKeyName + '-' + key] = value
+          acc[`${previousKeyName}-${key}`] = value
         }
       }
     } else {
       if (!previousKeyName && value.constructor === Object) {
         recursivelyFlatten(value, acc, `${prefix}-${key}`)
       } else {
-        recursivelyFlatten(value, acc, previousKeyName + '-' + key)
+        recursivelyFlatten(value, acc, `${previousKeyName}-${key}`)
       }
     }
   }
@@ -70,7 +74,7 @@ function composeCSSVariables(colorModeObject: IColorMode): string {
   recursivelyFlatten(colorModeObject, varsMap, '')
 
   // then convert to string
-  for (let key in varsMap) {
+  for (const key in varsMap) {
     cssVariables += `${key}: ${varsMap[key]};\n`
   }
 
@@ -122,6 +126,7 @@ function buildVarsForDataAttribute(colorModePrimitives: IColorMode, key): string
  *   Transforms Primer Primitive colors and outputs them as CSS variables to the file system.
  *   This is temporary until we have a longer-term solution in @primer/primitives.
  */
+// eslint-disable-next-line @typescript-eslint/no-extra-semi
 ;(async function buildCSSVars() {
   try {
     const defaultMode = 'light'
@@ -141,12 +146,12 @@ function buildVarsForDataAttribute(colorModePrimitives: IColorMode, key): string
     const finalCSS = await formatVariables(cssVars)
     const outputDirs = ['../lib/', '../lib/css/']
     const outputDir = path.resolve(__dirname, '../lib/css')
-    const outputPath = outputDir + '/gh-variables.color.css'
+    const outputPath = `${outputDir}/gh-variables.color.css`
 
     /**
      * Create the output dirs in case they haven't been created yet
      */
-    for (let dir of outputDirs) {
+    for (const dir of outputDirs) {
       const outputDirPath = path.resolve(__dirname, dir)
       if (!fs.existsSync(outputDirPath)) {
         fs.mkdirSync(outputDirPath)

@@ -1,7 +1,8 @@
+import React, {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
-import {cleanup, render} from '@testing-library/react'
-import {Hero} from '..'
-const {axe, toHaveNoViolations} = require('jest-axe')
+
+import {Hero} from './Hero'
+import {axe, toHaveNoViolations} from 'jest-axe'
 
 expect.extend(toHaveNoViolations)
 

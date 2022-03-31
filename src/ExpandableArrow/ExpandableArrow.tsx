@@ -1,5 +1,5 @@
-import clsx from 'clsx'
 import React from 'react'
+import clsx from 'clsx'
 import styles from './ExpandableArrow.module.css'
 
 type ExpandableArrowProps = {
@@ -25,8 +25,8 @@ export function ExpandableArrow({className, expanded = false}: ExpandableArrowPr
         className={clsx(styles['ExpandableArrow-stem'], expanded && styles['ExpandableArrow-stem--expanded'])}
         stroke="currentColor"
         d="M1.75 8H11"
-        stroke-width="1.5"
-        stroke-linecap="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
       />
     </svg>
   )
