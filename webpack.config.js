@@ -1,8 +1,6 @@
-const pkg = require('./package.json')
+const {name: libraryName} = require('./package')
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-
-const libraryName = pkg.name
 
 module.exports = {
   entry: './src/index.ts',
