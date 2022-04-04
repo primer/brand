@@ -2,3 +2,4 @@ src/**/*.css.d.ts
 coverage/
 storybook-static/
 lib/
+.changeset
