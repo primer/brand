@@ -4,8 +4,8 @@
   "version": "1.1.0",
   "scripts": {
     "develop": "rm -rf .cache && gatsby develop",
-    "build": "gatsby build",
-    "now-build": "yarn run build"
+    "build": "pushd .. && npm install && popd && cross-env NODE_ENV=production gatsby build --prefix-paths && npm run build:storybook",
+    "build:storybook": "cd .. && ./scripts/build-storybook"
   },
   "engines": {
     "node": ">=16",
@@ -23,6 +23,7 @@
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
+    "@primer/octicons-react": "^17.0.0",
     "@primer/react": "^35.1.0",
     "clsx": "^1.1.1",
     "cross-env": "7.0.2",

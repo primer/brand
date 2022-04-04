@@ -1,16 +1,48 @@
 import {HeroLayout} from '@primer/gatsby-theme-doctocat'
+import {Button, Box, Heading, Text} from '@primer/react'
+import {MarkGithubIcon} from '@primer/octicons-react'
+import {Link} from 'gatsby'
+
+<Box
+  borderWidth="1px"
+  borderStyle="solid"
+  borderColor="border.default"
+  borderRadius={2}
+  bg="gray.1"
+  p={5}
+  mt={5}
+>
+  <Heading as="h2" sx={{fontSize: 3}}>
+    Use Primer React Brand in your project
+  </Heading>
+  <Text as="p" sx={{m: 0}}>
+    Read the installation instructions to get started.
+  </Text>
+  <Box
+    sx={{
+      mt: 4,
+      flexDirection: 'row',
+      display: 'flex',
+      flexWrap: 'wrap',
+      alignItems: 'stretch',
+      columnGap: '0.75rem',
+    }}
+  >
+    <Button as={Link} to="/getting-started" variant="outline">
+      Installation instructions
+    </Button>
+    <Button as={Link} to="/getting-started" variant="outline">
+      Storybook
+    </Button>
+    <Button
+      as={Link}
+      to="/getting-started"
+      variant="outline"
+      leadingIcon={MarkGithubIcon}
+    >
+      Contribute
+    </Button>
+  </Box>
+</Box>
+
 export default HeroLayout
-
-## Getting started
-
-```bash
-npm install @primer/react-brand
-```
-
-## Local development
-
-To run `@primer/react` locally when adding or updating components:
-
-1. Clone this repo: `git clone https://github.com/primer/react-brand`
-2. Install dependencies: `npm install`
-3. Run the dev app: `npm start`

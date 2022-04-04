@@ -25,6 +25,7 @@
     "build:types": "tsc --project tsconfig.build.json",
     "build": "npm run clean && npm run build:css-types && npm run build:css-vars && webpack",
     "build:storybook": "npm run build && build-storybook",
+    "build:docs": "pushd docs && npm run build && popd",
     "build:css-types": "tcm -p 'src/**/*.css' .",
     "check": "tsc --noEmit",
     "clean": "rm -rf lib",
