@@ -14,11 +14,19 @@ export type HeroProps = {
   primaryAction: Action
   secondaryAction?: Action
   align?: 'start' | 'center'
+  size?: 'small' | 'large'
 }
 
-export function Hero({heading, description, primaryAction, secondaryAction, align = 'start'}: HeroProps) {
+export function Hero({
+  heading,
+  description,
+  primaryAction,
+  secondaryAction,
+  align = 'start',
+  size = 'large'
+}: HeroProps) {
   return (
-    <div className={clsx(styles.Hero, styles[`Hero--align-${align}`])}>
+    <div className={clsx(styles.Hero, styles[`Hero--align-${align}`], styles[`Hero--size-${size}`])}>
       <h1 className={styles['Hero-heading']}>{heading}</h1>
       {description ? <p className={styles['Hero-description']}>{description}</p> : null}
       <div className={styles['Hero-actions']}>
