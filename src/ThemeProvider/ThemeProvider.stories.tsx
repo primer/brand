@@ -59,3 +59,28 @@ export const Nested: ComponentStory<typeof ThemeProvider> = args => (
     </>
   </ThemeProvider>
 )
+
+export const WithToggle: ComponentStory<typeof ThemeProvider> = args => {
+  const {colorMode, availableColorModes, setColorMode} = useTheme()
+  return (
+    <>
+      <div>
+        {availableColorModes.map(mode => (
+          <div key={mode}>
+            <label htmlFor={mode}>{mode}</label>
+            <input
+              type="radio"
+              name="theme-selection"
+              id={mode}
+              checked={colorMode === mode}
+              onChange={() => setColorMode(mode)}
+            />
+          </div>
+        ))}
+      </div>
+      <Container>
+        <SunIcon /> {colorMode}
+      </Container>
+    </>
+  )
+}

@@ -1,0 +1,34 @@
+{
+  "name": "docs",
+  "repository": "primer/react-brand",
+  "version": "1.1.0",
+  "scripts": {
+    "develop": "rm -rf .cache && gatsby develop",
+    "build": "gatsby build",
+    "now-build": "yarn run build"
+  },
+  "engines": {
+    "node": ">=16",
+    "npm": ">=7"
+  },
+  "dependencies": {
+    "@primer/gatsby-theme-doctocat": "^3.2.1",
+    "@primer/primitives": "4.1.0",
+    "gatsby": "^3.7.2",
+    "gatsby-plugin-alias-imports": "^1.0.5",
+    "gatsby-plugin-postcss": "^4.14.0",
+    "gatsby-plugin-typescript": "2.10.0",
+    "react": "^17.0.2",
+    "react-docgen-typescript": "^2.0.0",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@primer/react": "^35.1.0",
+    "clsx": "^1.1.1",
+    "cross-env": "7.0.2",
+    "css-to-string-loader": "^0.1.3",
+    "globby": "^11.0.4",
+    "minipass": "^2.9.0",
+    "path-browserify": "^1.0.1"
+  }
+}
