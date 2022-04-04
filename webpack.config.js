@@ -1,17 +1,28 @@
+const {name: libraryName} = require('./package')
 const path = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   entry: './src/index.ts',
   output: {
     path: path.resolve(__dirname, 'lib'),
     filename: 'index.js',
+    library: libraryName,
     libraryTarget: 'umd',
     globalObject: 'this',
-    umdNamedDefine: true,
-    publicPath: 'lib'
+    umdNamedDefine: true
   },
   externals: {
-    react: 'react'
+    react: {
+      root: 'React',
+      commonjs2: 'react',
+      commonjs: 'react'
+    },
+    'react-dom': {
+      root: 'ReactDOM',
+      commonjs2: 'react-dom',
+      commonjs: 'react-dom'
+    }
   },
   mode: 'production',
   module: {
@@ -30,7 +41,7 @@ module.exports = {
       {
         test: /\.css$/i,
         use: [
-          'style-loader',
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
@@ -54,5 +65,6 @@ module.exports = {
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.css']
-  }
+  },
+  plugins: [new MiniCssExtractPlugin()]
 }
