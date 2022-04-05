@@ -39,7 +39,6 @@ module.exports = {
       },
     },
   ],
-  pathPrefix: '/react-brand',
   flags: {
     DEV_SSR: false,
   },
