@@ -1,3 +1,4 @@
 #!/bin/bash
+set -e
 
-pushd .. && npm install && popd && cross-env NODE_ENV=production gatsby build --prefix-paths && npm run build:storybook
+cd docs && npm install && npm run build && cd ../ && npm run build:storybook
