@@ -4,8 +4,8 @@
   "version": "1.1.0",
   "scripts": {
     "develop": "rm -rf .cache && gatsby develop",
-    "build": "bash -c 'pushd .. && npm install && popd && cross-env NODE_ENV=production gatsby build --prefix-paths && npm run build:storybook'",
-    "build:storybook": "cd .. && ./scripts/build-storybook"
+    "build": "../scripts/build-docs",
+    "build:storybook": "cd ../ && scripts/build-storybook"
   },
   "engines": {
     "node": ">=16",

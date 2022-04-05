@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo 'Benchmarking $PWD...'
+
 # Add base url to be able to serve static files
 echo '<base href="/react-brand/storybook/" />' >> .storybook/manager-head.html
 
