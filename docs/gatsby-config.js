@@ -7,6 +7,7 @@ module.exports = {
     description: 'React components for GitHub marketing pages',
   },
   plugins: [
+    'gatsby-plugin-typescript',
     {
       resolve: '@primer/gatsby-theme-doctocat',
       options: {
