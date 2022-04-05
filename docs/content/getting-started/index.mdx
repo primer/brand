@@ -17,16 +17,18 @@ npm install @primer/react-brand --save
 
 Primer React Brand requires a global stylesheet loaded ahead-of-time.
 
-#### Using an application bundler (e.g. Webpack)
+#### a. Using an application bundler (e.g. Webpack)
 
-Import the stylesheet close at the earliest DOM-rendering opportunity:
+Import the stylesheet at the earliest React-rendering opportunity:
 
 ```js
 import '@primer/react-brand/lib/css/gh-variables.color.css'
 import '@primer/react-brand/lib/css/main.css'
 ```
 
-#### Using a static stylesheet
+or
+
+#### b. Using a static stylesheet
 
 Use a static stylesheet if you're unable to load in global styles using a bundler
 
