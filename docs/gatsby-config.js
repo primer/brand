@@ -7,7 +7,6 @@ module.exports = {
     description: 'React components for GitHub marketing pages',
   },
   plugins: [
-    'gatsby-plugin-typescript',
     {
       resolve: '@primer/gatsby-theme-doctocat',
       options: {
@@ -34,7 +33,6 @@ module.exports = {
             exportLocalsConvention: 'asIs',
             namedExport: false,
           },
-          //localIdentName: '[name]__[local]___[hash:base64:5]',
         },
       },
     },

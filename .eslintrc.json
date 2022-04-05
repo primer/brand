@@ -141,6 +141,7 @@
       },
       "rules": {
         "camelcase": 0,
+        "import/no-unresolved": 0,
         "no-constant-condition": 0,
         "no-console": 0,
         "no-empty-pattern": 0,
@@ -152,6 +153,7 @@
         "react/jsx-key": 0,
         "react/jsx-no-comment-textnodes": 0,
         "import/no-anonymous-default-export": 0,
+        "import/extensions": 0,
         "prettier/prettier": 0,
         "@typescript-eslint/no-unnecessary-condition": 0,
         "@typescript-eslint/no-unused-vars": 0,

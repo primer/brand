@@ -1,8 +1,9 @@
 import {HeroLayout} from '@primer/gatsby-theme-doctocat'
-import {Button, Box, Heading, Text} from '@primer/react'
+import {BaseStyles, LinkButton, Box, Heading, Text} from '@primer/react'
 import {MarkGithubIcon} from '@primer/octicons-react'
 import {Link} from 'gatsby'
 
+<BaseStyles>
 <Box
   borderWidth="1px"
   borderStyle="solid"
@@ -28,21 +29,23 @@ import {Link} from 'gatsby'
       columnGap: '0.75rem',
     }}
   >
-    <Button as={Link} to="/getting-started" variant="outline">
+    <LinkButton href="/getting-started" variant="outline">
       Installation instructions
-    </Button>
-    <Button as={Link} to="/getting-started" variant="outline">
+    </LinkButton>
+    <LinkButton href="/storybook" variant="outline" target="_blank">
       Storybook
-    </Button>
-    <Button
-      as={Link}
-      to="/getting-started"
+    </LinkButton>
+    <LinkButton 
+      href="https://github.com/primer/react-brand" 
       variant="outline"
       leadingIcon={MarkGithubIcon}
+      target="_blank"
     >
       Contribute
-    </Button>
+    </LinkButton>
+
   </Box>
 </Box>
+</BaseStyles>
 
 export default HeroLayout
