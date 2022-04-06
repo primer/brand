@@ -1,17 +1,18 @@
 import {HeroLayout} from '@primer/gatsby-theme-doctocat'
-import {BaseStyles, LinkButton, Box, Heading, Text} from '@primer/react'
+import {LinkButton, Box, Heading, Text} from '@primer/react'
 import {MarkGithubIcon} from '@primer/octicons-react'
 import {Link} from 'gatsby'
 
-<BaseStyles>
 <Box
-  borderWidth="1px"
-  borderStyle="solid"
-  borderColor="border.default"
-  borderRadius={2}
-  bg="gray.1"
-  p={5}
-  mt={5}
+  sx={{
+    borderWidth: '1px',
+    borderStyle: 'solid',
+    borderColor: 'border.default',
+    borderRadius: 2,
+    bg: 'gray.1',
+    p: 5,
+    mt: 5,
+  }}
 >
   <Heading as="h2" sx={{fontSize: 3}}>
     Use Primer React Brand in your project
@@ -35,17 +36,15 @@ import {Link} from 'gatsby'
     <LinkButton href="/storybook" variant="outline" target="_blank">
       Storybook
     </LinkButton>
-    <LinkButton 
-      href="https://github.com/primer/react-brand" 
+    <LinkButton
+      href="https://github.com/primer/react-brand"
       variant="outline"
       leadingIcon={MarkGithubIcon}
       target="_blank"
     >
       Contribute
     </LinkButton>
-
   </Box>
 </Box>
-</BaseStyles>
 
 export default HeroLayout

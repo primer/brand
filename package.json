@@ -33,6 +33,7 @@
     "format:fix": "prettier --write '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
     "lint": "eslint '**/*.{js,ts,tsx,md,mdx}' --max-warnings=0",
     "lint:fix": "npm run lint -- --fix",
+    "postinstall": "cd docs && npm i",
     "release": "npm run build && changeset publish",
     "start": "npm run build && npm run start:storybook & npm run start:docs",
     "start:storybook": "start-storybook -p 6006",

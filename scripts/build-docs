@@ -1,4 +1,4 @@
 #!/bin/bash
 set -e
 
-cd docs && npm install && npm run build && cd ../ && npm run build:storybook
+cd docs && npm run build && cd ../ && npm run build:storybook
