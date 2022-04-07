@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect, createContext, PropsWithChildren} from 'react'
+import React, {useState, useMemo, useEffect, createContext, Dispatch, HTMLAttributes, PropsWithChildren} from 'react'
 
 export enum ColorModesEnum {
   LIGHT = 'light',
@@ -15,11 +15,6 @@ export type ThemeContextProps = {
   colorMode: ColorMode
 
   /*
-   * Set the color mode of the parent ThemeProvider.
-   */
-  setColorMode: React.Dispatch<React.SetStateAction<ColorMode>>
-
-  /*
    * List of available color modes.
    */
   availableColorModes: ColorModesEnum[]
@@ -27,38 +22,37 @@ export type ThemeContextProps = {
 
 export type ThemeProviderProps = {
   colorMode?: ColorMode
-}
+} & HTMLAttributes<HTMLDivElement>
 
 const defaultMode = ColorModesEnum.LIGHT
 
 export const ThemeContext = createContext<ThemeContextProps>({
   colorMode: defaultMode,
-  setColorMode: () => null,
   availableColorModes: Object.values(ColorModesEnum)
 })
 
 /**
  * ThemeProvider is used to provide theme-related context to its child components.
  */
-export function ThemeProvider({colorMode, children}: PropsWithChildren<ThemeProviderProps>) {
-  const {colorMode: parentColorMode, availableColorModes} = useContext(ThemeContext)
-  const [activeMode, setActiveMode] = useState(colorMode || parentColorMode)
+export function ThemeProvider({colorMode = defaultMode, children, ...rest}: PropsWithChildren<ThemeProviderProps>) {
+  const [activeMode, setActiveMode] = useState(colorMode)
+  const availableColorModes = useMemo(() => Object.values(ColorModesEnum), [])
 
   useEffect(() => {
     if (colorMode === ColorModesEnum.AUTO) {
       setActiveMode(getActiveAutoMode())
     } else if (activeMode !== colorMode) {
-      if (colorMode) {
-        setActiveMode(colorMode)
-      }
+      setActiveMode(colorMode)
     }
 
     return handleSystemPreferenceChange(setActiveMode)
   }, [colorMode, activeMode, setActiveMode])
 
   return (
-    <ThemeContext.Provider value={{colorMode: activeMode, setColorMode: setActiveMode, availableColorModes}}>
-      <div data-color-mode={activeMode}>{children}</div>
+    <ThemeContext.Provider value={{colorMode: activeMode, availableColorModes}}>
+      <div data-color-mode={activeMode} {...rest}>
+        {children}
+      </div>
     </ThemeContext.Provider>
   )
 }
