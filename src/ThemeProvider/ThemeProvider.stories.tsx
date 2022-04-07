@@ -41,7 +41,7 @@ export const Nested: ComponentStory<typeof ThemeProvider> = args => (
   <ThemeProvider {...args}>
     <>
       <Container>
-        Parent: &apos;auto&apos; (<ActiveColorMode />)
+        Parent: &apos;default&apos; (<ActiveColorMode />)
       </Container>
       <ThemeProvider colorMode="dark">
         <>

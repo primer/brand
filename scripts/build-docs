@@ -1,0 +1,4 @@
+#!/bin/bash
+set -e
+
+cd docs && npm run build && cd ../ && npm run build:storybook

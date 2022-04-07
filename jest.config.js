@@ -11,5 +11,8 @@ module.exports = {
   },
   preset: 'ts-jest',
   testEnvironment: 'jest-environment-jsdom',
-  testMatch: ['<rootDir>/(src)/**/*.test.[jt]s?(x)']
+  testMatch: ['<rootDir>/(src)/**/*.test.[jt]s?(x)'],
+  globals: {
+    window: {}
+  }
 }
