@@ -24,11 +24,18 @@
 
 .Hero-heading {
   margin: 0;
-  font-size: 2.5rem;
   font-weight: 700;
   line-height: 1.1;
-  max-width: 20ch;
+  max-width: 18ch;
   color: var(--gh-color-fg-default);
+}
+
+.Hero--size-small .Hero-heading {
+  font-size: 2.5rem;
+}
+
+.Hero--size-large .Hero-heading {
+  font-size: 3rem;
 }
 
 .Hero-description {
@@ -56,8 +63,12 @@
     padding: 10.75rem 0;
   }
 
-  .Hero-heading {
+  .Hero--size-small .Hero-heading {
     font-size: 3.5rem;
+  }
+
+  .Hero--size-large .Hero-heading {
+    font-size: 4.5rem;
   }
 
   .Hero-description {
@@ -76,7 +87,15 @@
 
 /* Medium breakpoint and up */
 @media screen and (min-width: 768px) {
-  .Hero-heading {
+  .Hero--size-small .Hero-heading {
     font-size: 4.5rem;
+  }
+
+  .Hero--size-large .Hero-heading {
+    font-size: 6rem;
+  }
+
+  .Hero--size-large .Hero-description {
+    font-size: 1.5rem;
   }
 }
