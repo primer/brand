@@ -1,4 +1,4 @@
-name: Deploy Docs to production
+name: Deploy docs to production
 
 on:
   push:

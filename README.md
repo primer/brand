@@ -25,15 +25,15 @@
 
 ## Install
 
-This repository is distributed on [npm]. After [installing npm][install-npm], you can install `@primer/react-brand` as a dependency of your project:
+This repository is distributed on [npm]. After [installing npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm), you can install `@primer/react-brand` as a dependency of your project:
 
 ```sh
-npm install --save-dev @primer/react-brand
+npm install @primer/react-brand
 ```
 
 ## Usage
 
-See our [Getting started guide](https://primer.github.io/react-brand/getting-started) for more information.
+See our [getting started guide](https://primer.github.io/react-brand/getting-started) for more information.
 
 ## License
 

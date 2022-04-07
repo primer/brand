@@ -1,4 +1,4 @@
-name: Deploy Docs Preview to Pages
+name: Deploy docs preview to Pages
 
 on:
   pull_request:
