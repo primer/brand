@@ -1,2 +1,2 @@
-export {ThemeProviderProps, ThemeProvider} from './ThemeProvider'
+export * from './ThemeProvider'
 export {useTheme} from './useTheme'

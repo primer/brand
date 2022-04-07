@@ -5,8 +5,8 @@ import '../lib/css/gh-variables.color.css'
 export const globalTypes = {
   colorMode: {
     name: 'Color mode',
-    description: 'Color mode (day, night, auto, all)',
-    defaultValue: 'day',
+    description: 'Color mode (light, dark, auto, all)',
+    defaultValue: 'light',
     toolbar: {
       icon: 'globe',
       // array of colorMode items

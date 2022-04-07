@@ -1,4 +1,4 @@
-import React, {useState, useEffect, createContext, PropsWithChildren} from 'react'
+import React, {useState, useMemo, useEffect, createContext, HTMLAttributes, PropsWithChildren} from 'react'
 
 export enum ColorModesEnum {
   LIGHT = 'light',
@@ -10,24 +10,33 @@ export type ColorMode = `${ColorModesEnum}`
 
 export type ThemeContextProps = {
   /*
-   * An explicit color mode value
+   * The active color mode of the parent ThemeProvider.
    */
-  colorMode?: ColorMode
+  colorMode: ColorMode
+
+  /*
+   * List of available color modes.
+   */
+  availableColorModes: ColorModesEnum[]
 }
 
 export type ThemeProviderProps = {
   colorMode?: ColorMode
-}
+} & HTMLAttributes<HTMLDivElement>
 
 const defaultMode = ColorModesEnum.LIGHT
 
-export const ThemeContext = createContext<ThemeContextProps>({colorMode: defaultMode})
+export const ThemeContext = createContext<ThemeContextProps>({
+  colorMode: defaultMode,
+  availableColorModes: Object.values(ColorModesEnum)
+})
 
 /**
  * ThemeProvider is used to provide theme-related context to its child components.
  */
-export function ThemeProvider({colorMode = defaultMode, children}: PropsWithChildren<ThemeProviderProps>) {
+export function ThemeProvider({colorMode = defaultMode, children, ...rest}: PropsWithChildren<ThemeProviderProps>) {
   const [activeMode, setActiveMode] = useState(colorMode)
+  const availableColorModes = useMemo(() => Object.values(ColorModesEnum), [])
 
   useEffect(() => {
     if (colorMode === ColorModesEnum.AUTO) {
@@ -40,8 +49,10 @@ export function ThemeProvider({colorMode = defaultMode, children}: PropsWithChil
   }, [colorMode, activeMode, setActiveMode])
 
   return (
-    <ThemeContext.Provider value={{colorMode: activeMode}}>
-      <div data-color-mode={activeMode}>{children}</div>
+    <ThemeContext.Provider value={{colorMode: activeMode, availableColorModes}}>
+      <div data-color-mode={activeMode} {...rest}>
+        {children}
+      </div>
     </ThemeContext.Provider>
   )
 }

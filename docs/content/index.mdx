@@ -1,0 +1,50 @@
+import {HeroLayout} from '@primer/gatsby-theme-doctocat'
+import {LinkButton, Box, Heading, Text} from '@primer/react'
+import {MarkGithubIcon} from '@primer/octicons-react'
+import {Link} from 'gatsby'
+
+<Box
+  sx={{
+    borderWidth: '1px',
+    borderStyle: 'solid',
+    borderColor: 'border.default',
+    borderRadius: 2,
+    bg: 'gray.1',
+    p: 5,
+    mt: 5,
+  }}
+>
+  <Heading as="h2" sx={{fontSize: 3}}>
+    Use Primer React Brand in your project
+  </Heading>
+  <Text as="p" sx={{m: 0}}>
+    Read the installation instructions to get started.
+  </Text>
+  <Box
+    sx={{
+      mt: 4,
+      flexDirection: 'row',
+      display: 'flex',
+      flexWrap: 'wrap',
+      alignItems: 'stretch',
+      columnGap: '0.75rem',
+    }}
+  >
+    <LinkButton href="/getting-started" variant="outline">
+      Installation instructions
+    </LinkButton>
+    <LinkButton href="/storybook" variant="outline" target="_blank">
+      Storybook
+    </LinkButton>
+    <LinkButton
+      href="https://github.com/primer/react-brand"
+      variant="outline"
+      leadingIcon={MarkGithubIcon}
+      target="_blank"
+    >
+      Contribute
+    </LinkButton>
+  </Box>
+</Box>
+
+export default HeroLayout
