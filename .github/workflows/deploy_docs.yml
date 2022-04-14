@@ -1,4 +1,4 @@
-name: Deploy docs to production
+name: Deploy to production
 
 on:
   push:
@@ -11,7 +11,8 @@ permissions:
   id-token: write
 
 jobs:
-  deploy:
+  build_deploy:
+    name: Build and deploy
     uses: primer/.github/.github/workflows/deploy.yml@main
     with:
       node_version: 16

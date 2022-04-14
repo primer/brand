@@ -1,4 +1,4 @@
-name: Deploy docs preview to Pages
+name: Deploy preview
 
 on:
   pull_request:
@@ -10,6 +10,7 @@ permissions:
 
 jobs:
   deploy:
+    name: Build and deploy
     uses: primer/.github/.github/workflows/deploy_preview.yml@main
     with:
       node_version: 16

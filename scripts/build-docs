@@ -1,4 +1,13 @@
 #!/bin/bash
 set -e
 
-cd docs && npm run build && cd ../ && npm run build:storybook
+if [ -n "$1" ]; then
+  echo 'running preview mode'
+  cd docs && npm run build:preview && cd ../ && npm run build:storybook
+else
+  echo 'running production mode'
+  cd docs && npm run build && cd ../ && npm run build:storybook
+fi
+
+
+
