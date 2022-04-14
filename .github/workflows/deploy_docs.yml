@@ -14,7 +14,7 @@ jobs:
   deploy:
     uses: primer/.github/.github/workflows/deploy.yml@main
     with:
-      node-version: 16
+      node_version: 16
       name: Deploy docs to production
       build: npm run build && npm run build:docs
       output_dir: docs/public/
