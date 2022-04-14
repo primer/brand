@@ -18,7 +18,8 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
-    "lib"
+    "lib",
+    "fonts"
   ],
   "scripts": {
     "build": "npm run clean && npm run build:css-types && npm run build:css-vars && webpack",
@@ -72,16 +73,16 @@
     "@typescript-eslint/eslint-plugin": "^5.17.0",
     "@typescript-eslint/parser": "^5.17.0",
     "autoprefixer": "^9.8.8",
-    "css-loader": "^5.2.7",
     "cross-env": "7.0.2",
+    "css-loader": "^5.2.7",
     "eslint": "^8.12.0",
+    "eslint-import-resolver-typescript": "^2.7.0",
     "eslint-plugin-github": "^4.3.6",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-mdx": "^1.17.0",
     "eslint-plugin-primer-react": "^0.7.4",
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.4.0",
-    "eslint-import-resolver-typescript": "^2.7.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.5.1",
     "jest-axe": "^6.0.0",
