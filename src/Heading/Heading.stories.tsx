@@ -50,3 +50,15 @@ Size450.args = {
   children: 'Size 450',
   variant: '450'
 }
+
+export const Scale: ComponentStory<typeof Heading> = () => (
+  <>
+    <Heading variant="1000">Size 1000</Heading>
+    <Heading variant="900">Size 900</Heading>
+    <Heading variant="800">Size 800</Heading>
+    <Heading variant="750">Size 750</Heading>
+    <Heading variant="650">Size 650</Heading>
+    <Heading variant="550">Size 550</Heading>
+    <Heading variant="450">Size 450</Heading>
+  </>
+)

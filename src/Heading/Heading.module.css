@@ -43,6 +43,17 @@
   --brand-text-display-450-size: 16px;
   --brand-text-display-450-lineHeight: 20px;
   --brand-text-display-450-letterspacing: unset;
+  /* variable font specs */
+  --brand-text-style-italic-1: 'ital' 1;
+  --brand-text-style-italic-2: 'ital' 2;
+  --brand-text-style-italic-3: 'ital' 3;
+  --brand-text-style-italic-4: 'ital' 4;
+  --brand-text-style-italic-5: 'ital' 5;
+  --brand-text-style-italic-6: 'ital' 6;
+  --brand-text-style-italic-7: 'ital' 7;
+  --brand-text-style-italic-8: 'ital' 8;
+  --brand-text-style-italic-9: 'ital' 9;
+  --brand-text-style-italic-10: 'ital' 10;
 }
 
 @media (min-width: 768px) {

@@ -1,7 +1,7 @@
 import {ThemeProvider} from '../src'
 import styles from './preview.module.css'
 // import '../lib/css/gh-variables.color.css'
-import '../fonts/alliance-1.css'
+import '../fonts/fonts.css'
 
 export const globalTypes = {
   colorMode: {
