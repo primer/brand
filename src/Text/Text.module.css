@@ -1,0 +1,59 @@
+/* notes
+ - just setting up the CSS here, it would be faster to generate the tokens :)
+*/
+
+.Text--700 {
+  font-weight: var(--brand-text-body-700-weight);
+  font-size: var(--brand-text-body-700-size);
+  line-height: var(--brand-text-body-700-lineHeight);
+  font-family: var(--brand-text-body-fontFamily);
+  letter-spacing: var(--brand-text-body-100-letterspacing);
+}
+
+.Text--300 {
+  font-weight: var(--brand-text-body-300-weight);
+  font-size: var(--brand-text-body-300-size);
+  line-height: var(--brand-text-body-300-lineHeight);
+  font-family: var(--brand-text-body-fontFamily);
+  letter-spacing: var(--brand-text-body-300-letterspacing);
+}
+
+.Text--500 {
+  font-weight: var(--brand-text-body-500-weight);
+  font-size: var(--brand-text-body-500-size);
+  line-height: var(--brand-text-body-500-lineHeight);
+  font-family: var(--brand-text-body-fontFamily);
+  letter-spacing: var(--brand-text-body-500-letterspacing);
+}
+
+.Text--400 {
+  font-weight: var(--brand-text-body-400-weight);
+  font-size: var(--brand-text-body-400-size);
+  line-height: var(--brand-text-body-400-lineHeight);
+  font-family: var(--brand-text-body-fontFamily);
+  letter-spacing: var(--brand-text-body-400-letterspacing);
+}
+
+.Text--300 {
+  font-weight: var(--brand-text-body-300-weight);
+  font-size: var(--brand-text-body-300-size);
+  line-height: var(--brand-text-body-300-lineHeight);
+  font-family: var(--brand-text-body-fontFamily);
+  letter-spacing: var(--brand-text-body-300-letterspacing);
+}
+
+.Text--200 {
+  font-weight: var(--brand-text-body-200-weight);
+  font-size: var(--brand-text-body-200-size);
+  line-height: var(--brand-text-body-200-lineHeight);
+  font-family: var(--brand-text-body-fontFamily);
+  letter-spacing: var(--brand-text-body-200-letterspacing);
+}
+
+.Text--100 {
+  font-weight: var(--brand-text-body-100-weight);
+  font-size: var(--brand-text-body-100-size);
+  line-height: var(--brand-text-body-100-lineHeight);
+  font-family: var(--brand-text-body-fontFamily);
+  letter-spacing: var(--brand-text-body-100-letterspacing);
+}

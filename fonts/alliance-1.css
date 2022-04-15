@@ -4,6 +4,7 @@
     url('./alliance-1.woff2') format('woff2-variations');
   font-weight: 200 900;
   font-display: swap;
+  font-synthesis: none;
 }
 
 @font-face {
@@ -11,6 +12,7 @@
   size-adjust: 104.5%;
   ascent-override: 71%;
   src: local(Arial);
+  font-synthesis: none;
 }
 
 @font-face {
@@ -18,4 +20,5 @@
   size-adjust: 103.1%;
   ascent-override: 70%;
   src: local(Arial Bold);
+  font-synthesis: none;
 }
