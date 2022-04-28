@@ -4,7 +4,8 @@
   "version": "1.1.0",
   "scripts": {
     "develop": "rm -rf .cache && gatsby develop",
-    "build": "cross-env NODE_ENV=production gatsby build --prefix-paths"
+    "build": "cross-env NODE_ENV=production gatsby build --prefix-paths",
+    "build:preview": "cross-env NODE_ENV=production gatsby build"
   },
   "engines": {
     "node": ">=16",
