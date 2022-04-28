@@ -1,132 +1,3 @@
-/* temporary, pull from primitives */
-/* px values will convert to rem in style-dictionary */
-/* namespace-item-variant-property-modifier */
-:root {
-  --base-text-weight-light: 300;
-  --base-text-weight-normal: 400;
-  --base-text-weight-medium: 500;
-  --base-text-weight-semibold: 600;
-  --base-text-weight-bold: 700;
-  /* all custom to brand below */
-  --base-text-weight-heavy: 900;
-  --base-text-weight-extrabold: 800;
-  --brand-fontStack-sansSerif: 'Alliance1', 'Alliance1Fallback', var(--primer-fontStack-system);
-  --brand-fontStack-sansSerifAlt: 'Alliance2', 'Alliance2HeaderFallback', var(--base-fontStack-system);
-  --brand-text-display-fontFamily: var(--brand-fontStack-sansSerif);
-  --brand-text-display-450-letterspacing: -0.03em;
-  --brand-text-display-letterspacing-large: -0.01em;
-  --brand-text-display-1000-weight: var(--base-text-weight-extrabold);
-  --brand-text-display-1000-size: 48px;
-  --brand-text-display-1000-lineHeight: 52px;
-  --brand-text-display-1000-letterspacing: -0.01em;
-  --brand-text-display-900-weight: var(--base-text-weight-extrabold);
-  --brand-text-display-900-size: 40px;
-  --brand-text-display-900-lineHeight: 44px;
-  --brand-text-display-900-letterspacing: -0.01em;
-  --brand-text-display-800-weight: var(--base-text-weight-extrabold);
-  --brand-text-display-800-size: 32px;
-  --brand-text-display-800-lineHeight: 36px;
-  --brand-text-display-800-letterspacing: -0.01em;
-  --brand-text-display-750-weight: var(--base-text-weight-extrabold);
-  --brand-text-display-750-size: 40px;
-  --brand-text-display-750-lineHeight: 44px;
-  --brand-text-display-750-letterspacing: -0.01em;
-  --brand-text-display-650-weight: var(--base-text-weight-normal);
-  --brand-text-display-650-size: 24px;
-  --brand-text-display-650-lineHeight: 28px;
-  --brand-text-display-650-letterspacing: -0.01em;
-  --brand-text-display-550-weight: var(--base-text-weight-semibold);
-  --brand-text-display-550-size: 20px;
-  --brand-text-display-550-lineHeight: 24px;
-  --brand-text-display-550-letterspacing: unset;
-  --brand-text-display-450-weight: var(--base-text-weight-semibold);
-  --brand-text-display-450-size: 16px;
-  --brand-text-display-450-lineHeight: 20px;
-  --brand-text-display-450-letterspacing: unset;
-  /* variable font specs */
-  --brand-text-style-italic-1: 'ital' 1;
-  --brand-text-style-italic-2: 'ital' 2;
-  --brand-text-style-italic-3: 'ital' 3;
-  --brand-text-style-italic-4: 'ital' 4;
-  --brand-text-style-italic-5: 'ital' 5;
-  --brand-text-style-italic-6: 'ital' 6;
-  --brand-text-style-italic-7: 'ital' 7;
-  --brand-text-style-italic-8: 'ital' 8;
-  --brand-text-style-italic-9: 'ital' 9;
-  --brand-text-style-italic-10: 'ital' 10;
-}
-
-@media (min-width: 768px) {
-  :root {
-    --brand-text-display-1000-weight: var(--base-text-weight-extrabold);
-    --brand-text-display-1000-size: 72px;
-    --brand-text-display-1000-lineHeight: 76px;
-    --brand-text-display-1000-letterspacing: -0.03em;
-    --brand-text-display-900-weight: var(--base-text-weight-extrabold);
-    --brand-text-display-900-size: 56px;
-    --brand-text-display-900-lineHeight: 60px;
-    --brand-text-display-900-letterspacing: -0.03em;
-    --brand-text-display-800-weight: var(--base-text-weight-extrabold);
-    --brand-text-display-800-size: 48px;
-    --brand-text-display-800-lineHeight: 52px;
-    --brand-text-display-900-letterspacing: -0.01em;
-    --brand-text-display-750-weight: var(--base-text-weight-extrabold);
-    --brand-text-display-750-size: 28px;
-    --brand-text-display-750-lineHeight: 32px;
-    --brand-text-display-750-letterspacing: -0.01em;
-    --brand-text-display-650-weight: var(--base-text-weight-normal);
-    --brand-text-display-650-size: 28px;
-    --brand-text-display-650-lineHeight: 32px;
-    --brand-text-display-750-letterspacing: -0.01em;
-    --brand-text-display-550-weight: var(--base-text-weight-semibold);
-    --brand-text-display-550-size: 24px;
-    --brand-text-display-550-lineHeight: 28px;
-    --brand-text-display-550-letterspacing: unset;
-    --brand-text-display-450-weight: var(--base-text-weight-semibold);
-    --brand-text-display-450-size: 20px;
-    --brand-text-display-450-lineHeight: 24px;
-    --brand-text-display-450-letterspacing: unset;
-  }
-}
-
-@media (min-width: 1012px) {
-  :root {
-    --brand-text-display-1000-weight: var(--base-text-weight-extrabold);
-    --brand-text-display-1000-size: 96px;
-    --brand-text-display-1000-lineHeight: 100px;
-    --brand-text-display-1000-letterspacing: -0.03em;
-    --brand-text-display-900-weight: var(--base-text-weight-extrabold);
-    --brand-text-display-900-size: 72px;
-    --brand-text-display-900-lineHeight: 76px;
-    --brand-text-display-900-letterspacing: -0.03em;
-    --brand-text-display-800-weight: var(--base-text-weight-extrabold);
-    --brand-text-display-800-size: 64px;
-    --brand-text-display-800-lineHeight: 68px;
-    --brand-text-display-900-letterspacing: -0.03em;
-    --brand-text-display-750-weight: var(--base-text-weight-extrabold);
-    --brand-text-display-750-size: 48px;
-    --brand-text-display-750-lineHeight: 52px;
-    --brand-text-display-750-letterspacing: -0.03em;
-    --brand-text-display-650-weight: var(--base-text-weight-normal);
-    --brand-text-display-650-size: 32px;
-    --brand-text-display-650-lineHeight: 36px;
-    --brand-text-display-750-letterspacing: -0.01em;
-    --brand-text-display-550-weight: var(--base-text-weight-semibold);
-    --brand-text-display-550-size: 24px;
-    --brand-text-display-550-lineHeight: 28px;
-    --brand-text-display-550-letterspacing: unset;
-    --brand-text-display-450-weight: var(--base-text-weight-semibold);
-    --brand-text-display-450-size: 20px;
-    --brand-text-display-450-lineHeight: 24px;
-    --brand-text-display-450-letterspacing: unset;
-  }
-}
-
-/* notes
- - we could combine common properties and scope to all heading tags (h1, h2 etc.)
- - we can generate shorthands and define them here
-*/
-
 .Heading--1000 {
   font-weight: var(--brand-text-display-1000-weight);
   font-size: var(--brand-text-display-1000-size);
@@ -181,4 +52,12 @@
   line-height: var(--brand-text-display-450-lineHeight);
   font-family: var(--brand-text-display-fontFamily);
   letter-spacing: var(--brand-text-display-450-letterspacing);
+}
+
+.Heading--400 {
+  font-weight: var(--brand-text-display-400-weight);
+  font-size: var(--brand-text-display-400-size);
+  line-height: var(--brand-text-display-400-lineHeight);
+  font-family: var(--brand-text-display-fontFamily);
+  letter-spacing: var(--brand-text-display-400-letterspacing);
 }

@@ -1,7 +1,3 @@
-/* notes
- - just setting up the CSS here, it would be faster to generate the tokens :)
-*/
-
 .Text--700 {
   font-weight: var(--brand-text-body-700-weight);
   font-size: var(--brand-text-body-700-size);
@@ -10,12 +6,12 @@
   letter-spacing: var(--brand-text-body-100-letterspacing);
 }
 
-.Text--300 {
-  font-weight: var(--brand-text-body-300-weight);
-  font-size: var(--brand-text-body-300-size);
-  line-height: var(--brand-text-body-300-lineHeight);
+.Text--600 {
+  font-weight: var(--brand-text-body-600-weight);
+  font-size: var(--brand-text-body-600-size);
+  line-height: var(--brand-text-body-600-lineHeight);
   font-family: var(--brand-text-body-fontFamily);
-  letter-spacing: var(--brand-text-body-300-letterspacing);
+  letter-spacing: var(--brand-text-body-600-letterspacing);
 }
 
 .Text--500 {

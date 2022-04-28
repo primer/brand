@@ -1,7 +1,10 @@
 import {ThemeProvider} from '../src'
 import styles from './preview.module.css'
-// import '../lib/css/gh-variables.color.css'
+import '../lib/css/gh-variables.color.css'
 import '../fonts/fonts.css'
+
+import '../lib/design-tokens/css/tokens/base/typography/typography.css'
+import '../lib/design-tokens/css/tokens/functional/typography/typography-responsive.css'
 
 export const globalTypes = {
   colorMode: {

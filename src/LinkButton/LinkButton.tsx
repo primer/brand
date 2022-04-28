@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import React from 'react'
 import {ExpandableArrow} from '../ExpandableArrow'
+import {Text} from '../Text'
 import styles from './LinkButton.module.css'
 
 // NOTE: We may rename this component `LinkStyledAsButton` or consolidate it into
@@ -45,7 +46,9 @@ export function LinkButton({
       }}
       {...props}
     >
-      {children}
+      <Text as="span" size="400" className={styles['LinkButton--label']}>
+        {children}
+      </Text>
       <ExpandableArrow className={styles['LinkButton-arrow']} expanded={isHovered || isFocused} />
     </a>
   )
