@@ -6,6 +6,7 @@ declare const styles: {
   readonly "Heading--650": string;
   readonly "Heading--550": string;
   readonly "Heading--450": string;
+  readonly "Heading--400": string;
 };
 export = styles;
 

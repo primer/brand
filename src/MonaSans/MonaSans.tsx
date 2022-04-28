@@ -14,7 +14,6 @@ export function MonaSans({children, italic, size, weight, width}: MonaSansProps)
   const wdth = width && `"wdth" ${width}`
   const fontVariationSettings = [ital, wdth].filter(Boolean).join(',')
   const style = {
-    textAlign: 'center',
     fontSize: `${size}px`,
     fontWeight: `${weight}`,
     fontVariationSettings: `${fontVariationSettings}`
