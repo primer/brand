@@ -1,3 +1,7 @@
+.Text {
+  color: var(--gh-color-fg-default);
+}
+
 .Text--700 {
   font-weight: var(--brand-text-body-700-weight);
   font-size: var(--brand-text-body-700-size);

@@ -10,16 +10,25 @@ type RestrictedPolymorphism =
   | (React.HTMLAttributes<HTMLDivElement> & {as?: 'div'})
 
 type TextTags = {
+  /**
+   * Applies the underlying HTML element
+   */
   as?: 'p' | 'span' | 'div'
 } & RestrictedPolymorphism
 
 type TextProps = {
+  /**
+   * Forward a custom HTML class attribute
+   */
   className?: string
+  /**
+   * Specify the text size
+   */
   size?: typeof TextSizes[number]
 } & TextTags
 
 export function Text({className, children, size = '400', as = 'span', ...rest}: PropsWithChildren<TextProps>) {
-  const headingClassNames = clsx(className, styles[`Text--${size}`])
+  const headingClassNames = clsx(styles.Text, styles[`Text--${size}`], className)
 
   if (as === 'p') {
     return (

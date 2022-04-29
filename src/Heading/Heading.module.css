@@ -1,3 +1,7 @@
+.Heading {
+  color: var(--gh-color-fg-default);
+}
+
 .Heading--1000 {
   font-weight: var(--brand-text-display-1000-weight);
   font-size: var(--brand-text-display-1000-size);
@@ -22,36 +26,28 @@
   letter-spacing: var(--brand-text-display-800-letterspacing);
 }
 
-.Heading--750 {
-  font-weight: var(--brand-text-display-750-weight);
-  font-size: var(--brand-text-display-750-size);
-  line-height: var(--brand-text-display-750-lineHeight);
+.Heading--700 {
+  font-weight: var(--brand-text-display-700-weight);
+  font-size: var(--brand-text-display-700-size);
+  line-height: var(--brand-text-display-700-lineHeight);
   font-family: var(--brand-text-display-fontFamily);
-  letter-spacing: var(--brand-text-display-750-letterspacing);
+  letter-spacing: var(--brand-text-display-700-letterspacing);
 }
 
-.Heading--650 {
-  font-weight: var(--brand-text-display-650-weight);
-  font-size: var(--brand-text-display-650-size);
-  line-height: var(--brand-text-display-650-lineHeight);
+.Heading--600 {
+  font-weight: var(--brand-text-display-600-weight);
+  font-size: var(--brand-text-display-600-size);
+  line-height: var(--brand-text-display-600-lineHeight);
   font-family: var(--brand-text-display-fontFamily);
-  letter-spacing: var(--brand-text-display-650-letterspacing);
+  letter-spacing: var(--brand-text-display-600-letterspacing);
 }
 
-.Heading--550 {
-  font-weight: var(--brand-text-display-550-weight);
-  font-size: var(--brand-text-display-550-size);
-  line-height: var(--brand-text-display-550-lineHeight);
+.Heading--500 {
+  font-weight: var(--brand-text-display-500-weight);
+  font-size: var(--brand-text-display-500-size);
+  line-height: var(--brand-text-display-500-lineHeight);
   font-family: var(--brand-text-display-fontFamily);
-  letter-spacing: var(--brand-text-display-550-letterspacing);
-}
-
-.Heading--450 {
-  font-weight: var(--brand-text-display-450-weight);
-  font-size: var(--brand-text-display-450-size);
-  line-height: var(--brand-text-display-450-lineHeight);
-  font-family: var(--brand-text-display-fontFamily);
-  letter-spacing: var(--brand-text-display-450-letterspacing);
+  letter-spacing: var(--brand-text-display-500-letterspacing);
 }
 
 .Heading--400 {

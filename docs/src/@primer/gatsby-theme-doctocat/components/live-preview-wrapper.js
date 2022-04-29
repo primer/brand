@@ -6,8 +6,6 @@ import {
   ThemeProvider as PRCThemeProvider,
 } from '@primer/react'
 import {ColorModesEnum, ThemeProvider} from '../../../../../src'
-// eslint-disable-next-line import/no-webpack-loader-syntax
-import styles from '!raw-loader!../../../../../lib/css/gh-variables.color.css'
 
 export default function LivePreviewWrapper({children}) {
   const availableColorModes = Object.values(ColorModesEnum)
@@ -50,7 +48,6 @@ export default function LivePreviewWrapper({children}) {
                 </ActionMenu.Overlay>
               </ActionMenu>
             </Box>
-            <style>{styles}</style>
             {children}
           </Box>
         </ThemeProvider>

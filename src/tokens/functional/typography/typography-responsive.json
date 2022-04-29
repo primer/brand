@@ -191,7 +191,7 @@
             }
           }
         },
-        "750": {
+        "700": {
           "weight": {
             "value": "var(--base-text-weight-bold)",
             "responsive": {
@@ -237,7 +237,7 @@
             }
           }
         },
-        "650": {
+        "600": {
           "weight": {
             "value": "var(--base-text-weight-semibold)",
             "responsive": {
@@ -283,7 +283,7 @@
             }
           }
         },
-        "550": {
+        "500": {
           "weight": {
             "value": "var(--base-text-weight-semibold)",
             "responsive": {
@@ -329,15 +329,15 @@
             }
           }
         },
-        "450": {
+        "400": {
           "weight": {
-            "value": "var(--base-text-weight-normal)",
+            "value": "var(--base-text-weight-semibold)",
             "responsive": {
               "768px": {
-                "value": "var(--base-text-weight-normal)"
+                "value": "var(--base-text-weight-semibold)"
               },
               "1012px": {
-                "value": "var(--base-text-weight-normal)"
+                "value": "var(--base-text-weight-semibold)"
               }
             }
           },
@@ -360,52 +360,6 @@
               },
               "1012px": {
                 "value": "24px"
-              }
-            }
-          },
-          "letterspacing": {
-            "value": "-0.01em",
-            "responsive": {
-              "768px": {
-                "value": "-0.01em"
-              },
-              "1012px": {
-                "value": "-0.01em"
-              }
-            }
-          }
-        },
-        "400": {
-          "weight": {
-            "value": "var(--base-text-weight-normal)",
-            "responsive": {
-              "768px": {
-                "value": "var(--base-text-weight-normal)"
-              },
-              "1012px": {
-                "value": "var(--base-text-weight-normal)"
-              }
-            }
-          },
-          "size": {
-            "value": "16px",
-            "responsive": {
-              "768px": {
-                "value": "18px"
-              },
-              "1012px": {
-                "value": "18px"
-              }
-            }
-          },
-          "lineHeight": {
-            "value": "18px",
-            "responsive": {
-              "768px": {
-                "value": "20px"
-              },
-              "1012px": {
-                "value": "20px"
               }
             }
           },

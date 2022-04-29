@@ -1,0 +1,57 @@
+---
+title: Heading
+status: Experimental
+source: https://github.com/primer/react-brand/tree/main/src/Heading/Heading.tsx
+storybook: '/react-brand/storybook?path=/story/components-hero--centered'
+description: Use the Heading component to render body content
+---
+
+import {HeadingSizes} from '@primer/react-brand'
+import {Box as Container} from '@primer/react'
+
+```js
+import {Heading} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<Container pl={3}>
+  <Heading>Resources to help enterprise teams do their best work</Heading>
+</Container>
+```
+
+### Scale
+
+```jsx live
+<Container pl={3}>
+  {HeadingSizes.map((size) => (
+    <Heading key={size} size={size} as="p">
+      Heading {size}
+    </Heading>
+  ))}
+</Container>
+```
+
+### Polymorphism
+
+The `Heading` component can render as a `h1`, `h2`, `h3`, `h4`, `h5` or `h6` HTML element.
+
+```jsx live
+<Container pl={3}>
+  <Heading as="h3">
+    Resources to help enterprise teams do their best work
+  </Heading>
+</Container>
+```
+
+## Component props
+
+### Heading
+
+| Name   | Type                                                                                                | Default | Description                         |
+| :----- | :-------------------------------------------------------------------------------------------------- | :-----: | :---------------------------------- |
+| `as`   | `'h1'`<br />`'h2'`<br />`'h3'`<br />`'h4'`<br />`'h5'`<br />`'h6'`                                  | `'h2'`  | Applies the underlying HTML element |
+| `size` | `'1000'`<br/> `'900'`<br/> `'800'`<br/> `'750'`<br/> `'650'`<br/> `'550'`<br/> `'450'`<br/> `'400'` | `'750'` | Specify the heading size            |

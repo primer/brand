@@ -1,5 +1,5 @@
 .Hero {
-  padding: 6rem 0;
+  padding: var(--base-size-96) 0;
   display: flex;
   flex-direction: column;
 }
@@ -41,7 +41,7 @@
 /* Small breakpoint and up */
 @media screen and (min-width: 544px) {
   .Hero {
-    padding: 10.75rem 0;
+    padding: var(--base-size-128) 0;
   }
 
   .Hero-actions {

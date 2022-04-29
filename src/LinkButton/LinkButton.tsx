@@ -46,7 +46,11 @@ export function LinkButton({
       }}
       {...props}
     >
-      <Text as="span" size="400" className={styles['LinkButton--label']}>
+      <Text
+        as="span"
+        size="400"
+        className={clsx(styles['LinkButton--label'], variant === 'primary' && styles['LinkButton--label-primary'])}
+      >
         {children}
       </Text>
       <ExpandableArrow className={styles['LinkButton-arrow']} expanded={isHovered || isFocused} />
