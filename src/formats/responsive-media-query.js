@@ -10,6 +10,21 @@ const customFormat = {
     const {outputReferences} = options
     let {allTokens} = dictionary
 
+    const getRemValue = (name, value) => {
+      const baseFont = 16
+      const floatVal = parseFloat(value)
+
+      if (isNaN(floatVal)) {
+        throw new Error(`${value} in ${name} is not a valid number`)
+      }
+
+      if (floatVal === 0) {
+        return '0'
+      }
+
+      return `${floatVal / baseFont}rem`
+    }
+
     if (outputReferences) {
       allTokens = [...allTokens].sort(sortByReference(dictionary))
     }
@@ -31,6 +46,9 @@ const customFormat = {
                   ${selector} {\n
                   ${responsiveTokens[breakpoint]
                     .map(token => {
+                      if (token.responsive[breakpoint].value.includes('px')) {
+                        return `--${token.name}: ${getRemValue(token.name, token.responsive[breakpoint].value)};`
+                      }
                       return `--${token.name}: ${token.responsive[breakpoint].value};`
                     })
                     .filter(function (strVal) {
