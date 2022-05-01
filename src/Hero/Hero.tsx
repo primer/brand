@@ -29,7 +29,7 @@ export function Hero({
 }: HeroProps) {
   return (
     <div className={clsx(styles.Hero, styles[`Hero--align-${align}`], styles[`Hero--size-${size}`])}>
-      <Heading className={styles['Hero-heading']} size="1000">
+      <Heading className={styles['Hero-heading']} size={size === 'large' ? '1000' : '800'}>
         {heading}
       </Heading>
       {description ? (
