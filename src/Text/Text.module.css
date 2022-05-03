@@ -3,51 +3,51 @@
 }
 
 .Text--700 {
-  font-weight: var(--brand-text-body-700-weight);
-  font-size: var(--brand-text-body-700-size);
-  line-height: var(--brand-text-body-700-lineHeight);
+  font-weight: var(--brand-text-700-weight);
+  font-size: var(--brand-text-700-size);
+  line-height: var(--brand-text-700-lineHeight);
   font-family: var(--brand-text-body-fontFamily);
   letter-spacing: var(--brand-text-body-100-letterspacing);
 }
 
 .Text--600 {
-  font-weight: var(--brand-text-body-600-weight);
-  font-size: var(--brand-text-body-600-size);
-  line-height: var(--brand-text-body-600-lineHeight);
+  font-weight: var(--brand-text-600-weight);
+  font-size: var(--brand-text-600-size);
+  line-height: var(--brand-text-600-lineHeight);
   font-family: var(--brand-text-body-fontFamily);
 }
 
 .Text--500 {
-  font-weight: var(--brand-text-body-500-weight);
-  font-size: var(--brand-text-body-500-size);
-  line-height: var(--brand-text-body-500-lineHeight);
+  font-weight: var(--brand-text-500-weight);
+  font-size: var(--brand-text-500-size);
+  line-height: var(--brand-text-500-lineHeight);
   font-family: var(--brand-text-body-fontFamily);
 }
 
 .Text--400 {
-  font-weight: var(--brand-text-body-400-weight);
-  font-size: var(--brand-text-body-400-size);
-  line-height: var(--brand-text-body-400-lineHeight);
+  font-weight: var(--brand-text-400-weight);
+  font-size: var(--brand-text-400-size);
+  line-height: var(--brand-text-400-lineHeight);
   font-family: var(--brand-text-body-fontFamily);
 }
 
 .Text--300 {
-  font-weight: var(--brand-text-body-300-weight);
-  font-size: var(--brand-text-body-300-size);
-  line-height: var(--brand-text-body-300-lineHeight);
+  font-weight: var(--brand-text-300-weight);
+  font-size: var(--brand-text-300-size);
+  line-height: var(--brand-text-300-lineHeight);
   font-family: var(--brand-text-body-fontFamily);
 }
 
 .Text--200 {
-  font-weight: var(--brand-text-body-200-weight);
-  font-size: var(--brand-text-body-200-size);
-  line-height: var(--brand-text-body-200-lineHeight);
+  font-weight: var(--brand-text-200-weight);
+  font-size: var(--brand-text-200-size);
+  line-height: var(--brand-text-200-lineHeight);
   font-family: var(--brand-text-body-fontFamily);
 }
 
 .Text--100 {
-  font-weight: var(--brand-text-body-100-weight);
-  font-size: var(--brand-text-body-100-size);
-  line-height: var(--brand-text-body-100-lineHeight);
+  font-weight: var(--brand-text-100-weight);
+  font-size: var(--brand-text-100-size);
+  line-height: var(--brand-text-100-lineHeight);
   font-family: var(--brand-text-body-fontFamily);
 }
