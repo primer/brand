@@ -15,7 +15,6 @@
   font-size: var(--brand-text-body-600-size);
   line-height: var(--brand-text-body-600-lineHeight);
   font-family: var(--brand-text-body-fontFamily);
-  letter-spacing: var(--brand-text-body-600-letterspacing);
 }
 
 .Text--500 {
@@ -23,7 +22,6 @@
   font-size: var(--brand-text-body-500-size);
   line-height: var(--brand-text-body-500-lineHeight);
   font-family: var(--brand-text-body-fontFamily);
-  letter-spacing: var(--brand-text-body-500-letterspacing);
 }
 
 .Text--400 {
@@ -31,7 +29,6 @@
   font-size: var(--brand-text-body-400-size);
   line-height: var(--brand-text-body-400-lineHeight);
   font-family: var(--brand-text-body-fontFamily);
-  letter-spacing: var(--brand-text-body-400-letterspacing);
 }
 
 .Text--300 {
@@ -39,7 +36,6 @@
   font-size: var(--brand-text-body-300-size);
   line-height: var(--brand-text-body-300-lineHeight);
   font-family: var(--brand-text-body-fontFamily);
-  letter-spacing: var(--brand-text-body-300-letterspacing);
 }
 
 .Text--200 {
@@ -47,7 +43,6 @@
   font-size: var(--brand-text-body-200-size);
   line-height: var(--brand-text-body-200-lineHeight);
   font-family: var(--brand-text-body-fontFamily);
-  letter-spacing: var(--brand-text-body-200-letterspacing);
 }
 
 .Text--100 {
@@ -55,5 +50,4 @@
   font-size: var(--brand-text-body-100-size);
   line-height: var(--brand-text-body-100-lineHeight);
   font-family: var(--brand-text-body-fontFamily);
-  letter-spacing: var(--brand-text-body-100-letterspacing);
 }
