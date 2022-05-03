@@ -3,57 +3,57 @@
 }
 
 .Heading--1000 {
-  font-weight: var(--brand-text-display-1000-weight);
-  font-size: var(--brand-text-display-1000-size);
-  line-height: var(--brand-text-display-1000-lineHeight);
-  font-family: var(--brand-text-display-fontFamily);
-  letter-spacing: var(--brand-text-display-1000-letterspacing);
+  font-weight: var(--brand-text-heading-1000-weight);
+  font-size: var(--brand-text-heading-1000-size);
+  line-height: var(--brand-text-heading-1000-lineHeight);
+  font-family: var(--brand-text-heading-fontFamily);
+  letter-spacing: var(--brand-text-heading-1000-letterspacing);
 }
 
 .Heading--900 {
-  font-weight: var(--brand-text-display-900-weight);
-  font-size: var(--brand-text-display-900-size);
-  line-height: var(--brand-text-display-900-lineHeight);
-  font-family: var(--brand-text-display-fontFamily);
-  letter-spacing: var(--brand-text-display-900-letterspacing);
+  font-weight: var(--brand-text-heading-900-weight);
+  font-size: var(--brand-text-heading-900-size);
+  line-height: var(--brand-text-heading-900-lineHeight);
+  font-family: var(--brand-text-heading-fontFamily);
+  letter-spacing: var(--brand-text-heading-900-letterspacing);
 }
 
 .Heading--800 {
-  font-weight: var(--brand-text-display-800-weight);
-  font-size: var(--brand-text-display-800-size);
-  line-height: var(--brand-text-display-800-lineHeight);
-  font-family: var(--brand-text-display-fontFamily);
-  letter-spacing: var(--brand-text-display-800-letterspacing);
+  font-weight: var(--brand-text-heading-800-weight);
+  font-size: var(--brand-text-heading-800-size);
+  line-height: var(--brand-text-heading-800-lineHeight);
+  font-family: var(--brand-text-heading-fontFamily);
+  letter-spacing: var(--brand-text-heading-800-letterspacing);
 }
 
 .Heading--700 {
-  font-weight: var(--brand-text-display-700-weight);
-  font-size: var(--brand-text-display-700-size);
-  line-height: var(--brand-text-display-700-lineHeight);
-  font-family: var(--brand-text-display-fontFamily);
-  letter-spacing: var(--brand-text-display-700-letterspacing);
+  font-weight: var(--brand-text-heading-700-weight);
+  font-size: var(--brand-text-heading-700-size);
+  line-height: var(--brand-text-heading-700-lineHeight);
+  font-family: var(--brand-text-heading-fontFamily);
+  letter-spacing: var(--brand-text-heading-700-letterspacing);
 }
 
 .Heading--600 {
-  font-weight: var(--brand-text-display-600-weight);
-  font-size: var(--brand-text-display-600-size);
-  line-height: var(--brand-text-display-600-lineHeight);
-  font-family: var(--brand-text-display-fontFamily);
-  letter-spacing: var(--brand-text-display-600-letterspacing);
+  font-weight: var(--brand-text-heading-600-weight);
+  font-size: var(--brand-text-heading-600-size);
+  line-height: var(--brand-text-heading-600-lineHeight);
+  font-family: var(--brand-text-heading-fontFamily);
+  letter-spacing: var(--brand-text-heading-600-letterspacing);
 }
 
 .Heading--500 {
-  font-weight: var(--brand-text-display-500-weight);
-  font-size: var(--brand-text-display-500-size);
-  line-height: var(--brand-text-display-500-lineHeight);
-  font-family: var(--brand-text-display-fontFamily);
-  letter-spacing: var(--brand-text-display-500-letterspacing);
+  font-weight: var(--brand-text-heading-500-weight);
+  font-size: var(--brand-text-heading-500-size);
+  line-height: var(--brand-text-heading-500-lineHeight);
+  font-family: var(--brand-text-heading-fontFamily);
+  letter-spacing: var(--brand-text-heading-500-letterspacing);
 }
 
 .Heading--400 {
-  font-weight: var(--brand-text-display-400-weight);
-  font-size: var(--brand-text-display-400-size);
-  line-height: var(--brand-text-display-400-lineHeight);
-  font-family: var(--brand-text-display-fontFamily);
-  letter-spacing: var(--brand-text-display-400-letterspacing);
+  font-weight: var(--brand-text-heading-400-weight);
+  font-size: var(--brand-text-heading-400-size);
+  line-height: var(--brand-text-heading-400-lineHeight);
+  font-family: var(--brand-text-heading-fontFamily);
+  letter-spacing: var(--brand-text-heading-400-letterspacing);
 }
