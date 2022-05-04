@@ -47,7 +47,7 @@
   font-size: var(--brand-text-size-500);
   line-height: var(--brand-text-lineHeight-500);
   font-family: var(--brand-heading-fontFamily);
-  letter-spacing: var(--brand-heading-letterspacin-500g);
+  letter-spacing: var(--brand-heading-letterspacing-500);
 }
 
 .Heading--400 {
