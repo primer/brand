@@ -1,6 +1,13 @@
 .Text {
-  color: var(--gh-color-fg-default);
   font-family: var(--brand-body-fontFamily);
+}
+
+.Text--default {
+  color: var(--gh-color-fg-default);
+}
+
+.Text--muted {
+  color: var(--gh-color-fg-muted);
 }
 
 .Text--700 {

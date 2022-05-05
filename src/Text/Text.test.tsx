@@ -82,4 +82,30 @@ describe('Text', () => {
 
     expect(el.classList).toContain(`Text--${expectedAlternativeSize}`)
   })
+
+  test('applies the correct default appearance', () => {
+    const mockId = 'mock-id'
+    const expectedDefaultApperance = 'default'
+    const {getByTestId} = render(
+      <Text as="div" data-testid={mockId}>
+        {mockText}
+      </Text>
+    )
+    const el = getByTestId(mockId)
+
+    expect(el.classList).toContain(`Text--${expectedDefaultApperance}`)
+  })
+
+  test('applies an optional, alternative variant', () => {
+    const mockId = 'mock-id'
+    const expectedAlternativeVariant = 'muted'
+    const {getByTestId} = render(
+      <Text as="div" data-testid={mockId} variant={expectedAlternativeVariant}>
+        {mockText}
+      </Text>
+    )
+    const el = getByTestId(mockId)
+
+    expect(el.classList).toContain(`Text--${expectedAlternativeVariant}`)
+  })
 })

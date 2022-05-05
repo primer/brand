@@ -33,7 +33,7 @@ export function Hero({
         {heading}
       </Heading>
       {description ? (
-        <Text className={styles['Hero-description']} as="p" size="500">
+        <Text className={styles['Hero-description']} as="p" size="500" variant="muted">
           {description}
         </Text>
       ) : null}
