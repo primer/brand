@@ -23,7 +23,7 @@
   ],
   "scripts": {
     "build": "npm run clean && npm run build:css-types && npm run build:tokens && webpack",
-    "build:css-types": "tcm -p 'src/**/*.css' .",
+    "build:css-types": "tcm -p 'src/**/*.module.css' .",
     "build:css-vars": "ts-node --skipIgnore ./scripts/build-css-variables.ts",
     "build:types": "tsc --project tsconfig.build.json",
     "build:storybook": "scripts/build-storybook",

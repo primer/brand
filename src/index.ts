@@ -1,4 +1,4 @@
-export * from './stylesheets'
+export * from './css/stylesheets'
 
 export * from './Hero'
 export * from './Text'
