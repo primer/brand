@@ -69,7 +69,7 @@
           }
         }
       },
-      "letterspacing": {
+      "letterSpacing": {
         "400": {
           "value": "-0.01em",
           "responsive": {
@@ -453,7 +453,7 @@
           }
         }
       },
-      "letterspacing": {
+      "letterSpacing": {
         "700": {
           "value": "-0.01em",
           "responsive": {

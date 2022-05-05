@@ -14,7 +14,7 @@
   font-weight: var(--brand-text-weight-700);
   font-size: var(--brand-text-size-700);
   line-height: var(--brand-text-lineHeight-700);
-  letter-spacing: var(--brand-text-body-letterspacing-100);
+  letter-spacing: var(--brand-text-body-letterSpacing-100);
 }
 
 .Text--600 {

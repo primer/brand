@@ -7,7 +7,7 @@
   font-size: var(--brand-text-size-1000);
   line-height: var(--brand-text-lineHeight-1000);
   font-family: var(--brand-heading-fontFamily);
-  letter-spacing: var(--brand-text-letterspacing-1000);
+  letter-spacing: var(--brand-text-letterSpacing-1000);
 }
 
 .Heading--900 {
@@ -15,7 +15,7 @@
   font-size: var(--brand-text-size-900);
   line-height: var(--brand-text-lineHeight-900);
   font-family: var(--brand-heading-fontFamily);
-  letter-spacing: var(--brand-text-letterspacing-900);
+  letter-spacing: var(--brand-text-letterSpacing-900);
 }
 
 .Heading--800 {
@@ -23,7 +23,7 @@
   font-size: var(--brand-text-size-800);
   line-height: var(--brand-text-lineHeight-800);
   font-family: var(--brand-heading-fontFamily);
-  letter-spacing: var(--brand-text-letterspacing-800);
+  letter-spacing: var(--brand-text-letterSpacing-800);
 }
 
 .Heading--700 {
@@ -31,7 +31,7 @@
   font-size: var(--brand-text-size-700);
   line-height: var(--brand-text-lineHeight-700);
   font-family: var(--brand-heading-fontFamily);
-  letter-spacing: var(--brand-heading-letterspacing-700);
+  letter-spacing: var(--brand-heading-letterSpacing-700);
 }
 
 .Heading--600 {
@@ -39,7 +39,7 @@
   font-size: var(--brand-text-size-600);
   line-height: var(--brand-text-lineHeight-600);
   font-family: var(--brand-heading-fontFamily);
-  letter-spacing: var(--brand-heading-letterspacing-600);
+  letter-spacing: var(--brand-heading-letterSpacing-600);
 }
 
 .Heading--500 {
@@ -47,7 +47,7 @@
   font-size: var(--brand-text-size-500);
   line-height: var(--brand-text-lineHeight-500);
   font-family: var(--brand-heading-fontFamily);
-  letter-spacing: var(--brand-heading-letterspacing-500);
+  letter-spacing: var(--brand-heading-letterSpacing-500);
 }
 
 .Heading--400 {
@@ -55,5 +55,5 @@
   font-size: var(--brand-text-size-400);
   line-height: var(--brand-text-lineHeight-400);
   font-family: var(--brand-heading-fontFamily);
-  letter-spacing: var(--brand-heading-letterspacing-400);
+  letter-spacing: var(--brand-heading-letterSpacing-400);
 }
