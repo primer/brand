@@ -1,4 +1,3 @@
-/* eslint-disable no-useless-concat */
 import React from 'react'
 import InlineCode from '@primer/gatsby-theme-doctocat/src/components/inline-code'
 
