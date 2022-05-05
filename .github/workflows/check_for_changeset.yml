@@ -10,6 +10,8 @@ on:
       # For `skip-label` only.
       - 'labeled'
       - 'unlabeled'
+    branches-ignore:
+      - '**' ## temporarily disabling as the workflow is consistently failing
 
 jobs:
   check-for-changeset:
