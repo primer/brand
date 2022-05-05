@@ -6,8 +6,14 @@ storybook: '/react-brand/storybook?path=/story/components-text--scale'
 description: Use the Text component to render body content
 ---
 
-import {TextSizes} from '@primer/react-brand'
+import {
+  TextSizes,
+  TextTags,
+  defaultTextTag,
+  defaultTextSize,
+} from '@primer/react-brand'
 import {Box as Container} from '@primer/react'
+import {PropTableValues} from '../../src/components'
 
 ```js
 import {Text} from '@primer/react-brand'
@@ -49,7 +55,7 @@ The `Text` component can render as a `span`, `p` or `div` HTML element.
 
 ### Text
 
-| Name   | Type                                                                                   | Default  | Description                         |
-| :----- | :------------------------------------------------------------------------------------- | :------: | :---------------------------------- |
-| `as`   | `'p'`<br /> `'span'`<br /> `'div'`                                                     | `'span'` | Applies the underlying HTML element |
-| `size` | `'700'`<br />`'600'`<br />`'500'`<br />`'400'`<br />`'300'`<br />`'200'`<br />`'100' ` | `'400'`  | Specify the text size               |
+| Name   | Type                                                 |                    Default                     | Description                         |
+| :----- | :--------------------------------------------------- | :--------------------------------------------: | :---------------------------------- |
+| `as`   | <PropTableValues values={TextTags} addLineBreaks />  | <PropTableValues values={[defaultTextTag]} />  | Applies the underlying HTML element |
+| `size` | <PropTableValues values={TextSizes} addLineBreaks /> | <PropTableValues values={[defaultTextSize]} /> | Specify the text size               |

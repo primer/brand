@@ -6,8 +6,14 @@ storybook: '/react-brand/storybook?path=/story/components-hero--centered'
 description: Use the Heading component to render body content
 ---
 
-import {HeadingSizes} from '@primer/react-brand'
+import {
+  HeadingSizes,
+  HeadingTags,
+  DefaultHeadingTag,
+  DefaultHeadingSize,
+} from '@primer/react-brand'
 import {Box as Container} from '@primer/react'
+import {PropTableValues} from '../../src/components'
 
 ```js
 import {Heading} from '@primer/react-brand'
@@ -51,7 +57,7 @@ The `Heading` component can render as a `h1`, `h2`, `h3`, `h4`, `h5` or `h6` HTM
 
 ### Heading
 
-| Name   | Type                                                                                                | Default | Description                         |
-| :----- | :-------------------------------------------------------------------------------------------------- | :-----: | :---------------------------------- |
-| `as`   | `'h1'`<br />`'h2'`<br />`'h3'`<br />`'h4'`<br />`'h5'`<br />`'h6'`                                  | `'h2'`  | Applies the underlying HTML element |
-| `size` | `'1000'`<br/> `'900'`<br/> `'800'`<br/> `'750'`<br/> `'650'`<br/> `'550'`<br/> `'450'`<br/> `'400'` | `'750'` | Specify the heading size            |
+| Name   | Type                                                    |                      Default                      | Description                         |
+| :----- | :------------------------------------------------------ | :-----------------------------------------------: | :---------------------------------- |
+| `as`   | <PropTableValues values={HeadingTags} addLineBreaks />  | <PropTableValues values={[DefaultHeadingTag]} />  | Applies the underlying HTML element |
+| `size` | <PropTableValues values={HeadingSizes} addLineBreaks /> | <PropTableValues values={[DefaultHeadingSize]} /> | Specify the heading size            |

@@ -3,6 +3,9 @@ import clsx from 'clsx'
 import styles from './Text.module.css'
 
 export const TextSizes = ['700', '600', '500', '400', '300', '200', '100'] as const
+export const TextTags = ['p', 'span', 'div'] as const
+export const defaultTextTag = TextTags[1]
+export const defaultTextSize = TextSizes[3]
 
 type RestrictedPolymorphism =
   | (React.HTMLAttributes<HTMLParagraphElement> & {as?: 'p'})
@@ -13,7 +16,7 @@ type TextTags = {
   /**
    * Applies the underlying HTML element
    */
-  as?: 'p' | 'span' | 'div'
+  as?: typeof TextTags[number]
 } & RestrictedPolymorphism
 
 type TextProps = {
@@ -27,7 +30,13 @@ type TextProps = {
   size?: typeof TextSizes[number]
 } & TextTags
 
-export function Text({className, children, size = '400', as = 'span', ...rest}: PropsWithChildren<TextProps>) {
+export function Text({
+  className,
+  children,
+  size = defaultTextSize,
+  as = defaultTextTag,
+  ...rest
+}: PropsWithChildren<TextProps>) {
   const headingClassNames = clsx(styles.Text, styles[`Text--${size}`], className)
 
   if (as === 'p') {
