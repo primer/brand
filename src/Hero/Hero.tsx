@@ -17,25 +17,16 @@ export type HeroProps = {
   primaryAction: Action
   secondaryAction?: Action
   align?: 'start' | 'center'
-  size?: 'small' | 'large'
 }
 
-export function Hero({
-  className,
-  heading,
-  description,
-  primaryAction,
-  secondaryAction,
-  align = 'start',
-  size = 'large'
-}: HeroProps) {
+export function Hero({className, heading, description, primaryAction, secondaryAction, align = 'start'}: HeroProps) {
   return (
-    <div className={clsx(styles.Hero, styles[`Hero--align-${align}`], styles[`Hero--size-${size}`], className)}>
-      <Heading className={styles['Hero-heading']} as={size === 'large' ? 'h1' : 'h2'}>
+    <div className={clsx(styles.Hero, styles[`Hero--align-${align}`], className)}>
+      <Heading className={styles['Hero-heading']} as="h1">
         {heading}
       </Heading>
       {description ? (
-        <Text className={styles['Hero-description']} as="p" size="500" variant="muted">
+        <Text className={styles['Hero-description']} as="p" size="400" variant="muted">
           {description}
         </Text>
       ) : null}
