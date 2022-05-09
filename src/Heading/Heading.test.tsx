@@ -1,7 +1,7 @@
 import React, {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
-import {Heading, HeadingSizes, defaultHeadingTag} from './Heading'
+import {Heading, defaultHeadingTag} from './Heading'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 expect.extend(toHaveNoViolations)
