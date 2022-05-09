@@ -32,7 +32,7 @@ jobs:
         id: storybook
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          environment: Storybook Preview
+          environment: Preview Storybook
           target_url: '${{ needs.deploy.outputs.deployment_url }}/storybook'
 
       - name: Update storybook deployment status (success)
