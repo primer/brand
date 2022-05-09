@@ -3,12 +3,13 @@ import {ComponentStory, ComponentMeta} from '@storybook/react'
 import {SunIcon, MoonIcon} from '@primer/octicons-react'
 import {ThemeProvider} from '.'
 import {useTheme} from '..'
+import {Text} from '../Text'
 
 import styles from './ThemeProvider.stories.module.css'
 
 function ActiveColorMode() {
   const {colorMode} = useTheme()
-  return <span>Active global color mode: {colorMode}</span>
+  return <Text>Active global color mode: {colorMode}</Text>
 }
 
 function Container({children}: {children: React.ReactNode}) {
@@ -16,7 +17,11 @@ function Container({children}: {children: React.ReactNode}) {
 }
 
 function ControlsHint() {
-  return <p className={styles.hint}>Hint: Use Storybook Controls to alternate between color modes.</p>
+  return (
+    <Text as="p" className={styles.hint}>
+      Hint: Use Storybook Controls to alternate between color modes.
+    </Text>
+  )
 }
 
 export default {
@@ -41,16 +46,16 @@ export const Nested: ComponentStory<typeof ThemeProvider> = args => (
   <ThemeProvider {...args}>
     <>
       <Container>
-        Parent: &apos;default&apos; (<ActiveColorMode />)
+        <Text>Parent: &apos;default&apos;</Text> (<ActiveColorMode />)
       </Container>
       <ThemeProvider colorMode="dark">
         <>
           <Container>
-            <MoonIcon /> Child: always &apos;dark&apos;
+            <MoonIcon /> <Text>Child: always &apos;dark&apos;</Text>
           </Container>
           <ThemeProvider colorMode="light">
             <Container>
-              <SunIcon /> Child: always &apos;light&apos;
+              <SunIcon /> <Text>Child: always &apos;light&apos;</Text>
             </Container>
           </ThemeProvider>
         </>

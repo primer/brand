@@ -18,11 +18,12 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
-    "lib"
+    "lib",
+    "fonts"
   ],
   "scripts": {
     "build": "npm run clean && npm run build:css-types && npm run build:tokens && webpack",
-    "build:css-types": "tcm -p 'src/**/*.css' .",
+    "build:css-types": "tcm -p 'src/**/*.module.css' .",
     "build:css-vars": "ts-node --skipIgnore ./scripts/build-css-variables.ts",
     "build:types": "tsc --project tsconfig.build.json",
     "build:storybook": "scripts/build-storybook",
@@ -53,7 +54,7 @@
     "@changesets/cli": "^2.21.0",
     "@github/prettier-config": "^0.0.4",
     "@primer/octicons-react": "^17.0.0",
-    "@primer/primitives": "^7.8.2",
+    "@primer/primitives": "0.0.0-20220428230003",
     "@storybook/addon-actions": "^6.4.19",
     "@storybook/addon-essentials": "^6.4.19",
     "@storybook/addon-interactions": "^6.4.19",

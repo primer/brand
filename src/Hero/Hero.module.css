@@ -1,13 +1,5 @@
-/* TODO: Extract these global styles */
-:global body {
-  font-family: system-ui; /* TODO: Use Alliance No. 1 or Mona Sans */
-  line-height: 1.5;
-}
-
-/* TODO: Replace hard-coded values with design tokens */
-
 .Hero {
-  padding: 6rem 0;
+  padding: var(--base-size-96) 0;
   display: flex;
   flex-direction: column;
 }
@@ -24,25 +16,12 @@
 
 .Hero-heading {
   margin: 0;
-  font-weight: 700;
-  line-height: 1.1;
   max-width: 18ch;
-  color: var(--gh-color-fg-default);
-}
-
-.Hero--size-small .Hero-heading {
-  font-size: 2.5rem;
-}
-
-.Hero--size-large .Hero-heading {
-  font-size: 3rem;
 }
 
 .Hero-description {
   margin: 1.5rem 0 0;
-  font-size: 1rem;
   max-width: 50ch;
-  color: var(--gh-color-fg-muted);
 }
 
 .Hero-actions {
@@ -60,19 +39,7 @@
 /* Small breakpoint and up */
 @media screen and (min-width: 544px) {
   .Hero {
-    padding: 10.75rem 0;
-  }
-
-  .Hero--size-small .Hero-heading {
-    font-size: 3.5rem;
-  }
-
-  .Hero--size-large .Hero-heading {
-    font-size: 4.5rem;
-  }
-
-  .Hero-description {
-    font-size: 1.25rem;
+    padding: var(--base-size-128) 0;
   }
 
   .Hero-actions {
@@ -82,20 +49,5 @@
 
   .Hero-actions > :not(:last-child) {
     margin: 0 1rem 0 0;
-  }
-}
-
-/* Medium breakpoint and up */
-@media screen and (min-width: 768px) {
-  .Hero--size-small .Hero-heading {
-    font-size: 4.5rem;
-  }
-
-  .Hero--size-large .Hero-heading {
-    font-size: 6rem;
-  }
-
-  .Hero--size-large .Hero-description {
-    font-size: 1.5rem;
   }
 }

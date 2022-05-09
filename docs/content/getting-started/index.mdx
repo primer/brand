@@ -15,14 +15,13 @@ npm install @primer/react-brand
 
 ### 2. Import global stylesheets
 
-Primer React Brand requires a global stylesheet loaded ahead-of-time.
+Primer React Brand requires a global stylesheet to be loaded ahead-of-time.
 
 #### a. Using an application bundler (e.g. Webpack)
 
-Import the stylesheet at the earliest React-rendering opportunity:
+Import the `main` stylesheet at the earliest rendering opportunity:
 
 ```js
-import '@primer/react-brand/lib/css/gh-variables.color.css'
 import '@primer/react-brand/lib/css/main.css'
 ```
 
@@ -30,20 +29,33 @@ or
 
 #### b. Using a static stylesheet
 
-Use a static stylesheet if you're unable to load in global styles using a bundler
+Load the static stylesheet if you're unable to import stylesheets using a bundler
 
 ```html
 <link
   href="https://unpkg.com/browse/@primer/react-brand@<version>/lib/css/main.css"
   rel="stylesheet"
 />
+```
+
+### 3. (Optional) Import the custom font assets
+
+Primer Brand references the `Mona Sans` typeface, which will need to be loaded alongside the main stylesheet.
+
+```js
+import '@primer/react-brand/fonts/fonts.css'
+```
+
+or
+
+```html
 <link
-  href="https://unpkg.com/browse/@primer/react-brand@<version>/lib/css/gh-variables.color.css"
+  href="https://unpkg.com/browse/@primer/react-brand@<version>/fonts/fonts.css"
   rel="stylesheet"
 />
 ```
 
-### 3. Import components
+### 4. Import components
 
 Components can be imported into any React-based application.
 

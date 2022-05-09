@@ -1,5 +1,7 @@
 const fs = require('fs')
-const {buildPrimitives} = require('@primer/primitives/build')
+const {buildPrimitives, StyleDictionary} = require('@primer/primitives/build')
+
+const mediaQueryFormat = require('../src/formats/responsive-media-query')
 
 ;(function () {
   const namespace = 'brand'
@@ -24,8 +26,11 @@ const {buildPrimitives} = require('@primer/primitives/build')
    * Build tokens by running function against the temporary directory
    */
 
+  StyleDictionary.registerFormat(mediaQueryFormat)
+
+  //build most tokens
   buildPrimitives({
-    source: [`tokens/**/*.json`, `!tokens/**/size-*.json`], //build all tokens
+    source: [`tokens/**/*.json`, `!tokens/**/size-*.json`],
     namespace,
     outputPath
   })
@@ -76,6 +81,26 @@ const {buildPrimitives} = require('@primer/primitives/build')
             destination: `tokens/functional/size/size-coarse.css`,
             format: `css/touch-target-mobile`,
             filter: token => token.filePath.includes('coarse'),
+            options: {
+              outputReferences: true
+            }
+          }
+        ]
+      }
+    }
+  })
+
+  buildPrimitives({
+    source: [`tokens/base/typography/typography.json`, `tokens/functional/typography/typography-responsive.json`], // build the special formats
+    namespace,
+    platforms: {
+      css: {
+        buildPath: `${outputPath}/css/`,
+        transformGroup: 'css',
+        files: [
+          {
+            destination: `tokens/functional/typography/typography-responsive.css`,
+            format: `css/responsive-media-query`,
             options: {
               outputReferences: true
             }

@@ -1,0 +1,56 @@
+---
+title: Heading
+status: Experimental
+source: https://github.com/primer/react-brand/tree/main/src/Heading/Heading.tsx
+storybook: '/react-brand/storybook?path=/story/components-hero--centered'
+description: Use the Heading component to render body content
+---
+
+import {HeadingTags, defaultHeadingTag} from '@primer/react-brand'
+import {Box as Container} from '@primer/react'
+import {PropTableValues} from '../../src/components'
+
+```js
+import {Heading} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<Container pl={3}>
+  <Heading>This is my super sweet heading</Heading>
+</Container>
+```
+
+### Scale
+
+```jsx live
+<Container pl={3}>
+  <Heading as="h1">Heading 1</Heading>
+  <Heading as="h2">Heading 2</Heading>
+  <Heading as="h3">Heading 3</Heading>
+  <Heading as="h4">Heading 4</Heading>
+  <Heading as="h5">Heading 5</Heading>
+  <Heading as="h6">Heading 6</Heading>
+</Container>
+```
+
+### Sizes
+
+The `Heading` size is determined by the type of HTML element specified. E.g. `h1`, `h2`, `h3`, `h4`, `h5` or `h6`.
+
+```jsx live
+<Container pl={3}>
+  <Heading as="h6">This is my super sweet heading</Heading>
+</Container>
+```
+
+## Component props
+
+### Heading
+
+| Name | Type                                                   |                     Default                      | Description                         |
+| :--- | :----------------------------------------------------- | :----------------------------------------------: | :---------------------------------- |
+| `as` | <PropTableValues values={HeadingTags} addLineBreaks /> | <PropTableValues values={[defaultHeadingTag]} /> | Applies the underlying HTML element |

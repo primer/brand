@@ -1,0 +1,75 @@
+---
+title: Text
+status: Experimental
+source: https://github.com/primer/react-brand/tree/main/src/Text/Text.tsx
+storybook: '/react-brand/storybook?path=/story/components-text--scale'
+description: Use the Text component to render body content
+---
+
+import {
+  TextSizes,
+  TextTags,
+  TextVariants,
+  defaultTextVariant,
+  defaultTextTag,
+  defaultTextSize,
+} from '@primer/react-brand'
+import {Box as Container} from '@primer/react'
+import {PropTableValues} from '../../src/components'
+
+```js
+import {Text} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<Container pl={3}>
+  <Text>With GitHub Copilot, you’re always in charge.</Text>
+</Container>
+```
+
+### Scale
+
+```jsx live
+<Container pl={3}>
+  {TextSizes.map((size) => (
+    <Text key={size} size={size} as="p">
+      Text {size}
+    </Text>
+  ))}
+</Container>
+```
+
+### Variants
+
+```jsx live
+<Container pl={3}>
+  <Text as="p">With GitHub Copilot, you’re always in charge.</Text>
+  <Text as="p" variant="muted">
+    With GitHub Copilot, you’re always in charge.
+  </Text>
+</Container>
+```
+
+### Polymorphism
+
+The `Text` component can render as a `span`, `p` or `div` HTML element.
+
+```jsx live
+<Container pl={3}>
+  <Text as="p">With GitHub Copilot, you’re always in charge.</Text>
+</Container>
+```
+
+## Component props
+
+### Text
+
+| Name      | Type                                                    |                      Default                      | Description                         |
+| :-------- | :------------------------------------------------------ | :-----------------------------------------------: | :---------------------------------- |
+| `as`      | <PropTableValues values={TextTags} addLineBreaks />     |   <PropTableValues values={[defaultTextTag]} />   | Applies the underlying HTML element |
+| `size`    | <PropTableValues values={TextSizes} addLineBreaks />    |  <PropTableValues values={[defaultTextSize]} />   | Specify the text size               |
+| `variant` | <PropTableValues values={TextVariants} addLineBreaks /> | <PropTableValues values={[defaultTextVariant]} /> | Specify alternative text appearance |

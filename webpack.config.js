@@ -67,6 +67,7 @@ module.exports = {
     extensions: ['.ts', '.tsx', '.js', '.css']
   },
   plugins: [
+    // Extract library css into a separate file
     new MiniCssExtractPlugin({
       filename: './css/[name].css'
     })

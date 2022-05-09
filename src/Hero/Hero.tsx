@@ -2,6 +2,8 @@ import React from 'react'
 import clsx from 'clsx'
 import styles from './Hero.module.css'
 import {LinkButton} from '../LinkButton'
+import {Heading} from '../Heading'
+import {Text} from '../Text'
 
 type Action = {
   text: string
@@ -9,6 +11,7 @@ type Action = {
 }
 
 export type HeroProps = {
+  className?: string
   heading: string | React.ReactElement
   description?: string | React.ReactElement
   primaryAction: Action
@@ -18,6 +21,7 @@ export type HeroProps = {
 }
 
 export function Hero({
+  className,
   heading,
   description,
   primaryAction,
@@ -26,9 +30,15 @@ export function Hero({
   size = 'large'
 }: HeroProps) {
   return (
-    <div className={clsx(styles.Hero, styles[`Hero--align-${align}`], styles[`Hero--size-${size}`])}>
-      <h1 className={styles['Hero-heading']}>{heading}</h1>
-      {description ? <p className={styles['Hero-description']}>{description}</p> : null}
+    <div className={clsx(styles.Hero, styles[`Hero--align-${align}`], styles[`Hero--size-${size}`], className)}>
+      <Heading className={styles['Hero-heading']} as={size === 'large' ? 'h1' : 'h2'}>
+        {heading}
+      </Heading>
+      {description ? (
+        <Text className={styles['Hero-description']} as="p" size="500" variant="muted">
+          {description}
+        </Text>
+      ) : null}
       <div className={styles['Hero-actions']}>
         <LinkButton variant="primary" href={primaryAction.href}>
           {primaryAction.text}
