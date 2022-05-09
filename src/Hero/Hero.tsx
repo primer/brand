@@ -11,6 +11,7 @@ type Action = {
 }
 
 export type HeroProps = {
+  className?: string
   heading: string | React.ReactElement
   description?: string | React.ReactElement
   primaryAction: Action
@@ -20,6 +21,7 @@ export type HeroProps = {
 }
 
 export function Hero({
+  className,
   heading,
   description,
   primaryAction,
@@ -28,7 +30,7 @@ export function Hero({
   size = 'large'
 }: HeroProps) {
   return (
-    <div className={clsx(styles.Hero, styles[`Hero--align-${align}`], styles[`Hero--size-${size}`])}>
+    <div className={clsx(styles.Hero, styles[`Hero--align-${align}`], styles[`Hero--size-${size}`], className)}>
       <Heading className={styles['Hero-heading']} as={size === 'large' ? 'h1' : 'h2'}>
         {heading}
       </Heading>

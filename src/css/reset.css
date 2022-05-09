@@ -1,3 +1,9 @@
+/**
+ * Modified from https://github.com/hankchizljaw/modern-css-reset
+ * Copyright (c) 2019 Andy Bell and other contributors
+ * License: MIT
+ */
+
 /* Box sizing rules */
 *,
 *::before,
@@ -35,7 +41,6 @@ html:focus-within {
 /* Set core body defaults */
 body {
   min-height: 100vh;
-  text-rendering: optimizeSpeed;
   line-height: 1.5;
 }
 
