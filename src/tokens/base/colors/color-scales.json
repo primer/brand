@@ -1,0 +1,302 @@
+{
+  "base": {
+    "color": {
+      "scale": {
+        "gray": {
+          "0": {
+            "value": "hsl(210, 25%, 98%)",
+            "darkValue": "hsl(210, 67%, 96%)"
+          },
+          "1": {
+            "value": "hsl(210, 24%, 93%)",
+            "darkValue": "hsl(210, 17%, 82%)"
+          },
+          "2": {
+            "value": "hsl(210, 16%, 85%)",
+            "darkValue": "hsl(212, 14%, 73%)"
+          },
+          "3": {
+            "value": "hsl(210, 13%, 75%)",
+            "darkValue": "hsl(212, 9%, 58%)"
+          },
+          "4": {
+            "value": "hsl(212, 10%, 62%)",
+            "darkValue": "hsl(215, 8%, 47%)"
+          },
+          "5": {
+            "value": "hsl(210, 8%, 48%)",
+            "darkValue": "hsl(214, 10%, 31%)"
+          },
+          "6": {
+            "value": "hsl(212, 10%, 38%)",
+            "darkValue": "hsl(212, 12%, 21%)"
+          },
+          "7": {
+            "value": "hsl(212, 11%, 29%)",
+            "darkValue": "hsl(215, 15%, 15%)"
+          },
+          "8": {
+            "value": "hsl(212, 12%, 22%)",
+            "darkValue": "hsl(215, 21%, 11%)"
+          },
+          "9": {
+            "value": "hsl(213, 13%, 16%)",
+            "darkValue": "hsl(216, 28%, 7%)"
+          }
+        },
+        "red": {
+          "0": {
+            "value": "hsl(4, 100%, 97%)",
+            "darkValue": "hsl(8, 100%, 92%)"
+          },
+          "1": {
+            "value": "hsl(3, 100%, 91%)",
+            "darkValue": "hsl(6, 100%, 86%)"
+          },
+          "2": {
+            "value": "hsl(2, 100%, 85%)",
+            "darkValue": "hsl(5, 100%, 80%)"
+          },
+          "3": {
+            "value": "hsl(1, 100%, 76%)",
+            "darkValue": "hsl(4, 100%, 72%)"
+          },
+          "4": {
+            "value": "hsl(359, 95%, 65%)",
+            "darkValue": "hsl(3, 93%, 63%)"
+          },
+          "5": {
+            "value": "hsl(357, 67%, 50%)",
+            "darkValue": "hsl(1, 69%, 53%)"
+          },
+          "6": {
+            "value": "hsl(356, 71%, 38%)",
+            "darkValue": "hsl(360, 68%, 43%)"
+          },
+          "7": {
+            "value": "hsl(355, 71%, 30%)",
+            "darkValue": "hsl(358, 74%, 32%)"
+          },
+          "8": {
+            "value": "hsl(354, 74%, 24%)",
+            "darkValue": "hsl(356, 89%, 21%)"
+          },
+          "9": {
+            "value": "hsl(352, 91%, 17%)",
+            "darkValue": "hsl(0, 95%, 15%)"
+          }
+        },
+        "coral": {
+          "0": {
+            "value": "hsl(15, 100%, 96%)",
+            "darkValue": "hsl(15, 100%, 91%)"
+          },
+          "1": {
+            "value": "hsl(12, 100%, 90%)",
+            "darkValue": "hsl(12, 100%, 85%)"
+          },
+          "2": {
+            "value": "hsl(12, 100%, 82%)",
+            "darkValue": "hsl(12, 100%, 77%)"
+          },
+          "3": {
+            "value": "hsl(11, 97%, 72%)",
+            "darkValue": "hsl(11, 90%, 68%)"
+          },
+          "4": {
+            "value": "hsl(11, 81%, 60%)",
+            "darkValue": "hsl(10, 80%, 59%)"
+          },
+          "5": {
+            "value": "hsl(9, 64%, 47%)",
+            "darkValue": "hsl(9, 64%, 49%)"
+          },
+          "6": {
+            "value": "hsl(9, 70%, 36%)",
+            "darkValue": "hsl(8, 69%, 40%)"
+          },
+          "7": {
+            "value": "hsl(8, 79%, 28%)",
+            "darkValue": "hsl(7, 76%, 30%)"
+          },
+          "8": {
+            "value": "hsl(7, 91%, 22%)",
+            "darkValue": "hsl(6, 92%, 20%)"
+          },
+          "9": {
+            "value": "hsl(6, 98%, 16%)",
+            "darkValue": "hsl(5, 97%, 14%)"
+          }
+        },
+        "orange": {
+          "0": {
+            "value": "hsla(28, 100%, 95%, 1)",
+            "darkValue": "hsla(34, 100%, 86%, 1)"
+          },
+          "1": {
+            "value": "hsla(28, 100%, 85%, 1)",
+            "darkValue": "hsla(33, 100%, 75%, 1)"
+          },
+          "2": {
+            "value": "hsla(27, 100%, 74%, 1)",
+            "darkValue": "hsla(28, 100%, 67%, 1)"
+          },
+          "3": {
+            "value": "hsla(24, 76%, 51%, 1)",
+            "darkValue": "hsla(25, 86%, 59%, 1)"
+          },
+          "4": {
+            "value": "hsla(24, 76%, 51%, 1)",
+            "darkValue": "hsla(23, 71%, 51%, 1)"
+          },
+          "5": {
+            "value": "hsla(24, 100%, 37%, 1)",
+            "darkValue": "hsla(21, 73%, 43%, 1)"
+          },
+          "6": {
+            "value": "hsla(23, 100%, 29%, 1)",
+            "darkValue": "hsla(20, 76%, 35%, 1)"
+          },
+          "7": {
+            "value": "hsla(22, 100%, 23%, 1)",
+            "darkValue": "hsla(19, 84%, 25%, 1)"
+          },
+          "8": {
+            "value": "hsla(22, 100%, 18%, 1)",
+            "darkValue": "hsla(19, 96%, 18%, 1)"
+          },
+          "9": {
+            "value": "hsla(19, 100%, 14%, 1)",
+            "darkValue": "hsla(19, 100%, 12%, 1)"
+          }
+        },
+        "yellow": {
+          "0": {
+            "value": "hsla(50, 89%, 89%, 1)",
+            "darkValue": "hsla(46, 86%, 80%, 1)"
+          },
+          "1": {
+            "value": "hsla(48, 87%, 73%, 1)",
+            "darkValue": "hsla(44, 85%, 66%, 1)"
+          },
+          "2": {
+            "value": "hsla(46, 76%, 60%, 1)",
+            "darkValue": "hsla(42, 74%, 57%, 1)"
+          },
+          "3": {
+            "value": "hsla(44, 65%, 50%, 1)",
+            "darkValue": "hsla(41, 72%, 48%, 1)"
+          },
+          "4": {
+            "value": "hsla(42, 100%, 37%, 1)",
+            "darkValue": "hsla(40, 91%, 38%, 1)"
+          },
+          "5": {
+            "value": "hsla(40, 100%, 30%, 1)",
+            "darkValue": "hsla(40, 96%, 32%, 1)"
+          },
+          "6": {
+            "value": "hsla(37, 100%, 24%, 1)",
+            "darkValue": "hsla(37, 91%, 27%, 1)"
+          },
+          "7": {
+            "value": "hsla(36, 98%, 19%, 1)",
+            "darkValue": "hsla(35, 100%, 21%, 1)"
+          },
+          "8": {
+            "value": "hsla(35, 100%, 15%, 1)",
+            "darkValue": "hsla(33, 100%, 15%, 1)"
+          },
+          "9": {
+            "value": "hsla(34, 90%, 12%, 1)",
+            "darkValue": "hsla(30, 100%, 10%, 1)"
+          }
+        },
+        "lemon": {
+          "0": {
+            "value": "hsla(54, 95%, 85%, 1)",
+            "darkValue": "hsla(54, 100%, 83%, 1)"
+          },
+          "1": {
+            "value": "hsla(52, 87%, 67%, 1)",
+            "darkValue": "hsla(53, 94%, 67%, 1)"
+          },
+          "2": {
+            "value": "hsla(51, 70%, 56%, 1)",
+            "darkValue": "hsla(52, 73%, 57%, 1)"
+          },
+          "3": {
+            "value": "hsla(50, 72%, 45%, 1)",
+            "darkValue": "hsla(52, 82%, 42%, 1)"
+          },
+          "4": {
+            "value": "hsla(50, 98%, 33%, 1)",
+            "darkValue": "hsla(52, 100%, 33%, 1)"
+          },
+          "5": {
+            "value": "",
+            "darkValue": ""
+          },
+          "6": {
+            "value": "",
+            "darkValue": ""
+          },
+          "7": {
+            "value": "",
+            "darkValue": ""
+          },
+          "8": {
+            "value": "",
+            "darkValue": ""
+          },
+          "9": {
+            "value": "",
+            "darkValue": ""
+          }
+        },
+        "": {
+          "0": {
+            "value": "",
+            "darkValue": ""
+          },
+          "1": {
+            "value": "",
+            "darkValue": ""
+          },
+          "2": {
+            "value": "",
+            "darkValue": ""
+          },
+          "3": {
+            "value": "",
+            "darkValue": ""
+          },
+          "4": {
+            "value": "",
+            "darkValue": ""
+          },
+          "5": {
+            "value": "",
+            "darkValue": ""
+          },
+          "6": {
+            "value": "",
+            "darkValue": ""
+          },
+          "7": {
+            "value": "",
+            "darkValue": ""
+          },
+          "8": {
+            "value": "",
+            "darkValue": ""
+          },
+          "9": {
+            "value": "",
+            "darkValue": ""
+          }
+        }
+      }
+    }
+  }
+}
