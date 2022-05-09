@@ -4,7 +4,9 @@ on:
   pull_request:
 
 permissions:
+  checks: write
   contents: read
+  deployments: write
   pages: write
   id-token: write
 
