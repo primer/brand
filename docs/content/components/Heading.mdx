@@ -6,12 +6,7 @@ storybook: '/react-brand/storybook?path=/story/components-hero--centered'
 description: Use the Heading component to render body content
 ---
 
-import {
-  HeadingSizes,
-  HeadingTags,
-  defaultHeadingTag,
-  defaultHeadingSize,
-} from '@primer/react-brand'
+import {HeadingTags, defaultHeadingTag} from '@primer/react-brand'
 import {Box as Container} from '@primer/react'
 import {PropTableValues} from '../../src/components'
 
@@ -33,21 +28,21 @@ import {Heading} from '@primer/react-brand'
 
 ```jsx live
 <Container pl={3}>
-  {HeadingSizes.map((size) => (
-    <Heading key={size} size={size} as="p">
-      Heading {size}
+  {HeadingTags.map((tag) => (
+    <Heading key={tag} as={tag}>
+      {tag.toUpperCase()}
     </Heading>
   ))}
 </Container>
 ```
 
-### Polymorphism
+### Sizes
 
-The `Heading` component can render as a `h1`, `h2`, `h3`, `h4`, `h5` or `h6` HTML element.
+The `Heading` size is determined by the type of HTML element specified. E.g. `h1`, `h2`, `h3`, `h4`, `h5` or `h6`.
 
 ```jsx live
 <Container pl={3}>
-  <Heading as="h3">This is my super sweet heading</Heading>
+  <Heading as="h6">This is my super sweet heading</Heading>
 </Container>
 ```
 
@@ -55,7 +50,6 @@ The `Heading` component can render as a `h1`, `h2`, `h3`, `h4`, `h5` or `h6` HTM
 
 ### Heading
 
-| Name   | Type                                                    |                      Default                      | Description                         |
-| :----- | :------------------------------------------------------ | :-----------------------------------------------: | :---------------------------------- |
-| `as`   | <PropTableValues values={HeadingTags} addLineBreaks />  | <PropTableValues values={[defaultHeadingTag]} />  | Applies the underlying HTML element |
-| `size` | <PropTableValues values={HeadingSizes} addLineBreaks /> | <PropTableValues values={[defaultHeadingSize]} /> | Specify the heading size            |
+| Name | Type                                                   |                     Default                      | Description                         |
+| :--- | :----------------------------------------------------- | :----------------------------------------------: | :---------------------------------- |
+| `as` | <PropTableValues values={HeadingTags} addLineBreaks /> | <PropTableValues values={[defaultHeadingTag]} /> | Applies the underlying HTML element |

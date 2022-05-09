@@ -10,12 +10,14 @@ export function PropTableValues({values, addLineBreaks}) {
   })
   return (
     <>
-      {valuesToRender.map((value) => (
-        <>
-          {value}
-          {addLineBreaks && <br />}
-        </>
-      ))}
+      {valuesToRender.map((value) => {
+        return (
+          <React.Fragment key={value.key}>
+            {value}
+            {addLineBreaks && <br />}
+          </React.Fragment>
+        )
+      })}
     </>
   )
 }

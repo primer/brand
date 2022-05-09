@@ -1,6 +1,6 @@
 import React from 'react'
 import {ComponentMeta, ComponentStory} from '@storybook/react'
-import {Heading, HeadingSizes} from '.'
+import {Heading, HeadingTags} from '.'
 
 export default {
   title: 'Components/Heading',
@@ -12,14 +12,14 @@ const Template: ComponentStory<typeof Heading> = args => <Heading {...args} />
 export const Default = Template.bind({})
 Default.args = {
   children: 'Heading',
-  size: '1000'
+  as: 'h1'
 }
 
 export const Scale: ComponentStory<typeof Heading> = () => (
   <>
-    {HeadingSizes.map(size => (
-      <Heading key={size} size={size}>
-        Heading {size}
+    {HeadingTags.map(tag => (
+      <Heading key={tag} as={tag}>
+        Heading {tag}
       </Heading>
     ))}
   </>

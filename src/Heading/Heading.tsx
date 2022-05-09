@@ -2,10 +2,18 @@ import React, {PropsWithChildren} from 'react'
 import clsx from 'clsx'
 import styles from './Heading.module.css'
 
-export const HeadingSizes = ['1000', '900', '800', '700', '600', '500', '400'] as const
+export const HeadingSizes = ['1', '2', '3', '4', '5', '6'] as const
 export const HeadingTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const
 export const defaultHeadingTag = HeadingTags[1]
-export const defaultHeadingSize = HeadingSizes[3]
+
+export const classMap = {
+  h1: HeadingSizes[0],
+  h2: HeadingSizes[1],
+  h3: HeadingSizes[2],
+  h4: HeadingSizes[3],
+  h5: HeadingSizes[4],
+  h6: HeadingSizes[5]
+}
 
 type HeadingTags = {
   as?: typeof HeadingTags[number]
@@ -13,20 +21,21 @@ type HeadingTags = {
 
 type HeadingProps = {
   className?: string
-  size?: typeof HeadingSizes[number]
 } & HeadingTags
 
-export function Heading({
-  className,
-  children,
-  size = defaultHeadingSize,
-  as = defaultHeadingTag,
-  ...rest
-}: PropsWithChildren<HeadingProps>) {
-  const headingClassNames = clsx(className, styles.Heading, styles[`Heading--${size}`])
+export function Heading({className, children, as = defaultHeadingTag, ...rest}: PropsWithChildren<HeadingProps>) {
+  const headingClassNames = clsx(className, styles.Heading, styles[`Heading--${classMap[as]}`])
 
   const HeadingComponent = React.useCallback(
-    ({...props}: React.HTMLAttributes<HTMLHeadingElement>) => React.createElement(as, props, children),
+    ({...props}: React.HTMLAttributes<HTMLHeadingElement>) => {
+      if (!HeadingTags.includes(as)) {
+        // eslint-disable-next-line no-console
+        console.error(`Heading: 'as' prop must be one of ${HeadingTags.join(', ')}`)
+        return null
+      }
+
+      return React.createElement(as, props, children)
+    },
     [as, children]
   )
 

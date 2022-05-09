@@ -1,7 +1,7 @@
 import React, {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
-import {Heading, defaultHeadingSize, defaultHeadingTag} from './Heading'
+import {Heading, HeadingSizes, defaultHeadingTag} from './Heading'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 expect.extend(toHaveNoViolations)
@@ -39,22 +39,19 @@ describe('Heading', () => {
     expect(headingEl.tagName).toBe('H1')
   })
 
-  test('applies the correct default size', () => {
+  test('renders the correct size for the default tag', () => {
+    const expectedClass = 'Heading--1'
+    const {getByRole} = render(<Heading>{mockHeading}</Heading>)
+    const headingEl = getByRole('heading')
+
+    expect(headingEl.classList).toContain(expectedClass)
+  })
+
+  test('renders the correct size for alternative tags', () => {
+    const expectedClass = 'Heading--0'
     const {getByRole} = render(<Heading as="h1">{mockHeading}</Heading>)
     const headingEl = getByRole('heading')
 
-    expect(headingEl.classList).toContain(`Heading--${defaultHeadingSize}`)
-  })
-
-  test('applies an optional, alternative size', () => {
-    const expectedAlternativeSize = '1000'
-    const {getByRole} = render(
-      <Heading as="h1" size={expectedAlternativeSize}>
-        {mockHeading}
-      </Heading>
-    )
-    const headingEl = getByRole('heading')
-
-    expect(headingEl.classList).toContain(`Heading--${expectedAlternativeSize}`)
+    expect(headingEl.classList).toContain(expectedClass)
   })
 })
