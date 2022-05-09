@@ -3,10 +3,11 @@ name: Release candidate
 on:
   push:
     branches:
-      - "changeset-release/main"
+      - 'changeset-release/main'
 
 jobs:
   release-candidate:
+    if: ${{ github.repository == 'primer/react-brand' }}
     name: Candidate
     uses: primer/.github/.github/workflows/release_candidate.yml@main
     secrets:

@@ -4,10 +4,11 @@ on:
   push:
     branches-ignore:
       - main
-      - "changeset-release/main"
+      - 'changeset-release/main'
 
 jobs:
   release-canary:
+    if: ${{ github.repository == 'primer/react-brand' }}
     name: Canary
     uses: primer/.github/.github/workflows/release_canary.yml@main
     secrets:
