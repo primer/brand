@@ -16,6 +16,7 @@
     "@primer/octicons-react": "^17.0.0",
     "@primer/primitives": "4.1.0",
     "@primer/react": "^35.1.0",
+    "color2k": "^2.0.0",
     "gatsby": "^3.7.2",
     "gatsby-plugin-alias-imports": "^1.0.5",
     "gatsby-plugin-postcss": "^4.14.0",

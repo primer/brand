@@ -12,3 +12,8 @@
       url: /components/Heading
     - title: Text
       url: /components/Text
+
+- title: Primitives
+  children:
+    - title: Colors
+      url: /primitives/color
