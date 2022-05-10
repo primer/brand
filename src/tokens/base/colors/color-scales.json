@@ -234,67 +234,37 @@
             "darkValue": "hsla(52, 100%, 33%, 1)"
           },
           "5": {
-            "value": "",
-            "darkValue": ""
+            "value": "hsla(49, 100%, 26%, 1)",
+            "darkValue": "hsla(51, 100%, 27%, 1)"
           },
           "6": {
-            "value": "",
-            "darkValue": ""
+            "value": "hsla(48, 100%, 20%, 1)",
+            "darkValue": "hsla(50, 100%, 22%, 1)"
           },
           "7": {
-            "value": "",
-            "darkValue": ""
+            "value": "hsla(47, 100%, 16%, 1)",
+            "darkValue": "hsla(48, 100%, 17%, 1)"
           },
           "8": {
-            "value": "",
-            "darkValue": ""
+            "value": "hsla(46, 100%, 13%, 1)",
+            "darkValue": "hsla(46, 100%, 12%, 1)"
           },
           "9": {
-            "value": "",
-            "darkValue": ""
+            "value": "hsla(43, 100%, 10%, 1)",
+            "darkValue": "hsla(43, 100%, 8%, 1)"
           }
-        },
-        "": {
-          "0": {
-            "value": "",
-            "darkValue": ""
-          },
-          "1": {
-            "value": "",
-            "darkValue": ""
-          },
-          "2": {
-            "value": "",
-            "darkValue": ""
-          },
-          "3": {
-            "value": "",
-            "darkValue": ""
-          },
-          "4": {
-            "value": "",
-            "darkValue": ""
-          },
-          "5": {
-            "value": "",
-            "darkValue": ""
-          },
-          "6": {
-            "value": "",
-            "darkValue": ""
-          },
-          "7": {
-            "value": "",
-            "darkValue": ""
-          },
-          "8": {
-            "value": "",
-            "darkValue": ""
-          },
-          "9": {
-            "value": "",
-            "darkValue": ""
-          }
+        }
+      },
+      "black": {
+        "0": {
+          "value": "hsl(0, 0%, 0%)",
+          "darkValue": "hsl(0, 0%, 0%)"
+        }
+      },
+      "white": {
+        "0": {
+          "value": "hsl(0, 0%, 100%)",
+          "darkValue": "hsl(0, 0%, 100%)"
         }
       }
     }
