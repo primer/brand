@@ -550,14 +550,14 @@
         },
         "black": {
           "0": {
-            "value": "",
-            "darkValue": ""
+            "value": "hsl(0, 100%, 0%)",
+            "darkValue": "hsl(0, 100%, 0%)"
           }
         },
         "white": {
           "0": {
-            "value": "",
-            "darkValue": ""
+            "value": "hsl(0, 100%, 100%)",
+            "darkValue": "hsl(0, 100%, 100%)"
           }
         }
       }
