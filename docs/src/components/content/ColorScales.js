@@ -58,7 +58,6 @@ export function ColorScales() {
       </Box>
     )
   }
-  console.log(colorFormats, activeColorFormat)
 
   return (
     <PRCThemeProvider
