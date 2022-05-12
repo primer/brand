@@ -7,12 +7,16 @@ import {
   Text,
   ThemeProvider as PRCThemeProvider,
 } from '@primer/react'
-import {readableColor} from 'color2k'
+import {readableColor, toHex, toHsla, toRgba} from 'color2k'
 import {ColorModesEnum} from '../../../../src'
 
+const availableColorModes = Object.values(ColorModesEnum)
+const colorFormats = ['hex', 'hsla', 'rgba']
+
 export function ColorScales() {
-  const availableColorModes = Object.values(ColorModesEnum)
   const [colorTheme, setCurrentMode] = React.useState(ColorModesEnum.LIGHT)
+  const [activeColorFormat, setActiveColorFormat] = React.useState('hex')
+
   const predicateFn = (colorEntry) => ['black', 'white'].includes(colorEntry[0])
 
   const rgbScales = Object.entries(colors.base.color.scale).filter(
@@ -45,13 +49,16 @@ export function ColorScales() {
               <Text>
                 {name}.{key}
               </Text>
-              <Text>{value}</Text>
+              {activeColorFormat === 'hex' && <Text>{toHex(value)}</Text>}
+              {activeColorFormat === 'rgba' && <Text>{toRgba(value)}</Text>}
+              {activeColorFormat === 'hsla' && <Text>{toHsla(value)}</Text>}
             </Box>
           )
         })}
       </Box>
     )
   }
+  console.log(colorFormats, activeColorFormat)
 
   return (
     <PRCThemeProvider
@@ -63,36 +70,57 @@ export function ColorScales() {
           : ColorModesEnum.AUTO
       }
     >
-      <Box
-        sx={{
-          paddingTop: 2,
-          paddingLeft: 2,
-          paddingRight: 2,
-          marginBottom: 3,
-          display: 'flex',
-          justifyContent: 'flex-end',
-        }}
-      >
-        <ActionMenu>
-          <ActionMenu.Button>{colorTheme}</ActionMenu.Button>
+      <PRCThemeProvider colorMode="day">
+        <Box
+          sx={{
+            paddingTop: 2,
+            paddingLeft: 2,
+            paddingRight: 2,
+            marginBottom: 3,
+            display: 'flex',
+            justifyContent: 'flex-end',
+          }}
+        >
+          <ActionMenu>
+            <ActionMenu.Button sx={{marginRight: 3}}>
+              Change color format
+            </ActionMenu.Button>
 
-          <ActionMenu.Overlay>
-            <ActionList selectionVariant="single">
-              {availableColorModes
-                .filter((mode) => mode !== 'auto')
-                .map((mode) => (
+            <ActionMenu.Overlay>
+              <ActionList selectionVariant="single">
+                {colorFormats.map((mode) => (
                   <ActionList.Item
                     key={mode}
-                    selected={colorTheme === mode}
-                    onSelect={() => setCurrentMode(mode)}
+                    selected={activeColorFormat === mode}
+                    onSelect={() => setActiveColorFormat(mode)}
                   >
                     {mode}
                   </ActionList.Item>
                 ))}
-            </ActionList>
-          </ActionMenu.Overlay>
-        </ActionMenu>
-      </Box>
+              </ActionList>
+            </ActionMenu.Overlay>
+          </ActionMenu>
+          <ActionMenu>
+            <ActionMenu.Button>Change color mode</ActionMenu.Button>
+
+            <ActionMenu.Overlay>
+              <ActionList selectionVariant="single">
+                {availableColorModes
+                  .filter((mode) => mode !== 'auto')
+                  .map((mode) => (
+                    <ActionList.Item
+                      key={mode}
+                      selected={colorTheme === mode}
+                      onSelect={() => setCurrentMode(mode)}
+                    >
+                      {mode}
+                    </ActionList.Item>
+                  ))}
+              </ActionList>
+            </ActionMenu.Overlay>
+          </ActionMenu>
+        </Box>
+      </PRCThemeProvider>
       <Box
         sx={{
           display: 'grid',
