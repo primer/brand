@@ -44,7 +44,6 @@
     "start:css-types": "tcm -w -p 'src/**/*.css' .",
     "test": "jest"
   },
-  "prettier": "@github/prettier-config",
   "peerDependencies": {
     "react": ">=17.0.0 <= 18.0.0",
     "react-dom": ">=17.0.0 <= 18.0.0"
@@ -109,6 +108,7 @@
     "webpack-cli": "^4.9.2"
   },
   "dependencies": {
-    "clsx": "^1.1.1"
+    "clsx": "^1.1.1",
+    "color2k": "^2.0.0"
   }
 }

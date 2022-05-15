@@ -3,11 +3,11 @@
 }
 
 .Text--default {
-  color: var(--gh-color-fg-default);
+  color: var(--brand-color-fg-default);
 }
 
 .Text--muted {
-  color: var(--gh-color-fg-muted);
+  color: var(--brand-color-fg-muted);
 }
 
 .Text--700 {

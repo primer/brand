@@ -128,7 +128,7 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
         transformGroup: 'css',
         files: [
           {
-            destination: `tokens/base/colors/color-scales-attributes.css`,
+            destination: `tokens/base/colors/color-scales-with-modes.css`,
             format: `css/color-mode-attributes`,
             options: {
               outputReferences: true
@@ -138,6 +138,33 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
       }
     }
   })
+
+  const filesForColorModes = [`tokens/functional/colors/global.js`, `tokens/functional/components/button/colors.js`]
+
+  for (const path of filesForColorModes) {
+    const sansExtention = path.replace(/\.[^/.]+$/, '')
+
+    buildPrimitives({
+      source: [path], // build the special formats
+      namespace,
+      platforms: {
+        css: {
+          buildPath: `${outputPath}/css/`,
+          transformGroup: 'css',
+          files: [
+            {
+              destination: `${sansExtention}-with-modes.css`,
+              format: `css/color-mode-attributes`,
+              options: {
+                outputReferences: true
+              }
+            }
+          ]
+        }
+      }
+    })
+  }
+
   /**
    * Step 3:
    * Clean up the temporary directory
