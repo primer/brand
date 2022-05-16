@@ -1,11 +1,11 @@
 module.exports = {
-  ...require("@github/prettier-config"),
+  ...require('@github/prettier-config'),
   overrides: [
     {
-      files: "src/tokens/**/*.js",
+      files: 'src/tokens/**/*.js',
       options: {
-        singleQuote: false,
-      },
-    },
-  ],
-};
+        singleQuote: false
+      }
+    }
+  ]
+}
