@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 const {transparentize} = require("color2k")
 const scales = require("../../base/colors/color-scales")
 

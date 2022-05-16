@@ -3,3 +3,8 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 100vh;
 }
+
+[data-color-mode='dark'],
+[data-color-mode='light'] {
+  background-color: var(--brand-color-canvas-default);
+}

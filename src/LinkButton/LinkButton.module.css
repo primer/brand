@@ -3,10 +3,15 @@
   align-items: center;
   justify-content: center;
   padding: 1rem 1.5rem;
-
+  transition: box-shadow 0.2s;
   text-decoration: none;
   border-radius: 6px;
   cursor: pointer;
+}
+
+.LinkButton:focus {
+  outline: 0;
+  box-shadow: var(--brand-Button-shadow-focus), var(--brand-Button-shadow-hover);
 }
 
 .LinkButton--label {
@@ -19,7 +24,12 @@
 
 .LinkButton--primary {
   color: var(--brand-color-fg-onEmphasis);
-  background: var(--brand-Button-background-default);
+  background-color: var(--brand-Button-background-base);
+  background: var(--brand-Button-background-overlay);
+}
+
+.LinkButton--primary:hover {
+  box-shadow: var(--brand-Button-shadow-hover);
 }
 
 .LinkButton--label-primary {
@@ -28,7 +38,7 @@
 
 .LinkButton--secondary {
   color: var(--brand-color-fg-default);
-  box-shadow: inset 0 0 0 1px var(--gh-color-border-default);
+  box-shadow: inset 0 0 0 1px var(--brand-color-border-default);
   transition: box-shadow 200ms;
 }
 
