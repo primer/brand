@@ -4,7 +4,10 @@
   grid-template-rows: 100vh;
 }
 
-[data-color-mode='dark'],
-[data-color-mode='light'] {
+.color-mode-all > [data-color-mode] {
+  background-color: var(--brand-color-canvas-default);
+}
+
+body {
   background-color: var(--brand-color-canvas-default);
 }

@@ -4,7 +4,8 @@ const createPropertyFormatter = require('style-dictionary/lib/common/formatHelpe
 const prettier = require('prettier')
 
 /**
- * Custom style dictionary formatter for CSS variables
+ * Custom style dictionary formatter for outputting CSS variables that are
+ * compatible with the ThemeProvider component.
  */
 function colorModeAttributes({dictionary, file, options}) {
   const selector = options.selector ? options.selector : `:root`
@@ -15,20 +16,23 @@ function colorModeAttributes({dictionary, file, options}) {
     allTokens = [...allTokens].sort(sortByReference(dictionary))
   }
 
+  /**
+   * Returns dark mode tokens by replacing the contents of value with darkValue
+   */
   const renderDarkMode = () => {
-    const callback = token =>
+    const replaceWithDarkModeValues = token =>
       Object.assign({}, token, {
         value: token.darkValue
       })
 
     const newDictionary = JSON.parse(JSON.stringify(dictionary))
-    // Override each token's `value` with `darkValue`
-    newDictionary.allProperties = newDictionary.allProperties.map(callback)
+
+    newDictionary.allProperties = newDictionary.allProperties.map(replaceWithDarkModeValues)
 
     const {allTokens: newAllTokens} = newDictionary
 
     return `${newAllTokens
-      .map(callback)
+      .map(replaceWithDarkModeValues)
       .map(
         createPropertyFormatter({
           outputReferences: false,

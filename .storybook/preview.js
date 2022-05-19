@@ -2,6 +2,7 @@ import {ThemeProvider} from '../src'
 import styles from './preview.module.css'
 import '../src/css/stylesheets'
 import '../fonts/fonts.css'
+import {useLayoutEffect} from 'react'
 
 export const globalTypes = {
   colorMode: {
@@ -35,6 +36,16 @@ export const globalTypes = {
 }
 
 const withThemeProvider = (Story, context) => {
+  useLayoutEffect(() => {
+    if (context.globals.colorMode === 'auto') {
+      return document.body.removeAttribute('data-color-mode')
+    }
+    if (['light', 'dark'].includes(context.globals.colorMode)) {
+      document.body.setAttribute('data-color-mode', context.globals.colorMode)
+      return
+    }
+  }, [context.globals.colorMode])
+
   if (context.globals.colorMode === 'all') {
     return (
       <div className={styles['color-mode-all']}>

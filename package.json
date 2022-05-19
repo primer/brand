@@ -24,12 +24,11 @@
   "scripts": {
     "build": "npm run clean && npm run build:css-types && npm run build:tokens && webpack",
     "build:css-types": "tcm -p 'src/**/*.module.css' .",
-    "build:css-vars": "ts-node --skipIgnore ./scripts/build-css-variables.ts",
     "build:types": "tsc --project tsconfig.build.json",
     "build:storybook": "scripts/build-storybook",
     "build:docs": "scripts/build-docs",
     "build:docs:preview": "scripts/build-docs preview",
-    "build:tokens": "node scripts/build-tokens.js && npm run build:css-vars",
+    "build:tokens": "node scripts/build-tokens.js",
     "check": "tsc --noEmit",
     "clean": "rm -rf lib",
     "format": "prettier --check '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
