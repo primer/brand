@@ -2,6 +2,8 @@ import clsx from 'clsx'
 import React from 'react'
 import {ExpandableArrow} from '../ExpandableArrow'
 import {Text} from '../Text'
+import '../../lib/design-tokens/css/tokens/functional/components/button/colors-with-modes.css'
+
 import styles from './LinkButton.module.css'
 
 // NOTE: We may rename this component `LinkStyledAsButton` or consolidate it into

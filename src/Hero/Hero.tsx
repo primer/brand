@@ -5,6 +5,8 @@ import {LinkButton} from '../LinkButton'
 import {Heading} from '../Heading'
 import {Text} from '../Text'
 
+import '../../lib/design-tokens/css/tokens/functional/components/hero/base.css'
+
 type Action = {
   text: string
   href: string

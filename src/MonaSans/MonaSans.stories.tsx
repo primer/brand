@@ -5,6 +5,17 @@ import {MonaSans} from '.'
 export default {
   title: 'Misc/MonaSans',
   component: MonaSans,
+  parameters: {
+    backgrounds: {
+      grid: {
+        cellSize: 20,
+        opacity: 0.5,
+        cellAmount: 5,
+        offsetX: 16,
+        offsetY: 16
+      }
+    }
+  },
   argTypes: {
     size: {control: {type: 'range', min: 9, max: 128, step: 1}, defaultValue: 64},
     weight: {control: {type: 'range', min: 200, max: 900, step: 1}, defaultValue: 900},
