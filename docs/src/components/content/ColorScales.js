@@ -8,13 +8,15 @@ import {
   ThemeProvider as PRCThemeProvider,
 } from '@primer/react'
 import {readableColor, toHex, toHsla, toRgba} from 'color2k'
-import {ColorModesEnum} from '../../../../src'
+// eslint-disable-next-line import/no-unresolved
+import {ColorModesEnum} from '@primer/react-brand'
+import {useColorTheme} from './ColorThemeContext'
 
 const availableColorModes = Object.values(ColorModesEnum)
 const colorFormats = ['hex', 'hsla', 'rgba']
 
 export function ColorScales() {
-  const [colorTheme, setCurrentMode] = React.useState(ColorModesEnum.LIGHT)
+  const [colorTheme, setCurrentMode] = useColorTheme()
   const [activeColorFormat, setActiveColorFormat] = React.useState('hex')
 
   const predicateFn = (colorEntry) => ['black', 'white'].includes(colorEntry[0])
