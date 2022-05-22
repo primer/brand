@@ -14,7 +14,7 @@
   "dependencies": {
     "@primer/gatsby-theme-doctocat": "^3.2.1",
     "@primer/octicons-react": "^17.0.0",
-    "@primer/primitives": "4.1.0",
+    "@primer/primitives": "^7.8.3",
     "@primer/react": "^35.1.0",
     "color2k": "^2.0.0",
     "gatsby": "^3.7.2",

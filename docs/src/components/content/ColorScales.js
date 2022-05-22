@@ -7,13 +7,15 @@ import {
   Text,
   ThemeProvider as PRCThemeProvider,
 } from '@primer/react'
-import {readableColor, toHex, toHsla, toRgba} from 'color2k'
+import {readableColor, toHex, toRgba} from 'color2k'
 // eslint-disable-next-line import/no-unresolved
 import {ColorModesEnum} from '@primer/react-brand'
 import {useColorTheme} from './ColorThemeContext'
 
 const availableColorModes = Object.values(ColorModesEnum)
-const colorFormats = ['hex', 'hsla', 'rgba']
+const colorFormats = ['hex', 'hsl', 'rgba']
+
+const convertToHsl = (rawHSL) => `hsl(${rawHSL.split(' ').join(', ')})`
 
 export function ColorScales() {
   const [colorTheme, setCurrentMode] = useColorTheme()
@@ -35,12 +37,14 @@ export function ColorScales() {
       <Box key={name}>
         {Object.entries(colorScale).map(([key, obj]) => {
           const value = colorTheme === 'dark' ? obj.darkValue : obj.value
+          const hslValue = convertToHsl(value)
+
           return (
             <Box
-              key={`${key}-${value}`}
+              key={`${key}-${hslValue}`}
               sx={{
-                color: readableColor(value),
-                bg: value,
+                color: readableColor(hslValue),
+                bg: hslValue,
                 p: 2,
                 display: 'flex',
                 justifyContent: 'space-between',
@@ -51,9 +55,9 @@ export function ColorScales() {
               <Text>
                 {name}.{key}
               </Text>
-              {activeColorFormat === 'hex' && <Text>{toHex(value)}</Text>}
-              {activeColorFormat === 'rgba' && <Text>{toRgba(value)}</Text>}
-              {activeColorFormat === 'hsla' && <Text>{toHsla(value)}</Text>}
+              {activeColorFormat === 'hex' && <Text>{toHex(hslValue)}</Text>}
+              {activeColorFormat === 'rgba' && <Text>{toRgba(hslValue)}</Text>}
+              {activeColorFormat === 'hsl' && <Text>{hslValue}</Text>}
             </Box>
           )
         })}

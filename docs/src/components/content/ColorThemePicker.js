@@ -67,7 +67,9 @@ function ColorThemePreview() {
             sx={{
               width: 20,
               height: 20,
-              bg: globalFunctionalTokens.base.color.scale[name][5].value,
+              bg: `hsl(${globalFunctionalTokens.base.color.scale[name][5].value
+                .split(' ')
+                .join(', ')})`,
               margin: '2px',
               borderRadius: 999,
             }}

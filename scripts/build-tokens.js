@@ -131,7 +131,8 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
             destination: `tokens/base/colors/color-scales-with-modes.css`,
             format: `css/color-mode-attributes`,
             options: {
-              outputReferences: true
+              outputReferences: false,
+              containsRawHSL: true
             }
           }
         ]
@@ -139,7 +140,7 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
     }
   })
 
-  const filesForColorModes = [`tokens/functional/colors/global.js`, `tokens/functional/components/button/colors.js`]
+  const filesForColorModes = [`tokens/functional/colors/global.json`, `tokens/functional/components/button/colors.js`]
 
   for (const path of filesForColorModes) {
     const sansExtention = path.replace(/\.[^/.]+$/, '')
@@ -156,7 +157,8 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
               destination: `${sansExtention}-with-modes.css`,
               format: `css/color-mode-attributes`,
               options: {
-                outputReferences: true
+                outputReferences: false,
+                containsRawHSL: false
               }
             }
           ]

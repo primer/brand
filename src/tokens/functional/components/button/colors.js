@@ -18,13 +18,13 @@ module.exports = {
         },
         hover: {
           value:
-            "0 3px 2px rgba(0,0,0,0.07),0 7px 5px rgba(0,0,0,0.04),0 12px 10px rgba(0,0,0,0.03),0 22px 18px rgba(0,0,0,0.03),0 42px 33px rgba(0,0,0,0.02),0 100px 80px rgba(0,0,0,0.02);",
+            "0 3px 2px rgba(0, 0, 0, 0.07), 0 7px 5px rgba(0, 0, 0, 0.04), 0 12px 10px rgba(0, 0, 0, 0.03), 0 22px 18px rgba(0, 0, 0, 0.03), 0 42px 33px rgba(0, 0, 0, 0.02), 0 100px 80px rgba(0, 0, 0, 0.02)",
           darkValue:
-            "0 4px 7px rgba(0,0,0,0.15),0 100px 80px hsla(0,0%,100%,0.02),0 42px 33px hsla(0,0%,100%,0.024),0 22px 18px hsla(0,0%,100%,0.028),0 12px 10px hsla(0,0%,100%,0.034),0 7px 5px hsla(0,0%,100%,0.04),0 3px 2px hsla(0,0%,100%,0.07);"
+            "0 4px 7px rgba(0, 0, 0, 0.15), 0 100px 80px rgba(255, 255, 255, 0.02), 0 42px 33px rgba(255, 255, 255, 0.024), 0 22px 18px rgba(255, 255, 255, 0.028), 0 12px 10px rgba(255, 255, 255, 0.034), 0 7px 5px rgba(255, 255, 255, 0.04), 0 3px 2px rgba(255, 255, 255, 0.07)"
         },
         focus: {
-          value: "rgb(0 0 0/15%) 0 0 0 4px;",
-          darkValue: "rgb(255 255 255/25%) 0 0 0 4px;"
+          value: "hsl(var(--base-color-scale-black-0-hsl) / 15%) 0 0 0 4px;",
+          darkValue: "hsl(var(--base-color-scale-white-0-hsl) / 25%) 0 0 0 4px;"
         }
       }
     }

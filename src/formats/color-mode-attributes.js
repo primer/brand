@@ -7,7 +7,26 @@ const prettier = require('prettier')
  * Custom style dictionary formatter for outputting CSS variables that are
  * compatible with the ThemeProvider component.
  */
-function colorModeAttributes({dictionary, file, options}) {
+function colorModeAttributes({dictionary: origDictionary, file, options}) {
+  const convertToHSL = value => `hsl(${value.split(' ').join(', ')})`
+
+  const dictionary = options.containsRawHSL ? JSON.parse(JSON.stringify(origDictionary)) : origDictionary
+
+  if (options.containsRawHSL) {
+    const reduceProperties = (acc, token) => {
+      acc.push({
+        ...token,
+        name: `${token.name}-hsl`,
+        path: [...token.path, 'hsl']
+      })
+      acc.push({...token, value: convertToHSL(token.value), darkValue: convertToHSL(token.darkValue)})
+      return acc
+    }
+
+    dictionary.allTokens = dictionary.allTokens.reduce(reduceProperties, [])
+    dictionary.allProperties = dictionary.allProperties.reduce(reduceProperties, [])
+  }
+
   const selector = options.selector ? options.selector : `:root`
   const {outputReferences} = options
   let {allTokens} = dictionary
