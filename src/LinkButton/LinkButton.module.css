@@ -23,7 +23,7 @@
 }
 
 .LinkButton--primary {
-  color: var(--brand-color-fg-onEmphasis);
+  color: var(--brand-color-text-onEmphasis);
   background-color: var(--brand-Button-background-base);
   background: var(--brand-Button-background-overlay);
 }
@@ -33,11 +33,11 @@
 }
 
 .LinkButton--label-primary {
-  color: var(--brand-color-fg-onEmphasis);
+  color: var(--brand-color-text-onEmphasis);
 }
 
 .LinkButton--secondary {
-  color: var(--brand-color-fg-default);
+  color: var(--brand-color-text-default);
   box-shadow: inset 0 0 0 1px var(--brand-color-border-default);
   transition: box-shadow 200ms;
 }

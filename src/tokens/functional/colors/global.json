@@ -1,7 +1,7 @@
 {
   "brand": {
     "color": {
-      "fg": {
+      "text": {
         "default": {
           "value": "var(--base-color-scale-gray-9)",
           "darkValue": "var(--base-color-scale-white-0)"
