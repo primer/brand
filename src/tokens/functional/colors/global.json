@@ -1,0 +1,74 @@
+{
+  "brand": {
+    "color": {
+      "text": {
+        "default": {
+          "value": "var(--base-color-scale-gray-9)",
+          "darkValue": "var(--base-color-scale-white-0)"
+        },
+        "muted": {
+          "value": "var(--base-color-scale-gray-6)",
+          "darkValue": "var(--base-color-scale-gray-3)"
+        },
+        "subtle": {
+          "value": "var(--base-color-scale-gray-5)",
+          "darkValue": "var(--base-color-scale-gray-4)"
+        },
+        "onEmphasis": {
+          "value": "var(--base-color-scale-white-0)",
+          "darkValue": "var(--base-color-scale-black-0)"
+        }
+      },
+      "neutral": {
+        "emphasisPlus": {
+          "value": "var(--base-color-scale-gray-9)",
+          "darkValue": "var(--base-color-scale-gray-4)"
+        },
+        "emphasis": {
+          "value": "var(--base-color-scale-gray-5)",
+          "darkValue": "var(--base-color-scale-gray-4)"
+        },
+        "muted": {
+          "value": "hsl(var(--base-color-scale-gray-3-hsl) / 99.8%)",
+          "darkValue": "hsl(var(--base-color-scale-gray-4-hsl) / 99.6%)"
+        },
+        "subtle": {
+          "value": "hsl(var(--base-color-scale-gray-1-hsl) / 99.5%)",
+          "darkValue": "hsl(var(--base-color-scale-gray-4-hsl) / 99.9%)"
+        }
+      },
+      "canvas": {
+        "default": {
+          "value": "var(--base-color-scale-white-0)",
+          "darkValue": "var(--base-color-scale-gray-9)"
+        },
+        "overlay": {
+          "value": "var(--base-color-scale-white-0)",
+          "darkValue": "var(--base-color-scale-gray-8)"
+        },
+        "inset": {
+          "value": "var(--base-color-scale-gray-0)",
+          "darkValue": "var(--base-color-scale-black-0)"
+        },
+        "subtle": {
+          "value": "var(--base-color-scale-gray-0)",
+          "darkValue": "var(--base-color-scale-gray-8)"
+        }
+      },
+      "border": {
+        "default": {
+          "value": "var(--base-color-scale-gray-2)",
+          "darkValue": "var(--base-color-scale-gray-6)"
+        },
+        "muted": {
+          "value": "hsl(var(--base-color-scale-gray-2-hsl) / 99.7%)",
+          "darkValue": "var(--base-color-scale-gray-7)"
+        },
+        "subtle": {
+          "value": "hsl(var(--base-color-scale-black-0-hsl) / 99.85%)",
+          "darkValue": "hsl(var(--base-color-scale-gray-0-hsl) / 99.9%)"
+        }
+      }
+    }
+  }
+}

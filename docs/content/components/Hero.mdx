@@ -5,6 +5,8 @@ source: https://github.com/primer/react-brand/tree/main/src/Hero/Hero.tsx
 description: Use the Hero component to render a full-width banner on a webpage
 ---
 
+import {Label} from '@primer/react'
+
 ```js
 import {Hero} from '@primer/react-brand'
 ```
@@ -49,3 +51,15 @@ import {Hero} from '@primer/react-brand'
   }}
 />
 ```
+
+## Component props
+
+### Hero
+
+| Name                                    | Type                                                                                                               | Default  | Description                             |
+| :-------------------------------------- | :----------------------------------------------------------------------------------------------------------------- | :------: | :-------------------------------------- |
+| `heading` <Label>Required</Label>       | `string`                                                                                                           |          | Primary heading, which defaults to a H1 |
+| `primaryAction` <Label>Required</Label> | [Object](https://github.com/primer/react-brand/blob/ca2d3002ba6f7ca9c719f80077c4d95246f33410/src/Hero/Hero.tsx#L8) |          | Primary call to action                  |
+| `secondaryAction`                       | [Object](https://github.com/primer/react-brand/blob/ca2d3002ba6f7ca9c719f80077c4d95246f33410/src/Hero/Hero.tsx#L8) |          | Optional secondary call to action       |
+| `align`                                 | `'center'`, `'left'`                                                                                               | `'left'` | Optional text alignment                 |
+| `description`                           | `string`                                                                                                           |          | Optional accompanying body text         |

@@ -1,6 +1,11 @@
 - title: Getting started
   url: /getting-started
 
+- title: Primitives
+  children:
+    - title: Colors
+      url: /primitives/color
+
 - title: Components
   children:
     - title: Hero

@@ -1,0 +1,16 @@
+{
+  "brand": {
+    "Hero": {
+      "narrow": {
+        "padding": {
+          "value": "var(--base-size-96) 0"
+        }
+      },
+      "regular": {
+        "padding": {
+          "value": "var(--base-size-128) 0"
+        }
+      }
+    }
+  }
+}

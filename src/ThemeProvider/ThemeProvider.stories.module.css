@@ -4,12 +4,12 @@
 
 .active-color-scheme {
   padding: 2rem;
-  background-color: var(--gh-color-canvas-default);
-  color: var(--gh-color-fg-default);
+  background-color: var(--brand-color-canvas-default);
+  color: var(--brand-color-text-default);
   border-radius: 5px;
-  border: 1px solid var(--gh-color-border-default);
+  border: 1px solid var(--brand-color-border-default);
 }
 
 .hint {
-  color: var(--gh-color-fg-muted);
+  color: var(--brand-color-text-muted);
 }

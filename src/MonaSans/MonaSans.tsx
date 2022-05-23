@@ -1,4 +1,5 @@
 import React from 'react'
+import {Text} from '../'
 import styles from './MonaSans.module.css'
 
 type MonaSansProps = {
@@ -27,9 +28,9 @@ export function MonaSans({children, italic, size, weight, width}: MonaSansProps)
   return (
     <>
       <style>{grid}</style>
-      <p className={styles.MonaSans} style={style}>
+      <Text className={styles.MonaSans} style={style} as="p">
         {children}
-      </p>
+      </Text>
     </>
   )
 }

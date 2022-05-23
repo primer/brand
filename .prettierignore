@@ -3,3 +3,5 @@ coverage/
 storybook-static/
 lib/
 .changeset
+docs/.cache
+docs/public

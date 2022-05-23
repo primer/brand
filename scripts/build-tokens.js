@@ -2,6 +2,7 @@ const fs = require('fs')
 const {buildPrimitives, StyleDictionary} = require('@primer/primitives/build')
 
 const mediaQueryFormat = require('../src/formats/responsive-media-query')
+const colorModeFormat = require('../src/formats/color-mode-attributes')
 
 ;(function () {
   const namespace = 'brand'
@@ -26,7 +27,15 @@ const mediaQueryFormat = require('../src/formats/responsive-media-query')
    * Build tokens by running function against the temporary directory
    */
 
-  StyleDictionary.registerFormat(mediaQueryFormat)
+  StyleDictionary.registerFormat({
+    name: 'css/color-mode-attributes',
+    formatter: colorModeFormat
+  })
+
+  StyleDictionary.registerFormat({
+    name: 'css/responsive-media-query',
+    formatter: mediaQueryFormat
+  })
 
   //build most tokens
   buildPrimitives({
@@ -109,6 +118,54 @@ const mediaQueryFormat = require('../src/formats/responsive-media-query')
       }
     }
   })
+
+  buildPrimitives({
+    source: [`tokens/base/colors/color-scales.json`], // build the special formats
+    namespace,
+    platforms: {
+      css: {
+        buildPath: `${outputPath}/css/`,
+        transformGroup: 'css',
+        files: [
+          {
+            destination: `tokens/base/colors/color-scales-with-modes.css`,
+            format: `css/color-mode-attributes`,
+            options: {
+              outputReferences: false,
+              containsRawHSL: true
+            }
+          }
+        ]
+      }
+    }
+  })
+
+  const filesForColorModes = [`tokens/functional/colors/global.json`, `tokens/functional/components/button/colors.js`]
+
+  for (const path of filesForColorModes) {
+    const sansExtention = path.replace(/\.[^/.]+$/, '')
+
+    buildPrimitives({
+      source: [path], // build the special formats
+      namespace,
+      platforms: {
+        css: {
+          buildPath: `${outputPath}/css/`,
+          transformGroup: 'css',
+          files: [
+            {
+              destination: `${sansExtention}-with-modes.css`,
+              format: `css/color-mode-attributes`,
+              options: {
+                outputReferences: false,
+                containsRawHSL: false
+              }
+            }
+          ]
+        }
+      }
+    })
+  }
 
   /**
    * Step 3:

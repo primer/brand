@@ -81,6 +81,13 @@
         ]
       }
     },
+    // rules for style-dictionary JS source files
+    {
+      "files": ["src/tokens/**/*.js"],
+      "rules": {
+        "prettier/prettier": 0
+      }
+    },
     // rules which apply only to TS
     {
       "parserOptions": {
