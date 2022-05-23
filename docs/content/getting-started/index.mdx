@@ -55,7 +55,25 @@ or
 />
 ```
 
-### 4. Import components
+### 4. Use the ThemeProvider
+
+You must add the `ThemeProvider` to the root of your application for theming to work correctly.
+
+E.g.
+
+```js
+import {ThemeProvider} from '@primer/react-brand'
+
+function App() {
+  return (
+    <ThemeProvider>
+      <div>...</div>
+    </ThemeProvider>
+  )
+}
+```
+
+### 5. Import components
 
 Components can be imported into any React-based application.
 
