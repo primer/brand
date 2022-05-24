@@ -21,21 +21,18 @@ import {River} from '@primer/react-brand'
     Bring your own component (BYOC) <img> or ReactNode (E.g. Next.js <Image />)
   </River.Visual>
   <River.Content>
-    <River.Heading>Collaboration that goes beyond code</River.Heading>
-    <River.Body>
+    <Heading>Collaboration that goes beyond code</Heading>
+    <Text as="p">
       Build your business fast with access to the world’s largest open source
       registry. Host it in the cloud with unlimited free public and private
       repositories. Start conversations, propose changes, and get feedback with
       a pull request.
-    </River.Body>
-    <River.Button>Learn more</River.Button>
-    <River.Quote>
-      <River.Quote.Body>
-        There is a huge open source community of code and developers to work with and draw inspiration from on GitHub.
-      </River.Quote.Body>
-      <River.Quote.From>
-        Developer Advocate // Stripe
-      </River.Quote.From>
+    </Text>
+    <LinkButton>Learn more</LinkButton>
+    <River.Quote
+      by="Developer Advocate // Stripe"
+      body="There is a huge open source community of code and developers to work with and draw inspiration from on GitHub."
+    />
   </River.Content>
 </River>
 ```
@@ -52,44 +49,25 @@ import {River} from '@primer/react-brand'
 
 ### River.Visual <Label>Required</Label>
 
-| Name       | Type           | Default | Description                                                                     |
-| :--------- | :------------- | :-----: | :------------------------------------------------------------------------------ |
-| `children` | `ReactElement` |         | Bring your own component (BYOC) img or ReactNode (E.g. Next.js Image component) |
+| Name       | Type           | Default | Description                                                                           |
+| :--------- | :------------- | :-----: | :------------------------------------------------------------------------------------ |
+| `children` | `ReactElement` |         | Bring your own component (BYOC) `img` or `ReactNode` (E.g. Next.js `Image` component) |
 
 ### River.Content <Label>Required</Label>
 
-| Name       | Type                                                         | Default | Description |
-| :--------- | :----------------------------------------------------------- | :-----: | :---------- |
-| `children` | `River.Heading`, `River.Body`, `River.Button`, `River.Quote` |         |             |
-
-### River.Heading
-
-| Name       | Type                                        | Default | Description                                                |
-| :--------- | :------------------------------------------ | :-----: | :--------------------------------------------------------- |
-| `as`       | `'h1'`, `'h2'`,`'h3'`,`'h4'`,`'h5'`,`'h6'`, | `'h3'`, | Optionally adjust heading size and underlying HTML element |
-| `children` | `string`,                                   |         | Heading text                                               |
+| Name       | Type                                          | Default | Description |
+| :--------- | :-------------------------------------------- | :-----: | :---------- |
+| `children` | `Text`,`Heading`, `LinkButton`, `River.Quote` |         |             |
 
 ### River.Body <Label>Required</Label>
 
-| Name       | Type      | Default | Description    |
-| :--------- | :-------- | :-----: | :------------- |
-| `children` | `string`, |         | Main body text |
+| Name       | Type             | Default | Description    |
+| :--------- | :--------------- | :-----: | :------------- |
+| `children` | `string`, `Text` |         | Main body text |
 
-### River.Button
+### River.Quote
 
-| Name       | Type              | Default | Description                    |
-| :--------- | :---------------- | :-----: | :----------------------------- |
-| `as`       | `'button'`, `'a'` |  `'a'`  | Optionally adjust heading size |
-| `children` | `string`,         |         | Button text                    |
-
-### River.Quote.Body
-
-| Name       | Type     | Default | Description                    |
-| :--------- | :------- | :-----: | :----------------------------- |
-| `children` | `string` |         | Optionally adjust heading size |
-
-### River.Quote.From
-
-| Name       | Type     | Default | Description                    |
-| :--------- | :------- | :-----: | :----------------------------- |
-| `children` | `string` |         | Optionally adjust heading size |
+| Name                           | Type     | Default | Description   |
+| :----------------------------- | :------- | :-----: | :------------ |
+| `by` <Label>Required</Label>   | `string` |         | Quote from    |
+| `body` <Label>Required</Label> | `string` |         | Quote content |
