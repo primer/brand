@@ -1,0 +1,96 @@
+---
+title: River
+status: Experimental
+source: https://github.com/primer/react-brand/tree/main/src/River/River.tsx
+storybook: '/react-brand/storybook?path=/story/components-text--scale'
+description: Render text and image pairs
+---
+
+import {Label} from '@primer/react'
+
+```js
+import {River} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<River>
+  <River.Visual>
+    Bring your own component (BYOC) <img> or ReactNode (E.g. Next.js <Image />)
+  </River.Visual>
+  <River.Content>
+    <River.Heading>Collaboration that goes beyond code</River.Heading>
+    <River.Body>
+      Build your business fast with access to the world’s largest open source
+      registry. Host it in the cloud with unlimited free public and private
+      repositories. Start conversations, propose changes, and get feedback with
+      a pull request.
+    </River.Body>
+    <River.Button>Learn more</River.Button>
+    <River.Quote>
+      <River.Quote.Body>
+        There is a huge open source community of code and developers to work with and draw inspiration from on GitHub.
+      </River.Quote.Body>
+      <River.Quote.From>
+        Developer Advocate // Stripe
+      </River.Quote.From>
+  </River.Content>
+</River>
+```
+
+## Component props
+
+### River <Label>Required</Label>
+
+| Name         | Type                            |   Default   | Description                                                                |
+| :----------- | :------------------------------ | :---------: | :------------------------------------------------------------------------- |
+| `alignment`  | `'left'`, `'right'`, `'center'` |  `'left'`   | Alignment of text content relative to the Visual position                  |
+| `imageRatio` | `'50/50'`, `'60/40'`            |  `'60/40'`  | The aspect ratio applied to the image. Affects overall layout proportions. |
+| `as`         | `'section'`, `'div' `           | `'section'` | HTML tag to be used in the parent element                                  |
+
+### River.Visual <Label>Required</Label>
+
+| Name       | Type           | Default | Description                                                                     |
+| :--------- | :------------- | :-----: | :------------------------------------------------------------------------------ |
+| `children` | `ReactElement` |         | Bring your own component (BYOC) img or ReactNode (E.g. Next.js Image component) |
+
+### River.Content <Label>Required</Label>
+
+| Name       | Type                                                         | Default | Description |
+| :--------- | :----------------------------------------------------------- | :-----: | :---------- |
+| `children` | `River.Heading`, `River.Body`, `River.Button`, `River.Quote` |         |             |
+
+### River.Heading
+
+| Name       | Type                                        | Default | Description                                                |
+| :--------- | :------------------------------------------ | :-----: | :--------------------------------------------------------- |
+| `as`       | `'h1'`, `'h2'`,`'h3'`,`'h4'`,`'h5'`,`'h6'`, | `'h3'`, | Optionally adjust heading size and underlying HTML element |
+| `children` | `string`,                                   |         | Heading text                                               |
+
+### River.Body <Label>Required</Label>
+
+| Name       | Type      | Default | Description    |
+| :--------- | :-------- | :-----: | :------------- |
+| `children` | `string`, |         | Main body text |
+
+### River.Button
+
+| Name       | Type              | Default | Description                    |
+| :--------- | :---------------- | :-----: | :----------------------------- |
+| `as`       | `'button'`, `'a'` |  `'a'`  | Optionally adjust heading size |
+| `children` | `string`,         |         | Button text                    |
+
+### River.Quote.Body
+
+| Name       | Type     | Default | Description                    |
+| :--------- | :------- | :-----: | :----------------------------- |
+| `children` | `string` |         | Optionally adjust heading size |
+
+### River.Quote.From
+
+| Name       | Type     | Default | Description                    |
+| :--------- | :------- | :-----: | :----------------------------- |
+| `children` | `string` |         | Optionally adjust heading size |
