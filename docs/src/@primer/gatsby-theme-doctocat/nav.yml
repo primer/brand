@@ -11,7 +11,7 @@
     - title: Hero
       url: /components/Hero
 
-- title: Base Components
+- title: Base components
   children:
     - title: Heading
       url: /components/Heading

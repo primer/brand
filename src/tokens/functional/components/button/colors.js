@@ -1,6 +1,28 @@
 module.exports = {
   brand: {
     Button: {
+      text: {
+        primary: {
+          value: "var(--brand-color-text-inverted)",
+          darkValue: "var(--brand-color-text-inverted)"
+        },
+        secondary: {
+          value: "var(--brand-color-text-primary)",
+          darkValue: "var(--brand-color-text-primary)"
+        }
+      },
+      border: {
+        secondary: {
+          idle: {
+            value: "var(--brand-color-border-primary)",
+            darkValue: "var(--brand-color-border-primary)"
+          },
+          hover: {
+            value: "var(--brand-color-neutral-emphasisPlus)",
+            darkValue: "var(--brand-color-neutral-emphasisPlus)"
+          }
+        }
+      },
       background: {
         base: {
           value: "var(--base-color-scale-black-0)",
@@ -12,7 +34,7 @@ module.exports = {
         }
       },
       shadow: {
-        default: {
+        idle: {
           value: "0 0 0 1px var(--base-color-scale-black-0)",
           darkValue: "0 0 0 1px var(--base-color-scale-white-0)"
         },

@@ -25,7 +25,7 @@ export default function Hero() {
             fontFamily="mono"
             mt={0}
             mb={2}
-            color="var(--brand-color-text-default)"
+            color="var(--brand-color-text-primary)"
             fontSize={2}
           >
             v{version}

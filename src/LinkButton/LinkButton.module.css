@@ -9,6 +9,10 @@
   cursor: pointer;
 }
 
+.LinkButton > * {
+  color: inherit;
+}
+
 .LinkButton:focus {
   outline: 0;
   box-shadow: var(--brand-Button-shadow-focus), var(--brand-Button-shadow-hover);
@@ -23,7 +27,7 @@
 }
 
 .LinkButton--primary {
-  color: var(--brand-color-text-onEmphasis);
+  color: var(--brand-Button-text-primary);
   background-color: var(--brand-Button-background-base);
   background: var(--brand-Button-background-overlay);
 }
@@ -33,15 +37,15 @@
 }
 
 .LinkButton--label-primary {
-  color: var(--brand-color-text-onEmphasis);
+  color: var(--brand-Button-text-primary);
 }
 
 .LinkButton--secondary {
-  color: var(--brand-color-text-default);
-  box-shadow: inset 0 0 0 1px var(--brand-color-border-default);
+  color: var(--brand-Button-text-secondary);
+  box-shadow: inset 0 0 0 1px var(--brand-Button-border-secondary-idle);
   transition: box-shadow 200ms;
 }
 
 .LinkButton--secondary:hover {
-  box-shadow: inset 0 0 0 2px var(--brand-color-neutral-emphasisPlus);
+  box-shadow: inset 0 0 0 2px var(--brand-Button-border-secondary-hover);
 }

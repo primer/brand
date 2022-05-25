@@ -2,11 +2,11 @@
   "brand": {
     "color": {
       "text": {
-        "default": {
+        "primary": {
           "value": "var(--base-color-scale-gray-9)",
           "darkValue": "var(--base-color-scale-white-0)"
         },
-        "muted": {
+        "secondary": {
           "value": "var(--base-color-scale-gray-6)",
           "darkValue": "var(--base-color-scale-gray-3)"
         },
@@ -14,7 +14,7 @@
           "value": "var(--base-color-scale-gray-5)",
           "darkValue": "var(--base-color-scale-gray-4)"
         },
-        "onEmphasis": {
+        "inverted": {
           "value": "var(--base-color-scale-white-0)",
           "darkValue": "var(--base-color-scale-black-0)"
         }
@@ -28,7 +28,7 @@
           "value": "var(--base-color-scale-gray-5)",
           "darkValue": "var(--base-color-scale-gray-4)"
         },
-        "muted": {
+        "secondary": {
           "value": "hsl(var(--base-color-scale-gray-3-hsl) / 99.8%)",
           "darkValue": "hsl(var(--base-color-scale-gray-4-hsl) / 99.6%)"
         },
@@ -38,7 +38,7 @@
         }
       },
       "canvas": {
-        "default": {
+        "primary": {
           "value": "var(--base-color-scale-white-0)",
           "darkValue": "var(--base-color-scale-gray-9)"
         },
@@ -56,11 +56,11 @@
         }
       },
       "border": {
-        "default": {
+        "primary": {
           "value": "var(--base-color-scale-gray-2)",
           "darkValue": "var(--base-color-scale-gray-6)"
         },
-        "muted": {
+        "secondary": {
           "value": "hsl(var(--base-color-scale-gray-2-hsl) / 99.7%)",
           "darkValue": "var(--base-color-scale-gray-7)"
         },

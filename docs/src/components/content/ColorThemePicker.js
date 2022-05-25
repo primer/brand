@@ -51,8 +51,8 @@ function ColorThemePreview() {
   return (
     <Box
       sx={{
-        color: 'var(--brand-color-text-default)',
-        bg: 'var(--brand-color-canvas-default)',
+        color: 'var(--brand-color-text-primary)',
+        bg: 'var(--brand-color-canvas-primary)',
         display: 'flex',
         p: 3,
         borderBottom: '1px solid',
