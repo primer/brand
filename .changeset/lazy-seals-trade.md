@@ -4,6 +4,9 @@
 
 Updates functional and component design tokens with improved naming and closer alignment to Figma styles.
 
+> **Warning**
+> The changes below should be considered a breaking change for anyone relying on the previous tokens, but as we are shipping a pre-v1 library, this has been marked as a `patch` release. Please remember to update your token references after upgrading.
+
 ### Functional tokens
 
 
