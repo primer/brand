@@ -33,30 +33,6 @@ import {River} from '@primer/react-brand'
 </River>
 ```
 
-### With a quote
-
-```jsx live
-<River>
-  <River.Visual>
-    Bring your own component (BYOC) <img> or ReactNode (E.g. Next.js <Image />)
-  </River.Visual>
-  <River.Content>
-    <Heading>Collaboration that goes beyond code</Heading>
-    <Text as="p">
-      Build your business fast with access to the world’s largest open source
-      registry. Host it in the cloud with unlimited free public and private
-      repositories. Start conversations, propose changes, and get feedback with
-      a pull request.
-    </Text>
-    <River.Quote
-      by="Developer Advocate // Stripe"
-     >
-     There is a huge open source community of code and developers to work with and draw inspiration from on GitHub.
-    </River.Quote>
-  </River.Content>
-</River>
-```
-
 ## Component props
 
 ### River <Label>Required</Label>
@@ -78,10 +54,3 @@ import {River} from '@primer/react-brand'
 | Name       | Type                                          | Default | Description |
 | :--------- | :-------------------------------------------- | :-----: | :---------- |
 | `children` | `Text`,`Heading`, `LinkButton`, `River.Quote` |         |             |
-
-### River.Quote
-
-| Name                               | Type     | Default | Description   |
-| :--------------------------------- | :------- | :-----: | :------------ |
-| `by` <Label>Required</Label>       | `string` |         | Quote from    |
-| `children` <Label>Required</Label> | `string` |         | Quote content |
