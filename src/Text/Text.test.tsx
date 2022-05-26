@@ -98,7 +98,7 @@ describe('Text', () => {
 
   test('applies an optional, alternative variant', () => {
     const mockId = 'mock-id'
-    const expectedAlternativeVariant = 'muted'
+    const expectedAlternativeVariant = 'secondary'
     const {getByTestId} = render(
       <Text as="div" data-testid={mockId} variant={expectedAlternativeVariant}>
         {mockText}
