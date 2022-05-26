@@ -85,7 +85,7 @@ describe('Text', () => {
 
   test('applies the correct default appearance', () => {
     const mockId = 'mock-id'
-    const expectedDefaultApperance = 'default'
+    const expectedDefaultApperance = 'primary'
     const {getByTestId} = render(
       <Text as="div" data-testid={mockId}>
         {mockText}
