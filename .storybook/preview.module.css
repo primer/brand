@@ -5,9 +5,9 @@
 }
 
 .color-mode-all > [data-color-mode] {
-  background-color: var(--brand-color-canvas-primary);
+  background-color: var(--brand-color-bg-primary);
 }
 
 body {
-  background-color: var(--brand-color-canvas-primary);
+  background-color: var(--brand-color-bg-primary);
 }

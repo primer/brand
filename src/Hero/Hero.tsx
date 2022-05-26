@@ -28,7 +28,7 @@ export function Hero({className, heading, description, primaryAction, secondaryA
         {heading}
       </Heading>
       {description ? (
-        <Text className={styles['Hero-description']} as="p" size="400" variant="muted">
+        <Text className={styles['Hero-description']} as="p" size="400" variant="secondary">
           {description}
         </Text>
       ) : null}

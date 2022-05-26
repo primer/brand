@@ -2,11 +2,11 @@
   font-family: var(--brand-body-fontFamily);
 }
 
-.Text--default {
+.Text--primary {
   color: var(--brand-color-text-primary);
 }
 
-.Text--muted {
+.Text--secondary {
   color: var(--brand-color-text-secondary);
 }
 

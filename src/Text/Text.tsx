@@ -4,7 +4,7 @@ import styles from './Text.module.css'
 
 export const TextSizes = ['700', '600', '500', '400', '300', '200', '100'] as const
 export const TextTags = ['p', 'span', 'div'] as const
-export const TextVariants = ['default', 'muted'] as const
+export const TextVariants = ['primary', 'secondary'] as const
 export const defaultTextTag = TextTags[1]
 export const defaultTextSize = TextSizes[3]
 export const defaultTextVariant = TextVariants[0]

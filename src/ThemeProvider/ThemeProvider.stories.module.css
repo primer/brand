@@ -4,7 +4,7 @@
 
 .active-color-scheme {
   padding: 2rem;
-  background-color: var(--brand-color-canvas-primary);
+  background-color: var(--brand-color-bg-primary);
   color: var(--brand-color-text-primary);
   border-radius: 5px;
   border: 1px solid var(--brand-color-border-primary);

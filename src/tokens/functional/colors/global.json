@@ -37,7 +37,7 @@
           "darkValue": "hsl(var(--base-color-scale-gray-4-hsl) / 99.9%)"
         }
       },
-      "canvas": {
+      "bg": {
         "primary": {
           "value": "var(--base-color-scale-white-0)",
           "darkValue": "var(--base-color-scale-gray-9)"

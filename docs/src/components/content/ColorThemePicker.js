@@ -52,7 +52,7 @@ function ColorThemePreview() {
     <Box
       sx={{
         color: 'var(--brand-color-text-primary)',
-        bg: 'var(--brand-color-canvas-primary)',
+        bg: 'var(--brand-color-bg-primary)',
         display: 'flex',
         p: 3,
         borderBottom: '1px solid',

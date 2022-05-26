@@ -13,7 +13,7 @@ module.exports = {
       },
       border: {
         secondary: {
-          idle: {
+          rest: {
             value: "var(--brand-color-border-primary)",
             darkValue: "var(--brand-color-border-primary)"
           },
@@ -34,7 +34,7 @@ module.exports = {
         }
       },
       shadow: {
-        idle: {
+        rest: {
           value: "0 0 0 1px var(--base-color-scale-black-0)",
           darkValue: "0 0 0 1px var(--base-color-scale-white-0)"
         },

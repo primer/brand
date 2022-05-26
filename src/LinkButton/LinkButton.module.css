@@ -42,7 +42,7 @@
 
 .LinkButton--secondary {
   color: var(--brand-Button-text-secondary);
-  box-shadow: inset 0 0 0 1px var(--brand-Button-border-secondary-idle);
+  box-shadow: inset 0 0 0 1px var(--brand-Button-border-secondary-rest);
   transition: box-shadow 200ms;
 }
 

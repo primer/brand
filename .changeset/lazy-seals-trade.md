@@ -106,7 +106,7 @@ Updates functional and component design tokens with improved naming and closer a
 </td>
 <td valign="top">
 
-`--brand-color-canvas-primary`
+`--brand-color-bg-primary`
 
 </td>
 </tr>
@@ -120,7 +120,7 @@ Updates functional and component design tokens with improved naming and closer a
 ### `LinkButton`
 
 
-**NEW** customisation tokens 
+**NEW** customization tokens 
 
 <table>
 <tr>
@@ -146,7 +146,7 @@ Updates functional and component design tokens with improved naming and closer a
 <td valign="top">❌</td>
 <td valign="top">
 
-`--brand-Button-border-secondary-idle`
+`--brand-Button-border-secondary-rest`
 
 </td>
 </tr>
@@ -166,7 +166,7 @@ Updates functional and component design tokens with improved naming and closer a
 </td>
 <td valign="top">
 
-`--brand-Button-shadow-idle`
+`--brand-Button-shadow-rest`
 
 </td>
 </tr>
