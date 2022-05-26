@@ -1,0 +1,56 @@
+---
+title: River
+status: Experimental
+source: https://github.com/primer/react-brand/tree/main/src/River/River.tsx
+description: Render text and image pairs
+---
+
+import {Label} from '@primer/react'
+
+```js
+import {River} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<River>
+  <River.Visual>
+    Bring your own component (BYOC) img or ReactNode (E.g. Next.js img)
+  </River.Visual>
+  <River.Content>
+    <Heading>Collaboration that goes beyond code</Heading>
+    <Text as="p">
+      Build your business fast with access to the world’s largest open source
+      registry. Host it in the cloud with unlimited free public and private
+      repositories. Start conversations, propose changes, and get feedback with
+      a pull request.
+    </Text>
+    <LinkButton>Learn more</LinkButton>
+  </River.Content>
+</River>
+```
+
+## Component props
+
+### River <Label>Required</Label>
+
+| Name         | Type                            |   Default   | Description                                                                |
+| :----------- | :------------------------------ | :---------: | :------------------------------------------------------------------------- |
+| `align`      | `'left'`, `'right'`, `'center'` |  `'left'`   | Alignment of text content relative to the Visual position                  |
+| `imageRatio` | `'50/50'`, `'60/40'`            |  `'60/40'`  | The aspect ratio applied to the image. Affects overall layout proportions. |
+| `as`         | `'section'`, `'div' `           | `'section'` | HTML tag to be used in the parent element                                  |
+
+### River.Visual <Label>Required</Label>
+
+| Name       | Type           | Default | Description                                                                           |
+| :--------- | :------------- | :-----: | :------------------------------------------------------------------------------------ |
+| `children` | `ReactElement` |         | Bring your own component (BYOC) `img` or `ReactNode` (E.g. Next.js `Image` component) |
+
+### River.Content <Label>Required</Label>
+
+| Name       | Type                                          | Default | Description |
+| :--------- | :-------------------------------------------- | :-----: | :---------- |
+| `children` | `Text`,`Heading`, `LinkButton`, `River.Quote` |         |             |
