@@ -1,0 +1,100 @@
+.river {
+  display: grid;
+  gap: var(--base-size-24);
+  grid-template-rows: 1fr;
+  margin: var(--base-size-48) 0;
+}
+
+.visual {
+  position: relative;
+  order: 2;
+}
+
+.content {
+  order: 1;
+}
+
+.river--align-center {
+  text-align: center;
+}
+
+.visual img {
+  width: 100%;
+  height: auto;
+  box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.0174624), 0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0235573),
+    0px 22.3363px 17.869px rgba(0, 0, 0, 0.0282784), 0px 12.5216px 10.0172px rgba(0, 0, 0, 0.0339075),
+    0px 6.6501px 5.32008px rgba(0, 0, 0, 0.04317), 0px 2.76726px 2.21381px rgba(0, 0, 0, 0.07);
+}
+
+.heading {
+  margin-bottom: var(--base-size-8);
+}
+
+.call-to-action {
+  margin-top: var(--base-size-24);
+}
+
+.text strong {
+  color: var(--brand-color-text-default);
+}
+
+/* Small breakpoint and up */
+@media screen and (min-width: 544px) {
+  .river {
+    grid-template-rows: unset;
+  }
+  .river--50-50 {
+    grid-template-columns: [content] 1fr [visual] 1fr;
+  }
+
+  .river--60-40 {
+    grid-template-columns: [content] calc(40% - var(--base-size-12)) [visual] calc(60% - var(--base-size-12));
+  }
+
+  .river--align-left {
+    grid-template-areas: 'content visual';
+  }
+
+  .river--align-right {
+    grid-template-areas: 'visual content';
+  }
+
+  .river--align-right.river--60-40 {
+    grid-template-columns: [visual] calc(60% - var(--base-size-12)) [content] calc(40% - var(--base-size-12));
+  }
+
+  .content {
+    display: grid;
+    align-content: center;
+    grid-area: content;
+  }
+
+  .visual {
+    grid-area: visual;
+  }
+
+  .river--align-center {
+    grid-template-rows: 1fr;
+    grid-template-columns: unset;
+  }
+
+  .river--align-center .content,
+  .river--align-center .visual {
+    grid-area: unset;
+    justify-self: center;
+  }
+
+  .river--align-center .bodyText {
+    max-width: 600px;
+    justify-self: center;
+  }
+
+  .river--align-center .visual {
+    order: 2;
+    margin-bottom: var(--base-size-48);
+  }
+  .river--align-center .content {
+    order: 1;
+    margin-top: var(--base-size-48);
+  }
+}

@@ -5,7 +5,7 @@ source: https://github.com/primer/react-brand/tree/main/src/River/River.tsx
 description: Render text and image pairs
 ---
 
-import {Label} from '@primer/react'
+import {Box as Container, Label} from '@primer/react'
 
 ```js
 import {River} from '@primer/react-brand'
@@ -16,32 +16,181 @@ import {River} from '@primer/react-brand'
 ### Default
 
 ```jsx live
-<River>
-  <River.Visual>
-    Bring your own component (BYOC) img or ReactNode (E.g. Next.js img)
-  </River.Visual>
-  <River.Content>
-    <Heading>Collaboration that goes beyond code</Heading>
-    <Text as="p">
-      Build your business fast with access to the world’s largest open source
-      registry. Host it in the cloud with unlimited free public and private
-      repositories. Start conversations, propose changes, and get feedback with
-      a pull request.
-    </Text>
-    <LinkButton>Learn more</LinkButton>
-  </River.Content>
-</River>
+<Container p={3}>
+  <River align="left">
+    <River.Visual>
+      <img
+        src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
+        alt="placeholder, blank area with an off-white background color"
+      />
+    </River.Visual>
+    <River.Content>
+      <Heading>Heading</Heading>
+      <Text>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
+        ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
+        elementum.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </River.Content>
+  </River>
+  <River align="right">
+    <River.Visual>
+      <img
+        src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
+        alt="placeholder, blank area with an off-white background color"
+      />
+    </River.Visual>
+    <River.Content>
+      <Heading>Heading</Heading>
+      <Text>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
+        ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
+        elementum.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </River.Content>
+  </River>
+  <River align="center">
+    <River.Visual>
+      <img
+        src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
+        alt="placeholder, blank area with an off-white background color"
+      />
+    </River.Visual>
+    <River.Content>
+      <Heading>Heading</Heading>
+      <Text>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
+        ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
+        elementum.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </River.Content>
+  </River>
+</Container>
+```
+
+### Heading styles
+
+```jsx live
+<Container p={3}>
+  {/* Large Heading example */}
+  <River>
+    <River.Visual>
+      <img
+        src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
+        alt="placeholder, blank area with an off-white background color"
+      />
+    </River.Visual>
+    <River.Content>
+      <Heading as="h2">Large</Heading>
+      <Text>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
+        ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
+        elementum.
+      </Text>
+    </River.Content>
+  </River>
+  {/* Medium (default) Heading example */}
+  <River>
+    <River.Visual>
+      <img
+        src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
+        alt="placeholder, blank area with an off-white background color"
+      />
+    </River.Visual>
+    <River.Content>
+      <Heading>Medium (default)</Heading>
+      <Text>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
+        ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
+        elementum.
+      </Text>
+    </River.Content>
+  </River>
+  {/* Small Heading example */}
+  <River>
+    <River.Visual>
+      <img
+        src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
+        alt="placeholder, blank area with an off-white background color"
+      />
+    </River.Visual>
+    <River.Content>
+      <Heading as="h4">Small</Heading>
+      <Text>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
+        ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
+        elementum.
+      </Text>
+    </River.Content>
+  </River>
+  {/* No Heading example */}
+  <River>
+    <River.Visual>
+      <img
+        src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
+        alt="placeholder, blank area with an off-white background color"
+      />
+    </River.Visual>
+    <River.Content>
+      <Text>
+        <strong>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </strong>{' '}
+        In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam
+        pulvinar risus elementum.
+      </Text>
+    </River.Content>
+  </River>
+</Container>
+```
+
+### Image to text ratio
+
+```jsx live
+<Container p={3}>
+  {/* 50/50 (default) example */}
+  <River>
+    <River.Visual>
+      <img
+        src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
+        alt="placeholder, blank area with an off-white background color"
+      />
+    </River.Visual>
+    <River.Content>
+      <Heading>50/50</Heading>
+      <Text>
+        <strong>By default</strong>, River applies a 50/50 image to text split.
+      </Text>
+    </River.Content>
+  </River>
+  {/* 60/40 example */}
+  <River imageTextRatio="60:40">
+    <River.Visual>
+      <img
+        src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
+        alt="placeholder, blank area with an off-white background color"
+      />
+    </River.Visual>
+    <River.Content>
+      <Heading>60/40</Heading>
+      <Text>This example applies an optional 60/40 image to text split.</Text>
+    </River.Content>
+  </River>
+</Container>
 ```
 
 ## Component props
 
 ### River <Label>Required</Label>
 
-| Name         | Type                            |   Default   | Description                                                                |
-| :----------- | :------------------------------ | :---------: | :------------------------------------------------------------------------- |
-| `align`      | `'left'`, `'right'`, `'center'` |  `'left'`   | Alignment of text content relative to the Visual position                  |
-| `imageRatio` | `'50/50'`, `'60/40'`            |  `'60/40'`  | The aspect ratio applied to the image. Affects overall layout proportions. |
-| `as`         | `'section'`, `'div' `           | `'section'` | HTML tag to be used in the parent element                                  |
+| Name             | Type                            |   Default   | Description                                                                |
+| :--------------- | :------------------------------ | :---------: | :------------------------------------------------------------------------- |
+| `align`          | `'left'`, `'right'`, `'center'` |  `'left'`   | Alignment of text content relative to the Visual position                  |
+| `imageTextRatio` | `'50:50'`, `'60:40'`            |  `'60:40'`  | The aspect ratio applied to the image. Affects overall layout proportions. |
+| `as`             | `'section'`, `'div' `           | `'section'` | HTML tag to be used in the parent element                                  |
 
 ### River.Visual <Label>Required</Label>
 

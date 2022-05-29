@@ -10,6 +10,8 @@
   children:
     - title: Hero
       url: /components/Hero
+    - title: River
+      url: /components/River
 
 - title: Base Components
   children:
