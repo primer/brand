@@ -5,6 +5,7 @@ declare const styles: {
   readonly "river--align-center": string;
   readonly "heading": string;
   readonly "call-to-action": string;
+  readonly "text": string;
   readonly "river--50-50": string;
   readonly "river--60-40": string;
   readonly "river--align-left": string;

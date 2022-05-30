@@ -1,6 +1,5 @@
 import React from 'react'
 import {ComponentStory, ComponentMeta} from '@storybook/react'
-import InlineCode from '@primer/gatsby-theme-doctocat/src/components/inline-code' //FIXME with internal equivalent
 import {River} from '.'
 import {Heading, Text, Link} from '..'
 import {Container} from '../component-helpers'
@@ -72,10 +71,7 @@ export const ColumnRatio6040: ComponentStory<typeof River> = () => (
         <PlaceholderImage />
       </River.Visual>
       <River.Content>
-        <Text>
-          Use the <InlineCode>imageTextRatio</InlineCode> prop with <InlineCode>&quot;60:40&quot;</InlineCode> to
-          display a larger image.
-        </Text>
+        <Text>Use the imageTextRatio prop with &quot;60:40&quot; to display a larger image.</Text>
       </River.Content>
     </River>
   </Container>
@@ -90,9 +86,7 @@ export const ColumnRatio5050: ComponentStory<typeof River> = () => (
         <PlaceholderImage />
       </River.Visual>
       <River.Content>
-        <Text>
-          By default <InlineCode>imageTextRatio</InlineCode> is set to <InlineCode>&quot;50:50&quot;</InlineCode>.
-        </Text>
+        <Text>By default imageTextRatio is set to &quot;50:50&quot;.</Text>
       </River.Content>
     </River>
   </Container>

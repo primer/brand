@@ -92,3 +92,35 @@ export const Copilot: ComponentStory<typeof River> = args => (
     </River>
   </Container>
 )
+
+export const Video: ComponentStory<typeof River> = args => (
+  <Container>
+    <River imageTextRatio="60:40">
+      <River.Visual hasShadow={false}>
+        <video
+          playsInline
+          autoPlay
+          muted
+          aria-hidden="true"
+          poster="https://github.githubassets.com/images/modules/site/issues/issue-tasks-progress-placeholder.png"
+        >
+          <source
+            type="video/mp4; codecs=hevc,mp4a.40.2"
+            src="https://github.githubassets.com/images/modules/site/issues/issue-tasks-progress.hevc.mp4"
+          />
+          <source
+            type="video/mp4; codecs=avc1.4D401E,mp4a.40.2"
+            src="https://github.githubassets.com/images/modules/site/issues/issue-tasks-progress.h264.mp4"
+          />
+        </video>
+      </River.Visual>
+      <River.Content>
+        <Heading>Break issues into actionable tasks</Heading>
+        <Text>
+          Tackle complex issues with task lists and track their status with new progress indicators. Convert tasks into
+          their own issues and navigate your work hierarchy.
+        </Text>
+      </River.Content>
+    </River>
+  </Container>
+)

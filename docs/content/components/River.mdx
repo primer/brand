@@ -6,6 +6,11 @@ description: Render text and image pairs
 ---
 
 import {Box as Container, Label} from '@primer/react'
+import {
+  defaultRiverImageTextRatio,
+  defaultRiverAlign,
+} from '@primer/react-brand'
+import {PropTableValues} from '../../src/components'
 
 ```js
 import {River} from '@primer/react-brand'
@@ -182,24 +187,62 @@ import {River} from '@primer/react-brand'
 </Container>
 ```
 
+### Video
+
+```jsx live
+<Container p={3}>
+  <River imageTextRatio="60:40">
+    <River.Visual hasShadow={false}>
+      <video
+        loop
+        playsInline
+        autoPlay
+        muted
+        aria-hidden="true"
+        poster="https://github.githubassets.com/images/modules/site/issues/issue-tasks-progress-placeholder.png"
+      >
+        <source
+          type="video/mp4; codecs=hevc,mp4a.40.2"
+          src="https://github.githubassets.com/images/modules/site/issues/issue-tasks-progress.hevc.mp4"
+        />
+        <source
+          type="video/mp4; codecs=avc1.4D401E,mp4a.40.2"
+          src="https://github.githubassets.com/images/modules/site/issues/issue-tasks-progress.h264.mp4"
+        />
+      </video>
+    </River.Visual>
+    <River.Content>
+      <Heading>Break issues into actionable tasks</Heading>
+      <Text>
+        Tackle complex issues with task lists and track their status with new
+        progress indicators. Convert tasks into their own issues and navigate
+        your work hierarchy.
+      </Text>
+    </River.Content>
+  </River>
+</Container>
+```
+
 ## Component props
 
 ### River <Label>Required</Label>
 
-| Name             | Type                            |   Default   | Description                                                                |
-| :--------------- | :------------------------------ | :---------: | :------------------------------------------------------------------------- |
-| `align`          | `'left'`, `'right'`, `'center'` |  `'left'`   | Alignment of text content relative to the Visual position                  |
-| `imageTextRatio` | `'50:50'`, `'60:40'`            |  `'60:40'`  | The aspect ratio applied to the image. Affects overall layout proportions. |
-| `as`             | `'section'`, `'div' `           | `'section'` | HTML tag to be used in the parent element                                  |
+| Name             | Type                            |                          Default                          | Description                                                                                                 |
+| :--------------- | :------------------------------ | :-------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------- |
+| `align`          | `'left'`, `'right'`, `'center'` |     <PropTableValues values={[defaultRiverAlign]} />      | Alignment of text content relative to the Visual position                                                   |
+| `imageTextRatio` | `'50:50'`, `'60:40'`            | <PropTableValues values={[defaultRiverImageTextRatio]} /> | The aspect ratio applied to the image in relation to the adjacent text. Affects overall layout proportions. |
 
 ### River.Visual <Label>Required</Label>
 
-| Name       | Type           | Default | Description                                                                           |
-| :--------- | :------------- | :-----: | :------------------------------------------------------------------------------------ |
-| `children` | `ReactElement` |         | Bring your own component (BYOC) `img` or `ReactNode` (E.g. Next.js `Image` component) |
+| Name        | Type           | Default | Description                                                                                                      |
+| :---------- | :------------- | :-----: | :--------------------------------------------------------------------------------------------------------------- |
+| `children`  | `ReactElement` |         | Bring your own component (BYOC) `img` or `ReactElement` (E.g. Next.js `Image` component)                         |
+| `hasShadow` | `boolean`      | `true`  | Shadow automatically applied to the `children`. Set be `false` when the child node has a transparent background. |
 
 ### River.Content <Label>Required</Label>
 
-| Name       | Type                                          | Default | Description |
-| :--------- | :-------------------------------------------- | :-----: | :---------- |
-| `children` | `Text`,`Heading`, `LinkButton`, `River.Quote` |         |             |
+[`Text`](https://primer.style/react-brand/components/Text),[`Heading`](https://primer.style/react-brand/components/Heading), [`Link`](https://primer.style/react-brand/components/Link) are the only `children` accepted. They can be composed in any order, but their rendered output will always be in the in the predetermined order.
+
+| Name       | Type                                                                                                                                                                                    | Default | Description                                      |
+| :--------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----: | :----------------------------------------------- |
+| `children` | [`Text`](https://primer.style/react-brand/components/Text),[`Heading`](https://primer.style/react-brand/components/Heading), [`Link`](https://primer.style/react-brand/components/Link) |         | Content that corrosponds to the adjacent visual. |

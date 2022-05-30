@@ -9,9 +9,17 @@ export type RiverProps = {
   align?: 'left' | 'right' | 'center'
 }
 
-function Root({imageTextRatio = '50:50', align = 'left', className, children}: React.PropsWithChildren<RiverProps>) {
+export const defaultRiverImageTextRatio = '50:50'
+export const defaultRiverAlign = 'left'
+
+function Root({
+  imageTextRatio = defaultRiverImageTextRatio,
+  align = defaultRiverAlign,
+  className,
+  children
+}: React.PropsWithChildren<RiverProps>) {
   return (
-    <div
+    <section
       className={clsx(
         styles.river,
         styles[`river--${imageTextRatio.replace(':', '-')}`],
@@ -20,7 +28,7 @@ function Root({imageTextRatio = '50:50', align = 'left', className, children}: R
       )}
     >
       {children}
-    </div>
+    </section>
   )
 }
 
@@ -66,8 +74,13 @@ function Content({children}) {
   )
 }
 
-function Visual({children}) {
-  return <div className={styles.visual}>{children}</div>
+type RiverVisualProps = {
+  className?: string
+  hasShadow?: boolean
+}
+
+function Visual({children, className, hasShadow = true}: React.PropsWithChildren<RiverVisualProps>) {
+  return <div className={clsx(styles.visual, hasShadow && styles['visual--has-shadow'], className)}>{children}</div>
 }
 
 /**
