@@ -26,6 +26,7 @@
     "build:css-types": "tcm -p 'src/**/*.module.css' .",
     "build:types": "tsc --project tsconfig.build.json",
     "build:storybook": "scripts/build-storybook",
+    "build:storybook:preview": "scripts/build-storybook preview",
     "build:docs": "scripts/build-docs",
     "build:docs:preview": "scripts/build-docs preview",
     "build:tokens": "node scripts/build-tokens.js",
