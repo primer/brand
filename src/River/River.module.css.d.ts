@@ -3,6 +3,7 @@ declare const styles: {
   readonly "visual": string;
   readonly "content": string;
   readonly "river--align-center": string;
+  readonly "visual--has-shadow": string;
   readonly "heading": string;
   readonly "call-to-action": string;
   readonly "text": string;

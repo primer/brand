@@ -95,7 +95,7 @@ export const Copilot: ComponentStory<typeof River> = args => (
 
 export const Video: ComponentStory<typeof River> = args => (
   <Container>
-    <River imageTextRatio="60:40">
+    <River imageTextRatio="60:40" {...args}>
       <River.Visual hasShadow={false}>
         <video
           playsInline
