@@ -2,7 +2,7 @@
   display: grid;
   gap: var(--brand-River-gap-column);
   grid-template-rows: 1fr;
-  margin: var(--brand-River-margin-vertical);
+  margin: var(--brand-River-layout-margin-vertical);
 }
 
 .visual {

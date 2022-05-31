@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './River.module.css'
+import '../../lib/design-tokens/css/tokens/functional/components/river/base.css'
 import {Heading, HeadingTags, Text, Link} from '../'
 import clsx from 'clsx'
 
