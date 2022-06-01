@@ -21,7 +21,7 @@ type TextTags = {
   as?: typeof TextTags[number]
 } & RestrictedPolymorphism
 
-type TextProps = {
+export type TextProps = {
   /**
    * Forward a custom HTML class attribute
    */

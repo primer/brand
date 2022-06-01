@@ -1,10 +1,11 @@
 import React from 'react'
 import styles from './River.module.css'
 import '../../lib/design-tokens/css/tokens/functional/components/river/base.css'
-import {Heading, HeadingTags, Text, Link} from '../'
+import {Heading, HeadingTags, LinkProps, HeadingProps, TextProps, Text, Link} from '../'
 import clsx from 'clsx'
 
 export type RiverProps = {
+  children: React.ReactElement<RiverVisualProps | RiverContentProps>[]
   className?: string
   imageTextRatio?: '60:40' | '50:50'
   align?: 'left' | 'right' | 'center'
@@ -13,27 +14,53 @@ export type RiverProps = {
 export const defaultRiverImageTextRatio = '50:50'
 export const defaultRiverAlign = 'left'
 
+type ValidRootChildren = {
+  Visual: React.ReactElement<RiverVisualProps> | null
+  Content: React.ReactElement<RiverContentProps> | null
+}
+
 function Root({
   imageTextRatio = defaultRiverImageTextRatio,
   align = defaultRiverAlign,
   className,
   children
-}: React.PropsWithChildren<RiverProps>) {
+}: RiverProps) {
+  const {Visual: VisualChild, Content: ContentChild} = React.Children.toArray(children).reduce<ValidRootChildren>(
+    (acc, child) => {
+      if (
+        React.isValidElement(child) &&
+        typeof child.type !== 'string' &&
+        (child.type.name === 'Visual' || child.type.name === 'Content')
+      ) {
+        acc[child.type.name] = child
+      }
+      return acc
+    },
+    {Visual: null, Content: null}
+  )
+
+  const orderedChildren =
+    align === 'left' || align === 'center' ? [ContentChild, VisualChild] : [VisualChild, ContentChild]
+
   return (
     <section
       className={clsx(
-        styles.river,
-        styles[`river--${imageTextRatio.replace(':', '-')}`],
-        styles[`river--align-${align}`],
+        styles.River,
+        styles[`River--${imageTextRatio.replace(':', '-')}`],
+        styles[`River--align-${align}`],
         className
       )}
     >
-      {children}
+      {orderedChildren}
     </section>
   )
 }
 
-function Content({children}) {
+type RiverContentProps = {
+  children: React.ReactElement<TextProps> | React.ReactElement<HeadingProps | TextProps | LinkProps>[]
+}
+
+function Content({children}: RiverContentProps) {
   const HeadingChild = React.Children.toArray(children).find(
     child => React.isValidElement(child) && child.type === Heading
   )
@@ -53,7 +80,7 @@ function Content({children}) {
   }
 
   return (
-    <div className={styles.content}>
+    <div className={styles.Content}>
       {React.isValidElement(HeadingChild) && (
         <div className={styles.heading}>
           {React.cloneElement(HeadingChild, {as: inferCorrectHeadingSize(HeadingChild)})}
@@ -81,7 +108,7 @@ type RiverVisualProps = {
 }
 
 function Visual({children, className, hasShadow = true}: React.PropsWithChildren<RiverVisualProps>) {
-  return <div className={clsx(styles.visual, hasShadow && styles['visual--has-shadow'], className)}>{children}</div>
+  return <div className={clsx(styles.Visual, hasShadow && styles['Visual--has-shadow'], className)}>{children}</div>
 }
 
 /**

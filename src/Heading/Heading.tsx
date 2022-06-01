@@ -19,7 +19,7 @@ type HeadingTags = {
   as?: typeof HeadingTags[number]
 } & React.HTMLAttributes<HTMLHeadingElement>
 
-type HeadingProps = {
+export type HeadingProps = {
   className?: string
 } & HeadingTags
 
