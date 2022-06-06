@@ -6,7 +6,6 @@ import {Heading, Text, Link} from '..'
 import {Container} from '../component-helpers'
 
 import storyStyles from './River.stories.module.css'
-import styles from './River.module.css'
 
 export default {
   title: 'Components/River',

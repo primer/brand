@@ -229,9 +229,12 @@ The content area in `River` is restricted to the following `children`: `Heading`
 
 While a composeable API is provided, the rendered layout is fixed and deterministic.
 
-Custom content <strong>cannot</strong> be passed as `children`.
+Custom content <strong>cannot</strong> be passed as `children`. Instead use `leadingComponent` and `trailingComponent` props to render app-specific content before or after the main content block.
 
-Use `leadingComponent` and `trailingComponent` to render app-specific content either before or after the main content block.
+<Note variant="warning">
+  This API should only be used for corner-cases. Any custom content should
+  always follow Primer accessibility guideliens where possible.
+</Note>
 
 ```javascript live noinline
 const Example = () => {
