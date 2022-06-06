@@ -1,16 +1,16 @@
 declare const styles: {
-  readonly "river": string;
-  readonly "visual": string;
-  readonly "content": string;
-  readonly "river--align-center": string;
-  readonly "visual--has-shadow": string;
+  readonly "River": string;
+  readonly "Visual": string;
+  readonly "River--align-center": string;
+  readonly "Visual--has-shadow": string;
   readonly "heading": string;
   readonly "call-to-action": string;
   readonly "text": string;
-  readonly "river--50-50": string;
-  readonly "river--60-40": string;
-  readonly "river--align-left": string;
-  readonly "river--align-right": string;
+  readonly "River--50-50": string;
+  readonly "River--60-40": string;
+  readonly "River--align-left": string;
+  readonly "River--align-right": string;
+  readonly "Content": string;
   readonly "bodyText": string;
 };
 export = styles;

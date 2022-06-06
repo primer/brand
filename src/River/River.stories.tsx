@@ -5,6 +5,9 @@ import {River} from '.'
 import {Heading, Text, Link} from '..'
 import {Container} from '../component-helpers'
 
+import storyStyles from './River.stories.module.css'
+import styles from './River.module.css'
+
 export default {
   title: 'Components/River',
   component: River
@@ -16,7 +19,6 @@ const PlaceholderImage = () => (
     alt="placeholder, blank area with an off-white background color"
   />
 )
-
 const Template: ComponentStory<typeof River> = args => (
   <Container>
     <River {...args}>
@@ -120,6 +122,43 @@ export const Video: ComponentStory<typeof River> = args => (
           Tackle complex issues with task lists and track their status with new progress indicators. Convert tasks into
           their own issues and navigate your work hierarchy.
         </Text>
+      </River.Content>
+    </River>
+  </Container>
+)
+
+const CustomLeadingComponent = () => (
+  <div className={storyStyles.CustomLabel}>
+    <Text className={storyStyles.CustomLabelText} size="100">
+      Custom label
+    </Text>
+  </div>
+)
+
+const CustomTrailingComponent = () => (
+  <div className={storyStyles.CustomChecklist}>
+    <span className={storyStyles.CustomChecklistIcon}>
+      <svg aria-hidden="true" height="24" viewBox="0 0 24 24" version="1.1" width="24" data-view-component="true">
+        <path
+          fillRule="evenodd"
+          d="M1 12C1 5.925 5.925 1 12 1s11 4.925 11 11-4.925 11-11 11S1 18.075 1 12zm16.28-2.72a.75.75 0 00-1.06-1.06l-5.97 5.97-2.47-2.47a.75.75 0 00-1.06 1.06l3 3a.75.75 0 001.06 0l6.5-6.5z"
+        ></path>
+      </svg>
+    </span>
+    <Text>Custom trailing component</Text>
+  </div>
+)
+
+export const CustomComponents: ComponentStory<typeof River> = args => (
+  <Container>
+    <River {...args}>
+      <River.Visual>
+        <PlaceholderImage />
+      </River.Visual>
+      <River.Content leadingComponent={CustomLeadingComponent} trailingComponent={CustomTrailingComponent}>
+        <Heading>Use custom components</Heading>
+        <Text>Use leadingComponent and trailingComponent props as an escape hatch for custom React Components.</Text>
+        <Link href="#">Call to action</Link>
       </River.Content>
     </River>
   </Container>

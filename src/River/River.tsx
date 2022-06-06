@@ -57,10 +57,16 @@ function Root({
 }
 
 type RiverContentProps = {
+  trailingComponent?: React.FunctionComponent
+  leadingComponent?: React.FunctionComponent
   children: React.ReactElement<TextProps> | React.ReactElement<HeadingProps | TextProps | LinkProps>[]
 }
 
-function Content({children}: RiverContentProps) {
+function Content({
+  children,
+  leadingComponent: LeadingComponent,
+  trailingComponent: TrailingComponent
+}: RiverContentProps) {
   const HeadingChild = React.Children.toArray(children).find(
     child => React.isValidElement(child) && child.type === Heading
   )
@@ -81,6 +87,8 @@ function Content({children}: RiverContentProps) {
 
   return (
     <div className={styles.Content}>
+      <div>{LeadingComponent && <LeadingComponent />}</div>
+
       {React.isValidElement(HeadingChild) && (
         <div className={styles.heading}>
           {React.cloneElement(HeadingChild, {as: inferCorrectHeadingSize(HeadingChild)})}
@@ -98,6 +106,7 @@ function Content({children}: RiverContentProps) {
       <div className={styles['call-to-action']}>
         {React.isValidElement(LinkChild) && React.cloneElement(LinkChild, {size: 'large'})}
       </div>
+      <div>{TrailingComponent && <TrailingComponent />}</div>
     </div>
   )
 }
