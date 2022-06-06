@@ -227,23 +227,19 @@ import {River} from '@primer/react-brand'
 
 The content area in `River` is restricted to the following `children`: `Heading`, `Text` and `Link`.
 
-While a composeable API is provided, the rendered layout is fixed and deterministic.
+While a composable API is provided, the rendered layout is fixed and deterministic.
 
 Custom content <strong>cannot</strong> be passed as `children`. Instead use `leadingComponent` and `trailingComponent` props to render app-specific content before or after the main content block.
 
 <Note variant="warning">
   This API should only be used for corner-cases. Any custom content should
-  always follow Primer accessibility guideliens where possible.
+  always follow Primer accessibility guidelines where possible.
 </Note>
 
 ```javascript live noinline
 const Example = () => {
-  const handleChange = (event) => {
-    setValue(event.target.value)
-  }
-
   const LeadingComponent = () => (
-    <Label size="large" variant="sponsors">
+    <Label size="large" variant="sponsors" sx={{mb: 2}}>
       Leading content
     </Label>
   )
