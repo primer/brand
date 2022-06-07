@@ -1,13 +1,13 @@
 import {ComponentMeta, ComponentStory} from '@storybook/react'
 import React from 'react'
-import {LinkButton} from '.'
+import {Button} from '.'
 
 export default {
-  title: 'Components/LinkButton',
-  component: LinkButton
-} as ComponentMeta<typeof LinkButton>
+  title: 'Components/Button',
+  component: Button
+} as ComponentMeta<typeof Button>
 
-const Template: ComponentStory<typeof LinkButton> = args => <LinkButton {...args} />
+const Template: ComponentStory<typeof Button> = args => <Button {...args} />
 
 export const Primary = Template.bind({})
 Primary.args = {
@@ -21,4 +21,11 @@ Secondary.args = {
   variant: 'secondary',
   href: '#',
   children: 'Secondary action'
+}
+
+export const Polymorphism = Template.bind({})
+Polymorphism.args = {
+  as: 'button',
+  variant: 'primary',
+  children: 'Button action'
 }
