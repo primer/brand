@@ -1,8 +1,9 @@
 import React from 'react'
-import styles from './River.module.css'
-import '../../lib/design-tokens/css/tokens/functional/components/river/base.css'
-import {Heading, HeadingTags, LinkProps, HeadingProps, TextProps, Text, Link} from '../'
 import clsx from 'clsx'
+import {Heading, HeadingTags, LinkProps, HeadingProps, TextProps, Text, Link} from '../'
+
+import '../../lib/design-tokens/css/tokens/functional/components/river/base.css'
+import styles from './River.module.css'
 
 export type RiverProps = {
   /**
