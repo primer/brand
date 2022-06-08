@@ -61,7 +61,7 @@ export const Copilot: ComponentStory<typeof River> = args => (
         <PlaceholderImage />
       </River.Visual>
       <River.Content>
-        <Heading as="h1">Your AI pair programmer</Heading>
+        <Heading>Your AI pair programmer</Heading>
         <Text variant="default">
           With GitHub Copilot, get suggestions for whole lines or entire functions right inside your editor.
         </Text>

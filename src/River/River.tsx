@@ -97,6 +97,9 @@ type RiverContentProps = {
   children: React.ReactElement<TextProps> | React.ReactElement<HeadingProps | TextProps | LinkProps>[]
 }
 
+export const getHeadingWarning = (size: typeof HeadingTags[number]) =>
+  `River.Content does not accept a Heading with as="${size}". River automatically applies as="h3" by default.`
+
 function Content({
   children,
   leadingComponent: LeadingComponent,
@@ -110,13 +113,15 @@ function Content({
 
   const LinkChild = React.Children.toArray(children).find(child => React.isValidElement(child) && child.type === Link)
 
-  const inferCorrectHeadingSize = (Component: React.ReactElement) => {
+  const applyHeadingSize = (Component: React.ReactElement) => {
     const {as}: {as: typeof HeadingTags[number] | undefined} = Component.props
     if (as) {
-      if (HeadingTags.includes(as)) {
-        return as
+      if (HeadingTags.includes(as) && as !== 'h3') {
+        // eslint-disable-next-line no-console
+        console.warn(getHeadingWarning(as))
       }
     }
+
     return 'h3'
   }
 
@@ -129,7 +134,7 @@ function Content({
       )}
       {React.isValidElement(HeadingChild) && (
         <div className={styles.River__heading}>
-          {React.cloneElement(HeadingChild, {as: inferCorrectHeadingSize(HeadingChild)})}
+          {React.cloneElement(HeadingChild, {as: applyHeadingSize(HeadingChild)})}
         </div>
       )}
 

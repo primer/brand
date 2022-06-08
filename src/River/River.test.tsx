@@ -1,7 +1,7 @@
 import React, {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
-import {River} from './River'
+import {River, getHeadingWarning} from './River'
 import {Text, Link, Heading} from '../'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
@@ -215,8 +215,13 @@ describe('River', () => {
     expect(elHeading).toBeInTheDocument()
   })
 
-  it('can optionally render an alternative Heading size', () => {
-    const {getByRole} = render(
+  it('cannot render an alternate Heading size', () => {
+    // eslint-disable-next-line no-console
+    const originalWarn = console.warn
+    // eslint-disable-next-line no-console
+    console.warn = jest.fn()
+
+    const {getByRole, queryByRole} = render(
       <River>
         <River.Visual>
           <MockImage />
@@ -228,9 +233,17 @@ describe('River', () => {
       </River>
     )
 
-    const elHeading = getByRole('heading', {level: 1})
+    const elH1Heading = queryByRole('heading', {level: 1})
+    const elH3Heading = getByRole('heading', {level: 3})
 
-    expect(elHeading).toBeInTheDocument()
+    expect(elH1Heading).not.toBeInTheDocument()
+    expect(elH3Heading).toBeInTheDocument() // should replace the h1 with a h3
+
+    // eslint-disable-next-line no-console
+    expect(console.warn).toHaveBeenCalledWith(getHeadingWarning('h1'))
+
+    // eslint-disable-next-line no-console
+    console.warn = originalWarn
   })
 
   it('has no a11y violations', async () => {
