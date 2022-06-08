@@ -5,9 +5,24 @@ import {Heading, HeadingTags, LinkProps, HeadingProps, TextProps, Text, Link} fr
 import clsx from 'clsx'
 
 export type RiverProps = {
+  /**
+   * Only specific children are valid.
+   * These include: `River.Visual` and `River.Content`.
+   * The declarative order of the children will be ignored in the rendered output
+   * to enforce correct HTML semantics.
+   */
   children: React.ReactElement<RiverVisualProps | RiverContentProps>[]
+  /**
+   * Apply a custom classname that will be forwarded to the root River element.
+   */
   className?: string
+  /**
+   * Apply an alternative image to text column ratio. The default is `50:50`.
+   */
   imageTextRatio?: '60:40' | '50:50'
+  /**
+   * Adjust the order of the `Content` column. The default is `left`.
+   */
   align?: 'left' | 'right' | 'center'
 }
 
@@ -57,8 +72,26 @@ function Root({
 }
 
 type RiverContentProps = {
+  /**
+   * Escape-hatch for inserting custom React components.
+   * Warning:
+   *   This prop isn't advertised in our docs but remains part of the public API for edge-cases.
+   *   Need to use this prop? Please check in with #primer-brand first to confirm correct usage.
+   */
   trailingComponent?: React.FunctionComponent
+  /**
+   * Escape-hatch for inserting custom React components.
+   * Warning:
+   *   This prop isn't advertised in our docs but remains part of the public API for edge-cases.
+   *   Need to use this prop? Please check in with #primer-brand first to confirm correct usage.
+   */
   leadingComponent?: React.FunctionComponent
+  /**
+   * Only valid children are allowed.
+   * These include: `Heading`, `Text` and `Link`.
+   * The declarative order of the children will be ignored in the rendered output
+   * to enforce correct HTML semantics.
+   */
   children: React.ReactElement<TextProps> | React.ReactElement<HeadingProps | TextProps | LinkProps>[]
 }
 
@@ -86,38 +119,54 @@ function Content({
   }
 
   return (
-    <div className={styles.Content}>
-      <div>{LeadingComponent && <LeadingComponent />}</div>
-
+    <div className={styles.River__content}>
+      {LeadingComponent && (
+        <div>
+          <LeadingComponent />
+        </div>
+      )}
       {React.isValidElement(HeadingChild) && (
-        <div className={styles.heading}>
+        <div className={styles.River__heading}>
           {React.cloneElement(HeadingChild, {as: inferCorrectHeadingSize(HeadingChild)})}
         </div>
       )}
-      <div className={styles.bodyText}>
-        {React.isValidElement(TextChild) &&
-          React.cloneElement(TextChild, {
+
+      {React.isValidElement(TextChild) && (
+        <div className={styles['River__body-text']}>
+          {React.cloneElement(TextChild, {
             variant: 'muted',
             as: 'p',
-            className: clsx(styles.text, TextChild.props.className)
+            className: clsx(styles.River__text, TextChild.props.className)
           })}
-      </div>
-
-      <div className={styles['call-to-action']}>
-        {React.isValidElement(LinkChild) && React.cloneElement(LinkChild, {size: 'large'})}
-      </div>
-      <div>{TrailingComponent && <TrailingComponent />}</div>
+        </div>
+      )}
+      {React.isValidElement(LinkChild) && (
+        <div className={styles['River__call-to-action']}>{React.cloneElement(LinkChild, {size: 'large'})}</div>
+      )}
+      {TrailingComponent && (
+        <div>
+          <TrailingComponent />
+        </div>
+      )}
     </div>
   )
 }
 
 type RiverVisualProps = {
   className?: string
+  /**
+   * `img` and `video` elements will apply a shadow by default.
+   * This can be disabled by setting this prop to `false`.
+   */
   hasShadow?: boolean
 }
 
 function Visual({children, className, hasShadow = true}: React.PropsWithChildren<RiverVisualProps>) {
-  return <div className={clsx(styles.Visual, hasShadow && styles['Visual--has-shadow'], className)}>{children}</div>
+  return (
+    <div className={clsx(styles.River__visual, hasShadow && styles['River__visual--has-shadow'], className)}>
+      {children}
+    </div>
+  )
 }
 
 /**

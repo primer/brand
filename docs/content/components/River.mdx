@@ -223,71 +223,6 @@ import {River} from '@primer/react-brand'
 </Container>
 ```
 
-### Custom content
-
-The content area in `River` is restricted to the following `children`: `Heading`, `Text` and `Link`.
-
-While a composable API is provided, the rendered layout is fixed and deterministic.
-
-Custom content <strong>cannot</strong> be passed as `children`. Instead use `leadingComponent` and `trailingComponent` props to render app-specific content before or after the main content block.
-
-<Note variant="warning">
-  This API should only be used for corner-cases. Any custom content should
-  always follow Primer accessibility guidelines where possible.
-</Note>
-
-```javascript live noinline
-const Example = () => {
-  const LeadingComponent = () => (
-    <Label size="large" variant="sponsors" sx={{mb: 2}}>
-      Leading content
-    </Label>
-  )
-
-  const TrailingComponent = () => (
-    <Box sx={{fontWeight: 'bold'}}>
-      <Box
-        as="span"
-        sx={{
-          background: 'linear-gradient(to right, red 0%, #330867 100%)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-        }}
-      >
-        Now supporting custom trailing content
-      </Box>{' '}
-      ✨
-    </Box>
-  )
-
-  return (
-    <Container p={3}>
-      <River>
-        <River.Visual>
-          <img
-            src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
-            alt="placeholder, blank area with an off-white background color"
-          />
-        </River.Visual>
-        <River.Content
-          leadingComponent={LeadingComponent}
-          trailingComponent={TrailingComponent}
-        >
-          <Heading>Break issues into actionable tasks</Heading>
-          <Text>
-            Tackle complex issues with task lists and track their status with
-            new progress indicators. Convert tasks into their own issues and
-            navigate your work hierarchy.
-          </Text>
-        </River.Content>
-      </River>
-    </Container>
-  )
-}
-
-render(<Example />)
-```
-
 ## Component props
 
 ### River <Label>Required</Label>
@@ -308,8 +243,6 @@ render(<Example />)
 
 [`Text`](https://primer.style/react-brand/components/Text),[`Heading`](https://primer.style/react-brand/components/Heading), [`Link`](https://primer.style/react-brand/components/Link) are the only `children` accepted. They can be composed in any order, but their rendered output will always be in the in the predetermined order.
 
-| Name                | Type                                                                                                                                                                                    | Default | Description                                                          |
-| :------------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----: | :------------------------------------------------------------------- |
-| `children`          | [`Text`](https://primer.style/react-brand/components/Text),[`Heading`](https://primer.style/react-brand/components/Heading), [`Link`](https://primer.style/react-brand/components/Link) |         | Content that corrosponds to the adjacent visual.                     |
-| `leadingComponent`  | [`FunctionComponent`](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/ee088b625fed6feb25309a89964a9f27c65c06b1/types/react/index.d.ts#L519)                                     |         | Custom JSX that will be rendered at the top of the content block.    |
-| `trailingComponent` | [`FunctionComponent`](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/ee088b625fed6feb25309a89964a9f27c65c06b1/types/react/index.d.ts#L519)                                     |         | Custom JSX that will be rendered at the bottom of the content block. |
+| Name       | Type                                                                                                                                                                                    | Default | Description                                      |
+| :--------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----: | :----------------------------------------------- |
+| `children` | [`Text`](https://primer.style/react-brand/components/Text),[`Heading`](https://primer.style/react-brand/components/Heading), [`Link`](https://primer.style/react-brand/components/Link) |         | Content that corrosponds to the adjacent visual. |
