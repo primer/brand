@@ -38,7 +38,8 @@ function Root({
   imageTextRatio = defaultRiverImageTextRatio,
   align = defaultRiverAlign,
   className,
-  children
+  children,
+  ...rest
 }: RiverProps) {
   const {Visual: VisualChild, Content: ContentChild} = React.Children.toArray(children).reduce<ValidRootChildren>(
     (acc, child) => {
@@ -65,6 +66,7 @@ function Root({
         styles[`River--align-${align}`],
         className
       )}
+      {...rest}
     >
       {orderedChildren}
     </section>
