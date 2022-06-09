@@ -15,7 +15,12 @@
       },
       "gap": {
         "column": {
-          "value": "var(--base-size-24)"
+          "medium": {
+            "value": "var(--base-size-32)"
+          },
+          "large": {
+            "value": "var(--base-size-48)"
+          }
         },
         "heading": {
           "bottom": {

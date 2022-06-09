@@ -1,6 +1,6 @@
 .River {
   display: grid;
-  gap: var(--brand-River-gap-column);
+  gap: var(--brand-River-gap-column-medium);
   grid-auto-rows: min-content;
   margin: var(--brand-River-layout-margin-vertical);
 }
@@ -37,7 +37,7 @@
 }
 
 /* Small breakpoint and up */
-@media screen and (min-width: 544px) {
+@media screen and (min-width: 34rem) {
   .River {
     grid-template-rows: unset;
   }
@@ -92,5 +92,12 @@
   }
   .River--align-center .River__content {
     margin-top: var(--base-size-48);
+  }
+}
+
+/* Large breakpoint and up */
+@media screen and (min-width: 63.25rem) {
+  .River {
+    gap: var(--brand-River-gap-column-large);
   }
 }
