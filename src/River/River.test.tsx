@@ -13,7 +13,10 @@ describe('River', () => {
   const mockLinkText = 'call to action'
   const MockImage = () => <img src="file.jpg" alt="mock" />
 
-  afterEach(cleanup)
+  afterEach(() => {
+    cleanup()
+    jest.clearAllMocks()
+  })
 
   it('renders correctly into the document', () => {
     const {getByText} = render(
@@ -221,13 +224,15 @@ describe('River', () => {
     // eslint-disable-next-line no-console
     console.warn = jest.fn()
 
+    const expectedHeadingSize = 'h1'
+
     const {getByRole, queryByRole} = render(
       <River>
         <River.Visual>
           <MockImage />
         </River.Visual>
         <River.Content>
-          <Heading as="h1">{mockHeading}</Heading>
+          <Heading as={expectedHeadingSize}>{mockHeading}</Heading>
           <Text>{mockText}</Text>
         </River.Content>
       </River>
@@ -240,7 +245,7 @@ describe('River', () => {
     expect(elH3Heading).toBeInTheDocument() // should replace the h1 with a h3
 
     // eslint-disable-next-line no-console
-    expect(console.warn).toHaveBeenCalledWith(getHeadingWarning('h1'))
+    expect(console.warn).toHaveBeenCalledWith(getHeadingWarning(expectedHeadingSize))
 
     // eslint-disable-next-line no-console
     console.warn = originalWarn
