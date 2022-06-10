@@ -1,0 +1,52 @@
+.Link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: box-shadow 0.2s;
+  text-decoration: none;
+  cursor: pointer;
+  color: var(--brand-color-text-default);
+}
+
+.Link::after {
+  position: absolute;
+  bottom: -0.15em;
+  left: 0;
+  width: calc(100% - 1.5em);
+  height: 2px;
+  pointer-events: none;
+  content: '';
+  background-color: var(--brand-color-text-default);
+  transform: scaleX(0);
+  transform-origin: 0 0;
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+  .Link::after {
+    transition: transform 0.3s ease;
+  }
+}
+
+.Link:active:after,
+.Link:hover:after,
+.Link:focus:after {
+  transform: scaleX(1);
+}
+
+.Link:focus {
+  outline: 0;
+}
+
+.Link--label {
+  font-weight: var(--base-text-weight-semibold);
+}
+
+.Link-arrow {
+  margin-left: 4px;
+}
+
+.Link--large .Link-arrow {
+  width: 20px;
+  height: 20px;
+}

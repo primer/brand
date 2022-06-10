@@ -1,0 +1,103 @@
+.River {
+  display: grid;
+  gap: var(--brand-River-gap-column-medium);
+  grid-auto-rows: min-content;
+  margin: var(--brand-River-layout-margin-vertical);
+}
+
+.River__visual {
+  position: relative;
+}
+
+.River--align-center {
+  text-align: center;
+}
+
+.River__visual img,
+.River__visual video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.River__visual--has-shadow {
+  box-shadow: var(--brand-River-visual-shadow);
+}
+
+.River__heading {
+  margin-bottom: var(--brand-River-gap-heading-bottom);
+}
+
+.River__call-to-action {
+  margin-top: var(--base-size-24);
+}
+
+.River__text strong {
+  color: var(--brand-color-text-default);
+}
+
+/* Small breakpoint and up */
+@media screen and (min-width: 34rem) {
+  .River {
+    grid-template-rows: unset;
+  }
+  .River--50-50 {
+    grid-template-columns: [content] 1fr [visual] 1fr;
+  }
+
+  .River--60-40 {
+    grid-template-columns: [content] calc(40% - var(--base-size-12)) [visual] calc(60% - var(--base-size-12));
+  }
+
+  .River--align-left {
+    grid-template-areas: 'content visual';
+  }
+
+  .River--align-right {
+    grid-template-areas: 'visual content';
+  }
+
+  .River--align-right.River--60-40 {
+    grid-template-columns: [visual] calc(60% - var(--base-size-12)) [content] calc(40% - var(--base-size-12));
+  }
+
+  .River__content {
+    display: grid;
+    align-content: center;
+    grid-area: content;
+  }
+
+  .River__visual {
+    grid-area: visual;
+  }
+
+  .River--align-center {
+    grid-auto-rows: min-content;
+    grid-template-columns: unset;
+  }
+
+  .River--align-center .River__content,
+  .River--align-center .River__visual {
+    grid-area: unset;
+    justify-self: center;
+  }
+
+  .River--align-center .River__body-text {
+    max-width: 600px;
+    justify-self: center;
+  }
+
+  .River--align-center .River__visual {
+    margin-bottom: var(--base-size-48);
+  }
+  .River--align-center .River__content {
+    margin-top: var(--base-size-48);
+  }
+}
+
+/* Large breakpoint and up */
+@media screen and (min-width: 63.25rem) {
+  .River {
+    gap: var(--brand-River-gap-column-large);
+  }
+}

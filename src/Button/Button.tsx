@@ -4,18 +4,15 @@ import {ExpandableArrow} from '../ExpandableArrow'
 import {Text} from '../Text'
 import '../../lib/design-tokens/css/tokens/functional/components/button/colors-with-modes.css'
 
-import styles from './LinkButton.module.css'
+import styles from './Button.module.css'
 
-// NOTE: We may rename this component `LinkStyledAsButton` or consolidate it into
-// a single polymorphic `Button` component that can render as a link or a button.
-// See this discussion for more details: https://github.com/github/design-infrastructure/discussions/2310
-
-export type LinkButtonProps = {
-  href: string
+export type ButtonProps<C extends React.ElementType> = {
+  as?: C
   variant?: 'primary' | 'secondary'
-} & React.ComponentPropsWithoutRef<'a'>
+} & React.ComponentPropsWithoutRef<C>
 
-export function LinkButton({
+export function Button<C extends React.ElementType>({
+  as,
   variant = 'secondary',
   className,
   children,
@@ -24,12 +21,14 @@ export function LinkButton({
   onFocus,
   onBlur,
   ...props
-}: LinkButtonProps) {
+}: ButtonProps<C>) {
   const [isHovered, setIsHovered] = React.useState(false)
   const [isFocused, setIsFocused] = React.useState(false)
+  const Component = as || 'button'
+
   return (
-    <a
-      className={clsx(styles.LinkButton, styles[`LinkButton--${variant}`], className)}
+    <Component
+      className={clsx(styles.Button, styles[`Button--${variant}`], className)}
       onMouseEnter={event => {
         setIsHovered(true)
         onMouseEnter?.(event)
@@ -51,11 +50,11 @@ export function LinkButton({
       <Text
         as="span"
         size="400"
-        className={clsx(styles['LinkButton--label'], variant === 'primary' && styles['LinkButton--label-primary'])}
+        className={clsx(styles['Button--label'], variant === 'primary' && styles['Button--label-primary'])}
       >
         {children}
       </Text>
-      <ExpandableArrow className={styles['LinkButton-arrow']} expanded={isHovered || isFocused} />
-    </a>
+      <ExpandableArrow className={styles['Button-arrow']} expanded={isHovered || isFocused} />
+    </Component>
   )
 }

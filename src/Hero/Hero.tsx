@@ -1,7 +1,7 @@
 import React from 'react'
 import clsx from 'clsx'
 import styles from './Hero.module.css'
-import {LinkButton} from '../LinkButton'
+import {Button} from '../Button'
 import {Heading} from '../Heading'
 import {Text} from '../Text'
 
@@ -33,13 +33,13 @@ export function Hero({className, heading, description, primaryAction, secondaryA
         </Text>
       ) : null}
       <div className={styles['Hero-actions']}>
-        <LinkButton variant="primary" href={primaryAction.href}>
+        <Button as="a" variant="primary" href={primaryAction.href}>
           {primaryAction.text}
-        </LinkButton>
+        </Button>
         {secondaryAction ? (
-          <LinkButton variant="secondary" href={secondaryAction.href}>
+          <Button as="a" variant="secondary" href={secondaryAction.href}>
             {secondaryAction.text}
-          </LinkButton>
+          </Button>
         ) : null}
       </div>
     </div>
