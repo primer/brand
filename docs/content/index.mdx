@@ -1,7 +1,6 @@
 import {HeroLayout} from '@primer/gatsby-theme-doctocat'
-import {Button, Box, Heading, Text} from '@primer/react'
-import {MarkGithubIcon} from '@primer/octicons-react'
-import {Link} from 'gatsby'
+import {Box} from '@primer/react'
+import {Link, Button, Heading, Text} from '@primer/react-brand'
 
 <Box
   sx={{
@@ -14,12 +13,8 @@ import {Link} from 'gatsby'
     mt: 5,
   }}
 >
-  <Heading as="h2" sx={{fontSize: 3}}>
-    Use Primer React Brand in your project
-  </Heading>
-  <Text as="p" sx={{m: 0}}>
-    Read the installation instructions to get started.
-  </Text>
+  <Heading as="h4">Using Primer React Brand</Heading>
+  <Text as="p">Read the installation instructions to get started.</Text>
   <Box
     sx={{
       mt: 4,
@@ -30,20 +25,31 @@ import {Link} from 'gatsby'
       columnGap: '0.75rem',
     }}
   >
-    <Button href="/react-brand/getting-started" variant="outline">
-      Installation instructions
-    </Button>
-    <Button href="/react-brand/storybook" variant="outline" target="_blank">
-      Storybook
-    </Button>
-    <Button
-      href="https://github.com/primer/react-brand"
-      variant="outline"
-      leadingIcon={MarkGithubIcon}
-      target="_blank"
-    >
-      Contribute
-    </Button>
+    <p>
+      <Button as="a" variant="primary" href="/react-brand/getting-started">
+        Installation instructions
+      </Button>
+    </p>
+    <p>
+      <Button
+        as="a"
+        variant="secondary"
+        href="/react-brand/storybook"
+        target="_blank"
+      >
+        Storybook
+      </Button>
+    </p>
+    <p>
+      <Button
+        as="a"
+        variant="secondary"
+        href="https://github.com/primer/react-brand"
+        target="_blank"
+      >
+        Contribute
+      </Button>
+    </p>
   </Box>
 </Box>
 

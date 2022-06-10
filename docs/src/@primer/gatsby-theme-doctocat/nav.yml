@@ -1,5 +1,7 @@
-- title: Getting started
-  url: /getting-started
+- title: Introduction
+  children:
+    - title: Getting started
+      url: /getting-started
 
 - title: Primitives
   children:
