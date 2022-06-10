@@ -13,7 +13,7 @@
     - title: River
       url: /components/River
 
-- title: Base Components
+- title: Base components
   children:
     - title: Heading
       url: /components/Heading
