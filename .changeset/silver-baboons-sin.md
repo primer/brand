@@ -21,9 +21,9 @@
 <td valign="top">
 
 ```jsx
-import {River} from "@primer/react-brand";
+// import {River} from "@primer/react-brand";
 
- <River>
+<River>
     <River.Visual>
         <img
         src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
