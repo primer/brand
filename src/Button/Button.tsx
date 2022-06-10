@@ -6,12 +6,8 @@ import '../../lib/design-tokens/css/tokens/functional/components/button/colors-w
 
 import styles from './Button.module.css'
 
-// NOTE: We may rename this component `LinkStyledAsButton` or consolidate it into
-// a single polymorphic `Button` component that can render as a link or a button.
-// See this discussion for more details: https://github.com/github/design-infrastructure/discussions/2310
-
 export type ButtonProps<C extends React.ElementType> = {
-  as?: 'button' | 'a'
+  as?: C
   variant?: 'primary' | 'secondary'
 } & React.ComponentPropsWithoutRef<C>
 
@@ -28,7 +24,7 @@ export function Button<C extends React.ElementType>({
 }: ButtonProps<C>) {
   const [isHovered, setIsHovered] = React.useState(false)
   const [isFocused, setIsFocused] = React.useState(false)
-  const Component = as || 'a'
+  const Component = as || 'button'
 
   return (
     <Component

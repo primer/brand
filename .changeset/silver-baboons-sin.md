@@ -74,7 +74,7 @@ https://primer.style/react-brand/components/River
 ```jsx
 //import { Button } from '@primer/react-brand';
 
-<Button href="#">Sign up</Button>
+<Button as="a" href="#">Sign up</Button>
 ```
 
 </td>
@@ -90,7 +90,7 @@ https://primer.style/react-brand/components/River
 ```jsx
 //import { Button } from '@primer/react-brand';
 
-<Button as="button" onClick={handler}>Sign Up</Button>
+<Button onClick={handler}>Sign Up</Button>
 ```
 
 </td>

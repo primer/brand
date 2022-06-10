@@ -33,11 +33,11 @@ export function Hero({className, heading, description, primaryAction, secondaryA
         </Text>
       ) : null}
       <div className={styles['Hero-actions']}>
-        <Button variant="primary" href={primaryAction.href}>
+        <Button as="a" variant="primary" href={primaryAction.href}>
           {primaryAction.text}
         </Button>
         {secondaryAction ? (
-          <Button variant="secondary" href={secondaryAction.href}>
+          <Button as="a" variant="secondary" href={secondaryAction.href}>
             {secondaryAction.text}
           </Button>
         ) : null}
