@@ -85,4 +85,4 @@ function FAQSubheading({children, className}: FAQSubheadingProps) {
 /**
  * Branded FAQ component
  */
-export const FAQ = Object.assign(FAQRoot, {Subheading: FAQSubheading, Heading: FAQHeading})
+export const FAQ = Object.assign(FAQRoot, {Subheading: FAQSubheading, Heading: FAQHeading, Question: Accordion})

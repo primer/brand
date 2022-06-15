@@ -91,10 +91,10 @@ export const AllClosed: ComponentStory<typeof FAQ> = () => {
         <>
           {fixtureData.map(({question, answer}) => {
             return (
-              <Accordion key={question} open={false}>
-                <Accordion.Heading>{question}</Accordion.Heading>
-                <Accordion.Content>{answer}</Accordion.Content>
-              </Accordion>
+              <FAQ.Question key={question} open={false}>
+                <FAQ.Question.Heading>{question}</FAQ.Question.Heading>
+                <FAQ.Question.Content>{answer}</FAQ.Question.Content>
+              </FAQ.Question>
             )
           })}
         </>
@@ -111,10 +111,10 @@ export const AllOpen: ComponentStory<typeof FAQ> = () => {
         <>
           {fixtureData.map(({question, answer}) => {
             return (
-              <Accordion key={question} open={true}>
-                <Accordion.Heading>{question}</Accordion.Heading>
-                <Accordion.Content>{answer}</Accordion.Content>
-              </Accordion>
+              <FAQ.Question key={question} open={true}>
+                <FAQ.Question.Heading>{question}</FAQ.Question.Heading>
+                <FAQ.Question.Content>{answer}</FAQ.Question.Content>
+              </FAQ.Question>
             )
           })}
         </>
@@ -131,10 +131,10 @@ export const HeadingLeftAligned: ComponentStory<typeof FAQ> = () => {
         <>
           {fixtureData.map(({question, answer}) => {
             return (
-              <Accordion key={question}>
-                <Accordion.Heading>{question}</Accordion.Heading>
-                <Accordion.Content>{answer}</Accordion.Content>
-              </Accordion>
+              <FAQ.Question key={question}>
+                <FAQ.Question.Heading>{question}</FAQ.Question.Heading>
+                <FAQ.Question.Content>{answer}</FAQ.Question.Content>
+              </FAQ.Question>
             )
           })}
         </>
@@ -151,10 +151,10 @@ export const LargeHeading: ComponentStory<typeof FAQ> = () => {
         <>
           {fixtureData.map(({question, answer}) => {
             return (
-              <Accordion key={question}>
-                <Accordion.Heading>{question}</Accordion.Heading>
-                <Accordion.Content>{answer}</Accordion.Content>
-              </Accordion>
+              <FAQ.Question key={question}>
+                <FAQ.Question.Heading>{question}</FAQ.Question.Heading>
+                <FAQ.Question.Content>{answer}</FAQ.Question.Content>
+              </FAQ.Question>
             )
           })}
         </>
@@ -173,10 +173,10 @@ export const LargeHeadingLeftAligned: ComponentStory<typeof FAQ> = () => {
         <>
           {fixtureData.map(({question, answer}) => {
             return (
-              <Accordion key={question}>
-                <Accordion.Heading>{question}</Accordion.Heading>
-                <Accordion.Content>{answer}</Accordion.Content>
-              </Accordion>
+              <FAQ.Question key={question}>
+                <FAQ.Question.Heading>{question}</FAQ.Question.Heading>
+                <FAQ.Question.Content>{answer}</FAQ.Question.Content>
+              </FAQ.Question>
             )
           })}
         </>
@@ -198,10 +198,10 @@ export const WithGroups: ComponentStory<typeof FAQ> = () => {
               <FAQ.Subheading>{`Group subheading ${group}`}</FAQ.Subheading>
               {fixtureData.map(({question, answer}) => {
                 return (
-                  <Accordion key={question}>
-                    <Accordion.Heading>{question}</Accordion.Heading>
-                    <Accordion.Content>{answer}</Accordion.Content>
-                  </Accordion>
+                  <FAQ.Question key={question}>
+                    <FAQ.Question.Heading>{question}</FAQ.Question.Heading>
+                    <FAQ.Question.Content>{answer}</FAQ.Question.Content>
+                  </FAQ.Question>
                 )
               })}
             </>
