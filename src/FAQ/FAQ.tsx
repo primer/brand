@@ -28,7 +28,7 @@ function FAQRoot({children, className}: FAQRootProps) {
   })
 
   const hasSubheading = React.Children.toArray(children).some(
-    child => React.isValidElement(child) && typeof child.type !== 'string' && child.type.displayName === 'FAQSubheading'
+    child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === FAQSubheading
   )
 
   return (
@@ -48,7 +48,6 @@ function FAQRoot({children, className}: FAQRootProps) {
     </section>
   )
 }
-FAQRoot.displayName = 'FAQRoot'
 
 type FAQHeadingProps = {
   className?: string
@@ -68,7 +67,6 @@ function FAQHeading({children, className, size = 'medium', align = 'center'}: FA
     </Heading>
   )
 }
-FAQHeading.displayName = 'FAQHeading'
 
 type FAQSubheadingProps = {
   align?: 'left' | 'center'
@@ -83,7 +81,6 @@ function FAQSubheading({children, className}: FAQSubheadingProps) {
     </Heading>
   )
 }
-FAQSubheading.displayName = 'FAQSubheading'
 
 /**
  * Branded FAQ component
