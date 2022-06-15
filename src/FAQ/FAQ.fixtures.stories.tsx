@@ -1,7 +1,7 @@
 import React from 'react'
 import {ComponentStory, ComponentMeta} from '@storybook/react'
 import {FAQ} from '.'
-import {Accordion, Text} from '..'
+import {Text} from '..'
 import {Container} from '../component-helpers'
 
 export default {
