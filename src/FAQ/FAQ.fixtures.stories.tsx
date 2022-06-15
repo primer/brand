@@ -93,7 +93,7 @@ export const AllClosed: ComponentStory<typeof FAQ> = () => {
             return (
               <FAQ.Question key={question} open={false}>
                 <FAQ.Question.Heading>{question}</FAQ.Question.Heading>
-                <FAQ.Question.Content>{answer}</FAQ.Question.Content>
+                <FAQ.Question.Answer>{answer}</FAQ.Question.Answer>
               </FAQ.Question>
             )
           })}
@@ -113,7 +113,7 @@ export const AllOpen: ComponentStory<typeof FAQ> = () => {
             return (
               <FAQ.Question key={question} open={true}>
                 <FAQ.Question.Heading>{question}</FAQ.Question.Heading>
-                <FAQ.Question.Content>{answer}</FAQ.Question.Content>
+                <FAQ.Question.Answer>{answer}</FAQ.Question.Answer>
               </FAQ.Question>
             )
           })}
@@ -133,7 +133,7 @@ export const HeadingLeftAligned: ComponentStory<typeof FAQ> = () => {
             return (
               <FAQ.Question key={question}>
                 <FAQ.Question.Heading>{question}</FAQ.Question.Heading>
-                <FAQ.Question.Content>{answer}</FAQ.Question.Content>
+                <FAQ.Question.Answer>{answer}</FAQ.Question.Answer>
               </FAQ.Question>
             )
           })}
@@ -153,7 +153,7 @@ export const LargeHeading: ComponentStory<typeof FAQ> = () => {
             return (
               <FAQ.Question key={question}>
                 <FAQ.Question.Heading>{question}</FAQ.Question.Heading>
-                <FAQ.Question.Content>{answer}</FAQ.Question.Content>
+                <FAQ.Question.Answer>{answer}</FAQ.Question.Answer>
               </FAQ.Question>
             )
           })}
@@ -175,7 +175,7 @@ export const LargeHeadingLeftAligned: ComponentStory<typeof FAQ> = () => {
             return (
               <FAQ.Question key={question}>
                 <FAQ.Question.Heading>{question}</FAQ.Question.Heading>
-                <FAQ.Question.Content>{answer}</FAQ.Question.Content>
+                <FAQ.Question.Answer>{answer}</FAQ.Question.Answer>
               </FAQ.Question>
             )
           })}
@@ -200,7 +200,7 @@ export const WithGroups: ComponentStory<typeof FAQ> = () => {
                 return (
                   <FAQ.Question key={question}>
                     <FAQ.Question.Heading>{question}</FAQ.Question.Heading>
-                    <FAQ.Question.Content>{answer}</FAQ.Question.Content>
+                    <FAQ.Question.Answer>{answer}</FAQ.Question.Answer>
                   </FAQ.Question>
                 )
               })}
