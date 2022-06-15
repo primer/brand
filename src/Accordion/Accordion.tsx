@@ -21,12 +21,13 @@ export function AccordionRoot({children, className, open = false, ...rest}: Acco
     children
   ).reduce<ValidRootChildren>(
     (acc, child) => {
-      if (
-        React.isValidElement(child) &&
-        typeof child.type !== 'string' &&
-        (child.type.name === 'AccordionHeading' || child.type.name === 'AccordionContent')
-      ) {
-        acc[child.type.name] = child
+      if (React.isValidElement(child) && typeof child.type !== 'string') {
+        if (child.type === AccordionContent) {
+          acc.AccordionContent = child
+        }
+        if (child.type === AccordionHeading) {
+          acc.AccordionHeading = child
+        }
       }
       return acc
     },

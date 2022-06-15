@@ -1,7 +1,8 @@
 import React from 'react'
+import {isFragment} from 'react-is'
 import clsx from 'clsx'
 
-import {Heading, AccordionRootProps} from '..'
+import {Heading, Accordion, AccordionRootProps} from '..'
 
 import styles from './FAQ.module.css'
 
@@ -10,26 +11,31 @@ type FAQRootProps = {
   children: React.ReactElement<FAQHeadingProps | FAQSubheadingProps | AccordionRootProps>[]
 }
 
-export function FAQRoot({children, className}: FAQRootProps) {
-  const filteredChildren = React.Children.toArray(children).filter(
-    child =>
-      React.isValidElement(child) &&
-      typeof child.type !== 'string' &&
-      (child.type.name === 'FAQHeading' ||
-        child.type.name === 'FAQSubheading' ||
-        child.type.name === 'AccordionRoot' ||
-        child.type === React.Fragment)
-  )
+function FAQRoot({children, className}: FAQRootProps) {
+  const childrenHasFragment = React.Children.toArray(children).some(child => isFragment(child))
+  const filteredChildren = React.Children.toArray(children).filter(child => {
+    if (React.isValidElement(child) && typeof child.type !== 'string') {
+      if (
+        childrenHasFragment ||
+        child.type === FAQHeading ||
+        child.type === FAQSubheading ||
+        child.type === Accordion
+      ) {
+        return true
+      }
+    }
+    return false
+  })
 
   const hasSubheading = React.Children.toArray(children).some(
-    child => React.isValidElement(child) && typeof child.type !== 'string' && child.type.name === 'FAQSubheading'
+    child => React.isValidElement(child) && typeof child.type !== 'string' && child.type.displayName === 'FAQSubheading'
   )
 
   return (
     <section className={clsx(styles.FAQ, className)}>
       {React.Children.toArray(filteredChildren).map(child => {
         if (React.isValidElement(child) && typeof child.type !== 'string') {
-          if (child.type.name === 'FAQHeading') {
+          if (child.type === FAQHeading) {
             return React.cloneElement(child, {
               align: hasSubheading ? 'left' : child.props.align,
               size: hasSubheading ? 'large' : child.props.size,
@@ -42,6 +48,7 @@ export function FAQRoot({children, className}: FAQRootProps) {
     </section>
   )
 }
+FAQRoot.displayName = 'FAQRoot'
 
 type FAQHeadingProps = {
   className?: string
@@ -61,6 +68,7 @@ function FAQHeading({children, className, size = 'medium', align = 'center'}: FA
     </Heading>
   )
 }
+FAQHeading.displayName = 'FAQHeading'
 
 type FAQSubheadingProps = {
   align?: 'left' | 'center'
@@ -75,6 +83,7 @@ function FAQSubheading({children, className}: FAQSubheadingProps) {
     </Heading>
   )
 }
+FAQSubheading.displayName = 'FAQSubheading'
 
 /**
  * Branded FAQ component
