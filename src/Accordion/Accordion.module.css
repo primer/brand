@@ -1,0 +1,119 @@
+.Accordion {
+  box-sizing: border-box;
+  position: relative;
+}
+
+.Accordion::after {
+  content: '';
+  border-bottom: 1px solid var(--brand-color-border-default);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transition: border 0.5s ease;
+}
+
+.Accordion:hover::after {
+  border-width: 3px;
+}
+
+.Accordion__summary {
+  cursor: pointer;
+  list-style-type: none;
+  padding: 24px 0;
+  position: relative;
+  display: list-item;
+}
+
+.Accordion__summary-heading {
+  padding-left: 32px;
+}
+
+.Accordion__summary::before,
+.Accordion__summary::after {
+  display: list-item;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 24px;
+  height: 30px;
+  margin-top: auto;
+  margin-bottom: auto;
+  font-size: 32px;
+  line-height: 20px;
+  text-align: center;
+  /* background: linear-gradient(-70deg, var(--base-color-scale-pink-5) 0%, var(--base-color-scale-pink-5) 100%); */
+  background: var(--base-color-scale-pink-5);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition: transform 0.3s ease, opacity 0.2s ease;
+}
+
+.Accordion__summary::before {
+  top: -3px;
+  font-weight: 500;
+  content: '-';
+  opacity: 0;
+}
+
+.Accordion__summary::after {
+  content: '+';
+}
+
+details[open] > .Accordion__summary::before {
+  opacity: 1;
+  transform: rotateZ(180deg);
+}
+
+details[open] > .Accordion__summary::after {
+  opacity: 0;
+  transform: rotateZ(180deg);
+}
+
+details[open] > .Accordion__content {
+  padding-left: 32px;
+  padding-bottom: 24px;
+  margin-top: -16px;
+  animation: fade-in 0.5s;
+}
+
+.Accordion__content-item {
+  margin-bottom: 10px;
+}
+
+/* Small breakpoint and up */
+@media screen and (min-width: 34rem) {
+  /* .Accordion__summary::before,
+  .Accordion__summary::after {
+    margin-left: 8px;
+  } */
+}
+
+/* Medium breakpoint and up */
+@media screen and (min-width: 48rem) {
+  .Accordion__summary {
+    padding-left: 8px;
+  }
+  .Accordion__summary-heading {
+    padding-left: 48px;
+  }
+
+  details[open] > .Accordion__content {
+    padding-left: 56px;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

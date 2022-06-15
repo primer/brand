@@ -1,0 +1,38 @@
+.FAQ {
+  max-width: 816px;
+  margin: 0 auto;
+}
+
+.FAQ__subheading {
+  margin-top: 64px;
+  margin-bottom: 16px;
+}
+
+.FAQ__heading {
+}
+
+.FAQ__heading--left {
+  text-align: left;
+}
+
+.FAQ__heading--center {
+  text-align: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.FAQ__heading--large {
+  padding-bottom: 4px;
+}
+
+/* Large breakpoint and up */
+@media screen and (min-width: 63.25rem) {
+  .FAQ__subheading {
+    margin-top: 96px;
+  }
+
+  .FAQ__heading--with-margin {
+    margin-bottom: 64px;
+  }
+}
