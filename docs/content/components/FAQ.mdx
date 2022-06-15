@@ -5,6 +5,7 @@ source: https://github.com/primer/react-brand/tree/main/src/FAQ/FAQ.tsx
 description: Display content in a Q&A format
 ---
 
+import InlineCode from '@primer/gatsby-theme-doctocat/src/components/inline-code'
 import {Box as Container} from '@primer/react'
 
 ```js
@@ -18,7 +19,7 @@ import {FAQ} from '@primer/react-brand'
 ```jsx live
 <Container p={3}>
   <FAQ>
-    <FAQ.Heading align="center">Frequently asked questions</FAQ.Heading>
+    <FAQ.Heading>Frequently asked questions</FAQ.Heading>
     <FAQ.Question>
       <FAQ.Question.Heading>
         What&apos;s included in the GitHub for Startups offer?
@@ -102,6 +103,17 @@ import {FAQ} from '@primer/react-brand'
 ```
 
 ### Grouped FAQs
+
+`FAQ` supports content as groupings.
+
+Use `FAQ.Subheading` to create a visual separation between your `FAQ.Question` declarations.
+
+<Note>
+  Using <InlineCode>FAQ.Subheading</InlineCode> inside{' '}
+  <InlineCode>FAQ</InlineCode> will automatically change text alignment and size
+  of <InlineCode>FAQ.Heading</InlineCode>. It will also adjust the underlying
+  HTML tag from a <InlineCode>H3</InlineCode> to a <InlineCode>H2</InlineCode>.
+</Note>
 
 ```jsx live
 <Container p={3}>
