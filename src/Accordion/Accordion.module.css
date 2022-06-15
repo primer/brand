@@ -24,6 +24,9 @@
   position: relative;
   display: list-item;
 }
+.Accordion__summary::-webkit-details-marker {
+  display: none;
+}
 
 .Accordion__summary-heading {
   padding-left: 32px;
