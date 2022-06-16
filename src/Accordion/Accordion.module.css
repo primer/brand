@@ -32,6 +32,11 @@
   padding-left: 32px;
 }
 
+.Accordion__summary:focus-visible {
+  /* FIXME with a focus design token */
+  outline: 2px solid var(--brand-color-border-default);
+}
+
 .Accordion__summary::before,
 .Accordion__summary::after {
   font-family: var(--brand-fontStack-monospace);
