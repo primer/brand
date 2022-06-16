@@ -35,7 +35,7 @@ import {FAQ} from '@primer/react-brand'
           .
         </p>
       </FAQ.Answer>
-    </FAQ.Question>
+    </FAQ.Item>
     <FAQ.Item>
       <FAQ.Question>Who is eligible to apply?</FAQ.Question>
       <FAQ.Answer>
@@ -66,7 +66,7 @@ import {FAQ} from '@primer/react-brand'
           </li>
         </ol>
       </FAQ.Answer>
-    </FAQ.Question>
+    </FAQ.Item>
     <FAQ.Item>
       <FAQ.Question>
         What if my startup is not eligible? Are there other resources for me?
@@ -80,7 +80,7 @@ import {FAQ} from '@primer/react-brand'
           </a>.
         </p>
       </FAQ.Answer>
-    </FAQ.Question>
+    </FAQ.Item>
     <FAQ.Item>
       <FAQ.Question>
         How can my organization become a GitHub for Startups partner?
@@ -97,7 +97,7 @@ import {FAQ} from '@primer/react-brand'
           .
         </p>
       </FAQ.Answer>
-    </FAQ.Question>
+    </FAQ.Item>
   </FAQ>
 </Container>
 ```
@@ -131,11 +131,9 @@ Use `FAQ.Subheading` to create a visual separation between your `FAQ.Question` d
           to collaborate on private and public repositories.
         </p>
       </FAQ.Answer>
-    </FAQ.Question>
+    </FAQ.Item>
     <FAQ.Item>
-      <FAQ.Question>
-        How do I view and manage my subscription?
-      </FAQ.Question>
+      <FAQ.Question>How do I view and manage my subscription?</FAQ.Question>
       <FAQ.Answer>
         <p>
           You can view your account's subscription, your other paid features and
@@ -143,7 +141,7 @@ Use `FAQ.Subheading` to create a visual separation between your `FAQ.Question` d
           settings.
         </p>
       </FAQ.Answer>
-    </FAQ.Question>
+    </FAQ.Item>
     <FAQ.Subheading align="center">Actions & Packages</FAQ.Subheading>
     <FAQ.Item>
       <FAQ.Question>
@@ -159,7 +157,7 @@ Use `FAQ.Subheading` to create a visual separation between your `FAQ.Question` d
           and Packages but they can be upgraded to a current per-user plan.
         </p>
       </FAQ.Answer>
-    </FAQ.Question>
+    </FAQ.Item>
     <FAQ.Item>
       <FAQ.Question>
         How do I manage my spending for Actions and Packages?
@@ -170,7 +168,7 @@ Use `FAQ.Subheading` to create a visual separation between your `FAQ.Question` d
           settings page under the payment information tab.
         </p>
       </FAQ.Answer>
-    </FAQ.Question>
+    </FAQ.Item>
   </FAQ>
 </Container>
 ```
@@ -258,10 +256,10 @@ const App = () => {
         <>
           {fixtureData.map(({question, answer}) => {
             return (
-              <FAQ.Question key={question} open={false}>
+              <FAQ.Item key={question} open={false}>
                 <FAQ.Question>{question}</FAQ.Question>
                 <FAQ.Answer>{answer}</FAQ.Answer>
-              </FAQ.Question>
+              </FAQ.Item>
             )
           })}
         </>
