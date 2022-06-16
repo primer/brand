@@ -1,5 +1,11 @@
 # @primer/react-brand
 
+## 0.2.1
+
+### Patch Changes
+
+- [#38](https://github.com/primer/react-brand/pull/38) [`b0c9293`](https://github.com/primer/react-brand/commit/b0c929389d62f184e5ae447c0b00e351cb2d1c6e) Thanks [@rezrah](https://github.com/rezrah)! - updated `css-loader` to generate valid (escaped) class names
+
 ## 0.2.0
 
 ### Minor Changes
