@@ -91,10 +91,10 @@ export const AllClosed: ComponentStory<typeof FAQ> = () => {
         <>
           {fixtureData.map(({question, answer}) => {
             return (
-              <FAQ.Question key={question} open={false}>
-                <FAQ.Question.Heading>{question}</FAQ.Question.Heading>
-                <FAQ.Question.Answer>{answer}</FAQ.Question.Answer>
-              </FAQ.Question>
+              <FAQ.Item key={question} open={false}>
+                <FAQ.Question>{question}</FAQ.Question>
+                <FAQ.Answer>{answer}</FAQ.Answer>
+              </FAQ.Item>
             )
           })}
         </>
@@ -111,10 +111,10 @@ export const AllOpen: ComponentStory<typeof FAQ> = () => {
         <>
           {fixtureData.map(({question, answer}) => {
             return (
-              <FAQ.Question key={question} open={true}>
-                <FAQ.Question.Heading>{question}</FAQ.Question.Heading>
-                <FAQ.Question.Answer>{answer}</FAQ.Question.Answer>
-              </FAQ.Question>
+              <FAQ.Item key={question} open={true}>
+                <FAQ.Question>{question}</FAQ.Question>
+                <FAQ.Answer>{answer}</FAQ.Answer>
+              </FAQ.Item>
             )
           })}
         </>
@@ -131,10 +131,10 @@ export const HeadingLeftAligned: ComponentStory<typeof FAQ> = () => {
         <>
           {fixtureData.map(({question, answer}) => {
             return (
-              <FAQ.Question key={question}>
-                <FAQ.Question.Heading>{question}</FAQ.Question.Heading>
-                <FAQ.Question.Answer>{answer}</FAQ.Question.Answer>
-              </FAQ.Question>
+              <FAQ.Item key={question}>
+                <FAQ.Question>{question}</FAQ.Question>
+                <FAQ.Answer>{answer}</FAQ.Answer>
+              </FAQ.Item>
             )
           })}
         </>
@@ -151,10 +151,10 @@ export const LargeHeading: ComponentStory<typeof FAQ> = () => {
         <>
           {fixtureData.map(({question, answer}) => {
             return (
-              <FAQ.Question key={question}>
-                <FAQ.Question.Heading>{question}</FAQ.Question.Heading>
-                <FAQ.Question.Answer>{answer}</FAQ.Question.Answer>
-              </FAQ.Question>
+              <FAQ.Item key={question}>
+                <FAQ.Question>{question}</FAQ.Question>
+                <FAQ.Answer>{answer}</FAQ.Answer>
+              </FAQ.Item>
             )
           })}
         </>
@@ -173,10 +173,10 @@ export const LargeHeadingLeftAligned: ComponentStory<typeof FAQ> = () => {
         <>
           {fixtureData.map(({question, answer}) => {
             return (
-              <FAQ.Question key={question}>
-                <FAQ.Question.Heading>{question}</FAQ.Question.Heading>
-                <FAQ.Question.Answer>{answer}</FAQ.Question.Answer>
-              </FAQ.Question>
+              <FAQ.Item key={question}>
+                <FAQ.Question>{question}</FAQ.Question>
+                <FAQ.Answer>{answer}</FAQ.Answer>
+              </FAQ.Item>
             )
           })}
         </>
@@ -198,10 +198,10 @@ export const WithGroups: ComponentStory<typeof FAQ> = () => {
               <FAQ.Subheading>{`Group subheading ${group}`}</FAQ.Subheading>
               {fixtureData.map(({question, answer}) => {
                 return (
-                  <FAQ.Question key={question}>
-                    <FAQ.Question.Heading>{question}</FAQ.Question.Heading>
-                    <FAQ.Question.Answer>{answer}</FAQ.Question.Answer>
-                  </FAQ.Question>
+                  <FAQ.Item key={question}>
+                    <FAQ.Question>{question}</FAQ.Question>
+                    <FAQ.Answer>{answer}</FAQ.Answer>
+                  </FAQ.Item>
                 )
               })}
             </>

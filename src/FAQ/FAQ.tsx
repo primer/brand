@@ -2,7 +2,7 @@ import React from 'react'
 import {isFragment} from 'react-is'
 import clsx from 'clsx'
 
-import {Heading, Accordion, AccordionRootProps} from '..'
+import {Heading, AccordionHeading, AccordionContent, AccordionRoot, AccordionRootProps} from '..'
 
 import styles from './FAQ.module.css'
 
@@ -19,7 +19,7 @@ function FAQRoot({children, className}: FAQRootProps) {
         childrenHasFragment ||
         child.type === FAQHeading ||
         child.type === FAQSubheading ||
-        child.type === Accordion
+        child.type === AccordionRoot
       ) {
         return true
       }
@@ -83,14 +83,12 @@ function FAQSubheading({children, className}: FAQSubheadingProps) {
 }
 
 /**
- * Accordion is being aliased here to avoid surfacing it as a first-class API.
- *
- * The following will instantiate a new object which retains the original Accordion API,
- * but re-contextualizes it to the FAQ component as a Question and Answer format.
- */
-const Question = Object.assign(Accordion, {Heading: Accordion.Heading, Answer: Accordion.Content})
-
-/**
  * Branded FAQ component
  */
-export const FAQ = Object.assign(FAQRoot, {Subheading: FAQSubheading, Heading: FAQHeading, Question})
+export const FAQ = Object.assign(FAQRoot, {
+  Subheading: FAQSubheading,
+  Heading: FAQHeading,
+  Item: AccordionRoot,
+  Question: AccordionHeading,
+  Answer: AccordionContent
+})

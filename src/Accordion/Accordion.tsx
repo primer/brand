@@ -46,7 +46,7 @@ type AccordionHeadingProps = {
   children: string
 }
 
-function AccordionHeading({children}: AccordionHeadingProps) {
+export function AccordionHeading({children}: AccordionHeadingProps) {
   return (
     <summary className={styles.Accordion__summary}>
       <Heading as="h6" className={styles['Accordion__summary-heading']}>
@@ -60,7 +60,7 @@ type AccordionContentProps = {
   children: React.ReactElement | React.ReactElement[]
 }
 
-function AccordionContent({children}: AccordionContentProps) {
+export function AccordionContent({children}: AccordionContentProps) {
   const resolvedChildren =
     React.isValidElement(children) && children.type === React.Fragment ? children.props.children : children
 
