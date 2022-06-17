@@ -3,6 +3,10 @@
   margin: 0 auto;
 }
 
+.FAQ__heading {
+  color: var(--brand-FAQ-heading-color);
+}
+
 .FAQ__subheading {
   margin-top: 64px;
   margin-bottom: 16px;

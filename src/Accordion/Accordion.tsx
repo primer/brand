@@ -3,6 +3,7 @@ import clsx from 'clsx'
 
 import {Heading, Text} from '../'
 
+import '../../lib/design-tokens/css/tokens/functional/components/accordion/colors-with-modes.css'
 import styles from './Accordion.module.css'
 
 export type AccordionRootProps = {

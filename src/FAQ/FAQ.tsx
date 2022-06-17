@@ -4,6 +4,7 @@ import clsx from 'clsx'
 
 import {Heading, AccordionHeading, AccordionContent, AccordionRoot, AccordionRootProps} from '..'
 
+import '../../lib/design-tokens/css/tokens/functional/components/faq/colors-with-modes.css'
 import styles from './FAQ.module.css'
 
 type FAQRootProps = {
@@ -61,7 +62,12 @@ function FAQHeading({children, className, size = 'medium', align = 'center'}: FA
   return (
     <Heading
       as={headingSize}
-      className={clsx(size === 'large' && styles['FAQ__heading--large'], styles[`FAQ__heading--${align}`], className)}
+      className={clsx(
+        styles.FAQ__heading,
+        size === 'large' && styles['FAQ__heading--large'],
+        styles[`FAQ__heading--${align}`],
+        className
+      )}
     >
       {children}
     </Heading>

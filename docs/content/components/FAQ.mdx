@@ -271,4 +271,77 @@ const App = () => {
 render(<App />)
 ```
 
+### Color customization
+
+`FAQ` uses various component-specific css variables that can be used to adjust the color to suit bespoke use-cases.
+
+```javascript live noinline
+const App = () => {
+  const designTokenOverrides = `
+  .custom-colors {
+    /* Modify the values of these tokens */
+    --brand-FAQ-heading-color: linear-gradient(271.72deg, #a2facf 7.09%, #64acff 96.61%);
+    --brand-Accordion-toggle-color-start: var(--base-color-scale-green-1);
+    --brand-Accordion-toggle-color-end: var(--base-color-scale-blue-3);
+
+    padding: 3rem;
+    background-color: var(--brand-color-canvas-default);
+  }
+
+  .custom-heading {
+    background: var(--brand-FAQ-heading-color);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+`
+
+  return (
+    <ThemeProvider colorMode="dark" className="custom-colors">
+      <style>{designTokenOverrides}</style>
+      <FAQ>
+        <FAQ.Heading className="custom-heading">
+          Frequently asked questions
+        </FAQ.Heading>
+        <FAQ.Subheading>Subscriptions & Payments</FAQ.Subheading>
+        <FAQ.Item>
+          <FAQ.Question>
+            What are the differences between GitHub Free, GitHub Pro, GitHub
+            Team and GitHub Enterprise plans?
+          </FAQ.Question>
+          <FAQ.Answer>
+            <p>
+              GitHub Free is our basic plan created for individuals and small
+              teams to collaborate on private and public repositories.
+            </p>
+          </FAQ.Answer>
+        </FAQ.Item>
+        <FAQ.Item>
+          <FAQ.Question>How do I view and manage my subscription?</FAQ.Question>
+          <FAQ.Answer>
+            <p>
+              You can view your account's subscription, your other paid features
+              and products, and your next billing date in your account's billing
+              settings.
+            </p>
+          </FAQ.Answer>
+        </FAQ.Item>
+        <FAQ.Item>
+          <FAQ.Question>How can I change my GitHub subscription?</FAQ.Question>
+          <FAQ.Answer>
+            <p>
+              You can upgrade or downgrade your subscription, add and remove
+              seats, or change the billing cadence on
+              https://github.com/settings/billing.
+            </p>
+          </FAQ.Answer>
+        </FAQ.Item>
+      </FAQ>
+    </ThemeProvider>
+  )
+}
+
+render(<App />)
+```
+
 ## Component props

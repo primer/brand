@@ -51,10 +51,13 @@
   margin-top: auto;
   margin-bottom: auto;
   font-size: 32px;
-  line-height: 20px;
+  line-height: 26px;
   text-align: center;
-  /* background: linear-gradient(-70deg, var(--base-color-scale-pink-5) 0%, var(--base-color-scale-pink-5) 100%); */
-  background: var(--base-color-scale-pink-5);
+  background: linear-gradient(
+    -70deg,
+    var(--brand-Accordion-toggle-color-start) 0%,
+    var(--brand-Accordion-toggle-color-end) 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

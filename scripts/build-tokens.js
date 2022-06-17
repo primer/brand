@@ -140,7 +140,12 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
     }
   })
 
-  const filesForColorModes = [`tokens/functional/colors/global.json`, `tokens/functional/components/button/colors.js`]
+  const filesForColorModes = [
+    `tokens/functional/colors/global.json`,
+    `tokens/functional/components/button/colors.js`,
+    `tokens/functional/components/accordion/colors.js`,
+    `tokens/functional/components/faq/colors.js`
+  ]
 
   for (const path of filesForColorModes) {
     const sansExtention = path.replace(/\.[^/.]+$/, '')
