@@ -86,6 +86,12 @@
           "value": "hsl(var(--base-color-scale-black-0-hsl) / 99.85%)",
           "darkValue": "hsl(var(--base-color-scale-gray-0-hsl) / 99.9%)"
         }
+      },
+      "focus": {
+        "default": {
+          "value": "var(--base-color-scale-blue-5)",
+          "darkValue": "var(--base-color-scale-blue-3)"
+        }
       }
     }
   }

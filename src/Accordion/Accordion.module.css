@@ -33,8 +33,7 @@
 }
 
 .Accordion__summary:focus-visible {
-  /* FIXME with a global focus design token */
-  outline: 2px solid var(--brand-color-accent-fg);
+  outline: 2px solid var(--brand-color-focus-default);
 }
 
 .Accordion__summary::before,
