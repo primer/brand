@@ -278,15 +278,20 @@ render(<App />)
 ```javascript live noinline
 const App = () => {
   const designTokenOverrides = `
-  .custom-colors {
-    /* Modify the values of these tokens */
-    --brand-FAQ-heading-color: linear-gradient(271.72deg, var(--base-color-scale-green-1) 7.09%, var(--base-color-scale-blue-3) 96.61%);
+  .custom-colors[data-color-mode='dark'] {
+
+    /* 
+     * Modify the value of these tokens.
+     * Remember to apply light mode equivalents if you're enabling theme switching.
+     */
     --brand-Accordion-toggle-color-start: var(--base-color-scale-green-1);
     --brand-Accordion-toggle-color-end: var(--base-color-scale-blue-3);
+    --brand-FAQ-heading-color: linear-gradient(271.72deg, var(--base-color-scale-green-1) 7.09%, var(--base-color-scale-blue-3) 96.61%);
 
     padding: 3rem;
     background-color: var(--brand-color-canvas-default);
   }
+    
 
   .custom-heading {
     background: var(--brand-FAQ-heading-color);
