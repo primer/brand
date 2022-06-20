@@ -71,5 +71,5 @@ Doing this creates several problems, however:
 
 ## Actions
 
-- [ ] Add a Figma plugin to interface and synchronize with the source of truth.
+- [ ] Configure the [Figma Tokens](https://www.figma.com/community/plugin/843461159747178978/Figma-Tokens) plugin to interface and synchronize with the source of truth.
 - [ ] Write contribution guidelines for the source of truth.
