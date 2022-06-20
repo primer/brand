@@ -12,7 +12,7 @@ Use design tokens as the source of truth for all design data and logic in Primer
 
 Tokens (also referred to as Primitives) will serve as a shared data layer between Figma and React Libraries, with Figma providing the origin of said truth.
 
-![diagram of source of truth](https://user-images.githubusercontent.com/13340707/174580541-2ff70d42-e656-4238-8832-51c9fb0dce41.jpg)
+![diagram of source of truth](https://user-images.githubusercontent.com/13340707/174588236-91fc9ea3-71e8-4780-b5aa-8d74a583e624.jpg)
 
 ## Context
 
@@ -20,9 +20,9 @@ Primer Brand needs to provide an expansive, yet architecturally unified Design S
 
 Its React implementation for example; must optimize for visual and logical parity with its corresponding Figma library.
 
-This is crucial for delivering on the primary customer use-case, which is facilitating an efficient hand-off between Brand Designers and Marketing Engineers.
+This is crucial for delivering on the primary customer use-case, which is facilitating an efficient hand-off process between Brand Designers and Marketing Engineers.
 
-Ideally, the React library should operate as a the functional render-layer of pre-determined design data, rather than make opinionated decisions of its own.
+Ideally, the React library should operate as the functional render-layer for pre-determined design data, rather than make opinionated decisions of its own. This is to avoid making high-level data decisions too downstream inside an abstraction, which makes synchronization attempts across other mediums more challenging.
 
 ### Origin of truth
 
