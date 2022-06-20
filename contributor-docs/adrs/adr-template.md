@@ -22,6 +22,10 @@ Choose one of the following: -->
 
 <!-- What is the situation or issue motivating this decision? -->
 
+## Alternative approaches
+
+<!-- What are the alternative approaches you have considered, that justify and validate your recommendation? -->
+
 ## Consequences
 
 <!-- What becomes easier or more difficult to do because of this change? -->
