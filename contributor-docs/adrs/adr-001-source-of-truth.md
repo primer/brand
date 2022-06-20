@@ -48,16 +48,16 @@ Design tokens also offer us durable and scalable ways to grow the system, as the
 
 ## Alternative approaches
 
-Primer Brand is already operating in this way, where design language is established in Figma first, then converted to tokens with React implementation shipping last.
+Primer Brand is already operating in the proposed manner, where design language is established in Figma first, then converted to tokens with React implementation shipping last.
 
 As an alternative, we could design and prototype directly in code first and ratify those decisions later in Figma.
 
 Doing this creates several problems, however:
 
 - Brand art direction is usually defined and governed by the Brand Design team. They work directly with Figma as opposed to code. Achieving sign-off through PRs could be logistically expensive and inconvenient.
-- Ideation and experimental artwork is often produced in Figma first due to ease-of-use.
-- Designing in code is not inclusive of team skill-sets, where designers may be unable to operate at peak efficiency in code, and engineers in defining design language.
-- Shifting-left on accessibility means bringing audits, reviews and recommendations into the design phase as early as possible. Primer already has a distinction between `A11Y design review` and `A11Y Eng reviews`.
+- Ideation and experimental artwork is often produced by Designers in Figma first due to ease-of-use and fewer barriers to entry.
+- Designing in code is not inclusive of team skill-sets and preferences, where designers may be unable to operate at peak efficiency in code, and vice-versa for engineers.
+- Shifting-left on accessibility means bringing audits, reviews and recommendations into the design phase as early as possible. Primer already has a distinction between `A11Y Design review` and `A11Y Eng reviews`.
 - Design becomes a side-effect of Primer Brand, rather than a first-class citizen.
 - Additional overhead for designers to review and sign off design decions, and similarly more work required for engineers to refactor based on said feedback.
 
