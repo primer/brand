@@ -106,18 +106,24 @@ The file and folder structure of the Primer Brand repository can be confusing to
 
 The repository contains:
 
-- design tokens that independently generated
+- design tokens that are independently generated and provide an one-to-many interface for consumers
 - css stylesheets that are written to be framework-agnostic
 - react components that force a dependency on design tokens through css stylesheets
 - documentation in the form of Storybook and Markdown-based content
 
 While there is a relationship between these various components, it's difficult to discern exactly how they are connected without explicit dependency management.
 
+This is where a monorepo could help.
+
 ## Alternative approaches
 
-The current file structure is a result of prioritizing speed-to-market, and to mimic other Primer projects like Primer React, which use a polyrepo approach.
+The current file structure came from prioritizing speed-to-market, and to mimic other Primer projects like Primer React, which use a polyrepo approach.
 
-A polyrepo approach is not feasible for Primer Brand, as we have discovered that the logistical challenges have become difficult to overcome (Note: add citation), particularly around tightly coupled technical concerns. The options are therefore:
+A polyrepo approach is not feasible for Primer Brand, as we have discovered that the logistical challenges at an org-level have become difficult to overcome (Note: add citation), particularly around tightly coupled dependencies across the ecosystem.
+
+Primer Brand currently generates its own tokens, stylesheets and React components locally to the repository. Moving to a polyrepo would significantly increase the operational and technical complexity without solving the problem at hand, as we would need to compartmentalize the codebase into strict modules and re-integrate them.
+
+The options are therefore:
 
 - monorepo
 - single repo (current)
