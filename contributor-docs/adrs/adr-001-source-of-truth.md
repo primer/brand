@@ -53,3 +53,8 @@ Design tokens also offer us durable and scalable ways to grow the system, as the
 - Figma may describe the initial vision or design strategy, but design tokens should be used in the longer term to synchronize design data between mediums.
 
 - A dedicated Figma plugin will be required to allow Figma users to interface with the source of truth. The React library is co-located to the tokens and already compatible with the interchange format.
+
+## Actions
+
+- [ ] Add a Figma plugin to interface and synchronize with the source of truth.
+- [ ] Write contribution guidelines for the source of truth.
