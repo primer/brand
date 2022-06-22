@@ -4,7 +4,15 @@ import clsx from 'clsx'
 
 import {Heading, AccordionHeading, AccordionContent, AccordionRoot, AccordionRootProps} from '..'
 
+/**
+ * Design tokens
+ */
+import '../../lib/design-tokens/css/tokens/functional/components/faq/base.css'
 import '../../lib/design-tokens/css/tokens/functional/components/faq/colors-with-modes.css'
+
+/**
+ * Main stylesheet (as a CSS Module)
+ */
 import styles from './FAQ.module.css'
 
 type FAQRootProps = {

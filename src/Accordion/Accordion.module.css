@@ -20,7 +20,7 @@
 .Accordion__summary {
   cursor: pointer;
   list-style-type: none;
-  padding: 24px 0;
+  padding: var(--base-size-24) 0;
   position: relative;
   display: list-item;
 }
@@ -29,7 +29,7 @@
 }
 
 .Accordion__summary-heading {
-  padding-left: 32px;
+  padding-left: var(--base-size-32);
 }
 
 .Accordion__summary:focus-visible {
@@ -46,7 +46,7 @@
   bottom: 0;
   left: 0;
   display: block;
-  width: 24px;
+  width: var(--base-size-24);
   height: 30px;
   margin-top: auto;
   margin-bottom: auto;
@@ -88,31 +88,23 @@ details[open] > .Accordion__summary::after {
 }
 
 details[open] > .Accordion__content {
-  padding-left: 32px;
-  padding-bottom: 24px;
-  margin-top: -16px;
+  padding-left: var(--base-size-32);
+  padding-bottom: var(--base-size-24);
+  margin-top: -var(--base-size-16);
   animation: fade-in 0.5s;
 }
 
 .Accordion__content-item {
-  margin-bottom: 10px;
-}
-
-/* Small breakpoint and up */
-@media screen and (min-width: 34rem) {
-  /* .Accordion__summary::before,
-  .Accordion__summary::after {
-    margin-left: 8px;
-  } */
+  margin-bottom: var(--base-size-12);
 }
 
 /* Medium breakpoint and up */
 @media screen and (min-width: 48rem) {
   .Accordion__summary {
-    padding-left: 8px;
+    padding-left: var(--base-size-8);
   }
   .Accordion__summary-heading {
-    padding-left: 48px;
+    padding-left: var(--base-size-48);
   }
 
   details[open] > .Accordion__content {

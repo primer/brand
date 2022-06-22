@@ -144,7 +144,7 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
     `tokens/functional/colors/global.json`,
     `tokens/functional/components/button/colors.js`,
     `tokens/functional/components/accordion/colors.js`,
-    `tokens/functional/components/faq/colors.js`
+    `tokens/functional/components/faq/colors.json`
   ]
 
   for (const path of filesForColorModes) {
