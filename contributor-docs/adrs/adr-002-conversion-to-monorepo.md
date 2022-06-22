@@ -119,11 +119,13 @@ This is where a monorepo could help.
 
 The current file structure came from prioritizing speed-to-market, and to mimic other Primer projects like Primer React, which use a polyrepo approach.
 
-A polyrepo approach is not feasible for Primer Brand, as we have discovered that the logistical challenges at an org-level have become difficult to overcome (Note: add citation), particularly around tightly coupled dependencies across the ecosystem.
+A polyrepo approach is not feasible for Primer Brand, for three main reasons:
 
-Primer Brand currently generates its own tokens, stylesheets and React components locally to the repository. Moving to a polyrepo would significantly increase the operational and technical complexity without solving the problem at hand, as we would need to compartmentalize the codebase into strict modules and re-integrate them.
+1. We have discovered logistical challenges at an org-level, such as tightly coupled dependencies across the ecosystem that make it difficult to understand regression impact ahead-of-time.
+2. We are required to abide by release cadences owned by teams that may have other priorities, which could block Primer Brand work from progressing.
+3. Primer Brand currently generates its own tokens, stylesheets and React components locally to the repository. Moving to a polyrepo would significantly increase the operational and technical complexity without solving the problem at hand, as we would need to compartmentalize the codebase into strict modules and re-integrate them.
 
-The options are therefore:
+The remaining options are therefore:
 
 - monorepo
 - single repo (current)
@@ -132,14 +134,14 @@ A monorepo would solve our immediate and long-term needs.
 
 It would help us to:
 
-- separate concerns by domain, while remaining in the same repository
-- improve experience for new contributors to the repo
+- separate concerns vertically by domain, while remaining in the same repository
+- improve the experience for new contributors to the repo
 - publish design tokens as a separate package if needed
 - publish css stylesheets as a separate package if needed
 
 ## Consequences
 
-- We may want to consider renaming the repository to `primer-brand`
+- We may want to consider renaming the repository to `primer/brand`
 - Engineering effort will be required to disentangle the current single repo configuration, including all established CI/CD automation.
 
 ## Actions
