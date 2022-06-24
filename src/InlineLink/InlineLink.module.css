@@ -1,0 +1,4 @@
+.InlineLink,
+.InlineLink > span {
+  color: var(--brand-InlineLink-color-rest);
+}

@@ -1,7 +1,7 @@
 import React from 'react'
 import {ComponentStory, ComponentMeta} from '@storybook/react'
 import {FAQ} from '.'
-import {Text} from '..'
+import {Text, InlineLink} from '..'
 import {Container} from '../component-helpers'
 
 export default {
@@ -20,9 +20,9 @@ const fixtureData: FixtureData = [
     answer: (
       <p>
         Vestibulum at dolor justo.{' '}
-        <a href="https://copilot.github.com/" target="_blank" rel="noreferrer">
+        <InlineLink href="https://copilot.github.com/" target="_blank" rel="noreferrer">
           Curabitur
-        </a>{' '}
+        </InlineLink>{' '}
         dictum feugiat elit, vitae vestibulum orci vestibulum sed. Donec interdum ligula at nisi rhoncus malesuada et
         non eros.
       </p>
@@ -34,9 +34,9 @@ const fixtureData: FixtureData = [
       <React.Fragment>
         <p>
           Vestibulum at dolor justo.{' '}
-          <a href="https://copilot.github.com/" target="_blank" rel="noreferrer">
+          <InlineLink href="https://copilot.github.com/" target="_blank" rel="noreferrer">
             Curabitur
-          </a>{' '}
+          </InlineLink>{' '}
           dictum feugiat elit, vitae vestibulum orci vestibulum sed. Donec interdum ligula at nisi rhoncus malesuada et
           non eros.
         </p>
@@ -71,9 +71,9 @@ const fixtureData: FixtureData = [
       <React.Fragment>
         <p>
           Vestibulum at dolor justo.{' '}
-          <a href="https://copilot.github.com/" target="_blank" rel="noreferrer">
+          <InlineLink href="https://copilot.github.com/" target="_blank" rel="noreferrer">
             Curabitur
-          </a>{' '}
+          </InlineLink>{' '}
           dictum feugiat elit, vitae vestibulum orci vestibulum sed. Donec interdum ligula at nisi rhoncus malesuada et
           non eros.
         </p>

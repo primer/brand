@@ -1,5 +1,6 @@
 import React, {PropsWithChildren} from 'react'
 import clsx from 'clsx'
+import {InlineLink} from '../'
 import styles from './Text.module.css'
 
 export const TextSizes = ['700', '600', '500', '400', '300', '200', '100'] as const
@@ -46,10 +47,24 @@ export function Text({
 }: PropsWithChildren<TextProps>) {
   const headingClassNames = clsx(styles.Text, styles[`Text--${variant}`], styles[`Text--${size}`], className)
 
+  /**
+   * Valid children like InlineLinks will inherit parent parameters for convenience.
+   */
+  const transformedChildren = React.Children.toArray(children).map(child => {
+    if (React.isValidElement(child) && typeof child.type !== 'string') {
+      if (child.type === InlineLink) {
+        return React.cloneElement(child, {
+          size
+        })
+      }
+    }
+    return child
+  })
+
   if (as === 'p') {
     return (
       <p className={headingClassNames} {...rest}>
-        {children}
+        {transformedChildren}
       </p>
     )
   }
@@ -57,14 +72,14 @@ export function Text({
   if (as === 'div') {
     return (
       <div className={headingClassNames} {...rest}>
-        {children}
+        {transformedChildren}
       </div>
     )
   }
 
   return (
     <span className={headingClassNames} {...rest}>
-      {children}
+      {transformedChildren}
     </span>
   )
 }

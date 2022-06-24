@@ -1,7 +1,7 @@
 import {ComponentMeta} from '@storybook/react'
 import React from 'react'
 import {Accordion} from '.'
-import {Text} from '../'
+import {Text, InlineLink} from '../'
 
 export default {
   title: 'Components/Accordion',
@@ -26,9 +26,9 @@ export const Composition = () => (
         <p>
           All GitHub for Startups companies receive up to 20 seats of GitHub Enterprise for free for year one and 50%
           off year two. Learn more about the features and capabilities of GitHub Enterprise{' '}
-          <a href="https://copilot.github.com/" target="_blank" rel="noreferrer">
+          <InlineLink href="https://copilot.github.com/" target="_blank" rel="noreferrer">
             here
-          </a>
+          </InlineLink>
           .
         </p>
       </Accordion.Content>
@@ -66,10 +66,10 @@ export const Composition = () => (
       <Accordion.Content>
         <p>
           If you’re not currently eligible for the GitHub for Startups but would like to try GitHub Enterprise, please
-          feel to sign up for a trial
-          <a href="https://copilot.github.com/" target="_blank" rel="noreferrer">
+          feel to sign up for a trial{' '}
+          <InlineLink href="https://copilot.github.com/" target="_blank" rel="noreferrer">
             here
-          </a>
+          </InlineLink>
           .
         </p>
       </Accordion.Content>
@@ -83,9 +83,9 @@ export const Composition = () => (
         </p>
         <p>
           {' '}
-          <a href="https://copilot.github.com/" target="_blank" rel="noreferrer">
+          <InlineLink href="https://copilot.github.com/" target="_blank" rel="noreferrer">
             Apply here
-          </a>
+          </InlineLink>
           .
         </p>
       </Accordion.Content>
