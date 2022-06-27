@@ -19,17 +19,15 @@
 
 .Accordion__summary {
   cursor: pointer;
-  list-style-type: none;
   padding: var(--base-size-24) 0;
   position: relative;
-  display: list-item;
-}
-.Accordion__summary::-webkit-details-marker {
-  display: none;
+  display: grid;
+  grid-template-columns: var(--base-size-24) auto;
+  gap: var(--base-size-8);
 }
 
-.Accordion__summary-heading {
-  padding-left: var(--base-size-32);
+.Accordion__summary::-webkit-details-marker {
+  display: none;
 }
 
 .Accordion__summary:focus-visible {
@@ -39,19 +37,10 @@
 .Accordion__summary::before,
 .Accordion__summary::after {
   font-family: var(--brand-fontStack-monospace);
-  display: list-item;
   cursor: pointer;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
   display: block;
-  width: var(--base-size-24);
-  height: 30px;
-  margin-top: auto;
-  margin-bottom: auto;
-  font-size: 32px;
-  line-height: 26px;
+  font-size: var(--brand-text-size-600);
+  line-height: 24px;
   text-align: center;
   background: linear-gradient(
     -70deg,
@@ -64,59 +53,41 @@
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
   transition: transform 0.3s ease, opacity 0.2s ease;
+  grid-column: 1 / 2;
+  grid-row: 1;
+  place-self: start center;
 }
-
 .Accordion__summary::before {
-  top: -3px;
-  font-weight: 500;
+  font-weight: var(--base-text-weight-medium);
   content: '-';
   opacity: 0;
 }
-
 .Accordion__summary::after {
   content: '+';
 }
-
 details[open] > .Accordion__summary::before {
   opacity: 1;
   transform: rotateZ(180deg);
 }
-
 details[open] > .Accordion__summary::after {
   opacity: 0;
   transform: rotateZ(180deg);
 }
-
 details[open] > .Accordion__content {
   padding-left: var(--base-size-32);
   padding-bottom: var(--base-size-24);
   margin-top: -var(--base-size-16);
   animation: fade-in 0.5s;
 }
-
 .Accordion__content-item {
   margin-bottom: var(--base-size-12);
 }
-
 /* Medium breakpoint and up */
 @media screen and (min-width: 48rem) {
   .Accordion__summary {
-    padding-left: var(--base-size-8);
+    gap: var(--base-size-32);
   }
-  .Accordion__summary-heading {
-    padding-left: var(--base-size-48);
-  }
-
   details[open] > .Accordion__content {
-    padding-left: 56px;
-  }
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
+    padding-left: calc(var(--base-size-48) + var(--base-size-8));
   }
 }
