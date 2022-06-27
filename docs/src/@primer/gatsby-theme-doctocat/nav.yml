@@ -2,6 +2,8 @@
   children:
     - title: Getting started
       url: /getting-started
+    - title: Theming
+      url: /getting-started/theming
 
 - title: Primitives
   children:
