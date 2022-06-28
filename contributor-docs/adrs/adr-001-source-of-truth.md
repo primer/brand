@@ -8,9 +8,9 @@ Proposed
 
 ## Decision
 
-Use design tokens as the source of truth for all design data and logic in Primer Brand.
+Use design tokens as the source of truth for reusable design data and logic in Primer Brand.
 
-Tokens (also referred to as Primitives) will serve as a shared data layer between Figma and React Libraries, with Figma providing the origin of said truth.
+Tokens (also referred to as [Primitives](https://github.com/primer/primitives)) will serve as a shared data layer between Figma and React Libraries, with Figma providing the origin of said truth.
 
 ![diagram of source of truth](https://user-images.githubusercontent.com/13340707/174588236-91fc9ea3-71e8-4780-b5aa-8d74a583e624.jpg)
 
@@ -18,7 +18,7 @@ Tokens (also referred to as Primitives) will serve as a shared data layer betwee
 
 Primer Brand needs to provide an expansive, yet architecturally unified Design System experience for GitHub Site Designers, Site Builders and maintainers.
 
-Its React implementation for example; must optimize for visual and logical parity with its corresponding Figma library.
+Its React implementation for example, must optimize for visual and logical parity with its corresponding Figma library.
 
 This is crucial for delivering on the primary customer use-case, which is facilitating an efficient hand-off process between Brand Designers and Marketing Engineers.
 
@@ -26,7 +26,7 @@ Ideally, the React library should operate as the functional render-layer for pre
 
 ### Origin of truth
 
-To date, Primer Brand's Figma Library has been the starting point for initial component design and artwork, which is later translated into code. This design-first approach has become increasingly important as we shift-left on accessibility earlier in our design process.
+To date, Primer's Figma Library has been the starting point for design system component ideation and artwork, which is later translated into code. This design-first approach has become increasingly important as we shift-left on accessibility earlier in our design process.
 
 Figma however, is unsuitable as a source of truth for the code. It lacks the requisite qualities for data persistance and durability. Data retrieval also becomes more expensive as the data is only accessible through an API.
 
@@ -63,7 +63,7 @@ Doing this creates several problems, however:
 
 ## Consequences
 
-- Primer Brand maintainers will encourage all new and/or major design decisions to be explored and ratified in Figma or Design Tokens before they are applied to the Framework code.
+- Primer Brand maintainers will encourage new and/or major design decisions that are meant to be reusable aspects of the brand system to be explored and ratified in Figma or Design Tokens before they are applied to the Framework code.
 
 - Figma may describe the initial vision or design strategy, but design tokens should be used in the longer term to synchronize design data between mediums.
 
