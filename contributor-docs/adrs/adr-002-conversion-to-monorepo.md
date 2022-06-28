@@ -50,8 +50,11 @@ Convert `react-brand` to a monorepo to make it easier to navigate, maintain and 
 │   ├── css/
 │   │   ├── reset.css
 │   │   └── global.ts
+│   ├── e2e/
+│   │   └── global-tests.js
 │   └── Button/
 │       ├── Button.tsx
+│       ├── Button.test.tsx
 │       ├── Button.module.css
 │       ├── Button.stories.css
 │       └── index.ts
@@ -81,9 +84,12 @@ Convert `react-brand` to a monorepo to make it easier to navigate, maintain and 
 │   ├── fonts/
 │   │   ├── MonaSans.woff
 │   │   └── fonts.css
+│   ├── e2e/
+│   │   └── global-tests.js
 │   └── react/
 │       └── Button/
 │           ├── Button.tsx
+│           ├── Button.test.tsx
 │           ├── Button.stories.css
 │           ├── Button.documentation.mdx
 │           └── index.ts
