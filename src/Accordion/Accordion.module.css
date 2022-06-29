@@ -5,7 +5,7 @@
 
 .Accordion::after {
   content: '';
-  border-bottom: var(--primer-borderWidth-thin) solid var(--brand-color-border-default);
+  border-bottom: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
   position: absolute;
   bottom: 0;
   left: 0;
@@ -14,7 +14,7 @@
 }
 
 .Accordion:hover::after {
-  border-width: var(--primer-borderWidth-thick);
+  border-width: var(--brand-borderWidth-thick);
 }
 
 .Accordion__summary {
@@ -31,7 +31,7 @@
 }
 
 .Accordion__summary:focus-visible {
-  outline: var(--primer-borderWidth-normal) solid var(--brand-color-focus-default);
+  outline: var(--brand-borderWidth-normal) solid var(--brand-color-focus-default);
 }
 
 .Accordion__summary::before,
