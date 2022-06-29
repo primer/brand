@@ -67,7 +67,7 @@ export const Copilot: ComponentStory<typeof River> = args => (
         </Text>
       </River.Content>
     </River>
-    <River align="left" imageTextRatio={args.imageTextRatio}>
+    <River align="start" imageTextRatio={args.imageTextRatio}>
       <River.Visual>
         <PlaceholderImage />
       </River.Visual>
@@ -78,7 +78,7 @@ export const Copilot: ComponentStory<typeof River> = args => (
         </Text>
       </River.Content>
     </River>
-    <River align="right" imageTextRatio={args.imageTextRatio}>
+    <River align="end" imageTextRatio={args.imageTextRatio}>
       <River.Visual>
         <PlaceholderImage />
       </River.Visual>

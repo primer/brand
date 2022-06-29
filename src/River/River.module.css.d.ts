@@ -8,8 +8,8 @@ declare const styles: {
   readonly "River__text": string;
   readonly "River--50-50": string;
   readonly "River--60-40": string;
-  readonly "River--align-left": string;
-  readonly "River--align-right": string;
+  readonly "River--align-start": string;
+  readonly "River--align-end": string;
   readonly "River__content": string;
   readonly "River__body-text": string;
 };

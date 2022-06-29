@@ -50,15 +50,15 @@
     grid-template-columns: [content] calc(40% - var(--base-size-12)) [visual] calc(60% - var(--base-size-12));
   }
 
-  .River--align-left {
+  .River--align-start {
     grid-template-areas: 'content visual';
   }
 
-  .River--align-right {
+  .River--align-end {
     grid-template-areas: 'visual content';
   }
 
-  .River--align-right.River--60-40 {
+  .River--align-end.River--60-40 {
     grid-template-columns: [visual] calc(60% - var(--base-size-12)) [content] calc(40% - var(--base-size-12));
   }
 
