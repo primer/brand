@@ -2,13 +2,13 @@
 title: Theming
 ---
 
-import {Box as Container} from '@primer/react'
+Primer Brand defines various global styling defaults using CSS variables, while also allowing app-level customization through its `ThemeProvider`.
 
-Primer Brand will set various global styling defaults using CSS variables, while also allowing app-level customization through its `ThemeProvider`.
+CSS variables are available for most styling dimensions such as typography, color and sizing. They are defined in the primary stylesheet: `main.css`.
 
-CSS variables are available for most major styling dimensions such as typography, color and sizing. They are defined in the primary stylesheet: `main.css`.
+`ThemeProvider` extends theming capabilities at runtime by enabling real-time color mode switching among other things.
 
-`ThemeProvider` will extend theming capabilities at runtime by enabling real-time color mode switching among other things. Using both in tandem is crucial to make theming work correctly.
+Using the CSS stylesheet and `ThemeProvider` in tandem is crucial to make theming work correctly.
 
 ## Configure the `ThemeProvider`
 
@@ -103,7 +103,6 @@ For tighter control over appearance - such as forcing areas of a layout to appea
     colorMode="dark"
     style={{
       backgroundColor: 'var(--brand-color-canvas-default',
-      padding: '2rem',
     }}
   >
     <River align="center">
@@ -128,26 +127,27 @@ For tighter control over appearance - such as forcing areas of a layout to appea
     colorMode="light"
     style={{
       backgroundColor: 'var(--brand-color-canvas-default',
-      padding: '2rem',
     }}
   >
-    <River align="right">
-      <River.Visual>
-        <img
-          src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
-          alt="placeholder, blank area with an off-white background color"
-        />
-      </River.Visual>
-      <River.Content>
-        <Heading>Heading</Heading>
-        <Text>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
-          ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
-          elementum.
-        </Text>
-        <Link href="#">Call to action</Link>
-      </River.Content>
-    </River>
+    <Container>
+      <River align="right">
+        <River.Visual>
+          <img
+            src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
+            alt="placeholder, blank area with an off-white background color"
+          />
+        </River.Visual>
+        <River.Content>
+          <Heading>Heading</Heading>
+          <Text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien
+            sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar
+            risus elementum.
+          </Text>
+          <Link href="#">Call to action</Link>
+        </River.Content>
+      </River>
+    </Container>
   </ThemeProvider>
 </>
 ```
