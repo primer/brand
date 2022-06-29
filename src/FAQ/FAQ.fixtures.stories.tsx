@@ -127,7 +127,7 @@ export const HeadingLeftAligned: ComponentStory<typeof FAQ> = () => {
   return (
     <Container>
       <FAQ>
-        <FAQ.Heading align="left">Frequently asked&nbsp;questions</FAQ.Heading>
+        <FAQ.Heading align="start">Frequently asked&nbsp;questions</FAQ.Heading>
         <>
           {fixtureData.map(({question, answer}) => {
             return (
@@ -167,7 +167,7 @@ export const LargeHeadingLeftAligned: ComponentStory<typeof FAQ> = () => {
   return (
     <Container>
       <FAQ>
-        <FAQ.Heading size="large" align="left">
+        <FAQ.Heading size="large" align="start">
           Frequently asked&nbsp;questions
         </FAQ.Heading>
         <>
@@ -189,7 +189,7 @@ export const WithGroups: ComponentStory<typeof FAQ> = () => {
   return (
     <Container>
       <FAQ>
-        <FAQ.Heading size="large" align="left">
+        <FAQ.Heading size="large" align="start">
           Frequently asked&nbsp;questions
         </FAQ.Heading>
         <>

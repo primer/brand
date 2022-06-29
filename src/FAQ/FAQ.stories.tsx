@@ -1,5 +1,5 @@
-import {ComponentMeta} from '@storybook/react'
 import React from 'react'
+import {ComponentMeta} from '@storybook/react'
 import {FAQ} from '.'
 import {Text, InlineLink} from '..'
 

@@ -46,7 +46,7 @@ function FAQRoot({children, className}: FAQRootProps) {
         if (React.isValidElement(child) && typeof child.type !== 'string') {
           if (child.type === FAQHeading) {
             return React.cloneElement(child, {
-              align: hasSubheading ? 'left' : child.props.align,
+              align: hasSubheading ? 'start' : child.props.align,
               size: hasSubheading ? 'large' : child.props.size,
               className: clsx(!hasSubheading && styles['FAQ__heading--with-margin'], child.props.className)
             })
@@ -61,7 +61,7 @@ function FAQRoot({children, className}: FAQRootProps) {
 type FAQHeadingProps = {
   className?: string
   size?: 'medium' | 'large'
-  align?: 'left' | 'center'
+  align?: 'start' | 'center'
   children: string
 }
 
@@ -83,7 +83,7 @@ function FAQHeading({children, className, size = 'medium', align = 'center'}: FA
 }
 
 type FAQSubheadingProps = {
-  align?: 'left' | 'center'
+  align?: 'start' | 'center'
   className?: string
   children: string
 }
@@ -97,7 +97,8 @@ function FAQSubheading({children, className}: FAQSubheadingProps) {
 }
 
 /**
- * Branded FAQ component
+ * FAQ component:
+ * {@link https://primer.style/react-brand/components/FAQ/ See usage examples}.
  */
 export const FAQ = Object.assign(FAQRoot, {
   Subheading: FAQSubheading,
