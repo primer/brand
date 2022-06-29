@@ -40,7 +40,7 @@
   cursor: pointer;
   display: block;
   font-size: var(--brand-text-size-600);
-  line-height: 24px;
+  line-height: 28px;
   text-align: center;
   background: linear-gradient(
     -70deg,
@@ -61,6 +61,7 @@
   font-weight: var(--base-text-weight-medium);
   content: '-';
   opacity: 0;
+  margin-top: 3px;
 }
 .Accordion__summary::after {
   content: '+';
