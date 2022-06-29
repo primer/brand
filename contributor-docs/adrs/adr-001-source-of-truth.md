@@ -22,7 +22,7 @@ Its React implementation for example, must optimize for visual and logical parit
 
 This is crucial for delivering on the primary customer use-case, which is facilitating an efficient hand-off process between Brand Designers and Marketing Engineers.
 
-Ideally, the React library should operate as the functional render-layer for pre-determined design data, rather than make opinionated decisions of its own. This is to avoid making high-level data decisions too downstream inside an abstraction, which makes synchronization attempts across other mediums more challenging.
+The React components are mostly responsible for managing application state, behavior and rendering to the DOM. The components aren't opinionated about design decisions. This is by-design, as CSS modules are used as the styling later that React components interface with. This helps to avoid making design decisions too downstream inside framework-specific code. Hoisting design decisions out of framework-specific code makes integration with tooling like Figma easier and more efficient.
 
 ### Origin of truth
 
