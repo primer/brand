@@ -22,13 +22,13 @@ export type RiverProps = {
    */
   imageTextRatio?: '60:40' | '50:50'
   /**
-   * Adjust the order of the `Content` column. The default is `left`.
+   * Adjust the order of the `Content` column. The default is `start`.
    */
-  align?: 'left' | 'right' | 'center'
+  align?: 'start' | 'end' | 'center'
 }
 
 export const defaultRiverImageTextRatio = '50:50'
-export const defaultRiverAlign = 'left'
+export const defaultRiverAlign = 'start'
 
 type ValidRootChildren = {
   Visual: React.ReactElement<RiverVisualProps> | null
@@ -57,7 +57,7 @@ function Root({
   )
 
   const orderedChildren =
-    align === 'left' || align === 'center' ? [ContentChild, VisualChild] : [VisualChild, ContentChild]
+    align === 'start' || align === 'center' ? [ContentChild, VisualChild] : [VisualChild, ContentChild]
 
   return (
     <section
