@@ -51,12 +51,13 @@ export function AccordionRoot({children, className, open = false, ...rest}: Acco
 }
 
 type AccordionHeadingProps = {
+  className?: string
   children: string
 }
 
-export function AccordionHeading({children}: AccordionHeadingProps) {
+export function AccordionHeading({children, className}: AccordionHeadingProps) {
   return (
-    <summary className={styles.Accordion__summary}>
+    <summary className={clsx(styles.Accordion__summary, className)}>
       <Heading as="h6" className={styles['Accordion__summary-heading']}>
         {children}
       </Heading>
@@ -65,10 +66,11 @@ export function AccordionHeading({children}: AccordionHeadingProps) {
 }
 
 type AccordionContentProps = {
+  className?: string
   children: React.ReactElement | React.ReactElement[]
 }
 
-export function AccordionContent({children}: AccordionContentProps) {
+export function AccordionContent({children, className}: AccordionContentProps) {
   const resolvedChildren =
     React.isValidElement(children) && children.type === React.Fragment ? children.props.children : children
 
@@ -89,7 +91,7 @@ export function AccordionContent({children}: AccordionContentProps) {
   })
 
   return (
-    <section className={styles.Accordion__content}>
+    <section className={clsx(styles.Accordion__content, className)}>
       {React.Children.toArray(transformedChildren).map(
         textNode =>
           React.isValidElement(textNode) &&
