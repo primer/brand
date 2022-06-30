@@ -1,4 +1,6 @@
 .InlineLink,
 .InlineLink > span {
+  text-decoration: none;
+  border-bottom: 1px solid var(--brand-InlineLink-color-rest);
   color: var(--brand-InlineLink-color-rest);
 }
