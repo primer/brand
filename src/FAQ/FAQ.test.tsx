@@ -28,7 +28,7 @@ describe('FAQ', () => {
       </FAQ>
     )
     const headingEl = getByRole('heading', {level: 3, name: mockHeading})
-    const questionEl = getByRole('heading', {level: 6, name: mockQuestion})
+    const questionEl = getByRole('heading', {level: 4, name: mockQuestion})
     const answerEl = getByText(mockFAQAnswer)
 
     expect(headingEl).toBeInTheDocument()
@@ -36,10 +36,7 @@ describe('FAQ', () => {
     expect(answerEl).toBeInTheDocument()
   })
 
-  /**
-   * Temporarily disabling as heading orders are in violation
-   */
-  it.skip('has no a11y violations', async () => {
+  it('has no a11y violations', async () => {
     const {container} = render(
       <FAQ>
         <FAQ.Heading>{mockHeading}</FAQ.Heading>
@@ -156,7 +153,7 @@ describe('FAQ', () => {
       </FAQ>
     )
 
-    const subheadingEl = getByRole('heading', {level: 4, name: mockSubheading})
+    const subheadingEl = getByRole('heading', {level: 3, name: mockSubheading})
 
     expect(subheadingEl).toBeInTheDocument()
   })

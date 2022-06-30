@@ -90,7 +90,7 @@ type FAQSubheadingProps = {
 
 function FAQSubheading({children, className}: FAQSubheadingProps) {
   return (
-    <Heading as="h4" className={clsx(styles.FAQ__subheading, className)}>
+    <Heading as="h3" className={clsx(styles.FAQ__subheading, className)}>
       {children}
     </Heading>
   )

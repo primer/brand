@@ -58,7 +58,7 @@ type AccordionHeadingProps = {
 export function AccordionHeading({children, className}: AccordionHeadingProps) {
   return (
     <summary className={clsx(styles.Accordion__summary, className)}>
-      <Heading as="h6" className={styles['Accordion__summary-heading']}>
+      <Heading as="h4" className={styles['Accordion__summary-heading']}>
         {children}
       </Heading>
     </summary>
