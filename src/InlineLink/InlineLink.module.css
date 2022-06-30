@@ -1,6 +1,35 @@
+.InlineLink {
+  text-decoration: none;
+  position: relative;
+}
+
 .InlineLink,
 .InlineLink > span {
-  text-decoration: none;
-  border-bottom: 1px solid var(--brand-InlineLink-color-rest);
   color: var(--brand-InlineLink-color-rest);
+}
+
+.InlineLink:active,
+.InlineLink:active > span {
+  color: var(--brand-InlineLink-color-pressed);
+}
+
+.InlineLink::after {
+  content: '';
+  border-bottom: 1px solid var(--brand-InlineLink-color-rest);
+  height: 0;
+  transition: 0.3s transform;
+  transform: scaleY(1);
+  transform-origin: 50% 100%;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.InlineLink:hover::after {
+  transform: scaleY(-2);
+}
+
+.InlineLink:active::after {
+  border-color: var(--brand-InlineLink-color-pressed);
 }
