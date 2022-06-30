@@ -88,10 +88,8 @@
         }
       },
       "focus": {
-        "default": {
-          "value": "var(--base-color-scale-blue-5)",
-          "darkValue": "var(--base-color-scale-blue-3)"
-        }
+        "value": "var(--base-color-scale-blue-5)",
+        "darkValue": "var(--base-color-scale-blue-3)"
       }
     }
   }

@@ -23,10 +23,6 @@
   margin-right: auto;
 }
 
-.FAQ__heading--large {
-  padding-bottom: var(--base-size-4);
-}
-
 /* Large breakpoint and up */
 @media screen and (min-width: 63.25rem) {
   .FAQ__subheading {

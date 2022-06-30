@@ -1,20 +1,24 @@
 .Accordion {
   box-sizing: border-box;
   position: relative;
+  border-bottom: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
 }
 
 .Accordion::after {
   content: '';
-  border-bottom: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
+  border: 3px solid var(--brand-color-border-default);
+  height: 0;
+  transition: 0.3s transform;
+  transform: scaleY(0);
+  transform-origin: 50% 100%;
+  width: 100%;
   position: absolute;
   bottom: 0;
   left: 0;
-  right: 0;
-  transition: border 0.5s ease;
 }
 
 .Accordion:hover::after {
-  border-width: var(--brand-borderWidth-thick);
+  transform: scaleY(0.35);
 }
 
 .Accordion__summary {
@@ -31,7 +35,7 @@
 }
 
 .Accordion__summary:focus-visible {
-  outline: var(--brand-borderWidth-normal) solid var(--brand-color-focus-default);
+  outline: var(--brand-borderWidth-normal) solid var(--brand-color-focus);
 }
 
 .Accordion__summary::before,
@@ -40,8 +44,10 @@
   cursor: pointer;
   display: block;
   font-size: var(--brand-text-size-600);
-  line-height: 28px;
+  line-height: 24px;
   text-align: center;
+  height: 24px;
+  width: 24px;
   background: linear-gradient(
     -70deg,
     var(--brand-Accordion-toggle-color-start) 0%,
@@ -66,6 +72,7 @@
 .Accordion__summary::after {
   content: '+';
 }
+
 details[open] > .Accordion__summary::before {
   opacity: 1;
   transform: rotateZ(180deg);
@@ -75,9 +82,9 @@ details[open] > .Accordion__summary::after {
   transform: rotateZ(180deg);
 }
 details[open] > .Accordion__content {
-  padding-left: var(--base-size-32);
+  padding-left: var(--base-size-40);
   padding-bottom: var(--base-size-24);
-  margin-top: -var(--base-size-16);
+  margin-top: calc(var(--base-size-16) * -1); /* for 8px gap between question and answer */
   animation: fade-in 0.5s;
 }
 .Accordion__content-item {
@@ -86,9 +93,18 @@ details[open] > .Accordion__content {
 /* Medium breakpoint and up */
 @media screen and (min-width: 48rem) {
   .Accordion__summary {
-    gap: var(--base-size-32);
+    gap: var(--base-size-40);
   }
   details[open] > .Accordion__content {
-    padding-left: calc(var(--base-size-48) + var(--base-size-8));
+    padding-left: calc(var(--base-size-48) + var(--base-size-16));
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
