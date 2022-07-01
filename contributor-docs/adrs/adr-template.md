@@ -14,6 +14,15 @@ Choose one of the following: -->
 - Deprecated {date}
 - Superseded by {adr_id}
 
+## Implementation status
+
+Has the decision recorded in this ADR been implemented?
+
+<!-- Please check the correct field below and add the relevant PR where relevant -->
+
+- [ ] Yes {pr_url}
+- [ ] No
+
 ## Decision
 
 <!-- What is the change that you're proposing and/or doing? -->
