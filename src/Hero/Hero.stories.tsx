@@ -9,8 +9,7 @@ export default {
 
 const Template: ComponentStory<typeof Hero> = args => <Hero {...args} />
 
-export const Default = Template.bind({})
-Default.args = {
+export const defaultArgs = {
   heading: 'This is my super sweet hero heading',
   description:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum.',
@@ -19,6 +18,8 @@ Default.args = {
     href: '#'
   }
 }
+export const Default = Template.bind({})
+Default.args = defaultArgs
 
 export const Centered = Template.bind({})
 Centered.args = {
@@ -42,7 +43,7 @@ WithoutDescription.args = {
 }
 
 export const WithSecondaryAction = Template.bind({})
-WithSecondaryAction.args = {
+export const withSecondaryActionArgs = {
   heading: 'This is my super sweet hero heading',
   description:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum.',
@@ -55,6 +56,7 @@ WithSecondaryAction.args = {
     href: '#'
   }
 }
+WithSecondaryAction.args = withSecondaryActionArgs
 
 export const Codespaces = Template.bind({})
 Codespaces.args = {
