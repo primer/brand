@@ -16,10 +16,10 @@ Choose one of the following: -->
 
 ## Implementation status
 
-<!-- Has the decision been previously implemented? Please check the correct field below and add the relevant PR -->
+<!-- Has the decision recorded in this ADR already been implemented? Please check the correct field below and add the relevant PR where relevant -->
 
-- [ ] yes (pr url)
-- [ ] no
+- [ ] Yes {PR_URL}
+- [ ] No
 
 ## Decision
 
