@@ -75,7 +75,7 @@ export function AccordionContent({children, className}: AccordionContentProps) {
     React.isValidElement(children) && children.type === React.Fragment ? children.props.children : children
 
   const transformedChildren = React.Children.map<React.ReactNode, React.ReactNode>(resolvedChildren, child => {
-    const targetChildTypes = ['p', 'span', 'li']
+    const targetChildTypes = ['p', 'span']
     if (React.isValidElement(child) && typeof child.type === 'string') {
       if (targetChildTypes.includes(child.type)) {
         return React.cloneElement(child, {
