@@ -12,6 +12,8 @@
 
 - title: Components
   children:
+    - title: FAQ
+      url: /components/FAQ
     - title: Hero
       url: /components/Hero
     - title: River

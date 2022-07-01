@@ -24,7 +24,7 @@ export type HeadingProps = {
 } & HeadingTags
 
 export function Heading({className, children, as = defaultHeadingTag, ...rest}: PropsWithChildren<HeadingProps>) {
-  const headingClassNames = clsx(className, styles.Heading, styles[`Heading--${classMap[as]}`])
+  const headingClassNames = clsx(styles.Heading, styles[`Heading--${classMap[as]}`], className)
 
   const HeadingComponent = React.useCallback(
     ({...props}: React.HTMLAttributes<HTMLHeadingElement>) => {

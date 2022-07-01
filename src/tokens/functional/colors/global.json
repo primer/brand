@@ -1,6 +1,24 @@
 {
   "brand": {
     "color": {
+      "accent": {
+        "fg": {
+          "value": "var(--base-color-scale-pink-5)",
+          "darkValue": "var(--base-color-scale-pink-3)"
+        },
+        "emphasis": {
+          "value": "var(--base-color-scale-pink-5)",
+          "darkValue": "var(--base-color-scale-pink-5)"
+        },
+        "muted": {
+          "value": "hsl(var(--base-color-scale-pink-3-hsl) / 60%)",
+          "darkValue": "hsl(var(--base-color-scale-pink-4-hsl) / 60%)"
+        },
+        "subtle": {
+          "value": "var(--base-color-scale-pink-0)",
+          "darkValue": "hsl(var(--base-color-scale-pink-4-hsl) / 85%)"
+        }
+      },
       "text": {
         "default": {
           "value": "var(--base-color-scale-gray-9)",
@@ -68,6 +86,10 @@
           "value": "hsl(var(--base-color-scale-black-0-hsl) / 99.85%)",
           "darkValue": "hsl(var(--base-color-scale-gray-0-hsl) / 99.9%)"
         }
+      },
+      "focus": {
+        "value": "var(--base-color-scale-blue-5)",
+        "darkValue": "var(--base-color-scale-blue-3)"
       }
     }
   }

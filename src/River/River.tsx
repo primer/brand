@@ -44,12 +44,13 @@ function Root({
 }: RiverProps) {
   const {Visual: VisualChild, Content: ContentChild} = React.Children.toArray(children).reduce<ValidRootChildren>(
     (acc, child) => {
-      if (
-        React.isValidElement(child) &&
-        typeof child.type !== 'string' &&
-        (child.type.name === 'Visual' || child.type.name === 'Content')
-      ) {
-        acc[child.type.name] = child
+      if (React.isValidElement(child) && typeof child.type !== 'string') {
+        if (child.type === Visual) {
+          acc.Visual = child
+        }
+        if (child.type === Content) {
+          acc.Content = child
+        }
       }
       return acc
     },

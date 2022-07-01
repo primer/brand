@@ -47,17 +47,6 @@
           }
         },
         "600": {
-          "value": "var(--base-text-weight-semibold)",
-          "responsive": {
-            "768px": {
-              "value": "var(--base-text-weight-semibold)"
-            },
-            "1012px": {
-              "value": "var(--base-text-weight-semibold)"
-            }
-          }
-        },
-        "700": {
           "value": "var(--base-text-weight-bold)",
           "responsive": {
             "768px": {
@@ -65,6 +54,17 @@
             },
             "1012px": {
               "value": "var(--base-text-weight-bold)"
+            }
+          }
+        },
+        "700": {
+          "value": "var(--base-text-weight-extrabold)",
+          "responsive": {
+            "768px": {
+              "value": "var(--base-text-weight-extrabold)"
+            },
+            "1012px": {
+              "value": "var(--base-text-weight-extrabold)"
             }
           }
         }
@@ -111,6 +111,52 @@
             },
             "1012px": {
               "value": "-0.01em"
+            }
+          }
+        }
+      },
+      "lineHeight": {
+        "400": {
+          "value": "20px",
+          "responsive": {
+            "768px": {
+              "value": "24px"
+            },
+            "1012px": {
+              "value": "24px"
+            }
+          }
+        },
+        "500": {
+          "value": "24px",
+          "responsive": {
+            "768px": {
+              "value": "28px"
+            },
+            "1012px": {
+              "value": "28px"
+            }
+          }
+        },
+        "600": {
+          "value": "28px",
+          "responsive": {
+            "768px": {
+              "value": "32px"
+            },
+            "1012px": {
+              "value": "36px"
+            }
+          }
+        },
+        "700": {
+          "value": "32px",
+          "responsive": {
+            "768px": {
+              "value": "44px"
+            },
+            "1012px": {
+              "value": "52px"
             }
           }
         }
