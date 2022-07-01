@@ -14,6 +14,13 @@ Choose one of the following: -->
 - Deprecated {date}
 - Superseded by {adr_id}
 
+## Implementation status
+
+<!-- Has the decision been previously implemented? Please check the correct field below and add the relevant PR -->
+
+- [ ] yes (pr url)
+- [ ] no
+
 ## Decision
 
 <!-- What is the change that you're proposing and/or doing? -->
