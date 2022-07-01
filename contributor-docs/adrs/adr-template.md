@@ -8,7 +8,7 @@
 
 Choose one of the following: -->
 
-- Proposed
+- Proposed {date}
 - Accepted {date}
 - Rejected {date}
 - Deprecated {date}

@@ -1,10 +1,8 @@
 # ADR 2. Conversion to a monorepo
 
-Date: 2022-06-19
-
 ## Status
 
-Proposed
+Accepted: Friday, 1 July 2022
 
 ## Decision
 
