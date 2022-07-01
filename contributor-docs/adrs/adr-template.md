@@ -16,7 +16,9 @@ Choose one of the following: -->
 
 ## Implementation status
 
-<!-- Has the decision recorded in this ADR already been implemented? Please check the correct field below and add the relevant PR where relevant -->
+#### Has the decision recorded in this ADR been implemented?
+
+<!-- Please check the correct field below and add the relevant PR where relevant -->
 
 - [ ] Yes {pr_url}
 - [ ] No
