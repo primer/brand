@@ -24,25 +24,27 @@ export type HeadingProps = {
   className?: string
 } & HeadingTags
 
-export const Heading = forwardRef(({className, children, as = defaultHeadingTag, ...rest}: PropsWithChildren<HeadingProps>) => {
-  const headingClassNames = clsx(styles.Heading, styles[`Heading--${classMap[as]}`], className)
+export const Heading = forwardRef(
+  ({className, children, as = defaultHeadingTag, ...rest}: PropsWithChildren<HeadingProps>) => {
+    const headingClassNames = clsx(styles.Heading, styles[`Heading--${classMap[as]}`], className)
 
-  const HeadingComponent = React.useCallback(
-    ({...props}: React.HTMLAttributes<HTMLHeadingElement>) => {
-      if (!HeadingTags.includes(as)) {
-        // eslint-disable-next-line no-console
-        console.error(`Heading: 'as' prop must be one of ${HeadingTags.join(', ')}`)
-        return null
-      }
+    const HeadingComponent = React.useCallback(
+      ({...props}: React.HTMLAttributes<HTMLHeadingElement>) => {
+        if (!HeadingTags.includes(as)) {
+          // eslint-disable-next-line no-console
+          console.error(`Heading: 'as' prop must be one of ${HeadingTags.join(', ')}`)
+          return null
+        }
 
-      return React.createElement(as, props, children)
-    },
-    [as, children]
-  )
+        return React.createElement(as, props, children)
+      },
+      [as, children]
+    )
 
-  return (
-    <HeadingComponent className={headingClassNames} {...rest}>
-      {children}
-    </HeadingComponent>
-  )
-})
+    return (
+      <HeadingComponent className={headingClassNames} {...rest}>
+        {children}
+      </HeadingComponent>
+    )
+  }
+)
