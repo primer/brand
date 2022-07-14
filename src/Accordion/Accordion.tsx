@@ -1,21 +1,17 @@
-import React from 'react'
+import React, {forwardRef} from 'react'
 import clsx from 'clsx'
 
 import {Heading, Text} from '../'
+import type {BaseProps} from '../component-helpers'
 
 /**
  * Design tokens
  */
 import '../../lib/design-tokens/css/tokens/functional/components/accordion/colors-with-modes.css'
+/** * Main Stylesheet (as a CSS Module) */ import styles from './Accordion.module.css'
 
-/**
- * Main Stylesheet (as a CSS Module)
- */
-import styles from './Accordion.module.css'
-
-export type AccordionRootProps = {
+export type AccordionRootProps = BaseProps<HTMLDetailsElement> & {
   open?: boolean // Manually declared due to known issue with the native open attribute: https://github.com/facebook/react/issues/15486
-  className?: string
   children: React.ReactElement<AccordionHeadingProps | AccordionContentProps>[]
 } & React.HTMLAttributes<HTMLDetailsElement>
 
@@ -24,7 +20,7 @@ type ValidRootChildren = {
   AccordionContent: React.ReactElement<AccordionContentProps> | typeof React.Fragment | null
 }
 
-export function AccordionRoot({children, className, open = false, ...rest}: AccordionRootProps) {
+export const AccordionRoot = forwardRef(({children, className, open = false, ...rest}: AccordionRootProps) => {
   const {AccordionHeading: HeadingChild, AccordionContent: AccordionContentChild} = React.Children.toArray(
     children
   ).reduce<ValidRootChildren>(
@@ -48,7 +44,7 @@ export function AccordionRoot({children, className, open = false, ...rest}: Acco
       {AccordionContentChild}
     </details>
   )
-}
+})
 
 type AccordionHeadingProps = {
   className?: string
