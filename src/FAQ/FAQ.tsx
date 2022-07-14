@@ -20,7 +20,7 @@ type FAQRootProps = BaseProps<HTMLElement> & {
   children: React.ReactElement<FAQHeadingProps | FAQSubheadingProps | AccordionRootProps>[]
 }
 
-const FAQRoot = forwardRef(({children, className, ref, id}: FAQRootProps) => {
+const FAQRoot = forwardRef(({children, className, ...rest}: FAQRootProps) => {
   const childrenHasFragment = React.Children.toArray(children).some(child => isFragment(child))
   const filteredChildren = React.Children.toArray(children).filter(child => {
     if (React.isValidElement(child) && typeof child.type !== 'string') {
@@ -41,7 +41,7 @@ const FAQRoot = forwardRef(({children, className, ref, id}: FAQRootProps) => {
   )
 
   return (
-    <section id={id} ref={ref} className={clsx(styles.FAQ, className)}>
+    <section className={clsx(styles.FAQ, className)} {...rest}>
       {React.Children.toArray(filteredChildren).map(child => {
         if (React.isValidElement(child) && typeof child.type !== 'string') {
           if (child.type === FAQHeading) {
@@ -64,12 +64,10 @@ type FAQHeadingProps = BaseProps<HTMLHeadingElement> & {
   children: string
 }
 
-const FAQHeading = forwardRef(({children, ref, id, className, size = 'medium', align = 'center'}: FAQHeadingProps) => {
+const FAQHeading = forwardRef(({children, className, size = 'medium', align = 'center', ...rest}: FAQHeadingProps) => {
   const headingSize = size === 'medium' ? 'h3' : 'h2'
   return (
     <Heading
-      ref={ref}
-      id={id}
       as={headingSize}
       className={clsx(
         styles.FAQ__heading,
@@ -77,6 +75,7 @@ const FAQHeading = forwardRef(({children, ref, id, className, size = 'medium', a
         styles[`FAQ__heading--${align}`],
         className
       )}
+      {...rest}
     >
       {children}
     </Heading>
@@ -88,9 +87,9 @@ type FAQSubheadingProps = BaseProps<HTMLHeadingElement> & {
   children: string
 }
 
-function FAQSubheading({children, className, ref, id}: FAQSubheadingProps) {
+function FAQSubheading({children, className, ...rest}: FAQSubheadingProps) {
   return (
-    <Heading as="h3" ref={ref} id={id} className={clsx(styles.FAQ__subheading, className)}>
+    <Heading as="h3" className={clsx(styles.FAQ__subheading, className)} {...rest}>
       {children}
     </Heading>
   )

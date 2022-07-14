@@ -1,6 +1,7 @@
-import React, {PropsWithChildren} from 'react'
+import React, {PropsWithChildren, forwardRef} from 'react'
 import clsx from 'clsx'
 import {Text, TextSizes, defaultTextSize} from '../'
+import type {BaseProps} from '../component-helpers'
 
 /**
  * Design tokens
@@ -12,11 +13,7 @@ import '../../lib/design-tokens/css/tokens/functional/components/inline-link/col
  */
 import styles from './InlineLink.module.css'
 
-export type InlineLinkProps = {
-  /**
-   * Forward a custom HTML class attribute
-   */
-  className?: string
+export type InlineLinkProps = BaseProps<HTMLAnchorElement> & {
   /**
    * Specify the links destination
    */
@@ -30,20 +27,16 @@ export type InlineLinkProps = {
 /**
  * A HTML anchor link component that renders inline with adjacent text.
  */
-export function InlineLink({
-  className,
-  size = defaultTextSize,
-  children,
-  href,
-  ...rest
-}: PropsWithChildren<InlineLinkProps>) {
-  const classes = clsx(styles.InlineLink, className)
+export const InlineLink = forwardRef(
+  ({className, size = defaultTextSize, children, href, ...rest}: PropsWithChildren<InlineLinkProps>) => {
+    const classes = clsx(styles.InlineLink, className)
 
-  return (
-    <a href={href} className={classes} {...rest}>
-      <Text size={size} as="span">
-        {children}
-      </Text>
-    </a>
-  )
-}
+    return (
+      <a href={href} className={classes} {...rest}>
+        <Text size={size} as="span">
+          {children}
+        </Text>
+      </a>
+    )
+  }
+)
