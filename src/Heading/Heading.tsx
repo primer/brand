@@ -1,6 +1,7 @@
-import React, {PropsWithChildren} from 'react'
+import React, {PropsWithChildren, forwardRef} from 'react'
 import clsx from 'clsx'
 import styles from './Heading.module.css'
+import type {BaseProps} from '../component-helpers'
 
 export const HeadingSizes = ['1', '2', '3', '4', '5', '6'] as const
 export const HeadingTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const
@@ -15,7 +16,7 @@ export const classMap = {
   h6: HeadingSizes[5]
 }
 
-type HeadingTags = {
+type HeadingTags = BaseProps<HTMLHeadingElement> & {
   as?: typeof HeadingTags[number]
 } & React.HTMLAttributes<HTMLHeadingElement>
 
@@ -23,7 +24,7 @@ export type HeadingProps = {
   className?: string
 } & HeadingTags
 
-export function Heading({className, children, as = defaultHeadingTag, ...rest}: PropsWithChildren<HeadingProps>) {
+export const Heading = forwardRef(({className, children, as = defaultHeadingTag, ...rest}: PropsWithChildren<HeadingProps>) => {
   const headingClassNames = clsx(styles.Heading, styles[`Heading--${classMap[as]}`], className)
 
   const HeadingComponent = React.useCallback(
@@ -44,4 +45,4 @@ export function Heading({className, children, as = defaultHeadingTag, ...rest}: 
       {children}
     </HeadingComponent>
   )
-}
+})

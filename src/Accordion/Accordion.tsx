@@ -46,27 +46,27 @@ export const AccordionRoot = forwardRef(({children, className, open = false, ...
   )
 })
 
-type AccordionHeadingProps = {
+type AccordionHeadingProps = BaseProps<HTMLHeadingElement> & {
   className?: string
   children: string
 }
 
-export function AccordionHeading({children, className}: AccordionHeadingProps) {
+export const AccordionHeading = forwardRef(({children, className, id, ref}: AccordionHeadingProps) => {
   return (
-    <summary className={clsx(styles.Accordion__summary, className)}>
+    <summary className={clsx(styles.Accordion__summary, className)} id={id} ref={ref}>
       <Heading as="h4" className={styles['Accordion__summary-heading']}>
         {children}
       </Heading>
     </summary>
   )
-}
+})
 
-type AccordionContentProps = {
+type AccordionContentProps = BaseProps<HTMLElement> & {
   className?: string
   children: React.ReactElement | React.ReactElement[]
 }
 
-export function AccordionContent({children, className}: AccordionContentProps) {
+export function AccordionContent({children, className, id, ref}: AccordionContentProps) {
   const resolvedChildren =
     React.isValidElement(children) && children.type === React.Fragment ? children.props.children : children
 
@@ -87,7 +87,7 @@ export function AccordionContent({children, className}: AccordionContentProps) {
   })
 
   return (
-    <section className={clsx(styles.Accordion__content, className)}>
+    <section className={clsx(styles.Accordion__content, className)} id={id} ref={ref}>
       {React.Children.toArray(transformedChildren).map(
         textNode =>
           React.isValidElement(textNode) &&
