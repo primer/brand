@@ -1,4 +1,4 @@
-import React, {forwardRef} from 'react'
+import React, {forwardRef, PropsWithChildren} from 'react'
 import clsx from 'clsx'
 import {Heading, HeadingTags, LinkProps, HeadingProps, TextProps, Text, Link} from '../'
 
@@ -163,17 +163,18 @@ const Content = forwardRef(
   }
 )
 
-type RiverVisualProps = BaseProps<HTMLDivElement> & {
-  /**
-   * `img` and `video` elements will apply a shadow by default.
-   * This can be disabled by setting this prop to `false`.
-   */
-  hasShadow?: boolean
-}
+type RiverVisualProps = BaseProps<HTMLDivElement> &
+  PropsWithChildren<{
+    /**
+     * `img` and `video` elements will apply a shadow by default.
+     * This can be disabled by setting this prop to `false`.
+     */
+    hasShadow?: boolean
+  }>
 
-const Visual = forwardRef(({children, className, hasShadow = true}: React.PropsWithChildren<RiverVisualProps>) => {
+const Visual = forwardRef(({children, className, hasShadow = true, ...rest}: PropsWithChildren<RiverVisualProps>) => {
   return (
-    <div className={clsx(styles.River__visual, hasShadow && styles['River__visual--has-shadow'], className)}>
+    <div className={clsx(styles.River__visual, hasShadow && styles['River__visual--has-shadow'], className)} {...rest}>
       {children}
     </div>
   )
