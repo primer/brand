@@ -12,7 +12,8 @@ permissions:
 
 jobs:
   deploy:
-    if: ${{ false }}
+        if: ${{ github.repository == 'primer/react-brand' }}
+
     name: Build and deploy
     uses: primer/.github/.github/workflows/deploy_preview.yml@main
     with:
@@ -22,7 +23,8 @@ jobs:
       output_dir: docs/public/
 
   deploy-storybook:
-    if: ${{ false }}
+        if: ${{ github.repository == 'primer/react-brand' }}
+
     name: Preview Storybook
     runs-on: ubuntu-latest
     needs: deploy
