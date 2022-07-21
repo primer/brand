@@ -72,4 +72,6 @@ jobs:
         run: cd ${{env.TEST_FOLDER}}  && npm run build
 
       - name: Test runtime for errors and warnings
-        run: cd ${{env.TEST_FOLDER}} && npx start-server-and-test 'dev' 3000 'npx cypress run --spec "./integration-tests/tests/*" --config video=false'
+        run: |
+          rm ${{env.TEST_FOLDER}}/cypress.config.ts
+          cd ${{env.TEST_FOLDER}} && npx start-server-and-test 'dev' 3000 'npx cypress run --spec "./integration-tests/tests/*" --config video=false'
