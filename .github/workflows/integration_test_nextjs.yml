@@ -41,7 +41,7 @@ jobs:
         run: npm pack
 
       - name: Configuring Next.js
-        run: npx create-next-app@latest ${{env.NEXTJS_FOLDER}} --typescript
+        run: npx create-next-app@latest next-js-test --typescript
 
       - name: Retrieving package version
         id: package-version
@@ -49,36 +49,37 @@ jobs:
 
       - name: Installing local build
         run: |
-          cd ${{env.NEXTJS_FOLDER}} 
+          cd next-js-test 
           cp ../primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz ./
           npm install primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz
 
       - name: Prefer ESM imports
         run: |
           mv integration-tests/fixtures/index.esm.ts integration-tests/fixtures/index.ts
+          rm integration-tests/fixtures/index.cjs.ts
 
       - name: Copying required files
         run: |
-          cp integration-tests/nextjs/index.tsx ./${{env.NEXTJS_FOLDER}}/pages
-          cp cypress.config.js ./${{env.NEXTJS_FOLDER}}
-          cp -r integration-tests/fixtures ./${{env.NEXTJS_FOLDER}}/pages
-          mkdir ${{env.NEXTJS_FOLDER}}/integration-tests
-          cp -r integration-tests/fixtures ./${{env.NEXTJS_FOLDER}}/integration-tests
-          cp -r integration-tests/tests ./${{env.NEXTJS_FOLDER}}/integration-tests
+          cp integration-tests/nextjs/index.tsx ./next-js-test/pages
+          cp cypress.config.js ./next-js-test
+          cp -r integration-tests/fixtures ./next-js-test/pages
+          mkdir next-js-test/integration-tests
+          cp -r integration-tests/fixtures ./next-js-test/integration-tests
+          cp -r integration-tests/tests ./next-js-test/integration-tests
 
       - name: Patching postcss bug in v12 of Next.js
         uses: DamianReeves/write-file-action@master
         with:
-          path: ${{env.NEXTJS_FOLDER}}/postcss.config.json
+          path: next-js-test/postcss.config.json
           contents: |
             {"plugins": []}
           write-mode: overwrite
 
       - name: Excluded cypress tests in-place
-        run: npx json -I -f ${{env.NEXTJS_FOLDER}}/tsconfig.json -e 'this.exclude=["node_modules", "**/*.cy.ts"]'
+        run: npx json -I -f next-js-test/tsconfig.json -e 'this.exclude=["node_modules", "**/*.cy.ts"]'
 
       - name: Testing compile-time build
-        run: cd ${{env.NEXTJS_FOLDER}} && npm run build
+        run: cd next-js-test && npm run build
 
       - name: Test runtime for errors and warnings
-        run: cd ${{env.NEXTJS_FOLDER}} && npx start-server-and-test 'start' 3000 'npx cypress run --spec "./integration-tests/tests/*" --config video=false'
+        run: cd next-js-test && npx start-server-and-test 'start' 3000 'npx cypress run --spec "./integration-tests/tests/*" --config video=false'
