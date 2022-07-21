@@ -62,7 +62,6 @@ jobs:
         run: |
           cp integration-tests/nextjs/index.tsx ./next-js-test/pages
           cp cypress.config.js ./next-js-test
-          cp -r integration-tests/fixtures ./next-js-test/pages
           mkdir next-js-test/integration-tests
           cp -r integration-tests/fixtures ./next-js-test/integration-tests
           cp -r integration-tests/tests ./next-js-test/integration-tests
