@@ -1,5 +1,7 @@
-import {Hero, River, FAQ, Heading, Text, InlineLink, Link} from '@primer/react-brand'
+import components from '@primer/react-brand'
 import '@primer/react-brand/lib/css/main.css'
+
+const {Hero, River, FAQ, Heading, Text, InlineLink, Link} = components
 
 export default function KitchenSink() {
   return (

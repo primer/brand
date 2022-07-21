@@ -28,3 +28,4 @@ yarn-error.log*
 # integration testing artifacts
 next-js-test/
 cra-test/
+astro-test/
