@@ -1,35 +1,28 @@
-import type { LinksFunction, LoaderArgs, MetaFunction } from "@remix-run/node";
-import { json } from "@remix-run/node";
-import {
-  Links,
-  LiveReload,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-} from "@remix-run/react";
+import type {LinksFunction, LoaderArgs, MetaFunction} from '@remix-run/node'
+import {json} from '@remix-run/node'
+import {Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration} from '@remix-run/react'
 
-import tailwindStylesheetUrl from "./styles/tailwind.css";
-import primerBrandStyles from "@primer/react-brand/lib/css/main.css";
-import { getUser } from "./session.server";
+import tailwindStylesheetUrl from './styles/tailwind.css'
+import primerBrandStyles from '@primer/react-brand/lib/css/main.css'
+import {getUser} from './session.server'
 
 export const links: LinksFunction = () => {
   return [
-    { rel: "stylesheet", href: tailwindStylesheetUrl },
-    { rel: "stylesheet", href: primerBrandStyles },
-  ];
-};
+    {rel: 'stylesheet', href: tailwindStylesheetUrl},
+    {rel: 'stylesheet', href: primerBrandStyles}
+  ]
+}
 
 export const meta: MetaFunction = () => ({
-  charset: "utf-8",
-  title: "Remix Notes",
-  viewport: "width=device-width,initial-scale=1",
-});
+  charset: 'utf-8',
+  title: 'Remix Notes',
+  viewport: 'width=device-width,initial-scale=1'
+})
 
-export async function loader({ request }: LoaderArgs) {
+export async function loader({request}: LoaderArgs) {
   return json({
-    user: await getUser(request),
-  });
+    user: await getUser(request)
+  })
 }
 
 export default function App() {
@@ -46,5 +39,5 @@ export default function App() {
         <LiveReload />
       </body>
     </html>
-  );
+  )
 }

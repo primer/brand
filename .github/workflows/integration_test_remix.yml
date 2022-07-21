@@ -41,7 +41,7 @@ jobs:
         run: npm pack
 
       - name: Configuring Remix.run
-        run: npm_config_yes=true npx create-remix --template remix-run/indie-stack remix-test --typescript
+        run: yes | npx create-remix --template remix-run/indie-stack remix-test --typescript
 
       - name: Retrieving package version
         id: package-version

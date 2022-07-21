@@ -1,5 +1,5 @@
-import TestLayout from "../fixtures/KitchenSink";
+import TestLayout from '../fixtures/KitchenSink'
 
 export default function Index() {
-  return <TestLayout />;
+  return <TestLayout />
 }
