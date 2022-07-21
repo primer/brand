@@ -7,12 +7,12 @@ on:
   pull_request:
 
 env:
-  ASTRO_FOLDER: astro-test
+  TEST_FOLDER: remix-test
 
 jobs:
   test:
     if: ${{ github.repository == 'primer/react-brand' }}
-    name: Astro - Typescript / React starter
+    name: Remix.run
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -40,8 +40,8 @@ jobs:
       - name: Bundling output
         run: npm pack
 
-      - name: Configuring Astro React / TypeScript project
-        run: npm create astro@latest astro-test -- --template framework-react
+      - name: Configuring Remix.run
+        run: npx create-remix --template remix-run/indie-stack blog-tutorial --typescript
 
       - name: Retrieving package version
         id: package-version
@@ -49,26 +49,26 @@ jobs:
 
       - name: Installing local build
         run: |
-          cd ${{env.ASTRO_FOLDER}} 
+          cd ${{env.TEST_FOLDER}} 
           cp ../primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz ./
           npm install primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz
 
-      - name: Prefer CommonJS imports
+      - name: Prefer ESM imports
         run: |
-          mv integration-tests/fixtures/index.cjs.ts integration-tests/fixtures/index.ts
-          rm integration-tests/fixtures/index.esm.ts
+          mv integration-tests/fixtures/index.esm.ts integration-tests/fixtures/index.ts
+          rm integration-tests/fixtures/index.cjs.ts
 
       - name: Copying required files
         run: |
-          cp integration-tests/astro/index.astro ./${{env.ASTRO_FOLDER}}/src/pages
-          cp cypress.config.js ./${{env.ASTRO_FOLDER}}
-          cp -r integration-tests/fixtures ./${{env.ASTRO_FOLDER}}/src
-          mkdir ${{env.ASTRO_FOLDER}}/integration-tests
-          cp -r integration-tests/fixtures ./${{env.ASTRO_FOLDER}}/integration-tests
-          cp -r integration-tests/tests ./${{env.ASTRO_FOLDER}}/integration-tests
+          cp integration-tests/remix.run/index.tsx ./${{env.TEST_FOLDER}}/app/routes
+          cp integration-tests/remix.run/root.tsx ./${{env.TEST_FOLDER}}/app
+          cp cypress.config.js ./${{env.TEST_FOLDER}}
+          mkdir ${{env.TEST_FOLDER}}/integration-tests
+          cp -r integration-tests/fixtures ./${{env.TEST_FOLDER}}/integration-tests
+          cp -r integration-tests/tests ./${{env.TEST_FOLDER}}/integration-tests
 
       - name: Testing compile-time build
-        run: cd ${{env.ASTRO_FOLDER}} && npm run build
+        run: cd ${{env.TEST_FOLDER}} && npm run build
 
       - name: Test runtime for errors and warnings
-        run: cd ${{env.ASTRO_FOLDER}} && npx start-server-and-test 'npx http-server ./dist -p 3000' 3000 'npx cypress run --spec "./integration-tests/tests/*" --config video=false'
+        run: cd ${{env.TEST_FOLDER}} && npx start-server-and-test 'dev' 3000 'npx cypress run --spec "./integration-tests/tests/*" --config video=false'

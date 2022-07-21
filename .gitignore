@@ -29,3 +29,4 @@ yarn-error.log*
 next-js-test/
 cra-test/
 astro-test/
+remix-test/
