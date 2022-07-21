@@ -60,15 +60,16 @@ jobs:
 
       - name: Copying required files
         run: |
-          cp integration-tests/remix.run/index.tsx ./${{env.TEST_FOLDER}}/app/routes
-          cp integration-tests/remix.run/root.tsx ./${{env.TEST_FOLDER}}/app
-          cp cypress.config.js ./${{env.TEST_FOLDER}}
-          mkdir ${{env.TEST_FOLDER}}/integration-tests
-          cp -r integration-tests/fixtures ./${{env.TEST_FOLDER}}/integration-tests
-          cp -r integration-tests/tests ./${{env.TEST_FOLDER}}/integration-tests
+          cp integration-tests/remix.run/index.tsx ./remix-test/app/routes
+          cp integration-tests/remix.run/root.tsx ./remix-test/app
+          cp -r integration-tests/fixtures ./${{env.CRA_FOLDER}}/app
+          cp cypress.config.js ./remix-test
+          mkdir remix-test/integration-tests
+          cp -r integration-tests/fixtures ./remix-test/integration-tests
+          cp -r integration-tests/tests ./remix-test/integration-tests
 
       - name: Testing compile-time build
-        run: cd ${{env.TEST_FOLDER}} && npm run build
+        run: cd remix-test && npm run build
 
       - name: Test runtime for errors and warnings
         run: cd ${{env.TEST_FOLDER}} && npx start-server-and-test 'dev' 3000 'npx cypress run --spec "./integration-tests/tests/*" --config video=false'
