@@ -73,6 +73,10 @@ jobs:
       - name: Excluded cypress tests in-place
         run: npx json -I -f ${{env.NEXTJS_FOLDER}}/tsconfig.json -e 'this.exclude=["node_modules", "**/*.cy.ts"]'
 
+      - name: Using ESM imports
+        run: |
+          mv ${{env.CRA_FOLDER}}/src/fixtures/index.esm.ts ${{env.CRA_FOLDER}}/src/fixtures/index.ts
+
       - name: Testing compile-time build
         run: cd ${{env.NEXTJS_FOLDER}} && npm run build
 

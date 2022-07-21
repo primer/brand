@@ -55,18 +55,19 @@ jobs:
 
       - name: Copying required files
         run: |
-          cp integration-tests/astro/index.astr ./${{env.ASTRO_FOLDER}}/src/pages
+          cp integration-tests/astro/index.astro ./${{env.ASTRO_FOLDER}}/src/pages
           cp cypress.config.js ./${{env.ASTRO_FOLDER}}
           cp -r integration-tests/fixtures ./${{env.ASTRO_FOLDER}}/src
           mkdir ${{env.ASTRO_FOLDER}}/integration-tests
           cp -r integration-tests/fixtures ./${{env.ASTRO_FOLDER}}/integration-tests
           cp -r integration-tests/tests ./${{env.ASTRO_FOLDER}}/integration-tests
 
-      - name: Excluded cypress tests in-place
-        run: npx json -I -f ${{env.ASTRO_FOLDER}}/tsconfig.json -e 'this.exclude=["node_modules", "**/*.cy.ts"]'
+      - name: Using CommonJS imports
+        run: |
+          mv ${{env.ASTRO_FOLDER}}/src/fixtures/index.cjs.ts ${{env.ASTRO_FOLDER}}/src/fixtures/index.ts
 
       - name: Testing compile-time build
         run: cd ${{env.ASTRO_FOLDER}} && npm run build
 
       - name: Test runtime for errors and warnings
-        run: cd ${{env.ASTRO_FOLDER}} && npx start-server-and-test 'start' 3000 'npx cypress run --spec "./integration-tests/tests/*" --config video=false'
+        run: cd astro-test && npx start-server-and-test 'npx http-server ./dist -p 3000' 3000 'npx cypress run --spec "./integration-tests/tests/*" --config video=false'
