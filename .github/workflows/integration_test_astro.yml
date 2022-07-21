@@ -53,6 +53,10 @@ jobs:
           cp ../primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz ./
           npm install primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz
 
+      - name: Prefer CommonJS imports
+        run: |
+          mv integration-tests/fixtures/index.cjs.ts integration-tests/fixtures/index.ts
+
       - name: Copying required files
         run: |
           cp integration-tests/astro/index.astro ./${{env.ASTRO_FOLDER}}/src/pages
@@ -61,10 +65,6 @@ jobs:
           mkdir ${{env.ASTRO_FOLDER}}/integration-tests
           cp -r integration-tests/fixtures ./${{env.ASTRO_FOLDER}}/integration-tests
           cp -r integration-tests/tests ./${{env.ASTRO_FOLDER}}/integration-tests
-
-      - name: Using CommonJS imports
-        run: |
-          mv ${{env.ASTRO_FOLDER}}/src/fixtures/index.cjs.ts ${{env.ASTRO_FOLDER}}/src/fixtures/index.ts
 
       - name: Testing compile-time build
         run: cd ${{env.ASTRO_FOLDER}} && npm run build

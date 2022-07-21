@@ -53,6 +53,10 @@ jobs:
           cp ../primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz ./
           npm install primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz
 
+      - name: Prefer ESM imports
+        run: |
+          mv integration-tests/fixtures/index.esm.ts integration-tests/fixtures/index.ts
+
       - name: Copying required files
         run: |
           cp integration-tests/create-react-app/App.tsx ./${{env.CRA_FOLDER}}/src
@@ -64,10 +68,6 @@ jobs:
 
       - name: Excluded cypress tests in-place
         run: npx json -I -f ${{env.CRA_FOLDER}}/tsconfig.json -e 'this.exclude=["node_modules", "**/*.cy.ts"]'
-
-      - name: Using ESM imports
-        run: |
-          mv ${{env.CRA_FOLDER}}/src/fixtures/index.esm.ts ${{env.CRA_FOLDER}}/src/fixtures/index.ts
 
       - name: Testing compile-time build
         run: cd ${{env.CRA_FOLDER}} && npm run build
