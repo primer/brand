@@ -23,7 +23,8 @@ module.exports = {
     'storybook-static/**/*',
     'dist/**/*',
     'lib/**/*',
-    'types/**/*'
+    'types/**/*',
+    'integration-tests/**/*'
   ],
   globals: {
     __DEV__: 'readonly'
