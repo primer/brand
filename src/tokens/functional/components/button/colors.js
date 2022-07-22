@@ -3,7 +3,7 @@ module.exports = {
     Button: {
       background: {
         base: {
-          value: "var(--base-color-scale-black-0)",
+          value: "red",
           darkValue: "var(--base-color-scale-white-0)"
         },
         overlay: {
