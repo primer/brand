@@ -41,7 +41,8 @@
     "start:storybook": "start-storybook -p 6006",
     "start:docs": "cd docs && npm run develop",
     "start:css-types": "tcm -w -p 'src/**/*.css' .",
-    "test": "jest"
+    "test": "jest",
+    "test:storybook": "test-storybook"
   },
   "peerDependencies": {
     "react": ">=17 <= 18",
@@ -53,9 +54,12 @@
     "@github/prettier-config": "^0.0.4",
     "@primer/octicons-react": "^17.3.0",
     "@primer/primitives": "^7.8.3",
+    "@storybook/addon-a11y": "^6.5.9",
+    "@storybook/jest": "^0.0.10",
+    "@storybook/test-runner": "^0.5.0",
     "@storybook/addon-actions": "^6.5.6",
     "@storybook/addon-essentials": "^6.5.6",
-    "@storybook/addon-interactions": "^6.5.6",
+    "@storybook/addon-interactions": "^6.5.9",
     "@storybook/addon-links": "^6.5.6",
     "@storybook/builder-webpack5": "^6.5.6",
     "@storybook/manager-webpack5": "^6.5.6",
@@ -72,6 +76,7 @@
     "@types/webpack": "^4.41.25",
     "@typescript-eslint/eslint-plugin": "^5.17.0",
     "@typescript-eslint/parser": "^5.17.0",
+    "axe-playwright": "^1.1.11",
     "autoprefixer": "^9.8.8",
     "color2k": "^2.0.0",
     "cross-env": "7.0.2",
