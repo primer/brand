@@ -41,7 +41,10 @@
     "start:storybook": "start-storybook -p 6006",
     "start:docs": "cd docs && npm run develop",
     "start:css-types": "tcm -w -p 'src/**/*.css' .",
-    "test": "jest"
+    "test": "jest",
+    "test:visual": "scripts/playwright/run-visual-tests",
+    "test:visual:generate": "ts-node scripts/playwright/playwright.generate-tests.ts",
+    "test:visual:update-snapshots": "scripts/playwright/update-visual-snapshots"
   },
   "peerDependencies": {
     "react": ">=17 <= 18",
@@ -93,6 +96,7 @@
     "postcss": "^8.4.7",
     "postcss-loader": "^6.2.1",
     "postcss-preset-env": "^7.4.2",
+    "@playwright/test": "^1.24.0",
     "prettier": "^2.5.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

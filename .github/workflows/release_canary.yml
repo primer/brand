@@ -8,7 +8,7 @@ on:
 
 jobs:
   release-canary:
-    if: ${{ github.repository == 'primer/react-brand' }}
+    if: false
     name: Canary
     uses: primer/.github/.github/workflows/release_canary.yml@main
     secrets:
