@@ -46,9 +46,6 @@ jobs:
       - name: Installing dependencies
         run: npm ci --legacy-peer-deps && cd docs && npm ci --legacy-peer-deps
 
-      - name: Installing Cypress
-        run: npm install -g cypress
-
       - name: install dependencies and verify Cypress
         env:
           # make sure every Cypress install prints minimal information
