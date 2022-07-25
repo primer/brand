@@ -103,4 +103,4 @@ jobs:
         run: cd ${{env.CRA_FOLDER}} && npm run build
 
       - name: Test runtime for errors and warnings
-        run: cd ${{env.CRA_FOLDER}} && npx start-server-and-test 'start' 3000 'npm run cypress run --spec "./integration-tests/tests/*" --config video=false'
+        run: cd ${{env.CRA_FOLDER}} && npx start-server-and-test 'start' 3000 'npx cypress run --spec "./integration-tests/tests/*" --config video=false'
