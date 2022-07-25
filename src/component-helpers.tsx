@@ -1,4 +1,4 @@
-import React, {RefObject} from 'react'
+import React, {Ref} from 'react'
 
 /**
  * Layout
@@ -11,5 +11,5 @@ export const Container = ({children}) => <div style={{maxWidth: 1024, margin: '0
 export type BaseProps<T> = {
   className?: string
   id?: string
-  ref?: RefObject<T>
+  ref?: Ref<T>
 }
