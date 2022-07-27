@@ -11,7 +11,7 @@ env:
 
 jobs:
   test:
-    if: false
+    if: ${{ github.repository == 'primer/react-brand' }}
     name: Astro - React starter
     runs-on: ubuntu-latest
     steps:
