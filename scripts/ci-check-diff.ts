@@ -8,23 +8,6 @@ const beforeAfterArr: {
   after: string
 }[] = []
 
-function highlight(oldText: string, newText: string, isAfter: boolean) {
-  let text = ''
-
-  const newTextChars = newText.split('')
-
-  for (const [i, val] of newTextChars.entries()) {
-    if (val !== oldText.charAt(i)) {
-      // eslint-disable-next-line github/unescaped-html-literal
-      text += `<span style="background-color: ${
-        isAfter ? 'rgb(171, 242, 188)' : 'rgba(255, 129, 130, 0.4)'
-      }">${val}</span>`
-    } else text += val
-  }
-
-  return text
-}
-
 try {
   const data = fs.readFileSync('diff.txt', 'utf8')
   const lines = data.split(/\r?\n/).map(cleanLine)
@@ -40,20 +23,23 @@ try {
 }
 
 if (beforeAfterArr.length > 0) {
-  // eslint-disable-next-line github/unescaped-html-literal
   const template = `
   ### 🔍 Design token changes found
 
-  ${beforeAfterArr.reduce((acc, {before, after}) => {
-    return (acc += `
-    ```diff
-    - {before}
-    + {after}
-    ```
+  <details>
+  <summary>View CSS variable changes</summary>
+    ${beforeAfterArr.reduce((acc, {before, after}) => {
+      return (acc += `
+\`\`\`diff
+- ${before}
++ ${after}
+\`\`\`
+      `)
+    }, '')}
+  
 
-   `)
-  }, '')}
-
+  </details>
+  
   `
   try {
     fs.writeFileSync('diff.md', template.trim())
