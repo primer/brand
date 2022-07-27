@@ -41,26 +41,22 @@ try {
 
 if (beforeAfterArr.length > 0) {
   // eslint-disable-next-line github/unescaped-html-literal
-  const template = `<style>
-  html, body {font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace; font-size: 12px;}
-  table {font-size:12px}
-  </style>
-  <table id="diff-table">
-  <tr>
-  <th align="left">Before</th><th align="left">After</th>
-  </tr>
+  const template = `
+  ### 🔍 Design token changes found
+
   ${beforeAfterArr.reduce((acc, {before, after}) => {
     return (acc += `
-     <tr>
-       <td style="background-color: rgb(255, 235, 233)">${highlight(after, before, false)}</td>
-       <td style="background-color: rgb(230, 255, 236)">${highlight(before, after, true)}</td>
-     </tr>
+    ```diff
+    - {before}
+    + {after}
+    ```
+
    `)
   }, '')}
-  </table>
+
   `
   try {
-    fs.writeFileSync('index.html', template.trim())
+    fs.writeFileSync('diff.md', template.trim())
     // file written successfully
   } catch (err) {
     throw new Error()

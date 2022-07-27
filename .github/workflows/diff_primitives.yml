@@ -47,55 +47,57 @@ jobs:
         run: |
           diff -y --width=150 -B -I '*' -I 'Generated' --suppress-common-lines temp-main/lib/css lib/css  | tail -n +2 > diff.txt
           npx ts-node ./scripts/ci-check-diff.ts
-      # - name: Read raw diff
-      #   id: diff
-      #   uses: juliangruber/read-file-action@v1
-      #   with:
-      #     path: ./diff.html
-      # - name: Post diff
-      #   uses: phulsechinmay/rewritable-pr-comment@v0.2.1
-      #   with:
-      #     message: ${{ steps.diff.outputs.content }}
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     COMMENT_IDENTIFIER: 'primitives-diff'
-      - name: Run headless browser
-        if: hashFiles('index.html') != ''
-        uses: Eun/http-server-action@v1
+
+      - name: Read raw diff
+        id: diff
+        uses: juliangruber/read-file-action@v1
         with:
-          directory: '.'
-          port: 8080
-
-      - name: Install capture-website-cli
-        if: hashFiles('index.html') != ''
-        shell: bash
-        run: |
-          echo "Installing dependencies ..."
-          npm install --global capture-website-cli 1> /dev/null
-
-      - name: Screenshot
-        if: hashFiles('index.html') != ''
-        run: |
-          capture-website http://localhost:8080/index.html --output ./screenshot.png --element="#diff-table"
-          echo "Screenshot done"
-
-      - name: Upload image
-        if: hashFiles('index.html') != ''
-        uses: devicons/public-upload-to-imgur@v2.2.1
-        id: imgur_step
-        with:
-          path: ./screenshot.png
-          client_id: ${{secrets.IMGUR_CLIENT_ID}}
-
-      - name: Comment on the PR if tokens have changed
-        if: hashFiles('index.html') != ''
+          path: ./diff.md
+      - name: Post diff
         uses: phulsechinmay/rewritable-pr-comment@v0.2.1
         with:
-          message: |
-            ### 🔍 Design token changes found
-
-            ![Diff of token changes](${{ fromJSON(steps.imgur_step.outputs.imgur_urls)[0] }})
+          message: ${{ steps.diff.outputs.content }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COMMENT_IDENTIFIER: 'primitives-diff'
+
+      # - name: Run headless browser
+      #   if: hashFiles('index.html') != ''
+      #   uses: Eun/http-server-action@v1
+      #   with:
+      #     directory: '.'
+      #     port: 8080
+
+      # - name: Install capture-website-cli
+      #   if: hashFiles('index.html') != ''
+      #   shell: bash
+      #   run: |
+      #     echo "Installing dependencies ..."
+      #     npm install --global capture-website-cli 1> /dev/null
+
+      # - name: Screenshot
+      #   if: hashFiles('index.html') != ''
+      #   run: |
+      #     capture-website http://localhost:8080/index.html --output ./screenshot.png --element="#diff-table"
+      #     echo "Screenshot done"
+
+      # - name: Upload image
+      #   if: hashFiles('index.html') != ''
+      #   uses: devicons/public-upload-to-imgur@v2.2.1
+      #   id: imgur_step
+      #   with:
+      #     path: ./screenshot.png
+      #     client_id: ${{secrets.IMGUR_CLIENT_ID}}
+
+      # - name: Comment on the PR if tokens have changed
+      #   if: hashFiles('index.html') != ''
+      #   uses: phulsechinmay/rewritable-pr-comment@v0.2.1
+      #   with:
+      #     message: |
+      #       ### 🔍 Design token changes found
+
+      #       ![Diff of token changes](${{ fromJSON(steps.imgur_step.outputs.imgur_urls)[0] }})
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     COMMENT_IDENTIFIER: 'primitives-diff'
 
       - name: Comment on the PR about no results
         if: hashFiles('index.html') == ''
