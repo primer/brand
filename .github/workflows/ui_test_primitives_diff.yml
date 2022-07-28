@@ -49,6 +49,7 @@ jobs:
           npx ts-node ./scripts/ci-check-diff.ts
 
       - name: Read raw diff
+        if: hashFiles('diff.md') != ''
         id: diff
         uses: juliangruber/read-file-action@v1
         with:
