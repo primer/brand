@@ -1,4 +1,4 @@
-name: CI
+name: UI test
 
 on:
   push:
@@ -7,9 +7,9 @@ on:
   pull_request:
 
 jobs:
-  ci:
+  accessibility:
     if: ${{ github.repository == 'primer/react-brand' }}
-    name: Install and run tests
+    name: Accessibility
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -34,14 +34,5 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Run linters
-        run: npm run lint
-
-      - name: Check formatting
-        run: npm run format
-
-      - name: Verify types
-        run: npm run check
-
-      - name: Run unit tests
-        run: npm run test
+      - name: Serve Storybook and run tests
+        run: npx start-server-and-test 'start:storybook' 6006 'npx test-storybook'

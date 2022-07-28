@@ -7,7 +7,7 @@ on:
 
 jobs:
   release-candidate:
-    if: false
+    if: ${{ github.repository == 'primer/react-brand' }}
     name: Candidate
     uses: primer/.github/.github/workflows/release_candidate.yml@main
     secrets:
