@@ -1,4 +1,4 @@
-import React, {forwardRef, PropsWithChildren} from 'react'
+import React, {forwardRef, PropsWithChildren, type Ref} from 'react'
 import clsx from 'clsx'
 import {Heading, HeadingTags, LinkProps, HeadingProps, TextProps, Text, Link} from '../'
 
@@ -33,13 +33,10 @@ type ValidRootChildren = {
 }
 
 const Root = forwardRef(
-  ({
-    imageTextRatio = defaultRiverImageTextRatio,
-    align = defaultRiverAlign,
-    className,
-    children,
-    ...rest
-  }: RiverProps) => {
+  (
+    {imageTextRatio = defaultRiverImageTextRatio, align = defaultRiverAlign, className, children, ...rest}: RiverProps,
+    ref: Ref<HTMLElement>
+  ) => {
     const {Visual: VisualChild, Content: ContentChild} = React.Children.toArray(children).reduce<ValidRootChildren>(
       (acc, child) => {
         if (React.isValidElement(child) && typeof child.type !== 'string') {
@@ -67,6 +64,7 @@ const Root = forwardRef(
           className
         )}
         {...rest}
+        ref={ref}
       >
         {orderedChildren}
       </section>
@@ -102,12 +100,10 @@ export const getHeadingWarning = (size: typeof HeadingTags[number]) =>
   `River.Content does not accept a Heading with as="${size}". River automatically applies as="h3" by default.`
 
 const Content = forwardRef(
-  ({
-    children,
-    leadingComponent: LeadingComponent,
-    trailingComponent: TrailingComponent,
-    ...rest
-  }: RiverContentProps) => {
+  (
+    {children, leadingComponent: LeadingComponent, trailingComponent: TrailingComponent, ...rest}: RiverContentProps,
+    ref: Ref<HTMLDivElement>
+  ) => {
     const HeadingChild = React.Children.toArray(children).find(
       child => React.isValidElement(child) && child.type === Heading
     )
@@ -129,7 +125,7 @@ const Content = forwardRef(
     }
 
     return (
-      <div className={styles.River__content} {...rest}>
+      <div className={styles.River__content} {...rest} ref={ref}>
         {LeadingComponent && (
           <div>
             <LeadingComponent />
@@ -172,13 +168,19 @@ type RiverVisualProps = BaseProps<HTMLDivElement> &
     hasShadow?: boolean
   }>
 
-const Visual = forwardRef(({children, className, hasShadow = true, ...rest}: PropsWithChildren<RiverVisualProps>) => {
-  return (
-    <div className={clsx(styles.River__visual, hasShadow && styles['River__visual--has-shadow'], className)} {...rest}>
-      {children}
-    </div>
-  )
-})
+const Visual = forwardRef(
+  ({children, className, hasShadow = true, ...rest}: PropsWithChildren<RiverVisualProps>, ref: Ref<HTMLDivElement>) => {
+    return (
+      <div
+        className={clsx(styles.River__visual, hasShadow && styles['River__visual--has-shadow'], className)}
+        {...rest}
+        ref={ref}
+      >
+        {children}
+      </div>
+    )
+  }
+)
 
 /**
  * Alternating text and image pairs.

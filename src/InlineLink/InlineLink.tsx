@@ -1,4 +1,4 @@
-import React, {PropsWithChildren, forwardRef} from 'react'
+import React, {PropsWithChildren, forwardRef, type Ref} from 'react'
 import clsx from 'clsx'
 import {Text, TextSizes, defaultTextSize} from '../'
 import type {BaseProps} from '../component-helpers'
@@ -28,11 +28,14 @@ export type InlineLinkProps = BaseProps<HTMLAnchorElement> & {
  * A HTML anchor link component that renders inline with adjacent text.
  */
 export const InlineLink = forwardRef(
-  ({className, size = defaultTextSize, children, href, ...rest}: PropsWithChildren<InlineLinkProps>) => {
+  (
+    {className, size = defaultTextSize, children, href, ...rest}: PropsWithChildren<InlineLinkProps>,
+    ref: Ref<HTMLAnchorElement>
+  ) => {
     const classes = clsx(styles.InlineLink, className)
 
     return (
-      <a href={href} className={classes} {...rest}>
+      <a href={href} className={classes} {...rest} ref={ref}>
         <Text size={size} as="span">
           {children}
         </Text>

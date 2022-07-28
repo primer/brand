@@ -1,4 +1,4 @@
-import React, {PropsWithChildren, forwardRef} from 'react'
+import React, {PropsWithChildren, forwardRef, type Ref} from 'react'
 import clsx from 'clsx'
 import styles from './Heading.module.css'
 import type {BaseProps} from '../component-helpers'
@@ -25,7 +25,10 @@ export type HeadingProps = {
 } & HeadingTags
 
 export const Heading = forwardRef(
-  ({className, children, as = defaultHeadingTag, ...rest}: PropsWithChildren<HeadingProps>) => {
+  (
+    {className, children, as = defaultHeadingTag, ...rest}: PropsWithChildren<HeadingProps>,
+    ref: Ref<HTMLHeadingElement>
+  ) => {
     const headingClassNames = clsx(styles.Heading, styles[`Heading--${classMap[as]}`], className)
 
     const HeadingComponent = React.useCallback(
@@ -42,7 +45,7 @@ export const Heading = forwardRef(
     )
 
     return (
-      <HeadingComponent className={headingClassNames} {...rest}>
+      <HeadingComponent className={headingClassNames} ref={ref} {...rest}>
         {children}
       </HeadingComponent>
     )

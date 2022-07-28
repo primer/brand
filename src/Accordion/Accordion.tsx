@@ -20,46 +20,50 @@ type ValidRootChildren = {
   AccordionContent: React.ReactElement<AccordionContentProps> | typeof React.Fragment | null
 }
 
-export const AccordionRoot = forwardRef(({children, className, open = false, ...rest}: AccordionRootProps) => {
-  const {AccordionHeading: HeadingChild, AccordionContent: AccordionContentChild} = React.Children.toArray(
-    children
-  ).reduce<ValidRootChildren>(
-    (acc, child) => {
-      if (React.isValidElement(child) && typeof child.type !== 'string') {
-        if (child.type === AccordionContent) {
-          acc.AccordionContent = child
+export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
+  ({children, className, open = false, ...rest}, ref) => {
+    const {AccordionHeading: HeadingChild, AccordionContent: AccordionContentChild} = React.Children.toArray(
+      children
+    ).reduce<ValidRootChildren>(
+      (acc, child) => {
+        if (React.isValidElement(child) && typeof child.type !== 'string') {
+          if (child.type === AccordionContent) {
+            acc.AccordionContent = child
+          }
+          if (child.type === AccordionHeading) {
+            acc.AccordionHeading = child
+          }
         }
-        if (child.type === AccordionHeading) {
-          acc.AccordionHeading = child
-        }
-      }
-      return acc
-    },
-    {AccordionHeading: null, AccordionContent: null}
-  )
+        return acc
+      },
+      {AccordionHeading: null, AccordionContent: null}
+    )
 
-  return (
-    <details className={clsx(styles.Accordion, className)} open={open} {...rest}>
-      {HeadingChild}
-      {AccordionContentChild}
-    </details>
-  )
-})
+    return (
+      <details className={clsx(styles.Accordion, className)} open={open} {...rest} ref={ref}>
+        {HeadingChild}
+        {AccordionContentChild}
+      </details>
+    )
+  }
+)
 
 type AccordionHeadingProps = BaseProps<HTMLHeadingElement> & {
   className?: string
   children: string
 }
 
-export const AccordionHeading = forwardRef(({children, className, ...rest}: AccordionHeadingProps) => {
-  return (
-    <summary className={clsx(styles.Accordion__summary, className)} {...rest}>
-      <Heading as="h4" className={styles['Accordion__summary-heading']}>
-        {children}
-      </Heading>
-    </summary>
-  )
-})
+export const AccordionHeading = forwardRef<HTMLHeadingElement, AccordionHeadingProps>(
+  ({children, className, ...rest}, ref) => {
+    return (
+      <summary className={clsx(styles.Accordion__summary, className)} ref={ref} {...rest}>
+        <Heading as="h4" className={styles['Accordion__summary-heading']}>
+          {children}
+        </Heading>
+      </summary>
+    )
+  }
+)
 
 type AccordionContentProps = BaseProps<HTMLElement> & {
   className?: string

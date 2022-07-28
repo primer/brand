@@ -21,10 +21,10 @@ export type HeroProps = BaseProps<HTMLDivElement> & {
   align?: 'start' | 'center'
 }
 
-export const Hero = forwardRef(
-  ({className, heading, description, primaryAction, secondaryAction, align = 'start', ...rest}: HeroProps) => {
+export const Hero = forwardRef<HTMLDivElement, HeroProps>(
+  ({className, heading, description, primaryAction, secondaryAction, align = 'start', ...rest}, ref) => {
     return (
-      <div className={clsx(styles.Hero, styles[`Hero--align-${align}`], className)} {...rest}>
+      <div className={clsx(styles.Hero, styles[`Hero--align-${align}`], className)} ref={ref} {...rest}>
         <Heading className={styles['Hero-heading']} as="h1">
           {heading}
         </Heading>

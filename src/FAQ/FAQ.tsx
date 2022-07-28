@@ -20,7 +20,7 @@ type FAQRootProps = BaseProps<HTMLElement> & {
   children: React.ReactElement<FAQHeadingProps | FAQSubheadingProps | AccordionRootProps>[]
 }
 
-const FAQRoot = forwardRef(({children, className, ...rest}: FAQRootProps) => {
+const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, className, ...rest}, ref) => {
   const childrenHasFragment = React.Children.toArray(children).some(child => isFragment(child))
   const filteredChildren = React.Children.toArray(children).filter(child => {
     if (React.isValidElement(child) && typeof child.type !== 'string') {
@@ -41,7 +41,7 @@ const FAQRoot = forwardRef(({children, className, ...rest}: FAQRootProps) => {
   )
 
   return (
-    <section className={clsx(styles.FAQ, className)} {...rest}>
+    <section className={clsx(styles.FAQ, className)} ref={ref} {...rest}>
       {React.Children.toArray(filteredChildren).map(child => {
         if (React.isValidElement(child) && typeof child.type !== 'string') {
           if (child.type === FAQHeading) {
@@ -64,23 +64,26 @@ type FAQHeadingProps = BaseProps<HTMLHeadingElement> & {
   children: string
 }
 
-const FAQHeading = forwardRef(({children, className, size = 'medium', align = 'center', ...rest}: FAQHeadingProps) => {
-  const headingSize = size === 'medium' ? 'h3' : 'h2'
-  return (
-    <Heading
-      as={headingSize}
-      className={clsx(
-        styles.FAQ__heading,
-        size === 'large' && styles['FAQ__heading--large'],
-        styles[`FAQ__heading--${align}`],
-        className
-      )}
-      {...rest}
-    >
-      {children}
-    </Heading>
-  )
-})
+const FAQHeading = forwardRef<HTMLHeadingElement, FAQHeadingProps>(
+  ({children, className, size = 'medium', align = 'center', ...rest}, ref) => {
+    const headingSize = size === 'medium' ? 'h3' : 'h2'
+    return (
+      <Heading
+        as={headingSize}
+        className={clsx(
+          styles.FAQ__heading,
+          size === 'large' && styles['FAQ__heading--large'],
+          styles[`FAQ__heading--${align}`],
+          className
+        )}
+        ref={ref}
+        {...rest}
+      >
+        {children}
+      </Heading>
+    )
+  }
+)
 
 type FAQSubheadingProps = BaseProps<HTMLHeadingElement> & {
   align?: 'start' | 'center'
