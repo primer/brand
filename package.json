@@ -41,8 +41,7 @@
     "start:storybook": "start-storybook -p 6006",
     "start:docs": "cd docs && npm run develop",
     "start:css-types": "tcm -w -p 'src/**/*.css' .",
-    "test": "jest",
-    "test:storybook": "test-storybook"
+    "test": "jest"
   },
   "peerDependencies": {
     "react": ">=17 <= 18",
