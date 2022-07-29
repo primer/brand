@@ -1,6 +1,7 @@
 /* eslint import/no-nodejs-modules: ["error", {"allow": ["path", "fs"]}] */
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore due to this being a build artifact
+// eslint-disable-next-line import/no-unresolved
 import {stories} from '../../docs/public/storybook/stories'
 import fs from 'fs'
 import path from 'path'
