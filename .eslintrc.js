@@ -95,7 +95,7 @@ module.exports = {
         project: 'tsconfig.json'
       },
       files: ['**/*.{ts,tsx}'],
-      extends: ['plugin:@typescript-eslint/recommended'],
+      extends: ['plugin:@typescript-eslint/recommended', 'prettier'],
       rules: {
         'no-shadow': 'off',
         '@typescript-eslint/no-shadow': 'error',

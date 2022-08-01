@@ -43,7 +43,7 @@
     "start:css-types": "tcm -w -p 'src/**/*.css' .",
     "test": "jest",
     "test:visual": "scripts/playwright/run-visual-tests",
-    "test:visual:generate": "ts-node scripts/playwright/playwright.generate-tests.ts",
+    "test:visual:generate": "npm run build:docs && ts-node scripts/playwright/playwright.generate-tests.ts",
     "test:visual:update-snapshots": "scripts/playwright/update-visual-snapshots"
   },
   "peerDependencies": {
