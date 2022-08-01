@@ -1,6 +1,6 @@
 ;(function () {
   /* eslint import/no-nodejs-modules: ["error", {"allow": ["path", "fs"]}] */
-  // eslint-disable-next-line import/no-unresolved, @typescript-eslint/no-var-requires
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const {stories} = require('../../docs/public/storybook/stories')
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const fs = require('fs')
