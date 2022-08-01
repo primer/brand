@@ -10,5 +10,8 @@ module.exports = {
   framework: '@storybook/react',
   core: {
     builder: 'webpack5'
+  },
+  features: {
+    buildStoriesJson: true
   }
 }
