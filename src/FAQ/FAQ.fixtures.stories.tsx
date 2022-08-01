@@ -136,6 +136,10 @@ export const AllOpen: ComponentStory<typeof FAQ> = () => {
   )
 }
 
+AllOpen.parameters = {
+  skipVisualTest: true
+}
+
 export const HeadingLeftAligned: ComponentStory<typeof FAQ> = () => {
   return (
     <Container>

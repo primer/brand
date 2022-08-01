@@ -19,7 +19,7 @@ export const Scale: ComponentStory<typeof Text> = args => (
   <>
     {TextSizes.map(size => (
       <Text key={size} size={size} {...args}>
-        Text {size}
+        Text {size} HELLO
       </Text>
     ))}
   </>
