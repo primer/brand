@@ -1,8 +1,10 @@
 declare const styles: {
-  readonly "CustomLabel": string;
-  readonly "CustomLabelText": string;
-  readonly "CustomChecklist": string;
-  readonly "CustomChecklistIcon": string;
+  readonly "overflow": string;
+  readonly "container": string;
+  readonly "river-logos": string;
+  readonly "river-logo": string;
+  readonly "river-logo--row-two": string;
+  readonly "river-logo--row-three": string;
 };
 export = styles;
 

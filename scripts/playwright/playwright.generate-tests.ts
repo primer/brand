@@ -33,9 +33,16 @@
    * Manual lookup for tests that need animation or side-effects to complete before tests start
    */
   const waitForTimeoutLookup = {
-    'components-faq-fixtures--all-open': 250, // for the animation
-    'components-river--video': 1000 // video is slow to load
+    'components-faq-fixtures--all-open': 250 // for the animation
   }
+
+  /**
+   * Manual lookup for tests that we want to skip
+   * Only add tests here that aren't suitable for visual regression testing
+   */
+  const skipTestLookup = [
+    'components-river--video' // video makes this too flakey
+  ]
 
   const categorisedStories = Object.keys(stories as Stories).reduce((acc, key) => {
     const {id, story: storyName, importPath} = stories[key]
@@ -79,6 +86,9 @@
     test.describe('Visual Comparison: ${key}', () => {
   
       ${componentStories.reduce((acc, {id, storyName, timeout}) => {
+        if (skipTestLookup.includes(id)) {
+          return acc
+        }
         return (acc += `
           test('${storyName}', async ({page}) => {
               await page.goto('http://localhost:${port}/iframe.html?args=&id=${id}&viewMode=story')

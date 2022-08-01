@@ -19,12 +19,9 @@
 }
 
 .river-logo {
-  border-radius: var(--brand-borderRadius-large);
   background: var(--brand-canvas-default);
   box-shadow: rgba(140, 149, 159, 0.2) 0px 8px 24px 0px;
-  width: 75px;
-  height: 75px;
-  padding: var(--base-size-12);
+  height: auto;
 }
 
 .river-logo--row-two {
