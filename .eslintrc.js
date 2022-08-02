@@ -23,7 +23,8 @@ module.exports = {
     'storybook-static/**/*',
     'dist/**/*',
     'lib/**/*',
-    'types/**/*'
+    'types/**/*',
+    'integration-tests/**/*'
   ],
   globals: {
     __DEV__: 'readonly'
@@ -94,7 +95,7 @@ module.exports = {
         project: 'tsconfig.json'
       },
       files: ['**/*.{ts,tsx}'],
-      extends: ['plugin:@typescript-eslint/recommended'],
+      extends: ['plugin:@typescript-eslint/recommended', 'prettier'],
       rules: {
         'no-shadow': 'off',
         '@typescript-eslint/no-shadow': 'error',

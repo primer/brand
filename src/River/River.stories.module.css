@@ -1,0 +1,33 @@
+.overflow {
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.river-logos {
+  display: grid;
+  width: 120%;
+  grid-template: auto/repeat(7, 1fr);
+  grid-gap: 1rem;
+  gap: 1rem;
+  align-self: center;
+  margin-right: -20%;
+  max-width: 600px;
+}
+
+.river-logo {
+  background: var(--brand-canvas-default);
+  box-shadow: rgba(140, 149, 159, 0.2) 0px 8px 24px 0px;
+  height: auto;
+}
+
+.river-logo--row-two {
+  margin-left: 50%;
+}
+
+.river-logo--row-three {
+  margin-left: 100%;
+}

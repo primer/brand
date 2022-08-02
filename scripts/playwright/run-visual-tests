@@ -1,0 +1,1 @@
+docker run --rm --ipc=host -v $(pwd):/tests mcr.microsoft.com/playwright:v1.24.0-focal /bin/bash -c "cd tests && npm install && npx playwright install chrome && npx playwright install && npx start-server-and-test 'npx http-server ./storybook-static -p 6006' 6006 'npx playwright test'"

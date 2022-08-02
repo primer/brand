@@ -8,6 +8,8 @@ storybook-static
 # testing
 .test/
 coverage
+playwright-test-results/
+playwright-report/
 
 # misc
 .DS_Store
@@ -24,3 +26,9 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
+
+# integration testing artifacts
+next-js-test/
+cra-test/
+astro-test/
+remix-test/

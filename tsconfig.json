@@ -13,7 +13,9 @@
     "moduleResolution": "node",
     "outDir": "lib",
     "jsx": "react-jsx",
-    "plugins": [{"name": "typescript-plugin-css-modules"}]
+    "plugins": [{"name": "typescript-plugin-css-modules"}],
+    "resolveJsonModule": true
   },
-  "include": ["src/**/*", "scripts/**/*", "docs/**/*"]
+  "include": ["src/**/*", "scripts/**/*", "docs/**/*"],
+  "exclude": ["integration-tests/**/*"]
 }
