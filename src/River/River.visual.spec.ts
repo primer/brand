@@ -69,10 +69,9 @@ test.describe('Visual Comparison: River', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Video', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-river--video&viewMode=story')
+  test('Custom Logos', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-river--custom-logos&viewMode=story')
 
-    await page.waitForTimeout(1000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 })

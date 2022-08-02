@@ -42,9 +42,9 @@
     "start:docs": "cd docs && npm run develop",
     "start:css-types": "tcm -w -p 'src/**/*.css' .",
     "test": "jest",
-    "test:visual": "scripts/playwright/run-visual-tests",
+    "test:visual": "npx build-storybook && scripts/playwright/run-visual-tests",
     "test:visual:generate": "npm run build:docs && ts-node scripts/playwright/playwright.generate-tests.ts",
-    "test:visual:update-snapshots": "scripts/playwright/update-visual-snapshots"
+    "test:visual:update-snapshots": "npx build-storybook && scripts/playwright/update-visual-snapshots"
   },
   "peerDependencies": {
     "react": ">=17 <= 18",
