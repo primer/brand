@@ -1,5 +1,15 @@
 # @primer/react-brand
 
+## 0.3.1
+
+### Patch Changes
+
+- [#59](https://github.com/primer/react-brand/pull/59) [`fdc731b`](https://github.com/primer/react-brand/commit/fdc731bda050aaef7041aafe6aaa7857c49ea03b) Thanks [@rezrah](https://github.com/rezrah)! - Added `fillMedia` prop to River.Visual
+
+  Previously, all image and video children were automatically styled to fit the parent elements dimensions.
+
+  This isn't ideal in all situations, so the ability to toggle-off this behaviour is now available through an `fillMedia` prop.
+
 ## 0.3.0
 
 ### Minor Changes
