@@ -2,7 +2,7 @@ declare const styles: {
   readonly "River": string;
   readonly "River--align-center": string;
   readonly "River__visual": string;
-  readonly "River__visual--auto-size-media": string;
+  readonly "River__visual--fill-media": string;
   readonly "River__visual--has-shadow": string;
   readonly "River__heading": string;
   readonly "River__call-to-action": string;

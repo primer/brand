@@ -14,8 +14,8 @@
   order: 2;
 }
 
-.River__visual--auto-size-media img,
-.River__visual--auto-size-media video {
+.River__visual--fill-media img,
+.River__visual--fill-media video {
   width: 100%;
   height: 100%;
   object-fit: cover;

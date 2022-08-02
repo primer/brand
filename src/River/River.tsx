@@ -166,7 +166,7 @@ type RiverVisualProps = {
    * Applies automatic size constraints to child images and video.
    * This can be disabled by setting this prop to `false`.
    */
-  autoSizeMedia?: boolean
+  fillMedia?: boolean
   className?: string
   /**
    * `img` and `video` elements will apply a shadow by default.
@@ -175,18 +175,13 @@ type RiverVisualProps = {
   hasShadow?: boolean
 }
 
-function Visual({
-  autoSizeMedia = true,
-  children,
-  className,
-  hasShadow = true
-}: React.PropsWithChildren<RiverVisualProps>) {
+function Visual({fillMedia = true, children, className, hasShadow = true}: React.PropsWithChildren<RiverVisualProps>) {
   return (
     <div
       className={clsx(
         styles.River__visual,
         hasShadow && styles['River__visual--has-shadow'],
-        autoSizeMedia && styles['River__visual--auto-size-media'],
+        fillMedia && styles['River__visual--fill-media'],
         className
       )}
     >
