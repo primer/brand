@@ -23,9 +23,13 @@
     <a href="https://primer.github.io/react-brand/" target="_blank">https://primer.github.io/react-brand</a>
 </p>
 
+## Documentation
+
+Our documentation site lives at [primer.style/react-brand](https://primer.style/react-brand). You'll be able to find detailed documentation on getting started, all of the components and more.
+
 ## Install
 
-This repository is distributed on [npm]. After [installing npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm), you can install `@primer/react-brand` as a dependency of your project:
+Primer Brand libraries are published to the [npm] registry. After [installing npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm), you can install `@primer/react-brand` as a dependency of your project:
 
 ```sh
 npm install @primer/react-brand
@@ -34,6 +38,14 @@ npm install @primer/react-brand
 ## Usage
 
 See our [getting started guide](https://primer.github.io/react-brand/getting-started) for more information.
+
+## Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for development and contribution guidelines.
+
+## Releasing (for GitHub staff)
+
+You can find docs about our release process in [RELEASING.md](RELEASING.md).
 
 ## License
 
