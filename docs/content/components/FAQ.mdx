@@ -380,53 +380,53 @@ render(<App />)
 
 ### FAQ <Label>Required</Label>
 
-| Name        | Type                                                                                                                                                                | Default | Description                         |
-| :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :-----: | :---------------------------------- |
-| `className` | `string`                                                                                                                                                            |         | Sets a custom class                 |
-| `id`        | `string`                                                                                                                                                            |         | Sets a custom id                    |
-| `ref`       | `React.RefObject`                                                                                                                                                   |         | Access to elements                  |
-| `children`  | <PropTableValues values={[<a href="#faq-heading">FAQ.Heading</a>, <a href="#faq-subheading">FAQ.Subheading</a>, <a href="#faq-item">FAQ.Item</a>]} addLineBreaks /> |         | Root element for the FAQ component. |
+| Name        | Type                                                                                                                                                                | Default | Description                              |
+| :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :-----: | :--------------------------------------- |
+| `className` | `string`                                                                                                                                                            |         | Sets a custom class                      |
+| `id`        | `string`                                                                                                                                                            |         | Sets a custom id                         |
+| `ref`       | `React.RefObject`                                                                                                                                                   |         | Forward a Ref to the underlying DOM node |
+| `children`  | <PropTableValues values={[<a href="#faq-heading">FAQ.Heading</a>, <a href="#faq-subheading">FAQ.Subheading</a>, <a href="#faq-item">FAQ.Item</a>]} addLineBreaks /> |         | Root element for the FAQ component.      |
 
 <h3 id="faq-heading">
   FAQ.Heading <Label>Required</Label>
 </h3>
 
-| Name        | Type                                                            |  Default   | Description            |
-| :---------- | :-------------------------------------------------------------- | :--------: | :--------------------- |
-| `align`     | <PropTableValues values={['start', 'center' ]} addLineBreaks /> | `'center'` | Heading text alignment |
-| `children`  | `string`                                                        |            | Heading text           |
-| `className` | `string`                                                        |            | Heading custom class   |
-| `id`        | `string`                                                        |            | Sets a custom id       |
-| `ref`       | `React.RefObject`                                               |            | Access to elements     |
-| `size`      | <PropTableValues values={['medium', 'large' ]} addLineBreaks /> | `'medium'` | Heading text size      |
+| Name        | Type                                                            |  Default   | Description                              |
+| :---------- | :-------------------------------------------------------------- | :--------: | :--------------------------------------- |
+| `align`     | <PropTableValues values={['start', 'center' ]} addLineBreaks /> | `'center'` | Heading text alignment                   |
+| `children`  | `string`                                                        |            | Heading text                             |
+| `className` | `string`                                                        |            | Heading custom class                     |
+| `id`        | `string`                                                        |            | Sets a custom id                         |
+| `ref`       | `React.RefObject`                                               |            | Forward a Ref to the underlying DOM node |
+| `size`      | <PropTableValues values={['medium', 'large' ]} addLineBreaks /> | `'medium'` | Heading text size                        |
 
 <h3 id="faq-subheading">FAQ.Subheading</h3>
 
-| Name        | Type              | Default | Description              |
-| :---------- | :---------------- | :-----: | :----------------------- |
-| `children`  | `string`          |         | Sub-heading text         |
-| `className` | `string`          |         | Sub-heading custom class |
-| `id`        | `string`          |         | Sets a custom id         |
-| `ref`       | `React.RefObject` |         | Access to elements       |
+| Name        | Type              | Default | Description                              |
+| :---------- | :---------------- | :-----: | :--------------------------------------- |
+| `children`  | `string`          |         | Sub-heading text                         |
+| `className` | `string`          |         | Sub-heading custom class                 |
+| `id`        | `string`          |         | Sets a custom id                         |
+| `ref`       | `React.RefObject` |         | Forward a Ref to the underlying DOM node |
 
 <h3 id="faq-item">FAQ.Item</h3>
 
-| Name        | Type                                                                                                                        | Default | Description                  |
-| :---------- | :-------------------------------------------------------------------------------------------------------------------------- | :-----: | :--------------------------- |
-| `open`      | `boolean`                                                                                                                   | `false` | Sets answer visibility       |
-| `className` | `string`                                                                                                                    |         | Sets a custom class          |
-| `children`  | <PropTableValues values={[<a href="#faq-question">FAQ.Question</a>, <a href="#faq-answer">FAQ.Answer</a>]} addLineBreaks /> |         | FAQ question and answer pair |
-| `id`        | `string`                                                                                                                    |         | Sets a custom id             |
-| `ref`       | `React.RefObject`                                                                                                           |         | Access to elements           |
+| Name        | Type                                                                                                                        | Default | Description                              |
+| :---------- | :-------------------------------------------------------------------------------------------------------------------------- | :-----: | :--------------------------------------- |
+| `open`      | `boolean`                                                                                                                   | `false` | Sets answer visibility                   |
+| `className` | `string`                                                                                                                    |         | Sets a custom class                      |
+| `children`  | <PropTableValues values={[<a href="#faq-question">FAQ.Question</a>, <a href="#faq-answer">FAQ.Answer</a>]} addLineBreaks /> |         | FAQ question and answer pair             |
+| `id`        | `string`                                                                                                                    |         | Sets a custom id                         |
+| `ref`       | `React.RefObject`                                                                                                           |         | Forward a Ref to the underlying DOM node |
 
 <h3 id="faq-question">FAQ.Question</h3>
 
-| Name        | Type              | Default | Description                             |
-| :---------- | :---------------- | :-----: | :-------------------------------------- |
-| `className` | `string`          |         | Sets a custom class on the root element |
-| `children`  | `string`          |         | Question text                           |
-| `id`        | `string`          |         | Sets a custom id                        |
-| `ref`       | `React.RefObject` |         | Access to elements                      |
+| Name        | Type              | Default | Description                              |
+| :---------- | :---------------- | :-----: | :--------------------------------------- |
+| `className` | `string`          |         | Sets a custom class on the root element  |
+| `children`  | `string`          |         | Question text                            |
+| `id`        | `string`          |         | Sets a custom id                         |
+| `ref`       | `React.RefObject` |         | Forward a Ref to the underlying DOM node |
 
 <h3 id="faq-answer">FAQ.Answer</h3>
 
@@ -435,4 +435,4 @@ render(<App />)
 | `className` | `string`          |         | Sets a custom class on the root element      |
 | `children`  | `ReactElement`    |         | `<p>` or `<Text>` components are recommended |
 | `id`        | `string`          |         | Sets a custom id                             |
-| `ref`       | `React.RefObject` |         | Access to elements                           |
+| `ref`       | `React.RefObject` |         | Forward a Ref to the underlying DOM node     |
