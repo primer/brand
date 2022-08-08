@@ -8,6 +8,8 @@ storybook-static
 # testing
 .test/
 coverage
+playwright-test-results/
+playwright-report/
 
 # misc
 .DS_Store

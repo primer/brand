@@ -159,20 +159,32 @@ const Content = forwardRef(
   }
 )
 
-type RiverVisualProps = BaseProps<HTMLDivElement> &
-  PropsWithChildren<{
-    /**
-     * `img` and `video` elements will apply a shadow by default.
-     * This can be disabled by setting this prop to `false`.
-     */
-    hasShadow?: boolean
-  }>
+type RiverVisualProps = BaseProps<HTMLDivElement> & {
+  /**
+   * Applies automatic size constraints to child images and video.
+   * This can be disabled by setting this prop to `false`.
+   */
+  fillMedia?: boolean
+  /**
+   * `img` and `video` elements will apply a shadow by default.
+   * This can be disabled by setting this prop to `false`.
+   */
+  hasShadow?: boolean
+}
 
 const Visual = forwardRef(
-  ({children, className, hasShadow = true, ...rest}: PropsWithChildren<RiverVisualProps>, ref: Ref<HTMLDivElement>) => {
+  (
+    {fillMedia = true, children, className, hasShadow = true, ...rest}: PropsWithChildren<RiverVisualProps>,
+    ref: Ref<HTMLDivElement>
+  ) => {
     return (
       <div
-        className={clsx(styles.River__visual, hasShadow && styles['River__visual--has-shadow'], className)}
+        className={clsx(
+          styles.River__visual,
+          hasShadow && styles['River__visual--has-shadow'],
+          fillMedia && styles['River__visual--fill-media'],
+          className
+        )}
         {...rest}
         ref={ref}
       >
