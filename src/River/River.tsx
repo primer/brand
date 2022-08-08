@@ -159,18 +159,19 @@ const Content = forwardRef(
   }
 )
 
-type RiverVisualProps = BaseProps<HTMLDivElement> & {
-  /**
-   * Applies automatic size constraints to child images and video.
-   * This can be disabled by setting this prop to `false`.
-   */
-  fillMedia?: boolean
-  /**
-   * `img` and `video` elements will apply a shadow by default.
-   * This can be disabled by setting this prop to `false`.
-   */
-  hasShadow?: boolean
-}
+type RiverVisualProps = BaseProps<HTMLDivElement> &
+  PropsWithChildren<{
+    /**
+     * Applies automatic size constraints to child images and video.
+     * This can be disabled by setting this prop to `false`.
+     */
+    fillMedia?: boolean
+    /**
+     * `img` and `video` elements will apply a shadow by default.
+     * This can be disabled by setting this prop to `false`.
+     */
+    hasShadow?: boolean
+  }>
 
 const Visual = forwardRef(
   (
