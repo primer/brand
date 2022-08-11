@@ -1,5 +1,6 @@
 export * from './css/stylesheets'
 
+export * from './Accordion'
 export * from './Hero'
 export * from './Text'
 export * from './Heading'
