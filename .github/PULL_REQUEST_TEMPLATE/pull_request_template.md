@@ -4,7 +4,7 @@
 A few sentences describing the changes being proposed in this pull request.
 -->
 
-## List of noteable changes:
+## List of notable changes:
 
 <!--
 E.g.
@@ -56,7 +56,7 @@ E.g.
 
 - [ ] Check that pull request and proposed changes adhere to our [contribution guidelines](../../CONTRIBUTING.md) and [code of conduct](../../CODE_OF_CONDUCT.md)
 - [ ] Check that tests prove the feature works and covers both happy and unhappy paths
-- [ ] Checked there aren't other open Pull Requests for the same update/change
+- [ ] Check that there aren't other open Pull Requests for the same update/change
 
 ## Screenshots:
 

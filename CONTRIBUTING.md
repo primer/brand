@@ -21,7 +21,7 @@ Guidelines for bug reports:
 
 1. **Isolate the problem** &mdash; ideally create a isolated example, using a 'vanilla' configuration of your chosen framework. CodeSandbox and StackBlitz offer an easy way to do this.
 
-[Use our issue template to help you report bugs](), if you're confident the bug is still valid.
+[Use our issue template to help you report bugs](https://github.com/primer/react-brand/issues/new?assignees=&labels=&template=bug_report.md), if you're confident the bug is still valid.
 
 ## Pull requests
 

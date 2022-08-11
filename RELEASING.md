@@ -2,7 +2,7 @@
 
 ## Prepare the release
 
-The release process is automated by [changesets]. After you familiarize yourself with how they work. We use an [action workflow integrated in ci](https://github.com/atlassian/changesets#integrating-with-ci).
+The Primer Brand release process is automated using [Changesets] and GitHub Actions.
 
 1. Visit the pull requests page and find the latest, open [Release tracking PR from primer-css](https://github.com/primer/react-brand/pulls/primer-css). If there isn't one, we'll need to build the next release by merging in PRs with changeset files.
 
@@ -20,7 +20,7 @@ The release process is automated by [changesets]. After you familiarize yourself
 
    After additional CI checks finish, the docs site will be deployed and `@primer/react-brand` will be published with your changes to the `latest` dist-tag. You can check [npm](https://www.npmjs.com/package/@primer/react-brand?activeTab=versions) to see if actions has finished.
 
-2. You're done 🎉
+1. You're done 🎉
 
 [change log]: ./CHANGELOG.md
 [changesets]: https://github.com/atlassian/changesets
