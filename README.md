@@ -19,7 +19,7 @@
   </a>
   <img src="https://img.shields.io/badge/status-experimental-red" alt="status: experimental">
   <a aria-label="license" href="https://github.com/primer/react-brand/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/primer/react-brand.svg" alt="">
+    <img src="https://img.shields.io/github/license/primer/react-brand" alt="">
   </a>
 </p>
 
