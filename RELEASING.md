@@ -4,7 +4,7 @@
 
 The Primer Brand release process is automated using [Changesets] and GitHub Actions.
 
-1. Visit the pull requests page and find the latest, open [Release tracking PR from primer-css](https://github.com/primer/react-brand/pulls/primer-css). If there isn't one, we'll need to build the next release by merging in PRs with changeset files.
+1. Visit the pull requests page and find the latest, open ["release tracking" pull request from primer-css](https://github.com/primer/react-brand/pulls/primer-css). If there isn't one, we'll need to build the next release by merging in PRs with changeset files.
 
 ## Test the release candidate (GitHub staff only):
 
