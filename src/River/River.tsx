@@ -22,13 +22,13 @@ export type RiverProps = {
    */
   imageTextRatio?: '60:40' | '50:50'
   /**
-   * Adjust the order of the `Content` column. The default is `left`.
+   * Adjust the order of the `Content` column. The default is `start`.
    */
-  align?: 'left' | 'right' | 'center'
+  align?: 'start' | 'end' | 'center'
 }
 
 export const defaultRiverImageTextRatio = '50:50'
-export const defaultRiverAlign = 'left'
+export const defaultRiverAlign = 'start'
 
 type ValidRootChildren = {
   Visual: React.ReactElement<RiverVisualProps> | null
@@ -44,12 +44,13 @@ function Root({
 }: RiverProps) {
   const {Visual: VisualChild, Content: ContentChild} = React.Children.toArray(children).reduce<ValidRootChildren>(
     (acc, child) => {
-      if (
-        React.isValidElement(child) &&
-        typeof child.type !== 'string' &&
-        (child.type.name === 'Visual' || child.type.name === 'Content')
-      ) {
-        acc[child.type.name] = child
+      if (React.isValidElement(child) && typeof child.type !== 'string') {
+        if (child.type === Visual) {
+          acc.Visual = child
+        }
+        if (child.type === Content) {
+          acc.Content = child
+        }
       }
       return acc
     },
@@ -57,7 +58,7 @@ function Root({
   )
 
   const orderedChildren =
-    align === 'left' || align === 'center' ? [ContentChild, VisualChild] : [VisualChild, ContentChild]
+    align === 'start' || align === 'center' ? [ContentChild, VisualChild] : [VisualChild, ContentChild]
 
   return (
     <section
@@ -161,6 +162,11 @@ function Content({
 }
 
 type RiverVisualProps = {
+  /**
+   * Applies automatic size constraints to child images and video.
+   * This can be disabled by setting this prop to `false`.
+   */
+  fillMedia?: boolean
   className?: string
   /**
    * `img` and `video` elements will apply a shadow by default.
@@ -169,9 +175,16 @@ type RiverVisualProps = {
   hasShadow?: boolean
 }
 
-function Visual({children, className, hasShadow = true}: React.PropsWithChildren<RiverVisualProps>) {
+function Visual({fillMedia = true, children, className, hasShadow = true}: React.PropsWithChildren<RiverVisualProps>) {
   return (
-    <div className={clsx(styles.River__visual, hasShadow && styles['River__visual--has-shadow'], className)}>
+    <div
+      className={clsx(
+        styles.River__visual,
+        hasShadow && styles['River__visual--has-shadow'],
+        fillMedia && styles['River__visual--fill-media'],
+        className
+      )}
+    >
       {children}
     </div>
   )

@@ -1,0 +1,80 @@
+name: Integration test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+env:
+  TEST_FOLDER: remix-test
+
+jobs:
+  test:
+    if: ${{ github.repository == 'primer/react-brand' }}
+    name: Remix.run
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Caching dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Installing dependencies
+        run: npm ci --legacy-peer-deps && cd docs && npm ci --legacy-peer-deps
+
+      - name: Build
+        run: npm run build
+
+      - name: Bundling output
+        run: npm pack
+
+      - name: Configuring Remix.run
+        run: yes | npx create-remix --template remix-run/indie-stack ${{env.TEST_FOLDER}}  --typescript
+
+      - name: Retrieving package version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@main
+
+      - name: Installing local build
+        run: |
+          cd ${{env.TEST_FOLDER}} 
+          cp ../primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz ./
+          npm install primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz
+
+      - name: Prefer ESM imports
+        run: |
+          mv integration-tests/fixtures/index.esm.ts integration-tests/fixtures/index.ts
+          rm integration-tests/fixtures/index.cjs.ts
+
+      - name: Copying required files
+        run: |
+          cp integration-tests/remix.run/index.tsx ./${{env.TEST_FOLDER}}/app/routes
+          cp integration-tests/remix.run/root.tsx ./${{env.TEST_FOLDER}}/app
+          cp -r integration-tests/fixtures ./${{env.TEST_FOLDER}}/app
+          cp cypress.config.js ./${{env.TEST_FOLDER}} 
+          mkdir ${{env.TEST_FOLDER}}/integration-tests
+          cp -r integration-tests/fixtures ./${{env.TEST_FOLDER}}/integration-tests
+          cp -r integration-tests/tests ./${{env.TEST_FOLDER}}/integration-tests
+
+      - name: Testing compile-time build
+        run: cd ${{env.TEST_FOLDER}}  && npm run build
+
+      # Disabling this step as there is a hydration inconsistency between cypress and remix.run.
+      # We should monitor and reenable this asap:
+      # more info: https://github.com/remix-run/remix/issues/2570
+      #- name: Test runtime for errors and warnings
+      #  run: |
+      #    rm ${{env.TEST_FOLDER}}/cypress.config.ts
+      #    cd ${{env.TEST_FOLDER}} && npx start-server-and-test 'dev' 3000 'npx cypress run --spec "./integration-tests/tests/*" --config video=false'

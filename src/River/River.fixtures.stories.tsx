@@ -17,7 +17,7 @@ const PlaceholderImage = () => (
 )
 
 export const Left: ComponentStory<typeof River> = () => (
-  <River align="left">
+  <River align="start">
     <River.Visual>
       <PlaceholderImage />
     </River.Visual>
@@ -33,7 +33,7 @@ export const Left: ComponentStory<typeof River> = () => (
 )
 
 export const Right: ComponentStory<typeof River> = () => (
-  <River align="right">
+  <River align="end">
     <River.Visual>
       <PlaceholderImage />
     </River.Visual>
@@ -96,7 +96,7 @@ ColumnRatio5050.storyName = '50:50 image ratio'
 
 export const AlternatingLayout: ComponentStory<typeof River> = () => (
   <>
-    <River align="left">
+    <River align="start">
       <River.Visual>
         <PlaceholderImage />
       </River.Visual>
@@ -109,7 +109,7 @@ export const AlternatingLayout: ComponentStory<typeof River> = () => (
         <Link href="#">Call to action</Link>
       </River.Content>
     </River>
-    <River align="right">
+    <River align="end">
       <River.Visual>
         <PlaceholderImage />
       </River.Visual>

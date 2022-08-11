@@ -1,0 +1,96 @@
+name: Visual test
+
+on:
+  pull_request:
+
+jobs:
+  ci:
+    if: ${{ github.repository == 'primer/react-brand' }}
+    name: Storybook
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install Playwright
+        run: |
+          npx playwright install
+          npx playwright install-deps chromium
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps && cd docs && npm ci --legacy-peer-deps
+
+      - name: Build assets
+        run: npm run build
+
+      - name: Build Storybook
+        run: npx build-storybook
+
+      - name: Run visual tests
+        id: playwright-step
+        run: npx start-server-and-test 'npx http-server ./storybook-static -p 6006' 6006 'npx playwright test'
+        continue-on-error: true
+
+      - name: Upload error screenshots
+        uses: actions/upload-artifact@v3
+        if: steps.playwright-step.outcome != 'success'
+        with:
+          name: playwright-test-results
+          path: playwright-test-results
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: playwright-report
+          path: playwright-report
+
+      - name: Comment on the PR about no visual differences
+        if: steps.playwright-step.outcome != 'success'
+        uses: phulsechinmay/rewritable-pr-comment@v0.2.1
+        with:
+          message: |
+            ### ⚠️ Visual differences found
+
+            <details><summary>Our visual comparison tests found UI differences.</summary>
+
+            Please review the differences by using the test artifacts to ensure that the changes were intentional.
+
+            Artifacts can be downloaded and reviewed locally. 
+
+            Download links are available at the bottom of the workflow summary screen.
+
+            ##### Example:
+            ![artifacts section of workflow run](https://user-images.githubusercontent.com/13340707/181026915-2bda8a90-58e3-40ef-a2f6-c9c4af6e9c4a.png)
+
+            If the changes are expected, please run `npm run test:visual:update-snapshots` to replace the previous fixtures.
+            </details> 
+
+            [Review visual differences](https://github.com/primer/react-brand/actions/runs/${{ github.run_id }})
+
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMMENT_IDENTIFIER: 'visual-comparison-diff'
+
+      - name: Comment on the PR about no visual differences
+        if: steps.playwright-step.outcome == 'success'
+        uses: phulsechinmay/rewritable-pr-comment@v0.2.1
+        with:
+          message: |
+            ### 🟢 No visual differences found
+
+            Our visual comparison tests did not find any differences in the UI.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMMENT_IDENTIFIER: 'visual-comparison-diff'

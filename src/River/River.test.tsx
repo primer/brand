@@ -56,7 +56,7 @@ describe('River', () => {
     expect(rootEl.classList).not.toContain(unexpectedClass)
   })
 
-  it('renders content using left alignment visually and semantically by default', () => {
+  it('renders content using start alignment visually and semantically by default', () => {
     const rootId = 'root-el'
     const {getByTestId} = render(
       <River data-testid={rootId}>
@@ -72,11 +72,11 @@ describe('River', () => {
     const rootEl = getByTestId(rootId)
     const [elOne, elTwo] = Array.from(rootEl.children)
 
-    const expectedRootClass = 'River--align-left'
+    const expectedRootClass = 'River--align-start'
     const expectLeftChildClass = 'River__content'
     const expectRightChildClass = 'River__visual'
 
-    const unexpectedRootClasses = ['River--align-right', 'River--align-center']
+    const unexpectedRootClasses = ['River--align-end', 'River--align-center']
 
     expect(rootEl.classList).toContain(expectedRootClass)
 
@@ -88,10 +88,10 @@ describe('River', () => {
     expect(elTwo.classList).toContain(expectRightChildClass) // should be the visual DOM node
   })
 
-  it('can optionally render content in right alignment visually and semantically', () => {
+  it('can optionally render content in end alignment visually and semantically', () => {
     const rootId = 'root-el'
     const {getByTestId} = render(
-      <River data-testid={rootId} align="right">
+      <River data-testid={rootId} align="end">
         <River.Visual>
           <MockImage />
         </River.Visual>
@@ -104,11 +104,11 @@ describe('River', () => {
     const rootEl = getByTestId(rootId)
     const [elOne, elTwo] = Array.from(rootEl.children)
 
-    const expectedRootClass = 'River--align-right'
+    const expectedRootClass = 'River--align-end'
     const expectLeftChildClass = 'River__visual'
     const expectRightChildClass = 'River__content'
 
-    const unexpectedRootClasses = ['River--align-left', 'River--align-center']
+    const unexpectedRootClasses = ['River--align-start', 'River--align-center']
 
     expect(rootEl.classList).toContain(expectedRootClass)
 
@@ -140,7 +140,7 @@ describe('River', () => {
     const expectLeftChildClass = 'River__content'
     const expectRightChildClass = 'River__visual'
 
-    const unexpectedRootClasses = ['River--align-right', 'River--align-left']
+    const unexpectedRootClasses = ['River--align-end', 'River--align-start']
 
     expect(rootEl.classList).toContain(expectedRootClass)
 

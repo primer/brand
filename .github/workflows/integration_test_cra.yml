@@ -1,0 +1,103 @@
+name: Integration test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+env:
+  CRA_FOLDER: cra-test
+
+jobs:
+  test:
+    if: ${{ github.repository == 'primer/react-brand' }}
+    name: Create React App
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Caching dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # Restore the previous NPM modules and Cypress binary archives.
+      # Any updated archives will be saved automatically after the entire
+      # workflow successfully finishes.
+      # See https://github.com/actions/cache
+      - name: Cache Cypress binary
+        uses: actions/cache@v1
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            cypress-${{ runner.os }}-cypress-
+
+      - name: Installing dependencies
+        run: npm ci --legacy-peer-deps && cd docs && npm ci --legacy-peer-deps
+
+      - name: install dependencies and verify Cypress
+        env:
+          # make sure every Cypress install prints minimal information
+          CI: 1
+        # print Cypress and OS info
+        run: |
+          npx cypress verify
+          npx cypress info
+          npx cypress version
+          npx cypress version --component package
+          npx cypress version --component binary
+          npx cypress version --component electron
+          npx cypress version --component node
+
+      - name: Build
+        run: npm run build
+
+      - name: Bundling output
+        run: npm pack
+
+      - name: Configuring Create React App
+        run: npx create-react-app ${{env.CRA_FOLDER}} --template typescript
+
+      - name: Retrieving package version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@main
+
+      - name: Installing local build
+        run: |
+          cd ${{env.CRA_FOLDER}} 
+          cp ../primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz ./
+          npm install primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz
+
+      - name: Prefer ESM imports
+        run: |
+          mv integration-tests/fixtures/index.esm.ts integration-tests/fixtures/index.ts
+          rm integration-tests/fixtures/index.cjs.ts
+
+      - name: Copying required files
+        run: |
+          cp integration-tests/create-react-app/App.tsx ./${{env.CRA_FOLDER}}/src
+          cp cypress.config.js ./${{env.CRA_FOLDER}}
+          cp -r integration-tests/fixtures ./${{env.CRA_FOLDER}}/src
+          mkdir ${{env.CRA_FOLDER}}/integration-tests
+          cp -r integration-tests/fixtures ./${{env.CRA_FOLDER}}/integration-tests
+          cp -r integration-tests/tests ./${{env.CRA_FOLDER}}/integration-tests
+
+      - name: Excluded cypress tests in-place
+        run: npx json -I -f ${{env.CRA_FOLDER}}/tsconfig.json -e 'this.exclude=["node_modules", "**/*.cy.ts"]'
+
+      - name: Testing compile-time build
+        run: cd ${{env.CRA_FOLDER}} && npm run build
+
+      - name: Test runtime for errors and warnings
+        run: cd ${{env.CRA_FOLDER}} && npx start-server-and-test 'start' 3000 'npx cypress run --spec "./integration-tests/tests/*" --config video=false'

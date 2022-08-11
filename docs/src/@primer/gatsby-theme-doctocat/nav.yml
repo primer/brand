@@ -2,6 +2,8 @@
   children:
     - title: Getting started
       url: /getting-started
+    - title: Theming
+      url: /getting-started/theming
 
 - title: Primitives
   children:
@@ -10,6 +12,8 @@
 
 - title: Components
   children:
+    - title: FAQ
+      url: /components/FAQ
     - title: Hero
       url: /components/Hero
     - title: River

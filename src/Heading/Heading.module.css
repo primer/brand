@@ -21,7 +21,7 @@
 .Heading--3 {
   font-weight: var(--brand-heading-weight-700);
   font-size: var(--brand-text-size-700);
-  line-height: var(--brand-text-lineHeight-700);
+  line-height: var(--brand-heading-lineHeight-700);
   font-family: var(--brand-heading-fontFamily);
   letter-spacing: var(--brand-heading-letterSpacing-700);
 }

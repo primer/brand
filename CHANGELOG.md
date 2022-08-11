@@ -1,5 +1,39 @@
 # @primer/react-brand
 
+## 0.3.1
+
+### Patch Changes
+
+- [#59](https://github.com/primer/react-brand/pull/59) [`fdc731b`](https://github.com/primer/react-brand/commit/fdc731bda050aaef7041aafe6aaa7857c49ea03b) Thanks [@rezrah](https://github.com/rezrah)! - Added `fillMedia` prop to River.Visual
+
+  Previously, all image and video children were automatically styled to fit the parent elements dimensions.
+
+  This isn't ideal in all situations, so the ability to toggle-off this behaviour is now available through an `fillMedia` prop.
+
+## 0.3.0
+
+### Minor Changes
+
+- [`c8609a8`](https://github.com/primer/react-brand/commit/c8609a8d35ea80192d85e97794390207f4624e63) Thanks [@rezrah](https://github.com/rezrah)! - added an FAQ component, which displays a list of questions and answers relating to a particular subject.
+
+  [See usage examples](https://primer.style/react-brand/components/FAQ)
+
+* [#45](https://github.com/primer/react-brand/pull/45) [`2fb6924`](https://github.com/primer/react-brand/commit/2fb6924a834ddcbad34cfb97ecfc1659d54f4ed5) Thanks [@rezrah](https://github.com/rezrah)! - > **Warning**
+
+  > This is a breaking change, but as the library is a pre-v1 release we are publishing this update as a `minor` change.
+  > Please read the following instructions carefully before updating:
+
+  ### Updated references for "left" and "right" to "start" and "end"
+
+  For improved i18n support and closer alignment with our Figma naming conventions, we have updated the references for "left" and "right" to "start" and "end" respectively in `Hero` and `River` components.
+
+  ```diff
+  - <River align="left">
+  - <River align="right">
+  + <River align="start">
+  + <River align="end">
+  ```
+
 ## 0.2.1
 
 ### Patch Changes

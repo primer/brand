@@ -40,7 +40,7 @@ import {River} from '@primer/react-brand'
       <Link href="#">Call to action</Link>
     </River.Content>
   </River>
-  <River align="right">
+  <River align="end">
     <River.Visual>
       <img
         src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
@@ -152,17 +152,18 @@ import {River} from '@primer/react-brand'
 
 ### River <Label>Required</Label>
 
-| Name             | Type                            |                          Default                          | Description                                                                                                 |
-| :--------------- | :------------------------------ | :-------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------- |
-| `align`          | `'left'`, `'right'`, `'center'` |     <PropTableValues values={[defaultRiverAlign]} />      | Alignment of text content relative to the Visual position                                                   |
-| `imageTextRatio` | `'50:50'`, `'60:40'`            | <PropTableValues values={[defaultRiverImageTextRatio]} /> | The aspect ratio applied to the image in relation to the adjacent text. Affects overall layout proportions. |
+| Name             | Type                           |                          Default                          | Description                                                                                                 |
+| :--------------- | :----------------------------- | :-------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------- |
+| `align`          | `'start'`, `'end'`, `'center'` |     <PropTableValues values={[defaultRiverAlign]} />      | Alignment of text content relative to the Visual position                                                   |
+| `imageTextRatio` | `'50:50'`, `'60:40'`           | <PropTableValues values={[defaultRiverImageTextRatio]} /> | The aspect ratio applied to the image in relation to the adjacent text. Affects overall layout proportions. |
 
 ### River.Visual <Label>Required</Label>
 
-| Name        | Type           | Default | Description                                                                                                      |
-| :---------- | :------------- | :-----: | :--------------------------------------------------------------------------------------------------------------- |
-| `children`  | `ReactElement` |         | Bring your own component (BYOC) `img` or `ReactElement` (E.g. Next.js `Image` component)                         |
-| `hasShadow` | `boolean`      | `true`  | Shadow automatically applied to the `children`. Set be `false` when the child node has a transparent background. |
+| Name        | Type           | Default | Description                                                                                                                                   |
+| :---------- | :------------- | :-----: | :-------------------------------------------------------------------------------------------------------------------------------------------- |
+| `fillMedia` | `boolean`      |  true   | Automatically styles images and video to fill and fit the width of the parent. Disable this setting if you have bespoke styling requirements. |
+| `children`  | `ReactElement` |         | Bring your own component (BYOC) `img` or `ReactElement` (E.g. Next.js `Image` component)                                                      |
+| `hasShadow` | `boolean`      | `true`  | Shadow automatically applied to the `children`. Set be `false` when the child node has a transparent background.                              |
 
 ### River.Content <Label>Required</Label>
 
