@@ -30,7 +30,7 @@
     "fonts"
   ],
   "scripts": {
-    "analyze:build": "webpack -c webpack.analyze.js",
+    "analyze:build": "npm run build && webpack -c webpack.analyze.js",
     "build": "npm run clean && npm run build:css-types && npm run build:tokens && webpack -c webpack.build.js",
     "build:css-types": "tcm -p 'src/**/*.module.css' .",
     "build:types": "tsc --project tsconfig.build.json",
