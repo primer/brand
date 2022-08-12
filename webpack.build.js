@@ -1,29 +1,9 @@
-const {name: libraryName} = require('./package')
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const {merge} = require('webpack-merge')
+const commonConfig = require('./webpack.common')
 
-module.exports = {
-  entry: './src/index.ts',
-  output: {
-    path: path.resolve(__dirname, 'lib'),
-    filename: 'index.js',
-    library: libraryName,
-    libraryTarget: 'umd',
-    globalObject: 'this',
-    umdNamedDefine: true
-  },
-  externals: {
-    react: {
-      root: 'React',
-      commonjs2: 'react',
-      commonjs: 'react'
-    },
-    'react-dom': {
-      root: 'ReactDOM',
-      commonjs2: 'react-dom',
-      commonjs: 'react-dom'
-    }
-  },
+module.exports = merge(commonConfig, {
   mode: 'production',
   module: {
     rules: [
@@ -63,13 +43,10 @@ module.exports = {
       }
     ]
   },
-  resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.css']
-  },
   plugins: [
     // Extract library css into a separate file
     new MiniCssExtractPlugin({
       filename: './css/[name].css'
     })
   ]
-}
+})
