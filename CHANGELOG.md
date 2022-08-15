@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- [#59](https://github.com/primer/react-brand/pull/59) [`fdc731b`](https://github.com/primer/react-brand/commit/fdc731bda050aaef7041aafe6aaa7857c49ea03b) Thanks [@rezrah](https://github.com/rezrah)! - Added `fillMedia` prop to River.Visual
+- [#59](https://github.com/primer/brand/pull/59) [`fdc731b`](https://github.com/primer/brand/commit/fdc731bda050aaef7041aafe6aaa7857c49ea03b) Thanks [@rezrah](https://github.com/rezrah)! - Added `fillMedia` prop to River.Visual
 
   Previously, all image and video children were automatically styled to fit the parent elements dimensions.
 
@@ -14,11 +14,11 @@
 
 ### Minor Changes
 
-- [`c8609a8`](https://github.com/primer/react-brand/commit/c8609a8d35ea80192d85e97794390207f4624e63) Thanks [@rezrah](https://github.com/rezrah)! - added an FAQ component, which displays a list of questions and answers relating to a particular subject.
+- [`c8609a8`](https://github.com/primer/brand/commit/c8609a8d35ea80192d85e97794390207f4624e63) Thanks [@rezrah](https://github.com/rezrah)! - added an FAQ component, which displays a list of questions and answers relating to a particular subject.
 
   [See usage examples](https://primer.style/react-brand/components/FAQ)
 
-* [#45](https://github.com/primer/react-brand/pull/45) [`2fb6924`](https://github.com/primer/react-brand/commit/2fb6924a834ddcbad34cfb97ecfc1659d54f4ed5) Thanks [@rezrah](https://github.com/rezrah)! - > **Warning**
+* [#45](https://github.com/primer/brand/pull/45) [`2fb6924`](https://github.com/primer/brand/commit/2fb6924a834ddcbad34cfb97ecfc1659d54f4ed5) Thanks [@rezrah](https://github.com/rezrah)! - > **Warning**
 
   > This is a breaking change, but as the library is a pre-v1 release we are publishing this update as a `minor` change.
   > Please read the following instructions carefully before updating:
@@ -38,13 +38,13 @@
 
 ### Patch Changes
 
-- [#38](https://github.com/primer/react-brand/pull/38) [`b0c9293`](https://github.com/primer/react-brand/commit/b0c929389d62f184e5ae447c0b00e351cb2d1c6e) Thanks [@rezrah](https://github.com/rezrah)! - updated `css-loader` to generate valid (escaped) class names
+- [#38](https://github.com/primer/brand/pull/38) [`b0c9293`](https://github.com/primer/brand/commit/b0c929389d62f184e5ae447c0b00e351cb2d1c6e) Thanks [@rezrah](https://github.com/rezrah)! - updated `css-loader` to generate valid (escaped) class names
 
 ## 0.2.0
 
 ### Minor Changes
 
-- [#33](https://github.com/primer/react-brand/pull/33) [`662fcfc`](https://github.com/primer/react-brand/commit/662fcfc6d123460730317b7ddd3d3a4622d30dce) Thanks [@rezrah](https://github.com/rezrah)! - - Adds `River` component
+- [#33](https://github.com/primer/brand/pull/33) [`662fcfc`](https://github.com/primer/brand/commit/662fcfc6d123460730317b7ddd3d3a4622d30dce) Thanks [@rezrah](https://github.com/rezrah)! - - Adds `River` component
 
   - Renames `LinkButton` to `Button` :warning: (see below)
   - Button supports polymorphism and can be used `as` either `a` or `button`
@@ -143,13 +143,13 @@
 
 ### Minor Changes
 
-- [#19](https://github.com/primer/react-brand/pull/19) [`3b22e9e`](https://github.com/primer/react-brand/commit/3b22e9e0823401104d6e33b3c4f8664b755ea6ba) Thanks [@colebemis](https://github.com/colebemis)! - Add `size` prop to `Hero` component
+- [#19](https://github.com/primer/brand/pull/19) [`3b22e9e`](https://github.com/primer/brand/commit/3b22e9e0823401104d6e33b3c4f8664b755ea6ba) Thanks [@colebemis](https://github.com/colebemis)! - Add `size` prop to `Hero` component
 
 ### Patch Changes
 
-- [#23](https://github.com/primer/react-brand/pull/23) [`77abf53`](https://github.com/primer/react-brand/commit/77abf535e77ef26fa29fb09d6d2dfb746f4bc383) Thanks [@rezrah](https://github.com/rezrah)! - add Text and Heading components
+- [#23](https://github.com/primer/brand/pull/23) [`77abf53`](https://github.com/primer/brand/commit/77abf535e77ef26fa29fb09d6d2dfb746f4bc383) Thanks [@rezrah](https://github.com/rezrah)! - add Text and Heading components
 
-* [#29](https://github.com/primer/react-brand/pull/29) [`144c7d7`](https://github.com/primer/react-brand/commit/144c7d762a91cb691699e4f8923ab08385c77966) Thanks [@rezrah](https://github.com/rezrah)! - Removed `gh-variables.css` from package as Brand variables are now surfaced in main.css
+* [#29](https://github.com/primer/brand/pull/29) [`144c7d7`](https://github.com/primer/brand/commit/144c7d762a91cb691699e4f8923ab08385c77966) Thanks [@rezrah](https://github.com/rezrah)! - Removed `gh-variables.css` from package as Brand variables are now surfaced in main.css
 
   **To upgrade:**
 
@@ -157,13 +157,13 @@
 
   - _Add_ `import "@primer/react-brand/lib/css/main.css"`
 
-- [#23](https://github.com/primer/react-brand/pull/23) [`77abf53`](https://github.com/primer/react-brand/commit/77abf535e77ef26fa29fb09d6d2dfb746f4bc383) Thanks [@rezrah](https://github.com/rezrah)! - forward className in Hero
+- [#23](https://github.com/primer/brand/pull/23) [`77abf53`](https://github.com/primer/brand/commit/77abf535e77ef26fa29fb09d6d2dfb746f4bc383) Thanks [@rezrah](https://github.com/rezrah)! - forward className in Hero
 
-* [#25](https://github.com/primer/react-brand/pull/25) [`4b00b72`](https://github.com/primer/react-brand/commit/4b00b72f5dbf5e578351ea77e1e74cddc69833e7) Thanks [@rezrah](https://github.com/rezrah)! - adds baseline tokens
+* [#25](https://github.com/primer/brand/pull/25) [`4b00b72`](https://github.com/primer/brand/commit/4b00b72f5dbf5e578351ea77e1e74cddc69833e7) Thanks [@rezrah](https://github.com/rezrah)! - adds baseline tokens
 
-- [#21](https://github.com/primer/react-brand/pull/21) [`ab06cce`](https://github.com/primer/react-brand/commit/ab06cceb6ed3b2eaca70f9738b9708343b4e6db9) Thanks [@rezrah](https://github.com/rezrah)! - Remove fixed background color from `Hero` to allow underlying customisation to be surfaced.
+- [#21](https://github.com/primer/brand/pull/21) [`ab06cce`](https://github.com/primer/brand/commit/ab06cceb6ed3b2eaca70f9738b9708343b4e6db9) Thanks [@rezrah](https://github.com/rezrah)! - Remove fixed background color from `Hero` to allow underlying customisation to be surfaced.
 
-* [#27](https://github.com/primer/react-brand/pull/27) [`ca2d300`](https://github.com/primer/react-brand/commit/ca2d3002ba6f7ca9c719f80077c4d95246f33410) Thanks [@rezrah](https://github.com/rezrah)! - Updated Hero text appearance
+* [#27](https://github.com/primer/brand/pull/27) [`ca2d300`](https://github.com/primer/brand/commit/ca2d3002ba6f7ca9c719f80077c4d95246f33410) Thanks [@rezrah](https://github.com/rezrah)! - Updated Hero text appearance
 
   - **updated** Hero description text size from `500` to `400`
   - **updated** button alignment to not stretch on mobile viewports
@@ -173,10 +173,10 @@
 
 ### Patch Changes
 
-- [#18](https://github.com/primer/react-brand/pull/18) [`0835830`](https://github.com/primer/react-brand/commit/0835830fc15c582e280ac692ff3d578d6bcf282e) Thanks [@rezrah](https://github.com/rezrah)! - Fixes for production bundles
+- [#18](https://github.com/primer/brand/pull/18) [`0835830`](https://github.com/primer/brand/commit/0835830fc15c582e280ac692ff3d578d6bcf282e) Thanks [@rezrah](https://github.com/rezrah)! - Fixes for production bundles
 
 ## 0.0.2
 
 ### Patch Changes
 
-- [#2](https://github.com/primer/react-brand/pull/2) [`ab01a8a`](https://github.com/primer/react-brand/commit/ab01a8ad1dc504f7a2865213b6f41c0b0adba131) Thanks [@colebemis](https://github.com/colebemis)! - Initialize releases with [changesets](https://github.com/changesets/changesets)
+- [#2](https://github.com/primer/brand/pull/2) [`ab01a8a`](https://github.com/primer/brand/commit/ab01a8ad1dc504f7a2865213b6f41c0b0adba131) Thanks [@colebemis](https://github.com/colebemis)! - Initialize releases with [changesets](https://github.com/changesets/changesets)

@@ -79,7 +79,7 @@ jobs:
             If the changes are expected, please run `npm run test:visual:update-snapshots` to replace the previous fixtures.
             </details> 
 
-            [Review visual differences](https://github.com/primer/react-brand/actions/runs/${{ github.run_id }})
+            [Review visual differences](https://github.com/primer/brand/actions/runs/${{ github.run_id }})
 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COMMENT_IDENTIFIER: 'visual-comparison-diff'
