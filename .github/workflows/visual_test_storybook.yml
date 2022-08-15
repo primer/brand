@@ -5,7 +5,7 @@ on:
 
 jobs:
   ci:
-    if: ${{ github.repository == 'primer/react-brand' }}
+    if: ${{ github.repository == 'primer/brand' }}
     name: Storybook
     runs-on: ubuntu-latest
     steps:

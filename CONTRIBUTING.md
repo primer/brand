@@ -4,7 +4,7 @@ We're thrilled that you'd like to contribute to this project. Your help is essen
 
 ## Using the issue tracker
 
-The [issue tracker](https://github.com/primer/react-brand/issues) is the preferred channel for [bug reports](#bug-reports) and [submitting pull requests](#pull-requests), but please respect the following restrictions:
+The [issue tracker](https://github.com/primer/brand/issues) is the preferred channel for [bug reports](#bug-reports) and [submitting pull requests](#pull-requests), but please respect the following restrictions:
 
 - Please **do not** use the issue tracker for personal support requests.
 - Please **do not** derail or troll issues. Keep the discussion on topic and respect the opinions of others.
@@ -21,7 +21,7 @@ Guidelines for bug reports:
 
 1. **Isolate the problem** &mdash; ideally create a isolated example, using a 'vanilla' configuration of your chosen framework. CodeSandbox and StackBlitz offer an easy way to do this.
 
-[Use our issue template to help you report bugs](https://github.com/primer/react-brand/issues/new?assignees=&labels=&template=bug_report.md), if you're confident the bug is still valid.
+[Use our issue template to help you report bugs](https://github.com/primer/brand/issues/new?assignees=&labels=&template=bug_report.md), if you're confident the bug is still valid.
 
 ## Pull requests
 
@@ -31,7 +31,7 @@ Good pull requests are a fantastic help. They should remain focused in scope and
 
 ### Updating Primer Brand
 
-1. Clone [this repository](https://github.com/primer/react-brand).
+1. Clone [this repository](https://github.com/primer/brand).
 1. Create a new feature branch: `git checkout -b my-handle/my-branch-name`.
 1. Configure and install the dependencies: `npm install`
 1. Make your changes and commit them.
@@ -39,7 +39,7 @@ Good pull requests are a fantastic help. They should remain focused in scope and
    - See [changesets/changesets](https://github.com/changesets/changesets) for more information.
 1. Push your branch and open a pull request. **Please use the supplied pull request template**.
 1. Wait for CI tests to complete.
-   - If the tests pass, you should see a status check advising you that a canary build of `@primer/react-brand` has been published, and ready to test in-app.
+   - If the tests pass, you should see a status check advising you that a canary build of `@primer/brand` has been published, and ready to test in-app.
    - If the tests fail, review the logs and address any issues.
    - If the builds fail for any other reason (as they occasionally do), they may need to be manually restarted.
 1. Pat yourself on the back and wait for your pull request to be reviewed.
@@ -58,5 +58,5 @@ See [RELEASING.md](RELEASING.md) for our release process.
 - [Using Pull Requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests)
 - [GitHub Help](https://docs.github.com)
 
-[fork]: https://github.com/primer/react-brand/fork
-[pr]: https://github.com/primer/react-brand/compare
+[fork]: https://github.com/primer/brand/fork
+[pr]: https://github.com/primer/brand/compare
