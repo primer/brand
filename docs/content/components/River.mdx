@@ -156,19 +156,28 @@ import {River} from '@primer/react-brand'
 | :--------------- | :----------------------------- | :-------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------- |
 | `align`          | `'start'`, `'end'`, `'center'` |     <PropTableValues values={[defaultRiverAlign]} />      | Alignment of text content relative to the Visual position                                                   |
 | `imageTextRatio` | `'50:50'`, `'60:40'`           | <PropTableValues values={[defaultRiverImageTextRatio]} /> | The aspect ratio applied to the image in relation to the adjacent text. Affects overall layout proportions. |
+| `className`      | `string`                       |                                                           | Sets a custom class on the root element                                                                     |
+| `id`             | `string`                       |                                                           | Sets a custom id                                                                                            |
+| `ref`            | `React.RefObject`              |                                                           | Forward a Ref to the underlying DOM node                                                                    |
 
 ### River.Visual <Label>Required</Label>
 
-| Name        | Type           | Default | Description                                                                                                                                   |
-| :---------- | :------------- | :-----: | :-------------------------------------------------------------------------------------------------------------------------------------------- |
-| `fillMedia` | `boolean`      |  true   | Automatically styles images and video to fill and fit the width of the parent. Disable this setting if you have bespoke styling requirements. |
-| `children`  | `ReactElement` |         | Bring your own component (BYOC) `img` or `ReactElement` (E.g. Next.js `Image` component)                                                      |
-| `hasShadow` | `boolean`      | `true`  | Shadow automatically applied to the `children`. Set be `false` when the child node has a transparent background.                              |
+| Name        | Type              | Default | Description                                                                                                                                   |
+| :---------- | :---------------- | :-----: | :-------------------------------------------------------------------------------------------------------------------------------------------- |
+| `fillMedia` | `boolean`         |  true   | Automatically styles images and video to fill and fit the width of the parent. Disable this setting if you have bespoke styling requirements. |
+| `children`  | `ReactElement`    |         | Bring your own component (BYOC) `img` or `ReactElement` (E.g. Next.js `Image` component)                                                      |
+| `hasShadow` | `boolean`         | `true`  | Shadow automatically applied to the `children`. Set be `false` when the child node has a transparent background.                              |
+| `className` | `string`          |         | Sets a custom class on the root element                                                                                                       |
+| `id`        | `string`          |         | Sets a custom id                                                                                                                              |
+| `ref`       | `React.RefObject` |         | Forward a Ref to the underlying DOM node                                                                                                      |
 
 ### River.Content <Label>Required</Label>
 
 [`Text`](https://primer.style/react-brand/components/Text),[`Heading`](https://primer.style/react-brand/components/Heading), [`Link`](https://primer.style/react-brand/components/Link) are the only `children` accepted. They can be composed in any order, but their rendered output will always be in the in the predetermined order.
 
-| Name       | Type                                                                                                                                                                                    | Default | Description                                      |
-| :--------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----: | :----------------------------------------------- |
-| `children` | [`Text`](https://primer.style/react-brand/components/Text),[`Heading`](https://primer.style/react-brand/components/Heading), [`Link`](https://primer.style/react-brand/components/Link) |         | Content that corrosponds to the adjacent visual. |
+| Name        | Type                                                                                                                                                                                    | Default | Description                                      |
+| :---------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----: | :----------------------------------------------- |
+| `children`  | [`Text`](https://primer.style/react-brand/components/Text),[`Heading`](https://primer.style/react-brand/components/Heading), [`Link`](https://primer.style/react-brand/components/Link) |         | Content that corrosponds to the adjacent visual. |
+| `className` | `string`                                                                                                                                                                                |         | Sets a custom class on the root element          |
+| `id`        | `string`                                                                                                                                                                                |         | Sets a custom id                                 |
+| `ref`       | `React.RefObject`                                                                                                                                                                       |         | Forward a Ref to the underlying DOM node         |
