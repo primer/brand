@@ -16,7 +16,7 @@
 
 - [`c8609a8`](https://github.com/primer/brand/commit/c8609a8d35ea80192d85e97794390207f4624e63) Thanks [@rezrah](https://github.com/rezrah)! - added an FAQ component, which displays a list of questions and answers relating to a particular subject.
 
-  [See usage examples](https://primer.style/react-brand/components/FAQ)
+  [See usage examples](https://primer.style/brand/components/FAQ)
 
 * [#45](https://github.com/primer/brand/pull/45) [`2fb6924`](https://github.com/primer/brand/commit/2fb6924a834ddcbad34cfb97ecfc1659d54f4ed5) Thanks [@rezrah](https://github.com/rezrah)! - > **Warning**
 
@@ -87,7 +87,7 @@
   </table>
 
   See more examples in our documentation.
-  https://primer.style/react-brand/components/River
+  https://primer.style/brand/components/River
 
   ### `LinkButton`
 
