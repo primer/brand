@@ -41,7 +41,9 @@ jobs:
         run: npm pack
 
       - name: Configuring Remix.run
-        run: echo "yes" | npx create-remix --template remix-run/indie-stack remix-test  --typescript
+        # run: echo "yes" | npx create-remix --template remix-run/indie-stack remix-test  --typescript
+        # FIXME: remix.init failing. wait for fix to merge and re-enable: https://github.com/remix-run/indie-stack/issues/140
+        run: echo "yes" | npx create-remix --template https://github.com/MichaelDeBoey/indie-stack/tree/fix-convert-to-js --typescript
 
       - name: Retrieving package version
         id: package-version
