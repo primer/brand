@@ -1,6 +1,7 @@
-import React, {PropsWithChildren} from 'react'
+import React, {PropsWithChildren, forwardRef, type Ref} from 'react'
 import clsx from 'clsx'
 import styles from './Heading.module.css'
+import type {BaseProps} from '../component-helpers'
 
 export const HeadingSizes = ['1', '2', '3', '4', '5', '6'] as const
 export const HeadingTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const
@@ -15,7 +16,7 @@ export const classMap = {
   h6: HeadingSizes[5]
 }
 
-type HeadingTags = {
+type HeadingTags = BaseProps<HTMLHeadingElement> & {
   as?: typeof HeadingTags[number]
 } & React.HTMLAttributes<HTMLHeadingElement>
 
@@ -23,25 +24,30 @@ export type HeadingProps = {
   className?: string
 } & HeadingTags
 
-export function Heading({className, children, as = defaultHeadingTag, ...rest}: PropsWithChildren<HeadingProps>) {
-  const headingClassNames = clsx(styles.Heading, styles[`Heading--${classMap[as]}`], className)
+export const Heading = forwardRef(
+  (
+    {className, children, as = defaultHeadingTag, ...rest}: PropsWithChildren<HeadingProps>,
+    ref: Ref<HTMLHeadingElement>
+  ) => {
+    const headingClassNames = clsx(styles.Heading, styles[`Heading--${classMap[as]}`], className)
 
-  const HeadingComponent = React.useCallback(
-    ({...props}: React.HTMLAttributes<HTMLHeadingElement>) => {
-      if (!HeadingTags.includes(as)) {
-        // eslint-disable-next-line no-console
-        console.error(`Heading: 'as' prop must be one of ${HeadingTags.join(', ')}`)
-        return null
-      }
+    const HeadingComponent = React.useCallback(
+      ({...props}: React.HTMLAttributes<HTMLHeadingElement>) => {
+        if (!HeadingTags.includes(as)) {
+          // eslint-disable-next-line no-console
+          console.error(`Heading: 'as' prop must be one of ${HeadingTags.join(', ')}`)
+          return null
+        }
 
-      return React.createElement(as, props, children)
-    },
-    [as, children]
-  )
+        return React.createElement(as, props, children)
+      },
+      [as, children]
+    )
 
-  return (
-    <HeadingComponent className={headingClassNames} {...rest}>
-      {children}
-    </HeadingComponent>
-  )
-}
+    return (
+      <HeadingComponent className={headingClassNames} ref={ref} {...rest}>
+        {children}
+      </HeadingComponent>
+    )
+  }
+)

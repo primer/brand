@@ -51,6 +51,9 @@ The `Heading` size is determined by the type of HTML element specified. E.g. `h1
 
 ### Heading
 
-| Name | Type                                                   |                     Default                      | Description                         |
-| :--- | :----------------------------------------------------- | :----------------------------------------------: | :---------------------------------- |
-| `as` | <PropTableValues values={HeadingTags} addLineBreaks /> | <PropTableValues values={[defaultHeadingTag]} /> | Applies the underlying HTML element |
+| Name        | Type                                                   |                     Default                      | Description                              |
+| :---------- | :----------------------------------------------------- | :----------------------------------------------: | :--------------------------------------- |
+| `as`        | <PropTableValues values={HeadingTags} addLineBreaks /> | <PropTableValues values={[defaultHeadingTag]} /> | Applies the underlying HTML element      |
+| `className` | `string`                                               |                                                  | Sets a custom class on the root element  |
+| `id`        | `string`                                               |                                                  | Sets a custom id                         |
+| `ref`       | `React.RefObject`                                      |                                                  | Forward a Ref to the underlying DOM node |
