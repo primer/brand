@@ -5,12 +5,12 @@
   "author": "GitHub, Inc.",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/primer/react-brand/issues"
+    "url": "https://github.com/primer/brand/issues"
   },
-  "homepage": "https://primer.style/react-brand",
+  "homepage": "https://primer.style/brand",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/primer/react-brand.git"
+    "url": "git+https://github.com/primer/brand.git"
   },
   "keywords": [
     "primer",

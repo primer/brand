@@ -11,25 +11,25 @@
 </p>
 
 <p align="center">
-  <a aria-label="npm package" href="https://www.npmjs.com/package/@primer/react-brand">
-    <img alt="" src="https://img.shields.io/npm/v/@primer/react-brand.svg">
+  <a aria-label="npm package" href="https://www.npmjs.com/package/@primer/brand">
+    <img alt="" src="https://img.shields.io/npm/v/@primer/brand.svg">
   </a>
-  <a aria-label="build status" href="https://github.com/primer/react-brand/actions/workflows/ci.yml">
-    <img alt="" src="https://github.com/primer/react-brand/actions/workflows/ci.yml/badge.svg">
+  <a aria-label="build status" href="https://github.com/primer/brand/actions/workflows/ci.yml">
+    <img alt="" src="https://github.com/primer/brand/actions/workflows/ci.yml/badge.svg">
   </a>
   <img src="https://img.shields.io/badge/status-experimental-red" alt="status: experimental">
-  <a aria-label="license" href="https://github.com/primer/react-brand/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/primer/react-brand" alt="">
+  <a aria-label="license" href="https://github.com/primer/brand/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/primer/brand" alt="">
   </a>
 </p>
 
 <p align="center">
-    <a href="https://primer.github.io/react-brand/" target="_blank">https://primer.style/react-brand</a>
+    <a href="https://primer.github.io/brand/" target="_blank">https://primer.style/brand</a>
 </p>
 
 ## Documentation
 
-Our documentation site lives at [primer.style/react-brand](https://primer.style/react-brand). You'll be able to find detailed documentation on getting started, all of the components and more.
+Our documentation site lives at [primer.style/brand](https://primer.style/brand). You'll be able to find detailed documentation on getting started, all of the components and more.
 
 ## Install
 
@@ -41,7 +41,7 @@ npm install @primer/react-brand
 
 ## Usage
 
-See our [getting started guide](https://primer.github.io/react-brand/getting-started) for more information.
+See our [getting started guide](https://primer.github.io/brand/getting-started) for more information.
 
 ## Contributing
 

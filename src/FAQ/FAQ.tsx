@@ -98,7 +98,7 @@ function FAQSubheading({children, className}: FAQSubheadingProps) {
 
 /**
  * FAQ component:
- * {@link https://primer.style/react-brand/components/FAQ/ See usage examples}.
+ * {@link https://primer.style/brand/components/FAQ/ See usage examples}.
  */
 export const FAQ = Object.assign(FAQRoot, {
   Subheading: FAQSubheading,
