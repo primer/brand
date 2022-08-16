@@ -1,8 +1,8 @@
 ---
 title: Heading
 status: Experimental
-source: https://github.com/primer/react-brand/tree/main/src/Heading/Heading.tsx
-storybook: '/react-brand/storybook/?path=/story/components-heading--default'
+source: https://github.com/primer/brand/tree/main/src/Heading/Heading.tsx
+storybook: '/brand/storybook/?path=/story/components-heading--default'
 description: Use the Heading component to render body content
 ---
 
@@ -51,6 +51,9 @@ The `Heading` size is determined by the type of HTML element specified. E.g. `h1
 
 ### Heading
 
-| Name | Type                                                   |                     Default                      | Description                         |
-| :--- | :----------------------------------------------------- | :----------------------------------------------: | :---------------------------------- |
-| `as` | <PropTableValues values={HeadingTags} addLineBreaks /> | <PropTableValues values={[defaultHeadingTag]} /> | Applies the underlying HTML element |
+| Name        | Type                                                   |                     Default                      | Description                              |
+| :---------- | :----------------------------------------------------- | :----------------------------------------------: | :--------------------------------------- |
+| `as`        | <PropTableValues values={HeadingTags} addLineBreaks /> | <PropTableValues values={[defaultHeadingTag]} /> | Applies the underlying HTML element      |
+| `className` | `string`                                               |                                                  | Sets a custom class on the root element  |
+| `id`        | `string`                                               |                                                  | Sets a custom id                         |
+| `ref`       | `React.RefObject`                                      |                                                  | Forward a Ref to the underlying DOM node |

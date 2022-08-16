@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   build_deploy:
-    if: ${{ github.repository == 'primer/react-brand' }}
+    if: ${{ github.repository == 'primer/brand' }}
     name: Build and deploy
     uses: primer/.github/.github/workflows/deploy.yml@main
     with:
