@@ -17,6 +17,10 @@ export type TextInputProps = {
   /**
    *
    */
+  leadingText?: string
+  /**
+   *
+   */
   leadingVisual?: React.ReactNode
   /**
    *
@@ -26,6 +30,10 @@ export type TextInputProps = {
    *
    */
   size?: 'medium' | 'large'
+  /**
+   *
+   */
+  trailingText?: string
   /**
    *
    */
@@ -43,10 +51,12 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       disabled,
       fullWidth = false,
       inset,
+      leadingText,
       leadingVisual: LeadingVisual,
       monospace,
       placeholder,
       size = 'medium',
+      trailingText,
       trailingVisual: TrailingVisual,
       validationStatus,
       ...rest
@@ -54,8 +64,25 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
     ref
   ) => {
     return (
-      <span className={clsx(styles['TextInput-wrapper'], fullWidth && styles['TextInput-wrapper--fullWidth'])}>
-        {LeadingVisual && (
+      <span
+        className={clsx(
+          styles['TextInput-wrapper'],
+          fullWidth && styles['TextInput-wrapper--fullWidth'],
+          monospace && styles['TextInput-wrapper--monospace']
+        )}
+      >
+        {leadingText && !LeadingVisual && (
+          <span
+            className={clsx(
+              styles['TextInput-leading-text'],
+              styles[`TextInput-leading-text--${size}`],
+              validationStatus && styles[`TextInput-leading-text--${validationStatus}`]
+            )}
+          >
+            {leadingText}
+          </span>
+        )}
+        {LeadingVisual && !leadingText && (
           <span className={styles['TextInput-leading-visual']}>
             {typeof LeadingVisual === 'function' ? (
               <LeadingVisual
@@ -79,15 +106,16 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
             fullWidth && styles['TextInput--fullWidth'],
             inset && styles['TextInput--inset'],
             LeadingVisual && styles[`TextInput--has-leading-visual--${size}`],
-            monospace && styles['TextInput--monospace'],
             TrailingVisual && styles['TextInput--has-trailing-visual'],
-            validationStatus && styles[`TextInput--${validationStatus}`]
+            validationStatus && styles[`TextInput--${validationStatus}`],
+            leadingText && !LeadingVisual && styles['TextInput--has-leading-text'],
+            trailingText && !TrailingVisual && styles['TextInput--has-trailing-text']
           )}
           placeholder={placeholder}
           disabled={disabled}
           {...rest}
         />
-        {TrailingVisual && (
+        {TrailingVisual && !trailingText && (
           <span className={styles['TextInput-trailing-visual']}>
             {typeof TrailingVisual === 'function' ? (
               <TrailingVisual
@@ -99,6 +127,17 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
             ) : (
               TrailingVisual
             )}
+          </span>
+        )}
+        {trailingText && !TrailingVisual && (
+          <span
+            className={clsx(
+              styles['TextInput-trailing-text'],
+              styles[`TextInput-trailing-text--${size}`],
+              validationStatus && styles[`TextInput-trailing-text--${validationStatus}`]
+            )}
+          >
+            {trailingText}
           </span>
         )}
       </span>
