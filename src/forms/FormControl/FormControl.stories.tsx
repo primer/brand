@@ -8,6 +8,15 @@ export default {
   title: 'Components/Forms/FormControl',
   component: FormControl,
   argTypes: {
+    label: {
+      type: 'string',
+      name: 'label',
+      defaultValue: 'Label',
+      description: 'string',
+      table: {
+        category: 'Label'
+      }
+    },
     leadingText: {
       type: 'string',
       name: 'leading text',
@@ -55,6 +64,7 @@ export default {
     fullWidth: {
       description: 'formerly called Block',
       control: {type: 'boolean'},
+      defaultValue: false,
       table: {
         category: 'Input'
       }
@@ -63,6 +73,7 @@ export default {
     monospace: {
       description: 'monospace text',
       control: {type: 'boolean'},
+      defaultValue: false,
       table: {
         category: 'Input'
       }
@@ -70,6 +81,7 @@ export default {
     inset: {
       description: 'formerly called Contrast',
       control: {type: 'boolean'},
+      defaultValue: false,
       table: {
         category: 'Input'
       }
@@ -77,6 +89,7 @@ export default {
     disabled: {
       description: 'disabled field',
       control: {type: 'boolean'},
+      defaultValue: false,
       table: {
         category: 'Input'
       }
@@ -84,6 +97,7 @@ export default {
     required: {
       description: 'required field',
       control: {type: 'boolean'},
+      defaultValue: false,
       table: {
         category: 'Input'
       }
@@ -98,6 +112,7 @@ export default {
     },
     leadingVisual: {
       control: {type: 'boolean'},
+      defaultValue: false,
       name: 'leading visual',
       description: 'Octicon',
       table: {
@@ -106,10 +121,43 @@ export default {
     },
     trailingVisual: {
       control: {type: 'boolean'},
+      defaultValue: false,
       name: 'trailing visual',
       description: 'Octicon',
       table: {
         category: 'Input'
+      }
+    },
+    className: {
+      type: 'string',
+      name: 'className',
+      description: 'string',
+      table: {
+        category: 'Root'
+      }
+    },
+    id: {
+      type: 'string',
+      name: 'id',
+      description: 'string',
+      table: {
+        category: 'Root'
+      }
+    },
+    ref: {
+      type: 'function',
+      name: 'ref',
+      description: 'string',
+      table: {
+        disable: true
+      }
+    },
+    children: {
+      type: 'function',
+      name: 'children',
+      description: 'string',
+      table: {
+        disable: true
       }
     }
   }
@@ -124,7 +172,7 @@ const Template = args => {
       fullWidth={args.fullWidth}
       {...args}
     >
-      <FormControl.Label>Enterprise URL</FormControl.Label>
+      <FormControl.Label>{args.label}</FormControl.Label>
       <FormControl.TextInput
         validationStatus={args.validationStatus}
         leadingVisual={args.leadingVisual ? CheckIcon : undefined}
@@ -140,6 +188,7 @@ const Template = args => {
       />
 
       {args.validationStatus && args.validationStatus === 'error' && (
+        // eslint-disable-next-line i18n-text/no-en
         <FormControl.Validation>{args.validationText || 'This is an error message'}</FormControl.Validation>
       )}
       {args.validationStatus && args.validationStatus === 'success' && (
@@ -149,6 +198,4 @@ const Template = args => {
   )
 }
 
-export const Default = Template.bind({
-  title: 'Enterprise URL'
-})
+export const Playground = Template.bind({})

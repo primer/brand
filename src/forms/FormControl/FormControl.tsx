@@ -91,7 +91,7 @@ const FormControlTextInput = ({id, ...rest}: FormControlTextInputProps) => {
 
 type FormControlLabelProps = {
   children: string
-  htmlFor: string
+  htmlFor?: string
   required?: boolean
   validationStatus?: 'error' | 'success'
   size?: 'medium' | 'large'
