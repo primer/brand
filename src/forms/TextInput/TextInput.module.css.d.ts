@@ -3,13 +3,12 @@ declare const styles: {
   readonly "TextInput--medium": string;
   readonly "TextInput--large": string;
   readonly "TextInput--fullWidth": string;
-  readonly "TextInput--monospace": string;
   readonly "TextInput--inset": string;
   readonly "TextInput--success": string;
   readonly "TextInput--error": string;
-  readonly "TextInput--warning": string;
   readonly "TextInput-wrapper": string;
   readonly "TextInput-wrapper--fullWidth": string;
+  readonly "TextInput-wrapper--monospace": string;
   readonly "TextInput--has-leading-visual--medium": string;
   readonly "TextInput--has-leading-visual--large": string;
   readonly "TextInput--has-trailing-visual--medium": string;
@@ -18,6 +17,18 @@ declare const styles: {
   readonly "TextInput-trailing-visual": string;
   readonly "TextInput-leading-visual-icon--medium": string;
   readonly "TextInput-leading-visual-icon--large": string;
+  readonly "TextInput-leading-text": string;
+  readonly "TextInput-trailing-text": string;
+  readonly "TextInput-leading-text--medium": string;
+  readonly "TextInput-trailing-text--medium": string;
+  readonly "TextInput-leading-text--large": string;
+  readonly "TextInput-trailing-text--large": string;
+  readonly "TextInput--has-leading-text": string;
+  readonly "TextInput--has-trailing-text": string;
+  readonly "TextInput-leading-text--success": string;
+  readonly "TextInput-trailing-text--success": string;
+  readonly "TextInput-leading-text--error": string;
+  readonly "TextInput-trailing-text--error": string;
 };
 export = styles;
 

@@ -1,4 +1,4 @@
-import React, {forwardRef} from 'react'
+import React, {forwardRef, FC} from 'react'
 import {IconProps} from '@primer/octicons-react'
 import clsx from 'clsx'
 import type {BaseProps} from '../../component-helpers'
@@ -41,13 +41,18 @@ export type TextInputProps = {
   /**
    *
    */
-  validationStatus?: 'error' | 'success' | 'warning'
+  required?: boolean
+  /**
+   *
+   */
+  validationStatus?: 'error' | 'success'
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> &
   BaseProps<HTMLInputElement>
 
 export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
   (
     {
+      className,
       disabled,
       fullWidth = false,
       inset,
@@ -79,7 +84,11 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
               validationStatus && styles[`TextInput-leading-text--${validationStatus}`]
             )}
           >
-            {leadingText}
+            <span
+              className={clsx(styles['TextInput-leading-text-inner'], styles[`TextInput-leading-text-inner--${size}`])}
+            >
+              {leadingText}
+            </span>
           </span>
         )}
         {LeadingVisual && !leadingText && (
@@ -88,7 +97,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
               <LeadingVisual
                 className={clsx(
                   styles['TextInput-leading-visual-icon'],
-                  size && styles[`TextInput-leading-visual-icon--${size}`]
+                  styles[`TextInput-leading-visual-icon--${size}`]
                 )}
               />
             ) : (
@@ -109,10 +118,12 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
             TrailingVisual && styles['TextInput--has-trailing-visual'],
             validationStatus && styles[`TextInput--${validationStatus}`],
             leadingText && !LeadingVisual && styles['TextInput--has-leading-text'],
-            trailingText && !TrailingVisual && styles['TextInput--has-trailing-text']
+            trailingText && !TrailingVisual && styles['TextInput--has-trailing-text'],
+            className
           )}
           placeholder={placeholder}
           disabled={disabled}
+          aria-invalid={validationStatus === 'error'}
           {...rest}
         />
         {TrailingVisual && !trailingText && (
@@ -121,7 +132,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
               <TrailingVisual
                 className={clsx(
                   styles['TextInput-trailing-visual-icon'],
-                  size && styles[`TextInput-trailing-visual-icon--${size}`]
+                  styles[`TextInput-trailing-visual-icon--${size}`]
                 )}
               />
             ) : (
@@ -137,10 +148,18 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
               validationStatus && styles[`TextInput-trailing-text--${validationStatus}`]
             )}
           >
-            {trailingText}
+            <span
+              className={clsx(
+                styles['TextInput-trailing-text-inner'],
+                styles[`TextInput-trailing-text-inner--${size}`]
+              )}
+            >
+              {trailingText}
+            </span>
           </span>
         )}
       </span>
     )
   }
 )
+TextInput.displayName = 'TextInput'

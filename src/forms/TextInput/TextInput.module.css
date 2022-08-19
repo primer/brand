@@ -73,10 +73,6 @@
   border-color: var(--brand-color-error-fg);
 }
 
-.TextInput--warning {
-  border-color: var(--brand-color-warning-fg);
-}
-
 /*
  * TextInput wrapper
  */
@@ -155,20 +151,43 @@
   align-items: center;
   color: var(--brand-color-text-muted);
   pointer-events: none;
-  background-color: var(--brand-color-canvas-inset);
   border: solid var(--brand-borderWidth-thin, 1px) var(--brand-color-border-default);
-
   white-space: nowrap;
 }
 
 .TextInput-leading-text {
   border-top-left-radius: var(--brand-borderRadius-medium, 6px);
   border-bottom-left-radius: var(--brand-borderRadius-medium, 6px);
+  border-right: 0;
 }
 
 .TextInput-trailing-text {
   border-top-right-radius: var(--brand-borderRadius-medium, 6px);
   border-bottom-right-radius: var(--brand-borderRadius-medium, 6px);
+  border-left: 0;
+}
+
+.TextInput-leading-text-inner,
+.TextInput-trailing-text-inner {
+  display: inline-flex;
+  padding: 0 10px 0;
+}
+
+.TextInput-leading-text-inner {
+  border-right: 1px solid var(--brand-color-border-default);
+}
+
+.TextInput-trailing-text-inner {
+  border-left: 1px solid var(--brand-color-border-default);
+}
+
+.TextInput-leading-text-inner--medium,
+.TextInput-trailing-text-inner--medium {
+  height: 20px; /*calc(fullheight / 2*/
+}
+.TextInput-leading-text-inner--large,
+.TextInput-trailing-text-inner--large {
+  height: 24px; /*calc(fullheight / 2*/
 }
 
 .TextInput-leading-text--medium,
@@ -176,7 +195,6 @@
   font-weight: var(--brand-text-weight-200);
   font-size: var(--brand-text-size-200);
   height: 40px;
-  padding: 12px 10px 10px;
 }
 
 .TextInput-leading-text--large,
@@ -184,7 +202,6 @@
   font-weight: var(--brand-text-weight-300);
   font-size: var(--brand-text-size-300);
   height: 48px;
-  padding: 12px;
 }
 
 .TextInput--has-leading-text {
@@ -207,9 +224,4 @@
 .TextInput-leading-text--error,
 .TextInput-trailing-text--error {
   border-color: var(--brand-color-error-fg);
-}
-
-.TextInput-leading-text--warning,
-.TextInput-trailing-text--warning {
-  border-color: var(--brand-color-warning-fg);
 }

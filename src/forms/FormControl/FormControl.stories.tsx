@@ -1,11 +1,12 @@
 import React from 'react'
 import {ComponentMeta, ComponentStory} from '@storybook/react'
-import {TextInput} from '.'
+import {TextInput} from '../'
+import {FormControl} from '.'
 import {CheckIcon, SearchIcon} from '@primer/octicons-react'
 
 export default {
-  title: 'Components/Forms/TextInput',
-  component: TextInput,
+  title: 'Components/Forms/FormControl',
+  component: FormControl,
   argTypes: {
     leadingText: {
       type: 'string',
@@ -45,6 +46,12 @@ export default {
         category: 'Validation'
       }
     },
+    validationText: {
+      type: 'string',
+      table: {
+        category: 'Validation'
+      }
+    },
     fullWidth: {
       description: 'formerly called Block',
       control: {type: 'boolean'},
@@ -52,6 +59,7 @@ export default {
         category: 'Input'
       }
     },
+
     monospace: {
       description: 'monospace text',
       control: {type: 'boolean'},
@@ -105,15 +113,42 @@ export default {
       }
     }
   }
-} as ComponentMeta<typeof TextInput>
+} as ComponentMeta<typeof FormControl>
 
-const Template: ComponentStory<typeof TextInput> = args => (
-  <TextInput
-    aria-label="Standalone text input"
-    {...args}
-    leadingVisual={args.leadingVisual ? CheckIcon : undefined}
-    trailingVisual={args.trailingVisual ? SearchIcon : undefined}
-  />
-)
+const Template = args => {
+  return (
+    <FormControl
+      id="override"
+      required={args.required}
+      validationStatus={args.validationStatus}
+      fullWidth={args.fullWidth}
+      {...args}
+    >
+      <FormControl.Label>Enterprise URL</FormControl.Label>
+      <FormControl.TextInput
+        validationStatus={args.validationStatus}
+        leadingVisual={args.leadingVisual ? CheckIcon : undefined}
+        leadingText={args.leadingText}
+        trailingVisual={args.trailingVisual ? SearchIcon : undefined}
+        trailingText={args.trailingText}
+        disabled={args.disabled}
+        monospace={args.monospace}
+        inset={args.inset}
+        size={args.size}
+        placeholder={args.placeholder}
+        required={args.required}
+      />
 
-export const Default = Template.bind({})
+      {args.validationStatus && args.validationStatus === 'error' && (
+        <FormControl.Validation>{args.validationText || 'This is an error message'}</FormControl.Validation>
+      )}
+      {args.validationStatus && args.validationStatus === 'success' && (
+        <FormControl.Validation>{args.validationText || 'Great! It worked.'}</FormControl.Validation>
+      )}
+    </FormControl>
+  )
+}
+
+export const Default = Template.bind({
+  title: 'Enterprise URL'
+})

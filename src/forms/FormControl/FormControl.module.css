@@ -1,0 +1,64 @@
+.FormControl {
+  display: inline-flex;
+  font-family: var(--brand-body-fontFamily);
+  flex-direction: column;
+  gap: var(--base-size-8);
+}
+
+.FormControl--fullWidth {
+  width: 100%;
+}
+
+.FormControl-label {
+  color: var(--brand-color-text-default);
+  font-weight: var(--base-text-weight-semibold);
+  font-family: var(--brand-text-fontFamily);
+}
+
+.FormControl-label--medium {
+  letter-spacing: var(--brand-text-letterSpacing-200);
+  font-size: var(--brand-text-size-200);
+  line-height: var(--brand-text-lineHeight-200);
+}
+
+.FormControl-label--large {
+  letter-spacing: var(--brand-text-letterSpacing-300);
+  font-size: var(--brand-text-size-300);
+  line-height: var(--brand-text-lineHeight-300);
+}
+
+/*Validation*/
+.FormControl-validation {
+  font-weight: var(--base-text-weight-regular);
+  font-size: var(--brand-text-size-100);
+  line-height: var(--brand-text-lineHeight-100);
+  display: flex;
+  gap: var(--base-size-4);
+}
+
+.FormControl-validation--success {
+  color: var(--brand-color-success-fg);
+}
+
+.FormControl-validation--error {
+  color: var(--brand-color-error-fg);
+}
+
+.FormControl-validation-icon {
+  padding-top: 1px;
+}
+
+.FormControl-validation--animate-in {
+  animation: 170ms FormControlValidationFadeIn cubic-bezier(0.44, 0.74, 0.36, 1);
+}
+
+@keyframes FormControlValidationFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -37,24 +37,6 @@
           "darkValue": "hsl(var(--base-color-scale-red-4-hsl) / 85%)"
         }
       },
-      "warning": {
-        "fg": {
-          "value": "var(--base-color-scale-lemon-5)",
-          "darkValue": "var(--base-color-scale-lemon-4)"
-        },
-        "emphasis": {
-          "value": "var(--base-color-scale-lemon-5)",
-          "darkValue": "var(--base-color-scale-lemon-5)"
-        },
-        "muted": {
-          "value": "hsl(var(--base-color-scale-lemon-3-hsl) / 60%)",
-          "darkValue": "hsl(var(--base-color-scale-lemon-4-hsl) / 60%)"
-        },
-        "subtle": {
-          "value": "var(--base-color-scale-lemon-0)",
-          "darkValue": "hsl(var(--base-color-scale-lemon-4-hsl) / 85%)"
-        }
-      },
       "accent": {
         "fg": {
           "value": "var(--base-color-scale-pink-5)",
