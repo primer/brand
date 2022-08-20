@@ -22,7 +22,7 @@ import {River} from '@primer/react-brand'
 ### Default
 
 ```jsx live
-<Container p={3}>
+
   <River>
     <River.Visual>
       <img
@@ -74,78 +74,78 @@ import {River} from '@primer/react-brand'
       <Link href="#">Call to action</Link>
     </River.Content>
   </River>
-</Container>
+
 ```
 
 ### Image to text ratio
 
 ```jsx live
-<Container p={3}>
-  {/* 50/50 (default) example */}
-  <River>
-    <River.Visual>
-      <img
-        src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
-        alt="placeholder, blank area with an off-white background color"
-      />
-    </River.Visual>
-    <River.Content>
-      <Heading>50/50</Heading>
-      <Text>
-        <strong>By default</strong>, River applies a 50/50 image to text split.
-      </Text>
-    </River.Content>
-  </River>
-  {/* 60/40 example */}
-  <River imageTextRatio="60:40">
-    <River.Visual>
-      <img
-        src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
-        alt="placeholder, blank area with an off-white background color"
-      />
-    </River.Visual>
-    <River.Content>
-      <Heading>60/40</Heading>
-      <Text>This example applies an optional 60/40 image to text split.</Text>
-    </River.Content>
-  </River>
-</Container>
+{
+  /* 50/50 (default) example */
+}
+;<River>
+  <River.Visual>
+    <img
+      src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
+      alt="placeholder, blank area with an off-white background color"
+    />
+  </River.Visual>
+  <River.Content>
+    <Heading>50/50</Heading>
+    <Text>
+      <strong>By default</strong>, River applies a 50/50 image to text split.
+    </Text>
+  </River.Content>
+</River>
+{
+  /* 60/40 example */
+}
+;<River imageTextRatio="60:40">
+  <River.Visual>
+    <img
+      src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
+      alt="placeholder, blank area with an off-white background color"
+    />
+  </River.Visual>
+  <River.Content>
+    <Heading>60/40</Heading>
+    <Text>This example applies an optional 60/40 image to text split.</Text>
+  </River.Content>
+</River>
 ```
 
 ### Video
 
 ```jsx live
-<Container p={3}>
-  <River imageTextRatio="60:40">
-    <River.Visual hasShadow={false}>
-      <video
-        loop
-        playsInline
-        autoPlay
-        muted
-        aria-hidden="true"
-        poster="https://github.githubassets.com/images/modules/site/issues/issue-tasks-progress-placeholder.png"
-      >
-        <source
-          type="video/mp4; codecs=hevc,mp4a.40.2"
-          src="https://github.githubassets.com/images/modules/site/issues/issue-tasks-progress.hevc.mp4"
-        />
-        <source
-          type="video/mp4; codecs=avc1.4D401E,mp4a.40.2"
-          src="https://github.githubassets.com/images/modules/site/issues/issue-tasks-progress.h264.mp4"
-        />
-      </video>
-    </River.Visual>
-    <River.Content>
-      <Heading>Break issues into actionable tasks</Heading>
-      <Text>
-        Tackle complex issues with task lists and track their status with new
-        progress indicators. Convert tasks into their own issues and navigate
-        your work hierarchy.
-      </Text>
-    </River.Content>
-  </River>
-</Container>
+<River imageTextRatio="60:40">
+  <River.Visual hasShadow={false}>
+    <video
+      loop
+      playsInline
+      autoPlay
+      muted
+      aria-hidden="true"
+      poster="https://github.githubassets.com/images/modules/site/issues/issue-tasks-progress-placeholder.png"
+    >
+      <source
+        type="video/mp4; codecs=hevc,mp4a.40.2"
+        src="https://github.githubassets.com/images/modules/site/issues/issue-tasks-progress.hevc.mp4"
+      />
+      <source
+        type="video/mp4; codecs=avc1.4D401E,mp4a.40.2"
+        src="https://github.githubassets.com/images/modules/site/issues/issue-tasks-progress.h264.mp4"
+      />
+    </video>
+  </River.Visual>
+  <River.Content>
+    <Heading>Break issues into actionable tasks</Heading>
+    <Text>
+      Tackle complex issues with task lists and track their status with new
+      progress indicators. Convert tasks into their own issues and navigate your
+      work hierarchy.
+    </Text>
+  </River.Content>
+</River>
 ```
 
 ## Component props

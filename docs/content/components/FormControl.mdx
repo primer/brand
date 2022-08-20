@@ -1,0 +1,50 @@
+---
+title: FormControl
+status: Experimental
+source: https://github.com/primer/brand/tree/main/src/FormControl/FormControl.tsx
+storybook: '/brand/storybook/?path=/story/components-forms-formcontrol--playground'
+description: Display form inputs and associated labels, validation messages and more.
+---
+
+import InlineCode from '@primer/gatsby-theme-doctocat/src/components/inline-code'
+import {Box as Container} from '@primer/react'
+import {PropTableValues} from '../../src/components'
+import {Label} from '@primer/react'
+
+```js
+import {FormControl} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<FormControl>
+  <FormControl.Label>Name</FormControl.Label>
+  <FormControl.TextInput />
+</FormControl>
+```
+
+## Component props
+
+### FormControl <Label>Required</Label>
+
+| Name        | Type              | Default | Description                              |
+| :---------- | :---------------- | :-----: | :--------------------------------------- |
+| `className` | `string`          |         | Sets a custom class                      |
+| `id`        | `string`          |         | Sets a custom id                         |
+| `ref`       | `React.RefObject` |         | Forward a Ref to the underlying DOM node |
+
+<h3 id="FormControl-heading">
+  FormControl.Label <Label>Required</Label>
+</h3>
+
+| Name        | Type                                                            |  Default   | Description                              |
+| :---------- | :-------------------------------------------------------------- | :--------: | :--------------------------------------- |
+| `align`     | <PropTableValues values={['start', 'center' ]} addLineBreaks /> | `'center'` | FormControl text alignment               |
+| `children`  | `string`                                                        |            | FormControl text                         |
+| `className` | `string`                                                        |            | FormControl custom class                 |
+| `id`        | `string`                                                        |            | Sets a custom id                         |
+| `ref`       | `React.RefObject`                                               |            | Forward a Ref to the underlying DOM node |
+| `size`      | <PropTableValues values={['medium', 'large' ]} addLineBreaks /> | `'medium'` |                                          |

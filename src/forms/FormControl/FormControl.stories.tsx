@@ -11,7 +11,7 @@ export default {
     label: {
       type: 'string',
       name: 'label',
-      defaultValue: 'Label',
+      defaultValue: 'Label of input',
       description: 'string',
       table: {
         category: 'Label'

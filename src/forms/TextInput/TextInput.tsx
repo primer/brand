@@ -81,6 +81,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
             className={clsx(
               styles['TextInput-leading-text'],
               styles[`TextInput-leading-text--${size}`],
+              inset && styles['TextInput-leading-text--inset'],
               validationStatus && styles[`TextInput-leading-text--${validationStatus}`]
             )}
           >
@@ -145,6 +146,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
             className={clsx(
               styles['TextInput-trailing-text'],
               styles[`TextInput-trailing-text--${size}`],
+              inset && styles['TextInput-trailing-text--inset'],
               validationStatus && styles[`TextInput-trailing-text--${validationStatus}`]
             )}
           >

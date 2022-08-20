@@ -48,7 +48,9 @@ export default function LivePreviewWrapper({children}) {
                 </ActionMenu.Overlay>
               </ActionMenu>
             </Box>
-            {children}
+            <Box px={5} py={3}>
+              {children}
+            </Box>
           </Box>
         </ThemeProvider>
       </Box>

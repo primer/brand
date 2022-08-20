@@ -155,6 +155,11 @@
   white-space: nowrap;
 }
 
+.TextInput-leading-text--inset,
+.TextInput-trailing-text--inset {
+  background-color: var(--brand-color-canvas-inset);
+}
+
 .TextInput-leading-text {
   border-top-left-radius: var(--brand-borderRadius-medium, 6px);
   border-bottom-left-radius: var(--brand-borderRadius-medium, 6px);
@@ -183,11 +188,11 @@
 
 .TextInput-leading-text-inner--medium,
 .TextInput-trailing-text-inner--medium {
-  height: 20px; /*calc(fullheight / 2*/
+  height: 18px; /*calc(fullheight / 2*/
 }
 .TextInput-leading-text-inner--large,
 .TextInput-trailing-text-inner--large {
-  height: 24px; /*calc(fullheight / 2*/
+  height: 22px; /*calc(fullheight / 2*/
 }
 
 .TextInput-leading-text--medium,

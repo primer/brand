@@ -19,7 +19,12 @@
     - title: River
       url: /components/River
 
-- title: Base components
+- title: Forms
+  children:
+    - title: FormControl
+      url: /components/FormControl
+
+- title: Typography
   children:
     - title: Heading
       url: /components/Heading
