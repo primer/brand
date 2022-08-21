@@ -3,11 +3,10 @@ title: FormControl
 status: Experimental
 source: https://github.com/primer/brand/tree/main/src/FormControl/FormControl.tsx
 storybook: '/brand/storybook/?path=/story/components-forms-formcontrol--playground'
-description: Display form inputs and associated labels, validation messages and more.
+description: Display form inputs alongside labels, validation and more.
 ---
 
 import InlineCode from '@primer/gatsby-theme-doctocat/src/components/inline-code'
-import {Box as Container} from '@primer/react'
 import {PropTableValues} from '../../src/components'
 import {Label} from '@primer/react'
 
@@ -19,6 +18,8 @@ import {FormControl} from '@primer/react-brand'
 
 ### Default
 
+`FormControl` is responsible for layout and ensuring that relevant IDs and ARIA attributes are passed to its `children`.
+
 ```jsx live
 <FormControl>
   <FormControl.Label>Name</FormControl.Label>
@@ -26,25 +27,190 @@ import {FormControl} from '@primer/react-brand'
 </FormControl>
 ```
 
+### Visually hidden label
+
+```jsx live
+<FormControl>
+  <FormControl.Label visuallyHidden>Name</FormControl.Label>
+  <FormControl.TextInput />
+</FormControl>
+```
+
+### Validation
+
+The following example demonstrates declarative form validation in [controlled mode](#).
+
+Try changing the input value to to `monalisa` to show the `success` state.
+
+```javascript live noinline
+const App = () => {
+  const [value, setValue] = React.useState()
+  const [validationState, setValidationState] = React.useState()
+
+  React.useEffect(() => {
+    const defaultHandle = 'mona lisa'
+    setValue(defaultHandle)
+    validate(defaultHandle)
+  }, [])
+
+  const validate = (inputValue) => {
+    if (/\s/g.test(inputValue)) {
+      setValidationState('error')
+    } else {
+      setValidationState('success')
+    }
+  }
+
+  const handleChange = (event) => {
+    event.preventDefault()
+    if (!event.target.value) {
+      setValue(undefined)
+      setValidationState(undefined)
+      return
+    }
+    setValue(event.target.value)
+    validate(event.target.value)
+  }
+
+  return (
+    <FormControl validationStatus={validationState}>
+      <FormControl.Label>GitHub handle</FormControl.Label>
+      <FormControl.TextInput onChange={handleChange} value={value} fullWidth />
+      {validationState && validationState === 'error' && (
+        <FormControl.Validation>
+          GitHub handles cannot contain spaces.{' '}
+          {value && `Did you mean "${value.replaceAll(' ', '')}"`}
+        </FormControl.Validation>
+      )}
+      {validationState && validationState === 'success' && (
+        <FormControl.Validation>Valid name</FormControl.Validation>
+      )}
+    </FormControl>
+  )
+}
+
+render(App)
+```
+
+### Full width
+
+Pass the `fullWidth` prop to `FormControl` to provide additional behavior and state context to all `children`, rather than the input only.
+
+```jsx live
+<FormControl fullWidth>
+  <FormControl.Label>Name</FormControl.Label>
+  <FormControl.TextInput />
+</FormControl>
+```
+
+### Sizes
+
+`FormControl` can appear in `medium` and `large` dimensions using the `size` prop.
+
+```jsx live
+<Box sx={{display: 'grid', gap: 3}}>
+  <FormControl size="medium">
+    <FormControl.Label>Medium</FormControl.Label>
+    <FormControl.TextInput />
+  </FormControl>
+
+  <FormControl size="large">
+    <FormControl.Label>Large</FormControl.Label>
+    <FormControl.TextInput />
+  </FormControl>
+</Box>
+```
+
+### Required
+
+Pass the `required` prop to `FormControl` to provide additional behavior and state context to all `children`, rather than the input only.
+
+```jsx live
+<FormControl required>
+  <FormControl.Label>Name</FormControl.Label>
+  <FormControl.TextInput />
+</FormControl>
+```
+
+### Using `refs`
+
+`FormControl` inputs can be used in [uncontrolled mode](#) by forwarding a `ref` to the underlying element.
+
+```javascript live noinline
+const App = () => {
+  const inputRef = React.useRef(null)
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (inputRef.current) {
+      alert(`Name: ${inputRef.current.value}`)
+    }
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <Box
+        sx={{
+          display: 'grid',
+          gap: 'var(--base-size-16)',
+          maxWidth: 400,
+          marginX: 'auto',
+        }}
+      >
+        <FormControl fullWidth>
+          <FormControl.Label>Name</FormControl.Label>
+          <FormControl.TextInput ref={inputRef} defaultValue="Mona Lisa" />
+        </FormControl>
+        <Button type="submit" variant="primary">
+          Submit
+        </Button>
+      </Box>
+    </form>
+  )
+}
+
+render(App)
+```
+
 ## Component props
 
 ### FormControl <Label>Required</Label>
 
-| Name        | Type              | Default | Description                              |
-| :---------- | :---------------- | :-----: | :--------------------------------------- |
-| `className` | `string`          |         | Sets a custom class                      |
-| `id`        | `string`          |         | Sets a custom id                         |
-| `ref`       | `React.RefObject` |         | Forward a Ref to the underlying DOM node |
+`FormControl` passes contextual data to its child inputs, labels, validation messaging and more.
 
-<h3 id="FormControl-heading">
+| Name               | Type                                                                                                                                        | Default | Description                                                       |
+| :----------------- | :------------------------------------------------------------------------------------------------------------------------------------------ | :-----: | :---------------------------------------------------------------- |
+| `children`         | <PropTableValues values={['FormControl.Label','FormControl.TextInput', 'FormControl.Validation', 'React.ReactElement', ]} addLineBreaks />, |         | Valid child nodes                                                 |
+| `className`        | `string`                                                                                                                                    |         | Sets a custom class                                               |
+| `id`               | `string`                                                                                                                                    |         | Sets a custom id                                                  |
+| `fullWidth`        | `boolean`                                                                                                                                   |         | Stretches elements visually to the edges of its parent container. |
+| `ref`              | `React.RefObject`                                                                                                                           |         | Forward a Ref to the underlying DOM node                          |
+| `size`             | <PropTableValues values={['medium', 'large' ]} addLineBreaks />                                                                             |         | Visual dimensions for input and label                             |
+| `validationStatus` | <PropTableValues values={['error', 'success' ]} addLineBreaks />                                                                            |         | Applies visual and semantic state to the underlying elements      |
+
+<h3 id="FormControl-label">
   FormControl.Label <Label>Required</Label>
 </h3>
 
-| Name        | Type                                                            |  Default   | Description                              |
-| :---------- | :-------------------------------------------------------------- | :--------: | :--------------------------------------- |
-| `align`     | <PropTableValues values={['start', 'center' ]} addLineBreaks /> | `'center'` | FormControl text alignment               |
-| `children`  | `string`                                                        |            | FormControl text                         |
-| `className` | `string`                                                        |            | FormControl custom class                 |
-| `id`        | `string`                                                        |            | Sets a custom id                         |
-| `ref`       | `React.RefObject`                                               |            | Forward a Ref to the underlying DOM node |
-| `size`      | <PropTableValues values={['medium', 'large' ]} addLineBreaks /> | `'medium'` |                                          |
+`FormControl.Label` should be provided for the `FormControl` to be accessible to assistive technology, but it may be visually hidden.
+
+| Name             | Type                                                            |  Default   | Description                              |
+| :--------------- | :-------------------------------------------------------------- | :--------: | :--------------------------------------- |
+| `children`       | `string`                                                        |            | Label text                               |
+| `className`      | `string`                                                        |            | Applies a custom class                   |
+| `id`             | `string`                                                        |            | Sets a custom id                         |
+| `ref`            | `React.RefObject`                                               |            | Forward a Ref to the underlying DOM node |
+| `size`           | <PropTableValues values={['medium', 'large' ]} addLineBreaks /> | `'medium'` | Set visual dimensions                    |
+| `visuallyHidden` | `boolean`                                                       |  `false`   | Hide for sighted users                   |
+
+Additional props can be passed to the `<label>` element. [See MDN for a list of props](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#attributes) accepted by the `<label>` element.
+
+<h3 id="FormControl-validation">FormControl.Validation</h3>
+
+| Name               | Type                                                             | Default | Description                                                               |
+| :----------------- | :--------------------------------------------------------------- | :-----: | :------------------------------------------------------------------------ |
+| `children`         | `string`                                                         |         | Validation message                                                        |
+| `className`        | `string`                                                         |         | FormControl.Validation custom class                                       |
+| `id`               | `string`                                                         |         | Sets a custom id                                                          |
+| `ref`              | `React.RefObject`                                                |         | Forward a Ref to the underlying DOM node                                  |
+| `validationStatus` | <PropTableValues values={['error', 'success' ]} addLineBreaks /> |         | Applies a visual and semantic validation state to the underlying elements |

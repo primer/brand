@@ -160,6 +160,7 @@ module.exports = {
         'react/jsx-no-undef': 0,
         'react/jsx-key': 0,
         'react/jsx-no-comment-textnodes': 0,
+        'i18n-text/no-en': 0,
         'import/no-anonymous-default-export': 0,
         'import/extensions': 0,
         'prettier/prettier': 0,

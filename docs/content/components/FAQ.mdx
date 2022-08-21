@@ -272,21 +272,19 @@ const App = () => {
   ]
 
   return (
-    <Container>
-      <FAQ>
-        <FAQ.Heading>Frequently asked questions</FAQ.Heading>
-        <>
-          {fixtureData.map(({question, answer}) => {
-            return (
-              <FAQ.Item key={question} open={false}>
-                <FAQ.Question>{question}</FAQ.Question>
-                <FAQ.Answer>{answer}</FAQ.Answer>
-              </FAQ.Item>
-            )
-          })}
-        </>
-      </FAQ>
-
+    <FAQ>
+      <FAQ.Heading>Frequently asked questions</FAQ.Heading>
+      <>
+        {fixtureData.map(({question, answer}) => {
+          return (
+            <FAQ.Item key={question} open={false}>
+              <FAQ.Question>{question}</FAQ.Question>
+              <FAQ.Answer>{answer}</FAQ.Answer>
+            </FAQ.Item>
+          )
+        })}
+      </>
+    </FAQ>
   )
 }
 

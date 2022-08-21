@@ -1,8 +1,8 @@
 import React from 'react'
-import {ComponentMeta, ComponentStory} from '@storybook/react'
-import {TextInput} from '../'
+import {ComponentMeta} from '@storybook/react'
 import {FormControl} from '.'
 import {CheckIcon, SearchIcon} from '@primer/octicons-react'
+import {Button} from '../../Button'
 
 export default {
   title: 'Components/Forms/FormControl',
@@ -31,6 +31,13 @@ export default {
       description: 'string',
       table: {
         category: 'Input'
+      }
+    },
+    visuallyHidden: {
+      control: {type: 'boolean'},
+      defaultValue: false,
+      table: {
+        category: 'Label'
       }
     },
     size: {
@@ -172,7 +179,7 @@ const Template = args => {
       fullWidth={args.fullWidth}
       {...args}
     >
-      <FormControl.Label>{args.label}</FormControl.Label>
+      <FormControl.Label visuallyHidden={args.visuallyHidden}>{args.label}</FormControl.Label>
       <FormControl.TextInput
         validationStatus={args.validationStatus}
         leadingVisual={args.leadingVisual ? CheckIcon : undefined}
@@ -199,3 +206,22 @@ const Template = args => {
 }
 
 export const Playground = Template.bind({})
+
+export const Ref = () => {
+  const inputRef = React.useRef<HTMLInputElement>(null)
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    alert(`Name: ${inputRef.current?.value}`)
+  }
+
+  return (
+    <form onSubmit={handleSubmit} style={{display: 'grid', gap: '2rem'}}>
+      <FormControl>
+        <FormControl.Label>Name</FormControl.Label>
+        <FormControl.TextInput ref={inputRef} defaultValue="Mona Lisa" />
+      </FormControl>
+      <Button type="submit">Submit</Button>
+    </form>
+  )
+}

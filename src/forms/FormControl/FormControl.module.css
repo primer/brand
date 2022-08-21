@@ -15,6 +15,18 @@
   font-family: var(--brand-text-fontFamily);
 }
 
+.FormControl-label--visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
 .FormControl-label--medium {
   letter-spacing: var(--brand-text-letterSpacing-200);
   font-size: var(--brand-text-size-200);

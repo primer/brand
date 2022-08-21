@@ -1,7 +1,5 @@
 import React from 'react'
-import {ComponentMeta, ComponentStory, Meta, Story} from '@storybook/react'
-import {FormControl, FormControlProps} from '.'
-import {CheckIcon, SearchIcon} from '@primer/octicons-react'
+import {FormControl} from '.'
 import {Heading, Button} from '../'
 import {Container} from '../component-helpers'
 
@@ -15,7 +13,7 @@ export const GitHubEnterprise = args => {
       style={{alignItems: 'center', display: 'grid', gap: 16, maxWidth: 390, marginTop: 'var(--base-size-32)'}}
     >
       <Heading as="h4">Get started</Heading>
-      <form onSubmit={() => console.log('done')}>
+      <form>
         <Container
           style={{
             alignItems: 'center',
