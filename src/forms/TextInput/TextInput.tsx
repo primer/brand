@@ -1,50 +1,52 @@
 import React, {forwardRef} from 'react'
 import clsx from 'clsx'
+
 import type {BaseProps} from '../../component-helpers'
+import type {FormInputSizes, FormValidationStatus} from '../form-types'
 
 import styles from './TextInput.module.css'
 
 export type TextInputProps = {
   /**
-   *
+   * Applies full width styling.
    */
   fullWidth?: boolean
   /**
-   *
+   * Applies inset styling
    */
   inset?: boolean
   /**
-   *
+   * Applies non-interactive text to start of input.
    */
   leadingText?: string
   /**
-   *
+   * Applies non-interactive iconography to start of input.
    */
   leadingVisual?: React.ReactNode
   /**
-   *
+   * Applies monospace styling.
    */
   monospace?: boolean
   /**
-   *
+   * Applies alternative sizing to the input
    */
-  size?: 'medium' | 'large'
+  size?: FormInputSizes
   /**
-   *
+   * Applies non-interactive text to end of input.
    */
   trailingText?: string
   /**
-   *
+   * Applies non-interactive iconography to end of input.
    */
   trailingVisual?: React.ReactNode
   /**
-   *
+   * Applies a required attribute to the input
    */
   required?: boolean
   /**
    *
    */
-  validationStatus?: 'error' | 'success'
+  validationStatus?: FormValidationStatus
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> &
   BaseProps<HTMLInputElement>
 

@@ -1,32 +1,42 @@
 import React from 'react'
 import {useId} from '@reach/auto-id' // TODO: Replace with useId from React v18 after upgrade
 import clsx from 'clsx'
+import {AlertFillIcon, CheckCircleFillIcon} from '@primer/octicons-react'
 
 import type {BaseProps} from '../../component-helpers'
+import type {FormValidationStatus, FormInputSizes} from '../'
+
 import {TextInput} from '../TextInput'
+
 import styles from './FormControl.module.css'
-import {AlertFillIcon, CheckCircleFillIcon} from '@primer/octicons-react'
 
 export type FormControlProps = BaseProps<HTMLElement> & {
   /**
-   * Only specific children are valid.
-   * These include: `FormControl.Visual` and `FormControl.Content`.
-   * The declarative order of the children will be ignored in the rendered output
-   * to enforce correct HTML semantics.
+   * Namespaced children include: `FormControl.Label`, `FormControl.TextInput`, `FormControl.Validation`.
    */
   children?: React.ReactElement[]
-
+  /**
+   * Applies full width styling.
+   */
   fullWidth?: boolean
   /**
-   * Unique identifier for the form control. This is used to associate the form control with the form control label.
+   * A unique identifier for the form control.
+   * This is used to associate the form control with its associated label.
+   * If an id is not provided, a unique id will be generated.
    */
   id?: string
-
+  /**
+   * Applies required styling to the label and input.
+   */
   required?: boolean
-
-  validationStatus?: 'error' | 'success'
-
-  size?: 'medium' | 'large'
+  /**
+   * Alternative sizes for inputs and labels.
+   */
+  size?: FormInputSizes
+  /**
+   * Provides contextual validation feedback to all children, showing relevant messaging where applicable.
+   */
+  validationStatus?: FormValidationStatus
 }
 
 const Root = ({
@@ -49,6 +59,9 @@ const Root = ({
     >
       {React.Children.map(children, child => {
         if (child) {
+          /**
+           * TextInput
+           */
           if (child.type === TextInput) {
             return React.cloneElement(child, {
               className: clsx(child.props.className),
@@ -60,6 +73,9 @@ const Root = ({
               size
             })
           } else if (child.type === FormControlLabel) {
+            /**
+             * Label
+             */
             return React.cloneElement(child, {
               className: clsx(child.props.className),
               htmlFor: uniqueId,
@@ -69,6 +85,9 @@ const Root = ({
               size
             })
           } else if (child.type === FormControlValidation) {
+            /**
+             * Validation
+             */
             return React.cloneElement(child, {
               validationStatus
             })
@@ -85,9 +104,9 @@ type FormControlLabelProps = {
   children: string
   htmlFor?: string
   required?: boolean
-  validationStatus?: 'error' | 'success'
+  size?: FormInputSizes
+  validationStatus?: FormValidationStatus
   visuallyHidden?: boolean
-  size?: 'medium' | 'large'
 } & BaseProps<HTMLLabelElement>
 
 const FormControlLabel = ({
@@ -127,7 +146,7 @@ const FormControlLabel = ({
 
 type FormControlValidationProps = {
   children: string
-  validationStatus?: 'error' | 'success'
+  validationStatus?: FormValidationStatus
 } & BaseProps<HTMLSpanElement>
 
 const FormControlValidation = ({children, validationStatus}: FormControlValidationProps) => {
@@ -155,7 +174,8 @@ const FormControlValidation = ({children, validationStatus}: FormControlValidati
 }
 
 /**
- * Alternating text and image pairs.
+ * FormControl
+ * {@link https://primer.style/brand/components/FormControl/ See usage examples}.
  */
 export const FormControl = Object.assign(Root, {
   Label: FormControlLabel,
