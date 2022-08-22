@@ -43,7 +43,7 @@ const Root = ({
 
   return (
     <section
-      id={`FormControl--${id}`}
+      id={`FormControl--${uniqueId}`}
       className={clsx(styles.FormControl, fullWidth && styles[`FormControl--fullWidth`], className)}
       {...rest}
     >
