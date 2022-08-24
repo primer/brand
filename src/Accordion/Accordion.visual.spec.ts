@@ -7,13 +7,13 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Accordion', () => {
-  test('Default', async ({page}) => {
+  test('Accordion / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-accordion--default&viewMode=story')
 
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Composition', async ({page}) => {
+  test('Accordion / Composition', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-accordion--composition&viewMode=story')
 
     expect(await page.screenshot()).toMatchSnapshot()

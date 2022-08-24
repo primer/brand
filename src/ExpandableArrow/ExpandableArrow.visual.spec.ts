@@ -7,19 +7,19 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: ExpandableArrow', () => {
-  test('Default', async ({page}) => {
+  test('ExpandableArrow / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-expandablearrow--default&viewMode=story')
 
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Expanded', async ({page}) => {
+  test('ExpandableArrow / Expanded', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-expandablearrow--expanded&viewMode=story')
 
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Expand On Hover', async ({page}) => {
+  test('ExpandableArrow / Expand On Hover', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-expandablearrow--expand-on-hover&viewMode=story'
     )
