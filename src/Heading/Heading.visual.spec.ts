@@ -7,13 +7,13 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Heading', () => {
-  test('Default', async ({page}) => {
+  test('Heading / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--default&viewMode=story')
 
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Scale', async ({page}) => {
+  test('Heading / Scale', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--scale&viewMode=story')
 
     expect(await page.screenshot()).toMatchSnapshot()

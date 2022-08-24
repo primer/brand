@@ -7,37 +7,37 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Hero', () => {
-  test('Default', async ({page}) => {
+  test('Hero / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero--default&viewMode=story')
 
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Centered', async ({page}) => {
+  test('Hero / Centered', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero--centered&viewMode=story')
 
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Without Description', async ({page}) => {
+  test('Hero / Without Description', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero--without-description&viewMode=story')
 
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('With Secondary Action', async ({page}) => {
+  test('Hero / With Secondary Action', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero--with-secondary-action&viewMode=story')
 
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Codespaces', async ({page}) => {
+  test('Hero / Codespaces', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero--codespaces&viewMode=story')
 
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Issues', async ({page}) => {
+  test('Hero / Issues', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero--issues&viewMode=story')
 
     expect(await page.screenshot()).toMatchSnapshot()
