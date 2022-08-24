@@ -138,7 +138,7 @@ describe('FormControl', () => {
   })
 
   it('can render in full-width label and input', async () => {
-    const {getByTestId, getByRole, debug} = render(
+    const {getByTestId, getByRole} = render(
       <FormControl fullWidth data-testid={mockFormControlId}>
         <FormControl.Label>{mockFormControlLabel}</FormControl.Label>
         <TextInput />
