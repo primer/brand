@@ -64,6 +64,7 @@
 
     acc[groupName].stories.push({
       id,
+      groupName,
       storyName,
       timeout: waitForTimeoutLookup[key] ? waitForTimeoutLookup[key] : undefined
     })
@@ -85,12 +86,12 @@
     // eslint-disable-next-line i18n-text/no-en
     test.describe('Visual Comparison: ${key}', () => {
   
-      ${componentStories.reduce((acc, {id, storyName, timeout}) => {
+      ${componentStories.reduce((acc, {id, storyName, groupName, timeout}) => {
         if (skipTestLookup.includes(id)) {
           return acc
         }
         return (acc += `
-          test('${storyName}', async ({page}) => {
+          test('${groupName} / ${storyName}', async ({page}) => {
               await page.goto('http://localhost:${port}/iframe.html?args=&id=${id}&viewMode=story')
               
               ${timeout ? `await page.waitForTimeout(${timeout})` : ''}

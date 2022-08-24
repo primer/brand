@@ -7,20 +7,20 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: FAQ', () => {
-  test('All Closed', async ({page}) => {
+  test('FAQ / All Closed', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq-fixtures--all-closed&viewMode=story')
 
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('All Open', async ({page}) => {
+  test('FAQ / All Open', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq-fixtures--all-open&viewMode=story')
 
     await page.waitForTimeout(250)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Heading Left Aligned', async ({page}) => {
+  test('FAQ / Heading Left Aligned', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-faq-fixtures--heading-left-aligned&viewMode=story'
     )
@@ -28,13 +28,13 @@ test.describe('Visual Comparison: FAQ', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Groups', async ({page}) => {
+  test('FAQ / Groups', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq-fixtures--groups&viewMode=story')
 
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Default', async ({page}) => {
+  test('FAQ / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq--default&viewMode=story')
 
     expect(await page.screenshot()).toMatchSnapshot()

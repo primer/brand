@@ -7,7 +7,7 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Link', () => {
-  test('Default', async ({page}) => {
+  test('Link / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-link--default&viewMode=story')
 
     expect(await page.screenshot()).toMatchSnapshot()
