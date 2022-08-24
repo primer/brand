@@ -170,7 +170,7 @@ export default {
   }
 } as ComponentMeta<typeof FormControl>
 
-const Template = args => {
+export const Playground = args => {
   return (
     <FormControl
       id="override"
@@ -204,4 +204,4 @@ const Template = args => {
   )
 }
 
-export const Playground = Template.bind({})
+Playground.storyName = 'FormControl - Playground'

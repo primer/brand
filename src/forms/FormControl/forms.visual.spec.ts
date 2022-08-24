@@ -7,7 +7,7 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: forms', () => {
-  test('forms / Playground', async ({page}) => {
+  test('forms / FormControl - Playground', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-forms-formcontrol--playground&viewMode=story'
     )
@@ -15,7 +15,7 @@ test.describe('Visual Comparison: forms', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('forms / Playground', async ({page}) => {
+  test('forms / TextInput - Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-forms-textinput--playground&viewMode=story')
 
     expect(await page.screenshot()).toMatchSnapshot()

@@ -107,7 +107,7 @@ export default {
   }
 } as ComponentMeta<typeof TextInput>
 
-const Template: ComponentStory<typeof TextInput> = args => (
+export const Playground: ComponentStory<typeof TextInput> = args => (
   <TextInput
     aria-label="Standalone text input"
     {...args}
@@ -116,4 +116,4 @@ const Template: ComponentStory<typeof TextInput> = args => (
   />
 )
 
-export const Playground = Template.bind({})
+Playground.storyName = 'TextInput - Playground'
