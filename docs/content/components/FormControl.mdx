@@ -23,7 +23,7 @@ import {FormControl} from '@primer/react-brand'
 ```jsx live
 <FormControl>
   <FormControl.Label>Name</FormControl.Label>
-  <FormControl.TextInput />
+  <TextInput />
 </FormControl>
 ```
 
@@ -32,7 +32,7 @@ import {FormControl} from '@primer/react-brand'
 ```jsx live
 <FormControl>
   <FormControl.Label visuallyHidden>Name</FormControl.Label>
-  <FormControl.TextInput />
+  <TextInput />
 </FormControl>
 ```
 
@@ -75,7 +75,7 @@ const App = () => {
   return (
     <FormControl validationStatus={validationState}>
       <FormControl.Label>GitHub handle</FormControl.Label>
-      <FormControl.TextInput onChange={handleChange} value={value} fullWidth />
+      <TextInput onChange={handleChange} value={value} fullWidth />
       {validationState && validationState === 'error' && (
         <FormControl.Validation>
           GitHub handles cannot contain spaces.{' '}
@@ -99,7 +99,7 @@ Pass the `fullWidth` prop to `FormControl` to provide additional behavior and st
 ```jsx live
 <FormControl fullWidth>
   <FormControl.Label>Name</FormControl.Label>
-  <FormControl.TextInput />
+  <TextInput />
 </FormControl>
 ```
 
@@ -111,12 +111,12 @@ Pass the `fullWidth` prop to `FormControl` to provide additional behavior and st
 <Box sx={{display: 'grid', gap: 3}}>
   <FormControl size="medium">
     <FormControl.Label>Medium</FormControl.Label>
-    <FormControl.TextInput />
+    <TextInput />
   </FormControl>
 
   <FormControl size="large">
     <FormControl.Label>Large</FormControl.Label>
-    <FormControl.TextInput />
+    <TextInput />
   </FormControl>
 </Box>
 ```
@@ -128,7 +128,7 @@ Pass the `required` prop to `FormControl` to provide additional behavior and sta
 ```jsx live
 <FormControl required>
   <FormControl.Label>Name</FormControl.Label>
-  <FormControl.TextInput />
+  <TextInput />
 </FormControl>
 ```
 
@@ -159,7 +159,7 @@ const App = () => {
       >
         <FormControl fullWidth>
           <FormControl.Label>Name</FormControl.Label>
-          <FormControl.TextInput ref={inputRef} defaultValue="Mona Lisa" />
+          <TextInput ref={inputRef} defaultValue="Mona Lisa" />
         </FormControl>
         <Button type="submit" variant="primary">
           Submit
@@ -178,15 +178,15 @@ render(App)
 
 `FormControl` passes contextual data to its child inputs, labels, validation messaging and more.
 
-| Name               | Type                                                                                                                                        | Default | Description                                                       |
-| :----------------- | :------------------------------------------------------------------------------------------------------------------------------------------ | :-----: | :---------------------------------------------------------------- |
-| `children`         | <PropTableValues values={['FormControl.Label','FormControl.TextInput', 'FormControl.Validation', 'React.ReactElement', ]} addLineBreaks />, |         | Valid child nodes                                                 |
-| `className`        | `string`                                                                                                                                    |         | Sets a custom class                                               |
-| `id`               | `string`                                                                                                                                    |         | Sets a custom id                                                  |
-| `fullWidth`        | `boolean`                                                                                                                                   |         | Stretches elements visually to the edges of its parent container. |
-| `ref`              | `React.RefObject`                                                                                                                           |         | Forward a Ref to the underlying DOM node                          |
-| `size`             | <PropTableValues values={['medium', 'large' ]} addLineBreaks />                                                                             |         | Visual dimensions for input and label                             |
-| `validationStatus` | <PropTableValues values={['error', 'success' ]} addLineBreaks />                                                                            |         | Applies visual and semantic state to the underlying elements      |
+| Name               | Type                                                                                                                            | Default | Description                                                       |
+| :----------------- | :------------------------------------------------------------------------------------------------------------------------------ | :-----: | :---------------------------------------------------------------- |
+| `children`         | <PropTableValues values={['FormControl.Label','TextInput', 'FormControl.Validation', 'React.ReactElement', ]} addLineBreaks />, |         | Valid child nodes                                                 |
+| `className`        | `string`                                                                                                                        |         | Sets a custom class                                               |
+| `id`               | `string`                                                                                                                        |         | Sets a custom id                                                  |
+| `fullWidth`        | `boolean`                                                                                                                       |         | Stretches elements visually to the edges of its parent container. |
+| `ref`              | `React.RefObject`                                                                                                               |         | Forward a Ref to the underlying DOM node                          |
+| `size`             | <PropTableValues values={['medium', 'large' ]} addLineBreaks />                                                                 |         | Visual dimensions for input and label                             |
+| `validationStatus` | <PropTableValues values={['error', 'success' ]} addLineBreaks />                                                                |         | Applies visual and semantic state to the underlying elements      |
 
 <h3 id="FormControl-label">
   FormControl.Label <Label>Required</Label>

@@ -1,6 +1,6 @@
 import React from 'react'
 import {FormControl} from '.'
-import {Heading, Button} from '../'
+import {Heading, Button, TextInput} from '../'
 import {Container} from '../component-helpers'
 
 export default {
@@ -26,7 +26,7 @@ export const GitHubEnterprise = args => {
         >
           <FormControl required fullWidth size="large">
             <FormControl.Label>Full name</FormControl.Label>
-            <FormControl.TextInput required />
+            <TextInput required />
             {args.validationStatus && args.validationStatus === 'error' && (
               // eslint-disable-next-line i18n-text/no-en
               <FormControl.Validation>{args.validationText || 'This is an error message'}</FormControl.Validation>
@@ -38,7 +38,7 @@ export const GitHubEnterprise = args => {
 
           <FormControl required fullWidth size="large">
             <FormControl.Label>Enterprise name</FormControl.Label>
-            <FormControl.TextInput required />
+            <TextInput required />
             {args.validationStatus && args.validationStatus === 'error' && (
               // eslint-disable-next-line i18n-text/no-en
               <FormControl.Validation>{args.validationText || 'This is an error message'}</FormControl.Validation>
@@ -50,7 +50,7 @@ export const GitHubEnterprise = args => {
 
           <FormControl required fullWidth size="large">
             <FormControl.Label>Enterprise URL</FormControl.Label>
-            <FormControl.TextInput leadingText="github.com/" required />
+            <TextInput leadingText="github.com/" required />
             {args.validationStatus && args.validationStatus === 'error' && (
               // eslint-disable-next-line i18n-text/no-en
               <FormControl.Validation>{args.validationText || 'This is an error message'}</FormControl.Validation>

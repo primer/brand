@@ -12,7 +12,7 @@ import styles from './FormControl.module.css'
 
 export type FormControlProps = BaseProps<HTMLElement> & {
   /**
-   * Namespaced children include: `FormControl.Label`, `FormControl.TextInput`, `FormControl.Validation`.
+   * Namespaced children include: `FormControl.Label`,`FormControl.Validation`, `TextInput`.
    */
   children?: React.ReactElement[]
   /**
@@ -53,20 +53,21 @@ const Root = ({
 
   return (
     <section
-      id={`FormControl--${uniqueId}`}
+      id={uniqueId}
       className={clsx(styles.FormControl, fullWidth && styles[`FormControl--fullWidth`], className)}
       {...rest}
     >
       {React.Children.map(children, child => {
         if (child) {
+          const inputId = `FormControl--${uniqueId}`
           /**
            * TextInput
            */
           if (child.type === TextInput) {
             return React.cloneElement(child, {
               className: clsx(child.props.className),
-              id: uniqueId,
-              name: uniqueId,
+              id: inputId,
+              name: inputId,
               required: child.props.required || required,
               validationStatus: child.props.validationStatus || validationStatus,
               fullWidth,
@@ -78,7 +79,7 @@ const Root = ({
              */
             return React.cloneElement(child, {
               className: clsx(child.props.className),
-              htmlFor: uniqueId,
+              htmlFor: inputId,
               children: child.props.children,
               required,
               validationStatus,
@@ -122,7 +123,6 @@ const FormControlLabel = ({
   return (
     // eslint-disable-next-line jsx-a11y/label-has-for
     <label
-      id={`FormControl-label--${htmlFor}`}
       htmlFor={htmlFor}
       className={clsx(
         styles['FormControl-label'],
@@ -179,6 +179,5 @@ const FormControlValidation = ({children, validationStatus}: FormControlValidati
  */
 export const FormControl = Object.assign(Root, {
   Label: FormControlLabel,
-  TextInput,
   Validation: FormControlValidation
 })
