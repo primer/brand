@@ -177,6 +177,7 @@ export const Playground = args => {
       required={args.required}
       validationStatus={args.validationStatus}
       fullWidth={args.fullWidth}
+      size={args.size}
     >
       <FormControl.Label visuallyHidden={args.visuallyHidden ? true : false}>{args.label}</FormControl.Label>
       <TextInput

@@ -19,6 +19,8 @@ declare const styles: {
   readonly "TextInput-leading-visual-icon--large": string;
   readonly "TextInput-leading-text": string;
   readonly "TextInput-trailing-text": string;
+  readonly "TextInput-leading-text--inset": string;
+  readonly "TextInput-trailing-text--inset": string;
   readonly "TextInput-leading-text-inner": string;
   readonly "TextInput-trailing-text-inner": string;
   readonly "TextInput-leading-text-inner--medium": string;

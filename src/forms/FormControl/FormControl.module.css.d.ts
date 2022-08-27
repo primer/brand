@@ -2,6 +2,7 @@ declare const styles: {
   readonly "FormControl": string;
   readonly "FormControl--fullWidth": string;
   readonly "FormControl-label": string;
+  readonly "FormControl-label--visually-hidden": string;
   readonly "FormControl-label--medium": string;
   readonly "FormControl-label--large": string;
   readonly "FormControl-validation": string;
