@@ -26,32 +26,30 @@ import {Text} from '@primer/react-brand'
 ### Default
 
 ```jsx live
-<Container pl={3}>
-  <Text>With GitHub Copilot, you’re always in charge.</Text>
-</Container>
+<Text>With GitHub Copilot, you’re always in charge.</Text>
 ```
 
 ### Scale
 
 ```jsx live
-<Container pl={3}>
+<>
   {TextSizes.map((size) => (
     <Text key={size} size={size} as="p">
       Text {size}
     </Text>
   ))}
-</Container>
+</>
 ```
 
 ### Variants
 
 ```jsx live
-<Container pl={3}>
+<>
   <Text as="p">With GitHub Copilot, you’re always in charge.</Text>
   <Text as="p" variant="muted">
     With GitHub Copilot, you’re always in charge.
   </Text>
-</Container>
+</>
 ```
 
 ### Polymorphism
@@ -59,9 +57,7 @@ import {Text} from '@primer/react-brand'
 The `Text` component can render as a `span`, `p` or `div` HTML element.
 
 ```jsx live
-<Container pl={3}>
-  <Text as="p">With GitHub Copilot, you’re always in charge.</Text>
-</Container>
+<Text as="p">With GitHub Copilot, you’re always in charge.</Text>
 ```
 
 ## Component props
