@@ -32,13 +32,13 @@ import {Text} from '@primer/react-brand'
 ### Scale
 
 ```jsx live
-{
-  TextSizes.map((size) => (
+<>
+  {TextSizes.map((size) => (
     <Text key={size} size={size} as="p">
       Text {size}
     </Text>
-  ))
-}
+  ))}
+</>
 ```
 
 ### Variants

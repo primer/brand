@@ -63,29 +63,27 @@ const Example = () => {
       colorMode={colorMode}
       style={{backgroundColor: 'var(--brand-color-canvas-default)'}}
     >
-      <Container p={3}>
-        <River>
-          <River.Visual>
-            <img
-              src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
-              alt="placeholder, blank area with an off-white background color"
-            />
-          </River.Visual>
-          <River.Content>
-            <Heading>Heading</Heading>
-            <Text>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien
-              sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar
-              risus elementum.
-            </Text>
-            <Link href="#" onClick={handleChange}>
-              {colorMode === 'dark'
-                ? "I'm in dark mode now"
-                : 'Switch to dark mode'}
-            </Link>
-          </River.Content>
-        </River>
-      </Container>
+      <River>
+        <River.Visual>
+          <img
+            src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
+            alt="placeholder, blank area with an off-white background color"
+          />
+        </River.Visual>
+        <River.Content>
+          <Heading>Heading</Heading>
+          <Text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien
+            sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar
+            risus elementum.
+          </Text>
+          <Link href="#" onClick={handleChange}>
+            {colorMode === 'dark'
+              ? "I'm in dark mode now"
+              : 'Switch to dark mode'}
+          </Link>
+        </River.Content>
+      </River>
     </ThemeProvider>
   )
 }
