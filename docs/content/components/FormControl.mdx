@@ -24,7 +24,7 @@ import {FormControl} from '@primer/react-brand'
 
 ## Examples
 
-### Default
+### Basic
 
 `FormControl` is responsible for layout and ensuring that relevant IDs and ARIA attributes are passed to its `children`.
 
@@ -32,6 +32,21 @@ import {FormControl} from '@primer/react-brand'
 <FormControl>
   <FormControl.Label>Name</FormControl.Label>
   <TextInput />
+</FormControl>
+```
+
+### Alternative inputs
+
+```jsx live
+<FormControl>
+  <FormControl.Label>Name</FormControl.Label>
+  <Select>
+    <Select.Option value="" selected disabled>
+      Select a handle
+    </Select.Option>
+    <Select.Option value="mona">Monalisa</Select.Option>
+    <Select.Option value="hubot">Hubot</Select.Option>
+  </Select>
 </FormControl>
 ```
 

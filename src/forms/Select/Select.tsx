@@ -46,7 +46,13 @@ const _SelectRoot = (
   ref
 ) => {
   return (
-    <span className={clsx(styles['Select-wrapper'], fullWidth && styles['Select-wrapper--fullWidth'])}>
+    <span
+      className={clsx(
+        styles['Select-wrapper'],
+        fullWidth && styles['Select-wrapper--fullWidth'],
+        validationStatus && styles[`Select--${validationStatus}`]
+      )}
+    >
       <select
         aria-invalid={validationStatus === 'error'}
         className={clsx(
@@ -55,7 +61,6 @@ const _SelectRoot = (
           styles[`Select--${size}`],
           fullWidth && styles['Select--fullWidth'],
           inset && styles['Select--inset'],
-          validationStatus && styles[`Select--${validationStatus}`],
           className
         )}
         disabled={disabled}
@@ -86,6 +91,25 @@ const Option = ({children, value, ...rest}: OptionProps) => {
   )
 }
 
+export type OptGroupProps = {
+  /**
+   * Specifies that an option-group should be disabled
+   */
+  disabled?: string
+  /**
+   * Specifies a label for an option-group
+   */
+  label: string
+} & React.PropsWithChildren<React.HTMLProps<HTMLOptGroupElement>>
+
+const OptGroup = ({children, label, ...rest}: OptGroupProps) => {
+  return (
+    <optgroup label={label} {...rest}>
+      {children}
+    </optgroup>
+  )
+}
+
 type ArrowIndicatorProps = {
   className?: string
 }
@@ -100,5 +124,6 @@ const ArrowIndicator = ({className}: PropsWithChildren<ArrowIndicatorProps>) => 
  * Select
  */
 export const Select = Object.assign(SelectRoot, {
-  Option
+  Option,
+  OptGroup
 })

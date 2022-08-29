@@ -1,6 +1,11 @@
 {
   "brand": {
     "control": {
+      "border": {
+        "radius": {
+          "value": "var(--brand-borderRadius-medium)"
+        }
+      },
       "medium": {
         "size": {
           "value": "40px"

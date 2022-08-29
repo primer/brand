@@ -23,6 +23,10 @@
   children:
     - title: FormControl
       url: /components/FormControl
+    - title: Select
+      url: /components/Select
+    - title: TextInput
+      url: /components/TextInput
 
 - title: Typography
   children:

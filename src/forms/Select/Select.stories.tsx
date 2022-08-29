@@ -62,9 +62,9 @@ export default {
 export const Playground: ComponentStory<typeof Select> = args => (
   <Select {...args} aria-label="Standalone select input">
     <Select.Option value="" selected disabled>
-      Select a character
+      Select a handle
     </Select.Option>
-    <Select.Option value="mona">Mona Lisa</Select.Option>
+    <Select.Option value="mona">Monalisa</Select.Option>
     <Select.Option value="hubot">Hubot</Select.Option>
   </Select>
 )

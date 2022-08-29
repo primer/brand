@@ -7,7 +7,7 @@
   background-color: var(--brand-color-canvas-default);
   border: solid var(--brand-borderWidth-thin, 1px) var(--brand-color-border-default);
   line-height: var(--brand-text-lineHeight-200);
-  border-radius: var(--brand-borderRadius-medium, 6px);
+  border-radius: var(--brand-control-border-radius);
   transition: var(--brand-control-animation-duration) var(--brand-control-animation-easing);
   transition-property: color, background-color, box-shadow, border-color;
 }

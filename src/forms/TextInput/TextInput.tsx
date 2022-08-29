@@ -41,6 +41,10 @@ export type TextInputProps = {
    */
   trailingVisual?: React.ReactNode
   /**
+   * Constrains the input type to single line inputs.
+   */
+  type?: 'text' | 'number' | 'email' | 'password' | 'search' | 'tel' | 'url' | 'date' | 'time' | 'datetime-local'
+  /**
    * Applies a required attribute to the input
    */
   required?: boolean
@@ -48,7 +52,7 @@ export type TextInputProps = {
    *
    */
   validationStatus?: FormValidationStatus
-} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> &
+} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'type'> &
   BaseProps<HTMLInputElement>
 
 const _TextInput = (

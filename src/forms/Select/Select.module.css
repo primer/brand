@@ -7,11 +7,11 @@
   color: var(--brand-color-text-default);
   background-color: var(--brand-color-canvas-default);
   border: none;
+  border-radius: var(--brand-control-border-radius);
   line-height: var(--brand-text-lineHeight-200);
   transition: var(--brand-control-animation-duration) var(--brand-control-animation-easing);
   transition-property: color, background-color, box-shadow, border-color;
-  border: solid var(--brand-borderWidth-thin, 1px) var(--brand-color-border-default);
-  border-radius: var(--brand-borderRadius-medium, 6px);
+  width: 100%;
 }
 
 @media screen and (forced-colors: active) {
@@ -42,6 +42,7 @@
 }
 
 .Select-arrow-indicator {
+  display: flex;
   height: 16px;
   pointer-events: none;
   position: absolute;
@@ -92,6 +93,23 @@
 }
 
 /*
+ * Select wrapper
+ */
+
+.Select-wrapper {
+  align-items: center;
+  border: solid var(--brand-borderWidth-thin, 1px) var(--brand-color-border-default);
+  border-radius: var(--brand-borderRadius-medium, 6px);
+  font-family: var(--brand-body-fontFamily);
+  display: inline-flex;
+  position: relative;
+}
+
+.Select-wrapper--fullWidth {
+  display: flex;
+}
+
+/*
  * Validation
  */
 
@@ -101,19 +119,4 @@
 
 .Select--error {
   border-color: var(--brand-color-error-fg);
-}
-
-/*
- * Select wrapper
- */
-
-.Select-wrapper {
-  align-items: center;
-  font-family: var(--brand-body-fontFamily);
-  display: inline-flex;
-  position: relative;
-}
-
-.Select-wrapper--fullWidth {
-  display: flex;
 }

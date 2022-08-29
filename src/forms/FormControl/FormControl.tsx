@@ -6,6 +6,7 @@ import {AlertFillIcon, CheckCircleFillIcon} from '@primer/octicons-react'
 import type {BaseProps} from '../../component-helpers'
 import type {FormValidationStatus, FormInputSizes} from '../'
 
+import {Select} from '../Select'
 import {TextInput} from '../TextInput'
 
 import styles from './FormControl.module.css'
@@ -64,6 +65,16 @@ const Root = ({
            * TextInput
            */
           if (child.type === TextInput) {
+            return React.cloneElement(child, {
+              className: clsx(child.props.className),
+              id: inputId,
+              name: inputId,
+              required: child.props.required || required,
+              validationStatus: child.props.validationStatus || validationStatus,
+              fullWidth,
+              size
+            })
+          } else if (child.type === Select) {
             return React.cloneElement(child, {
               className: clsx(child.props.className),
               id: inputId,
