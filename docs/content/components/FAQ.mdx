@@ -20,7 +20,7 @@ import {FAQ} from '@primer/react-brand'
 ### Default
 
 ```jsx live
-<Container p={3}>
+<>
   <FAQ>
     <FAQ.Heading>Frequently asked questions</FAQ.Heading>
     <FAQ.Item>
@@ -114,7 +114,7 @@ import {FAQ} from '@primer/react-brand'
       </FAQ.Answer>
     </FAQ.Item>
   </FAQ>
-</Container>
+</>
 ```
 
 ### Grouped FAQs
@@ -131,61 +131,58 @@ Use `FAQ.Subheading` to create a visual separation between your `FAQ.Question` d
 </Note>
 
 ```jsx live
-<Container p={3}>
-  <FAQ>
-    <FAQ.Heading>Frequently asked questions</FAQ.Heading>
-    <FAQ.Subheading>Subscriptions & Payments</FAQ.Subheading>
-    <FAQ.Item>
-      <FAQ.Question>
-        What are the differences between GitHub Free, GitHub Pro, GitHub Team
-        and GitHub Enterprise plans?
-      </FAQ.Question>
-      <FAQ.Answer>
-        <p>
-          GitHub Free is our basic plan created for individuals and small teams
-          to collaborate on private and public repositories.
-        </p>
-      </FAQ.Answer>
-    </FAQ.Item>
-    <FAQ.Item>
-      <FAQ.Question>How do I view and manage my subscription?</FAQ.Question>
-      <FAQ.Answer>
-        <p>
-          You can view your account's subscription, your other paid features and
-          products, and your next billing date in your account's billing
-          settings.
-        </p>
-      </FAQ.Answer>
-    </FAQ.Item>
-    <FAQ.Subheading>Actions & Packages</FAQ.Subheading>
-    <FAQ.Item>
-      <FAQ.Question>
-        Which plans include access to GitHub Actions and Packages?
-      </FAQ.Question>
-      <FAQ.Answer>
-        <p>
-          GitHub Actions and Packages are free for public repositories and
-          packages on all our current per-user plans, while private repositories
-          and packages receive a set amount of free minutes, storage, and data
-          transfer depending on the per-user plan. Legacy per-repository plans
-          (Bronze, Silver, Gold etc) do not come with access to GitHub Actions
-          and Packages but they can be upgraded to a current per-user plan.
-        </p>
-      </FAQ.Answer>
-    </FAQ.Item>
-    <FAQ.Item>
-      <FAQ.Question>
-        How do I manage my spending for Actions and Packages?
-      </FAQ.Question>
-      <FAQ.Answer>
-        <p>
-          You can manage your spending for Actions and Packages in your billing
-          settings page under the payment information tab.
-        </p>
-      </FAQ.Answer>
-    </FAQ.Item>
-  </FAQ>
-</Container>
+<FAQ>
+  <FAQ.Heading>Frequently asked questions</FAQ.Heading>
+  <FAQ.Subheading>Subscriptions & Payments</FAQ.Subheading>
+  <FAQ.Item>
+    <FAQ.Question>
+      What are the differences between GitHub Free, GitHub Pro, GitHub Team and
+      GitHub Enterprise plans?
+    </FAQ.Question>
+    <FAQ.Answer>
+      <p>
+        GitHub Free is our basic plan created for individuals and small teams to
+        collaborate on private and public repositories.
+      </p>
+    </FAQ.Answer>
+  </FAQ.Item>
+  <FAQ.Item>
+    <FAQ.Question>How do I view and manage my subscription?</FAQ.Question>
+    <FAQ.Answer>
+      <p>
+        You can view your account's subscription, your other paid features and
+        products, and your next billing date in your account's billing settings.
+      </p>
+    </FAQ.Answer>
+  </FAQ.Item>
+  <FAQ.Subheading>Actions & Packages</FAQ.Subheading>
+  <FAQ.Item>
+    <FAQ.Question>
+      Which plans include access to GitHub Actions and Packages?
+    </FAQ.Question>
+    <FAQ.Answer>
+      <p>
+        GitHub Actions and Packages are free for public repositories and
+        packages on all our current per-user plans, while private repositories
+        and packages receive a set amount of free minutes, storage, and data
+        transfer depending on the per-user plan. Legacy per-repository plans
+        (Bronze, Silver, Gold etc) do not come with access to GitHub Actions and
+        Packages but they can be upgraded to a current per-user plan.
+      </p>
+    </FAQ.Answer>
+  </FAQ.Item>
+  <FAQ.Item>
+    <FAQ.Question>
+      How do I manage my spending for Actions and Packages?
+    </FAQ.Question>
+    <FAQ.Answer>
+      <p>
+        You can manage your spending for Actions and Packages in your billing
+        settings page under the payment information tab.
+      </p>
+    </FAQ.Answer>
+  </FAQ.Item>
+</FAQ>
 ```
 
 ### Rendering with dynamic data
@@ -277,21 +274,19 @@ const App = () => {
   ]
 
   return (
-    <Container>
-      <FAQ>
-        <FAQ.Heading>Frequently asked questions</FAQ.Heading>
-        <>
-          {fixtureData.map(({question, answer}) => {
-            return (
-              <FAQ.Item key={question} open={false}>
-                <FAQ.Question>{question}</FAQ.Question>
-                <FAQ.Answer>{answer}</FAQ.Answer>
-              </FAQ.Item>
-            )
-          })}
-        </>
-      </FAQ>
-    </Container>
+    <FAQ>
+      <FAQ.Heading>Frequently asked questions</FAQ.Heading>
+      <>
+        {fixtureData.map(({question, answer}) => {
+          return (
+            <FAQ.Item key={question} open={false}>
+              <FAQ.Question>{question}</FAQ.Question>
+              <FAQ.Answer>{answer}</FAQ.Answer>
+            </FAQ.Item>
+          )
+        })}
+      </>
+    </FAQ>
   )
 }
 
