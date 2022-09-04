@@ -9,6 +9,19 @@
   width: 100%;
 }
 
+.FormControl--checkbox {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.FormControl--border {
+  border: 1px solid var(--brand-color-border-default);
+  border-radius: var(--brand-control-border-radius);
+  padding: var(--base-size-12);
+}
+
 .FormControl-label {
   color: var(--brand-color-text-default);
   font-weight: var(--base-text-weight-semibold);
@@ -39,9 +52,29 @@
   line-height: var(--brand-text-lineHeight-300);
 }
 
+.FormControl-label--checkbox {
+  cursor: pointer;
+  font-size: var(--brand-text-size-300);
+  font-weight: var(--base-text-weight-semibold);
+  letter-spacing: var(--brand-text-letterSpacing-300);
+  line-height: var(--brand-text-lineHeight-300);
+  position: relative;
+  top: 1px;
+  width: 100%;
+}
+
+.FormControl-hint {
+  color: var(--brand-color-text-muted);
+  display: block;
+  font-size: var(--brand-text-size-200);
+  font-weight: var(--base-text-weight-normal);
+  letter-spacing: var(--brand-text-letterSpacing-200);
+  line-height: var(--brand-text-lineHeight-200);
+}
+
 /*Validation*/
 .FormControl-validation {
-  font-weight: var(--base-text-weight-regular);
+  font-weight: var(--base-text-weight-normal);
   font-size: var(--brand-text-size-100);
   line-height: var(--brand-text-lineHeight-100);
   display: flex;

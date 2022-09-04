@@ -107,7 +107,15 @@ const _TextInput = (
               )}
             />
           ) : (
-            LeadingVisual
+            React.isValidElement(LeadingVisual) &&
+            React.cloneElement(LeadingVisual, {
+              className: clsx(
+                styles['TextInput-leading-visual-icon'],
+                styles[`TextInput-leading-visual-icon--${size}`]
+              ),
+              width: size === 'large' ? 20 : 16,
+              height: size === 'large' ? 20 : 16
+            })
           )}
         </span>
       )}
@@ -142,7 +150,15 @@ const _TextInput = (
               )}
             />
           ) : (
-            TrailingVisual
+            React.isValidElement(TrailingVisual) &&
+            React.cloneElement(TrailingVisual, {
+              className: clsx(
+                styles['TextInput-trailing-visual-icon'],
+                styles[`TextInput-trailing-visual-icon--${size}`]
+              ),
+              width: size === 'large' ? 20 : 16,
+              height: size === 'large' ? 20 : 16
+            })
           )}
         </span>
       )}

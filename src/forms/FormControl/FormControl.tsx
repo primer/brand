@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {PropsWithChildren} from 'react'
 import {useId} from '@reach/auto-id' // TODO: Replace with useId from React v18 after upgrade
 import clsx from 'clsx'
 import {AlertFillIcon, CheckCircleFillIcon} from '@primer/octicons-react'
@@ -10,12 +10,17 @@ import {Select} from '../Select'
 import {TextInput} from '../TextInput'
 
 import styles from './FormControl.module.css'
+import {Checkbox} from '../Checkbox'
 
 export type FormControlProps = BaseProps<HTMLElement> & {
   /**
-   * Namespaced children include: `FormControl.Label`,`FormControl.Validation`, `TextInput`.
+   * Namespaced children include: `FormControl.Label`, `FormControl.Hint`, `FormControl.Validation`, `TextInput`, `Select`, `Checkbox`.
    */
   children?: React.ReactElement[]
+  /**
+   * Apply a decorative border to the form control.
+   */
+  hasBorder?: boolean
   /**
    * Applies full width styling.
    */
@@ -43,6 +48,7 @@ export type FormControlProps = BaseProps<HTMLElement> & {
 const Root = ({
   children,
   className,
+  hasBorder,
   fullWidth,
   id,
   required,
@@ -51,16 +57,26 @@ const Root = ({
   ...rest
 }: FormControlProps) => {
   const uniqueId = useId(id)
+  const isCheckboxControl = React.Children.toArray(children).some(
+    child => React.isValidElement(child) && child.type === Checkbox
+  )
 
   return (
     <section
       id={uniqueId}
-      className={clsx(styles.FormControl, fullWidth && styles[`FormControl--fullWidth`], className)}
+      className={clsx(
+        styles.FormControl,
+        fullWidth && styles[`FormControl--fullWidth`],
+        isCheckboxControl && styles['FormControl--checkbox'],
+        hasBorder && styles['FormControl--border'],
+        className
+      )}
       {...rest}
     >
       {React.Children.map(children, child => {
         if (child) {
           const inputId = `FormControl--${uniqueId}`
+
           /**
            * TextInput
            */
@@ -75,6 +91,9 @@ const Root = ({
               size
             })
           } else if (child.type === Select) {
+            /**
+             * Select
+             */
             return React.cloneElement(child, {
               className: clsx(child.props.className),
               id: inputId,
@@ -84,17 +103,29 @@ const Root = ({
               fullWidth,
               size
             })
+          } else if (child.type === Checkbox) {
+            /**
+             * Checkbox
+             */
+            return React.cloneElement(child, {
+              className: clsx(child.props.className),
+              id: inputId,
+              name: inputId,
+              required: child.props.required || required,
+              validationStatus: child.props.validationStatus || validationStatus
+            })
           } else if (child.type === FormControlLabel) {
             /**
              * Label
              */
             return React.cloneElement(child, {
-              className: clsx(child.props.className),
+              className: clsx(isCheckboxControl && styles['FormControl-label--checkbox'], child.props.className),
               htmlFor: inputId,
               children: child.props.children,
               required,
               validationStatus,
-              size
+              size,
+              showRequiredIndicator: isCheckboxControl ? false : child.props.showRequiredIndicator
             })
           } else if (child.type === FormControlValidation) {
             /**
@@ -113,9 +144,9 @@ const Root = ({
 }
 
 type FormControlLabelProps = {
-  children: string
   htmlFor?: string
   required?: boolean
+  showRequiredIndicator?: boolean
   size?: FormInputSizes
   validationStatus?: FormValidationStatus
   visuallyHidden?: boolean
@@ -126,11 +157,12 @@ const FormControlLabel = ({
   className,
   htmlFor,
   required,
+  showRequiredIndicator = true,
   size = 'medium',
   validationStatus,
   visuallyHidden,
   ...rest
-}: FormControlLabelProps) => {
+}: PropsWithChildren<FormControlLabelProps>) => {
   return (
     // eslint-disable-next-line jsx-a11y/label-has-for
     <label
@@ -144,8 +176,18 @@ const FormControlLabel = ({
       )}
       {...rest}
     >
-      {children}
-      {required && (
+      {React.Children.map(children, child => {
+        if (React.isValidElement(child)) {
+          if (child.type === FormControlHint) {
+            return React.cloneElement(child, {
+              className: clsx(styles['FormControl--visible'], child.props.className)
+            })
+          }
+        }
+        return child
+      })}
+
+      {required && showRequiredIndicator && (
         <span className={styles['FormControl-label-required']} aria-hidden>
           {' '}
           *
@@ -184,11 +226,20 @@ const FormControlValidation = ({children, validationStatus}: FormControlValidati
   )
 }
 
+const FormControlHint = ({children, className, ...rest}: PropsWithChildren<BaseProps<HTMLSpanElement>>) => {
+  return (
+    <span className={clsx(styles['FormControl-hint'], className)} {...rest}>
+      {children}
+    </span>
+  )
+}
+
 /**
  * FormControl
  * {@link https://primer.style/brand/components/FormControl/ See usage examples}.
  */
 export const FormControl = Object.assign(Root, {
   Label: FormControlLabel,
-  Validation: FormControlValidation
+  Validation: FormControlValidation,
+  Hint: FormControlHint
 })

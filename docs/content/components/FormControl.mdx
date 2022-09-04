@@ -38,16 +38,25 @@ import {FormControl} from '@primer/react-brand'
 ### Alternative inputs
 
 ```jsx live
-<FormControl>
-  <FormControl.Label>Name</FormControl.Label>
-  <Select>
-    <Select.Option value="" selected disabled>
-      Select a handle
-    </Select.Option>
-    <Select.Option value="mona">Monalisa</Select.Option>
-    <Select.Option value="hubot">Hubot</Select.Option>
-  </Select>
-</FormControl>
+<Box sx={{display: 'inline-grid', gap: 3}}>
+  <FormControl>
+    <FormControl.Label>Select</FormControl.Label>
+    <Select>
+      <Select.Option value="" selected disabled>
+        Select a handle
+      </Select.Option>
+      <Select.Option value="mona">Monalisa</Select.Option>
+      <Select.Option value="hubot">Hubot</Select.Option>
+    </Select>
+  </FormControl>
+  <FormControl>
+    <FormControl.Label>
+      Checkbox <FormControl.Hint>With an optional message</FormControl.Hint>
+    </FormControl.Label>
+
+    <Checkbox />
+  </FormControl>
+</Box>
 ```
 
 ### Visually hidden label

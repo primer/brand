@@ -68,3 +68,5 @@ export const Playground: ComponentStory<typeof Select> = args => (
     <Select.Option value="hubot">Hubot</Select.Option>
   </Select>
 )
+
+Playground.storyName = 'Select - Playground'

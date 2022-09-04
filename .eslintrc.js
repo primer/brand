@@ -47,6 +47,7 @@ module.exports = {
   // rules which apply to JS, TS, etc.
   rules: {
     'filenames/match-regex': 0,
+    'eslint-comments/no-unused-disable': 0,
     'react/prop-types': 0,
     'react/display-name': 0,
     'react-hooks/exhaustive-deps': 'error',
@@ -111,6 +112,20 @@ module.exports = {
         ]
       }
     },
+    // rules which apply only to TSX tests
+    {
+      files: ['**/*.test.{ts,tsx}'],
+      rules: {
+        'i18n-text/no-en': 0
+      }
+    },
+    // rules which apply only to TSX storybook stories
+    {
+      files: ['**/*.stories.{ts,tsx}'],
+      rules: {
+        'i18n-text/no-en': 0
+      }
+    },
     // rules which apply only to TS scripts
     {
       files: ['scripts/*.{ts,tsx}'],
@@ -121,13 +136,6 @@ module.exports = {
             allow: ['path', 'fs']
           }
         ]
-      }
-    },
-    // rules which apply only to TSX tests
-    {
-      files: ['**/*.test.{ts,tsx}'],
-      rules: {
-        'i18n-text/no-en': 0
       }
     },
     // rules which apply only to Markdown
