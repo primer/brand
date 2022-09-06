@@ -39,7 +39,7 @@ Good pull requests are a fantastic help. They should remain focused in scope and
    - See [changesets/changesets](https://github.com/changesets/changesets) for more information.
 1. Push your branch and open a pull request. **Please use the supplied pull request template**.
 1. Wait for CI tests to complete.
-   - If the tests pass, you should see a status check advising you that a canary build of `@primer/brand` has been published, and ready to test in-app.
+   - If the tests pass, you should see a status check advising you that a canary build of `@primer/react-brand` has been published, and ready to test in-app.
    - If the tests fail, review the logs and address any issues.
    - If the builds fail for any other reason (as they occasionally do), they may need to be manually restarted.
 1. Pat yourself on the back and wait for your pull request to be reviewed.
