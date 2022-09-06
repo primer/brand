@@ -67,7 +67,7 @@
 .Select--medium {
   font-weight: var(--brand-text-weight-200);
   font-size: var(--brand-text-size-200);
-  height: var(--brand-control-medium-size, 40px);
+  height: calc(var(--brand-control-medium-size, 40px) - 2px);
   padding: var(--brand-control-medium-padding, 12px 10px 10px);
   padding-right: var(--base-size-44);
 }
@@ -75,7 +75,7 @@
 .Select--large {
   font-weight: var(--brand-text-weight-300);
   font-size: var(--brand-text-size-300);
-  height: var(--brand-control-large-size, 48px);
+  height: calc(var(--brand-control-large-size, 48px) - 2px);
   padding: var(--brand-control-large-padding, 12px);
   padding-right: var(--base-size-44);
 }

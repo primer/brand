@@ -19,22 +19,40 @@ export const GitHubEnterprise = args => {
             alignItems: 'center',
             display: 'grid',
             gap: 16,
-            borderBottom: '1px solid var(--brand-color-border-default',
+            borderBottom: '1px solid var(--brand-color-border-default)',
             paddingBottom: 32,
             marginBottom: 32
           }}
         >
-          <FormControl required fullWidth>
-            <FormControl.Label>Full name</FormControl.Label>
-            <TextInput required />
-            {args.validationStatus && args.validationStatus === 'error' && (
-              // eslint-disable-next-line i18n-text/no-en
-              <FormControl.Validation>{args.validationText || 'This is an error message'}</FormControl.Validation>
-            )}
-            {args.validationStatus && args.validationStatus === 'success' && (
-              <FormControl.Validation>{args.validationText || 'Great! It worked.'}</FormControl.Validation>
-            )}
-          </FormControl>
+          <div
+            style={{
+              display: 'flex',
+              gap: 16
+            }}
+          >
+            <FormControl required fullWidth>
+              <FormControl.Label>First name</FormControl.Label>
+              <TextInput required />
+              {args.validationStatus && args.validationStatus === 'error' && (
+                // eslint-disable-next-line i18n-text/no-en
+                <FormControl.Validation>{args.validationText || 'This is an error message'}</FormControl.Validation>
+              )}
+              {args.validationStatus && args.validationStatus === 'success' && (
+                <FormControl.Validation>{args.validationText || 'Great! It worked.'}</FormControl.Validation>
+              )}
+            </FormControl>
+            <FormControl required fullWidth>
+              <FormControl.Label>Last name</FormControl.Label>
+              <TextInput required />
+              {args.validationStatus && args.validationStatus === 'error' && (
+                // eslint-disable-next-line i18n-text/no-en
+                <FormControl.Validation>{args.validationText || 'This is an error message'}</FormControl.Validation>
+              )}
+              {args.validationStatus && args.validationStatus === 'success' && (
+                <FormControl.Validation>{args.validationText || 'Great! It worked.'}</FormControl.Validation>
+              )}
+            </FormControl>
+          </div>
 
           <FormControl required fullWidth>
             <FormControl.Label>Enterprise name</FormControl.Label>
@@ -59,6 +77,7 @@ export const GitHubEnterprise = args => {
               <FormControl.Validation>{args.validationText || 'Great! It worked.'}</FormControl.Validation>
             )}
           </FormControl>
+
           <FormControl required fullWidth>
             <FormControl.Label>Country</FormControl.Label>
             <Select {...args}>

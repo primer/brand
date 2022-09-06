@@ -21,6 +21,8 @@
 
 - title: Forms
   children:
+    - title: Checkbox
+      url: /components/Checkbox
     - title: FormControl
       url: /components/FormControl
     - title: Select
