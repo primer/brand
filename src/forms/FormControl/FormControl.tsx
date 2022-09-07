@@ -6,11 +6,11 @@ import {AlertFillIcon, CheckCircleFillIcon} from '@primer/octicons-react'
 import type {BaseProps} from '../../component-helpers'
 import type {FormValidationStatus, FormInputSizes} from '../'
 
+import {Checkbox} from '../Checkbox'
 import {Select} from '../Select'
 import {TextInput} from '../TextInput'
 
 import styles from './FormControl.module.css'
-import {Checkbox} from '../Checkbox'
 
 export type FormControlProps = BaseProps<HTMLElement> & {
   /**

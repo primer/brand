@@ -4,7 +4,6 @@ import clsx from 'clsx'
 import type {BaseProps} from '../../component-helpers'
 import type {FormInputSizes, FormValidationStatus} from '../form-types'
 
-import '../../../lib/design-tokens/css/tokens/functional/components/control/base.css'
 import styles from './TextInput.module.css'
 
 export type TextInputProps = {

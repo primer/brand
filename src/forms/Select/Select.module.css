@@ -36,7 +36,7 @@
   color: var(--brand-color-text-muted);
   cursor: not-allowed;
   background-color: var(--base-color-scale-gray-1); /* FIXME: with text input bg token */
-  border-color: var(--brand-color-border-default);
+  border-color: var(--brand-control-color-border-default);
   opacity: 1;
   -webkit-text-fill-color: var(--base-color-scale-gray-4); /* FIXME: with text token */
 }
@@ -98,7 +98,7 @@
 
 .Select-wrapper {
   align-items: center;
-  border: solid var(--brand-borderWidth-thin, 1px) var(--brand-color-border-default);
+  border: solid var(--brand-borderWidth-thin, 1px) var(--brand-control-color-border-default);
   border-radius: var(--brand-borderRadius-medium, 6px);
   font-family: var(--brand-body-fontFamily);
   display: inline-flex;

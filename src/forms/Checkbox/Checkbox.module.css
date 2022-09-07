@@ -22,7 +22,7 @@
   color: var(--brand-color-text-muted);
   cursor: not-allowed;
   background-color: var(--base-color-scale-gray-1); /* FIXME: with text input bg token */
-  border-color: var(--brand-color-border-default);
+  border-color: var(--brand-control-color-border-default);
   opacity: 1;
   -webkit-text-fill-color: var(--base-color-scale-gray-4); /* FIXME: with text token */
 }

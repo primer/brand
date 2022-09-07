@@ -4,7 +4,6 @@ import clsx from 'clsx'
 import type {BaseProps} from '../../component-helpers'
 import type {FormValidationStatus} from '../form-types'
 
-import '../../../lib/design-tokens/css/tokens/functional/components/control/base.css'
 import styles from './Checkbox.module.css'
 
 export type CheckboxProps = {
