@@ -7,7 +7,7 @@
   width: 20px;
   color: var(--brand-color-text-default);
   background-color: var(--brand-color-canvas-default);
-  border: solid var(--brand-borderWidth-thin, 1px) var(--brand-color-border-default);
+  border: solid var(--brand-borderWidth-thin, 1px) var(--brand-control-color-border-default);
   border-radius: var(--brand-control-border-radius);
   cursor: pointer;
 }
