@@ -64,7 +64,7 @@ const _SelectRoot = (
       >
         {children}
       </select>
-      <span className={clsx(styles['Select-arrow-indicator'], styles['Select-arrow-indicator--disabled'])}>
+      <span className={clsx(styles['Select-arrow-indicator'], disabled && styles['Select-arrow-indicator--disabled'])}>
         <ArrowIndicator />
       </span>
     </span>

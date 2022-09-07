@@ -50,11 +50,11 @@
   top: 50%;
   transform: translateY(-50%);
   width: 16px;
-  color: var(--brand-color-text-default);
+  color: var(--brand-control-color-fg-default);
 }
 
 .Select-arrow-indicator--disabled {
-  color: var(--brand-color-text-subtle);
+  color: var(--brand-control-color-fg-disabled);
 }
 
 .Select-arrow-indicator svg {
