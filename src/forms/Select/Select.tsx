@@ -12,10 +12,6 @@ export type SelectProps = {
    */
   fullWidth?: boolean
   /**
-   * Applies inset styling
-   */
-  inset?: boolean
-  /**
    * Applies a required attribute to the input
    */
   required?: boolean
@@ -36,7 +32,6 @@ const _SelectRoot = (
     className,
     disabled,
     fullWidth = false,
-    inset,
     placeholder,
     size = 'medium',
     validationStatus,
@@ -60,7 +55,6 @@ const _SelectRoot = (
           'Select',
           styles[`Select--${size}`],
           fullWidth && styles['Select--fullWidth'],
-          inset && styles['Select--inset'],
           className
         )}
         disabled={disabled}

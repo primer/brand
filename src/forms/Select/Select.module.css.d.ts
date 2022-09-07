@@ -5,8 +5,8 @@ declare const styles: {
   readonly "Select--medium": string;
   readonly "Select--large": string;
   readonly "Select--fullWidth": string;
-  readonly "Select--inset": string;
   readonly "Select-wrapper": string;
+  readonly "Select-wrapper--disabled": string;
   readonly "Select-wrapper--fullWidth": string;
   readonly "Select--success": string;
   readonly "Select--error": string;

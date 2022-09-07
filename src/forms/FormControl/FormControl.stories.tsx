@@ -85,14 +85,6 @@ export default {
         category: 'Input'
       }
     },
-    inset: {
-      description: 'formerly called Contrast',
-      control: {type: 'boolean'},
-      defaultValue: false,
-      table: {
-        category: 'Input'
-      }
-    },
     disabled: {
       description: 'disabled field',
       control: {type: 'boolean'},
@@ -188,7 +180,6 @@ export const Playground = args => {
         trailingText={args.trailingText}
         disabled={args.disabled}
         monospace={args.monospace}
-        inset={args.inset}
         size={args.size}
         placeholder={args.placeholder}
         required={args.required}

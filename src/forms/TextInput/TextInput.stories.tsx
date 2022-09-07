@@ -59,13 +59,6 @@ export default {
         category: 'Input'
       }
     },
-    inset: {
-      description: 'formerly called Contrast',
-      control: {type: 'boolean'},
-      table: {
-        category: 'Input'
-      }
-    },
     disabled: {
       description: 'disabled field',
       control: {type: 'boolean'},

@@ -56,10 +56,6 @@
   width: 100%;
 }
 
-.TextInput--inset {
-  background-color: var(--brand-color-canvas-inset);
-}
-
 /*
  * Validation
  */
@@ -152,11 +148,6 @@
   pointer-events: none;
   border: solid var(--brand-borderWidth-thin, 1px) var(--brand-control-color-border-default);
   white-space: nowrap;
-}
-
-.TextInput-leading-text--inset,
-.TextInput-trailing-text--inset {
-  background-color: var(--brand-color-canvas-inset);
 }
 
 .TextInput-leading-text--disabled,

@@ -88,10 +88,6 @@
   width: 100%;
 }
 
-.Select--inset {
-  background-color: var(--brand-color-canvas-inset);
-}
-
 /*
  * Select wrapper
  */

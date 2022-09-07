@@ -3,7 +3,6 @@ declare const styles: {
   readonly "TextInput--medium": string;
   readonly "TextInput--large": string;
   readonly "TextInput--fullWidth": string;
-  readonly "TextInput--inset": string;
   readonly "TextInput--success": string;
   readonly "TextInput--error": string;
   readonly "TextInput-wrapper": string;
@@ -19,8 +18,8 @@ declare const styles: {
   readonly "TextInput-leading-visual-icon--large": string;
   readonly "TextInput-leading-text": string;
   readonly "TextInput-trailing-text": string;
-  readonly "TextInput-leading-text--inset": string;
-  readonly "TextInput-trailing-text--inset": string;
+  readonly "TextInput-leading-text--disabled": string;
+  readonly "TextInput-trailing-text--disabled": string;
   readonly "TextInput-leading-text-inner": string;
   readonly "TextInput-trailing-text-inner": string;
   readonly "TextInput-leading-text-inner--medium": string;

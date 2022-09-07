@@ -12,10 +12,6 @@ export type TextInputProps = {
    */
   fullWidth?: boolean
   /**
-   * Applies inset styling
-   */
-  inset?: boolean
-  /**
    * Applies non-interactive text to start of input.
    */
   leadingText?: string
@@ -59,7 +55,6 @@ const _TextInput = (
     className,
     disabled,
     fullWidth = false,
-    inset,
     leadingText,
     leadingVisual: LeadingVisual,
     monospace,
@@ -86,7 +81,6 @@ const _TextInput = (
             styles['TextInput-leading-text'],
             styles[`TextInput-leading-text--${size}`],
             disabled && styles['TextInput-leading-text--disabled'],
-            inset && styles['TextInput-leading-text--inset'],
             validationStatus && styles[`TextInput-leading-text--${validationStatus}`]
           )}
         >
@@ -127,7 +121,6 @@ const _TextInput = (
           'TextInput',
           styles[`TextInput--${size}`],
           fullWidth && styles['TextInput--fullWidth'],
-          inset && styles['TextInput--inset'],
           LeadingVisual && styles[`TextInput--has-leading-visual--${size}`],
           TrailingVisual && styles['TextInput--has-trailing-visual'],
           validationStatus && styles[`TextInput--${validationStatus}`],
@@ -168,7 +161,6 @@ const _TextInput = (
             styles['TextInput-trailing-text'],
             styles[`TextInput-trailing-text--${size}`],
             disabled && styles['TextInput-trailing-text--disabled'],
-            inset && styles['TextInput-trailing-text--inset'],
             validationStatus && styles[`TextInput-trailing-text--${validationStatus}`]
           )}
         >
