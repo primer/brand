@@ -33,12 +33,12 @@
 }
 
 .Select[disabled] {
-  color: var(--brand-color-text-muted);
+  -webkit-text-fill-color: var(--brand-control-color-fg-disabled);
+  color: var(--brand-control-color-fg-disabled);
   cursor: not-allowed;
-  background-color: var(--base-color-scale-gray-1); /* FIXME: with text input bg token */
-  border-color: var(--brand-control-color-border-default);
+  background-color: var(--brand-control-color-canvas-disabled);
+  border-color: var(--brand-control-color-border-disabled);
   opacity: 1;
-  -webkit-text-fill-color: var(--base-color-scale-gray-4); /* FIXME: with text token */
 }
 
 .Select-arrow-indicator {
@@ -103,6 +103,10 @@
   font-family: var(--brand-body-fontFamily);
   display: inline-flex;
   position: relative;
+}
+
+.Select-wrapper--disabled {
+  border-color: var(--brand-control-color-border-disabled);
 }
 
 .Select-wrapper--fullWidth {

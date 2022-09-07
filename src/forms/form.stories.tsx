@@ -4,7 +4,16 @@ import {Heading, Button, TextInput, Text, InlineLink, Select, Checkbox} from '..
 import {Container} from '../component-helpers'
 
 export default {
-  title: 'Components/Forms/Examples'
+  title: 'Components/Forms/Examples',
+  argTypes: {
+    disabled: {
+      description: 'disabled field',
+      control: {type: 'boolean'},
+      table: {
+        category: 'Input'
+      }
+    }
+  }
 }
 
 export const GitHubEnterprise = args => {
@@ -32,7 +41,7 @@ export const GitHubEnterprise = args => {
           >
             <FormControl required fullWidth>
               <FormControl.Label>First name</FormControl.Label>
-              <TextInput required />
+              <TextInput disabled={args.disabled} required />
               {args.validationStatus && args.validationStatus === 'error' && (
                 // eslint-disable-next-line i18n-text/no-en
                 <FormControl.Validation>{args.validationText || 'This is an error message'}</FormControl.Validation>
@@ -43,7 +52,7 @@ export const GitHubEnterprise = args => {
             </FormControl>
             <FormControl required fullWidth>
               <FormControl.Label>Last name</FormControl.Label>
-              <TextInput required />
+              <TextInput disabled={args.disabled} required />
               {args.validationStatus && args.validationStatus === 'error' && (
                 // eslint-disable-next-line i18n-text/no-en
                 <FormControl.Validation>{args.validationText || 'This is an error message'}</FormControl.Validation>
@@ -56,7 +65,7 @@ export const GitHubEnterprise = args => {
 
           <FormControl required fullWidth>
             <FormControl.Label>Enterprise name</FormControl.Label>
-            <TextInput required />
+            <TextInput disabled={args.disabled} required />
             {args.validationStatus && args.validationStatus === 'error' && (
               // eslint-disable-next-line i18n-text/no-en
               <FormControl.Validation>{args.validationText || 'This is an error message'}</FormControl.Validation>
@@ -68,7 +77,7 @@ export const GitHubEnterprise = args => {
 
           <FormControl required fullWidth>
             <FormControl.Label>Enterprise URL</FormControl.Label>
-            <TextInput leadingText="github.com/" required />
+            <TextInput disabled={args.disabled} leadingText="github.com/" required />
             {args.validationStatus && args.validationStatus === 'error' && (
               // eslint-disable-next-line i18n-text/no-en
               <FormControl.Validation>{args.validationText || 'This is an error message'}</FormControl.Validation>
@@ -80,7 +89,7 @@ export const GitHubEnterprise = args => {
 
           <FormControl required fullWidth>
             <FormControl.Label>Country</FormControl.Label>
-            <Select {...args}>
+            <Select disabled={args.disabled}>
               <Select.Option value="" selected disabled>
                 Country
               </Select.Option>
@@ -108,7 +117,7 @@ export const GitHubEnterprise = args => {
                 </Text>
               </FormControl.Hint>
             </FormControl.Label>
-            <Checkbox />
+            <Checkbox disabled={args.disabled} />
           </FormControl>
           <div
             style={{

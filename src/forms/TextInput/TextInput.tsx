@@ -85,6 +85,7 @@ const _TextInput = (
           className={clsx(
             styles['TextInput-leading-text'],
             styles[`TextInput-leading-text--${size}`],
+            disabled && styles['TextInput-leading-text--disabled'],
             inset && styles['TextInput-leading-text--inset'],
             validationStatus && styles[`TextInput-leading-text--${validationStatus}`]
           )}
@@ -166,6 +167,7 @@ const _TextInput = (
           className={clsx(
             styles['TextInput-trailing-text'],
             styles[`TextInput-trailing-text--${size}`],
+            disabled && styles['TextInput-trailing-text--disabled'],
             inset && styles['TextInput-trailing-text--inset'],
             validationStatus && styles[`TextInput-trailing-text--${validationStatus}`]
           )}

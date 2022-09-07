@@ -49,7 +49,8 @@ const _SelectRoot = (
       className={clsx(
         styles['Select-wrapper'],
         fullWidth && styles['Select-wrapper--fullWidth'],
-        validationStatus && styles[`Select--${validationStatus}`]
+        validationStatus && styles[`Select--${validationStatus}`],
+        disabled && styles[`Select-wrapper--disabled`]
       )}
     >
       <select

@@ -24,12 +24,12 @@
 }
 
 .TextInput[disabled] {
-  color: var(--brand-color-text-muted);
+  -webkit-text-fill-color: var(--brand-control-color-fg-disabled);
+  color: var(--brand-control-color-fg-disabled);
   cursor: not-allowed;
-  background-color: var(--base-color-scale-gray-1); /* FIXME: with text input bg token */
-  border-color: var(--brand-control-color-border-default);
+  background-color: var(--brand-control-color-canvas-disabled);
+  border-color: var(--brand-control-color-border-disabled);
   opacity: 1;
-  -webkit-text-fill-color: var(--base-color-scale-gray-4); /* FIXME: with text token */
 }
 
 /*
@@ -157,6 +157,13 @@
 .TextInput-leading-text--inset,
 .TextInput-trailing-text--inset {
   background-color: var(--brand-color-canvas-inset);
+}
+
+.TextInput-leading-text--disabled,
+.TextInput-trailing-text--disabled {
+  color: var(--brand-control-color-fg-disabled);
+  background-color: var(--brand-control-color-canvas-disabled);
+  border-color: var(--brand-control-color-border-disabled);
 }
 
 .TextInput-leading-text {
