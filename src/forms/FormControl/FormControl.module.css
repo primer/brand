@@ -75,8 +75,8 @@
 /*Validation*/
 .FormControl-validation {
   font-weight: var(--base-text-weight-normal);
-  font-size: var(--brand-text-size-100);
-  line-height: var(--brand-text-lineHeight-100);
+  font-size: var(--brand-text-size-200);
+  line-height: var(--brand-text-lineHeight-200);
   display: flex;
   gap: var(--base-size-4);
 }
