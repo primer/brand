@@ -140,7 +140,7 @@ export const GitHubEnterprise = args => {
             style={{
               borderWidth: 1,
               borderStyle: 'solid',
-              borderColor: 'var(--brand-color-border-default)',
+              borderColor: 'var(--brand-control-color-border-default)',
               backgroundColor: 'var(--brand-color-canvas-inset)',
               height: 150,
               width: '100%',
