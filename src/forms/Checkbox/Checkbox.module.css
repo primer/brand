@@ -1,28 +1,95 @@
 /*
  * Default Checkbox styles
  */
+.Checkbox-wrapper {
+  position: relative;
+}
+
 .Checkbox {
-  display: flex;
-  height: 20px;
-  width: 20px;
-  color: var(--brand-color-text-default);
-  background-color: var(--brand-color-canvas-default);
-  border: solid var(--brand-borderWidth-thin, 1px) var(--brand-control-color-border-default);
-  border-radius: var(--brand-control-border-radius);
+  align-items: center;
+  background-color: var(--brand-control-checkbox-bg-default);
+  border: solid var(--brand-borderWidth-normal, 1px) var(--brand-control-color-border-default);
+  border-radius: var(--brand-borderRadius-small);
   cursor: pointer;
+  display: inline-flex;
+  height: 20px;
+  justify-content: center;
+  margin: 3px 0; /* mimic default browser-applied vertical margin */
+  transition: all 0.35s ease-out;
+  width: 20px;
+}
+
+.Checkbox:hover {
+  border-color: var(--brand-color-focus);
 }
 
 .Checkbox:focus-visible {
   border-color: var(--brand-color-focus);
-  outline: none;
   box-shadow: inset 0 0 0 1px var(--brand-color-focus);
+  outline: none;
 }
 
-.Checkbox[disabled] {
+/**
+ * Checkbox native input - visually hidden
+ */
+.Checkbox-input {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.Checkbox-checkmark {
+  height: 16px;
+  width: 16px;
+}
+
+.Checkbox-checkmark-path {
+  stroke: var(--brand-color-focus);
+  stroke-dashoffset: 111.46px;
+  stroke-dasharray: 111.46px;
+  transition: all 350ms var(--brand-control-animation-easing);
+}
+
+/*
+* Checked state
+*/
+
+.Checkbox-input:checked + .Checkbox,
+.Checkbox--indeterminate {
+  background: var(--brand-control-checkbox-bg-checked);
+  border-color: var(--brand-control-checkbox-border-checked);
+}
+
+.Checkbox--indeterminate .Checkbox-checkmark {
+  fill: var(--brand-control-checkbox-fg-checked);
+}
+
+.Checkbox-input:checked + .Checkbox .Checkbox-checkmark-path,
+.Checkbox--indeterminate .Checkbox-checkmark-path {
+  stroke: var(--brand-control-checkbox-fg-checked);
+  stroke-dashoffset: 0;
+}
+
+.Checkbox-input:focus + .Checkbox {
+  border-color: var(--brand-color-focus);
+}
+
+/* TODO: Check with a11y team */
+.Checkbox-input:checked:focus + .Checkbox,
+.Checkbox-input:focus + .Checkbox--indeterminate {
+  border-color: var(--brand-control-checkbox-border-checked);
+}
+
+.Checkbox-input[disabled] + .Checkbox,
+.Checkbox-input[disabled]:checked + .Checkbox {
   -webkit-text-fill-color: var(--brand-control-color-fg-disabled);
   color: var(--brand-control-color-fg-disabled);
   cursor: not-allowed;
-  background-color: var(--brand-control-color-canvas-disabled);
+  background-color: var(--brand-control-checkbox-bg-disabled);
   border-color: var(--brand-control-color-border-disabled);
   opacity: 1;
 }

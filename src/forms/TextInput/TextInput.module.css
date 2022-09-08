@@ -3,7 +3,7 @@
  */
 .TextInput {
   display: flex;
-  color: var(--brand-color-text-default);
+  color: var(--brand-control-color-fg-default);
   background-color: var(--brand-color-canvas-default);
   border: solid var(--brand-borderWidth-thin, 1px) var(--brand-control-color-border-default);
   line-height: var(--brand-text-lineHeight-200);
@@ -60,11 +60,13 @@
  * Validation
  */
 
-.TextInput--success {
+.TextInput--success,
+.TextInput--success[disabled] {
   border-color: var(--brand-color-success-fg);
 }
 
-.TextInput--error {
+.TextInput--error,
+.TextInput--error[disabled] {
   border-color: var(--brand-color-error-fg);
 }
 

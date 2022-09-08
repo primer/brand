@@ -12,6 +12,23 @@ export default {
       table: {
         category: 'Input'
       }
+    },
+    validationStatus: {
+      options: [0, 1, 2], // iterator
+      mapping: [undefined, 'error', 'success'], // values
+      control: {
+        type: 'inline-radio',
+        labels: ['undefined', 'error', 'success']
+      },
+      table: {
+        category: 'Validation'
+      }
+    },
+    validationText: {
+      type: 'string',
+      table: {
+        category: 'Validation'
+      }
     }
   }
 }
@@ -39,7 +56,7 @@ export const GitHubEnterprise = args => {
               gap: 16
             }}
           >
-            <FormControl required fullWidth>
+            <FormControl required fullWidth validationStatus={args.validationStatus}>
               <FormControl.Label>First name</FormControl.Label>
               <TextInput disabled={args.disabled} required />
               {args.validationStatus && args.validationStatus === 'error' && (
@@ -50,7 +67,7 @@ export const GitHubEnterprise = args => {
                 <FormControl.Validation>{args.validationText || 'Great! It worked.'}</FormControl.Validation>
               )}
             </FormControl>
-            <FormControl required fullWidth>
+            <FormControl required fullWidth validationStatus={args.validationStatus}>
               <FormControl.Label>Last name</FormControl.Label>
               <TextInput disabled={args.disabled} required />
               {args.validationStatus && args.validationStatus === 'error' && (
@@ -63,7 +80,7 @@ export const GitHubEnterprise = args => {
             </FormControl>
           </div>
 
-          <FormControl required fullWidth>
+          <FormControl required fullWidth validationStatus={args.validationStatus}>
             <FormControl.Label>Enterprise name</FormControl.Label>
             <TextInput disabled={args.disabled} required />
             {args.validationStatus && args.validationStatus === 'error' && (
@@ -75,7 +92,7 @@ export const GitHubEnterprise = args => {
             )}
           </FormControl>
 
-          <FormControl required fullWidth>
+          <FormControl required fullWidth validationStatus={args.validationStatus}>
             <FormControl.Label>Enterprise URL</FormControl.Label>
             <TextInput disabled={args.disabled} leadingText="github.com/" required />
             {args.validationStatus && args.validationStatus === 'error' && (
@@ -87,7 +104,7 @@ export const GitHubEnterprise = args => {
             )}
           </FormControl>
 
-          <FormControl required fullWidth>
+          <FormControl required fullWidth validationStatus={args.validationStatus}>
             <FormControl.Label>Country</FormControl.Label>
             <Select disabled={args.disabled}>
               <Select.Option value="" selected disabled>
@@ -152,20 +169,21 @@ export const GitHubEnterprise = args => {
               </Text>
             </FormControl.Label>
 
-            <Checkbox />
+            <Checkbox disabled={args.disabled} />
           </FormControl>
         </Container>
         <Container
           style={{
             alignItems: 'center',
-            display: 'grid',
-            gap: 16
+            display: 'flex',
+            gap: 16,
+            justifyContent: 'flex-end'
           }}
         >
+          <Button type="submit">Skip trial and upgrade</Button>
           <Button variant="primary" type="submit">
             Start trial
           </Button>
-          <Button type="submit">Skip trial and upgrade</Button>
         </Container>
       </form>
     </Container>

@@ -2,13 +2,22 @@ import React from 'react'
 import {ComponentMeta} from '@storybook/react'
 import {FormControl} from '.'
 import {CheckIcon, SearchIcon} from '@primer/octicons-react'
-import {TextInput} from '../TextInput'
+import {Checkbox, Select, TextInput} from '../'
 
 export default {
   title: 'Components/Forms/FormControl',
   component: FormControl,
   argTypes: {
     label: {
+      type: 'string',
+      name: 'label',
+      defaultValue: 'Label of input',
+      description: 'string',
+      table: {
+        category: 'Label'
+      }
+    },
+    hasBorder: {
       type: 'string',
       name: 'label',
       defaultValue: 'Label of input',
@@ -162,7 +171,7 @@ export default {
   }
 } as ComponentMeta<typeof FormControl>
 
-export const Playground = args => {
+export const TextInputPlayground = args => {
   return (
     <FormControl
       id="override"
@@ -196,4 +205,60 @@ export const Playground = args => {
   )
 }
 
-Playground.storyName = 'FormControl - Playground'
+TextInputPlayground.storyName = 'w/ TextInput - Playground'
+
+export const SelectPlayground = args => {
+  return (
+    <FormControl
+      id="override"
+      required={args.required}
+      validationStatus={args.validationStatus}
+      fullWidth={args.fullWidth}
+      size={args.size}
+    >
+      <FormControl.Label visuallyHidden={args.visuallyHidden ? true : false}>{args.label}</FormControl.Label>
+      <Select disabled={args.disabled}>
+        <Select.Option value="" selected disabled>
+          Country
+        </Select.Option>
+        <Select.Option value="us">United States of America</Select.Option>
+        <Select.Option value="uk">United Kingdom</Select.Option>
+      </Select>
+
+      {args.validationStatus && args.validationStatus === 'error' && (
+        // eslint-disable-next-line i18n-text/no-en
+        <FormControl.Validation>{args.validationText || 'This is an error message'}</FormControl.Validation>
+      )}
+      {args.validationStatus && args.validationStatus === 'success' && (
+        <FormControl.Validation>{args.validationText || 'Great! It worked.'}</FormControl.Validation>
+      )}
+    </FormControl>
+  )
+}
+
+SelectPlayground.storyName = 'w/ Select - Playground'
+
+export const CheckboxPlayground = args => {
+  return (
+    <FormControl
+      id="override"
+      required={args.required}
+      validationStatus={args.validationStatus}
+      fullWidth={args.fullWidth}
+      size={args.size}
+    >
+      <FormControl.Label visuallyHidden={args.visuallyHidden ? true : false}>{args.label}</FormControl.Label>
+      <Checkbox disabled={args.disabled} />
+
+      {args.validationStatus && args.validationStatus === 'error' && (
+        // eslint-disable-next-line i18n-text/no-en
+        <FormControl.Validation>{args.validationText || 'This is an error message'}</FormControl.Validation>
+      )}
+      {args.validationStatus && args.validationStatus === 'success' && (
+        <FormControl.Validation>{args.validationText || 'Great! It worked.'}</FormControl.Validation>
+      )}
+    </FormControl>
+  )
+}
+
+CheckboxPlayground.storyName = 'w/ Checkbox - Playground'

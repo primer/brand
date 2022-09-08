@@ -4,7 +4,8 @@
 .Select {
   appearance: none;
   display: flex;
-  color: var(--brand-color-text-default);
+  color: var(--brand-control-color-fg-default);
+  cursor: pointer;
   background-color: var(--brand-color-canvas-default);
   border: none;
   border-radius: var(--brand-control-border-radius);
