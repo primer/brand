@@ -17,16 +17,8 @@
   margin: 3px 0; /* mimic default browser-applied vertical margin */
   transition: all 0.35s ease-out;
   width: 20px;
-}
-
-.Checkbox:hover {
-  border-color: var(--brand-color-focus);
-}
-
-.Checkbox:focus-visible {
-  border-color: var(--brand-color-focus);
-  box-shadow: inset 0 0 0 1px var(--brand-color-focus);
-  outline: none;
+  outline: 1px solid var(--brand-control-checkbox-bg-default);
+  box-shadow: 0 0 0 3px transparent;
 }
 
 /**
@@ -75,7 +67,7 @@
 }
 
 .Checkbox-input:focus + .Checkbox {
-  border-color: var(--brand-color-focus);
+  box-shadow: 0 0 0 3px var(--brand-color-focus);
 }
 
 /* TODO: Check with a11y team */
