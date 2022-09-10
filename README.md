@@ -11,8 +11,8 @@
 </p>
 
 <p align="center">
-  <a aria-label="npm package" href="https://www.npmjs.com/package/@primer/brand">
-    <img alt="" src="https://img.shields.io/npm/v/@primer/brand.svg">
+  <a aria-label="npm package" href="https://www.npmjs.com/package/@primer/react-brand">
+    <img alt="" src="https://img.shields.io/npm/v/@primer/react-brand.svg">
   </a>
   <a aria-label="build status" href="https://github.com/primer/brand/actions/workflows/ci.yml">
     <img alt="" src="https://github.com/primer/brand/actions/workflows/ci.yml/badge.svg">
