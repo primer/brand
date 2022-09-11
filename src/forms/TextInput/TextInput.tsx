@@ -72,7 +72,9 @@ const _TextInput = (
       className={clsx(
         styles['TextInput-wrapper'],
         fullWidth && styles['TextInput-wrapper--fullWidth'],
-        monospace && styles['TextInput-wrapper--monospace']
+        monospace && styles['TextInput-wrapper--monospace'],
+        disabled && styles['TextInput-wrapper--disabled'],
+        validationStatus && styles[`TextInput-wrapper--${validationStatus}`]
       )}
     >
       {leadingText && !LeadingVisual && (
