@@ -54,7 +54,7 @@ The `Checkbox` component can be used in controlled and uncontrolled modes.
 
 ## Indeterminate
 
-An `indeterminate` checkbox state should be used if the input value is neither true nor false. This can be useful in situations where you are required to display an incomplete state, or one that is dependent on other input selections to determine a value.
+An `indeterminate` checkbox state should be used if the input value is neither `true` nor `false`. This can be useful in situations where you are required to display an incomplete state, or one that is dependent on other input selections to determine a value.
 
 ```jsx live
 <form>
@@ -63,6 +63,48 @@ An `indeterminate` checkbox state should be used if the input value is neither t
     <Checkbox onChange={() => {}} indeterminate={true} />
   </FormControl>
 </form>
+```
+
+## Optional border
+
+Apply an optional border using `FormControl` and `hasBorder`.
+
+```jsx live
+<FormControl hasBorder required>
+  <FormControl.Label>
+    Contact me about GitHub Enterprise Server
+  </FormControl.Label>
+  <Checkbox />
+</FormControl>
+```
+
+## Custom label usage
+
+```jsx live
+<FormControl required>
+  <FormControl.Label>
+    <Text size="200" variant="muted">
+      I hereby accept the{' '}
+      <InlineLink
+        size="200"
+        href="https://github.com/customer-terms"
+        target="_blank"
+      >
+        GitHub Customer Agreement
+      </InlineLink>{' '}
+      on behalf of my organization and confirm that I have the authority to do
+      so. For more information about GitHub&apos;s privacy practices, see the{' '}
+      <InlineLink
+        size="200"
+        href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement"
+        target="_blank"
+      >
+        GitHub Privacy Statement.
+      </InlineLink>{' '}
+    </Text>
+  </FormControl.Label>
+  <Checkbox />
+</FormControl>
 ```
 
 ## Component props
