@@ -1,5 +1,6 @@
 const colorModeAttributes = require('./color-mode-attributes')
 
+// eslint-disable-next-line i18n-text/no-en
 describe('Design tokens', () => {
   it('can create functional color mode tokens correctly', () => {
     /*
@@ -14,6 +15,7 @@ describe('Design tokens', () => {
               example: {
                 value: 'gray',
                 dark: 'white',
+                // eslint-disable-next-line camelcase
                 light_high_contrast: 'black',
                 filePath: 'path-to-properties.json',
                 isSource: true,
@@ -33,12 +35,14 @@ describe('Design tokens', () => {
         {
           value: 'gray',
           dark: 'white',
+          // eslint-disable-next-line camelcase
           light_high_contrast: 'black',
           filePath: 'path-to-properties.json',
           isSource: true,
           original: {
             value: 'gray',
             dark: 'white',
+            // eslint-disable-next-line camelcase
             light_high_contrast: 'black'
           },
           name: 'brand-text-color-example',
@@ -53,6 +57,7 @@ describe('Design tokens', () => {
               example: {
                 value: 'gray',
                 dark: 'white',
+                // eslint-disable-next-line camelcase
                 light_high_contrast: 'black',
                 filePath: 'path-to-properties.json',
                 isSource: true,
@@ -72,12 +77,14 @@ describe('Design tokens', () => {
         {
           value: 'gray',
           dark: 'white',
+          // eslint-disable-next-line camelcase
           light_high_contrast: 'black',
           filePath: 'path-to-properties.json',
           isSource: true,
           original: {
             value: 'gray',
             dark: 'white',
+            // eslint-disable-next-line camelcase
             light_high_contrast: 'black'
           },
           name: 'brand-text-color-example',
