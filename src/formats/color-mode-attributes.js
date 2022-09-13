@@ -22,6 +22,7 @@ function colorModeAttributes({dictionary: origDictionary, file, options}) {
     'dark_colorblind',
     'dark_tritanopia'
   ]
+  const defaultMode = supportedModes[0]
 
   const convertToHSL = value => `hsl(${value.split(' ').join(', ')})`
 
@@ -61,8 +62,6 @@ function colorModeAttributes({dictionary: origDictionary, file, options}) {
 
   const {outputReferences} = options
   let {allTokens} = dictionary
-
-  const defaultMode = supportedModes[0]
 
   if (outputReferences) {
     allTokens = [...allTokens].sort(sortByReference(dictionary)) // TODO - add a test for this
