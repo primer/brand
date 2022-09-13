@@ -3,11 +3,12 @@ declare const styles: {
   readonly "TextInput--medium": string;
   readonly "TextInput--large": string;
   readonly "TextInput--fullWidth": string;
-  readonly "TextInput--success": string;
-  readonly "TextInput--error": string;
+  readonly "TextInput-wrapper--disabled": string;
   readonly "TextInput-wrapper": string;
   readonly "TextInput-wrapper--fullWidth": string;
   readonly "TextInput-wrapper--monospace": string;
+  readonly "TextInput-wrapper--success": string;
+  readonly "TextInput-wrapper--error": string;
   readonly "TextInput--has-leading-visual--medium": string;
   readonly "TextInput--has-leading-visual--large": string;
   readonly "TextInput--has-trailing-visual--medium": string;
