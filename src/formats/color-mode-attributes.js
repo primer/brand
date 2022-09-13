@@ -80,7 +80,7 @@ function colorModeAttributes({dictionary: origDictionary, file, options}) {
     }\n`
 
   /**
-   * Returns dark mode tokens by replacing the contents of value with dark
+   * Returns alternate color mode tokens by replacing the contents of value with said mode
    */
   const renderAlternateColorMode = mode => {
     if (mode === defaultMode) return renderLightMode()
