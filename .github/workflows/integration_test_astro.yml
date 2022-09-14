@@ -67,7 +67,7 @@ jobs:
         run: npm pack
 
       - name: Configuring Astro React / TypeScript project
-        run: npm create astro@latest astro-test -- --template framework-react
+        run: npm create astro@latest ${{env.ASTRO_FOLDER}} -- --template framework-react
 
       - name: Retrieving package version
         id: package-version
@@ -87,7 +87,7 @@ jobs:
       - name: Copying required files
         run: |
           cp integration-tests/astro/index.astro ./${{env.ASTRO_FOLDER}}/src/pages
-          cp cypress.config.js ./${{env.ASTRO_FOLDER}}
+          cp cypress.config.js ./${{env.ASTRO_FOLDER}}/cypress.config.cjs
           cp -r integration-tests/fixtures ./${{env.ASTRO_FOLDER}}/src
           mkdir ${{env.ASTRO_FOLDER}}/integration-tests
           cp -r integration-tests/fixtures ./${{env.ASTRO_FOLDER}}/integration-tests
