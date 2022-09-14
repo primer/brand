@@ -34,11 +34,11 @@ export const Hero = forwardRef<HTMLDivElement, HeroProps>(
           </Text>
         ) : null}
         <div className={styles['Hero-actions']}>
-          <Button as="a" variant="primary" size={'large'} href={primaryAction.href}>
+          <Button as="a" variant="primary" size="large" href={primaryAction.href}>
             {primaryAction.text}
           </Button>
           {secondaryAction ? (
-            <Button as="a" variant="secondary" size={'large'} href={secondaryAction.href}>
+            <Button as="a" variant="secondary" size="large" href={secondaryAction.href}>
               {secondaryAction.text}
             </Button>
           ) : null}

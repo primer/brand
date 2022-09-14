@@ -51,9 +51,9 @@
 }
 
 .Button--size-medium {
-  padding: 1rem 1.5rem;
+  padding: var(--base-size-16) var(--base-size-24);
 }
 
 .Button--size-large {
-  padding: 1rem 2rem;
+  padding: var(--base-size-16) var(--base-size-32);
 }
