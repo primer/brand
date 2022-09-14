@@ -106,8 +106,8 @@ export const GitHubEnterprise = args => {
 
           <FormControl required fullWidth validationStatus={args.validationStatus}>
             <FormControl.Label>Country</FormControl.Label>
-            <Select disabled={args.disabled}>
-              <Select.Option value="" selected disabled>
+            <Select disabled={args.disabled} defaultValue="">
+              <Select.Option value="" disabled>
                 Country
               </Select.Option>
               <Select.Option value="us">United States of America</Select.Option>
