@@ -1,6 +1,19 @@
-import {Hero, River, FAQ, Heading, Text, InlineLink, Link, FormControl, TextInput, Checkbox, Select, Button} from './'
+import {
+  Hero,
+  River,
+  FAQ,
+  Heading,
+  Text,
+  InlineLink,
+  Link,
+  FormControl,
+  TextInput,
+  ThemeProvider,
+  Checkbox,
+  Select,
+  Button
+} from './'
 import '@primer/react-brand/lib/css/main.css'
-import {ThemeProvider} from '@primer/react-brand'
 
 export default function KitchenSink() {
   return (

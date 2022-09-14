@@ -10,5 +10,6 @@ export {
   Checkbox,
   Select,
   TextInput,
+  ThemeProvider,
   Button
 } from '@primer/react-brand'
