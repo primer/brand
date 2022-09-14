@@ -6,11 +6,6 @@ import '../../lib/design-tokens/css/tokens/functional/components/button/colors-w
 import type {BaseProps} from '../component-helpers'
 import styles from './Button.module.css'
 
-export enum LabelFontSize {
-  medium = '300',
-  large = '400'
-}
-
 export type ButtonProps<C extends React.ElementType> = BaseProps<C> & {
   as?: C
   variant?: 'primary' | 'secondary'
@@ -61,7 +56,7 @@ export const Button = forwardRef(
       >
         <Text
           as="span"
-          size={LabelFontSize[size]}
+          size={size === 'medium' ? '300' : '400'}
           className={clsx(styles['Button--label'], variant === 'primary' && styles['Button--label-primary'])}
         >
           {children}
