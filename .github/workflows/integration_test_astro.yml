@@ -67,7 +67,7 @@ jobs:
         run: npm pack
 
       - name: Configuring Astro React / TypeScript project
-        run: npm create astro@latest astro-test -- --template framework-react
+        run: npm create astro@latest ${{env.ASTRO_FOLDER}} -- --template framework-react
 
       - name: Retrieving package version
         id: package-version
@@ -79,15 +79,15 @@ jobs:
           cp ../primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz ./
           npm install primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz
 
-      - name: Prefer CommonJS imports
+      - name: Prefer ESM imports
         run: |
-          mv integration-tests/fixtures/index.cjs.ts integration-tests/fixtures/index.ts
-          rm integration-tests/fixtures/index.esm.ts
+          mv integration-tests/fixtures/index.esm.ts integration-tests/fixtures/index.ts
+          rm integration-tests/fixtures/index.cjs.ts
 
       - name: Copying required files
         run: |
           cp integration-tests/astro/index.astro ./${{env.ASTRO_FOLDER}}/src/pages
-          cp cypress.config.js ./${{env.ASTRO_FOLDER}}
+          cp cypress.config.js ./${{env.ASTRO_FOLDER}}/cypress.config.cjs
           cp -r integration-tests/fixtures ./${{env.ASTRO_FOLDER}}/src
           mkdir ${{env.ASTRO_FOLDER}}/integration-tests
           cp -r integration-tests/fixtures ./${{env.ASTRO_FOLDER}}/integration-tests
