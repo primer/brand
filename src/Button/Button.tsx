@@ -6,9 +6,15 @@ import '../../lib/design-tokens/css/tokens/functional/components/button/colors-w
 import type {BaseProps} from '../component-helpers'
 import styles from './Button.module.css'
 
+export enum LabelFontSize {
+  medium = '300',
+  large = '400'
+}
+
 export type ButtonProps<C extends React.ElementType> = BaseProps<C> & {
   as?: C
   variant?: 'primary' | 'secondary'
+  size?: 'medium' | 'large'
 } & React.ComponentPropsWithoutRef<C>
 
 export const Button = forwardRef(
@@ -16,6 +22,7 @@ export const Button = forwardRef(
     {
       as,
       variant = 'secondary',
+      size = 'medium',
       className,
       children,
       onMouseEnter,
@@ -33,7 +40,7 @@ export const Button = forwardRef(
     return (
       <Component
         ref={ref}
-        className={clsx(styles.Button, styles[`Button--${variant}`], className)}
+        className={clsx(styles.Button, styles[`Button--${variant}`], styles[`Button--size-${size}`], className)}
         onMouseEnter={event => {
           setIsHovered(true)
           onMouseEnter?.(event)
@@ -54,7 +61,7 @@ export const Button = forwardRef(
       >
         <Text
           as="span"
-          size="400"
+          size={LabelFontSize[size]}
           className={clsx(styles['Button--label'], variant === 'primary' && styles['Button--label-primary'])}
         >
           {children}

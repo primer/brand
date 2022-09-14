@@ -13,6 +13,7 @@ export const Primary = Template.bind({})
 Primary.args = {
   as: 'a',
   variant: 'primary',
+  size: 'medium',
   href: '#',
   children: 'Primary action'
 }
@@ -23,6 +24,15 @@ Secondary.args = {
   variant: 'secondary',
   href: '#',
   children: 'Secondary action'
+}
+
+export const Large = Template.bind({})
+Large.args = {
+  as: 'a',
+  size: 'large',
+  variant: 'primary',
+  href: '#',
+  children: 'Large Action'
 }
 
 export const Polymorphism = Template.bind({})
