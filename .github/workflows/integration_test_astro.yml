@@ -79,10 +79,10 @@ jobs:
           cp ../primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz ./
           npm install primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz
 
-      - name: Prefer ESM imports
+      - name: Prefer CommonJS imports
         run: |
-          mv integration-tests/fixtures/index.esm.ts integration-tests/fixtures/index.ts
-          rm integration-tests/fixtures/index.cjs.ts
+          mv integration-tests/fixtures/index.cjs.ts integration-tests/fixtures/index.ts
+          rm integration-tests/fixtures/index.esm.ts
 
       - name: Copying required files
         run: |
