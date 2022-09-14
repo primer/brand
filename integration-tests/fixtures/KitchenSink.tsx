@@ -188,8 +188,8 @@ export default function KitchenSink() {
               >
                 <FormControl fullWidth>
                   <FormControl.Label>Title</FormControl.Label>
-                  <Select>
-                    <Select.Option value="" selected disabled>
+                  <Select defaultValue="">
+                    <Select.Option value="" disabled>
                       Title
                     </Select.Option>
                     <Select.Option value="miss">Miss</Select.Option>
@@ -220,8 +220,8 @@ export default function KitchenSink() {
 
               <FormControl fullWidth required>
                 <FormControl.Label>Country</FormControl.Label>
-                <Select>
-                  <Select.Option value="" selected disabled>
+                <Select defaultValue="">
+                  <Select.Option value="" disabled>
                     Country
                   </Select.Option>
                   <Select.Option value="us">United States of America</Select.Option>
