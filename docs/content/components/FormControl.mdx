@@ -43,8 +43,8 @@ import {FormControl} from '@primer/react-brand'
 <Box sx={{display: 'inline-grid', gap: 3}}>
   <FormControl>
     <FormControl.Label>Select</FormControl.Label>
-    <Select>
-      <Select.Option value="" selected disabled>
+    <Select defaultValue="">
+      <Select.Option value="" disabled>
         Select a handle
       </Select.Option>
       <Select.Option value="mona">Monalisa</Select.Option>
@@ -88,8 +88,8 @@ An example of a typical layout composed using `FormControl`:
     >
       <FormControl fullWidth>
         <FormControl.Label>Title</FormControl.Label>
-        <Select>
-          <Select.Option value="" selected disabled>
+        <Select defaultValue="">
+          <Select.Option value="" disabled>
             Title
           </Select.Option>
           <Select.Option value="miss">Miss</Select.Option>
@@ -120,8 +120,8 @@ An example of a typical layout composed using `FormControl`:
 
     <FormControl fullWidth required>
       <FormControl.Label>Country</FormControl.Label>
-      <Select>
-        <Select.Option value="" selected disabled>
+      <Select defaultValue="">
+        <Select.Option value="" disabled>
           Country
         </Select.Option>
         <Select.Option value="us">United States of America</Select.Option>
@@ -277,7 +277,7 @@ render(App)
 <FormControl>
   <FormControl.Label>Select</FormControl.Label>
   <Select>
-    <Select.Option value="" selected disabled>
+    <Select.Option value="" disabled>
       Select a handle
     </Select.Option>
     <Select.Option value="mona">Monalisa</Select.Option>

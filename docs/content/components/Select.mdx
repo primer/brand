@@ -37,8 +37,8 @@ import {Select} from '@primer/react-brand'
 ### Placeholder
 
 ```jsx live
-<Select>
-  <Select.Option value="" selected disabled>
+<Select defaultValue="">
+  <Select.Option value="" disabled>
     Select a handle
   </Select.Option>
   <Select.Option value="mona">Monalisa</Select.Option>
@@ -49,8 +49,8 @@ import {Select} from '@primer/react-brand'
 ### Option groups
 
 ```jsx live
-<Select>
-  <Select.Option value="" selected disabled>
+<Select defaultValue="">
+  <Select.Option value="" disabled>
     Select a country
   </Select.Option>
 
@@ -79,8 +79,8 @@ Use `Select` alongside `FormControl` to ensure the control has a corresponding f
 ```jsx live
 <FormControl>
   <FormControl.Label>Country</FormControl.Label>
-  <Select>
-    <Select.Option value="" selected disabled>
+  <Select defaultValue="">
+    <Select.Option value="" disabled>
       Select a country
     </Select.Option>
     <Select.Option value="cn">China</Select.Option>
@@ -155,8 +155,8 @@ Use `Select` alongside `FormControl` to ensure the control has a corresponding f
 Pass the `required` prop to ensure that the input field must be filled out before submitting the form.
 
 ```jsx live
-<Select required>
-  <Select.Option value="" disabled selected>
+<Select required defaultValue="">
+  <Select.Option value="" disabled>
     Select a handle
   </Select.Option>
   <Select.Option value="mona">Monalisa</Select.Option>
@@ -194,8 +194,8 @@ const App = () => {
       >
         <FormControl fullWidth>
           <FormControl.Label>Name</FormControl.Label>
-          <Select ref={selectRef}>
-            <Select.Option value="" disabled selected>
+          <Select ref={selectRef} defaultValue="">
+            <Select.Option value="" disabled>
               Select a handle
             </Select.Option>
             <Select.Option value="mona">Monalisa</Select.Option>

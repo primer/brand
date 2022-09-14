@@ -1,9 +1,10 @@
-import React, {forwardRef, InputHTMLAttributes, ReactElement, RefObject, useLayoutEffect, useRef} from 'react'
+import React, {forwardRef, InputHTMLAttributes, ReactElement, RefObject, useRef} from 'react'
 import clsx from 'clsx'
 import {useId} from '@reach/auto-id' // TODO: Replace with useId from React v18 after upgrade
 
 import type {BaseProps} from '../../component-helpers'
 import type {FormValidationStatus} from '../form-types'
+import useLayoutEffect from '../../hooks/useIsomorphicLayoutEffect'
 
 import styles from './Checkbox.module.css'
 
@@ -54,7 +55,6 @@ const _Checkbox = (
   const inputRef: RefObject<HTMLInputElement> | null = useRef<HTMLInputElement>(ref || null)
   const uniqueId = useId(id)
 
-  // replace with isomorphic useEffect
   useLayoutEffect(() => {
     if (inputRef.current) {
       inputRef.current.indeterminate = indeterminate || false

@@ -217,8 +217,8 @@ export const SelectPlayground = args => {
       size={args.size}
     >
       <FormControl.Label visuallyHidden={args.visuallyHidden ? true : false}>{args.label}</FormControl.Label>
-      <Select disabled={args.disabled}>
-        <Select.Option value="" selected disabled>
+      <Select defaultValue="" disabled={args.disabled}>
+        <Select.Option value="" disabled>
           Country
         </Select.Option>
         <Select.Option value="us">United States of America</Select.Option>
