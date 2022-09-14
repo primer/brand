@@ -53,8 +53,8 @@ export default {
 } as ComponentMeta<typeof Select>
 
 export const Playground: ComponentStory<typeof Select> = args => (
-  <Select {...args} aria-label="Standalone select input">
-    <Select.Option value="" selected disabled>
+  <Select {...args} aria-label="Standalone select input" defaultValue="select a handle">
+    <Select.Option value="select a handle" disabled>
       Select a handle
     </Select.Option>
     <Select.Option value="mona">Monalisa</Select.Option>
