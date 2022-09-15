@@ -1,5 +1,34 @@
 # @primer/react-brand
 
+## 0.4.0
+
+### Minor Changes
+
+- [#78](https://github.com/primer/brand/pull/78) [`487a9e7`](https://github.com/primer/brand/commit/487a9e7b03b6c196358e1f1146fd87e8c4fe44d4) Thanks [@JoshBowdenConcepts](https://github.com/JoshBowdenConcepts)! - Added a new `size` prop to `Button` and a `medium` sized variant, making the previous `large` size optional.
+
+  ⚠️ This update should be considered a breaking change, despite being issued in a `minor` release.
+
+  Selectable values: `medium` (default) and `large`.
+
+  **Upgrade steps:**
+
+  ```diff
+  - <Button>before</Button>
+  + <Button size="large">after</Button>
+  ```
+
+* [#69](https://github.com/primer/brand/pull/69) [`7838af5`](https://github.com/primer/brand/commit/7838af57ae2fdb94d07c188a142feebc0a4a605d) Thanks [@rezrah](https://github.com/rezrah)! - Added `FormControl`, `Checkbox`, `TextInput` and `Select` components.
+
+  **Read the Technical Previews for usage examples:**
+
+  [🔗 FormControl](https://primer.style/brand/components/FormControl)
+
+  [🔗 Checkbox](https://primer.style/brand/components/Checkbox)
+
+  [🔗 TextInput](https://primer.style/brand/components/TextInput)
+
+  [🔗 Select](https://primer.style/brand/components/Select)
+
 ## 0.3.1
 
 ### Patch Changes
