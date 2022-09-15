@@ -1,5 +1,5 @@
 ---
-"@primer/react-brand": patch
+"@primer/react-brand": minor
 ---
 
 Added a new `size` prop to `Button` and a `medium` sized variant, making the previous `large` size optional.
