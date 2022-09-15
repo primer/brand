@@ -13,3 +13,4 @@ Selectable values: `medium` (default) and `large`.
 ```diff
 - <Button>before</Button>
 + <Button size="large">after</Button>
+```
