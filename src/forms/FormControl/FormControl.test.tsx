@@ -43,7 +43,7 @@ describe('FormControl', () => {
 
   it('generates a unique ID and forwards to relevant children', async () => {
     const {container, getByRole, getByTestId} = render(
-      <FormControl id={mockFormControlId} data-testid={mockTestId}>
+      <FormControl data-testid={mockTestId}>
         <FormControl.Label>{mockFormControlLabel}</FormControl.Label>
         <TextInput />
       </FormControl>
@@ -59,7 +59,8 @@ describe('FormControl', () => {
 
     expect(inputIdValue).toEqual(labelForValue)
     expect(inputNameValue).toEqual(labelForValue)
-    expect(rootEl.getAttribute('id')).toBe(mockFormControlId)
+
+    expect(rootEl.getAttribute('id')).toBe(`FormControl--${inputIdValue}`)
   })
 
   it('can forward an ID override to relevant children', async () => {
@@ -79,9 +80,12 @@ describe('FormControl', () => {
     const inputIdValue = inputEl.getAttribute('id')
     const inputNameValue = inputEl.getAttribute('name')
 
+    expect(inputIdValue).toEqual(mockFormControlId)
     expect(inputIdValue).toEqual(labelForValue)
     expect(inputNameValue).toEqual(labelForValue)
-    expect(rootEl.getAttribute('id')).toBe(mockFormControlId)
+    expect(inputNameValue).toEqual(mockFormControlId)
+
+    expect(rootEl.getAttribute('id')).toBe(`FormControl--${mockFormControlId}`)
   })
 
   it('applies error state to the inputs and form validation', async () => {

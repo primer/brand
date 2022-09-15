@@ -56,14 +56,16 @@ const Root = ({
   validationStatus,
   ...rest
 }: FormControlProps) => {
-  const uniqueId = useId(id)
+  const generatedId = useId(id)
+  const uniqueId = id || generatedId
+
   const isCheckboxControl = React.Children.toArray(children).some(
     child => React.isValidElement(child) && child.type === Checkbox
   )
 
   return (
     <section
-      id={uniqueId}
+      id={`FormControl--${uniqueId}`}
       className={clsx(
         styles.FormControl,
         fullWidth && styles[`FormControl--fullWidth`],
@@ -75,7 +77,7 @@ const Root = ({
     >
       {React.Children.map(children, child => {
         if (child) {
-          const inputId = `FormControl--${uniqueId}`
+          const inputId = `${uniqueId}`
 
           /**
            * TextInput
