@@ -189,10 +189,53 @@
     line-height: var(--base-size-16);
     padding: var(--base-size-16) var(--base-size-24);
   }
-}
 
-.SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link {
-  color: var(--brand-SubdomainNavBar-fg-overflow-default);
+  .SubdomainNavBar-link::after {
+    content: '';
+    position: absolute;
+    bottom: 6px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--brand-SubdomainNavBar-border-nav-default);
+    opacity: 0;
+    transition: opacity 300ms, transform 300ms;
+    opacity: 1;
+    transform: scale(0);
+    transform-origin: center;
+  }
+
+  .SubdomainNavBar-link:hover::after,
+  .SubdomainNavBar-link:focus::after {
+    opacity: 1;
+    transform: translate3d(0, 0.2em, 0);
+    transform: scale(0.4);
+  }
+
+  .SubdomainNavBar-link:active::after {
+    background-color: var(--brand-SubdomainNavBar-border-nav-pressed);
+    transform: scale(0.6);
+  }
+
+  .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link {
+    transition: background-color ease 250ms;
+    background-color: var(--brand-SubdomainNavBar-canvas-overflow-default);
+    color: var(--brand-SubdomainNavBar-fg-overflow-default);
+  }
+
+  .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link::after {
+    display: none;
+  }
+
+  .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link:hover {
+    background-color: var(--brand-SubdomainNavBar-canvas-overflow-hover);
+  }
+
+  .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link:focus,
+  .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link:focus-visible {
+    box-shadow: inset 0px 0px 0px 2px var(--brand-color-focus);
+    outline: none;
+  }
 }
 
 .SubdomainNavBar-more-link {
@@ -219,6 +262,7 @@
   border-radius: var(--brand-borderRadius-large);
   animation: fade-in-down 0.25s, enlarge-shadow 250ms forwards;
   box-shadow: 0px 8px 24px rgba(1, 4, 9, 0.15);
+  overflow: hidden;
 }
 
 .SubdomainNavBar-overflow-menu-list {

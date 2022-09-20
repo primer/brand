@@ -375,12 +375,12 @@ const Template: ComponentStory<typeof SubdomainNavBar> = args => {
     <>
       <div>
         <SubdomainNavBar {...args} title="Subdomain">
-          <SubdomainNavBar.Link href="#">Collections</SubdomainNavBar.Link>
-          <SubdomainNavBar.Link href="#">Topics</SubdomainNavBar.Link>
-          <SubdomainNavBar.Link href="#">Articles</SubdomainNavBar.Link>
-          <SubdomainNavBar.Link href="#">Events</SubdomainNavBar.Link>
-          <SubdomainNavBar.Link href="#">Video</SubdomainNavBar.Link>
-          <SubdomainNavBar.Link href="#">Social</SubdomainNavBar.Link>
+          <SubdomainNavBar.Link href="#collections">Collections</SubdomainNavBar.Link>
+          <SubdomainNavBar.Link href="#topics">Topics</SubdomainNavBar.Link>
+          <SubdomainNavBar.Link href="#articles">Articles</SubdomainNavBar.Link>
+          <SubdomainNavBar.Link href="#events">Events</SubdomainNavBar.Link>
+          <SubdomainNavBar.Link href="#video">Video</SubdomainNavBar.Link>
+          <SubdomainNavBar.Link href="#social">Social</SubdomainNavBar.Link>
           <SubdomainNavBar.Search
             ref={inputRef}
             searchTerm={searchTerm}
@@ -398,7 +398,7 @@ const Template: ComponentStory<typeof SubdomainNavBar> = args => {
           }}
         >
           <Hero
-            heading="This is my super sweet hero heading"
+            heading="This is my super sweet Nav Bar"
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum."
             primaryAction={{
               text: 'Primary action',

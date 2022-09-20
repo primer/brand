@@ -9,6 +9,16 @@ module.exports = {
         search: {
           value: "var(--base-color-scale-white-0)",
           dark: "var(--base-color-scale-black-0)"
+        },
+        overflow: {
+          default: {
+            value: "var(--base-color-scale-white-0)",
+            dark: "var(--base-color-scale-white-0)"
+          },
+          hover: {
+            value: "var(--base-color-scale-gray-0)",
+            dark: "var(--base-color-scale-gray-0)"
+          }
         }
       },
       fg: {
@@ -16,6 +26,18 @@ module.exports = {
           default: {
             value: "var(--brand-color-fg-default)",
             dark: "var(--brand-color-text-onEmphasis)"
+          }
+        }
+      },
+      border: {
+        nav: {
+          default: {
+            value: "var(--base-color-scale-gray-9)",
+            dark: "var(--base-color-scale-gray-3)"
+          },
+          pressed: {
+            value: "var(--base-color-scale-black-0)",
+            dark: "var(--base-color-scale-white-0)"
           }
         }
       }

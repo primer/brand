@@ -1,9 +1,10 @@
-import React, {useRef, useState, useMemo} from 'react'
+import React, {useCallback, useEffect, useRef, useState, useMemo} from 'react'
 import clsx from 'clsx'
 import {ChevronDownIcon} from '@primer/octicons-react'
 
 import {BaseProps} from '../component-helpers'
 import {useVisibilityObserver} from './useVisibilityObserver'
+import {useOnClickOutside} from '../hooks/useOnClickOutside'
 import type {VisibilityMap} from './useVisibilityObserver'
 
 import styles from './SubdomainNavBar.module.css'
@@ -37,6 +38,10 @@ type AnchoredOverlayProps = {
 
 function AnchoredOverlay({children, className, visibilityMap}: React.PropsWithChildren<AnchoredOverlayProps>) {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
+  const ref = useRef<HTMLLIElement | null>(null)
+
+  useOnClickOutside(ref, () => handleClose())
+
   const open = Boolean(anchorEl)
 
   const handleClick = event => {
@@ -47,18 +52,35 @@ function AnchoredOverlay({children, className, visibilityMap}: React.PropsWithCh
     }
   }
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setAnchorEl(null)
-  }
+  }, [])
+
+  const handleKeyboardEscape = useCallback(
+    event => {
+      if (event.key === 'Escape') {
+        handleClose()
+      }
+    },
+    [handleClose]
+  )
 
   const shouldShowMenu = useMemo(() => Object.values(visibilityMap).some(v => v === false), [visibilityMap])
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyboardEscape, false)
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyboardEscape, false)
+    }
+  }, [handleKeyboardEscape])
 
   if (!shouldShowMenu) {
     return null
   }
 
   return (
-    <li className={clsx(className)} style={{order: 99, position: 'relative', right: 0}}>
+    <li className={clsx(className)} style={{order: 99, position: 'relative', right: 0}} ref={ref}>
       <button
         aria-expanded={open ? 'true' : 'false'}
         aria-label="more"
