@@ -1,4 +1,4 @@
-import React, {useState, PropsWithChildren, forwardRef} from 'react'
+import React, {useState, useRef, PropsWithChildren, forwardRef} from 'react'
 import clsx from 'clsx'
 import {MarkGithubIcon, SearchIcon, XIcon} from '@primer/octicons-react'
 
@@ -12,6 +12,7 @@ import '../../lib/design-tokens/css/tokens/functional/components/subdomain-nav-b
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './SubdomainNavBar.module.css'
+import {useOnClickOutside} from '../hooks/useOnClickOutside'
 
 export type SubdomainNavBarProps = {
   /**
@@ -213,6 +214,9 @@ const _SearchInternal = (
   {active, title, searchResults, searchTerm, handlerFn, onSubmit, onChange}: SearchProps,
   ref
 ) => {
+  const dialogRef = useRef<HTMLDivElement | null>(null)
+  useOnClickOutside(dialogRef, handlerFn)
+
   return (
     <>
       <div role="search" className={clsx(styles['SubdomainNavBar-search-trigger'])}>
@@ -221,7 +225,7 @@ const _SearchInternal = (
         </button>
       </div>
       {active && (
-        <div role="dialog" aria-modal="true" className={clsx(styles['SubdomainNavBar-search-dialog'])}>
+        <div ref={dialogRef} role="dialog" aria-modal="true" className={clsx(styles['SubdomainNavBar-search-dialog'])}>
           <div className={clsx(styles['SubdomainNavBar-search-dialog-control-area'])}>
             <div role="search" className={clsx(styles['SubdomainNavBar-search-trigger'])}>
               <button aria-label="search" className={styles['SubdomainNavBar-search-button']} onClick={handlerFn}>
