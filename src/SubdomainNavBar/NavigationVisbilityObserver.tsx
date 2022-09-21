@@ -80,7 +80,7 @@ function AnchoredOverlay({children, className, visibilityMap}: React.PropsWithCh
   }
 
   return (
-    <li className={clsx(className)} style={{order: 99, position: 'relative', right: 0}} ref={ref}>
+    <li className={clsx(styles['SubdomainNavBar-secondary-nav-list-item--overflow'], className)} ref={ref}>
       <button
         aria-expanded={open ? 'true' : 'false'}
         aria-label="more"

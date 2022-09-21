@@ -161,6 +161,12 @@
     visibility: hidden;
     pointer-events: none;
   }
+
+  .SubdomainNavBar-secondary-nav-list-item--overflow {
+    order: 99;
+    position: relative;
+    right: 0;
+  }
 }
 
 .SubdomainNavBar-link {

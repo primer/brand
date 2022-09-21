@@ -2,7 +2,7 @@ import React, {useState, PropsWithChildren, forwardRef} from 'react'
 import clsx from 'clsx'
 import {MarkGithubIcon, SearchIcon, ThreeBarsIcon, XIcon} from '@primer/octicons-react'
 
-import {TextInput, Button, FormControl, Heading, Text} from '..'
+import {Button, FormControl, Heading, Text, TextInput} from '..'
 import {NavigationVisbilityObserver} from './NavigationVisbilityObserver'
 
 /**
@@ -15,14 +15,25 @@ import styles from './SubdomainNavBar.module.css'
 
 export type SubdomainNavBarProps = {
   /**
+   * Valid child elements are `SubdomainNavBar.Link`, `SubdomainNavBar.PrimaryAction`,
+   * `SubdomainNavBar.SecondaryAction` and `SubdomainNavBar.Search`
+   */
+  children?:
+    | React.ReactNode
+    | React.ReactElement<LinkProps>
+    | React.ReactElement<SearchProps>
+    | React.ReactElement<CTAActionProps>
+  /**
    * Forward a custom HTML class attribute
    */
   className?: string
-
-  children?: React.ReactNode | React.ReactElement<LinkProps>
-
+  /**
+   * The title or name of the subdomain. Appears alongside the logo and is parsed by assisitive technologies.
+   */
   title: string
-
+  /**
+   * Optionally change the URL of the logo
+   */
   logoLink?: string
 }
 
@@ -49,7 +60,7 @@ function Root({children, logoLink = 'https//github.com', title, ...rest}: Subdom
                   <MarkGithubIcon fill="currentColor" size="medium" />
                 </a>
               </li>
-              <li role="separator" className={styles['SubdomainNavBar-title-separator']}>
+              <li role="separator" className={styles['SubdomainNavBar-title-separator']} aria-hidden>
                 /
               </li>
               <li>
@@ -65,7 +76,7 @@ function Root({children, logoLink = 'https//github.com', title, ...rest}: Subdom
             </ol>
           </nav>
 
-          <nav aria-label="{Subdomain name}" className={styles['SubdomainNavBar-secondary-nav']}>
+          <nav aria-label={title} className={styles['SubdomainNavBar-secondary-nav']}>
             <NavigationVisbilityObserver
               className={clsx(!menuHidden && styles['SubdomainNavBar-secondary-nav-list--visible'])}
             >
@@ -155,11 +166,11 @@ function Root({children, logoLink = 'https//github.com', title, ...rest}: Subdom
   )
 }
 
-type LinkProps = {href: string}
+type LinkProps = {href: string} & React.DetailedHTMLProps<React.LiHTMLAttributes<HTMLLIElement>, HTMLLIElement>
 
-function Link({href, children, ...rest}: PropsWithChildren<LinkProps>) {
+function Link({href, className, children, ...rest}: PropsWithChildren<LinkProps>) {
   return (
-    <li className={clsx(styles['SubdomainNavBar-secondary-nav-list-item'])} {...rest}>
+    <li className={clsx(styles['SubdomainNavBar-secondary-nav-list-item'], className)} {...rest}>
       <a href={href} className={clsx(styles['SubdomainNavBar-link'])}>
         {children}
       </a>
@@ -280,7 +291,11 @@ const _SearchInternal = (
 
 const Search = forwardRef(_SearchInternal)
 
-function PrimaryAction({children, href, ...rest}) {
+type CTAActionProps = {
+  href: string
+}
+
+function PrimaryAction({children, href, ...rest}: PropsWithChildren<CTAActionProps>) {
   return (
     <Button
       as="a"
@@ -295,7 +310,7 @@ function PrimaryAction({children, href, ...rest}) {
   )
 }
 
-function SecondaryAction({children, href, ...rest}) {
+function SecondaryAction({children, href, ...rest}: PropsWithChildren<CTAActionProps>) {
   return (
     <Button
       as="a"

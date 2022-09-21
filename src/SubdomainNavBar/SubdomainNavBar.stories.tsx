@@ -410,7 +410,9 @@ const Template: ComponentStory<typeof SubdomainNavBar> = args => {
             }}
             align="center"
           />
-
+          {/**
+           * Hack to make the page longer in the example
+           */}
           <Heading as="h2" style={{textAlign: 'center'}}>
             ...
           </Heading>
