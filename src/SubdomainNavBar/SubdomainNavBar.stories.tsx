@@ -410,6 +410,10 @@ const Template: ComponentStory<typeof SubdomainNavBar> = args => {
             }}
             align="center"
           />
+
+          <Heading as="h2" style={{textAlign: 'center'}}>
+            ...
+          </Heading>
           <River>
             <River.Visual>
               <img

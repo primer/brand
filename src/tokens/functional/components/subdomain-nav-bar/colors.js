@@ -4,7 +4,7 @@ module.exports = {
       canvas: {
         default: {
           value: "hsl(var(--base-color-scale-white-0-hsl) / 50%)",
-          dark: "hsl(var(--base-color-scale-black-0-hsl) / 50%)"
+          dark: "hsl(var(--base-color-scale-gray-9-hsl) / 50%)"
         },
         search: {
           value: "var(--base-color-scale-white-0)",
@@ -36,6 +36,12 @@ module.exports = {
             dark: "var(--base-color-scale-gray-3)"
           },
           pressed: {
+            value: "var(--base-color-scale-black-0)",
+            dark: "var(--base-color-scale-white-0)"
+          }
+        },
+        button: {
+          hover: {
             value: "var(--base-color-scale-black-0)",
             dark: "var(--base-color-scale-white-0)"
           }

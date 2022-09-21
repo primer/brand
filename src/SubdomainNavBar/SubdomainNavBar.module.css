@@ -284,13 +284,15 @@
   cursor: pointer;
   appearance: none;
   background-color: transparent;
-  border: none;
+  border: var(--brand-borderWidth-normal) solid transparent;
   color: var(--brand-color-text-default);
-  width: 48px;
-  height: 48px;
+  width: calc(48px - var(--brand-borderWidth-normal));
+  height: calc(48px - var(--brand-borderWidth-normal));
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: border 250ms ease;
+  border-radius: var(--brand-borderRadius-medium);
 }
 
 .SubdomainNavBar-search-button svg,
@@ -309,12 +311,21 @@
 }
 
 @media screen and (min-width: 768px) {
+  .SubdomainNavBar-search-button:hover,
+  .SubdomainNavBar-menu-button:hover {
+    border: var(--brand-borderWidth-normal) solid var(--brand-SubdomainNavBar-border-button-hover);
+  }
+
   .SubdomainNavBar-mobile-menu-button {
     display: none;
   }
-}
 
-@media screen and (min-width: 768px) {
+  .SubdomainNavBar-search-dialog-control-area .SubdomainNavBar-search-button,
+  .SubdomainNavBar-search-dialog-control-area .SubdomainNavBar-menu-button {
+    height: 42px;
+    width: 42px;
+  }
+
   .SubdomainNavBar-search-button {
     margin: 0 var(--base-size-16) 0 auto;
   }
@@ -421,6 +432,7 @@
   display: flex;
   align-items: center;
   animation: fade-in-down 500ms;
+  gap: var(--base-size-4);
 }
 
 @media screen and (min-width: 768px) {
