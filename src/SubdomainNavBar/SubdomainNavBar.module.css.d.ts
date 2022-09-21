@@ -1,6 +1,7 @@
 declare const styles: {
   readonly "SubdomainNavBar": string;
   readonly "SubdomainNavBar-outer-container": string;
+  readonly "SubdomainNavBar-outer-container--fixed": string;
   readonly "SubdomainNavBar-inner-container": string;
   readonly "SubdomainNavBar-inner-container--search-open": string;
   readonly "fade-out": string;
@@ -8,14 +9,15 @@ declare const styles: {
   readonly "SubdomainNavBar-logo-mark": string;
   readonly "SubdomainNavBar-title-separator": string;
   readonly "SubdomainNavBar-title": string;
-  readonly "SubdomainNavBar-secondary-nav": string;
-  readonly "SubdomainNavBar-secondary-nav-list": string;
-  readonly "SubdomainNavBar-secondary-nav-list--visible": string;
+  readonly "SubdomainNavBar-primary-nav": string;
+  readonly "SubdomainNavBar-primary-nav-list": string;
+  readonly "SubdomainNavBar-primary-nav-list--visible": string;
   readonly "fade-in-down": string;
-  readonly "SubdomainNavBar-secondary-nav-list-item": string;
-  readonly "SubdomainNavBar-secondary-nav-list-item--visible": string;
+  readonly "SubdomainNavBar-primary-nav-list-item": string;
+  readonly "SubdomainNavBar-primary-nav-list-item--visible": string;
   readonly "fade-in-down-staggered": string;
-  readonly "SubdomainNavBar-secondary-nav-list-item--invisible": string;
+  readonly "SubdomainNavBar-primary-nav-list-item--invisible": string;
+  readonly "SubdomainNavBar-primary-nav-list-item--overflow": string;
   readonly "SubdomainNavBar-link": string;
   readonly "SubdomainNavBar-overflow-menu-item": string;
   readonly "SubdomainNavBar-more-link": string;
@@ -27,13 +29,13 @@ declare const styles: {
   readonly "SubdomainNavBar-menu-button": string;
   readonly "SubdomainNavBar-menu-button--close": string;
   readonly "SubdomainNavBar-mobile-menu-button": string;
+  readonly "SubdomainNavBar-search-dialog-control-area": string;
   readonly "SubdomainNavBar-button-area": string;
   readonly "SubdomainNavBar-button-area-inner": string;
   readonly "SubdomainNavBar-cta-button": string;
   readonly "SubdomainNavBar-cta-button--secondary": string;
   readonly "SubdomainNavBar-search-form": string;
   readonly "SubdomainNavBar-search-dialog": string;
-  readonly "SubdomainNavBar-search-dialog-control-area": string;
   readonly "SubdomainNavBar-search-text-input": string;
   readonly "SubdomainNavBar-search-results": string;
   readonly "SubdomainNavBar-search-results-heading": string;

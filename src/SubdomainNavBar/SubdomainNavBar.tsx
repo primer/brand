@@ -28,7 +28,11 @@ export type SubdomainNavBarProps = {
    */
   className?: string
   /**
-   * The title or name of the subdomain. Appears alongside the logo and is parsed by assisitive technologies.
+   * Fixes the navigation bar to the top of the viewport. Defaults to `true`.
+   */
+  fixed?: boolean
+  /**
+   * The title or name of the subdomain. Appears adjacent to the logo and is required for communicating content to assisitive technologies.
    */
   title: string
   /**
@@ -37,7 +41,7 @@ export type SubdomainNavBarProps = {
   logoLink?: string
 }
 
-function Root({children, logoLink = 'https//github.com', title, ...rest}: SubdomainNavBarProps) {
+function Root({children, fixed = true, logoLink = 'https//github.com', title, ...rest}: SubdomainNavBarProps) {
   const [menuHidden, setMenuHidden] = useState(true)
   const [searchVisible, setSearchVisible] = useState(false)
 
@@ -45,7 +49,12 @@ function Root({children, logoLink = 'https//github.com', title, ...rest}: Subdom
   const handleSearchVisibility = () => setSearchVisible(!searchVisible)
 
   return (
-    <div className={styles['SubdomainNavBar-outer-container']}>
+    <div
+      className={clsx(
+        styles['SubdomainNavBar-outer-container'],
+        fixed && styles['SubdomainNavBar-outer-container--fixed']
+      )}
+    >
       <header className={styles['SubdomainNavBar']} {...rest}>
         <div
           className={clsx(
@@ -76,9 +85,9 @@ function Root({children, logoLink = 'https//github.com', title, ...rest}: Subdom
             </ol>
           </nav>
 
-          <nav aria-label={title} className={styles['SubdomainNavBar-secondary-nav']}>
+          <nav aria-label={title} className={styles['SubdomainNavBar-primary-nav']}>
             <NavigationVisbilityObserver
-              className={clsx(!menuHidden && styles['SubdomainNavBar-secondary-nav-list--visible'])}
+              className={clsx(!menuHidden && styles['SubdomainNavBar-primary-nav-list--visible'])}
             >
               {React.Children.toArray(children)
                 .map((child, index) => {
@@ -127,7 +136,9 @@ function Root({children, logoLink = 'https//github.com', title, ...rest}: Subdom
             )}
             onClick={handleMobileMenuClick}
           >
-            {menuHidden ? <ThreeBarsIcon /> : <XIcon />}
+            <div className={clsx(styles['SubdomainNavBar-menu-button-bar'])}></div>
+            <div className={clsx(styles['SubdomainNavBar-menu-button-bar'])}></div>
+            <div className={clsx(styles['SubdomainNavBar-menu-button-bar'])}></div>
           </button>
 
           <div
@@ -170,7 +181,7 @@ type LinkProps = {href: string} & React.DetailedHTMLProps<React.LiHTMLAttributes
 
 function Link({href, className, children, ...rest}: PropsWithChildren<LinkProps>) {
   return (
-    <li className={clsx(styles['SubdomainNavBar-secondary-nav-list-item'], className)} {...rest}>
+    <li className={clsx(styles['SubdomainNavBar-primary-nav-list-item'], className)} {...rest}>
       <a href={href} className={clsx(styles['SubdomainNavBar-link'])}>
         {children}
       </a>

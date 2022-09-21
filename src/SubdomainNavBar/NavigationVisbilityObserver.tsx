@@ -14,15 +14,13 @@ export function NavigationVisbilityObserver({children, className, ...rest}) {
   const [visibilityMap] = useVisibilityObserver(navRef)
 
   return (
-    <ul className={clsx(styles['SubdomainNavBar-secondary-nav-list'], className)} ref={navRef} {...rest}>
+    <ul className={clsx(styles['SubdomainNavBar-primary-nav-list'], className)} ref={navRef} {...rest}>
       {React.Children.map(children, child => {
         return React.cloneElement(child, {
           className: clsx(
             child.props.className,
-            !!visibilityMap[child.props['data-navitemid']] &&
-              styles['SubdomainNavBar-secondary-nav-list-item--visible'],
-            !visibilityMap[child.props['data-navitemid']] &&
-              styles['SubdomainNavBar-secondary-nav-list-item--invisible']
+            !!visibilityMap[child.props['data-navitemid']] && styles['SubdomainNavBar-primary-nav-list-item--visible'],
+            !visibilityMap[child.props['data-navitemid']] && styles['SubdomainNavBar-primary-nav-list-item--invisible']
           )
         })
       })}
@@ -80,7 +78,7 @@ function AnchoredOverlay({children, className, visibilityMap}: React.PropsWithCh
   }
 
   return (
-    <li className={clsx(styles['SubdomainNavBar-secondary-nav-list-item--overflow'], className)} ref={ref}>
+    <li className={clsx(styles['SubdomainNavBar-primary-nav-list-item--overflow'], className)} ref={ref}>
       <button
         aria-expanded={open ? 'true' : 'false'}
         aria-label="more"
