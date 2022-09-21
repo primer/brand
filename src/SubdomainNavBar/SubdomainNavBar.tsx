@@ -1,6 +1,6 @@
 import React, {useState, useRef, PropsWithChildren, forwardRef} from 'react'
 import clsx from 'clsx'
-import {MarkGithubIcon, SearchIcon, XIcon} from '@primer/octicons-react'
+import {ChevronLeftIcon, MarkGithubIcon, SearchIcon, XIcon} from '@primer/octicons-react'
 
 import {Button, FormControl, Heading, Text, TextInput} from '..'
 import {NavigationVisbilityObserver} from './NavigationVisbilityObserver'
@@ -67,6 +67,9 @@ function Root({children, fixed = true, logoLink = 'https//github.com', title, ..
             <ol className={styles['SubdomainNavBar-title-area']}>
               <li>
                 <a href={logoLink} aria-label="Github Home" className={styles['SubdomainNavBar-logo-mark']}>
+                  <span className={clsx(styles['SubdomainNavBar-back-arrow'])}>
+                    <ChevronLeftIcon fill="currentColor" size="medium" />
+                  </span>
                   <MarkGithubIcon fill="currentColor" size="medium" />
                 </a>
               </li>
@@ -215,6 +218,7 @@ const _SearchInternal = (
   ref
 ) => {
   const dialogRef = useRef<HTMLDivElement | null>(null)
+
   useOnClickOutside(dialogRef, handlerFn)
 
   return (

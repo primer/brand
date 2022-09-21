@@ -64,6 +64,21 @@
 
 .SubdomainNavBar-logo-mark {
   color: var(--brand-color-text-default);
+  position: relative;
+}
+
+.SubdomainNavBar-back-arrow {
+  position: absolute;
+  left: calc(-32px + 5px);
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s ease;
+  transform: translateX(5px);
+  color: var(--brand-color-text-muted);
+}
+
+.SubdomainNavBar-logo-mark:hover .SubdomainNavBar-back-arrow {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .SubdomainNavBar-title-separator {
@@ -161,10 +176,10 @@
 @media screen and (max-width: 767px) {
   .SubdomainNavBar-primary-nav-list--visible .SubdomainNavBar-primary-nav-list-item--visible {
     animation-name: fade-in-down-staggered;
-    animation-duration: 350ms;
-    animation-delay: calc(var(--animation-order) * 100ms);
+    animation-duration: 500ms;
+    animation-delay: calc(var(--animation-order) * 80ms);
     animation-fill-mode: both;
-    animation-timing-function: ease-in-out;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   }
 }
 

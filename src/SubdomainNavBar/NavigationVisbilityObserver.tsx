@@ -8,6 +8,7 @@ import {useOnClickOutside} from '../hooks/useOnClickOutside'
 import type {VisibilityMap} from './useVisibilityObserver'
 
 import styles from './SubdomainNavBar.module.css'
+import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
 
 export function NavigationVisbilityObserver({children, className, ...rest}) {
   const navRef = useRef<HTMLUListElement | null>(null)
@@ -54,28 +55,7 @@ function AnchoredOverlay({children, className, visibilityMap}: React.PropsWithCh
     setAnchorEl(null)
   }, [])
 
-  const handleKeyboardEscape = useCallback(
-    event => {
-      if (event.key === 'Escape') {
-        handleClose()
-      }
-    },
-    [handleClose]
-  )
-
-  const shouldShowMenu = useMemo(() => Object.values(visibilityMap).some(v => v === false), [visibilityMap])
-
-  useEffect(() => {
-    document.addEventListener('keydown', handleKeyboardEscape, false)
-
-    return () => {
-      document.removeEventListener('keydown', handleKeyboardEscape, false)
-    }
-  }, [handleKeyboardEscape])
-
-  if (!shouldShowMenu) {
-    return null
-  }
+  useKeyboardEscape(handleClose)
 
   return (
     <li className={clsx(styles['SubdomainNavBar-primary-nav-list-item--overflow'], className)} ref={ref}>

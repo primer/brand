@@ -27,6 +27,7 @@ declare const styles: {
   readonly "SubdomainNavBar-search-trigger": string;
   readonly "SubdomainNavBar-search-button": string;
   readonly "SubdomainNavBar-menu-button": string;
+  readonly "SubdomainNavBar-menu-button-bar": string;
   readonly "SubdomainNavBar-menu-button--close": string;
   readonly "SubdomainNavBar-mobile-menu-button": string;
   readonly "SubdomainNavBar-search-dialog-control-area": string;
