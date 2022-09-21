@@ -1,6 +1,6 @@
 import React, {useState, PropsWithChildren, forwardRef} from 'react'
 import clsx from 'clsx'
-import {MarkGithubIcon, SearchIcon, ThreeBarsIcon, XIcon} from '@primer/octicons-react'
+import {MarkGithubIcon, SearchIcon, XIcon} from '@primer/octicons-react'
 
 import {Button, FormControl, Heading, Text, TextInput} from '..'
 import {NavigationVisbilityObserver} from './NavigationVisbilityObserver'
