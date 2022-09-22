@@ -42,7 +42,7 @@ export type SubdomainNavBarProps = {
   logoLink?: string
 }
 
-function Root({children, fixed = true, logoLink = 'https//github.com', title, ...rest}: SubdomainNavBarProps) {
+function Root({children, fixed = true, logoLink = 'https://github.com', title, ...rest}: SubdomainNavBarProps) {
   const [menuHidden, setMenuHidden] = useState(true)
   const [searchVisible, setSearchVisible] = useState(false)
 
@@ -253,6 +253,7 @@ const _SearchInternal = (
                   placeholder={`Search ${title}`}
                   onChange={onChange}
                   defaultValue={searchTerm}
+                  invisible
                 />
               </FormControl>
             </form>
@@ -266,41 +267,40 @@ const _SearchInternal = (
           </div>
 
           {searchResults && searchResults.length > 0 && (
-            <ul role="listbox" aria-labelledby="heading" className={clsx(styles['SubdomainNavBar-search-results'])}>
-              <li>
-                <Text className={styles['SubdomainNavBar-search-results-heading']}>
-                  Results for &ldquo;{searchTerm}&rdquo;
-                </Text>
-              </li>
+            <div className={clsx(styles['SubdomainNavBar-search-results-container'])}>
+              <Text className={styles['SubdomainNavBar-search-results-heading']}>
+                Results for &ldquo;{searchTerm}&rdquo;
+              </Text>
+              <ul role="listbox" aria-labelledby="heading" className={clsx(styles['SubdomainNavBar-search-results'])}>
+                {searchResults.map((result, index) => (
+                  <li key={`${result.title}-${index}`} className={styles['SubdomainNavBar-search-result-item']}>
+                    <Heading as="h6" className={styles['SubdomainNavBar-search-result-item-heading']}>
+                      <a href={result.url}>{result.title}</a>
+                    </Heading>
 
-              {searchResults.map((result, index) => (
-                <li key={`${result.title}-${index}`} className={styles['SubdomainNavBar-search-result-item']}>
-                  <Heading as="h6" className={styles['SubdomainNavBar-search-result-item-heading']}>
-                    <a href={result.url}>{result.title}</a>
-                  </Heading>
-
-                  <Text as="p" size="200" className={styles['SubdomainNavBar-search-result-item-desc']}>
-                    {result.description}
-                  </Text>
-                  <div>
-                    <Text size="100" className={styles['SubdomainNavBar-search-result-item-desc']}>
-                      {result.date}
+                    <Text as="p" size="200" className={styles['SubdomainNavBar-search-result-item-desc']}>
+                      {result.description}
                     </Text>
-                    {result.category && (
-                      <>
-                        <Text size="100" className={styles['SubdomainNavBar-search-result-item-desc']}>
-                          {' '}
-                          •{' '}
-                        </Text>
-                        <Text size="100" className={styles['SubdomainNavBar-search-result-item-desc']}>
-                          {result.category}
-                        </Text>
-                      </>
-                    )}
-                  </div>
-                </li>
-              ))}
-            </ul>
+                    <div>
+                      <Text size="100" className={styles['SubdomainNavBar-search-result-item-desc']}>
+                        {result.date}
+                      </Text>
+                      {result.category && (
+                        <>
+                          <Text size="100" className={styles['SubdomainNavBar-search-result-item-desc']}>
+                            {' '}
+                            •{' '}
+                          </Text>
+                          <Text size="100" className={styles['SubdomainNavBar-search-result-item-desc']}>
+                            {result.category}
+                          </Text>
+                        </>
+                      )}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
           )}
         </div>
       )}

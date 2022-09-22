@@ -1,4 +1,8 @@
 import {ComponentMeta, ComponentStory} from '@storybook/react'
+import {userEvent, within} from '@storybook/testing-library'
+import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
+
+import {expect} from '@storybook/jest'
 import React from 'react'
 import {Hero, River, Heading, Text, Link} from '../'
 
@@ -6,7 +10,17 @@ import {SubdomainNavBar} from '.'
 
 export default {
   title: 'Components/SubdomainNavBar',
-  component: SubdomainNavBar
+  component: SubdomainNavBar,
+  argTypes: {
+    onSubmit: {action: true}
+  },
+  parameters: {
+    //👇 The viewports object from the Essentials addon
+    viewport: {
+      //👇 The viewports you want to use
+      viewports: INITIAL_VIEWPORTS
+    }
+  }
 } as ComponentMeta<typeof SubdomainNavBar>
 
 const mockSearchData = [
@@ -454,12 +468,69 @@ const Template: ComponentStory<typeof SubdomainNavBar> = args => {
   )
 }
 
-export const Default = Template.bind({})
+export const Playground = Template.bind({})
 
-Default.parameters = {
+Playground.parameters = {
   a11y: {
     config: {
       rules: [{id: 'heading-order', enabled: false}] // disable heading-order rule because the headings used are for mock layout
     }
   }
+}
+
+export const SearchOpen = Template.bind({})
+
+SearchOpen.play = async ({canvasElement}) => {
+  const canvas = within(canvasElement)
+  await userEvent.click(canvas.getByLabelText('search'))
+
+  await expect(canvas.getByRole('combobox')).toHaveFocus()
+}
+
+export const SearchResultsVisible = Template.bind({})
+
+SearchResultsVisible.play = async ({canvasElement}) => {
+  const canvas = within(canvasElement)
+
+  await userEvent.click(canvas.getByLabelText('search'))
+  await userEvent.type(canvas.getByRole('combobox'), 'devops')
+  await expect(canvas.getByRole('combobox')).toHaveFocus()
+}
+
+export const OverflowMenuOpen = Template.bind({})
+OverflowMenuOpen.play = async ({canvasElement}) => {
+  const canvas = within(canvasElement)
+  await userEvent.click(canvas.getByLabelText('more'))
+}
+
+export const MobileView = Template.bind({})
+MobileView.parameters = {
+  viewport: {
+    defaultViewport: 'iphonex'
+  }
+}
+
+export const MobileMenuOpen = Template.bind({})
+MobileMenuOpen.parameters = {
+  viewport: {
+    defaultViewport: 'iphonex'
+  }
+}
+MobileMenuOpen.play = async ({canvasElement}) => {
+  const canvas = within(canvasElement)
+  await userEvent.click(canvas.getByLabelText('Menu'))
+}
+
+export const MobileSearchResultsVisible = Template.bind({})
+MobileSearchResultsVisible.parameters = {
+  viewport: {
+    defaultViewport: 'iphonex'
+  }
+}
+MobileSearchResultsVisible.play = async ({args, canvasElement}) => {
+  const canvas = within(canvasElement)
+
+  await userEvent.click(canvas.getByLabelText('search'))
+  await userEvent.type(canvas.getByRole('combobox'), 'devops')
+  await expect(canvas.getByRole('combobox')).toHaveFocus()
 }

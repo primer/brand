@@ -12,6 +12,10 @@ export type TextInputProps = {
    */
   fullWidth?: boolean
   /**
+   * Removes border
+   */
+  invisible?: boolean
+  /**
    * Applies non-interactive text to start of input.
    */
   leadingText?: string
@@ -55,6 +59,7 @@ const _TextInput = (
     className,
     disabled,
     fullWidth = false,
+    invisible = false,
     leadingText,
     leadingVisual: LeadingVisual,
     monospace,
@@ -72,8 +77,9 @@ const _TextInput = (
       className={clsx(
         styles['TextInput-wrapper'],
         fullWidth && styles['TextInput-wrapper--fullWidth'],
-        monospace && styles['TextInput-wrapper--monospace'],
+        invisible && styles['TextInput-wrapper--invisible'],
         disabled && styles['TextInput-wrapper--disabled'],
+        monospace && styles['TextInput-wrapper--monospace'],
         validationStatus && styles[`TextInput-wrapper--${validationStatus}`]
       )}
     >
