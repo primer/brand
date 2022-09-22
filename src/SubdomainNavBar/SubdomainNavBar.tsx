@@ -89,7 +89,7 @@ function Root({children, fixed = true, logoLink = 'https://github.com', title, .
             </ol>
           </nav>
 
-          <nav aria-label={title} className={styles['SubdomainNavBar-primary-nav']}>
+          <nav id="menu-navigation" aria-label={title} className={styles['SubdomainNavBar-primary-nav']}>
             <NavigationVisbilityObserver
               className={clsx(!menuHidden && styles['SubdomainNavBar-primary-nav-list--visible'])}
             >
@@ -223,13 +223,20 @@ const _SearchInternal = (
 
   return (
     <>
-      <div role="search" className={clsx(styles['SubdomainNavBar-search-trigger'])}>
+      <div role="search" className={clsx(styles['SubdomainNavBar-search-trigger'])} aria-label="open search">
         <button aria-label="search" className={styles['SubdomainNavBar-search-button']} onClick={handlerFn}>
           <SearchIcon />
         </button>
       </div>
       {active && (
-        <div ref={dialogRef} role="dialog" aria-modal="true" className={clsx(styles['SubdomainNavBar-search-dialog'])}>
+        <div
+          ref={dialogRef}
+          role="dialog"
+          aria-label="search menu dialog"
+          title={`Search ${title}`}
+          aria-modal="true"
+          className={clsx(styles['SubdomainNavBar-search-dialog'])}
+        >
           <div className={clsx(styles['SubdomainNavBar-search-dialog-control-area'])}>
             <div role="search" className={clsx(styles['SubdomainNavBar-search-trigger'])}>
               <button aria-label="search" className={styles['SubdomainNavBar-search-button']} onClick={handlerFn}>
@@ -248,8 +255,7 @@ const _SearchInternal = (
                   name="search"
                   role="combobox"
                   aria-expanded="true"
-                  aria-controls="listbox-ID"
-                  aria-activedescendant="IDREF"
+                  aria-controls="listbox-search-results"
                   placeholder={`Search ${title}`}
                   onChange={onChange}
                   defaultValue={searchTerm}
@@ -266,42 +272,58 @@ const _SearchInternal = (
             </button>
           </div>
 
-          {searchResults && searchResults.length > 0 && (
-            <div className={clsx(styles['SubdomainNavBar-search-results-container'])}>
-              <Text className={styles['SubdomainNavBar-search-results-heading']}>
-                Results for &ldquo;{searchTerm}&rdquo;
-              </Text>
-              <ul role="listbox" aria-labelledby="heading" className={clsx(styles['SubdomainNavBar-search-results'])}>
-                {searchResults.map((result, index) => (
-                  <li key={`${result.title}-${index}`} className={styles['SubdomainNavBar-search-result-item']}>
-                    <Heading as="h6" className={styles['SubdomainNavBar-search-result-item-heading']}>
-                      <a href={result.url}>{result.title}</a>
-                    </Heading>
+          <div id="listbox-search-results">
+            {searchResults && searchResults.length > 0 && (
+              <div className={clsx(styles['SubdomainNavBar-search-results-container'])}>
+                <Text
+                  id="subdomainnavbar-search-results-heading"
+                  className={styles['SubdomainNavBar-search-results-heading']}
+                >
+                  Results for &ldquo;{searchTerm}&rdquo;
+                </Text>
+                <ul
+                  role="listbox"
+                  aria-label="search results"
+                  aria-labelledby="subdomainnavbar-search-results-heading"
+                  aria-activedescendant="subdomainnavbar-search-result-1"
+                  className={clsx(styles['SubdomainNavBar-search-results'])}
+                  tabIndex={0}
+                >
+                  {searchResults.map((result, index) => (
+                    <li
+                      key={`${result.title}-${index}`}
+                      id={`subdomainnavbar-search-result-${index}`}
+                      className={styles['SubdomainNavBar-search-result-item']}
+                    >
+                      <Heading as="h6" className={styles['SubdomainNavBar-search-result-item-heading']}>
+                        <a href={result.url}>{result.title}</a>
+                      </Heading>
 
-                    <Text as="p" size="200" className={styles['SubdomainNavBar-search-result-item-desc']}>
-                      {result.description}
-                    </Text>
-                    <div>
-                      <Text size="100" className={styles['SubdomainNavBar-search-result-item-desc']}>
-                        {result.date}
+                      <Text as="p" size="200" className={styles['SubdomainNavBar-search-result-item-desc']}>
+                        {result.description}
                       </Text>
-                      {result.category && (
-                        <>
-                          <Text size="100" className={styles['SubdomainNavBar-search-result-item-desc']}>
-                            {' '}
-                            •{' '}
-                          </Text>
-                          <Text size="100" className={styles['SubdomainNavBar-search-result-item-desc']}>
-                            {result.category}
-                          </Text>
-                        </>
-                      )}
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+                      <div>
+                        <Text size="100" className={styles['SubdomainNavBar-search-result-item-desc']}>
+                          {result.date}
+                        </Text>
+                        {result.category && (
+                          <>
+                            <Text size="100" className={styles['SubdomainNavBar-search-result-item-desc']}>
+                              {' '}
+                              •{' '}
+                            </Text>
+                            <Text size="100" className={styles['SubdomainNavBar-search-result-item-desc']}>
+                              {result.category}
+                            </Text>
+                          </>
+                        )}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
         </div>
       )}
     </>

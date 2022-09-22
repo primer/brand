@@ -356,11 +356,6 @@ const Template: ComponentStory<typeof SubdomainNavBar> = args => {
 
   const [searchTerm, setSearchTerm] = React.useState('')
 
-  const shuffledMockData = mockSearchData
-    .map(value => ({value, sort: Math.random()}))
-    .sort((a, b) => a.sort - b.sort)
-    .map(({value}) => value)
-
   const handleChange = () => {
     if (!inputRef.current) return
     if (inputRef.current.value.length === 0) {
@@ -368,7 +363,7 @@ const Template: ComponentStory<typeof SubdomainNavBar> = args => {
       return
     }
     if (inputRef.current.value.length > 2) {
-      setTimeout(() => setSearchResults(shuffledMockData), 1000)
+      setTimeout(() => setSearchResults(mockSearchData), 1000)
       setSearchTerm(inputRef.current.value)
       return
     }
@@ -527,7 +522,7 @@ MobileSearchResultsVisible.parameters = {
     defaultViewport: 'iphonex'
   }
 }
-MobileSearchResultsVisible.play = async ({args, canvasElement}) => {
+MobileSearchResultsVisible.play = async ({canvasElement}) => {
   const canvas = within(canvasElement)
 
   await userEvent.click(canvas.getByLabelText('search'))
