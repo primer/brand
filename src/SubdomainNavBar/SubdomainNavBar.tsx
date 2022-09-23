@@ -193,7 +193,7 @@ function Link({href, className, children, ...rest}: PropsWithChildren<LinkProps>
   )
 }
 
-type SearchResults = {
+export type SubdomainNavBarSearchResultProps = {
   title: string
   description: string
   url: string
@@ -209,7 +209,7 @@ type SearchProps = {
   title?: string
   handlerFn?: () => void
   autoComplete?: boolean
-  searchResults?: SearchResults[]
+  searchResults?: SubdomainNavBarSearchResultProps[]
   searchTerm?: string
 }
 
@@ -224,7 +224,12 @@ const _SearchInternal = (
   return (
     <>
       <div role="search" className={clsx(styles['SubdomainNavBar-search-trigger'])} aria-label="open search">
-        <button aria-label="search" className={styles['SubdomainNavBar-search-button']} onClick={handlerFn}>
+        <button
+          aria-label="search"
+          className={styles['SubdomainNavBar-search-button']}
+          onClick={handlerFn}
+          data-testid="toggle-search"
+        >
           <SearchIcon />
         </button>
       </div>
