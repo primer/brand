@@ -18,6 +18,8 @@
       url: /components/Hero
     - title: River
       url: /components/River
+    - title: Testimonial
+      url: /components/Testimonial
 
 - title: Forms
   children:
