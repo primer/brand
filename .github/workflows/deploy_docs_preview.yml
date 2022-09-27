@@ -14,7 +14,7 @@ jobs:
   deploy:
     if: ${{ github.repository == 'primer/brand' }}
     name: Build and deploy
-    uses: primer/.github/.github/workflows/deploy_preview.yml@main
+    uses: primer/.github/.github/workflows/deploy_preview.yml@JamesMGreene:patch-1
     with:
       node_version: 16
       install: npm ci --legacy-peer-deps && cd docs && npm ci --legacy-peer-deps && cd ..
