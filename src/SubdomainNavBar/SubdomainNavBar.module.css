@@ -352,7 +352,7 @@
 }
 
 .SubdomainNavBar-menu-button {
-  display: inline-flex;
+  display: inline-block;
   align-self: center;
 }
 
@@ -411,6 +411,7 @@
 
   .SubdomainNavBar-search-dialog-control-area .SubdomainNavBar-search-button,
   .SubdomainNavBar-search-dialog-control-area .SubdomainNavBar-menu-button {
+    display: inline-flex;
     width: 48px;
   }
 

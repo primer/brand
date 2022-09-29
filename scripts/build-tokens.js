@@ -51,7 +51,7 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
     type: 'value',
     transformer: token => {
       function isPx(value) {
-        return /[\d\.]+px$/.test(value)
+        return /[\d.]+px$/.test(value)
       }
 
       if (isPx(token.value)) {
