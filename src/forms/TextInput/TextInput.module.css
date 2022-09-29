@@ -71,6 +71,10 @@
   transition-property: border;
 }
 
+.TextInput-wrapper--invisible {
+  border-color: transparent;
+}
+
 .TextInput-wrapper--fullWidth {
   display: flex;
 }

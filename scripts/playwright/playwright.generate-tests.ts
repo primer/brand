@@ -33,7 +33,13 @@
    * Manual lookup for tests that need animation or side-effects to complete before tests start
    */
   const waitForTimeoutLookup = {
-    'components-faq-fixtures--all-open': 250 // for the animation
+    'components-faq-fixtures--all-open': 250, // for the animation
+    'components-subdomainnavbar--search-open': 5500, // for the animation
+    'components-subdomainnavbar--search-results-visible': 5500, // for the animation
+    'components-subdomainnavbar--overflow-menu-open': 5500, // for the animation
+    'components-subdomainnavbar--mobile-view': 5500, // for the animation
+    'components-subdomainnavbar--mobile-menu-open': 5500, // for all staggered animations
+    'components-subdomainnavbar--mobile-search-results-visible': 5500 // for the animation
   }
 
   /**
@@ -87,20 +93,34 @@
     test.describe('Visual Comparison: ${key}', () => {
   
       ${componentStories.reduce((acc, {id, storyName, groupName, timeout}) => {
+        const requiresMobileViewport = storyName.toLowerCase().includes('mobile')
+
         if (skipTestLookup.includes(id)) {
           return acc
         }
-        return (acc += `
-          test('${groupName} / ${storyName}', async ({page}) => {
-              await page.goto('http://localhost:${port}/iframe.html?args=&id=${id}&viewMode=story')
-              
-              ${timeout ? `await page.waitForTimeout(${timeout})` : ''}
-              expect(await page.screenshot()).toMatchSnapshot()
-            })
-            
-            `)
+
+        const testCase = `test('${groupName} / ${storyName}', async ({page}) => {
+          await page.goto('http://localhost:${port}/iframe.html?args=&id=${id}&viewMode=story')
+          
+          ${timeout ? `await page.waitForTimeout(${timeout})` : ''}
+          expect(await page.screenshot()).toMatchSnapshot()
+        });
+        
+        `
+
+        if (requiresMobileViewport) {
+          return (acc += `
+          // eslint-disable-next-line i18n-text/no-en
+          test.describe('Mobile viewport test for ${storyName}', () => {
+            test.use({ viewport: { width: 360, height: 800 } });
+            ${testCase}
+          });
+          `)
+        }
+
+        return (acc += testCase)
       }, '')}
-      
+
     })
     
     `

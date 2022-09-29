@@ -12,7 +12,8 @@ const {
   Select,
   TextInput,
   ThemeProvider,
-  Button
+  Button,
+  SubdomainNavBar
 } = components
 
 export {
@@ -28,5 +29,6 @@ export {
   Select,
   TextInput,
   ThemeProvider,
-  Button
+  Button,
+  SubdomainNavBar
 }
