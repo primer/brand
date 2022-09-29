@@ -39,10 +39,10 @@ export type SubdomainNavBarProps = {
   /**
    * Optionally change the URL of the logo
    */
-  logoLink?: string
+  logoHref?: string
 }
 
-function Root({children, fixed = true, logoLink = 'https://github.com', title, ...rest}: SubdomainNavBarProps) {
+function Root({children, fixed = true, logoHref = 'https://github.com', title, ...rest}: SubdomainNavBarProps) {
   const [menuHidden, setMenuHidden] = useState(true)
   const [searchVisible, setSearchVisible] = useState(false)
 
@@ -66,7 +66,7 @@ function Root({children, fixed = true, logoLink = 'https://github.com', title, .
           <nav aria-label="global breadcrumb">
             <ol className={styles['SubdomainNavBar-title-area']}>
               <li>
-                <a href={logoLink} aria-label="Github Home" className={styles['SubdomainNavBar-logo-mark']}>
+                <a href={logoHref} aria-label="Github Home" className={styles['SubdomainNavBar-logo-mark']}>
                   <span className={clsx(styles['SubdomainNavBar-back-arrow'])}>
                     <ChevronLeftIcon fill="currentColor" size={24} />
                   </span>
@@ -78,7 +78,7 @@ function Root({children, fixed = true, logoLink = 'https://github.com', title, .
               </li>
               <li>
                 <a
-                  href={logoLink}
+                  href={logoHref}
                   aria-current="page"
                   aria-label={`${title} home`}
                   className={clsx(styles['SubdomainNavBar-title'])}

@@ -328,10 +328,10 @@
   cursor: pointer;
   appearance: none;
   background-color: transparent;
-  border: var(--brand-borderWidth-normal) solid transparent;
+  border: var(--brand-borderWidth-thick) solid transparent;
   color: var(--brand-color-text-default);
-  width: calc(48px - var(--brand-borderWidth-normal));
-  height: calc(48px - var(--brand-borderWidth-normal));
+  width: calc(48px - var(--brand-borderWidth-thick));
+  height: calc(48px - var(--brand-borderWidth-thick));
   display: flex;
   align-items: center;
   justify-content: center;
