@@ -11,13 +11,25 @@ import {
   ThemeProvider,
   Checkbox,
   Select,
-  Button
+  Button,
+  SubdomainNavBar
 } from './'
 import '@primer/react-brand/lib/css/main.css'
 
 export default function KitchenSink() {
   return (
     <>
+      <SubdomainNavBar title="Subdomain">
+        <SubdomainNavBar.Link href="#">Collections</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#">Topics</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#">Articles</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#">Events</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#">Video</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#">Social</SubdomainNavBar.Link>
+        <SubdomainNavBar.Search />
+        <SubdomainNavBar.PrimaryAction href="#">Primary CTA</SubdomainNavBar.PrimaryAction>
+        <SubdomainNavBar.SecondaryAction href="#">Secondary CTA</SubdomainNavBar.SecondaryAction>
+      </SubdomainNavBar>
       <div style={{maxWidth: 1280, margin: '0 auto'}}>
         <Hero
           heading="This is my super sweet hero heading"
