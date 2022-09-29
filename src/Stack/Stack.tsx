@@ -6,9 +6,36 @@ import type {BaseProps} from '../component-helpers'
 import '../../lib/design-tokens/css/tokens/functional/size/size.css'
 import styles from './Stack.module.css'
 
-type StackDirectionVariants = 'horizontal' | 'vertical'
+export const StackDirectionVariants = ['horizontal', 'vertical'] as const
+type StackDirectionVariants = typeof StackDirectionVariants[number]
+export const defaultStackDirection = StackDirectionVariants[1]
 
-type StackSpacingVariants = 'condensed' | 'normal' | 'spacious'
+export const StackSpacingVariants = ['condensed', 'normal', 'spacious'] as const
+type StackSpacingVariants = typeof StackSpacingVariants[number]
+export const defaultStackSpacing = StackSpacingVariants[1]
+
+export const StackAlignItemVariants = ['center', 'flex-start', 'flex-end'] as const
+type StackAlignItemVariants = typeof StackAlignItemVariants[number]
+
+export const StackJustifyContentVariants = [
+  ...StackAlignItemVariants,
+  'space-between',
+  'space-around',
+  'space-evenly'
+] as const
+type justifyContentVariants = typeof StackJustifyContentVariants[number]
+
+type ResponsiveJustifyContentMap = {
+  narrow?: justifyContentVariants
+  regular?: justifyContentVariants
+  wide?: justifyContentVariants
+}
+
+type ResponsiveAlignItemsMap = {
+  narrow?: StackAlignItemVariants
+  regular?: StackAlignItemVariants
+  wide?: StackAlignItemVariants
+}
 
 type ResponsiveDirectionMap = {
   narrow?: StackDirectionVariants
@@ -38,8 +65,10 @@ export type StackProps = BaseProps<HTMLElement> & {
   gap?: StackSpacingVariants | ResponsiveSpacingMap
   /**
    * Applies vertical alignment to child elements relative to the Stack, using the align-items CSS property.
+   * A string value will be applied to all viewports.
+   * An object can be used to define different values for different viewports.
    */
-  alignItems?: 'center' | 'flex-start' | 'flex-end'
+  alignItems?: StackAlignItemVariants | ResponsiveAlignItemsMap
   /**
    * Defines the padding CSS property on the parent Stack.
    * A string value will be applied to all viewports.
@@ -48,8 +77,10 @@ export type StackProps = BaseProps<HTMLElement> & {
   padding?: StackSpacingVariants | ResponsiveSpacingMap
   /**
    * Applies horizontal alignment to child elements relative to the Stack, using the justify-content CSS property.
+   * A string value will be applied to all viewports.
+   * An object can be used to define different values for different viewports.
    */
-  justifyContent?: 'center' | 'flex-start' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly'
+  justifyContent?: justifyContentVariants | ResponsiveJustifyContentMap
   /**
    * Forward inline styles
    */
@@ -59,10 +90,10 @@ export type StackProps = BaseProps<HTMLElement> & {
 const _Stack = (
   {
     children,
-    direction = 'vertical',
-    gap = 'normal',
+    direction = defaultStackDirection,
+    gap = defaultStackSpacing,
     alignItems,
-    padding = 'normal',
+    padding = defaultStackSpacing,
     justifyContent,
     ...rest
   }: StackProps,

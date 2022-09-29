@@ -6,6 +6,16 @@ import {Stack} from '.'
 export default {
   title: 'Components/Stack',
   component: Stack,
+  argTypes: {
+    alignItems: {
+      options: ['center', 'flex-start', 'flex-end'],
+      control: {type: 'radio'}
+    },
+    justifyContent: {
+      options: ['center', 'flex-start', 'flex-end', 'space-between', 'space-around', 'space-evenly'],
+      control: {type: 'radio'}
+    }
+  },
   args: {
     direction: {
       narrow: 'vertical',
