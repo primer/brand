@@ -4,6 +4,7 @@ declare const styles: {
   readonly "Testimonial-quote": string;
   readonly "Testimonial-from": string;
   readonly "Testimonial-avatar-image": string;
+  readonly "Testimonial-logo-image": string;
 };
 export = styles;
 

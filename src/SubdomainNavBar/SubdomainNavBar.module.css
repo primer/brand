@@ -282,6 +282,11 @@
   display: none;
 }
 
+.SubdomainNavBar-more-link[aria-expanded='true']:hover::after,
+.SubdomainNavBar-more-link[aria-expanded='true']:focus::after {
+  display: none;
+}
+
 @media screen and (min-width: 768px) {
   .SubdomainNavBar-more-link {
     cursor: pointer;
@@ -392,7 +397,7 @@
 @media screen and (min-width: 768px) {
   .SubdomainNavBar-search-button:hover,
   .SubdomainNavBar-menu-button:hover {
-    border: var(--brand-borderWidth-normal) solid var(--brand-SubdomainNavBar-border-button-hover);
+    border: var(--brand-borderWidth-thick) solid var(--brand-SubdomainNavBar-border-button-hover);
   }
 
   .SubdomainNavBar-search-button:active,
@@ -406,8 +411,8 @@
 
   .SubdomainNavBar-search-dialog-control-area .SubdomainNavBar-search-button,
   .SubdomainNavBar-search-dialog-control-area .SubdomainNavBar-menu-button {
-    height: 42px;
-    width: 42px;
+    display: inline-flex;
+    width: 48px;
   }
 
   .SubdomainNavBar-search-button {
