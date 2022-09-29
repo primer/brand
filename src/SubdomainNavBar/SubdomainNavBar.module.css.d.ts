@@ -34,6 +34,7 @@ declare const styles: {
   readonly "SubdomainNavBar-search-dialog-control-area": string;
   readonly "SubdomainNavBar-button-area": string;
   readonly "SubdomainNavBar-button-area-inner": string;
+  readonly "SubdomainNavBar-button-area--visible": string;
   readonly "SubdomainNavBar-cta-button": string;
   readonly "SubdomainNavBar-cta-button--secondary": string;
   readonly "SubdomainNavBar-search-form": string;
