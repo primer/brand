@@ -7,6 +7,7 @@ declare const styles: {
   readonly "fade-out": string;
   readonly "SubdomainNavBar-title-area": string;
   readonly "SubdomainNavBar-logo-mark": string;
+  readonly "SubdomainNavBar-back-arrow": string;
   readonly "SubdomainNavBar-title-separator": string;
   readonly "SubdomainNavBar-title": string;
   readonly "SubdomainNavBar-primary-nav": string;
@@ -38,6 +39,7 @@ declare const styles: {
   readonly "SubdomainNavBar-search-form": string;
   readonly "SubdomainNavBar-search-dialog": string;
   readonly "SubdomainNavBar-search-text-input": string;
+  readonly "SubdomainNavBar-search-results-container": string;
   readonly "SubdomainNavBar-search-results": string;
   readonly "SubdomainNavBar-search-results-heading": string;
   readonly "SubdomainNavBar-search-result-item": string;

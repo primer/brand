@@ -68,9 +68,9 @@ function Root({children, fixed = true, logoLink = 'https://github.com', title, .
               <li>
                 <a href={logoLink} aria-label="Github Home" className={styles['SubdomainNavBar-logo-mark']}>
                   <span className={clsx(styles['SubdomainNavBar-back-arrow'])}>
-                    <ChevronLeftIcon fill="currentColor" size="medium" />
+                    <ChevronLeftIcon fill="currentColor" size={24} />
                   </span>
-                  <MarkGithubIcon fill="currentColor" size="medium" />
+                  <MarkGithubIcon fill="currentColor" size={24} />
                 </a>
               </li>
               <li role="separator" className={styles['SubdomainNavBar-title-separator']} aria-hidden>
@@ -243,13 +243,8 @@ const _SearchInternal = (
           className={clsx(styles['SubdomainNavBar-search-dialog'])}
         >
           <div className={clsx(styles['SubdomainNavBar-search-dialog-control-area'])}>
-            <div role="search" className={clsx(styles['SubdomainNavBar-search-trigger'])}>
-              <button aria-label="search" className={styles['SubdomainNavBar-search-button']} onClick={handlerFn}>
-                <SearchIcon />
-              </button>
-            </div>
             <form className={clsx(styles['SubdomainNavBar-search-form'])} onSubmit={onSubmit}>
-              <FormControl fullWidth>
+              <FormControl fullWidth size="large">
                 <FormControl.Label visuallyHidden>Search</FormControl.Label>
                 <TextInput
                   ref={ref}
@@ -265,6 +260,7 @@ const _SearchInternal = (
                   onChange={onChange}
                   defaultValue={searchTerm}
                   invisible
+                  leadingVisual={<SearchIcon size={16} />}
                 />
               </FormControl>
             </form>
@@ -273,7 +269,7 @@ const _SearchInternal = (
               className={clsx(styles['SubdomainNavBar-menu-button'], styles['SubdomainNavBar-menu-button--close'])}
               onClick={handlerFn}
             >
-              <XIcon />
+              <XIcon size={24} />
             </button>
           </div>
 
