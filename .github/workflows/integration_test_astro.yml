@@ -11,7 +11,7 @@ env:
 
 jobs:
   test:
-    if: ${{ github.repository == 'primer/react-brand' }}
+    if: ${{ github.repository == 'primer/brand' }}
     name: Astro - React starter
     runs-on: ubuntu-latest
     steps:
@@ -31,8 +31,34 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
+      # Restore the previous NPM modules and Cypress binary archives.
+      # Any updated archives will be saved automatically after the entire
+      # workflow successfully finishes.
+      # See https://github.com/actions/cache
+      - name: Cache Cypress binary
+        uses: actions/cache@v1
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            cypress-${{ runner.os }}-cypress-
+
       - name: Installing dependencies
         run: npm ci --legacy-peer-deps && cd docs && npm ci --legacy-peer-deps
+
+      - name: install dependencies and verify Cypress
+        env:
+          # make sure every Cypress install prints minimal information
+          CI: 1
+        # print Cypress and OS info
+        run: |
+          npx cypress verify
+          npx cypress info
+          npx cypress version
+          npx cypress version --component package
+          npx cypress version --component binary
+          npx cypress version --component electron
+          npx cypress version --component node
 
       - name: Build
         run: npm run build
@@ -41,7 +67,7 @@ jobs:
         run: npm pack
 
       - name: Configuring Astro React / TypeScript project
-        run: npm create astro@latest astro-test -- --template framework-react
+        run: npm create astro@latest ${{env.ASTRO_FOLDER}} -- --template framework-react
 
       - name: Retrieving package version
         id: package-version
@@ -61,7 +87,7 @@ jobs:
       - name: Copying required files
         run: |
           cp integration-tests/astro/index.astro ./${{env.ASTRO_FOLDER}}/src/pages
-          cp cypress.config.js ./${{env.ASTRO_FOLDER}}
+          cp cypress.config.js ./${{env.ASTRO_FOLDER}}/cypress.config.cjs
           cp -r integration-tests/fixtures ./${{env.ASTRO_FOLDER}}/src
           mkdir ${{env.ASTRO_FOLDER}}/integration-tests
           cp -r integration-tests/fixtures ./${{env.ASTRO_FOLDER}}/integration-tests

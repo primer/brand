@@ -11,7 +11,7 @@ env:
 
 jobs:
   test:
-    if: ${{ github.repository == 'primer/react-brand' }}
+    if: ${{ github.repository == 'primer/brand' }}
     name: Remix.run
     runs-on: ubuntu-latest
     steps:
@@ -41,7 +41,7 @@ jobs:
         run: npm pack
 
       - name: Configuring Remix.run
-        run: yes | npx create-remix --template remix-run/indie-stack ${{env.TEST_FOLDER}}  --typescript
+        run: yes | npx create-remix --template remix-run/indie-stack ${{env.TEST_FOLDER}} --typescript
 
       - name: Retrieving package version
         id: package-version

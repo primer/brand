@@ -37,6 +37,39 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
     formatter: mediaQueryFormat
   })
 
+  /**
+   * Added to replace the same transform in Primer Primitives
+   * The upstream transform removes rem from lineheight, but this
+   * causes a visual regression in Primer Brand.
+   * @see https://github.com/primer/primitives/blob/b51c743a0fe26ab7885a9cc82420f400ad35cce7/build.js#L66
+   *
+   * TODO: Investigate why unitless lineheight doesn't work
+   *
+   */
+  StyleDictionary.registerTransform({
+    name: 'pxToRem',
+    type: 'value',
+    transformer: token => {
+      function isPx(value) {
+        return /[\d.]+px$/.test(value)
+      }
+
+      if (isPx(token.value)) {
+        const baseFontSize = 16
+        const floatValue = parseFloat(token.value.replace('px', ''))
+        if (isNaN(floatValue)) {
+          return token.value
+        }
+        if (floatValue === 0) {
+          return '0'
+        }
+
+        return `${floatValue / baseFontSize}rem`
+      }
+      return token.value
+    }
+  })
+
   //build most tokens
   buildPrimitives({
     source: [`tokens/**/*.json`, `!tokens/**/size-*.json`],
@@ -145,7 +178,9 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
     `tokens/functional/components/button/colors.js`,
     `tokens/functional/components/accordion/colors.js`,
     `tokens/functional/components/faq/colors.json`,
-    `tokens/functional/components/inline-link/colors.json`
+    `tokens/functional/components/inline-link/colors.json`,
+    `tokens/functional/components/control/colors.js`,
+    `tokens/functional/components/subdomain-nav-bar/colors.js`
   ]
 
   for (const path of filesForColorModes) {

@@ -2,8 +2,8 @@ const path = require('path')
 
 module.exports = {
   siteMetadata: {
-    title: 'Primer React Brand',
-    shortName: 'React Brand',
+    title: 'Primer Brand',
+    shortName: 'Primer Brand',
     description: 'React components for GitHub marketing pages',
   },
   plugins: [
@@ -41,5 +41,5 @@ module.exports = {
   flags: {
     DEV_SSR: false,
   },
-  pathPrefix: '/react-brand',
+  pathPrefix: '/brand',
 }

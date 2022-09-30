@@ -1,8 +1,8 @@
 ---
 title: Heading
 status: Experimental
-source: https://github.com/primer/react-brand/tree/main/src/Heading/Heading.tsx
-storybook: '/react-brand/storybook/?path=/story/components-heading--default'
+source: https://github.com/primer/brand/tree/main/src/Heading/Heading.tsx
+storybook: '/brand/storybook/?path=/story/components-heading--default'
 description: Use the Heading component to render body content
 ---
 
@@ -19,22 +19,20 @@ import {Heading} from '@primer/react-brand'
 ### Default
 
 ```jsx live
-<Container pl={3}>
-  <Heading>This is my super sweet heading</Heading>
-</Container>
+<Heading>This is my super sweet heading</Heading>
 ```
 
 ### Scale
 
 ```jsx live
-<Container pl={3}>
+<>
   <Heading as="h1">Heading 1</Heading>
   <Heading as="h2">Heading 2</Heading>
   <Heading as="h3">Heading 3</Heading>
   <Heading as="h4">Heading 4</Heading>
   <Heading as="h5">Heading 5</Heading>
   <Heading as="h6">Heading 6</Heading>
-</Container>
+</>
 ```
 
 ### Sizes
@@ -42,15 +40,16 @@ import {Heading} from '@primer/react-brand'
 The `Heading` size is determined by the type of HTML element specified. E.g. `h1`, `h2`, `h3`, `h4`, `h5` or `h6`.
 
 ```jsx live
-<Container pl={3}>
-  <Heading as="h6">This is my super sweet heading</Heading>
-</Container>
+<Heading as="h6">This is my super sweet heading</Heading>
 ```
 
 ## Component props
 
 ### Heading
 
-| Name | Type                                                   |                     Default                      | Description                         |
-| :--- | :----------------------------------------------------- | :----------------------------------------------: | :---------------------------------- |
-| `as` | <PropTableValues values={HeadingTags} addLineBreaks /> | <PropTableValues values={[defaultHeadingTag]} /> | Applies the underlying HTML element |
+| Name        | Type                                                   |                     Default                      | Description                              |
+| :---------- | :----------------------------------------------------- | :----------------------------------------------: | :--------------------------------------- |
+| `as`        | <PropTableValues values={HeadingTags} addLineBreaks /> | <PropTableValues values={[defaultHeadingTag]} /> | Applies the underlying HTML element      |
+| `className` | `string`                                               |                                                  | Sets a custom class on the root element  |
+| `id`        | `string`                                               |                                                  | Sets a custom id                         |
+| `ref`       | `React.RefObject`                                      |                                                  | Forward a Ref to the underlying DOM node |

@@ -1,21 +1,19 @@
-import React from 'react'
+import React, {forwardRef} from 'react'
 import clsx from 'clsx'
 
 import {Heading, Text} from '../'
+import type {BaseProps} from '../component-helpers'
 
 /**
  * Design tokens
  */
 import '../../lib/design-tokens/css/tokens/functional/components/accordion/colors-with-modes.css'
 
-/**
- * Main Stylesheet (as a CSS Module)
- */
+/** * Main Stylesheet (as a CSS Module) */
 import styles from './Accordion.module.css'
 
-export type AccordionRootProps = {
+export type AccordionRootProps = BaseProps<HTMLDetailsElement> & {
   open?: boolean // Manually declared due to known issue with the native open attribute: https://github.com/facebook/react/issues/15486
-  className?: string
   children: React.ReactElement<AccordionHeadingProps | AccordionContentProps>[]
 } & React.HTMLAttributes<HTMLDetailsElement>
 
@@ -24,53 +22,57 @@ type ValidRootChildren = {
   AccordionContent: React.ReactElement<AccordionContentProps> | typeof React.Fragment | null
 }
 
-export function AccordionRoot({children, className, open = false, ...rest}: AccordionRootProps) {
-  const {AccordionHeading: HeadingChild, AccordionContent: AccordionContentChild} = React.Children.toArray(
-    children
-  ).reduce<ValidRootChildren>(
-    (acc, child) => {
-      if (React.isValidElement(child) && typeof child.type !== 'string') {
-        if (child.type === AccordionContent) {
-          acc.AccordionContent = child
+export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
+  ({children, className, open = false, ...rest}, ref) => {
+    const {AccordionHeading: HeadingChild, AccordionContent: AccordionContentChild} = React.Children.toArray(
+      children
+    ).reduce<ValidRootChildren>(
+      (acc, child) => {
+        if (React.isValidElement(child) && typeof child.type !== 'string') {
+          if (child.type === AccordionContent) {
+            acc.AccordionContent = child
+          }
+          if (child.type === AccordionHeading) {
+            acc.AccordionHeading = child
+          }
         }
-        if (child.type === AccordionHeading) {
-          acc.AccordionHeading = child
-        }
-      }
-      return acc
-    },
-    {AccordionHeading: null, AccordionContent: null}
-  )
+        return acc
+      },
+      {AccordionHeading: null, AccordionContent: null}
+    )
 
-  return (
-    <details className={clsx(styles.Accordion, className)} open={open} {...rest}>
-      {HeadingChild}
-      {AccordionContentChild}
-    </details>
-  )
-}
+    return (
+      <details className={clsx(styles.Accordion, className)} open={open} {...rest} ref={ref}>
+        {HeadingChild}
+        {AccordionContentChild}
+      </details>
+    )
+  }
+)
 
-type AccordionHeadingProps = {
+type AccordionHeadingProps = BaseProps<HTMLHeadingElement> & {
   className?: string
   children: string
 }
 
-export function AccordionHeading({children, className}: AccordionHeadingProps) {
-  return (
-    <summary className={clsx(styles.Accordion__summary, className)}>
-      <Heading as="h4" className={styles['Accordion__summary-heading']}>
-        {children}
-      </Heading>
-    </summary>
-  )
-}
+export const AccordionHeading = forwardRef<HTMLHeadingElement, AccordionHeadingProps>(
+  ({children, className, ...rest}, ref) => {
+    return (
+      <summary className={clsx(styles.Accordion__summary, className)} ref={ref} {...rest}>
+        <Heading as="h4" className={styles['Accordion__summary-heading']}>
+          {children}
+        </Heading>
+      </summary>
+    )
+  }
+)
 
-type AccordionContentProps = {
+type AccordionContentProps = BaseProps<HTMLElement> & {
   className?: string
   children: React.ReactElement | React.ReactElement[]
 }
 
-export function AccordionContent({children, className}: AccordionContentProps) {
+export function AccordionContent({children, className, ...rest}: AccordionContentProps) {
   const resolvedChildren =
     React.isValidElement(children) && children.type === React.Fragment ? children.props.children : children
 
@@ -91,7 +93,7 @@ export function AccordionContent({children, className}: AccordionContentProps) {
   })
 
   return (
-    <section className={clsx(styles.Accordion__content, className)}>
+    <section className={clsx(styles.Accordion__content, className)} {...rest}>
       {React.Children.toArray(transformedChildren).map(
         textNode =>
           React.isValidElement(textNode) &&

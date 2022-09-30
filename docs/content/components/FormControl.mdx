@@ -1,0 +1,417 @@
+---
+title: FormControl
+status: Technical Preview
+source: https://github.com/primer/brand/tree/main/src/FormControl/FormControl.tsx
+storybook: '/brand/storybook/?path=/story/components-forms-formcontrol--playground'
+description: Display form inputs alongside labels, validation and more.
+---
+
+import InlineCode from '@primer/gatsby-theme-doctocat/src/components/inline-code'
+import {PropTableValues} from '../../src/components'
+import {Label} from '@primer/react'
+import {Heading} from '@primer/react-brand'
+import {Link} from 'gatsby'
+
+<Note>
+
+This is a Technical Preview for `FormControl`.
+
+`FormControl` will be generally available in the next `minor` release.
+
+</Note>
+
+```js
+import {FormControl} from '@primer/react-brand'
+```
+
+## Examples
+
+### Basic
+
+`FormControl` is responsible for layout and ensuring that relevant IDs and ARIA attributes are passed to its `children`.
+
+```jsx live
+<FormControl>
+  <FormControl.Label>Name</FormControl.Label>
+  <TextInput />
+</FormControl>
+```
+
+### Alternative inputs
+
+```jsx live
+<Box sx={{display: 'inline-grid', gap: 3}}>
+  <FormControl>
+    <FormControl.Label>Select</FormControl.Label>
+    <Select defaultValue="">
+      <Select.Option value="" disabled>
+        Select a handle
+      </Select.Option>
+      <Select.Option value="mona">Monalisa</Select.Option>
+      <Select.Option value="hubot">Hubot</Select.Option>
+    </Select>
+  </FormControl>
+  <FormControl>
+    <FormControl.Label>
+      Checkbox <FormControl.Hint>With an optional message</FormControl.Hint>
+    </FormControl.Label>
+
+    <Checkbox />
+  </FormControl>
+</Box>
+```
+
+## Layout
+
+`FormControl` can help compose form layouts quickly, while ensuring the inputs are accessible for assistive technologies.
+
+An example of a typical layout composed using `FormControl`:
+
+```jsx live
+<form>
+  <Box
+    sx={{
+      alignItems: 'center',
+      display: 'grid',
+      gap: 16,
+      margin: '0 auto ',
+      maxWidth: 600,
+      paddingBottom: 3,
+    }}
+  >
+    <Box
+      sx={{
+        display: 'grid',
+        gridTemplateColumns: '0.5fr 1fr 1fr',
+        gap: 16,
+      }}
+    >
+      <FormControl fullWidth>
+        <FormControl.Label>Title</FormControl.Label>
+        <Select defaultValue="">
+          <Select.Option value="" disabled>
+            Title
+          </Select.Option>
+          <Select.Option value="miss">Miss</Select.Option>
+          <Select.Option value="mr">Mr</Select.Option>
+          <Select.Option value="mrs">Mrs</Select.Option>
+          <Select.Option value="mx">Mx</Select.Option>
+        </Select>
+      </FormControl>
+      <FormControl fullWidth required>
+        <FormControl.Label>First name</FormControl.Label>
+        <TextInput required />
+      </FormControl>
+      <FormControl fullWidth required>
+        <FormControl.Label>Last name</FormControl.Label>
+        <TextInput required />
+      </FormControl>
+    </Box>
+
+    <FormControl fullWidth required>
+      <FormControl.Label>Enterprise name</FormControl.Label>
+      <TextInput required />
+    </FormControl>
+
+    <FormControl fullWidth required>
+      <FormControl.Label>Enterprise URL</FormControl.Label>
+      <TextInput leadingText="github.com/" required />
+    </FormControl>
+
+    <FormControl fullWidth required>
+      <FormControl.Label>Country</FormControl.Label>
+      <Select defaultValue="">
+        <Select.Option value="" disabled>
+          Country
+        </Select.Option>
+        <Select.Option value="us">United States of America</Select.Option>
+        <Select.Option value="uk">United Kingdom</Select.Option>
+      </Select>
+    </FormControl>
+    <FormControl hasBorder required>
+      <FormControl.Label>
+        Contact me about GitHub Enterprise Server{' '}
+        <FormControl.Hint>
+          <Text size="200" variant="muted">
+            I&apos;m interested in learning more about{' '}
+            <InlineLink
+              size="200"
+              href="https://github.com/enterprise"
+              target="_blank"
+            >
+              GitHub Enterprise Server
+            </InlineLink>{' '}
+            and would like to be contacted by GitHub’s sales team.
+          </Text>
+        </FormControl.Hint>
+      </FormControl.Label>
+      <Checkbox />
+    </FormControl>
+    <Box
+      sx={{
+        borderWidth: 1,
+        borderStyle: 'solid',
+        borderColor: 'var(--brand-control-color-border-default)',
+        backgroundColor: 'var(--brand-color-canvas-inset)',
+        height: 150,
+        width: '100%',
+        borderRadius: 6,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <Text size="200" variant="muted">
+        Captcha
+      </Text>
+    </Box>
+    <FormControl required>
+      <FormControl.Label>
+        <Text size="200" variant="muted">
+          I hereby accept the{' '}
+          <InlineLink
+            size="200"
+            href="https://github.com/customer-terms"
+            target="_blank"
+          >
+            GitHub Customer Agreement
+          </InlineLink>{' '}
+          on behalf of my organization and confirm that I have the authority to
+          do so. For more information about GitHub&apos;s privacy practices, see
+          the{' '}
+          <InlineLink
+            size="200"
+            href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement"
+            target="_blank"
+          >
+            GitHub Privacy Statement.
+          </InlineLink>{' '}
+        </Text>
+      </FormControl.Label>
+
+      <Checkbox />
+    </FormControl>
+    <Box
+      sx={{
+        justifyContent: 'end',
+        display: 'inline-grid',
+        gap: 16,
+      }}
+    >
+      <Button variant="primary" type="submit">
+        Start trial
+      </Button>
+    </Box>
+  </Box>
+</form>
+```
+
+### Visually hidden label
+
+```jsx live
+<FormControl>
+  <FormControl.Label visuallyHidden>Name</FormControl.Label>
+  <TextInput />
+</FormControl>
+```
+
+### Validation
+
+The following example demonstrates declarative form validation in [controlled mode](https://reactjs.org/docs/forms.html#controlled-components).
+
+Try changing the input value to to `monalisa` to show the `success` state.
+
+```javascript live noinline
+const App = () => {
+  const [value, setValue] = React.useState()
+  const [validationState, setValidationState] = React.useState()
+
+  React.useEffect(() => {
+    const defaultHandle = 'mona lisa'
+    setValue(defaultHandle)
+    validate(defaultHandle)
+  }, [])
+
+  const validate = (inputValue) => {
+    if (/\s/g.test(inputValue)) {
+      setValidationState('error')
+    } else {
+      setValidationState('success')
+    }
+  }
+
+  const handleChange = (event) => {
+    event.preventDefault()
+    if (!event.target.value) {
+      setValue(undefined)
+      setValidationState(undefined)
+      return
+    }
+    setValue(event.target.value)
+    validate(event.target.value)
+  }
+
+  return (
+    <FormControl validationStatus={validationState}>
+      <FormControl.Label>GitHub handle</FormControl.Label>
+      <TextInput onChange={handleChange} value={value} fullWidth />
+      {validationState && validationState === 'error' && (
+        <FormControl.Validation>
+          GitHub handles cannot contain spaces.{' '}
+          {value && `Did you mean "${value.replaceAll(' ', '')}"`}
+        </FormControl.Validation>
+      )}
+      {validationState && validationState === 'success' && (
+        <FormControl.Validation>Valid name</FormControl.Validation>
+      )}
+    </FormControl>
+  )
+}
+
+render(App)
+```
+
+### Hint
+
+```jsx live
+<FormControl>
+  <FormControl.Label>Select</FormControl.Label>
+  <Select>
+    <Select.Option value="" disabled>
+      Select a handle
+    </Select.Option>
+    <Select.Option value="mona">Monalisa</Select.Option>
+    <Select.Option value="hubot">Hubot</Select.Option>
+  </Select>
+  <FormControl.Hint>With an optional message</FormControl.Hint>
+</FormControl>
+```
+
+### Full width
+
+Pass the `fullWidth` prop to `FormControl` to provide additional behavior and state context to all `children`, rather than the input only.
+
+```jsx live
+<FormControl fullWidth>
+  <FormControl.Label>Name</FormControl.Label>
+  <TextInput />
+</FormControl>
+```
+
+### Sizes
+
+`FormControl` can appear in `medium` and `large` dimensions using the `size` prop.
+
+```jsx live
+<Box sx={{display: 'grid', gap: 3}}>
+  <FormControl size="medium">
+    <FormControl.Label>Medium</FormControl.Label>
+    <TextInput />
+  </FormControl>
+
+  <FormControl size="large">
+    <FormControl.Label>Large</FormControl.Label>
+    <TextInput />
+  </FormControl>
+</Box>
+```
+
+### Required
+
+Pass the `required` prop to `FormControl` to provide additional behavior and state context to all `children`, rather than the input only.
+
+```jsx live
+<FormControl required>
+  <FormControl.Label>Name</FormControl.Label>
+  <TextInput />
+</FormControl>
+```
+
+### Using `refs`
+
+`FormControl` inputs can be used in [uncontrolled mode](https://reactjs.org/docs/uncontrolled-components.html) by forwarding a `ref` to the underlying element.
+
+```javascript live noinline
+const App = () => {
+  const inputRef = React.useRef(null)
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (inputRef.current) {
+      alert(`Name: ${inputRef.current.value}`)
+    }
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <Box
+        sx={{
+          display: 'grid',
+          gap: 'var(--base-size-16)',
+          maxWidth: 400,
+          marginX: 'auto',
+        }}
+      >
+        <FormControl fullWidth>
+          <FormControl.Label>Name</FormControl.Label>
+          <TextInput ref={inputRef} defaultValue="Mona Lisa" />
+        </FormControl>
+        <Button type="submit" variant="primary">
+          Submit
+        </Button>
+      </Box>
+    </form>
+  )
+}
+
+render(App)
+```
+
+## Component props
+
+### FormControl <Label>Required</Label>
+
+`FormControl` passes contextual data to its child inputs, labels, validation messaging and more.
+
+| Name               | Type                                                                                                                                                 | Default | Description                                                       |
+| :----------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------- | :-----: | :---------------------------------------------------------------- |
+| `children`         | <PropTableValues values={['FormControl.Label','Checkbox', 'Select', 'TextInput', 'FormControl.Validation', 'React.ReactElement' ]} addLineBreaks />, |         | Valid child nodes                                                 |
+| `className`        | `string`                                                                                                                                             |         | Sets a custom class                                               |
+| `id`               | `string`                                                                                                                                             |         | Sets a custom id                                                  |
+| `fullWidth`        | `boolean`                                                                                                                                            |         | Stretches elements visually to the edges of its parent container. |
+| `ref`              | `React.RefObject`                                                                                                                                    |         | Forward a Ref to the underlying DOM node                          |
+| `size`             | <PropTableValues values={['medium', 'large' ]} addLineBreaks />                                                                                      |         | Visual dimensions for input and label                             |
+| `validationStatus` | <PropTableValues values={['error', 'success' ]} addLineBreaks />                                                                                     |         | Applies visual and semantic state to the underlying elements      |
+
+<h3 id="FormControl-label">
+  FormControl.Label <Label>Required</Label>
+</h3>
+
+`FormControl.Label` should be provided for the `FormControl` to be accessible to assistive technology, but it may be visually hidden.
+
+| Name             | Type                                                            |  Default   | Description                              |
+| :--------------- | :-------------------------------------------------------------- | :--------: | :--------------------------------------- |
+| `children`       | `string`                                                        |            | Label text                               |
+| `className`      | `string`                                                        |            | Applies a custom class                   |
+| `id`             | `string`                                                        |            | Sets a custom id                         |
+| `ref`            | `React.RefObject`                                               |            | Forward a Ref to the underlying DOM node |
+| `size`           | <PropTableValues values={['medium', 'large' ]} addLineBreaks /> | `'medium'` | Set visual dimensions                    |
+| `visuallyHidden` | `boolean`                                                       |  `false`   | Hide for sighted users                   |
+
+Additional props can be passed to the `<label>` element. [See MDN for a list of props](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#attributes) accepted by the `<label>` element.
+
+<h3 id="FormControl-validation">FormControl.Validation</h3>
+
+| Name               | Type                                                             | Default | Description                                                               |
+| :----------------- | :--------------------------------------------------------------- | :-----: | :------------------------------------------------------------------------ |
+| `children`         | `string`                                                         |         | Validation message                                                        |
+| `className`        | `string`                                                         |         | FormControl.Validation custom class                                       |
+| `id`               | `string`                                                         |         | Sets a custom id                                                          |
+| `ref`              | `React.RefObject`                                                |         | Forward a Ref to the underlying DOM node                                  |
+| `validationStatus` | <PropTableValues values={['error', 'success' ]} addLineBreaks /> |         | Applies a visual and semantic validation state to the underlying elements |
+
+## Related components
+
+- <Link to="/components/Checkbox">Checkbox</Link>
+- <Link to="/components/Select">Select</Link>
+- <Link to="/components/TextInput">TextInput</Link>

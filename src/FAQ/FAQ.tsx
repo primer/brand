@@ -1,8 +1,9 @@
-import React from 'react'
+import React, {forwardRef} from 'react'
 import {isFragment} from 'react-is'
 import clsx from 'clsx'
 
 import {Heading, AccordionHeading, AccordionContent, AccordionRoot, AccordionRootProps} from '..'
+import type {BaseProps} from '../component-helpers'
 
 /**
  * Design tokens
@@ -15,12 +16,11 @@ import '../../lib/design-tokens/css/tokens/functional/components/faq/colors-with
  */
 import styles from './FAQ.module.css'
 
-type FAQRootProps = {
-  className?: string
+type FAQRootProps = BaseProps<HTMLElement> & {
   children: React.ReactElement<FAQHeadingProps | FAQSubheadingProps | AccordionRootProps>[]
 }
 
-function FAQRoot({children, className}: FAQRootProps) {
+const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, className, ...rest}, ref) => {
   const childrenHasFragment = React.Children.toArray(children).some(child => isFragment(child))
   const filteredChildren = React.Children.toArray(children).filter(child => {
     if (React.isValidElement(child) && typeof child.type !== 'string') {
@@ -41,7 +41,7 @@ function FAQRoot({children, className}: FAQRootProps) {
   )
 
   return (
-    <section className={clsx(styles.FAQ, className)}>
+    <section className={clsx(styles.FAQ, className)} ref={ref} {...rest}>
       {React.Children.toArray(filteredChildren).map(child => {
         if (React.isValidElement(child) && typeof child.type !== 'string') {
           if (child.type === FAQHeading) {
@@ -56,41 +56,43 @@ function FAQRoot({children, className}: FAQRootProps) {
       })}
     </section>
   )
-}
+})
 
-type FAQHeadingProps = {
-  className?: string
+type FAQHeadingProps = BaseProps<HTMLHeadingElement> & {
   size?: 'medium' | 'large'
   align?: 'start' | 'center'
   children: string
 }
 
-function FAQHeading({children, className, size = 'medium', align = 'center'}: FAQHeadingProps) {
-  const headingSize = size === 'medium' ? 'h3' : 'h2'
-  return (
-    <Heading
-      as={headingSize}
-      className={clsx(
-        styles.FAQ__heading,
-        size === 'large' && styles['FAQ__heading--large'],
-        styles[`FAQ__heading--${align}`],
-        className
-      )}
-    >
-      {children}
-    </Heading>
-  )
-}
+const FAQHeading = forwardRef<HTMLHeadingElement, FAQHeadingProps>(
+  ({children, className, size = 'medium', align = 'center', ...rest}, ref) => {
+    const headingSize = size === 'medium' ? 'h3' : 'h2'
+    return (
+      <Heading
+        as={headingSize}
+        className={clsx(
+          styles.FAQ__heading,
+          size === 'large' && styles['FAQ__heading--large'],
+          styles[`FAQ__heading--${align}`],
+          className
+        )}
+        ref={ref}
+        {...rest}
+      >
+        {children}
+      </Heading>
+    )
+  }
+)
 
-type FAQSubheadingProps = {
+type FAQSubheadingProps = BaseProps<HTMLHeadingElement> & {
   align?: 'start' | 'center'
-  className?: string
   children: string
 }
 
-function FAQSubheading({children, className}: FAQSubheadingProps) {
+function FAQSubheading({children, className, ...rest}: FAQSubheadingProps) {
   return (
-    <Heading as="h3" className={clsx(styles.FAQ__subheading, className)}>
+    <Heading as="h3" className={clsx(styles.FAQ__subheading, className)} {...rest}>
       {children}
     </Heading>
   )
@@ -98,7 +100,7 @@ function FAQSubheading({children, className}: FAQSubheadingProps) {
 
 /**
  * FAQ component:
- * {@link https://primer.style/react-brand/components/FAQ/ See usage examples}.
+ * {@link https://primer.style/brand/components/FAQ/ See usage examples}.
  */
 export const FAQ = Object.assign(FAQRoot, {
   Subheading: FAQSubheading,

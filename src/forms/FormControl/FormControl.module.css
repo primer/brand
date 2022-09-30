@@ -1,0 +1,109 @@
+.FormControl {
+  display: inline-flex;
+  font-family: var(--brand-body-fontFamily);
+  flex-direction: column;
+  gap: var(--base-size-8);
+}
+
+.FormControl--fullWidth {
+  width: 100%;
+}
+
+.FormControl--checkbox {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.FormControl--border {
+  border: 1px solid var(--brand-color-border-default);
+  border-radius: var(--brand-control-border-radius);
+  padding: var(--base-size-12);
+}
+
+.FormControl-label {
+  color: var(--brand-color-text-default);
+  font-weight: var(--base-text-weight-semibold);
+  font-family: var(--brand-text-fontFamily);
+}
+
+.FormControl-label--visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.FormControl-label--medium {
+  letter-spacing: var(--brand-text-letterSpacing-200);
+  font-size: var(--brand-text-size-200);
+  line-height: var(--brand-text-lineHeight-200);
+}
+
+.FormControl-label--large {
+  letter-spacing: var(--brand-text-letterSpacing-300);
+  font-size: var(--brand-text-size-300);
+  line-height: var(--brand-text-lineHeight-300);
+}
+
+.FormControl-label--checkbox {
+  cursor: pointer;
+  font-size: var(--brand-text-size-300);
+  font-weight: var(--base-text-weight-semibold);
+  letter-spacing: var(--brand-text-letterSpacing-300);
+  line-height: var(--brand-text-lineHeight-300);
+  position: relative;
+  top: 1px;
+  width: 100%;
+}
+
+.FormControl-hint {
+  color: var(--brand-color-text-muted);
+  display: block;
+  font-size: var(--brand-text-size-200);
+  font-weight: var(--base-text-weight-normal);
+  letter-spacing: var(--brand-text-letterSpacing-200);
+  line-height: var(--brand-text-lineHeight-200);
+}
+
+/*Validation*/
+.FormControl-validation {
+  font-weight: var(--base-text-weight-normal);
+  font-size: var(--brand-text-size-200);
+  line-height: var(--brand-text-lineHeight-200);
+  display: flex;
+  gap: var(--base-size-4);
+}
+
+.FormControl-validation--success {
+  color: var(--brand-color-success-fg);
+}
+
+.FormControl-validation--error {
+  color: var(--brand-color-error-fg);
+}
+
+.FormControl-validation-icon {
+  padding-top: 1px;
+}
+
+.FormControl-validation--animate-in {
+  animation: 170ms FormControlValidationFadeIn cubic-bezier(0.44, 0.74, 0.36, 1);
+}
+
+@keyframes FormControlValidationFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

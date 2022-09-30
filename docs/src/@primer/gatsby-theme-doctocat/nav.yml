@@ -18,8 +18,28 @@
       url: /components/Hero
     - title: River
       url: /components/River
+    - title: SubdomainNavBar
+      url: /components/SubdomainNavBar
+    - title: Testimonial
+      url: /components/Testimonial
 
-- title: Base components
+- title: Forms
+  children:
+    - title: Checkbox
+      url: /components/Checkbox
+    - title: FormControl
+      url: /components/FormControl
+    - title: Select
+      url: /components/Select
+    - title: TextInput
+      url: /components/TextInput
+
+- title: Layout
+  children:
+    - title: Stack
+      url: /components/Stack
+
+- title: Typography
   children:
     - title: Heading
       url: /components/Heading

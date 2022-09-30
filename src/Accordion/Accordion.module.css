@@ -35,7 +35,7 @@
 }
 
 .Accordion__summary:focus-visible {
-  outline: var(--brand-borderWidth-normal) solid var(--brand-color-focus);
+  outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
 }
 
 .Accordion__summary::before,

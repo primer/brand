@@ -36,7 +36,7 @@ export function ColorScales() {
     return (
       <Box key={name}>
         {Object.entries(colorScale).map(([key, obj]) => {
-          const value = colorTheme === 'dark' ? obj.darkValue : obj.value
+          const value = colorTheme === 'dark' ? obj.dark : obj.value
           const hslValue = convertToHsl(value)
 
           return (

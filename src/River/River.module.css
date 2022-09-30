@@ -5,17 +5,17 @@
   margin: var(--brand-River-layout-margin-vertical);
 }
 
+.River--align-center {
+  text-align: center;
+}
+
 .River__visual {
   position: relative;
   order: 2;
 }
 
-.River--align-center {
-  text-align: center;
-}
-
-.River__visual img,
-.River__visual video {
+.River__visual--fill-media img,
+.River__visual--fill-media video {
   width: 100%;
   height: 100%;
   object-fit: cover;

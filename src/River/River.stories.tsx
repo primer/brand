@@ -5,6 +5,9 @@ import {River} from '.'
 import {Heading, Text, Link} from '..'
 import {Container} from '../component-helpers'
 
+import styles from './River.stories.module.css'
+import clsx from 'clsx'
+
 export default {
   title: 'Components/River',
   component: River
@@ -122,4 +125,192 @@ export const Video: ComponentStory<typeof River> = args => (
       </River.Content>
     </River>
   </Container>
+)
+
+export const CustomLogos: ComponentStory<typeof River> = () => (
+  <div className={styles.overflow}>
+    <div className={styles.container}>
+      <River align="start">
+        <River.Visual hasShadow={false} fillMedia={false}>
+          <div className={styles['river-logos']}>
+            <img
+              className={styles['river-logo']}
+              src="https://resources.github.com/assets/img/devops/compete/logos/swift.png"
+              srcSet="https://resources.github.com/assets/img/devops/compete/logos/swift.png, https://resources.github.com/assets/img/devops/compete/logos/swift@2x.png 2x"
+              width="80"
+              height="80"
+              alt=""
+            />
+            <img
+              className={styles['river-logo']}
+              src="https://resources.github.com/assets/img/devops/compete/logos/gatsby.png"
+              srcSet="https://resources.github.com/assets/img/devops/compete/logos/gatsby.png, https://resources.github.com/assets/img/devops/compete/logos/gatsby@2x.png 2x"
+              width="80"
+              height="80"
+              alt=""
+            />
+            <img
+              className={styles['river-logo']}
+              src="https://resources.github.com/assets/img/devops/compete/logos/nodejs.png"
+              srcSet="https://resources.github.com/assets/img/devops/compete/logos/nodejs.png, https://resources.github.com/assets/img/devops/compete/logos/nodejs@2x.png 2x"
+              width="80"
+              height="80"
+              alt=""
+            />
+            <img
+              className={styles['river-logo']}
+              src="https://resources.github.com/assets/img/devops/compete/logos/bootstrap.png"
+              srcSet="https://resources.github.com/assets/img/devops/compete/logos/bootstrap.png, https://resources.github.com/assets/img/devops/compete/logos/bootstrap@2x.png 2x"
+              width="80"
+              height="80"
+              alt=""
+            />
+            <img
+              className={styles['river-logo']}
+              src="https://resources.github.com/assets/img/devops/compete/logos/vercel.png"
+              srcSet="https://resources.github.com/assets/img/devops/compete/logos/vercel.png, https://resources.github.com/assets/img/devops/compete/logos/vercel@2x.png 2x"
+              width="80"
+              height="80"
+              alt=""
+            />
+            <img
+              className={styles['river-logo']}
+              src="https://resources.github.com/assets/img/devops/compete/logos/android.png"
+              srcSet="https://resources.github.com/assets/img/devops/compete/logos/android.png, https://resources.github.com/assets/img/devops/compete/logos/android@2x.png 2x"
+              width="80"
+              height="80"
+              alt=""
+            />
+            <img
+              className={styles['river-logo']}
+              src="https://resources.github.com/assets/img/devops/compete/logos/atlassian.png"
+              srcSet="https://resources.github.com/assets/img/devops/compete/logos/atlassian.png, https://resources.github.com/assets/img/devops/compete/logos/atlassian@2x.png 2x"
+              width="80"
+              height="80"
+              alt=""
+            />
+            <img
+              className={clsx(styles['river-logo'], styles['river-logo--row-two'])}
+              src="https://resources.github.com/assets/img/devops/compete/logos/tensorflow.png"
+              srcSet="https://resources.github.com/assets/img/devops/compete/logos/tensorflow.png, https://resources.github.com/assets/img/devops/compete/logos/tensorflow@2x.png 2x"
+              width="80"
+              height="80"
+              alt=""
+            />
+            <img
+              className={clsx(styles['river-logo'], styles['river-logo--row-two'])}
+              src="https://resources.github.com/assets/img/devops/compete/logos/angular.png"
+              srcSet="https://resources.github.com/assets/img/devops/compete/logos/angular.png, https://resources.github.com/assets/img/devops/compete/logos/angular@2x.png 2x"
+              width="80"
+              height="80"
+              alt=""
+            />
+            <img
+              className={clsx(styles['river-logo'], styles['river-logo--row-two'])}
+              src="https://resources.github.com/assets/img/devops/compete/logos/nextjs.png"
+              srcSet="https://resources.github.com/assets/img/devops/compete/logos/nextjs.png, https://resources.github.com/assets/img/devops/compete/logos/nextjs@2x.png 2x"
+              width="80"
+              height="80"
+              alt=""
+            />
+            <img
+              className={clsx(styles['river-logo'], styles['river-logo--row-two'])}
+              src="https://resources.github.com/assets/img/devops/compete/logos/rails.png"
+              srcSet="https://resources.github.com/assets/img/devops/compete/logos/rails.png, https://resources.github.com/assets/img/devops/compete/logos/rails@2x.png 2x"
+              width="80"
+              height="80"
+              alt=""
+            />
+            <img
+              className={clsx(styles['river-logo'], styles['river-logo--row-two'])}
+              src="https://resources.github.com/assets/img/devops/compete/logos/linux.png"
+              srcSet="https://resources.github.com/assets/img/devops/compete/logos/linux.png, https://resources.github.com/assets/img/devops/compete/logos/linux@2x.png 2x"
+              width="80"
+              height="80"
+              alt=""
+            />
+            <img
+              className={clsx(styles['river-logo'], styles['river-logo--row-two'])}
+              src="https://resources.github.com/assets/img/devops/compete/logos/graphql.png"
+              srcSet="https://resources.github.com/assets/img/devops/compete/logos/graphql.png, https://resources.github.com/assets/img/devops/compete/logos/graphql@2x.png 2x"
+              width="80"
+              height="80"
+              alt=""
+            />
+            <img
+              className={clsx(styles['river-logo'], styles['river-logo--row-two'])}
+              src="https://resources.github.com/assets/img/devops/compete/logos/clojure.png"
+              srcSet="https://resources.github.com/assets/img/devops/compete/logos/clojure.png, https://resources.github.com/assets/img/devops/compete/logos/clojure@2x.png 2x"
+              width="80"
+              height="80"
+              alt=""
+            />
+            <img
+              className={clsx(styles['river-logo'], styles['river-logo--row-three'])}
+              src="https://resources.github.com/assets/img/devops/compete/logos/react.png"
+              srcSet="https://resources.github.com/assets/img/devops/compete/logos/react.png, https://resources.github.com/assets/img/devops/compete/logos/react@2x.png 2x"
+              width="80"
+              height="80"
+              alt=""
+            />
+            <img
+              className={clsx(styles['river-logo'], styles['river-logo--row-three'])}
+              src="https://resources.github.com/assets/img/devops/compete/logos/kubernetes.png"
+              srcSet="https://resources.github.com/assets/img/devops/compete/logos/kubernetes.png, https://resources.github.com/assets/img/devops/compete/logos/kubernetes@2x.png 2x"
+              width="80"
+              height="80"
+              alt=""
+            />
+            <img
+              className={clsx(styles['river-logo'], styles['river-logo--row-three'])}
+              src="https://resources.github.com/assets/img/devops/compete/logos/ansible.png"
+              srcSet="https://resources.github.com/assets/img/devops/compete/logos/ansible.png, https://resources.github.com/assets/img/devops/compete/logos/ansible@2x.png 2x"
+              width="80"
+              height="80"
+              alt=""
+            />
+            <img
+              className={clsx(styles['river-logo'], styles['river-logo--row-three'])}
+              src="https://resources.github.com/assets/img/devops/compete/logos/haskell.png"
+              srcSet="https://resources.github.com/assets/img/devops/compete/logos/haskell.png, https://resources.github.com/assets/img/devops/compete/logos/haskell@2x.png 2x"
+              width="80"
+              height="80"
+              alt=""
+            />
+            <img
+              className={clsx(styles['river-logo'], styles['river-logo--row-three'])}
+              src="https://resources.github.com/assets/img/devops/compete/logos/python.png"
+              srcSet="https://resources.github.com/assets/img/devops/compete/logos/python.png, https://resources.github.com/assets/img/devops/compete/logos/python@2x.png 2x"
+              width="80"
+              height="80"
+              alt=""
+            />
+            <img
+              className={clsx(styles['river-logo'], styles['river-logo--row-three'])}
+              src="https://resources.github.com/assets/img/devops/compete/logos/bash.png"
+              srcSet="https://resources.github.com/assets/img/devops/compete/logos/bash.png, https://resources.github.com/assets/img/devops/compete/logos/bash@2x.png 2x"
+              width="80"
+              height="80"
+              alt=""
+            />
+            <img
+              className={clsx(styles['river-logo'], styles['river-logo--row-three'])}
+              src="https://resources.github.com/assets/img/devops/compete/logos/ember.png"
+              srcSet="https://resources.github.com/assets/img/devops/compete/logos/ember.png, https://resources.github.com/assets/img/devops/compete/logos/ember@2x.png 2x"
+              width="80"
+              height="80"
+              alt=""
+            />
+          </div>
+        </River.Visual>
+        <River.Content>
+          <Heading>Home to the world&apos;s largest open source registry</Heading>
+          <Text>
+            Accelerate your workflows and scale your business fast with access to millions of open source projects on
+            GitHub, the largest source code host.
+          </Text>
+        </River.Content>
+      </River>
+    </div>
+  </div>
 )

@@ -1,8 +1,8 @@
 ---
 title: FAQ
 status: Experimental
-source: https://github.com/primer/react-brand/tree/main/src/FAQ/FAQ.tsx
-storybook: '/react-brand/storybook/?path=/story/components-faq--default'
+source: https://github.com/primer/brand/tree/main/src/FAQ/FAQ.tsx
+storybook: '/brand/storybook/?path=/story/components-faq--default'
 description: Display content in a Q&A format
 ---
 
@@ -20,7 +20,7 @@ import {FAQ} from '@primer/react-brand'
 ### Default
 
 ```jsx live
-<Container p={3}>
+<>
   <FAQ>
     <FAQ.Heading>Frequently asked questions</FAQ.Heading>
     <FAQ.Item>
@@ -114,7 +114,7 @@ import {FAQ} from '@primer/react-brand'
       </FAQ.Answer>
     </FAQ.Item>
   </FAQ>
-</Container>
+</>
 ```
 
 ### Grouped FAQs
@@ -131,61 +131,58 @@ Use `FAQ.Subheading` to create a visual separation between your `FAQ.Question` d
 </Note>
 
 ```jsx live
-<Container p={3}>
-  <FAQ>
-    <FAQ.Heading>Frequently asked questions</FAQ.Heading>
-    <FAQ.Subheading>Subscriptions & Payments</FAQ.Subheading>
-    <FAQ.Item>
-      <FAQ.Question>
-        What are the differences between GitHub Free, GitHub Pro, GitHub Team
-        and GitHub Enterprise plans?
-      </FAQ.Question>
-      <FAQ.Answer>
-        <p>
-          GitHub Free is our basic plan created for individuals and small teams
-          to collaborate on private and public repositories.
-        </p>
-      </FAQ.Answer>
-    </FAQ.Item>
-    <FAQ.Item>
-      <FAQ.Question>How do I view and manage my subscription?</FAQ.Question>
-      <FAQ.Answer>
-        <p>
-          You can view your account's subscription, your other paid features and
-          products, and your next billing date in your account's billing
-          settings.
-        </p>
-      </FAQ.Answer>
-    </FAQ.Item>
-    <FAQ.Subheading>Actions & Packages</FAQ.Subheading>
-    <FAQ.Item>
-      <FAQ.Question>
-        Which plans include access to GitHub Actions and Packages?
-      </FAQ.Question>
-      <FAQ.Answer>
-        <p>
-          GitHub Actions and Packages are free for public repositories and
-          packages on all our current per-user plans, while private repositories
-          and packages receive a set amount of free minutes, storage, and data
-          transfer depending on the per-user plan. Legacy per-repository plans
-          (Bronze, Silver, Gold etc) do not come with access to GitHub Actions
-          and Packages but they can be upgraded to a current per-user plan.
-        </p>
-      </FAQ.Answer>
-    </FAQ.Item>
-    <FAQ.Item>
-      <FAQ.Question>
-        How do I manage my spending for Actions and Packages?
-      </FAQ.Question>
-      <FAQ.Answer>
-        <p>
-          You can manage your spending for Actions and Packages in your billing
-          settings page under the payment information tab.
-        </p>
-      </FAQ.Answer>
-    </FAQ.Item>
-  </FAQ>
-</Container>
+<FAQ>
+  <FAQ.Heading>Frequently asked questions</FAQ.Heading>
+  <FAQ.Subheading>Subscriptions & Payments</FAQ.Subheading>
+  <FAQ.Item>
+    <FAQ.Question>
+      What are the differences between GitHub Free, GitHub Pro, GitHub Team and
+      GitHub Enterprise plans?
+    </FAQ.Question>
+    <FAQ.Answer>
+      <p>
+        GitHub Free is our basic plan created for individuals and small teams to
+        collaborate on private and public repositories.
+      </p>
+    </FAQ.Answer>
+  </FAQ.Item>
+  <FAQ.Item>
+    <FAQ.Question>How do I view and manage my subscription?</FAQ.Question>
+    <FAQ.Answer>
+      <p>
+        You can view your account's subscription, your other paid features and
+        products, and your next billing date in your account's billing settings.
+      </p>
+    </FAQ.Answer>
+  </FAQ.Item>
+  <FAQ.Subheading>Actions & Packages</FAQ.Subheading>
+  <FAQ.Item>
+    <FAQ.Question>
+      Which plans include access to GitHub Actions and Packages?
+    </FAQ.Question>
+    <FAQ.Answer>
+      <p>
+        GitHub Actions and Packages are free for public repositories and
+        packages on all our current per-user plans, while private repositories
+        and packages receive a set amount of free minutes, storage, and data
+        transfer depending on the per-user plan. Legacy per-repository plans
+        (Bronze, Silver, Gold etc) do not come with access to GitHub Actions and
+        Packages but they can be upgraded to a current per-user plan.
+      </p>
+    </FAQ.Answer>
+  </FAQ.Item>
+  <FAQ.Item>
+    <FAQ.Question>
+      How do I manage my spending for Actions and Packages?
+    </FAQ.Question>
+    <FAQ.Answer>
+      <p>
+        You can manage your spending for Actions and Packages in your billing
+        settings page under the payment information tab.
+      </p>
+    </FAQ.Answer>
+  </FAQ.Item>
+</FAQ>
 ```
 
 ### Rendering with dynamic data
@@ -277,21 +274,19 @@ const App = () => {
   ]
 
   return (
-    <Container>
-      <FAQ>
-        <FAQ.Heading>Frequently asked questions</FAQ.Heading>
-        <>
-          {fixtureData.map(({question, answer}) => {
-            return (
-              <FAQ.Item key={question} open={false}>
-                <FAQ.Question>{question}</FAQ.Question>
-                <FAQ.Answer>{answer}</FAQ.Answer>
-              </FAQ.Item>
-            )
-          })}
-        </>
-      </FAQ>
-    </Container>
+    <FAQ>
+      <FAQ.Heading>Frequently asked questions</FAQ.Heading>
+      <>
+        {fixtureData.map(({question, answer}) => {
+          return (
+            <FAQ.Item key={question} open={false}>
+              <FAQ.Question>{question}</FAQ.Question>
+              <FAQ.Answer>{answer}</FAQ.Answer>
+            </FAQ.Item>
+          )
+        })}
+      </>
+    </FAQ>
   )
 }
 
@@ -307,7 +302,7 @@ const App = () => {
   const designTokenOverrides = `
   .custom-colors[data-color-mode='dark'] {
 
-    /* 
+    /*
      * Modify the value of these tokens.
      * Remember to apply light mode equivalents if you're enabling theme switching.
      */
@@ -318,7 +313,7 @@ const App = () => {
     padding: 3rem;
     background-color: var(--brand-color-canvas-default);
   }
-    
+
 
   .custom-heading {
     background: var(--brand-FAQ-heading-color);
@@ -380,46 +375,59 @@ render(<App />)
 
 ### FAQ <Label>Required</Label>
 
-| Name       | Type                                                                                                                                                                | Default | Description                         |
-| :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :-----: | :---------------------------------- |
-| `children` | <PropTableValues values={[<a href="#faq-heading">FAQ.Heading</a>, <a href="#faq-subheading">FAQ.Subheading</a>, <a href="#faq-item">FAQ.Item</a>]} addLineBreaks /> |         | Root element for the FAQ component. |
+| Name        | Type                                                                                                                                                                | Default | Description                              |
+| :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :-----: | :--------------------------------------- |
+| `className` | `string`                                                                                                                                                            |         | Sets a custom class                      |
+| `id`        | `string`                                                                                                                                                            |         | Sets a custom id                         |
+| `ref`       | `React.RefObject`                                                                                                                                                   |         | Forward a Ref to the underlying DOM node |
+| `children`  | <PropTableValues values={[<a href="#faq-heading">FAQ.Heading</a>, <a href="#faq-subheading">FAQ.Subheading</a>, <a href="#faq-item">FAQ.Item</a>]} addLineBreaks /> |         | Root element for the FAQ component.      |
 
 <h3 id="faq-heading">
   FAQ.Heading <Label>Required</Label>
 </h3>
 
-| Name        | Type                                                            |  Default   | Description             |
-| :---------- | :-------------------------------------------------------------- | :--------: | :---------------------- |
-| `align`     | <PropTableValues values={['start', 'center' ]} addLineBreaks /> | `'center'` | Heading text alignement |
-| `children`  | `string`                                                        |            | Heading text            |
-| `className` | `string`                                                        |            | Heading custom class    |
-| `size`      | <PropTableValues values={['medium', 'large' ]} addLineBreaks /> | `'medium'` | Heading text size       |
+| Name        | Type                                                            |  Default   | Description                              |
+| :---------- | :-------------------------------------------------------------- | :--------: | :--------------------------------------- |
+| `align`     | <PropTableValues values={['start', 'center' ]} addLineBreaks /> | `'center'` | Heading text alignment                   |
+| `children`  | `string`                                                        |            | Heading text                             |
+| `className` | `string`                                                        |            | Heading custom class                     |
+| `id`        | `string`                                                        |            | Sets a custom id                         |
+| `ref`       | `React.RefObject`                                               |            | Forward a Ref to the underlying DOM node |
+| `size`      | <PropTableValues values={['medium', 'large' ]} addLineBreaks /> | `'medium'` | Heading text size                        |
 
 <h3 id="faq-subheading">FAQ.Subheading</h3>
 
-| Name        | Type     | Default | Description              |
-| :---------- | :------- | :-----: | :----------------------- |
-| `children`  | `string` |         | Sub-heading text         |
-| `className` | `string` |         | Sub-heading custom class |
+| Name        | Type              | Default | Description                              |
+| :---------- | :---------------- | :-----: | :--------------------------------------- |
+| `children`  | `string`          |         | Sub-heading text                         |
+| `className` | `string`          |         | Sub-heading custom class                 |
+| `id`        | `string`          |         | Sets a custom id                         |
+| `ref`       | `React.RefObject` |         | Forward a Ref to the underlying DOM node |
 
 <h3 id="faq-item">FAQ.Item</h3>
 
-| Name        | Type                                                                                                                        | Default | Description                  |
-| :---------- | :-------------------------------------------------------------------------------------------------------------------------- | :-----: | :--------------------------- |
-| `open`      | `boolean`                                                                                                                   | `false` | Sets answer visibility       |
-| `className` | `string`                                                                                                                    |         | Sets a custom class          |
-| `children`  | <PropTableValues values={[<a href="#faq-question">FAQ.Question</a>, <a href="#faq-answer">FAQ.Answer</a>]} addLineBreaks /> |         | FAQ question and answer pair |
+| Name        | Type                                                                                                                        | Default | Description                              |
+| :---------- | :-------------------------------------------------------------------------------------------------------------------------- | :-----: | :--------------------------------------- |
+| `open`      | `boolean`                                                                                                                   | `false` | Sets answer visibility                   |
+| `className` | `string`                                                                                                                    |         | Sets a custom class                      |
+| `children`  | <PropTableValues values={[<a href="#faq-question">FAQ.Question</a>, <a href="#faq-answer">FAQ.Answer</a>]} addLineBreaks /> |         | FAQ question and answer pair             |
+| `id`        | `string`                                                                                                                    |         | Sets a custom id                         |
+| `ref`       | `React.RefObject`                                                                                                           |         | Forward a Ref to the underlying DOM node |
 
 <h3 id="faq-question">FAQ.Question</h3>
 
-| Name        | Type     | Default | Description                             |
-| :---------- | :------- | :-----: | :-------------------------------------- |
-| `className` | `string` |         | Sets a custom class on the root element |
-| `children`  | `string` |         | Question text                           |
+| Name        | Type              | Default | Description                              |
+| :---------- | :---------------- | :-----: | :--------------------------------------- |
+| `className` | `string`          |         | Sets a custom class on the root element  |
+| `children`  | `string`          |         | Question text                            |
+| `id`        | `string`          |         | Sets a custom id                         |
+| `ref`       | `React.RefObject` |         | Forward a Ref to the underlying DOM node |
 
 <h3 id="faq-answer">FAQ.Answer</h3>
 
-| Name        | Type           | Default | Description                                  |
-| :---------- | :------------- | :-----: | :------------------------------------------- |
-| `className` | `string`       |         | Sets a custom class on the root element      |
-| `children`  | `ReactElement` |         | `<p>` or `<Text>` components are recommended |
+| Name        | Type              | Default | Description                                  |
+| :---------- | :---------------- | :-----: | :------------------------------------------- |
+| `className` | `string`          |         | Sets a custom class on the root element      |
+| `children`  | `ReactElement`    |         | `<p>` or `<Text>` components are recommended |
+| `id`        | `string`          |         | Sets a custom id                             |
+| `ref`       | `React.RefObject` |         | Forward a Ref to the underlying DOM node     |
