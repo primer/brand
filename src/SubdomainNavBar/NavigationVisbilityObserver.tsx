@@ -14,6 +14,8 @@ export function NavigationVisbilityObserver({children, className, ...rest}) {
   const navRef = useRef<HTMLUListElement | null>(null)
   const [visibilityMap] = useVisibilityObserver(navRef)
 
+  const showOverflow = Object.values(visibilityMap).includes(false)
+
   return (
     <ul className={clsx(styles['SubdomainNavBar-primary-nav-list'], className)} ref={navRef} {...rest}>
       {React.Children.map(children, child => {
@@ -26,7 +28,7 @@ export function NavigationVisbilityObserver({children, className, ...rest}) {
         })
       })}
 
-      <AnchoredOverlay visibilityMap={visibilityMap}>{children}</AnchoredOverlay>
+      {showOverflow && <AnchoredOverlay visibilityMap={visibilityMap}>{children}</AnchoredOverlay>}
     </ul>
   )
 }

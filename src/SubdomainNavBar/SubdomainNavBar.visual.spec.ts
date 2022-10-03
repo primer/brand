@@ -13,6 +13,12 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('SubdomainNavBar / No Search', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--no-search&viewMode=story')
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('SubdomainNavBar / Search Open', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--search-open&viewMode=story')
 
@@ -75,5 +81,18 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
       await page.waitForTimeout(5500)
       expect(await page.screenshot()).toMatchSnapshot()
     })
+  })
+  test('SubdomainNavBar / No overflow menu (1 link)', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--no-overflow&viewMode=story')
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('SubdomainNavBar / Longer Title', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--longer-title&viewMode=story'
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 })

@@ -113,66 +113,68 @@ function Root({children, fixed = true, logoHref = 'https://github.com', title, .
             </NavigationVisbilityObserver>
           </nav>
 
-          {React.Children.toArray(children)
-            .map(child => {
-              if (React.isValidElement(child) && typeof child.type !== 'string') {
-                if (child.type === Search) {
-                  return React.cloneElement(child, {
-                    active: searchVisible,
-                    handlerFn: handleSearchVisibility,
-                    title
-                  })
+          <div className={clsx(styles['SubdomainNavBar-secondary-nav'])}>
+            {React.Children.toArray(children)
+              .map(child => {
+                if (React.isValidElement(child) && typeof child.type !== 'string') {
+                  if (child.type === Search) {
+                    return React.cloneElement(child, {
+                      active: searchVisible,
+                      handlerFn: handleSearchVisibility,
+                      title
+                    })
+                  }
+                  return null
                 }
-                return null
-              }
-            })
-            .filter(Boolean)}
+              })
+              .filter(Boolean)}
 
-          <button
-            aria-expanded="true"
-            aria-label="Menu"
-            aria-controls="menu-navigation"
-            aria-haspopup="true"
-            className={clsx(
-              styles['SubdomainNavBar-menu-button'],
-              styles['SubdomainNavBar-mobile-menu-button'],
-              !menuHidden && styles['SubdomainNavBar-menu-button--close']
-            )}
-            onClick={handleMobileMenuClick}
-          >
-            <div className={clsx(styles['SubdomainNavBar-menu-button-bar'])}></div>
-            <div className={clsx(styles['SubdomainNavBar-menu-button-bar'])}></div>
-            <div className={clsx(styles['SubdomainNavBar-menu-button-bar'])}></div>
-          </button>
+            <button
+              aria-expanded="true"
+              aria-label="Menu"
+              aria-controls="menu-navigation"
+              aria-haspopup="true"
+              className={clsx(
+                styles['SubdomainNavBar-menu-button'],
+                styles['SubdomainNavBar-mobile-menu-button'],
+                !menuHidden && styles['SubdomainNavBar-menu-button--close']
+              )}
+              onClick={handleMobileMenuClick}
+            >
+              <div className={clsx(styles['SubdomainNavBar-menu-button-bar'])}></div>
+              <div className={clsx(styles['SubdomainNavBar-menu-button-bar'])}></div>
+              <div className={clsx(styles['SubdomainNavBar-menu-button-bar'])}></div>
+            </button>
 
-          <div
-            className={clsx(
-              styles['SubdomainNavBar-button-area'],
-              !menuHidden && styles['SubdomainNavBar-button-area--visible']
-            )}
-          >
-            <div className={styles['SubdomainNavBar-button-area-inner']}>
-              {React.Children.toArray(children)
-                .map(child => {
-                  if (React.isValidElement(child) && typeof child.type !== 'string') {
-                    if (child.type === PrimaryAction) {
-                      return child
+            <div
+              className={clsx(
+                styles['SubdomainNavBar-button-area'],
+                !menuHidden && styles['SubdomainNavBar-button-area--visible']
+              )}
+            >
+              <div className={styles['SubdomainNavBar-button-area-inner']}>
+                {React.Children.toArray(children)
+                  .map(child => {
+                    if (React.isValidElement(child) && typeof child.type !== 'string') {
+                      if (child.type === PrimaryAction) {
+                        return child
+                      }
+                      return null
                     }
-                    return null
-                  }
-                })
-                .filter(Boolean)}
+                  })
+                  .filter(Boolean)}
 
-              {React.Children.toArray(children)
-                .map(child => {
-                  if (React.isValidElement(child) && typeof child.type !== 'string') {
-                    if (child.type === SecondaryAction) {
-                      return child
+                {React.Children.toArray(children)
+                  .map(child => {
+                    if (React.isValidElement(child) && typeof child.type !== 'string') {
+                      if (child.type === SecondaryAction) {
+                        return child
+                      }
+                      return null
                     }
-                    return null
-                  }
-                })
-                .filter(Boolean)}
+                  })
+                  .filter(Boolean)}
+              </div>
             </div>
           </div>
         </div>

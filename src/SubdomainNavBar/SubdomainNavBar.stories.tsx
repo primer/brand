@@ -1,4 +1,4 @@
-import {ComponentMeta, ComponentStory} from '@storybook/react'
+import {ComponentMeta, Story} from '@storybook/react'
 import {userEvent, within} from '@storybook/testing-library'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 
@@ -7,12 +7,27 @@ import React from 'react'
 import {Hero, River, Heading, Text, Link} from '../'
 
 import {SubdomainNavBar} from '.'
+import {waitFor} from '@testing-library/dom'
+
+type CustomStoryArgs = {showSearch: boolean; numLinks: number; title: string}
 
 export default {
   title: 'Components/SubdomainNavBar',
   component: SubdomainNavBar,
   argTypes: {
-    onSubmit: {action: true}
+    onSubmit: {action: true},
+    showSearch: {
+      control: 'boolean',
+      defaultValue: true
+    },
+    numLinks: {
+      control: 'number',
+      defaultValue: 6
+    },
+    title: {
+      control: 'text',
+      defaultValue: 'Subdomain'
+    }
   },
   parameters: {
     //👇 The viewports object from the Essentials addon
@@ -348,7 +363,7 @@ const mockSearchData = [
   }
 ]
 
-const Template: ComponentStory<typeof SubdomainNavBar> = args => {
+const Template: Story<typeof SubdomainNavBar & CustomStoryArgs> = args => {
   const inputRef = React.useRef<HTMLInputElement | null>(null)
   const [searchResults, setSearchResults] = React.useState<
     {title: string; description: string; date: string; url: string}[] | undefined
@@ -383,20 +398,27 @@ const Template: ComponentStory<typeof SubdomainNavBar> = args => {
   return (
     <>
       <div>
-        <SubdomainNavBar {...args} title="Subdomain">
-          <SubdomainNavBar.Link href="#collections">Collections</SubdomainNavBar.Link>
-          <SubdomainNavBar.Link href="#topics">Topics</SubdomainNavBar.Link>
-          <SubdomainNavBar.Link href="#articles">Articles</SubdomainNavBar.Link>
-          <SubdomainNavBar.Link href="#events">Events</SubdomainNavBar.Link>
-          <SubdomainNavBar.Link href="#video">Video</SubdomainNavBar.Link>
-          <SubdomainNavBar.Link href="#social">Social</SubdomainNavBar.Link>
-          <SubdomainNavBar.Search
-            ref={inputRef}
-            searchTerm={searchTerm}
-            onSubmit={handleSubmit}
-            onChange={handleChange}
-            searchResults={searchResults}
-          />
+        <SubdomainNavBar {...args} title={args.title}>
+          {['collections', 'topics', 'articles', 'events', 'video', 'social'].slice(0, args.numLinks).map(link => {
+            return (
+              <SubdomainNavBar.Link key={link} href={`#${link}`}>
+                {link
+                  .toLowerCase()
+                  .split(' ')
+                  .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                  .join(' ')}
+              </SubdomainNavBar.Link>
+            )
+          })}
+          {args.showSearch && (
+            <SubdomainNavBar.Search
+              ref={inputRef}
+              searchTerm={searchTerm}
+              onSubmit={handleSubmit}
+              onChange={handleChange}
+              searchResults={searchResults}
+            />
+          )}
           <SubdomainNavBar.PrimaryAction href="#">Primary CTA</SubdomainNavBar.PrimaryAction>
           <SubdomainNavBar.SecondaryAction href="#">Secondary CTA</SubdomainNavBar.SecondaryAction>
         </SubdomainNavBar>
@@ -473,8 +495,12 @@ Playground.parameters = {
   }
 }
 
-export const SearchOpen = Template.bind({})
+export const NoSearch = Template.bind({})
+NoSearch.args = {
+  showSearch: false
+}
 
+export const SearchOpen = Template.bind({})
 SearchOpen.play = async ({canvasElement}) => {
   const canvas = within(canvasElement)
   await userEvent.click(canvas.getByLabelText('search'))
@@ -495,7 +521,10 @@ SearchResultsVisible.play = async ({canvasElement}) => {
 export const OverflowMenuOpen = Template.bind({})
 OverflowMenuOpen.play = async ({canvasElement}) => {
   const canvas = within(canvasElement)
-  await userEvent.click(canvas.getByLabelText('more'))
+  await waitFor(async () => {
+    const overflowMenu = await canvas.getByLabelText('more')
+    await userEvent.click(overflowMenu)
+  })
 }
 
 export const MobileView = Template.bind({})
@@ -528,4 +557,15 @@ MobileSearchResultsVisible.play = async ({canvasElement}) => {
   await userEvent.click(canvas.getByLabelText('search'))
   await userEvent.type(canvas.getByRole('combobox'), 'devops')
   await expect(canvas.getByRole('combobox')).toHaveFocus()
+}
+
+export const NoOverflow = Template.bind({})
+NoOverflow.args = {
+  numLinks: 1
+}
+NoOverflow.storyName = 'No overflow menu (1 link)'
+
+export const LongerTitle = Template.bind({})
+LongerTitle.args = {
+  title: 'Brand and Marketing'
 }
