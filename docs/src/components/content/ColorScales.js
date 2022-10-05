@@ -1,7 +1,3 @@
-// TODO: Make sure clicking the dark section works
-// Remove unused code
-// Make sure the dark mode dropdown also works without error
-
 import colors from '../../../../lib/design-tokens/js/module/tokens/base/colors/color-scales'
 import React from 'react'
 import {
