@@ -60,7 +60,7 @@
   gap: 16px;
   padding: 0;
   margin: 0;
-  max-width: 230px;
+  max-width: 340px;
   color: var(--brand-color-text-default);
   padding: var(--base-size-16) 0;
 }
@@ -104,6 +104,7 @@
   color: var(--brand-color-text-default);
   text-decoration: none;
   padding-right: var(--base-size-16);
+  white-space: nowrap;
 }
 
 /*
@@ -161,7 +162,7 @@
 
 @media screen and (min-width: 1024px) {
   .SubdomainNavBar-primary-nav-list {
-    max-width: 250px;
+    max-width: 340px;
   }
 }
 
@@ -325,10 +326,15 @@
 /*
  * Toolbar actions area for search and mobile menu
  */
-.SubdomainNavBar-search-trigger {
+
+.SubdomainNavBar-secondary-nav {
   display: flex;
   align-items: center;
   margin-left: auto;
+}
+.SubdomainNavBar-search-trigger {
+  display: flex;
+  align-items: center;
 }
 
 .SubdomainNavBar-search-button,
