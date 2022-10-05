@@ -12,6 +12,14 @@ export default {
   title: 'Components/SubdomainNavBar',
   component: SubdomainNavBar,
   argTypes: {
+    title: {
+      control: 'text',
+      defaultValue: 'Subdomain'
+    },
+    titleHref: {
+      control: 'text',
+      defaultValue: '/'
+    },
     onSubmit: {action: true}
   },
   parameters: {
@@ -383,7 +391,7 @@ const Template: ComponentStory<typeof SubdomainNavBar> = args => {
   return (
     <>
       <div>
-        <SubdomainNavBar {...args} title="Subdomain">
+        <SubdomainNavBar {...args}>
           <SubdomainNavBar.Link href="#collections">Collections</SubdomainNavBar.Link>
           <SubdomainNavBar.Link href="#topics">Topics</SubdomainNavBar.Link>
           <SubdomainNavBar.Link href="#articles">Articles</SubdomainNavBar.Link>
@@ -528,4 +536,9 @@ MobileSearchResultsVisible.play = async ({canvasElement}) => {
   await userEvent.click(canvas.getByLabelText('search'))
   await userEvent.type(canvas.getByRole('combobox'), 'devops')
   await expect(canvas.getByRole('combobox')).toHaveFocus()
+}
+
+export const FullWidth = Template.bind({})
+FullWidth.args = {
+  isCentered: false
 }

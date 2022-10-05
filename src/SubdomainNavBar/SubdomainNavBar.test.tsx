@@ -20,8 +20,14 @@ describe('SubdomainNavBar', () => {
     window.IntersectionObserver = mockIntersectionObserver
   })
 
-  const Component = ({searchResults}: {searchResults?: SubdomainNavBarSearchResultProps[]}) => (
-    <SubdomainNavBar title="Subdomain">
+  const Component = ({
+    searchResults,
+    titleHref
+  }: {
+    searchResults?: SubdomainNavBarSearchResultProps[]
+    titleHref?: string
+  }) => (
+    <SubdomainNavBar title="Subdomain" titleHref={titleHref}>
       <SubdomainNavBar.Link href="#">Collections</SubdomainNavBar.Link>
       <SubdomainNavBar.Link href="#">Topics</SubdomainNavBar.Link>
       <SubdomainNavBar.Link href="#">Articles</SubdomainNavBar.Link>
@@ -73,5 +79,20 @@ describe('SubdomainNavBar', () => {
     const searchResultsDialog = getByLabelText('search menu dialog')
 
     expect(searchResultsDialog).toBeInTheDocument()
+  })
+
+  it('applies "/" as the default title href', async () => {
+    const {getByRole} = render(<Component />)
+    const linkEl = getByRole('link', {name: 'Subdomain home'})
+
+    expect(linkEl).toHaveAttribute('href', '/')
+  })
+
+  it('can apply an alternative href on the title', async () => {
+    const mockTitleHref = '/mock-title-href'
+    const {getByRole} = render(<Component titleHref={mockTitleHref} />)
+    const linkEl = getByRole('link', {name: 'Subdomain home'})
+
+    expect(linkEl).toHaveAttribute('href', mockTitleHref)
   })
 })

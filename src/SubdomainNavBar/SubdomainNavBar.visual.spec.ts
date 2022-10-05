@@ -76,4 +76,9 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
       expect(await page.screenshot()).toMatchSnapshot()
     })
   })
+  test('SubdomainNavBar / Full Width', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--full-width&viewMode=story')
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
 })

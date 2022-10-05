@@ -33,16 +33,32 @@ export type SubdomainNavBarProps = {
    */
   fixed?: boolean
   /**
+   * Applies a maximum width and centers the navigation bar. Defaults to `true`.
+   */
+  isCentered?: boolean
+  /**
    * The title or name of the subdomain. Appears adjacent to the logo and is required for communicating content to assisitive technologies.
    */
   title: string
+  /**
+   * The URL for the site. Typically used to link the titleText prop value to the site root.
+   */
+  titleHref?: string
   /**
    * Optionally change the URL of the logo
    */
   logoHref?: string
 }
 
-function Root({children, fixed = true, logoHref = 'https://github.com', title, ...rest}: SubdomainNavBarProps) {
+function Root({
+  children,
+  fixed = true,
+  isCentered = true,
+  logoHref = 'https://github.com',
+  title,
+  titleHref = '/',
+  ...rest
+}: SubdomainNavBarProps) {
   const [menuHidden, setMenuHidden] = useState(true)
   const [searchVisible, setSearchVisible] = useState(false)
 
@@ -60,7 +76,8 @@ function Root({children, fixed = true, logoHref = 'https://github.com', title, .
         <div
           className={clsx(
             styles['SubdomainNavBar-inner-container'],
-            searchVisible && styles['SubdomainNavBar-inner-container--search-open']
+            searchVisible && styles['SubdomainNavBar-inner-container--search-open'],
+            isCentered && styles['SubdomainNavBar-inner-container--centered']
           )}
         >
           <nav aria-label="global breadcrumb">
@@ -77,12 +94,7 @@ function Root({children, fixed = true, logoHref = 'https://github.com', title, .
                 /
               </li>
               <li>
-                <a
-                  href={logoHref}
-                  aria-current="page"
-                  aria-label={`${title} home`}
-                  className={clsx(styles['SubdomainNavBar-title'])}
-                >
+                <a href={titleHref} aria-label={`${title} home`} className={clsx(styles['SubdomainNavBar-title'])}>
                   {title}
                 </a>
               </li>

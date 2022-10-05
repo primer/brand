@@ -3,6 +3,7 @@ declare const styles: {
   readonly "SubdomainNavBar-outer-container": string;
   readonly "SubdomainNavBar-outer-container--fixed": string;
   readonly "SubdomainNavBar-inner-container": string;
+  readonly "SubdomainNavBar-inner-container--centered": string;
   readonly "SubdomainNavBar-inner-container--search-open": string;
   readonly "fade-out": string;
   readonly "SubdomainNavBar-title-area": string;
