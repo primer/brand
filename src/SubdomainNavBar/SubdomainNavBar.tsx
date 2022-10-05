@@ -49,6 +49,12 @@ export type SubdomainNavBarProps = {
    */
   logoHref?: string
 }
+const testIds = {
+  root: 'SubdomainNavBar',
+  get innerContainer() {
+    return `${this.root}-inner-container`
+  }
+}
 
 function Root({
   children,
@@ -79,6 +85,7 @@ function Root({
             searchVisible && styles['SubdomainNavBar-inner-container--search-open'],
             isCentered && styles['SubdomainNavBar-inner-container--centered']
           )}
+          data-testid={testIds.innerContainer}
         >
           <nav aria-label="global breadcrumb">
             <ol className={styles['SubdomainNavBar-title-area']}>
@@ -384,5 +391,6 @@ export const SubdomainNavBar = Object.assign(Root, {
   Link,
   Search,
   PrimaryAction,
-  SecondaryAction
+  SecondaryAction,
+  testIds
 })
