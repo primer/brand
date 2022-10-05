@@ -11,5 +11,6 @@ export {
   Select,
   TextInput,
   ThemeProvider,
-  Button
+  Button,
+  SubdomainNavBar
 } from '@primer/react-brand'

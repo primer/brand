@@ -18,6 +18,10 @@
       url: /components/Hero
     - title: River
       url: /components/River
+    - title: SubdomainNavBar
+      url: /components/SubdomainNavBar
+    - title: Testimonial
+      url: /components/Testimonial
 
 - title: Forms
   children:
@@ -29,6 +33,11 @@
       url: /components/Select
     - title: TextInput
       url: /components/TextInput
+
+- title: Layout
+  children:
+    - title: Stack
+      url: /components/Stack
 
 - title: Typography
   children:

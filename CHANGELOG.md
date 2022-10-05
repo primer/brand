@@ -1,5 +1,78 @@
 # @primer/react-brand
 
+## 0.5.0
+
+### Minor Changes
+
+- [#81](https://github.com/primer/brand/pull/81) [`88e2007`](https://github.com/primer/brand/commit/88e20076f797338b9ab6d7d2d932320094cda5d7) Thanks [@rezrah](https://github.com/rezrah)! - Added `SubdomainNavBar` component.
+
+  Usage example:
+
+  ```jsx
+  <SubdomainNavBar title="Subdomain">
+    <SubdomainNavBar.Link href="#">Collections</SubdomainNavBar.Link>
+    <SubdomainNavBar.Link href="#">Topics</SubdomainNavBar.Link>
+    <SubdomainNavBar.Link href="#">Articles</SubdomainNavBar.Link>
+    <SubdomainNavBar.Link href="#">Events</SubdomainNavBar.Link>
+    <SubdomainNavBar.Link href="#">Video</SubdomainNavBar.Link>
+    <SubdomainNavBar.Link href="#">Social</SubdomainNavBar.Link>
+    <SubdomainNavBar.Search ref={inputRef} onSubmit={handleSubmit} />
+    <SubdomainNavBar.PrimaryAction href="#">Primary CTA</SubdomainNavBar.PrimaryAction>
+    <SubdomainNavBar.SecondaryAction href="#">Secondary CTA</SubdomainNavBar.SecondaryAction>
+  </SubdomainNavBar>
+  ```
+
+  See the [documentation](https://primer.style/brand/components/SubdomainNavBar) and [Storybook](https://primer.style/brand/storybook/?path=/story/components-subdomainnavbar--playground) for more usage examples.
+
+* [#82](https://github.com/primer/brand/pull/82) [`afbab6c`](https://github.com/primer/brand/commit/afbab6c24b5a8fe08d6eea28dfebc4bde143bfd5) Thanks [@rezrah](https://github.com/rezrah)! - Added `Testimonial` component.
+
+  Usage example:
+
+  ```jsx
+  <Testimonial>
+    <Testimonial.Quote>
+      GitHub helps us ensure that we have our security controls baked into our pipelines all the way from the first line
+      of code we&apos;re writing.
+    </Testimonial.Quote>
+    <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
+    <Testimonial.Avatar
+      src="https://avatars.githubusercontent.com/u/92997159?v=4"
+      alt="Circular avatar from David Ross's GitHub profile"
+    />
+  </Testimonial>
+  ```
+
+  See the [documentation](https://primer.style/brand/components/Testimonial) or [Storybook](https://primer.style/brand/storybook/?path=/story/components-testimonial--playground) for more usage examples.
+
+- [#82](https://github.com/primer/brand/pull/82) [`afbab6c`](https://github.com/primer/brand/commit/afbab6c24b5a8fe08d6eea28dfebc4bde143bfd5) Thanks [@rezrah](https://github.com/rezrah)! - Added `Stack` component.
+
+  Usage example:
+
+  ```jsx
+  <Stack direction="horizontal" gap="spacious" padding="spacious">
+    <div>
+      <img
+        src="https://via.placeholder.com/300x150/f5f5f5/f5f5f5.png"
+        alt="placeholder with gray background and no foreground text"
+      />
+    </div>
+    <div>
+      <img
+        src="https://via.placeholder.com/300x150/f5f5f5/f5f5f5.png"
+        alt="placeholder with gray background and no foreground text"
+      />
+    </div>
+    <div>
+      <img
+        src="https://via.placeholder.com/300x150/f5f5f5/f5f5f5.png"
+        alt="placeholder with gray background and no foreground text"
+      />
+    </div>
+  </Stack>
+  ```
+
+  See [Storybook](https://primer.style/brand/storybook/?path=/story/components-stack--playground) for more usage examples.
+
 ## 0.4.0
 
 ### Minor Changes

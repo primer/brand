@@ -5,6 +5,7 @@ declare const styles: {
   readonly "TextInput--fullWidth": string;
   readonly "TextInput-wrapper--disabled": string;
   readonly "TextInput-wrapper": string;
+  readonly "TextInput-wrapper--invisible": string;
   readonly "TextInput-wrapper--fullWidth": string;
   readonly "TextInput-wrapper--monospace": string;
   readonly "TextInput-wrapper--success": string;

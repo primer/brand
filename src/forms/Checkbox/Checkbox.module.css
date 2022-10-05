@@ -8,7 +8,7 @@
 .Checkbox {
   align-items: center;
   background-color: var(--brand-control-checkbox-bg-default);
-  border: solid var(--brand-borderWidth-normal, 1px) var(--brand-control-color-border-default);
+  border: solid var(--brand-borderWidth-thick, 1px) var(--brand-control-color-border-default);
   border-radius: var(--brand-borderRadius-small);
   cursor: pointer;
   display: inline-flex;

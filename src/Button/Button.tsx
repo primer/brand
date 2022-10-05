@@ -10,6 +10,7 @@ export type ButtonProps<C extends React.ElementType> = BaseProps<C> & {
   as?: C
   variant?: 'primary' | 'secondary'
   size?: 'medium' | 'large'
+  hasArrow?: boolean
 } & React.ComponentPropsWithoutRef<C>
 
 export const Button = forwardRef(
@@ -18,6 +19,7 @@ export const Button = forwardRef(
       as,
       variant = 'secondary',
       size = 'medium',
+      hasArrow = true,
       className,
       children,
       onMouseEnter,
@@ -61,7 +63,7 @@ export const Button = forwardRef(
         >
           {children}
         </Text>
-        <ExpandableArrow className={styles['Button-arrow']} expanded={isHovered || isFocused} />
+        {hasArrow && <ExpandableArrow className={styles['Button-arrow']} expanded={isHovered || isFocused} />}
       </Component>
     )
   }
