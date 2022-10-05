@@ -9,7 +9,7 @@ import {Hero, River, Heading, Text, Link} from '../'
 import {SubdomainNavBar} from '.'
 import {waitFor} from '@testing-library/dom'
 
-type CustomStoryArgs = {showSearch: boolean; numLinks: number; title: string}
+type CustomStoryArgs = {showSearch: boolean; numLinks: number; title: string; isCentered: boolean}
 
 export default {
   title: 'Components/SubdomainNavBar',
