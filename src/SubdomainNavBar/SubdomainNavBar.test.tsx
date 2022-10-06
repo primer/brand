@@ -21,15 +21,15 @@ describe('SubdomainNavBar', () => {
   })
 
   const Component = ({
-    isCentered,
+    fullWidth,
     searchResults,
     titleHref
   }: {
-    isCentered?: boolean
+    fullWidth?: boolean
     searchResults?: SubdomainNavBarSearchResultProps[]
     titleHref?: string
   }) => (
-    <SubdomainNavBar title="Subdomain" titleHref={titleHref} isCentered={isCentered}>
+    <SubdomainNavBar title="Subdomain" titleHref={titleHref} fullWidth={fullWidth}>
       <SubdomainNavBar.Link href="#">Collections</SubdomainNavBar.Link>
       <SubdomainNavBar.Link href="#">Topics</SubdomainNavBar.Link>
       <SubdomainNavBar.Link href="#">Articles</SubdomainNavBar.Link>
@@ -98,7 +98,7 @@ describe('SubdomainNavBar', () => {
     expect(linkEl).toHaveAttribute('href', mockTitleHref)
   })
 
-  it('applies visual styling logic for isCentered prop by default', () => {
+  it('applies visual styling logic for fullWidth prop by default', () => {
     const {getByTestId} = render(<Component />)
 
     const innerContainerEl = getByTestId(SubdomainNavBar.testIds.innerContainer)
@@ -106,8 +106,8 @@ describe('SubdomainNavBar', () => {
     expect(innerContainerEl.classList).toContain(`SubdomainNavBar-inner-container--centered`)
   })
 
-  it('optionally applies removes visual styling logic for isCentered prop', () => {
-    const {getByTestId} = render(<Component isCentered={false} />)
+  it('optionally applies removes visual styling logic for fullWidth prop', () => {
+    const {getByTestId} = render(<Component fullWidth={true} />)
 
     const innerContainerEl = getByTestId(SubdomainNavBar.testIds.innerContainer)
 

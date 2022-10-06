@@ -33,9 +33,9 @@ export type SubdomainNavBarProps = {
    */
   fixed?: boolean
   /**
-   * Applies a maximum width and centers the navigation bar. Defaults to `true`.
+   * Fill the maximum width of the parent container. Defaults to `false`.
    */
-  isCentered?: boolean
+  fullWidth?: boolean
   /**
    * The title or name of the subdomain. Appears adjacent to the logo and is required for communicating content to assisitive technologies.
    */
@@ -59,7 +59,7 @@ const testIds = {
 function Root({
   children,
   fixed = true,
-  isCentered = true,
+  fullWidth = false,
   logoHref = 'https://github.com',
   title,
   titleHref = '/',
@@ -83,7 +83,7 @@ function Root({
           className={clsx(
             styles['SubdomainNavBar-inner-container'],
             searchVisible && styles['SubdomainNavBar-inner-container--search-open'],
-            isCentered && styles['SubdomainNavBar-inner-container--centered']
+            !fullWidth && styles['SubdomainNavBar-inner-container--centered']
           )}
           data-testid={testIds.innerContainer}
         >

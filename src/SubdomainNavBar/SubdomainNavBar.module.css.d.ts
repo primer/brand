@@ -26,6 +26,7 @@ declare const styles: {
   readonly "SubdomainNavBar-overflow-menu": string;
   readonly "enlarge-shadow": string;
   readonly "SubdomainNavBar-overflow-menu-list": string;
+  readonly "SubdomainNavBar-secondary-nav": string;
   readonly "SubdomainNavBar-search-trigger": string;
   readonly "SubdomainNavBar-search-button": string;
   readonly "SubdomainNavBar-menu-button": string;

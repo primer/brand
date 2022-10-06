@@ -9,7 +9,7 @@ import {Hero, River, Heading, Text, Link} from '../'
 import {SubdomainNavBar} from '.'
 import {waitFor} from '@testing-library/dom'
 
-type CustomStoryArgs = {showSearch: boolean; numLinks: number; title: string; isCentered: boolean}
+type CustomStoryArgs = {showSearch: boolean; numLinks: number; title: string; fullWidth: boolean}
 
 export default {
   title: 'Components/SubdomainNavBar',
@@ -576,5 +576,5 @@ LongerTitle.args = {
 
 export const FullWidth = Template.bind({})
 FullWidth.args = {
-  isCentered: false
+  fullWidth: true
 }
