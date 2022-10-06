@@ -1,5 +1,31 @@
 # @primer/react-brand
 
+## 0.5.1
+
+### Patch Changes
+
+- [#87](https://github.com/primer/brand/pull/87) [`0a82cd4`](https://github.com/primer/brand/commit/0a82cd42e8eb4f001504345172d209a33e18a476) Thanks [@rezrah](https://github.com/rezrah)! - UI bugfixes for `SubdomainNavBar` and `Testimonial` components.
+
+  ## SubdomainNavBar
+
+  - Fix bug where a missing `SubdomainNavBar.Search` child would cause the `SubdomainNavBar` to render incorrectly, despite being optional.
+  - Fix bug where the overflow menu still appears when there are no items in the overflow menu.
+  - Fix bug where longer titles caused text wrapping and layout issues. Slightly longer titles are now accepted.
+
+  ## Testimonial
+
+  - Increase spacing beneath the quote visual to 48px from 45px.
+
+* [#89](https://github.com/primer/brand/pull/89) [`396734e`](https://github.com/primer/brand/commit/396734ecc4d4559c5ea7a63d009050b2b487d489) Thanks [@rezrah](https://github.com/rezrah)! - Add `titleHref` and `fullWidth` props for SubdomainNavBar
+
+  Usage example:
+
+  ```jsx
+  <SubdomainNavBar fullWidth={true} titleHref="/something-other-than-home" title="Subdomain">
+    {/* ... */}
+  </SubdomainNavBar>
+  ```
+
 ## 0.5.0
 
 ### Minor Changes
