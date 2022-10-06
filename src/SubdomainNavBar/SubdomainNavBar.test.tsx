@@ -20,8 +20,16 @@ describe('SubdomainNavBar', () => {
     window.IntersectionObserver = mockIntersectionObserver
   })
 
-  const Component = ({searchResults}: {searchResults?: SubdomainNavBarSearchResultProps[]}) => (
-    <SubdomainNavBar title="Subdomain">
+  const Component = ({
+    fullWidth,
+    searchResults,
+    titleHref
+  }: {
+    fullWidth?: boolean
+    searchResults?: SubdomainNavBarSearchResultProps[]
+    titleHref?: string
+  }) => (
+    <SubdomainNavBar title="Subdomain" titleHref={titleHref} fullWidth={fullWidth}>
       <SubdomainNavBar.Link href="#">Collections</SubdomainNavBar.Link>
       <SubdomainNavBar.Link href="#">Topics</SubdomainNavBar.Link>
       <SubdomainNavBar.Link href="#">Articles</SubdomainNavBar.Link>
@@ -73,5 +81,36 @@ describe('SubdomainNavBar', () => {
     const searchResultsDialog = getByLabelText('search menu dialog')
 
     expect(searchResultsDialog).toBeInTheDocument()
+  })
+
+  it('applies "/" as the default title href', async () => {
+    const {getByRole} = render(<Component />)
+    const linkEl = getByRole('link', {name: 'Subdomain home'})
+
+    expect(linkEl).toHaveAttribute('href', '/')
+  })
+
+  it('can apply an alternative href on the title', async () => {
+    const mockTitleHref = '/mock-title-href'
+    const {getByRole} = render(<Component titleHref={mockTitleHref} />)
+    const linkEl = getByRole('link', {name: 'Subdomain home'})
+
+    expect(linkEl).toHaveAttribute('href', mockTitleHref)
+  })
+
+  it('applies visual styling logic for fullWidth prop by default', () => {
+    const {getByTestId} = render(<Component />)
+
+    const innerContainerEl = getByTestId(SubdomainNavBar.testIds.innerContainer)
+
+    expect(innerContainerEl.classList).toContain(`SubdomainNavBar-inner-container--centered`)
+  })
+
+  it('optionally applies removes visual styling logic for fullWidth prop', () => {
+    const {getByTestId} = render(<Component fullWidth={true} />)
+
+    const innerContainerEl = getByTestId(SubdomainNavBar.testIds.innerContainer)
+
+    expect(innerContainerEl.classList).not.toContain(`SubdomainNavBar-inner-container--centered`)
   })
 })

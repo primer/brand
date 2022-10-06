@@ -47,7 +47,7 @@
     "release": "npm run build && changeset publish",
     "start": "npm run build && npm run start:storybook & npm run start:docs",
     "start:storybook": "start-storybook -p 6006",
-    "start:docs": "cd docs && npm run develop",
+    "start:docs": "npm run build && cd docs && npm run develop",
     "start:css-types": "tcm -w -p 'src/**/*.css' .",
     "test": "jest",
     "test:visual": "npx build-storybook && scripts/playwright/run-visual-tests",
