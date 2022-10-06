@@ -33,6 +33,9 @@
 .SubdomainNavBar-inner-container {
   display: flex;
   padding: 4px 28px;
+}
+
+.SubdomainNavBar-inner-container--centered {
   max-width: 1280px;
   margin: 0 auto;
 }

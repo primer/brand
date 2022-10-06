@@ -33,16 +33,38 @@ export type SubdomainNavBarProps = {
    */
   fixed?: boolean
   /**
+   * Fill the maximum width of the parent container. Defaults to `false`.
+   */
+  fullWidth?: boolean
+  /**
    * The title or name of the subdomain. Appears adjacent to the logo and is required for communicating content to assisitive technologies.
    */
   title: string
+  /**
+   * The URL for the site. Typically used to link the titleText prop value to the site root.
+   */
+  titleHref?: string
   /**
    * Optionally change the URL of the logo
    */
   logoHref?: string
 }
+const testIds = {
+  root: 'SubdomainNavBar',
+  get innerContainer() {
+    return `${this.root}-inner-container`
+  }
+}
 
-function Root({children, fixed = true, logoHref = 'https://github.com', title, ...rest}: SubdomainNavBarProps) {
+function Root({
+  children,
+  fixed = true,
+  fullWidth = false,
+  logoHref = 'https://github.com',
+  title,
+  titleHref = '/',
+  ...rest
+}: SubdomainNavBarProps) {
   const [menuHidden, setMenuHidden] = useState(true)
   const [searchVisible, setSearchVisible] = useState(false)
 
@@ -60,8 +82,10 @@ function Root({children, fixed = true, logoHref = 'https://github.com', title, .
         <div
           className={clsx(
             styles['SubdomainNavBar-inner-container'],
-            searchVisible && styles['SubdomainNavBar-inner-container--search-open']
+            searchVisible && styles['SubdomainNavBar-inner-container--search-open'],
+            !fullWidth && styles['SubdomainNavBar-inner-container--centered']
           )}
+          data-testid={testIds.innerContainer}
         >
           <nav aria-label="global breadcrumb">
             <ol className={styles['SubdomainNavBar-title-area']}>
@@ -77,12 +101,7 @@ function Root({children, fixed = true, logoHref = 'https://github.com', title, .
                 /
               </li>
               <li>
-                <a
-                  href={logoHref}
-                  aria-current="page"
-                  aria-label={`${title} home`}
-                  className={clsx(styles['SubdomainNavBar-title'])}
-                >
+                <a href={titleHref} aria-label={`${title} home`} className={clsx(styles['SubdomainNavBar-title'])}>
                   {title}
                 </a>
               </li>
@@ -372,5 +391,6 @@ export const SubdomainNavBar = Object.assign(Root, {
   Link,
   Search,
   PrimaryAction,
-  SecondaryAction
+  SecondaryAction,
+  testIds
 })

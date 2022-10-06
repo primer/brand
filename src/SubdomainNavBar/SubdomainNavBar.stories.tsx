@@ -9,7 +9,7 @@ import {Hero, River, Heading, Text, Link} from '../'
 import {SubdomainNavBar} from '.'
 import {waitFor} from '@testing-library/dom'
 
-type CustomStoryArgs = {showSearch: boolean; numLinks: number; title: string}
+type CustomStoryArgs = {showSearch: boolean; numLinks: number; title: string; fullWidth: boolean}
 
 export default {
   title: 'Components/SubdomainNavBar',
@@ -27,6 +27,10 @@ export default {
     title: {
       control: 'text',
       defaultValue: 'Subdomain'
+    },
+    titleHref: {
+      control: 'text',
+      defaultValue: '/'
     }
   },
   parameters: {
@@ -568,4 +572,9 @@ NoOverflow.storyName = 'No overflow menu (1 link)'
 export const LongerTitle = Template.bind({})
 LongerTitle.args = {
   title: 'Brand and Marketing'
+}
+
+export const FullWidth = Template.bind({})
+FullWidth.args = {
+  fullWidth: true
 }
