@@ -7,19 +7,17 @@ import {
   Text,
   ThemeProvider as PRCThemeProvider,
 } from '@primer/react'
-import {readableColor, toHex, toRgba} from 'color2k'
+import {readableColor} from 'color2k'
 // eslint-disable-next-line import/no-unresolved
 import {ColorModesEnum} from '@primer/react-brand'
 import {useColorTheme} from './ColorThemeContext'
 
 const availableColorModes = Object.values(ColorModesEnum)
-const colorFormats = ['hex', 'hsl', 'rgba']
 
 const convertToHsl = (rawHSL) => `hsl(${rawHSL.split(' ').join(', ')})`
 
 export function ColorScales() {
   const [colorTheme, setCurrentMode] = useColorTheme()
-  const [activeColorFormat, setActiveColorFormat] = React.useState('hex')
 
   const predicateFn = (colorEntry) => ['black', 'white'].includes(colorEntry[0])
 
@@ -55,9 +53,7 @@ export function ColorScales() {
               <Text>
                 {name}.{key}
               </Text>
-              {activeColorFormat === 'hex' && <Text>{toHex(hslValue)}</Text>}
-              {activeColorFormat === 'rgba' && <Text>{toRgba(hslValue)}</Text>}
-              {activeColorFormat === 'hsl' && <Text>{hslValue}</Text>}
+              <Text>{hslValue}</Text>
             </Box>
           )
         })}
@@ -86,25 +82,6 @@ export function ColorScales() {
             justifyContent: 'flex-end',
           }}
         >
-          <ActionMenu>
-            <ActionMenu.Button sx={{marginRight: 3}}>
-              Change color format
-            </ActionMenu.Button>
-
-            <ActionMenu.Overlay>
-              <ActionList selectionVariant="single">
-                {colorFormats.map((mode) => (
-                  <ActionList.Item
-                    key={mode}
-                    selected={activeColorFormat === mode}
-                    onSelect={() => setActiveColorFormat(mode)}
-                  >
-                    {mode}
-                  </ActionList.Item>
-                ))}
-              </ActionList>
-            </ActionMenu.Overlay>
-          </ActionMenu>
           <ActionMenu>
             <ActionMenu.Button>Change color mode</ActionMenu.Button>
 
