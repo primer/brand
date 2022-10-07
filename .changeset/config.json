@@ -2,7 +2,7 @@
   "$schema": "https://unpkg.com/@changesets/config@1.7.0/schema.json",
   "changelog": ["@changesets/changelog-github", {"repo": "primer/brand"}],
   "commit": false,
-  "fixed": [],
+  "fixed": [["@primer/react-brand", "@primer/primitives-brand"]],
   "linked": [],
   "access": "public",
   "baseBranch": "main",

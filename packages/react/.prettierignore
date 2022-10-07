@@ -1,0 +1,5 @@
+src/**/*.css.d.ts
+coverage/
+lib/
+src/tokens
+.changeset
