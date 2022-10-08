@@ -33,8 +33,6 @@
     "build": "npm run clean && npm run build:css-types && webpack && scripts/postbuild",
     "build:css-types": "tcm -p 'src/**/*.module.css' .",
     "build:types": "tsc --project tsconfig.build.json",
-    "build:docs": "scripts/build-docs",
-    "build:docs:preview": "scripts/build-docs preview",
     "build:tokens": "node scripts/build-tokens.js",
     "check": "tsc --noEmit",
     "clean": "rm -rf lib",

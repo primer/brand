@@ -1,14 +1,10 @@
 {
-  "name": "primer-brand",
+  "name": "e2e",
+  "private": true,
   "description": "Primer Brand is a GitHub's design system for creating React-based marketing websites and digital experiences.",
   "version": "0.5.1",
   "author": "GitHub, Inc.",
   "license": "MIT",
-  "workspaces": [
-    "packages/*",
-    "apps/*",
-    "!apps/docs"
-  ],
   "bugs": {
     "url": "https://github.com/primer/brand/issues"
   },
@@ -35,39 +31,20 @@
     "fonts"
   ],
   "scripts": {
-    "build": "npm run clean --workspaces --if-present && npm run build --workspaces --if-present",
-    "build:css-types": "tcm -p 'src/**/*.module.css' .",
-    "build:types": "tsc --project tsconfig.build.json",
-    "build:storybook": "scripts/build-storybook",
-    "build:storybook:preview": "scripts/build-storybook preview",
-    "build:docs": "cd apps/docs && scripts/build-docs",
-    "build:docs:preview": "cd apps/docs && scripts/build-docs preview",
-    "build:tokens": "npm run build --workspace=packages/design-tokens",
-    "build:react": "npm run build --workspace=packages/react",
-    "check": "npm run check --workspaces --if-present",
+    "check": "tsc --noEmit",
     "clean": "rm -rf lib",
-    "format": "npm run format --workspaces --if-present",
-    "format:fix": "prettier --write '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
-    "lint": "npm run lint --workspaces --if-present",
-    "release": "npm run build && changeset publish",
-    "start": "npm run build && npm run start:storybook & npm run start:docs",
-    "start:storybook": "npm run start --workspace=apps/storybook",
-    "start:docs": "npm run start --workspace=apps/docs",
-    "start:css-types": "tcm -w -p 'src/**/*.css' .",
-    "test": "npm run test --workspaces --if-present",
-    "test:visual": "npx build-storybook && scripts/playwright/run-visual-tests",
-    "test:visual:generate": "ts-node scripts/playwright/playwright.generate-tests.ts",
-    "test:visual:update-snapshots": "npx build-storybook && scripts/playwright/update-visual-snapshots"
-  },
-  "peerDependencies": {
-    "react": ">=17 <= 18",
-    "react-dom": ">=17 <= 18"
+    "format": "prettier --check '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
+    "lint": "eslint '**/*.{js,ts,tsx,md,mdx}' --max-warnings=0 --config ../../.eslintrc.js",
+    "test": "scripts/playwright/run-visual-tests",
+    "test:visual:generate": "cd ../../apps/storybook && npx build-storybook && cd ../../packages/e2e && ts-node scripts/playwright/playwright.generate-tests.ts",
+    "test:visual:update-snapshots": "scripts/playwright/update-visual-snapshots"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.3",
     "@changesets/cli": "^2.21.0",
     "@github/prettier-config": "^0.0.4",
     "@playwright/test": "^1.24.0",
+    "@primer/primitives": "^7.9.0",
     "@reach/auto-id": "^0.17.0",
     "@typescript-eslint/eslint-plugin": "^5.17.0",
     "@typescript-eslint/parser": "^5.17.0",

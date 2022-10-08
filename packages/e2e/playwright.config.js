@@ -1,5 +1,6 @@
 const config = {
   reporter: [['html', {open: 'never'}]],
+  testDir: '../../packages/react',
   testMatch: /.*\.visual.spec\.ts/,
   outputDir: './playwright-test-results',
   use: {

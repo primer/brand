@@ -1,7 +1,7 @@
 ;(function () {
   /* eslint import/no-nodejs-modules: ["error", {"allow": ["path", "fs"]}] */
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const {stories} = require('../../docs/public/storybook/stories')
+  const {stories} = require('../../../../apps/storybook/storybook-static/stories')
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const fs = require('fs')
   // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -9,7 +9,7 @@
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const prettier = require('prettier')
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const prettierOptions = require('../../.prettierrc')
+  const prettierOptions = require('../../../../.prettierrc')
 
   type Stories = {
     [key: string]: {
@@ -53,7 +53,8 @@
   const categorisedStories = Object.keys(stories as Stories).reduce((acc, key) => {
     const {id, story: storyName, importPath} = stories[key]
 
-    const groupName = importPath.split('/')[2]
+    const importPathAsArray = importPath.split('/')
+    const groupName = importPathAsArray[importPathAsArray.length - 2]
     const storyFolder = importPath.substring(0, importPath.lastIndexOf('/'))
 
     if (!acc[groupName]) {
