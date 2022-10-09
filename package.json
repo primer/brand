@@ -29,8 +29,11 @@
     "node": ">=16.0.0"
   },
   "scripts": {
-    "build": "npm run clean --workspaces --if-present && npm run build --workspaces --if-present && npm run build:docs",
+    "build": "npm run clean --workspaces --if-present && npm run build --workspaces --if-present && npm run build:docs && npm run build:storybook",
     "build:docs": "cd apps/docs && npm run build",
+    "build:docs:preview": "cd apps/docs && npm run build:preview",
+    "build:storybook": "npm run build:preview --workspace=apps/storybook",
+    "build:storybook:preview": "npm run build:preview --workspace=apps/storybook",
     "check": "npm run check --workspaces --if-present",
     "clean": "npm run clean --workspaces --if-present",
     "clean:node_modules": "npm exec --workspaces -- npx rimraf node_modules && npx rimraf node_modules",

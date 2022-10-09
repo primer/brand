@@ -10,6 +10,7 @@ else
   echo '<base href="/brand/storybook/" />' >> .storybook/manager-head.html
 fi
 
+mkdir -p ../../apps/docs/public/storybook
 # Build storybook inside docs
 ../../node_modules/.bin/build-storybook -o ../../apps/docs/public/storybook -s ../../apps/docs/public/static
 
