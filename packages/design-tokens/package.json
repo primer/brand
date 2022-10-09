@@ -38,7 +38,6 @@
     "lint": "eslint '**/*.{js,ts,tsx,md,mdx}' --max-warnings=0 --config ../../.eslintrc.js",
     "lint:fix": "npm run lint -- --fix",
     "release": "npm run build && changeset publish",
-    "start": "npm run build && npm run start:storybook & npm run start:docs",
     "test": "jest"
   },
   "devDependencies": {

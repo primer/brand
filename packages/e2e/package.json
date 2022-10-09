@@ -35,7 +35,7 @@
     "clean": "rm -rf lib",
     "format": "prettier --check '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
     "lint": "eslint '**/*.{js,ts,tsx,md,mdx}' --max-warnings=0 --config ../../.eslintrc.js",
-    "test": "scripts/playwright/run-visual-tests",
+    "test:visual": "scripts/playwright/run-visual-tests",
     "test:visual:generate": "cd ../../apps/storybook && npx build-storybook && cd ../../packages/e2e && ts-node scripts/playwright/playwright.generate-tests.ts",
     "test:visual:update-snapshots": "scripts/playwright/update-visual-snapshots"
   },

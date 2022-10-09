@@ -32,6 +32,7 @@
   ],
   "scripts": {
     "clean": "rm -rf out",
+    "build": "npm run build:preview",
     "build:prod": "npm run clean && scripts/build-storybook",
     "build:preview": "npm run clean && scripts/build-storybook preview",
     "start": "start-storybook -p 6006"
