@@ -16,6 +16,7 @@ module.exports = {
     builder: 'webpack5'
   },
   features: {
-    buildStoriesJson: true
+    buildStoriesJson: true,
+    disableTelemetry: true
   }
 }
