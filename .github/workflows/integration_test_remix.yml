@@ -63,7 +63,7 @@ jobs:
           cp ./packages/e2e/integration-tests/remix.run/index.tsx ./${{env.TEST_FOLDER}}/app/routes
           cp ./packages/e2e/integration-tests/remix.run/root.tsx ./${{env.TEST_FOLDER}}/app
           cp -r ./packages/e2e/integration-tests/fixtures ./${{env.TEST_FOLDER}}/app
-          cp cypress.config.js ./${{env.TEST_FOLDER}} 
+          cp ./packages/e2e/integration-tests/cypress.config.js ./${{env.TEST_FOLDER}} 
           mkdir ${{env.TEST_FOLDER}}/integration-tests
           cp -r ./packages/e2e/integration-tests/fixtures ./${{env.TEST_FOLDER}}/integration-tests
           cp -r ./packages/e2e/integration-tests/tests ./${{env.TEST_FOLDER}}/integration-tests
