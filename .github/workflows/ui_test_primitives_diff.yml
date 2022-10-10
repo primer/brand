@@ -15,7 +15,8 @@ jobs:
       - name: Checkout reference branch
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.base_ref }}
+          #ref: ${{ github.base_ref }} TODO: Switch back to main before merge
+          ref: rezrah/npm-workspace
           path: temp-main
 
       - name: Set up Node

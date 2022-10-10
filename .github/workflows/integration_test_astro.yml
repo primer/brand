@@ -44,7 +44,7 @@ jobs:
             cypress-${{ runner.os }}-cypress-
 
       - name: Installing dependencies
-        run: npm ci --legacy-peer-deps && cd docs && npm ci --legacy-peer-deps
+        run: npm ci --legacy-peer-deps && cd apps/docs && npm ci --legacy-peer-deps
 
       - name: install dependencies and verify Cypress
         env:
@@ -64,10 +64,10 @@ jobs:
         run: npm run build
 
       - name: Bundling output
-        run: npm pack
+        run: cd packages/react/ && npm pack
 
       - name: Configuring Astro React / TypeScript project
-        run: npm create astro@latest ${{env.ASTRO_FOLDER}} -- --template framework-react
+        run: cd packages/react/ && npm create astro@latest ${{env.ASTRO_FOLDER}} -- --template framework-react
 
       - name: Retrieving package version
         id: package-version
