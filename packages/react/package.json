@@ -42,7 +42,7 @@
     "lint:fix": "npm run lint -- --fix",
     "release": "npm run build && changeset publish",
     "start": "tcm -w -p 'src/**/*.css' .",
-    "start:docs": "npm run build && cd docs && npm run develop",
+    "start:docs": "npm run build && cd apps/docs && npm run develop",
     "start:css-types": "tcm -w -p 'src/**/*.css' .",
     "test": "jest",
     "test:visual": "npx build-storybook && scripts/playwright/run-visual-tests",

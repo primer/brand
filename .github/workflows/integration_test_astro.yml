@@ -67,7 +67,7 @@ jobs:
         run: cd packages/react/ && npm pack
 
       - name: Configuring Astro React / TypeScript project
-        run: cd packages/react/ && npm create astro@latest ${{env.ASTRO_FOLDER}} -- --template framework-react
+        run: npm create astro@latest ${{env.ASTRO_FOLDER}} -- --template framework-react
 
       - name: Retrieving package version
         id: package-version
@@ -76,22 +76,22 @@ jobs:
       - name: Installing local build
         run: |
           cd ${{env.ASTRO_FOLDER}} 
-          cp ../primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz ./
+          cp ../packages/react/primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz ./
           npm install primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz
 
       - name: Prefer CommonJS imports
         run: |
-          mv integration-tests/fixtures/index.cjs.ts integration-tests/fixtures/index.ts
-          rm integration-tests/fixtures/index.esm.ts
+          mv packages/e2e/integration-tests/fixtures/index.cjs.ts packages/e2e/integration-tests/fixtures/index.ts
+          rm packages/e2e/integration-tests/fixtures/index.esm.ts
 
       - name: Copying required files
         run: |
-          cp integration-tests/astro/index.astro ./${{env.ASTRO_FOLDER}}/src/pages
-          cp cypress.config.js ./${{env.ASTRO_FOLDER}}/cypress.config.cjs
-          cp -r integration-tests/fixtures ./${{env.ASTRO_FOLDER}}/src
+          cp packages/e2e/integration-tests/astro/index.astro ./${{env.ASTRO_FOLDER}}/src/pages
+          cp packages/e2e/cypress.config.js ./${{env.ASTRO_FOLDER}}/cypress.config.cjs
+          cp -r packages/e2e/integration-tests/fixtures ./${{env.ASTRO_FOLDER}}/src
           mkdir ${{env.ASTRO_FOLDER}}/integration-tests
-          cp -r integration-tests/fixtures ./${{env.ASTRO_FOLDER}}/integration-tests
-          cp -r integration-tests/tests ./${{env.ASTRO_FOLDER}}/integration-tests
+          cp -r packages/e2e/integration-tests/fixtures ./${{env.ASTRO_FOLDER}}/integration-tests
+          cp -r packages/e2e/integration-tests/tests ./${{env.ASTRO_FOLDER}}/integration-tests
 
       - name: Testing compile-time build
         run: cd ${{env.ASTRO_FOLDER}} && npm run build

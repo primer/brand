@@ -34,8 +34,7 @@
     "clean": "rm -rf out",
     "build:prod": "npm run clean && scripts/build-storybook",
     "build:preview": "npm run clean && scripts/build-storybook preview",
-    "start": "start-storybook -p 6006",
-    "test": "npm run test-storybook --maxWorkers=2"
+    "start": "start-storybook -p 6006"
   },
   "peerDependencies": {
     "react": ">=17 <= 18",
