@@ -1,7 +1,7 @@
 {
   "name": "@primer/brand-primitives",
   "description": "Primer Brand is a GitHub's design system for creating React-based marketing websites and digital experiences.",
-  "version": "0.5.2",
+  "version": "0.5.1",
   "author": "GitHub, Inc.",
   "license": "MIT",
   "bugs": {

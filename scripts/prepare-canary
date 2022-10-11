@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+
+echo "$( jq '.version = "0.0.0"' package.json )" > package.json
+echo -e "---\n$( jq .name package.json ): patch\n---\n\nFake entry to force publishing" > ../../.changeset/force-snapshot-release.md
+
+yarn changeset version --snapshot
+yarn changeset publish --tag canary

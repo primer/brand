@@ -37,13 +37,8 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
-      - name: Publish canary release for @primer/react-brand
-        run: |
-          cd packages/react
-          echo "$( jq '.version = "0.0.0"' package.json )" > package.json
-          echo -e "---\n$( jq .name package.json ): patch\n---\n\nFake entry to force publishing" > .changeset/force-snapshot-release.md
-          yarn changeset version --snapshot
-          yarn changeset publish --tag canary
+      - name: Publish canary release
+        run: npm run prepare:canary
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
