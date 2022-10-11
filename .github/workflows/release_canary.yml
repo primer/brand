@@ -39,7 +39,7 @@ jobs:
 
       - name: Publish canary release
         run: |
-          yarn prepare:canary
+          npm exec --workspaces -- ../../packages/repo-configs/scripts/prepare-canary
           yarn changeset publish --tag canary
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

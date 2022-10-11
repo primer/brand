@@ -45,8 +45,7 @@
     "start:storybook": "npm run start --workspace=apps/storybook",
     "start:docs": "npm run start --workspace=apps/docs",
     "test": "npm run test --workspaces --if-present",
-    "test:visual": "npm run test:visual --workspace=packages/e2e",
-    "prepare:canary": "npm exec --workspaces -- ../../scripts/prepare-canary"
+    "test:visual": "npm run test:visual --workspace=packages/e2e"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.3",

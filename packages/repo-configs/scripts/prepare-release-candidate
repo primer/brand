@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e
+
+version=$(jq -r .version package.json)
+echo "$( jq ".version = \"$(echo $version)-rc.$(git rev-parse --short HEAD)\"" package.json )" > package.json
