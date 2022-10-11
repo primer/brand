@@ -35,13 +35,12 @@ jobs:
             //registry.npmjs.org/:_authToken=$NPM_TOKEN
           EOF
         env:
-          NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN_SHARED }}
 
       - name: Publish canary release
         run: npm run prepare:canary
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
       - name: Output canary version
         uses: actions/github-script@v4.0.2
