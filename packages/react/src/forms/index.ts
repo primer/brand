@@ -1,8 +1,8 @@
 /**
  * Shared form (control) design tokens
  */
-import '@primer/primitives-brand/lib/design-tokens/css/tokens/functional/components/control/base.css'
-import '@primer/primitives-brand/lib/design-tokens/css/tokens/functional/components/control/colors-with-modes.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/control/base.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/control/colors-with-modes.css'
 
 export * from './Checkbox'
 export * from './TextInput'

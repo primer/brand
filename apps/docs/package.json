@@ -1,5 +1,6 @@
 {
-  "name": "docs",
+  "name": "@primer/brand-documentation",
+  "private": true,
   "repository": "primer/brand",
   "version": "0.5.1",
   "scripts": {

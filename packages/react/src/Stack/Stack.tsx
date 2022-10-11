@@ -3,7 +3,7 @@ import clsx from 'clsx'
 
 import type {BaseProps} from '../component-helpers'
 
-import '@primer/primitives-brand/lib/design-tokens/css/tokens/functional/size/size.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/size/size.css'
 import styles from './Stack.module.css'
 
 export const StackDirectionVariants = ['horizontal', 'vertical'] as const

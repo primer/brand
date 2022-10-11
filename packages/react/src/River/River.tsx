@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import {Heading, HeadingTags, LinkProps, HeadingProps, TextProps, Text, Link} from '../'
 
 import type {BaseProps} from '../component-helpers'
-import '@primer/primitives-brand/lib/design-tokens/css/tokens/functional/components/river/base.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/river/base.css'
 import styles from './River.module.css'
 
 export type RiverProps = BaseProps<HTMLElement> & {

@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import React, {forwardRef, type Ref} from 'react'
 import {ExpandableArrow} from '../ExpandableArrow'
 import {Text} from '../Text'
-import '@primer/primitives-brand/lib/design-tokens/css/tokens/functional/components/button/colors-with-modes.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/button/colors-with-modes.css'
 import type {BaseProps} from '../component-helpers'
 import styles from './Button.module.css'
 

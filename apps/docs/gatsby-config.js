@@ -23,7 +23,7 @@ module.exports = {
             __dirname,
             '../../packages/react/src',
           ),
-          '@primer/primitives-brand': path.resolve(
+          '@primer/brand-primitives': path.resolve(
             __dirname,
             '../../packages/design-tokens',
           ),

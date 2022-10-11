@@ -6,7 +6,7 @@ import {Heading} from '../Heading'
 import {Text} from '../Text'
 
 import type {BaseProps} from '../component-helpers'
-import '@primer/primitives-brand/lib/design-tokens/css/tokens/functional/components/hero/base.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/hero/base.css'
 
 type Action = {
   text: string

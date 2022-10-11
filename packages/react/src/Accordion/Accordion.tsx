@@ -7,7 +7,7 @@ import type {BaseProps} from '../component-helpers'
 /**
  * Design tokens
  */
-import '@primer/primitives-brand/lib/design-tokens/css/tokens/functional/components/accordion/colors-with-modes.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/accordion/colors-with-modes.css'
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './Accordion.module.css'

@@ -1,4 +1,4 @@
-import colors from '@primer/primitives-brand/lib/design-tokens/js/module/tokens/base/colors/color-scales'
+import colors from '@primer/brand-primitives/lib/design-tokens/js/module/tokens/base/colors/color-scales'
 import React from 'react'
 import {
   Box,

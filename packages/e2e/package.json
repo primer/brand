@@ -1,5 +1,5 @@
 {
-  "name": "e2e",
+  "name": "@primer/brand-e2e",
   "private": true,
   "description": "Primer Brand is a GitHub's design system for creating React-based marketing websites and digital experiences.",
   "version": "0.5.1",

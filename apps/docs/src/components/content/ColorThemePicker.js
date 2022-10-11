@@ -1,7 +1,7 @@
 import {Box} from '@primer/react'
 import React from 'react'
 import {useColorTheme, availableModes} from './ColorThemeContext'
-import globalFunctionalTokens from '@primer/primitives-brand/lib/design-tokens/js/module/tokens/base/colors/color-scales'
+import globalFunctionalTokens from '@primer/brand-primitives/lib/design-tokens/js/module/tokens/base/colors/color-scales'
 
 export function ColorThemePicker() {
   const [colorTheme, setColorTheme] = useColorTheme()

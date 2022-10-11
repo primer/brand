@@ -8,7 +8,7 @@ import {NavigationVisbilityObserver} from './NavigationVisbilityObserver'
 /**
  * Design tokens
  */
-import '@primer/primitives-brand/lib/design-tokens/css/tokens/functional/components/subdomain-nav-bar/colors-with-modes.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/subdomain-nav-bar/colors-with-modes.css'
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './SubdomainNavBar.module.css'
