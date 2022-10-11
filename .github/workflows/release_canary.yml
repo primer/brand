@@ -41,6 +41,7 @@ jobs:
         run: npm run prepare:canary
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
       - name: Output canary version
         uses: actions/github-script@v4.0.2
