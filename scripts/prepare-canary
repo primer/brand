@@ -6,4 +6,3 @@ echo -e "---\n$( jq .name package.json ): patch\n---\n\nFake entry to force publ
 
 cd ../../
 yarn changeset version --snapshot
-yarn changeset publish --tag canary
