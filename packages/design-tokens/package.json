@@ -1,6 +1,6 @@
 {
   "name": "@primer/brand-primitives",
-  "description": "Primer Brand is a GitHub's design system for creating React-based marketing websites and digital experiences.",
+  "description": "Color, spacing, and typography primitives for the Primer Brand Design System  ",
   "version": "0.5.1",
   "author": "GitHub, Inc.",
   "license": "MIT",
@@ -14,7 +14,7 @@
   },
   "keywords": [
     "primer",
-    "react",
+    "design-tokens",
     "components",
     "library",
     "design-system"
@@ -23,11 +23,8 @@
     "npm": ">=8.0.0",
     "node": ">=16.0.0"
   },
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
   "files": [
-    "lib",
-    "fonts"
+    "lib"
   ],
   "scripts": {
     "build": "node scripts/build-tokens.js",
@@ -37,23 +34,14 @@
     "format:fix": "prettier --write '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
     "lint": "eslint '**/*.{js,ts,tsx,md,mdx}' --max-warnings=0 --config ../../.eslintrc.js",
     "lint:fix": "npm run lint -- --fix",
-    "release": "npm run build && changeset publish",
     "test": "jest"
   },
   "devDependencies": {
-    "@changesets/changelog-github": "^0.4.3",
-    "@changesets/cli": "^2.21.0",
     "@github/prettier-config": "^0.0.4",
-    "@playwright/test": "^1.24.0",
     "@primer/primitives": "^7.9.0",
-    "@reach/auto-id": "^0.17.0",
     "@typescript-eslint/eslint-plugin": "^5.17.0",
     "@typescript-eslint/parser": "^5.17.0",
-    "autoprefixer": "^9.8.8",
-    "axe-playwright": "^1.1.11",
     "color2k": "^2.0.0",
-    "cross-env": "7.0.2",
-    "css-loader": "^6.7.1",
     "eslint": "^8.12.0",
     "eslint-import-resolver-typescript": "^2.7.0",
     "eslint-plugin-github": "^4.3.6",
@@ -63,8 +51,6 @@
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.4.0",
     "eslint-plugin-storybook": "^0.5.12",
-    "fast-glob": "^3.2.11",
-    "identity-obj-proxy": "^3.0.0",
     "jest": "^27.5.1",
     "jest-axe": "^6.0.0",
     "mini-css-extract-plugin": "^2.6.0",
