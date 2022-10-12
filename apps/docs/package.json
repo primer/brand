@@ -17,6 +17,7 @@
     "@primer/gatsby-theme-doctocat": "^4.0.0",
     "@primer/octicons-react": "^17.0.0",
     "@primer/react": "^35.1.0",
+    "cross-env": "7.0.2",
     "color2k": "^2.0.0",
     "gatsby": "^3.7.2",
     "gatsby-plugin-alias-imports": "^1.0.5",

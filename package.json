@@ -49,7 +49,26 @@
     "test:visual": "npm run test:visual --workspace=packages/e2e"
   },
   "devDependencies": {
+    "@github/prettier-config": "^0.0.4",
+    "eslint": "^8.12.0",
+    "prettier": "^2.5.1",
+    "eslint-import-resolver-typescript": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-mdx": "^1.17.0",
+    "eslint-plugin-primer-react": "^0.7.4",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.4.0",
+    "eslint-plugin-storybook": "^0.5.12",
+    "eslint-plugin-github": "^4.3.6",
+    "@typescript-eslint/eslint-plugin": "^5.17.0",
+    "jest": "^27.5.1",
+    "@typescript-eslint/parser": "^5.17.0",
+    "ts-node": "^10.9.1",
+    "ts-jest": "^27.1.3",
+    "typescript": "^4.6.3",
     "@changesets/changelog-github": "^0.4.3",
-    "@changesets/cli": "^2.21.0"
+    "@changesets/cli": "^2.21.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   }
 }

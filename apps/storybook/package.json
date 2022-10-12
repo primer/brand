@@ -1,7 +1,7 @@
 {
   "name": "@primer/brand-storybook",
   "private": true,
-  "description": "Primer Brand is a GitHub's design system for creating React-based marketing websites and digital experiences.",
+  "description": "Primer Brand Storybook",
   "version": "0.5.1",
   "author": "GitHub, Inc.",
   "license": "MIT",
@@ -24,12 +24,6 @@
     "npm": ">=8.0.0",
     "node": ">=16.0.0"
   },
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "files": [
-    "lib",
-    "fonts"
-  ],
   "scripts": {
     "clean": "rm -rf out",
     "build:prod": "npm run clean && scripts/build-storybook",
