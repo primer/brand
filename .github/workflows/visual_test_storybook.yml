@@ -36,12 +36,9 @@ jobs:
       - name: Build assets
         run: npm run build
 
-      - name: Build Storybook
-        run: cd apps/storybook && npx build-storybook
-
       - name: Run visual tests
         id: playwright-step
-        run: npx start-server-and-test 'npx http-server ./apps/storybook/storybook-static -p 6006' 6006 'npx playwright test'
+        run: npm run test:visual
         continue-on-error: true
 
       - name: Upload error screenshots

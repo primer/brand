@@ -41,9 +41,10 @@
     "format": "npm run format --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
     "release": "npm run build && changeset publish",
-    "start": "npm run build && npm run start --workspaces --if-present",
+    "start": "npm run build:lib && npm run start:storybook & npm run start:docs & npm run start:lib",
     "start:storybook": "npm run start --workspace=apps/storybook",
-    "start:docs": "npm run start --workspace=apps/docs",
+    "start:docs": "cd apps/docs && npm run start",
+    "start:lib": "npm run start --workspace=packages/react",
     "test": "npm run test --workspaces --if-present",
     "test:visual": "npm run test:visual --workspace=packages/e2e"
   },

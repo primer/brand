@@ -41,7 +41,7 @@
     "lint": "eslint '**/*.{js,ts,tsx,md,mdx}' --max-warnings=0 --config ../../.eslintrc.js",
     "lint:fix": "npm run lint -- --fix",
     "release": "npm run build && changeset publish",
-    "start": "tcm -w -p 'src/**/*.css' .",
+    "start": "npm run start:css-types",
     "start:docs": "npm run build && cd apps/docs && npm run develop",
     "start:css-types": "tcm -w -p 'src/**/*.css' .",
     "test": "jest",
