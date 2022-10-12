@@ -47,24 +47,15 @@ jobs:
         uses: actions/github-script@v4.0.2
         with:
           script: |
-            const react = require(`${process.env.GITHUB_WORKSPACE}/packages/react/package.json`)
-            github.repos.createCommitStatus({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              sha: context.sha,
-              state: 'success',
-              context: `Published ${react.name}`,
-              description: react.version,
-              target_url: `https://unpkg.com/${react.name}@${react.version}/`
-            })
-
-            const primitives = require(`${process.env.GITHUB_WORKSPACE}/packages/design-tokens/package.json`)
-            github.repos.createCommitStatus({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              sha: context.sha,
-              state: 'success',
-              context: `Published ${primitives.name}`,
-              description: primitives.version,
-              target_url: `https://unpkg.com/${primitives.name}@${primitives.version}/`
+            const paths = ['react', 'design-tokens'].forEach((path) => {
+              const package = require(`${process.env.GITHUB_WORKSPACE}/packages/${path}/package.json`)
+              github.repos.createCommitStatus({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                sha: context.sha,
+                state: 'success',
+                context: `Published ${package.name}`,
+                description: package.version,
+                target_url: `https://unpkg.com/${package.name}@${package.version}/`
+              })
             })
