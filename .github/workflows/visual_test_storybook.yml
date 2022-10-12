@@ -34,7 +34,7 @@ jobs:
         run: npm ci --legacy-peer-deps && cd apps/docs && npm ci --legacy-peer-deps
 
       - name: Build assets
-        run: cd apps/storybook && npx build-storybook
+        run: npm run build:lib && cd apps/storybook && npx build-storybook
 
       - name: Run visual tests
         id: playwright-step
