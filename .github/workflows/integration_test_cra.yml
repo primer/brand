@@ -61,7 +61,7 @@ jobs:
           npx cypress version --component node
 
       - name: Build
-        run: npm run build
+        run: npm run build:lib
 
       - name: Bundling output
         run: cd ./packages/react && npm pack

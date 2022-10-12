@@ -35,7 +35,7 @@ jobs:
         run: npm ci --legacy-peer-deps && cd apps/docs && npm ci --legacy-peer-deps
 
       - name: Build
-        run: npm run build
+        run: npm run build:lib
 
       - name: Bundling output
         run: cd ./packages/react && npm pack
