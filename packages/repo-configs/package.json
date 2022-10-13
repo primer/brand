@@ -1,16 +1,16 @@
 {
   "name": "@primer/brand-config",
+  "version": "0.5.1",
   "private": true,
   "description": "General-purpose configurations for maintaining Primer Brand",
-  "version": "0.5.1",
-  "author": "GitHub, Inc.",
-  "license": "MIT",
+  "homepage": "https://primer.style/brand",
   "bugs": {
     "url": "https://github.com/primer/brand/issues"
   },
-  "homepage": "https://primer.style/brand",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/primer/brand.git"
-  }
+  },
+  "license": "MIT",
+  "author": "GitHub, Inc."
 }

@@ -1,18 +1,8 @@
 {
   "name": "@primer/brand-storybook",
+  "version": "0.5.1",
   "private": true,
   "description": "Primer Brand Storybook",
-  "version": "0.5.1",
-  "author": "GitHub, Inc.",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/primer/brand/issues"
-  },
-  "homepage": "https://primer.style/brand",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/primer/brand.git"
-  },
   "keywords": [
     "primer",
     "react",
@@ -20,19 +10,21 @@
     "library",
     "design-system"
   ],
-  "engines": {
-    "npm": ">=8.0.0",
-    "node": ">=16.0.0"
+  "homepage": "https://primer.style/brand",
+  "bugs": {
+    "url": "https://github.com/primer/brand/issues"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/primer/brand.git"
+  },
+  "license": "MIT",
+  "author": "GitHub, Inc.",
   "scripts": {
-    "clean": "rm -rf out",
-    "build:prod": "npm run clean && scripts/build-storybook",
     "build:preview": "npm run clean && scripts/build-storybook preview",
+    "build:prod": "npm run clean && scripts/build-storybook",
+    "clean": "rm -rf out",
     "start": "start-storybook -p 6006"
-  },
-  "peerDependencies": {
-    "react": ">=17 <= 18",
-    "react-dom": ">=17 <= 18"
   },
   "devDependencies": {
     "@storybook/addon-a11y": "^6.5.12",
@@ -58,5 +50,13 @@
     "storybook-css-modules-preset": "^1.1.1",
     "typed-css-modules": "^0.7.0",
     "typescript": "^4.6.3"
+  },
+  "peerDependencies": {
+    "react": ">=17 <= 18",
+    "react-dom": ">=17 <= 18"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
   }
 }

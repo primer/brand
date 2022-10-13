@@ -1,17 +1,7 @@
 {
   "name": "@primer/brand-primitives",
-  "description": "Color, spacing, and typography primitives for the Primer Brand Design System  ",
   "version": "0.5.1",
-  "author": "GitHub, Inc.",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/primer/brand/issues"
-  },
-  "homepage": "https://primer.style/brand",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/primer/brand.git"
-  },
+  "description": "Color, spacing, and typography primitives for the Primer Brand Design System  ",
   "keywords": [
     "primer",
     "design-tokens",
@@ -19,10 +9,16 @@
     "library",
     "design-system"
   ],
-  "engines": {
-    "npm": ">=8.0.0",
-    "node": ">=16.0.0"
+  "homepage": "https://primer.style/brand",
+  "bugs": {
+    "url": "https://github.com/primer/brand/issues"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/primer/brand.git"
+  },
+  "license": "MIT",
+  "author": "GitHub, Inc.",
   "files": [
     "lib"
   ],
@@ -40,5 +36,9 @@
     "@primer/primitives": "^7.9.0",
     "color2k": "^2.0.0",
     "style-dictionary": "^3.7.0"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
   }
 }

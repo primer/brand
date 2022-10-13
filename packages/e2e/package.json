@@ -1,18 +1,8 @@
 {
   "name": "@primer/brand-e2e",
+  "version": "0.5.1",
   "private": true,
   "description": "Primer Brand is a GitHub's design system for creating React-based marketing websites and digital experiences.",
-  "version": "0.5.1",
-  "author": "GitHub, Inc.",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/primer/brand/issues"
-  },
-  "homepage": "https://primer.style/brand",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/primer/brand.git"
-  },
   "keywords": [
     "primer",
     "react",
@@ -20,10 +10,16 @@
     "library",
     "design-system"
   ],
-  "engines": {
-    "npm": ">=8.0.0",
-    "node": ">=16.0.0"
+  "homepage": "https://primer.style/brand",
+  "bugs": {
+    "url": "https://github.com/primer/brand/issues"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/primer/brand.git"
+  },
+  "license": "MIT",
+  "author": "GitHub, Inc.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
@@ -41,5 +37,9 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.24.0"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
   }
 }
