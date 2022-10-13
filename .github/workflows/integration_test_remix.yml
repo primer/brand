@@ -45,7 +45,9 @@ jobs:
 
       - name: Retrieving package version
         id: package-version
-        uses: martinbeentjes/npm-get-version-action@main
+        uses: martinbeentjes/npm-get-version-action@7aa1d82604bb2dbe377a64ca35e692e6fe333c9c
+        with:
+          path: packages/repo-configs
 
       - name: Installing local build
         run: |
