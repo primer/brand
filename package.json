@@ -36,7 +36,7 @@
     "clean:node_modules": "npm exec --workspaces -- npx rimraf node_modules && npx rimraf node_modules",
     "format": "npm run format --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
-    "release": "npm run build && changeset publish",
+    "release": "npm run build:lib && changeset publish",
     "start": "npm run build:lib && npm run start:storybook & npm run start:docs & npm run start:lib",
     "start:docs": "cd apps/docs && npm run start",
     "start:lib": "npm run start --workspace=packages/react",
