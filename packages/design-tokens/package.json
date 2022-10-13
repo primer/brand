@@ -1,0 +1,44 @@
+{
+  "name": "@primer/brand-primitives",
+  "version": "0.5.1",
+  "description": "Color, spacing, and typography primitives for the Primer Brand Design System  ",
+  "keywords": [
+    "primer",
+    "design-tokens",
+    "components",
+    "library",
+    "design-system"
+  ],
+  "homepage": "https://primer.style/brand",
+  "bugs": {
+    "url": "https://github.com/primer/brand/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/primer/brand.git"
+  },
+  "license": "MIT",
+  "author": "GitHub, Inc.",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "node scripts/build-tokens.js",
+    "check": "tsc --noEmit",
+    "clean": "rm -rf lib",
+    "format": "prettier --check '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
+    "format:fix": "prettier --write '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
+    "lint": "eslint '**/*.{js,ts,tsx,md,mdx}' --max-warnings=0 --config ../../.eslintrc.js",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@primer/primitives": "^7.9.0",
+    "color2k": "^2.0.0",
+    "style-dictionary": "^3.7.0"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  }
+}

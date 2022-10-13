@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "target": "esnext",
+    "module": "esnext",
+    "lib": ["esnext", "dom"],
+    "emitDeclarationOnly": false,
+    "skipLibCheck": false,
+    "sourceMap": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "outDir": "lib",
+    "jsx": "react-jsx",
+    "plugins": [{"name": "typescript-plugin-css-modules"}],
+    "resolveJsonModule": true
+  },
+  "include": ["src/**/*", "scripts/**/*", "docs/**/*"],
+  "exclude": ["integration-tests/**/*"]
+}

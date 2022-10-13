@@ -1,0 +1,62 @@
+{
+  "name": "@primer/brand-storybook",
+  "version": "0.5.1",
+  "private": true,
+  "description": "Primer Brand Storybook",
+  "keywords": [
+    "primer",
+    "react",
+    "components",
+    "library",
+    "design-system"
+  ],
+  "homepage": "https://primer.style/brand",
+  "bugs": {
+    "url": "https://github.com/primer/brand/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/primer/brand.git"
+  },
+  "license": "MIT",
+  "author": "GitHub, Inc.",
+  "scripts": {
+    "build:preview": "npm run clean && scripts/build-storybook preview",
+    "build:prod": "npm run clean && scripts/build-storybook",
+    "clean": "rm -rf out",
+    "start": "start-storybook -p 6006"
+  },
+  "devDependencies": {
+    "@storybook/addon-a11y": "^6.5.12",
+    "@storybook/addon-actions": "^6.5.12",
+    "@storybook/addon-essentials": "^6.5.12",
+    "@storybook/addon-interactions": "^6.5.12",
+    "@storybook/addon-links": "^6.5.12",
+    "@storybook/addon-storysource": "^6.5.12",
+    "@storybook/builder-webpack5": "^6.5.12",
+    "@storybook/jest": "^0.0.10",
+    "@storybook/manager-webpack5": "^6.5.12",
+    "@storybook/react": "^6.5.12",
+    "@storybook/test-runner": "^0.5.0",
+    "@storybook/testing-library": "^0.0.11",
+    "axe-playwright": "^1.1.11",
+    "css-loader": "^6.7.1",
+    "identity-obj-proxy": "^3.0.0",
+    "postcss": "^8.4.7",
+    "postcss-loader": "^6.2.1",
+    "postcss-preset-env": "^7.4.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "storybook-css-modules-preset": "^1.1.1",
+    "typed-css-modules": "^0.7.0",
+    "typescript": "^4.6.3"
+  },
+  "peerDependencies": {
+    "react": ">=17 <= 18",
+    "react-dom": ">=17 <= 18"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  }
+}

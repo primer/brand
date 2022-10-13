@@ -44,7 +44,7 @@ jobs:
             cypress-${{ runner.os }}-cypress-
 
       - name: Installing dependencies
-        run: npm ci --legacy-peer-deps && cd docs && npm ci --legacy-peer-deps
+        run: npm ci --legacy-peer-deps && cd apps/docs && npm ci --legacy-peer-deps
 
       - name: install dependencies and verify Cypress
         env:
@@ -61,13 +61,13 @@ jobs:
           npx cypress version --component node
 
       - name: Build
-        run: npm run build
+        run: npm run build:lib
 
       - name: Bundling output
-        run: npm pack
+        run: cd ./packages/react && npm pack
 
       - name: Configuring Next.js
-        run: npx create-next-app@latest next-js-test --typescript
+        run: npx create-next-app@latest ${{env.NEXTJS_FOLDER}} --typescript
 
       - name: Retrieving package version
         id: package-version
@@ -75,36 +75,36 @@ jobs:
 
       - name: Installing local build
         run: |
-          cd next-js-test 
-          cp ../primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz ./
+          cd ${{env.NEXTJS_FOLDER}} 
+          cp ../packages/react/primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz ./
           npm install primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz
 
       - name: Prefer ESM imports
         run: |
-          mv integration-tests/fixtures/index.esm.ts integration-tests/fixtures/index.ts
-          rm integration-tests/fixtures/index.cjs.ts
+          mv ./packages/e2e/integration-tests/fixtures/index.esm.ts ./packages/e2e/integration-tests/fixtures/index.ts
+          rm ./packages/e2e/integration-tests/fixtures/index.cjs.ts
 
       - name: Copying required files
         run: |
-          cp integration-tests/nextjs/index.tsx ./next-js-test/pages
-          cp cypress.config.js ./next-js-test
-          mkdir next-js-test/integration-tests
-          cp -r integration-tests/fixtures ./next-js-test/integration-tests
-          cp -r integration-tests/tests ./next-js-test/integration-tests
+          cp ./packages/e2e/integration-tests/nextjs/index.tsx ./${{env.NEXTJS_FOLDER}}/pages
+          cp ./packages/e2e/cypress.config.js ./${{env.NEXTJS_FOLDER}}
+          mkdir ${{env.NEXTJS_FOLDER}}/integration-tests
+          cp -r ./packages/e2e/integration-tests/fixtures ./${{env.NEXTJS_FOLDER}}/integration-tests
+          cp -r ./packages/e2e/integration-tests/tests ./${{env.NEXTJS_FOLDER}}/integration-tests
 
       - name: Patching postcss bug in v12 of Next.js
         uses: DamianReeves/write-file-action@master
         with:
-          path: next-js-test/postcss.config.json
+          path: ${{env.NEXTJS_FOLDER}}/postcss.config.json
           contents: |
             {"plugins": []}
           write-mode: overwrite
 
       - name: Excluded cypress tests in-place
-        run: npx json -I -f next-js-test/tsconfig.json -e 'this.exclude=["node_modules", "**/*.cy.ts"]'
+        run: npx json -I -f ${{env.NEXTJS_FOLDER}}/tsconfig.json -e 'this.exclude=["node_modules", "**/*.cy.ts"]'
 
       - name: Testing compile-time build
-        run: cd next-js-test && npm run build
+        run: cd ${{env.NEXTJS_FOLDER}} && npm run build
 
       - name: Test runtime for errors and warnings
-        run: cd next-js-test && npx start-server-and-test 'start' 3000 'npx cypress run --spec "./integration-tests/tests/*" --config video=false'
+        run: cd ${{env.NEXTJS_FOLDER}} && npx start-server-and-test 'start' 3000 'npx cypress run --spec "./integration-tests/tests/*" --config video=false'

@@ -18,9 +18,9 @@ jobs:
     uses: primer/.github/.github/workflows/deploy_preview.yml@0cec9b9914f358846163f2428663b58da41028c9
     with:
       node_version: 16
-      install: npm ci --legacy-peer-deps && cd docs && npm ci --legacy-peer-deps && cd ..
-      build: npm run build && npm run build:docs:preview
-      output_dir: docs/public/
+      install: npm ci --legacy-peer-deps && cd apps/docs && npm ci --legacy-peer-deps && cd ..
+      build: npm run build && npm run build:docs:preview && npm run build:storybook:preview
+      output_dir: apps/docs/public/
 
   deploy-storybook:
     if: ${{ github.repository == 'primer/brand' }}

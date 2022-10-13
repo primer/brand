@@ -15,7 +15,8 @@ jobs:
       - name: Checkout reference branch
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.base_ref }}
+          #ref: ${{ github.base_ref }} TODO: Switch back to main before merge
+          ref: rezrah/npm-workspace
           path: temp-main
 
       - name: Set up Node
@@ -32,21 +33,21 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Install dependencies
-        run: npm ci --legacy-peer-deps && cd docs && npm ci --legacy-peer-deps
+        run: npm ci --legacy-peer-deps && cd apps/docs && npm ci --legacy-peer-deps
 
       - name: Install dependencies (reference)
-        run: pushd temp-main; npm ci --legacy-peer-deps && cd docs && npm ci --legacy-peer-deps; popd
+        run: pushd temp-main; npm ci --legacy-peer-deps && cd apps/docs && npm ci --legacy-peer-deps; popd
 
       - name: Build
-        run: npm run build
+        run: npm run build --workspace=packages/design-tokens
 
       - name: Build (reference)
-        run: pushd temp-main; npm run build; popd
+        run: pushd temp-main; npm run build --workspace=packages/design-tokens; popd
 
       - name: Export diff
         run: |
-          diff -r -y --width=150 -B -I '*' -I 'Generated' --suppress-common-lines temp-main/lib/design-tokens/css lib/design-tokens/css  | tail -n +2 > diff.txt
-          npx ts-node ./scripts/ci-check-diff.ts
+          diff -r -y --width=150 -B -I '*' -I 'Generated' --suppress-common-lines temp-main/packages/design-tokens/lib/design-tokens/css packages/design-tokens/lib/design-tokens/css  | tail -n +2 > diff.txt
+          npx ts-node ./packages/design-tokens/scripts/ci-check-diff.ts
 
       - name: Read raw diff
         if: hashFiles('diff.md') != ''

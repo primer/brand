@@ -1,0 +1,16 @@
+#!/bin/bash
+set -e
+
+# Copy files required in the main lib
+
+## fonts
+mkdir lib/fonts
+cp ../fonts/*.css ./lib/fonts
+cp ../fonts/*.woff2 ./lib/fonts
+
+## tokens
+mkdir lib/design-tokens
+cp -r ../design-tokens/lib/**/* ./lib/design-tokens
+
+## license
+cp ../../LICENSE ./lib
