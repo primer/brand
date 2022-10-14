@@ -10,7 +10,7 @@
     "start": "rm -rf .cache && gatsby develop --open"
   },
   "dependencies": {
-    "@primer/gatsby-theme-doctocat": "^4.0.0",
+    "@primer/gatsby-theme-doctocat": "^4.2.0",
     "@primer/octicons-react": "^17.0.0",
     "@primer/react": "^35.1.0",
     "color2k": "^2.0.0",
