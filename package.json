@@ -29,7 +29,7 @@
     "build:docs": "cd apps/docs && npm run build",
     "build:docs:preview": "cd apps/docs && npm run build:preview",
     "build:lib": "npm run build --workspace=packages/design-tokens --workspace=packages/react",
-    "build:storybook": "npm run build:preview --workspace=apps/storybook",
+    "build:storybook": "npm run build:prod --workspace=apps/storybook",
     "build:storybook:preview": "npm run build:preview --workspace=apps/storybook",
     "check": "npm run check --workspaces --if-present",
     "clean": "npm run clean --workspaces --if-present",
