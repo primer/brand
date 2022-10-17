@@ -24,3 +24,10 @@ export const Scale: ComponentStory<typeof Heading> = () => (
     ))}
   </>
 )
+
+export const OverrideSize = Template.bind({})
+OverrideSize.args = {
+  children: 'This h2 will appear visually identical to a h4',
+  as: 'h2',
+  size: '4'
+}
