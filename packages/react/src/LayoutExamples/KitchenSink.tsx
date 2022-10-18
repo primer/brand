@@ -32,7 +32,7 @@ export function KitchenSink(props: KitchenSinkProps) {
         <SubdomainNavBar.Link href="#">Social</SubdomainNavBar.Link>
         <SubdomainNavBar.PrimaryAction href="#">Primary CTA</SubdomainNavBar.PrimaryAction>
       </SubdomainNavBar>
-      <div style={{maxWidth: 1280, margin: '80px auto 0 '}}>
+      <div style={{maxWidth: 1280, margin: '80px auto 200px'}}>
         <Hero
           heading="This is my super sweet hero heading"
           description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum."
@@ -46,6 +46,20 @@ export function KitchenSink(props: KitchenSinkProps) {
           }}
           align="center"
         />
+        <Stack
+          direction="vertical"
+          justifyContent="center"
+          style={{textAlign: 'center', maxWidth: '600px', margin: '0 auto'}}
+        >
+          <Heading as="h2" size="3">
+            Section intro
+          </Heading>
+          <Text as="p">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis nam pulvinar risus elementum.
+          </Text>
+        </Stack>
+
         <River>
           <River.Visual>
             <img
