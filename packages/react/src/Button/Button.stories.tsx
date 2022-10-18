@@ -26,6 +26,14 @@ Secondary.args = {
   children: 'Secondary action'
 }
 
+export const Subtle = Template.bind({})
+Subtle.args = {
+  as: 'a',
+  variant: 'subtle',
+  href: '#',
+  children: 'Subtle action'
+}
+
 export const Large = Template.bind({})
 Large.args = {
   as: 'a',
