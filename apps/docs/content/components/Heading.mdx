@@ -6,7 +6,7 @@ storybook: '/brand/storybook/?path=/story/components-heading--default'
 description: Use the Heading component to render body content
 ---
 
-import {HeadingTags, defaultHeadingTag} from '@primer/react-brand'
+import {HeadingTags, HeadingSizes, defaultHeadingTag} from '@primer/react-brand'
 import {Box as Container} from '@primer/react'
 import {PropTableValues} from '../../src/components'
 
@@ -24,32 +24,43 @@ import {Heading} from '@primer/react-brand'
 
 ### Scale
 
+Heading sizes range from 1-6 and map to positions 900-400 on the Brand type scale respectively.
+
 ```jsx live
 <>
-  <Heading as="h1">Heading 1</Heading>
-  <Heading as="h2">Heading 2</Heading>
-  <Heading as="h3">Heading 3</Heading>
-  <Heading as="h4">Heading 4</Heading>
-  <Heading as="h5">Heading 5</Heading>
-  <Heading as="h6">Heading 6</Heading>
+  <Heading as="h1">1: 72px</Heading>
+  <Heading as="h2">2: 64px</Heading>
+  <Heading as="h3">3: 48px</Heading>
+  <Heading as="h4">4: 32px</Heading>
+  <Heading as="h5">5: 24px</Heading>
+  <Heading as="h6">6: 20px</Heading>
 </>
 ```
 
 ### Sizes
 
-The `Heading` size is determined by the type of HTML element specified. E.g. `h1`, `h2`, `h3`, `h4`, `h5` or `h6`.
+The `Heading` size by default is determined by the type of HTML element specified. E.g. `h1`, `h2`, `h3`, `h4`, `h5` or `h6`.
 
 ```jsx live
 <Heading as="h6">This is my super sweet heading</Heading>
+```
+
+Occasionally, you may need to apply a different visual size to override the default appearance. This can be achieved using the `size` prop.
+
+```jsx live
+<Heading as="h2" size="4">
+  This h2 will appear visually identical to a h4
+</Heading>
 ```
 
 ## Component props
 
 ### Heading
 
-| Name        | Type                                                   |                     Default                      | Description                              |
-| :---------- | :----------------------------------------------------- | :----------------------------------------------: | :--------------------------------------- |
-| `as`        | <PropTableValues values={HeadingTags} addLineBreaks /> | <PropTableValues values={[defaultHeadingTag]} /> | Applies the underlying HTML element      |
-| `className` | `string`                                               |                                                  | Sets a custom class on the root element  |
-| `id`        | `string`                                               |                                                  | Sets a custom id                         |
-| `ref`       | `React.RefObject`                                      |                                                  | Forward a Ref to the underlying DOM node |
+| Name        | Type                                                    |                     Default                      | Description                              |
+| :---------- | :------------------------------------------------------ | :----------------------------------------------: | :--------------------------------------- |
+| `as`        | <PropTableValues values={HeadingTags} addLineBreaks />  | <PropTableValues values={[defaultHeadingTag]} /> | Applies the underlying HTML element      |
+| `className` | `string`                                                |                                                  | Sets a custom class on the root element  |
+| `id`        | `string`                                                |                                                  | Sets a custom id                         |
+| `ref`       | `React.RefObject`                                       |                                                  | Forward a Ref to the underlying DOM node |
+| `size`      | <PropTableValues values={HeadingSizes} addLineBreaks /> |                                                  | Override the default visual text size    |
