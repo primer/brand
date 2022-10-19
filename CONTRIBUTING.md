@@ -21,7 +21,7 @@ Guidelines for bug reports:
 
 1. **Isolate the problem** &mdash; ideally create a isolated example, using a 'vanilla' configuration of your chosen framework. CodeSandbox and StackBlitz offer an easy way to do this.
 
-[Use our issue template to help you report bugs](https://github.com/primer/brand/issues/new?assignees=&labels=&template=bug_report.md), if you're confident the bug is still valid.
+[Use our issue template to help you report bugs](https://github.com/primer/brand/issues/new?assignees=&labels=bug&template=BUG-REPORT.yml&title=%F0%9F%90%9B+%5BBUG%5D+-+%3Ctitle%3E), if you're confident the bug is still valid.
 
 ## Pull requests
 
