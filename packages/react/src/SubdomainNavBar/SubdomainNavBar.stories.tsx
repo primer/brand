@@ -34,9 +34,7 @@ export default {
     }
   },
   parameters: {
-    //👇 The viewports object from the Essentials addon
     viewport: {
-      //👇 The viewports you want to use
       viewports: INITIAL_VIEWPORTS
     }
   }
