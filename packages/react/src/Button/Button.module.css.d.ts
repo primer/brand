@@ -5,6 +5,7 @@ declare const styles: {
   readonly "Button--primary": string;
   readonly "Button--label-primary": string;
   readonly "Button--secondary": string;
+  readonly "Button--subtle": string;
   readonly "Button--size-medium": string;
   readonly "Button--size-large": string;
 };

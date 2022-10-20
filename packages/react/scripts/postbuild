@@ -4,9 +4,9 @@ set -e
 # Copy files required in the main lib
 
 ## fonts
-mkdir lib/fonts
-cp ../fonts/*.css ./lib/fonts
-cp ../fonts/*.woff2 ./lib/fonts
+mkdir fonts
+cp ../fonts/*.css ./fonts
+cp ../fonts/*.woff2 ./fonts
 
 ## tokens
 mkdir lib/design-tokens
