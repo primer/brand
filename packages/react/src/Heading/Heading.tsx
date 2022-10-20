@@ -18,6 +18,7 @@ export const classMap = {
 
 type HeadingTags = BaseProps<HTMLHeadingElement> & {
   as?: typeof HeadingTags[number]
+  size?: typeof HeadingSizes[number]
 } & React.HTMLAttributes<HTMLHeadingElement>
 
 export type HeadingProps = {
@@ -26,10 +27,15 @@ export type HeadingProps = {
 
 export const Heading = forwardRef(
   (
-    {className, children, as = defaultHeadingTag, ...rest}: PropsWithChildren<HeadingProps>,
+    {className, children, as = defaultHeadingTag, size, ...rest}: PropsWithChildren<HeadingProps>,
     ref: Ref<HTMLHeadingElement>
   ) => {
-    const headingClassNames = clsx(styles.Heading, styles[`Heading--${classMap[as]}`], className)
+    const headingClassNames = clsx(
+      styles.Heading,
+      !size && styles[`Heading--${classMap[as]}`],
+      size && styles[`Heading--${size}`],
+      className
+    )
 
     const HeadingComponent = React.useCallback(
       ({...props}: React.HTMLAttributes<HTMLHeadingElement>) => {

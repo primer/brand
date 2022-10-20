@@ -8,7 +8,7 @@ import styles from './Button.module.css'
 
 export type ButtonProps<C extends React.ElementType> = BaseProps<C> & {
   as?: C
-  variant?: 'primary' | 'secondary'
+  variant?: 'primary' | 'secondary' | 'subtle'
   size?: 'medium' | 'large'
   hasArrow?: boolean
 } & React.ComponentPropsWithoutRef<C>

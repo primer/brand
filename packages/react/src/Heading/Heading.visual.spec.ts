@@ -18,4 +18,10 @@ test.describe('Visual Comparison: Heading', () => {
 
     expect(await page.screenshot()).toMatchSnapshot()
   })
+
+  test('Heading / Override Size', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--override-size&viewMode=story')
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
 })
