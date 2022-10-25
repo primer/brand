@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import React, {forwardRef, type Ref, useMemo} from 'react'
+import React, {forwardRef, type Ref, useMemo, PropsWithChildren} from 'react'
 import {Heading} from '../Heading'
 import {Text} from '../Text'
 import type {BaseProps} from '../component-helpers'
@@ -77,50 +77,48 @@ export const _ComparisonTable = forwardRef(
       [children]
     )
 
-    const RegularRows = Children.map((child, index, arr) => {
-      if (React.isValidElement(child) && typeof child.type !== 'string') {
-        if (child.type === Row) {
-          if (index !== 0) {
-            const [, ...bodyRows] = arr
-            return React.cloneElement(child, {
-              className: clsx(styles['ComparisonTable-row'], `ComparisonTable-row--${index}`, child.props.className),
-              children: React.Children.map(child.props.children, (rowChild, cellIndex) => {
-                if (rowChild.type === Cell) {
-                  return (
-                    <Cell
-                      {...rowChild.props}
-                      as={cellIndex === 0 ? 'th' : 'td'}
-                      className={clsx(
-                        styles['ComparisonTable-cell'],
-                        styles[`ComparisonTable-cell--${variant}`],
-                        cellIndex === 0 && styles[`ComparisonTable-cell-heading`],
-                        cellIndex === 0 && styles[`ComparisonTable-cell-heading--${variant}`],
-                        cellIndex === featuredColumn && styles[`ComparisonTable-cell--featured`],
-                        bodyRows.length - 1 === index && styles['ComparisonTable-cell--lastrow'],
-                        child.props.className
-                      )}
-                    >
-                      {cellIndex >= 1 && (
-                        <span
-                          className={clsx(
-                            styles['ComparisonTable-inline-cell-label'],
-                            styles['ComparisonTable--hide-element-on-narrow'],
-                            cellIndex === featuredColumn && styles['ComparisonTable-cell-heading-label--featured']
-                          )}
-                        >
-                          {headerRowNames[cellIndex]}
-                        </span>
-                      )}
-                      <span className={styles['ComparisonTable-cell-container']}>{rowChild.props.children}</span>
-                    </Cell>
-                  )
-                }
-              })
-            })
+    const [, ...regularRows] = React.Children.map(children, child => {
+      if (React.isValidElement(child) && child.type === Row) return child
+      return null
+    })
+
+    const RegularRows = regularRows.map((child, index) => {
+      return React.cloneElement(child, {
+        className: clsx(styles['ComparisonTable-row'], `ComparisonTable-row--${index}`, child.props.className),
+        children: React.Children.map(child.props.children, (rowChild, cellIndex) => {
+          if (rowChild.type === Cell) {
+            return (
+              <Cell
+                {...rowChild.props}
+                as={cellIndex === 0 ? 'th' : 'td'}
+                className={clsx(
+                  styles['ComparisonTable-cell'],
+                  styles[`ComparisonTable-cell--${variant}`],
+                  cellIndex === 0 && styles[`ComparisonTable-cell-heading`],
+                  cellIndex === 0 && styles[`ComparisonTable-cell-heading--${variant}`],
+                  cellIndex === featuredColumn && styles[`ComparisonTable-cell--featured`],
+                  regularRows.length - 1 === index && styles['ComparisonTable-cell--lastrow'],
+                  child.props.className
+                )}
+              >
+                {cellIndex >= 1 && (
+                  <span
+                    className={clsx(
+                      styles['ComparisonTable-inline-cell-label'],
+                      styles['ComparisonTable--hide-element-on-narrow'],
+                      cellIndex === featuredColumn && styles['ComparisonTable-cell-heading-label--featured']
+                    )}
+                  >
+                    {headerRowNames[cellIndex]}
+                  </span>
+                )}
+                <span className={styles['ComparisonTable-cell-container']}>{rowChild.props.children}</span>
+              </Cell>
+            )
           }
-        }
-      }
-    }).filter(Boolean)
+        })
+      })
+    })
 
     const FootnoteChild = Children.find(child => React.isValidElement(child) && child.type === Footnote)
 
@@ -142,29 +140,25 @@ export const _ComparisonTable = forwardRef(
 )
 
 type RowProps = {
-  children: React.ReactNode
   header?: boolean
 }
 
-const Row = ({children, ...rest}: RowProps) => {
+const Row = ({children, ...rest}: PropsWithChildren<RowProps>) => {
   return <tr {...rest}>{children}</tr>
 }
 
 export type CellProps = BaseProps<HTMLTableCellElement> & {
   as?: 'td' | 'th'
-  children?: React.ReactNode
 }
 
-const Cell = ({as, children, ...props}: CellProps) => {
+const Cell = ({as, children, ...props}: PropsWithChildren<CellProps>) => {
   const Tag = as || 'td'
   return <Tag {...props}>{children}</Tag>
 }
 
-export type FootnoteProps = BaseProps<HTMLParagraphElement> & {
-  children?: React.ReactNode
-}
+export type FootnoteProps = BaseProps<HTMLParagraphElement>
 
-const Footnote = ({children, ...props}: FootnoteProps) => {
+const Footnote = ({children, ...props}: PropsWithChildren<FootnoteProps>) => {
   if (typeof children === 'string') {
     return (
       <Text as="p" size="200" variant="muted">

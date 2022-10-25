@@ -7,6 +7,19 @@ export default {
   title: 'Components/ComparisonTable',
   component: ComparisonTable,
   argTypes: {
+    as: {
+      description: 'The HTML element used to render the root component.',
+      options: [0, 1], // iterator
+      mapping: ['section', 'div'], // values
+      defaultValue: 'section',
+      control: {
+        type: 'inline-radio',
+        labels: ['section', 'div']
+      },
+      table: {
+        category: 'ComparisonTable'
+      }
+    },
     variant: {
       options: [0, 1, 2], // iterator
       mapping: [undefined, 'default', 'minimal'], // values
@@ -43,7 +56,7 @@ export default {
 } as ComponentMeta<typeof ComparisonTable>
 
 const Template: ComponentStory<typeof ComparisonTable> = args => (
-  <ComparisonTable featuredColumn={args.featuredColumn} heading={args.heading} variant={args.variant}>
+  <ComparisonTable featuredColumn={args.featuredColumn} heading={args.heading} variant={args.variant} as={args.as}>
     <ComparisonTable.Row>
       <ComparisonTable.Cell>Use case</ComparisonTable.Cell>
       <ComparisonTable.Cell>GitHub</ComparisonTable.Cell>
