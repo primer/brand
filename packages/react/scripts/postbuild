@@ -4,7 +4,7 @@ set -e
 # Copy files required in the main lib
 
 ## fonts
-mkdir fonts
+mkdir -p fonts
 cp ../fonts/*.css ./fonts
 cp ../fonts/*.woff2 ./fonts
 
