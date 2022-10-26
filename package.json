@@ -37,7 +37,7 @@
     "format": "npm run format --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
     "release": "npm run build:lib && changeset publish",
-    "start": "npm run build:lib && npm run start:storybook & npm run start:docs & npm run start:lib",
+    "start": "npm run build:lib && npm run start:storybook & npm run start:lib",
     "start:docs": "cd apps/docs && npm run start",
     "start:lib": "npm run start --workspace=packages/react",
     "start:storybook": "npm run start --workspace=apps/storybook",
