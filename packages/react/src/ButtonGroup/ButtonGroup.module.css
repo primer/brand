@@ -1,3 +1,8 @@
 .ButtonGroup {
-  display: inline-block;
+  display: inline-grid;
+  gap: 8px;
+}
+
+.ButtonGroup--horizontal {
+  grid-template-columns: auto auto;
 }
