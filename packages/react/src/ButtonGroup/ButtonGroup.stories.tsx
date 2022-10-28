@@ -10,10 +10,8 @@ export default {
 
 const Template: ComponentStory<typeof ButtonGroup> = args => (
   <ButtonGroup {...args}>
-    <Button>This is one button</Button>
-    <p>ruining until reduce works</p>
+    <Button as="a">This is one button</Button>
     <Button>This is the second button</Button>
-    <Button>This button won't appear</Button>
   </ButtonGroup>
 )
 

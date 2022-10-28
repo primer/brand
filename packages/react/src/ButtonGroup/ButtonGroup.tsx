@@ -5,10 +5,8 @@ import type {BaseProps} from '../component-helpers'
 import {Button, ButtonProps} from '../Button'
 import styles from './ButtonGroup.module.css'
 
-// TODO: Use generics properly to accept any type of button acceptable
 export type ButtonGroupProps = BaseProps<HTMLDivElement> & {
-  // This can only accept type of button but I want it to accept a generic type here
-  children: React.ReactElement<ButtonProps<'button'>>[]
+  children: React.ReactElement<ButtonProps<React.ElementType<any>>>[]
   direction?: 'horizontal' | 'vertical'
   buttonSize?: ButtonProps<'button'>['size']
   buttonsAs?: React.ElementType
