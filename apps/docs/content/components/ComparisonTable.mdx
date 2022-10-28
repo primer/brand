@@ -1,0 +1,139 @@
+---
+title: ComparisonTable
+status: Experimental
+figma: 'https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=375%3A8130'
+source: https://github.com/primer/brand/tree/main/src/ComparisonTable/ComparisonTable.tsx
+storybook: '/brand/storybook/?path=/story/components-ComparisonTable--default'
+description: Display content in a Q&A format
+---
+
+import InlineCode from '@primer/gatsby-theme-doctocat/src/components/inline-code'
+import {Box as Container} from '@primer/react'
+import {PropTableValues} from '../../src/components'
+import {Label} from '@primer/react'
+
+```js
+import {ComparisonTable} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<>
+  <ComparisonTable heading="GitHub vs Jenkins">
+    <ComparisonTable.Row>
+      <ComparisonTable.Cell>Use case</ComparisonTable.Cell>
+      <ComparisonTable.Cell>GitHub</ComparisonTable.Cell>
+      <ComparisonTable.Cell>Jenkins</ComparisonTable.Cell>
+    </ComparisonTable.Row>
+    <ComparisonTable.Row>
+      <ComparisonTable.Cell>Automation & CI/CD</ComparisonTable.Cell>
+      <ComparisonTable.Cell>
+        <>
+          <Text as="p" size="300">
+            Comparable native core capabilities
+          </Text>
+          <Text as="p" size="300">
+            <InlineLink href="#">
+              Over 13,000 GitHub Actions are available
+            </InlineLink>{' '}
+            in the GitHub Marketplace to automate your development workflow.
+          </Text>
+        </>
+      </ComparisonTable.Cell>
+      <ComparisonTable.Cell>
+        <>
+          <Text as="p" size="300">
+            Comparable native capabilities
+          </Text>
+          <Text as="p" size="300">
+            1,800+ community contributed Jenkins plugins{' '}
+            <InlineLink href="#">in Jenkins Plugin Marketplace.</InlineLink>
+          </Text>
+        </>
+      </ComparisonTable.Cell>
+    </ComparisonTable.Row>
+    <ComparisonTable.Row>
+      <ComparisonTable.Cell>Deployment models</ComparisonTable.Cell>
+      <ComparisonTable.Cell>Cloud or self-hosted</ComparisonTable.Cell>
+      <ComparisonTable.Cell>
+        <>
+          <Text as="p" size="300">
+            Self-hosted only
+          </Text>
+          <Text as="p" size="300">
+            CloudBees is the cloud alternative
+          </Text>
+        </>
+      </ComparisonTable.Cell>
+    </ComparisonTable.Row>
+    <ComparisonTable.Footnote>
+      *** This is a biased overview of capabilities by use case, based on
+      publicly available information as of 2022-05-16.
+    </ComparisonTable.Footnote>
+  </ComparisonTable>
+</>
+```
+
+## Component props
+
+### FAQ <Label>Required</Label>
+
+| Name        | Type                                                                                                                                                                | Default | Description                              |
+| :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :-----: | :--------------------------------------- |
+| `className` | `string`                                                                                                                                                            |         | Sets a custom class                      |
+| `id`        | `string`                                                                                                                                                            |         | Sets a custom id                         |
+| `ref`       | `React.RefObject`                                                                                                                                                   |         | Forward a Ref to the underlying DOM node |
+| `children`  | <PropTableValues values={[<a href="#faq-heading">FAQ.Heading</a>, <a href="#faq-subheading">FAQ.Subheading</a>, <a href="#faq-item">FAQ.Item</a>]} addLineBreaks /> |         | Root element for the FAQ component.      |
+
+<h3 id="faq-heading">
+  FAQ.Heading <Label>Required</Label>
+</h3>
+
+| Name        | Type                                                            |  Default   | Description                              |
+| :---------- | :-------------------------------------------------------------- | :--------: | :--------------------------------------- |
+| `align`     | <PropTableValues values={['start', 'center' ]} addLineBreaks /> | `'center'` | Heading text alignment                   |
+| `children`  | `string`                                                        |            | Heading text                             |
+| `className` | `string`                                                        |            | Heading custom class                     |
+| `id`        | `string`                                                        |            | Sets a custom id                         |
+| `ref`       | `React.RefObject`                                               |            | Forward a Ref to the underlying DOM node |
+| `size`      | <PropTableValues values={['medium', 'large' ]} addLineBreaks /> | `'medium'` | Heading text size                        |
+
+<h3 id="faq-subheading">FAQ.Subheading</h3>
+
+| Name        | Type              | Default | Description                              |
+| :---------- | :---------------- | :-----: | :--------------------------------------- |
+| `children`  | `string`          |         | Sub-heading text                         |
+| `className` | `string`          |         | Sub-heading custom class                 |
+| `id`        | `string`          |         | Sets a custom id                         |
+| `ref`       | `React.RefObject` |         | Forward a Ref to the underlying DOM node |
+
+<h3 id="faq-item">FAQ.Item</h3>
+
+| Name        | Type                                                                                                                        | Default | Description                              |
+| :---------- | :-------------------------------------------------------------------------------------------------------------------------- | :-----: | :--------------------------------------- |
+| `open`      | `boolean`                                                                                                                   | `false` | Sets answer visibility                   |
+| `className` | `string`                                                                                                                    |         | Sets a custom class                      |
+| `children`  | <PropTableValues values={[<a href="#faq-question">FAQ.Question</a>, <a href="#faq-answer">FAQ.Answer</a>]} addLineBreaks /> |         | FAQ question and answer pair             |
+| `id`        | `string`                                                                                                                    |         | Sets a custom id                         |
+| `ref`       | `React.RefObject`                                                                                                           |         | Forward a Ref to the underlying DOM node |
+
+<h3 id="faq-question">FAQ.Question</h3>
+
+| Name        | Type              | Default | Description                              |
+| :---------- | :---------------- | :-----: | :--------------------------------------- |
+| `className` | `string`          |         | Sets a custom class on the root element  |
+| `children`  | `string`          |         | Question text                            |
+| `id`        | `string`          |         | Sets a custom id                         |
+| `ref`       | `React.RefObject` |         | Forward a Ref to the underlying DOM node |
+
+<h3 id="faq-answer">FAQ.Answer</h3>
+
+| Name        | Type              | Default | Description                                  |
+| :---------- | :---------------- | :-----: | :------------------------------------------- |
+| `className` | `string`          |         | Sets a custom class on the root element      |
+| `children`  | `ReactElement`    |         | `<p>` or `<Text>` components are recommended |
+| `id`        | `string`          |         | Sets a custom id                             |
+| `ref`       | `React.RefObject` |         | Forward a Ref to the underlying DOM node     |

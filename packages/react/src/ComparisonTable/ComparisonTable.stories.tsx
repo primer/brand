@@ -110,7 +110,49 @@ Playground.args = {
   heading: 'GitHub vs Jenkins'
 }
 
-export const Minimal = Template.bind({})
-Minimal.args = {
-  variant: 'minimal'
-}
+export const Minimal = () => (
+  <ComparisonTable heading="What is containerization?  " variant="minimal">
+    <ComparisonTable.Row>
+      <ComparisonTable.Cell></ComparisonTable.Cell>
+      <ComparisonTable.Cell>Containerization</ComparisonTable.Cell>
+      <ComparisonTable.Cell>Virtualization</ComparisonTable.Cell>
+    </ComparisonTable.Row>
+    <ComparisonTable.Row>
+      <ComparisonTable.Cell>Operating system (OS) </ComparisonTable.Cell>
+      <ComparisonTable.Cell>
+        Containers use the host OS, meaning all containers must be compatible with that OS.
+      </ComparisonTable.Cell>
+      <ComparisonTable.Cell>
+        VMs are effectively separate computers that run their own OS. For example, a VM can run Windows even if the host
+        OS is Ubuntu.
+      </ComparisonTable.Cell>
+    </ComparisonTable.Row>
+    <ComparisonTable.Row>
+      <ComparisonTable.Cell>Computing resources </ComparisonTable.Cell>
+      <ComparisonTable.Cell>
+        Containers are lightweight, taking only the resources needed to run the application and the container manager.{' '}
+      </ComparisonTable.Cell>
+      <ComparisonTable.Cell>
+        VMs emulate a full computer, meaning that they replicate much of the host environment. That uses more memory,
+        CPU cycles, and disk space.
+      </ComparisonTable.Cell>
+    </ComparisonTable.Row>
+    <ComparisonTable.Row>
+      <ComparisonTable.Cell>Shareability </ComparisonTable.Cell>
+      <ComparisonTable.Cell>
+        Container images are relatively small in size, making them easy to share.
+      </ComparisonTable.Cell>
+      <ComparisonTable.Cell>VM images are often much larger as they include a full OS.</ComparisonTable.Cell>
+    </ComparisonTable.Row>
+    <ComparisonTable.Row>
+      <ComparisonTable.Cell>Security</ComparisonTable.Cell>
+      <ComparisonTable.Cell>
+        Containers might be isolated only very lightly from each other. A process in one container could access memory
+        used by another container, for example.
+      </ComparisonTable.Cell>
+      <ComparisonTable.Cell>
+        By running a separate OS, VMs running on the same hardware are more isolated from one another than containers.
+      </ComparisonTable.Cell>
+    </ComparisonTable.Row>
+  </ComparisonTable>
+)
