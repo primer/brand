@@ -6,8 +6,8 @@ import {Button, ButtonProps} from '../Button'
 import styles from './ButtonGroup.module.css'
 
 // TODO: Use generics properly to accept any type of button acceptable
-// Using 'size' over 'buttonSize' causes an issue of the value not being passed to the clone children
 export type ButtonGroupProps = BaseProps<HTMLDivElement> & {
+  // This can only accept type of button but I want it to accept a generic type here
   children: React.ReactElement<ButtonProps<'button'>>[]
   direction?: 'horizontal' | 'vertical'
   buttonSize?: ButtonProps<'button'>['size']
@@ -26,7 +26,6 @@ export const ButtonGroup = forwardRef(
             size: buttonSize,
             as: buttonsAs,
             variant: index === 0 ? 'primary' : 'secondary',
-            // This ensures that the child components initial props override
             ...child.props
           } as ButtonProps<'button'>)
         }
