@@ -1,5 +1,7 @@
 import React from 'react'
 import {ComponentMeta, ComponentStory} from '@storybook/react'
+import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
+
 import {Text, InlineLink} from '../'
 import {ComparisonTable} from '.'
 
@@ -51,6 +53,11 @@ export default {
       table: {
         category: 'ComparisonTable'
       }
+    }
+  },
+  parameters: {
+    viewport: {
+      viewports: INITIAL_VIEWPORTS
     }
   }
 } as ComponentMeta<typeof ComparisonTable>
@@ -109,6 +116,17 @@ export const Playground = Template.bind({})
 Playground.args = {
   heading: 'GitHub vs Jenkins'
 }
+
+export const PlaygroundMobile = Template.bind({})
+PlaygroundMobile.args = {
+  heading: 'GitHub vs Jenkins'
+}
+PlaygroundMobile.parameters = {
+  viewport: {
+    defaultViewport: 'iphonex'
+  }
+}
+PlaygroundMobile.storyName = 'Playground (mobile)'
 
 export const Minimal = () => (
   <ComparisonTable heading="What is containerization?  " variant="minimal">

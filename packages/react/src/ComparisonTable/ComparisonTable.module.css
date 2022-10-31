@@ -144,6 +144,7 @@
 }
 
 :global(.ComparisonTable--default) .ComparisonTable-cell-heading-label--featured {
+  /* Consider disabling until we have an a11y review */
   color: transparent;
   background: linear-gradient(
     89.46deg,
@@ -152,6 +153,8 @@
   );
   -webkit-background-clip: text;
   background-clip: text;
+  position: relative;
+  z-index: 2;
 }
 
 @media screen and (min-width: 34rem) {
@@ -181,21 +184,32 @@
     border-top-right-radius: 0.45rem;
     background: var(--brand-color-canvas-default);
   }
+  :global(.ComparisonTable--default) thead .ComparisonTable-cell-heading--featured::before,
   :global(.ComparisonTable--default) thead .ComparisonTable-cell-heading--featured::after {
     position: absolute;
     top: -2px;
     right: -2px;
     bottom: 0;
     left: -2px;
-    z-index: -1;
+    z-index: 0;
     content: '';
     background: linear-gradient(
       90deg,
       var(--brand-ComparisonTable-featured-color-start),
       var(--brand-ComparisonTable-featured-color-end)
     );
-    border-top-left-radius: 0.5rem;
-    border-top-right-radius: 0.5rem;
+    border-top-left-radius: 0.45rem;
+    border-top-right-radius: 0.45rem;
+  }
+
+  :global(.ComparisonTable--default) thead .ComparisonTable-cell-heading--featured::after {
+    z-index: 1;
+    background: var(--brand-color-canvas-default);
+    top: 0px;
+    left: 0;
+    right: 0;
+    border-top-right-radius: 0.35rem;
+    border-top-left-radius: 0.35rem;
   }
   :global(.ComparisonTable--default) .ComparisonTable-cell--featured.ComparisonTable-cell--lastrow {
     position: relative;
@@ -203,13 +217,14 @@
     border-bottom-right-radius: 0.45rem;
     border-bottom-left-radius: 0.45rem;
   }
-  :global(.ComparisonTable--default) .ComparisonTable-cell--featured.ComparisonTable-cell--lastrow::after {
+  :global(.ComparisonTable--default) .ComparisonTable-cell--featured.ComparisonTable-cell--lastrow::after,
+  :global(.ComparisonTable--default) .ComparisonTable-cell--featured.ComparisonTable-cell--lastrow::before {
     position: absolute;
     top: 0;
     right: -2px;
-    bottom: -2px;
+    bottom: 0;
     left: -2px;
-    z-index: -1;
+    z-index: 0;
     content: '';
     background: linear-gradient(
       90deg,
@@ -218,5 +233,19 @@
     );
     border-bottom-right-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
+  }
+  :global(.ComparisonTable--default) .ComparisonTable-cell--featured.ComparisonTable-cell--lastrow::after {
+    z-index: 1;
+    background: var(--brand-color-canvas-default);
+    bottom: 2px;
+    left: 0;
+    right: 0;
+    border-bottom-right-radius: 0.35rem;
+    border-bottom-left-radius: 0.35rem;
+  }
+
+  :global(.ComparisonTable--default) .ComparisonTable-cell-container--featured {
+    position: relative;
+    z-index: 2;
   }
 }

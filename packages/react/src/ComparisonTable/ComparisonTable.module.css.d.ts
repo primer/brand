@@ -12,6 +12,7 @@ declare const styles: {
   readonly "ComparisonTable-cell--featured": string;
   readonly "ComparisonTable-cell-heading--featured": string;
   readonly "ComparisonTable-cell--lastrow": string;
+  readonly "ComparisonTable-cell-container--featured": string;
 };
 export = styles;
 

@@ -112,7 +112,14 @@ export const _ComparisonTable = forwardRef(
                     {headerRowNames[cellIndex]}
                   </span>
                 )}
-                <span className={styles['ComparisonTable-cell-container']}>{rowChild.props.children}</span>
+                <span
+                  className={clsx(
+                    styles['ComparisonTable-cell-container'],
+                    cellIndex === featuredColumn && styles['ComparisonTable-cell-container--featured']
+                  )}
+                >
+                  {rowChild.props.children}
+                </span>
               </Cell>
             )
           }
