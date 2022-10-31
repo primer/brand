@@ -1,6 +1,6 @@
 .ButtonGroup {
   display: inline-grid;
-  gap: 8px;
+  gap: var(--base-size-8);
 }
 
 .ButtonGroup--horizontal {
