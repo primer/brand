@@ -46,8 +46,8 @@ export const VerticalButtons = VerticalButtonTemplate.bind({})
 
 const LinkButtonTemplate: ComponentStory<typeof ButtonGroup> = args => (
   <ButtonGroup buttonsAs={'a'} {...args}>
-    <Button>This is one button</Button>
-    <Button>This is the second button</Button>
+    <Button href="#">This is one button</Button>
+    <Button href="#">This is the second button</Button>
   </ButtonGroup>
 )
 
