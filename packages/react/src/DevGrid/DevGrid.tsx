@@ -1,4 +1,4 @@
-import {useEffect, useState, type ReactElement} from 'react'
+import React, {useEffect, useState, type ReactElement} from 'react'
 import clsx from 'clsx'
 import {useDevGridKeyCombo} from '../hooks/useDevGridKeyCombo'
 
@@ -35,7 +35,7 @@ export const DevGrid = ({size = defaultGridSize}: DevGridProps) => {
   }, [size])
 
   let col = size
-  let columns: ReactElement[] = []
+  const columns: ReactElement[] = []
 
   while (col > 0) {
     col--
