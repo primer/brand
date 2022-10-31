@@ -5,8 +5,10 @@ import type {BaseProps} from '../component-helpers'
 import {Button, ButtonProps} from '../Button'
 import styles from './ButtonGroup.module.css'
 
+type PrimerBrandButtonType = React.ReactElement<ButtonProps<React.ElementType<'button' | 'a'>>>
+
 export type ButtonGroupProps = BaseProps<HTMLDivElement> & {
-  children: React.ReactElement<ButtonProps<React.ElementType<any>>>[]
+  children: PrimerBrandButtonType[] | PrimerBrandButtonType
   direction?: 'horizontal' | 'vertical'
   buttonSize?: ButtonProps<'button'>['size']
   buttonsAs?: React.ElementType
