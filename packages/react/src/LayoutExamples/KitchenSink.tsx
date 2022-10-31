@@ -15,6 +15,7 @@ import {
   Button,
   SubdomainNavBar,
   Stack,
+  DevGrid,
   Testimonial
 } from '..'
 
@@ -23,6 +24,7 @@ type KitchenSinkProps = React.HTMLAttributes<HTMLDivElement>
 export function KitchenSink(props: KitchenSinkProps) {
   return (
     <>
+      <DevGrid />
       <SubdomainNavBar title="Subdomain" {...props}>
         <SubdomainNavBar.Link href="#">Collections</SubdomainNavBar.Link>
         <SubdomainNavBar.Link href="#">Topics</SubdomainNavBar.Link>

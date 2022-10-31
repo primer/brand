@@ -1,8 +1,8 @@
 :root {
   --scrollbar-width: 0px;
   --devGrid-width: 90%;
-  --devGrid-max-width: 76em;
-  --devGrid-column-size: 12;
+  --devGrid-max-width: 76rem;
+  --devGrid-grid-size: 12;
   --devGrid-column-gap: var(--brand-stack-gap-normal);
   --devGrid-column-gap-mobile: var(--brand-stack-gap-condensed);
   --devGrid-column-color: rgba(255, 0, 0, 0.1);
@@ -14,7 +14,7 @@
   bottom: 0;
   column-gap: var(--devGrid-column-gap-mobile);
   display: grid;
-  grid-template-columns: repeat(var(--devGrid-column-size), 1fr);
+  grid-template-columns: repeat(var(--devGrid-grid-size), 1fr);
   height: 100%;
   left: 50%;
   max-width: var(--devGrid-max-width);
@@ -22,9 +22,13 @@
   position: fixed;
   right: auto;
   top: 0;
-  transform: translateX(-50%);
+  transform: translateX(-200vw);
   width: var(--devGrid-width);
   z-index: var(--devGrid-zIndex);
+}
+
+.DevGrid--show {
+  transform: translateX(-50%);
 }
 
 @media screen and (min-width: 768px) {
