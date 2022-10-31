@@ -7,7 +7,7 @@ export default {
 } as ComponentMeta<typeof DevGrid>
 
 const Template: ComponentStory<typeof DevGrid> = args => (
-  <div style={{maxWidth: '76rem', margin: '80px auto 200px'}}>
+  <div style={{maxWidth: 'var(--devGrid-max-width)', margin: '80px auto 200px'}}>
     <Text>
       To show or hide the grid, click within the frame, then press&nbsp;
       <code

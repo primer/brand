@@ -1,7 +1,7 @@
 :root {
   --scrollbar-width: 0px;
   --devGrid-width: 90%;
-  --devGrid-max-width: 76rem;
+  --devGrid-max-width: 80rem;
   --devGrid-grid-size: 12;
   --devGrid-column-gap: var(--brand-stack-gap-normal);
   --devGrid-column-gap-mobile: var(--brand-stack-gap-condensed);

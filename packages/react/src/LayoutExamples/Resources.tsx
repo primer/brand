@@ -1,5 +1,18 @@
 import React, {useRef} from 'react'
-import {Hero, River, FAQ, Heading, Text, InlineLink, Link, ThemeProvider, SubdomainNavBar, Stack, Testimonial} from '..'
+import {
+  Hero,
+  River,
+  FAQ,
+  Heading,
+  Text,
+  InlineLink,
+  Link,
+  ThemeProvider,
+  SubdomainNavBar,
+  Stack,
+  Testimonial,
+  DevGrid
+} from '..'
 
 import styles from './Resources.modules.css'
 import heroBG from './assets/images/resources-hero-bg.png'
@@ -15,6 +28,7 @@ export function ResourcesHubExample(props: ResourcesHubExampleProps) {
 
   return (
     <>
+      <DevGrid />
       <SubdomainNavBar title="Resources" titleHref="https://resources.github.com/devops/tools/compare/" {...props}>
         <SubdomainNavBar.Link href="#">Collections</SubdomainNavBar.Link>
         <SubdomainNavBar.Link href="#">Topics</SubdomainNavBar.Link>

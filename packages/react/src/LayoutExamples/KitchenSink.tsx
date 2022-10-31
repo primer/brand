@@ -48,6 +48,23 @@ export function KitchenSink(props: KitchenSinkProps) {
           }}
           align="center"
         />
+
+        <div
+          style={{display: 'flex', justifyContent: 'center', margin: 'var(--brand-Hero-narrow-padding)', marginTop: 0}}
+        >
+          <Text>
+            To show or hide the grid, click within the frame, then press&nbsp;
+            <code
+              style={{
+                padding: '0.25rem 0.5rem',
+                backgroundColor: 'var(--brand-color-canvas-subtle)'
+              }}
+            >
+              ctrl + shift + L
+            </code>
+          </Text>
+        </div>
+
         <Stack
           direction="vertical"
           justifyContent="center"
