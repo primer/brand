@@ -25,7 +25,6 @@ const SingleButtonTemplate: ComponentStory<typeof ButtonGroup> = args => (
 )
 
 export const SingleButton = SingleButtonTemplate.bind({})
-Primary.args = {}
 
 const LargeButtonTemplate: ComponentStory<typeof ButtonGroup> = args => (
   <ButtonGroup buttonSize="large" {...args}>
@@ -35,7 +34,6 @@ const LargeButtonTemplate: ComponentStory<typeof ButtonGroup> = args => (
 )
 
 export const LargeButtons = LargeButtonTemplate.bind({})
-Primary.args = {}
 
 const VerticalButtonTemplate: ComponentStory<typeof ButtonGroup> = args => (
   <ButtonGroup direction="vertical" {...args}>
@@ -45,7 +43,6 @@ const VerticalButtonTemplate: ComponentStory<typeof ButtonGroup> = args => (
 )
 
 export const VerticalButtons = VerticalButtonTemplate.bind({})
-Primary.args = {}
 
 const LinkButtonTemplate: ComponentStory<typeof ButtonGroup> = args => (
   <ButtonGroup buttonsAs={'a'} {...args}>
@@ -55,7 +52,6 @@ const LinkButtonTemplate: ComponentStory<typeof ButtonGroup> = args => (
 )
 
 export const LinkButtons = LinkButtonTemplate.bind({})
-Primary.args = {}
 
 const ThreeButtonTemplate: ComponentStory<typeof ButtonGroup> = args => (
   <ButtonGroup {...args}>
@@ -66,4 +62,3 @@ const ThreeButtonTemplate: ComponentStory<typeof ButtonGroup> = args => (
 )
 
 export const ThreeButtonsOnlyShowingTheExpectedTwo = ThreeButtonTemplate.bind({})
-Primary.args = {}
