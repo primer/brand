@@ -12,4 +12,38 @@ test.describe('Visual Comparison: ButtonGroup', () => {
 
     expect(await page.screenshot()).toMatchSnapshot()
   })
+
+  test('ButtonGroup / Single Button', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-buttongroup--single-button&viewMode=story')
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('ButtonGroup / Large Buttons', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-buttongroup--large-buttons&viewMode=story')
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('ButtonGroup / Vertical Buttons', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-buttongroup--vertical-buttons&viewMode=story'
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('ButtonGroup / Link Buttons', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-buttongroup--link-buttons&viewMode=story')
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('ButtonGroup / Three Buttons Only Showing The Expected Two', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-buttongroup--three-buttons-only-showing-the-expected-two&viewMode=story'
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
 })
