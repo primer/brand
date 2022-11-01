@@ -67,7 +67,7 @@ jobs:
         run: cd packages/react/ && npm pack
 
       - name: Configuring Astro React / TypeScript project
-        run: npm create astro@latest ${{env.ASTRO_FOLDER}} -- --template framework-react
+        run: yes | npm create astro@latest ${{env.ASTRO_FOLDER}} -- --template framework-react
 
       - name: Retrieving package version
         id: package-version
