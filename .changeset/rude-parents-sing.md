@@ -7,7 +7,7 @@ Added `ButtonGroup` component
 Usage example:
 
 ```jsx
-<ButtonGroup {...args}>
+<ButtonGroup>
   <Button>This is one button</Button>
   <Button>This is the second button</Button>
 </ButtonGroup>
