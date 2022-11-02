@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+  schedule:
+    - cron: '0 0 * * *' # end of each day (UTC)
   pull_request:
 
 env:
