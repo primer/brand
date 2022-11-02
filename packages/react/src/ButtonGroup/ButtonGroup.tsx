@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import React, {forwardRef, type Ref} from 'react'
 import type {BaseProps} from '../component-helpers'
 import {Button, ButtonProps} from '../Button'
@@ -8,16 +7,12 @@ type PrimerBrandButtonType = React.ReactElement<ButtonProps<React.ElementType<'b
 
 export type ButtonGroupProps = BaseProps<HTMLDivElement> & {
   children: PrimerBrandButtonType[] | PrimerBrandButtonType
-  direction?: 'horizontal' | 'vertical'
-  buttonSize?: ButtonProps<'button'>['size']
+  buttonSize?: ButtonProps<'button' | 'a'>['size']
   buttonsAs?: React.ElementType
 }
 
 export const ButtonGroup = forwardRef(
-  (
-    {direction = 'horizontal', buttonSize = 'medium', buttonsAs, className, children, ...props}: ButtonGroupProps,
-    ref: Ref<HTMLDivElement>
-  ) => {
+  ({buttonSize = 'medium', buttonsAs, className, children, ...props}: ButtonGroupProps, ref: Ref<HTMLDivElement>) => {
     const buttonsToRender = React.Children.toArray(children)
       .map((child, index) => {
         if (React.isValidElement(child) && typeof child.type !== 'string' && child.type === Button) {
@@ -33,11 +28,7 @@ export const ButtonGroup = forwardRef(
       .slice(0, 2)
 
     return (
-      <section
-        ref={ref}
-        className={clsx(styles.ButtonGroup, direction === 'horizontal' && styles['ButtonGroup--horizontal'], className)}
-        {...props}
-      >
+      <section ref={ref} className={styles.ButtonGroup} {...props}>
         {buttonsToRender as React.ReactElement[]}
       </section>
     )

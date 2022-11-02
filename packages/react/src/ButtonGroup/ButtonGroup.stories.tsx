@@ -1,22 +1,49 @@
-import {ComponentMeta, ComponentStory} from '@storybook/react'
 import React from 'react'
-import {ButtonGroup} from '.'
+import {ComponentMeta, ComponentStory} from '@storybook/react'
+import {ButtonGroup, ButtonGroupProps} from '.'
 import {Button} from '../Button'
+
+type Args = ButtonGroupProps
 
 export default {
   title: 'Components/ButtonGroup',
-  component: ButtonGroup
+  component: ButtonGroup,
+  subcomponents: {Button},
+  args: {
+    buttonSize: 'medium',
+    buttonsAs: 'button'
+  },
+  argTypes: {
+    buttonSize: {
+      description: 'The size of the button elements',
+      control: {
+        type: 'radio',
+        options: ['medium', 'large']
+      }
+    },
+    buttonsAs: {
+      description: 'The HTML element the button is rendered as',
+      control: {
+        type: 'radio',
+        options: ['button', 'a']
+      }
+    },
+    children: {
+      table: {
+        disable: true
+      }
+    }
+  }
 } as ComponentMeta<typeof ButtonGroup>
 
 const Template: ComponentStory<typeof ButtonGroup> = args => (
   <ButtonGroup {...args}>
     <Button>This is one button</Button>
-    <Button>This is the second button</Button>
+    <Button>This is another button</Button>
   </ButtonGroup>
 )
 
-export const Primary = Template.bind({})
-Primary.args = {}
+export const Playground = Template.bind({})
 
 const SingleButtonTemplate: ComponentStory<typeof ButtonGroup> = args => (
   <ButtonGroup {...args}>
@@ -24,41 +51,14 @@ const SingleButtonTemplate: ComponentStory<typeof ButtonGroup> = args => (
   </ButtonGroup>
 )
 
-export const SingleButton = SingleButtonTemplate.bind({})
+export const SingleButtonGroup = SingleButtonTemplate.bind({})
 
-const LargeButtonTemplate: ComponentStory<typeof ButtonGroup> = args => (
-  <ButtonGroup buttonSize="large" {...args}>
-    <Button>This is one button</Button>
-    <Button>This is the second button</Button>
-  </ButtonGroup>
-)
+export const LargeButtonGroup = Template.bind({})
+LargeButtonGroup.args = {
+  buttonSize: 'large'
+}
 
-export const LargeButtons = LargeButtonTemplate.bind({})
-
-const VerticalButtonTemplate: ComponentStory<typeof ButtonGroup> = args => (
-  <ButtonGroup direction="vertical" {...args}>
-    <Button>This is one button</Button>
-    <Button>This is the second button</Button>
-  </ButtonGroup>
-)
-
-export const VerticalButtons = VerticalButtonTemplate.bind({})
-
-const LinkButtonTemplate: ComponentStory<typeof ButtonGroup> = args => (
-  <ButtonGroup buttonsAs={'a'} {...args}>
-    <Button href="#">This is one button</Button>
-    <Button href="#">This is the second button</Button>
-  </ButtonGroup>
-)
-
-export const LinkButtons = LinkButtonTemplate.bind({})
-
-const ThreeButtonTemplate: ComponentStory<typeof ButtonGroup> = args => (
-  <ButtonGroup {...args}>
-    <Button>This is one button</Button>
-    <Button>This is the second button</Button>
-    <Button>This is the third button</Button>
-  </ButtonGroup>
-)
-
-export const ThreeButtonsOnlyShowingTheExpectedTwo = ThreeButtonTemplate.bind({})
+export const LinkButtonGroup = Template.bind({})
+LinkButtonGroup.args = {
+  buttonsAs: 'a'
+}
