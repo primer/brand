@@ -77,7 +77,7 @@ jobs:
 
       - name: Installing local build
         run: |
-          cd ${{env.NEXTJS_FOLDER}} 
+          cd ${{env.NEXTJS_FOLDER}}
           cp ../packages/react/primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz ./
           npm install primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz
 
@@ -89,6 +89,7 @@ jobs:
       - name: Copying required files
         run: |
           cp ./packages/e2e/integration-tests/nextjs/index.tsx ./${{env.NEXTJS_FOLDER}}/pages
+          cp ./packages/e2e/integration-tests/nextjs/.eslintrc ./${{env.NEXTJS_FOLDER}}
           cp ./packages/e2e/cypress.config.js ./${{env.NEXTJS_FOLDER}}
           mkdir ${{env.NEXTJS_FOLDER}}/integration-tests
           cp -r ./packages/e2e/integration-tests/fixtures ./${{env.NEXTJS_FOLDER}}/integration-tests
@@ -104,6 +105,10 @@ jobs:
 
       - name: Excluded cypress tests in-place
         run: npx json -I -f ${{env.NEXTJS_FOLDER}}/tsconfig.json -e 'this.exclude=["node_modules", "**/*.cy.ts"]'
+
+      - name: Fix monorepo-related linting issues
+        run: |
+          npm run lint -- --fix
 
       - name: Testing compile-time build
         run: cd ${{env.NEXTJS_FOLDER}} && npm run build
