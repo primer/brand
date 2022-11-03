@@ -1,6 +1,6 @@
 import React from 'react'
 import {ComponentMeta, ComponentStory} from '@storybook/react'
-import {ButtonGroup, ButtonGroupProps} from '.'
+import {ButtonGroup} from '.'
 import {Button} from '../Button'
 
 export default {
