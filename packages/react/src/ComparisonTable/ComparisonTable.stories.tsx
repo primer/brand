@@ -8,26 +8,25 @@ import {ComparisonTable} from '.'
 export default {
   title: 'Components/ComparisonTable',
   component: ComparisonTable,
+  args: {
+    variant: 'default',
+    as: 'section'
+  },
   argTypes: {
     as: {
       description: 'The HTML element used to render the root component.',
-      options: [0, 1], // iterator
-      mapping: ['section', 'div'], // values
-      defaultValue: 'section',
       control: {
         type: 'inline-radio',
-        labels: ['section', 'div']
+        options: ['section', 'large']
       },
       table: {
         category: 'ComparisonTable'
       }
     },
     variant: {
-      options: [0, 1, 2], // iterator
-      mapping: [undefined, 'default', 'minimal'], // values
       control: {
         type: 'inline-radio',
-        labels: ['undefined', 'default', 'minimal']
+        options: ['undefined', 'default', 'minimal']
       },
       table: {
         category: 'ComparisonTable'
