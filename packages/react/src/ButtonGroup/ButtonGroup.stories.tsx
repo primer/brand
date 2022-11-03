@@ -3,8 +3,6 @@ import {ComponentMeta, ComponentStory} from '@storybook/react'
 import {ButtonGroup, ButtonGroupProps} from '.'
 import {Button} from '../Button'
 
-type Args = ButtonGroupProps
-
 export default {
   title: 'Components/ButtonGroup',
   component: ButtonGroup,
