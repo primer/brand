@@ -13,7 +13,10 @@ const {
   TextInput,
   ThemeProvider,
   Button,
-  SubdomainNavBar
+  SubdomainNavBar,
+  ComparisonTable,
+  Stack,
+  ButtonGroup
 } = components
 
 export {
@@ -30,5 +33,8 @@ export {
   TextInput,
   ThemeProvider,
   Button,
-  SubdomainNavBar
+  SubdomainNavBar,
+  ComparisonTable,
+  Stack,
+  ButtonGroup
 }

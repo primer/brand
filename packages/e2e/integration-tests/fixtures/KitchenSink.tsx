@@ -13,7 +13,10 @@ import {
   Checkbox,
   Select,
   Button,
-  SubdomainNavBar
+  SubdomainNavBar,
+  ComparisonTable,
+  Stack,
+  ButtonGroup
 } from './'
 import '@primer/react-brand/lib/css/main.css'
 
@@ -169,6 +172,71 @@ export default function KitchenSink() {
             </FAQ.Answer>
           </FAQ.Item>
         </FAQ>
+        <Stack
+          direction="vertical"
+          justifyContent="center"
+          style={{
+            margin: '100px 0'
+          }}
+        >
+          <ComparisonTable featuredColumn={1} heading="GitHub vs Jenkins">
+            <ComparisonTable.Row>
+              <ComparisonTable.Cell>Use case</ComparisonTable.Cell>
+              <ComparisonTable.Cell>GitHub</ComparisonTable.Cell>
+              <ComparisonTable.Cell>Jenkins</ComparisonTable.Cell>
+            </ComparisonTable.Row>
+            <ComparisonTable.Row>
+              <ComparisonTable.Cell>Automation & CI/CD</ComparisonTable.Cell>
+              <ComparisonTable.Cell>
+                <Text as="p" size="300">
+                  Comparable native core capabilities
+                </Text>
+                <Text as="p" size="300">
+                  <InlineLink href="#">Over 13,000 GitHub Actions are available</InlineLink>
+                  &nbsp;in the GitHub Marketplace to automate your development workflow.
+                </Text>
+              </ComparisonTable.Cell>
+              <ComparisonTable.Cell>
+                <Text as="p" size="300">
+                  Comparable native capabilities
+                </Text>
+                <Text as="p" size="300">
+                  1,800+ community contributed Jenkins plugins{' '}
+                  <InlineLink href="#">in Jenkins Plugin Marketplace.</InlineLink>
+                </Text>
+              </ComparisonTable.Cell>
+            </ComparisonTable.Row>
+            <ComparisonTable.Row>
+              <ComparisonTable.Cell>Deployment models</ComparisonTable.Cell>
+              <ComparisonTable.Cell>Cloud or self-hosted</ComparisonTable.Cell>
+              <ComparisonTable.Cell>
+                <Text as="p" size="300">
+                  Self-hosted only
+                </Text>
+                <Text as="p" size="300">
+                  CloudBees is the cloud alternative
+                </Text>
+              </ComparisonTable.Cell>
+            </ComparisonTable.Row>
+            <ComparisonTable.Footnote>
+              *** This is a biased overview of capabilities by use case, based on publicly available information as of
+              2022-05-16.
+            </ComparisonTable.Footnote>
+          </ComparisonTable>
+        </Stack>
+        <p style={{textAlign: 'center', marginBottom: '1rem'}}>Button group example:</p>
+        <div
+          style={{
+            margin: '0 auto',
+            display: 'flex',
+            justifyContent: 'center'
+          }}
+        >
+          <ButtonGroup>
+            <Button>This is one button</Button>
+            <Button>This is the second button</Button>
+          </ButtonGroup>
+        </div>
       </div>
       <ThemeProvider colorMode="dark">
         <div
