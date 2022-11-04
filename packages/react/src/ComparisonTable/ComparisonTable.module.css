@@ -146,15 +146,6 @@
 }
 
 :global(.ComparisonTable--default) .ComparisonTable-cell-heading-label--featured {
-  /* gradient on text... check with a11y team before enabling */
-  /* color: transparent;
-  background: linear-gradient(
-    89.46deg,
-    var(--brand-ComparisonTable-featured-color-start) 0.87%,
-    var(--brand-ComparisonTable-featured-color-end) 75.12%
-  );
-  -webkit-background-clip: text;
-  background-clip: text; */
   position: relative;
   z-index: 2;
 }
@@ -193,6 +184,16 @@
  * Narrow landscape and above viewport styles
 */
 @media screen and (min-width: 34rem) {
+  :global(.ComparisonTable--default) .ComparisonTable-cell-heading-label--featured {
+    color: transparent;
+    background: linear-gradient(
+      89.46deg,
+      var(--brand-ComparisonTable-featured-color-start) 0.87%,
+      var(--brand-ComparisonTable-featured-color-end) 75.12%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
   :global(.ComparisonTable--default) thead .ComparisonTable-cell-heading {
     font-weight: var(--brand-heading-weight-500);
     font-size: var(--brand-text-size-500);
