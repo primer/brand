@@ -24,7 +24,7 @@ module.exports = {
       fg: {
         overflow: {
           default: {
-            value: 'var(--brand-color-fg-default)',
+            value: 'var(--brand-color-text-default)',
             dark: 'var(--brand-color-text-onEmphasis)'
           }
         }

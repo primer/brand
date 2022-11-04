@@ -12,6 +12,8 @@
 
 - title: Components
   children:
+    - title: ComparisonTable
+      url: /components/ComparisonTable
     - title: FAQ
       url: /components/FAQ
     - title: Hero

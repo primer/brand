@@ -30,7 +30,7 @@ export const globalTypes = {
           title: 'All'
         }
       ],
-      showName: true
+      title: true
     }
   }
 }
