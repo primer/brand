@@ -43,7 +43,9 @@ New ComparisonTable component available
       </Text>
     </ComparisonTable.Cell>
   </ComparisonTable.Row>
-  <ComparisonTable.Footnote>{args.footnote}</ComparisonTable.Footnote>
+  <ComparisonTable.Footnote>
+    *** This is a biased overview of capabilities by use case, based on publicly available information as of 2022-05-16.
+  </ComparisonTable.Footnote>
 </ComparisonTable>
 ```
 
