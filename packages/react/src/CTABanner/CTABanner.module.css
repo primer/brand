@@ -4,10 +4,12 @@
   flex-direction: column;
   border-radius: 6px;
   padding: 40px 32px;
-  /* Box-Shadow */
-  /* box-shadow: 0 0 0 1px rgb(53 72 91 / 14%), 0 2.75px 2.21px rgb(0 0 0 / 7%), 0 6.65px 5.32px rgb(0 0 0 / 4%),
-    0 12.5px 10px rgb(0 0 0 / 3%), 0 22px 18px rgb(0 0 0 / 3%), 0 42px 33.4px rgb(0 0 0 / 2%),
-    0 100px 80px rgb(0 0 0 / 2%) !important; */
+  box-shadow: 2.8px 2.8px 2.2px rgba(26, 127, 55, 0.002), 6.7px 6.7px 5.3px rgba(26, 127, 55, 0.005),
+    12.5px 12.5px 10px rgba(26, 127, 55, 0.01), 22.3px 22.3px 17.9px rgba(26, 127, 55, 0.016),
+    41.8px 41.8px 33.4px rgba(26, 127, 55, 0.027), 100px 100px 80px rgba(26, 127, 55, 0.07),
+    -2.8px -2.8px 2.2px rgba(3, 102, 214, 0.002), -6.7px -6.7px 5.3px rgba(3, 102, 214, 0.005),
+    -12.5px -12.5px 10px rgba(3, 102, 214, 0.01), -22.3px -22.3px 17.9px rgba(3, 102, 214, 0.016),
+    -41.8px -41.8px 33.4px rgba(3, 102, 214, 0.027), -100px -100px 80px rgba(3, 102, 214, 0.07);
 }
 
 .CTABanner:after {
