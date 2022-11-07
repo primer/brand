@@ -77,11 +77,11 @@ module.exports = {
         bg: {
           default: {
             value: 'var(--base-color-scale-white-0)',
-            dark: 'var(--base-color-scale-gray-7)'
+            dark: 'var(--base-color-scale-black-0)'
           },
           checked: {
             value: 'var(--base-color-scale-white-0)',
-            dark: 'var(--base-color-scale-blue-4)'
+            dark: 'var(--base-color-scale-black-0)'
           },
           disabled: {
             value: 'var(--base-color-scale-gray-1)',
@@ -100,8 +100,8 @@ module.exports = {
         },
         dot: {
           default: {
-            value: 'var(--base-color-scale-blue-5)',
-            dark: 'var(--base-color-scale-blue-4)'
+            value: 'var(--base-color-scale-black-0)',
+            dark: 'var(--base-color-scale-white-0)'
           }
         }
       }
