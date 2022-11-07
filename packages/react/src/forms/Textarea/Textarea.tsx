@@ -6,6 +6,10 @@ import type {FormInputSizes, FormValidationStatus} from '../form-types'
 
 import styles from './Textarea.module.css'
 
+export const DEFAULT_TEXTAREA_ROWS = 7
+export const DEFAULT_TEXTAREA_COLS = 30
+export const DEFAULT_TEXTAREA_RESIZE = 'both'
+
 export type TextareaProps = {
   /**
    * Applies full width styling.
@@ -38,11 +42,18 @@ export type TextareaProps = {
 } & Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'size'> &
   BaseProps<HTMLTextAreaElement>
 
+const testIds = {
+  root: 'Textarea',
+  get outerContainer() {
+    return `${this.root}-outer-container`
+  }
+}
+
 const _Textarea = (
   {
     children,
     className,
-    cols = 30,
+    cols = DEFAULT_TEXTAREA_COLS,
     disabled,
     fullWidth = false,
     invisible = false,
@@ -50,8 +61,9 @@ const _Textarea = (
     placeholder,
     size = 'medium',
     validationStatus,
-    resize = 'both',
-    rows = 7,
+    required,
+    resize = DEFAULT_TEXTAREA_RESIZE,
+    rows = DEFAULT_TEXTAREA_ROWS,
     ...rest
   }: TextareaProps,
   ref
@@ -66,6 +78,7 @@ const _Textarea = (
         monospace && styles['Textarea-wrapper--monospace'],
         validationStatus && styles[`Textarea-wrapper--${validationStatus}`]
       )}
+      data-testid={testIds.outerContainer}
     >
       <textarea
         ref={ref}
@@ -81,6 +94,7 @@ const _Textarea = (
         placeholder={placeholder}
         disabled={disabled}
         aria-invalid={validationStatus === 'error'}
+        aria-required={required ? 'true' : 'false'}
         rows={rows}
         cols={cols}
         {...rest}
