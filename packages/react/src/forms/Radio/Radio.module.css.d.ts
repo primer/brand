@@ -3,7 +3,6 @@ declare const styles: {
   readonly "Radio": string;
   readonly "Radio-input": string;
   readonly "Radio-dot": string;
-  readonly "Radio-checkmark-path": string;
 };
 export = styles;
 

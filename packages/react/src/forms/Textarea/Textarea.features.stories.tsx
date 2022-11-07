@@ -10,8 +10,8 @@ export default {
 
 export const Validation: ComponentStory<typeof Textarea> = () => (
   <Stack direction="vertical">
-    <Textarea aria-label="Standalone text input" validationStatus="success" />
-    <Textarea aria-label="Standalone text input" validationStatus="error" />
+    <Textarea aria-label="Standalone text input" validationStatus="success" fullWidth />
+    <Textarea aria-label="Standalone text input" validationStatus="error" fullWidth />
   </Stack>
 )
 
@@ -27,5 +27,12 @@ export const Inactive: ComponentStory<typeof Textarea> = () => (
   <FormControl>
     <FormControl.Label>Description</FormControl.Label>
     <Textarea disabled />
+  </FormControl>
+)
+
+export const FullWidth: ComponentStory<typeof Textarea> = () => (
+  <FormControl>
+    <FormControl.Label>Description</FormControl.Label>
+    <Textarea />
   </FormControl>
 )

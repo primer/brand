@@ -31,6 +31,14 @@ test.describe('Visual Comparison: Textarea', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('Textarea / Full Width', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-forms-textarea-features--full-width&viewMode=story'
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Textarea / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-forms-textarea--default&viewMode=story')
 
