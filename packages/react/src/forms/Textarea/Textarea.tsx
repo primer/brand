@@ -73,9 +73,9 @@ const _Textarea = (
           styles.Textarea,
           'Textarea',
           styles[`Textarea--${size}`],
+          styles[`Textarea-resize--${resize}`],
           fullWidth && styles['Textarea--fullWidth'],
           validationStatus && styles[`Textarea--${validationStatus}`],
-          resize && styles[`Textarea-resize--${resize}`],
           className
         )}
         placeholder={placeholder}

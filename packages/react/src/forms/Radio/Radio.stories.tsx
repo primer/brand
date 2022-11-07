@@ -1,7 +1,7 @@
 import React from 'react'
 import {ComponentMeta, ComponentStory} from '@storybook/react'
 import {Radio} from '.'
-import {FormControl, Stack} from '../../'
+import {Stack} from '../../'
 
 export default {
   title: 'Components/Forms/Radio',
@@ -21,7 +21,7 @@ export default {
   }
 } as ComponentMeta<typeof Radio>
 
-export const Default: ComponentStory<typeof Radio> = args => (
+export const Default: ComponentStory<typeof Radio> = () => (
   <>
     <Stack direction={{narrow: 'vertical', regular: 'horizontal'}} gap="condensed" padding="condensed">
       <Radio aria-label="Standalone one" name="radio-group" value="radio one" />

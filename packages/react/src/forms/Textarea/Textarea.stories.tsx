@@ -1,7 +1,6 @@
 import React from 'react'
 import {ComponentMeta, ComponentStory} from '@storybook/react'
 import {Textarea} from '.'
-import {CheckIcon, SearchIcon} from '@primer/octicons-react'
 
 export default {
   title: 'Components/Forms/Textarea',

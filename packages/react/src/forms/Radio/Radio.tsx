@@ -3,8 +3,6 @@ import clsx from 'clsx'
 import {useId} from '@reach/auto-id' // TODO: Replace with useId from React v18 after upgrade
 
 import type {BaseProps} from '../../component-helpers'
-import type {FormValidationStatus} from '../form-types'
-import useLayoutEffect from '../../hooks/useIsomorphicLayoutEffect'
 
 import styles from './Radio.module.css'
 
@@ -22,10 +20,6 @@ export type RadioProps = {
    */
   required?: boolean
   /**
-   * Only used to inform ARIA attributes. Individual Radios do not have validation styles.
-   */
-  validationStatus?: FormValidationStatus
-  /**
    * A unique value that is never shown to the user.
    * Used during form submission and to identify which Radio inputs are selected
    */
@@ -34,7 +28,7 @@ export type RadioProps = {
   BaseProps<HTMLInputElement>
 
 const _Radio = (
-  {checked, className, disabled, id, onChange, required, validationStatus, value, ...rest}: RadioProps,
+  {checked, className, disabled, id, onChange, required, value, ...rest}: RadioProps,
   ref
 ): ReactElement => {
   const inputRef: RefObject<HTMLInputElement> | null = useRef<HTMLInputElement>(ref || null)
@@ -46,8 +40,6 @@ const _Radio = (
         id={uniqueId}
         aria-checked={checked ? 'true' : 'false'}
         aria-disabled={disabled ? 'true' : 'false'}
-        aria-invalid={validationStatus === 'error' ? 'true' : 'false'}
-        aria-required={required ? 'true' : 'false'}
         checked={checked}
         className={clsx(styles['Radio-input'])}
         disabled={disabled}

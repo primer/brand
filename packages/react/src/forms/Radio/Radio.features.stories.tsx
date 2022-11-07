@@ -8,7 +8,7 @@ export default {
   component: Radio
 } as ComponentMeta<typeof Radio>
 
-export const WithFormControl: ComponentStory<typeof Radio> = args => (
+export const WithFormControl: ComponentStory<typeof Radio> = () => (
   <>
     <Stack direction={{narrow: 'vertical', regular: 'horizontal'}} gap="condensed" padding="none">
       <FormControl>
@@ -25,6 +25,6 @@ export const WithFormControl: ComponentStory<typeof Radio> = args => (
 
 WithFormControl.storyName = 'w/ labels'
 
-export const Inactive: ComponentStory<typeof Radio> = args => (
+export const Inactive: ComponentStory<typeof Radio> = () => (
   <Radio aria-label="Standalone one" name="radio-group" value="radio one" disabled />
 )
