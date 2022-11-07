@@ -2,7 +2,8 @@ import React from 'react'
 import {ComponentMeta} from '@storybook/react'
 import {FormControl} from '.'
 import {CheckIcon, SearchIcon} from '@primer/octicons-react'
-import {Checkbox, Select, TextInput} from '../'
+import {Checkbox, Select, TextInput, Textarea, Radio} from '../'
+import {Stack} from '../../'
 
 export default {
   title: 'Components/Forms/FormControl',
@@ -207,6 +208,39 @@ export const TextInputPlayground = args => {
 
 TextInputPlayground.storyName = 'w/ TextInput - Playground'
 
+export const TextareaPlayground = args => {
+  return (
+    <FormControl
+      id="override"
+      required={args.required}
+      validationStatus={args.validationStatus}
+      fullWidth={args.fullWidth}
+      size={args.size}
+    >
+      <FormControl.Label visuallyHidden={args.visuallyHidden ? true : false}>{args.label}</FormControl.Label>
+      <Textarea
+        disabled={args.disabled}
+        monospace={args.monospace}
+        size={args.size}
+        placeholder={args.placeholder}
+        required={args.required}
+      />
+
+      {args.validationStatus && args.validationStatus === 'error' && (
+        // eslint-disable-next-line i18n-text/no-en
+        <FormControl.Validation>{args.validationText || 'This is an error message'}</FormControl.Validation>
+      )}
+      {args.validationStatus && args.validationStatus === 'success' && (
+        <FormControl.Validation>{args.validationText || 'Great! It worked.'}</FormControl.Validation>
+      )}
+    </FormControl>
+  )
+}
+TextareaPlayground.args = {
+  label: 'Label of textarea'
+}
+TextareaPlayground.storyName = 'w/ Textarea - Playground'
+
 export const SelectPlayground = args => {
   return (
     <FormControl
@@ -262,3 +296,20 @@ export const CheckboxPlayground = args => {
 }
 
 CheckboxPlayground.storyName = 'w/ Checkbox - Playground'
+
+export const RadioPlayground = () => (
+  <>
+    <Stack direction={{narrow: 'vertical', regular: 'horizontal'}} gap="condensed" padding="condensed">
+      <FormControl>
+        <FormControl.Label>Radio One</FormControl.Label>
+        <Radio name="radio-group" value="radio one" />
+      </FormControl>
+      <FormControl>
+        <FormControl.Label>Radio Two</FormControl.Label>
+        <Radio name="radio-group" value="radio two" />
+      </FormControl>
+    </Stack>
+  </>
+)
+
+RadioPlayground.storyName = 'w/ Radio - Playground'

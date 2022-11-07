@@ -9,6 +9,8 @@ import type {FormValidationStatus, FormInputSizes} from '../'
 import {Checkbox} from '../Checkbox'
 import {Select} from '../Select'
 import {TextInput} from '../TextInput'
+import {Textarea} from '../Textarea'
+import {Radio} from '../Radio'
 
 import styles from './FormControl.module.css'
 
@@ -58,9 +60,10 @@ const Root = ({
 }: FormControlProps) => {
   const generatedId = useId(id)
   const uniqueId = id || generatedId
+  const childrenArr = React.Children.toArray(children)
 
-  const isCheckboxControl = React.Children.toArray(children).some(
-    child => React.isValidElement(child) && child.type === Checkbox
+  const isInlineControl = childrenArr.some(
+    child => React.isValidElement(child) && (child.type === Checkbox || child.type === Radio)
   )
 
   return (
@@ -69,7 +72,7 @@ const Root = ({
       className={clsx(
         styles.FormControl,
         fullWidth && styles[`FormControl--fullWidth`],
-        isCheckboxControl && styles['FormControl--checkbox'],
+        isInlineControl && styles['FormControl--checkbox'],
         hasBorder && styles['FormControl--border'],
         className
       )}
@@ -82,11 +85,11 @@ const Root = ({
           /**
            * TextInput
            */
-          if (child.type === TextInput) {
+          if (child.type === TextInput || child.type === Textarea) {
             return React.cloneElement(child, {
               className: clsx(child.props.className),
               id: inputId,
-              name: inputId,
+              name: child.props.name || inputId,
               required: child.props.required || required,
               validationStatus: child.props.validationStatus || validationStatus,
               fullWidth,
@@ -112,7 +115,18 @@ const Root = ({
             return React.cloneElement(child, {
               className: clsx(child.props.className),
               id: inputId,
-              name: inputId,
+              name: child.props.name || inputId,
+              required: child.props.required || required,
+              validationStatus: child.props.validationStatus || validationStatus
+            })
+          } else if (child.type === Radio) {
+            /**
+             * Radio
+             */
+            return React.cloneElement(child, {
+              className: clsx(isInlineControl && styles['FormControl-control--radio'], child.props.className),
+              id: inputId,
+              name: child.props.name,
               required: child.props.required || required,
               validationStatus: child.props.validationStatus || validationStatus
             })
@@ -121,13 +135,13 @@ const Root = ({
              * Label
              */
             return React.cloneElement(child, {
-              className: clsx(isCheckboxControl && styles['FormControl-label--checkbox'], child.props.className),
+              className: clsx(isInlineControl && styles['FormControl-label--checkbox'], child.props.className),
               htmlFor: inputId,
               children: child.props.children,
               required,
               validationStatus,
               size,
-              showRequiredIndicator: isCheckboxControl ? false : child.props.showRequiredIndicator
+              showRequiredIndicator: isInlineControl ? false : child.props.showRequiredIndicator
             })
           } else if (child.type === FormControlValidation) {
             /**
