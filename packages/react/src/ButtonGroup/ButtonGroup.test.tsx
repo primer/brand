@@ -29,7 +29,7 @@ describe('ButtonGroup', () => {
     const expectedTag = 'a'
 
     const {getByTestId} = render(
-      <ButtonGroup buttonsAs={'a'}>
+      <ButtonGroup buttonsAs="a">
         <Button data-testid="test">Primary Action</Button>
         <Button>Secondary Action</Button>
       </ButtonGroup>
