@@ -1,4 +1,4 @@
-import React, {render, cleanup, getByTestId} from '@testing-library/react'
+import React, {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
 import {ButtonGroup} from './ButtonGroup'
