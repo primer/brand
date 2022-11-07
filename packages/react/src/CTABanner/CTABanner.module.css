@@ -1,0 +1,57 @@
+.CTABanner {
+  display: flex;
+  gap: var(--base-size-16);
+  flex-direction: column;
+  border-radius: 6px;
+  padding: 40px 32px;
+  /* Box-Shadow */
+  /* box-shadow: 0 0 0 1px rgb(53 72 91 / 14%), 0 2.75px 2.21px rgb(0 0 0 / 7%), 0 6.65px 5.32px rgb(0 0 0 / 4%),
+    0 12.5px 10px rgb(0 0 0 / 3%), 0 22px 18px rgb(0 0 0 / 3%), 0 42px 33.4px rgb(0 0 0 / 2%),
+    0 100px 80px rgb(0 0 0 / 2%) !important; */
+}
+
+.CTABanner:after {
+  position: absolute;
+  content: '';
+  display: block;
+  width: 100%;
+  height: 20px;
+  margin-top: 190px;
+  z-index: -1;
+  background: -webkit-radial-gradient(rgba(0, 0, 0, 0.3), rgba(255, 255, 255, 0));
+  background: -moz-radial-gradient(rgba(0, 0, 0, 0.3), rgba(255, 255, 255, 0));
+  background: -o-radial-gradient(rgba(0, 0, 0, 0.3), rgba(255, 255, 255, 0));
+  background: -ms-radial-gradient(rgba(0, 0, 0, 0.3), rgba(255, 255, 255, 0));
+}
+
+.CTABanner--center {
+  align-items: center;
+  text-align: center;
+}
+
+.CTABanner > * {
+  align-self: start;
+}
+
+.CTABanner--center > * {
+  align-self: center;
+}
+
+.CTABannerDescription {
+  color: var(--brand-color-text-muted);
+  margin-bottom: var(--base-size-16);
+}
+
+/* Medium breakpoint and up */
+@media screen and (min-width: 48rem) {
+  .CTABanner {
+    padding: 80px 64px;
+  }
+}
+
+/* Large breakpoint and up */
+@media screen and (min-width: 63.25rem) {
+  .CTABanner {
+    padding: 128px 64px;
+  }
+}
