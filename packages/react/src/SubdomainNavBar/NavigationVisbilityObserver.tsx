@@ -12,7 +12,7 @@ import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
 
 export function NavigationVisbilityObserver({children, className, ...rest}) {
   const navRef = useRef<HTMLUListElement | null>(null)
-  const [visibilityMap] = useVisibilityObserver(navRef)
+  const [visibilityMap] = useVisibilityObserver(navRef, children)
 
   const showOverflow = Object.values(visibilityMap).includes(false)
 

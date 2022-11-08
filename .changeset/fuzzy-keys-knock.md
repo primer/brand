@@ -11,8 +11,10 @@ import {Radio} from '@primer/react-brand'
 ```
 
 ```jsx
-<Radio name="radio-group" value="radio one" />
-<Radio name="radio-group" value="radio two" />
+<>
+  <Radio name="radio-group" value="radio one" />
+  <Radio name="radio-group" value="radio two" />
+</>
 ```
 
 :link: [See the documentation for more details and usage examples.](https://primer.style/brand/components/Radio)

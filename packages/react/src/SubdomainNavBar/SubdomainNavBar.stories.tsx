@@ -3,7 +3,7 @@ import {userEvent, within} from '@storybook/testing-library'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 
 import {expect} from '@storybook/jest'
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {Hero, River, Heading, Text, Link} from '../'
 
 import {SubdomainNavBar} from '.'
@@ -575,4 +575,37 @@ LongerTitle.args = {
 export const FullWidth = Template.bind({})
 FullWidth.args = {
   fullWidth: true
+}
+
+export const ConditionalRendering = () => {
+  const [links, setLinks] = useState(['collections', 'topics', 'articles', 'events', 'video'])
+  const [showLinks, setShowLinks] = useState(false)
+
+  useEffect(() => {
+    setLinks([...links, 'social'])
+  }, [links])
+
+  useEffect(() => {
+    setShowLinks(true)
+  }, [setShowLinks])
+
+  return (
+    <SubdomainNavBar title="Subdomain">
+      {showLinks &&
+        links.map(link => {
+          return (
+            <SubdomainNavBar.Link key={link} href={`#${link}`}>
+              {link
+                .toLowerCase()
+                .split(' ')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(' ')}
+            </SubdomainNavBar.Link>
+          )
+        })}
+
+      <SubdomainNavBar.PrimaryAction href="#">Primary CTA</SubdomainNavBar.PrimaryAction>
+      <SubdomainNavBar.SecondaryAction href="#">Secondary CTA</SubdomainNavBar.SecondaryAction>
+    </SubdomainNavBar>
+  )
 }
