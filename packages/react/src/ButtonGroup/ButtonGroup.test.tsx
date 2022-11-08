@@ -28,29 +28,27 @@ describe('ButtonGroup', () => {
 
   it('renders buttons with the correct element type when buttonAs is set', () => {
     const expectedTag = 'a'
-    const mockTestId = 'test'
 
-    const {getByTestId} = render(
+    const {getAllByRole} = render(
       <ButtonGroup buttonsAs={expectedTag}>
-        <Button data-testid={mockTestId}>Primary Action</Button>
-        <Button>Secondary Action</Button>
+        <Button href="#">Primary Action</Button>
+        <Button href="#">Secondary Action</Button>
       </ButtonGroup>
     )
-    const buttonEl = getByTestId(mockTestId)
+    const buttonEl = getAllByRole('link')[0]
     expect(buttonEl.tagName).toBe(expectedTag.toUpperCase())
   })
 
   it('renders buttons with the correct size class when buttonSize is set', () => {
     const expectedClass = 'Button--size-large'
-    const mockTestId = 'test'
 
-    const {getByTestId} = render(
+    const {getAllByRole} = render(
       <ButtonGroup buttonSize={'large'}>
-        <Button data-testid={mockTestId}>Primary Action</Button>
+        <Button>Primary Action</Button>
         <Button>Secondary Action</Button>
       </ButtonGroup>
     )
-    const buttonEl = getByTestId(mockTestId)
+    const buttonEl = getAllByRole('button')[0]
     expect(buttonEl.classList).toContain(expectedClass)
   })
 
