@@ -583,11 +583,11 @@ export const ConditionalRendering = () => {
 
   useEffect(() => {
     setLinks([...links, 'social'])
-  }, [])
+  }, [links])
 
   useEffect(() => {
     setShowLinks(true)
-  })
+  }, [setShowLinks])
 
   return (
     <SubdomainNavBar title="Subdomain">
