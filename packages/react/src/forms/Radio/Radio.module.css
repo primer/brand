@@ -8,7 +8,6 @@
   -ms-user-select: none;
   user-select: none;
   cursor: pointer;
-  margin: 3px 3px 0px 5px; /* Emulate browser defaults */
 }
 
 .Radio {
@@ -21,6 +20,8 @@
   height: 20px;
   justify-content: center;
   margin: 3px 0; /* mimic default browser-applied vertical margin */
+  margin: 3px 3px 0px 5px; /* Emulate browser defaults */
+
   width: 20px;
   outline: 1px solid var(--brand-control-radio-bg-default);
   box-shadow: 0 0 0 3px transparent;

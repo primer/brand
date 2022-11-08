@@ -1,6 +1,6 @@
 import React from 'react'
 import {FormControl} from '.'
-import {Heading, Button, TextInput, Text, InlineLink, Select, Checkbox} from '../'
+import {Heading, Button, TextInput, Stack, Text, InlineLink, Select, Checkbox, Radio} from '../'
 import {Container} from '../component-helpers'
 
 export default {
@@ -121,6 +121,27 @@ export const GitHubEnterprise = args => {
               <FormControl.Validation>{args.validationText || 'Great! It worked.'}</FormControl.Validation>
             )}
           </FormControl>
+
+          <Heading as="h6">Number of users</Heading>
+          {/* Todo convert to a fieldset */}
+          <Stack direction={{narrow: 'vertical', regular: 'horizontal'}} padding="none">
+            <FormControl>
+              <FormControl.Label>0-99</FormControl.Label>
+              <Radio name="user-band" value="0-99" />
+            </FormControl>
+            <FormControl>
+              <FormControl.Label>100-499</FormControl.Label>
+              <Radio name="user-band" value="100-499" />
+            </FormControl>
+            <FormControl>
+              <FormControl.Label>500-999</FormControl.Label>
+              <Radio name="user-band" value="500-999" />
+            </FormControl>
+            <FormControl>
+              <FormControl.Label>1000+</FormControl.Label>
+              <Radio name="user-band" value="1000+" />
+            </FormControl>
+          </Stack>
           <FormControl hasBorder required>
             <FormControl.Label>
               Contact me about GitHub Enterprise Server{' '}

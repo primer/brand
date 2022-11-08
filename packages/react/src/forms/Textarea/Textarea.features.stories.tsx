@@ -23,16 +23,6 @@ export const WithFormControl: ComponentStory<typeof Textarea> = () => (
 )
 WithFormControl.storyName = 'w/ labels'
 
-export const Inactive: ComponentStory<typeof Textarea> = () => (
-  <FormControl>
-    <FormControl.Label>Description</FormControl.Label>
-    <Textarea disabled />
-  </FormControl>
-)
+export const Inactive: ComponentStory<typeof Textarea> = () => <Textarea disabled />
 
-export const FullWidth: ComponentStory<typeof Textarea> = () => (
-  <FormControl>
-    <FormControl.Label>Description</FormControl.Label>
-    <Textarea />
-  </FormControl>
-)
+export const FullWidth: ComponentStory<typeof Textarea> = () => <Textarea fullWidth />
