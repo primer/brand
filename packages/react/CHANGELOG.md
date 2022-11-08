@@ -1,5 +1,81 @@
 # @primer/react-brand
 
+## 0.7.0
+
+### Minor Changes
+
+- [#117](https://github.com/primer/brand/pull/117) [`68d649f`](https://github.com/primer/brand/commit/68d649fd141c4cc158e0b5a47394d25aa0cc0ccf) Thanks [@rezrah](https://github.com/rezrah)! - Fix conflict with id and name attributes for form components
+
+  The previous API for FormControl relied on the `id` prop to automatically assign the necessary `name` attribute for input tags. This had previously overridden the explicit `name` prop, which is not the desired behavior. This release fixes that by forwarding the `name` prop if it is provided, and falling back to the `id` prop if it is not.
+
+  ```jsx
+  <FormControl>
+    <FormControl.Label>Name</FormControl.Label>
+    <TextInput name="name" />
+  </FormControl>
+  ```
+
+  The above will now render as
+
+  ```html
+  <section id="FormControl--custom-id">
+    <label for="custom-id">Name</label>
+    <input type="text" name="custom-name" id="custom-id" />
+  </section>
+  ```
+
+* [#117](https://github.com/primer/brand/pull/117) [`68d649f`](https://github.com/primer/brand/commit/68d649fd141c4cc158e0b5a47394d25aa0cc0ccf) Thanks [@rezrah](https://github.com/rezrah)! - New Radio component available
+
+  Use radios when a user needs to select one option from a list
+
+  ```js
+  import {Radio} from '@primer/react-brand'
+  ```
+
+  ```jsx
+  <>
+    <Radio name="radio-group" value="radio one" />
+    <Radio name="radio-group" value="radio two" />
+  </>
+  ```
+
+  :link: [See the documentation for more details and usage examples.](https://primer.style/brand/components/Radio)
+
+- [#117](https://github.com/primer/brand/pull/117) [`68d649f`](https://github.com/primer/brand/commit/68d649fd141c4cc158e0b5a47394d25aa0cc0ccf) Thanks [@rezrah](https://github.com/rezrah)! - New Textarea component available
+
+  Use Textarea for multi-line text input form fields
+
+  ```js
+  import {Textarea} from '@primer/react-brand'
+  ```
+
+  ```jsx
+  <Textarea>Enter multiline text here</Textarea>
+  ```
+
+  :link: [See the documentation for more details and usage examples.](https://primer.style/brand/components/Textarea)
+
+### Patch Changes
+
+- [#121](https://github.com/primer/brand/pull/121) [`7d7c9c3`](https://github.com/primer/brand/commit/7d7c9c3d643d894f44874330848da556a39ac2a1) Thanks [@rezrah](https://github.com/rezrah)! - Fixed conditional rendering bug in SubdomainNavBar
+
+  Previously, SubdomainNavBar links would not appear correctly onscreen following a rerender.
+
+  This bug has been fixed to ensure that conditional rendering - using `showLinks` below as an example - works as expected.
+
+  ```jsx
+  <SubdomainNavBar title="Subdomain">
+    {showLinks &&
+      ['Collections', 'Topics', 'Articles', 'Events', 'Video'].map(link => {
+        return (
+          <SubdomainNavBar.Link key={link} href={`#${link}`}>
+            {link}
+          </SubdomainNavBar.Link>
+        )
+      })}
+  </SubdomainNavBar>
+  ```
+
 ## 0.6.0
 
 ### Minor Changes
