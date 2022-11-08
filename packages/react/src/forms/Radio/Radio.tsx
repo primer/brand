@@ -51,6 +51,7 @@ const _Radio = (
         value={value}
         {...rest}
       />
+      {/* eslint-disable-next-line jsx-a11y/label-has-for */}
       <label htmlFor={uniqueId} className={clsx(styles.Radio, className)}>
         <span className={styles['Radio-dot']} />
       </label>
