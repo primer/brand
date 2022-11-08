@@ -44,6 +44,10 @@
 /*
  * Gap and padding
  */
+.Stack--gap-none {
+  gap: 0;
+}
+
 .Stack--gap-condensed {
   gap: var(--brand-stack-gap-condensed);
 }
@@ -54,6 +58,10 @@
 
 .Stack--gap-spacious {
   gap: var(--brand-stack-gap-spacious);
+}
+
+.Stack-narrow--gap-none {
+  gap: 0;
 }
 
 .Stack-narrow--gap-condensed {
@@ -68,6 +76,10 @@
   gap: var(--brand-stack-gap-spacious);
 }
 
+.Stack--padding-none {
+  padding: 0;
+}
+
 .Stack--padding-condensed {
   padding: var(--brand-stack-padding-condensed);
 }
@@ -78,6 +90,10 @@
 
 .Stack--padding-spacious {
   padding: var(--brand-stack-padding-spacious);
+}
+
+.Stack-narrow--padding-none {
+  padding: 0;
 }
 
 .Stack-narrow--padding-condensed {
@@ -93,6 +109,10 @@
 }
 
 @media screen and (min-width: 48rem) {
+  .Stack-regular--gap-none {
+    gap: 0;
+  }
+
   .Stack-regular--gap-condensed {
     gap: var(--brand-stack-gap-condensed);
   }
@@ -103,6 +123,10 @@
 
   .Stack-regular--gap-spacious {
     gap: var(--brand-stack-gap-spacious);
+  }
+
+  .Stack-regular--padding-none {
+    padding: 0;
   }
 
   .Stack-regular--padding-condensed {
@@ -119,6 +143,10 @@
 }
 
 @media screen and (min-width: 80rem) {
+  .Stack-wide--gap-none {
+    gap: 0;
+  }
+
   .Stack-wide--gap-condensed {
     gap: var(--brand-stack-gap-condensed);
   }
@@ -129,6 +157,10 @@
 
   .Stack-wide--gap-spacious {
     gap: var(--brand-stack-gap-spacious);
+  }
+
+  .Stack-wide--padding-none {
+    padding: 0;
   }
 
   .Stack-wide--padding-condensed {

@@ -8,6 +8,7 @@ declare const styles: {
   readonly "FormControl-label--medium": string;
   readonly "FormControl-label--large": string;
   readonly "FormControl-label--checkbox": string;
+  readonly "FormControl-control--radio": string;
   readonly "FormControl-hint": string;
   readonly "FormControl-validation": string;
   readonly "FormControl-validation--success": string;

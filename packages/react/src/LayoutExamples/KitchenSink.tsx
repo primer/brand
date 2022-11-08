@@ -15,7 +15,8 @@ import {
   Button,
   SubdomainNavBar,
   Stack,
-  Testimonial
+  Testimonial,
+  Radio
 } from '..'
 
 type KitchenSinkProps = React.HTMLAttributes<HTMLDivElement>
@@ -306,6 +307,28 @@ export function KitchenSink(props: KitchenSinkProps) {
                   <Select.Option value="uk">United Kingdom</Select.Option>
                 </Select>
               </FormControl>
+              <Heading as="h4" size="6">
+                Number of users
+              </Heading>
+              {/* Todo convert to a fieldset */}
+              <Stack direction={{narrow: 'vertical', regular: 'horizontal'}} padding="none">
+                <FormControl>
+                  <FormControl.Label>0-99</FormControl.Label>
+                  <Radio name="user-band" value="0-99" />
+                </FormControl>
+                <FormControl>
+                  <FormControl.Label>100-499</FormControl.Label>
+                  <Radio name="user-band" value="100-499" />
+                </FormControl>
+                <FormControl>
+                  <FormControl.Label>500-999</FormControl.Label>
+                  <Radio name="user-band" value="500-999" />
+                </FormControl>
+                <FormControl>
+                  <FormControl.Label>1000+</FormControl.Label>
+                  <Radio name="user-band" value="1000+" />
+                </FormControl>
+              </Stack>
               <FormControl hasBorder required>
                 <FormControl.Label>
                   Contact me about GitHub Enterprise Server{' '}
