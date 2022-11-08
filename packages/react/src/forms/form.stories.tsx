@@ -122,7 +122,9 @@ export const GitHubEnterprise = args => {
             )}
           </FormControl>
 
-          <Heading as="h6">Number of users</Heading>
+          <Heading as="h4" size="6">
+            Number of users
+          </Heading>
           {/* Todo convert to a fieldset */}
           <Stack direction={{narrow: 'vertical', regular: 'horizontal'}} padding="none">
             <FormControl>

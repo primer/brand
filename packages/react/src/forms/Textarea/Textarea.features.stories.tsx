@@ -23,6 +23,8 @@ export const WithFormControl: ComponentStory<typeof Textarea> = () => (
 )
 WithFormControl.storyName = 'w/ labels'
 
-export const Inactive: ComponentStory<typeof Textarea> = () => <Textarea disabled />
+export const Inactive: ComponentStory<typeof Textarea> = () => <Textarea aria-label="Standalone text input" disabled />
 
-export const FullWidth: ComponentStory<typeof Textarea> = () => <Textarea fullWidth />
+export const FullWidth: ComponentStory<typeof Textarea> = () => (
+  <Textarea aria-label="Standalone text input" fullWidth />
+)
