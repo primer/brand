@@ -1,4 +1,4 @@
-import React, {useCallback, useRef, useState} from 'react'
+import React, {useCallback, useEffect, useRef, useState} from 'react'
 import clsx from 'clsx'
 import {ChevronDownIcon} from '@primer/octicons-react'
 
@@ -12,7 +12,7 @@ import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
 
 export function NavigationVisbilityObserver({children, className, ...rest}) {
   const navRef = useRef<HTMLUListElement | null>(null)
-  const [visibilityMap] = useVisibilityObserver(navRef)
+  const [visibilityMap] = useVisibilityObserver(navRef, children)
 
   const showOverflow = Object.values(visibilityMap).includes(false)
 

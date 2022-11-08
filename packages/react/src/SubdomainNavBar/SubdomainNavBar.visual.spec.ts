@@ -101,4 +101,12 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
 
     expect(await page.screenshot()).toMatchSnapshot()
   })
+
+  test('SubdomainNavBar / Conditional Rendering', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--conditional-rendering&viewMode=story'
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
 })
