@@ -1,5 +1,11 @@
 # @primer/react-brand
 
+## 0.7.1
+
+### Patch Changes
+
+- [#124](https://github.com/primer/brand/pull/124) [`bc08980`](https://github.com/primer/brand/commit/bc0898075c4674cbcbaf587fac78f073ff747312) Thanks [@rezrah](https://github.com/rezrah)! - Fix: SubdomainNavBar and Radio component bugs in safari (iOS)
+
 ## 0.7.0
 
 ### Minor Changes
