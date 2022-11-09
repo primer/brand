@@ -178,7 +178,7 @@
 }
 
 @media screen and (max-width: 767px) {
-  .SubdomainNavBar-primary-nav-list--visible .SubdomainNavBar-primary-nav-list-item--visible {
+  .SubdomainNavBar-primary-nav-list-item {
     animation-name: fade-in-down-staggered;
     animation-duration: 500ms;
     animation-delay: calc(var(--animation-order) * 80ms);
