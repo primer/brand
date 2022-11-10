@@ -13,17 +13,30 @@
   background: none;
 }
 
-.Button:focus {
-  outline: 0;
-  box-shadow: var(--brand-Button-shadow-focus), var(--brand-Button-shadow-hover);
+.Button:focus:not(.Button--disabled) {
+  outline: 2px solid var(--brand-color-canvas-default);
+  box-shadow: 0 0 0 5px var(--brand-color-focus);
 }
 
 .Button--label {
   font-weight: var(--base-text-weight-semibold);
 }
 
+.Button--label.Button-label--disabled {
+  color: var(--brand-Button-fg-primary-inactive);
+}
+
 .Button-arrow {
   margin-left: 4px;
+}
+
+.Button--primary .Button-arrow--disabled {
+  color: var(--brand-Button-fg-primary-inactive);
+}
+
+.Button--secondary .Button-arrow--disabled,
+.Button--subtle .Button-arrow--disabled {
+  color: var(--brand-Button-fg-secondary-inactive);
 }
 
 .Button--primary {
@@ -32,12 +45,20 @@
   background: var(--brand-Button-background-overlay);
 }
 
-.Button--primary:hover {
+.Button--primary:not(.Button--disabled):hover {
   box-shadow: var(--brand-Button-shadow-hover);
+}
+
+.Button--primary.Button--disabled {
+  background-color: var(--base-color-scale-gray-4);
 }
 
 .Button--label-primary {
   color: var(--brand-color-text-onEmphasis);
+}
+
+.Button--label-primary.Button-label--disabled {
+  color: var(--brand-Button-fg-primary-inactive);
 }
 
 .Button--secondary {
@@ -46,8 +67,13 @@
   transition: box-shadow 200ms;
 }
 
-.Button--secondary:hover {
+.Button--secondary:not(.Button--disabled):hover {
   box-shadow: inset 0 0 0 2px var(--brand-color-neutral-emphasisPlus);
+}
+
+.Button--label-secondary.Button-label--disabled,
+.Button--label-secondary.Button-label--disabled {
+  color: var(--brand-Button-fg-secondary-inactive);
 }
 
 .Button--subtle {
@@ -65,4 +91,15 @@
 
 .Button--size-large {
   padding: var(--base-size-16) var(--base-size-32);
+}
+
+.Button--disabled,
+.Button--disabled:hover,
+.Button--disabled:focus {
+  cursor: not-allowed;
+  outline: none;
+}
+
+.Button--disabled:not(.Button--secondary) {
+  box-shadow: none;
 }

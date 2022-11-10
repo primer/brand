@@ -8,31 +8,108 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Button', () => {
   test('Button / Primary', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button--primary&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--primary&viewMode=story')
 
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('Button / Primary Inactive', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--primary-inactive&viewMode=story'
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Button / Primary Focus', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--primary-focus&viewMode=story'
+    )
+
+    await page.waitForTimeout(1000)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Button / Primary Focus w/ non-standard background', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--primary-focus-non-standard-bg&viewMode=story'
+    )
+
+    await page.waitForTimeout(1000)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Button / Secondary', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button--secondary&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--secondary&viewMode=story')
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Button / Secondary Inactive', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--secondary-inactive&viewMode=story'
+    )
 
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Subtle', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button--subtle&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--subtle&viewMode=story')
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Button / Subtle Inactive', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--subtle-inactive&viewMode=story'
+    )
 
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Large', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button--large&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--large&viewMode=story')
 
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Polymorphism', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button--polymorphism&viewMode=story')
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--polymorphism&viewMode=story'
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Button / Primary button with hover interaction', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--with-hover-interaction&viewMode=story'
+    )
+
+    await page.waitForTimeout(1000)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Button / Secondary button with hover interaction', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--secondary-with-hover-interaction&viewMode=story'
+    )
+
+    await page.waitForTimeout(1000)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Button / Subtle button with hover interaction', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--subtle-with-hover-interaction&viewMode=story'
+    )
+
+    await page.waitForTimeout(1000)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Button / Playground', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button--playground&viewMode=story')
 
     expect(await page.screenshot()).toMatchSnapshot()
   })
