@@ -23,7 +23,7 @@
 }
 
 .Button--label.Button-label--disabled {
-  color: var(--brand-Button-fg-primary-inactive);
+  color: var(--brand-Button-fg-primary-disabled);
 }
 
 .Button-arrow {
@@ -31,12 +31,12 @@
 }
 
 .Button--primary .Button-arrow--disabled {
-  color: var(--brand-Button-fg-primary-inactive);
+  color: var(--brand-Button-fg-primary-disabled);
 }
 
 .Button--secondary .Button-arrow--disabled,
 .Button--subtle .Button-arrow--disabled {
-  color: var(--brand-Button-fg-secondary-inactive);
+  color: var(--brand-Button-fg-secondary-disabled);
 }
 
 .Button--primary {
@@ -58,7 +58,7 @@
 }
 
 .Button--label-primary.Button-label--disabled {
-  color: var(--brand-Button-fg-primary-inactive);
+  color: var(--brand-Button-fg-primary-disabled);
 }
 
 .Button--secondary {
@@ -73,7 +73,7 @@
 
 .Button--label-secondary.Button-label--disabled,
 .Button--label-secondary.Button-label--disabled {
-  color: var(--brand-Button-fg-secondary-inactive);
+  color: var(--brand-Button-fg-secondary-disabled);
 }
 
 .Button--subtle {

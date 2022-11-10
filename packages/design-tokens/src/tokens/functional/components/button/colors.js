@@ -10,20 +10,20 @@ module.exports = {
           value: `linear-gradient(180deg, hsla(0, 0%, 100%, 0.15) 0, hsla(0, 0%, 100%, 0) 100%), var(--base-color-scale-black-0)`,
           dark: `linear-gradient(180deg, hsla(0,0%,100%,0.15) 0,hsla(0,0%,100%,0) 100%),var(--base-color-scale-white-0)`
         },
-        inactive: {
+        disabled: {
           value: `var(--base-color-scale-gray-4)`,
           dark: `var(--base-color-scale-gray-4)`
         }
       },
       fg: {
         primary: {
-          inactive: {
+          disabled: {
             value: `var(--base-color-scale-gray-2)`,
             dark: `var(--base-color-scale-gray-2)`
           }
         },
         secondary: {
-          inactive: {
+          disabled: {
             value: `var(--base-color-scale-gray-3)`,
             dark: `var(--base-color-scale-gray-4)`
           }

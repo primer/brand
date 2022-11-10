@@ -96,6 +96,7 @@ export const Button = forwardRef(
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
         disabled={disabled}
+        aria-disabled={disabled ? 'true' : 'false'}
         {...props}
       >
         <Text

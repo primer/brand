@@ -13,9 +13,9 @@ test.describe('Visual Comparison: Button', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Button / Primary Inactive', async ({page}) => {
+  test('Button / Primary Disabled', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-button-features--primary-inactive&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--primary-disabled&viewMode=story'
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -45,9 +45,9 @@ test.describe('Visual Comparison: Button', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Button / Secondary Inactive', async ({page}) => {
+  test('Button / Secondary Disabled', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-button-features--secondary-inactive&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--secondary-disabled&viewMode=story'
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -59,9 +59,9 @@ test.describe('Visual Comparison: Button', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Button / Subtle Inactive', async ({page}) => {
+  test('Button / Subtle Disabled', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-button-features--subtle-inactive&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--subtle-disabled&viewMode=story'
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -110,6 +110,12 @@ test.describe('Visual Comparison: Button', () => {
 
   test('Button / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-button--playground&viewMode=story')
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Button / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button--default&viewMode=story')
 
     expect(await page.screenshot()).toMatchSnapshot()
   })

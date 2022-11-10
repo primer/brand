@@ -15,9 +15,9 @@ export const Primary = () => (
   </Button>
 )
 
-export const PrimaryInactive = () => (
+export const PrimaryDisabled = () => (
   <Button as="a" disabled variant="primary" href="#">
-    Inactive primary button
+    Disabled primary button
   </Button>
 )
 
@@ -52,9 +52,9 @@ export const Secondary = () => (
   </Button>
 )
 
-export const SecondaryInactive = () => (
+export const SecondaryDisabled = () => (
   <Button as="a" disabled variant="secondary" href="#">
-    Inactive secondary button
+    Disabled secondary button
   </Button>
 )
 
@@ -64,9 +64,9 @@ export const Subtle = () => (
   </Button>
 )
 
-export const SubtleInactive = () => (
+export const SubtleDisabled = () => (
   <Button as="a" disabled variant="subtle" href="#">
-    Inactive subtle button
+    Disabled subtle button
   </Button>
 )
 
