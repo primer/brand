@@ -10,7 +10,8 @@ export default {
     variant: defaultButtonVariant,
     size: defaultButtonSize,
     href: '#',
-    children: 'Button'
+    children: 'Button',
+    disabled: false
   },
   // overriding default type inference for args with more useful control types
   argTypes: {
@@ -57,3 +58,4 @@ export default {
 const Template: ComponentStory<typeof Button> = args => <Button {...args} />
 
 export const Playground = Template.bind({})
+export const Default = () => <Button>Default</Button>
