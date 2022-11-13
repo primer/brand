@@ -14,8 +14,9 @@
 }
 
 .Button:focus:not(.Button--disabled) {
-  outline: 2px solid var(--brand-color-canvas-default);
-  box-shadow: 0 0 0 5px var(--brand-color-focus);
+  /* outline: 2px solid var(--brand-color-canvas-default); */
+  outline: none;
+  box-shadow: 0 0 0 2px var(--brand-color-canvas-default), 0 0 0 5px var(--brand-color-focus);
 }
 
 .Button--label {
