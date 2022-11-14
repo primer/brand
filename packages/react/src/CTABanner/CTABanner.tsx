@@ -8,17 +8,28 @@ import {Text} from '../Text'
 export type CTABannerProps = BaseProps<HTMLDivElement> & {
   children: React.ReactNode | React.ReactNode[]
   align?: 'start' | 'center'
+  hasBorder?: boolean
+  hasShadow?: boolean
 }
 
 export const Root = forwardRef(
-  ({align = 'start', className, children, ...props}: CTABannerProps, ref: Ref<HTMLDivElement>) => {
+  (
+    {align = 'start', hasBorder = false, hasShadow = true, className, children, ...props}: CTABannerProps,
+    ref: Ref<HTMLDivElement>
+  ) => {
     return (
       <section
         ref={ref}
-        className={clsx(styles.CTABanner, align === 'center' && styles['CTABanner--center'], className)}
+        className={clsx(styles.CTABanner, align === 'center' && styles['CTABanner--center'])}
         {...props}
       >
-        {children}
+        {hasShadow && (
+          <>
+            <div className={styles['CTABanner--RightShadow']} />
+            <div className={styles['CTABanner--LeftShadow']} />
+          </>
+        )}
+        <div className={clsx(styles['CTABanner--content'], hasBorder && styles['CTABanner--border'])}>{children}</div>
       </section>
     )
   }

@@ -20,6 +20,7 @@ export const ButtonGroup = forwardRef(
             size: buttonSize,
             as: buttonsAs,
             variant: index === 0 ? 'primary' : 'secondary',
+            hasArrow: index === 0 ? true : false,
             ...child.props
           } as ButtonProps<'button'>)
         }

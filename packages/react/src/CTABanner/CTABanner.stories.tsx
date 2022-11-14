@@ -9,7 +9,9 @@ export default {
   component: CTABanner,
   subcomponents: {ButtonGroup},
   args: {
-    align: 'start'
+    align: 'start',
+    hasBorder: false,
+    hasShadow: true
   },
   argTypes: {
     align: {
@@ -17,6 +19,18 @@ export default {
       control: {
         type: 'radio',
         options: ['start', 'center']
+      }
+    },
+    hasBorder: {
+      description: 'Toggle to show or hide the border',
+      control: {
+        type: 'boolean'
+      }
+    },
+    hasShadow: {
+      description: 'Toggle to show or hide the background shadow',
+      control: {
+        type: 'boolean'
       }
     },
     children: {
@@ -43,7 +57,17 @@ const Template: ComponentStory<typeof CTABanner> = args => (
 
 export const Playground = Template.bind({})
 
-// export const LinkButtonGroup = Template.bind({})
-// LinkButtonGroup.args = {
-//   buttonsAs: 'a'
-// }
+export const CTABannerWithBorder = Template.bind({})
+CTABannerWithBorder.args = {
+  hasBorder: true
+}
+
+export const CTABannerWithNoShadow = Template.bind({})
+CTABannerWithBorder.args = {
+  hasShadow: false
+}
+
+export const CTABannerAlignedCenter = Template.bind({})
+CTABannerAlignedCenter.args = {
+  align: 'center'
+}

@@ -1,29 +1,41 @@
 .CTABanner {
+  position: relative;
+  max-width: 1280px;
+  margin: 0 auto;
   display: flex;
   gap: var(--base-size-16);
   flex-direction: column;
-  border-radius: 6px;
-  padding: 40px 32px;
-  box-shadow: 2.8px 2.8px 2.2px rgba(26, 127, 55, 0.002), 6.7px 6.7px 5.3px rgba(26, 127, 55, 0.005),
-    12.5px 12.5px 10px rgba(26, 127, 55, 0.01), 22.3px 22.3px 17.9px rgba(26, 127, 55, 0.016),
-    41.8px 41.8px 33.4px rgba(26, 127, 55, 0.027), 100px 100px 80px rgba(26, 127, 55, 0.07),
-    -2.8px -2.8px 2.2px rgba(3, 102, 214, 0.002), -6.7px -6.7px 5.3px rgba(3, 102, 214, 0.005),
-    -12.5px -12.5px 10px rgba(3, 102, 214, 0.01), -22.3px -22.3px 17.9px rgba(3, 102, 214, 0.016),
-    -41.8px -41.8px 33.4px rgba(3, 102, 214, 0.027), -100px -100px 80px rgba(3, 102, 214, 0.07);
 }
 
-.CTABanner:after {
+.CTABanner--RightShadow {
   position: absolute;
-  content: '';
-  display: block;
-  width: 100%;
-  height: 20px;
-  margin-top: 190px;
-  z-index: -1;
-  background: -webkit-radial-gradient(rgba(0, 0, 0, 0.3), rgba(255, 255, 255, 0));
-  background: -moz-radial-gradient(rgba(0, 0, 0, 0.3), rgba(255, 255, 255, 0));
-  background: -o-radial-gradient(rgba(0, 0, 0, 0.3), rgba(255, 255, 255, 0));
-  background: -ms-radial-gradient(rgba(0, 0, 0, 0.3), rgba(255, 255, 255, 0));
+  height: calc(100% - 40px);
+  width: calc(70% - 40px);
+  top: 20px;
+  left: 20px;
+  border-radius: 50%;
+  box-shadow: 0 0 90px 30px rgba(26, 127, 55);
+}
+
+.CTABanner--LeftShadow {
+  position: absolute;
+  height: calc(100% - 40px);
+  width: calc(70% - 40px);
+  top: 20px;
+  right: 20px;
+  border-radius: 50%;
+  box-shadow: 0 0 90px 30px rgba(3, 102, 214);
+}
+
+.CTABanner--content {
+  border-radius: 6px;
+  padding: 40px 32px;
+  z-index: 1;
+  background-color: white;
+}
+
+.CTABanner--border {
+  border: 1px solid var(--brand-color-border-default);
 }
 
 .CTABanner--center {
@@ -46,14 +58,14 @@
 
 /* Medium breakpoint and up */
 @media screen and (min-width: 48rem) {
-  .CTABanner {
+  .CTABanner--content {
     padding: 80px 64px;
   }
 }
 
 /* Large breakpoint and up */
 @media screen and (min-width: 63.25rem) {
-  .CTABanner {
+  .CTABanner--content {
     padding: 128px 64px;
   }
 }
