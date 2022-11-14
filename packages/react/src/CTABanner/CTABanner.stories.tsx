@@ -63,7 +63,7 @@ CTABannerWithBorder.args = {
 }
 
 export const CTABannerWithNoShadow = Template.bind({})
-CTABannerWithBorder.args = {
+CTABannerWithNoShadow.args = {
   hasShadow: false
 }
 
