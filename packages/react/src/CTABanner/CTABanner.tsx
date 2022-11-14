@@ -25,8 +25,8 @@ export const Root = forwardRef(
       >
         {hasShadow && (
           <>
-            <div className={styles['CTABanner--RightShadow']} />
-            <div className={styles['CTABanner--LeftShadow']} />
+            <div className={clsx(styles['CTABanner--Shadow'], styles['CTABanner--RightShadow'])} />
+            <div className={clsx(styles['CTABanner--Shadow'], styles['CTABanner--LeftShadow'])} />
           </>
         )}
         <div className={clsx(styles['CTABanner--content'], hasBorder && styles['CTABanner--border'])}>{children}</div>

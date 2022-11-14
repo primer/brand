@@ -7,23 +7,21 @@
   flex-direction: column;
 }
 
-.CTABanner--RightShadow {
+.CTABanner--Shadow {
   position: absolute;
   height: calc(100% - 40px);
   width: calc(70% - 40px);
-  top: 20px;
-  left: 20px;
   border-radius: 50%;
+  top: 20px;
+}
+
+.CTABanner--RightShadow {
+  left: 20px;
   box-shadow: 0 0 90px 30px rgba(26, 127, 55);
 }
 
 .CTABanner--LeftShadow {
-  position: absolute;
-  height: calc(100% - 40px);
-  width: calc(70% - 40px);
-  top: 20px;
   right: 20px;
-  border-radius: 50%;
   box-shadow: 0 0 90px 30px rgba(3, 102, 214);
 }
 
