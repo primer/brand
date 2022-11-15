@@ -72,6 +72,38 @@ module.exports = {
             dark: 'var(--base-color-scale-gray-4)'
           }
         }
+      },
+      radio: {
+        bg: {
+          default: {
+            value: 'var(--base-color-scale-white-0)',
+            dark: 'var(--base-color-scale-black-0)'
+          },
+          checked: {
+            value: 'var(--base-color-scale-white-0)',
+            dark: 'var(--base-color-scale-black-0)'
+          },
+          disabled: {
+            value: 'var(--base-color-scale-gray-1)',
+            dark: 'var(--base-color-scale-gray-4)'
+          }
+        },
+        border: {
+          default: {
+            value: 'var(--brand-control-color-border-default)',
+            dark: 'var(--base-color-scale-white-0)'
+          },
+          checked: {
+            value: 'var(--base-color-scale-black-0)',
+            dark: 'var(--base-color-scale-white-0)'
+          }
+        },
+        dot: {
+          default: {
+            value: 'var(--base-color-scale-black-0)',
+            dark: 'var(--base-color-scale-white-0)'
+          }
+        }
       }
     }
   }

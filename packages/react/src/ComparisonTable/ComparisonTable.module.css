@@ -1,0 +1,287 @@
+/*
+* Heading
+*/
+.ComparisonTable--heading {
+  text-align: left;
+}
+
+@media screen and (min-width: 34rem) {
+  .ComparisonTable--heading {
+    text-align: center;
+    margin-bottom: var(--base-size-40);
+  }
+}
+
+/**
+ * Footnotes
+ */
+
+.ComparisonTable-footnote {
+  text-align: center;
+  margin: var(--base-size-24) 0;
+}
+
+/*
+* Table
+*/
+
+.ComparisonTable {
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-family: var(--brand-body-fontFamily);
+  width: 100%;
+}
+
+.ComparisonTable tr {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: left;
+}
+
+.ComparisonTable-cell {
+  color: var(--brand-color-text-default);
+  font-weight: var(--brand-text-weight-300);
+  font-size: var(--brand-text-size-300);
+  line-height: var(--brand-text-lineHeight-300);
+  padding-bottom: var(--base-size-24);
+}
+
+.ComparisonTable-cell-heading {
+  font-weight: var(--base-text-weight-semibold);
+  font-size: var(--brand-text-size-300);
+  line-height: var(--brand-text-lineHeight-300);
+}
+
+.ComparisonTable-cell-container {
+  display: block;
+  padding-top: var(--base-size-8);
+}
+
+/*
+ * Narrow viewport-only styles
+*/
+@media screen and (max-width: 34rem) {
+  .ComparisonTable thead .ComparisonTable-cell-heading {
+    display: none;
+  }
+
+  .ComparisonTable-cell {
+    margin-bottom: var(--base-size-32);
+    padding-bottom: 0;
+  }
+
+  .ComparisonTable thead tr {
+    border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
+  }
+
+  .ComparisonTable tbody tr {
+    border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
+  }
+
+  .ComparisonTable-inline-cell-label {
+    font-weight: var(--brand-heading-weight-600);
+    font-size: var(--brand-text-size-600);
+    line-height: var(--brand-heading-lineHeight-600);
+  }
+
+  .ComparisonTable tbody .ComparisonTable-cell-heading {
+    margin-top: var(--base-size-24);
+    margin-bottom: var(--base-size-16);
+    font-weight: var(--brand-heading-weight-500);
+    font-size: var(--brand-text-size-500);
+    line-height: var(--brand-heading-lineHeight-500);
+  }
+}
+
+/*
+ * Narrow landscape and above viewport styles
+*/
+@media screen and (min-width: 34rem) {
+  .ComparisonTable tr {
+    flex-direction: row;
+  }
+
+  .ComparisonTable-cell-container {
+    padding-top: var(--base-size-24);
+  }
+
+  .ComparisonTable-cell-heading {
+    text-align: left;
+  }
+
+  .ComparisonTable th:first-of-type {
+    width: 25%;
+    margin-right: 40px;
+  }
+
+  .ComparisonTable tr td:nth-of-type(1),
+  .ComparisonTable tr:nth-of-type(1) th:nth-of-type(2) {
+    width: 40%;
+  }
+  .ComparisonTable tr td:nth-of-type(2),
+  .ComparisonTable tr:nth-of-type(1) th:nth-of-type(3) {
+    width: 35%;
+    margin-left: 40px;
+  }
+
+  .ComparisonTable--hide-element-on-narrow {
+    display: none;
+  }
+
+  .ComparisonTable-cell-container {
+    border-top: var(--brand-borderWidth-thick) solid var(--brand-color-border-default);
+  }
+}
+
+/*
+ * Default presentation
+ */
+:global(.ComparisonTable--default) .ComparisonTable-cell-heading--first {
+  color: var(--brand-color-text-muted);
+}
+
+:global(.ComparisonTable--default) thead .ComparisonTable-cell-heading {
+  padding: var(--base-size-24) 0 var(--base-size-16);
+}
+
+:global(.ComparisonTable--default) .ComparisonTable-cell-heading-label--featured {
+  position: relative;
+  z-index: 2;
+}
+
+/*
+ * Narrow viewport-only styles
+*/
+@media screen and (max-width: 34rem) {
+  :global(.ComparisonTable--default) {
+    margin-top: var(--base-size-8);
+  }
+
+  :global(.ComparisonTable--default) .ComparisonTable-cell:not(.ComparisonTable-cell-heading) {
+    position: relative;
+    padding-left: 25px;
+  }
+  :global(.ComparisonTable--default) .ComparisonTable-cell::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 5px;
+    background: var(--brand-color-border-default);
+  }
+  :global(.ComparisonTable--default) .ComparisonTable-cell--featured::before {
+    background: linear-gradient(
+      180deg,
+      var(--brand-ComparisonTable-featured-color-start),
+      var(--brand-ComparisonTable-featured-color-end)
+    );
+  }
+}
+
+/*
+ * Narrow landscape and above viewport styles
+*/
+@media screen and (min-width: 34rem) {
+  :global(.ComparisonTable--default) .ComparisonTable-cell-heading-label--featured {
+    color: transparent;
+    background: linear-gradient(
+      89.46deg,
+      var(--brand-ComparisonTable-featured-color-start) 0.87%,
+      var(--brand-ComparisonTable-featured-color-end) 75.12%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+  :global(.ComparisonTable--default) thead .ComparisonTable-cell-heading {
+    font-weight: var(--brand-heading-weight-500);
+    font-size: var(--brand-text-size-500);
+    line-height: var(--brand-heading-lineHeight-500);
+    display: inline-flex;
+    align-items: flex-end;
+  }
+  :global(.ComparisonTable--default) thead .ComparisonTable-cell-heading--first {
+    font-weight: var(--brand-heading-weight-400);
+    font-size: var(--brand-text-size-400);
+    line-height: var(--brand-heading-lineHeight-400);
+  }
+
+  :global(.ComparisonTable--default) .ComparisonTable-cell--featured,
+  :global(.ComparisonTable--default) thead .ComparisonTable-cell-heading--featured {
+    padding-left: var(--base-size-24);
+    padding-right: var(--base-size-24);
+    border-right: 2px solid var(--brand-ComparisonTable-featured-color-end);
+    border-left: 2px solid var(--brand-ComparisonTable-featured-color-start);
+  }
+  :global(.ComparisonTable--default) thead .ComparisonTable-cell-heading--featured {
+    position: relative;
+    border-top-left-radius: 0.45rem;
+    border-top-right-radius: 0.45rem;
+    background: var(--brand-color-canvas-default);
+  }
+  :global(.ComparisonTable--default) thead .ComparisonTable-cell-heading--featured::before,
+  :global(.ComparisonTable--default) thead .ComparisonTable-cell-heading--featured::after {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    bottom: 0;
+    left: -2px;
+    z-index: 0;
+    content: '';
+    background: linear-gradient(
+      90deg,
+      var(--brand-ComparisonTable-featured-color-start),
+      var(--brand-ComparisonTable-featured-color-end)
+    );
+    border-top-left-radius: 0.45rem;
+    border-top-right-radius: 0.45rem;
+  }
+
+  :global(.ComparisonTable--default) thead .ComparisonTable-cell-heading--featured::after {
+    z-index: 1;
+    background: var(--brand-color-canvas-default);
+    top: 0px;
+    left: 0;
+    right: 0;
+    border-top-right-radius: 0.35rem;
+    border-top-left-radius: 0.35rem;
+  }
+  :global(.ComparisonTable--default) .ComparisonTable-cell--featured.ComparisonTable-cell--lastrow {
+    position: relative;
+    background: var(--brand-color-canvas-default);
+    border-bottom-right-radius: 0.45rem;
+    border-bottom-left-radius: 0.45rem;
+  }
+  :global(.ComparisonTable--default) .ComparisonTable-cell--featured.ComparisonTable-cell--lastrow::after,
+  :global(.ComparisonTable--default) .ComparisonTable-cell--featured.ComparisonTable-cell--lastrow::before {
+    position: absolute;
+    top: 0;
+    right: -2px;
+    bottom: 0;
+    left: -2px;
+    z-index: 0;
+    content: '';
+    background: linear-gradient(
+      90deg,
+      var(--brand-ComparisonTable-featured-color-start),
+      var(--brand-ComparisonTable-featured-color-end)
+    );
+    border-bottom-right-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+  }
+  :global(.ComparisonTable--default) .ComparisonTable-cell--featured.ComparisonTable-cell--lastrow::after {
+    z-index: 1;
+    background: var(--brand-color-canvas-default);
+    bottom: 2px;
+    left: 0;
+    right: 0;
+    border-bottom-right-radius: 0.35rem;
+    border-bottom-left-radius: 0.35rem;
+  }
+
+  :global(.ComparisonTable--default) .ComparisonTable-cell-container--featured {
+    position: relative;
+    z-index: 2;
+  }
+}

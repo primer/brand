@@ -1,0 +1,111 @@
+/*
+ * Default Radio styles
+ */
+.Radio-wrapper {
+  position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+.Radio {
+  align-items: center;
+  background-color: var(--brand-control-radio-bg-default);
+  border: solid var(--brand-borderWidth-thick, 1px) var(--brand-control-color-border-default);
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-flex;
+  height: 20px;
+  justify-content: center;
+  margin: 3px 0; /* mimic default browser-applied vertical margin */
+  margin: 3px 3px 0px 5px; /* Emulate browser defaults */
+
+  width: 20px;
+  outline: none;
+  box-shadow: 0 0 0 3px transparent;
+  position: relative;
+}
+
+/*
+Fixes safari bug where outline doesn't respect border-radius
+*/
+.Radio::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  right: -2px;
+  bottom: -2px;
+  left: -4px;
+  border: 2px solid var(--brand-control-radio-bg-default);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+}
+
+/**
+ * Radio native input - visually hidden
+ */
+.Radio-input {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.Radio-dot {
+  position: absolute;
+  display: none;
+  border-color: var(--brand-control-radio-dot-default);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--brand-control-radio-dot-default);
+  position: absolute;
+  display: block;
+  transform: scale(0.7);
+  opacity: 0;
+  transition: transform 0.35s cubic-bezier(0.33, 1, 0.68, 1), opacity 0.35s cubic-bezier(0.33, 1, 0.68, 1);
+}
+@media (prefers-reduced-motion) {
+  .Radio-dot {
+    transition: none;
+  }
+}
+
+/*
+* Checked state
+*/
+
+.Radio-input:checked + .Radio {
+  background-color: var(--brand-control-radio-bg-checked);
+  border-color: var(--brand-control-radio-border-checked);
+}
+
+.Radio-input:checked + .Radio .Radio-dot {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.Radio-input:focus + .Radio {
+  box-shadow: 0 0 0 4px var(--brand-color-focus);
+}
+
+/* TODO: Check with a11y team */
+.Radio-input:checked:focus + .Radio {
+  border-color: var(--brand-control-radio-border-checked);
+}
+
+.Radio-input[disabled] + .Radio,
+.Radio-input[disabled]:checked + .Radio {
+  -webkit-text-fill-color: var(--brand-control-color-fg-disabled);
+  color: var(--brand-control-color-fg-disabled);
+  cursor: not-allowed;
+  background-color: var(--brand-control-radio-bg-disabled);
+  border-color: var(--brand-control-color-border-disabled);
+  opacity: 1;
+}
