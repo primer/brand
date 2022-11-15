@@ -9,27 +9,34 @@
 
 .CTABanner--Shadow {
   position: absolute;
-  height: calc(100% - 40px);
-  width: calc(70% - 40px);
-  border-radius: 50%;
-  top: 20px;
+  transform: translate(-50%, 0%);
+  width: calc(60% + 60px);
+  height: calc(100% + 60px);
+  border-radius: 50% 22% 40% 80%;
+  filter: blur(50px);
+  top: 0%;
+  opacity: 0.7;
 }
 
 .CTABanner--RightShadow {
-  left: 20px;
-  box-shadow: 0 0 90px 30px rgba(26, 127, 55);
+  left: 30%;
+  background: radial-gradient(circle at 50% 50%, rgba(26, 127, 55, 1), rgba(26, 127, 55, 0));
 }
 
 .CTABanner--LeftShadow {
-  right: 20px;
-  box-shadow: 0 0 90px 30px rgba(3, 102, 214);
+  left: 70%;
+  background: radial-gradient(circle at 50% 50%, rgba(3, 102, 214, 1), rgba(3, 102, 214, 0));
 }
 
 .CTABanner--content {
   border-radius: 6px;
   padding: 40px 32px;
   z-index: 1;
-  background-color: white;
+  background: white;
+}
+
+.CTABanner--content--noshadow {
+  background: none;
 }
 
 .CTABanner--border {
