@@ -11,7 +11,8 @@ export default {
   args: {
     align: 'start',
     hasBorder: false,
-    hasShadow: true
+    hasShadow: true,
+    hasBackground: true
   },
   argTypes: {
     align: {
@@ -29,6 +30,12 @@ export default {
     },
     hasShadow: {
       description: 'Toggle to show or hide the background shadow',
+      control: {
+        type: 'boolean'
+      }
+    },
+    hasBackground: {
+      description: 'Toggle to show or hide the background',
       control: {
         type: 'boolean'
       }

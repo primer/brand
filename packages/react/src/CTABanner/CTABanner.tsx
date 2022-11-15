@@ -10,11 +10,20 @@ export type CTABannerProps = BaseProps<HTMLDivElement> & {
   align?: 'start' | 'center'
   hasBorder?: boolean
   hasShadow?: boolean
+  hasBackground?: boolean
 }
 
 export const Root = forwardRef(
   (
-    {align = 'start', hasBorder = false, hasShadow = true, className, children, ...props}: CTABannerProps,
+    {
+      align = 'start',
+      hasBorder = false,
+      hasShadow = true,
+      hasBackground = true,
+      className,
+      children,
+      ...props
+    }: CTABannerProps,
     ref: Ref<HTMLDivElement>
   ) => {
     return (
@@ -33,7 +42,7 @@ export const Root = forwardRef(
           className={clsx(
             styles['CTABanner--content'],
             hasBorder && styles['CTABanner--border'],
-            !hasShadow && styles['CTABanner--content--noshadow']
+            !hasShadow || (!hasBackground && styles['CTABanner--content--noshadow'])
           )}
         >
           {children}
