@@ -64,7 +64,11 @@ export const Heading = forwardRef(
     {as = CTABannerHeadingTags[1], className, children, ...props}: CTABannerHeadingProps,
     ref: Ref<HTMLHeadingElement>
   ) => {
-    return <PlainHeading {...props}>{children}</PlainHeading>
+    return (
+      <PlainHeading {...props} className={className} as={as}>
+        {children}
+      </PlainHeading>
+    )
   }
 )
 
