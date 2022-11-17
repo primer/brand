@@ -1,9 +1,16 @@
 import React, {forwardRef, type Ref} from 'react'
 import clsx from 'clsx'
 import type {BaseProps} from '../component-helpers'
-import styles from './CTABanner.module.css'
-import {Heading as PlainHeading} from '../Heading'
+import {Heading} from '../Heading'
 import {Text} from '../Text'
+
+/**
+ * Design tokens
+ */
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/cta-banner/colors-with-modes.css'
+
+/** * Main Stylesheet (as a CSS Module) */
+import styles from './CTABanner.module.css'
 
 export type CTABannerProps = BaseProps<HTMLDivElement> & {
   children: React.ReactNode | React.ReactNode[]
@@ -27,22 +34,19 @@ export const Root = forwardRef(
     ref: Ref<HTMLDivElement>
   ) => {
     return (
-      <section
-        ref={ref}
-        className={clsx(styles.CTABanner, align === 'center' && styles['CTABanner--center'])}
-        {...props}
-      >
+      <section ref={ref} className={styles.CTABanner} {...props}>
         {hasShadow && (
           <>
-            <div className={clsx(styles['CTABanner--Shadow'], styles['CTABanner--RightShadow'])} />
-            <div className={clsx(styles['CTABanner--Shadow'], styles['CTABanner--LeftShadow'])} />
+            <div aria-hidden className={clsx(styles['CTABanner--Shadow'], styles['CTABanner--StartShadow'])} />
+            <div aria-hidden className={clsx(styles['CTABanner--Shadow'], styles['CTABanner--EndShadow'])} />
           </>
         )}
         <div
           className={clsx(
-            styles['CTABanner--content'],
-            hasBorder && styles['CTABanner--border'],
-            !hasShadow || (!hasBackground && styles['CTABanner--content--noshadow'])
+            styles['CTABanner-content'],
+            hasBorder && styles['CTABanner-content--border'],
+            !hasShadow || (!hasBackground && styles['CTABanner-content--noshadow']),
+            align === 'center' && styles['CTABanner-content--center']
           )}
         >
           {children}
@@ -59,15 +63,15 @@ export type CTABannerHeadingProps = BaseProps<HTMLHeadingElement> & {
   as?: typeof CTABannerHeadingTags[number]
 }
 
-export const Heading = forwardRef(
+export const _Heading = forwardRef(
   (
     {as = CTABannerHeadingTags[1], className, children, ...props}: CTABannerHeadingProps,
     ref: Ref<HTMLHeadingElement>
   ) => {
     return (
-      <PlainHeading {...props} className={className} as={as}>
+      <Heading ref={ref} {...props} className={className} as={as}>
         {children}
-      </PlainHeading>
+      </Heading>
     )
   }
 )
@@ -79,11 +83,11 @@ export type CTABannerDescriptionProps = BaseProps<HTMLHeadingElement> & {
 export const Description = forwardRef(
   ({className, children, ...props}: CTABannerDescriptionProps, ref: Ref<HTMLParagraphElement>) => {
     return (
-      <Text ref={ref} className={clsx(styles.CTABannerDescription, className)} size={'400'} as="div" {...props}>
+      <Text ref={ref} className={clsx(styles['CTABanner-description'], className)} size={'400'} as="div" {...props}>
         {children}
       </Text>
     )
   }
 )
 
-export const CTABanner = Object.assign(Root, {Heading, Description})
+export const CTABanner = Object.assign(Root, {Heading: _Heading, Description})

@@ -3,8 +3,6 @@
   max-width: 1280px;
   margin: 0 auto;
   display: flex;
-  gap: var(--base-size-16);
-  flex-direction: column;
 }
 
 .CTABanner--Shadow {
@@ -18,59 +16,67 @@
   opacity: 0.7;
 }
 
-.CTABanner--RightShadow {
+.CTABanner--StartShadow {
   left: 30%;
-  background: radial-gradient(circle at 50% 50%, rgba(26, 127, 55, 1), rgba(26, 127, 55, 0));
+  background: radial-gradient(
+    circle at 50% 50%,
+    hsla(var(--brand-CTABanner-shadow-color-start) / 1),
+    hsla(var(--brand-CTABanner-shadow-color-start) / 0)
+  );
 }
 
-.CTABanner--LeftShadow {
+.CTABanner--EndShadow {
   left: 70%;
-  background: radial-gradient(circle at 50% 50%, rgba(3, 102, 214, 1), rgba(3, 102, 214, 0));
+  background: radial-gradient(
+    circle at 50% 50%,
+    hsla(var(--brand-CTABanner-shadow-color-end) / 1),
+    hsla(var(--brand-CTABanner-shadow-color-end) / 0)
+  );
 }
 
-.CTABanner--content {
-  border-radius: 6px;
-  padding: 40px 32px;
+.CTABanner-content {
+  border-radius: var(--brand-borderRadius-medium);
+  padding: var(--base-size-40) var(--base-size-32);
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-16);
   background: white;
+  align-items: start;
 }
 
-.CTABanner--content--noshadow {
+.CTABanner-content--noshadow {
   background: none;
 }
 
-.CTABanner--border {
+.CTABanner-content--border {
   border: 1px solid var(--brand-color-border-default);
 }
 
-.CTABanner--center {
+.CTABanner-content--center {
   align-items: center;
   text-align: center;
-}
-
-.CTABanner > * {
-  align-self: start;
 }
 
 .CTABanner--center > * {
   align-self: center;
 }
 
-.CTABannerDescription {
+.CTABanner-description {
   color: var(--brand-color-text-muted);
   margin-bottom: var(--base-size-16);
 }
 
 /* Medium breakpoint and up */
 @media screen and (min-width: 48rem) {
-  .CTABanner--content {
-    padding: 80px 64px;
+  .CTABanner-content {
+    padding: var(--base-size-80) var(--base-size-64);
   }
 }
 
 /* Large breakpoint and up */
 @media screen and (min-width: 63.25rem) {
-  .CTABanner--content {
-    padding: 128px 64px;
+  .CTABanner-content {
+    padding: var(--base-size-128) var(--base-size-64);
   }
 }
