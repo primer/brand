@@ -83,7 +83,7 @@ export type CTABannerDescriptionProps = BaseProps<HTMLHeadingElement> & {
 export const Description = forwardRef(
   ({className, children, ...props}: CTABannerDescriptionProps, ref: Ref<HTMLParagraphElement>) => {
     return (
-      <Text ref={ref} className={clsx(styles['CTABanner-description'], className)} size={'400'} as="div" {...props}>
+      <Text ref={ref} className={clsx(styles['CTABanner-description'], className)} size={'400'} as="p" {...props}>
         {children}
       </Text>
     )

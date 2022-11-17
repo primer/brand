@@ -1,4 +1,4 @@
-import React, {render, cleanup, getByDisplayValue, getByText, getByTestId} from '@testing-library/react'
+import React, {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
 import {CTABanner} from './CTABanner'
@@ -87,7 +87,7 @@ describe('CTABanner', () => {
 
   it('renders the CTABanner with a border', () => {
     const mockTestId = 'test'
-    const classToCheck = 'CTABanner--border'
+    const classToCheck = 'CTABanner-content--border'
 
     const {getByTestId} = render(
       <CTABanner hasBorder data-testid={mockTestId}>
@@ -122,5 +122,31 @@ describe('CTABanner', () => {
     )
     const ctaBannerEl = getByTestId(mockTestId).firstChild
     expect(ctaBannerEl).not.toHaveClass(classToCheck)
+  })
+
+  it('renders primary button with arrow by default', () => {
+    const {getAllByRole} = render(
+      <CTABanner>
+        <ButtonGroup>
+          <Button>Primary Action</Button>
+          <Button>Secondary Action</Button>
+        </ButtonGroup>
+      </CTABanner>
+    )
+    const buttonEl = getAllByRole('button')[0]
+    expect(buttonEl.querySelector('svg')).not.toBeNull()
+  })
+
+  it('renders secondary button without arrow by default', () => {
+    const {getAllByRole} = render(
+      <CTABanner>
+        <ButtonGroup>
+          <Button>Primary Action</Button>
+          <Button>Secondary Action</Button>
+        </ButtonGroup>
+      </CTABanner>
+    )
+    const buttonEl = getAllByRole('button')[1]
+    expect(buttonEl.querySelector('svg')).toBeNull()
   })
 })
