@@ -40,7 +40,7 @@ jobs:
         run: npm run build:lib && cd apps/storybook && npx build-storybook
 
       - name: Update snapshots
-        run: cd pacakges/e2e && npm run test:visual:generate && npm run test:visual:update-snapshots
+        run: cd packages/e2e && npm run test:visual:generate && npm run test:visual:update-snapshots
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
