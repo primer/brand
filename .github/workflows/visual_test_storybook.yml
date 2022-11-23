@@ -92,7 +92,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COMMENT_IDENTIFIER: 'visual-comparison-diff'
   update-snapshots:
-    if: ${{ github.event.label.name == 'update_snapshots' }}
+    if: ${{ github.event.label.name == 'update snapshots' }}
     name: Update visual snapshots
     runs-on: ubuntu-latest
     steps:
