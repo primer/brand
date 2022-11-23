@@ -37,7 +37,7 @@ jobs:
         run: npm ci --legacy-peer-deps && cd apps/docs && npm ci --legacy-peer-deps
 
       - name: Build assets
-        run: npm run build:lib && cd apps/storybook && npx build-storybook
+        run: npm run build:lib
 
       - name: Update snapshots
         run: cd packages/e2e && npm run test:visual:generate && npm run test:visual:update-snapshots
