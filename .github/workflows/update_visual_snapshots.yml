@@ -4,17 +4,20 @@ on:
   pull_request:
     types: [labeled]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   update-snapshots:
     if: ${{ github.event.label.name == 'update snapshots' }}
     name: Update visual snapshots
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.28.0-focal
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.head_ref }}
 
       - name: Set up Node
@@ -34,7 +37,13 @@ jobs:
         run: npm ci --legacy-peer-deps && cd apps/docs && npm ci --legacy-peer-deps
 
       - name: Build assets
-        run: npm run build:lib
+        run: npm run build:lib && cd apps/storybook && npx build-storybook
+
+      - name: Build storybook
+        run: cd apps/storybook && npx build-storybook
+
+      - name: Install browsers
+        run: npx playwright install --with-deps
 
       - name: Regenerate spec files
         run: cd packages/e2e && npm run test:visual:generate
