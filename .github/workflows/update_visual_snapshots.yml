@@ -9,6 +9,8 @@ jobs:
     if: ${{ github.event.label.name == 'update snapshots' }}
     name: Update visual snapshots
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.28.0-focal
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -39,8 +41,11 @@ jobs:
       - name: Build assets
         run: npm run build:lib
 
+      - name: Regenerate spec files
+        run: cd packages/e2e && npm run test:visual:generate
+
       - name: Update snapshots
-        run: cd packages/e2e && npm run test:visual:generate && npm run test:visual:update-snapshots
+        run: npx start-server-and-test 'npx http-server ./apps/storybook/storybook-static -p 6006' 6006 'cd packages/e2e && npx playwright test --update-snapshots'
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
