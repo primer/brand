@@ -50,7 +50,7 @@
 }
 
 .CTABanner-content--border {
-  border: 1px solid var(--brand-color-border-default);
+  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
 }
 
 .CTABanner-content--center {
