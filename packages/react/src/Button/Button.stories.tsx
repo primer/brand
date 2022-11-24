@@ -59,4 +59,3 @@ const Template: ComponentStory<typeof Button> = args => <Button {...args} />
 
 export const Playground = Template.bind({})
 export const Default = () => <Button>Default</Button>
-export const TestStory = () => <Button>Default</Button>
