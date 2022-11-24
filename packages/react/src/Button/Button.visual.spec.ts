@@ -119,10 +119,4 @@ test.describe('Visual Comparison: Button', () => {
 
     expect(await page.screenshot()).toMatchSnapshot()
   })
-
-  test('Button / Test Story', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button--test-story&viewMode=story')
-
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
 })
