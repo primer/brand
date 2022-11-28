@@ -91,7 +91,7 @@ describe('CTABanner', () => {
 
     const {getByTestId} = render(
       <CTABanner hasBorder data-testid={mockTestId}>
-        <CTABanner.Heading>{'This is your heading'}</CTABanner.Heading>
+        <CTABanner.Heading>This is your heading</CTABanner.Heading>
       </CTABanner>
     )
     const ctaBannerEl = getByTestId(mockTestId).lastChild
@@ -104,7 +104,7 @@ describe('CTABanner', () => {
 
     const {getByTestId} = render(
       <CTABanner data-testid={mockTestId}>
-        <CTABanner.Heading>{'This is your heading'}</CTABanner.Heading>
+        <CTABanner.Heading>This is your heading</CTABanner.Heading>
       </CTABanner>
     )
     const ctaBannerEl = getByTestId(mockTestId).firstChild
@@ -117,7 +117,7 @@ describe('CTABanner', () => {
 
     const {getByTestId} = render(
       <CTABanner hasShadow={false} data-testid={mockTestId}>
-        <CTABanner.Heading>{'This is your heading'}</CTABanner.Heading>
+        <CTABanner.Heading>This is your heading</CTABanner.Heading>
       </CTABanner>
     )
     const ctaBannerEl = getByTestId(mockTestId).firstChild

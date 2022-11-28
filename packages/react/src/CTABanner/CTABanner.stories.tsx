@@ -48,7 +48,7 @@ export default {
   }
 } as ComponentMeta<typeof CTABanner>
 
-const Template: ComponentStory<typeof CTABanner> = args => (
+export const Playground: ComponentStory<typeof CTABanner> = args => (
   <CTABanner {...args}>
     <CTABanner.Heading>Where the most ambitious teams build great things</CTABanner.Heading>
     <CTABanner.Description>
@@ -62,19 +62,4 @@ const Template: ComponentStory<typeof CTABanner> = args => (
   </CTABanner>
 )
 
-export const Playground = Template.bind({})
-
-export const CTABannerWithBorder = Template.bind({})
-CTABannerWithBorder.args = {
-  hasBorder: true
-}
-
-export const CTABannerWithNoShadow = Template.bind({})
-CTABannerWithNoShadow.args = {
-  hasShadow: false
-}
-
-export const CTABannerAlignedCenter = Template.bind({})
-CTABannerAlignedCenter.args = {
-  align: 'center'
-}
+export const Default = Playground.bind({})

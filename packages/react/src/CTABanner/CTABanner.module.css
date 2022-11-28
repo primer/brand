@@ -5,32 +5,16 @@
   display: flex;
 }
 
-.CTABanner--Shadow {
+.CTABanner--shadow::before {
+  content: '';
   position: absolute;
-  transform: translate(-50%, 0%);
-  width: calc(60% + 60px);
-  height: calc(100% + 60px);
-  border-radius: 50% 22% 40% 80%;
-  filter: blur(50px);
-  top: 0%;
-  opacity: 0.7;
-}
-
-.CTABanner--StartShadow {
-  left: 30%;
-  background: radial-gradient(
-    circle at 50% 50%,
-    hsla(var(--brand-CTABanner-shadow-color-start) / 1),
-    hsla(var(--brand-CTABanner-shadow-color-start) / 0)
-  );
-}
-
-.CTABanner--EndShadow {
-  left: 70%;
-  background: radial-gradient(
-    circle at 50% 50%,
-    hsla(var(--brand-CTABanner-shadow-color-end) / 1),
-    hsla(var(--brand-CTABanner-shadow-color-end) / 0)
+  inset: var(--base-size-16);
+  filter: blur(var(--base-size-96));
+  transform: translateZ(0);
+  background: linear-gradient(
+    to right,
+    hsl(var(--brand-CTABanner-shadow-color-start)),
+    hsl(var(--brand-CTABanner-shadow-color-end))
   );
 }
 
@@ -41,12 +25,11 @@
   display: flex;
   flex-direction: column;
   gap: var(--base-size-16);
-  background: white;
   align-items: start;
 }
 
-.CTABanner-content--noshadow {
-  background: none;
+.CTABanner-content--background {
+  background: var(--brand-color-canvas-default);
 }
 
 .CTABanner-content--border {
@@ -56,10 +39,6 @@
 .CTABanner-content--center {
   align-items: center;
   text-align: center;
-}
-
-.CTABanner--center > * {
-  align-self: center;
 }
 
 .CTABanner-description {

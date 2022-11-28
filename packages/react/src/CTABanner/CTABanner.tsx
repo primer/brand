@@ -34,18 +34,12 @@ export const Root = forwardRef(
     ref: Ref<HTMLDivElement>
   ) => {
     return (
-      <section ref={ref} className={styles.CTABanner} {...props}>
-        {hasShadow && (
-          <>
-            <div aria-hidden className={clsx(styles['CTABanner--Shadow'], styles['CTABanner--StartShadow'])} />
-            <div aria-hidden className={clsx(styles['CTABanner--Shadow'], styles['CTABanner--EndShadow'])} />
-          </>
-        )}
+      <section ref={ref} className={clsx(styles.CTABanner, hasShadow && styles['CTABanner--shadow'])} {...props}>
         <div
           className={clsx(
             styles['CTABanner-content'],
             hasBorder && styles['CTABanner-content--border'],
-            !hasShadow || (!hasBackground && styles['CTABanner-content--noshadow']),
+            hasBackground && styles['CTABanner-content--background'],
             align === 'center' && styles['CTABanner-content--center']
           )}
         >
@@ -76,7 +70,7 @@ export const _Heading = forwardRef(
   }
 )
 
-export type CTABannerDescriptionProps = BaseProps<HTMLHeadingElement> & {
+export type CTABannerDescriptionProps = BaseProps<HTMLParagraphElement> & {
   children: React.ReactNode | React.ReactNode[]
 }
 
