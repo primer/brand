@@ -87,7 +87,7 @@ describe('CTABanner', () => {
 
   it('renders the CTABanner with a border', () => {
     const mockTestId = 'test'
-    const classToCheck = 'CTABanner-content--border'
+    const classToCheck = 'CTABanner-container--border'
 
     const {getByTestId} = render(
       <CTABanner hasBorder data-testid={mockTestId}>
@@ -100,14 +100,14 @@ describe('CTABanner', () => {
 
   it('renders the CTABanner with shadows', () => {
     const mockTestId = 'test'
-    const classToCheck = 'CTABanner--Shadow'
+    const classToCheck = 'CTABanner--shadow'
 
     const {getByTestId} = render(
       <CTABanner data-testid={mockTestId}>
         <CTABanner.Heading>This is your heading</CTABanner.Heading>
       </CTABanner>
     )
-    const ctaBannerEl = getByTestId(mockTestId).firstChild
+    const ctaBannerEl = getByTestId(mockTestId)
     expect(ctaBannerEl).toHaveClass(classToCheck)
   })
 
