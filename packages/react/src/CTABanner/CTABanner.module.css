@@ -1,8 +1,8 @@
 .CTABanner {
   position: relative;
-  max-width: 1280px;
   margin: 0 auto;
   display: flex;
+  max-width: 1280px;
 }
 
 .CTABanner--shadow::before {
@@ -18,21 +18,28 @@
   );
 }
 
-.CTABanner-content {
+.CTABanner-container {
   border-radius: var(--brand-borderRadius-medium);
   padding: var(--base-size-40) var(--base-size-32);
   z-index: 1;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.CTABanner-content {
   display: flex;
   flex-direction: column;
   gap: var(--base-size-16);
   align-items: start;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.CTABanner-content--background {
+.CTABanner-container--background {
   background: var(--brand-color-canvas-default);
 }
 
-.CTABanner-content--border {
+.CTABanner-container--border {
   border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
 }
 
@@ -48,14 +55,14 @@
 
 /* Medium breakpoint and up */
 @media screen and (min-width: 48rem) {
-  .CTABanner-content {
+  .CTABanner-container {
     padding: var(--base-size-80) var(--base-size-64);
   }
 }
 
 /* Large breakpoint and up */
 @media screen and (min-width: 63.25rem) {
-  .CTABanner-content {
+  .CTABanner-container {
     padding: var(--base-size-128) var(--base-size-64);
   }
 }

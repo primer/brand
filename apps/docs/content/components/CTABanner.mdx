@@ -1,0 +1,205 @@
+---
+title: CTABanner
+status: Experimental
+figma: 'https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=539%3A14285&t=RJEWZhVUtrRQ0pKh-0'
+source: https://github.com/primer/brand/tree/main/src/CTABanner/CTABanner.tsx
+storybook: '/brand/storybook/?path=/docs/components-ctabanner--playground'
+description: Use CTABanner to create call to action content in a separated section.
+---
+
+```js
+import {CTABanner, ButtonGroup, Button} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<CTABanner>
+  <CTABanner.Heading>
+    Where the most ambitious teams build great things
+  </CTABanner.Heading>
+  <CTABanner.Description>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
+    ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
+    elementum.
+  </CTABanner.Description>
+  <ButtonGroup buttonSize="large">
+    <Button>Primary Action</Button>
+    <Button>Secondary Action</Button>
+  </ButtonGroup>
+</CTABanner>
+```
+
+### Aligned center
+
+The content alignment can be changed using the `align` prop on the root `<ComparisonTable>`. This can be configured to either `start` or `center`.
+
+```jsx live
+<CTABanner align={'center'}>
+  <CTABanner.Heading>
+    Where the most ambitious teams build great things
+  </CTABanner.Heading>
+  <CTABanner.Description>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
+    ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
+    elementum.
+  </CTABanner.Description>
+  <ButtonGroup buttonSize="large">
+    <Button>Primary Action</Button>
+    <Button>Secondary Action</Button>
+  </ButtonGroup>
+</CTABanner>
+```
+
+### Optional border
+
+A border can be provided using the `hasBorder` prop on the root `<ComparisonTable>`. This will render a border around the CTABanner component giving separatoin between the foreground and background. Especially when there is no shadow present on the background.
+
+```jsx live
+<CTABanner hasBorder>
+  <CTABanner.Heading>
+    Where the most ambitious teams build great things
+  </CTABanner.Heading>
+  <CTABanner.Description>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
+    ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
+    elementum.
+  </CTABanner.Description>
+  <ButtonGroup buttonSize="large">
+    <Button>Primary Action</Button>
+    <Button>Secondary Action</Button>
+  </ButtonGroup>
+</CTABanner>
+```
+
+### Optional background
+
+A background can be removed using the `hasBackground` prop on the root `<ComparisonTable>`. This will render the CTABanner component without a background allowing it to blend in with its parent.
+
+```jsx live
+<CTABanner hasBackground={false}>
+  <CTABanner.Heading>
+    Where the most ambitious teams build great things
+  </CTABanner.Heading>
+  <CTABanner.Description>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
+    ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
+    elementum.
+  </CTABanner.Description>
+  <ButtonGroup buttonSize="large">
+    <Button>Primary Action</Button>
+    <Button>Secondary Action</Button>
+  </ButtonGroup>
+</CTABanner>
+```
+
+### Optional shadow
+
+The shadow can be removed using the `hasShadow` prop on the root `<ComparisonTable>`. This will render the CTABanner component without the background shaow.
+
+```jsx live
+<CTABanner hasShadow={false}>
+  <CTABanner.Heading>
+    Where the most ambitious teams build great things
+  </CTABanner.Heading>
+  <CTABanner.Description>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
+    ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
+    elementum.
+  </CTABanner.Description>
+  <ButtonGroup buttonSize="large">
+    <Button>Primary Action</Button>
+    <Button>Secondary Action</Button>
+  </ButtonGroup>
+</CTABanner>
+```
+
+#### Color customization
+
+The default colors can be customized through dedicated CSS variables.
+
+| Name                                   | Default                          |
+| :------------------------------------- | :------------------------------- |
+| `--brand-CTABanner-shadow-color-start` | `--base-color-scale-green-5-hsl` |
+| `--brand-CTABanner-shadow-color-end`   | `--base-color-scale-blue-5-hsl`  |
+
+```javascript live noinline
+const App = () => {
+  const designTokenOverrides = `
+  .custom-colors[data-color-mode='dark'] {
+
+    /*
+     * Modify the value of these tokens.
+     * Remember to apply light mode equivalents if you're enabling theme switching.
+     */
+    --brand-CTABanner-shadow-color-start: var(--base-color-scale-purple-5-hsl);
+    --brand-CTABanner-shadow-color-end: var(--base-color-scale-red-5-hsl);
+
+  }
+`
+  return (
+    <ThemeProvider colorMode="dark" className="custom-colors">
+      <style>{designTokenOverrides}</style>
+      <CTABanner>
+        <CTABanner.Heading>
+          Where the most ambitious teams build great things
+        </CTABanner.Heading>
+        <CTABanner.Description>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
+          ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
+          elementum.
+        </CTABanner.Description>
+        <ButtonGroup buttonSize="large">
+          <Button>Primary Action</Button>
+          <Button>Secondary Action</Button>
+        </ButtonGroup>
+      </CTABanner>
+    </ThemeProvider>
+  )
+}
+
+render(<App />)
+```
+
+## Component props
+
+### ComparisonTable <Label>Required</Label>
+
+The first row in a table is automatically styled as a table header row.
+
+| name            | type                       | default   | required | description                                                  |
+| --------------- | -------------------------- | --------- | -------- | ------------------------------------------------------------ |
+| `children`      | `ReactNode`, `ReactNode[]` | undefined | `true`   | Content to include within the banner component               |
+| `align`         | `start`, `center`          | `start`   | `true`   | The layout applied to the content wihin the banner component |
+| `hasBorder`     | `boolean`                  | `false`   | `false`  | A flag used to provide a border to the banner component      |
+| `hasBackground` | `boolean`                  | `true`    | `false`  | A flag used to add a background to the banner component      |
+| `className`     | `string`                   |           | `false`  | CTABanner custom class                                       |
+
+### ComparisonTable.Heading
+
+Optional node that can be used to provide a heading for the banner.
+
+| name        | type                       | default   | required | description                                                           |
+| ----------- | -------------------------- | --------- | -------- | --------------------------------------------------------------------- |
+| `className` | `string`                   |           | `false`  | Custom class name for the ComparisonTable.Heading component           |
+| `children`  | `ReactNode`, `ReactNode[]` | undefined | `true`   | Content to be displayed inside the ComparisonTable.Heading component. |
+| `as`        | `h1`, `h2`                 | `h1`      | `false`  | Content to be displayed inside the column cell.                       |
+
+### CTABanner.Description
+
+Optional node that can be used to provide a description for the banner.
+
+| name       | type                       | default   | required | description                                         |
+| ---------- | -------------------------- | --------- | -------- | --------------------------------------------------- |
+| `children` | `ReactNode`, `ReactNode[]` | undefined | `true`   | Content to be displayed inside the banner component |
+
+`id`, `className` and `ref` are forwarded by default to all children.
+
+## Design tokens
+
+| css                                    | js                                   |
+| -------------------------------------- | ------------------------------------ |
+| `--brand-CTABanner-shadow-color-start` | `brand.CTABanner.shadow.color.start` |
+| `--brand-CTABanner-shadow-color-end`   | `brand.CTABanner.shadow.color.end`   |

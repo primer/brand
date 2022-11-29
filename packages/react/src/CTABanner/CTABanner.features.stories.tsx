@@ -1,6 +1,7 @@
 import React from 'react'
 import {ComponentMeta} from '@storybook/react'
-import {Playground} from './CTABanner.stories'
+import {ButtonGroup} from '../ButtonGroup'
+import {Button} from '../Button'
 
 import {CTABanner} from './CTABanner'
 
@@ -9,17 +10,68 @@ export default {
   component: CTABanner
 } as ComponentMeta<typeof CTABanner>
 
-export const WithBorder = Playground.bind({})
-WithBorder.args = {
-  hasBorder: true
-}
+export const WithBorder = () => (
+  <CTABanner hasBorder>
+    <CTABanner.Heading>Where the most ambitious teams build great things</CTABanner.Heading>
+    <CTABanner.Description>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+      felis nam pulvinar risus elementum.
+    </CTABanner.Description>
+    <ButtonGroup buttonSize="large">
+      <Button>Primary Action</Button>
+      <Button>Secondary Action</Button>
+    </ButtonGroup>
+  </CTABanner>
+)
 
-export const WithNoShadow = Playground.bind({})
-WithNoShadow.args = {
-  hasShadow: false
-}
+export const WithNoShadow = () => (
+  <CTABanner hasShadow={false}>
+    <CTABanner.Heading>Where the most ambitious teams build great things</CTABanner.Heading>
+    <CTABanner.Description>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+      felis nam pulvinar risus elementum.
+    </CTABanner.Description>
+    <ButtonGroup buttonSize="large">
+      <Button>Primary Action</Button>
+      <Button>Secondary Action</Button>
+    </ButtonGroup>
+  </CTABanner>
+)
 
-export const AlignedCenter = Playground.bind({})
-AlignedCenter.args = {
-  align: 'center'
-}
+export const AlignedCenter = () => (
+  <CTABanner align="center">
+    <CTABanner.Heading>Where the most ambitious teams build great things</CTABanner.Heading>
+    <CTABanner.Description>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+      felis nam pulvinar risus elementum.
+    </CTABanner.Description>
+    <ButtonGroup buttonSize="large">
+      <Button>Primary Action</Button>
+      <Button>Secondary Action</Button>
+    </ButtonGroup>
+  </CTABanner>
+)
+
+const designTokenOverrides = `
+  .custom-colors {
+    --brand-CTABanner-shadow-color-start: var(--base-color-scale-purple-5-hsl);
+    --brand-CTABanner-shadow-color-end: var(--base-color-scale-red-5-hsl);
+  }
+`
+
+export const CustomShadow = () => (
+  <div className="custom-colors">
+    <style>{designTokenOverrides}</style>
+    <CTABanner align="center">
+      <CTABanner.Heading>Where the most ambitious teams build great things</CTABanner.Heading>
+      <CTABanner.Description>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </CTABanner.Description>
+      <ButtonGroup buttonSize="large">
+        <Button>Primary Action</Button>
+        <Button>Secondary Action</Button>
+      </ButtonGroup>
+    </CTABanner>
+  </div>
+)

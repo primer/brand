@@ -37,13 +37,14 @@ export const Root = forwardRef(
       <section ref={ref} className={clsx(styles.CTABanner, hasShadow && styles['CTABanner--shadow'])} {...props}>
         <div
           className={clsx(
-            styles['CTABanner-content'],
-            hasBorder && styles['CTABanner-content--border'],
-            hasBackground && styles['CTABanner-content--background'],
-            align === 'center' && styles['CTABanner-content--center']
+            styles['CTABanner-container'],
+            hasBorder && styles['CTABanner-container--border'],
+            hasBackground && styles['CTABanner-container--background']
           )}
         >
-          {children}
+          <div className={clsx(styles['CTABanner-content'], align === 'center' && styles['CTABanner-content--center'])}>
+            {children}
+          </div>
         </div>
       </section>
     )
