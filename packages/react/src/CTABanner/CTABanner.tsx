@@ -31,7 +31,7 @@ export const Root = forwardRef(
       children,
       ...props
     }: CTABannerProps,
-    ref: Ref<HTMLDivElement>
+    ref: Ref<HTMLSectionElement>
   ) => {
     return (
       <section ref={ref} className={clsx(styles.CTABanner, hasShadow && styles['CTABanner--shadow'])} {...props}>
