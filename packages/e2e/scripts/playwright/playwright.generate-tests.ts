@@ -39,7 +39,12 @@
     'components-subdomainnavbar--overflow-menu-open': 5500, // for the animation
     'components-subdomainnavbar--mobile-view': 5500, // for the animation
     'components-subdomainnavbar--mobile-menu-open': 5500, // for all staggered animations
-    'components-subdomainnavbar--mobile-search-results-visible': 5500 // for the animation
+    'components-subdomainnavbar--mobile-search-results-visible': 5500, // for the animation
+    'components-button-features--primary-focus-non-standard-bg': 1000, // for the interaction test
+    'components-button-features--primary-focus': 1000, // for the interaction test
+    'components-button-features--with-hover-interaction': 1000, // for the interaction test
+    'components-button-features--secondary-with-hover-interaction': 1000, // for the interaction test
+    'components-button-features--subtle-with-hover-interaction': 1000 // for the interaction test
   }
 
   /**

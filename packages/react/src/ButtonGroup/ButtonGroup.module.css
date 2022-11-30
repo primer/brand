@@ -1,0 +1,10 @@
+.ButtonGroup {
+  display: inline-flex;
+  gap: var(--base-size-8);
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.ButtonGroup > * {
+  flex-grow: 1;
+}

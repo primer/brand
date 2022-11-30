@@ -33,7 +33,8 @@ import {FormControl} from '@primer/react-brand'
 ### Alternative inputs
 
 ```jsx live
-<Box sx={{display: 'inline-grid', gap: 3}}>
+<Stack direction="vertical" gap="spacious">
+  {/* Select */}
   <FormControl>
     <FormControl.Label>Select</FormControl.Label>
     <Select defaultValue="">
@@ -44,14 +45,26 @@ import {FormControl} from '@primer/react-brand'
       <Select.Option value="hubot">Hubot</Select.Option>
     </Select>
   </FormControl>
+  {/* Checkbox */}
   <FormControl>
     <FormControl.Label>
       Checkbox <FormControl.Hint>With an optional message</FormControl.Hint>
     </FormControl.Label>
-
     <Checkbox />
   </FormControl>
-</Box>
+  {/* Radio */}
+  <FormControl>
+    <FormControl.Label>
+      Radio <FormControl.Hint>With an optional message</FormControl.Hint>
+    </FormControl.Label>
+    <Radio />
+  </FormControl>
+  {/* Textarea */}
+  <FormControl fullWidth>
+    <FormControl.Label>Textarea</FormControl.Label>
+    <Textarea />
+  </FormControl>
+</Stack>
 ```
 
 ## Layout

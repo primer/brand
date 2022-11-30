@@ -10,7 +10,7 @@ export const StackDirectionVariants = ['horizontal', 'vertical'] as const
 type StackDirectionVariants = typeof StackDirectionVariants[number]
 export const defaultStackDirection = StackDirectionVariants[1]
 
-export const StackSpacingVariants = ['condensed', 'normal', 'spacious'] as const
+export const StackSpacingVariants = ['none', 'condensed', 'normal', 'spacious'] as const
 type StackSpacingVariants = typeof StackSpacingVariants[number]
 export const defaultStackSpacing = StackSpacingVariants[1]
 

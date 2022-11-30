@@ -1,6 +1,6 @@
 {
   "name": "@primer/react-brand",
-  "version": "0.5.3",
+  "version": "0.7.2",
   "description": "Primer Brand is a GitHub's design system for creating React-based marketing websites and digital experiences.",
   "keywords": [
     "primer",
@@ -28,13 +28,12 @@
   "scripts": {
     "build": "npm run clean && npm run build:css-types && webpack && scripts/postbuild",
     "build:css-types": "tcm -p 'src/**/*.module.css' .",
-    "build:tokens": "node scripts/build-tokens.js",
     "build:types": "tsc --project tsconfig.build.json",
     "check": "tsc --noEmit",
-    "clean": "rm -rf lib",
+    "clean": "rm -rf lib && rm -rf fonts",
     "format": "prettier --check '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
     "format:fix": "prettier --write '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
-    "lint": "eslint '**/*.{js,ts,tsx,md,mdx}' --max-warnings=0 --config ../../.eslintrc.js",
+    "lint": "eslint '**/*.{js,ts,tsx,md,mdx}' --max-warnings=0",
     "lint:fix": "npm run lint -- --fix",
     "release": "npm run build && changeset publish",
     "start": "npm run start:css-types",
