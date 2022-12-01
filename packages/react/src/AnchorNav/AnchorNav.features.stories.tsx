@@ -1,18 +1,19 @@
 import React from 'react'
-import {ComponentMeta} from '@storybook/react'
+import {ComponentMeta, ComponentStory} from '@storybook/react'
+import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
+
 import {AnchorNav} from '.'
 import {Heading, Text, Stack} from '../'
 import {RedlineBackground} from '../component-helpers'
 
-type MockData = {
-  [key: string]: string
-}
-
 export default {
-  title: 'Components/AnchorNav',
+  title: 'Components/AnchorNav/Features',
   component: AnchorNav,
   parameters: {
-    layout: 'fullscreen'
+    layout: 'fullscreen',
+    viewport: {
+      viewports: INITIAL_VIEWPORTS
+    }
   },
   args: {
     data: {
@@ -48,34 +49,23 @@ export default {
   }
 } as ComponentMeta<typeof AnchorNav>
 
-export const Default = ({data, ...args}: {data: MockData}) => {
-  return (
-    <AnchorNav {...args}>
-      <AnchorNav.Link href="#section">Section one</AnchorNav.Link>
-      <AnchorNav.Link href="#section">Section two</AnchorNav.Link>
-      <AnchorNav.Link href="#section">Section three</AnchorNav.Link>
-      <AnchorNav.Link href="#section">Section four</AnchorNav.Link>
-      <AnchorNav.Link href="#section">Section five</AnchorNav.Link>
-      <AnchorNav.Action href="#">Sign up</AnchorNav.Action>
-    </AnchorNav>
-  )
-}
-
-export const Playground = ({data, ...args}: {data: MockData; offset: number}) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const Template: ComponentStory<typeof AnchorNav> = (_, storyArgs: any) => {
+  const storyData = Object.entries(storyArgs.args.data) as [string, string][]
   return (
     <div style={{backgroundColor: 'var(--brand-color-canvas-default)'}}>
-      <RedlineBackground height={args.offset}>
+      <RedlineBackground height={storyArgs.args.offset}>
         <Stack direction="vertical" gap="none" justifyContent="center" style={{textAlign: 'center'}}>
           <Heading as="h1" size="6">
-            Offset {args.offset}px from top
+            Offset {storyArgs.args.offset}px from top
           </Heading>
           <Text as="p" variant="muted" size="200">
             (configure me using Storybook Controls)
           </Text>
         </Stack>
       </RedlineBackground>
-      <AnchorNav {...args}>
-        {Object.entries(data).map(([key, value]) => (
+      <AnchorNav {...storyArgs.args.args}>
+        {storyData.map(([key, value]) => (
           <AnchorNav.Link href={value} key={value}>
             {key}
           </AnchorNav.Link>
@@ -93,8 +83,8 @@ export const Playground = ({data, ...args}: {data: MockData; offset: number}) =>
         style={{marginBottom: '100px'}}
         padding="none"
       >
-        {Object.entries(data).map(([key, value]) => (
-          <RedlineBackground key={value}>
+        {storyData.map(([key, value]) => (
+          <RedlineBackground key={key}>
             <Stack
               key={value}
               id={value}
@@ -113,4 +103,11 @@ export const Playground = ({data, ...args}: {data: MockData; offset: number}) =>
       </Stack>
     </div>
   )
+}
+
+export const NarrowView = Template.bind({})
+NarrowView.parameters = {
+  viewport: {
+    defaultViewport: 'iphonexr'
+  }
 }

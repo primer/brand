@@ -285,8 +285,8 @@ export function ResourcesHubExample(props: ResourcesHubExampleProps) {
             </Heading>
             <Text as="p">
               There are dozens of alternative DevOps tools from best-in-breed point solutions to full platforms. So how
-              does GitHub compare? There are plenty of analyst reports that answer that question--but here's an overview
-              to help you get started.
+              does GitHub compare? There are plenty of analyst reports that answer that question--but here&apos;s an
+              overview to help you get started.
             </Text>
             <ButtonGroup>
               <Button>Download PDF</Button>

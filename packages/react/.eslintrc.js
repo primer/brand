@@ -3,6 +3,6 @@ const base = require('../../.eslintrc')
 module.exports = {
   ...base,
   parserOptions: {
-    tsconfigRootDir: './'
+    tsconfigRootDir: __dirname
   }
 }

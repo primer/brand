@@ -1,5 +1,4 @@
 :global(html) {
-  padding-top: 100px;
   scroll-behavior: smooth;
 }
 
@@ -19,7 +18,11 @@
   padding: var(--base-size-16);
   background: var(--brand-color-canvas-default);
   z-index: 91; /* must be higher than subdomain nav bar */
-  padding: 13px 40px;
+  padding: var(--base-size-12) var(--base-size-16);
+}
+
+.AnchorNav--stuck {
+  box-shadow: 0 3px 6px rgba(140, 149, 159, 0.15), 0 1px 1px rgba(0, 0, 0, 0.1);
 }
 
 .AnchorNav--expanded {
@@ -41,10 +44,6 @@
   .AnchorNav-inner-container {
     margin: 0 auto;
   }
-}
-
-.AnchorNav--stuck {
-  box-shadow: 0 3px 6px rgba(140, 149, 159, 0.15), 0 1px 1px rgba(0, 0, 0, 0.1);
 }
 
 .AnchorNav-link-container {
@@ -77,11 +76,16 @@
 }
 
 @media screen and (min-width: 63.25rem) {
+  .AnchorNav {
+    padding: var(--base-size-12) var(--base-size-40);
+  }
+
   .AnchorNav-link {
     position: relative;
     justify-content: center;
     margin: 0 1px; /* to provide space for focus border */
   }
+
   .AnchorNav-link::after {
     content: '';
     position: absolute;
@@ -133,12 +137,9 @@
 }
 
 .AnchorNav--expanded .AnchorNav-link {
+  margin: 0 0 2px; /* allow space for focus border */
   animation: fade-in 1s;
   animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
-}
-
-.AnchorNav--expanded .AnchorNav-link-label--is-active {
-  color: var(--brand-color-focus);
 }
 
 .AnchorNav-menu-button {
@@ -158,6 +159,10 @@
     transform: translateZ(-1px);
     animation: fade-in 0.5s;
     animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+  }
+
+  .AnchorNav--expanded .AnchorNav-link-label--is-active {
+    color: var(--brand-color-focus);
   }
 
   .AnchorNav-menu-button {
@@ -186,31 +191,37 @@
     left: auto;
     right: auto;
     top: auto;
-    align-items: center;
+    flex-direction: column;
+    text-align: left;
+    justify-content: center;
+    align-items: flex-start;
   }
 
   .AnchorNav-menu-button {
     all: unset;
     display: inline-flex;
     cursor: pointer;
-    padding: 8px 16px 8px 0; /*pointer coarse token*/
+    padding: 8px 16px; /*pointer coarse token*/
     align-items: center;
     height: 32px;
+    margin-left: -16px;
+    z-index: 1;
+    border-radius: 6px;
+  }
+
+  .AnchorNav-menu-button:focus-visible {
+    border-color: var(--brand-color-focus);
+    outline: none;
+    box-shadow: 0 0 0 2px var(--brand-color-focus);
   }
 }
 
 .AnchorNav-action {
-  display: none;
-}
-
-@media screen and (min-width: 30rem) {
-  .AnchorNav-action {
-    z-index: 1;
-    display: flex;
-    margin-left: auto;
-    white-space: nowrap;
-    padding: var(--base-size-12) var(--base-size-24);
-  }
+  z-index: 1;
+  display: flex;
+  margin-left: auto;
+  white-space: nowrap;
+  padding: var(--base-size-12) var(--base-size-24);
 }
 
 .AnchorNav--expanded .AnchorNav-action {
