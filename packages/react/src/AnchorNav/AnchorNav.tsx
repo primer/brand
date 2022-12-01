@@ -23,6 +23,7 @@ export type AnchorNavProps = BaseProps<HTMLElement> & {
 
 function _AnchorNav({children, ...props}: AnchorNavProps) {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
   const rootRef = useRef<HTMLElement | null>(null)
   const menuToggleButtonRef = useRef<HTMLButtonElement | null>(null)
   const linkContainerRef = useRef<HTMLDivElement | null>(null)
@@ -46,12 +47,18 @@ function _AnchorNav({children, ...props}: AnchorNavProps) {
   }
 
   useEffect(() => {
+    const queryResult = window.matchMedia('(prefers-reduced-motion: reduce)')
+
+    setPrefersReducedMotion(queryResult.matches)
+  }, [])
+
+  useEffect(() => {
     const node = rootRef.current
 
-    const hasIOSupport = !!window.IntersectionObserver
+    const supportsIntersectionObserver = !!window.IntersectionObserver
 
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-    if (!hasIOSupport || !node) return
+    if (!supportsIntersectionObserver || !node) return
 
     const topOfWindow = '0px 0px -100%'
     const observerParams = {threshold: 0, root: null, rootMargin: topOfWindow}
@@ -73,7 +80,7 @@ function _AnchorNav({children, ...props}: AnchorNavProps) {
   const Links = ValidChildren.map((child, index) => {
     if (React.isValidElement(child)) {
       if (child.type === _AnchorNavLink) {
-        const defaultProps = {toggleMenuCallback}
+        const defaultProps = {toggleMenuCallback, prefersReducedMotion}
         return React.cloneElement(child, {isActive: index === 0, ...defaultProps})
       }
     }
@@ -146,6 +153,7 @@ type AnchorNavLinkProps = BaseProps<HTMLAnchorElement> & {
   isActive?: boolean
   toggleMenuCallback?: () => void
   intersectionOptions?: AnchorNavLinkIntersectionOptions
+  prefersReducedMotion?: boolean
 } & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>
 
 function _AnchorNavLink({
@@ -153,13 +161,13 @@ function _AnchorNavLink({
   href,
   isActive,
   toggleMenuCallback,
+  prefersReducedMotion,
   intersectionOptions = {rootMargin: 'middle'},
   ...rest
 }: AnchorNavLinkProps) {
   const [offsetPosition, setOffsetPosition] = useState<undefined | number>()
   const {isLarge} = useWindowSize()
   const [intersectionEntry, setIntersectionEntry] = useState<IntersectionObserverEntry>()
-
   const isAnchor = /^#/.test(href)
   const sansAnchor = isAnchor ? href.replace(/^#/, '') : href
   const handleIntersectionUpdate = ([nextEntry]: IntersectionObserverEntry[]): void => {
@@ -169,10 +177,10 @@ function _AnchorNavLink({
   useEffect(() => {
     const node = document.querySelector(isAnchor ? href : `#${href}`)
 
-    const hasIOSupport = !!window.IntersectionObserver
+    const supportsIntersectionObserver = !!window.IntersectionObserver
 
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-    if (!hasIOSupport || !node) return
+    if (!supportsIntersectionObserver || !node) return
 
     const rootMarginTop = '0px 0px -100%'
     const rootMarginCenter = '-50% 0% -50% 0%'
@@ -206,15 +214,16 @@ function _AnchorNavLink({
   const handleClick = useCallback(
     event => {
       event.preventDefault()
+      const behavior = prefersReducedMotion ? 'auto' : 'smooth'
       if (toggleMenuCallback && !isLarge) {
         toggleMenuCallback()
       }
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth'
+        behavior
       })
     },
-    [isLarge, offsetPosition, toggleMenuCallback]
+    [isLarge, offsetPosition, toggleMenuCallback, prefersReducedMotion]
   )
 
   return (

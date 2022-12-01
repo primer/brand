@@ -19,7 +19,11 @@ export function useWindowSize() {
       setWindowSize({
         width: window.innerWidth,
         height: window.innerHeight,
-        isLarge: window.innerWidth >= 1012 // maps to large breakpoint
+        /*
+         * Maps to large breakpoint
+         * TODO: replace with design token. Requires remToPx util.
+         */
+        isLarge: window.innerWidth >= 1012
       })
     }
 
