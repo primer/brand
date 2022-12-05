@@ -40,7 +40,7 @@ export function ResourcesHubExample(props: ResourcesHubExampleProps) {
         <SubdomainNavBar.SecondaryAction href="#">Contact sales</SubdomainNavBar.SecondaryAction>
       </SubdomainNavBar>
       <div className={styles.heroBG} style={{backgroundImage: `url(${heroBG})`}}>
-        <div style={{maxWidth: 1280, margin: '-50px auto 0'}}>
+        <div style={{maxWidth: 1280, margin: '70px auto 0'}}>
           <Stack padding="spacious">
             <Hero
               heading="Compare GitHub to other DevOps solutions"
@@ -67,7 +67,7 @@ export function ResourcesHubExample(props: ResourcesHubExampleProps) {
           <AnchorNav.Action href="#">Sign up</AnchorNav.Action>
         </AnchorNav>
 
-        <div style={{maxWidth: 1280, margin: '0 auto 0 '}}>
+        <div style={{maxWidth: 1280, margin: '0 auto'}}>
           <div id="why-github">
             <div style={{maxWidth: '900px', margin: '0 auto'}}>
               <Stack padding="spacious" direction="vertical">
@@ -187,7 +187,7 @@ export function ResourcesHubExample(props: ResourcesHubExampleProps) {
                 </Stack>
               </Stack>
             </div>
-            <Stack id="why-github" direction="horizontal" justifyContent="center">
+            <Stack direction="horizontal" justifyContent="center">
               <Heading as="h3" size="4">
                 Why teams choose GitHub
               </Heading>
