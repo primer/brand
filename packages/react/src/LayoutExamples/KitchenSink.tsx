@@ -230,6 +230,59 @@ export function KitchenSink(props: KitchenSinkProps) {
             </FAQ.Answer>
           </FAQ.Item>
         </FAQ>
+        {/* TODO: Figure out what should stay and go here */}
+        {/* Adding a className to stack causes vertical direction */}
+        {/* The second trick might be applied to Stack by default */}
+        <div className="FeatureTrio">
+          <Stack direction="horizontal" padding="spacious" gap="spacious" style={{textAlign: 'center'}}>
+            <style>
+              {`
+			  	.FeatureTrio {
+					margin: 100px auto;
+				}
+
+				.FeatureTrio img {
+					box-shadow: var(--brand-River-visual-shadow);
+				}
+
+				.FeatureTrio > div > div {
+					flex: 1;
+				}
+
+				.FeatureTrio a > span {
+					color: #A475F9
+				}
+			`}
+            </style>
+            <Stack direction="vertical">
+              <img
+                src="https://via.placeholder.com/300x150/f5f5f5/f5f5f5.png"
+                alt="placeholder with gray background and no foreground text"
+              />
+              <Heading as="h6">24/7 support</Heading>
+              <Text size="300">Get help whenever you need it from out always-on team</Text>
+              <Link>See support options</Link>
+            </Stack>
+            <Stack direction="vertical">
+              <img
+                src="https://via.placeholder.com/300x150/f5f5f5/f5f5f5.png"
+                alt="placeholder with gray background and no foreground text"
+              />
+              <Heading as="h6">Top integrations</Heading>
+              <Text size="300">Use your favorite IDEs, cloudd platforms, and more.</Text>
+              <Link>Browse Marketplace</Link>
+            </Stack>
+            <Stack direction="vertical">
+              <img
+                src="https://via.placeholder.com/300x150/f5f5f5/f5f5f5.png"
+                alt="placeholder with gray background and no foreground text"
+              />
+              <Heading as="h6">Developer-led learning</Heading>
+              <Text size="300">Help your team level up their skills in the sme place they code.</Text>
+              <Link>Explore Skills</Link>
+            </Stack>
+          </Stack>
+        </div>
       </div>
 
       <ThemeProvider colorMode="dark">
