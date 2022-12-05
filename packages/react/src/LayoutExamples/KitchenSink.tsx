@@ -234,7 +234,7 @@ export function KitchenSink(props: KitchenSinkProps) {
         {/* Adding a className to stack causes vertical direction */}
         {/* The second trick might be applied to Stack by default */}
         <div className="FeatureTrio">
-          <Stack direction="horizontal" padding="spacious" gap="spacious" style={{textAlign: 'center'}}>
+          <Stack direction={{narrow: 'vertical', regular: 'horizontal'}} padding="spacious" gap="spacious">
             <style>
               {`
 			  	.FeatureTrio {
