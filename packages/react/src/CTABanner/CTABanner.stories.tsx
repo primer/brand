@@ -1,13 +1,11 @@
 import React from 'react'
 import {ComponentMeta, ComponentStory} from '@storybook/react'
 import {CTABanner} from '.'
-import {ButtonGroup} from '../ButtonGroup'
 import {Button} from '../Button'
 
 export default {
   title: 'Components/CTABanner',
   component: CTABanner,
-  subcomponents: {ButtonGroup},
   args: {
     align: 'start',
     hasBorder: false,
@@ -55,10 +53,10 @@ export const Playground: ComponentStory<typeof CTABanner> = args => (
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
       felis nam pulvinar risus elementum.
     </CTABanner.Description>
-    <ButtonGroup buttonSize="large">
+    <CTABanner.ButtonGroup>
       <Button>Primary Action</Button>
       <Button>Secondary Action</Button>
-    </ButtonGroup>
+    </CTABanner.ButtonGroup>
   </CTABanner>
 )
 

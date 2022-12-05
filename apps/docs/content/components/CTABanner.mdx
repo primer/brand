@@ -8,7 +8,7 @@ description: Use CTABanner to draw attention to or create urgency around a user 
 ---
 
 ```js
-import {CTABanner, ButtonGroup, Button, Label} from '@primer/react-brand'
+import {CTABanner, Button, Label} from '@primer/react-brand'
 ```
 
 ## Examples
@@ -25,10 +25,10 @@ import {CTABanner, ButtonGroup, Button, Label} from '@primer/react-brand'
     ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
     elementum.
   </CTABanner.Description>
-  <ButtonGroup buttonSize="large">
+  <CTABanner.ButtonGroup>
     <Button>Primary Action</Button>
     <Button>Secondary Action</Button>
-  </ButtonGroup>
+  </CTABanner.ButtonGroup>
 </CTABanner>
 ```
 
@@ -46,10 +46,10 @@ The content alignment can be changed using the `align` prop on the root `CTABann
     ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
     elementum.
   </CTABanner.Description>
-  <ButtonGroup buttonSize="large">
+  <CTABanner.ButtonGroup>
     <Button>Primary Action</Button>
     <Button>Secondary Action</Button>
-  </ButtonGroup>
+  </CTABanner.ButtonGroup>
 </CTABanner>
 ```
 
@@ -67,10 +67,10 @@ A border can be provided using the `hasBorder` prop on the root `<CTABanner>`. T
     ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
     elementum.
   </CTABanner.Description>
-  <ButtonGroup buttonSize="large">
+  <CTABanner.ButtonGroup>
     <Button>Primary Action</Button>
     <Button>Secondary Action</Button>
-  </ButtonGroup>
+  </CTABanner.ButtonGroup>
 </CTABanner>
 ```
 
@@ -88,10 +88,10 @@ A background can be removed using the `hasBackground` prop on the root `<Compari
     ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
     elementum.
   </CTABanner.Description>
-  <ButtonGroup buttonSize="large">
+  <CTABanner.ButtonGroup>
     <Button>Primary Action</Button>
     <Button>Secondary Action</Button>
-  </ButtonGroup>
+  </CTABanner.ButtonGroup>
 </CTABanner>
 ```
 
@@ -109,10 +109,10 @@ The shadow can be removed using the `hasShadow` prop on the root `CTABanner`. Th
     ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
     elementum.
   </CTABanner.Description>
-  <ButtonGroup buttonSize="large">
+  <CTABanner.ButtonGroup>
     <Button>Primary Action</Button>
     <Button>Secondary Action</Button>
-  </ButtonGroup>
+  </CTABanner.ButtonGroup>
 </CTABanner>
 ```
 
@@ -151,10 +151,10 @@ const App = () => {
           ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
           elementum.
         </CTABanner.Description>
-        <ButtonGroup buttonSize="large">
+        <CTABanner.ButtonGroup>
           <Button>Primary Action</Button>
           <Button>Secondary Action</Button>
-        </ButtonGroup>
+        </CTABanner.ButtonGroup>
       </CTABanner>
     </ThemeProvider>
   )
@@ -181,12 +181,12 @@ The first row in a table is automatically styled as a table header row.
 
 Optional node that can be used to provide a heading for the banner.
 
-| name        | type                         | default   | required | description                                                           |
-| ----------- | ---------------------------- | --------- | -------- | --------------------------------------------------------------------- |
-| `className` | `string`                     |           | `false`  | Custom class name for the ComparisonTable.Heading component           |
-| `children`  | `ReactNode`, `ReactNode[]`   | undefined | `true`   | Content to be displayed inside the ComparisonTable.Heading component. |
-| `as`        | `h1`, `h2`, `h3`, `h4`, `h5` | `h3`      | `false`  | Content size to be displayed inside the column cell.                  |
-| `size`      | `h1`, `h2`, `h3`, `h4`, `h5` | `h3`      | `false`  | True symantic element to be use as the text wrapper.                  |
+| name        | type                               | default   | required | description                                                           |
+| ----------- | ---------------------------------- | --------- | -------- | --------------------------------------------------------------------- |
+| `className` | `string`                           |           | `false`  | Custom class name for the ComparisonTable.Heading component           |
+| `children`  | `ReactNode`, `ReactNode[]`         | undefined | `true`   | Content to be displayed inside the ComparisonTable.Heading component. |
+| `as`        | `h1`, `h2`, `h3`, `h4`, `h5`, `h6` | `h3`      | `false`  | True symantic element to be use as the text wrapper. cell.            |
+| `size`      | `1`, `2`, `3`, `4`, `5`, `6`       | `2`       | `false`  | Content size to be displayed inside the column                        |
 
 ### CTABanner.Description
 

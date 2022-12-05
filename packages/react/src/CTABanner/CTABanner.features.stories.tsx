@@ -1,6 +1,5 @@
 import React from 'react'
 import {ComponentMeta} from '@storybook/react'
-import {ButtonGroup} from '../ButtonGroup'
 import {Button} from '../Button'
 
 import {CTABanner} from './CTABanner'
@@ -17,10 +16,10 @@ export const WithBorder = () => (
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
       felis nam pulvinar risus elementum.
     </CTABanner.Description>
-    <ButtonGroup buttonSize="large">
+    <CTABanner.ButtonGroup>
       <Button>Primary Action</Button>
       <Button>Secondary Action</Button>
-    </ButtonGroup>
+    </CTABanner.ButtonGroup>
   </CTABanner>
 )
 
@@ -31,10 +30,10 @@ export const WithNoShadow = () => (
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
       felis nam pulvinar risus elementum.
     </CTABanner.Description>
-    <ButtonGroup buttonSize="large">
+    <CTABanner.ButtonGroup>
       <Button>Primary Action</Button>
       <Button>Secondary Action</Button>
-    </ButtonGroup>
+    </CTABanner.ButtonGroup>
   </CTABanner>
 )
 
@@ -45,10 +44,10 @@ export const AlignedCenter = () => (
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
       felis nam pulvinar risus elementum.
     </CTABanner.Description>
-    <ButtonGroup buttonSize="large">
+    <CTABanner.ButtonGroup>
       <Button>Primary Action</Button>
       <Button>Secondary Action</Button>
-    </ButtonGroup>
+    </CTABanner.ButtonGroup>
   </CTABanner>
 )
 
@@ -68,10 +67,10 @@ export const CustomShadow = () => (
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
       </CTABanner.Description>
-      <ButtonGroup buttonSize="large">
+      <CTABanner.ButtonGroup>
         <Button>Primary Action</Button>
         <Button>Secondary Action</Button>
-      </ButtonGroup>
+      </CTABanner.ButtonGroup>
     </CTABanner>
   </div>
 )

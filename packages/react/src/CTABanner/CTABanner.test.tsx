@@ -3,7 +3,6 @@ import '@testing-library/jest-dom'
 
 import {CTABanner} from './CTABanner'
 import {axe, toHaveNoViolations} from 'jest-axe'
-import {ButtonGroup} from '../ButtonGroup'
 import {Button} from '../Button'
 
 expect.extend(toHaveNoViolations)
@@ -35,10 +34,10 @@ describe('CTABanner', () => {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
           turpis felis nam pulvinar risus elementum.
         </CTABanner.Description>
-        <ButtonGroup buttonSize="large">
+        <CTABanner.ButtonGroup>
           <Button>Primary Action</Button>
           <Button>Secondary Action</Button>
-        </ButtonGroup>
+        </CTABanner.ButtonGroup>
       </CTABanner>
     )
     const ctaBannerEl = getByTestId(mockTestId)
@@ -127,10 +126,10 @@ describe('CTABanner', () => {
   it('renders primary button with arrow by default', () => {
     const {getAllByRole} = render(
       <CTABanner>
-        <ButtonGroup>
+        <CTABanner.ButtonGroup>
           <Button>Primary Action</Button>
           <Button>Secondary Action</Button>
-        </ButtonGroup>
+        </CTABanner.ButtonGroup>
       </CTABanner>
     )
     const buttonEl = getAllByRole('button')[0]
@@ -140,10 +139,10 @@ describe('CTABanner', () => {
   it('renders secondary button without arrow by default', () => {
     const {getAllByRole} = render(
       <CTABanner>
-        <ButtonGroup>
+        <CTABanner.ButtonGroup>
           <Button>Primary Action</Button>
           <Button>Secondary Action</Button>
-        </ButtonGroup>
+        </CTABanner.ButtonGroup>
       </CTABanner>
     )
     const buttonEl = getAllByRole('button')[1]
