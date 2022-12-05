@@ -249,8 +249,9 @@ export function KitchenSink(props: KitchenSinkProps) {
 					flex: 1;
 				}
 
-				.FeatureTrio a > span {
-					color: #A475F9
+				.FeatureTrio a {
+					width: auto;
+					margin: 0 auto;
 				}
 			`}
             </style>
