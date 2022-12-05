@@ -4,11 +4,11 @@ status: Experimental
 figma: 'https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=539%3A14285&t=RJEWZhVUtrRQ0pKh-0'
 source: https://github.com/primer/brand/tree/main/src/CTABanner/CTABanner.tsx
 storybook: '/brand/storybook/?path=/story/components-ctabanner--playground'
-description: Use CTABanner to create call to action content in a separated section.
+description: Use CTABanner to draw attention to or create urgency around a user action.
 ---
 
 ```js
-import {CTABanner, ButtonGroup, Button} from '@primer/react-brand'
+import {CTABanner, ButtonGroup, Button, Label} from '@primer/react-brand'
 ```
 
 ## Examples
@@ -79,7 +79,7 @@ A border can be provided using the `hasBorder` prop on the root `<CTABanner>`. T
 A background can be removed using the `hasBackground` prop on the root `<ComparisonTable>`. This will render the CTABanner component without a background allowing it to blend in with its parent.
 
 ```jsx live
-<CTABanner hasBackground={false}>
+<CTABanner hasBackground={false} hasShadow={false}>
   <CTABanner.Heading>
     Where the most ambitious teams build great things
   </CTABanner.Heading>
@@ -120,10 +120,10 @@ The shadow can be removed using the `hasShadow` prop on the root `CTABanner`. Th
 
 The default colors can be customized through dedicated CSS variables.
 
-| Name                                   | Default                          |
-| :------------------------------------- | :------------------------------- |
-| `--brand-CTABanner-shadow-color-start` | `--base-color-scale-green-5-hsl` |
-| `--brand-CTABanner-shadow-color-end`   | `--base-color-scale-blue-5-hsl`  |
+| Name                                   | Default Light                    | Default Dark                     |
+| :------------------------------------- | :------------------------------- | :------------------------------- |
+| `--brand-CTABanner-shadow-color-start` | `--base-color-scale-green-5-hsl` | `--base-color-scale-green-2-hsl` |
+| `--brand-CTABanner-shadow-color-end`   | `--base-color-scale-blue-5-hsl`  | `--base-color-scale-blue-3-hsl`  |
 
 ```javascript live noinline
 const App = () => {
@@ -169,23 +169,24 @@ render(<App />)
 
 The first row in a table is automatically styled as a table header row.
 
-| name            | type                       | default   | required | description                                                  |
-| --------------- | -------------------------- | --------- | -------- | ------------------------------------------------------------ |
+| name            | type                       | default     | required | description                                                  |
+| --------------- | -------------------------- | ----------- | -------- | ------------------------------------------------------------ |
 | `children`      | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | Content to include within the banner component               |
-| `align`         | `start`, `center`          | `start`   | `true`   | The layout applied to the content wihin the banner component |
-| `hasBorder`     | `boolean`                  | `false`   | `false`  | A flag used to provide a border to the banner component      |
-| `hasBackground` | `boolean`                  | `true`    | `false`  | A flag used to add a background to the banner component      |
-| `className`     | `string`                   |           | `false`  | CTABanner custom class                                       |
+| `align`         | `start`, `center`          | `start`     | `true`   | The layout applied to the content wihin the banner component |
+| `hasBorder`     | `boolean`                  | `false`     | `false`  | A flag used to provide a border to the banner component      |
+| `hasBackground` | `boolean`                  | `true`      | `false`  | A flag used to add a background to the banner component      |
+| `className`     | `string`                   |             | `false`  | CTABanner custom class                                       |
 
 ### ComparisonTable.Heading
 
 Optional node that can be used to provide a heading for the banner.
 
-| name        | type                       | default   | required | description                                                           |
-| ----------- | -------------------------- | --------- | -------- | --------------------------------------------------------------------- |
-| `className` | `string`                   |           | `false`  | Custom class name for the ComparisonTable.Heading component           |
-| `children`  | `ReactNode`, `ReactNode[]` | undefined | `true`   | Content to be displayed inside the ComparisonTable.Heading component. |
-| `as`        | `h1`, `h2`                 | `h1`      | `false`  | Content to be displayed inside the column cell.                       |
+| name        | type                         | default   | required | description                                                           |
+| ----------- | ---------------------------- | --------- | -------- | --------------------------------------------------------------------- |
+| `className` | `string`                     |           | `false`  | Custom class name for the ComparisonTable.Heading component           |
+| `children`  | `ReactNode`, `ReactNode[]`   | undefined | `true`   | Content to be displayed inside the ComparisonTable.Heading component. |
+| `as`        | `h1`, `h2`, `h3`, `h4`, `h5` | `h3`      | `false`  | Content size to be displayed inside the column cell.                  |
+| `size`      | `h1`, `h2`, `h3`, `h4`, `h5` | `h3`      | `false`  | True symantic element to be use as the text wrapper.                  |
 
 ### CTABanner.Description
 

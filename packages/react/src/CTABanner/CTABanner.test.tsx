@@ -47,7 +47,7 @@ describe('CTABanner', () => {
   })
 
   it('renders the correct default heading type', () => {
-    const expectedTag = 'h2'
+    const expectedTag = 'h3'
     const headingText = 'This is your heading'
 
     const {getByText} = render(

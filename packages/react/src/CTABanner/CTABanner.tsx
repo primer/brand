@@ -1,7 +1,7 @@
 import React, {forwardRef, type Ref} from 'react'
 import clsx from 'clsx'
 import type {BaseProps} from '../component-helpers'
-import {Heading} from '../Heading'
+import {Heading, HeadingTags} from '../Heading'
 import {Text} from '../Text'
 
 /**
@@ -31,7 +31,7 @@ export const Root = forwardRef(
       children,
       ...props
     }: CTABannerProps,
-    ref: Ref<HTMLSectionElement>
+    ref: Ref<HTMLDivElement>
   ) => {
     return (
       <section ref={ref} className={clsx(styles.CTABanner, hasShadow && styles['CTABanner--shadow'])} {...props}>
@@ -51,20 +51,19 @@ export const Root = forwardRef(
   }
 )
 
-export const CTABannerHeadingTags = ['h1', 'h2'] as const
-
 export type CTABannerHeadingProps = BaseProps<HTMLHeadingElement> & {
   children: React.ReactNode | React.ReactNode[]
-  as?: typeof CTABannerHeadingTags[number]
-}
+} & HeadingTags
+
+const defaultHeadingTag = HeadingTags[2]
 
 export const _Heading = forwardRef(
   (
-    {as = CTABannerHeadingTags[1], className, children, ...props}: CTABannerHeadingProps,
+    {as = defaultHeadingTag, size, className, children, ...props}: CTABannerHeadingProps,
     ref: Ref<HTMLHeadingElement>
   ) => {
     return (
-      <Heading ref={ref} {...props} className={className} as={as}>
+      <Heading ref={ref} {...props} className={className} size={size} as={as}>
         {children}
       </Heading>
     )
