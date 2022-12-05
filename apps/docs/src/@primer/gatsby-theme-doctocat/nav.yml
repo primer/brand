@@ -12,6 +12,8 @@
 
 - title: Components
   children:
+    - title: AnchorNav
+      url: /components/AnchorNav
     - title: ComparisonTable
       url: /components/ComparisonTable
     - title: FAQ

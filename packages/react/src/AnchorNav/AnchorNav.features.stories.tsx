@@ -1,6 +1,8 @@
 import React from 'react'
 import {ComponentMeta, ComponentStory} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
+import {userEvent, within} from '@storybook/testing-library'
+import {expect} from '@storybook/jest'
 
 import {AnchorNav} from '.'
 import {Heading, Text, Stack} from '../'
@@ -110,4 +112,43 @@ NarrowView.parameters = {
   viewport: {
     defaultViewport: 'iphonexr'
   }
+}
+NarrowView.storyName = 'Narrow view, menu closed (mobile)'
+
+export const NarrowViewMenuOpen = Template.bind({})
+NarrowViewMenuOpen.parameters = {
+  viewport: {
+    defaultViewport: 'iphonexr'
+  }
+}
+NarrowViewMenuOpen.storyName = 'Narrow view, menu open (mobile)'
+NarrowViewMenuOpen.play = async ({canvasElement}) => {
+  const canvas = within(canvasElement)
+  const menubar = canvas.getByTestId('anchor-nav-menu-links')
+
+  await userEvent.click(canvas.getByTestId(AnchorNav.testIds.menuButton))
+  await expect(menubar).toBeVisible()
+}
+
+export const RegularView = Template.bind({})
+RegularView.storyName = 'Regular view, menu closed (tablet)'
+RegularView.parameters = {
+  viewport: {
+    defaultViewport: 'ipad10p'
+  }
+}
+
+export const RegularViewMenuOpen = Template.bind({})
+RegularViewMenuOpen.storyName = 'Regular view, menu open (tablet)'
+RegularViewMenuOpen.parameters = {
+  viewport: {
+    defaultViewport: 'ipad10p'
+  }
+}
+RegularViewMenuOpen.play = async ({canvasElement}) => {
+  const canvas = within(canvasElement)
+  const menubar = canvas.getByTestId(AnchorNav.testIds.menuLinks)
+
+  await userEvent.click(canvas.getByTestId(AnchorNav.testIds.menuButton))
+  await expect(menubar).toBeVisible()
 }

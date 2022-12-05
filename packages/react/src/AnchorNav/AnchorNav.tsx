@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react'
 import {ChevronDownIcon, ChevronUpIcon} from '@primer/octicons-react'
+import {useId} from '@reach/auto-id'
 
 import {Button, Text} from '../'
 import {useWindowSize} from '../hooks/useWindowSize'
@@ -17,6 +18,16 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './AnchorNav.module.css'
 
+const testIds = {
+  root: 'AnchorNav',
+  get menuButton() {
+    return `${this.root}-menu-button`
+  },
+  get menuLinks() {
+    return `${this.root}-menu-links`
+  }
+}
+
 export type AnchorNavProps = BaseProps<HTMLElement> & {
   children: React.ReactNode[]
 } & React.ComponentPropsWithoutRef<'nav'>
@@ -24,10 +35,12 @@ export type AnchorNavProps = BaseProps<HTMLElement> & {
 function _AnchorNav({children, ...props}: AnchorNavProps) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+  const [currentActiveNavItem, setCurrentActiveNavItem] = useState<string | null>()
   const rootRef = useRef<HTMLElement | null>(null)
   const menuToggleButtonRef = useRef<HTMLButtonElement | null>(null)
   const linkContainerRef = useRef<HTMLDivElement | null>(null)
   const [intersectionEntry, setIntersectionEntry] = useState<IntersectionObserverEntry>()
+  const idForLinkContainer = useId()
 
   const closeMenuCallback = useCallback(() => setMenuOpen(false), [setMenuOpen])
   const toggleMenuCallback = useCallback(() => setMenuOpen(!menuOpen), [menuOpen])
@@ -45,6 +58,9 @@ function _AnchorNav({children, ...props}: AnchorNavProps) {
   const handleIntersectionUpdate = ([nextEntry]: IntersectionObserverEntry[]): void => {
     setIntersectionEntry(nextEntry)
   }
+
+  useKeyboardEscape(closeMenuCallback)
+  useExpandedMenu(menuOpen, linkContainerRef, menuToggleButtonRef)
 
   useEffect(() => {
     const queryResult = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -77,10 +93,21 @@ function _AnchorNav({children, ...props}: AnchorNavProps) {
     [toggleMenuCallback]
   )
 
+  const handleUpdateToCurrentActiveNavItem = useCallback(
+    (id: string | null) => {
+      setCurrentActiveNavItem(id)
+    },
+    [setCurrentActiveNavItem]
+  )
+
   const Links = ValidChildren.map((child, index) => {
     if (React.isValidElement(child)) {
       if (child.type === _AnchorNavLink) {
-        const defaultProps = {toggleMenuCallback, prefersReducedMotion}
+        const defaultProps = {
+          toggleMenuCallback,
+          prefersReducedMotion,
+          updateCurrentActiveNav: handleUpdateToCurrentActiveNavItem
+        }
         return React.cloneElement(child, {isActive: index === 0, ...defaultProps})
       }
     }
@@ -96,9 +123,6 @@ function _AnchorNav({children, ...props}: AnchorNavProps) {
     }
     return null
   }).filter(Boolean)
-
-  useKeyboardEscape(closeMenuCallback)
-  useExpandedMenu(menuOpen, linkContainerRef, menuToggleButtonRef)
 
   return (
     <nav
@@ -118,16 +142,26 @@ function _AnchorNav({children, ...props}: AnchorNavProps) {
           onClick={handleMenuToggle}
           className={clsx(styles['AnchorNav-menu-button'])}
           aria-expanded={menuOpen ? 'true' : 'false'}
-          aria-controls="anchor-nav-menu-links" // use unique ID
+          aria-controls={idForLinkContainer}
           aria-label={`${menuOpen ? 'close' : 'open'} anchor navigation menu`}
+          data-testid={testIds.menuButton}
         >
           {menuOpen ? (
             <ChevronUpIcon size={16} className={styles['AnchorNav-menu-button-arrow']} fill="currentcolor" />
           ) : (
             <ChevronDownIcon size={16} className={styles['AnchorNav-menu-button-arrow']} fill="currentcolor" />
           )}
+          <Text as="span" className={clsx(styles['AnchorNav-link-label'])}>
+            {currentActiveNavItem}
+          </Text>
         </button>
-        <div id="anchor-nav-menu-links" className={styles['AnchorNav-link-container']} ref={linkContainerRef}>
+        {/**Replace with unique ids and test ids */}
+        <div
+          id={idForLinkContainer}
+          data-testid={testIds.menuLinks}
+          className={styles['AnchorNav-link-container']}
+          ref={linkContainerRef}
+        >
           {Links}
         </div>
         {Action}
@@ -154,6 +188,7 @@ type AnchorNavLinkProps = BaseProps<HTMLAnchorElement> & {
   toggleMenuCallback?: () => void
   intersectionOptions?: AnchorNavLinkIntersectionOptions
   prefersReducedMotion?: boolean
+  updateCurrentActiveNav?: (id: string | null) => void
 } & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>
 
 function _AnchorNavLink({
@@ -163,13 +198,17 @@ function _AnchorNavLink({
   toggleMenuCallback,
   prefersReducedMotion,
   intersectionOptions = {rootMargin: 'middle'},
+  updateCurrentActiveNav,
   ...rest
 }: AnchorNavLinkProps) {
   const [offsetPosition, setOffsetPosition] = useState<undefined | number>()
   const {isLarge} = useWindowSize()
   const [intersectionEntry, setIntersectionEntry] = useState<IntersectionObserverEntry>()
+
   const isAnchor = /^#/.test(href)
   const sansAnchor = isAnchor ? href.replace(/^#/, '') : href
+  const anchoredContentIsVisible = !!intersectionEntry?.isIntersecting
+
   const handleIntersectionUpdate = ([nextEntry]: IntersectionObserverEntry[]): void => {
     setIntersectionEntry(nextEntry)
   }
@@ -209,7 +248,12 @@ function _AnchorNavLink({
     setOffsetPosition(nextOffsetPosition)
   }, [href, isAnchor])
 
-  const anchoredContentIsVisible = !!intersectionEntry?.isIntersecting
+  // updates root AnchorNav to notify of active section
+  useEffect(() => {
+    if (anchoredContentIsVisible && updateCurrentActiveNav && typeof children === 'string') {
+      updateCurrentActiveNav(children)
+    }
+  }, [anchoredContentIsVisible, children, updateCurrentActiveNav])
 
   const handleClick = useCallback(
     event => {
@@ -275,5 +319,6 @@ function _AnchorNavAction({children, href, ...rest}: AnchorNavActionProps) {
  */
 export const AnchorNav = Object.assign(_AnchorNav, {
   Link: _AnchorNavLink,
-  Action: _AnchorNavAction
+  Action: _AnchorNavAction,
+  testIds
 })
