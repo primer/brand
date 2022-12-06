@@ -29,10 +29,17 @@ const testIds = {
 }
 
 export type AnchorNavProps = BaseProps<HTMLElement> & {
+  /**
+   * Accepts all of `AnchorNav.Item` and `AnchorNav.Action` child components.
+   */
   children: React.ReactNode[]
+  /**
+   * Enable the idle state background color, which is transparent by default.
+   */
+  enableDefaultBgColor?: boolean
 } & React.ComponentPropsWithoutRef<'nav'>
 
-function _AnchorNav({children, ...props}: AnchorNavProps) {
+function _AnchorNav({children, enableDefaultBgColor = false, ...props}: AnchorNavProps) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
   const [currentActiveNavItem, setCurrentActiveNavItem] = useState<string | null>()
@@ -100,13 +107,15 @@ function _AnchorNav({children, ...props}: AnchorNavProps) {
     [setCurrentActiveNavItem]
   )
 
+  const numLinks = ValidChildren.filter(child => React.isValidElement(child) && child.type === _AnchorNavLink).length
   const Links = ValidChildren.map((child, index) => {
     if (React.isValidElement(child)) {
       if (child.type === _AnchorNavLink) {
         const defaultProps = {
           toggleMenuCallback,
           prefersReducedMotion,
-          updateCurrentActiveNav: handleUpdateToCurrentActiveNavItem
+          updateCurrentActiveNav: handleUpdateToCurrentActiveNavItem,
+          alignment: numLinks < 4 ? 'start' : 'center'
         }
         return React.cloneElement(child, {isActive: index === 0, ...defaultProps})
       }
@@ -130,7 +139,8 @@ function _AnchorNav({children, ...props}: AnchorNavProps) {
       className={clsx(
         styles.AnchorNav,
         isVisible && styles['AnchorNav--stuck'],
-        menuOpen && styles['AnchorNav--expanded']
+        menuOpen && styles['AnchorNav--expanded'],
+        enableDefaultBgColor && styles['AnchorNav--with-default-background-color']
       )}
       {...props}
     >
@@ -183,15 +193,27 @@ type AnchorNavLinkIntersectionOptions = {
 }
 
 type AnchorNavLinkProps = BaseProps<HTMLAnchorElement> & {
+  /**
+   * Optional text alignment for the link. Defaults to 'start' if there are less than 4 links, otherwise 'center'.
+   */
+  alignment?: 'start' | 'center'
+  /**
+   * Required path or location for the anchor to link to.
+   */
   href: string
-  isActive?: boolean
-  toggleMenuCallback?: () => void
-  intersectionOptions?: AnchorNavLinkIntersectionOptions
-  prefersReducedMotion?: boolean
-  updateCurrentActiveNav?: (id: string | null) => void
+  /**
+   * Optional boolean to indicate if the link is the current active link.
+   * Typically doesn't need to be sset unless custom animation is being used.
+   */
+  isActive?: boolean // internal prop, not exposed in docs
+  toggleMenuCallback?: () => void // internal prop, not exposed in docs
+  intersectionOptions?: AnchorNavLinkIntersectionOptions // internal prop, not exposed in docs
+  prefersReducedMotion?: boolean // internal prop, not exposed in docs
+  updateCurrentActiveNav?: (id: string | null) => void // internal prop, not exposed in docs
 } & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>
 
 function _AnchorNavLink({
+  alignment = 'start',
   children,
   href,
   isActive,
@@ -269,10 +291,9 @@ function _AnchorNavLink({
     },
     [isLarge, offsetPosition, toggleMenuCallback, prefersReducedMotion]
   )
-
   return (
     <a
-      className={clsx(styles['AnchorNav-link'])}
+      className={clsx(styles['AnchorNav-link'], styles[`AnchorNav-link--${alignment}`])}
       href={isAnchor ? href : `#${href}`}
       aria-describedby={sansAnchor}
       aria-current={anchoredContentIsVisible && 'true'}
@@ -295,6 +316,9 @@ function _AnchorNavLink({
 }
 
 type AnchorNavActionProps = {
+  /**
+   * Required path or location for the action button to link to.
+   */
   href: string
 } & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>
 

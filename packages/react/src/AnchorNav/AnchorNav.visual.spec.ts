@@ -7,6 +7,22 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: AnchorNav', () => {
+  test('AnchorNav / Fewer anchor links', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--fewer-anchor-links&viewMode=story'
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('AnchorNav / Custom Background', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--custom-background&viewMode=story'
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   // eslint-disable-next-line i18n-text/no-en
   test.describe('Mobile viewport test for Narrow view, menu closed (mobile)', () => {
     test.use({viewport: {width: 360, height: 800}})

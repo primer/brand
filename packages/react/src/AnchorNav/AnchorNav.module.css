@@ -34,9 +34,12 @@
   top: 0;
   left: 0;
   right: 0;
-  background: var(--brand-color-canvas-default);
   padding: var(--base-size-12) var(--base-size-16);
   z-index: 91; /* must be higher than subdomain nav bar */
+}
+
+.AnchorNav--with-default-background-color {
+  background-color: var(--brand-color-canvas-default);
 }
 
 .AnchorNav--stuck {
@@ -59,11 +62,18 @@
   width: 100%;
   position: relative;
   z-index: 91; /* must be higher than subdomain nav bar */
-  background: var(--brand-color-canvas-default);
+}
+
+.AnchorNav--with-default-background-color .AnchorNav-inner-container {
+  background-color: var(--brand-color-canvas-default);
 }
 
 /* Up to large breakpoint */
 @media screen and (max-width: 63.25rem) {
+  .AnchorNav {
+    background-color: var(--brand-color-canvas-default);
+  }
+
   .AnchorNav-inner-container--expanded {
     height: auto;
   }
@@ -80,6 +90,17 @@
 
 /* Large breakpoint and up */
 @media screen and (min-width: 63.25rem) {
+  .AnchorNav {
+    padding: var(--base-size-12) var(--base-size-40);
+  }
+
+  .AnchorNav--with-default-background-color {
+    background-color: var(--brand-color-canvas-default);
+  }
+
+  .AnchorNav--stuck {
+    background-color: var(--brand-color-canvas-default);
+  }
   .AnchorNav-inner-container {
     margin: 0 auto;
     display: flex;
@@ -114,14 +135,19 @@
 
 /* Large breakpoint and up */
 @media screen and (min-width: 63.25rem) {
-  .AnchorNav {
-    padding: var(--base-size-12) var(--base-size-40);
-  }
-
   .AnchorNav-link {
     position: relative;
-    justify-content: center;
     margin: 0 1px; /* to provide space for focus border */
+  }
+
+  .AnchorNav-link--center {
+    justify-content: center;
+  }
+
+  .AnchorNav-link--start {
+    justify-content: flex-start;
+    width: auto;
+    margin-right: var(--base-size-48);
   }
 
   .AnchorNav-link::after {
@@ -174,11 +200,18 @@
   color: var(--brand-color-text-default);
   transition: color cubic-bezier(0.33, 1, 0.68, 1) 0.2s; /* TODO: replace with global token for animation timings */
   white-space: nowrap;
+}
+
+.AnchorNav--with-default-background-color .AnchorNav-link-label {
   background-color: var(--brand-color-canvas-default);
 }
 
 /* Up to large breakpoint */
 @media screen and (max-width: 63.25rem) {
+  .AnchorNav-link-label {
+    background-color: var(--brand-color-canvas-default);
+  }
+
   .AnchorNav--expanded .AnchorNav-link-label--is-active {
     color: var(--brand-color-focus);
   }

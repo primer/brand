@@ -15,6 +15,7 @@ export default {
     layout: 'fullscreen'
   },
   args: {
+    enableDefaultBgColor: true,
     data: {
       ['GitHub vs Jenkins']: 'githubvsjenkins',
       ['GitHub vs GitLab']: 'githubvsgitlab',
@@ -63,7 +64,7 @@ export const Default = ({data, ...args}: {data: MockData}) => {
 
 export const Playground = ({data, ...args}: {data: MockData; offset: number}) => {
   return (
-    <div style={{backgroundColor: 'var(--brand-color-canvas-default)'}}>
+    <div style={{backgroundColor: 'var(--base-color-scale-red-0)'}}>
       <RedlineBackground height={args.offset}>
         <Stack direction="vertical" gap="none" justifyContent="center" style={{textAlign: 'center'}}>
           <Heading as="h1" size="6">

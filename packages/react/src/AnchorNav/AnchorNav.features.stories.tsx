@@ -8,6 +8,10 @@ import {AnchorNav} from '.'
 import {Heading, Text, Stack} from '../'
 import {RedlineBackground} from '../component-helpers'
 
+type MockData = {
+  [key: string]: string
+}
+
 export default {
   title: 'Components/AnchorNav/Features',
   component: AnchorNav,
@@ -18,6 +22,7 @@ export default {
     }
   },
   args: {
+    enableDefaultBgColor: true,
     data: {
       ['GitHub vs Jenkins']: 'githubvsjenkins',
       ['GitHub vs GitLab']: 'githubvsgitlab',
@@ -48,6 +53,14 @@ export default {
         category: 'Story customization'
       }
     }
+  },
+  enableDefaultBgColor: {
+    description: 'Enable default background color',
+    control: {type: 'boolean'},
+    defaultValue: true,
+    table: {
+      category: 'AnchorNav'
+    }
   }
 } as ComponentMeta<typeof AnchorNav>
 
@@ -66,7 +79,7 @@ const Template: ComponentStory<typeof AnchorNav> = (_, storyArgs: any) => {
           </Text>
         </Stack>
       </RedlineBackground>
-      <AnchorNav {...storyArgs.args.args}>
+      <AnchorNav {...storyArgs.args}>
         {storyData.map(([key, value]) => (
           <AnchorNav.Link href={value} key={value}>
             {key}
@@ -107,6 +120,59 @@ const Template: ComponentStory<typeof AnchorNav> = (_, storyArgs: any) => {
   )
 }
 
+export const FewerAnchorLinks = Template.bind({})
+FewerAnchorLinks.storyName = 'Fewer anchor links'
+FewerAnchorLinks.args = {
+  data: {
+    ['GitHub vs Jenkins']: 'githubvsjenkins',
+    ['GitHub vs GitLab']: 'githubvsgitlab',
+    ['GitHub vs CircleCI']: 'githubvscircleci'
+  }
+} as never
+
+export const CustomBackground = ({data, ...args}: {data: MockData; offset: number}) => {
+  return (
+    <div style={{backgroundColor: 'var(--base-color-scale-green-0)', paddingTop: args.offset}}>
+      <AnchorNav {...args}>
+        {Object.entries(data).map(([key, value]) => (
+          <AnchorNav.Link href={value} key={value}>
+            {key}
+          </AnchorNav.Link>
+        ))}
+        <AnchorNav.Action href="#">Sign up</AnchorNav.Action>
+      </AnchorNav>
+      {/**
+       *  The following markup is provided for demonstration purposes only.
+       *  It is not part of the AnchorNav component.
+       */}
+      <Stack
+        direction="vertical"
+        justifyContent="space-around"
+        gap="none"
+        style={{marginBottom: '100px'}}
+        padding="none"
+      >
+        {Object.entries(data).map(([key, value]) => (
+          <Stack
+            key={value}
+            id={value}
+            direction="vertical"
+            style={{
+              padding: '500px var(--base-size-24)'
+            }}
+          >
+            <Heading>{key}</Heading>
+            <Text as="p">AnchorNav is a component that allows users to navigate to different sections of a page.</Text>
+          </Stack>
+        ))}
+      </Stack>
+    </div>
+  )
+}
+CustomBackground.args = {
+  enableDefaultBgColor: false
+}
+
 export const NarrowView = Template.bind({})
 NarrowView.parameters = {
   viewport: {
@@ -124,7 +190,7 @@ NarrowViewMenuOpen.parameters = {
 NarrowViewMenuOpen.storyName = 'Narrow view, menu open (mobile)'
 NarrowViewMenuOpen.play = async ({canvasElement}) => {
   const canvas = within(canvasElement)
-  const menubar = canvas.getByTestId('anchor-nav-menu-links')
+  const menubar = canvas.getByTestId(AnchorNav.testIds.menuLinks)
 
   await userEvent.click(canvas.getByTestId(AnchorNav.testIds.menuButton))
   await expect(menubar).toBeVisible()
