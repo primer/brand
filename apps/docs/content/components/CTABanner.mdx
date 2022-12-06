@@ -198,6 +198,19 @@ Optional node that can be used to provide a description for the banner.
 
 `id`, `className` and `ref` are forwarded by default to all children.
 
+### CTABanner.ButtonGroup
+
+Optional node that can be used to provide a description for the banner.
+
+| name         | type                     | default   | required | description                                             |
+| ------------ | ------------------------ | --------- | -------- | ------------------------------------------------------- |
+| `className`  | `string`                 | undefined | `false`  | Sets a custom class on the root element                 |
+| `children`   | `<Button>`, `<Button>[]` | undefined | `true`   | The buttons to be displayed within the group            |
+| `buttonSize` | `medium`, `large`        | `large`   | `false`  | The size of the buttons in the group                    |
+| `buttonsAs`  | `ReactElement`           |           | `false`  | The symantic element that the button will be created as |
+
+`id`, `className` and `ref` are forwarded by default to all children.
+
 ## Design tokens
 
 | css                                    | js                                   |
