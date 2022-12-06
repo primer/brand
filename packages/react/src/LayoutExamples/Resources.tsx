@@ -58,7 +58,7 @@ export function ResourcesHubExample(props: ResourcesHubExampleProps) {
         </div>
       </div>
       <div style={{marginTop: 100}}>
-        <AnchorNav>
+        <AnchorNav enableDefaultBgColor>
           <AnchorNav.Link href="#why-github">Why GitHub</AnchorNav.Link>
           <AnchorNav.Link href="#comparegithub">Compare GitHub</AnchorNav.Link>
           <AnchorNav.Link href="#comparejenkins">GitHub vs. Jenkins</AnchorNav.Link>
