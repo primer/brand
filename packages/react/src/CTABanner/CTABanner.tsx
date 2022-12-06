@@ -3,6 +3,7 @@ import clsx from 'clsx'
 import type {BaseProps} from '../component-helpers'
 import {Heading, HeadingTags} from '../Heading'
 import {Text} from '../Text'
+import {ButtonGroup} from '../ButtonGroup'
 
 /**
  * Design tokens
@@ -51,7 +52,7 @@ export const Root = forwardRef(
   }
 )
 
-export type CTABannerHeadingProps = BaseProps<HTMLHeadingElement> & {
+type CTABannerHeadingProps = BaseProps<HTMLHeadingElement> & {
   children: React.ReactNode | React.ReactNode[]
 } & HeadingTags
 
@@ -71,7 +72,7 @@ export const _Heading = forwardRef(
   }
 )
 
-export type CTABannerDescriptionProps = BaseProps<HTMLParagraphElement> & {
+type CTABannerDescriptionProps = BaseProps<HTMLParagraphElement> & {
   children: React.ReactNode | React.ReactNode[]
 }
 
@@ -85,10 +86,14 @@ export const Description = forwardRef(
   }
 )
 
-const ButtonGroup = forwardRef(
-  ({className, buttonSize = 'large', buttonAs}: React.ComponentProps<typeof ButtonGroup>, ref: Ref<HTMLDivElement>) => {
-    return <ButtonGroup ref={ref} buttonSize={buttonSize} buttonAs={buttonAs} className={className} />
+const _ButtonGroup = forwardRef(
+  ({className, buttonSize = 'large', buttonsAs, children, ...props}: React.ComponentProps<typeof ButtonGroup>) => {
+    return (
+      <ButtonGroup buttonSize={buttonSize} buttonsAs={buttonsAs} className={className} {...props}>
+        {children}
+      </ButtonGroup>
+    )
   }
 )
 
-export const CTABanner = Object.assign(Root, {Heading: _Heading, Description, ButtonGroup})
+export const CTABanner = Object.assign(Root, {Heading: _Heading, Description, ButtonGroup: _ButtonGroup})
