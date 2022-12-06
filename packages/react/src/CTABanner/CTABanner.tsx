@@ -105,9 +105,12 @@ export const Description = forwardRef(
 )
 
 const _ButtonGroup = forwardRef(
-  ({className, buttonSize = 'large', buttonsAs, children, ...props}: React.ComponentProps<typeof ButtonGroup>) => {
+  (
+    {className, buttonSize = 'large', buttonsAs, children, ...props}: React.ComponentProps<typeof ButtonGroup>,
+    ref: Ref<HTMLDivElement>
+  ) => {
     return (
-      <ButtonGroup buttonSize={buttonSize} buttonsAs={buttonsAs} className={className} {...props}>
+      <ButtonGroup buttonSize={buttonSize} buttonsAs={buttonsAs} className={className} ref={ref} {...props}>
         {children}
       </ButtonGroup>
     )
