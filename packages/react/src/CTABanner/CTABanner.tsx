@@ -24,11 +24,29 @@ export type CTABannerProps = BaseProps<HTMLDivElement> & {
 export const Root = forwardRef(
   (
     {
+      /**
+       * The alignment of the content within the banner.
+       */
       align = 'start',
+      /**
+       * A flag to add a border to the banner.
+       */
       hasBorder = false,
+      /**
+       * A flag to remove the shadow from the banner.
+       */
       hasShadow = true,
+      /**
+       * A flag to remove the background from the banner.
+       */
       hasBackground = true,
+      /**
+       * Forward a custom HTML class attribute to the root element.
+       */
       className,
+      /**
+       * React.ReactNode and React.ReactNode[] are valid children.
+       */
       children,
       ...props
     }: CTABannerProps,
