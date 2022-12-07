@@ -16,7 +16,7 @@ export const classMap = {
   h6: HeadingSizes[5]
 }
 
-type HeadingTags = BaseProps<HTMLHeadingElement> & {
+export type HeadingTags = BaseProps<HTMLHeadingElement> & {
   as?: typeof HeadingTags[number]
   size?: typeof HeadingSizes[number]
 } & React.HTMLAttributes<HTMLHeadingElement>
