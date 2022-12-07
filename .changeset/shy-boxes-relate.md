@@ -21,4 +21,4 @@ New CTABanner component available
 </CTABanner>
 ```
 
-:link: [See the documentation for more details and usage examples.][https://primer.style/brand/components/ComparisonTable]
+:link: [See the documentation for more details and usage examples.](https://primer.style/brand/components/ComparisonTable)
