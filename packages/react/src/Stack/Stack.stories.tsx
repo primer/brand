@@ -39,19 +39,19 @@ const Template: ComponentStory<typeof Stack> = args => (
   <Stack {...args} style={{height: '100vh'}}>
     <div>
       <img
-        src="https://via.placeholder.com/300x150/f5f5f5/f5f5f5.png"
+        src="https://via.placeholder.com/300x150/D0D7DE/D0D7DE.png"
         alt="placeholder with gray background and no foreground text"
       />
     </div>
     <div>
       <img
-        src="https://via.placeholder.com/300x150/f5f5f5/f5f5f5.png"
+        src="https://via.placeholder.com/300x150/D0D7DE/D0D7DE.png"
         alt="placeholder with gray background and no foreground text"
       />
     </div>
     <div>
       <img
-        src="https://via.placeholder.com/300x150/f5f5f5/f5f5f5.png"
+        src="https://via.placeholder.com/300x150/D0D7DE/D0D7DE.png"
         alt="placeholder with gray background and no foreground text"
       />
     </div>

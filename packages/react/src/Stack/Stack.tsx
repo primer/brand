@@ -95,6 +95,7 @@ const _Stack = (
     alignItems,
     padding = defaultStackSpacing,
     justifyContent,
+    className,
     ...rest
   }: StackProps,
   ref
@@ -136,7 +137,15 @@ const _Stack = (
   return (
     <div
       ref={ref}
-      className={clsx(styles.Stack, directionClass, gapClass, alignItemsClass, justifyContentClass, paddingClass)}
+      className={clsx(
+        styles.Stack,
+        directionClass,
+        gapClass,
+        alignItemsClass,
+        justifyContentClass,
+        paddingClass,
+        className
+      )}
       {...rest}
     >
       {children}
