@@ -13,7 +13,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './CTABanner.module.css'
 
-export type CTABannerProps = BaseProps<HTMLDivElement> & {
+export type CTABannerProps = BaseProps<HTMLElement> & {
   children: React.ReactNode | React.ReactNode[]
   align?: 'start' | 'center'
   hasBorder?: boolean
@@ -50,7 +50,7 @@ export const Root = forwardRef(
       children,
       ...props
     }: CTABannerProps,
-    ref: Ref<HTMLDivElement>
+    ref: Ref<HTMLElement>
   ) => {
     return (
       <section ref={ref} className={clsx(styles.CTABanner, hasShadow && styles['CTABanner--shadow'])} {...props}>
