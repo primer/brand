@@ -25,6 +25,9 @@ const testIds = {
   },
   get menuLinks() {
     return `${this.root}-menu-links`
+  },
+  get action() {
+    return `${this.root}-action`
   }
 }
 
@@ -291,6 +294,7 @@ function _AnchorNavLink({
     },
     [isLarge, offsetPosition, toggleMenuCallback, prefersReducedMotion]
   )
+
   return (
     <a
       className={clsx(styles['AnchorNav-link'], styles[`AnchorNav-link--${alignment}`])}
@@ -330,6 +334,7 @@ function _AnchorNavAction({children, href, ...rest}: AnchorNavActionProps) {
       className={clsx(styles['AnchorNav-action'])}
       href={href}
       hasArrow={false}
+      data-testid={testIds.action}
       {...rest}
     >
       {children}
