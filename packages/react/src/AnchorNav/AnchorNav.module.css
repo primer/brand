@@ -175,7 +175,7 @@
 
   .AnchorNav-link:active::after {
     background-color: var(--brand-AnchorNav-border-nav-pressed);
-    transform: scale(0.6);
+    transform: scale(0.6, 1);
   }
 
   .AnchorNav-link[data-active='true']::after {
