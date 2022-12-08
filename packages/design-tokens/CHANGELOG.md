@@ -1,5 +1,24 @@
 # @primer/brand-primitives
 
+## 0.8.0
+
+### Minor Changes
+
+- [#133](https://github.com/primer/brand/pull/133) [`0b43c0e`](https://github.com/primer/brand/commit/0b43c0e44f54738d7d54a2ee1d702927a9b40931) Thanks [@rezrah](https://github.com/rezrah)! - New `AnchorNav` component available
+
+  Use `AnchorNav` to provide a sticky navigation bar for quick scrolling to and highlighting of different sections of the document.
+
+  ```jsx
+  <AnchorNav>
+    <AnchorNav.Link href="#section-1">Section 1</AnchorNav.Link>
+    <AnchorNav.Link href="#section-2">Section 2</AnchorNav.Link>
+    <AnchorNav.Link href="#section-3">Section 3</AnchorNav.Link>
+    <AnchorNav.Action href="/">Call to action</AnchorNav.Action>
+  </AnchorNav>
+  ```
+
+  :link: [See the documentation for more details and usage examples.](https://primer.style/brand/components/AnchorNav)
+
 ## 0.7.2
 
 ### Patch Changes
