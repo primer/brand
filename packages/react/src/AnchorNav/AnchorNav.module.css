@@ -139,7 +139,7 @@
     left: 0;
     width: 2px;
     height: 50%;
-    background-color: var(--brand-AnchorNav-border-nav-default);
+    background-color: var(--brand-AnchorNav-link-underline-default);
     transition: opacity 300ms, transform 300ms;
     opacity: 1;
     transform: scale(0);
@@ -175,7 +175,7 @@
     left: 0;
     width: 100%;
     height: 2px;
-    background-color: var(--brand-AnchorNav-border-nav-default);
+    background-color: var(--brand-AnchorNav-link-underline-default);
     transition: opacity 300ms, transform 300ms;
     opacity: 1;
     transform: scale(0);
@@ -191,12 +191,12 @@
   }
 
   .AnchorNav-link:active::after {
-    background-color: var(--brand-AnchorNav-border-nav-pressed);
+    background-color: var(--brand-AnchorNav-link-underline-pressed);
     transform: scale(0.6, 1);
   }
 
   .AnchorNav-link[data-active='true']::after {
-    background-color: var(--brand-AnchorNav-border-nav-pressed);
+    background-color: var(--brand-AnchorNav-link-underline-pressed);
     opacity: 1;
   }
 

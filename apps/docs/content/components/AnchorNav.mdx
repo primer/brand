@@ -31,16 +31,16 @@ Please refer to our [Storybook examples](https://primer.style/brand/storybook/?p
 ```jsx live
 <Box sx={{position: 'relative', overflowX: 'scroll'}}>
   <AnchorNav>
-    <AnchorNav.Link href="#section1">Section one</AnchorNav.Link>
-    <AnchorNav.Link href="#section2">Section two</AnchorNav.Link>
-    <AnchorNav.Link href="#section3">Section three</AnchorNav.Link>
-    <AnchorNav.Link href="#section4">Section four</AnchorNav.Link>
-    <AnchorNav.Link href="#section5">Section five</AnchorNav.Link>
+    <AnchorNav.Link href="#basic-section1">Section one</AnchorNav.Link>
+    <AnchorNav.Link href="#basic-section2">Section two</AnchorNav.Link>
+    <AnchorNav.Link href="#basic-section3">Section three</AnchorNav.Link>
+    <AnchorNav.Link href="#basic-section4">Section four</AnchorNav.Link>
+    <AnchorNav.Link href="#basic-section5">Section five</AnchorNav.Link>
     <AnchorNav.Action href="#">Sign up</AnchorNav.Action>
   </AnchorNav>
 
   <section
-    id="section1"
+    id="basic-section1"
     style={{
       padding: '100px 2rem',
       backgroundColor: 'var(--base-color-scale-lemon-0)',
@@ -49,7 +49,7 @@ Please refer to our [Storybook examples](https://primer.style/brand/storybook/?p
     Section 1
   </section>
   <section
-    id="section2"
+    id="basic-section2"
     style={{
       padding: '100px 2rem',
       backgroundColor: 'var(--base-color-scale-yellow-0)',
@@ -58,7 +58,7 @@ Please refer to our [Storybook examples](https://primer.style/brand/storybook/?p
     Section 2
   </section>
   <section
-    id="section3"
+    id="basic-section3"
     style={{
       padding: '100px 2rem',
       backgroundColor: 'var(--base-color-scale-lime-0)',
@@ -67,7 +67,7 @@ Please refer to our [Storybook examples](https://primer.style/brand/storybook/?p
     Section 3
   </section>
   <section
-    id="section4"
+    id="basic-section4"
     style={{
       padding: '100px 2rem',
       backgroundColor: 'var(--base-color-scale-green-0)',
@@ -76,13 +76,56 @@ Please refer to our [Storybook examples](https://primer.style/brand/storybook/?p
     Section 4
   </section>
   <section
-    id="section5"
+    id="basic-section5"
     style={{
       padding: '100px 2rem',
       backgroundColor: 'var(--base-color-scale-teal-0)',
     }}
   >
     Section 5
+  </section>
+</Box>
+```
+
+### Fewer links
+
+`AnchorNav` implementations with fewer than `5` links, will automatically align links to the `start`.
+
+```jsx live
+<Box sx={{position: 'relative', overflowX: 'scroll'}}>
+  <AnchorNav>
+    <AnchorNav.Link href="#fewer-links-section1">Section one</AnchorNav.Link>
+    <AnchorNav.Link href="#fewer-links-section2">Section two</AnchorNav.Link>
+    <AnchorNav.Link href="#fewer-links-section3">Section three</AnchorNav.Link>
+    <AnchorNav.Action href="#">Sign up</AnchorNav.Action>
+  </AnchorNav>
+
+  <section
+    id="fewer-links-section1"
+    style={{
+      padding: '100px 2rem',
+      backgroundColor: 'var(--base-color-scale-lemon-0)',
+    }}
+  >
+    Section 1
+  </section>
+  <section
+    id="fewer-links-section2"
+    style={{
+      padding: '100px 2rem',
+      backgroundColor: 'var(--base-color-scale-yellow-0)',
+    }}
+  >
+    Section 2
+  </section>
+  <section
+    id="fewer-links-section3"
+    style={{
+      padding: '100px 2rem',
+      backgroundColor: 'var(--base-color-scale-lime-0)',
+    }}
+  >
+    Section 3
   </section>
 </Box>
 ```

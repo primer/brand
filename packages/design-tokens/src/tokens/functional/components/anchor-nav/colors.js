@@ -1,8 +1,8 @@
 module.exports = {
   brand: {
     AnchorNav: {
-      border: {
-        nav: {
+      link: {
+        underline: {
           default: {
             value: 'var(--base-color-scale-gray-9)',
             dark: 'var(--base-color-scale-gray-3)'
