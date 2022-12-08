@@ -16,6 +16,15 @@ test.describe('Visual Comparison: AnchorNav', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('AnchorNav / Shorter labels', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--shorter-labels&viewMode=story'
+    )
+
+    await page.waitForTimeout(1000)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('AnchorNav / Custom Background', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--custom-background&viewMode=story'

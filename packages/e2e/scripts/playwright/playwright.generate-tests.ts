@@ -48,6 +48,7 @@
     'components-anchornav--playground': 500, // for the animation
     'components-anchornav-features--fewer-anchor-links': 1000, // for the animation
     'components-anchornav-features--custom-background': 1000, // for the animation
+    'components-anchornav-features--shorter-labels': 1000, // for the animation
     'components-anchornav-features--narrow-view': 1000, // for the interaction test
     'components-anchornav-features--narrow-view-menu-open': 1000, // for the interaction test
     'components-anchornav-features--regular-view': 1000, // for the interaction test
