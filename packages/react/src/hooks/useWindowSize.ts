@@ -3,12 +3,14 @@ import {useState, useEffect} from 'react'
 type WindowSize = {
   width?: number
   height?: number
+  isLarge?: boolean
 }
 
 export function useWindowSize() {
   const [windowSize, setWindowSize] = useState<WindowSize>({
     width: undefined, // undefined to avoid client/server mismatch on initial mount
-    height: undefined // undefined to avoid client/server mismatch on initial mount
+    height: undefined, // undefined to avoid client/server mismatch on initial mount,
+    isLarge: undefined // undefined to avoid client/server mismatch on initial mount,
   })
 
   useEffect(() => {
@@ -16,7 +18,12 @@ export function useWindowSize() {
     function handleResize() {
       setWindowSize({
         width: window.innerWidth,
-        height: window.innerHeight
+        height: window.innerHeight,
+        /*
+         * Maps to large breakpoint
+         * TODO: replace with design token. Requires remToPx util.
+         */
+        isLarge: window.innerWidth >= 1012
       })
     }
 

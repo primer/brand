@@ -44,7 +44,11 @@
     'components-button-features--primary-focus': 1000, // for the interaction test
     'components-button-features--with-hover-interaction': 1000, // for the interaction test
     'components-button-features--secondary-with-hover-interaction': 1000, // for the interaction test
-    'components-button-features--subtle-with-hover-interaction': 1000 // for the interaction test
+    'components-button-features--subtle-with-hover-interaction': 1000, // for the interaction test
+    'components-anchornav-features--narrow-view': 1000, // for the interaction test
+    'components-anchornav-features--narrow-view-menu-open': 1000, // for the interaction test
+    'components-anchornav-features--regular-view': 1000, // for the interaction test
+    'components-anchornav-features--regular-view-menu-open': 1000 // for the interaction test
   }
 
   /**
@@ -100,6 +104,7 @@
   
       ${componentStories.reduce((acc, {id, storyName, groupName, timeout}) => {
         const requiresMobileViewport = storyName.toLowerCase().includes('mobile')
+        const requiresTabletViewport = storyName.toLowerCase().includes('tablet')
 
         if (skipTestLookup.includes(id)) {
           return acc
@@ -119,6 +124,16 @@
           // eslint-disable-next-line i18n-text/no-en
           test.describe('Mobile viewport test for ${storyName}', () => {
             test.use({ viewport: { width: 360, height: 800 } });
+            ${testCase}
+          });
+          `)
+        }
+
+        if (requiresTabletViewport) {
+          return (acc += `
+          // eslint-disable-next-line i18n-text/no-en
+          test.describe('Tablet viewport test for ${storyName}', () => {
+            test.use({ viewport: { width: 834, height: 1112 } });
             ${testCase}
           });
           `)

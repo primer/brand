@@ -1,0 +1,358 @@
+/*
+ * AnchorNav
+ * 
+ * 1. Globals
+ * 2. AnchorNav root and inner bounding containers
+ * 3. AnchorNav links
+ * 4. AnchorNav link labels
+ * 5. AnchorNav menu toggle button (narrow)
+ * 6. AnchorNav action
+ * 7. Custom animations
+ */
+
+/*
+ * 1. Globals
+ * TODO: Move into global reset
+ */
+:global(html) {
+  scroll-behavior: smooth;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  :global(html) {
+    scroll-behavior: auto;
+  }
+}
+
+/*
+ * 2. AnchorNav root and inner bounding containers
+ */
+.AnchorNav {
+  display: flex;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: var(--base-size-12) var(--base-size-16);
+  z-index: 91; /* must be higher than subdomain nav bar */
+}
+
+.AnchorNav--with-default-background-color {
+  background-color: var(--brand-color-canvas-default);
+}
+
+.AnchorNav--stuck {
+  box-shadow: 0 3px 6px rgba(140, 149, 159, 0.15), 0 1px 1px rgba(0, 0, 0, 0.1); /* TODO: replace with a global token */
+}
+
+.AnchorNav--expanded {
+  transform-style: preserve-3d;
+  z-index: 91;
+}
+
+.AnchorNav-link-container {
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+
+.AnchorNav-inner-container {
+  max-width: 1280px;
+  width: 100%;
+  position: relative;
+  z-index: 91; /* must be higher than subdomain nav bar */
+}
+
+.AnchorNav--with-default-background-color .AnchorNav-inner-container {
+  background-color: var(--brand-color-canvas-default);
+}
+
+/* Up to large breakpoint */
+@media screen and (max-width: 63.25rem) {
+  .AnchorNav {
+    background-color: var(--brand-color-canvas-default);
+  }
+
+  .AnchorNav-inner-container--expanded {
+    height: auto;
+  }
+
+  .AnchorNav-link-container {
+    display: none;
+    padding-left: var(--base-size-16);
+  }
+  .AnchorNav--expanded .AnchorNav-link-container {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* Large breakpoint and up */
+@media screen and (min-width: 63.25rem) {
+  .AnchorNav {
+    padding: var(--base-size-12) var(--base-size-40);
+  }
+
+  .AnchorNav--with-default-background-color {
+    background-color: var(--brand-color-canvas-default);
+  }
+
+  .AnchorNav--stuck {
+    background-color: var(--brand-color-canvas-default);
+  }
+  .AnchorNav-inner-container {
+    margin: 0 auto;
+    display: flex;
+  }
+}
+
+/*
+ * 3. AnchorNav links
+ */
+.AnchorNav-link {
+  display: flex;
+  width: calc(100% - 80px);
+  text-decoration: none;
+  height: 48px;
+  align-items: center;
+  justify-items: flex-start;
+}
+
+.AnchorNav--expanded .AnchorNav-link {
+  margin: 0 0 2px; /* allow space for focus border */
+  animation: fade-in 1s;
+  animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1); /* TODO: replace with global token for animation timings */
+}
+
+/* Up to large breakpoint */
+@media screen and (max-width: 63.25rem) {
+  .AnchorNav-link {
+    position: absolute;
+    left: 0;
+    padding: 0 0 0 var(--base-size-16);
+  }
+
+  .AnchorNav-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 2px;
+    height: 50%;
+    background-color: var(--brand-AnchorNav-link-underline-default);
+    transition: opacity 300ms, transform 300ms;
+    opacity: 1;
+    transform: scale(0);
+    transform-origin: left;
+  }
+
+  .AnchorNav--expanded .AnchorNav-link--is-active::before {
+    transform: scale(1);
+  }
+}
+
+/* Large breakpoint and up */
+@media screen and (min-width: 63.25rem) {
+  .AnchorNav-link {
+    position: relative;
+    margin: 0 1px; /* to provide space for focus border */
+  }
+
+  .AnchorNav-link--center {
+    justify-content: center;
+  }
+
+  .AnchorNav-link--start {
+    justify-content: flex-start;
+    width: auto;
+    margin-right: var(--base-size-48);
+  }
+
+  .AnchorNav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--brand-AnchorNav-link-underline-default);
+    transition: opacity 300ms, transform 300ms;
+    opacity: 1;
+    transform: scale(0);
+    transform-origin: center;
+  }
+
+  .AnchorNav-link:hover::after,
+  .AnchorNav-link:focus::after,
+  .AnchorNav-link[data-active='true']::after {
+    opacity: 1;
+    transform: translate3d(0, 0.2em, 0);
+    transform: scale(0.4, 0.5);
+  }
+
+  .AnchorNav-link:active::after {
+    background-color: var(--brand-AnchorNav-link-underline-pressed);
+    transform: scale(0.6, 1);
+  }
+
+  .AnchorNav-link[data-active='true']::after {
+    background-color: var(--brand-AnchorNav-link-underline-pressed);
+    opacity: 1;
+  }
+
+  .AnchorNav-link:focus-visible::after {
+    opacity: 0;
+  }
+}
+
+/*
+ * 4. AnchorNav link labels
+ */
+.AnchorNav-link-label {
+  font-weight: var(--brand-heading-weight-400);
+  font-size: var(--brand-text-size-300);
+  line-height: var(--brand-text-lineHeight-300);
+  font-family: var(--brand-heading-fontFamily);
+  letter-spacing: var(--brand-heading-letterSpacing-400);
+  color: var(--brand-color-text-default);
+  transition: color cubic-bezier(0.33, 1, 0.68, 1) 0.2s; /* TODO: replace with global token for animation timings */
+  white-space: nowrap;
+}
+
+.AnchorNav--with-default-background-color .AnchorNav-link-label {
+  background-color: var(--brand-color-canvas-default);
+}
+
+/* Up to large breakpoint */
+@media screen and (max-width: 63.25rem) {
+  .AnchorNav-link-label {
+    background-color: var(--brand-color-canvas-default);
+  }
+
+  .AnchorNav--expanded .AnchorNav-link-label--is-active {
+    color: var(--brand-color-focus);
+  }
+
+  .AnchorNav-link:not(.AnchorNav-link[data-active='true']) {
+    visibility: hidden;
+  }
+
+  .AnchorNav--stuck .AnchorNav-link[data-active='false'][data-first='true'] {
+    visibility: visible;
+  }
+
+  .AnchorNav .AnchorNav-link[data-active='false'][data-first='true'] {
+    visibility: visible;
+  }
+
+  .AnchorNav-inner-container--expanded .AnchorNav-link {
+    visibility: visible !important;
+    display: flex;
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    flex-direction: column;
+    text-align: left;
+    justify-content: center;
+    align-items: flex-start;
+  }
+}
+
+/*
+ * 5. AnchorNav menu toggle button (narrow)
+ */
+.AnchorNav-menu-button {
+  display: none;
+}
+
+/* Up to large breakpoint */
+@media screen and (max-width: 63.25rem) {
+  .AnchorNav-menu-button {
+    all: unset;
+    display: inline-flex;
+    cursor: pointer;
+    padding: var(--base-size-8) var(--base-size-16);
+    padding-left: 0; /* space for focus */
+    align-items: center;
+    height: var(--base-size-32);
+    z-index: 2;
+    border-radius: var(--brand-borderRadius-small);
+  }
+
+  .AnchorNav-menu-button-arrow {
+    padding: 0 calc(var(--base-size-12) / 2);
+    width: 32px;
+    height: 32px;
+    color: var(--brand-color-text-default);
+  }
+
+  .AnchorNav-menu-button:focus-visible {
+    border-color: var(--brand-color-focus);
+    outline: none;
+    box-shadow: 0 0 0 2px var(--brand-color-focus);
+  }
+
+  .AnchorNav-overlay--expanded {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: -3;
+    width: 100%;
+    height: 100vh; /* Keep as fallback */
+    height: 100dvh;
+    background: hsla(var(--base-color-scale-black-0-hsl) / 0.5);
+    transform: translateZ(-1px);
+    animation: fade-in 0.5s;
+    animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+    cursor: pointer;
+  }
+}
+
+/*
+ * 6. AnchorNav action
+ */
+
+.AnchorNav-action {
+  z-index: 1;
+  display: flex;
+  margin-left: auto;
+  white-space: nowrap;
+  padding: var(--base-size-12) var(--base-size-24);
+}
+
+.AnchorNav--expanded .AnchorNav-action {
+  align-self: flex-start;
+}
+
+@media screen and (max-width: 34rem) {
+  .AnchorNav-action {
+    display: none;
+  }
+  .AnchorNav--expanded .AnchorNav-action {
+    display: flex;
+    margin-top: var(--base-size-8);
+  }
+}
+
+@media screen and (min-width: 34rem) and (max-width: 63.25rem) {
+  .AnchorNav-action {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+/*
+ * 7. Custom animations
+ */
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

@@ -4,6 +4,7 @@ import {ChevronLeftIcon, MarkGithubIcon, SearchIcon, XIcon} from '@primer/octico
 
 import {Button, FormControl, Heading, Text, TextInput} from '..'
 import {NavigationVisbilityObserver} from './NavigationVisbilityObserver'
+import {useOnClickOutside} from '../hooks/useOnClickOutside'
 
 /**
  * Design tokens
@@ -12,7 +13,6 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './SubdomainNavBar.module.css'
-import {useOnClickOutside} from '../hooks/useOnClickOutside'
 
 export type SubdomainNavBarProps = {
   /**
