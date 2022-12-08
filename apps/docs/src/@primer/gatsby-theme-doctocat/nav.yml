@@ -16,6 +16,8 @@
       url: /components/AnchorNav
     - title: ComparisonTable
       url: /components/ComparisonTable
+    - title: CTABanner
+      url: /components/CTABanner
     - title: FAQ
       url: /components/FAQ
     - title: Hero

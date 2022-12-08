@@ -182,7 +182,8 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
     `tokens/functional/components/control/colors.js`,
     `tokens/functional/components/subdomain-nav-bar/colors.js`,
     `tokens/functional/components/comparison-table/colors.js`,
-    `tokens/functional/components/anchor-nav/colors.js`
+    `tokens/functional/components/anchor-nav/colors.js`,
+    `tokens/functional/components/cta-banner/colors.js`
   ]
 
   for (const path of filesForColorModes) {

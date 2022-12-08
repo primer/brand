@@ -220,7 +220,7 @@
 }
 
 @media screen and (max-width: 767px) {
-  .SubdomainNavBar-link:first-child {
+  .SubdomainNavBar-link:first-of-type {
     padding-top: var(--base-size-24);
   }
 }
