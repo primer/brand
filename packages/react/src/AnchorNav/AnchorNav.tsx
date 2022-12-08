@@ -297,7 +297,11 @@ function _AnchorNavLink({
 
   return (
     <a
-      className={clsx(styles['AnchorNav-link'], styles[`AnchorNav-link--${alignment}`])}
+      className={clsx(
+        styles['AnchorNav-link'],
+        styles[`AnchorNav-link--${alignment}`],
+        anchoredContentIsVisible && styles['AnchorNav-link--is-active']
+      )}
       href={isAnchor ? href : `#${href}`}
       aria-describedby={sansAnchor}
       aria-current={anchoredContentIsVisible && 'true'}

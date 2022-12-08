@@ -8,6 +8,7 @@ declare const styles: {
   readonly "AnchorNav-inner-container--expanded": string;
   readonly "AnchorNav-link": string;
   readonly "fade-in": string;
+  readonly "AnchorNav-link--is-active": string;
   readonly "AnchorNav-link--center": string;
   readonly "AnchorNav-link--start": string;
   readonly "AnchorNav-link-label": string;

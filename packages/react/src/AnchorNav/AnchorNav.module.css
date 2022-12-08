@@ -80,7 +80,7 @@
 
   .AnchorNav-link-container {
     display: none;
-    padding-left: var(--base-size-32);
+    padding-left: var(--base-size-16);
   }
   .AnchorNav--expanded .AnchorNav-link-container {
     display: flex;
@@ -130,6 +130,24 @@
   .AnchorNav-link {
     position: absolute;
     left: 0;
+    padding: 0 0 0 var(--base-size-16);
+  }
+
+  .AnchorNav-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 2px;
+    height: 50%;
+    background-color: var(--brand-AnchorNav-border-nav-default);
+    transition: opacity 300ms, transform 300ms;
+    opacity: 1;
+    transform: scale(0);
+    transform-origin: left;
+  }
+
+  .AnchorNav--expanded .AnchorNav-link--is-active::before {
+    transform: scale(1);
   }
 }
 
@@ -158,7 +176,6 @@
     width: 100%;
     height: 2px;
     background-color: var(--brand-AnchorNav-border-nav-default);
-    opacity: 0;
     transition: opacity 300ms, transform 300ms;
     opacity: 1;
     transform: scale(0);
@@ -219,6 +236,7 @@
   .AnchorNav-link:not(.AnchorNav-link[data-active='true']) {
     visibility: hidden;
   }
+
   .AnchorNav--stuck .AnchorNav-link[data-active='false'][data-first='true'] {
     visibility: visible;
   }
