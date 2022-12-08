@@ -167,42 +167,6 @@
     width: auto;
     margin-right: var(--base-size-48);
   }
-
-  .AnchorNav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 10px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: var(--brand-AnchorNav-link-underline-default);
-    transition: opacity 300ms, transform 300ms;
-    opacity: 1;
-    transform: scale(0);
-    transform-origin: center;
-  }
-
-  .AnchorNav-link:hover::after,
-  .AnchorNav-link:focus::after,
-  .AnchorNav-link[data-active='true']::after {
-    opacity: 1;
-    transform: translate3d(0, 0.2em, 0);
-    transform: scale(0.4, 0.5);
-  }
-
-  .AnchorNav-link:active::after {
-    background-color: var(--brand-AnchorNav-link-underline-pressed);
-    transform: scale(0.6, 1);
-  }
-
-  .AnchorNav-link[data-active='true']::after {
-    background-color: var(--brand-AnchorNav-link-underline-pressed);
-    opacity: 1;
-  }
-
-  .AnchorNav-link:focus-visible::after {
-    opacity: 0;
-  }
 }
 
 /*
@@ -217,6 +181,7 @@
   color: var(--brand-color-text-default);
   transition: color cubic-bezier(0.33, 1, 0.68, 1) 0.2s; /* TODO: replace with global token for animation timings */
   white-space: nowrap;
+  position: relative;
 }
 
 .AnchorNav--with-default-background-color .AnchorNav-link-label {
@@ -256,6 +221,45 @@
     text-align: left;
     justify-content: center;
     align-items: flex-start;
+  }
+}
+
+/* Large breakpoint and up */
+@media screen and (min-width: 63.25rem) {
+  .AnchorNav-link-label::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--brand-AnchorNav-link-underline-default);
+    transition: opacity 300ms, transform 300ms, background-color 300ms;
+    opacity: 1;
+    transform: scale(0);
+    transform-origin: center;
+  }
+
+  .AnchorNav-link:hover .AnchorNav-link-label::after,
+  .AnchorNav-link:focus .AnchorNav-link-label::after,
+  .AnchorNav-link[data-active='true'] .AnchorNav-link-label::after {
+    opacity: 1;
+    transform: translate3d(0, 0.2em, 0);
+    transform: scale(0.8, 1);
+  }
+
+  .AnchorNav-link:active .AnchorNav-link-label::after {
+    background-color: var(--brand-AnchorNav-link-underline-pressed);
+    transform: scale(0.9, 1);
+  }
+
+  .AnchorNav-link[data-active='true'] .AnchorNav-link-label::after {
+    background-color: var(--brand-AnchorNav-link-underline-pressed);
+    opacity: 1;
+  }
+
+  .AnchorNav-link:focus-visible .AnchorNav-link-label::after {
+    opacity: 0;
   }
 }
 

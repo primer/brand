@@ -130,6 +130,18 @@ FewerAnchorLinks.args = {
   }
 } as never
 
+export const ShorterLabels = Template.bind({})
+ShorterLabels.storyName = 'Shorter labels'
+ShorterLabels.args = {
+  data: {
+    ['Foo']: 'foo',
+    ['Bar']: 'bar',
+    ['Baz']: 'baz',
+    ['Qux']: 'qux',
+    ['Quux']: 'quux'
+  }
+} as never
+
 export const CustomBackground = ({data, ...args}: {data: MockData; offset: number}) => {
   return (
     <div style={{backgroundColor: 'var(--base-color-scale-green-0)', paddingTop: args.offset}}>
