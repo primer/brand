@@ -1,5 +1,46 @@
 # @primer/react-brand
 
+## 0.8.0
+
+### Minor Changes
+
+- [#133](https://github.com/primer/brand/pull/133) [`0b43c0e`](https://github.com/primer/brand/commit/0b43c0e44f54738d7d54a2ee1d702927a9b40931) Thanks [@rezrah](https://github.com/rezrah)! - New `AnchorNav` component available
+
+  Use `AnchorNav` to provide a sticky navigation bar for quick scrolling to and highlighting of different sections of the document.
+
+  ```jsx
+  <AnchorNav>
+    <AnchorNav.Link href="#section-1">Section 1</AnchorNav.Link>
+    <AnchorNav.Link href="#section-2">Section 2</AnchorNav.Link>
+    <AnchorNav.Link href="#section-3">Section 3</AnchorNav.Link>
+    <AnchorNav.Action href="/">Call to action</AnchorNav.Action>
+  </AnchorNav>
+  ```
+
+  :link: [See the documentation for more details and usage examples.](https://primer.style/brand/components/AnchorNav)
+
+* [#128](https://github.com/primer/brand/pull/128) [`1f14be6`](https://github.com/primer/brand/commit/1f14be6e43b54b5b459bf2e8ca52805aa2b3fb4c) Thanks [@JoshBowdenConcepts](https://github.com/JoshBowdenConcepts)! - New CTABanner component available
+
+  ```jsx
+  <CTABanner>
+    <CTABanner.Heading>Where the most ambitious teams build great things</CTABanner.Heading>
+    <CTABanner.Description>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+      felis nam pulvinar risus elementum.
+    </CTABanner.Description>
+    <CTABanner.ButtonGroup>
+      <Button>Primary Action</Button>
+      <Button>Secondary Action</Button>
+    </CTABanner.ButtonGroup>
+  </CTABanner>
+  ```
+
+  :link: [See the documentation for more details and usage examples.](https://primer.style/brand/components/CTABanner)
+
+### Patch Changes
+
+- [#135](https://github.com/primer/brand/pull/135) [`32555dd`](https://github.com/primer/brand/commit/32555dd1cc72575c5cafb7c789cdea219fab1110) Thanks [@JoshBowdenConcepts](https://github.com/JoshBowdenConcepts)! - `Stack` component: Added `className` prop forwarding to the `Stack` root
+
 ## 0.7.2
 
 ### Patch Changes
