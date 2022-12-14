@@ -1,0 +1,65 @@
+---
+title: List
+status: Experimental
+figma: 'https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=354%3A9513'
+source: https://github.com/primer/brand/tree/main/src/List/UnorderedList.tsx
+storybook: '/brand/storybook/?path=/story/components-unorderedlist--scale'
+description: Use the List component to a list of items. You can use either the OrderedList or the UnorderedList component.
+---
+
+```js
+import {UnorderedList} from '@primer/react-brand'
+```
+
+## Examples
+
+### UnorderedList Default
+
+```jsx live
+<UnorderedList variant="default">
+  <li>Automatic security and version updates</li>
+  <li>GitHub Security Advisories</li>
+  <li>Code and secret scanning</li>
+  <li>Dependency review</li>
+  <li>Automated authentication and identity management</li>
+</UnorderedList>
+```
+
+### OrderedList Default
+
+```jsx live
+<OrderedList>
+  <li>Automatic security and version updates</li>
+  <li>GitHub Security Advisories</li>
+  <li>Code and secret scanning</li>
+  <li>Dependency review</li>
+  <li>Automated authentication and identity management</li>
+</OrderedList>
+```
+
+### Checked UnorderedList
+
+```jsx live
+<UnorderedList variant="checked">
+  <li>Automatic security and version updates</li>
+  <li>GitHub Security Advisories</li>
+  <li>Code and secret scanning</li>
+  <li>Dependency review</li>
+  <li>Automated authentication and identity management</li>
+</UnorderedList>
+```
+
+## Component props
+
+### UnorderedList
+
+| Name        | Type                 |  Default  | Description                             |
+| :---------- | :------------------- | :-------: | :-------------------------------------- |
+| `className` | `string`             |           | Sets a custom class on the root element |
+| `variant`   | `default`, `checked` | `default` | Specify alternative List appearance     |
+
+### OrderedList
+
+| Name        | Type     | Default | Description                             |
+| :---------- | :------- | :-----: | :-------------------------------------- |
+| `className` | `string` |         | Sets a custom class on the root element |
