@@ -17,8 +17,14 @@
  */
 
 .ComparisonTable-footnote {
-  text-align: center;
+  text-align: left;
   margin: var(--base-size-24) 0;
+}
+
+@media screen and (min-width: 34rem) {
+  .ComparisonTable--footnote {
+    text-align: center;
+  }
 }
 
 /*
