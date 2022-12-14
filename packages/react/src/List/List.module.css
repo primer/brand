@@ -1,0 +1,40 @@
+.List {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  list-style: none;
+  gap: 8px;
+}
+
+ul.List {
+  padding-inline-start: 0px;
+}
+
+ol.List {
+  counter-reset: li;
+  padding-inline-start: 0px;
+}
+
+.List > li {
+  font-family: var(--brand-body-fontFamily);
+  font-weight: var(--brand-text-weight-400);
+  font-size: var(--brand-text-size-300);
+  line-height: var(--brand-text-lineHeight-400);
+  color: var(--brand-color-text-default);
+}
+
+ul.List > li::before {
+  content: ' 🤖 ';
+  padding-right: 12px;
+}
+
+ol.List > li::before {
+  content: counter(li) '.';
+  counter-increment: li;
+  padding-right: 12px;
+  font-family: var(--brand-body-fontFamily);
+  font-weight: var(--brand-text-weight-400);
+  font-size: var(--brand-text-size-300);
+  line-height: var(--brand-text-lineHeight-400);
+  color: var(--brand-color-text-muted);
+}
