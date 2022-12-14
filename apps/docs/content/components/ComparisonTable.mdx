@@ -283,7 +283,9 @@ const App = () => {
           </ComparisonTable.Row>
         )
       })}
-      <ComparisonTable.Footnote></ComparisonTable.Footnote>
+      <ComparisonTable.Footnote>
+        {comparisonTableData.footnotes}
+      </ComparisonTable.Footnote>
     </ComparisonTable>
   )
 }
