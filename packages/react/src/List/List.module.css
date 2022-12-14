@@ -24,8 +24,15 @@ ol.List {
 }
 
 ul.List > li::before {
-  content: ' 🤖 ';
   padding-right: 12px;
+}
+
+ul.List--default > li::before {
+  content: '-';
+}
+
+ul.List--checked > li::before {
+  content: '✔️';
 }
 
 ol.List > li::before {

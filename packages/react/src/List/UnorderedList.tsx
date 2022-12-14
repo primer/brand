@@ -20,5 +20,5 @@ export type UnorderedListProps = BaseProps<HTMLElement> & {
 }
 
 export function UnorderedList({variant = 'default', children, ...props}: UnorderedListProps) {
-  return <ul className={clsx(styles.List, styles[`.List--${variant}`], props.className)}>{children}</ul>
+  return <ul className={clsx(styles.List, styles[`List--${variant}`], props.className)}>{children}</ul>
 }
