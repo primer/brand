@@ -89,6 +89,16 @@ details[open] > .Accordion__summary::after {
   opacity: 0;
   transform: rotateZ(180deg);
 }
+
+.Accordion__content {
+  color: var(--brand-color-text-muted);
+
+  font-family: var(--brand-fontStack-sansSerif);
+  font-weight: var(--brand-text-weight-300);
+  font-size: var(--brand-text-size-300);
+  line-height: var(--brand-text-lineHeight-300);
+}
+
 details[open] > .Accordion__content {
   padding-left: var(--base-size-40);
   padding-bottom: var(--base-size-24);
