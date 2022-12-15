@@ -206,8 +206,8 @@ export const DynamicDataExample: ComponentStory<typeof FAQ> = () => {
       content: (
         <div>
           <p>
-            All of our applications will be thoroughly evaluated by a selection committee. You’ll be much more likely to
-            be selected if you:
+            All of our applications will be thoroughly evaluated by a selection committee. You&apos;ll be much more
+            likely to be selected if you:
           </p>
           <ul>
             <li>Have an active and growing set of users</li>
@@ -218,7 +218,7 @@ export const DynamicDataExample: ComponentStory<typeof FAQ> = () => {
       )
     },
     {
-      title: 'What do I get if I’m selected?',
+      title: 'What do I get if I&apos;m selected?',
       content: (
         <div>
           <ul>
@@ -231,7 +231,7 @@ export const DynamicDataExample: ComponentStory<typeof FAQ> = () => {
       )
     },
     {
-      title: 'What do I have to do if I’m selected?',
+      title: 'What do I have to do if I&apos;m selected?',
       content: (
         <div>
           <ul>
@@ -270,7 +270,7 @@ export const DynamicDataExample: ComponentStory<typeof FAQ> = () => {
       content: (
         <div>
           <p>
-            Awesome! Email us at <a href="mailto:accelerator@github.com">accelerator@github.com</a>.
+            Awesome! Email us at <a href="mailto:foo@bar.com">foo@bar.com</a>.
           </p>
         </div>
       )
@@ -280,7 +280,7 @@ export const DynamicDataExample: ComponentStory<typeof FAQ> = () => {
       content: (
         <div>
           <p>
-            Send us an email to <a href="mailto:accelerator@github.com">accelerator@github.com</a>.
+            Send us an email to <a href="mailto:foo@bar.com">foo@bar.com</a>.
           </p>
         </div>
       )
