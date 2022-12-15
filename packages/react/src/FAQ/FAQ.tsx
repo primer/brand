@@ -1,8 +1,8 @@
-import React, {forwardRef} from 'react'
+import React, {forwardRef, PropsWithChildren} from 'react'
 import {isFragment} from 'react-is'
 import clsx from 'clsx'
 
-import {Heading, AccordionHeading, AccordionContent, AccordionRoot, AccordionRootProps} from '..'
+import {Heading, AccordionHeading, AccordionContent, AccordionRoot} from '..'
 import type {BaseProps} from '../component-helpers'
 
 /**
@@ -16,9 +16,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
  */
 import styles from './FAQ.module.css'
 
-type FAQRootProps = BaseProps<HTMLElement> & {
-  children: React.ReactElement<FAQHeadingProps | FAQSubheadingProps | AccordionRootProps>[]
-}
+type FAQRootProps = PropsWithChildren<BaseProps<HTMLElement>>
 
 const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, className, ...rest}, ref) => {
   const childrenHasFragment = React.Children.toArray(children).some(child => isFragment(child))

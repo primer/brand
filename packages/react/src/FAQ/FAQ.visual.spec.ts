@@ -8,13 +8,13 @@ import {test, expect} from '@playwright/test'
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: FAQ', () => {
   test('FAQ / All Closed', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq-fixtures--all-closed&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq-features--all-closed&viewMode=story')
 
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('FAQ / All Open', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq-fixtures--all-open&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq-features--all-open&viewMode=story')
 
     await page.waitForTimeout(250)
     expect(await page.screenshot()).toMatchSnapshot()
@@ -22,14 +22,22 @@ test.describe('Visual Comparison: FAQ', () => {
 
   test('FAQ / Heading Left Aligned', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-faq-fixtures--heading-left-aligned&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-faq-features--heading-left-aligned&viewMode=story'
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('FAQ / Groups', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq-fixtures--groups&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq-features--groups&viewMode=story')
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('FAQ / Dynamic Data Example', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-faq-features--dynamic-data-example&viewMode=story'
+    )
 
     expect(await page.screenshot()).toMatchSnapshot()
   })
