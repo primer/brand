@@ -218,7 +218,7 @@ export const DynamicDataExample: ComponentStory<typeof FAQ> = () => {
       )
     },
     {
-      title: 'What do I get if I&apos;m selected?',
+      title: "What do I get if I'm selected?",
       content: (
         <div>
           <ul>
@@ -231,7 +231,7 @@ export const DynamicDataExample: ComponentStory<typeof FAQ> = () => {
       )
     },
     {
-      title: 'What do I have to do if I&apos;m selected?',
+      title: "What do I have to do if I'm selected?",
       content: (
         <div>
           <ul>
