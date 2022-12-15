@@ -15,5 +15,7 @@ export {
   SubdomainNavBar,
   ComparisonTable,
   Stack,
-  ButtonGroup
+  ButtonGroup,
+  CTABanner,
+  AnchorNav
 } from '@primer/react-brand'
