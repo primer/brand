@@ -46,16 +46,19 @@ function _AnchorNav({children, enableDefaultBgColor = false, ...props}: AnchorNa
   const [menuOpen, setMenuOpen] = useState(false)
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
   const [currentActiveNavItem, setCurrentActiveNavItem] = useState<string | null>()
+  const [intersectionEntry, setIntersectionEntry] = useState<IntersectionObserverEntry>()
+  const [initialYOffset, setInitialYOffset] = useState<undefined | number>()
+  const [navShouldFix, setNavShouldFix] = useState<boolean>(false)
+
   const rootRef = useRef<HTMLElement | null>(null)
   const menuToggleButtonRef = useRef<HTMLButtonElement | null>(null)
   const linkContainerRef = useRef<HTMLDivElement | null>(null)
-  const [intersectionEntry, setIntersectionEntry] = useState<IntersectionObserverEntry>()
+
+  const {isLarge} = useWindowSize()
   const idForLinkContainer = useId()
 
   const closeMenuCallback = useCallback(() => setMenuOpen(false), [setMenuOpen])
   const toggleMenuCallback = useCallback(() => setMenuOpen(!menuOpen), [menuOpen])
-
-  const isVisible = !!intersectionEntry?.isIntersecting
 
   const ValidChildren = useMemo(
     () =>
@@ -65,18 +68,38 @@ function _AnchorNav({children, enableDefaultBgColor = false, ...props}: AnchorNa
     [children]
   )
 
+  useEffect(() => {
+    if (initialYOffset === undefined && intersectionEntry) {
+      setInitialYOffset(intersectionEntry.boundingClientRect.y)
+    }
+  }, [initialYOffset, intersectionEntry])
+
   const handleIntersectionUpdate = ([nextEntry]: IntersectionObserverEntry[]): void => {
     setIntersectionEntry(nextEntry)
   }
 
   useKeyboardEscape(closeMenuCallback)
-  useExpandedMenu(menuOpen, linkContainerRef, menuToggleButtonRef)
+  useExpandedMenu(menuOpen, linkContainerRef, menuToggleButtonRef, !isLarge)
 
   useEffect(() => {
     const queryResult = window.matchMedia('(prefers-reduced-motion: reduce)')
 
     setPrefersReducedMotion(queryResult.matches)
   }, [])
+
+  useEffect(() => {
+    const handler = () => {
+      if (initialYOffset) {
+        const isPastInitialYOffset = window.pageYOffset > initialYOffset
+        isPastInitialYOffset ? setNavShouldFix(true) : setNavShouldFix(false)
+      }
+    }
+    // eslint-disable-next-line github/prefer-observers
+    window.addEventListener('scroll', handler)
+    return () => {
+      window.removeEventListener('scroll', handler)
+    }
+  }, [initialYOffset])
 
   useEffect(() => {
     const node = rootRef.current
@@ -141,7 +164,7 @@ function _AnchorNav({children, enableDefaultBgColor = false, ...props}: AnchorNa
       ref={rootRef}
       className={clsx(
         styles.AnchorNav,
-        isVisible && styles['AnchorNav--stuck'],
+        navShouldFix && styles['AnchorNav--stuck'],
         menuOpen && styles['AnchorNav--expanded'],
         enableDefaultBgColor && styles['AnchorNav--with-default-background-color']
       )}
