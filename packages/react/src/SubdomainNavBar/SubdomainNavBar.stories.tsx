@@ -40,7 +40,7 @@ export default {
   }
 } as ComponentMeta<typeof SubdomainNavBar>
 
-const mockSearchData = [
+export const mockSearchData = [
   {
     title: 'How to transform your business in a digital world',
     description:

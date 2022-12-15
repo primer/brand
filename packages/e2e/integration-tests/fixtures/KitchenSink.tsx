@@ -16,7 +16,9 @@ import {
   SubdomainNavBar,
   ComparisonTable,
   Stack,
-  ButtonGroup
+  ButtonGroup,
+  CTABanner,
+  AnchorNav
 } from './'
 import '@primer/react-brand/lib/css/main.css'
 
@@ -35,10 +37,11 @@ export default function KitchenSink() {
         <SubdomainNavBar.Link href="#">Video</SubdomainNavBar.Link>
         <SubdomainNavBar.Link href="#">Social</SubdomainNavBar.Link>
         <SubdomainNavBar.Search ref={inputRef} onChange={mockHandler} onSubmit={mockHandler} />
+
         <SubdomainNavBar.PrimaryAction href="#">Primary CTA</SubdomainNavBar.PrimaryAction>
         <SubdomainNavBar.SecondaryAction href="#">Secondary CTA</SubdomainNavBar.SecondaryAction>
       </SubdomainNavBar>
-      <div style={{maxWidth: 1280, margin: '0 auto'}}>
+      <div style={{maxWidth: 1280, margin: '80px auto 0'}}>
         <Hero
           heading="This is my super sweet hero heading"
           description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum."
@@ -52,7 +55,31 @@ export default function KitchenSink() {
           }}
           align="center"
         />
-        <River>
+      </div>
+      <AnchorNav enableDefaultBgColor>
+        <AnchorNav.Link href="#river">River</AnchorNav.Link>
+        <AnchorNav.Link href="#testimonial">Testimonial</AnchorNav.Link>
+        <AnchorNav.Link href="#faq">FAQ</AnchorNav.Link>
+        <AnchorNav.Link href="#ctabanner">CTA Banner</AnchorNav.Link>
+        <AnchorNav.Link href="#forms">Forms</AnchorNav.Link>
+        <AnchorNav.Action href="#">Action</AnchorNav.Action>
+      </AnchorNav>
+      <div style={{maxWidth: 1280, margin: '0 auto', padding: '0 1rem'}}>
+        <Stack
+          direction="vertical"
+          justifyContent="center"
+          style={{textAlign: 'center', maxWidth: '600px', margin: '100px auto'}}
+        >
+          <Heading as="h2" size="3">
+            Section intro
+          </Heading>
+          <Text as="p">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis nam pulvinar risus elementum.
+          </Text>
+        </Stack>
+
+        <River id="river">
           <River.Visual>
             <img
               src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
@@ -100,7 +127,57 @@ export default function KitchenSink() {
             <Link href="#">Call to action</Link>
           </River.Content>
         </River>
-        <FAQ>
+        <Stack
+          id="testimonial"
+          gap="spacious"
+          padding="spacious"
+          direction={{narrow: 'vertical', regular: 'horizontal', wide: 'horizontal'}}
+          style={{maxWidth: 1280, margin: '100px auto'}}
+        >
+          <Testimonial>
+            <Testimonial.Quote>
+              GitHub helps us ensure that we have our security controls baked into our pipelines all the way from the
+              first line of code we&apos;re writing.
+            </Testimonial.Quote>
+            <Testimonial.Name>David Ross</Testimonial.Name>
+            <Testimonial.Logo>
+              <img
+                alt="GitHub Logo"
+                src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+                width={60}
+              />
+            </Testimonial.Logo>
+          </Testimonial>
+          <Testimonial>
+            <Testimonial.Quote>
+              GitHub helps us ensure that we have our security controls baked into our pipelines all the way from the
+              first line of code we&apos;re writing.
+            </Testimonial.Quote>
+            <Testimonial.Name>David Ross</Testimonial.Name>
+            <Testimonial.Logo>
+              <img
+                alt="GitHub Logo"
+                src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+                width={60}
+              />
+            </Testimonial.Logo>
+          </Testimonial>
+          <Testimonial>
+            <Testimonial.Quote>
+              GitHub helps us ensure that we have our security controls baked into our pipelines all the way from the
+              first line of code we&apos;re writing.
+            </Testimonial.Quote>
+            <Testimonial.Name>David Ross</Testimonial.Name>
+            <Testimonial.Logo>
+              <img
+                alt="GitHub Logo"
+                src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+                width={60}
+              />
+            </Testimonial.Logo>
+          </Testimonial>
+        </Stack>
+        <FAQ id="faq">
           <FAQ.Heading>Frequently asked questions</FAQ.Heading>
           <FAQ.Item>
             <FAQ.Question>What&apos;s included in the GitHub for Startups offer?</FAQ.Question>
@@ -238,6 +315,19 @@ export default function KitchenSink() {
           </ButtonGroup>
         </div>
       </div>
+      <div style={{padding: '200px 0 100px'}}>
+        <CTABanner align="center" id="ctabanner">
+          <CTABanner.Heading>Where the most ambitious teams build great things</CTABanner.Heading>
+          <CTABanner.Description>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis nam pulvinar risus elementum.
+          </CTABanner.Description>
+          <CTABanner.ButtonGroup>
+            <Button>Primary Action</Button>
+            <Button>Secondary Action</Button>
+          </CTABanner.ButtonGroup>
+        </CTABanner>
+      </div>
       <ThemeProvider colorMode="dark">
         <div
           style={{
@@ -247,6 +337,7 @@ export default function KitchenSink() {
           }}
         >
           <form
+            id="forms"
             style={{
               margin: '3rem auto 5rem',
               maxWidth: 600,
@@ -313,6 +404,28 @@ export default function KitchenSink() {
                   <Select.Option value="uk">United Kingdom</Select.Option>
                 </Select>
               </FormControl>
+              <Heading as="h4" size="6">
+                Number of users
+              </Heading>
+              {/* Todo convert to a fieldset */}
+              <Stack direction={{narrow: 'vertical', regular: 'horizontal'}} padding="none">
+                <FormControl>
+                  <FormControl.Label>0-99</FormControl.Label>
+                  <Radio name="user-band" value="0-99" />
+                </FormControl>
+                <FormControl>
+                  <FormControl.Label>100-499</FormControl.Label>
+                  <Radio name="user-band" value="100-499" />
+                </FormControl>
+                <FormControl>
+                  <FormControl.Label>500-999</FormControl.Label>
+                  <Radio name="user-band" value="500-999" />
+                </FormControl>
+                <FormControl>
+                  <FormControl.Label>1000+</FormControl.Label>
+                  <Radio name="user-band" value="1000+" />
+                </FormControl>
+              </Stack>
               <FormControl hasBorder required>
                 <FormControl.Label>
                   Contact me about GitHub Enterprise Server{' '}
