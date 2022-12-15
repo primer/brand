@@ -10,6 +10,7 @@ export {
   Checkbox,
   Select,
   TextInput,
+  Testimonial,
   ThemeProvider,
   Button,
   SubdomainNavBar,

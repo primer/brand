@@ -18,7 +18,8 @@ const {
   Stack,
   ButtonGroup,
   CTABanner,
-  AnchorNav
+  AnchorNav,
+  Testimonial
 } = components
 
 export {
@@ -40,5 +41,6 @@ export {
   Stack,
   ButtonGroup,
   CTABanner,
-  AnchorNav
+  AnchorNav,
+  Testimonial
 }
