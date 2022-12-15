@@ -46,7 +46,7 @@
 }
 
 .Button--primary:not(.Button--disabled):hover {
-  box-shadow: var(--brand-Button-shadow-hover);
+  box-shadow: var(--brand-Button-shadow-primary-hover);
 }
 
 .Button--primary.Button--disabled {
@@ -63,12 +63,12 @@
 
 .Button--secondary {
   color: var(--brand-color-text-default);
-  box-shadow: inset 0 0 0 1px var(--brand-color-border-default);
+  box-shadow: var(--brand-Button-shadow-secondary-default);
   transition: box-shadow 200ms;
 }
 
 .Button--secondary:not(.Button--disabled):hover {
-  box-shadow: inset 0 0 0 2px var(--brand-color-neutral-emphasisPlus);
+  box-shadow: var(--brand-Button-shadow-secondary-hover);
 }
 
 .Button--label-secondary.Button-label--disabled,
@@ -86,11 +86,21 @@
 }
 
 .Button--size-medium {
-  padding: var(--base-size-16) var(--base-size-24);
+  padding: calc(var(--base-size-16) - 2px) var(--base-size-24);
+}
+
+.Button--size-medium .Button--label {
+  /* Brings overall default height down to 48px */
+  line-height: var(--brand-text-lineHeight-200);
 }
 
 .Button--size-large {
   padding: var(--base-size-16) var(--base-size-32);
+}
+
+.Button--size-large .Button--label {
+  /* Brings overall default height down to 56px */
+  line-height: var(--brand-text-lineHeight-300);
 }
 
 .Button--disabled,

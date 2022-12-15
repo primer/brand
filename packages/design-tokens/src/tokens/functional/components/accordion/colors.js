@@ -4,12 +4,12 @@ module.exports = {
       toggle: {
         color: {
           start: {
-            value: 'var(--brand-color-accent-fg)',
-            dark: 'var(--brand-color-accent-fg)'
+            value: 'var(--brand-color-accent-primary)',
+            dark: 'var(--brand-color-accent-primary)'
           },
           end: {
-            value: 'var(--brand-color-accent-fg)',
-            dark: 'var(--brand-color-accent-fg)'
+            value: 'var(--brand-color-accent-primary)',
+            dark: 'var(--brand-color-accent-primary)'
           }
         }
       }
