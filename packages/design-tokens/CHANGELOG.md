@@ -1,5 +1,93 @@
 # @primer/brand-primitives
 
+## 0.9.0
+
+### Minor Changes
+
+- [#143](https://github.com/primer/brand/pull/143) [`3affeda`](https://github.com/primer/brand/commit/3affedaea4c162664f7330a7898c47ced7d1a602) Thanks [@rezrah](https://github.com/rezrah)! - - Updating names and values for `accent`, `accordion` and `button` design tokens.
+
+  ```diff
+  - --brand-color-accent-fg
+  + --brand-color-accent-primary
+  ```
+
+  ```diff
+  - --brand-color-accent-emphasis
+  + --brand-color-accent-secondary
+  ```
+
+  ```diff
+  - --brand-color-accent-fg
+  + --brand-color-accent-primary
+  ```
+
+  ```diff
+  - --brand-color-accent-emphasis
+  + --brand-color-accent-secondary
+  ```
+
+  ```diff
+  - --brand-color-accent-subtle
+  + --brand-color-accent-secondary
+  ```
+
+  ```diff
+  - --brand-color-accent-muted
+  + --brand-color-accent-primary
+  ```
+
+  ```diff
+  - --brand-Accordion-toggle-color-start
+  + --brand-Accordion-toggle-color-start
+  ```
+
+  ```diff
+  - --brand-Accordion-toggle-color-end
+  + --brand-Accordion-toggle-color-end
+  ```
+
+  ```diff
+  - --brand-Accordion-toggle-color-start
+  + --brand-Accordion-toggle-color-start
+  ```
+
+  ```diff
+  - --brand-Accordion-toggle-color-end
+  + --brand-Accordion-toggle-color-end
+  ```
+
+  ```diff
+  - --brand-Button-background-base
+  + --brand-Button-background-base
+  ```
+
+  ```diff
+  - --brand-Button-shadow-default
+  + --brand-Button-shadow-primary-default
+  ```
+
+  ```diff
+  - --brand-Button-shadow-hover
+  + --brand-Button-shadow-primary-hover
+  ```
+
+  ```diff
+  - --brand-Button-background-base
+  + --brand-Button-background-base
+  ```
+
+  ```diff
+  - --brand-Button-shadow-default
+  + --brand-Button-shadow-primary-default
+  ```
+
+  ```diff
+  - --brand-Button-shadow-hover
+  + --brand-Button-shadow-primary-hover
+  ```
+
+  - Button heights have been updated to match specifications in Figma.
+
 ## 0.8.0
 
 ### Minor Changes
