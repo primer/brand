@@ -1,7 +1,7 @@
 declare const styles: {
   readonly "List": string;
-  readonly "List--default": string;
-  readonly "List--checked": string;
+  readonly "ListItem": string;
+  readonly "StartingContent": string;
 };
 export = styles;
 
