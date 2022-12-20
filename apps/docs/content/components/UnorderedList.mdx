@@ -3,17 +3,17 @@ title: List
 status: Experimental
 figma: 'https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=354%3A9513'
 source: https://github.com/primer/brand/tree/main/src/List/UnorderedList.tsx
-storybook: '/brand/storybook/?path=/story/components-unorderedlist--scale'
-description: Use the List component to a list of items. You can use either the OrderedList or the UnorderedList component.
+storybook: '/brand/storybook/?path=/story/components-unorderedlist--default'
+description: Use the UnorderedList component to render a list of unordered items.
 ---
 
 ```js
-import {UnorderedList, OrderedList, ListItem} from '@primer/react-brand'
+import {UnorderedList, ListItem} from '@primer/react-brand'
 ```
 
 ## Examples
 
-### UnorderedList Default
+### Default
 
 ```jsx live
 <UnorderedList variant="default">
@@ -23,18 +23,6 @@ import {UnorderedList, OrderedList, ListItem} from '@primer/react-brand'
   <ListItem>Dependency review</ListItem>
   <ListItem>Automated authentication and identity management</ListItem>
 </UnorderedList>
-```
-
-### OrderedList Default
-
-```jsx live
-<OrderedList>
-  <ListItem>Automatic security and version updates</ListItem>
-  <ListItem>GitHub Security Advisories</ListItem>
-  <ListItem>Code and secret scanning</ListItem>
-  <ListItem>Dependency review</ListItem>
-  <ListItem>Automated authentication and identity management</ListItem>
-</OrderedList>
 ```
 
 ### Checked UnorderedList
@@ -58,13 +46,6 @@ import {UnorderedList, OrderedList, ListItem} from '@primer/react-brand'
 | `className` | `string`                               |           | Sets a custom class on the root element                    |
 | `variant`   | `default`, `checked`                   | `default` | Specify alternative List appearance                        |
 | `children`  | `React.ReactNode`, `React.ReactNode[]` |           | Content to be displayed within the UnorderedList component |
-
-### OrderedList
-
-| Name        | Type                                   |  Default  | Description                                              |
-| :---------- | :------------------------------------- | :-------: | :------------------------------------------------------- |
-| `className` | `string`                               |           | Sets a custom class on the root element                  |
-| `children`  | `React.ReactNode`, `React.ReactNode[]` | `default` | Content to be displayed within the OrderedList component |
 
 ### ListItem
 

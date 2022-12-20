@@ -1,0 +1,42 @@
+---
+title: List
+status: Experimental
+figma: 'https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=354%3A9513'
+source: https://github.com/primer/brand/tree/main/src/List/OrderedList.tsx
+storybook: '/brand/storybook/?path=/story/components-orderedlist--default'
+description: Use the OrderedList component to render a list of ordered items.
+---
+
+```js
+import {OrderedList, ListItem} from '@primer/react-brand'
+```
+
+## Examples
+
+### OrderedList
+
+```jsx live
+<OrderedList>
+  <ListItem>Automatic security and version updates</ListItem>
+  <ListItem>GitHub Security Advisories</ListItem>
+  <ListItem>Code and secret scanning</ListItem>
+  <ListItem>Dependency review</ListItem>
+  <ListItem>Automated authentication and identity management</ListItem>
+</OrderedList>
+```
+
+## Component props
+
+### OrderedList
+
+| Name        | Type                                   |  Default  | Description                                              |
+| :---------- | :------------------------------------- | :-------: | :------------------------------------------------------- |
+| `className` | `string`                               |           | Sets a custom class on the root element                  |
+| `children`  | `React.ReactNode`, `React.ReactNode[]` | `default` | Content to be displayed within the OrderedList component |
+
+### ListItem
+
+| Name        | Type                                   |  Default  | Description                                              |
+| :---------- | :------------------------------------- | :-------: | :------------------------------------------------------- |
+| `className` | `string`                               |           | Sets a custom class on the root element                  |
+| `children`  | `React.ReactNode`, `React.ReactNode[]` | `default` | Content to be displayed within the OrderedList component |
