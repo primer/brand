@@ -3,7 +3,7 @@
   flex-direction: column;
   margin: 0;
   list-style: none;
-  gap: 8px;
+  gap: var(--base-size-8);
   padding-inline-start: 0px;
   font-family: var(--brand-body-fontFamily);
   font-weight: var(--brand-text-weight-400);
@@ -18,7 +18,7 @@ ol.List {
 
 .ListItem {
   display: flex;
-  gap: 12px;
+  gap: var(--base-size-12);
   align-items: center;
 }
 
@@ -26,10 +26,10 @@ ol.List {
   fill: var(--brand-color-text-muted);
 }
 
-ol.List > li::before {
+ol.List > .ListItem::before {
   content: counter(li) '.';
   counter-increment: li;
-  min-width: 16px;
+  min-width: var(--base-size-16);
   text-align: center;
   color: var(--brand-color-text-muted);
 }
