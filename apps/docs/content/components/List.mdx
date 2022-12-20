@@ -8,7 +8,7 @@ description: Use the List component to a list of items. You can use either the O
 ---
 
 ```js
-import {UnorderedList} from '@primer/react-brand'
+import {UnorderedList, OrderedList, ListItem} from '@primer/react-brand'
 ```
 
 ## Examples
@@ -17,11 +17,11 @@ import {UnorderedList} from '@primer/react-brand'
 
 ```jsx live
 <UnorderedList variant="default">
-  <li>Automatic security and version updates</li>
-  <li>GitHub Security Advisories</li>
-  <li>Code and secret scanning</li>
-  <li>Dependency review</li>
-  <li>Automated authentication and identity management</li>
+  <ListItem>Automatic security and version updates</ListItem>
+  <ListItem>GitHub Security Advisories</ListItem>
+  <ListItem>Code and secret scanning</ListItem>
+  <ListItem>Dependency review</ListItem>
+  <ListItem>Automated authentication and identity management</ListItem>
 </UnorderedList>
 ```
 
@@ -29,11 +29,11 @@ import {UnorderedList} from '@primer/react-brand'
 
 ```jsx live
 <OrderedList>
-  <li>Automatic security and version updates</li>
-  <li>GitHub Security Advisories</li>
-  <li>Code and secret scanning</li>
-  <li>Dependency review</li>
-  <li>Automated authentication and identity management</li>
+  <ListItem>Automatic security and version updates</ListItem>
+  <ListItem>GitHub Security Advisories</ListItem>
+  <ListItem>Code and secret scanning</ListItem>
+  <ListItem>Dependency review</ListItem>
+  <ListItem>Automated authentication and identity management</ListItem>
 </OrderedList>
 ```
 
@@ -41,11 +41,11 @@ import {UnorderedList} from '@primer/react-brand'
 
 ```jsx live
 <UnorderedList variant="checked">
-  <li>Automatic security and version updates</li>
-  <li>GitHub Security Advisories</li>
-  <li>Code and secret scanning</li>
-  <li>Dependency review</li>
-  <li>Automated authentication and identity management</li>
+  <ListItem>Automatic security and version updates</ListItem>
+  <ListItem>GitHub Security Advisories</ListItem>
+  <ListItem>Code and secret scanning</ListItem>
+  <ListItem>Dependency review</ListItem>
+  <ListItem>Automated authentication and identity management</ListItem>
 </UnorderedList>
 ```
 
@@ -53,13 +53,22 @@ import {UnorderedList} from '@primer/react-brand'
 
 ### UnorderedList
 
-| Name        | Type                 |  Default  | Description                             |
-| :---------- | :------------------- | :-------: | :-------------------------------------- |
-| `className` | `string`             |           | Sets a custom class on the root element |
-| `variant`   | `default`, `checked` | `default` | Specify alternative List appearance     |
+| Name        | Type                                   |  Default  | Description                                                |
+| :---------- | :------------------------------------- | :-------: | :--------------------------------------------------------- |
+| `className` | `string`                               |           | Sets a custom class on the root element                    |
+| `variant`   | `default`, `checked`                   | `default` | Specify alternative List appearance                        |
+| `children`  | `React.ReactNode`, `React.ReactNode[]` |           | Content to be displayed within the UnorderedList component |
 
 ### OrderedList
 
-| Name        | Type     | Default | Description                             |
-| :---------- | :------- | :-----: | :-------------------------------------- |
-| `className` | `string` |         | Sets a custom class on the root element |
+| Name        | Type                                   |  Default  | Description                                              |
+| :---------- | :------------------------------------- | :-------: | :------------------------------------------------------- |
+| `className` | `string`                               |           | Sets a custom class on the root element                  |
+| `children`  | `React.ReactNode`, `React.ReactNode[]` | `default` | Content to be displayed within the OrderedList component |
+
+### ListItem
+
+| Name        | Type                                   |  Default  | Description                                              |
+| :---------- | :------------------------------------- | :-------: | :------------------------------------------------------- |
+| `className` | `string`                               |           | Sets a custom class on the root element                  |
+| `children`  | `React.ReactNode`, `React.ReactNode[]` | `default` | Content to be displayed within the OrderedList component |
