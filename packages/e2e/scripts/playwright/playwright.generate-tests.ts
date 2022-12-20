@@ -33,7 +33,7 @@
    * Manual lookup for tests that need animation or side-effects to complete before tests start
    */
   const waitForTimeoutLookup = {
-    'components-faq-fixtures--all-open': 250, // for the animation
+    'components-faq-features--all-open': 250, // for the animation
     'components-subdomainnavbar--search-open': 5500, // for the animation
     'components-subdomainnavbar--search-results-visible': 5500, // for the animation
     'components-subdomainnavbar--overflow-menu-open': 5500, // for the animation

@@ -45,7 +45,7 @@ jobs:
 
       - name: Export diff
         run: |
-          diff -r -y --width=150 -B -I '*' -I 'Generated' --suppress-common-lines temp-main/packages/design-tokens/lib/design-tokens/css packages/design-tokens/lib/design-tokens/css  | tail -n +2 > diff.txt
+          diff -r -y --width=300 -B -I '*' -I 'Generated' --suppress-common-lines temp-main/packages/design-tokens/lib/design-tokens/css packages/design-tokens/lib/design-tokens/css  | tail -n +2 > diff.txt
           npx ts-node ./packages/design-tokens/scripts/ci-check-diff.ts
 
       - name: Read raw diff

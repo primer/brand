@@ -1,5 +1,103 @@
 # @primer/react-brand
 
+## 0.9.0
+
+### Minor Changes
+
+- [#143](https://github.com/primer/brand/pull/143) [`3affeda`](https://github.com/primer/brand/commit/3affedaea4c162664f7330a7898c47ced7d1a602) Thanks [@rezrah](https://github.com/rezrah)! - - Updating names and values for `accent`, `accordion` and `button` design tokens.
+
+  ```diff
+  - --brand-color-accent-fg
+  + --brand-color-accent-primary
+  ```
+
+  ```diff
+  - --brand-color-accent-emphasis
+  + --brand-color-accent-secondary
+  ```
+
+  ```diff
+  - --brand-color-accent-fg
+  + --brand-color-accent-primary
+  ```
+
+  ```diff
+  - --brand-color-accent-emphasis
+  + --brand-color-accent-secondary
+  ```
+
+  ```diff
+  - --brand-color-accent-subtle
+  + --brand-color-accent-secondary
+  ```
+
+  ```diff
+  - --brand-color-accent-muted
+  + --brand-color-accent-primary
+  ```
+
+  ```diff
+  - --brand-Accordion-toggle-color-start
+  + --brand-Accordion-toggle-color-start
+  ```
+
+  ```diff
+  - --brand-Accordion-toggle-color-end
+  + --brand-Accordion-toggle-color-end
+  ```
+
+  ```diff
+  - --brand-Accordion-toggle-color-start
+  + --brand-Accordion-toggle-color-start
+  ```
+
+  ```diff
+  - --brand-Accordion-toggle-color-end
+  + --brand-Accordion-toggle-color-end
+  ```
+
+  ```diff
+  - --brand-Button-background-base
+  + --brand-Button-background-base
+  ```
+
+  ```diff
+  - --brand-Button-shadow-default
+  + --brand-Button-shadow-primary-default
+  ```
+
+  ```diff
+  - --brand-Button-shadow-hover
+  + --brand-Button-shadow-primary-hover
+  ```
+
+  ```diff
+  - --brand-Button-background-base
+  + --brand-Button-background-base
+  ```
+
+  ```diff
+  - --brand-Button-shadow-default
+  + --brand-Button-shadow-primary-default
+  ```
+
+  ```diff
+  - --brand-Button-shadow-hover
+  + --brand-Button-shadow-primary-hover
+  ```
+
+  - Button heights have been updated to match specifications in Figma.
+
+### Patch Changes
+
+- [#148](https://github.com/primer/brand/pull/148) [`c9cf4bb`](https://github.com/primer/brand/commit/c9cf4bb886945943f3e6f38fcdc603d7e7be8c53) Thanks [@rezrah](https://github.com/rezrah)! - Add default typography values to Accordion.Content
+
+* [#142](https://github.com/primer/brand/pull/142) [`5d4a4fa`](https://github.com/primer/brand/commit/5d4a4fa423a256083371d92195aa31baafa82480) Thanks [@rezrah](https://github.com/rezrah)! - Prevents background page scrolling in AnchorNav when the menu is open.
+
+- [#144](https://github.com/primer/brand/pull/144) [`463ad37`](https://github.com/primer/brand/commit/463ad37119f767b03f04a48208a1de668221c207) Thanks [@josepmartins](https://github.com/josepmartins)! - - added left-aligned style in footnotes for ComparisonTable on narrow screens
+  - added missing content in docs examples and props
+  - fixed the Edit this page in GitHub link in docs
+
 ## 0.8.0
 
 ### Minor Changes

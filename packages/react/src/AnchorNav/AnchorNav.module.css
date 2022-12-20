@@ -24,6 +24,11 @@
   }
 }
 
+:global(.AnchorNav--no-bg-scroll) {
+  overflow: hidden;
+  height: 100vh;
+}
+
 /*
  * 2. AnchorNav root and inner bounding containers
  */
@@ -44,6 +49,7 @@
 
 .AnchorNav--stuck {
   box-shadow: 0 3px 6px rgba(140, 149, 159, 0.15), 0 1px 1px rgba(0, 0, 0, 0.1); /* TODO: replace with a global token */
+  position: fixed;
 }
 
 .AnchorNav--expanded {
@@ -92,6 +98,7 @@
 @media screen and (min-width: 63.25rem) {
   .AnchorNav {
     padding: var(--base-size-12) var(--base-size-40);
+    height: 75px; /* same as subdomain nav bar */
   }
 
   .AnchorNav--with-default-background-color {
@@ -104,6 +111,7 @@
   .AnchorNav-inner-container {
     margin: 0 auto;
     display: flex;
+    align-items: center;
   }
 }
 
