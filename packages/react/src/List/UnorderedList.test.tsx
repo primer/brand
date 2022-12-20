@@ -23,4 +23,26 @@ describe('UnorderedList', () => {
 
     expect(results).toHaveNoViolations()
   })
+
+  it('renders the correct tag', () => {
+    const mockId = 'mock-id'
+    const {getByTestId} = render(
+      <UnorderedList data-testid={mockId}>
+        <ListItem>Automatic security and version updates</ListItem>
+      </UnorderedList>
+    )
+    const el = getByTestId(mockId)
+    expect(el.tagName).toBe('UL')
+  })
+
+  it('renders the starting svg', () => {
+    const mockId = 'mock-id'
+    const {getByTestId} = render(
+      <UnorderedList>
+        <ListItem data-testid={mockId}>Automatic security and version updates</ListItem>
+      </UnorderedList>
+    )
+    const el = getByTestId(mockId)
+    expect(el).toContainElement(el.querySelector('svg'))
+  })
 })

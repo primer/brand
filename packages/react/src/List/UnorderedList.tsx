@@ -1,4 +1,4 @@
-import React, {createContext} from 'react'
+import React, {createContext, type Ref} from 'react'
 import clsx from 'clsx'
 import type {BaseProps} from '../component-helpers'
 
@@ -21,11 +21,15 @@ export type UnorderedListProps = BaseProps<HTMLElement> & {
    * React.ReactNode and React.ReactNode[] are valid children.
    */
   children?: React.ReactNode | React.ReactNode[]
+  /**
+   * Ref object to be attached to the list.
+   */
+  ref?: Ref<HTMLUListElement>
 }
 
 export function UnorderedList({variant = 'default', children, ...props}: UnorderedListProps) {
   return (
-    <ul className={clsx(styles.List, props.className)}>
+    <ul className={clsx(styles.List, props.className)} {...props}>
       <ListContext.Provider value={{variant}}>{children}</ListContext.Provider>
     </ul>
   )
