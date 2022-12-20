@@ -2,7 +2,7 @@
 "@primer/react-brand": minor
 ---
 
-Adding two components, OrderedList and UnorderedList
+Added `OrderedList` and `UnorderedList`
 
 Example Usage:
 
