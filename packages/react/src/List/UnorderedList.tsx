@@ -1,4 +1,4 @@
-import React, {type Ref} from 'react'
+import React, {PropsWithChildren} from 'react'
 import clsx from 'clsx'
 import type {BaseProps} from '../component-helpers'
 import {ListItem} from './ListItem'
@@ -6,23 +6,11 @@ import {ListContext} from './listContext'
 
 import styles from './List.module.css'
 
-// TODO: Convert to two components, one for ol and one for ul.
-
-// NOTE: I would like to use a list interface here but I can't find one that encompasses both ul and ol.
-// QUESTION: Should children be optional? I could see a case for an empty list. But best practice would be to remove it if it is empty for a while. I think leaving it would be a safer bet for any use case.
-export type UnorderedListProps = BaseProps<HTMLElement> & {
+export type UnorderedListProps = PropsWithChildren<BaseProps<HTMLUListElement>> & {
   /**
    * The semantic structure of list that is presented visually setting 'ol' vs 'ul' based on the style the style of the list.
    */
   variant?: 'default' | 'checked'
-  /**
-   * React.ReactNode and React.ReactNode[] are valid children.
-   */
-  children?: React.ReactNode | React.ReactNode[]
-  /**
-   * Ref object to be attached to the list.
-   */
-  ref?: Ref<HTMLUListElement>
 }
 
 function Root({variant = 'default', children, ...props}: UnorderedListProps) {
