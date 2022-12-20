@@ -1,7 +1,7 @@
 import React from 'react'
 import {ComponentMeta} from '@storybook/react'
 
-import {UnorderedList, ListItem} from '.'
+import {UnorderedList} from '.'
 
 export default {
   title: 'Components/UnorderedList/Features',
@@ -10,10 +10,10 @@ export default {
 
 export const CheckList = () => (
   <UnorderedList variant="checked">
-    <ListItem>Automatic security and version updates</ListItem>
-    <ListItem>GitHub Security Advisories</ListItem>
-    <ListItem>Code and secret scanning</ListItem>
-    <ListItem>Dependency review</ListItem>
-    <ListItem>Automated authentication and identity management</ListItem>
+    <UnorderedList.Item>Automatic security and version updates</UnorderedList.Item>
+    <UnorderedList.Item>GitHub Security Advisories</UnorderedList.Item>
+    <UnorderedList.Item>Code and secret scanning</UnorderedList.Item>
+    <UnorderedList.Item>Dependency review</UnorderedList.Item>
+    <UnorderedList.Item>Automated authentication and identity management</UnorderedList.Item>
   </UnorderedList>
 )

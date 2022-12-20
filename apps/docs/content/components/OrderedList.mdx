@@ -8,7 +8,7 @@ description: Use the OrderedList component to render a list of ordered items.
 ---
 
 ```js
-import {OrderedList, ListItem} from '@primer/react-brand'
+import {OrderedList} from '@primer/react-brand'
 ```
 
 ## Examples
@@ -17,11 +17,13 @@ import {OrderedList, ListItem} from '@primer/react-brand'
 
 ```jsx live
 <OrderedList>
-  <ListItem>Automatic security and version updates</ListItem>
-  <ListItem>GitHub Security Advisories</ListItem>
-  <ListItem>Code and secret scanning</ListItem>
-  <ListItem>Dependency review</ListItem>
-  <ListItem>Automated authentication and identity management</ListItem>
+  <OrderedList.Item>Automatic security and version updates</OrderedList.Item>
+  <OrderedList.Item>GitHub Security Advisories</OrderedList.Item>
+  <OrderedList.Item>Code and secret scanning</OrderedList.Item>
+  <OrderedList.Item>Dependency review</OrderedList.Item>
+  <OrderedList.Item>
+    Automated authentication and identity management
+  </OrderedList.Item>
 </OrderedList>
 ```
 
@@ -34,7 +36,7 @@ import {OrderedList, ListItem} from '@primer/react-brand'
 | `className` | `string`                               |           | Sets a custom class on the root element                  |
 | `children`  | `React.ReactNode`, `React.ReactNode[]` | `default` | Content to be displayed within the OrderedList component |
 
-### ListItem
+### OrderedList.Item
 
 | Name        | Type                                   |  Default  | Description                                              |
 | :---------- | :------------------------------------- | :-------: | :------------------------------------------------------- |

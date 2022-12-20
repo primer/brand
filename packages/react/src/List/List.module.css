@@ -22,7 +22,7 @@ ol.List {
   align-items: center;
 }
 
-.StartingContent {
+.ListItem__leading-visual {
   fill: var(--brand-color-text-muted);
 }
 

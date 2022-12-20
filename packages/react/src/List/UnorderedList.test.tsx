@@ -1,7 +1,7 @@
 import React, {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
-import {UnorderedList, ListItem} from './'
+import {UnorderedList} from './'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 expect.extend(toHaveNoViolations)
@@ -12,11 +12,11 @@ describe('UnorderedList', () => {
   it('no a11y violations', async () => {
     const {container} = render(
       <UnorderedList>
-        <ListItem>Automatic security and version updates</ListItem>
-        <ListItem>GitHub Security Advisories</ListItem>
-        <ListItem>Code and secret scanning</ListItem>
-        <ListItem>Dependency review</ListItem>
-        <ListItem>Automated authentication and identity management</ListItem>
+        <UnorderedList.Item>Automatic security and version updates</UnorderedList.Item>
+        <UnorderedList.Item>GitHub Security Advisories</UnorderedList.Item>
+        <UnorderedList.Item>Code and secret scanning</UnorderedList.Item>
+        <UnorderedList.Item>Dependency review</UnorderedList.Item>
+        <UnorderedList.Item>Automated authentication and identity management</UnorderedList.Item>
       </UnorderedList>
     )
     const results = await axe(container)
@@ -28,7 +28,7 @@ describe('UnorderedList', () => {
     const mockId = 'mock-id'
     const {getByTestId} = render(
       <UnorderedList data-testid={mockId}>
-        <ListItem>Automatic security and version updates</ListItem>
+        <UnorderedList.Item>Automatic security and version updates</UnorderedList.Item>
       </UnorderedList>
     )
     const el = getByTestId(mockId)
@@ -39,7 +39,7 @@ describe('UnorderedList', () => {
     const mockId = 'mock-id'
     const {getByTestId} = render(
       <UnorderedList>
-        <ListItem data-testid={mockId}>Automatic security and version updates</ListItem>
+        <UnorderedList.Item data-testid={mockId}>Automatic security and version updates</UnorderedList.Item>
       </UnorderedList>
     )
     const el = getByTestId(mockId)

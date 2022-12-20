@@ -1,6 +1,6 @@
 import {ComponentMeta, ComponentStory} from '@storybook/react'
 import React from 'react'
-import {OrderedList, ListItem} from '.'
+import {OrderedList} from '.'
 
 export default {
   title: 'Components/OrderedList',
@@ -16,11 +16,11 @@ export default {
 
 export const Playground: ComponentStory<typeof OrderedList> = args => (
   <OrderedList {...args}>
-    <ListItem>Automatic security and version updates</ListItem>
-    <ListItem>GitHub Security Advisories</ListItem>
-    <ListItem>Code and secret scanning</ListItem>
-    <ListItem>Dependency review</ListItem>
-    <ListItem>Automated authentication and identity management</ListItem>
+    <OrderedList.Item>Automatic security and version updates</OrderedList.Item>
+    <OrderedList.Item>GitHub Security Advisories</OrderedList.Item>
+    <OrderedList.Item>Code and secret scanning</OrderedList.Item>
+    <OrderedList.Item>Dependency review</OrderedList.Item>
+    <OrderedList.Item>Automated authentication and identity management</OrderedList.Item>
   </OrderedList>
 )
 

@@ -2,7 +2,7 @@ import React, {type Ref, useContext} from 'react'
 import clsx from 'clsx'
 import {CheckIcon, DashIcon} from '@primer/octicons-react'
 import type {BaseProps} from '../component-helpers'
-import {ListContext} from './UnorderedList'
+import {ListContext} from './listContext'
 
 import styles from './List.module.css'
 
@@ -20,12 +20,12 @@ export type ListItemProps = BaseProps<HTMLElement> & {
 export const ListItem = ({className, children, ...props}: ListItemProps) => {
   const {variant} = useContext(ListContext)
 
-  const startingIcon = () => {
+  const leadingVisual = () => {
     switch (variant) {
       case 'checked':
-        return <CheckIcon className={styles.StartingContent} />
+        return <CheckIcon className={styles['ListItem__leading-visual']} />
       case 'default':
-        return <DashIcon className={styles.StartingContent} />
+        return <DashIcon className={styles['ListItem__leading-visual']} />
 
       default:
         return <></>
@@ -33,7 +33,7 @@ export const ListItem = ({className, children, ...props}: ListItemProps) => {
   }
   return (
     <li className={clsx(styles.ListItem, className)} {...props}>
-      {startingIcon()}
+      {leadingVisual()}
       {children}
     </li>
   )

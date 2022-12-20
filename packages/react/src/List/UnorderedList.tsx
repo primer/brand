@@ -1,12 +1,10 @@
-import React, {createContext, type Ref} from 'react'
+import React, {type Ref} from 'react'
 import clsx from 'clsx'
 import type {BaseProps} from '../component-helpers'
+import {ListItem} from './ListItem'
+import {ListContext} from './listContext'
 
 import styles from './List.module.css'
-
-export const ListContext = createContext({
-  variant: 'default'
-})
 
 // TODO: Convert to two components, one for ol and one for ul.
 
@@ -27,10 +25,12 @@ export type UnorderedListProps = BaseProps<HTMLElement> & {
   ref?: Ref<HTMLUListElement>
 }
 
-export function UnorderedList({variant = 'default', children, ...props}: UnorderedListProps) {
+function Root({variant = 'default', children, ...props}: UnorderedListProps) {
   return (
     <ul className={clsx(styles.List, props.className)} {...props}>
       <ListContext.Provider value={{variant}}>{children}</ListContext.Provider>
     </ul>
   )
 }
+
+export const UnorderedList = Object.assign(Root, {Item: ListItem})

@@ -1,6 +1,6 @@
 import {ComponentMeta, ComponentStory} from '@storybook/react'
 import React from 'react'
-import {UnorderedList, ListItem} from '.'
+import {UnorderedList} from '.'
 
 export default {
   title: 'Components/UnorderedList',
@@ -27,11 +27,11 @@ export default {
 
 export const Playground: ComponentStory<typeof UnorderedList> = args => (
   <UnorderedList {...args}>
-    <ListItem>Automatic security and version updates</ListItem>
-    <ListItem>GitHub Security Advisories</ListItem>
-    <ListItem>Code and secret scanning</ListItem>
-    <ListItem>Dependency review</ListItem>
-    <ListItem>Automated authentication and identity management</ListItem>
+    <UnorderedList.Item>Automatic security and version updates</UnorderedList.Item>
+    <UnorderedList.Item>GitHub Security Advisories</UnorderedList.Item>
+    <UnorderedList.Item>Code and secret scanning</UnorderedList.Item>
+    <UnorderedList.Item>Dependency review</UnorderedList.Item>
+    <UnorderedList.Item>Automated authentication and identity management</UnorderedList.Item>
   </UnorderedList>
 )
 
