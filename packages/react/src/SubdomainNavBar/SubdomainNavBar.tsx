@@ -377,7 +377,7 @@ function SecondaryAction({children, href, ...rest}: PropsWithChildren<CTAActionP
   return (
     <Button
       as="a"
-      href="#"
+      href={href}
       className={clsx(styles['SubdomainNavBar-cta-button'], styles['SubdomainNavBar-cta-button--secondary'])}
       hasArrow={false}
       {...rest}
