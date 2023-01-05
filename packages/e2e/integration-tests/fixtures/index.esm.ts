@@ -10,10 +10,13 @@ export {
   Checkbox,
   Select,
   TextInput,
+  Testimonial,
   ThemeProvider,
   Button,
   SubdomainNavBar,
   ComparisonTable,
   Stack,
-  ButtonGroup
+  ButtonGroup,
+  CTABanner,
+  AnchorNav
 } from '@primer/react-brand'

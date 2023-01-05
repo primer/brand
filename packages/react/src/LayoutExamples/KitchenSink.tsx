@@ -16,12 +16,50 @@ import {
   SubdomainNavBar,
   Stack,
   Testimonial,
-  Radio
+  Radio,
+  CTABanner,
+  AnchorNav,
+  ComparisonTable,
+  ButtonGroup
 } from '..'
+
+import {mockSearchData} from '../SubdomainNavBar/SubdomainNavBar.stories'
 
 type KitchenSinkProps = React.HTMLAttributes<HTMLDivElement>
 
 export function KitchenSink(props: KitchenSinkProps) {
+  const inputRef = React.useRef<HTMLInputElement | null>(null)
+  const [searchResults, setSearchResults] = React.useState<
+    {title: string; description: string; date: string; url: string}[] | undefined
+  >([])
+
+  const [searchTerm, setSearchTerm] = React.useState('')
+
+  const handleChange = () => {
+    if (!inputRef.current) return
+    if (inputRef.current.value.length === 0) {
+      setSearchResults(undefined)
+      return
+    }
+    if (inputRef.current.value.length > 2) {
+      setTimeout(() => setSearchResults(mockSearchData), 1000)
+      setSearchTerm(inputRef.current.value)
+      return
+    }
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    if (!inputRef.current) return
+    if (!inputRef.current.value) {
+      // eslint-disable-next-line i18n-text/no-en
+      alert(`Enter a value and try again.`)
+      return
+    }
+
+    alert(`Name: ${inputRef.current.value}`)
+  }
+
   return (
     <>
       <SubdomainNavBar title="Subdomain" {...props}>
@@ -31,9 +69,18 @@ export function KitchenSink(props: KitchenSinkProps) {
         <SubdomainNavBar.Link href="#">Events</SubdomainNavBar.Link>
         <SubdomainNavBar.Link href="#">Video</SubdomainNavBar.Link>
         <SubdomainNavBar.Link href="#">Social</SubdomainNavBar.Link>
+        <SubdomainNavBar.Search
+          autoComplete={false}
+          ref={inputRef}
+          searchTerm={searchTerm}
+          onSubmit={handleSubmit}
+          onChange={handleChange}
+          searchResults={searchResults}
+        />
         <SubdomainNavBar.PrimaryAction href="#">Primary CTA</SubdomainNavBar.PrimaryAction>
+        <SubdomainNavBar.SecondaryAction href="#">Secondary CTA</SubdomainNavBar.SecondaryAction>
       </SubdomainNavBar>
-      <div style={{maxWidth: 1280, margin: '80px auto 200px'}}>
+      <div style={{maxWidth: 1280, margin: '80px auto 0'}}>
         <Hero
           heading="This is my super sweet hero heading"
           description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum."
@@ -47,10 +94,20 @@ export function KitchenSink(props: KitchenSinkProps) {
           }}
           align="center"
         />
+      </div>
+      <AnchorNav enableDefaultBgColor>
+        <AnchorNav.Link href="#river">River</AnchorNav.Link>
+        <AnchorNav.Link href="#testimonial">Testimonial</AnchorNav.Link>
+        <AnchorNav.Link href="#faq">FAQ</AnchorNav.Link>
+        <AnchorNav.Link href="#ctabanner">CTA Banner</AnchorNav.Link>
+        <AnchorNav.Link href="#forms">Forms</AnchorNav.Link>
+        <AnchorNav.Action href="#">Action</AnchorNav.Action>
+      </AnchorNav>
+      <div style={{maxWidth: 1280, margin: '0 auto', padding: '0 1rem'}}>
         <Stack
           direction="vertical"
           justifyContent="center"
-          style={{textAlign: 'center', maxWidth: '600px', margin: '0 auto'}}
+          style={{textAlign: 'center', maxWidth: '600px', margin: '100px auto'}}
         >
           <Heading as="h2" size="3">
             Section intro
@@ -61,7 +118,7 @@ export function KitchenSink(props: KitchenSinkProps) {
           </Text>
         </Stack>
 
-        <River>
+        <River id="river">
           <River.Visual>
             <img
               src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
@@ -110,6 +167,7 @@ export function KitchenSink(props: KitchenSinkProps) {
           </River.Content>
         </River>
         <Stack
+          id="testimonial"
           gap="spacious"
           padding="spacious"
           direction={{narrow: 'vertical', regular: 'horizontal', wide: 'horizontal'}}
@@ -158,7 +216,7 @@ export function KitchenSink(props: KitchenSinkProps) {
             </Testimonial.Logo>
           </Testimonial>
         </Stack>
-        <FAQ>
+        <FAQ id="faq">
           <FAQ.Heading>Frequently asked questions</FAQ.Heading>
           <FAQ.Item>
             <FAQ.Question>What&apos;s included in the GitHub for Startups offer?</FAQ.Question>
@@ -230,8 +288,72 @@ export function KitchenSink(props: KitchenSinkProps) {
             </FAQ.Answer>
           </FAQ.Item>
         </FAQ>
+        <Stack
+          direction="vertical"
+          justifyContent="center"
+          style={{
+            margin: '100px 0'
+          }}
+        >
+          <ComparisonTable featuredColumn={1} heading="GitHub vs Jenkins">
+            <ComparisonTable.Row>
+              <ComparisonTable.Cell>Use case</ComparisonTable.Cell>
+              <ComparisonTable.Cell>GitHub</ComparisonTable.Cell>
+              <ComparisonTable.Cell>Jenkins</ComparisonTable.Cell>
+            </ComparisonTable.Row>
+            <ComparisonTable.Row>
+              <ComparisonTable.Cell>Automation & CI/CD</ComparisonTable.Cell>
+              <ComparisonTable.Cell>
+                <Text as="p" size="300">
+                  Comparable native core capabilities
+                </Text>
+                <Text as="p" size="300">
+                  <InlineLink href="#">Over 13,000 GitHub Actions are available</InlineLink>
+                  &nbsp;in the GitHub Marketplace to automate your development workflow.
+                </Text>
+              </ComparisonTable.Cell>
+              <ComparisonTable.Cell>
+                <Text as="p" size="300">
+                  Comparable native capabilities
+                </Text>
+                <Text as="p" size="300">
+                  1,800+ community contributed Jenkins plugins{' '}
+                  <InlineLink href="#">in Jenkins Plugin Marketplace.</InlineLink>
+                </Text>
+              </ComparisonTable.Cell>
+            </ComparisonTable.Row>
+            <ComparisonTable.Row>
+              <ComparisonTable.Cell>Deployment models</ComparisonTable.Cell>
+              <ComparisonTable.Cell>Cloud or self-hosted</ComparisonTable.Cell>
+              <ComparisonTable.Cell>
+                <Text as="p" size="300">
+                  Self-hosted only
+                </Text>
+                <Text as="p" size="300">
+                  CloudBees is the cloud alternative
+                </Text>
+              </ComparisonTable.Cell>
+            </ComparisonTable.Row>
+            <ComparisonTable.Footnote>
+              *** This is a biased overview of capabilities by use case, based on publicly available information as of
+              2022-05-16.
+            </ComparisonTable.Footnote>
+          </ComparisonTable>
+        </Stack>
       </div>
-
+      <div style={{padding: '100px 0'}}>
+        <CTABanner align="center" id="ctabanner">
+          <CTABanner.Heading>Where the most ambitious teams build great things</CTABanner.Heading>
+          <CTABanner.Description>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis nam pulvinar risus elementum.
+          </CTABanner.Description>
+          <CTABanner.ButtonGroup>
+            <Button>Primary Action</Button>
+            <Button>Secondary Action</Button>
+          </CTABanner.ButtonGroup>
+        </CTABanner>
+      </div>
       <ThemeProvider colorMode="dark">
         <div
           style={{
@@ -241,6 +363,7 @@ export function KitchenSink(props: KitchenSinkProps) {
           }}
         >
           <form
+            id="forms"
             style={{
               margin: '3rem auto 5rem',
               maxWidth: 600,
@@ -279,7 +402,7 @@ export function KitchenSink(props: KitchenSinkProps) {
                 </FormControl>
                 <FormControl fullWidth required>
                   <FormControl.Label>First name</FormControl.Label>
-                  <TextInput required />
+                  <TextInput auto-complete="off" required />
                 </FormControl>
                 <FormControl fullWidth required>
                   <FormControl.Label>Last name</FormControl.Label>

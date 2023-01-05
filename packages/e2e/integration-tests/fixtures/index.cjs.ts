@@ -16,7 +16,10 @@ const {
   SubdomainNavBar,
   ComparisonTable,
   Stack,
-  ButtonGroup
+  ButtonGroup,
+  CTABanner,
+  AnchorNav,
+  Testimonial
 } = components
 
 export {
@@ -36,5 +39,8 @@ export {
   SubdomainNavBar,
   ComparisonTable,
   Stack,
-  ButtonGroup
+  ButtonGroup,
+  CTABanner,
+  AnchorNav,
+  Testimonial
 }
