@@ -1,0 +1,13 @@
+import React, {forwardRef, PropsWithChildren} from 'react'
+import clsx from 'clsx'
+import styles from './{{ properCase component }}.module.css'
+
+import type {BaseProps} from '../component-helpers'
+
+export type {{ properCase component }}Props = PropsWithChildren<BaseProps<{{ interface }}>>
+
+export const {{ properCase component }} = forwardRef<{{ interface }}, {{ properCase component }}Props>(({className, children, ...rest}, ref) => {
+  return <div className={clsx(styles['{{ properCase component }}'], className)} ref={ref} {...rest}>
+	{children}
+  </div>
+})

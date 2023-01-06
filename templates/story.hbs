@@ -1,0 +1,19 @@
+import {ComponentMeta, ComponentStory} from '@storybook/react'
+import React from 'react'
+import { {{ properCase component }} } from '.'
+
+export default {
+  title: 'Components/{{ properCase component }}',
+  component: {{ properCase component }},
+  argTypes: {
+    children: {
+      table: {
+        disable: true
+      }
+    }
+  }
+} as ComponentMeta<typeof {{ properCase component }}>
+
+export const Playground: ComponentStory<typeof {{ properCase component }}> = () => <{{ properCase component }}/>
+
+export const Default = Playground.bind({})
