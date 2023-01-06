@@ -13,34 +13,46 @@ module.exports = function (plop) {
         type: 'input',
         name: 'interface',
         message: 'What interface should the base HTML element be based on?'
+      },
+      {
+        type: 'confirm',
+        name: 'wantStories',
+        message: 'Do you want to add a storybook file?'
       }
     ],
-    actions: [
-      {
-        type: 'add',
-        path: 'packages/react/src/{{component}}/index.tsx',
-        templateFile: 'templates/index.hbs'
-      },
-      {
-        type: 'add',
-        path: 'packages/react/src/{{component}}/{{component}}.tsx',
-        templateFile: 'templates/component.hbs'
-      },
-      {
-        type: 'add',
-        path: 'packages/react/src/{{component}}/{{component}}.module.css',
-        templateFile: 'templates/styles.hbs'
-      },
-      {
-        type: 'add',
-        path: 'packages/react/src/{{component}}/{{component}}.test.tsx',
-        templateFile: 'templates/test.hbs'
-      },
-      {
-        type: 'add',
-        path: 'packages/react/src/{{component}}/{{component}}.stories.tsx',
-        templateFile: 'templates/story.hbs'
+    actions(data) {
+      const actions = [
+        {
+          type: 'add',
+          path: 'packages/react/src/{{component}}/index.tsx',
+          templateFile: 'templates/index.hbs'
+        },
+        {
+          type: 'add',
+          path: 'packages/react/src/{{component}}/{{component}}.tsx',
+          templateFile: 'templates/component.hbs'
+        },
+        {
+          type: 'add',
+          path: 'packages/react/src/{{component}}/{{component}}.module.css',
+          templateFile: 'templates/styles.hbs'
+        },
+        {
+          type: 'add',
+          path: 'packages/react/src/{{component}}/{{component}}.test.tsx',
+          templateFile: 'templates/test.hbs'
+        }
+      ]
+
+      if (data.wantStories) {
+        actions.push({
+          type: 'add',
+          path: 'packages/react/src/{{component}}/{{component}}.stories.tsx',
+          templateFile: 'templates/story.hbs'
+        })
       }
-    ]
+
+      return actions
+    }
   })
 }
