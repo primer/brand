@@ -1,10 +1,10 @@
 import React, {PropsWithChildren} from 'react'
 import clsx from 'clsx'
-import type {BaseProps} from '../component-helpers'
-import {ListItem} from './ListItem'
-import {ListContext} from './listContext'
+import type {BaseProps} from '../../component-helpers'
+import {ListItem} from '../ListItem/ListItem'
+import {ListContext} from '../listContext'
 
-import styles from './List.module.css'
+import styles from '../list-shared.module.css'
 
 export type UnorderedListProps = PropsWithChildren<BaseProps<HTMLUListElement>> & {
   /**

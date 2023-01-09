@@ -10,8 +10,7 @@ export default {
   },
   argTypes: {
     variant: {
-      description:
-        'The semantic structure of list that is presented visually setting "ol" vs "ul" based on the style the style of the list.',
+      description: 'Specify alternative leading visuals for list items',
       control: {
         type: 'radio',
         options: ['default', 'checked']

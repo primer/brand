@@ -1,10 +1,10 @@
 import React, {type Ref, useContext} from 'react'
 import clsx from 'clsx'
 import {CheckIcon, DashIcon} from '@primer/octicons-react'
-import type {BaseProps} from '../component-helpers'
-import {ListContext} from './listContext'
+import type {BaseProps} from '../../component-helpers'
+import {ListContext} from '../listContext'
 
-import styles from './List.module.css'
+import styles from './ListItem.module.css'
 
 export type ListItemProps = BaseProps<HTMLElement> & {
   /**
@@ -17,7 +17,7 @@ export type ListItemProps = BaseProps<HTMLElement> & {
   ref?: Ref<HTMLLIElement>
 }
 
-export const ListItem = ({className, children, ...props}: ListItemProps) => {
+function Root({className, children, ...props}: ListItemProps) {
   const {variant} = useContext(ListContext)
 
   const leadingVisual = () => {
@@ -28,7 +28,7 @@ export const ListItem = ({className, children, ...props}: ListItemProps) => {
         return <DashIcon className={styles['ListItem__leading-visual']} />
 
       default:
-        return <></>
+        return null
     }
   }
   return (
@@ -38,3 +38,5 @@ export const ListItem = ({className, children, ...props}: ListItemProps) => {
     </li>
   )
 }
+
+export const ListItem = Object.assign(Root)
