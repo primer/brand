@@ -1,5 +1,11 @@
 # @primer/react-brand
 
+## 0.9.1
+
+### Patch Changes
+
+- [#149](https://github.com/primer/brand/pull/149) [`e3f0659`](https://github.com/primer/brand/commit/e3f0659aa3bb15932ca016b581779c42fbf7d339) Thanks [@renbaoshuo](https://github.com/renbaoshuo)! - Fix href prop of `<SubdomainNavBar.SecondaryAction />`
+
 ## 0.9.0
 
 ### Minor Changes
