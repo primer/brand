@@ -54,6 +54,7 @@ jobs:
           CI: 1
         # print Cypress and OS info
         run: |
+          npx cypress install --force
           npx cypress verify
           npx cypress info
           npx cypress version
