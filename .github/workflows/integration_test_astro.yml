@@ -54,14 +54,14 @@ jobs:
           CI: 1
         # print Cypress and OS info
         run: |
-          DEBUG="cypress:*" npx cypress install --force
-          DEBUG="cypress:*" npx cypress verify
-          DEBUG="cypress:*" npx cypress info
-          DEBUG="cypress:*" npx cypress version
-          DEBUG="cypress:*" npx cypress version --component package
-          DEBUG="cypress:*" npx cypress version --component binary
-          DEBUG="cypress:*" npx cypress version --component electron
-          DEBUG="cypress:*" npx cypress version --component node
+          npx cypress install --force
+          npx cypress verify
+          npx cypress info
+          npx cypress version
+          npx cypress version --component package
+          npx cypress version --component binary
+          npx cypress version --component electron
+          npx cypress version --component node
 
       - name: Build
         run: npm run build:lib
