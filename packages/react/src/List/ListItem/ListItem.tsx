@@ -23,9 +23,9 @@ function Root({className, children, ...props}: ListItemProps) {
   const leadingVisual = () => {
     switch (variant) {
       case 'checked':
-        return <CheckIcon className={styles['ListItem__leading-visual']} />
+        return <CheckIcon className={(styles['ListItem__leading-visual'], styles['ListItem__checked'])} />
       case 'default':
-        return <DashIcon className={styles['ListItem__leading-visual']} />
+        return <DashIcon className={(styles['ListItem__leading-visual'], styles['ListItem__default'])} />
 
       default:
         return null

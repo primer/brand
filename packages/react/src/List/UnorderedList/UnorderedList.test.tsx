@@ -45,4 +45,26 @@ describe('UnorderedList', () => {
     const el = getByTestId(mockId)
     expect(el).toContainElement(el.querySelector('svg'))
   })
+
+  it('renders the correct starting default svg', () => {
+    const mockId = 'mock-id'
+    const {getByTestId} = render(
+      <UnorderedList>
+        <UnorderedList.Item data-testid={mockId}>Automatic security and version updates</UnorderedList.Item>
+      </UnorderedList>
+    )
+    const el = getByTestId(mockId)
+    expect(el).toContainElement(el.querySelector('.ListItem__default'))
+  })
+
+  it('renders the correct starting checked svg', () => {
+    const mockId = 'mock-id'
+    const {getByTestId} = render(
+      <UnorderedList variant="checked">
+        <UnorderedList.Item data-testid={mockId}>Automatic security and version updates</UnorderedList.Item>
+      </UnorderedList>
+    )
+    const el = getByTestId(mockId)
+    expect(el).toContainElement(el.querySelector('.ListItem__checked'))
+  })
 })
