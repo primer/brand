@@ -32,7 +32,7 @@ function Root({className, children, ...props}: ListItemProps) {
     }
   }
   return (
-    <li className={clsx(styles.ListItem, className)} {...props}>
+    <li className={clsx(styles.ListItem, !variant && styles.OrderedList__item, className)} {...props}>
       {leadingVisual()}
       {children}
     </li>

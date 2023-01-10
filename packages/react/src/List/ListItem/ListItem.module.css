@@ -8,7 +8,7 @@
   fill: var(--brand-color-text-muted);
 }
 
-ol > .ListItem::before {
+.OrderedList__item::before {
   content: counter(li) '.';
   counter-increment: li;
   min-width: var(--base-size-16);
