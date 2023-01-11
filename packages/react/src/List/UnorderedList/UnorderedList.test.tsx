@@ -1,7 +1,7 @@
 import React, {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
-import {UnorderedList} from './'
+import {UnorderedList} from '.'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 expect.extend(toHaveNoViolations)
