@@ -33,7 +33,7 @@ export default {
   }
 } as ComponentMeta<typeof OrderedList>
 
-export const Playground = ({data, ...args}: {data: string[]}) => (
+export const Default = ({data, ...args}: {data: string[]}) => (
   <OrderedList {...args}>
     <OrderedList.Item>Automatic security and version updates</OrderedList.Item>
     <OrderedList.Item>GitHub Security Advisories</OrderedList.Item>
@@ -43,12 +43,10 @@ export const Playground = ({data, ...args}: {data: string[]}) => (
   </OrderedList>
 )
 
-export const Default = ({data, ...args}: {data: string[]}) => (
+export const Playground = ({data, ...args}: {data: string[]}) => (
   <OrderedList {...args}>
-    <OrderedList.Item>Automatic security and version updates</OrderedList.Item>
-    <OrderedList.Item>GitHub Security Advisories</OrderedList.Item>
-    <OrderedList.Item>Code and secret scanning</OrderedList.Item>
-    <OrderedList.Item>Dependency review</OrderedList.Item>
-    <OrderedList.Item>Automated authentication and identity management</OrderedList.Item>
+    {data.map((item, index) => (
+      <OrderedList.Item key={index}>{item}</OrderedList.Item>
+    ))}
   </OrderedList>
 )
