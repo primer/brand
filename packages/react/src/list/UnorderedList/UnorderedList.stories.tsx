@@ -2,8 +2,6 @@ import {ComponentMeta} from '@storybook/react'
 import React from 'react'
 import {UnorderedList} from '.'
 
-type MockData = string[]
-
 export default {
   title: 'Components/UnorderedList',
   component: UnorderedList,
@@ -43,7 +41,7 @@ export default {
   }
 } as ComponentMeta<typeof UnorderedList>
 
-export const Default = ({data, ...args}: {data: MockData}) => (
+export const Default = ({data, ...args}: {data: string[]}) => (
   <UnorderedList {...args}>
     <UnorderedList.Item>Automatic security and version updates</UnorderedList.Item>
     <UnorderedList.Item>GitHub Security Advisories</UnorderedList.Item>
@@ -53,7 +51,7 @@ export const Default = ({data, ...args}: {data: MockData}) => (
   </UnorderedList>
 )
 
-export const Playground = ({data, ...args}: {data: MockData}) => (
+export const Playground = ({data, ...args}: {data: string[]}) => (
   <UnorderedList {...args}>
     {data.map((item, index) => (
       <UnorderedList.Item key={index}>{item}</UnorderedList.Item>
