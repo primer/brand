@@ -1,12 +1,21 @@
-import {ComponentMeta, ComponentStory} from '@storybook/react'
+import {ComponentMeta} from '@storybook/react'
 import React from 'react'
 import {UnorderedList} from '.'
+
+type MockData = string[]
 
 export default {
   title: 'Components/UnorderedList',
   component: UnorderedList,
   args: {
-    variant: 'default'
+    variant: 'default',
+    data: [
+      'Automatic security and version updates',
+      'GitHub Security Advisories',
+      'Code and secret scanning',
+      'Dependency review',
+      'Automated authentication and identity management'
+    ]
   },
   argTypes: {
     variant: {
@@ -14,6 +23,16 @@ export default {
       control: {
         type: 'radio',
         options: ['default', 'checked']
+      }
+    },
+    data: {
+      name: 'Data',
+      description: 'Test data',
+      control: {
+        type: 'array'
+      },
+      table: {
+        category: 'Story customization'
       }
     },
     children: {
@@ -24,7 +43,7 @@ export default {
   }
 } as ComponentMeta<typeof UnorderedList>
 
-export const Playground: ComponentStory<typeof UnorderedList> = args => (
+export const Default = ({data, ...args}: {data: MockData}) => (
   <UnorderedList {...args}>
     <UnorderedList.Item>Automatic security and version updates</UnorderedList.Item>
     <UnorderedList.Item>GitHub Security Advisories</UnorderedList.Item>
@@ -34,4 +53,10 @@ export const Playground: ComponentStory<typeof UnorderedList> = args => (
   </UnorderedList>
 )
 
-export const Default = Playground.bind({})
+export const Playground = ({data, ...args}: {data: MockData}) => (
+  <UnorderedList {...args}>
+    {data.map((item, index) => (
+      <UnorderedList.Item key={index}>{item}</UnorderedList.Item>
+    ))}
+  </UnorderedList>
+)
