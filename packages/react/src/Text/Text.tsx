@@ -1,19 +1,31 @@
-import React, {PropsWithChildren} from 'react'
+import React, {PropsWithChildren, useMemo} from 'react'
 import clsx from 'clsx'
 import {InlineLink} from '../'
 import styles from './Text.module.css'
 
 export const TextSizes = ['700', '600', '500', '400', '300', '200', '100'] as const
-export const TextTags = ['p', 'span', 'div'] as const
+export const TextTags = ['p', 'span', 'div', 'strong', 'em'] as const
 export const TextVariants = ['default', 'muted'] as const
+export const TextWeights = ['heavy', 'extrabold', 'bold', 'semibold', 'medium', 'normal', 'light'] as const
+
 export const defaultTextTag = TextTags[1]
 export const defaultTextSize = TextSizes[3]
 export const defaultTextVariant = TextVariants[0]
+
+type TextWeightVariants = typeof TextWeights[number]
+
+type ResponsiveWeightMap = {
+  narrow?: TextWeightVariants
+  regular?: TextWeightVariants
+  wide?: TextWeightVariants
+}
 
 type RestrictedPolymorphism =
   | (React.HTMLAttributes<HTMLParagraphElement> & {as?: 'p'})
   | (React.HTMLAttributes<HTMLSpanElement> & {as?: 'span'})
   | (React.HTMLAttributes<HTMLDivElement> & {as?: 'div'})
+  | (React.HTMLAttributes<HTMLElement> & {as?: 'strong'})
+  | (React.HTMLAttributes<HTMLElement> & {as?: 'em'})
 
 type TextTags = {
   /**
@@ -35,6 +47,10 @@ export type TextProps = {
    * Specify alternative text appearance
    */
   variant?: typeof TextVariants[number]
+  /**
+   * Specify the text weight
+   */
+  weight?: TextWeightVariants | ResponsiveWeightMap
 } & TextTags
 
 export function Text({
@@ -43,9 +59,28 @@ export function Text({
   children,
   size = defaultTextSize,
   variant = defaultTextVariant,
+  weight,
   ...rest
 }: PropsWithChildren<TextProps>) {
-  const headingClassNames = clsx(styles.Text, styles[`Text--${variant}`], styles[`Text--${size}`], className)
+  const weightClass = useMemo(() => {
+    if (!weight) return null
+
+    return typeof weight === 'string'
+      ? styles[`Text--weight-${weight}`]
+      : Object.keys(weight)
+          .map(viewport => {
+            return styles[`Text-${viewport}--weight-${weight[viewport]}`]
+          })
+          .join(' ')
+  }, [weight])
+
+  const textClassName = clsx(
+    styles.Text,
+    styles[`Text--${variant}`],
+    styles[`Text--${size}`],
+    weight && weightClass,
+    className
+  )
 
   /**
    * Valid children like InlineLinks will inherit parent parameters for convenience.
@@ -63,22 +98,38 @@ export function Text({
 
   if (as === 'p') {
     return (
-      <p className={headingClassNames} {...rest}>
+      <p className={textClassName} {...rest}>
         {transformedChildren}
       </p>
     )
   }
 
+  if (as === 'em') {
+    return (
+      <em className={textClassName} {...rest}>
+        {transformedChildren}
+      </em>
+    )
+  }
+
   if (as === 'div') {
     return (
-      <div className={headingClassNames} {...rest}>
+      <div className={textClassName} {...rest}>
         {transformedChildren}
       </div>
     )
   }
 
+  if (as === 'strong') {
+    return (
+      <strong className={textClassName} {...rest}>
+        {transformedChildren}
+      </strong>
+    )
+  }
+
   return (
-    <span className={headingClassNames} {...rest}>
+    <span className={textClassName} {...rest}>
       {transformedChildren}
     </span>
   )
