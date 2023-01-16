@@ -1,7 +1,6 @@
 import React from 'react'
 import {ComponentMeta, ComponentStory} from '@storybook/react'
 import {Heading, HeadingTags, HeadingWeights} from '.'
-import {Text} from '../Text'
 
 export default {
   title: 'Components/Heading',
