@@ -11,6 +11,7 @@ import {
   TextSizes,
   TextTags,
   TextVariants,
+  TextWeights,
   defaultTextVariant,
   defaultTextTag,
   defaultTextSize,
@@ -61,12 +62,58 @@ The `Text` component can render as a `span`, `p` or `div` HTML element.
 <Text as="p">With GitHub Copilot, you’re always in charge.</Text>
 ```
 
+### Weight
+
+The recommended text weight is automatically applied through Text based on its position on the type scale.
+Use the `weight` prop to adjust the default visual appearance if required.
+
+```jsx live
+<>
+  <Text as="p" weight="heavy">
+    heavy
+  </Text>
+  <Text as="p" weight="extrabold">
+    extrabold
+  </Text>
+  <Text as="p" weight="bold">
+    bold
+  </Text>
+  <Text as="p" weight="semibold">
+    semibold
+  </Text>
+  <Text as="p" weight="medium">
+    medium
+  </Text>
+  <Text as="p" weight="normal">
+    normal
+  </Text>
+  <Text as="p" weight="light">
+    light
+  </Text>
+
+  {/* Responsive */}
+  <br />
+  <br />
+  <Text
+    as="p"
+    weight={{
+      narrow: 'heavy',
+      regular: 'semibold',
+      wide: 'light',
+    }}
+  >
+    Responsive
+  </Text>
+</>
+```
+
 ## Component props
 
 ### Text
 
-| Name      | Type                                                    |                      Default                      | Description                         |
-| :-------- | :------------------------------------------------------ | :-----------------------------------------------: | :---------------------------------- |
-| `as`      | <PropTableValues values={TextTags} addLineBreaks />     |   <PropTableValues values={[defaultTextTag]} />   | Applies the underlying HTML element |
-| `size`    | <PropTableValues values={TextSizes} addLineBreaks />    |  <PropTableValues values={[defaultTextSize]} />   | Specify the text size               |
-| `variant` | <PropTableValues values={TextVariants} addLineBreaks /> | <PropTableValues values={[defaultTextVariant]} /> | Specify alternative text appearance |
+| Name      | Type                                                                               |                      Default                      | Description                             |
+| :-------- | :--------------------------------------------------------------------------------- | :-----------------------------------------------: | :-------------------------------------- |
+| `as`      | <PropTableValues values={TextTags} addLineBreaks />                                |   <PropTableValues values={[defaultTextTag]} />   | Applies the underlying HTML element     |
+| `size`    | <PropTableValues values={TextSizes} addLineBreaks />                               |  <PropTableValues values={[defaultTextSize]} />   | Specify the text size                   |
+| `variant` | <PropTableValues values={TextVariants} addLineBreaks />                            | <PropTableValues values={[defaultTextVariant]} /> | Specify alternative text appearance     |
+| `weight`  | <PropTableValues values={[...TextWeights, 'ResponsiveWeightMap']} addLineBreaks /> |                                                   | Override the default visual text weight |

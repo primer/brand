@@ -18,4 +18,24 @@ test.describe('Visual Comparison: Text', () => {
 
     expect(await page.screenshot()).toMatchSnapshot()
   })
+
+  test('Text / Override Weight', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--override-weight&viewMode=story')
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Text / Override Weight Responsive', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-text--override-weight-responsive&viewMode=story'
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Text / Composition', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--composition&viewMode=story')
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
 })
