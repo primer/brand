@@ -49,3 +49,98 @@
   font-family: var(--brand-heading-fontFamily);
   letter-spacing: var(--brand-heading-letterSpacing-400);
 }
+
+.Heading--weight-heavy,
+.Heading-narrow--weight-heavy {
+  font-weight: var(--base-text-weight-heavy);
+}
+
+.Heading--weight-extrabold,
+.Heading-narrow--weight-extrabold {
+  font-weight: var(--base-text-weight-extrabold);
+}
+
+.Heading--weight-bold,
+.Heading-narrow--weight-bold {
+  font-weight: var(--base-text-weight-bold);
+}
+
+.Heading--weight-semibold,
+.Heading-narrow--weight-semibold {
+  font-weight: var(--base-text-weight-semibold);
+}
+
+.Heading--weight-medium,
+.Heading-narrow--weight-medium {
+  font-weight: var(--base-text-weight-medium);
+}
+
+.Heading--weight-normal,
+.Heading-narrow--weight-normal {
+  font-weight: var(--base-text-weight-normal);
+}
+
+.Heading--weight-light,
+.Heading-narrow--weight-light {
+  font-weight: var(--base-text-weight-light);
+}
+
+@media screen and (min-width: 48rem) {
+  .Heading-regular--weight-heavy {
+    font-weight: var(--base-text-weight-heavy);
+  }
+
+  .Heading-regular--weight-extrabold {
+    font-weight: var(--base-text-weight-extrabold);
+  }
+
+  .Heading-regular--weight-bold {
+    font-weight: var(--base-text-weight-bold);
+  }
+
+  .Heading-regular--weight-semibold {
+    font-weight: var(--base-text-weight-semibold);
+  }
+
+  .Heading-regular--weight-medium {
+    font-weight: var(--base-text-weight-medium);
+  }
+
+  .Heading-regular--weight-normal {
+    font-weight: var(--base-text-weight-normal);
+  }
+
+  .Heading-regular--weight-light {
+    font-weight: var(--base-text-weight-light);
+  }
+}
+
+@media screen and (min-width: 80rem) {
+  .Heading-wide--weight-heavy {
+    font-weight: var(--base-text-weight-heavy);
+  }
+
+  .Heading-wide--weight-extrabold {
+    font-weight: var(--base-text-weight-extrabold);
+  }
+
+  .Heading-wide--weight-bold {
+    font-weight: var(--base-text-weight-bold);
+  }
+
+  .Heading-wide--weight-semibold {
+    font-weight: var(--base-text-weight-semibold);
+  }
+
+  .Heading-wide--weight-medium {
+    font-weight: var(--base-text-weight-medium);
+  }
+
+  .Heading-wide--weight-normal {
+    font-weight: var(--base-text-weight-normal);
+  }
+
+  .Heading-wide--weight-light {
+    font-weight: var(--base-text-weight-light);
+  }
+}

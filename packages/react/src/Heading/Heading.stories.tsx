@@ -1,6 +1,6 @@
 import React from 'react'
 import {ComponentMeta, ComponentStory} from '@storybook/react'
-import {Heading, HeadingTags} from '.'
+import {Heading, HeadingTags, HeadingWeights} from '.'
 
 export default {
   title: 'Components/Heading',
@@ -31,3 +31,26 @@ OverrideSize.args = {
   as: 'h2',
   size: '4'
 }
+
+export const OverrideWeight = () => (
+  <>
+    {HeadingWeights.map(weight => (
+      <Heading key={weight} as="h3" weight={weight}>
+        {weight}
+      </Heading>
+    ))}
+  </>
+)
+
+export const OverrideWeightResponsive = () => (
+  <Heading
+    as="h1"
+    weight={{
+      narrow: 'extrabold',
+      regular: 'semibold',
+      wide: 'normal'
+    }}
+  >
+    Responsive heading weights
+  </Heading>
+)

@@ -1,11 +1,21 @@
-import React, {PropsWithChildren, forwardRef, type Ref} from 'react'
+import React, {PropsWithChildren, forwardRef, type Ref, useMemo} from 'react'
 import clsx from 'clsx'
 import styles from './Heading.module.css'
 import type {BaseProps} from '../component-helpers'
 
 export const HeadingSizes = ['1', '2', '3', '4', '5', '6'] as const
 export const HeadingTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const
+
+export const HeadingWeights = ['heavy', 'extrabold', 'bold', 'semibold', 'medium', 'normal', 'light'] as const
 export const defaultHeadingTag = HeadingTags[1]
+
+type HeadingWeightVariants = typeof HeadingWeights[number]
+
+type ResponsiveWeightMap = {
+  narrow?: HeadingWeightVariants
+  regular?: HeadingWeightVariants
+  wide?: HeadingWeightVariants
+}
 
 export const classMap = {
   h1: HeadingSizes[0],
@@ -19,6 +29,7 @@ export const classMap = {
 export type HeadingTags = BaseProps<HTMLHeadingElement> & {
   as?: typeof HeadingTags[number]
   size?: typeof HeadingSizes[number]
+  weight?: HeadingWeightVariants | ResponsiveWeightMap
 } & React.HTMLAttributes<HTMLHeadingElement>
 
 export type HeadingProps = {
@@ -27,13 +38,26 @@ export type HeadingProps = {
 
 export const Heading = forwardRef(
   (
-    {className, children, as = defaultHeadingTag, size, ...rest}: PropsWithChildren<HeadingProps>,
+    {className, children, as = defaultHeadingTag, size, weight, ...rest}: PropsWithChildren<HeadingProps>,
     ref: Ref<HTMLHeadingElement>
   ) => {
+    const weightClass = useMemo(() => {
+      if (!weight) return null
+
+      return typeof weight === 'string'
+        ? styles[`Heading--weight-${weight}`]
+        : Object.keys(weight)
+            .map(viewport => {
+              return styles[`Heading-${viewport}--weight-${weight[viewport]}`]
+            })
+            .join(' ')
+    }, [weight])
+
     const headingClassNames = clsx(
       styles.Heading,
       !size && styles[`Heading--${classMap[as]}`],
       size && styles[`Heading--${size}`],
+      weight && weightClass,
       className
     )
 
