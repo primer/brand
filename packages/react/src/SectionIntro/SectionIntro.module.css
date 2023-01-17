@@ -1,0 +1,18 @@
+.SectionIntro {
+}
+
+.SectionIntro--align-start {
+  text-align: left;
+}
+
+.SectionIntro--align-center {
+  text-align: center;
+}
+
+.SectionIntro-heading {
+  max-width: 18ch;
+}
+
+.SectionIntro-description {
+  max-width: 50ch;
+}
