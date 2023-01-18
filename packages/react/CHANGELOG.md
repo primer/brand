@@ -1,5 +1,57 @@
 # @primer/react-brand
 
+## 0.10.0
+
+### Minor Changes
+
+- [#145](https://github.com/primer/brand/pull/145) [`2aeebf7`](https://github.com/primer/brand/commit/2aeebf7b4e979da8f9a9344b672b764eb5311136) Thanks [@JoshBowdenConcepts](https://github.com/JoshBowdenConcepts)! - Added `OrderedList` and `UnorderedList`
+
+  Example Usage:
+
+  ```
+  <UnorderedList variant="checked">
+      <UnorderedList.Item>Automatic security and version updates</UnorderedList.Item>
+      <UnorderedList.Item>GitHub Security Advisories</UnorderedList.Item>
+      <UnorderedList.Item>Code and secret scanning</UnorderedList.Item>
+      <UnorderedList.Item>Dependency review</UnorderedList.Item>
+      <UnorderedList.Item>Automated authentication and identity management</UnorderedList.Item>
+  </UnorderedList>
+  ```
+
+  - [UnorderedList Documentation](https://primer.style/brand/components/UnorderedList)
+
+  ```
+  <OrderedList>
+      <OrderedList.Item>Automatic security and version updates</OrderedList.Item>
+      <OrderedList.Item>GitHub Security Advisories</OrderedList.Item>
+      <OrderedList.Item>Code and secret scanning</OrderedList.Item>
+      <OrderedList.Item>Dependency review</OrderedList.Item>
+      <OrderedList.Item>Automated authentication and identity management</OrderedList.Item>
+  </OrderedList>
+  ```
+
+  - [OrderedList Documentation](https://primer.style/brand/components/OrderedList)
+
+### Patch Changes
+
+- [#159](https://github.com/primer/brand/pull/159) [`d5431ee`](https://github.com/primer/brand/commit/d5431ee9cdfe92343ad23df32d434773201ebdef) Thanks [@rezrah](https://github.com/rezrah)! - Fixes `SubdomainNavBar` bug when no child links are passed by removing the menu button.
+
+* [#155](https://github.com/primer/brand/pull/155) [`516f828`](https://github.com/primer/brand/commit/516f82865444bba4118c7eeef715770c503401a7) Thanks [@rezrah](https://github.com/rezrah)! - Added `weight` prop to `Heading` component to allow fine-grained control over default `font-weight`.
+
+  [See docs for usage examples](https://primer.style/brand/components/Heading/#weight)
+
+- [#157](https://github.com/primer/brand/pull/157) [`1c3f665`](https://github.com/primer/brand/commit/1c3f665a59b995106b72ef05a5e27b0e8595628f) Thanks [@rezrah](https://github.com/rezrah)! - Added `weight` prop to `Text` component to allow fine-grained control over default `font-weight`.
+
+  [See docs for usage examples](https://primer.style/brand/components/Text/#weight)
+
+* [#161](https://github.com/primer/brand/pull/161) [`c6acd92`](https://github.com/primer/brand/commit/c6acd922da801080d9f36a6db8526110c3628c88) Thanks [@rezrah](https://github.com/rezrah)! - Added a `visually-hidden` utility class to the global stylesheet
+
+  Usage example:
+
+  ```jsx
+  <Text className="visually-hidden">body text that should be visually hidden but available to screen readers</Text>
+  ```
+
 ## 0.9.1
 
 ### Patch Changes
