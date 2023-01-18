@@ -1,5 +1,7 @@
 .Card {
   max-width: var(--brand-Card-maxWidth);
+  display: flex;
+  flex-direction: column;
 }
 
 .Card__heading {
@@ -20,6 +22,9 @@
 
 .Card__variant--inset {
   background-color: var(--brand-color-canvas-subtle);
+  border-color: var(--brand-color-border-muted);
+  border-width: 1px;
+  border-style: solid;
   padding: var(--base-size-40) var(--base-size-48);
   border-radius: 6px;
 }
@@ -40,4 +45,5 @@
 }
 
 .Card__action {
+  margin-top: auto;
 }

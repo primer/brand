@@ -16,7 +16,6 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
  */
 import styles from './Card.module.css'
 
-// type CardRootProps = PropsWithChildren<BaseProps<HTMLElement>>
 type CardRootProps = PropsWithChildren<BaseProps<HTMLElement>> & {
   variant: 'default' | 'inset' | 'elevated'
 }
@@ -64,26 +63,18 @@ const CardImage = forwardRef<HTMLHeadingElement, CardImageProps>(({alt, src, cla
 })
 
 type CardHeadingProps = BaseProps<HTMLHeadingElement> & {
-  // size?: 'medium' | 'large'
   children: string
 }
 
 const CardHeading = forwardRef<HTMLHeadingElement, CardHeadingProps>(({children, className, ...rest}, ref) => {
-  // const headingSize = size === 'medium' ? 'h3' : 'h2'
   return (
-    <Heading
-      // // as={headingSize}
-      className={clsx(styles.Card__heading, className)}
-      ref={ref}
-      {...rest}
-    >
+    <Heading className={clsx(styles.Card__heading, className)} ref={ref} {...rest}>
       {children}
     </Heading>
   )
 })
 
 type CardDescriptionProps = BaseProps<HTMLHeadingElement> & {
-  align?: 'start' | 'center'
   children: string
 }
 
@@ -96,8 +87,7 @@ function CardDescription({children, className, ...rest}: CardDescriptionProps) {
 }
 
 type CardActionProps = BaseProps<HTMLHeadingElement> & {
-  // align?: 'start' | 'center'
-  children: string
+  children: React.ReactNode
 }
 
 function CardAction({children, className, ...rest}: CardActionProps) {
