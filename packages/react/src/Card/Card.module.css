@@ -1,0 +1,47 @@
+.Card {
+  max-width: var(--brand-Card-maxWidth);
+}
+
+.Card__heading {
+  /*Visual appearance as a h3*/
+  /* font-weight: var(--brand-heading-weight-700);
+  font-size: var(--brand-text-size-700);
+  line-height: var(--brand-heading-lineHeight-700);
+  letter-spacing: var(--brand-heading-letterSpacing-700); */
+  margin-bottom: var(--base-size-20);
+  color: var(--brand-Card-heading-color);
+}
+
+.Card__variant--default {
+  background-color: red;
+}
+
+.Card__variant--elevated {
+  background-color: var(--brand-color-canvas-default);
+  padding: var(--base-size-40) var(--base-size-48);
+  border-radius: 6px;
+  box-shadow: var(--brand-River-visual-shadow);
+}
+
+.Card__variant--inset {
+  background-color: var(--brand-color-canvas-subtle);
+  padding: var(--base-size-40) var(--base-size-48);
+  border-radius: 6px;
+}
+
+.Card__description {
+  color: var(--brand-Card-description-color);
+  margin-bottom: var(--base-size-24);
+}
+
+.Card__action {
+  color: red;
+}
+
+.Card__heading--large {
+  /*Visual appearance as a h2*/
+  font-weight: var(--brand-text-weight-800);
+  font-size: var(--brand-text-size-800);
+  line-height: var(--brand-text-lineHeight-800);
+  letter-spacing: var(--brand-text-letterSpacing-800);
+}

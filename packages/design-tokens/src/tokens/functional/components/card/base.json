@@ -1,0 +1,9 @@
+{
+  "brand": {
+    "Card": {
+      "maxWidth": {
+        "value": "360px"
+      }
+    }
+  }
+}
