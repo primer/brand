@@ -16,25 +16,73 @@ describe('SectionIntro', () => {
     jest.clearAllMocks()
   })
 
-  it('renders the heading correctly into the document', () => {
-    const {getByText} = render(<SectionIntro heading={mockHeading} />)
+  it('renders correctly into the document', () => {
+    const expectedClass = 'SectionIntro'
+    const mockTestId = 'test'
 
-    const headingEl = getByText(mockHeading)
+    const {getByTestId} = render(
+      <SectionIntro data-testid={mockTestId}>
+        <SectionIntro.Heading>Where the most ambitious teams build great things</SectionIntro.Heading>
+        <SectionIntro.Description>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </SectionIntro.Description>
+        <SectionIntro.Action href="#">Action</SectionIntro.Action>
+      </SectionIntro>
+    )
 
-    expect(headingEl).toBeInTheDocument()
+    const SectionIntroEl = getByTestId(mockTestId)
+    expect(SectionIntroEl.classList).toContain(expectedClass)
+  })
+
+  it('renders the correct default heading type', () => {
+    const expectedTag = 'h2'
+    const headingText = 'This is your heading'
+
+    const {getByText} = render(
+      <SectionIntro>
+        <SectionIntro.Heading>{headingText}</SectionIntro.Heading>
+      </SectionIntro>
+    )
+    const ctaHeaderEl = getByText(headingText)
+    expect(ctaHeaderEl.tagName).toBe(expectedTag.toUpperCase())
+  })
+
+  it('renders the correct heading type when an override is used', () => {
+    const expectedTag = 'h3'
+    const headingText = 'This is your heading'
+
+    const {getByText} = render(
+      <SectionIntro>
+        <SectionIntro.Heading as={expectedTag}>{headingText}</SectionIntro.Heading>
+      </SectionIntro>
+    )
+    const ctaHeaderEl = getByText(headingText)
+    expect(ctaHeaderEl.tagName).toBe(expectedTag.toUpperCase())
   })
 
   it('renders the heading and description correctly into the document', () => {
-    const {getByText} = render(<SectionIntro description={mockDescription} heading={mockHeading} />)
+    const {getByText} = render(
+      <SectionIntro>
+        <SectionIntro.Heading>{mockHeading}</SectionIntro.Heading>
+        <SectionIntro.Description>{mockDescription}</SectionIntro.Description>
+      </SectionIntro>
+    )
 
     const headingEl = getByText(mockHeading)
+    const descriptionEl = getByText(mockDescription)
 
     expect(headingEl).toBeInTheDocument()
+    expect(descriptionEl).toBeInTheDocument()
   })
 
   it('renders all elements correctly into the document', () => {
     const {getByText} = render(
-      <SectionIntro heading={mockHeading} description={mockDescription} action={{text: mockLinkText, href: '#'}} />
+      <SectionIntro>
+        <SectionIntro.Heading>{mockHeading}</SectionIntro.Heading>
+        <SectionIntro.Description>{mockDescription}</SectionIntro.Description>
+        <SectionIntro.Action href="#">{mockLinkText}</SectionIntro.Action>
+      </SectionIntro>
     )
 
     const headingEl = getByText(mockHeading)
@@ -49,12 +97,11 @@ describe('SectionIntro', () => {
   it('renders content using start alignment by default', () => {
     const rootId = 'root-el'
     const {getByTestId} = render(
-      <SectionIntro
-        data-testid={rootId}
-        heading={mockHeading}
-        description={mockDescription}
-        action={{text: mockLinkText, href: '#'}}
-      />
+      <SectionIntro data-testid={rootId}>
+        <SectionIntro.Heading>{mockHeading}</SectionIntro.Heading>
+        <SectionIntro.Description>{mockDescription}</SectionIntro.Description>
+        <SectionIntro.Action href="#">{mockLinkText}</SectionIntro.Action>
+      </SectionIntro>
     )
 
     const rootEl = getByTestId(rootId)
@@ -68,13 +115,11 @@ describe('SectionIntro', () => {
   it('can optionally render content in center alignment', () => {
     const rootId = 'root-el'
     const {getByTestId} = render(
-      <SectionIntro
-        data-testid={rootId}
-        align="center"
-        heading={mockHeading}
-        description={mockDescription}
-        action={{text: mockLinkText, href: '#'}}
-      />
+      <SectionIntro align="center" data-testid={rootId}>
+        <SectionIntro.Heading>{mockHeading}</SectionIntro.Heading>
+        <SectionIntro.Description>{mockDescription}</SectionIntro.Description>
+        <SectionIntro.Action href="#">{mockLinkText}</SectionIntro.Action>
+      </SectionIntro>
     )
 
     const rootEl = getByTestId(rootId)
@@ -87,9 +132,14 @@ describe('SectionIntro', () => {
   })
 
   it('can optionally render a subtle button', () => {
-    const rootId = 'root-el'
     const {getByRole} = render(
-      <SectionIntro data-testid={rootId} heading={mockHeading} action={{text: mockLinkText, href: '#', subtle: true}} />
+      <SectionIntro>
+        <SectionIntro.Heading>{mockHeading}</SectionIntro.Heading>
+        <SectionIntro.Description>{mockDescription}</SectionIntro.Description>
+        <SectionIntro.Action href="#" subtle>
+          {mockLinkText}
+        </SectionIntro.Action>
+      </SectionIntro>
     )
 
     const buttonEl = getByRole('link')
@@ -99,29 +149,13 @@ describe('SectionIntro', () => {
     expect(buttonEl.classList).toContain(expectedButtonClass)
   })
 
-  it('renders a h2 Heading by default', () => {
-    const {getByRole} = render(
-      <SectionIntro
-        align="center"
-        heading={mockHeading}
-        description={mockDescription}
-        action={{text: mockLinkText, href: '#'}}
-      />
-    )
-
-    const elHeading = getByRole('heading', {level: 2})
-
-    expect(elHeading).toBeInTheDocument()
-  })
-
   it('has no a11y violations', async () => {
     const {container} = render(
-      <SectionIntro
-        align="center"
-        heading={mockHeading}
-        description={mockDescription}
-        action={{text: mockLinkText, href: '#'}}
-      />
+      <SectionIntro>
+        <SectionIntro.Heading>{mockHeading}</SectionIntro.Heading>
+        <SectionIntro.Description>{mockDescription}</SectionIntro.Description>
+        <SectionIntro.Action href="#">{mockLinkText}</SectionIntro.Action>
+      </SectionIntro>
     )
 
     const results = await axe(container)

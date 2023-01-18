@@ -24,7 +24,7 @@ type SectionIntroHeadingProps = BaseProps<HTMLHeadingElement> & {
   children: React.ReactNode | React.ReactNode[]
 } & HeadingTags
 
-const defaultHeadingTag = HeadingTags[2]
+const defaultHeadingTag = HeadingTags[1]
 const defaultHeadingSize = '2'
 
 const _Heading = forwardRef(
