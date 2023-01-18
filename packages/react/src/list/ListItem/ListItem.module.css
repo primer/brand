@@ -1,0 +1,18 @@
+.ListItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--base-size-12);
+}
+
+.ListItem__leading-visual {
+  fill: var(--brand-color-text-muted);
+  margin: var(--base-size-4) 0;
+}
+
+.OrderedList__item::before {
+  content: counter(li) '.';
+  counter-increment: li;
+  min-width: var(--base-size-16);
+  text-align: center;
+  color: var(--brand-color-text-muted);
+}

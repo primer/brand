@@ -22,12 +22,16 @@
       url: /components/FAQ
     - title: Hero
       url: /components/Hero
+    - title: OrderedList
+      url: /components/OrderedList
     - title: River
       url: /components/River
     - title: SubdomainNavBar
       url: /components/SubdomainNavBar
     - title: Testimonial
       url: /components/Testimonial
+    - title: UnorderedList
+      url: /components/UnorderedList
 
 - title: Forms
   children:

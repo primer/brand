@@ -13,3 +13,6 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/typogra
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/size/breakpoints.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/size/border.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/colors/global-with-modes.css'
+
+// Misc
+import './utilities.css'
