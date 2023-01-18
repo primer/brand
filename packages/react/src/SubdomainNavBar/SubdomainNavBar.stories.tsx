@@ -561,6 +561,15 @@ MobileSearchResultsVisible.play = async ({canvasElement}) => {
   await expect(canvas.getByRole('combobox')).toHaveFocus()
 }
 
+export const MobileNoLinks = () => {
+  return <SubdomainNavBar title="Subdomain" />
+}
+MobileNoLinks.parameters = {
+  viewport: {
+    defaultViewport: 'iphonex'
+  }
+}
+
 export const NoOverflow = Template.bind({})
 NoOverflow.args = {
   numLinks: 1
@@ -583,23 +592,25 @@ export const ConditionalRendering = () => {
 
   useEffect(() => {
     setLinks([...links, 'social'])
-  }, [links])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
     setShowLinks(true)
-  }, [setShowLinks])
+  }, [])
 
   return (
     <SubdomainNavBar title="Subdomain">
       {showLinks &&
         links.map(link => {
+          const linkText = link
+            .toLowerCase()
+            .split(' ')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ')
           return (
-            <SubdomainNavBar.Link key={link} href={`#${link}`}>
-              {link
-                .toLowerCase()
-                .split(' ')
-                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                .join(' ')}
+            <SubdomainNavBar.Link key={linkText} href={`#${link}`}>
+              {linkText}
             </SubdomainNavBar.Link>
           )
         })}
