@@ -3,17 +3,12 @@
 }
 
 .Card__heading {
-  /*Visual appearance as a h3*/
-  /* font-weight: var(--brand-heading-weight-700);
-  font-size: var(--brand-text-size-700);
-  line-height: var(--brand-heading-lineHeight-700);
-  letter-spacing: var(--brand-heading-letterSpacing-700); */
   margin-bottom: var(--base-size-20);
   color: var(--brand-Card-heading-color);
 }
 
 .Card__variant--default {
-  background-color: red;
+  /* background-color: transparent; */
 }
 
 .Card__variant--elevated {
@@ -34,14 +29,15 @@
   margin-bottom: var(--base-size-24);
 }
 
-.Card__action {
-  color: red;
+.Card__image {
+  display: block;
+  overflow: hidden;
+  border-radius: 6px;
+  width: 100%;
+  max-height: 14rem;
+  object-fit: cover;
+  margin-bottom: var(--base-size-32);
 }
 
-.Card__heading--large {
-  /*Visual appearance as a h2*/
-  font-weight: var(--brand-text-weight-800);
-  font-size: var(--brand-text-size-800);
-  line-height: var(--brand-text-lineHeight-800);
-  letter-spacing: var(--brand-text-letterSpacing-800);
+.Card__action {
 }

@@ -27,6 +27,7 @@ const CardRoot = forwardRef<HTMLElement, CardRootProps>(({children, className, v
     if (React.isValidElement(child) && typeof child.type !== 'string') {
       if (
         childrenHasFragment ||
+        child.type === CardImage ||
         child.type === CardHeading ||
         child.type === CardDescription ||
         child.type === CardAction ||
@@ -50,6 +51,16 @@ const CardRoot = forwardRef<HTMLElement, CardRootProps>(({children, className, v
       })}
     </section>
   )
+})
+
+type CardImageProps = {
+  src: string
+  alt: string
+} & React.HTMLAttributes<HTMLImageElement> &
+  BaseProps<HTMLImageElement>
+
+const CardImage = forwardRef<HTMLHeadingElement, CardImageProps>(({alt, src, className, ...rest}, ref) => {
+  return <img alt={alt} src={src} className={clsx(styles.Card__image, className)} {...rest} />
 })
 
 type CardHeadingProps = BaseProps<HTMLHeadingElement> & {
@@ -102,6 +113,7 @@ function CardAction({children, className, ...rest}: CardActionProps) {
  * {@link https://primer.style/brand/components/Card/ See usage examples}.
  */
 export const Card = Object.assign(CardRoot, {
+  Image: CardImage,
   Heading: CardHeading,
   Description: CardDescription,
   Item: AccordionRoot,
