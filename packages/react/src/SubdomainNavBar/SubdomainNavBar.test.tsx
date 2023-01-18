@@ -113,4 +113,12 @@ describe('SubdomainNavBar', () => {
 
     expect(innerContainerEl.classList).not.toContain(`SubdomainNavBar-inner-container--centered`)
   })
+
+  it('does not render a menu toggling button with 0 menu links', () => {
+    const {queryByTestId} = render(<SubdomainNavBar title="Subdomain" />)
+
+    const menuButtonEl = queryByTestId(SubdomainNavBar.testIds.menuButton)
+
+    expect(menuButtonEl).toBe(null)
+  })
 })
