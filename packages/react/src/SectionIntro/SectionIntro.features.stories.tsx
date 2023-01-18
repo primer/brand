@@ -7,51 +7,53 @@ export default {
   component: SectionIntro
 } as ComponentMeta<typeof SectionIntro>
 
-const Template: ComponentStory<typeof SectionIntro> = args => <SectionIntro {...args} />
+export const HeadingOnly = () => (
+  <SectionIntro>
+    <SectionIntro.Heading>This is my super sweet SectionIntro heading</SectionIntro.Heading>
+  </SectionIntro>
+)
 
-export const HeadingOnly = Template.bind({})
-HeadingOnly.args = {
-  heading: 'This is my super sweet SectionIntro heading'
-}
+export const WithDescription = () => (
+  <SectionIntro>
+    <SectionIntro.Heading>This is my super sweet SectionIntro heading</SectionIntro.Heading>
+    <SectionIntro.Description>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit id. Aliquam luctus sed turpis felis nam
+      pulvinar risus elementum.
+    </SectionIntro.Description>
+  </SectionIntro>
+)
 
-export const WithDescription = Template.bind({})
-WithDescription.args = {
-  heading: 'This is my super sweet SectionIntro heading',
-  description:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit id. Aliquam luctus sed turpis felis nam pulvinar risus elementum.'
-}
+export const WithAction = () => (
+  <SectionIntro>
+    <SectionIntro.Heading>This is my super sweet SectionIntro heading</SectionIntro.Heading>
+    <SectionIntro.Description>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit id. Aliquam luctus sed turpis felis nam
+      pulvinar risus elementum.
+    </SectionIntro.Description>
+    <SectionIntro.Action href="#">My link</SectionIntro.Action>
+  </SectionIntro>
+)
 
-export const WithAction = Template.bind({})
-WithAction.args = {
-  heading: 'This is my super sweet SectionIntro heading',
-  description:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit id. Aliquam luctus sed turpis felis nam pulvinar risus elementum.',
-  action: {
-    text: 'Action',
-    href: '#'
-  }
-}
+export const WithSubtleAction = () => (
+  <SectionIntro>
+    <SectionIntro.Heading>This is my super sweet SectionIntro heading</SectionIntro.Heading>
+    <SectionIntro.Description>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit id. Aliquam luctus sed turpis felis nam
+      pulvinar risus elementum.
+    </SectionIntro.Description>
+    <SectionIntro.Action href="#" subtle>
+      My link
+    </SectionIntro.Action>
+  </SectionIntro>
+)
 
-export const WithSubtleAction = Template.bind({})
-WithSubtleAction.args = {
-  heading: 'This is my super sweet SectionIntro heading',
-  description:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit id. Aliquam luctus sed turpis felis nam pulvinar risus elementum.',
-  action: {
-    text: 'Action',
-    href: '#',
-    subtle: true
-  }
-}
-
-export const AlignedCenter = Template.bind({})
-AlignedCenter.args = {
-  heading: 'This is my super sweet SectionIntro heading',
-  description:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit id. Aliquam luctus sed turpis felis nam pulvinar risus elementum.',
-  align: 'center',
-  action: {
-    text: 'Action',
-    href: '#'
-  }
-}
+export const AlignedCenter = () => (
+  <SectionIntro align="center">
+    <SectionIntro.Heading>This is my super sweet SectionIntro heading</SectionIntro.Heading>
+    <SectionIntro.Description>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit id. Aliquam luctus sed turpis felis nam
+      pulvinar risus elementum.
+    </SectionIntro.Description>
+    <SectionIntro.Action href="#">My link</SectionIntro.Action>
+  </SectionIntro>
+)

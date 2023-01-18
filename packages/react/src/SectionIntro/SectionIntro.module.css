@@ -1,12 +1,19 @@
 .SectionIntro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-16);
+  align-items: flex-start;
+  padding-block: var(--base-size-24);
 }
 
 .SectionIntro--align-start {
-  text-align: left;
+  text-align: start;
 }
 
 .SectionIntro--align-center {
+  align-items: center;
   text-align: center;
+  padding-inline: var(--base-size-24);
 }
 
 .SectionIntro-heading {

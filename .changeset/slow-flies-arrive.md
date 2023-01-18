@@ -8,11 +8,11 @@ Use `SectionIntro` to provide a title and optional description paragraph and act
 
 
  ```jsx
- <SectionIntro
-  heading="My section tilte"
-  description="My section description"
-  action={{text: 'My action', href="/my-link"}}
-  />
+ <SectionIntro>
+  <SectionIntro.Heading>My section tilte</SectionIntro.Heading>
+  <SectionIntro.Description>My section description</SectionIntro.Description>
+  <SectionIntro.Action href="/my-link">My action</SectionIntro.Action>
+ </SectionIntro>
  ```
 
  :link: [See the documentation for more details and usage examples.](https://primer.style/brand/components/SectionIntro)
