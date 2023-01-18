@@ -4,6 +4,7 @@ declare const styles: {
   readonly "SectionIntro--align-center": string;
   readonly "SectionIntro-heading": string;
   readonly "SectionIntro-description": string;
+  readonly "SectionIntro-action": string;
 };
 export = styles;
 

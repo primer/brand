@@ -63,7 +63,13 @@ type SectionIntroActionProps = BaseProps<HTMLButtonElement> & {
 const _Action = forwardRef(
   ({className, subtle, children, ...props}: SectionIntroActionProps, ref: Ref<HTMLButtonElement>) => {
     return (
-      <Button as="a" variant={subtle ? 'subtle' : 'secondary'} className={className} ref={ref} {...props}>
+      <Button
+        as="a"
+        variant={subtle ? 'subtle' : 'secondary'}
+        className={clsx(styles[`SectionIntro-action`], className)}
+        ref={ref}
+        {...props}
+      >
         {children}
       </Button>
     )

@@ -23,3 +23,7 @@
 .SectionIntro-description {
   max-width: 50ch;
 }
+
+.SectionIntro-action {
+  margin-top: var(--base-size-8);
+}
