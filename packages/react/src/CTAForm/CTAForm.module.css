@@ -1,0 +1,29 @@
+.CTAForm {
+  display: grid;
+  gap: var(--brand-stack-padding-condensed);
+  grid-template:
+    'a'
+    'c'
+    'b';
+}
+
+.CTAForm-input {
+  grid-area: a;
+}
+
+.CTAForm-button {
+  grid-area: b;
+  align-self: flex-end;
+}
+
+.CTAForm-legal {
+  grid-area: c;
+}
+
+@media screen and (min-width: 450px) {
+  .CTAForm {
+    grid-template:
+      'a a b'
+      'c c c';
+  }
+}
