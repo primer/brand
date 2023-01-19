@@ -8,8 +8,10 @@ export default {
   component: CTAForm,
   args: {
     inputLabel: 'Your work email address',
+    inputType: 'text',
     placeholder: 'me@github.com',
     buttonLabel: 'Subscribe',
+    buttonVariant: 'primary',
     checkboxLabel: (
       <>
         I agree to the <a href="www.github.com">terms and conditions</a> and <a href="www.github.com">privacy policy</a>
@@ -36,6 +38,12 @@ export default {
     buttonLabel: {
       control: {
         type: 'text'
+      }
+    },
+    buttonVariant: {
+      control: {
+        type: 'select',
+        options: ['primary', 'secondary', 'subtle']
       }
     }
   }

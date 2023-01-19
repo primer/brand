@@ -1,0 +1,47 @@
+---
+title: CTAForm
+status: Experimental
+source: https://github.com/primer/brand/tree/main/package/src/CTAForm/CTAForm.tsx
+figma: 'https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=1377%3A30754'
+storybook: '/brand/storybook/?path=/story/components-CTAForm--playground'
+description: Use CTAForm to create a form that is used to collect minimal information from users.
+---
+
+import {CTAForm} from '@primer/react-brand'
+
+```js
+import {CTAForm} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<CTAForm
+  buttonLabel="Subscribe"
+  checkboxLabel={
+    <>
+      I agree to the <a href="www.github.com">terms and conditions</a> and{' '}
+      <a href="www.github.com">privacy policy</a>
+    </>
+  }
+  inputLabel="Your work email address"
+  inputType="email"
+  placeholder="me@github.com"
+  buttonVariant="primary"
+/>
+```
+
+## Component props
+
+### CTAForm
+
+| name            | type                                                                                            | default     | required | description                                             |
+| --------------- | ----------------------------------------------------------------------------------------------- | ----------- | -------- | ------------------------------------------------------- |
+| `inputLabel`    | `string`                                                                                        | `undefined` | `true`   | The label used by the input component                   |
+| `inputType`     | `number`, `text`, `email`, `password`, `search`, `tel`, `url`, `date`, `time`, `datetime-local` | `email`     | `false`  | The type of text input that is created                  |
+| `placeholder`   | `string`                                                                                        | `undefined` | `false`  | The placeholder text for the input component            |
+| `buttonLabel`   | `string`                                                                                        | `undefined` | `true`   | The label used by the button component                  |
+| `buttonVariant` | `primary`, `secondary`, `subtle`                                                                | `primary`   | `false`  | A flag used to add a background to the banner component |
+| `checkboxLabel` | `string`                                                                                        | `undefined` | `true`   | The label used by the checkbox component                |

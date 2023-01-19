@@ -15,9 +15,10 @@ type CTAFormProps = {
 
 export const CTAForm = ({
   inputLabel,
-  inputType = 'email',
+  inputType = 'text',
   placeholder,
   buttonLabel,
+  buttonVariant = 'primary',
   checkboxLabel,
   ...args
 }: CTAFormProps) => {
@@ -31,7 +32,7 @@ export const CTAForm = ({
         <FormControl.Label>{checkboxLabel}</FormControl.Label>
         <Checkbox />
       </FormControl>
-      <Button type="submit" variant="secondary" className={styles['CTAForm-button']}>
+      <Button type="submit" variant={buttonVariant} className={styles['CTAForm-button']}>
         {buttonLabel}
       </Button>
     </form>
