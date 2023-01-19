@@ -12,21 +12,24 @@ export default {
       control: {
         type: 'inline-radio',
         options: [...CardVariants]
-      }
-    },
-    sizeDescription: {
-      description: 'Size of the description',
-      control: {
-        type: 'inline-radio',
-        options: [...TextSizes]
-      }
+      },
+      defaultValue: CardVariants[0]
     },
     sizeHeading: {
       description: 'Size of the heading',
       control: {
         type: 'inline-radio',
         options: [...HeadingSizes]
-      }
+      },
+      defaultValue: HeadingSizes[3]
+    },
+    sizeDescription: {
+      description: 'Size of the description',
+      control: {
+        type: 'inline-radio',
+        options: [...TextSizes]
+      },
+      defaultValue: TextSizes[4]
     },
     link: {
       description: 'Add a link to the card',
@@ -55,8 +58,8 @@ export default {
 } as ComponentMeta<typeof Card>
 
 type PlaygroundProps = CardProps & {
-  sizeDescription: typeof TextSizes[number]
   sizeHeading: typeof HeadingSizes[number]
+  sizeDescription: typeof TextSizes[number]
   link?: boolean
   heightImage: number
   fullBleedImage?: boolean
