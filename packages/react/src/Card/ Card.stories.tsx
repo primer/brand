@@ -1,7 +1,7 @@
 import React from 'react'
 import {ComponentMeta} from '@storybook/react'
 import {Card, CardVariants, CardProps} from '.'
-import {Button, HeadingSizes, TextSizes} from '..'
+import {Button, Link, HeadingSizes, TextSizes} from '..'
 
 export default {
   title: 'Components/Card',
@@ -27,6 +27,21 @@ export default {
         type: 'inline-radio',
         options: [...HeadingSizes]
       }
+    },
+    link: {
+      description: 'Add a link to the card',
+      control: {
+        type: 'boolean',
+        options: [true, false]
+      },
+      defaultValue: false
+    },
+    heightImage: {
+      description: 'Height of the image',
+      control: {
+        type: 'number'
+      },
+      defaultValue: 300
     }
   }
 } as ComponentMeta<typeof Card>
@@ -35,14 +50,16 @@ type PlaygroundProps = CardProps & {
   sizeDescription: typeof TextSizes[number]
   sizeHeading: typeof HeadingSizes[number]
   link?: boolean
+  heightImage: number
 }
 
 const Template = (args: PlaygroundProps) => {
-  const {variant, sizeDescription, sizeHeading} = args
+  const {variant, sizeDescription, sizeHeading, heightImage, link} = args
   return (
     <div style={{display: 'flex', flexWrap: 'wrap', gap: '3rem', justifyContent: 'center', marginTop: '10vh'}}>
       <Card variant={variant}>
         <Card.Image
+          height={heightImage}
           src="https://user-images.githubusercontent.com/912236/213208795-ba61941e-a407-4973-86fd-d5b1697712bf.png"
           alt="Card image"
         />
@@ -50,13 +67,11 @@ const Template = (args: PlaygroundProps) => {
         <Card.Description size={sizeDescription}>
           Everything you need to know about getting started with GitHub Actions.
         </Card.Description>
-        <Card.Action>
-          {/* <Link href="#">Call to action</Link> */}
-          <Button>Call to action</Button>
-        </Card.Action>
+        <Card.Action>{link ? <Link href="#">Call to action</Link> : <Button>Call to action</Button>}</Card.Action>
       </Card>
       <Card variant={variant}>
         <Card.Image
+          height={heightImage}
           src="https://user-images.githubusercontent.com/912236/213241573-5705c304-712b-465b-912e-16533592f5ed.png"
           alt="Card image"
         />
@@ -64,13 +79,11 @@ const Template = (args: PlaygroundProps) => {
         <Card.Description size={sizeDescription}>
           In a recent TechTarget study, 70 percent of organizations reported they had adopted DevOps.
         </Card.Description>
-        <Card.Action>
-          {/* <Link href="#">Call to action</Link> */}
-          <Button>Call to action</Button>
-        </Card.Action>
+        <Card.Action>{link ? <Link href="#">Call to action</Link> : <Button>Call to action</Button>}</Card.Action>{' '}
       </Card>
       <Card variant={variant}>
         <Card.Image
+          height={heightImage}
           src="https://user-images.githubusercontent.com/912236/213241619-ffc67a09-9f04-4ab3-9d6f-010a5cf93f1d.png"
           alt="Card image"
         />
@@ -79,8 +92,7 @@ const Template = (args: PlaygroundProps) => {
           Your culture is key to recruiting and retaining the talent you need to ship exceptional customer experiences.
         </Card.Description>
         <Card.Action>
-          {/* <Link href="#">Call to action</Link> */}
-          <Button>Call to action</Button>
+          <Card.Action>{link ? <Link href="#">Call to action</Link> : <Button>Call to action</Button>}</Card.Action>
         </Card.Action>
       </Card>
     </div>

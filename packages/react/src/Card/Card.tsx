@@ -69,11 +69,12 @@ const CardRoot = forwardRef<HTMLElement, CardProps>(({children, className, varia
 type CardImageProps = {
   src: string
   alt: string
+  height: number
 } & React.HTMLAttributes<HTMLImageElement> &
   BaseProps<HTMLImageElement>
 
-const CardImage = forwardRef<HTMLHeadingElement, CardImageProps>(({alt, src, className, ...rest}) => {
-  return <img alt={alt} src={src} className={clsx(styles.Card__image, className)} {...rest} />
+const CardImage = forwardRef<HTMLHeadingElement, CardImageProps>(({alt, src, height, className, ...rest}) => {
+  return <img alt={alt} src={src} height={height} className={clsx(styles.Card__image, className)} {...rest} />
 })
 
 type CardHeadingProps = BaseProps<HTMLHeadingElement> & {

@@ -36,7 +36,7 @@
   overflow: hidden;
   border-radius: 6px;
   width: 100%;
-  max-height: 14rem;
+  min-height: 14rem;
   object-fit: cover;
   margin-bottom: var(--base-size-32);
 }
