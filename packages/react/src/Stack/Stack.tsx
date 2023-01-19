@@ -50,7 +50,7 @@ type ResponsiveSpacingMap = {
 }
 
 export type StackProps = BaseProps<HTMLElement> & {
-  children: React.ReactElement[] | React.ReactElement
+  children: React.ReactNode[] | React.ReactNode
   /**
    * Defines the flex-direction CSS property.
    * A string value will be applied to all viewports.
