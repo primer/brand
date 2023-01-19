@@ -60,20 +60,20 @@ The content alignment can be changed using the `align` prop on the root `Section
 
 Required node that is used to provide a heading for the section.
 
-| name        | type                               | default   | required | description                                           |
-| ----------- | ---------------------------------- | --------- | -------- | ----------------------------------------------------- |
-| `className` | `string`                           |           | `false`  | Custom class name for the heading component           |
-| `children`  | `ReactNode`, `ReactNode[]`         | undefined | `true`   | Content to be displayed inside the heading component. |
-| `as`        | `h1`, `h2`, `h3`, `h4`, `h5`, `h6` | `h3`      | `false`  | Semantic element to be used.                          |
-| `size`      | `1`, `2`, `3`, `4`, `5`, `6`       | `2`       | `false`  | Size to be displayed.                                 |
+| name        | type                               | default     | required | description                                           |
+| ----------- | ---------------------------------- | ----------- | -------- | ----------------------------------------------------- |
+| `className` | `string`                           |             | `false`  | Custom class name for the heading component           |
+| `children`  | `ReactNode`, `ReactNode[]`         | `undefined` | `true`   | Content to be displayed inside the heading component. |
+| `as`        | `h1`, `h2`, `h3`, `h4`, `h5`, `h6` | `h3`        | `false`  | Semantic element to be used.                          |
+| `size`      | `1`, `2`, `3`, `4`, `5`, `6`       | `2`         | `false`  | Size to be displayed.                                 |
 
 ### SectionIntro.Description
 
 Optional node that can be used to provide a description for the section.
 
-| name       | type                       | default   | required | description                                                |
-| ---------- | -------------------------- | --------- | -------- | ---------------------------------------------------------- |
-| `children` | `ReactNode`, `ReactNode[]` | undefined | `true`   | Content to be displayed inside the section intro component |
+| name       | type                       | default     | required | description                                                |
+| ---------- | -------------------------- | ----------- | -------- | ---------------------------------------------------------- |
+| `children` | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | Content to be displayed inside the section intro component |
 
 `id`, `className` and `ref` are forwarded by default to all children.
 
@@ -81,9 +81,9 @@ Optional node that can be used to provide a description for the section.
 
 Optional node that can be used to provide an action link.
 
-| name        | type      | default   | required | description                                      |
-| ----------- | --------- | --------- | -------- | ------------------------------------------------ |
-| `className` | `string`  | undefined | `false`  | Sets a custom class on the root element          |
-| `subtle`    | `boolean` | `false`   | `false`  | Whether the button should use the subtle variant |
+| name        | type      | default     | required | description                                      |
+| ----------- | --------- | ----------- | -------- | ------------------------------------------------ |
+| `className` | `string`  | `undefined` | `false`  | Sets a custom class on the root element          |
+| `subtle`    | `boolean` | `false`     | `false`  | Whether the button should use the subtle variant |
 
 `id`, `className` and `ref` are forwarded by default to all children.

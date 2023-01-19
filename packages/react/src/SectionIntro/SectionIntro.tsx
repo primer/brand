@@ -1,24 +1,29 @@
-import React, {forwardRef, type Ref} from 'react'
+import React, {forwardRef, PropsWithChildren, type Ref} from 'react'
 import clsx from 'clsx'
-import {Button, type ButtonProps} from '../Button'
+import {Button} from '../Button'
 import {Heading, HeadingTags} from '../Heading'
 import {Text} from '../Text'
 import styles from './SectionIntro.module.css'
 
 import type {BaseProps} from '../component-helpers'
 
-export type SectionIntroProps = BaseProps<HTMLDivElement> & {
-  children: React.ReactNode | React.ReactNode[]
+export type SectionIntroProps = BaseProps<PropsWithChildren<HTMLHeadingElement>> & {
   align?: 'start' | 'center'
 }
 
-const Root = forwardRef<HTMLDivElement, SectionIntroProps>(({align = 'start', className, children, ...props}, ref) => {
-  return (
-    <div ref={ref} className={clsx(styles.SectionIntro, styles[`SectionIntro--align-${align}`], className)} {...props}>
-      {children}
-    </div>
-  )
-})
+const Root = forwardRef<HTMLHeadingElement, SectionIntroProps>(
+  ({align = 'start', className, children, ...props}, ref) => {
+    return (
+      <header
+        ref={ref}
+        className={clsx(styles.SectionIntro, styles[`SectionIntro--align-${align}`], className)}
+        {...props}
+      >
+        {children}
+      </header>
+    )
+  }
+)
 
 type SectionIntroHeadingProps = BaseProps<HTMLHeadingElement> & {
   children: React.ReactNode | React.ReactNode[]
