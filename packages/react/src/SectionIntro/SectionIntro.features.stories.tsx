@@ -41,7 +41,7 @@ export const WithSubtleAction = () => (
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit id. Aliquam luctus sed turpis felis nam
       pulvinar risus elementum.
     </SectionIntro.Description>
-    <SectionIntro.Action href="#" subtle>
+    <SectionIntro.Action href="#" variant="subtle">
       My link
     </SectionIntro.Action>
   </SectionIntro>

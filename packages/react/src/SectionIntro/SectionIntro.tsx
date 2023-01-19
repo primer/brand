@@ -1,6 +1,6 @@
-import React, {forwardRef, PropsWithChildren, type Ref} from 'react'
+import React, {forwardRef, PropsWithChildren, ReactNode, type Ref} from 'react'
 import clsx from 'clsx'
-import {Button} from '../Button'
+import {Button, ButtonBaseProps} from '../Button'
 import {Heading, HeadingTags} from '../Heading'
 import {Text} from '../Text'
 import styles from './SectionIntro.module.css'
@@ -59,20 +59,24 @@ const _Description = forwardRef(
   }
 )
 
-type SectionIntroActionProps = BaseProps<HTMLButtonElement> & {
-  children: React.ReactNode | React.ReactNode[]
-  href: string
-  subtle?: boolean
-}
+type SectionIntroActionProps = ButtonBaseProps &
+  BaseProps<HTMLButtonElement> & {
+    children: ReactNode | ReactNode[]
+    href: string
+    variant?: Exclude<ButtonBaseProps['variant'], 'primary'>
+  }
 
 const _Action = forwardRef(
-  ({className, subtle, children, ...props}: SectionIntroActionProps, ref: Ref<HTMLButtonElement>) => {
+  (
+    {className, href, variant = 'secondary', children, ...props}: SectionIntroActionProps,
+    ref: Ref<HTMLButtonElement>
+  ) => {
     return (
       <Button
-        as="a"
-        variant={subtle ? 'subtle' : 'secondary'}
+        variant={variant}
         className={clsx(styles[`SectionIntro-action`], className)}
         ref={ref}
+        href={href}
         {...props}
       >
         {children}
