@@ -6,6 +6,7 @@ declare const styles: {
   readonly 'Card__variant--inset': string
   readonly Card__description: string
   readonly Card__image: string
+  readonly 'Card__image--fullBleed': string
   readonly Card__action: string
 }
 export = styles

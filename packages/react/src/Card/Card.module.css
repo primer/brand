@@ -2,11 +2,7 @@
   max-width: var(--brand-Card-maxWidth);
   display: flex;
   flex-direction: column;
-}
-
-.Card__heading {
-  margin-bottom: var(--base-size-20);
-  color: var(--brand-Card-heading-color);
+  overflow: hidden;
 }
 
 .Card__variant--default {
@@ -14,7 +10,7 @@
 
 .Card__variant--elevated {
   background-color: var(--brand-color-canvas-default);
-  padding: var(--base-size-40) var(--base-size-48);
+  padding: var(--base-size-40) 0;
   border-radius: 6px;
   box-shadow: var(--brand-River-visual-shadow);
   border: 1px solid var(--brand-color-border-default);
@@ -24,23 +20,45 @@
   background-color: var(--base-color-scale-gray-1);
   padding: var(--base-size-40) var(--base-size-48);
   border-radius: 6px;
+  padding: var(--base-size-40) 0;
+}
+
+.Card__image {
+  border-radius: 6px;
+  min-height: 14rem;
+  object-fit: cover;
+  margin: 0 var(--base-size-48) var(--base-size-32);
+}
+
+.Card__variant--elevated:has(.Card__image--fullBleed),
+.Card__variant--inset:has(.Card__image--fullBleed) {
+  padding-top: 0;
+}
+
+.Card__variant--elevated .Card__image--fullBleed,
+.Card__variant--inset .Card__image--fullBleed {
+  border-radius: 0;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.Card__variant--elevated .Card__image--fullBleed {
+  border-bottom: 1px solid var(--brand-color-border-default);
+}
+
+.Card__heading {
+  margin-bottom: var(--base-size-20);
+  color: var(--brand-Card-heading-color);
+  padding: 0 var(--base-size-48);
 }
 
 .Card__description {
   color: var(--brand-Card-description-color);
   margin-bottom: var(--base-size-24);
-}
-
-.Card__image {
-  display: block;
-  overflow: hidden;
-  border-radius: 6px;
-  width: 100%;
-  min-height: 14rem;
-  object-fit: cover;
-  margin-bottom: var(--base-size-32);
+  padding: 0 var(--base-size-48);
 }
 
 .Card__action {
   margin-top: auto;
+  padding: 0 var(--base-size-48);
 }

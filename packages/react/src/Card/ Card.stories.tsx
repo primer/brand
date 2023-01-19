@@ -42,6 +42,14 @@ export default {
         type: 'number'
       },
       defaultValue: 300
+    },
+    fullBleedImage: {
+      description: 'Full bleed image',
+      control: {
+        type: 'boolean',
+        options: [true, false]
+      },
+      defaultValue: false
     }
   }
 } as ComponentMeta<typeof Card>
@@ -51,14 +59,16 @@ type PlaygroundProps = CardProps & {
   sizeHeading: typeof HeadingSizes[number]
   link?: boolean
   heightImage: number
+  fullBleedImage?: boolean
 }
 
 const Template = (args: PlaygroundProps) => {
-  const {variant, sizeDescription, sizeHeading, heightImage, link} = args
+  const {variant, sizeDescription, sizeHeading, heightImage, link, fullBleedImage} = args
   return (
     <div style={{display: 'flex', flexWrap: 'wrap', gap: '3rem', justifyContent: 'center', marginTop: '10vh'}}>
       <Card variant={variant}>
         <Card.Image
+          fullBleed={fullBleedImage}
           height={heightImage}
           src="https://user-images.githubusercontent.com/912236/213208795-ba61941e-a407-4973-86fd-d5b1697712bf.png"
           alt="Card image"
@@ -71,6 +81,7 @@ const Template = (args: PlaygroundProps) => {
       </Card>
       <Card variant={variant}>
         <Card.Image
+          fullBleed={fullBleedImage}
           height={heightImage}
           src="https://user-images.githubusercontent.com/912236/213241573-5705c304-712b-465b-912e-16533592f5ed.png"
           alt="Card image"
@@ -83,6 +94,7 @@ const Template = (args: PlaygroundProps) => {
       </Card>
       <Card variant={variant}>
         <Card.Image
+          fullBleed={fullBleedImage}
           height={heightImage}
           src="https://user-images.githubusercontent.com/912236/213241619-ffc67a09-9f04-4ab3-9d6f-010a5cf93f1d.png"
           alt="Card image"
