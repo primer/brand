@@ -1,6 +1,6 @@
 .CTAForm {
   display: grid;
-  gap: var(--brand-stack-padding-condensed);
+  gap: var(--base-size-16);
   grid-template:
     'a'
     'c'
