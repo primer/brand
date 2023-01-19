@@ -1,8 +1,8 @@
-import React, {forwardRef, PropsWithChildren} from 'react'
+import React, {forwardRef} from 'react'
 import {isFragment} from 'react-is'
 import clsx from 'clsx'
 
-import {Heading, Text, AccordionHeading, AccordionContent, AccordionRoot} from '..'
+import {Heading, Text, TextSizes, HeadingSizes, AccordionHeading, AccordionContent, AccordionRoot} from '..'
 import type {BaseProps} from '../component-helpers'
 
 /**
@@ -18,11 +18,23 @@ import styles from './Card.module.css'
 
 export const CardVariants = ['default', 'inset', 'elevated'] as const
 
-type CardRootProps = PropsWithChildren<BaseProps<HTMLElement>> & {
+export type CardProps = {
+  /**
+   * Valid children include Testimonial.Name, Testimonial.Avatar, and Testimonial.Name
+   */
+  children:
+    | React.ReactNode
+    | React.ReactElement<CardActionProps>
+    | React.ReactElement<CardDescriptionProps>
+    | React.ReactElement<CardImageProps>
+    | React.ReactElement<CardActionProps>
+  /**
+   * Aligns the testimonial content
+   */
   variant: typeof CardVariants[number]
-}
+} & BaseProps<HTMLElement>
 
-const CardRoot = forwardRef<HTMLElement, CardRootProps>(({children, className, variant = 'default', ...rest}, ref) => {
+const CardRoot = forwardRef<HTMLElement, CardProps>(({children, className, variant = 'default', ...rest}, ref) => {
   const childrenHasFragment = React.Children.toArray(children).some(child => isFragment(child))
   const filteredChildren = React.Children.toArray(children).filter(child => {
     if (React.isValidElement(child) && typeof child.type !== 'string') {
@@ -66,7 +78,7 @@ const CardImage = forwardRef<HTMLHeadingElement, CardImageProps>(({alt, src, cla
 
 type CardHeadingProps = BaseProps<HTMLHeadingElement> & {
   children: string
-  size: string
+  size: typeof HeadingSizes[number]
 }
 
 const CardHeading = forwardRef<HTMLHeadingElement, CardHeadingProps>(({children, className, size, ...rest}, ref) => {
@@ -79,7 +91,7 @@ const CardHeading = forwardRef<HTMLHeadingElement, CardHeadingProps>(({children,
 
 type CardDescriptionProps = BaseProps<HTMLHeadingElement> & {
   children: string
-  size: string
+  size: typeof TextSizes[number]
 }
 
 function CardDescription({children, className, size, ...rest}: CardDescriptionProps) {

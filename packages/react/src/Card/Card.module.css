@@ -10,7 +10,6 @@
 }
 
 .Card__variant--default {
-  /* background-color: transparent; */
 }
 
 .Card__variant--elevated {
@@ -18,13 +17,11 @@
   padding: var(--base-size-40) var(--base-size-48);
   border-radius: 6px;
   box-shadow: var(--brand-River-visual-shadow);
+  border: 1px solid var(--brand-color-border-default);
 }
 
 .Card__variant--inset {
-  background-color: var(--brand-color-canvas-subtle);
-  border-color: var(--brand-color-border-muted);
-  border-width: 1px;
-  border-style: solid;
+  background-color: var(--base-color-scale-gray-1);
   padding: var(--base-size-40) var(--base-size-48);
   border-radius: 6px;
 }
