@@ -1,14 +1,15 @@
 import React from 'react'
 import clsx from 'clsx'
-import {FormControl, Button, TextInput, Checkbox} from '../'
+import {FormControl, Button, ButtonProps, TextInput, TextInputProps, Checkbox} from '../'
 
 import styles from './CTAForm.module.css'
 
 type CTAFormProps = {
-  inputLabel: string
-  inputType?: 'email' | 'text'
-  placeholder?: string
-  buttonLabel: string
+  inputLabel: TextInputProps['leadingText']
+  inputType?: TextInputProps['type']
+  placeholder?: TextInputProps['placeholder']
+  buttonLabel: ButtonProps<'button'>['children']
+  buttonVariant?: ButtonProps<'button'>['variant']
   checkboxLabel: React.ReactNode[] | React.ReactNode | string
 } & React.HTMLAttributes<HTMLFormElement>
 
@@ -30,7 +31,7 @@ export const CTAForm = ({
         <FormControl.Label>{checkboxLabel}</FormControl.Label>
         <Checkbox />
       </FormControl>
-      <Button type="submit" variant="primary" className={styles['CTAForm-button']}>
+      <Button type="submit" variant="secondary" className={styles['CTAForm-button']}>
         {buttonLabel}
       </Button>
     </form>
