@@ -66,11 +66,12 @@ const CardImage = forwardRef<HTMLHeadingElement, CardImageProps>(({alt, src, cla
 
 type CardHeadingProps = BaseProps<HTMLHeadingElement> & {
   children: string
+  size: string
 }
 
-const CardHeading = forwardRef<HTMLHeadingElement, CardHeadingProps>(({children, className, ...rest}, ref) => {
+const CardHeading = forwardRef<HTMLHeadingElement, CardHeadingProps>(({children, className, size, ...rest}, ref) => {
   return (
-    <Heading className={clsx(styles.Card__heading, className)} ref={ref} {...rest}>
+    <Heading size={size} className={clsx(styles.Card__heading, className)} ref={ref} {...rest}>
       {children}
     </Heading>
   )
@@ -78,11 +79,12 @@ const CardHeading = forwardRef<HTMLHeadingElement, CardHeadingProps>(({children,
 
 type CardDescriptionProps = BaseProps<HTMLHeadingElement> & {
   children: string
+  size: string
 }
 
-function CardDescription({children, className, ...rest}: CardDescriptionProps) {
+function CardDescription({children, className, size, ...rest}: CardDescriptionProps) {
   return (
-    <Text as="p" className={clsx(styles.Card__description, className)} {...rest}>
+    <Text size={size} as="p" className={clsx(styles.Card__description, className)} {...rest}>
       {children}
     </Text>
   )
