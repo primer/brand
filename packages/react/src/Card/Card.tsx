@@ -16,8 +16,10 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
  */
 import styles from './Card.module.css'
 
+export const CardVariants = ['default', 'inset', 'elevated'] as const
+
 type CardRootProps = PropsWithChildren<BaseProps<HTMLElement>> & {
-  variant: 'default' | 'inset' | 'elevated'
+  variant: typeof CardVariants[number]
 }
 
 const CardRoot = forwardRef<HTMLElement, CardRootProps>(({children, className, variant = 'default', ...rest}, ref) => {
@@ -58,7 +60,7 @@ type CardImageProps = {
 } & React.HTMLAttributes<HTMLImageElement> &
   BaseProps<HTMLImageElement>
 
-const CardImage = forwardRef<HTMLHeadingElement, CardImageProps>(({alt, src, className, ...rest}, ref) => {
+const CardImage = forwardRef<HTMLHeadingElement, CardImageProps>(({alt, src, className, ...rest}) => {
   return <img alt={alt} src={src} className={clsx(styles.Card__image, className)} {...rest} />
 })
 

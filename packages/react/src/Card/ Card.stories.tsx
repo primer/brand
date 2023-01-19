@@ -1,21 +1,38 @@
 import React from 'react'
-import {ComponentMeta} from '@storybook/react'
-import {Card} from '.'
-import {Link, Button} from '..'
+import {ComponentMeta, ComponentStory} from '@storybook/react'
+import {Card, CardVariants} from '.'
+import {Button} from '..'
+
+// export default {
+//   title: 'Components/Card',
+//   component: Card
+// } as ComponentMeta<typeof Card>
 
 export default {
   title: 'Components/Card',
-  component: Card
+  component: Card,
+  args: {
+    variant: 'default'
+  },
+  // overriding default type inference for args with more useful control types
+  argTypes: {
+    variant: {
+      description: 'Size of button',
+      control: {
+        type: 'inline-radio',
+        options: [...CardVariants]
+      }
+    }
+  }
 } as ComponentMeta<typeof Card>
 
-const variant = 'inset'
-const sizeHeading = '4'
-const sizeDescription = '300'
+const sizeHeading = '3'
+const sizeDescription = '200'
 
-export const Default = () => (
+const Template: ComponentStory<typeof Card> = args => (
   <React.Fragment>
     <div style={{display: 'flex', flexWrap: 'wrap', gap: '3rem', justifyContent: 'center', marginTop: '10vh'}}>
-      <Card variant={variant}>
+      <Card {...args}>
         <Card.Image
           src="https://user-images.githubusercontent.com/912236/213208795-ba61941e-a407-4973-86fd-d5b1697712bf.png"
           alt="Card image"
@@ -29,7 +46,7 @@ export const Default = () => (
           <Button>Call to action</Button>
         </Card.Action>
       </Card>
-      <Card variant={variant}>
+      <Card {...args}>
         <Card.Image
           src="https://user-images.githubusercontent.com/912236/213241573-5705c304-712b-465b-912e-16533592f5ed.png"
           alt="Card image"
@@ -43,7 +60,7 @@ export const Default = () => (
           <Button>Call to action</Button>
         </Card.Action>
       </Card>
-      <Card variant={variant}>
+      <Card {...args}>
         <Card.Image
           src="https://user-images.githubusercontent.com/912236/213241619-ffc67a09-9f04-4ab3-9d6f-010a5cf93f1d.png"
           alt="Card image"
@@ -60,3 +77,5 @@ export const Default = () => (
     </div>
   </React.Fragment>
 )
+
+export const Playground = Template.bind({})
