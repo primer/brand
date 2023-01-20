@@ -4,6 +4,7 @@
   flex-direction: column;
   overflow: hidden;
   background-color: var(--brand-Card-background-default);
+  text-decoration: none;
 }
 
 .Card__size--small {

@@ -2,7 +2,7 @@ import React, {forwardRef} from 'react'
 import {isFragment} from 'react-is'
 import clsx from 'clsx'
 
-import {Heading, Text, TextSizes, HeadingSizes, AccordionHeading, AccordionContent, AccordionRoot} from '..'
+import {Heading, Text, TextSizes, HeadingSizes, Link} from '..'
 import type {BaseProps} from '../component-helpers'
 
 /**
@@ -25,19 +25,20 @@ export type CardProps = {
    */
   children:
     | React.ReactNode
-    | React.ReactElement<CardActionProps>
-    | React.ReactElement<CardDescriptionProps>
     | React.ReactElement<CardImageProps>
-    | React.ReactElement<CardActionProps>
+    | React.ReactElement<CardHeadingProps>
+    | React.ReactElement<CardDescriptionProps>
   /**
    * Aligns the testimonial content
    */
-  variant: typeof CardVariants[number]
-  size: typeof CardSizes[number]
-} & BaseProps<HTMLElement>
+  variant?: typeof CardVariants[number]
+  size?: typeof CardSizes[number]
+  link?: string
+  linkHref: string
+} & BaseProps<HTMLLinkElement>
 
-const CardRoot = forwardRef<HTMLElement, CardProps>(
-  ({children, className, size = 'medium', variant = 'default', ...rest}, ref) => {
+const CardRoot = forwardRef<HTMLLinkElement, CardProps>(
+  ({children, className, size = CardSizes[1], variant = CardVariants[0], link, linkHref}) => {
     const childrenHasFragment = React.Children.toArray(children).some(child => isFragment(child))
     const filteredChildren = React.Children.toArray(children).filter(child => {
       if (React.isValidElement(child) && typeof child.type !== 'string') {
@@ -45,9 +46,7 @@ const CardRoot = forwardRef<HTMLElement, CardProps>(
           childrenHasFragment ||
           child.type === CardImage ||
           child.type === CardHeading ||
-          child.type === CardDescription ||
-          child.type === CardAction ||
-          child.type === AccordionRoot
+          child.type === CardDescription
         ) {
           return true
         }
@@ -56,10 +55,9 @@ const CardRoot = forwardRef<HTMLElement, CardProps>(
     })
 
     return (
-      <section
+      <a
+        href={linkHref}
         className={clsx(styles.Card, styles[`Card__variant--${variant}`], styles[`Card__size--${size}`], className)}
-        ref={ref}
-        {...rest}
       >
         {React.Children.toArray(filteredChildren).map(child => {
           if (React.isValidElement(child) && typeof child.type !== 'string') {
@@ -69,7 +67,10 @@ const CardRoot = forwardRef<HTMLElement, CardProps>(
           }
           return child
         })}
-      </section>
+        <div className={styles.Card__action}>
+          <Link>{link}</Link>
+        </div>
+      </a>
     )
   }
 )
@@ -82,19 +83,17 @@ type CardImageProps = {
 } & React.HTMLAttributes<HTMLImageElement> &
   BaseProps<HTMLImageElement>
 
-const CardImage = forwardRef<HTMLHeadingElement, CardImageProps>(
-  ({alt, src, height, fullBleed, className, ...rest}) => {
-    return (
-      <img
-        alt={alt}
-        src={src}
-        height={height}
-        className={clsx(styles.Card__image, fullBleed && styles['Card__image--fullBleed'], className)}
-        {...rest}
-      />
-    )
-  }
-)
+const CardImage = forwardRef<HTMLImageElement, CardImageProps>(({alt, src, height, fullBleed, className, ...rest}) => {
+  return (
+    <img
+      alt={alt}
+      src={src}
+      height={height}
+      className={clsx(styles.Card__image, fullBleed && styles['Card__image--fullBleed'], className)}
+      {...rest}
+    />
+  )
+})
 
 // type CardIconProps = BaseProps<HTMLElement> & {
 //   icon: string
@@ -123,30 +122,20 @@ const CardHeading = forwardRef<HTMLHeadingElement, CardHeadingProps>(({children,
   )
 })
 
-type CardDescriptionProps = BaseProps<HTMLElement> & {
+type CardDescriptionProps = BaseProps<HTMLParagraphElement> & {
   children: string
   size: typeof TextSizes[number]
 }
 
-function CardDescription({children, className, size, ...rest}: CardDescriptionProps) {
-  return (
-    <Text size={size} as="p" className={clsx(styles.Card__description, className)} {...rest}>
-      {children}
-    </Text>
-  )
-}
-
-type CardActionProps = BaseProps<HTMLDivElement> & {
-  children: React.ReactNode
-}
-
-function CardAction({children, className, ...rest}: CardActionProps) {
-  return (
-    <div className={clsx(styles.Card__action, className)} {...rest}>
-      {children}
-    </div>
-  )
-}
+const CardDescription = forwardRef<HTMLParagraphElement, CardDescriptionProps>(
+  ({children, className, size, ...rest}, ref) => {
+    return (
+      <Text size={size} as="p" className={clsx(styles.Card__description, className)} {...rest}>
+        {children}
+      </Text>
+    )
+  }
+)
 
 /**
  * Card component:
@@ -155,9 +144,5 @@ function CardAction({children, className, ...rest}: CardActionProps) {
 export const Card = Object.assign(CardRoot, {
   Image: CardImage,
   Heading: CardHeading,
-  Description: CardDescription,
-  Item: AccordionRoot,
-  Question: AccordionHeading,
-  Answer: AccordionContent,
-  Action: CardAction
+  Description: CardDescription
 })

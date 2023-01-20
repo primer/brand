@@ -1,7 +1,7 @@
 import React from 'react'
 import {ComponentMeta} from '@storybook/react'
 import {Card, CardVariants, CardProps, CardSizes} from '.'
-import {Button, Link, HeadingSizes, TextSizes} from '..'
+import {HeadingSizes, TextSizes} from '..'
 
 export default {
   title: 'Components/Card',
@@ -14,6 +14,20 @@ export default {
         options: [...CardVariants]
       },
       defaultValue: CardVariants[0]
+    },
+    link: {
+      description: 'Title of the card',
+      control: {
+        type: 'text'
+      },
+      defaultValue: 'Learn more'
+    },
+    linkHref: {
+      description: 'Title href of the card',
+      control: {
+        type: 'text'
+      },
+      defaultValue: 'https://github.com'
     },
     size: {
       description: 'Size of the card',
@@ -54,14 +68,6 @@ export default {
       },
       defaultValue: false
     },
-    link: {
-      description: 'Add a link to the card',
-      control: {
-        type: 'boolean',
-        options: [true, false]
-      },
-      defaultValue: false
-    },
     image: {
       description: 'Image of the card',
       control: {
@@ -74,19 +80,18 @@ export default {
 } as ComponentMeta<typeof Card>
 
 type PlaygroundProps = CardProps & {
-  // sizeHeading: typeof HeadingSizes[number]
-  // sizeDescription: typeof TextSizes[number]
-  link?: boolean
+  sizeHeading: typeof HeadingSizes[number]
+  sizeDescription: typeof TextSizes[number]
   image?: boolean
   heightImage: number
   fullBleedImage?: boolean
 }
 
 const Template = (args: PlaygroundProps) => {
-  const {variant, size, sizeDescription, image, sizeHeading, heightImage, link, fullBleedImage} = args
+  const {sizeDescription, image, sizeHeading, heightImage, fullBleedImage} = args
   return (
     <div style={{display: 'flex', flexWrap: 'wrap', gap: '3rem', justifyContent: 'center', marginTop: '10vh'}}>
-      <Card variant={variant} size={size}>
+      <Card {...args}>
         {image && (
           <Card.Image
             fullBleed={fullBleedImage}
@@ -99,9 +104,9 @@ const Template = (args: PlaygroundProps) => {
         <Card.Description size={sizeDescription}>
           Everything you need to know about getting started with GitHub Actions.
         </Card.Description>
-        <Card.Action>{link ? <Link href="#">Call to action</Link> : <Button>Call to action</Button>}</Card.Action>
       </Card>
-      <Card variant={variant} size={size}>
+      <Card {...args}>
+        c
         {image && (
           <Card.Image
             fullBleed={fullBleedImage}
@@ -114,9 +119,8 @@ const Template = (args: PlaygroundProps) => {
         <Card.Description size={sizeDescription}>
           In a recent TechTarget study, 70 percent of organizations reported they had adopted DevOps.
         </Card.Description>
-        <Card.Action>{link ? <Link href="#">Call to action</Link> : <Button>Call to action</Button>}</Card.Action>{' '}
       </Card>
-      <Card variant={variant} size={size}>
+      <Card {...args}>
         {image && (
           <Card.Image
             fullBleed={fullBleedImage}
@@ -129,7 +133,6 @@ const Template = (args: PlaygroundProps) => {
         <Card.Description size={sizeDescription}>
           Your culture is key to recruiting and retaining the talent you need to ship exceptional customer experiences.
         </Card.Description>
-        <Card.Action>{link ? <Link href="#">Call to action</Link> : <Button>Call to action</Button>}</Card.Action>
       </Card>
     </div>
   )
