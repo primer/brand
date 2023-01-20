@@ -31,6 +31,17 @@ export const Playground: ComponentStory<typeof SectionIntro> = args => (
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit id. Aliquam luctus sed turpis felis nam
       pulvinar risus elementum.
     </SectionIntro.Description>
-    <SectionIntro.Action href="#">My link</SectionIntro.Action>
+    <SectionIntro.Action href="#">Call to action</SectionIntro.Action>
+  </SectionIntro>
+)
+
+export const Default = () => (
+  <SectionIntro>
+    <SectionIntro.Heading>This is my super sweet SectionIntro heading</SectionIntro.Heading>
+    <SectionIntro.Description>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit id. Aliquam luctus sed turpis felis nam
+      pulvinar risus elementum.
+    </SectionIntro.Description>
+    <SectionIntro.Action href="#">Call to action</SectionIntro.Action>
   </SectionIntro>
 )

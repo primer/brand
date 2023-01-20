@@ -7,11 +7,11 @@ import styles from './SectionIntro.module.css'
 
 import type {BaseProps} from '../component-helpers'
 
-export type SectionIntroProps = BaseProps<PropsWithChildren<HTMLHeadingElement>> & {
+export type SectionIntroProps = BaseProps<HTMLHeadingElement> & {
   align?: 'start' | 'center'
 }
 
-const Root = forwardRef<HTMLHeadingElement, SectionIntroProps>(
+const Root = forwardRef<HTMLHeadingElement, PropsWithChildren<SectionIntroProps>>(
   ({align = 'start', className, children, ...props}, ref) => {
     return (
       <header
@@ -25,16 +25,20 @@ const Root = forwardRef<HTMLHeadingElement, SectionIntroProps>(
   }
 )
 
-type SectionIntroHeadingProps = BaseProps<HTMLHeadingElement> & {
-  children: React.ReactNode | React.ReactNode[]
-} & HeadingTags
+type SectionIntroHeadingProps = BaseProps<HTMLHeadingElement> & HeadingTags
 
 const defaultHeadingTag = HeadingTags[1]
 const defaultHeadingSize = '2'
 
 const _Heading = forwardRef(
   (
-    {as = defaultHeadingTag, size = defaultHeadingSize, className, children, ...props}: SectionIntroHeadingProps,
+    {
+      as = defaultHeadingTag,
+      size = defaultHeadingSize,
+      className,
+      children,
+      ...props
+    }: PropsWithChildren<SectionIntroHeadingProps>,
     ref: Ref<HTMLHeadingElement>
   ) => {
     return (
@@ -67,10 +71,7 @@ type SectionIntroActionProps = ButtonBaseProps &
   }
 
 const _Action = forwardRef(
-  (
-    {className, href, variant = 'secondary', children, ...props}: SectionIntroActionProps,
-    ref: Ref<HTMLButtonElement>
-  ) => {
+  ({className, href, variant = 'subtle', children, ...props}: SectionIntroActionProps, ref: Ref<HTMLButtonElement>) => {
     return (
       <Button
         variant={variant}

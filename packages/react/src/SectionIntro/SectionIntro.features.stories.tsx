@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentStory, ComponentMeta} from '@storybook/react'
+import {ComponentMeta} from '@storybook/react'
 import {SectionIntro} from '.'
 
 export default {
@@ -30,19 +30,19 @@ export const WithAction = () => (
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit id. Aliquam luctus sed turpis felis nam
       pulvinar risus elementum.
     </SectionIntro.Description>
-    <SectionIntro.Action href="#">My link</SectionIntro.Action>
+    <SectionIntro.Action href="#">Call to action</SectionIntro.Action>
   </SectionIntro>
 )
 
-export const WithSubtleAction = () => (
+export const WithSecondaryAction = () => (
   <SectionIntro>
     <SectionIntro.Heading>This is my super sweet SectionIntro heading</SectionIntro.Heading>
     <SectionIntro.Description>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit id. Aliquam luctus sed turpis felis nam
       pulvinar risus elementum.
     </SectionIntro.Description>
-    <SectionIntro.Action href="#" variant="subtle">
-      My link
+    <SectionIntro.Action href="#" variant="secondary">
+      Call to action
     </SectionIntro.Action>
   </SectionIntro>
 )
@@ -54,6 +54,6 @@ export const AlignedCenter = () => (
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit id. Aliquam luctus sed turpis felis nam
       pulvinar risus elementum.
     </SectionIntro.Description>
-    <SectionIntro.Action href="#">My link</SectionIntro.Action>
+    <SectionIntro.Action href="#">Call to action</SectionIntro.Action>
   </SectionIntro>
 )
