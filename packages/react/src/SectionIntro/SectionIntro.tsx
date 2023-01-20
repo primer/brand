@@ -1,6 +1,6 @@
-import React, {forwardRef, PropsWithChildren, ReactNode, type Ref} from 'react'
+import React, {forwardRef, PropsWithChildren, type Ref} from 'react'
 import clsx from 'clsx'
-import {Button, ButtonBaseProps} from '../Button'
+import {Link, LinkProps} from '../Link'
 import {Heading, HeadingTags} from '../Heading'
 import {Text} from '../Text'
 import styles from './SectionIntro.module.css'
@@ -63,28 +63,14 @@ const _Description = forwardRef(
   }
 )
 
-type SectionIntroActionProps = ButtonBaseProps &
-  BaseProps<HTMLButtonElement> & {
-    children: ReactNode | ReactNode[]
-    href: string
-    variant?: Exclude<ButtonBaseProps['variant'], 'primary'>
-  }
+type SectionIntroLinkProps = Omit<LinkProps, 'size'> & BaseProps<HTMLAnchorElement>
 
-const _Action = forwardRef(
-  ({className, href, variant = 'subtle', children, ...props}: SectionIntroActionProps, ref: Ref<HTMLButtonElement>) => {
-    return (
-      <Button
-        as="a"
-        variant={variant}
-        className={clsx(styles[`SectionIntro-action`], className)}
-        ref={ref}
-        href={href}
-        {...props}
-      >
-        {children}
-      </Button>
-    )
-  }
-)
+const _Link = forwardRef(({className, children, ...props}: SectionIntroLinkProps, ref: Ref<HTMLAnchorElement>) => {
+  return (
+    <Link ref={ref} className={clsx(styles['SectionIntro-link'], className)} size="large" {...props}>
+      {children}
+    </Link>
+  )
+})
 
-export const SectionIntro = Object.assign(Root, {Heading: _Heading, Description: _Description, Action: _Action})
+export const SectionIntro = Object.assign(Root, {Heading: _Heading, Description: _Description, Link: _Link})

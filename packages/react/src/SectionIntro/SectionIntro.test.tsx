@@ -27,7 +27,7 @@ describe('SectionIntro', () => {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
           turpis felis nam pulvinar risus elementum.
         </SectionIntro.Description>
-        <SectionIntro.Action href="#">Action</SectionIntro.Action>
+        <SectionIntro.Link href="#">Link</SectionIntro.Link>
       </SectionIntro>
     )
 
@@ -81,17 +81,17 @@ describe('SectionIntro', () => {
       <SectionIntro>
         <SectionIntro.Heading>{mockHeading}</SectionIntro.Heading>
         <SectionIntro.Description>{mockDescription}</SectionIntro.Description>
-        <SectionIntro.Action href="#">{mockLinkText}</SectionIntro.Action>
+        <SectionIntro.Link href="#">{mockLinkText}</SectionIntro.Link>
       </SectionIntro>
     )
 
     const headingEl = getByText(mockHeading)
     const descriptionEl = getByText(mockDescription)
-    const actionEl = getByText(mockLinkText)
+    const linkEl = getByText(mockLinkText)
 
     expect(headingEl).toBeInTheDocument()
     expect(descriptionEl).toBeInTheDocument()
-    expect(actionEl).toBeInTheDocument()
+    expect(linkEl).toBeInTheDocument()
   })
 
   it('renders content using start alignment by default', () => {
@@ -100,7 +100,7 @@ describe('SectionIntro', () => {
       <SectionIntro data-testid={rootId}>
         <SectionIntro.Heading>{mockHeading}</SectionIntro.Heading>
         <SectionIntro.Description>{mockDescription}</SectionIntro.Description>
-        <SectionIntro.Action href="#">{mockLinkText}</SectionIntro.Action>
+        <SectionIntro.Link href="#">{mockLinkText}</SectionIntro.Link>
       </SectionIntro>
     )
 
@@ -118,7 +118,7 @@ describe('SectionIntro', () => {
       <SectionIntro align="center" data-testid={rootId}>
         <SectionIntro.Heading>{mockHeading}</SectionIntro.Heading>
         <SectionIntro.Description>{mockDescription}</SectionIntro.Description>
-        <SectionIntro.Action href="#">{mockLinkText}</SectionIntro.Action>
+        <SectionIntro.Link href="#">{mockLinkText}</SectionIntro.Link>
       </SectionIntro>
     )
 
@@ -131,30 +131,12 @@ describe('SectionIntro', () => {
     expect(rootEl.classList).not.toContain(unexpectedRootClass)
   })
 
-  it('can optionally render a secondary button', () => {
-    const {getByRole} = render(
-      <SectionIntro>
-        <SectionIntro.Heading>{mockHeading}</SectionIntro.Heading>
-        <SectionIntro.Description>{mockDescription}</SectionIntro.Description>
-        <SectionIntro.Action href="#" variant="secondary">
-          {mockLinkText}
-        </SectionIntro.Action>
-      </SectionIntro>
-    )
-
-    const buttonEl = getByRole('link')
-
-    const expectedButtonClass = 'Button--secondary'
-
-    expect(buttonEl.classList).toContain(expectedButtonClass)
-  })
-
   it('has no a11y violations', async () => {
     const {container} = render(
       <SectionIntro>
         <SectionIntro.Heading>{mockHeading}</SectionIntro.Heading>
         <SectionIntro.Description>{mockDescription}</SectionIntro.Description>
-        <SectionIntro.Action href="#">{mockLinkText}</SectionIntro.Action>
+        <SectionIntro.Link href="#">{mockLinkText}</SectionIntro.Link>
       </SectionIntro>
     )
 

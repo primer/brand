@@ -30,7 +30,7 @@ export const WithAction = () => (
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit id. Aliquam luctus sed turpis felis nam
       pulvinar risus elementum.
     </SectionIntro.Description>
-    <SectionIntro.Action href="#">Call to action</SectionIntro.Action>
+    <SectionIntro.Link href="#">My link</SectionIntro.Link>
   </SectionIntro>
 )
 
@@ -41,9 +41,7 @@ export const WithSecondaryAction = () => (
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit id. Aliquam luctus sed turpis felis nam
       pulvinar risus elementum.
     </SectionIntro.Description>
-    <SectionIntro.Action href="#" variant="secondary">
-      Call to action
-    </SectionIntro.Action>
+    <SectionIntro.Link href="#">My link</SectionIntro.Link>
   </SectionIntro>
 )
 
@@ -54,6 +52,6 @@ export const AlignedCenter = () => (
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit id. Aliquam luctus sed turpis felis nam
       pulvinar risus elementum.
     </SectionIntro.Description>
-    <SectionIntro.Action href="#">Call to action</SectionIntro.Action>
+    <SectionIntro.Link href="#">My link</SectionIntro.Link>
   </SectionIntro>
 )

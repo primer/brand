@@ -9,7 +9,7 @@ description: Use SectionIntro to provide a title and optional description paragr
 import {Label} from '@primer/react'
 
 ```js
-import {SectionIntro, Button} from '@primer/react-brand'
+import {SectionIntro} from '@primer/react-brand'
 ```
 
 ## Examples
@@ -25,7 +25,7 @@ import {SectionIntro, Button} from '@primer/react-brand'
     the logic you want and GitHub Copilot will immediately suggest code to
     implement the solution.
   </SectionIntro.Description>
-  <SectionIntro.Action href="#">Explore docs</SectionIntro.Action>
+  <SectionIntro.Link href="#">Explore docs</SectionIntro.Link>
 </SectionIntro>
 ```
 
@@ -42,7 +42,7 @@ The content alignment can be changed using the `align` prop on the root `Section
     the logic you want and GitHub Copilot will immediately suggest code to
     implement the solution.
   </SectionIntro.Description>
-  <SectionIntro.Action href="#">Explore docs</SectionIntro.Action>
+  <SectionIntro.Link href="#">Explore docs</SectionIntro.Link>
 </SectionIntro>
 ```
 
@@ -77,13 +77,12 @@ Optional node that can be used to provide a description for the section.
 
 `id`, `className` and `ref` are forwarded by default to all children.
 
-### SectionIntro.Action
+### SectionIntro.Link
 
-Optional node that can be used to provide an action link.
+Optional node that can be used to provide a link.
 
-| name        | type      | default     | required | description                                      |
-| ----------- | --------- | ----------- | -------- | ------------------------------------------------ |
-| `className` | `string`  | `undefined` | `false`  | Sets a custom class on the root element          |
-| `subtle`    | `boolean` | `false`     | `false`  | Whether the button should use the subtle variant |
+| name        | type     | default     | required | description                             |
+| ----------- | -------- | ----------- | -------- | --------------------------------------- |
+| `className` | `string` | `undefined` | `false`  | Sets a custom class on the root element |
 
 `id`, `className` and `ref` are forwarded by default to all children.

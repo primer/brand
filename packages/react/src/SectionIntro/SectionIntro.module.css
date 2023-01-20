@@ -24,6 +24,6 @@
   max-width: 50ch;
 }
 
-.SectionIntro-action {
-  margin-top: var(--base-size-8);
+.SectionIntro-link {
+  margin-top: var(--base-size-16);
 }
