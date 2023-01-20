@@ -17,6 +17,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 import styles from './Card.module.css'
 
 export const CardVariants = ['default', 'inset', 'elevated'] as const
+export const CardSizes = ['small', 'medium', 'large'] as const
 
 export type CardProps = {
   /**
@@ -32,39 +33,46 @@ export type CardProps = {
    * Aligns the testimonial content
    */
   variant: typeof CardVariants[number]
+  size: typeof CardSizes[number]
 } & BaseProps<HTMLElement>
 
-const CardRoot = forwardRef<HTMLElement, CardProps>(({children, className, variant = 'default', ...rest}, ref) => {
-  const childrenHasFragment = React.Children.toArray(children).some(child => isFragment(child))
-  const filteredChildren = React.Children.toArray(children).filter(child => {
-    if (React.isValidElement(child) && typeof child.type !== 'string') {
-      if (
-        childrenHasFragment ||
-        child.type === CardImage ||
-        child.type === CardHeading ||
-        child.type === CardDescription ||
-        child.type === CardAction ||
-        child.type === AccordionRoot
-      ) {
-        return true
-      }
-    }
-    return false
-  })
-
-  return (
-    <section className={clsx(styles.Card, styles[`Card__variant--${variant}`], className)} ref={ref} {...rest}>
-      {React.Children.toArray(filteredChildren).map(child => {
-        if (React.isValidElement(child) && typeof child.type !== 'string') {
-          if (child.type === CardHeading) {
-            return React.cloneElement(child, {})
-          }
+const CardRoot = forwardRef<HTMLElement, CardProps>(
+  ({children, className, size = 'medium', variant = 'default', ...rest}, ref) => {
+    const childrenHasFragment = React.Children.toArray(children).some(child => isFragment(child))
+    const filteredChildren = React.Children.toArray(children).filter(child => {
+      if (React.isValidElement(child) && typeof child.type !== 'string') {
+        if (
+          childrenHasFragment ||
+          child.type === CardImage ||
+          child.type === CardHeading ||
+          child.type === CardDescription ||
+          child.type === CardAction ||
+          child.type === AccordionRoot
+        ) {
+          return true
         }
-        return child
-      })}
-    </section>
-  )
-})
+      }
+      return false
+    })
+
+    return (
+      <section
+        className={clsx(styles.Card, styles[`Card__variant--${variant}`], styles[`Card__size--${size}`], className)}
+        ref={ref}
+        {...rest}
+      >
+        {React.Children.toArray(filteredChildren).map(child => {
+          if (React.isValidElement(child) && typeof child.type !== 'string') {
+            if (child.type === CardHeading) {
+              return React.cloneElement(child, {})
+            }
+          }
+          return child
+        })}
+      </section>
+    )
+  }
+)
 
 type CardImageProps = {
   src: string
@@ -88,6 +96,20 @@ const CardImage = forwardRef<HTMLHeadingElement, CardImageProps>(
   }
 )
 
+// type CardIconProps = BaseProps<HTMLElement> & {
+//   icon: string
+//   fillColor: string
+//   backgroundColor: number
+// }
+
+// function CardIcon({className, icon, fillColor, backgroundColor, ...rest}: CardIconProps) {
+//   return (
+//     <Text size={size} as="p" className={clsx(styles.Card__description, className)} {...rest}>
+//       {children}
+//     </Text>
+//   )
+// }
+
 type CardHeadingProps = BaseProps<HTMLHeadingElement> & {
   children: string
   size: typeof HeadingSizes[number]
@@ -101,7 +123,7 @@ const CardHeading = forwardRef<HTMLHeadingElement, CardHeadingProps>(({children,
   )
 })
 
-type CardDescriptionProps = BaseProps<HTMLHeadingElement> & {
+type CardDescriptionProps = BaseProps<HTMLElement> & {
   children: string
   size: typeof TextSizes[number]
 }
@@ -114,7 +136,7 @@ function CardDescription({children, className, size, ...rest}: CardDescriptionPr
   )
 }
 
-type CardActionProps = BaseProps<HTMLHeadingElement> & {
+type CardActionProps = BaseProps<HTMLDivElement> & {
   children: React.ReactNode
 }
 
