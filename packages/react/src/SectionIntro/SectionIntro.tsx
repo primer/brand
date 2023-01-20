@@ -74,6 +74,7 @@ const _Action = forwardRef(
   ({className, href, variant = 'subtle', children, ...props}: SectionIntroActionProps, ref: Ref<HTMLButtonElement>) => {
     return (
       <Button
+        as="a"
         variant={variant}
         className={clsx(styles[`SectionIntro-action`], className)}
         ref={ref}

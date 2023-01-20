@@ -131,12 +131,12 @@ describe('SectionIntro', () => {
     expect(rootEl.classList).not.toContain(unexpectedRootClass)
   })
 
-  it('can optionally render a subtle button', () => {
+  it('can optionally render a secondary button', () => {
     const {getByRole} = render(
       <SectionIntro>
         <SectionIntro.Heading>{mockHeading}</SectionIntro.Heading>
         <SectionIntro.Description>{mockDescription}</SectionIntro.Description>
-        <SectionIntro.Action href="#" subtle>
+        <SectionIntro.Action href="#" variant="secondary">
           {mockLinkText}
         </SectionIntro.Action>
       </SectionIntro>
@@ -144,7 +144,7 @@ describe('SectionIntro', () => {
 
     const buttonEl = getByRole('link')
 
-    const expectedButtonClass = 'Button--subtle'
+    const expectedButtonClass = 'Button--secondary'
 
     expect(buttonEl.classList).toContain(expectedButtonClass)
   })
