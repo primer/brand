@@ -4,7 +4,7 @@
 
 New `SectionIntro` component available
 
-Use `SectionIntro` to provide a title and optional description paragraph and action to a new section in the page.
+Use `SectionIntro` to provide a title, optional description and link to a new section in the page.
 
 
  ```jsx
