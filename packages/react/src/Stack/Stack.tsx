@@ -133,7 +133,7 @@ const _Stack = (
   const alignItemsClass = useMemo(
     () =>
       typeof alignItems === 'string'
-        ? styles[`Stack--alignItems-${alignItems}`]
+        ? styles[`Stack--align-items-${alignItems}`]
         : typeof alignItems === 'object'
         ? Object.keys(alignItems)
             .map(viewport => styles[`Stack-${viewport}--align-items-${alignItems[viewport]}`])
@@ -145,7 +145,7 @@ const _Stack = (
   const justifyContentClass = useMemo(
     () =>
       typeof justifyContent === 'string'
-        ? styles[`Stack--justifyContent-${justifyContent}`]
+        ? styles[`Stack--justify-content-${justifyContent}`]
         : typeof justifyContent === 'object'
         ? Object.keys(justifyContent)
             .map(viewport => styles[`Stack-${viewport}--justify-content-${justifyContent[viewport]}`])
