@@ -31,9 +31,9 @@ test.describe('Visual Comparison: SectionIntro', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('SectionIntro / With Subtle Action', async ({page}) => {
+  test('SectionIntro / With Secondary Action', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--with-subtle-action&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--with-secondary-action&viewMode=story'
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -49,6 +49,12 @@ test.describe('Visual Comparison: SectionIntro', () => {
 
   test('SectionIntro / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-sectionintro--playground&viewMode=story')
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('SectionIntro / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-sectionintro--default&viewMode=story')
 
     expect(await page.screenshot()).toMatchSnapshot()
   })
