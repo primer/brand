@@ -1,9 +1,9 @@
 ---
 title: SectionIntro
 status: Experimental
-source: https://github.com/primer/brand/tree/main/src/SectionIntro/SectionIntro.tsx
+source: https://github.com/primer/brand/tree/main/packages/react/src/SectionIntro/SectionIntro.tsx
 storybook: '/brand/storybook/?path=/story/components-SectionIntro--playground'
-description: Use SectionIntro to provide a title and optional description paragraph and action to a new section in the page.
+description: Use SectionIntro to provide a title, optional description and link to a new section in the page.
 ---
 
 import {Label} from '@primer/react'
@@ -16,17 +16,25 @@ import {SectionIntro} from '@primer/react-brand'
 
 ### Default
 
+<div>
+  <Box></Box>
+</div>
+
 ```jsx live
-<SectionIntro>
-  <SectionIntro.Heading>Focus on solving bigger problems</SectionIntro.Heading>
-  <SectionIntro.Description>
-    Spend less time creating boilerplate and repetitive code patterns, and more
-    time on what matters: building great software. Write a comment describing
-    the logic you want and GitHub Copilot will immediately suggest code to
-    implement the solution.
-  </SectionIntro.Description>
-  <SectionIntro.Link href="#">Explore docs</SectionIntro.Link>
-</SectionIntro>
+<section>
+  <SectionIntro>
+    <SectionIntro.Heading>
+      Focus on solving bigger problems
+    </SectionIntro.Heading>
+    <SectionIntro.Description>
+      Spend less time creating boilerplate and repetitive code patterns, and
+      more time on what matters: building great software. Write a comment
+      describing the logic you want and GitHub Copilot will immediately suggest
+      code to implement the solution.
+    </SectionIntro.Description>
+    <SectionIntro.Link href="#">Explore docs</SectionIntro.Link>
+  </SectionIntro>
+</section>
 ```
 
 ### Alignment
@@ -34,16 +42,20 @@ import {SectionIntro} from '@primer/react-brand'
 The content alignment can be changed using the `align` prop on the root `SectionIntro`. This can be configured to either `start` or `center`.
 
 ```jsx live
-<SectionIntro align="center">
-  <SectionIntro.Heading>Focus on solving bigger problems</SectionIntro.Heading>
-  <SectionIntro.Description>
-    Spend less time creating boilerplate and repetitive code patterns, and more
-    time on what matters: building great software. Write a comment describing
-    the logic you want and GitHub Copilot will immediately suggest code to
-    implement the solution.
-  </SectionIntro.Description>
-  <SectionIntro.Link href="#">Explore docs</SectionIntro.Link>
-</SectionIntro>
+<section>
+  <SectionIntro align="center">
+    <SectionIntro.Heading>
+      Focus on solving bigger problems
+    </SectionIntro.Heading>
+    <SectionIntro.Description>
+      Spend less time creating boilerplate and repetitive code patterns, and
+      more time on what matters: building great software. Write a comment
+      describing the logic you want and GitHub Copilot will immediately suggest
+      code to implement the solution.
+    </SectionIntro.Description>
+    <SectionIntro.Link href="#">Explore docs</SectionIntro.Link>
+  </SectionIntro>
+</section>
 ```
 
 ## Component props
@@ -60,12 +72,12 @@ The content alignment can be changed using the `align` prop on the root `Section
 
 Required node that is used to provide a heading for the section.
 
-| name        | type                               | default     | required | description                                           |
-| ----------- | ---------------------------------- | ----------- | -------- | ----------------------------------------------------- |
-| `className` | `string`                           |             | `false`  | Custom class name for the heading component           |
-| `children`  | `ReactNode`, `ReactNode[]`         | `undefined` | `true`   | Content to be displayed inside the heading component. |
-| `as`        | `h1`, `h2`, `h3`, `h4`, `h5`, `h6` | `h3`        | `false`  | Semantic element to be used.                          |
-| `size`      | `1`, `2`, `3`, `4`, `5`, `6`       | `2`         | `false`  | Size to be displayed.                                 |
+| name        | type                       | default     | required | description                                           |
+| ----------- | -------------------------- | ----------- | -------- | ----------------------------------------------------- |
+| `className` | `string`                   |             | `false`  | Custom class name for the heading component           |
+| `children`  | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | Content to be displayed inside the heading component. |
+
+Fowrards all props from the [Heading component](/components/Heading), including `as`, `size`, and `weight`.
 
 ### SectionIntro.Description
 
