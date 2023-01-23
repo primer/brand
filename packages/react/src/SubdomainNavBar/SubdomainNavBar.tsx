@@ -1,4 +1,4 @@
-import React, {useState, useRef, PropsWithChildren, forwardRef} from 'react'
+import React, {useState, useRef, PropsWithChildren, forwardRef, useMemo} from 'react'
 import clsx from 'clsx'
 import {ChevronLeftIcon, MarkGithubIcon, SearchIcon, XIcon} from '@primer/octicons-react'
 
@@ -53,6 +53,12 @@ const testIds = {
   root: 'SubdomainNavBar',
   get innerContainer() {
     return `${this.root}-inner-container`
+  },
+  get menuButton() {
+    return `${this.root}-menuButton`
+  },
+  get menuLinks() {
+    return `${this.root}-menuLinks`
   }
 }
 
@@ -70,6 +76,16 @@ function Root({
 
   const handleMobileMenuClick = () => setMenuHidden(!menuHidden)
   const handleSearchVisibility = () => setSearchVisible(!searchVisible)
+
+  const hasLinks =
+    useMemo(
+      () =>
+        React.Children.toArray(children).filter(
+          child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === Link
+        ),
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      []
+    ).length > 0
 
   return (
     <div
@@ -107,30 +123,36 @@ function Root({
               </li>
             </ol>
           </nav>
-
-          <nav id="menu-navigation" aria-label={title} className={styles['SubdomainNavBar-primary-nav']}>
-            <NavigationVisbilityObserver
-              className={clsx(!menuHidden && styles['SubdomainNavBar-primary-nav-list--visible'])}
+          {hasLinks && (
+            <nav
+              id="menu-navigation"
+              aria-label={title}
+              className={styles['SubdomainNavBar-primary-nav']}
+              data-testid={testIds.menuLinks}
             >
-              {React.Children.toArray(children)
-                .map((child, index) => {
-                  if (React.isValidElement(child) && typeof child.type !== 'string') {
-                    if (child.type === Link) {
-                      return React.cloneElement(child, {
-                        'data-navitemid': child.props.children,
-                        href: child.props.href,
-                        children: child.props.children,
-                        style: {
-                          [`--animation-order`]: index
-                        }
-                      })
+              <NavigationVisbilityObserver
+                className={clsx(!menuHidden && styles['SubdomainNavBar-primary-nav-list--visible'])}
+              >
+                {React.Children.toArray(children)
+                  .map((child, index) => {
+                    if (React.isValidElement(child) && typeof child.type !== 'string') {
+                      if (child.type === Link) {
+                        return React.cloneElement(child, {
+                          'data-navitemid': child.props.children,
+                          href: child.props.href,
+                          children: child.props.children,
+                          style: {
+                            [`--animation-order`]: index
+                          }
+                        })
+                      }
+                      return null
                     }
-                    return null
-                  }
-                })
-                .filter(Boolean)}
-            </NavigationVisbilityObserver>
-          </nav>
+                  })
+                  .filter(Boolean)}
+              </NavigationVisbilityObserver>
+            </nav>
+          )}
 
           <div className={clsx(styles['SubdomainNavBar-secondary-nav'])}>
             {React.Children.toArray(children)
@@ -148,22 +170,25 @@ function Root({
               })
               .filter(Boolean)}
 
-            <button
-              aria-expanded="true"
-              aria-label="Menu"
-              aria-controls="menu-navigation"
-              aria-haspopup="true"
-              className={clsx(
-                styles['SubdomainNavBar-menu-button'],
-                styles['SubdomainNavBar-mobile-menu-button'],
-                !menuHidden && styles['SubdomainNavBar-menu-button--close']
-              )}
-              onClick={handleMobileMenuClick}
-            >
-              <div className={clsx(styles['SubdomainNavBar-menu-button-bar'])}></div>
-              <div className={clsx(styles['SubdomainNavBar-menu-button-bar'])}></div>
-              <div className={clsx(styles['SubdomainNavBar-menu-button-bar'])}></div>
-            </button>
+            {hasLinks && (
+              <button
+                aria-expanded="true"
+                aria-label="Menu"
+                aria-controls="menu-navigation"
+                aria-haspopup="true"
+                className={clsx(
+                  styles['SubdomainNavBar-menu-button'],
+                  styles['SubdomainNavBar-mobile-menu-button'],
+                  !menuHidden && styles['SubdomainNavBar-menu-button--close']
+                )}
+                data-testid={testIds.menuButton}
+                onClick={handleMobileMenuClick}
+              >
+                <div className={clsx(styles['SubdomainNavBar-menu-button-bar'])}></div>
+                <div className={clsx(styles['SubdomainNavBar-menu-button-bar'])}></div>
+                <div className={clsx(styles['SubdomainNavBar-menu-button-bar'])}></div>
+              </button>
+            )}
 
             <div
               className={clsx(
