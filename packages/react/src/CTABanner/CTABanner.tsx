@@ -21,7 +21,7 @@ export type CTABannerProps = BaseProps<HTMLElement> & {
   hasBackground?: boolean
 }
 
-export const Root = forwardRef(
+const Root = forwardRef(
   (
     {
       /**
@@ -77,7 +77,7 @@ type CTABannerHeadingProps = BaseProps<HTMLHeadingElement> & {
 const defaultHeadingTag = HeadingTags[2]
 const defaultHeadingSize = '2'
 
-export const _Heading = forwardRef(
+const _Heading = forwardRef(
   (
     {as = defaultHeadingTag, size = defaultHeadingSize, className, children, ...props}: CTABannerHeadingProps,
     ref: Ref<HTMLHeadingElement>
@@ -94,7 +94,7 @@ type CTABannerDescriptionProps = BaseProps<HTMLParagraphElement> & {
   children: React.ReactNode | React.ReactNode[]
 }
 
-export const Description = forwardRef(
+const Description = forwardRef(
   ({className, children, ...props}: CTABannerDescriptionProps, ref: Ref<HTMLParagraphElement>) => {
     return (
       <Text ref={ref} className={clsx(styles['CTABanner-description'], className)} size={'400'} as="p" {...props}>
