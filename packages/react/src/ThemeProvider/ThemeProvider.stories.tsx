@@ -43,24 +43,26 @@ export const Default: ComponentStory<typeof ThemeProvider> = args => {
 }
 
 export const Nested: ComponentStory<typeof ThemeProvider> = args => (
-  <ThemeProvider {...args}>
-    <>
-      <Container>
-        <Text>Parent: &apos;default&apos;</Text> (<ActiveColorMode />)
-      </Container>
-      <ThemeProvider colorMode="dark">
-        <>
-          <Container>
-            <MoonIcon /> <Text>Child: always &apos;dark&apos;</Text>
-          </Container>
-          <ThemeProvider colorMode="light">
+  <div className={styles['story-example']}>
+    <ThemeProvider {...args}>
+      <>
+        <Container>
+          <Text>Parent: &apos;default&apos;</Text> (<ActiveColorMode />)
+        </Container>
+        <ThemeProvider colorMode="dark">
+          <>
             <Container>
-              <SunIcon /> <Text>Child: always &apos;light&apos;</Text>
+              <MoonIcon /> <Text>Child: always &apos;dark&apos;</Text>
             </Container>
-          </ThemeProvider>
-        </>
-      </ThemeProvider>
-      <ControlsHint />
-    </>
-  </ThemeProvider>
+            <ThemeProvider colorMode="light">
+              <Container>
+                <SunIcon /> <Text>Child: always &apos;light&apos;</Text>
+              </Container>
+            </ThemeProvider>
+          </>
+        </ThemeProvider>
+        <ControlsHint />
+      </>
+    </ThemeProvider>
+  </div>
 )

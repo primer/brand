@@ -1,4 +1,4 @@
-[data-color-mode] > [data-color-mode] {
+.story-example [data-color-mode] > [data-color-mode] {
   margin-left: 1rem;
 }
 

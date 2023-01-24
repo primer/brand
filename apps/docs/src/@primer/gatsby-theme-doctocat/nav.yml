@@ -22,6 +22,8 @@
       url: /components/FAQ
     - title: Hero
       url: /components/Hero
+    - title: MinimalFooter
+      url: /components/MinimalFooter
     - title: OrderedList
       url: /components/OrderedList
     - title: River
