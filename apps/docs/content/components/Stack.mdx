@@ -133,6 +133,7 @@ E.g. Providing only `narrow` will apply that value to all larger breakpoints, bu
 
 ```jsx live
 <Stack
+  style={{height: 400}}
   direction={{
     narrow: 'vertical',
     regular: 'vertical',
@@ -147,6 +148,16 @@ E.g. Providing only `narrow` will apply that value to all larger breakpoints, bu
     narrow: 'condensed',
     regular: 'normal',
     wide: 'spacious',
+  }}
+  alignItems={{
+    narrow: 'flex-start',
+    regular: 'center',
+    wide: 'center',
+  }}
+  justifyContent={{
+    narrow: 'center',
+    regular: 'center',
+    wide: 'space-between',
   }}
 >
   <img
