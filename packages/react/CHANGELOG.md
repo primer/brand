@@ -1,5 +1,28 @@
 # @primer/react-brand
 
+## 0.11.0
+
+### Minor Changes
+
+- [#158](https://github.com/primer/brand/pull/158) [`7bc0b14`](https://github.com/primer/brand/commit/7bc0b14a8341b3d7008e126ef2a6e9615641fc54) Thanks [@danielguillan](https://github.com/danielguillan)! - New `SectionIntro` component available
+
+  Use `SectionIntro` to provide a title, optional description and link to a new section in the page.
+
+  ```jsx
+  <SectionIntro>
+    <SectionIntro.Heading>My section tilte</SectionIntro.Heading>
+    <SectionIntro.Description>My section description</SectionIntro.Description>
+    <SectionIntro.Action href="/my-link">My action</SectionIntro.Action>
+  </SectionIntro>
+  ```
+
+  :link: [See the documentation for more details and usage examples.](https://primer.style/brand/components/SectionIntro)
+
+### Patch Changes
+
+- [#164](https://github.com/primer/brand/pull/164) [`44057f7`](https://github.com/primer/brand/commit/44057f7c19b8bcaee1577b996b7cd18084317775) Thanks [@danielguillan](https://github.com/danielguillan)! - - Fixes types to support conditional children in the Stack component
+  - Adds support for responsive `alignItems` and `justifyContent` to Stack component
+
 ## 0.10.0
 
 ### Minor Changes
