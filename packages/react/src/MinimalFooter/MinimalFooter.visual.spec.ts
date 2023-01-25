@@ -50,6 +50,14 @@ test.describe('Visual Comparison: MinimalFooter', () => {
       expect(await page.screenshot()).toMatchSnapshot()
     })
   })
+  test('MinimalFooter / Dark Theme', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--dark-theme&viewMode=story'
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('MinimalFooter / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-minimalfooter--playground&viewMode=story')
 
