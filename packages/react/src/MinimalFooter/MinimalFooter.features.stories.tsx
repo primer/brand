@@ -95,3 +95,5 @@ DefaultNarrow.parameters = {
   }
 }
 DefaultNarrow.storyName = 'Default (Narrow viewport)'
+
+export const LightTheme = () => <MinimalFooter theme="light" />

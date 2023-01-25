@@ -2,8 +2,13 @@ import React, {PropsWithChildren} from 'react'
 import clsx from 'clsx'
 import {LogoGithubIcon} from '@primer/octicons-react'
 
-import {Stack, Text, ThemeProvider} from '../'
+import {ColorModesEnum, Stack, Text, useTheme} from '../'
 import {BaseProps} from '../component-helpers'
+
+/**
+ * Design tokens
+ */
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/footer/colors-with-modes.css'
 
 /**
  * Main Stylesheet (as a CSS Module)
@@ -70,43 +75,41 @@ function Root({
   const currentYear = new Date().getFullYear()
 
   return (
-    <ThemeProvider colorMode="dark">
-      <footer className={clsx(styles.Footer, className)} {...rest}>
-        {footerFootnoteChild()}
-        <SocialLogomarks socialLinks={socialLinks} logoHref={logoHref} />
-        <section>
-          <div className={styles['Footer__legal-and-links']}>
-            <div className={styles['Footer__container']}>
+    <footer className={clsx(styles.Footer, className)} {...rest}>
+      {footerFootnoteChild()}
+      <SocialLogomarks socialLinks={socialLinks} logoHref={logoHref} />
+      <section>
+        <div className={styles['Footer__legal-and-links']}>
+          <div className={styles['Footer__container']}>
+            <Stack
+              direction={{narrow: 'vertical', regular: 'horizontal'}}
+              gap="normal"
+              padding="none"
+              justifyContent="space-between"
+            >
               <Stack
-                direction={{narrow: 'vertical', regular: 'horizontal'}}
-                gap="normal"
                 padding="none"
-                justifyContent="space-between"
+                gap="condensed"
+                justifyContent={{
+                  narrow: 'center',
+                  regular: 'flex-end'
+                }}
+                direction={{
+                  narrow: 'vertical',
+                  regular: 'horizontal'
+                }}
+                className={styles['Footer__links']}
               >
-                <Text as="p" size="300" variant="muted" className={styles['Footer__copyright']}>
-                  {copyrightStatement ? copyrightStatement : `\u00A9 ${currentYear} GitHub. All rights reserved.`}
-                </Text>
-                <Stack
-                  padding="none"
-                  gap="condensed"
-                  justifyContent={{
-                    narrow: 'center',
-                    regular: 'flex-end'
-                  }}
-                  direction={{
-                    narrow: 'vertical',
-                    regular: 'horizontal'
-                  }}
-                  className={styles['Footer__links']}
-                >
-                  <>{LinkChildren}</>
-                </Stack>
+                <>{LinkChildren}</>
               </Stack>
-            </div>
+              <Text as="p" size="300" variant="muted" className={styles['Footer__copyright']}>
+                {copyrightStatement ? copyrightStatement : `\u00A9 ${currentYear} GitHub. All rights reserved.`}
+              </Text>
+            </Stack>
           </div>
-        </section>
-      </footer>
-    </ThemeProvider>
+        </div>
+      </section>
+    </footer>
   )
 }
 
@@ -143,6 +146,8 @@ type SocialLogomarksProps = {
 }
 
 function SocialLogomarks({socialLinks, logoHref}: SocialLogomarksProps) {
+  const {colorMode} = useTheme()
+
   const socialLinkData = [
     {
       name: 'twitter',
@@ -155,7 +160,7 @@ function SocialLogomarks({socialLinks, logoHref}: SocialLogomarksProps) {
     {
       name: 'github',
       fullName: 'GitHub',
-      url: 'https://github.com',
+      url: 'https://github.com/github',
       icon: 'https://github.githubassets.com/images/modules/site/icons/footer/github-mark.svg',
       iconWidth: 20,
       iconHeight: 20
@@ -171,7 +176,7 @@ function SocialLogomarks({socialLinks, logoHref}: SocialLogomarksProps) {
     {
       name: 'youtube',
       fullName: 'YouTube',
-      url: 'https://youtube.com',
+      url: 'https://www.youtube.com/github',
       icon: 'https://github.githubassets.com/images/modules/site/icons/footer/youtube.svg',
       iconWidth: 23,
       iconHeight: 16
@@ -179,7 +184,7 @@ function SocialLogomarks({socialLinks, logoHref}: SocialLogomarksProps) {
     {
       name: 'facebook',
       fullName: 'Facebook',
-      url: 'https://facebook.com',
+      url: 'https://www.facebook.com/GitHub',
       icon: 'https://github.githubassets.com/images/modules/site/icons/footer/facebook.svg',
       iconWidth: 18,
       iconHeight: 18
@@ -194,6 +199,7 @@ function SocialLogomarks({socialLinks, logoHref}: SocialLogomarksProps) {
           data-analytics-event={`{"category":"Footer","action":"go to ${link.fullName}","label":"text:${link.name}"}`}
         >
           <img
+            className={styles['Footer__social-icon']}
             src={link.icon}
             height={link.iconHeight}
             width={link.iconWidth}
@@ -201,7 +207,7 @@ function SocialLogomarks({socialLinks, logoHref}: SocialLogomarksProps) {
             decoding="async"
             alt={`${link.fullName} icon`}
           />
-          <span className={styles['Footer__social-label']}>GitHub on {link.fullName}</span>
+          <span className="visually-hidden">GitHub on {link.fullName}</span>
         </a>
       </li>
     )
@@ -223,7 +229,7 @@ function SocialLogomarks({socialLinks, logoHref}: SocialLogomarksProps) {
               data-analytics-event='{"category":"Footer","action":"go to home","label":"text:home"}'
               aria-label="Go to GitHub homepage"
             >
-              <LogoGithubIcon fill="white" size="medium" />
+              <LogoGithubIcon fill={colorMode === ColorModesEnum.DARK ? 'white' : 'black'} size="medium" />
             </a>
           </div>
           {socialLinks !== false ? (
