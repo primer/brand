@@ -188,6 +188,22 @@ function SocialLogomarks({socialLinks, logoHref}: SocialLogomarksProps) {
       icon: 'https://github.githubassets.com/images/modules/site/icons/footer/facebook.svg',
       iconWidth: 18,
       iconHeight: 18
+    },
+    {
+      name: 'twitch',
+      fullName: 'Twitch',
+      url: 'https://www.twitch.tv/github',
+      icon: 'https://github.githubassets.com/images/modules/site/icons/footer/twitch.svg',
+      iconWidth: 18,
+      iconHeight: 18
+    },
+    {
+      name: 'tiktok',
+      fullName: 'TikTok',
+      url: 'https://www.tiktok.com/@github',
+      icon: 'https://github.githubassets.com/images/modules/site/icons/footer/tiktok.svg',
+      iconWidth: 18,
+      iconHeight: 18
     }
   ]
 
