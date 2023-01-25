@@ -16,12 +16,22 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
  */
 import styles from './Card.module.css'
 
-export const CardVariants = ['default', 'inset', 'elevated'] as const
+export const CardVariants = ['plain', 'elevated', 'filled'] as const
 export const CardSizes = ['small', 'medium', 'large'] as const
+const CardHeadingSizesMap = {
+  small: HeadingSizes[4],
+  medium: HeadingSizes[3],
+  large: HeadingSizes[2]
+}
+const CardTextSizesMap = {
+  small: TextSizes[5],
+  medium: TextSizes[4],
+  large: TextSizes[3]
+}
 
 export type CardProps = {
   /**
-   * Valid children include Testimonial.Name, Testimonial.Avatar, and Testimonial.Name
+   * Valid children include Card.Image, Card.Heading, and Card.Description
    */
   children:
     | React.ReactNode
@@ -29,16 +39,28 @@ export type CardProps = {
     | React.ReactElement<CardHeadingProps>
     | React.ReactElement<CardDescriptionProps>
   /**
-   * Aligns the testimonial content
+   * Changes the visual style of the card
+   * * @default 'elevated'
    */
   variant?: typeof CardVariants[number]
+  /**
+   * Changes the padding, font and icon size of the card
+   * * @default 'medium'
+   */
   size?: typeof CardSizes[number]
+  /**
+   * Changes the link content of the card
+   * * @default 'Learn more'
+   * */
   link?: string
+  /**
+   * The href of the link
+   * */
   linkHref: string
 } & BaseProps<HTMLLinkElement>
 
 const CardRoot = forwardRef<HTMLLinkElement, CardProps>(
-  ({children, className, size = CardSizes[1], variant = CardVariants[0], link, linkHref}) => {
+  ({children, className, size = 'medium', variant = 'elevated', link, linkHref}) => {
     const childrenHasFragment = React.Children.toArray(children).some(child => isFragment(child))
     const filteredChildren = React.Children.toArray(children).filter(child => {
       if (React.isValidElement(child) && typeof child.type !== 'string') {
@@ -61,14 +83,18 @@ const CardRoot = forwardRef<HTMLLinkElement, CardProps>(
       >
         {React.Children.toArray(filteredChildren).map(child => {
           if (React.isValidElement(child) && typeof child.type !== 'string') {
-            if (child.type === CardHeading) {
-              return React.cloneElement(child, {})
+            if (child.type === CardDescription || child.type === CardHeading) {
+              return React.cloneElement(child, {
+                size: child.type === CardDescription ? CardTextSizesMap[size] : CardHeadingSizesMap[size]
+              })
             }
           }
+
           return child
         })}
         <div className={styles.Card__action}>
-          <Link>{link}</Link>
+          {/* Temporary Link component until we change it for an animated parapgraph */}
+          <Link>{link ? link : 'Learn more'}</Link>
         </div>
       </a>
     )
@@ -78,22 +104,29 @@ const CardRoot = forwardRef<HTMLLinkElement, CardProps>(
 type CardImageProps = {
   src: string
   alt: string
-  height?: number
+  height: number
+  width: number
+  fill?: boolean
   fullBleed?: boolean
 } & React.HTMLAttributes<HTMLImageElement> &
   BaseProps<HTMLImageElement>
 
-const CardImage = forwardRef<HTMLImageElement, CardImageProps>(({alt, src, height, fullBleed, className, ...rest}) => {
-  return (
-    <img
-      alt={alt}
-      src={src}
-      height={height}
-      className={clsx(styles.Card__image, fullBleed && styles['Card__image--fullBleed'], className)}
-      {...rest}
-    />
-  )
-})
+const CardImage = forwardRef<HTMLImageElement, CardImageProps>(
+  ({alt, src, height, width, fullBleed, fill, className, ...rest}) => {
+    return (
+      <div
+        className={clsx(
+          styles.Card__image,
+          fullBleed && styles['Card__image--fullBleed'],
+          fill && styles['Card__image--fill'],
+          className
+        )}
+      >
+        <img alt={alt} src={src} width={width} height={height} {...rest} />
+      </div>
+    )
+  }
+)
 
 // type CardIconProps = BaseProps<HTMLElement> & {
 //   icon: string
@@ -111,26 +144,43 @@ const CardImage = forwardRef<HTMLImageElement, CardImageProps>(({alt, src, heigh
 
 type CardHeadingProps = BaseProps<HTMLHeadingElement> & {
   children: string
-  size: typeof HeadingSizes[number]
+  size?: '4' | '5' | '6'
+  customSize?: '1' | '2' | '3' | '4' | '5' | '6'
+  as?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 }
 
-const CardHeading = forwardRef<HTMLHeadingElement, CardHeadingProps>(({children, className, size, ...rest}, ref) => {
-  return (
-    <Heading size={size} className={clsx(styles.Card__heading, className)} ref={ref} {...rest}>
-      {children}
-    </Heading>
-  )
-})
+const CardHeading = forwardRef<HTMLHeadingElement, CardHeadingProps>(
+  ({children, customSize, as = 'h3', className, size, ...rest}, ref) => {
+    return (
+      <Heading
+        size={customSize ? customSize : size}
+        className={clsx(styles.Card__heading, className)}
+        ref={ref}
+        as={as}
+        {...rest}
+      >
+        {children}
+      </Heading>
+    )
+  }
+)
 
 type CardDescriptionProps = BaseProps<HTMLParagraphElement> & {
   children: string
-  size: typeof TextSizes[number]
+  size?: '400' | '500' | '600' | '700'
+  customSize?: '100' | '200' | '300' | '400' | '500' | '600' | '700'
 }
 
 const CardDescription = forwardRef<HTMLParagraphElement, CardDescriptionProps>(
-  ({children, className, size, ...rest}, ref) => {
+  ({children, className, customSize, size, ...rest}, ref) => {
     return (
-      <Text size={size} as="p" className={clsx(styles.Card__description, className)} {...rest}>
+      <Text
+        ref={ref}
+        size={customSize ? customSize : size}
+        as="p"
+        className={clsx(styles.Card__description, className)}
+        {...rest}
+      >
         {children}
       </Text>
     )

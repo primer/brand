@@ -13,7 +13,7 @@ export default {
         type: 'inline-radio',
         options: [...CardVariants]
       },
-      defaultValue: CardVariants[0]
+      defaultValue: CardVariants[1]
     },
     link: {
       description: 'Title of the card',
@@ -37,28 +37,33 @@ export default {
       },
       defaultValue: CardSizes[1]
     },
-    // sizeHeading: {
-    //   description: 'Size of the heading',
-    //   control: {
-    //     type: 'inline-radio',
-    //     options: [...HeadingSizes]
-    //   },
-    //   defaultValue: HeadingSizes[3]
-    // },
-    // sizeDescription: {
-    //   description: 'Size of the description',
-    //   control: {
-    //     type: 'inline-radio',
-    //     options: [...TextSizes]
-    //   },
-    //   defaultValue: TextSizes[4]
-    // },
-    heightImage: {
+    sizeHeading: {
+      description: 'Size of the heading',
+      control: {
+        type: 'inline-radio',
+        options: [...HeadingSizes]
+      }
+    },
+    sizeDescription: {
+      description: 'Size of the description',
+      control: {
+        type: 'inline-radio',
+        options: [...TextSizes]
+      }
+    },
+    height: {
       description: 'Height of the image',
       control: {
         type: 'number'
       },
-      defaultValue: 200
+      defaultValue: 64
+    },
+    width: {
+      description: 'Width of the image',
+      control: {
+        type: 'number'
+      },
+      defaultValue: 64
     },
     fullBleedImage: {
       description: 'Full bleed image',
@@ -83,25 +88,30 @@ type PlaygroundProps = CardProps & {
   sizeHeading: typeof HeadingSizes[number]
   sizeDescription: typeof TextSizes[number]
   image?: boolean
-  heightImage: number
+  height: number
+  width: number
+  size: typeof CardSizes[number]
   fullBleedImage?: boolean
 }
 
 const Template = (args: PlaygroundProps) => {
-  const {sizeDescription, image, sizeHeading, heightImage, fullBleedImage} = args
+  const {size, sizeDescription, image, sizeHeading, height, width, fullBleedImage} = args
   return (
     <div style={{display: 'flex', flexWrap: 'wrap', gap: '3rem', justifyContent: 'center', marginTop: '10vh'}}>
-      <Card {...args}>
+      <Card {...args} size={size}>
         {image && (
           <Card.Image
             fullBleed={fullBleedImage}
-            height={heightImage}
-            src="https://user-images.githubusercontent.com/912236/213208795-ba61941e-a407-4973-86fd-d5b1697712bf.png"
+            height={height}
+            width={width}
+            // src="https://user-images.githubusercontent.com/912236/213208795-ba61941e-a407-4973-86fd-d5b1697712bf.png"
+            src="https://user-images.githubusercontent.com/912236/214313071-36039019-838a-4a2a-bb6e-8ca8ca9ea232.svg"
+            // src="https://user-images.githubusercontent.com/912236/214252538-194613ca-71d7-4842-9dbb-fab6570f3621.png"
             alt="Card image"
           />
         )}
-        <Card.Heading size={sizeHeading}>Collaboration is the key to DevOps success</Card.Heading>
-        <Card.Description size={sizeDescription}>
+        <Card.Heading customSize={sizeHeading}>Collaboration is the key to DevOps success</Card.Heading>
+        <Card.Description customSize={sizeDescription}>
           Everything you need to know about getting started with GitHub Actions.
         </Card.Description>
       </Card>
@@ -110,13 +120,15 @@ const Template = (args: PlaygroundProps) => {
         {image && (
           <Card.Image
             fullBleed={fullBleedImage}
-            height={heightImage}
-            src="https://user-images.githubusercontent.com/912236/213241573-5705c304-712b-465b-912e-16533592f5ed.png"
+            height={height}
+            width={width}
+            // src="https://user-images.githubusercontent.com/912236/213241573-5705c304-712b-465b-912e-16533592f5ed.png"
+            src="https://github.githubassets.com/images/modules/site/features/launchpad/icons/icon-sponsors.png"
             alt="Card image"
           />
         )}
-        <Card.Heading size={sizeHeading}>GitHub Actions cheat sheet</Card.Heading>
-        <Card.Description size={sizeDescription}>
+        <Card.Heading customSize={sizeHeading}>GitHub Actions cheat sheet</Card.Heading>
+        <Card.Description customSize={sizeDescription}>
           In a recent TechTarget study, 70 percent of organizations reported they had adopted DevOps.
         </Card.Description>
       </Card>
@@ -124,13 +136,15 @@ const Template = (args: PlaygroundProps) => {
         {image && (
           <Card.Image
             fullBleed={fullBleedImage}
-            height={heightImage}
-            src="https://user-images.githubusercontent.com/912236/213241619-ffc67a09-9f04-4ab3-9d6f-010a5cf93f1d.png"
+            height={height}
+            width={width}
+            src="https://github.githubassets.com/images/modules/site/features/launchpad/icons/icon-electron.svg"
+            // src="https://user-images.githubusercontent.com/912236/213241619-ffc67a09-9f04-4ab3-9d6f-010a5cf93f1d.png"
             alt="Card image"
           />
         )}
-        <Card.Heading size={sizeHeading}>How healthy teams build better software</Card.Heading>
-        <Card.Description size={sizeDescription}>
+        <Card.Heading customSize={sizeHeading}>How healthy teams build better software</Card.Heading>
+        <Card.Description customSize={sizeDescription}>
           Your culture is key to recruiting and retaining the talent you need to ship exceptional customer experiences.
         </Card.Description>
       </Card>

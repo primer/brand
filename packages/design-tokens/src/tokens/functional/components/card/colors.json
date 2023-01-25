@@ -2,11 +2,11 @@
   "brand": {
     "Card": {
       "background": {
-        "default": {
+        "plain": {
           "value": "transparent",
           "dark": "transparent"
         },
-        "inset": {
+        "filled": {
           "value": "var(--brand-color-canvas-subtle)",
           "dark": "var(--brand-color-canvas-subtle)"
         },
