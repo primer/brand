@@ -2,10 +2,10 @@ import React from 'react'
 import {ComponentMeta} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {MinimalFooter} from '.'
-import {InlineLink, Text} from '..'
+import {InlineLink, Text, ThemeProvider} from '..'
 
 export default {
-  title: 'Components/MinimalFooter/features',
+  title: 'Components/MinimalFooter/Features',
   component: MinimalFooter,
   parameters: {
     layout: 'fullscreen',
@@ -96,4 +96,8 @@ DefaultNarrow.parameters = {
 }
 DefaultNarrow.storyName = 'Default (Narrow viewport)'
 
-export const LightTheme = () => <MinimalFooter theme="light" />
+export const DarkTheme = () => (
+  <ThemeProvider colorMode="dark">
+    <MinimalFooter />
+  </ThemeProvider>
+)
