@@ -12,12 +12,16 @@ export const ButtonSizes = ['medium', 'large'] as const
 export const defaultButtonVariant = ButtonVariants[1]
 export const defaultButtonSize = ButtonSizes[0]
 
-export type ButtonProps<C extends React.ElementType> = BaseProps<C> & {
-  as?: C
+export type ButtonBaseProps = {
   variant?: typeof ButtonVariants[number]
   size?: typeof ButtonSizes[number]
   hasArrow?: boolean
-} & React.ComponentPropsWithoutRef<C>
+}
+
+export type ButtonProps<C extends React.ElementType> = BaseProps<C> & {
+  as?: C
+} & ButtonBaseProps &
+  React.ComponentPropsWithoutRef<C>
 
 export const Button = forwardRef(
   <C extends React.ElementType>(

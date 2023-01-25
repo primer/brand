@@ -50,7 +50,7 @@ type ResponsiveSpacingMap = {
 }
 
 export type StackProps = BaseProps<HTMLElement> & {
-  children: React.ReactElement[] | React.ReactElement
+  children: React.ReactNode[] | React.ReactNode
   /**
    * Defines the flex-direction CSS property.
    * A string value will be applied to all viewports.
@@ -130,9 +130,29 @@ const _Stack = (
     [padding]
   )
 
-  const alignItemsClass = useMemo(() => styles[`Stack-align-items--${alignItems}`], [alignItems])
+  const alignItemsClass = useMemo(
+    () =>
+      typeof alignItems === 'string'
+        ? styles[`Stack--align-items-${alignItems}`]
+        : typeof alignItems === 'object'
+        ? Object.keys(alignItems)
+            .map(viewport => styles[`Stack-${viewport}--align-items-${alignItems[viewport]}`])
+            .join(' ')
+        : null,
+    [alignItems]
+  )
 
-  const justifyContentClass = useMemo(() => styles[`Stack-justify-content--${justifyContent}`], [justifyContent])
+  const justifyContentClass = useMemo(
+    () =>
+      typeof justifyContent === 'string'
+        ? styles[`Stack--justify-content-${justifyContent}`]
+        : typeof justifyContent === 'object'
+        ? Object.keys(justifyContent)
+            .map(viewport => styles[`Stack-${viewport}--justify-content-${justifyContent[viewport]}`])
+            .join(' ')
+        : null,
+    [justifyContent]
+  )
 
   return (
     <div

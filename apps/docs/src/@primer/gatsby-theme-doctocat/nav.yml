@@ -28,6 +28,8 @@
       url: /components/OrderedList
     - title: River
       url: /components/River
+    - title: SectionIntro
+      url: /components/SectionIntro
     - title: SubdomainNavBar
       url: /components/SubdomainNavBar
     - title: Testimonial
