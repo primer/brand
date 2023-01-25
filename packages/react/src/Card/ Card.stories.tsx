@@ -65,6 +65,14 @@ export default {
       },
       defaultValue: 64
     },
+    fill: {
+      description: 'Fill image',
+      control: {
+        type: 'boolean',
+        options: [true, false]
+      },
+      defaultValue: false
+    },
     fullBleedImage: {
       description: 'Full bleed image',
       control: {
@@ -91,17 +99,19 @@ type PlaygroundProps = CardProps & {
   height: number
   width: number
   size: typeof CardSizes[number]
+  fill?: boolean
   fullBleedImage?: boolean
 }
 
 const Template = (args: PlaygroundProps) => {
-  const {size, sizeDescription, image, sizeHeading, height, width, fullBleedImage} = args
+  const {size, sizeDescription, image, sizeHeading, height, width, fullBleedImage, fill} = args
   return (
     <div style={{display: 'flex', flexWrap: 'wrap', gap: '3rem', justifyContent: 'center', marginTop: '10vh'}}>
       <Card {...args} size={size}>
         {image && (
           <Card.Image
             fullBleed={fullBleedImage}
+            fill={fill}
             height={height}
             width={width}
             // src="https://user-images.githubusercontent.com/912236/213208795-ba61941e-a407-4973-86fd-d5b1697712bf.png"
@@ -120,6 +130,7 @@ const Template = (args: PlaygroundProps) => {
         {image && (
           <Card.Image
             fullBleed={fullBleedImage}
+            fill={fill}
             height={height}
             width={width}
             // src="https://user-images.githubusercontent.com/912236/213241573-5705c304-712b-465b-912e-16533592f5ed.png"
@@ -136,10 +147,11 @@ const Template = (args: PlaygroundProps) => {
         {image && (
           <Card.Image
             fullBleed={fullBleedImage}
+            fill={fill}
             height={height}
             width={width}
-            src="https://github.githubassets.com/images/modules/site/features/launchpad/icons/icon-electron.svg"
-            // src="https://user-images.githubusercontent.com/912236/213241619-ffc67a09-9f04-4ab3-9d6f-010a5cf93f1d.png"
+            // src="https://github.githubassets.com/images/modules/site/features/launchpad/icons/icon-electron.svg"
+            src="https://user-images.githubusercontent.com/912236/213241619-ffc67a09-9f04-4ab3-9d6f-010a5cf93f1d.png"
             alt="Card image"
           />
         )}
