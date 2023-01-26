@@ -100,8 +100,8 @@
   border: 1px solid var(--brand-color-border-default);
 }
 
-.Card__variant--filled {
-  background-color: var(--brand-Card-background-filled);
+.Card__variant--inset {
+  background-color: var(--brand-Card-background-inset);
   border-radius: 6px;
 }
 
@@ -119,18 +119,18 @@
 }
 
 .Card__variant--elevated:has(.Card__image--fullBleed),
-.Card__variant--filled:has(.Card__image--fullBleed) {
+.Card__variant--inset:has(.Card__image--fullBleed) {
   padding-top: 0;
 }
 
 .Card__variant--elevated .Card__image--fullBleed,
-.Card__variant--filled .Card__image--fullBleed {
+.Card__variant--inset .Card__image--fullBleed {
   margin-right: 0;
   margin-left: 0;
 }
 
 .Card__variant--elevated .Card__image--fullBleed img,
-.Card__variant--filled .Card__image--fullBleed img {
+.Card__variant--inset .Card__image--fullBleed img {
   border-radius: 0;
   width: 100%;
 }
