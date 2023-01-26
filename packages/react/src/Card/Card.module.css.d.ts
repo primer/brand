@@ -7,8 +7,10 @@ declare const styles: {
   readonly Card__description: string
   readonly 'Card__size--medium': string
   readonly 'Card__size--large': string
+  readonly 'Card__variant--plain': string
   readonly 'Card__variant--elevated': string
-  readonly 'Card__variant--filled': string
+  readonly 'Card__variant--inset': string
+  readonly 'Card__image--fill': string
   readonly 'Card__image--fullBleed': string
 }
 export = styles

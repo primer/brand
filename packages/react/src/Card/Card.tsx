@@ -16,7 +16,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
  */
 import styles from './Card.module.css'
 
-export const CardVariants = ['plain', 'elevated', 'filled'] as const
+export const CardVariants = ['plain', 'elevated', 'inset'] as const
 export const CardSizes = ['small', 'medium', 'large'] as const
 const CardHeadingSizesMap = {
   small: HeadingSizes[4],

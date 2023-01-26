@@ -6,7 +6,7 @@
           "value": "transparent",
           "dark": "transparent"
         },
-        "filled": {
+        "inset": {
           "value": "var(--brand-color-canvas-subtle)",
           "dark": "var(--brand-color-canvas-subtle)"
         },

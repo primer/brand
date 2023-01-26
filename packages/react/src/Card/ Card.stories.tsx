@@ -114,8 +114,8 @@ const Template = (args: PlaygroundProps) => {
             fill={fill}
             height={height}
             width={width}
-            // src="https://user-images.githubusercontent.com/912236/213208795-ba61941e-a407-4973-86fd-d5b1697712bf.png"
-            src="https://user-images.githubusercontent.com/912236/214313071-36039019-838a-4a2a-bb6e-8ca8ca9ea232.svg"
+            src="https://user-images.githubusercontent.com/912236/213208795-ba61941e-a407-4973-86fd-d5b1697712bf.png"
+            // src="https://user-images.githubusercontent.com/912236/214313071-36039019-838a-4a2a-bb6e-8ca8ca9ea232.svg"
             // src="https://user-images.githubusercontent.com/912236/214252538-194613ca-71d7-4842-9dbb-fab6570f3621.png"
             alt="Card image"
           />
@@ -133,8 +133,8 @@ const Template = (args: PlaygroundProps) => {
             fill={fill}
             height={height}
             width={width}
-            // src="https://user-images.githubusercontent.com/912236/213241573-5705c304-712b-465b-912e-16533592f5ed.png"
-            src="https://github.githubassets.com/images/modules/site/features/launchpad/icons/icon-sponsors.png"
+            src="https://user-images.githubusercontent.com/912236/213241573-5705c304-712b-465b-912e-16533592f5ed.png"
+            // src="https://github.githubassets.com/images/modules/site/features/launchpad/icons/icon-sponsors.png"
             alt="Card image"
           />
         )}
