@@ -43,13 +43,13 @@ test.describe('Visual Comparison: Hero', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Hero / NarrowView', async ({page}) => {
+  test('Hero / Narrow View', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero--narrow-view&viewMode=story')
 
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Hero / NarrowViewCentered', async ({page}) => {
+  test('Hero / Narrow View Centered', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero--narrow-view-centered&viewMode=story')
 
     expect(await page.screenshot()).toMatchSnapshot()
