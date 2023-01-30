@@ -221,7 +221,7 @@ function SocialLogomarks({socialLinks, logoHref}: SocialLogomarksProps) {
             width={link.iconWidth}
             loading="lazy"
             decoding="async"
-            alt={`${link.fullName} icon`}
+            alt=""
           />
           <span className="visually-hidden">GitHub on {link.fullName}</span>
         </a>
