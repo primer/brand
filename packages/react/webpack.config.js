@@ -40,6 +40,7 @@ module.exports = {
       },
       {
         test: /\.css$/i,
+        exclude: [/utilities.css/],
         use: [
           MiniCssExtractPlugin.loader,
           {
@@ -50,6 +51,27 @@ module.exports = {
               },
               importLoaders: 1
             }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [['postcss-preset-env', 'autoprefixer']]
+              }
+            }
+          }
+        ]
+      },
+      /**
+       * Special rule for any global stylesheets that shouldn't be hashed
+       */
+      {
+        test: /\.css$/i,
+        include: [/utilities.css/],
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader'
           },
           {
             loader: 'postcss-loader',

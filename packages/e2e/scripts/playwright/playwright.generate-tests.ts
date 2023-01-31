@@ -96,6 +96,8 @@
   for (const key of Object.keys(categorisedStories)) {
     const {stories: componentStories, storyFolder} = categorisedStories[key]
 
+    const validNarrowVieportNames = ['mobile', 'narrow']
+
     const content = `
     /*
     * Do not modify this file directly.
@@ -108,7 +110,10 @@
     test.describe('Visual Comparison: ${key}', () => {
   
       ${componentStories.reduce((acc, {id, storyName, groupName, timeout}) => {
-        const requiresMobileViewport = storyName.toLowerCase().includes('mobile')
+        const requiresMobileViewport = validNarrowVieportNames.some(viewportName =>
+          storyName.toLowerCase().includes(viewportName)
+        )
+
         const requiresTabletViewport = storyName.toLowerCase().includes('tablet')
 
         if (skipTestLookup.includes(id)) {
