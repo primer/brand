@@ -43,15 +43,23 @@ test.describe('Visual Comparison: Hero', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Hero / Narrow View', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero--narrow-view&viewMode=story')
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for Narrow View', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('Hero / Narrow View', async ({page}) => {
+      await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero--narrow-view&viewMode=story')
 
-    expect(await page.screenshot()).toMatchSnapshot()
+      expect(await page.screenshot()).toMatchSnapshot()
+    })
   })
 
-  test('Hero / Narrow View Centered', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero--narrow-view-centered&viewMode=story')
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for Narrow View Centered', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('Hero / Narrow View Centered', async ({page}) => {
+      await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero--narrow-view-centered&viewMode=story')
 
-    expect(await page.screenshot()).toMatchSnapshot()
+      expect(await page.screenshot()).toMatchSnapshot()
+    })
   })
 })
