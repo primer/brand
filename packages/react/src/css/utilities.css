@@ -3,7 +3,7 @@
  * frequently throughout the library and helpful to library users.
  */
 
-:global(.visually-hidden) {
+.visually-hidden {
   position: absolute;
   width: 1px;
   height: 1px;

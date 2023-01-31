@@ -27,7 +27,7 @@
   ],
   "scripts": {
     "build": "npm run clean && npm run build:css-types && webpack && scripts/postbuild",
-    "build:css-types": "tcm -p 'src/**/*.module.css' .",
+    "build:css-types": "tcm -p 'src/**/*.css' .",
     "build:types": "tsc --project tsconfig.build.json",
     "check": "tsc --noEmit",
     "clean": "rm -rf lib && rm -rf fonts",
