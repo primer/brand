@@ -20,6 +20,7 @@ test.describe('Visual Comparison: MinimalFooter', () => {
       'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--maximum-links&viewMode=story'
     )
 
+    await page.waitForTimeout(1000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -36,6 +37,7 @@ test.describe('Visual Comparison: MinimalFooter', () => {
       'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--filtered-social-links&viewMode=story'
     )
 
+    await page.waitForTimeout(1000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -47,6 +49,7 @@ test.describe('Visual Comparison: MinimalFooter', () => {
         'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--default-narrow&viewMode=story'
       )
 
+      await page.waitForTimeout(1000)
       expect(await page.screenshot()).toMatchSnapshot()
     })
   })
@@ -55,18 +58,21 @@ test.describe('Visual Comparison: MinimalFooter', () => {
       'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--dark-theme&viewMode=story'
     )
 
+    await page.waitForTimeout(1000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('MinimalFooter / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-minimalfooter--playground&viewMode=story')
 
+    await page.waitForTimeout(1000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('MinimalFooter / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-minimalfooter--default&viewMode=story')
 
+    await page.waitForTimeout(1000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 })
