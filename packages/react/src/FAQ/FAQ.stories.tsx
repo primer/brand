@@ -53,7 +53,7 @@ export const Default = () => (
         </ol>
       </FAQ.Answer>
     </FAQ.Item>
-    <FAQ.Item>
+    <FAQ.Item id="test-2">
       <FAQ.Question>What if my startup is not eligible? Are there other resources for me?</FAQ.Question>
       <FAQ.Answer>
         <p>
@@ -136,7 +136,7 @@ export const Default = () => (
         </p>
       </FAQ.Answer>
     </FAQ.Item>
-    <FAQ.Item id="test">
+    <FAQ.Item id="test-1">
       <FAQ.Question>This is a test of an anchored link to a FAQ item</FAQ.Question>
       <FAQ.Answer>
         <p>
