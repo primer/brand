@@ -16,7 +16,7 @@ export default {
 } as ComponentMeta<typeof MinimalFooter>
 
 export const MultipleFootnotes = () => (
-  <MinimalFooter>
+  <MinimalFooter socialLinks={false}>
     <MinimalFooter.Footnotes>
       <Text>
         <sup>1</sup>By signing up, GitHub may use your information to personalize and measure the effectiveness of
@@ -49,7 +49,7 @@ export const MultipleFootnotes = () => (
 )
 
 export const MaximumLinks = () => (
-  <MinimalFooter>
+  <MinimalFooter socialLinks={false}>
     <MinimalFooter.Link href="#">Link one</MinimalFooter.Link>
     <MinimalFooter.Link href="#">Link two</MinimalFooter.Link>
     <MinimalFooter.Link href="#">Link three</MinimalFooter.Link>
