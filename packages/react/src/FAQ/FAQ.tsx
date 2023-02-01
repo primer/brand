@@ -38,6 +38,11 @@ const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, className, ...
     child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === FAQSubheading
   )
 
+  let location
+  if (typeof window !== 'undefined') {
+    location = window.location.hash
+  }
+
   return (
     <section className={clsx(styles.FAQ, className)} ref={ref} {...rest}>
       {React.Children.toArray(filteredChildren).map(child => {
@@ -47,6 +52,11 @@ const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, className, ...
               align: hasSubheading ? 'start' : child.props.align,
               size: hasSubheading ? 'large' : child.props.size,
               className: clsx(!hasSubheading && styles['FAQ__heading--with-margin'], child.props.className)
+            })
+          }
+          if (child.type === AccordionRoot) {
+            return React.cloneElement(child, {
+              open: location && location.substring(1) === child.props.id ? true : false
             })
           }
         }

@@ -136,7 +136,7 @@ export const Default = () => (
         </p>
       </FAQ.Answer>
     </FAQ.Item>
-    <FAQ.Item open id="test">
+    <FAQ.Item id="test">
       <FAQ.Question>This is a test of an anchored link to a FAQ item</FAQ.Question>
       <FAQ.Answer>
         <p>
