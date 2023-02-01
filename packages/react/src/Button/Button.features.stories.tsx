@@ -16,7 +16,7 @@ export const Primary = () => (
 )
 
 export const PrimaryDisabled = () => (
-  <Button as="a" disabled variant="primary" href="#">
+  <Button as="button" disabled variant="primary" href="#">
     Disabled primary button
   </Button>
 )
@@ -53,7 +53,7 @@ export const Secondary = () => (
 )
 
 export const SecondaryDisabled = () => (
-  <Button as="a" disabled variant="secondary" href="#">
+  <Button as="button" disabled variant="secondary" href="#">
     Disabled secondary button
   </Button>
 )
@@ -65,7 +65,7 @@ export const Subtle = () => (
 )
 
 export const SubtleDisabled = () => (
-  <Button as="a" disabled variant="subtle" href="#">
+  <Button as="button" disabled variant="subtle" href="#">
     Disabled subtle button
   </Button>
 )
