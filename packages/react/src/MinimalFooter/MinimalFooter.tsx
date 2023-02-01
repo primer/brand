@@ -15,7 +15,15 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
  */
 import styles from './MinimalFooter.module.css'
 
-export const MinimalFooterSocialLinks = ['twitter', 'github', 'linkedin', 'youtube', 'facebook'] as const
+export const MinimalFooterSocialLinks = [
+  'twitter',
+  'github',
+  'linkedin',
+  'youtube',
+  'facebook',
+  'twitch',
+  'tiktok'
+] as const
 
 type SocialLinks = typeof MinimalFooterSocialLinks[number]
 
