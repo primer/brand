@@ -53,7 +53,13 @@
     'components-anchornav-features--narrow-view': 1000, // for the interaction test
     'components-anchornav-features--narrow-view-menu-open': 1000, // for the interaction test
     'components-anchornav-features--regular-view': 1000, // for the interaction test
-    'components-anchornav-features--regular-view-menu-open': 1000 // for the interaction test
+    'components-anchornav-features--regular-view-menu-open': 1000, // for the interaction test
+    'components-minimalfooter--default': 1000, // for external social imagery to load
+    'components-minimalfooter--playground': 1000, // for external social imagery to load
+    'components-minimalfooter-features--dark-theme': 1000, // for external social imagery to load
+    'components-minimalfooter-features--filtered-social-links': 1000, // for external social imagery to load
+    'components-minimalfooter-features--default-narrow': 1000, // for external social imagery to load
+    'components-minimalfooter-features--maximum-links': 1000 // for external social imagery to load
   }
 
   /**
