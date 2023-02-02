@@ -54,7 +54,7 @@ const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, className, ...
           }
           if (child.type === AccordionRoot) {
             return React.cloneElement(child, {
-              open: hash && hash.substring(1) === child.props.id ? true : false
+              open: hash && hash.substring(1) === child.props.id ? true : child.props.open
             })
           }
         }

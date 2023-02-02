@@ -12,7 +12,7 @@ export const Default = () => (
   <FAQ>
     <FAQ.Heading align="center">Frequently asked&nbsp;questions</FAQ.Heading>
     <FAQ.Subheading align="start">Subscriptions and payments</FAQ.Subheading>
-    <FAQ.Item>
+    <FAQ.Item open>
       <FAQ.Question>What&apos;s included in the GitHub for Startups offer?</FAQ.Question>
       <FAQ.Answer>
         <p>
