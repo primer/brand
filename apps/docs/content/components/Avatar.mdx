@@ -1,0 +1,63 @@
+---
+title: Avatar
+status: Experimental
+figma: 'https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=543%3A19830&t=Be91VGjX2BANJnQc-11'
+source: https://github.com/primer/brand/tree/main/packages/react/src/Avatar/Avatar.tsx
+storybook: '/brand/storybook/?path=/story/components-Avatar--playground'
+description: Use Avatar to display a thumbnail representation of a person.
+---
+
+import {Label} from '@primer/react'
+
+```js
+import {Avatar, Stack} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<Avatar src="https://i.pravatar.cc/128?u=80" alt="A random avatar picture" />
+```
+
+### Sizes
+
+The size of the avatar can be controlled by the `size` prop.
+
+```jsx live
+<Stack
+  direction="horizontal"
+  alignItems="center"
+  justifyContent="center"
+  gap="spacious"
+  style={{height: 200}}
+>
+  <Avatar
+    size={32}
+    src="https://i.pravatar.cc/128?u=80"
+    alt="A random avatar picture at 32px"
+  />
+  <Avatar
+    size={40}
+    src="https://i.pravatar.cc/128?u=80"
+    alt="A random avatar picture at 40px"
+  />
+  <Avatar
+    size={48}
+    src="https://i.pravatar.cc/128?u=80"
+    alt="A random avatar picture at 48px"
+  />
+</Stack>
+```
+
+## Component props
+
+### Avatar <Label>Required</Label>
+
+| name        | type                 | default | required | description                 |
+| ----------- | -------------------- | ------- | -------- | --------------------------- |
+| `alt`       | `string`             |         | `true`   | The alt text of the image   |
+| `className` | `string`             |         | `false`  | Avatar custom class         |
+| `size`      | `32`, `40`. `48`     | `40`    | `false`  | The size of the image       |
+| `src`       | `string`, `40`. `48` |         | `true`   | A url to the person's image |

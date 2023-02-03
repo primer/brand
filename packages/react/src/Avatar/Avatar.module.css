@@ -1,0 +1,77 @@
+.Avatar {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  border-radius: var(--brand-borderRadius-full);
+  width: var(--base-size-40);
+  height: var(--base-size-40);
+}
+
+.Avatar-iamge {
+  display: block;
+  object-fit: cover;
+}
+
+.Avatar--size-32 {
+  width: var(--base-size-32);
+  height: var(--base-size-32);
+}
+
+.Avatar--size-40 {
+  width: var(--base-size-40);
+  height: var(--base-size-40);
+}
+
+.Avatar--size-48 {
+  width: var(--base-size-48);
+  height: var(--base-size-48);
+}
+
+.Avatar-narrow--size-32 {
+  width: var(--base-size-32);
+  height: var(--base-size-32);
+}
+
+.Avatar-narrow--size-40 {
+  width: var(--base-size-40);
+  height: var(--base-size-40);
+}
+
+.Avatar-narrow--size-48 {
+  width: var(--base-size-48);
+  height: var(--base-size-48);
+}
+
+@media screen and (min-width: 48rem) {
+  .Avatar-regular--size-32 {
+    width: var(--base-size-32);
+    height: var(--base-size-32);
+  }
+
+  .Avatar-regular--size-40 {
+    width: var(--base-size-40);
+    height: var(--base-size-40);
+  }
+
+  .Avatar-regular--size-48 {
+    width: var(--base-size-48);
+    height: var(--base-size-48);
+  }
+}
+
+@media screen and (min-width: 80rem) {
+  .Avatar-wide--size-32 {
+    width: var(--base-size-32);
+    height: var(--base-size-32);
+  }
+
+  .Avatar-wide--size-40 {
+    width: var(--base-size-40);
+    height: var(--base-size-40);
+  }
+
+  .Avatar-wide--size-48 {
+    width: var(--base-size-48);
+    height: var(--base-size-48);
+  }
+}
