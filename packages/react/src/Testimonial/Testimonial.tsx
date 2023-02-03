@@ -114,7 +114,7 @@ function _Name({children, className, position}: NameProps, ref) {
   )
 }
 
-export const Name = forwardRef(_Name)
+const Name = forwardRef(_Name)
 
 /**
  * Testimonial avatar child element
@@ -142,7 +142,7 @@ function _Avatar({alt, src, ...rest}: AvatarProps, ref) {
   )
 }
 
-export const Avatar = forwardRef(_Avatar)
+const Avatar = forwardRef(_Avatar)
 
 /**
  * Testimonial logo child element
@@ -170,7 +170,7 @@ function _Logo({children, ...rest}: LogoProps, ref) {
   )
 }
 
-export const Logo = forwardRef(_Logo)
+const Logo = forwardRef(_Logo)
 
 /**
  * Use Testimonial to display a quote from a customer or user.
