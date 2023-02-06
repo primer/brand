@@ -14,6 +14,10 @@
   text-align: center;
 }
 
+.Hero--align-center .Hero-actions {
+  justify-content: center;
+}
+
 .Hero-heading {
   margin: 0;
   max-width: 18ch;
@@ -27,27 +31,14 @@
 .Hero-actions {
   margin-top: 2rem;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  width: 100%;
-}
-
-.Hero-actions > :not(:last-child) {
-  margin: 0 0 1rem;
+  flex-wrap: wrap;
+  gap: var(--base-size-16);
 }
 
 /* Small breakpoint and up */
-@media screen and (min-width: 544px) {
+@media screen and (min-width: 34rem) {
   .Hero {
     padding: var(--brand-Hero-regular-padding);
-  }
-
-  .Hero-actions {
-    flex-direction: row;
-    width: auto;
-  }
-
-  .Hero-actions > :not(:last-child) {
-    margin: 0 1rem 0 0;
   }
 }

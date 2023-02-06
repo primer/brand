@@ -53,7 +53,13 @@
     'components-anchornav-features--narrow-view': 1000, // for the interaction test
     'components-anchornav-features--narrow-view-menu-open': 1000, // for the interaction test
     'components-anchornav-features--regular-view': 1000, // for the interaction test
-    'components-anchornav-features--regular-view-menu-open': 1000 // for the interaction test
+    'components-anchornav-features--regular-view-menu-open': 1000, // for the interaction test
+    'components-minimalfooter--default': 5000, // for external social imagery to load
+    'components-minimalfooter--playground': 5000, // for external social imagery to load
+    'components-minimalfooter-features--dark-theme': 5000, // for external social imagery to load
+    'components-minimalfooter-features--filtered-social-links': 5000, // for external social imagery to load
+    'components-minimalfooter-features--default-narrow': 5000, // for external social imagery to load
+    'components-minimalfooter-features--maximum-links': 5000 // for external social imagery to load
   }
 
   /**
@@ -96,6 +102,8 @@
   for (const key of Object.keys(categorisedStories)) {
     const {stories: componentStories, storyFolder} = categorisedStories[key]
 
+    const validNarrowVieportNames = ['mobile', 'narrow']
+
     const content = `
     /*
     * Do not modify this file directly.
@@ -108,7 +116,10 @@
     test.describe('Visual Comparison: ${key}', () => {
   
       ${componentStories.reduce((acc, {id, storyName, groupName, timeout}) => {
-        const requiresMobileViewport = storyName.toLowerCase().includes('mobile')
+        const requiresMobileViewport = validNarrowVieportNames.some(viewportName =>
+          storyName.toLowerCase().includes(viewportName)
+        )
+
         const requiresTabletViewport = storyName.toLowerCase().includes('tablet')
 
         if (skipTestLookup.includes(id)) {
