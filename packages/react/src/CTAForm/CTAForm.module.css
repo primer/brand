@@ -1,29 +1,47 @@
 .CTAForm {
   display: grid;
   gap: var(--base-size-16);
-  grid-template:
-    'a'
-    'c'
-    'b';
+  grid-template-columns: 2fr 1fr;
+  align-items: flex-end;
+}
+
+.CTAForm > * {
+  grid-column: span 2;
+  width: 100%;
 }
 
 .CTAForm-input {
-  grid-area: a;
+  order: 1;
+}
+
+.CTAForm-confirm {
+  order: 2;
+  grid-column: span 2;
 }
 
 .CTAForm-button {
-  grid-area: b;
-  align-self: flex-end;
+  order: 4;
 }
 
-.CTAForm-legal {
-  grid-area: c;
+.CTAForm > *:not(.CTAForm-input, .CTAForm-button, .CTAForm-confirm) {
+  order: 3;
+  grid-column: span 2;
 }
 
 @media screen and (min-width: 450px) {
-  .CTAForm {
-    grid-template:
-      'a a b'
-      'c c c';
+  .CTAForm > * {
+    grid-column: span 1;
+  }
+
+  .CTAForm-confirm {
+    order: 3;
+  }
+
+  .CTAForm-button {
+    order: 2;
+  }
+
+  .CTAForm > *:not(.CTAForm-input, .CTAForm-button, .CTAForm-confirm) {
+    order: 4;
   }
 }

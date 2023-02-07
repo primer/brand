@@ -2,46 +2,57 @@ import React from 'react'
 import {ComponentMeta, ComponentStory} from '@storybook/react'
 
 import {CTAForm} from './CTAForm'
+import {InlineLink, FormControl, TextInput, Checkbox} from '../index'
 
 export default {
   title: 'Components/CTAForm',
-  component: CTAForm,
-  args: {
-    inputLabel: 'Your work email address',
-    inputType: 'text',
-    placeholder: 'me@github.com',
-    buttonLabel: 'Subscribe',
-    checkboxLabel: (
-      <>
-        I agree to the <a href="www.github.com">terms and conditions</a> and <a href="www.github.com">privacy policy</a>
-      </>
-    )
-  },
-  argTypes: {
-    inputLabel: {
-      control: {
-        type: 'text'
-      }
-    },
-    inputType: {
-      control: {
-        type: 'select',
-        options: ['email', 'text']
-      }
-    },
-    placeholder: {
-      control: {
-        type: 'text'
-      }
-    },
-    buttonLabel: {
-      control: {
-        type: 'text'
-      }
-    }
-  }
+  component: CTAForm
 } as ComponentMeta<typeof CTAForm>
 
-export const Playground: ComponentStory<typeof CTAForm> = args => <CTAForm {...args} />
+export const Playground: ComponentStory<typeof CTAForm> = _args => (
+  <CTAForm>
+    <CTAForm.Input>
+      <FormControl required size="large" fullWidth>
+        <FormControl.Label>Your Work Email Address</FormControl.Label>
+        <TextInput placeholder="name" />
+      </FormControl>
+    </CTAForm.Input>
+    <CTAForm.Confirm>
+      <FormControl required size="large" fullWidth>
+        <FormControl.Label>
+          I agree to the <InlineLink href="#">Privacy Policy</InlineLink> and{' '}
+          <InlineLink href="#">Terms of Service</InlineLink>
+        </FormControl.Label>
+        <Checkbox name="confirm" />
+      </FormControl>
+    </CTAForm.Confirm>
+    <CTAForm.Action>Subscribe</CTAForm.Action>
+  </CTAForm>
+)
 
-export const Default = Playground.bind({})
+export const Default: ComponentStory<typeof CTAForm> = _args => (
+  <CTAForm>
+    <CTAForm.Input>
+      <FormControl required size="large" fullWidth>
+        <FormControl.Label>Your Work Email Address</FormControl.Label>
+        <TextInput placeholder="name" />
+      </FormControl>
+    </CTAForm.Input>
+    <CTAForm.Confirm>
+      <FormControl required size="large" fullWidth>
+        <FormControl.Label>
+          I agree to the{' '}
+          <InlineLink size="300" href="#">
+            Privacy Policy
+          </InlineLink>{' '}
+          and{' '}
+          <InlineLink size="300" href="#">
+            Terms of Service
+          </InlineLink>
+        </FormControl.Label>
+        <Checkbox name="confirm" />
+      </FormControl>
+    </CTAForm.Confirm>
+    <CTAForm.Action>Subscribe</CTAForm.Action>
+  </CTAForm>
+)

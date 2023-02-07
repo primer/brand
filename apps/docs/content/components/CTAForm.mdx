@@ -1,13 +1,13 @@
 ---
 title: CTAForm
 status: Experimental
-source: https://github.com/primer/brand/tree/main/package/src/CTAForm/CTAForm.tsx
+source: https://github.com/primer/brand/tree/main/packages/react/src/CTAForm/CTAForm.tsx
 figma: 'https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=1377%3A30754'
 storybook: '/brand/storybook/?path=/story/components-CTAForm--playground'
 description: Use CTAForm to create a form that is used to collect minimal information from users.
 ---
 
-import {CTAForm} from '@primer/react-brand'
+import {CTAForm, InlineLink} from '@primer/react-brand'
 
 ```js
 import {CTAForm} from '@primer/react-brand'
@@ -22,8 +22,9 @@ import {CTAForm} from '@primer/react-brand'
   buttonLabel="Subscribe"
   checkboxLabel={
     <>
-      I agree to the <a href="www.github.com">terms and conditions</a> and{' '}
-      <a href="www.github.com">privacy policy</a>
+      I agree to the{' '}
+      <InlineLink href="www.github.com">terms and conditions</InlineLink> and{' '}
+      <InlineLink href="www.github.com">privacy policy</InlineLink>
     </>
   }
   inputLabel="Your work email address"

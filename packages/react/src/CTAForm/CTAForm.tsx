@@ -1,38 +1,54 @@
-import React from 'react'
+import React, {forwardRef, type Ref} from 'react'
 import clsx from 'clsx'
-import {FormControl, Button, ButtonProps, TextInput, TextInputProps, Checkbox} from '../'
+import {FormControl, Button, TextInput, Checkbox} from '../'
 
 import styles from './CTAForm.module.css'
 
-type CTAFormProps = {
-  inputLabel: TextInputProps['leadingText']
-  inputType?: TextInputProps['type']
-  placeholder?: TextInputProps['placeholder']
-  buttonLabel: ButtonProps<'button'>['children']
-  checkboxLabel: React.ReactNode[] | React.ReactNode | string
-} & React.HTMLAttributes<HTMLFormElement>
+type CTAFormProps = React.HTMLAttributes<HTMLFormElement>
 
-export const CTAForm = ({
-  inputLabel,
-  inputType = 'text',
-  placeholder,
-  buttonLabel,
-  checkboxLabel,
-  ...args
-}: CTAFormProps) => {
-  return (
-    <form {...args} className={clsx(styles.CTAForm, args.className)}>
-      <FormControl required size="large" className={styles['CTAForm-input']}>
-        <FormControl.Label>{inputLabel}</FormControl.Label>
-        <TextInput type={inputType} placeholder={placeholder} />
-      </FormControl>
-      <FormControl required fullWidth size="large" className={styles['CTAForm-legal']}>
-        <FormControl.Label>{checkboxLabel}</FormControl.Label>
-        <Checkbox />
-      </FormControl>
-      <Button type="submit" variant="secondary" className={styles['CTAForm-button']}>
-        {buttonLabel}
-      </Button>
-    </form>
-  )
+const Root = ({...rest}: CTAFormProps) => {
+  return <form {...rest} className={clsx(styles.CTAForm, rest.className)}></form>
 }
+
+// TODO: Create wrappers for each element where the FormControl will be a nested element.
+
+const _Input = forwardRef(
+  ({className, children, ...props}: React.HTMLAttributes<HTMLDivElement>, ref: Ref<HTMLDivElement>) => {
+    return (
+      <div {...props} ref={ref} className={clsx(styles['CTAForm-input'], className)}>
+        {children}
+      </div>
+    )
+  }
+)
+
+const _Confirm = forwardRef(
+  ({className, children, ...props}: React.HTMLAttributes<HTMLDivElement>, ref: Ref<HTMLDivElement>) => {
+    return (
+      <div {...props} ref={ref} className={clsx(styles['CTAForm-confirm'], className)}>
+        {children}
+      </div>
+    )
+  }
+)
+
+const _Action = forwardRef(
+  (
+    {className, children, ...props}: Omit<React.ComponentProps<typeof Button>, 'variant' | 'type'>,
+    ref: Ref<HTMLButtonElement>
+  ) => {
+    return (
+      <Button
+        type="submit"
+        variant="secondary"
+        className={clsx(styles['CTAForm-button'], className)}
+        ref={ref}
+        {...props}
+      >
+        {children}
+      </Button>
+    )
+  }
+)
+
+export const CTAForm = Object.assign(Root, {Input: _Input, Confirm: _Confirm, Action: _Action})
