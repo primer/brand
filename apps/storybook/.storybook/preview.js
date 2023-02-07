@@ -1,6 +1,7 @@
 import {ThemeProvider} from '../../../packages/react/src'
 import styles from './preview.module.css'
 import '../../../packages/react/src/css/stylesheets'
+import '../../../packages/react/src/css/utilities.css'
 import '@primer/brand-fonts/fonts.css'
 import {useLayoutEffect} from 'react'
 

@@ -1,5 +1,67 @@
 # @primer/react-brand
 
+## 0.12.0
+
+### Minor Changes
+
+- [#165](https://github.com/primer/brand/pull/165) [`3eeda65`](https://github.com/primer/brand/commit/3eeda651c9fcae44cc2025cf9271b47482789d61) Thanks [@rezrah](https://github.com/rezrah)! - New `MinimalFooter` component available
+
+  Use `MinimalFooter` to provide a global footer navigation to your website or application.
+
+  ```jsx
+  <MinimalFooter>
+    <MinimalFooter.Footnotes>
+      <Text>
+        <sup>1</sup>By signing up, GitHub may use your information to personalize and measure the effectiveness of
+        enterprise business ads, including those you see off of GitHub, promotional communications or marketing you
+        receive related to the Enterprise Marketing Pages. We will send you relevant emails and promotional information
+        based on your GitHub profile and any additional information provided in the sign-up form. If you change your
+        mind, you can unsubscribe at any time (an unsubscribe link is provided in every email). For more information on
+        how GitHub uses your personal information, please see the{' '}
+        <InlineLink
+          href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement"
+          target="_blank"
+        >
+          GitHub Privacy Statement
+        </InlineLink>
+        .
+      </Text>
+    </MinimalFooter.Footnotes>
+    <MinimalFooter.Link href="https://github.com/organizations/enterprise_plan">Try GitHub for free</MinimalFooter.Link>
+    <MinimalFooter.Link href="https://github.com/enterprise">Enterprise</MinimalFooter.Link>
+    <MinimalFooter.Link href="https://github.com/enterprise/contact">Email us</MinimalFooter.Link>
+  </MinimalFooter>
+  ```
+
+  :link: [See the documentation for more details and usage examples.](https://primer.style/brand/components/MinimalFooter)
+
+### Patch Changes
+
+- [#167](https://github.com/primer/brand/pull/167) [`1095d8f`](https://github.com/primer/brand/commit/1095d8f8e547592b1f608361886aad3795a9cd01) Thanks [@josepmartins](https://github.com/josepmartins)! - Fix left alignment in Hero actions
+
+## 0.11.0
+
+### Minor Changes
+
+- [#158](https://github.com/primer/brand/pull/158) [`7bc0b14`](https://github.com/primer/brand/commit/7bc0b14a8341b3d7008e126ef2a6e9615641fc54) Thanks [@danielguillan](https://github.com/danielguillan)! - New `SectionIntro` component available
+
+  Use `SectionIntro` to provide a title, optional description and link to a new section in the page.
+
+  ```jsx
+  <SectionIntro>
+    <SectionIntro.Heading>My section tilte</SectionIntro.Heading>
+    <SectionIntro.Description>My section description</SectionIntro.Description>
+    <SectionIntro.Action href="/my-link">My action</SectionIntro.Action>
+  </SectionIntro>
+  ```
+
+  :link: [See the documentation for more details and usage examples.](https://primer.style/brand/components/SectionIntro)
+
+### Patch Changes
+
+- [#164](https://github.com/primer/brand/pull/164) [`44057f7`](https://github.com/primer/brand/commit/44057f7c19b8bcaee1577b996b7cd18084317775) Thanks [@danielguillan](https://github.com/danielguillan)! - - Fixes types to support conditional children in the Stack component
+  - Adds support for responsive `alignItems` and `justifyContent` to Stack component
+
 ## 0.10.0
 
 ### Minor Changes

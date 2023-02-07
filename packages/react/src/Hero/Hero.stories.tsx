@@ -1,10 +1,17 @@
 import React from 'react'
 import {ComponentStory, ComponentMeta} from '@storybook/react'
+import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 
 import {Hero} from '.'
 export default {
   title: 'Components/Hero',
-  component: Hero
+  component: Hero,
+  parameters: {
+    layout: 'fullscreen',
+    viewport: {
+      viewports: INITIAL_VIEWPORTS
+    }
+  }
 } as ComponentMeta<typeof Hero>
 
 const Template: ComponentStory<typeof Hero> = args => <Hero {...args} />
@@ -75,6 +82,47 @@ Codespaces.args = {
 
 export const Issues = Template.bind({})
 Issues.args = {
+  heading: 'Project planning for developers',
+  description:
+    'Create issues, break them into tasks, track relationships, add custom fields, and have conversations. Visualize large projects as spreadsheets or boards, and automate everything with code.',
+  align: 'center',
+  primaryAction: {
+    text: 'Watch video',
+    href: '#'
+  },
+  secondaryAction: {
+    text: 'Start using project tables',
+    href: '#'
+  }
+}
+
+export const NarrowView = Template.bind({})
+NarrowView.parameters = {
+  viewport: {
+    defaultViewport: 'iphonexr'
+  }
+}
+NarrowView.args = {
+  heading: 'Project planning for developers',
+  description:
+    'Create issues, break them into tasks, track relationships, add custom fields, and have conversations. Visualize large projects as spreadsheets or boards, and automate everything with code.',
+  primaryAction: {
+    text: 'Watch video',
+    href: '#'
+  },
+  secondaryAction: {
+    text: 'Start using project tables',
+    href: '#'
+  }
+}
+
+export const NarrowViewCentered = Template.bind({})
+NarrowViewCentered.parameters = {
+  viewport: {
+    defaultViewport: 'iphonexr'
+  }
+}
+NarrowViewCentered.args = {
   heading: 'Project planning for developers',
   description:
     'Create issues, break them into tasks, track relationships, add custom fields, and have conversations. Visualize large projects as spreadsheets or boards, and automate everything with code.',
