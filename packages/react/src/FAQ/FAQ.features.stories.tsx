@@ -160,6 +160,22 @@ export const HeadingLeftAligned: ComponentStory<typeof FAQ> = () => {
   )
 }
 
+export const DeepLink: ComponentStory<typeof FAQ> = () => {
+  return (
+    <FAQ>
+      <FAQ.Heading>Frequently asked&nbsp;questions</FAQ.Heading>
+      {fixtureData.map(({question, answer}, id) => {
+        return (
+          <FAQ.Item id={`test-${id.toString()}`} key={id}>
+            <FAQ.Question>{question}</FAQ.Question>
+            <FAQ.Answer>{answer}</FAQ.Answer>
+          </FAQ.Item>
+        )
+      })}
+    </FAQ>
+  )
+}
+
 export const Groups: ComponentStory<typeof FAQ> = () => {
   return (
     <Container>

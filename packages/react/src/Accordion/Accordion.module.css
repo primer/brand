@@ -17,6 +17,10 @@
   left: 0;
 }
 
+.Accordion:hover .Accordion__summary-anchor-link {
+  opacity: 1;
+}
+
 .Accordion:hover::after {
   transform: scaleY(0.35);
 }
@@ -88,6 +92,15 @@ details[open] > .Accordion__summary::before {
 details[open] > .Accordion__summary::after {
   opacity: 0;
   transform: rotateZ(180deg);
+}
+
+.Accordion__summary-anchor-link {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  margin-left: var(--base-size-4);
+  display: inline-flex;
+  padding: var(--base-size-4);
+  color: var(--brand-Accordion-anchorLink-color-default);
 }
 
 .Accordion__content {
