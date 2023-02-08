@@ -48,6 +48,43 @@ The size of the avatar can be controlled by the `size` prop.
     src="https://i.pravatar.cc/128?u=80"
     alt="A random avatar picture at 48px"
   />
+  <Avatar
+    size={64}
+    src="https://i.pravatar.cc/128?u=80"
+    alt="A random avatar picture at 64px"
+  />
+  <Avatar
+    size={80}
+    src="https://i.pravatar.cc/128?u=80"
+    alt="A random avatar picture at 80px"
+  />
+</Stack>
+```
+
+### Shapes
+
+The shape of the avatar can be controlled by the `shape` prop.
+
+```jsx live
+<Stack
+  direction="horizontal"
+  alignItems="center"
+  justifyContent="center"
+  gap="spacious"
+  style={{height: 200}}
+>
+  <Avatar
+    size={64}
+    shape="circle"
+    src="https://i.pravatar.cc/128?u=80"
+    alt="A random avatar picture at 64px"
+  />
+  <Avatar
+    size={64}
+    shape="square"
+    src="https://i.pravatar.cc/128?u=80"
+    alt="A random avatar picture at 64px"
+  />
 </Stack>
 ```
 
@@ -55,9 +92,10 @@ The size of the avatar can be controlled by the `size` prop.
 
 ### Avatar <Label>Required</Label>
 
-| name        | type                 | default | required | description                 |
-| ----------- | -------------------- | ------- | -------- | --------------------------- |
-| `alt`       | `string`             |         | `true`   | The alt text of the image   |
-| `className` | `string`             |         | `false`  | Avatar custom class         |
-| `size`      | `32`, `40`. `48`     | `40`    | `false`  | The size of the image       |
-| `src`       | `string`, `40`. `48` |         | `true`   | A url to the person's image |
+| name        | type                         | default  | required | description                       |
+| ----------- | ---------------------------- | -------- | -------- | --------------------------------- |
+| `alt`       | `string`                     |          | `true`   | The alt text of the image         |
+| `className` | `string`                     |          | `false`  | Avatar custom class               |
+| `size`      | `32`, `40`, `48`, `64`, `80` | `40`     | `false`  | The size (in pixels) of the image |
+| `shape`     | `circle`, `square`           | `circle` | `false`  | The shape of the image            |
+| `src`       | `string`                     |          | `true`   | A url to the person's image       |

@@ -25,6 +25,29 @@ describe('Avatar', () => {
     expect(AvatarEl.classList).toContain(expectedClass)
   })
 
+  it('renders the correct default shape', () => {
+    const expectedShapeClass = `Avatar--shape-circle`
+    const mockTestId = 'test'
+
+    const {getByTestId} = render(<Avatar data-testid={mockTestId} src={mockImageSrc} alt={mockAltText} />)
+
+    const avatarEl = getByTestId(mockTestId)
+    expect(avatarEl.classList).toContain(expectedShapeClass)
+  })
+
+  it('renders the correct size', () => {
+    const expectedShape = 'square'
+    const expectedShapeClass = `Avatar--shape-${expectedShape}`
+    const mockTestId = 'test'
+
+    const {getByTestId} = render(
+      <Avatar shape={expectedShape} data-testid={mockTestId} src={mockImageSrc} alt={mockAltText} />
+    )
+
+    const avatarEl = getByTestId(mockTestId)
+    expect(avatarEl.classList).toContain(expectedShapeClass)
+  })
+
   it('renders the correct default size', () => {
     const expectedSizeClass = `Avatar--size-40`
     const mockTestId = 'test'

@@ -2,9 +2,16 @@
   position: relative;
   display: inline-block;
   overflow: hidden;
-  border-radius: var(--brand-borderRadius-full);
   width: var(--base-size-40);
   height: var(--base-size-40);
+}
+
+.Avatar--shape-circle {
+  border-radius: var(--brand-borderRadius-full);
+}
+
+.Avatar--shape-square {
+  border-radius: var(--brand-borderRadius-medium);
 }
 
 .Avatar-iamge {
@@ -25,6 +32,16 @@
 .Avatar--size-48 {
   width: var(--base-size-48);
   height: var(--base-size-48);
+}
+
+.Avatar--size-64 {
+  width: var(--base-size-64);
+  height: var(--base-size-64);
+}
+
+.Avatar--size-80 {
+  width: var(--base-size-80);
+  height: var(--base-size-80);
 }
 
 .Avatar-narrow--size-32 {
@@ -57,6 +74,16 @@
     width: var(--base-size-48);
     height: var(--base-size-48);
   }
+
+  .Avatar-regular--size-64 {
+    width: var(--base-size-64);
+    height: var(--base-size-64);
+  }
+
+  .Avatar-regular--size-80 {
+    width: var(--base-size-80);
+    height: var(--base-size-80);
+  }
 }
 
 @media screen and (min-width: 80rem) {
@@ -73,5 +100,15 @@
   .Avatar-wide--size-48 {
     width: var(--base-size-48);
     height: var(--base-size-48);
+  }
+
+  .Avatar-wide--size-64 {
+    width: var(--base-size-64);
+    height: var(--base-size-64);
+  }
+
+  .Avatar-wide--size-80 {
+    width: var(--base-size-80);
+    height: var(--base-size-80);
   }
 }
