@@ -8,7 +8,7 @@ export default {
   args: {
     size: AvatarSizes[1],
     shape: 'circle',
-    src: 'https://i.pravatar.cc/128?u=160',
+    src: 'https://i.pravatar.cc/160?u=160',
     alt: 'A random avatar picture'
   },
   argTypes: {
@@ -45,4 +45,4 @@ export default {
 
 export const Playground: ComponentStory<typeof Avatar> = args => <Avatar {...args} />
 
-export const Default = () => <Avatar src="https://i.pravatar.cc/128?u=80" alt="A random avatar picture" />
+export const Default = () => <Avatar src="https://i.pravatar.cc/80?u=80" alt="A random avatar picture" />

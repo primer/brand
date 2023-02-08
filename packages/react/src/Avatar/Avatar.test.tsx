@@ -7,7 +7,7 @@ import {axe, toHaveNoViolations} from 'jest-axe'
 expect.extend(toHaveNoViolations)
 
 describe('Avatar', () => {
-  const mockImageSrc = 'https://i.pravatar.cc/128?u=80'
+  const mockImageSrc = 'https://i.pravatar.cc/80?u=80'
   const mockAltText = 'Avatar image'
 
   afterEach(() => {
