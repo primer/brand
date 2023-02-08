@@ -1,21 +1,17 @@
 import React, {forwardRef, type Ref} from 'react'
 import clsx from 'clsx'
-import {FormControl, Button, TextInput, Checkbox} from '../'
+import {Button} from '../'
 
 import styles from './CTAForm.module.css'
 
-type CTAFormProps = React.HTMLAttributes<HTMLFormElement>
-
-const Root = ({...rest}: CTAFormProps) => {
-  return <form {...rest} className={clsx(styles.CTAForm, rest.className)}></form>
-}
-
-// TODO: Create wrappers for each element where the FormControl will be a nested element.
+const Root = forwardRef(({...rest}: React.FormHTMLAttributes<HTMLFormElement>, ref: Ref<HTMLFormElement>) => {
+  return <form {...rest} ref={ref} className={clsx(styles.CTAForm, rest.className)}></form>
+})
 
 const _Input = forwardRef(
-  ({className, children, ...props}: React.HTMLAttributes<HTMLDivElement>, ref: Ref<HTMLDivElement>) => {
+  ({className, children, ...rest}: React.HTMLAttributes<HTMLDivElement>, ref: Ref<HTMLDivElement>) => {
     return (
-      <div {...props} ref={ref} className={clsx(styles['CTAForm-input'], className)}>
+      <div {...rest} ref={ref} className={clsx(styles['CTAForm-input'], className)}>
         {children}
       </div>
     )
@@ -23,9 +19,9 @@ const _Input = forwardRef(
 )
 
 const _Confirm = forwardRef(
-  ({className, children, ...props}: React.HTMLAttributes<HTMLDivElement>, ref: Ref<HTMLDivElement>) => {
+  ({className, children, ...rest}: React.HTMLAttributes<HTMLDivElement>, ref: Ref<HTMLDivElement>) => {
     return (
-      <div {...props} ref={ref} className={clsx(styles['CTAForm-confirm'], className)}>
+      <div {...rest} ref={ref} className={clsx(styles['CTAForm-confirm'], className)}>
         {children}
       </div>
     )
@@ -34,7 +30,7 @@ const _Confirm = forwardRef(
 
 const _Action = forwardRef(
   (
-    {className, children, ...props}: Omit<React.ComponentProps<typeof Button>, 'variant' | 'type'>,
+    {className, children, ...rest}: Omit<React.ComponentProps<typeof Button>, 'variant' | 'type'>,
     ref: Ref<HTMLButtonElement>
   ) => {
     return (
@@ -43,7 +39,7 @@ const _Action = forwardRef(
         variant="secondary"
         className={clsx(styles['CTAForm-button'], className)}
         ref={ref}
-        {...props}
+        {...rest}
       >
         {children}
       </Button>
