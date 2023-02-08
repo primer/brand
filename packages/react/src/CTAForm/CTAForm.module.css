@@ -1,7 +1,7 @@
 .CTAForm {
   display: grid;
   gap: var(--base-size-16);
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 2fr auto;
   align-items: flex-end;
 }
 
