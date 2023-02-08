@@ -13,6 +13,12 @@ test.describe('Visual Comparison: Avatar', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('Avatar / Shapes', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-avatar-features--shapes&viewMode=story')
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Avatar / Responsive Sizes', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-avatar-features--responsive-sizes&viewMode=story'
