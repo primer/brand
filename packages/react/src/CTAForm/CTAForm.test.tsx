@@ -38,6 +38,10 @@ describe('CTAForm', () => {
     expect(ctaFormEl.attributes.getNamedItem('target')).toBe(expectedTarget)
     expect(ctaFormEl.classList).toContain(expectedClass)
   })
+
+  it('submits the form correctly', () => {
+    // TODO: How do we test this?
+  })
 })
 
 describe('CTAForm.Input', () => {
