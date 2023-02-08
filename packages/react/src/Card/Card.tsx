@@ -19,9 +19,9 @@ import styles from './Card.module.css'
 export const CardVariants = ['plain', 'elevated', 'inset'] as const
 export const CardSizes = ['small', 'medium', 'large'] as const
 const CardHeadingSizesMap = {
-  small: HeadingSizes[4],
-  medium: HeadingSizes[3],
-  large: HeadingSizes[2]
+  small: HeadingSizes[5],
+  medium: HeadingSizes[4],
+  large: HeadingSizes[3]
 }
 const CardTextSizesMap = {
   small: TextSizes[5],
@@ -36,6 +36,7 @@ export type CardProps = {
   children:
     | React.ReactNode
     | React.ReactElement<CardImageProps>
+    | React.ReactElement<CardIconProps>
     | React.ReactElement<CardHeadingProps>
     | React.ReactElement<CardDescriptionProps>
   /**
@@ -67,6 +68,7 @@ const CardRoot = forwardRef<HTMLLinkElement, CardProps>(
         if (
           childrenHasFragment ||
           child.type === CardImage ||
+          child.type === CardIcon ||
           child.type === CardHeading ||
           child.type === CardDescription
         ) {
@@ -93,7 +95,7 @@ const CardRoot = forwardRef<HTMLLinkElement, CardProps>(
           return child
         })}
         <div className={styles.Card__action}>
-          {/* Temporary Link component until we change it for an animated parapgraph */}
+          {/* Temporary using Link component to not repeat styles */}
           <Link>{link ? link : 'Learn more'}</Link>
         </div>
       </a>
@@ -128,37 +130,42 @@ const CardImage = forwardRef<HTMLImageElement, CardImageProps>(
   }
 )
 
-// type CardIconProps = BaseProps<HTMLElement> & {
-//   icon: string
-//   fillColor: string
-//   backgroundColor: number
-// }
+type CardIconProps = BaseProps<HTMLSpanElement> & {
+  icon: React.ReactNode
+  fill?: string
+  background?: string
+}
 
-// function CardIcon({className, icon, fillColor, backgroundColor, ...rest}: CardIconProps) {
-//   return (
-//     <Text size={size} as="p" className={clsx(styles.Card__description, className)} {...rest}>
-//       {children}
-//     </Text>
-//   )
-// }
+function CardIcon({icon: Icon, className, fill = 'currentColor', background, ...rest}: CardIconProps) {
+  return (
+    <span
+      className={clsx(styles.Card__icon, background && styles['Card__icon--badge'], className)}
+      style={{background}}
+      {...rest}
+    >
+      {typeof Icon === 'function' ? (
+        <Icon size="medium" fill={fill} />
+      ) : (
+        React.isValidElement(Icon) &&
+        React.cloneElement(Icon, {
+          width: 24,
+          height: 24
+        })
+      )}
+    </span>
+  )
+}
 
 type CardHeadingProps = BaseProps<HTMLHeadingElement> & {
   children: string
   size?: '4' | '5' | '6'
-  customSize?: '1' | '2' | '3' | '4' | '5' | '6'
   as?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 }
 
 const CardHeading = forwardRef<HTMLHeadingElement, CardHeadingProps>(
-  ({children, customSize, as = 'h3', className, size, ...rest}, ref) => {
+  ({children, as = 'h3', className, size, ...rest}, ref) => {
     return (
-      <Heading
-        size={customSize ? customSize : size}
-        className={clsx(styles.Card__heading, className)}
-        ref={ref}
-        as={as}
-        {...rest}
-      >
+      <Heading size={size} className={clsx(styles.Card__heading, className)} ref={ref} as={as} {...rest}>
         {children}
       </Heading>
     )
@@ -168,15 +175,15 @@ const CardHeading = forwardRef<HTMLHeadingElement, CardHeadingProps>(
 type CardDescriptionProps = BaseProps<HTMLParagraphElement> & {
   children: string
   size?: '400' | '500' | '600' | '700'
-  customSize?: '100' | '200' | '300' | '400' | '500' | '600' | '700'
 }
 
 const CardDescription = forwardRef<HTMLParagraphElement, CardDescriptionProps>(
-  ({children, className, customSize, size, ...rest}, ref) => {
+  ({children, className, size, ...rest}, ref) => {
     return (
       <Text
+        variant="muted"
         ref={ref}
-        size={customSize ? customSize : size}
+        size={size}
         as="p"
         className={clsx(styles.Card__description, className)}
         {...rest}
@@ -193,6 +200,7 @@ const CardDescription = forwardRef<HTMLParagraphElement, CardDescriptionProps>(
  */
 export const Card = Object.assign(CardRoot, {
   Image: CardImage,
+  Icon: CardIcon,
   Heading: CardHeading,
   Description: CardDescription
 })

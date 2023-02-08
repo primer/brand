@@ -5,6 +5,7 @@
   overflow: hidden;
   background-color: var(--brand-Card-background-elevated);
   text-decoration: none;
+  color: var(--brand-color-text-default);
 }
 
 .Card__size--small {
@@ -16,8 +17,8 @@
 .Card__size--small .Card__heading,
 .Card__size--small .Card__action,
 .Card__size--small .Card__description {
-  margin-right: var(--base-size-16);
-  margin-left: var(--base-size-16);
+  margin-right: var(--base-size-20);
+  margin-left: var(--base-size-20);
 }
 
 .Card__size--small .Card__heading {
@@ -25,9 +26,6 @@
 }
 
 .Card__size--small .Card__description {
-  /* font-weight: var(--brand-text-weight-100);
-  font-size: var(--brand-text-size-100);
-  line-height: var(--brand-text-lineHeight-100); */
   margin-bottom: var(--base-size-12);
 }
 
@@ -42,9 +40,10 @@
 .Card__size--medium .Card__image,
 .Card__size--medium .Card__heading,
 .Card__size--medium .Card__action,
-.Card__size--medium .Card__description {
-  margin-right: var(--base-size-24);
-  margin-left: var(--base-size-24);
+.Card__size--medium .Card__description,
+.Card__size--medium .Card__icon {
+  margin-right: var(--base-size-32);
+  margin-left: var(--base-size-32);
 }
 
 .Card__size--medium .Card__heading {
@@ -52,13 +51,7 @@
 }
 
 .Card__size--medium .Card__description {
-  /* font-weight: var(--brand-text-weight-200);
-  font-size: var(--brand-text-size-200);
-  line-height: var(--brand-text-lineHeight-200); */
-  margin-bottom: var(--base-size-20);
-}
-
-.Card__size--medium .Card__image {
+  margin-bottom: var(--base-size-32);
 }
 
 .Card__size--large {
@@ -70,8 +63,8 @@
 .Card__size--large .Card__heading,
 .Card__size--large .Card__action,
 .Card__size--large .Card__description {
-  margin-right: var(--base-size-32);
-  margin-left: var(--base-size-32);
+  margin-right: var(--base-size-40);
+  margin-left: var(--base-size-40);
 }
 
 .Card__size--large .Card__heading {
@@ -79,9 +72,6 @@
 }
 
 .Card__size--large .Card__description {
-  /* font-weight: var(--brand-text-weight-300);
-  font-size: var(--brand-text-size-300);
-  line-height: var(--brand-text-lineHeight-300); */
   margin-bottom: var(--base-size-24);
 }
 
@@ -96,8 +86,13 @@
 .Card__variant--elevated {
   background-color: var(--brand-Card-background-elevated);
   border-radius: 6px;
-  box-shadow: var(--brand-River-visual-shadow);
+  box-shadow: var(--brand-Card-visual-shadow);
   border: 1px solid var(--brand-color-border-default);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.Card__variant--elevated:hover {
+  transform: scale3d(1.025, 1.025, 1);
 }
 
 .Card__variant--inset {
@@ -141,14 +136,26 @@
 
 .Card__heading {
   margin-bottom: var(--base-size-20);
-  color: var(--brand-Card-heading-color);
 }
 
 .Card__description {
-  color: var(--brand-Card-description-color);
   margin-bottom: var(--base-size-24);
 }
 
 .Card__action {
   margin-top: auto;
+}
+
+.Card__icon {
+  margin-bottom: var(--base-size-32);
+}
+
+.Card__icon--badge {
+  aspect-ratio: auto 64 / 64;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

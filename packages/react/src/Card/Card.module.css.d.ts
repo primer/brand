@@ -4,6 +4,7 @@ declare const styles: {
   readonly Card__image: string
   readonly Card__heading: string
   readonly Card__action: string
+  readonly Card__icon: string
   readonly Card__description: string
   readonly 'Card__size--medium': string
   readonly 'Card__size--large': string
