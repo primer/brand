@@ -1,0 +1,161 @@
+---
+title: Card
+status: Experimental
+# figma: 'https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=543%3A19830&t=Be91VGjX2BANJnQc-11'
+# source: https://github.com/primer/brand/tree/main/packages/react/src/Avatar/Avatar.tsx
+storybook: '/brand/storybook/?path=/story/components-card--playground'
+description: Use the Card component to display information in a compact way and link to other pages.
+---
+
+import {Label} from '@primer/react'
+import {CopilotIcon, RocketIcon, GitBranchIcon} from '@primer/octicons-react'
+
+```js
+import {Card} from '@primer/react-brand'
+```
+
+## Usage
+
+Cards are a clickable container that display a summary of content in a compact way and link the user to the full content. They are used to display a collection of related content, usually in a grid.
+
+<DoDontContainer>
+  <Do>
+    <img
+      src="https://user-images.githubusercontent.com/912236/217617034-5f940d64-6f29-4e0a-8379-31554eed102d.png"
+      role="presentation"
+      width="456"
+    />
+    <Caption>They are used to display a collection of related content.</Caption>
+  </Do>
+  <Dont>
+    <img
+      src="https://user-images.githubusercontent.com/912236/217787833-d10c1598-37c2-48d5-b6f9-eb011389ad39.png"
+      role="presentation"
+      width="456"
+    />
+    <Caption>
+      Boxes or pillars are containers for visual and text content. Their
+      formatting varies a lot to fit a descriptive context. Although they often
+      feature a link they do not semantically fulfill the same role, thus should
+      not use the card component.
+    </Caption>
+  </Dont>
+</DoDontContainer>
+
+## Examples
+
+### Default
+
+The default card can be built with a custom heading and a description. The link label defaults to `Read more` and can be customized using the `link` prop.
+
+```jsx live
+<Card linkHref="https://github.com">
+  <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+  <Card.Description>
+    Everything you need to know about getting started with GitHub Actions.
+  </Card.Description>
+</Card>
+```
+
+### Link
+
+The link label defaults to `Read more` and can be customized using the `link` prop.
+
+```jsx live
+<Card link="Click here" linkHref="https://github.com">
+  <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+  <Card.Description>
+    Everything you need to know about getting started with GitHub Actions.
+  </Card.Description>
+</Card>
+```
+
+### Icon
+
+Card can optionally display an [Octicon](https://primer.style/octicons/) to add visual context to the content. The color can be changed using the `color` prop. Using the `background` prop wraps the icon in a colored circle. The colors can be customized through our [color system](/primitives/color).
+
+```jsx live
+<Card linkHref="https://github.com">
+  <Card.Icon
+    icon={CopilotIcon}
+    fill="var(--base-color-scale-purple-6)"
+    background="var(--base-color-scale-purple-0)"
+  />
+  <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+  <Card.Description>
+    Everything you need to know about getting started with GitHub Actions.
+  </Card.Description>
+</Card>
+```
+
+### Stacked cards
+
+Use the `Stack` component to stack multiple cards horizontally or vertically.
+
+```jsx live
+<Stack
+  direction="horizontal"
+  alignItems="center"
+  justifyContent="center"
+  gap="normal"
+>
+  <Card linkHref="https://github.com">
+    <Card.Icon
+      icon={CopilotIcon}
+      fill="var(--base-color-scale-purple-6)"
+      background="var(--base-color-scale-purple-0)"
+    />
+    <Card.Heading>Heading</Card.Heading>
+    <Card.Description>
+      Everything you need to know about getting started with GitHub Actions.
+    </Card.Description>
+  </Card>
+  <Card linkHref="https://github.com">
+    <Card.Icon
+      icon={RocketIcon}
+      fill="var(--base-color-scale-blue-6)"
+      background="var(--base-color-scale-blue-0)"
+    />
+
+    <Card.Heading>Heading</Card.Heading>
+    <Card.Description>
+      Everything you need to know about getting started with GitHub Actions.
+    </Card.Description>
+  </Card>
+  <Card linkHref="https://github.com">
+    <Card.Icon
+      icon={GitBranchIcon}
+      fill="var(--base-color-scale-orange-6)"
+      background="var(--base-color-scale-orange-0)"
+    />
+
+    <Card.Heading>Heading</Card.Heading>
+    <Card.Description>
+      Everything you need to know about getting started with GitHub Actions.
+    </Card.Description>
+  </Card>
+</Stack>
+```
+
+## Component props
+
+### Card
+
+| name       | type     | default     | required | description                             |
+| ---------- | -------- | ----------- | -------- | --------------------------------------- |
+| `linkHref` | `string` |             | `true`   | URL to the card content                 |
+| `link`     | `string` | `Read more` | `false`  | Label of link at the bottom of the Card |
+
+### Card.Heading
+
+| name | type                         | default | required | description |
+| ---- | ---------------------------- | ------- | -------- | ----------- |
+| `as` | `h2`, `h3`, `h4`, `h5`, `h6` | `h3`    | `false`  |             |
+
+### Card.Icon
+
+| name         | type     | default        | required | description                  |
+| ------------ | -------- | -------------- | -------- | ---------------------------- |
+| `icon`       | `string` |                | `true`   | Octicon                      |
+| `color`      | `string` | `currentColor` | `false`  | Fill of the icon             |
+| `background` | `string` |                | `false`  | Background color of the icon |

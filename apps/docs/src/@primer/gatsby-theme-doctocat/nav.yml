@@ -14,6 +14,8 @@
   children:
     - title: AnchorNav
       url: /components/AnchorNav
+    - title: Card
+      url: /components/Card
     - title: ComparisonTable
       url: /components/ComparisonTable
     - title: CTABanner
