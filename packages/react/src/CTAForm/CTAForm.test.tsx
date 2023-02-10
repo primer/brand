@@ -1,4 +1,5 @@
-import React, {render, cleanup} from '@testing-library/react'
+import React from 'react'
+import {render, cleanup, fireEvent} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
 import {CTAForm} from '../'
@@ -17,7 +18,7 @@ describe('CTAForm', () => {
   })
 
   it('allows and passes expected attributes to the form component', async () => {
-    const expectedAction = 'https://www.github.com'
+    const expectedAction = 'my_redirect_url'
     const expectedMethod = 'POST'
     const expectedTarget = '_blank'
     const mockTestId = 'test'
@@ -25,22 +26,50 @@ describe('CTAForm', () => {
 
     const {getByTestId} = render(
       <CTAForm
-        id={mockTestId}
+        data-testid={mockTestId}
         className={expectedClass}
         action={expectedAction}
         method={expectedMethod}
         target={expectedTarget}
-      ></CTAForm>
+      >
+        <CTAForm.Action>submit</CTAForm.Action>
+      </CTAForm>
     )
     const ctaFormEl = getByTestId(mockTestId)
-    expect(ctaFormEl.attributes.getNamedItem('action')).toBe(expectedAction)
-    expect(ctaFormEl.attributes.getNamedItem('method')).toBe(expectedMethod)
-    expect(ctaFormEl.attributes.getNamedItem('target')).toBe(expectedTarget)
+    expect(ctaFormEl).toHaveAttribute('action', expectedAction)
+    expect(ctaFormEl).toHaveAttribute('method', expectedMethod)
+    expect(ctaFormEl).toHaveAttribute('target', expectedTarget)
     expect(ctaFormEl.classList).toContain(expectedClass)
   })
 
   it('submits the form correctly', () => {
-    // TODO: How do we test this?
+    const expectedAction = 'https://www.github.com'
+    const expectedMethod = 'POST'
+    const expectedTarget = '_blank'
+    const mockTestId = 'test'
+    const expectedClass = 'test'
+    const mockSubmit = jest.fn(e => e.preventDefault())
+    const submitText = 'Submit'
+
+    const {getByTestId} = render(
+      <CTAForm
+        className={expectedClass}
+        action={expectedAction}
+        method={expectedMethod}
+        target={expectedTarget}
+        onSubmit={mockSubmit}
+      >
+        <CTAForm.Action data-testid={mockTestId}>{submitText}</CTAForm.Action>
+      </CTAForm>
+    )
+    fireEvent(
+      getByTestId(mockTestId),
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true
+      })
+    )
+    expect(mockSubmit).toHaveBeenCalledTimes(1)
   })
 })
 
@@ -54,13 +83,13 @@ describe('CTAForm.Input', () => {
     expect(results).toHaveNoViolations()
   })
 
-  it('allows and passes expected attributes to the form component', async () => {
+  it('allows and passes expected attributes to the CTAForm.Input component', async () => {
     const mockTestId = 'test'
     const expectedClass = 'test'
 
-    const {getByTestId} = render(<CTAForm.Input id={mockTestId} className={expectedClass}></CTAForm.Input>)
-    const ctaFormEl = getByTestId(mockTestId)
-    expect(ctaFormEl.classList).toContain(expectedClass)
+    const {getByTestId} = render(<CTAForm.Input data-testid={mockTestId} className={expectedClass}></CTAForm.Input>)
+    const ctaInputEl = getByTestId(mockTestId)
+    expect(ctaInputEl.classList).toContain(expectedClass)
   })
 })
 
@@ -74,13 +103,13 @@ describe('CTAForm.Confirm', () => {
     expect(results).toHaveNoViolations()
   })
 
-  it('allows and passes expected attributes to the form component', async () => {
+  it('allows and passes expected attributes to the CTAForm.Confirm component', async () => {
     const mockTestId = 'test'
     const expectedClass = 'test'
 
-    const {getByTestId} = render(<CTAForm.Confirm id={mockTestId} className={expectedClass}></CTAForm.Confirm>)
-    const ctaFormEl = getByTestId(mockTestId)
-    expect(ctaFormEl.classList).toContain(expectedClass)
+    const {getByTestId} = render(<CTAForm.Confirm data-testid={mockTestId} className={expectedClass}></CTAForm.Confirm>)
+    const ctaConfirmEl = getByTestId(mockTestId)
+    expect(ctaConfirmEl.classList).toContain(expectedClass)
   })
 })
 
@@ -88,19 +117,51 @@ describe('CTAForm.Action', () => {
   afterEach(cleanup)
 
   it('no a11y violations', async () => {
-    const {container} = render(<CTAForm.Action></CTAForm.Action>)
+    const {container} = render(<CTAForm.Action>Submit</CTAForm.Action>)
     const results = await axe(container)
 
     expect(results).toHaveNoViolations()
   })
 
-  it('allows and passes expected attributes to the form component', async () => {
+  it('allows and passes expected attributes to the CTAForm.Action component', async () => {
     const mockTestId = 'test'
     const expectedClass = 'test'
+    const mockClick = jest.fn(e => e.preventDefault())
 
-    const {getByTestId} = render(<CTAForm.Action id={mockTestId} className={expectedClass}></CTAForm.Action>)
-    const ctaFormEl = getByTestId(mockTestId)
-    expect(ctaFormEl.classList).toContain(expectedClass)
-    expect(ctaFormEl.attributes.getNamedItem('type')).toBe('submit')
+    const {getByTestId} = render(
+      <CTAForm.Action data-testid={mockTestId} className={expectedClass} onClick={mockClick}>
+        Submit
+      </CTAForm.Action>
+    )
+    const ctaButtonEl = getByTestId(mockTestId)
+    expect(ctaButtonEl).toHaveAttribute('type', 'submit')
+    fireEvent(
+      getByTestId(mockTestId),
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true
+      })
+    )
+    expect(mockClick).toHaveBeenCalledTimes(1)
+  })
+
+  it('renders an uncontrolled CTAForm.Action component correctly', () => {
+    const sideEffectValue = 'mock value 2'
+
+    const MockComponent = () => {
+      const ref = React.useRef<HTMLButtonElement>(null)
+
+      React.useEffect(() => {
+        if (ref.current) {
+          ref.current.value = sideEffectValue
+        }
+      }, [ref])
+
+      return <CTAForm.Action ref={ref} />
+    }
+
+    const {getByRole} = render(<MockComponent />)
+    const ctaFormActionElement = getByRole('button') as HTMLButtonElement
+    expect(ctaFormActionElement.value).toBe(sideEffectValue)
   })
 })
