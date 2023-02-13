@@ -4,9 +4,11 @@ import {Button} from '../'
 
 import styles from './CTAForm.module.css'
 
-const Root = forwardRef(({...rest}: React.FormHTMLAttributes<HTMLFormElement>, ref: Ref<HTMLFormElement>) => {
-  return <form {...rest} ref={ref} className={clsx(styles.CTAForm, rest.className)} />
-})
+const Root = forwardRef(
+  ({className, ...rest}: React.FormHTMLAttributes<HTMLFormElement>, ref: Ref<HTMLFormElement>) => {
+    return <form ref={ref} className={clsx(styles.CTAForm, className)} {...rest} />
+  }
+)
 
 const _Input = forwardRef(
   ({className, children, ...rest}: React.HTMLAttributes<HTMLDivElement>, ref: Ref<HTMLDivElement>) => {
