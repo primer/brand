@@ -16,13 +16,20 @@ export const Primary = () => (
 )
 
 export const PrimaryDisabled = () => (
-  <Button as="a" disabled variant="primary" href="#">
+  <Button as="button" disabled variant="primary">
     Disabled primary button
   </Button>
 )
 
+export const PrimaryAriaDisabled = () => (
+  <Button as="button" aria-disabled="true" variant="primary">
+    Disabled primary button
+  </Button>
+)
+PrimaryAriaDisabled.storyName = 'Primary w/ aria-disabled'
+
 export const PrimaryFocus = () => (
-  <Button variant="primary" size="large" href="#">
+  <Button variant="primary" size="large">
     Focus
   </Button>
 )
@@ -34,7 +41,7 @@ PrimaryFocus.play = async () => {
 
 export const PrimaryFocusNonStandardBG = () => (
   <div style={{padding: '1rem', backgroundColor: 'red'}}>
-    <Button variant="primary" size="large" href="#">
+    <Button variant="primary" size="large">
       On a non-standard background
     </Button>
   </div>
@@ -53,7 +60,7 @@ export const Secondary = () => (
 )
 
 export const SecondaryDisabled = () => (
-  <Button as="a" disabled variant="secondary" href="#">
+  <Button as="button" disabled variant="secondary">
     Disabled secondary button
   </Button>
 )
@@ -65,7 +72,7 @@ export const Subtle = () => (
 )
 
 export const SubtleDisabled = () => (
-  <Button as="a" disabled variant="subtle" href="#">
+  <Button as="button" disabled variant="subtle">
     Disabled subtle button
   </Button>
 )
@@ -80,7 +87,6 @@ export const Polymorphism = () => (
   <Button
     as="button"
     variant="primary"
-    href="#"
     // eslint-disable-next-line no-console
     onClick={() => console.log('Clicked')}
   >

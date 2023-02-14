@@ -11,7 +11,8 @@ export default {
     size: defaultButtonSize,
     href: '#',
     children: 'Button',
-    disabled: false
+    disabled: false,
+    ariaDisabled: false
   },
   // overriding default type inference for args with more useful control types
   argTypes: {
