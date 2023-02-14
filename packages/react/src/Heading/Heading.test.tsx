@@ -1,7 +1,7 @@
 import React, {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
-import {Heading, HeadingWeights} from './Heading'
+import {Heading, HeadingWeights, HeadingWidths} from './Heading'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 expect.extend(toHaveNoViolations)
@@ -95,6 +95,46 @@ describe('Heading', () => {
         const headingEl = getByTestId(`heading-${breakpoint}-${weight}`)
 
         expect(headingEl.classList).toContain(expectedClass + weight)
+      }
+    }
+  })
+
+  it('can render headings in different fixed font widths', () => {
+    const expectedClass = 'Heading--width-'
+
+    for (const width of HeadingWidths) {
+      const {getByText} = render(
+        <Heading as="h3" width={width}>
+          {width}
+        </Heading>
+      )
+      const headingEl = getByText(width)
+
+      expect(headingEl.classList).toContain(expectedClass + width)
+    }
+  })
+
+  it('can render headings in different responsive font widths', () => {
+    const supportedBreakpoints = ['condensed', 'normal', 'wide']
+
+    for (const breakpoint of supportedBreakpoints) {
+      const expectedClass = `Heading-${breakpoint}--width-`
+
+      for (const width of HeadingWidths) {
+        const {getByTestId} = render(
+          <Heading
+            data-testid={`heading-${breakpoint}-${width}`}
+            as="h3"
+            width={{
+              [breakpoint]: width
+            }}
+          >
+            {width}
+          </Heading>
+        )
+        const headingEl = getByTestId(`heading-${breakpoint}-${width}`)
+
+        expect(headingEl.classList).toContain(expectedClass + width)
       }
     }
   })

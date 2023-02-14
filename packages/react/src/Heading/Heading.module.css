@@ -144,3 +144,97 @@
     font-weight: var(--base-text-weight-light);
   }
 }
+
+/**
+ * Heading widths
+ */
+
+.Heading--width-condensed,
+.Heading-narrow--width-condensed {
+  font-variation-settings: 'wdth' 75;
+}
+
+.Heading--width-normal,
+.Heading-narrow--width-normal {
+  font-variation-settings: 'wdth' 100;
+}
+
+.Heading--width-expanded,
+.Heading-narrow--width-expanded {
+  font-variation-settings: 'wdth' 125;
+}
+
+@media screen and (min-width: 48rem) {
+  .Heading-regular--width-condensed {
+    font-variation-settings: 'wdth' 75;
+  }
+
+  .Heading-regular--width-normal {
+    font-variation-settings: 'wdth' 100;
+  }
+
+  .Heading-regular--width-expanded {
+    font-variation-settings: 'wdth' 125;
+  }
+}
+
+@media screen and (min-width: 80rem) {
+  .Heading-narrow--weight-expanded .Heading-wide--width-condensed {
+    font-variation-settings: 'wdth' 75;
+  }
+
+  .Heading-wide--width-normal {
+    font-variation-settings: 'wdth' 100;
+  }
+
+  .Heading-wide--width-expanded {
+    font-variation-settings: 'wdth' 125;
+  }
+}
+
+/**
+ * Heading letter spacing
+ */
+
+.Heading--letter-spacing-tight,
+.Heading-narrow--letter-spacing-tight {
+  letter-spacing: var(--brand-text-letterSpacing-900);
+}
+
+.Heading--letter-spacing-normal,
+.Heading-narrow--letter-spacing-normal {
+  letter-spacing: var(--brand-heading-letterSpacing-700);
+}
+
+.Heading--letter-spacing-none,
+.Heading-narrow--letter-spacing-none {
+  letter-spacing: 0;
+}
+
+@media screen and (min-width: 48rem) {
+  .Heading-regular--letter-spacing-tight {
+    letter-spacing: var(--brand-text-letterSpacing-900);
+  }
+
+  .Heading-regular--letter-spacing-normal {
+    letter-spacing: var(--brand-heading-letterSpacing-700);
+  }
+
+  .Heading-regular--letter-spacing-none {
+    letter-spacing: 0;
+  }
+}
+
+@media screen and (min-width: 80rem) {
+  .Heading-narrow--weight-wide .Heading-wide--letter-spacing-tight {
+    letter-spacing: var(--brand-text-letterSpacing-900);
+  }
+
+  .Heading-wide--letter-spacing-normal {
+    letter-spacing: var(--brand-heading-letterSpacing-700);
+  }
+
+  .Heading-wide--letter-spacing-none {
+    letter-spacing: 0;
+  }
+}

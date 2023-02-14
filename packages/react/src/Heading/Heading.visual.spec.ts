@@ -38,4 +38,26 @@ test.describe('Visual Comparison: Heading', () => {
 
     expect(await page.screenshot()).toMatchSnapshot()
   })
+
+  test('Heading / Override Width', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--override-width&viewMode=story')
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Heading / Override Width Responsive', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-heading--override-width-responsive&viewMode=story'
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Heading / Override Letter Spacing', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-heading--override-letter-spacing&viewMode=story'
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
 })
