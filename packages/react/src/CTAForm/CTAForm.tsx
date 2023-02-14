@@ -18,6 +18,7 @@ const _Input = forwardRef(
           return React.cloneElement(child, {
             fullWidth: true,
             size: 'large',
+            required: true,
             ...child.props
           })
         }

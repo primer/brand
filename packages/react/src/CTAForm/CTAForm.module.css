@@ -35,6 +35,7 @@
 
   .CTAForm-confirm {
     order: 3;
+    grid-column: span 2;
   }
 
   .CTAForm-button {
