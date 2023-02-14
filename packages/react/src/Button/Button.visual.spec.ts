@@ -21,6 +21,14 @@ test.describe('Visual Comparison: Button', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('Button / Primary w/ aria-disabled', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--primary-aria-disabled&viewMode=story'
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Button / Primary Focus', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-button-features--primary-focus&viewMode=story'

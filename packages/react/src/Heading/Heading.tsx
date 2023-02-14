@@ -8,7 +8,7 @@ export const HeadingTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const
 
 export const HeadingWeights = ['heavy', 'extrabold', 'bold', 'semibold', 'medium', 'normal', 'light'] as const
 export const HeadingWidths = ['condensed', 'normal', 'expanded'] as const
-export const HeadingLetterSpacing = ['tight', 'normal', 'none'] as const
+export const HeadingLetterSpacing = ['condensed', 'normal', 'none'] as const
 
 export const defaultHeadingTag = HeadingTags[1]
 

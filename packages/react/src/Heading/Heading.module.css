@@ -196,8 +196,8 @@
  * Heading letter spacing
  */
 
-.Heading--letter-spacing-tight,
-.Heading-narrow--letter-spacing-tight {
+.Heading--letter-spacing-condensed,
+.Heading-narrow--letter-spacing-condensed {
   letter-spacing: var(--brand-text-letterSpacing-900);
 }
 
@@ -212,7 +212,7 @@
 }
 
 @media screen and (min-width: 48rem) {
-  .Heading-regular--letter-spacing-tight {
+  .Heading-regular--letter-spacing-condensed {
     letter-spacing: var(--brand-text-letterSpacing-900);
   }
 
@@ -226,7 +226,7 @@
 }
 
 @media screen and (min-width: 80rem) {
-  .Heading-narrow--weight-wide .Heading-wide--letter-spacing-tight {
+  .Heading-narrow--weight-wide .Heading-wide--letter-spacing-condensed {
     letter-spacing: var(--brand-text-letterSpacing-900);
   }
 

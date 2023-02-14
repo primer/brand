@@ -13,7 +13,7 @@ Add `width` and `letter-spacing` configurability to Heading
 <Heading as="h3" width="normal">
   normal
 </Heading>
-<Heading as="h3" width="wide">
+<Heading as="h3" width="expanded">
   wide
 </Heading>
 ```
