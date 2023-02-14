@@ -33,6 +33,7 @@ export const Button = forwardRef(
       className,
       children,
       disabled,
+      'aria-disabled': ariaDisabled,
       onMouseEnter,
       onMouseLeave,
       onFocus,
@@ -45,44 +46,47 @@ export const Button = forwardRef(
     const [isFocused, setIsFocused] = React.useState(false)
     const Component = as || 'button'
 
+    const isDisabled =
+      disabled || ariaDisabled === 'true' || (typeof ariaDisabled === 'boolean' && ariaDisabled === true)
+
     const handleOnMouseEnter = useCallback(
       event => {
-        if (!disabled) {
+        if (!isDisabled) {
           setIsHovered(true)
           onMouseEnter?.(event)
         }
       },
-      [disabled, onMouseEnter]
+      [isDisabled, onMouseEnter]
     )
 
     const handleOnMouseLeave = useCallback(
       event => {
-        if (!disabled) {
+        if (!isDisabled) {
           setIsHovered(false)
           onMouseLeave?.(event)
         }
       },
-      [disabled, onMouseLeave]
+      [isDisabled, onMouseLeave]
     )
 
     const handleOnFocus = useCallback(
       event => {
-        if (!disabled) {
+        if (!isDisabled) {
           setIsFocused(true)
           onFocus?.(event)
         }
       },
-      [disabled, onFocus]
+      [isDisabled, onFocus]
     )
 
     const handleOnBlur = useCallback(
       event => {
-        if (!disabled) {
+        if (!isDisabled) {
           setIsFocused(false)
           onBlur?.(event)
         }
       },
-      [disabled, onBlur]
+      [isDisabled, onBlur]
     )
 
     return (
@@ -92,7 +96,7 @@ export const Button = forwardRef(
           styles.Button,
           styles[`Button--${variant}`],
           styles[`Button--size-${size}`],
-          disabled && styles[`Button--disabled`],
+          isDisabled && styles[`Button--disabled`],
           className
         )}
         onMouseEnter={handleOnMouseEnter}
@@ -100,7 +104,7 @@ export const Button = forwardRef(
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
         disabled={disabled}
-        aria-disabled={disabled ? 'true' : 'false'}
+        aria-disabled={ariaDisabled}
         {...props}
       >
         <Text
@@ -109,15 +113,16 @@ export const Button = forwardRef(
           className={clsx(
             styles['Button--label'],
             styles[`Button--label-${variant}`],
-            disabled && styles[`Button-label--disabled`]
+            isDisabled && styles[`Button-label--disabled`]
           )}
         >
           {children}
         </Text>
         {hasArrow && (
           <ExpandableArrow
-            className={clsx(styles['Button-arrow'], disabled && styles[`Button-arrow--disabled`])}
-            expanded={!disabled && (isHovered || isFocused)}
+            hidden
+            className={clsx(styles['Button-arrow'], isDisabled && styles[`Button-arrow--disabled`])}
+            expanded={!isDisabled && (isHovered || isFocused)}
           />
         )}
       </Component>

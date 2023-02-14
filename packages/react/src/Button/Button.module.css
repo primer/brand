@@ -13,7 +13,7 @@
   background: none;
 }
 
-.Button:focus:not(.Button--disabled) {
+.Button:focus:not(.Button--disabled[disabled]) {
   outline: none;
   box-shadow: 0 0 0 2px var(--brand-color-canvas-default), 0 0 0 5px var(--brand-color-focus);
 }
@@ -112,4 +112,18 @@
 
 .Button--disabled:not(.Button--secondary) {
   box-shadow: none;
+}
+
+@media (forced-colors: active) {
+  /* Retains focus indicator when in "Windows High Contrast Mode". */
+  .Button:focus:not(.Button--disabled[disabled]) {
+    outline: var(--brand-borderWidth-thick) solid;
+    outline-color: var(--brand-color-focus);
+    outline-offset: 2px;
+  }
+
+  /* Indicates disabled state in WHCM */
+  .Button--label.Button-label--disabled {
+    color: GrayText;
+  }
 }
