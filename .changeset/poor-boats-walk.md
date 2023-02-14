@@ -17,7 +17,7 @@ Example Usage
   <CTAForm.Confirm>
     <FormControl required>
       <FormControl.Label>
-        <Text>
+        <Text size="300">
           I agree to the <InlineLink href="www.github.com">Privacy Policy</InlineLink> and{' '}
           <InlineLink href="www.github.com">Terms of Service</InlineLink>
         </Text>
