@@ -1,6 +1,6 @@
 import React, {forwardRef, type Ref} from 'react'
 import clsx from 'clsx'
-import {Button} from '../'
+import {Button, FormControl} from '../'
 
 import styles from './CTAForm.module.css'
 
@@ -12,9 +12,22 @@ const Root = forwardRef(
 
 const _Input = forwardRef(
   ({className, children, ...rest}: React.HTMLAttributes<HTMLDivElement>, ref: Ref<HTMLDivElement>) => {
+    const transformedChildren = React.Children.toArray(children).map(child => {
+      if (React.isValidElement(child) && typeof child.type !== 'string') {
+        if (child.type === FormControl) {
+          return React.cloneElement(child, {
+            fullWidth: true,
+            size: 'large',
+            ...child.props
+          })
+        }
+      }
+      return child
+    })
+
     return (
-      <div {...rest} ref={ref} className={clsx(styles['CTAForm-input'], className)}>
-        {children}
+      <div ref={ref} className={clsx(styles['CTAForm-input'], className)} {...rest}>
+        {transformedChildren}
       </div>
     )
   }
@@ -22,9 +35,21 @@ const _Input = forwardRef(
 
 const _Confirm = forwardRef(
   ({className, children, ...rest}: React.HTMLAttributes<HTMLDivElement>, ref: Ref<HTMLDivElement>) => {
+    const transformedChildren = React.Children.toArray(children).map(child => {
+      if (React.isValidElement(child) && typeof child.type !== 'string') {
+        if (child.type === FormControl) {
+          return React.cloneElement(child, {
+            fullWidth: true,
+            size: 'large',
+            ...child.props
+          })
+        }
+      }
+      return child
+    })
     return (
-      <div {...rest} ref={ref} className={clsx(styles['CTAForm-confirm'], className)}>
-        {children}
+      <div ref={ref} className={clsx(styles['CTAForm-confirm'], className)} {...rest}>
+        {transformedChildren}
       </div>
     )
   }

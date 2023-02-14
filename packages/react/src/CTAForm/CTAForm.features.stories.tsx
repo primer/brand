@@ -12,7 +12,7 @@ export default {
 export const WithNoConfirm: ComponentStory<typeof CTAForm> = _args => (
   <CTAForm>
     <CTAForm.Input>
-      <FormControl required size="large" fullWidth>
+      <FormControl required>
         <FormControl.Label>Your Work Email Address</FormControl.Label>
         <TextInput placeholder="name" />
       </FormControl>

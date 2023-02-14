@@ -12,13 +12,13 @@ export default {
 export const Playground: ComponentStory<typeof CTAForm> = _args => (
   <CTAForm>
     <CTAForm.Input>
-      <FormControl required size="large" fullWidth>
+      <FormControl required>
         <FormControl.Label>Your Work Email Address</FormControl.Label>
         <TextInput placeholder="name" />
       </FormControl>
     </CTAForm.Input>
     <CTAForm.Confirm>
-      <FormControl required size="large" fullWidth>
+      <FormControl required>
         <FormControl.Label>I agree to the Privacy Policy and Terms of Service</FormControl.Label>
         <Checkbox name="confirm" />
       </FormControl>
@@ -30,13 +30,13 @@ export const Playground: ComponentStory<typeof CTAForm> = _args => (
 export const Default: ComponentStory<typeof CTAForm> = _args => (
   <CTAForm>
     <CTAForm.Input>
-      <FormControl required size="large" fullWidth>
+      <FormControl required>
         <FormControl.Label>Your Work Email Address</FormControl.Label>
         <TextInput placeholder="name" />
       </FormControl>
     </CTAForm.Input>
     <CTAForm.Confirm>
-      <FormControl required size="large" fullWidth>
+      <FormControl required>
         <FormControl.Label>I agree to the Privacy Policy and Terms of Service</FormControl.Label>
         <Checkbox name="confirm" />
       </FormControl>
