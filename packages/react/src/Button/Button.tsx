@@ -16,7 +16,6 @@ export type ButtonBaseProps = {
   variant?: typeof ButtonVariants[number]
   size?: typeof ButtonSizes[number]
   hasArrow?: boolean
-  ariaDisabled?: boolean
 }
 
 export type ButtonProps<C extends React.ElementType> = BaseProps<C> & {
