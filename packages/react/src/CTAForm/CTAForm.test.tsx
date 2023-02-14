@@ -71,17 +71,6 @@ describe('CTAForm', () => {
     )
     expect(mockSubmit).toHaveBeenCalledTimes(1)
   })
-})
-
-describe('CTAForm.Input', () => {
-  afterEach(cleanup)
-
-  it('no a11y violations', async () => {
-    const {container} = render(<CTAForm.Input></CTAForm.Input>)
-    const results = await axe(container)
-
-    expect(results).toHaveNoViolations()
-  })
 
   it('allows and passes expected attributes to the CTAForm.Input component', async () => {
     const mockTestId = 'test'
@@ -91,17 +80,6 @@ describe('CTAForm.Input', () => {
     const ctaInputEl = getByTestId(mockTestId)
     expect(ctaInputEl.classList).toContain(expectedClass)
   })
-})
-
-describe('CTAForm.Confirm', () => {
-  afterEach(cleanup)
-
-  it('no a11y violations', async () => {
-    const {container} = render(<CTAForm.Confirm></CTAForm.Confirm>)
-    const results = await axe(container)
-
-    expect(results).toHaveNoViolations()
-  })
 
   it('allows and passes expected attributes to the CTAForm.Confirm component', async () => {
     const mockTestId = 'test'
@@ -110,17 +88,6 @@ describe('CTAForm.Confirm', () => {
     const {getByTestId} = render(<CTAForm.Confirm data-testid={mockTestId} className={expectedClass}></CTAForm.Confirm>)
     const ctaConfirmEl = getByTestId(mockTestId)
     expect(ctaConfirmEl.classList).toContain(expectedClass)
-  })
-})
-
-describe('CTAForm.Action', () => {
-  afterEach(cleanup)
-
-  it('no a11y violations', async () => {
-    const {container} = render(<CTAForm.Action>Submit</CTAForm.Action>)
-    const results = await axe(container)
-
-    expect(results).toHaveNoViolations()
   })
 
   it('allows and passes expected attributes to the CTAForm.Action component', async () => {

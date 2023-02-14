@@ -28,7 +28,7 @@
   grid-column: span 2;
 }
 
-@media screen and (min-width: 450px) {
+@media screen and (min-width: 48rem) {
   .CTAForm > * {
     grid-column: span 1;
   }

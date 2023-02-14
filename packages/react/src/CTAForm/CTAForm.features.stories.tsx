@@ -9,8 +9,6 @@ export default {
   component: CTAForm
 } as ComponentMeta<typeof CTAForm>
 
-// TODO: When there is no confirm the gap should disappear
-
 export const WithNoConfirm: ComponentStory<typeof CTAForm> = _args => (
   <CTAForm>
     <CTAForm.Input>
