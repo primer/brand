@@ -2,7 +2,7 @@
 '@primer/react-brand': patch
 ---
 
-Adds accessibility fixes.
+Adds accessibility fixes for `Button`.
 
 - Retains outline on focus when only `aria-disabled` is applied.
 - Adds focus indicator and 'disabled' style for WHCM.

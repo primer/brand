@@ -117,7 +117,7 @@
 @media (forced-colors: active) {
   /* Retains focus indicator when in "Windows High Contrast Mode". */
   .Button:focus:not(.Button--disabled[disabled]) {
-    outline: 3px solid;
+    outline: var(--brand-borderWidth-thick) solid;
     outline-color: var(--brand-color-focus);
     outline-offset: 2px;
   }
