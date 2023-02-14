@@ -16,7 +16,12 @@ Example Usage
   </CTAForm.Input>
   <CTAForm.Confirm>
     <FormControl required>
-      <FormControl.Label>I agree to the Privacy Policy and Terms of Service</FormControl.Label>
+      <FormControl.Label>
+        <Text>
+          I agree to the <InlineLink href="www.github.com">Privacy Policy</InlineLink> and{' '}
+          <InlineLink href="www.github.com">Terms of Service</InlineLink>
+        </Text>
+      </FormControl.Label>
       <Checkbox name="confirm" />
     </FormControl>
   </CTAForm.Confirm>
