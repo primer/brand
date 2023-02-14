@@ -61,6 +61,7 @@ describe('Button', () => {
     const consoleSpy = jest.spyOn(global.console, 'log').mockImplementation()
 
     const {getByRole} = render(
+      // eslint-disable-next-line no-console
       <Button variant="primary" size="medium" aria-disabled="false" onFocus={() => console.log('Focused')}>
         Primary Button
       </Button>
@@ -75,6 +76,7 @@ describe('Button', () => {
     const consoleSpy = jest.spyOn(global.console, 'log').mockImplementation()
 
     const {getByRole} = render(
+      // eslint-disable-next-line no-console
       <Button variant="primary" size="medium" disabled onFocus={() => console.log('Focused')}>
         Primary Button
       </Button>
@@ -89,6 +91,7 @@ describe('Button', () => {
     const consoleSpy = jest.spyOn(global.console, 'log').mockImplementation()
 
     const {getByRole} = render(
+      // eslint-disable-next-line no-console
       <Button variant="primary" size="medium" aria-disabled="true" onFocus={() => console.log('Focused')}>
         Primary Button
       </Button>

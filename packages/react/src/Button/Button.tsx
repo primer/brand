@@ -57,7 +57,7 @@ export const Button = forwardRef(
           onMouseEnter?.(event)
         }
       },
-      [disabled, ariaDisabled, onMouseEnter]
+      [isDisabled, onMouseEnter]
     )
 
     const handleOnMouseLeave = useCallback(
