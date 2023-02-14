@@ -2,7 +2,7 @@ import React from 'react'
 import {render, cleanup, fireEvent} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
-import {CTAForm} from '../'
+import {CTAForm, FormControl, TextInput, Checkbox} from '../'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 expect.extend(toHaveNoViolations)
@@ -81,6 +81,26 @@ describe('CTAForm', () => {
     expect(ctaInputEl.classList).toContain(expectedClass)
   })
 
+  it('allows and passes expected attributes to FormControl within the CTAForm.Input component', async () => {
+    const {container, getByRole} = render(
+      <CTAForm.Input>
+        <FormControl>
+          <FormControl.Label>label</FormControl.Label>
+          <TextInput />
+        </FormControl>
+      </CTAForm.Input>
+    )
+    const labelEl = container.querySelector('label')
+    const inputEl = getByRole('textbox')
+    // Testing that the label has the required asterisk
+    expect(labelEl?.textContent).toContain('*')
+    // Testing that the input has the full width class
+    expect(inputEl.classList).toContain('TextInput--fullWidth')
+    // Testing that the label and input are set to the large size
+    expect(inputEl.classList).toContain(`TextInput--large`)
+    expect(labelEl?.classList).toContain('FormControl-label--large')
+  })
+
   it('allows and passes expected attributes to the CTAForm.Confirm component', async () => {
     const mockTestId = 'test'
     const expectedClass = 'test'
@@ -88,6 +108,23 @@ describe('CTAForm', () => {
     const {getByTestId} = render(<CTAForm.Confirm data-testid={mockTestId} className={expectedClass}></CTAForm.Confirm>)
     const ctaConfirmEl = getByTestId(mockTestId)
     expect(ctaConfirmEl.classList).toContain(expectedClass)
+  })
+
+  it('allows and passes expected attributes to FormControl within the CTAForm.Input component', async () => {
+    const {container} = render(
+      <CTAForm.Confirm>
+        <FormControl>
+          <FormControl.Label>label</FormControl.Label>
+          <Checkbox />
+        </FormControl>
+      </CTAForm.Confirm>
+    )
+    const labelEl = container.querySelector('label')
+    const formControlEl = container.querySelector('section')
+    // Testing that the FormControl has the full width class
+    expect(formControlEl?.classList).toContain('FormControl--fullWidth')
+    // Testing that the label is set to the large size
+    expect(labelEl?.classList).toContain('FormControl-label--large')
   })
 
   it('allows and passes expected attributes to the CTAForm.Action component', async () => {
