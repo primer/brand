@@ -2,18 +2,18 @@
 '@primer/react-brand': patch
 ---
 
-Add `width` and `letter-spacing` configurability to Heading
+Add `stretch` and `letter-spacing` configurability to Heading
 
 **Width**
 
 ```jsx
-<Heading as="h3" width="condensed">
+<Heading as="h3" stretch="condensed">
   condensed
 </Heading>
-<Heading as="h3" width="normal">
+<Heading as="h3" stretch="normal">
   normal
 </Heading>
-<Heading as="h3" width="expanded">
+<Heading as="h3" stretch="expanded">
   wide
 </Heading>
 ```

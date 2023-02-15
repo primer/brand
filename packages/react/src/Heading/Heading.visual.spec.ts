@@ -39,15 +39,15 @@ test.describe('Visual Comparison: Heading', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Heading / Override Width', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--override-width&viewMode=story')
+  test('Heading / Override Stretch', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--override-stretch&viewMode=story')
 
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Heading / Override Width Responsive', async ({page}) => {
+  test('Heading / Override Stretch Responsive', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-heading--override-width-responsive&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-heading--override-stretch-responsive&viewMode=story'
     )
 
     expect(await page.screenshot()).toMatchSnapshot()

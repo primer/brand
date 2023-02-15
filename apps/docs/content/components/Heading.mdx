@@ -11,7 +11,7 @@ import {
   HeadingTags,
   HeadingSizes,
   HeadingWeights,
-  HeadingWidths,
+  HeadingStretch,
   defaultHeadingTag,
   HeadingLetterSpacing,
 } from '@primer/react-brand'
@@ -107,21 +107,21 @@ Use the `weight` prop to override the default visual appearance if required.
 </>
 ```
 
-### Width
+### Width / Stretch
 
-The recommended text width is automatically applied to Headings based on their position on the type scale.
+The recommended text width value is automatically applied to Headings based on their position on the type scale.
 
-Use the `width` prop to override the default visual appearance if required.
+Use the `stretch` prop to override the default visual appearance if required.
 
 ```jsx live
 <>
-  <Heading as="h3" width="condensed">
+  <Heading as="h3" stretch="condensed">
     condensed
   </Heading>
-  <Heading as="h3" width="normal">
+  <Heading as="h3" stretch="normal">
     normal
   </Heading>
-  <Heading as="h3" width="expanded">
+  <Heading as="h3" stretch="expanded">
     expanded
   </Heading>
 
@@ -130,7 +130,7 @@ Use the `width` prop to override the default visual appearance if required.
   <br />
   <Heading
     as="h4"
-    width={{
+    stretch={{
       narrow: 'condensed',
       regular: 'normal',
       wide: 'expanded',
@@ -179,13 +179,13 @@ Use the `letterSpacing` prop to override the default settings if required.
 
 ### Heading
 
-| Name            | Type                                                                                               |                     Default                      | Description                                   |
-| :-------------- | :------------------------------------------------------------------------------------------------- | :----------------------------------------------: | :-------------------------------------------- |
-| `as`            | <PropTableValues values={HeadingTags} addLineBreaks />                                             | <PropTableValues values={[defaultHeadingTag]} /> | Applies the underlying HTML element           |
-| `className`     | `string`                                                                                           |                                                  | Sets a custom class on the root element       |
-| `id`            | `string`                                                                                           |                                                  | Sets a custom id                              |
-| `ref`           | `React.RefObject`                                                                                  |                                                  | Forward a Ref to the underlying DOM node      |
-| `size`          | <PropTableValues values={HeadingSizes} addLineBreaks />                                            |                                                  | Override the default visual text size         |
-| `weight`        | <PropTableValues values={[...HeadingWeights, 'ResponsiveWeightMap']} addLineBreaks />              |                                                  | Override the default visual text weight       |
-| `width`         | <PropTableValues values={[...HeadingWidths, 'ResponsiveWidthMap']} addLineBreaks />                |                                                  | Override the default visual text width        |
-| `letterSpacing` | <PropTableValues values={[...HeadingLetterSpacing, 'ResponsiveLetterSpacingMap']} addLineBreaks /> |                                                  | Override the default visual character spacing |
+| Name            | Type                                                                                               |                     Default                      | Description                                    |
+| :-------------- | :------------------------------------------------------------------------------------------------- | :----------------------------------------------: | :--------------------------------------------- |
+| `as`            | <PropTableValues values={HeadingTags} addLineBreaks />                                             | <PropTableValues values={[defaultHeadingTag]} /> | Applies the underlying HTML element            |
+| `className`     | `string`                                                                                           |                                                  | Sets a custom class on the root element        |
+| `id`            | `string`                                                                                           |                                                  | Sets a custom id                               |
+| `ref`           | `React.RefObject`                                                                                  |                                                  | Forward a Ref to the underlying DOM node       |
+| `size`          | <PropTableValues values={HeadingSizes} addLineBreaks />                                            |                                                  | Override the default visual text size          |
+| `weight`        | <PropTableValues values={[...HeadingWeights, 'ResponsiveWeightMap']} addLineBreaks />              |                                                  | Override the default visual text weight        |
+| `stretch`       | <PropTableValues values={[...HeadingStretch, 'ResponsiveStretchMap']} addLineBreaks />             |                                                  | Override the default visual text stretch value |
+| `letterSpacing` | <PropTableValues values={[...HeadingLetterSpacing, 'ResponsiveLetterSpacingMap']} addLineBreaks /> |                                                  | Override the default visual character spacing  |

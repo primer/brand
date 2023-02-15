@@ -1,6 +1,6 @@
 import React from 'react'
 import {ComponentMeta, ComponentStory} from '@storybook/react'
-import {Heading, HeadingTags, HeadingWeights, HeadingLetterSpacing, HeadingWidths} from '.'
+import {Heading, HeadingTags, HeadingWeights, HeadingLetterSpacing, HeadingStretch} from '.'
 
 export default {
   title: 'Components/Heading',
@@ -55,26 +55,26 @@ export const OverrideWeightResponsive = () => (
   </Heading>
 )
 
-export const OverrideWidth = () => (
+export const OverrideStretch = () => (
   <>
-    {HeadingWidths.map(width => (
-      <Heading key={width} as="h3" width={width}>
-        {width}
+    {HeadingStretch.map(stretch => (
+      <Heading key={stretch} as="h3" stretch={stretch}>
+        {stretch}
       </Heading>
     ))}
   </>
 )
 
-export const OverrideWidthResponsive = () => (
+export const OverrideStretchResponsive = () => (
   <Heading
     as="h1"
-    width={{
+    stretch={{
       narrow: 'condensed',
       regular: 'normal',
       wide: 'expanded'
     }}
   >
-    Responsive heading widths
+    Responsive heading stretch
   </Heading>
 )
 

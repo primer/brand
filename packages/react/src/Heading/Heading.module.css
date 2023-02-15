@@ -149,45 +149,45 @@
  * Heading widths
  */
 
-.Heading--width-condensed,
-.Heading-narrow--width-condensed {
+.Heading--stretch-condensed,
+.Heading-narrow--stretch-condensed {
   font-stretch: 75%;
 }
 
-.Heading--width-normal,
-.Heading-narrow--width-normal {
+.Heading--stretch-normal,
+.Heading-narrow--stretch-normal {
   font-stretch: 100%;
 }
 
-.Heading--width-expanded,
-.Heading-narrow--width-expanded {
+.Heading--stretch-expanded,
+.Heading-narrow--stretch-expanded {
   font-stretch: 125%;
 }
 
 @media screen and (min-width: 48rem) {
-  .Heading-regular--width-condensed {
+  .Heading-regular--stretch-condensed {
     font-stretch: 75%;
   }
 
-  .Heading-regular--width-normal {
+  .Heading-regular--stretch-normal {
     font-stretch: 100%;
   }
 
-  .Heading-regular--width-expanded {
+  .Heading-regular--stretch-expanded {
     font-stretch: 125%;
   }
 }
 
 @media screen and (min-width: 80rem) {
-  .Heading-narrow--weight-expanded .Heading-wide--width-condensed {
+  .Heading-narrow--weight-expanded .Heading-wide--stretch-condensed {
     font-stretch: 75%;
   }
 
-  .Heading-wide--width-normal {
+  .Heading-wide--stretch-normal {
     font-stretch: 100%;
   }
 
-  .Heading-wide--width-expanded {
+  .Heading-wide--stretch-expanded {
     font-stretch: 125%;
   }
 }

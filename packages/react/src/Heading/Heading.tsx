@@ -7,19 +7,19 @@ export const HeadingSizes = ['1', '2', '3', '4', '5', '6'] as const
 export const HeadingTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const
 
 export const HeadingWeights = ['heavy', 'extrabold', 'bold', 'semibold', 'medium', 'normal', 'light'] as const
-export const HeadingWidths = ['condensed', 'normal', 'expanded'] as const
+export const HeadingStretch = ['condensed', 'normal', 'expanded'] as const
 export const HeadingLetterSpacing = ['condensed', 'normal', 'none'] as const
 
 export const defaultHeadingTag = HeadingTags[1]
 
 type HeadingWeightVariants = typeof HeadingWeights[number]
-type HeadingWidthVariants = typeof HeadingWidths[number]
+type HeadingStretchVariants = typeof HeadingStretch[number]
 type HeadingLetterSpacingVariants = typeof HeadingLetterSpacing[number]
 
-type ResponsiveWidthMap = {
-  narrow?: HeadingWidthVariants
-  regular?: HeadingWidthVariants
-  wide?: HeadingWidthVariants
+type ResponsiveStretchMap = {
+  narrow?: HeadingStretchVariants
+  regular?: HeadingStretchVariants
+  wide?: HeadingStretchVariants
 }
 
 type ResponsiveLetterSpacingMap = {
@@ -47,7 +47,7 @@ export type HeadingTags = BaseProps<HTMLHeadingElement> & {
   as?: typeof HeadingTags[number]
   size?: typeof HeadingSizes[number]
   weight?: HeadingWeightVariants | ResponsiveWeightMap
-  width?: HeadingWidthVariants | ResponsiveWidthMap
+  stretch?: HeadingStretchVariants | ResponsiveStretchMap
   letterSpacing?: HeadingLetterSpacingVariants | ResponsiveLetterSpacingMap
 } & React.HTMLAttributes<HTMLHeadingElement>
 
@@ -64,7 +64,7 @@ export const Heading = forwardRef(
       size,
       letterSpacing,
       weight,
-      width,
+      stretch,
       ...rest
     }: PropsWithChildren<HeadingProps>,
     ref: Ref<HTMLHeadingElement>
@@ -81,7 +81,7 @@ export const Heading = forwardRef(
     }
 
     const weightClass = useMemo(() => buildClass('weight', weight), [weight])
-    const widthClass = useMemo(() => buildClass('width', width), [width])
+    const stretchClass = useMemo(() => buildClass('stretch', stretch), [stretch])
     const letterSpacingClass = useMemo(() => buildClass('letter-spacing', letterSpacing), [letterSpacing])
 
     const headingClassNames = clsx(
@@ -89,7 +89,7 @@ export const Heading = forwardRef(
       !size && styles[`Heading--${classMap[as]}`],
       size && styles[`Heading--${size}`],
       weight && weightClass,
-      width && widthClass,
+      stretch && stretchClass,
       letterSpacingClass && letterSpacingClass,
       className
     )
