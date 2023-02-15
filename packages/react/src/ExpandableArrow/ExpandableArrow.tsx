@@ -6,9 +6,10 @@ type ExpandableArrowProps = {
   className?: string
   /** Animate between a chevron arrow and an arrow with a stem by toggling the value of `expanded` */
   expanded?: boolean
+  hidden?: boolean
 }
 
-export function ExpandableArrow({className, expanded = false}: ExpandableArrowProps) {
+export function ExpandableArrow({className, expanded = false, hidden}: ExpandableArrowProps) {
   return (
     <svg
       className={clsx(styles.ExpandableArrow, expanded && styles['ExpandableArrow--expanded'], className)}
@@ -16,6 +17,8 @@ export function ExpandableArrow({className, expanded = false}: ExpandableArrowPr
       height="16"
       viewBox="0 0 16 16"
       fill="none"
+      aria-hidden={hidden}
+      focusable={hidden ? 'false' : undefined}
     >
       <path
         fill="currentColor"

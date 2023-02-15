@@ -24,11 +24,12 @@ describe('CTABanner', () => {
 
   it('renders correctly into the document', () => {
     const expectedClass = 'CTABanner'
+    const expectedCustomClass = 'custom-class'
     const expectedTag = 'section'
     const mockTestId = 'test'
 
     const {getByTestId} = render(
-      <CTABanner data-testid={mockTestId}>
+      <CTABanner data-testid={mockTestId} className={expectedCustomClass}>
         <CTABanner.Heading as={'h1'}>Where the most ambitious teams build great things</CTABanner.Heading>
         <CTABanner.Description>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
@@ -43,6 +44,7 @@ describe('CTABanner', () => {
     const ctaBannerEl = getByTestId(mockTestId)
     expect(ctaBannerEl.tagName).toBe(expectedTag.toUpperCase())
     expect(ctaBannerEl.classList).toContain(expectedClass)
+    expect(ctaBannerEl.classList).toContain(expectedCustomClass)
   })
 
   it('renders the correct default heading type', () => {

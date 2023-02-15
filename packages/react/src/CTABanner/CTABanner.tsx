@@ -53,7 +53,11 @@ const Root = forwardRef(
     ref: Ref<HTMLElement>
   ) => {
     return (
-      <section ref={ref} className={clsx(styles.CTABanner, hasShadow && styles['CTABanner--shadow'])} {...props}>
+      <section
+        ref={ref}
+        className={clsx(styles.CTABanner, hasShadow && styles['CTABanner--shadow'], className)}
+        {...props}
+      >
         <div
           className={clsx(
             styles['CTABanner-container'],
