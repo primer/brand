@@ -20,14 +20,6 @@ export default {
         type: 'text'
       },
       defaultValue: 'https://github.com'
-    },
-    fill: {
-      description: 'Fill image',
-      control: {
-        type: 'boolean',
-        options: [true, false]
-      },
-      defaultValue: false
     }
   }
 } as ComponentMeta<typeof Card>
@@ -35,7 +27,6 @@ export default {
 type PlaygroundProps = CardProps & {
   height: number
   width: number
-  fill?: boolean
 }
 
 const Template = (args: PlaygroundProps) => {
