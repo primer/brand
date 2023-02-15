@@ -20,11 +20,7 @@ export type CardProps = {
   /**
    * Valid children include Card.Image, Card.Heading, and Card.Description
    */
-  children:
-    | React.ReactNode
-    | React.ReactElement<CardIconProps>
-    | React.ReactElement<CardHeadingProps>
-    | React.ReactElement<CardDescriptionProps>
+  children: React.ReactNode | React.ReactElement<CardHeadingProps> | React.ReactElement<CardDescriptionProps>
   /**
    * Changes the link content of the card
    * * @default 'Learn more'
@@ -40,12 +36,7 @@ const CardRoot = forwardRef<HTMLLinkElement, CardProps>(({children, className, l
   const childrenHasFragment = React.Children.toArray(children).some(child => isFragment(child))
   const filteredChildren = React.Children.toArray(children).filter(child => {
     if (React.isValidElement(child) && typeof child.type !== 'string') {
-      if (
-        childrenHasFragment ||
-        child.type === CardIcon ||
-        child.type === CardHeading ||
-        child.type === CardDescription
-      ) {
+      if (childrenHasFragment || child.type === CardHeading || child.type === CardDescription) {
         return true
       }
     }
@@ -64,32 +55,6 @@ const CardRoot = forwardRef<HTMLLinkElement, CardProps>(({children, className, l
     </a>
   )
 })
-
-type CardIconProps = BaseProps<HTMLSpanElement> & {
-  icon: React.ReactNode
-  fill?: string
-  background?: string
-}
-
-function CardIcon({icon: Icon, className, fill = 'currentColor', background, ...rest}: CardIconProps) {
-  return (
-    <span
-      className={clsx(styles.Card__icon, background && styles['Card__icon--badge'], className)}
-      style={{background}}
-      {...rest}
-    >
-      {typeof Icon === 'function' ? (
-        <Icon size="medium" fill={fill} />
-      ) : (
-        React.isValidElement(Icon) &&
-        React.cloneElement(Icon, {
-          width: 24,
-          height: 24
-        })
-      )}
-    </span>
-  )
-}
 
 type CardHeadingProps = BaseProps<HTMLHeadingElement> & {
   children: string
@@ -125,7 +90,6 @@ const CardDescription = forwardRef<HTMLParagraphElement, CardDescriptionProps>(
  * {@link https://primer.style/brand/components/Card/ See usage examples}.
  */
 export const Card = Object.assign(CardRoot, {
-  Icon: CardIcon,
   Heading: CardHeading,
   Description: CardDescription
 })

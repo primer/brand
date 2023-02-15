@@ -2,17 +2,18 @@
   max-width: var(--brand-Card-maxWidth);
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  background-color: var(--brand-Card-background-elevated);
   text-decoration: none;
   color: var(--brand-color-text-default);
-  background-color: var(--brand-Card-background-elevated);
-  border-radius: 6px;
-  box-shadow: var(--brand-Card-visual-shadow);
+  background-color: var(--brand-Card-background-default);
   border: 1px solid var(--brand-color-border-default);
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--brand-Card-visual-shadow);
+  border-radius: 6px;
   padding: var(--base-size-32);
-  max-width: 384px;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.Card:hover {
+  transform: scale3d(1.025, 1.025, 1);
 }
 
 .Card__heading {
@@ -25,18 +26,4 @@
 
 .Card__action {
   margin-top: auto;
-}
-
-.Card__icon {
-  margin-bottom: var(--base-size-32);
-}
-
-.Card__icon--badge {
-  aspect-ratio: auto 64 / 64;
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }

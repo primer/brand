@@ -2,15 +2,7 @@
   "brand": {
     "Card": {
       "background": {
-        "plain": {
-          "value": "transparent",
-          "dark": "transparent"
-        },
-        "inset": {
-          "value": "var(--base-color-scale-gray-1)",
-          "dark": "var(--base-color-scale-gray-7)"
-        },
-        "elevated": {
+        "default": {
           "value": "var(--brand-color-canvas-default)",
           "dark": "var(--brand-color-canvas-subtle)"
         }
