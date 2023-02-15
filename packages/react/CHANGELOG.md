@@ -1,5 +1,52 @@
 # @primer/react-brand
 
+## 0.12.1
+
+### Patch Changes
+
+- [#181](https://github.com/primer/brand/pull/181) [`2572904`](https://github.com/primer/brand/commit/25729045d5bcaddf8e656da168d4c3dd2561fb2b) Thanks [@JoshBowdenConcepts](https://github.com/JoshBowdenConcepts)! - Fixed CTABanner Class Forwarding Bug, now users can pass custom classes to the wrapper for the CTABanner component
+
+* [#170](https://github.com/primer/brand/pull/170) [`c913aab`](https://github.com/primer/brand/commit/c913aab049e5ea8c69b38176f2e698af35cc5c21) Thanks [@TylerJDev](https://github.com/TylerJDev)! - Adds accessibility fixes for `Button`.
+
+  - Retains outline on focus when only `aria-disabled` is applied.
+  - Adds focus indicator and 'disabled' style for WHCM.
+  - Allows use of 'disabled' and 'aria-disabled' separately.
+  - Hides SVG from screen readers.
+
+- [#186](https://github.com/primer/brand/pull/186) [`9cc537a`](https://github.com/primer/brand/commit/9cc537ab42169afd599c9b32b1bad6ce0fe9cd87) Thanks [@rezrah](https://github.com/rezrah)! - Add `stretch` and `letter-spacing` configurability to Heading
+
+  **Width**
+
+  ```jsx
+  <>
+    <Heading as="h3" stretch="condensed">
+      condensed
+    </Heading>
+    <Heading as="h3" stretch="normal">
+      normal
+    </Heading>
+    <Heading as="h3" stretch="expanded">
+      wide
+    </Heading>
+  </>
+  ```
+
+  **Letter spacing**
+
+  ```jsx
+  <>
+    <Heading as="h3" letterSpacing="condensed">
+      condensed
+    </Heading>
+    <Heading as="h3" letterSpacing="normal">
+      normal
+    </Heading>
+    <Heading as="h3" letterSpacing="none">
+      none
+    </Heading>
+  </>
+  ```
+
 ## 0.12.0
 
 ### Minor Changes
