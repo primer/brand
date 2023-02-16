@@ -21,8 +21,8 @@ export const Playground: ComponentStory<typeof CTAForm> = _args => (
       <FormControl required>
         <FormControl.Label>
           <Text size="300" variant="muted">
-            I agree to the <InlineLink href="www.github.com">Privacy Policy</InlineLink> and{' '}
-            <InlineLink href="www.github.com">Terms of Service</InlineLink>
+            I agree to the <InlineLink href="https://github.com">Privacy Policy</InlineLink> and{' '}
+            <InlineLink href="https://github.com">Terms of Service</InlineLink>
           </Text>
         </FormControl.Label>
         <Checkbox name="confirm" />
@@ -44,8 +44,8 @@ export const Default: ComponentStory<typeof CTAForm> = _args => (
       <FormControl required>
         <FormControl.Label>
           <Text size="300" variant="muted">
-            I agree to the <InlineLink href="www.github.com">Privacy Policy</InlineLink> and{' '}
-            <InlineLink href="www.github.com">Terms of Service</InlineLink>
+            I agree to the <InlineLink href="https://github.com">Privacy Policy</InlineLink> and{' '}
+            <InlineLink href="https://github.com">Terms of Service</InlineLink>
           </Text>
         </FormControl.Label>
         <Checkbox name="confirm" />

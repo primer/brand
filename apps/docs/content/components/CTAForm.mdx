@@ -66,7 +66,7 @@ import {CTAForm} from '@primer/react-brand'
 
 ```jsx live
 <CTAForm onSubmit={() => alert('onSubmit event triggered')}>
-  <CTAForm.Input onChange={() => alert('onChange event triggered')}>
+  <CTAForm.Input onChange={() => console.log('onChange event triggered')}>
     <FormControl required>
       <FormControl.Label>Your work email address</FormControl.Label>
       <TextInput placeholder="name" />
