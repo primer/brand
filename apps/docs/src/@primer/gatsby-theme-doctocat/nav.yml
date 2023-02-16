@@ -20,6 +20,8 @@
       url: /components/ComparisonTable
     - title: CTABanner
       url: /components/CTABanner
+    - title: CTAForm
+      url: /components/CTAForm
     - title: FAQ
       url: /components/FAQ
     - title: Hero
