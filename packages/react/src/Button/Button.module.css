@@ -11,6 +11,8 @@
   cursor: pointer;
   border: none;
   background: none;
+  display: inline-grid;
+  grid-template-areas: 'leadingIcon text trailingIcon';
 }
 
 .Button:focus:not(.Button--disabled[disabled]) {
@@ -18,24 +20,49 @@
   box-shadow: 0 0 0 2px var(--brand-color-canvas-default), 0 0 0 5px var(--brand-color-focus);
 }
 
+.Button__text {
+  grid-area: text / text / text / text;
+  position: relative;
+}
+
+.Button__icon-visual {
+  display: flex;
+  align-self: center;
+  height: var(--base-size-16);
+  width: auto;
+  fill: currentcolor;
+}
+
+.Button__trailing-visual {
+  grid-area: trailingIcon / trailingIcon / trailingIcon / trailingIcon;
+  display: flex;
+  margin-left: var(--base-size-16);
+}
+
+.Button__leading-visual {
+  grid-area: leadingIcon / leadingIcon / leadingIcon / leadingIcon;
+  display: flex;
+  margin-right: var(--base-size-16);
+}
+
 .Button--label {
   font-weight: var(--base-text-weight-semibold);
 }
 
-.Button--label.Button-label--disabled {
+.Button--label.Button-label--disabled,
+.Button__icon-visual--disabled {
   color: var(--brand-Button-fg-primary-disabled);
 }
 
-.Button-arrow {
-  margin-left: 4px;
-}
-
-.Button--primary .Button-arrow--disabled {
+.Button--primary .Button-arrow--disabled,
+.Button--primary .Button__icon-visual--disabled {
   color: var(--brand-Button-fg-primary-disabled);
 }
 
 .Button--secondary .Button-arrow--disabled,
-.Button--subtle .Button-arrow--disabled {
+.Button--subtle .Button-arrow--disabled,
+.Button--subtle .Button__icon-visual--disabled,
+.Button--secondary .Button__icon-visual--disabled {
   color: var(--brand-Button-fg-secondary-disabled);
 }
 
@@ -72,7 +99,8 @@
 }
 
 .Button--label-secondary.Button-label--disabled,
-.Button--label-secondary.Button-label--disabled {
+.Button--label-secondary.Button-label--disabled,
+.Button__icon-visual--disabled {
   color: var(--brand-Button-fg-secondary-disabled);
 }
 
