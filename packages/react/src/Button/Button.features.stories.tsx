@@ -3,7 +3,7 @@ import {ComponentMeta} from '@storybook/react'
 import {userEvent, waitFor, within} from '@storybook/testing-library'
 
 import {Button} from '.'
-import {HeartFillIcon, HeartIcon, MarkGithubIcon, PlayIcon} from '@primer/octicons-react'
+import {HeartFillIcon, MarkGithubIcon, PlayIcon} from '@primer/octicons-react'
 
 export default {
   title: 'Components/Button/Features',

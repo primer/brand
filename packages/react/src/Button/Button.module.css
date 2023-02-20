@@ -21,8 +21,8 @@
 }
 
 .Button__text {
-  grid-area: text / text / text / text;
   position: relative;
+  line-height: var(--brand-text-lineHeight-200);
 }
 
 .Button__icon-visual {
@@ -34,13 +34,15 @@
 }
 
 .Button__trailing-visual {
-  grid-area: trailingIcon / trailingIcon / trailingIcon / trailingIcon;
   display: flex;
   margin-left: var(--base-size-16);
 }
 
+.Button__trailing-visual--arrow {
+  margin-left: var(--base-size-8);
+}
+
 .Button__leading-visual {
-  grid-area: leadingIcon / leadingIcon / leadingIcon / leadingIcon;
   display: flex;
   margin-right: var(--base-size-16);
 }

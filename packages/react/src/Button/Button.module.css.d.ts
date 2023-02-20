@@ -4,6 +4,7 @@ declare const styles: {
   readonly "Button__text": string;
   readonly "Button__icon-visual": string;
   readonly "Button__trailing-visual": string;
+  readonly "Button__trailing-visual--arrow": string;
   readonly "Button__leading-visual": string;
   readonly "Button--label": string;
   readonly "Button-label--disabled": string;

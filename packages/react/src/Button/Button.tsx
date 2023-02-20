@@ -176,7 +176,7 @@ export const _Button = forwardRef(
         </span>
 
         {!TrailingVisual && hasArrow && (
-          <span className={clsx(styles['Button__trailing-visual'])}>
+          <span className={clsx(styles['Button__trailing-visual'], styles['Button__trailing-visual--arrow'])}>
             <ExpandableArrow
               hidden
               className={clsx(styles['Button-arrow'], isDisabled && styles[`Button-arrow--disabled`])}
