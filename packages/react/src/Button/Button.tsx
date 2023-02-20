@@ -14,11 +14,11 @@ export const defaultButtonSize = ButtonSizes[0]
 
 export type ButtonBaseProps = {
   /**
-   * The leading icon appears before the button content
+   * The leading visual appears before the button content
    */
   leadingVisual?: ReactElement
   /**
-   * The trailing icon appears after the button content
+   * The trailing visual appears after the button content
    */
   trailingVisual?: ReactElement
   /**

@@ -183,7 +183,7 @@ describe('Button', () => {
     expect(trailingIconSlot).not.toBeInTheDocument()
   })
 
-  it('can optionally render a leading icon', () => {
+  it('can optionally render a leading visual', () => {
     const leadingVisualId = Button.testIds.leadingVisual
 
     const {getByTestId} = render(<Button leadingVisual={SearchIcon}>Button</Button>)
@@ -193,7 +193,7 @@ describe('Button', () => {
     expect(el).toContainElement(el.querySelector('svg'))
   })
 
-  it('can optionally render a trailing icon', () => {
+  it('can optionally render a trailing visual', () => {
     const trailingVisualId = Button.testIds.trailingVisual
 
     const {getByTestId} = render(<Button trailingVisual={SearchIcon}>Button</Button>)
