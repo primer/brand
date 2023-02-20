@@ -59,7 +59,7 @@
     'components-minimalfooter-features--dark-theme': 5000, // for external social imagery to load
     'components-minimalfooter-features--filtered-social-links': 5000, // for external social imagery to load
     'components-minimalfooter-features--default-narrow': 5000, // for external social imagery to load
-    'components-minimalfooter-features--maximum-links': 5000 // for external social imagery to load
+    'components-minimalfooter-features--maximum-links': 5000 // for external social imagery to load,
   }
 
   /**
@@ -67,7 +67,8 @@
    * Only add tests here that aren't suitable for visual regression testing
    */
   const skipTestLookup = [
-    'components-river--video' // video makes this too flakey
+    'components-river--video', // video makes this too flakey
+    'components-river--custom-logos' // for external social imagery to load
   ]
 
   const categorisedStories = Object.keys(stories as Stories).reduce((acc, key) => {
