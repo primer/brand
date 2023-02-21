@@ -7,6 +7,18 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Card', () => {
+  test('Card / Label', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--label&viewMode=story')
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Card / Stacked', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--stacked&viewMode=story')
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Card / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-card--default&viewMode=story')
 
