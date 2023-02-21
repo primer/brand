@@ -59,7 +59,7 @@ const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, className, ...
 type FAQHeadingProps = BaseProps<HTMLHeadingElement> & {
   size?: 'medium' | 'large'
   align?: 'start' | 'center'
-  children: string
+  children: React.ReactNode | React.ReactNode[]
 }
 
 const FAQHeading = forwardRef<HTMLHeadingElement, FAQHeadingProps>(
@@ -85,7 +85,7 @@ const FAQHeading = forwardRef<HTMLHeadingElement, FAQHeadingProps>(
 
 type FAQSubheadingProps = BaseProps<HTMLHeadingElement> & {
   align?: 'start' | 'center'
-  children: string
+  children: React.ReactNode | React.ReactNode[]
 }
 
 function FAQSubheading({children, className, ...rest}: FAQSubheadingProps) {

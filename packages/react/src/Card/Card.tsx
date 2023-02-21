@@ -112,7 +112,7 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
 )
 
 type CardHeadingProps = BaseProps<HTMLHeadingElement> & {
-  children: string
+  children: React.ReactNode | React.ReactNode[]
   as?: typeof HeadingTags[number]
 }
 
@@ -127,7 +127,7 @@ const CardHeading = forwardRef<HTMLHeadingElement, CardHeadingProps>(
 )
 
 type CardDescriptionProps = BaseProps<HTMLParagraphElement> & {
-  children: string
+  children: React.ReactNode | React.ReactNode[]
 }
 
 const CardDescription = forwardRef<HTMLParagraphElement, CardDescriptionProps>(
