@@ -9,7 +9,7 @@ description: Use Button for the main actions on a page or form.
 
 import {ButtonVariants, ButtonSizes} from '@primer/react-brand'
 import {Box as Container} from '@primer/react'
-import {SearchIcon} from '@primer/octicons-react'
+import {SearchIcon, ChevronDownIcon, FilterIcon} from '@primer/octicons-react'
 import {PropTableValues} from '../../src/components'
 
 ```js
@@ -59,16 +59,22 @@ The animated arrow indicator can be removed using the `hasArrow` prop.
 <Button hasArrow={false}>No arrow</Button>
 ```
 
-### Appending an icon
+### Using an icon
 
-We can place an icon inside the Button in either the leading or the trailing position to enhance the visual context. It is recommended to use an [Octicon](https://primer.style/octicons) here.
+You can place an icon inside the Button in either the leading or the trailing position to enhance the visual context. It is recommended to use an [Octicon](https://primer.style/octicons) here.
+
+<Note>
+  Use a trailing visual if the button action involves selecting items (dropdown,
+  select, filter, etc), and a leading visual to provide visual context to the
+  adjacent label. E.g. Use a search icon for a search field submit action.
+</Note>
 
 ```jsx live
 <Stack direction="vertical" alignItems="flex-start">
   <Button leadingVisual={SearchIcon}>Search</Button>
-  <Button trailingVisual={SearchIcon}>Search</Button>
-  <Button leadingVisual={SearchIcon} trailingVisual={CheckIcon}>
-    Search
+  <Button trailingVisual={ChevronDownIcon}>Select</Button>
+  <Button leadingVisual={FilterIcon} trailingVisual={ChevronDownIcon}>
+    Filter
   </Button>
 </Stack>
 ```
