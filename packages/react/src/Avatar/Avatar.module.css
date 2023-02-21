@@ -14,8 +14,9 @@
   border-radius: var(--brand-borderRadius-medium);
 }
 
-.Avatar-iamge {
-  display: block;
+.Avatar__image {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 

@@ -40,7 +40,7 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
         className={clsx(styles.Avatar, sizeClass, styles[`Avatar--shape-${shape}`], className)}
         {...props}
       >
-        <img src={src} alt={alt} />
+        <img className={clsx(styles.Avatar__image)} src={src} alt={alt} />
       </span>
     )
   }

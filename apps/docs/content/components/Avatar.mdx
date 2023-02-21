@@ -8,6 +8,8 @@ description: Use Avatar to display a thumbnail representation of a person.
 ---
 
 import {Label} from '@primer/react'
+import {PropTableValues} from '../../src/components'
+import {AvatarSizes, AvatarShapes} from '@primer/react-brand'
 
 ```js
 import {Avatar, Stack} from '@primer/react-brand'
@@ -18,7 +20,10 @@ import {Avatar, Stack} from '@primer/react-brand'
 ### Default
 
 ```jsx live
-<Avatar src="https://i.pravatar.cc/160?u=80" alt="A random avatar picture" />
+<Avatar
+  src="https://avatars.githubusercontent.com/u/92997159?v=4"
+  alt="Mona profile"
+/>
 ```
 
 ### Sizes
@@ -35,30 +40,48 @@ The size of the avatar can be controlled by the `size` prop.
 >
   <Avatar
     size={32}
-    src="https://i.pravatar.cc/64?u=80"
-    alt="A random avatar picture at 32px"
+    src="https://avatars.githubusercontent.com/u/92997159?v=4"
+    alt="Mona avatar at 32px"
   />
   <Avatar
     size={40}
-    src="https://i.pravatar.cc/80?u=80"
-    alt="A random avatar picture at 40px"
+    src="https://avatars.githubusercontent.com/u/92997159?v=4"
+    alt="Mona avatar at 40px"
   />
   <Avatar
     size={48}
-    src="https://i.pravatar.cc/96?u=80"
-    alt="A random avatar picture at 48px"
+    src="https://avatars.githubusercontent.com/u/92997159?v=4"
+    alt="Mona avatar at 48px"
   />
   <Avatar
     size={64}
-    src="https://i.pravatar.cc/128?u=80"
-    alt="A random avatar picture at 64px"
+    src="https://avatars.githubusercontent.com/u/92997159?v=4"
+    alt="Mona avatar at 64px"
   />
   <Avatar
     size={80}
-    src="https://i.pravatar.cc/160?u=80"
-    alt="A random avatar picture at 80px"
+    src="https://avatars.githubusercontent.com/u/92997159?v=4"
+    alt="Mona avatar at 80px"
   />
 </Stack>
+```
+
+#### Responsive Sizes
+
+Passing an Object of a particular shape will allow granular control of `size` at various supported breakpoints.
+
+Supported breakpoints are `narrow`, `regular` and `wide`.
+
+The Object value does not require all properties be passed, but rather operates on the basis of `min-width`.
+
+E.g. Providing only `narrow` will apply that value to all larger breakpoints, but not the other way.
+
+```jsx live
+<Avatar
+  size={{narrow: 32, regular: 40, wide: 80}}
+  src="https://avatars.githubusercontent.com/u/92997159?v=4"
+  alt="Mona avatar at 32px"
+/>
 ```
 
 ### Shapes
@@ -76,13 +99,13 @@ The shape of the avatar can be controlled by the `shape` prop.
   <Avatar
     size={64}
     shape="circle"
-    src="https://i.pravatar.cc/128?u=80"
+    src="https://avatars.githubusercontent.com/u/92997159?v=4"
     alt="A circular avatar picture"
   />
   <Avatar
     size={64}
     shape="square"
-    src="https://i.pravatar.cc/128?u=80"
+    src="https://avatars.githubusercontent.com/u/92997159?v=4"
     alt="A square avatar picture"
   />
 </Stack>
@@ -92,10 +115,10 @@ The shape of the avatar can be controlled by the `shape` prop.
 
 ### Avatar <Label>Required</Label>
 
-| name        | type                         | default  | required | description                       |
-| ----------- | ---------------------------- | -------- | -------- | --------------------------------- |
-| `alt`       | `string`                     |          | `true`   | The alt text of the image         |
-| `className` | `string`                     |          | `false`  | Avatar custom class               |
-| `size`      | `32`, `40`, `48`, `64`, `80` | `40`     | `false`  | The size (in pixels) of the image |
-| `shape`     | `circle`, `square`           | `circle` | `false`  | The shape of the image            |
-| `src`       | `string`                     |          | `true`   | A url to the person's image       |
+| name        | type                                                                             | default  | required | description                       |
+| ----------- | -------------------------------------------------------------------------------- | -------- | -------- | --------------------------------- |
+| `alt`       | `string`                                                                         |          | `true`   | The alt text of the image         |
+| `className` | `string`                                                                         |          | `false`  | Avatar custom class               |
+| `size`      | <PropTableValues values={[...AvatarSizes, 'ResponsiveSizeMap']} addLineBreaks /> | `40`     | `false`  | The size (in pixels) of the image |
+| `shape`     | <PropTableValues values={AvatarShapes} addLineBreaks />                          | `circle` | `false`  | The shape of the image            |
+| `src`       | `string`                                                                         |          | `true`   | A url to the person's image       |
