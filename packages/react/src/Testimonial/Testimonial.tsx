@@ -1,7 +1,8 @@
 import React, {HTMLAttributes, PropsWithChildren, forwardRef, SVGProps} from 'react'
 import clsx from 'clsx'
 import {BaseProps} from '../component-helpers'
-import {Text} from '../'
+import {Text, Avatar} from '../'
+import type {AvatarProps} from '../'
 
 import styles from './Testimonial.module.css'
 
@@ -115,34 +116,6 @@ function _Name({children, className, position}: NameProps, ref) {
 }
 
 const Name = forwardRef(_Name)
-
-/**
- * Testimonial avatar child element
- * <Testimonial.Avatar>
- */
-type AvatarProps = {
-  src: string
-  alt: string
-} & React.HTMLAttributes<HTMLImageElement> &
-  BaseProps<HTMLImageElement>
-
-function _Avatar({alt, src, ...rest}: AvatarProps, ref) {
-  return (
-    <div className={styles['Testimonial-avatar']}>
-      <img
-        ref={ref}
-        className={styles['Testimonial-avatar-image']}
-        src={src}
-        {...rest}
-        alt={alt}
-        width={48}
-        height={48}
-      />
-    </div>
-  )
-}
-
-const Avatar = forwardRef(_Avatar)
 
 /**
  * Testimonial logo child element
