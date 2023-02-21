@@ -5,7 +5,7 @@
   text-decoration: none;
   color: var(--brand-color-text-default);
   background-color: var(--brand-Card-background-default);
-  border: 1px solid var(--brand-color-border-default);
+  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
   box-shadow: var(--brand-Card-visual-shadow);
   border-radius: var(--brand-borderRadius-medium);
   padding: var(--base-size-32);
