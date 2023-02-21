@@ -99,9 +99,7 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
         onBlur={handleOnBlur}
         {...props}
       >
-        {React.Children.toArray(filteredChildren).map(child => {
-          return child
-        })}
+        {filteredChildren}
         <div className={styles.Card__action}>
           <Text as="span" size="300" className={clsx(stylesLink['Link--label'])}>
             {label ? label : 'Learn more'}
