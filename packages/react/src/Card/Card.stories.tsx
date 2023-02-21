@@ -18,7 +18,7 @@ export default {
 
 export const Default = (args: CardProps) => (
   <div style={{display: 'flex', flexWrap: 'wrap', gap: '3rem', justifyContent: 'center', marginTop: '10vh'}}>
-    <Card {...args}>
+    <Card {...args} target="_blank">
       <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
       <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
     </Card>

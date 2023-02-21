@@ -39,10 +39,11 @@ export type CardProps = {
   onMouseLeave: React.MouseEventHandler<HTMLAnchorElement>
   onFocus: React.FocusEventHandler<HTMLAnchorElement>
   onBlur: React.FocusEventHandler<HTMLAnchorElement>
-} & BaseProps<HTMLAnchorElement>
+} & BaseProps<HTMLAnchorElement> &
+  React.ComponentPropsWithoutRef<'a'>
 
 const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
-  ({onMouseEnter, onMouseLeave, onFocus, onBlur, children, className, label, href}) => {
+  ({onMouseEnter, onMouseLeave, onFocus, onBlur, children, className, label, href, ...props}) => {
     const [isHovered, setIsHovered] = React.useState(false)
     const [isFocused, setIsFocused] = React.useState(false)
 
@@ -96,6 +97,7 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
         onMouseLeave={handleMouseLeave}
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
+        {...props}
       >
         {React.Children.toArray(filteredChildren).map(child => {
           return child
