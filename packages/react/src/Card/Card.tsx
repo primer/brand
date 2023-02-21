@@ -29,10 +29,10 @@ export type CardProps = {
   /**
    * The href of the link
    * */
-  linkHref: string
+  href: string
 } & BaseProps<HTMLLinkElement>
 
-const CardRoot = forwardRef<HTMLLinkElement, CardProps>(({children, className, link, linkHref}) => {
+const CardRoot = forwardRef<HTMLLinkElement, CardProps>(({children, className, link, href}) => {
   const childrenHasFragment = React.Children.toArray(children).some(child => isFragment(child))
   const filteredChildren = React.Children.toArray(children).filter(child => {
     if (React.isValidElement(child) && typeof child.type !== 'string') {
@@ -44,7 +44,7 @@ const CardRoot = forwardRef<HTMLLinkElement, CardProps>(({children, className, l
   })
 
   return (
-    <a href={linkHref} className={clsx(styles.Card, className)}>
+    <a href={href} className={clsx(styles.Card, className)}>
       {React.Children.toArray(filteredChildren).map(child => {
         return child
       })}

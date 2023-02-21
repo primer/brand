@@ -20,7 +20,7 @@ import {Card} from '@primer/react-brand'
 The default card can be built with a custom heading and a description. The link label defaults to `Read more` and can be customized using the `link` prop.
 
 ```jsx live
-<Card linkHref="https://github.com">
+<Card href="https://github.com">
   <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
   <Card.Description>
     Everything you need to know about getting started with GitHub Actions.
@@ -33,7 +33,7 @@ The default card can be built with a custom heading and a description. The link 
 The link label defaults to `Read more` and can be customized using the `link` prop.
 
 ```jsx live
-<Card link="Click here" linkHref="https://github.com">
+<Card link="Click here" href="https://github.com">
   <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
   <Card.Description>
     Everything you need to know about getting started with GitHub Actions.
@@ -52,19 +52,19 @@ Use the `Stack` component to stack multiple cards horizontally or vertically.
   justifyContent="center"
   gap="normal"
 >
-  <Card linkHref="https://github.com">
+  <Card href="https://github.com">
     <Card.Heading>Heading</Card.Heading>
     <Card.Description>
       Everything you need to know about getting started with GitHub Actions.
     </Card.Description>
   </Card>
-  <Card linkHref="https://github.com">
+  <Card href="https://github.com">
     <Card.Heading>Heading</Card.Heading>
     <Card.Description>
       Everything you need to know about getting started with GitHub Actions.
     </Card.Description>
   </Card>
-  <Card linkHref="https://github.com">
+  <Card href="https://github.com">
     <Card.Heading>Heading</Card.Heading>
     <Card.Description>
       Everything you need to know about getting started with GitHub Actions.
@@ -77,10 +77,10 @@ Use the `Stack` component to stack multiple cards horizontally or vertically.
 
 ### Card
 
-| name       | type     | default     | required | description                             |
-| ---------- | -------- | ----------- | -------- | --------------------------------------- |
-| `linkHref` | `string` |             | `true`   | URL to the card content                 |
-| `link`     | `string` | `Read more` | `false`  | Label of link at the bottom of the Card |
+| name   | type     | default     | required | description                             |
+| ------ | -------- | ----------- | -------- | --------------------------------------- |
+| `href` | `string` |             | `true`   | URL to the card content                 |
+| `link` | `string` | `Read more` | `false`  | Label of link at the bottom of the Card |
 
 ### Card.Heading
 
