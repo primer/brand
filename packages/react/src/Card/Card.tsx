@@ -2,7 +2,7 @@ import React, {forwardRef, useCallback} from 'react'
 import {isFragment} from 'react-is'
 import clsx from 'clsx'
 
-import {Heading, Text} from '..'
+import {Heading, HeadingTags, Text} from '..'
 import {ExpandableArrow} from '../ExpandableArrow'
 import type {BaseProps} from '../component-helpers'
 
@@ -115,11 +115,11 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
 
 type CardHeadingProps = BaseProps<HTMLHeadingElement> & {
   children: string
-  as?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+  as?: typeof HeadingTags[number]
 }
 
 const CardHeading = forwardRef<HTMLHeadingElement, CardHeadingProps>(
-  ({children, as = 'h3', className, ...rest}, ref) => {
+  ({children, as = HeadingTags[2], className, ...rest}, ref) => {
     return (
       <Heading size="6" className={clsx(styles.Card__heading, className)} ref={ref} as={as} {...rest}>
         {children}
