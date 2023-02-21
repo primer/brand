@@ -6,7 +6,7 @@ export default {
   title: 'Components/Card',
   component: Card,
   argTypes: {
-    linkHref: {
+    href: {
       description: 'Title href of the card',
       control: {
         type: 'text'

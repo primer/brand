@@ -22,17 +22,17 @@ export type CardProps = {
    */
   children: React.ReactNode | React.ReactElement<CardHeadingProps> | React.ReactElement<CardDescriptionProps>
   /**
-   * Changes the link content of the card
+   * Changes the link label of the card
    * * @default 'Learn more'
    * */
-  link?: string
+  label?: string
   /**
    * The href of the link
    * */
   href: string
 } & BaseProps<HTMLLinkElement>
 
-const CardRoot = forwardRef<HTMLLinkElement, CardProps>(({children, className, link, href}) => {
+const CardRoot = forwardRef<HTMLLinkElement, CardProps>(({children, className, label, href}) => {
   const childrenHasFragment = React.Children.toArray(children).some(child => isFragment(child))
   const filteredChildren = React.Children.toArray(children).filter(child => {
     if (React.isValidElement(child) && typeof child.type !== 'string') {
@@ -50,7 +50,7 @@ const CardRoot = forwardRef<HTMLLinkElement, CardProps>(({children, className, l
       })}
       <div className={styles.Card__action}>
         {/* Temporary using Link component to not repeat styles */}
-        <Link>{link ? link : 'Learn more'}</Link>
+        <Link>{label ? label : 'Learn more'}</Link>
       </div>
     </a>
   )

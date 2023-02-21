@@ -28,12 +28,12 @@ The default card can be built with a custom heading and a description. The link 
 </Card>
 ```
 
-### Link
+### Label
 
-The link label defaults to `Read more` and can be customized using the `link` prop.
+The link label defaults to `Read more` and can be customized using the `label` prop.
 
 ```jsx live
-<Card link="Click here" href="https://github.com">
+<Card label="Click here" href="https://github.com">
   <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
   <Card.Description>
     Everything you need to know about getting started with GitHub Actions.
@@ -77,10 +77,10 @@ Use the `Stack` component to stack multiple cards horizontally or vertically.
 
 ### Card
 
-| name   | type     | default     | required | description                             |
-| ------ | -------- | ----------- | -------- | --------------------------------------- |
-| `href` | `string` |             | `true`   | URL to the card content                 |
-| `link` | `string` | `Read more` | `false`  | Label of link at the bottom of the Card |
+| name    | type     | default     | required | description                                 |
+| ------- | -------- | ----------- | -------- | ------------------------------------------- |
+| `href`  | `string` |             | `true`   | URL to the card content                     |
+| `label` | `string` | `Read more` | `false`  | Label of the link at the bottom of the Card |
 
 ### Card.Heading
 
