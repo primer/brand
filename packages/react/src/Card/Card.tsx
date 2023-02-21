@@ -24,33 +24,26 @@ export type CardProps = {
    */
   children: React.ReactNode | React.ReactElement<CardHeadingProps> | React.ReactElement<CardDescriptionProps>
   /**
-   * Changes the link label of the card
-   * * @default 'Learn more'
-   * */
-  label?: string
-  /**
    * The href of the link
    * */
   href: string
   /**
-   * Event handlers
+   * Changes the link label of the card
+   * * @default 'Learn more'
    * */
-  onMouseEnter: React.MouseEventHandler<HTMLAnchorElement>
-  onMouseLeave: React.MouseEventHandler<HTMLAnchorElement>
-  onFocus: React.FocusEventHandler<HTMLAnchorElement>
-  onBlur: React.FocusEventHandler<HTMLAnchorElement>
+  label?: string
 } & BaseProps<HTMLAnchorElement> &
   React.ComponentPropsWithoutRef<'a'>
 
 const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
-  ({onMouseEnter, onMouseLeave, onFocus, onBlur, children, className, label, href, ...props}) => {
+  ({onMouseEnter, onMouseLeave, onFocus, onBlur, children, className, label = 'Learn more', href, ...props}) => {
     const [isHovered, setIsHovered] = React.useState(false)
     const [isFocused, setIsFocused] = React.useState(false)
 
     const handleMouseEnter = useCallback(
       (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
         setIsHovered(!isHovered)
-        onMouseEnter(event)
+        onMouseEnter?.(event)
       },
       [onMouseEnter, isHovered]
     )
@@ -58,7 +51,7 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
     const handleMouseLeave = useCallback(
       (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
         setIsHovered(!isHovered)
-        onMouseLeave(event)
+        onMouseLeave?.(event)
       },
       [onMouseLeave, isHovered]
     )
@@ -66,7 +59,7 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
     const handleOnFocus = useCallback(
       (event: React.FocusEvent<HTMLAnchorElement, Element>) => {
         setIsFocused(!isFocused)
-        onFocus(event)
+        onFocus?.(event)
       },
       [onFocus, isFocused]
     )
@@ -74,7 +67,7 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
     const handleOnBlur = useCallback(
       (event: React.FocusEvent<HTMLAnchorElement, Element>) => {
         setIsFocused(!isFocused)
-        onBlur(event)
+        onBlur?.(event)
       },
       [onBlur, isFocused]
     )
@@ -101,7 +94,7 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
         {filteredChildren}
         <div className={styles.Card__action}>
           <Text as="span" size="300" className={clsx(stylesLink['Link--label'])}>
-            {label ? label : 'Learn more'}
+            {label}
           </Text>
           <ExpandableArrow className={stylesLink['Link-arrow']} expanded={isHovered || isFocused} />
         </div>
