@@ -79,10 +79,9 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
       [onBlur, isFocused]
     )
 
-    const childrenHasFragment = React.Children.toArray(children).some(child => isFragment(child))
     const filteredChildren = React.Children.toArray(children).filter(child => {
       if (React.isValidElement(child) && typeof child.type !== 'string') {
-        if (childrenHasFragment || child.type === CardHeading || child.type === CardDescription) {
+        if (isFragment(child) || child.type === CardHeading || child.type === CardDescription) {
           return true
         }
       }

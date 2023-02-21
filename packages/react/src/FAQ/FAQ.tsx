@@ -19,11 +19,10 @@ import styles from './FAQ.module.css'
 type FAQRootProps = PropsWithChildren<BaseProps<HTMLElement>>
 
 const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, className, ...rest}, ref) => {
-  const childrenHasFragment = React.Children.toArray(children).some(child => isFragment(child))
   const filteredChildren = React.Children.toArray(children).filter(child => {
     if (React.isValidElement(child) && typeof child.type !== 'string') {
       if (
-        childrenHasFragment ||
+        isFragment(child) ||
         child.type === FAQHeading ||
         child.type === FAQSubheading ||
         child.type === AccordionRoot
