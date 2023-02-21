@@ -59,7 +59,7 @@
     'components-minimalfooter-features--dark-theme': 5000, // for external social imagery to load
     'components-minimalfooter-features--filtered-social-links': 5000, // for external social imagery to load
     'components-minimalfooter-features--default-narrow': 5000, // for external social imagery to load
-    'components-minimalfooter-features--maximum-links': 5000 // for external social imagery to load,
+    'components-minimalfooter-features--maximum-links': 5000 // for external social imagery to load
   }
 
   /**

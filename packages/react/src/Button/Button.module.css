@@ -2,7 +2,6 @@
   appearance: none;
   user-select: none;
   vertical-align: middle;
-  display: inline-flex;
   align-items: center;
   justify-content: center;
   transition: box-shadow 0.2s;
@@ -11,8 +10,7 @@
   cursor: pointer;
   border: none;
   background: none;
-  display: inline-grid;
-  grid-template-areas: 'leadingIcon text trailingIcon';
+  display: inline-flex;
 }
 
 .Button:focus:not(.Button--disabled[disabled]) {
@@ -22,6 +20,7 @@
 
 .Button__text {
   position: relative;
+  top: 0.5px;
   line-height: var(--brand-text-lineHeight-200);
 }
 
@@ -35,7 +34,7 @@
 
 .Button__trailing-visual {
   display: flex;
-  margin-left: var(--base-size-16);
+  margin-left: var(--base-size-8);
 }
 
 .Button__trailing-visual--arrow {
@@ -44,7 +43,7 @@
 
 .Button__leading-visual {
   display: flex;
-  margin-right: var(--base-size-16);
+  margin-right: var(--base-size-8);
 }
 
 .Button--label {
