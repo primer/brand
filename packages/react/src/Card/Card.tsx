@@ -1,8 +1,9 @@
-import React, {forwardRef} from 'react'
+import React, {forwardRef, useCallback} from 'react'
 import {isFragment} from 'react-is'
 import clsx from 'clsx'
 
-import {Heading, Text, Link} from '..'
+import {Heading, Text} from '..'
+import {ExpandableArrow} from '../ExpandableArrow'
 import type {BaseProps} from '../component-helpers'
 
 /**
@@ -15,6 +16,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
  * Main stylesheet (as a CSS Module)
  */
 import styles from './Card.module.css'
+import stylesLink from '../Link/Link.module.css'
 
 export type CardProps = {
   /**
@@ -30,31 +32,84 @@ export type CardProps = {
    * The href of the link
    * */
   href: string
+  /**
+   * Event handlers
+   * */
+  onMouseEnter: React.MouseEventHandler<HTMLAnchorElement>
+  onMouseLeave: React.MouseEventHandler<HTMLAnchorElement>
+  onFocus: React.FocusEventHandler<HTMLAnchorElement>
+  onBlur: React.FocusEventHandler<HTMLAnchorElement>
 } & BaseProps<HTMLAnchorElement>
 
-const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(({children, className, label, href}) => {
-  const childrenHasFragment = React.Children.toArray(children).some(child => isFragment(child))
-  const filteredChildren = React.Children.toArray(children).filter(child => {
-    if (React.isValidElement(child) && typeof child.type !== 'string') {
-      if (childrenHasFragment || child.type === CardHeading || child.type === CardDescription) {
-        return true
-      }
-    }
-    return false
-  })
+const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
+  ({onMouseEnter, onMouseLeave, onFocus, onBlur, children, className, label, href}) => {
+    const [isHovered, setIsHovered] = React.useState(false)
+    const [isFocused, setIsFocused] = React.useState(false)
 
-  return (
-    <a href={href} className={clsx(styles.Card, className)}>
-      {React.Children.toArray(filteredChildren).map(child => {
-        return child
-      })}
-      <div className={styles.Card__action}>
-        {/* Temporary using Link component to not repeat styles */}
-        <Link>{label ? label : 'Learn more'}</Link>
-      </div>
-    </a>
-  )
-})
+    const handleMouseEnter = useCallback(
+      (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+        setIsHovered(!isHovered)
+        onMouseEnter(event)
+      },
+      [onMouseEnter, isHovered]
+    )
+
+    const handleMouseLeave = useCallback(
+      (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+        setIsHovered(!isHovered)
+        onMouseLeave(event)
+      },
+      [onMouseLeave, isHovered]
+    )
+
+    const handleOnFocus = useCallback(
+      (event: React.FocusEvent<HTMLAnchorElement, Element>) => {
+        setIsFocused(!isFocused)
+        onFocus(event)
+      },
+      [onFocus, isFocused]
+    )
+
+    const handleOnBlur = useCallback(
+      (event: React.FocusEvent<HTMLAnchorElement, Element>) => {
+        setIsFocused(!isFocused)
+        onBlur(event)
+      },
+      [onBlur, isFocused]
+    )
+
+    const childrenHasFragment = React.Children.toArray(children).some(child => isFragment(child))
+    const filteredChildren = React.Children.toArray(children).filter(child => {
+      if (React.isValidElement(child) && typeof child.type !== 'string') {
+        if (childrenHasFragment || child.type === CardHeading || child.type === CardDescription) {
+          return true
+        }
+      }
+      return false
+    })
+
+    return (
+      <a
+        href={href}
+        className={clsx(styles.Card, className)}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onFocus={handleOnFocus}
+        onBlur={handleOnBlur}
+      >
+        {React.Children.toArray(filteredChildren).map(child => {
+          return child
+        })}
+        <div className={styles.Card__action}>
+          <Text as="span" size="300" className={clsx(stylesLink['Link--label'])}>
+            {label ? label : 'Learn more'}
+          </Text>
+          <ExpandableArrow className={stylesLink['Link-arrow']} expanded={isHovered || isFocused} />
+        </div>
+      </a>
+    )
+  }
+)
 
 type CardHeadingProps = BaseProps<HTMLHeadingElement> & {
   children: string

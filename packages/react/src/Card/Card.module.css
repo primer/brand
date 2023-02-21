@@ -26,4 +26,6 @@
 
 .Card__action {
   margin-top: auto;
+  display: inline-flex;
+  align-items: center;
 }
