@@ -1,7 +1,7 @@
 import React, {HTMLAttributes, PropsWithChildren, forwardRef, SVGProps} from 'react'
 import clsx from 'clsx'
 import {BaseProps} from '../component-helpers'
-import {Text, Avatar} from '../'
+import {Text, Avatar as BaseAvatar} from '../'
 import type {AvatarProps} from '../'
 
 import styles from './Testimonial.module.css'
@@ -144,6 +144,17 @@ function _Logo({children, ...rest}: LogoProps, ref) {
 }
 
 const Logo = forwardRef(_Logo)
+
+/**
+ * Testimonial avatar child element
+ * <Testimonial.Avatar>
+ */
+
+function _Avatar({size, ...rest}: AvatarProps) {
+  return <BaseAvatar size={48} {...rest} />
+}
+
+const Avatar = forwardRef(_Avatar)
 
 /**
  * Use Testimonial to display a quote from a customer or user.
