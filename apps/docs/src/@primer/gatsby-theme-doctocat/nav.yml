@@ -18,7 +18,7 @@
       url: /components/Avatar
     - title: Button
       url: /components/Button
-      - title: ComparisonTable
+    - title: ComparisonTable
       url: /components/ComparisonTable
     - title: CTABanner
       url: /components/CTABanner
