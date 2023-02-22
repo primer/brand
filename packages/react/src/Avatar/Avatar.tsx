@@ -15,14 +15,14 @@ type ResponsiveSizeMap = {
   wide?: AvatarSizeVariants
 }
 
-export type AvatarProps = BaseProps<HTMLSpanElement> & {
+export type AvatarProps = BaseProps<HTMLImageElement> & {
   size?: typeof AvatarSizes[number] | ResponsiveSizeMap
   shape?: typeof AvatarShapes[number]
   src: string
   alt: string
-} & React.HTMLAttributes<HTMLSpanElement>
+} & React.HTMLAttributes<HTMLImageElement>
 
-export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
+export const Avatar = forwardRef<HTMLImageElement, AvatarProps>(
   ({alt, className, size = AvatarSizes[1], shape = AvatarShapes[0], src, ...props}, ref) => {
     const sizeClass = useMemo(() => {
       return typeof size === 'number'
@@ -35,12 +35,8 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
     }, [size])
 
     return (
-      <span
-        ref={ref}
-        className={clsx(styles.Avatar, sizeClass, styles[`Avatar--shape-${shape}`], className)}
-        {...props}
-      >
-        <img className={clsx(styles.Avatar__image)} src={src} alt={alt} />
+      <span ref={ref} className={clsx(styles.Avatar, sizeClass, styles[`Avatar--shape-${shape}`], className)}>
+        <img className={clsx(styles.Avatar__image)} src={src} alt={alt} {...props} />
       </span>
     )
   }
