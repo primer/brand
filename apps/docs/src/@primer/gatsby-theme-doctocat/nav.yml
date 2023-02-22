@@ -14,12 +14,11 @@
   children:
     - title: AnchorNav
       url: /components/AnchorNav
-  - title: Avatar
+    - title: Avatar
       url: /components/Avatar
-  - title: Button
+    - title: Button
       url: /components/Button
-  
-    - title: ComparisonTable
+      - title: ComparisonTable
       url: /components/ComparisonTable
     - title: CTABanner
       url: /components/CTABanner
