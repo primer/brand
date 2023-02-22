@@ -116,6 +116,54 @@ test.describe('Visual Comparison: Button', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('Button / Leading visual (native)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--with-leading-visual-svg&viewMode=story'
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Button / Trailing visual (native)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--with-trailing-visual-svg&viewMode=story'
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Button / Leading and trailing visual (native)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--with-leading-and-trailing-visual-svg&viewMode=story'
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Button / With an Octicon', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--with-octicon&viewMode=story'
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Button / With an Octicon (large)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--with-octicon-large&viewMode=story'
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Button / With visuals and disabled', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--with-visuals-and-disabled&viewMode=story'
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Button / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-button--playground&viewMode=story')
 
