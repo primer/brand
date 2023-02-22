@@ -16,6 +16,8 @@
       url: /components/AnchorNav
     - title: Card
       url: /components/Card
+    - title: Button
+      url: /components/Button
     - title: ComparisonTable
       url: /components/ComparisonTable
     - title: CTABanner

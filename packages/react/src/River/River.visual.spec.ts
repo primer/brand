@@ -68,10 +68,4 @@ test.describe('Visual Comparison: River', () => {
 
     expect(await page.screenshot()).toMatchSnapshot()
   })
-
-  test('River / Custom Logos', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-river--custom-logos&viewMode=story')
-
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
 })

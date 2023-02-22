@@ -2,7 +2,6 @@
   appearance: none;
   user-select: none;
   vertical-align: middle;
-  display: inline-flex;
   align-items: center;
   justify-content: center;
   transition: box-shadow 0.2s;
@@ -11,6 +10,7 @@
   cursor: pointer;
   border: none;
   background: none;
+  display: inline-flex;
 }
 
 .Button:focus:not(.Button--disabled[disabled]) {
@@ -19,24 +19,52 @@
   transition: none;
 }
 
+.Button__text {
+  position: relative;
+  top: 0.5px; /* visual offset for off-center mona sans glyphs */
+  line-height: var(--brand-text-lineHeight-200);
+}
+
+.Button__icon-visual {
+  display: flex;
+  align-self: center;
+  height: var(--base-size-16);
+  width: auto;
+  fill: currentcolor;
+}
+
+.Button__trailing-visual {
+  display: flex;
+  margin-left: var(--base-size-8);
+}
+
+.Button__trailing-visual--arrow {
+  margin-left: var(--base-size-8);
+}
+
+.Button__leading-visual {
+  display: flex;
+  margin-right: var(--base-size-8);
+}
+
 .Button--label {
   font-weight: var(--base-text-weight-semibold);
 }
 
-.Button--label.Button-label--disabled {
+.Button--label.Button-label--disabled,
+.Button__icon-visual--disabled {
   color: var(--brand-Button-fg-primary-disabled);
 }
 
-.Button-arrow {
-  margin-left: 4px;
-}
-
-.Button--primary .Button-arrow--disabled {
+.Button--primary .Button-arrow--disabled,
+.Button--primary .Button__icon-visual--disabled {
   color: var(--brand-Button-fg-primary-disabled);
 }
 
 .Button--secondary .Button-arrow--disabled,
-.Button--subtle .Button-arrow--disabled {
+.Button--subtle .Button-arrow--disabled,
+.Button--subtle .Button__icon-visual--disabled,
+.Button--secondary .Button__icon-visual--disabled {
   color: var(--brand-Button-fg-secondary-disabled);
 }
 
@@ -73,7 +101,8 @@
 }
 
 .Button--label-secondary.Button-label--disabled,
-.Button--label-secondary.Button-label--disabled {
+.Button--label-secondary.Button-label--disabled,
+.Button__icon-visual--disabled {
   color: var(--brand-Button-fg-secondary-disabled);
 }
 

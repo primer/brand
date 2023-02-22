@@ -9,7 +9,7 @@ type ExpandableArrowProps = {
   hidden?: boolean
 }
 
-export function ExpandableArrow({className, expanded = false, hidden}: ExpandableArrowProps) {
+export function ExpandableArrow({className, expanded = false, hidden, ...rest}: ExpandableArrowProps) {
   return (
     <svg
       className={clsx(styles.ExpandableArrow, expanded && styles['ExpandableArrow--expanded'], className)}
@@ -19,6 +19,7 @@ export function ExpandableArrow({className, expanded = false, hidden}: Expandabl
       fill="none"
       aria-hidden={hidden}
       focusable={hidden ? 'false' : undefined}
+      {...rest}
     >
       <path
         fill="currentColor"
