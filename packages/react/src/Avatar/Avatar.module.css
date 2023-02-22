@@ -1,5 +1,4 @@
 .Avatar {
-  position: relative;
   display: inline-block;
   overflow: hidden;
   width: var(--base-size-40);
