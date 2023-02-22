@@ -20,10 +20,18 @@ export type AvatarProps = BaseProps<HTMLImageElement> & {
   shape?: typeof AvatarShapes[number]
   src: string
   alt: string
+  ['data-testid']?: string
 } & React.HTMLAttributes<HTMLImageElement>
 
-export const Avatar = forwardRef<HTMLImageElement, AvatarProps>(
-  ({alt, className, size = AvatarSizes[1], shape = AvatarShapes[0], src, ...props}, ref) => {
+const testIds = {
+  root: 'Avatar',
+  get image() {
+    return `${this.root}__image`
+  }
+}
+
+const _Avatar = forwardRef<HTMLImageElement, AvatarProps>(
+  ({alt, className, size = AvatarSizes[1], shape = AvatarShapes[0], 'data-testid': testId, src, ...props}, ref) => {
     const sizeClass = useMemo(() => {
       return typeof size === 'number'
         ? styles[`Avatar--size-${size}`]
@@ -35,9 +43,15 @@ export const Avatar = forwardRef<HTMLImageElement, AvatarProps>(
     }, [size])
 
     return (
-      <span ref={ref} className={clsx(styles.Avatar, sizeClass, styles[`Avatar--shape-${shape}`], className)}>
-        <img className={clsx(styles.Avatar__image)} src={src} alt={alt} {...props} />
+      <span
+        ref={ref}
+        className={clsx(styles.Avatar, sizeClass, styles[`Avatar--shape-${shape}`], className)}
+        data-testid={testId || testIds.root}
+      >
+        <img className={clsx(styles.Avatar__image)} src={src} alt={alt} data-testid={testIds.image} {...props} />
       </span>
     )
   }
 )
+
+export const Avatar = Object.assign(_Avatar, {testIds})
