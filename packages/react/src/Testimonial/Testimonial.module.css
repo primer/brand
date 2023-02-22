@@ -14,6 +14,7 @@
 
 .Testimonial--center {
   text-align: center;
+  justify-items: center;
 }
 
 .Testimonial-quote {
@@ -24,14 +25,6 @@
 
 .Testimonial-from {
   font-family: var(--brand-fontStack-monospace);
-}
-
-.Testimonial-avatar-image {
-  display: inline-block;
-  overflow: hidden;
-  line-height: 1;
-  vertical-align: middle;
-  border-radius: 50%;
 }
 
 .Testimonial--center .Testimonial-logo-image {
