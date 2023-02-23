@@ -1,7 +1,8 @@
 import React, {HTMLAttributes, PropsWithChildren, forwardRef, SVGProps} from 'react'
 import clsx from 'clsx'
 import {BaseProps} from '../component-helpers'
-import {Text} from '../'
+import {Text, Avatar as BaseAvatar} from '../'
+import type {AvatarProps} from '../'
 
 import styles from './Testimonial.module.css'
 
@@ -114,35 +115,7 @@ function _Name({children, className, position}: NameProps, ref) {
   )
 }
 
-export const Name = forwardRef(_Name)
-
-/**
- * Testimonial avatar child element
- * <Testimonial.Avatar>
- */
-type AvatarProps = {
-  src: string
-  alt: string
-} & React.HTMLAttributes<HTMLImageElement> &
-  BaseProps<HTMLImageElement>
-
-function _Avatar({alt, src, ...rest}: AvatarProps, ref) {
-  return (
-    <div className={styles['Testimonial-avatar']}>
-      <img
-        ref={ref}
-        className={styles['Testimonial-avatar-image']}
-        src={src}
-        {...rest}
-        alt={alt}
-        width={48}
-        height={48}
-      />
-    </div>
-  )
-}
-
-export const Avatar = forwardRef(_Avatar)
+const Name = forwardRef(_Name)
 
 /**
  * Testimonial logo child element
@@ -170,7 +143,18 @@ function _Logo({children, ...rest}: LogoProps, ref) {
   )
 }
 
-export const Logo = forwardRef(_Logo)
+const Logo = forwardRef(_Logo)
+
+/**
+ * Testimonial avatar child element
+ * <Testimonial.Avatar>
+ */
+
+function _Avatar({size, ...rest}: AvatarProps) {
+  return <BaseAvatar size={48} {...rest} />
+}
+
+const Avatar = forwardRef(_Avatar)
 
 /**
  * Use Testimonial to display a quote from a customer or user.

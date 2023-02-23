@@ -1,5 +1,98 @@
 # @primer/react-brand
 
+## 0.13.0
+
+### Minor Changes
+
+- [#176](https://github.com/primer/brand/pull/176) [`ca07fdc`](https://github.com/primer/brand/commit/ca07fdc0bb15695074d20d265a9403115d38fa60) Thanks [@danielguillan](https://github.com/danielguillan)! - New `Avatar` component available
+
+  Use `Avatar` to display a thumbnail representation of a person.
+
+  ```jsx
+  <Avatar src="https://avatars.githubusercontent.com/u/92997159?v=4" alt="A random avatar picture" />
+  ```
+
+  :link: [See the documentation for more details and usage examples.](https://primer.style/brand/components/Avatar)
+
+* [#163](https://github.com/primer/brand/pull/163) [`fe0e1ee`](https://github.com/primer/brand/commit/fe0e1ee1021fa38955115d3c40aba4f1f536eef3) Thanks [@JoshBowdenConcepts](https://github.com/JoshBowdenConcepts)! - CTAForm Component
+
+  Example Usage
+
+  ```jsx live
+  <CTAForm>
+    <CTAForm.Input>
+      <FormControl required>
+        <FormControl.Label>Your work email address</FormControl.Label>
+        <TextInput placeholder="name" />
+      </FormControl>
+    </CTAForm.Input>
+    <CTAForm.Confirm>
+      <FormControl required>
+        <FormControl.Label>
+          <Text size="300" variant="muted">
+            I agree to the <InlineLink href="https://github.com">Privacy Policy</InlineLink> and{' '}
+            <InlineLink href="https://github.com">Terms of Service</InlineLink>
+          </Text>
+        </FormControl.Label>
+        <Checkbox name="confirm" />
+      </FormControl>
+    </CTAForm.Confirm>
+    <CTAForm.Action>Subscribe</CTAForm.Action>
+  </CTAForm>
+  ```
+
+  - [CTAForm Documentation](https://primer.style/brand/components/CTAForm)
+
+### Patch Changes
+
+- [#189](https://github.com/primer/brand/pull/189) [`d805a17`](https://github.com/primer/brand/commit/d805a171c3b3377e1ee5808fdb0207283fd69f85) Thanks [@TylerJDev](https://github.com/TylerJDev)! - Applies a transition: none rule to `:focus` on the `<Button>` component. Ensures that the existing box-shadow on :hover does not interfere with the the :focus box-shadow.
+
+  <table>
+  <caption>Before/After</caption>
+  <tr>
+  <th> Version 0.12.0 </th> <th> Version 0.12.1 (current)</th> <th> PR version </th>
+  </tr>
+  <tr>
+  <td valign="top">
+
+  https://user-images.githubusercontent.com/26746305/219712759-d814db66-dae2-4b74-9a48-c411cb7705c3.mov
+
+  Video shows the cursor moving over the button. When pressed and hovered off of, the `box-shadow` border appears on the button in a bottom-to-top transition animation.
+
+  Video also shows cursor hovering over button when focused, removing the `box-shadow` border before displaying it back when hovered off of.
+
+  </td>
+  <td valign="top">
+
+  https://user-images.githubusercontent.com/26746305/219712378-7d0f0cb7-2068-463b-a3da-548729c8f6e0.mov
+
+  Video shows cursor moving over the button. When pressed the `box-shadow` border appears over the button instantly, showing the same bottom-to-top transition effect as the previous cell example.
+
+   </td>
+  <td valign="top">
+
+  https://user-images.githubusercontent.com/26746305/219712490-347af6ce-6900-496d-a6cb-bc2c0c27b453.mov
+
+  Video shows cursor moving over the button and then pressing the button. The `box-shadow` border displays over the button instantly, showing no transition animation.
+
+  </td>
+  </tr>
+  </table>
+
+* [#190](https://github.com/primer/brand/pull/190) [`8307f60`](https://github.com/primer/brand/commit/8307f601a1a01251f7e030d7edf023ee32d99da1) Thanks [@rezrah](https://github.com/rezrah)! - Added `leadingVisual` and `trailingVisual` support to `Button`
+
+  **Usage example**
+
+  ```jsx
+  //import {SearchIcon, CheckIcon} from '@primer/octicons-react'
+
+  <Button leadingVisual={SearchIcon} trailingVisual={CheckIcon}>
+    Button
+  </Button>
+  ```
+
+  - [See the documentation for more examples](https://primer.style/brand/components/Button#appending-an-icon)
+
 ## 0.12.1
 
 ### Patch Changes
