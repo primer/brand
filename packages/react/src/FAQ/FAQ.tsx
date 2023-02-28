@@ -85,12 +85,13 @@ const FAQHeading = forwardRef<HTMLHeadingElement, FAQHeadingProps>(
 
 type FAQSubheadingProps = BaseProps<HTMLHeadingElement> & {
   align?: 'start' | 'center'
+  as?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
   children: string
 }
 
-function FAQSubheading({children, className, ...rest}: FAQSubheadingProps) {
+function FAQSubheading({children, className, as = 'h3', ...rest}: FAQSubheadingProps) {
   return (
-    <Heading as="h3" className={clsx(styles.FAQ__subheading, className)} {...rest}>
+    <Heading as={as} className={clsx(styles.FAQ__subheading, className)} {...rest}>
       {children}
     </Heading>
   )

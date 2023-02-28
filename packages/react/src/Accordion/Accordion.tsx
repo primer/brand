@@ -53,13 +53,14 @@ export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
 type AccordionHeadingProps = BaseProps<HTMLHeadingElement> & {
   className?: string
   children: string
+  as?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 }
 
 export const AccordionHeading = forwardRef<HTMLHeadingElement, AccordionHeadingProps>(
-  ({children, className, ...rest}, ref) => {
+  ({children, className, as = 'h4', ...rest}, ref) => {
     return (
       <summary className={clsx(styles.Accordion__summary, className)} ref={ref} {...rest}>
-        <Heading as="h4" className={styles['Accordion__summary-heading']}>
+        <Heading as={as} className={styles['Accordion__summary-heading']}>
           {children}
         </Heading>
       </summary>
