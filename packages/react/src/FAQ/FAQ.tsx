@@ -1,6 +1,7 @@
 import React, {forwardRef, PropsWithChildren} from 'react'
 import {isFragment} from 'react-is'
 import clsx from 'clsx'
+import {useHash} from '../hooks/useHash'
 
 import {Heading, AccordionHeading, AccordionContent, AccordionRoot} from '..'
 import type {BaseProps} from '../component-helpers'
@@ -38,6 +39,8 @@ const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, className, ...
     child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === FAQSubheading
   )
 
+  const hash = useHash()
+
   return (
     <section className={clsx(styles.FAQ, className)} ref={ref} {...rest}>
       {React.Children.toArray(filteredChildren).map(child => {
@@ -47,6 +50,15 @@ const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, className, ...
               align: hasSubheading ? 'start' : child.props.align,
               size: hasSubheading ? 'large' : child.props.size,
               className: clsx(!hasSubheading && styles['FAQ__heading--with-margin'], child.props.className)
+            })
+          }
+          if (child.type === AccordionRoot) {
+            const url = child.props.id ? `#${child.props.id}` : undefined
+            const open = hash && hash.substring(1) === child.props.id ? true : child.props.open
+
+            return React.cloneElement(child, {
+              open,
+              url
             })
           }
         }

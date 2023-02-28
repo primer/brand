@@ -11,9 +11,11 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './Accordion.module.css'
+import {LinkIcon} from '@primer/octicons-react'
 
 export type AccordionRootProps = BaseProps<HTMLDetailsElement> & {
   open?: boolean // Manually declared due to known issue with the native open attribute: https://github.com/facebook/react/issues/15486
+  url?: string
   children: React.ReactElement<AccordionHeadingProps | AccordionContentProps>[]
 } & React.HTMLAttributes<HTMLDetailsElement>
 
@@ -23,7 +25,7 @@ type ValidRootChildren = {
 }
 
 export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
-  ({children, className, open = false, ...rest}, ref) => {
+  ({children, className, url, open = false, ...rest}, ref) => {
     const {AccordionHeading: HeadingChild, AccordionContent: AccordionContentChild} = React.Children.toArray(
       children
     ).reduce<ValidRootChildren>(
@@ -33,7 +35,9 @@ export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
             acc.AccordionContent = child
           }
           if (child.type === AccordionHeading) {
-            acc.AccordionHeading = child
+            acc.AccordionHeading = React.cloneElement(child, {
+              url
+            })
           }
         }
         return acc
@@ -53,14 +57,20 @@ export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
 type AccordionHeadingProps = BaseProps<HTMLHeadingElement> & {
   className?: string
   children: string
+  url?: string
 }
 
 export const AccordionHeading = forwardRef<HTMLHeadingElement, AccordionHeadingProps>(
-  ({children, className, ...rest}, ref) => {
+  ({children, className, url, ...rest}, ref) => {
     return (
       <summary className={clsx(styles.Accordion__summary, className)} ref={ref} {...rest}>
         <Heading as="h4" className={styles['Accordion__summary-heading']}>
           {children}
+          {url ? (
+            <a href={url} className={styles['Accordion__summary-anchor-link']}>
+              <LinkIcon size={16} />
+            </a>
+          ) : null}
         </Heading>
       </summary>
     )
