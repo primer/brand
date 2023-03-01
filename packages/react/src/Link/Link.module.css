@@ -52,8 +52,10 @@
 }
 
 .Link--reverse::after {
-  left: var(--base-size-20);
+  left: auto;
+  right: 0;
   transform-origin: right 0;
+  width: calc(100% - var(--base-size-20));
 }
 
 .Link--reverse .Link-arrow {
