@@ -6,7 +6,14 @@ import {Text} from '../Text'
 import styles from './Link.module.css'
 
 export type LinkProps = {
+  /**
+   * The size variations available in Link
+   */
   size?: 'medium' | 'large'
+  /**
+   * Displays the arrow icon in the opposite direction to the default
+   */
+  reverseArrow?: boolean
 } & React.ComponentPropsWithoutRef<'a'>
 
 /**
@@ -21,6 +28,7 @@ export function Link({
   onMouseLeave,
   onFocus,
   onBlur,
+  reverseArrow = false,
   ...props
 }: LinkProps) {
   const [isHovered, setIsHovered] = React.useState(false)
@@ -65,17 +73,18 @@ export function Link({
 
   return (
     <a
-      className={clsx(styles.Link, styles[`Link--${size}`], className)}
+      className={clsx(styles.Link, styles[`Link--${size}`], reverseArrow && styles[`Link--reverse`], className)}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onFocus={handleOnFocus}
       onBlur={handleOnBlur}
       {...props}
     >
+      {reverseArrow && <ExpandableArrow className={styles['Link-arrow']} expanded={isHovered || isFocused} reverse />}
       <Text as="span" size={sizeMap[size]} className={clsx(styles['Link--label'])}>
         {children}
       </Text>
-      <ExpandableArrow className={styles['Link-arrow']} expanded={isHovered || isFocused} />
+      {!reverseArrow && <ExpandableArrow className={styles['Link-arrow']} expanded={isHovered || isFocused} />}
     </a>
   )
 }

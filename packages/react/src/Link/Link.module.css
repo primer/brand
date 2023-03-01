@@ -50,3 +50,13 @@
   width: 20px;
   height: 20px;
 }
+
+.Link--reverse::after {
+  left: var(--base-size-20);
+  transform-origin: right 0;
+}
+
+.Link--reverse .Link-arrow {
+  margin-left: auto;
+  margin-right: 4px;
+}
