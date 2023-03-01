@@ -81,13 +81,13 @@ export function Link({
       {...props}
     >
       {arrowDirection === 'start' && (
-        <ExpandableArrow className={styles['Link-arrow']} expanded={isHovered || isFocused} reverse />
+        <ExpandableArrow className={styles['Link-arrow']} expanded={isHovered || isFocused} reverse hidden />
       )}
       <Text as="span" size={sizeMap[size]} className={clsx(styles['Link--label'])}>
         {children}
       </Text>
       {arrowDirection === 'end' && (
-        <ExpandableArrow className={styles['Link-arrow']} expanded={isHovered || isFocused} />
+        <ExpandableArrow className={styles['Link-arrow']} expanded={isHovered || isFocused} hidden />
       )}
     </a>
   )
