@@ -21,5 +21,5 @@ Reversed.args = {
   size: 'medium',
   href: '#',
   children: 'Back to schedule',
-  reverseArrow: true
+  arrowDirection: 'start'
 }

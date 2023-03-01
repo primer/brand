@@ -2,10 +2,10 @@
 '@primer/react-brand': patch
 ---
 
-Added `reverseArrow` prop to Link component
+Added `arrowDirection` prop to Link component
 
 ```jsx
-<Link href="https://github.com" reverseArrow>
+<Link href="https://github.com" arrowDirection="start">
   Back to GitHub
 </Link>
 ```

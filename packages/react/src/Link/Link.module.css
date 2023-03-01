@@ -51,14 +51,14 @@
   height: 20px;
 }
 
-.Link--reverse::after {
+.Link--arrow-start::after {
   left: auto;
   right: 0;
   transform-origin: right 0;
   width: calc(100% - var(--base-size-20));
 }
 
-.Link--reverse .Link-arrow {
+.Link--arrow-start .Link-arrow {
   margin-left: auto;
   margin-right: 4px;
 }

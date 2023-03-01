@@ -3,7 +3,7 @@ declare const styles: {
   readonly "Link--label": string;
   readonly "Link-arrow": string;
   readonly "Link--large": string;
-  readonly "Link--reverse": string;
+  readonly "Link--arrow-start": string;
 };
 export = styles;
 
