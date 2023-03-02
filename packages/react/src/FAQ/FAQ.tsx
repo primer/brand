@@ -19,11 +19,10 @@ import styles from './FAQ.module.css'
 type FAQRootProps = PropsWithChildren<BaseProps<HTMLElement>>
 
 const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, className, ...rest}, ref) => {
-  const childrenHasFragment = React.Children.toArray(children).some(child => isFragment(child))
   const filteredChildren = React.Children.toArray(children).filter(child => {
     if (React.isValidElement(child) && typeof child.type !== 'string') {
       if (
-        childrenHasFragment ||
+        isFragment(child) ||
         child.type === FAQHeading ||
         child.type === FAQSubheading ||
         child.type === AccordionRoot
@@ -59,8 +58,8 @@ const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, className, ...
 type FAQHeadingProps = BaseProps<HTMLHeadingElement> & {
   size?: 'medium' | 'large'
   align?: 'start' | 'center'
+  children: React.ReactNode | React.ReactNode[]
   as?: HeadingTags['as']
-  children: string
 }
 
 const FAQHeading = forwardRef<HTMLHeadingElement, FAQHeadingProps>(
@@ -86,8 +85,8 @@ const FAQHeading = forwardRef<HTMLHeadingElement, FAQHeadingProps>(
 
 type FAQSubheadingProps = BaseProps<HTMLHeadingElement> & {
   align?: 'start' | 'center'
+  children: React.ReactNode | React.ReactNode[]
   as?: Exclude<HeadingTags['as'], 'h1'>
-  children: string
 }
 
 function FAQSubheading({children, className, as = 'h3', ...rest}: FAQSubheadingProps) {

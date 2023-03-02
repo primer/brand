@@ -1,0 +1,22 @@
+{
+  "brand": {
+    "Card": {
+      "maxWidth": {
+        "value": "420px"
+      },
+      "visual": {
+        "shadow": {
+          "value": "0 3px 2px rgb(0 0 0 / 4%), 0 7px 5px rgb(0 0 0 / 2%), 0 13px 10px rgb(0 0 0 / 2%), 0 22px 17px rgb(0 0 0 / 2%)"
+        }
+      },
+      "animation": {
+        "duration": {
+          "value": "600ms"
+        },
+        "easing": {
+          "value": "cubic-bezier(0.16, 1, 0.3, 1)"
+        }
+      }
+    }
+  }
+}
