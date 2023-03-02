@@ -64,6 +64,7 @@ const testIds = {
 
 function Root({
   children,
+  className,
   fixed = true,
   fullWidth = false,
   logoHref = 'https://github.com',
@@ -94,7 +95,7 @@ function Root({
         fixed && styles['SubdomainNavBar-outer-container--fixed']
       )}
     >
-      <header className={styles['SubdomainNavBar']} {...rest}>
+      <header className={clsx(styles['SubdomainNavBar'], className)} data-testid={testIds.root} {...rest}>
         <div
           className={clsx(
             styles['SubdomainNavBar-inner-container'],

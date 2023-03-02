@@ -15,3 +15,11 @@ Default.args = {
   href: '#',
   children: 'Primary action'
 }
+
+export const Reversed = Template.bind({})
+Reversed.args = {
+  size: 'medium',
+  href: '#',
+  children: 'Back to schedule',
+  arrowDirection: 'start'
+}

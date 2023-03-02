@@ -154,7 +154,7 @@ function _Avatar({size, ...rest}: AvatarProps) {
   return <BaseAvatar size={48} {...rest} />
 }
 
-const Avatar = forwardRef(_Avatar)
+const Avatar = _Avatar
 
 /**
  * Use Testimonial to display a quote from a customer or user.
