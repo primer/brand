@@ -7,12 +7,18 @@ type ExpandableArrowProps = {
   /** Animate between a chevron arrow and an arrow with a stem by toggling the value of `expanded` */
   expanded?: boolean
   hidden?: boolean
+  reverse?: boolean
 }
 
-export function ExpandableArrow({className, expanded = false, hidden, ...rest}: ExpandableArrowProps) {
+export function ExpandableArrow({className, expanded = false, reverse = false, hidden, ...rest}: ExpandableArrowProps) {
   return (
     <svg
-      className={clsx(styles.ExpandableArrow, expanded && styles['ExpandableArrow--expanded'], className)}
+      className={clsx(
+        styles.ExpandableArrow,
+        expanded && styles['ExpandableArrow--expanded'],
+        reverse && styles['ExpandableArrow--reversed'],
+        className
+      )}
       width="16"
       height="16"
       viewBox="0 0 16 16"
