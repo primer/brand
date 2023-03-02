@@ -2,7 +2,7 @@ import React, {forwardRef, PropsWithChildren} from 'react'
 import {isFragment} from 'react-is'
 import clsx from 'clsx'
 
-import {Heading, AccordionHeading, AccordionContent, AccordionRoot} from '..'
+import {Heading, HeadingTags, AccordionHeading, AccordionContent, AccordionRoot} from '..'
 import type {BaseProps} from '../component-helpers'
 
 /**
@@ -59,15 +59,16 @@ const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, className, ...
 type FAQHeadingProps = BaseProps<HTMLHeadingElement> & {
   size?: 'medium' | 'large'
   align?: 'start' | 'center'
+  as?: HeadingTags['as']
   children: string
 }
 
 const FAQHeading = forwardRef<HTMLHeadingElement, FAQHeadingProps>(
-  ({children, className, size = 'medium', align = 'center', ...rest}, ref) => {
+  ({children, className, size = 'medium', align = 'center', as, ...rest}, ref) => {
     const headingSize = size === 'medium' ? 'h3' : 'h2'
     return (
       <Heading
-        as={headingSize}
+        as={as || headingSize}
         className={clsx(
           styles.FAQ__heading,
           size === 'large' && styles['FAQ__heading--large'],
@@ -85,12 +86,13 @@ const FAQHeading = forwardRef<HTMLHeadingElement, FAQHeadingProps>(
 
 type FAQSubheadingProps = BaseProps<HTMLHeadingElement> & {
   align?: 'start' | 'center'
+  as?: Exclude<HeadingTags['as'], 'h1'>
   children: string
 }
 
-function FAQSubheading({children, className, ...rest}: FAQSubheadingProps) {
+function FAQSubheading({children, className, as = 'h3', ...rest}: FAQSubheadingProps) {
   return (
-    <Heading as="h3" className={clsx(styles.FAQ__subheading, className)} {...rest}>
+    <Heading as={as} className={clsx(styles.FAQ__subheading, className)} {...rest}>
       {children}
     </Heading>
   )
