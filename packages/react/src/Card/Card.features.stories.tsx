@@ -21,7 +21,7 @@ export const LinkText: ComponentStory<typeof Card> = () => {
 
 export const Label: ComponentStory<typeof Card> = () => {
   return (
-    <Card linkText="Discover how" href="https://github.com">
+    <Card href="https://github.com">
       <Card.Label>Limited</Card.Label>
       <Card.Heading>Code search & code view</Card.Heading>
       <Card.Description>
