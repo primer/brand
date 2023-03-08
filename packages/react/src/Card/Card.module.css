@@ -18,7 +18,7 @@
 
 .Card__label {
   align-self: flex-start;
-  color: var(--brand-Card-label-default);
+  color: var(--brand-Card-color-label);
   border: var(--brand-borderWidth-thin) solid;
   border-radius: var(--brand-borderRadius-full);
   padding: calc(var(--base-size-4) - 2px) var(--base-size-12);

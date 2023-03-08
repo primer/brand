@@ -7,8 +7,8 @@
           "dark": "var(--brand-color-canvas-subtle)"
         }
       },
-      "label": {
-        "default": {
+      "color": {
+        "label": {
           "value": "var(--brand-color-text-default)",
           "dark": "var(--brand-color-text-default)"
         }

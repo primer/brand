@@ -28,9 +28,9 @@ The default card can be built with a custom heading and a description. The link 
 </Card>
 ```
 
-### Label
+### Link text
 
-The link label defaults to `Read more` and can be customized using the `label` prop.
+The link text defaults to `Read more` and can be customized using the `label` prop.
 
 ```jsx live
 <Card label="Click here" href="https://github.com">
@@ -39,6 +39,61 @@ The link label defaults to `Read more` and can be customized using the `label` p
     Everything you need to know about getting started with GitHub Actions.
   </Card.Description>
 </Card>
+```
+
+### Label
+
+Use the `Label` to add metadata to the `Card`. The `Label` is optional and can be used to indicate the status of the content.
+
+```jsx live
+<Card href="https://github.com">
+  <Card.Label>Limited</Card.Label>
+  <Card.Heading>Code search & code view</Card.Heading>
+  <Card.Description>
+    Enables you to rapidly search, navigate, and understand code, right from
+    GitHub.com.
+  </Card.Description>
+</Card>
+```
+
+#### Color customization
+
+The default colors can be customized through a dedicated CSS variable.
+
+| Name                       | Default                      |
+| :------------------------- | :--------------------------- |
+| `--brand-Card-color-label` | `--brand-color-text-default` |
+
+```javascript live noinline
+const App = () => {
+  const designTokenOverrides = `
+  .custom-colors {
+
+    /*
+     * Modify the value of these tokens.
+     */
+    --brand-Card-color-label: var(--base-color-scale-purple-2);
+  }
+`
+
+  return (
+    <ThemeProvider colorMode="dark">
+      <style>{designTokenOverrides}</style>
+      <Card href="https://github.com">
+        <Card.Label className="custom-colors">Limited</Card.Label>
+        <Card.Heading>
+          Getting better together: What enterprise can learn from global
+          patterns
+        </Card.Heading>
+        <Card.Description>
+          9am (PST) • Mar 29, 2023Secure and reliable
+        </Card.Description>
+      </Card>
+    </ThemeProvider>
+  )
+}
+
+render(<App />)
 ```
 
 ### Stacked cards
@@ -77,10 +132,10 @@ Use the `Stack` component to stack multiple cards horizontally or vertically.
 
 ### Card
 
-| name    | type     | default     | required | description                                 |
-| ------- | -------- | ----------- | -------- | ------------------------------------------- |
-| `href`  | `string` |             | `true`   | URL to the card content                     |
-| `label` | `string` | `Read more` | `false`  | Label of the link at the bottom of the Card |
+| name       | type     | default     | required | description                                 |
+| ---------- | -------- | ----------- | -------- | ------------------------------------------- |
+| `href`     | `string` |             | `true`   | URL to the card content                     |
+| `linkText` | `string` | `Read more` | `false`  | Label of the link at the bottom of the Card |
 
 ### Card.Heading
 
