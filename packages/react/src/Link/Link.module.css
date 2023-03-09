@@ -50,3 +50,15 @@
   width: 20px;
   height: 20px;
 }
+
+.Link--arrow-start::after {
+  left: auto;
+  right: 0;
+  transform-origin: right 0;
+  width: calc(100% - var(--base-size-20));
+}
+
+.Link--arrow-start .Link-arrow {
+  margin-left: auto;
+  margin-right: 4px;
+}

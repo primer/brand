@@ -6,7 +6,14 @@ import {Text} from '../Text'
 import styles from './Link.module.css'
 
 export type LinkProps = {
+  /**
+   * The size variations available in Link
+   */
   size?: 'medium' | 'large'
+  /**
+   * Position of the arrow.
+   */
+  arrowDirection?: 'start' | 'end'
 } & React.ComponentPropsWithoutRef<'a'>
 
 /**
@@ -21,6 +28,7 @@ export function Link({
   onMouseLeave,
   onFocus,
   onBlur,
+  arrowDirection = 'end',
   ...props
 }: LinkProps) {
   const [isHovered, setIsHovered] = React.useState(false)
@@ -65,17 +73,22 @@ export function Link({
 
   return (
     <a
-      className={clsx(styles.Link, styles[`Link--${size}`], className)}
+      className={clsx(styles.Link, styles[`Link--${size}`], styles[`Link--arrow-${arrowDirection}`], className)}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onFocus={handleOnFocus}
       onBlur={handleOnBlur}
       {...props}
     >
+      {arrowDirection === 'start' && (
+        <ExpandableArrow className={styles['Link-arrow']} expanded={isHovered || isFocused} reverse hidden />
+      )}
       <Text as="span" size={sizeMap[size]} className={clsx(styles['Link--label'])}>
         {children}
       </Text>
-      <ExpandableArrow className={styles['Link-arrow']} expanded={isHovered || isFocused} />
+      {arrowDirection === 'end' && (
+        <ExpandableArrow className={styles['Link-arrow']} expanded={isHovered || isFocused} hidden />
+      )}
     </a>
   )
 }

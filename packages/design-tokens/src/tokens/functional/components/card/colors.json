@@ -1,0 +1,12 @@
+{
+  "brand": {
+    "Card": {
+      "background": {
+        "default": {
+          "value": "var(--brand-color-canvas-default)",
+          "dark": "var(--brand-color-canvas-subtle)"
+        }
+      }
+    }
+  }
+}

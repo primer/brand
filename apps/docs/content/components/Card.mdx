@@ -1,0 +1,89 @@
+---
+title: Card
+status: Experimental
+source: https://github.com/primer/brand/tree/main/packages/react/src/Card/Card.tsx
+storybook: '/brand/storybook/?path=/story/components-card--playground'
+description: Use the Card component to display information in a compact way and link to other pages.
+---
+
+import {Label} from '@primer/react'
+import {CopilotIcon, RocketIcon, GitBranchIcon} from '@primer/octicons-react'
+
+```js
+import {Card} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+The default card can be built with a custom heading and a description. The link label defaults to `Read more` and can be customized using the `link` prop.
+
+```jsx live
+<Card href="https://github.com">
+  <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+  <Card.Description>
+    Everything you need to know about getting started with GitHub Actions.
+  </Card.Description>
+</Card>
+```
+
+### Label
+
+The link label defaults to `Read more` and can be customized using the `label` prop.
+
+```jsx live
+<Card label="Click here" href="https://github.com">
+  <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+  <Card.Description>
+    Everything you need to know about getting started with GitHub Actions.
+  </Card.Description>
+</Card>
+```
+
+### Stacked cards
+
+Use the `Stack` component to stack multiple cards horizontally or vertically.
+
+```jsx live
+<Stack
+  direction="horizontal"
+  alignItems="center"
+  justifyContent="center"
+  gap="normal"
+>
+  <Card href="https://github.com">
+    <Card.Heading>Heading</Card.Heading>
+    <Card.Description>
+      Everything you need to know about getting started with GitHub Actions.
+    </Card.Description>
+  </Card>
+  <Card href="https://github.com">
+    <Card.Heading>Heading</Card.Heading>
+    <Card.Description>
+      Everything you need to know about getting started with GitHub Actions.
+    </Card.Description>
+  </Card>
+  <Card href="https://github.com">
+    <Card.Heading>Heading</Card.Heading>
+    <Card.Description>
+      Everything you need to know about getting started with GitHub Actions.
+    </Card.Description>
+  </Card>
+</Stack>
+```
+
+## Component props
+
+### Card
+
+| name    | type     | default     | required | description                                 |
+| ------- | -------- | ----------- | -------- | ------------------------------------------- |
+| `href`  | `string` |             | `true`   | URL to the card content                     |
+| `label` | `string` | `Read more` | `false`  | Label of the link at the bottom of the Card |
+
+### Card.Heading
+
+| name | type                         | default | required | description |
+| ---- | ---------------------------- | ------- | -------- | ----------- |
+| `as` | `h2`, `h3`, `h4`, `h5`, `h6` | `h3`    | `false`  |             |

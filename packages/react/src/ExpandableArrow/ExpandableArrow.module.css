@@ -16,3 +16,11 @@
 .ExpandableArrow-stem--expanded {
   stroke-dashoffset: 20;
 }
+
+.ExpandableArrow--reversed {
+  transform: rotate(180deg);
+}
+
+.ExpandableArrow--reversed.ExpandableArrow--expanded {
+  transform: rotate(180deg) translateX(4px);
+}

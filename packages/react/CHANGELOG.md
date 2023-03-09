@@ -1,5 +1,42 @@
 # @primer/react-brand
 
+## 0.14.0
+
+### Minor Changes
+
+- [#162](https://github.com/primer/brand/pull/162) [`b7dcae0`](https://github.com/primer/brand/commit/b7dcae0cac18611cd472fe156be3deaa2305c4f8) Thanks [@josepmartins](https://github.com/josepmartins)! - Card Component
+
+  Example Usage
+
+  ```jsx live
+  <Card href="https://github.com">
+    <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+    <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
+  </Card>
+  ```
+
+  - [Card Documentation](https://primer.style/brand/components/Card)
+
+### Patch Changes
+
+- [#194](https://github.com/primer/brand/pull/194) [`2ffcb14`](https://github.com/primer/brand/commit/2ffcb14892278745e871f223281d779759fb6976) Thanks [@rezrah](https://github.com/rezrah)! - Added `arrowDirection` prop to Link component
+
+  ```jsx
+  <Link href="https://github.com" arrowDirection="start">
+    Back to GitHub
+  </Link>
+  ```
+
+* [`55abb8e`](https://github.com/primer/brand/commit/55abb8e1c154a3bd17e951bae5ab6e0b2f2aa59a) Thanks [@rezrah](https://github.com/rezrah)! - Fix bug in forwarding a `className` to SubdomainNavBar and remove console errors for Avatar
+
+  E.g.
+
+  ```
+  <SubdomainNavBar className="custom-css-class" />
+  ```
+
+- [#193](https://github.com/primer/brand/pull/193) [`3d8a95b`](https://github.com/primer/brand/commit/3d8a95ba637af3f7ee54222e278fa38685f13e68) Thanks [@TylerJDev](https://github.com/TylerJDev)! - Allows `FAQ.Question` and `FAQ.Subheading` to have adjustable heading levels (e.g. <FAQ.Question as="h3" />)
+
 ## 0.13.0
 
 ### Minor Changes

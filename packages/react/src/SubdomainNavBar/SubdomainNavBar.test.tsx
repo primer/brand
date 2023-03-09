@@ -121,4 +121,13 @@ describe('SubdomainNavBar', () => {
 
     expect(menuButtonEl).toBe(null)
   })
+
+  it('can append a classname to the root element', () => {
+    const mockClass = 'custom-class'
+    const {getByTestId} = render(<SubdomainNavBar title="Subdomain" className={mockClass} />)
+
+    const headerEl = getByTestId(SubdomainNavBar.testIds.root)
+
+    expect(headerEl.classList).toContain(mockClass)
+  })
 })

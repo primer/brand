@@ -157,4 +157,28 @@ describe('FAQ', () => {
 
     expect(subheadingEl).toBeInTheDocument()
   })
+
+  it('renders alternative headling levels', () => {
+    const mockSubheading = 'this is a mock subheading'
+    const {getByRole} = render(
+      <FAQ>
+        <FAQ.Heading as="h3">{mockHeading}</FAQ.Heading>
+        <FAQ.Subheading as="h4">{mockSubheading}</FAQ.Subheading>
+        <FAQ.Item>
+          <FAQ.Question as="h5">{mockQuestion}</FAQ.Question>
+          <FAQ.Answer>
+            <p>{mockFAQAnswer}</p>
+          </FAQ.Answer>
+        </FAQ.Item>
+      </FAQ>
+    )
+
+    const mainheadingEl = getByRole('heading', {level: 3, name: mockHeading})
+    const subheadingEl = getByRole('heading', {level: 4, name: mockSubheading})
+    const questionheadingEl = getByRole('heading', {level: 5, name: mockQuestion})
+
+    expect(mainheadingEl).toBeInTheDocument()
+    expect(subheadingEl).toBeInTheDocument()
+    expect(questionheadingEl).toBeInTheDocument()
+  })
 })
