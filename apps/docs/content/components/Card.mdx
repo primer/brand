@@ -68,12 +68,13 @@ The default colors can be customized through a dedicated CSS variable.
 ```javascript live noinline
 const App = () => {
   const designTokenOverrides = `
-  .custom-colors {
+  .custom-color{
+
 
     /*
      * Modify the value of these tokens.
      */
-    --brand-Card-color-label: var(--base-color-scale-purple-2);
+    --brand-Card-color-label: var(--base-color-scale-purple-4);
   }
 `
 
@@ -81,7 +82,7 @@ const App = () => {
     <ThemeProvider colorMode="dark">
       <style>{designTokenOverrides}</style>
       <Card href="https://github.com">
-        <Card.Label className="custom-colors">Limited</Card.Label>
+        <Card.Label className="custom-color">Limited</Card.Label>
         <Card.Heading>
           Getting better together: What enterprise can learn from global
           patterns
