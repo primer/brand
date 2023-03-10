@@ -30,14 +30,15 @@ The default card displays a heading and description. The link text defaults to `
 
 ### Link text
 
-The link text defaults to `Read more` and can be customized using the `label` prop.
+The link defaults to `Learn more` and can be customized using the `Link` component.
 
 ```jsx live
-<Card label="Click here" href="https://github.com">
+<Card href="https://github.com">
   <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
   <Card.Description>
     Everything you need to know about getting started with GitHub Actions.
   </Card.Description>
+  <Card.Link>Discover how</Card.Link>
 </Card>
 ```
 
