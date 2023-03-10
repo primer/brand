@@ -142,7 +142,7 @@ const CardLabel = forwardRef<HTMLSpanElement, CardLabelProps>(({children, classN
 
 type CardHeadingProps = BaseProps<HTMLHeadingElement> & {
   children: React.ReactNode | React.ReactNode[]
-  as?: typeof HeadingTags[number]
+  as?: Exclude<HeadingTags['as'], 'h1'>
 }
 
 const CardHeading = forwardRef<HTMLHeadingElement, CardHeadingProps>(
