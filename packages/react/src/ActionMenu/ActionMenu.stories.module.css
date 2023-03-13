@@ -1,0 +1,23 @@
+.ActiveKey {
+  border: 1px solid var(--brand-color-border-default);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  width: 48px;
+  border-radius: var(--brand-borderRadius-large);
+  background-color: var(--brand-color-canvas-default);
+}
+
+.StoryInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 150px;
+  padding: var(--base-size-24);
+  border-radius: var(--brand-borderRadius-large);
+  background-color: var(--brand-color-canvas-subtle);
+  border: 1px solid var(--brand-color-border-default);
+  margin-left: var(--base-size-64);
+}

@@ -42,6 +42,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@primer/behaviors": "^1.3.3",
     "clsx": "^1.1.1"
   },
   "devDependencies": {
