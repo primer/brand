@@ -14,7 +14,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 150px;
   padding: var(--base-size-24);
   border-radius: var(--brand-borderRadius-large);
   background-color: var(--brand-color-canvas-subtle);

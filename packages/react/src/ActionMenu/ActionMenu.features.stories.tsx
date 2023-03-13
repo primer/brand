@@ -4,7 +4,7 @@ import {userEvent, within, waitFor} from '@storybook/testing-library'
 import {expect} from '@storybook/jest'
 import {ActionMenu} from './ActionMenu'
 import {countries} from '../test-utils/fixtures/data'
-import {Stack, Text} from '../'
+import {Heading, Stack, Text, OrderedList} from '../'
 
 import styles from './ActionMenu.stories.module.css'
 
@@ -180,7 +180,7 @@ export const KeyboardNavigation = () => {
   const [selectedItem, setSelectedItem] = React.useState('Copilot')
 
   return (
-    <Stack direction="horizontal" gap="spacious" alignItems="center">
+    <Stack direction="horizontal" gap="spacious" alignItems="flex-start">
       <ActionMenu onSelect={newValue => setSelectedItem(newValue)}>
         <ActionMenu.Button>{selectedItem}</ActionMenu.Button>
         <ActionMenu.Overlay>
@@ -209,6 +209,14 @@ export const KeyboardNavigation = () => {
       </ActionMenu>
       <div className={styles.StoryInfo}>
         <Stack direction="vertical" alignItems="flex-start" justifyContent="flex-start">
+          <Heading as="h6">WAI-ARIA keyboard support</Heading>
+          <OrderedList>
+            <OrderedList.Item>Tab focusses menu button</OrderedList.Item>
+            <OrderedList.Item>Enter / space opens menu, with active focus on first menu item</OrderedList.Item>
+            <OrderedList.Item>Down arrow navigates forward through children</OrderedList.Item>
+            <OrderedList.Item>Up arrow navigates backwards through children</OrderedList.Item>
+            <OrderedList.Item>Escape closes the menu with focus returned to the menu button</OrderedList.Item>
+          </OrderedList>
           <Text as="p" size="200" weight="medium">
             Active key press:
           </Text>
