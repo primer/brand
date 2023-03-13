@@ -34,19 +34,15 @@ export function KitchenSink(props: KitchenSinkProps) {
         <SubdomainNavBar.PrimaryAction href="#">Primary CTA</SubdomainNavBar.PrimaryAction>
       </SubdomainNavBar>
       <div style={{maxWidth: 1280, margin: '80px auto 200px'}}>
-        <Hero
-          heading="This is my super sweet hero heading"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum."
-          primaryAction={{
-            text: 'Primary action',
-            href: '#'
-          }}
-          secondaryAction={{
-            text: 'Secondary action',
-            href: '#'
-          }}
-          align="center"
-        />
+        <Hero align="center">
+          <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+          <Hero.Description>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis nam pulvinar risus elementum.
+          </Hero.Description>
+          <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+          <Hero.SecondaryAction href="#">Secondary action</Hero.SecondaryAction>
+        </Hero>
         <Stack
           direction="vertical"
           justifyContent="center"
