@@ -74,7 +74,7 @@
   background: var(--brand-Button-background-overlay);
 }
 
-.Button--primary:not(.Button--disabled):hover {
+.Button--primary:not(.Button--disabled[disabled]):hover {
   box-shadow: var(--brand-Button-shadow-primary-hover);
 }
 
