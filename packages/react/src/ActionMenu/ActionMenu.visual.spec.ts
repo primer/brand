@@ -32,6 +32,14 @@ test.describe('Visual Comparison: ActionMenu', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('ActionMenu / Truncation Of Long Values', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--truncation-of-long-values&viewMode=story'
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('ActionMenu / Longer Lists', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--longer-lists&viewMode=story'

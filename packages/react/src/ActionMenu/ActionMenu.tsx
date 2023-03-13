@@ -20,6 +20,7 @@ import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
 import {default as clsx} from 'clsx'
 import {CheckIcon, ChevronDownIcon} from '@primer/octicons-react'
 import {FocusKeys, focusZone} from '@primer/behaviors'
+import type {BaseProps} from '../component-helpers'
 
 /**
  * Design tokens
@@ -28,7 +29,6 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './ActionMenu.module.css'
-import {BaseProps} from '../component-helpers'
 
 const testIds = {
   root: 'ActionMenu',
@@ -55,11 +55,11 @@ type ActionMenuProps = {
     | ReactElement<ActionMenuOverlayProps>
     | Array<ReactElement<ActionMenuButtonProps> | ReactElement<ActionMenuOverlayProps>>
   /**
-   * Whether the ActionMenu is disabled or not
+   * Determines whether the ActionMenu is disabled
    */
   disabled?: boolean
   /**
-   * Whether the ActionMenu is open or not
+   * Determines whether the ActionMenu is open by default
    */
   open?: boolean
   /**

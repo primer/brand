@@ -89,6 +89,30 @@ export const OpenByDefault = () => {
   )
 }
 
+export const TruncationOfLongValues = () => {
+  const [selected, setSelected] = React.useState('Europe, Middle East and Africa')
+
+  return (
+    <ActionMenu onSelect={newValue => setSelected(newValue)}>
+      <ActionMenu.Button>{selected}</ActionMenu.Button>
+      <ActionMenu.Overlay>
+        <ActionMenu.Item
+          value="Europe, Middle East and Africa"
+          selected={'Europe, Middle East and Africa' === selected}
+        >
+          Europe, Middle East and Africa
+        </ActionMenu.Item>
+        <ActionMenu.Item value="Americas" selected={'Americas' === selected}>
+          Americas
+        </ActionMenu.Item>
+        <ActionMenu.Item value="Asia Pacific" selected={'Asia Pacific' === selected}>
+          Asia Pacific
+        </ActionMenu.Item>
+      </ActionMenu.Overlay>
+    </ActionMenu>
+  )
+}
+
 export const LongerLists = () => {
   const [selectedItem, setSelectedItem] = React.useState('United States')
 
