@@ -19,10 +19,7 @@ import {ActionMenu} from '@primer/react-brand'
 ### Default
 
 ```jsx live
-<ActionMenu
-  onSelect={(newValue) => alert(`Pressed ${newValue}`)}
-  selectionVariant="none"
->
+<ActionMenu onSelect={(newValue) => alert(`Pressed ${newValue}`)}>
   <ActionMenu.Button>Open menu</ActionMenu.Button>
   <ActionMenu.Overlay>
     <ActionMenu.Item value="Copilot" selected>
@@ -41,7 +38,10 @@ const App = () => {
   const [selection, setSelection] = React.useState('Copilot')
 
   return (
-    <ActionMenu onSelect={(newValue) => setSelection(newValue)}>
+    <ActionMenu
+      onSelect={(newValue) => setSelection(newValue)}
+      selectionVariant="single"
+    >
       <ActionMenu.Button>{selection}</ActionMenu.Button>
       <ActionMenu.Overlay>
         <ActionMenu.Item value="Copilot" selected={'Copilot' === selection}>
@@ -68,13 +68,13 @@ render(<App />)
 
 ### ActionMenu <Label>Required</Label>
 
-| name               | type                                                          | default | required   | description                                                           |
-| ------------------ | ------------------------------------------------------------- | ------- | ---------- | --------------------------------------------------------------------- |
-| `disabled`         | `boolean`                                                     | `false` | `false`    | Controls the ActionMenu active/inactive state                         |
-| `open`             | `boolean`                                                     | `false` | `false`    | Determines whether the ActionMenu is open by default                  |
-| `onSelect`         | `(newValue: string) => void`                                  |         | `false`    | Callback that is called when an item is selected                      |
-| `selectionVariant` | <PropTableValues values={['single', 'none']} addLineBreaks /> |         | `'single'` | The selection variant of the ActionMenu                               |
-| `menuAlignment`    | <PropTableValues values={['start', 'end']} addLineBreaks />   |         | `'start'`  | Horizontal alignment of the menu relative to the bottom of the button |
+| name               | type                                                          | default  | required  | description                                                           |
+| ------------------ | ------------------------------------------------------------- | -------- | --------- | --------------------------------------------------------------------- |
+| `disabled`         | `boolean`                                                     | `false`  | `false`   | Controls the ActionMenu active/inactive state                         |
+| `open`             | `boolean`                                                     | `false`  | `false`   | Determines whether the ActionMenu is open by default                  |
+| `onSelect`         | `(newValue: string) => void`                                  |          | `false`   | Callback that is called when an item is selected                      |
+| `selectionVariant` | <PropTableValues values={['single', 'none']} addLineBreaks /> | `'none'` | `false`   | The selection variant of the ActionMenu                               |
+| `menuAlignment`    | <PropTableValues values={['start', 'end']} addLineBreaks />   |          | `'start'` | Horizontal alignment of the menu relative to the bottom of the button |
 
 ### ActionMenu.Button <Label>Required</Label>
 
