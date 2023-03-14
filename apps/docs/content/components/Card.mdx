@@ -28,17 +28,16 @@ The default card displays a heading and description. The link text defaults to `
 </Card>
 ```
 
-### Link text
+### Cta text
 
-The link defaults to `Learn more` and can be customized using the `Link` component.
+The cta text defaults to `Learn more` and can be customized using the `ctaText` component.
 
 ```jsx live
-<Card href="https://github.com">
+<Card ctaText="Discover how" href="https://github.com">
   <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
   <Card.Description>
     Everything you need to know about getting started with GitHub Actions.
   </Card.Description>
-  <Card.Link>Discover how</Card.Link>
 </Card>
 ```
 
@@ -134,10 +133,10 @@ Use the `Stack` component to stack multiple cards horizontally or vertically.
 
 ### Card
 
-| name       | type     | default     | required | description                                 |
-| ---------- | -------- | ----------- | -------- | ------------------------------------------- |
-| `href`     | `string` |             | `true`   | URL to the card content                     |
-| `linkText` | `string` | `Read more` | `false`  | Label of the link at the bottom of the Card |
+| name      | type     | default     | required | description                                 |
+| --------- | -------- | ----------- | -------- | ------------------------------------------- |
+| `href`    | `string` |             | `true`   | URL to the card content                     |
+| `ctaText` | `string` | `Read more` | `false`  | Label of the link at the bottom of the Card |
 
 ### Card.Heading
 

@@ -27,16 +27,20 @@ export type CardProps = {
     | React.ReactElement<CardLabelProps>
     | React.ReactElement<CardHeadingProps>
     | React.ReactElement<CardDescriptionProps>
-    | React.ReactElement<CardLinkProps>
   /**
    * The href of the link
    * */
   href: string
+  /**
+   * Changes the cta text of the card
+   * * @default 'Learn more'
+   * */
+  ctaText?: string
 } & BaseProps<HTMLAnchorElement> &
   React.ComponentPropsWithoutRef<'a'>
 
 const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
-  ({onMouseEnter, onMouseLeave, onFocus, onBlur, children, className, href, ref, ...props}) => {
+  ({onMouseEnter, onMouseLeave, onFocus, onBlur, children, ctaText = 'Learn more', className, href, ref, ...props}) => {
     const [isHovered, setIsHovered] = React.useState(false)
     const [isFocused, setIsFocused] = React.useState(false)
 
@@ -78,18 +82,13 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
           isFragment(child) ||
           child.type === CardLabel ||
           child.type === CardHeading ||
-          child.type === CardDescription ||
-          child.type === CardLink
+          child.type === CardDescription
         ) {
           return true
         }
       }
       return false
     })
-
-    const hasCardLink = React.Children.toArray(children).some(
-      child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === CardLink
-    )
 
     return (
       <a
@@ -102,18 +101,13 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
         ref={ref}
         {...props}
       >
-        {React.Children.toArray(filteredChildren).map(child => {
-          if (React.isValidElement(child) && typeof child.type !== 'string') {
-            if (child.type === CardLink) {
-              return React.cloneElement(child, {
-                isExpanded: isHovered || isFocused
-              })
-            }
-          }
-          return child
-        })}
-
-        {!hasCardLink && <CardLink isExpanded={isHovered || isFocused}>{'Learn more'}</CardLink>}
+        {filteredChildren}
+        <div className={styles.Card__action}>
+          <Text as="span" size="300" className={clsx(stylesLink['Link--label'])}>
+            {ctaText}
+          </Text>
+          <ExpandableArrow className={stylesLink['Link-arrow']} expanded={isHovered || isFocused} />
+        </div>
       </a>
     )
   }
@@ -164,22 +158,6 @@ const CardDescription = forwardRef<HTMLParagraphElement, CardDescriptionProps>(
   }
 )
 
-type CardLinkProps = BaseProps<HTMLDivElement> & {
-  children: React.ReactNode | React.ReactNode[]
-  isExpanded?: boolean
-}
-
-const CardLink = forwardRef<HTMLDivElement, CardLinkProps>(({children, isExpanded, className, ...rest}, ref) => {
-  return (
-    <div ref={ref} className={styles.Card__action} {...rest}>
-      <Text as="span" size="300" className={clsx(stylesLink['Link--label'])}>
-        {children}
-      </Text>
-      <ExpandableArrow className={stylesLink['Link-arrow']} expanded={isExpanded} />
-    </div>
-  )
-})
-
 /**
  * Card component:
  * {@link https://primer.style/brand/components/Card/ See usage examples}.
@@ -187,6 +165,5 @@ const CardLink = forwardRef<HTMLDivElement, CardLinkProps>(({children, isExpande
 export const Card = Object.assign(CardRoot, {
   Label: CardLabel,
   Heading: CardHeading,
-  Description: CardDescription,
-  Link: CardLink
+  Description: CardDescription
 })
