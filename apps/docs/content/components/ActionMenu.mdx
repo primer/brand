@@ -68,12 +68,13 @@ render(<App />)
 
 ### ActionMenu <Label>Required</Label>
 
-| name               | type                                                          | default | required   | description                                          |
-| ------------------ | ------------------------------------------------------------- | ------- | ---------- | ---------------------------------------------------- |
-| `disabled`         | `boolean`                                                     | `false` | `false`    | Controls the ActionMenu active/inactive state        |
-| `open`             | `boolean`                                                     | `false` | `false`    | Determines whether the ActionMenu is open by default |
-| `onSelect`         | `(newValue: string) => void`                                  |         | `false`    | Callback that is called when an item is selected     |
-| `selectionVariant` | <PropTableValues values={['single', 'none']} addLineBreaks /> |         | `'single'` | The selection variant of the ActionMenu              |
+| name               | type                                                          | default | required   | description                                                           |
+| ------------------ | ------------------------------------------------------------- | ------- | ---------- | --------------------------------------------------------------------- |
+| `disabled`         | `boolean`                                                     | `false` | `false`    | Controls the ActionMenu active/inactive state                         |
+| `open`             | `boolean`                                                     | `false` | `false`    | Determines whether the ActionMenu is open by default                  |
+| `onSelect`         | `(newValue: string) => void`                                  |         | `false`    | Callback that is called when an item is selected                      |
+| `selectionVariant` | <PropTableValues values={['single', 'none']} addLineBreaks /> |         | `'single'` | The selection variant of the ActionMenu                               |
+| `menuAlignment`    | <PropTableValues values={['start', 'end']} addLineBreaks />   |         | `'start'`  | Horizontal alignment of the menu relative to the bottom of the button |
 
 ### ActionMenu.Button <Label>Required</Label>
 

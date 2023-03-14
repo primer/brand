@@ -57,6 +57,14 @@ test.describe('Visual Comparison: ActionMenu', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('ActionMenu / Menu alignment (end)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--menu-alignment&viewMode=story'
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('ActionMenu / Disabled Menu', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--disabled-menu&viewMode=story'

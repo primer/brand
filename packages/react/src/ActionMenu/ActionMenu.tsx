@@ -76,7 +76,14 @@ type ActionMenuProps = {
    * - `none`: No items can be selected. Menu items as a menuitem.
    */
   selectionVariant?: 'single' | 'none'
+  /**
+   * Test id for the ActionMenu
+   */
   'data-testid'?: string
+  /**
+   * Horizontal alignment of the menu relative to the bottom of the button
+   */
+  menuAlignment?: 'start' | 'end'
 } & BaseProps<HTMLDivElement>
 
 const _ActionMenuRoot = memo(
@@ -87,6 +94,7 @@ const _ActionMenuRoot = memo(
     disabled,
     open = false,
     selectionVariant = 'single',
+    menuAlignment = 'start',
     onSelect
   }: ActionMenuProps) => {
     const [showMenu, setShowMenu] = useState(open)
@@ -194,7 +202,8 @@ const _ActionMenuRoot = memo(
         floatingElementRef,
         anchorElementRef,
         side: 'outside-bottom',
-        align: 'start'
+        align: menuAlignment,
+        allowOutOfBounds: true
       },
       [showMenu]
     )

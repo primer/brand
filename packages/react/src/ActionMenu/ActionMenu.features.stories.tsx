@@ -149,6 +149,27 @@ export const LongerListsOpen = () => {
 
 LongerListsOpen.storyName = 'Longer lists (open)'
 
+export const MenuAlignment = () => {
+  const [selectedItem, setSelectedItem] = React.useState('United States')
+
+  return (
+    <div style={{marginLeft: 150}}>
+      <ActionMenu onSelect={newValue => setSelectedItem(newValue)} selectionVariant="single" open menuAlignment="end">
+        <ActionMenu.Button aria-label="Country">{selectedItem}</ActionMenu.Button>
+        <ActionMenu.Overlay>
+          {countries.map((country, index) => (
+            <ActionMenu.Item key={index} value={country} selected={country === selectedItem}>
+              {country}
+            </ActionMenu.Item>
+          ))}
+        </ActionMenu.Overlay>
+      </ActionMenu>
+    </div>
+  )
+}
+
+MenuAlignment.storyName = 'Menu alignment (end)'
+
 export const DisabledMenu = () => {
   const [selectedItem] = React.useState('Copilot')
 
