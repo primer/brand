@@ -19,6 +19,8 @@ import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
 
 import {default as clsx} from 'clsx'
 import {CheckIcon, ChevronDownIcon} from '@primer/octicons-react'
+import {useId} from '@reach/auto-id'
+
 import {FocusKeys, focusZone} from '@primer/behaviors'
 import type {BaseProps} from '../component-helpers'
 
@@ -63,10 +65,6 @@ type ActionMenuProps = {
    */
   open?: boolean
   /**
-   * Callback that is called when the open state changes
-   */
-  onOpenChange?: (open: boolean) => void
-  /**
    * Callback that is called when an item is selected.
    * The value of the selected item is passed as an argument.
    */
@@ -92,6 +90,7 @@ const _ActionMenuRoot = memo(
     const [showMenu, setShowMenu] = useState(open)
     const floatingElementRef = useRef<HTMLUListElement>(null)
     const anchorElementRef = useRef<HTMLButtonElement>(null)
+    const id = useId()
 
     useOnClickOutside(floatingElementRef, () => setShowMenu(false), anchorElementRef)
 
@@ -101,12 +100,51 @@ const _ActionMenuRoot = memo(
 
     useKeyboardEscape(closeMenuCallback)
 
+    const toggleMenu = useCallback(() => {
+      setShowMenu(!showMenu)
+    }, [showMenu])
+
+    const handleOnSelect = useCallback(
+      (newValue: string) => {
+        if (onSelect) onSelect(newValue)
+        toggleMenu()
+      },
+      [onSelect, toggleMenu]
+    )
+
+    const handleItemSelection = useCallback(
+      (newValue: string) => {
+        if (newValue) {
+          handleOnSelect(newValue)
+          toggleMenu()
+          anchorElementRef.current?.focus()
+        }
+      },
+      [handleOnSelect, toggleMenu, anchorElementRef]
+    )
+
     useEffect(() => {
       if (showMenu && floatingElementRef.current) {
         const floatingElement = floatingElementRef.current
 
         focusZone(floatingElementRef.current, {
           bindKeys: FocusKeys.ArrowVertical
+        })
+
+        // enter selects item
+        floatingElement.addEventListener('keydown', event => {
+          if (event.key === 'Enter') {
+            const target = event.target as HTMLLIElement
+
+            const value = target.getAttribute('data-value')
+            if (value) {
+              handleOnSelect(value)
+              setShowMenu(false)
+              setTimeout(() => {
+                anchorElementRef.current?.focus()
+              }, 10)
+            }
+          }
         })
 
         // focusses first item
@@ -139,7 +177,7 @@ const _ActionMenuRoot = memo(
           }
         })
       }
-    }, [showMenu, floatingElementRef])
+    }, [showMenu, floatingElementRef, handleItemSelection, toggleMenu, handleOnSelect])
 
     // Calculate the position of the menu
     const {position} = useAnchoredPosition(
@@ -152,44 +190,6 @@ const _ActionMenuRoot = memo(
       [showMenu]
     )
 
-    const toggleMenu = useCallback(() => {
-      setShowMenu(!showMenu)
-    }, [showMenu])
-
-    const handleOnSelect = useCallback(
-      (newValue: string) => {
-        if (onSelect) onSelect(newValue)
-        toggleMenu()
-      },
-      [onSelect, toggleMenu]
-    )
-
-    const handleItemSelection = useCallback(
-      (newValue: string) => {
-        if (newValue) {
-          handleOnSelect(newValue)
-          toggleMenu()
-          anchorElementRef.current?.focus()
-        }
-      },
-      [handleOnSelect, toggleMenu, anchorElementRef]
-    )
-
-    useEffect(() => {
-      const handleKeyDown = (event: KeyboardEvent) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault()
-          const target = event.target as HTMLElement
-          target.click()
-        }
-      }
-
-      document.addEventListener('keydown', handleKeyDown)
-      return () => {
-        document.removeEventListener('keydown', handleKeyDown)
-      }
-    }, [])
-
     const {Button: SelectButton, Overlay: SelectOverlay} = Children.toArray(children).reduce<{
       Button?: ReactElement<ActionMenuButtonProps>
       Overlay?: ReactElement<ActionMenuOverlayProps>
@@ -201,7 +201,8 @@ const _ActionMenuRoot = memo(
             ref: anchorElementRef as React.RefObject<HTMLButtonElement>,
             className: clsx(child.props.className, showMenu && styles['ActionMenu__button--active']),
             menuOpen: showMenu,
-            disabled
+            disabled,
+            id
           })
         } else if (child.type === ActionMenuOverlay) {
           acc['Overlay'] = cloneElement(child as ReactElement<ActionMenuOverlayProps>, {
@@ -211,6 +212,7 @@ const _ActionMenuRoot = memo(
               top: `${position?.top ?? 0}px`,
               left: `${position?.left ?? 0}px`
             },
+            id,
             children: Children.map(child.props.children, item => {
               if (isValidElement(item)) {
                 return cloneElement(item as ReactElement<ActionMenuItemProps>, {
@@ -239,6 +241,7 @@ const _ActionMenuRoot = memo(
 )
 
 type ActionMenuButtonProps = PropsWithChildren<Ref<HTMLButtonElement>> & {
+  id?: string
   ref?: React.RefObject<HTMLButtonElement>
   className?: string
   menuOpen?: boolean
@@ -278,7 +281,6 @@ type ActionMenuItemProps = {
 const roleTypeMap = {
   none: 'menuitem',
   single: 'menuitemradio'
-  // multiple: 'menuitemcheckbox'
 }
 
 const ActionMenuItem = ({
@@ -294,13 +296,18 @@ const ActionMenuItem = ({
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
     <li
-      className={clsx(styles.ActionMenu__item, className)}
+      className={clsx(
+        styles.ActionMenu__item,
+        type === 'single' && styles[`ActionMenu__item--selection-type-${type}`],
+        className
+      )}
       // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
       role={roleTypeMap[type || 'single']}
       aria-checked={type === 'none' ? undefined : selected ? 'true' : 'false'}
       aria-disabled={disabled ? 'true' : 'false'}
       onClick={handler && !disabled ? () => handler(value) : undefined}
       tabIndex={disabled ? undefined : 0}
+      data-value={value}
       {...props}
     >
       {type !== 'none' && (
@@ -328,6 +335,7 @@ const ActionMenuItem = ({
 }
 
 type ActionMenuOverlayProps = PropsWithChildren<Ref<HTMLUListElement>> & {
+  id?: string
   ref?: React.RefObject<HTMLUListElement>
   className?: string
   'data-testid'?: string

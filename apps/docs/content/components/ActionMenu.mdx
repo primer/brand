@@ -68,12 +68,12 @@ render(<App />)
 
 ### ActionMenu <Label>Required</Label>
 
-| name               | type                                                          | default | required | description                                          |
-| ------------------ | ------------------------------------------------------------- | ------- | -------- | ---------------------------------------------------- |
-| `disabled`         | `boolean`                                                     | `false  | `false`  | Controls the ActionMenu active/inactive state        |
-| `open`             | `boolean`                                                     | `false  | `false`  | Determines whether the ActionMenu is open by default |
-| `onSelect`         | `(newValue: string) => void`                                  |         | `false`  | Callback that is called when an item is selected     |
-| `selectionVariant` | <PropTableValues values={['single', 'none']} addLineBreaks /> |         | `single` | The selection variant of the ActionMenu              |
+| name               | type                                                          | default | required   | description                                          |
+| ------------------ | ------------------------------------------------------------- | ------- | ---------- | ---------------------------------------------------- |
+| `disabled`         | `boolean`                                                     | `false` | `false`    | Controls the ActionMenu active/inactive state        |
+| `open`             | `boolean`                                                     | `false` | `false`    | Determines whether the ActionMenu is open by default |
+| `onSelect`         | `(newValue: string) => void`                                  |         | `false`    | Callback that is called when an item is selected     |
+| `selectionVariant` | <PropTableValues values={['single', 'none']} addLineBreaks /> |         | `'single'` | The selection variant of the ActionMenu              |
 
 ### ActionMenu.Button <Label>Required</Label>
 
@@ -93,11 +93,11 @@ render(<App />)
 
 ### ActionMenu.Item <Label>Required</Label>
 
-| name        | type           | default | required | description                                                 |
-| ----------- | -------------- | ------- | -------- | ----------------------------------------------------------- |
-| `className` | `string`       |         |          | Sets a custom class on the element                          |
+| name        | type           | default | required | description                                                   |
+| ----------- | -------------- | ------- | -------- | ------------------------------------------------------------- |
+| `className` | `string`       |         |          | Sets a custom class on the element                            |
 | `children`  | `ReactElement` |         |          |
-| `disabled`  | `boolean`      | `false` | `false`  | Allows control over an indivual items active/inactive state |
-| `id`        | `string`       |         |          | Sets a custom `id`                                          |
-| `selected`  | `boolean`      |         |          | Indicates the item is selected n `single` selection mode    |
-| `value`     | `string`       |         |          | The underlying value passed to the selection handler        |
+| `disabled`  | `boolean`      | `false` | `false`  | Allows control over an individual items active/inactive state |
+| `id`        | `string`       |         |          | Sets a custom `id`                                            |
+| `selected`  | `boolean`      |         |          | Indicates the item is selected in `single` selection mode     |
+| `value`     | `string`       |         |          | The underlying value passed to the selection handler          |

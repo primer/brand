@@ -96,6 +96,10 @@
   background-color: var(--brand-ActionMenu-color-item-hover);
 }
 
+.ActionMenu__item--selection-type-single {
+  padding-right: var(--base-size-48);
+}
+
 .ActionMenu__item:focus-visible {
   outline: none;
   box-shadow: 0 0 0 3px var(--brand-color-focus);

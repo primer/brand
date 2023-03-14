@@ -1,7 +1,6 @@
-import React, {useCallback, useEffect, useState} from 'react'
+import React, {RefObject, useCallback, useEffect, useState} from 'react'
 import {getAnchoredPosition} from '@primer/behaviors'
 import type {AnchorPosition, PositionSettings} from '@primer/behaviors'
-import {useProvidedRefOrCreate} from './useRef'
 import {useResizeObserver} from './useResizeObserver'
 
 export interface AnchoredPositionHookSettings extends Partial<PositionSettings> {
@@ -22,13 +21,13 @@ export function useAnchoredPosition(
   settings?: AnchoredPositionHookSettings,
   dependencies: React.DependencyList = []
 ): {
-  floatingElementRef: React.RefObject<Element>
-  anchorElementRef: React.RefObject<Element>
+  floatingElementRef: RefObject<Element> | undefined
+  anchorElementRef: RefObject<Element> | undefined
   position: AnchorPosition | undefined
 } {
-  const floatingElementRef = useProvidedRefOrCreate(settings?.floatingElementRef)
+  const floatingElementRef = settings?.floatingElementRef as RefObject<Element>
+  const anchorElementRef = settings?.anchorElementRef as RefObject<Element>
 
-  const anchorElementRef = useProvidedRefOrCreate(settings?.anchorElementRef)
   const [position, setPosition] = useState<AnchorPosition | undefined>(undefined)
 
   const updatePosition = useCallback(
