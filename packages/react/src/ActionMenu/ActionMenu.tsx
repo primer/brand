@@ -93,7 +93,7 @@ const _ActionMenuRoot = memo(
     'data-testid': testId,
     disabled,
     open = false,
-    selectionVariant = 'single',
+    selectionVariant = 'none',
     menuAlignment = 'start',
     onSelect
   }: ActionMenuProps) => {

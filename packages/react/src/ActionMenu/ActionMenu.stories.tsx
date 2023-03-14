@@ -8,7 +8,7 @@ export default {
 } as ComponentMeta<typeof ActionMenu>
 
 const Template: ComponentStory<typeof ActionMenu> = args => (
-  <ActionMenu {...args} onSelect={newValue => alert(newValue)} selectionVariant="none">
+  <ActionMenu {...args} onSelect={newValue => alert(newValue)}>
     <ActionMenu.Button aria-label="Actions">Open menu</ActionMenu.Button>
     <ActionMenu.Overlay>
       <ActionMenu.Item value="Copy link pressed" selected>
