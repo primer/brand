@@ -77,11 +77,12 @@ render(<App />)
 
 ### ActionMenu.Button <Label>Required</Label>
 
-| name        | type           | default | required | description                        |
-| ----------- | -------------- | ------- | -------- | ---------------------------------- |
-| `className` | `string`       |         |          | Sets a custom class on the element |
-| `children`  | `ReactElement` |         |          |
-| `id`        | `string`       |         |          | Sets a custom `id`                 |
+| name         | type           | default | required | description                                                      |
+| ------------ | -------------- | ------- | -------- | ---------------------------------------------------------------- |
+| `aria-label` | `string`       |         | `true`   | Required for describing the relationship between button and menu |
+| `className`  | `string`       |         |          | Sets a custom class on the element                               |
+| `children`   | `ReactElement` |         |          |
+| `id`         | `string`       |         |          | Sets a custom `id`                                               |
 
 ### ActionMenu.Overlay <Label>Required</Label>
 

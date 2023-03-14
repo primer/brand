@@ -10,7 +10,8 @@ import React, {
   forwardRef,
   memo,
   Ref,
-  ReactElement
+  ReactElement,
+  useMemo
 } from 'react'
 import {Button, Text} from '../'
 import {useAnchoredPosition} from '../hooks/useAnchoredPosition'
@@ -80,6 +81,7 @@ type ActionMenuProps = {
 
 const _ActionMenuRoot = memo(
   ({
+    id,
     children,
     'data-testid': testId,
     disabled,
@@ -90,7 +92,14 @@ const _ActionMenuRoot = memo(
     const [showMenu, setShowMenu] = useState(open)
     const floatingElementRef = useRef<HTMLUListElement>(null)
     const anchorElementRef = useRef<HTMLButtonElement>(null)
-    const id = useId()
+    const instanceId = useId(id)
+
+    const ariaLabel = useMemo(() => {
+      const menuButton = Children.toArray(children).find(
+        child => isValidElement(child) && child.type === ActionMenuButton
+      ) as React.ReactElement<{'aria-label'?: string}> | undefined
+      return menuButton?.props['aria-label']
+    }, [children])
 
     useOnClickOutside(floatingElementRef, () => setShowMenu(false), anchorElementRef)
 
@@ -202,7 +211,7 @@ const _ActionMenuRoot = memo(
             className: clsx(child.props.className, showMenu && styles['ActionMenu__button--active']),
             menuOpen: showMenu,
             disabled,
-            id
+            id: `${instanceId}-button`
           })
         } else if (child.type === ActionMenuOverlay) {
           acc['Overlay'] = cloneElement(child as ReactElement<ActionMenuOverlayProps>, {
@@ -212,7 +221,8 @@ const _ActionMenuRoot = memo(
               top: `${position?.top ?? 0}px`,
               left: `${position?.left ?? 0}px`
             },
-            id,
+            id: `${instanceId}-menu`,
+            'aria-labelledby': ariaLabel,
             children: Children.map(child.props.children, item => {
               if (isValidElement(item)) {
                 return cloneElement(item as ReactElement<ActionMenuItemProps>, {
@@ -230,6 +240,7 @@ const _ActionMenuRoot = memo(
 
     return (
       <div
+        id={instanceId}
         className={clsx(styles.ActionMenu, disabled && styles['ActionMenu--disabled'])}
         data-testid={testId || testIds.root}
       >
@@ -241,6 +252,7 @@ const _ActionMenuRoot = memo(
 )
 
 type ActionMenuButtonProps = PropsWithChildren<Ref<HTMLButtonElement>> & {
+  'aria-label': string
   id?: string
   ref?: React.RefObject<HTMLButtonElement>
   className?: string
@@ -341,6 +353,7 @@ type ActionMenuOverlayProps = PropsWithChildren<Ref<HTMLUListElement>> & {
   'data-testid'?: string
   menuOpen?: boolean
   style?: React.CSSProperties
+  'aria-labelledby'?: string
 }
 
 const ActionMenuOverlay = forwardRef<HTMLUListElement, ActionMenuOverlayProps>(

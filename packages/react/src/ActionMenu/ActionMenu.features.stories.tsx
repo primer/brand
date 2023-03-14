@@ -18,7 +18,7 @@ export const SingleSelection = () => {
 
   return (
     <ActionMenu onSelect={newValue => setSelectedItem(newValue)}>
-      <ActionMenu.Button>{selectedItem}</ActionMenu.Button>
+      <ActionMenu.Button aria-label="GitHub feature">{selectedItem}</ActionMenu.Button>
       <ActionMenu.Overlay>
         <ActionMenu.Item value="Copilot" selected={'Copilot' === selectedItem}>
           Copilot
@@ -41,7 +41,7 @@ export const InStack = () => {
   return (
     <Stack direction="horizontal">
       <ActionMenu onSelect={newValue => setSelectedOne(newValue)}>
-        <ActionMenu.Button>{selectedOne}</ActionMenu.Button>
+        <ActionMenu.Button aria-label="GitHub feature">{selectedOne}</ActionMenu.Button>
         <ActionMenu.Overlay>
           <ActionMenu.Item value="Copilot" selected={'Copilot' === selectedOne}>
             Copilot
@@ -55,7 +55,7 @@ export const InStack = () => {
         </ActionMenu.Overlay>
       </ActionMenu>
       <ActionMenu onSelect={newValue => setSelectedTwo(newValue)} selectionVariant="single">
-        <ActionMenu.Button>{selectedTwo}</ActionMenu.Button>
+        <ActionMenu.Button aria-label="Country">{selectedTwo}</ActionMenu.Button>
         <ActionMenu.Overlay>
           {countries.map((country, index) => (
             <ActionMenu.Item key={index} value={country} selected={country === selectedTwo}>
@@ -73,7 +73,7 @@ export const OpenByDefault = () => {
 
   return (
     <ActionMenu onSelect={newValue => setSelectedItem(newValue)} open>
-      <ActionMenu.Button>{selectedItem}</ActionMenu.Button>
+      <ActionMenu.Button aria-label="GitHub feature">{selectedItem}</ActionMenu.Button>
       <ActionMenu.Overlay>
         <ActionMenu.Item value="Copilot" selected={'Copilot' === selectedItem}>
           Copilot
@@ -94,7 +94,7 @@ export const TruncationOfLongValues = () => {
 
   return (
     <ActionMenu onSelect={newValue => setSelected(newValue)}>
-      <ActionMenu.Button>{selected}</ActionMenu.Button>
+      <ActionMenu.Button aria-label="GitHub feature">{selected}</ActionMenu.Button>
       <ActionMenu.Overlay>
         <ActionMenu.Item
           value="Europe, Middle East and Africa"
@@ -118,7 +118,7 @@ export const LongerLists = () => {
 
   return (
     <ActionMenu onSelect={newValue => setSelectedItem(newValue)} selectionVariant="single">
-      <ActionMenu.Button>{selectedItem}</ActionMenu.Button>
+      <ActionMenu.Button aria-label="GitHub feature">{selectedItem}</ActionMenu.Button>
       <ActionMenu.Overlay>
         {countries.map((country, index) => (
           <ActionMenu.Item key={index} value={country} selected={country === selectedItem}>
@@ -135,7 +135,7 @@ export const LongerListsOpen = () => {
 
   return (
     <ActionMenu onSelect={newValue => setSelectedItem(newValue)} selectionVariant="single" open>
-      <ActionMenu.Button>{selectedItem}</ActionMenu.Button>
+      <ActionMenu.Button aria-label="Country">{selectedItem}</ActionMenu.Button>
       <ActionMenu.Overlay>
         {countries.map((country, index) => (
           <ActionMenu.Item key={index} value={country} selected={country === selectedItem}>
@@ -154,7 +154,7 @@ export const DisabledMenu = () => {
 
   return (
     <ActionMenu selectionVariant="single" disabled>
-      <ActionMenu.Button>Open menu</ActionMenu.Button>
+      <ActionMenu.Button aria-label="GitHub feature">Open menu</ActionMenu.Button>
       <ActionMenu.Overlay>
         <ActionMenu.Item value="Copilot" selected={'Copilot' === selectedItem}>
           Copilot
@@ -175,7 +175,7 @@ export const DisabledItem = () => {
 
   return (
     <ActionMenu onSelect={newValue => setSelectedItem(newValue)} selectionVariant="single" open>
-      <ActionMenu.Button>{selectedItem}</ActionMenu.Button>
+      <ActionMenu.Button aria-label="GitHub feature">{selectedItem}</ActionMenu.Button>
       <ActionMenu.Overlay>
         <ActionMenu.Item value="Copilot" selected={'Copilot' === selectedItem}>
           Copilot
@@ -206,7 +206,7 @@ export const KeyboardNavigation = () => {
   return (
     <Stack direction="horizontal" gap="spacious" alignItems="flex-start">
       <ActionMenu onSelect={newValue => setSelectedItem(newValue)}>
-        <ActionMenu.Button>{selectedItem}</ActionMenu.Button>
+        <ActionMenu.Button aria-label="GitHub feature">{selectedItem}</ActionMenu.Button>
         <ActionMenu.Overlay>
           <ActionMenu.Item
             value="Copilot"
