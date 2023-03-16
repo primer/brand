@@ -254,7 +254,7 @@ type SearchProps = {
   ref: React.RefObject<HTMLInputElement>
   active?: boolean
   title?: string
-  handlerFn?: () => void
+  handlerFn?: (event: MouseEvent | TouchEvent | FocusEvent) => void
   autoComplete?: boolean
   searchResults?: SubdomainNavBarSearchResultProps[]
   searchTerm?: string
@@ -274,7 +274,7 @@ const _SearchInternal = (
         <button
           aria-label="search"
           className={styles['SubdomainNavBar-search-button']}
-          onClick={handlerFn}
+          onClick={handlerFn as (event) => void}
           data-testid="toggle-search"
         >
           <SearchIcon />
@@ -314,7 +314,7 @@ const _SearchInternal = (
             <button
               aria-label="Close"
               className={clsx(styles['SubdomainNavBar-menu-button'], styles['SubdomainNavBar-menu-button--close'])}
-              onClick={handlerFn}
+              onClick={handlerFn as (event) => void}
             >
               <XIcon size={24} />
             </button>
