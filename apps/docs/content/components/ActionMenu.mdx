@@ -21,7 +21,7 @@ import {ActionMenu} from '@primer/react-brand'
 ```jsx live
 <ActionMenu onSelect={(newValue) => alert(`Pressed ${newValue}`)}>
   <ActionMenu.Button>Open menu</ActionMenu.Button>
-  <ActionMenu.Overlay>
+  <ActionMenu.Overlay aria-label="GitHub features">
     <ActionMenu.Item value="Copilot" selected>
       Copilot
     </ActionMenu.Item>
@@ -43,7 +43,7 @@ const App = () => {
       selectionVariant="single"
     >
       <ActionMenu.Button>{selection}</ActionMenu.Button>
-      <ActionMenu.Overlay>
+      <ActionMenu.Overlay aria-label="GitHub features">
         <ActionMenu.Item value="Copilot" selected={'Copilot' === selection}>
           Copilot
         </ActionMenu.Item>
@@ -78,20 +78,20 @@ render(<App />)
 
 ### ActionMenu.Button <Label>Required</Label>
 
+| name        | type           | default | required | description                        |
+| ----------- | -------------- | ------- | -------- | ---------------------------------- |
+| `className` | `string`       |         |          | Sets a custom class on the element |
+| `children`  | `ReactElement` |         |          |
+| `id`        | `string`       |         |          | Sets a custom `id`                 |
+
+### ActionMenu.Overlay <Label>Required</Label>
+
 | name         | type           | default | required | description                                                      |
 | ------------ | -------------- | ------- | -------- | ---------------------------------------------------------------- |
 | `aria-label` | `string`       |         | `true`   | Required for describing the relationship between button and menu |
 | `className`  | `string`       |         |          | Sets a custom class on the element                               |
 | `children`   | `ReactElement` |         |          |
 | `id`         | `string`       |         |          | Sets a custom `id`                                               |
-
-### ActionMenu.Overlay <Label>Required</Label>
-
-| name        | type           | default | required | description                        |
-| ----------- | -------------- | ------- | -------- | ---------------------------------- |
-| `className` | `string`       |         |          | Sets a custom class on the element |
-| `children`  | `ReactElement` |         |          |
-| `id`        | `string`       |         |          | Sets a custom `id`                 |
 
 ### ActionMenu.Item <Label>Required</Label>
 

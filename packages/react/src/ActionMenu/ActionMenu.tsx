@@ -10,8 +10,7 @@ import React, {
   forwardRef,
   memo,
   Ref,
-  ReactElement,
-  useMemo
+  ReactElement
 } from 'react'
 import {Button, Text} from '../'
 import {useAnchoredPosition} from '../hooks/useAnchoredPosition'
@@ -102,13 +101,6 @@ const _ActionMenuRoot = memo(
     const anchorElementRef = useRef<HTMLButtonElement>(null)
     const instanceId = useId(id)
 
-    const ariaLabel = useMemo(() => {
-      const menuButton = Children.toArray(children).find(
-        child => isValidElement(child) && child.type === ActionMenuButton
-      ) as React.ReactElement<{'aria-label'?: string}> | undefined
-      return menuButton?.props['aria-label']
-    }, [children])
-
     useOnClickOutside(floatingElementRef, () => setShowMenu(false), anchorElementRef)
 
     const closeMenuCallback = useCallback(() => {
@@ -152,6 +144,8 @@ const _ActionMenuRoot = memo(
         floatingElement.addEventListener('keydown', event => {
           if (event.key === 'Enter') {
             const target = event.target as HTMLLIElement
+
+            if (target.getAttribute('aria-disabled') === 'true') return
 
             const value = target.getAttribute('data-value')
             if (value) {
@@ -231,7 +225,6 @@ const _ActionMenuRoot = memo(
               left: `${position?.left ?? 0}px`
             },
             id: `${instanceId}-menu`,
-            'aria-labelledby': ariaLabel,
             children: Children.map(child.props.children, item => {
               if (isValidElement(item)) {
                 return cloneElement(item as ReactElement<ActionMenuItemProps>, {
@@ -261,7 +254,6 @@ const _ActionMenuRoot = memo(
 )
 
 type ActionMenuButtonProps = PropsWithChildren<Ref<HTMLButtonElement>> & {
-  'aria-label': string
   id?: string
   ref?: React.RefObject<HTMLButtonElement>
   className?: string
@@ -327,7 +319,7 @@ const ActionMenuItem = ({
       aria-checked={type === 'none' ? undefined : selected ? 'true' : 'false'}
       aria-disabled={disabled ? 'true' : 'false'}
       onClick={handler && !disabled ? () => handler(value) : undefined}
-      tabIndex={disabled ? undefined : 0}
+      tabIndex={0}
       data-value={value}
       {...props}
     >
@@ -356,13 +348,13 @@ const ActionMenuItem = ({
 }
 
 type ActionMenuOverlayProps = PropsWithChildren<Ref<HTMLUListElement>> & {
+  'aria-label': string
   id?: string
   ref?: React.RefObject<HTMLUListElement>
   className?: string
   'data-testid'?: string
   menuOpen?: boolean
   style?: React.CSSProperties
-  'aria-labelledby'?: string
 }
 
 const ActionMenuOverlay = forwardRef<HTMLUListElement, ActionMenuOverlayProps>(
