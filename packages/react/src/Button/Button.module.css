@@ -13,7 +13,7 @@
   display: inline-flex;
 }
 
-.Button:focus:not(.Button--disabled[disabled]) {
+.Button:focus:not(.Button[disabled]) {
   outline: none;
   box-shadow: 0 0 0 2px var(--brand-color-canvas-default), 0 0 0 5px var(--brand-color-focus);
   transition: none;
@@ -74,7 +74,7 @@
   background: var(--brand-Button-background-overlay);
 }
 
-.Button--primary:not(.Button--disabled[disabled]):hover {
+.Button--primary:not(.Button[disabled], .Button[aria-disabled='true']):hover {
   box-shadow: var(--brand-Button-shadow-primary-hover);
 }
 
@@ -96,8 +96,8 @@
   transition: box-shadow 200ms;
 }
 
-.Button--secondary:not(.Button--disabled):hover {
-  box-shadow: var(--brand-Button-shadow-secondary-hover);
+.Button--secondary:not(.Button[disabled], .Button[aria-disabled='true']):hover {
+  box-shadow: var(--brand-Button-shadow-secondary-hover); 
 }
 
 .Button--label-secondary.Button-label--disabled,
