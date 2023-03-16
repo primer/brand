@@ -57,7 +57,7 @@
   }
 }
 .ActionMenu__menu::-webkit-scrollbar {
-  width: 12px;
+  width: var(--base-size-12);
 }
 
 .ActionMenu__menu::-webkit-scrollbar-track {
