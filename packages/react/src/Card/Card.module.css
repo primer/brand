@@ -21,20 +21,18 @@
   color: var(--brand-Card-color-label);
   border: var(--brand-borderWidth-thin) solid;
   border-radius: var(--brand-borderRadius-full);
-  padding: calc(var(--base-size-4) - 2px) var(--base-size-12);
-  margin-bottom: var(--base-size-32);
+  padding: var(--base-size-4) var(--base-size-16);
+  margin-bottom: var(--base-size-24);
   display: inline-flex;
   justify-content: center;
   vertical-align: middle;
 }
 
-.Card__label-wrapper {
-  line-height: var(--brand-text-lineHeight-200);
-}
-
 .Card__label--text {
   font-weight: var(--base-text-weight-semibold);
   color: inherit;
+  position: relative;
+  top: 0.5px;
 }
 
 .Card__heading {

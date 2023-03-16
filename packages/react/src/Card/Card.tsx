@@ -120,11 +120,9 @@ type CardLabelProps = BaseProps<HTMLSpanElement> & {
 const CardLabel = forwardRef<HTMLSpanElement, CardLabelProps>(({children, className, ...rest}, ref) => {
   return (
     <span className={clsx(styles.Card__label, className)} ref={ref} {...rest}>
-      <span className={styles['Card__label-wrapper']}>
-        <Text as="span" size="200" className={styles['Card__label--text']}>
-          {children}
-        </Text>
-      </span>
+      <Text as="span" size="200" className={styles['Card__label--text']}>
+        {children}
+      </Text>
     </span>
   )
 })
