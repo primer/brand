@@ -57,7 +57,7 @@
   }
 }
 .ActionMenu__menu::-webkit-scrollbar {
-  width: 12px;
+  width: var(--base-size-12);
 }
 
 .ActionMenu__menu::-webkit-scrollbar-track {
@@ -115,7 +115,7 @@
 .ActionMenu__item-leadingVisual {
   display: flex;
   min-width: var(--base-size-16);
-  margin-right: 8px;
+  margin-right: var(--brand-control-medium-gap);
   color: var(--brand-color-text-default);
   pointer-events: none;
   grid-area: leadingVisual / leadingVisual;
