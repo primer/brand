@@ -28,7 +28,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--open-by-default&viewMode=story'
     )
 
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(2000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -53,7 +53,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--longer-lists-open&viewMode=story'
     )
 
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(2000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -62,7 +62,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--menu-alignment&viewMode=story'
     )
 
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(2000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
