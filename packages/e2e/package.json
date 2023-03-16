@@ -32,6 +32,7 @@
     "format": "prettier --check '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
     "lint": "eslint '**/*.{js,ts,tsx,md,mdx}' --max-warnings=0 --config ../../.eslintrc.js",
     "test:visual": "scripts/playwright/run-visual-tests",
+    "test:visual:update": "npm run test:visual:generate && npm run test:visual:update-snapshots",
     "test:visual:generate": "cd ../../apps/storybook && npx build-storybook && cd ../../packages/e2e && ts-node scripts/playwright/playwright.generate-tests.ts",
     "test:visual:update-snapshots": "scripts/playwright/update-visual-snapshots"
   },
