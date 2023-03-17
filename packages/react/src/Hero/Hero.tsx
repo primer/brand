@@ -2,7 +2,7 @@ import React, {forwardRef} from 'react'
 import clsx from 'clsx'
 import styles from './Hero.module.css'
 import {Button} from '../Button'
-import {Heading} from '../Heading'
+import {Heading, HeadingTags} from '../Heading'
 import {Text} from '../Text'
 
 import type {BaseProps} from '../component-helpers'
@@ -15,6 +15,7 @@ type Action = {
 
 export type HeroProps = BaseProps<HTMLDivElement> & {
   heading: string | React.ReactElement
+  headingLevel: HeadingTags['as']
   description?: string | React.ReactElement
   primaryAction: Action
   secondaryAction?: Action
@@ -22,10 +23,18 @@ export type HeroProps = BaseProps<HTMLDivElement> & {
 }
 
 export const Hero = forwardRef<HTMLDivElement, HeroProps>(
-  ({className, heading, description, primaryAction, secondaryAction, align = 'start', ...rest}, ref) => {
+  (
+    {className, heading, description, primaryAction, secondaryAction, align = 'start', headingLevel = 'h1', ...rest},
+    ref
+  ) => {
     return (
-      <div className={clsx(styles.Hero, styles[`Hero--align-${align}`], className)} ref={ref} {...rest}>
-        <Heading className={styles['Hero-heading']} as="h1">
+      <section
+        aria-labelledby="hero-section-brand-heading"
+        className={clsx(styles.Hero, styles[`Hero--align-${align}`], className)}
+        ref={ref}
+        {...rest}
+      >
+        <Heading id="hero-section-brand-heading" className={styles['Hero-heading']} as={headingLevel}>
           {heading}
         </Heading>
         {description ? (
@@ -43,7 +52,7 @@ export const Hero = forwardRef<HTMLDivElement, HeroProps>(
             </Button>
           ) : null}
         </div>
-      </div>
+      </section>
     )
   }
 )
