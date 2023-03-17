@@ -15,7 +15,7 @@ type Action = {
 
 export type HeroProps = BaseProps<HTMLDivElement> & {
   heading: string | React.ReactElement
-  headingLevel: 'h1' | 'h2' | 'h3'
+  headingLevel?: 'h1' | 'h2' | 'h3'
   description?: string | React.ReactElement
   primaryAction: Action
   secondaryAction?: Action
