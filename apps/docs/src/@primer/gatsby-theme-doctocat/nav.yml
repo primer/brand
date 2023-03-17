@@ -12,6 +12,8 @@
 
 - title: Components
   children:
+    - title: ActionMenu
+      url: /components/ActionMenu
     - title: AnchorNav
       url: /components/AnchorNav
     - title: Avatar

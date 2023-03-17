@@ -39,7 +39,7 @@ export type CardProps = {
   React.ComponentPropsWithoutRef<'a'>
 
 const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
-  ({onMouseEnter, onMouseLeave, onFocus, onBlur, children, ctaText = 'Learn more', className, href, ...props}, ref) => {
+  ({onMouseEnter, onMouseLeave, onFocus, onBlur, children, className, ctaText = 'Learn more', href, ...props}, ref) => {
     const [isHovered, setIsHovered] = React.useState(false)
     const [isFocused, setIsFocused] = React.useState(false)
 

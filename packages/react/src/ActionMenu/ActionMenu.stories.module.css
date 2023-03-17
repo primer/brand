@@ -1,0 +1,22 @@
+.ActiveKey {
+  border: 1px solid var(--brand-color-border-default);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--base-size-48);
+  width: var(--base-size-48);
+  border-radius: var(--brand-borderRadius-large);
+  background-color: var(--brand-color-canvas-default);
+}
+
+.StoryInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--base-size-24);
+  border-radius: var(--brand-borderRadius-large);
+  background-color: var(--brand-color-canvas-subtle);
+  border: 1px solid var(--brand-color-border-default);
+  margin-left: var(--base-size-64);
+}
