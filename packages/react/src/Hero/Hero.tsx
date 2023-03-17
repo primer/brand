@@ -15,7 +15,7 @@ type Action = {
 
 export type HeroProps = BaseProps<HTMLDivElement> & {
   heading: string | React.ReactElement
-  headingLevel: HeadingTags['as']
+  headingLevel: 'h1' | 'h2' | 'h3'
   description?: string | React.ReactElement
   primaryAction: Action
   secondaryAction?: Action
@@ -34,7 +34,7 @@ export const Hero = forwardRef<HTMLDivElement, HeroProps>(
         ref={ref}
         {...rest}
       >
-        <Heading id="hero-section-brand-heading" className={styles['Hero-heading']} as={headingLevel}>
+        <Heading id="hero-section-brand-heading" className={styles['Hero-heading']} as={headingLevel} size="1">
           {heading}
         </Heading>
         {description ? (
