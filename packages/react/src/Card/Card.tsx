@@ -33,7 +33,6 @@ export type CardProps = {
   href: string
   /**
    * Changes the cta text of the card
-   * * @default 'Learn more'
    * */
   ctaText?: string
 } & BaseProps<HTMLAnchorElement> &
