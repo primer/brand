@@ -8,7 +8,7 @@ export default {
   component: Card
 } as ComponentMeta<typeof Card>
 
-export const CtaText: ComponentStory<typeof Card> = () => {
+export const CTAText: ComponentStory<typeof Card> = () => {
   return (
     <Card ctaText="Dicover how" href="https://github.com">
       <Card.Heading>GitHub Actions cheat sheet</Card.Heading>
