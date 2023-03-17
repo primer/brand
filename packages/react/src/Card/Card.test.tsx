@@ -80,4 +80,21 @@ describe('Card', () => {
     const linkTextEl = getByText(expectedLinkText)
     expect(linkTextEl).toBeInTheDocument()
   })
+
+  it('renders the label correctly into the document', () => {
+    const mockTestId = 'test'
+    const classToCheck = 'Card__label'
+
+    const {getByTestId} = render(
+      <Card href={mockHref} data-testid={mockTestId}>
+        <Card.Label>{mockLabel}</Card.Label>
+        <Card.Heading>{mockHeading}</Card.Heading>
+        <Card.Description>{mockDescription}</Card.Description>
+      </Card>
+    )
+
+    const cardEl = getByTestId(mockTestId).firstChild
+    expect(cardEl).toHaveClass(classToCheck)
+    expect(cardEl).toHaveTextContent(mockLabel)
+  })
 })
