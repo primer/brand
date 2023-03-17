@@ -56,47 +56,6 @@ Use the `Label` to add metadata to the `Card`. The `Label` is optional and can b
 </Card>
 ```
 
-#### Color customization
-
-The default colors can be customized through a dedicated CSS variable.
-
-| Name                       | Default                      |
-| :------------------------- | :--------------------------- |
-| `--brand-Card-color-label` | `--brand-color-text-default` |
-
-```javascript live noinline
-const App = () => {
-  const designTokenOverrides = `
-  .custom-color{
-
-
-    /*
-     * Modify the value of these tokens.
-     */
-    --brand-Card-color-label: var(--base-color-scale-purple-2);
-  }
-`
-
-  return (
-    <ThemeProvider colorMode="dark">
-      <style>{designTokenOverrides}</style>
-      <Card href="https://github.com">
-        <Card.Label className="custom-color">Limited</Card.Label>
-        <Card.Heading>
-          Getting better together: What enterprise can learn from global
-          patterns
-        </Card.Heading>
-        <Card.Description>
-          9am (PST) • Mar 29, 2023Secure and reliable
-        </Card.Description>
-      </Card>
-    </ThemeProvider>
-  )
-}
-
-render(<App />)
-```
-
 ### Stacked cards
 
 Use the `Stack` component to stack multiple cards horizontally or vertically.
