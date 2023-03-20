@@ -62,7 +62,7 @@
     'components-minimalfooter-features--maximum-links': 5000, // for external social imagery to load
     'components-actionmenu-features--open-by-default': 2000, // for the menu to open
     'components-actionmenu-features--longer-lists-open': 2000, // for the menu to open
-    'components-actionmenu-features--disabled-items': 2000, // for the menu to open
+    'components-actionmenu-features--disabled-items': 3000, // for the menu to open
     'components-actionmenu-features--menu-alignment': 2000 // for the menu to open
   }
 
