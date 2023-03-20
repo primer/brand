@@ -51,23 +51,6 @@ describe('Hero', () => {
     expect(descriptionEl).toBeNull()
   })
 
-  test('renders alternative heading level', () => {
-    const expectedTag = 'h3'
-    const expectedClass = 'Heading--1'
-    const {getByRole} = render(
-      <Hero
-        heading={mockHeading}
-        primaryAction={mockPrimaryAction}
-        secondaryAction={mockSecondaryAction}
-        headingLevel="h3"
-      />
-    )
-    const headingEl = getByRole('heading')
-
-    expect(headingEl.tagName).toBe(expectedTag.toUpperCase())
-    expect(headingEl.classList).toContain(expectedClass)
-  })
-
   test('no a11y violations', async () => {
     const {container} = render(
       <Hero

@@ -2,7 +2,7 @@ import React, {forwardRef} from 'react'
 import clsx from 'clsx'
 import styles from './Hero.module.css'
 import {Button} from '../Button'
-import {Heading, HeadingTags} from '../Heading'
+import {Heading} from '../Heading'
 import {Text} from '../Text'
 
 import type {BaseProps} from '../component-helpers'
@@ -15,7 +15,6 @@ type Action = {
 
 export type HeroProps = BaseProps<HTMLDivElement> & {
   heading: string | React.ReactElement
-  headingLevel?: 'h1' | 'h2' | 'h3'
   description?: string | React.ReactElement
   primaryAction: Action
   secondaryAction?: Action
@@ -23,10 +22,7 @@ export type HeroProps = BaseProps<HTMLDivElement> & {
 }
 
 export const Hero = forwardRef<HTMLDivElement, HeroProps>(
-  (
-    {className, heading, description, primaryAction, secondaryAction, align = 'start', headingLevel = 'h1', ...rest},
-    ref
-  ) => {
+  ({className, heading, description, primaryAction, secondaryAction, align = 'start', ...rest}, ref) => {
     return (
       <section
         aria-labelledby="hero-section-brand-heading"
@@ -34,7 +30,7 @@ export const Hero = forwardRef<HTMLDivElement, HeroProps>(
         ref={ref}
         {...rest}
       >
-        <Heading id="hero-section-brand-heading" className={styles['Hero-heading']} as={headingLevel} size="1">
+        <Heading id="hero-section-brand-heading" className={styles['Hero-heading']}>
           {heading}
         </Heading>
         {description ? (
