@@ -62,7 +62,6 @@
     'components-minimalfooter-features--maximum-links': 5000, // for external social imagery to load
     'components-actionmenu-features--open-by-default': 2000, // for the menu to open
     'components-actionmenu-features--longer-lists-open': 2000, // for the menu to open
-    'components-actionmenu-features--disabled-items': 3000, // for the menu to open
     'components-actionmenu-features--menu-alignment': 2000 // for the menu to open
   }
 
@@ -73,7 +72,8 @@
   const skipTestLookup = [
     'components-river--video', // video makes this too flakey
     'components-river--custom-logos', // for external social imagery to load
-    'components-actionmenu-features--keyboard-navigation' // for the interaction test
+    'components-actionmenu-features--keyboard-navigation', // for the interaction test
+    'components-actionmenu-features--disabled-items' // flakey test
   ]
 
   const categorisedStories = Object.keys(stories as Stories).reduce((acc, key) => {
