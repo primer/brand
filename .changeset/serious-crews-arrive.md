@@ -1,7 +1,8 @@
 ---
-'@primer/brand-primitives': minor
 '@primer/react-brand': minor
 ---
+
+### React
 
 Added new ActionMenu component
 
