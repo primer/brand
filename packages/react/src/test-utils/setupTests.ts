@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-namespace
-import * as ResizeObserverModule from 'resize-observer-polyfill'
+import {ResizeObserver} from '@juggle/resize-observer'
 
-global.ResizeObserver = ResizeObserverModule.default
+global.ResizeObserver = ResizeObserver

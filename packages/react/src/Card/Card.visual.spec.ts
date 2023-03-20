@@ -7,8 +7,8 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Card', () => {
-  test('Card / Link Text', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--link-text&viewMode=story')
+  test('Card / CTA Text', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--cta-text&viewMode=story')
 
     expect(await page.screenshot()).toMatchSnapshot()
   })
