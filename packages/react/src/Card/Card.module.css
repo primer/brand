@@ -18,10 +18,10 @@
 
 .Card__label {
   align-self: flex-start;
-  color: var(--brand-Card-color-label);
+  color: var(--brand-color-text-default);
   border: var(--brand-borderWidth-thin) solid;
   border-radius: var(--brand-borderRadius-full);
-  padding: var(--base-size-4) var(--base-size-16);
+  padding: calc(var(--base-size-4) - 1px) var(--base-size-16);
   margin-bottom: var(--base-size-24);
   display: inline-flex;
   justify-content: center;
