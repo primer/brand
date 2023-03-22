@@ -2,4 +2,4 @@
 '@primer/react-brand': patch
 ---
 
-- Replaces `<div>` container with landmark element `<section>`
+- Updated `Hero` to use the HTML landmark element `<section>` for improved semantics and accessibility.
