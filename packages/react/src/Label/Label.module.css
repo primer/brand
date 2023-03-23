@@ -66,6 +66,7 @@
 .Label--color-blue-purple {
   --brand-Label-color-start: var(--brand-Label-color-blue-purple-start);
   --brand-Label-color-end: var(--brand-Label-color-blue-purple-end);
+  color: var(--brand-Label-color-blue-purple-start);
 }
 
 .Label--color-coral {
@@ -79,6 +80,7 @@
 .Label--color-green-blue {
   --brand-Label-color-start: var(--brand-Label-color-green-blue-start);
   --brand-Label-color-end: var(--brand-Label-color-green-blue-end);
+  color: var(--brand-Label-color-green-blue-start);
 }
 
 .Label--color-gray {
@@ -108,6 +110,7 @@
 .Label--color-pink-blue {
   --brand-Label-color-start: var(--brand-Label-color-pink-blue-start);
   --brand-Label-color-end: var(--brand-Label-color-pink-blue-end);
+  color: var(--brand-Label-color-pink-blue-start);
 }
 
 .Label--color-purple {
@@ -117,6 +120,7 @@
 .Label--color-purple-red {
   --brand-Label-color-start: var(--brand-Label-color-purple-red-start);
   --brand-Label-color-end: var(--brand-Label-color-purple-red-end);
+  color: var(--brand-Label-color-purple-red-start);
 }
 
 .Label--color-red {
@@ -126,6 +130,7 @@
 .Label--color-red-orange {
   --brand-Label-color-start: var(--brand-Label-color-red-orange-start);
   --brand-Label-color-end: var(--brand-Label-color-red-orange-end);
+  color: var(--brand-Label-color-red-orange-start);
 }
 
 .Label--color-teal {
@@ -166,12 +171,12 @@
   align-self: center;
   height: var(--base-size-16);
   width: auto;
-  fill: currentcolor;
 }
 
 .Label__leading-visual {
   display: flex;
   margin-right: var(--base-size-8);
+  fill: currentColor;
 }
 
 .Label--label {

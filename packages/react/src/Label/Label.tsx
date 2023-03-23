@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import React, {forwardRef, useCallback, type Ref, ReactElement} from 'react'
+import React, {forwardRef, type Ref} from 'react'
 import {Text} from '../Text'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/label/colors-with-modes.css'
 import type {BaseProps} from '../component-helpers'
@@ -35,7 +35,7 @@ export type LabelProps = BaseProps<HTMLSpanElement> & {
   /**
    * The leading visual appears before the Label content
    */
-  leadingVisual?: ReactElement
+  leadingVisual?: React.ReactNode
   /**
    * The styling variations available in Label
    */
@@ -51,31 +51,23 @@ export const Label = forwardRef<HTMLSpanElement, LabelProps>(
     {className, size = defaultLabelSize, color = defaultLabelColor, children, leadingVisual: LeadingVisual, ...props},
     ref: Ref<HTMLSpanElement>
   ) => {
-    const returnValidComponent = useCallback((component?: ReactElement) => {
-      if (React.isValidElement(component)) {
-        return component
-      }
-
-      if (typeof component === 'function') {
-        return React.createElement(component)
-      }
-    }, [])
-
-    const LeadingVisualComponent = returnValidComponent(LeadingVisual)
-
     return (
       <span
         ref={ref}
         className={clsx(styles.Label, styles[`Label--color-${color}`], styles[`Label--size-${size}`], className)}
         {...props}
       >
-        {LeadingVisualComponent && (
+        {LeadingVisual && (
           <span className={styles['Label__leading-visual']}>
-            {React.cloneElement(LeadingVisualComponent, {
-              className: clsx(styles['Label__icon-visual']),
-              ['aria-hidden']: 'true',
-              focusable: 'false'
-            })}
+            {typeof LeadingVisual === 'function' ? (
+              <LeadingVisual className={clsx(styles['Label__icon-visual'])} aria-hidden />
+            ) : (
+              React.isValidElement(LeadingVisual) &&
+              React.cloneElement(LeadingVisual, {
+                className: clsx(styles['Label__icon-visual']),
+                ['aria-hidden']: 'true'
+              })
+            )}
           </span>
         )}
         <span className={styles['Label__text']}>
