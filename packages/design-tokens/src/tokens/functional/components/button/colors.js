@@ -48,7 +48,13 @@ module.exports = {
           },
           hover: {
             value: 'inset 0 0 0 2px var(--brand-color-neutral-emphasisPlus)',
-            dark: 'inset 0 0 0 2px var(--brand-color-neutral-emphasisPlus)'
+            dark: 'inset 0 0 0 2px var(--base-color-scale-white-0)'
+          }
+        },
+        subtle: {
+          hover: {
+            value: 'inset 0 0 0 2px var(--brand-color-neutral-emphasisPlus)',
+            dark: 'inset 0 0 0 2px var(--base-color-scale-white-0)'
           }
         },
         focus: {
