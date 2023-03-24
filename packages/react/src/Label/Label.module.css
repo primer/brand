@@ -142,7 +142,7 @@
 }
 
 .Label__text {
-  background: -webkit-linear-gradient(
+  background: linear-gradient(
     -70deg,
     var(--brand-Label-color-start, currentcolor) 0%,
     var(--brand-Label-color-end, currentcolor) 100%
