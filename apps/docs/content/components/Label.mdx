@@ -30,7 +30,7 @@ This is the default variant for the `Label` component. It corresponds to the `me
 Use the `size` prop to change the size of the `Label` component. The `small` size is recommended for use inline with text or list items. The `medium` size is recommended for small titles or headings and the `large` size is recommended for large titles or section intros.
 
 ```jsx live
-<Stack direction="vertical" alignItems="flex-start">
+<Stack direction="horizontal" alignItems="flex-start" padding="none">
   <Label size="small">Small</Label>
   <Label size="medium">Medium</Label>
   <Label size="large">Large</Label>
@@ -42,7 +42,14 @@ Use the `size` prop to change the size of the `Label` component. The `small` siz
 Use the `color` prop to change the color of the `Label` component. The `default` color is recommended for use with neutral backgrounds.
 
 ```jsx live
-<Label color="green">Primary</Label>
+<Stack direction="horizontal" alignItems="flex-start" padding="none">
+  <Label color="blue">Blue</Label>
+  <Label color="red">Red</Label>
+  <Label color="green-blue">Green blue</Label>
+  <Label color="red">Red</Label>
+  <Label color="pink-blue">Pink blue</Label>
+  <Label color="orange">Orange</Label>
+</Stack>
 ```
 
 ### Leading visual
@@ -50,7 +57,7 @@ Use the `color` prop to change the color of the `Label` component. The `default`
 You can place an icon inside the Label in the leading position to enhance the visual context. It is recommended to use an [Octicon](https://primer.style/octicons) here.
 
 ```jsx live
-<Stack direction="vertical" alignItems="flex-start">
+<Stack direction="horizontal" alignItems="flex-start" padding="none">
   <Label color="yellow" leadingVisual={StarIcon}>
     Starred
   </Label>
