@@ -1,10 +1,17 @@
 .Label {
+  --brand-Label-gradient: radial-gradient(
+    circle at top left,
+    var(--brand-Label-color-start),
+    var(--brand-Label-color-end)
+  );
+  --brand-Label-background: var(--brand-Label-gradient, var(--brand-Label-color, currentColor));
+
   vertical-align: middle;
   align-items: center;
   justify-content: center;
   border-radius: var(--brand-borderRadius-full);
   display: inline-flex;
-  color: inherit;
+  color: var(--brand-Label-color-start, var(--brand-Label-color, currentColor));
   position: relative;
   background: var(--brand-color-canvas-default);
   background-clip: padding-box;
@@ -18,131 +25,110 @@
   z-index: -1;
   margin: calc(var(--brand-borderWidth-thin) * -1);
   border-radius: inherit;
-  background: linear-gradient(
-    -70deg,
-    var(--brand-Label-color-start, currentcolor) 0%,
-    var(--brand-Label-color-end, currentcolor) 100%
-  );
+  background: var(--brand-Label-background);
 }
 
 .Label--size-small {
   padding-left: var(--base-size-8);
   padding-right: var(--base-size-8);
-  height: 24px;
+  height: var(--base-size-24);
 }
 
 .Label--size-medium {
-  padding-left: var(--base-size-12);
-  padding-right: var(--base-size-12);
-  height: 28px;
+  padding-left: var(--base-size-16);
+  padding-right: var(--base-size-16);
+  height: var(--base-size-28);
 }
 
 .Label--size-large {
   padding-left: var(--base-size-16);
   padding-right: var(--base-size-16);
-  height: 32px;
-}
-
-.Label--size-medium {
-  padding: calc(var(--base-size-8) - 2px) var(--base-size-16);
-}
-
-.Label--size-large {
-  padding: var(--base-size-8) var(--base-size-16);
+  height: var(--base-size-32);
 }
 
 .Label--color-default {
-  color: var(--brand-color-text-default);
+  --brand-Label-color: var(--brand-color-text-default);
 }
 
 .Label--color-blue {
-  color: var(--brand-Label-color-blue);
+  --brand-Label-color: var(--brand-Label-color-blue);
 }
 
 .Label--color-blue-purple {
   --brand-Label-color-start: var(--brand-Label-color-blue-purple-start);
   --brand-Label-color-end: var(--brand-Label-color-blue-purple-end);
-  color: var(--brand-Label-color-blue-purple-start);
 }
 
 .Label--color-coral {
-  color: var(--brand-Label-color-coral);
+  --brand-Label-color: var(--brand-Label-color-coral);
 }
 
 .Label--color-green {
-  color: var(--brand-Label-color-green);
+  --brand-Label-color: var(--brand-Label-color-green);
 }
 
 .Label--color-green-blue {
   --brand-Label-color-start: var(--brand-Label-color-green-blue-start);
   --brand-Label-color-end: var(--brand-Label-color-green-blue-end);
-  color: var(--brand-Label-color-green-blue-start);
 }
 
 .Label--color-gray {
-  color: var(--brand-Label-color-gray);
+  --brand-Label-color: var(--brand-Label-color-gray);
 }
 
 .Label--color-indigo {
-  color: var(--brand-Label-color-indigo);
+  --brand-Label-color: var(--brand-Label-color-indigo);
 }
 
 .Label--color-lemon {
-  color: var(--brand-Label-color-lemon);
+  --brand-Label-color: var(--brand-Label-color-lemon);
 }
 
 .Label--color-lime {
-  color: var(--brand-Label-color-lime);
+  --brand-Label-color: var(--brand-Label-color-lime);
 }
 
 .Label--color-orange {
-  color: var(--brand-Label-color-orange);
+  --brand-Label-color: var(--brand-Label-color-orange);
 }
 
 .Label--color-pink {
-  color: var(--brand-Label-color-pink);
+  --brand-Label-color: var(--brand-Label-color-pink);
 }
 
 .Label--color-pink-blue {
   --brand-Label-color-start: var(--brand-Label-color-pink-blue-start);
   --brand-Label-color-end: var(--brand-Label-color-pink-blue-end);
-  color: var(--brand-Label-color-pink-blue-start);
 }
 
 .Label--color-purple {
-  color: var(--brand-Label-color-purple);
+  --brand-Label-color: var(--brand-Label-color-purple);
 }
 
 .Label--color-purple-red {
   --brand-Label-color-start: var(--brand-Label-color-purple-red-start);
   --brand-Label-color-end: var(--brand-Label-color-purple-red-end);
-  color: var(--brand-Label-color-purple-red-start);
 }
 
 .Label--color-red {
-  color: var(--brand-Label-color-red);
+  --brand-Label-color: var(--brand-Label-color-red);
 }
 
 .Label--color-red-orange {
   --brand-Label-color-start: var(--brand-Label-color-red-orange-start);
   --brand-Label-color-end: var(--brand-Label-color-red-orange-end);
-  color: var(--brand-Label-color-red-orange-start);
 }
 
 .Label--color-teal {
-  color: var(--brand-Label-color-teal);
+  --brand-Label-color: var(--brand-Label-color-teal);
 }
 
 .Label--color-yellow {
-  color: var(--brand-Label-color-yellow);
+  --brand-Label-color: var(--brand-Label-color-yellow);
 }
 
 .Label__text {
-  background: linear-gradient(
-    -70deg,
-    var(--brand-Label-color-start, currentcolor) 0%,
-    var(--brand-Label-color-end, currentcolor) 100%
-  );
+  background: var(--brand-Label-background);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
