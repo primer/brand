@@ -1,0 +1,71 @@
+---
+title: Label
+status: Experimental
+figma: 'https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=6084-28401'
+source: https://github.com/primer/brand/blob/main/packages/react/src/Label/Label.tsx
+storybook: '/brand/storybook/?path=/story/components-label--default'
+description: Use Label to indicate the status of the content or add metadata to an element.
+---
+
+import {Label, LabelColors, LabelSizes} from '@primer/react-brand'
+import {StarIcon, CopilotIcon} from '@primer/octicons-react'
+import {PropTableValues} from '../../src/components'
+
+```js
+import {Label} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+This is the default variant for the `Label` component. It corresponds to the `meduim` size and `default` color appearance.
+
+```jsx live
+<Label>Default</Label>
+```
+
+### Sizes
+
+Use the `size` prop to change the size of the `Label` component. The `small` size is recommended for use inline with text or list items. The `medium` size is recommended for small titles or headings and the `large` size is recommended for large titles or section intros.
+
+```jsx live
+<Stack direction="vertical" alignItems="flex-start">
+  <Label size="small">Small</Label>
+  <Label size="medium">Medium</Label>
+  <Label size="large">Large</Label>
+</Stack>
+```
+
+### Color
+
+Use the `color` prop to change the color of the `Label` component. The `default` color is recommended for use with neutral backgrounds.
+
+```jsx live
+<Label color="green">Primary</Label>
+```
+
+### Leading visual
+
+You can place an icon inside the Label in the leading position to enhance the visual context. It is recommended to use an [Octicon](https://primer.style/octicons) here.
+
+```jsx live
+<Stack direction="vertical" alignItems="flex-start">
+  <Label color="yellow" leadingVisual={StarIcon}>
+    Starred
+  </Label>
+  <Label color="blue-purple" leadingVisual={CopilotIcon}>
+    Copilot
+  </Label>
+</Stack>
+```
+
+## Component props
+
+### Button
+
+| Name            | Type                                                   |   Default   | Description                                         |
+| :-------------- | :----------------------------------------------------- | :---------: | :-------------------------------------------------- |
+| `leadingVisual` | `ReactElement`                                         | `undefined` | The leading visual appears before the Label content |
+| `size`          | <PropTableValues values={LabelSizes} addLineBreaks />  | `'medium'`  | The size variations available in Button             |
+| `color`         | <PropTableValues values={LabelColors} addLineBreaks /> | `'default'` | The color variations available in Button            |

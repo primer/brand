@@ -1,6 +1,5 @@
 import React, {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
-// import userEvent from '@testing-library/user-event'
 
 import {Label} from './Label'
 import {axe, toHaveNoViolations} from 'jest-axe'
