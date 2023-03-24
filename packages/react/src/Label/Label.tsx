@@ -44,21 +44,38 @@ export type LabelProps = BaseProps<HTMLSpanElement> & {
    * The size variations available in Label
    */
   size?: typeof LabelSizes[number]
+  ['data-testid']?: string
 } & React.ComponentPropsWithoutRef<'span'>
 
-export const Label = forwardRef<HTMLSpanElement, LabelProps>(
+const testIds = {
+  root: 'Label',
+  get leadingVisual() {
+    return `${this.root}-leading-visual`
+  }
+}
+
+const _Label = forwardRef<HTMLSpanElement, LabelProps>(
   (
-    {className, size = defaultLabelSize, color = defaultLabelColor, children, leadingVisual: LeadingVisual, ...props},
+    {
+      className,
+      size = defaultLabelSize,
+      color = defaultLabelColor,
+      children,
+      'data-testid': testId,
+      leadingVisual: LeadingVisual,
+      ...props
+    },
     ref: Ref<HTMLSpanElement>
   ) => {
     return (
       <span
         ref={ref}
         className={clsx(styles.Label, styles[`Label--color-${color}`], styles[`Label--size-${size}`], className)}
+        data-testid={testId || testIds.root}
         {...props}
       >
         {LeadingVisual && (
-          <span className={styles['Label__leading-visual']}>
+          <span className={styles['Label__leading-visual']} data-testid={testIds.leadingVisual}>
             {typeof LeadingVisual === 'function' ? (
               <LeadingVisual className={clsx(styles['Label__icon-visual'])} aria-hidden />
             ) : (
@@ -83,3 +100,5 @@ export const Label = forwardRef<HTMLSpanElement, LabelProps>(
     )
   }
 )
+
+export const Label = Object.assign(_Label, {testIds})
