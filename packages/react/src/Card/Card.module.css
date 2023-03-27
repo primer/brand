@@ -6,7 +6,7 @@
   color: var(--brand-color-text-default);
   background-color: var(--brand-Card-background-default);
   border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
-  box-shadow: var(--brand-Card-visual-shadow);
+  box-shadow: var(--brand-Card-shadow);
   border-radius: var(--brand-borderRadius-medium);
   padding: var(--base-size-32);
   transition: transform var(--brand-Card-animation-duration) var(--brand-Card-animation-easing);
@@ -14,6 +14,25 @@
 
 .Card:hover {
   transform: scale3d(1.025, 1.025, 1);
+}
+
+.Card__label {
+  align-self: flex-start;
+  color: var(--brand-color-text-default);
+  border: var(--brand-borderWidth-thin) solid;
+  border-radius: var(--brand-borderRadius-full);
+  padding: calc(var(--base-size-4) - 1px) var(--base-size-16);
+  margin-bottom: var(--base-size-24);
+  display: inline-flex;
+  justify-content: center;
+  vertical-align: middle;
+}
+
+.Card__label--text {
+  font-weight: var(--base-text-weight-semibold);
+  color: inherit;
+  position: relative;
+  top: 0.5px;
 }
 
 .Card__heading {

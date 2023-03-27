@@ -8,12 +8,24 @@ export default {
   component: Card
 } as ComponentMeta<typeof Card>
 
-export const Label: ComponentStory<typeof Card> = () => {
+export const CTAText: ComponentStory<typeof Card> = () => {
   return (
-    <Card label="Discover how" href="https://github.com">
+    <Card ctaText="Dicover how" href="https://github.com">
       <Card.Heading>GitHub Actions cheat sheet</Card.Heading>
       <Card.Description>
         In a recent TechTarget study, 70 percent of organizations reported they had adopted DevOps.
+      </Card.Description>
+    </Card>
+  )
+}
+
+export const Label: ComponentStory<typeof Card> = () => {
+  return (
+    <Card href="https://github.com">
+      <Card.Label>Limited</Card.Label>
+      <Card.Heading>Code search & code view</Card.Heading>
+      <Card.Description>
+        Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
       </Card.Description>
     </Card>
   )
