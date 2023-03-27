@@ -21,7 +21,7 @@ export type AvatarProps = BaseProps<HTMLImageElement> & {
   src: string
   alt: string
   ['data-testid']?: string
-} & React.HTMLAttributes<HTMLImageElement>
+} & React.ImgHTMLAttributes<HTMLImageElement>
 
 const testIds = {
   root: 'Avatar',

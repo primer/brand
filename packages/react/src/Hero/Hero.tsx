@@ -18,14 +18,34 @@ export type HeroProps = BaseProps<HTMLDivElement> & {
   description?: string | React.ReactElement
   primaryAction: Action
   secondaryAction?: Action
+  headingId?: string
+  'aria-labelledby'?: React.AriaAttributes['aria-labelledby']
   align?: 'start' | 'center'
 }
 
 export const Hero = forwardRef<HTMLDivElement, HeroProps>(
-  ({className, heading, description, primaryAction, secondaryAction, align = 'start', ...rest}, ref) => {
+  (
+    {
+      className,
+      heading,
+      description,
+      primaryAction,
+      secondaryAction,
+      align = 'start',
+      headingId = 'hero-section-brand-heading',
+      'aria-labelledby': ariaLabelledBy,
+      ...rest
+    },
+    ref
+  ) => {
     return (
-      <div className={clsx(styles.Hero, styles[`Hero--align-${align}`], className)} ref={ref} {...rest}>
-        <Heading className={styles['Hero-heading']} as="h1">
+      <section
+        aria-labelledby={ariaLabelledBy || headingId}
+        className={clsx(styles.Hero, styles[`Hero--align-${align}`], className)}
+        ref={ref}
+        {...rest}
+      >
+        <Heading as="h1" id={headingId} className={styles['Hero-heading']}>
           {heading}
         </Heading>
         {description ? (
@@ -43,7 +63,7 @@ export const Hero = forwardRef<HTMLDivElement, HeroProps>(
             </Button>
           ) : null}
         </div>
-      </div>
+      </section>
     )
   }
 )

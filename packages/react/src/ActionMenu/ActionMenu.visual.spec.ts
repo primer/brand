@@ -79,6 +79,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--disabled-item&viewMode=story'
     )
 
+    await page.waitForTimeout(2000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 

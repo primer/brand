@@ -1,5 +1,19 @@
 # @primer/brand-primitives
 
+## 0.15.0
+
+### Minor Changes
+
+- [#217](https://github.com/primer/brand/pull/217) [`cb892f8`](https://github.com/primer/brand/commit/cb892f8890ad22279ef1e25098e9df86f53a427d) Thanks [@rezrah](https://github.com/rezrah)! - New `ActionMenu` component-specific tokens have been added to the `@primer/brand-primitives` package.
+
+  ```css
+    --brand-ActionMenu-color-border-rest
+    --brand-ActionMenu-color-border-hover
+    --brand-ActionMenu-color-border-active
+    --brand-ActionMenu-color-item-hover
+    --brand-ActionMenu-color-scrollbar-thumb-bg
+  ```
+
 ## 0.14.0
 
 ## 0.13.0

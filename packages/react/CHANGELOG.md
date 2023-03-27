@@ -1,5 +1,85 @@
 # @primer/react-brand
 
+## 0.15.0
+
+### Minor Changes
+
+- [#200](https://github.com/primer/brand/pull/200) [`f8e273a`](https://github.com/primer/brand/commit/f8e273a89a34c4a7e9135608281e938c8c4f6fd0) Thanks [@josepmartins](https://github.com/josepmartins)! - Add label and test coverage to the Card component
+
+  ⚠️ This update contains a breaking change.
+
+  **Before:**
+
+  ```jsx
+  <Card label="Read more">...</Card>
+  ```
+
+  **after:**
+
+  ```jsx
+  <Card ctaText="Read more">...</Card>
+  ```
+
+* [#205](https://github.com/primer/brand/pull/205) [`d8974c1`](https://github.com/primer/brand/commit/d8974c1d301e91726bca0a3996afea4750ab13a2) Thanks [@rezrah](https://github.com/rezrah)! - ### React
+
+  Added new ActionMenu component
+
+  Use `ActionMenu` to display a list of actions or selections that expand through a trigger button.
+
+  ```jsx
+  <ActionMenu>
+    <ActionMenu.Button>Open menu</ActionMenu.Button>
+    <ActionMenu.Overlay>
+      <ActionMenu.Item value="Copilot" selected>
+        Copilot
+      </ActionMenu.Item>
+      <ActionMenu.Item value="Codespaces">Codespaces</ActionMenu.Item>
+      <ActionMenu.Item value="CodeQL">CodeQL</ActionMenu.Item>
+    </ActionMenu.Overlay>
+  </ActionMenu>
+  ```
+
+  :link: [See the documentation for more details and usage examples.](https://primer.style/brand/components/ActionMenu)
+
+### Patch Changes
+
+- [#204](https://github.com/primer/brand/pull/204) [`469af45`](https://github.com/primer/brand/commit/469af45eaedfb093fbc8f444c5bd5fc0121f27ab) Thanks [@TylerJDev](https://github.com/TylerJDev)! - Adds outline to `Button` variants (Primary, Secondary) when in High Contrast Mode (HCM)
+
+  <table>
+  <tr>
+  <th> Before </th> <th> After </th>
+  </tr>
+  <tr>
+  <td valign="top">
+
+  <img width="200" alt="Button 'Primary' variant, shows a button with no outline in HCM" src="https://user-images.githubusercontent.com/26746305/224075381-d2cb2f80-9dc2-43e7-b7fa-b0e116c9845b.png">
+
+   </td>
+  <td valign="top">
+
+  <img width="205" alt="Button 'Primary' variant, shows a button with a yellow outline in HCM" src="https://user-images.githubusercontent.com/26746305/224077824-6a87aef5-96ee-40df-a50c-7dbb0ac5a25b.png">
+
+  </td>
+  </tr>
+  <tr>
+
+  <td>
+
+  <img width="260" alt="Button 'Primary' variant, shows a disabled button with no outline in HCM" src="https://user-images.githubusercontent.com/26746305/224076271-802b54a0-c924-439b-beb2-1e2a637e7e47.png">
+
+  </td>
+
+  <td>
+
+  <img width="276" alt="Button 'Primary' variant, shows a disabled button with a green outline in HCM" src="https://user-images.githubusercontent.com/26746305/224076547-1ffbd080-c18e-4f36-898e-3b9ea01a3c1d.png">
+
+  </td>
+
+  </tr>
+  </table>
+
+* [#217](https://github.com/primer/brand/pull/217) [`cb892f8`](https://github.com/primer/brand/commit/cb892f8890ad22279ef1e25098e9df86f53a427d) Thanks [@rezrah](https://github.com/rezrah)! - `Avatar` now correctly forwards native `img` attributes. This includes `loading`, `decoding`, and `crossOrigin` attributes.
+
 ## 0.14.0
 
 ### Minor Changes
