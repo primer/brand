@@ -97,7 +97,7 @@
 }
 
 .Button--secondary:not(.Button[disabled], .Button[aria-disabled='true']):hover {
-  box-shadow: var(--brand-Button-shadow-secondary-hover); 
+  box-shadow: var(--brand-Button-shadow-secondary-hover);
 }
 
 .Button--label-secondary.Button-label--disabled,
