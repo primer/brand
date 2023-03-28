@@ -341,9 +341,9 @@ const _SearchInternal = (
                       id={`subdomainnavbar-search-result-${index}`}
                       className={styles['SubdomainNavBar-search-result-item']}
                     >
-                      <Heading as="h6" className={styles['SubdomainNavBar-search-result-item-heading']}>
+                      <div className={styles['SubdomainNavBar-search-result-item-container']}>
                         <a href={result.url}>{result.title}</a>
-                      </Heading>
+                      </div>
 
                       <Text as="p" size="200" className={styles['SubdomainNavBar-search-result-item-desc']}>
                         {result.description}

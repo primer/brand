@@ -593,7 +593,15 @@
     var(--brand-SubdomainNavBar-search-results-border-default, #b7bfc7);
 }
 
-.SubdomainNavBar-search-result-item-heading a {
+.SubdomainNavBar-search-result-item-container {
+  font-weight: var(--brand-heading-weight-400);
+  line-height: var(--brand-text-lineHeight-400);
+  font-family: var(--brand-heading-fontFamily);
+  letter-spacing: var(--brand-heading-letterSpacing-400);
+  font-size: var(--brand-text-size-400);
+}
+
+.SubdomainNavBar-search-result-item-container a {
   display: block;
   color: var(--base-color-scale-black-0);
   text-decoration: none;

@@ -80,7 +80,7 @@ function AnchoredOverlay({children, className, visibilityMap}: React.PropsWithCh
         <ChevronDownIcon />
       </button>
 
-      <nav
+      <div
         id="more-navigation"
         style={{display: open ? 'block' : 'none'}}
         className={clsx(styles['SubdomainNavBar-overflow-menu'])}
@@ -104,7 +104,7 @@ function AnchoredOverlay({children, className, visibilityMap}: React.PropsWithCh
             return null
           })}
         </ul>
-      </nav>
+      </div>
     </li>
   )
 }
