@@ -270,7 +270,7 @@ const _SearchInternal = (
 
   return (
     <>
-      <div role="search" className={clsx(styles['SubdomainNavBar-search-trigger'])} aria-label="open search">
+      <div className={clsx(styles['SubdomainNavBar-search-trigger'])}>
         <button
           aria-label="search"
           className={styles['SubdomainNavBar-search-button']}
@@ -284,13 +284,12 @@ const _SearchInternal = (
         <div
           ref={dialogRef}
           role="dialog"
-          aria-label="search menu dialog"
-          title={`Search ${title}`}
+          aria-label={`Search ${title}`}
           aria-modal="true"
           className={clsx(styles['SubdomainNavBar-search-dialog'])}
         >
           <div className={clsx(styles['SubdomainNavBar-search-dialog-control-area'])}>
-            <form className={clsx(styles['SubdomainNavBar-search-form'])} onSubmit={onSubmit}>
+            <form className={clsx(styles['SubdomainNavBar-search-form'])} onSubmit={onSubmit} role="search">
               <FormControl fullWidth size="large">
                 <FormControl.Label visuallyHidden>Search</FormControl.Label>
                 <TextInput
@@ -331,7 +330,6 @@ const _SearchInternal = (
                 </Text>
                 <ul
                   role="listbox"
-                  aria-label="search results"
                   aria-labelledby="subdomainnavbar-search-results-heading"
                   aria-activedescendant="subdomainnavbar-search-result-1"
                   className={clsx(styles['SubdomainNavBar-search-results'])}
