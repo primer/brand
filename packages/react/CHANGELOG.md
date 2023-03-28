@@ -1,5 +1,15 @@
 # @primer/react-brand
 
+## 0.15.1
+
+### Patch Changes
+
+- [#221](https://github.com/primer/brand/pull/221) [`0b5d9b0`](https://github.com/primer/brand/commit/0b5d9b0bb048d87b31ea2071b6c2546401c75fe7) Thanks [@rezrah](https://github.com/rezrah)! - Updated dark mode Button hover colors for secondary and subtle variants.
+
+  Colors have changed from gray to white.
+
+* [#215](https://github.com/primer/brand/pull/215) [`e96601c`](https://github.com/primer/brand/commit/e96601c02b6fb85991ad7da4908e5014e9619d7c) Thanks [@TylerJDev](https://github.com/TylerJDev)! - - Updated `Hero` to use the HTML landmark element `<section>` for improved semantics and accessibility.
+
 ## 0.15.0
 
 ### Minor Changes
