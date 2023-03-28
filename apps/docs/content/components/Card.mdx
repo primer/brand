@@ -6,8 +6,8 @@ storybook: '/brand/storybook/?path=/story/components-card--default'
 description: Use the Card component to display information in a compact way and link to other internal pages.
 ---
 
-import {Label} from '@primer/react'
-import {CopilotIcon, RocketIcon, GitBranchIcon} from '@primer/octicons-react'
+import {LabelColors} from '@primer/react-brand'
+import {PropTableValues} from '../../src/components'
 
 ```js
 import {Card} from '@primer/react-brand'
@@ -96,6 +96,12 @@ Use the `Stack` component to stack multiple cards horizontally or vertically.
 | --------- | -------- | ----------- | -------- | ------------------------------------------- |
 | `href`    | `string` |             | `true`   | URL to the card content                     |
 | `ctaText` | `string` | `Read more` | `false`  | Label of the link at the bottom of the Card |
+
+### Card.Label
+
+| name    | type                                                   | default   | required | description                             |
+| ------- | ------------------------------------------------------ | --------- | -------- | --------------------------------------- |
+| `color` | <PropTableValues values={LabelColors} addLineBreaks /> | `default` | `false`  | The color variations available in Label |
 
 ### Card.Heading
 
