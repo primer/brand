@@ -13,19 +13,22 @@
   display: inline-flex;
   color: var(--brand-Label-color-start, var(--brand-Label-color, currentColor));
   position: relative;
-  background: var(--brand-color-canvas-default);
-  background-clip: padding-box;
-  border: solid var(--brand-borderWidth-thin) transparent;
+  background: none;
 }
 
 .Label:before {
   content: '';
   position: absolute;
   inset: 0;
-  z-index: -1;
-  margin: calc(var(--brand-borderWidth-thin) * -1);
+  padding: var(--brand-borderWidth-thin);
   border-radius: inherit;
   background: var(--brand-Label-background);
+  -webkit-mask: linear-gradient(var(--brand-color-canvas-default), var(--brand-color-canvas-default)) content-box,
+    linear-gradient(var(--brand-color-canvas-default), var(--brand-color-canvas-default));
+  mask: linear-gradient(var(--brand-color-canvas-default), var(--brand-color-canvas-default)) content-box,
+    linear-gradient(var(--brand-color-canvas-default), var(--brand-color-canvas-default));
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
 }
 
 .Label--size-small {
@@ -158,10 +161,8 @@
 .Label__leading-visual {
   display: flex;
   margin-right: var(--base-size-8);
-  fill: currentColor;
 }
 
 .Label--label {
   font-weight: var(--base-text-weight-semibold);
-  color: inherit;
 }
