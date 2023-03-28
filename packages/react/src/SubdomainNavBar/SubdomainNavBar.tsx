@@ -173,7 +173,7 @@ function Root({
 
             {hasLinks && (
               <button
-                aria-expanded="true"
+                aria-expanded={!menuHidden}
                 aria-label="Menu"
                 aria-controls="menu-navigation"
                 aria-haspopup="true"
@@ -300,7 +300,7 @@ const _SearchInternal = (
                   autoFocus
                   name="search"
                   role="combobox"
-                  aria-expanded="true"
+                  aria-expanded={!!searchResults && searchResults.length > 0}
                   aria-controls="listbox-search-results"
                   placeholder={`Search ${title}`}
                   onChange={onChange}
