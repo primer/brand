@@ -52,7 +52,6 @@ describe('SubdomainNavBar', () => {
 
     expect(getByRole('banner')).toBeInTheDocument() // <header>
     expect(getAllByRole('navigation').length > 0).toBeTruthy() // <nav>
-    expect(getByRole('search')).toBeInTheDocument() // role="search"
   })
 
   it('has no a11y violations by default', async () => {
@@ -73,14 +72,16 @@ describe('SubdomainNavBar', () => {
       }
     ]
 
-    const {getByTestId, getByLabelText} = render(<Component searchResults={mockResultsData} />)
+    const {getByTestId, getByRole} = render(<Component searchResults={mockResultsData} />)
     const searchTrigger = getByTestId('toggle-search')
 
     fireEvent.click(searchTrigger)
 
-    const searchResultsDialog = getByLabelText('search menu dialog')
+    const searchResultsDialog = getByRole('dialog')
+    const searchResultsLandmark = getByRole('search')
 
     expect(searchResultsDialog).toBeInTheDocument()
+    expect(searchResultsLandmark).toBeInTheDocument()
   })
 
   it('applies "/" as the default title href', async () => {
