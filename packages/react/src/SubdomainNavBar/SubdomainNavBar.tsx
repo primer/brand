@@ -2,7 +2,7 @@ import React, {useState, useRef, PropsWithChildren, forwardRef, useMemo} from 'r
 import clsx from 'clsx'
 import {ChevronLeftIcon, MarkGithubIcon, SearchIcon, XIcon} from '@primer/octicons-react'
 
-import {Button, FormControl, Heading, Text, TextInput} from '..'
+import {Button, FormControl, Text, TextInput} from '..'
 import {NavigationVisbilityObserver} from './NavigationVisbilityObserver'
 import {useOnClickOutside} from '../hooks/useOnClickOutside'
 
