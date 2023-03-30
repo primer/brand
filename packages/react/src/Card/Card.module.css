@@ -10,7 +10,6 @@
   border-radius: var(--brand-borderRadius-medium);
   padding: var(--base-size-32);
   transition: transform var(--brand-Card-animation-duration) var(--brand-Card-animation-easing);
-  will-change: transform;
 }
 
 .Card:hover {
