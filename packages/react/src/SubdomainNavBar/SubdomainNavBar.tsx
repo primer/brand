@@ -1,10 +1,11 @@
-import React, {useState, useRef, PropsWithChildren, forwardRef, useMemo} from 'react'
+import React, {useState, useRef, PropsWithChildren, forwardRef, useMemo, useEffect} from 'react'
 import clsx from 'clsx'
 import {ChevronLeftIcon, MarkGithubIcon, SearchIcon, XIcon} from '@primer/octicons-react'
 
 import {Button, FormControl, Heading, Text, TextInput} from '..'
 import {NavigationVisbilityObserver} from './NavigationVisbilityObserver'
 import {useOnClickOutside} from '../hooks/useOnClickOutside'
+import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
 
 /**
  * Design tokens
@@ -266,7 +267,43 @@ const _SearchInternal = (
 ) => {
   const dialogRef = useRef<HTMLDivElement | null>(null)
 
+  const [activeDescendant, setActiveDescendant] = useState<number>(0)
+  const [listboxActive, setListboxActive] = useState<boolean>()
+
   useOnClickOutside(dialogRef, handlerFn)
+  useKeyboardEscape(() => setListboxActive(false))
+
+  const handleAriaFocus = event => {
+    const supportedKeys = ['ArrowDown', 'ArrowUp', 'Escape', 'Enter']
+    const currentCount = activeDescendant
+    const searchResultsLength = searchResults ? searchResults.length : 0
+
+    // Prevent any other keys outside of supported from being prevented
+    // Only prevent "Enter" if activeDescendant is greater than -1
+    if (!supportedKeys.includes(event.key) || (event.key === 'Enter' && activeDescendant === -1)) {
+      return false
+    }
+
+    event.preventDefault()
+    if (event.key === 'ArrowDown') {
+      // If count reaches last search result item, reset to -1
+      let count = currentCount < searchResultsLength - 1 ? currentCount + 1 : -1
+      setActiveDescendant(count)
+    } else if (event.key === 'ArrowUp') {
+      // Reset to last search result item if
+      let count = currentCount === -1 ? searchResultsLength - 1 : currentCount - 1
+      setActiveDescendant(count)
+    }
+  }
+
+  useEffect(() => {
+    // We want to set "listboxActive" when search results are present,
+    // or the user pressed "Escape". We watch for "searchTerm", as we
+    // want the listbox to become active if they pressed "Escape", and
+    // adjusted their existing value
+    const search = searchResults && searchResults.length ? true : false
+    setListboxActive(search)
+  }, [searchResults, searchTerm])
 
   return (
     <>
@@ -308,6 +345,10 @@ const _SearchInternal = (
                   defaultValue={searchTerm}
                   invisible
                   leadingVisual={<SearchIcon size={16} />}
+                  aria-activedescendant={
+                    activeDescendant === -1 ? undefined : `subdomainnavbar-search-result-` + activeDescendant
+                  }
+                  onKeyDown={handleAriaFocus}
                 />
               </FormControl>
             </form>
@@ -321,7 +362,7 @@ const _SearchInternal = (
           </div>
 
           <div id="listbox-search-results">
-            {searchResults && searchResults.length > 0 && (
+            {listboxActive && (
               <div className={clsx(styles['SubdomainNavBar-search-results-container'])}>
                 <Text
                   id="subdomainnavbar-search-results-heading"
@@ -333,21 +374,27 @@ const _SearchInternal = (
                   role="listbox"
                   aria-label="search results"
                   aria-labelledby="subdomainnavbar-search-results-heading"
-                  aria-activedescendant="subdomainnavbar-search-result-1"
                   className={clsx(styles['SubdomainNavBar-search-results'])}
-                  tabIndex={0}
                 >
-                  {searchResults.map((result, index) => (
+                  {searchResults?.map((result, index) => (
                     <li
                       key={`${result.title}-${index}`}
                       id={`subdomainnavbar-search-result-${index}`}
                       className={styles['SubdomainNavBar-search-result-item']}
+                      role="option"
+                      aria-describedby=""
+                      aria-selected={index === activeDescendant}
                     >
                       <Heading as="h6" className={styles['SubdomainNavBar-search-result-item-heading']}>
                         <a href={result.url}>{result.title}</a>
                       </Heading>
 
-                      <Text as="p" size="200" className={styles['SubdomainNavBar-search-result-item-desc']}>
+                      <Text
+                        as="p"
+                        size="200"
+                        id={`subdomainnavbar-search-result-item-desc${index}`}
+                        className={styles['SubdomainNavBar-search-result-item-desc']}
+                      >
                         {result.description}
                       </Text>
                       <div>
@@ -371,6 +418,13 @@ const _SearchInternal = (
                 </ul>
               </div>
             )}
+            <div
+              aria-live="polite"
+              aria-atomic="true"
+              className={styles['SubdomainNavBar-search-result-item-suggestion']}
+            >
+              {searchResults?.length && `${searchResults.length} suggestions.`}
+            </div>
           </div>
         </div>
       )}

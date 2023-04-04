@@ -593,12 +593,28 @@
     var(--brand-SubdomainNavBar-search-results-border-default, #b7bfc7);
 }
 
+.SubdomainNavBar-search-result-item[aria-selected="true"] a {
+  outline: var(--brand-color-focus) auto 1px;
+}
+
 .SubdomainNavBar-search-result-item-heading a {
   display: block;
   color: var(--base-color-scale-black-0);
   text-decoration: none;
   margin: 0 0 var(--base-size-12);
   font-size: var(--base-size-16);
+}
+
+.SubdomainNavBar-search-result-item-suggestion {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 
 .SubdomainNavBar-search-result-item-desc {
