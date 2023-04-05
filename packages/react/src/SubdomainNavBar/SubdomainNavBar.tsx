@@ -267,7 +267,7 @@ const _SearchInternal = (
 ) => {
   const dialogRef = useRef<HTMLDivElement | null>(null)
 
-  const [activeDescendant, setActiveDescendant] = useState<number>(0)
+  const [activeDescendant, setActiveDescendant] = useState<number>(-1)
   const [listboxActive, setListboxActive] = useState<boolean>()
 
   useOnClickOutside(dialogRef, handlerFn)
@@ -277,6 +277,7 @@ const _SearchInternal = (
     const supportedKeys = ['ArrowDown', 'ArrowUp', 'Escape', 'Enter']
     const currentCount = activeDescendant
     const searchResultsLength = searchResults ? searchResults.length : 0
+    let count
 
     // Prevent any other keys outside of supported from being prevented
     // Only prevent "Enter" if activeDescendant is greater than -1
@@ -285,14 +286,19 @@ const _SearchInternal = (
     }
 
     event.preventDefault()
+
     if (event.key === 'ArrowDown') {
       // If count reaches last search result item, reset to -1
-      let count = currentCount < searchResultsLength - 1 ? currentCount + 1 : -1
+      count = currentCount < searchResultsLength - 1 ? currentCount + 1 : -1
       setActiveDescendant(count)
     } else if (event.key === 'ArrowUp') {
       // Reset to last search result item if
-      let count = currentCount === -1 ? searchResultsLength - 1 : currentCount - 1
+      count = currentCount === -1 ? searchResultsLength - 1 : currentCount - 1
       setActiveDescendant(count)
+    }
+
+    if (['ArrowDown', 'ArrowUp'].includes(event.key)) {
+      dialogRef.current?.querySelector(`#subdomainnavbar-search-result-${count}`)?.scrollIntoView()
     }
   }
 
@@ -382,11 +388,12 @@ const _SearchInternal = (
                       id={`subdomainnavbar-search-result-${index}`}
                       className={styles['SubdomainNavBar-search-result-item']}
                       role="option"
-                      aria-describedby=""
                       aria-selected={index === activeDescendant}
                     >
                       <Heading as="h6" className={styles['SubdomainNavBar-search-result-item-heading']}>
-                        <a href={result.url}>{result.title}</a>
+                        <a href={result.url} tabIndex={-1}>
+                          {result.title}
+                        </a>
                       </Heading>
 
                       <Text
