@@ -269,19 +269,25 @@ const _SearchInternal = (
 
   const [activeDescendant, setActiveDescendant] = useState<number>(-1)
   const [listboxActive, setListboxActive] = useState<boolean>()
+  const [liveRegion, setLiveRegion] = useState<boolean>(false)
 
   useOnClickOutside(dialogRef, handlerFn)
-  useKeyboardEscape(() => setListboxActive(false))
+
+  useKeyboardEscape(() => {
+    setListboxActive(false)
+    setActiveDescendant(-1)
+  })
 
   const handleAriaFocus = event => {
     const supportedKeys = ['ArrowDown', 'ArrowUp', 'Escape', 'Enter']
     const currentCount = activeDescendant
     const searchResultsLength = searchResults ? searchResults.length : 0
+    const dialog = dialogRef.current
     let count
 
-    // Prevent any other keys outside of supported from being prevented
-    // Only prevent "Enter" if activeDescendant is greater than -1
-    if (!supportedKeys.includes(event.key) || (event.key === 'Enter' && activeDescendant === -1)) {
+    // Prevent any other keys outside of supported from being prevented.
+    // Only prevent "Enter" if activeDescendant is greater than -1.
+    if (!supportedKeys.includes(event.key) || (event.key === 'Enter' && activeDescendant === -1) || !dialog) {
       return false
     }
 
@@ -298,17 +304,33 @@ const _SearchInternal = (
     }
 
     if (['ArrowDown', 'ArrowUp'].includes(event.key)) {
-      dialogRef.current?.querySelector(`#subdomainnavbar-search-result-${count}`)?.scrollIntoView()
+      dialog.querySelector(`#subdomainnavbar-search-result-${count}`)?.scrollIntoView()
     }
+
+    if (event.key === 'Enter') {
+      const link = dialog.querySelector(`#subdomainnavbar-search-result-${activeDescendant} a`) as HTMLAnchorElement
+      link.click()
+    }
+  }
+
+  const searchLiveRegion = () => {
+    // Adding a non-breaking space and then removing it will force screen readers to announce the text,
+    // as it thinks that there was a change within the live region.
+    setLiveRegion(true)
+
+    setTimeout(() => {
+      setLiveRegion(false)
+    }, 200)
   }
 
   useEffect(() => {
     // We want to set "listboxActive" when search results are present,
-    // or the user pressed "Escape". We watch for "searchTerm", as we
-    // want the listbox to become active if they pressed "Escape", and
-    // adjusted their existing value
+    // or the user pressed "Escape". We watch for "searchTerm", as we -
+    // want the listbox to become active if they pressed "Escape", and -
+    // adjusted their existing value.
     const search = searchResults && searchResults.length ? true : false
     setListboxActive(search)
+    searchLiveRegion()
   }, [searchResults, searchTerm])
 
   return (
@@ -343,7 +365,7 @@ const _SearchInternal = (
                   autoFocus
                   name="search"
                   role="combobox"
-                  aria-expanded={!!searchResults && searchResults.length > 0}
+                  aria-expanded={listboxActive}
                   aria-controls="listbox-search-results"
                   placeholder={`Search ${title}`}
                   onChange={onChange}
@@ -351,7 +373,7 @@ const _SearchInternal = (
                   invisible
                   leadingVisual={<SearchIcon size={16} />}
                   aria-activedescendant={
-                    activeDescendant === -1 ? undefined : `subdomainnavbar-search-result-` + activeDescendant
+                    activeDescendant === -1 ? undefined : `subdomainnavbar-search-result-${activeDescendant}`
                   }
                   onKeyDown={handleAriaFocus}
                 />
@@ -426,9 +448,11 @@ const _SearchInternal = (
             <div
               aria-live="polite"
               aria-atomic="true"
+              data-testid="search-live-region"
               className={styles['SubdomainNavBar-search-result-item-suggestion']}
             >
-              {searchResults?.length && `${searchResults.length} suggestions.`}
+              {`${searchResults?.length} suggestions.`}
+              {liveRegion && <span>&nbsp;</span>}
             </div>
           </div>
         </div>
