@@ -1,7 +1,7 @@
 import React, {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
-import {River, getHeadingWarning} from './River'
+import {River} from './River'
 import {Text, Link, Heading} from '../'
 import {axe, toHaveNoViolations} from 'jest-axe'
 

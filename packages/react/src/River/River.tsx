@@ -1,6 +1,6 @@
 import React, {forwardRef, PropsWithChildren, type Ref} from 'react'
 import clsx from 'clsx'
-import {Heading, HeadingTags, LinkProps, HeadingProps, TextProps, Text, Link} from '../'
+import {Heading, LinkProps, HeadingProps, TextProps, Text, Link} from '../'
 
 import type {BaseProps} from '../component-helpers'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/river/base.css'
@@ -95,9 +95,6 @@ type RiverContentProps = BaseProps<HTMLDivElement> & {
    */
   children: React.ReactElement<TextProps> | React.ReactElement<HeadingProps | TextProps | LinkProps>[]
 }
-
-export const getHeadingWarning = (size: typeof HeadingTags[number]) =>
-  `River.Content does not accept a Heading with as="${size}". River automatically applies as="h3" by default.`
 
 const Content = forwardRef(
   (
