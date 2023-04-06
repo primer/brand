@@ -5,6 +5,7 @@ import {ChevronLeftIcon, MarkGithubIcon, SearchIcon, XIcon} from '@primer/octico
 import {Button, FormControl, Text, TextInput} from '..'
 import {NavigationVisbilityObserver} from './NavigationVisbilityObserver'
 import {useOnClickOutside} from '../hooks/useOnClickOutside'
+import {useFocusTrap} from '../hooks/useFocusTrap'
 
 /**
  * Design tokens
@@ -266,6 +267,7 @@ const _SearchInternal = (
 ) => {
   const dialogRef = useRef<HTMLDivElement | null>(null)
 
+  useFocusTrap({containerRef: dialogRef, restoreFocusOnCleanUp: true, disabled: !active})
   useOnClickOutside(dialogRef, handlerFn)
 
   return (
@@ -286,6 +288,7 @@ const _SearchInternal = (
           role="dialog"
           aria-label={`Search ${title}`}
           aria-modal="true"
+          tabIndex={-1}
           className={clsx(styles['SubdomainNavBar-search-dialog'])}
         >
           <div className={clsx(styles['SubdomainNavBar-search-dialog-control-area'])}>
