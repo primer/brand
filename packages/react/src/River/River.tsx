@@ -112,18 +112,6 @@ const Content = forwardRef(
 
     const LinkChild = React.Children.toArray(children).find(child => React.isValidElement(child) && child.type === Link)
 
-    const applyHeadingSize = (Component: React.ReactElement) => {
-      const {as}: {as: typeof HeadingTags[number] | undefined} = Component.props
-      if (as) {
-        if (HeadingTags.includes(as) && as !== 'h3') {
-          // eslint-disable-next-line no-console
-          console.warn(getHeadingWarning(as))
-        }
-      }
-
-      return 'h3'
-    }
-
     return (
       <div className={styles.River__content} {...rest} ref={ref}>
         {LeadingComponent && (
@@ -133,7 +121,11 @@ const Content = forwardRef(
         )}
         {React.isValidElement(HeadingChild) && (
           <div className={styles.River__heading}>
-            {React.cloneElement(HeadingChild, {as: applyHeadingSize(HeadingChild)})}
+            {React.cloneElement(HeadingChild, {
+              // as uses h3 default, but can be overridden
+              as: HeadingChild.props.as || 'h3',
+              size: HeadingChild.props.size || '3'
+            })}
           </div>
         )}
 

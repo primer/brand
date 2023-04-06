@@ -218,15 +218,10 @@ describe('River', () => {
     expect(elHeading).toBeInTheDocument()
   })
 
-  it('cannot render an alternate Heading size', () => {
-    // eslint-disable-next-line no-console
-    const originalWarn = console.warn
-    // eslint-disable-next-line no-console
-    console.warn = jest.fn()
-
+  it('can render an alternate Heading level', () => {
     const expectedHeadingSize = 'h1'
 
-    const {getByRole, queryByRole} = render(
+    const {getByRole} = render(
       <River>
         <River.Visual>
           <MockImage />
@@ -238,17 +233,29 @@ describe('River', () => {
       </River>
     )
 
-    const elH1Heading = queryByRole('heading', {level: 1})
-    const elH3Heading = getByRole('heading', {level: 3})
+    const elH1Heading = getByRole('heading', {level: 1})
 
-    expect(elH1Heading).not.toBeInTheDocument()
-    expect(elH3Heading).toBeInTheDocument() // should replace the h1 with a h3
+    expect(elH1Heading).toBeInTheDocument()
+  })
 
-    // eslint-disable-next-line no-console
-    expect(console.warn).toHaveBeenCalledWith(getHeadingWarning(expectedHeadingSize))
+  it('can render an alternate Heading size', () => {
+    const expectedHeadingSize = '1'
 
-    // eslint-disable-next-line no-console
-    console.warn = originalWarn
+    const {getByRole} = render(
+      <River>
+        <River.Visual>
+          <MockImage />
+        </River.Visual>
+        <River.Content>
+          <Heading size={expectedHeadingSize}>{mockHeading}</Heading>
+          <Text>{mockText}</Text>
+        </River.Content>
+      </River>
+    )
+
+    const el = getByRole('heading', {level: 3}) // should still be a h3
+
+    expect(el.classList).toContain(`Heading--${expectedHeadingSize}`)
   })
 
   it('has no a11y violations', async () => {
