@@ -107,4 +107,8 @@ const _Label = forwardRef<HTMLSpanElement, LabelProps>(
   }
 )
 
+/**
+ * Use a Label to indicate the status of an object or to categorize it with metadata that describes it.
+ * @see https://primer.style/brand/components/Label
+ */
 export const Label = Object.assign(_Label, {testIds})
