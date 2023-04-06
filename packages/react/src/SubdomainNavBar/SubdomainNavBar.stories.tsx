@@ -524,7 +524,7 @@ export const OverflowMenuOpen = Template.bind({})
 OverflowMenuOpen.play = async ({canvasElement}) => {
   const canvas = within(canvasElement)
   await waitFor(async () => {
-    const overflowMenu = await canvas.getByLabelText('more')
+    const overflowMenu = await canvas.getByText('More')
     await userEvent.click(overflowMenu)
   })
 }

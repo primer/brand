@@ -71,7 +71,6 @@ function AnchoredOverlay({children, className, visibilityMap}: React.PropsWithCh
     <li className={clsx(styles['SubdomainNavBar-primary-nav-list-item--overflow'], className)} ref={ref}>
       <button
         aria-expanded={open ? 'true' : 'false'}
-        aria-label="more"
         aria-controls="more-navigation"
         aria-haspopup="true"
         onClick={handleClick}
@@ -81,7 +80,7 @@ function AnchoredOverlay({children, className, visibilityMap}: React.PropsWithCh
         <ChevronDownIcon />
       </button>
 
-      <nav
+      <div
         id="more-navigation"
         style={{display: open ? 'block' : 'none'}}
         className={clsx(styles['SubdomainNavBar-overflow-menu'])}
@@ -105,7 +104,7 @@ function AnchoredOverlay({children, className, visibilityMap}: React.PropsWithCh
             return null
           })}
         </ul>
-      </nav>
+      </div>
     </li>
   )
 }

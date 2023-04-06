@@ -597,12 +597,20 @@
   outline: var(--brand-color-focus) auto 1px;
 }
 
-.SubdomainNavBar-search-result-item-heading a {
+.SubdomainNavBar-search-result-item-container {
+  letter-spacing: var(--brand-heading-letterSpacing-400);
+  font-size: var(--brand-text-size-400);
+}
+
+.SubdomainNavBar-search-result-item-container a {
   display: block;
   color: var(--base-color-scale-black-0);
   text-decoration: none;
   margin: 0 0 var(--base-size-12);
   font-size: var(--base-size-16);
+  font-weight: var(--brand-heading-weight-400);
+  font-family: var(--brand-heading-fontFamily);
+  line-height: var(--brand-text-lineHeight-400);
 }
 
 .SubdomainNavBar-search-result-item-suggestion {
