@@ -163,6 +163,6 @@
   margin-right: var(--base-size-8);
 }
 
-.Label-label {
+.Label__label {
   font-weight: var(--base-text-weight-semibold);
 }

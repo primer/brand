@@ -97,7 +97,7 @@ const _Label = forwardRef<HTMLSpanElement, LabelProps>(
           <Text
             as="span"
             size={size === 'small' ? '100' : size === 'medium' ? '200' : '300'}
-            className={clsx(styles['Label-label'])}
+            className={clsx(styles['Label__label'])}
           >
             {children}
           </Text>
