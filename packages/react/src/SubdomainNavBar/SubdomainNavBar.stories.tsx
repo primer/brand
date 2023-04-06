@@ -621,15 +621,6 @@ export const ConditionalRendering = () => {
   )
 }
 
-const possibleKeysToUnicode = {
-  arrowup: `&#x2191;`,
-  arrowdown: `&#x2193;`,
-  enter: `&#x23CE;`,
-  escape: `&#x238B;`,
-  tab: '&#x21E5;',
-  none: ''
-}
-
 export const KeyboardNavigation = Template.bind({})
 
 KeyboardNavigation.play = async ({canvasElement}) => {
@@ -642,13 +633,13 @@ KeyboardNavigation.play = async ({canvasElement}) => {
   await expect(canvas.getByRole('combobox')).toHaveFocus()
 
   await delay()
-  await expect(canvas.queryByRole('listbox')).toBeInTheDocument()
+  expect(canvas.queryByRole('listbox')).toBeInTheDocument()
   expect(canvas.getByRole('combobox')).toHaveAttribute('aria-expanded', 'true')
 
   for (let i = 0; i < mockSearchData.length; i++) {
     userEvent.keyboard('{arrowdown}')
     expect(canvas.getByRole('combobox')).toHaveAttribute('aria-activedescendant', `${prefix}${i}`)
-    await delay()
+    await delay(400)
   }
 
   userEvent.keyboard('{arrowdown}')
@@ -657,7 +648,7 @@ KeyboardNavigation.play = async ({canvasElement}) => {
   for (let i = mockSearchData.length - 1; i >= 0; i--) {
     userEvent.keyboard('{arrowup}')
     expect(canvas.getByRole('combobox')).toHaveAttribute('aria-activedescendant', `${prefix}${i}`)
-    await delay()
+    await delay(400)
   }
 
   userEvent.keyboard('{arrowup}')
@@ -673,7 +664,7 @@ KeyboardNavigation.play = async ({canvasElement}) => {
 
   userEvent.keyboard('{backspace}')
 
-  await expect(canvas.queryByRole('listbox')).toBeInTheDocument()
+  expect(canvas.queryByRole('listbox')).toBeInTheDocument()
   expect(canvas.getByRole('combobox')).toHaveAttribute('aria-expanded', 'true')
   expect(canvas.getByTestId('search-live-region')).toHaveTextContent(`${mockSearchData.length} suggestions.`)
 }
