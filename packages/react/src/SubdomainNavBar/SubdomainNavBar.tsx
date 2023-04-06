@@ -271,8 +271,12 @@ const _SearchInternal = (
   const [listboxActive, setListboxActive] = useState<boolean>()
   const [liveRegion, setLiveRegion] = useState<boolean>(false)
 
-  useOnClickOutside(dialogRef, handlerFn)
+  const handleClose = event => {
+    if (handlerFn) handlerFn(event)
+    setActiveDescendant(-1)
+  }
 
+  useOnClickOutside(dialogRef, handleClose)
   useKeyboardEscape(() => {
     setListboxActive(false)
     setActiveDescendant(-1)
@@ -382,7 +386,7 @@ const _SearchInternal = (
             <button
               aria-label="Close"
               className={clsx(styles['SubdomainNavBar-menu-button'], styles['SubdomainNavBar-menu-button--close'])}
-              onClick={handlerFn as (event) => void}
+              onClick={handleClose}
             >
               <XIcon size={24} />
             </button>
