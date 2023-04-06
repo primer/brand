@@ -43,7 +43,7 @@ export type LabelProps = BaseProps<HTMLSpanElement> & {
    */
   leadingVisual?: React.ReactNode
   /**
-   * The styling variations available in Label
+   * The color variations available in Label
    */
   color?: typeof LabelColors[number]
   /**
