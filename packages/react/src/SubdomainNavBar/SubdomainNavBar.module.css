@@ -593,7 +593,7 @@
     var(--brand-SubdomainNavBar-search-results-border-default, #b7bfc7);
 }
 
-.SubdomainNavBar-search-result-item[aria-selected="true"] a {
+.SubdomainNavBar-search-result-item[aria-selected='true'] a {
   outline: var(--brand-color-focus) auto 1px;
 }
 

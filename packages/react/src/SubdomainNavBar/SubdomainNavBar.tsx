@@ -361,6 +361,7 @@ const _SearchInternal = (
                   ref={ref}
                   className={clsx(styles['SubdomainNavBar-search-text-input'])}
                   // Input load is deferred and when visible, should immediately be focussed
+                  // eslint-disable-next-line jsx-a11y/no-autofocus
                   autoFocus
                   name="search"
                   role="combobox"
