@@ -2,7 +2,7 @@ import React, {useState, useRef, PropsWithChildren, forwardRef, useMemo} from 'r
 import clsx from 'clsx'
 import {ChevronLeftIcon, MarkGithubIcon, SearchIcon, XIcon} from '@primer/octicons-react'
 
-import {Button, FormControl, Heading, Text, TextInput} from '..'
+import {Button, FormControl, Text, TextInput} from '..'
 import {NavigationVisbilityObserver} from './NavigationVisbilityObserver'
 import {useOnClickOutside} from '../hooks/useOnClickOutside'
 
@@ -173,7 +173,7 @@ function Root({
 
             {hasLinks && (
               <button
-                aria-expanded="true"
+                aria-expanded={!menuHidden}
                 aria-label="Menu"
                 aria-controls="menu-navigation"
                 aria-haspopup="true"
@@ -270,7 +270,7 @@ const _SearchInternal = (
 
   return (
     <>
-      <div role="search" className={clsx(styles['SubdomainNavBar-search-trigger'])} aria-label="open search">
+      <div className={clsx(styles['SubdomainNavBar-search-trigger'])}>
         <button
           aria-label="search"
           className={styles['SubdomainNavBar-search-button']}
@@ -284,13 +284,12 @@ const _SearchInternal = (
         <div
           ref={dialogRef}
           role="dialog"
-          aria-label="search menu dialog"
-          title={`Search ${title}`}
+          aria-label={`Search ${title}`}
           aria-modal="true"
           className={clsx(styles['SubdomainNavBar-search-dialog'])}
         >
           <div className={clsx(styles['SubdomainNavBar-search-dialog-control-area'])}>
-            <form className={clsx(styles['SubdomainNavBar-search-form'])} onSubmit={onSubmit}>
+            <form className={clsx(styles['SubdomainNavBar-search-form'])} onSubmit={onSubmit} role="search">
               <FormControl fullWidth size="large">
                 <FormControl.Label visuallyHidden>Search</FormControl.Label>
                 <TextInput
@@ -301,7 +300,7 @@ const _SearchInternal = (
                   autoFocus
                   name="search"
                   role="combobox"
-                  aria-expanded="true"
+                  aria-expanded={!!searchResults && searchResults.length > 0}
                   aria-controls="listbox-search-results"
                   placeholder={`Search ${title}`}
                   onChange={onChange}
@@ -331,7 +330,6 @@ const _SearchInternal = (
                 </Text>
                 <ul
                   role="listbox"
-                  aria-label="search results"
                   aria-labelledby="subdomainnavbar-search-results-heading"
                   aria-activedescendant="subdomainnavbar-search-result-1"
                   className={clsx(styles['SubdomainNavBar-search-results'])}
@@ -343,9 +341,9 @@ const _SearchInternal = (
                       id={`subdomainnavbar-search-result-${index}`}
                       className={styles['SubdomainNavBar-search-result-item']}
                     >
-                      <Heading as="h6" className={styles['SubdomainNavBar-search-result-item-heading']}>
+                      <div className={styles['SubdomainNavBar-search-result-item-container']}>
                         <a href={result.url}>{result.title}</a>
-                      </Heading>
+                      </div>
 
                       <Text as="p" size="200" className={styles['SubdomainNavBar-search-result-item-desc']}>
                         {result.description}

@@ -60,9 +60,11 @@ export const AccordionHeading = forwardRef<HTMLHeadingElement, AccordionHeadingP
   ({children, className, as = 'h4', ...rest}, ref) => {
     return (
       <summary className={clsx(styles.Accordion__summary, className)} ref={ref} {...rest}>
+        <span aria-hidden="true" className={styles['Accordion__summary--collapsed']}></span>
         <Heading as={as} className={styles['Accordion__summary-heading']}>
           {children}
         </Heading>
+        <span aria-hidden="true" className={styles['Accordion__summary--expanded']}></span>
       </summary>
     )
   }
