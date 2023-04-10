@@ -39,7 +39,6 @@ const _Radio = (
       <input
         id={uniqueId}
         aria-checked={checked ? 'true' : 'false'}
-        aria-disabled={disabled ? 'true' : 'false'}
         checked={checked}
         className={clsx(styles['Radio-input'])}
         disabled={disabled}
