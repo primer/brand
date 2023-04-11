@@ -41,6 +41,22 @@ test.describe('Visual Comparison: River', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('River / Alternative Heading Level', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-river-fixtures--alternative-heading-level&viewMode=story'
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('River / Alternative Heading Size', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-river-fixtures--alternative-heading-size&viewMode=story'
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('River / Alternating Layout', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-river-fixtures--alternating-layout&viewMode=story'
