@@ -20,17 +20,19 @@ describe('Image', () => {
   })
 
   it('should pass a custom class to the image when provided', async () => {
+    const testClass = 'test'
+
     const {container} = render(
       <Image
         src="https://source.unsplash.com/random"
         alt=""
-        className="test"
+        className={testClass}
         isPicture={false}
         aspectRatio={undefined}
       />
     )
 
-    expect(container.querySelector('img.test')).toBeInTheDocument()
+    expect(container.querySelector(`img.${testClass}`)).toBeInTheDocument()
   })
 
   it('should return only an img element if no aspectRatio is provided and isPicture is false', async () => {
