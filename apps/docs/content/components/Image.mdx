@@ -1,0 +1,50 @@
+---
+title: Image
+status: Experimental
+# figma: https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=539%3A14285&t=RJEWZhVUtrRQ0pKh-0
+source: https://github.com/primer/brand/blob/main/packages/react/src/Image/Image.tsx
+storybook: '/brand/storybook/?path=/story/components-image--playground'
+description: Use Image to create both normal and responsive image elements.
+---
+
+import {Label} from '@primer/react'
+
+```js
+import {Image} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<Image src="https://source.unsplash.com/random" alt="Random Image" />
+```
+
+### Aspect Ratio
+
+The `aspectRatio` prop can be used to set the aspect ratio of the image. This is useful when the image is not the same aspect ratio as the container.
+
+```jsx live
+<Image
+  src="https://source.unsplash.com/random"
+  alt="Random Image"
+  aspectRatio="16:9"
+/>
+```
+
+## Component props
+
+### Image <Label>Required</Label>
+
+The first row in a table is automatically styled as a table header row.
+
+| name          | type                                              | default     | required | description                                                                                                                                                               |
+| ------------- | ------------------------------------------------- | ----------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `className`   | `string`                                          |             | `false`  | Custom image class                                                                                                                                                        |
+| `aspectRatio` | `1:1`, `16:9`, `16:10`, `4:3`, `[number, number]` | `undefined` | `false`  | Sets the image aspect ratio                                                                                                                                               |
+| `isPicture`   | `boolean`                                         | `false`     | `false`  | Toggle to create a picture element                                                                                                                                        |
+| `loading`     | `eager`, `lazy`                                   | `eager`     | `false`  | The loading attribute specifies whether a browser should load an image immediately or to defer loading of off-screen images until for example the user scrolls near them. |
+| `decoding`    | `sync`, `async`, `auto`                           | `sync`      | `false`  | Sets the image decoding strategy. Representing a hint given to the browser on how it should decode the image.                                                             |
+
+                      |

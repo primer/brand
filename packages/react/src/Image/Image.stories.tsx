@@ -9,7 +9,7 @@ export default {
     src: 'https://source.unsplash.com/random',
     alt: 'Random image',
     isPicture: false,
-    aspectRatio: undefined,
+    aspectRatio: '16:9',
     loading: 'eager',
     decoding: 'auto'
   },
@@ -37,6 +37,18 @@ export default {
       control: {
         type: 'radio',
         options: ['1:1', '16:9', '16:10', '4:3']
+      }
+    },
+    width: {
+      description: 'The width of the image',
+      control: {
+        type: 'number'
+      }
+    },
+    height: {
+      description: 'The height of the image',
+      control: {
+        type: 'number'
       }
     },
     loading: {
@@ -69,7 +81,15 @@ export const CustomImageAspectRatio: ComponentStory<typeof Image> = args => (
 )
 
 export const CustomImageAspectRatioWithWidth: ComponentStory<typeof Image> = args => (
-  <Image {...{...args, aspectRatio: [9, 1], width: '200px'}} />
+  <Image {...{...args, aspectRatio: [9, 1], width: 200}} />
 )
 
-export const Default = Playground.bind({})
+export const CustomImageAspectRatioWithHeight: ComponentStory<typeof Image> = args => (
+  <Image {...{...args, aspectRatio: [9, 1], height: 200}} />
+)
+
+export const Default = Playground.bind({
+  args: {
+    aspectRatio: undefined
+  }
+})
