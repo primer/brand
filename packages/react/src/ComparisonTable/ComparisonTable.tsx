@@ -43,6 +43,7 @@ export const _ComparisonTable = forwardRef(
               if (rowChild.type === Cell) {
                 return React.cloneElement(rowChild, {
                   as: 'th',
+                  'aria-hidden': !rowChild.props.children ? 'true' : undefined,
                   className: clsx(
                     styles['ComparisonTable-cell'],
                     styles[`ComparisonTable-cell-heading`],
@@ -72,6 +73,7 @@ export const _ComparisonTable = forwardRef(
       () =>
         React.Children.map(children[0].props.children, child => {
           const {children: value = ''} = child.props
+
           return value
         }),
       [children]

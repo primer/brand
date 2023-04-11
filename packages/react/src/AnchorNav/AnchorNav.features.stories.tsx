@@ -197,6 +197,9 @@ export const NarrowViewMenuOpen = Template.bind({})
 NarrowViewMenuOpen.parameters = {
   viewport: {
     defaultViewport: 'iphonexr'
+  },
+  axe: {
+    timeout: 5000
   }
 }
 NarrowViewMenuOpen.storyName = 'Narrow view, menu open (mobile)'
@@ -221,6 +224,9 @@ RegularViewMenuOpen.storyName = 'Regular view, menu open (tablet)'
 RegularViewMenuOpen.parameters = {
   viewport: {
     defaultViewport: 'ipad10p'
+  },
+  axe: {
+    timeout: 5000
   }
 }
 RegularViewMenuOpen.play = async ({canvasElement}) => {
