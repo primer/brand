@@ -9,7 +9,7 @@ export default {
     src: 'https://source.unsplash.com/random',
     alt: 'Random image',
     isPicture: false,
-    aspectRatio: '16:9',
+    aspectRatio: undefined,
     loading: 'eager',
     decoding: 'auto'
   },
