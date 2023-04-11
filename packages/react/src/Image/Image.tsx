@@ -36,7 +36,8 @@ const aspectRatioResolver = (ratio?: AspectRatio) => {
   return `${width} / ${height}`
 }
 
-export const Image = ({className, aspectRatio, isPicture, ref, alt, ...rest}: ImageProps) => {
+// TODO: need access to height and width props
+export const Image = ({className, aspectRatio = undefined, isPicture = false, ref, alt, ...rest}: ImageProps) => {
   if (aspectRatio && isPicture) {
     return (
       <picture className={styles['Image-container']} ref={ref} style={{aspectRatio: aspectRatioResolver(aspectRatio)}}>
@@ -44,12 +45,13 @@ export const Image = ({className, aspectRatio, isPicture, ref, alt, ...rest}: Im
       </picture>
     )
   }
+  //   TODO: need access to ref in the img elements below
   if (aspectRatio) {
     return (
       <span className={styles['Image-container']} style={{aspectRatio: aspectRatioResolver(aspectRatio)}}>
-        <img ref={ref} alt={alt} className={clsx(styles.Image, className)} {...rest} />
+        <img alt={alt} className={clsx(styles.Image, className)} {...rest} />
       </span>
     )
   }
-  return <img ref={ref} alt={alt} className={clsx(styles.Image, className)} {...rest} />
+  return <img alt={alt} className={clsx(styles.Image, className)} {...rest} />
 }

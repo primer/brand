@@ -1,6 +1,6 @@
 import React from 'react'
 import {ComponentMeta, ComponentStory} from '@storybook/react'
-import {Image} from '.'
+import {Image} from './'
 
 export default {
   title: 'Components/Image',
@@ -9,7 +9,9 @@ export default {
     src: 'https://source.unsplash.com/random',
     alt: 'Random image',
     isPicture: false,
-    aspectRatio: undefined
+    aspectRatio: undefined,
+    loading: 'eager',
+    decoding: 'auto'
   },
   argTypes: {
     src: {
@@ -36,6 +38,22 @@ export default {
         type: 'radio',
         options: ['1:1', '16:9', '16:10', '4:3']
       }
+    },
+    loading: {
+      description:
+        'The loading attribute specifies whether a browser should load an image immediately or to defer loading of off-screen images until for example the user scrolls near them.',
+      control: {
+        type: 'radio',
+        options: ['eager', 'lazy']
+      }
+    },
+    decoding: {
+      description:
+        'Sets the image decoding strategy. Representing a hint given to the browser on how it should decode the image.',
+      control: {
+        type: 'radio',
+        options: ['sync', 'async', 'auto']
+      }
     }
   }
 } as ComponentMeta<typeof Image>
@@ -48,6 +66,10 @@ export const CustomPictureAspectRatio: ComponentStory<typeof Image> = args => (
 
 export const CustomImageAspectRatio: ComponentStory<typeof Image> = args => (
   <Image {...{...args, aspectRatio: [9, 1]}} />
+)
+
+export const CustomImageAspectRatioWithWidth: ComponentStory<typeof Image> = args => (
+  <Image {...{...args, aspectRatio: [9, 1], width: '200px'}} />
 )
 
 export const Default = Playground.bind({})
