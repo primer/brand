@@ -66,7 +66,6 @@ const _Checkbox = (
       <input
         id={uniqueId}
         aria-checked={indeterminate ? 'mixed' : checked ? 'true' : 'false'}
-        aria-disabled={disabled ? 'true' : 'false'}
         aria-invalid={validationStatus === 'error' ? 'true' : 'false'}
         aria-required={required ? 'true' : 'false'}
         checked={indeterminate ? false : checked}

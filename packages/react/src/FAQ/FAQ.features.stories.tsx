@@ -135,9 +135,10 @@ export const AllOpen: ComponentStory<typeof FAQ> = () => {
     </Container>
   )
 }
-
 AllOpen.parameters = {
-  skipVisualTest: true
+  axe: {
+    timeout: 5000
+  }
 }
 
 export const HeadingLeftAligned: ComponentStory<typeof FAQ> = () => {
