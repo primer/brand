@@ -8,16 +8,19 @@ type AspectRatio = '1:1' | '16:9' | '16:10' | '4:3' | [number, number]
 
 export type ImageProps =
   | (BaseProps<HTMLImageElement> & {
+      src: string
       alt: string
       isPicture: false
       aspectRatio: AspectRatio
     })
   | (BaseProps<HTMLPictureElement> & {
+      src: string
       alt: string
       isPicture: true
       aspectRatio: AspectRatio
     })
   | (BaseProps<HTMLImageElement> & {
+      src: string
       alt: string
       isPicture: false
       aspectRatio: undefined
