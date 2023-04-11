@@ -12,7 +12,7 @@ describe('Image', () => {
 
   it('no a11y violations', async () => {
     const {container} = render(
-      <Image src="https://source.unsplash.com/random" alt="" isPicture={false} aspectRatio={undefined} />
+      <Image src="https://source.unsplash.com/random" alt="" isPicture={false} aspectRatio={null} />
     )
     const results = await axe(container)
 
@@ -28,7 +28,7 @@ describe('Image', () => {
         alt=""
         className={testClass}
         isPicture={false}
-        aspectRatio={undefined}
+        aspectRatio={null}
       />
     )
 
@@ -37,7 +37,7 @@ describe('Image', () => {
 
   it('should return only an img element if no aspectRatio is provided and isPicture is false', async () => {
     const {container} = render(
-      <Image src="https://source.unsplash.com/random" alt="" isPicture={false} aspectRatio={undefined} />
+      <Image src="https://source.unsplash.com/random" alt="" isPicture={false} aspectRatio={null} />
     )
 
     expect(container.querySelector('.Image-container')).not.toBeInTheDocument()
