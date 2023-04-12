@@ -47,8 +47,8 @@ export const Image = ({className, aspectRatio, isPicture = false, ref, alt, widt
       ref={ref}
       alt={alt}
       className={clsx(styles.Image, className)}
-      width={width ? width : '100%'}
-      height={height ? height : '100%'}
+      width={width ? width : 'initial'}
+      height={height ? height : 'initial'}
       {...rest}
     />
   )
