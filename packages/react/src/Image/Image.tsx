@@ -22,7 +22,7 @@ const aspectRatioResolver = (ratio?: AspectRatio) => {
 }
 
 export const Image = ({className, aspectRatio, isPicture = false, ref, alt, width, height, ...rest}: ImageProps) => {
-  if (aspectRatio && isPicture) {
+  if (isPicture) {
     return (
       <picture
         className={styles['Image-container']}
