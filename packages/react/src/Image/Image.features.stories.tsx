@@ -14,6 +14,10 @@ export default {
   }
 } as ComponentMeta<typeof Image>
 
+export const Default: ComponentStory<typeof Image> = () => (
+  <Image src="https://source.unsplash.com/random" alt="Random Image" />
+)
+
 export const CustomPictureAspectRatio: ComponentStory<typeof Image> = () => (
   <Image src="https://source.unsplash.com/random" alt="Random Image" aspectRatio={[9, 1]} isPicture />
 )
