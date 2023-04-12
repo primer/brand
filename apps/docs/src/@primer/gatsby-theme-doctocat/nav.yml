@@ -32,6 +32,8 @@
       url: /components/FAQ
     - title: Hero
       url: /components/Hero
+    - title: Image
+      url: /components/Image
     - title: MinimalFooter
       url: /components/MinimalFooter
     - title: OrderedList
