@@ -71,15 +71,6 @@ describe('Image', () => {
     expect(container.querySelector('img')).toBeInTheDocument()
   })
 
-  it('should have equal height and width if 1:1 ratio is set', async () => {
-    const {container} = render(
-      <Image src="https://source.unsplash.com/random" alt="" isPicture={false} aspectRatio={'1:1'} />
-    )
-
-    expect(container.getAttribute('width')).not.toEqual(0)
-    expect(container.getAttribute('width')).toEqual(container.getAttribute('height'))
-  })
-
   it('should create an aspect ratio based on a provided ratio array', async () => {
     const {container} = render(
       <Image src="https://source.unsplash.com/random" alt="" isPicture={false} aspectRatio={[1, 1]} />
@@ -96,8 +87,6 @@ describe('Image', () => {
     )
 
     expect(container.querySelector('span')?.style.width).toEqual(`${testWidth}px`)
-    // FIX: The renderer doesn't understand the styles that come from the output
-    // expect(container.querySelector('span')?.style.height).toEqual(`${testWidth}px`)
   })
 
   it('should create image of a specific height with aspect ratio', async () => {
@@ -114,9 +103,6 @@ describe('Image', () => {
     )
 
     expect(container.querySelector('span')?.style.height).toEqual(`${testHeight}px`)
-    // FIX: This is failing because the width style attribute is not set but it would be the expected width. I need to figure out how jest interprets the style attribute.s
-    // expect(container.querySelector('span')?.style).toHaveProperty('width', `${testHeight}px`)
-    // expect(container.querySelector('span')?.style.width).toEqual(`${testHeight}px`)
   })
 
   it('should create image of a specific height and width ignoring aspect ratio when both are provided', async () => {

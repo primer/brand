@@ -72,22 +72,6 @@ export default {
 
 export const Playground: ComponentStory<typeof Image> = args => <Image {...args} />
 
-export const CustomPictureAspectRatio: ComponentStory<typeof Image> = args => (
-  <Image {...{...args, aspectRatio: [9, 1], isPicture: true}} />
-)
-
-export const CustomImageAspectRatio: ComponentStory<typeof Image> = args => (
-  <Image {...{...args, aspectRatio: [9, 1]}} />
-)
-
-export const CustomImageAspectRatioWithWidth: ComponentStory<typeof Image> = args => (
-  <Image {...{...args, aspectRatio: [9, 1], width: 200}} />
-)
-
-export const CustomImageAspectRatioWithHeight: ComponentStory<typeof Image> = args => (
-  <Image {...{...args, aspectRatio: [9, 1], height: 200}} />
-)
-
 export const Default = Playground.bind({
   args: {
     aspectRatio: undefined

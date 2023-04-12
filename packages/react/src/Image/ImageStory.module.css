@@ -1,0 +1,6 @@
+.custom-image {
+  height: 300px;
+  width: 300px;
+  outline: 4px solid red;
+  outline-offset: 5px;
+}
