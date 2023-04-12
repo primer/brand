@@ -150,4 +150,51 @@ describe('Image', () => {
     expect(container.querySelector('img')?.getAttribute('height')).toEqual(`${testHeight}`)
     expect(container.querySelector('img')?.getAttribute('width')).toEqual(`${testWidth}`)
   })
+
+  it('should pass loading and decoding properties correctly to the image tag', async () => {
+    const testLoading = 'lazy'
+    const testDecoding = 'async'
+    const {container} = render(
+      <Image
+        src="https://source.unsplash.com/random"
+        alt="Random Image"
+        loading={testLoading}
+        decoding={testDecoding}
+      />
+    )
+    expect(container.querySelector('img')?.getAttribute('loading')).toEqual(testLoading)
+    expect(container.querySelector('img')?.getAttribute('decoding')).toEqual(testDecoding)
+  })
+
+  it('should pass loading and decoding properties correctly to the image tag when there is a span wrapper', async () => {
+    const testLoading = 'lazy'
+    const testDecoding = 'async'
+    const {container} = render(
+      <Image
+        src="https://source.unsplash.com/random"
+        alt="Random Image"
+        loading={testLoading}
+        decoding={testDecoding}
+        aspectRatio="1:1"
+      />
+    )
+    expect(container.querySelector('img')?.getAttribute('loading')).toEqual(testLoading)
+    expect(container.querySelector('img')?.getAttribute('decoding')).toEqual(testDecoding)
+  })
+
+  it('should pass loading and decoding properties correctly to the image tag when the picture tag is used', async () => {
+    const testLoading = 'lazy'
+    const testDecoding = 'async'
+    const {container} = render(
+      <Image
+        src="https://source.unsplash.com/random"
+        alt="Random Image"
+        loading={testLoading}
+        decoding={testDecoding}
+        isPicture
+      />
+    )
+    expect(container.querySelector('img')?.getAttribute('loading')).toEqual(testLoading)
+    expect(container.querySelector('img')?.getAttribute('decoding')).toEqual(testDecoding)
+  })
 })
