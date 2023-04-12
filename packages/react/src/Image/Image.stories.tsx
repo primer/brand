@@ -64,7 +64,7 @@ export default {
         'Sets the image decoding strategy. Representing a hint given to the browser on how it should decode the image.',
       control: {
         type: 'radio',
-        options: ['sync', 'async', 'auto']
+        options: ['auto', 'sync', 'async']
       }
     }
   }
