@@ -1,4 +1,4 @@
-import React, {useState, useRef, PropsWithChildren, forwardRef, useMemo, useEffect} from 'react'
+import React, {useState, useCallback, useRef, PropsWithChildren, forwardRef, useMemo, useEffect} from 'react'
 import clsx from 'clsx'
 import {ChevronLeftIcon, MarkGithubIcon, SearchIcon, XIcon} from '@primer/octicons-react'
 
@@ -271,10 +271,13 @@ const _SearchInternal = (
   const [listboxActive, setListboxActive] = useState<boolean>()
   const [liveRegion, setLiveRegion] = useState<boolean>(false)
 
-  const handleClose = event => {
-    if (handlerFn) handlerFn(event)
-    setActiveDescendant(-1)
-  }
+  const handleClose = useCallback(
+    event => {
+      if (handlerFn) handlerFn(event)
+      setActiveDescendant(-1)
+    },
+    [active]
+  )
 
   useOnClickOutside(dialogRef, handleClose)
   useKeyboardEscape(() => {
@@ -282,42 +285,45 @@ const _SearchInternal = (
     setActiveDescendant(-1)
   })
 
-  const handleAriaFocus = event => {
-    const supportedKeys = ['ArrowDown', 'ArrowUp', 'Escape', 'Enter']
-    const currentCount = activeDescendant
-    const searchResultsLength = searchResults ? searchResults.length : 0
-    const dialog = dialogRef.current
-    let count
+  const handleAriaFocus = useCallback(
+    event => {
+      const supportedKeys = ['ArrowDown', 'ArrowUp', 'Escape', 'Enter']
+      const currentCount = activeDescendant
+      const searchResultsLength = searchResults ? searchResults.length : 0
+      const dialog = dialogRef.current
+      let count
 
-    // Prevent any other keys outside of supported from being prevented.
-    // Only prevent "Enter" if activeDescendant is greater than -1.
-    if (!supportedKeys.includes(event.key) || (event.key === 'Enter' && activeDescendant === -1) || !dialog) {
-      return false
-    }
+      // Prevent any other keys outside of supported from being prevented.
+      // Only prevent "Enter" if activeDescendant is greater than -1.
+      if (!supportedKeys.includes(event.key) || (event.key === 'Enter' && activeDescendant === -1) || !dialog) {
+        return false
+      }
 
-    event.preventDefault()
+      event.preventDefault()
 
-    if (event.key === 'ArrowDown') {
-      // If count reaches last search result item, reset to -1
-      count = currentCount < searchResultsLength - 1 ? currentCount + 1 : -1
-      setActiveDescendant(count)
-    } else if (event.key === 'ArrowUp') {
-      // Reset to last search result item if
-      count = currentCount === -1 ? searchResultsLength - 1 : currentCount - 1
-      setActiveDescendant(count)
-    }
+      if (event.key === 'ArrowDown') {
+        // If count reaches last search result item, reset to -1
+        count = currentCount < searchResultsLength - 1 ? currentCount + 1 : -1
+        setActiveDescendant(count)
+      } else if (event.key === 'ArrowUp') {
+        // Reset to last search result item if
+        count = currentCount === -1 ? searchResultsLength - 1 : currentCount - 1
+        setActiveDescendant(count)
+      }
 
-    if (['ArrowDown', 'ArrowUp'].includes(event.key)) {
-      dialog.querySelector(`#subdomainnavbar-search-result-${count}`)?.scrollIntoView()
-    }
+      if (['ArrowDown', 'ArrowUp'].includes(event.key)) {
+        dialog.querySelector(`#subdomainnavbar-search-result-${count}`)?.scrollIntoView()
+      }
 
-    if (event.key === 'Enter') {
-      const link = dialog.querySelector(`#subdomainnavbar-search-result-${activeDescendant} a`) as HTMLAnchorElement
-      link.click()
-    }
-  }
+      if (event.key === 'Enter') {
+        const link = dialog.querySelector(`#subdomainnavbar-search-result-${activeDescendant} a`) as HTMLAnchorElement
+        link.click()
+      }
+    },
+    [searchResults, activeDescendant]
+  )
 
-  const searchLiveRegion = () => {
+  const searchLiveRegion = useCallback(() => {
     // Adding a non-breaking space and then removing it will force screen readers to announce the text,
     // as it thinks that there was a change within the live region.
     setLiveRegion(true)
@@ -325,7 +331,7 @@ const _SearchInternal = (
     setTimeout(() => {
       setLiveRegion(false)
     }, 200)
-  }
+  }, [active])
 
   useEffect(() => {
     // We want to set "listboxActive" when search results are present,
@@ -450,12 +456,7 @@ const _SearchInternal = (
                 </ul>
               </div>
             )}
-            <div
-              aria-live="polite"
-              aria-atomic="true"
-              data-testid="search-live-region"
-              className={styles['SubdomainNavBar-search-result-item-suggestion']}
-            >
+            <div aria-live="polite" aria-atomic="true" data-testid="search-live-region" className="visually-hidden">
               {`${searchResults?.length} suggestions.`}
               {liveRegion && <span>&nbsp;</span>}
             </div>

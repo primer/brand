@@ -594,7 +594,7 @@
 }
 
 .SubdomainNavBar-search-result-item[aria-selected='true'] a {
-  outline: var(--brand-color-focus) auto 1px;
+  outline: var(--brand-color-focus) auto var(--brand-borderWidth-thick);
 }
 
 .SubdomainNavBar-search-result-item-container {
@@ -611,18 +611,6 @@
   font-weight: var(--brand-heading-weight-400);
   font-family: var(--brand-heading-fontFamily);
   line-height: var(--brand-text-lineHeight-400);
-}
-
-.SubdomainNavBar-search-result-item-suggestion {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
 }
 
 .SubdomainNavBar-search-result-item-desc {
