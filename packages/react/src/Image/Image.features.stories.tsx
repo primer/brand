@@ -54,3 +54,12 @@ export const CustomClassOnPicture: ComponentStory<typeof Image> = () => (
     isPicture
   />
 )
+
+export const CustomClassWithAspectRatio: ComponentStory<typeof Image> = () => (
+  <Image
+    src="https://source.unsplash.com/random"
+    className={style['custom-image']}
+    alt="Random Image"
+    aspectRatio={[9, 1]}
+  />
+)
