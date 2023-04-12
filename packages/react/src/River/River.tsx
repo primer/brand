@@ -1,6 +1,6 @@
 import React, {forwardRef, PropsWithChildren, type Ref} from 'react'
 import clsx from 'clsx'
-import {Heading, HeadingTags, LinkProps, HeadingProps, TextProps, Text, Link} from '../'
+import {Heading, LinkProps, HeadingProps, TextProps, Text, Link} from '../'
 
 import type {BaseProps} from '../component-helpers'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/river/base.css'
@@ -96,9 +96,6 @@ type RiverContentProps = BaseProps<HTMLDivElement> & {
   children: React.ReactElement<TextProps> | React.ReactElement<HeadingProps | TextProps | LinkProps>[]
 }
 
-export const getHeadingWarning = (size: typeof HeadingTags[number]) =>
-  `River.Content does not accept a Heading with as="${size}". River automatically applies as="h3" by default.`
-
 const Content = forwardRef(
   (
     {children, leadingComponent: LeadingComponent, trailingComponent: TrailingComponent, ...rest}: RiverContentProps,
@@ -112,18 +109,6 @@ const Content = forwardRef(
 
     const LinkChild = React.Children.toArray(children).find(child => React.isValidElement(child) && child.type === Link)
 
-    const applyHeadingSize = (Component: React.ReactElement) => {
-      const {as}: {as: typeof HeadingTags[number] | undefined} = Component.props
-      if (as) {
-        if (HeadingTags.includes(as) && as !== 'h3') {
-          // eslint-disable-next-line no-console
-          console.warn(getHeadingWarning(as))
-        }
-      }
-
-      return 'h3'
-    }
-
     return (
       <div className={styles.River__content} {...rest} ref={ref}>
         {LeadingComponent && (
@@ -133,7 +118,11 @@ const Content = forwardRef(
         )}
         {React.isValidElement(HeadingChild) && (
           <div className={styles.River__heading}>
-            {React.cloneElement(HeadingChild, {as: applyHeadingSize(HeadingChild)})}
+            {React.cloneElement(HeadingChild, {
+              // as uses h3 default, but can be overridden
+              as: HeadingChild.props.as || 'h3',
+              size: HeadingChild.props.size || '3'
+            })}
           </div>
         )}
 
