@@ -8,8 +8,7 @@ export default {
   args: {
     src: 'https://source.unsplash.com/random',
     alt: 'Random image',
-    isPicture: false,
-    aspectRatio: '16:9',
+    as: 'img',
     loading: 'eager',
     decoding: 'auto'
   },
@@ -26,17 +25,18 @@ export default {
         type: 'text'
       }
     },
-    isPicture: {
-      description: 'Toggle to create a picture element',
+    as: {
+      description: 'Specification to create a picture component',
       control: {
-        type: 'boolean'
+        type: 'radio',
+        options: ['img', 'picture']
       }
     },
     aspectRatio: {
-      description: 'Sets the image aspect ratio',
+      description: 'Sets the image aspect ratio. A custom ratio can be provided in the design tokens.',
       control: {
         type: 'radio',
-        options: ['1:1', '16:9', '16:10', '4:3']
+        options: ['1:1', '16:9', '16:10', '4:3', 'custom']
       }
     },
     width: {

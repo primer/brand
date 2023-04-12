@@ -1,9 +1,33 @@
 .Image-container {
-  aspect-ratio: 16 / 9;
   display: inline-block;
 }
 
 .Image {
   object-fit: cover;
   display: inline-block;
+}
+
+/* Ratio Classes */
+.Image-- {
+  display: inline-block;
+}
+
+.Image--custom {
+  aspect-ratio: var(--brand-Image-ratio-custom);
+}
+
+.Image--1-1 {
+  aspect-ratio: 1 / 1;
+}
+
+.Image--16-9 {
+  aspect-ratio: 16 / 9;
+}
+
+.Image--16-10 {
+  aspect-ratio: 16 / 10;
+}
+
+.Image--4-3 {
+  aspect-ratio: 4 / 3;
 }

@@ -6,12 +6,7 @@ import {Image} from './Image'
 
 export default {
   title: 'Components/Image/Features',
-  component: Image,
-  parameters: {
-    controls: {
-      exclude: /.*/g
-    }
-  }
+  component: Image
 } as ComponentMeta<typeof Image>
 
 export const Default: ComponentStory<typeof Image> = () => (
@@ -19,11 +14,11 @@ export const Default: ComponentStory<typeof Image> = () => (
 )
 
 export const CustomPictureAspectRatio: ComponentStory<typeof Image> = () => (
-  <Image src="https://source.unsplash.com/random" alt="Random Image" aspectRatio={[9, 1]} isPicture />
+  <Image src="https://source.unsplash.com/random" alt="Random Image" aspectRatio="custom" as="picture" />
 )
 
 export const CustomImageAspectRatio: ComponentStory<typeof Image> = () => (
-  <Image src="https://source.unsplash.com/random" alt="Random Image" aspectRatio={[9, 1]} />
+  <Image src="https://source.unsplash.com/random" alt="Random Image" aspectRatio="custom" />
 )
 
 export const CustomImageHeight: ComponentStory<typeof Image> = () => (
@@ -55,7 +50,7 @@ export const CustomClassOnPicture: ComponentStory<typeof Image> = () => (
     alt="Random Image"
     height={200}
     width={200}
-    isPicture
+    as="picture"
   />
 )
 
@@ -64,6 +59,6 @@ export const CustomClassWithAspectRatio: ComponentStory<typeof Image> = () => (
     src="https://source.unsplash.com/random"
     className={style['custom-image']}
     alt="Random Image"
-    aspectRatio={[9, 1]}
+    aspectRatio="custom"
   />
 )
