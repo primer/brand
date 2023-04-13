@@ -1,6 +1,7 @@
 import React from 'react'
 import {ComponentStory, ComponentMeta} from '@storybook/react'
 import {Card} from '.'
+import {LabelColors} from '../Label'
 import {Text, Stack} from '..'
 
 export default {
@@ -34,11 +35,15 @@ const fixtureData: FixtureData = [
   {
     href: 'https://github.com',
     heading: 'Collaboration is the key to DevOps success',
-    description: 'Everything you need to know about getting started with GitHub Actions.'
+    description: 'Everything you need to know about getting started with GitHub Actions.',
+    label: 'Free plan',
+    labelColor: 'indigo'
   },
   {
     href: 'https://github.com',
     heading: 'GitHub Actions cheat sheet',
+    label: 'Copilot',
+    labelColor: 'green-blue',
     description: (
       <React.Fragment>
         <p>
@@ -53,6 +58,8 @@ const fixtureData: FixtureData = [
   {
     href: 'https://github.com',
     heading: 'How healthy teams build better software',
+    label: 'Limited',
+    labelColor: 'red',
     description: (
       <React.Fragment>
         <p>Everything you need to know about getting started with GitHub Actions.</p>
@@ -65,14 +72,17 @@ type FixtureData = {
   href: string
   heading: string | React.ReactElement | React.ReactElement[]
   description: string | React.ReactElement | React.ReactElement[]
+  label?: string
+  labelColor?: typeof LabelColors[number]
 }[]
 
 export const Stacked: ComponentStory<typeof Card> = () => {
   return (
     <Stack direction="horizontal" gap={'spacious'}>
-      {fixtureData.map(({heading, description, href}, id) => {
+      {fixtureData.map(({heading, description, label, labelColor, href}, id) => {
         return (
           <Card key={id} href={href}>
+            <Card.Label color={labelColor}>{label}</Card.Label>
             <Card.Heading>{heading}</Card.Heading>
             <Card.Description>{description}</Card.Description>
           </Card>

@@ -4,6 +4,7 @@ import clsx from 'clsx'
 
 import {Heading, HeadingTags, Text} from '..'
 import {ExpandableArrow} from '../ExpandableArrow'
+import {Label, LabelColors} from '../Label'
 import type {BaseProps} from '../component-helpers'
 
 /**
@@ -114,17 +115,18 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
 
 type CardLabelProps = BaseProps<HTMLSpanElement> & {
   children: React.ReactNode | React.ReactNode[]
+  color?: typeof LabelColors[number]
 }
 
-const CardLabel = forwardRef<HTMLSpanElement, CardLabelProps>(({children, className, ...rest}, ref) => {
-  return (
-    <span className={clsx(styles.Card__label, className)} ref={ref} {...rest}>
-      <Text as="span" size="200" className={styles['Card__label--text']}>
-        {children}
-      </Text>
-    </span>
-  )
-})
+const CardLabel = forwardRef<HTMLSpanElement, CardLabelProps>(
+  ({children, className, color = LabelColors[0], ...rest}, ref) => {
+    return (
+      <span className={clsx(styles.Card__label, className)} ref={ref} {...rest}>
+        <Label color={color}>{children}</Label>
+      </span>
+    )
+  }
+)
 
 type CardHeadingProps = BaseProps<HTMLHeadingElement> & {
   children: React.ReactNode | React.ReactNode[]

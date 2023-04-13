@@ -12,7 +12,7 @@ export default {
     href: '#',
     children: 'Button',
     disabled: false,
-    ariaDisabled: false
+    'aria-disabled': false
   },
   // overriding default type inference for args with more useful control types
   argTypes: {
