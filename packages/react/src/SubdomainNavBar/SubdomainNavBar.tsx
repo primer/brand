@@ -276,7 +276,7 @@ const _SearchInternal = (
       if (handlerFn) handlerFn(event)
       setActiveDescendant(-1)
     },
-    [active]
+    [handlerFn]
   )
 
   useOnClickOutside(dialogRef, handleClose)
@@ -331,7 +331,7 @@ const _SearchInternal = (
     setTimeout(() => {
       setLiveRegion(false)
     }, 200)
-  }, [active])
+  }, [])
 
   useEffect(() => {
     // We want to set "listboxActive" when search results are present,
@@ -341,7 +341,7 @@ const _SearchInternal = (
     const search = searchResults && searchResults.length ? true : false
     setListboxActive(search)
     searchLiveRegion()
-  }, [searchResults, searchTerm])
+  }, [searchResults, searchTerm, searchLiveRegion])
 
   return (
     <>
