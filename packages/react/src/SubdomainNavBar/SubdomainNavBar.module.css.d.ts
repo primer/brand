@@ -46,7 +46,7 @@ declare const styles: {
   readonly "SubdomainNavBar-search-results": string;
   readonly "SubdomainNavBar-search-results-heading": string;
   readonly "SubdomainNavBar-search-result-item": string;
-  readonly "SubdomainNavBar-search-result-item-heading": string;
+  readonly "SubdomainNavBar-search-result-item-container": string;
   readonly "SubdomainNavBar-search-result-item-desc": string;
 };
 export = styles;
