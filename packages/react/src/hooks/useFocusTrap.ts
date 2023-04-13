@@ -1,13 +1,12 @@
 import React from 'react'
 import {focusTrap} from '@primer/behaviors'
-import {useProvidedRefOrCreate} from './useProvidedRefOrCreate'
 
 export interface FocusTrapHookSettings {
   /**
    * Ref that will be used for the trapping container. If not provided, one will
    * be created by this hook and returned.
    */
-  containerRef?: React.RefObject<HTMLElement>
+  containerRef: React.RefObject<HTMLElement>
 
   /**
    * Ref for the element that should receive focus when the focus trap is first enabled. If
@@ -34,11 +33,11 @@ export interface FocusTrapHookSettings {
  * @param settings {FocusTrapHookSettings}
  */
 export function useFocusTrap(
-  settings?: FocusTrapHookSettings,
+  settings: FocusTrapHookSettings,
   dependencies: React.DependencyList = []
-): {containerRef: React.RefObject<HTMLElement>; initialFocusRef: React.RefObject<HTMLElement>} {
-  const containerRef = useProvidedRefOrCreate(settings?.containerRef)
-  const initialFocusRef = useProvidedRefOrCreate(settings?.initialFocusRef)
+): {containerRef: React.RefObject<HTMLElement>; initialFocusRef: React.RefObject<HTMLElement> | null} {
+  const containerRef = settings.containerRef
+  const initialFocusRef = settings?.initialFocusRef || null
   const disabled = settings?.disabled
   const abortController = React.useRef<AbortController>()
   const previousFocusedElement = React.useRef<Element | null>(null)
@@ -63,7 +62,7 @@ export function useFocusTrap(
     () => {
       if (containerRef.current instanceof HTMLElement) {
         if (!disabled) {
-          abortController.current = focusTrap(containerRef.current, initialFocusRef.current ?? undefined)
+          abortController.current = focusTrap(containerRef.current, initialFocusRef?.current ?? undefined)
           return () => {
             disableTrap()
           }
