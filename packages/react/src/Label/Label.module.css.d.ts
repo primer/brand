@@ -25,7 +25,7 @@ declare const styles: {
   readonly "Label__text": string;
   readonly "Label__icon-visual": string;
   readonly "Label__leading-visual": string;
-  readonly "Label--label": string;
+  readonly "Label__label": string;
 };
 export = styles;
 
