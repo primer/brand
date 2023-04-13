@@ -499,6 +499,7 @@
 
 .SubdomainNavBar-search-dialog {
   position: absolute;
+  z-index: 99;
 }
 
 @media screen and (max-width: 767px) {
@@ -511,7 +512,6 @@
     backdrop-filter: blur(100px);
     height: 100vh;
     width: 100vw;
-    z-index: 99;
     animation: fade-in-down 300ms;
     animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   }
