@@ -9,20 +9,18 @@ export interface FocusTrapHookSettings {
   containerRef: React.RefObject<HTMLElement>
 
   /**
-   * Ref for the element that should receive focus when the focus trap is first enabled. If
-   * not provided, one will be created by this hook and returned. Its use is optional.
+   * Ref for the element that should receive focus when the focus trap is first enabled.
+   * If not provided, one will be created by this hook and returned. Its use is optional.
    */
   initialFocusRef?: React.RefObject<HTMLElement>
 
   /**
-   * Set to true to disable the focus trap and clean up listeners. Can be re-enabled at
-   * any time.
+   * Set to true to disable the focus trap and clean up listeners. Can be re-enabled at any time.
    */
   disabled?: boolean
 
   /**
-   * If true, when this focus trap is cleaned up, restore focus to the element that had
-   * focus immediately before the focus trap was enabled. (Default: false)
+   * If true, when this focus trap is cleaned up, restore focus to the element that had focus immediately before the focus trap was enabled. (Default: false)
    */
   restoreFocusOnCleanUp?: boolean
 }
