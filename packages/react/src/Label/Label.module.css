@@ -16,7 +16,7 @@
   background: none;
 }
 
-.Label:before {
+.Label::before {
   content: '';
   position: absolute;
   inset: 0;
