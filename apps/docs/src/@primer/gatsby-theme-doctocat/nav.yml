@@ -32,6 +32,8 @@
       url: /components/FAQ
     - title: Hero
       url: /components/Hero
+    - title: Label
+      url: /components/Label
     - title: MinimalFooter
       url: /components/MinimalFooter
     - title: OrderedList
