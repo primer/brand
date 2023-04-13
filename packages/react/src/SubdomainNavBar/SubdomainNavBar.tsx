@@ -276,7 +276,7 @@ const _SearchInternal = (
   const [liveRegion, setLiveRegion] = useState<boolean>(false)
 
   const handleClose = useCallback(
-    event => {
+    (event = null) => {
       if (handlerFn) handlerFn(event)
       setActiveDescendant(-1)
     },
@@ -285,6 +285,12 @@ const _SearchInternal = (
 
   useOnClickOutside(dialogRef, handleClose)
   useKeyboardEscape(() => {
+    // Close the dialog if combobox is already collapsed
+    if (!listboxActive && active) {
+      handleClose()
+      return false
+    }
+
     setListboxActive(false)
     setActiveDescendant(-1)
   })

@@ -31,11 +31,11 @@ export interface FocusTrapHookSettings {
  * @param settings {FocusTrapHookSettings}
  */
 export function useFocusTrap(
-  settings: FocusTrapHookSettings,
+  settings?: FocusTrapHookSettings,
   dependencies: React.DependencyList = []
-): {containerRef: React.RefObject<HTMLElement>; initialFocusRef: React.RefObject<HTMLElement> | null} {
-  const containerRef = settings.containerRef
-  const initialFocusRef = settings?.initialFocusRef || null
+): {containerRef: React.RefObject<HTMLElement> | undefined; initialFocusRef: React.RefObject<HTMLElement> | undefined} {
+  const containerRef = settings?.containerRef
+  const initialFocusRef = settings?.initialFocusRef
   const disabled = settings?.disabled
   const abortController = React.useRef<AbortController>()
   const previousFocusedElement = React.useRef<Element | null>(null)
@@ -58,7 +58,7 @@ export function useFocusTrap(
 
   React.useEffect(
     () => {
-      if (containerRef.current instanceof HTMLElement) {
+      if (containerRef?.current instanceof HTMLElement) {
         if (!disabled) {
           abortController.current = focusTrap(containerRef.current, initialFocusRef?.current ?? undefined)
           return () => {
