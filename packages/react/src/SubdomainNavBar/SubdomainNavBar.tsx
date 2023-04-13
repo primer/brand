@@ -5,6 +5,7 @@ import {ChevronLeftIcon, MarkGithubIcon, SearchIcon, XIcon} from '@primer/octico
 import {Button, FormControl, Text, TextInput} from '..'
 import {NavigationVisbilityObserver} from './NavigationVisbilityObserver'
 import {useOnClickOutside} from '../hooks/useOnClickOutside'
+import {useFocusTrap} from '../hooks/useFocusTrap'
 import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
 
 /**
@@ -267,12 +268,15 @@ const _SearchInternal = (
 ) => {
   const dialogRef = useRef<HTMLDivElement | null>(null)
 
+  useFocusTrap({containerRef: dialogRef, restoreFocusOnCleanUp: true, disabled: !active})
+  useOnClickOutside(dialogRef, handlerFn)
+
   const [activeDescendant, setActiveDescendant] = useState<number>(-1)
   const [listboxActive, setListboxActive] = useState<boolean>()
   const [liveRegion, setLiveRegion] = useState<boolean>(false)
 
   const handleClose = useCallback(
-    event => {
+    (event = null) => {
       if (handlerFn) handlerFn(event)
       setActiveDescendant(-1)
     },
@@ -281,6 +285,12 @@ const _SearchInternal = (
 
   useOnClickOutside(dialogRef, handleClose)
   useKeyboardEscape(() => {
+    // Close the dialog if combobox is already collapsed
+    if (!listboxActive && active) {
+      handleClose()
+      return false
+    }
+
     setListboxActive(false)
     setActiveDescendant(-1)
   })
@@ -361,6 +371,7 @@ const _SearchInternal = (
           role="dialog"
           aria-label={`Search ${title}`}
           aria-modal="true"
+          tabIndex={-1}
           className={clsx(styles['SubdomainNavBar-search-dialog'])}
         >
           <div className={clsx(styles['SubdomainNavBar-search-dialog-control-area'])}>
