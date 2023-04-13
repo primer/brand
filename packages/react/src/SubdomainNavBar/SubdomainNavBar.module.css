@@ -499,6 +499,7 @@
 
 .SubdomainNavBar-search-dialog {
   position: absolute;
+  z-index: 99;
 }
 
 @media screen and (max-width: 767px) {
@@ -511,7 +512,6 @@
     backdrop-filter: blur(100px);
     height: 100vh;
     width: 100vw;
-    z-index: 99;
     animation: fade-in-down 300ms;
     animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   }
@@ -591,6 +591,10 @@
   padding: var(--base-size-16) var(--base-size-8);
   border-bottom: solid var(--brand-borderWidth-thin, 1px)
     var(--brand-SubdomainNavBar-search-results-border-default, #b7bfc7);
+}
+
+.SubdomainNavBar-search-result-item[aria-selected='true'] a {
+  outline: var(--brand-color-focus) auto var(--brand-borderWidth-thick);
 }
 
 .SubdomainNavBar-search-result-item-container {
