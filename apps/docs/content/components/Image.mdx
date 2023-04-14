@@ -1,7 +1,6 @@
 ---
 title: Image
 status: Experimental
-# figma: https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=539%3A14285&t=RJEWZhVUtrRQ0pKh-0
 source: https://github.com/primer/brand/blob/main/packages/react/src/Image/Image.tsx
 storybook: '/brand/storybook/?path=/docs/components-image--playground'
 description: Use Image to create both normal and responsive image elements.
@@ -23,7 +22,7 @@ import {Image} from '@primer/react-brand'
 
 ### Picture
 
-The `as` prop can be used to set the container of the image to be a picture component.
+The `as` prop can be used to set the container of the image to be use `picture`.
 
 ```jsx live
 <Image
@@ -75,14 +74,14 @@ The `width` prop can be used to set the width of the image. This can be used alo
 
 ### Image <Label>Required</Label>
 
-The first row in a table is automatically styled as a table header row.
 
 | name          | type                                    | default     | required | description                                                                                                                                                               |
 | ------------- | --------------------------------------- | ----------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `src`         | `string`                                |             | `true`   | Specifies the path to the image                                                                                                                                           |
-| `alt`         | `string`                                |             | `true`   | Specifies an alternate text for the image                                                                                                                                 |
+| `alt`         | `string`                                |             | `true`   | Specifies a text value explaining the nature of the image for users of Assistive Technolog                                                                                                                         y
 | `as`          | `img`, `picture`                        | `img`       | `false`  | Specification to create a picture component                                                                                                                               |
-| `aspectRatio` | `1:1`, `16:9`, `16:10`, `4:3`, `custom` | `undefined` | `false`  | Sets the image aspect ratio. A custom ratio can be provided in the design tokens.                                                                                         |
+| `aspectRatio` | `'1:1'`, `'16:9'`, `'16:10'`, `'4:3'`, `'custom'` | `undefined` | `false`  | Sets the image aspect ratio. A custom ratio can be provided in the design tokens.                                                                                         |
+
 | `height`      | `number`                                |             | `false`  | The height of the image element or its container if it has an aspect ratio                                                                                                |
 | `width`       | `number`                                |             | `false`  | The width of the image element or its container if it has an aspect ratio                                                                                                 |
 | `loading`     | `eager`, `lazy`                         | `eager`     | `false`  | The loading attribute specifies whether a browser should load an image immediately or to defer loading of off-screen images until for example the user scrolls near them. |

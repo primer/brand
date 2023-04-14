@@ -11,7 +11,7 @@ describe('Image', () => {
   afterEach(cleanup)
 
   it('no a11y violations', async () => {
-    const {container} = render(<Image src="https://source.unsplash.com/random" alt="" aspectRatio={undefined} />)
+    const {container} = render(<Image src="https://source.unsplash.com/random" alt="mock alt text" />)
     const results = await axe(container)
 
     expect(results).toHaveNoViolations()
@@ -27,7 +27,7 @@ describe('Image', () => {
     expect(container.querySelector(`img.${testClass}`)).toBeInTheDocument()
   })
 
-  it('should return only an img element if no aspectRatio is provided and as is not picture', async () => {
+  it('should return only an img element if no aspectRatio is provided and is not a picture', async () => {
     const {container} = render(<Image src="https://source.unsplash.com/random" alt="" aspectRatio={undefined} />)
 
     expect(container.querySelector('.Image-container')).not.toBeInTheDocument()
@@ -37,7 +37,7 @@ describe('Image', () => {
     expect(container.querySelector('img')).toBeInTheDocument()
   })
 
-  it('should return an img element in a span tag if aspectRatio is provided and as is equal to picture', async () => {
+  it('should return an img element in a span tag if aspectRatio is provided and is not set to picture', async () => {
     const {container} = render(<Image src="https://source.unsplash.com/random" alt="" aspectRatio={'1:1'} />)
 
     expect(container.querySelector('.Image-container')).toBeInTheDocument()
@@ -47,7 +47,7 @@ describe('Image', () => {
     expect(container.querySelector('img')).toBeInTheDocument()
   })
 
-  it('should return an img element in a picture tag if aspectRatio is provided and as is equal to picture is true', async () => {
+  it('should return an img element in a picture tag if aspectRatio is provided and picture is set', async () => {
     const {container} = render(
       <Image src="https://source.unsplash.com/random" alt="" as="picture" aspectRatio={'1:1'} />
     )

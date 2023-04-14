@@ -1,6 +1,5 @@
 ---
-'@primer/brand-storybook': patch
-'@primer/react-brand': patch
+'@primer/react-brand': minor
 ---
 
 Added `Image` component
