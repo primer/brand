@@ -34,6 +34,8 @@
       url: /components/Hero
     - title: Image
       url: /components/Image
+    - title: Label
+      url: /components/Label
     - title: MinimalFooter
       url: /components/MinimalFooter
     - title: OrderedList
