@@ -1,4 +1,4 @@
-.Image-container {
+.Image__container {
   display: inline-block;
 }
 
@@ -12,22 +12,22 @@
   display: inline-block;
 }
 
-.Image--custom {
+.Image--aspect-ratio-custom {
   aspect-ratio: var(--brand-Image-ratio-custom);
 }
 
-.Image--1-1 {
+.Image--aspect-ratio-1-1 {
   aspect-ratio: 1 / 1;
 }
 
-.Image--16-9 {
+.Image--aspect-ratio-16-9 {
   aspect-ratio: 16 / 9;
 }
 
-.Image--16-10 {
+.Image--aspect-ratio-16-10 {
   aspect-ratio: 16 / 10;
 }
 
-.Image--4-3 {
+.Image--aspect-ratio-4-3 {
   aspect-ratio: 4 / 3;
 }

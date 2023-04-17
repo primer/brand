@@ -3,7 +3,7 @@
     "Image": {
       "ratio": {
         "custom": {
-          "value": "3 / 2"
+          "value": "auto"
         }
       }
     }

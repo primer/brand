@@ -6,8 +6,8 @@ export default {
   title: 'Components/Image',
   component: Image,
   args: {
-    src: 'https://source.unsplash.com/random',
-    alt: 'Random image',
+    src: 'https://via.placeholder.com/600x400/d3d9df/d3d9df.png',
+    alt: 'placeholder, blank area with an off-white background color',
     as: 'img',
     loading: 'eager',
     decoding: 'auto'
@@ -72,8 +72,4 @@ export default {
 
 export const Playground: ComponentStory<typeof Image> = args => <Image {...args} />
 
-export const Default = Playground.bind({
-  args: {
-    aspectRatio: undefined
-  }
-})
+export const Default = Playground.bind({})
