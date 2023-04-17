@@ -107,14 +107,14 @@ describe('Image', () => {
     expect(container.querySelector('span')?.classList.contains('Image--aspect-ratio-custom')).toBe(true)
   })
 
-  it('should set the height and width of the image to initial if no specific width is set', async () => {
+  it('should set the height and width of the image to null if no specific width is set', async () => {
     const testAltText = 'alternative text'
     const {getByAltText} = render(
       <Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt={testAltText} />
     )
 
-    expect(getByAltText(testAltText).getAttribute('height')).toEqual(`initial`)
-    expect(getByAltText(testAltText).getAttribute('width')).toEqual(`initial`)
+    expect(getByAltText(testAltText).getAttribute('height')).toEqual(null)
+    expect(getByAltText(testAltText).getAttribute('width')).toEqual(null)
   })
 
   it('should create an img tag with the custom height and width applied as props', async () => {
