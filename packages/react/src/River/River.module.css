@@ -2,7 +2,7 @@
   display: grid;
   gap: var(--brand-River-gap-column-medium);
   grid-auto-rows: min-content;
-  margin: var(--brand-River-layout-margin-vertical);
+  padding: var(--brand-River-layout-margin-vertical);
 }
 
 .River--align-center {
