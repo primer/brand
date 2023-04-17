@@ -10,6 +10,7 @@ export type ImageProps = React.ImgHTMLAttributes<HTMLImageElement> & {
   ref?: React.Ref<HTMLImageElement>
   as?: 'picture' | 'img'
   aspectRatio?: AspectRatio
+  media?: string
 }
 
 const aspectRatioResolver = (ratio?: AspectRatio) => {
@@ -20,7 +21,18 @@ const aspectRatioResolver = (ratio?: AspectRatio) => {
   }
 }
 
-export const Image = ({className, aspectRatio, as = 'img', ref, alt, width, height, ...rest}: ImageProps) => {
+export const Image = ({
+  className,
+  aspectRatio,
+  as = 'img',
+  ref,
+  alt,
+  width,
+  height,
+  media,
+  srcSet,
+  ...rest
+}: ImageProps) => {
   if (as === 'picture') {
     return (
       <picture
@@ -29,6 +41,7 @@ export const Image = ({className, aspectRatio, as = 'img', ref, alt, width, heig
           aspectRatio && styles[`Image--aspect-ratio-${aspectRatioResolver(aspectRatio)}`]
         )}
       >
+        <source srcSet={srcSet} media={media} />
         <img
           ref={ref}
           alt={alt}
@@ -61,8 +74,8 @@ export const Image = ({className, aspectRatio, as = 'img', ref, alt, width, heig
       ref={ref}
       alt={alt}
       className={clsx(styles.Image, className)}
-      width={width ? width : 'initial'}
-      height={height ? height : 'initial'}
+      width={width ? width : undefined}
+      height={height ? height : undefined}
       {...rest}
     />
   )
