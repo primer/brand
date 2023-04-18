@@ -1,5 +1,146 @@
 # @primer/react-brand
 
+## 0.16.0
+
+### Minor Changes
+
+- [#220](https://github.com/primer/brand/pull/220) [`d583547`](https://github.com/primer/brand/commit/d58354741fe1e678f030e086b9ba247a66767ba2) Thanks [@josepmartins](https://github.com/josepmartins)! - Added new Label component
+
+  Use `Label` to indicate the status of the content or add metadata to the `Card` component.
+
+  ```jsx
+  <Label color="green" size="large">
+    New feature
+  </Label>
+  ```
+
+  :link: [See the documentation for more details and usage examples.](https://primer.style/brand/components/Label)
+
+  Update Card component to use Label component and its color variants
+
+  ```jsx
+  <Card href="https://github.com">
+    <Card.Label color="green">New feature</Card.Label>
+    <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+    <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
+  </Card>
+  ```
+
+### Patch Changes
+
+- [#216](https://github.com/primer/brand/pull/216) [`3bd2290`](https://github.com/primer/brand/commit/3bd2290a4fac495bc5e170d585df61dc419541a0) Thanks [@TylerJDev](https://github.com/TylerJDev)! - Hides `Accordion` icons from component's accessible name
+
+* [#222](https://github.com/primer/brand/pull/222) [`7da349d`](https://github.com/primer/brand/commit/7da349d21d7cc4bf77b105186a9a1aae14ae464b) Thanks [@TylerJDev](https://github.com/TylerJDev)! - Introduces accessibility fixes for `SubdomainNavBar`
+
+  - Improves `ARIA` usage across the component
+  - Adjusts some landmarks to reduce verbosity
+  - Fixes some `aria-expanded` states
+
+- [#225](https://github.com/primer/brand/pull/225) [`b59728e`](https://github.com/primer/brand/commit/b59728e7a4fd9f57dd8773a73a71a068c4f4fb5b) Thanks [@TylerJDev](https://github.com/TylerJDev)! - Adds improved `combobox` accessibility support for `SubdomainNavBar` search
+
+* [#209](https://github.com/primer/brand/pull/209) [`b6d9602`](https://github.com/primer/brand/commit/b6d9602780b4e310f41c9caaff8b5d47856b294f) Thanks [@TylerJDev](https://github.com/TylerJDev)! - Fixes transition bug by making `:hover` style take priority over `:focus`.
+
+- [#226](https://github.com/primer/brand/pull/226) [`06f045d`](https://github.com/primer/brand/commit/06f045d39b68ae138c63bfb396c12c032d7b31f7) Thanks [@rezrah](https://github.com/rezrah)! - Add heading level customization to River headings.
+
+  ```jsx
+  <River>
+    <River.Visual />
+    <River.Content>
+      <Heading as="h1">Use alternative heading levels, like h1, h2, h3 and more</Heading>
+    </River.Content>
+  </River>
+  ```
+
+## 0.15.1
+
+### Patch Changes
+
+- [#221](https://github.com/primer/brand/pull/221) [`0b5d9b0`](https://github.com/primer/brand/commit/0b5d9b0bb048d87b31ea2071b6c2546401c75fe7) Thanks [@rezrah](https://github.com/rezrah)! - Updated dark mode Button hover colors for secondary and subtle variants.
+
+  Colors have changed from gray to white.
+
+* [#215](https://github.com/primer/brand/pull/215) [`e96601c`](https://github.com/primer/brand/commit/e96601c02b6fb85991ad7da4908e5014e9619d7c) Thanks [@TylerJDev](https://github.com/TylerJDev)! - - Updated `Hero` to use the HTML landmark element `<section>` for improved semantics and accessibility.
+
+## 0.15.0
+
+### Minor Changes
+
+- [#200](https://github.com/primer/brand/pull/200) [`f8e273a`](https://github.com/primer/brand/commit/f8e273a89a34c4a7e9135608281e938c8c4f6fd0) Thanks [@josepmartins](https://github.com/josepmartins)! - Add label and test coverage to the Card component
+
+  ⚠️ This update contains a breaking change.
+
+  **Before:**
+
+  ```jsx
+  <Card label="Read more">...</Card>
+  ```
+
+  **after:**
+
+  ```jsx
+  <Card ctaText="Read more">...</Card>
+  ```
+
+* [#205](https://github.com/primer/brand/pull/205) [`d8974c1`](https://github.com/primer/brand/commit/d8974c1d301e91726bca0a3996afea4750ab13a2) Thanks [@rezrah](https://github.com/rezrah)! - ### React
+
+  Added new ActionMenu component
+
+  Use `ActionMenu` to display a list of actions or selections that expand through a trigger button.
+
+  ```jsx
+  <ActionMenu>
+    <ActionMenu.Button>Open menu</ActionMenu.Button>
+    <ActionMenu.Overlay>
+      <ActionMenu.Item value="Copilot" selected>
+        Copilot
+      </ActionMenu.Item>
+      <ActionMenu.Item value="Codespaces">Codespaces</ActionMenu.Item>
+      <ActionMenu.Item value="CodeQL">CodeQL</ActionMenu.Item>
+    </ActionMenu.Overlay>
+  </ActionMenu>
+  ```
+
+  :link: [See the documentation for more details and usage examples.](https://primer.style/brand/components/ActionMenu)
+
+### Patch Changes
+
+- [#204](https://github.com/primer/brand/pull/204) [`469af45`](https://github.com/primer/brand/commit/469af45eaedfb093fbc8f444c5bd5fc0121f27ab) Thanks [@TylerJDev](https://github.com/TylerJDev)! - Adds outline to `Button` variants (Primary, Secondary) when in High Contrast Mode (HCM)
+
+  <table>
+  <tr>
+  <th> Before </th> <th> After </th>
+  </tr>
+  <tr>
+  <td valign="top">
+
+  <img width="200" alt="Button 'Primary' variant, shows a button with no outline in HCM" src="https://user-images.githubusercontent.com/26746305/224075381-d2cb2f80-9dc2-43e7-b7fa-b0e116c9845b.png">
+
+   </td>
+  <td valign="top">
+
+  <img width="205" alt="Button 'Primary' variant, shows a button with a yellow outline in HCM" src="https://user-images.githubusercontent.com/26746305/224077824-6a87aef5-96ee-40df-a50c-7dbb0ac5a25b.png">
+
+  </td>
+  </tr>
+  <tr>
+
+  <td>
+
+  <img width="260" alt="Button 'Primary' variant, shows a disabled button with no outline in HCM" src="https://user-images.githubusercontent.com/26746305/224076271-802b54a0-c924-439b-beb2-1e2a637e7e47.png">
+
+  </td>
+
+  <td>
+
+  <img width="276" alt="Button 'Primary' variant, shows a disabled button with a green outline in HCM" src="https://user-images.githubusercontent.com/26746305/224076547-1ffbd080-c18e-4f36-898e-3b9ea01a3c1d.png">
+
+  </td>
+
+  </tr>
+  </table>
+
+* [#217](https://github.com/primer/brand/pull/217) [`cb892f8`](https://github.com/primer/brand/commit/cb892f8890ad22279ef1e25098e9df86f53a427d) Thanks [@rezrah](https://github.com/rezrah)! - `Avatar` now correctly forwards native `img` attributes. This includes `loading`, `decoding`, and `crossOrigin` attributes.
+
 ## 0.14.0
 
 ### Minor Changes

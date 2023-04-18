@@ -1,6 +1,6 @@
 {
   "name": "@primer/brand-storybook",
-  "version": "0.14.0",
+  "version": "0.16.0",
   "private": true,
   "description": "Primer Brand Storybook",
   "keywords": [
@@ -27,6 +27,7 @@
     "start": "start-storybook -p 6006"
   },
   "devDependencies": {
+    "@github/axe-github": "^0.5.0",
     "@storybook/addon-a11y": "^6.5.12",
     "@storybook/addon-actions": "^6.5.12",
     "@storybook/addon-essentials": "^6.5.12",
@@ -39,6 +40,7 @@
     "@storybook/react": "^6.5.12",
     "@storybook/test-runner": "^0.5.0",
     "@storybook/testing-library": "^0.0.11",
+    "axe-core": "^4.6.3",
     "axe-playwright": "^1.1.11",
     "css-loader": "^6.7.1",
     "identity-obj-proxy": "^3.0.0",

@@ -1,5 +1,54 @@
 # @primer/brand-primitives
 
+## 0.16.0
+
+### Minor Changes
+
+- [#220](https://github.com/primer/brand/pull/220) [`d583547`](https://github.com/primer/brand/commit/d58354741fe1e678f030e086b9ba247a66767ba2) Thanks [@josepmartins](https://github.com/josepmartins)! - New `Label` component-specific tokens have been added to the `@primer/brand-primitives` package.
+
+  ```css
+      --brand-Label-color-default
+      --brand-Label-color-blue
+      --brand-Label-color-blue-purple-start
+      --brand-Label-color-blue-purple-end
+      --brand-Label-color-coral
+      --brand-Label-color-green
+      --brand-Label-color-green-blue-start
+      --brand-Label-color-green-blue-end
+      --brand-Label-color-gray
+      --brand-Label-color-indigo
+      --brand-Label-color-lemon
+      --brand-Label-color-lime
+      --brand-Label-color-orange
+      --brand-Label-color-pink
+      --brand-Label-color-pink-blue-start
+      --brand-Label-color-pink-blue-end
+      --brand-Label-color-purple
+      --brand-Label-color-purple-red-start
+      --brand-Label-color-purple-red-end
+      --brand-Label-color-red
+      --brand-Label-color-red-orange-start
+      --brand-Label-color-red-orange-end
+      --brand-Label-color-teal
+      --brand-Label-color-yellow
+  ```
+
+## 0.15.1
+
+## 0.15.0
+
+### Minor Changes
+
+- [#217](https://github.com/primer/brand/pull/217) [`cb892f8`](https://github.com/primer/brand/commit/cb892f8890ad22279ef1e25098e9df86f53a427d) Thanks [@rezrah](https://github.com/rezrah)! - New `ActionMenu` component-specific tokens have been added to the `@primer/brand-primitives` package.
+
+  ```css
+    --brand-ActionMenu-color-border-rest
+    --brand-ActionMenu-color-border-hover
+    --brand-ActionMenu-color-border-active
+    --brand-ActionMenu-color-item-hover
+    --brand-ActionMenu-color-scrollbar-thumb-bg
+  ```
+
 ## 0.14.0
 
 ## 0.13.0
