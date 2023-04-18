@@ -225,4 +225,22 @@ describe('Image', () => {
 
     expect(container.querySelector('source')).toBeInTheDocument()
   })
+
+  it('should create a source element when as is equal to picture and the srcSet property is set.', async () => {
+    const {container} = render(
+      <Image
+        src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+        as="picture"
+        alt="alternative text"
+        sources={[
+          {
+            srcset: 'https://via.placeholder.com/600x400/d3d9df/d3d9df.png',
+            media: '(min-width: 600px)'
+          }
+        ]}
+      />
+    )
+
+    expect(container.querySelector('source')).toBeInTheDocument()
+  })
 })
