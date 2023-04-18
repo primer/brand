@@ -6,7 +6,7 @@
           "value": "var(--base-size-28)"
         },
         "gap": {
-          "value": "var(--base-size-16)"
+          "value": "var(--base-size-24)"
         }
       },
       "medium": {
@@ -14,7 +14,7 @@
           "value": "var(--base-size-36)"
         },
         "gap": {
-          "value": "var(--base-size-24)"
+          "value": "var(--base-size-32)"
         }
       },
       "large": {
