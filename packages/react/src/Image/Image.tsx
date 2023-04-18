@@ -76,8 +76,8 @@ export const Image = ({
       ref={ref}
       alt={alt}
       className={clsx(styles.Image, className)}
-      width={width ? width : undefined}
-      height={height ? height : undefined}
+      width={width && width}
+      height={height && height}
       srcSet={srcSet}
       {...rest}
     />
