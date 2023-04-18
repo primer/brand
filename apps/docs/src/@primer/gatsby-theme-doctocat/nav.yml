@@ -66,6 +66,8 @@
 
 - title: Layout
   children:
+    - title: Grid
+      url: /components/Grid
     - title: Stack
       url: /components/Stack
 
