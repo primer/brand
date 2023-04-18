@@ -212,4 +212,17 @@ describe('Image', () => {
     // Can't test the actual height and width because without a loading image it's not possible to get the actual height and width - can't test that this overrides either because the height and width are not receivable.
     expect(container.querySelector('span')).toBeInTheDocument()
   })
+
+  it('should create a source element when as is equal to picture and the srcSet property is set.', async () => {
+    const {container} = render(
+      <Image
+        src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+        as="picture"
+        alt="alternative text"
+        srcSet="https://via.placeholder.com/600x400/d3d9df/d3d9df.png, https://via.placeholder.com/900x600/d3d9df/d3d9df.png 1.5x"
+      />
+    )
+
+    expect(container.querySelector('source')).toBeInTheDocument()
+  })
 })

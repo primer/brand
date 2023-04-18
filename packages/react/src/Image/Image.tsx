@@ -1,17 +1,18 @@
 import React from 'react'
 import clsx from 'clsx'
 import styles from './Image.module.css'
+import {BaseProps} from '../component-helpers'
 
 type AspectRatio = '1:1' | '16:9' | '16:10' | '4:3' | 'custom'
 
-export type ImageProps = React.ImgHTMLAttributes<HTMLImageElement> & {
-  src: string
-  alt: string
-  ref?: React.Ref<HTMLImageElement>
-  as?: 'picture' | 'img'
-  aspectRatio?: AspectRatio
-  media?: string
-}
+export type ImageProps = React.ImgHTMLAttributes<HTMLImageElement> &
+  BaseProps<HTMLImageElement> & {
+    src: string
+    alt: string
+    as?: 'picture' | 'img'
+    aspectRatio?: AspectRatio
+    media?: string
+  }
 
 const aspectRatioResolver = (ratio?: AspectRatio) => {
   if (typeof ratio === 'string') {
@@ -41,7 +42,7 @@ export const Image = ({
           aspectRatio && styles[`Image--aspect-ratio-${aspectRatioResolver(aspectRatio)}`]
         )}
       >
-        <source srcSet={srcSet} media={media} />
+        {srcSet && <source srcSet={srcSet} media={media} />}
         <img
           ref={ref}
           alt={alt}
@@ -64,6 +65,7 @@ export const Image = ({
           width={width ? width : '100%'}
           height={height ? height : '100%'}
           className={clsx(styles.Image, className)}
+          srcSet={srcSet}
           {...rest}
         />
       </span>
@@ -76,6 +78,7 @@ export const Image = ({
       className={clsx(styles.Image, className)}
       width={width ? width : undefined}
       height={height ? height : undefined}
+      srcSet={srcSet}
       {...rest}
     />
   )
