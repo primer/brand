@@ -19,7 +19,7 @@ export default {
 
 export const Asymmetry = args => {
   const ColumnNumber = ({children}) => (
-    <Text className={styles['centered-label']} variant="muted" size="100">
+    <Text className={styles['centered-label']} size="100">
       {children}
     </Text>
   )
