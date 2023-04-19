@@ -1,4 +1,4 @@
-import React, {forwardRef} from 'react'
+import React, {forwardRef, PropsWithChildren} from 'react'
 import clsx from 'clsx'
 import styles from './Hero.module.css'
 import {Button} from '../Button'
@@ -53,34 +53,34 @@ type HeroDescriptionProps = {
   children: React.ReactNode | React.ReactNode[]
 }
 
-const HeroDescription = forwardRef<HTMLParagraphElement, HeroDescriptionProps>(({children}, ref) => {
+function HeroDescription({children}: PropsWithChildren<HeroDescriptionProps>) {
   return (
     <Text className={styles['Hero-description']} as="p" size="400" variant="muted">
       {children}
     </Text>
   )
-})
+}
 
 type HeroActions = {
   href: string
   children: React.ReactNode | React.ReactNode[]
 }
 
-const HeroPrimaryAction = forwardRef<HTMLAnchorElement, HeroActions>(({href, children}, ref) => {
+function HeroPrimaryAction({href, children, ...rest}: PropsWithChildren<HeroActions>) {
   return (
-    <Button as="a" variant="primary" size="large" href={href}>
+    <Button as="a" variant="primary" size="large" href={href} {...rest}>
       {children}
     </Button>
   )
-})
+}
 
-const HeroSecondaryAction = forwardRef<HTMLAnchorElement, HeroActions>(({href, children}, ref) => {
+function HeroSecondaryAction({href, children, ...rest}: PropsWithChildren<HeroActions>) {
   return (
-    <Button as="a" variant="secondary" size="large" href={href}>
+    <Button as="a" variant="secondary" size="large" href={href} {...rest}>
       {children}
     </Button>
   )
-})
+}
 
 export const Hero = Object.assign(Root, {
   Heading: HeroHeading,
