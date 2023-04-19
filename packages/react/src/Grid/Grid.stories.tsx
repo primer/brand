@@ -14,7 +14,9 @@ export default {
   argTypes: {
     gap: {control: 'radio', options: [undefined, 'condensed', 'normal', 'spacious'], defaultValue: undefined},
     gutters: {control: 'radio', options: [undefined, 'condensed', 'normal', 'spacious'], defaultValue: undefined},
-    enableOverlay: {control: 'boolean'},
+    enableOverlay: {
+      control: 'boolean'
+    },
     columns: {
       control: {
         type: 'array',
