@@ -1,5 +1,11 @@
 # @primer/react-brand
 
+## 0.16.1
+
+### Patch Changes
+
+- [#234](https://github.com/primer/brand/pull/234) [`28f0679`](https://github.com/primer/brand/commit/28f067951810f05a81a9b105ea2e115c71e2d788) Thanks [@josepmartins](https://github.com/josepmartins)! - Adjust spacing in `River` component to avoid margin collapse.
+
 ## 0.16.0
 
 ### Minor Changes
