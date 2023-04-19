@@ -26,9 +26,9 @@ type HeroHeadingProps = {
   children: React.ReactNode | React.ReactNode[]
 }
 
-const HeroHeading = forwardRef<HTMLHeadingElement, HeroHeadingProps>(({as = 'h1', children}, ref) => {
+const HeroHeading = forwardRef<HTMLHeadingElement, HeroHeadingProps>(({as = 'h1', children, ...rest}, ref) => {
   return (
-    <Heading className={styles['Hero-heading']} as={as}>
+    <Heading className={styles['Hero-heading']} as={as} ref={ref} {...rest}>
       {children}
     </Heading>
   )
