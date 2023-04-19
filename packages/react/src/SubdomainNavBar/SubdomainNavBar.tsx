@@ -339,9 +339,9 @@ const _SearchInternal = (
     setLiveRegion(true)
 
     setTimeout(() => {
-      setLiveRegion(false)
+      if (active) setLiveRegion(false)
     }, 200)
-  }, [])
+  }, [active])
 
   useEffect(() => {
     // We want to set "listboxActive" when search results are present,
