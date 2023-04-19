@@ -37,6 +37,28 @@ The `as` prop can be used to set the container of the image to use `picture`.
 />
 ```
 
+### Picture with sources
+
+The `sources` prop can be used to set the source elements within the `picture` component. This can only be used when `as` is set to `picture`.
+
+```jsx live
+<Image
+  as="picture"
+  src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+  alt="placeholder, blank area with an off-white background color"
+  sources={[
+    {
+      srcset: 'https://via.placeholder.com/600x400/d3d9df/d3d9df.png',
+      media: '(min-width: 600px)',
+    },
+    {
+      srcset: 'https://via.placeholder.com/900x600/d3d9df/d3d9df.png',
+      media: '(min-width: 900px)',
+    },
+  ]}
+/>
+```
+
 ### Image with source set
 
 The `srcSet` prop can be used to set the srcSet of the image. It also creates a `source` tag within a picture element if the `as` prop is set to `picture`.
@@ -96,6 +118,7 @@ The `width` prop can be used to set the width of the image. This can be used alo
 | `src`         | `string`                                          |             | `true`   | Specifies the path to the image                                                                                                                                           |
 | `alt`         | `string`                                          |             | `true`   | Specifies a text value explaining the nature of the image for users of Assistive Technolog y                                                                              |
 | `as`          | `img`, `picture`                                  | `img`       | `false`  | Specification to create a picture component                                                                                                                               |
+| `sources`     | `{srcset: string, media: string}[]`               |             | `false`  | When picture is specified in the `as` prop sources allows you to set the source elements.                                                                                 |
 | `aspectRatio` | `'1:1'`, `'16:9'`, `'16:10'`, `'4:3'`, `'custom'` | `undefined` | `false`  | Sets the image aspect ratio. A custom ratio can be provided in the design tokens.                                                                                         |
 | `height`      | `number`                                          |             | `false`  | The height of the image element or its container if it has an aspect ratio                                                                                                |
 | `width`       | `number`                                          |             | `false`  | The width of the image element or its container if it has an aspect ratio                                                                                                 |

@@ -9,14 +9,21 @@ export type ImageProps = React.ImgHTMLAttributes<HTMLImageElement> &
   BaseProps<HTMLImageElement> & {
     src: string
     alt: string
-    as?: 'picture' | 'img'
     aspectRatio?: AspectRatio
     media?: string
-    sources?: {
-      srcset: string
-      media: string
-    }[]
-  }
+  } & (
+    | {
+        as?: 'img' // assuming this is true for others to be required
+        srcSet?: 'string'
+      }
+    | {
+        as: 'picture' // assuming this is true for others to be required
+        sources?: {
+          srcset: string
+          media: string
+        }[]
+      }
+  )
 
 const aspectRatioResolver = (ratio?: AspectRatio) => {
   if (typeof ratio === 'string') {
@@ -36,7 +43,6 @@ export const Image = ({
   height,
   media,
   srcSet,
-  sources,
   ...rest
 }: ImageProps) => {
   if (as === 'picture') {
@@ -47,7 +53,8 @@ export const Image = ({
           aspectRatio && styles[`Image--aspect-ratio-${aspectRatioResolver(aspectRatio)}`]
         )}
       >
-        {sources && sources.map((source, index) => <source key={index} srcSet={source.srcset} media={source.media} />)}
+        {rest['sources'] &&
+          rest['sources'].map((source, index) => <source key={index} srcSet={source.srcset} media={source.media} />)}
         {srcSet && <source srcSet={srcSet} media={media} />}
         <img
           ref={ref}

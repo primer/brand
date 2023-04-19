@@ -54,7 +54,7 @@ describe('Image', () => {
     expect(getByRole('img')).toBeInTheDocument()
   })
 
-  it('should return an img element in a span tag if aspectRatio is provided and as is equal to picture', async () => {
+  it('should return an img element in a span tag if aspectRatio is provided and as is not equal to picture', async () => {
     const {container, getByRole} = render(
       <Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt="alternative text" aspectRatio={'1:1'} />
     )
@@ -97,11 +97,7 @@ describe('Image', () => {
 
   it('should use the custom aspect ratio provided in design-tokens', async () => {
     const {container} = render(
-      <Image
-        src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
-        alt="alternative text"
-        aspectRatio={'custom'}
-      />
+      <Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt="alternative text" aspectRatio="custom" />
     )
 
     expect(container.querySelector('span')?.classList.contains('Image--aspect-ratio-custom')).toBe(true)
