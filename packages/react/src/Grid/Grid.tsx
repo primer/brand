@@ -28,11 +28,11 @@ type ResponsiveMap = {
 
 export type GridColumnIndex = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
 
-export type GridProps = {
+export type GridProps<T extends keyof JSX.IntrinsicElements = 'div'> = {
   /**
    * The HTML element used to render the grid.
    */
-  as?: 'div' | 'section' | 'span'
+  as?: T | 'div' | 'span' | 'section'
   /**
    * The gap between columns.
    */
@@ -45,16 +45,25 @@ export type GridProps = {
    * The horizontal spacing applied to the parent element.
    */
   gutters?: 'condensed' | 'normal' | 'spacious'
-} & BaseProps<HTMLDivElement>
+  /**
+   * Test id for the root element.
+   */
+  ['data-testid']?: string
+} & (T extends 'span'
+  ? BaseProps<HTMLSpanElement>
+  : T extends 'section'
+  ? BaseProps<HTMLElement>
+  : BaseProps<HTMLDivElement>)
 
 const _GridRoot = memo(
   ({
     className,
     children,
-    as: Component = 'div',
+    as = 'div',
     gap = 'normal',
     enableOverlay = false,
     gutters,
+    ['data-testid']: testId,
     ...rest
   }: PropsWithChildren<GridProps>) => {
     const gridClass = clsx(
@@ -65,22 +74,32 @@ const _GridRoot = memo(
       className
     )
 
+    const validElements = ['div', 'span', 'section']
+    const Component = validElements.includes(as) ? as : 'div'
+
     return (
-      <Component className={gridClass} {...rest}>
+      <Component className={gridClass} data-testid={testId || testIds.root} {...rest}>
         {children}
       </Component>
     )
   }
 )
 
-type GridColumnProps = {
-  as?: 'div' | 'section' | 'span'
+type GridColumnProps<T extends keyof JSX.IntrinsicElements = 'div'> = {
+  as?: T | 'div' | 'span' | 'section'
   span?: GridColumnIndex | ResponsiveMap
   start?: GridColumnIndex | ResponsiveMap
-} & BaseProps<HTMLDivElement>
+} & (T extends 'span'
+  ? BaseProps<HTMLSpanElement>
+  : T extends 'section'
+  ? BaseProps<HTMLElement>
+  : BaseProps<HTMLDivElement>)
 
 const Column = memo(
-  ({children, as: Component = 'div', span = 12, start, className, ...rest}: PropsWithChildren<GridColumnProps>) => {
+  ({children, as = 'div', span = 12, start, className, ...rest}: PropsWithChildren<GridColumnProps>) => {
+    const validElements = ['div', 'span', 'section']
+    const Component = validElements.includes(as) ? as : 'div'
+
     const columnClassArray = [styles['Grid__column']]
 
     if (typeof span === 'number') {
@@ -102,6 +121,7 @@ const Column = memo(
     }
 
     const classes = clsx(columnClassArray, className)
+
     return (
       <Component className={classes} {...rest}>
         {children}

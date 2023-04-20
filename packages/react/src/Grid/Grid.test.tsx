@@ -228,4 +228,48 @@ describe('Grid', () => {
 
     expect(container.firstChild).toHaveClass(expectedClass)
   })
+
+  it('should allow setting the element as a section', () => {
+    const {getByTestId, getByText} = render(
+      <Grid as="section">
+        <Grid.Column as="section">{mockText}</Grid.Column>
+      </Grid>
+    )
+
+    const rootEl = getByTestId(Grid.testIds.root)
+    const columnEl = getByText(mockText)
+
+    expect(rootEl.tagName).toBe('SECTION')
+    expect(columnEl.tagName).toBe('SECTION')
+  })
+
+  it('should allow setting the element as a span', () => {
+    const {getByTestId, getByText} = render(
+      <Grid as="span">
+        <Grid.Column as="span">{mockText}</Grid.Column>
+      </Grid>
+    )
+
+    const rootEl = getByTestId(Grid.testIds.root)
+    const columnEl = getByText(mockText)
+
+    expect(rootEl.tagName).toBe('SPAN')
+    expect(columnEl.tagName).toBe('SPAN')
+  })
+
+  it('is doesnt allow setting a tag besides span, section and div and will default to latter', () => {
+    const {getByTestId, getByText} = render(
+      // @ts-expect-error TSC recognizes the error, but this test verifies expected behaviour for non-TS users using the compiled code
+      <Grid as="ul">
+        {/* @ts-expect-error TSC recognizes the error, but this test verifies expected behaviour for non-TS users using the compiled code */}
+        <Grid.Column as="li">{mockText}</Grid.Column>
+      </Grid>
+    )
+
+    const rootEl = getByTestId(Grid.testIds.root)
+    const columnEl = getByText(mockText)
+
+    expect(rootEl.tagName).toBe('DIV')
+    expect(columnEl.tagName).toBe('DIV')
+  })
 })
