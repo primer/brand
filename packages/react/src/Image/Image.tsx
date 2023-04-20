@@ -59,8 +59,8 @@ export const Image = ({
         <img
           ref={ref}
           alt={alt}
-          width={width ? width : '100%'}
-          height={width ? width : '100%'}
+          width={width ?? '100%'}
+          height={width ?? '100%'}
           className={clsx(styles.Image, className)}
           {...rest}
         />
