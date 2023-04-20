@@ -8,7 +8,6 @@ import {Image} from './'
 expect.extend(toHaveNoViolations)
 
 describe('Image', () => {
-  afterEach(cleanup)
 
   it('no a11y violations', async () => {
     const {container} = render(
