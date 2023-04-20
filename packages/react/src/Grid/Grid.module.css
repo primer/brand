@@ -25,8 +25,7 @@
 }
 
 .Grid--gutter-condensed {
-  padding-left: var(--grid-spacing-condensed);
-  padding-right: var(--grid-spacing-condensed);
+  padding-inline: var(--grid-spacing-condensed);
 }
 
 .Grid--gutter-normal {
