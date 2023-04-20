@@ -1,0 +1,11 @@
+{
+  "brand": {
+    "Image": {
+      "ratio": {
+        "custom": {
+          "value": "auto"
+        }
+      }
+    }
+  }
+}
