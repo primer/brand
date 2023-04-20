@@ -7,6 +7,7 @@ import type {AvatarProps} from '../'
 import styles from './Testimonial.module.css'
 
 type TestimonialAlignment = 'start' | 'center'
+type TestimonialSize = 'small' | 'large'
 
 export type TestimonialProps = {
   /**
@@ -22,17 +23,26 @@ export type TestimonialProps = {
    * Aligns the testimonial content
    */
   align?: TestimonialAlignment
+  /**
+   * Sets the testimonial text size
+   */
+  size?: TestimonialSize
 } & BaseProps<HTMLElement>
 
 /**
  * Testimonial parent element
  * <Testimonial>
  */
-function _Root({align, className, children, ...rest}: PropsWithChildren<TestimonialProps>, ref) {
+function _Root({align, className, children, size, ...rest}: PropsWithChildren<TestimonialProps>, ref) {
   return (
     <figure
       ref={ref}
-      className={clsx(styles['Testimonial'], align && styles[`Testimonial--${align}`], className)}
+      className={clsx(
+        styles['Testimonial'],
+        align && styles[`Testimonial--${align}`],
+        size && styles[`Testimonial--size-${size}`],
+        className
+      )}
       {...rest}
     >
       {React.Children.map(children, child => {
@@ -81,9 +91,7 @@ type QuoteProps = {
 function _Quote({children, className}: QuoteProps, ref) {
   return (
     <blockquote ref={ref}>
-      <Text size="300" className={clsx(styles['Testimonial-quote'], className)}>
-        {children}
-      </Text>
+      <Text className={clsx(styles['Testimonial-quote'], className)}>{children}</Text>
     </blockquote>
   )
 }
