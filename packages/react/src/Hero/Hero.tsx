@@ -15,7 +15,12 @@ export type HeroProps = BaseProps<HTMLDivElement> & {
 
 const Root = forwardRef<HTMLDivElement, HeroProps>(({className, align = 'start', children, ...rest}, ref) => {
   return (
-    <section className={clsx(styles.Hero, styles[`Hero--align-${align}`], className)} ref={ref} {...rest}>
+    <section
+      className={clsx(styles.Hero, styles[`Hero--align-${align}`], className)}
+      ref={ref}
+      aria-labelledby="hero-section-brand-heading"
+      {...rest}
+    >
       {React.Children.map(children, child => {
         if (React.isValidElement(child)) {
           if (child.type === HeroHeading || child.type === HeroDescription) {
@@ -43,7 +48,7 @@ type HeroHeadingProps = {
 
 const HeroHeading = forwardRef<HTMLHeadingElement, HeroHeadingProps>(({as = 'h1', children, ...rest}, ref) => {
   return (
-    <Heading className={styles['Hero-heading']} as={as} ref={ref} {...rest}>
+    <Heading id="hero-section-brand-heading" className={styles['Hero-heading']} as={as} ref={ref} {...rest}>
       {children}
     </Heading>
   )
