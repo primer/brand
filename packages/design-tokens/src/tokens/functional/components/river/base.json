@@ -26,7 +26,7 @@
         }
       },
       "heading": {
-        "bottom": {
+        "margin": {
           "value": "var(--base-size-8)"
         }
       },

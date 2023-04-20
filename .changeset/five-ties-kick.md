@@ -18,4 +18,7 @@ New and updated `River` spacing tokens aiming for a responsive logic in both `ga
 +  --brand-River-small-padding: var(--base-size-28);
 +  --brand-River-medium-padding: var(--base-size-36);
 +  --brand-River-large-padding: var(--base-size-48);
+# Updated heading margin
+-  --brand-River-gap-heading-bottom: var(--base-size-8);
++  --brand-River-heading-margin: var(--base-size-8);
 ```

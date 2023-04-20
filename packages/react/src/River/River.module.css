@@ -27,7 +27,7 @@
 }
 
 .River__heading {
-  margin-bottom: var(--brand-River-gap-heading-bottom);
+  margin-bottom: var(--brand-River-heading-margin);
 }
 
 .River__call-to-action {
