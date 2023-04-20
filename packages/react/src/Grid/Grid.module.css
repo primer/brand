@@ -34,8 +34,7 @@
 }
 
 .Grid--gutter-spacious {
-  padding-left: var(--grid-spacing-spacious);
-  padding-right: var(--grid-spacing-spacious);
+  padding-inline: var(--grid-spacing-spacious);
 }
 
 .Grid--has-overlay .Grid__column {
