@@ -1,4 +1,4 @@
-import React, {render, cleanup, fireEvent} from '@testing-library/react'
+import React, {render, cleanup, fireEvent, waitFor} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
 import {SubdomainNavBar, SubdomainNavBarSearchResultProps} from './SubdomainNavBar'
@@ -130,5 +130,35 @@ describe('SubdomainNavBar', () => {
     const headerEl = getByTestId(SubdomainNavBar.testIds.root)
 
     expect(headerEl.classList).toContain(mockClass)
+  })
+
+  it('renders live region if searchResults are passed', async () => {
+    const mockResultsData = [
+      {
+        title: 'mock title',
+        description: 'mock description',
+        url: 'https://github.com',
+        date: '2022-08-29T00:00+02:00'
+      }
+    ]
+
+    const {getByTestId} = render(<Component searchResults={mockResultsData} />)
+    const searchTrigger = getByTestId('toggle-search')
+
+    fireEvent.click(searchTrigger)
+
+    const liveRegion = getByTestId(SubdomainNavBar.testIds.liveRegion)
+    const liveRegionSpace = liveRegion.querySelector('span')
+
+    expect(liveRegion).toBeInTheDocument()
+    expect(liveRegionSpace).toBeInTheDocument()
+
+    await waitFor(
+      () => {
+        expect(liveRegion).toBeInTheDocument()
+        expect(liveRegion.querySelector('span')).not.toBeInTheDocument()
+      },
+      {timeout: 300}
+    )
   })
 })
