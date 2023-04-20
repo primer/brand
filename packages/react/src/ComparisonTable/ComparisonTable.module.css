@@ -7,8 +7,9 @@
 
 @media screen and (min-width: 34rem) {
   .ComparisonTable--heading {
+    max-width: var(--brand-ComparisonTable-heading-maxWidth);
     text-align: center;
-    margin-bottom: var(--base-size-40);
+    margin-bottom: var(--base-size-96);
   }
 }
 

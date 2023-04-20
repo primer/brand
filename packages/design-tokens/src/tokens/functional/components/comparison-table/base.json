@@ -1,0 +1,11 @@
+{
+  "brand": {
+    "ComparisonTable": {
+      "heading": {
+        "maxWidth": {
+          "value": "600px"
+        }
+      }
+    }
+  }
+}
