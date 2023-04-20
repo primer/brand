@@ -5,7 +5,7 @@
 Added `Grid`-specific design tokens.
 
 ```css
---grid-column-overlay-color
+--grid-column-bgColor-overlay
 --grid-spacing-spacious
 --grid-spacing-condensed
 --grid-spacing-normal

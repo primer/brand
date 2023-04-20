@@ -112,48 +112,16 @@ export const Asymmetry = args => {
 export const Nesting = args => {
   return (
     <Grid {...args}>
-      <Grid.Column span={12}>
+      <Grid.Column>
         <Grid {...args}>
-          <Grid.Column span={1}></Grid.Column>
-          <Grid.Column span={1}></Grid.Column>
-          <Grid.Column span={1}></Grid.Column>
-          <Grid.Column span={1}></Grid.Column>
-          <Grid.Column span={1}></Grid.Column>
-          <Grid.Column span={1}></Grid.Column>
-          <Grid.Column span={1}></Grid.Column>
-          <Grid.Column span={1}></Grid.Column>
-          <Grid.Column span={1}></Grid.Column>
-          <Grid.Column span={1}></Grid.Column>
-          <Grid.Column span={1}></Grid.Column>
-          <Grid.Column span={1}></Grid.Column>
-        </Grid>
-      </Grid.Column>
-      <Grid.Column span={4}>
-        <Grid {...args}>
-          <Grid.Column span={5} start={2}></Grid.Column>
-          <Grid.Column span={5}></Grid.Column>
-        </Grid>
-      </Grid.Column>
-      <Grid.Column span={4}>
-        <Grid {...args}>
-          <Grid.Column span={5} start={2}></Grid.Column>
-          <Grid.Column span={5}></Grid.Column>
-        </Grid>
-      </Grid.Column>
-      <Grid.Column span={4}>
-        <Grid {...args}>
-          <Grid.Column span={5} start={2}></Grid.Column>
-          <Grid.Column span={5}></Grid.Column>
-        </Grid>
-      </Grid.Column>
-      <Grid.Column span={6}>
-        <Grid {...args}>
-          <Grid.Column span={6} start={4}></Grid.Column>
-        </Grid>
-      </Grid.Column>
-      <Grid.Column span={6}>
-        <Grid {...args}>
-          <Grid.Column span={6} start={4}></Grid.Column>
+          <Grid.Column span={{xsmall: 12, medium: 4}}>
+            <Grid {...args}>
+              <Grid.Column span={{xsmall: 12, medium: 6}}></Grid.Column>
+              <Grid.Column span={{xsmall: 12, medium: 6}}></Grid.Column>
+            </Grid>
+          </Grid.Column>
+          <Grid.Column span={{xsmall: 12, medium: 4}}></Grid.Column>
+          <Grid.Column span={{xsmall: 12, medium: 4}}></Grid.Column>
         </Grid>
       </Grid.Column>
     </Grid>
