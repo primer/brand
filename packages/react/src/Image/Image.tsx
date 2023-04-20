@@ -33,6 +33,11 @@ const aspectRatioResolver = (ratio?: AspectRatio) => {
   }
 }
 
+const objectWithoutKey = (object, key) => {
+  const {[key]: deletedKey, ...otherKeys} = object
+  return otherKeys
+}
+
 export const Image = ({
   className,
   aspectRatio,
@@ -62,7 +67,7 @@ export const Image = ({
           width={width ?? '100%'}
           height={width ?? '100%'}
           className={clsx(styles.Image, className)}
-          {...rest}
+          {...objectWithoutKey(rest, 'sources')}
         />
       </picture>
     )
