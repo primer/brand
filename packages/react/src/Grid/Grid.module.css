@@ -30,8 +30,7 @@
 }
 
 .Grid--gutter-normal {
-  padding-left: var(--grid-spacing-normal);
-  padding-right: var(--grid-spacing-normal);
+  padding-inline: var(--grid-spacing-normal);
 }
 
 .Grid--gutter-spacious {
