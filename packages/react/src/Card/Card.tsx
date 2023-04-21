@@ -19,15 +19,40 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 import styles from './Card.module.css'
 import stylesLink from '../Link/Link.module.css'
 
+export const CardIconColors = [
+  'default',
+  'blue',
+  'blue-purple',
+  'coral',
+  'green',
+  'green-blue',
+  'gray',
+  'indigo',
+  'lemon',
+  'lime',
+  'orange',
+  'pink',
+  'pink-blue',
+  'purple',
+  'purple-red',
+  'red',
+  'red-orange',
+  'teal',
+  'yellow'
+] as const
+
+export const defaultCardIconColor = CardIconColors[0]
 export type CardProps = {
   /**
    * Valid children include Card.Image, Card.Heading, and Card.Description
    */
   children:
     | React.ReactNode
+    | React.ReactElement<CardIconProps>
     | React.ReactElement<CardLabelProps>
     | React.ReactElement<CardHeadingProps>
     | React.ReactElement<CardDescriptionProps>
+
   /**
    * The href of the link
    * */
@@ -81,6 +106,7 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
         if (
           isFragment(child) ||
           child.type === CardLabel ||
+          child.type === CardIcon ||
           child.type === CardHeading ||
           child.type === CardDescription
         ) {
@@ -112,6 +138,42 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
     )
   }
 )
+
+type CardIconProps = BaseProps<HTMLSpanElement> & {
+  icon: React.ReactNode
+  color?: typeof CardIconColors[number]
+  hasBackground?: boolean
+}
+
+function CardIcon({
+  icon: Icon,
+  className,
+  color = defaultCardIconColor,
+  hasBackground = false,
+  ...rest
+}: CardIconProps) {
+  return (
+    <span
+      className={clsx(
+        styles.Card__icon,
+        styles[`Card__icon--color-${color}`],
+        hasBackground && styles['Card__icon--badge'],
+        className
+      )}
+      {...rest}
+    >
+      {typeof Icon === 'function' ? (
+        <Icon size="20" />
+      ) : (
+        React.isValidElement(Icon) &&
+        React.cloneElement(Icon, {
+          width: 24,
+          height: 24
+        })
+      )}
+    </span>
+  )
+}
 
 type CardLabelProps = BaseProps<HTMLSpanElement> & {
   children: React.ReactNode | React.ReactNode[]
@@ -163,6 +225,7 @@ const CardDescription = forwardRef<HTMLParagraphElement, CardDescriptionProps>(
  */
 export const Card = Object.assign(CardRoot, {
   Label: CardLabel,
+  Icon: CardIcon,
   Heading: CardHeading,
   Description: CardDescription
 })

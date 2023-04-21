@@ -1,8 +1,8 @@
 import React from 'react'
 import {ComponentStory, ComponentMeta} from '@storybook/react'
-import {Card} from '.'
-import {LabelColors} from '../Label'
-import {Text, Stack} from '..'
+import {Card, CardIconColors} from '.'
+import {Text, Stack, LabelColors} from '..'
+import {CopilotIcon, RocketIcon, GitBranchIcon} from '@primer/octicons-react'
 
 export default {
   title: 'Components/Card/features',
@@ -31,18 +31,34 @@ export const Label: ComponentStory<typeof Card> = () => {
     </Card>
   )
 }
+
+export const Icon: ComponentStory<typeof Card> = () => {
+  return (
+    <Card href="https://github.com">
+      <Card.Icon icon={CopilotIcon} color="purple" hasBackground />
+      <Card.Heading>Code search & code view</Card.Heading>
+      <Card.Description>
+        Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
+      </Card.Description>
+    </Card>
+  )
+}
 const fixtureData: FixtureData = [
   {
     href: 'https://github.com',
+    icon: CopilotIcon,
+    iconColor: 'blue',
+    label: 'Free plan',
     heading: 'Collaboration is the key to DevOps success',
     description: 'Everything you need to know about getting started with GitHub Actions.',
-    label: 'Free plan',
     labelColor: 'indigo'
   },
   {
     href: 'https://github.com',
-    heading: 'GitHub Actions cheat sheet',
+    icon: RocketIcon,
+    iconColor: 'red',
     label: 'Copilot',
+    heading: 'GitHub Actions cheat sheet',
     labelColor: 'green-blue',
     description: (
       <React.Fragment>
@@ -57,8 +73,10 @@ const fixtureData: FixtureData = [
   },
   {
     href: 'https://github.com',
-    heading: 'How healthy teams build better software',
+    icon: GitBranchIcon,
+    iconColor: 'green',
     label: 'Limited',
+    heading: 'How healthy teams build better software',
     labelColor: 'red',
     description: (
       <React.Fragment>
@@ -70,18 +88,21 @@ const fixtureData: FixtureData = [
 
 type FixtureData = {
   href: string
-  heading: string | React.ReactElement | React.ReactElement[]
-  description: string | React.ReactElement | React.ReactElement[]
+  icon?: React.ReactNode
+  iconColor?: typeof CardIconColors[number]
   label?: string
   labelColor?: typeof LabelColors[number]
+  heading: string | React.ReactElement | React.ReactElement[]
+  description: string | React.ReactElement | React.ReactElement[]
 }[]
 
 export const Stacked: ComponentStory<typeof Card> = () => {
   return (
     <Stack direction="horizontal" gap={'spacious'}>
-      {fixtureData.map(({heading, description, label, labelColor, href}, id) => {
+      {fixtureData.map(({heading, description, label, labelColor, href, icon, iconColor}, id) => {
         return (
           <Card key={id} href={href}>
+            <Card.Icon icon={icon} hasBackground color={iconColor} />
             <Card.Label color={labelColor}>{label}</Card.Label>
             <Card.Heading>{heading}</Card.Heading>
             <Card.Description>{description}</Card.Description>
