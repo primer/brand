@@ -1,7 +1,5 @@
 .Card {
   max-width: var(--brand-Card-maxWidth);
-  display: flex;
-  flex-direction: column;
   text-decoration: none;
   color: var(--brand-color-text-default);
   background-color: var(--brand-Card-background-default);
@@ -10,6 +8,31 @@
   border-radius: var(--brand-borderRadius-medium);
   padding: var(--base-size-32);
   transition: transform var(--brand-Card-animation-duration) var(--brand-Card-animation-easing);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    'icon icon'
+    'label label'
+    'heading heading'
+    'description description'
+    'action action';
+}
+
+.Card--has-icon {
+  grid-template-areas:
+    'icon label'
+    'heading heading'
+    'description description'
+    'action action';
+}
+
+.Card--has-icon .Card__label {
+  justify-self: flex-end;
+}
+
+.Card--has-icon .Card__label,
+.Card--has-icon .Card__icon {
+  align-self: center;
 }
 
 .Card:hover {
@@ -18,6 +41,7 @@
 
 .Card__icon {
   margin-bottom: var(--base-size-16);
+  grid-area: icon;
 }
 
 .Card__icon--badge {
@@ -31,17 +55,21 @@
 
 .Card__label {
   margin-bottom: var(--base-size-16);
+  grid-area: label;
 }
 
 .Card__heading {
   margin-bottom: var(--base-size-20);
+  grid-area: heading;
 }
 
 .Card__description {
   margin-bottom: var(--base-size-48);
+  grid-area: description;
 }
 
 .Card__action {
+  grid-area: action;
   margin-top: auto;
   display: inline-flex;
   align-items: center;

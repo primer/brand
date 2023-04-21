@@ -105,8 +105,8 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
       if (React.isValidElement(child) && typeof child.type !== 'string') {
         if (
           isFragment(child) ||
-          child.type === CardLabel ||
           child.type === CardIcon ||
+          child.type === CardLabel ||
           child.type === CardHeading ||
           child.type === CardDescription
         ) {
@@ -116,10 +116,14 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
       return false
     })
 
+    const hasIcon = React.Children.toArray(children).some(
+      child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === CardIcon
+    )
+
     return (
       <a
         href={href}
-        className={clsx(styles.Card, className)}
+        className={clsx(styles.Card, hasIcon && styles['Card--has-icon'], className)}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onFocus={handleOnFocus}
