@@ -1,11 +1,11 @@
 import React, {forwardRef, useCallback} from 'react'
 import {isFragment} from 'react-is'
 import clsx from 'clsx'
-
 import {Heading, HeadingTags, Text} from '..'
 import {ExpandableArrow} from '../ExpandableArrow'
 import {Label, LabelColors} from '../Label'
 import type {BaseProps} from '../component-helpers'
+import {Colors} from '../constants'
 
 /**
  * Design tokens
@@ -19,27 +19,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 import styles from './Card.module.css'
 import stylesLink from '../Link/Link.module.css'
 
-export const CardIconColors = [
-  'default',
-  'blue',
-  'blue-purple',
-  'coral',
-  'green',
-  'green-blue',
-  'gray',
-  'indigo',
-  'lemon',
-  'lime',
-  'orange',
-  'pink',
-  'pink-blue',
-  'purple',
-  'purple-red',
-  'red',
-  'red-orange',
-  'teal',
-  'yellow'
-] as const
+export const CardIconColors = Colors
 
 export const defaultCardIconColor = CardIconColors[0]
 export type CardProps = {
