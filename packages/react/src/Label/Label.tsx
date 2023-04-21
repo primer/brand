@@ -12,7 +12,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './Label.module.css'
 
-export const LabelColors = Colors.concat(Gradients)
+export const LabelColors = [...Colors, ...Gradients] as const
 export const LabelSizes = ['small', 'medium', 'large'] as const
 
 export const defaultLabelColor = LabelColors[0]

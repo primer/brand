@@ -6,8 +6,10 @@ storybook: '/brand/storybook/?path=/story/components-card--default'
 description: Use the Card component to display information in a compact way and link to other internal pages.
 ---
 
-import {LabelColors} from '@primer/react-brand'
+import {LabelColors, CardIconColors} from '@primer/react-brand'
+import {IconColors} from '@primer/react-brand'
 import {PropTableValues} from '../../src/components'
+import {CopilotIcon, RocketIcon, GitBranchIcon} from '@primer/octicons-react'
 
 ```js
 import {Card} from '@primer/react-brand'
@@ -41,13 +43,44 @@ The cta text defaults to `Learn more` and can be customized using the `ctaText` 
 </Card>
 ```
 
+### Icon
+
+You can add an `icon` to enhance the visual context. It is recommended you use an [Octicon](https://primer.style/octicons) here. Icons can be used with or without a background color using the `hasBackground` prop.
+
+```jsx live
+<Card href="https://github.com">
+  <Card.Icon icon={CopilotIcon} color="purple" hasBackground />
+  <Card.Heading>Code search & code view</Card.Heading>
+  <Card.Description>
+    Enables you to rapidly search, navigate, and understand code, right from
+    GitHub.com.
+  </Card.Description>
+</Card>
+```
+
 ### Label
 
-Use the `Label` to add metadata to the `Card`. The `Label` is optional and can be used to indicate the status of the content.
+Use the `Label` to add metadata to the `Card`. The `Label` is optional and can be used to indicate the status of the content. The `Label` can be customized using the `color` prop.
 
 ```jsx live
 <Card href="https://github.com">
   <Card.Label>Limited</Card.Label>
+  <Card.Heading>Code search & code view</Card.Heading>
+  <Card.Description>
+    Enables you to rapidly search, navigate, and understand code, right from
+    GitHub.com.
+  </Card.Description>
+</Card>
+```
+
+### Icons and Labels
+
+You can combine the `Label` and `Icon` elements to add more context to the `Card`.
+
+```jsx live
+<Card href="https://github.com">
+  <Card.Icon icon={CopilotIcon} color="green" hasBackground />
+  <Card.Label color="blue-purple">Beta</Card.Label>
   <Card.Heading>Code search & code view</Card.Heading>
   <Card.Description>
     Enables you to rapidly search, navigate, and understand code, right from
@@ -68,18 +101,21 @@ Use the `Stack` component to stack multiple cards horizontally or vertically.
   gap="normal"
 >
   <Card href="https://github.com">
+    <Card.Icon icon={CopilotIcon} color="indigo" hasBackground />
     <Card.Heading>Heading</Card.Heading>
     <Card.Description>
       Everything you need to know about getting started with GitHub Actions.
     </Card.Description>
   </Card>
   <Card href="https://github.com">
+    <Card.Icon icon={RocketIcon} color="purple" hasBackground />
     <Card.Heading>Heading</Card.Heading>
     <Card.Description>
       Everything you need to know about getting started with GitHub Actions.
     </Card.Description>
   </Card>
   <Card href="https://github.com">
+    <Card.Icon icon={GitBranchIcon} color="teal" hasBackground />
     <Card.Heading>Heading</Card.Heading>
     <Card.Description>
       Everything you need to know about getting started with GitHub Actions.
@@ -97,10 +133,18 @@ Use the `Stack` component to stack multiple cards horizontally or vertically.
 | `href`    | `string` |             | `true`   | URL to the card content                     |
 | `ctaText` | `string` | `Read more` | `false`  | Label of the link at the bottom of the Card |
 
+### Card.Icon
+
+| name            | type                                                      | default   | required | description                                  |
+| --------------- | --------------------------------------------------------- | --------- | -------- | -------------------------------------------- |
+| `icon`          | React.Node                                                |           | `true`   | Octicon                                      |
+| `color`         | <PropTableValues values={CardIconColors} addLineBreaks /> | `default` | `false`  | The color of the icon                        |
+| `hasBackground` | boolean                                                   | `false`   | `false`  | Adds a filled colored background to the icon |
+
 ### Card.Label
 
-| name    | type                                                   | default   | required | description                             |
-| ------- | ------------------------------------------------------ | --------- | -------- | --------------------------------------- |
+| name    | type                                                   | default   | required | description            |
+| ------- | ------------------------------------------------------ | --------- | -------- | ---------------------- |
 | `color` | <PropTableValues values={LabelColors} addLineBreaks /> | `default` | `false`  | The color of the label |
 
 ### Card.Heading

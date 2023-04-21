@@ -116,7 +116,7 @@
 }
 
 .Card__icon--color-indigo {
-  color: var(--brand-Card-icon-color-default);
+  color: var(--brand-Card-icon-color-indigo);
 }
 
 .Card__icon--color-indigo.Card__icon--badge {

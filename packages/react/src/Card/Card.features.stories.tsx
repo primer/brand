@@ -43,23 +43,33 @@ export const Icon: ComponentStory<typeof Card> = () => {
     </Card>
   )
 }
+
+export const IconAndLabel: ComponentStory<typeof Card> = () => {
+  return (
+    <Card href="https://github.com">
+      <Card.Icon icon={GitBranchIcon} color="purple" hasBackground />
+      <Card.Label color="blue-purple">Beta</Card.Label>
+      <Card.Heading>Code search & code view</Card.Heading>
+      <Card.Description>
+        Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
+      </Card.Description>
+    </Card>
+  )
+}
+
 const fixtureData: FixtureData = [
   {
     href: 'https://github.com',
     icon: CopilotIcon,
-    iconColor: 'blue',
-    label: 'Free plan',
+    iconColor: 'indigo',
     heading: 'Collaboration is the key to DevOps success',
-    description: 'Everything you need to know about getting started with GitHub Actions.',
-    labelColor: 'indigo'
+    description: 'Everything you need to know about getting started with GitHub Actions.'
   },
   {
     href: 'https://github.com',
     icon: RocketIcon,
-    iconColor: 'red',
-    label: 'Copilot',
+    iconColor: 'purple',
     heading: 'GitHub Actions cheat sheet',
-    labelColor: 'green-blue',
     description: (
       <React.Fragment>
         <p>
@@ -74,10 +84,8 @@ const fixtureData: FixtureData = [
   {
     href: 'https://github.com',
     icon: GitBranchIcon,
-    iconColor: 'green',
-    label: 'Limited',
+    iconColor: 'teal',
     heading: 'How healthy teams build better software',
-    labelColor: 'red',
     description: (
       <React.Fragment>
         <p>Everything you need to know about getting started with GitHub Actions.</p>
@@ -99,11 +107,10 @@ type FixtureData = {
 export const Stacked: ComponentStory<typeof Card> = () => {
   return (
     <Stack direction="horizontal" gap={'spacious'}>
-      {fixtureData.map(({heading, description, label, labelColor, href, icon, iconColor}, id) => {
+      {fixtureData.map(({heading, description, href, icon, iconColor}, id) => {
         return (
           <Card key={id} href={href}>
             <Card.Icon icon={icon} hasBackground color={iconColor} />
-            <Card.Label color={labelColor}>{label}</Card.Label>
             <Card.Heading>{heading}</Card.Heading>
             <Card.Description>{description}</Card.Description>
           </Card>
