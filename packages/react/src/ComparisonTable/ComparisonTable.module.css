@@ -9,6 +9,8 @@
   .ComparisonTable--heading {
     max-width: var(--brand-ComparisonTable-heading-maxWidth);
     text-align: center;
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: var(--base-size-96);
   }
 }
