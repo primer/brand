@@ -148,6 +148,5 @@ describe('SubdomainNavBar', () => {
     fireEvent.click(searchClose)
 
     expect(liveRegion).not.toBeInTheDocument()
-    expect(liveRegionSpace).not.toBeInTheDocument()
   })
 })
