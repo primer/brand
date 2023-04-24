@@ -3,6 +3,7 @@ import '@testing-library/jest-dom'
 
 import {Card} from './Card'
 import {axe, toHaveNoViolations} from 'jest-axe'
+import {GitMergeIcon} from '@primer/octicons-react'
 
 expect.extend(toHaveNoViolations)
 
@@ -96,5 +97,21 @@ describe('Card', () => {
     const cardEl = getByTestId(mockTestId).firstChild
     expect(cardEl).toHaveClass(classToCheck)
     expect(cardEl).toHaveTextContent(mockLabel)
+  })
+
+  it('renders the icon correctly into the document', () => {
+    const mockTestId = 'test'
+    const classToCheck = 'Card__icon'
+
+    const {getByTestId} = render(
+      <Card href={mockHref} data-testid={mockTestId}>
+        <Card.Icon icon={GitMergeIcon} />
+        <Card.Heading>{mockHeading}</Card.Heading>
+        <Card.Description>{mockDescription}</Card.Description>
+      </Card>
+    )
+
+    const cardEl = getByTestId(mockTestId).firstChild
+    expect(cardEl).toHaveClass(classToCheck)
   })
 })
