@@ -1,4 +1,4 @@
-import React, {render, cleanup, fireEvent, waitFor} from '@testing-library/react'
+import React, {render, cleanup, fireEvent} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
 import {SubdomainNavBar, SubdomainNavBarSearchResultProps} from './SubdomainNavBar'
@@ -133,32 +133,21 @@ describe('SubdomainNavBar', () => {
   })
 
   it('renders live region if searchResults are passed', async () => {
-    const mockResultsData = [
-      {
-        title: 'mock title',
-        description: 'mock description',
-        url: 'https://github.com',
-        date: '2022-08-29T00:00+02:00'
-      }
-    ]
-
-    const {getByTestId} = render(<Component searchResults={mockResultsData} />)
+    const {getByTestId, getByLabelText} = render(<Component />)
     const searchTrigger = getByTestId('toggle-search')
 
     fireEvent.click(searchTrigger)
 
     const liveRegion = getByTestId(SubdomainNavBar.testIds.liveRegion)
     const liveRegionSpace = liveRegion.querySelector('span')
+    const searchClose = getByLabelText('Close')
 
     expect(liveRegion).toBeInTheDocument()
     expect(liveRegionSpace).toBeInTheDocument()
 
-    await waitFor(
-      () => {
-        expect(liveRegion).toBeInTheDocument()
-        expect(liveRegion.querySelector('span')).not.toBeInTheDocument()
-      },
-      {timeout: 300}
-    )
+    fireEvent.click(searchClose)
+
+    expect(liveRegion).not.toBeInTheDocument()
+    expect(liveRegionSpace).not.toBeInTheDocument()
   })
 })
