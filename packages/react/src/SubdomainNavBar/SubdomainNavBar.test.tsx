@@ -132,7 +132,7 @@ describe('SubdomainNavBar', () => {
     expect(headerEl.classList).toContain(mockClass)
   })
 
-  it('renders live region if searchResults are passed', async () => {
+  it('renders live region when search is active', async () => {
     const {getByTestId, getByLabelText} = render(<Component />)
     const searchTrigger = getByTestId('toggle-search')
 
