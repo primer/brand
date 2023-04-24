@@ -25,18 +25,13 @@ const Root = forwardRef<HTMLDivElement, HeroProps>(({className, align = 'start',
         if (React.isValidElement(child)) {
           if (child.type === HeroHeading || child.type === HeroDescription) {
             return child
+          } else if (child.type === HeroPrimaryAction || child.type === HeroSecondaryAction) {
+            return <div className={styles['Hero-actions']}>{child}</div>
+          } else {
+            return child
           }
         }
       })}
-      <div className={styles['Hero-actions']}>
-        {React.Children.map(children, child => {
-          if (React.isValidElement(child)) {
-            if (child.type === HeroPrimaryAction || child.type === HeroSecondaryAction) {
-              return child
-            }
-          }
-        })}
-      </div>
     </section>
   )
 })
