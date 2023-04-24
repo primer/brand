@@ -60,7 +60,9 @@ The `Grid` component uses a 12-column layout system. Use `span` to control the n
 
 ### Responsive behavior
 
-Use `start` with an `Object` of breakpoint-specific keys and `number` values to enable responsive behavior.
+Use `span` with an `Object` of breakpoint-specific keys and `number` values to enable responsive behavior.
+
+Breakpoints use `min-width`, where it will also apply your chosen `span` value to all larger breakpoints.
 
 ```jsx live
 <Grid enableOverlay>
