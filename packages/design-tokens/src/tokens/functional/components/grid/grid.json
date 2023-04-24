@@ -5,7 +5,7 @@
         "value": "var(--base-size-24)"
       },
       "condensed": {
-        "value": "var(--base-size-16)"    
+        "value": "var(--base-size-16)"
       },
       "spacious": {
         "value": "var(--base-size-32)"
