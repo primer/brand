@@ -131,4 +131,22 @@ describe('SubdomainNavBar', () => {
 
     expect(headerEl.classList).toContain(mockClass)
   })
+
+  it('renders live region when search is active', async () => {
+    const {getByTestId, getByLabelText} = render(<Component />)
+    const searchTrigger = getByTestId('toggle-search')
+
+    fireEvent.click(searchTrigger)
+
+    const liveRegion = getByTestId(SubdomainNavBar.testIds.liveRegion)
+    const liveRegionSpace = liveRegion.querySelector('span')
+    const searchClose = getByLabelText('Close')
+
+    expect(liveRegion).toBeInTheDocument()
+    expect(liveRegionSpace).toBeInTheDocument()
+
+    fireEvent.click(searchClose)
+
+    expect(liveRegion).not.toBeInTheDocument()
+  })
 })
