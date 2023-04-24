@@ -19,6 +19,20 @@ test.describe('Visual Comparison: Card', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('Card / Icon', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--icon&viewMode=story')
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Card / Icon And Label', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-card-features--icon-and-label&viewMode=story'
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Card / Stacked', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--stacked&viewMode=story')
 
