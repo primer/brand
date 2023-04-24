@@ -61,6 +61,9 @@ const testIds = {
   },
   get menuLinks() {
     return `${this.root}-menuLinks`
+  },
+  get liveRegion() {
+    return `${this.root}-search-live-region`
   }
 }
 
@@ -339,9 +342,9 @@ const _SearchInternal = (
     setLiveRegion(true)
 
     setTimeout(() => {
-      setLiveRegion(false)
+      if (active) setLiveRegion(false)
     }, 200)
-  }, [])
+  }, [active])
 
   useEffect(() => {
     // We want to set "listboxActive" when search results are present,
@@ -467,7 +470,7 @@ const _SearchInternal = (
                 </ul>
               </div>
             )}
-            <div aria-live="polite" aria-atomic="true" data-testid="search-live-region" className="visually-hidden">
+            <div aria-live="polite" aria-atomic="true" data-testid={testIds.liveRegion} className="visually-hidden">
               {`${searchResults?.length} suggestions.`}
               {liveRegion && <span>&nbsp;</span>}
             </div>
