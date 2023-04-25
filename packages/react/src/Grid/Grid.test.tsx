@@ -152,39 +152,6 @@ describe('Grid', () => {
     expect(container.firstChild).toHaveClass(expectedClass)
   })
 
-  it('set relevant styles when  gutters is condensed', () => {
-    const {container} = render(
-      <Grid gutters="condensed">
-        <Grid.Column>{mockText}</Grid.Column>
-      </Grid>
-    )
-    const expectedClass = 'Grid--gutter-condensed'
-
-    expect(container.firstChild).toHaveClass(expectedClass)
-  })
-
-  it('set relevant styles when gutters is normal', () => {
-    const {container} = render(
-      <Grid gutters="normal">
-        <Grid.Column>{mockText}</Grid.Column>
-      </Grid>
-    )
-    const expectedClass = 'Grid--gutter-normal'
-
-    expect(container.firstChild).toHaveClass(expectedClass)
-  })
-
-  it('set relevant styles when gutters is spacious', () => {
-    const {container} = render(
-      <Grid gutters="spacious">
-        <Grid.Column>{mockText}</Grid.Column>
-      </Grid>
-    )
-    const expectedClass = 'Grid--gutter-spacious'
-
-    expect(container.firstChild).toHaveClass(expectedClass)
-  })
-
   it('should allow setting the element as a section', () => {
     const {getByTestId, getByText} = render(
       <Grid as="section" data-testid="Grid-1">

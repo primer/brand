@@ -5,9 +5,7 @@
 Added `Grid`-specific design tokens.
 
 ```css
---grid-spacing-gutter-spacious
---grid-spacing-gutter-condensed
---grid-spacing-gutter-normal
---grid-spacing-column
+--grid-spacing-margin
 --grid-spacing-row
+--grid-spacing-column-gap
 ```

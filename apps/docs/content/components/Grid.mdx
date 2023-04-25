@@ -116,74 +116,17 @@ Use `start` to provide a positioning offset.
 </Grid>
 ```
 
-### Grid gutters
-
-Use `gutters` to enable horizontal spacing on the outside of the `Grid`.
-
-```jsx live
-<Stack direction="vertical">
-  <>
-    <Text as="p" variant="muted">
-      Default (none):
-    </Text>
-    <Grid
-      enableOverlay
-      style={{backgroundColor: 'var(--base-color-scale-red-1)'}}
-    >
-      <Grid.Column></Grid.Column>
-    </Grid>
-  </>
-  <>
-    <Text as="p" variant="muted">
-      Condensed:
-    </Text>
-    <Grid
-      gutters="condensed"
-      enableOverlay
-      style={{backgroundColor: 'var(--base-color-scale-red-1)'}}
-    >
-      <Grid.Column></Grid.Column>
-    </Grid>
-  </>
-  <>
-    <Text as="p" variant="muted">
-      Normal:
-    </Text>
-    <Grid
-      gutters="normal"
-      enableOverlay
-      style={{backgroundColor: 'var(--base-color-scale-red-1)'}}
-    >
-      <Grid.Column></Grid.Column>
-    </Grid>
-  </>
-  <>
-    <Text as="p" variant="muted">
-      Spacious:
-    </Text>
-    <Grid
-      gutters="spacious"
-      enableOverlay
-      style={{backgroundColor: 'var(--base-color-scale-red-1)'}}
-    >
-      <Grid.Column></Grid.Column>
-    </Grid>
-  </>
-</Stack>
-```
-
 ## Component props
 
 ### Grid <Label>Required</Label>
 
-| name            | type                                                                             | default    | required | description                                           |
-| --------------- | -------------------------------------------------------------------------------- | ---------- | -------- | ----------------------------------------------------- |
-| `as`            | <PropTableValues values={['div', 'section', 'span']} addLineBreaks />            | `'div'`    | `false`  | The HTML element used to render the grid.             |
-| `enableOverlay` | `boolean`                                                                        | `false`    | `false`  | Visual aid to help with alignment.                    |
-| `gutters`       | <PropTableValues values={['condensed' , 'normal' , 'spacious']} addLineBreaks /> | `'normal'` | `false`  | The horizontal spacing applied to the parent element. |
-| `className`     | `string`                                                                         |            | `false`  | Sets a custom class on the element.                   |
-| `children`      | `Grid.Column`                                                                    |            | `true`   |
-| `id`            | `string`                                                                         |            | `false`  | Sets a custom `id` attribute.                         |
+| name            | type                                                                  | default | required | description                               |
+| --------------- | --------------------------------------------------------------------- | ------- | -------- | ----------------------------------------- |
+| `as`            | <PropTableValues values={['div', 'section', 'span']} addLineBreaks /> | `'div'` | `false`  | The HTML element used to render the grid. |
+| `enableOverlay` | `boolean`                                                             | `false` | `false`  | Visual aid to help with alignment.        |
+| `className`     | `string`                                                              |         | `false`  | Sets a custom class on the element.       |
+| `children`      | `Grid.Column`                                                         |         | `true`   |
+| `id`            | `string`                                                              |         | `false`  | Sets a custom `id` attribute.             |
 
 ### Grid.Column <Label>Required</Label>
 

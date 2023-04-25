@@ -49,12 +49,6 @@ test.describe('Visual Comparison: Grid', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Grid / Grid Gutters', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-grid-features--grid-gutters&viewMode=story')
-
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
   test('Grid / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-grid--playground&viewMode=story')
 

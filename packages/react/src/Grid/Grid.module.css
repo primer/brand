@@ -2,27 +2,22 @@
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   grid-row-gap: var(--grid-spacing-row);
-  grid-column-gap: var(--grid-spacing-column);
+  grid-column-gap: var(--grid-spacing-column-gap);
+  padding-inline: var(--grid-spacing-margin);
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
 .Grid + .Grid {
   margin-top: var(--grid-spacing-row);
 }
 
+.Grid .Grid {
+  padding-inline: 0;
+}
+
 .Grid__column {
   grid-column: auto / span 12;
-}
-
-.Grid--gutter-condensed {
-  padding-inline: var(--grid-spacing-gutter-condensed);
-}
-
-.Grid--gutter-normal {
-  padding-inline: var(--grid-spacing-gutter-normal);
-}
-
-.Grid--gutter-spacious {
-  padding-inline: var(--grid-spacing-gutter-spacious);
 }
 
 .Grid--has-overlay .Grid__column {

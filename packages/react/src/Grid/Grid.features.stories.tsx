@@ -1,7 +1,6 @@
 import {ComponentMeta} from '@storybook/react'
 import React from 'react'
 import {Grid} from './Grid'
-import {Stack} from '../Stack'
 import {Text} from '../Text'
 
 import styles from './Grid.stories.module.css'
@@ -32,8 +31,6 @@ export const Asymmetry = args => {
         <Grid.Column span={11}>
           <ColumnNumber>11</ColumnNumber>
         </Grid.Column>
-      </Grid>
-      <Grid {...args}>
         <Grid.Column span={2}>
           <ColumnNumber>2</ColumnNumber>
         </Grid.Column>
@@ -114,14 +111,13 @@ export const Nesting = args => {
     <Grid {...args}>
       <Grid.Column>
         <Grid {...args}>
-          <Grid.Column span={{xsmall: 12, medium: 4}}>
+          <Grid.Column span={{xsmall: 12, medium: 6}}>
             <Grid {...args}>
               <Grid.Column span={{xsmall: 12, medium: 6}}></Grid.Column>
               <Grid.Column span={{xsmall: 12, medium: 6}}></Grid.Column>
             </Grid>
           </Grid.Column>
-          <Grid.Column span={{xsmall: 12, medium: 4}}></Grid.Column>
-          <Grid.Column span={{xsmall: 12, medium: 4}}></Grid.Column>
+          <Grid.Column span={{xsmall: 12, medium: 6}}></Grid.Column>
         </Grid>
       </Grid.Column>
     </Grid>
@@ -184,42 +180,3 @@ export const FortySixty = args => {
   )
 }
 FortySixty.storyName = 'Ratio: 40:60'
-
-export const GridGutters = args => {
-  return (
-    <Stack direction="vertical">
-      <div>
-        <Text as="p" variant="muted">
-          None:
-        </Text>
-        <Grid {...args} style={{backgroundColor: 'var(--base-color-scale-red-1)'}}>
-          <Grid.Column></Grid.Column>
-        </Grid>
-      </div>
-      <div>
-        <Text as="p" variant="muted">
-          Condensed:
-        </Text>
-        <Grid {...args} gutters="condensed" style={{backgroundColor: 'var(--base-color-scale-red-1)'}}>
-          <Grid.Column></Grid.Column>
-        </Grid>
-      </div>
-      <div>
-        <Text as="p" variant="muted">
-          Normal:
-        </Text>
-        <Grid {...args} gutters="normal" style={{backgroundColor: 'var(--base-color-scale-red-1)'}}>
-          <Grid.Column></Grid.Column>
-        </Grid>
-      </div>
-      <div>
-        <Text as="p" variant="muted">
-          Spacious:
-        </Text>
-        <Grid {...args} gutters="spacious" style={{backgroundColor: 'var(--base-color-scale-red-1)'}}>
-          <Grid.Column></Grid.Column>
-        </Grid>
-      </div>
-    </Stack>
-  )
-}

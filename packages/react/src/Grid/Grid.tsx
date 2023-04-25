@@ -39,10 +39,6 @@ export type GridProps<T extends keyof JSX.IntrinsicElements = 'div'> = {
    */
   enableOverlay?: boolean
   /**
-   * The horizontal spacing applied to the parent element.
-   */
-  gutters?: 'condensed' | 'normal' | 'spacious'
-  /**
    * Test id for the root element.
    */
   ['data-testid']?: string
@@ -58,16 +54,10 @@ const _GridRoot = memo(
     children,
     as = 'div',
     enableOverlay = false,
-    gutters,
     ['data-testid']: testId,
     ...rest
   }: PropsWithChildren<GridProps>) => {
-    const gridClass = clsx(
-      styles.Grid,
-      enableOverlay && styles['Grid--has-overlay'],
-      gutters && styles[`Grid--gutter-${gutters}`],
-      className
-    )
+    const gridClass = clsx(styles.Grid, enableOverlay && styles['Grid--has-overlay'], className)
 
     const testIdUID = useId(testId)
 

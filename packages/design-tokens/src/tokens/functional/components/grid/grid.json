@@ -2,48 +2,41 @@
   "grid": {
     "spacing": {
       "row": {
-        "value": "var(--base-size-16)",
+        "value": "var(--base-size-8)",
         "responsive": {
           "544px": {
-            "value": "var(--base-size-16)"
+            "value": "var(--base-size-8)"
           },
           "768px": {
-            "value": "var(--base-size-32)"
-          },
-          "1012px": {
-            "value": "var(--base-size-32)"
+            "value": "var(--base-size-16)"
           },
           "1280px": {
-            "value": "var(--base-size-48)"
+            "value": "var(--base-size-24)"
           }
         }
       },
       "column": {
-        "value": "var(--base-size-16)",
-        "responsive": {
-          "544px": {
-            "value": "var(--base-size-16)"
-          },
-          "768px": {
-            "value": "var(--base-size-32)"
-          },
-          "1012px": {
-            "value": "var(--base-size-32)"
-          },
-          "1280px": {
-            "value": "var(--base-size-48)"
+        "gap": {
+          "value": "var(--base-size-16)",
+          "responsive": {
+            "544px": {
+              "value": "var(--base-size-16)"
+            },
+            "768px": {
+              "value": "var(--base-size-32)"
+            },
+            "1280px": {
+              "value": "var(--base-size-48)"
+            }
           }
         }
       },
-      "gutter": {
-        "normal": {
-          "value": "var(--base-size-16)"
-        },
-        "condensed": {
-          "value": "var(--base-size-16)"
-        },
-        "spacious": {
-          "value": "var(--base-size-32)"
+      "margin": {
+        "value": "var(--base-size-16)",
+        "responsive": {
+          "768px": {
+            "value": "var(--base-size-40)"
+          }
         }
       }
     }
