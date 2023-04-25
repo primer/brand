@@ -16,6 +16,8 @@
     'heading heading'
     'description description'
     'action action';
+  flex: auto;
+  grid-template-rows: auto auto auto 1fr;
 }
 
 .Card--has-icon {

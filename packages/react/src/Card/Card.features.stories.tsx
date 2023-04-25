@@ -1,8 +1,8 @@
 import React from 'react'
 import {ComponentStory, ComponentMeta} from '@storybook/react'
 import {Card, CardIconColors} from '.'
-import {Text, Stack, LabelColors} from '..'
-import {CopilotIcon, RocketIcon, GitBranchIcon, SearchIcon} from '@primer/octicons-react'
+import {Stack, LabelColors} from '..'
+import {CopilotIcon, RocketIcon, GitBranchIcon} from '@primer/octicons-react'
 
 export default {
   title: 'Components/Card/features',
@@ -35,12 +35,30 @@ export const Label: ComponentStory<typeof Card> = () => {
 export const Icon: ComponentStory<typeof Card> = () => {
   return (
     <Card href="https://github.com">
-      <Card.Icon icon={SearchIcon} color="purple" hasBackground />
+      <Card.Icon icon={RocketIcon} />
       <Card.Heading>Code search & code view</Card.Heading>
       <Card.Description>
         Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
       </Card.Description>
     </Card>
+  )
+}
+
+export const IconColors: ComponentStory<typeof Card> = () => {
+  return (
+    <Stack padding={'none'} direction="horizontal" gap={'normal'} style={{flexWrap: 'wrap'}}>
+      {CardIconColors.map((color, id) => {
+        return (
+          <Card key={id} href="https://github.com" style={{maxWidth: '25%'}}>
+            <Card.Icon icon={CopilotIcon} hasBackground color={color} />
+            <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+            <Card.Description>
+              This Card uses the <b>{color}</b> icon color
+            </Card.Description>
+          </Card>
+        )
+      })}
+    </Stack>
   )
 }
 
@@ -91,15 +109,11 @@ const fixtureData: FixtureData = [
     href: 'https://github.com',
     icon: RocketIcon,
     iconColor: 'purple',
-    heading: 'GitHub Actions cheat sheet',
+    heading: 'GitHub Actions cheat sheet and more',
     description: (
       <React.Fragment>
-        <p>
-          In a recent TechTarget study, 70 percent of organizations reported they had adopted DevOps.{' '}
-          <Text size="300" variant="muted">
-            Must be associated with a current GitHub for Startups partner.
-          </Text>
-        </p>
+        In a recent TechTarget study, 70 percent of organizations reported they had adopted DevOps. Must be associated
+        with a current GitHub for Startups partner.
       </React.Fragment>
     )
   },
@@ -108,11 +122,7 @@ const fixtureData: FixtureData = [
     icon: GitBranchIcon,
     iconColor: 'teal',
     heading: 'How healthy teams build better software',
-    description: (
-      <React.Fragment>
-        <p>Everything you need to know about getting started with GitHub Actions.</p>
-      </React.Fragment>
-    )
+    description: <React.Fragment>Everything you need to know about getting started with GitHub Actions.</React.Fragment>
   }
 ]
 
@@ -128,10 +138,10 @@ type FixtureData = {
 
 export const Stacked: ComponentStory<typeof Card> = () => {
   return (
-    <Stack direction="horizontal" gap={'spacious'}>
+    <Stack padding={'none'} direction="horizontal" gap={'normal'}>
       {fixtureData.map(({heading, description, href, icon, iconColor}, id) => {
         return (
-          <Card key={id} href={href}>
+          <Card key={id} href={href} style={{width: '33.3333%'}}>
             <Card.Icon icon={icon} hasBackground color={iconColor} />
             <Card.Heading>{heading}</Card.Heading>
             <Card.Description>{description}</Card.Description>
