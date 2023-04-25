@@ -151,8 +151,8 @@ function CardIcon({
       ) : (
         React.isValidElement(Icon) &&
         React.cloneElement(Icon, {
-          width: 24,
-          height: 24
+          width: 20,
+          height: 20
         })
       )}
     </span>
