@@ -36,6 +36,9 @@
         "responsive": {
           "768px": {
             "value": "var(--base-size-40)"
+          },
+          "1280px": {
+            "value": "var(--base-size-16)"
           }
         }
       }
