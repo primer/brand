@@ -155,7 +155,7 @@
   }
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 768px) {
   .SubdomainNavBar-primary-nav-list {
     max-width: 100px;
   }
