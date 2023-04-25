@@ -12,6 +12,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './Grid.module.css'
+import {useId} from '@reach/auto-id'
 
 const testIds = {
   root: 'Grid'
@@ -68,11 +69,13 @@ const _GridRoot = memo(
       className
     )
 
+    const testIdUID = useId(testId)
+
     const validElements = ['div', 'span', 'section']
     const Component = validElements.includes(as) ? as : 'div'
 
     return (
-      <Component className={gridClass} data-testid={testId || testIds.root} {...rest}>
+      <Component className={gridClass} data-testid={testId || `${testIds.root}-${testIdUID}`} {...rest}>
         {children}
       </Component>
     )

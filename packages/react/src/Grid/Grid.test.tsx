@@ -185,58 +185,14 @@ describe('Grid', () => {
     expect(container.firstChild).toHaveClass(expectedClass)
   })
 
-  it('should set default styles when no gap is set', () => {
-    const {container} = render(
-      <Grid>
-        <Grid.Column>{mockText}</Grid.Column>
-      </Grid>
-    )
-    const expectedClass = 'Grid--normal'
-
-    expect(container.firstChild).toHaveClass(expectedClass)
-  })
-
-  it('should set relevant styles when gap is set to condensed', () => {
-    const {container} = render(
-      <Grid gap="condensed">
-        <Grid.Column>{mockText}</Grid.Column>
-      </Grid>
-    )
-    const expectedClass = 'Grid--condensed'
-
-    expect(container.firstChild).toHaveClass(expectedClass)
-  })
-
-  it('should set relevant styles when gap is set to normal', () => {
-    const {container} = render(
-      <Grid gap="normal">
-        <Grid.Column>{mockText}</Grid.Column>
-      </Grid>
-    )
-    const expectedClass = 'Grid--normal'
-
-    expect(container.firstChild).toHaveClass(expectedClass)
-  })
-
-  it('should set relevant styles when gap is set to spacious', () => {
-    const {container} = render(
-      <Grid gap="spacious">
-        <Grid.Column>{mockText}</Grid.Column>
-      </Grid>
-    )
-    const expectedClass = 'Grid--spacious'
-
-    expect(container.firstChild).toHaveClass(expectedClass)
-  })
-
   it('should allow setting the element as a section', () => {
     const {getByTestId, getByText} = render(
-      <Grid as="section">
+      <Grid as="section" data-testid="Grid-1">
         <Grid.Column as="section">{mockText}</Grid.Column>
       </Grid>
     )
 
-    const rootEl = getByTestId(Grid.testIds.root)
+    const rootEl = getByTestId(`${Grid.testIds.root}-1`)
     const columnEl = getByText(mockText)
 
     expect(rootEl.tagName).toBe('SECTION')
@@ -245,12 +201,12 @@ describe('Grid', () => {
 
   it('should allow setting the element as a span', () => {
     const {getByTestId, getByText} = render(
-      <Grid as="span">
+      <Grid as="span" data-testid="Grid-1">
         <Grid.Column as="span">{mockText}</Grid.Column>
       </Grid>
     )
 
-    const rootEl = getByTestId(Grid.testIds.root)
+    const rootEl = getByTestId(`${Grid.testIds.root}-1`)
     const columnEl = getByText(mockText)
 
     expect(rootEl.tagName).toBe('SPAN')
@@ -260,13 +216,13 @@ describe('Grid', () => {
   it('is doesnt allow setting a tag besides span, section and div and will default to latter', () => {
     const {getByTestId, getByText} = render(
       // @ts-expect-error TSC recognizes the error, but this test verifies expected behaviour for non-TS users using the compiled code
-      <Grid as="ul">
+      <Grid as="ul" data-testid="Grid-1">
         {/* @ts-expect-error TSC recognizes the error, but this test verifies expected behaviour for non-TS users using the compiled code */}
         <Grid.Column as="li">{mockText}</Grid.Column>
       </Grid>
     )
 
-    const rootEl = getByTestId(Grid.testIds.root)
+    const rootEl = getByTestId(`${Grid.testIds.root}-1`)
     const columnEl = getByText(mockText)
 
     expect(rootEl.tagName).toBe('DIV')

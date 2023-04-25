@@ -49,14 +49,6 @@ test.describe('Visual Comparison: Grid', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Grid / Column Spacing', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-grid-features--column-spacing&viewMode=story'
-    )
-
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
   test('Grid / Grid Gutters', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-grid-features--grid-gutters&viewMode=story')
 
