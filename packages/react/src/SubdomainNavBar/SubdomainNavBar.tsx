@@ -93,6 +93,28 @@ function Root({
       []
     ).length > 0
 
+  const menuItems = useMemo(
+    () =>
+      React.Children.toArray(children)
+        .map((child, index) => {
+          if (React.isValidElement(child) && typeof child.type !== 'string') {
+            if (child.type === Link) {
+              return React.cloneElement(child, {
+                'data-navitemid': child.props.children,
+                href: child.props.href,
+                children: child.props.children,
+                style: {
+                  [`--animation-order`]: index
+                }
+              })
+            }
+            return null
+          }
+        })
+        .filter(Boolean),
+    [children]
+  )
+
   return (
     <div
       className={clsx(
@@ -136,26 +158,8 @@ function Root({
               className={styles['SubdomainNavBar-primary-nav']}
               data-testid={testIds.menuLinks}
             >
-              <NavigationVisbilityObserver
-                className={clsx(!menuHidden && styles['SubdomainNavBar-primary-nav-list--visible'])}
-              >
-                {React.Children.toArray(children)
-                  .map((child, index) => {
-                    if (React.isValidElement(child) && typeof child.type !== 'string') {
-                      if (child.type === Link) {
-                        return React.cloneElement(child, {
-                          'data-navitemid': child.props.children,
-                          href: child.props.href,
-                          children: child.props.children,
-                          style: {
-                            [`--animation-order`]: index
-                          }
-                        })
-                      }
-                      return null
-                    }
-                  })
-                  .filter(Boolean)}
+              <NavigationVisbilityObserver className={clsx(styles['SubdomainNavBar-primary-nav-list--invisible'])}>
+                {menuItems}
               </NavigationVisbilityObserver>
             </nav>
           )}
@@ -194,6 +198,12 @@ function Root({
                 <div className={clsx(styles['SubdomainNavBar-menu-button-bar'])}></div>
                 <div className={clsx(styles['SubdomainNavBar-menu-button-bar'])}></div>
               </button>
+            )}
+
+            {hasLinks && !menuHidden && (
+              <NavigationVisbilityObserver className={clsx(styles['SubdomainNavBar-primary-nav-list--visible'])}>
+                {menuItems}
+              </NavigationVisbilityObserver>
             )}
 
             <div

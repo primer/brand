@@ -126,6 +126,11 @@
   .SubdomainNavBar-primary-nav-list {
     display: none;
   }
+
+  .SubdomainNavBar-primary-nav-list--invisible {
+    display: none;
+  }
+
   .SubdomainNavBar-primary-nav-list--visible {
     display: block;
     margin: 0;
