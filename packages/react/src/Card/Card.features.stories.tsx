@@ -58,7 +58,7 @@ export const WithIconSVG = () => (
       hasBackground
       color="purple"
     />
-    <Card.Heading>With leading visual</Card.Heading>
+    <Card.Heading>Code search & code view</Card.Heading>
     <Card.Description>
       Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
     </Card.Description>
