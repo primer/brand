@@ -2,15 +2,9 @@
   "grid": {
     "spacing": {
       "row": {
-        "value": "var(--base-size-8)",
+        "value": "var(--base-size-16)",
         "responsive": {
-          "544px": {
-            "value": "var(--base-size-8)"
-          },
           "768px": {
-            "value": "var(--base-size-16)"
-          },
-          "1280px": {
             "value": "var(--base-size-24)"
           }
         }
@@ -19,9 +13,6 @@
         "gap": {
           "value": "var(--base-size-16)",
           "responsive": {
-            "544px": {
-              "value": "var(--base-size-16)"
-            },
             "768px": {
               "value": "var(--base-size-32)"
             },
