@@ -1,5 +1,5 @@
 ---
-'@primer/react-brand': minor
+'@primer/react-brand': patch
 ---
 
 Add `Card.Icon` to the `Card` component to allow using `Octicons` along with `Card.Label` and `Card.Heading`. The `Card.Icon` component is optional and has a `hasBackground` prop to add a background color to the icon and a `color` prop to customize the color of the icon.
