@@ -2,4 +2,4 @@
 '@primer/react-brand': patch
 ---
 
-Adds a `size` prop to control Testimonial's quote text size
+Added a `size` prop to control Testimonial's text size
