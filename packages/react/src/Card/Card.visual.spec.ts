@@ -25,6 +25,12 @@ test.describe('Visual Comparison: Card', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('Card / Icon Colors', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--icon-colors&viewMode=story')
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Card / Icon (native)', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--with-icon-svg&viewMode=story')
 
@@ -47,6 +53,12 @@ test.describe('Visual Comparison: Card', () => {
 
   test('Card / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-card--default&viewMode=story')
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Card / Playground', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-card--playground&viewMode=story')
 
     expect(await page.screenshot()).toMatchSnapshot()
   })
