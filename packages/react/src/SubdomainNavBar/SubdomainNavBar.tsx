@@ -90,23 +90,27 @@ function Root({
       []
     ).length > 0
 
-  const menuItems = React.Children.toArray(children)
-    .map((child, index) => {
-      if (React.isValidElement(child) && typeof child.type !== 'string') {
-        if (child.type === Link) {
-          return React.cloneElement(child, {
-            'data-navitemid': child.props.children,
-            href: child.props.href,
-            children: child.props.children,
-            style: {
-              [`--animation-order`]: index
+  const menuItems = useMemo(
+    () =>
+      React.Children.toArray(children)
+        .map((child, index) => {
+          if (React.isValidElement(child) && typeof child.type !== 'string') {
+            if (child.type === Link) {
+              return React.cloneElement(child, {
+                'data-navitemid': child.props.children,
+                href: child.props.href,
+                children: child.props.children,
+                style: {
+                  [`--animation-order`]: index
+                }
+              })
             }
-          })
-        }
-        return null
-      }
-    })
-    .filter(Boolean)
+            return null
+          }
+        })
+        .filter(Boolean),
+    [children]
+  )
 
   return (
     <div
