@@ -34,10 +34,6 @@ export type GridProps<T extends keyof JSX.IntrinsicElements = 'div'> = {
    */
   as?: T | 'div' | 'span' | 'section'
   /**
-   * The gap between columns.
-   */
-  gap?: 'condensed' | 'normal' | 'spacious'
-  /**
    * Visual aid to help with alignment.
    */
   enableOverlay?: boolean
@@ -60,7 +56,6 @@ const _GridRoot = memo(
     className,
     children,
     as = 'div',
-    gap = 'normal',
     enableOverlay = false,
     gutters,
     ['data-testid']: testId,
@@ -68,7 +63,6 @@ const _GridRoot = memo(
   }: PropsWithChildren<GridProps>) => {
     const gridClass = clsx(
       styles.Grid,
-      styles[`Grid--${gap}`],
       enableOverlay && styles['Grid--has-overlay'],
       gutters && styles[`Grid--gutter-${gutters}`],
       className

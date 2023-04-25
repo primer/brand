@@ -1,23 +1,12 @@
 .Grid {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  grid-gap: var(--grid-spacing-normal);
+  grid-row-gap: var(--grid-spacing-row);
+  grid-column-gap: var(--grid-spacing-column);
 }
 
 .Grid + .Grid {
-  margin-top: var(--grid-spacing-normal);
-}
-
-.Grid--condensed {
-  grid-gap: var(--grid-spacing-condensed);
-}
-
-.Grid--normal {
-  grid-gap: var(--grid-spacing-normal);
-}
-
-.Grid--spacious {
-  grid-gap: var(--grid-spacing-spacious);
+  margin-top: var(--grid-spacing-row);
 }
 
 .Grid__column {
@@ -25,15 +14,15 @@
 }
 
 .Grid--gutter-condensed {
-  padding-inline: var(--grid-spacing-condensed);
+  padding-inline: var(--grid-spacing-gutter-condensed);
 }
 
 .Grid--gutter-normal {
-  padding-inline: var(--grid-spacing-normal);
+  padding-inline: var(--grid-spacing-gutter-normal);
 }
 
 .Grid--gutter-spacious {
-  padding-inline: var(--grid-spacing-spacious);
+  padding-inline: var(--grid-spacing-gutter-spacious);
 }
 
 .Grid--has-overlay .Grid__column {

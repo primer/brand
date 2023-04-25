@@ -116,84 +116,6 @@ Use `start` to provide a positioning offset.
 </Grid>
 ```
 
-### Column spacing
-
-Use `gap` to provide customize the space between each column.
-
-```jsx live
-<Stack direction="vertical">
-  <>
-    <Text as="p" variant="muted">
-      Condensed:
-    </Text>
-    <Grid
-      gap="condensed"
-      enableOverlay
-      style={{backgroundColor: 'var(--base-color-scale-red-1)'}}
-    >
-      <Grid.Column span={1}></Grid.Column>
-      <Grid.Column span={1}></Grid.Column>
-      <Grid.Column span={1}></Grid.Column>
-      <Grid.Column span={1}></Grid.Column>
-      <Grid.Column span={1}></Grid.Column>
-      <Grid.Column span={1}></Grid.Column>
-      <Grid.Column span={1}></Grid.Column>
-      <Grid.Column span={1}></Grid.Column>
-      <Grid.Column span={1}></Grid.Column>
-      <Grid.Column span={1}></Grid.Column>
-      <Grid.Column span={1}></Grid.Column>
-      <Grid.Column span={1}></Grid.Column>
-    </Grid>
-  </>
-  <>
-    <Text as="p" variant="muted">
-      Normal:
-    </Text>
-    <Grid
-      gap="normal"
-      enableOverlay
-      style={{backgroundColor: 'var(--base-color-scale-red-1)'}}
-    >
-      <Grid.Column span={1}></Grid.Column>
-      <Grid.Column span={1}></Grid.Column>
-      <Grid.Column span={1}></Grid.Column>
-      <Grid.Column span={1}></Grid.Column>
-      <Grid.Column span={1}></Grid.Column>
-      <Grid.Column span={1}></Grid.Column>
-      <Grid.Column span={1}></Grid.Column>
-      <Grid.Column span={1}></Grid.Column>
-      <Grid.Column span={1}></Grid.Column>
-      <Grid.Column span={1}></Grid.Column>
-      <Grid.Column span={1}></Grid.Column>
-      <Grid.Column span={1}></Grid.Column>
-    </Grid>
-  </>
-  <>
-    <Text as="p" variant="muted">
-      Spacious:
-    </Text>
-    <Grid
-      gap="spacious"
-      enableOverlay
-      style={{backgroundColor: 'var(--base-color-scale-red-1)'}}
-    >
-      <Grid.Column span={1}></Grid.Column>
-      <Grid.Column span={1}></Grid.Column>
-      <Grid.Column span={1}></Grid.Column>
-      <Grid.Column span={1}></Grid.Column>
-      <Grid.Column span={1}></Grid.Column>
-      <Grid.Column span={1}></Grid.Column>
-      <Grid.Column span={1}></Grid.Column>
-      <Grid.Column span={1}></Grid.Column>
-      <Grid.Column span={1}></Grid.Column>
-      <Grid.Column span={1}></Grid.Column>
-      <Grid.Column span={1}></Grid.Column>
-      <Grid.Column span={1}></Grid.Column>
-    </Grid>
-  </>
-</Stack>
-```
-
 ### Grid gutters
 
 Use `gutters` to enable horizontal spacing on the outside of the `Grid`.
@@ -258,7 +180,6 @@ Use `gutters` to enable horizontal spacing on the outside of the `Grid`.
 | --------------- | -------------------------------------------------------------------------------- | ---------- | -------- | ----------------------------------------------------- |
 | `as`            | <PropTableValues values={['div', 'section', 'span']} addLineBreaks />            | `'div'`    | `false`  | The HTML element used to render the grid.             |
 | `enableOverlay` | `boolean`                                                                        | `false`    | `false`  | Visual aid to help with alignment.                    |
-| `gap`           | <PropTableValues values={['condensed' , 'normal' , 'spacious']} addLineBreaks /> | `'normal'` | `false`  | The gap between columns.                              |
 | `gutters`       | <PropTableValues values={['condensed' , 'normal' , 'spacious']} addLineBreaks /> | `'normal'` | `false`  | The horizontal spacing applied to the parent element. |
 | `className`     | `string`                                                                         |            | `false`  | Sets a custom class on the element.                   |
 | `children`      | `Grid.Column`                                                                    |            | `true`   |
