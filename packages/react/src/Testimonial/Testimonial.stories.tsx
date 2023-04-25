@@ -25,6 +25,10 @@ export default {
         'GitHub helps us ensure that we have our security controls baked into our pipelines all the way from the first line of code we’re writing.',
       control: {type: 'text'}
     },
+    size: {
+      defaultValue: 'small',
+      options: ['small', 'large']
+    },
     type: {
       options: ['avatar', 'logo'],
       control: {type: 'radio'},
@@ -34,7 +38,7 @@ export default {
       control: {
         type: 'range',
         min: 250,
-        max: 800,
+        max: 1200,
         step: 10
       },
       defaultValue: 400
@@ -222,4 +226,23 @@ export const Trio = args => (
 )
 Trio.args = {
   align: 'center'
+}
+
+export const Large = args => (
+  <Testimonial {...args}>
+    <Testimonial.Quote>
+      GitHub helps us ensure that we have our security controls baked into our pipelines all the way from the first line
+      of code we&apos;re writing.
+    </Testimonial.Quote>
+    <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
+
+    <Testimonial.Avatar
+      src="https://avatars.githubusercontent.com/u/92997159?v=4"
+      alt="Circular avatar from David Ross's GitHub profile"
+    />
+  </Testimonial>
+)
+
+Large.args = {
+  size: 'large'
 }

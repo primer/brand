@@ -9,13 +9,6 @@ export default {
   component: Image
 } as ComponentMeta<typeof Image>
 
-export const Features: ComponentStory<typeof Image> = () => (
-  <Image
-    src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
-    alt="placeholder, blank area with an off-white background color"
-  />
-)
-
 export const CustomPictureAspectRatio: ComponentStory<typeof Image> = () => (
   <Image
     src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"

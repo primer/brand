@@ -26,7 +26,7 @@ export default {
       }
     },
     as: {
-      description: 'Specification to create a picture component',
+      description: 'Sets the underlying HTML element',
       control: {
         type: 'radio',
         options: ['img', 'picture']
