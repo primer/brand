@@ -31,7 +31,7 @@
 .Testimonial--size-large .Testimonial-quote {
   font-size: var(--brand-text-size-700);
   font-weight: var(--base-text-weight-semibold);
-  letter-spacing: var(--brand-text-letterSpacing-900)
+  letter-spacing: var(--brand-text-letterSpacing-900);
   line-height: 1.2; /* requires custom line-height */
 }
 
