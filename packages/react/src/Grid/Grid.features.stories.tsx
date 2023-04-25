@@ -11,7 +11,6 @@ export default {
   // add default props
   args: {
     as: 'div',
-    gap: 'normal',
     enableOverlay: true
   }
 } as ComponentMeta<typeof Grid>
