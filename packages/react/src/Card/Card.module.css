@@ -45,8 +45,8 @@
 }
 
 .Card__icon--badge {
-  width: 44px;
-  height: 44px;
+  width: var(--base-size-44);
+  height: var(--base-size-44);
   border-radius: 50%;
   display: flex;
   align-items: center;
