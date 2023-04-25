@@ -25,6 +25,12 @@ test.describe('Visual Comparison: Card', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('Card / Icon (native)', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--with-icon-svg&viewMode=story')
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Card / Icon And Label', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-card-features--icon-and-label&viewMode=story'
