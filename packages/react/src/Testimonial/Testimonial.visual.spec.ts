@@ -36,4 +36,10 @@ test.describe('Visual Comparison: Testimonial', () => {
 
     expect(await page.screenshot()).toMatchSnapshot()
   })
+
+  test('Testimonial / Large', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-testimonial--large&viewMode=story')
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
 })

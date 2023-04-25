@@ -17,10 +17,22 @@
   justify-items: center;
 }
 
+.Testimonial--size-large {
+  gap: var(--base-size-24);
+}
+
 .Testimonial-quote {
   font-family: var(--brand-fontStack-sansSerif);
+  font-size: var(--brand-text-size-300);
   margin-top: calc(var(--base-size-16) * -1); /* negate grid gap */
   display: block;
+}
+
+.Testimonial--size-large .Testimonial-quote {
+  font-size: var(--brand-text-size-700);
+  font-weight: var(--base-text-weight-semibold);
+  letter-spacing: var(--brand-text-letterSpacing-900);
+  line-height: 1.2; /* requires custom line-height */
 }
 
 .Testimonial-from {
