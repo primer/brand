@@ -57,10 +57,26 @@ A logo (or similar) visual can be provided as an alternative to avatars.
 
 ### Alignment
 
-Use `align` to alternate the text direction. Available options are `start` (default) and `center`
+Use `align` to alternate the text direction. Available options are `start` (default) and `center`.
 
 ```jsx live
 <Testimonial align="center">
+  <Testimonial.Quote>
+    GitHub helps us ensure that we have our security controls baked into our
+    pipelines all the way from the first line of code we&apos;re writing.
+  </Testimonial.Quote>
+  <Testimonial.Name position="Staff Software Engineer">
+    David Ross
+  </Testimonial.Name>
+</Testimonial>
+```
+
+### Size
+
+Use `size` to alternate the text size. Available options are `small` (default) and `large`.
+
+```jsx live
+<Testimonial size="large">
   <Testimonial.Quote>
     GitHub helps us ensure that we have our security controls baked into our
     pipelines all the way from the first line of code we&apos;re writing.
@@ -118,13 +134,14 @@ Pass additional content about the testimonial provider using `position`.
 
 `Testimonial` passes contextual data to its child inputs, labels, validation messaging and more.
 
-| Name        | Type                                                                                                                                                         | Default | Description                              |
-| :---------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----: | :--------------------------------------- |
-| `children`  | <PropTableValues addLineBreaks values={['Testimonial.Quote','Testimonial.Name','Testimonial.Logo','Testimonial.Avatar','React.ReactNode' ]} addLineBreaks /> |         | Valid child nodes                        |
-| `className` | `string`                                                                                                                                                     |         | Sets a custom class                      |
-| `id`        | `string`                                                                                                                                                     |         | Sets a custom id                         |
-| `align`     | <PropTableValues addLineBreaks values={['start','center']}/>                                                                                                 |  start  | Set alignment of inner text              |
-| `ref`       | `React.RefObject`                                                                                                                                            |         | Forward a Ref to the underlying DOM node |
+| Name        | Type                                                                                                                                                         |  Default  | Description                              |
+| :---------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------: | :--------------------------------------- |
+| `children`  | <PropTableValues addLineBreaks values={['Testimonial.Quote','Testimonial.Name','Testimonial.Logo','Testimonial.Avatar','React.ReactNode' ]} addLineBreaks /> |           | Valid child nodes                        |
+| `className` | `string`                                                                                                                                                     |           | Sets a custom class                      |
+| `id`        | `string`                                                                                                                                                     |           | Sets a custom id                         |
+| `align`     | <PropTableValues addLineBreaks values={['start','center']}/>                                                                                                 | `'start'` | Set alignment of inner text              |
+| `ref`       | `React.RefObject`                                                                                                                                            |           | Forward a Ref to the underlying DOM node |
+| `size`      | <PropTableValues addLineBreaks values={['small','large']}/>                                                                                                  | `'small'` | Set size of quote's text                 |
 
 <h3 id="Testimonial-name">
   Testimonial.Name <Label>Required</Label>

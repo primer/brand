@@ -61,6 +61,9 @@ const testIds = {
   },
   get menuLinks() {
     return `${this.root}-menuLinks`
+  },
+  get liveRegion() {
+    return `${this.root}-search-live-region`
   }
 }
 
@@ -89,6 +92,28 @@ function Root({
       // eslint-disable-next-line react-hooks/exhaustive-deps
       []
     ).length > 0
+
+  const menuItems = useMemo(
+    () =>
+      React.Children.toArray(children)
+        .map((child, index) => {
+          if (React.isValidElement(child) && typeof child.type !== 'string') {
+            if (child.type === Link) {
+              return React.cloneElement(child, {
+                'data-navitemid': child.props.children,
+                href: child.props.href,
+                children: child.props.children,
+                style: {
+                  [`--animation-order`]: index
+                }
+              })
+            }
+            return null
+          }
+        })
+        .filter(Boolean),
+    [children]
+  )
 
   return (
     <div
@@ -133,26 +158,8 @@ function Root({
               className={styles['SubdomainNavBar-primary-nav']}
               data-testid={testIds.menuLinks}
             >
-              <NavigationVisbilityObserver
-                className={clsx(!menuHidden && styles['SubdomainNavBar-primary-nav-list--visible'])}
-              >
-                {React.Children.toArray(children)
-                  .map((child, index) => {
-                    if (React.isValidElement(child) && typeof child.type !== 'string') {
-                      if (child.type === Link) {
-                        return React.cloneElement(child, {
-                          'data-navitemid': child.props.children,
-                          href: child.props.href,
-                          children: child.props.children,
-                          style: {
-                            [`--animation-order`]: index
-                          }
-                        })
-                      }
-                      return null
-                    }
-                  })
-                  .filter(Boolean)}
+              <NavigationVisbilityObserver className={clsx(styles['SubdomainNavBar-primary-nav-list--invisible'])}>
+                {menuItems}
               </NavigationVisbilityObserver>
             </nav>
           )}
@@ -191,6 +198,12 @@ function Root({
                 <div className={clsx(styles['SubdomainNavBar-menu-button-bar'])}></div>
                 <div className={clsx(styles['SubdomainNavBar-menu-button-bar'])}></div>
               </button>
+            )}
+
+            {hasLinks && !menuHidden && (
+              <NavigationVisbilityObserver className={clsx(styles['SubdomainNavBar-primary-nav-list--visible'])}>
+                {menuItems}
+              </NavigationVisbilityObserver>
             )}
 
             <div
@@ -339,9 +352,9 @@ const _SearchInternal = (
     setLiveRegion(true)
 
     setTimeout(() => {
-      setLiveRegion(false)
+      if (active) setLiveRegion(false)
     }, 200)
-  }, [])
+  }, [active])
 
   useEffect(() => {
     // We want to set "listboxActive" when search results are present,
@@ -467,7 +480,7 @@ const _SearchInternal = (
                 </ul>
               </div>
             )}
-            <div aria-live="polite" aria-atomic="true" data-testid="search-live-region" className="visually-hidden">
+            <div aria-live="polite" aria-atomic="true" data-testid={testIds.liveRegion} className="visually-hidden">
               {`${searchResults?.length} suggestions.`}
               {liveRegion && <span>&nbsp;</span>}
             </div>

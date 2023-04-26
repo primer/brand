@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import React, {forwardRef, type Ref} from 'react'
 import {Text} from '../Text'
 import type {BaseProps} from '../component-helpers'
+import {Colors, Gradients} from '../constants'
 
 /**
  * Design tokens
@@ -11,27 +12,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './Label.module.css'
 
-export const LabelColors = [
-  'default',
-  'blue',
-  'blue-purple',
-  'coral',
-  'green',
-  'green-blue',
-  'gray',
-  'indigo',
-  'lemon',
-  'lime',
-  'orange',
-  'pink',
-  'pink-blue',
-  'purple',
-  'purple-red',
-  'red',
-  'red-orange',
-  'teal',
-  'yellow'
-] as const
+export const LabelColors = [...Colors, ...Gradients] as const
 export const LabelSizes = ['small', 'medium', 'large'] as const
 
 export const defaultLabelColor = LabelColors[0]

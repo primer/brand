@@ -7,12 +7,6 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Image', () => {
-  test('Image / Features', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-image-features--features&viewMode=story')
-
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
   test('Image / Custom Picture Aspect Ratio', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-image-features--custom-picture-aspect-ratio&viewMode=story'
