@@ -6,9 +6,11 @@ import React from 'react'
 import { BaseLayout } from './base-layout'
 import { ComponentPageNav } from '../components/component-page-nav'
 
-export default function ComponentLayout({ pageContext, children, path, ...rest }) {
+export default function ComponentLayout({ pageContext, children, path }) {
   const { title, description, reactId } = pageContext.frontmatter
-  const isReactPage = path.split('/').slice(-1)[0] === 'react';
+  const pathParts = path.split('/');
+  const isReactPage = pathParts[pathParts.length - 1] === 'react';
+  const basePath = isReactPage ? pathParts.slice(0, -1).join('/') : path;
 
   return (
     <BaseLayout title={title} description={description}>
@@ -21,11 +23,11 @@ export default function ComponentLayout({ pageContext, children, path, ...rest }
         ) : null}
         <Box sx={{ mb: 4 }}>
           <ComponentPageNav
-            basePath={path}
+            basePath={basePath}
             includeReact={reactId}
             current={isReactPage ? 'react' : 'overview'}
           />
-          Alooooooooo {String(isReactPage)} {path.split('/').slice(-1)}
+
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'row-reverse', alignItems: 'start', gap: 4 }}>
           <Box
