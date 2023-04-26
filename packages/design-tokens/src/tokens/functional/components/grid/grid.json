@@ -1,0 +1,38 @@
+{
+  "grid": {
+    "spacing": {
+      "row": {
+        "value": "var(--base-size-16)",
+        "responsive": {
+          "768px": {
+            "value": "var(--base-size-24)"
+          }
+        }
+      },
+      "column": {
+        "gap": {
+          "value": "var(--base-size-16)",
+          "responsive": {
+            "768px": {
+              "value": "var(--base-size-32)"
+            },
+            "1280px": {
+              "value": "var(--base-size-48)"
+            }
+          }
+        }
+      },
+      "margin": {
+        "value": "var(--base-size-16)",
+        "responsive": {
+          "768px": {
+            "value": "var(--base-size-40)"
+          },
+          "1280px": {
+            "value": "var(--base-size-16)"
+          }
+        }
+      }
+    }
+  }
+}

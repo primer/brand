@@ -132,25 +132,35 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
     }
   })
 
-  buildPrimitives({
-    source: [`tokens/base/typography/typography.json`, `tokens/functional/typography/typography-responsive.json`], // build the special formats
-    namespace,
-    platforms: {
-      css: {
-        buildPath: `${outputPath}/css/`,
-        transformGroup: 'css',
-        files: [
-          {
-            destination: `tokens/functional/typography/typography-responsive.css`,
-            format: `css/responsive-media-query`,
-            options: {
-              outputReferences: true
+  const filesForResponsiveTokens = [
+    `tokens/base/typography/typography.json`,
+    `tokens/functional/typography/typography-responsive.json`,
+    `tokens/functional/components/grid/grid.json`
+  ]
+
+  for (const path of filesForResponsiveTokens) {
+    const sansExtension = path.replace(/\.[^/.]+$/, '')
+
+    buildPrimitives({
+      source: [path], // build the special formats
+      namespace,
+      platforms: {
+        css: {
+          buildPath: `${outputPath}/css/`,
+          transformGroup: 'css',
+          files: [
+            {
+              destination: `${sansExtension}.css`,
+              format: `css/responsive-media-query`,
+              options: {
+                outputReferences: true
+              }
             }
-          }
-        ]
+          ]
+        }
       }
-    }
-  })
+    })
+  }
 
   buildPrimitives({
     source: [`tokens/base/colors/color-scales.json`], // build the special formats
@@ -187,11 +197,12 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
     `tokens/functional/components/anchor-nav/colors.js`,
     `tokens/functional/components/cta-banner/colors.js`,
     `tokens/functional/components/footer/colors.json`,
-    `tokens/functional/components/action-menu/colors.js`
+    `tokens/functional/components/action-menu/colors.js`,
+    `tokens/functional/components/grid/colors.json`
   ]
 
   for (const path of filesForColorModes) {
-    const sansExtention = path.replace(/\.[^/.]+$/, '')
+    const sansExtension = path.replace(/\.[^/.]+$/, '')
 
     buildPrimitives({
       source: [path], // build the special formats
@@ -202,7 +213,7 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
           transformGroup: 'css',
           files: [
             {
-              destination: `${sansExtention}-with-modes.css`,
+              destination: `${sansExtension}-with-modes.css`,
               format: `css/color-mode-attributes`,
               options: {
                 outputReferences: false,
