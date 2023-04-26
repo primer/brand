@@ -9,7 +9,7 @@ Added support for `[Octicons](https://primer.style/design/foundations/icons)` in
   <Card.Icon icon={CopilotIcon} color="purple" hasBackground />
   <Card.Heading>Code search & code view</Card.Heading>
   <Card.Description>
-    Enables you to rapidly search, navigate, and understand code, right from
-    GitHub.com.
+    Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
   </Card.Description>
+</Card>
 ```
