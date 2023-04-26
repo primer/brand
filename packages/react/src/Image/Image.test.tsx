@@ -208,6 +208,17 @@ describe('Image', () => {
   })
 
   it('should create a source element when as is equal to picture and the srcSet property is set.', async () => {
+    const testSrcSet =
+      'https://via.placeholder.com/600x400/d3d9df/d3d9df.png, https://via.placeholder.com/1200x800/d3d9df/d3d9df.png 2x'
+    const testAltText = 'alternative text'
+    const {getByAltText} = render(
+      <Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt={testAltText} srcSet={testSrcSet} />
+    )
+
+    expect(getByAltText(testAltText).getAttribute('srcset')).toEqual(testSrcSet)
+  })
+
+  it('should create a source element when as is equal to picture and the srcSet property is set.', async () => {
     const {container} = render(
       <Image
         src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
