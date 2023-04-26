@@ -495,7 +495,7 @@ const Search = forwardRef(_SearchInternal)
 
 type CTAActionProps = {
   href: string
-}
+} & React.HTMLAttributes<HTMLAnchorElement>
 
 function PrimaryAction({children, href, ...rest}: PropsWithChildren<CTAActionProps>) {
   return (

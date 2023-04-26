@@ -1,4 +1,4 @@
-import React, {PropsWithChildren, memo} from 'react'
+import React, {HTMLAttributes, PropsWithChildren, memo} from 'react'
 
 import {default as clsx} from 'clsx'
 
@@ -29,7 +29,7 @@ type ResponsiveMap = {
 
 export type GridColumnIndex = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
 
-export type GridProps<T extends keyof JSX.IntrinsicElements = 'div'> = {
+export type GridProps<T extends keyof JSX.IntrinsicElements = 'div'> = React.HTMLAttributes<T> & {
   /**
    * The HTML element used to render the grid.
    */
@@ -43,10 +43,10 @@ export type GridProps<T extends keyof JSX.IntrinsicElements = 'div'> = {
    */
   ['data-testid']?: string
 } & (T extends 'span'
-  ? BaseProps<HTMLSpanElement>
-  : T extends 'section'
-  ? BaseProps<HTMLElement>
-  : BaseProps<HTMLDivElement>)
+    ? BaseProps<HTMLSpanElement>
+    : T extends 'section'
+    ? BaseProps<HTMLElement>
+    : BaseProps<HTMLDivElement>)
 
 const _GridRoot = memo(
   ({
@@ -65,7 +65,11 @@ const _GridRoot = memo(
     const Component = validElements.includes(as) ? as : 'div'
 
     return (
-      <Component className={gridClass} data-testid={testId || `${testIds.root}-${testIdUID}`} {...rest}>
+      <Component
+        className={gridClass}
+        data-testid={testId || `${testIds.root}-${testIdUID}`}
+        {...(rest as HTMLAttributes<HTMLElement>)}
+      >
         {children}
       </Component>
     )
@@ -108,7 +112,6 @@ const Column = memo(
     }
 
     const classes = clsx(columnClassArray, className)
-
     return (
       <Component className={classes} {...rest}>
         {children}

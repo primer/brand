@@ -14,6 +14,7 @@
 
 .Grid .Grid {
   padding-inline: 0;
+  margin: 0;
 }
 
 .Grid__column {
@@ -129,7 +130,7 @@
  */
 
 /* XSMALL breakpoint */
-@media screen and (max-width: 20rem) {
+@media screen and (min-width: 0) {
   /* XSMALL span */
   .Grid__column--xsmall-span-1 {
     grid-column: auto / span 1;
