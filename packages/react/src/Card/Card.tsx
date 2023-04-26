@@ -18,6 +18,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
  */
 import styles from './Card.module.css'
 import stylesLink from '../Link/Link.module.css'
+import {Icon as IconProps} from '@primer/octicons-react'
 
 export const CardIconColors = Colors
 
@@ -124,7 +125,7 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
 )
 
 type CardIconProps = BaseProps<HTMLSpanElement> & {
-  icon: React.ReactNode
+  icon: React.ReactNode | IconProps
   color?: typeof CardIconColors[number]
   hasBackground?: boolean
 }
@@ -147,7 +148,7 @@ function CardIcon({
       {...rest}
     >
       {typeof Icon === 'function' ? (
-        <Icon size="20" />
+        <Icon size={20} />
       ) : (
         React.isValidElement(Icon) &&
         React.cloneElement(Icon, {
