@@ -207,17 +207,15 @@ describe('Image', () => {
     expect(container.querySelector('span')).toBeInTheDocument()
   })
 
-  it('should create a source element when as is equal to picture and the srcSet property is set.', async () => {
-    const {container} = render(
-      <Image
-        src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
-        as="picture"
-        alt="alternative text"
-        srcSet="https://via.placeholder.com/600x400/d3d9df/d3d9df.png, https://via.placeholder.com/900x600/d3d9df/d3d9df.png 1.5x"
-      />
+  it('should set the srcSet property correctly on the img component', async () => {
+    const testSrcSet =
+      'https://via.placeholder.com/600x400/d3d9df/d3d9df.png, https://via.placeholder.com/1200x800/d3d9df/d3d9df.png 2x'
+    const testAltText = 'alternative text'
+    const {getByAltText} = render(
+      <Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt={testAltText} srcSet={testSrcSet} />
     )
 
-    expect(container.querySelector('source')).toBeInTheDocument()
+    expect(getByAltText(testAltText).getAttribute('srcset')).toEqual(testSrcSet)
   })
 
   it('should create a source element when as is equal to picture and the srcSet property is set.', async () => {
