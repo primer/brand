@@ -11,10 +11,11 @@ export type ImageProps = React.ImgHTMLAttributes<HTMLImageElement> &
     alt: string
     aspectRatio?: AspectRatio
     media?: string
+    srcSet?: Pick<React.ImgHTMLAttributes<HTMLImageElement>, 'srcSet'>
   } & (
     | {
         as?: 'img' // assuming this is true for others to be required
-        srcSet?: 'string'
+        srcSet?: Pick<React.ImgHTMLAttributes<HTMLImageElement>, 'srcSet'>
       }
     | {
         as: 'picture' // assuming this is true for others to be required
@@ -22,6 +23,7 @@ export type ImageProps = React.ImgHTMLAttributes<HTMLImageElement> &
           srcset: string
           media: string
         }[]
+        srcSet?: undefined
       }
   )
 
