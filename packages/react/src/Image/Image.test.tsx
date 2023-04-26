@@ -207,7 +207,7 @@ describe('Image', () => {
     expect(container.querySelector('span')).toBeInTheDocument()
   })
 
-  it('should create a source element when as is equal to picture and the srcSet property is set.', async () => {
+  it('should set the srcSet property correctly on the img component', async () => {
     const testSrcSet =
       'https://via.placeholder.com/600x400/d3d9df/d3d9df.png, https://via.placeholder.com/1200x800/d3d9df/d3d9df.png 2x'
     const testAltText = 'alternative text'
