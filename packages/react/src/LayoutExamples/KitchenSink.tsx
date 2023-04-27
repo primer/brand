@@ -59,22 +59,23 @@ export function KitchenSink(props: KitchenSinkProps) {
           {enableGridOverlay ? 'Disable' : 'Enable'} grid
         </SubdomainNavBar.PrimaryAction>
       </SubdomainNavBar>
-      <Grid style={{padding: 'var(--base-size-80) auto 200px'}} enableOverlay={false}>
+      <Grid style={{padding: 'var(--base-size-40) 0 200px'}} enableOverlay={false}>
         <Grid.Column>
-          <Hero
-            heading="This is my super sweet hero heading"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum."
-            primaryAction={{
-              text: 'Primary action',
-              href: '#'
-            }}
-            secondaryAction={{
-              text: 'Secondary action',
-              href: '#'
-            }}
-            align="center"
-            style={{marginTop: 'var(--base-size-80)'}}
-          />
+          <div style={{marginTop: 'var(--base-size-80)'}}>
+            <Hero
+              heading="This is my super sweet hero heading"
+              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum."
+              primaryAction={{
+                text: 'Primary action',
+                href: '#'
+              }}
+              secondaryAction={{
+                text: 'Secondary action',
+                href: '#'
+              }}
+              align="center"
+            />
+          </div>
           <Stack
             direction="vertical"
             justifyContent="center"
