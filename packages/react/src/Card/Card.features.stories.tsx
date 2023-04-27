@@ -100,11 +100,20 @@ export const IconAndLabel: ComponentStory<typeof Card> = () => {
 export const Image: ComponentStory<typeof Card> = () => {
   return (
     <Card href="https://github.com">
-      <Card.Image
-        src="https://user-images.githubusercontent.com/912236/234783982-bbe60907-a983-41cc-8053-a6cb74a92c7b.jpg"
-        alt=""
-        aspectRatio="16:9"
-      />
+      <Card.Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt="" />
+      <Card.Heading>Code search & code view</Card.Heading>
+      <Card.Description>
+        Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
+      </Card.Description>
+    </Card>
+  )
+}
+
+export const ImageAndLabel: ComponentStory<typeof Card> = () => {
+  return (
+    <Card href="https://github.com">
+      <Card.Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt="" />
+      <Card.Label color="blue-purple">Beta</Card.Label>
       <Card.Heading>Code search & code view</Card.Heading>
       <Card.Description>
         Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
