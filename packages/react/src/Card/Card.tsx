@@ -1,11 +1,11 @@
 import React, {forwardRef, useCallback} from 'react'
 import {isFragment} from 'react-is'
 import clsx from 'clsx'
-
 import {Heading, HeadingTags, Text} from '..'
 import {ExpandableArrow} from '../ExpandableArrow'
 import {Label, LabelColors} from '../Label'
 import type {BaseProps} from '../component-helpers'
+import {Colors} from '../constants'
 
 /**
  * Design tokens
@@ -18,16 +18,22 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
  */
 import styles from './Card.module.css'
 import stylesLink from '../Link/Link.module.css'
+import {Icon as IconProps} from '@primer/octicons-react'
 
+export const CardIconColors = Colors
+
+export const defaultCardIconColor = CardIconColors[0]
 export type CardProps = {
   /**
    * Valid children include Card.Image, Card.Heading, and Card.Description
    */
   children:
     | React.ReactNode
+    | React.ReactElement<CardIconProps>
     | React.ReactElement<CardLabelProps>
     | React.ReactElement<CardHeadingProps>
     | React.ReactElement<CardDescriptionProps>
+
   /**
    * The href of the link
    * */
@@ -80,6 +86,7 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
       if (React.isValidElement(child) && typeof child.type !== 'string') {
         if (
           isFragment(child) ||
+          child.type === CardIcon ||
           child.type === CardLabel ||
           child.type === CardHeading ||
           child.type === CardDescription
@@ -90,10 +97,14 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
       return false
     })
 
+    const hasIcon = React.Children.toArray(children).some(
+      child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === CardIcon
+    )
+
     return (
       <a
         href={href}
-        className={clsx(styles.Card, className)}
+        className={clsx(styles.Card, hasIcon && styles['Card--has-icon'], className)}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onFocus={handleOnFocus}
@@ -112,6 +123,42 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
     )
   }
 )
+
+type CardIconProps = BaseProps<HTMLSpanElement> & {
+  icon: React.ReactNode | IconProps
+  color?: typeof CardIconColors[number]
+  hasBackground?: boolean
+}
+
+function CardIcon({
+  icon: Icon,
+  className,
+  color = defaultCardIconColor,
+  hasBackground = false,
+  ...rest
+}: CardIconProps) {
+  return (
+    <span
+      className={clsx(
+        styles.Card__icon,
+        styles[`Card__icon--color-${color}`],
+        hasBackground && styles['Card__icon--badge'],
+        className
+      )}
+      {...rest}
+    >
+      {typeof Icon === 'function' ? (
+        <Icon size={20} />
+      ) : (
+        React.isValidElement(Icon) &&
+        React.cloneElement(Icon, {
+          width: 20,
+          height: 20
+        })
+      )}
+    </span>
+  )
+}
 
 type CardLabelProps = BaseProps<HTMLSpanElement> & {
   children: React.ReactNode | React.ReactNode[]
@@ -163,6 +210,7 @@ const CardDescription = forwardRef<HTMLParagraphElement, CardDescriptionProps>(
  */
 export const Card = Object.assign(CardRoot, {
   Label: CardLabel,
+  Icon: CardIcon,
   Heading: CardHeading,
   Description: CardDescription
 })

@@ -50,7 +50,7 @@
 }
 
 .Label--color-default {
-  --brand-Label-color: var(--brand-color-text-default);
+  --brand-Label-color: var(--brand-Label-color-default);
 }
 
 .Label--color-blue {
