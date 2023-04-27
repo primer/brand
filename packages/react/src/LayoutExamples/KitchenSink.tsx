@@ -59,7 +59,7 @@ export function KitchenSink(props: KitchenSinkProps) {
           {enableGridOverlay ? 'Disable' : 'Enable'} grid
         </SubdomainNavBar.PrimaryAction>
       </SubdomainNavBar>
-      <Grid style={{padding: 'var(--base-size-40) 0 200px'}} enableOverlay={false}>
+      <Grid style={{paddingTop: 'var(--base-size-40)', paddingBottom: '200px'}} enableOverlay={false}>
         <Grid.Column>
           <div style={{marginTop: 'var(--base-size-80)'}}>
             <Hero
