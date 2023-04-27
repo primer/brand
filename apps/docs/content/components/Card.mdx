@@ -45,7 +45,7 @@ The cta text defaults to `Learn more` and can be customized using the `ctaText` 
 
 ### Icon
 
-You can add an `icon` to enhance the visual context. We recommend using an [Octicon](https://primer.style/design/foundations/icons). Icons can be used with or without a background color by using the `hasBackground` prop..
+You can add an `icon` to enhance the visual context. We recommend using an [Octicon](https://primer.style/design/foundations/icons). The `Icon` can be customized using the `color` prop and used with or without a background color by using the `hasBackground` prop.
 
 ```jsx live
 <Card href="https://github.com">
@@ -91,13 +91,14 @@ Combine `Icon` and `Label` when you need to add more metadata or context to the 
 
 ### Image
 
-Use the `Image` component to add an image to the `Card`. The `Image` component is optional and provides a visual context to the `Card`.
+Use the `Image` component to add an image to the `Card`. The `Image` component is optional and provides a visual context to the `Card`. The aspect ratio of the image can be customized using the `aspectRatio` prop.
 
 ```jsx live
 <Card href="https://github.com">
   <Card.Image
     src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
     alt=""
+    aspectRatio="16:9"
   />
   <Card.Heading>Code search & code view</Card.Heading>
   <Card.Description>
