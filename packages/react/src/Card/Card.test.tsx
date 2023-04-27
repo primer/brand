@@ -137,7 +137,7 @@ describe('Card', () => {
 
     const {getByTestId} = render(
       <Card href={mockHref} data-testid={mockTestId}>
-        <Card.Image src="https://github.githubassets.com/images/modules/site/home-illo-team.svg" alt=" " />
+        <Card.Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt=" " />
         <Card.Heading>{mockHeading}</Card.Heading>
         <Card.Description>{mockDescription}</Card.Description>
       </Card>
