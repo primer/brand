@@ -126,6 +126,11 @@
   .SubdomainNavBar-primary-nav-list {
     display: none;
   }
+
+  .SubdomainNavBar-primary-nav-list--invisible {
+    display: none;
+  }
+
   .SubdomainNavBar-primary-nav-list--visible {
     display: block;
     margin: 0;
@@ -154,15 +159,22 @@
     /* overflow: hidden; */
   }
 }
+
+@media screen and (min-width: 768px) {
+  .SubdomainNavBar-primary-nav-list {
+    max-width: 100px;
+  }
+}
+
 @media screen and (min-width: 850px) {
   .SubdomainNavBar-primary-nav-list {
-    max-width: 320px;
+    max-width: 200px;
   }
 }
 
 @media screen and (min-width: 1024px) {
   .SubdomainNavBar-primary-nav-list {
-    max-width: 340px;
+    max-width: 300px;
   }
 }
 
@@ -475,12 +487,6 @@
 .SubdomainNavBar-cta-button {
   height: 48px; /*TODO: investigate why this is shorter than medium default height*/
   white-space: nowrap;
-}
-
-@media screen and (min-width: 48rem) and (max-width: 1023px) {
-  .SubdomainNavBar-cta-button--secondary {
-    display: none;
-  }
 }
 
 @media screen and (min-width: 1024px) {

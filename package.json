@@ -35,6 +35,7 @@
     "clean": "npm run clean --workspaces --if-present",
     "clean:node_modules": "npm exec --workspaces -- npx rimraf node_modules && npx rimraf node_modules",
     "format": "npm run format --workspaces --if-present",
+    "format:fix": "npm run format:fix --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
     "release": "npm run build:lib && changeset publish",
     "start": "npm run build:lib && npm run start:storybook & npm run start:lib",

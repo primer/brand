@@ -1,5 +1,61 @@
 # @primer/react-brand
 
+## 0.17.0
+
+### Minor Changes
+
+- [#237](https://github.com/primer/brand/pull/237) [`51e383d`](https://github.com/primer/brand/commit/51e383dd2ccd74bf9c79c3beaf64e99e0a01a0a5) Thanks [@rezrah](https://github.com/rezrah)! - Added `Grid` component
+
+  Use `Grid` to create flexible and responsive grid-based layouts
+
+  ```jsx
+  <Grid>
+    <Grid.Column span={4}></Grid.Column>
+    <Grid.Column span={4}></Grid.Column>
+    <Grid.Column span={4}></Grid.Column>
+  </Grid>
+  ```
+
+  :link: [See the documentation for more details and usage examples.](https://primer.style/brand/components/Grid)
+
+* [#229](https://github.com/primer/brand/pull/229) [`2359c0c`](https://github.com/primer/brand/commit/2359c0c87ec8c419ef156e8ff78eb4fcdd24b4f3) Thanks [@JoshBowdenConcepts](https://github.com/JoshBowdenConcepts)! - Added `Image` component
+
+  Usage example:
+
+  ```jsx
+  <Image src="/path/to/your/image.jpg" alt="Required alternative text" />
+  ```
+
+  See the [documentation](https://primer.style/brand/components/Image) or [Storybook](https://primer.style/brand/storybook/?path=/story/components-image--playground) for more usage examples.
+
+### Patch Changes
+
+- [#243](https://github.com/primer/brand/pull/243) [`9c479f9`](https://github.com/primer/brand/commit/9c479f9e214ffa7f7bfccafbce4d328275ef3ff3) Thanks [@josepmartins](https://github.com/josepmartins)! - Added support for `[Octicons](https://primer.style/design/foundations/icons)` in the `Card` component. The new `Card.Icon` child is optional, and can be used alongside a `Card.Label`. Icon color and background can be customized using the `color` and `hasBackground` prop respectively.
+
+  ```jsx
+  <Card href="https://github.com">
+    <Card.Icon icon={CopilotIcon} color="purple" hasBackground />
+    <Card.Heading>Code search & code view</Card.Heading>
+    <Card.Description>
+      Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
+    </Card.Description>
+  </Card>
+  ```
+
+* [#246](https://github.com/primer/brand/pull/246) [`e66ffe0`](https://github.com/primer/brand/commit/e66ffe0f81355949c390ef670cc833239d926b4f) Thanks [@TylerJDev](https://github.com/TylerJDev)! - Fixes zoom issue in `SubdomainNavBar` where secondary CTA link would disappear at 200% zoom, or specified width
+
+- [#237](https://github.com/primer/brand/pull/237) [`51e383d`](https://github.com/primer/brand/commit/51e383dd2ccd74bf9c79c3beaf64e99e0a01a0a5) Thanks [@rezrah](https://github.com/rezrah)! - Improved type defintion accuracy for `SubdomainNavBar.PrimaryAction` by forwarding all default props from `HTMLAnchorElement`. This will prevent compiler errors on attributes like `onClick`.
+
+* [#240](https://github.com/primer/brand/pull/240) [`6d590e2`](https://github.com/primer/brand/commit/6d590e2994398caceee5731a2f59e13d108f2b9e) Thanks [@danielguillan](https://github.com/danielguillan)! - Added a `size` prop to control Testimonial's text size
+
+- [#245](https://github.com/primer/brand/pull/245) [`52cc40d`](https://github.com/primer/brand/commit/52cc40d0431eff2286dfd8a12afaaac85a207ee6) Thanks [@TylerJDev](https://github.com/TylerJDev)! - Fixes focus navigation within mobile menu in `SubdomainNavbar`
+
+## 0.16.1
+
+### Patch Changes
+
+- [#234](https://github.com/primer/brand/pull/234) [`28f0679`](https://github.com/primer/brand/commit/28f067951810f05a81a9b105ea2e115c71e2d788) Thanks [@josepmartins](https://github.com/josepmartins)! - Adjust spacing in `River` component to avoid margin collapse.
+
 ## 0.16.0
 
 ### Minor Changes
