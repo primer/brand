@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import {Heading, HeadingTags, Text} from '..'
 import {ExpandableArrow} from '../ExpandableArrow'
 import {Label, LabelColors} from '../Label'
-import {Image, ImageAspectRatio, ImageProps} from '../Image'
+import {Image, ImageProps} from '../Image'
 import type {BaseProps} from '../component-helpers'
 import {Colors} from '../constants'
 
@@ -130,13 +130,12 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
 type CardImageProps = BaseProps<HTMLImageElement> & {
   src: ImageProps['src']
   alt: ImageProps['alt']
-  aspectRatio?: ImageAspectRatio
 }
 
-function CardImage({src, alt, aspectRatio, className, ...rest}: CardImageProps) {
+function CardImage({src, alt, className, ...rest}: CardImageProps) {
   return (
     <div className={styles.Card__image}>
-      <Image src={src} alt={alt} aspectRatio={aspectRatio} className={className} {...rest} />
+      <Image src={src} alt={alt} className={className} {...rest} />
     </div>
   )
 }
