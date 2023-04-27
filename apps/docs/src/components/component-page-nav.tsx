@@ -7,7 +7,6 @@ export function ComponentPageNav({
   current,
 }: {
   basePath: string
-  includeReact?: boolean
   current?: 'overview' | 'react'
 }) {
   return (
