@@ -97,6 +97,22 @@ export const IconAndLabel: ComponentStory<typeof Card> = () => {
   )
 }
 
+export const Image: ComponentStory<typeof Card> = () => {
+  return (
+    <Card href="https://github.com">
+      <Card.Image
+        src="https://user-images.githubusercontent.com/912236/234783982-bbe60907-a983-41cc-8053-a6cb74a92c7b.jpg"
+        alt=""
+        aspectRatio="16:9"
+      />
+      <Card.Heading>Code search & code view</Card.Heading>
+      <Card.Description>
+        Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
+      </Card.Description>
+    </Card>
+  )
+}
+
 const fixtureData: FixtureData = [
   {
     href: 'https://github.com',

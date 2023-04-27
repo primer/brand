@@ -4,6 +4,7 @@ import clsx from 'clsx'
 import {Heading, HeadingTags, Text} from '..'
 import {ExpandableArrow} from '../ExpandableArrow'
 import {Label, LabelColors} from '../Label'
+import {Image, ImageAspectRatio, ImageProps} from '../Image'
 import type {BaseProps} from '../component-helpers'
 import {Colors} from '../constants'
 
@@ -29,6 +30,7 @@ export type CardProps = {
    */
   children:
     | React.ReactNode
+    | React.ReactElement<CardImageProps>
     | React.ReactElement<CardIconProps>
     | React.ReactElement<CardLabelProps>
     | React.ReactElement<CardHeadingProps>
@@ -86,6 +88,7 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
       if (React.isValidElement(child) && typeof child.type !== 'string') {
         if (
           isFragment(child) ||
+          child.type === CardImage ||
           child.type === CardIcon ||
           child.type === CardLabel ||
           child.type === CardHeading ||
@@ -123,6 +126,20 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
     )
   }
 )
+
+type CardImageProps = BaseProps<HTMLImageElement> & {
+  src: ImageProps['src']
+  alt: ImageProps['alt']
+  aspectRatio?: ImageAspectRatio
+}
+
+function CardImage({src, alt, aspectRatio, className, ...rest}: CardImageProps) {
+  return (
+    <div className={styles.Card__image}>
+      <Image src={src} alt={alt} aspectRatio={aspectRatio} className={className} {...rest} />
+    </div>
+  )
+}
 
 type CardIconProps = BaseProps<HTMLSpanElement> & {
   icon: React.ReactNode | IconProps
@@ -209,6 +226,7 @@ const CardDescription = forwardRef<HTMLParagraphElement, CardDescriptionProps>(
  * {@link https://primer.style/brand/components/Card/ See usage examples}.
  */
 export const Card = Object.assign(CardRoot, {
+  Image: CardImage,
   Label: CardLabel,
   Icon: CardIcon,
   Heading: CardHeading,

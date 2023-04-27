@@ -11,6 +11,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
+    'image image'
     'icon icon'
     'label label'
     'heading heading'
@@ -22,6 +23,7 @@
 
 .Card--has-icon {
   grid-template-areas:
+    'image image'
     'icon label'
     'heading heading'
     'description description'
@@ -39,6 +41,18 @@
 
 .Card:hover {
   transform: scale3d(1.025, 1.025, 1);
+}
+
+.Card__image {
+  margin-bottom: var(--base-size-28);
+  border-radius: var(--brand-borderRadius-small);
+  overflow: hidden;
+  grid-area: image;
+}
+
+.Card__image img,
+.Card__image span {
+  display: block;
 }
 
 .Card__icon {
