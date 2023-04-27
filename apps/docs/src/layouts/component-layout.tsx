@@ -35,7 +35,6 @@ export default function ComponentLayout({pageContext, children, path}) {
         <Box sx={{mb: 4}}>
           <ComponentPageNav
             basePath={basePath}
-            includeReact={reactId}
             current={isReactPage ? 'react' : 'overview'}
           />
         </Box>
