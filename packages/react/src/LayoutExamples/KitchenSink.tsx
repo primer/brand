@@ -59,7 +59,7 @@ export function KitchenSink(props: KitchenSinkProps) {
           {enableGridOverlay ? 'Disable' : 'Enable'} grid
         </SubdomainNavBar.PrimaryAction>
       </SubdomainNavBar>
-      <Grid style={{padding: '80px auto 200px'}} enableOverlay={false}>
+      <Grid style={{padding: 'var(--base-size-80) auto 200px'}} enableOverlay={false}>
         <Grid.Column>
           <Hero
             heading="This is my super sweet hero heading"
@@ -322,7 +322,7 @@ export function KitchenSink(props: KitchenSinkProps) {
             direction="vertical"
             padding="none"
             gap="spacious"
-            style={{gap: 'var(--base-size-96)', margin: '100px auto 0'}}
+            style={{gap: 'var(--base-size-96)', margin: 'var(--base-size-96) auto 0'}}
           >
             <Grid style={{justifyItems: 'center'}}>
               <Grid.Column>
@@ -364,7 +364,7 @@ export function KitchenSink(props: KitchenSinkProps) {
             </Grid>
           </Stack>
 
-          <Grid enableOverlay={enableGridOverlay} style={{margin: '100px auto 0'}}>
+          <Grid enableOverlay={enableGridOverlay} style={{margin: 'var(--base-size-96) auto 0'}}>
             <Grid.Column
               span={{
                 xsmall: 12,
@@ -441,7 +441,7 @@ export function KitchenSink(props: KitchenSinkProps) {
             marginTop: 'var(--base-size-64)'
           }}
         >
-          <Grid enableOverlay={enableGridOverlay} style={{margin: '100px auto'}}>
+          <Grid enableOverlay={enableGridOverlay} style={{margin: 'var(--base-size-96) auto'}}>
             <Grid.Column
               span={{
                 xsmall: 12,
