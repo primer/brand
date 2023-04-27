@@ -73,6 +73,7 @@ export function KitchenSink(props: KitchenSinkProps) {
               href: '#'
             }}
             align="center"
+            style={{marginTop: 'var(--base-size-80)'}}
           />
           <Stack
             direction="vertical"
