@@ -1,5 +1,17 @@
 # @primer/brand-primitives
 
+## 0.17.0
+
+### Minor Changes
+
+- [#237](https://github.com/primer/brand/pull/237) [`51e383d`](https://github.com/primer/brand/commit/51e383dd2ccd74bf9c79c3beaf64e99e0a01a0a5) Thanks [@rezrah](https://github.com/rezrah)! - Added `Grid`-specific design tokens.
+
+  ```css
+  --grid-spacing-margin
+  --grid-spacing-row
+  --grid-spacing-column-gap
+  ```
+
 ## 0.16.1
 
 ## 0.16.0
