@@ -1,35 +1,52 @@
-import { HEADER_HEIGHT } from '@primer/gatsby-theme-doctocat/src/components/header'
+import {HEADER_HEIGHT} from '@primer/gatsby-theme-doctocat/src/components/header'
 import PageFooter from '@primer/gatsby-theme-doctocat/src/components/page-footer'
 import TableOfContents from '@primer/gatsby-theme-doctocat/src/components/table-of-contents'
-import { Box, Heading, Text } from '@primer/react'
+import SourceLink from '@primer/gatsby-theme-doctocat/src/components/source-link'
+import StorybookLink from '@primer/gatsby-theme-doctocat/src/components/storybook-link'
+import {AccessibilityLabel, StatusLabel} from '@primer/gatsby-theme-doctocat'
+import {Box, Heading, Label, Text} from '@primer/react'
 import React from 'react'
-import { BaseLayout } from './base-layout'
-import { ComponentPageNav } from '../components/component-page-nav'
+import {BaseLayout} from './base-layout'
+import {ComponentPageNav} from '../components/component-page-nav'
 
-export default function ComponentLayout({ pageContext, children, path }) {
-  const { title, description, reactId } = pageContext.frontmatter
-  const pathParts = path.split('/');
-  const isReactPage = pathParts[pathParts.length - 1] === 'react';
-  const basePath = isReactPage ? pathParts.slice(0, -1).join('/') : path;
+/** Convert a string to sentence case. */
+function sentenceCase(str: string) {
+  return str.replace(/([A-Z])/g, ' $1').replace(/^./, function (str) {
+    return str.toUpperCase()
+  })
+}
+
+export default function ComponentLayout({pageContext, children, path}) {
+  const {title, description, reactId, status, a11yReviewed, source, storybook} =
+    pageContext.frontmatter
+  const pathParts = path.split('/')
+  const isReactPage = pathParts[pathParts.length - 1] === 'react'
+  const basePath = isReactPage ? pathParts.slice(0, -1).join('/') : path
 
   return (
     <BaseLayout title={title} description={description}>
-      <Box sx={{ maxWidth: 1200, width: '100%', p: [4, 5, 6, 7], mx: 'auto' }}>
+      <Box sx={{maxWidth: 1200, width: '100%', p: [4, 5, 6, 7], mx: 'auto'}}>
         <Heading as="h1">{title}</Heading>
         {description ? (
-          <Text as="p" sx={{ fontSize: 3, m: 0, mb: 3, maxWidth: '60ch' }}>
+          <Text as="p" sx={{fontSize: 3, m: 0, mb: 3, maxWidth: '60ch'}}>
             {description}
           </Text>
         ) : null}
-        <Box sx={{ mb: 4 }}>
+        <Box sx={{mb: 4}}>
           <ComponentPageNav
             basePath={basePath}
             includeReact={reactId}
             current={isReactPage ? 'react' : 'overview'}
           />
-
         </Box>
-        <Box sx={{ display: 'flex', flexDirection: 'row-reverse', alignItems: 'start', gap: 4 }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'row-reverse',
+            alignItems: 'start',
+            gap: 4,
+          }}
+        >
           <Box
             sx={{
               width: 220,
@@ -44,16 +61,81 @@ export default function ComponentLayout({ pageContext, children, path }) {
               <>
                 <Heading
                   as="h3"
-                  sx={{ fontSize: 2, display: 'inline-block', fontWeight: 'bold', pl: 3 }}
+                  sx={{
+                    fontSize: 2,
+                    display: 'inline-block',
+                    fontWeight: 'bold',
+                    pl: 3,
+                  }}
                   id="toc-heading"
                 >
                   On this page
                 </Heading>
-                <TableOfContents aria-labelledby="toc-heading" items={pageContext.tableOfContents.items} />
+                <TableOfContents
+                  aria-labelledby="toc-heading"
+                  items={pageContext.tableOfContents.items}
+                />
               </>
             ) : null}
           </Box>
-          <Box sx={{ minWidth: 0 }}>
+          <Box sx={{minWidth: 0}}>
+            {isReactPage && (
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: ['column', null, null, null, 'row'],
+                  justifyContent: 'space-between',
+                  gap: 3,
+                  mb: 4,
+                }}
+              >
+                <Box
+                  as={'ul'}
+                  sx={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    gap: 2,
+                    alignItems: 'center',
+                    m: 0,
+                    p: 0,
+                    paddingInline: 0,
+                    listStyle: 'none',
+                    '& > li': {
+                      display: 'flex',
+                    },
+                  }}
+                >
+                  <li>
+                    <StatusLabel status={sentenceCase(status)} />
+                  </li>
+                  <li>
+                    <AccessibilityLabel
+                      a11yReviewed={a11yReviewed}
+                      short={false}
+                    />
+                  </li>
+                </Box>
+                <Box
+                  as={'ul'}
+                  sx={{
+                    display: 'flex',
+                    gap: 3,
+                    alignItems: 'center',
+                    m: 0,
+                    p: 0,
+                    paddingInline: 0,
+                    listStyle: 'none',
+                    fontSize: 1,
+                    '& > li': {
+                      display: 'flex',
+                    },
+                  }}
+                >
+                  <SourceLink href={source} />
+                  <StorybookLink href={storybook} />
+                </Box>
+              </Box>
+            )}
             {/* Narrow table of contents */}
             {pageContext.tableOfContents.items ? (
               <Box
@@ -67,17 +149,29 @@ export default function ComponentLayout({ pageContext, children, path }) {
                   borderRadius: 2,
                 }}
               >
-                <Box sx={{ px: 3, py: 2 }}>
+                <Box sx={{px: 3, py: 2}}>
                   <Box
-                    sx={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', display: 'flex' }}
+                    sx={{
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      display: 'flex',
+                    }}
                   >
-                    <Heading as="h3" sx={{ fontSize: 2, fontWeight: 'bold' }} id="toc-heading-narrow">
+                    <Heading
+                      as="h3"
+                      sx={{fontSize: 2, fontWeight: 'bold'}}
+                      id="toc-heading-narrow"
+                    >
                       On this page
                     </Heading>
                   </Box>
                 </Box>
-                <Box sx={{ borderTop: '1px solid', borderColor: 'border.muted' }}>
-                  <TableOfContents aria-labelledby="toc-heading-narrow" items={pageContext.tableOfContents.items} />
+                <Box sx={{borderTop: '1px solid', borderColor: 'border.muted'}}>
+                  <TableOfContents
+                    aria-labelledby="toc-heading-narrow"
+                    items={pageContext.tableOfContents.items}
+                  />
                 </Box>
               </Box>
             ) : null}
@@ -95,7 +189,10 @@ export default function ComponentLayout({ pageContext, children, path }) {
             </Box>
           </Box>
         </Box>
-        <PageFooter editUrl={pageContext.editUrl} contributors={pageContext.contributors} />
+        <PageFooter
+          editUrl={pageContext.editUrl}
+          contributors={pageContext.contributors}
+        />
       </Box>
     </BaseLayout>
   )
