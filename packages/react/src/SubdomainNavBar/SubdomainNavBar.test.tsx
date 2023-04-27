@@ -93,7 +93,7 @@ describe('SubdomainNavBar', () => {
     expect(linkEl).toHaveAttribute('href', '/')
   })
 
-  it('removes the default seperator and menu title when title is empty', async () => {
+  it('removes the default separator and menu title when title is empty', async () => {
     const {container} = render(<Component title="" />)
 
     const separator = container.querySelector('.SubdomainNavBar-title-separator')
