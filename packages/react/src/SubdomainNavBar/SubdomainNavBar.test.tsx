@@ -23,13 +23,15 @@ describe('SubdomainNavBar', () => {
   const Component = ({
     fullWidth,
     searchResults,
-    titleHref
+    titleHref,
+    title = 'Subdomain'
   }: {
     fullWidth?: boolean
     searchResults?: SubdomainNavBarSearchResultProps[]
     titleHref?: string
+    title?: string
   }) => (
-    <SubdomainNavBar title="Subdomain" titleHref={titleHref} fullWidth={fullWidth}>
+    <SubdomainNavBar title={title} titleHref={titleHref} fullWidth={fullWidth}>
       <SubdomainNavBar.Link href="#">Collections</SubdomainNavBar.Link>
       <SubdomainNavBar.Link href="#">Topics</SubdomainNavBar.Link>
       <SubdomainNavBar.Link href="#">Articles</SubdomainNavBar.Link>
@@ -89,6 +91,16 @@ describe('SubdomainNavBar', () => {
     const linkEl = getByRole('link', {name: 'Subdomain home'})
 
     expect(linkEl).toHaveAttribute('href', '/')
+  })
+
+  it('removes the default separator and menu title when title is empty', async () => {
+    const {container} = render(<Component title="" />)
+
+    const separator = container.querySelector('.SubdomainNavBar-title-separator')
+    const menuTitle = container.querySelector('.SubdomainNavBar-title')
+
+    expect(separator).not.toBeInTheDocument()
+    expect(menuTitle).not.toBeInTheDocument()
   })
 
   it('can apply an alternative href on the title', async () => {
