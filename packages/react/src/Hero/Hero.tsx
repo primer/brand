@@ -1,8 +1,8 @@
-import React, {forwardRef, PropsWithChildren} from 'react'
+import React, {forwardRef, PropsWithChildren, useMemo} from 'react'
 import clsx from 'clsx'
 import styles from './Hero.module.css'
-import {Button} from '../Button'
-import {Heading, HeadingProps, HeadingTags} from '../Heading'
+import {Button, ButtonBaseProps} from '../Button'
+import {Heading, HeadingProps} from '../Heading'
 import {Text} from '../Text'
 
 import type {BaseProps} from '../component-helpers'
@@ -14,6 +14,14 @@ export type HeroProps = BaseProps<HTMLDivElement> & {
 }
 
 const Root = forwardRef<HTMLDivElement, HeroProps>(({className, align = 'start', children, ...rest}, ref) => {
+  const HeroActions = useMemo(
+    () =>
+      React.Children.toArray(children).filter(
+        child => React.isValidElement(child) && (child.type === HeroPrimaryAction || child.type === HeroSecondaryAction)
+      ),
+    [children]
+  )
+
   return (
     <section
       className={clsx(styles.Hero, styles[`Hero--align-${align}`], className)}
@@ -23,27 +31,24 @@ const Root = forwardRef<HTMLDivElement, HeroProps>(({className, align = 'start',
     >
       {React.Children.map(children, child => {
         if (React.isValidElement(child)) {
-          if (child.type === HeroHeading || child.type === HeroDescription) {
-            return child
-          } else if (child.type === HeroPrimaryAction || child.type === HeroSecondaryAction) {
-            return <div className={styles['Hero-actions']}>{child}</div>
-          } else {
+          console.log(child)
+          if (child.type !== HeroPrimaryAction && child.type !== HeroSecondaryAction) {
             return child
           }
         }
       })}
+      <div className={styles['Hero-actions']}>{HeroActions}</div>
     </section>
   )
 })
 
 type HeroHeadingProps = {
-  as?: HeadingTags['as']
   children: React.ReactNode | React.ReactNode[]
-} & HeadingProps
+} & Omit<HeadingProps, 'as'>
 
-const HeroHeading = forwardRef<HTMLHeadingElement, HeroHeadingProps>(({as = 'h1', children, ...rest}, ref) => {
+const HeroHeading = forwardRef<HTMLHeadingElement, HeroHeadingProps>(({children, ...rest}, ref) => {
   return (
-    <Heading id="hero-section-brand-heading" className={styles['Hero-heading']} as={as} ref={ref} {...rest}>
+    <Heading id="hero-section-brand-heading" className={styles['Hero-heading']} as="h1" ref={ref} {...rest}>
       {children}
     </Heading>
   )
@@ -64,7 +69,7 @@ function HeroDescription({children}: PropsWithChildren<HeroDescriptionProps>) {
 type HeroActions = {
   href: string
   children: React.ReactNode | React.ReactNode[]
-}
+} & Omit<ButtonBaseProps, 'variant'>
 
 function HeroPrimaryAction({href, children, ...rest}: PropsWithChildren<HeroActions>) {
   return (
