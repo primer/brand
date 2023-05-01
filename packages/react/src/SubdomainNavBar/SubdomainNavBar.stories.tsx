@@ -588,6 +588,11 @@ FullWidth.args = {
   fullWidth: true
 }
 
+export const NoTitle = args => <SubdomainNavBar {...args} />
+NoTitle.args = {
+  title: ''
+}
+
 export const ConditionalRendering = () => {
   const [links, setLinks] = useState(['collections', 'topics', 'articles', 'events', 'video'])
   const [showLinks, setShowLinks] = useState(false)

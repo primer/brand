@@ -28,14 +28,23 @@ type KitchenSinkProps = React.HTMLAttributes<HTMLDivElement>
 
 export function KitchenSink(props: KitchenSinkProps) {
   const [enableGridOverlay, setEnableGridOverlay] = React.useState(false)
+  const [isLightMode, setIsLightMode] = React.useState(true)
 
   const handleOverlay = e => {
     e.preventDefault()
     setEnableGridOverlay(!enableGridOverlay)
   }
 
+  const handleMode = e => {
+    e.preventDefault()
+    setIsLightMode(!isLightMode)
+  }
+
   return (
-    <>
+    <ThemeProvider
+      colorMode={isLightMode ? 'light' : 'dark'}
+      style={{backgroundColor: 'var(--brand-color-canvas-default)'}}
+    >
       <SubdomainNavBar title="Subdomain" {...props}>
         <SubdomainNavBar.Link href="#">Collections</SubdomainNavBar.Link>
         <SubdomainNavBar.Link href="#">Topics</SubdomainNavBar.Link>
@@ -43,21 +52,26 @@ export function KitchenSink(props: KitchenSinkProps) {
         <SubdomainNavBar.Link href="#">Events</SubdomainNavBar.Link>
         <SubdomainNavBar.Link href="#">Video</SubdomainNavBar.Link>
         <SubdomainNavBar.Link href="#">Social</SubdomainNavBar.Link>
+        <SubdomainNavBar.SecondaryAction href="#" onClick={handleMode}>
+          Change color mode
+        </SubdomainNavBar.SecondaryAction>
         <SubdomainNavBar.PrimaryAction href="#" onClick={handleOverlay}>
           {enableGridOverlay ? 'Disable' : 'Enable'} grid
         </SubdomainNavBar.PrimaryAction>
       </SubdomainNavBar>
-      <Grid style={{margin: '80px auto 200px'}} enableOverlay={false}>
+      <Grid style={{paddingTop: 'var(--base-size-40)', paddingBottom: '200px'}} enableOverlay={false}>
         <Grid.Column>
-          <Hero align="center">
-            <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
-            <Hero.Description>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-              turpis felis nam pulvinar risus elementum.
-            </Hero.Description>
-            <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
-            <Hero.SecondaryAction href="#">Secondary action</Hero.SecondaryAction>
-          </Hero>
+          <div style={{marginTop: 'var(--base-size-80)'}}>
+            <Hero align="center">
+              <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+              <Hero.Description>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus
+                sed turpis felis nam pulvinar risus elementum.
+              </Hero.Description>
+              <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+              <Hero.SecondaryAction href="#">Secondary action</Hero.SecondaryAction>
+            </Hero>
+          </div>
           <Stack
             direction="vertical"
             justifyContent="center"
@@ -302,7 +316,53 @@ export function KitchenSink(props: KitchenSinkProps) {
               </FAQ.Item>
             </FAQ>
           </Stack>
-          <Grid enableOverlay={enableGridOverlay} style={{margin: '100px auto 0'}}>
+          <Stack
+            direction="vertical"
+            padding="none"
+            gap="spacious"
+            style={{gap: 'var(--base-size-96)', margin: 'var(--base-size-96) auto 0'}}
+          >
+            <Grid style={{justifyItems: 'center'}}>
+              <Grid.Column>
+                <Stack alignItems="center">
+                  <Heading as="h2" size="3">
+                    Testimonials
+                  </Heading>
+                </Stack>
+              </Grid.Column>
+              <Grid.Column>
+                <Grid enableOverlay={enableGridOverlay}>
+                  <Grid.Column
+                    span={{
+                      xsmall: 12,
+                      large: 8
+                    }}
+                    start={{
+                      xsmall: 1,
+                      large: 3
+                    }}
+                  >
+                    <Testimonial size="large">
+                      <Testimonial.Quote>
+                        GitHub helps us ensure that we have our security controls baked into our pipelines all the way
+                        from the first line of code we&apos;re writing.
+                      </Testimonial.Quote>
+                      <Testimonial.Name>David Ross</Testimonial.Name>
+                      <Testimonial.Logo>
+                        <Image
+                          alt="GitHub Logo"
+                          src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+                          width={60}
+                        />
+                      </Testimonial.Logo>
+                    </Testimonial>
+                  </Grid.Column>
+                </Grid>
+              </Grid.Column>
+            </Grid>
+          </Stack>
+
+          <Grid enableOverlay={enableGridOverlay} style={{margin: 'var(--base-size-96) auto 0'}}>
             <Grid.Column
               span={{
                 xsmall: 12,
@@ -379,7 +439,7 @@ export function KitchenSink(props: KitchenSinkProps) {
             marginTop: 'var(--base-size-64)'
           }}
         >
-          <Grid enableOverlay={enableGridOverlay} style={{margin: '100px auto'}}>
+          <Grid enableOverlay={enableGridOverlay} style={{margin: 'var(--base-size-96) auto'}}>
             <Grid.Column
               span={{
                 xsmall: 12,
@@ -592,6 +652,6 @@ export function KitchenSink(props: KitchenSinkProps) {
           <Grid.Column span={1}></Grid.Column>
         </Grid>
       )}
-    </>
+    </ThemeProvider>
   )
 }
