@@ -31,7 +31,6 @@ const Root = forwardRef<HTMLDivElement, HeroProps>(({className, align = 'start',
     >
       {React.Children.map(children, child => {
         if (React.isValidElement(child)) {
-          console.log(child)
           if (child.type !== HeroPrimaryAction && child.type !== HeroSecondaryAction) {
             return child
           }
