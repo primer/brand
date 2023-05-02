@@ -1,0 +1,30 @@
+{
+  "brand": {
+    "River": {
+      "spacing": {
+        "inner": {
+          "value": "var(--base-size-24)",
+          "responsive": {
+            "768px": {
+              "value": "var(--base-size-36)"
+            },
+            "1280px": {
+              "value": "var(--base-size-48)"
+            }
+          }
+        },
+        "outer": {
+          "value": "var(--base-size-28)",
+          "responsive": {
+            "768px": {
+              "value": "var(--base-size-36)"
+            },
+            "1280px": {
+              "value": "var(--base-size-48)"
+            }
+          }
+        }
+      }
+    }
+  }
+}
