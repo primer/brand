@@ -2,7 +2,7 @@
 '@primer/react-brand': patch
 ---
 
-Added support for `Image` in the `Card` component. The new `Card.Image` child is optional, and can be used alongside a `Card.Label`. Image aspect ratio can be the `aspectRatio` prop.
+Added support for `Image` in the `Card` component. The new `Card.Image` child is optional, and can be used alongside a `Card.Label`. Image aspect ratio can be controlled using the `aspectRatio` prop.
 
 ```jsx
 <Card href="https://github.com">
