@@ -132,18 +132,18 @@ describe('Card', () => {
   })
 
   it('renders the image correctly into the document', () => {
-    const mockTestId = 'test'
-    const classToCheck = 'Card__image'
+    const classToCheck = 'Image'
+    const testAltText = 'alternative text'
 
-    const {getByTestId} = render(
-      <Card href={mockHref} data-testid={mockTestId}>
-        <Card.Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt=" " />
+    const {getByAltText} = render(
+      <Card href={mockHref}>
+        <Card.Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt={testAltText} />
         <Card.Heading>{mockHeading}</Card.Heading>
         <Card.Description>{mockDescription}</Card.Description>
       </Card>
     )
 
-    const cardEl = getByTestId(mockTestId).firstChild
+    const cardEl = getByAltText(testAltText)
     expect(cardEl).toHaveClass(classToCheck)
   })
 })
