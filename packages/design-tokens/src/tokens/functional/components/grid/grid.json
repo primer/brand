@@ -1,6 +1,6 @@
 {
   "brand": {
-    "grid": {
+    "Grid": {
       "spacing": {
         "row": {
           "value": "var(--base-size-16)",
