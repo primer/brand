@@ -141,14 +141,18 @@ function Root({
                   <MarkGithubIcon fill="currentColor" size={24} />
                 </a>
               </li>
-              <li role="separator" className={styles['SubdomainNavBar-title-separator']} aria-hidden>
-                /
-              </li>
-              <li>
-                <a href={titleHref} aria-label={`${title} home`} className={clsx(styles['SubdomainNavBar-title'])}>
-                  {title}
-                </a>
-              </li>
+              {title && (
+                <>
+                  <li role="separator" className={styles['SubdomainNavBar-title-separator']} aria-hidden>
+                    /
+                  </li>
+                  <li>
+                    <a href={titleHref} aria-label={`${title} home`} className={clsx(styles['SubdomainNavBar-title'])}>
+                      {title}
+                    </a>
+                  </li>
+                </>
+              )}
             </ol>
           </nav>
           {hasLinks && (
