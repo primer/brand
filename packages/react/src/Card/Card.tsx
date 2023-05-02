@@ -127,15 +127,12 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
   }
 )
 
-type CardImageProps = BaseProps<HTMLImageElement> & {
-  src: ImageProps['src']
-  alt: ImageProps['alt']
-}
+type CardImageProps = ImageProps
 
-function CardImage({src, alt, className, ...rest}: CardImageProps) {
+function CardImage({className, ...rest}: CardImageProps) {
   return (
     <div className={styles.Card__image}>
-      <Image src={src} alt={alt} className={className} {...rest} />
+      <Image className={className} {...rest} />
     </div>
   )
 }
