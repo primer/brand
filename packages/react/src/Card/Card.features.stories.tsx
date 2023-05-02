@@ -100,7 +100,10 @@ export const IconAndLabel: ComponentStory<typeof Card> = () => {
 export const Image: ComponentStory<typeof Card> = () => {
   return (
     <Card href="https://github.com">
-      <Card.Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt="placeholder, blank area with an gray background color" />
+      <Card.Image
+        src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+        alt="placeholder, blank area with an gray background color"
+      />
       <Card.Heading>Code search & code view</Card.Heading>
       <Card.Description>
         Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
@@ -112,7 +115,10 @@ export const Image: ComponentStory<typeof Card> = () => {
 export const ImageAndLabel: ComponentStory<typeof Card> = () => {
   return (
     <Card href="https://github.com">
-      <Card.Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt="placeholder, blank area with an gray background color" />
+      <Card.Image
+        src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+        alt="placeholder, blank area with an gray background color"
+      />
       <Card.Label color="blue-purple">Beta</Card.Label>
       <Card.Heading>Code search & code view</Card.Heading>
       <Card.Description>
