@@ -5,7 +5,7 @@
 
 Add `brand` prefix to Grid component design tokens.
 
-```css
+```diff
 - --grid-spacing-margin
 + --brand-Grid-spacing-margin
 ```
