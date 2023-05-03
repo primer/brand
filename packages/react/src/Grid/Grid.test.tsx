@@ -195,4 +195,30 @@ describe('Grid', () => {
     expect(rootEl.tagName).toBe('DIV')
     expect(columnEl.tagName).toBe('DIV')
   })
+
+  it('adds a class of 12 for xsmall breakpoints when no span is provided to ensure it spans full-width by default', () => {
+    const {getByTestId} = render(
+      <Grid>
+        <Grid.Column
+          data-testid="Grid-Column-1"
+          span={{
+            large: 6
+          }}
+        ></Grid.Column>
+        <Grid.Column
+          data-testid="Grid-Column-2"
+          span={{
+            xsmall: 3,
+            large: 6
+          }}
+        ></Grid.Column>
+      </Grid>
+    )
+
+    expect(getByTestId('Grid-Column-1')).toHaveClass('Grid__column--large-span-6')
+
+    expect(getByTestId('Grid-Column-2')).toHaveClass('Grid__column--xsmall-span-3')
+    expect(getByTestId('Grid-Column-1')).toHaveClass('Grid__column--large-span-6')
+    expect(getByTestId('Grid-Column-2')).not.toHaveClass('Grid__column--xsmall-span-12')
+  })
 })

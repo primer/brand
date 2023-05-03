@@ -49,6 +49,14 @@ test.describe('Visual Comparison: Grid', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('Grid / Responsive Min Width', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-grid-features--responsive-min-width&viewMode=story'
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Grid / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-grid--playground&viewMode=story')
 

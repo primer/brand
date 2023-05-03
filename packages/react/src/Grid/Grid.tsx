@@ -97,8 +97,11 @@ const Column = memo(
       columnClassArray.push(styles[`Grid__column--span-${span}`])
     } else if (typeof span === 'object') {
       for (const [key, value] of Object.entries(span)) {
-        columnClassArray.push(styles[`Grid__column--span-${value}`])
-        columnClassArray.push(styles[`Grid__column--${key}-span-${value}`])
+        if (key === 'xsmall') {
+          columnClassArray.push(styles[`Grid__column--xsmall-span-${value}`])
+        } else {
+          columnClassArray.push(styles[`Grid__column--${key}-span-${value}`])
+        }
       }
     }
 
@@ -106,8 +109,11 @@ const Column = memo(
       columnClassArray.push(styles[`Grid__column--start-${start}`])
     } else if (typeof start === 'object') {
       for (const [key, value] of Object.entries(start)) {
-        columnClassArray.push(styles[`Grid__column--start-${value}`])
-        columnClassArray.push(styles[`Grid__column--${key}-start-${value}`])
+        if (key === 'xsmall') {
+          columnClassArray.push(styles[`Grid__column--xsmall-start-${value}`])
+        } else {
+          columnClassArray.push(styles[`Grid__column--${key}-start-${value}`])
+        }
       }
     }
 

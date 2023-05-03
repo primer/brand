@@ -179,3 +179,21 @@ export const FortySixty = args => {
   )
 }
 FortySixty.storyName = 'Ratio: 40:60'
+
+export const ResponsiveMinWidth = args => {
+  return (
+    <Grid {...args}>
+      <Grid.Column
+        span={{
+          large: 6
+        }}
+      ></Grid.Column>
+      <Grid.Column
+        span={{
+          xsmall: 3,
+          large: 6
+        }}
+      ></Grid.Column>
+    </Grid>
+  )
+}
