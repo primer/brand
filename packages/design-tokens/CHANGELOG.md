@@ -1,5 +1,16 @@
 # @primer/brand-primitives
 
+## 0.17.1
+
+### Patch Changes
+
+- [#258](https://github.com/primer/brand/pull/258) [`d8ab2c9`](https://github.com/primer/brand/commit/d8ab2c9ba74579a98813e568927d792090f13a66) Thanks [@rezrah](https://github.com/rezrah)! - Add `brand` prefix to Grid component design tokens.
+
+  ```diff
+  - --grid-spacing-margin
+  + --brand-Grid-spacing-margin
+  ```
+
 ## 0.17.0
 
 ### Minor Changes
