@@ -62,7 +62,6 @@ const PillarRoot = forwardRef<HTMLDivElement, PillarProps>(({children, className
 type PillarIconProps = BaseProps<HTMLSpanElement> & {
   icon: React.ReactNode | IconProps
   color?: typeof PillarIconColors[number]
-  hasBackground?: boolean
 }
 
 function PillarIcon({icon: Icon, className, color = defaultPillarIconColor, ...rest}: PillarIconProps) {
