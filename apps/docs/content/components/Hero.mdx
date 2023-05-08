@@ -44,13 +44,11 @@ import {Hero} from '@primer/react-brand'
 `Hero` text alignment can be adjusted by changing the `align` prop.
 
 ```jsx live
-<Hero>
+<Hero align="center">
   <Hero.Heading>
-    <>
-      Blazing fast cloud
-      <br />
-      developer environments
-    </>
+    Blazing fast cloud
+    <br />
+    developer environments
   </Hero.Heading>
   <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
 </Hero>
@@ -68,32 +66,34 @@ import {Hero} from '@primer/react-brand'
 
 ### Hero.Heading
 
-| name            | type                                                                                               | default | description                                    |
-| --------------- | -------------------------------------------------------------------------------------------------- | ------- | ---------------------------------------------- |
-| `className`     | `string`                                                                                           |         | Sets a custom class on the root element        |
-| `id`            | `string`                                                                                           |         | Sets a custom id                               |
-| `ref`           | `React.RefObject`                                                                                  |         | Forward a Ref to the underlying DOM node       |
-| `size`          | <PropTableValues values={HeadingSizes} addLineBreaks />                                            |         | Override the default visual text size          |
-| `weight`        | <PropTableValues values={[...HeadingWeights, 'ResponsiveWeightMap']} addLineBreaks />              |         | Override the default visual text weight        |
-| `stretch`       | <PropTableValues values={[...HeadingStretch, 'ResponsiveStretchMap']} addLineBreaks />             |         | Override the default visual text stretch value |
-| `letterSpacing` | <PropTableValues values={[...HeadingLetterSpacing, 'ResponsiveLetterSpacingMap']} addLineBreaks /> |         | Override the default visual character spacing  |
+| name        | type              | default | description                              |
+| ----------- | ----------------- | ------- | ---------------------------------------- |
+| `className` | `string`          |         | Sets a custom class on the root element  |
+| `id`        | `string`          |         | Sets a custom id                         |
+| `ref`       | `React.RefObject` |         | Forward a Ref to the underlying DOM node |
+
+Forwards all props from the [Heading component](/components/Heading), including `as`, `size`, and `weight`.
 
 ### Hero.Description
 
-| name        | type     | default | description       |
-| ----------- | -------- | ------- | ----------------- |
-| `className` | `string` |         | Text custom class |
+| name        | type     | default | description             |
+| ----------- | -------- | ------- | ----------------------- |
+| `className` | `string` |         | Sets a custom CSS class |
+
+Forwards `size` and `weight` props from the [Text component](/components/Text).
 
 ### Hero.PrimaryAction
 
-| name        | type     | default | description               |
-| ----------- | -------- | ------- | ------------------------- |
-| `className` | `string` |         | Primary link custom class |
-| `href`      | `string` |         | `href` for primary link   |
+| name        | type          | default | description                         |
+| ----------- | ------------- | ------- | ----------------------------------- |
+| `className` | `string`      |         | Primary link custom class           |
+| `href`      | `string`      |         | `href` for primary link             |
+| `as`        | `a`, `button` | `a`     | Applies the underlying HTML element |
 
 ### Hero.SecondaryAction
 
-| name        | type     | default | description                 |
-| ----------- | -------- | ------- | --------------------------- |
-| `className` | `string` |         | Secondary link custom class |
-| `href`      | `string` |         | `href` for secondary link   |
+| name        | type          | default | description                         |
+| ----------- | ------------- | ------- | ----------------------------------- |
+| `className` | `string`      |         | Secondary link custom class         |
+| `href`      | `string`      |         | `href` for secondary link           |
+| `as`        | `a`, `button` | `a`     | Applies the underlying HTML element |

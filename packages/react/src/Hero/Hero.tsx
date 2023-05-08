@@ -3,47 +3,53 @@ import clsx from 'clsx'
 import styles from './Hero.module.css'
 import {Button, ButtonBaseProps} from '../Button'
 import {Heading, HeadingProps} from '../Heading'
-import {Text} from '../Text'
+import {Text, TextSizes, TextWeightVariants, ResponsiveWeightMap} from '../Text'
 
 import type {BaseProps} from '../component-helpers'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/hero/base.css'
 
-export type HeroProps = BaseProps<HTMLDivElement> & {
+export type HeroProps = BaseProps<HTMLElement> & {
   align?: 'start' | 'center'
-  children: React.ReactNode | React.ReactNode[] // Maybe use this from `FAQ`? type FAQRootProps = PropsWithChildren<BaseProps<HTMLElement>>
 }
 
-const Root = forwardRef<HTMLDivElement, HeroProps>(({className, align = 'start', children, ...rest}, ref) => {
-  const HeroActions = useMemo(
-    () =>
-      React.Children.toArray(children).filter(
-        child => React.isValidElement(child) && (child.type === HeroPrimaryAction || child.type === HeroSecondaryAction)
-      ),
-    [children]
-  )
+const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
+  ({className, align = 'start', children, ...rest}, ref) => {
+    const {HeroActions, HeroChildren} = useMemo(
+      () =>
+        React.Children.toArray(children).reduce<{
+          HeroActions: React.ReactElement[]
+          HeroChildren: React.ReactElement[]
+        }>(
+          (acc, child) => {
+            if (React.isValidElement(child)) {
+              if (child.type === HeroPrimaryAction || child.type === HeroSecondaryAction) {
+                acc.HeroActions.push(child)
+              } else {
+                acc.HeroChildren.push(child)
+              }
+            }
+            return acc
+          },
+          {HeroActions: [], HeroChildren: []}
+        ),
+      [children]
+    )
 
-  return (
-    <section
-      className={clsx(styles.Hero, styles[`Hero--align-${align}`], className)}
-      ref={ref}
-      aria-labelledby="hero-section-brand-heading"
-      {...rest}
-    >
-      {React.Children.map(children, child => {
-        if (React.isValidElement(child)) {
-          if (child.type !== HeroPrimaryAction && child.type !== HeroSecondaryAction) {
-            return child
-          }
-        }
-      })}
-      <div className={styles['Hero-actions']}>{HeroActions}</div>
-    </section>
-  )
-})
+    return (
+      <section
+        className={clsx(styles.Hero, styles[`Hero--align-${align}`], className)}
+        ref={ref}
+        aria-labelledby="hero-section-brand-heading"
+        {...rest}
+      >
+        {HeroChildren}
+        <div className={styles['Hero-actions']}>{HeroActions}</div>
+      </section>
+    )
+  }
+)
 
-type HeroHeadingProps = {
-  children: React.ReactNode | React.ReactNode[]
-} & Omit<HeadingProps, 'as'>
+type HeroHeadingProps = Omit<HeadingProps, 'as'>
 
 const HeroHeading = forwardRef<HTMLHeadingElement, HeroHeadingProps>(({children, ...rest}, ref) => {
   return (
@@ -54,12 +60,13 @@ const HeroHeading = forwardRef<HTMLHeadingElement, HeroHeadingProps>(({children,
 })
 
 type HeroDescriptionProps = {
-  children: React.ReactNode | React.ReactNode[]
+  size?: typeof TextSizes[number]
+  weight?: TextWeightVariants | ResponsiveWeightMap
 }
 
-function HeroDescription({children}: PropsWithChildren<HeroDescriptionProps>) {
+function HeroDescription({size = '400', weight, children}: PropsWithChildren<HeroDescriptionProps>) {
   return (
-    <Text className={styles['Hero-description']} as="p" size="400" variant="muted">
+    <Text className={styles['Hero-description']} as="p" size={size} weight={weight} variant="muted">
       {children}
     </Text>
   )
@@ -67,7 +74,6 @@ function HeroDescription({children}: PropsWithChildren<HeroDescriptionProps>) {
 
 type HeroActions = {
   href: string
-  children: React.ReactNode | React.ReactNode[]
 } & Omit<ButtonBaseProps, 'variant'>
 
 function HeroPrimaryAction({href, children, ...rest}: PropsWithChildren<HeroActions>) {
