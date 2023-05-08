@@ -45,7 +45,7 @@ The cta text defaults to `Learn more` and can be customized using the `ctaText` 
 
 ### Icon
 
-You can add an `icon` to enhance the visual context. We recommend using an [Octicon](https://primer.style/design/foundations/icons). Icons can be used with or without a background color by using the `hasBackground` prop..
+You can add an `icon` to enhance the visual context. We recommend using an [Octicon](https://primer.style/design/foundations/icons). The `Icon` can be customized using the `color` prop and used with or without a background color by using the `hasBackground` prop.
 
 ```jsx live
 <Card href="https://github.com">
@@ -81,6 +81,44 @@ Combine `Icon` and `Label` when you need to add more metadata or context to the 
 <Card href="https://github.com">
   <Card.Icon icon={CopilotIcon} color="green" hasBackground />
   <Card.Label color="blue-purple">Beta</Card.Label>
+  <Card.Heading>Code search & code view</Card.Heading>
+  <Card.Description>
+    Enables you to rapidly search, navigate, and understand code, right from
+    GitHub.com.
+  </Card.Description>
+</Card>
+```
+
+### Image
+
+Use the `Image` component to add an image to the `Card`. The `Image` component is optional and provides a visual context to the `Card`.
+
+```jsx live
+<Card href="https://github.com">
+  <Card.Image
+    src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+    alt="placeholder, blank area with an gray background color"
+    aspectRatio="16:9"
+  />
+  <Card.Heading>Code search & code view</Card.Heading>
+  <Card.Description>
+    Enables you to rapidly search, navigate, and understand code, right from
+    GitHub.com.
+  </Card.Description>
+</Card>
+```
+
+### Image and Label
+
+Combine `Image` and `Label` when you need to add more metadata or context to the `Card`. Use either the `Icon` or `Image` as the primary visual context, but not both.
+
+```jsx live
+<Card href="https://github.com">
+  <Card.Image
+    src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+    alt="placeholder, blank area with an gray background color"
+  />
+  <Card.Label color="blue">Beta</Card.Label>
   <Card.Heading>Code search & code view</Card.Heading>
   <Card.Description>
     Enables you to rapidly search, navigate, and understand code, right from
@@ -132,6 +170,21 @@ Use the `Stack` component to stack multiple cards horizontally or vertically.
 | --------- | -------- | ----------- | -------- | ------------------------------------------- |
 | `href`    | `string` |             | `true`   | URL to the card content                     |
 | `ctaText` | `string` | `Read more` | `false`  | Label of the link at the bottom of the Card |
+
+### Card.Image
+
+| name          | type                                              | default     | required | description                                                                                                                                                               |
+| ------------- | ------------------------------------------------- | ----------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `src`         | `string`                                          |             | `true`   | Specifies the path to the image                                                                                                                                           |
+| `alt`         | `string`                                          |             | `true`   | Specifies a text value explaining the nature of the image for users of assistive technology                                                                               |
+| `as`          | `img`, `picture`                                  | `img`       | `false`  | Specification to create a picture component                                                                                                                               |
+| `sources`     | `{srcset: string, media: string}[]`               |             | `false`  | When picture is specified in the `as` prop sources allows you to set the source elements.                                                                                 |
+| `aspectRatio` | `'1:1'`, `'16:9'`, `'16:10'`, `'4:3'`, `'custom'` | `undefined` | `false`  | Sets the image aspect ratio. A custom ratio can be provided in the design tokens.                                                                                         |
+| `height`      | `number`                                          |             | `false`  | The height of the image element or its container if it has an aspect ratio                                                                                                |
+| `width`       | `number`                                          |             | `false`  | The width of the image element or its container if it has an aspect ratio                                                                                                 |
+| `loading`     | `eager`, `lazy`                                   | `eager`     | `false`  | The loading attribute specifies whether a browser should load an image immediately or to defer loading of off-screen images until for example the user scrolls near them. |
+| `decoding`    | `sync`, `async`, `auto`                           | `sync`      | `false`  | Sets the image decoding strategy. Representing a hint given to the browser on how it should decode the image.                                                             |
+| `className`   | `string`                                          |             | `false`  | Sets a custom CSS class                                                                                                                                                   |
 
 ### Card.Icon
 

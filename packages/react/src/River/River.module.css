@@ -47,7 +47,7 @@
   }
 
   .River--60-40 {
-    grid-template-columns: [content] calc(40% - var(--base-size-12)) [visual] calc(60% - var(--base-size-12));
+    grid-template-columns: [content] 4fr [visual] 6fr;
   }
 
   .River--align-start {
@@ -59,7 +59,7 @@
   }
 
   .River--align-end.River--60-40 {
-    grid-template-columns: [visual] calc(60% - var(--base-size-12)) [content] calc(40% - var(--base-size-12));
+    grid-template-columns: [visual] 6fr [content] 4fr;
   }
 
   .River__content {

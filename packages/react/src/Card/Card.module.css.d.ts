@@ -3,6 +3,7 @@ declare const styles: {
   readonly "Card--has-icon": string;
   readonly "Card__label": string;
   readonly "Card__icon": string;
+  readonly "Card__image": string;
   readonly "Card__icon--badge": string;
   readonly "Card__heading": string;
   readonly "Card__description": string;

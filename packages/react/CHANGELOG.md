@@ -1,5 +1,52 @@
 # @primer/react-brand
 
+## 0.17.1
+
+### Patch Changes
+
+- [#253](https://github.com/primer/brand/pull/253) [`4f77746`](https://github.com/primer/brand/commit/4f777466a6b03a73904e48b6df38aa846a64c450) Thanks [@josepmartins](https://github.com/josepmartins)! - Added support for `Image` in the `Card` component. The new `Card.Image` child is optional, and can be used alongside a `Card.Label`. Image aspect ratio can be controlled using the `aspectRatio` prop.
+
+  ```jsx
+  <Card href="https://github.com">
+    <Card.Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" aspectRatio="16:9" alt=" " />
+    <Card.Heading>Code search & code view</Card.Heading>
+    <Card.Description>
+      Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
+    </Card.Description>
+  </Card>
+  ```
+
+* [#258](https://github.com/primer/brand/pull/258) [`d8ab2c9`](https://github.com/primer/brand/commit/d8ab2c9ba74579a98813e568927d792090f13a66) Thanks [@rezrah](https://github.com/rezrah)! - `Grid.Column` now spans full width by default when using responsive API
+
+  ```jsx
+  <Grid>
+    <Grid.Column
+      span={{
+        large: 6
+      }}
+    ></Grid.Column>
+    <Grid.Column
+      span={{
+        xsmall: 3,
+        large: 6
+      }}
+    ></Grid.Column>
+  </Grid>
+  ```
+
+- [#258](https://github.com/primer/brand/pull/258) [`d8ab2c9`](https://github.com/primer/brand/commit/d8ab2c9ba74579a98813e568927d792090f13a66) Thanks [@rezrah](https://github.com/rezrah)! - Add `brand` prefix to Grid component design tokens.
+
+  ```diff
+  - --grid-spacing-margin
+  + --brand-Grid-spacing-margin
+  ```
+
+* [#256](https://github.com/primer/brand/pull/256) [`e98a121`](https://github.com/primer/brand/commit/e98a1219a6df4fac4a502d7cae0183c5d6f80f71) Thanks [@rezrah](https://github.com/rezrah)! - Add escape-hatch for no title in SubdomainNavBar
+
+  ```jsx
+  <SubdomainNavBar title="" />
+  ```
+
 ## 0.17.0
 
 ### Minor Changes
