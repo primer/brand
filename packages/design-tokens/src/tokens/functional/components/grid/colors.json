@@ -1,10 +1,12 @@
 {
-  "grid": {
-    "column": {
-      "bgColor": {
-        "overlay": {
-          "value": "hsl(var(--base-color-scale-red-4-hsl) / 30%)",
-          "dark": "hsl(var(--base-color-scale-pink-2-hsl) / 30%)"
+  "brand": {
+    "Grid": {
+      "column": {
+        "bgColor": {
+          "overlay": {
+            "value": "hsl(var(--base-color-scale-red-4-hsl) / 30%)",
+            "dark": "hsl(var(--base-color-scale-pink-2-hsl) / 30%)"
+          }
         }
       }
     }
