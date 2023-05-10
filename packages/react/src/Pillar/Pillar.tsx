@@ -56,7 +56,7 @@ const PillarRoot = forwardRef(
       return false
     })
 
-    const validElements = ['div', 'span', 'section']
+    const validElements = ['div', 'span', 'article']
     const Component = validElements.includes(as) ? as : 'div'
 
     return (
