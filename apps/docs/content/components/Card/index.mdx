@@ -1,0 +1,72 @@
+---
+title: Card
+status: Experimental
+source: https://github.com/primer/brand/tree/main/packages/react/src/Card/Card.tsx
+storybook: '/brand/storybook/?path=/story/components-card--default'
+description: Use the Card component to display information in a compact way and link to other internal pages.
+---
+
+import ComponentLayout from '../../../src/layouts/component-layout'
+export default ComponentLayout
+
+## Anatomy
+
+![An image showing the Card anatomy with an icon as a visual asset, a heading, a description and a CTA text in a vertical order.](https://github.com/primer/brand/assets/912236/633b83d8-4ea8-49bd-9d6c-45a1989060d9)
+
+### Visual asset
+
+The visual asset is optional and can be an image or an icon. It can be used to provide a visual cue to the user about the content of the card. To avoid visual noise, we recommend using only one icon or image, but not both in the same card.
+
+![An image showing two Cards, onw with and Icon and another one with an Image as the visual assets options.](https://github.com/primer/brand/assets/912236/be65583b-f6f0-438a-8d2c-6b7a0a9fd3de)
+
+### Label
+
+The label can be used to indicate the type of content or the status of the card. For example, it can be used to indicate that the content is `new` or that it is a `beta` feature. The label is optional and can be used along with a visual asset.
+
+![An image showing two Cards, one with a Label and another one with Label and Icon.](https://github.com/primer/brand/assets/912236/2d84fe89-2735-451e-9d1f-9a2f0297e7b5)
+
+### Heading
+
+The heading is the main title of the card. It should be short and concise.
+
+### Description
+
+The description is an optional short text that extends the information provided by the heading.
+
+### CTA
+
+The CTA is a text that indicates the action that will be performed when the user clicks on the card. It defaults to "Learn more".
+
+## Usage
+
+Cards are a clickable excerpt leading the fuller form of the content they summarize. They introduce the core element of the content behind it and always link to it.
+
+### Keep content simple
+
+Cards should be used to display information in a compact way. Avoid using them to display long texts or complex information.
+
+### Stacked
+
+Cards can be stacked to display a list of items that are related to each other. When used in a stack, provide either a visual asset for all cards or none. If you provide a visual asset for some cards and not for others, it will create visual noise and make the stack look unbalanced. The visual asset should be the same type for all cards, so either an icon or an image.
+
+For a better visual experience, we recommend using similar length size for the heading and description as well.
+
+<DoDontContainer stacked>
+  <Do>
+    <img src="https://github.com/primer/brand/assets/912236/66394dda-13de-4c86-bd82-534d99d593d8" />
+    <Caption>
+      Use the same type of visual asset when stacking cards and a similar lenght
+      size for the content.
+    </Caption>
+  </Do>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/912236/c612ccf8-7c98-4213-92b9-2fdf6f0f1398" />
+    <Caption>
+      Don't use different lenght sizes for the title or the description content.
+    </Caption>
+  </Dont>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/912236/a665b68d-1a9e-421f-a230-60b5763b901e" />
+    <Caption>Don't use different Image or Icon sizes.</Caption>
+  </Dont>
+</DoDontContainer>
