@@ -83,7 +83,6 @@ export const WithIconSVG = () => (
           </g>
         </svg>
       }
-      hasBackground
       color="purple"
     />
     <Pillar.Heading>Code search & code view</Pillar.Heading>

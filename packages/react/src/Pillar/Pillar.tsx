@@ -1,4 +1,4 @@
-import React, {forwardRef, PropsWithChildren, type Ref} from 'react'
+import React, {forwardRef, PropsWithChildren, HTMLAttributes, type Ref} from 'react'
 import clsx from 'clsx'
 import {Heading, HeadingTags, HeadingProps, Text} from '..'
 import type {BaseProps} from '../component-helpers'
@@ -18,7 +18,7 @@ import {Icon as IconProps} from '@primer/octicons-react'
 export const PillarIconColors = Colors
 
 export const defaultPillarIconColor = PillarIconColors[0]
-export type PillarProps<C extends keyof JSX.IntrinsicElements = 'div'> = BaseProps<C> & {
+export type PillarProps<C extends keyof JSX.IntrinsicElements = 'div'> = React.HTMLAttributes<C> & {
   /**
    * The HTML element used to render the grid.
    */
@@ -43,7 +43,7 @@ export type PillarProps<C extends keyof JSX.IntrinsicElements = 'div'> = BasePro
 
 const PillarRoot = forwardRef(
   (
-    {children, className, as = 'div', align = 'start', ...props}: PropsWithChildren<PillarProps>,
+    {children, className, as = 'div', align = 'start', ...rest}: PropsWithChildren<PillarProps>,
     ref: Ref<HTMLDivElement>
   ) => {
     const filteredChildren = React.Children.toArray(children).filter(child => {
@@ -59,7 +59,11 @@ const PillarRoot = forwardRef(
     const Component = validElements.includes(as) ? as : 'div'
 
     return (
-      <Component className={clsx(styles.Pillar, className, styles[`Pillar--align-${align}`])} ref={ref} {...props}>
+      <Component
+        className={clsx(styles.Pillar, className, styles[`Pillar--align-${align}`])}
+        ref={ref}
+        {...(rest as HTMLAttributes<HTMLElement>)}
+      >
         {filteredChildren}
       </Component>
     )
