@@ -274,21 +274,22 @@ function SocialLogomarks({socialLinks, logoHref}: SocialLogomarksProps) {
   )
 }
 
-type LinkProps = {
-  href: string
-} & BaseProps<HTMLAnchorElement>
+type LinkProps<C extends React.ElementType> = BaseProps<C> & {as?: C} & Omit<React.ComponentPropsWithoutRef<C>, keyof C>
 
-function Link({href, children}: PropsWithChildren<LinkProps>) {
+const Link = <C extends React.ElementType = 'a'>({as, children, ...rest}: PropsWithChildren<LinkProps<C>>) => {
+  const Component = as || 'a'
   return (
-    <a
-      href={href}
+    <Component
       className={styles['Footer__link']}
-      data-analytics-event={`{"category":"Footer","action":"go to ${href}","label":"text:${children}"}`}
+      data-analytics-event={
+        rest['href'] ? `{"category":"Footer","action":"go to ${rest['href']}","label":"text:${children}"}` : undefined
+      }
+      {...rest}
     >
       <Text variant="muted" size="300">
         {children}
       </Text>
-    </a>
+    </Component>
   )
 }
 
