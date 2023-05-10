@@ -166,3 +166,9 @@
 .Label__label {
   font-weight: var(--base-text-weight-semibold);
 }
+
+@media (forced-colors: active) {
+  .Label {
+    outline: var(--brand-borderWidth-thin) solid transparent;
+  }
+}
