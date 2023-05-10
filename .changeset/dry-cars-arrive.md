@@ -2,7 +2,7 @@
 '@primer/react-brand': minor
 ---
 
-Pillar Component
+Add Pillar component
 
 Example Usage
 
