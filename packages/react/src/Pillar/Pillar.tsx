@@ -1,5 +1,4 @@
-import React, {forwardRef} from 'react'
-import {isFragment} from 'react-is'
+import React, {forwardRef, PropsWithChildren, type Ref} from 'react'
 import clsx from 'clsx'
 import {Heading, HeadingTags, HeadingProps, Text} from '..'
 import type {BaseProps} from '../component-helpers'
@@ -20,7 +19,11 @@ import {Icon as IconProps} from '@primer/octicons-react'
 export const PillarIconColors = Colors
 
 export const defaultPillarIconColor = PillarIconColors[0]
-export type PillarProps = {
+export type PillarProps<C extends keyof JSX.IntrinsicElements = 'div'> = BaseProps<C> & {
+  /**
+   * The HTML element used to render the grid.
+   */
+  as?: C | 'div' | 'span' | 'article'
   /**
    * Valid children include Pillar.Image, Pillar.Heading, and Pillar.Description
    */
@@ -29,35 +32,40 @@ export type PillarProps = {
     | React.ReactElement<PillarIconProps>
     | React.ReactElement<PillarHeadingProps>
     | React.ReactElement<PillarDescriptionProps>
-
   /**
    * Aligns the pillar content
    */
   align?: 'start' | 'center'
-} & BaseProps<HTMLDivElement> &
-  React.ComponentPropsWithoutRef<'div'>
+} & (C extends 'span'
+    ? BaseProps<HTMLSpanElement>
+    : C extends 'article'
+    ? BaseProps<HTMLElement>
+    : BaseProps<HTMLDivElement>)
 
-const PillarRoot = forwardRef<HTMLDivElement, PillarProps>(({children, className, align = 'start', ...props}, ref) => {
-  const filteredChildren = React.Children.toArray(children).filter(child => {
-    if (React.isValidElement(child) && typeof child.type !== 'string') {
-      if (
-        isFragment(child) ||
-        child.type === PillarIcon ||
-        child.type === PillarHeading ||
-        child.type === PillarDescription
-      ) {
-        return true
+const PillarRoot = forwardRef(
+  (
+    {children, className, as = 'div', align = 'start', ...props}: PropsWithChildren<PillarProps>,
+    ref: Ref<HTMLDivElement>
+  ) => {
+    const filteredChildren = React.Children.toArray(children).filter(child => {
+      if (React.isValidElement(child) && typeof child.type !== 'string') {
+        if (child.type === PillarIcon || child.type === PillarHeading || child.type === PillarDescription) {
+          return true
+        }
       }
-    }
-    return false
-  })
+      return false
+    })
 
-  return (
-    <div className={clsx(styles.Pillar, className, styles[`Pillar--align-${align}`])} ref={ref} {...props}>
-      {filteredChildren}
-    </div>
-  )
-})
+    const validElements = ['div', 'span', 'section']
+    const Component = validElements.includes(as) ? as : 'div'
+
+    return (
+      <Component className={clsx(styles.Pillar, className, styles[`Pillar--align-${align}`])} ref={ref} {...props}>
+        {filteredChildren}
+      </Component>
+    )
+  }
+)
 
 type PillarIconProps = BaseProps<HTMLSpanElement> & {
   icon: React.ReactNode | IconProps
