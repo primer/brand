@@ -7,7 +7,6 @@ import {Colors} from '../constants'
 /**
  * Design tokens
  */
-import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/pillar/base.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/pillar/colors-with-modes.css'
 
 /**

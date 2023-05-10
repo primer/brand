@@ -27,7 +27,7 @@ export const IconColors: ComponentStory<typeof Pillar> = () => {
       {PillarIconColors.map((color, id) => {
         return (
           <Pillar key={id} style={{maxWidth: '25%'}}>
-            <Pillar.Icon icon={CopilotIcon} hasBackground color={color} />
+            <Pillar.Icon icon={CopilotIcon} color={color} />
             <Pillar.Heading>Collaboration is the key to DevOps success</Pillar.Heading>
             <Pillar.Description>
               This Pillar uses the <b>{color}</b> icon color
@@ -137,7 +137,7 @@ export const Stacked: ComponentStory<typeof Pillar> = () => {
       {fixtureData.map(({heading, description, icon, iconColor}, id) => {
         return (
           <Pillar key={id} style={{width: '33.3333%'}}>
-            <Pillar.Icon icon={icon} hasBackground color={iconColor} />
+            <Pillar.Icon icon={icon} color={iconColor} />
             <Pillar.Heading>{heading}</Pillar.Heading>
             <Pillar.Description>{description}</Pillar.Description>
           </Pillar>
@@ -153,7 +153,7 @@ export const StackedCentered: ComponentStory<typeof Pillar> = () => {
       {fixtureData.map(({heading, description, icon, iconColor}, id) => {
         return (
           <Pillar align="center" key={id} style={{width: '33.3333%'}}>
-            <Pillar.Icon icon={icon} hasBackground color={iconColor} />
+            <Pillar.Icon icon={icon} color={iconColor} />
             <Pillar.Heading>{heading}</Pillar.Heading>
             <Pillar.Description>{description}</Pillar.Description>
           </Pillar>

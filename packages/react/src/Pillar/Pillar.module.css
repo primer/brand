@@ -1,5 +1,5 @@
 .Pillar {
-  max-width: var(--brand-Pillar-maxWidth);
+  max-width: 50ch;
   color: var(--brand-color-text-default);
   display: flex;
   flex-direction: column;
