@@ -95,6 +95,11 @@
   align-items: center;
 }
 
+.Card__icon svg {
+  width: var(--base-size-20);
+  height: var(--base-size-20);
+}
+
 .Card__icon--color-default {
   color: var(--brand-Card-icon-color-default);
 }
