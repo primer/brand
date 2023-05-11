@@ -160,7 +160,7 @@ function CardIcon({
       )}
       {...rest}
     >
-      {typeof Icon === 'function' ? <Icon size={20} /> : React.isValidElement(Icon) && React.cloneElement(Icon)}
+      {typeof Icon === 'function' ? <Icon /> : React.isValidElement(Icon) && React.cloneElement(Icon)}
     </span>
   )
 }

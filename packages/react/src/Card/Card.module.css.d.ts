@@ -8,6 +8,7 @@ declare const styles: {
   readonly "Card__heading": string;
   readonly "Card__description": string;
   readonly "Card__action": string;
+  readonly "Card__icon--svg": string;
   readonly "Card__icon--color-default": string;
   readonly "Card__icon--color-blue": string;
   readonly "Card__icon--color-coral": string;
