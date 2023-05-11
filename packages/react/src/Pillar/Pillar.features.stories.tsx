@@ -1,7 +1,7 @@
 import React from 'react'
 import {ComponentStory, ComponentMeta} from '@storybook/react'
 import {Pillar, PillarIconColors} from '.'
-import {Stack} from '..'
+import {Stack, Grid} from '..'
 import {CopilotIcon, RocketIcon, GitBranchIcon} from '@primer/octicons-react'
 
 export default {
@@ -23,19 +23,21 @@ export const Icon: ComponentStory<typeof Pillar> = () => {
 
 export const IconColors: ComponentStory<typeof Pillar> = () => {
   return (
-    <Stack direction="horizontal" gap={'spacious'} style={{flexWrap: 'wrap'}}>
+    <Grid>
       {PillarIconColors.map((color, id) => {
         return (
-          <Pillar key={id} style={{maxWidth: '25%'}}>
-            <Pillar.Icon icon={CopilotIcon} color={color} />
-            <Pillar.Heading>Collaboration is the key to DevOps success</Pillar.Heading>
-            <Pillar.Description>
-              This Pillar uses the <b>{color}</b> icon color
-            </Pillar.Description>
-          </Pillar>
+          <Grid.Column key={id} span={4}>
+            <Pillar>
+              <Pillar.Icon icon={CopilotIcon} color={color} />
+              <Pillar.Heading>Collaboration is the key to DevOps success</Pillar.Heading>
+              <Pillar.Description>
+                This Pillar uses the <b>{color}</b> icon color
+              </Pillar.Description>
+            </Pillar>
+          </Grid.Column>
         )
       })}
-    </Stack>
+    </Grid>
   )
 }
 
