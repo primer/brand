@@ -20,7 +20,7 @@ export const PillarIconColors = Colors
 export const defaultPillarIconColor = PillarIconColors[0]
 export type PillarProps<C extends keyof JSX.IntrinsicElements = 'div'> = React.HTMLAttributes<C> & {
   /**
-   * The HTML element used to render the grid.
+   * The HTML element used to render the Pillar.
    */
   as?: C | 'div' | 'article'
   /**
