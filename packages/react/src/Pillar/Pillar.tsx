@@ -22,7 +22,7 @@ export type PillarProps<C extends keyof JSX.IntrinsicElements = 'div'> = React.H
   /**
    * The HTML element used to render the grid.
    */
-  as?: C | 'div' | 'span' | 'article'
+  as?: C | 'div' | 'article'
   /**
    * Valid children include Pillar.Image, Pillar.Heading, and Pillar.Description
    */
@@ -35,11 +35,7 @@ export type PillarProps<C extends keyof JSX.IntrinsicElements = 'div'> = React.H
    * Aligns the pillar content
    */
   align?: 'start' | 'center'
-} & (C extends 'span'
-    ? BaseProps<HTMLSpanElement>
-    : C extends 'article'
-    ? BaseProps<HTMLElement>
-    : BaseProps<HTMLDivElement>)
+} & (C extends 'article' ? BaseProps<HTMLElement> : BaseProps<HTMLDivElement>)
 
 const PillarRoot = forwardRef(
   (
@@ -55,7 +51,7 @@ const PillarRoot = forwardRef(
       return false
     })
 
-    const validElements = ['div', 'span', 'article']
+    const validElements = ['div', 'article']
     const Component = validElements.includes(as) ? as : 'div'
 
     return (
