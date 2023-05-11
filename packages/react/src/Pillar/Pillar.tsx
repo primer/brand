@@ -94,9 +94,7 @@ const PillarHeading = forwardRef<HTMLHeadingElement, PillarHeadingProps>(
   }
 )
 
-type PillarDescriptionProps = BaseProps<HTMLParagraphElement> & {
-  children: React.ReactNode | React.ReactNode[]
-}
+type PillarDescriptionProps = PropsWithChildren<BaseProps<HTMLParagraphElement>>
 
 const PillarDescription = forwardRef<HTMLParagraphElement, PillarDescriptionProps>(
   ({children, className, ...rest}, ref) => {
