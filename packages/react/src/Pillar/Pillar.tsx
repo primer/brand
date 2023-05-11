@@ -24,18 +24,10 @@ export type PillarProps<C extends keyof JSX.IntrinsicElements = 'div'> = React.H
    */
   as?: C | 'div' | 'article'
   /**
-   * Valid children include Pillar.Image, Pillar.Heading, and Pillar.Description
-   */
-  children:
-    | React.ReactNode
-    | React.ReactElement<PillarIconProps>
-    | React.ReactElement<PillarHeadingProps>
-    | React.ReactElement<PillarDescriptionProps>
-  /**
    * Aligns the pillar content
    */
   align?: 'start' | 'center'
-} & (C extends 'article' ? BaseProps<HTMLElement> : BaseProps<HTMLDivElement>)
+} & (C extends 'article' ? PropsWithChildren<BaseProps<HTMLElement>> : PropsWithChildren<BaseProps<HTMLDivElement>>)
 
 const PillarRoot = forwardRef(
   (
