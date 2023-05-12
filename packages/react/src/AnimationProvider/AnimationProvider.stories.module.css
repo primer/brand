@@ -1,0 +1,153 @@
+/**
+ * Hero example
+ */
+.DiscussionsExampleHero {
+  --discussions-example-hero-shadow: 0 0 0 1px rgba(53, 72, 91, 0.14), 0 2.75px 2.21px rgba(0, 0, 0, 0.07),
+    0 6.65px 5.32px rgba(0, 0, 0, 0.043), 0 12.5px 10px rgba(0, 0, 0, 0.03), 0 22px 18px rgba(0, 0, 0, 0.03),
+    0 42px 33.4px rgba(0, 0, 0, 0.02), 0 100px 80px rgba(0, 0, 0, 0.017);
+  max-width: 1024px;
+  margin: var(--base-size-128) auto;
+  position: relative;
+}
+
+.DiscussionsExampleHero::before {
+  content: '';
+  position: absolute;
+  inset: var(--base-size-16);
+  filter: blur(var(--base-size-48));
+  transform: translateZ(0);
+  background: linear-gradient(
+    to right,
+    hsl(var(--base-color-scale-blue-2-hsl)),
+    hsl(var(--base-color-scale-purple-2-hsl))
+  );
+}
+
+.DiscussionsExampleHero__image {
+  box-shadow: var(--discussions-example-hero-shadow);
+  width: 100%;
+  height: auto;
+  position: relative;
+  border-radius: var(--brand-borderRadius-medium);
+}
+
+.DiscussionsExampleHero__label {
+  box-shadow: var(--discussions-example-hero-shadow);
+
+  padding-left: var(--base-size-24);
+  padding-right: var(--base-size-24);
+  height: var(--base-size-48);
+  background-color: var(--brand-color-canvas-default);
+}
+
+.DiscussionsExampleHero__label svg {
+  height: var(--base-size-24);
+  width: var(--base-size-24);
+}
+
+.DiscussionsExampleHero__label--one {
+  position: absolute;
+  top: -32px;
+  left: 20%;
+}
+
+.DiscussionsExampleHero__label--two {
+  position: absolute;
+  top: 20%;
+  right: -5%;
+  transform: scale(1.2);
+}
+
+.DiscussionsExampleHero__label--three {
+  position: absolute;
+  bottom: -3%;
+  left: -2%;
+  transform: scale(1.5);
+}
+
+.DiscussionsExampleHero__video {
+  position: absolute;
+  top: 30%;
+  left: 60%;
+}
+
+/**
+ * Progress bar example
+ */
+.ProgressBarExamples {
+  max-width: 1024px;
+  margin: var(--base-size-128) auto;
+}
+
+.ProgressBarExample {
+  position: relative;
+}
+
+.ProgressBarExample__bar {
+  background-color: var(--brand-color-neutral-subtle);
+  border-radius: var(--brand-borderRadius-medium);
+  display: flex;
+  height: var(--base-size-8);
+  overflow: hidden;
+}
+
+.ProgressBarExample__barInner {
+  background-color: var(--base-color-scale-blue-4);
+  height: 100%;
+}
+
+/**
+ * Playground example
+ */
+.Playground {
+  background-color: var(--brand-color-neutral-subtle);
+  max-width: 200px;
+  min-height: 200px;
+}
+
+/*
+* TimelineBar example
+*/
+.TimelineBarExample {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--brand-color-canvas-default);
+  padding: var(--base-size-48) var(--base-size-48) var(--base-size-96);
+  justify-content: center;
+}
+
+.TimelineBarExample__start {
+  position: relative;
+}
+
+.TimelineBarExample__line {
+  background: linear-gradient(#56d364, #2ea043, var(--brand-color-canvas-default));
+  width: var(--base-size-4);
+  height: 200px;
+  border-radius: var(--brand-borderRadius-medium);
+  display: block;
+  position: absolute;
+  left: calc(50% - var(--base-size-4));
+  top: 60px;
+}
+
+.TimelineBarExample__icon {
+  padding: var(--base-size-8);
+  border-radius: 50%;
+  background-color: hsl(var(--base-color-scale-green-7-hsl) / 1);
+  display: flex;
+  height: var(--base-size-48);
+  width: var(--base-size-48);
+  align-items: center;
+  justify-content: center;
+}
+
+.TimelineBarExample__text {
+  max-width: 650px;
+}
+
+.TimelineBarExample__highlightedText {
+  color: var(--base-color-scale-green-0);
+}

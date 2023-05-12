@@ -1,0 +1,214 @@
+---
+title: Animation
+storybook: '/brand/storybook/?path=/story/components-animations--playground'
+description: Use animations to add visual interest and interactivity to a web page or application.
+---
+
+import {PropTableValues} from '../../src/components'
+import {Link} from 'gatsby'
+import {AnimationVariants, Label} from '@primer/react-brand'
+import {supportedComponents} from '../../scripts/components-with-animation'
+
+Several Primer Brand components provide animation presets. These components are:
+
+<PropTableValues
+  values={supportedComponents}
+  commaSeparated
+  removeApostrophes
+/>
+
+<br />
+<br />
+
+You can use the `animation` prop available on these components to specify an animation preset.
+
+An `AnimationProvider` is required to enable animations globally on the page. This should wrap your application, much like the `ThemeProvider`.
+
+```js
+import {AnimationProvider} from '@primer/react-brand'
+```
+
+Supported animations types include:
+
+<PropTableValues values={AnimationVariants} commaSeparated removeApostrophes />
+
+<br />
+<br />
+
+To use a specific animation variant, simply pass the `animate` prop with the desired variant. This value can either be a `string` or and `Object`. The latter provides more granular control over the animation delay, durations and easing.
+
+Use the example below to try each animation variant.
+
+<br />
+
+```javascript live noinline
+const App = () => {
+  const [animationVariant, setAnimationVariant] = React.useState('fade-in')
+
+  const handleAnimationChange = (event) =>
+    setAnimationVariant(event.target.value)
+
+  return (
+    <AnimationProvider key={animationVariant}>
+      <Stack
+        direction="horizontal"
+        alignItems="center"
+        justifyContent="center"
+        style={{height: 200}}
+      >
+        <Image
+          animate={{
+            variant: animationVariant,
+            delay: 100,
+          }}
+          src="https://via.placeholder.com/150x75/D0D7DE/D0D7DE.png"
+          alt="placeholder with gray background and no foreground text"
+        />
+        <Image
+          animate={{
+            variant: animationVariant,
+            delay: 200,
+          }}
+          src="https://via.placeholder.com/150x75/D0D7DE/D0D7DE.png"
+          alt="placeholder with gray background and no foreground text"
+        />
+        <Image
+          animate={{
+            variant: animationVariant,
+            delay: 300,
+          }}
+          src="https://via.placeholder.com/150x75/D0D7DE/D0D7DE.png"
+          alt="placeholder with gray background and no foreground text"
+        />
+      </Stack>
+
+      <Stack direction="horizontal" gap="spacious" justifyContent="center">
+        <FormControl>
+          <FormControl.Label>Animation</FormControl.Label>
+          <Select
+            defaultValue={animationVariant}
+            onChange={handleAnimationChange}
+          >
+            {AnimationVariants.map((option) => (
+              <Select.Option key={option} value={option}>
+                {option}
+              </Select.Option>
+            ))}
+          </Select>
+        </FormControl>
+      </Stack>
+    </AnimationProvider>
+  )
+}
+
+render(App)
+```
+
+## Examples
+
+Animations should be used sparingly. The examples below demonstrate some valid use-cases.
+
+### River
+
+Apply animation to `River.Content` instead of the entire element.
+
+```jsx live
+<AnimationProvider>
+  <River>
+    <River.Visual>
+      <img
+        src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
+        alt="placeholder, blank area with an off-white background color"
+      />
+    </River.Visual>
+    <River.Content animate="slide-in-right">
+      <Heading>Heading</Heading>
+      <Text>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
+        ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
+        elementum.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </River.Content>
+  </River>
+</AnimationProvider>
+```
+
+### Cards
+
+Use `delay` to stagger animations on adjacent elements.
+
+```jsx live
+<AnimationProvider>
+  <Grid>
+    <Grid.Column
+      span={{
+        xsmall: 12,
+        large: 6,
+      }}
+    >
+      <Card
+        href="https://github.com"
+        animate={{variant: 'scale-in-up', delay: 500}}
+      >
+        <Card.Icon icon={CopilotIcon} color="indigo" hasBackground />
+        <Card.Label>Limited</Card.Label>
+        <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+        <Card.Description>
+          Everything you need to know about getting started with GitHub Actions.
+        </Card.Description>
+      </Card>
+    </Grid.Column>
+    <Grid.Column
+      span={{
+        xsmall: 12,
+        large: 6,
+      }}
+    >
+      <Card
+        href="https://github.com"
+        animate={{variant: 'scale-in-up', delay: 800}}
+      >
+        <Card.Icon icon={RocketIcon} hasBackground color="blue" />
+        <Card.Label>Limited</Card.Label>
+        <Card.Heading>GitHub Actions cheat sheet and more</Card.Heading>
+        <Card.Description>
+          In a recent study, 70% of organizations reported they had adopted
+          DevOps.
+        </Card.Description>
+      </Card>
+    </Grid.Column>
+  </Grid>
+</AnimationProvider>
+```
+
+[See Storybook for more examples of animation](/brand/storybook/?path=/story/components-animations--playground).
+
+## Props
+
+### AnimationProvider <Label>Required</Label>
+
+| Name                | Type                                                                                                            | Default              | Required | Description                                                                    |
+| ------------------- | --------------------------------------------------------------------------------------------------------------- | -------------------- | -------- | ------------------------------------------------------------------------------ |
+| `children`          | `ReactNode`                                                                                                     |                      | `true`   | The children to render within the `AnimationProvider`                          |
+| `disableAnimations` | `boolean`                                                                                                       |                      | `false`  | Prevents animations from running inside the provider                           |
+| `animationTrigger`  | <PropTableValues values={['click', 'on-visible']} addLineBreaks />                                              | `'on-visible'`       | `false`  | Controls the trigger method for the animation. One of `click` or `on-visible`. |
+| `visibilityOptions` | <PropTableValues values={['bottom-of-screen', 'middle-of-screen', 'about-to-leave', 'number']} addLineBreaks /> | `'bottom-of-screen'` | `false`  | Controls the intersection observer options for the animation.                  |
+| `runOnce`           | `boolean`                                                                                                       | `false`              | `false`  | Will persist the animation end-state after the animation has completed.        |
+
+### animate <Label>Required</Label>
+
+`animate` is a prop available on the following components:
+
+<PropTableValues
+  values={supportedComponents}
+  commaSeparated
+  removeApostrophes
+/>
+
+<br />
+<br />
+
+| Name      | Type                                                                     |
+| --------- | ------------------------------------------------------------------------ |
+| `animate` | <PropTableValues values={AnimationVariants} addLineBreaks /> \| `Object` |

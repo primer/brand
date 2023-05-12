@@ -1,0 +1,32 @@
+declare const styles: {
+  readonly "Animation": string;
+  readonly "Animation--fade-in": string;
+  readonly "Animation--active": string;
+  readonly "fade-in": string;
+  readonly "Animation--fade-out": string;
+  readonly "fade-out": string;
+  readonly "Animation--slide-in-up": string;
+  readonly "slide-in-up": string;
+  readonly "Animation--slide-down": string;
+  readonly "slide-down": string;
+  readonly "Animation--slide-in-left": string;
+  readonly "slide-in-left": string;
+  readonly "Animation--slide-in-right": string;
+  readonly "slide-in-right": string;
+  readonly "Animation--scale-in": string;
+  readonly "scale-in": string;
+  readonly "Animation--scale-in-up": string;
+  readonly "scale-in-up": string;
+  readonly "Animation--scale-in-down": string;
+  readonly "scale-in-down": string;
+  readonly "Animation--scale-in-right": string;
+  readonly "scale-in-right": string;
+  readonly "Animation--scale-in-left": string;
+  readonly "scale-in-left": string;
+  readonly "Animation--fill-in-right": string;
+  readonly "fill-in-right": string;
+  readonly "Animation--scale-in-top": string;
+  readonly "scale-in-top": string;
+};
+export = styles;
+

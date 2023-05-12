@@ -1,12 +1,13 @@
 import React, {forwardRef, PropsWithChildren, type Ref} from 'react'
 import clsx from 'clsx'
-import {Heading, LinkProps, HeadingProps, TextProps, Text, Link} from '../'
+import {Heading, LinkProps, HeadingProps, TextProps, Text, Link, useAnimation} from '../'
 
 import type {BaseProps} from '../component-helpers'
+
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/river/base.css'
 import styles from './River.module.css'
 
-export type RiverProps = BaseProps<HTMLElement> & {
+export type RiverProps = {
   /**
    * Only specific children are valid.
    * These include: `River.Visual` and `River.Content`.
@@ -22,7 +23,8 @@ export type RiverProps = BaseProps<HTMLElement> & {
    * Adjust the order of the `Content` column. The default is `start`.
    */
   align?: 'start' | 'end' | 'center'
-}
+} & BaseProps<HTMLElement> &
+  React.HTMLAttributes<HTMLElement>
 
 export const defaultRiverImageTextRatio = '50:50'
 export const defaultRiverAlign = 'start'
@@ -34,9 +36,19 @@ type ValidRootChildren = {
 
 const Root = forwardRef(
   (
-    {imageTextRatio = defaultRiverImageTextRatio, align = defaultRiverAlign, className, children, ...rest}: RiverProps,
+    {
+      animate,
+      imageTextRatio = defaultRiverImageTextRatio,
+      align = defaultRiverAlign,
+      className,
+      children,
+      style,
+      ...rest
+    }: RiverProps,
     ref: Ref<HTMLElement>
   ) => {
+    const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
+
     const {Visual: VisualChild, Content: ContentChild} = React.Children.toArray(children).reduce<ValidRootChildren>(
       (acc, child) => {
         if (React.isValidElement(child) && typeof child.type !== 'string') {
@@ -57,14 +69,16 @@ const Root = forwardRef(
 
     return (
       <section
+        ref={ref}
         className={clsx(
           styles.River,
           styles[`River--${imageTextRatio.replace(':', '-')}`],
           styles[`River--align-${align}`],
+          animationClasses,
           className
         )}
+        style={{...animationInlineStyles, ...style}}
         {...rest}
-        ref={ref}
       >
         {orderedChildren}
       </section>
@@ -94,13 +108,23 @@ type RiverContentProps = BaseProps<HTMLDivElement> & {
    * to enforce correct HTML semantics.
    */
   children: React.ReactElement<TextProps> | React.ReactElement<HeadingProps | TextProps | LinkProps>[]
-}
+} & React.HTMLAttributes<HTMLDivElement>
 
 const Content = forwardRef(
   (
-    {children, leadingComponent: LeadingComponent, trailingComponent: TrailingComponent, ...rest}: RiverContentProps,
+    {
+      animate,
+      children,
+      className,
+      leadingComponent: LeadingComponent,
+      trailingComponent: TrailingComponent,
+      style,
+      ...rest
+    }: RiverContentProps,
     ref: Ref<HTMLDivElement>
   ) => {
+    const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
+
     const HeadingChild = React.Children.toArray(children).find(
       child => React.isValidElement(child) && child.type === Heading
     )
@@ -110,7 +134,12 @@ const Content = forwardRef(
     const LinkChild = React.Children.toArray(children).find(child => React.isValidElement(child) && child.type === Link)
 
     return (
-      <div className={styles.River__content} {...rest} ref={ref}>
+      <div
+        className={clsx(animationClasses, styles.River__content)}
+        style={{...animationInlineStyles, ...style}}
+        {...rest}
+        ref={ref}
+      >
         {LeadingComponent && (
           <div>
             <LeadingComponent />

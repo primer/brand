@@ -1,7 +1,7 @@
 import React, {forwardRef, type Ref} from 'react'
 import clsx from 'clsx'
 import type {BaseProps} from '../component-helpers'
-import {Heading, HeadingTags} from '../Heading'
+import {Heading, HeadingProps, HeadingTags} from '../Heading'
 import {Text} from '../Text'
 import {ButtonGroup} from '../ButtonGroup'
 
@@ -74,16 +74,17 @@ const Root = forwardRef(
   }
 )
 
+const defaultHeadingLevel = 'h3'
+
 type CTABannerHeadingProps = BaseProps<HTMLHeadingElement> & {
   children: React.ReactNode | React.ReactNode[]
-} & HeadingTags
+} & HeadingProps
 
-const defaultHeadingTag = HeadingTags[2]
 const defaultHeadingSize = '2'
 
 const _Heading = forwardRef(
   (
-    {as = defaultHeadingTag, size = defaultHeadingSize, className, children, ...props}: CTABannerHeadingProps,
+    {as = defaultHeadingLevel, size = defaultHeadingSize, className, children, ...props}: CTABannerHeadingProps,
     ref: Ref<HTMLHeadingElement>
   ) => {
     return (

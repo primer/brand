@@ -1,11 +1,12 @@
-import React, {forwardRef, useCallback} from 'react'
+import React, {RefObject, forwardRef, useCallback, useEffect} from 'react'
 import {isFragment} from 'react-is'
 import clsx from 'clsx'
-import {Heading, HeadingTags, Text} from '..'
+import {Heading, HeadingProps, HeadingTags, Text} from '..'
 import {ExpandableArrow} from '../ExpandableArrow'
 import {Label, LabelColors} from '../Label'
 import {Image, ImageProps} from '../Image'
 import type {BaseProps} from '../component-helpers'
+import {useAnimation} from '../AnimationProvider'
 import {Colors} from '../constants'
 
 /**
@@ -20,6 +21,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 import styles from './Card.module.css'
 import stylesLink from '../Link/Link.module.css'
 import {Icon as IconProps} from '@primer/octicons-react'
+import {useProvidedRefOrCreate} from '../hooks/useRef'
 
 export const CardIconColors = Colors
 
@@ -48,9 +50,27 @@ export type CardProps = {
   React.ComponentPropsWithoutRef<'a'>
 
 const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
-  ({onMouseEnter, onMouseLeave, onFocus, onBlur, children, className, ctaText = 'Learn more', href, ...props}, ref) => {
+  (
+    {
+      animate,
+      onMouseEnter,
+      onMouseLeave,
+      onFocus,
+      onBlur,
+      children,
+      className,
+      ctaText = 'Learn more',
+      href,
+      style,
+      ...props
+    },
+    ref
+  ) => {
+    const cardRef = useProvidedRefOrCreate(ref as RefObject<HTMLAnchorElement>)
     const [isHovered, setIsHovered] = React.useState(false)
     const [isFocused, setIsFocused] = React.useState(false)
+
+    const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
 
     const handleMouseEnter = useCallback(
       (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
@@ -104,15 +124,33 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
       child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === CardIcon
     )
 
+    // This removes the global animation classes after the animation has completed
+    // Could be moved into useAnimation hook if this approach is needed in other components
+    useEffect(() => {
+      if (animationClasses) {
+        const refValue = cardRef.current
+        const handleAnimationEnd = () => {
+          refValue?.classList.remove(...animationClasses.split(' '))
+        }
+        refValue?.addEventListener('animationend', handleAnimationEnd)
+        return () => {
+          refValue?.removeEventListener('animationend', handleAnimationEnd)
+        }
+      }
+
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [cardRef])
+
     return (
       <a
         href={href}
-        className={clsx(styles.Card, hasIcon && styles['Card--has-icon'], className)}
+        className={clsx(styles.Card, hasIcon && styles['Card--has-icon'], animationClasses, className)}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
-        ref={ref}
+        ref={cardRef}
+        style={{...animationInlineStyles, ...style}}
         {...props}
       >
         {filteredChildren}
@@ -190,7 +228,7 @@ const CardLabel = forwardRef<HTMLSpanElement, CardLabelProps>(
 
 type CardHeadingProps = BaseProps<HTMLHeadingElement> & {
   children: React.ReactNode | React.ReactNode[]
-  as?: Exclude<HeadingTags['as'], 'h1'>
+  as?: Exclude<HeadingProps['as'], 'h1'>
 }
 
 const CardHeading = forwardRef<HTMLHeadingElement, CardHeadingProps>(

@@ -7,7 +7,8 @@
     "build": "npm run clean && cross-env NODE_ENV=production gatsby build --prefix-paths",
     "build:preview": "npm run clean && cross-env NODE_ENV=production gatsby build",
     "clean": "rm -rf public && rm -rf .cache",
-    "start": "rm -rf .cache && gatsby develop --open"
+    "start": "rm -rf .cache && gatsby develop --open",
+    "build:animation": "node scripts/animation-support.js"
   },
   "dependencies": {
     "@primer/gatsby-theme-doctocat": "^4.4.0",

@@ -1,0 +1,291 @@
+:root {
+  --animation-default-duration: 0.6s;
+  --animation-default-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --animation-default-transition: opacity var(--animation-default-duration) var(--animation-default-ease),
+    transform var(--animation-default-duration) var(--animation-default-ease);
+}
+
+.Animation {
+  transition: var(--animation-default-transition);
+}
+
+/**
+ * Fade in
+ */
+.Animation--fade-in {
+  opacity: 0;
+}
+
+.Animation--fade-in.Animation--active {
+  animation: fade-in var(--animation-default-duration) var(--animation-default-ease) forwards;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/**
+ * Fade out
+ */
+.Animation--fade-out {
+  opacity: 1;
+}
+
+.Animation--fade-out.Animation--active {
+  animation: fade-out var(--animation-default-duration) var(--animation-default-ease) forwards;
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/**
+ * Slide in up
+ */
+.Animation--slide-in-up {
+  opacity: 0;
+}
+
+.Animation--slide-in-up.Animation--active {
+  animation: slide-in-up var(--animation-default-duration) var(--animation-default-ease) forwards;
+}
+
+@keyframes slide-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/**
+ * Slide down
+ */
+.Animation--slide-down {
+  opacity: 0;
+}
+
+.Animation--slide-down.Animation--active {
+  animation: slide-down var(--animation-default-duration) var(--animation-default-ease) forwards;
+}
+
+@keyframes slide-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/**
+ * Slide in left
+ */
+.Animation--slide-in-left {
+  opacity: 0;
+}
+
+.Animation--slide-in-left.Animation--active {
+  animation: slide-in-left var(--animation-default-duration) var(--animation-default-ease) forwards;
+}
+
+@keyframes slide-in-left {
+  0% {
+    opacity: 0;
+    transform: translateX(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/**
+ * Slide in right
+ */
+.Animation--slide-in-right {
+  opacity: 0;
+}
+
+.Animation--slide-in-right.Animation--active {
+  animation: slide-in-right var(--animation-default-duration) var(--animation-default-ease) forwards;
+}
+
+@keyframes slide-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/**
+ * Scale in
+ */
+.Animation--scale-in {
+  opacity: 0;
+}
+
+.Animation--scale-in.Animation--active {
+  animation: scale-in 0.7s var(--animation-default-ease) forwards;
+}
+
+@keyframes scale-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/**
+ * Scale in up
+ */
+.Animation--scale-in-up {
+  opacity: 0;
+}
+
+.Animation--scale-in-up.Animation--active {
+  animation: scale-in-up 0.7s var(--animation-default-ease) forwards;
+}
+
+@keyframes scale-in-up {
+  0% {
+    opacity: 0;
+    transform: scale(0.96) translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/**
+ * Scale in down
+ */
+.Animation--scale-in-down {
+  opacity: 0;
+}
+
+.Animation--scale-in-down.Animation--active {
+  animation: scale-in-down 0.7s var(--animation-default-ease) forwards;
+}
+
+@keyframes scale-in-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px) scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/**
+ * Scale in right
+ */
+.Animation--scale-in-right {
+  opacity: 0;
+}
+
+.Animation--scale-in-right.Animation--active {
+  animation: scale-in-right var(--animation-default-duration) var(--animation-default-ease) forwards;
+}
+
+@keyframes scale-in-right {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/**
+ * Scale in left
+ */
+.Animation--scale-in-left {
+  opacity: 0;
+}
+
+.Animation--scale-in-left.Animation--active {
+  animation: scale-in-left 0.7s var(--animation-default-ease) forwards;
+}
+
+@keyframes scale-in-left {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/**
+ * Fill in right
+ */
+.Animation--fill-in-right {
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+.Animation--fill-in-right.Animation--active {
+  animation: fill-in-right var(--animation-default-duration) var(--animation-default-ease) forwards;
+}
+
+@keyframes fill-in-right {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+/**
+ * Scale in top
+ */
+
+.Animation--scale-in-top {
+  transform-origin: top;
+  transform: scaleY(0);
+}
+
+.Animation--scale-in-top.Animation--active {
+  animation: scale-in-top 0.7s var(--animation-default-ease) forwards;
+}
+
+@keyframes scale-in-top {
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}

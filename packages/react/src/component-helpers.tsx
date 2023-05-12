@@ -1,4 +1,5 @@
 import React, {Ref, PropsWithChildren} from 'react'
+import {AnimateProps} from './AnimationProvider/AnimationProvider'
 
 /**
  * Layout
@@ -54,4 +55,5 @@ export type BaseProps<T> = {
   className?: string
   id?: string
   ref?: Ref<T>
+  animate?: AnimateProps
 }
