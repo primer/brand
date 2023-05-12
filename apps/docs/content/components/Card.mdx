@@ -173,18 +173,7 @@ Use the `Stack` component to stack multiple cards horizontally or vertically.
 
 ### Card.Image
 
-| name          | type                                              | default     | required | description                                                                                                                                                               |
-| ------------- | ------------------------------------------------- | ----------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `src`         | `string`                                          |             | `true`   | Specifies the path to the image                                                                                                                                           |
-| `alt`         | `string`                                          |             | `true`   | Specifies a text value explaining the nature of the image for users of assistive technology                                                                               |
-| `as`          | `img`, `picture`                                  | `img`       | `false`  | Specification to create a picture component                                                                                                                               |
-| `sources`     | `{srcset: string, media: string}[]`               |             | `false`  | When picture is specified in the `as` prop sources allows you to set the source elements.                                                                                 |
-| `aspectRatio` | `'1:1'`, `'16:9'`, `'16:10'`, `'4:3'`, `'custom'` | `undefined` | `false`  | Sets the image aspect ratio. A custom ratio can be provided in the design tokens.                                                                                         |
-| `height`      | `number`                                          |             | `false`  | The height of the image element or its container if it has an aspect ratio                                                                                                |
-| `width`       | `number`                                          |             | `false`  | The width of the image element or its container if it has an aspect ratio                                                                                                 |
-| `loading`     | `eager`, `lazy`                                   | `eager`     | `false`  | The loading attribute specifies whether a browser should load an image immediately or to defer loading of off-screen images until for example the user scrolls near them. |
-| `decoding`    | `sync`, `async`, `auto`                           | `sync`      | `false`  | Sets the image decoding strategy. Representing a hint given to the browser on how it should decode the image.                                                             |
-| `className`   | `string`                                          |             | `false`  | Sets a custom CSS class                                                                                                                                                   |
+Forwards all the props from the [Image component](/components/Image), including `src`, `alt`, and `aspecRatio`.
 
 ### Card.Icon
 
@@ -202,6 +191,18 @@ Use the `Stack` component to stack multiple cards horizontally or vertically.
 
 ### Card.Heading
 
-| name | type                         | default | required | description |
-| ---- | ---------------------------- | ------- | -------- | ----------- |
-| `as` | `h2`, `h3`, `h4`, `h5`, `h6` | `h3`    | `false`  |             |
+| name        | type                         | default     | required | description                                           |
+| ----------- | ---------------------------- | ----------- | -------- | ----------------------------------------------------- |
+| `as`        | `h2`, `h3`, `h4`, `h5`, `h6` | `h3`        | `false`  |                                                       |
+| `className` | `string`                     |             | `false`  | Custom class name for the heading component           |
+| `children`  | `ReactNode`, `ReactNode[]`   | `undefined` | `true`   | Content to be displayed inside the heading component. |
+
+Forwards all the props from the [Heading component](/components/Heading), including `as`, `size`, and `weight`.
+
+### Card.Description
+
+| name       | type                       | default     | required | description                                         |
+| ---------- | -------------------------- | ----------- | -------- | --------------------------------------------------- |
+| `children` | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | Content to be displayed inside the pillar component |
+
+`id`, `className` and `ref` are forwarded by default to all children.

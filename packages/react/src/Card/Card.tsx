@@ -160,15 +160,7 @@ function CardIcon({
       )}
       {...rest}
     >
-      {typeof Icon === 'function' ? (
-        <Icon size={20} />
-      ) : (
-        React.isValidElement(Icon) &&
-        React.cloneElement(Icon, {
-          width: 20,
-          height: 20
-        })
-      )}
+      {typeof Icon === 'function' ? <Icon /> : React.isValidElement(Icon) && React.cloneElement(Icon)}
     </span>
   )
 }
@@ -191,7 +183,7 @@ const CardLabel = forwardRef<HTMLSpanElement, CardLabelProps>(
 type CardHeadingProps = BaseProps<HTMLHeadingElement> & {
   children: React.ReactNode | React.ReactNode[]
   as?: Exclude<HeadingTags['as'], 'h1'>
-}
+} & HeadingTags
 
 const CardHeading = forwardRef<HTMLHeadingElement, CardHeadingProps>(
   ({children, as = HeadingTags[2], className, ...rest}, ref) => {
