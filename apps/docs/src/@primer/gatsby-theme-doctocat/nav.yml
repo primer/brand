@@ -42,6 +42,8 @@
       url: /components/MinimalFooter
     - title: OrderedList
       url: /components/OrderedList
+    - title: Pillar
+      url: /components/Pillar
     - title: River
       url: /components/River
     - title: SectionIntro
