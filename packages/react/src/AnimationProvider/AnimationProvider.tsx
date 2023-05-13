@@ -1,5 +1,11 @@
 import React, {createContext, PropsWithChildren, useEffect, useState} from 'react'
 
+/**
+ * Design tokens
+ */
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/animation/base.css'
+
+/** * Main Stylesheet (as a CSS Module) */
 import styles from './AnimationProvider.module.css'
 
 export const AnimationVariants = [
