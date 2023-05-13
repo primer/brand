@@ -1,5 +1,4 @@
 import {renderHook} from '@testing-library/react-hooks'
-import {AnimationContext} from './AnimationProvider'
 import {useAnimation} from './useAnimation'
 
 describe('useAnimation', () => {
