@@ -73,11 +73,11 @@ function PillarIcon({icon: Icon, className, color = defaultPillarIconColor, ...r
 
 type PillarHeadingProps = BaseProps<HTMLHeadingElement> & {
   children: React.ReactNode | React.ReactNode[]
-  as?: Exclude<HeadingTags['as'], 'h1'>
+  as?: Exclude<HeadingProps['as'], 'h1'>
 } & HeadingProps
 
 const PillarHeading = forwardRef<HTMLHeadingElement, PillarHeadingProps>(
-  ({children, as = HeadingTags[2], size = '6', className, ...rest}, ref) => {
+  ({children, as = 'h3', size = '6', className, ...rest}, ref) => {
     return (
       <Heading size={size} className={clsx(styles.Pillar__heading, className)} ref={ref} as={as} {...rest}>
         {children}

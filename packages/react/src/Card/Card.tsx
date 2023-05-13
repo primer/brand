@@ -224,7 +224,7 @@ type CardHeadingProps = BaseProps<HTMLHeadingElement> & {
 } & HeadingProps
 
 const CardHeading = forwardRef<HTMLHeadingElement, CardHeadingProps>(
-  ({children, as = HeadingTags[2], className, ...rest}, ref) => {
+  ({children, as = 'h3', className, ...rest}, ref) => {
     return (
       <Heading size="6" className={clsx(styles.Card__heading, className)} ref={ref} as={as} {...rest}>
         {children}
