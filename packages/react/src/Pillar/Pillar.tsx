@@ -1,6 +1,6 @@
 import React, {forwardRef, PropsWithChildren, HTMLAttributes, type Ref} from 'react'
 import clsx from 'clsx'
-import {Heading, HeadingTags, HeadingProps, Text} from '..'
+import {Heading, HeadingProps, Text} from '..'
 import type {BaseProps} from '../component-helpers'
 import {Colors} from '../constants'
 

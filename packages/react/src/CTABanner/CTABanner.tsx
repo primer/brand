@@ -1,7 +1,7 @@
 import React, {forwardRef, type Ref} from 'react'
 import clsx from 'clsx'
 import type {BaseProps} from '../component-helpers'
-import {Heading, HeadingProps, HeadingTags} from '../Heading'
+import {Heading, HeadingProps} from '../Heading'
 import {Text} from '../Text'
 import {ButtonGroup} from '../ButtonGroup'
 

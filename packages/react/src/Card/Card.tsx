@@ -1,7 +1,7 @@
 import React, {RefObject, forwardRef, useCallback, useEffect} from 'react'
 import {isFragment} from 'react-is'
 import clsx from 'clsx'
-import {Heading, HeadingProps, HeadingTags, Text} from '..'
+import {Heading, HeadingProps, Text} from '..'
 import {ExpandableArrow} from '../ExpandableArrow'
 import {Label, LabelColors} from '../Label'
 import {Image, ImageProps} from '../Image'
