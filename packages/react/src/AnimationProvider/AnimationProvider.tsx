@@ -64,7 +64,7 @@ function getIntersectionObserverOptions(animationOptions: AnimationProviderProps
   switch (visibilityOptions) {
     case 'bottom-of-screen':
       return {
-        rootMargin: '0px 0px -30% 0px',
+        rootMargin: '0px 0px -10% 0px',
         threshold: 0.4
       }
     case 'middle-of-screen':
