@@ -64,11 +64,11 @@ jobs:
 
       - name: Copying required files
         run: |
-          cp ./packages/e2e/integration-tests/remix.run/index.tsx ./${{env.TEST_FOLDER}}/app/routes
+          cp ./packages/e2e/integration-tests/remix.run/_index.tsx ./${{env.TEST_FOLDER}}/app/routes
           cp ./packages/e2e/integration-tests/remix.run/root.tsx ./${{env.TEST_FOLDER}}/app
           cp -r ./packages/e2e/integration-tests/fixtures ./${{env.TEST_FOLDER}}/app
           cp ./packages/e2e/cypress.config.js ./${{env.TEST_FOLDER}} 
-          mkdir ${{env.TEST_FOLDER}}/integration-tests
+          mkdir ./${{env.TEST_FOLDER}}/integration-tests
           cp -r ./packages/e2e/integration-tests/fixtures ./${{env.TEST_FOLDER}}/integration-tests
           cp -r ./packages/e2e/integration-tests/tests ./${{env.TEST_FOLDER}}/integration-tests
 
