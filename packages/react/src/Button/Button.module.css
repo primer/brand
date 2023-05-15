@@ -13,6 +13,10 @@
   display: inline-flex;
 }
 
+.Button:hover {
+  text-decoration: none;
+}
+
 .Button:focus:not(.Button[disabled]) {
   outline: none;
   box-shadow: 0 0 0 2px var(--brand-color-canvas-default), 0 0 0 5px var(--brand-color-focus);
