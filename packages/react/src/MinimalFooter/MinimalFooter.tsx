@@ -274,7 +274,10 @@ function SocialLogomarks({socialLinks, logoHref}: SocialLogomarksProps) {
   )
 }
 
-type LinkProps<C extends React.ElementType> = BaseProps<C> & {as?: C} & Omit<React.ComponentPropsWithoutRef<C>, keyof C>
+type LinkProps<C extends React.ElementType> = BaseProps<C> & {as?: 'a' | 'button'} & Omit<
+    React.ComponentPropsWithoutRef<C>,
+    keyof C
+  >
 
 const Link = <C extends React.ElementType = 'a'>({as, children, ...rest}: PropsWithChildren<LinkProps<C>>) => {
   const Component = as || 'a'

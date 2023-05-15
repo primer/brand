@@ -74,7 +74,6 @@ export const ButtonLinks = () => (
     </MinimalFooter.Link>
   </MinimalFooter>
 )
-MaximumLinks.storyName = 'Button Links'
 
 export const NoSocialLinks = () => <MinimalFooter socialLinks={false} />
 
