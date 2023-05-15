@@ -1,5 +1,55 @@
 # @primer/react-brand
 
+## 0.18.0
+
+### Minor Changes
+
+- [#262](https://github.com/primer/brand/pull/262) [`b0c3fa0`](https://github.com/primer/brand/commit/b0c3fa05603615a9690ccc4ff9297e933f3d881b) Thanks [@josepmartins](https://github.com/josepmartins)! - Add Pillar component
+
+  Example Usage
+
+  ```jsx live
+  <Pillar>
+    <Pillar.Heading>Collaboration is the key to DevOps success</Pillar.Heading>
+    <Pillar.Description>Everything you need to know about getting started with GitHub Actions.</Pillar.Description>
+  </Pillar>
+  ```
+
+  - [Pillar Documentation](https://primer.style/brand/components/Pillar)
+
+### Patch Changes
+
+- [#273](https://github.com/primer/brand/pull/273) [`a226dc6`](https://github.com/primer/brand/commit/a226dc60c76ca0aa0c5d99a4c946fe2bd464c81d) Thanks [@TylerJDev](https://github.com/TylerJDev)! - Changes `Green-blue` and `Red-orange` variants in `Label` colors for improved color contrast:
+
+  ```diff
+  - --base-color-scale-green-4
+  - --base-color-scale-red-4
+  + --base-color-scale-green-5
+  + --base-color-scale-red-5
+  ```
+
+  Adds high contrast mode support for `Label`
+
+* [#236](https://github.com/primer/brand/pull/236) [`7502285`](https://github.com/primer/brand/commit/75022854417650ef54d166cf476e405910197adf) Thanks [@josepmartins](https://github.com/josepmartins)! - New and updated `River` spacing tokens aiming for a responsive logic in both `gap` and `padding` values of the main container.
+
+  ```diff
+  # Updated medium/large gap and margin on pro of a responsive logic (Small/Medium/Large sizes) and inner/outer spacing
+  -  --brand-River-gap-column-medium: var(--base-size-32);
+  -  --brand-River-gap-column-large: var(--base-size-48);
+  +  --brand-River-spacing-inner: var(--base-size-24)/var(--base-size-36)/var(--base-size-48);
+  -  --brand-River-layout-margin-vertical: var(--base-size-24);
+  +  --brand-River-spacing-outer: var(--base-size-28)/var(--base-size-36)/var(--base-size-48);
+  # Updated heading margin
+  -  --brand-River-gap-heading-bottom: var(--base-size-8);
+  +  --brand-River-heading-margin: var(--base-size-8);
+  ```
+
+- [#272](https://github.com/primer/brand/pull/272) [`f5c9656`](https://github.com/primer/brand/commit/f5c9656a4acf5057f282a2efd81e864d477b0988) Thanks [@JoshBowdenConcepts](https://github.com/JoshBowdenConcepts)! - Added polymorphism to the MinimalFooter link element
+
+* [#271](https://github.com/primer/brand/pull/271) [`cb6d7b4`](https://github.com/primer/brand/commit/cb6d7b4ecc4abe28214349798e2335cb5a50a688) Thanks [@JoshBowdenConcepts](https://github.com/JoshBowdenConcepts)! - Added explicit text-decoration none to all components that currently explicitly set the text-decoration to none to ensure usability on legacy sites.
+
+- [#260](https://github.com/primer/brand/pull/260) [`eeb988b`](https://github.com/primer/brand/commit/eeb988b81e8dd4c545ca2adf8234da6da2ff82ac) Thanks [@mperrotti](https://github.com/mperrotti)! - Prevents column width from overflowing the River component
+
 ## 0.17.1
 
 ### Patch Changes
