@@ -30,7 +30,7 @@
         },
         "green-blue": {
           "start": {
-            "value": "var(--base-color-scale-green-4)",
+            "value": "var(--base-color-scale-green-5)",
             "dark": "var(--base-color-scale-green-2)"
           },
           "end": {
@@ -92,7 +92,7 @@
         },
         "red-orange": {
           "start": {
-            "value": "var(--base-color-scale-red-4)",
+            "value": "var(--base-color-scale-red-5)",
             "dark": "var(--base-color-scale-red-2)"
           },
           "end": {

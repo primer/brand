@@ -101,4 +101,5 @@
 .Footer__link:hover {
   color: var(--brand-color-text-default);
   border-bottom-color: var(--brand-color-text-muted);
+  text-decoration: none;
 }

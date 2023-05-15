@@ -4,7 +4,13 @@ import {Heading, LinkProps, HeadingProps, TextProps, Text, Link, useAnimation} f
 
 import type {BaseProps} from '../component-helpers'
 
+/**
+ * Design tokens
+ */
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/river/base.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/river/river.css'
+
+/** * Main Stylesheet (as a CSS Module) */
 import styles from './River.module.css'
 
 export type RiverProps = {
