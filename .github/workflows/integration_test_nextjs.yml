@@ -9,7 +9,7 @@ on:
   pull_request:
 
 env:
-  NEXTJS_FOLDER: ${{env.NEXTJS_FOLDER}}
+  NEXTJS_FOLDER: next-js-test
 
 jobs:
   test:
