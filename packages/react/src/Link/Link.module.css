@@ -9,6 +9,10 @@
   color: var(--brand-color-text-default);
 }
 
+.Link:hover {
+  text-decoration: none;
+}
+
 .Link::after {
   position: absolute;
   bottom: -0.15em;

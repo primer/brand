@@ -1,8 +1,9 @@
 .River {
   display: grid;
-  gap: var(--brand-River-gap-column-medium);
+  gap: var(--brand-River-spacing-inner);
   grid-auto-rows: min-content;
-  padding: var(--brand-River-layout-margin-vertical);
+  padding-top: var(--brand-River-spacing-outer);
+  padding-bottom: var(--brand-River-spacing-outer);
 }
 
 .River--align-center {
@@ -26,7 +27,7 @@
 }
 
 .River__heading {
-  margin-bottom: var(--brand-River-gap-heading-bottom);
+  margin-bottom: var(--brand-River-heading-margin);
 }
 
 .River__call-to-action {
@@ -37,8 +38,8 @@
   color: var(--brand-color-text-default);
 }
 
-/* Small breakpoint and up */
-@media screen and (min-width: 34rem) {
+/* Medium breakpoint and up */
+@media screen and (min-width: 48rem) {
   .River {
     grid-template-rows: unset;
   }
@@ -94,12 +95,5 @@
   }
   .River--align-center .River__content {
     margin-top: var(--base-size-48);
-  }
-}
-
-/* Large breakpoint and up */
-@media screen and (min-width: 63.25rem) {
-  .River {
-    gap: var(--brand-River-gap-column-large);
   }
 }

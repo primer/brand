@@ -21,6 +21,10 @@
   grid-template-rows: auto auto auto auto 1fr;
 }
 
+.Card:hover {
+  text-decoration: none;
+}
+
 .Card--has-icon {
   grid-template-areas:
     'image image'
