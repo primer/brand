@@ -1,0 +1,66 @@
+---
+title: Label
+description: Use Labels to add metadata or indicate the status of items.
+---
+
+import ComponentLayout from '../../../src/layouts/component-layout'
+export default ComponentLayout
+
+## Anatomy
+
+![](https://user-images.githubusercontent.com/175638/234820833-c803cb11-2bc3-4597-88f3-2cf630a46702.png)
+
+## Usage
+
+Use labels to indicate the status of an item or to help oraganize and categorize them. Labels aren't meant to be used as interactive elements. Instead use the [Button](/components/Button) component.
+
+<!-- Don't use labels as buttons -->
+
+Position the labels to clearly identify the object they’re informing.
+
+<!-- Position them clearyl -->
+
+Labels can be used in other components, such as [Cards](/components/Card). E.g, using "new" or "recommended" in a group of stacked Cards.
+
+<!-- Use labels in other components -->
+
+### Content
+
+Use label with with short, scannable text. If possible, use a single word to describe the status of an object. Use two or more words if you need to describe a complex state or category. For example, “Limitied availability" or "Enterprise Only".
+
+<!-- Don't use long sized text -->
+
+## Options
+
+### Size
+
+Labels come in three sizes: `small`, `medium`, and `large`.
+
+### Small
+
+Use `small` size for inline text or list items.
+
+### Medium
+
+Use `medium` for medium sized headings introducing a section, or components such as `Card`.
+
+### Large
+
+Use `large` for large headings that introduce a page, like a `Hero` does.
+
+### Color
+
+The label offers color options from the [Primer Brand color palette](/primitives/color). These color choices are carefully curated to ensure optimal contrast with the background or surrounding elements. Colors options doesn't follow a strict functional meaning. We recommend using the colors that best fit the context of your application. E,g. Blue and purple gradient for Copilot examples.
+
+<!-- Examples for the three sizes -->
+
+### Leading visual
+
+You can add a leading icon to enhance the visual context. It is recommended you use an [Octicon](https://primer.style/octicons) here. Use an icon that reinforces the meaning of the label. For example, a `StarIcon` for a "favorite" label.
+
+<!-- Examples for the three sizes -->
+
+## Related components
+
+- To provide an action, use the [Button](/components/Button) component.
+- To prodive navigation, use the [Link](/components/Link) component.
