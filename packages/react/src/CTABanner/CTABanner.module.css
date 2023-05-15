@@ -3,6 +3,7 @@
   margin: 0 auto;
   display: flex;
   max-width: var(--brand-breakpoint-xlarge);
+  width: 100%;
 }
 
 .CTABanner--shadow::before {
