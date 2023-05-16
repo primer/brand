@@ -127,6 +127,10 @@
   justify-items: flex-start;
 }
 
+.AnchorNav-link:hover {
+  text-decoration: none;
+}
+
 .AnchorNav--expanded .AnchorNav-link {
   margin: 0 0 2px; /* allow space for focus border */
   animation: fade-in 1s;
