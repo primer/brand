@@ -6,6 +6,7 @@ storybook: '/brand/storybook/?path=/story/components-card--default'
 description: Use Card to group information in a compact way and link to other pages.
 ---
 
+import CustomVideoPlayer from '../../../src/components/custom-video-player'
 import ComponentLayout from '../../../src/layouts/component-layout'
 export default ComponentLayout
 
@@ -55,23 +56,18 @@ When using an image as the visual asset, we recommend using the same aspect rati
   </Dont>
 </DoDontContainer>
 
-Cards typically appear in groups of three or four. For rows of four cards, we recommend using short and concise content and avoid using images as the visual asset. When more than four cards or extensive content is needed, stack them vertically.
+Cards typically appear in groups of three or four in desktop viewports. For smaller viewports, or when more than four cards, we recommend stacking the cards vertically. You can use the [Grid](/components/Grid) component to achieve this.
 
-<DoDontContainer stacked>
-  <Do>
-    <img src="https://github.com/primer/brand/assets/912236/a56f80f9-9a02-4fe0-8d8b-eb61e8396030" />
-    <Caption>
-      Stack cards vertically using multiple rows so that the content is easy to
-      scan.
-    </Caption>
-  </Do>
-  <Dont>
-    <img src="https://github.com/primer/brand/assets/912236/3f467a76-da93-4b1c-a53e-763319df8049" />
-    <Caption>
-      Don't use a single row of cards if the content is too extensive.
-    </Caption>
-  </Dont>
-</DoDontContainer>
+<div>
+  <CustomVideoPlayer
+    width="100%"
+    src="https://github.com/primer/brand/assets/912236/e4ac4ed3-4190-4e8b-b467-364fe880aa30"
+  />
+  <Caption>
+    Stack cards vertically using multiple rows so that the content has the right
+    line lenght and is easy to scan.
+  </Caption>
+</div>
 
 ## Anatomy
 
@@ -91,7 +87,7 @@ The visual asset is optional and can be an image or an icon. It can be used to p
   <Dont>
     <img src="https://github.com/primer/brand/assets/912236/f70adf24-8447-4ca8-8602-84445ea277e0" />
     <Caption>
-      Don't use both an icon and an image as the visual asset in the same card.
+      Don't use both icon and image as the visual asset in the same card.
     </Caption>
   </Dont>
 </DoDontContainer>
