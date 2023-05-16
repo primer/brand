@@ -3,32 +3,51 @@ title: Label
 description: Use Labels to add metadata or indicate the status of items.
 ---
 
+import {Box} from '@primer/react'
 import ComponentLayout from '../../../src/layouts/component-layout'
 export default ComponentLayout
 
-## Anatomy
-
-![](https://user-images.githubusercontent.com/175638/234820833-c803cb11-2bc3-4597-88f3-2cf630a46702.png)
+![An image showing a group of labels with different styles, colors, leading icons and content.](https://github.com/primer/brand/assets/912236/297f8cc9-326f-4250-adbf-c6ea37b64f7b)
 
 ## Usage
 
-Use labels to indicate the status of an item or to help oraganize and categorize them. Labels aren't meant to be used as interactive elements. Instead use the [Button](/components/Button) component.
+Use labels to indicate the status of an item or to help oraganize and categorize them. E.g, using "New" or "Recommended". Labels aren't meant to be used as interactive elements. Instead use the [Button](/components/Button) component.
 
-<!-- Don't use labels as buttons -->
+<DoDontContainer>
+  <Do>
+    <img src="https://github.com/primer/brand/assets/912236/fcaa89e3-19c4-4e2f-81ac-a3f7e673034a" />
+    <Caption>Use labels to categorize an item.</Caption>
+  </Do>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/912236/aecf5346-e054-4dc0-b9a8-e4546bec4795" />
+    <Caption>
+      Don't use labels as an interactive element. Use a button component
+      instead.
+    </Caption>
+  </Dont>
+</DoDontContainer>
 
 Position the labels to clearly identify the object they’re informing.
 
-<!-- Position them clearyl -->
-
-Labels can be used in other components, such as [Cards](/components/Card). E.g, using "new" or "recommended" in a group of stacked Cards.
-
-<!-- Use labels in other components -->
+<DoDontContainer>
+  <Do>
+    <img src="https://github.com/primer/brand/assets/912236/e7a44547-975b-4538-a293-92dae75907df" />
+    <Caption>
+      Give labels enough space to be clearly identified. Use size or color to
+      differentiate them if needed.
+    </Caption>
+  </Do>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/912236/a6e606fc-cabd-4454-81d4-5e7e2befe0f1" />
+    <Caption>
+      When used along with other items, don't place the label too close to them.
+    </Caption>
+  </Dont>
+</DoDontContainer>
 
 ### Content
 
 Use label with with short, scannable text. If possible, use a single word to describe the status of an object. Use two or more words if you need to describe a complex state or category. For example, “Limitied availability" or "Enterprise Only".
-
-<!-- Don't use long sized text -->
 
 ## Options
 
@@ -40,25 +59,90 @@ Labels come in three sizes: `small`, `medium`, and `large`.
 
 Use `small` size for inline text or list items.
 
+<Box
+  display="grid"
+  gridTemplateColumns={['1fr', null, null, null, '1fr 1fr']}
+  gridGap={5}
+>
+  <div>
+    <img
+      src="https://github.com/primer/brand/assets/912236/ee4b9073-8ae6-4178-bed5-2c54f6949656"
+      alt=""
+    />
+    <Caption>
+      Use inline small labels in a list of short content items for a quick scan.
+    </Caption>
+  </div>
+  <div>
+    <img
+      src="https://github.com/primer/brand/assets/912236/730a7836-40bb-461f-816f-1e1af39e6348"
+      alt=""
+    />
+    <Caption>
+      Give small labels enough space when used with longer content. For instance
+      a timeline made of paragraphs.
+    </Caption>
+  </div>
+</Box>
+
 ### Medium
 
 Use `medium` for medium sized headings introducing a section, or components such as `Card`.
+
+<Box
+  display="grid"
+  gridTemplateColumns={['1fr', null, null, null, '1fr 1fr']}
+  gridGap={5}
+>
+  <div>
+    <img
+      src="https://github.com/primer/brand/assets/912236/02d09a61-1d19-49ed-8a6a-7a1338783dd4"
+      alt=""
+    />
+    <Caption>
+      The Card component allows for a medium label to provide extra meta data to
+      the content. In a group of stacked cards, the label helps to quickly scan
+      certain items.
+    </Caption>
+  </div>
+  <div>
+    <img
+      src="https://github.com/primer/brand/assets/912236/34891aaf-d79b-454d-aafa-177d1946df5f"
+      alt=""
+    />
+    <Caption>
+      Medium labels are great for headings that introduce a section. They help
+      categorize the main topic and provide a visual break.
+    </Caption>
+  </div>
+</Box>
 
 ### Large
 
 Use `large` for large headings that introduce a page, like a `Hero` does.
 
+<div>
+  <img
+    src="https://github.com/primer/brand/assets/912236/7a0da376-5457-4ced-aa78-8157ed8c20c1"
+    alt=""
+  />
+  <Caption>
+    Use large labels with headings that introduce a page. Use it to introduce
+    the main topic or application.
+  </Caption>
+</div>
+
 ### Color
 
-The label offers color options from the [Primer Brand color palette](/primitives/color). These color choices are carefully curated to ensure optimal contrast with the background or surrounding elements. Colors options doesn't follow a strict functional meaning. We recommend using the colors that best fit the context of your application. E,g. Blue and purple gradient for Copilot examples.
+The label offers color options from the [Primer Brand color palette](/primitives/color). These color choices are carefully curated to ensure optimal contrast with the background or surrounding elements. Colors options doesn't follow a strict functional meaning. We recommend using the colors that best fit the context of your application. For example, blue and purple gradient for `Copilot` examples.
 
-<!-- Examples for the three sizes -->
+![An image showing multiple label options with different colors.](https://github.com/primer/brand/assets/912236/68c93e16-f4cc-4468-bd5a-34727119ad63)
 
 ### Leading visual
 
-You can add a leading icon to enhance the visual context. It is recommended you use an [Octicon](https://primer.style/octicons) here. Use an icon that reinforces the meaning of the label. For example, a `StarIcon` for a "favorite" label.
+You can add a leading icon to enhance the visual context. It is recommended you use an [Octicon](https://primer.style/octicons). Use an icon that reinforces the meaning of the label. For example, a `StarIcon` for a "Starred" label.
 
-<!-- Examples for the three sizes -->
+![An image showing multiple label options with different leading visuals.](https://github.com/primer/brand/assets/912236/f248e443-eebb-4c61-9a11-fa8a1670761d)
 
 ## Related components
 
