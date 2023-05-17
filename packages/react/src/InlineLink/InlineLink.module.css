@@ -3,6 +3,10 @@
   position: relative;
 }
 
+.InlineLink:hover {
+  text-decoration: none;
+}
+
 .InlineLink,
 .InlineLink > span {
   color: var(--brand-InlineLink-color-rest);

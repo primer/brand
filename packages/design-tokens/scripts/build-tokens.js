@@ -135,7 +135,8 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
   const filesForResponsiveTokens = [
     `tokens/base/typography/typography.json`,
     `tokens/functional/typography/typography-responsive.json`,
-    `tokens/functional/components/grid/grid.json`
+    `tokens/functional/components/grid/grid.json`,
+    `tokens/functional/components/river/river.json`
   ]
 
   for (const path of filesForResponsiveTokens) {
@@ -189,6 +190,7 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
     `tokens/functional/components/accordion/colors.js`,
     `tokens/functional/components/faq/colors.json`,
     `tokens/functional/components/card/colors.json`,
+    `tokens/functional/components/pillar/colors.json`,
     `tokens/functional/components/label/colors.json`,
     `tokens/functional/components/inline-link/colors.json`,
     `tokens/functional/components/control/colors.js`,

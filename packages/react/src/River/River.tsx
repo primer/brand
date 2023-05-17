@@ -1,9 +1,15 @@
 import React, {forwardRef, PropsWithChildren, type Ref} from 'react'
 import clsx from 'clsx'
 import {Heading, LinkProps, HeadingProps, TextProps, Text, Link} from '../'
-
 import type {BaseProps} from '../component-helpers'
+
+/**
+ * Design tokens
+ */
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/river/base.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/river/river.css'
+
+/** * Main Stylesheet (as a CSS Module) */
 import styles from './River.module.css'
 
 export type RiverProps = BaseProps<HTMLElement> & {
