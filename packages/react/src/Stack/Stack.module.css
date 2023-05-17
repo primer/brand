@@ -61,55 +61,55 @@
 }
 
 .Stack--gap-4 {
-  gap: var(--base-space-4);
+  gap: var(--base-size-4);
 }
 .Stack--gap-8 {
-  gap: var(--base-space-8);
+  gap: var(--base-size-8);
 }
 .Stack--gap-12 {
-  gap: var(--base-space-12);
+  gap: var(--base-size-12);
 }
 .Stack--gap-16 {
-  gap: var(--base-space-16);
+  gap: var(--base-size-16);
 }
 .Stack--gap-20 {
-  gap: var(--base-space-20);
+  gap: var(--base-size-20);
 }
 .Stack--gap-24 {
-  gap: var(--base-space-24);
+  gap: var(--base-size-24);
 }
 .Stack--gap-28 {
-  gap: var(--base-space-28);
+  gap: var(--base-size-28);
 }
 .Stack--gap-32 {
-  gap: var(--base-space-32);
+  gap: var(--base-size-32);
 }
 .Stack--gap-36 {
-  gap: var(--base-space-36);
+  gap: var(--base-size-36);
 }
 .Stack--gap-40 {
-  gap: var(--base-space-40);
+  gap: var(--base-size-40);
 }
 .Stack--gap-44 {
-  gap: var(--base-space-44);
+  gap: var(--base-size-44);
 }
 .Stack--gap-48 {
-  gap: var(--base-space-48);
+  gap: var(--base-size-48);
 }
 .Stack--gap-64 {
-  gap: var(--base-space-64);
+  gap: var(--base-size-64);
 }
 .Stack--gap-80 {
-  gap: var(--base-space-80);
+  gap: var(--base-size-80);
 }
 .Stack--gap-96 {
-  gap: var(--base-space-96);
+  gap: var(--base-size-96);
 }
 .Stack--gap-112 {
-  gap: var(--base-space-112);
+  gap: var(--base-size-112);
 }
 .Stack--gap-128 {
-  gap: var(--base-space-128);
+  gap: var(--base-size-128);
 }
 
 .Stack-narrow--gap-none {
@@ -145,55 +145,55 @@
 }
 
 .Stack--padding-4 {
-  padding: var(--base-space-4);
+  padding: var(--base-size-4);
 }
 .Stack--padding-8 {
-  padding: var(--base-space-8);
+  padding: var(--base-size-8);
 }
 .Stack--padding-12 {
-  padding: var(--base-space-12);
+  padding: var(--base-size-12);
 }
 .Stack--padding-16 {
-  padding: var(--base-space-16);
+  padding: var(--base-size-16);
 }
 .Stack--padding-20 {
-  padding: var(--base-space-20);
+  padding: var(--base-size-20);
 }
 .Stack--padding-24 {
-  padding: var(--base-space-24);
+  padding: var(--base-size-24);
 }
 .Stack--padding-28 {
-  padding: var(--base-space-28);
+  padding: var(--base-size-28);
 }
 .Stack--padding-32 {
-  padding: var(--base-space-32);
+  padding: var(--base-size-32);
 }
 .Stack--padding-36 {
-  padding: var(--base-space-36);
+  padding: var(--base-size-36);
 }
 .Stack--padding-40 {
-  padding: var(--base-space-40);
+  padding: var(--base-size-40);
 }
 .Stack--padding-44 {
-  padding: var(--base-space-44);
+  padding: var(--base-size-44);
 }
 .Stack--padding-48 {
-  padding: var(--base-space-48);
+  padding: var(--base-size-48);
 }
 .Stack--padding-64 {
-  padding: var(--base-space-64);
+  padding: var(--base-size-64);
 }
 .Stack--padding-80 {
-  padding: var(--base-space-80);
+  padding: var(--base-size-80);
 }
 .Stack--padding-96 {
-  padding: var(--base-space-96);
+  padding: var(--base-size-96);
 }
 .Stack--padding-112 {
-  padding: var(--base-space-112);
+  padding: var(--base-size-112);
 }
 .Stack--padding-128 {
-  padding: var(--base-space-128);
+  padding: var(--base-size-128);
 }
 
 .Stack-narrow--padding-none {
@@ -213,107 +213,107 @@
 }
 
 .Stack-narrow--padding-4 {
-  padding: var(--base-space-4);
+  padding: var(--base-size-4);
 }
 .Stack-narrow--padding-8 {
-  padding: var(--base-space-8);
+  padding: var(--base-size-8);
 }
 .Stack-narrow--padding-12 {
-  padding: var(--base-space-12);
+  padding: var(--base-size-12);
 }
 .Stack-narrow--padding-16 {
-  padding: var(--base-space-16);
+  padding: var(--base-size-16);
 }
 .Stack-narrow--padding-20 {
-  padding: var(--base-space-20);
+  padding: var(--base-size-20);
 }
 .Stack-narrow--padding-24 {
-  padding: var(--base-space-24);
+  padding: var(--base-size-24);
 }
 .Stack-narrow--padding-28 {
-  padding: var(--base-space-28);
+  padding: var(--base-size-28);
 }
 .Stack-narrow--padding-32 {
-  padding: var(--base-space-32);
+  padding: var(--base-size-32);
 }
 .Stack-narrow--padding-36 {
-  padding: var(--base-space-36);
+  padding: var(--base-size-36);
 }
 .Stack-narrow--padding-40 {
-  padding: var(--base-space-40);
+  padding: var(--base-size-40);
 }
 .Stack-narrow--padding-44 {
-  padding: var(--base-space-44);
+  padding: var(--base-size-44);
 }
 .Stack-narrow--padding-48 {
-  padding: var(--base-space-48);
+  padding: var(--base-size-48);
 }
 .Stack-narrow--padding-64 {
-  padding: var(--base-space-64);
+  padding: var(--base-size-64);
 }
 .Stack-narrow--padding-80 {
-  padding: var(--base-space-80);
+  padding: var(--base-size-80);
 }
 .Stack-narrow--padding-96 {
-  padding: var(--base-space-96);
+  padding: var(--base-size-96);
 }
 .Stack-narrow--padding-112 {
-  padding: var(--base-space-112);
+  padding: var(--base-size-112);
 }
 .Stack-narrow--padding-128 {
-  padding: var(--base-space-128);
+  padding: var(--base-size-128);
 }
 
 .Stack-narrow--gap-4 {
-  gap: var(--base-space-4);
+  gap: var(--base-size-4);
 }
 .Stack-narrow--gap-8 {
-  gap: var(--base-space-8);
+  gap: var(--base-size-8);
 }
 .Stack-narrow--gap-12 {
-  gap: var(--base-space-12);
+  gap: var(--base-size-12);
 }
 .Stack-narrow--gap-16 {
-  gap: var(--base-space-16);
+  gap: var(--base-size-16);
 }
 .Stack-narrow--gap-20 {
-  gap: var(--base-space-20);
+  gap: var(--base-size-20);
 }
 .Stack-narrow--gap-24 {
-  gap: var(--base-space-24);
+  gap: var(--base-size-24);
 }
 .Stack-narrow--gap-28 {
-  gap: var(--base-space-28);
+  gap: var(--base-size-28);
 }
 .Stack-narrow--gap-32 {
-  gap: var(--base-space-32);
+  gap: var(--base-size-32);
 }
 .Stack-narrow--gap-36 {
-  gap: var(--base-space-36);
+  gap: var(--base-size-36);
 }
 .Stack-narrow--gap-40 {
-  gap: var(--base-space-40);
+  gap: var(--base-size-40);
 }
 .Stack-narrow--gap-44 {
-  gap: var(--base-space-44);
+  gap: var(--base-size-44);
 }
 .Stack-narrow--gap-48 {
-  gap: var(--base-space-48);
+  gap: var(--base-size-48);
 }
 .Stack-narrow--gap-64 {
-  gap: var(--base-space-64);
+  gap: var(--base-size-64);
 }
 .Stack-narrow--gap-80 {
-  gap: var(--base-space-80);
+  gap: var(--base-size-80);
 }
 .Stack-narrow--gap-96 {
-  gap: var(--base-space-96);
+  gap: var(--base-size-96);
 }
 .Stack-narrow--gap-112 {
-  gap: var(--base-space-112);
+  gap: var(--base-size-112);
 }
 .Stack-narrow--gap-128 {
-  gap: var(--base-space-128);
+  gap: var(--base-size-128);
 }
 
 @media screen and (min-width: 48rem) {
@@ -334,55 +334,55 @@
   }
 
   .Stack-regular--gap-4 {
-    gap: var(--base-space-4);
+    gap: var(--base-size-4);
   }
   .Stack-regular--gap-8 {
-    gap: var(--base-space-8);
+    gap: var(--base-size-8);
   }
   .Stack-regular--gap-12 {
-    gap: var(--base-space-12);
+    gap: var(--base-size-12);
   }
   .Stack-regular--gap-16 {
-    gap: var(--base-space-16);
+    gap: var(--base-size-16);
   }
   .Stack-regular--gap-20 {
-    gap: var(--base-space-20);
+    gap: var(--base-size-20);
   }
   .Stack-regular--gap-24 {
-    gap: var(--base-space-24);
+    gap: var(--base-size-24);
   }
   .Stack-regular--gap-28 {
-    gap: var(--base-space-28);
+    gap: var(--base-size-28);
   }
   .Stack-regular--gap-32 {
-    gap: var(--base-space-32);
+    gap: var(--base-size-32);
   }
   .Stack-regular--gap-36 {
-    gap: var(--base-space-36);
+    gap: var(--base-size-36);
   }
   .Stack-regular--gap-40 {
-    gap: var(--base-space-40);
+    gap: var(--base-size-40);
   }
   .Stack-regular--gap-44 {
-    gap: var(--base-space-44);
+    gap: var(--base-size-44);
   }
   .Stack-regular--gap-48 {
-    gap: var(--base-space-48);
+    gap: var(--base-size-48);
   }
   .Stack-regular--gap-64 {
-    gap: var(--base-space-64);
+    gap: var(--base-size-64);
   }
   .Stack-regular--gap-80 {
-    gap: var(--base-space-80);
+    gap: var(--base-size-80);
   }
   .Stack-regular--gap-96 {
-    gap: var(--base-space-96);
+    gap: var(--base-size-96);
   }
   .Stack-regular--gap-112 {
-    gap: var(--base-space-112);
+    gap: var(--base-size-112);
   }
   .Stack-regular--gap-128 {
-    gap: var(--base-space-128);
+    gap: var(--base-size-128);
   }
 
   .Stack-regular--padding-none {
@@ -402,55 +402,55 @@
   }
 
   .Stack-regular--padding-4 {
-    padding: var(--base-space-4);
+    padding: var(--base-size-4);
   }
   .Stack-regular--padding-8 {
-    padding: var(--base-space-8);
+    padding: var(--base-size-8);
   }
   .Stack-regular--padding-12 {
-    padding: var(--base-space-12);
+    padding: var(--base-size-12);
   }
   .Stack-regular--padding-16 {
-    padding: var(--base-space-16);
+    padding: var(--base-size-16);
   }
   .Stack-regular--padding-20 {
-    padding: var(--base-space-20);
+    padding: var(--base-size-20);
   }
   .Stack-regular--padding-24 {
-    padding: var(--base-space-24);
+    padding: var(--base-size-24);
   }
   .Stack-regular--padding-28 {
-    padding: var(--base-space-28);
+    padding: var(--base-size-28);
   }
   .Stack-regular--padding-32 {
-    padding: var(--base-space-32);
+    padding: var(--base-size-32);
   }
   .Stack-regular--padding-36 {
-    padding: var(--base-space-36);
+    padding: var(--base-size-36);
   }
   .Stack-regular--padding-40 {
-    padding: var(--base-space-40);
+    padding: var(--base-size-40);
   }
   .Stack-regular--padding-44 {
-    padding: var(--base-space-44);
+    padding: var(--base-size-44);
   }
   .Stack-regular--padding-48 {
-    padding: var(--base-space-48);
+    padding: var(--base-size-48);
   }
   .Stack-regular--padding-64 {
-    padding: var(--base-space-64);
+    padding: var(--base-size-64);
   }
   .Stack-regular--padding-80 {
-    padding: var(--base-space-80);
+    padding: var(--base-size-80);
   }
   .Stack-regular--padding-96 {
-    padding: var(--base-space-96);
+    padding: var(--base-size-96);
   }
   .Stack-regular--padding-112 {
-    padding: var(--base-space-112);
+    padding: var(--base-size-112);
   }
   .Stack-regular--padding-128 {
-    padding: var(--base-space-128);
+    padding: var(--base-size-128);
   }
 }
 
@@ -472,55 +472,55 @@
   }
 
   .Stack-wide--gap-4 {
-    gap: var(--base-space-4);
+    gap: var(--base-size-4);
   }
   .Stack-wide--gap-8 {
-    gap: var(--base-space-8);
+    gap: var(--base-size-8);
   }
   .Stack-wide--gap-12 {
-    gap: var(--base-space-12);
+    gap: var(--base-size-12);
   }
   .Stack-wide--gap-16 {
-    gap: var(--base-space-16);
+    gap: var(--base-size-16);
   }
   .Stack-wide--gap-20 {
-    gap: var(--base-space-20);
+    gap: var(--base-size-20);
   }
   .Stack-wide--gap-24 {
-    gap: var(--base-space-24);
+    gap: var(--base-size-24);
   }
   .Stack-wide--gap-28 {
-    gap: var(--base-space-28);
+    gap: var(--base-size-28);
   }
   .Stack-wide--gap-32 {
-    gap: var(--base-space-32);
+    gap: var(--base-size-32);
   }
   .Stack-wide--gap-36 {
-    gap: var(--base-space-36);
+    gap: var(--base-size-36);
   }
   .Stack-wide--gap-40 {
-    gap: var(--base-space-40);
+    gap: var(--base-size-40);
   }
   .Stack-wide--gap-44 {
-    gap: var(--base-space-44);
+    gap: var(--base-size-44);
   }
   .Stack-wide--gap-48 {
-    gap: var(--base-space-48);
+    gap: var(--base-size-48);
   }
   .Stack-wide--gap-64 {
-    gap: var(--base-space-64);
+    gap: var(--base-size-64);
   }
   .Stack-wide--gap-80 {
-    gap: var(--base-space-80);
+    gap: var(--base-size-80);
   }
   .Stack-wide--gap-96 {
-    gap: var(--base-space-96);
+    gap: var(--base-size-96);
   }
   .Stack-wide--gap-112 {
-    gap: var(--base-space-112);
+    gap: var(--base-size-112);
   }
   .Stack-wide--gap-128 {
-    gap: var(--base-space-128);
+    gap: var(--base-size-128);
   }
 
   .Stack-wide--padding-none {
@@ -540,55 +540,55 @@
   }
 
   .Stack-wide--padding-4 {
-    padding: var(--base-space-4);
+    padding: var(--base-size-4);
   }
   .Stack-wide--padding-8 {
-    padding: var(--base-space-8);
+    padding: var(--base-size-8);
   }
   .Stack-wide--padding-12 {
-    padding: var(--base-space-12);
+    padding: var(--base-size-12);
   }
   .Stack-wide--padding-16 {
-    padding: var(--base-space-16);
+    padding: var(--base-size-16);
   }
   .Stack-wide--padding-20 {
-    padding: var(--base-space-20);
+    padding: var(--base-size-20);
   }
   .Stack-wide--padding-24 {
-    padding: var(--base-space-24);
+    padding: var(--base-size-24);
   }
   .Stack-wide--padding-28 {
-    padding: var(--base-space-28);
+    padding: var(--base-size-28);
   }
   .Stack-wide--padding-32 {
-    padding: var(--base-space-32);
+    padding: var(--base-size-32);
   }
   .Stack-wide--padding-36 {
-    padding: var(--base-space-36);
+    padding: var(--base-size-36);
   }
   .Stack-wide--padding-40 {
-    padding: var(--base-space-40);
+    padding: var(--base-size-40);
   }
   .Stack-wide--padding-44 {
-    padding: var(--base-space-44);
+    padding: var(--base-size-44);
   }
   .Stack-wide--padding-48 {
-    padding: var(--base-space-48);
+    padding: var(--base-size-48);
   }
   .Stack-wide--padding-64 {
-    padding: var(--base-space-64);
+    padding: var(--base-size-64);
   }
   .Stack-wide--padding-80 {
-    padding: var(--base-space-80);
+    padding: var(--base-size-80);
   }
   .Stack-wide--padding-96 {
-    padding: var(--base-space-96);
+    padding: var(--base-size-96);
   }
   .Stack-wide--padding-112 {
-    padding: var(--base-space-112);
+    padding: var(--base-size-112);
   }
   .Stack-wide--padding-128 {
-    padding: var(--base-space-128);
+    padding: var(--base-size-128);
   }
 }
 
