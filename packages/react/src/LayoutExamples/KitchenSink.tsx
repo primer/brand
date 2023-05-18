@@ -62,19 +62,15 @@ export function KitchenSink(props: KitchenSinkProps) {
       <Grid style={{paddingTop: 'var(--base-size-40)', paddingBottom: '200px'}} enableOverlay={false}>
         <Grid.Column>
           <div style={{marginTop: 'var(--base-size-80)'}}>
-            <Hero
-              heading="This is my super sweet hero heading"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum."
-              primaryAction={{
-                text: 'Primary action',
-                href: '#'
-              }}
-              secondaryAction={{
-                text: 'Secondary action',
-                href: '#'
-              }}
-              align="center"
-            />
+            <Hero align="center">
+              <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+              <Hero.Description>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus
+                sed turpis felis nam pulvinar risus elementum.
+              </Hero.Description>
+              <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+              <Hero.SecondaryAction href="#">Secondary action</Hero.SecondaryAction>
+            </Hero>
           </div>
           <Stack
             direction="vertical"

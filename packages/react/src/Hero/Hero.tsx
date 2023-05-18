@@ -1,69 +1,100 @@
-import React, {forwardRef} from 'react'
+import React, {forwardRef, PropsWithChildren, useMemo} from 'react'
 import clsx from 'clsx'
 import styles from './Hero.module.css'
-import {Button} from '../Button'
-import {Heading} from '../Heading'
-import {Text} from '../Text'
+import {Button, ButtonBaseProps} from '../Button'
+import {Heading, HeadingProps} from '../Heading'
+import {Text, TextSizes, TextWeightVariants, ResponsiveWeightMap} from '../Text'
 
 import type {BaseProps} from '../component-helpers'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/hero/base.css'
 
-type Action = {
-  text: string
-  href: string
-}
-
-export type HeroProps = BaseProps<HTMLDivElement> & {
-  heading: string | React.ReactElement
-  description?: string | React.ReactElement
-  primaryAction: Action
-  secondaryAction?: Action
-  headingId?: string
-  'aria-labelledby'?: React.AriaAttributes['aria-labelledby']
+export type HeroProps = BaseProps<HTMLElement> & {
   align?: 'start' | 'center'
 }
 
-export const Hero = forwardRef<HTMLDivElement, HeroProps>(
-  (
-    {
-      className,
-      heading,
-      description,
-      primaryAction,
-      secondaryAction,
-      align = 'start',
-      headingId = 'hero-section-brand-heading',
-      'aria-labelledby': ariaLabelledBy,
-      ...rest
-    },
-    ref
-  ) => {
+const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
+  ({className, align = 'start', children, ...rest}, ref) => {
+    const {HeroActions, HeroChildren} = useMemo(
+      () =>
+        React.Children.toArray(children).reduce<{
+          HeroActions: React.ReactElement[]
+          HeroChildren: React.ReactElement[]
+        }>(
+          (acc, child) => {
+            if (React.isValidElement(child)) {
+              if (child.type === HeroPrimaryAction || child.type === HeroSecondaryAction) {
+                acc.HeroActions.push(child)
+              } else {
+                acc.HeroChildren.push(child)
+              }
+            }
+            return acc
+          },
+          {HeroActions: [], HeroChildren: []}
+        ),
+      [children]
+    )
+
     return (
       <section
-        aria-labelledby={ariaLabelledBy || headingId}
         className={clsx(styles.Hero, styles[`Hero--align-${align}`], className)}
         ref={ref}
+        aria-labelledby="hero-section-brand-heading"
         {...rest}
       >
-        <Heading as="h1" id={headingId} className={styles['Hero-heading']}>
-          {heading}
-        </Heading>
-        {description ? (
-          <Text className={styles['Hero-description']} as="p" size="400" variant="muted">
-            {description}
-          </Text>
-        ) : null}
-        <div className={styles['Hero-actions']}>
-          <Button as="a" variant="primary" size="large" href={primaryAction.href}>
-            {primaryAction.text}
-          </Button>
-          {secondaryAction ? (
-            <Button as="a" variant="secondary" size="large" href={secondaryAction.href}>
-              {secondaryAction.text}
-            </Button>
-          ) : null}
-        </div>
+        {HeroChildren}
+        <div className={styles['Hero-actions']}>{HeroActions}</div>
       </section>
     )
   }
 )
+
+type HeroHeadingProps = Omit<HeadingProps, 'as'>
+
+const HeroHeading = forwardRef<HTMLHeadingElement, HeroHeadingProps>(({children, ...rest}, ref) => {
+  return (
+    <Heading id="hero-section-brand-heading" className={styles['Hero-heading']} as="h1" ref={ref} {...rest}>
+      {children}
+    </Heading>
+  )
+})
+
+type HeroDescriptionProps = {
+  size?: typeof TextSizes[number]
+  weight?: TextWeightVariants | ResponsiveWeightMap
+}
+
+function HeroDescription({size = '400', weight, children}: PropsWithChildren<HeroDescriptionProps>) {
+  return (
+    <Text className={styles['Hero-description']} as="p" size={size} weight={weight} variant="muted">
+      {children}
+    </Text>
+  )
+}
+
+type HeroActions = {
+  href: string
+} & Omit<ButtonBaseProps, 'variant'>
+
+function HeroPrimaryAction({href, children, ...rest}: PropsWithChildren<HeroActions>) {
+  return (
+    <Button as="a" variant="primary" size="large" href={href} {...rest}>
+      {children}
+    </Button>
+  )
+}
+
+function HeroSecondaryAction({href, children, ...rest}: PropsWithChildren<HeroActions>) {
+  return (
+    <Button as="a" variant="secondary" size="large" href={href} {...rest}>
+      {children}
+    </Button>
+  )
+}
+
+export const Hero = Object.assign(Root, {
+  Heading: HeroHeading,
+  Description: HeroDescription,
+  PrimaryAction: HeroPrimaryAction,
+  SecondaryAction: HeroSecondaryAction
+})

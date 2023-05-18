@@ -42,18 +42,13 @@ export function ResourcesHubExample(props: ResourcesHubExampleProps) {
       <div className={styles.heroBG} style={{backgroundImage: `url(${heroBG})`}}>
         <div style={{maxWidth: 1280, margin: '70px auto 0'}}>
           <Stack padding="spacious">
-            <Hero
-              heading="Compare GitHub to other DevOps solutions"
-              primaryAction={{
-                text: 'Start a free trial',
-                href: 'https://github.com/organizations/enterprise_plan'
-              }}
-              secondaryAction={{
-                text: 'Contact sales',
-                href: 'https://github.com/enterprise/contact'
-              }}
-              align="center"
-            />
+            <Hero align="center">
+              <Hero.Heading>Compare GitHub to other DevOps solutions</Hero.Heading>
+              <Hero.PrimaryAction href="https://github.com/organizations/enterprise_plan">
+                Start a free trial
+              </Hero.PrimaryAction>
+              <Hero.SecondaryAction href="https://github.com/enterprise/contact">Contact sales</Hero.SecondaryAction>
+            </Hero>
           </Stack>
         </div>
       </div>
