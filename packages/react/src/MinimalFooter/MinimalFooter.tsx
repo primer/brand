@@ -212,6 +212,14 @@ function SocialLogomarks({socialLinks, logoHref}: SocialLogomarksProps) {
       icon: 'https://github.githubassets.com/images/modules/site/icons/footer/tiktok.svg',
       iconWidth: 18,
       iconHeight: 18
+    },
+    {
+      name: 'instagram',
+      fullName: 'Instagram',
+      url: 'https://www.instagram.com/github/',
+      icon: 'https://github.githubassets.com/images/modules/site/icons/footer/instagram.svg',
+      iconWidth: 24,
+      iconHeight: 24
     }
   ]
 
