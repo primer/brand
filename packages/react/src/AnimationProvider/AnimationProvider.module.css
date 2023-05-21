@@ -7,19 +7,11 @@
  */
 .Animation--fade-in {
   opacity: 0;
+  transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default);
 }
 
 .Animation--fade-in.Animation--active {
-  animation: fade-in var(--brand-animation-duration-default) var(--brand-animation-easing-default) forwards;
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+  opacity: 1;
 }
 
 /**
@@ -30,16 +22,8 @@
 }
 
 .Animation--fade-out.Animation--active {
-  animation: fade-out var(--brand-animation-duration-default) var(--brand-animation-easing-default) forwards;
-}
-
-@keyframes fade-out {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+  opacity: 0;
+  transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default);
 }
 
 /**
@@ -47,43 +31,29 @@
  */
 .Animation--slide-in-up {
   opacity: 0;
+  transform: translateY(var(--brand-animation-variant-slideInUp-distance));
+  transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
+    transform var(--brand-animation-duration-default) var(--brand-animation-easing-default);
 }
 
 .Animation--slide-in-up.Animation--active {
-  animation: slide-in-up var(--brand-animation-duration-default) var(--brand-animation-easing-default) forwards;
-}
-
-@keyframes slide-in-up {
-  0% {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /**
- * Slide down
+ * Slide in down
  */
-.Animation--slide-down {
+.Animation--slide-in-down {
   opacity: 0;
+  transform: translateY(var(--brand-animation-variant-slideInDown-distance));
+  transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
+    transform var(--brand-animation-duration-default) var(--brand-animation-easing-default);
 }
 
-.Animation--slide-down.Animation--active {
-  animation: slide-down var(--brand-animation-duration-default) var(--brand-animation-easing-default) forwards;
-}
-
-@keyframes slide-down {
-  0% {
-    opacity: 0;
-    transform: translateY(-15px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.Animation--slide-in-down.Animation--active {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /**
@@ -91,21 +61,14 @@
  */
 .Animation--slide-in-left {
   opacity: 0;
+  transform: translateX(var(--brand-animation-variant-slideInLeft-distance));
+  transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
+    transform var(--brand-animation-duration-default) var(--brand-animation-easing-default);
 }
 
 .Animation--slide-in-left.Animation--active {
-  animation: slide-in-left var(--brand-animation-duration-default) var(--brand-animation-easing-default) forwards;
-}
-
-@keyframes slide-in-left {
-  0% {
-    opacity: 0;
-    transform: translateX(15px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  opacity: 1;
+  transform: translateX(0);
 }
 
 /**
@@ -113,21 +76,14 @@
  */
 .Animation--slide-in-right {
   opacity: 0;
+  transform: translateX(var(--brand-animation-variant-slideInRight-distance));
+  transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
+    transform var(--brand-animation-duration-default) var(--brand-animation-easing-default);
 }
 
 .Animation--slide-in-right.Animation--active {
-  animation: slide-in-right var(--brand-animation-duration-default) var(--brand-animation-easing-default) forwards;
-}
-
-@keyframes slide-in-right {
-  0% {
-    opacity: 0;
-    transform: translateX(-15px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  opacity: 1;
+  transform: translateX(0);
 }
 
 /**
@@ -135,21 +91,14 @@
  */
 .Animation--scale-in {
   opacity: 0;
+  transform: scale(var(--brand-animation-variant-scaleIn-start));
+  transition: opacity var(--brand-animation-duration-extended) var(--brand-animation-easing-default),
+    transform var(--brand-animation-duration-extended) var(--brand-animation-easing-default);
 }
 
 .Animation--scale-in.Animation--active {
-  animation: scale-in var(--brand-animation-duration-extended) var(--brand-animation-easing-default) forwards;
-}
-
-@keyframes scale-in {
-  0% {
-    opacity: 0;
-    transform: scale(0.96);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
+  opacity: 1;
+  transform: scale(--brand-animation-variant-scaleIn-end);
 }
 
 /**
@@ -157,21 +106,15 @@
  */
 .Animation--scale-in-up {
   opacity: 0;
+  transform: scale(var(--brand-animation-variant-scaleInUp-start))
+    translateY(var(--brand-animation-variant-scaleInUp-distance));
+  transition: opacity var(--brand-animation-duration-extended) var(--brand-animation-easing-default),
+    transform var(--brand-animation-duration-extended) var(--brand-animation-easing-default);
 }
 
 .Animation--scale-in-up.Animation--active {
-  animation: scale-in-up var(--brand-animation-duration-extended) var(--brand-animation-easing-default) forwards;
-}
-
-@keyframes scale-in-up {
-  0% {
-    opacity: 0;
-    transform: scale(0.96) translateY(24px);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
+  opacity: 1;
+  transform: scale(var(--brand-animation-variant-scaleInUp-end)) translateY(0);
 }
 
 /**
@@ -179,21 +122,15 @@
  */
 .Animation--scale-in-down {
   opacity: 0;
+  transform: translateY(var(--brand-animation-variant-scaleInDown-distance))
+    scale(var(--brand-animation-variant-scaleInDown-start));
+  transition: opacity var(--brand-animation-duration-extended) var(--brand-animation-easing-default),
+    transform var(--brand-animation-duration-extended) var(--brand-animation-easing-default);
 }
 
 .Animation--scale-in-down.Animation--active {
-  animation: scale-in-down var(--brand-animation-duration-extended) var(--brand-animation-easing-default) forwards;
-}
-
-@keyframes scale-in-down {
-  0% {
-    opacity: 0;
-    transform: translateY(-50px) scale(0);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  opacity: 1;
+  transform: translateY(0) scale(var(--brand-animation-variant-scaleInDown-end));
 }
 
 /**
@@ -201,21 +138,15 @@
  */
 .Animation--scale-in-right {
   opacity: 0;
+  transform: scale(var(--brand-animation-variant-scaleInRight-start))
+    translateX(var(--brand-animation-variant-scaleInRight-distance));
+  transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
+    transform var(--brand-animation-duration-default) var(--brand-animation-easing-default);
 }
 
 .Animation--scale-in-right.Animation--active {
-  animation: scale-in-right var(--brand-animation-duration-default) var(--brand-animation-easing-default) forwards;
-}
-
-@keyframes scale-in-right {
-  0% {
-    opacity: 0;
-    transform: scale(0.9) translateX(-20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  opacity: 1;
+  transform: translateX(0) scale(var(--brand-animation-variant-scaleInRight-end));
 }
 
 /**
@@ -223,21 +154,15 @@
  */
 .Animation--scale-in-left {
   opacity: 0;
+  transform: scale(var(--brand-animation-variant-scaleInLeft-start))
+    translateX(var(--brand-animation-variant-scaleInLeft-distance));
+  transition: opacity var(--brand-animation-duration-extended) var(--brand-animation-easing-default),
+    transform var(--brand-animation-duration-extended) var(--brand-animation-easing-default);
 }
 
 .Animation--scale-in-left.Animation--active {
-  animation: scale-in-left var(--brand-animation-duration-extended) var(--brand-animation-easing-default) forwards;
-}
-
-@keyframes scale-in-left {
-  0% {
-    opacity: 0;
-    transform: scale(0.9) translateX(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  opacity: 1;
+  transform: translateX(0) scale(var(--brand-animation-variant-scaleInLeft-end));
 }
 
 /**
@@ -246,39 +171,22 @@
 .Animation--fill-in-right {
   transform-origin: left;
   transform: scaleX(0);
+  transition: transform var(--brand-animation-duration-default) var(--brand-animation-easing-default);
 }
 
 .Animation--fill-in-right.Animation--active {
-  animation: fill-in-right var(--brand-animation-duration-default) var(--brand-animation-easing-default) forwards;
-}
-
-@keyframes fill-in-right {
-  0% {
-    transform: scaleX(0);
-  }
-  100% {
-    transform: scaleX(1);
-  }
+  transform: scaleX(1);
 }
 
 /**
  * Scale in top
  */
-
-.Animation--scale-in-top {
+.Animation--fill-in-top {
   transform-origin: top;
   transform: scaleY(0);
+  transition: transform var(--brand-animation-duration-extended) var(--brand-animation-easing-default);
 }
 
-.Animation--scale-in-top.Animation--active {
-  animation: scale-in-top var(--brand-animation-duration-extended) var(--brand-animation-easing-default) forwards;
-}
-
-@keyframes scale-in-top {
-  0% {
-    transform: scaleY(0);
-  }
-  100% {
-    transform: scaleY(1);
-  }
+.Animation--fill-in-top.Animation--active {
+  transform: scaleY(1);
 }

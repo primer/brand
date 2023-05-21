@@ -314,7 +314,7 @@ export const TimelineBar = () => {
                 padding="none"
                 // eslint-disable-next-line react/no-children-prop
                 children={<></>}
-                animate={{variant: 'scale-in-top', delay: 700}}
+                animate={{variant: 'fill-in-top', delay: 700}}
               />
               <span className={styles.TimelineBarExample__icon}>
                 <RocketIcon size={24} fill="white" />

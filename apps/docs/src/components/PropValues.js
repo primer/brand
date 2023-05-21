@@ -8,10 +8,7 @@ export function PropTableValues({
   removeApostrophes,
 }) {
   const valuesToRender = values.map((value) => {
-    if (typeof value === 'string') {
-      if (removeApostrophes) {
-        return <InlineCode key={value}>{value}</InlineCode>
-      }
+    if (typeof value === 'string' && !removeApostrophes) {
       return <InlineCode key={value}>&apos;{value}&apos;</InlineCode>
     }
     return <InlineCode key={value}>{value}</InlineCode>

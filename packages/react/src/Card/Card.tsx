@@ -1,4 +1,4 @@
-import React, {RefObject, forwardRef, useCallback, useEffect} from 'react'
+import React, {RefObject, forwardRef, useCallback} from 'react'
 import {isFragment} from 'react-is'
 import clsx from 'clsx'
 import {Heading, HeadingProps, Text} from '..'
@@ -124,43 +124,27 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
       child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === CardIcon
     )
 
-    // This removes the global animation classes after the animation has completed
-    // Could be moved into useAnimation hook if this approach is needed in other components
-    useEffect(() => {
-      if (animationClasses) {
-        const refValue = cardRef.current
-        const handleAnimationEnd = () => {
-          refValue?.classList.remove(...animationClasses.split(' '))
-        }
-        refValue?.addEventListener('animationend', handleAnimationEnd)
-        return () => {
-          refValue?.removeEventListener('animationend', handleAnimationEnd)
-        }
-      }
-
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [cardRef])
-
     return (
-      <a
-        href={href}
-        className={clsx(styles.Card, hasIcon && styles['Card--has-icon'], animationClasses, className)}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        onFocus={handleOnFocus}
-        onBlur={handleOnBlur}
-        ref={cardRef}
-        style={{...animationInlineStyles, ...style}}
-        {...props}
-      >
-        {filteredChildren}
-        <div className={styles.Card__action}>
-          <Text as="span" size="300" className={clsx(stylesLink['Link--label'])}>
-            {ctaText}
-          </Text>
-          <ExpandableArrow className={stylesLink['Link-arrow']} expanded={isHovered || isFocused} />
-        </div>
-      </a>
+      <div className={clsx(animationClasses)} style={{...animationInlineStyles, ...style}}>
+        <a
+          href={href}
+          className={clsx(styles.Card, hasIcon && styles['Card--has-icon'], className)}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onFocus={handleOnFocus}
+          onBlur={handleOnBlur}
+          ref={cardRef}
+          {...props}
+        >
+          {filteredChildren}
+          <div className={styles.Card__action}>
+            <Text as="span" size="300" className={clsx(stylesLink['Link--label'])}>
+              {ctaText}
+            </Text>
+            <ExpandableArrow className={stylesLink['Link-arrow']} expanded={isHovered || isFocused} />
+          </div>
+        </a>
+      </div>
     )
   }
 )

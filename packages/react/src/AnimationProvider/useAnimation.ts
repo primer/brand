@@ -43,14 +43,14 @@ export const useAnimation = (animateProps?: AnimateProps): {classes: string; sty
     if (typeof animateProps === 'object') {
       const {delay, duration, ease} = animateProps
       if (typeof delay === 'number') {
-        newStyles.animationDelay = `${delay}ms`
+        newStyles.transitionDelay = `${delay}ms`
       }
       if (typeof duration === 'number') {
-        newStyles.animationDuration = `${duration}ms`
+        newStyles.transitionDuration = `${duration}ms`
       }
 
       if (ease) {
-        newStyles.animationTimingFunction = ease
+        newStyles.transitionTimingFunction = ease
       }
     }
 
