@@ -2,7 +2,7 @@ import React from 'react'
 import clsx from 'clsx'
 import styles from './Image.module.css'
 import {BaseProps} from '../component-helpers'
-import {useAnimation} from '../AnimationProvider'
+import {useAnimation} from '../animation'
 
 export type ImageAspectRatio = '1:1' | '16:9' | '16:10' | '4:3' | 'custom'
 

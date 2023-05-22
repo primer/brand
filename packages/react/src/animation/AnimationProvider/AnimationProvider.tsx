@@ -6,7 +6,7 @@ import React, {createContext, PropsWithChildren, useEffect, useState} from 'reac
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/animation/base.css'
 
 /** * Main Stylesheet (as a CSS Module) */
-import styles from './AnimationProvider.module.css'
+import styles from '../Animation.module.css'
 
 export const AnimationVariants = [
   'fade-in',
@@ -55,6 +55,16 @@ type AnimationProviderProps = {
    * Will persist the animation end-state after the animation has completed
    */
   runOnce?: boolean
+
+  /**
+   * Will stagger the animations of the children using an incrementing delay
+   */
+  autoStaggerChildren?: boolean
+
+  /**
+   * Stagger delay increment. Should be used alongside `autoStaggerChildren`.
+   */
+  staggerDelayIncrement?: number
 }
 
 export const AnimationContext = createContext<AnimationProviderProps>({})
@@ -96,7 +106,9 @@ export function AnimationProvider({
   disableAnimations = false,
   animationTrigger = 'on-visible',
   visibilityOptions = 'bottom-of-screen',
-  runOnce = true
+  runOnce = true,
+  autoStaggerChildren = true,
+  staggerDelayIncrement = 100
 }: PropsWithChildren<AnimationProviderProps>) {
   const [animationContext, setAnimationContext] = useState<AnimationProviderProps>({
     disableAnimations,
@@ -117,6 +129,18 @@ export function AnimationProvider({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  // add useEffect to add transition-delay to children that contain the Animation class
+  useEffect(() => {
+    if (!disableAnimations && autoStaggerChildren) {
+      const stagger = staggerDelayIncrement
+      const items = Array.from(document.querySelectorAll<HTMLElement>(`.${styles.Animation}`))
+
+      for (let i = 0; i < items.length; i++) {
+        items[i].style.transitionDelay = `${i * stagger}ms`
+      }
+    }
+  }, [disableAnimations, autoStaggerChildren, staggerDelayIncrement])
 
   useEffect(() => {
     if (!disableAnimations && animationTrigger === 'on-visible') {

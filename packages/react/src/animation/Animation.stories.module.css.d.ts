@@ -19,6 +19,7 @@ declare const styles: {
   readonly "TimelineBarExample__icon": string;
   readonly "TimelineBarExample__text": string;
   readonly "TimelineBarExample__highlightedText": string;
+  readonly "TimelineBarExample__end": string;
 };
 export = styles;
 

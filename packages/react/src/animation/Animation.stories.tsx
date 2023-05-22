@@ -1,9 +1,9 @@
 import React from 'react'
 import {ComponentMeta} from '@storybook/react'
+import {AnimationProvider, AnimationVariants} from '.'
+import {Text, Stack} from '..'
 
-import {AnimationProvider, AnimationVariants, Text, Stack} from '..'
-
-import styles from './AnimationProvider.stories.module.css'
+import styles from './Animation.stories.module.css'
 
 export default {
   title: 'Components/Animations',

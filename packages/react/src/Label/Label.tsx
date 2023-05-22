@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import React, {forwardRef, type Ref} from 'react'
 import {Text} from '../Text'
 
-import {useAnimation} from '../AnimationProvider'
+import {useAnimation} from '../animation'
 
 import type {BaseProps} from '../component-helpers'
 import {Colors, Gradients} from '../constants'

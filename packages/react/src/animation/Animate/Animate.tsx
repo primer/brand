@@ -1,6 +1,6 @@
 import React, {HTMLAttributes, PropsWithChildren} from 'react'
-import {useAnimation} from '../AnimationProvider'
-import type {BaseProps} from '../component-helpers'
+import {useAnimation} from '..'
+import type {BaseProps} from '../../component-helpers'
 import clsx from 'clsx'
 
 export type BoxProps<T extends keyof JSX.IntrinsicElements = 'div'> = React.HTMLAttributes<T> & {
@@ -14,9 +14,10 @@ export type BoxProps<T extends keyof JSX.IntrinsicElements = 'div'> = React.HTML
     : BaseProps<HTMLElement>)
 
 /**
- * A flexible layout component that can be rendered as any HTML element.
+ * An animation-helper component that can be rendered as any HTML element.
+ * Use Animate to wrap any element and apply an animation to it.
  */
-export function Box({animate, as = 'div', children, className, style, ...rest}: PropsWithChildren<BoxProps>) {
+export function Animate({animate, as = 'div', children, className, style, ...rest}: PropsWithChildren<BoxProps>) {
   const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
   const validElements = ['div', 'span', 'section']
   const Component = validElements.includes(as) ? as : 'div'

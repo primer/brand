@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import {Link, LinkProps} from '../Link'
 import {Heading, HeadingProps, defaultHeadingTag} from '../Heading'
 import {Text} from '../Text'
-import {useAnimation} from '../AnimationProvider'
+import {useAnimation} from '../animation'
 
 import styles from './SectionIntro.module.css'
 

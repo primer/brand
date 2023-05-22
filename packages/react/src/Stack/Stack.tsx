@@ -2,7 +2,7 @@ import React, {forwardRef, useMemo} from 'react'
 import clsx from 'clsx'
 
 import type {BaseProps} from '../component-helpers'
-import {useAnimation} from '../AnimationProvider'
+import {useAnimation} from '../animation'
 
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/size/size.css'
 import styles from './Stack.module.css'

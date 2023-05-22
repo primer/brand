@@ -74,9 +74,10 @@ function HeroDescription({size = '400', weight, children}: PropsWithChildren<Her
 
 type HeroActions = {
   href: string
+  children?: React.ReactNode
 } & Omit<ButtonBaseProps, 'variant'>
 
-function HeroPrimaryAction({href, children, ...rest}: PropsWithChildren<HeroActions>) {
+function HeroPrimaryAction({href, children, ...rest}: HeroActions) {
   return (
     <Button as="a" variant="primary" size="large" href={href} {...rest}>
       {children}
@@ -84,7 +85,7 @@ function HeroPrimaryAction({href, children, ...rest}: PropsWithChildren<HeroActi
   )
 }
 
-function HeroSecondaryAction({href, children, ...rest}: PropsWithChildren<HeroActions>) {
+function HeroSecondaryAction({href, children, ...rest}: HeroActions) {
   return (
     <Button as="a" variant="secondary" size="large" href={href} {...rest}>
       {children}

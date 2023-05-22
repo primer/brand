@@ -158,3 +158,12 @@
 .TimelineBarExample__highlightedText {
   color: var(--base-color-scale-green-0);
 }
+
+.TimelineBarExample__start {
+  display: flex;
+  order: 1;
+}
+
+.TimelineBarExample__end {
+  order: 2;
+}

@@ -1,7 +1,7 @@
 import {CSSProperties, useContext, useMemo} from 'react'
 import {AnimateProps, AnimationContext, AnimationVariants} from './AnimationProvider'
 
-import styles from './AnimationProvider.module.css'
+import styles from './Animation.module.css'
 
 const animationTypeToClass = AnimationVariants.reduce((acc, key) => {
   acc[key] = styles[`Animation--${key}`]

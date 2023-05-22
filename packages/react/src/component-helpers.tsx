@@ -1,5 +1,5 @@
 import React, {Ref, PropsWithChildren} from 'react'
-import {AnimateProps} from './AnimationProvider/AnimationProvider'
+import {AnimateProps} from './animation/AnimationProvider'
 
 /**
  * Layout

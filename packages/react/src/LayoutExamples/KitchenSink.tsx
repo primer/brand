@@ -23,7 +23,7 @@ import {
   ComparisonTable,
   AnimationProvider,
   SectionIntro,
-  Box
+  Animate
 } from '..'
 import {CopilotIcon, RocketIcon, GitBranchIcon} from '@primer/octicons-react'
 
@@ -94,8 +94,7 @@ export function KitchenSink(props: KitchenSinkProps) {
                 </River.Visual>
                 <River.Content
                   animate={{
-                    variant: 'slide-in-right',
-                    delay: 200
+                    variant: 'slide-in-right'
                   }}
                 >
                   <Heading>Heading</Heading>
@@ -115,8 +114,7 @@ export function KitchenSink(props: KitchenSinkProps) {
                 </River.Visual>
                 <River.Content
                   animate={{
-                    variant: 'slide-in-left',
-                    delay: 200
+                    variant: 'slide-in-left'
                   }}
                 >
                   <Heading>Heading</Heading>
@@ -136,8 +134,7 @@ export function KitchenSink(props: KitchenSinkProps) {
                 </River.Visual>
                 <River.Content
                   animate={{
-                    variant: 'slide-in-up',
-                    delay: 200
+                    variant: 'slide-in-up'
                   }}
                 >
                   <Heading>Heading</Heading>
@@ -218,7 +215,7 @@ export function KitchenSink(props: KitchenSinkProps) {
                     large: 4
                   }}
                 >
-                  <Box as="div" animate={{variant: 'scale-in-up', delay: 100}}>
+                  <Animate animate="scale-in-up">
                     <Card href="https://github.com">
                       <Card.Icon icon={CopilotIcon} color="indigo" hasBackground />
                       <Card.Label>Limited</Card.Label>
@@ -227,7 +224,7 @@ export function KitchenSink(props: KitchenSinkProps) {
                         Everything you need to know about getting started with GitHub Actions.
                       </Card.Description>
                     </Card>
-                  </Box>
+                  </Animate>
                 </Grid.Column>
                 <Grid.Column
                   span={{
@@ -235,7 +232,7 @@ export function KitchenSink(props: KitchenSinkProps) {
                     large: 4
                   }}
                 >
-                  <Box as="div" animate={{variant: 'scale-in-up', delay: 300}}>
+                  <Animate animate="scale-in-up">
                     <Card href="https://github.com">
                       <Card.Icon icon={RocketIcon} hasBackground color="blue" />
                       <Card.Label>Limited</Card.Label>
@@ -244,7 +241,7 @@ export function KitchenSink(props: KitchenSinkProps) {
                         In a recent study, 70% of organizations reported they had adopted DevOps.
                       </Card.Description>
                     </Card>
-                  </Box>
+                  </Animate>
                 </Grid.Column>
                 <Grid.Column
                   span={{
@@ -252,7 +249,7 @@ export function KitchenSink(props: KitchenSinkProps) {
                     large: 4
                   }}
                 >
-                  <Box as="div" animate={{variant: 'scale-in-up', delay: 500}}>
+                  <Animate animate="scale-in-up">
                     <Card href="https://github.com">
                       <Card.Icon icon={GitBranchIcon} color="teal" hasBackground />
                       <Card.Label>Limited</Card.Label>
@@ -261,7 +258,7 @@ export function KitchenSink(props: KitchenSinkProps) {
                         Everything you need to know about getting started with GitHub Actions.
                       </Card.Description>
                     </Card>
-                  </Box>
+                  </Animate>
                 </Grid.Column>
               </Grid>
               <FAQ animate="scale-in-up">
@@ -366,8 +363,7 @@ export function KitchenSink(props: KitchenSinkProps) {
                       <Testimonial
                         size="large"
                         animate={{
-                          variant: 'slide-in-left',
-                          delay: 200
+                          variant: 'slide-in-left'
                         }}
                       >
                         <Testimonial.Quote>
@@ -398,8 +394,7 @@ export function KitchenSink(props: KitchenSinkProps) {
               >
                 <Testimonial
                   animate={{
-                    variant: 'slide-in-right',
-                    delay: 250
+                    variant: 'slide-in-right'
                   }}
                 >
                   <Testimonial.Quote>
@@ -424,8 +419,7 @@ export function KitchenSink(props: KitchenSinkProps) {
               >
                 <Testimonial
                   animate={{
-                    variant: 'slide-in-right',
-                    delay: 400
+                    variant: 'slide-in-right'
                   }}
                 >
                   <Testimonial.Quote>
@@ -450,8 +444,7 @@ export function KitchenSink(props: KitchenSinkProps) {
               >
                 <Testimonial
                   animate={{
-                    variant: 'slide-in-right',
-                    delay: 600
+                    variant: 'slide-in-right'
                   }}
                 >
                   <Testimonial.Quote>
@@ -471,7 +464,8 @@ export function KitchenSink(props: KitchenSinkProps) {
             </Grid>
           </Grid.Column>
         </Grid>
-
+      </AnimationProvider>
+      <AnimationProvider runOnce={false}>
         <ThemeProvider colorMode="dark">
           <div
             style={{
@@ -665,36 +659,36 @@ export function KitchenSink(props: KitchenSinkProps) {
             </Grid>
           </div>
         </ThemeProvider>
-        {enableGridOverlay && (
-          <Grid
-            enableOverlay={enableGridOverlay}
-            style={{
-              zIndex: 1,
-              position: 'fixed',
-              top: 0,
-              left: '50%',
-              transform: 'translate(-50%, 0)',
-              maxWidth: '1280px',
-              bottom: 0,
-              width: '100%',
-              height: '100%'
-            }}
-          >
-            <Grid.Column span={1}></Grid.Column>
-            <Grid.Column span={1}></Grid.Column>
-            <Grid.Column span={1}></Grid.Column>
-            <Grid.Column span={1}></Grid.Column>
-            <Grid.Column span={1}></Grid.Column>
-            <Grid.Column span={1}></Grid.Column>
-            <Grid.Column span={1}></Grid.Column>
-            <Grid.Column span={1}></Grid.Column>
-            <Grid.Column span={1}></Grid.Column>
-            <Grid.Column span={1}></Grid.Column>
-            <Grid.Column span={1}></Grid.Column>
-            <Grid.Column span={1}></Grid.Column>
-          </Grid>
-        )}
       </AnimationProvider>
+      {enableGridOverlay && (
+        <Grid
+          enableOverlay={enableGridOverlay}
+          style={{
+            zIndex: 1,
+            position: 'fixed',
+            top: 0,
+            left: '50%',
+            transform: 'translate(-50%, 0)',
+            maxWidth: '1280px',
+            bottom: 0,
+            width: '100%',
+            height: '100%'
+          }}
+        >
+          <Grid.Column span={1}></Grid.Column>
+          <Grid.Column span={1}></Grid.Column>
+          <Grid.Column span={1}></Grid.Column>
+          <Grid.Column span={1}></Grid.Column>
+          <Grid.Column span={1}></Grid.Column>
+          <Grid.Column span={1}></Grid.Column>
+          <Grid.Column span={1}></Grid.Column>
+          <Grid.Column span={1}></Grid.Column>
+          <Grid.Column span={1}></Grid.Column>
+          <Grid.Column span={1}></Grid.Column>
+          <Grid.Column span={1}></Grid.Column>
+          <Grid.Column span={1}></Grid.Column>
+        </Grid>
+      )}
     </ThemeProvider>
   )
 }
