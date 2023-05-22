@@ -64,7 +64,7 @@ MaximumLinks.storyName = 'Maximum Links (5)'
 export const MixedButtonsAndLinks = () => (
   <MinimalFooter socialLinks={false}>
     <MinimalFooter.Link>Link one</MinimalFooter.Link>
-    <MinimalFooter.Link as="button" href="true" onClick={() => alert('You have clicked Button one')}>
+    <MinimalFooter.Link as="a" href="#" onClick={() => alert('You have clicked Button one')}>
       Button one
     </MinimalFooter.Link>
     <MinimalFooter.Link as="button" onClick={() => alert('You have clicked Button two')}>
