@@ -21,9 +21,9 @@ describe('useAnimation', () => {
     expect(result.current.classes).toContain('Animation')
     expect(result.current.classes).toContain('Animation--fade-in')
     expect(result.current.styles).toMatchObject({
-      animationDelay: '100ms',
-      animationDuration: '100ms',
-      animationTimingFunction: 'ease-in-out'
+      transitionDelay: '100ms',
+      transitionDuration: '100ms',
+      transitionTimingFunction: 'ease-in-out'
     })
   })
 
