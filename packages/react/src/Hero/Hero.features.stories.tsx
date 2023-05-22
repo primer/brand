@@ -1,6 +1,7 @@
 import React from 'react'
 import {ComponentStory, ComponentMeta} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
+import {HeartFillIcon, StarFillIcon} from '@primer/octicons-react'
 
 import {Hero} from '.'
 
@@ -70,6 +71,24 @@ export const Issues: ComponentStory<typeof Hero> = _args => (
     <Hero.SecondaryAction href="#">Start using project tables</Hero.SecondaryAction>
   </Hero>
 )
+
+export const WithCustomIconAndVariant: ComponentStory<typeof Hero> = _args => (
+  <Hero align="center">
+    <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+    <Hero.Description>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+      felis nam pulvinar risus elementum.
+    </Hero.Description>
+    <Hero.PrimaryAction href="#" leadingVisual={HeartFillIcon}>
+      Primary action with leading icon
+    </Hero.PrimaryAction>
+    <Hero.SecondaryAction href="#" trailingVisual={StarFillIcon} variant="subtle">
+      Subtle action with trailing icon
+    </Hero.SecondaryAction>
+  </Hero>
+)
+
+WithCustomIconAndVariant.storyName = 'With custom icon and variant'
 
 export const NarrowView: ComponentStory<typeof Hero> = _args => (
   <Hero>
