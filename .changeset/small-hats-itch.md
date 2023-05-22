@@ -5,7 +5,15 @@
 
 Provides the `Hero` component with a composable API.
 
-Before:
+> **Warning**
+> This is a breaking change to the `Hero` component. Please review the following carefully.
+
+<table>
+<tr>
+<th> Before</th> <th> After </th>
+</tr>
+<tr>
+<td valign="top">
 
 ```jsx
 <Hero
@@ -19,7 +27,8 @@ Before:
 />
 ```
 
-After:
+ </td>
+<td valign="top">
 
 ```jsx
 <Hero>
@@ -28,3 +37,7 @@ After:
   <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
 </Hero>
 ```
+
+</td>
+</tr>
+</table>
