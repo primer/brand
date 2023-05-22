@@ -48,23 +48,23 @@ export function KitchenSink(props: KitchenSinkProps) {
       colorMode={isLightMode ? 'light' : 'dark'}
       style={{backgroundColor: 'var(--brand-color-canvas-default)'}}
     >
-      <AnimationProvider runOnce={false}>
-        <SubdomainNavBar title="Subdomain" {...props}>
-          <SubdomainNavBar.Link href="#">Collections</SubdomainNavBar.Link>
-          <SubdomainNavBar.Link href="#">Topics</SubdomainNavBar.Link>
-          <SubdomainNavBar.Link href="#">Articles</SubdomainNavBar.Link>
-          <SubdomainNavBar.Link href="#">Events</SubdomainNavBar.Link>
-          <SubdomainNavBar.Link href="#">Video</SubdomainNavBar.Link>
-          <SubdomainNavBar.Link href="#">Social</SubdomainNavBar.Link>
-          <SubdomainNavBar.SecondaryAction href="#" onClick={handleMode}>
-            Change color mode
-          </SubdomainNavBar.SecondaryAction>
-          <SubdomainNavBar.PrimaryAction href="#" onClick={handleOverlay}>
-            {enableGridOverlay ? 'Disable' : 'Enable'} grid
-          </SubdomainNavBar.PrimaryAction>
-        </SubdomainNavBar>
-        <Grid style={{paddingTop: 'var(--base-size-40)', paddingBottom: '200px'}} enableOverlay={false}>
-          <Grid.Column>
+      <SubdomainNavBar title="Subdomain" {...props}>
+        <SubdomainNavBar.Link href="#">Collections</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#">Topics</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#">Articles</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#">Events</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#">Video</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#">Social</SubdomainNavBar.Link>
+        <SubdomainNavBar.SecondaryAction href="#" onClick={handleMode}>
+          Change color mode
+        </SubdomainNavBar.SecondaryAction>
+        <SubdomainNavBar.PrimaryAction href="#" onClick={handleOverlay}>
+          {enableGridOverlay ? 'Disable' : 'Enable'} grid
+        </SubdomainNavBar.PrimaryAction>
+      </SubdomainNavBar>
+      <Grid style={{paddingTop: 'var(--base-size-40)', paddingBottom: '200px'}} enableOverlay={false}>
+        <Grid.Column>
+          <AnimationProvider runOnce={false}>
             <div style={{marginTop: 'var(--base-size-80)'}}>
               <Hero align="center">
                 <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
@@ -146,60 +146,61 @@ export function KitchenSink(props: KitchenSinkProps) {
                 </River.Content>
               </River>
             </section>
-
-            <Stack
-              id="comparejenkins"
-              gap="spacious"
-              padding="none"
-              justifyContent="space-evenly"
-              direction={{narrow: 'vertical', regular: 'horizontal', wide: 'horizontal'}}
-              style={{margin: 'var(--base-size-96) auto'}}
-            >
-              <ComparisonTable featuredColumn={1} heading="Comparison table">
-                <ComparisonTable.Row>
-                  <ComparisonTable.Cell>Use case</ComparisonTable.Cell>
-                  <ComparisonTable.Cell>GitHub</ComparisonTable.Cell>
-                  <ComparisonTable.Cell>Jenkins</ComparisonTable.Cell>
-                </ComparisonTable.Row>
-                <ComparisonTable.Row>
-                  <ComparisonTable.Cell>Automation & CI/CD</ComparisonTable.Cell>
-                  <ComparisonTable.Cell>
-                    <Text as="p" size="300">
-                      Comparable native core capabilities
-                    </Text>
-                    <Text as="p" size="300">
-                      <InlineLink href="#">Over 13,000 GitHub Actions are available</InlineLink>
-                      &nbsp;in the GitHub Marketplace to automate your development workflow.
-                    </Text>
-                  </ComparisonTable.Cell>
-                  <ComparisonTable.Cell>
-                    <Text as="p" size="300">
-                      Comparable native capabilities
-                    </Text>
-                    <Text as="p" size="300">
-                      1,800+ community contributed Jenkins plugins{' '}
-                      <InlineLink href="#">in Jenkins Plugin Marketplace.</InlineLink>
-                    </Text>
-                  </ComparisonTable.Cell>
-                </ComparisonTable.Row>
-                <ComparisonTable.Row>
-                  <ComparisonTable.Cell>Deployment models</ComparisonTable.Cell>
-                  <ComparisonTable.Cell>Cloud or self-hosted</ComparisonTable.Cell>
-                  <ComparisonTable.Cell>
-                    <Text as="p" size="300">
-                      Self-hosted only
-                    </Text>
-                    <Text as="p" size="300">
-                      CloudBees is the cloud alternative
-                    </Text>
-                  </ComparisonTable.Cell>
-                </ComparisonTable.Row>
-                <ComparisonTable.Footnote>
-                  *** This is a biased overview of capabilities by use case, based on publicly available information as
-                  of 2022-05-16.
-                </ComparisonTable.Footnote>
-              </ComparisonTable>
-            </Stack>
+          </AnimationProvider>
+          <Stack
+            id="comparejenkins"
+            gap="spacious"
+            padding="none"
+            justifyContent="space-evenly"
+            direction={{narrow: 'vertical', regular: 'horizontal', wide: 'horizontal'}}
+            style={{margin: 'var(--base-size-96) auto'}}
+          >
+            <ComparisonTable featuredColumn={1} heading="Comparison table">
+              <ComparisonTable.Row>
+                <ComparisonTable.Cell>Use case</ComparisonTable.Cell>
+                <ComparisonTable.Cell>GitHub</ComparisonTable.Cell>
+                <ComparisonTable.Cell>Jenkins</ComparisonTable.Cell>
+              </ComparisonTable.Row>
+              <ComparisonTable.Row>
+                <ComparisonTable.Cell>Automation & CI/CD</ComparisonTable.Cell>
+                <ComparisonTable.Cell>
+                  <Text as="p" size="300">
+                    Comparable native core capabilities
+                  </Text>
+                  <Text as="p" size="300">
+                    <InlineLink href="#">Over 13,000 GitHub Actions are available</InlineLink>
+                    &nbsp;in the GitHub Marketplace to automate your development workflow.
+                  </Text>
+                </ComparisonTable.Cell>
+                <ComparisonTable.Cell>
+                  <Text as="p" size="300">
+                    Comparable native capabilities
+                  </Text>
+                  <Text as="p" size="300">
+                    1,800+ community contributed Jenkins plugins{' '}
+                    <InlineLink href="#">in Jenkins Plugin Marketplace.</InlineLink>
+                  </Text>
+                </ComparisonTable.Cell>
+              </ComparisonTable.Row>
+              <ComparisonTable.Row>
+                <ComparisonTable.Cell>Deployment models</ComparisonTable.Cell>
+                <ComparisonTable.Cell>Cloud or self-hosted</ComparisonTable.Cell>
+                <ComparisonTable.Cell>
+                  <Text as="p" size="300">
+                    Self-hosted only
+                  </Text>
+                  <Text as="p" size="300">
+                    CloudBees is the cloud alternative
+                  </Text>
+                </ComparisonTable.Cell>
+              </ComparisonTable.Row>
+              <ComparisonTable.Footnote>
+                *** This is a biased overview of capabilities by use case, based on publicly available information as of
+                2022-05-16.
+              </ComparisonTable.Footnote>
+            </ComparisonTable>
+          </Stack>
+          <AnimationProvider runOnce={false}>
             <Stack direction="vertical" padding="none" gap="spacious" style={{gap: 'var(--base-size-96)'}}>
               <Grid style={{justifyItems: 'center'}}>
                 <Grid.Column>
@@ -334,6 +335,8 @@ export function KitchenSink(props: KitchenSinkProps) {
                 </FAQ.Item>
               </FAQ>
             </Stack>
+          </AnimationProvider>
+          <AnimationProvider runOnce={false}>
             <Stack
               direction="vertical"
               padding="none"
@@ -462,204 +465,204 @@ export function KitchenSink(props: KitchenSinkProps) {
                 </Testimonial>
               </Grid.Column>
             </Grid>
-          </Grid.Column>
-        </Grid>
-      </AnimationProvider>
-      <AnimationProvider runOnce={false}>
-        <ThemeProvider colorMode="dark">
-          <div
-            style={{
-              backgroundColor: 'var(--brand-color-canvas-default)',
-              paddingTop: 'var(--base-size-24)',
-              paddingBottom: 'var(--base-size-24)',
-              marginTop: 'var(--base-size-64)'
-            }}
-          >
-            <Grid enableOverlay={enableGridOverlay} style={{margin: 'var(--base-size-96) auto'}}>
-              <Grid.Column
-                span={{
-                  xsmall: 12,
-                  large: 6
-                }}
-                start={{
-                  xsmall: 1,
-                  large: 4
+          </AnimationProvider>
+        </Grid.Column>
+      </Grid>
+
+      <ThemeProvider colorMode="dark">
+        <div
+          style={{
+            backgroundColor: 'var(--brand-color-canvas-default)',
+            paddingTop: 'var(--base-size-24)',
+            paddingBottom: 'var(--base-size-24)',
+            marginTop: 'var(--base-size-64)'
+          }}
+        >
+          <Grid enableOverlay={enableGridOverlay} style={{margin: 'var(--base-size-96) auto'}}>
+            <Grid.Column
+              span={{
+                xsmall: 12,
+                large: 6
+              }}
+              start={{
+                xsmall: 1,
+                large: 4
+              }}
+            >
+              <form
+                style={{
+                  margin: '3rem auto 5rem'
                 }}
               >
-                <form
-                  style={{
-                    margin: '3rem auto 5rem'
-                  }}
-                >
-                  <Stack direction="vertical" padding="none" gap="normal">
-                    <Heading as="h3">Get started</Heading>
+                <Stack direction="vertical" padding="none" gap="normal">
+                  <Heading as="h3">Get started</Heading>
 
-                    <Grid enableOverlay={enableGridOverlay}>
-                      <Grid.Column
-                        span={{
-                          xsmall: 3,
-                          small: 2,
-                          large: 3
-                        }}
-                      >
-                        <FormControl fullWidth>
-                          <FormControl.Label>Title</FormControl.Label>
-                          <Select defaultValue="">
-                            <Select.Option value="" disabled>
-                              Title
-                            </Select.Option>
-                            <Select.Option value="miss">Miss</Select.Option>
-                            <Select.Option value="mr">Mr</Select.Option>
-                            <Select.Option value="mrs">Mrs</Select.Option>
-                            <Select.Option value="mx">Mx</Select.Option>
-                          </Select>
-                        </FormControl>
-                      </Grid.Column>
-                      <Grid.Column
-                        span={{
-                          xsmall: 4,
-                          small: 5,
-                          large: 4
-                        }}
-                      >
-                        <FormControl fullWidth required>
-                          <FormControl.Label>First name</FormControl.Label>
-                          <TextInput required />
-                        </FormControl>
-                      </Grid.Column>
-                      <Grid.Column
-                        span={{
-                          xsmall: 5,
-                          small: 5,
-                          large: 5
-                        }}
-                      >
-                        <FormControl fullWidth required>
-                          <FormControl.Label>Last name</FormControl.Label>
-                          <TextInput required />
-                        </FormControl>
-                      </Grid.Column>
-                    </Grid>
-
-                    <FormControl fullWidth required>
-                      <FormControl.Label>Enterprise name</FormControl.Label>
-                      <TextInput required />
-                    </FormControl>
-
-                    <FormControl fullWidth required>
-                      <FormControl.Label>Enterprise URL</FormControl.Label>
-                      <TextInput leadingText="github.com/" required />
-                    </FormControl>
-
-                    <FormControl fullWidth required>
-                      <FormControl.Label>Country</FormControl.Label>
-                      <Select defaultValue="">
-                        <Select.Option value="" disabled>
-                          Country
-                        </Select.Option>
-                        <Select.Option value="us">United States of America</Select.Option>
-                        <Select.Option value="uk">United Kingdom</Select.Option>
-                      </Select>
-                    </FormControl>
-                    <Heading as="h4" size="6">
-                      Number of users
-                    </Heading>
-                    {/* Todo convert to a fieldset */}
-                    <Stack direction={{narrow: 'vertical', regular: 'horizontal'}} padding="none">
-                      <FormControl>
-                        <FormControl.Label>0-99</FormControl.Label>
-                        <Radio name="user-band" value="0-99" />
-                      </FormControl>
-                      <FormControl>
-                        <FormControl.Label>100-499</FormControl.Label>
-                        <Radio name="user-band" value="100-499" />
-                      </FormControl>
-                      <FormControl>
-                        <FormControl.Label>500-999</FormControl.Label>
-                        <Radio name="user-band" value="500-999" />
-                      </FormControl>
-                      <FormControl>
-                        <FormControl.Label>1000+</FormControl.Label>
-                        <Radio name="user-band" value="1000+" />
-                      </FormControl>
-                    </Stack>
-                    <FormControl hasBorder required>
-                      <FormControl.Label>
-                        Contact me about GitHub Enterprise Server{' '}
-                        <FormControl.Hint>
-                          <Text size="200" variant="muted">
-                            I&apos;m interested in learning more about{' '}
-                            <InlineLink size="200" href="https://github.com/enterprise" target="_blank">
-                              GitHub Enterprise Server
-                            </InlineLink>{' '}
-                            and would like to be contacted by GitHub’s sales team.
-                          </Text>
-                        </FormControl.Hint>
-                      </FormControl.Label>
-                      <Checkbox />
-                    </FormControl>
-                    <div
-                      style={{
-                        borderWidth: 1,
-                        borderStyle: 'solid',
-                        borderColor: 'var(--brand-control-color-border-default)',
-                        backgroundColor: 'var(--brand-color-canvas-inset)',
-                        height: 150,
-                        width: '100%',
-                        borderRadius: 6,
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center'
+                  <Grid enableOverlay={enableGridOverlay}>
+                    <Grid.Column
+                      span={{
+                        xsmall: 3,
+                        small: 2,
+                        large: 3
                       }}
                     >
-                      <Text size="200" variant="muted">
-                        Captcha
-                      </Text>
-                    </div>
-                    <FormControl required>
-                      <FormControl.Label>
-                        <Text size="200" variant="muted">
-                          I hereby accept the{' '}
-                          <InlineLink size="200" href="https://github.com/customer-terms" target="_blank">
-                            GitHub Customer Agreement
-                          </InlineLink>{' '}
-                          on behalf of my organization and confirm that I have the authority to do so. For more
-                          information about GitHub&apos;s privacy practices, see the{' '}
-                          <InlineLink
-                            size="200"
-                            href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement"
-                            target="_blank"
-                          >
-                            GitHub Privacy Statement.
-                          </InlineLink>{' '}
-                        </Text>
-                      </FormControl.Label>
+                      <FormControl fullWidth>
+                        <FormControl.Label>Title</FormControl.Label>
+                        <Select defaultValue="">
+                          <Select.Option value="" disabled>
+                            Title
+                          </Select.Option>
+                          <Select.Option value="miss">Miss</Select.Option>
+                          <Select.Option value="mr">Mr</Select.Option>
+                          <Select.Option value="mrs">Mrs</Select.Option>
+                          <Select.Option value="mx">Mx</Select.Option>
+                        </Select>
+                      </FormControl>
+                    </Grid.Column>
+                    <Grid.Column
+                      span={{
+                        xsmall: 4,
+                        small: 5,
+                        large: 4
+                      }}
+                    >
+                      <FormControl fullWidth required>
+                        <FormControl.Label>First name</FormControl.Label>
+                        <TextInput required />
+                      </FormControl>
+                    </Grid.Column>
+                    <Grid.Column
+                      span={{
+                        xsmall: 5,
+                        small: 5,
+                        large: 5
+                      }}
+                    >
+                      <FormControl fullWidth required>
+                        <FormControl.Label>Last name</FormControl.Label>
+                        <TextInput required />
+                      </FormControl>
+                    </Grid.Column>
+                  </Grid>
 
-                      <Checkbox />
+                  <FormControl fullWidth required>
+                    <FormControl.Label>Enterprise name</FormControl.Label>
+                    <TextInput required />
+                  </FormControl>
+
+                  <FormControl fullWidth required>
+                    <FormControl.Label>Enterprise URL</FormControl.Label>
+                    <TextInput leadingText="github.com/" required />
+                  </FormControl>
+
+                  <FormControl fullWidth required>
+                    <FormControl.Label>Country</FormControl.Label>
+                    <Select defaultValue="">
+                      <Select.Option value="" disabled>
+                        Country
+                      </Select.Option>
+                      <Select.Option value="us">United States of America</Select.Option>
+                      <Select.Option value="uk">United Kingdom</Select.Option>
+                    </Select>
+                  </FormControl>
+                  <Heading as="h4" size="6">
+                    Number of users
+                  </Heading>
+                  {/* Todo convert to a fieldset */}
+                  <Stack direction={{narrow: 'vertical', regular: 'horizontal'}} padding="none">
+                    <FormControl>
+                      <FormControl.Label>0-99</FormControl.Label>
+                      <Radio name="user-band" value="0-99" />
                     </FormControl>
-                    <Grid enableOverlay={enableGridOverlay}>
-                      <Grid.Column
-                        span={{
-                          xsmall: 12,
-                          medium: 4
-                        }}
-                        start={{
-                          xsmall: 1,
-                          medium: 9
-                        }}
-                      >
-                        <Button variant="primary" type="submit" style={{width: '100%'}}>
-                          Start trial
-                        </Button>
-                      </Grid.Column>
-                    </Grid>
+                    <FormControl>
+                      <FormControl.Label>100-499</FormControl.Label>
+                      <Radio name="user-band" value="100-499" />
+                    </FormControl>
+                    <FormControl>
+                      <FormControl.Label>500-999</FormControl.Label>
+                      <Radio name="user-band" value="500-999" />
+                    </FormControl>
+                    <FormControl>
+                      <FormControl.Label>1000+</FormControl.Label>
+                      <Radio name="user-band" value="1000+" />
+                    </FormControl>
                   </Stack>
-                </form>
-              </Grid.Column>
-            </Grid>
-          </div>
-        </ThemeProvider>
-      </AnimationProvider>
+                  <FormControl hasBorder required>
+                    <FormControl.Label>
+                      Contact me about GitHub Enterprise Server{' '}
+                      <FormControl.Hint>
+                        <Text size="200" variant="muted">
+                          I&apos;m interested in learning more about{' '}
+                          <InlineLink size="200" href="https://github.com/enterprise" target="_blank">
+                            GitHub Enterprise Server
+                          </InlineLink>{' '}
+                          and would like to be contacted by GitHub’s sales team.
+                        </Text>
+                      </FormControl.Hint>
+                    </FormControl.Label>
+                    <Checkbox />
+                  </FormControl>
+                  <div
+                    style={{
+                      borderWidth: 1,
+                      borderStyle: 'solid',
+                      borderColor: 'var(--brand-control-color-border-default)',
+                      backgroundColor: 'var(--brand-color-canvas-inset)',
+                      height: 150,
+                      width: '100%',
+                      borderRadius: 6,
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center'
+                    }}
+                  >
+                    <Text size="200" variant="muted">
+                      Captcha
+                    </Text>
+                  </div>
+                  <FormControl required>
+                    <FormControl.Label>
+                      <Text size="200" variant="muted">
+                        I hereby accept the{' '}
+                        <InlineLink size="200" href="https://github.com/customer-terms" target="_blank">
+                          GitHub Customer Agreement
+                        </InlineLink>{' '}
+                        on behalf of my organization and confirm that I have the authority to do so. For more
+                        information about GitHub&apos;s privacy practices, see the{' '}
+                        <InlineLink
+                          size="200"
+                          href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement"
+                          target="_blank"
+                        >
+                          GitHub Privacy Statement.
+                        </InlineLink>{' '}
+                      </Text>
+                    </FormControl.Label>
+
+                    <Checkbox />
+                  </FormControl>
+                  <Grid enableOverlay={enableGridOverlay}>
+                    <Grid.Column
+                      span={{
+                        xsmall: 12,
+                        medium: 4
+                      }}
+                      start={{
+                        xsmall: 1,
+                        medium: 9
+                      }}
+                    >
+                      <Button variant="primary" type="submit" style={{width: '100%'}}>
+                        Start trial
+                      </Button>
+                    </Grid.Column>
+                  </Grid>
+                </Stack>
+              </form>
+            </Grid.Column>
+          </Grid>
+        </div>
+      </ThemeProvider>
+
       {enableGridOverlay && (
         <Grid
           enableOverlay={enableGridOverlay}
