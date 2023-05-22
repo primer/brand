@@ -44,7 +44,7 @@ module.exports = {
         secondary: {
           default: {
             value: 'inset 0 0 0 1px var(--brand-color-border-default)',
-            dark: 'inset 0 0 0 1px var(--brand-color-border-default)'
+            dark: 'inset 0 0 0 1px hsl(var(--base-color-scale-white-0-hsl) / 25%)'
           },
           hover: {
             value: 'inset 0 0 0 2px var(--brand-color-neutral-emphasisPlus)',
