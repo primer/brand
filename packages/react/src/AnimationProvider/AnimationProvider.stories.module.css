@@ -51,10 +51,13 @@
   left: 20%;
 }
 
-.DiscussionsExampleHero__label--two {
+.DiscussionsExampleHero__labelContainer--two {
   position: absolute;
   top: 20%;
   right: -5%;
+}
+
+.DiscussionsExampleHero__label--two {
   transform: scale(1.2);
 }
 
@@ -103,6 +106,10 @@
   background-color: var(--brand-color-neutral-subtle);
   max-width: 200px;
   min-height: 200px;
+}
+
+.PlaygroundText {
+  pointer-events: none;
 }
 
 /*

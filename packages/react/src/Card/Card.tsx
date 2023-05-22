@@ -6,7 +6,6 @@ import {ExpandableArrow} from '../ExpandableArrow'
 import {Label, LabelColors} from '../Label'
 import {Image, ImageProps} from '../Image'
 import type {BaseProps} from '../component-helpers'
-import {useAnimation} from '../AnimationProvider'
 import {Colors} from '../constants'
 
 /**
@@ -46,31 +45,17 @@ export type CardProps = {
    * Changes the cta text of the card
    * */
   ctaText?: string
-} & BaseProps<HTMLAnchorElement> &
+} & Omit<BaseProps<HTMLAnchorElement>, 'animate'> &
   React.ComponentPropsWithoutRef<'a'>
 
 const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
   (
-    {
-      animate,
-      onMouseEnter,
-      onMouseLeave,
-      onFocus,
-      onBlur,
-      children,
-      className,
-      ctaText = 'Learn more',
-      href,
-      style,
-      ...props
-    },
+    {onMouseEnter, onMouseLeave, onFocus, onBlur, children, className, ctaText = 'Learn more', href, style, ...props},
     ref
   ) => {
     const cardRef = useProvidedRefOrCreate(ref as RefObject<HTMLAnchorElement>)
     const [isHovered, setIsHovered] = React.useState(false)
     const [isFocused, setIsFocused] = React.useState(false)
-
-    const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
 
     const handleMouseEnter = useCallback(
       (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
@@ -125,26 +110,24 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
     )
 
     return (
-      <div className={clsx(animationClasses)} style={{...animationInlineStyles, ...style}}>
-        <a
-          href={href}
-          className={clsx(styles.Card, hasIcon && styles['Card--has-icon'], className)}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          onFocus={handleOnFocus}
-          onBlur={handleOnBlur}
-          ref={cardRef}
-          {...props}
-        >
-          {filteredChildren}
-          <div className={styles.Card__action}>
-            <Text as="span" size="300" className={clsx(stylesLink['Link--label'])}>
-              {ctaText}
-            </Text>
-            <ExpandableArrow className={stylesLink['Link-arrow']} expanded={isHovered || isFocused} />
-          </div>
-        </a>
-      </div>
+      <a
+        href={href}
+        className={clsx(styles.Card, hasIcon && styles['Card--has-icon'], className)}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onFocus={handleOnFocus}
+        onBlur={handleOnBlur}
+        ref={cardRef}
+        {...props}
+      >
+        {filteredChildren}
+        <div className={styles.Card__action}>
+          <Text as="span" size="300" className={clsx(stylesLink['Link--label'])}>
+            {ctaText}
+          </Text>
+          <ExpandableArrow className={stylesLink['Link-arrow']} expanded={isHovered || isFocused} />
+        </div>
+      </a>
     )
   }
 )

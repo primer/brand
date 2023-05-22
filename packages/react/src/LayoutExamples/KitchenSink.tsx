@@ -22,7 +22,8 @@ import {
   Card,
   ComparisonTable,
   AnimationProvider,
-  SectionIntro
+  SectionIntro,
+  Box
 } from '..'
 import {CopilotIcon, RocketIcon, GitBranchIcon} from '@primer/octicons-react'
 
@@ -217,14 +218,16 @@ export function KitchenSink(props: KitchenSinkProps) {
                     large: 4
                   }}
                 >
-                  <Card href="https://github.com" animate={{variant: 'scale-in-up', delay: 100}}>
-                    <Card.Icon icon={CopilotIcon} color="indigo" hasBackground />
-                    <Card.Label>Limited</Card.Label>
-                    <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
-                    <Card.Description>
-                      Everything you need to know about getting started with GitHub Actions.
-                    </Card.Description>
-                  </Card>
+                  <Box as="div" animate={{variant: 'scale-in-up', delay: 100}}>
+                    <Card href="https://github.com">
+                      <Card.Icon icon={CopilotIcon} color="indigo" hasBackground />
+                      <Card.Label>Limited</Card.Label>
+                      <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+                      <Card.Description>
+                        Everything you need to know about getting started with GitHub Actions.
+                      </Card.Description>
+                    </Card>
+                  </Box>
                 </Grid.Column>
                 <Grid.Column
                   span={{
@@ -232,14 +235,16 @@ export function KitchenSink(props: KitchenSinkProps) {
                     large: 4
                   }}
                 >
-                  <Card href="https://github.com" animate={{variant: 'scale-in-up', delay: 300}}>
-                    <Card.Icon icon={RocketIcon} hasBackground color="blue" />
-                    <Card.Label>Limited</Card.Label>
-                    <Card.Heading>GitHub Actions cheat sheet and more</Card.Heading>
-                    <Card.Description>
-                      In a recent study, 70% of organizations reported they had adopted DevOps.
-                    </Card.Description>
-                  </Card>
+                  <Box as="div" animate={{variant: 'scale-in-up', delay: 300}}>
+                    <Card href="https://github.com">
+                      <Card.Icon icon={RocketIcon} hasBackground color="blue" />
+                      <Card.Label>Limited</Card.Label>
+                      <Card.Heading>GitHub Actions cheat sheet and more</Card.Heading>
+                      <Card.Description>
+                        In a recent study, 70% of organizations reported they had adopted DevOps.
+                      </Card.Description>
+                    </Card>
+                  </Box>
                 </Grid.Column>
                 <Grid.Column
                   span={{
@@ -247,14 +252,16 @@ export function KitchenSink(props: KitchenSinkProps) {
                     large: 4
                   }}
                 >
-                  <Card href="https://github.com" animate={{variant: 'scale-in-up', delay: 500}}>
-                    <Card.Icon icon={GitBranchIcon} color="teal" hasBackground />
-                    <Card.Label>Limited</Card.Label>
-                    <Card.Heading>How healthy teams build better software</Card.Heading>
-                    <Card.Description>
-                      Everything you need to know about getting started with GitHub Actions.
-                    </Card.Description>
-                  </Card>
+                  <Box as="div" animate={{variant: 'scale-in-up', delay: 500}}>
+                    <Card href="https://github.com">
+                      <Card.Icon icon={GitBranchIcon} color="teal" hasBackground />
+                      <Card.Label>Limited</Card.Label>
+                      <Card.Heading>How healthy teams build better software</Card.Heading>
+                      <Card.Description>
+                        Everything you need to know about getting started with GitHub Actions.
+                      </Card.Description>
+                    </Card>
+                  </Box>
                 </Grid.Column>
               </Grid>
               <FAQ animate="scale-in-up">

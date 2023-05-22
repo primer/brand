@@ -1,7 +1,7 @@
 import React from 'react'
 import {ComponentMeta} from '@storybook/react'
 
-import {AnimationProvider, Label, Image, Text, Stack, Heading, ThemeProvider} from '../'
+import {AnimationProvider, Label, Image, Text, Stack, Box, Heading, ThemeProvider} from '../'
 import {CheckCircleFillIcon, RocketIcon} from '@primer/octicons-react'
 
 import styles from './AnimationProvider.stories.module.css'
@@ -14,39 +14,42 @@ export default {
 
 export const DiscussionsHero = () => (
   <AnimationProvider>
-    <Stack
-      padding="none"
+    <Box
+      className={styles.DiscussionsExampleHero}
       animate={{
         variant: 'scale-in-up',
         delay: 300
       }}
     >
-      <div className={styles.DiscussionsExampleHero}>
-        <Image
-          className={styles.DiscussionsExampleHero__image}
-          alt="Discussions UI"
-          src="https://github.githubassets.com/images/modules/site/discussions/overview.png"
-        />
+      <Image
+        className={styles.DiscussionsExampleHero__image}
+        alt="Discussions UI"
+        src="https://github.githubassets.com/images/modules/site/discussions/overview.png"
+      />
 
+      <Label
+        animate={{
+          variant: 'scale-in-up',
+          delay: 500
+        }}
+        className={clsx(styles.DiscussionsExampleHero__label, styles['DiscussionsExampleHero__label--one'])}
+        color="green-blue"
+        leadingVisual={<CheckCircleFillIcon />}
+        size="large"
+      >
+        <Text variant="muted" size="400" weight="bold">
+          17
+        </Text>
+      </Label>
+      <Stack
+        className={clsx(styles['DiscussionsExampleHero__labelContainer--two'])}
+        padding="none"
+        animate={{
+          variant: 'scale-in-up',
+          delay: 700
+        }}
+      >
         <Label
-          animate={{
-            variant: 'scale-in-up',
-            delay: 500
-          }}
-          className={clsx(styles.DiscussionsExampleHero__label, styles['DiscussionsExampleHero__label--one'])}
-          color="green-blue"
-          leadingVisual={<CheckCircleFillIcon />}
-          size="large"
-        >
-          <Text variant="muted" size="400" weight="bold">
-            17
-          </Text>
-        </Label>
-        <Label
-          animate={{
-            variant: 'scale-in-up',
-            delay: 700
-          }}
           className={clsx(styles.DiscussionsExampleHero__label, styles['DiscussionsExampleHero__label--two'])}
           color="pink-blue"
           leadingVisual={<RocketIcon />}
@@ -56,11 +59,14 @@ export const DiscussionsHero = () => (
             19
           </Text>
         </Label>
+      </Stack>
+      <Box
+        animate={{
+          variant: 'scale-in-up',
+          delay: 800
+        }}
+      >
         <Label
-          animate={{
-            variant: 'scale-in-up',
-            delay: 800
-          }}
           className={clsx(styles.DiscussionsExampleHero__label, styles['DiscussionsExampleHero__label--three'])}
           color="green"
           size="large"
@@ -69,40 +75,40 @@ export const DiscussionsHero = () => (
             Answered
           </Text>
         </Label>
+      </Box>
 
-        <video
-          width="128"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="none"
-          className={styles.DiscussionsExampleHero__video}
-          data-threshold="0"
-        >
-          <source
-            src="https://github.githubassets.com/images/modules/site/discussions/animations/sparkles-fast@2x.mov"
-            type="video/mp4; codecs=hvc1"
-            media="(min-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5)"
-          />
-          <source
-            src="https://github.githubassets.com/images/modules/site/discussions/animations/sparkles-fast.mov"
-            type="video/mp4; codecs=hvc1"
-            media="(max-device-pixel-ratio: 1), (-webkit-max-device-pixel-ratio: 1)"
-          />
-          <source
-            src="https://github.githubassets.com/images/modules/site/discussions/animations/sparkles-fast@2x.webm"
-            type="video/webm"
-            media="(min-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5)"
-          />
-          <source
-            src="https://github.githubassets.com/images/modules/site/discussions/animations/sparkles-fast.webm"
-            type="video/webm"
-            media="(max-device-pixel-ratio: 1), (-webkit-max-device-pixel-ratio: 1)"
-          />
-        </video>
-      </div>
-    </Stack>
+      <video
+        width="128"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="none"
+        className={styles.DiscussionsExampleHero__video}
+        data-threshold="0"
+      >
+        <source
+          src="https://github.githubassets.com/images/modules/site/discussions/animations/sparkles-fast@2x.mov"
+          type="video/mp4; codecs=hvc1"
+          media="(min-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5)"
+        />
+        <source
+          src="https://github.githubassets.com/images/modules/site/discussions/animations/sparkles-fast.mov"
+          type="video/mp4; codecs=hvc1"
+          media="(max-device-pixel-ratio: 1), (-webkit-max-device-pixel-ratio: 1)"
+        />
+        <source
+          src="https://github.githubassets.com/images/modules/site/discussions/animations/sparkles-fast@2x.webm"
+          type="video/webm"
+          media="(min-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5)"
+        />
+        <source
+          src="https://github.githubassets.com/images/modules/site/discussions/animations/sparkles-fast.webm"
+          type="video/webm"
+          media="(max-device-pixel-ratio: 1), (-webkit-max-device-pixel-ratio: 1)"
+        />
+      </video>
+    </Box>
   </AnimationProvider>
 )
 
@@ -110,11 +116,8 @@ export const ProgressBars = () => {
   const ProgressBar = ({width, delay}: {width: string; delay: number}) => (
     <div className={styles.ProgressBarExample}>
       <div className={styles.ProgressBarExample__bar}>
-        <Stack
-          padding="none"
+        <Box
           className={styles.ProgressBarExample__barInner}
-          // eslint-disable-next-line react/no-children-prop
-          children={<></>}
           animate={{
             variant: 'fill-in-right',
             delay,
@@ -141,8 +144,7 @@ export const LogoBar = () => {
   return (
     <AnimationProvider>
       <Stack direction="horizontal" justifyContent="center" alignItems="center" gap="spacious" padding="spacious">
-        <Stack
-          padding="none"
+        <Box
           animate={{
             variant: 'scale-in-right',
             delay: 100
@@ -154,10 +156,9 @@ export const LogoBar = () => {
               fill="#24292F"
             ></path>
           </svg>
-        </Stack>
+        </Box>
 
-        <Stack
-          padding="none"
+        <Box
           animate={{
             variant: 'scale-in-right',
             delay: 200
@@ -169,9 +170,8 @@ export const LogoBar = () => {
               fill="#24292F"
             ></path>
           </svg>
-        </Stack>
-        <Stack
-          padding="none"
+        </Box>
+        <Box
           animate={{
             variant: 'scale-in-right',
             delay: 300
@@ -187,9 +187,8 @@ export const LogoBar = () => {
               fill="#24292F"
             ></path>
           </svg>
-        </Stack>
-        <Stack
-          padding="none"
+        </Box>
+        <Box
           animate={{
             variant: 'scale-in-right',
             delay: 400
@@ -203,9 +202,8 @@ export const LogoBar = () => {
               fill="#24292F"
             ></path>
           </svg>
-        </Stack>
-        <Stack
-          padding="none"
+        </Box>
+        <Box
           animate={{
             variant: 'scale-in-right',
             delay: 500
@@ -219,9 +217,8 @@ export const LogoBar = () => {
               fillRule="evenodd"
             ></path>
           </svg>
-        </Stack>
-        <Stack
-          padding="none"
+        </Box>
+        <Box
           animate={{
             variant: 'scale-in-right',
             delay: 600
@@ -233,9 +230,8 @@ export const LogoBar = () => {
               fill="#24292F"
             ></path>
           </svg>
-        </Stack>
-        <Stack
-          padding="none"
+        </Box>
+        <Box
           animate={{
             variant: 'scale-in-right',
             delay: 700
@@ -279,7 +275,7 @@ export const LogoBar = () => {
               </clipPath>
             </defs>
           </svg>
-        </Stack>
+        </Box>
       </Stack>
     </AnimationProvider>
   )
@@ -296,7 +292,9 @@ export const AnimationOnPress = () => {
           variant: 'fade-out'
         }}
       >
-        <Text as="p">Fade out on press</Text>
+        <Text as="p" className={styles.PlaygroundText}>
+          Fade out on press
+        </Text>
       </Stack>
     </AnimationProvider>
   )
@@ -309,13 +307,7 @@ export const TimelineBar = () => {
         <div className={styles.TimelineBarExample}>
           <Stack direction="horizontal" padding="none" justifyContent="center">
             <div className={styles.TimelineBarExample__start}>
-              <Stack
-                className={styles.TimelineBarExample__line}
-                padding="none"
-                // eslint-disable-next-line react/no-children-prop
-                children={<></>}
-                animate={{variant: 'fill-in-top', delay: 700}}
-              />
+              <Box className={styles.TimelineBarExample__line} animate={{variant: 'fill-in-top', delay: 700}} />
               <span className={styles.TimelineBarExample__icon}>
                 <RocketIcon size={24} fill="white" />
               </span>
