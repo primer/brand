@@ -74,9 +74,7 @@ function HeroDescription({size = '400', weight, children}: PropsWithChildren<Her
 
 type HeroActions = {
   href: string
-  leadingVisual?: React.ReactNode
-  trailingVisual?: React.ReactNode
-} & Omit<ButtonBaseProps, 'trailingVisual' | 'leadingVisual'>
+} & ButtonBaseProps
 
 function HeroPrimaryAction({href, children, ...rest}: PropsWithChildren<HeroActions>) {
   return (
