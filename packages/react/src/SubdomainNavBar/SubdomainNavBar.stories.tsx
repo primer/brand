@@ -430,19 +430,16 @@ const Template: Story<typeof SubdomainNavBar & CustomStoryArgs> = args => {
             margin: '100px auto'
           }}
         >
-          <Hero
-            heading="This is my super sweet Nav Bar"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum."
-            primaryAction={{
-              text: 'Primary action',
-              href: '#'
-            }}
-            secondaryAction={{
-              text: 'Secondary action',
-              href: '#'
-            }}
-            align="center"
-          />
+          <Hero align="center">
+            <Hero.Heading>This is my super sweet Nav Bar</Hero.Heading>
+            <Hero.Description>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+              turpis felis nam pulvinar risus elementum.
+            </Hero.Description>
+            <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+            <Hero.SecondaryAction href="#">Secondary action</Hero.SecondaryAction>
+          </Hero>
+
           {/**
            * Hack to make the page longer in the example
            */}

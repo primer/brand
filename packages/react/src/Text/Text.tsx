@@ -13,9 +13,9 @@ export const defaultTextTag = TextTags[1]
 export const defaultTextSize = TextSizes[3]
 export const defaultTextVariant = TextVariants[0]
 
-type TextWeightVariants = typeof TextWeights[number]
+export type TextWeightVariants = typeof TextWeights[number]
 
-type ResponsiveWeightMap = {
+export type ResponsiveWeightMap = {
   narrow?: TextWeightVariants
   regular?: TextWeightVariants
   wide?: TextWeightVariants
