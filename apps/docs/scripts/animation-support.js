@@ -7,10 +7,12 @@ const supportedComponents = []
 function checkDirectory(directoryPath) {
   fs.readdir(directoryPath, function (err, files) {
     if (err) {
-      return console.log('Unable to scan directory: ' + err)
+      // eslint-disable-next-line no-console
+      console.log(`Unable to scan directory: ${err}`)
+      return
     }
 
-    files.forEach(function (file) {
+    for (const file of files) {
       const filePath = path.join(directoryPath, file)
 
       if (fs.statSync(filePath).isDirectory()) {
@@ -23,7 +25,7 @@ function checkDirectory(directoryPath) {
           supportedComponents.push(componentName)
         }
       }
-    })
+    }
   })
 }
 
@@ -35,5 +37,6 @@ process.on('exit', function () {
   )}'\n];\n`
   const filePath = path.join(__dirname, 'components-with-animation.js')
   fs.writeFileSync(filePath, fileContents)
+  // eslint-disable-next-line no-console
   console.log(`Found ${supportedComponents.length} supported components.`)
 })
