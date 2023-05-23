@@ -1,8 +1,10 @@
 import clsx from 'clsx'
 import React, {forwardRef, useCallback, type Ref, ReactElement} from 'react'
-import {ExpandableArrow} from '../ExpandableArrow'
-import {Text} from '../Text'
+import type {Icon} from '@primer/octicons-react'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/button/colors-with-modes.css'
+import {Text} from '../Text'
+import {ExpandableArrow} from '../ExpandableArrow'
+
 import type {BaseProps} from '../component-helpers'
 import styles from './Button.module.css'
 
@@ -16,11 +18,11 @@ export type ButtonBaseProps = {
   /**
    * The leading visual appears before the button content
    */
-  leadingVisual?: ReactElement
+  leadingVisual?: ReactElement | Icon
   /**
    * The trailing visual appears after the button content
    */
-  trailingVisual?: ReactElement
+  trailingVisual?: ReactElement | Icon
   /**
    * The styling variations available in Button
    */
@@ -80,7 +82,7 @@ export const _Button = forwardRef(
     const isDisabled =
       disabled || ariaDisabled === 'true' || (typeof ariaDisabled === 'boolean' && ariaDisabled === true)
 
-    const returnValidComponent = useCallback((component?: ReactElement) => {
+    const returnValidComponent = useCallback((component?: ReactElement | Icon) => {
       if (React.isValidElement(component)) {
         return component
       }
