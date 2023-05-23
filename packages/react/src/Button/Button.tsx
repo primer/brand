@@ -1,5 +1,7 @@
 import clsx from 'clsx'
 import React, {forwardRef, useCallback, type Ref, ReactElement} from 'react'
+import type {Icon} from '@primer/octicons-react'
+
 import {ExpandableArrow} from '../ExpandableArrow'
 import {Text} from '../Text'
 import type {BaseProps} from '../component-helpers'
@@ -19,11 +21,11 @@ export type ButtonBaseProps = {
   /**
    * The leading visual appears before the button content
    */
-  leadingVisual?: ReactElement
+  leadingVisual?: ReactElement | Icon
   /**
    * The trailing visual appears after the button content
    */
-  trailingVisual?: ReactElement
+  trailingVisual?: ReactElement | Icon
   /**
    * The styling variations available in Button
    */
@@ -87,7 +89,7 @@ export const _Button = forwardRef(
 
     const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
 
-    const returnValidComponent = useCallback((component?: ReactElement) => {
+    const returnValidComponent = useCallback((component?: ReactElement | Icon) => {
       if (React.isValidElement(component)) {
         return component
       }

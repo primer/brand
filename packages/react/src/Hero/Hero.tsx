@@ -74,7 +74,7 @@ function HeroDescription({size = '400', weight, children}: PropsWithChildren<Her
 
 type HeroActions = {
   href: string
-} & Omit<ButtonBaseProps, 'variant'>
+} & ButtonBaseProps
 
 function HeroPrimaryAction({href, children, ...rest}: PropsWithChildren<HeroActions>) {
   return (
