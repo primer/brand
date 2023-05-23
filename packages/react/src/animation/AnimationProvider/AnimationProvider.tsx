@@ -7,6 +7,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/animati
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from '../Animation.module.css'
+import {useId} from '@reach/auto-id'
 
 export const AnimationVariants = [
   'fade-in',
@@ -110,6 +111,7 @@ export function AnimationProvider({
   autoStaggerChildren = true,
   staggerDelayIncrement = 100
 }: PropsWithChildren<AnimationProviderProps>) {
+  const uniqueId = useId()
   const [animationContext, setAnimationContext] = useState<AnimationProviderProps>({
     disableAnimations,
     animationTrigger,
@@ -132,15 +134,21 @@ export function AnimationProvider({
 
   // add useEffect to add transition-delay to children that contain the Animation class
   useEffect(() => {
-    if (!disableAnimations && autoStaggerChildren) {
+    if (!disableAnimations && autoStaggerChildren && uniqueId) {
       const stagger = staggerDelayIncrement
-      const items = Array.from(document.querySelectorAll<HTMLElement>(`.${styles.Animation}`))
+      const animationProvider = document.getElementById(uniqueId)
+
+      if (!animationProvider) return
+
+      const items = Array.from(animationProvider.querySelectorAll<HTMLElement>(`.${styles.Animation}`))
+
+      if (items.length === 0) return
 
       for (let i = 0; i < items.length; i++) {
         items[i].style.transitionDelay = `${i * stagger}ms`
       }
     }
-  }, [disableAnimations, autoStaggerChildren, staggerDelayIncrement])
+  }, [disableAnimations, autoStaggerChildren, staggerDelayIncrement, uniqueId])
 
   useEffect(() => {
     if (!disableAnimations && animationTrigger === 'on-visible') {
@@ -189,5 +197,9 @@ export function AnimationProvider({
       }
     }
   }, [disableAnimations, animationTrigger, visibilityOptions, runOnce])
-  return <AnimationContext.Provider value={animationContext}>{children}</AnimationContext.Provider>
+  return (
+    <AnimationContext.Provider value={animationContext}>
+      <div id={uniqueId}>{children}</div>
+    </AnimationContext.Provider>
+  )
 }
