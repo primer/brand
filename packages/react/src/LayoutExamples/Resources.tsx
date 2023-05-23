@@ -79,7 +79,7 @@ export function ResourcesHubExample(props: ResourcesHubExampleProps) {
                     solutions.
                   </Text>
                 </Stack>
-                <AnimationProvider runOnce={false}>
+                <AnimationProvider>
                   <Stack direction="horizontal" justifyContent="center" alignItems="center" gap="spacious">
                     <Animate animate="slide-in-right" as="span">
                       <a

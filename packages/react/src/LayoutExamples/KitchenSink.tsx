@@ -64,7 +64,7 @@ export function KitchenSink(props: KitchenSinkProps) {
       </SubdomainNavBar>
       <Grid style={{paddingTop: 'var(--base-size-40)', paddingBottom: '200px'}} enableOverlay={false}>
         <Grid.Column>
-          <AnimationProvider runOnce={false}>
+          <AnimationProvider>
             <div style={{marginTop: 'var(--base-size-80)'}}>
               <Hero align="center">
                 <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
@@ -200,7 +200,7 @@ export function KitchenSink(props: KitchenSinkProps) {
               </ComparisonTable.Footnote>
             </ComparisonTable>
           </Stack>
-          <AnimationProvider runOnce={false}>
+          <AnimationProvider>
             <Stack direction="vertical" padding="none" gap="spacious" style={{gap: 'var(--base-size-96)'}}>
               <Grid style={{justifyItems: 'center'}}>
                 <Grid.Column>
@@ -336,7 +336,7 @@ export function KitchenSink(props: KitchenSinkProps) {
               </FAQ>
             </Stack>
           </AnimationProvider>
-          <AnimationProvider runOnce={false}>
+          <AnimationProvider>
             <Stack
               direction="vertical"
               padding="none"

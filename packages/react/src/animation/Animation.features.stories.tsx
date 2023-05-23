@@ -13,7 +13,7 @@ export default {
 } as ComponentMeta<typeof AnimationProvider>
 
 export const DiscussionsHero = () => (
-  <AnimationProvider staggerDelayIncrement={300}>
+  <AnimationProvider staggerDelayIncrement={200}>
     <Animate className={styles.DiscussionsExampleHero} animate="scale-in-up">
       <Image
         className={styles.DiscussionsExampleHero__image}

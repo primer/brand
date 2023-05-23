@@ -107,7 +107,7 @@ export function AnimationProvider({
   disableAnimations = false,
   animationTrigger = 'on-visible',
   visibilityOptions = 'bottom-of-screen',
-  runOnce = true,
+  runOnce = false,
   autoStaggerChildren = true,
   staggerDelayIncrement = 100
 }: PropsWithChildren<AnimationProviderProps>) {
