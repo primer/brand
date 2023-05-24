@@ -62,7 +62,7 @@ const HeroHeading = forwardRef<HTMLHeadingElement, HeroHeadingProps>(({children,
 type HeroDescriptionProps = {
   size?: typeof TextSizes[number]
   weight?: TextWeightVariants | ResponsiveWeightMap
-}
+} & BaseProps<HTMLParagraphElement>
 
 function HeroDescription({size = '400', weight, children}: PropsWithChildren<HeroDescriptionProps>) {
   return (
@@ -72,25 +72,35 @@ function HeroDescription({size = '400', weight, children}: PropsWithChildren<Her
   )
 }
 
+type RestrictedPolymorphism =
+  | (BaseProps<HTMLAnchorElement> & {as?: 'a'})
+  | (BaseProps<HTMLButtonElement> & {as?: 'button'})
+
 type HeroActions = {
+  as?: 'a' | 'button'
   href: string
-} & ButtonBaseProps
+} & ButtonBaseProps &
+  RestrictedPolymorphism
 
-function HeroPrimaryAction({href, children, ...rest}: PropsWithChildren<HeroActions>) {
-  return (
-    <Button as="a" variant="primary" size="large" href={href} {...rest}>
-      {children}
-    </Button>
-  )
-}
+const HeroPrimaryAction = forwardRef<HTMLAnchorElement | HTMLButtonElement, PropsWithChildren<HeroActions>>(
+  ({href, as = 'a', children, ...rest}, ref) => {
+    return (
+      <Button as={as} variant="primary" size="large" href={href} {...rest} ref={ref as React.Ref<HTMLButtonElement>}>
+        {children}
+      </Button>
+    )
+  }
+)
 
-function HeroSecondaryAction({href, children, ...rest}: PropsWithChildren<HeroActions>) {
-  return (
-    <Button as="a" variant="secondary" size="large" href={href} {...rest}>
-      {children}
-    </Button>
-  )
-}
+const HeroSecondaryAction = forwardRef<HTMLAnchorElement | HTMLButtonElement, PropsWithChildren<HeroActions>>(
+  ({href, as = 'a', children, ...rest}, ref) => {
+    return (
+      <Button as={as} variant="secondary" size="large" href={href} {...rest} ref={ref as React.Ref<HTMLButtonElement>}>
+        {children}
+      </Button>
+    )
+  }
+)
 
 export const Hero = Object.assign(Root, {
   Heading: HeroHeading,

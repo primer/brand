@@ -24,6 +24,14 @@ test.describe('Visual Comparison: MinimalFooter', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('MinimalFooter / Button Links', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--button-links&viewMode=story'
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('MinimalFooter / No Social Links', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--no-social-links&viewMode=story'
