@@ -9,26 +9,25 @@ import {Link} from 'gatsby'
 import {AnimationVariants, Label} from '@primer/react-brand'
 import {supportedComponents} from '../../scripts/components-with-animation'
 
+### Animate prop
+
 Certain Primer Brand components include animation presets. These components are:
 
-<PropTableValues
-  values={supportedComponents}
-  commaSeparated
-  removeApostrophes
-/>
-
-<br />
-<br />
+<p>
+  <PropTableValues
+    values={supportedComponents}
+    commaSeparated
+    removeApostrophes
+  />
+</p>
 
 You can use the `animate` prop available on these components to apply one of the available animation presets directly to the component.
-
-<strong>Example:</strong>
 
 ```jsx
 <Image animate="fade-in" />
 ```
 
-### Animation component
+### Animate component
 
 You can alternatively compose animations into your React application using the `Animate` wrapper component. This can be useful in situations where you need to animate native HTML elements, or components that don't support the `animate` prop.
 
@@ -233,14 +232,13 @@ Alternatively, use `delay` to stagger animations on adjacent elements if this fe
 
 `animate` is a prop available on the following components:
 
-<PropTableValues
-  values={supportedComponents}
-  commaSeparated
-  removeApostrophes
-/>
-
-<br />
-<br />
+<p>
+  <PropTableValues
+    values={supportedComponents}
+    commaSeparated
+    removeApostrophes
+  />
+</p>
 
 | Name      | Type                                                                     |
 | --------- | ------------------------------------------------------------------------ |
