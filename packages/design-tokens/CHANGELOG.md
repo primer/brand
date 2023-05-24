@@ -1,5 +1,11 @@
 # @primer/brand-primitives
 
+## 0.19.0
+
+### Patch Changes
+
+- [#285](https://github.com/primer/brand/pull/285) [`02b1d46`](https://github.com/primer/brand/commit/02b1d46518f2de2dd05a8e5ebc548364ca7a8694) Thanks [@josepmartins](https://github.com/josepmartins)! - Update secondary Button border color in dark themes.
+
 ## 0.18.0
 
 ### Patch Changes
