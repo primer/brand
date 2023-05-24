@@ -86,9 +86,6 @@ export const LinksAndButton = () => (
     <MinimalFooter.Link as="button" onClick={() => alert('You have clicked Button two')}>
       Button two
     </MinimalFooter.Link>
-    <MinimalFooter.Link as="button" onClick={() => alert('You have clicked Button three')}>
-      Button three
-    </MinimalFooter.Link>
   </MinimalFooter>
 )
 
