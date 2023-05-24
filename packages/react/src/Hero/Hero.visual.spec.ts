@@ -41,6 +41,14 @@ test.describe('Visual Comparison: Hero', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('Hero / With Custom Classnames', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-custom-classnames&viewMode=story'
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Hero / With custom icon and variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-custom-icon-and-variant&viewMode=story'
