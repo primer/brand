@@ -75,6 +75,23 @@ export const ButtonLinks = () => (
   </MinimalFooter>
 )
 
+export const LinksAndButton = () => (
+  <MinimalFooter socialLinks={false}>
+    <MinimalFooter.Link href="#">Link one</MinimalFooter.Link>
+    <MinimalFooter.Link href="#">Link two</MinimalFooter.Link>
+    <MinimalFooter.Link href="#">Link three</MinimalFooter.Link>
+    <MinimalFooter.Link as="button" onClick={() => alert('You have clicked Button one')}>
+      Button one
+    </MinimalFooter.Link>
+    <MinimalFooter.Link as="button" onClick={() => alert('You have clicked Button two')}>
+      Button two
+    </MinimalFooter.Link>
+    <MinimalFooter.Link as="button" onClick={() => alert('You have clicked Button three')}>
+      Button three
+    </MinimalFooter.Link>
+  </MinimalFooter>
+)
+
 export const NoSocialLinks = () => <MinimalFooter socialLinks={false} />
 
 export const FilteredSocialLinks = () => <MinimalFooter socialLinks={['facebook', 'twitter']} />
