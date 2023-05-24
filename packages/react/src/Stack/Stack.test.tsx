@@ -41,7 +41,7 @@ describe('Stack', () => {
     const expectedClass = 'Stack--vertical'
 
     const {getByTestId} = render(
-      <Stack direction={'vertical'} data-testid={mockTestId}>
+      <Stack direction="vertical" data-testid={mockTestId}>
         <></>
       </Stack>
     )
