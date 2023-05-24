@@ -1,5 +1,4 @@
 ---
-'@primer/brand-e2e': minor
 '@primer/react-brand': minor
 ---
 
