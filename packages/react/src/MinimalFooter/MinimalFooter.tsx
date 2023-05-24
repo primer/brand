@@ -94,10 +94,11 @@ function Root({
               gap="normal"
               padding="none"
               justifyContent="space-between"
+              alignItems={{regular: 'center'}}
             >
               <Stack
                 padding="none"
-                gap="condensed"
+                gap={{narrow: 'normal', regular: 'condensed'}}
                 justifyContent={{
                   narrow: 'center',
                   regular: 'flex-end'

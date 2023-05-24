@@ -70,7 +70,6 @@
 .Footer__copyright {
   display: flex;
   order: 2;
-  padding-bottom: var(--base-size-4);
 }
 
 @media screen and (min-width: 48rem) {
