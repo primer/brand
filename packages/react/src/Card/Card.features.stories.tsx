@@ -179,7 +179,7 @@ export const Stacked: ComponentStory<typeof Card> = () => {
     <Grid>
       {fixtureData.map(({heading, description, href, icon, iconColor}, id) => {
         return (
-          <Grid.Column key={id} span={{small: 6, medium: 6, large: 4, xlarge: 3}}>
+          <Grid.Column key={id} span={{small: 6, medium: 6, large: 3, xlarge: 3}}>
             <Card key={id} href={href} style={{height: '100%'}}>
               <Card.Icon icon={icon} hasBackground color={iconColor} />
               <Card.Heading>{heading}</Card.Heading>
