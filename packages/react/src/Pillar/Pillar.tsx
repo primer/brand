@@ -79,7 +79,13 @@ type PillarHeadingProps = BaseProps<HTMLHeadingElement> & {
 const PillarHeading = forwardRef<HTMLHeadingElement, PillarHeadingProps>(
   ({children, as = HeadingTags[2], size = '6', className, ...rest}, ref) => {
     return (
-      <Heading size={size} className={clsx(styles.Pillar__heading, className)} ref={ref} as={as} {...rest}>
+      <Heading
+        size={size}
+        className={clsx(styles.Pillar__heading, styles[`Pillar__heading--size-${size}`], className)}
+        ref={ref}
+        as={as}
+        {...rest}
+      >
         {children}
       </Heading>
     )
