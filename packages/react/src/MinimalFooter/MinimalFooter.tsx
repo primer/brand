@@ -94,7 +94,6 @@ function Root({
               gap="normal"
               padding="none"
               justifyContent="space-between"
-              alignItems={'center'}
             >
               <Stack
                 padding="none"
