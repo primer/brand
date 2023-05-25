@@ -1,7 +1,7 @@
-import React, {forwardRef, useCallback} from 'react'
+import React, {RefObject, forwardRef, useCallback} from 'react'
 import {isFragment} from 'react-is'
 import clsx from 'clsx'
-import {Heading, HeadingTags, Text} from '..'
+import {Heading, HeadingProps, Text} from '..'
 import {ExpandableArrow} from '../ExpandableArrow'
 import {Label, LabelColors} from '../Label'
 import {Image, ImageProps} from '../Image'
@@ -20,6 +20,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 import styles from './Card.module.css'
 import stylesLink from '../Link/Link.module.css'
 import {Icon as IconProps} from '@primer/octicons-react'
+import {useProvidedRefOrCreate} from '../hooks/useRef'
 
 export const CardIconColors = Colors
 
@@ -44,11 +45,15 @@ export type CardProps = {
    * Changes the cta text of the card
    * */
   ctaText?: string
-} & BaseProps<HTMLAnchorElement> &
+} & Omit<BaseProps<HTMLAnchorElement>, 'animate'> &
   React.ComponentPropsWithoutRef<'a'>
 
 const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
-  ({onMouseEnter, onMouseLeave, onFocus, onBlur, children, className, ctaText = 'Learn more', href, ...props}, ref) => {
+  (
+    {onMouseEnter, onMouseLeave, onFocus, onBlur, children, className, ctaText = 'Learn more', href, style, ...props},
+    ref,
+  ) => {
+    const cardRef = useProvidedRefOrCreate(ref as RefObject<HTMLAnchorElement>)
     const [isHovered, setIsHovered] = React.useState(false)
     const [isFocused, setIsFocused] = React.useState(false)
 
@@ -112,7 +117,7 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
         onMouseLeave={handleMouseLeave}
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
-        ref={ref}
+        ref={cardRef}
         {...props}
       >
         {filteredChildren}
@@ -182,11 +187,11 @@ const CardLabel = forwardRef<HTMLSpanElement, CardLabelProps>(
 
 type CardHeadingProps = BaseProps<HTMLHeadingElement> & {
   children: React.ReactNode | React.ReactNode[]
-  as?: Exclude<HeadingTags['as'], 'h1'>
-} & HeadingTags
+  as?: Exclude<HeadingProps['as'], 'h1'>
+} & HeadingProps
 
 const CardHeading = forwardRef<HTMLHeadingElement, CardHeadingProps>(
-  ({children, as = HeadingTags[2], className, ...rest}, ref) => {
+  ({children, as = 'h3', className, ...rest}, ref) => {
     return (
       <Heading size="6" className={clsx(styles.Card__heading, className)} ref={ref} as={as} {...rest}>
         {children}

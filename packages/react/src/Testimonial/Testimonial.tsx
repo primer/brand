@@ -1,7 +1,7 @@
 import React, {HTMLAttributes, PropsWithChildren, forwardRef, SVGProps} from 'react'
 import clsx from 'clsx'
 import {BaseProps} from '../component-helpers'
-import {Text, Avatar as BaseAvatar} from '../'
+import {Text, Avatar as BaseAvatar, useAnimation} from '../'
 import type {AvatarProps} from '../'
 
 import styles from './Testimonial.module.css'
@@ -27,22 +27,27 @@ export type TestimonialProps = {
    * Sets the testimonial text size
    */
   size?: TestimonialSize
-} & BaseProps<HTMLElement>
+} & BaseProps<HTMLElement> &
+  React.HTMLAttributes<HTMLElement>
 
 /**
  * Testimonial parent element
  * <Testimonial>
  */
-function _Root({align, className, children, size, ...rest}: PropsWithChildren<TestimonialProps>, ref) {
+function _Root({align, animate, className, children, size, style, ...rest}: PropsWithChildren<TestimonialProps>, ref) {
+  const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
+
   return (
     <figure
       ref={ref}
       className={clsx(
+        animationClasses,
         styles['Testimonial'],
         align && styles[`Testimonial--${align}`],
         size && styles[`Testimonial--size-${size}`],
         className,
       )}
+      style={{...animationInlineStyles, ...style}}
       {...rest}
     >
       {React.Children.map(children, child => {

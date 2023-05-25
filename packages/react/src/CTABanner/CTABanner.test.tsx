@@ -30,7 +30,7 @@ describe('CTABanner', () => {
 
     const {getByTestId} = render(
       <CTABanner data-testid={mockTestId} className={expectedCustomClass}>
-        <CTABanner.Heading as={'h1'}>Where the most ambitious teams build great things</CTABanner.Heading>
+        <CTABanner.Heading as="h1">Where the most ambitious teams build great things</CTABanner.Heading>
         <CTABanner.Description>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
           turpis felis nam pulvinar risus elementum.

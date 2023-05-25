@@ -1,6 +1,9 @@
 import clsx from 'clsx'
 import React, {forwardRef, type Ref} from 'react'
 import {Text} from '../Text'
+
+import {useAnimation} from '../animation'
+
 import type {BaseProps} from '../component-helpers'
 import {Colors, Gradients} from '../constants'
 
@@ -44,21 +47,32 @@ const testIds = {
 const _Label = forwardRef<HTMLSpanElement, LabelProps>(
   (
     {
+      animate,
       className,
       size = defaultLabelSize,
       color = defaultLabelColor,
       children,
       'data-testid': testId,
       leadingVisual: LeadingVisual,
+      style,
       ...props
     },
     ref: Ref<HTMLSpanElement>,
   ) => {
+    const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
+
     return (
       <span
         ref={ref}
-        className={clsx(styles.Label, styles[`Label--color-${color}`], styles[`Label--size-${size}`], className)}
+        className={clsx(
+          animationClasses,
+          styles.Label,
+          styles[`Label--color-${color}`],
+          styles[`Label--size-${size}`],
+          className,
+        )}
         data-testid={testId || testIds.root}
+        style={{...animationInlineStyles, ...style}}
         {...props}
       >
         {LeadingVisual && (

@@ -4,6 +4,8 @@
       url: /getting-started
     - title: Theming
       url: /getting-started/theming
+    - title: Animation
+      url: /getting-started/animation
 
 - title: Primitives
   children:

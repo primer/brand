@@ -73,7 +73,13 @@
   const skipTestLookup = [
     'components-river--video', // video makes this too flakey
     'components-river--custom-logos', // for external social imagery to load
-    'components-actionmenu-features--keyboard-navigation', // for the interaction test
+    'components-actionmenu-features--keyboard-navigation', // interaction test
+    'components-actionmenu-examples--keyboard-navigation', // for the interaction test
+    'components-animations-examples--discussions-hero', // animation only
+    'components-animations-examples--progress-bars', // animation only
+    'components-animations-examples--logo-bar', // animation only
+    'components-animations-examples--timeline-bar', // animation only
+    'components-animations--playground', // animation only
   ]
 
   const categorisedStories = Object.keys(stories as Stories).reduce((acc, key) => {

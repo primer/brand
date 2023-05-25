@@ -73,3 +73,17 @@ Responsive.args = {
     wide: 'spacious',
   },
 }
+
+export const ResponsiveBaseScale = Template.bind({})
+ResponsiveBaseScale.args = {
+  gap: {
+    narrow: 8,
+    regular: 12,
+    wide: 16,
+  },
+  padding: {
+    narrow: 24,
+    regular: 40,
+    wide: 80,
+  },
+}
