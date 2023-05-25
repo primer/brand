@@ -1,5 +1,40 @@
 # @primer/brand-primitives
 
+## 0.19.0
+
+### Patch Changes
+
+- [#285](https://github.com/primer/brand/pull/285) [`02b1d46`](https://github.com/primer/brand/commit/02b1d46518f2de2dd05a8e5ebc548364ca7a8694) Thanks [@josepmartins](https://github.com/josepmartins)! - Update secondary Button border color in dark themes.
+
+## 0.18.0
+
+### Patch Changes
+
+- [#273](https://github.com/primer/brand/pull/273) [`a226dc6`](https://github.com/primer/brand/commit/a226dc60c76ca0aa0c5d99a4c946fe2bd464c81d) Thanks [@TylerJDev](https://github.com/TylerJDev)! - Changes `Green-blue` and `Red-orange` variants in `Label` colors for improved color contrast:
+
+  ```diff
+  - --base-color-scale-green-4
+  - --base-color-scale-red-4
+  + --base-color-scale-green-5
+  + --base-color-scale-red-5
+  ```
+
+  Adds high contrast mode support for `Label`
+
+* [#236](https://github.com/primer/brand/pull/236) [`7502285`](https://github.com/primer/brand/commit/75022854417650ef54d166cf476e405910197adf) Thanks [@josepmartins](https://github.com/josepmartins)! - New and updated `River` spacing tokens aiming for a responsive logic in both `gap` and `padding` values of the main container.
+
+  ```diff
+  # Updated medium/large gap and margin on pro of a responsive logic (Small/Medium/Large sizes) and inner/outer spacing
+  -  --brand-River-gap-column-medium: var(--base-size-32);
+  -  --brand-River-gap-column-large: var(--base-size-48);
+  +  --brand-River-spacing-inner: var(--base-size-24)/var(--base-size-36)/var(--base-size-48);
+  -  --brand-River-layout-margin-vertical: var(--base-size-24);
+  +  --brand-River-spacing-outer: var(--base-size-28)/var(--base-size-36)/var(--base-size-48);
+  # Updated heading margin
+  -  --brand-River-gap-heading-bottom: var(--base-size-8);
+  +  --brand-River-heading-margin: var(--base-size-8);
+  ```
+
 ## 0.17.1
 
 ### Patch Changes
