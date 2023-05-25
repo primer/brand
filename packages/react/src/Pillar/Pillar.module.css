@@ -35,6 +35,15 @@
   color: var(--brand-color-text-muted);
 }
 
+.Pillar__link {
+  margin-top: var(--base-size-8);
+}
+
+.Pillar__link,
+.Pillar__link span {
+  color: var(--brand-Pillar-link-color);
+}
+
 .Pillar__icon--color-default {
   color: var(--brand-Pillar-icon-color-default);
 }

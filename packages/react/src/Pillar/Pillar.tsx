@@ -1,6 +1,6 @@
 import React, {forwardRef, PropsWithChildren, HTMLAttributes, type Ref} from 'react'
 import clsx from 'clsx'
-import {Heading, HeadingTags, HeadingProps, Text} from '..'
+import {Heading, HeadingTags, HeadingProps, Text, Link, LinkProps} from '..'
 import type {BaseProps} from '../component-helpers'
 import {Colors} from '../constants'
 
@@ -36,7 +36,12 @@ const PillarRoot = forwardRef(
   ) => {
     const filteredChildren = React.Children.toArray(children).filter(child => {
       if (React.isValidElement(child) && typeof child.type !== 'string') {
-        if (child.type === PillarIcon || child.type === PillarHeading || child.type === PillarDescription) {
+        if (
+          child.type === PillarIcon ||
+          child.type === PillarHeading ||
+          child.type === PillarDescription ||
+          child.type === PillarLink
+        ) {
           return true
         }
       }
@@ -111,6 +116,16 @@ const PillarDescription = forwardRef<HTMLParagraphElement, PillarDescriptionProp
   }
 )
 
+type PillarLinkProps = Omit<LinkProps, 'size'> & BaseProps<HTMLAnchorElement>
+
+const PillarLink = forwardRef(({className, children, ...props}: PillarLinkProps, ref: Ref<HTMLAnchorElement>) => {
+  return (
+    <Link ref={ref} className={clsx(styles.Pillar__link, className)} {...props}>
+      {children}
+    </Link>
+  )
+})
+
 /**
  * Pillar component:
  * {@link https://primer.style/brand/components/Pillar/ See usage examples}.
@@ -118,5 +133,6 @@ const PillarDescription = forwardRef<HTMLParagraphElement, PillarDescriptionProp
 export const Pillar = Object.assign(PillarRoot, {
   Icon: PillarIcon,
   Heading: PillarHeading,
-  Description: PillarDescription
+  Description: PillarDescription,
+  Link: PillarLink
 })
