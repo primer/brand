@@ -3,6 +3,7 @@ import clsx from 'clsx'
 
 import type {BaseProps} from '../component-helpers'
 import {BaseSizeScale} from '../constants'
+import {useAnimation} from '../animation'
 
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/size/size.css'
 import styles from './Stack.module.css'
@@ -90,6 +91,7 @@ export type StackProps = BaseProps<HTMLElement> & {
 
 const _Stack = (
   {
+    animate,
     children,
     direction = defaultStackDirection,
     gap = defaultStackSpacing,
@@ -97,10 +99,13 @@ const _Stack = (
     padding = defaultStackSpacing,
     justifyContent,
     className,
+    style,
     ...rest
   }: StackProps,
   ref
 ): React.ReactElement => {
+  const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
+
   const directionClass = useMemo(
     () =>
       typeof direction === 'string'
@@ -159,6 +164,7 @@ const _Stack = (
     <div
       ref={ref}
       className={clsx(
+        animationClasses,
         styles.Stack,
         directionClass,
         gapClass,
@@ -167,6 +173,7 @@ const _Stack = (
         paddingClass,
         className
       )}
+      style={{...animationInlineStyles, ...style}}
       {...rest}
     >
       {children}

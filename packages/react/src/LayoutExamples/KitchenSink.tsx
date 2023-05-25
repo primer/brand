@@ -20,7 +20,10 @@ import {
   Radio,
   Grid,
   Card,
-  ComparisonTable
+  ComparisonTable,
+  AnimationProvider,
+  SectionIntro,
+  Animate
 } from '..'
 import {CopilotIcon, RocketIcon, GitBranchIcon} from '@primer/octicons-react'
 
@@ -61,84 +64,89 @@ export function KitchenSink(props: KitchenSinkProps) {
       </SubdomainNavBar>
       <Grid style={{paddingTop: 'var(--base-size-40)', paddingBottom: '200px'}} enableOverlay={false}>
         <Grid.Column>
-          <div style={{marginTop: 'var(--base-size-80)'}}>
-            <Hero
-              heading="This is my super sweet hero heading"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum."
-              primaryAction={{
-                text: 'Primary action',
-                href: '#'
-              }}
-              secondaryAction={{
-                text: 'Secondary action',
-                href: '#'
-              }}
-              align="center"
-            />
-          </div>
-          <Stack
-            direction="vertical"
-            justifyContent="center"
-            style={{textAlign: 'center', maxWidth: '600px', margin: '0 auto'}}
-          >
-            <Heading as="h2" size="3">
-              Section intro
-            </Heading>
-            <Text as="p">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-              turpis felis nam pulvinar risus elementum.
-            </Text>
-          </Stack>
+          <AnimationProvider>
+            <div style={{marginTop: 'var(--base-size-80)'}}>
+              <Hero align="center">
+                <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+                <Hero.Description>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus
+                  sed turpis felis nam pulvinar risus elementum.
+                </Hero.Description>
+                <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+                <Hero.SecondaryAction href="#">Secondary action</Hero.SecondaryAction>
+              </Hero>
+            </div>
+            <section>
+              <SectionIntro align="center" animate="slide-in-up">
+                <SectionIntro.Heading>Section intro</SectionIntro.Heading>
+                <SectionIntro.Description>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus
+                  sed turpis felis nam pulvinar risus elementum.
+                </SectionIntro.Description>
+              </SectionIntro>
 
-          <River>
-            <River.Visual>
-              <Image
-                src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
-                alt="placeholder, blank area with an off-white background color"
-              />
-            </River.Visual>
-            <River.Content>
-              <Heading>Heading</Heading>
-              <Text>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus
-                sed turpis felis nam pulvinar risus elementum.
-              </Text>
-              <Link href="#">Call to action</Link>
-            </River.Content>
-          </River>
-          <River align="end">
-            <River.Visual>
-              <Image
-                src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
-                alt="placeholder, blank area with an off-white background color"
-              />
-            </River.Visual>
-            <River.Content>
-              <Heading>Heading</Heading>
-              <Text>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus
-                sed turpis felis nam pulvinar risus elementum.
-              </Text>
-              <Link href="#">Call to action</Link>
-            </River.Content>
-          </River>
-          <River align="center">
-            <River.Visual>
-              <Image
-                src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
-                alt="placeholder, blank area with an off-white background color"
-              />
-            </River.Visual>
-            <River.Content>
-              <Heading>Heading</Heading>
-              <Text>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus
-                sed turpis felis nam pulvinar risus elementum.
-              </Text>
-              <Link href="#">Call to action</Link>
-            </River.Content>
-          </River>
-
+              <River>
+                <River.Visual>
+                  <Image
+                    src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
+                    alt="placeholder, blank area with an off-white background color"
+                  />
+                </River.Visual>
+                <River.Content
+                  animate={{
+                    variant: 'slide-in-right'
+                  }}
+                >
+                  <Heading>Heading</Heading>
+                  <Text>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam
+                    luctus sed turpis felis nam pulvinar risus elementum.
+                  </Text>
+                  <Link href="#">Call to action</Link>
+                </River.Content>
+              </River>
+              <River align="end">
+                <River.Visual>
+                  <Image
+                    src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
+                    alt="placeholder, blank area with an off-white background color"
+                  />
+                </River.Visual>
+                <River.Content
+                  animate={{
+                    variant: 'slide-in-left'
+                  }}
+                >
+                  <Heading>Heading</Heading>
+                  <Text>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam
+                    luctus sed turpis felis nam pulvinar risus elementum.
+                  </Text>
+                  <Link href="#">Call to action</Link>
+                </River.Content>
+              </River>
+              <River align="center">
+                <River.Visual>
+                  <Image
+                    src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
+                    alt="placeholder, blank area with an off-white background color"
+                  />
+                </River.Visual>
+                <River.Content
+                  animate={{
+                    variant: 'slide-in-up'
+                  }}
+                >
+                  <Heading>Heading</Heading>
+                  <Text>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam
+                    luctus sed turpis felis nam pulvinar risus elementum.
+                  </Text>
+                  <Link href="#">Call to action</Link>
+                </River.Content>
+              </River>
+            </section>
+          </AnimationProvider>
           <Stack
             id="comparejenkins"
             gap="spacious"
@@ -192,245 +200,272 @@ export function KitchenSink(props: KitchenSinkProps) {
               </ComparisonTable.Footnote>
             </ComparisonTable>
           </Stack>
-          <Stack direction="vertical" padding="none" gap="spacious" style={{gap: 'var(--base-size-96)'}}>
-            <Grid style={{justifyItems: 'center'}}>
-              <Grid.Column>
-                <Stack alignItems="center">
-                  <Heading as="h2" size="3">
-                    Cards
-                  </Heading>
-                </Stack>
-              </Grid.Column>
-              <Grid.Column
-                span={{
-                  xsmall: 12,
-                  large: 4
-                }}
-              >
-                <Card href="https://github.com">
-                  <Card.Icon icon={CopilotIcon} color="indigo" hasBackground />
-                  <Card.Label>Limited</Card.Label>
-                  <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
-                  <Card.Description>
-                    Everything you need to know about getting started with GitHub Actions.
-                  </Card.Description>
-                </Card>
-              </Grid.Column>
-              <Grid.Column
-                span={{
-                  xsmall: 12,
-                  large: 4
-                }}
-              >
-                <Card href="https://github.com">
-                  <Card.Icon icon={RocketIcon} hasBackground color="blue" />
-                  <Card.Label>Limited</Card.Label>
-                  <Card.Heading>GitHub Actions cheat sheet and more</Card.Heading>
-                  <Card.Description>
-                    In a recent study, 70% of organizations reported they had adopted DevOps.
-                  </Card.Description>
-                </Card>
-              </Grid.Column>
-              <Grid.Column
-                span={{
-                  xsmall: 12,
-                  large: 4
-                }}
-              >
-                <Card href="https://github.com">
-                  <Card.Icon icon={GitBranchIcon} color="teal" hasBackground />
-                  <Card.Label>Limited</Card.Label>
-                  <Card.Heading>How healthy teams build better software</Card.Heading>
-                  <Card.Description>
-                    Everything you need to know about getting started with GitHub Actions.
-                  </Card.Description>
-                </Card>
-              </Grid.Column>
-            </Grid>
-            <FAQ>
-              <FAQ.Heading>Frequently asked questions</FAQ.Heading>
-              <FAQ.Item>
-                <FAQ.Question>What&apos;s included in the GitHub for Startups offer?</FAQ.Question>
-                <FAQ.Answer>
-                  <p>
-                    All GitHub for Startups companies receive up to 20 seats of GitHub Enterprise for free for year one
-                    and 50% off year two. Learn more about the features and capabilities of GitHub Enterprise{' '}
-                    <InlineLink href="https://www.github.com" target="_blank" rel="noreferrer">
-                      here
-                    </InlineLink>
-                    .
-                  </p>
-                </FAQ.Answer>
-              </FAQ.Item>
-              <FAQ.Item>
-                <FAQ.Question>Who is eligible to apply?</FAQ.Question>
-                <FAQ.Answer>
-                  <p>Startups who meet the following criteria are eligible to apply for the program:</p>
-                  <ol>
-                    <li>
-                      <Text size="300" variant="muted">
-                        Must be associated with a current GitHub for Startups partner.
-                      </Text>
-                    </li>
-                    <li>
-                      <Text size="300" variant="muted">
-                        Self-funded or funded (Seed-Series A)
-                      </Text>
-                    </li>
-                    <li>
-                      <Text size="300" variant="muted">
-                        Not a current GitHub Enterprise customer
-                      </Text>
-                    </li>
-                    <li>
-                      <Text size="300" variant="muted">
-                        Must not have previously received credits for GitHub Enterprise
-                      </Text>
-                    </li>
-                  </ol>
-                </FAQ.Answer>
-              </FAQ.Item>
-              <FAQ.Item>
-                <FAQ.Question>What if my startup is not eligible? Are there other resources for me?</FAQ.Question>
-                <FAQ.Answer>
-                  <p>
-                    If you’re not currently eligible for the GitHub for Startups but would like to try GitHub
-                    Enterprise, please feel to sign up for a trial
-                    <InlineLink href="https://www.github.com" target="_blank" rel="noreferrer">
-                      here
-                    </InlineLink>
-                    .
-                  </p>
-                </FAQ.Answer>
-              </FAQ.Item>
-              <FAQ.Item>
-                <FAQ.Question>How can my organization become a GitHub for Startups partner?</FAQ.Question>
-                <FAQ.Answer>
-                  <p>
-                    Any investor, accelerator, or startup support organization is eligible to apply for the GitHub for
-                    Startups program.
-                  </p>
-                  <p>
-                    <InlineLink href="https://www.github.com" target="_blank" rel="noreferrer">
-                      Apply here
-                    </InlineLink>
-                    .
-                  </p>
-                </FAQ.Answer>
-              </FAQ.Item>
-            </FAQ>
-          </Stack>
-          <Stack
-            direction="vertical"
-            padding="none"
-            gap="spacious"
-            style={{gap: 'var(--base-size-96)', margin: 'var(--base-size-96) auto 0'}}
-          >
-            <Grid style={{justifyItems: 'center'}}>
-              <Grid.Column>
-                <Stack alignItems="center">
-                  <Heading as="h2" size="3">
-                    Testimonials
-                  </Heading>
-                </Stack>
-              </Grid.Column>
-              <Grid.Column>
-                <Grid enableOverlay={enableGridOverlay}>
-                  <Grid.Column
-                    span={{
-                      xsmall: 12,
-                      large: 8
-                    }}
-                    start={{
-                      xsmall: 1,
-                      large: 3
-                    }}
-                  >
-                    <Testimonial size="large">
-                      <Testimonial.Quote>
-                        GitHub helps us ensure that we have our security controls baked into our pipelines all the way
-                        from the first line of code we&apos;re writing.
-                      </Testimonial.Quote>
-                      <Testimonial.Name>David Ross</Testimonial.Name>
-                      <Testimonial.Logo>
-                        <Image
-                          alt="GitHub Logo"
-                          src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
-                          width={60}
-                        />
-                      </Testimonial.Logo>
-                    </Testimonial>
-                  </Grid.Column>
-                </Grid>
-              </Grid.Column>
-            </Grid>
-          </Stack>
+          <AnimationProvider>
+            <Stack direction="vertical" padding="none" gap="spacious" style={{gap: 'var(--base-size-96)'}}>
+              <Grid style={{justifyItems: 'center'}}>
+                <Grid.Column>
+                  <Stack alignItems="center">
+                    <Heading as="h2" size="3">
+                      Cards
+                    </Heading>
+                  </Stack>
+                </Grid.Column>
+                <Grid.Column
+                  span={{
+                    xsmall: 12,
+                    large: 4
+                  }}
+                >
+                  <Animate animate="scale-in-up">
+                    <Card href="https://github.com">
+                      <Card.Icon icon={CopilotIcon} color="indigo" hasBackground />
+                      <Card.Label>Limited</Card.Label>
+                      <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+                      <Card.Description>
+                        Everything you need to know about getting started with GitHub Actions.
+                      </Card.Description>
+                    </Card>
+                  </Animate>
+                </Grid.Column>
+                <Grid.Column
+                  span={{
+                    xsmall: 12,
+                    large: 4
+                  }}
+                >
+                  <Animate animate="scale-in-up">
+                    <Card href="https://github.com">
+                      <Card.Icon icon={RocketIcon} hasBackground color="blue" />
+                      <Card.Label>Limited</Card.Label>
+                      <Card.Heading>GitHub Actions cheat sheet and more</Card.Heading>
+                      <Card.Description>
+                        In a recent study, 70% of organizations reported they had adopted DevOps.
+                      </Card.Description>
+                    </Card>
+                  </Animate>
+                </Grid.Column>
+                <Grid.Column
+                  span={{
+                    xsmall: 12,
+                    large: 4
+                  }}
+                >
+                  <Animate animate="scale-in-up">
+                    <Card href="https://github.com">
+                      <Card.Icon icon={GitBranchIcon} color="teal" hasBackground />
+                      <Card.Label>Limited</Card.Label>
+                      <Card.Heading>How healthy teams build better software</Card.Heading>
+                      <Card.Description>
+                        Everything you need to know about getting started with GitHub Actions.
+                      </Card.Description>
+                    </Card>
+                  </Animate>
+                </Grid.Column>
+              </Grid>
+              <FAQ animate="scale-in-up">
+                <FAQ.Heading>Frequently asked questions</FAQ.Heading>
+                <FAQ.Item>
+                  <FAQ.Question>What&apos;s included in the GitHub for Startups offer?</FAQ.Question>
+                  <FAQ.Answer>
+                    <p>
+                      All GitHub for Startups companies receive up to 20 seats of GitHub Enterprise for free for year
+                      one and 50% off year two. Learn more about the features and capabilities of GitHub Enterprise{' '}
+                      <InlineLink href="https://www.github.com" target="_blank" rel="noreferrer">
+                        here
+                      </InlineLink>
+                      .
+                    </p>
+                  </FAQ.Answer>
+                </FAQ.Item>
+                <FAQ.Item>
+                  <FAQ.Question>Who is eligible to apply?</FAQ.Question>
+                  <FAQ.Answer>
+                    <p>Startups who meet the following criteria are eligible to apply for the program:</p>
+                    <ol>
+                      <li>
+                        <Text size="300" variant="muted">
+                          Must be associated with a current GitHub for Startups partner.
+                        </Text>
+                      </li>
+                      <li>
+                        <Text size="300" variant="muted">
+                          Self-funded or funded (Seed-Series A)
+                        </Text>
+                      </li>
+                      <li>
+                        <Text size="300" variant="muted">
+                          Not a current GitHub Enterprise customer
+                        </Text>
+                      </li>
+                      <li>
+                        <Text size="300" variant="muted">
+                          Must not have previously received credits for GitHub Enterprise
+                        </Text>
+                      </li>
+                    </ol>
+                  </FAQ.Answer>
+                </FAQ.Item>
+                <FAQ.Item>
+                  <FAQ.Question>What if my startup is not eligible? Are there other resources for me?</FAQ.Question>
+                  <FAQ.Answer>
+                    <p>
+                      If you’re not currently eligible for the GitHub for Startups but would like to try GitHub
+                      Enterprise, please feel to sign up for a trial
+                      <InlineLink href="https://www.github.com" target="_blank" rel="noreferrer">
+                        here
+                      </InlineLink>
+                      .
+                    </p>
+                  </FAQ.Answer>
+                </FAQ.Item>
+                <FAQ.Item>
+                  <FAQ.Question>How can my organization become a GitHub for Startups partner?</FAQ.Question>
+                  <FAQ.Answer>
+                    <p>
+                      Any investor, accelerator, or startup support organization is eligible to apply for the GitHub for
+                      Startups program.
+                    </p>
+                    <p>
+                      <InlineLink href="https://www.github.com" target="_blank" rel="noreferrer">
+                        Apply here
+                      </InlineLink>
+                      .
+                    </p>
+                  </FAQ.Answer>
+                </FAQ.Item>
+              </FAQ>
+            </Stack>
+          </AnimationProvider>
+          <AnimationProvider>
+            <Stack
+              direction="vertical"
+              padding="none"
+              gap="spacious"
+              style={{gap: 'var(--base-size-96)', margin: 'var(--base-size-96) auto 0'}}
+            >
+              <Grid style={{justifyItems: 'center'}}>
+                <Grid.Column>
+                  <Stack alignItems="center">
+                    <Heading as="h2" size="3">
+                      Testimonials
+                    </Heading>
+                  </Stack>
+                </Grid.Column>
+                <Grid.Column>
+                  <Grid enableOverlay={enableGridOverlay}>
+                    <Grid.Column
+                      span={{
+                        xsmall: 12,
+                        large: 8
+                      }}
+                      start={{
+                        xsmall: 1,
+                        large: 3
+                      }}
+                    >
+                      <Testimonial
+                        size="large"
+                        animate={{
+                          variant: 'slide-in-left'
+                        }}
+                      >
+                        <Testimonial.Quote>
+                          GitHub helps us ensure that we have our security controls baked into our pipelines all the way
+                          from the first line of code we&apos;re writing.
+                        </Testimonial.Quote>
+                        <Testimonial.Name>David Ross</Testimonial.Name>
+                        <Testimonial.Logo>
+                          <Image
+                            alt="GitHub Logo"
+                            src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+                            width={60}
+                          />
+                        </Testimonial.Logo>
+                      </Testimonial>
+                    </Grid.Column>
+                  </Grid>
+                </Grid.Column>
+              </Grid>
+            </Stack>
 
-          <Grid enableOverlay={enableGridOverlay} style={{margin: 'var(--base-size-96) auto 0'}}>
-            <Grid.Column
-              span={{
-                xsmall: 12,
-                large: 4
-              }}
-            >
-              <Testimonial>
-                <Testimonial.Quote>
-                  GitHub helps us ensure that we have our security controls baked into our pipelines all the way from
-                  the first line of code we&apos;re writing.
-                </Testimonial.Quote>
-                <Testimonial.Name>David Ross</Testimonial.Name>
-                <Testimonial.Logo>
-                  <Image
-                    alt="GitHub Logo"
-                    src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
-                    width={60}
-                  />
-                </Testimonial.Logo>
-              </Testimonial>
-            </Grid.Column>
-            <Grid.Column
-              span={{
-                xsmall: 12,
-                large: 4
-              }}
-            >
-              <Testimonial>
-                <Testimonial.Quote>
-                  GitHub helps us ensure that we have our security controls baked into our pipelines all the way from
-                  the first line of code we&apos;re writing.
-                </Testimonial.Quote>
-                <Testimonial.Name>David Ross</Testimonial.Name>
-                <Testimonial.Logo>
-                  <Image
-                    alt="GitHub Logo"
-                    src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
-                    width={60}
-                  />
-                </Testimonial.Logo>
-              </Testimonial>
-            </Grid.Column>
-            <Grid.Column
-              span={{
-                xsmall: 12,
-                large: 4
-              }}
-            >
-              <Testimonial>
-                <Testimonial.Quote>
-                  GitHub helps us ensure that we have our security controls baked into our pipelines all the way from
-                  the first line of code we&apos;re writing.
-                </Testimonial.Quote>
-                <Testimonial.Name>David Ross</Testimonial.Name>
-                <Testimonial.Logo>
-                  <Image
-                    alt="GitHub Logo"
-                    src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
-                    width={60}
-                  />
-                </Testimonial.Logo>
-              </Testimonial>
-            </Grid.Column>
-          </Grid>
+            <Grid enableOverlay={enableGridOverlay} style={{margin: 'var(--base-size-96) auto 0'}}>
+              <Grid.Column
+                span={{
+                  xsmall: 12,
+                  large: 4
+                }}
+              >
+                <Testimonial
+                  animate={{
+                    variant: 'slide-in-right'
+                  }}
+                >
+                  <Testimonial.Quote>
+                    GitHub helps us ensure that we have our security controls baked into our pipelines all the way from
+                    the first line of code we&apos;re writing.
+                  </Testimonial.Quote>
+                  <Testimonial.Name>David Ross</Testimonial.Name>
+                  <Testimonial.Logo>
+                    <Image
+                      alt="GitHub Logo"
+                      src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+                      width={60}
+                    />
+                  </Testimonial.Logo>
+                </Testimonial>
+              </Grid.Column>
+              <Grid.Column
+                span={{
+                  xsmall: 12,
+                  large: 4
+                }}
+              >
+                <Testimonial
+                  animate={{
+                    variant: 'slide-in-right'
+                  }}
+                >
+                  <Testimonial.Quote>
+                    GitHub helps us ensure that we have our security controls baked into our pipelines all the way from
+                    the first line of code we&apos;re writing.
+                  </Testimonial.Quote>
+                  <Testimonial.Name>David Ross</Testimonial.Name>
+                  <Testimonial.Logo>
+                    <Image
+                      alt="GitHub Logo"
+                      src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+                      width={60}
+                    />
+                  </Testimonial.Logo>
+                </Testimonial>
+              </Grid.Column>
+              <Grid.Column
+                span={{
+                  xsmall: 12,
+                  large: 4
+                }}
+              >
+                <Testimonial
+                  animate={{
+                    variant: 'slide-in-right'
+                  }}
+                >
+                  <Testimonial.Quote>
+                    GitHub helps us ensure that we have our security controls baked into our pipelines all the way from
+                    the first line of code we&apos;re writing.
+                  </Testimonial.Quote>
+                  <Testimonial.Name>David Ross</Testimonial.Name>
+                  <Testimonial.Logo>
+                    <Image
+                      alt="GitHub Logo"
+                      src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+                      width={60}
+                    />
+                  </Testimonial.Logo>
+                </Testimonial>
+              </Grid.Column>
+            </Grid>
+          </AnimationProvider>
         </Grid.Column>
       </Grid>
 
@@ -627,6 +662,7 @@ export function KitchenSink(props: KitchenSinkProps) {
           </Grid>
         </div>
       </ThemeProvider>
+
       {enableGridOverlay && (
         <Grid
           enableOverlay={enableGridOverlay}
