@@ -2,7 +2,7 @@ import React, {forwardRef, PropsWithChildren} from 'react'
 import {isFragment} from 'react-is'
 import clsx from 'clsx'
 
-import {Heading, HeadingTags, AccordionHeading, AccordionContent, AccordionRoot} from '..'
+import {useAnimation, Heading, AccordionHeading, AccordionContent, AccordionRoot, HeadingProps} from '..'
 import type {BaseProps} from '../component-helpers'
 
 /**
@@ -16,9 +16,11 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
  */
 import styles from './FAQ.module.css'
 
-type FAQRootProps = PropsWithChildren<BaseProps<HTMLElement>>
+type FAQRootProps = PropsWithChildren<BaseProps<HTMLElement>> & React.HTMLAttributes<HTMLElement>
 
-const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, className, ...rest}, ref) => {
+const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, style, animate, className, ...rest}, ref) => {
+  const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
+
   const filteredChildren = React.Children.toArray(children).filter(child => {
     if (React.isValidElement(child) && typeof child.type !== 'string') {
       if (
@@ -38,7 +40,12 @@ const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, className, ...
   )
 
   return (
-    <section className={clsx(styles.FAQ, className)} ref={ref} {...rest}>
+    <section
+      ref={ref}
+      className={clsx(styles.FAQ, animationClasses, className)}
+      style={{...animationInlineStyles, ...style}}
+      {...rest}
+    >
       {React.Children.toArray(filteredChildren).map(child => {
         if (React.isValidElement(child) && typeof child.type !== 'string') {
           if (child.type === FAQHeading) {
@@ -59,7 +66,7 @@ type FAQHeadingProps = BaseProps<HTMLHeadingElement> & {
   size?: 'medium' | 'large'
   align?: 'start' | 'center'
   children: React.ReactNode | React.ReactNode[]
-  as?: HeadingTags['as']
+  as?: HeadingProps['as']
 }
 
 const FAQHeading = forwardRef<HTMLHeadingElement, FAQHeadingProps>(
@@ -86,7 +93,7 @@ const FAQHeading = forwardRef<HTMLHeadingElement, FAQHeadingProps>(
 type FAQSubheadingProps = BaseProps<HTMLHeadingElement> & {
   align?: 'start' | 'center'
   children: React.ReactNode | React.ReactNode[]
-  as?: Exclude<HeadingTags['as'], 'h1'>
+  as?: Exclude<HeadingProps['as'], 'h1'>
 }
 
 function FAQSubheading({children, className, as = 'h3', ...rest}: FAQSubheadingProps) {
