@@ -11,26 +11,26 @@ export default {
       'GitHub Security Advisories',
       'Code and secret scanning',
       'Dependency review',
-      'Automated authentication and identity management'
-    ]
+      'Automated authentication and identity management',
+    ],
   },
   argTypes: {
     data: {
       name: 'Data',
       description: 'Test data',
       control: {
-        type: 'array'
+        type: 'array',
       },
       table: {
-        category: 'Story customization'
-      }
+        category: 'Story customization',
+      },
     },
     children: {
       table: {
-        disable: true
-      }
-    }
-  }
+        disable: true,
+      },
+    },
+  },
 } as ComponentMeta<typeof OrderedList>
 
 export const Default = ({data, ...args}: {data: string[]}) => (

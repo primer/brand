@@ -13,7 +13,7 @@ export const defaultTextTag = TextTags[1]
 export const defaultTextSize = TextSizes[3]
 export const defaultTextVariant = TextVariants[0]
 
-export type TextWeightVariants = typeof TextWeights[number]
+export type TextWeightVariants = (typeof TextWeights)[number]
 
 export type ResponsiveWeightMap = {
   narrow?: TextWeightVariants
@@ -34,7 +34,7 @@ type TextTags = {
   /**
    * Applies the underlying HTML element
    */
-  as?: typeof TextTags[number]
+  as?: (typeof TextTags)[number]
 } & RestrictedPolymorphism
 
 export type TextProps = {
@@ -45,11 +45,11 @@ export type TextProps = {
   /**
    * Specify the text size
    */
-  size?: typeof TextSizes[number]
+  size?: (typeof TextSizes)[number]
   /**
    * Specify alternative text appearance
    */
-  variant?: typeof TextVariants[number]
+  variant?: (typeof TextVariants)[number]
   /**
    * Specify the text weight
    */
@@ -82,7 +82,7 @@ export function Text({
     styles[`Text--${variant}`],
     styles[`Text--${size}`],
     weight && weightClass,
-    className
+    className,
   )
 
   /**
@@ -92,7 +92,7 @@ export function Text({
     if (React.isValidElement(child) && typeof child.type !== 'string') {
       if (child.type === InlineLink) {
         return React.cloneElement(child, {
-          size
+          size,
         } as AnchorProps)
       }
     }

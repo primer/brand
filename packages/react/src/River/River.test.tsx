@@ -27,7 +27,7 @@ describe('River', () => {
         <River.Content>
           <Text>{mockText}</Text>
         </River.Content>
-      </River>
+      </River>,
     )
 
     const textEl = getByText(mockText)
@@ -45,7 +45,7 @@ describe('River', () => {
         <River.Content>
           <Text>{mockText}</Text>
         </River.Content>
-      </River>
+      </River>,
     )
 
     const rootEl = getByTestId(rootId)
@@ -66,7 +66,7 @@ describe('River', () => {
         <River.Content>
           <Text>{mockText}</Text>
         </River.Content>
-      </River>
+      </River>,
     )
 
     const rootEl = getByTestId(rootId)
@@ -98,7 +98,7 @@ describe('River', () => {
         <River.Content>
           <Text>{mockText}</Text>
         </River.Content>
-      </River>
+      </River>,
     )
 
     const rootEl = getByTestId(rootId)
@@ -130,7 +130,7 @@ describe('River', () => {
         <River.Content>
           <Text>{mockText}</Text>
         </River.Content>
-      </River>
+      </River>,
     )
 
     const rootEl = getByTestId(rootId)
@@ -164,7 +164,7 @@ describe('River', () => {
           <div data-testid="invalid-child-two" />
         </River.Content>
         <div data-testid="invalid-child-one" />
-      </River>
+      </River>,
     )
 
     const rootEl = getByTestId(rootId)
@@ -190,7 +190,7 @@ describe('River', () => {
         <River.Content leadingComponent={MockLeadingComponent} trailingComponent={MockTrailingComponent}>
           <Text>{mockText}</Text>
         </River.Content>
-      </River>
+      </River>,
     )
 
     const elLeading = getByTestId(mockLeading)
@@ -210,7 +210,7 @@ describe('River', () => {
           <Heading>{mockHeading}</Heading>
           <Text>{mockText}</Text>
         </River.Content>
-      </River>
+      </River>,
     )
 
     const elHeading = getByRole('heading', {level: 3})
@@ -230,7 +230,7 @@ describe('River', () => {
           <Heading as={expectedHeadingSize}>{mockHeading}</Heading>
           <Text>{mockText}</Text>
         </River.Content>
-      </River>
+      </River>,
     )
 
     const elH1Heading = getByRole('heading', {level: 1})
@@ -250,7 +250,7 @@ describe('River', () => {
           <Heading size={expectedHeadingSize}>{mockHeading}</Heading>
           <Text>{mockText}</Text>
         </River.Content>
-      </River>
+      </River>,
     )
 
     const el = getByRole('heading', {level: 3}) // should still be a h3
@@ -269,7 +269,7 @@ describe('River', () => {
           <Text>{mockText}</Text>
           <Link>{mockLinkText}</Link>
         </River.Content>
-      </River>
+      </River>,
     )
     const results = await axe(container)
 

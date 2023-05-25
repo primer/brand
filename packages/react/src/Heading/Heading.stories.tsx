@@ -4,7 +4,7 @@ import {Heading, HeadingTags, HeadingWeights, HeadingLetterSpacing, HeadingStret
 
 export default {
   title: 'Components/Heading',
-  component: Heading
+  component: Heading,
 } as ComponentMeta<typeof Heading>
 
 const Template: ComponentStory<typeof Heading> = args => <Heading {...args} />
@@ -12,7 +12,7 @@ const Template: ComponentStory<typeof Heading> = args => <Heading {...args} />
 export const Default = Template.bind({})
 Default.args = {
   children: 'Heading',
-  as: 'h1'
+  as: 'h1',
 }
 
 export const Scale: ComponentStory<typeof Heading> = () => (
@@ -29,7 +29,7 @@ export const OverrideSize = Template.bind({})
 OverrideSize.args = {
   children: 'This h2 will appear visually identical to a h4',
   as: 'h2',
-  size: '4'
+  size: '4',
 }
 
 export const OverrideWeight = () => (
@@ -48,7 +48,7 @@ export const OverrideWeightResponsive = () => (
     weight={{
       narrow: 'extrabold',
       regular: 'semibold',
-      wide: 'normal'
+      wide: 'normal',
     }}
   >
     Responsive heading weights
@@ -71,7 +71,7 @@ export const OverrideStretchResponsive = () => (
     stretch={{
       narrow: 'condensed',
       regular: 'normal',
-      wide: 'expanded'
+      wide: 'expanded',
     }}
   >
     Responsive heading stretch

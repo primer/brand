@@ -7,23 +7,23 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/size/si
 import styles from './Stack.module.css'
 
 export const StackDirectionVariants = ['horizontal', 'vertical'] as const
-type StackDirectionVariants = typeof StackDirectionVariants[number]
+type StackDirectionVariants = (typeof StackDirectionVariants)[number]
 export const defaultStackDirection = StackDirectionVariants[1]
 
 export const StackSpacingVariants = ['none', 'condensed', 'normal', 'spacious'] as const
-type StackSpacingVariants = typeof StackSpacingVariants[number]
+type StackSpacingVariants = (typeof StackSpacingVariants)[number]
 export const defaultStackSpacing = StackSpacingVariants[1]
 
 export const StackAlignItemVariants = ['center', 'flex-start', 'flex-end'] as const
-type StackAlignItemVariants = typeof StackAlignItemVariants[number]
+type StackAlignItemVariants = (typeof StackAlignItemVariants)[number]
 
 export const StackJustifyContentVariants = [
   ...StackAlignItemVariants,
   'space-between',
   'space-around',
-  'space-evenly'
+  'space-evenly',
 ] as const
-type justifyContentVariants = typeof StackJustifyContentVariants[number]
+type justifyContentVariants = (typeof StackJustifyContentVariants)[number]
 
 type ResponsiveJustifyContentMap = {
   narrow?: justifyContentVariants
@@ -98,7 +98,7 @@ const _Stack = (
     className,
     ...rest
   }: StackProps,
-  ref
+  ref,
 ): React.ReactElement => {
   const directionClass = useMemo(
     () =>
@@ -107,7 +107,7 @@ const _Stack = (
         : Object.keys(direction)
             .map(viewport => styles[`Stack-${viewport}--${direction[viewport]}`])
             .join(' '),
-    [direction]
+    [direction],
   )
 
   const gapClass = useMemo(
@@ -117,7 +117,7 @@ const _Stack = (
         : Object.keys(gap)
             .map(viewport => styles[`Stack-${viewport}--gap-${gap[viewport]}`])
             .join(' '),
-    [gap]
+    [gap],
   )
 
   const paddingClass = useMemo(
@@ -127,7 +127,7 @@ const _Stack = (
         : Object.keys(padding)
             .map(viewport => styles[`Stack-${viewport}--padding-${padding[viewport]}`])
             .join(' '),
-    [padding]
+    [padding],
   )
 
   const alignItemsClass = useMemo(
@@ -139,7 +139,7 @@ const _Stack = (
             .map(viewport => styles[`Stack-${viewport}--align-items-${alignItems[viewport]}`])
             .join(' ')
         : null,
-    [alignItems]
+    [alignItems],
   )
 
   const justifyContentClass = useMemo(
@@ -151,7 +151,7 @@ const _Stack = (
             .map(viewport => styles[`Stack-${viewport}--justify-content-${justifyContent[viewport]}`])
             .join(' ')
         : null,
-    [justifyContent]
+    [justifyContent],
   )
 
   return (
@@ -164,7 +164,7 @@ const _Stack = (
         alignItemsClass,
         justifyContentClass,
         paddingClass,
-        className
+        className,
       )}
       {...rest}
     >

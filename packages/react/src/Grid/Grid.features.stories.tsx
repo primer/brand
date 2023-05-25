@@ -11,8 +11,8 @@ export default {
   // add default props
   args: {
     as: 'div',
-    enableOverlay: true
-  }
+    enableOverlay: true,
+  },
 } as ComponentMeta<typeof Grid>
 
 export const Asymmetry = args => {
@@ -185,13 +185,13 @@ export const ResponsiveMinWidth = args => {
     <Grid {...args}>
       <Grid.Column
         span={{
-          large: 6
+          large: 6,
         }}
       ></Grid.Column>
       <Grid.Column
         span={{
           xsmall: 3,
-          large: 6
+          large: 6,
         }}
       ></Grid.Column>
     </Grid>

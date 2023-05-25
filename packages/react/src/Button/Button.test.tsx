@@ -19,7 +19,7 @@ describe('Button', () => {
     const {getByRole} = render(
       <Button variant="primary" size="medium">
         Primary Button
-      </Button>
+      </Button>,
     )
     const btnEl = getByRole('button')
 
@@ -30,7 +30,7 @@ describe('Button', () => {
     const {container} = render(
       <Button variant="primary" size="medium">
         Primary Button
-      </Button>
+      </Button>,
     )
     const results = await axe(container)
 
@@ -41,7 +41,7 @@ describe('Button', () => {
     const {getByRole} = render(
       <Button variant="primary" size="medium" disabled>
         Primary Button
-      </Button>
+      </Button>,
     )
     const btnEl = getByRole('button')
 
@@ -53,7 +53,7 @@ describe('Button', () => {
     const {getByRole} = render(
       <Button variant="primary" size="medium" aria-disabled="true">
         Primary Button
-      </Button>
+      </Button>,
     )
     const btnEl = getByRole('button')
 
@@ -68,7 +68,7 @@ describe('Button', () => {
       // eslint-disable-next-line no-console
       <Button variant="primary" size="medium" aria-disabled="false" onFocus={() => console.log('Focused')}>
         Primary Button
-      </Button>
+      </Button>,
     )
     const btnEl = getByRole('button')
     btnEl.focus()
@@ -83,7 +83,7 @@ describe('Button', () => {
       // eslint-disable-next-line no-console
       <Button variant="primary" size="medium" disabled onFocus={() => console.log('Focused')}>
         Primary Button
-      </Button>
+      </Button>,
     )
     const btnEl = getByRole('button')
     btnEl.focus()
@@ -98,7 +98,7 @@ describe('Button', () => {
       // eslint-disable-next-line no-console
       <Button variant="primary" size="medium" aria-disabled="true" onFocus={() => console.log('Focused')}>
         Primary Button
-      </Button>
+      </Button>,
     )
     const btnEl = getByRole('button')
     btnEl.focus()
@@ -113,7 +113,7 @@ describe('Button', () => {
       // eslint-disable-next-line no-console
       <Button variant="primary" size="medium" disabled onClick={() => console.log('Pressed')}>
         Primary Button
-      </Button>
+      </Button>,
     )
     const btnEl = getByRole('button')
     btnEl.click()
@@ -223,7 +223,7 @@ describe('Button', () => {
     const {getByTestId} = render(
       <Button trailingVisual={SearchIcon} leadingVisual={SearchIcon} disabled>
         Primary Button
-      </Button>
+      </Button>,
     )
     const trailingVisualEl = getByTestId(Button.testIds.trailingVisual).querySelector('svg')
     const leadingVisualEl = getByTestId(Button.testIds.leadingVisual).querySelector('svg')
@@ -239,7 +239,7 @@ describe('Button', () => {
     const {getByTestId} = render(
       <Button trailingVisual={mockSvg} leadingVisual={mockSvg}>
         Primary Button
-      </Button>
+      </Button>,
     )
 
     const trailingIconSlot = getByTestId(Button.testIds.trailingVisual)

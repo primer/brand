@@ -57,7 +57,7 @@ export const Image = ({
       <picture
         className={clsx(
           styles['Image__container'],
-          aspectRatio && styles[`Image--aspect-ratio-${aspectRatioResolver(aspectRatio)}`]
+          aspectRatio && styles[`Image--aspect-ratio-${aspectRatioResolver(aspectRatio)}`],
         )}
       >
         {rest['sources'] &&

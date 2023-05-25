@@ -5,7 +5,7 @@ import {InlineLink, Text} from '../'
 
 export default {
   title: 'Components/MinimalFooter',
-  component: MinimalFooter
+  component: MinimalFooter,
 } as ComponentMeta<typeof MinimalFooter>
 
 export const Playground: ComponentStory<typeof MinimalFooter> = args => <MinimalFooter {...args} />

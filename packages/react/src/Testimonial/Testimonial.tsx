@@ -41,7 +41,7 @@ function _Root({align, className, children, size, ...rest}: PropsWithChildren<Te
         styles['Testimonial'],
         align && styles[`Testimonial--${align}`],
         size && styles[`Testimonial--size-${size}`],
-        className
+        className,
       )}
       {...rest}
     >
@@ -142,7 +142,7 @@ function _Logo({children, ...rest}: LogoProps, ref) {
           if (child.type === 'img') {
             return React.cloneElement(child, {
               className: clsx(styles['Testimonial-logo-image']),
-              ref
+              ref,
             })
           }
         }
@@ -172,5 +172,5 @@ export const Testimonial = Object.assign(Root, {
   Quote,
   Name,
   Avatar,
-  Logo
+  Logo,
 })

@@ -10,10 +10,10 @@ export default {
   component: KitchenSink,
   parameters: {
     viewport: {
-      viewports: INITIAL_VIEWPORTS
+      viewports: INITIAL_VIEWPORTS,
     },
-    layout: 'fullscreen'
-  }
+    layout: 'fullscreen',
+  },
 } as ComponentMeta<typeof KitchenSink>
 
 export const KitchenSinkPlayground: ComponentStory<typeof KitchenSink> = args => <KitchenSink {...args} />
@@ -25,8 +25,8 @@ KitchenSinkPlaygroundMobile.storyName = 'Kitchen Sink (mobile)'
 
 KitchenSinkPlaygroundMobile.parameters = {
   viewport: {
-    defaultViewport: 'iphonex'
-  }
+    defaultViewport: 'iphonex',
+  },
 }
 
 export const ResourcesHubExamplePlayground: ComponentStory<typeof ResourcesHubExample> = args => (
@@ -40,6 +40,6 @@ export const ResourcesHubExampleMobilePlayground: ComponentStory<typeof Resource
 ResourcesHubExampleMobilePlayground.storyName = 'Resources Hub (mobile)'
 ResourcesHubExampleMobilePlayground.parameters = {
   viewport: {
-    defaultViewport: 'iphonex'
-  }
+    defaultViewport: 'iphonex',
+  },
 }

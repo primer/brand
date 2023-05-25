@@ -34,7 +34,7 @@ const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, className, ...
   })
 
   const hasSubheading = React.Children.toArray(children).some(
-    child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === FAQSubheading
+    child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === FAQSubheading,
   )
 
   return (
@@ -45,7 +45,7 @@ const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, className, ...
             return React.cloneElement(child as React.ReactElement, {
               align: hasSubheading ? 'start' : child.props.align,
               size: hasSubheading ? 'large' : child.props.size,
-              className: clsx(!hasSubheading && styles['FAQ__heading--with-margin'], child.props.className)
+              className: clsx(!hasSubheading && styles['FAQ__heading--with-margin'], child.props.className),
             })
           }
         }
@@ -72,7 +72,7 @@ const FAQHeading = forwardRef<HTMLHeadingElement, FAQHeadingProps>(
           styles.FAQ__heading,
           size === 'large' && styles['FAQ__heading--large'],
           styles[`FAQ__heading--${align}`],
-          className
+          className,
         )}
         ref={ref}
         {...rest}
@@ -80,7 +80,7 @@ const FAQHeading = forwardRef<HTMLHeadingElement, FAQHeadingProps>(
         {children}
       </Heading>
     )
-  }
+  },
 )
 
 type FAQSubheadingProps = BaseProps<HTMLHeadingElement> & {
@@ -106,5 +106,5 @@ export const FAQ = Object.assign(FAQRoot, {
   Heading: FAQHeading,
   Item: AccordionRoot,
   Question: AccordionHeading,
-  Answer: AccordionContent
+  Answer: AccordionContent,
 })

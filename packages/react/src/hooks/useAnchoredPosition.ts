@@ -19,7 +19,7 @@ export interface AnchoredPositionHookSettings extends Partial<PositionSettings> 
  */
 export function useAnchoredPosition(
   settings?: AnchoredPositionHookSettings,
-  dependencies: React.DependencyList = []
+  dependencies: React.DependencyList = [],
 ): {
   floatingElementRef: RefObject<Element> | undefined
   anchorElementRef: RefObject<Element> | undefined
@@ -39,7 +39,7 @@ export function useAnchoredPosition(
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [floatingElementRef, anchorElementRef, ...dependencies]
+    [floatingElementRef, anchorElementRef, ...dependencies],
   )
 
   useEffect(updatePosition, [updatePosition])
@@ -49,6 +49,6 @@ export function useAnchoredPosition(
   return {
     floatingElementRef,
     anchorElementRef,
-    position
+    position,
   }
 }

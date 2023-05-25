@@ -51,7 +51,7 @@ describe('Heading', () => {
     const {getByRole} = render(
       <Heading as={expectedTag} size="3">
         {mockHeading}
-      </Heading>
+      </Heading>,
     )
     const headingEl = getByRole('heading')
 
@@ -66,7 +66,7 @@ describe('Heading', () => {
       const {getByText} = render(
         <Heading as="h3" weight={weight}>
           {weight}
-        </Heading>
+        </Heading>,
       )
       const headingEl = getByText(weight)
 
@@ -86,11 +86,11 @@ describe('Heading', () => {
             data-testid={`heading-${breakpoint}-${weight}`}
             as="h3"
             weight={{
-              [breakpoint]: weight
+              [breakpoint]: weight,
             }}
           >
             {weight}
-          </Heading>
+          </Heading>,
         )
         const headingEl = getByTestId(`heading-${breakpoint}-${weight}`)
 
@@ -106,7 +106,7 @@ describe('Heading', () => {
       const {getByText} = render(
         <Heading as="h3" stretch={stretch}>
           {stretch}
-        </Heading>
+        </Heading>,
       )
       const headingEl = getByText(stretch)
 
@@ -126,11 +126,11 @@ describe('Heading', () => {
             data-testid={`heading-${breakpoint}-${stretch}`}
             as="h3"
             stretch={{
-              [breakpoint]: stretch
+              [breakpoint]: stretch,
             }}
           >
             {stretch}
-          </Heading>
+          </Heading>,
         )
         const headingEl = getByTestId(`heading-${breakpoint}-${stretch}`)
 

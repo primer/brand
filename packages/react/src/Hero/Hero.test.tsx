@@ -21,7 +21,7 @@ describe('Hero', () => {
         <Hero.Description>{mockDescription}</Hero.Description>
         <Hero.PrimaryAction href={mockPrimaryAction.href}>{mockPrimaryAction.text}</Hero.PrimaryAction>
         <Hero.PrimaryAction href={mockSecondaryAction.href}>{mockSecondaryAction.text}</Hero.PrimaryAction>
-      </Hero>
+      </Hero>,
     )
     const headingElement = getByText(mockHeading)
     const descriptionElement = getByText(mockDescription)
@@ -39,7 +39,7 @@ describe('Hero', () => {
       <Hero>
         <Hero.Heading>{mockHeading}</Hero.Heading>
         <Hero.PrimaryAction href={mockPrimaryAction.href}>{mockPrimaryAction.text}</Hero.PrimaryAction>
-      </Hero>
+      </Hero>,
     )
 
     const linkElements = queryAllByRole('link')
@@ -53,7 +53,7 @@ describe('Hero', () => {
         <Hero.Heading>{mockHeading}</Hero.Heading>
         <Hero.PrimaryAction href={mockPrimaryAction.href}>{mockPrimaryAction.text}</Hero.PrimaryAction>
         <Hero.SecondaryAction href={mockSecondaryAction.href}>{mockSecondaryAction.text}</Hero.SecondaryAction>
-      </Hero>
+      </Hero>,
     )
     const descriptionEl = container.querySelector('p')
 
@@ -67,7 +67,7 @@ describe('Hero', () => {
         <Hero.Description>{mockDescription}</Hero.Description>
         <Hero.PrimaryAction href={mockPrimaryAction.href}>{mockPrimaryAction.text}</Hero.PrimaryAction>
         <Hero.SecondaryAction href={mockSecondaryAction.href}>{mockSecondaryAction.text}</Hero.SecondaryAction>
-      </Hero>
+      </Hero>,
     )
     const results = await axe(container)
 

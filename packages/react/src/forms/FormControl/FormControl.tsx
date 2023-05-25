@@ -63,7 +63,7 @@ const Root = ({
   const childrenArr = React.Children.toArray(children)
 
   const isInlineControl = childrenArr.some(
-    child => React.isValidElement(child) && (child.type === Checkbox || child.type === Radio)
+    child => React.isValidElement(child) && (child.type === Checkbox || child.type === Radio),
   )
 
   return (
@@ -74,7 +74,7 @@ const Root = ({
         fullWidth && styles[`FormControl--fullWidth`],
         isInlineControl && styles['FormControl--checkbox'],
         hasBorder && styles['FormControl--border'],
-        className
+        className,
       )}
       {...rest}
     >
@@ -93,7 +93,7 @@ const Root = ({
               required: child.props.required || required,
               validationStatus: child.props.validationStatus || validationStatus,
               fullWidth,
-              size
+              size,
             })
           } else if (child.type === Select) {
             /**
@@ -106,7 +106,7 @@ const Root = ({
               required: child.props.required || required,
               validationStatus: child.props.validationStatus || validationStatus,
               fullWidth,
-              size
+              size,
             })
           } else if (child.type === Checkbox) {
             /**
@@ -117,7 +117,7 @@ const Root = ({
               id: inputId,
               name: child.props.name || inputId,
               required: child.props.required || required,
-              validationStatus: child.props.validationStatus || validationStatus
+              validationStatus: child.props.validationStatus || validationStatus,
             })
           } else if (child.type === Radio) {
             /**
@@ -128,7 +128,7 @@ const Root = ({
               id: inputId,
               name: child.props.name,
               required: child.props.required || required,
-              validationStatus: child.props.validationStatus || validationStatus
+              validationStatus: child.props.validationStatus || validationStatus,
             })
           } else if (child.type === FormControlLabel) {
             /**
@@ -141,14 +141,14 @@ const Root = ({
               required,
               validationStatus,
               size,
-              showRequiredIndicator: isInlineControl ? false : child.props.showRequiredIndicator
+              showRequiredIndicator: isInlineControl ? false : child.props.showRequiredIndicator,
             })
           } else if (child.type === FormControlValidation) {
             /**
              * Validation
              */
             return React.cloneElement(child, {
-              validationStatus
+              validationStatus,
             })
           } else {
             return child
@@ -188,7 +188,7 @@ const FormControlLabel = ({
         validationStatus && styles[`FormControl-label--${validationStatus}`],
         styles[`FormControl-label--${size}`],
         visuallyHidden && styles['FormControl-label--visually-hidden'],
-        className
+        className,
       )}
       {...rest}
     >
@@ -196,7 +196,7 @@ const FormControlLabel = ({
         if (React.isValidElement(child)) {
           if (child.type === FormControlHint) {
             return React.cloneElement(child as React.ReactElement<FormControlHintProps>, {
-              className: clsx(styles['FormControl--visible'], child.props.className)
+              className: clsx(styles['FormControl--visible'], child.props.className),
             })
           }
         }
@@ -224,7 +224,7 @@ const FormControlValidation = ({children, validationStatus}: FormControlValidati
       className={clsx(
         styles['FormControl-validation'],
         validationStatus && styles['FormControl-validation--animate-in'],
-        validationStatus && styles[`FormControl-validation--${validationStatus}`]
+        validationStatus && styles[`FormControl-validation--${validationStatus}`],
       )}
     >
       {validationStatus === 'error' && (
@@ -259,5 +259,5 @@ const FormControlHint = ({children, className, ...rest}: FormControlHintProps) =
 export const FormControl = Object.assign(Root, {
   Label: FormControlLabel,
   Validation: FormControlValidation,
-  Hint: FormControlHint
+  Hint: FormControlHint,
 })

@@ -4,7 +4,7 @@ import {ActionMenu} from './ActionMenu'
 
 export default {
   title: 'Components/ActionMenu',
-  component: ActionMenu
+  component: ActionMenu,
 } as ComponentMeta<typeof ActionMenu>
 
 const Template: ComponentStory<typeof ActionMenu> = args => (

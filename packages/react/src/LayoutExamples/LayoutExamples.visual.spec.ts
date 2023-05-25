@@ -9,7 +9,7 @@ import {test, expect} from '@playwright/test'
 test.describe('Visual Comparison: LayoutExamples', () => {
   test('LayoutExamples / Kitchen Sink', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=layout-full-page-examples--kitchen-sink-playground&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=layout-full-page-examples--kitchen-sink-playground&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: LayoutExamples', () => {
     test.use({viewport: {width: 360, height: 800}})
     test('LayoutExamples / Kitchen Sink (mobile)', async ({page}) => {
       await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=layout-full-page-examples--kitchen-sink-playground-mobile&viewMode=story'
+        'http://localhost:6006/iframe.html?args=&id=layout-full-page-examples--kitchen-sink-playground-mobile&viewMode=story',
       )
 
       expect(await page.screenshot()).toMatchSnapshot()
@@ -28,7 +28,7 @@ test.describe('Visual Comparison: LayoutExamples', () => {
   })
   test('LayoutExamples / Resources Hub', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=layout-full-page-examples--resources-hub-example-playground&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=layout-full-page-examples--resources-hub-example-playground&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -39,7 +39,7 @@ test.describe('Visual Comparison: LayoutExamples', () => {
     test.use({viewport: {width: 360, height: 800}})
     test('LayoutExamples / Resources Hub (mobile)', async ({page}) => {
       await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=layout-full-page-examples--resources-hub-example-mobile-playground&viewMode=story'
+        'http://localhost:6006/iframe.html?args=&id=layout-full-page-examples--resources-hub-example-mobile-playground&viewMode=story',
       )
 
       expect(await page.screenshot()).toMatchSnapshot()

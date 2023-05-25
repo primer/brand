@@ -12,7 +12,7 @@ export const Colors = [
   'purple',
   'red',
   'teal',
-  'yellow'
+  'yellow',
 ] as const
 
 export const Gradients = ['blue-purple', 'green-blue', 'pink-blue', 'purple-red', 'red-orange'] as const

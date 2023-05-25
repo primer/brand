@@ -26,11 +26,11 @@ export type LabelProps = BaseProps<HTMLSpanElement> & {
   /**
    * The color variations available in Label
    */
-  color?: typeof LabelColors[number]
+  color?: (typeof LabelColors)[number]
   /**
    * The size variations available in Label
    */
-  size?: typeof LabelSizes[number]
+  size?: (typeof LabelSizes)[number]
   ['data-testid']?: string
 } & React.ComponentPropsWithoutRef<'span'>
 
@@ -38,7 +38,7 @@ const testIds = {
   root: 'Label',
   get leadingVisual() {
     return `${this.root}-leading-visual`
-  }
+  },
 }
 
 const _Label = forwardRef<HTMLSpanElement, LabelProps>(
@@ -52,7 +52,7 @@ const _Label = forwardRef<HTMLSpanElement, LabelProps>(
       leadingVisual: LeadingVisual,
       ...props
     },
-    ref: Ref<HTMLSpanElement>
+    ref: Ref<HTMLSpanElement>,
   ) => {
     return (
       <span
@@ -69,7 +69,7 @@ const _Label = forwardRef<HTMLSpanElement, LabelProps>(
               React.isValidElement(LeadingVisual) &&
               React.cloneElement(LeadingVisual as React.ReactElement, {
                 className: clsx(styles['Label__icon-visual']),
-                ['aria-hidden']: 'true'
+                ['aria-hidden']: 'true',
               })
             )}
           </span>
@@ -85,7 +85,7 @@ const _Label = forwardRef<HTMLSpanElement, LabelProps>(
         </span>
       </span>
     )
-  }
+  },
 )
 
 /**

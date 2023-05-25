@@ -10,55 +10,55 @@ export default {
   component: ComparisonTable,
   args: {
     variant: 'default',
-    as: 'section'
+    as: 'section',
   },
   argTypes: {
     as: {
       description: 'The HTML element used to render the root component.',
       control: {
         type: 'inline-radio',
-        options: ['section', 'large']
+        options: ['section', 'large'],
       },
       table: {
-        category: 'ComparisonTable'
-      }
+        category: 'ComparisonTable',
+      },
     },
     variant: {
       control: {
         type: 'inline-radio',
-        options: ['undefined', 'default', 'minimal']
+        options: ['undefined', 'default', 'minimal'],
       },
       table: {
-        category: 'ComparisonTable'
-      }
+        category: 'ComparisonTable',
+      },
     },
     heading: {
       type: 'string',
       table: {
-        category: 'ComparisonTable'
-      }
+        category: 'ComparisonTable',
+      },
     },
     featuredColumn: {
       type: 'number',
       defaultValue: 1,
       table: {
-        category: 'ComparisonTable'
-      }
+        category: 'ComparisonTable',
+      },
     },
     footnote: {
       type: 'string',
       defaultValue:
         '*** This is a biased overview of capabilities by use case, based on publicly available information as of 2022-05-16.',
       table: {
-        category: 'ComparisonTable'
-      }
-    }
+        category: 'ComparisonTable',
+      },
+    },
   },
   parameters: {
     viewport: {
-      viewports: INITIAL_VIEWPORTS
-    }
-  }
+      viewports: INITIAL_VIEWPORTS,
+    },
+  },
 } as ComponentMeta<typeof ComparisonTable>
 
 const Template: ComponentStory<typeof ComparisonTable> = args => (
@@ -106,17 +106,17 @@ const Template: ComponentStory<typeof ComparisonTable> = args => (
 
 export const Playground = Template.bind({})
 Playground.args = {
-  heading: 'GitHub vs Jenkins'
+  heading: 'GitHub vs Jenkins',
 }
 
 export const PlaygroundMobile = Template.bind({})
 PlaygroundMobile.args = {
-  heading: 'GitHub vs Jenkins'
+  heading: 'GitHub vs Jenkins',
 }
 PlaygroundMobile.parameters = {
   viewport: {
-    defaultViewport: 'iphonex'
-  }
+    defaultViewport: 'iphonex',
+  },
 }
 PlaygroundMobile.storyName = 'Playground (mobile)'
 

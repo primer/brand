@@ -10,29 +10,29 @@ export default {
     direction: {
       narrow: 'vertical',
       regular: 'vertical',
-      wide: 'horizontal'
+      wide: 'horizontal',
     },
     gap: {
       narrow: 'condensed',
       regular: 'normal',
-      wide: 'spacious'
+      wide: 'spacious',
     },
     padding: {
       narrow: 'condensed',
       regular: 'normal',
-      wide: 'spacious'
+      wide: 'spacious',
     },
     alignItems: {
       narrow: 'flex-start',
       regular: 'flex-start',
-      wide: 'center'
+      wide: 'center',
     },
     justifyContent: {
       narrow: 'space-between',
       regular: 'space-around',
-      wide: 'space-evenly'
-    }
-  }
+      wide: 'space-evenly',
+    },
+  },
 } as ComponentMeta<typeof Stack>
 
 const Template: ComponentStory<typeof Stack> = args => (
@@ -65,11 +65,11 @@ Responsive.args = {
   gap: {
     narrow: 'spacious',
     regular: 'spacious',
-    wide: 'spacious'
+    wide: 'spacious',
   },
   padding: {
     narrow: 'condensed',
     regular: 'normal',
-    wide: 'spacious'
-  }
+    wide: 'spacious',
+  },
 }

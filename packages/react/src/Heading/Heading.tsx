@@ -12,9 +12,9 @@ export const HeadingLetterSpacing = ['condensed', 'normal', 'none'] as const
 
 export const defaultHeadingTag = HeadingTags[1]
 
-type HeadingWeightVariants = typeof HeadingWeights[number]
-type HeadingStretchVariants = typeof HeadingStretch[number]
-type HeadingLetterSpacingVariants = typeof HeadingLetterSpacing[number]
+type HeadingWeightVariants = (typeof HeadingWeights)[number]
+type HeadingStretchVariants = (typeof HeadingStretch)[number]
+type HeadingLetterSpacingVariants = (typeof HeadingLetterSpacing)[number]
 
 type ResponsiveStretchMap = {
   narrow?: HeadingStretchVariants
@@ -40,12 +40,12 @@ export const classMap = {
   h3: HeadingSizes[2],
   h4: HeadingSizes[3],
   h5: HeadingSizes[4],
-  h6: HeadingSizes[5]
+  h6: HeadingSizes[5],
 }
 
 export type HeadingTags = BaseProps<HTMLHeadingElement> & {
-  as?: typeof HeadingTags[number]
-  size?: typeof HeadingSizes[number]
+  as?: (typeof HeadingTags)[number]
+  size?: (typeof HeadingSizes)[number]
   weight?: HeadingWeightVariants | ResponsiveWeightMap
   stretch?: HeadingStretchVariants | ResponsiveStretchMap
   letterSpacing?: HeadingLetterSpacingVariants | ResponsiveLetterSpacingMap
@@ -67,7 +67,7 @@ export const Heading = forwardRef(
       stretch,
       ...rest
     }: PropsWithChildren<HeadingProps>,
-    ref: Ref<HTMLHeadingElement>
+    ref: Ref<HTMLHeadingElement>,
   ) => {
     const buildClass = (type: string, value) => {
       if (!value) return null
@@ -91,7 +91,7 @@ export const Heading = forwardRef(
       weight && weightClass,
       stretch && stretchClass,
       letterSpacingClass && letterSpacingClass,
-      className
+      className,
     )
 
     const HeadingComponent = React.useCallback(
@@ -104,7 +104,7 @@ export const Heading = forwardRef(
 
         return React.createElement(as, props, children)
       },
-      [as, children]
+      [as, children],
     )
 
     return (
@@ -112,5 +112,5 @@ export const Heading = forwardRef(
         {children}
       </HeadingComponent>
     )
-  }
+  },
 )

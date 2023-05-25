@@ -22,16 +22,16 @@ export type ComparisonTableProps<C extends React.ElementType> = BaseProps<C> & {
 export const _ComparisonTable = forwardRef(
   <C extends React.ElementType>(
     {as, children, heading, featuredColumn = 1, variant = 'default', ...props}: ComparisonTableProps<C>,
-    ref: Ref<HTMLDivElement>
+    ref: Ref<HTMLDivElement>,
   ) => {
     const Component = as || 'section'
 
     const Children = useMemo(
       () =>
         React.Children.toArray(children).filter(
-          (child: React.ReactNode): boolean => React.isValidElement(child) && typeof child.type !== 'string'
+          (child: React.ReactNode): boolean => React.isValidElement(child) && typeof child.type !== 'string',
         ),
-      [children]
+      [children],
     )
 
     const HeaderRow = Children.map((child, index) => {
@@ -50,20 +50,20 @@ export const _ComparisonTable = forwardRef(
                     styles[`ComparisonTable-cell-heading--${variant}`],
                     rowChildIndex === 0 && styles[`ComparisonTable-cell-heading--first`],
                     rowChildIndex === featuredColumn && styles[`ComparisonTable-cell-heading--featured`],
-                    child.props.className
+                    child.props.className,
                   ),
                   children: (
                     <span
                       className={clsx(
-                        rowChildIndex === featuredColumn && styles['ComparisonTable-cell-heading-label--featured']
+                        rowChildIndex === featuredColumn && styles['ComparisonTable-cell-heading-label--featured'],
                       )}
                     >
                       {rowChild.props.children}
                     </span>
-                  )
+                  ),
                 })
               }
-            })
+            }),
           })
         }
       }
@@ -76,7 +76,7 @@ export const _ComparisonTable = forwardRef(
 
           return value
         }),
-      [children]
+      [children],
     )
 
     const [, ...regularRows] = React.Children.map(children, child => {
@@ -100,7 +100,7 @@ export const _ComparisonTable = forwardRef(
                   cellIndex === 0 && styles[`ComparisonTable-cell-heading--${variant}`],
                   cellIndex === featuredColumn && styles[`ComparisonTable-cell--featured`],
                   regularRows.length - 1 === index && styles['ComparisonTable-cell--lastrow'],
-                  child.props.className
+                  child.props.className,
                 )}
               >
                 {cellIndex >= 1 && (
@@ -108,7 +108,7 @@ export const _ComparisonTable = forwardRef(
                     className={clsx(
                       styles['ComparisonTable-inline-cell-label'],
                       styles['ComparisonTable--hide-element-on-narrow'],
-                      cellIndex === featuredColumn && styles['ComparisonTable-cell-heading-label--featured']
+                      cellIndex === featuredColumn && styles['ComparisonTable-cell-heading-label--featured'],
                     )}
                   >
                     {headerRowNames[cellIndex]}
@@ -117,7 +117,7 @@ export const _ComparisonTable = forwardRef(
                 <span
                   className={clsx(
                     styles['ComparisonTable-cell-container'],
-                    cellIndex === featuredColumn && styles['ComparisonTable-cell-container--featured']
+                    cellIndex === featuredColumn && styles['ComparisonTable-cell-container--featured'],
                   )}
                 >
                   {rowChild.props.children}
@@ -125,7 +125,7 @@ export const _ComparisonTable = forwardRef(
               </Cell>
             )
           }
-        })
+        }),
       })
     })
 
@@ -145,7 +145,7 @@ export const _ComparisonTable = forwardRef(
         {FootnoteChild && <footer className={styles['ComparisonTable-footnote']}>{FootnoteChild}</footer>}
       </Component>
     )
-  }
+  },
 )
 
 type RowProps = {
@@ -187,5 +187,5 @@ const Footnote = ({children, ...props}: PropsWithChildren<FootnoteProps>) => {
 export const ComparisonTable = Object.assign(_ComparisonTable, {
   Row,
   Cell,
-  Footnote
+  Footnote,
 })

@@ -50,7 +50,7 @@ const _Checkbox = (
     value,
     ...rest
   }: CheckboxProps,
-  ref
+  ref,
 ): ReactElement => {
   const inputRef: RefObject<HTMLInputElement> | null = useRef<HTMLInputElement>(ref || null)
   const uniqueId = useId(id)

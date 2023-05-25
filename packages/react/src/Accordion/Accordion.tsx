@@ -25,7 +25,7 @@ type ValidRootChildren = {
 export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
   ({children, className, open = false, ...rest}, ref) => {
     const {AccordionHeading: HeadingChild, AccordionContent: AccordionContentChild} = React.Children.toArray(
-      children
+      children,
     ).reduce<ValidRootChildren>(
       (acc, child) => {
         if (React.isValidElement(child) && typeof child.type !== 'string') {
@@ -38,7 +38,7 @@ export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
         }
         return acc
       },
-      {AccordionHeading: null, AccordionContent: null}
+      {AccordionHeading: null, AccordionContent: null},
     )
 
     return (
@@ -47,7 +47,7 @@ export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
         {AccordionContentChild}
       </details>
     )
-  }
+  },
 )
 
 type AccordionHeadingProps = BaseProps<HTMLHeadingElement> & {
@@ -67,7 +67,7 @@ export const AccordionHeading = forwardRef<HTMLHeadingElement, AccordionHeadingP
         <span aria-hidden="true" className={styles['Accordion__summary--expanded']}></span>
       </summary>
     )
-  }
+  },
 )
 
 type AccordionContentProps = BaseProps<HTMLElement> & {
@@ -90,7 +90,7 @@ export function AccordionContent({children, className, ...rest}: AccordionConten
             <Text variant="muted" size="300" as="span">
               {child.props.children}
             </Text>
-          )
+          ),
         })
       }
     }
@@ -103,8 +103,8 @@ export function AccordionContent({children, className, ...rest}: AccordionConten
         textNode =>
           React.isValidElement(textNode) &&
           React.cloneElement(textNode as React.ReactElement, {
-            className: clsx(styles['Accordion__content-item'], textNode.props.className)
-          })
+            className: clsx(styles['Accordion__content-item'], textNode.props.className),
+          }),
       )}
     </section>
   )

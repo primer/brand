@@ -41,7 +41,7 @@ type ValidRootChildren = {
 const Root = forwardRef(
   (
     {imageTextRatio = defaultRiverImageTextRatio, align = defaultRiverAlign, className, children, ...rest}: RiverProps,
-    ref: Ref<HTMLElement>
+    ref: Ref<HTMLElement>,
   ) => {
     const {Visual: VisualChild, Content: ContentChild} = React.Children.toArray(children).reduce<ValidRootChildren>(
       (acc, child) => {
@@ -55,7 +55,7 @@ const Root = forwardRef(
         }
         return acc
       },
-      {Visual: null, Content: null}
+      {Visual: null, Content: null},
     )
 
     const orderedChildren =
@@ -67,7 +67,7 @@ const Root = forwardRef(
           styles.River,
           styles[`River--${imageTextRatio.replace(':', '-')}`],
           styles[`River--align-${align}`],
-          className
+          className,
         )}
         {...rest}
         ref={ref}
@@ -75,7 +75,7 @@ const Root = forwardRef(
         {orderedChildren}
       </section>
     )
-  }
+  },
 )
 
 type RiverContentProps = BaseProps<HTMLDivElement> & {
@@ -105,10 +105,10 @@ type RiverContentProps = BaseProps<HTMLDivElement> & {
 const Content = forwardRef(
   (
     {children, leadingComponent: LeadingComponent, trailingComponent: TrailingComponent, ...rest}: RiverContentProps,
-    ref: Ref<HTMLDivElement>
+    ref: Ref<HTMLDivElement>,
   ) => {
     const HeadingChild = React.Children.toArray(children).find(
-      child => React.isValidElement(child) && child.type === Heading
+      child => React.isValidElement(child) && child.type === Heading,
     )
 
     const TextChild = React.Children.toArray(children).find(child => React.isValidElement(child) && child.type === Text)
@@ -127,7 +127,7 @@ const Content = forwardRef(
             {React.cloneElement(HeadingChild as React.ReactElement<HeadingProps>, {
               // as uses h3 default, but can be overridden
               as: HeadingChild.props.as || 'h3',
-              size: HeadingChild.props.size || '3'
+              size: HeadingChild.props.size || '3',
             })}
           </div>
         )}
@@ -137,7 +137,7 @@ const Content = forwardRef(
             {React.cloneElement(TextChild as React.ReactElement<TextProps>, {
               variant: 'muted',
               as: 'p',
-              className: clsx(styles.River__text, TextChild.props.className)
+              className: clsx(styles.River__text, TextChild.props.className),
             })}
           </div>
         )}
@@ -153,7 +153,7 @@ const Content = forwardRef(
         )}
       </div>
     )
-  }
+  },
 )
 
 type RiverVisualProps = BaseProps<HTMLDivElement> &
@@ -173,7 +173,7 @@ type RiverVisualProps = BaseProps<HTMLDivElement> &
 const Visual = forwardRef(
   (
     {fillMedia = true, children, className, hasShadow = true, ...rest}: PropsWithChildren<RiverVisualProps>,
-    ref: Ref<HTMLDivElement>
+    ref: Ref<HTMLDivElement>,
   ) => {
     return (
       <div
@@ -181,7 +181,7 @@ const Visual = forwardRef(
           styles.River__visual,
           hasShadow && styles['River__visual--has-shadow'],
           fillMedia && styles['River__visual--fill-media'],
-          className
+          className,
         )}
         {...rest}
         ref={ref}
@@ -189,7 +189,7 @@ const Visual = forwardRef(
         {children}
       </div>
     )
-  }
+  },
 )
 
 /**

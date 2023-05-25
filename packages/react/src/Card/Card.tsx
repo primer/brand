@@ -57,7 +57,7 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
         setIsHovered(!isHovered)
         onMouseEnter?.(event)
       },
-      [onMouseEnter, isHovered]
+      [onMouseEnter, isHovered],
     )
 
     const handleMouseLeave = useCallback(
@@ -65,7 +65,7 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
         setIsHovered(!isHovered)
         onMouseLeave?.(event)
       },
-      [onMouseLeave, isHovered]
+      [onMouseLeave, isHovered],
     )
 
     const handleOnFocus = useCallback(
@@ -73,7 +73,7 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
         setIsFocused(!isFocused)
         onFocus?.(event)
       },
-      [onFocus, isFocused]
+      [onFocus, isFocused],
     )
 
     const handleOnBlur = useCallback(
@@ -81,7 +81,7 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
         setIsFocused(!isFocused)
         onBlur?.(event)
       },
-      [onBlur, isFocused]
+      [onBlur, isFocused],
     )
 
     const filteredChildren = React.Children.toArray(children).filter(child => {
@@ -101,7 +101,7 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
     })
 
     const hasIcon = React.Children.toArray(children).some(
-      child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === CardIcon
+      child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === CardIcon,
     )
 
     return (
@@ -124,7 +124,7 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
         </div>
       </a>
     )
-  }
+  },
 )
 
 type CardImageProps = ImageProps
@@ -139,7 +139,7 @@ function CardImage({className, ...rest}: CardImageProps) {
 
 type CardIconProps = BaseProps<HTMLSpanElement> & {
   icon: React.ReactNode | IconProps
-  color?: typeof CardIconColors[number]
+  color?: (typeof CardIconColors)[number]
   hasBackground?: boolean
 }
 
@@ -156,7 +156,7 @@ function CardIcon({
         styles.Card__icon,
         styles[`Card__icon--color-${color}`],
         hasBackground && styles['Card__icon--badge'],
-        className
+        className,
       )}
       {...rest}
     >
@@ -167,7 +167,7 @@ function CardIcon({
 
 type CardLabelProps = BaseProps<HTMLSpanElement> & {
   children: React.ReactNode | React.ReactNode[]
-  color?: typeof LabelColors[number]
+  color?: (typeof LabelColors)[number]
 }
 
 const CardLabel = forwardRef<HTMLSpanElement, CardLabelProps>(
@@ -177,7 +177,7 @@ const CardLabel = forwardRef<HTMLSpanElement, CardLabelProps>(
         <Label color={color}>{children}</Label>
       </span>
     )
-  }
+  },
 )
 
 type CardHeadingProps = BaseProps<HTMLHeadingElement> & {
@@ -192,7 +192,7 @@ const CardHeading = forwardRef<HTMLHeadingElement, CardHeadingProps>(
         {children}
       </Heading>
     )
-  }
+  },
 )
 
 type CardDescriptionProps = BaseProps<HTMLParagraphElement> & {
@@ -206,7 +206,7 @@ const CardDescription = forwardRef<HTMLParagraphElement, CardDescriptionProps>(
         {children}
       </Text>
     )
-  }
+  },
 )
 
 /**
@@ -218,5 +218,5 @@ export const Card = Object.assign(CardRoot, {
   Label: CardLabel,
   Icon: CardIcon,
   Heading: CardHeading,
-  Description: CardDescription
+  Description: CardDescription,
 })

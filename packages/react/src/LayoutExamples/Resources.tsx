@@ -13,7 +13,7 @@ import {
   Stack,
   Testimonial,
   ButtonGroup,
-  Button
+  Button,
 } from '..'
 
 import styles from './Resources.modules.css'

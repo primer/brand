@@ -20,7 +20,7 @@ import {
   Radio,
   Grid,
   Card,
-  ComparisonTable
+  ComparisonTable,
 } from '..'
 import {CopilotIcon, RocketIcon, GitBranchIcon} from '@primer/octicons-react'
 
@@ -200,7 +200,7 @@ export function KitchenSink(props: KitchenSinkProps) {
               <Grid.Column
                 span={{
                   xsmall: 12,
-                  large: 4
+                  large: 4,
                 }}
               >
                 <Card href="https://github.com">
@@ -215,7 +215,7 @@ export function KitchenSink(props: KitchenSinkProps) {
               <Grid.Column
                 span={{
                   xsmall: 12,
-                  large: 4
+                  large: 4,
                 }}
               >
                 <Card href="https://github.com">
@@ -230,7 +230,7 @@ export function KitchenSink(props: KitchenSinkProps) {
               <Grid.Column
                 span={{
                   xsmall: 12,
-                  large: 4
+                  large: 4,
                 }}
               >
                 <Card href="https://github.com">
@@ -335,11 +335,11 @@ export function KitchenSink(props: KitchenSinkProps) {
                   <Grid.Column
                     span={{
                       xsmall: 12,
-                      large: 8
+                      large: 8,
                     }}
                     start={{
                       xsmall: 1,
-                      large: 3
+                      large: 3,
                     }}
                   >
                     <Testimonial size="large">
@@ -366,7 +366,7 @@ export function KitchenSink(props: KitchenSinkProps) {
             <Grid.Column
               span={{
                 xsmall: 12,
-                large: 4
+                large: 4,
               }}
             >
               <Testimonial>
@@ -387,7 +387,7 @@ export function KitchenSink(props: KitchenSinkProps) {
             <Grid.Column
               span={{
                 xsmall: 12,
-                large: 4
+                large: 4,
               }}
             >
               <Testimonial>
@@ -408,7 +408,7 @@ export function KitchenSink(props: KitchenSinkProps) {
             <Grid.Column
               span={{
                 xsmall: 12,
-                large: 4
+                large: 4,
               }}
             >
               <Testimonial>
@@ -436,23 +436,23 @@ export function KitchenSink(props: KitchenSinkProps) {
             backgroundColor: 'var(--brand-color-canvas-default)',
             paddingTop: 'var(--base-size-24)',
             paddingBottom: 'var(--base-size-24)',
-            marginTop: 'var(--base-size-64)'
+            marginTop: 'var(--base-size-64)',
           }}
         >
           <Grid enableOverlay={enableGridOverlay} style={{margin: 'var(--base-size-96) auto'}}>
             <Grid.Column
               span={{
                 xsmall: 12,
-                large: 6
+                large: 6,
               }}
               start={{
                 xsmall: 1,
-                large: 4
+                large: 4,
               }}
             >
               <form
                 style={{
-                  margin: '3rem auto 5rem'
+                  margin: '3rem auto 5rem',
                 }}
               >
                 <Stack direction="vertical" padding="none" gap="normal">
@@ -463,7 +463,7 @@ export function KitchenSink(props: KitchenSinkProps) {
                       span={{
                         xsmall: 3,
                         small: 2,
-                        large: 3
+                        large: 3,
                       }}
                     >
                       <FormControl fullWidth>
@@ -483,7 +483,7 @@ export function KitchenSink(props: KitchenSinkProps) {
                       span={{
                         xsmall: 4,
                         small: 5,
-                        large: 4
+                        large: 4,
                       }}
                     >
                       <FormControl fullWidth required>
@@ -495,7 +495,7 @@ export function KitchenSink(props: KitchenSinkProps) {
                       span={{
                         xsmall: 5,
                         small: 5,
-                        large: 5
+                        large: 5,
                       }}
                     >
                       <FormControl fullWidth required>
@@ -573,7 +573,7 @@ export function KitchenSink(props: KitchenSinkProps) {
                       borderRadius: 6,
                       display: 'flex',
                       justifyContent: 'center',
-                      alignItems: 'center'
+                      alignItems: 'center',
                     }}
                   >
                     <Text size="200" variant="muted">
@@ -605,11 +605,11 @@ export function KitchenSink(props: KitchenSinkProps) {
                     <Grid.Column
                       span={{
                         xsmall: 12,
-                        medium: 4
+                        medium: 4,
                       }}
                       start={{
                         xsmall: 1,
-                        medium: 9
+                        medium: 9,
                       }}
                     >
                       <Button variant="primary" type="submit" style={{width: '100%'}}>
@@ -635,7 +635,7 @@ export function KitchenSink(props: KitchenSinkProps) {
             maxWidth: '1280px',
             bottom: 0,
             width: '100%',
-            height: '100%'
+            height: '100%',
           }}
         >
           <Grid.Column span={1}></Grid.Column>
