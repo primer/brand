@@ -1,8 +1,8 @@
 import React from 'react'
 import {ComponentStory, ComponentMeta} from '@storybook/react'
 import {Card, CardIconColors} from '.'
-import {Stack, LabelColors} from '..'
-import {CopilotIcon, RocketIcon, GitBranchIcon} from '@primer/octicons-react'
+import {Stack, LabelColors, Grid} from '..'
+import {CopilotIcon, RocketIcon, GitBranchIcon, HeartIcon} from '@primer/octicons-react'
 
 export default {
   title: 'Components/Card/features',
@@ -143,8 +143,7 @@ const fixtureData: FixtureData = [
     heading: 'GitHub Actions cheat sheet and more',
     description: (
       <React.Fragment>
-        In a recent TechTarget study, 70 percent of organizations reported they had adopted DevOps. Must be associated
-        with a current GitHub for Startups partner.
+        In a recent TechTarget study, 70 percent of organizations reported they had adopted DevOps.
       </React.Fragment>
     )
   },
@@ -154,6 +153,14 @@ const fixtureData: FixtureData = [
     iconColor: 'teal',
     heading: 'How healthy teams build better software',
     description: <React.Fragment>Everything you need to know about getting started with GitHub Actions.</React.Fragment>
+  },
+  {
+    href: 'https://github.com',
+    icon: HeartIcon,
+    iconColor: 'pink',
+    heading: 'GitHub sponsors',
+    description:
+      'Financially support the open source projects your code depends. with a current GitHub for Startups partner.'
   }
 ]
 
@@ -169,16 +176,18 @@ type FixtureData = {
 
 export const Stacked: ComponentStory<typeof Card> = () => {
   return (
-    <Stack padding={'none'} direction="horizontal" gap={'normal'}>
+    <Grid>
       {fixtureData.map(({heading, description, href, icon, iconColor}, id) => {
         return (
-          <Card key={id} href={href} style={{width: '33.3333%'}}>
-            <Card.Icon icon={icon} hasBackground color={iconColor} />
-            <Card.Heading>{heading}</Card.Heading>
-            <Card.Description>{description}</Card.Description>
-          </Card>
+          <Grid.Column key={id} span={{small: 6, medium: 6, large: 3, xlarge: 3}}>
+            <Card key={id} href={href} style={{height: '100%'}}>
+              <Card.Icon icon={icon} hasBackground color={iconColor} />
+              <Card.Heading>{heading}</Card.Heading>
+              <Card.Description>{description}</Card.Description>
+            </Card>
+          </Grid.Column>
         )
       })}
-    </Stack>
+    </Grid>
   )
 }
