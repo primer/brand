@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import React, {forwardRef, type Ref, useMemo, PropsWithChildren} from 'react'
-import {Heading} from '../Heading'
-import {Text} from '../Text'
+import {Heading, Text, useAnimation} from '../'
+
 import type {BaseProps} from '../component-helpers'
 
 /**
@@ -21,9 +21,21 @@ export type ComparisonTableProps<C extends React.ElementType> = BaseProps<C> & {
 
 export const _ComparisonTable = forwardRef(
   <C extends React.ElementType>(
-    {as, children, heading, featuredColumn = 1, variant = 'default', ...props}: ComparisonTableProps<C>,
+    {
+      as,
+      animate,
+      children,
+      className,
+      heading,
+      featuredColumn = 1,
+      variant = 'default',
+      style,
+      ...props
+    }: ComparisonTableProps<C>,
     ref: Ref<HTMLDivElement>
   ) => {
+    const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
+
     const Component = as || 'section'
 
     const Children = useMemo(
@@ -132,7 +144,12 @@ export const _ComparisonTable = forwardRef(
     const FootnoteChild = Children.find(child => React.isValidElement(child) && child.type === Footnote)
 
     return (
-      <Component ref={ref} {...props}>
+      <Component
+        ref={ref}
+        className={clsx(animationClasses, className)}
+        style={{...animationInlineStyles, ...style}}
+        {...props}
+      >
         {heading && (
           <Heading className={styles['ComparisonTable--heading']} as="h3">
             {heading}
