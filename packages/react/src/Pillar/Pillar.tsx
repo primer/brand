@@ -116,7 +116,7 @@ const PillarDescription = forwardRef<HTMLParagraphElement, PillarDescriptionProp
   }
 )
 
-type PillarLinkProps = Omit<LinkProps, 'size'> & BaseProps<HTMLAnchorElement>
+type PillarLinkProps = Omit<LinkProps, 'size' | 'direction'> & BaseProps<HTMLAnchorElement>
 
 const PillarLink = forwardRef(({className, children, ...props}: PillarLinkProps, ref: Ref<HTMLAnchorElement>) => {
   return (
