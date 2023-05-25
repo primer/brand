@@ -6,6 +6,8 @@ import type {FormInputSizes, FormValidationStatus} from '../form-types'
 
 import styles from './TextInput.module.css'
 
+type VisualType = React.ReactElement | React.ReactNode
+
 export type TextInputProps = {
   /**
    * Applies full width styling.
@@ -22,7 +24,7 @@ export type TextInputProps = {
   /**
    * Applies non-interactive iconography to start of input.
    */
-  leadingVisual?: React.ReactNode
+  leadingVisual?: VisualType
   /**
    * Applies monospace styling.
    */
@@ -38,7 +40,7 @@ export type TextInputProps = {
   /**
    * Applies non-interactive iconography to end of input.
    */
-  trailingVisual?: React.ReactNode
+  trailingVisual?: VisualType
   /**
    * Constrains the input type to single line inputs.
    */
@@ -110,7 +112,7 @@ const _TextInput = (
             />
           ) : (
             React.isValidElement(LeadingVisual) &&
-            React.cloneElement(LeadingVisual, {
+            React.cloneElement(LeadingVisual as React.ReactElement, {
               className: clsx(
                 styles['TextInput-leading-visual-icon'],
                 styles[`TextInput-leading-visual-icon--${size}`]
@@ -150,9 +152,8 @@ const _TextInput = (
                 styles[`TextInput-trailing-visual-icon--${size}`]
               )}
             />
-          ) : (
-            React.isValidElement(TrailingVisual) &&
-            React.cloneElement(TrailingVisual, {
+          ) : TrailingVisual && React.isValidElement(TrailingVisual) ? (
+            React.cloneElement(TrailingVisual as React.ReactElement, {
               className: clsx(
                 styles['TextInput-trailing-visual-icon'],
                 styles[`TextInput-trailing-visual-icon--${size}`]
@@ -160,7 +161,7 @@ const _TextInput = (
               width: size === 'large' ? 20 : 16,
               height: size === 'large' ? 20 : 16
             })
-          )}
+          ) : null}
         </span>
       )}
       {trailingText && !TrailingVisual && (

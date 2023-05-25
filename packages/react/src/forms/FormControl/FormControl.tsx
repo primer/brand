@@ -195,7 +195,7 @@ const FormControlLabel = ({
       {React.Children.map(children, child => {
         if (React.isValidElement(child)) {
           if (child.type === FormControlHint) {
-            return React.cloneElement(child, {
+            return React.cloneElement(child as React.ReactElement<FormControlHintProps>, {
               className: clsx(styles['FormControl--visible'], child.props.className)
             })
           }
@@ -242,7 +242,9 @@ const FormControlValidation = ({children, validationStatus}: FormControlValidati
   )
 }
 
-const FormControlHint = ({children, className, ...rest}: PropsWithChildren<BaseProps<HTMLSpanElement>>) => {
+type FormControlHintProps = PropsWithChildren<BaseProps<HTMLSpanElement>>
+
+const FormControlHint = ({children, className, ...rest}: FormControlHintProps) => {
   return (
     <span className={clsx(styles['FormControl-hint'], className)} {...rest}>
       {children}

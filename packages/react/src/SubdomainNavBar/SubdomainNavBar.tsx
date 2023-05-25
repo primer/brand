@@ -99,7 +99,7 @@ function Root({
         .map((child, index) => {
           if (React.isValidElement(child) && typeof child.type !== 'string') {
             if (child.type === Link) {
-              return React.cloneElement(child, {
+              return React.cloneElement(child as React.ReactElement, {
                 'data-navitemid': child.props.children,
                 href: child.props.href,
                 children: child.props.children,
@@ -173,7 +173,7 @@ function Root({
               .map(child => {
                 if (React.isValidElement(child) && typeof child.type !== 'string') {
                   if (child.type === Search) {
-                    return React.cloneElement(child, {
+                    return React.cloneElement(child as React.ReactElement, {
                       active: searchVisible,
                       handlerFn: handleSearchVisibility,
                       title

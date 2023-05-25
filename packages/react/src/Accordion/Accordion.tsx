@@ -30,10 +30,10 @@ export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
       (acc, child) => {
         if (React.isValidElement(child) && typeof child.type !== 'string') {
           if (child.type === AccordionContent) {
-            acc.AccordionContent = child
+            acc.AccordionContent = child as React.ReactElement<AccordionContentProps>
           }
           if (child.type === AccordionHeading) {
-            acc.AccordionHeading = child
+            acc.AccordionHeading = child as React.ReactElement<AccordionHeadingProps>
           }
         }
         return acc
@@ -77,13 +77,15 @@ type AccordionContentProps = BaseProps<HTMLElement> & {
 
 export function AccordionContent({children, className, ...rest}: AccordionContentProps) {
   const resolvedChildren =
-    React.isValidElement(children) && children.type === React.Fragment ? children.props.children : children
+    React.isValidElement(children) && children.type === React.Fragment
+      ? (children as React.ReactElement).props.children
+      : children
 
   const transformedChildren = React.Children.map<React.ReactNode, React.ReactNode>(resolvedChildren, child => {
     const targetChildTypes = ['p', 'span']
     if (React.isValidElement(child) && typeof child.type === 'string') {
       if (targetChildTypes.includes(child.type)) {
-        return React.cloneElement(child, {
+        return React.cloneElement(child as React.ReactElement, {
           children: (
             <Text variant="muted" size="300" as="span">
               {child.props.children}
@@ -100,7 +102,7 @@ export function AccordionContent({children, className, ...rest}: AccordionConten
       {React.Children.toArray(transformedChildren).map(
         textNode =>
           React.isValidElement(textNode) &&
-          React.cloneElement(textNode, {
+          React.cloneElement(textNode as React.ReactElement, {
             className: clsx(styles['Accordion__content-item'], textNode.props.className)
           })
       )}

@@ -67,7 +67,7 @@ const _Label = forwardRef<HTMLSpanElement, LabelProps>(
               <LeadingVisual className={clsx(styles['Label__icon-visual'])} aria-hidden />
             ) : (
               React.isValidElement(LeadingVisual) &&
-              React.cloneElement(LeadingVisual, {
+              React.cloneElement(LeadingVisual as React.ReactElement, {
                 className: clsx(styles['Label__icon-visual']),
                 ['aria-hidden']: 'true'
               })

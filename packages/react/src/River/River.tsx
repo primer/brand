@@ -47,10 +47,10 @@ const Root = forwardRef(
       (acc, child) => {
         if (React.isValidElement(child) && typeof child.type !== 'string') {
           if (child.type === Visual) {
-            acc.Visual = child
+            acc.Visual = child as React.ReactElement<RiverVisualProps>
           }
           if (child.type === Content) {
-            acc.Content = child
+            acc.Content = child as React.ReactElement<RiverContentProps>
           }
         }
         return acc
@@ -124,7 +124,7 @@ const Content = forwardRef(
         )}
         {React.isValidElement(HeadingChild) && (
           <div className={styles.River__heading}>
-            {React.cloneElement(HeadingChild, {
+            {React.cloneElement(HeadingChild as React.ReactElement<HeadingProps>, {
               // as uses h3 default, but can be overridden
               as: HeadingChild.props.as || 'h3',
               size: HeadingChild.props.size || '3'
@@ -134,7 +134,7 @@ const Content = forwardRef(
 
         {React.isValidElement(TextChild) && (
           <div className={styles['River__body-text']}>
-            {React.cloneElement(TextChild, {
+            {React.cloneElement(TextChild as React.ReactElement<TextProps>, {
               variant: 'muted',
               as: 'p',
               className: clsx(styles.River__text, TextChild.props.className)
@@ -142,7 +142,9 @@ const Content = forwardRef(
           </div>
         )}
         {React.isValidElement(LinkChild) && (
-          <div className={styles['River__call-to-action']}>{React.cloneElement(LinkChild, {size: 'large'})}</div>
+          <div className={styles['River__call-to-action']}>
+            {React.cloneElement(LinkChild as React.ReactElement<LinkProps>, {size: 'large'})}
+          </div>
         )}
         {TrailingComponent && (
           <div>

@@ -155,7 +155,7 @@ export const _Button = forwardRef(
       >
         {LeadingVisualComponent && (
           <span className={styles['Button__leading-visual']} data-testid={testIds.leadingVisual}>
-            {React.cloneElement(LeadingVisualComponent, {
+            {React.cloneElement(LeadingVisualComponent as React.ReactElement, {
               className: clsx(styles['Button__icon-visual'], isDisabled && styles['Button__icon-visual--disabled']),
               ['aria-hidden']: 'true',
               focusable: 'false'
@@ -189,7 +189,7 @@ export const _Button = forwardRef(
         )}
         {TrailingVisualComponent && (
           <span className={clsx(styles['Button__trailing-visual'])} data-testid={testIds.trailingVisual}>
-            {React.cloneElement(TrailingVisualComponent, {
+            {React.cloneElement(TrailingVisualComponent as React.ReactElement, {
               className: clsx(styles['Button__icon-visual'], isDisabled && styles['Button__icon-visual--disabled']),
               ['aria-hidden']: 'true',
               focusable: 'false'

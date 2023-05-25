@@ -37,7 +37,7 @@ export const _ComparisonTable = forwardRef(
     const HeaderRow = Children.map((child, index) => {
       if (React.isValidElement(child) && typeof child.type !== 'string') {
         if (child.type === Row && index === 0) {
-          return React.cloneElement(child, {
+          return React.cloneElement(child as React.ReactElement, {
             className: clsx(styles['ComparisonTable-row'], child.props.className),
             children: React.Children.map(child.props.children, (rowChild, rowChildIndex) => {
               if (rowChild.type === Cell) {

@@ -1,6 +1,7 @@
 import React, {PropsWithChildren, useMemo} from 'react'
 import clsx from 'clsx'
-import {InlineLink} from '../'
+import {InlineLink, InlineLinkProps} from '../'
+
 import styles from './Text.module.css'
 
 export const TextSizes = ['700', '600', '500', '400', '300', '200', '100'] as const
@@ -19,6 +20,8 @@ export type ResponsiveWeightMap = {
   regular?: TextWeightVariants
   wide?: TextWeightVariants
 }
+
+type AnchorProps = InlineLinkProps & React.HTMLAttributes<HTMLAnchorElement> & React.ReactElement<HTMLAnchorElement>
 
 type RestrictedPolymorphism =
   | (React.HTMLAttributes<HTMLParagraphElement> & {as?: 'p'})
@@ -90,7 +93,7 @@ export function Text({
       if (child.type === InlineLink) {
         return React.cloneElement(child, {
           size
-        })
+        } as AnchorProps)
       }
     }
     return child

@@ -42,7 +42,7 @@ const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, className, ...
       {React.Children.toArray(filteredChildren).map(child => {
         if (React.isValidElement(child) && typeof child.type !== 'string') {
           if (child.type === FAQHeading) {
-            return React.cloneElement(child, {
+            return React.cloneElement(child as React.ReactElement, {
               align: hasSubheading ? 'start' : child.props.align,
               size: hasSubheading ? 'large' : child.props.size,
               className: clsx(!hasSubheading && styles['FAQ__heading--with-margin'], child.props.className)

@@ -137,13 +137,17 @@ function _AnchorNav({children, enableDefaultBgColor = false, ...props}: AnchorNa
   const Links = ValidChildren.map((child, index) => {
     if (React.isValidElement(child)) {
       if (child.type === _AnchorNavLink) {
-        const defaultProps = {
+        const defaultProps: AnchorNavLinkProps = {
+          href: child.props.href,
           toggleMenuCallback,
           prefersReducedMotion,
           updateCurrentActiveNav: handleUpdateToCurrentActiveNavItem,
           alignment: numLinks < 4 ? 'start' : 'center'
         }
-        return React.cloneElement(child, {isActive: index === 0, ...defaultProps})
+        return React.cloneElement(child as React.ReactElement<AnchorNavLinkProps>, {
+          isActive: index === 0,
+          ...defaultProps
+        })
       }
     }
 

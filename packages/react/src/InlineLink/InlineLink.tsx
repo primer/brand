@@ -22,7 +22,8 @@ export type InlineLinkProps = BaseProps<HTMLAnchorElement> & {
    * Specify the text size
    */
   size?: typeof TextSizes[number]
-} & React.AnchorHTMLAttributes<HTMLAnchorElement>
+} & React.AnchorHTMLAttributes<HTMLAnchorElement> &
+  React.HTMLAttributes<HTMLAnchorElement>
 
 /**
  * A HTML anchor link component that renders inline with adjacent text.
