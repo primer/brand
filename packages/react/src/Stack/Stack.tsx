@@ -2,6 +2,7 @@ import React, {forwardRef, useMemo} from 'react'
 import clsx from 'clsx'
 
 import type {BaseProps} from '../component-helpers'
+import {BaseSizeScale} from '../constants'
 import {useAnimation} from '../animation'
 
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/size/size.css'
@@ -11,7 +12,7 @@ export const StackDirectionVariants = ['horizontal', 'vertical'] as const
 type StackDirectionVariants = typeof StackDirectionVariants[number]
 export const defaultStackDirection = StackDirectionVariants[1]
 
-export const StackSpacingVariants = ['none', 'condensed', 'normal', 'spacious'] as const
+export const StackSpacingVariants = ['none', 'condensed', 'normal', 'spacious', ...BaseSizeScale] as const
 type StackSpacingVariants = typeof StackSpacingVariants[number]
 export const defaultStackSpacing = StackSpacingVariants[1]
 
@@ -117,7 +118,7 @@ const _Stack = (
 
   const gapClass = useMemo(
     () =>
-      typeof gap === 'string'
+      typeof gap === 'string' || typeof gap === 'number'
         ? styles[`Stack--gap-${gap}`]
         : Object.keys(gap)
             .map(viewport => styles[`Stack-${viewport}--gap-${gap[viewport]}`])
@@ -127,7 +128,7 @@ const _Stack = (
 
   const paddingClass = useMemo(
     () =>
-      typeof padding === 'string'
+      typeof padding === 'string' || typeof padding === 'number'
         ? styles[`Stack--padding-${padding}`]
         : Object.keys(padding)
             .map(viewport => styles[`Stack-${viewport}--padding-${padding[viewport]}`])
