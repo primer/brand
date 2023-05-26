@@ -450,9 +450,7 @@ const _SearchInternal = (
                       aria-selected={index === activeDescendant}
                     >
                       <div className={styles['SubdomainNavBar-search-result-item-container']}>
-                        <a href={result.url} tabIndex={-1}>
-                          {result.title}
-                        </a>
+                        <a href={result.url}>{result.title}</a>
                       </div>
 
                       <Text
