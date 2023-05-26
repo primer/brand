@@ -99,7 +99,7 @@
   border-bottom: var(--brand-borderWidth-thin) solid transparent;
   background-color: inherit;
   cursor: pointer;
-  padding-bottom: var(--base-size-4);
+  padding: 0 0 var(--base-size-4) 0;
   transition: border 300ms cubic-bezier(0.33, 1, 0.68, 1);
 }
 
