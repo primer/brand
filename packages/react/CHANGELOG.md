@@ -31,10 +31,10 @@
     </Stack>
     <Stack
       gap={{
-        narrow: 96
+        narrow: 96,
       }}
       padding={{
-        narrow: 96
+        narrow: 96,
       }}
     >
       ...
