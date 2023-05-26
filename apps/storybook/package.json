@@ -40,7 +40,7 @@
     "@storybook/react": "^6.5.16",
     "@storybook/test-runner": "^0.5.0",
     "@storybook/testing-library": "^0.0.11",
-    "axe-core": "^4.7.1",
+    "axe-core": "^4.7.2",
     "axe-playwright": "^1.2.3",
     "css-loader": "^6.7.4",
     "identity-obj-proxy": "^3.0.0",

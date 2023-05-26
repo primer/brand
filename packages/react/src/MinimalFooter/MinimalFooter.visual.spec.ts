@@ -24,9 +24,9 @@ test.describe('Visual Comparison: MinimalFooter', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('MinimalFooter / Button Links', async ({page}) => {
+  test('MinimalFooter / Mixed Buttons And Links', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--button-links&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--mixed-buttons-and-links&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
