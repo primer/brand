@@ -1,5 +1,37 @@
 # @primer/brand-primitives
 
+## 0.20.0
+
+### Minor Changes
+
+- [#276](https://github.com/primer/brand/pull/276) [`9e202d5`](https://github.com/primer/brand/commit/9e202d5eb92ffb1cbf591524c339bf4eae028ed5) Thanks [@rezrah](https://github.com/rezrah)! - Added design tokens for `animation`.
+
+  ```css
+  --brand-animation-variant-scaleInLeft-end
+  --brand-animation-variant-scaleInLeft-start
+  --brand-animation-variant-scaleInLeft-distance
+  --brand-animation-variant-scaleInRight-end
+  --brand-animation-variant-scaleInRight-start
+  --brand-animation-variant-scaleInRight-distance
+  --brand-animation-variant-scaleInTop-distance
+  --brand-animation-variant-scaleIn-end
+  --brand-animation-variant-scaleIn-start
+  --brand-animation-variant-scaleInDown-end
+  --brand-animation-variant-scaleInDown-start
+  --brand-animation-variant-scaleInDown-distance
+  --brand-animation-variant-scaleInUp-end
+  --brand-animation-variant-scaleInUp-start
+  --brand-animation-variant-scaleInUp-distance
+  --brand-animation-variant-slideInRight-distance
+  --brand-animation-variant-slideInLeft-distance
+  --brand-animation-variant-slideInDown-distance
+  --brand-animation-variant-slideInUp-distance
+  --brand-animation-transition-default
+  --brand-animation-easing-default
+  --brand-animation-duration-extended
+  --brand-animation-duration-default
+  ```
+
 ## 0.19.0
 
 ### Patch Changes

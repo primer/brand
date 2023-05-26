@@ -1,5 +1,47 @@
 # @primer/react-brand
 
+## 0.20.0
+
+### Minor Changes
+
+- [#276](https://github.com/primer/brand/pull/276) [`9e202d5`](https://github.com/primer/brand/commit/9e202d5eb92ffb1cbf591524c339bf4eae028ed5) Thanks [@rezrah](https://github.com/rezrah)! - Added animation support
+
+  Use the `animate` prop to apply various animation presets directly on a component.
+
+  ```jsx
+  <AnimationProvider>
+    <Button animate="fade-in">This button will fade in</Button>
+  </AnimationProvider>
+  ```
+
+  - [Read the documentation for more examples](https://primer.style/brand/getting-started/animation)
+
+### Patch Changes
+
+- [#280](https://github.com/primer/brand/pull/280) [`a2cb323`](https://github.com/primer/brand/commit/a2cb323777ed69ffe8d5b13139bd049b6340501b) Thanks [@JoshBowdenConcepts](https://github.com/JoshBowdenConcepts)! - Minimal Footer Updates
+  - Updating MinimalFooter.Link spacing to match when as it set to button or link.
+  - Updated visual tests to include spacing.
+
+* [#279](https://github.com/primer/brand/pull/279) [`6704829`](https://github.com/primer/brand/commit/6704829892bbcba8482bad68246d3e19d1ec50ee) Thanks [@danielguillan](https://github.com/danielguillan)! - Adds spacing scale support in Stack's gap and padding props
+
+  ```jsx
+  <>
+    <Stack gap={96} padding={96}>
+      ...
+    </Stack>
+    <Stack
+      gap={{
+        narrow: 96
+      }}
+      padding={{
+        narrow: 96
+      }}
+    >
+      ...
+    </Stack>
+  </>
+  ```
+
 ## 0.19.0
 
 ### Minor Changes
