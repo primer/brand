@@ -18,4 +18,10 @@ test.describe('Visual Comparison: Stack', () => {
 
     expect(await page.screenshot()).toMatchSnapshot()
   })
+
+  test('Stack / Responsive Base Scale', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-stack--responsive-base-scale&viewMode=story')
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
 })
