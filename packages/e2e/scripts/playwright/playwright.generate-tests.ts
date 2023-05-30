@@ -107,7 +107,11 @@
       id,
       groupName,
       storyName,
+<<<<<<< HEAD
       timeout: waitForTimeoutLookup[key] ? waitForTimeoutLookup[key] : defaultTimeout,
+=======
+      timeout: waitForTimeoutLookup[key] ? waitForTimeoutLookup[key] : undefined,
+>>>>>>> 6761ce70ade87e13691e74b0c5c19ed403732b66
     })
 
     return acc
