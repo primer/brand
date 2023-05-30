@@ -23,3 +23,11 @@ Reversed.args = {
   children: 'Back to schedule',
   arrowDirection: 'start',
 }
+
+export const Accent = Template.bind({})
+Accent.args = {
+  size: 'medium',
+  variant: 'accent',
+  href: '#',
+  children: 'Accent color',
+}

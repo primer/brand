@@ -120,7 +120,7 @@ type PillarLinkProps = Omit<LinkProps, 'size' | 'direction'> & BaseProps<HTMLAnc
 
 const PillarLink = forwardRef(({className, children, ...props}: PillarLinkProps, ref: Ref<HTMLAnchorElement>) => {
   return (
-    <Link ref={ref} className={clsx(styles.Pillar__link, className)} {...props}>
+    <Link variant="accent" ref={ref} className={clsx(styles.Pillar__link, className)} {...props}>
       {children}
     </Link>
   )

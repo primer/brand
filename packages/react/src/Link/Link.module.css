@@ -41,11 +41,13 @@
   outline: 0;
 }
 
-.Link--default {
+.Link--default,
+.Link--default span {
   color: var(--brand-Link-color-default);
 }
 
-.Link--accent {
+.Link--accent,
+.Link--accent span {
   color: var(--brand-Link-color-accent);
 }
 
