@@ -92,7 +92,7 @@ describe('Pillar', () => {
         <Pillar.Heading>{mockHeading}</Pillar.Heading>
         <Pillar.Description>{mockDescription}</Pillar.Description>
         <Pillar.Link href="https://primer.style">Read more</Pillar.Link>
-      </Pillar>
+      </Pillar>,
     )
 
     const pillarEl = getByTestId(mockTestId).lastChild

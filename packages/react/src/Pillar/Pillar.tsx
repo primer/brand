@@ -32,7 +32,7 @@ export type PillarProps<C extends keyof JSX.IntrinsicElements = 'div'> = React.H
 const PillarRoot = forwardRef(
   (
     {children, className, as = 'div', align = 'start', ...rest}: PropsWithChildren<PillarProps>,
-    ref: Ref<HTMLDivElement>
+    ref: Ref<HTMLDivElement>,
   ) => {
     const filteredChildren = React.Children.toArray(children).filter(child => {
       if (React.isValidElement(child) && typeof child.type !== 'string') {
@@ -60,12 +60,12 @@ const PillarRoot = forwardRef(
         {filteredChildren}
       </Component>
     )
-  }
+  },
 )
 
 type PillarIconProps = BaseProps<HTMLSpanElement> & {
   icon: React.ReactNode | IconProps
-  color?: typeof PillarIconColors[number]
+  color?: (typeof PillarIconColors)[number]
 }
 
 function PillarIcon({icon: Icon, className, color = defaultPillarIconColor, ...rest}: PillarIconProps) {
@@ -94,7 +94,7 @@ const PillarHeading = forwardRef<HTMLHeadingElement, PillarHeadingProps>(
         {children}
       </Heading>
     )
-  }
+  },
 )
 
 type PillarDescriptionProps = PropsWithChildren<BaseProps<HTMLParagraphElement>>
@@ -113,7 +113,7 @@ const PillarDescription = forwardRef<HTMLParagraphElement, PillarDescriptionProp
         {children}
       </Text>
     )
-  }
+  },
 )
 
 type PillarLinkProps = Omit<LinkProps, 'size' | 'direction'> & BaseProps<HTMLAnchorElement>
@@ -134,5 +134,5 @@ export const Pillar = Object.assign(PillarRoot, {
   Icon: PillarIcon,
   Heading: PillarHeading,
   Description: PillarDescription,
-  Link: PillarLink
+  Link: PillarLink,
 })
