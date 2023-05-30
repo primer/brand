@@ -1,0 +1,29 @@
+.SectionIntro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-16);
+  align-items: flex-start;
+  padding-block: var(--base-size-24);
+}
+
+.SectionIntro--align-start {
+  text-align: start;
+}
+
+.SectionIntro--align-center {
+  align-items: center;
+  text-align: center;
+  padding-inline: var(--base-size-24);
+}
+
+.SectionIntro-heading {
+  max-width: 18ch;
+}
+
+.SectionIntro-description {
+  max-width: 50ch;
+}
+
+.SectionIntro-link {
+  margin-top: var(--base-size-16);
+}

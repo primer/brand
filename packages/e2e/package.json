@@ -1,6 +1,6 @@
 {
   "name": "@primer/brand-e2e",
-  "version": "0.7.2",
+  "version": "0.20.0",
   "private": true,
   "description": "Primer Brand is a GitHub's design system for creating React-based marketing websites and digital experiences.",
   "keywords": [
@@ -30,13 +30,15 @@
     "check": "tsc --noEmit",
     "clean": "rm -rf lib",
     "format": "prettier --check '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
+    "format:fix": "prettier --write '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
     "lint": "eslint '**/*.{js,ts,tsx,md,mdx}' --max-warnings=0 --config ../../.eslintrc.js",
     "test:visual": "scripts/playwright/run-visual-tests",
+    "test:visual:update": "npm run test:visual:generate && npm run test:visual:update-snapshots",
     "test:visual:generate": "cd ../../apps/storybook && npx build-storybook && cd ../../packages/e2e && ts-node scripts/playwright/playwright.generate-tests.ts",
     "test:visual:update-snapshots": "scripts/playwright/update-visual-snapshots"
   },
   "devDependencies": {
-    "@playwright/test": "^1.24.0"
+    "@playwright/test": "^1.34.3"
   },
   "engines": {
     "node": ">=16.0.0",

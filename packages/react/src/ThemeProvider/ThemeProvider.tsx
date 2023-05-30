@@ -3,7 +3,7 @@ import React, {useState, useMemo, useEffect, createContext, HTMLAttributes, Prop
 export enum ColorModesEnum {
   LIGHT = 'light',
   DARK = 'dark',
-  AUTO = 'auto'
+  AUTO = 'auto',
 }
 
 export type ColorMode = `${ColorModesEnum}`
@@ -28,7 +28,7 @@ const defaultMode = ColorModesEnum.LIGHT
 
 export const ThemeContext = createContext<ThemeContextProps>({
   colorMode: defaultMode,
-  availableColorModes: Object.values(ColorModesEnum)
+  availableColorModes: Object.values(ColorModesEnum),
 })
 
 /**

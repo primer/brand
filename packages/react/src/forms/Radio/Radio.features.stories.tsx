@@ -5,7 +5,7 @@ import {FormControl, Stack, ThemeProvider} from '../..'
 
 export default {
   title: 'Components/Forms/Radio/Features',
-  component: Radio
+  component: Radio,
 } as ComponentMeta<typeof Radio>
 
 export const WithFormControl: ComponentStory<typeof Radio> = () => (

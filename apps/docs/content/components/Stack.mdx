@@ -2,7 +2,7 @@
 title: Stack
 status: Experimental
 source: https://github.com/primer/brand/tree/main/src/Text/Text.tsx
-storybook: '/brand/storybook/?path=/story/components-stack--playground'
+storybook: https://github.com/primer/brand/blob/main/packages/react/src/Stack/Stack.tsx
 description: Stack enables layout of its immediate children along the vertical or horizontal axis
 ---
 
@@ -33,15 +33,15 @@ Many `Stack` props - including `direction` - accept both `string` and `Object` v
 ```jsx live
 <Stack direction="horizontal">
   <img
-    src="https://via.placeholder.com/150x75/f5f5f5/f5f5f5.png"
+    src="https://via.placeholder.com/150x75/D0D7DE/D0D7DE.png"
     alt="placeholder with gray background and no foreground text"
   />
   <img
-    src="https://via.placeholder.com/150x75/f5f5f5/f5f5f5.png"
+    src="https://via.placeholder.com/150x75/D0D7DE/D0D7DE.png"
     alt="placeholder with gray background and no foreground text"
   />
   <img
-    src="https://via.placeholder.com/150x75/f5f5f5/f5f5f5.png"
+    src="https://via.placeholder.com/150x75/D0D7DE/D0D7DE.png"
     alt="placeholder with gray background and no foreground text"
   />
 </Stack>
@@ -73,15 +73,15 @@ const App = () => {
         style={{height: 400}}
       >
         <img
-          src="https://via.placeholder.com/150x75/f5f5f5/f5f5f5.png"
+          src="https://via.placeholder.com/150x75/D0D7DE/D0D7DE.png"
           alt="placeholder with gray background and no foreground text"
         />
         <img
-          src="https://via.placeholder.com/150x75/f5f5f5/f5f5f5.png"
+          src="https://via.placeholder.com/150x75/D0D7DE/D0D7DE.png"
           alt="placeholder with gray background and no foreground text"
         />
         <img
-          src="https://via.placeholder.com/150x75/f5f5f5/f5f5f5.png"
+          src="https://via.placeholder.com/150x75/D0D7DE/D0D7DE.png"
           alt="placeholder with gray background and no foreground text"
         />
       </Stack>
@@ -133,6 +133,7 @@ E.g. Providing only `narrow` will apply that value to all larger breakpoints, bu
 
 ```jsx live
 <Stack
+  style={{height: 400}}
   direction={{
     narrow: 'vertical',
     regular: 'vertical',
@@ -148,17 +149,27 @@ E.g. Providing only `narrow` will apply that value to all larger breakpoints, bu
     regular: 'normal',
     wide: 'spacious',
   }}
+  alignItems={{
+    narrow: 'flex-start',
+    regular: 'center',
+    wide: 'center',
+  }}
+  justifyContent={{
+    narrow: 'center',
+    regular: 'center',
+    wide: 'space-between',
+  }}
 >
   <img
-    src="https://via.placeholder.com/150x75/f5f5f5/f5f5f5.png"
+    src="https://via.placeholder.com/150x75/D0D7DE/D0D7DE.png"
     alt="placeholder with gray background and no foreground text"
   />
   <img
-    src="https://via.placeholder.com/150x75/f5f5f5/f5f5f5.png"
+    src="https://via.placeholder.com/150x75/D0D7DE/D0D7DE.png"
     alt="placeholder with gray background and no foreground text"
   />
   <img
-    src="https://via.placeholder.com/150x75/f5f5f5/f5f5f5.png"
+    src="https://via.placeholder.com/150x75/D0D7DE/D0D7DE.png"
     alt="placeholder with gray background and no foreground text"
   />
 </Stack>

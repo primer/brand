@@ -4,6 +4,8 @@
       url: /getting-started
     - title: Theming
       url: /getting-started/theming
+    - title: Animation
+      url: /getting-started/animation
 
 - title: Primitives
   children:
@@ -12,18 +14,46 @@
 
 - title: Components
   children:
+    - title: ActionMenu
+      url: /components/ActionMenu
+    - title: AnchorNav
+      url: /components/AnchorNav
+    - title: Avatar
+      url: /components/Avatar
+    - title: Button
+      url: /components/Button
+    - title: Card
+      url: /components/Card
     - title: ComparisonTable
       url: /components/ComparisonTable
+    - title: CTABanner
+      url: /components/CTABanner
+    - title: CTAForm
+      url: /components/CTAForm
     - title: FAQ
       url: /components/FAQ
     - title: Hero
       url: /components/Hero
+    - title: Image
+      url: /components/Image
+    - title: Label
+      url: /components/Label
+    - title: MinimalFooter
+      url: /components/MinimalFooter
+    - title: OrderedList
+      url: /components/OrderedList
+    - title: Pillar
+      url: /components/Pillar
     - title: River
       url: /components/River
+    - title: SectionIntro
+      url: /components/SectionIntro
     - title: SubdomainNavBar
       url: /components/SubdomainNavBar
     - title: Testimonial
       url: /components/Testimonial
+    - title: UnorderedList
+      url: /components/UnorderedList
 
 - title: Forms
   children:
@@ -42,6 +72,8 @@
 
 - title: Layout
   children:
+    - title: Grid
+      url: /components/Grid
     - title: Stack
       url: /components/Stack
 

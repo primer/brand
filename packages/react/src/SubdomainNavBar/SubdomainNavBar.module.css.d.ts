@@ -13,6 +13,7 @@ declare const styles: {
   readonly "SubdomainNavBar-title": string;
   readonly "SubdomainNavBar-primary-nav": string;
   readonly "SubdomainNavBar-primary-nav-list": string;
+  readonly "SubdomainNavBar-primary-nav-list--invisible": string;
   readonly "SubdomainNavBar-primary-nav-list--visible": string;
   readonly "fade-in-down": string;
   readonly "SubdomainNavBar-primary-nav-list-item": string;
@@ -46,7 +47,7 @@ declare const styles: {
   readonly "SubdomainNavBar-search-results": string;
   readonly "SubdomainNavBar-search-results-heading": string;
   readonly "SubdomainNavBar-search-result-item": string;
-  readonly "SubdomainNavBar-search-result-item-heading": string;
+  readonly "SubdomainNavBar-search-result-item-container": string;
   readonly "SubdomainNavBar-search-result-item-desc": string;
 };
 export = styles;

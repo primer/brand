@@ -20,7 +20,8 @@ export const ButtonGroup = forwardRef(
             size: buttonSize,
             as: buttonsAs,
             variant: index === 0 ? 'primary' : 'secondary',
-            ...child.props
+            hasArrow: index === 0 ? true : false,
+            ...child.props,
           } as ButtonProps<'button'>)
         }
       })
@@ -32,5 +33,5 @@ export const ButtonGroup = forwardRef(
         {buttonsToRender as React.ReactElement[]}
       </section>
     )
-  }
+  },
 )

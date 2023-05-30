@@ -27,7 +27,7 @@ test.describe('Visual Comparison: River', () => {
 
   test('River / 60:40 image ratio', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-river-fixtures--column-ratio-6040&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-river-fixtures--column-ratio-6040&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -35,7 +35,23 @@ test.describe('Visual Comparison: River', () => {
 
   test('River / 50:50 image ratio', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-river-fixtures--column-ratio-5050&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-river-fixtures--column-ratio-5050&viewMode=story',
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('River / Alternative Heading Level', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-river-fixtures--alternative-heading-level&viewMode=story',
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('River / Alternative Heading Size', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-river-fixtures--alternative-heading-size&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -43,7 +59,7 @@ test.describe('Visual Comparison: River', () => {
 
   test('River / Alternating Layout', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-river-fixtures--alternating-layout&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-river-fixtures--alternating-layout&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -57,7 +73,7 @@ test.describe('Visual Comparison: River', () => {
 
   test('River / Larger Placeholder Image', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-river--larger-placeholder-image&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-river--larger-placeholder-image&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -65,12 +81,6 @@ test.describe('Visual Comparison: River', () => {
 
   test('River / Copilot', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-river--copilot&viewMode=story')
-
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('River / Custom Logos', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-river--custom-logos&viewMode=story')
 
     expect(await page.screenshot()).toMatchSnapshot()
   })

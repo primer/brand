@@ -18,26 +18,26 @@ export default {
     onSubmit: {action: true},
     showSearch: {
       control: 'boolean',
-      defaultValue: true
+      defaultValue: true,
     },
     numLinks: {
       control: 'number',
-      defaultValue: 6
+      defaultValue: 6,
     },
     title: {
       control: 'text',
-      defaultValue: 'Subdomain'
+      defaultValue: 'Subdomain',
     },
     titleHref: {
       control: 'text',
-      defaultValue: '/'
-    }
+      defaultValue: '/',
+    },
   },
   parameters: {
     viewport: {
-      viewports: INITIAL_VIEWPORTS
-    }
-  }
+      viewports: INITIAL_VIEWPORTS,
+    },
+  },
 } as ComponentMeta<typeof SubdomainNavBar>
 
 const mockSearchData = [
@@ -51,14 +51,14 @@ const mockSearchData = [
       {
         slug: 'devops',
         label: 'DevOps',
-        type: 'Topic'
-      }
+        type: 'Topic',
+      },
     ],
     date: '2022-08-29T00:00+02:00',
     cover: {
       url: '//images.ctfassets.net/wfutmusr1t3h/6z2nwPNKt4d23LDLfBNWES/abf9edff7d522a9143073bba12bc42f7/DevOps_Social_Main_Component__3_.png',
-      description: 'DevOps Social Main Component (3)'
-    }
+      description: 'DevOps Social Main Component (3)',
+    },
   },
   {
     title: '6 DevOps tips to help engineering leaders deliver software at scale',
@@ -70,43 +70,43 @@ const mockSearchData = [
       {
         slug: 'devops',
         label: 'DevOps',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'tools',
         label: 'Tools',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'methodology',
         label: 'Methodology',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'innersource',
         label: 'Innersource',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'continuous-integration-and-deployment',
         label: 'CI/CD',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'devsecops',
         label: 'DevSecOps',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'automation',
         label: 'Automation',
-        type: 'Topic'
-      }
+        type: 'Topic',
+      },
     ],
     date: '2022-08-11T00:00-05:00',
     cover: {
-      url: '//images.ctfassets.net/wfutmusr1t3h/7lchG7UlwHIvfLWnOTRpqB/d17666a630cd17c88964f4c37e398cee/Devops_image_blue.png'
-    }
+      url: '//images.ctfassets.net/wfutmusr1t3h/7lchG7UlwHIvfLWnOTRpqB/d17666a630cd17c88964f4c37e398cee/Devops_image_blue.png',
+    },
   },
   {
     title: 'Integrating GitHub with Sentry to Increase Speed to Resolution ',
@@ -118,43 +118,43 @@ const mockSearchData = [
       {
         slug: 'tools',
         label: 'Tools',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'devops',
         label: 'DevOps',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'methodology',
         label: 'Methodology',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'pipeline',
         label: 'Pipeline',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'automation',
         label: 'Automation',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'integrations',
         label: 'Integrations',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'GitHub Actions',
         label: 'GitHub Actions',
-        type: 'Topic'
-      }
+        type: 'Topic',
+      },
     ],
     date: '2022-08-08T16:40-06:00',
     cover: {
-      url: '//images.ctfassets.net/wfutmusr1t3h/36WISXvz6eIcz9Q7UHpDwA/f16cb7e06d459bc2c7e007de62b1b044/1200x630-GitHub-Header.png'
-    }
+      url: '//images.ctfassets.net/wfutmusr1t3h/36WISXvz6eIcz9Q7UHpDwA/f16cb7e06d459bc2c7e007de62b1b044/1200x630-GitHub-Header.png',
+    },
   },
   {
     title: 'DevOps fundamentals: Defining DevOps principles',
@@ -166,40 +166,40 @@ const mockSearchData = [
       {
         slug: 'devops',
         label: 'DevOps',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'fundamentals',
         label: 'Fundamentals',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'methodology',
         label: 'Methodology',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'pipeline',
         label: 'Pipeline',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'collaboration',
         label: 'Collaboration',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'continuous-integration-and-deployment',
         label: 'CI/CD',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'automation',
         label: 'Automation',
-        type: 'Topic'
-      }
+        type: 'Topic',
+      },
     ],
-    date: '2022-05-23T12:00+00:00'
+    date: '2022-05-23T12:00+00:00',
   },
   {
     title: 'The fundamentals of continuous integration in DevOps',
@@ -211,33 +211,33 @@ const mockSearchData = [
       {
         slug: 'devops',
         label: 'DevOps',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'fundamentals',
         label: 'Fundamentals',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'pipeline',
         label: 'Pipeline',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'continuous-integration-and-deployment',
         label: 'CI/CD',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'automation',
         label: 'Automation',
-        type: 'Topic'
-      }
+        type: 'Topic',
+      },
     ],
     date: '2022-05-23T12:00+00:00',
     cover: {
-      url: '//images.ctfassets.net/wfutmusr1t3h/p1TQNxMhE6I8lQLDho84N/860a6e761a4621c62b16019fb53fbe67/DevOps_Social_Main_Component__8_.png'
-    }
+      url: '//images.ctfassets.net/wfutmusr1t3h/p1TQNxMhE6I8lQLDho84N/860a6e761a4621c62b16019fb53fbe67/DevOps_Social_Main_Component__8_.png',
+    },
   },
   {
     title: 'A guide to DevOps tools and DevOps automation toolchains',
@@ -249,43 +249,43 @@ const mockSearchData = [
       {
         slug: 'devops',
         label: 'DevOps',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'tools',
         label: 'Tools',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'fundamentals',
         label: 'Fundamentals',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'continuous-integration-and-deployment',
         label: 'CI/CD',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'devsecops',
         label: 'DevSecOps',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'automation',
         label: 'Automation',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'integrations',
         label: 'Integrations',
-        type: 'Topic'
-      }
+        type: 'Topic',
+      },
     ],
     date: '2022-05-23T12:00+00:00',
     cover: {
-      url: '//images.ctfassets.net/wfutmusr1t3h/3AaSVeBMSzs0D5m1ITPo5L/15ca4ee5fd0c307e6864ae5676ad7d4b/This_Grid_1200x640__5_.png'
-    }
+      url: '//images.ctfassets.net/wfutmusr1t3h/3AaSVeBMSzs0D5m1ITPo5L/15ca4ee5fd0c307e6864ae5676ad7d4b/This_Grid_1200x640__5_.png',
+    },
   },
   {
     title: 'What is containerization?',
@@ -297,33 +297,33 @@ const mockSearchData = [
       {
         slug: 'devops',
         label: 'DevOps',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'tools',
         label: 'Tools',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'fundamentals',
         label: 'Fundamentals',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'continuous-integration-and-deployment',
         label: 'CI/CD',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'automation',
         label: 'Automation',
-        type: 'Topic'
-      }
+        type: 'Topic',
+      },
     ],
     date: '2022-05-23T12:00+00:00',
     cover: {
-      url: '//images.ctfassets.net/wfutmusr1t3h/4IHNgqQDlRoo1l5Hn01Gkv/0044a17d743f34a337c83d676943fdf9/This_Grid_1200x640__2_.png'
-    }
+      url: '//images.ctfassets.net/wfutmusr1t3h/4IHNgqQDlRoo1l5Hn01Gkv/0044a17d743f34a337c83d676943fdf9/This_Grid_1200x640__2_.png',
+    },
   },
   {
     title: 'The fundamentals of continuous deployment in DevOps',
@@ -335,34 +335,34 @@ const mockSearchData = [
       {
         slug: 'devops',
         label: 'DevOps',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'fundamentals',
         label: 'Fundamentals',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'pipeline',
         label: 'Pipeline',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'continuous-integration-and-deployment',
         label: 'CI/CD',
-        type: 'Topic'
+        type: 'Topic',
       },
       {
         slug: 'automation',
         label: 'Automation',
-        type: 'Topic'
-      }
+        type: 'Topic',
+      },
     ],
     date: '2022-05-23T12:00+00:00',
     cover: {
-      url: '//images.ctfassets.net/wfutmusr1t3h/5RUidzCZnzTPEao5NylGQg/572fa13977f11d9986a570ba8567614c/DevOps_Social_Main_Component__21_.png'
-    }
-  }
+      url: '//images.ctfassets.net/wfutmusr1t3h/5RUidzCZnzTPEao5NylGQg/572fa13977f11d9986a570ba8567614c/DevOps_Social_Main_Component__21_.png',
+    },
+  },
 ]
 
 const Template: Story<typeof SubdomainNavBar & CustomStoryArgs> = args => {
@@ -427,22 +427,19 @@ const Template: Story<typeof SubdomainNavBar & CustomStoryArgs> = args => {
         <div
           style={{
             maxWidth: 1280,
-            margin: '100px auto'
+            margin: '100px auto',
           }}
         >
-          <Hero
-            heading="This is my super sweet Nav Bar"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum."
-            primaryAction={{
-              text: 'Primary action',
-              href: '#'
-            }}
-            secondaryAction={{
-              text: 'Secondary action',
-              href: '#'
-            }}
-            align="center"
-          />
+          <Hero align="center">
+            <Hero.Heading>This is my super sweet Nav Bar</Hero.Heading>
+            <Hero.Description>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+              turpis felis nam pulvinar risus elementum.
+            </Hero.Description>
+            <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+            <Hero.SecondaryAction href="#">Secondary action</Hero.SecondaryAction>
+          </Hero>
+
           {/**
            * Hack to make the page longer in the example
            */}
@@ -492,17 +489,22 @@ export const Playground = Template.bind({})
 Playground.parameters = {
   a11y: {
     config: {
-      rules: [{id: 'heading-order', enabled: false}] // disable heading-order rule because the headings used are for mock layout
-    }
-  }
+      rules: [{id: 'heading-order', enabled: false}], // disable heading-order rule because the headings used are for mock layout
+    },
+  },
 }
 
 export const NoSearch = Template.bind({})
 NoSearch.args = {
-  showSearch: false
+  showSearch: false,
 }
 
 export const SearchOpen = Template.bind({})
+SearchOpen.parameters = {
+  axe: {
+    timeout: 5000,
+  },
+}
 SearchOpen.play = async ({canvasElement}) => {
   const canvas = within(canvasElement)
   await userEvent.click(canvas.getByLabelText('search'))
@@ -524,7 +526,7 @@ export const OverflowMenuOpen = Template.bind({})
 OverflowMenuOpen.play = async ({canvasElement}) => {
   const canvas = within(canvasElement)
   await waitFor(async () => {
-    const overflowMenu = await canvas.getByLabelText('more')
+    const overflowMenu = await canvas.getByText('More')
     await userEvent.click(overflowMenu)
   })
 }
@@ -532,15 +534,15 @@ OverflowMenuOpen.play = async ({canvasElement}) => {
 export const MobileView = Template.bind({})
 MobileView.parameters = {
   viewport: {
-    defaultViewport: 'iphonex'
-  }
+    defaultViewport: 'iphonex',
+  },
 }
 
 export const MobileMenuOpen = Template.bind({})
 MobileMenuOpen.parameters = {
   viewport: {
-    defaultViewport: 'iphonex'
-  }
+    defaultViewport: 'iphonex',
+  },
 }
 MobileMenuOpen.play = async ({canvasElement}) => {
   const canvas = within(canvasElement)
@@ -550,8 +552,8 @@ MobileMenuOpen.play = async ({canvasElement}) => {
 export const MobileSearchResultsVisible = Template.bind({})
 MobileSearchResultsVisible.parameters = {
   viewport: {
-    defaultViewport: 'iphonex'
-  }
+    defaultViewport: 'iphonex',
+  },
 }
 MobileSearchResultsVisible.play = async ({canvasElement}) => {
   const canvas = within(canvasElement)
@@ -561,20 +563,34 @@ MobileSearchResultsVisible.play = async ({canvasElement}) => {
   await expect(canvas.getByRole('combobox')).toHaveFocus()
 }
 
+export const MobileNoLinks = () => {
+  return <SubdomainNavBar title="Subdomain" />
+}
+MobileNoLinks.parameters = {
+  viewport: {
+    defaultViewport: 'iphonex',
+  },
+}
+
 export const NoOverflow = Template.bind({})
 NoOverflow.args = {
-  numLinks: 1
+  numLinks: 1,
 }
 NoOverflow.storyName = 'No overflow menu (1 link)'
 
 export const LongerTitle = Template.bind({})
 LongerTitle.args = {
-  title: 'Brand and Marketing'
+  title: 'Brand and Marketing',
 }
 
 export const FullWidth = Template.bind({})
 FullWidth.args = {
-  fullWidth: true
+  fullWidth: true,
+}
+
+export const NoTitle = args => <SubdomainNavBar {...args} />
+NoTitle.args = {
+  title: '',
 }
 
 export const ConditionalRendering = () => {
@@ -583,23 +599,25 @@ export const ConditionalRendering = () => {
 
   useEffect(() => {
     setLinks([...links, 'social'])
-  }, [links])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
     setShowLinks(true)
-  }, [setShowLinks])
+  }, [])
 
   return (
     <SubdomainNavBar title="Subdomain">
       {showLinks &&
         links.map(link => {
+          const linkText = link
+            .toLowerCase()
+            .split(' ')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ')
           return (
-            <SubdomainNavBar.Link key={link} href={`#${link}`}>
-              {link
-                .toLowerCase()
-                .split(' ')
-                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                .join(' ')}
+            <SubdomainNavBar.Link key={linkText} href={`#${link}`}>
+              {linkText}
             </SubdomainNavBar.Link>
           )
         })}

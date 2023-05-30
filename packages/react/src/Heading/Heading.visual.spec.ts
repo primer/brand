@@ -24,4 +24,40 @@ test.describe('Visual Comparison: Heading', () => {
 
     expect(await page.screenshot()).toMatchSnapshot()
   })
+
+  test('Heading / Override Weight', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--override-weight&viewMode=story')
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Heading / Override Weight Responsive', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-heading--override-weight-responsive&viewMode=story',
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Heading / Override Stretch', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--override-stretch&viewMode=story')
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Heading / Override Stretch Responsive', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-heading--override-stretch-responsive&viewMode=story',
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Heading / Override Letter Spacing', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-heading--override-letter-spacing&viewMode=story',
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
 })

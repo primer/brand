@@ -1,0 +1,13 @@
+.List {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  list-style: none;
+  gap: var(--base-size-8);
+  padding-inline-start: 0px;
+  font-family: var(--brand-body-fontFamily);
+  font-weight: var(--brand-text-weight-200);
+  font-size: var(--brand-text-size-200);
+  line-height: var(--brand-text-lineHeight-300);
+  color: var(--brand-color-text-default);
+}

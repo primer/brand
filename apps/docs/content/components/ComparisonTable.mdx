@@ -1,8 +1,8 @@
 ---
 title: ComparisonTable
 status: Experimental
-figma: 'https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=375%3A8130'
-source: https://github.com/primer/brand/tree/main/src/ComparisonTable/ComparisonTable.tsx
+figma: https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=375%3A8130
+source: https://github.com/primer/brand/blob/main/packages/react/src/ComparisonTable/ComparisonTable.tsx
 storybook: '/brand/storybook/?path=/story/components-comparisontable--playground'
 description: Use ComparisonTable to compare two products or features in a table format
 ---
@@ -283,7 +283,9 @@ const App = () => {
           </ComparisonTable.Row>
         )
       })}
-      <ComparisonTable.Footnote></ComparisonTable.Footnote>
+      <ComparisonTable.Footnote>
+        {comparisonTableData.footnotes}
+      </ComparisonTable.Footnote>
     </ComparisonTable>
   )
 }
@@ -293,7 +295,7 @@ render(<App />)
 
 ### Minimal layout
 
-`ComparisonTable` has an alternative visual presentation mode called 'minimal'. This will display the data in a condensed matrix format, and without visual cues like featured columns.
+`ComparisonTable` has an alternative visual presentation mode called `minimal`. This will display the data without the featured columns.
 
 This variant is suitable for embedding into long-form content, or in situations where usage of on-screen color needs to be minimized.
 
@@ -354,12 +356,12 @@ This variant is suitable for embedding into long-form content, or in situations 
 
 ### ComparisonTable <Label>Required</Label>
 
-| name             | type                                                                                    | default   | required    | description                                                                                                                                               |
-| ---------------- | --------------------------------------------------------------------------------------- | --------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `children`       | `ComparisonTable.Row`, `ComparisonTable.Cell`, `ComparisonTable.Footnotes`, `ReactNode` | undefined | `true`      | Valid children. Accepts `ReactNode` for conditional rendering.                                                                                            |
-| `heading`        | `string`                                                                                | undefined | `false`     | Optional heading that appears above table, preconfigured as a `h3`.                                                                                       |
-| `featuredColumn` | `number`                                                                                | undefined | `1`         | Indicates that the data column at the specified index is visually important and unique in relation to its adjacent cells, and will be styled accordingly. |
-| `variant`        | `"default"`, `"minimal"`                                                                | undefined | `"default"` | Applies alternative presentation.                                                                                                                         |
+| name             | type                                                                                    | default     | required | description                                                                                                                                               |
+| ---------------- | --------------------------------------------------------------------------------------- | ----------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `children`       | `ComparisonTable.Row`, `ComparisonTable.Cell`, `ComparisonTable.Footnotes`, `ReactNode` | undefined   | `true`   | Valid children. Accepts `ReactNode` for conditional rendering.                                                                                            |
+| `heading`        | `string`                                                                                | undefined   | `false`  | Optional heading that appears above table, preconfigured as a `h3`.                                                                                       |
+| `featuredColumn` | `number`                                                                                | `1`         | `false`  | Indicates that the data column at the specified index is visually important and unique in relation to its adjacent cells, and will be styled accordingly. |
+| `variant`        | `"default"`, `"minimal"`                                                                | `"default"` | `false`  | Applies alternative presentation.                                                                                                                         |
 
 ### ComparisonTable.Row <Label>Required</Label>
 

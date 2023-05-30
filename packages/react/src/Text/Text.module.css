@@ -52,3 +52,98 @@
   font-size: var(--brand-text-size-100);
   line-height: var(--brand-text-lineHeight-100);
 }
+
+.Text--weight-heavy,
+.Text-narrow--weight-heavy {
+  font-weight: var(--base-text-weight-heavy);
+}
+
+.Text--weight-extrabold,
+.Text-narrow--weight-extrabold {
+  font-weight: var(--base-text-weight-extrabold);
+}
+
+.Text--weight-bold,
+.Text-narrow--weight-bold {
+  font-weight: var(--base-text-weight-bold);
+}
+
+.Text--weight-semibold,
+.Text-narrow--weight-semibold {
+  font-weight: var(--base-text-weight-semibold);
+}
+
+.Text--weight-medium,
+.Text-narrow--weight-medium {
+  font-weight: var(--base-text-weight-medium);
+}
+
+.Text--weight-normal,
+.Text-narrow--weight-normal {
+  font-weight: var(--base-text-weight-normal);
+}
+
+.Text--weight-light,
+.Text-narrow--weight-light {
+  font-weight: var(--base-text-weight-light);
+}
+
+@media screen and (min-width: 48rem) {
+  .Text-regular--weight-heavy {
+    font-weight: var(--base-text-weight-heavy);
+  }
+
+  .Text-regular--weight-extrabold {
+    font-weight: var(--base-text-weight-extrabold);
+  }
+
+  .Text-regular--weight-bold {
+    font-weight: var(--base-text-weight-bold);
+  }
+
+  .Text-regular--weight-semibold {
+    font-weight: var(--base-text-weight-semibold);
+  }
+
+  .Text-regular--weight-medium {
+    font-weight: var(--base-text-weight-medium);
+  }
+
+  .Text-regular--weight-normal {
+    font-weight: var(--base-text-weight-normal);
+  }
+
+  .Text-regular--weight-light {
+    font-weight: var(--base-text-weight-light);
+  }
+}
+
+@media screen and (min-width: 80rem) {
+  .Text-wide--weight-heavy {
+    font-weight: var(--base-text-weight-heavy);
+  }
+
+  .Text-wide--weight-extrabold {
+    font-weight: var(--base-text-weight-extrabold);
+  }
+
+  .Text-wide--weight-bold {
+    font-weight: var(--base-text-weight-bold);
+  }
+
+  .Text-wide--weight-semibold {
+    font-weight: var(--base-text-weight-semibold);
+  }
+
+  .Text-wide--weight-medium {
+    font-weight: var(--base-text-weight-medium);
+  }
+
+  .Text-wide--weight-normal {
+    font-weight: var(--base-text-weight-normal);
+  }
+
+  .Text-wide--weight-light {
+    font-weight: var(--base-text-weight-light);
+  }
+}

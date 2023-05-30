@@ -5,11 +5,11 @@ const config = {
   outputDir: './playwright-test-results',
   use: {
     screenshot: 'only-on-failure',
-    channel: 'chrome'
+    channel: 'chrome',
   },
   expect: {
-    toHaveScreenshot: {maxDiffPixels: 20, animations: 'disabled'}
-  }
+    toHaveScreenshot: {maxDiffPixels: 20, animations: 'disabled'},
+  },
 }
 
 module.exports = config

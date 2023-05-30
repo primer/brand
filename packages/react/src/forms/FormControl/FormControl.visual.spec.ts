@@ -9,7 +9,7 @@ import {test, expect} from '@playwright/test'
 test.describe('Visual Comparison: FormControl', () => {
   test('FormControl / w/ TextInput - Playground', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-forms-formcontrol--text-input-playground&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-forms-formcontrol--text-input-playground&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -17,7 +17,7 @@ test.describe('Visual Comparison: FormControl', () => {
 
   test('FormControl / w/ Textarea - Playground', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-forms-formcontrol--textarea-playground&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-forms-formcontrol--textarea-playground&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -25,7 +25,7 @@ test.describe('Visual Comparison: FormControl', () => {
 
   test('FormControl / w/ Select - Playground', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-forms-formcontrol--select-playground&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-forms-formcontrol--select-playground&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -33,7 +33,7 @@ test.describe('Visual Comparison: FormControl', () => {
 
   test('FormControl / w/ Checkbox - Playground', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-forms-formcontrol--checkbox-playground&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-forms-formcontrol--checkbox-playground&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -41,7 +41,7 @@ test.describe('Visual Comparison: FormControl', () => {
 
   test('FormControl / w/ Radio - Playground', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-forms-formcontrol--radio-playground&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-forms-formcontrol--radio-playground&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()

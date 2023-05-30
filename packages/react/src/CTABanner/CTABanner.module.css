@@ -1,0 +1,69 @@
+.CTABanner {
+  position: relative;
+  margin: 0 auto;
+  display: flex;
+  max-width: var(--brand-breakpoint-xlarge);
+  width: 100%;
+}
+
+.CTABanner--shadow::before {
+  content: '';
+  position: absolute;
+  inset: var(--base-size-16);
+  filter: blur(var(--base-size-96));
+  transform: translateZ(0);
+  background: linear-gradient(
+    to right,
+    hsl(var(--brand-CTABanner-shadow-color-start)),
+    hsl(var(--brand-CTABanner-shadow-color-end))
+  );
+}
+
+.CTABanner-container {
+  border-radius: var(--brand-borderRadius-medium);
+  padding: var(--base-size-40) var(--base-size-32);
+  z-index: 1;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.CTABanner-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-16);
+  align-items: flex-start;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.CTABanner-container--background {
+  background: var(--brand-color-canvas-default);
+}
+
+.CTABanner-container--border {
+  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
+}
+
+.CTABanner-content--center {
+  align-items: center;
+  text-align: center;
+}
+
+.CTABanner-description {
+  color: var(--brand-color-text-muted);
+  margin-bottom: var(--base-size-16);
+}
+
+/* Medium breakpoint and up */
+@media screen and (min-width: 48rem) {
+  .CTABanner-container {
+    padding: var(--base-size-80) var(--base-size-64);
+  }
+}
+
+/* Large breakpoint and up */
+@media screen and (min-width: 63.25rem) {
+  .CTABanner-container {
+    padding: var(--base-size-128) var(--base-size-64);
+  }
+}

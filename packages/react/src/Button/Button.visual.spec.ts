@@ -15,7 +15,15 @@ test.describe('Visual Comparison: Button', () => {
 
   test('Button / Primary Disabled', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-button-features--primary-disabled&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--primary-disabled&viewMode=story',
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Button / Primary w/ aria-disabled', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--primary-aria-disabled&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -23,7 +31,7 @@ test.describe('Visual Comparison: Button', () => {
 
   test('Button / Primary Focus', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-button-features--primary-focus&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--primary-focus&viewMode=story',
     )
 
     await page.waitForTimeout(1000)
@@ -32,7 +40,7 @@ test.describe('Visual Comparison: Button', () => {
 
   test('Button / Primary Focus w/ non-standard background', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-button-features--primary-focus-non-standard-bg&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--primary-focus-non-standard-bg&viewMode=story',
     )
 
     await page.waitForTimeout(1000)
@@ -47,7 +55,7 @@ test.describe('Visual Comparison: Button', () => {
 
   test('Button / Secondary Disabled', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-button-features--secondary-disabled&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--secondary-disabled&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -61,7 +69,7 @@ test.describe('Visual Comparison: Button', () => {
 
   test('Button / Subtle Disabled', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-button-features--subtle-disabled&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--subtle-disabled&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -75,7 +83,7 @@ test.describe('Visual Comparison: Button', () => {
 
   test('Button / Polymorphism', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-button-features--polymorphism&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--polymorphism&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -83,7 +91,7 @@ test.describe('Visual Comparison: Button', () => {
 
   test('Button / Primary button with hover interaction', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-button-features--with-hover-interaction&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--with-hover-interaction&viewMode=story',
     )
 
     await page.waitForTimeout(1000)
@@ -92,7 +100,7 @@ test.describe('Visual Comparison: Button', () => {
 
   test('Button / Secondary button with hover interaction', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-button-features--secondary-with-hover-interaction&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--secondary-with-hover-interaction&viewMode=story',
     )
 
     await page.waitForTimeout(1000)
@@ -101,10 +109,58 @@ test.describe('Visual Comparison: Button', () => {
 
   test('Button / Subtle button with hover interaction', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-button-features--subtle-with-hover-interaction&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--subtle-with-hover-interaction&viewMode=story',
     )
 
     await page.waitForTimeout(1000)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Button / Leading visual (native)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--with-leading-visual-svg&viewMode=story',
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Button / Trailing visual (native)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--with-trailing-visual-svg&viewMode=story',
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Button / Leading and trailing visual (native)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--with-leading-and-trailing-visual-svg&viewMode=story',
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Button / With an Octicon', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--with-octicon&viewMode=story',
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Button / With an Octicon (large)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--with-octicon-large&viewMode=story',
+    )
+
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Button / With visuals and disabled', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--with-visuals-and-disabled&viewMode=story',
+    )
+
     expect(await page.screenshot()).toMatchSnapshot()
   })
 

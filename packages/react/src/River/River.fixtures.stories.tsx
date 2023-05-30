@@ -6,7 +6,7 @@ import {Container} from '../component-helpers'
 
 export default {
   title: 'Components/River/fixtures',
-  component: River
+  component: River,
 } as ComponentMeta<typeof River>
 
 const PlaceholderImage = () => (
@@ -93,6 +93,34 @@ export const ColumnRatio5050: ComponentStory<typeof River> = () => (
 )
 
 ColumnRatio5050.storyName = '50:50 image ratio'
+
+export const AlternativeHeadingLevel: ComponentStory<typeof River> = () => (
+  <Container>
+    <River>
+      <River.Visual>
+        <PlaceholderImage />
+      </River.Visual>
+      <River.Content>
+        <Heading as="h1">This is a h1</Heading>
+        <Text>Use alternative heading levels, while maintaining the default text size.</Text>
+      </River.Content>
+    </River>
+  </Container>
+)
+
+export const AlternativeHeadingSize: ComponentStory<typeof River> = () => (
+  <Container>
+    <River>
+      <River.Visual>
+        <PlaceholderImage />
+      </River.Visual>
+      <River.Content>
+        <Heading size="1">Heading</Heading>
+        <Text>Use alternative heading sizes, while maintaining the default heading level.</Text>
+      </River.Content>
+    </River>
+  </Container>
+)
 
 export const AlternatingLayout: ComponentStory<typeof River> = () => (
   <>

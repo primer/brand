@@ -40,7 +40,7 @@
   margin: 0 auto;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 48rem) {
   .SubdomainNavBar-inner-container {
     padding: 4px 32px;
   }
@@ -107,6 +107,10 @@
   white-space: nowrap;
 }
 
+.SubdomainNavBar-title:hover {
+  text-decoration: none;
+}
+
 /*
  * Primary navigation link area
  */
@@ -126,6 +130,11 @@
   .SubdomainNavBar-primary-nav-list {
     display: none;
   }
+
+  .SubdomainNavBar-primary-nav-list--invisible {
+    display: none;
+  }
+
   .SubdomainNavBar-primary-nav-list--visible {
     display: block;
     margin: 0;
@@ -143,7 +152,7 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 48rem) {
   .SubdomainNavBar-primary-nav-list {
     display: flex;
     align-items: center;
@@ -154,15 +163,22 @@
     /* overflow: hidden; */
   }
 }
+
+@media screen and (min-width: 768px) {
+  .SubdomainNavBar-primary-nav-list {
+    max-width: 100px;
+  }
+}
+
 @media screen and (min-width: 850px) {
   .SubdomainNavBar-primary-nav-list {
-    max-width: 320px;
+    max-width: 200px;
   }
 }
 
 @media screen and (min-width: 1024px) {
   .SubdomainNavBar-primary-nav-list {
-    max-width: 340px;
+    max-width: 300px;
   }
 }
 
@@ -187,7 +203,7 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 48rem) {
   .SubdomainNavBar-primary-nav-list-item--visible {
     order: 0;
     visibility: visible;
@@ -219,13 +235,17 @@
   text-decoration: none;
 }
 
+.SubdomainNavBar-link:hover {
+  text-decoration: none;
+}
+
 @media screen and (max-width: 767px) {
-  .SubdomainNavBar-link:first-child {
+  .SubdomainNavBar-link:first-of-type {
     padding-top: var(--base-size-24);
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 48rem) {
   .SubdomainNavBar-link {
     font-family: var(--brand-heading-fontFamily);
     font-weight: var(--base-text-weight-semibold);
@@ -291,7 +311,7 @@
   display: none;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 48rem) {
   .SubdomainNavBar-more-link {
     cursor: pointer;
     appearance: none;
@@ -403,7 +423,7 @@
   transform: rotate(45deg) translateY(3px);
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 48rem) {
   .SubdomainNavBar-search-button:hover,
   .SubdomainNavBar-menu-button:hover {
     border: var(--brand-borderWidth-thick) solid var(--brand-SubdomainNavBar-border-button-hover);
@@ -440,7 +460,7 @@
   gap: 16px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 48rem) {
   .SubdomainNavBar-button-area {
     display: none;
   }
@@ -477,12 +497,6 @@
   white-space: nowrap;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1023px) {
-  .SubdomainNavBar-cta-button--secondary {
-    display: none;
-  }
-}
-
 @media screen and (min-width: 1024px) {
   .SubdomainNavBar-cta-button--secondary {
     display: inline-flex;
@@ -499,6 +513,7 @@
 
 .SubdomainNavBar-search-dialog {
   position: absolute;
+  z-index: 99;
 }
 
 @media screen and (max-width: 767px) {
@@ -511,13 +526,12 @@
     backdrop-filter: blur(100px);
     height: 100vh;
     width: 100vw;
-    z-index: 99;
     animation: fade-in-down 300ms;
     animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 48rem) {
   .SubdomainNavBar-search-dialog {
     position: absolute;
     top: 0;
@@ -545,7 +559,7 @@
   gap: var(--base-size-4);
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 48rem) {
   .SubdomainNavBar-search-dialog-control-area {
     max-width: 570px;
     margin: 0 auto;
@@ -593,12 +607,28 @@
     var(--brand-SubdomainNavBar-search-results-border-default, #b7bfc7);
 }
 
-.SubdomainNavBar-search-result-item-heading a {
+.SubdomainNavBar-search-result-item[aria-selected='true'] a {
+  outline: var(--brand-color-focus) auto var(--brand-borderWidth-thick);
+}
+
+.SubdomainNavBar-search-result-item-container {
+  letter-spacing: var(--brand-heading-letterSpacing-400);
+  font-size: var(--brand-text-size-400);
+}
+
+.SubdomainNavBar-search-result-item-container a {
   display: block;
   color: var(--base-color-scale-black-0);
   text-decoration: none;
   margin: 0 0 var(--base-size-12);
   font-size: var(--base-size-16);
+  font-weight: var(--brand-heading-weight-400);
+  font-family: var(--brand-heading-fontFamily);
+  line-height: var(--brand-text-lineHeight-400);
+}
+
+.SubdomainNavBar-search-result-item-container a:hover {
+  text-decoration: none;
 }
 
 .SubdomainNavBar-search-result-item-desc {
