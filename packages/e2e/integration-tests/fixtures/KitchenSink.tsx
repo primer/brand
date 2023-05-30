@@ -16,7 +16,7 @@ import {
   SubdomainNavBar,
   ComparisonTable,
   Stack,
-  ButtonGroup
+  ButtonGroup,
 } from './'
 import '@primer/react-brand/lib/css/main.css'
 
@@ -172,7 +172,7 @@ export default function KitchenSink() {
           direction="vertical"
           justifyContent="center"
           style={{
-            margin: '100px 0'
+            margin: '100px 0',
           }}
         >
           <ComparisonTable featuredColumn={1} heading="GitHub vs Jenkins">
@@ -225,7 +225,7 @@ export default function KitchenSink() {
           style={{
             margin: '0 auto',
             display: 'flex',
-            justifyContent: 'center'
+            justifyContent: 'center',
           }}
         >
           <ButtonGroup>
@@ -239,7 +239,7 @@ export default function KitchenSink() {
           style={{
             backgroundColor: 'var(--brand-color-canvas-default)',
             padding: 'var(--base-size-24)',
-            marginTop: 'var(--base-size-64)'
+            marginTop: 'var(--base-size-64)',
           }}
         >
           <form
@@ -248,7 +248,7 @@ export default function KitchenSink() {
               maxWidth: 600,
               alignItems: 'center',
               display: 'grid',
-              gap: 48
+              gap: 48,
             }}
           >
             <Heading as="h3">Get started</Heading>
@@ -257,14 +257,14 @@ export default function KitchenSink() {
                 alignItems: 'center',
                 display: 'grid',
                 gap: 16,
-                paddingBottom: 3
+                paddingBottom: 3,
               }}
             >
               <div
                 style={{
                   display: 'grid',
                   gridTemplateColumns: '0.5fr 1fr 1fr',
-                  gap: 16
+                  gap: 16,
                 }}
               >
                 <FormControl fullWidth>
@@ -335,7 +335,7 @@ export default function KitchenSink() {
                   borderRadius: 6,
                   display: 'flex',
                   justifyContent: 'center',
-                  alignItems: 'center'
+                  alignItems: 'center',
                 }}
               >
                 <Text size="200" variant="muted">
@@ -367,7 +367,7 @@ export default function KitchenSink() {
                 style={{
                   justifyContent: 'end',
                   display: 'inline-grid',
-                  gap: 16
+                  gap: 16,
                 }}
               >
                 <Button variant="primary" type="submit">

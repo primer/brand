@@ -6,7 +6,7 @@ import {CTABanner} from './CTABanner'
 
 export default {
   title: 'Components/CTABanner/Features',
-  component: CTABanner
+  component: CTABanner,
 } as ComponentMeta<typeof CTABanner>
 
 export const WithBorder = () => (

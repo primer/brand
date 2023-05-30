@@ -16,7 +16,7 @@ describe('Grid', () => {
     const {container} = render(
       <Grid>
         <Grid.Column>{mockText}</Grid.Column>
-      </Grid>
+      </Grid>,
     )
     const results = await axe(container)
 
@@ -31,7 +31,7 @@ describe('Grid', () => {
         <Grid.Column>
           <>Fragment</>
         </Grid.Column>
-      </Grid>
+      </Grid>,
     )
     expect(getByText(mockText)).toBeInTheDocument()
     expect(getByText(1)).toBeInTheDocument()
@@ -51,7 +51,7 @@ describe('Grid', () => {
     const {getByText} = render(
       <Grid>
         <Grid.Column span={6}>{mockText}</Grid.Column>
-      </Grid>
+      </Grid>,
     )
 
     const expectedClass = 'Grid__column--span-6'
@@ -70,12 +70,12 @@ describe('Grid', () => {
             medium: 4,
             large: 3,
             xlarge: 2,
-            xxlarge: 1
+            xxlarge: 1,
           }}
         >
           {mockText}
         </Grid.Column>
-      </Grid>
+      </Grid>,
     )
 
     const expectedClasses = [
@@ -83,7 +83,7 @@ describe('Grid', () => {
       'Grid__column--medium-span-4',
       'Grid__column--large-span-3',
       'Grid__column--xlarge-span-2',
-      'Grid__column--xxlarge-span-1'
+      'Grid__column--xxlarge-span-1',
     ]
 
     const columnEl = getByText(mockText)
@@ -99,7 +99,7 @@ describe('Grid', () => {
         <Grid.Column span={6} start={6}>
           {mockText}
         </Grid.Column>
-      </Grid>
+      </Grid>,
     )
 
     const expectedClass = 'Grid__column--start-6'
@@ -118,12 +118,12 @@ describe('Grid', () => {
             medium: 4,
             large: 3,
             xlarge: 2,
-            xxlarge: 1
+            xxlarge: 1,
           }}
         >
           {mockText}
         </Grid.Column>
-      </Grid>
+      </Grid>,
     )
 
     const expectedClasses = [
@@ -131,7 +131,7 @@ describe('Grid', () => {
       'Grid__column--medium-start-4',
       'Grid__column--large-start-3',
       'Grid__column--xlarge-start-2',
-      'Grid__column--xxlarge-start-1'
+      'Grid__column--xxlarge-start-1',
     ]
 
     const columnEl = getByText(mockText)
@@ -145,7 +145,7 @@ describe('Grid', () => {
     const {container} = render(
       <Grid enableOverlay>
         <Grid.Column>{mockText}</Grid.Column>
-      </Grid>
+      </Grid>,
     )
     const expectedClass = 'Grid--has-overlay'
 
@@ -156,7 +156,7 @@ describe('Grid', () => {
     const {getByTestId, getByText} = render(
       <Grid as="section" data-testid="Grid-1">
         <Grid.Column as="section">{mockText}</Grid.Column>
-      </Grid>
+      </Grid>,
     )
 
     const rootEl = getByTestId(`${Grid.testIds.root}-1`)
@@ -170,7 +170,7 @@ describe('Grid', () => {
     const {getByTestId, getByText} = render(
       <Grid as="span" data-testid="Grid-1">
         <Grid.Column as="span">{mockText}</Grid.Column>
-      </Grid>
+      </Grid>,
     )
 
     const rootEl = getByTestId(`${Grid.testIds.root}-1`)
@@ -186,7 +186,7 @@ describe('Grid', () => {
       <Grid as="ul" data-testid="Grid-1">
         {/* @ts-expect-error TSC recognizes the error, but this test verifies expected behaviour for non-TS users using the compiled code */}
         <Grid.Column as="li">{mockText}</Grid.Column>
-      </Grid>
+      </Grid>,
     )
 
     const rootEl = getByTestId(`${Grid.testIds.root}-1`)
@@ -202,17 +202,17 @@ describe('Grid', () => {
         <Grid.Column
           data-testid="Grid-Column-1"
           span={{
-            large: 6
+            large: 6,
           }}
         ></Grid.Column>
         <Grid.Column
           data-testid="Grid-Column-2"
           span={{
             xsmall: 3,
-            large: 6
+            large: 6,
           }}
         ></Grid.Column>
-      </Grid>
+      </Grid>,
     )
 
     expect(getByTestId('Grid-Column-1')).toHaveClass('Grid__column--large-span-6')

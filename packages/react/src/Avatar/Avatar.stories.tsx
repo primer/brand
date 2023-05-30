@@ -9,38 +9,38 @@ export default {
     size: AvatarSizes[1],
     shape: 'circle',
     src: 'https://avatars.githubusercontent.com/u/92997159?v=4',
-    alt: 'A random avatar picture'
+    alt: 'A random avatar picture',
   },
   argTypes: {
     size: {
       description: 'The size of the Avatar',
       control: {
         type: 'radio',
-        options: AvatarSizes
-      }
+        options: AvatarSizes,
+      },
     },
     shape: {
       description: 'The shape of the Avatar',
       control: {
         type: 'radio',
-        options: AvatarShapes
-      }
+        options: AvatarShapes,
+      },
     },
     src: {
       description: 'The url of the image to display',
       type: {name: 'string', required: true},
       control: {
-        type: 'text'
-      }
+        type: 'text',
+      },
     },
     alt: {
       description: 'The alt text for the image',
       type: {name: 'string', required: true},
       control: {
-        type: 'text'
-      }
-    }
-  }
+        type: 'text',
+      },
+    },
+  },
 } as ComponentMeta<typeof Avatar>
 
 export const Playground: ComponentStory<typeof Avatar> = args => <Avatar {...args} />

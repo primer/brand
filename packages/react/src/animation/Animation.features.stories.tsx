@@ -9,7 +9,7 @@ import clsx from 'clsx'
 
 export default {
   title: 'Components/Animations/Examples',
-  component: AnimationProvider
+  component: AnimationProvider,
 } as ComponentMeta<typeof AnimationProvider>
 
 export const DiscussionsHero = () => (
@@ -22,7 +22,7 @@ export const DiscussionsHero = () => (
       />
       <Label
         animate={{
-          variant: 'scale-in-up'
+          variant: 'scale-in-up',
         }}
         className={clsx(styles.DiscussionsExampleHero__label, styles['DiscussionsExampleHero__label--one'])}
         color="green-blue"
@@ -37,7 +37,7 @@ export const DiscussionsHero = () => (
         className={clsx(styles['DiscussionsExampleHero__labelContainer--two'])}
         padding="none"
         animate={{
-          variant: 'scale-in-up'
+          variant: 'scale-in-up',
         }}
       >
         <Label
@@ -54,7 +54,7 @@ export const DiscussionsHero = () => (
       <Animate
         animate={{
           variant: 'scale-in-up',
-          delay: 1000
+          delay: 1000,
         }}
       >
         <Label
@@ -111,7 +111,7 @@ export const ProgressBars = () => {
           className={styles.ProgressBarExample__barInner}
           animate={{
             variant: 'fill-in-right',
-            duration: 2000
+            duration: 2000,
           }}
           style={{width}}
         />

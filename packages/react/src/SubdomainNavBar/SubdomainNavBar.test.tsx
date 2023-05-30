@@ -15,7 +15,7 @@ describe('SubdomainNavBar', () => {
     mockIntersectionObserver.mockReturnValue({
       observe: () => null,
       unobserve: () => null,
-      disconnect: () => null
+      disconnect: () => null,
     })
     window.IntersectionObserver = mockIntersectionObserver
   })
@@ -24,7 +24,7 @@ describe('SubdomainNavBar', () => {
     fullWidth,
     searchResults,
     titleHref,
-    title = 'Subdomain'
+    title = 'Subdomain',
   }: {
     fullWidth?: boolean
     searchResults?: SubdomainNavBarSearchResultProps[]
@@ -70,8 +70,8 @@ describe('SubdomainNavBar', () => {
         title: 'mock title',
         description: 'mock description',
         url: 'https://github.com',
-        date: '2022-08-29T00:00+02:00'
-      }
+        date: '2022-08-29T00:00+02:00',
+      },
     ]
 
     const {getByTestId, getByRole} = render(<Component searchResults={mockResultsData} />)

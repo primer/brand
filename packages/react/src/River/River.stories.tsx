@@ -10,7 +10,7 @@ import clsx from 'clsx'
 
 export default {
   title: 'Components/River',
-  component: River
+  component: River,
 } as ComponentMeta<typeof River>
 
 const PlaceholderImage = () => (

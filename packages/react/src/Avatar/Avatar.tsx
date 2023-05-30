@@ -7,7 +7,7 @@ import type {BaseProps} from '../component-helpers'
 export const AvatarSizes = [32, 40, 48, 64, 80] as const
 export const AvatarShapes = ['circle', 'square'] as const
 
-type AvatarSizeVariants = typeof AvatarSizes[number]
+type AvatarSizeVariants = (typeof AvatarSizes)[number]
 
 type ResponsiveSizeMap = {
   narrow?: AvatarSizeVariants
@@ -16,8 +16,8 @@ type ResponsiveSizeMap = {
 }
 
 export type AvatarProps = BaseProps<HTMLImageElement> & {
-  size?: typeof AvatarSizes[number] | ResponsiveSizeMap
-  shape?: typeof AvatarShapes[number]
+  size?: (typeof AvatarSizes)[number] | ResponsiveSizeMap
+  shape?: (typeof AvatarShapes)[number]
   src: string
   alt: string
   ['data-testid']?: string
@@ -27,7 +27,7 @@ const testIds = {
   root: 'Avatar',
   get image() {
     return `${this.root}__image`
-  }
+  },
 }
 
 const _Avatar = forwardRef<HTMLImageElement, AvatarProps>(
@@ -51,7 +51,7 @@ const _Avatar = forwardRef<HTMLImageElement, AvatarProps>(
         <img className={clsx(styles.Avatar__image)} src={src} alt={alt} data-testid={testIds.image} {...props} />
       </span>
     )
-  }
+  },
 )
 
 export const Avatar = Object.assign(_Avatar, {testIds})

@@ -17,7 +17,7 @@ export function ExpandableArrow({className, expanded = false, reverse = false, h
         styles.ExpandableArrow,
         expanded && styles['ExpandableArrow--expanded'],
         reverse && styles['ExpandableArrow--reversed'],
-        className
+        className,
       )}
       width="16"
       height="16"

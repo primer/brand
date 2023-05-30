@@ -19,7 +19,7 @@ describe('ButtonGroup', () => {
       <ButtonGroup data-testid={mockTestId}>
         <Button>Primary Action</Button>
         <Button>Secondary Action</Button>
-      </ButtonGroup>
+      </ButtonGroup>,
     )
     const buttonGroupEl = getByTestId(mockTestId)
     expect(buttonGroupEl.tagName).toBe(expectedTag.toUpperCase())
@@ -33,7 +33,7 @@ describe('ButtonGroup', () => {
       <ButtonGroup buttonsAs={expectedTag}>
         <Button href="#">Primary Action</Button>
         <Button href="#">Secondary Action</Button>
-      </ButtonGroup>
+      </ButtonGroup>,
     )
     const buttonEl = getAllByRole('link')[0]
     expect(buttonEl.tagName).toBe(expectedTag.toUpperCase())
@@ -46,7 +46,7 @@ describe('ButtonGroup', () => {
       <ButtonGroup buttonSize={'large'}>
         <Button>Primary Action</Button>
         <Button>Secondary Action</Button>
-      </ButtonGroup>
+      </ButtonGroup>,
     )
     const buttonEl = getAllByRole('button')[0]
     expect(buttonEl.classList).toContain(expectedClass)
@@ -57,7 +57,7 @@ describe('ButtonGroup', () => {
       <ButtonGroup>
         <Button>Primary Action</Button>
         <Button>Secondary Action</Button>
-      </ButtonGroup>
+      </ButtonGroup>,
     )
     const results = await axe(container)
 
@@ -69,7 +69,7 @@ describe('ButtonGroup', () => {
       <ButtonGroup>
         <Button>Primary Action</Button>
         <Button>Secondary Action</Button>
-      </ButtonGroup>
+      </ButtonGroup>,
     )
     const buttonEl = getAllByRole('button')[0]
     expect(buttonEl.querySelector('svg')).not.toBeNull()
@@ -80,7 +80,7 @@ describe('ButtonGroup', () => {
       <ButtonGroup>
         <Button>Primary Action</Button>
         <Button>Secondary Action</Button>
-      </ButtonGroup>
+      </ButtonGroup>,
     )
     const buttonEl = getAllByRole('button')[1]
     expect(buttonEl.querySelector('svg')).toBeNull()

@@ -20,7 +20,7 @@ describe('Card', () => {
       <Card href={mockHref}>
         <Card.Heading>{mockHeading}</Card.Heading>
         <Card.Description>{mockDescription}</Card.Description>
-      </Card>
+      </Card>,
     )
     const results = await axe(container)
 
@@ -38,7 +38,7 @@ describe('Card', () => {
         <Card.Label>{mockLabel}</Card.Label>
         <Card.Heading>{mockHeading}</Card.Heading>
         <Card.Description>{mockDescription}</Card.Description>
-      </Card>
+      </Card>,
     )
     const cardEl = getByTestId(mockTestId)
     expect(cardEl.tagName).toBe(expectedTag.toUpperCase())
@@ -52,7 +52,7 @@ describe('Card', () => {
     const {getByText} = render(
       <Card href={mockHref}>
         <Card.Heading>{mockHeading}</Card.Heading>
-      </Card>
+      </Card>,
     )
     const cardHeaderEl = getByText(mockHeading)
     expect(cardHeaderEl.tagName).toBe(expectedHeadingTag.toUpperCase())
@@ -64,7 +64,7 @@ describe('Card', () => {
     const {getByText} = render(
       <Card href={mockHref}>
         <Card.Heading as="h4">{mockHeading}</Card.Heading>
-      </Card>
+      </Card>,
     )
     const cardHeaderEl = getByText(mockHeading)
     expect(cardHeaderEl.tagName).toBe(expectedHeadingTag.toUpperCase())
@@ -76,7 +76,7 @@ describe('Card', () => {
     const {getByText} = render(
       <Card href={mockHref}>
         <Card.Heading as="h4">{mockHeading}</Card.Heading>
-      </Card>
+      </Card>,
     )
     const linkTextEl = getByText(expectedLinkText)
     expect(linkTextEl).toBeInTheDocument()
@@ -91,7 +91,7 @@ describe('Card', () => {
         <Card.Label>{mockLabel}</Card.Label>
         <Card.Heading>{mockHeading}</Card.Heading>
         <Card.Description>{mockDescription}</Card.Description>
-      </Card>
+      </Card>,
     )
 
     const cardEl = getByTestId(mockTestId).firstChild
@@ -108,7 +108,7 @@ describe('Card', () => {
         <Card.Icon icon={GitMergeIcon} />
         <Card.Heading>{mockHeading}</Card.Heading>
         <Card.Description>{mockDescription}</Card.Description>
-      </Card>
+      </Card>,
     )
 
     const cardEl = getByTestId(mockTestId).firstChild
@@ -124,7 +124,7 @@ describe('Card', () => {
         <Card.Icon hasBackground icon={GitMergeIcon} />
         <Card.Heading>{mockHeading}</Card.Heading>
         <Card.Description>{mockDescription}</Card.Description>
-      </Card>
+      </Card>,
     )
 
     const cardEl = getByTestId(mockTestId).firstChild
@@ -140,7 +140,7 @@ describe('Card', () => {
         <Card.Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt={testAltText} />
         <Card.Heading>{mockHeading}</Card.Heading>
         <Card.Description>{mockDescription}</Card.Description>
-      </Card>
+      </Card>,
     )
 
     const cardEl = getByAltText(testAltText)

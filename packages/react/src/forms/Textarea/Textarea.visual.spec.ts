@@ -9,7 +9,7 @@ import {test, expect} from '@playwright/test'
 test.describe('Visual Comparison: Textarea', () => {
   test('Textarea / Validation', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-forms-textarea-features--validation&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-forms-textarea-features--validation&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -17,7 +17,7 @@ test.describe('Visual Comparison: Textarea', () => {
 
   test('Textarea / w/ labels', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-forms-textarea-features--with-form-control&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-forms-textarea-features--with-form-control&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -25,7 +25,7 @@ test.describe('Visual Comparison: Textarea', () => {
 
   test('Textarea / Inactive', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-forms-textarea-features--inactive&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-forms-textarea-features--inactive&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -33,7 +33,7 @@ test.describe('Visual Comparison: Textarea', () => {
 
   test('Textarea / Full Width', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-forms-textarea-features--full-width&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-forms-textarea-features--full-width&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()

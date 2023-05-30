@@ -14,8 +14,8 @@ describe('useAnimation', () => {
         variant: 'fade-in',
         delay: 100,
         duration: 100,
-        ease: 'ease-in-out'
-      })
+        ease: 'ease-in-out',
+      }),
     )
 
     expect(result.current.classes).toContain('Animation')
@@ -23,7 +23,7 @@ describe('useAnimation', () => {
     expect(result.current.styles).toMatchObject({
       transitionDelay: '100ms',
       transitionDuration: '100ms',
-      transitionTimingFunction: 'ease-in-out'
+      transitionTimingFunction: 'ease-in-out',
     })
   })
 

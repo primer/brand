@@ -39,7 +39,7 @@ test.describe('Visual Comparison: Card', () => {
 
   test('Card / Icon And Label', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-card-features--icon-and-label&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-card-features--icon-and-label&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -53,7 +53,7 @@ test.describe('Visual Comparison: Card', () => {
 
   test('Card / Image And Label', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-card-features--image-and-label&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-card-features--image-and-label&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()

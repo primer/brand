@@ -7,7 +7,7 @@ import {HeartFillIcon, MarkGithubIcon, PlayIcon} from '@primer/octicons-react'
 
 export default {
   title: 'Components/Button/Features',
-  component: Button
+  component: Button,
 } as ComponentMeta<typeof Button>
 
 export const Primary = () => (

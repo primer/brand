@@ -21,8 +21,9 @@ export type InlineLinkProps = BaseProps<HTMLAnchorElement> & {
   /**
    * Specify the text size
    */
-  size?: typeof TextSizes[number]
-} & React.AnchorHTMLAttributes<HTMLAnchorElement>
+  size?: (typeof TextSizes)[number]
+} & React.AnchorHTMLAttributes<HTMLAnchorElement> &
+  React.HTMLAttributes<HTMLAnchorElement>
 
 /**
  * A HTML anchor link component that renders inline with adjacent text.
@@ -30,7 +31,7 @@ export type InlineLinkProps = BaseProps<HTMLAnchorElement> & {
 export const InlineLink = forwardRef(
   (
     {className, size = defaultTextSize, children, href, ...rest}: PropsWithChildren<InlineLinkProps>,
-    ref: Ref<HTMLAnchorElement>
+    ref: Ref<HTMLAnchorElement>,
   ) => {
     const classes = clsx(styles.InlineLink, className)
 
@@ -41,5 +42,5 @@ export const InlineLink = forwardRef(
         </Text>
       </a>
     )
-  }
+  },
 )

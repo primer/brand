@@ -25,7 +25,7 @@ describe('FAQ', () => {
             <p>{mockFAQAnswer}</p>
           </FAQ.Answer>
         </FAQ.Item>
-      </FAQ>
+      </FAQ>,
     )
     const headingEl = getByRole('heading', {level: 3, name: mockHeading})
     const questionEl = getByRole('heading', {level: 4, name: mockQuestion})
@@ -46,7 +46,7 @@ describe('FAQ', () => {
             <p>{mockFAQAnswer}</p>
           </FAQ.Answer>
         </FAQ.Item>
-      </FAQ>
+      </FAQ>,
     )
     const results = await axe(container)
 
@@ -63,7 +63,7 @@ describe('FAQ', () => {
             <p>{mockFAQAnswer}</p>
           </FAQ.Answer>
         </FAQ.Item>
-      </FAQ>
+      </FAQ>,
     )
     const answerEl = getByText(mockFAQAnswer)
 
@@ -80,7 +80,7 @@ describe('FAQ', () => {
             <p>{mockFAQAnswer}</p>
           </FAQ.Answer>
         </FAQ.Item>
-      </FAQ>
+      </FAQ>,
     )
     const answerEl = getByText(mockFAQAnswer)
 
@@ -97,7 +97,7 @@ describe('FAQ', () => {
             <p>{mockFAQAnswer}</p>
           </FAQ.Answer>
         </FAQ.Item>
-      </FAQ>
+      </FAQ>,
     )
 
     const questionEl = getByText(mockQuestion)
@@ -128,7 +128,7 @@ describe('FAQ', () => {
           </FAQ.Answer>
         </FAQ.Item>
         {invalidChild}
-      </FAQ>
+      </FAQ>,
     )
 
     const invalidChildEl = queryByText(questionRoot)
@@ -150,7 +150,7 @@ describe('FAQ', () => {
           </FAQ.Answer>
         </FAQ.Item>
         {invalidChild}
-      </FAQ>
+      </FAQ>,
     )
 
     const subheadingEl = getByRole('heading', {level: 3, name: mockSubheading})
@@ -170,7 +170,7 @@ describe('FAQ', () => {
             <p>{mockFAQAnswer}</p>
           </FAQ.Answer>
         </FAQ.Item>
-      </FAQ>
+      </FAQ>,
     )
 
     const mainheadingEl = getByRole('heading', {level: 3, name: mockHeading})

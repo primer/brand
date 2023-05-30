@@ -29,11 +29,11 @@ export type ButtonBaseProps = {
   /**
    * The styling variations available in Button
    */
-  variant?: typeof ButtonVariants[number]
+  variant?: (typeof ButtonVariants)[number]
   /**
    * The size variations available in Button
    */
-  size?: typeof ButtonSizes[number]
+  size?: (typeof ButtonSizes)[number]
   /**
    * A flag to show/hide the arrow icon
    */
@@ -55,7 +55,7 @@ const testIds = {
   },
   get expandableArrow() {
     return `${this.root}-expandable-arrow`
-  }
+  },
 }
 
 export const _Button = forwardRef(
@@ -79,7 +79,7 @@ export const _Button = forwardRef(
       style,
       ...props
     }: ButtonProps<C>,
-    ref: Ref<HTMLButtonElement>
+    ref: Ref<HTMLButtonElement>,
   ) => {
     const [isHovered, setIsHovered] = React.useState(false)
     const [isFocused, setIsFocused] = React.useState(false)
@@ -109,7 +109,7 @@ export const _Button = forwardRef(
           onMouseEnter?.(event)
         }
       },
-      [isDisabled, onMouseEnter]
+      [isDisabled, onMouseEnter],
     )
 
     const handleOnMouseLeave = useCallback(
@@ -119,7 +119,7 @@ export const _Button = forwardRef(
           onMouseLeave?.(event)
         }
       },
-      [isDisabled, onMouseLeave]
+      [isDisabled, onMouseLeave],
     )
 
     const handleOnFocus = useCallback(
@@ -129,7 +129,7 @@ export const _Button = forwardRef(
           onFocus?.(event)
         }
       },
-      [isDisabled, onFocus]
+      [isDisabled, onFocus],
     )
 
     const handleOnBlur = useCallback(
@@ -139,7 +139,7 @@ export const _Button = forwardRef(
           onBlur?.(event)
         }
       },
-      [isDisabled, onBlur]
+      [isDisabled, onBlur],
     )
 
     return (
@@ -151,7 +151,7 @@ export const _Button = forwardRef(
           styles[`Button--size-${size}`],
           isDisabled && styles[`Button--disabled`],
           animationClasses,
-          className
+          className,
         )}
         onMouseEnter={handleOnMouseEnter}
         onMouseLeave={handleOnMouseLeave}
@@ -164,10 +164,10 @@ export const _Button = forwardRef(
       >
         {LeadingVisualComponent && (
           <span className={styles['Button__leading-visual']} data-testid={testIds.leadingVisual}>
-            {React.cloneElement(LeadingVisualComponent, {
+            {React.cloneElement(LeadingVisualComponent as React.ReactElement, {
               className: clsx(styles['Button__icon-visual'], isDisabled && styles['Button__icon-visual--disabled']),
               ['aria-hidden']: 'true',
-              focusable: 'false'
+              focusable: 'false',
             })}
           </span>
         )}
@@ -179,7 +179,7 @@ export const _Button = forwardRef(
             className={clsx(
               styles['Button--label'],
               styles[`Button--label-${variant}`],
-              isDisabled && styles[`Button-label--disabled`]
+              isDisabled && styles[`Button-label--disabled`],
             )}
           >
             {children}
@@ -198,16 +198,16 @@ export const _Button = forwardRef(
         )}
         {TrailingVisualComponent && (
           <span className={clsx(styles['Button__trailing-visual'])} data-testid={testIds.trailingVisual}>
-            {React.cloneElement(TrailingVisualComponent, {
+            {React.cloneElement(TrailingVisualComponent as React.ReactElement, {
               className: clsx(styles['Button__icon-visual'], isDisabled && styles['Button__icon-visual--disabled']),
               ['aria-hidden']: 'true',
-              focusable: 'false'
+              focusable: 'false',
             })}
           </span>
         )}
       </Component>
     )
-  }
+  },
 )
 
 export const Button = Object.assign(_Button, {testIds})

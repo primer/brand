@@ -10,7 +10,7 @@ import React, {
   forwardRef,
   memo,
   Ref,
-  ReactElement
+  ReactElement,
 } from 'react'
 import {Button, Text} from '../'
 import {useAnchoredPosition} from '../hooks/useAnchoredPosition'
@@ -45,7 +45,7 @@ const testIds = {
   },
   get item() {
     return `${this.root}-list-item`
-  }
+  },
 }
 
 type ActionMenuProps = {
@@ -94,7 +94,7 @@ const _ActionMenuRoot = memo(
     open = false,
     selectionVariant = 'none',
     menuAlignment = 'start',
-    onSelect
+    onSelect,
   }: ActionMenuProps) => {
     const [showMenu, setShowMenu] = useState(open)
     const floatingElementRef = useRef<HTMLUListElement>(null)
@@ -118,7 +118,7 @@ const _ActionMenuRoot = memo(
         if (onSelect) onSelect(newValue)
         toggleMenu()
       },
-      [onSelect, toggleMenu]
+      [onSelect, toggleMenu],
     )
 
     const handleItemSelection = useCallback(
@@ -129,7 +129,7 @@ const _ActionMenuRoot = memo(
           anchorElementRef.current?.focus()
         }
       },
-      [handleOnSelect, toggleMenu, anchorElementRef]
+      [handleOnSelect, toggleMenu, anchorElementRef],
     )
 
     useEffect(() => {
@@ -137,7 +137,7 @@ const _ActionMenuRoot = memo(
         const floatingElement = floatingElementRef.current
 
         focusZone(floatingElementRef.current, {
-          bindKeys: FocusKeys.ArrowVertical
+          bindKeys: FocusKeys.ArrowVertical,
         })
 
         // enter selects item
@@ -197,9 +197,9 @@ const _ActionMenuRoot = memo(
         anchorElementRef,
         side: 'outside-bottom',
         align: menuAlignment,
-        allowOutOfBounds: true
+        allowOutOfBounds: true,
       },
-      [showMenu]
+      [showMenu],
     )
 
     const {Button: SelectButton, Overlay: SelectOverlay} = Children.toArray(children).reduce<{
@@ -214,7 +214,7 @@ const _ActionMenuRoot = memo(
             className: clsx(child.props.className, showMenu && styles['ActionMenu__button--active']),
             menuOpen: showMenu,
             disabled,
-            id: `${instanceId}-button`
+            id: `${instanceId}-button`,
           })
         } else if (child.type === ActionMenuOverlay) {
           acc['Overlay'] = cloneElement(child as ReactElement<ActionMenuOverlayProps>, {
@@ -222,18 +222,18 @@ const _ActionMenuRoot = memo(
             className: clsx(styles.ActionMenu__menu, position && styles['ActionMenu__menu--visible']),
             style: {
               top: `${position?.top ?? 0}px`,
-              left: `${position?.left ?? 0}px`
+              left: `${position?.left ?? 0}px`,
             },
             id: `${instanceId}-menu`,
             children: Children.map(child.props.children, item => {
               if (isValidElement(item)) {
                 return cloneElement(item as ReactElement<ActionMenuItemProps>, {
                   handler: handleItemSelection,
-                  type: selectionVariant
+                  type: selectionVariant,
                 })
               }
               return item
-            })
+            }),
           })
         }
       }
@@ -250,7 +250,7 @@ const _ActionMenuRoot = memo(
         {showMenu ? SelectOverlay : null}
       </div>
     )
-  }
+  },
 )
 
 type ActionMenuButtonProps = PropsWithChildren<Ref<HTMLButtonElement>> & {
@@ -280,7 +280,7 @@ const ActionMenuButton = forwardRef<HTMLButtonElement, ActionMenuButtonProps>(
         <span className={styles['ActionMenu__button-text']}>{children}</span>
       </Button>
     )
-  }
+  },
 )
 
 type ActionMenuItemProps = {
@@ -293,7 +293,7 @@ type ActionMenuItemProps = {
 
 const roleTypeMap = {
   none: 'menuitem',
-  single: 'menuitemradio'
+  single: 'menuitemradio',
 }
 
 const ActionMenuItem = ({
@@ -312,7 +312,7 @@ const ActionMenuItem = ({
       className={clsx(
         styles.ActionMenu__item,
         type === 'single' && styles[`ActionMenu__item--selection-type-${type}`],
-        className
+        className,
       )}
       // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
       role={roleTypeMap[type || 'single']}
@@ -364,7 +364,7 @@ const ActionMenuOverlay = forwardRef<HTMLUListElement, ActionMenuOverlayProps>(
         {children}
       </ul>
     )
-  }
+  },
 )
 
 /**
@@ -375,5 +375,5 @@ export const ActionMenu = Object.assign(_ActionMenuRoot, {
   Button: ActionMenuButton,
   Item: ActionMenuItem,
   Overlay: ActionMenuOverlay,
-  testIds
+  testIds,
 })

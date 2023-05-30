@@ -4,7 +4,7 @@ import {Text, TextSizes, TextWeights} from '.'
 
 export default {
   title: 'Components/Text',
-  component: Text
+  component: Text,
 } as ComponentMeta<typeof Text>
 
 const Template: ComponentStory<typeof Text> = args => <Text {...args} />
@@ -12,7 +12,7 @@ const Template: ComponentStory<typeof Text> = args => <Text {...args} />
 export const Default = Template.bind({})
 Default.args = {
   children: 'Text',
-  size: '400'
+  size: '400',
 }
 
 export const Scale: ComponentStory<typeof Text> = args => (
@@ -26,7 +26,7 @@ export const Scale: ComponentStory<typeof Text> = args => (
 )
 
 Scale.args = {
-  as: 'div'
+  as: 'div',
 }
 
 export const OverrideWeight = () => (
@@ -45,7 +45,7 @@ export const OverrideWeightResponsive = () => (
     weight={{
       narrow: 'extrabold',
       regular: 'semibold',
-      wide: 'normal'
+      wide: 'normal',
     }}
   >
     Responsive text weights

@@ -21,7 +21,7 @@ test.describe('Visual Comparison: Pillar', () => {
 
   test('Pillar / Icon (native)', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-pillar-features--with-icon-svg&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-pillar-features--with-icon-svg&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -41,7 +41,7 @@ test.describe('Visual Comparison: Pillar', () => {
 
   test('Pillar / Stacked Centered', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-pillar-features--stacked-centered&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-pillar-features--stacked-centered&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()

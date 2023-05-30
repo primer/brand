@@ -6,7 +6,7 @@ import {CopilotIcon, RocketIcon, GitBranchIcon, HeartIcon} from '@primer/octicon
 
 export default {
   title: 'Components/Card/features',
-  component: Card
+  component: Card,
 } as ComponentMeta<typeof Card>
 
 export const CTAText: ComponentStory<typeof Card> = () => {
@@ -134,7 +134,7 @@ const fixtureData: FixtureData = [
     icon: CopilotIcon,
     iconColor: 'indigo',
     heading: 'Collaboration is the key to DevOps success',
-    description: 'Everything you need to know about getting started with GitHub Actions.'
+    description: 'Everything you need to know about getting started with GitHub Actions.',
   },
   {
     href: 'https://github.com',
@@ -145,14 +145,16 @@ const fixtureData: FixtureData = [
       <React.Fragment>
         In a recent TechTarget study, 70 percent of organizations reported they had adopted DevOps.
       </React.Fragment>
-    )
+    ),
   },
   {
     href: 'https://github.com',
     icon: GitBranchIcon,
     iconColor: 'teal',
     heading: 'How healthy teams build better software',
-    description: <React.Fragment>Everything you need to know about getting started with GitHub Actions.</React.Fragment>
+    description: (
+      <React.Fragment>Everything you need to know about getting started with GitHub Actions.</React.Fragment>
+    ),
   },
   {
     href: 'https://github.com',
@@ -160,16 +162,16 @@ const fixtureData: FixtureData = [
     iconColor: 'pink',
     heading: 'GitHub sponsors',
     description:
-      'Financially support the open source projects your code depends. with a current GitHub for Startups partner.'
-  }
+      'Financially support the open source projects your code depends. with a current GitHub for Startups partner.',
+  },
 ]
 
 type FixtureData = {
   href: string
   icon?: React.ReactNode
-  iconColor?: typeof CardIconColors[number]
+  iconColor?: (typeof CardIconColors)[number]
   label?: string
-  labelColor?: typeof LabelColors[number]
+  labelColor?: (typeof LabelColors)[number]
   heading: string | React.ReactElement | React.ReactElement[]
   description: string | React.ReactElement | React.ReactElement[]
 }[]

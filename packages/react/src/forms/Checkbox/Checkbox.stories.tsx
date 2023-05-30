@@ -10,24 +10,24 @@ export default {
       description: 'checked field',
       control: {type: 'boolean'},
       table: {
-        category: 'Input'
-      }
+        category: 'Input',
+      },
     },
     disabled: {
       description: 'disabled field',
       control: {type: 'boolean'},
       table: {
-        category: 'Input'
-      }
+        category: 'Input',
+      },
     },
     indeterminate: {
       description: 'indeterminate field',
       control: {type: 'boolean'},
       table: {
-        category: 'Input'
-      }
-    }
-  }
+        category: 'Input',
+      },
+    },
+  },
 } as ComponentMeta<typeof Checkbox>
 
 export const Playground: ComponentStory<typeof Checkbox> = args => (

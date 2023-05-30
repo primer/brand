@@ -11,45 +11,45 @@ export default {
       mapping: ['medium', 'large'],
       control: {
         type: 'inline-radio',
-        labels: ['medium', 'large']
+        labels: ['medium', 'large'],
       },
       table: {
-        category: 'Input'
-      }
+        category: 'Input',
+      },
     },
     validationStatus: {
       options: [0, 1, 2], // iterator
       mapping: [undefined, 'error', 'success'], // values
       control: {
         type: 'inline-radio',
-        labels: ['undefined', 'error', 'success']
+        labels: ['undefined', 'error', 'success'],
       },
       table: {
-        category: 'Validation'
-      }
+        category: 'Validation',
+      },
     },
     fullWidth: {
       description: 'formerly called Block',
       control: {type: 'boolean'},
       table: {
-        category: 'Input'
-      }
+        category: 'Input',
+      },
     },
     disabled: {
       description: 'disabled field',
       control: {type: 'boolean'},
       table: {
-        category: 'Input'
-      }
+        category: 'Input',
+      },
     },
     required: {
       description: 'required field',
       control: {type: 'boolean'},
       table: {
-        category: 'Input'
-      }
-    }
-  }
+        category: 'Input',
+      },
+    },
+  },
 } as ComponentMeta<typeof Select>
 
 export const Playground: ComponentStory<typeof Select> = args => (

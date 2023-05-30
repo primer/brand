@@ -21,7 +21,7 @@ describe('ActionMenu', () => {
           <ActionMenu.Item value="Quote reply">Quote reply</ActionMenu.Item>
           <ActionMenu.Item value="Edit comment">Edit comment</ActionMenu.Item>
         </ActionMenu.Overlay>
-      </ActionMenu>
+      </ActionMenu>,
     )
     const results = await axe(container)
 
@@ -39,7 +39,7 @@ describe('ActionMenu', () => {
           <ActionMenu.Item value="Quote reply">Quote reply</ActionMenu.Item>
           <ActionMenu.Item value="Edit comment">Edit comment</ActionMenu.Item>
         </ActionMenu.Overlay>
-      </ActionMenu>
+      </ActionMenu>,
     )
     expect(getByText('Open menu')).toBeInTheDocument()
   })
@@ -55,7 +55,7 @@ describe('ActionMenu', () => {
           <ActionMenu.Item value="Quote reply">Quote reply</ActionMenu.Item>
           <ActionMenu.Item value="Edit comment">Edit comment</ActionMenu.Item>
         </ActionMenu.Overlay>
-      </ActionMenu>
+      </ActionMenu>,
     )
     expect(queryByLabelText('Actions')).toBe(null)
   })
@@ -71,7 +71,7 @@ describe('ActionMenu', () => {
           <ActionMenu.Item value="Quote reply">Quote reply</ActionMenu.Item>
           <ActionMenu.Item value="Edit comment">Edit comment</ActionMenu.Item>
         </ActionMenu.Overlay>
-      </ActionMenu>
+      </ActionMenu>,
     )
 
     const button = getByText('Open menu')
@@ -82,7 +82,7 @@ describe('ActionMenu', () => {
       () => {
         expect(queryByLabelText('Actions')).toBeInTheDocument()
       },
-      {timeout: 100}
+      {timeout: 100},
     )
 
     fireEvent.click(button)
@@ -91,7 +91,7 @@ describe('ActionMenu', () => {
       () => {
         expect(queryByLabelText('Actions')).not.toBeInTheDocument()
       },
-      {timeout: 100}
+      {timeout: 100},
     )
   })
 
@@ -106,7 +106,7 @@ describe('ActionMenu', () => {
           <ActionMenu.Item value="Quote reply">Quote reply</ActionMenu.Item>
           <ActionMenu.Item value="Edit comment">Edit comment</ActionMenu.Item>
         </ActionMenu.Overlay>
-      </ActionMenu>
+      </ActionMenu>,
     )
     const button = getByRole('button')
 
@@ -125,7 +125,7 @@ describe('ActionMenu', () => {
           <ActionMenu.Item value="Quote reply">Quote reply</ActionMenu.Item>
           <ActionMenu.Item value="Edit comment">Edit comment</ActionMenu.Item>
         </ActionMenu.Overlay>
-      </ActionMenu>
+      </ActionMenu>,
     )
 
     const button = getByRole('button')
@@ -144,7 +144,7 @@ describe('ActionMenu', () => {
           <ActionMenu.Item value="Quote reply">Quote reply</ActionMenu.Item>
           <ActionMenu.Item value="Edit comment">Edit comment</ActionMenu.Item>
         </ActionMenu.Overlay>
-      </ActionMenu>
+      </ActionMenu>,
     )
 
     const button = getByText('Open menu')
@@ -157,7 +157,7 @@ describe('ActionMenu', () => {
 
         expect(menu).toHaveAttribute('role', 'menu')
       },
-      {timeout: 100}
+      {timeout: 100},
     )
   })
 
@@ -172,7 +172,7 @@ describe('ActionMenu', () => {
           <ActionMenu.Item value="Quote reply">Quote reply</ActionMenu.Item>
           <ActionMenu.Item value="Edit comment">Edit comment</ActionMenu.Item>
         </ActionMenu.Overlay>
-      </ActionMenu>
+      </ActionMenu>,
     )
 
     const button = getByText('Open menu')
@@ -185,7 +185,7 @@ describe('ActionMenu', () => {
 
         expect(menuitem).toBeInTheDocument()
       },
-      {timeout: 100}
+      {timeout: 100},
     )
   })
 
@@ -202,7 +202,7 @@ describe('ActionMenu', () => {
           <ActionMenu.Item value="Quote reply">Quote reply</ActionMenu.Item>
           <ActionMenu.Item value="Edit comment">Edit comment</ActionMenu.Item>
         </ActionMenu.Overlay>
-      </ActionMenu>
+      </ActionMenu>,
     )
 
     const button = getByText('Open menu')
@@ -216,7 +216,7 @@ describe('ActionMenu', () => {
 
         expect(handler).toHaveBeenCalledWith('Copy link')
       },
-      {timeout: 100}
+      {timeout: 100},
     )
   })
 
@@ -264,7 +264,7 @@ describe('ActionMenu', () => {
           <ActionMenu.Item value="1">Option 1</ActionMenu.Item>
           <ActionMenu.Item value="2">Option 2</ActionMenu.Item>
         </ActionMenu.Overlay>
-      </ActionMenu>
+      </ActionMenu>,
     )
 
     const button = getByText('Open menu')
@@ -278,7 +278,7 @@ describe('ActionMenu', () => {
           expect(menu).toHaveAttribute('role', 'menu')
         }
       },
-      {timeout: 100}
+      {timeout: 100},
     )
 
     if (menu) {

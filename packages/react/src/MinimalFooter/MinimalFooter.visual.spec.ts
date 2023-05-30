@@ -9,7 +9,7 @@ import {test, expect} from '@playwright/test'
 test.describe('Visual Comparison: MinimalFooter', () => {
   test('MinimalFooter / Multiple Footnotes', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--multiple-footnotes&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--multiple-footnotes&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -17,16 +17,16 @@ test.describe('Visual Comparison: MinimalFooter', () => {
 
   test('MinimalFooter / Maximum Links (5)', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--maximum-links&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--maximum-links&viewMode=story',
     )
 
     await page.waitForTimeout(5000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('MinimalFooter / Button Links', async ({page}) => {
+  test('MinimalFooter / Mixed Buttons And Links', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--button-links&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--mixed-buttons-and-links&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -34,7 +34,7 @@ test.describe('Visual Comparison: MinimalFooter', () => {
 
   test('MinimalFooter / No Social Links', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--no-social-links&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--no-social-links&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -42,7 +42,7 @@ test.describe('Visual Comparison: MinimalFooter', () => {
 
   test('MinimalFooter / Filtered Social Links', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--filtered-social-links&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--filtered-social-links&viewMode=story',
     )
 
     await page.waitForTimeout(5000)
@@ -54,7 +54,7 @@ test.describe('Visual Comparison: MinimalFooter', () => {
     test.use({viewport: {width: 360, height: 800}})
     test('MinimalFooter / Default (Narrow viewport)', async ({page}) => {
       await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--default-narrow&viewMode=story'
+        'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--default-narrow&viewMode=story',
       )
 
       await page.waitForTimeout(5000)
@@ -63,7 +63,7 @@ test.describe('Visual Comparison: MinimalFooter', () => {
   })
   test('MinimalFooter / Dark Theme', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--dark-theme&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--dark-theme&viewMode=story',
     )
 
     await page.waitForTimeout(5000)

@@ -32,7 +32,7 @@ export interface FocusTrapHookSettings {
  */
 export function useFocusTrap(
   settings?: FocusTrapHookSettings,
-  dependencies: React.DependencyList = []
+  dependencies: React.DependencyList = [],
 ): {containerRef: React.RefObject<HTMLElement> | undefined; initialFocusRef: React.RefObject<HTMLElement> | undefined} {
   const containerRef = settings?.containerRef
   const initialFocusRef = settings?.initialFocusRef
@@ -70,7 +70,7 @@ export function useFocusTrap(
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [containerRef, initialFocusRef, disabled, ...dependencies]
+    [containerRef, initialFocusRef, disabled, ...dependencies],
   )
 
   return {containerRef, initialFocusRef}

@@ -27,7 +27,7 @@ test.describe('Visual Comparison: Label', () => {
 
   test('Label / Leading visual (native)', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-label-features--with-leading-visual-svg&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-label-features--with-leading-visual-svg&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -41,7 +41,7 @@ test.describe('Visual Comparison: Label', () => {
 
   test('Label / With an Octicon (large)', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-label-features--with-octicon-large&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-label-features--with-octicon-large&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -49,7 +49,7 @@ test.describe('Visual Comparison: Label', () => {
 
   test('Label / With an Octicon and color', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-label-features--with-octicon-color&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-label-features--with-octicon-color&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
