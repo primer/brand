@@ -10,45 +10,45 @@ export default {
   argTypes: {
     align: {
       defaultValue: 'start',
-      options: ['start', 'center']
+      options: ['start', 'center'],
     },
     name: {
       defaultValue: 'David Ross',
-      control: {type: 'text'}
+      control: {type: 'text'},
     },
     position: {
       defaultValue: 'Staff Security Engineer',
-      control: {type: 'text'}
+      control: {type: 'text'},
     },
     quote: {
       defaultValue:
         'GitHub helps us ensure that we have our security controls baked into our pipelines all the way from the first line of code we’re writing.',
-      control: {type: 'text'}
+      control: {type: 'text'},
     },
     size: {
       defaultValue: 'small',
-      options: ['small', 'large']
+      options: ['small', 'large'],
     },
     type: {
       options: ['avatar', 'logo'],
       control: {type: 'radio'},
-      defaultValue: 'avatar'
+      defaultValue: 'avatar',
     },
     width: {
       control: {
         type: 'range',
         min: 250,
         max: 1200,
-        step: 10
+        step: 10,
       },
-      defaultValue: 400
-    }
+      defaultValue: 400,
+    },
   },
   parameters: {
     viewport: {
-      viewports: INITIAL_VIEWPORTS
-    }
-  }
+      viewports: INITIAL_VIEWPORTS,
+    },
+  },
 } as ComponentMeta<typeof Testimonial>
 
 type PlaygroundProps = TestimonialProps & {
@@ -128,14 +128,14 @@ export const Duo = args => (
   <Stack
     direction={{
       narrow: 'vertical',
-      regular: 'horizontal'
+      regular: 'horizontal',
     }}
     gap="spacious"
     alignItems="flex-start"
     padding={{
       narrow: 'condensed',
       regular: 'normal',
-      wide: 'spacious'
+      wide: 'spacious',
     }}
   >
     <Testimonial {...args}>
@@ -166,25 +166,25 @@ export const Duo = args => (
 )
 Duo.parameters = {
   viewport: {
-    defaultViewport: 'ipad12p'
-  }
+    defaultViewport: 'ipad12p',
+  },
 }
 Duo.args = {
-  align: 'center'
+  align: 'center',
 }
 
 export const Trio = args => (
   <Stack
     direction={{
       narrow: 'vertical',
-      regular: 'horizontal'
+      regular: 'horizontal',
     }}
     gap="spacious"
     alignItems="flex-start"
     padding={{
       narrow: 'condensed',
       regular: 'normal',
-      wide: 'spacious'
+      wide: 'spacious',
     }}
   >
     <Testimonial {...args}>
@@ -225,7 +225,7 @@ export const Trio = args => (
   </Stack>
 )
 Trio.args = {
-  align: 'center'
+  align: 'center',
 }
 
 export const Large = args => (
@@ -244,5 +244,5 @@ export const Large = args => (
 )
 
 Large.args = {
-  size: 'large'
+  size: 'large',
 }

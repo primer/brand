@@ -10,9 +10,9 @@ export default {
   parameters: {
     layout: 'fullscreen',
     viewport: {
-      viewports: INITIAL_VIEWPORTS
-    }
-  }
+      viewports: INITIAL_VIEWPORTS,
+    },
+  },
 } as ComponentMeta<typeof MinimalFooter>
 
 export const MultipleFootnotes = () => (
@@ -106,8 +106,8 @@ export const DefaultNarrow = () => (
 )
 DefaultNarrow.parameters = {
   viewport: {
-    defaultViewport: 'iphonexr'
-  }
+    defaultViewport: 'iphonexr',
+  },
 }
 DefaultNarrow.storyName = 'Default (Narrow viewport)'
 

@@ -22,10 +22,10 @@ export const AnimationVariants = [
   'fill-in-top',
   'scale-in-right',
   'scale-in-left',
-  'fill-in-right'
+  'fill-in-right',
 ] as const
 
-type Variant = typeof AnimationVariants[number]
+type Variant = (typeof AnimationVariants)[number]
 
 type VariantAdvanced = {
   variant: Variant
@@ -77,27 +77,27 @@ function getIntersectionObserverOptions(animationOptions: AnimationProviderProps
     case 'bottom-of-screen':
       return {
         rootMargin: '0px 0px -10% 0px',
-        threshold: 0.4
+        threshold: 0.4,
       }
     case 'middle-of-screen':
       return {
         rootMargin: '0px 0px -30% 0px',
-        threshold: 0.4
+        threshold: 0.4,
       }
     case 'about-to-leave':
       return {
         rootMargin: '0px 0px -100% 0px',
-        threshold: 0.4
+        threshold: 0.4,
       }
     default:
       return typeof visibilityOptions === 'number'
         ? {
             rootMargin: '0px',
-            threshold: visibilityOptions / 100
+            threshold: visibilityOptions / 100,
           }
         : {
             rootMargin: '0px',
-            threshold: 0.4
+            threshold: 0.4,
           }
   }
 }
@@ -109,14 +109,14 @@ export function AnimationProvider({
   visibilityOptions = 'bottom-of-screen',
   runOnce = false,
   autoStaggerChildren = true,
-  staggerDelayIncrement = 100
+  staggerDelayIncrement = 100,
 }: PropsWithChildren<AnimationProviderProps>) {
   const uniqueId = useId()
   const [animationContext, setAnimationContext] = useState<AnimationProviderProps>({
     disableAnimations,
     animationTrigger,
     visibilityOptions,
-    runOnce
+    runOnce,
   })
 
   useEffect(() => {
@@ -126,7 +126,7 @@ export function AnimationProvider({
       setAnimationContext({
         disableAnimations: true,
         animationTrigger,
-        visibilityOptions
+        visibilityOptions,
       })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -167,8 +167,8 @@ export function AnimationProvider({
         getIntersectionObserverOptions({
           disableAnimations,
           animationTrigger,
-          visibilityOptions
-        })
+          visibilityOptions,
+        }),
       )
 
       const elements = Array.from(document.querySelectorAll(`.${styles.Animation}`))

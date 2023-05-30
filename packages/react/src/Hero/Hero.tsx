@@ -30,9 +30,9 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
             }
             return acc
           },
-          {HeroActions: [], HeroChildren: []}
+          {HeroActions: [], HeroChildren: []},
         ),
-      [children]
+      [children],
     )
 
     return (
@@ -46,7 +46,7 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
         <div className={styles['Hero-actions']}>{HeroActions}</div>
       </section>
     )
-  }
+  },
 )
 
 type HeroHeadingProps = Omit<HeadingProps, 'as'>
@@ -60,7 +60,7 @@ const HeroHeading = forwardRef<HTMLHeadingElement, HeroHeadingProps>(({children,
 })
 
 type HeroDescriptionProps = {
-  size?: typeof TextSizes[number]
+  size?: (typeof TextSizes)[number]
   weight?: TextWeightVariants | ResponsiveWeightMap
 } & BaseProps<HTMLParagraphElement>
 
@@ -89,7 +89,7 @@ const HeroPrimaryAction = forwardRef<HTMLAnchorElement | HTMLButtonElement, Prop
         {children}
       </Button>
     )
-  }
+  },
 )
 
 const HeroSecondaryAction = forwardRef<HTMLAnchorElement | HTMLButtonElement, PropsWithChildren<HeroActions>>(
@@ -99,12 +99,12 @@ const HeroSecondaryAction = forwardRef<HTMLAnchorElement | HTMLButtonElement, Pr
         {children}
       </Button>
     )
-  }
+  },
 )
 
 export const Hero = Object.assign(Root, {
   Heading: HeroHeading,
   Description: HeroDescription,
   PrimaryAction: HeroPrimaryAction,
-  SecondaryAction: HeroSecondaryAction
+  SecondaryAction: HeroSecondaryAction,
 })

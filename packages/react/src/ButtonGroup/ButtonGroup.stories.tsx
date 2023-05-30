@@ -9,29 +9,29 @@ export default {
   subcomponents: {Button},
   args: {
     buttonSize: 'medium',
-    buttonsAs: 'button'
+    buttonsAs: 'button',
   },
   argTypes: {
     buttonSize: {
       description: 'The size of the button elements',
       control: {
         type: 'radio',
-        options: ['medium', 'large']
-      }
+        options: ['medium', 'large'],
+      },
     },
     buttonsAs: {
       description: 'The HTML element the button is rendered as',
       control: {
         type: 'radio',
-        options: ['button', 'a']
-      }
+        options: ['button', 'a'],
+      },
     },
     children: {
       table: {
-        disable: true
-      }
-    }
-  }
+        disable: true,
+      },
+    },
+  },
 } as ComponentMeta<typeof ButtonGroup>
 
 const Template: ComponentStory<typeof ButtonGroup> = args => (
@@ -53,10 +53,10 @@ export const SingleButtonGroup = SingleButtonTemplate.bind({})
 
 export const LargeButtonGroup = Template.bind({})
 LargeButtonGroup.args = {
-  buttonSize: 'large'
+  buttonSize: 'large',
 }
 
 export const LinkButtonGroup = Template.bind({})
 LinkButtonGroup.args = {
-  buttonsAs: 'a'
+  buttonsAs: 'a',
 }

@@ -27,7 +27,7 @@ test.describe('Visual Comparison: Text', () => {
 
   test('Text / Override Weight Responsive', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-text--override-weight-responsive&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-text--override-weight-responsive&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()

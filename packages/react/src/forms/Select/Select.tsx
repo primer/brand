@@ -37,7 +37,7 @@ const _SelectRoot = (
     validationStatus,
     ...rest
   }: SelectProps,
-  ref
+  ref,
 ) => {
   return (
     <span
@@ -45,7 +45,7 @@ const _SelectRoot = (
         styles['Select-wrapper'],
         fullWidth && styles['Select-wrapper--fullWidth'],
         validationStatus && styles[`Select--${validationStatus}`],
-        disabled && styles[`Select-wrapper--disabled`]
+        disabled && styles[`Select-wrapper--disabled`],
       )}
     >
       <select
@@ -55,7 +55,7 @@ const _SelectRoot = (
           'Select',
           styles[`Select--${size}`],
           fullWidth && styles['Select--fullWidth'],
-          className
+          className,
         )}
         disabled={disabled}
         placeholder={placeholder}
@@ -119,5 +119,5 @@ const ArrowIndicator = ({className}: PropsWithChildren<ArrowIndicatorProps>) => 
  */
 export const Select = Object.assign(SelectRoot, {
   Option,
-  OptGroup
+  OptGroup,
 })

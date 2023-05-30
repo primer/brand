@@ -6,7 +6,7 @@ import {Image} from './Image'
 
 export default {
   title: 'Components/Image/Features',
-  component: Image
+  component: Image,
 } as ComponentMeta<typeof Image>
 
 export const CustomPictureAspectRatio: ComponentStory<typeof Image> = () => (

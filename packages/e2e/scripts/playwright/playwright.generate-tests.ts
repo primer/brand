@@ -63,7 +63,7 @@
     'components-actionmenu-features--open-by-default': 2000, // for the menu to open
     'components-actionmenu-features--longer-lists-open': 2000, // for the menu to open
     'components-actionmenu-features--menu-alignment': 2000, // for the menu to open
-    'components-actionmenu-features--disabled-item': 2000 // flakey test
+    'components-actionmenu-features--disabled-item': 2000, // flakey test
   }
 
   /**
@@ -79,7 +79,7 @@
     'components-animations-examples--progress-bars', // animation only
     'components-animations-examples--logo-bar', // animation only
     'components-animations-examples--timeline-bar', // animation only
-    'components-animations--playground' // animation only
+    'components-animations--playground', // animation only
   ]
 
   const categorisedStories = Object.keys(stories as Stories).reduce((acc, key) => {
@@ -105,7 +105,7 @@
       id,
       groupName,
       storyName,
-      timeout: waitForTimeoutLookup[key] ? waitForTimeoutLookup[key] : undefined
+      timeout: waitForTimeoutLookup[key] ? waitForTimeoutLookup[key] : undefined,
     })
 
     return acc
@@ -129,7 +129,7 @@
   
       ${componentStories.reduce((acc, {id, storyName, groupName, timeout}) => {
         const requiresMobileViewport = validNarrowVieportNames.some(viewportName =>
-          storyName.toLowerCase().includes(viewportName)
+          storyName.toLowerCase().includes(viewportName),
         )
 
         const requiresTabletViewport = storyName.toLowerCase().includes('tablet')
@@ -178,7 +178,7 @@
 
     try {
       fs.writeFileSync(dest, final, {
-        encoding: 'utf8'
+        encoding: 'utf8',
       })
       // eslint-disable-next-line no-console
       console.log('Wrote:', dest)

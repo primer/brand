@@ -75,9 +75,9 @@ describe('Avatar', () => {
             src={mockImageSrc}
             alt={mockAltText}
             size={{
-              [breakpoint]: size
+              [breakpoint]: size,
             }}
-          />
+          />,
         )
         const avatarEl = getByTestId(`avatar-${breakpoint}-${size}`)
 

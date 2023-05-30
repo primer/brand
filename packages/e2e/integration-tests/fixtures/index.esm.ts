@@ -15,5 +15,5 @@ export {
   SubdomainNavBar,
   ComparisonTable,
   Stack,
-  ButtonGroup
+  ButtonGroup,
 } from '@primer/react-brand'

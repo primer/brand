@@ -6,7 +6,7 @@ import {FormControl, TextInput} from '../index'
 
 export default {
   title: 'Components/CTAForm/Features',
-  component: CTAForm
+  component: CTAForm,
 } as ComponentMeta<typeof CTAForm>
 
 export const WithNoConfirm: ComponentStory<typeof CTAForm> = _args => (

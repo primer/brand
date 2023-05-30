@@ -6,7 +6,7 @@ import {FormControl, TextInput, Checkbox, Text, InlineLink} from '../index'
 
 export default {
   title: 'Components/CTAForm',
-  component: CTAForm
+  component: CTAForm,
 } as ComponentMeta<typeof CTAForm>
 
 export const Playground: ComponentStory<typeof CTAForm> = _args => (

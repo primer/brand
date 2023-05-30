@@ -59,6 +59,6 @@ export const useAnimation = (animateProps?: AnimateProps): {classes: string; sty
 
   return {
     classes: animationClasses,
-    styles: animationStyles
+    styles: animationStyles,
   }
 }

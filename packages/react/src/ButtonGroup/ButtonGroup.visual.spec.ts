@@ -15,7 +15,7 @@ test.describe('Visual Comparison: ButtonGroup', () => {
 
   test('ButtonGroup / Single Button Group', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-buttongroup--single-button-group&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-buttongroup--single-button-group&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -23,7 +23,7 @@ test.describe('Visual Comparison: ButtonGroup', () => {
 
   test('ButtonGroup / Large Button Group', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-buttongroup--large-button-group&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-buttongroup--large-button-group&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -31,7 +31,7 @@ test.describe('Visual Comparison: ButtonGroup', () => {
 
   test('ButtonGroup / Link Button Group', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-buttongroup--link-button-group&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-buttongroup--link-button-group&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()

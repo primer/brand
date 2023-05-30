@@ -7,7 +7,7 @@ export function useKeyboardEscape(handler) {
         handler()
       }
     },
-    [handler]
+    [handler],
   )
 
   useEffect(() => {

@@ -50,7 +50,7 @@ const _Checkbox = (
     value,
     ...rest
   }: CheckboxProps,
-  ref
+  ref,
 ): ReactElement => {
   const inputRef: RefObject<HTMLInputElement> | null = useRef<HTMLInputElement>(ref || null)
   const uniqueId = useId(id)
@@ -65,7 +65,6 @@ const _Checkbox = (
     <span className={styles['Checkbox-wrapper']}>
       <input
         id={uniqueId}
-        aria-checked={indeterminate ? 'mixed' : checked ? 'true' : 'false'}
         aria-invalid={validationStatus === 'error' ? 'true' : 'false'}
         aria-required={required ? 'true' : 'false'}
         checked={indeterminate ? false : checked}

@@ -5,7 +5,7 @@ import {Stack, FormControl} from '../../'
 
 export default {
   title: 'Components/Forms/Textarea/Features',
-  component: Textarea
+  component: Textarea,
 } as ComponentMeta<typeof Textarea>
 
 export const Validation: ComponentStory<typeof Textarea> = () => (

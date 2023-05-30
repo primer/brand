@@ -5,7 +5,7 @@ import {Text, InlineLink} from '..'
 
 export default {
   title: 'Components/FAQ',
-  component: FAQ
+  component: FAQ,
 } as ComponentMeta<typeof FAQ>
 
 export const Default = () => (

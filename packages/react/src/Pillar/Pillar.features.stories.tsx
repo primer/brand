@@ -6,7 +6,7 @@ import {CopilotIcon, RocketIcon, GitBranchIcon} from '@primer/octicons-react'
 
 export default {
   title: 'Components/Pillar/features',
-  component: Pillar
+  component: Pillar,
 } as ComponentMeta<typeof Pillar>
 
 export const Icon: ComponentStory<typeof Pillar> = () => {
@@ -100,7 +100,7 @@ const fixtureData: FixtureData = [
     icon: CopilotIcon,
     iconColor: PillarIconColors[5],
     heading: 'Collaboration is the key to DevOps success',
-    description: 'Everything you need to know about getting started with GitHub Actions.'
+    description: 'Everything you need to know about getting started with GitHub Actions.',
   },
   {
     href: 'https://github.com',
@@ -112,21 +112,23 @@ const fixtureData: FixtureData = [
         In a recent TechTarget study, 70 percent of organizations reported they had adopted DevOps. Must be associated
         with a current GitHub for Startups partner.
       </React.Fragment>
-    )
+    ),
   },
   {
     href: 'https://github.com',
     icon: GitBranchIcon,
     iconColor: PillarIconColors[5],
     heading: 'How healthy teams build better software',
-    description: <React.Fragment>Everything you need to know about getting started with GitHub Actions.</React.Fragment>
-  }
+    description: (
+      <React.Fragment>Everything you need to know about getting started with GitHub Actions.</React.Fragment>
+    ),
+  },
 ]
 
 type FixtureData = {
   href: string
   icon?: React.ReactNode
-  iconColor?: typeof PillarIconColors[number]
+  iconColor?: (typeof PillarIconColors)[number]
   heading: string | React.ReactElement | React.ReactElement[]
   description: string | React.ReactElement | React.ReactElement[]
 }[]

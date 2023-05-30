@@ -51,7 +51,7 @@ test.describe('Visual Comparison: Grid', () => {
 
   test('Grid / Responsive Min Width', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-grid-features--responsive-min-width&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-grid-features--responsive-min-width&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()

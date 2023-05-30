@@ -15,7 +15,7 @@ test.describe('Visual Comparison: Hero', () => {
 
   test('Hero / Without Description', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-hero-features--without-description&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--without-description&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -23,7 +23,7 @@ test.describe('Visual Comparison: Hero', () => {
 
   test('Hero / With Secondary Action', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-secondary-action&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-secondary-action&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -43,7 +43,7 @@ test.describe('Visual Comparison: Hero', () => {
 
   test('Hero / With Custom Classnames', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-custom-classnames&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-custom-classnames&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -51,7 +51,7 @@ test.describe('Visual Comparison: Hero', () => {
 
   test('Hero / With custom icon and variant', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-custom-icon-and-variant&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-custom-icon-and-variant&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -72,7 +72,7 @@ test.describe('Visual Comparison: Hero', () => {
     test.use({viewport: {width: 360, height: 800}})
     test('Hero / Narrow View Centered', async ({page}) => {
       await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-hero-features--narrow-view-centered&viewMode=story'
+        'http://localhost:6006/iframe.html?args=&id=components-hero-features--narrow-view-centered&viewMode=story',
       )
 
       expect(await page.screenshot()).toMatchSnapshot()

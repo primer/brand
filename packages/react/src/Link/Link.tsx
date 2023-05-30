@@ -36,7 +36,7 @@ export function Link({
 
   const sizeMap = {
     medium: '300',
-    large: '400'
+    large: '400',
   } as const
 
   const handleMouseEnter = useCallback(
@@ -44,7 +44,7 @@ export function Link({
       setIsHovered(!isHovered)
       onMouseEnter?.(event)
     },
-    [onMouseEnter, isHovered]
+    [onMouseEnter, isHovered],
   )
 
   const handleMouseLeave = useCallback(
@@ -52,7 +52,7 @@ export function Link({
       setIsHovered(!isHovered)
       onMouseLeave?.(event)
     },
-    [onMouseLeave, isHovered]
+    [onMouseLeave, isHovered],
   )
 
   const handleOnFocus = useCallback(
@@ -60,7 +60,7 @@ export function Link({
       setIsFocused(!isFocused)
       onFocus?.(event)
     },
-    [onFocus, isFocused]
+    [onFocus, isFocused],
   )
 
   const handleOnBlur = useCallback(
@@ -68,7 +68,7 @@ export function Link({
       setIsFocused(!isFocused)
       onBlur?.(event)
     },
-    [onBlur, isFocused]
+    [onBlur, isFocused],
   )
 
   return (
