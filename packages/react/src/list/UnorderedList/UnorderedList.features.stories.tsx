@@ -5,7 +5,7 @@ import {UnorderedList} from '.'
 
 export default {
   title: 'Components/UnorderedList/Features',
-  component: UnorderedList
+  component: UnorderedList,
 } as ComponentMeta<typeof UnorderedList>
 
 export const CheckList = () => (

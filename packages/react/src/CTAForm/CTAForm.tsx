@@ -7,7 +7,7 @@ import styles from './CTAForm.module.css'
 const Root = forwardRef(
   ({className, ...rest}: React.FormHTMLAttributes<HTMLFormElement>, ref: Ref<HTMLFormElement>) => {
     return <form ref={ref} className={clsx(styles.CTAForm, className)} {...rest} />
-  }
+  },
 )
 
 const _Input = forwardRef(
@@ -19,7 +19,7 @@ const _Input = forwardRef(
             fullWidth: true,
             size: 'large',
             required: true,
-            ...child.props
+            ...child.props,
           })
         }
       }
@@ -31,7 +31,7 @@ const _Input = forwardRef(
         {transformedChildren}
       </div>
     )
-  }
+  },
 )
 
 const _Confirm = forwardRef(
@@ -42,7 +42,7 @@ const _Confirm = forwardRef(
           return React.cloneElement(child, {
             fullWidth: true,
             size: 'large',
-            ...child.props
+            ...child.props,
           })
         }
       }
@@ -53,13 +53,13 @@ const _Confirm = forwardRef(
         {transformedChildren}
       </div>
     )
-  }
+  },
 )
 
 const _Action = forwardRef(
   (
     {className, children, ...rest}: Omit<React.ComponentProps<typeof Button>, 'variant' | 'type'>,
-    ref: Ref<HTMLButtonElement>
+    ref: Ref<HTMLButtonElement>,
   ) => {
     return (
       <Button
@@ -72,7 +72,7 @@ const _Action = forwardRef(
         {children}
       </Button>
     )
-  }
+  },
 )
 
 export const CTAForm = Object.assign(Root, {Input: _Input, Confirm: _Confirm, Action: _Action})

@@ -10,7 +10,7 @@ import stylesheet from '~/tailwind.css'
 export const links: LinksFunction = () => [
   {rel: 'stylesheet', href: stylesheet},
   {rel: 'stylesheet', href: primerBrandStyles},
-  ...(cssBundleHref ? [{rel: 'stylesheet', href: cssBundleHref}] : [])
+  ...(cssBundleHref ? [{rel: 'stylesheet', href: cssBundleHref}] : []),
 ]
 
 export const loader = async ({request}: LoaderArgs) => {

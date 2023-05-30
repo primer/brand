@@ -5,7 +5,7 @@ import {Stack} from '../Stack'
 
 export default {
   title: 'Components/Avatar/Features',
-  component: Avatar
+  component: Avatar,
 } as ComponentMeta<typeof Avatar>
 
 export const Sizes = () => (

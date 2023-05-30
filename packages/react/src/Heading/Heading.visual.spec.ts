@@ -33,7 +33,7 @@ test.describe('Visual Comparison: Heading', () => {
 
   test('Heading / Override Weight Responsive', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-heading--override-weight-responsive&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-heading--override-weight-responsive&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: Heading', () => {
 
   test('Heading / Override Stretch Responsive', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-heading--override-stretch-responsive&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-heading--override-stretch-responsive&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -55,7 +55,7 @@ test.describe('Visual Comparison: Heading', () => {
 
   test('Heading / Override Letter Spacing', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-heading--override-letter-spacing&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-heading--override-letter-spacing&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()

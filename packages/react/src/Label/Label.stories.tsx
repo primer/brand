@@ -8,7 +8,7 @@ export default {
   args: {
     color: defaultLabelColor,
     size: defaultLabelSize,
-    children: 'Label'
+    children: 'Label',
   },
   // overriding default type inference for args with more useful control types
   argTypes: {
@@ -16,25 +16,25 @@ export default {
       description: 'Color of Label',
       control: {
         type: 'inline-radio',
-        options: [...LabelColors]
-      }
+        options: [...LabelColors],
+      },
     },
     size: {
       description: 'Size of Label',
       control: {
         type: 'inline-radio',
-        options: [...LabelSizes]
-      }
+        options: [...LabelSizes],
+      },
     },
     children: {
       name: 'children',
       description: 'Label label`.',
       type: {name: 'string', required: true},
       control: {
-        type: 'text'
-      }
-    }
-  }
+        type: 'text',
+      },
+    },
+  },
 } as ComponentMeta<typeof Label>
 
 const Template: ComponentStory<typeof Label> = args => <Label {...args} />

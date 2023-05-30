@@ -5,7 +5,7 @@ import {CopilotIcon} from '@primer/octicons-react'
 
 export default {
   title: 'Components/Label/Features',
-  component: Label
+  component: Label,
 } as ComponentMeta<typeof Label>
 
 export const Small = () => <Label size="small">Small</Label>

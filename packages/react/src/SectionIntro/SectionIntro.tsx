@@ -28,7 +28,7 @@ const Root = forwardRef<HTMLHeadingElement, PropsWithChildren<SectionIntroProps>
         {children}
       </header>
     )
-  }
+  },
 )
 
 type SectionIntroHeadingProps = BaseProps<HTMLHeadingElement> & HeadingProps
@@ -44,14 +44,14 @@ const _Heading = forwardRef(
       children,
       ...props
     }: PropsWithChildren<SectionIntroHeadingProps>,
-    ref: Ref<HTMLHeadingElement>
+    ref: Ref<HTMLHeadingElement>,
   ) => {
     return (
       <Heading ref={ref} className={clsx(styles[`SectionIntro-heading`], className)} size={size} as={as} {...props}>
         {children}
       </Heading>
     )
-  }
+  },
 )
 
 type SectionIntroDescriptionProps = BaseProps<HTMLParagraphElement> & {
@@ -65,7 +65,7 @@ const _Description = forwardRef(
         {children}
       </Text>
     )
-  }
+  },
 )
 
 type SectionIntroLinkProps = Omit<LinkProps, 'size'> & BaseProps<HTMLAnchorElement>

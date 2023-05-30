@@ -29,12 +29,12 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
 
   StyleDictionary.registerFormat({
     name: 'css/color-mode-attributes',
-    formatter: colorModeFormat
+    formatter: colorModeFormat,
   })
 
   StyleDictionary.registerFormat({
     name: 'css/responsive-media-query',
-    formatter: mediaQueryFormat
+    formatter: mediaQueryFormat,
   })
 
   /**
@@ -67,26 +67,26 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
         return `${floatValue / baseFontSize}rem`
       }
       return token.value
-    }
+    },
   })
 
   //build most tokens
   buildPrimitives({
     source: [`tokens/**/*.json`, `!tokens/**/size-*.json`],
     namespace,
-    outputPath
+    outputPath,
   })
 
   buildPrimitives({
     source: [`tokens/functional/size/size-fine.json`, `tokens/base/size/size.json`], //build size fine
     namespace,
-    outputPath
+    outputPath,
   })
 
   buildPrimitives({
     source: [`tokens/functional/size/size-coarse.json`, `tokens/base/size/size.json`], //build size coarse
     namespace,
-    outputPath
+    outputPath,
   })
 
   buildPrimitives({
@@ -103,12 +103,12 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
             format: `css/touch-target-desktop`,
             filter: token => token.filePath.includes('fine'),
             options: {
-              outputReferences: true
-            }
-          }
-        ]
-      }
-    }
+              outputReferences: true,
+            },
+          },
+        ],
+      },
+    },
   })
 
   buildPrimitives({
@@ -124,19 +124,19 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
             format: `css/touch-target-mobile`,
             filter: token => token.filePath.includes('coarse'),
             options: {
-              outputReferences: true
-            }
-          }
-        ]
-      }
-    }
+              outputReferences: true,
+            },
+          },
+        ],
+      },
+    },
   })
 
   const filesForResponsiveTokens = [
     `tokens/base/typography/typography.json`,
     `tokens/functional/typography/typography-responsive.json`,
     `tokens/functional/components/grid/grid.json`,
-    `tokens/functional/components/river/river.json`
+    `tokens/functional/components/river/river.json`,
   ]
 
   for (const path of filesForResponsiveTokens) {
@@ -154,12 +154,12 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
               destination: `${sansExtension}.css`,
               format: `css/responsive-media-query`,
               options: {
-                outputReferences: true
-              }
-            }
-          ]
-        }
-      }
+                outputReferences: true,
+              },
+            },
+          ],
+        },
+      },
     })
   }
 
@@ -176,12 +176,12 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
             format: `css/color-mode-attributes`,
             options: {
               outputReferences: false,
-              containsRawHSL: true
-            }
-          }
-        ]
-      }
-    }
+              containsRawHSL: true,
+            },
+          },
+        ],
+      },
+    },
   })
 
   const filesForColorModes = [
@@ -200,7 +200,7 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
     `tokens/functional/components/cta-banner/colors.js`,
     `tokens/functional/components/footer/colors.json`,
     `tokens/functional/components/action-menu/colors.js`,
-    `tokens/functional/components/grid/colors.json`
+    `tokens/functional/components/grid/colors.json`,
   ]
 
   for (const path of filesForColorModes) {
@@ -219,12 +219,12 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
               format: `css/color-mode-attributes`,
               options: {
                 outputReferences: false,
-                containsRawHSL: false
-              }
-            }
-          ]
-        }
-      }
+                containsRawHSL: false,
+              },
+            },
+          ],
+        },
+      },
     })
   }
 

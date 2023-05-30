@@ -27,7 +27,7 @@ export function Animate({animate, as = 'div', children, className, style, ...res
       className={clsx(animationClasses, className)}
       style={{
         ...animationInlineStyles,
-        ...style
+        ...style,
       }}
       {...(rest as HTMLAttributes<HTMLElement>)}
     >

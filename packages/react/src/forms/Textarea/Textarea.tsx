@@ -46,7 +46,7 @@ const testIds = {
   root: 'Textarea',
   get outerContainer() {
     return `${this.root}-outer-container`
-  }
+  },
 }
 
 const _Textarea = (
@@ -66,7 +66,7 @@ const _Textarea = (
     rows = DEFAULT_TEXTAREA_ROWS,
     ...rest
   }: TextareaProps,
-  ref
+  ref,
 ) => {
   return (
     <span
@@ -76,7 +76,7 @@ const _Textarea = (
         invisible && styles['Textarea-wrapper--invisible'],
         disabled && styles['Textarea-wrapper--disabled'],
         monospace && styles['Textarea-wrapper--monospace'],
-        validationStatus && styles[`Textarea-wrapper--${validationStatus}`]
+        validationStatus && styles[`Textarea-wrapper--${validationStatus}`],
       )}
       data-testid={testIds.outerContainer}
     >
@@ -89,7 +89,7 @@ const _Textarea = (
           styles[`Textarea-resize--${resize}`],
           fullWidth && styles['Textarea--fullWidth'],
           validationStatus && styles[`Textarea--${validationStatus}`],
-          className
+          className,
         )}
         placeholder={placeholder}
         disabled={disabled}
