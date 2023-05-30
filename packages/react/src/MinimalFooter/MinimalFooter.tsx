@@ -211,7 +211,7 @@ function SocialLogomarks({socialLinks, logoHref}: SocialLogomarksProps) {
       url: 'https://www.tiktok.com/@github',
       icon: 'https://github.githubassets.com/images/modules/site/icons/footer/tiktok.svg',
       iconWidth: 18,
-      iconHeight: 18
+      iconHeight: 18,
     },
     {
       name: 'instagram',
@@ -219,7 +219,7 @@ function SocialLogomarks({socialLinks, logoHref}: SocialLogomarksProps) {
       url: 'https://www.instagram.com/github/',
       icon: 'https://github.githubassets.com/images/modules/site/icons/footer/instagram.svg',
       iconWidth: 24,
-      iconHeight: 24
+      iconHeight: 24,
     },
   ]
 
