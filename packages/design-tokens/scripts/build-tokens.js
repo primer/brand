@@ -192,6 +192,7 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
     `tokens/functional/components/card/colors.json`,
     `tokens/functional/components/pillar/colors.json`,
     `tokens/functional/components/label/colors.json`,
+    `tokens/functional/components/link/colors.json`,
     `tokens/functional/components/inline-link/colors.json`,
     `tokens/functional/components/control/colors.js`,
     `tokens/functional/components/subdomain-nav-bar/colors.js`,
