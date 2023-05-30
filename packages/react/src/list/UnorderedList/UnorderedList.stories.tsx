@@ -1,4 +1,4 @@
-import {ComponentMeta} from '@storybook/react'
+import {Meta} from '@storybook/react'
 import React from 'react'
 import {UnorderedList} from '.'
 
@@ -39,7 +39,7 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof UnorderedList>
+} as Meta<typeof UnorderedList>
 
 export const Default = ({data, ...args}: {data: string[]}) => (
   <UnorderedList {...args}>

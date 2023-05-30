@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentStory, ComponentMeta} from '@storybook/react'
+import {StoryFn, Meta} from '@storybook/react'
 import {FAQ} from '.'
 import {Text, InlineLink} from '..'
 import {Container} from '../component-helpers'
@@ -20,7 +20,7 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof FAQ>
+} as Meta<typeof FAQ>
 
 type FixtureData = {
   question: string
@@ -96,7 +96,7 @@ const fixtureData: FixtureData = [
   },
 ]
 
-export const AllClosed: ComponentStory<typeof FAQ> = () => {
+export const AllClosed: StoryFn<typeof FAQ> = () => {
   return (
     <Container>
       <FAQ>
@@ -116,7 +116,7 @@ export const AllClosed: ComponentStory<typeof FAQ> = () => {
   )
 }
 
-export const AllOpen: ComponentStory<typeof FAQ> = () => {
+export const AllOpen: StoryFn<typeof FAQ> = () => {
   return (
     <Container>
       <FAQ>
@@ -141,7 +141,7 @@ AllOpen.parameters = {
   },
 }
 
-export const HeadingLeftAligned: ComponentStory<typeof FAQ> = () => {
+export const HeadingLeftAligned: StoryFn<typeof FAQ> = () => {
   return (
     <Container>
       <FAQ>
@@ -161,7 +161,7 @@ export const HeadingLeftAligned: ComponentStory<typeof FAQ> = () => {
   )
 }
 
-export const Groups: ComponentStory<typeof FAQ> = () => {
+export const Groups: StoryFn<typeof FAQ> = () => {
   return (
     <Container>
       <FAQ>
@@ -182,7 +182,7 @@ export const Groups: ComponentStory<typeof FAQ> = () => {
   )
 }
 
-export const DynamicDataExample: ComponentStory<typeof FAQ> = () => {
+export const DynamicDataExample: StoryFn<typeof FAQ> = () => {
   const faqs = [
     {
       title: 'Who can apply?',

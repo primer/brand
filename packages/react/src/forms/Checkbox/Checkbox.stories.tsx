@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentMeta, ComponentStory} from '@storybook/react'
+import {Meta, StoryFn} from '@storybook/react'
 import {Checkbox} from '.'
 
 export default {
@@ -28,11 +28,9 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Checkbox>
+} as Meta<typeof Checkbox>
 
-export const Playground: ComponentStory<typeof Checkbox> = args => (
-  <Checkbox aria-label="Standalone checkbox" {...args} />
-)
+export const Playground: StoryFn<typeof Checkbox> = args => <Checkbox aria-label="Standalone checkbox" {...args} />
 
 Playground.storyName = 'Checkbox - Playground'
 

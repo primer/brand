@@ -1,4 +1,4 @@
-import {ComponentMeta} from '@storybook/react'
+import {Meta} from '@storybook/react'
 import React from 'react'
 import {userEvent, within, waitFor} from '@storybook/testing-library'
 import {expect} from '@storybook/jest'
@@ -11,7 +11,7 @@ import styles from './ActionMenu.stories.module.css'
 export default {
   title: 'Components/ActionMenu/Features',
   component: ActionMenu,
-} as ComponentMeta<typeof ActionMenu>
+} as Meta<typeof ActionMenu>
 
 export const SingleSelection = () => {
   const [selectedItem, setSelectedItem] = React.useState('Copilot')

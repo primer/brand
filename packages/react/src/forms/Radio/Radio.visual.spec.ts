@@ -12,6 +12,7 @@ test.describe('Visual Comparison: Radio', () => {
       'http://localhost:6006/iframe.html?args=&id=components-forms-radio-features--with-form-control&viewMode=story',
     )
 
+    await page.waitForTimeout(200)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -20,6 +21,7 @@ test.describe('Visual Comparison: Radio', () => {
       'http://localhost:6006/iframe.html?args=&id=components-forms-radio-features--inactive&viewMode=story',
     )
 
+    await page.waitForTimeout(200)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -28,12 +30,14 @@ test.describe('Visual Comparison: Radio', () => {
       'http://localhost:6006/iframe.html?args=&id=components-forms-radio-features--on-custom-background-color&viewMode=story',
     )
 
+    await page.waitForTimeout(200)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Radio / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-forms-radio--default&viewMode=story')
 
+    await page.waitForTimeout(200)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 })

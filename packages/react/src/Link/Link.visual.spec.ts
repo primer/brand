@@ -10,12 +10,14 @@ test.describe('Visual Comparison: Link', () => {
   test('Link / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-link--default&viewMode=story')
 
+    await page.waitForTimeout(200)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Link / Reversed', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-link--reversed&viewMode=story')
 
+    await page.waitForTimeout(200)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 })

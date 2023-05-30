@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentMeta} from '@storybook/react'
+import {Meta} from '@storybook/react'
 import {AnimationProvider, AnimationVariants} from '.'
 import {Text, Stack} from '..'
 
@@ -8,7 +8,7 @@ import styles from './Animation.stories.module.css'
 export default {
   title: 'Components/Animations',
   component: AnimationProvider,
-} as ComponentMeta<typeof AnimationProvider>
+} as Meta<typeof AnimationProvider>
 
 export const Playground = args => {
   return (

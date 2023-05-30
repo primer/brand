@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentMeta} from '@storybook/react'
+import {Meta} from '@storybook/react'
 import {AnchorNav} from '.'
 import {Heading, Text, Stack} from '../'
 import {RedlineBackground} from '../component-helpers'
@@ -47,7 +47,7 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof AnchorNav>
+} as Meta<typeof AnchorNav>
 
 export const Default = ({data, ...args}: {data: MockData}) => {
   return (

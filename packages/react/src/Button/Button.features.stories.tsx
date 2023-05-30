@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentMeta} from '@storybook/react'
+import {Meta} from '@storybook/react'
 import {userEvent, waitFor, within} from '@storybook/testing-library'
 
 import {Button} from '.'
@@ -8,7 +8,7 @@ import {HeartFillIcon, MarkGithubIcon, PlayIcon} from '@primer/octicons-react'
 export default {
   title: 'Components/Button/Features',
   component: Button,
-} as ComponentMeta<typeof Button>
+} as Meta<typeof Button>
 
 export const Primary = () => (
   <Button as="a" variant="primary" size="medium" href="#">

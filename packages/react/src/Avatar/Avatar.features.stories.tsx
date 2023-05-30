@@ -1,12 +1,12 @@
 import React from 'react'
-import {ComponentMeta} from '@storybook/react'
+import {Meta} from '@storybook/react'
 import {Avatar} from '.'
 import {Stack} from '../Stack'
 
 export default {
   title: 'Components/Avatar/Features',
   component: Avatar,
-} as ComponentMeta<typeof Avatar>
+} as Meta<typeof Avatar>
 
 export const Sizes = () => (
   <Stack style={{height: '100vh'}} justifyContent="center">

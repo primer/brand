@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentMeta} from '@storybook/react'
+import {Meta} from '@storybook/react'
 import {AnimationProvider} from './AnimationProvider/AnimationProvider'
 import {Label, Image, Text, Stack, Animate, Heading, ThemeProvider} from '..'
 import {CheckCircleFillIcon, RocketIcon} from '@primer/octicons-react'
@@ -10,7 +10,7 @@ import clsx from 'clsx'
 export default {
   title: 'Components/Animations/Examples',
   component: AnimationProvider,
-} as ComponentMeta<typeof AnimationProvider>
+} as Meta<typeof AnimationProvider>
 
 export const DiscussionsHero = () => (
   <AnimationProvider staggerDelayIncrement={200}>

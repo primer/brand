@@ -12,6 +12,7 @@ test.describe('Visual Comparison: SectionIntro', () => {
       'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--heading-only&viewMode=story',
     )
 
+    await page.waitForTimeout(200)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -20,6 +21,7 @@ test.describe('Visual Comparison: SectionIntro', () => {
       'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--with-description&viewMode=story',
     )
 
+    await page.waitForTimeout(200)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -28,6 +30,7 @@ test.describe('Visual Comparison: SectionIntro', () => {
       'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--with-action&viewMode=story',
     )
 
+    await page.waitForTimeout(200)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -36,6 +39,7 @@ test.describe('Visual Comparison: SectionIntro', () => {
       'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--with-secondary-action&viewMode=story',
     )
 
+    await page.waitForTimeout(200)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -44,18 +48,21 @@ test.describe('Visual Comparison: SectionIntro', () => {
       'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--aligned-center&viewMode=story',
     )
 
+    await page.waitForTimeout(200)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('SectionIntro / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-sectionintro--playground&viewMode=story')
 
+    await page.waitForTimeout(200)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('SectionIntro / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-sectionintro--default&viewMode=story')
 
+    await page.waitForTimeout(200)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 })

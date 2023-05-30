@@ -1,13 +1,13 @@
-import {ComponentMeta, ComponentStory} from '@storybook/react'
+import {Meta, StoryFn} from '@storybook/react'
 import React from 'react'
 import {Link} from '.'
 
 export default {
   title: 'Components/Link',
   component: Link,
-} as ComponentMeta<typeof Link>
+} as Meta<typeof Link>
 
-const Template: ComponentStory<typeof Link> = args => <Link {...args} />
+const Template: StoryFn<typeof Link> = args => <Link {...args} />
 
 export const Default = Template.bind({})
 Default.args = {

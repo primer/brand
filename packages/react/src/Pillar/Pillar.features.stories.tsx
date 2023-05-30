@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentStory, ComponentMeta} from '@storybook/react'
+import {StoryFn, Meta} from '@storybook/react'
 import {Pillar, PillarIconColors} from '.'
 import {Stack, Grid} from '..'
 import {CopilotIcon, RocketIcon, GitBranchIcon} from '@primer/octicons-react'
@@ -7,9 +7,9 @@ import {CopilotIcon, RocketIcon, GitBranchIcon} from '@primer/octicons-react'
 export default {
   title: 'Components/Pillar/features',
   component: Pillar,
-} as ComponentMeta<typeof Pillar>
+} as Meta<typeof Pillar>
 
-export const Icon: ComponentStory<typeof Pillar> = () => {
+export const Icon: StoryFn<typeof Pillar> = () => {
   return (
     <Pillar>
       <Pillar.Icon icon={RocketIcon} />
@@ -21,7 +21,7 @@ export const Icon: ComponentStory<typeof Pillar> = () => {
   )
 }
 
-export const IconColors: ComponentStory<typeof Pillar> = () => {
+export const IconColors: StoryFn<typeof Pillar> = () => {
   return (
     <Grid>
       {PillarIconColors.map((color, id) => {
@@ -133,7 +133,7 @@ type FixtureData = {
   description: string | React.ReactElement | React.ReactElement[]
 }[]
 
-export const Stacked: ComponentStory<typeof Pillar> = () => {
+export const Stacked: StoryFn<typeof Pillar> = () => {
   return (
     <Stack direction="horizontal" gap={'spacious'} padding={'spacious'}>
       {fixtureData.map(({heading, description, icon, iconColor}, id) => {
@@ -149,7 +149,7 @@ export const Stacked: ComponentStory<typeof Pillar> = () => {
   )
 }
 
-export const StackedCentered: ComponentStory<typeof Pillar> = () => {
+export const StackedCentered: StoryFn<typeof Pillar> = () => {
   return (
     <Stack direction="horizontal" gap={'spacious'} padding={'spacious'}>
       {fixtureData.map(({heading, description, icon, iconColor}, id) => {

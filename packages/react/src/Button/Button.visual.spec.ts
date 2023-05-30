@@ -10,6 +10,7 @@ test.describe('Visual Comparison: Button', () => {
   test('Button / Primary', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--primary&viewMode=story')
 
+    await page.waitForTimeout(200)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -18,6 +19,7 @@ test.describe('Visual Comparison: Button', () => {
       'http://localhost:6006/iframe.html?args=&id=components-button-features--primary-disabled&viewMode=story',
     )
 
+    await page.waitForTimeout(200)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -26,6 +28,7 @@ test.describe('Visual Comparison: Button', () => {
       'http://localhost:6006/iframe.html?args=&id=components-button-features--primary-aria-disabled&viewMode=story',
     )
 
+    await page.waitForTimeout(200)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -50,6 +53,7 @@ test.describe('Visual Comparison: Button', () => {
   test('Button / Secondary', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--secondary&viewMode=story')
 
+    await page.waitForTimeout(200)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -58,12 +62,14 @@ test.describe('Visual Comparison: Button', () => {
       'http://localhost:6006/iframe.html?args=&id=components-button-features--secondary-disabled&viewMode=story',
     )
 
+    await page.waitForTimeout(200)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Subtle', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--subtle&viewMode=story')
 
+    await page.waitForTimeout(200)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -72,12 +78,14 @@ test.describe('Visual Comparison: Button', () => {
       'http://localhost:6006/iframe.html?args=&id=components-button-features--subtle-disabled&viewMode=story',
     )
 
+    await page.waitForTimeout(200)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Large', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--large&viewMode=story')
 
+    await page.waitForTimeout(200)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -86,6 +94,7 @@ test.describe('Visual Comparison: Button', () => {
       'http://localhost:6006/iframe.html?args=&id=components-button-features--polymorphism&viewMode=story',
     )
 
+    await page.waitForTimeout(200)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -121,6 +130,7 @@ test.describe('Visual Comparison: Button', () => {
       'http://localhost:6006/iframe.html?args=&id=components-button-features--with-leading-visual-svg&viewMode=story',
     )
 
+    await page.waitForTimeout(200)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -129,6 +139,7 @@ test.describe('Visual Comparison: Button', () => {
       'http://localhost:6006/iframe.html?args=&id=components-button-features--with-trailing-visual-svg&viewMode=story',
     )
 
+    await page.waitForTimeout(200)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -137,6 +148,7 @@ test.describe('Visual Comparison: Button', () => {
       'http://localhost:6006/iframe.html?args=&id=components-button-features--with-leading-and-trailing-visual-svg&viewMode=story',
     )
 
+    await page.waitForTimeout(200)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -145,6 +157,7 @@ test.describe('Visual Comparison: Button', () => {
       'http://localhost:6006/iframe.html?args=&id=components-button-features--with-octicon&viewMode=story',
     )
 
+    await page.waitForTimeout(200)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -153,6 +166,7 @@ test.describe('Visual Comparison: Button', () => {
       'http://localhost:6006/iframe.html?args=&id=components-button-features--with-octicon-large&viewMode=story',
     )
 
+    await page.waitForTimeout(200)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -161,18 +175,21 @@ test.describe('Visual Comparison: Button', () => {
       'http://localhost:6006/iframe.html?args=&id=components-button-features--with-visuals-and-disabled&viewMode=story',
     )
 
+    await page.waitForTimeout(200)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-button--playground&viewMode=story')
 
+    await page.waitForTimeout(200)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-button--default&viewMode=story')
 
+    await page.waitForTimeout(200)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 })
