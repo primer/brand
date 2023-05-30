@@ -204,5 +204,5 @@ export const countries = [
   'Virgin Islands (US)',
   'Yemen',
   'Zambia',
-  'Zimbabwe'
+  'Zimbabwe',
 ]

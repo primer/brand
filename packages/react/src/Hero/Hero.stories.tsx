@@ -10,9 +10,9 @@ export default {
   parameters: {
     layout: 'fullscreen',
     viewport: {
-      viewports: INITIAL_VIEWPORTS
-    }
-  }
+      viewports: INITIAL_VIEWPORTS,
+    },
+  },
 } as ComponentMeta<typeof Hero>
 
 export const Default: ComponentStory<typeof Hero> = _args => (

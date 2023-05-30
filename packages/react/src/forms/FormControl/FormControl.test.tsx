@@ -19,7 +19,7 @@ describe('FormControl', () => {
       <FormControl>
         <FormControl.Label>{mockFormControlLabel}</FormControl.Label>
         <TextInput />
-      </FormControl>
+      </FormControl>,
     )
 
     const labelEl = getByLabelText(mockFormControlLabel)
@@ -34,7 +34,7 @@ describe('FormControl', () => {
       <FormControl>
         <FormControl.Label>{mockFormControlLabel}</FormControl.Label>
         <TextInput />
-      </FormControl>
+      </FormControl>,
     )
     const results = await axe(container)
 
@@ -46,7 +46,7 @@ describe('FormControl', () => {
       <FormControl data-testid={mockTestId}>
         <FormControl.Label>{mockFormControlLabel}</FormControl.Label>
         <TextInput />
-      </FormControl>
+      </FormControl>,
     )
     const labelEl = container.querySelector('label')
     const labelForValue = labelEl?.getAttribute('for')
@@ -68,7 +68,7 @@ describe('FormControl', () => {
       <FormControl id={mockFormControlId} data-testid={mockTestId}>
         <FormControl.Label>{mockFormControlLabel}</FormControl.Label>
         <TextInput />
-      </FormControl>
+      </FormControl>,
     )
 
     const labelEl = container.querySelector('label')
@@ -96,7 +96,7 @@ describe('FormControl', () => {
         <FormControl.Label>{mockFormControlLabel}</FormControl.Label>
         <TextInput />
         <FormControl.Validation>{expectedMessage}</FormControl.Validation>
-      </FormControl>
+      </FormControl>,
     )
 
     const errorIcon = container.querySelector('svg.octicon-alert-fill')
@@ -116,7 +116,7 @@ describe('FormControl', () => {
         <FormControl.Label>{mockFormControlLabel}</FormControl.Label>
         <TextInput />
         <FormControl.Validation>{expectedMessage}</FormControl.Validation>
-      </FormControl>
+      </FormControl>,
     )
 
     const successIcon = container.querySelector('svg.octicon-check-circle-fill')
@@ -133,7 +133,7 @@ describe('FormControl', () => {
       <FormControl validationStatus="success">
         <FormControl.Label>{mockFormControlLabel}</FormControl.Label>
         <input type="text" />
-      </FormControl>
+      </FormControl>,
     )
 
     const inputEl = getByRole('textbox')
@@ -146,7 +146,7 @@ describe('FormControl', () => {
       <FormControl fullWidth data-testid={mockFormControlId}>
         <FormControl.Label>{mockFormControlLabel}</FormControl.Label>
         <TextInput />
-      </FormControl>
+      </FormControl>,
     )
 
     const rootEl = getByTestId(mockFormControlId)
@@ -161,7 +161,7 @@ describe('FormControl', () => {
       <FormControl>
         <FormControl.Label>{mockFormControlLabel}</FormControl.Label>
         <TextInput />
-      </FormControl>
+      </FormControl>,
     )
 
     const labelEl = container.querySelector('label')
@@ -176,7 +176,7 @@ describe('FormControl', () => {
       <FormControl size="large">
         <FormControl.Label>{mockFormControlLabel}</FormControl.Label>
         <TextInput />
-      </FormControl>
+      </FormControl>,
     )
 
     expect(labelEl?.classList).toContain('FormControl-label--large')

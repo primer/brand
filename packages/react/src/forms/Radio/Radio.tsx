@@ -29,7 +29,7 @@ export type RadioProps = {
 
 const _Radio = (
   {checked, className, disabled, id, onChange, required, value, ...rest}: RadioProps,
-  ref
+  ref,
 ): ReactElement => {
   const inputRef: RefObject<HTMLInputElement> | null = useRef<HTMLInputElement>(ref || null)
   const uniqueId = useId(id)

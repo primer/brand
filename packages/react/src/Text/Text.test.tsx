@@ -38,7 +38,7 @@ describe('Text', () => {
     const {getByTestId} = render(
       <Text as="p" data-testid={mockId}>
         {mockText}
-      </Text>
+      </Text>,
     )
     const el = getByTestId(mockId)
 
@@ -50,7 +50,7 @@ describe('Text', () => {
     const {getByTestId} = render(
       <Text as="div" data-testid={mockId}>
         {mockText}
-      </Text>
+      </Text>,
     )
     const el = getByTestId(mockId)
 
@@ -62,7 +62,7 @@ describe('Text', () => {
     const {getByTestId} = render(
       <Text as="strong" data-testid={mockId}>
         {mockText}
-      </Text>
+      </Text>,
     )
     const el = getByTestId(mockId)
 
@@ -75,7 +75,7 @@ describe('Text', () => {
     const {getByTestId} = render(
       <Text as="div" data-testid={mockId}>
         {mockText}
-      </Text>
+      </Text>,
     )
     const el = getByTestId(mockId)
 
@@ -88,7 +88,7 @@ describe('Text', () => {
     const {getByTestId} = render(
       <Text as="div" data-testid={mockId} size={expectedAlternativeSize}>
         {mockText}
-      </Text>
+      </Text>,
     )
     const el = getByTestId(mockId)
 
@@ -101,7 +101,7 @@ describe('Text', () => {
     const {getByTestId} = render(
       <Text as="div" data-testid={mockId}>
         {mockText}
-      </Text>
+      </Text>,
     )
     const el = getByTestId(mockId)
 
@@ -114,7 +114,7 @@ describe('Text', () => {
     const {getByTestId} = render(
       <Text as="div" data-testid={mockId} variant={expectedAlternativeVariant}>
         {mockText}
-      </Text>
+      </Text>,
     )
     const el = getByTestId(mockId)
 
@@ -128,7 +128,7 @@ describe('Text', () => {
       const {getByText} = render(
         <Text as="p" weight={weight}>
           {weight}
-        </Text>
+        </Text>,
       )
       const textEl = getByText(weight)
 
@@ -148,11 +148,11 @@ describe('Text', () => {
             data-testid={`text-${breakpoint}-${weight}`}
             as="p"
             weight={{
-              [breakpoint]: weight
+              [breakpoint]: weight,
             }}
           >
             {weight}
-          </Text>
+          </Text>,
         )
         const textEl = getByTestId(`text-${breakpoint}-${weight}`)
 

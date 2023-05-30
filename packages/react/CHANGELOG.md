@@ -31,10 +31,10 @@
     </Stack>
     <Stack
       gap={{
-        narrow: 96
+        narrow: 96,
       }}
       padding={{
-        narrow: 96
+        narrow: 96,
       }}
     >
       ...
@@ -64,7 +64,7 @@
     description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     primaryAction={{
       text: 'Primary action',
-      href: '#'
+      href: '#',
     }}
     align="center"
   />
@@ -157,13 +157,13 @@
   <Grid>
     <Grid.Column
       span={{
-        large: 6
+        large: 6,
       }}
     ></Grid.Column>
     <Grid.Column
       span={{
         xsmall: 3,
-        large: 6
+        large: 6,
       }}
     ></Grid.Column>
   </Grid>

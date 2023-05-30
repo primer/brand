@@ -7,7 +7,7 @@ import styles from './Animation.stories.module.css'
 
 export default {
   title: 'Components/Animations',
-  component: AnimationProvider
+  component: AnimationProvider,
 } as ComponentMeta<typeof AnimationProvider>
 
 export const Playground = args => {
@@ -18,7 +18,7 @@ export const Playground = args => {
         justifyContent="center"
         alignItems="center"
         animate={{
-          variant: args.variant
+          variant: args.variant,
         }}
       >
         <Text as="p">{args.variant}</Text>
@@ -28,14 +28,14 @@ export const Playground = args => {
 }
 
 Playground.args = {
-  variant: 'fade-in'
+  variant: 'fade-in',
 }
 
 Playground.argTypes = {
   variant: {
     control: {
       type: 'inline-radio',
-      options: AnimationVariants
-    }
-  }
+      options: AnimationVariants,
+    },
+  },
 }

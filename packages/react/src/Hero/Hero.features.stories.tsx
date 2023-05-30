@@ -11,9 +11,9 @@ export default {
   parameters: {
     layout: 'fullscreen',
     viewport: {
-      viewports: INITIAL_VIEWPORTS
-    }
-  }
+      viewports: INITIAL_VIEWPORTS,
+    },
+  },
 } as ComponentMeta<typeof Hero>
 
 export const Centered: ComponentStory<typeof Hero> = _args => (
@@ -120,8 +120,8 @@ export const NarrowView: ComponentStory<typeof Hero> = _args => (
 
 NarrowView.parameters = {
   viewport: {
-    defaultViewport: 'iphonexr'
-  }
+    defaultViewport: 'iphonexr',
+  },
 }
 
 export const NarrowViewCentered: ComponentStory<typeof Hero> = _args => (
@@ -138,6 +138,6 @@ export const NarrowViewCentered: ComponentStory<typeof Hero> = _args => (
 
 NarrowViewCentered.parameters = {
   viewport: {
-    defaultViewport: 'iphonexr'
-  }
+    defaultViewport: 'iphonexr',
+  },
 }

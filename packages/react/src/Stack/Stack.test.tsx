@@ -16,7 +16,7 @@ describe('Stack', () => {
     const {container} = render(
       <Stack>
         <></>
-      </Stack>
+      </Stack>,
     )
     const results = await axe(container)
 
@@ -29,7 +29,7 @@ describe('Stack', () => {
         <div>{mockText}</div>
         <span>{1}</span>
         <>Fragment</>
-      </Stack>
+      </Stack>,
     )
     expect(getByText(mockText)).toBeInTheDocument()
     expect(getByText(1)).toBeInTheDocument()
@@ -43,7 +43,7 @@ describe('Stack', () => {
     const {getByTestId} = render(
       <Stack direction="vertical" data-testid={mockTestId}>
         <></>
-      </Stack>
+      </Stack>,
     )
 
     const stackEl = getByTestId(mockTestId)
@@ -58,7 +58,7 @@ describe('Stack', () => {
     const {getByTestId} = render(
       <Stack justifyContent={'center'} data-testid={mockTestId}>
         <></>
-      </Stack>
+      </Stack>,
     )
 
     const stackEl = getByTestId(mockTestId)
@@ -73,7 +73,7 @@ describe('Stack', () => {
     const {getByTestId} = render(
       <Stack alignItems={'center'} data-testid={mockTestId}>
         <></>
-      </Stack>
+      </Stack>,
     )
 
     const stackEl = getByTestId(mockTestId)
@@ -95,7 +95,7 @@ describe('Stack', () => {
         <Stack gap={96} data-testid={mockTestId2}>
           <></>
         </Stack>
-      </>
+      </>,
     )
 
     const stackEl1 = getByTestId(mockTestId1)
@@ -112,7 +112,7 @@ describe('Stack', () => {
     const {getByTestId} = render(
       <Stack padding="normal" data-testid={mockTestId}>
         <></>
-      </Stack>
+      </Stack>,
     )
 
     const stackEl = getByTestId(mockTestId)
@@ -129,12 +129,12 @@ describe('Stack', () => {
         gap={{
           narrow: 'condensed',
           regular: 'normal',
-          wide: 'spacious'
+          wide: 'spacious',
         }}
         data-testid={mockTestId}
       >
         <></>
-      </Stack>
+      </Stack>,
     )
 
     const stackEl = getByTestId(mockTestId)
@@ -149,7 +149,7 @@ describe('Stack', () => {
     const expectedClasses = [
       'Stack-narrow--padding-condensed',
       'Stack-regular--padding-normal',
-      'Stack-wide--padding-spacious'
+      'Stack-wide--padding-spacious',
     ]
 
     const {getByTestId} = render(
@@ -157,12 +157,12 @@ describe('Stack', () => {
         padding={{
           narrow: 'condensed',
           regular: 'normal',
-          wide: 'spacious'
+          wide: 'spacious',
         }}
         data-testid={mockTestId}
       >
         <></>
-      </Stack>
+      </Stack>,
     )
 
     const stackEl = getByTestId(mockTestId)
@@ -181,12 +181,12 @@ describe('Stack', () => {
         direction={{
           narrow: 'horizontal',
           regular: 'horizontal',
-          wide: 'vertical'
+          wide: 'vertical',
         }}
         data-testid={mockTestId}
       >
         <></>
-      </Stack>
+      </Stack>,
     )
 
     const stackEl = getByTestId(mockTestId)
@@ -201,7 +201,7 @@ describe('Stack', () => {
     const expectedClasses = [
       'Stack-narrow--justify-content-space-around',
       'Stack-regular--justify-content-space-between',
-      'Stack-wide--justify-content-space-evenly'
+      'Stack-wide--justify-content-space-evenly',
     ]
 
     const {getByTestId} = render(
@@ -209,12 +209,12 @@ describe('Stack', () => {
         justifyContent={{
           narrow: 'space-around',
           regular: 'space-between',
-          wide: 'space-evenly'
+          wide: 'space-evenly',
         }}
         data-testid={mockTestId}
       >
         <></>
-      </Stack>
+      </Stack>,
     )
 
     const stackEl = getByTestId(mockTestId)
@@ -229,7 +229,7 @@ describe('Stack', () => {
     const expectedClasses = [
       'Stack-narrow--align-items-center',
       'Stack-regular--align-items-flex-start',
-      'Stack-wide--align-items-flex-end'
+      'Stack-wide--align-items-flex-end',
     ]
 
     const {getByTestId} = render(
@@ -237,12 +237,12 @@ describe('Stack', () => {
         alignItems={{
           narrow: 'center',
           regular: 'flex-start',
-          wide: 'flex-end'
+          wide: 'flex-end',
         }}
         data-testid={mockTestId}
       >
         <></>
-      </Stack>
+      </Stack>,
     )
 
     const stackEl = getByTestId(mockTestId)

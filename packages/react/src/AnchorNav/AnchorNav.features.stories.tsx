@@ -18,8 +18,8 @@ export default {
   parameters: {
     layout: 'fullscreen',
     viewport: {
-      viewports: INITIAL_VIEWPORTS
-    }
+      viewports: INITIAL_VIEWPORTS,
+    },
   },
   args: {
     enableDefaultBgColor: true,
@@ -28,40 +28,40 @@ export default {
       ['GitHub vs GitLab']: 'githubvsgitlab',
       ['GitHub vs CircleCI']: 'githubvscircleci',
       ['GitHub vs BitBucket']: 'githubvsvsbitbucket',
-      ['GitHub vs TravisCI']: 'githubvsvstravis'
+      ['GitHub vs TravisCI']: 'githubvsvstravis',
     },
-    offset: 100
+    offset: 100,
   },
   argTypes: {
     data: {
       name: 'Data',
       description: 'Test data',
       control: {
-        type: 'object'
+        type: 'object',
       },
       table: {
-        category: 'Story customization'
-      }
+        category: 'Story customization',
+      },
     },
     offset: {
       name: 'Offset',
       description: 'Offset from the top of the page',
       control: {
-        type: 'number'
+        type: 'number',
       },
       table: {
-        category: 'Story customization'
-      }
-    }
+        category: 'Story customization',
+      },
+    },
   },
   enableDefaultBgColor: {
     description: 'Enable default background color',
     control: {type: 'boolean'},
     defaultValue: true,
     table: {
-      category: 'AnchorNav'
-    }
-  }
+      category: 'AnchorNav',
+    },
+  },
 } as ComponentMeta<typeof AnchorNav>
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -105,7 +105,7 @@ const Template: ComponentStory<typeof AnchorNav> = (_, storyArgs: any) => {
               id={value}
               direction="vertical"
               style={{
-                padding: '500px var(--base-size-24)'
+                padding: '500px var(--base-size-24)',
               }}
             >
               <Heading>{key}</Heading>
@@ -126,8 +126,8 @@ FewerAnchorLinks.args = {
   data: {
     ['GitHub vs Jenkins']: 'githubvsjenkins',
     ['GitHub vs GitLab']: 'githubvsgitlab',
-    ['GitHub vs CircleCI']: 'githubvscircleci'
-  }
+    ['GitHub vs CircleCI']: 'githubvscircleci',
+  },
 } as never
 
 export const ShorterLabels = Template.bind({})
@@ -138,8 +138,8 @@ ShorterLabels.args = {
     ['Bar']: 'bar',
     ['Baz']: 'baz',
     ['Qux']: 'qux',
-    ['Quux']: 'quux'
-  }
+    ['Quux']: 'quux',
+  },
 } as never
 
 export const CustomBackground = ({data, ...args}: {data: MockData; offset: number}) => {
@@ -170,7 +170,7 @@ export const CustomBackground = ({data, ...args}: {data: MockData; offset: numbe
             id={value}
             direction="vertical"
             style={{
-              padding: '500px var(--base-size-24)'
+              padding: '500px var(--base-size-24)',
             }}
           >
             <Heading>{key}</Heading>
@@ -182,25 +182,25 @@ export const CustomBackground = ({data, ...args}: {data: MockData; offset: numbe
   )
 }
 CustomBackground.args = {
-  enableDefaultBgColor: false
+  enableDefaultBgColor: false,
 }
 
 export const NarrowView = Template.bind({})
 NarrowView.parameters = {
   viewport: {
-    defaultViewport: 'iphonexr'
-  }
+    defaultViewport: 'iphonexr',
+  },
 }
 NarrowView.storyName = 'Narrow view, menu closed (mobile)'
 
 export const NarrowViewMenuOpen = Template.bind({})
 NarrowViewMenuOpen.parameters = {
   viewport: {
-    defaultViewport: 'iphonexr'
+    defaultViewport: 'iphonexr',
   },
   axe: {
-    timeout: 5000
-  }
+    timeout: 5000,
+  },
 }
 NarrowViewMenuOpen.storyName = 'Narrow view, menu open (mobile)'
 NarrowViewMenuOpen.play = async ({canvasElement}) => {
@@ -215,19 +215,19 @@ export const RegularView = Template.bind({})
 RegularView.storyName = 'Regular view, menu closed (tablet)'
 RegularView.parameters = {
   viewport: {
-    defaultViewport: 'ipad10p'
-  }
+    defaultViewport: 'ipad10p',
+  },
 }
 
 export const RegularViewMenuOpen = Template.bind({})
 RegularViewMenuOpen.storyName = 'Regular view, menu open (tablet)'
 RegularViewMenuOpen.parameters = {
   viewport: {
-    defaultViewport: 'ipad10p'
+    defaultViewport: 'ipad10p',
   },
   axe: {
-    timeout: 5000
-  }
+    timeout: 5000,
+  },
 }
 RegularViewMenuOpen.play = async ({canvasElement}) => {
   const canvas = within(canvasElement)

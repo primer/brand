@@ -6,7 +6,7 @@ import {Container} from '../component-helpers'
 
 export default {
   title: 'Components/River/fixtures',
-  component: River
+  component: River,
 } as ComponentMeta<typeof River>
 
 const PlaceholderImage = () => (

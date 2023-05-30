@@ -9,7 +9,7 @@ import {test, expect} from '@playwright/test'
 test.describe('Visual Comparison: SectionIntro', () => {
   test('SectionIntro / Heading Only', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--heading-only&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--heading-only&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -17,7 +17,7 @@ test.describe('Visual Comparison: SectionIntro', () => {
 
   test('SectionIntro / With Description', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--with-description&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--with-description&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -25,7 +25,7 @@ test.describe('Visual Comparison: SectionIntro', () => {
 
   test('SectionIntro / With Action', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--with-action&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--with-action&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -33,7 +33,7 @@ test.describe('Visual Comparison: SectionIntro', () => {
 
   test('SectionIntro / With Secondary Action', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--with-secondary-action&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--with-secondary-action&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -41,7 +41,7 @@ test.describe('Visual Comparison: SectionIntro', () => {
 
   test('SectionIntro / Aligned Center', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--aligned-center&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--aligned-center&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()

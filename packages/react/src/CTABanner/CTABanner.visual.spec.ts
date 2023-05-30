@@ -9,7 +9,7 @@ import {test, expect} from '@playwright/test'
 test.describe('Visual Comparison: CTABanner', () => {
   test('CTABanner / With Border', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--with-border&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--with-border&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -17,7 +17,7 @@ test.describe('Visual Comparison: CTABanner', () => {
 
   test('CTABanner / With No Shadow', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--with-no-shadow&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--with-no-shadow&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -25,7 +25,7 @@ test.describe('Visual Comparison: CTABanner', () => {
 
   test('CTABanner / Aligned Center', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--aligned-center&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--aligned-center&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -33,7 +33,7 @@ test.describe('Visual Comparison: CTABanner', () => {
 
   test('CTABanner / Custom Shadow', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--custom-shadow&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--custom-shadow&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()

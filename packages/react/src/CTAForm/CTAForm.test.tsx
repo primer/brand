@@ -33,7 +33,7 @@ describe('CTAForm', () => {
         target={expectedTarget}
       >
         <CTAForm.Action>submit</CTAForm.Action>
-      </CTAForm>
+      </CTAForm>,
     )
     const ctaFormEl = getByTestId(mockTestId)
     expect(ctaFormEl).toHaveAttribute('action', expectedAction)
@@ -60,14 +60,14 @@ describe('CTAForm', () => {
         onSubmit={mockSubmit}
       >
         <CTAForm.Action data-testid={mockTestId}>{submitText}</CTAForm.Action>
-      </CTAForm>
+      </CTAForm>,
     )
     fireEvent(
       getByTestId(mockTestId),
       new MouseEvent('click', {
         bubbles: true,
-        cancelable: true
-      })
+        cancelable: true,
+      }),
     )
     expect(mockSubmit).toHaveBeenCalledTimes(1)
   })
@@ -88,7 +88,7 @@ describe('CTAForm', () => {
           <FormControl.Label>label</FormControl.Label>
           <TextInput />
         </FormControl>
-      </CTAForm.Input>
+      </CTAForm.Input>,
     )
     const labelEl = container.querySelector('label')
     const inputEl = getByRole('textbox')
@@ -117,7 +117,7 @@ describe('CTAForm', () => {
           <FormControl.Label>label</FormControl.Label>
           <Checkbox />
         </FormControl>
-      </CTAForm.Confirm>
+      </CTAForm.Confirm>,
     )
     const labelEl = container.querySelector('label')
     const formControlEl = container.querySelector('section')
@@ -135,7 +135,7 @@ describe('CTAForm', () => {
     const {getByTestId} = render(
       <CTAForm.Action data-testid={mockTestId} className={expectedClass} onClick={mockClick}>
         Submit
-      </CTAForm.Action>
+      </CTAForm.Action>,
     )
     const ctaButtonEl = getByTestId(mockTestId)
     expect(ctaButtonEl).toHaveAttribute('type', 'submit')
@@ -143,8 +143,8 @@ describe('CTAForm', () => {
       getByTestId(mockTestId),
       new MouseEvent('click', {
         bubbles: true,
-        cancelable: true
-      })
+        cancelable: true,
+      }),
     )
     expect(mockClick).toHaveBeenCalledTimes(1)
   })

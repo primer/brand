@@ -12,29 +12,29 @@ export default {
     labelColor: 'default',
     iconHasBackground: false,
     heading: 'Collaboration is the key to DevOps success',
-    description: 'Everything you need to know about getting started with GitHub Actions.'
+    description: 'Everything you need to know about getting started with GitHub Actions.',
   },
   argTypes: {
     iconColor: {
       description: 'Color of Icon',
       control: {
         type: 'inline-radio',
-        options: [...CardIconColors]
-      }
+        options: [...CardIconColors],
+      },
     },
     iconHasBackground: {
       description: 'Icon has background',
       control: {
         type: 'inline-radio',
-        options: [false, true]
-      }
+        options: [false, true],
+      },
     },
     labelColor: {
       description: 'Color of Label',
       control: {
         type: 'inline-radio',
-        options: [...LabelColors]
-      }
+        options: [...LabelColors],
+      },
     },
     heading: {
       name: 'heading',
@@ -42,8 +42,8 @@ export default {
       type: {name: 'string', required: true},
       control: {
         type: 'text',
-        value: 'Collaboration is the key to DevOps success'
-      }
+        value: 'Collaboration is the key to DevOps success',
+      },
     },
     description: {
       name: 'description',
@@ -51,10 +51,10 @@ export default {
       type: {name: 'string', required: true},
       control: {
         type: 'text',
-        value: 'Everything you need to know about getting started with GitHub Actions.'
-      }
-    }
-  }
+        value: 'Everything you need to know about getting started with GitHub Actions.',
+      },
+    },
+  },
 } as ComponentMeta<typeof Card>
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

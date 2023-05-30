@@ -8,15 +8,15 @@ export default {
   component: Pillar,
   args: {
     heading: 'Collaboration is the key to DevOps success',
-    description: 'Everything you need to know about getting started with GitHub Actions.'
+    description: 'Everything you need to know about getting started with GitHub Actions.',
   },
   argTypes: {
     iconColor: {
       description: 'Color of Icon',
       control: {
         type: 'inline-radio',
-        options: [...PillarIconColors]
-      }
+        options: [...PillarIconColors],
+      },
     },
     heading: {
       name: 'heading',
@@ -24,8 +24,8 @@ export default {
       type: {name: 'string', required: true},
       control: {
         type: 'text',
-        value: 'Collaboration is the key to DevOps success'
-      }
+        value: 'Collaboration is the key to DevOps success',
+      },
     },
     description: {
       name: 'description',
@@ -33,10 +33,10 @@ export default {
       type: {name: 'string', required: true},
       control: {
         type: 'text',
-        value: 'Everything you need to know about getting started with GitHub Actions.'
-      }
-    }
-  }
+        value: 'Everything you need to know about getting started with GitHub Actions.',
+      },
+    },
+  },
 } as ComponentMeta<typeof Pillar>
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

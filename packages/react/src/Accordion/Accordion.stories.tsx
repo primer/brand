@@ -5,7 +5,7 @@ import {Text, InlineLink} from '../'
 
 export default {
   title: 'Components/Accordion',
-  component: Accordion
+  component: Accordion,
 } as ComponentMeta<typeof Accordion>
 
 export const Default = () => (

@@ -9,7 +9,7 @@ import {test, expect} from '@playwright/test'
 test.describe('Visual Comparison: ActionMenu', () => {
   test('ActionMenu / Single Selection', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--single-selection&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--single-selection&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -17,7 +17,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
 
   test('ActionMenu / In Stack', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--in-stack&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--in-stack&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -25,7 +25,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
 
   test('ActionMenu / Open By Default', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--open-by-default&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--open-by-default&viewMode=story',
     )
 
     await page.waitForTimeout(2000)
@@ -34,7 +34,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
 
   test('ActionMenu / Truncation Of Long Values', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--truncation-of-long-values&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--truncation-of-long-values&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -42,7 +42,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
 
   test('ActionMenu / Longer Lists', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--longer-lists&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--longer-lists&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -50,7 +50,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
 
   test('ActionMenu / Longer lists (open)', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--longer-lists-open&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--longer-lists-open&viewMode=story',
     )
 
     await page.waitForTimeout(2000)
@@ -59,7 +59,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
 
   test('ActionMenu / Menu alignment (end)', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--menu-alignment&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--menu-alignment&viewMode=story',
     )
 
     await page.waitForTimeout(2000)
@@ -68,7 +68,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
 
   test('ActionMenu / Disabled Menu', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--disabled-menu&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--disabled-menu&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -76,7 +76,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
 
   test('ActionMenu / Disabled Item', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--disabled-item&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--disabled-item&viewMode=story',
     )
 
     await page.waitForTimeout(2000)

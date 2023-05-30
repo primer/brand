@@ -64,7 +64,7 @@ const testIds = {
   },
   get liveRegion() {
     return `${this.root}-search-live-region`
-  }
+  },
 }
 
 function Root({
@@ -87,10 +87,10 @@ function Root({
     useMemo(
       () =>
         React.Children.toArray(children).filter(
-          child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === Link
+          child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === Link,
         ),
       // eslint-disable-next-line react-hooks/exhaustive-deps
-      []
+      [],
     ).length > 0
 
   const menuItems = useMemo(
@@ -99,27 +99,27 @@ function Root({
         .map((child, index) => {
           if (React.isValidElement(child) && typeof child.type !== 'string') {
             if (child.type === Link) {
-              return React.cloneElement(child, {
+              return React.cloneElement(child as React.ReactElement, {
                 'data-navitemid': child.props.children,
                 href: child.props.href,
                 children: child.props.children,
                 style: {
-                  [`--animation-order`]: index
-                }
+                  [`--animation-order`]: index,
+                },
               })
             }
             return null
           }
         })
         .filter(Boolean),
-    [children]
+    [children],
   )
 
   return (
     <div
       className={clsx(
         styles['SubdomainNavBar-outer-container'],
-        fixed && styles['SubdomainNavBar-outer-container--fixed']
+        fixed && styles['SubdomainNavBar-outer-container--fixed'],
       )}
     >
       <header className={clsx(styles['SubdomainNavBar'], className)} data-testid={testIds.root} {...rest}>
@@ -127,7 +127,7 @@ function Root({
           className={clsx(
             styles['SubdomainNavBar-inner-container'],
             searchVisible && styles['SubdomainNavBar-inner-container--search-open'],
-            !fullWidth && styles['SubdomainNavBar-inner-container--centered']
+            !fullWidth && styles['SubdomainNavBar-inner-container--centered'],
           )}
           data-testid={testIds.innerContainer}
         >
@@ -173,10 +173,10 @@ function Root({
               .map(child => {
                 if (React.isValidElement(child) && typeof child.type !== 'string') {
                   if (child.type === Search) {
-                    return React.cloneElement(child, {
+                    return React.cloneElement(child as React.ReactElement, {
                       active: searchVisible,
                       handlerFn: handleSearchVisibility,
-                      title
+                      title,
                     })
                   }
                   return null
@@ -193,7 +193,7 @@ function Root({
                 className={clsx(
                   styles['SubdomainNavBar-menu-button'],
                   styles['SubdomainNavBar-mobile-menu-button'],
-                  !menuHidden && styles['SubdomainNavBar-menu-button--close']
+                  !menuHidden && styles['SubdomainNavBar-menu-button--close'],
                 )}
                 data-testid={testIds.menuButton}
                 onClick={handleMobileMenuClick}
@@ -213,7 +213,7 @@ function Root({
             <div
               className={clsx(
                 styles['SubdomainNavBar-button-area'],
-                !menuHidden && styles['SubdomainNavBar-button-area--visible']
+                !menuHidden && styles['SubdomainNavBar-button-area--visible'],
               )}
             >
               <div className={styles['SubdomainNavBar-button-area-inner']}>
@@ -281,7 +281,7 @@ type SearchProps = {
 
 const _SearchInternal = (
   {active, title, searchResults, searchTerm, handlerFn, onSubmit, onChange}: SearchProps,
-  ref
+  ref,
 ) => {
   const dialogRef = useRef<HTMLDivElement | null>(null)
 
@@ -297,7 +297,7 @@ const _SearchInternal = (
       if (handlerFn) handlerFn(event)
       setActiveDescendant(-1)
     },
-    [handlerFn]
+    [handlerFn],
   )
 
   useOnClickOutside(dialogRef, handleClose)
@@ -347,7 +347,7 @@ const _SearchInternal = (
         link.click()
       }
     },
-    [searchResults, activeDescendant]
+    [searchResults, activeDescendant],
   )
 
   const searchLiveRegion = useCallback(() => {
@@ -450,9 +450,7 @@ const _SearchInternal = (
                       aria-selected={index === activeDescendant}
                     >
                       <div className={styles['SubdomainNavBar-search-result-item-container']}>
-                        <a href={result.url} tabIndex={-1}>
-                          {result.title}
-                        </a>
+                        <a href={result.url}>{result.title}</a>
                       </div>
 
                       <Text
@@ -535,5 +533,5 @@ export const SubdomainNavBar = Object.assign(Root, {
   Search,
   PrimaryAction,
   SecondaryAction,
-  testIds
+  testIds,
 })

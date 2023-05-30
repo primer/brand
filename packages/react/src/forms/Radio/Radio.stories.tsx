@@ -8,17 +8,17 @@ export default {
   component: Radio,
   args: {
     checked: false,
-    value: 'radio'
+    value: 'radio',
   },
   argTypes: {
     disabled: {
       description: 'disabled field',
       control: {type: 'boolean'},
       table: {
-        category: 'Input'
-      }
-    }
-  }
+        category: 'Input',
+      },
+    },
+  },
 } as ComponentMeta<typeof Radio>
 
 export const Default: ComponentStory<typeof Radio> = () => (

@@ -31,8 +31,8 @@ export function NavigationVisbilityObserver({children, className, ...rest}) {
             width &&
               width >= 768 &&
               !visibilityMap[child.props['data-navitemid']] &&
-              styles['SubdomainNavBar-primary-nav-list-item--invisible']
-          )
+              styles['SubdomainNavBar-primary-nav-list-item--invisible'],
+          ),
         })
       })}
 
@@ -93,9 +93,9 @@ function AnchoredOverlay({children, className, visibilityMap}: React.PropsWithCh
               if (!visibilityMap[navItemChild]) {
                 return (
                   <React.Fragment>
-                    {React.cloneElement(child, {
+                    {React.cloneElement(child as React.ReactElement, {
                       onClick: handleClose,
-                      className: clsx(styles['SubdomainNavBar-overflow-menu-item'], child.props.className)
+                      className: clsx(styles['SubdomainNavBar-overflow-menu-item'], child.props.className),
                     })}
                   </React.Fragment>
                 )

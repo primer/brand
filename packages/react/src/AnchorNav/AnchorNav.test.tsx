@@ -12,7 +12,7 @@ const mockData = [
   {title: 'Section two', id: 'section2'},
   {title: 'Section three', id: 'section3'},
   {title: 'Section four', id: 'section4'},
-  {title: 'Section five', id: 'section5'}
+  {title: 'Section five', id: 'section5'},
 ]
 const MockAnchorNavFixture = ({data = mockData}) => {
   return (
@@ -47,7 +47,7 @@ describe('AnchorNav', () => {
     mockIntersectionObserver.mockReturnValue({
       observe: () => null,
       unobserve: () => null,
-      disconnect: () => null
+      disconnect: () => null,
     })
     window.IntersectionObserver = mockIntersectionObserver
   })
