@@ -116,11 +116,14 @@ const PillarDescription = forwardRef<HTMLParagraphElement, PillarDescriptionProp
   },
 )
 
-type PillarLinkProps = Omit<LinkProps, 'size' | 'direction'> & BaseProps<HTMLAnchorElement>
+type PillarLinkProps = {
+  href: string
+} & Omit<LinkProps, 'size' | 'direction'> &
+  BaseProps<HTMLAnchorElement>
 
-const PillarLink = forwardRef(({className, children, ...props}: PillarLinkProps, ref: Ref<HTMLAnchorElement>) => {
+const PillarLink = forwardRef(({className, children, href, ...props}: PillarLinkProps, ref: Ref<HTMLAnchorElement>) => {
   return (
-    <Link variant="accent" ref={ref} className={clsx(styles.Pillar__link, className)} {...props}>
+    <Link variant="accent" href={href} ref={ref} className={clsx(styles.Pillar__link, className)} {...props}>
       {children}
     </Link>
   )
