@@ -57,7 +57,7 @@
     "@types/jest": "^27.5.2",
     "@types/react": "^17.0.59",
     "@types/react-dom": "^17.0.20",
-    "@types/webpack": "^4.41.33",
+    "@types/webpack": "^5.28.1",
     "autoprefixer": "^9.8.8",
     "axe-playwright": "^1.2.3",
     "color2k": "^2.0.2",
@@ -74,7 +74,7 @@
     "typed-css-modules": "^0.7.2",
     "typescript-plugin-css-modules": "^3.4.0",
     "webpack": "^5.84.1",
-    "webpack-cli": "^4.10.0"
+    "webpack-cli": "^4.7.2"
   },
   "peerDependencies": {
     "react": ">=17 <= 18",

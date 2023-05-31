@@ -1,4 +1,4 @@
-import {Meta, Story} from '@storybook/react'
+import {Meta, StoryFn} from '@storybook/react'
 import {userEvent, within} from '@storybook/testing-library'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 
@@ -7,10 +7,11 @@ import React, {useEffect, useState} from 'react'
 import {Hero, River, Heading, Text, Link} from '../'
 import placeholderImage from '../fixtures/images/placeholder-600x400.png'
 
-import {SubdomainNavBar} from '.'
+import {SubdomainNavBar, SubdomainNavBarProps} from '.'
 import {waitFor} from '@testing-library/dom'
 
 type CustomStoryArgs = {showSearch: boolean; numLinks: number; title: string; fullWidth: boolean}
+type Args = CustomStoryArgs & SubdomainNavBarProps
 
 export default {
   title: 'Components/SubdomainNavBar',
@@ -368,7 +369,7 @@ const mockSearchData = [
   },
 ]
 
-const Template: Story<typeof SubdomainNavBar & CustomStoryArgs> = args => {
+const Template: StoryFn<Args> = args => {
   const inputRef = React.useRef<HTMLInputElement | null>(null)
   const [searchResults, setSearchResults] = React.useState<
     {title: string; description: string; date: string; url: string}[] | undefined

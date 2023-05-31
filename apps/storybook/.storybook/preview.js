@@ -1,4 +1,3 @@
-import {useEffect} from 'react'
 import {ThemeProvider} from '../../../packages/react/src'
 import styles from './preview.module.css'
 import '../../../packages/react/src/css/stylesheets'
