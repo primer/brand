@@ -7,8 +7,10 @@ import {Result} from 'axe-core'
 import {chromium, Browser, Page} from 'playwright'
 import {test, expect} from '@playwright/test'
 import {injectAxe, getViolations} from 'axe-playwright'
-// eslint-disable-next-line import/extensions, import/no-unresolved, @typescript-eslint/ban-ts-comment
-import Stories from '../../../../apps/storybook/storybook-static/stories.json' // @ts-ignore
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+// eslint-disable-next-line import/extensions, import/no-unresolved
+import StoriesData from '../../../../apps/storybook/storybook-static/stories.json'
 
 declare const __dirname: string
 
@@ -35,6 +37,8 @@ type Stories = {
   v: number
   stories: StoriesKey
 }
+
+const Stories: Stories = StoriesData
 
 const {describe, beforeAll, afterAll} = test
 
