@@ -94,7 +94,7 @@ export const WithIconSVG = () => (
 )
 WithIconSVG.storyName = 'Icon (native)'
 
-export const Link: ComponentStory<typeof Pillar> = () => {
+export const Link: StoryFn<typeof Pillar> = () => {
   return (
     <Pillar>
       <Pillar.Heading>Code search & code view</Pillar.Heading>
