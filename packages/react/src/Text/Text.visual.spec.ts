@@ -10,21 +10,21 @@ test.describe('Visual Comparison: Text', () => {
   test('Text / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--default&viewMode=story')
 
-    await page.waitForTimeout(200)
+    await page.waitForTimeout(400)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Text / Scale', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--scale&viewMode=story')
 
-    await page.waitForTimeout(200)
+    await page.waitForTimeout(400)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Text / Override Weight', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--override-weight&viewMode=story')
 
-    await page.waitForTimeout(200)
+    await page.waitForTimeout(400)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -33,14 +33,14 @@ test.describe('Visual Comparison: Text', () => {
       'http://localhost:6006/iframe.html?args=&id=components-text--override-weight-responsive&viewMode=story',
     )
 
-    await page.waitForTimeout(200)
+    await page.waitForTimeout(400)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Text / Composition', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--composition&viewMode=story')
 
-    await page.waitForTimeout(200)
+    await page.waitForTimeout(400)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 })

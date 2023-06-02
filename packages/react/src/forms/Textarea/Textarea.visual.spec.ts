@@ -12,7 +12,7 @@ test.describe('Visual Comparison: Textarea', () => {
       'http://localhost:6006/iframe.html?args=&id=components-forms-textarea-features--validation&viewMode=story',
     )
 
-    await page.waitForTimeout(200)
+    await page.waitForTimeout(400)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -21,7 +21,7 @@ test.describe('Visual Comparison: Textarea', () => {
       'http://localhost:6006/iframe.html?args=&id=components-forms-textarea-features--with-form-control&viewMode=story',
     )
 
-    await page.waitForTimeout(200)
+    await page.waitForTimeout(400)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -30,7 +30,7 @@ test.describe('Visual Comparison: Textarea', () => {
       'http://localhost:6006/iframe.html?args=&id=components-forms-textarea-features--inactive&viewMode=story',
     )
 
-    await page.waitForTimeout(200)
+    await page.waitForTimeout(400)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -39,14 +39,14 @@ test.describe('Visual Comparison: Textarea', () => {
       'http://localhost:6006/iframe.html?args=&id=components-forms-textarea-features--full-width&viewMode=story',
     )
 
-    await page.waitForTimeout(200)
+    await page.waitForTimeout(400)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Textarea / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-forms-textarea--default&viewMode=story')
 
-    await page.waitForTimeout(200)
+    await page.waitForTimeout(400)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 })

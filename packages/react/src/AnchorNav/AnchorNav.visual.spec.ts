@@ -88,7 +88,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
   test('AnchorNav / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-anchornav--default&viewMode=story')
 
-    await page.waitForTimeout(200)
+    await page.waitForTimeout(400)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 

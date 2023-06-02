@@ -12,7 +12,7 @@ test.describe('Visual Comparison: animation', () => {
       'http://localhost:6006/iframe.html?args=&id=components-animations-examples--animation-on-press&viewMode=story',
     )
 
-    await page.waitForTimeout(200)
+    await page.waitForTimeout(400)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 })

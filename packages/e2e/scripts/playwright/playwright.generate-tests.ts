@@ -29,13 +29,13 @@
 
   const port = 6006
 
-  const defaultTimeout = 200 // Storybook 7 introduced a small delay in loading stories. This is to migigate the spinner showing up in screenshots.
+  const defaultTimeout = 400 // Storybook 7 introduced a small delay in loading stories. This is to migigate the spinner showing up in screenshots.
 
   /**
    * Manual lookup for tests that need animation or side-effects to complete before tests start
    */
   const waitForTimeoutLookup = {
-    'components-faq-features--all-open': 400, // for the animation
+    'components-faq-features--all-open': 1000, // for the animation
     'components-subdomainnavbar--search-open': 5500, // for the animation
     'components-subdomainnavbar--search-results-visible': 5500, // for the animation
     'components-subdomainnavbar--overflow-menu-open': 5500, // for the animation

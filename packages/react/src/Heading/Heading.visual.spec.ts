@@ -10,28 +10,28 @@ test.describe('Visual Comparison: Heading', () => {
   test('Heading / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--default&viewMode=story')
 
-    await page.waitForTimeout(200)
+    await page.waitForTimeout(400)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Heading / Scale', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--scale&viewMode=story')
 
-    await page.waitForTimeout(200)
+    await page.waitForTimeout(400)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Heading / Override Size', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--override-size&viewMode=story')
 
-    await page.waitForTimeout(200)
+    await page.waitForTimeout(400)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Heading / Override Weight', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--override-weight&viewMode=story')
 
-    await page.waitForTimeout(200)
+    await page.waitForTimeout(400)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -40,14 +40,14 @@ test.describe('Visual Comparison: Heading', () => {
       'http://localhost:6006/iframe.html?args=&id=components-heading--override-weight-responsive&viewMode=story',
     )
 
-    await page.waitForTimeout(200)
+    await page.waitForTimeout(400)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Heading / Override Stretch', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--override-stretch&viewMode=story')
 
-    await page.waitForTimeout(200)
+    await page.waitForTimeout(400)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -56,7 +56,7 @@ test.describe('Visual Comparison: Heading', () => {
       'http://localhost:6006/iframe.html?args=&id=components-heading--override-stretch-responsive&viewMode=story',
     )
 
-    await page.waitForTimeout(200)
+    await page.waitForTimeout(400)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -65,7 +65,7 @@ test.describe('Visual Comparison: Heading', () => {
       'http://localhost:6006/iframe.html?args=&id=components-heading--override-letter-spacing&viewMode=story',
     )
 
-    await page.waitForTimeout(200)
+    await page.waitForTimeout(400)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 })

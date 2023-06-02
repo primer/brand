@@ -10,7 +10,7 @@ test.describe('Visual Comparison: MonaSans', () => {
   test('MonaSans / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=misc-monasans--playground&viewMode=story')
 
-    await page.waitForTimeout(200)
+    await page.waitForTimeout(400)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 })

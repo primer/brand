@@ -12,7 +12,7 @@ test.describe('Visual Comparison: LayoutExamples', () => {
       'http://localhost:6006/iframe.html?args=&id=layout-full-page-examples--kitchen-sink-playground&viewMode=story',
     )
 
-    await page.waitForTimeout(200)
+    await page.waitForTimeout(400)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -24,7 +24,7 @@ test.describe('Visual Comparison: LayoutExamples', () => {
         'http://localhost:6006/iframe.html?args=&id=layout-full-page-examples--kitchen-sink-playground-mobile&viewMode=story',
       )
 
-      await page.waitForTimeout(200)
+      await page.waitForTimeout(400)
       expect(await page.screenshot()).toMatchSnapshot()
     })
   })
@@ -33,7 +33,7 @@ test.describe('Visual Comparison: LayoutExamples', () => {
       'http://localhost:6006/iframe.html?args=&id=layout-full-page-examples--resources-hub-example-playground&viewMode=story',
     )
 
-    await page.waitForTimeout(200)
+    await page.waitForTimeout(400)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -45,7 +45,7 @@ test.describe('Visual Comparison: LayoutExamples', () => {
         'http://localhost:6006/iframe.html?args=&id=layout-full-page-examples--resources-hub-example-mobile-playground&viewMode=story',
       )
 
-      await page.waitForTimeout(200)
+      await page.waitForTimeout(400)
       expect(await page.screenshot()).toMatchSnapshot()
     })
   })

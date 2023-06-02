@@ -12,21 +12,21 @@ test.describe('Visual Comparison: CTAForm', () => {
       'http://localhost:6006/iframe.html?args=&id=components-ctaform-features--with-no-confirm&viewMode=story',
     )
 
-    await page.waitForTimeout(200)
+    await page.waitForTimeout(400)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('CTAForm / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-ctaform--playground&viewMode=story')
 
-    await page.waitForTimeout(200)
+    await page.waitForTimeout(400)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('CTAForm / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-ctaform--default&viewMode=story')
 
-    await page.waitForTimeout(200)
+    await page.waitForTimeout(400)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 })
