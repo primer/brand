@@ -7,7 +7,7 @@ import {Result} from 'axe-core'
 import {chromium, Browser, Page} from 'playwright'
 import {test, expect} from '@playwright/test'
 import {injectAxe, getViolations} from 'axe-playwright'
-// eslint-disable-next-line import/extensions
+// eslint-disable-next-line import/extensions import/no-unresolved
 import Stories from '../../../../apps/storybook/storybook-static/stories.json'
 
 declare const __dirname: string
