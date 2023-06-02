@@ -2,6 +2,7 @@
   "compilerOptions": {
     "declaration": true,
     "target": "esnext",
+    "allowJs": true,
     "module": "esnext",
     "lib": ["esnext", "dom"],
     "emitDeclarationOnly": false,
@@ -14,8 +15,8 @@
     "outDir": "lib",
     "jsx": "react-jsx",
     "plugins": [{"name": "typescript-plugin-css-modules"}],
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
   },
   "include": ["src/**/*", "scripts/**/*", "docs/**/*"],
-  "exclude": ["integration-tests/**/*"]
+  "exclude": ["integration-tests/**/*", "node_modules", "../../node_modules"]
 }

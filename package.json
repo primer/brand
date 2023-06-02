@@ -43,7 +43,9 @@
     "start:lib": "npm run start --workspace=packages/react",
     "start:storybook": "npm run start --workspace=apps/storybook",
     "test": "npm run test --workspaces --if-present",
-    "test:visual": "npm run test:visual --workspace=packages/e2e"
+    "test:visual": "npm run test:visual --workspace=packages/e2e",
+    "test:storybook": "npm run test:storybook --workspace=apps/storybook",
+    "test:axe": "npm run test:axe --workspace=packages/e2e"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.8",
