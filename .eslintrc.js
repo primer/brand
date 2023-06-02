@@ -2,10 +2,11 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
-      jsx: true
-    }
+      jsx: true,
+    },
   },
   extends: [
+    'plugin:import/recommended',
     'plugin:react/jsx-runtime',
     'plugin:react/recommended',
     'plugin:jsx-a11y/recommended',
@@ -13,7 +14,7 @@ module.exports = {
     'plugin:prettier/recommended',
     'plugin:github/recommended',
     'plugin:github/browser',
-    'plugin:primer-react/recommended'
+    'plugin:primer-react/recommended',
   ],
   ignorePatterns: [
     'node_modules',
@@ -24,25 +25,25 @@ module.exports = {
     'dist/**/*',
     'lib/**/*',
     'types/**/*',
-    'integration-tests/**/*'
+    'integration-tests/**/*',
   ],
   globals: {
-    __DEV__: 'readonly'
+    __DEV__: 'readonly',
   },
   env: {
     browser: true,
     commonjs: true,
     es6: true,
     jest: true,
-    node: true
+    node: true,
   },
   settings: {
     react: {
-      version: 'detect'
+      version: 'detect',
     },
     'import/resolver': {
-      typescript: {} // this loads <rootdir>/tsconfig.json to eslint
-    }
+      typescript: {}, // this loads <rootdir>/tsconfig.json to eslint
+    },
   },
   // rules which apply to JS, TS, etc.
   rules: {
@@ -54,16 +55,16 @@ module.exports = {
     'jsx-a11y/label-has-for': [
       2,
       {
-        components: []
-      }
+        components: [],
+      },
     ],
     camelcase: [
       'error',
       {
-        allow: ['dark_dimmed']
-      }
+        allow: ['dark_dimmed'],
+      },
     ],
-    'primer-react/no-deprecated-colors': ['warn', {checkAllStrings: true}]
+    'primer-react/no-deprecated-colors': ['warn', {checkAllStrings: true}],
   },
   overrides: [
     // rules which apply only to JS
@@ -78,22 +79,22 @@ module.exports = {
         'no-unused-vars': [
           'error',
           {
-            ignoreRestSiblings: true
-          }
-        ]
-      }
+            ignoreRestSiblings: true,
+          },
+        ],
+      },
     },
     // rules for style-dictionary JS source files
     {
       files: ['src/tokens/**/*.js'],
       rules: {
-        'prettier/prettier': 0
-      }
+        'prettier/prettier': 0,
+      },
     },
     // rules which apply only to TS
     {
       parserOptions: {
-        project: 'tsconfig.json'
+        project: 'tsconfig.json',
       },
       files: ['**/*.{ts,tsx}'],
       extends: ['plugin:@typescript-eslint/recommended', 'prettier'],
@@ -107,24 +108,24 @@ module.exports = {
           'error',
           {
             argsIgnorePattern: '^_',
-            ignoreRestSiblings: true
-          }
-        ]
-      }
+            ignoreRestSiblings: true,
+          },
+        ],
+      },
     },
     // rules which apply only to TSX tests
     {
       files: ['**/*.test.{ts,tsx}'],
       rules: {
-        'i18n-text/no-en': 0
-      }
+        'i18n-text/no-en': 0,
+      },
     },
     // rules which apply only to TSX storybook stories
     {
       files: ['**/*.stories.{ts,tsx}'],
       rules: {
-        'i18n-text/no-en': 0
-      }
+        'i18n-text/no-en': 0,
+      },
     },
     // rules which apply only to TS scripts
     {
@@ -133,27 +134,27 @@ module.exports = {
         'import/no-nodejs-modules': [
           'error',
           {
-            allow: ['path', 'fs']
-          }
-        ]
-      }
+            allow: ['path', 'fs'],
+          },
+        ],
+      },
     },
     // rules which apply only to Markdown
     {
       files: ['**/*.{md,mdx}'],
       extends: ['plugin:mdx/recommended'],
       settings: {
-        'mdx/code-blocks': true
+        'mdx/code-blocks': true,
       },
       rules: {
-        'prettier/prettier': 0
-      }
+        'prettier/prettier': 0,
+      },
     },
     // rules which apply only to Markdown code blocks
     {
       files: ['**/*.{md,mdx}/**'],
       parserOptions: {
-        project: false
+        project: false,
       },
       rules: {
         camelcase: 0,
@@ -174,8 +175,8 @@ module.exports = {
         'prettier/prettier': 0,
         '@typescript-eslint/no-unnecessary-condition': 0,
         '@typescript-eslint/no-unused-vars': 0,
-        'no-redeclare': 0
-      }
-    }
-  ]
+        'no-redeclare': 0,
+      },
+    },
+  ],
 }
