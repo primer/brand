@@ -94,6 +94,18 @@ export const WithIconSVG = () => (
 )
 WithIconSVG.storyName = 'Icon (native)'
 
+export const Link: ComponentStory<typeof Pillar> = () => {
+  return (
+    <Pillar>
+      <Pillar.Heading>Code search & code view</Pillar.Heading>
+      <Pillar.Description>
+        Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
+      </Pillar.Description>
+      <Pillar.Link href="https://github.com">Learn more</Pillar.Link>
+    </Pillar>
+  )
+}
+
 const fixtureData: FixtureData = [
   {
     href: 'https://github.com',

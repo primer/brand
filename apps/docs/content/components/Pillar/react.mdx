@@ -49,6 +49,21 @@ You can add an `icon` to enhance the visual context. We recommend using an [Octi
 </Pillar>
 ```
 
+### Link
+
+You can add an external link to the Pillar using the `Link` component.
+
+```jsx live
+<Pillar>
+  <Pillar.Heading>Code search & code view</Pillar.Heading>
+  <Pillar.Description>
+    Enables you to rapidly search, navigate, and understand code, right from
+    GitHub.com.
+  </Pillar.Description>
+  <Pillar.Link href="https://github.com">Learn more</Pillar.Link>
+</Pillar>
+```
+
 ### Align
 
 The content alignment can be changed using the `align` prop on the root `Pillar`. This can be configured to either `start` or `center`.
@@ -132,5 +147,16 @@ Optional node that can be used to provide a description for the section.
 | name       | type                       | default     | required | description                                         |
 | ---------- | -------------------------- | ----------- | -------- | --------------------------------------------------- |
 | `children` | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | Content to be displayed inside the pillar component |
+
+`id`, `className` and `ref` are forwarded by default to all children.
+
+### Pillar.Link
+
+Optional node that can be used to provide a link.
+
+| name        | type     | default     | required | description                               |
+| ----------- | -------- | ----------- | -------- | ----------------------------------------- |
+| `className` | `string` | `undefined` | `false`  | Sets a custom class on the root element   |
+| `href`      | `string` |             | `true`   | Local identifier for the anchored element |
 
 `id`, `className` and `ref` are forwarded by default to all children.
