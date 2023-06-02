@@ -10,7 +10,8 @@ jobs:
   accessibility:
     if: ${{ github.repository == 'primer/brand' }}
     name: Accessibility
-    runs-on: ubuntu-latest
+    runs-on:
+      labels: ubuntu-latest-16-cores
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -29,7 +30,7 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Install dependencies
-        run: npm ci --legacy-peer-deps
+        run: npm ci --legacy-peer-deps && cd apps/docs && npm ci --legacy-peer-deps
 
       - name: Build dependencies
         run: npm run build && cd apps/storybook && npx build-storybook

@@ -1,10 +1,13 @@
+// eslint-disable-next-line import/no-nodejs-modules
 import fs from 'fs'
+// eslint-disable-next-line import/no-nodejs-modules
 import path from 'path'
 import {Result} from 'axe-core'
 
 import {chromium, Browser, Page} from 'playwright'
 import {test, expect} from '@playwright/test'
 import {injectAxe, getViolations} from 'axe-playwright'
+// eslint-disable-next-line import/extensions
 import Stories from '../../../../apps/storybook/storybook-static/stories.json'
 
 declare const __dirname: string
@@ -35,8 +38,8 @@ type Stories = {
 
 const {describe, beforeAll, afterAll} = test
 
-let browser
-let page
+let browser: Browser
+let page: Page
 
 let allViolations: Result[] = []
 
@@ -69,11 +72,13 @@ const storybookRoutes = Object.values(Stories.stories)
   })
 
 for (const story of storybookRoutes) {
+  // eslint-disable-next-line i18n-text/no-en
   describe(`Web page accessibility test for ${story.name} - ${story.story}`, () => {
     beforeAll(async () => {
       browser = await chromium.launch()
       page = await browser.newPage()
       const route = `${hostname}?path=${story.path}`
+      // eslint-disable-next-line no-console
       console.info(`Navigating to ${route}`)
       await page.goto(route)
       await page.waitForTimeout(testsWithCustomDelay[story.id] ? testsWithCustomDelay[story.id] : defaultDelay)
@@ -86,6 +91,7 @@ for (const story of storybookRoutes) {
         ),
         'utf8',
       )
+      // eslint-disable-next-line @typescript-eslint/no-shadow
       page.evaluate(configSrc => {
         window.eval(configSrc)
       }, configSrc)
@@ -111,6 +117,7 @@ for (const story of storybookRoutes) {
     afterAll(async () => {
       await browser.close()
       if (allViolations.length > 0) {
+        // eslint-disable-next-line no-console
         console.warn(`${allViolations.length} violations found}`)
         fs.writeFileSync('a11y-violations.json', JSON.stringify(allViolations, null, 2))
       }

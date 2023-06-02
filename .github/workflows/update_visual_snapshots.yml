@@ -12,7 +12,8 @@ jobs:
   update-snapshots:
     if: ${{ github.event.label.name == 'update snapshots' }}
     name: Update snapshots
-    runs-on: ubuntu-latest
+    runs-on:
+      labels: ubuntu-latest-16-cores
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
