@@ -15,7 +15,7 @@
     "outDir": "lib",
     "jsx": "react-jsx",
     "plugins": [{"name": "typescript-plugin-css-modules"}],
-    "resolveJsonModule": true,
+    "resolveJsonModule": true
   },
   "include": ["src/**/*", "scripts/**/*", "docs/**/*"],
   "exclude": ["integration-tests/**/*", "node_modules", "../../node_modules"]

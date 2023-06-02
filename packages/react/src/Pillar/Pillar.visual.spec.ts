@@ -33,6 +33,7 @@ test.describe('Visual Comparison: Pillar', () => {
   test('Pillar / Link', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar-features--link&viewMode=story')
 
+    await page.waitForTimeout(200)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
