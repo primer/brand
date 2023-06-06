@@ -75,8 +75,8 @@ function PillarIcon({icon: Icon, className, color = defaultPillarIconColor, ...r
         <Icon size={24} />
       ) : (
         React.isValidElement(Icon) &&
-        React.cloneElement(Icon, {
-          'aria-hidden': true,
+        React.cloneElement(Icon as React.ReactElement, {
+          ['aria-hidden']: 'true',
           focusable: 'false',
         })
       )}
