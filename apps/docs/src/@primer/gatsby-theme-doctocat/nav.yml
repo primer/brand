@@ -22,6 +22,8 @@
       url: /components/Avatar
     - title: Button
       url: /components/Button
+    - title: ButtonGroup
+      url: /components/ButtonGroup
     - title: Card
       url: /components/Card
     - title: ComparisonTable
