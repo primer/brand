@@ -82,4 +82,22 @@ describe('Pillar', () => {
     const pillarEl = getByTestId(mockTestId).firstChild
     expect(pillarEl).toHaveClass(classToCheck)
   })
+
+  it('renders the link correctly into the document', () => {
+    const mockTestId = 'test'
+    const classToCheckLink = 'Pillar__link'
+    const classToCheckLinkColor = 'Link Link--accent'
+
+    const {getByTestId} = render(
+      <Pillar data-testid={mockTestId}>
+        <Pillar.Heading>{mockHeading}</Pillar.Heading>
+        <Pillar.Description>{mockDescription}</Pillar.Description>
+        <Pillar.Link href="https://primer.style">mockLinkText</Pillar.Link>
+      </Pillar>,
+    )
+
+    const pillarEl = getByTestId(mockTestId).lastChild
+    expect(pillarEl).toHaveClass(classToCheckLink)
+    expect(pillarEl).toHaveClass(classToCheckLinkColor)
+  })
 })
