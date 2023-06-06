@@ -71,7 +71,15 @@ type PillarIconProps = BaseProps<HTMLSpanElement> & {
 function PillarIcon({icon: Icon, className, color = defaultPillarIconColor, ...rest}: PillarIconProps) {
   return (
     <span className={clsx(styles.Pillar__icon, styles[`Pillar__icon--color-${color}`], className)} {...rest}>
-      {typeof Icon === 'function' ? <Icon size={24} /> : React.isValidElement(Icon) && React.cloneElement(Icon)}
+      {typeof Icon === 'function' ? (
+        <Icon size={24} />
+      ) : (
+        React.isValidElement(Icon) &&
+        React.cloneElement(Icon, {
+          'aria-hidden': true,
+          focusable: 'false',
+        })
+      )}
     </span>
   )
 }
