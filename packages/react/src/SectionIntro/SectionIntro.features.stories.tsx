@@ -4,7 +4,7 @@ import {SectionIntro} from '.'
 
 export default {
   title: 'Components/SectionIntro/Features',
-  component: SectionIntro
+  component: SectionIntro,
 } as ComponentMeta<typeof SectionIntro>
 
 export const HeadingOnly = () => (

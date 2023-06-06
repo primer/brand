@@ -18,7 +18,7 @@ test.describe('Visual Comparison: ComparisonTable', () => {
     test.use({viewport: {width: 360, height: 800}})
     test('ComparisonTable / Playground (mobile)', async ({page}) => {
       await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-comparisontable--playground-mobile&viewMode=story'
+        'http://localhost:6006/iframe.html?args=&id=components-comparisontable--playground-mobile&viewMode=story',
       )
 
       expect(await page.screenshot()).toMatchSnapshot()

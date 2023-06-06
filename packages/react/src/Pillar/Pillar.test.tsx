@@ -18,7 +18,7 @@ describe('Pillar', () => {
       <Pillar>
         <Pillar.Heading>{mockHeading}</Pillar.Heading>
         <Pillar.Description>{mockDescription}</Pillar.Description>
-      </Pillar>
+      </Pillar>,
     )
     const results = await axe(container)
 
@@ -35,7 +35,7 @@ describe('Pillar', () => {
       <Pillar data-testid={mockTestId} className={expectedCustomClass}>
         <Pillar.Heading>{mockHeading}</Pillar.Heading>
         <Pillar.Description>{mockDescription}</Pillar.Description>
-      </Pillar>
+      </Pillar>,
     )
     const pillarEl = getByTestId(mockTestId)
     expect(pillarEl.tagName).toBe(expectedTag.toUpperCase())
@@ -49,7 +49,7 @@ describe('Pillar', () => {
     const {getByText} = render(
       <Pillar>
         <Pillar.Heading>{mockHeading}</Pillar.Heading>
-      </Pillar>
+      </Pillar>,
     )
     const PillarHeaderEl = getByText(mockHeading)
     expect(PillarHeaderEl.tagName).toBe(expectedHeadingTag.toUpperCase())
@@ -61,7 +61,7 @@ describe('Pillar', () => {
     const {getByText} = render(
       <Pillar>
         <Pillar.Heading as="h4">{mockHeading}</Pillar.Heading>
-      </Pillar>
+      </Pillar>,
     )
     const PillarHeaderEl = getByText(mockHeading)
     expect(PillarHeaderEl.tagName).toBe(expectedHeadingTag.toUpperCase())
@@ -76,10 +76,28 @@ describe('Pillar', () => {
         <Pillar.Icon icon={GitMergeIcon} />
         <Pillar.Heading>{mockHeading}</Pillar.Heading>
         <Pillar.Description>{mockDescription}</Pillar.Description>
-      </Pillar>
+      </Pillar>,
     )
 
     const pillarEl = getByTestId(mockTestId).firstChild
     expect(pillarEl).toHaveClass(classToCheck)
+  })
+
+  it('renders the link correctly into the document', () => {
+    const mockTestId = 'test'
+    const classToCheckLink = 'Pillar__link'
+    const classToCheckLinkColor = 'Link Link--accent'
+
+    const {getByTestId} = render(
+      <Pillar data-testid={mockTestId}>
+        <Pillar.Heading>{mockHeading}</Pillar.Heading>
+        <Pillar.Description>{mockDescription}</Pillar.Description>
+        <Pillar.Link href="https://primer.style">mockLinkText</Pillar.Link>
+      </Pillar>,
+    )
+
+    const pillarEl = getByTestId(mockTestId).lastChild
+    expect(pillarEl).toHaveClass(classToCheckLink)
+    expect(pillarEl).toHaveClass(classToCheckLinkColor)
   })
 })

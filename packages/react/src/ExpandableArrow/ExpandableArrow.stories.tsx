@@ -4,19 +4,19 @@ import {ExpandableArrow} from '.'
 
 export default {
   title: 'Components/ExpandableArrow',
-  component: ExpandableArrow
+  component: ExpandableArrow,
 } as ComponentMeta<typeof ExpandableArrow>
 
 const Template: ComponentStory<typeof ExpandableArrow> = args => <ExpandableArrow {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-  expanded: false
+  expanded: false,
 }
 
 export const Expanded = Template.bind({})
 Expanded.args = {
-  expanded: true
+  expanded: true,
 }
 
 export const ExpandOnHover = () => {

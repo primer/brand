@@ -6,7 +6,7 @@ import {AnimateProps} from './animation/AnimationProvider'
  */
 export const Container = ({
   children,
-  style
+  style,
 }: {
   children: React.ReactElement[] | React.ReactElement
   style?: React.CSSProperties
@@ -31,7 +31,7 @@ export function RedlineBackground({height, hasBorder = true, ...rest}: PropsWith
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
-        height
+        height,
       }}
       {...rest}
     />

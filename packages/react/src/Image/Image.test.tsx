@@ -14,7 +14,7 @@ describe('Image', () => {
         src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
         alt="alternative text"
         aspectRatio={undefined}
-      />
+      />,
     )
     const results = await axe(container)
 
@@ -30,7 +30,7 @@ describe('Image', () => {
         alt="alternative text"
         className={testClass}
         aspectRatio={undefined}
-      />
+      />,
     )
 
     expect(container.querySelector(`img.${testClass}`)).toBeInTheDocument()
@@ -42,7 +42,7 @@ describe('Image', () => {
         src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
         alt="alternative text"
         aspectRatio={undefined}
-      />
+      />,
     )
 
     expect(container.querySelector('.Image__container')).not.toBeInTheDocument()
@@ -54,7 +54,7 @@ describe('Image', () => {
 
   it('should return an img element in a span tag if aspectRatio is provided and as is not equal to picture', async () => {
     const {container, getByRole} = render(
-      <Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt="alternative text" aspectRatio={'1:1'} />
+      <Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt="alternative text" aspectRatio={'1:1'} />,
     )
 
     expect(container.querySelector('.Image__container')).toBeInTheDocument()
@@ -71,7 +71,7 @@ describe('Image', () => {
         alt="alternative text"
         as="picture"
         aspectRatio={'1:1'}
-      />
+      />,
     )
 
     expect(container.querySelector('.Image__container')).toBeInTheDocument()
@@ -83,7 +83,7 @@ describe('Image', () => {
 
   it('should return an img element in a picture tag if aspectRatio is not provided and as is equal to picture', async () => {
     const {container} = render(
-      <Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt="alternative text" as="picture" />
+      <Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt="alternative text" as="picture" />,
     )
 
     expect(container.querySelector('.Image__container')).toBeInTheDocument()
@@ -95,7 +95,7 @@ describe('Image', () => {
 
   it('should use the custom aspect ratio provided in design-tokens', async () => {
     const {container} = render(
-      <Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt="alternative text" aspectRatio="custom" />
+      <Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt="alternative text" aspectRatio="custom" />,
     )
 
     expect(container.querySelector('span')?.classList.contains('Image--aspect-ratio-custom')).toBe(true)
@@ -104,7 +104,7 @@ describe('Image', () => {
   it('should set the height and width of the image to null if no specific width is set', async () => {
     const testAltText = 'alternative text'
     const {getByAltText} = render(
-      <Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt={testAltText} />
+      <Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt={testAltText} />,
     )
 
     expect(getByAltText(testAltText).getAttribute('height')).toEqual(null)
@@ -121,7 +121,7 @@ describe('Image', () => {
         alt={testAltText}
         height={testHeight}
         width={testWidth}
-      />
+      />,
     )
     expect(getByAltText(testAltText).getAttribute('height')).toEqual(`${testHeight}`)
     expect(getByAltText(testAltText).getAttribute('width')).toEqual(`${testWidth}`)
@@ -137,7 +137,7 @@ describe('Image', () => {
         alt={testAltText}
         loading={testLoading}
         decoding={testDecoding}
-      />
+      />,
     )
     expect(getByAltText(testAltText).getAttribute('loading')).toEqual(testLoading)
     expect(getByAltText(testAltText).getAttribute('decoding')).toEqual(testDecoding)
@@ -154,7 +154,7 @@ describe('Image', () => {
         loading={testLoading}
         decoding={testDecoding}
         aspectRatio="1:1"
-      />
+      />,
     )
     expect(getByAltText(testAltText).getAttribute('loading')).toEqual(testLoading)
     expect(getByAltText(testAltText).getAttribute('decoding')).toEqual(testDecoding)
@@ -171,7 +171,7 @@ describe('Image', () => {
         loading={testLoading}
         decoding={testDecoding}
         as="picture"
-      />
+      />,
     )
     expect(getByAltText(testAltText).getAttribute('loading')).toEqual(testLoading)
     expect(getByAltText(testAltText).getAttribute('decoding')).toEqual(testDecoding)
@@ -185,7 +185,7 @@ describe('Image', () => {
         width={200}
         height={200}
         as="picture"
-      />
+      />,
     )
 
     // Can't test the actual height and width because without a loading image it's not possible to get the actual height and width
@@ -200,7 +200,7 @@ describe('Image', () => {
         width={200}
         height={300}
         aspectRatio="1:1"
-      />
+      />,
     )
 
     // Can't test the actual height and width because without a loading image it's not possible to get the actual height and width - can't test that this overrides either because the height and width are not receivable.
@@ -212,7 +212,7 @@ describe('Image', () => {
       'https://via.placeholder.com/600x400/d3d9df/d3d9df.png, https://via.placeholder.com/1200x800/d3d9df/d3d9df.png 2x'
     const testAltText = 'alternative text'
     const {getByAltText} = render(
-      <Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt={testAltText} srcSet={testSrcSet} />
+      <Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt={testAltText} srcSet={testSrcSet} />,
     )
 
     expect(getByAltText(testAltText).getAttribute('srcset')).toEqual(testSrcSet)
@@ -227,10 +227,10 @@ describe('Image', () => {
         sources={[
           {
             srcset: 'https://via.placeholder.com/600x400/d3d9df/d3d9df.png',
-            media: '(min-width: 600px)'
-          }
+            media: '(min-width: 600px)',
+          },
         ]}
-      />
+      />,
     )
 
     expect(container.querySelector('source')).toBeInTheDocument()

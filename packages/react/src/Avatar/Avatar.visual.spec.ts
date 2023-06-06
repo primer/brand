@@ -21,7 +21,7 @@ test.describe('Visual Comparison: Avatar', () => {
 
   test('Avatar / Responsive Sizes', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-avatar-features--responsive-sizes&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-avatar-features--responsive-sizes&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()

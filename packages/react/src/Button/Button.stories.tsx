@@ -12,7 +12,7 @@ export default {
     href: '#',
     children: 'Button',
     disabled: false,
-    'aria-disabled': false
+    'aria-disabled': false,
   },
   // overriding default type inference for args with more useful control types
   argTypes: {
@@ -20,40 +20,40 @@ export default {
       description: 'The HTML element used to render the root of Button.',
       control: {
         type: 'inline-radio',
-        options: ['a', 'button']
-      }
+        options: ['a', 'button'],
+      },
     },
     variant: {
       description: 'The HTML element used to render the root of Button.',
       control: {
         type: 'inline-radio',
-        options: [...ButtonVariants]
-      }
+        options: [...ButtonVariants],
+      },
     },
     href: {
       name: 'href',
       description: 'Should apply only to Buttons using `as="a"`.',
       type: {name: 'string', required: false},
       control: {
-        type: 'text'
-      }
+        type: 'text',
+      },
     },
     size: {
       description: 'Size of button',
       control: {
         type: 'inline-radio',
-        options: [...ButtonSizes]
-      }
+        options: [...ButtonSizes],
+      },
     },
     children: {
       name: 'children',
       description: 'Button label`.',
       type: {name: 'string', required: true},
       control: {
-        type: 'text'
-      }
-    }
-  }
+        type: 'text',
+      },
+    },
+  },
 } as ComponentMeta<typeof Button>
 
 const Template: ComponentStory<typeof Button> = args => <Button {...args} />

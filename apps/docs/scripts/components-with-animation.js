@@ -6,11 +6,11 @@ export const supportedComponents = [
   'FAQ',
   'Heading',
   'Label',
-  'River',
   'Image',
-  'SectionIntro',
+  'River',
   'Stack',
   'Testimonial',
+  'SectionIntro',
   'Text',
   'Animate',
 ]

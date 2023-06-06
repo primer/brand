@@ -9,7 +9,7 @@ expect.extend(toHaveNoViolations)
 describe('Radio', () => {
   const defaultProps = {
     name: 'mock',
-    value: 'mock value'
+    value: 'mock value',
   }
 
   beforeEach(() => {

@@ -15,8 +15,8 @@ export default {
       defaultValue: 'Label of input',
       description: 'string',
       table: {
-        category: 'Label'
-      }
+        category: 'Label',
+      },
     },
     hasBorder: {
       type: 'string',
@@ -24,67 +24,67 @@ export default {
       defaultValue: 'Label of input',
       description: 'string',
       table: {
-        category: 'Label'
-      }
+        category: 'Label',
+      },
     },
     leadingText: {
       type: 'string',
       name: 'leading text',
       description: 'string',
       table: {
-        category: 'Input'
-      }
+        category: 'Input',
+      },
     },
     trailingText: {
       type: 'string',
       name: 'trailing text',
       description: 'string',
       table: {
-        category: 'Input'
-      }
+        category: 'Input',
+      },
     },
     visuallyHidden: {
       control: {type: 'boolean'},
       defaultValue: false,
       table: {
-        category: 'Label'
-      }
+        category: 'Label',
+      },
     },
     size: {
       options: [0, 1],
       mapping: ['medium', 'large'],
       control: {
         type: 'inline-radio',
-        labels: ['medium', 'large']
+        labels: ['medium', 'large'],
       },
       table: {
-        category: 'Input'
-      }
+        category: 'Input',
+      },
     },
     validationStatus: {
       options: [0, 1, 2], // iterator
       mapping: [undefined, 'error', 'success'], // values
       control: {
         type: 'inline-radio',
-        labels: ['undefined', 'error', 'success']
+        labels: ['undefined', 'error', 'success'],
       },
       table: {
-        category: 'Validation'
-      }
+        category: 'Validation',
+      },
     },
     validationText: {
       type: 'string',
       table: {
-        category: 'Validation'
-      }
+        category: 'Validation',
+      },
     },
     fullWidth: {
       description: 'formerly called Block',
       control: {type: 'boolean'},
       defaultValue: false,
       table: {
-        category: 'Input'
-      }
+        category: 'Input',
+      },
     },
 
     monospace: {
@@ -92,32 +92,32 @@ export default {
       control: {type: 'boolean'},
       defaultValue: false,
       table: {
-        category: 'Input'
-      }
+        category: 'Input',
+      },
     },
     disabled: {
       description: 'disabled field',
       control: {type: 'boolean'},
       defaultValue: false,
       table: {
-        category: 'Input'
-      }
+        category: 'Input',
+      },
     },
     required: {
       description: 'required field',
       control: {type: 'boolean'},
       defaultValue: false,
       table: {
-        category: 'Input'
-      }
+        category: 'Input',
+      },
     },
     placeholder: {
       type: 'string',
       name: 'placeholder',
       description: 'string',
       table: {
-        category: 'Input'
-      }
+        category: 'Input',
+      },
     },
     leadingVisual: {
       control: {type: 'boolean'},
@@ -125,8 +125,8 @@ export default {
       name: 'leading visual',
       description: 'Octicon',
       table: {
-        category: 'Input'
-      }
+        category: 'Input',
+      },
     },
     trailingVisual: {
       control: {type: 'boolean'},
@@ -134,42 +134,42 @@ export default {
       name: 'trailing visual',
       description: 'Octicon',
       table: {
-        category: 'Input'
-      }
+        category: 'Input',
+      },
     },
     className: {
       type: 'string',
       name: 'className',
       description: 'string',
       table: {
-        category: 'Root'
-      }
+        category: 'Root',
+      },
     },
     id: {
       type: 'string',
       name: 'id',
       description: 'string',
       table: {
-        category: 'Root'
-      }
+        category: 'Root',
+      },
     },
     ref: {
       type: 'function',
       name: 'ref',
       description: 'string',
       table: {
-        disable: true
-      }
+        disable: true,
+      },
     },
     children: {
       type: 'function',
       name: 'children',
       description: 'string',
       table: {
-        disable: true
-      }
-    }
-  }
+        disable: true,
+      },
+    },
+  },
 } as ComponentMeta<typeof FormControl>
 
 export const TextInputPlayground = args => {
@@ -237,7 +237,7 @@ export const TextareaPlayground = args => {
   )
 }
 TextareaPlayground.args = {
-  label: 'Label of textarea'
+  label: 'Label of textarea',
 }
 TextareaPlayground.storyName = 'w/ Textarea - Playground'
 

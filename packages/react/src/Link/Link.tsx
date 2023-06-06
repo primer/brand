@@ -4,6 +4,9 @@ import {ExpandableArrow} from '../ExpandableArrow'
 import {Text} from '../Text'
 
 import styles from './Link.module.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/link/colors-with-modes.css'
+
+export const LinkVariants = ['default', 'accent'] as const
 
 export type LinkProps = {
   /**
@@ -14,6 +17,10 @@ export type LinkProps = {
    * Position of the arrow.
    */
   arrowDirection?: 'start' | 'end'
+  /**
+   * Specify alternative link appearance
+   */
+  variant?: (typeof LinkVariants)[number]
 } & React.ComponentPropsWithoutRef<'a'>
 
 /**
@@ -22,6 +29,7 @@ export type LinkProps = {
  */
 export function Link({
   size = 'medium',
+  variant = 'default',
   className,
   children,
   onMouseEnter,
@@ -36,7 +44,7 @@ export function Link({
 
   const sizeMap = {
     medium: '300',
-    large: '400'
+    large: '400',
   } as const
 
   const handleMouseEnter = useCallback(
@@ -44,7 +52,7 @@ export function Link({
       setIsHovered(!isHovered)
       onMouseEnter?.(event)
     },
-    [onMouseEnter, isHovered]
+    [onMouseEnter, isHovered],
   )
 
   const handleMouseLeave = useCallback(
@@ -52,7 +60,7 @@ export function Link({
       setIsHovered(!isHovered)
       onMouseLeave?.(event)
     },
-    [onMouseLeave, isHovered]
+    [onMouseLeave, isHovered],
   )
 
   const handleOnFocus = useCallback(
@@ -60,7 +68,7 @@ export function Link({
       setIsFocused(!isFocused)
       onFocus?.(event)
     },
-    [onFocus, isFocused]
+    [onFocus, isFocused],
   )
 
   const handleOnBlur = useCallback(
@@ -68,12 +76,18 @@ export function Link({
       setIsFocused(!isFocused)
       onBlur?.(event)
     },
-    [onBlur, isFocused]
+    [onBlur, isFocused],
   )
 
   return (
     <a
-      className={clsx(styles.Link, styles[`Link--${size}`], styles[`Link--arrow-${arrowDirection}`], className)}
+      className={clsx(
+        styles.Link,
+        styles[`Link--${size}`],
+        styles[`Link--${variant}`],
+        styles[`Link--arrow-${arrowDirection}`],
+        className,
+      )}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onFocus={handleOnFocus}

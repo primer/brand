@@ -15,7 +15,7 @@ import {
   ButtonGroup,
   Button,
   AnimationProvider,
-  Animate
+  Animate,
 } from '..'
 
 import styles from './Resources.modules.css'

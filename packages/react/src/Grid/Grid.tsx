@@ -15,7 +15,7 @@ import styles from './Grid.module.css'
 import {useId} from '@reach/auto-id'
 
 const testIds = {
-  root: 'Grid'
+  root: 'Grid',
 }
 
 type ResponsiveMap = {
@@ -73,7 +73,7 @@ const _GridRoot = memo(
         {children}
       </Component>
     )
-  }
+  },
 )
 
 type GridColumnProps<T extends keyof JSX.IntrinsicElements = 'div'> = {
@@ -123,7 +123,7 @@ const Column = memo(
         {children}
       </Component>
     )
-  }
+  },
 )
 
 /**
@@ -138,5 +138,5 @@ const Column = memo(
  */
 export const Grid = Object.assign(_GridRoot, {
   Column,
-  testIds
+  testIds,
 })

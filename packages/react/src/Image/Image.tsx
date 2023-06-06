@@ -62,7 +62,7 @@ export const Image = ({
         className={clsx(
           animationClasses,
           styles['Image__container'],
-          aspectRatio && styles[`Image--aspect-ratio-${aspectRatioResolver(aspectRatio)}`]
+          aspectRatio && styles[`Image--aspect-ratio-${aspectRatioResolver(aspectRatio)}`],
         )}
         style={{...animationInlineStyles, ...style}}
       >
