@@ -101,7 +101,7 @@ export const Link: ComponentStory<typeof Pillar> = () => {
       <Pillar.Description>
         Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
       </Pillar.Description>
-      <Pillar.Link href="https://github.com">Learn more</Pillar.Link>
+      <Pillar.Link href="https://github.com">Read the documentation</Pillar.Link>
     </Pillar>
   )
 }
