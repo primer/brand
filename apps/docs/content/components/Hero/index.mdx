@@ -1,0 +1,77 @@
+---
+title: Hero
+description: Use the hero component to render a full-width banner on a webpage
+---
+
+import CustomVideoPlayer from '../../../src/components/custom-video-player'
+import ComponentLayout from '../../../src/layouts/component-layout'
+export default ComponentLayout
+
+## Anatomy
+
+![An image displaying a hero with a heading, description, primary and secondary actions.](https://github.com/primer/brand/assets/912236/51f3dd23-9ac7-4825-9169-4fb7f295e7f1)
+
+- Heading: the main title of the hero.
+- Description: a short description of the hero.
+- Actions: the main and secondary actions the user should take on the page.
+
+## Usage
+
+Use the hero component to provide a title, description and actions to introduce the main content of a page. The hero component is designed to be positioned at the top of a page and spans the full width of the viewport.
+
+### Heading and description
+
+The hero heading should be used to introduce the main content of the page, the description should provide more context. Both heading and description should be short and descriptive, and should not be longer than 2 lines for the heading, and 3-4 lines for the description.
+
+The hero component is not designed to be used as a banner or advertisement, or to provide a lot of information to the user. Consider using other components, such as the [section intro](/components/SectionIntro) or the [river](/components/River) instead.
+
+The hero heading is rendered as an `h1` element by default. You can modify the heading level but be aware that this will affect the page's heading structure and may impact accessibility. [See heading accesibility](/components/Heading#accessibility) for more information.
+
+<DoDontContainer>
+  <Do>
+    <img src="https://github.com/primer/brand/assets/912236/e1792455-f008-45fd-9dd6-7330bc58c03c" />
+    <Caption>
+      Use the hero component to introduce the page with short, descriptive text.
+    </Caption>
+  </Do>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/912236/4f60189c-c5d0-478b-bcb0-823bb1b5ee6f" />
+    <Caption>
+      Don't use long, complex text in the hero. Consider splitting the content
+      using other components.
+    </Caption>
+  </Dont>
+</DoDontContainer>
+
+## Options
+
+### Alignment
+
+Hero elements can be aligned to the start or center of the page. By default, the hero is aligned to the start of the page to allow for an image or a visual asset to be positioned on the left of the hero. Use the center alignment if the asset is centered or not present, or the scenario calls for it.
+
+<DoDontContainer stacked>
+  <Do>
+    <img src="https://github.com/primer/brand/assets/912236/3d96284d-46ae-4211-a291-9750ec54bbf6" />
+    <Caption>
+      Use left alignment if the hero includes an image or visual asset on the
+      left.
+    </Caption>
+  </Do>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/912236/1f56d40e-c3aa-4955-aa8f-a4748e9fe149" />
+    <Caption>
+      Don't use center alignment if the hero includes an image or visual asset
+      placed on the left.
+    </Caption>
+  </Dont>
+</DoDontContainer>
+
+### Actions
+
+The hero can optionally include primary and secondary actions. These actions are rendered as a [button group](/components/ButtonGroup) and follow the same rules as the button group component.
+
+## Related components
+
+- [Section intro](/components/SectionIntro): To provide a title, description and a link to a new section in the page.
+- [River](/components/River): To display a list of content items with a visual asset.
+- [CTABanner](/components/CTABanner): To draw attention to or create urgency around a user action.
