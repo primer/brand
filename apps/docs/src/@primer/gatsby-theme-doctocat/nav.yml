@@ -14,23 +14,23 @@
 
 - title: Components
   children:
-    - title: ActionMenu
+    - title: Action menu
       url: /components/ActionMenu
-    - title: AnchorNav
+    - title: Anchor nav
       url: /components/AnchorNav
     - title: Avatar
       url: /components/Avatar
     - title: Button
       url: /components/Button
-    - title: ButtonGroup
+    - title: Button group
       url: /components/ButtonGroup
     - title: Card
       url: /components/Card
-    - title: ComparisonTable
+    - title: Comparison table
       url: /components/ComparisonTable
-    - title: CTABanner
+    - title: CTA banner
       url: /components/CTABanner
-    - title: CTAForm
+    - title: CTA form
       url: /components/CTAForm
     - title: FAQ
       url: /components/FAQ
@@ -40,28 +40,28 @@
       url: /components/Image
     - title: Label
       url: /components/Label
-    - title: MinimalFooter
+    - title: Minimal footer
       url: /components/MinimalFooter
-    - title: OrderedList
+    - title: Ordered list
       url: /components/OrderedList
     - title: Pillar
       url: /components/Pillar
     - title: River
       url: /components/River
-    - title: SectionIntro
+    - title: Section intro
       url: /components/SectionIntro
-    - title: SubdomainNavBar
+    - title: Subdomain nav bar
       url: /components/SubdomainNavBar
     - title: Testimonial
       url: /components/Testimonial
-    - title: UnorderedList
+    - title: Unordered list
       url: /components/UnorderedList
 
 - title: Forms
   children:
     - title: Checkbox
       url: /components/Checkbox
-    - title: FormControl
+    - title: Form control
       url: /components/FormControl
     - title: Radio
       url: /components/Radio
@@ -69,7 +69,7 @@
       url: /components/Select
     - title: Textarea
       url: /components/Textarea
-    - title: TextInput
+    - title: Text input
       url: /components/TextInput
 
 - title: Layout
