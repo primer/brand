@@ -1,6 +1,6 @@
 import React, {forwardRef, PropsWithChildren, HTMLAttributes, type Ref} from 'react'
 import clsx from 'clsx'
-import {Heading, HeadingProps, Text} from '..'
+import {Heading, HeadingProps, Text, Link, LinkProps} from '..'
 import type {BaseProps} from '../component-helpers'
 import {Colors} from '../constants'
 
@@ -36,7 +36,12 @@ const PillarRoot = forwardRef(
   ) => {
     const filteredChildren = React.Children.toArray(children).filter(child => {
       if (React.isValidElement(child) && typeof child.type !== 'string') {
-        if (child.type === PillarIcon || child.type === PillarHeading || child.type === PillarDescription) {
+        if (
+          child.type === PillarIcon ||
+          child.type === PillarHeading ||
+          child.type === PillarDescription ||
+          child.type === PillarLink
+        ) {
           return true
         }
       }
@@ -66,7 +71,15 @@ type PillarIconProps = BaseProps<HTMLSpanElement> & {
 function PillarIcon({icon: Icon, className, color = defaultPillarIconColor, ...rest}: PillarIconProps) {
   return (
     <span className={clsx(styles.Pillar__icon, styles[`Pillar__icon--color-${color}`], className)} {...rest}>
-      {typeof Icon === 'function' ? <Icon size={24} /> : React.isValidElement(Icon) && React.cloneElement(Icon)}
+      {typeof Icon === 'function' ? (
+        <Icon size={24} />
+      ) : (
+        React.isValidElement(Icon) &&
+        React.cloneElement(Icon as React.ReactElement, {
+          ['aria-hidden']: 'true',
+          focusable: 'false',
+        })
+      )}
     </span>
   )
 }
@@ -79,7 +92,13 @@ type PillarHeadingProps = BaseProps<HTMLHeadingElement> & {
 const PillarHeading = forwardRef<HTMLHeadingElement, PillarHeadingProps>(
   ({children, as = 'h3', size = '6', className, ...rest}, ref) => {
     return (
-      <Heading size={size} className={clsx(styles.Pillar__heading, className)} ref={ref} as={as} {...rest}>
+      <Heading
+        size={size}
+        className={clsx(styles.Pillar__heading, styles[`Pillar__heading--size-${size}`], className)}
+        ref={ref}
+        as={as}
+        {...rest}
+      >
         {children}
       </Heading>
     )
@@ -105,6 +124,19 @@ const PillarDescription = forwardRef<HTMLParagraphElement, PillarDescriptionProp
   },
 )
 
+type PillarLinkProps = {
+  href: string
+} & Omit<LinkProps, 'size' | 'direction'> &
+  BaseProps<HTMLAnchorElement>
+
+const PillarLink = forwardRef(({className, children, href, ...props}: PillarLinkProps, ref: Ref<HTMLAnchorElement>) => {
+  return (
+    <Link variant="accent" href={href} ref={ref} className={clsx(styles.Pillar__link, className)} {...props}>
+      {children}
+    </Link>
+  )
+})
+
 /**
  * Pillar component:
  * {@link https://primer.style/brand/components/Pillar/ See usage examples}.
@@ -113,4 +145,5 @@ export const Pillar = Object.assign(PillarRoot, {
   Icon: PillarIcon,
   Heading: PillarHeading,
   Description: PillarDescription,
+  Link: PillarLink,
 })

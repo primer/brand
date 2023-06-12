@@ -8,6 +8,9 @@ storybook: '/brand/storybook/?path=/story/components-heading--default'
 description: Use the Heading component to render title or subtitle text
 ---
 
+import ComponentLayout from '../../../src/layouts/component-layout'
+export default ComponentLayout
+
 import {
   HeadingTags,
   HeadingSizes,
@@ -17,7 +20,7 @@ import {
   HeadingLetterSpacing,
 } from '@primer/react-brand'
 import {Box as Container} from '@primer/react'
-import {PropTableValues} from '../../src/components'
+import {PropTableValues} from '../../../src/components'
 
 ```js
 import {Heading} from '@primer/react-brand'
