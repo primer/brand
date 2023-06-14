@@ -9,8 +9,8 @@ export const supportedComponents = [
   'Label',
   'River',
   'SectionIntro',
-  'Stack',
   'Testimonial',
   'Text',
+  'Stack',
   'Animate',
 ]
