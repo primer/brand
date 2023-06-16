@@ -11,6 +11,7 @@
   letter-spacing: var(--brand-heading-letterSpacing-700);
 
   color: var(--brand-FAQ-heading-color);
+  margin-bottom: var(--base-size-64);
 }
 
 .FAQ__subheading {
@@ -20,7 +21,6 @@
   line-height: var(--brand-text-lineHeight-600);
   letter-spacing: var(--brand-heading-letterSpacing-600);
 
-  margin-top: var(--base-size-64);
   margin-bottom: var(--base-size-16);
 }
 
@@ -30,7 +30,7 @@
 
 .FAQ__heading--center {
   text-align: center;
-  max-width: var(--brand-FAQ-heading-centered-maxWidth);
+  max-width: 18ch;
   margin-left: auto;
   margin-right: auto;
 }
@@ -45,11 +45,7 @@
 
 /* Large breakpoint and up */
 @media screen and (min-width: 63.25rem) {
-  .FAQ__subheading {
-    margin-top: var(--base-size-96);
-  }
-
-  .FAQ__heading--with-margin {
-    margin-bottom: var(--base-size-64);
+  .FAQ__heading {
+    margin-bottom: var(--base-size-96);
   }
 }
