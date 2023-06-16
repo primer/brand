@@ -26,6 +26,8 @@
       url: /components/ButtonGroup
     - title: Card
       url: /components/Card
+    - title: Checkbox
+      url: /components/Checkbox
     - title: Comparison table
       url: /components/ComparisonTable
     - title: CTA banner
@@ -34,6 +36,12 @@
       url: /components/CTAForm
     - title: FAQ
       url: /components/FAQ
+    - title: Form control
+      url: /components/FormControl
+    - title: Grid
+      url: /components/Grid
+    - title: Heading
+      url: /components/Heading
     - title: Hero
       url: /components/Hero
     - title: Image
@@ -46,42 +54,25 @@
       url: /components/OrderedList
     - title: Pillar
       url: /components/Pillar
+    - title: Radio
+      url: /components/Radio
     - title: River
       url: /components/River
     - title: Section intro
       url: /components/SectionIntro
+    - title: Select
+      url: /components/Select
+    - title: Stack
+      url: /components/Stack
     - title: Subdomain nav bar
       url: /components/SubdomainNavBar
     - title: Testimonial
       url: /components/Testimonial
-    - title: Unordered list
-      url: /components/UnorderedList
-
-- title: Forms
-  children:
-    - title: Checkbox
-      url: /components/Checkbox
-    - title: Form control
-      url: /components/FormControl
-    - title: Radio
-      url: /components/Radio
-    - title: Select
-      url: /components/Select
+    - title: Text
+      url: /components/Text
     - title: Textarea
       url: /components/Textarea
     - title: Text input
       url: /components/TextInput
-
-- title: Layout
-  children:
-    - title: Grid
-      url: /components/Grid
-    - title: Stack
-      url: /components/Stack
-
-- title: Typography
-  children:
-    - title: Heading
-      url: /components/Heading
-    - title: Text
-      url: /components/Text
+    - title: Unordered list
+      url: /components/UnorderedList
