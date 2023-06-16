@@ -50,7 +50,7 @@
 }
 
 .Label--color-default {
-  --brand-Label-color: var(--brand-color-text-default);
+  --brand-Label-color: var(--brand-Label-color-default);
 }
 
 .Label--color-blue {
@@ -165,4 +165,10 @@
 
 .Label__label {
   font-weight: var(--base-text-weight-semibold);
+}
+
+@media (forced-colors: active) {
+  .Label {
+    outline: var(--brand-borderWidth-thin) solid transparent;
+  }
 }

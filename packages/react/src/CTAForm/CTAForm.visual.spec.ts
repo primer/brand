@@ -9,7 +9,7 @@ import {test, expect} from '@playwright/test'
 test.describe('Visual Comparison: CTAForm', () => {
   test('CTAForm / With No Confirm', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-ctaform-features--with-no-confirm&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-ctaform-features--with-no-confirm&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()

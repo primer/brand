@@ -26,7 +26,7 @@ function ControlsHint() {
 
 export default {
   title: 'Components/ThemeProvider',
-  component: ThemeProvider
+  component: ThemeProvider,
 } as ComponentMeta<typeof ThemeProvider>
 
 export const Default: ComponentStory<typeof ThemeProvider> = args => {

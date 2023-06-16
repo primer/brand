@@ -22,14 +22,14 @@ export function useVisibilityObserver(navigationRef: RefObject<HTMLUListElement>
 
     setVisibilityMap(prev => ({
       ...prev,
-      ...updatedEntries
+      ...updatedEntries,
     }))
   }
 
   useEffect(() => {
     const observer = new IntersectionObserver(handleIntersection, {
       root: navigationRef.current,
-      threshold: 1
+      threshold: 1,
     })
 
     if (navigationRef.current) {

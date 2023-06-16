@@ -1,11 +1,12 @@
-import React, {forwardRef, useCallback} from 'react'
+import React, {RefObject, forwardRef, useCallback} from 'react'
 import {isFragment} from 'react-is'
 import clsx from 'clsx'
-
-import {Heading, HeadingTags, Text} from '..'
+import {Heading, HeadingProps, Text} from '..'
 import {ExpandableArrow} from '../ExpandableArrow'
 import {Label, LabelColors} from '../Label'
+import {Image, ImageProps} from '../Image'
 import type {BaseProps} from '../component-helpers'
+import {Colors} from '../constants'
 
 /**
  * Design tokens
@@ -18,16 +19,24 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
  */
 import styles from './Card.module.css'
 import stylesLink from '../Link/Link.module.css'
+import {Icon as IconProps} from '@primer/octicons-react'
+import {useProvidedRefOrCreate} from '../hooks/useRef'
 
+export const CardIconColors = Colors
+
+export const defaultCardIconColor = CardIconColors[0]
 export type CardProps = {
   /**
    * Valid children include Card.Image, Card.Heading, and Card.Description
    */
   children:
     | React.ReactNode
+    | React.ReactElement<CardImageProps>
+    | React.ReactElement<CardIconProps>
     | React.ReactElement<CardLabelProps>
     | React.ReactElement<CardHeadingProps>
     | React.ReactElement<CardDescriptionProps>
+
   /**
    * The href of the link
    * */
@@ -36,11 +45,15 @@ export type CardProps = {
    * Changes the cta text of the card
    * */
   ctaText?: string
-} & BaseProps<HTMLAnchorElement> &
+} & Omit<BaseProps<HTMLAnchorElement>, 'animate'> &
   React.ComponentPropsWithoutRef<'a'>
 
 const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
-  ({onMouseEnter, onMouseLeave, onFocus, onBlur, children, className, ctaText = 'Learn more', href, ...props}, ref) => {
+  (
+    {onMouseEnter, onMouseLeave, onFocus, onBlur, children, className, ctaText = 'Learn more', href, style, ...props},
+    ref,
+  ) => {
+    const cardRef = useProvidedRefOrCreate(ref as RefObject<HTMLAnchorElement>)
     const [isHovered, setIsHovered] = React.useState(false)
     const [isFocused, setIsFocused] = React.useState(false)
 
@@ -49,7 +62,7 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
         setIsHovered(!isHovered)
         onMouseEnter?.(event)
       },
-      [onMouseEnter, isHovered]
+      [onMouseEnter, isHovered],
     )
 
     const handleMouseLeave = useCallback(
@@ -57,7 +70,7 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
         setIsHovered(!isHovered)
         onMouseLeave?.(event)
       },
-      [onMouseLeave, isHovered]
+      [onMouseLeave, isHovered],
     )
 
     const handleOnFocus = useCallback(
@@ -65,7 +78,7 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
         setIsFocused(!isFocused)
         onFocus?.(event)
       },
-      [onFocus, isFocused]
+      [onFocus, isFocused],
     )
 
     const handleOnBlur = useCallback(
@@ -73,13 +86,15 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
         setIsFocused(!isFocused)
         onBlur?.(event)
       },
-      [onBlur, isFocused]
+      [onBlur, isFocused],
     )
 
     const filteredChildren = React.Children.toArray(children).filter(child => {
       if (React.isValidElement(child) && typeof child.type !== 'string') {
         if (
           isFragment(child) ||
+          child.type === CardImage ||
+          child.type === CardIcon ||
           child.type === CardLabel ||
           child.type === CardHeading ||
           child.type === CardDescription
@@ -90,15 +105,19 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
       return false
     })
 
+    const hasIcon = React.Children.toArray(children).some(
+      child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === CardIcon,
+    )
+
     return (
       <a
         href={href}
-        className={clsx(styles.Card, className)}
+        className={clsx(styles.Card, hasIcon && styles['Card--has-icon'], className)}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
-        ref={ref}
+        ref={cardRef}
         {...props}
       >
         {filteredChildren}
@@ -110,12 +129,50 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
         </div>
       </a>
     )
-  }
+  },
 )
+
+type CardImageProps = ImageProps
+
+function CardImage({className, ...rest}: CardImageProps) {
+  return (
+    <div className={styles.Card__image}>
+      <Image className={className} {...rest} />
+    </div>
+  )
+}
+
+type CardIconProps = BaseProps<HTMLSpanElement> & {
+  icon: React.ReactNode | IconProps
+  color?: (typeof CardIconColors)[number]
+  hasBackground?: boolean
+}
+
+function CardIcon({
+  icon: Icon,
+  className,
+  color = defaultCardIconColor,
+  hasBackground = false,
+  ...rest
+}: CardIconProps) {
+  return (
+    <span
+      className={clsx(
+        styles.Card__icon,
+        styles[`Card__icon--color-${color}`],
+        hasBackground && styles['Card__icon--badge'],
+        className,
+      )}
+      {...rest}
+    >
+      {typeof Icon === 'function' ? <Icon /> : React.isValidElement(Icon) && React.cloneElement(Icon)}
+    </span>
+  )
+}
 
 type CardLabelProps = BaseProps<HTMLSpanElement> & {
   children: React.ReactNode | React.ReactNode[]
-  color?: typeof LabelColors[number]
+  color?: (typeof LabelColors)[number]
 }
 
 const CardLabel = forwardRef<HTMLSpanElement, CardLabelProps>(
@@ -125,22 +182,22 @@ const CardLabel = forwardRef<HTMLSpanElement, CardLabelProps>(
         <Label color={color}>{children}</Label>
       </span>
     )
-  }
+  },
 )
 
 type CardHeadingProps = BaseProps<HTMLHeadingElement> & {
   children: React.ReactNode | React.ReactNode[]
-  as?: Exclude<HeadingTags['as'], 'h1'>
-}
+  as?: Exclude<HeadingProps['as'], 'h1'>
+} & HeadingProps
 
 const CardHeading = forwardRef<HTMLHeadingElement, CardHeadingProps>(
-  ({children, as = HeadingTags[2], className, ...rest}, ref) => {
+  ({children, as = 'h3', className, ...rest}, ref) => {
     return (
       <Heading size="6" className={clsx(styles.Card__heading, className)} ref={ref} as={as} {...rest}>
         {children}
       </Heading>
     )
-  }
+  },
 )
 
 type CardDescriptionProps = BaseProps<HTMLParagraphElement> & {
@@ -154,7 +211,7 @@ const CardDescription = forwardRef<HTMLParagraphElement, CardDescriptionProps>(
         {children}
       </Text>
     )
-  }
+  },
 )
 
 /**
@@ -162,7 +219,9 @@ const CardDescription = forwardRef<HTMLParagraphElement, CardDescriptionProps>(
  * {@link https://primer.style/brand/components/Card/ See usage examples}.
  */
 export const Card = Object.assign(CardRoot, {
+  Image: CardImage,
   Label: CardLabel,
+  Icon: CardIcon,
   Heading: CardHeading,
-  Description: CardDescription
+  Description: CardDescription,
 })

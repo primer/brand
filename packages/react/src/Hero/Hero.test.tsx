@@ -16,12 +16,12 @@ describe('Hero', () => {
 
   test('renders correctly into the document', () => {
     const {getByText} = render(
-      <Hero
-        heading={mockHeading}
-        description={mockDescription}
-        primaryAction={mockPrimaryAction}
-        secondaryAction={mockSecondaryAction}
-      />
+      <Hero>
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.Description>{mockDescription}</Hero.Description>
+        <Hero.PrimaryAction href={mockPrimaryAction.href}>{mockPrimaryAction.text}</Hero.PrimaryAction>
+        <Hero.PrimaryAction href={mockSecondaryAction.href}>{mockSecondaryAction.text}</Hero.PrimaryAction>
+      </Hero>,
     )
     const headingElement = getByText(mockHeading)
     const descriptionElement = getByText(mockDescription)
@@ -35,7 +35,12 @@ describe('Hero', () => {
   })
 
   test('renders without secondary action', () => {
-    const {queryAllByRole} = render(<Hero heading={mockHeading} primaryAction={mockPrimaryAction} />)
+    const {queryAllByRole} = render(
+      <Hero>
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.PrimaryAction href={mockPrimaryAction.href}>{mockPrimaryAction.text}</Hero.PrimaryAction>
+      </Hero>,
+    )
 
     const linkElements = queryAllByRole('link')
 
@@ -44,7 +49,11 @@ describe('Hero', () => {
 
   test('renders without description', () => {
     const {container} = render(
-      <Hero heading={mockHeading} primaryAction={mockPrimaryAction} secondaryAction={mockSecondaryAction} />
+      <Hero>
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.PrimaryAction href={mockPrimaryAction.href}>{mockPrimaryAction.text}</Hero.PrimaryAction>
+        <Hero.SecondaryAction href={mockSecondaryAction.href}>{mockSecondaryAction.text}</Hero.SecondaryAction>
+      </Hero>,
     )
     const descriptionEl = container.querySelector('p')
 
@@ -53,12 +62,12 @@ describe('Hero', () => {
 
   test('no a11y violations', async () => {
     const {container} = render(
-      <Hero
-        heading={mockHeading}
-        description={mockDescription}
-        primaryAction={mockPrimaryAction}
-        secondaryAction={mockSecondaryAction}
-      />
+      <Hero>
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.Description>{mockDescription}</Hero.Description>
+        <Hero.PrimaryAction href={mockPrimaryAction.href}>{mockPrimaryAction.text}</Hero.PrimaryAction>
+        <Hero.SecondaryAction href={mockSecondaryAction.href}>{mockSecondaryAction.text}</Hero.SecondaryAction>
+      </Hero>,
     )
     const results = await axe(container)
 

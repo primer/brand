@@ -2,7 +2,7 @@ import React, {forwardRef, PropsWithChildren} from 'react'
 import {isFragment} from 'react-is'
 import clsx from 'clsx'
 
-import {Heading, HeadingTags, AccordionHeading, AccordionContent, AccordionRoot} from '..'
+import {useAnimation, Heading, AccordionHeading, AccordionContent, AccordionRoot, HeadingProps} from '..'
 import type {BaseProps} from '../component-helpers'
 
 /**
@@ -16,9 +16,11 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
  */
 import styles from './FAQ.module.css'
 
-type FAQRootProps = PropsWithChildren<BaseProps<HTMLElement>>
+type FAQRootProps = PropsWithChildren<BaseProps<HTMLElement>> & React.HTMLAttributes<HTMLElement>
 
-const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, className, ...rest}, ref) => {
+const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, style, animate, className, ...rest}, ref) => {
+  const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
+
   const filteredChildren = React.Children.toArray(children).filter(child => {
     if (React.isValidElement(child) && typeof child.type !== 'string') {
       if (
@@ -34,18 +36,23 @@ const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, className, ...
   })
 
   const hasSubheading = React.Children.toArray(children).some(
-    child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === FAQSubheading
+    child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === FAQSubheading,
   )
 
   return (
-    <section className={clsx(styles.FAQ, className)} ref={ref} {...rest}>
+    <section
+      ref={ref}
+      className={clsx(styles.FAQ, animationClasses, className)}
+      style={{...animationInlineStyles, ...style}}
+      {...rest}
+    >
       {React.Children.toArray(filteredChildren).map(child => {
         if (React.isValidElement(child) && typeof child.type !== 'string') {
           if (child.type === FAQHeading) {
-            return React.cloneElement(child, {
+            return React.cloneElement(child as React.ReactElement, {
               align: hasSubheading ? 'start' : child.props.align,
               size: hasSubheading ? 'large' : child.props.size,
-              className: clsx(!hasSubheading && styles['FAQ__heading--with-margin'], child.props.className)
+              className: clsx(!hasSubheading && styles['FAQ__heading--with-margin'], child.props.className),
             })
           }
         }
@@ -59,7 +66,7 @@ type FAQHeadingProps = BaseProps<HTMLHeadingElement> & {
   size?: 'medium' | 'large'
   align?: 'start' | 'center'
   children: React.ReactNode | React.ReactNode[]
-  as?: HeadingTags['as']
+  as?: HeadingProps['as']
 }
 
 const FAQHeading = forwardRef<HTMLHeadingElement, FAQHeadingProps>(
@@ -72,7 +79,7 @@ const FAQHeading = forwardRef<HTMLHeadingElement, FAQHeadingProps>(
           styles.FAQ__heading,
           size === 'large' && styles['FAQ__heading--large'],
           styles[`FAQ__heading--${align}`],
-          className
+          className,
         )}
         ref={ref}
         {...rest}
@@ -80,13 +87,13 @@ const FAQHeading = forwardRef<HTMLHeadingElement, FAQHeadingProps>(
         {children}
       </Heading>
     )
-  }
+  },
 )
 
 type FAQSubheadingProps = BaseProps<HTMLHeadingElement> & {
   align?: 'start' | 'center'
   children: React.ReactNode | React.ReactNode[]
-  as?: Exclude<HeadingTags['as'], 'h1'>
+  as?: Exclude<HeadingProps['as'], 'h1'>
 }
 
 function FAQSubheading({children, className, as = 'h3', ...rest}: FAQSubheadingProps) {
@@ -106,5 +113,5 @@ export const FAQ = Object.assign(FAQRoot, {
   Heading: FAQHeading,
   Item: AccordionRoot,
   Question: AccordionHeading,
-  Answer: AccordionContent
+  Answer: AccordionContent,
 })

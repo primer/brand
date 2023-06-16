@@ -5,7 +5,7 @@ import {InlineLink} from '.'
 
 export default {
   title: 'Components/InlineLink',
-  component: InlineLink
+  component: InlineLink,
 } as ComponentMeta<typeof InlineLink>
 
 const Template: ComponentStory<typeof InlineLink> = args => <InlineLink {...args} />
@@ -13,7 +13,7 @@ const Template: ComponentStory<typeof InlineLink> = args => <InlineLink {...args
 export const Default = Template.bind({})
 Default.args = {
   children: 'An inline link',
-  href: '#'
+  href: '#',
 }
 
 export const Scale: ComponentStory<typeof InlineLink> = args => (

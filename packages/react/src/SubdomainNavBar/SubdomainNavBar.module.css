@@ -107,6 +107,10 @@
   white-space: nowrap;
 }
 
+.SubdomainNavBar-title:hover {
+  text-decoration: none;
+}
+
 /*
  * Primary navigation link area
  */
@@ -126,6 +130,11 @@
   .SubdomainNavBar-primary-nav-list {
     display: none;
   }
+
+  .SubdomainNavBar-primary-nav-list--invisible {
+    display: none;
+  }
+
   .SubdomainNavBar-primary-nav-list--visible {
     display: block;
     margin: 0;
@@ -154,15 +163,22 @@
     /* overflow: hidden; */
   }
 }
+
+@media screen and (min-width: 768px) {
+  .SubdomainNavBar-primary-nav-list {
+    max-width: 100px;
+  }
+}
+
 @media screen and (min-width: 850px) {
   .SubdomainNavBar-primary-nav-list {
-    max-width: 320px;
+    max-width: 200px;
   }
 }
 
 @media screen and (min-width: 1024px) {
   .SubdomainNavBar-primary-nav-list {
-    max-width: 340px;
+    max-width: 300px;
   }
 }
 
@@ -216,6 +232,10 @@
   font-size: var(--base-size-20);
   line-height: var(--base-size-20);
   padding: var(--base-size-8) var(--base-size-16) var(--base-size-16) var(--base-size-28);
+  text-decoration: none;
+}
+
+.SubdomainNavBar-link:hover {
   text-decoration: none;
 }
 
@@ -477,12 +497,6 @@
   white-space: nowrap;
 }
 
-@media screen and (min-width: 48rem) and (max-width: 1023px) {
-  .SubdomainNavBar-cta-button--secondary {
-    display: none;
-  }
-}
-
 @media screen and (min-width: 1024px) {
   .SubdomainNavBar-cta-button--secondary {
     display: inline-flex;
@@ -611,6 +625,10 @@
   font-weight: var(--brand-heading-weight-400);
   font-family: var(--brand-heading-fontFamily);
   line-height: var(--brand-text-lineHeight-400);
+}
+
+.SubdomainNavBar-search-result-item-container a:hover {
+  text-decoration: none;
 }
 
 .SubdomainNavBar-search-result-item-desc {

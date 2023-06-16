@@ -4,7 +4,7 @@ export const useExpandedMenu = (
   open: boolean,
   containerRef: React.RefObject<HTMLElement>,
   anchorRef: React.RefObject<HTMLElement>,
-  isNarrow: boolean
+  isNarrow: boolean,
 ) => {
   // Prevent background scroll when menu is open
   useEffect(() => {

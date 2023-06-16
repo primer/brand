@@ -20,7 +20,7 @@ function colorModeAttributes({dictionary: origDictionary, file, options}) {
     'dark_dimmed',
     'dark_high_contrast',
     'dark_colorblind',
-    'dark_tritanopia'
+    'dark_tritanopia',
   ]
   const defaultMode = supportedModes[0]
 
@@ -33,7 +33,7 @@ function colorModeAttributes({dictionary: origDictionary, file, options}) {
       acc.push({
         ...token,
         name: `${token.name}-hsl`,
-        path: [...token.path, 'hsl']
+        path: [...token.path, 'hsl'],
       })
 
       /**
@@ -87,7 +87,7 @@ function colorModeAttributes({dictionary: origDictionary, file, options}) {
     const replaceWithAlternateModeValue = token => {
       if (token.hasOwnProperty(mode)) {
         return Object.assign({}, token, {
-          value: token[mode]
+          value: token[mode],
         })
       }
     }
@@ -113,8 +113,8 @@ function colorModeAttributes({dictionary: origDictionary, file, options}) {
           dictionary: newDictionary,
           format: 'css',
           formatter: {},
-          themeable: false
-        })
+          themeable: false,
+        }),
       )
       .filter(function (strVal) {
         return !!strVal

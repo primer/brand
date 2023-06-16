@@ -6,22 +6,22 @@ export default {
   title: 'Components/SectionIntro',
   component: SectionIntro,
   args: {
-    align: 'start'
+    align: 'start',
   },
   argTypes: {
     align: {
       description: 'The alignment of the SectionIntro',
       control: {
         type: 'radio',
-        options: ['start', 'center']
-      }
+        options: ['start', 'center'],
+      },
     },
     children: {
       table: {
-        disable: true
-      }
-    }
-  }
+        disable: true,
+      },
+    },
+  },
 } as ComponentMeta<typeof SectionIntro>
 
 export const Playground: ComponentStory<typeof SectionIntro> = args => (

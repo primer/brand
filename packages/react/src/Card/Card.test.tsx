@@ -3,6 +3,7 @@ import '@testing-library/jest-dom'
 
 import {Card} from './Card'
 import {axe, toHaveNoViolations} from 'jest-axe'
+import {GitMergeIcon} from '@primer/octicons-react'
 
 expect.extend(toHaveNoViolations)
 
@@ -19,7 +20,7 @@ describe('Card', () => {
       <Card href={mockHref}>
         <Card.Heading>{mockHeading}</Card.Heading>
         <Card.Description>{mockDescription}</Card.Description>
-      </Card>
+      </Card>,
     )
     const results = await axe(container)
 
@@ -37,7 +38,7 @@ describe('Card', () => {
         <Card.Label>{mockLabel}</Card.Label>
         <Card.Heading>{mockHeading}</Card.Heading>
         <Card.Description>{mockDescription}</Card.Description>
-      </Card>
+      </Card>,
     )
     const cardEl = getByTestId(mockTestId)
     expect(cardEl.tagName).toBe(expectedTag.toUpperCase())
@@ -51,7 +52,7 @@ describe('Card', () => {
     const {getByText} = render(
       <Card href={mockHref}>
         <Card.Heading>{mockHeading}</Card.Heading>
-      </Card>
+      </Card>,
     )
     const cardHeaderEl = getByText(mockHeading)
     expect(cardHeaderEl.tagName).toBe(expectedHeadingTag.toUpperCase())
@@ -63,7 +64,7 @@ describe('Card', () => {
     const {getByText} = render(
       <Card href={mockHref}>
         <Card.Heading as="h4">{mockHeading}</Card.Heading>
-      </Card>
+      </Card>,
     )
     const cardHeaderEl = getByText(mockHeading)
     expect(cardHeaderEl.tagName).toBe(expectedHeadingTag.toUpperCase())
@@ -75,7 +76,7 @@ describe('Card', () => {
     const {getByText} = render(
       <Card href={mockHref}>
         <Card.Heading as="h4">{mockHeading}</Card.Heading>
-      </Card>
+      </Card>,
     )
     const linkTextEl = getByText(expectedLinkText)
     expect(linkTextEl).toBeInTheDocument()
@@ -90,11 +91,59 @@ describe('Card', () => {
         <Card.Label>{mockLabel}</Card.Label>
         <Card.Heading>{mockHeading}</Card.Heading>
         <Card.Description>{mockDescription}</Card.Description>
-      </Card>
+      </Card>,
     )
 
     const cardEl = getByTestId(mockTestId).firstChild
     expect(cardEl).toHaveClass(classToCheck)
     expect(cardEl).toHaveTextContent(mockLabel)
+  })
+
+  it('renders the icon correctly into the document', () => {
+    const mockTestId = 'test'
+    const classToCheck = 'Card__icon'
+
+    const {getByTestId} = render(
+      <Card href={mockHref} data-testid={mockTestId}>
+        <Card.Icon icon={GitMergeIcon} />
+        <Card.Heading>{mockHeading}</Card.Heading>
+        <Card.Description>{mockDescription}</Card.Description>
+      </Card>,
+    )
+
+    const cardEl = getByTestId(mockTestId).firstChild
+    expect(cardEl).toHaveClass(classToCheck)
+  })
+
+  it('renders the icon with background correctly into the document', () => {
+    const mockTestId = 'test'
+    const classToCheck = 'Card__icon--badge'
+
+    const {getByTestId} = render(
+      <Card href={mockHref} data-testid={mockTestId}>
+        <Card.Icon hasBackground icon={GitMergeIcon} />
+        <Card.Heading>{mockHeading}</Card.Heading>
+        <Card.Description>{mockDescription}</Card.Description>
+      </Card>,
+    )
+
+    const cardEl = getByTestId(mockTestId).firstChild
+    expect(cardEl).toHaveClass(classToCheck)
+  })
+
+  it('renders the image correctly into the document', () => {
+    const classToCheck = 'Image'
+    const testAltText = 'alternative text'
+
+    const {getByAltText} = render(
+      <Card href={mockHref}>
+        <Card.Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt={testAltText} />
+        <Card.Heading>{mockHeading}</Card.Heading>
+        <Card.Description>{mockDescription}</Card.Description>
+      </Card>,
+    )
+
+    const cardEl = getByAltText(testAltText)
+    expect(cardEl).toHaveClass(classToCheck)
   })
 })

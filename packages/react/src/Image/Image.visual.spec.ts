@@ -7,15 +7,9 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Image', () => {
-  test('Image / Features', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-image-features--features&viewMode=story')
-
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
   test('Image / Custom Picture Aspect Ratio', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-image-features--custom-picture-aspect-ratio&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-image-features--custom-picture-aspect-ratio&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -23,7 +17,7 @@ test.describe('Visual Comparison: Image', () => {
 
   test('Image / Custom Image Aspect Ratio', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-image-features--custom-image-aspect-ratio&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-image-features--custom-image-aspect-ratio&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -31,7 +25,7 @@ test.describe('Visual Comparison: Image', () => {
 
   test('Image / Custom Image Height', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-image-features--custom-image-height&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-image-features--custom-image-height&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -39,7 +33,7 @@ test.describe('Visual Comparison: Image', () => {
 
   test('Image / Custom Image Width', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-image-features--custom-image-width&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-image-features--custom-image-width&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -47,7 +41,7 @@ test.describe('Visual Comparison: Image', () => {
 
   test('Image / Custom Image Width And Height', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-image-features--custom-image-width-and-height&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-image-features--custom-image-width-and-height&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -61,7 +55,7 @@ test.describe('Visual Comparison: Image', () => {
 
   test('Image / Custom Class On Picture', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-image-features--custom-class-on-picture&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-image-features--custom-class-on-picture&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -69,7 +63,7 @@ test.describe('Visual Comparison: Image', () => {
 
   test('Image / Custom Class With Aspect Ratio', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-image-features--custom-class-with-aspect-ratio&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-image-features--custom-class-with-aspect-ratio&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()

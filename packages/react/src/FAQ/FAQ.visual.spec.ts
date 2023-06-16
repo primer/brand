@@ -22,7 +22,7 @@ test.describe('Visual Comparison: FAQ', () => {
 
   test('FAQ / Heading Left Aligned', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-faq-features--heading-left-aligned&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-faq-features--heading-left-aligned&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -36,7 +36,7 @@ test.describe('Visual Comparison: FAQ', () => {
 
   test('FAQ / Dynamic Data Example', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-faq-features--dynamic-data-example&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-faq-features--dynamic-data-example&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()

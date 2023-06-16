@@ -10,40 +10,40 @@ export default {
     align: 'start',
     hasBorder: false,
     hasShadow: true,
-    hasBackground: true
+    hasBackground: true,
   },
   argTypes: {
     align: {
       description: 'The alignment of the content',
       control: {
         type: 'radio',
-        options: ['start', 'center']
-      }
+        options: ['start', 'center'],
+      },
     },
     hasBorder: {
       description: 'Toggle to show or hide the border',
       control: {
-        type: 'boolean'
-      }
+        type: 'boolean',
+      },
     },
     hasShadow: {
       description: 'Toggle to show or hide the background shadow',
       control: {
-        type: 'boolean'
-      }
+        type: 'boolean',
+      },
     },
     hasBackground: {
       description: 'Toggle to show or hide the background',
       control: {
-        type: 'boolean'
-      }
+        type: 'boolean',
+      },
     },
     children: {
       table: {
-        disable: true
-      }
-    }
-  }
+        disable: true,
+      },
+    },
+  },
 } as ComponentMeta<typeof CTABanner>
 
 export const Playground: ComponentStory<typeof CTABanner> = args => (

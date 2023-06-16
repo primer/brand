@@ -1,5 +1,237 @@
 # @primer/react-brand
 
+## 0.20.0
+
+### Minor Changes
+
+- [#276](https://github.com/primer/brand/pull/276) [`9e202d5`](https://github.com/primer/brand/commit/9e202d5eb92ffb1cbf591524c339bf4eae028ed5) Thanks [@rezrah](https://github.com/rezrah)! - Added animation support
+
+  Use the `animate` prop to apply various animation presets directly on a component.
+
+  ```jsx
+  <AnimationProvider>
+    <Button animate="fade-in">This button will fade in</Button>
+  </AnimationProvider>
+  ```
+
+  - [Read the documentation for more examples](https://primer.style/brand/getting-started/animation)
+
+### Patch Changes
+
+- [#280](https://github.com/primer/brand/pull/280) [`a2cb323`](https://github.com/primer/brand/commit/a2cb323777ed69ffe8d5b13139bd049b6340501b) Thanks [@JoshBowdenConcepts](https://github.com/JoshBowdenConcepts)! - Minimal Footer Updates
+  - Updating MinimalFooter.Link spacing to match when as it set to button or link.
+  - Updated visual tests to include spacing.
+
+* [#279](https://github.com/primer/brand/pull/279) [`6704829`](https://github.com/primer/brand/commit/6704829892bbcba8482bad68246d3e19d1ec50ee) Thanks [@danielguillan](https://github.com/danielguillan)! - Adds spacing scale support in Stack's gap and padding props
+
+  ```jsx
+  <>
+    <Stack gap={96} padding={96}>
+      ...
+    </Stack>
+    <Stack
+      gap={{
+        narrow: 96,
+      }}
+      padding={{
+        narrow: 96,
+      }}
+    >
+      ...
+    </Stack>
+  </>
+  ```
+
+## 0.19.0
+
+### Minor Changes
+
+- [#239](https://github.com/primer/brand/pull/239) [`54b6a31`](https://github.com/primer/brand/commit/54b6a31127dad302fdf4583cd119b3595f7136db) Thanks [@TylerJDev](https://github.com/TylerJDev)! - Provides the `Hero` component with a composable API.
+
+  > **Warning**
+  > This is a breaking change to the `Hero` component. Please review the following carefully.
+
+  <table>
+  <tr>
+  <th> Before</th> <th> After </th>
+  </tr>
+  <tr>
+  <td valign="top">
+
+  ```jsx
+  <Hero
+    heading="This is my super sweet hero heading"
+    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    primaryAction={{
+      text: 'Primary action',
+      href: '#',
+    }}
+    align="center"
+  />
+  ```
+
+   </td>
+  <td valign="top">
+
+  ```jsx
+  <Hero>
+    <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+    <Hero.Description>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Hero.Description>
+    <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+  </Hero>
+  ```
+
+  </td>
+  </tr>
+  </table>
+
+## 0.18.0
+
+### Minor Changes
+
+- [#262](https://github.com/primer/brand/pull/262) [`b0c3fa0`](https://github.com/primer/brand/commit/b0c3fa05603615a9690ccc4ff9297e933f3d881b) Thanks [@josepmartins](https://github.com/josepmartins)! - Add Pillar component
+
+  Example Usage
+
+  ```jsx live
+  <Pillar>
+    <Pillar.Heading>Collaboration is the key to DevOps success</Pillar.Heading>
+    <Pillar.Description>Everything you need to know about getting started with GitHub Actions.</Pillar.Description>
+  </Pillar>
+  ```
+
+  - [Pillar Documentation](https://primer.style/brand/components/Pillar)
+
+### Patch Changes
+
+- [#273](https://github.com/primer/brand/pull/273) [`a226dc6`](https://github.com/primer/brand/commit/a226dc60c76ca0aa0c5d99a4c946fe2bd464c81d) Thanks [@TylerJDev](https://github.com/TylerJDev)! - Changes `Green-blue` and `Red-orange` variants in `Label` colors for improved color contrast:
+
+  ```diff
+  - --base-color-scale-green-4
+  - --base-color-scale-red-4
+  + --base-color-scale-green-5
+  + --base-color-scale-red-5
+  ```
+
+  Adds high contrast mode support for `Label`
+
+* [#236](https://github.com/primer/brand/pull/236) [`7502285`](https://github.com/primer/brand/commit/75022854417650ef54d166cf476e405910197adf) Thanks [@josepmartins](https://github.com/josepmartins)! - New and updated `River` spacing tokens aiming for a responsive logic in both `gap` and `padding` values of the main container.
+
+  ```diff
+  # Updated medium/large gap and margin on pro of a responsive logic (Small/Medium/Large sizes) and inner/outer spacing
+  -  --brand-River-gap-column-medium: var(--base-size-32);
+  -  --brand-River-gap-column-large: var(--base-size-48);
+  +  --brand-River-spacing-inner: var(--base-size-24)/var(--base-size-36)/var(--base-size-48);
+  -  --brand-River-layout-margin-vertical: var(--base-size-24);
+  +  --brand-River-spacing-outer: var(--base-size-28)/var(--base-size-36)/var(--base-size-48);
+  # Updated heading margin
+  -  --brand-River-gap-heading-bottom: var(--base-size-8);
+  +  --brand-River-heading-margin: var(--base-size-8);
+  ```
+
+- [#272](https://github.com/primer/brand/pull/272) [`f5c9656`](https://github.com/primer/brand/commit/f5c9656a4acf5057f282a2efd81e864d477b0988) Thanks [@JoshBowdenConcepts](https://github.com/JoshBowdenConcepts)! - Added polymorphism to the MinimalFooter link element
+
+* [#271](https://github.com/primer/brand/pull/271) [`cb6d7b4`](https://github.com/primer/brand/commit/cb6d7b4ecc4abe28214349798e2335cb5a50a688) Thanks [@JoshBowdenConcepts](https://github.com/JoshBowdenConcepts)! - Added explicit text-decoration none to all components that currently explicitly set the text-decoration to none to ensure usability on legacy sites.
+
+- [#260](https://github.com/primer/brand/pull/260) [`eeb988b`](https://github.com/primer/brand/commit/eeb988b81e8dd4c545ca2adf8234da6da2ff82ac) Thanks [@mperrotti](https://github.com/mperrotti)! - Prevents column width from overflowing the River component
+
+## 0.17.1
+
+### Patch Changes
+
+- [#253](https://github.com/primer/brand/pull/253) [`4f77746`](https://github.com/primer/brand/commit/4f777466a6b03a73904e48b6df38aa846a64c450) Thanks [@josepmartins](https://github.com/josepmartins)! - Added support for `Image` in the `Card` component. The new `Card.Image` child is optional, and can be used alongside a `Card.Label`. Image aspect ratio can be controlled using the `aspectRatio` prop.
+
+  ```jsx
+  <Card href="https://github.com">
+    <Card.Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" aspectRatio="16:9" alt=" " />
+    <Card.Heading>Code search & code view</Card.Heading>
+    <Card.Description>
+      Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
+    </Card.Description>
+  </Card>
+  ```
+
+* [#258](https://github.com/primer/brand/pull/258) [`d8ab2c9`](https://github.com/primer/brand/commit/d8ab2c9ba74579a98813e568927d792090f13a66) Thanks [@rezrah](https://github.com/rezrah)! - `Grid.Column` now spans full width by default when using responsive API
+
+  ```jsx
+  <Grid>
+    <Grid.Column
+      span={{
+        large: 6,
+      }}
+    ></Grid.Column>
+    <Grid.Column
+      span={{
+        xsmall: 3,
+        large: 6,
+      }}
+    ></Grid.Column>
+  </Grid>
+  ```
+
+- [#258](https://github.com/primer/brand/pull/258) [`d8ab2c9`](https://github.com/primer/brand/commit/d8ab2c9ba74579a98813e568927d792090f13a66) Thanks [@rezrah](https://github.com/rezrah)! - Add `brand` prefix to Grid component design tokens.
+
+  ```diff
+  - --grid-spacing-margin
+  + --brand-Grid-spacing-margin
+  ```
+
+* [#256](https://github.com/primer/brand/pull/256) [`e98a121`](https://github.com/primer/brand/commit/e98a1219a6df4fac4a502d7cae0183c5d6f80f71) Thanks [@rezrah](https://github.com/rezrah)! - Add escape-hatch for no title in SubdomainNavBar
+
+  ```jsx
+  <SubdomainNavBar title="" />
+  ```
+
+## 0.17.0
+
+### Minor Changes
+
+- [#237](https://github.com/primer/brand/pull/237) [`51e383d`](https://github.com/primer/brand/commit/51e383dd2ccd74bf9c79c3beaf64e99e0a01a0a5) Thanks [@rezrah](https://github.com/rezrah)! - Added `Grid` component
+
+  Use `Grid` to create flexible and responsive grid-based layouts
+
+  ```jsx
+  <Grid>
+    <Grid.Column span={4}></Grid.Column>
+    <Grid.Column span={4}></Grid.Column>
+    <Grid.Column span={4}></Grid.Column>
+  </Grid>
+  ```
+
+  :link: [See the documentation for more details and usage examples.](https://primer.style/brand/components/Grid)
+
+* [#229](https://github.com/primer/brand/pull/229) [`2359c0c`](https://github.com/primer/brand/commit/2359c0c87ec8c419ef156e8ff78eb4fcdd24b4f3) Thanks [@JoshBowdenConcepts](https://github.com/JoshBowdenConcepts)! - Added `Image` component
+
+  Usage example:
+
+  ```jsx
+  <Image src="/path/to/your/image.jpg" alt="Required alternative text" />
+  ```
+
+  See the [documentation](https://primer.style/brand/components/Image) or [Storybook](https://primer.style/brand/storybook/?path=/story/components-image--playground) for more usage examples.
+
+### Patch Changes
+
+- [#243](https://github.com/primer/brand/pull/243) [`9c479f9`](https://github.com/primer/brand/commit/9c479f9e214ffa7f7bfccafbce4d328275ef3ff3) Thanks [@josepmartins](https://github.com/josepmartins)! - Added support for `[Octicons](https://primer.style/design/foundations/icons)` in the `Card` component. The new `Card.Icon` child is optional, and can be used alongside a `Card.Label`. Icon color and background can be customized using the `color` and `hasBackground` prop respectively.
+
+  ```jsx
+  <Card href="https://github.com">
+    <Card.Icon icon={CopilotIcon} color="purple" hasBackground />
+    <Card.Heading>Code search & code view</Card.Heading>
+    <Card.Description>
+      Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
+    </Card.Description>
+  </Card>
+  ```
+
+* [#246](https://github.com/primer/brand/pull/246) [`e66ffe0`](https://github.com/primer/brand/commit/e66ffe0f81355949c390ef670cc833239d926b4f) Thanks [@TylerJDev](https://github.com/TylerJDev)! - Fixes zoom issue in `SubdomainNavBar` where secondary CTA link would disappear at 200% zoom, or specified width
+
+- [#237](https://github.com/primer/brand/pull/237) [`51e383d`](https://github.com/primer/brand/commit/51e383dd2ccd74bf9c79c3beaf64e99e0a01a0a5) Thanks [@rezrah](https://github.com/rezrah)! - Improved type defintion accuracy for `SubdomainNavBar.PrimaryAction` by forwarding all default props from `HTMLAnchorElement`. This will prevent compiler errors on attributes like `onClick`.
+
+* [#240](https://github.com/primer/brand/pull/240) [`6d590e2`](https://github.com/primer/brand/commit/6d590e2994398caceee5731a2f59e13d108f2b9e) Thanks [@danielguillan](https://github.com/danielguillan)! - Added a `size` prop to control Testimonial's text size
+
+- [#245](https://github.com/primer/brand/pull/245) [`52cc40d`](https://github.com/primer/brand/commit/52cc40d0431eff2286dfd8a12afaaac85a207ee6) Thanks [@TylerJDev](https://github.com/TylerJDev)! - Fixes focus navigation within mobile menu in `SubdomainNavbar`
+
 ## 0.16.1
 
 ### Patch Changes

@@ -2,19 +2,21 @@ import React from 'react'
 import clsx from 'clsx'
 import styles from './Image.module.css'
 import {BaseProps} from '../component-helpers'
+import {useAnimation} from '../animation'
 
-type AspectRatio = '1:1' | '16:9' | '16:10' | '4:3' | 'custom'
+export type ImageAspectRatio = '1:1' | '16:9' | '16:10' | '4:3' | 'custom'
 
 export type ImageProps = React.ImgHTMLAttributes<HTMLImageElement> &
   BaseProps<HTMLImageElement> & {
     src: string
     alt: string
-    aspectRatio?: AspectRatio
+    aspectRatio?: ImageAspectRatio
     media?: string
+    srcSet?: Pick<React.ImgHTMLAttributes<HTMLImageElement>, 'srcSet'>
   } & (
     | {
         as?: 'img' // assuming this is true for others to be required
-        srcSet?: 'string'
+        srcSet?: Pick<React.ImgHTMLAttributes<HTMLImageElement>, 'srcSet'>
       }
     | {
         as: 'picture' // assuming this is true for others to be required
@@ -22,10 +24,11 @@ export type ImageProps = React.ImgHTMLAttributes<HTMLImageElement> &
           srcset: string
           media: string
         }[]
+        srcSet?: undefined
       }
   )
 
-const aspectRatioResolver = (ratio?: AspectRatio) => {
+const aspectRatioResolver = (ratio?: ImageAspectRatio) => {
   if (typeof ratio === 'string') {
     if (ratio === 'custom') return 'custom'
     const [width, height] = ratio.split(':').map(Number)
@@ -39,8 +42,9 @@ const objectWithoutKey = (object, key) => {
 }
 
 export const Image = ({
-  className,
+  animate,
   aspectRatio,
+  className,
   as = 'img',
   ref,
   alt,
@@ -48,15 +52,19 @@ export const Image = ({
   height,
   media,
   srcSet,
+  style,
   ...rest
 }: ImageProps) => {
+  const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
   if (as === 'picture') {
     return (
       <picture
         className={clsx(
+          animationClasses,
           styles['Image__container'],
-          aspectRatio && styles[`Image--aspect-ratio-${aspectRatioResolver(aspectRatio)}`]
+          aspectRatio && styles[`Image--aspect-ratio-${aspectRatioResolver(aspectRatio)}`],
         )}
+        style={{...animationInlineStyles, ...style}}
       >
         {rest['sources'] &&
           rest['sources'].map((source, index) => <source key={index} srcSet={source.srcset} media={source.media} />)}
@@ -82,8 +90,9 @@ export const Image = ({
           alt={alt}
           width={width ? width : '100%'}
           height={height ? height : '100%'}
-          className={clsx(styles.Image, className)}
+          className={clsx(animationClasses, styles.Image, className)}
           srcSet={srcSet}
+          style={{...animationInlineStyles, ...style}}
           {...rest}
         />
       </span>
@@ -93,10 +102,11 @@ export const Image = ({
     <img
       ref={ref}
       alt={alt}
-      className={clsx(styles.Image, className)}
+      className={clsx(animationClasses, styles.Image, className)}
       width={width && width}
       height={height && height}
       srcSet={srcSet}
+      style={{...animationInlineStyles, ...style}}
       {...rest}
     />
   )

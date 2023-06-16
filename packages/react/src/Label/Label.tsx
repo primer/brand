@@ -1,7 +1,11 @@
 import clsx from 'clsx'
 import React, {forwardRef, type Ref} from 'react'
 import {Text} from '../Text'
+
+import {useAnimation} from '../animation'
+
 import type {BaseProps} from '../component-helpers'
+import {Colors, Gradients} from '../constants'
 
 /**
  * Design tokens
@@ -11,27 +15,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './Label.module.css'
 
-export const LabelColors = [
-  'default',
-  'blue',
-  'blue-purple',
-  'coral',
-  'green',
-  'green-blue',
-  'gray',
-  'indigo',
-  'lemon',
-  'lime',
-  'orange',
-  'pink',
-  'pink-blue',
-  'purple',
-  'purple-red',
-  'red',
-  'red-orange',
-  'teal',
-  'yellow'
-] as const
+export const LabelColors = [...Colors, ...Gradients] as const
 export const LabelSizes = ['small', 'medium', 'large'] as const
 
 export const defaultLabelColor = LabelColors[0]
@@ -45,11 +29,11 @@ export type LabelProps = BaseProps<HTMLSpanElement> & {
   /**
    * The color variations available in Label
    */
-  color?: typeof LabelColors[number]
+  color?: (typeof LabelColors)[number]
   /**
    * The size variations available in Label
    */
-  size?: typeof LabelSizes[number]
+  size?: (typeof LabelSizes)[number]
   ['data-testid']?: string
 } & React.ComponentPropsWithoutRef<'span'>
 
@@ -57,27 +41,38 @@ const testIds = {
   root: 'Label',
   get leadingVisual() {
     return `${this.root}-leading-visual`
-  }
+  },
 }
 
 const _Label = forwardRef<HTMLSpanElement, LabelProps>(
   (
     {
+      animate,
       className,
       size = defaultLabelSize,
       color = defaultLabelColor,
       children,
       'data-testid': testId,
       leadingVisual: LeadingVisual,
+      style,
       ...props
     },
-    ref: Ref<HTMLSpanElement>
+    ref: Ref<HTMLSpanElement>,
   ) => {
+    const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
+
     return (
       <span
         ref={ref}
-        className={clsx(styles.Label, styles[`Label--color-${color}`], styles[`Label--size-${size}`], className)}
+        className={clsx(
+          animationClasses,
+          styles.Label,
+          styles[`Label--color-${color}`],
+          styles[`Label--size-${size}`],
+          className,
+        )}
         data-testid={testId || testIds.root}
+        style={{...animationInlineStyles, ...style}}
         {...props}
       >
         {LeadingVisual && (
@@ -86,9 +81,9 @@ const _Label = forwardRef<HTMLSpanElement, LabelProps>(
               <LeadingVisual className={clsx(styles['Label__icon-visual'])} aria-hidden />
             ) : (
               React.isValidElement(LeadingVisual) &&
-              React.cloneElement(LeadingVisual, {
+              React.cloneElement(LeadingVisual as React.ReactElement, {
                 className: clsx(styles['Label__icon-visual']),
-                ['aria-hidden']: 'true'
+                ['aria-hidden']: 'true',
               })
             )}
           </span>
@@ -104,7 +99,7 @@ const _Label = forwardRef<HTMLSpanElement, LabelProps>(
         </span>
       </span>
     )
-  }
+  },
 )
 
 /**

@@ -9,7 +9,7 @@ import {test, expect} from '@playwright/test'
 test.describe('Visual Comparison: Radio', () => {
   test('Radio / w/ labels', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-forms-radio-features--with-form-control&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-forms-radio-features--with-form-control&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -17,7 +17,7 @@ test.describe('Visual Comparison: Radio', () => {
 
   test('Radio / Inactive', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-forms-radio-features--inactive&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-forms-radio-features--inactive&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()
@@ -25,7 +25,7 @@ test.describe('Visual Comparison: Radio', () => {
 
   test('Radio / On Custom Background Color', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-forms-radio-features--on-custom-background-color&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-forms-radio-features--on-custom-background-color&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()

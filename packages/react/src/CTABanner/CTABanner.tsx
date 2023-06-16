@@ -1,7 +1,7 @@
 import React, {forwardRef, type Ref} from 'react'
 import clsx from 'clsx'
 import type {BaseProps} from '../component-helpers'
-import {Heading, HeadingTags} from '../Heading'
+import {Heading, HeadingProps} from '../Heading'
 import {Text} from '../Text'
 import {ButtonGroup} from '../ButtonGroup'
 
@@ -50,7 +50,7 @@ const Root = forwardRef(
       children,
       ...props
     }: CTABannerProps,
-    ref: Ref<HTMLElement>
+    ref: Ref<HTMLElement>,
   ) => {
     return (
       <section
@@ -62,7 +62,7 @@ const Root = forwardRef(
           className={clsx(
             styles['CTABanner-container'],
             hasBorder && styles['CTABanner-container--border'],
-            hasBackground && styles['CTABanner-container--background']
+            hasBackground && styles['CTABanner-container--background'],
           )}
         >
           <div className={clsx(styles['CTABanner-content'], align === 'center' && styles['CTABanner-content--center'])}>
@@ -71,27 +71,28 @@ const Root = forwardRef(
         </div>
       </section>
     )
-  }
+  },
 )
+
+const defaultHeadingLevel = 'h3'
 
 type CTABannerHeadingProps = BaseProps<HTMLHeadingElement> & {
   children: React.ReactNode | React.ReactNode[]
-} & HeadingTags
+} & HeadingProps
 
-const defaultHeadingTag = HeadingTags[2]
 const defaultHeadingSize = '2'
 
 const _Heading = forwardRef(
   (
-    {as = defaultHeadingTag, size = defaultHeadingSize, className, children, ...props}: CTABannerHeadingProps,
-    ref: Ref<HTMLHeadingElement>
+    {as = defaultHeadingLevel, size = defaultHeadingSize, className, children, ...props}: CTABannerHeadingProps,
+    ref: Ref<HTMLHeadingElement>,
   ) => {
     return (
       <Heading ref={ref} className={className} size={size} as={as} {...props}>
         {children}
       </Heading>
     )
-  }
+  },
 )
 
 type CTABannerDescriptionProps = BaseProps<HTMLParagraphElement> & {
@@ -105,20 +106,20 @@ const Description = forwardRef(
         {children}
       </Text>
     )
-  }
+  },
 )
 
 const _ButtonGroup = forwardRef(
   (
     {className, buttonSize = 'large', buttonsAs, children, ...props}: React.ComponentProps<typeof ButtonGroup>,
-    ref: Ref<HTMLDivElement>
+    ref: Ref<HTMLDivElement>,
   ) => {
     return (
       <ButtonGroup buttonSize={buttonSize} buttonsAs={buttonsAs} className={className} ref={ref} {...props}>
         {children}
       </ButtonGroup>
     )
-  }
+  },
 )
 
 export const CTABanner = Object.assign(Root, {Heading: _Heading, Description, ButtonGroup: _ButtonGroup})

@@ -15,7 +15,7 @@ describe('CTABanner', () => {
       <CTABanner>
         <CTABanner.Heading>This is your heading</CTABanner.Heading>
         <CTABanner.Description>This is your description</CTABanner.Description>
-      </CTABanner>
+      </CTABanner>,
     )
     const results = await axe(container)
 
@@ -30,7 +30,7 @@ describe('CTABanner', () => {
 
     const {getByTestId} = render(
       <CTABanner data-testid={mockTestId} className={expectedCustomClass}>
-        <CTABanner.Heading as={'h1'}>Where the most ambitious teams build great things</CTABanner.Heading>
+        <CTABanner.Heading as="h1">Where the most ambitious teams build great things</CTABanner.Heading>
         <CTABanner.Description>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
           turpis felis nam pulvinar risus elementum.
@@ -39,7 +39,7 @@ describe('CTABanner', () => {
           <Button>Primary Action</Button>
           <Button>Secondary Action</Button>
         </CTABanner.ButtonGroup>
-      </CTABanner>
+      </CTABanner>,
     )
     const ctaBannerEl = getByTestId(mockTestId)
     expect(ctaBannerEl.tagName).toBe(expectedTag.toUpperCase())
@@ -54,7 +54,7 @@ describe('CTABanner', () => {
     const {getByText} = render(
       <CTABanner>
         <CTABanner.Heading>{headingText}</CTABanner.Heading>
-      </CTABanner>
+      </CTABanner>,
     )
     const ctaHeaderEl = getByText(headingText)
     expect(ctaHeaderEl.tagName).toBe(expectedTag.toUpperCase())
@@ -67,7 +67,7 @@ describe('CTABanner', () => {
     const {getByText} = render(
       <CTABanner>
         <CTABanner.Heading as={'h1'}>{headingText}</CTABanner.Heading>
-      </CTABanner>
+      </CTABanner>,
     )
     const ctaHeaderEl = getByText(headingText)
     expect(ctaHeaderEl.tagName).toBe(expectedTag.toUpperCase())
@@ -80,7 +80,7 @@ describe('CTABanner', () => {
     const {getByTestId} = render(
       <CTABanner data-testid={mockTestId}>
         <CTABanner.Heading>{'This is your heading'}</CTABanner.Heading>
-      </CTABanner>
+      </CTABanner>,
     )
     const ctaBannerEl = getByTestId(mockTestId).lastChild
     expect(ctaBannerEl).not.toHaveClass(classToCheck)
@@ -93,7 +93,7 @@ describe('CTABanner', () => {
     const {getByTestId} = render(
       <CTABanner hasBorder data-testid={mockTestId}>
         <CTABanner.Heading>This is your heading</CTABanner.Heading>
-      </CTABanner>
+      </CTABanner>,
     )
     const ctaBannerEl = getByTestId(mockTestId).lastChild
     expect(ctaBannerEl).toHaveClass(classToCheck)
@@ -106,7 +106,7 @@ describe('CTABanner', () => {
     const {getByTestId} = render(
       <CTABanner data-testid={mockTestId}>
         <CTABanner.Heading>This is your heading</CTABanner.Heading>
-      </CTABanner>
+      </CTABanner>,
     )
     const ctaBannerEl = getByTestId(mockTestId)
     expect(ctaBannerEl).toHaveClass(classToCheck)
@@ -119,7 +119,7 @@ describe('CTABanner', () => {
     const {getByTestId} = render(
       <CTABanner hasShadow={false} data-testid={mockTestId}>
         <CTABanner.Heading>This is your heading</CTABanner.Heading>
-      </CTABanner>
+      </CTABanner>,
     )
     const ctaBannerEl = getByTestId(mockTestId).firstChild
     expect(ctaBannerEl).not.toHaveClass(classToCheck)
@@ -132,7 +132,7 @@ describe('CTABanner', () => {
           <Button>Primary Action</Button>
           <Button>Secondary Action</Button>
         </CTABanner.ButtonGroup>
-      </CTABanner>
+      </CTABanner>,
     )
     const buttonEl = getAllByRole('button')[0]
     expect(buttonEl.querySelector('svg')).not.toBeNull()
@@ -145,7 +145,7 @@ describe('CTABanner', () => {
           <Button>Primary Action</Button>
           <Button>Secondary Action</Button>
         </CTABanner.ButtonGroup>
-      </CTABanner>
+      </CTABanner>,
     )
     const buttonEl = getAllByRole('button')[1]
     expect(buttonEl.querySelector('svg')).toBeNull()

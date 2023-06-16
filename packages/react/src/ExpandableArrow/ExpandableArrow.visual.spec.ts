@@ -21,7 +21,7 @@ test.describe('Visual Comparison: ExpandableArrow', () => {
 
   test('ExpandableArrow / Expand On Hover', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-expandablearrow--expand-on-hover&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-expandablearrow--expand-on-hover&viewMode=story',
     )
 
     expect(await page.screenshot()).toMatchSnapshot()

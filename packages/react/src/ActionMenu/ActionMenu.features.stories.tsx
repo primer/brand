@@ -10,7 +10,7 @@ import styles from './ActionMenu.stories.module.css'
 
 export default {
   title: 'Components/ActionMenu/Features',
-  component: ActionMenu
+  component: ActionMenu,
 } as ComponentMeta<typeof ActionMenu>
 
 export const SingleSelection = () => {
@@ -218,7 +218,7 @@ const possibleKeysToUnicode = {
   enter: `&#x23CE;`,
   escape: `&#x238B;`,
   tab: '&#x21E5;',
-  none: ''
+  none: '',
 }
 
 export const KeyboardNavigation = () => {
