@@ -42,6 +42,7 @@ property should be enableFullWidth so false is default
 
 .Prose--lineLength {
   max-width: 68ch;
+  margin: 0 auto;
 }
 
 /* ---------------------------------------------------------- */
@@ -178,6 +179,7 @@ property should be enableFullWidth so false is default
   display: block;
   max-width: 100%;
   height: auto;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   margin-block-end: var(--spacing);
 }

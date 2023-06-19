@@ -7,8 +7,7 @@ export type ExpectedProseChildren = HTMLDivElement | HTMLHeadingElement | HTMLPa
 
 export type ProseProps = {
   /**
-   * Valid children include Card.Image, Card.Heading, and Card.Description
-   * FIX: type HTMLElements would allow us to get tagName and textContent but that doesn't work
+   * Valid children include `<ul>`, `<ol>`, `<li>`, `<div>`, `<a>`, `<h1>`, `<h2>`, `<h3>`, `<h4>`, `<h5>`, `<h6>`, and `<p>`.
    */
   rawHtmlMarkup: React.ReactNode | React.ReactNode[]
   enableFullWidth?: boolean

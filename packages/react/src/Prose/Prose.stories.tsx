@@ -18,7 +18,7 @@ export default {
   },
 } as ComponentMeta<typeof Prose>
 
-export const ExampleHtmlMarkup = (
+const ExampleHtmlMarkup = (
   <>
     <h1>The tools you need to build what you want.</h1>
     <p>Contribute to projects quickly with automatic environment setup.</p>
