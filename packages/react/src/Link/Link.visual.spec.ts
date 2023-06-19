@@ -24,6 +24,12 @@ test.describe('Visual Comparison: Link', () => {
   test('Link / Accent', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-link-features--accent&viewMode=story')
 
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Link / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-link--default&viewMode=story')
+
     await page.waitForTimeout(400)
     expect(await page.screenshot()).toMatchSnapshot()
   })
