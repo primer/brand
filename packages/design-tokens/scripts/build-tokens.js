@@ -137,6 +137,8 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
     `tokens/functional/typography/typography-responsive.json`,
     `tokens/functional/components/grid/grid.json`,
     `tokens/functional/components/river/river.json`,
+    `tokens/functional/components/faq/faq.json`,
+    `tokens/functional/components/comparison-table/comparison-table.json`,
   ]
 
   for (const path of filesForResponsiveTokens) {

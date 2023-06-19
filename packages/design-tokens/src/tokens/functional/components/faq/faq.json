@@ -1,0 +1,18 @@
+{
+  "brand": {
+    "FAQ": {
+      "spacing": {
+        "inner": {
+          "heading": {
+            "value": "var(--base-size-64)",
+            "responsive": {
+              "768px": {
+                "value": "var(--base-size-96)"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

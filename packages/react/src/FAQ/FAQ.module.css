@@ -11,7 +11,7 @@
   letter-spacing: var(--brand-heading-letterSpacing-700);
 
   color: var(--brand-FAQ-heading-color);
-  margin-bottom: var(--base-size-64);
+  margin-bottom: var(--brand-FAQ-spacing-inner-heading);
 }
 
 .FAQ__subheading {
@@ -41,11 +41,4 @@
   font-size: var(--brand-text-size-800);
   line-height: var(--brand-text-lineHeight-800);
   letter-spacing: var(--brand-text-letterSpacing-800);
-}
-
-/* Large breakpoint and up */
-@media screen and (min-width: 63.25rem) {
-  .FAQ__heading {
-    margin-bottom: var(--base-size-96);
-  }
 }
