@@ -4,7 +4,7 @@
       "spacing": {
         "inner": {
           "heading": {
-            "value": "var(--base-size-64)",
+            "value": "var(--base-size-40)",
             "responsive": {
               "544px": {
                 "value": "var(--base-size-40)"
