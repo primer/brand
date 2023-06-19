@@ -12,7 +12,7 @@ test.describe('Visual Comparison: MinimalFooter', () => {
       'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--multiple-footnotes&viewMode=story',
     )
 
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(1500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -30,7 +30,7 @@ test.describe('Visual Comparison: MinimalFooter', () => {
       'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--mixed-buttons-and-links&viewMode=story',
     )
 
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(1500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -39,7 +39,7 @@ test.describe('Visual Comparison: MinimalFooter', () => {
       'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--no-social-links&viewMode=story',
     )
 
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(1500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
