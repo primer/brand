@@ -4,8 +4,6 @@
 .ComparisonTable--heading {
   text-align: left;
   max-width: 18ch;
-  margin-left: auto;
-  margin-right: auto;
   margin-bottom: var(--brand-ComparisonTable-spacing-inner-heading);
 }
 
@@ -13,6 +11,8 @@
 
 @media screen and (min-width: 34rem) {
   .ComparisonTable--heading {
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
   }
 }
@@ -165,10 +165,6 @@
  * Narrow viewport-only styles
 */
 @media screen and (max-width: 34rem) {
-  :global(.ComparisonTable--default) {
-    margin-top: var(--base-size-8);
-  }
-
   :global(.ComparisonTable--default) .ComparisonTable-cell:not(.ComparisonTable-cell-heading) {
     position: relative;
     padding-left: 25px;
