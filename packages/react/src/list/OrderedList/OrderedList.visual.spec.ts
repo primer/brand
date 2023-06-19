@@ -10,14 +10,14 @@ test.describe('Visual Comparison: OrderedList', () => {
   test('OrderedList / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-orderedlist--default&viewMode=story')
 
-    await page.waitForTimeout(400)
+    await page.waitForTimeout(1000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('OrderedList / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-orderedlist--playground&viewMode=story')
 
-    await page.waitForTimeout(400)
+    await page.waitForTimeout(1000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 })

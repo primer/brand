@@ -12,7 +12,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--single-selection&viewMode=story',
     )
 
-    await page.waitForTimeout(400)
+    await page.waitForTimeout(1000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -21,7 +21,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--in-stack&viewMode=story',
     )
 
-    await page.waitForTimeout(400)
+    await page.waitForTimeout(1000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -39,7 +39,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--truncation-of-long-values&viewMode=story',
     )
 
-    await page.waitForTimeout(400)
+    await page.waitForTimeout(1000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -48,7 +48,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--longer-lists&viewMode=story',
     )
 
-    await page.waitForTimeout(400)
+    await page.waitForTimeout(1000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -75,7 +75,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
       'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--disabled-menu&viewMode=story',
     )
 
-    await page.waitForTimeout(400)
+    await page.waitForTimeout(1000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -91,7 +91,7 @@ test.describe('Visual Comparison: ActionMenu', () => {
   test('ActionMenu / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-actionmenu--default&viewMode=story')
 
-    await page.waitForTimeout(400)
+    await page.waitForTimeout(1000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 })

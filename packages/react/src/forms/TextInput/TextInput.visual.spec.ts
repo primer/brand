@@ -10,7 +10,7 @@ test.describe('Visual Comparison: TextInput', () => {
   test('TextInput / TextInput - Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-forms-textinput--playground&viewMode=story')
 
-    await page.waitForTimeout(400)
+    await page.waitForTimeout(1000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 })

@@ -10,7 +10,7 @@ test.describe('Visual Comparison: Select', () => {
   test('Select / Select - Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-forms-select--playground&viewMode=story')
 
-    await page.waitForTimeout(400)
+    await page.waitForTimeout(2500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 })

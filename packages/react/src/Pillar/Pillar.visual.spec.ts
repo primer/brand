@@ -10,14 +10,14 @@ test.describe('Visual Comparison: Pillar', () => {
   test('Pillar / Icon', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar-features--icon&viewMode=story')
 
-    await page.waitForTimeout(400)
+    await page.waitForTimeout(1000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Pillar / Icon Colors', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar-features--icon-colors&viewMode=story')
 
-    await page.waitForTimeout(400)
+    await page.waitForTimeout(1000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -26,21 +26,21 @@ test.describe('Visual Comparison: Pillar', () => {
       'http://localhost:6006/iframe.html?args=&id=components-pillar-features--with-icon-svg&viewMode=story',
     )
 
-    await page.waitForTimeout(400)
+    await page.waitForTimeout(1000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Pillar / Link', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar-features--link&viewMode=story')
 
-    await page.waitForTimeout(400)
+    await page.waitForTimeout(1000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Pillar / Stacked', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar-features--stacked&viewMode=story')
 
-    await page.waitForTimeout(400)
+    await page.waitForTimeout(1000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -49,21 +49,21 @@ test.describe('Visual Comparison: Pillar', () => {
       'http://localhost:6006/iframe.html?args=&id=components-pillar-features--stacked-centered&viewMode=story',
     )
 
-    await page.waitForTimeout(400)
+    await page.waitForTimeout(1000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Pillar / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar--default&viewMode=story')
 
-    await page.waitForTimeout(400)
+    await page.waitForTimeout(1000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Pillar / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar--playground&viewMode=story')
 
-    await page.waitForTimeout(400)
+    await page.waitForTimeout(1000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 })
