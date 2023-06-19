@@ -6,7 +6,13 @@
           "heading": {
             "value": "var(--base-size-64)",
             "responsive": {
+              "544px": {
+                "value": "var(--base-size-40)"
+              },
               "768px": {
+                "value": "var(--base-size-64)"
+              },
+              "1012px": {
                 "value": "var(--base-size-96)"
               }
             }

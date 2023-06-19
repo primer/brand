@@ -82,9 +82,9 @@
     padding-bottom: 0;
   }
 
-  .ComparisonTable thead tr {
+  /* .ComparisonTable thead tr {
     border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
-  }
+  } */
 
   .ComparisonTable tbody tr {
     border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
