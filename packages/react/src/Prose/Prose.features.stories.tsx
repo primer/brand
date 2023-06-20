@@ -1,7 +1,7 @@
 import React from 'react'
 import {ComponentMeta, ComponentStory} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
-import Prose from './Prose'
+import {Prose} from './Prose'
 
 export default {
   title: 'Components/Prose/Features',
