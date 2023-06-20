@@ -149,9 +149,11 @@ type CardIconProps = BaseProps<HTMLSpanElement> & {
   icon: React.ReactNode | IconProps
   color?: typeof CardIconColors[number]
   hasBackground?: boolean
+  ['aria-hidden']?: boolean
 }
 
 function CardIcon({
+  'aria-hidden': ariaHidden,
   icon: Icon,
   className,
   color = defaultCardIconColor,
@@ -166,9 +168,10 @@ function CardIcon({
         hasBackground && styles['Card__icon--badge'],
         className
       )}
+      aria-hidden={ariaHidden || typeof Icon !== 'function'}
       {...rest}
     >
-      {typeof Icon === 'function' ? <Icon /> : React.isValidElement(Icon) && React.cloneElement(Icon)}
+      {typeof Icon === 'function' ? <Icon /> : Icon}
     </span>
   )
 }
