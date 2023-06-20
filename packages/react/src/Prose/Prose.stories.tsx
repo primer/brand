@@ -19,7 +19,7 @@ export default {
 } as ComponentMeta<typeof Prose>
 
 const ExampleHtmlMarkup = (
-  <>
+  <div>
     <h1>The tools you need to build what you want.</h1>
     <p>Contribute to projects quickly with automatic environment setup.</p>
     <p>Make sure you see the changes you care about.</p>
@@ -45,7 +45,7 @@ const ExampleHtmlMarkup = (
       Secure code as you write it. Automatically review every change to your codebase and identify vulnerabilities
       before they reach production. <a href="/#">Learn more here.</a>
     </p>
-  </>
+  </div>
 )
 
 export const Playground: ComponentStory<typeof Prose> = args => <Prose {...args} rawHtmlMarkup={ExampleHtmlMarkup} />
