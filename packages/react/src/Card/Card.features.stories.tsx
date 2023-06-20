@@ -6,7 +6,7 @@ import {CopilotIcon, RocketIcon, GitBranchIcon, HeartIcon} from '@primer/octicon
 
 export default {
   title: 'Components/Card/features',
-  component: Card,
+  component: Card
 } as ComponentMeta<typeof Card>
 
 export const CTAText: ComponentStory<typeof Card> = () => {
@@ -23,8 +23,8 @@ export const CTAText: ComponentStory<typeof Card> = () => {
 export const Label: ComponentStory<typeof Card> = () => {
   return (
     <Card href="https://github.com">
-      <Card.Label>Limited</Card.Label>
       <Card.Heading>Code search & code view</Card.Heading>
+      <Card.Label>Limited</Card.Label>
       <Card.Description>
         Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
       </Card.Description>
@@ -88,8 +88,8 @@ export const IconAndLabel: ComponentStory<typeof Card> = () => {
   return (
     <Card href="https://github.com">
       <Card.Icon icon={GitBranchIcon} color="purple" hasBackground />
-      <Card.Label color="blue-purple">Beta</Card.Label>
       <Card.Heading>Code search & code view</Card.Heading>
+      <Card.Label color="blue-purple">Beta</Card.Label>
       <Card.Description>
         Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
       </Card.Description>
@@ -119,8 +119,8 @@ export const ImageAndLabel: ComponentStory<typeof Card> = () => {
         src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
         alt="placeholder, blank area with an gray background color"
       />
-      <Card.Label color="blue-purple">Beta</Card.Label>
       <Card.Heading>Code search & code view</Card.Heading>
+      <Card.Label color="blue-purple">Beta</Card.Label>
       <Card.Description>
         Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
       </Card.Description>
@@ -134,7 +134,7 @@ const fixtureData: FixtureData = [
     icon: CopilotIcon,
     iconColor: 'indigo',
     heading: 'Collaboration is the key to DevOps success',
-    description: 'Everything you need to know about getting started with GitHub Actions.',
+    description: 'Everything you need to know about getting started with GitHub Actions.'
   },
   {
     href: 'https://github.com',
@@ -145,16 +145,14 @@ const fixtureData: FixtureData = [
       <React.Fragment>
         In a recent TechTarget study, 70 percent of organizations reported they had adopted DevOps.
       </React.Fragment>
-    ),
+    )
   },
   {
     href: 'https://github.com',
     icon: GitBranchIcon,
     iconColor: 'teal',
     heading: 'How healthy teams build better software',
-    description: (
-      <React.Fragment>Everything you need to know about getting started with GitHub Actions.</React.Fragment>
-    ),
+    description: <React.Fragment>Everything you need to know about getting started with GitHub Actions.</React.Fragment>
   },
   {
     href: 'https://github.com',
@@ -162,16 +160,16 @@ const fixtureData: FixtureData = [
     iconColor: 'pink',
     heading: 'GitHub sponsors',
     description:
-      'Financially support the open source projects your code depends. with a current GitHub for Startups partner.',
-  },
+      'Financially support the open source projects your code depends. with a current GitHub for Startups partner.'
+  }
 ]
 
 type FixtureData = {
   href: string
   icon?: React.ReactNode
-  iconColor?: (typeof CardIconColors)[number]
+  iconColor?: typeof CardIconColors[number]
   label?: string
-  labelColor?: (typeof LabelColors)[number]
+  labelColor?: typeof LabelColors[number]
   heading: string | React.ReactElement | React.ReactElement[]
   description: string | React.ReactElement | React.ReactElement[]
 }[]

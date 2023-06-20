@@ -19,10 +19,35 @@
     'action action';
   flex: auto;
   grid-template-rows: auto auto auto auto 1fr;
+  position: absolute;
+}
+
+.Card:focus-within {
+  border-color: var(--brand-color-focus);
+  border-width: var(--brand-borderWidth-thick);
 }
 
 .Card:hover {
   text-decoration: none;
+}
+
+.Card__link {
+  color: currentColor;
+  text-decoration: none;
+}
+
+/* The focus outline will appear around the entire card, not just the title */
+.Card__link:focus {
+  outline: none;
+}
+
+.Card__link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 
 .Card--has-icon {
