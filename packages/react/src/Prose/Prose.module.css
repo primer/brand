@@ -35,14 +35,8 @@
 /* 3. Line-length control                                     */
 /* ---------------------------------------------------------- */
 
-/* 
-Enable max length === true [have prop to set to false] 
-property should be enableFullWidth so false is default
-*/
-
 .Prose--lineLength {
-  max-width: 68ch;
-  margin: 0 auto;
+  max-width: var(--brand-Prose-lineLength);
 }
 
 /* ---------------------------------------------------------- */
@@ -55,6 +49,9 @@ property should be enableFullWidth so false is default
   line-height: var(--brand-text-lineHeight-900);
   font-family: var(--brand-heading-fontFamily);
   letter-spacing: var(--brand-text-letterSpacing-900);
+}
+
+.Prose--lineLength h1 {
   /* TODO: These should be tokens in the heading component as well and referenced in both places */
   max-width: 22ch;
 }
@@ -65,6 +62,9 @@ property should be enableFullWidth so false is default
   line-height: var(--brand-text-lineHeight-800);
   font-family: var(--brand-heading-fontFamily);
   letter-spacing: var(--brand-text-letterSpacing-800);
+}
+
+.Prose--lineLength h2 {
   max-width: 26ch;
 }
 
@@ -74,6 +74,9 @@ property should be enableFullWidth so false is default
   line-height: var(--brand-heading-lineHeight-700);
   font-family: var(--brand-heading-fontFamily);
   letter-spacing: var(--brand-heading-letterSpacing-700);
+}
+
+.Prose--lineLength h1 {
   max-width: 32ch;
 }
 
@@ -137,9 +140,8 @@ property should be enableFullWidth so false is default
 
 .Prose ul {
   /* TODO: remove classes and see if you can pass svg data instead */
-  /* This needs to be looked at as we won't have access to the base component */
   list-style-type: image;
-  list-style-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' aria-hidden='true' focusable='false' role='img' class='ListItem-module--ListItem__leading-visual--foUTB' viewBox='0 0 16 16' width='16' height='16' fill='currentColor' style='display: inline-block; vertical-align: text-bottom; overflow: visible;'%3e%3cpath d='M2 7.75A.75.75 0 0 1 2.75 7h10a.75.75 0 0 1 0 1.5h-10A.75.75 0 0 1 2 7.75Z'%3e%3c/path%3e%3c/svg%3e ");
+  list-style-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' aria-hidden='true' focusable='false' role='img' viewBox='0 -3 16 16' width='16' height='16' fill='currentColor' style='display: inline-block; vertical-align: text-bottom; overflow: visible;'%3e%3cpath d='M2 7.75A.75.75 0 0 1 2.75 7h10a.75.75 0 0 1 0 1.5h-10A.75.75 0 0 1 2 7.75Z'%3e%3c/path%3e%3c/svg%3e ");
 }
 
 .Prose li {
