@@ -12,7 +12,7 @@ test.describe('Visual Comparison: FormControl', () => {
       'http://localhost:6006/iframe.html?args=&id=components-forms-formcontrol--text-input-playground&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(3000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -30,7 +30,7 @@ test.describe('Visual Comparison: FormControl', () => {
       'http://localhost:6006/iframe.html?args=&id=components-forms-formcontrol--select-playground&viewMode=story',
     )
 
-    await page.waitForTimeout(4000)
+    await page.waitForTimeout(3000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 

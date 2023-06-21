@@ -12,7 +12,7 @@ test.describe('Visual Comparison: forms', () => {
       'http://localhost:6006/iframe.html?args=&id=components-forms-examples--git-hub-enterprise&viewMode=story',
     )
 
-    await page.waitForTimeout(2500)
+    await page.waitForTimeout(3000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 })
