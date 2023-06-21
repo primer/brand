@@ -25,11 +25,28 @@ Use an image to display a graphical representation, such as a photograph or a vi
 
 ## Options
 
-### Aspect ratio
+To support high-resolution displays, provide higher density versions of your images using the srcset attribute or serve them through responsive image techniques.
+
+### Size
+
+Choose the appropriate dimensions for the image to fit the desired layout, either by using `widht/height` or the `aspect-ratio` properties. Avoid using images that are too large or too small for their intended display. When using images in a list, make sure they are all the same size to achieve a visually balanced layout.
+
+<DoDontContainer>
+  <Do>
+    <img src="" alt="" />
+    <Caption></Caption>
+  </Do>
+  <Dont>
+    <img src="" alt="" />
+    <Caption></Caption>
+  </Dont>
+</DoDontContainer>
 
 ## Accessibility
 
 Use the `alt` attribute to provide alternative text that is displayed if the image cannot be loaded or for accessibility purposes. It is important to include descriptive alternative text that conveys the meaning or content of the image. For more info, see [Alternative text for images](https://primer.style/design/guides/accessibility/alternative-text-for-images).
+
+Optimize your images for web to reduce file size without compromising quality. Smaller file sizes improve page loading speed.
 
 ## Related components
 
