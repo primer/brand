@@ -41,7 +41,7 @@
     "start": "npm run build:lib && npm run start:storybook & npm run start:lib",
     "start:docs": "cd apps/docs && npm run start",
     "start:lib": "npm run start --workspace=packages/react",
-    "start:storybook": "npm run start --workspace=apps/storybook",
+    "start:storybook": "npm run build:lib && npm run start --workspace=apps/storybook",
     "test": "npm run test --workspaces --if-present",
     "test:visual": "npm run test:visual --workspace=packages/e2e"
   },
