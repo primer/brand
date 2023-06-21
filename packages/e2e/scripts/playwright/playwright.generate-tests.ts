@@ -142,7 +142,6 @@
         )
 
         const requiresTabletViewport = storyName.toLowerCase().includes('tablet')
-
         if (skipTestLookup.includes(id)) {
           return acc
         }
