@@ -52,7 +52,7 @@ export type CardProps = {
 const CardRoot = forwardRef<HTMLDivElement, CardProps>(
   (
     {onMouseEnter, onMouseLeave, onFocus, onBlur, children, className, ctaText = 'Learn more', href, style, ...props},
-    ref
+    ref,
   ) => {
     const cardRef = useProvidedRefOrCreate(ref as RefObject<HTMLDivElement>)
     const isHovered = React.useRef(false)
@@ -63,7 +63,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
         isHovered.current = !isHovered.current
         onMouseEnter?.(event)
       },
-      [onMouseEnter, isHovered]
+      [onMouseEnter, isHovered],
     )
 
     const handleMouseLeave = useCallback(
@@ -71,7 +71,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
         isHovered.current = !isHovered.current
         onMouseLeave?.(event)
       },
-      [onMouseLeave, isHovered]
+      [onMouseLeave, isHovered],
     )
 
     const handleOnFocus = useCallback(
@@ -79,7 +79,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
         isFocused.current = !isFocused.current
         onFocus?.(event)
       },
-      [onFocus, isFocused]
+      [onFocus, isFocused],
     )
 
     const handleOnBlur = useCallback(
@@ -87,7 +87,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
         isFocused.current = !isFocused.current
         onBlur?.(event)
       },
-      [onBlur, isFocused]
+      [onBlur, isFocused],
     )
 
     const filteredChildren = React.Children.toArray(children).filter(child => {
@@ -107,7 +107,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
     })
 
     const hasIcon = React.Children.toArray(children).some(
-      child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === CardIcon
+      child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === CardIcon,
     )
 
     return (
@@ -119,7 +119,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
               onMouseLeave: handleMouseLeave,
               onFocus: handleOnFocus,
               onBlur: handleOnBlur,
-              href
+              href,
             })
           }
           return child
@@ -136,7 +136,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
         </div>
       </div>
     )
-  }
+  },
 )
 
 type CardImageProps = ImageProps
@@ -151,7 +151,7 @@ function CardImage({className, ...rest}: CardImageProps) {
 
 type CardIconProps = BaseProps<HTMLSpanElement> & {
   icon: React.ReactNode | IconProps
-  color?: typeof CardIconColors[number]
+  color?: (typeof CardIconColors)[number]
   hasBackground?: boolean
   ['aria-hidden']?: boolean
 }
@@ -170,7 +170,7 @@ function CardIcon({
         styles.Card__icon,
         styles[`Card__icon--color-${color}`],
         hasBackground && styles['Card__icon--badge'],
-        className
+        className,
       )}
       aria-hidden={ariaHidden || typeof Icon !== 'function'}
       {...rest}
@@ -182,7 +182,7 @@ function CardIcon({
 
 type CardLabelProps = BaseProps<HTMLSpanElement> & {
   children: React.ReactNode | React.ReactNode[]
-  color?: typeof LabelColors[number]
+  color?: (typeof LabelColors)[number]
 }
 
 const CardLabel = forwardRef<HTMLSpanElement, CardLabelProps>(
@@ -192,7 +192,7 @@ const CardLabel = forwardRef<HTMLSpanElement, CardLabelProps>(
         <Label color={color}>{children}</Label>
       </span>
     )
-  }
+  },
 )
 
 type CardHeadingProps = BaseProps<HTMLHeadingElement> & {
@@ -218,7 +218,7 @@ const CardHeading = forwardRef<HTMLHeadingElement, CardHeadingProps>(
         </a>
       </Heading>
     )
-  }
+  },
 )
 
 type CardDescriptionProps = BaseProps<HTMLParagraphElement> & {
@@ -232,7 +232,7 @@ const CardDescription = forwardRef<HTMLParagraphElement, CardDescriptionProps>(
         {children}
       </Text>
     )
-  }
+  },
 )
 
 /**
@@ -244,5 +244,5 @@ export const Card = Object.assign(CardRoot, {
   Label: CardLabel,
   Icon: CardIcon,
   Heading: CardHeading,
-  Description: CardDescription
+  Description: CardDescription,
 })
