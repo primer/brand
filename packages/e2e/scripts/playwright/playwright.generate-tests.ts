@@ -29,13 +29,13 @@
 
   const port = 6006
 
-  const defaultTimeout = 1500 // Storybook 7 introduced a small delay in loading stories. This is to migigate the spinner showing up in screenshots.
+  const defaultTimeout = 500 // Storybook 7 introduced a small delay in loading stories. This is to migigate the spinner showing up in screenshots.
 
   /**
    * Manual lookup for tests that need animation or side-effects to complete before tests start
    */
   const waitForTimeoutLookup = {
-    'components-faq-features--all-open': 2000, // for the animation
+    'components-faq-features--all-open': 1000, // for the animation
     'components-subdomainnavbar--search-open': 5500, // for the animation
     'components-subdomainnavbar--search-results-visible': 5500, // for the animation
     'components-subdomainnavbar--overflow-menu-open': 5500, // for the animation
@@ -48,31 +48,24 @@
     'components-button-features--with-hover-interaction': 2000, // for the interaction test
     'components-button-features--secondary-with-hover-interaction': 2000, // for the interaction test
     'components-button-features--subtle-with-hover-interaction': 2000, // for the interaction test
-    'components-anchornav--playground': 2000, // for the animation
-    'components-anchornav-features--fewer-anchor-links': 2000, // for the animation
-    'components-anchornav-features--custom-background': 2000, // for the animation
-    'components-anchornav-features--shorter-labels': 2000, // for the animation
-    'components-anchornav-features--narrow-view': 2000, // for the interaction test
-    'components-anchornav-features--narrow-view-menu-open': 2000, // for the interaction test
-    'components-anchornav-features--regular-view': 2000, // for the interaction test
-    'components-anchornav-features--regular-view-menu-open': 2000, // for the interaction test
+    'components-anchornav--playground': 1000, // for the animation
+    'components-anchornav-features--fewer-anchor-links': 1000, // for the animation
+    'components-anchornav-features--custom-background': 1000, // for the animation
+    'components-anchornav-features--shorter-labels': 1000, // for the animation
+    'components-anchornav-features--narrow-view': 1000, // for the interaction test
+    'components-anchornav-features--narrow-view-menu-open': 1000, // for the interaction test
+    'components-anchornav-features--regular-view': 1000, // for the interaction test
+    'components-anchornav-features--regular-view-menu-open': 1000, // for the interaction test
     'components-minimalfooter--default': 5000, // for external social imagery to load
     'components-minimalfooter--playground': 5000, // for external social imagery to load
     'components-minimalfooter-features--dark-theme': 5000, // for external social imagery to load
     'components-minimalfooter-features--filtered-social-links': 5000, // for external social imagery to load
     'components-minimalfooter-features--default-narrow': 5000, // for external social imagery to load
     'components-minimalfooter-features--maximum-links': 5000, // for external social imagery to load
-    'components-actionmenu-features--open-by-default': 2000, // for the menu to open
-    'components-actionmenu-features--longer-lists-open': 2000, // for the menu to open
-    'components-actionmenu-features--menu-alignment': 2000, // for the menu to open
-    'components-actionmenu-features--disabled-item': 2000, // flakey test,
-    'components-forms-examples--git-hub-enterprise': 10000, // for the delayed font load,
-    'components-forms-select--playground': 3000, // for the delayed font load
-    'components-forms-formcontrol--select-playground': 10000, // for the delayed font load
-    'components-forms-formcontrol--text-input-playground': 10000, // for the delayed font load
-    'components-button-features--with-octicon-large': 2500, // for LCP layout shift,
-    'components-forms-textinput--playground': 3000, // for LCP layout shift,
-    'components-forms-checkbox--playground': 10000, // for LCP layout shift,
+    'components-actionmenu-features--open-by-default': 1000, // for the menu to open
+    'components-actionmenu-features--longer-lists-open': 1000, // for the menu to open
+    'components-actionmenu-features--menu-alignment': 1000, // for the menu to open
+    'components-actionmenu-features--disabled-item': 1000, // flakey test
   }
 
   /**

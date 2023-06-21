@@ -10,21 +10,21 @@ test.describe('Visual Comparison: Label', () => {
   test('Label / Small', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-label-features--small&viewMode=story')
 
-    await page.waitForTimeout(1500)
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Label / Large', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-label-features--large&viewMode=story')
 
-    await page.waitForTimeout(1500)
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Label / Color', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-label-features--color&viewMode=story')
 
-    await page.waitForTimeout(1500)
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -33,14 +33,14 @@ test.describe('Visual Comparison: Label', () => {
       'http://localhost:6006/iframe.html?args=&id=components-label-features--with-leading-visual-svg&viewMode=story',
     )
 
-    await page.waitForTimeout(1500)
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Label / With an Octicon', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-label-features--with-octicon&viewMode=story')
 
-    await page.waitForTimeout(1500)
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -49,7 +49,7 @@ test.describe('Visual Comparison: Label', () => {
       'http://localhost:6006/iframe.html?args=&id=components-label-features--with-octicon-large&viewMode=story',
     )
 
-    await page.waitForTimeout(1500)
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -58,21 +58,21 @@ test.describe('Visual Comparison: Label', () => {
       'http://localhost:6006/iframe.html?args=&id=components-label-features--with-octicon-color&viewMode=story',
     )
 
-    await page.waitForTimeout(1500)
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Label / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-label--default&viewMode=story')
 
-    await page.waitForTimeout(1500)
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Label / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-label--playground&viewMode=story')
 
-    await page.waitForTimeout(1500)
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 })
