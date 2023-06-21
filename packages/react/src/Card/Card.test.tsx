@@ -54,8 +54,8 @@ describe('Card', () => {
         <Card.Heading>{mockHeading}</Card.Heading>
       </Card>,
     )
-    const cardHeaderEl = getByText(mockHeading)
-    expect(cardHeaderEl.tagName).toBe(expectedHeadingTag.toUpperCase())
+    const cardHeaderEl = getByText(mockHeading).closest(expectedHeadingTag)
+    expect(cardHeaderEl?.tagName).toBe(expectedHeadingTag.toUpperCase())
   })
 
   it('renders the correct heading type when an override is used', () => {
@@ -66,8 +66,8 @@ describe('Card', () => {
         <Card.Heading as="h4">{mockHeading}</Card.Heading>
       </Card>,
     )
-    const cardHeaderEl = getByText(mockHeading)
-    expect(cardHeaderEl.tagName).toBe(expectedHeadingTag.toUpperCase())
+    const cardHeaderEl = getByText(mockHeading).closest(expectedHeadingTag)
+    expect(cardHeaderEl?.tagName).toBe(expectedHeadingTag.toUpperCase())
   })
 
   it('renders the default link text', () => {
