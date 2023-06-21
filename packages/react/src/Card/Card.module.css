@@ -23,8 +23,7 @@
 }
 
 .Card:focus-within {
-  border-color: var(--brand-color-focus);
-  border-width: var(--brand-borderWidth-thick);
+  outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
 }
 
 .Card:hover {

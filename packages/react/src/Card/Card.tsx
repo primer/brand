@@ -55,12 +55,12 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
     ref
   ) => {
     const cardRef = useProvidedRefOrCreate(ref as RefObject<HTMLDivElement>)
-    const [isHovered, setIsHovered] = React.useState(false)
-    const [isFocused, setIsFocused] = React.useState(false)
+    const isHovered = React.useRef(false)
+    const isFocused = React.useRef(false)
 
     const handleMouseEnter = useCallback(
       (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-        setIsHovered(!isHovered)
+        isHovered.current = !isHovered.current
         onMouseEnter?.(event)
       },
       [onMouseEnter, isHovered]
@@ -68,7 +68,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
 
     const handleMouseLeave = useCallback(
       (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-        setIsHovered(!isHovered)
+        isHovered.current = !isHovered.current
         onMouseLeave?.(event)
       },
       [onMouseLeave, isHovered]
@@ -76,7 +76,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
 
     const handleOnFocus = useCallback(
       (event: React.FocusEvent<HTMLAnchorElement, Element>) => {
-        setIsFocused(!isFocused)
+        isFocused.current = !isFocused.current
         onFocus?.(event)
       },
       [onFocus, isFocused]
@@ -84,7 +84,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
 
     const handleOnBlur = useCallback(
       (event: React.FocusEvent<HTMLAnchorElement, Element>) => {
-        setIsFocused(!isFocused)
+        isFocused.current = !isFocused.current
         onBlur?.(event)
       },
       [onBlur, isFocused]
@@ -128,7 +128,11 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
           <Text as="span" size="300" className={clsx(stylesLink['Link--label'])}>
             {ctaText}
           </Text>
-          <ExpandableArrow className={stylesLink['Link-arrow']} expanded={isHovered || isFocused} aria-hidden="true" />
+          <ExpandableArrow
+            className={stylesLink['Link-arrow']}
+            expanded={isHovered.current || isFocused.current}
+            aria-hidden="true"
+          />
         </div>
       </div>
     )
@@ -195,7 +199,7 @@ type CardHeadingProps = BaseProps<HTMLHeadingElement> & {
   children: React.ReactNode | React.ReactNode[]
   as?: Exclude<HeadingProps['as'], 'h1'>
   href?: string
-} & Omit<HeadingProps, 'onMouseEnter' | 'onMouseLeave' | 'onFocus' | 'onBlur'> &
+} & HeadingProps &
   React.ComponentPropsWithoutRef<'a'>
 
 const CardHeading = forwardRef<HTMLHeadingElement, CardHeadingProps>(
