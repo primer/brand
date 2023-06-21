@@ -31,7 +31,7 @@ describe('Card', () => {
     const mockTestId = 'test'
     const expectedClass = 'Card'
     const expectedCustomClass = 'custom-class'
-    const expectedTag = 'a'
+    const expectedTag = 'div'
 
     const {getByTestId} = render(
       <Card href={mockHref} data-testid={mockTestId} className={expectedCustomClass}>
