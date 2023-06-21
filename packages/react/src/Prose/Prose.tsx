@@ -9,7 +9,7 @@ export type ProseProps = {
   /**
    * Valid children include `<ul>`, `<ol>`, `<li>`, `<div>`, `<a>`, `<h1>`, `<h2>`, `<h3>`, `<h4>`, `<h5>`, `<h6>`, and `<p>`.
    */
-  rawHtmlMarkup: React.ReactNode | React.ReactNode[]
+  rawHtmlMarkup: string
   enableFullWidth?: boolean
 } & Omit<BaseProps<HTMLDivElement>, 'animate' | 'children'> &
   Omit<React.ComponentPropsWithoutRef<'div'>, 'children'>
@@ -21,9 +21,8 @@ export const Prose = forwardRef<HTMLDivElement, ProseProps>(
         className={clsx(styles.Prose, !enableFullWidth && styles['Prose--lineLength'], className)}
         ref={ref}
         {...props}
-      >
-        {rawHtmlMarkup}
-      </div>
+        dangerouslySetInnerHTML={{__html: rawHtmlMarkup}}
+      />
     )
   },
 )

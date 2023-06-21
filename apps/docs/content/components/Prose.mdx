@@ -15,7 +15,8 @@ import {Prose} from '@primer/react-brand'
 ### Default
 
 ```jsx live
-<Prose rawHtmlMarkup={
+<Prose
+  rawHtmlMarkup={`
 	<h1>The tools you need to build what you want.</h1>
     <p>Contribute to projects quickly with automatic environment setup.</p>
     <p>Make sure you see the changes you care about.</p>
@@ -41,13 +42,16 @@ import {Prose} from '@primer/react-brand'
       Secure code as you write it. Automatically review every change to your codebase and identify vulnerabilities
       before they reach production. <a href="/#">Learn more here.</a>
     </p>
-} />
+`}
+/>
 ```
 
 ### Full Width
 
 ```jsx live
-<Prose enableFullWidth rawHtmlMarkup={
+<Prose
+  enableFullWidth
+  rawHtmlMarkup={`
 	<h1>The tools you need to build what you want.</h1>
     <p>Contribute to projects quickly with automatic environment setup.</p>
     <p>Make sure you see the changes you care about.</p>
@@ -73,15 +77,16 @@ import {Prose} from '@primer/react-brand'
       Secure code as you write it. Automatically review every change to your codebase and identify vulnerabilities
       before they reach production. <a href="/#">Learn more here.</a>
     </p>
-} />
+`}
+/>
 ```
 
 ## Component props
 
 ### Prose
 
-| Name              | Type                                   |  Default  | Description                                                        |
-| :---------------- | :------------------------------------- | :-------: | :----------------------------------------------------------------- |
-| `className`       | `string`                               |           | Sets a custom class on the root element                            |
-| `rawHtmlMarkup`   | `React.ReactNode`, `React.ReactNode[]` | `default` | Content to be displayed within the Prose component                 |
-| `enableFullWidth` | `boolean`                              |  `false`  | A toggle to remove the default max-width if required by the design |
+| Name              | Type      | Default | Description                                                        |
+| :---------------- | :-------- | :-----: | :----------------------------------------------------------------- |
+| `className`       | `string`  |         | Sets a custom class on the root element                            |
+| `rawHtmlMarkup`   | `string`  |         | Content to be displayed within the Prose component                 |
+| `enableFullWidth` | `boolean` | `false` | A toggle to remove the default max-width if required by the design |

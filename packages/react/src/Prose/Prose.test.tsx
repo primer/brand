@@ -7,8 +7,7 @@ import {axe, toHaveNoViolations} from 'jest-axe'
 expect.extend(toHaveNoViolations)
 
 describe('Prose', () => {
-  const ExampleHtmlMarkup = (
-    <>
+  const ExampleHtmlMarkup = `
       <h1>The tools you need to build what you want.</h1>
       <p>Contribute to projects quickly with automatic environment setup.</p>
       <p>Make sure you see the changes you care about.</p>
@@ -34,8 +33,7 @@ describe('Prose', () => {
         Secure code as you write it. Automatically review every change to your codebase and identify vulnerabilities
         before they reach production. <a href="/#">Learn more here.</a>
       </p>
-    </>
-  )
+	  `
 
   afterEach(() => {
     cleanup()

@@ -14,7 +14,7 @@ export default {
   },
 } as ComponentMeta<typeof Prose>
 
-const ExampleHtmlMarkup = (
+const ExampleHtmlMarkup = `
   <>
     <h1>The tools you need to build what you want.</h1>
     <p>Contribute to projects quickly with automatic environment setup.</p>
@@ -42,7 +42,7 @@ const ExampleHtmlMarkup = (
       before they reach production. <a href="/#">Learn more here.</a>
     </p>
   </>
-)
+`
 
 export const FullWidth: ComponentStory<typeof Prose> = () => <Prose enableFullWidth rawHtmlMarkup={ExampleHtmlMarkup} />
 
