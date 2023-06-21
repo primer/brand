@@ -199,7 +199,7 @@ type CardHeadingProps = BaseProps<HTMLHeadingElement> & {
   children: React.ReactNode | React.ReactNode[]
   as?: Exclude<HeadingProps['as'], 'h1'>
   href?: string
-} & HeadingProps &
+} & Omit<HeadingProps, 'onMouseEnter' | 'onMouseLeave' | 'onFocus' | 'onBlur'> &
   React.ComponentPropsWithoutRef<'a'>
 
 const CardHeading = forwardRef<HTMLHeadingElement, CardHeadingProps>(
