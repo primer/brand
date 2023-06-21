@@ -19,7 +19,7 @@
     'action action';
   flex: auto;
   grid-template-rows: auto auto auto auto 1fr;
-  position: absolute;
+  position: relative;
 }
 
 .Card:focus-within {
