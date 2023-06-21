@@ -66,12 +66,13 @@
     'components-actionmenu-features--longer-lists-open': 2000, // for the menu to open
     'components-actionmenu-features--menu-alignment': 2000, // for the menu to open
     'components-actionmenu-features--disabled-item': 2000, // flakey test,
-    'components-forms-examples--git-hub-enterprise': 3000, // for the delayed font load,
+    'components-forms-examples--git-hub-enterprise': 10000, // for the delayed font load,
     'components-forms-select--playground': 3000, // for the delayed font load
-    'components-forms-formcontrol--select-playground': 3000, // for the delayed font load
-    'components-forms-formcontrol--text-input-playground': 3000, // for the delayed font load
+    'components-forms-formcontrol--select-playground': 10000, // for the delayed font load
+    'components-forms-formcontrol--text-input-playground': 10000, // for the delayed font load
     'components-button-features--with-octicon-large': 2500, // for LCP layout shift,
     'components-forms-textinput--playground': 3000, // for LCP layout shift,
+    'components-forms-checkbox--playground': 10000, // for LCP layout shift,
   }
 
   /**

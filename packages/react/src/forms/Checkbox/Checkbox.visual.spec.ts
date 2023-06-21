@@ -10,7 +10,7 @@ test.describe('Visual Comparison: Checkbox', () => {
   test('Checkbox / Checkbox - Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-forms-checkbox--playground&viewMode=story')
 
-    await page.waitForTimeout(1500)
+    await page.waitForTimeout(10000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
