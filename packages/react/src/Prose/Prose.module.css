@@ -52,7 +52,6 @@
 }
 
 .Prose--lineLength h1 {
-  /* TODO: These should be tokens in the heading component as well and referenced in both places */
   max-width: 22ch;
 }
 
