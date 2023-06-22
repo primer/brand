@@ -15,7 +15,6 @@ export default {
 } as ComponentMeta<typeof Prose>
 
 const ExampleHtmlMarkup = `
-  <>
     <h1>The tools you need to build what you want.</h1>
     <p>Contribute to projects quickly with automatic environment setup.</p>
     <p>Make sure you see the changes you care about.</p>
@@ -41,12 +40,13 @@ const ExampleHtmlMarkup = `
       Secure code as you write it. Automatically review every change to your codebase and identify vulnerabilities
       before they reach production. <a href="/#">Learn more here.</a>
     </p>
-  </>
 `
 
 export const FullWidth: ComponentStory<typeof Prose> = () => <Prose enableFullWidth rawHtmlMarkup={ExampleHtmlMarkup} />
 
-export const NarrowViewFullWidth: ComponentStory<typeof Prose> = () => <Prose rawHtmlMarkup={ExampleHtmlMarkup} />
+export const NarrowViewFullWidth: ComponentStory<typeof Prose> = () => (
+  <Prose enableFullWidth rawHtmlMarkup={ExampleHtmlMarkup} />
+)
 NarrowViewFullWidth.parameters = {
   viewport: {
     defaultViewport: 'iphonexr',
@@ -54,7 +54,9 @@ NarrowViewFullWidth.parameters = {
 }
 NarrowViewFullWidth.storyName = 'Narrow view, full width (mobile)'
 
-export const RegularViewFullWidth: ComponentStory<typeof Prose> = () => <Prose rawHtmlMarkup={ExampleHtmlMarkup} />
+export const RegularViewFullWidth: ComponentStory<typeof Prose> = () => (
+  <Prose enableFullWidth rawHtmlMarkup={ExampleHtmlMarkup} />
+)
 RegularViewFullWidth.parameters = {
   viewport: {
     defaultViewport: 'ipad10p',

@@ -2,12 +2,13 @@ import React, {forwardRef} from 'react'
 import clsx from 'clsx'
 import type {BaseProps} from '../component-helpers'
 import styles from './Prose.module.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/prose/base.css'
 
 export type ExpectedProseChildren = HTMLDivElement | HTMLHeadingElement | HTMLParagraphElement
 
 export type ProseProps = {
   /**
-   * Valid children include `<ul>`, `<ol>`, `<li>`, `<div>`, `<a>`, `<h1>`, `<h2>`, `<h3>`, `<h4>`, `<h5>`, `<h6>`, and `<p>`.
+   * Valid children include string encapsulated HTML elements such as `<h1>`, `<p>`, `<div>`, etc.
    */
   rawHtmlMarkup: string
   enableFullWidth?: boolean
