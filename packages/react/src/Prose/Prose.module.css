@@ -195,7 +195,7 @@
 /* ---------------------------------------------------------- */
 
 .Prose img {
-  --spacing: var(--base-size-48);
+  --spacing: var(--brand-Prose-img-spacing);
   display: block;
   max-width: 100%;
   height: auto;

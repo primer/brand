@@ -3,6 +3,11 @@
     "Prose": {
       "lineLength": {
         "value": "68ch"
+      },
+      "img": {
+        "spacing": {
+          "value": "var(--brand-size-48)"
+        }
       }
     }
   }
