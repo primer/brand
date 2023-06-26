@@ -41,7 +41,7 @@ describe('Prose', () => {
   })
 
   it('renders correctly into the document', () => {
-    const {getByText} = render(<Prose rawHtmlMarkup="Hello world" />)
+    const {getByText} = render(<Prose html="Hello world" />)
 
     const textEl = getByText('Hello world')
 
@@ -50,7 +50,7 @@ describe('Prose', () => {
 
   it('renders with a default line length', () => {
     const testId = 'Prose'
-    const {getByTestId} = render(<Prose data-testid={testId} rawHtmlMarkup={ExampleHtmlMarkup} />)
+    const {getByTestId} = render(<Prose data-testid={testId} html={ExampleHtmlMarkup} />)
 
     const rootEl = getByTestId(testId)
 
@@ -59,7 +59,7 @@ describe('Prose', () => {
 
   it('renders with a full width line length when enabled', () => {
     const testId = 'Prose'
-    const {getByTestId} = render(<Prose data-testid={testId} rawHtmlMarkup={ExampleHtmlMarkup} enableFullWidth />)
+    const {getByTestId} = render(<Prose data-testid={testId} html={ExampleHtmlMarkup} enableFullWidth />)
 
     const rootEl = getByTestId(testId)
 
@@ -69,9 +69,7 @@ describe('Prose', () => {
   it('renders with a custom class name', () => {
     const testId = 'Prose'
     const customClassName = 'custom-class'
-    const {getByTestId} = render(
-      <Prose data-testid={testId} rawHtmlMarkup={ExampleHtmlMarkup} className={customClassName} />,
-    )
+    const {getByTestId} = render(<Prose data-testid={testId} html={ExampleHtmlMarkup} className={customClassName} />)
 
     const rootEl = getByTestId(testId)
 
@@ -81,7 +79,7 @@ describe('Prose', () => {
   it('renders with a custom style', () => {
     const testId = 'Prose'
     const customStyle = {color: 'red'}
-    const {getByTestId} = render(<Prose data-testid={testId} rawHtmlMarkup={ExampleHtmlMarkup} style={customStyle} />)
+    const {getByTestId} = render(<Prose data-testid={testId} html={ExampleHtmlMarkup} style={customStyle} />)
 
     const rootEl = getByTestId(testId)
 
@@ -89,7 +87,7 @@ describe('Prose', () => {
   })
 
   it('has no a11y violations', async () => {
-    const {container} = render(<Prose rawHtmlMarkup={ExampleHtmlMarkup} />)
+    const {container} = render(<Prose html={ExampleHtmlMarkup} />)
 
     const results = await axe(container)
 
