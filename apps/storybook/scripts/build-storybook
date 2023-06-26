@@ -12,7 +12,7 @@ fi
 
 mkdir -p ../../apps/docs/public/storybook
 # Build storybook inside docs
-../../node_modules/.bin/build-storybook -o ../../apps/docs/public/storybook -s ../../apps/docs/public/static
+npx storybook build -o ../../apps/docs/public/storybook -s ../../apps/docs/public/static
 
 # Remove manager-head after build to not interfere with dev builds
 rm .storybook/manager-head.html

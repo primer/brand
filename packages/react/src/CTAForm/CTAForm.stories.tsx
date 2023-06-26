@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentMeta, ComponentStory} from '@storybook/react'
+import {Meta, StoryFn} from '@storybook/react'
 
 import {CTAForm} from './CTAForm'
 import {FormControl, TextInput, Checkbox, Text, InlineLink} from '../index'
@@ -7,9 +7,9 @@ import {FormControl, TextInput, Checkbox, Text, InlineLink} from '../index'
 export default {
   title: 'Components/CTAForm',
   component: CTAForm,
-} as ComponentMeta<typeof CTAForm>
+} as Meta<typeof CTAForm>
 
-export const Playground: ComponentStory<typeof CTAForm> = _args => (
+export const Playground: StoryFn<typeof CTAForm> = _args => (
   <CTAForm>
     <CTAForm.Input>
       <FormControl required>
@@ -32,7 +32,7 @@ export const Playground: ComponentStory<typeof CTAForm> = _args => (
   </CTAForm>
 )
 
-export const Default: ComponentStory<typeof CTAForm> = _args => (
+export const Default: StoryFn<typeof CTAForm> = _args => (
   <CTAForm>
     <CTAForm.Input>
       <FormControl required>

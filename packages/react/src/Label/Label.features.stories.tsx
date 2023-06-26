@@ -1,12 +1,12 @@
 import React from 'react'
-import {ComponentMeta} from '@storybook/react'
+import {Meta} from '@storybook/react'
 import {Label} from '.'
 import {CopilotIcon} from '@primer/octicons-react'
 
 export default {
   title: 'Components/Label/Features',
   component: Label,
-} as ComponentMeta<typeof Label>
+} as Meta<typeof Label>
 
 export const Small = () => <Label size="small">Small</Label>
 

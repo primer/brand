@@ -1,36 +1,40 @@
-import {ComponentMeta, Story} from '@storybook/react'
+import {Meta, StoryFn} from '@storybook/react'
 import {userEvent, within} from '@storybook/testing-library'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 
 import {expect} from '@storybook/jest'
 import React, {useEffect, useState} from 'react'
 import {Hero, River, Heading, Text, Link} from '../'
+import placeholderImage from '../fixtures/images/placeholder-600x400.png'
 
-import {SubdomainNavBar} from '.'
+import {SubdomainNavBar, SubdomainNavBarProps} from '.'
 import {waitFor} from '@testing-library/dom'
 
 type CustomStoryArgs = {showSearch: boolean; numLinks: number; title: string; fullWidth: boolean}
+type Args = CustomStoryArgs & SubdomainNavBarProps
 
 export default {
   title: 'Components/SubdomainNavBar',
   component: SubdomainNavBar,
+  args: {
+    showSearch: true,
+    numLinks: 6,
+    title: 'Subdomain',
+    titleHref: '/',
+  },
   argTypes: {
     onSubmit: {action: true},
     showSearch: {
       control: 'boolean',
-      defaultValue: true,
     },
     numLinks: {
       control: 'number',
-      defaultValue: 6,
     },
     title: {
       control: 'text',
-      defaultValue: 'Subdomain',
     },
     titleHref: {
       control: 'text',
-      defaultValue: '/',
     },
   },
   parameters: {
@@ -38,7 +42,7 @@ export default {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-} as ComponentMeta<typeof SubdomainNavBar>
+} as Meta<typeof SubdomainNavBar>
 
 const mockSearchData = [
   {
@@ -365,7 +369,7 @@ const mockSearchData = [
   },
 ]
 
-const Template: Story<typeof SubdomainNavBar & CustomStoryArgs> = args => {
+const Template: StoryFn<Args> = args => {
   const inputRef = React.useRef<HTMLInputElement | null>(null)
   const [searchResults, setSearchResults] = React.useState<
     {title: string; description: string; date: string; url: string}[] | undefined
@@ -448,10 +452,7 @@ const Template: Story<typeof SubdomainNavBar & CustomStoryArgs> = args => {
           </Heading>
           <River>
             <River.Visual>
-              <img
-                src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
-                alt="placeholder, blank area with an off-white background color"
-              />
+              <img src={placeholderImage} alt="placeholder, blank area with an off-white background color" />
             </River.Visual>
             <River.Content>
               <Heading>Heading</Heading>
@@ -464,10 +465,7 @@ const Template: Story<typeof SubdomainNavBar & CustomStoryArgs> = args => {
           </River>
           <River align="end">
             <River.Visual>
-              <img
-                src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
-                alt="placeholder, blank area with an off-white background color"
-              />
+              <img src={placeholderImage} alt="placeholder, blank area with an off-white background color" />
             </River.Visual>
             <River.Content>
               <Heading>Heading</Heading>

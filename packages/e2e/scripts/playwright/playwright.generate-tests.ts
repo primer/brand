@@ -29,11 +29,13 @@
 
   const port = 6006
 
+  const defaultTimeout = 500 // Storybook 7 introduced a small delay in loading stories. This is to migigate the spinner showing up in screenshots.
+
   /**
    * Manual lookup for tests that need animation or side-effects to complete before tests start
    */
   const waitForTimeoutLookup = {
-    'components-faq-features--all-open': 250, // for the animation
+    'components-faq-features--all-open': 1000, // for the animation
     'components-subdomainnavbar--search-open': 5500, // for the animation
     'components-subdomainnavbar--search-results-visible': 5500, // for the animation
     'components-subdomainnavbar--overflow-menu-open': 5500, // for the animation
@@ -41,12 +43,12 @@
     'components-subdomainnavbar--mobile-menu-open': 5500, // for all staggered animations
     'components-subdomainnavbar--mobile-search-results-visible': 5500, // for the animation
     'components-subdomainnavbar--mobile-no-links': 5500, // for the animation
-    'components-button-features--primary-focus-non-standard-bg': 1000, // for the interaction test
-    'components-button-features--primary-focus': 1000, // for the interaction test
-    'components-button-features--with-hover-interaction': 1000, // for the interaction test
-    'components-button-features--secondary-with-hover-interaction': 1000, // for the interaction test
-    'components-button-features--subtle-with-hover-interaction': 1000, // for the interaction test
-    'components-anchornav--playground': 500, // for the animation
+    'components-button-features--primary-focus-non-standard-bg': 2000, // for the interaction test
+    'components-button-features--primary-focus': 2000, // for the interaction test
+    'components-button-features--with-hover-interaction': 2000, // for the interaction test
+    'components-button-features--secondary-with-hover-interaction': 2000, // for the interaction test
+    'components-button-features--subtle-with-hover-interaction': 2000, // for the interaction test
+    'components-anchornav--playground': 1000, // for the animation
     'components-anchornav-features--fewer-anchor-links': 1000, // for the animation
     'components-anchornav-features--custom-background': 1000, // for the animation
     'components-anchornav-features--shorter-labels': 1000, // for the animation
@@ -60,10 +62,10 @@
     'components-minimalfooter-features--filtered-social-links': 5000, // for external social imagery to load
     'components-minimalfooter-features--default-narrow': 5000, // for external social imagery to load
     'components-minimalfooter-features--maximum-links': 5000, // for external social imagery to load
-    'components-actionmenu-features--open-by-default': 2000, // for the menu to open
-    'components-actionmenu-features--longer-lists-open': 2000, // for the menu to open
-    'components-actionmenu-features--menu-alignment': 2000, // for the menu to open
-    'components-actionmenu-features--disabled-item': 2000, // flakey test
+    'components-actionmenu-features--open-by-default': 1000, // for the menu to open
+    'components-actionmenu-features--longer-lists-open': 1000, // for the menu to open
+    'components-actionmenu-features--menu-alignment': 1000, // for the menu to open
+    'components-actionmenu-features--disabled-item': 1000, // flakey test
   }
 
   /**
@@ -105,7 +107,7 @@
       id,
       groupName,
       storyName,
-      timeout: waitForTimeoutLookup[key] ? waitForTimeoutLookup[key] : undefined,
+      timeout: waitForTimeoutLookup[key] ? waitForTimeoutLookup[key] : defaultTimeout,
     })
 
     return acc
@@ -133,7 +135,6 @@
         )
 
         const requiresTabletViewport = storyName.toLowerCase().includes('tablet')
-
         if (skipTestLookup.includes(id)) {
           return acc
         }

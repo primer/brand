@@ -1,4 +1,4 @@
-import {ComponentMeta} from '@storybook/react'
+import {Meta} from '@storybook/react'
 import React from 'react'
 import {Grid} from './Grid'
 import {Text} from '../Text'
@@ -13,7 +13,7 @@ export default {
     as: 'div',
     enableOverlay: true,
   },
-} as ComponentMeta<typeof Grid>
+} as Meta<typeof Grid>
 
 export const Asymmetry = args => {
   const ColumnNumber = ({children}) => (
