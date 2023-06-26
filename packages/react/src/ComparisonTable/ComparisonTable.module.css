@@ -4,7 +4,7 @@
 .ComparisonTable--heading {
   text-align: left;
   max-width: 18ch;
-  margin-bottom: var(--brand-ComparisonTable-spacing-inner-heading);
+  margin-bottom: var(--brand-ComparisonTable-heading-marginBottom);
 }
 
 /* Narrow breakpoint */

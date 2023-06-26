@@ -11,7 +11,7 @@
   letter-spacing: var(--brand-heading-letterSpacing-700);
 
   color: var(--brand-FAQ-heading-color);
-  margin-bottom: var(--brand-FAQ-spacing-inner-heading);
+  margin-bottom: var(--brand-FAQ-heading-marginBottom);
 }
 
 .FAQ__subheading {
