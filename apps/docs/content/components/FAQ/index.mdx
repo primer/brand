@@ -1,0 +1,67 @@
+---
+title: FAQ
+description: Display content in a Q&A format
+---
+
+import ComponentLayout from '../../../src/layouts/component-layout'
+export default ComponentLayout
+
+## Anatomy
+
+![An image showing the FAQ anatomy with a heading, subheading and items with question titles and answers.]()
+
+- Heading: The main title of the FAQ.
+- Subheading: A short description that extends the information provided by the heading and helps group the items in the list.
+- Question: The title of the question.
+- Answer: The answer to the question.
+
+## Usage
+
+Use the FAQ to provide answers to common questions about a product or a feature presented on a page. The FAQ allows to the user to quickly scan a list of questions and answers to find the information they need. We recommend placing the FAQ at the bottom of the page, after the main content. Avoid using the FAQ to provide information that is already available in the page.
+
+The FAQ is normally used to display long lists of questions and answers and helps reducing vertical space, so we recommend keep questions and answers short and concise.
+
+Answers should be clear, provide the necessary information, and be no longer than 2-3 sentences. If the answer is longer than that or needs visual assets, consider using a different component. For instance, if the answer needs an image, we recommend using a list of [card](/components/Card) or a [river](/components/River) component instead. For answers that need to provide a list of tasks, we recommend using an [ordered list](/components/OrderedList). For answers that needs to split the content into different items, we recommend using an [unordered list](/components/UnorderedList).
+
+<DoDontContainer>
+  <Do>
+    <img src="" alt="" />
+    <Caption>
+      Use the FAQ to provide clear answers to common questions. Link to other
+      resources if necessary.
+    </Caption>
+  </Do>
+  <Dont>
+    <img src="" alt="" />
+    <Caption>
+      Don't use visual assets or other content-related components in the
+      answers. Use a river or a card component instead.
+    </Caption>
+  </Dont>
+</DoDontContainer>
+
+Use as many items in the list as needed. If the list is too long, consider using subheadings to group the items into categories and make it easier for the user to scan the list.
+
+<DoDontContainer>
+  <Do>
+    <img src="" alt="" />
+    <Caption>Use the subheading to group the questions and answers.</Caption>
+  </Do>
+  <Dont>
+    <img src="" alt="" />
+    <Caption>
+      Don't list long lists of questions and answers without grouping them. Help
+      the user scan the list by using subheadings.
+    </Caption>
+  </Dont>
+</DoDontContainer>
+
+## Options
+
+###
+
+## Related components
+
+- [Card](/components/Card): to display navigational related content with higher visual weight.
+- [River](/components/River): To display a list of content items with a visual asset.
+- [Pillar](/components/Pillar): To display related content with less visual emphasis.
