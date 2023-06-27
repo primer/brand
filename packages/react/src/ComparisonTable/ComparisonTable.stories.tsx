@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentMeta, ComponentStory} from '@storybook/react'
+import {Meta, StoryFn} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 
 import {Text, InlineLink} from '../'
@@ -11,6 +11,9 @@ export default {
   args: {
     variant: 'default',
     as: 'section',
+    footnote:
+      '*** This is a biased overview of capabilities by use case, based on publicly available information as of 2022-05-16.',
+    featuredColumn: 1,
   },
   argTypes: {
     as: {
@@ -40,15 +43,12 @@ export default {
     },
     featuredColumn: {
       type: 'number',
-      defaultValue: 1,
       table: {
         category: 'ComparisonTable',
       },
     },
     footnote: {
       type: 'string',
-      defaultValue:
-        '*** This is a biased overview of capabilities by use case, based on publicly available information as of 2022-05-16.',
       table: {
         category: 'ComparisonTable',
       },
@@ -59,9 +59,9 @@ export default {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-} as ComponentMeta<typeof ComparisonTable>
+} as Meta<typeof ComparisonTable>
 
-const Template: ComponentStory<typeof ComparisonTable> = args => (
+const Template: StoryFn<typeof ComparisonTable> = args => (
   <ComparisonTable featuredColumn={args.featuredColumn} heading={args.heading} variant={args.variant} as={args.as}>
     <ComparisonTable.Row>
       <ComparisonTable.Cell>Use case</ComparisonTable.Cell>

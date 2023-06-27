@@ -1,13 +1,13 @@
-import {ComponentMeta, ComponentStory} from '@storybook/react'
+import {Meta, StoryFn} from '@storybook/react'
 import React from 'react'
 import {ExpandableArrow} from '.'
 
 export default {
   title: 'Components/ExpandableArrow',
   component: ExpandableArrow,
-} as ComponentMeta<typeof ExpandableArrow>
+} as Meta<typeof ExpandableArrow>
 
-const Template: ComponentStory<typeof ExpandableArrow> = args => <ExpandableArrow {...args} />
+const Template: StoryFn<typeof ExpandableArrow> = args => <ExpandableArrow {...args} />
 
 export const Default = Template.bind({})
 Default.args = {

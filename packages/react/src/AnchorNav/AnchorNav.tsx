@@ -166,6 +166,7 @@ function _AnchorNav({children, enableDefaultBgColor = false, ...props}: AnchorNa
   return (
     <nav
       ref={rootRef}
+      aria-label="Anchored navigation"
       className={clsx(
         styles.AnchorNav,
         navShouldFix && styles['AnchorNav--stuck'],

@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentMeta, ComponentStory} from '@storybook/react'
+import {Meta, StoryFn} from '@storybook/react'
 
 import {CTAForm} from './CTAForm'
 import {FormControl, TextInput} from '../index'
@@ -7,9 +7,9 @@ import {FormControl, TextInput} from '../index'
 export default {
   title: 'Components/CTAForm/Features',
   component: CTAForm,
-} as ComponentMeta<typeof CTAForm>
+} as Meta<typeof CTAForm>
 
-export const WithNoConfirm: ComponentStory<typeof CTAForm> = _args => (
+export const WithNoConfirm: StoryFn<typeof CTAForm> = _args => (
   <CTAForm>
     <CTAForm.Input>
       <FormControl required>

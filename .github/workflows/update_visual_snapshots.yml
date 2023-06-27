@@ -12,7 +12,8 @@ jobs:
   update-snapshots:
     if: ${{ github.event.label.name == 'update snapshots' }}
     name: Update snapshots
-    runs-on: ubuntu-latest
+    runs-on:
+      labels: ubuntu-latest-16-cores
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -37,10 +38,10 @@ jobs:
         run: npm ci --legacy-peer-deps && cd apps/docs && npm ci --legacy-peer-deps
 
       - name: Build assets
-        run: npm run build:lib && cd apps/storybook && npx build-storybook
+        run: npm run build:lib && cd apps/storybook && npx storybook build
 
       - name: Build storybook
-        run: cd apps/storybook && npx build-storybook
+        run: cd apps/storybook && npx storybook build
 
       - name: Install browsers
         run: npx playwright install --with-deps
