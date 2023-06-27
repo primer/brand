@@ -10,6 +10,7 @@ import type {BaseProps} from '../component-helpers'
  */
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/faq/base.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/faq/colors-with-modes.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/faq/faq.css'
 
 /**
  * Main stylesheet (as a CSS Module)
@@ -52,7 +53,6 @@ const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, style, animate
             return React.cloneElement(child as React.ReactElement, {
               align: hasSubheading ? 'start' : child.props.align,
               size: hasSubheading ? 'large' : child.props.size,
-              className: clsx(!hasSubheading && styles['FAQ__heading--with-margin'], child.props.className),
             })
           }
         }

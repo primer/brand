@@ -1,13 +1,6 @@
 {
   "brand": {
     "FAQ": {
-      "heading": {
-        "centered": {
-          "maxWidth": {
-            "value": "600px"
-          }
-        }
-      },
       "maxWidth": {
         "value": "816px"
       }

@@ -1,12 +1,13 @@
 import React from 'react'
-import {ComponentMeta, ComponentStory} from '@storybook/react'
+import {Meta, StoryFn} from '@storybook/react'
 import {Image} from './'
+import placeholderImage from '../fixtures/images/placeholder-600x400.png'
 
 export default {
   title: 'Components/Image',
   component: Image,
   args: {
-    src: 'https://via.placeholder.com/600x400/d3d9df/d3d9df.png',
+    src: placeholderImage,
     alt: 'placeholder, blank area with an off-white background color',
     as: 'img',
     loading: 'eager',
@@ -68,8 +69,8 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Image>
+} as Meta<typeof Image>
 
-export const Playground: ComponentStory<typeof Image> = args => <Image {...args} />
+export const Playground: StoryFn<typeof Image> = args => <Image {...args} />
 
 export const Default = Playground.bind({})
