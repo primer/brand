@@ -10,18 +10,21 @@ test.describe('Visual Comparison: River', () => {
   test('River / Left', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-river-fixtures--left&viewMode=story')
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('River / Right', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-river-fixtures--right&viewMode=story')
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('River / Center', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-river-fixtures--center&viewMode=story')
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -30,6 +33,7 @@ test.describe('Visual Comparison: River', () => {
       'http://localhost:6006/iframe.html?args=&id=components-river-fixtures--column-ratio-6040&viewMode=story',
     )
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -38,6 +42,7 @@ test.describe('Visual Comparison: River', () => {
       'http://localhost:6006/iframe.html?args=&id=components-river-fixtures--column-ratio-5050&viewMode=story',
     )
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -46,6 +51,7 @@ test.describe('Visual Comparison: River', () => {
       'http://localhost:6006/iframe.html?args=&id=components-river-fixtures--alternative-heading-level&viewMode=story',
     )
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -54,6 +60,7 @@ test.describe('Visual Comparison: River', () => {
       'http://localhost:6006/iframe.html?args=&id=components-river-fixtures--alternative-heading-size&viewMode=story',
     )
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -62,12 +69,14 @@ test.describe('Visual Comparison: River', () => {
       'http://localhost:6006/iframe.html?args=&id=components-river-fixtures--alternating-layout&viewMode=story',
     )
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('River / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-river--default&viewMode=story')
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -76,12 +85,14 @@ test.describe('Visual Comparison: River', () => {
       'http://localhost:6006/iframe.html?args=&id=components-river--larger-placeholder-image&viewMode=story',
     )
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('River / Copilot', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-river--copilot&viewMode=story')
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 })

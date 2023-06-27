@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentMeta, ComponentStory} from '@storybook/react'
+import {Meta, StoryFn} from '@storybook/react'
 import {TextInput} from '.'
 import {CheckIcon, SearchIcon} from '@primer/octicons-react'
 
@@ -98,9 +98,9 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof TextInput>
+} as Meta<typeof TextInput>
 
-export const Playground: ComponentStory<typeof TextInput> = args => (
+export const Playground: StoryFn<typeof TextInput> = args => (
   <TextInput
     aria-label="Standalone text input"
     {...args}

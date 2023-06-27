@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentMeta, ComponentStory} from '@storybook/react'
+import {Meta, StoryFn} from '@storybook/react'
 import {Card, CardIconColors} from '.'
 import {LabelColors} from '../Label'
 import {CopilotIcon} from '@primer/octicons-react'
@@ -55,10 +55,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Card>
+} as Meta<typeof Card>
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Template: ComponentStory<typeof Card> = (_, storyArgs: any) => (
+const Template: StoryFn<typeof Card> = (_, storyArgs: any) => (
   <Card href="https://github.com">
     <Card.Icon hasBackground={storyArgs.args.iconHasBackground} icon={CopilotIcon} color={storyArgs.args.iconColor} />
     <Card.Label color={storyArgs.args.labelColor}>Beta</Card.Label>

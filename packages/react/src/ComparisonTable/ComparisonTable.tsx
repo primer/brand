@@ -8,6 +8,7 @@ import type {BaseProps} from '../component-helpers'
  * Design tokens
  */
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/comparison-table/colors-with-modes.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/comparison-table/comparison-table.css'
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './ComparisonTable.module.css'

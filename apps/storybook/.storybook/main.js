@@ -1,7 +1,7 @@
 module.exports = {
   stories: [
     '../../../packages/react/src/**/*.stories.mdx',
-    '../../../packages/react/src/**/*.stories.@(js|jsx|ts|tsx)'
+    '../../../packages/react/src/**/*.stories.@(js|jsx|ts|tsx)',
   ],
   addons: [
     '@storybook/addon-a11y',
@@ -9,14 +9,17 @@ module.exports = {
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
     'storybook-css-modules-preset',
-    '@storybook/addon-storysource'
+    '@storybook/addon-storysource',
   ],
-  framework: '@storybook/react',
-  core: {
-    builder: 'webpack5'
+  framework: {
+    name: '@storybook/react-webpack5',
+    options: {},
   },
   features: {
     buildStoriesJson: true,
-    disableTelemetry: true
-  }
+    disableTelemetry: true,
+  },
+  docs: {
+    autodocs: false,
+  },
 }
