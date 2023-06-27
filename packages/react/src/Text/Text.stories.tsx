@@ -1,13 +1,13 @@
-import {ComponentMeta, ComponentStory} from '@storybook/react'
+import {Meta, StoryFn} from '@storybook/react'
 import React from 'react'
 import {Text, TextSizes, TextWeights} from '.'
 
 export default {
   title: 'Components/Text',
   component: Text,
-} as ComponentMeta<typeof Text>
+} as Meta<typeof Text>
 
-const Template: ComponentStory<typeof Text> = args => <Text {...args} />
+const Template: StoryFn<typeof Text> = args => <Text {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
@@ -15,7 +15,7 @@ Default.args = {
   size: '400',
 }
 
-export const Scale: ComponentStory<typeof Text> = args => (
+export const Scale: StoryFn<typeof Text> = args => (
   <>
     {TextSizes.map(size => (
       <Text key={size} size={size} {...args}>

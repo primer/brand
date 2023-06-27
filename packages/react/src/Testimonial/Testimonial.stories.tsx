@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentMeta} from '@storybook/react'
+import {Meta} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {Testimonial, TestimonialProps} from '.'
 import {Stack} from '../'
@@ -7,32 +7,35 @@ import {Stack} from '../'
 export default {
   title: 'Components/Testimonial',
   component: Testimonial,
+  args: {
+    align: 'start',
+    name: 'David Ross',
+    position: 'Staff Security Engineer',
+    quote:
+      'GitHub helps us ensure that we have our security controls baked into our pipelines all the way from the first line of code we’re writing.',
+    size: 'small',
+    type: 'avatar',
+    width: 400,
+  },
   argTypes: {
     align: {
-      defaultValue: 'start',
       options: ['start', 'center'],
     },
     name: {
-      defaultValue: 'David Ross',
       control: {type: 'text'},
     },
     position: {
-      defaultValue: 'Staff Security Engineer',
       control: {type: 'text'},
     },
     quote: {
-      defaultValue:
-        'GitHub helps us ensure that we have our security controls baked into our pipelines all the way from the first line of code we’re writing.',
       control: {type: 'text'},
     },
     size: {
-      defaultValue: 'small',
       options: ['small', 'large'],
     },
     type: {
       options: ['avatar', 'logo'],
       control: {type: 'radio'},
-      defaultValue: 'avatar',
     },
     width: {
       control: {
@@ -41,7 +44,6 @@ export default {
         max: 1200,
         step: 10,
       },
-      defaultValue: 400,
     },
   },
   parameters: {
@@ -49,7 +51,7 @@ export default {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-} as ComponentMeta<typeof Testimonial>
+} as Meta<typeof Testimonial>
 
 type PlaygroundProps = TestimonialProps & {
   type: string

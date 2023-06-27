@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentMeta, ComponentStory} from '@storybook/react'
+import {Meta, StoryFn} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {userEvent, within} from '@storybook/testing-library'
 import {expect} from '@storybook/jest'
@@ -57,15 +57,14 @@ export default {
   enableDefaultBgColor: {
     description: 'Enable default background color',
     control: {type: 'boolean'},
-    defaultValue: true,
     table: {
       category: 'AnchorNav',
     },
   },
-} as ComponentMeta<typeof AnchorNav>
+} as Meta<typeof AnchorNav>
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Template: ComponentStory<typeof AnchorNav> = (_, storyArgs: any) => {
+const Template: StoryFn<typeof AnchorNav> = (_, storyArgs: any) => {
   const storyData = Object.entries(storyArgs.args.data) as [string, string][]
   return (
     <div style={{backgroundColor: 'var(--brand-color-canvas-default)'}}>
