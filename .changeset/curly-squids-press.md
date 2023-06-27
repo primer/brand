@@ -3,7 +3,7 @@
 '@primer/react-brand': patch
 ---
 
-Add `Prose` component
+Added `Prose` component
 
 ```jsx
 <Prose
