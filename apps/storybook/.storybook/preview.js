@@ -3,7 +3,6 @@ import styles from './preview.module.css'
 import '../../../packages/react/src/css/stylesheets'
 import '../../../packages/react/src/css/utilities.css'
 import '@primer/brand-fonts/fonts.css'
-import {useLayoutEffect} from 'react'
 
 export const globalTypes = {
   colorMode: {
@@ -16,43 +15,42 @@ export const globalTypes = {
       items: [
         {
           value: 'light',
-          title: 'Light'
+          title: 'Light',
         },
         {
           value: 'dark',
-          title: 'Dark'
+          title: 'Dark',
         },
         {
           value: 'auto',
-          title: 'Auto'
+          title: 'Auto',
         },
         {
           value: 'all',
-          title: 'All'
-        }
+          title: 'All',
+        },
       ],
-      title: true
-    }
-  }
+      title: true,
+    },
+  },
 }
 
-const withThemeProvider = (Story, context) => {
-  useLayoutEffect(() => {
-    if (context.globals.colorMode === 'auto') {
-      return document.body.removeAttribute('data-color-mode')
-    }
-    if (['light', 'dark'].includes(context.globals.colorMode)) {
-      document.body.setAttribute('data-color-mode', context.globals.colorMode)
-      return
-    }
-  }, [context.globals.colorMode])
+const ThemeProviderDecorator = (Story, context) => {
+  // from Storybook v7, this can't be applied as a side effect
+  if (context.globals.colorMode === 'auto') {
+    document.body.removeAttribute('data-color-mode')
+  }
 
-  if (context.globals.colorMode === 'all') {
+  if (['light', 'dark'].includes(context.globals.colorMode)) {
+    document.body.setAttribute('data-color-mode', context.globals.colorMode)
+  }
+
+  if (context && context.globals.colorMode === 'all') {
     return (
       <div className={styles['color-mode-all']}>
         <style
           dangerouslySetInnerHTML={{
-            __html: `body { padding: 0 !important; }`
+            __html: `body { padding: 0 !important; }`,
           }}
         />
         <ThemeProvider colorMode="light">
@@ -72,14 +70,14 @@ const withThemeProvider = (Story, context) => {
   )
 }
 
-export const decorators = [withThemeProvider]
+export const decorators = [ThemeProviderDecorator]
 
 export const parameters = {
   actions: {argTypesRegex: '^on[A-Z].*'},
   controls: {
     matchers: {
       color: /(background|color)$/i,
-      date: /Date$/
-    }
-  }
+      date: /Date$/,
+    },
+  },
 }

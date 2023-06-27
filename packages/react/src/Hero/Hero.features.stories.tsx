@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentStory, ComponentMeta} from '@storybook/react'
+import {StoryFn, Meta} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {HeartFillIcon, StarFillIcon} from '@primer/octicons-react'
 
@@ -14,9 +14,9 @@ export default {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-} as ComponentMeta<typeof Hero>
+} as Meta<typeof Hero>
 
-export const Centered: ComponentStory<typeof Hero> = _args => (
+export const Centered: StoryFn<typeof Hero> = _args => (
   <Hero align="center">
     <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
     <Hero.Description>
@@ -27,14 +27,14 @@ export const Centered: ComponentStory<typeof Hero> = _args => (
   </Hero>
 )
 
-export const WithoutDescription: ComponentStory<typeof Hero> = _args => (
+export const WithoutDescription: StoryFn<typeof Hero> = _args => (
   <Hero>
     <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
     <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
   </Hero>
 )
 
-export const WithSecondaryAction: ComponentStory<typeof Hero> = _args => (
+export const WithSecondaryAction: StoryFn<typeof Hero> = _args => (
   <Hero>
     <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
     <Hero.Description>
@@ -46,7 +46,7 @@ export const WithSecondaryAction: ComponentStory<typeof Hero> = _args => (
   </Hero>
 )
 
-export const Codespaces: ComponentStory<typeof Hero> = _args => (
+export const Codespaces: StoryFn<typeof Hero> = _args => (
   <Hero align="center">
     <Hero.Heading>
       <>
@@ -60,7 +60,7 @@ export const Codespaces: ComponentStory<typeof Hero> = _args => (
   </Hero>
 )
 
-export const Issues: ComponentStory<typeof Hero> = _args => (
+export const Issues: StoryFn<typeof Hero> = _args => (
   <Hero align="center">
     <Hero.Heading>Project planning for developers</Hero.Heading>
     <Hero.Description>
@@ -72,7 +72,7 @@ export const Issues: ComponentStory<typeof Hero> = _args => (
   </Hero>
 )
 
-export const WithCustomClassnames: ComponentStory<typeof Hero> = _args => (
+export const WithCustomClassnames: StoryFn<typeof Hero> = _args => (
   <Hero className="test-class" align="center">
     <Hero.Heading className="test-class">This is my super sweet hero heading</Hero.Heading>
     <Hero.Description className="test-class">
@@ -88,7 +88,7 @@ export const WithCustomClassnames: ComponentStory<typeof Hero> = _args => (
   </Hero>
 )
 
-export const WithCustomIconAndVariant: ComponentStory<typeof Hero> = _args => (
+export const WithCustomIconAndVariant: StoryFn<typeof Hero> = _args => (
   <Hero align="center">
     <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
     <Hero.Description>
@@ -106,7 +106,7 @@ export const WithCustomIconAndVariant: ComponentStory<typeof Hero> = _args => (
 
 WithCustomIconAndVariant.storyName = 'With custom icon and variant'
 
-export const NarrowView: ComponentStory<typeof Hero> = _args => (
+export const NarrowView: StoryFn<typeof Hero> = _args => (
   <Hero>
     <Hero.Heading>Project planning for developers</Hero.Heading>
     <Hero.Description>
@@ -124,7 +124,7 @@ NarrowView.parameters = {
   },
 }
 
-export const NarrowViewCentered: ComponentStory<typeof Hero> = _args => (
+export const NarrowViewCentered: StoryFn<typeof Hero> = _args => (
   <Hero align="center">
     <Hero.Heading>Project planning for developers</Hero.Heading>
     <Hero.Description>
