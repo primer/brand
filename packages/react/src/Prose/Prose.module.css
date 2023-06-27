@@ -173,8 +173,8 @@
   content: '';
   border-bottom: var(--brand-borderWidth-thin) solid var(--brand-InlineLink-color-rest);
   height: 0;
-  transition: 0.3s transform;
-  transform: scaleY(1);
+  transition: var(--brand-InlineLink-transition-timing) transform;
+  transform: scaleY(var(--brand-InlineLink-transition-scale-start));
   transform-origin: 50% 100%;
   width: 100%;
   position: absolute;
@@ -183,7 +183,7 @@
 }
 
 .Prose a:hover::after {
-  transform: scaleY(-2);
+  transform: scaleY(var(--brand-InlineLink-transition-scale-end));
 }
 
 .Prose a:active::after {
