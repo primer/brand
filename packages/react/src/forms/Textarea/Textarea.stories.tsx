@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentMeta, ComponentStory} from '@storybook/react'
+import {Meta, StoryFn} from '@storybook/react'
 import {Textarea} from '.'
 
 export default {
@@ -65,8 +65,6 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Textarea>
+} as Meta<typeof Textarea>
 
-export const Default: ComponentStory<typeof Textarea> = args => (
-  <Textarea aria-label="Standalone text input" {...args} />
-)
+export const Default: StoryFn<typeof Textarea> = args => <Textarea aria-label="Standalone text input" {...args} />

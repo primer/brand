@@ -25,7 +25,8 @@ jobs:
   deploy-storybook:
     if: ${{ github.repository == 'primer/brand' }}
     name: Preview Storybook
-    runs-on: ubuntu-latest
+    runs-on:
+      labels: ubuntu-latest-16-cores
     needs: deploy
     steps:
       - uses: actions/checkout@v3

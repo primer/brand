@@ -1,6 +1,8 @@
 import React from 'react'
-import {ComponentStory, ComponentMeta} from '@storybook/react'
+import {StoryFn, Meta} from '@storybook/react'
+
 import {Avatar, AvatarSizes, AvatarShapes} from '.'
+import placeholderAvatar from '../fixtures/images/avatar-mona.png'
 
 export default {
   title: 'Components/Avatar',
@@ -8,7 +10,7 @@ export default {
   args: {
     size: AvatarSizes[1],
     shape: 'circle',
-    src: 'https://avatars.githubusercontent.com/u/92997159?v=4',
+    src: placeholderAvatar,
     alt: 'A random avatar picture',
   },
   argTypes: {
@@ -41,9 +43,9 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Avatar>
+} as Meta<typeof Avatar>
 
-export const Playground: ComponentStory<typeof Avatar> = args => <Avatar {...args} />
+export const Playground: StoryFn<typeof Avatar> = args => <Avatar {...args} />
 
 export const Default = () => (
   <Avatar src="https://avatars.githubusercontent.com/u/92997159?v=4" alt="A random avatar picture" />

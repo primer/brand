@@ -1,5 +1,7 @@
 import React from 'react'
-import {ComponentMeta, ComponentStory} from '@storybook/react'
+import {Meta, StoryFn} from '@storybook/react'
+
+import placeholderImage from '../fixtures/images/placeholder-600x400.png'
 import style from './Image.stories.module.css'
 
 import {Image} from './Image'
@@ -7,53 +9,41 @@ import {Image} from './Image'
 export default {
   title: 'Components/Image/Features',
   component: Image,
-} as ComponentMeta<typeof Image>
+} as Meta<typeof Image>
 
-export const CustomPictureAspectRatio: ComponentStory<typeof Image> = () => (
+export const CustomPictureAspectRatio: StoryFn<typeof Image> = () => (
   <Image
-    src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+    src={placeholderImage}
     alt="placeholder, blank area with an off-white background color"
     aspectRatio="custom"
     as="picture"
   />
 )
 
-export const CustomImageAspectRatio: ComponentStory<typeof Image> = () => (
-  <Image
-    src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
-    alt="placeholder, blank area with an off-white background color"
-    aspectRatio="custom"
-  />
+export const CustomImageAspectRatio: StoryFn<typeof Image> = () => (
+  <Image src={placeholderImage} alt="placeholder, blank area with an off-white background color" aspectRatio="custom" />
 )
 
-export const CustomImageHeight: ComponentStory<typeof Image> = () => (
-  <Image
-    src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
-    alt="placeholder, blank area with an off-white background color"
-    height={200}
-  />
+export const CustomImageHeight: StoryFn<typeof Image> = () => (
+  <Image src={placeholderImage} alt="placeholder, blank area with an off-white background color" height={200} />
 )
 
-export const CustomImageWidth: ComponentStory<typeof Image> = () => (
-  <Image
-    src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
-    alt="placeholder, blank area with an off-white background color"
-    width={200}
-  />
+export const CustomImageWidth: StoryFn<typeof Image> = () => (
+  <Image src={placeholderImage} alt="placeholder, blank area with an off-white background color" width={200} />
 )
 
-export const CustomImageWidthAndHeight: ComponentStory<typeof Image> = () => (
+export const CustomImageWidthAndHeight: StoryFn<typeof Image> = () => (
   <Image
-    src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+    src={placeholderImage}
     alt="placeholder, blank area with an off-white background color"
     height={200}
     width={200}
   />
 )
 
-export const CustomClass: ComponentStory<typeof Image> = () => (
+export const CustomClass: StoryFn<typeof Image> = () => (
   <Image
-    src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+    src={placeholderImage}
     className={style['custom-image']}
     alt="placeholder, blank area with an off-white background color"
     height={200}
@@ -61,9 +51,9 @@ export const CustomClass: ComponentStory<typeof Image> = () => (
   />
 )
 
-export const CustomClassOnPicture: ComponentStory<typeof Image> = () => (
+export const CustomClassOnPicture: StoryFn<typeof Image> = () => (
   <Image
-    src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+    src={placeholderImage}
     className={style['custom-image']}
     alt="placeholder, blank area with an off-white background color"
     height={200}
@@ -72,9 +62,9 @@ export const CustomClassOnPicture: ComponentStory<typeof Image> = () => (
   />
 )
 
-export const CustomClassWithAspectRatio: ComponentStory<typeof Image> = () => (
+export const CustomClassWithAspectRatio: StoryFn<typeof Image> = () => (
   <Image
-    src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+    src={placeholderImage}
     className={style['custom-image']}
     alt="placeholder, blank area with an off-white background color"
     aspectRatio="custom"

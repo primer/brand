@@ -1,4 +1,4 @@
-import {ComponentMeta, ComponentStory} from '@storybook/react'
+import {Meta, StoryFn} from '@storybook/react'
 import React from 'react'
 import {Grid, GridProps, GridColumnIndex} from './Grid'
 
@@ -22,18 +22,17 @@ export default {
           type: 'number',
         },
       },
-      defaultValue: [6, 6],
       description:
         'An array of numbers where the index position maps to the column number and the value maps to the `span` prop.',
     },
   },
-} as ComponentMeta<typeof Grid>
+} as Meta<typeof Grid>
 
 type PlaygroundProps = GridProps & {
   columns: GridColumnIndex[]
 }
 
-const Template: ComponentStory<typeof Grid> = args => (
+const Template: StoryFn<typeof Grid> = args => (
   <Grid {...args}>
     {(args as PlaygroundProps).columns.map((value, i) => (
       <Grid.Column key={i} span={value}>
