@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentMeta} from '@storybook/react'
+import {Meta} from '@storybook/react'
 import {FormControl} from '.'
 import {CheckIcon, SearchIcon} from '@primer/octicons-react'
 import {Checkbox, Select, TextInput, Textarea, Radio} from '../'
@@ -8,11 +8,19 @@ import {Stack} from '../../'
 export default {
   title: 'Components/Forms/FormControl',
   component: FormControl,
+  args: {
+    label: 'Label of input',
+    visuallyHidden: false,
+    fullWidth: false,
+    monospace: false,
+    required: false,
+    leadingVisual: undefined,
+    trailingVisual: undefined,
+  },
   argTypes: {
     label: {
       type: 'string',
       name: 'label',
-      defaultValue: 'Label of input',
       description: 'string',
       table: {
         category: 'Label',
@@ -21,7 +29,6 @@ export default {
     hasBorder: {
       type: 'string',
       name: 'label',
-      defaultValue: 'Label of input',
       description: 'string',
       table: {
         category: 'Label',
@@ -45,7 +52,6 @@ export default {
     },
     visuallyHidden: {
       control: {type: 'boolean'},
-      defaultValue: false,
       table: {
         category: 'Label',
       },
@@ -81,7 +87,6 @@ export default {
     fullWidth: {
       description: 'formerly called Block',
       control: {type: 'boolean'},
-      defaultValue: false,
       table: {
         category: 'Input',
       },
@@ -90,7 +95,6 @@ export default {
     monospace: {
       description: 'monospace text',
       control: {type: 'boolean'},
-      defaultValue: false,
       table: {
         category: 'Input',
       },
@@ -98,7 +102,6 @@ export default {
     disabled: {
       description: 'disabled field',
       control: {type: 'boolean'},
-      defaultValue: false,
       table: {
         category: 'Input',
       },
@@ -106,7 +109,6 @@ export default {
     required: {
       description: 'required field',
       control: {type: 'boolean'},
-      defaultValue: false,
       table: {
         category: 'Input',
       },
@@ -121,7 +123,6 @@ export default {
     },
     leadingVisual: {
       control: {type: 'boolean'},
-      defaultValue: false,
       name: 'leading visual',
       description: 'Octicon',
       table: {
@@ -130,7 +131,6 @@ export default {
     },
     trailingVisual: {
       control: {type: 'boolean'},
-      defaultValue: false,
       name: 'trailing visual',
       description: 'Octicon',
       table: {
@@ -170,7 +170,7 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof FormControl>
+} as Meta<typeof FormControl>
 
 export const TextInputPlayground = args => {
   return (
@@ -205,7 +205,6 @@ export const TextInputPlayground = args => {
     </FormControl>
   )
 }
-
 TextInputPlayground.storyName = 'w/ TextInput - Playground'
 
 export const TextareaPlayground = args => {

@@ -10,12 +10,14 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
   test('SubdomainNavBar / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--playground&viewMode=story')
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('SubdomainNavBar / No Search', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--no-search&viewMode=story')
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -98,6 +100,7 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
   test('SubdomainNavBar / No overflow menu (1 link)', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--no-overflow&viewMode=story')
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -106,18 +109,21 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
       'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--longer-title&viewMode=story',
     )
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('SubdomainNavBar / Full Width', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--full-width&viewMode=story')
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('SubdomainNavBar / No Title', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--no-title&viewMode=story')
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -126,6 +132,7 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
       'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--conditional-rendering&viewMode=story',
     )
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 })

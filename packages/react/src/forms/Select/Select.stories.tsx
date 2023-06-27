@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentMeta, ComponentStory} from '@storybook/react'
+import {Meta, StoryFn} from '@storybook/react'
 import {Select} from '.'
 
 export default {
@@ -50,9 +50,9 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Select>
+} as Meta<typeof Select>
 
-export const Playground: ComponentStory<typeof Select> = args => (
+export const Playground: StoryFn<typeof Select> = args => (
   <Select {...args} aria-label="Standalone select input" defaultValue="select a handle">
     <Select.Option value="select a handle" disabled>
       Select a handle

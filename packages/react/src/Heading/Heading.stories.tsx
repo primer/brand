@@ -1,13 +1,13 @@
 import React from 'react'
-import {ComponentMeta, ComponentStory} from '@storybook/react'
+import {Meta, StoryFn} from '@storybook/react'
 import {Heading, HeadingTags, HeadingWeights, HeadingLetterSpacing, HeadingStretch} from '.'
 
 export default {
   title: 'Components/Heading',
   component: Heading,
-} as ComponentMeta<typeof Heading>
+} as Meta<typeof Heading>
 
-const Template: ComponentStory<typeof Heading> = args => <Heading {...args} />
+const Template: StoryFn<typeof Heading> = args => <Heading {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
@@ -15,7 +15,7 @@ Default.args = {
   as: 'h1',
 }
 
-export const Scale: ComponentStory<typeof Heading> = () => (
+export const Scale: StoryFn<typeof Heading> = () => (
   <>
     {HeadingTags.map(tag => (
       <Heading key={tag} as={tag}>

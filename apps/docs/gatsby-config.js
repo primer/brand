@@ -3,7 +3,10 @@ const path = require('path')
 module.exports = {
   siteMetadata: {
     title: 'Primer Brand',
-    shortName: 'Primer Brand',
+    header: {
+      title: 'Primer Design System',
+    },
+    shortName: 'Brand',
     description: 'React components for GitHub marketing pages',
   },
   plugins: [

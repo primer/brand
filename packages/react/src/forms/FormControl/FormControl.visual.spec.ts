@@ -12,6 +12,7 @@ test.describe('Visual Comparison: FormControl', () => {
       'http://localhost:6006/iframe.html?args=&id=components-forms-formcontrol--text-input-playground&viewMode=story',
     )
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -20,6 +21,7 @@ test.describe('Visual Comparison: FormControl', () => {
       'http://localhost:6006/iframe.html?args=&id=components-forms-formcontrol--textarea-playground&viewMode=story',
     )
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -28,6 +30,7 @@ test.describe('Visual Comparison: FormControl', () => {
       'http://localhost:6006/iframe.html?args=&id=components-forms-formcontrol--select-playground&viewMode=story',
     )
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -36,6 +39,7 @@ test.describe('Visual Comparison: FormControl', () => {
       'http://localhost:6006/iframe.html?args=&id=components-forms-formcontrol--checkbox-playground&viewMode=story',
     )
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -44,6 +48,7 @@ test.describe('Visual Comparison: FormControl', () => {
       'http://localhost:6006/iframe.html?args=&id=components-forms-formcontrol--radio-playground&viewMode=story',
     )
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 })
