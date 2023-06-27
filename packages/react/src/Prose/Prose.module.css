@@ -28,7 +28,7 @@
 /* ---------------------------------------------------------- */
 
 .Prose * + * {
-  margin-block-start: var(--spacing, 1rem);
+  margin-block-start: var(--spacing, 1em);
 }
 
 /* ---------------------------------------------------------- */
@@ -171,7 +171,7 @@
 
 .Prose a::after {
   content: '';
-border-bottom: var(--brand-borderWidth-thin) solid var(--brand-InlineLink-color-rest);
+  border-bottom: var(--brand-borderWidth-thin) solid var(--brand-InlineLink-color-rest);
   height: 0;
   transition: 0.3s transform;
   transform: scaleY(1);
