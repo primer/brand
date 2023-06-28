@@ -2,8 +2,8 @@
 
 export const supportedComponents = [
   'Button',
-  'ComparisonTable',
   'FAQ',
+  'ComparisonTable',
   'Heading',
   'Image',
   'Label',
