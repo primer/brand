@@ -27,6 +27,8 @@ import {
 } from '..'
 import {CopilotIcon, RocketIcon, GitBranchIcon} from '@primer/octicons-react'
 
+import placeholderImage from '../fixtures/images/placeholder-600x400.png'
+
 type KitchenSinkProps = React.HTMLAttributes<HTMLDivElement>
 
 export function KitchenSink(props: KitchenSinkProps) {
@@ -87,10 +89,7 @@ export function KitchenSink(props: KitchenSinkProps) {
 
               <River>
                 <River.Visual>
-                  <Image
-                    src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
-                    alt="placeholder, blank area with an off-white background color"
-                  />
+                  <Image src={placeholderImage} alt="placeholder, blank area with an off-white background color" />
                 </River.Visual>
                 <River.Content
                   animate={{
@@ -107,10 +106,7 @@ export function KitchenSink(props: KitchenSinkProps) {
               </River>
               <River align="end">
                 <River.Visual>
-                  <Image
-                    src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
-                    alt="placeholder, blank area with an off-white background color"
-                  />
+                  <Image src={placeholderImage} alt="placeholder, blank area with an off-white background color" />
                 </River.Visual>
                 <River.Content
                   animate={{
@@ -127,10 +123,7 @@ export function KitchenSink(props: KitchenSinkProps) {
               </River>
               <River align="center">
                 <River.Visual>
-                  <Image
-                    src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
-                    alt="placeholder, blank area with an off-white background color"
-                  />
+                  <Image src={placeholderImage} alt="placeholder, blank area with an off-white background color" />
                 </River.Visual>
                 <River.Content
                   animate={{

@@ -1,15 +1,16 @@
 import React from 'react'
-import {ComponentStory, ComponentMeta} from '@storybook/react'
+import {StoryFn, Meta} from '@storybook/react'
 import {Card, CardIconColors} from '.'
 import {Stack, LabelColors, Grid} from '..'
+import placeholderImage from '../fixtures/images/placeholder-600x400.png'
 import {CopilotIcon, RocketIcon, GitBranchIcon, HeartIcon} from '@primer/octicons-react'
 
 export default {
   title: 'Components/Card/features',
   component: Card,
-} as ComponentMeta<typeof Card>
+} as Meta<typeof Card>
 
-export const CTAText: ComponentStory<typeof Card> = () => {
+export const CTAText: StoryFn<typeof Card> = () => {
   return (
     <Card ctaText="Dicover how" href="https://github.com">
       <Card.Heading>GitHub Actions cheat sheet</Card.Heading>
@@ -20,7 +21,7 @@ export const CTAText: ComponentStory<typeof Card> = () => {
   )
 }
 
-export const Label: ComponentStory<typeof Card> = () => {
+export const Label: StoryFn<typeof Card> = () => {
   return (
     <Card href="https://github.com">
       <Card.Label>Limited</Card.Label>
@@ -32,7 +33,7 @@ export const Label: ComponentStory<typeof Card> = () => {
   )
 }
 
-export const Icon: ComponentStory<typeof Card> = () => {
+export const Icon: StoryFn<typeof Card> = () => {
   return (
     <Card href="https://github.com">
       <Card.Icon icon={RocketIcon} />
@@ -44,7 +45,7 @@ export const Icon: ComponentStory<typeof Card> = () => {
   )
 }
 
-export const IconColors: ComponentStory<typeof Card> = () => {
+export const IconColors: StoryFn<typeof Card> = () => {
   return (
     <Stack padding={'none'} direction="horizontal" gap={'normal'} style={{flexWrap: 'wrap'}}>
       {CardIconColors.map((color, id) => {
@@ -84,7 +85,7 @@ export const WithIconSVG = () => (
 )
 WithIconSVG.storyName = 'Icon (native)'
 
-export const IconAndLabel: ComponentStory<typeof Card> = () => {
+export const IconAndLabel: StoryFn<typeof Card> = () => {
   return (
     <Card href="https://github.com">
       <Card.Icon icon={GitBranchIcon} color="purple" hasBackground />
@@ -97,13 +98,10 @@ export const IconAndLabel: ComponentStory<typeof Card> = () => {
   )
 }
 
-export const Image: ComponentStory<typeof Card> = () => {
+export const Image: StoryFn<typeof Card> = () => {
   return (
     <Card href="https://github.com">
-      <Card.Image
-        src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
-        alt="placeholder, blank area with an gray background color"
-      />
+      <Card.Image src={placeholderImage} alt="placeholder, blank area with an gray background color" />
       <Card.Heading>Code search & code view</Card.Heading>
       <Card.Description>
         Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
@@ -112,13 +110,10 @@ export const Image: ComponentStory<typeof Card> = () => {
   )
 }
 
-export const ImageAndLabel: ComponentStory<typeof Card> = () => {
+export const ImageAndLabel: StoryFn<typeof Card> = () => {
   return (
     <Card href="https://github.com">
-      <Card.Image
-        src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
-        alt="placeholder, blank area with an gray background color"
-      />
+      <Card.Image src={placeholderImage} alt="placeholder, blank area with an gray background color" />
       <Card.Label color="blue-purple">Beta</Card.Label>
       <Card.Heading>Code search & code view</Card.Heading>
       <Card.Description>
@@ -176,7 +171,7 @@ type FixtureData = {
   description: string | React.ReactElement | React.ReactElement[]
 }[]
 
-export const Stacked: ComponentStory<typeof Card> = () => {
+export const Stacked: StoryFn<typeof Card> = () => {
   return (
     <Grid>
       {fixtureData.map(({heading, description, href, icon, iconColor}, id) => {

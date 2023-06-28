@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentMeta} from '@storybook/react'
+import {Meta} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {MinimalFooter} from '.'
 import {InlineLink, Text, ThemeProvider} from '..'
@@ -13,7 +13,7 @@ export default {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-} as ComponentMeta<typeof MinimalFooter>
+} as Meta<typeof MinimalFooter>
 
 export const MultipleFootnotes = () => (
   <MinimalFooter socialLinks={false}>
