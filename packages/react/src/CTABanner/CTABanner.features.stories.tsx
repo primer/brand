@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentMeta} from '@storybook/react'
+import {Meta} from '@storybook/react'
 import {Button} from '../Button'
 
 import {CTABanner} from './CTABanner'
@@ -7,7 +7,7 @@ import {CTABanner} from './CTABanner'
 export default {
   title: 'Components/CTABanner/Features',
   component: CTABanner,
-} as ComponentMeta<typeof CTABanner>
+} as Meta<typeof CTABanner>
 
 export const WithBorder = () => (
   <CTABanner hasBorder>

@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentStory, ComponentMeta} from '@storybook/react'
+import {StoryFn, Meta} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 
 import {Hero} from '.'
@@ -13,9 +13,9 @@ export default {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-} as ComponentMeta<typeof Hero>
+} as Meta<typeof Hero>
 
-export const Default: ComponentStory<typeof Hero> = _args => (
+export const Default: StoryFn<typeof Hero> = _args => (
   <Hero>
     <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
     <Hero.Description>

@@ -1,14 +1,14 @@
 import React from 'react'
-import {ComponentMeta, ComponentStory} from '@storybook/react'
+import {Meta, StoryFn} from '@storybook/react'
 import {Radio} from '.'
 import {FormControl, Stack, ThemeProvider} from '../..'
 
 export default {
   title: 'Components/Forms/Radio/Features',
   component: Radio,
-} as ComponentMeta<typeof Radio>
+} as Meta<typeof Radio>
 
-export const WithFormControl: ComponentStory<typeof Radio> = () => (
+export const WithFormControl: StoryFn<typeof Radio> = () => (
   <>
     <Stack direction={{narrow: 'vertical', regular: 'horizontal'}} gap="condensed" padding="none">
       <FormControl>
@@ -25,10 +25,10 @@ export const WithFormControl: ComponentStory<typeof Radio> = () => (
 
 WithFormControl.storyName = 'w/ labels'
 
-export const Inactive: ComponentStory<typeof Radio> = () => (
+export const Inactive: StoryFn<typeof Radio> = () => (
   <Radio aria-label="Standalone one" name="radio-group" value="radio one" disabled />
 )
-export const OnCustomBackgroundColor: ComponentStory<typeof Radio> = () => {
+export const OnCustomBackgroundColor: StoryFn<typeof Radio> = () => {
   const designTokenOverrides = `
   .custom-colors[data-color-mode='dark'] {
     padding: 3rem;

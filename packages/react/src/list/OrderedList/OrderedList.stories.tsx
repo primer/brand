@@ -1,4 +1,4 @@
-import {ComponentMeta} from '@storybook/react'
+import {Meta} from '@storybook/react'
 import React from 'react'
 import {OrderedList} from '.'
 
@@ -31,7 +31,7 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof OrderedList>
+} as Meta<typeof OrderedList>
 
 export const Default = ({data, ...args}: {data: string[]}) => (
   <OrderedList {...args}>

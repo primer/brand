@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentStory, ComponentMeta} from '@storybook/react'
+import {StoryFn, Meta} from '@storybook/react'
 import {SectionIntro} from '.'
 
 export default {
@@ -22,9 +22,9 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof SectionIntro>
+} as Meta<typeof SectionIntro>
 
-export const Playground: ComponentStory<typeof SectionIntro> = args => (
+export const Playground: StoryFn<typeof SectionIntro> = args => (
   <SectionIntro {...args}>
     <SectionIntro.Heading>This is my super sweet SectionIntro heading</SectionIntro.Heading>
     <SectionIntro.Description>

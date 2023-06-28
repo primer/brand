@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentMeta, ComponentStory} from '@storybook/react'
+import {Meta, StoryFn} from '@storybook/react'
 import {Pillar, PillarIconColors} from '.'
 import {CopilotIcon} from '@primer/octicons-react'
 
@@ -37,10 +37,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Pillar>
+} as Meta<typeof Pillar>
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Template: ComponentStory<typeof Pillar> = (_, storyArgs: any) => (
+const Template: StoryFn<typeof Pillar> = (_, storyArgs: any) => (
   <Pillar>
     <Pillar.Icon icon={CopilotIcon} color={storyArgs.args.iconColor} />
     <Pillar.Heading>{storyArgs.args.heading}</Pillar.Heading>
