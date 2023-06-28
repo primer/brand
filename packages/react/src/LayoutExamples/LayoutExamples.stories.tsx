@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentMeta, ComponentStory} from '@storybook/react'
+import {Meta, StoryFn} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 
 import {KitchenSink} from './KitchenSink'
@@ -14,13 +14,13 @@ export default {
     },
     layout: 'fullscreen',
   },
-} as ComponentMeta<typeof KitchenSink>
+} as Meta<typeof KitchenSink>
 
-export const KitchenSinkPlayground: ComponentStory<typeof KitchenSink> = args => <KitchenSink {...args} />
+export const KitchenSinkPlayground: StoryFn<typeof KitchenSink> = args => <KitchenSink {...args} />
 
 KitchenSinkPlayground.storyName = 'Kitchen Sink'
 
-export const KitchenSinkPlaygroundMobile: ComponentStory<typeof KitchenSink> = args => <KitchenSink {...args} />
+export const KitchenSinkPlaygroundMobile: StoryFn<typeof KitchenSink> = args => <KitchenSink {...args} />
 KitchenSinkPlaygroundMobile.storyName = 'Kitchen Sink (mobile)'
 
 KitchenSinkPlaygroundMobile.parameters = {
@@ -29,12 +29,12 @@ KitchenSinkPlaygroundMobile.parameters = {
   },
 }
 
-export const ResourcesHubExamplePlayground: ComponentStory<typeof ResourcesHubExample> = args => (
+export const ResourcesHubExamplePlayground: StoryFn<typeof ResourcesHubExample> = args => (
   <ResourcesHubExample {...args} />
 )
 ResourcesHubExamplePlayground.storyName = 'Resources Hub'
 
-export const ResourcesHubExampleMobilePlayground: ComponentStory<typeof ResourcesHubExample> = args => (
+export const ResourcesHubExampleMobilePlayground: StoryFn<typeof ResourcesHubExample> = args => (
   <ResourcesHubExample {...args} />
 )
 ResourcesHubExampleMobilePlayground.storyName = 'Resources Hub (mobile)'

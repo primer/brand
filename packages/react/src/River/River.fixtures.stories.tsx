@@ -1,22 +1,20 @@
 import React from 'react'
-import {ComponentStory, ComponentMeta} from '@storybook/react'
+import {StoryFn, Meta} from '@storybook/react'
 import {River} from '.'
 import {Heading, Text, Link} from '..'
 import {Container} from '../component-helpers'
+import placeholderImage from '../fixtures/images/placeholder-600x400.png'
 
 export default {
   title: 'Components/River/fixtures',
   component: River,
-} as ComponentMeta<typeof River>
+} as Meta<typeof River>
 
 const PlaceholderImage = () => (
-  <img
-    src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
-    alt="placeholder, blank area with an off-white background color"
-  />
+  <img src={placeholderImage} alt="placeholder, blank area with an off-white background color" />
 )
 
-export const Left: ComponentStory<typeof River> = () => (
+export const Left: StoryFn<typeof River> = () => (
   <River align="start">
     <River.Visual>
       <PlaceholderImage />
@@ -32,7 +30,7 @@ export const Left: ComponentStory<typeof River> = () => (
   </River>
 )
 
-export const Right: ComponentStory<typeof River> = () => (
+export const Right: StoryFn<typeof River> = () => (
   <River align="end">
     <River.Visual>
       <PlaceholderImage />
@@ -48,7 +46,7 @@ export const Right: ComponentStory<typeof River> = () => (
   </River>
 )
 
-export const Center: ComponentStory<typeof River> = () => (
+export const Center: StoryFn<typeof River> = () => (
   <River align="center">
     <River.Visual>
       <PlaceholderImage />
@@ -64,7 +62,7 @@ export const Center: ComponentStory<typeof River> = () => (
   </River>
 )
 
-export const ColumnRatio6040: ComponentStory<typeof River> = () => (
+export const ColumnRatio6040: StoryFn<typeof River> = () => (
   <Container>
     <River imageTextRatio="60:40">
       <River.Visual>
@@ -79,7 +77,7 @@ export const ColumnRatio6040: ComponentStory<typeof River> = () => (
 
 ColumnRatio6040.storyName = '60:40 image ratio'
 
-export const ColumnRatio5050: ComponentStory<typeof River> = () => (
+export const ColumnRatio5050: StoryFn<typeof River> = () => (
   <Container>
     <River imageTextRatio="50:50">
       <River.Visual>
@@ -94,7 +92,7 @@ export const ColumnRatio5050: ComponentStory<typeof River> = () => (
 
 ColumnRatio5050.storyName = '50:50 image ratio'
 
-export const AlternativeHeadingLevel: ComponentStory<typeof River> = () => (
+export const AlternativeHeadingLevel: StoryFn<typeof River> = () => (
   <Container>
     <River>
       <River.Visual>
@@ -108,7 +106,7 @@ export const AlternativeHeadingLevel: ComponentStory<typeof River> = () => (
   </Container>
 )
 
-export const AlternativeHeadingSize: ComponentStory<typeof River> = () => (
+export const AlternativeHeadingSize: StoryFn<typeof River> = () => (
   <Container>
     <River>
       <River.Visual>
@@ -122,7 +120,7 @@ export const AlternativeHeadingSize: ComponentStory<typeof River> = () => (
   </Container>
 )
 
-export const AlternatingLayout: ComponentStory<typeof River> = () => (
+export const AlternatingLayout: StoryFn<typeof River> = () => (
   <>
     <River align="start">
       <River.Visual>

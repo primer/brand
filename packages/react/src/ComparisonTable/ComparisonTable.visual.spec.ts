@@ -10,6 +10,7 @@ test.describe('Visual Comparison: ComparisonTable', () => {
   test('ComparisonTable / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-comparisontable--playground&viewMode=story')
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -21,12 +22,14 @@ test.describe('Visual Comparison: ComparisonTable', () => {
         'http://localhost:6006/iframe.html?args=&id=components-comparisontable--playground-mobile&viewMode=story',
       )
 
+      await page.waitForTimeout(500)
       expect(await page.screenshot()).toMatchSnapshot()
     })
   })
   test('ComparisonTable / Minimal', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-comparisontable--minimal&viewMode=story')
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 })

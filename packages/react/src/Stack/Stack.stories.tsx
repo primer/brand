@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentStory, ComponentMeta} from '@storybook/react'
+import {StoryFn, Meta} from '@storybook/react'
 
 import {Stack} from '.'
 
@@ -33,9 +33,9 @@ export default {
       wide: 'space-evenly',
     },
   },
-} as ComponentMeta<typeof Stack>
+} as Meta<typeof Stack>
 
-const Template: ComponentStory<typeof Stack> = args => (
+const Template: StoryFn<typeof Stack> = args => (
   <Stack {...args} style={{height: '100vh'}}>
     <div>
       <img

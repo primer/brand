@@ -4,6 +4,7 @@
   "description": "Primer Brand is a GitHub's design system for creating React-based marketing websites and digital experiences.",
   "keywords": [
     "primer",
+    "brand",
     "react",
     "components",
     "library",
@@ -41,19 +42,23 @@
     "start": "npm run build:lib && npm run start:storybook & npm run start:lib",
     "start:docs": "cd apps/docs && npm run start",
     "start:lib": "npm run start --workspace=packages/react",
-    "start:storybook": "npm run start --workspace=apps/storybook",
+    "start:storybook": "npm run build:lib && npm run start --workspace=apps/storybook",
     "test": "npm run test --workspaces --if-present",
-    "test:visual": "npm run test:visual --workspace=packages/e2e"
+    "test:visual": "npm run test:visual --workspace=packages/e2e",
+    "test:storybook": "npm run test:storybook --workspace=apps/storybook",
+    "test:axe": "npm run test:axe --workspace=packages/e2e"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.8",
     "@changesets/cli": "^2.26.1",
     "@github/prettier-config": "^0.0.6",
+    "@types/node": "^20.2.5",
     "@typescript-eslint/eslint-plugin": "^5.59.7",
     "@typescript-eslint/parser": "^5.59.7",
     "eslint": "^8.41.0",
     "eslint-import-resolver-typescript": "^2.7.1",
     "eslint-plugin-github": "^4.7.0",
+    "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-mdx": "^1.17.1",
     "eslint-plugin-primer-react": "^0.7.4",
