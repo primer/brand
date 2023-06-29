@@ -45,21 +45,22 @@ export type CardProps = {
    * Changes the cta text of the card
    * */
   ctaText?: string
-} & Omit<BaseProps<HTMLAnchorElement>, 'animate'> &
-  React.ComponentPropsWithoutRef<'a'>
+} & Omit<BaseProps<HTMLDivElement>, 'animate'> &
+  Omit<React.ComponentPropsWithoutRef<'div'>, 'onMouseEnter' | 'onMouseLeave' | 'onFocus' | 'onBlur'> &
+  Pick<React.ComponentPropsWithoutRef<'a'>, 'onMouseEnter' | 'onMouseLeave' | 'onFocus' | 'onBlur'>
 
-const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
+const CardRoot = forwardRef<HTMLDivElement, CardProps>(
   (
     {onMouseEnter, onMouseLeave, onFocus, onBlur, children, className, ctaText = 'Learn more', href, style, ...props},
     ref,
   ) => {
-    const cardRef = useProvidedRefOrCreate(ref as RefObject<HTMLAnchorElement>)
-    const [isHovered, setIsHovered] = React.useState(false)
-    const [isFocused, setIsFocused] = React.useState(false)
+    const cardRef = useProvidedRefOrCreate(ref as RefObject<HTMLDivElement>)
+    const isHovered = React.useRef(false)
+    const isFocused = React.useRef(false)
 
     const handleMouseEnter = useCallback(
       (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-        setIsHovered(!isHovered)
+        isHovered.current = !isHovered.current
         onMouseEnter?.(event)
       },
       [onMouseEnter, isHovered],
@@ -67,7 +68,7 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
 
     const handleMouseLeave = useCallback(
       (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-        setIsHovered(!isHovered)
+        isHovered.current = !isHovered.current
         onMouseLeave?.(event)
       },
       [onMouseLeave, isHovered],
@@ -75,7 +76,7 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
 
     const handleOnFocus = useCallback(
       (event: React.FocusEvent<HTMLAnchorElement, Element>) => {
-        setIsFocused(!isFocused)
+        isFocused.current = !isFocused.current
         onFocus?.(event)
       },
       [onFocus, isFocused],
@@ -83,7 +84,7 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
 
     const handleOnBlur = useCallback(
       (event: React.FocusEvent<HTMLAnchorElement, Element>) => {
-        setIsFocused(!isFocused)
+        isFocused.current = !isFocused.current
         onBlur?.(event)
       },
       [onBlur, isFocused],
@@ -110,24 +111,30 @@ const CardRoot = forwardRef<HTMLAnchorElement, CardProps>(
     )
 
     return (
-      <a
-        href={href}
-        className={clsx(styles.Card, hasIcon && styles['Card--has-icon'], className)}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        onFocus={handleOnFocus}
-        onBlur={handleOnBlur}
-        ref={cardRef}
-        {...props}
-      >
-        {filteredChildren}
+      <div className={clsx(styles.Card, hasIcon && styles['Card--has-icon'], className)} ref={cardRef} {...props}>
+        {React.Children.map(filteredChildren, child => {
+          if (React.isValidElement(child) && typeof child.type !== 'string' && child.type === CardHeading) {
+            return React.cloneElement<CardHeadingProps>(child as React.ReactElement<CardHeadingProps>, {
+              onMouseEnter: handleMouseEnter,
+              onMouseLeave: handleMouseLeave,
+              onFocus: handleOnFocus,
+              onBlur: handleOnBlur,
+              href,
+            })
+          }
+          return child
+        })}
         <div className={styles.Card__action}>
           <Text as="span" size="300" className={clsx(stylesLink['Link--label'])}>
             {ctaText}
           </Text>
-          <ExpandableArrow className={stylesLink['Link-arrow']} expanded={isHovered || isFocused} />
+          <ExpandableArrow
+            className={stylesLink['Link-arrow']}
+            expanded={isHovered.current || isFocused.current}
+            aria-hidden="true"
+          />
         </div>
-      </a>
+      </div>
     )
   },
 )
@@ -146,9 +153,11 @@ type CardIconProps = BaseProps<HTMLSpanElement> & {
   icon: React.ReactNode | IconProps
   color?: (typeof CardIconColors)[number]
   hasBackground?: boolean
+  ['aria-hidden']?: boolean
 }
 
 function CardIcon({
+  'aria-hidden': ariaHidden,
   icon: Icon,
   className,
   color = defaultCardIconColor,
@@ -163,9 +172,10 @@ function CardIcon({
         hasBackground && styles['Card__icon--badge'],
         className,
       )}
+      aria-hidden={ariaHidden || typeof Icon !== 'function'}
       {...rest}
     >
-      {typeof Icon === 'function' ? <Icon /> : React.isValidElement(Icon) && React.cloneElement(Icon)}
+      {typeof Icon === 'function' ? <Icon /> : Icon}
     </span>
   )
 }
@@ -188,13 +198,24 @@ const CardLabel = forwardRef<HTMLSpanElement, CardLabelProps>(
 type CardHeadingProps = BaseProps<HTMLHeadingElement> & {
   children: React.ReactNode | React.ReactNode[]
   as?: Exclude<HeadingProps['as'], 'h1'>
-} & HeadingProps
+  href?: string
+} & Omit<HeadingProps, 'onMouseEnter' | 'onMouseLeave' | 'onFocus' | 'onBlur'> &
+  React.ComponentPropsWithoutRef<'a'>
 
 const CardHeading = forwardRef<HTMLHeadingElement, CardHeadingProps>(
-  ({children, as = 'h3', className, ...rest}, ref) => {
+  ({children, as = 'h3', className, href, onMouseEnter, onMouseLeave, onBlur, onFocus, ...rest}, ref) => {
     return (
       <Heading size="6" className={clsx(styles.Card__heading, className)} ref={ref} as={as} {...rest}>
-        {children}
+        <a
+          href={href}
+          className={clsx(styles.Card__link)}
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
+          onBlur={onBlur}
+          onFocus={onFocus}
+        >
+          {children}
+        </a>
       </Heading>
     )
   },

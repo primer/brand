@@ -1,5 +1,6 @@
 declare const styles: {
   readonly "Card": string;
+  readonly "Card__link": string;
   readonly "Card--has-icon": string;
   readonly "Card__label": string;
   readonly "Card__icon": string;
