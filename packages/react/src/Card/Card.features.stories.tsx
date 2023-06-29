@@ -24,8 +24,8 @@ export const CTAText: StoryFn<typeof Card> = () => {
 export const Label: StoryFn<typeof Card> = () => {
   return (
     <Card href="https://github.com">
-      <Card.Label>Limited</Card.Label>
       <Card.Heading>Code search & code view</Card.Heading>
+      <Card.Label>Limited</Card.Label>
       <Card.Description>
         Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
       </Card.Description>
@@ -89,8 +89,8 @@ export const IconAndLabel: StoryFn<typeof Card> = () => {
   return (
     <Card href="https://github.com">
       <Card.Icon icon={GitBranchIcon} color="purple" hasBackground />
-      <Card.Label color="blue-purple">Beta</Card.Label>
       <Card.Heading>Code search & code view</Card.Heading>
+      <Card.Label color="blue-purple">Beta</Card.Label>
       <Card.Description>
         Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
       </Card.Description>
@@ -114,8 +114,8 @@ export const ImageAndLabel: StoryFn<typeof Card> = () => {
   return (
     <Card href="https://github.com">
       <Card.Image src={placeholderImage} alt="placeholder, blank area with an gray background color" />
-      <Card.Label color="blue-purple">Beta</Card.Label>
       <Card.Heading>Code search & code view</Card.Heading>
+      <Card.Label color="blue-purple">Beta</Card.Label>
       <Card.Description>
         Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
       </Card.Description>
