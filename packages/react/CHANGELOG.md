@@ -1,5 +1,48 @@
 # @primer/react-brand
 
+## 0.20.1
+
+### Patch Changes
+
+- [#291](https://github.com/primer/brand/pull/291) [`6761ce7`](https://github.com/primer/brand/commit/6761ce70ade87e13691e74b0c5c19ed403732b66) Thanks [@rezrah](https://github.com/rezrah)! - Various security and stability updates.
+
+  No changes to component API's or functionality.
+
+- [#316](https://github.com/primer/brand/pull/316) [`ce31a43`](https://github.com/primer/brand/commit/ce31a4375400fdd7920685f6048de5b622e245d9) Thanks [@JoshBowdenConcepts](https://github.com/JoshBowdenConcepts)! - Added `Prose` component
+
+  ```jsx
+  <Prose
+    html={`
+      <h2>Prose Component</h2>
+      <p>
+        The Prose component renders native HTML elements with Primer Brand styling. Prose doesn't sanitize the input data. We recommend sanitizing the data before passing it into Prose. <a href="https://primer.style/brand/components/Prose">Learn more here.</a>
+      </p>
+  `}
+  />
+  ```
+
+- [#301](https://github.com/primer/brand/pull/301) [`73d11c9`](https://github.com/primer/brand/commit/73d11c9e36c5fc3a1f646239ddc36c8c9aae6f79) Thanks [@josepmartins](https://github.com/josepmartins)! - Pillar accessibility improvements:
+
+  - Hide native SVG icons by default.
+  - Remove as=”span” from prop table.
+  - Add more descriptive text to “Learn more” link in storybook examples.
+
+- [#290](https://github.com/primer/brand/pull/290) [`9e506f7`](https://github.com/primer/brand/commit/9e506f77cd0047be6f0774ee0467135a5c60fae9) Thanks [@josepmartins](https://github.com/josepmartins)! - Add `Pillar.Link` to the `Pillar` component
+
+  ```jsx
+  <Pillar>
+    <Pillar.Heading>Code search & code view</Pillar.Heading>
+    <Pillar.Description>
+      Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
+    </Pillar.Description>
+    <Pillar.Link href="https://github.com">Learn more</Pillar.Link>
+  </Pillar>
+  ```
+
+- [#317](https://github.com/primer/brand/pull/317) [`552c154`](https://github.com/primer/brand/commit/552c154a727eefa9307c7c290c07ce5ec93c8514) Thanks [@mperrotti](https://github.com/mperrotti)! - Addresses a11y engineering feedback about the `Card` component. The `Card` container element is no longer `<a>`, it's `<div>`.
+
+- [#282](https://github.com/primer/brand/pull/282) [`47f175e`](https://github.com/primer/brand/commit/47f175e7873b9c9f41edc0863869259263e80318) Thanks [@JoshBowdenConcepts](https://github.com/JoshBowdenConcepts)! - Added Instagram logo to MinimalFooter options
+
 ## 0.20.0
 
 ### Minor Changes
