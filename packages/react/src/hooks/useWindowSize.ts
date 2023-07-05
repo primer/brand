@@ -10,7 +10,7 @@ export function useWindowSize() {
   const [windowSize, setWindowSize] = useState<WindowSize>({
     width: undefined, // undefined to avoid client/server mismatch on initial mount
     height: undefined, // undefined to avoid client/server mismatch on initial mount,
-    isLarge: undefined // undefined to avoid client/server mismatch on initial mount,
+    isLarge: undefined, // undefined to avoid client/server mismatch on initial mount,
   })
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export function useWindowSize() {
          * Maps to large breakpoint
          * TODO: replace with design token. Requires remToPx util.
          */
-        isLarge: window.innerWidth >= 1012
+        isLarge: window.innerWidth >= 1012,
       })
     }
 

@@ -1,12 +1,12 @@
-import {ComponentMeta} from '@storybook/react'
+import {Meta} from '@storybook/react'
 import React from 'react'
 import {Accordion} from '.'
 import {Text, InlineLink} from '../'
 
 export default {
   title: 'Components/Accordion',
-  component: Accordion
-} as ComponentMeta<typeof Accordion>
+  component: Accordion,
+} as Meta<typeof Accordion>
 
 export const Default = () => (
   <Accordion>

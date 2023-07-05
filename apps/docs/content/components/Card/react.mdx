@@ -1,0 +1,212 @@
+---
+title: Card
+status: Experimental
+source: https://github.com/primer/brand/tree/main/packages/react/src/Card/Card.tsx
+storybook: '/brand/storybook/?path=/story/components-card--default'
+description: Use the card component to display information in a compact way and link to other internal pages.
+a11yReviewed: true
+---
+
+import ComponentLayout from '../../../src/layouts/component-layout'
+export default ComponentLayout
+
+import {LabelColors, CardIconColors} from '@primer/react-brand'
+import {IconColors} from '@primer/react-brand'
+import {PropTableValues} from '../../../src/components'
+import {CopilotIcon, RocketIcon, GitBranchIcon} from '@primer/octicons-react'
+
+```js
+import {Card} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+The default card displays a heading and description. The link text defaults to `Read more`, but can be customized using the `label` prop.
+
+```jsx live
+<Card href="https://github.com">
+  <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+  <Card.Description>
+    Everything you need to know about getting started with GitHub Actions.
+  </Card.Description>
+</Card>
+```
+
+### Cta text
+
+The cta text defaults to `Learn more` and can be customized using the `ctaText` component.
+
+```jsx live
+<Card ctaText="Discover how" href="https://github.com">
+  <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+  <Card.Description>
+    Everything you need to know about getting started with GitHub Actions.
+  </Card.Description>
+</Card>
+```
+
+### Icon
+
+You can add an `icon` to enhance the visual context. We recommend using an [Octicon](https://primer.style/design/foundations/icons). The `Icon` can be customized using the `color` prop and used with or without a background color by using the `hasBackground` prop.
+
+```jsx live
+<Card href="https://github.com">
+  <Card.Icon icon={CopilotIcon} color="purple" hasBackground />
+  <Card.Heading>Code search & code view</Card.Heading>
+  <Card.Description>
+    Enables you to rapidly search, navigate, and understand code, right from
+    GitHub.com.
+  </Card.Description>
+</Card>
+```
+
+### Label
+
+Use the `Label` to add metadata to the `Card`. The `Label` is optional and can be used to indicate the status of the content. The `Label` can be customized using the `color` prop.
+
+```jsx live
+<Card href="https://github.com">
+  <Card.Heading>Code search & code view</Card.Heading>
+  <Card.Label>Limited</Card.Label>
+  <Card.Description>
+    Enables you to rapidly search, navigate, and understand code, right from
+    GitHub.com.
+  </Card.Description>
+</Card>
+```
+
+### Icons and Labels
+
+Combine `Icon` and `Label` when you need to add more metadata or context to the `Card`.
+
+```jsx live
+<Card href="https://github.com">
+  <Card.Icon icon={CopilotIcon} color="green" hasBackground />
+  <Card.Label color="blue-purple">Beta</Card.Label>
+  <Card.Heading>Code search & code view</Card.Heading>
+  <Card.Description>
+    Enables you to rapidly search, navigate, and understand code, right from
+    GitHub.com.
+  </Card.Description>
+</Card>
+```
+
+### Image
+
+Use the `Image` component to add an image to the `Card`. The `Image` component is optional and provides a visual context to the `Card`.
+
+```jsx live
+<Card href="https://github.com">
+  <Card.Image
+    src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+    alt="placeholder, blank area with an gray background color"
+    aspectRatio="16:9"
+  />
+  <Card.Heading>Code search & code view</Card.Heading>
+  <Card.Description>
+    Enables you to rapidly search, navigate, and understand code, right from
+    GitHub.com.
+  </Card.Description>
+</Card>
+```
+
+### Image and Label
+
+Combine `Image` and `Label` when you need to add more metadata or context to the `Card`. Use either the `Icon` or `Image` as the primary visual context, but not both.
+
+```jsx live
+<Card href="https://github.com">
+  <Card.Image
+    src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+    alt="placeholder, blank area with an gray background color"
+  />
+  <Card.Heading>Code search & code view</Card.Heading>
+  <Card.Label color="blue">Beta</Card.Label>
+  <Card.Description>
+    Enables you to rapidly search, navigate, and understand code, right from
+    GitHub.com.
+  </Card.Description>
+</Card>
+```
+
+### Stacked cards
+
+Use the `Stack` component to stack multiple cards horizontally or vertically.
+
+```jsx live
+<Stack
+  direction="horizontal"
+  alignItems="center"
+  justifyContent="center"
+  gap="normal"
+>
+  <Card href="https://github.com">
+    <Card.Icon icon={CopilotIcon} color="indigo" hasBackground />
+    <Card.Heading>Heading</Card.Heading>
+    <Card.Description>
+      Everything you need to know about getting started with GitHub Actions.
+    </Card.Description>
+  </Card>
+  <Card href="https://github.com">
+    <Card.Icon icon={RocketIcon} color="purple" hasBackground />
+    <Card.Heading>Heading</Card.Heading>
+    <Card.Description>
+      Everything you need to know about getting started with GitHub Actions.
+    </Card.Description>
+  </Card>
+  <Card href="https://github.com">
+    <Card.Icon icon={GitBranchIcon} color="teal" hasBackground />
+    <Card.Heading>Heading</Card.Heading>
+    <Card.Description>
+      Everything you need to know about getting started with GitHub Actions.
+    </Card.Description>
+  </Card>
+</Stack>
+```
+
+## Component props
+
+### Card
+
+| name      | type     | default     | required | description                                 |
+| --------- | -------- | ----------- | -------- | ------------------------------------------- |
+| `href`    | `string` |             | `true`   | URL to the card content                     |
+| `ctaText` | `string` | `Read more` | `false`  | Label of the link at the bottom of the Card |
+
+### Card.Image
+
+Forwards all the props from the [Image component](/components/Image), including `src`, `alt`, and `aspecRatio`.
+
+### Card.Icon
+
+| name            | type                                                      | default   | required | description                                  |
+| --------------- | --------------------------------------------------------- | --------- | -------- | -------------------------------------------- |
+| `icon`          | React.Node                                                |           | `true`   | Octicon                                      |
+| `color`         | <PropTableValues values={CardIconColors} addLineBreaks /> | `default` | `false`  | The color of the icon                        |
+| `hasBackground` | boolean                                                   | `false`   | `false`  | Adds a filled colored background to the icon |
+
+### Card.Label
+
+| name    | type                                                   | default   | required | description            |
+| ------- | ------------------------------------------------------ | --------- | -------- | ---------------------- |
+| `color` | <PropTableValues values={LabelColors} addLineBreaks /> | `default` | `false`  | The color of the label |
+
+### Card.Heading
+
+| name        | type                         | default     | required | description                                           |
+| ----------- | ---------------------------- | ----------- | -------- | ----------------------------------------------------- |
+| `as`        | `h2`, `h3`, `h4`, `h5`, `h6` | `h3`        | `false`  |                                                       |
+| `className` | `string`                     |             | `false`  | Custom class name for the heading component           |
+| `children`  | `ReactNode`, `ReactNode[]`   | `undefined` | `true`   | Content to be displayed inside the heading component. |
+
+Forwards all the props from the [Heading component](/components/Heading), including `as`, `size`, and `weight`.
+
+### Card.Description
+
+| name       | type                       | default     | required | description                                         |
+| ---------- | -------------------------- | ----------- | -------- | --------------------------------------------------- |
+| `children` | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | Content to be displayed inside the pillar component |
+
+`id`, `className` and `ref` are forwarded by default to all children.

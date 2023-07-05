@@ -1,0 +1,96 @@
+.Pillar {
+  max-width: 50ch;
+  color: var(--brand-color-text-default);
+  display: flex;
+  flex-direction: column;
+}
+
+.Pillar.Pillar--align-center {
+  align-items: center;
+  text-align: center;
+}
+
+.Pillar.Pillar--align-start {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.Pillar__icon {
+  display: flex;
+  margin-bottom: var(--base-size-8);
+}
+
+.Pillar__heading {
+  margin-bottom: var(--base-size-4);
+}
+
+/* Overrides the default size 6 to have a smaller font size, using 300 values instead of 400 */
+.Pillar__heading.Pillar__heading--size-6 {
+  font-size: var(--brand-text-size-300);
+  line-height: var(--brand-text-lineHeight-300);
+  letter-spacing: var(--brand-heading-letterSpacing-300);
+}
+
+.Pillar__description {
+  color: var(--brand-color-text-muted);
+}
+
+.Pillar__link {
+  margin-top: var(--base-size-8);
+}
+
+.Pillar__icon--color-default {
+  color: var(--brand-Pillar-icon-color-default);
+}
+
+.Pillar__icon--color-blue {
+  color: var(--brand-Pillar-icon-color-blue);
+}
+
+.Pillar__icon--color-coral {
+  color: var(--brand-Pillar-icon-color-coral);
+}
+
+.Pillar__icon--color-green {
+  color: var(--brand-Pillar-icon-color-green);
+}
+
+.Pillar__icon--color-gray {
+  color: var(--brand-Pillar-icon-color-gray);
+}
+
+.Pillar__icon--color-indigo {
+  color: var(--brand-Pillar-icon-color-indigo);
+}
+
+.Pillar__icon--color-lemon {
+  color: var(--brand-Pillar-icon-color-lemon);
+}
+
+.Pillar__icon--color-lime {
+  color: var(--brand-Label-color-lime);
+}
+
+.Pillar__icon--color-orange {
+  color: var(--brand-Pillar-icon-color-orange);
+}
+
+.Pillar__icon--color-pink {
+  color: var(--brand-Pillar-icon-color-pink);
+}
+
+.Pillar__icon--color-purple {
+  color: var(--brand-Pillar-icon-color-purple);
+}
+
+.Pillar__icon--color-red {
+  color: var(--brand-Pillar-icon-color-red);
+}
+
+.Pillar__icon--color-teal {
+  color: var(--brand-Pillar-icon-color-teal);
+}
+
+.Pillar__icon--color-yellow {
+  color: var(--brand-Pillar-icon-color-yellow);
+}

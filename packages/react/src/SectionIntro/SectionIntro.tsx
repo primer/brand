@@ -1,33 +1,38 @@
 import React, {forwardRef, PropsWithChildren, type Ref} from 'react'
 import clsx from 'clsx'
 import {Link, LinkProps} from '../Link'
-import {Heading, HeadingTags} from '../Heading'
+import {Heading, HeadingProps, defaultHeadingTag} from '../Heading'
 import {Text} from '../Text'
+import {useAnimation} from '../animation'
+
 import styles from './SectionIntro.module.css'
 
 import type {BaseProps} from '../component-helpers'
 
-export type SectionIntroProps = BaseProps<HTMLHeadingElement> & {
+export type SectionIntroProps = {
   align?: 'start' | 'center'
-}
+} & React.HTMLAttributes<HTMLHeadingElement> &
+  BaseProps<HTMLHeadingElement>
 
 const Root = forwardRef<HTMLHeadingElement, PropsWithChildren<SectionIntroProps>>(
-  ({align = 'start', className, children, ...props}, ref) => {
+  ({align = 'start', animate, className, children, style, ...props}, ref) => {
+    const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
+
     return (
       <header
         ref={ref}
-        className={clsx(styles.SectionIntro, styles[`SectionIntro--align-${align}`], className)}
+        className={clsx(styles.SectionIntro, styles[`SectionIntro--align-${align}`], animationClasses, className)}
         {...props}
+        style={{...animationInlineStyles, ...style}}
       >
         {children}
       </header>
     )
-  }
+  },
 )
 
-type SectionIntroHeadingProps = BaseProps<HTMLHeadingElement> & HeadingTags
+type SectionIntroHeadingProps = BaseProps<HTMLHeadingElement> & HeadingProps
 
-const defaultHeadingTag = HeadingTags[1]
 const defaultHeadingSize = '2'
 
 const _Heading = forwardRef(
@@ -39,14 +44,14 @@ const _Heading = forwardRef(
       children,
       ...props
     }: PropsWithChildren<SectionIntroHeadingProps>,
-    ref: Ref<HTMLHeadingElement>
+    ref: Ref<HTMLHeadingElement>,
   ) => {
     return (
       <Heading ref={ref} className={clsx(styles[`SectionIntro-heading`], className)} size={size} as={as} {...props}>
         {children}
       </Heading>
     )
-  }
+  },
 )
 
 type SectionIntroDescriptionProps = BaseProps<HTMLParagraphElement> & {
@@ -60,7 +65,7 @@ const _Description = forwardRef(
         {children}
       </Text>
     )
-  }
+  },
 )
 
 type SectionIntroLinkProps = Omit<LinkProps, 'size'> & BaseProps<HTMLAnchorElement>

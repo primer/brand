@@ -29,7 +29,7 @@ export type RadioProps = {
 
 const _Radio = (
   {checked, className, disabled, id, onChange, required, value, ...rest}: RadioProps,
-  ref
+  ref,
 ): ReactElement => {
   const inputRef: RefObject<HTMLInputElement> | null = useRef<HTMLInputElement>(ref || null)
   const uniqueId = useId(id)
@@ -39,7 +39,6 @@ const _Radio = (
       <input
         id={uniqueId}
         aria-checked={checked ? 'true' : 'false'}
-        aria-disabled={disabled ? 'true' : 'false'}
         checked={checked}
         className={clsx(styles['Radio-input'])}
         disabled={disabled}

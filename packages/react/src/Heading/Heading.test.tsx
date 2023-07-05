@@ -1,7 +1,7 @@
 import React, {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
-import {Heading, HeadingWeights} from './Heading'
+import {Heading, HeadingWeights, HeadingStretch} from './Heading'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 expect.extend(toHaveNoViolations)
@@ -51,7 +51,7 @@ describe('Heading', () => {
     const {getByRole} = render(
       <Heading as={expectedTag} size="3">
         {mockHeading}
-      </Heading>
+      </Heading>,
     )
     const headingEl = getByRole('heading')
 
@@ -66,7 +66,7 @@ describe('Heading', () => {
       const {getByText} = render(
         <Heading as="h3" weight={weight}>
           {weight}
-        </Heading>
+        </Heading>,
       )
       const headingEl = getByText(weight)
 
@@ -86,15 +86,55 @@ describe('Heading', () => {
             data-testid={`heading-${breakpoint}-${weight}`}
             as="h3"
             weight={{
-              [breakpoint]: weight
+              [breakpoint]: weight,
             }}
           >
             {weight}
-          </Heading>
+          </Heading>,
         )
         const headingEl = getByTestId(`heading-${breakpoint}-${weight}`)
 
         expect(headingEl.classList).toContain(expectedClass + weight)
+      }
+    }
+  })
+
+  it('can render headings in different fixed font stretch values', () => {
+    const expectedClass = 'Heading--stretch-'
+
+    for (const stretch of HeadingStretch) {
+      const {getByText} = render(
+        <Heading as="h3" stretch={stretch}>
+          {stretch}
+        </Heading>,
+      )
+      const headingEl = getByText(stretch)
+
+      expect(headingEl.classList).toContain(expectedClass + stretch)
+    }
+  })
+
+  it('can render headings in different responsive font stretch', () => {
+    const supportedBreakpoints = ['condensed', 'normal', 'wide']
+
+    for (const breakpoint of supportedBreakpoints) {
+      const expectedClass = `Heading-${breakpoint}--stretch-`
+
+      for (const stretch of HeadingStretch) {
+        const {getByTestId} = render(
+          <Heading
+            data-testid={`heading-${breakpoint}-${stretch}`}
+            as="h3"
+            stretch={{
+              [breakpoint]: stretch,
+            }}
+          >
+            {stretch}
+          </Heading>,
+        )
+        const headingEl = getByTestId(`heading-${breakpoint}-${stretch}`)
+
+        expect(headingEl.classList).toContain(expectedClass + stretch)
       }
     }
   })

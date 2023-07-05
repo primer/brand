@@ -28,7 +28,7 @@ describe('SectionIntro', () => {
           turpis felis nam pulvinar risus elementum.
         </SectionIntro.Description>
         <SectionIntro.Link href="#">Link</SectionIntro.Link>
-      </SectionIntro>
+      </SectionIntro>,
     )
 
     const SectionIntroEl = getByTestId(mockTestId)
@@ -42,7 +42,7 @@ describe('SectionIntro', () => {
     const {getByText} = render(
       <SectionIntro>
         <SectionIntro.Heading>{headingText}</SectionIntro.Heading>
-      </SectionIntro>
+      </SectionIntro>,
     )
     const ctaHeaderEl = getByText(headingText)
     expect(ctaHeaderEl.tagName).toBe(expectedTag.toUpperCase())
@@ -55,7 +55,7 @@ describe('SectionIntro', () => {
     const {getByText} = render(
       <SectionIntro>
         <SectionIntro.Heading as={expectedTag}>{headingText}</SectionIntro.Heading>
-      </SectionIntro>
+      </SectionIntro>,
     )
     const ctaHeaderEl = getByText(headingText)
     expect(ctaHeaderEl.tagName).toBe(expectedTag.toUpperCase())
@@ -66,7 +66,7 @@ describe('SectionIntro', () => {
       <SectionIntro>
         <SectionIntro.Heading>{mockHeading}</SectionIntro.Heading>
         <SectionIntro.Description>{mockDescription}</SectionIntro.Description>
-      </SectionIntro>
+      </SectionIntro>,
     )
 
     const headingEl = getByText(mockHeading)
@@ -82,7 +82,7 @@ describe('SectionIntro', () => {
         <SectionIntro.Heading>{mockHeading}</SectionIntro.Heading>
         <SectionIntro.Description>{mockDescription}</SectionIntro.Description>
         <SectionIntro.Link href="#">{mockLinkText}</SectionIntro.Link>
-      </SectionIntro>
+      </SectionIntro>,
     )
 
     const headingEl = getByText(mockHeading)
@@ -101,7 +101,7 @@ describe('SectionIntro', () => {
         <SectionIntro.Heading>{mockHeading}</SectionIntro.Heading>
         <SectionIntro.Description>{mockDescription}</SectionIntro.Description>
         <SectionIntro.Link href="#">{mockLinkText}</SectionIntro.Link>
-      </SectionIntro>
+      </SectionIntro>,
     )
 
     const rootEl = getByTestId(rootId)
@@ -119,7 +119,7 @@ describe('SectionIntro', () => {
         <SectionIntro.Heading>{mockHeading}</SectionIntro.Heading>
         <SectionIntro.Description>{mockDescription}</SectionIntro.Description>
         <SectionIntro.Link href="#">{mockLinkText}</SectionIntro.Link>
-      </SectionIntro>
+      </SectionIntro>,
     )
 
     const rootEl = getByTestId(rootId)
@@ -137,7 +137,7 @@ describe('SectionIntro', () => {
         <SectionIntro.Heading>{mockHeading}</SectionIntro.Heading>
         <SectionIntro.Description>{mockDescription}</SectionIntro.Description>
         <SectionIntro.Link href="#">{mockLinkText}</SectionIntro.Link>
-      </SectionIntro>
+      </SectionIntro>,
     )
 
     const results = await axe(container)

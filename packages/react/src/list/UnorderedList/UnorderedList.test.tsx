@@ -17,7 +17,7 @@ describe('UnorderedList', () => {
         <UnorderedList.Item>Code and secret scanning</UnorderedList.Item>
         <UnorderedList.Item>Dependency review</UnorderedList.Item>
         <UnorderedList.Item>Automated authentication and identity management</UnorderedList.Item>
-      </UnorderedList>
+      </UnorderedList>,
     )
     const results = await axe(container)
 
@@ -29,7 +29,7 @@ describe('UnorderedList', () => {
     const {getByTestId} = render(
       <UnorderedList data-testid={mockId}>
         <UnorderedList.Item>Automatic security and version updates</UnorderedList.Item>
-      </UnorderedList>
+      </UnorderedList>,
     )
     const el = getByTestId(mockId)
     expect(el.tagName).toBe('UL')
@@ -40,7 +40,7 @@ describe('UnorderedList', () => {
     const {getByTestId} = render(
       <UnorderedList>
         <UnorderedList.Item data-testid={mockId}>Automatic security and version updates</UnorderedList.Item>
-      </UnorderedList>
+      </UnorderedList>,
     )
     const el = getByTestId(mockId)
     expect(el).toContainElement(el.querySelector('svg'))
@@ -51,7 +51,7 @@ describe('UnorderedList', () => {
     const {getByTestId} = render(
       <UnorderedList>
         <UnorderedList.Item data-testid={mockId}>Automatic security and version updates</UnorderedList.Item>
-      </UnorderedList>
+      </UnorderedList>,
     )
     const el = getByTestId(mockId)
     expect(el).toContainElement(el.querySelector('.ListItem__default'))
@@ -62,7 +62,7 @@ describe('UnorderedList', () => {
     const {getByTestId} = render(
       <UnorderedList variant="checked">
         <UnorderedList.Item data-testid={mockId}>Automatic security and version updates</UnorderedList.Item>
-      </UnorderedList>
+      </UnorderedList>,
     )
     const el = getByTestId(mockId)
     expect(el).toContainElement(el.querySelector('.ListItem__checked'))

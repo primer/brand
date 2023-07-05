@@ -6,7 +6,10 @@
   transition: box-shadow 0.2s;
   text-decoration: none;
   cursor: pointer;
-  color: var(--brand-color-text-default);
+}
+
+.Link:hover {
+  text-decoration: none;
 }
 
 .Link::after {
@@ -17,7 +20,7 @@
   height: 2px;
   pointer-events: none;
   content: '';
-  background-color: var(--brand-color-text-default);
+  background-color: currentColor;
   transform: scaleX(0);
   transform-origin: 0 0;
 }
@@ -38,6 +41,16 @@
   outline: 0;
 }
 
+.Link--default,
+.Link--default span {
+  color: var(--brand-Link-color-default);
+}
+
+.Link--accent,
+.Link--accent span {
+  color: var(--brand-Link-color-accent);
+}
+
 .Link--label {
   font-weight: var(--base-text-weight-semibold);
 }
@@ -49,4 +62,16 @@
 .Link--large .Link-arrow {
   width: 20px;
   height: 20px;
+}
+
+.Link--arrow-start::after {
+  left: auto;
+  right: 0;
+  transform-origin: right 0;
+  width: calc(100% - var(--base-size-20));
+}
+
+.Link--arrow-start .Link-arrow {
+  margin-left: auto;
+  margin-right: 4px;
 }

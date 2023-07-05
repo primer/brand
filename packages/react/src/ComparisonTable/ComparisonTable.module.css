@@ -3,12 +3,17 @@
 */
 .ComparisonTable--heading {
   text-align: left;
+  max-width: 18ch;
+  margin-bottom: var(--brand-ComparisonTable-heading-marginBottom);
 }
+
+/* Narrow breakpoint */
 
 @media screen and (min-width: 34rem) {
   .ComparisonTable--heading {
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
-    margin-bottom: var(--base-size-40);
   }
 }
 
@@ -75,10 +80,6 @@
   .ComparisonTable-cell {
     margin-bottom: var(--base-size-32);
     padding-bottom: 0;
-  }
-
-  .ComparisonTable thead tr {
-    border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
   }
 
   .ComparisonTable tbody tr {
@@ -160,10 +161,6 @@
  * Narrow viewport-only styles
 */
 @media screen and (max-width: 34rem) {
-  :global(.ComparisonTable--default) {
-    margin-top: var(--base-size-8);
-  }
-
   :global(.ComparisonTable--default) .ComparisonTable-cell:not(.ComparisonTable-cell-heading) {
     position: relative;
     padding-left: 25px;

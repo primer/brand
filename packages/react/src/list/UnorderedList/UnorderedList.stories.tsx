@@ -1,4 +1,4 @@
-import {ComponentMeta} from '@storybook/react'
+import {Meta} from '@storybook/react'
 import React from 'react'
 import {UnorderedList} from '.'
 
@@ -12,34 +12,34 @@ export default {
       'GitHub Security Advisories',
       'Code and secret scanning',
       'Dependency review',
-      'Automated authentication and identity management'
-    ]
+      'Automated authentication and identity management',
+    ],
   },
   argTypes: {
     variant: {
       description: 'Specify alternative leading visuals for list items',
       control: {
         type: 'radio',
-        options: ['default', 'checked']
-      }
+        options: ['default', 'checked'],
+      },
     },
     data: {
       name: 'Data',
       description: 'Test data',
       control: {
-        type: 'array'
+        type: 'array',
       },
       table: {
-        category: 'Story customization'
-      }
+        category: 'Story customization',
+      },
     },
     children: {
       table: {
-        disable: true
-      }
-    }
-  }
-} as ComponentMeta<typeof UnorderedList>
+        disable: true,
+      },
+    },
+  },
+} as Meta<typeof UnorderedList>
 
 export const Default = ({data, ...args}: {data: string[]}) => (
   <UnorderedList {...args}>

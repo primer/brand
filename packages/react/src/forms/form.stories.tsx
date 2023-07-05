@@ -10,27 +10,27 @@ export default {
       description: 'disabled field',
       control: {type: 'boolean'},
       table: {
-        category: 'Input'
-      }
+        category: 'Input',
+      },
     },
     validationStatus: {
       options: [0, 1, 2], // iterator
       mapping: [undefined, 'error', 'success'], // values
       control: {
         type: 'inline-radio',
-        labels: ['undefined', 'error', 'success']
+        labels: ['undefined', 'error', 'success'],
       },
       table: {
-        category: 'Validation'
-      }
+        category: 'Validation',
+      },
     },
     validationText: {
       type: 'string',
       table: {
-        category: 'Validation'
-      }
-    }
-  }
+        category: 'Validation',
+      },
+    },
+  },
 }
 
 export const GitHubEnterprise = args => {
@@ -47,13 +47,13 @@ export const GitHubEnterprise = args => {
             gap: 16,
             borderBottom: '1px solid var(--brand-color-border-default)',
             paddingBottom: 32,
-            marginBottom: 32
+            marginBottom: 32,
           }}
         >
           <div
             style={{
               display: 'flex',
-              gap: 16
+              gap: 16,
             }}
           >
             <FormControl required fullWidth validationStatus={args.validationStatus}>
@@ -170,7 +170,7 @@ export const GitHubEnterprise = args => {
               borderRadius: 6,
               display: 'flex',
               justifyContent: 'center',
-              alignItems: 'center'
+              alignItems: 'center',
             }}
           >
             <Text size="200" variant="muted">
@@ -204,7 +204,7 @@ export const GitHubEnterprise = args => {
             alignItems: 'center',
             display: 'flex',
             gap: 16,
-            justifyContent: 'flex-end'
+            justifyContent: 'flex-end',
           }}
         >
           <Button type="submit">Skip trial and upgrade</Button>

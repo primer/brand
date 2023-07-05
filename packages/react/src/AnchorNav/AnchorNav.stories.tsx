@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentMeta} from '@storybook/react'
+import {Meta} from '@storybook/react'
 import {AnchorNav} from '.'
 import {Heading, Text, Stack} from '../'
 import {RedlineBackground} from '../component-helpers'
@@ -12,7 +12,7 @@ export default {
   title: 'Components/AnchorNav',
   component: AnchorNav,
   parameters: {
-    layout: 'fullscreen'
+    layout: 'fullscreen',
   },
   args: {
     enableDefaultBgColor: true,
@@ -21,33 +21,33 @@ export default {
       ['GitHub vs GitLab']: 'githubvsgitlab',
       ['GitHub vs CircleCI']: 'githubvscircleci',
       ['GitHub vs BitBucket']: 'githubvsvsbitbucket',
-      ['GitHub vs TravisCI']: 'githubvsvstravis'
+      ['GitHub vs TravisCI']: 'githubvsvstravis',
     },
-    offset: 100
+    offset: 100,
   },
   argTypes: {
     data: {
       name: 'Data',
       description: 'Test data',
       control: {
-        type: 'object'
+        type: 'object',
       },
       table: {
-        category: 'Story customization'
-      }
+        category: 'Story customization',
+      },
     },
     offset: {
       name: 'Offset',
       description: 'Offset from the top of the page',
       control: {
-        type: 'number'
+        type: 'number',
       },
       table: {
-        category: 'Story customization'
-      }
-    }
-  }
-} as ComponentMeta<typeof AnchorNav>
+        category: 'Story customization',
+      },
+    },
+  },
+} as Meta<typeof AnchorNav>
 
 export const Default = ({data, ...args}: {data: MockData}) => {
   return (
@@ -101,7 +101,7 @@ export const Playground = ({data, ...args}: {data: MockData; offset: number}) =>
               id={value}
               direction="vertical"
               style={{
-                padding: '500px var(--base-size-24)'
+                padding: '500px var(--base-size-24)',
               }}
             >
               <Heading>{key}</Heading>

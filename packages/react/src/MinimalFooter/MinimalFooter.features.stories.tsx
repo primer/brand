@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentMeta} from '@storybook/react'
+import {Meta} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {MinimalFooter} from '.'
 import {InlineLink, Text, ThemeProvider} from '..'
@@ -10,10 +10,10 @@ export default {
   parameters: {
     layout: 'fullscreen',
     viewport: {
-      viewports: INITIAL_VIEWPORTS
-    }
-  }
-} as ComponentMeta<typeof MinimalFooter>
+      viewports: INITIAL_VIEWPORTS,
+    },
+  },
+} as Meta<typeof MinimalFooter>
 
 export const MultipleFootnotes = () => (
   <MinimalFooter socialLinks={false}>
@@ -61,6 +61,21 @@ export const MaximumLinks = () => (
 )
 MaximumLinks.storyName = 'Maximum Links (5)'
 
+export const MixedButtonsAndLinks = () => (
+  <MinimalFooter socialLinks={false}>
+    <MinimalFooter.Link href="#">Link one</MinimalFooter.Link>
+    <MinimalFooter.Link as="button" onClick={() => alert('You have clicked Button one')}>
+      Button one
+    </MinimalFooter.Link>
+    <MinimalFooter.Link as="button" onClick={() => alert('You have clicked Button two')}>
+      Button two
+    </MinimalFooter.Link>
+    <MinimalFooter.Link as="button" onClick={() => alert('You have clicked Button three')}>
+      Button three
+    </MinimalFooter.Link>
+  </MinimalFooter>
+)
+
 export const NoSocialLinks = () => <MinimalFooter socialLinks={false} />
 
 export const FilteredSocialLinks = () => <MinimalFooter socialLinks={['facebook', 'twitter']} />
@@ -91,8 +106,8 @@ export const DefaultNarrow = () => (
 )
 DefaultNarrow.parameters = {
   viewport: {
-    defaultViewport: 'iphonexr'
-  }
+    defaultViewport: 'iphonexr',
+  },
 }
 DefaultNarrow.storyName = 'Default (Narrow viewport)'
 

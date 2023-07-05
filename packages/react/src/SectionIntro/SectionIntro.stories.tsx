@@ -1,30 +1,30 @@
 import React from 'react'
-import {ComponentStory, ComponentMeta} from '@storybook/react'
+import {StoryFn, Meta} from '@storybook/react'
 import {SectionIntro} from '.'
 
 export default {
   title: 'Components/SectionIntro',
   component: SectionIntro,
   args: {
-    align: 'start'
+    align: 'start',
   },
   argTypes: {
     align: {
       description: 'The alignment of the SectionIntro',
       control: {
         type: 'radio',
-        options: ['start', 'center']
-      }
+        options: ['start', 'center'],
+      },
     },
     children: {
       table: {
-        disable: true
-      }
-    }
-  }
-} as ComponentMeta<typeof SectionIntro>
+        disable: true,
+      },
+    },
+  },
+} as Meta<typeof SectionIntro>
 
-export const Playground: ComponentStory<typeof SectionIntro> = args => (
+export const Playground: StoryFn<typeof SectionIntro> = args => (
   <SectionIntro {...args}>
     <SectionIntro.Heading>This is my super sweet SectionIntro heading</SectionIntro.Heading>
     <SectionIntro.Description>
