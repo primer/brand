@@ -9,7 +9,7 @@ import {test, expect} from '@playwright/test'
 test.describe('Visual Comparison: AnchorNav', () => {
   test('AnchorNav / Fewer anchor links', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--fewer-anchor-links&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--fewer-anchor-links&viewMode=story',
     )
 
     await page.waitForTimeout(1000)
@@ -18,7 +18,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
 
   test('AnchorNav / Shorter labels', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--shorter-labels&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--shorter-labels&viewMode=story',
     )
 
     await page.waitForTimeout(1000)
@@ -27,7 +27,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
 
   test('AnchorNav / Custom Background', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--custom-background&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--custom-background&viewMode=story',
     )
 
     await page.waitForTimeout(1000)
@@ -39,7 +39,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     test.use({viewport: {width: 360, height: 800}})
     test('AnchorNav / Narrow view, menu closed (mobile)', async ({page}) => {
       await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--narrow-view&viewMode=story'
+        'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--narrow-view&viewMode=story',
       )
 
       await page.waitForTimeout(1000)
@@ -52,7 +52,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     test.use({viewport: {width: 360, height: 800}})
     test('AnchorNav / Narrow view, menu open (mobile)', async ({page}) => {
       await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--narrow-view-menu-open&viewMode=story'
+        'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--narrow-view-menu-open&viewMode=story',
       )
 
       await page.waitForTimeout(1000)
@@ -65,7 +65,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     test.use({viewport: {width: 834, height: 1112}})
     test('AnchorNav / Regular view, menu closed (tablet)', async ({page}) => {
       await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--regular-view&viewMode=story'
+        'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--regular-view&viewMode=story',
       )
 
       await page.waitForTimeout(1000)
@@ -78,7 +78,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
     test.use({viewport: {width: 834, height: 1112}})
     test('AnchorNav / Regular view, menu open (tablet)', async ({page}) => {
       await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--regular-view-menu-open&viewMode=story'
+        'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--regular-view-menu-open&viewMode=story',
       )
 
       await page.waitForTimeout(1000)
@@ -88,13 +88,14 @@ test.describe('Visual Comparison: AnchorNav', () => {
   test('AnchorNav / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-anchornav--default&viewMode=story')
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('AnchorNav / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-anchornav--playground&viewMode=story')
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(1000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 })

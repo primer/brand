@@ -1,4 +1,4 @@
-import {ComponentMeta} from '@storybook/react'
+import {Meta} from '@storybook/react'
 import React from 'react'
 import {OrderedList} from '.'
 
@@ -11,27 +11,27 @@ export default {
       'GitHub Security Advisories',
       'Code and secret scanning',
       'Dependency review',
-      'Automated authentication and identity management'
-    ]
+      'Automated authentication and identity management',
+    ],
   },
   argTypes: {
     data: {
       name: 'Data',
       description: 'Test data',
       control: {
-        type: 'array'
+        type: 'array',
       },
       table: {
-        category: 'Story customization'
-      }
+        category: 'Story customization',
+      },
     },
     children: {
       table: {
-        disable: true
-      }
-    }
-  }
-} as ComponentMeta<typeof OrderedList>
+        disable: true,
+      },
+    },
+  },
+} as Meta<typeof OrderedList>
 
 export const Default = ({data, ...args}: {data: string[]}) => (
   <OrderedList {...args}>

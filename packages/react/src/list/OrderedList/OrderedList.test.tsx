@@ -17,7 +17,7 @@ describe('UnorderedList', () => {
         <OrderedList.Item>Code and secret scanning</OrderedList.Item>
         <OrderedList.Item>Dependency review</OrderedList.Item>
         <OrderedList.Item>Automated authentication and identity management</OrderedList.Item>
-      </OrderedList>
+      </OrderedList>,
     )
     const results = await axe(container)
 
@@ -29,7 +29,7 @@ describe('UnorderedList', () => {
     const {getByTestId} = render(
       <OrderedList data-testid={mockId}>
         <OrderedList.Item>Automatic security and version updates</OrderedList.Item>
-      </OrderedList>
+      </OrderedList>,
     )
     const el = getByTestId(mockId)
     expect(el.tagName).toBe('OL')
@@ -40,7 +40,7 @@ describe('UnorderedList', () => {
     const {getByTestId} = render(
       <OrderedList>
         <OrderedList.Item data-testid={mockId}>Automatic security and version updates</OrderedList.Item>
-      </OrderedList>
+      </OrderedList>,
     )
     const el = getByTestId(mockId)
     expect(el).not.toContainElement(el.querySelector('svg'))

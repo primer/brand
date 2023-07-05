@@ -1,0 +1,174 @@
+.Label {
+  --brand-Label-gradient: radial-gradient(
+    circle at top left,
+    var(--brand-Label-color-start),
+    var(--brand-Label-color-end)
+  );
+  --brand-Label-background: var(--brand-Label-gradient, var(--brand-Label-color, currentColor));
+
+  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--brand-borderRadius-full);
+  display: inline-flex;
+  color: var(--brand-Label-color-start, var(--brand-Label-color, currentColor));
+  position: relative;
+  background: none;
+}
+
+.Label::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: var(--brand-borderWidth-thin);
+  border-radius: inherit;
+  background: var(--brand-Label-background);
+  -webkit-mask: linear-gradient(var(--brand-color-canvas-default), var(--brand-color-canvas-default)) content-box,
+    linear-gradient(var(--brand-color-canvas-default), var(--brand-color-canvas-default));
+  mask: linear-gradient(var(--brand-color-canvas-default), var(--brand-color-canvas-default)) content-box,
+    linear-gradient(var(--brand-color-canvas-default), var(--brand-color-canvas-default));
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.Label--size-small {
+  padding-left: var(--base-size-8);
+  padding-right: var(--base-size-8);
+  height: var(--base-size-24);
+}
+
+.Label--size-medium {
+  padding-left: var(--base-size-16);
+  padding-right: var(--base-size-16);
+  height: var(--base-size-28);
+}
+
+.Label--size-large {
+  padding-left: var(--base-size-16);
+  padding-right: var(--base-size-16);
+  height: var(--base-size-32);
+}
+
+.Label--color-default {
+  --brand-Label-color: var(--brand-Label-color-default);
+}
+
+.Label--color-blue {
+  --brand-Label-color: var(--brand-Label-color-blue);
+}
+
+.Label--color-blue-purple {
+  --brand-Label-color-start: var(--brand-Label-color-blue-purple-start);
+  --brand-Label-color-end: var(--brand-Label-color-blue-purple-end);
+}
+
+.Label--color-coral {
+  --brand-Label-color: var(--brand-Label-color-coral);
+}
+
+.Label--color-green {
+  --brand-Label-color: var(--brand-Label-color-green);
+}
+
+.Label--color-green-blue {
+  --brand-Label-color-start: var(--brand-Label-color-green-blue-start);
+  --brand-Label-color-end: var(--brand-Label-color-green-blue-end);
+}
+
+.Label--color-gray {
+  --brand-Label-color: var(--brand-Label-color-gray);
+}
+
+.Label--color-indigo {
+  --brand-Label-color: var(--brand-Label-color-indigo);
+}
+
+.Label--color-lemon {
+  --brand-Label-color: var(--brand-Label-color-lemon);
+}
+
+.Label--color-lime {
+  --brand-Label-color: var(--brand-Label-color-lime);
+}
+
+.Label--color-orange {
+  --brand-Label-color: var(--brand-Label-color-orange);
+}
+
+.Label--color-pink {
+  --brand-Label-color: var(--brand-Label-color-pink);
+}
+
+.Label--color-pink-blue {
+  --brand-Label-color-start: var(--brand-Label-color-pink-blue-start);
+  --brand-Label-color-end: var(--brand-Label-color-pink-blue-end);
+}
+
+.Label--color-purple {
+  --brand-Label-color: var(--brand-Label-color-purple);
+}
+
+.Label--color-purple-red {
+  --brand-Label-color-start: var(--brand-Label-color-purple-red-start);
+  --brand-Label-color-end: var(--brand-Label-color-purple-red-end);
+}
+
+.Label--color-red {
+  --brand-Label-color: var(--brand-Label-color-red);
+}
+
+.Label--color-red-orange {
+  --brand-Label-color-start: var(--brand-Label-color-red-orange-start);
+  --brand-Label-color-end: var(--brand-Label-color-red-orange-end);
+}
+
+.Label--color-teal {
+  --brand-Label-color: var(--brand-Label-color-teal);
+}
+
+.Label--color-yellow {
+  --brand-Label-color: var(--brand-Label-color-yellow);
+}
+
+.Label__text {
+  background: var(--brand-Label-background);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.Label--size-small .Label__text {
+  line-height: var(--brand-text-lineHeight-100);
+}
+
+.Label--size-medium .Label__text {
+  line-height: var(--brand-text-lineHeight-200);
+}
+
+.Label--size-large .Label__text {
+  line-height: var(--brand-text-lineHeight-300);
+}
+
+.Label__icon-visual {
+  display: flex;
+  align-self: center;
+  height: var(--base-size-16);
+  width: auto;
+}
+
+.Label__leading-visual {
+  display: flex;
+  margin-right: var(--base-size-8);
+}
+
+.Label__label {
+  font-weight: var(--base-text-weight-semibold);
+}
+
+@media (forced-colors: active) {
+  .Label {
+    outline: var(--brand-borderWidth-thin) solid transparent;
+  }
+}

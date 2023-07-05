@@ -1,0 +1,106 @@
+---
+title: Hero
+status: Experimental
+figma: https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=431%3A8481
+source: https://github.com/primer/brand/blob/main/packages/react/src/Hero/Hero.tsx
+storybook: '/brand/storybook/?path=/story/components-hero--default'
+description: Use the hero component to render a full-width banner at the top of a page.
+---
+
+import ComponentLayout from '../../../src/layouts/component-layout'
+export default ComponentLayout
+
+import {
+  HeadingTags,
+  HeadingSizes,
+  HeadingWeights,
+  HeadingStretch,
+  defaultHeadingTag,
+  HeadingLetterSpacing,
+} from '@primer/react-brand'
+import {Label} from '@primer/react'
+import {PropTableValues} from '../../../src/components'
+
+```js
+import {Hero} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<Hero>
+  <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+  <Hero.Description>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
+    ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
+    elementum.
+  </Hero.Description>
+  <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+  <Hero.SecondaryAction href="#">Secondary action</Hero.SecondaryAction>
+</Hero>
+```
+
+### Alignment
+
+`Hero` text alignment can be adjusted by changing the `align` prop.
+
+```jsx live
+<Hero align="center">
+  <Hero.Heading>
+    Blazing fast cloud
+    <br />
+    developer environments
+  </Hero.Heading>
+  <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+</Hero>
+```
+
+## Component props
+
+### Hero
+
+| Name        | Type                  |  Default  | Description                              |
+| :---------- | :-------------------- | :-------: | :--------------------------------------- |
+| `align`     | `'center'`, `'start'` | `'start'` | Optional text alignment                  |
+| `className` | `string`              |           | Sets a custom class on the root element  |
+| `ref`       | `React.RefObject`     |           | Forward a Ref to the underlying DOM node |
+
+### Hero.Heading
+
+| name        | type              | default | description                              |
+| ----------- | ----------------- | ------- | ---------------------------------------- |
+| `className` | `string`          |         | Sets a custom class on the root element  |
+| `id`        | `string`          |         | Sets a custom id                         |
+| `ref`       | `React.RefObject` |         | Forward a Ref to the underlying DOM node |
+
+Forwards all props from the [Heading component](/components/Heading), including `as`, `size`, and `weight`.
+
+### Hero.Description
+
+| name        | type     | default | description             |
+| ----------- | -------- | ------- | ----------------------- |
+| `className` | `string` |         | Sets a custom CSS class |
+
+Forwards `size` and `weight` props from the [Text component](/components/Text).
+
+### Hero.PrimaryAction
+
+| name        | type          | default | description                         |
+| ----------- | ------------- | ------- | ----------------------------------- |
+| `className` | `string`      |         | Primary link custom class           |
+| `href`      | `string`      |         | `href` for primary link             |
+| `as`        | `a`, `button` | `a`     | Applies the underlying HTML element |
+
+Forwards all props from the [Button component](/components/Button).
+
+### Hero.SecondaryAction
+
+| name        | type          | default | description                         |
+| ----------- | ------------- | ------- | ----------------------------------- |
+| `className` | `string`      |         | Secondary link custom class         |
+| `href`      | `string`      |         | `href` for secondary link           |
+| `as`        | `a`, `button` | `a`     | Applies the underlying HTML element |
+
+Forwards all props from the [Button component](/components/Button).

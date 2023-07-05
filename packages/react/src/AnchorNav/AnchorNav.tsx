@@ -28,7 +28,7 @@ const testIds = {
   },
   get action() {
     return `${this.root}-action`
-  }
+  },
 }
 
 export type AnchorNavProps = BaseProps<HTMLElement> & {
@@ -63,9 +63,9 @@ function _AnchorNav({children, enableDefaultBgColor = false, ...props}: AnchorNa
   const ValidChildren = useMemo(
     () =>
       React.Children.toArray(children).filter(
-        (child: React.ReactNode): boolean => React.isValidElement(child) && typeof child.type !== 'string'
+        (child: React.ReactNode): boolean => React.isValidElement(child) && typeof child.type !== 'string',
       ),
-    [children]
+    [children],
   )
 
   useEffect(() => {
@@ -123,27 +123,31 @@ function _AnchorNav({children, enableDefaultBgColor = false, ...props}: AnchorNa
       event?.preventDefault()
       toggleMenuCallback()
     },
-    [toggleMenuCallback]
+    [toggleMenuCallback],
   )
 
   const handleUpdateToCurrentActiveNavItem = useCallback(
     (id: string | null) => {
       setCurrentActiveNavItem(id)
     },
-    [setCurrentActiveNavItem]
+    [setCurrentActiveNavItem],
   )
 
   const numLinks = ValidChildren.filter(child => React.isValidElement(child) && child.type === _AnchorNavLink).length
   const Links = ValidChildren.map((child, index) => {
     if (React.isValidElement(child)) {
       if (child.type === _AnchorNavLink) {
-        const defaultProps = {
+        const defaultProps: AnchorNavLinkProps = {
+          href: child.props.href,
           toggleMenuCallback,
           prefersReducedMotion,
           updateCurrentActiveNav: handleUpdateToCurrentActiveNavItem,
-          alignment: numLinks < 4 ? 'start' : 'center'
+          alignment: numLinks < 4 ? 'start' : 'center',
         }
-        return React.cloneElement(child, {isActive: index === 0, ...defaultProps})
+        return React.cloneElement(child as React.ReactElement<AnchorNavLinkProps>, {
+          isActive: index === 0,
+          ...defaultProps,
+        })
       }
     }
 
@@ -162,11 +166,12 @@ function _AnchorNav({children, enableDefaultBgColor = false, ...props}: AnchorNa
   return (
     <nav
       ref={rootRef}
+      aria-label="Anchored navigation"
       className={clsx(
         styles.AnchorNav,
         navShouldFix && styles['AnchorNav--stuck'],
         menuOpen && styles['AnchorNav--expanded'],
-        enableDefaultBgColor && styles['AnchorNav--with-default-background-color']
+        enableDefaultBgColor && styles['AnchorNav--with-default-background-color'],
       )}
       {...props}
     >
@@ -312,10 +317,10 @@ function _AnchorNavLink({
       }
       window.scrollTo({
         top: offsetPosition,
-        behavior
+        behavior,
       })
     },
-    [isLarge, offsetPosition, toggleMenuCallback, prefersReducedMotion]
+    [isLarge, offsetPosition, toggleMenuCallback, prefersReducedMotion],
   )
 
   return (
@@ -323,7 +328,7 @@ function _AnchorNavLink({
       className={clsx(
         styles['AnchorNav-link'],
         styles[`AnchorNav-link--${alignment}`],
-        anchoredContentIsVisible && styles['AnchorNav-link--is-active']
+        anchoredContentIsVisible && styles['AnchorNav-link--is-active'],
       )}
       href={isAnchor ? href : `#${href}`}
       aria-describedby={sansAnchor}
@@ -337,7 +342,7 @@ function _AnchorNavLink({
         as="span"
         className={clsx(
           styles['AnchorNav-link-label'],
-          anchoredContentIsVisible && styles['AnchorNav-link-label--is-active']
+          anchoredContentIsVisible && styles['AnchorNav-link-label--is-active'],
         )}
       >
         {children}
@@ -376,5 +381,5 @@ function _AnchorNavAction({children, href, ...rest}: AnchorNavActionProps) {
 export const AnchorNav = Object.assign(_AnchorNav, {
   Link: _AnchorNavLink,
   Action: _AnchorNavAction,
-  testIds
+  testIds,
 })

@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentMeta} from '@storybook/react'
+import {Meta} from '@storybook/react'
 import {FormControl} from '.'
 import {CheckIcon, SearchIcon} from '@primer/octicons-react'
 import {Checkbox, Select, TextInput, Textarea, Radio} from '../'
@@ -8,169 +8,169 @@ import {Stack} from '../../'
 export default {
   title: 'Components/Forms/FormControl',
   component: FormControl,
+  args: {
+    label: 'Label of input',
+    visuallyHidden: false,
+    fullWidth: false,
+    monospace: false,
+    required: false,
+    leadingVisual: undefined,
+    trailingVisual: undefined,
+  },
   argTypes: {
     label: {
       type: 'string',
       name: 'label',
-      defaultValue: 'Label of input',
       description: 'string',
       table: {
-        category: 'Label'
-      }
+        category: 'Label',
+      },
     },
     hasBorder: {
       type: 'string',
       name: 'label',
-      defaultValue: 'Label of input',
       description: 'string',
       table: {
-        category: 'Label'
-      }
+        category: 'Label',
+      },
     },
     leadingText: {
       type: 'string',
       name: 'leading text',
       description: 'string',
       table: {
-        category: 'Input'
-      }
+        category: 'Input',
+      },
     },
     trailingText: {
       type: 'string',
       name: 'trailing text',
       description: 'string',
       table: {
-        category: 'Input'
-      }
+        category: 'Input',
+      },
     },
     visuallyHidden: {
       control: {type: 'boolean'},
-      defaultValue: false,
       table: {
-        category: 'Label'
-      }
+        category: 'Label',
+      },
     },
     size: {
       options: [0, 1],
       mapping: ['medium', 'large'],
       control: {
         type: 'inline-radio',
-        labels: ['medium', 'large']
+        labels: ['medium', 'large'],
       },
       table: {
-        category: 'Input'
-      }
+        category: 'Input',
+      },
     },
     validationStatus: {
       options: [0, 1, 2], // iterator
       mapping: [undefined, 'error', 'success'], // values
       control: {
         type: 'inline-radio',
-        labels: ['undefined', 'error', 'success']
+        labels: ['undefined', 'error', 'success'],
       },
       table: {
-        category: 'Validation'
-      }
+        category: 'Validation',
+      },
     },
     validationText: {
       type: 'string',
       table: {
-        category: 'Validation'
-      }
+        category: 'Validation',
+      },
     },
     fullWidth: {
       description: 'formerly called Block',
       control: {type: 'boolean'},
-      defaultValue: false,
       table: {
-        category: 'Input'
-      }
+        category: 'Input',
+      },
     },
 
     monospace: {
       description: 'monospace text',
       control: {type: 'boolean'},
-      defaultValue: false,
       table: {
-        category: 'Input'
-      }
+        category: 'Input',
+      },
     },
     disabled: {
       description: 'disabled field',
       control: {type: 'boolean'},
-      defaultValue: false,
       table: {
-        category: 'Input'
-      }
+        category: 'Input',
+      },
     },
     required: {
       description: 'required field',
       control: {type: 'boolean'},
-      defaultValue: false,
       table: {
-        category: 'Input'
-      }
+        category: 'Input',
+      },
     },
     placeholder: {
       type: 'string',
       name: 'placeholder',
       description: 'string',
       table: {
-        category: 'Input'
-      }
+        category: 'Input',
+      },
     },
     leadingVisual: {
       control: {type: 'boolean'},
-      defaultValue: false,
       name: 'leading visual',
       description: 'Octicon',
       table: {
-        category: 'Input'
-      }
+        category: 'Input',
+      },
     },
     trailingVisual: {
       control: {type: 'boolean'},
-      defaultValue: false,
       name: 'trailing visual',
       description: 'Octicon',
       table: {
-        category: 'Input'
-      }
+        category: 'Input',
+      },
     },
     className: {
       type: 'string',
       name: 'className',
       description: 'string',
       table: {
-        category: 'Root'
-      }
+        category: 'Root',
+      },
     },
     id: {
       type: 'string',
       name: 'id',
       description: 'string',
       table: {
-        category: 'Root'
-      }
+        category: 'Root',
+      },
     },
     ref: {
       type: 'function',
       name: 'ref',
       description: 'string',
       table: {
-        disable: true
-      }
+        disable: true,
+      },
     },
     children: {
       type: 'function',
       name: 'children',
       description: 'string',
       table: {
-        disable: true
-      }
-    }
-  }
-} as ComponentMeta<typeof FormControl>
+        disable: true,
+      },
+    },
+  },
+} as Meta<typeof FormControl>
 
 export const TextInputPlayground = args => {
   return (
@@ -205,7 +205,6 @@ export const TextInputPlayground = args => {
     </FormControl>
   )
 }
-
 TextInputPlayground.storyName = 'w/ TextInput - Playground'
 
 export const TextareaPlayground = args => {
@@ -237,7 +236,7 @@ export const TextareaPlayground = args => {
   )
 }
 TextareaPlayground.args = {
-  label: 'Label of textarea'
+  label: 'Label of textarea',
 }
 TextareaPlayground.storyName = 'w/ Textarea - Playground'
 

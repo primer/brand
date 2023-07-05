@@ -4,7 +4,7 @@ status: Experimental
 figma: https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=418%3A8416
 source: https://github.com/primer/brand/blob/main/packages/react/src/River/River.tsx
 storybook: '/brand/storybook/?path=/story/components-river--default'
-description: Render text and image pairs
+description: Use the river component to render text and image pairs.
 ---
 
 import {Box as Container, Label} from '@primer/react'
@@ -147,6 +147,26 @@ import {River} from '@primer/react-brand'
 </River>
 ```
 
+### Alternative heading levels
+
+```jsx live
+<River imageTextRatio="60:40">
+  <River.Visual>
+    <img
+      src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
+      alt="placeholder with an off-white background color"
+    />
+  </River.Visual>
+  <River.Content>
+    <Heading as="h1">Alternative heading levels</Heading>
+    <Text>
+      Use the 'as' prop to specify alternative heading levels. The default is
+      'h3'.
+    </Text>
+  </River.Content>
+</River>
+```
+
 ## Component props
 
 ### River <Label>Required</Label>
@@ -172,7 +192,7 @@ import {River} from '@primer/react-brand'
 
 ### River.Content <Label>Required</Label>
 
-[`Text`](https://primer.style/brand/components/Text),[`Heading`](https://primer.style/brand/components/Heading), [`Link`](https://primer.style/brand/components/Link) are the only `children` accepted. They can be composed in any order, but their rendered output will always be in the in the predetermined order.
+[`Text`](https://primer.style/brand/components/Text),[`Heading`](https://primer.style/brand/components/Heading), [`Link`](https://primer.style/brand/components/Link) are the only `children` accepted. They can be composed in any order, but their rendered output will always be in a predetermined order.
 
 | Name        | Type                                                                                                                                                                  | Default | Description                                      |
 | :---------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----: | :----------------------------------------------- |

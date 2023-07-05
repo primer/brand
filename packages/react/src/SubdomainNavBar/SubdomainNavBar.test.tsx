@@ -15,7 +15,7 @@ describe('SubdomainNavBar', () => {
     mockIntersectionObserver.mockReturnValue({
       observe: () => null,
       unobserve: () => null,
-      disconnect: () => null
+      disconnect: () => null,
     })
     window.IntersectionObserver = mockIntersectionObserver
   })
@@ -23,13 +23,15 @@ describe('SubdomainNavBar', () => {
   const Component = ({
     fullWidth,
     searchResults,
-    titleHref
+    titleHref,
+    title = 'Subdomain',
   }: {
     fullWidth?: boolean
     searchResults?: SubdomainNavBarSearchResultProps[]
     titleHref?: string
+    title?: string
   }) => (
-    <SubdomainNavBar title="Subdomain" titleHref={titleHref} fullWidth={fullWidth}>
+    <SubdomainNavBar title={title} titleHref={titleHref} fullWidth={fullWidth}>
       <SubdomainNavBar.Link href="#">Collections</SubdomainNavBar.Link>
       <SubdomainNavBar.Link href="#">Topics</SubdomainNavBar.Link>
       <SubdomainNavBar.Link href="#">Articles</SubdomainNavBar.Link>
@@ -52,7 +54,6 @@ describe('SubdomainNavBar', () => {
 
     expect(getByRole('banner')).toBeInTheDocument() // <header>
     expect(getAllByRole('navigation').length > 0).toBeTruthy() // <nav>
-    expect(getByRole('search')).toBeInTheDocument() // role="search"
   })
 
   it('has no a11y violations by default', async () => {
@@ -69,18 +70,20 @@ describe('SubdomainNavBar', () => {
         title: 'mock title',
         description: 'mock description',
         url: 'https://github.com',
-        date: '2022-08-29T00:00+02:00'
-      }
+        date: '2022-08-29T00:00+02:00',
+      },
     ]
 
-    const {getByTestId, getByLabelText} = render(<Component searchResults={mockResultsData} />)
+    const {getByTestId, getByRole} = render(<Component searchResults={mockResultsData} />)
     const searchTrigger = getByTestId('toggle-search')
 
     fireEvent.click(searchTrigger)
 
-    const searchResultsDialog = getByLabelText('search menu dialog')
+    const searchResultsDialog = getByRole('dialog')
+    const searchResultsLandmark = getByRole('search')
 
     expect(searchResultsDialog).toBeInTheDocument()
+    expect(searchResultsLandmark).toBeInTheDocument()
   })
 
   it('applies "/" as the default title href', async () => {
@@ -88,6 +91,16 @@ describe('SubdomainNavBar', () => {
     const linkEl = getByRole('link', {name: 'Subdomain home'})
 
     expect(linkEl).toHaveAttribute('href', '/')
+  })
+
+  it('removes the default separator and menu title when title is empty', async () => {
+    const {container} = render(<Component title="" />)
+
+    const separator = container.querySelector('.SubdomainNavBar-title-separator')
+    const menuTitle = container.querySelector('.SubdomainNavBar-title')
+
+    expect(separator).not.toBeInTheDocument()
+    expect(menuTitle).not.toBeInTheDocument()
   })
 
   it('can apply an alternative href on the title', async () => {
@@ -120,5 +133,32 @@ describe('SubdomainNavBar', () => {
     const menuButtonEl = queryByTestId(SubdomainNavBar.testIds.menuButton)
 
     expect(menuButtonEl).toBe(null)
+  })
+
+  it('can append a classname to the root element', () => {
+    const mockClass = 'custom-class'
+    const {getByTestId} = render(<SubdomainNavBar title="Subdomain" className={mockClass} />)
+
+    const headerEl = getByTestId(SubdomainNavBar.testIds.root)
+
+    expect(headerEl.classList).toContain(mockClass)
+  })
+
+  it('renders live region when search is active', async () => {
+    const {getByTestId, getByLabelText} = render(<Component />)
+    const searchTrigger = getByTestId('toggle-search')
+
+    fireEvent.click(searchTrigger)
+
+    const liveRegion = getByTestId(SubdomainNavBar.testIds.liveRegion)
+    const liveRegionSpace = liveRegion.querySelector('span')
+    const searchClose = getByLabelText('Close')
+
+    expect(liveRegion).toBeInTheDocument()
+    expect(liveRegionSpace).toBeInTheDocument()
+
+    fireEvent.click(searchClose)
+
+    expect(liveRegion).not.toBeInTheDocument()
   })
 })

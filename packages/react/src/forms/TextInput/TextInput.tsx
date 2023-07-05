@@ -6,6 +6,8 @@ import type {FormInputSizes, FormValidationStatus} from '../form-types'
 
 import styles from './TextInput.module.css'
 
+type VisualType = React.ReactElement | React.ReactNode
+
 export type TextInputProps = {
   /**
    * Applies full width styling.
@@ -22,7 +24,7 @@ export type TextInputProps = {
   /**
    * Applies non-interactive iconography to start of input.
    */
-  leadingVisual?: React.ReactNode
+  leadingVisual?: VisualType
   /**
    * Applies monospace styling.
    */
@@ -38,7 +40,7 @@ export type TextInputProps = {
   /**
    * Applies non-interactive iconography to end of input.
    */
-  trailingVisual?: React.ReactNode
+  trailingVisual?: VisualType
   /**
    * Constrains the input type to single line inputs.
    */
@@ -70,7 +72,7 @@ const _TextInput = (
     validationStatus,
     ...rest
   }: TextInputProps,
-  ref
+  ref,
 ) => {
   return (
     <span
@@ -80,7 +82,7 @@ const _TextInput = (
         invisible && styles['TextInput-wrapper--invisible'],
         disabled && styles['TextInput-wrapper--disabled'],
         monospace && styles['TextInput-wrapper--monospace'],
-        validationStatus && styles[`TextInput-wrapper--${validationStatus}`]
+        validationStatus && styles[`TextInput-wrapper--${validationStatus}`],
       )}
     >
       {leadingText && !LeadingVisual && (
@@ -89,7 +91,7 @@ const _TextInput = (
             styles['TextInput-leading-text'],
             styles[`TextInput-leading-text--${size}`],
             disabled && styles['TextInput-leading-text--disabled'],
-            validationStatus && styles[`TextInput-leading-text--${validationStatus}`]
+            validationStatus && styles[`TextInput-leading-text--${validationStatus}`],
           )}
         >
           <span
@@ -105,18 +107,18 @@ const _TextInput = (
             <LeadingVisual
               className={clsx(
                 styles['TextInput-leading-visual-icon'],
-                styles[`TextInput-leading-visual-icon--${size}`]
+                styles[`TextInput-leading-visual-icon--${size}`],
               )}
             />
           ) : (
             React.isValidElement(LeadingVisual) &&
-            React.cloneElement(LeadingVisual, {
+            React.cloneElement(LeadingVisual as React.ReactElement, {
               className: clsx(
                 styles['TextInput-leading-visual-icon'],
-                styles[`TextInput-leading-visual-icon--${size}`]
+                styles[`TextInput-leading-visual-icon--${size}`],
               ),
               width: size === 'large' ? 20 : 16,
-              height: size === 'large' ? 20 : 16
+              height: size === 'large' ? 20 : 16,
             })
           )}
         </span>
@@ -134,7 +136,7 @@ const _TextInput = (
           validationStatus && styles[`TextInput--${validationStatus}`],
           leadingText && !LeadingVisual && styles['TextInput--has-leading-text'],
           trailingText && !TrailingVisual && styles['TextInput--has-trailing-text'],
-          className
+          className,
         )}
         placeholder={placeholder}
         disabled={disabled}
@@ -147,20 +149,19 @@ const _TextInput = (
             <TrailingVisual
               className={clsx(
                 styles['TextInput-trailing-visual-icon'],
-                styles[`TextInput-trailing-visual-icon--${size}`]
+                styles[`TextInput-trailing-visual-icon--${size}`],
               )}
             />
-          ) : (
-            React.isValidElement(TrailingVisual) &&
-            React.cloneElement(TrailingVisual, {
+          ) : TrailingVisual && React.isValidElement(TrailingVisual) ? (
+            React.cloneElement(TrailingVisual as React.ReactElement, {
               className: clsx(
                 styles['TextInput-trailing-visual-icon'],
-                styles[`TextInput-trailing-visual-icon--${size}`]
+                styles[`TextInput-trailing-visual-icon--${size}`],
               ),
               width: size === 'large' ? 20 : 16,
-              height: size === 'large' ? 20 : 16
+              height: size === 'large' ? 20 : 16,
             })
-          )}
+          ) : null}
         </span>
       )}
       {trailingText && !TrailingVisual && (
@@ -169,7 +170,7 @@ const _TextInput = (
             styles['TextInput-trailing-text'],
             styles[`TextInput-trailing-text--${size}`],
             disabled && styles['TextInput-trailing-text--disabled'],
-            validationStatus && styles[`TextInput-trailing-text--${validationStatus}`]
+            validationStatus && styles[`TextInput-trailing-text--${validationStatus}`],
           )}
         >
           <span

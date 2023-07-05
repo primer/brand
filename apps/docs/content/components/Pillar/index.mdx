@@ -1,0 +1,115 @@
+---
+title: Pillar
+description: Use the pillar component to group related content together.
+---
+
+import ComponentLayout from '../../../src/layouts/component-layout'
+export default ComponentLayout
+
+## Anatomy
+
+![An image showing the Pillar anatomy with an icon, a heading and a description in a vertical order.](https://github.com/primer/brand/assets/912236/a43841af-3ea8-488d-b948-b8cac82a1b00)
+
+- Icon: An optional visual cue related to the content of the Pillar.
+- Heading: The main title of the Pillar. It should be short and concise.
+- Description: Short text that extends the information provided by the heading.
+- Link: An optional link to extended the information.
+
+## Usage
+
+Use pillars to group similar features or benefits together to easily scan and read. Pillars display content in a familiar and recognizable style.
+
+### Stacked
+
+Pillars should be stacked to display a list of items that are related to each other. Use consistent pillar sizes within a row or group. A group or a row of content pillars is more visually appealing when the widths and heights of all elements match, so keep the content lenght of each pillar consistent.
+
+<DoDontContainer>
+  <Do>
+    <img src="https://github.com/primer/brand/assets/912236/6fd15d68-91cc-446f-a813-c873aad9a8e7" />
+    <Caption>
+      Use a similar content size to achieve a visually balanced layout.
+    </Caption>
+  </Do>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/912236/4b33e84c-841a-43b1-a96b-5cec60ae0353" />
+    <Caption>
+      Don't use different length sizes for the title or the description.
+    </Caption>
+  </Dont>
+</DoDontContainer>
+
+If displaying an icon, do so for all cards to achieve a visually balanced layout.
+
+<DoDontContainer>
+  <Do>
+    <img src="https://github.com/primer/brand/assets/912236/94dc144a-dffa-45a0-a77f-b0b830e669bc" />
+    <Caption>
+      Use icons either for all pillars or none for a visually balanced layout.
+    </Caption>
+  </Do>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/912236/8ddb7a7b-396b-44c2-9cbd-e6a44eb13710" />
+    <Caption>Don't use icons sparingly.</Caption>
+  </Dont>
+</DoDontContainer>
+
+When presenting more than four pillars, we recommend displaying them in multiple rows. You can use the [Grid](/components/Grid) or the [Stack](/components/Stack) component to achieve this. We recommend using a grid with 3 or 4 columns and balancing the number of pillars on each row.
+
+![An image showing a group of numerous Pillars stacked in a 3 column grid.](https://github.com/primer/brand/assets/912236/1d031ae9-bf4e-4e19-a7b7-c8cc0b7e5940)
+
+### Pillar and Card
+
+Pillar and Card are both components that are used to present related and/or condensed information. They have distinct use-cases however, with the main differences between them being:
+
+#### Interaction
+
+Pillars are used mainly for non-interactive content and might include an optional link for extended information. On the other hand, Cards are primarily navigational elements.
+
+#### Hierarchy
+
+Cards should be used for noteworthy information to immediately draw user attention. Pillars, on the other hand, should be used for lower priority information compared to Cards.
+
+#### Group size
+
+Cards should be used in small groups (3, 4 or 5 items maximum), whereas Pillars can be used in larger (more than 5 items) or smaller groups. As users encounter an increasing number of items within a group, the distinctiveness of each individual element diminishes.
+
+<DoDontContainer>
+  <Do>
+    <img src="https://github.com/primer/brand/assets/912236/ec95d12e-9202-4488-97b8-42656f638937" />
+    <Caption>Pillars are more suitable for groups of 5 or more items.</Caption>
+  </Do>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/912236/c0775fcd-7ef9-430d-9315-d3fdbd55947f" />
+    <Caption>
+      Don't use Cards for groups of 5 or more items. Use them sparingly in
+      groups of 3 or 4.
+    </Caption>
+  </Dont>
+</DoDontContainer>
+
+## Options
+
+### Align
+
+Pillars can be aligned to the start or center of the container. Aligning to the start is the default and recommended behavior. Use center alignment only when displaying a maximum of 4 pillars and the overall page design calls for this alignment, so that the content is visually balanced and easy to scan.
+
+<DoDontContainer>
+  <Do>
+    <img src="https://github.com/primer/brand/assets/912236/964e82b4-ea5f-436c-aece-bc0b82f49852" />
+    <Caption>
+      Center align pillars when in groups of 3 or 4 and if their title and
+      descriptions are short.
+    </Caption>
+  </Do>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/912236/a9be67a6-79e0-460b-b3e3-44bb72e096a2" />
+    <Caption>Don't use center alignment when in groups of 5 or more.</Caption>
+  </Dont>
+</DoDontContainer>
+
+## Related components
+
+- [Card](/components/Card): To display navigational related content with higher visual weight.
+- [River](/components/River): To display a list of content items with a visual asset.
+- [CTABanner](/components/CTABanner): To display a single block of content to draw attention or create urgency around a user action.
+- [UnorderedList](/components/UnorderedList) or the [OrderedList](/components/OrderedList): To display a list of plain content items.

@@ -21,15 +21,15 @@ describe('Design tokens', () => {
                 isSource: true,
                 original: {
                   value: 'gray',
-                  dark: 'white'
+                  dark: 'white',
                 },
                 name: 'brand-text-color-example',
                 attributes: {},
-                path: ['brand', 'text', 'color', 'example']
-              }
-            }
-          }
-        }
+                path: ['brand', 'text', 'color', 'example'],
+              },
+            },
+          },
+        },
       },
       allProperties: [
         {
@@ -43,12 +43,12 @@ describe('Design tokens', () => {
             value: 'gray',
             dark: 'white',
             // eslint-disable-next-line camelcase
-            light_high_contrast: 'black'
+            light_high_contrast: 'black',
           },
           name: 'brand-text-color-example',
           attributes: {},
-          path: ['brand', 'text', 'color', 'example']
-        }
+          path: ['brand', 'text', 'color', 'example'],
+        },
       ],
       tokens: {
         brand: {
@@ -63,15 +63,15 @@ describe('Design tokens', () => {
                 isSource: true,
                 original: {
                   value: 'gray',
-                  dark: 'white'
+                  dark: 'white',
                 },
                 name: 'brand-text-color-example',
                 attributes: {},
-                path: ['brand', 'text', 'color', 'example']
-              }
-            }
-          }
-        }
+                path: ['brand', 'text', 'color', 'example'],
+              },
+            },
+          },
+        },
       },
       allTokens: [
         {
@@ -85,12 +85,12 @@ describe('Design tokens', () => {
             value: 'gray',
             dark: 'white',
             // eslint-disable-next-line camelcase
-            light_high_contrast: 'black'
+            light_high_contrast: 'black',
           },
           name: 'brand-text-color-example',
           attributes: {},
-          path: ['brand', 'text', 'color', 'example']
-        }
+          path: ['brand', 'text', 'color', 'example'],
+        },
       ],
       _properties: {
         brand: {
@@ -103,29 +103,29 @@ describe('Design tokens', () => {
                 isSource: true,
                 original: {
                   value: 'gray',
-                  dark: 'white'
+                  dark: 'white',
                 },
                 name: 'brand-text-color-example',
                 attributes: {},
-                path: ['brand', 'text', 'color', 'example']
-              }
-            }
-          }
-        }
-      }
+                path: ['brand', 'text', 'color', 'example'],
+              },
+            },
+          },
+        },
+      },
     }
 
     const mockFileConfig = {
       destination: 'tokens/functional/texts/text/colors-with-modes.css',
       options: {
         outputReferences: false,
-        containsRawHSL: false
-      }
+        containsRawHSL: false,
+      },
     }
 
     const mockOptions = {
       outputReferences: false,
-      containsRawHSL: false
+      containsRawHSL: false,
     }
 
     const output = colorModeAttributes({dictionary: mockDictionary, file: mockFileConfig, options: mockOptions})
@@ -195,11 +195,11 @@ describe('Design tokens', () => {
                   original: {
                     value: '210 25% 98%',
                     dark: '210 67% 96%',
-                    dark_dimmed: '210 57% 96%'
+                    dark_dimmed: '210 57% 96%',
                   },
                   name: 'base-color-scale-gray-0',
                   attributes: {},
-                  path: ['base', 'color', 'scale', 'gray', '0']
+                  path: ['base', 'color', 'scale', 'gray', '0'],
                 },
                 1: {
                   value: '210 24% 93%',
@@ -210,11 +210,11 @@ describe('Design tokens', () => {
                   original: {
                     value: '210 24% 93%',
                     dark: '210 17% 82%',
-                    dark_dimmed: '210 19% 87%'
+                    dark_dimmed: '210 19% 87%',
                   },
                   name: 'base-color-scale-gray-1',
                   attributes: {},
-                  path: ['base', 'color', 'scale', 'gray', '1']
+                  path: ['base', 'color', 'scale', 'gray', '1'],
                 },
                 2: {
                   value: '210 16% 85%',
@@ -225,16 +225,16 @@ describe('Design tokens', () => {
                   original: {
                     value: '210 16% 85%',
                     dark: '212 14% 73%',
-                    dark_dimmed: '212 15% 63%'
+                    dark_dimmed: '212 15% 63%',
                   },
                   name: 'base-color-scale-gray-2',
                   attributes: {},
-                  path: ['base', 'color', 'scale', 'gray', '2']
-                }
-              }
-            }
-          }
-        }
+                  path: ['base', 'color', 'scale', 'gray', '2'],
+                },
+              },
+            },
+          },
+        },
       },
       allProperties: [
         {
@@ -246,11 +246,11 @@ describe('Design tokens', () => {
           original: {
             value: '210 25% 98%',
             dark: '210 67% 96%',
-            dark_dimmed: '210 57% 96%'
+            dark_dimmed: '210 57% 96%',
           },
           name: 'base-color-scale-gray-0',
           attributes: {},
-          path: ['base', 'color', 'scale', 'gray', '0']
+          path: ['base', 'color', 'scale', 'gray', '0'],
         },
         {
           value: '210 24% 93%',
@@ -261,11 +261,11 @@ describe('Design tokens', () => {
           original: {
             value: '210 24% 93%',
             dark: '210 17% 82%',
-            dark_dimmed: '210 19% 87%'
+            dark_dimmed: '210 19% 87%',
           },
           name: 'base-color-scale-gray-1',
           attributes: {},
-          path: ['base', 'color', 'scale', 'gray', '1']
+          path: ['base', 'color', 'scale', 'gray', '1'],
         },
         {
           value: '210 16% 85%',
@@ -276,12 +276,12 @@ describe('Design tokens', () => {
           original: {
             value: '210 16% 85%',
             dark: '212 14% 73%',
-            dark_dimmed: '212 15% 63%'
+            dark_dimmed: '212 15% 63%',
           },
           name: 'base-color-scale-gray-2',
           attributes: {},
-          path: ['base', 'color', 'scale', 'gray', '2']
-        }
+          path: ['base', 'color', 'scale', 'gray', '2'],
+        },
       ],
       tokens: {
         base: {
@@ -297,11 +297,11 @@ describe('Design tokens', () => {
                   original: {
                     value: '210 25% 98%',
                     dark: '210 67% 96%',
-                    dark_dimmed: '210 57% 96%'
+                    dark_dimmed: '210 57% 96%',
                   },
                   name: 'base-color-scale-gray-0',
                   attributes: {},
-                  path: ['base', 'color', 'scale', 'gray', '0']
+                  path: ['base', 'color', 'scale', 'gray', '0'],
                 },
                 1: {
                   value: '210 24% 93%',
@@ -312,11 +312,11 @@ describe('Design tokens', () => {
                   original: {
                     value: '210 24% 93%',
                     dark: '210 17% 82%',
-                    dark_dimmed: '210 19% 87%'
+                    dark_dimmed: '210 19% 87%',
                   },
                   name: 'base-color-scale-gray-1',
                   attributes: {},
-                  path: ['base', 'color', 'scale', 'gray', '1']
+                  path: ['base', 'color', 'scale', 'gray', '1'],
                 },
                 2: {
                   value: '210 16% 85%',
@@ -327,16 +327,16 @@ describe('Design tokens', () => {
                   original: {
                     value: '210 16% 85%',
                     dark: '212 14% 73%',
-                    dark_dimmed: '212 15% 63%'
+                    dark_dimmed: '212 15% 63%',
                   },
                   name: 'base-color-scale-gray-2',
                   attributes: {},
-                  path: ['base', 'color', 'scale', 'gray', '2']
-                }
-              }
-            }
-          }
-        }
+                  path: ['base', 'color', 'scale', 'gray', '2'],
+                },
+              },
+            },
+          },
+        },
       },
       allTokens: [
         {
@@ -348,11 +348,11 @@ describe('Design tokens', () => {
           original: {
             value: '210 25% 98%',
             dark: '210 67% 96%',
-            dark_dimmed: '210 57% 96%'
+            dark_dimmed: '210 57% 96%',
           },
           name: 'base-color-scale-gray-0',
           attributes: {},
-          path: ['base', 'color', 'scale', 'gray', '0']
+          path: ['base', 'color', 'scale', 'gray', '0'],
         },
         {
           value: '210 24% 93%',
@@ -363,11 +363,11 @@ describe('Design tokens', () => {
           original: {
             value: '210 24% 93%',
             dark: '210 17% 82%',
-            dark_dimmed: '210 19% 87%'
+            dark_dimmed: '210 19% 87%',
           },
           name: 'base-color-scale-gray-1',
           attributes: {},
-          path: ['base', 'color', 'scale', 'gray', '1']
+          path: ['base', 'color', 'scale', 'gray', '1'],
         },
         {
           value: '210 16% 85%',
@@ -378,12 +378,12 @@ describe('Design tokens', () => {
           original: {
             value: '210 16% 85%',
             dark: '212 14% 73%',
-            dark_dimmed: '212 15% 63%'
+            dark_dimmed: '212 15% 63%',
           },
           name: 'base-color-scale-gray-2',
           attributes: {},
-          path: ['base', 'color', 'scale', 'gray', '2']
-        }
+          path: ['base', 'color', 'scale', 'gray', '2'],
+        },
       ],
       _properties: {
         base: {
@@ -399,11 +399,11 @@ describe('Design tokens', () => {
                   original: {
                     value: '210 25% 98%',
                     dark: '210 67% 96%',
-                    dark_dimmed: '210 57% 96%'
+                    dark_dimmed: '210 57% 96%',
                   },
                   name: 'base-color-scale-gray-0',
                   attributes: {},
-                  path: ['base', 'color', 'scale', 'gray', '0']
+                  path: ['base', 'color', 'scale', 'gray', '0'],
                 },
                 1: {
                   value: '210 24% 93%',
@@ -414,11 +414,11 @@ describe('Design tokens', () => {
                   original: {
                     value: '210 24% 93%',
                     dark: '210 17% 82%',
-                    dark_dimmed: '210 19% 87%'
+                    dark_dimmed: '210 19% 87%',
                   },
                   name: 'base-color-scale-gray-1',
                   attributes: {},
-                  path: ['base', 'color', 'scale', 'gray', '1']
+                  path: ['base', 'color', 'scale', 'gray', '1'],
                 },
                 2: {
                   value: '210 16% 85%',
@@ -429,30 +429,30 @@ describe('Design tokens', () => {
                   original: {
                     value: '210 16% 85%',
                     dark: '212 14% 73%',
-                    dark_dimmed: '212 15% 63%'
+                    dark_dimmed: '212 15% 63%',
                   },
                   name: 'base-color-scale-gray-2',
                   attributes: {},
-                  path: ['base', 'color', 'scale', 'gray', '2']
-                }
-              }
-            }
-          }
-        }
-      }
+                  path: ['base', 'color', 'scale', 'gray', '2'],
+                },
+              },
+            },
+          },
+        },
+      },
     }
 
     const mockFileConfig = {
       destination: 'tokens/base/colors/color-scales.json',
       options: {
         outputReferences: false,
-        containsRawHSL: false
-      }
+        containsRawHSL: false,
+      },
     }
 
     const mockOptions = {
       outputReferences: false,
-      containsRawHSL: true // The important bit! This indicates that there are raw HSL values being used
+      containsRawHSL: true, // The important bit! This indicates that there are raw HSL values being used
     }
 
     const output = colorModeAttributes({dictionary: mockDictionary, file: mockFileConfig, options: mockOptions})

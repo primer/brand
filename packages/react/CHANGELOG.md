@@ -1,5 +1,604 @@
 # @primer/react-brand
 
+## 0.20.1
+
+### Patch Changes
+
+- [#291](https://github.com/primer/brand/pull/291) [`6761ce7`](https://github.com/primer/brand/commit/6761ce70ade87e13691e74b0c5c19ed403732b66) Thanks [@rezrah](https://github.com/rezrah)! - Various security and stability updates.
+
+  No changes to component API's or functionality.
+
+- [#316](https://github.com/primer/brand/pull/316) [`ce31a43`](https://github.com/primer/brand/commit/ce31a4375400fdd7920685f6048de5b622e245d9) Thanks [@JoshBowdenConcepts](https://github.com/JoshBowdenConcepts)! - Added `Prose` component
+
+  ```jsx
+  <Prose
+    html={`
+      <h2>Prose Component</h2>
+      <p>
+        The Prose component renders native HTML elements with Primer Brand styling. Prose doesn't sanitize the input data. We recommend sanitizing the data before passing it into Prose. <a href="https://primer.style/brand/components/Prose">Learn more here.</a>
+      </p>
+  `}
+  />
+  ```
+
+- [#301](https://github.com/primer/brand/pull/301) [`73d11c9`](https://github.com/primer/brand/commit/73d11c9e36c5fc3a1f646239ddc36c8c9aae6f79) Thanks [@josepmartins](https://github.com/josepmartins)! - Pillar accessibility improvements:
+
+  - Hide native SVG icons by default.
+  - Remove as=”span” from prop table.
+  - Add more descriptive text to “Learn more” link in storybook examples.
+
+- [#290](https://github.com/primer/brand/pull/290) [`9e506f7`](https://github.com/primer/brand/commit/9e506f77cd0047be6f0774ee0467135a5c60fae9) Thanks [@josepmartins](https://github.com/josepmartins)! - Add `Pillar.Link` to the `Pillar` component
+
+  ```jsx
+  <Pillar>
+    <Pillar.Heading>Code search & code view</Pillar.Heading>
+    <Pillar.Description>
+      Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
+    </Pillar.Description>
+    <Pillar.Link href="https://github.com">Learn more</Pillar.Link>
+  </Pillar>
+  ```
+
+- [#317](https://github.com/primer/brand/pull/317) [`552c154`](https://github.com/primer/brand/commit/552c154a727eefa9307c7c290c07ce5ec93c8514) Thanks [@mperrotti](https://github.com/mperrotti)! - Addresses a11y engineering feedback about the `Card` component. The `Card` container element is no longer `<a>`, it's `<div>`.
+
+- [#282](https://github.com/primer/brand/pull/282) [`47f175e`](https://github.com/primer/brand/commit/47f175e7873b9c9f41edc0863869259263e80318) Thanks [@JoshBowdenConcepts](https://github.com/JoshBowdenConcepts)! - Added Instagram logo to MinimalFooter options
+
+## 0.20.0
+
+### Minor Changes
+
+- [#276](https://github.com/primer/brand/pull/276) [`9e202d5`](https://github.com/primer/brand/commit/9e202d5eb92ffb1cbf591524c339bf4eae028ed5) Thanks [@rezrah](https://github.com/rezrah)! - Added animation support
+
+  Use the `animate` prop to apply various animation presets directly on a component.
+
+  ```jsx
+  <AnimationProvider>
+    <Button animate="fade-in">This button will fade in</Button>
+  </AnimationProvider>
+  ```
+
+  - [Read the documentation for more examples](https://primer.style/brand/getting-started/animation)
+
+### Patch Changes
+
+- [#280](https://github.com/primer/brand/pull/280) [`a2cb323`](https://github.com/primer/brand/commit/a2cb323777ed69ffe8d5b13139bd049b6340501b) Thanks [@JoshBowdenConcepts](https://github.com/JoshBowdenConcepts)! - Minimal Footer Updates
+  - Updating MinimalFooter.Link spacing to match when as it set to button or link.
+  - Updated visual tests to include spacing.
+
+* [#279](https://github.com/primer/brand/pull/279) [`6704829`](https://github.com/primer/brand/commit/6704829892bbcba8482bad68246d3e19d1ec50ee) Thanks [@danielguillan](https://github.com/danielguillan)! - Adds spacing scale support in Stack's gap and padding props
+
+  ```jsx
+  <>
+    <Stack gap={96} padding={96}>
+      ...
+    </Stack>
+    <Stack
+      gap={{
+        narrow: 96,
+      }}
+      padding={{
+        narrow: 96,
+      }}
+    >
+      ...
+    </Stack>
+  </>
+  ```
+
+## 0.19.0
+
+### Minor Changes
+
+- [#239](https://github.com/primer/brand/pull/239) [`54b6a31`](https://github.com/primer/brand/commit/54b6a31127dad302fdf4583cd119b3595f7136db) Thanks [@TylerJDev](https://github.com/TylerJDev)! - Provides the `Hero` component with a composable API.
+
+  > **Warning**
+  > This is a breaking change to the `Hero` component. Please review the following carefully.
+
+  <table>
+  <tr>
+  <th> Before</th> <th> After </th>
+  </tr>
+  <tr>
+  <td valign="top">
+
+  ```jsx
+  <Hero
+    heading="This is my super sweet hero heading"
+    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    primaryAction={{
+      text: 'Primary action',
+      href: '#',
+    }}
+    align="center"
+  />
+  ```
+
+   </td>
+  <td valign="top">
+
+  ```jsx
+  <Hero>
+    <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+    <Hero.Description>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Hero.Description>
+    <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+  </Hero>
+  ```
+
+  </td>
+  </tr>
+  </table>
+
+## 0.18.0
+
+### Minor Changes
+
+- [#262](https://github.com/primer/brand/pull/262) [`b0c3fa0`](https://github.com/primer/brand/commit/b0c3fa05603615a9690ccc4ff9297e933f3d881b) Thanks [@josepmartins](https://github.com/josepmartins)! - Add Pillar component
+
+  Example Usage
+
+  ```jsx live
+  <Pillar>
+    <Pillar.Heading>Collaboration is the key to DevOps success</Pillar.Heading>
+    <Pillar.Description>Everything you need to know about getting started with GitHub Actions.</Pillar.Description>
+  </Pillar>
+  ```
+
+  - [Pillar Documentation](https://primer.style/brand/components/Pillar)
+
+### Patch Changes
+
+- [#273](https://github.com/primer/brand/pull/273) [`a226dc6`](https://github.com/primer/brand/commit/a226dc60c76ca0aa0c5d99a4c946fe2bd464c81d) Thanks [@TylerJDev](https://github.com/TylerJDev)! - Changes `Green-blue` and `Red-orange` variants in `Label` colors for improved color contrast:
+
+  ```diff
+  - --base-color-scale-green-4
+  - --base-color-scale-red-4
+  + --base-color-scale-green-5
+  + --base-color-scale-red-5
+  ```
+
+  Adds high contrast mode support for `Label`
+
+* [#236](https://github.com/primer/brand/pull/236) [`7502285`](https://github.com/primer/brand/commit/75022854417650ef54d166cf476e405910197adf) Thanks [@josepmartins](https://github.com/josepmartins)! - New and updated `River` spacing tokens aiming for a responsive logic in both `gap` and `padding` values of the main container.
+
+  ```diff
+  # Updated medium/large gap and margin on pro of a responsive logic (Small/Medium/Large sizes) and inner/outer spacing
+  -  --brand-River-gap-column-medium: var(--base-size-32);
+  -  --brand-River-gap-column-large: var(--base-size-48);
+  +  --brand-River-spacing-inner: var(--base-size-24)/var(--base-size-36)/var(--base-size-48);
+  -  --brand-River-layout-margin-vertical: var(--base-size-24);
+  +  --brand-River-spacing-outer: var(--base-size-28)/var(--base-size-36)/var(--base-size-48);
+  # Updated heading margin
+  -  --brand-River-gap-heading-bottom: var(--base-size-8);
+  +  --brand-River-heading-margin: var(--base-size-8);
+  ```
+
+- [#272](https://github.com/primer/brand/pull/272) [`f5c9656`](https://github.com/primer/brand/commit/f5c9656a4acf5057f282a2efd81e864d477b0988) Thanks [@JoshBowdenConcepts](https://github.com/JoshBowdenConcepts)! - Added polymorphism to the MinimalFooter link element
+
+* [#271](https://github.com/primer/brand/pull/271) [`cb6d7b4`](https://github.com/primer/brand/commit/cb6d7b4ecc4abe28214349798e2335cb5a50a688) Thanks [@JoshBowdenConcepts](https://github.com/JoshBowdenConcepts)! - Added explicit text-decoration none to all components that currently explicitly set the text-decoration to none to ensure usability on legacy sites.
+
+- [#260](https://github.com/primer/brand/pull/260) [`eeb988b`](https://github.com/primer/brand/commit/eeb988b81e8dd4c545ca2adf8234da6da2ff82ac) Thanks [@mperrotti](https://github.com/mperrotti)! - Prevents column width from overflowing the River component
+
+## 0.17.1
+
+### Patch Changes
+
+- [#253](https://github.com/primer/brand/pull/253) [`4f77746`](https://github.com/primer/brand/commit/4f777466a6b03a73904e48b6df38aa846a64c450) Thanks [@josepmartins](https://github.com/josepmartins)! - Added support for `Image` in the `Card` component. The new `Card.Image` child is optional, and can be used alongside a `Card.Label`. Image aspect ratio can be controlled using the `aspectRatio` prop.
+
+  ```jsx
+  <Card href="https://github.com">
+    <Card.Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" aspectRatio="16:9" alt=" " />
+    <Card.Heading>Code search & code view</Card.Heading>
+    <Card.Description>
+      Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
+    </Card.Description>
+  </Card>
+  ```
+
+* [#258](https://github.com/primer/brand/pull/258) [`d8ab2c9`](https://github.com/primer/brand/commit/d8ab2c9ba74579a98813e568927d792090f13a66) Thanks [@rezrah](https://github.com/rezrah)! - `Grid.Column` now spans full width by default when using responsive API
+
+  ```jsx
+  <Grid>
+    <Grid.Column
+      span={{
+        large: 6,
+      }}
+    ></Grid.Column>
+    <Grid.Column
+      span={{
+        xsmall: 3,
+        large: 6,
+      }}
+    ></Grid.Column>
+  </Grid>
+  ```
+
+- [#258](https://github.com/primer/brand/pull/258) [`d8ab2c9`](https://github.com/primer/brand/commit/d8ab2c9ba74579a98813e568927d792090f13a66) Thanks [@rezrah](https://github.com/rezrah)! - Add `brand` prefix to Grid component design tokens.
+
+  ```diff
+  - --grid-spacing-margin
+  + --brand-Grid-spacing-margin
+  ```
+
+* [#256](https://github.com/primer/brand/pull/256) [`e98a121`](https://github.com/primer/brand/commit/e98a1219a6df4fac4a502d7cae0183c5d6f80f71) Thanks [@rezrah](https://github.com/rezrah)! - Add escape-hatch for no title in SubdomainNavBar
+
+  ```jsx
+  <SubdomainNavBar title="" />
+  ```
+
+## 0.17.0
+
+### Minor Changes
+
+- [#237](https://github.com/primer/brand/pull/237) [`51e383d`](https://github.com/primer/brand/commit/51e383dd2ccd74bf9c79c3beaf64e99e0a01a0a5) Thanks [@rezrah](https://github.com/rezrah)! - Added `Grid` component
+
+  Use `Grid` to create flexible and responsive grid-based layouts
+
+  ```jsx
+  <Grid>
+    <Grid.Column span={4}></Grid.Column>
+    <Grid.Column span={4}></Grid.Column>
+    <Grid.Column span={4}></Grid.Column>
+  </Grid>
+  ```
+
+  :link: [See the documentation for more details and usage examples.](https://primer.style/brand/components/Grid)
+
+* [#229](https://github.com/primer/brand/pull/229) [`2359c0c`](https://github.com/primer/brand/commit/2359c0c87ec8c419ef156e8ff78eb4fcdd24b4f3) Thanks [@JoshBowdenConcepts](https://github.com/JoshBowdenConcepts)! - Added `Image` component
+
+  Usage example:
+
+  ```jsx
+  <Image src="/path/to/your/image.jpg" alt="Required alternative text" />
+  ```
+
+  See the [documentation](https://primer.style/brand/components/Image) or [Storybook](https://primer.style/brand/storybook/?path=/story/components-image--playground) for more usage examples.
+
+### Patch Changes
+
+- [#243](https://github.com/primer/brand/pull/243) [`9c479f9`](https://github.com/primer/brand/commit/9c479f9e214ffa7f7bfccafbce4d328275ef3ff3) Thanks [@josepmartins](https://github.com/josepmartins)! - Added support for `[Octicons](https://primer.style/design/foundations/icons)` in the `Card` component. The new `Card.Icon` child is optional, and can be used alongside a `Card.Label`. Icon color and background can be customized using the `color` and `hasBackground` prop respectively.
+
+  ```jsx
+  <Card href="https://github.com">
+    <Card.Icon icon={CopilotIcon} color="purple" hasBackground />
+    <Card.Heading>Code search & code view</Card.Heading>
+    <Card.Description>
+      Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
+    </Card.Description>
+  </Card>
+  ```
+
+* [#246](https://github.com/primer/brand/pull/246) [`e66ffe0`](https://github.com/primer/brand/commit/e66ffe0f81355949c390ef670cc833239d926b4f) Thanks [@TylerJDev](https://github.com/TylerJDev)! - Fixes zoom issue in `SubdomainNavBar` where secondary CTA link would disappear at 200% zoom, or specified width
+
+- [#237](https://github.com/primer/brand/pull/237) [`51e383d`](https://github.com/primer/brand/commit/51e383dd2ccd74bf9c79c3beaf64e99e0a01a0a5) Thanks [@rezrah](https://github.com/rezrah)! - Improved type defintion accuracy for `SubdomainNavBar.PrimaryAction` by forwarding all default props from `HTMLAnchorElement`. This will prevent compiler errors on attributes like `onClick`.
+
+* [#240](https://github.com/primer/brand/pull/240) [`6d590e2`](https://github.com/primer/brand/commit/6d590e2994398caceee5731a2f59e13d108f2b9e) Thanks [@danielguillan](https://github.com/danielguillan)! - Added a `size` prop to control Testimonial's text size
+
+- [#245](https://github.com/primer/brand/pull/245) [`52cc40d`](https://github.com/primer/brand/commit/52cc40d0431eff2286dfd8a12afaaac85a207ee6) Thanks [@TylerJDev](https://github.com/TylerJDev)! - Fixes focus navigation within mobile menu in `SubdomainNavbar`
+
+## 0.16.1
+
+### Patch Changes
+
+- [#234](https://github.com/primer/brand/pull/234) [`28f0679`](https://github.com/primer/brand/commit/28f067951810f05a81a9b105ea2e115c71e2d788) Thanks [@josepmartins](https://github.com/josepmartins)! - Adjust spacing in `River` component to avoid margin collapse.
+
+## 0.16.0
+
+### Minor Changes
+
+- [#220](https://github.com/primer/brand/pull/220) [`d583547`](https://github.com/primer/brand/commit/d58354741fe1e678f030e086b9ba247a66767ba2) Thanks [@josepmartins](https://github.com/josepmartins)! - Added new Label component
+
+  Use `Label` to indicate the status of the content or add metadata to the `Card` component.
+
+  ```jsx
+  <Label color="green" size="large">
+    New feature
+  </Label>
+  ```
+
+  :link: [See the documentation for more details and usage examples.](https://primer.style/brand/components/Label)
+
+  Update Card component to use Label component and its color variants
+
+  ```jsx
+  <Card href="https://github.com">
+    <Card.Label color="green">New feature</Card.Label>
+    <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+    <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
+  </Card>
+  ```
+
+### Patch Changes
+
+- [#216](https://github.com/primer/brand/pull/216) [`3bd2290`](https://github.com/primer/brand/commit/3bd2290a4fac495bc5e170d585df61dc419541a0) Thanks [@TylerJDev](https://github.com/TylerJDev)! - Hides `Accordion` icons from component's accessible name
+
+* [#222](https://github.com/primer/brand/pull/222) [`7da349d`](https://github.com/primer/brand/commit/7da349d21d7cc4bf77b105186a9a1aae14ae464b) Thanks [@TylerJDev](https://github.com/TylerJDev)! - Introduces accessibility fixes for `SubdomainNavBar`
+
+  - Improves `ARIA` usage across the component
+  - Adjusts some landmarks to reduce verbosity
+  - Fixes some `aria-expanded` states
+
+- [#225](https://github.com/primer/brand/pull/225) [`b59728e`](https://github.com/primer/brand/commit/b59728e7a4fd9f57dd8773a73a71a068c4f4fb5b) Thanks [@TylerJDev](https://github.com/TylerJDev)! - Adds improved `combobox` accessibility support for `SubdomainNavBar` search
+
+* [#209](https://github.com/primer/brand/pull/209) [`b6d9602`](https://github.com/primer/brand/commit/b6d9602780b4e310f41c9caaff8b5d47856b294f) Thanks [@TylerJDev](https://github.com/TylerJDev)! - Fixes transition bug by making `:hover` style take priority over `:focus`.
+
+- [#226](https://github.com/primer/brand/pull/226) [`06f045d`](https://github.com/primer/brand/commit/06f045d39b68ae138c63bfb396c12c032d7b31f7) Thanks [@rezrah](https://github.com/rezrah)! - Add heading level customization to River headings.
+
+  ```jsx
+  <River>
+    <River.Visual />
+    <River.Content>
+      <Heading as="h1">Use alternative heading levels, like h1, h2, h3 and more</Heading>
+    </River.Content>
+  </River>
+  ```
+
+## 0.15.1
+
+### Patch Changes
+
+- [#221](https://github.com/primer/brand/pull/221) [`0b5d9b0`](https://github.com/primer/brand/commit/0b5d9b0bb048d87b31ea2071b6c2546401c75fe7) Thanks [@rezrah](https://github.com/rezrah)! - Updated dark mode Button hover colors for secondary and subtle variants.
+
+  Colors have changed from gray to white.
+
+* [#215](https://github.com/primer/brand/pull/215) [`e96601c`](https://github.com/primer/brand/commit/e96601c02b6fb85991ad7da4908e5014e9619d7c) Thanks [@TylerJDev](https://github.com/TylerJDev)! - - Updated `Hero` to use the HTML landmark element `<section>` for improved semantics and accessibility.
+
+## 0.15.0
+
+### Minor Changes
+
+- [#200](https://github.com/primer/brand/pull/200) [`f8e273a`](https://github.com/primer/brand/commit/f8e273a89a34c4a7e9135608281e938c8c4f6fd0) Thanks [@josepmartins](https://github.com/josepmartins)! - Add label and test coverage to the Card component
+
+  ⚠️ This update contains a breaking change.
+
+  **Before:**
+
+  ```jsx
+  <Card label="Read more">...</Card>
+  ```
+
+  **after:**
+
+  ```jsx
+  <Card ctaText="Read more">...</Card>
+  ```
+
+* [#205](https://github.com/primer/brand/pull/205) [`d8974c1`](https://github.com/primer/brand/commit/d8974c1d301e91726bca0a3996afea4750ab13a2) Thanks [@rezrah](https://github.com/rezrah)! - ### React
+
+  Added new ActionMenu component
+
+  Use `ActionMenu` to display a list of actions or selections that expand through a trigger button.
+
+  ```jsx
+  <ActionMenu>
+    <ActionMenu.Button>Open menu</ActionMenu.Button>
+    <ActionMenu.Overlay>
+      <ActionMenu.Item value="Copilot" selected>
+        Copilot
+      </ActionMenu.Item>
+      <ActionMenu.Item value="Codespaces">Codespaces</ActionMenu.Item>
+      <ActionMenu.Item value="CodeQL">CodeQL</ActionMenu.Item>
+    </ActionMenu.Overlay>
+  </ActionMenu>
+  ```
+
+  :link: [See the documentation for more details and usage examples.](https://primer.style/brand/components/ActionMenu)
+
+### Patch Changes
+
+- [#204](https://github.com/primer/brand/pull/204) [`469af45`](https://github.com/primer/brand/commit/469af45eaedfb093fbc8f444c5bd5fc0121f27ab) Thanks [@TylerJDev](https://github.com/TylerJDev)! - Adds outline to `Button` variants (Primary, Secondary) when in High Contrast Mode (HCM)
+
+  <table>
+  <tr>
+  <th> Before </th> <th> After </th>
+  </tr>
+  <tr>
+  <td valign="top">
+
+  <img width="200" alt="Button 'Primary' variant, shows a button with no outline in HCM" src="https://user-images.githubusercontent.com/26746305/224075381-d2cb2f80-9dc2-43e7-b7fa-b0e116c9845b.png">
+
+   </td>
+  <td valign="top">
+
+  <img width="205" alt="Button 'Primary' variant, shows a button with a yellow outline in HCM" src="https://user-images.githubusercontent.com/26746305/224077824-6a87aef5-96ee-40df-a50c-7dbb0ac5a25b.png">
+
+  </td>
+  </tr>
+  <tr>
+
+  <td>
+
+  <img width="260" alt="Button 'Primary' variant, shows a disabled button with no outline in HCM" src="https://user-images.githubusercontent.com/26746305/224076271-802b54a0-c924-439b-beb2-1e2a637e7e47.png">
+
+  </td>
+
+  <td>
+
+  <img width="276" alt="Button 'Primary' variant, shows a disabled button with a green outline in HCM" src="https://user-images.githubusercontent.com/26746305/224076547-1ffbd080-c18e-4f36-898e-3b9ea01a3c1d.png">
+
+  </td>
+
+  </tr>
+  </table>
+
+* [#217](https://github.com/primer/brand/pull/217) [`cb892f8`](https://github.com/primer/brand/commit/cb892f8890ad22279ef1e25098e9df86f53a427d) Thanks [@rezrah](https://github.com/rezrah)! - `Avatar` now correctly forwards native `img` attributes. This includes `loading`, `decoding`, and `crossOrigin` attributes.
+
+## 0.14.0
+
+### Minor Changes
+
+- [#162](https://github.com/primer/brand/pull/162) [`b7dcae0`](https://github.com/primer/brand/commit/b7dcae0cac18611cd472fe156be3deaa2305c4f8) Thanks [@josepmartins](https://github.com/josepmartins)! - Card Component
+
+  Example Usage
+
+  ```jsx live
+  <Card href="https://github.com">
+    <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+    <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
+  </Card>
+  ```
+
+  - [Card Documentation](https://primer.style/brand/components/Card)
+
+### Patch Changes
+
+- [#194](https://github.com/primer/brand/pull/194) [`2ffcb14`](https://github.com/primer/brand/commit/2ffcb14892278745e871f223281d779759fb6976) Thanks [@rezrah](https://github.com/rezrah)! - Added `arrowDirection` prop to Link component
+
+  ```jsx
+  <Link href="https://github.com" arrowDirection="start">
+    Back to GitHub
+  </Link>
+  ```
+
+* [`55abb8e`](https://github.com/primer/brand/commit/55abb8e1c154a3bd17e951bae5ab6e0b2f2aa59a) Thanks [@rezrah](https://github.com/rezrah)! - Fix bug in forwarding a `className` to SubdomainNavBar and remove console errors for Avatar
+
+  E.g.
+
+  ```
+  <SubdomainNavBar className="custom-css-class" />
+  ```
+
+- [#193](https://github.com/primer/brand/pull/193) [`3d8a95b`](https://github.com/primer/brand/commit/3d8a95ba637af3f7ee54222e278fa38685f13e68) Thanks [@TylerJDev](https://github.com/TylerJDev)! - Allows `FAQ.Question` and `FAQ.Subheading` to have adjustable heading levels (e.g. <FAQ.Question as="h3" />)
+
+## 0.13.0
+
+### Minor Changes
+
+- [#176](https://github.com/primer/brand/pull/176) [`ca07fdc`](https://github.com/primer/brand/commit/ca07fdc0bb15695074d20d265a9403115d38fa60) Thanks [@danielguillan](https://github.com/danielguillan)! - New `Avatar` component available
+
+  Use `Avatar` to display a thumbnail representation of a person.
+
+  ```jsx
+  <Avatar src="https://avatars.githubusercontent.com/u/92997159?v=4" alt="A random avatar picture" />
+  ```
+
+  :link: [See the documentation for more details and usage examples.](https://primer.style/brand/components/Avatar)
+
+* [#163](https://github.com/primer/brand/pull/163) [`fe0e1ee`](https://github.com/primer/brand/commit/fe0e1ee1021fa38955115d3c40aba4f1f536eef3) Thanks [@JoshBowdenConcepts](https://github.com/JoshBowdenConcepts)! - CTAForm Component
+
+  Example Usage
+
+  ```jsx live
+  <CTAForm>
+    <CTAForm.Input>
+      <FormControl required>
+        <FormControl.Label>Your work email address</FormControl.Label>
+        <TextInput placeholder="name" />
+      </FormControl>
+    </CTAForm.Input>
+    <CTAForm.Confirm>
+      <FormControl required>
+        <FormControl.Label>
+          <Text size="300" variant="muted">
+            I agree to the <InlineLink href="https://github.com">Privacy Policy</InlineLink> and{' '}
+            <InlineLink href="https://github.com">Terms of Service</InlineLink>
+          </Text>
+        </FormControl.Label>
+        <Checkbox name="confirm" />
+      </FormControl>
+    </CTAForm.Confirm>
+    <CTAForm.Action>Subscribe</CTAForm.Action>
+  </CTAForm>
+  ```
+
+  - [CTAForm Documentation](https://primer.style/brand/components/CTAForm)
+
+### Patch Changes
+
+- [#189](https://github.com/primer/brand/pull/189) [`d805a17`](https://github.com/primer/brand/commit/d805a171c3b3377e1ee5808fdb0207283fd69f85) Thanks [@TylerJDev](https://github.com/TylerJDev)! - Applies a transition: none rule to `:focus` on the `<Button>` component. Ensures that the existing box-shadow on :hover does not interfere with the the :focus box-shadow.
+
+  <table>
+  <caption>Before/After</caption>
+  <tr>
+  <th> Version 0.12.0 </th> <th> Version 0.12.1 (current)</th> <th> PR version </th>
+  </tr>
+  <tr>
+  <td valign="top">
+
+  https://user-images.githubusercontent.com/26746305/219712759-d814db66-dae2-4b74-9a48-c411cb7705c3.mov
+
+  Video shows the cursor moving over the button. When pressed and hovered off of, the `box-shadow` border appears on the button in a bottom-to-top transition animation.
+
+  Video also shows cursor hovering over button when focused, removing the `box-shadow` border before displaying it back when hovered off of.
+
+  </td>
+  <td valign="top">
+
+  https://user-images.githubusercontent.com/26746305/219712378-7d0f0cb7-2068-463b-a3da-548729c8f6e0.mov
+
+  Video shows cursor moving over the button. When pressed the `box-shadow` border appears over the button instantly, showing the same bottom-to-top transition effect as the previous cell example.
+
+   </td>
+  <td valign="top">
+
+  https://user-images.githubusercontent.com/26746305/219712490-347af6ce-6900-496d-a6cb-bc2c0c27b453.mov
+
+  Video shows cursor moving over the button and then pressing the button. The `box-shadow` border displays over the button instantly, showing no transition animation.
+
+  </td>
+  </tr>
+  </table>
+
+* [#190](https://github.com/primer/brand/pull/190) [`8307f60`](https://github.com/primer/brand/commit/8307f601a1a01251f7e030d7edf023ee32d99da1) Thanks [@rezrah](https://github.com/rezrah)! - Added `leadingVisual` and `trailingVisual` support to `Button`
+
+  **Usage example**
+
+  ```jsx
+  //import {SearchIcon, CheckIcon} from '@primer/octicons-react'
+
+  <Button leadingVisual={SearchIcon} trailingVisual={CheckIcon}>
+    Button
+  </Button>
+  ```
+
+  - [See the documentation for more examples](https://primer.style/brand/components/Button#appending-an-icon)
+
+## 0.12.1
+
+### Patch Changes
+
+- [#181](https://github.com/primer/brand/pull/181) [`2572904`](https://github.com/primer/brand/commit/25729045d5bcaddf8e656da168d4c3dd2561fb2b) Thanks [@JoshBowdenConcepts](https://github.com/JoshBowdenConcepts)! - Fixed CTABanner Class Forwarding Bug, now users can pass custom classes to the wrapper for the CTABanner component
+
+* [#170](https://github.com/primer/brand/pull/170) [`c913aab`](https://github.com/primer/brand/commit/c913aab049e5ea8c69b38176f2e698af35cc5c21) Thanks [@TylerJDev](https://github.com/TylerJDev)! - Adds accessibility fixes for `Button`.
+
+  - Retains outline on focus when only `aria-disabled` is applied.
+  - Adds focus indicator and 'disabled' style for WHCM.
+  - Allows use of 'disabled' and 'aria-disabled' separately.
+  - Hides SVG from screen readers.
+
+- [#186](https://github.com/primer/brand/pull/186) [`9cc537a`](https://github.com/primer/brand/commit/9cc537ab42169afd599c9b32b1bad6ce0fe9cd87) Thanks [@rezrah](https://github.com/rezrah)! - Add `stretch` and `letter-spacing` configurability to Heading
+
+  **Width**
+
+  ```jsx
+  <>
+    <Heading as="h3" stretch="condensed">
+      condensed
+    </Heading>
+    <Heading as="h3" stretch="normal">
+      normal
+    </Heading>
+    <Heading as="h3" stretch="expanded">
+      wide
+    </Heading>
+  </>
+  ```
+
+  **Letter spacing**
+
+  ```jsx
+  <>
+    <Heading as="h3" letterSpacing="condensed">
+      condensed
+    </Heading>
+    <Heading as="h3" letterSpacing="normal">
+      normal
+    </Heading>
+    <Heading as="h3" letterSpacing="none">
+      none
+    </Heading>
+  </>
+  ```
+
 ## 0.12.0
 
 ### Minor Changes

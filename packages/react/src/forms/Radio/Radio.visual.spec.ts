@@ -9,31 +9,35 @@ import {test, expect} from '@playwright/test'
 test.describe('Visual Comparison: Radio', () => {
   test('Radio / w/ labels', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-forms-radio-features--with-form-control&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-forms-radio-features--with-form-control&viewMode=story',
     )
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Radio / Inactive', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-forms-radio-features--inactive&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-forms-radio-features--inactive&viewMode=story',
     )
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Radio / On Custom Background Color', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-forms-radio-features--on-custom-background-color&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-forms-radio-features--on-custom-background-color&viewMode=story',
     )
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Radio / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-forms-radio--default&viewMode=story')
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 })

@@ -1,0 +1,19 @@
+{
+  "brand": {
+    "InlineLink": {
+      "transition": {
+        "scale": {
+          "start": {
+            "value": 1
+          },
+          "end": {
+            "value": -2
+          }
+        },
+        "timing": {
+          "value": "0.3s"
+        }
+      }
+    }
+  }
+}

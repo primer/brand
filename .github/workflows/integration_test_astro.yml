@@ -15,7 +15,8 @@ jobs:
   test:
     if: ${{ github.repository == 'primer/brand' }}
     name: Astro - React starter
-    runs-on: ubuntu-latest
+    runs-on:
+      labels: ubuntu-latest-16-cores
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
