@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentMeta} from '@storybook/react'
+import {Meta} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {Testimonial, TestimonialProps} from '.'
 import {Stack} from '../'
@@ -7,45 +7,51 @@ import {Stack} from '../'
 export default {
   title: 'Components/Testimonial',
   component: Testimonial,
+  args: {
+    align: 'start',
+    name: 'David Ross',
+    position: 'Staff Security Engineer',
+    quote:
+      'GitHub helps us ensure that we have our security controls baked into our pipelines all the way from the first line of code we’re writing.',
+    size: 'small',
+    type: 'avatar',
+    width: 400,
+  },
   argTypes: {
     align: {
-      defaultValue: 'start',
-      options: ['start', 'center']
+      options: ['start', 'center'],
     },
     name: {
-      defaultValue: 'David Ross',
-      control: {type: 'text'}
+      control: {type: 'text'},
     },
     position: {
-      defaultValue: 'Staff Security Engineer',
-      control: {type: 'text'}
+      control: {type: 'text'},
     },
     quote: {
-      defaultValue:
-        'GitHub helps us ensure that we have our security controls baked into our pipelines all the way from the first line of code we’re writing.',
-      control: {type: 'text'}
+      control: {type: 'text'},
+    },
+    size: {
+      options: ['small', 'large'],
     },
     type: {
       options: ['avatar', 'logo'],
       control: {type: 'radio'},
-      defaultValue: 'avatar'
     },
     width: {
       control: {
         type: 'range',
         min: 250,
-        max: 800,
-        step: 10
+        max: 1200,
+        step: 10,
       },
-      defaultValue: 400
-    }
+    },
   },
   parameters: {
     viewport: {
-      viewports: INITIAL_VIEWPORTS
-    }
-  }
-} as ComponentMeta<typeof Testimonial>
+      viewports: INITIAL_VIEWPORTS,
+    },
+  },
+} as Meta<typeof Testimonial>
 
 type PlaygroundProps = TestimonialProps & {
   type: string
@@ -124,14 +130,14 @@ export const Duo = args => (
   <Stack
     direction={{
       narrow: 'vertical',
-      regular: 'horizontal'
+      regular: 'horizontal',
     }}
     gap="spacious"
     alignItems="flex-start"
     padding={{
       narrow: 'condensed',
       regular: 'normal',
-      wide: 'spacious'
+      wide: 'spacious',
     }}
   >
     <Testimonial {...args}>
@@ -162,25 +168,25 @@ export const Duo = args => (
 )
 Duo.parameters = {
   viewport: {
-    defaultViewport: 'ipad12p'
-  }
+    defaultViewport: 'ipad12p',
+  },
 }
 Duo.args = {
-  align: 'center'
+  align: 'center',
 }
 
 export const Trio = args => (
   <Stack
     direction={{
       narrow: 'vertical',
-      regular: 'horizontal'
+      regular: 'horizontal',
     }}
     gap="spacious"
     alignItems="flex-start"
     padding={{
       narrow: 'condensed',
       regular: 'normal',
-      wide: 'spacious'
+      wide: 'spacious',
     }}
   >
     <Testimonial {...args}>
@@ -221,5 +227,24 @@ export const Trio = args => (
   </Stack>
 )
 Trio.args = {
-  align: 'center'
+  align: 'center',
+}
+
+export const Large = args => (
+  <Testimonial {...args}>
+    <Testimonial.Quote>
+      GitHub helps us ensure that we have our security controls baked into our pipelines all the way from the first line
+      of code we&apos;re writing.
+    </Testimonial.Quote>
+    <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
+
+    <Testimonial.Avatar
+      src="https://avatars.githubusercontent.com/u/92997159?v=4"
+      alt="Circular avatar from David Ross's GitHub profile"
+    />
+  </Testimonial>
+)
+
+Large.args = {
+  size: 'large',
 }

@@ -20,8 +20,8 @@ describe('ThemeProvider', () => {
         removeListener: jest.fn(), // Deprecated
         dispatchEvent: jest.fn(),
         addEventListener: jest.fn(),
-        removeEventListener: jest.fn()
-      }))
+        removeEventListener: jest.fn(),
+      })),
     })
   })
 
@@ -35,7 +35,7 @@ describe('ThemeProvider', () => {
     const {getByTestId, getByRole} = render(
       <ThemeProvider data-testid={mockId}>
         <h1>mock child node</h1>
-      </ThemeProvider>
+      </ThemeProvider>,
     )
 
     const rootEl = getByTestId(mockId)
@@ -75,7 +75,7 @@ describe('ThemeProvider', () => {
       removeListener: jest.fn(),
       addEventListener: jest.fn(),
       removeEventListener: jest.fn(),
-      dispatchEvent: jest.fn()
+      dispatchEvent: jest.fn(),
     }))
 
     const mockMode = 'auto'
@@ -99,7 +99,7 @@ describe('ThemeProvider', () => {
       removeListener: jest.fn(),
       addEventListener: jest.fn(),
       removeEventListener: jest.fn(),
-      dispatchEvent: jest.fn()
+      dispatchEvent: jest.fn(),
     }))
 
     const mockMode = 'auto'
@@ -122,7 +122,7 @@ describe('ThemeProvider', () => {
         <ThemeProvider data-testid={levelOneProviderId} colorMode="dark">
           <ThemeProvider data-testid={levelTwoProviderId} colorMode="light" />
         </ThemeProvider>
-      </ThemeProvider>
+      </ThemeProvider>,
     )
 
     const rootProviderEl = getByTestId(rootProviderId)

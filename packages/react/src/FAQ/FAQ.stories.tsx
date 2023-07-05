@@ -1,12 +1,12 @@
 import React from 'react'
-import {ComponentMeta} from '@storybook/react'
+import {Meta} from '@storybook/react'
 import {FAQ} from '.'
 import {Text, InlineLink} from '..'
 
 export default {
   title: 'Components/FAQ',
-  component: FAQ
-} as ComponentMeta<typeof FAQ>
+  component: FAQ,
+} as Meta<typeof FAQ>
 
 export const Default = () => (
   <FAQ>

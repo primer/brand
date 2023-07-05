@@ -10,19 +10,19 @@ module.exports = {
     library: libraryName,
     libraryTarget: 'umd',
     globalObject: 'this',
-    umdNamedDefine: true
+    umdNamedDefine: true,
   },
   externals: {
     react: {
       root: 'React',
       commonjs2: 'react',
-      commonjs: 'react'
+      commonjs: 'react',
     },
     'react-dom': {
       root: 'ReactDOM',
       commonjs2: 'react-dom',
-      commonjs: 'react-dom'
-    }
+      commonjs: 'react-dom',
+    },
   },
   mode: 'production',
   module: {
@@ -33,10 +33,10 @@ module.exports = {
           {
             loader: 'ts-loader',
             options: {
-              configFile: path.resolve(__dirname, 'tsconfig.build.json')
-            }
-          }
-        ]
+              configFile: path.resolve(__dirname, 'tsconfig.build.json'),
+            },
+          },
+        ],
       },
       {
         test: /\.css$/i,
@@ -47,20 +47,20 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: {
-                localIdentName: 'Primer_Brand__[name]__[local]___[hash:base64:5]'
+                localIdentName: 'Primer_Brand__[name]__[local]___[hash:base64:5]',
               },
-              importLoaders: 1
-            }
+              importLoaders: 1,
+            },
           },
           {
             loader: 'postcss-loader',
             options: {
               postcssOptions: {
-                plugins: [['postcss-preset-env', 'autoprefixer']]
-              }
-            }
-          }
-        ]
+                plugins: [['postcss-preset-env', 'autoprefixer']],
+              },
+            },
+          },
+        ],
       },
       /**
        * Special rule for any global stylesheets that shouldn't be hashed
@@ -71,27 +71,27 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           {
-            loader: 'css-loader'
+            loader: 'css-loader',
           },
           {
             loader: 'postcss-loader',
             options: {
               postcssOptions: {
-                plugins: [['postcss-preset-env', 'autoprefixer']]
-              }
-            }
-          }
-        ]
-      }
-    ]
+                plugins: [['postcss-preset-env', 'autoprefixer']],
+              },
+            },
+          },
+        ],
+      },
+    ],
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.css']
+    extensions: ['.ts', '.tsx', '.js', '.css'],
   },
   plugins: [
     // Extract library css into a separate file
     new MiniCssExtractPlugin({
-      filename: './css/[name].css'
-    })
-  ]
+      filename: './css/[name].css',
+    }),
+  ],
 }

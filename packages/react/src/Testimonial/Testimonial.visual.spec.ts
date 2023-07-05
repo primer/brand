@@ -10,30 +10,42 @@ test.describe('Visual Comparison: Testimonial', () => {
   test('Testimonial / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-testimonial--playground&viewMode=story')
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Testimonial / Avatar', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-testimonial--avatar&viewMode=story')
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Testimonial / Logo', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-testimonial--logo&viewMode=story')
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Testimonial / Duo', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-testimonial--duo&viewMode=story')
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Testimonial / Trio', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-testimonial--trio&viewMode=story')
 
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Testimonial / Large', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-testimonial--large&viewMode=story')
+
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 })

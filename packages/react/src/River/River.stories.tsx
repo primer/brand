@@ -1,25 +1,23 @@
 import React from 'react'
-import {ComponentStory, ComponentMeta} from '@storybook/react'
+import {StoryFn, Meta} from '@storybook/react'
 
 import {River} from '.'
 import {Heading, Text, Link} from '..'
 import {Container} from '../component-helpers'
+import placeholderImage from '../fixtures/images/placeholder-600x400.png'
 
 import styles from './River.stories.module.css'
 import clsx from 'clsx'
 
 export default {
   title: 'Components/River',
-  component: River
-} as ComponentMeta<typeof River>
+  component: River,
+} as Meta<typeof River>
 
 const PlaceholderImage = () => (
-  <img
-    src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
-    alt="placeholder, blank area with an off-white background color"
-  />
+  <img src={placeholderImage} alt="placeholder, blank area with an off-white background color" />
 )
-const Template: ComponentStory<typeof River> = args => (
+const Template: StoryFn<typeof River> = args => (
   <Container>
     <River {...args}>
       <River.Visual>
@@ -39,7 +37,7 @@ const Template: ComponentStory<typeof River> = args => (
 
 export const Default = Template.bind({})
 
-export const LargerPlaceholderImage: ComponentStory<typeof River> = args => (
+export const LargerPlaceholderImage: StoryFn<typeof River> = args => (
   <Container>
     <River {...args} imageTextRatio="60:40">
       <River.Visual>
@@ -57,7 +55,7 @@ export const LargerPlaceholderImage: ComponentStory<typeof River> = args => (
   </Container>
 )
 
-export const Copilot: ComponentStory<typeof River> = args => (
+export const Copilot: StoryFn<typeof River> = args => (
   <Container>
     <River align="center">
       <River.Visual>
@@ -95,7 +93,7 @@ export const Copilot: ComponentStory<typeof River> = args => (
   </Container>
 )
 
-export const Video: ComponentStory<typeof River> = args => (
+export const Video: StoryFn<typeof River> = args => (
   <Container>
     <River imageTextRatio="60:40" {...args}>
       <River.Visual hasShadow={false}>
@@ -127,7 +125,7 @@ export const Video: ComponentStory<typeof River> = args => (
   </Container>
 )
 
-export const CustomLogos: ComponentStory<typeof River> = () => (
+export const CustomLogos: StoryFn<typeof River> = () => (
   <div className={styles.overflow}>
     <div className={styles.container}>
       <River align="start">

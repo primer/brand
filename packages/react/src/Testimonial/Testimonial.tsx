@@ -1,11 +1,13 @@
 import React, {HTMLAttributes, PropsWithChildren, forwardRef, SVGProps} from 'react'
 import clsx from 'clsx'
 import {BaseProps} from '../component-helpers'
-import {Text} from '../'
+import {Text, Avatar as BaseAvatar, useAnimation} from '../'
+import type {AvatarProps} from '../'
 
 import styles from './Testimonial.module.css'
 
 type TestimonialAlignment = 'start' | 'center'
+type TestimonialSize = 'small' | 'large'
 
 export type TestimonialProps = {
   /**
@@ -21,17 +23,31 @@ export type TestimonialProps = {
    * Aligns the testimonial content
    */
   align?: TestimonialAlignment
-} & BaseProps<HTMLElement>
+  /**
+   * Sets the testimonial text size
+   */
+  size?: TestimonialSize
+} & BaseProps<HTMLElement> &
+  React.HTMLAttributes<HTMLElement>
 
 /**
  * Testimonial parent element
  * <Testimonial>
  */
-function _Root({align, className, children, ...rest}: PropsWithChildren<TestimonialProps>, ref) {
+function _Root({align, animate, className, children, size, style, ...rest}: PropsWithChildren<TestimonialProps>, ref) {
+  const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
+
   return (
     <figure
       ref={ref}
-      className={clsx(styles['Testimonial'], align && styles[`Testimonial--${align}`], className)}
+      className={clsx(
+        animationClasses,
+        styles['Testimonial'],
+        align && styles[`Testimonial--${align}`],
+        size && styles[`Testimonial--size-${size}`],
+        className,
+      )}
+      style={{...animationInlineStyles, ...style}}
       {...rest}
     >
       {React.Children.map(children, child => {
@@ -80,9 +96,7 @@ type QuoteProps = {
 function _Quote({children, className}: QuoteProps, ref) {
   return (
     <blockquote ref={ref}>
-      <Text size="300" className={clsx(styles['Testimonial-quote'], className)}>
-        {children}
-      </Text>
+      <Text className={clsx(styles['Testimonial-quote'], className)}>{children}</Text>
     </blockquote>
   )
 }
@@ -114,35 +128,7 @@ function _Name({children, className, position}: NameProps, ref) {
   )
 }
 
-export const Name = forwardRef(_Name)
-
-/**
- * Testimonial avatar child element
- * <Testimonial.Avatar>
- */
-type AvatarProps = {
-  src: string
-  alt: string
-} & React.HTMLAttributes<HTMLImageElement> &
-  BaseProps<HTMLImageElement>
-
-function _Avatar({alt, src, ...rest}: AvatarProps, ref) {
-  return (
-    <div className={styles['Testimonial-avatar']}>
-      <img
-        ref={ref}
-        className={styles['Testimonial-avatar-image']}
-        src={src}
-        {...rest}
-        alt={alt}
-        width={48}
-        height={48}
-      />
-    </div>
-  )
-}
-
-export const Avatar = forwardRef(_Avatar)
+const Name = forwardRef(_Name)
 
 /**
  * Testimonial logo child element
@@ -161,7 +147,7 @@ function _Logo({children, ...rest}: LogoProps, ref) {
           if (child.type === 'img') {
             return React.cloneElement(child, {
               className: clsx(styles['Testimonial-logo-image']),
-              ref
+              ref,
             })
           }
         }
@@ -170,7 +156,18 @@ function _Logo({children, ...rest}: LogoProps, ref) {
   )
 }
 
-export const Logo = forwardRef(_Logo)
+const Logo = forwardRef(_Logo)
+
+/**
+ * Testimonial avatar child element
+ * <Testimonial.Avatar>
+ */
+
+function _Avatar({size, ...rest}: AvatarProps) {
+  return <BaseAvatar size={48} {...rest} />
+}
+
+const Avatar = _Avatar
 
 /**
  * Use Testimonial to display a quote from a customer or user.
@@ -180,5 +177,5 @@ export const Testimonial = Object.assign(Root, {
   Quote,
   Name,
   Avatar,
-  Logo
+  Logo,
 })

@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentStory, ComponentMeta} from '@storybook/react'
+import {StoryFn, Meta} from '@storybook/react'
 import {SunIcon, MoonIcon} from '@primer/octicons-react'
 import {ThemeProvider} from '.'
 import {useTheme} from '..'
@@ -26,10 +26,10 @@ function ControlsHint() {
 
 export default {
   title: 'Components/ThemeProvider',
-  component: ThemeProvider
-} as ComponentMeta<typeof ThemeProvider>
+  component: ThemeProvider,
+} as Meta<typeof ThemeProvider>
 
-export const Default: ComponentStory<typeof ThemeProvider> = args => {
+export const Default: StoryFn<typeof ThemeProvider> = args => {
   return (
     <ThemeProvider {...args}>
       <>
@@ -42,7 +42,7 @@ export const Default: ComponentStory<typeof ThemeProvider> = args => {
   )
 }
 
-export const Nested: ComponentStory<typeof ThemeProvider> = args => (
+export const Nested: StoryFn<typeof ThemeProvider> = args => (
   <div className={styles['story-example']}>
     <ThemeProvider {...args}>
       <>

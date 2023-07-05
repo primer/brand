@@ -10,113 +10,186 @@ test.describe('Visual Comparison: Button', () => {
   test('Button / Primary', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--primary&viewMode=story')
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Primary Disabled', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-button-features--primary-disabled&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--primary-disabled&viewMode=story',
     )
 
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Button / Primary w/ aria-disabled', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--primary-aria-disabled&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Primary Focus', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-button-features--primary-focus&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--primary-focus&viewMode=story',
     )
 
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(2000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Primary Focus w/ non-standard background', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-button-features--primary-focus-non-standard-bg&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--primary-focus-non-standard-bg&viewMode=story',
     )
 
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(2000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Secondary', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--secondary&viewMode=story')
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Secondary Disabled', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-button-features--secondary-disabled&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--secondary-disabled&viewMode=story',
     )
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Subtle', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--subtle&viewMode=story')
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Subtle Disabled', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-button-features--subtle-disabled&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--subtle-disabled&viewMode=story',
     )
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Large', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--large&viewMode=story')
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Polymorphism', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-button-features--polymorphism&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--polymorphism&viewMode=story',
     )
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Primary button with hover interaction', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-button-features--with-hover-interaction&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--with-hover-interaction&viewMode=story',
     )
 
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(2000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Secondary button with hover interaction', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-button-features--secondary-with-hover-interaction&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--secondary-with-hover-interaction&viewMode=story',
     )
 
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(2000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Subtle button with hover interaction', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-button-features--subtle-with-hover-interaction&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--subtle-with-hover-interaction&viewMode=story',
     )
 
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(2000)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Button / Leading visual (native)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--with-leading-visual-svg&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Button / Trailing visual (native)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--with-trailing-visual-svg&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Button / Leading and trailing visual (native)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--with-leading-and-trailing-visual-svg&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Button / With an Octicon', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--with-octicon&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Button / With an Octicon (large)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--with-octicon-large&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Button / With visuals and disabled', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--with-visuals-and-disabled&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-button--playground&viewMode=story')
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-button--default&viewMode=story')
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 })

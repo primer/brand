@@ -1,21 +1,21 @@
-import {ComponentMeta, ComponentStory} from '@storybook/react'
+import {Meta, StoryFn} from '@storybook/react'
 import React from 'react'
 import {Text, TextSizes, TextWeights} from '.'
 
 export default {
   title: 'Components/Text',
-  component: Text
-} as ComponentMeta<typeof Text>
+  component: Text,
+} as Meta<typeof Text>
 
-const Template: ComponentStory<typeof Text> = args => <Text {...args} />
+const Template: StoryFn<typeof Text> = args => <Text {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
   children: 'Text',
-  size: '400'
+  size: '400',
 }
 
-export const Scale: ComponentStory<typeof Text> = args => (
+export const Scale: StoryFn<typeof Text> = args => (
   <>
     {TextSizes.map(size => (
       <Text key={size} size={size} {...args}>
@@ -26,7 +26,7 @@ export const Scale: ComponentStory<typeof Text> = args => (
 )
 
 Scale.args = {
-  as: 'div'
+  as: 'div',
 }
 
 export const OverrideWeight = () => (
@@ -45,7 +45,7 @@ export const OverrideWeightResponsive = () => (
     weight={{
       narrow: 'extrabold',
       regular: 'semibold',
-      wide: 'normal'
+      wide: 'normal',
     }}
   >
     Responsive text weights
