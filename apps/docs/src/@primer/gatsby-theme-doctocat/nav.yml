@@ -4,6 +4,8 @@
       url: /getting-started
     - title: Theming
       url: /getting-started/theming
+    - title: Animation
+      url: /getting-started/animation
 
 - title: Primitives
   children:
@@ -12,36 +14,56 @@
 
 - title: Components
   children:
-    - title: AnchorNav
+    - title: Action menu
+      url: /components/ActionMenu
+    - title: Anchor nav
       url: /components/AnchorNav
-    - title: ComparisonTable
+    - title: Avatar
+      url: /components/Avatar
+    - title: Button
+      url: /components/Button
+    - title: Button group
+      url: /components/ButtonGroup
+    - title: Card
+      url: /components/Card
+    - title: Comparison table
       url: /components/ComparisonTable
-    - title: CTABanner
+    - title: CTA banner
       url: /components/CTABanner
+    - title: CTA form
+      url: /components/CTAForm
     - title: FAQ
       url: /components/FAQ
     - title: Hero
       url: /components/Hero
-    - title: MinimalFooter
+    - title: Image
+      url: /components/Image
+    - title: Label
+      url: /components/Label
+    - title: Minimal footer
       url: /components/MinimalFooter
-    - title: OrderedList
+    - title: Ordered list
       url: /components/OrderedList
+    - title: Pillar
+      url: /components/Pillar
+    - title: Prose
+      url: /components/Prose
     - title: River
       url: /components/River
-    - title: SectionIntro
+    - title: Section intro
       url: /components/SectionIntro
-    - title: SubdomainNavBar
+    - title: Subdomain nav bar
       url: /components/SubdomainNavBar
     - title: Testimonial
       url: /components/Testimonial
-    - title: UnorderedList
+    - title: Unordered list
       url: /components/UnorderedList
 
 - title: Forms
   children:
     - title: Checkbox
       url: /components/Checkbox
-    - title: FormControl
+    - title: Form control
       url: /components/FormControl
     - title: Radio
       url: /components/Radio
@@ -49,11 +71,13 @@
       url: /components/Select
     - title: Textarea
       url: /components/Textarea
-    - title: TextInput
+    - title: Text input
       url: /components/TextInput
 
 - title: Layout
   children:
+    - title: Grid
+      url: /components/Grid
     - title: Stack
       url: /components/Stack
 

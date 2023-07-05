@@ -1,14 +1,14 @@
 import React from 'react'
-import {ComponentMeta, ComponentStory} from '@storybook/react'
+import {Meta, StoryFn} from '@storybook/react'
 import {MinimalFooter} from '.'
 import {InlineLink, Text} from '../'
 
 export default {
   title: 'Components/MinimalFooter',
-  component: MinimalFooter
-} as ComponentMeta<typeof MinimalFooter>
+  component: MinimalFooter,
+} as Meta<typeof MinimalFooter>
 
-export const Playground: ComponentStory<typeof MinimalFooter> = args => <MinimalFooter {...args} />
+export const Playground: StoryFn<typeof MinimalFooter> = args => <MinimalFooter {...args} />
 
 export const Default = () => (
   <MinimalFooter>

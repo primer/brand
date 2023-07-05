@@ -15,7 +15,8 @@ jobs:
   test:
     if: ${{ github.repository == 'primer/brand' }}
     name: Next.js
-    runs-on: ubuntu-latest
+    runs-on:
+      labels: ubuntu-latest-16-cores
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -46,7 +47,7 @@ jobs:
             cypress-${{ runner.os }}-cypress-
 
       - name: Installing dependencies
-        run: npm ci --legacy-peer-deps && cd apps/docs && npm ci --legacy-peer-deps
+        run: npm ci --legacy-peer-deps
 
       - name: install dependencies and verify Cypress
         env:
@@ -70,7 +71,7 @@ jobs:
         run: cd ./packages/react && npm pack
 
       - name: Configuring Next.js
-        run: npx create-next-app@latest ${{env.NEXTJS_FOLDER}} --typescript
+        run: yes | npx create-next-app@latest ${{env.NEXTJS_FOLDER}} --typescript
 
       - name: Retrieving package version
         id: package-version
@@ -91,20 +92,20 @@ jobs:
 
       - name: Copying required files
         run: |
-          cp ./packages/e2e/integration-tests/nextjs/index.tsx ./${{env.NEXTJS_FOLDER}}/pages
+          cp ./packages/e2e/integration-tests/nextjs/page.tsx ./${{env.NEXTJS_FOLDER}}/app
           cp ./packages/e2e/integration-tests/nextjs/.eslintrc ./${{env.NEXTJS_FOLDER}}
           cp ./packages/e2e/cypress.config.js ./${{env.NEXTJS_FOLDER}}
           mkdir ${{env.NEXTJS_FOLDER}}/integration-tests
           cp -r ./packages/e2e/integration-tests/fixtures ./${{env.NEXTJS_FOLDER}}/integration-tests
           cp -r ./packages/e2e/integration-tests/tests ./${{env.NEXTJS_FOLDER}}/integration-tests
 
-      - name: Patching postcss bug in v12 of Next.js
-        uses: DamianReeves/write-file-action@master
-        with:
-          path: ${{env.NEXTJS_FOLDER}}/postcss.config.json
-          contents: |
-            {"plugins": []}
-          write-mode: overwrite
+      # - name: Patching postcss bug in v12 of Next.js
+      #   uses: DamianReeves/write-file-action@master
+      #   with:
+      #     path: ${{env.NEXTJS_FOLDER}}/postcss.config.json
+      #     contents: |
+      #       {"plugins": []}
+      #     write-mode: overwrite
 
       - name: Excluded cypress tests in-place
         run: npx json -I -f ${{env.NEXTJS_FOLDER}}/tsconfig.json -e 'this.exclude=["node_modules", "**/*.cy.ts"]'

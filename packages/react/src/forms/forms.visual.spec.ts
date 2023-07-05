@@ -9,9 +9,10 @@ import {test, expect} from '@playwright/test'
 test.describe('Visual Comparison: forms', () => {
   test('forms / GitHub Enterprise sign up form', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-forms-examples--git-hub-enterprise&viewMode=story'
+      'http://localhost:6006/iframe.html?args=&id=components-forms-examples--git-hub-enterprise&viewMode=story',
     )
 
+    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 })

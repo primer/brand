@@ -22,10 +22,10 @@ export const MinimalFooterSocialLinks = [
   'youtube',
   'facebook',
   'twitch',
-  'tiktok'
+  'tiktok',
 ] as const
 
-type SocialLinks = typeof MinimalFooterSocialLinks[number]
+type SocialLinks = (typeof MinimalFooterSocialLinks)[number]
 
 export type MinimalFooterProps = {
   /**
@@ -100,11 +100,11 @@ function Root({
                 gap="condensed"
                 justifyContent={{
                   narrow: 'center',
-                  regular: 'flex-end'
+                  regular: 'flex-end',
                 }}
                 direction={{
                   narrow: 'vertical',
-                  regular: 'horizontal'
+                  regular: 'horizontal',
                 }}
                 className={styles['Footer__links']}
               >
@@ -136,7 +136,7 @@ function Footnotes({children, className}: PropsWithChildren<FootnoteProps>) {
         variant: 'muted',
         size: 200,
         className: clsx(styles['Footer__terms-item'], child.props.className),
-        ...child.props // allow overrides for escape hatch
+        ...child.props, // allow overrides for escape hatch
       })
     }
   })
@@ -163,7 +163,7 @@ function SocialLogomarks({socialLinks, logoHref}: SocialLogomarksProps) {
       url: 'https://twitter.com/github',
       icon: 'https://github.githubassets.com/images/modules/site/icons/footer/twitter.svg',
       iconWidth: 22,
-      iconHeight: 18
+      iconHeight: 18,
     },
     {
       name: 'github',
@@ -171,7 +171,7 @@ function SocialLogomarks({socialLinks, logoHref}: SocialLogomarksProps) {
       url: 'https://github.com/github',
       icon: 'https://github.githubassets.com/images/modules/site/icons/footer/github-mark.svg',
       iconWidth: 20,
-      iconHeight: 20
+      iconHeight: 20,
     },
     {
       name: 'linkedin',
@@ -179,7 +179,7 @@ function SocialLogomarks({socialLinks, logoHref}: SocialLogomarksProps) {
       url: 'https://www.linkedin.com/company/github',
       icon: 'https://github.githubassets.com/images/modules/site/icons/footer/linkedin.svg',
       iconWidth: 19,
-      iconHeight: 18
+      iconHeight: 18,
     },
     {
       name: 'youtube',
@@ -187,7 +187,7 @@ function SocialLogomarks({socialLinks, logoHref}: SocialLogomarksProps) {
       url: 'https://www.youtube.com/github',
       icon: 'https://github.githubassets.com/images/modules/site/icons/footer/youtube.svg',
       iconWidth: 23,
-      iconHeight: 16
+      iconHeight: 16,
     },
     {
       name: 'facebook',
@@ -195,7 +195,7 @@ function SocialLogomarks({socialLinks, logoHref}: SocialLogomarksProps) {
       url: 'https://www.facebook.com/GitHub',
       icon: 'https://github.githubassets.com/images/modules/site/icons/footer/facebook.svg',
       iconWidth: 18,
-      iconHeight: 18
+      iconHeight: 18,
     },
     {
       name: 'twitch',
@@ -203,7 +203,7 @@ function SocialLogomarks({socialLinks, logoHref}: SocialLogomarksProps) {
       url: 'https://www.twitch.tv/github',
       icon: 'https://github.githubassets.com/images/modules/site/icons/footer/twitch.svg',
       iconWidth: 18,
-      iconHeight: 18
+      iconHeight: 18,
     },
     {
       name: 'tiktok',
@@ -211,11 +211,19 @@ function SocialLogomarks({socialLinks, logoHref}: SocialLogomarksProps) {
       url: 'https://www.tiktok.com/@github',
       icon: 'https://github.githubassets.com/images/modules/site/icons/footer/tiktok.svg',
       iconWidth: 18,
-      iconHeight: 18
-    }
+      iconHeight: 18,
+    },
+    {
+      name: 'instagram',
+      fullName: 'Instagram',
+      url: 'https://www.instagram.com/github/',
+      icon: 'https://github.githubassets.com/images/modules/site/icons/footer/instagram.svg',
+      iconWidth: 24,
+      iconHeight: 24,
+    },
   ]
 
-  const renderLink = (link: typeof socialLinkData[number]) => {
+  const renderLink = (link: (typeof socialLinkData)[number]) => {
     return (
       <li key={link.name}>
         <a
@@ -258,7 +266,7 @@ function SocialLogomarks({socialLinks, logoHref}: SocialLogomarksProps) {
           </div>
           {socialLinks !== false ? (
             <ul className={styles['Footer__social-links']}>
-              {socialLinkData.map((link: typeof socialLinkData[number]) => {
+              {socialLinkData.map((link: (typeof socialLinkData)[number]) => {
                 if (socialLinks && !socialLinks.includes(link.name as SocialLinks)) {
                   return null
                 }
@@ -274,21 +282,25 @@ function SocialLogomarks({socialLinks, logoHref}: SocialLogomarksProps) {
   )
 }
 
-type LinkProps = {
-  href: string
-} & BaseProps<HTMLAnchorElement>
+type LinkProps<C extends React.ElementType> = BaseProps<C> & {as?: 'a' | 'button'} & Omit<
+    React.ComponentPropsWithoutRef<C>,
+    keyof C
+  >
 
-function Link({href, children}: PropsWithChildren<LinkProps>) {
+const Link = <C extends React.ElementType = 'a'>({as, children, ...rest}: PropsWithChildren<LinkProps<C>>) => {
+  const Component = as || 'a'
   return (
-    <a
-      href={href}
+    <Component
       className={styles['Footer__link']}
-      data-analytics-event={`{"category":"Footer","action":"go to ${href}","label":"text:${children}"}`}
+      data-analytics-event={
+        rest['href'] ? `{"category":"Footer","action":"go to ${rest['href']}","label":"text:${children}"}` : undefined
+      }
+      {...rest}
     >
       <Text variant="muted" size="300">
         {children}
       </Text>
-    </a>
+    </Component>
   )
 }
 
@@ -298,5 +310,5 @@ function Link({href, children}: PropsWithChildren<LinkProps>) {
  */
 export const MinimalFooter = Object.assign(Root, {
   Footnotes,
-  Link
+  Link,
 })

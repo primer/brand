@@ -1,11 +1,11 @@
 import React from 'react'
-import {ComponentMeta} from '@storybook/react'
+import {Meta} from '@storybook/react'
 import {SectionIntro} from '.'
 
 export default {
   title: 'Components/SectionIntro/Features',
-  component: SectionIntro
-} as ComponentMeta<typeof SectionIntro>
+  component: SectionIntro,
+} as Meta<typeof SectionIntro>
 
 export const HeadingOnly = () => (
   <SectionIntro>

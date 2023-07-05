@@ -93,12 +93,18 @@
   align-self: flex-start;
   color: var(--brand-color-text-muted);
   text-decoration: none;
+  border-top: none;
+  border-right: none;
+  border-left: none;
   border-bottom: var(--brand-borderWidth-thin) solid transparent;
-  padding-bottom: var(--base-size-4);
+  background-color: inherit;
+  cursor: pointer;
+  padding: 0 0 var(--base-size-4) 0;
   transition: border 300ms cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .Footer__link:hover {
   color: var(--brand-color-text-default);
   border-bottom-color: var(--brand-color-text-muted);
+  text-decoration: none;
 }

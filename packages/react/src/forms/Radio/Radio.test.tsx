@@ -9,7 +9,7 @@ expect.extend(toHaveNoViolations)
 describe('Radio', () => {
   const defaultProps = {
     name: 'mock',
-    value: 'mock value'
+    value: 'mock value',
   }
 
   beforeEach(() => {
@@ -98,18 +98,16 @@ describe('Radio', () => {
 
     expect(radio.disabled).toEqual(true)
     expect(radio).not.toBeChecked()
-    expect(radio).toHaveAttribute('aria-disabled', 'true')
 
     fireEvent.change(radio)
 
     expect(radio.disabled).toEqual(true)
     expect(radio).not.toBeChecked()
-    expect(radio).toHaveAttribute('aria-disabled', 'true')
 
     // remove disabled attribute and retest
     rerender(<Radio {...defaultProps} onChange={handleChange} />)
 
-    expect(radio).toHaveAttribute('aria-disabled', 'false')
+    expect(radio).not.toHaveAttribute('disabled')
   })
 
   it('renders an uncontrolled component correctly', () => {

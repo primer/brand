@@ -1,0 +1,105 @@
+---
+title: Action menu
+status: Experimental
+figma: 'https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=4912%3A32799'
+source: https://github.com/primer/brand/tree/main/packages/react/src/ActionMenu/ActionMenu.tsx
+storybook: '/brand/storybook/?path=/story/components-actionmenu-features--default'
+description: Use the action menu component to display a list of actions or selections that expand through a trigger button.
+---
+
+import {Label} from '@primer/react'
+import {PropTableValues} from '../../src/components'
+
+```js
+import {ActionMenu} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<ActionMenu onSelect={(newValue) => alert(`Pressed ${newValue}`)}>
+  <ActionMenu.Button>Open menu</ActionMenu.Button>
+  <ActionMenu.Overlay aria-label="GitHub features">
+    <ActionMenu.Item value="Copilot" selected>
+      Copilot
+    </ActionMenu.Item>
+    <ActionMenu.Item value="Codespaces">Codespaces</ActionMenu.Item>
+    <ActionMenu.Item value="CodeQL">CodeQL</ActionMenu.Item>
+  </ActionMenu.Overlay>
+</ActionMenu>
+```
+
+### Single selection
+
+```javascript live noinline
+const App = () => {
+  const [selection, setSelection] = React.useState('Copilot')
+
+  return (
+    <ActionMenu
+      onSelect={(newValue) => setSelection(newValue)}
+      selectionVariant="single"
+    >
+      <ActionMenu.Button>{selection}</ActionMenu.Button>
+      <ActionMenu.Overlay aria-label="GitHub features">
+        <ActionMenu.Item value="Copilot" selected={'Copilot' === selection}>
+          Copilot
+        </ActionMenu.Item>
+        <ActionMenu.Item
+          value="Codespaces"
+          selected={'Codespaces' === selection}
+        >
+          Codespaces
+        </ActionMenu.Item>
+        <ActionMenu.Item value="CodeQL" selected={'CodeQL' === selection}>
+          CodeQL
+        </ActionMenu.Item>
+      </ActionMenu.Overlay>
+    </ActionMenu>
+  )
+}
+
+render(<App />)
+```
+
+## Component props
+
+### ActionMenu <Label>Required</Label>
+
+| name               | type                                                          | default  | required  | description                                                           |
+| ------------------ | ------------------------------------------------------------- | -------- | --------- | --------------------------------------------------------------------- |
+| `disabled`         | `boolean`                                                     | `false`  | `false`   | Controls the ActionMenu active/inactive state                         |
+| `open`             | `boolean`                                                     | `false`  | `false`   | Determines whether the ActionMenu is open by default                  |
+| `onSelect`         | `(newValue: string) => void`                                  |          | `false`   | Callback that is called when an item is selected                      |
+| `selectionVariant` | <PropTableValues values={['single', 'none']} addLineBreaks /> | `'none'` | `false`   | The selection variant of the ActionMenu                               |
+| `menuAlignment`    | <PropTableValues values={['start', 'end']} addLineBreaks />   |          | `'start'` | Horizontal alignment of the menu relative to the bottom of the button |
+
+### ActionMenu.Button <Label>Required</Label>
+
+| name        | type           | default | required | description                        |
+| ----------- | -------------- | ------- | -------- | ---------------------------------- |
+| `className` | `string`       |         |          | Sets a custom class on the element |
+| `children`  | `ReactElement` |         |          |
+| `id`        | `string`       |         |          | Sets a custom `id`                 |
+
+### ActionMenu.Overlay <Label>Required</Label>
+
+| name         | type           | default | required | description                                                      |
+| ------------ | -------------- | ------- | -------- | ---------------------------------------------------------------- |
+| `aria-label` | `string`       |         | `true`   | Required for describing the relationship between button and menu |
+| `className`  | `string`       |         |          | Sets a custom class on the element                               |
+| `children`   | `ReactElement` |         |          |
+| `id`         | `string`       |         |          | Sets a custom `id`                                               |
+
+### ActionMenu.Item <Label>Required</Label>
+
+| name        | type           | default | required | description                                                   |
+| ----------- | -------------- | ------- | -------- | ------------------------------------------------------------- |
+| `className` | `string`       |         |          | Sets a custom class on the element                            |
+| `children`  | `ReactElement` |         |          |
+| `disabled`  | `boolean`      | `false` | `false`  | Allows control over an individual items active/inactive state |
+| `id`        | `string`       |         |          | Sets a custom `id`                                            |
+| `selected`  | `boolean`      |         |          | Indicates the item is selected in `single` selection mode     |
+| `value`     | `string`       |         |          | The underlying value passed to the selection handler          |

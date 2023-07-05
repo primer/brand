@@ -1,21 +1,20 @@
 @font-face {
-  font-family: 'Alliance1';
-  src: url('./alliance-1.woff2') format('woff2 supports variations'),
-    url('./alliance-1.woff2') format('woff2-variations');
+  font-family: 'Mona Sans';
+  src: url('./Mona-Sans.woff2') format('woff2 supports variations'), url('./Mona-Sans.woff2') format('woff2-variations');
   font-weight: 200 900;
   font-display: swap;
   font-synthesis: none;
 }
 
 @font-face {
-  font-family: 'Alliance1Fallback';
+  font-family: 'MonaSansFallback';
   size-adjust: 104.5%;
   ascent-override: 71%;
   src: local(Arial);
 }
 
 @font-face {
-  font-family: 'Alliance1HeaderFallback';
+  font-family: 'MonaSansHeaderFallback';
   size-adjust: 103.1%;
   ascent-override: 70%;
   src: local(Arial Bold);

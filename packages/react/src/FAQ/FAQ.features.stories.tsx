@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentStory, ComponentMeta} from '@storybook/react'
+import {StoryFn, Meta} from '@storybook/react'
 import {FAQ} from '.'
 import {Text, InlineLink} from '..'
 import {Container} from '../component-helpers'
@@ -15,12 +15,12 @@ export default {
            * Disabling due to a flakey test.
            * Muted text color passing elsewhere, so this seems like a false positive.
            */
-          {id: 'color-contrast', enabled: false}
-        ]
-      }
-    }
-  }
-} as ComponentMeta<typeof FAQ>
+          {id: 'color-contrast', enabled: false},
+        ],
+      },
+    },
+  },
+} as Meta<typeof FAQ>
 
 type FixtureData = {
   question: string
@@ -39,7 +39,7 @@ const fixtureData: FixtureData = [
         dictum feugiat elit, vitae vestibulum orci vestibulum sed. Donec interdum ligula at nisi rhoncus malesuada et
         non eros.
       </p>
-    )
+    ),
   },
   {
     question: 'This is my second super sweet question',
@@ -76,7 +76,7 @@ const fixtureData: FixtureData = [
           </li>
         </ol>
       </React.Fragment>
-    )
+    ),
   },
   {
     question: 'This is my third super sweet question',
@@ -92,11 +92,11 @@ const fixtureData: FixtureData = [
         </p>
         <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
       </React.Fragment>
-    )
-  }
+    ),
+  },
 ]
 
-export const AllClosed: ComponentStory<typeof FAQ> = () => {
+export const AllClosed: StoryFn<typeof FAQ> = () => {
   return (
     <Container>
       <FAQ>
@@ -116,7 +116,7 @@ export const AllClosed: ComponentStory<typeof FAQ> = () => {
   )
 }
 
-export const AllOpen: ComponentStory<typeof FAQ> = () => {
+export const AllOpen: StoryFn<typeof FAQ> = () => {
   return (
     <Container>
       <FAQ>
@@ -135,12 +135,13 @@ export const AllOpen: ComponentStory<typeof FAQ> = () => {
     </Container>
   )
 }
-
 AllOpen.parameters = {
-  skipVisualTest: true
+  axe: {
+    timeout: 5000,
+  },
 }
 
-export const HeadingLeftAligned: ComponentStory<typeof FAQ> = () => {
+export const HeadingLeftAligned: StoryFn<typeof FAQ> = () => {
   return (
     <Container>
       <FAQ>
@@ -160,7 +161,7 @@ export const HeadingLeftAligned: ComponentStory<typeof FAQ> = () => {
   )
 }
 
-export const Groups: ComponentStory<typeof FAQ> = () => {
+export const Groups: StoryFn<typeof FAQ> = () => {
   return (
     <Container>
       <FAQ>
@@ -181,7 +182,7 @@ export const Groups: ComponentStory<typeof FAQ> = () => {
   )
 }
 
-export const DynamicDataExample: ComponentStory<typeof FAQ> = () => {
+export const DynamicDataExample: StoryFn<typeof FAQ> = () => {
   const faqs = [
     {
       title: 'Who can apply?',
@@ -199,7 +200,7 @@ export const DynamicDataExample: ComponentStory<typeof FAQ> = () => {
             <li>Not be a current employee of GitHub and/or any of its parent/subsidiary companies</li>
           </ul>
         </div>
-      )
+      ),
     },
     {
       title: 'What are you looking for? Who decides who is selected?',
@@ -215,7 +216,7 @@ export const DynamicDataExample: ComponentStory<typeof FAQ> = () => {
             <li>Wish to pursue open source work full-time</li>
           </ul>
         </div>
-      )
+      ),
     },
     {
       title: "What do I get if I'm selected?",
@@ -228,7 +229,7 @@ export const DynamicDataExample: ComponentStory<typeof FAQ> = () => {
             <li>Dedicated mentors from the open source community and enterprises</li>
           </ul>
         </div>
-      )
+      ),
     },
     {
       title: "What do I have to do if I'm selected?",
@@ -242,7 +243,7 @@ export const DynamicDataExample: ComponentStory<typeof FAQ> = () => {
             </li>
           </ul>
         </div>
-      )
+      ),
     },
     {
       title: 'What are the exact dates of the program? What does Winter 2023 mean?',
@@ -251,7 +252,7 @@ export const DynamicDataExample: ComponentStory<typeof FAQ> = () => {
           The program applications are due by December 31, 2022. We will announce the first class of fellows on February
           15, 2023. The program itself will run from March 6, 2023 to May 12, 2023.
         </p>
-      )
+      ),
     },
 
     {
@@ -263,7 +264,7 @@ export const DynamicDataExample: ComponentStory<typeof FAQ> = () => {
             source.
           </p>
         </div>
-      )
+      ),
     },
     {
       title: 'I want to help. How can I get involved?',
@@ -273,7 +274,7 @@ export const DynamicDataExample: ComponentStory<typeof FAQ> = () => {
             Awesome! Email us at <a href="mailto:foo@bar.com">foo@bar.com</a>.
           </p>
         </div>
-      )
+      ),
     },
     {
       title: 'If I have any questions, what do I do?',
@@ -283,8 +284,8 @@ export const DynamicDataExample: ComponentStory<typeof FAQ> = () => {
             Send us an email to <a href="mailto:foo@bar.com">foo@bar.com</a>.
           </p>
         </div>
-      )
-    }
+      ),
+    },
   ]
 
   return (

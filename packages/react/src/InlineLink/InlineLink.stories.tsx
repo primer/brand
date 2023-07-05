@@ -1,22 +1,22 @@
 import React from 'react'
-import {ComponentMeta, ComponentStory} from '@storybook/react'
+import {Meta, StoryFn} from '@storybook/react'
 import {TextSizes, Text} from '../'
 import {InlineLink} from '.'
 
 export default {
   title: 'Components/InlineLink',
-  component: InlineLink
-} as ComponentMeta<typeof InlineLink>
+  component: InlineLink,
+} as Meta<typeof InlineLink>
 
-const Template: ComponentStory<typeof InlineLink> = args => <InlineLink {...args} />
+const Template: StoryFn<typeof InlineLink> = args => <InlineLink {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
   children: 'An inline link',
-  href: '#'
+  href: '#',
 }
 
-export const Scale: ComponentStory<typeof InlineLink> = args => (
+export const Scale: StoryFn<typeof InlineLink> = args => (
   <>
     {TextSizes.map(size => (
       <>

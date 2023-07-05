@@ -17,7 +17,7 @@ export function MonaSans({children, italic, size, weight, width}: MonaSansProps)
   const style = {
     fontSize: `${size}px`,
     fontWeight: `${weight}`,
-    fontVariationSettings: `${fontVariationSettings}`
+    fontVariationSettings: `${fontVariationSettings}`,
   }
   const grid = `
   body {

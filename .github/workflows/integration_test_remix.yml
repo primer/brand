@@ -15,7 +15,8 @@ jobs:
   test:
     if: ${{ github.repository == 'primer/brand' }}
     name: Remix.run
-    runs-on: ubuntu-latest
+    runs-on:
+      labels: ubuntu-latest-16-cores
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -64,7 +65,7 @@ jobs:
 
       - name: Copying required files
         run: |
-          cp ./packages/e2e/integration-tests/remix.run/index.tsx ./${{env.TEST_FOLDER}}/app/routes
+          cp ./packages/e2e/integration-tests/remix.run/_index.tsx ./${{env.TEST_FOLDER}}/app/routes
           cp ./packages/e2e/integration-tests/remix.run/root.tsx ./${{env.TEST_FOLDER}}/app
           cp -r ./packages/e2e/integration-tests/fixtures ./${{env.TEST_FOLDER}}/app
           cp ./packages/e2e/cypress.config.js ./${{env.TEST_FOLDER}} 

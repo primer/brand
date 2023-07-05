@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentMeta, ComponentStory} from '@storybook/react'
+import {Meta, StoryFn} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 
 import {Text, InlineLink} from '../'
@@ -10,58 +10,58 @@ export default {
   component: ComparisonTable,
   args: {
     variant: 'default',
-    as: 'section'
+    as: 'section',
+    footnote:
+      '*** This is a biased overview of capabilities by use case, based on publicly available information as of 2022-05-16.',
+    featuredColumn: 1,
   },
   argTypes: {
     as: {
       description: 'The HTML element used to render the root component.',
       control: {
         type: 'inline-radio',
-        options: ['section', 'large']
+        options: ['section', 'large'],
       },
       table: {
-        category: 'ComparisonTable'
-      }
+        category: 'ComparisonTable',
+      },
     },
     variant: {
       control: {
         type: 'inline-radio',
-        options: ['undefined', 'default', 'minimal']
+        options: ['undefined', 'default', 'minimal'],
       },
       table: {
-        category: 'ComparisonTable'
-      }
+        category: 'ComparisonTable',
+      },
     },
     heading: {
       type: 'string',
       table: {
-        category: 'ComparisonTable'
-      }
+        category: 'ComparisonTable',
+      },
     },
     featuredColumn: {
       type: 'number',
-      defaultValue: 1,
       table: {
-        category: 'ComparisonTable'
-      }
+        category: 'ComparisonTable',
+      },
     },
     footnote: {
       type: 'string',
-      defaultValue:
-        '*** This is a biased overview of capabilities by use case, based on publicly available information as of 2022-05-16.',
       table: {
-        category: 'ComparisonTable'
-      }
-    }
+        category: 'ComparisonTable',
+      },
+    },
   },
   parameters: {
     viewport: {
-      viewports: INITIAL_VIEWPORTS
-    }
-  }
-} as ComponentMeta<typeof ComparisonTable>
+      viewports: INITIAL_VIEWPORTS,
+    },
+  },
+} as Meta<typeof ComparisonTable>
 
-const Template: ComponentStory<typeof ComparisonTable> = args => (
+const Template: StoryFn<typeof ComparisonTable> = args => (
   <ComparisonTable featuredColumn={args.featuredColumn} heading={args.heading} variant={args.variant} as={args.as}>
     <ComparisonTable.Row>
       <ComparisonTable.Cell>Use case</ComparisonTable.Cell>
@@ -106,17 +106,17 @@ const Template: ComponentStory<typeof ComparisonTable> = args => (
 
 export const Playground = Template.bind({})
 Playground.args = {
-  heading: 'GitHub vs Jenkins'
+  heading: 'GitHub vs Jenkins',
 }
 
 export const PlaygroundMobile = Template.bind({})
 PlaygroundMobile.args = {
-  heading: 'GitHub vs Jenkins'
+  heading: 'GitHub vs Jenkins',
 }
 PlaygroundMobile.parameters = {
   viewport: {
-    defaultViewport: 'iphonex'
-  }
+    defaultViewport: 'iphonex',
+  },
 }
 PlaygroundMobile.storyName = 'Playground (mobile)'
 

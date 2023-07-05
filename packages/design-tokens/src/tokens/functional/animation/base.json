@@ -1,0 +1,103 @@
+{
+  "brand": {
+    "animation": {
+      "duration": {
+        "default": {
+          "value": "0.6s"
+        },
+        "extended": {
+          "value": "0.7s"
+        }
+      },
+      "easing": {
+        "default": {
+          "value": "cubic-bezier(0.16, 1, 0.3, 1)"
+        }
+      },
+      "transition": {
+        "default": {
+          "value": "opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default), transform var(--brand-animation-duration-default) var(--brand-animation-easing-default)"
+        }
+      },
+      "variant": {
+        "slideInUp": {
+          "distance": {
+            "value": "15px"
+          }
+        },
+        "slideInDown": {
+          "distance": {
+            "value": "-15px"
+          }
+        },
+        "slideInLeft": {
+          "distance": {
+            "value": "15px"
+          }
+        },
+        "slideInRight": {
+          "distance": {
+            "value": "-15px"
+          }
+        },
+        "scaleInUp": {
+          "distance": {
+            "value": "24px"
+          },
+          "start": {
+            "value": "0.96"
+          },
+          "end": {
+            "value": "1"
+          }
+        },
+        "scaleInDown": {
+          "distance": {
+            "value": "-50px"
+          },
+          "start": {
+            "value": "0"
+          },
+          "end": {
+            "value": "1"
+          }
+        },
+        "scaleIn": {
+          "start": {
+            "value": "0.96"
+          },
+          "end": {
+            "value": "1"
+          }
+        },
+        "scaleInTop": {
+          "distance": {
+            "value": ""
+          }
+        },
+        "scaleInRight": {
+          "distance": {
+            "value": "-20px"
+          },
+          "start": {
+            "value": "0.90"
+          },
+          "end": {
+            "value": "1"
+          }
+        },
+        "scaleInLeft": {
+          "distance": {
+            "value": "20px"
+          },
+          "start": {
+            "value": "0.90"
+          },
+          "end": {
+            "value": "1"
+          }
+        }
+      }
+    }
+  }
+}

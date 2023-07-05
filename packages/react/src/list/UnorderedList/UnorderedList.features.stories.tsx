@@ -1,12 +1,12 @@
 import React from 'react'
-import {ComponentMeta} from '@storybook/react'
+import {Meta} from '@storybook/react'
 
 import {UnorderedList} from '.'
 
 export default {
   title: 'Components/UnorderedList/Features',
-  component: UnorderedList
-} as ComponentMeta<typeof UnorderedList>
+  component: UnorderedList,
+} as Meta<typeof UnorderedList>
 
 export const CheckList = () => (
   <UnorderedList variant="checked">

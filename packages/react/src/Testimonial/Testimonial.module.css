@@ -14,24 +14,29 @@
 
 .Testimonial--center {
   text-align: center;
+  justify-items: center;
+}
+
+.Testimonial--size-large {
+  gap: var(--base-size-24);
 }
 
 .Testimonial-quote {
   font-family: var(--brand-fontStack-sansSerif);
+  font-size: var(--brand-text-size-300);
   margin-top: calc(var(--base-size-16) * -1); /* negate grid gap */
   display: block;
 }
 
-.Testimonial-from {
-  font-family: var(--brand-fontStack-monospace);
+.Testimonial--size-large .Testimonial-quote {
+  font-size: var(--brand-text-size-700);
+  font-weight: var(--base-text-weight-semibold);
+  letter-spacing: var(--brand-text-letterSpacing-900);
+  line-height: 1.2; /* requires custom line-height */
 }
 
-.Testimonial-avatar-image {
-  display: inline-block;
-  overflow: hidden;
-  line-height: 1;
-  vertical-align: middle;
-  border-radius: 50%;
+.Testimonial-from {
+  font-family: var(--brand-fontStack-monospace);
 }
 
 .Testimonial--center .Testimonial-logo-image {
