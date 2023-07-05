@@ -1,0 +1,205 @@
+/* ---------------------------------------------------------- */
+/* Prose component                                            */
+/* ---------------------------------------------------------- */
+/* Table of contents:                                         */
+/* 1. Container                                               */
+/* 2. Element spacing                                         */
+/* 3. Line-length control                                     */
+/* 4. Headings                                                */
+/* 5. Paragraphs                                              */
+/* 6. Lists                                                   */
+/* 7. Inline elements                                         */
+/* 8. Images                                                  */
+/* ---------------------------------------------------------- */
+
+/* ---------------------------------------------------------- */
+/* 1, Container                                               */
+/* ---------------------------------------------------------- */
+
+.Prose {
+  font-family: var(--brand-body-fontFamily);
+  font-size: var(--brand-text-size-300);
+  line-height: var(--brand-text-lineHeight-300);
+  color: var(--brand-color-text-default);
+}
+
+/* ---------------------------------------------------------- */
+/* 2. Element spacing                                         */
+/* ---------------------------------------------------------- */
+
+.Prose * + * {
+  margin-block-start: var(--spacing, 1em);
+}
+
+/* ---------------------------------------------------------- */
+/* 3. Line-length control                                     */
+/* ---------------------------------------------------------- */
+
+.Prose--lineLength {
+  max-width: var(--brand-Prose-lineLength);
+}
+
+/* ---------------------------------------------------------- */
+/* 4. Headings                                                */
+/* ---------------------------------------------------------- */
+
+.Prose h1 {
+  font-weight: var(--brand-text-weight-900);
+  font-size: var(--brand-text-size-900);
+  line-height: var(--brand-text-lineHeight-900);
+  font-family: var(--brand-heading-fontFamily);
+  letter-spacing: var(--brand-text-letterSpacing-900);
+}
+
+.Prose--lineLength h1 {
+  max-width: 22ch;
+}
+
+.Prose h2 {
+  font-weight: var(--brand-text-weight-800);
+  font-size: var(--brand-text-size-800);
+  line-height: var(--brand-text-lineHeight-800);
+  font-family: var(--brand-heading-fontFamily);
+  letter-spacing: var(--brand-text-letterSpacing-800);
+}
+
+.Prose--lineLength h2 {
+  max-width: 26ch;
+}
+
+.Prose h3 {
+  font-weight: var(--brand-heading-weight-700);
+  font-size: var(--brand-text-size-700);
+  line-height: var(--brand-heading-lineHeight-700);
+  font-family: var(--brand-heading-fontFamily);
+  letter-spacing: var(--brand-heading-letterSpacing-700);
+}
+
+.Prose--lineLength h1 {
+  max-width: 32ch;
+}
+
+.Prose h4 {
+  --spacing: var(--base-size-48);
+  font-weight: var(--brand-heading-weight-600);
+  font-size: var(--brand-text-size-600);
+  line-height: var(--brand-text-lineHeight-600);
+  font-family: var(--brand-heading-fontFamily);
+  letter-spacing: var(--brand-heading-letterSpacing-600);
+}
+
+.Prose h5 {
+  --spacing: var(--base-size-48);
+  font-weight: var(--brand-heading-weight-500);
+  font-size: var(--brand-text-size-500);
+  line-height: var(--brand-text-lineHeight-500);
+  font-family: var(--brand-heading-fontFamily);
+  letter-spacing: var(--brand-heading-letterSpacing-500);
+}
+
+.Prose h6 {
+  --spacing: var(--base-size-48);
+  font-weight: var(--brand-heading-weight-400);
+  font-size: var(--brand-text-size-400);
+  line-height: var(--brand-text-lineHeight-400);
+  font-family: var(--brand-heading-fontFamily);
+  letter-spacing: var(--brand-heading-letterSpacing-400);
+}
+
+.Prose :is(h1, h2, h3) {
+  --spacing: var(--base-size-64);
+}
+
+.Prose :is(h1, h2, h3) + * {
+  --spacing: var(--base-size-24);
+}
+
+/* ---------------------------------------------------------- */
+/* 5. Paragraphs                                              */
+/* ---------------------------------------------------------- */
+
+.Prose p {
+  --spacing: var(--base-size-24);
+}
+
+/* ---------------------------------------------------------- */
+/* 6. Lists                                                   */
+/* ---------------------------------------------------------- */
+
+.Prose ul,
+.Prose ol {
+  --spacing: var(--base-size-16);
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-8);
+  padding: 0;
+  margin-inline-start: var(--base-size-24);
+  line-height: var(--brand-text-lineHeight-300);
+}
+
+.Prose ul {
+  list-style-type: image;
+  list-style-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' aria-hidden='true' focusable='false' role='img' viewBox='0 -3 16 16' width='16' height='16' fill='currentColor' style='display: inline-block; vertical-align: text-bottom; overflow: visible;'%3e%3cpath d='M2 7.75A.75.75 0 0 1 2.75 7h10a.75.75 0 0 1 0 1.5h-10A.75.75 0 0 1 2 7.75Z'%3e%3c/path%3e%3c/svg%3e ");
+}
+
+.Prose li {
+  --spacing: 0;
+}
+
+/* ---------------------------------------------------------- */
+/* 7. Inline elements                                         */
+/* ---------------------------------------------------------- */
+
+.Prose strong {
+  font-weight: var(--brand-text-weight-800);
+}
+
+.Prose em {
+  font-variation-settings: 'ital' 10;
+  font-synthesis: none;
+}
+
+.Prose a {
+  color: var(--brand-InlineLink-color-rest);
+  text-decoration: none;
+  position: relative;
+}
+
+.Prose a:hover {
+  text-decoration: none;
+}
+
+.Prose a::after {
+  content: '';
+  border-bottom: var(--brand-borderWidth-thin) solid var(--brand-InlineLink-color-rest);
+  height: 0;
+  transition: var(--brand-InlineLink-transition-timing) transform;
+  transform: scaleY(var(--brand-InlineLink-transition-scale-start));
+  transform-origin: 50% 100%;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.Prose a:hover::after {
+  transform: scaleY(var(--brand-InlineLink-transition-scale-end));
+}
+
+.Prose a:active::after {
+  border-color: var(--brand-InlineLink-color-pressed);
+}
+
+/* ---------------------------------------------------------- */
+/* 8. Images                                                  */
+/* ---------------------------------------------------------- */
+
+.Prose img {
+  --spacing: var(--brand-Prose-img-spacing);
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-block-end: var(--spacing);
+}
