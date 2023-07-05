@@ -7,7 +7,7 @@ import CustomVideoPlayer from '../../../src/components/custom-video-player'
 import ComponentLayout from '../../../src/layouts/component-layout'
 export default ComponentLayout
 
-![Lorem ipsum]()
+![The grid component applied to a section with different items that spans in columns](https://github.com/primer/brand/assets/912236/6cd2805e-0148-4a1d-b373-07acd1aa7f51)
 
 ## Usage
 
@@ -52,17 +52,23 @@ In some layouts, you may need certain grid items to span specific amount of colu
 
 ### Grid vs Stack
 
-Deciding between the grid and stack components everything comes down to how the component child items are displayed (are they inline or as columns and rows?) and how the component is expected to work on various screen sizes[^1].
+We'll use the grid or the [stack](/components/Stack) component depending how the child items are displayed and how are they expected to work on various screen sizes. If the element has all of its child items displayed inline, then most probably the stack component would be the best option. However, if you see columns and rows, then the use the grid component[^1].
 
-Most of the time, if the component you are viewing has all of its child items displayed inline, then most probably the stack component would be the best option. However, if you see columns and rows, then the use the grid component.
+#### Grid examples
 
-Some examples of the grid component usage:
+When defining a top-level page layout. E.g. Using a sidebar, main and navigation areas.
 
-- Page layout: When defining a page layout. E.g. using a sidebar and main section.
-- Section layout: When dividing an area into two area. E.g. A "contact us" sidebar and a form, and the secondary area uses grid for the form layout itself.
-- Card or pillar grids: To lay out multiple card or a pillar components.
+![](https://github.com/primer/brand/assets/912236/7c418d9e-3e44-4a0e-9f4f-18f5a62d89d0)
 
-Some examples of the stack component usage:
+When dividing an area into two areas. E.g. A "contact us" sidebar and a form, and the secondary area uses grid for the form layout itself.
+
+![](https://github.com/primer/brand/assets/912236/d617bfea-0758-4066-9ccc-7853eeb35cf3)
+
+For laying out a card, pillars or text component grid.
+
+![](https://github.com/primer/brand/assets/912236/56dfbcd8-72ff-401c-a530-25f11f671f7f)
+
+#### Stack examples
 
 - Navigation: Page navigation or a list of links should be built with the stack component. E.g. Having a logo on the left side and the navigation on the right.
 - Action lists: A group of action or buttons, where items are displayed next to each other, and they are distributed horizontally.
@@ -73,12 +79,15 @@ Some examples of the stack component usage:
 
 ### Responsive
 
-The grid component provides control over the number of columns that span the elements at each breakpoint. We recommend using the same column span for each content unit at each breakpoint to create a consistent layout and spacing. For smaller viewports, we recommend to span elements to the 12 available columns. E.g. A group of cards that spans 4 columns on a large viewport should span 6 columns on medium viewports and 12 on small viewports.
+The grid component provides control over the number of columns that span the elements at each breakpoint. We recommend using the same column span for each content unit at each breakpoint to create a consistent layout and spacing.
+For smaller viewports, we recommend to span elements to the 12 available columns.
+
+For example, a group of items that spans 3 columns on a large viewport should span to 4 columns on medium viewports and 6 or 12 columns on small viewports.
 
 <div>
   <CustomVideoPlayer
     width="100%"
-    src="https://github.com/primer/brand/assets/912236/d8e76477-1b27-4be1-9bf5-d22186af8376"
+    src="https://github.com/primer/brand/assets/912236/a99beba9-b22f-4e2b-a5fa-66c2db246965"
   />
   <Caption>
     Use the same column span for each content unit at each breakpoint to create
@@ -93,4 +102,3 @@ By default, the grid assumes that it will be used in a purely decorative fashion
 ## Related components
 
 - [Stack](/components/Stack): To enable layout of its immediate children along the vertical or horizontal axis.
-- [River](/components/River): To display a list of content items with a visual asset.
