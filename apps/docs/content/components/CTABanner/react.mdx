@@ -8,6 +8,8 @@ description: Use the CTA banner component to draw attention to or create urgency
 ---
 
 import {Label} from '@primer/react'
+import ComponentLayout from '../../../src/layouts/component-layout'
+export default ComponentLayout
 
 ```js
 import {CTABanner, Button} from '@primer/react-brand'
@@ -176,6 +178,7 @@ The first row in a table is automatically styled as a table header row.
 | `children`      | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | Content to include within the banner component               |
 | `align`         | `start`, `center`          | `start`     | `true`   | The layout applied to the content wihin the banner component |
 | `hasBorder`     | `boolean`                  | `false`     | `false`  | A flag used to provide a border to the banner component      |
+| `hasShadow`     | `boolean`                  | `true`      | `false`  | A flag used to provide a shadow to the banner component      |
 | `hasBackground` | `boolean`                  | `true`      | `false`  | A flag used to add a background to the banner component      |
 | `className`     | `string`                   |             | `false`  | CTABanner custom class                                       |
 
