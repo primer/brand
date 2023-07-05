@@ -3,6 +3,7 @@ title: Grid
 description: Use the grid component to create flexible and responsive grid-based layouts.
 ---
 
+import CustomVideoPlayer from '../../../src/components/custom-video-player'
 import ComponentLayout from '../../../src/layouts/component-layout'
 export default ComponentLayout
 
@@ -12,21 +13,60 @@ export default ComponentLayout
 
 ## Usage
 
-Use the grid component to define a layout that maintains consistent element positioning and sizing across views. Use the grid component to add guides for scale and placement and provide consistency across the product.
+Use the grid component to define a layout that maintains consistent element positioning and sizing across pages. The grid component has 12 columns and uses vertical and horizontal gaps to separate content units consistently.
 
-The grid component has 12 columns and uses vertical and horizontal gaps to separate content units consistently in all modules. Use the grid to group related content units. E.g. A group of [cards](/components/Card) or [pillars](/components/Pillar).
+Use the grid to group other components. E.g. A list of [cards](/components/Card) or [pillars](/components/Pillar). Use the same column span for each element to create a consistent layout and spacing.
 
 <DoDontContainer>
   <Do>
     <img src="" alt="" />
-    <Caption></Caption>
+    <Caption>
+      Use the same column span for each content unit to create a consistent
+      layout and spacing. In this example, each card has a column span of 4.
+    </Caption>
   </Do>
   <Dont>
     <img src="" alt="" />
-    <Caption></Caption>
+    <Caption>
+      Don't use different column spans when grouping the same elements with
+      similar content.
+    </Caption>
   </Dont>
 </DoDontContainer>
+
+Use different column spans when you want to create a visual hierarchy, using different components or the content within a section is not related. E.g. a section with a large image and a few paragraphs of text.
+
+<DoDontContainer>
+  <Do>
+    <img src="" alt="" />
+    <Caption>
+      Use different column spans when you want to create a visual hierarchy.
+    </Caption>
+  </Do>
+  <Dont>
+    <img src="" alt="" />
+    <Caption>
+      Don't use equal column spans when the content is not related or the
+      components are different.
+    </Caption>
+  </Dont>
+</DoDontContainer>
+
+### Responsive
+
+The grid component provides control of the number of columns that should be displayed at each breakpoint. We recommend using the same column span for each content unit at each breakpoint to create a consistent layout and spacing.
+
+<div>
+  <CustomVideoPlayer
+    width="100%"
+    src="https://github.com/primer/brand/assets/912236/d8e76477-1b27-4be1-9bf5-d22186af8376"
+  />
+  <Caption>
+    Stack cards vertically so that the content has enough line length.
+  </Caption>
+</div>
 
 ## Related components
 
 - [Stack](/components/Stack): To enable layout of its immediate children along the vertical or horizontal axis.
+- [River](/components/River): To display a list of content items with a visual asset.
