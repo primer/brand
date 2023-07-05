@@ -7,13 +7,11 @@ import CustomVideoPlayer from '../../../src/components/custom-video-player'
 import ComponentLayout from '../../../src/layouts/component-layout'
 export default ComponentLayout
 
-## Anatomy
-
 ![Lorem ipsum]()
 
 ## Usage
 
-Use the grid component to define a layout that maintains consistent element positioning and sizing across pages. The grid component has 12 columns and uses vertical and horizontal gaps to separate content units consistently.
+Use the grid component to define a layout that maintains consistent element positioning and sizing across pages. The grid is based on a 12-column grid layout and uses vertical and horizontal gaps to separate content units consistently.
 
 Use the grid to group other components. E.g. A list of [cards](/components/Card) or [pillars](/components/Pillar). Use the same column span for each element to create a consistent layout and spacing.
 
@@ -34,7 +32,7 @@ Use the grid to group other components. E.g. A list of [cards](/components/Card)
   </Dont>
 </DoDontContainer>
 
-Use different column spans when you want to create a visual hierarchy, using different components or the content within a section is not related. E.g. a section with a large image and a few paragraphs of text.
+In some layouts, you may need certain grid items to span specific amount of columns or rows instead of an even distribution. Use different column spans when you want to create a visual hierarchy, when using different components or when defining top-level layout structures. E.g. a section with a large image and text, a footer with a list of links and a logo or when defining a layout with main content and a sidebar.
 
 <DoDontContainer>
   <Do>
@@ -52,9 +50,30 @@ Use different column spans when you want to create a visual hierarchy, using dif
   </Dont>
 </DoDontContainer>
 
+### Grid vs Stack
+
+Deciding between the grid and stack components everything comes down to how the component child items are displayed (are they inline or as columns and rows?) and how the component is expected to work on various screen sizes[^1].
+
+Most of the time, if the component you are viewing has all of its child items displayed inline, then most probably the stack component would be the best option. However, if you see columns and rows, then the use the grid component.
+
+Some examples of the grid component usage:
+
+- Page layout: When defining a page layout. E.g. using a sidebar and main section.
+- Section layout: When dividing an area into two area. E.g. A "contact us" sidebar and a form, and the secondary area uses grid for the form layout itself.
+- Card or pillar grids: To lay out multiple card or a pillar components.
+
+Some examples of the stack component usage:
+
+- Navigation: Page navigation or a list of links should be built with the stack component. E.g. Having a logo on the left side and the navigation on the right.
+- Action lists: A group of action or buttons, where items are displayed next to each other, and they are distributed horizontally.
+- Form elements: A combination of an input field with a button next to it.
+- Profile cards: A combination of a user photo and descriptive content, where the information takes the remaining space from its parent element. This could be applied to any combinations of icon and text.
+
+[^1]: This section is based on the article [Grid for layout, Flexbox for components](https://ishadeed.com/article/grid-layout-flexbox-components/) by [@shadeed](https://github.com/shadeed)
+
 ### Responsive
 
-The grid component provides control of the number of columns that should be displayed at each breakpoint. We recommend using the same column span for each content unit at each breakpoint to create a consistent layout and spacing.
+The grid component provides control over the number of columns that span the elements at each breakpoint. We recommend using the same column span for each content unit at each breakpoint to create a consistent layout and spacing. For smaller viewports, we recommend to span elements to the 12 available columns. E.g. A group of cards that spans 4 columns on a large viewport should span 6 columns on medium viewports and 12 on small viewports.
 
 <div>
   <CustomVideoPlayer
@@ -62,9 +81,14 @@ The grid component provides control of the number of columns that should be disp
     src="https://github.com/primer/brand/assets/912236/d8e76477-1b27-4be1-9bf5-d22186af8376"
   />
   <Caption>
-    Stack cards vertically so that the content has enough line length.
+    Use the same column span for each content unit at each breakpoint to create
+    visually consistent layouts.
   </Caption>
 </div>
+
+## Accessibility
+
+By default, the grid assumes that it will be used in a purely decorative fashion and thus sets no roles, ARIA attributes, or keyboard shortcuts. This is equivalent to having a sequence of `<div>` elements on the page by default. Any interactive content within the grid should be given an appropriate accessibility treatment based on the specific workflow of your application.
 
 ## Related components
 
