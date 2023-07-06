@@ -90,7 +90,7 @@ function _AnchorNav({children, enableDefaultBgColor = false, ...props}: AnchorNa
   useEffect(() => {
     const handler = () => {
       if (initialYOffset) {
-        const isPastInitialYOffset = window.pageYOffset > initialYOffset
+        const isPastInitialYOffset = window.scrollY === initialYOffset
         isPastInitialYOffset ? setNavShouldFix(true) : setNavShouldFix(false)
       }
     }
