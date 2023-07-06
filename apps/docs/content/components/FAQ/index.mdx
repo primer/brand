@@ -1,0 +1,75 @@
+---
+title: FAQ
+description: Use the FAQ component to display content in a Q&A format.
+---
+
+import ComponentLayout from '../../../src/layouts/component-layout'
+export default ComponentLayout
+
+## Anatomy
+
+![The FAQ component has a heading, optional subheading, and a list of questions that are interactive to expand and display answers](https://github.com/primer/brand/assets/912236/b2fa1bb7-938c-42ed-a549-fdc9f2759184)
+
+- Heading: The main title of the FAQ.
+- Subheading: An optional short description that extends the information provided by the heading and helps group the items in the list.
+- Question: The question being answered. 
+- Answer: The answer to the question.
+
+## Usage
+
+Use the FAQ to provide answers to common questions about a product or a feature presented on a page. The FAQ is a good way to provide additional information that may be beyond the scope of the main content of the page. We recommend placing the FAQ at the bottom of the page, after the main content. Avoid using the FAQ to provide information that is already available in the page.
+
+Answers should be clear and no longer than 2-3 paragraphs. If the answer is longer than the suggested, needs visual assets, or a specific layout treatment, consider using a different component. For instance, if the answer needs an image, we recommend using a list of [cards](/components/Card) or a [river](/components/River) component instead.
+
+For answers that need to provide a list of tasks, we recommend using an [ordered list](/components/OrderedList). To split the content into different items, we recommend using an [unordered list](/components/UnorderedList).
+
+<DoDontContainer stacked>
+  <Do>
+    <img
+      src="https://github.com/primer/brand/assets/912236/824ebdee-4cc0-425f-8521-2c4e7b06491f"
+      alt=""
+    />
+    <Caption>
+      Use the FAQ to provide clear answers to common questions. Link to other
+      resources and use ordered/unordered lists if necessary.
+    </Caption>
+  </Do>
+  <Dont>
+    <img
+      src="https://github.com/primer/brand/assets/912236/37ca02ce-7eef-47bf-aac0-f24453dff5be"
+      alt=""
+    />
+    <Caption>
+      Don't use visual assets or other content-related components within the
+      answers.
+    </Caption>
+  </Dont>
+</DoDontContainer>
+
+When using long lists of questions and answers, consider using subheadings to group the items into categories and make it easier for the user to scan the list.
+
+<DoDontContainer stacked>
+  <Do>
+    <img
+      src="https://github.com/primer/brand/assets/912236/e38b0b06-24cd-4d45-8939-1ad31bb62e58"
+      alt=""
+    />
+    <Caption>Use the subheading to group the questions and answers.</Caption>
+  </Do>
+  <Dont>
+    <img
+      src="https://github.com/primer/brand/assets/912236/b47441b5-98c3-4f24-b987-e550ddfbae31"
+      alt=""
+    />
+    <Caption>
+      Don't use long lists of questions and answers. We recommend using
+      subheadings to group them and to help the user scan the list.
+    </Caption>
+  </Dont>
+</DoDontContainer>
+
+## Related components
+
+- [Card](/components/Card): to display navigational related content with higher visual weight.
+- [River](/components/River): To display a list of content items with a visual asset.
+- [Pillar](/components/Pillar): To display related content with less visual emphasis.
