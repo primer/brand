@@ -5,9 +5,13 @@ import {createGlobalStyle} from 'styled-components'
 import '../../../../../../packages/react/lib/css/main.css'
 import '../../../../../../packages/fonts/fonts.css'
 
-// Adding global styles for footnotes
-
+// Doctocat global styles https://github.com/primer/doctocat/blob/main/theme/src/components/wrap-page-element.js
 const GlobalStyles = createGlobalStyle`
+  body {
+    color: ${themeGet('colors.fg.default')};
+    background-color: ${themeGet('colors.canvas.default')};
+  }
+
   .footnotes {
     font-size: ${themeGet('fontSizes.1')};
     color: ${themeGet('colors.fg.subtle')};
@@ -25,7 +29,6 @@ const GlobalStyles = createGlobalStyle`
 `
 
 // Shadowing this Doctocat file
-
 function wrapPageElement({element}) {
   return (
     <ColorThemeProvider>
