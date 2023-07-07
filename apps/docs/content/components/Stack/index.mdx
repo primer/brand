@@ -10,9 +10,11 @@ export default ComponentLayout
 
 ## Usage
 
-Use the grid component to define a layout that maintains consistent element positioning and sizing across pages. The grid is based on a 12-column layout and uses vertical and horizontal gaps to separate content units consistently[^1].
+Use the stack component to offer space distribution and alignment between items in a vertical or horizontal direction (one-dimensional layout)[^1]. If you need vertical and horizontal layout (two-dimensional layout), use the [grid](/components/Grid) component instead. We recommend reding the [grid vs stack documentation](/components/Grid#grid-vs-stack) documentation.
 
-[^1]: The grid component is implemented using the [CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) specification.
+We recommend using the stack component for inline or text based elements. The stack allows scaling, wraping and shrinking features depending on each item content. For example, a navigational list or a button group.
+
+[^1]: The stack component is implemented using the [CSS Flexbox Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout) specification.
 
 <DoDontContainer>
   <Do>
@@ -24,6 +26,12 @@ Use the grid component to define a layout that maintains consistent element posi
     <Caption></Caption>
   </Dont>
 </DoDontContainer>
+
+## Options
+
+### Gap
+
+Use the gap to change the space between items. Use small values when grouping closed related items, and larger values to separate sections or non-related items between them.
 
 ## Related components
 
