@@ -6,6 +6,9 @@ storybook: https://github.com/primer/brand/blob/main/packages/react/src/Stack/St
 description: Use the stack component to enable layout of its immediate children along the vertical or horizontal axis.
 ---
 
+import ComponentLayout from '../../../src/layouts/component-layout'
+export default ComponentLayout
+
 import {
   defaultStackDirection,
   defaultStackSpacing,
@@ -14,7 +17,7 @@ import {
   StackDirectionVariants,
   StackJustifyContentVariants,
 } from '@primer/react-brand'
-import {PropTableValues} from '../../src/components'
+import {PropTableValues} from '../../../src/components'
 
 ```js
 import {Stack} from '@primer/react-brand'
