@@ -3,86 +3,255 @@ title: Grid
 description: Use the grid component to create flexible and responsive grid-based layouts.
 ---
 
+import {Box, Text} from '@primer/react'
 import CustomVideoPlayer from '../../../src/components/custom-video-player'
 import ComponentLayout from '../../../src/layouts/component-layout'
 export default ComponentLayout
 
-![The grid component applied to a section with different items that spans in columns](https://github.com/primer/brand/assets/912236/6cd2805e-0148-4a1d-b373-07acd1aa7f51)
+![The grid component applied to a section with different elements that spans in columns](https://github.com/primer/brand/assets/912236/6cd2805e-0148-4a1d-b373-07acd1aa7f51)
 
 ## Usage
 
-Use the grid component to define a layout that maintains consistent element positioning and sizing across pages. The grid is based on a 12-column grid layout and uses vertical and horizontal gaps to separate content units consistently.
+Use the grid component to define a layout that maintains consistent element positioning and sizing across pages. The grid is based on a 12-column layout and uses vertical and horizontal gaps to separate content units consistently[^1].
 
-Use the grid to group other components. E.g. A list of [cards](/components/Card) or [pillars](/components/Pillar). Use the same column span for each element to create a consistent layout and spacing.
+Use the grid for elements with related content or similar purposes. E.g. A list of [cards](/components/Card) or a "contact us" form.
+
+In most cases, we recommend using the same column span for each element to create a consistent layout.
+
+[^1]: The grid component is implemented using the [CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) specification.
 
 <DoDontContainer>
   <Do>
-    <img src="" alt="" />
+    <img
+      src="https://github.com/primer/brand/assets/912236/b4870b2e-5cf0-440c-9f51-0b1f81258b9b"
+      alt=""
+    />
     <Caption>
       Use the same column span for each content unit to create a consistent
-      layout and spacing. In this example, each card has a column span of 4.
+      layout and spacing.
     </Caption>
   </Do>
   <Dont>
-    <img src="" alt="" />
+    <img
+      src="https://github.com/primer/brand/assets/912236/0703ba43-7f47-4ad1-bc1d-020bc095e362"
+      alt=""
+    />
     <Caption>
-      Don't use different column spans when grouping the same elements with
-      similar content.
+      Don't use different column spans when grouping the same element type.
     </Caption>
   </Dont>
 </DoDontContainer>
 
-In some layouts, you may need certain grid items to span specific amount of columns or rows instead of an even distribution. Use different column spans when you want to create a visual hierarchy, when using different components or when defining top-level layout structures. E.g. a section with a large image and text, a footer with a list of links and a logo or when defining a layout with main content and a sidebar.
+In some cases, you may need specific amount of columns or rows instead of an even distribution. Use different column spans when creating a visual hierarchy between items or when defining a page or section layout structures. E.g. A section with an [image](/components/Image) and [text](/components/text), a form with inputs and text areas, or a layout with main content and a sidebar.
 
-<DoDontContainer>
+![](https://github.com/primer/brand/assets/912236/bc442c41-3546-4341-bab3-1c649ccfe7d2)
+
+<DoDontContainer stacked>
   <Do>
-    <img src="" alt="" />
+    <img
+      src="https://github.com/primer/brand/assets/912236/83e4eedf-5cc2-4dcc-a9dd-48d563744dd2"
+      alt=""
+    />
     <Caption>
-      Use different column spans when you want to create a visual hierarchy.
+      Use different column spans when you want to create a visual hierarchy
+      between different elements.
     </Caption>
   </Do>
   <Dont>
-    <img src="" alt="" />
+    <img
+      src="https://github.com/primer/brand/assets/912236/911a6b4b-791a-4186-8079-6296e17c65d0"
+      alt=""
+    />
     <Caption>
       Don't use equal column spans when the content is not related or the
-      components are different.
+      elements are different.
     </Caption>
   </Dont>
 </DoDontContainer>
 
-### Grid vs Stack
+## Grid vs Stack
 
-We recommend using the grid or the [stack](/components/Stack) component depending on how the child items are displayed and how are they expected to work on various screen sizes. If the element has all of its child items displayed inline, then most probably the stack component would be the best option. However, if you see columns and rows, then the use the grid component[^1].
+We recommend using the grid or the [stack](/components/Stack) component depending on how the child items are displayed and how are they expected to work on various screen sizes. If the element has all of its child items displayed inline, then most probably the [stack](/components/Stack) component would be the best option. However, if you think of columns and rows, then the use the grid component[^2].
 
-#### Grid examples
+### Grid examples
 
-When defining a top-level page layout. E.g. Using a sidebar, main and navigation areas.
+<Box
+  as="figure"
+  display="flex"
+  alignItems="flex-start"
+  justifyContent="space-between"
+  flexDirection={['column', 'column', 'column', 'column', 'row']}
+  m={0}
+  mb={3}
+  sx={{gap: 3}}
+>
+  <Box as="figcaption" mt="1">
+    <Text as="h4">Page or section layout</Text>
+    <Text as="p" mt="0">
+      When defining the page or a section layout. E.g. A page with sidebar, main
+      and navigation areas.
+    </Text>
+  </Box>
+  <img
+    src="https://github.com/primer/brand/assets/912236/7c418d9e-3e44-4a0e-9f4f-18f5a62d89d0"
+    role="presentation"
+    width="456"
+  />
+</Box>
 
-![](https://github.com/primer/brand/assets/912236/7c418d9e-3e44-4a0e-9f4f-18f5a62d89d0)
+<Box
+  as="figure"
+  display="flex"
+  alignItems="flex-start"
+  justifyContent="space-between"
+  flexDirection={['column', 'column', 'column', 'column', 'row']}
+  m={0}
+  mb={3}
+  sx={{gap: 3}}
+>
+  <Box as="figcaption" mt="1">
+    <Text as="h4">Sub sections</Text>
+    <Text as="p" mt="0">
+      When dividing an area into two areas. E.g. A "Send feedback" sidebar and a
+      form, and the form uses the grid for the form layout itself.
+    </Text>
+  </Box>
+  <img
+    src="https://github.com/primer/brand/assets/912236/d617bfea-0758-4066-9ccc-7853eeb35cf3"
+    role="presentation"
+    width="456"
+  />
+</Box>
 
-When dividing an area into two areas. E.g. A "contact us" sidebar and a form, and the secondary area uses grid for the form layout itself.
+<Box
+  as="figure"
+  display="flex"
+  alignItems="flex-start"
+  justifyContent="space-between"
+  flexDirection={['column', 'column', 'column', 'column', 'row']}
+  m={0}
+  mb={3}
+  sx={{gap: 3}}
+>
+  <Box as="figcaption" mt="1">
+    <h4 style={{marginBottom: 0}}>Card or pillar grids</h4>
+    <Text as="p" mt="0">
+      For laying out a card, pillars or similar content-based element grid.
+    </Text>
+  </Box>
+  <img
+    src="https://github.com/primer/brand/assets/912236/56dfbcd8-72ff-401c-a530-25f11f671f7f"
+    role="presentation"
+    width="456"
+  />
+</Box>
 
-![](https://github.com/primer/brand/assets/912236/d617bfea-0758-4066-9ccc-7853eeb35cf3)
+### Stack examples
 
-For laying out a card, pillars or text component grid.
+<Box
+  as="figure"
+  display="flex"
+  alignItems="flex-start"
+  justifyContent="space-between"
+  flexDirection={['column', 'column', 'column', 'column', 'row']}
+  m={0}
+  mb={3}
+  sx={{gap: 3}}
+>
+  <Box as="figcaption" mt="1">
+    <h4 style={{marginBottom: 0}}>Navigation</h4>
+    <Text as="p" mt="0">
+      Fot the page navigation or a list of links. E.g. Having a logo on the left
+      side and the navigation on the right.
+    </Text>
+  </Box>
+  <img
+    src="https://github.com/primer/brand/assets/912236/022fc146-6286-4074-abc5-7341743da82e"
+    role="presentation"
+    width="456"
+  />
+</Box>
 
-![](https://github.com/primer/brand/assets/912236/56dfbcd8-72ff-401c-a530-25f11f671f7f)
+<Box
+  as="figure"
+  display="flex"
+  alignItems="flex-start"
+  justifyContent="space-between"
+  flexDirection={['column', 'column', 'column', 'column', 'row']}
+  m={0}
+  mb={3}
+  sx={{gap: 3}}
+>
+  <Box as="figcaption" mt="1">
+    <h4 style={{marginBottom: 0}}>List of actions</h4>
+    <Text as="p" mt="0">
+      For a group of action or buttons, where items are displayed next to each
+      other, and they are distributed horizontally or vertically, depending on
+      the content length and the screen size.
+    </Text>
+  </Box>
+  <img
+    src="https://github.com/primer/brand/assets/912236/0b1025c7-1c07-4ff3-adab-5d685d78ea99"
+    role="presentation"
+    width="456"
+  />
+</Box>
 
-#### Stack examples
+<Box
+  as="figure"
+  display="flex"
+  alignItems="flex-start"
+  justifyContent="space-between"
+  flexDirection={['column', 'column', 'column', 'column', 'row']}
+  m={0}
+  mb={3}
+  sx={{gap: 3}}
+>
+  <Box as="figcaption" mt="1">
+    <h4 style={{marginBottom: 0}}>Form elements</h4>
+    <Text as="p" mt="0">
+      For combinations of input fields with a button next to it.
+    </Text>
+  </Box>
+  <img
+    src="https://github.com/primer/brand/assets/912236/8f83eae5-995b-426a-bf54-7407579cdb8c"
+    role="presentation"
+    width="456"
+  />
+</Box>
 
-- Navigation: Page navigation or a list of links should be built with the stack component. E.g. Having a logo on the left side and the navigation on the right.
-- Action lists: A group of action or buttons, where items are displayed next to each other, and they are distributed horizontally.
-- Form elements: A combination of an input field with a button next to it.
-- Profile cards: A combination of a user photo and descriptive content, where the information takes the remaining space from its parent element. This could be applied to any combinations of icon and text.
+<Box
+  as="figure"
+  display="flex"
+  alignItems="flex-start"
+  justifyContent="space-between"
+  flexDirection={['column', 'column', 'column', 'column', 'row']}
+  m={0}
+  mb={3}
+  sx={{gap: 3}}
+>
+  <Box as="figcaption" mt="1">
+    <h4 style={{marginBottom: 0}}>Profile cards</h4>
+    <Text as="p" mt="0">
+      For combinations of an avatar and descriptive content, where the
+      information takes the remaining space from its parent element. This could
+      be applied to any combinations of an icon and text too.
+    </Text>
+  </Box>
+  <img
+    src="https://github.com/primer/brand/assets/912236/c53f2ee7-93f1-416f-8fd5-bd965fd37f86"
+    role="presentation"
+    width="456"
+  />
+</Box>
 
-[^1]: This section is based on the article [Grid for layout, Flexbox for components](https://ishadeed.com/article/grid-layout-flexbox-components/) by [@shadeed](https://github.com/shadeed)
+[^2]: This section is based on the article [Grid for layout, Flexbox for components](https://ishadeed.com/article/grid-layout-flexbox-components/) by [@shadeed](https://github.com/shadeed)
 
 ### Responsive
 
-The grid component provides control over the number of columns that span the elements at each breakpoint. We recommend using the same column span for each content unit at each breakpoint to create a consistent layout and spacing.
-For smaller viewports, we recommend to span elements to the 12 available columns.
+The grid component provides control over the number of columns at each breakpoint. For most of the cases, we recommend using the same column span on each child at each breakpoint to create a consistent layout and spacing in all screen sizes.
 
-For example, a group of items that spans 3 columns on a large viewport should span to 4 columns on medium viewports and 6 or 12 columns on small viewports.
+For example, a group of cards might span 3 columns on a extra large viewport, 4 columns on large viewports, 6 on medium and 12 columns on small viewports.
 
 <div>
   <CustomVideoPlayer
@@ -92,6 +261,19 @@ For example, a group of items that spans 3 columns on a large viewport should sp
   <Caption>
     Use the same column span for each content unit at each breakpoint to create
     visually consistent layouts.
+  </Caption>
+</div>
+
+When using even column spans, we recommend to span each item full width on small viewports and stacking the items vertically to ensure that the content is readable and accessible on small screens.
+
+<div>
+  <CustomVideoPlayer
+    width="100%"
+    src="https://github.com/primer/brand/assets/912236/cd0d4335-03b2-48f2-98f0-2c53ef61544b"
+  />
+  <Caption>
+    Use full width on small viewports to ensure that the content is readable and
+    accessible.
   </Caption>
 </div>
 
