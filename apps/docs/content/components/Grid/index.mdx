@@ -69,6 +69,36 @@ In some cases, you may need specific amount of columns or rows instead of an eve
   </Dont>
 </DoDontContainer>
 
+### Responsive
+
+The grid component provides control over the number of columns at each breakpoint. For most of the cases, we recommend using the same column span on each child at each breakpoint to create a consistent layout and spacing in all screen sizes.
+
+For example, a group of cards might span 3 columns on a extra large viewport, 4 columns on large viewports, 6 on medium and 12 columns on small viewports.
+
+<div>
+  <CustomVideoPlayer
+    width="100%"
+    src="https://github.com/primer/brand/assets/912236/a99beba9-b22f-4e2b-a5fa-66c2db246965"
+  />
+  <Caption>
+    Use the same column span for each content unit at each breakpoint to create
+    visually consistent layouts.
+  </Caption>
+</div>
+
+When using even column spans, we recommend to span each item full width on small viewports and stacking the items vertically to ensure that the content is readable and accessible on small screens.
+
+<div>
+  <CustomVideoPlayer
+    width="100%"
+    src="https://github.com/primer/brand/assets/912236/cd0d4335-03b2-48f2-98f0-2c53ef61544b"
+  />
+  <Caption>
+    Use full width on small viewports to ensure that the content is readable and
+    accessible.
+  </Caption>
+</div>
+
 ## Grid vs Stack
 
 We recommend using the grid or the [stack](/components/Stack) component depending on how the child items are displayed and how are they expected to work on various screen sizes. If the element has all of its child items displayed inline, then most probably the [stack](/components/Stack) component would be the best option. However, if you think of columns and rows, then the use the grid component[^2].
@@ -246,36 +276,6 @@ We recommend using the grid or the [stack](/components/Stack) component dependin
 </Box>
 
 [^2]: This section is based on the article [Grid for layout, Flexbox for components](https://ishadeed.com/article/grid-layout-flexbox-components/) by [@shadeed](https://github.com/shadeed)
-
-### Responsive
-
-The grid component provides control over the number of columns at each breakpoint. For most of the cases, we recommend using the same column span on each child at each breakpoint to create a consistent layout and spacing in all screen sizes.
-
-For example, a group of cards might span 3 columns on a extra large viewport, 4 columns on large viewports, 6 on medium and 12 columns on small viewports.
-
-<div>
-  <CustomVideoPlayer
-    width="100%"
-    src="https://github.com/primer/brand/assets/912236/a99beba9-b22f-4e2b-a5fa-66c2db246965"
-  />
-  <Caption>
-    Use the same column span for each content unit at each breakpoint to create
-    visually consistent layouts.
-  </Caption>
-</div>
-
-When using even column spans, we recommend to span each item full width on small viewports and stacking the items vertically to ensure that the content is readable and accessible on small screens.
-
-<div>
-  <CustomVideoPlayer
-    width="100%"
-    src="https://github.com/primer/brand/assets/912236/cd0d4335-03b2-48f2-98f0-2c53ef61544b"
-  />
-  <Caption>
-    Use full width on small viewports to ensure that the content is readable and
-    accessible.
-  </Caption>
-</div>
 
 ## Accessibility
 
