@@ -48,13 +48,7 @@ export const WithSecondaryAction: StoryFn<typeof Hero> = _args => (
 
 export const Codespaces: StoryFn<typeof Hero> = _args => (
   <Hero align="center">
-    <Hero.Heading>
-      <>
-        Blazing fast cloud
-        <br />
-        developer environments
-      </>
-    </Hero.Heading>
+    <Hero.Heading>Blazing fast cloud developer environments</Hero.Heading>
     <Hero.Description>Visual Studio Code backed by high performance VMs that start in seconds.</Hero.Description>
     <Hero.PrimaryAction href="#">Get started</Hero.PrimaryAction>
   </Hero>
@@ -67,7 +61,7 @@ export const Issues: StoryFn<typeof Hero> = _args => (
       Create issues, break them into tasks, track relationships, add custom fields, and have conversations. Visualize
       large projects as spreadsheets or boards, and automate everything with code.
     </Hero.Description>
-    <Hero.PrimaryAction href="#">Watch video</Hero.PrimaryAction>
+    <Hero.PrimaryAction href="#">See how to use GitHub issues</Hero.PrimaryAction>
     <Hero.SecondaryAction href="#">Start using project tables</Hero.SecondaryAction>
   </Hero>
 )
