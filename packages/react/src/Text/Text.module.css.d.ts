@@ -37,6 +37,11 @@ declare const styles: {
   readonly "Text-wide--weight-medium": string;
   readonly "Text-wide--weight-normal": string;
   readonly "Text-wide--weight-light": string;
+  readonly "Text-align--start": string;
+  readonly "Text-align--end": string;
+  readonly "Text-align--center": string;
+  readonly "Text-align--left": string;
+  readonly "Text-align--right": string;
 };
 export = styles;
 

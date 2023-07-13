@@ -147,3 +147,23 @@
     font-weight: var(--base-text-weight-light);
   }
 }
+
+.Text-align--start {
+  text-align: start;
+}
+
+.Text-align--end {
+  text-align: end;
+}
+
+.Text-align--center {
+  text-align: center;
+}
+
+.Text-align--left {
+  text-align: left;
+}
+
+.Text-align--right {
+  text-align: right;
+}
