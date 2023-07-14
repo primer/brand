@@ -1,0 +1,106 @@
+---
+title: Checkbox
+description: Use the checkbox component to select one or more options of a limited number of choices.
+
+import CustomVideoPlayer from '../../../src/components/custom-video-player'
+import ComponentLayout from '../../../src/layouts/component-layout'
+export default ComponentLayout
+
+## Anatomy
+
+![An image displaying a checkbox with a checkbox and label.](https://github.com/primer/brand/assets/912236/719022fa-4694-42c0-8554-b1923c65739f)
+
+- Checkbox: A selction control.
+- Checkbox Label: A description for the checkbox. 
+
+## Usage
+
+Checkbox enables users to choose multiple options from a group, making them well-suited for situations where users may select more than one option. 
+
+Unlike the [Radio](/components/Radio) component or [Select](/components/Select) component, Checkbox does not restrict users to choosing just a single option. Instead, they necessitate a submission step, such as selecting an option or consent action. 
+
+Checkbox is commonly employed in forms to gather user input, granting them the ability to select zero or more options from a list.
+
+Keep the Checkbox component with direct labels, consistent styling (starting with capitalization and without ending in punctuation)
+
+<DoDontContainer>
+  <Do>
+    <img src="https://github.com/primer/brand/assets/912236/eb8c5797-1704-4a92-8f9f-69c0b895f2b7" />
+    <Caption>
+        Ensure checkbox labels are direct. 
+    </Caption>
+  </Do>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/912236/7890cbc2-e588-4399-b903-78f2e581d05b" />
+    <Caption>
+        Don't make labels confusing, avoid negative statements, and indirect. 
+    </Caption>
+  </Dont>
+</DoDontContainer>
+
+<DoDontContainer>
+  <Do>
+    <img src="https://github.com/primer/brand/assets/912236/eb8c5797-1704-4a92-8f9f-69c0b895f2b7" />
+    <Caption>
+        Use consistent styling, starting with capitalization, and not ending with punctuation.
+    </Caption>
+  </Do>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/912236/7890cbc2-e588-4399-b903-78f2e581d05b" />
+    <Caption>
+        Don't have inconsistent styling, not starting with capitalization, or ending in punctuation.
+    </Caption>
+  </Dont>
+</DoDontContainer>
+
+<DoDontContainer>
+  <Do>
+    <img src="https://github.com/primer/brand/assets/912236/eb8c5797-1704-4a92-8f9f-69c0b895f2b7" />
+    <Caption>
+        Use first person when asking users for acknowledgement or consent.
+    </Caption>
+  </Do>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/912236/7890cbc2-e588-4399-b903-78f2e581d05b" />
+    <Caption>
+        Don't use third person when asking users for acknowledgement or consent.
+    </Caption>
+  </Dont>
+</DoDontContainer>
+
+<DoDontContainer>
+  <Do>
+    <img src="https://github.com/primer/brand/assets/912236/eb8c5797-1704-4a92-8f9f-69c0b895f2b7" />
+    <Caption>
+        When used in groups, order checkboxes in logical order, like smallest to largest or least restrictive to most restrictive. 
+    </Caption>
+  </Do>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/912236/7890cbc2-e588-4399-b903-78f2e581d05b" />
+    <Caption>
+        When possible, don't order checkboxes without logic. 
+    </Caption>
+  </Dont>
+</DoDontContainer>
+
+### Accessibility 
+
+Please use [FormControl](/components/FormControl) to display accessible checkboxes in the UI. This Checkbox component is intended only as an ingredient for other custom components, or as a drop-in replacement for native HTML checkboxes outside of form use-cases.
+
+If you intend to use this component as part of another component, it should always be accompanied by a corresponding `<label>` to improve support for assistive technologies.
+
+## Options
+
+### Intermediate 
+
+An indeterminate checkbox state should be used if the input value is neither true nor false. This can be useful in situations where you are required to display an incomplete state, or one that is dependent on other input selections to determine a value.
+
+### Description
+
+A description for a checkbox can be useful in certain scenarios where additional information or clarification is needed for the checkbox option. Some examples include complex or technical options, ambiguous or unclear options, legal or compliance requirements, or accessibility considerations.
+
+## Related components
+
+- [Radio](/components/Radio): Use the radio component when a user needs to select one option from a list.
+- [Select](/components/Select): Use the select component to enable selection of one option from a list.
+- [FormControl](/components/FormControl): Use the form control component to display form inputs alongside labels, validation and more.
