@@ -1,0 +1,68 @@
+---
+title: Section intro
+description: Use the section intro component to provide a title, optional description and link to a new section in the page.
+---
+
+import CustomVideoPlayer from '../../../src/components/custom-video-player'
+import ComponentLayout from '../../../src/layouts/component-layout'
+export default ComponentLayout
+
+## Anatomy
+
+![An image displaying a section intro with a title, description and a link.](https://github.com/primer/brand/assets/912236/719022fa-4694-42c0-8554-b1923c65739f)
+
+- Heading: The title of the section.
+- Description: An optional description of the section.
+- Link: An optional link to expand on the content introduced.
+
+## Usage
+
+Use the section intro to introduce a new section element in the page. The section intro uses the full-width of the screen and can be used in conjunction with other components that expand the content introduced. For example, the [card](/components/Card) or the [pillar](/components/Pillar) components.
+
+We recommmend using the section intro as a header of an HTML `<section>` element. Sections divide the content of the page into thematic groups and represent standalone elements that are typically related to a specific topic or subject within the document.
+
+Sections are designed to be self-contained, meaning they should make sense and be meaningful even when viewed independently from the rest of the page. They provide a way to divide the content into meaningful and structured blocks.
+
+<DoDontContainer>
+  <Do>
+    <img src="https://github.com/primer/brand/assets/912236/eb8c5797-1704-4a92-8f9f-69c0b895f2b7" />
+    <Caption>
+      Use section intros to introduce a new topic in a section and combine it
+      with other components and content.
+    </Caption>
+  </Do>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/912236/7890cbc2-e588-4399-b903-78f2e581d05b" />
+    <Caption>
+      Don't use it as standalone element followed by other section intros.
+    </Caption>
+  </Dont>
+</DoDontContainer>
+
+## Options
+
+### Align
+
+Section intro can be aligned to the start or center of the page. By default, the section intro is aligned to the start of the page to allow for an image or a visual asset to be positioned on the left. Use the center alignment if the asset is centered, not present, or the scenario calls for it.
+
+<DoDontContainer stacked>
+  <Do>
+    <img src="https://github.com/primer/brand/assets/912236/1d2b0be3-e696-4d4d-9b65-e8bced96fe04" />
+    <Caption>
+      Use center alignment if the section intro is paired with a centered image
+      or visual asset.
+    </Caption>
+  </Do>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/912236/fa2f7c30-dd11-4b56-82ed-dbcb76245c6e" />
+    <Caption>
+      Don't use center alignment if the section intro is paired with an image or
+      visual asset aligned to the left.
+    </Caption>
+  </Dont>
+</DoDontContainer>
+
+## Related components
+
+- [Hero](/components/Hero): Use the hero component to render a full-width banner on a webpage.
+- [CTABanner](/components/CTABanner): To draw attention to or create urgency around a user action.
