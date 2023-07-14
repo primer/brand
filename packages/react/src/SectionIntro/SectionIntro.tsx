@@ -61,7 +61,14 @@ type SectionIntroDescriptionProps = BaseProps<HTMLParagraphElement> & {
 const _Description = forwardRef(
   ({className, children, ...props}: SectionIntroDescriptionProps, ref: Ref<HTMLParagraphElement>) => {
     return (
-      <Text ref={ref} className={clsx(styles['SectionIntro-description'], className)} size={'400'} as="p" {...props}>
+      <Text
+        as="p"
+        className={clsx(styles['SectionIntro-description'], className)}
+        ref={ref}
+        size="400"
+        variant="muted"
+        {...props}
+      >
         {children}
       </Text>
     )
