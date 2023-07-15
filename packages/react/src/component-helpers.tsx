@@ -15,6 +15,7 @@ export const Container = ({
 type RedlineBackgroundProps = {
   height?: number
   hasBorder?: boolean
+  className?: string
 }
 
 export function RedlineBackground({height, hasBorder = true, ...rest}: PropsWithChildren<RedlineBackgroundProps>) {

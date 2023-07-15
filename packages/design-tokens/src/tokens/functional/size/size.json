@@ -126,6 +126,19 @@
         }
       }
     },
+    "box": {
+      "padding": {
+        "condensed": {
+          "value": "{base.size.16}"
+        },
+        "normal": {
+          "value": "{base.size.24}"
+        },
+        "spacious": {
+          "value": "{base.size.48}"
+        }
+      }
+    },
     "stack": {
       "padding": {
         "condensed": {

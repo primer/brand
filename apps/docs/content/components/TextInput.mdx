@@ -27,7 +27,7 @@ import {TextInput} from '@primer/react-brand'
 ### Variants
 
 ```jsx live
-<Box
+<Container
   sx={{
     display: 'grid',
     gridTemplateColumns: '1fr 1fr',
@@ -75,7 +75,7 @@ import {TextInput} from '@primer/react-brand'
     <FormControl.Label>URL</FormControl.Label>
     <TextInput type="url" value="https://github.com" />
   </FormControl>
-</Box>
+</Container>
 ```
 
 ### Placeholder
@@ -100,7 +100,7 @@ Use `TextInput` alongside `FormControl` to ensure the control always has a corre
 ### Validation
 
 ```jsx live
-<Box sx={{display: 'inline-grid', gap: 3}}>
+<Container sx={{display: 'inline-grid', gap: 3}}>
   <FormControl validationStatus="error">
     <FormControl.Label>Error</FormControl.Label>
     <TextInput />
@@ -111,7 +111,7 @@ Use `TextInput` alongside `FormControl` to ensure the control always has a corre
     <TextInput />
     <FormControl.Validation>This is a success message</FormControl.Validation>
   </FormControl>
-</Box>
+</Container>
 ```
 
 ### Full width
@@ -125,11 +125,11 @@ Use `TextInput` alongside `FormControl` to ensure the control always has a corre
 `FormControl` can appear in `medium` (default) and `large` dimensions using the `size` prop.
 
 ```jsx live
-<Box sx={{display: 'inline-grid', gap: 3}}>
+<Container sx={{display: 'inline-grid', gap: 3}}>
   <TextInput size="medium" />
 
   <TextInput size="large" />
-</Box>
+</Container>
 ```
 
 ### Required
@@ -160,7 +160,7 @@ const App = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Box
+      <Container
         sx={{
           display: 'grid',
           gap: 'var(--base-size-16)',
@@ -175,7 +175,7 @@ const App = () => {
         <Button type="submit" variant="primary">
           Submit
         </Button>
-      </Box>
+      </Container>
     </form>
   )
 }

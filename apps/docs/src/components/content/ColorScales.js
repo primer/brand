@@ -1,7 +1,7 @@
 import colors from '@primer/brand-primitives/lib/design-tokens/js/module/tokens/base/colors/color-scales'
 import React from 'react'
 import {
-  Box,
+  Box as PRCBox,
   ActionMenu,
   ActionList,
   Text,
@@ -32,13 +32,13 @@ export function ColorScales() {
   const renderScale = (scale) => {
     const [name, colorScale] = scale
     return (
-      <Box key={name}>
+      <PRCBox key={name}>
         {Object.entries(colorScale).map(([key, obj]) => {
           const value = colorTheme === 'dark' ? obj.dark : obj.value
           const hslValue = convertToHsl(value)
 
           return (
-            <Box
+            <PRCBox
               key={`${key}-${hslValue}`}
               sx={{
                 color: readableColor(hslValue),
@@ -54,10 +54,10 @@ export function ColorScales() {
                 {name}.{key}
               </Text>
               <Text>{hslValue}</Text>
-            </Box>
+            </PRCBox>
           )
         })}
-      </Box>
+      </PRCBox>
     )
   }
 
@@ -72,7 +72,7 @@ export function ColorScales() {
       }
     >
       <PRCThemeProvider colorMode="day">
-        <Box
+        <PRCBox
           sx={{
             paddingTop: 2,
             paddingLeft: 2,
@@ -101,9 +101,9 @@ export function ColorScales() {
               </ActionList>
             </ActionMenu.Overlay>
           </ActionMenu>
-        </Box>
+        </PRCBox>
       </PRCThemeProvider>
-      <Box
+      <PRCBox
         sx={{
           display: 'grid',
           gridGap: 3,
@@ -116,8 +116,8 @@ export function ColorScales() {
         }}
       >
         {rgbScales.map(renderScale)}
-      </Box>
-      <Box
+      </PRCBox>
+      <PRCBox
         sx={{
           display: 'grid',
           gridGap: 3,
@@ -129,7 +129,7 @@ export function ColorScales() {
         }}
       >
         {blackWhiteScales.map(renderScale)}
-      </Box>
+      </PRCBox>
     </PRCThemeProvider>
   )
 }

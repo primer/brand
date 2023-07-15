@@ -751,3 +751,43 @@
     justify-content: space-around;
   }
 }
+
+/*
+ * Wrap
+ */
+
+.Stack-flexWrap--wrap {
+  flex-wrap: wrap;
+}
+
+.Stack-flexWrap--no-wrap {
+  flex-wrap: nowrap;
+}
+
+.Stack-narrow-flexWrap--wrap {
+  flex-wrap: wrap;
+}
+
+.Stack-narrow-flexWrap--no-wrap {
+  flex-wrap: nowrap;
+}
+
+@media screen and (min-width: 48rem) {
+  .Stack-regular-flexWrap--wrap {
+    flex-wrap: wrap;
+  }
+
+  .Stack-regular-flexWrap--no-wrap {
+    flex-wrap: nowrap;
+  }
+}
+
+@media screen and (min-width: 80rem) {
+  .Stack-wide-flexWrap--wrap {
+    flex-wrap: wrap;
+  }
+
+  .Stack-wide-flexWrap--no-wrap {
+    flex-wrap: nowrap;
+  }
+}

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Box} from '@primer/react'
+import {Box as PRCBox} from '@primer/react'
 import {ColumnsIcon, PlayIcon} from '@primer/octicons-react'
 
 const CustomVideoPlayer = (props: React.HTMLProps<HTMLVideoElement>) => {
@@ -17,7 +17,7 @@ const CustomVideoPlayer = (props: React.HTMLProps<HTMLVideoElement>) => {
   }
 
   return (
-    <Box
+    <PRCBox
       borderColor="border.muted"
       borderRadius={2}
       borderStyle="solid"
@@ -38,7 +38,7 @@ const CustomVideoPlayer = (props: React.HTMLProps<HTMLVideoElement>) => {
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <video {...props} ref={videoElement} />
       {!props.controls && (
-        <Box
+        <PRCBox
           as="button"
           position="absolute"
           sx={{
@@ -55,9 +55,9 @@ const CustomVideoPlayer = (props: React.HTMLProps<HTMLVideoElement>) => {
           ) : (
             <PlayIcon aria-label="Play" size={50} fill="white" />
           )}
-        </Box>
+        </PRCBox>
       )}
-    </Box>
+    </PRCBox>
   )
 }
 

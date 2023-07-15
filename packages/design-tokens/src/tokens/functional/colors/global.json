@@ -111,8 +111,8 @@
           "dark": "var(--base-color-scale-gray-7)"
         },
         "subtle": {
-          "value": "hsl(var(--base-color-scale-black-0-hsl) / 99.85%)",
-          "dark": "hsl(var(--base-color-scale-gray-0-hsl) / 99.9%)"
+          "value": "hsl(var(--base-color-scale-gray-1-hsl) / 99.7%)",
+          "dark": "var(--base-color-scale-gray-8)"
         }
       },
       "focus": {

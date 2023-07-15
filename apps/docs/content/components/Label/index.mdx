@@ -3,7 +3,7 @@ title: Label
 description: Use the label component to add metadata or indicate the status of items.
 ---
 
-import {Box} from '@primer/react'
+import {Box as Container} from '@primer/react'
 import ComponentLayout from '../../../src/layouts/component-layout'
 export default ComponentLayout
 
@@ -59,7 +59,7 @@ Labels come in three sizes: `small`, `medium`, and `large`.
 
 Use the `small` size for inline text or list items.
 
-<Box
+<Container
   display="grid"
   gridTemplateColumns={['1fr', null, null, null, '1fr 1fr']}
   gridGap={5}
@@ -82,13 +82,13 @@ Use the `small` size for inline text or list items.
       Give small labels enough space when used with longer content.
     </Caption>
   </div>
-</Box>
+</Container>
 
 ### Medium
 
 Use the `medium` size when paired with medium-sized headings or in components such as `Card`.
 
-<Box
+<Container
   display="grid"
   gridTemplateColumns={['1fr', null, null, null, '1fr 1fr']}
   gridGap={5}
@@ -114,7 +114,7 @@ Use the `medium` size when paired with medium-sized headings or in components su
       categorize the main topic and provide a visual break.
     </Caption>
   </div>
-</Box>
+</Container>
 
 ### Large
 
