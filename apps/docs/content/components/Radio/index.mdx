@@ -1,0 +1,79 @@
+---
+title: Radio
+description: Use the radio component when a user needs to select one option from a list.
+---
+
+import ComponentLayout from '../../../src/layouts/component-layout'
+export default ComponentLayout
+
+
+## Anatomy
+
+![An image displaying a Radio with a radio and label.](https://github.com/primer/brand/assets/912236/719022fa-4694-42c0-8554-b1923c65739f)
+
+- Radio: A selection control.
+- Radio Label: A description for the Radio. 
+
+## Usage
+
+The Radio component enables users to select a single option when used in a grop, making them suitable for scenarios where users are restricted to choosing just one option.
+
+For scenarios that allow for multiple selections, use the Checkbox(/components/Checkbox) component instead. To implement Radio buttons effectively, ensure that each radio button has a clear and concise label associated with it. Maintain consistent styling, including capitalization and without ending punctuation.
+
+If you have a short list of options and want users to select only one, consider using a radio button in a radio group. A radio group is a collection of related radio buttons grouped together. It helps provide clear context and organization for the options.
+
+<DoDontContainer>
+  <Do>
+    <img src="https://github.com/primer/brand/assets/912236/eb8c5797-1704-4a92-8f9f-69c0b895f2b7" />
+    <Caption>
+        Ensure Radio options don't overlap and include "None" or "Other" options when necessary. 
+    </Caption>
+  </Do>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/912236/7890cbc2-e588-4399-b903-78f2e581d05b" />
+    <Caption>
+        Don't overlap or leave out potential Radio options.
+    </Caption>
+  </Dont>
+</DoDontContainer>
+
+<DoDontContainer>
+  <Do>
+    <img src="https://github.com/primer/brand/assets/912236/eb8c5797-1704-4a92-8f9f-69c0b895f2b7" />
+    <Caption>
+        When used in groups, order Radios in logical order, like smallest to largest or least restrictive to most restrictive. 
+    </Caption>
+  </Do>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/912236/7890cbc2-e588-4399-b903-78f2e581d05b" />
+    <Caption>
+        When possible, don't order Radios without logic. 
+    </Caption>
+  </Dont>
+</DoDontContainer>
+
+### States
+
+Radios have static dimensions and three different states when checked or unchecked: rest (default), focus, and disabled.
+
+<img
+  width="960"
+  role="presentation"
+  src="https://user-images.githubusercontent.com/2313998/224133514-c583baf4-6dfc-444d-8714-dfc88cc00ff9.png"
+/>
+
+### Accessibility 
+
+Please use FormControl(/components/FormControl) to render a standard radio input field. If using standalone, it should always be accompanied by a corresponding `<label>` to improve support for assistive technologies.
+
+## Options
+
+### Caption
+
+A caption for a checkbox can be useful in certain scenarios where additional information or clarification is needed for the checkbox option. Some examples include complex or technical options, ambiguous or unclear options, legal or compliance requirements, or accessibility considerations.
+
+## Related components
+
+- [Checkbox](/components/Checkbox): Use the checkbox component to select one or more options of a limited number of choices.
+- [Select](/components/Select): Use the select component to enable selection of one option from a list.
+- [FormControl](/components/FormControl): Use the form control component to display form inputs alongside labels, validation and more.
