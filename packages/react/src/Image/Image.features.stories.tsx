@@ -78,7 +78,7 @@ export const CustomClassWithAspectRatio: StoryFn<typeof Image> = () => (
   <Image
     src={placeholderImage}
     className={style['custom-image']}
-    alt="placeholder, blank area with an off-white background color"
+    alt="placeholder, blank area with an off-white background color, custom aspect ratio"
     aspectRatio="custom"
   />
 )
