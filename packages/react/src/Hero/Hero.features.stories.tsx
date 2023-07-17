@@ -61,7 +61,7 @@ export const Issues: StoryFn<typeof Hero> = _args => (
       Create issues, break them into tasks, track relationships, add custom fields, and have conversations. Visualize
       large projects as spreadsheets or boards, and automate everything with code.
     </Hero.Description>
-    <Hero.PrimaryAction href="#">See how to use GitHub issues</Hero.PrimaryAction>
+    <Hero.PrimaryAction href="#">Learn about GitHub issues</Hero.PrimaryAction>
     <Hero.SecondaryAction href="#">Start using project tables</Hero.SecondaryAction>
   </Hero>
 )
