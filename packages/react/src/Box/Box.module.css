@@ -25,13 +25,13 @@
  * 1. Padding
  */
 .Box-padding--condensed {
-  padding: var(--brand-box-padding-condensed);
+  padding: var(--brand-box-spacing-condensed);
 }
 .Box-padding--normal {
-  padding: var(--brand-box-padding-normal);
+  padding: var(--brand-box-spacing-normal);
 }
 .Box-padding--spacious {
-  padding: var(--brand-box-padding-spacious);
+  padding: var(--brand-box-spacing-spacious);
 }
 .Box-padding--4 {
   padding: var(--base-size-4);
@@ -85,13 +85,13 @@
   padding: var(--base-size-128);
 }
 .Box-narrow-padding--condensed {
-  padding: var(--brand-box-padding-condensed);
+  padding: var(--brand-box-spacing-condensed);
 }
 .Box-narrow-padding--normal {
-  padding: var(--brand-box-padding-normal);
+  padding: var(--brand-box-spacing-normal);
 }
 .Box-narrow-padding--spacious {
-  padding: var(--brand-box-padding-spacious);
+  padding: var(--brand-box-spacing-spacious);
 }
 .Box-narrow-padding--4 {
   padding: var(--base-size-4);
@@ -141,13 +141,13 @@
 
 @media screen and (min-width: 48rem) {
   .Box-regular-padding--condensed {
-    padding: var(--brand-box-padding-condensed);
+    padding: var(--brand-box-spacing-condensed);
   }
   .Box-regular-padding--normal {
-    padding: var(--brand-box-padding-normal);
+    padding: var(--brand-box-spacing-normal);
   }
   .Box-regular-padding--spacious {
-    padding: var(--brand-box-padding-spacious);
+    padding: var(--brand-box-spacing-spacious);
   }
   .Box-regular-padding--4 {
     padding: var(--base-size-4);
@@ -198,13 +198,13 @@
 
 @media screen and (min-width: 80rem) {
   .Box-wide-padding--condensed {
-    padding: var(--brand-box-padding-condensed);
+    padding: var(--brand-box-spacing-condensed);
   }
   .Box-wide-padding--normal {
-    padding: var(--brand-box-padding-normal);
+    padding: var(--brand-box-spacing-normal);
   }
   .Box-wide-padding--spacious {
-    padding: var(--brand-box-padding-spacious);
+    padding: var(--brand-box-spacing-spacious);
   }
   .Box-wide-padding--4 {
     padding: var(--base-size-4);
@@ -257,13 +257,13 @@
  * 2. Padding Top
  */
 .Box-paddingTop--condensed {
-  padding-top: var(--brand-box-padding-condensed);
+  padding-top: var(--brand-box-spacing-condensed);
 }
 .Box-paddingTop--normal {
-  padding-top: var(--brand-box-padding-normal);
+  padding-top: var(--brand-box-spacing-normal);
 }
 .Box-paddingTop--spacious {
-  padding-top: var(--brand-box-padding-spacious);
+  padding-top: var(--brand-box-spacing-spacious);
 }
 .Box-paddingTop--4 {
   padding-top: var(--base-size-4);
@@ -318,13 +318,13 @@
 }
 
 .Box-narrow-paddingTop--condensed {
-  padding-top: var(--brand-box-padding-condensed);
+  padding-top: var(--brand-box-spacing-condensed);
 }
 .Box-narrow-paddingTop--normal {
-  padding-top: var(--brand-box-padding-normal);
+  padding-top: var(--brand-box-spacing-normal);
 }
 .Box-narrow-paddingTop--spacious {
-  padding-top: var(--brand-box-padding-spacious);
+  padding-top: var(--brand-box-spacing-spacious);
 }
 .Box-narrow-paddingTop--4 {
   padding-top: var(--base-size-4);
@@ -374,13 +374,13 @@
 
 @media screen and (min-width: 48rem) {
   .Box-regular-paddingTop--condensed {
-    padding-top: var(--brand-box-padding-condensed);
+    padding-top: var(--brand-box-spacing-condensed);
   }
   .Box-regular-paddingTop--normal {
-    padding-top: var(--brand-box-padding-normal);
+    padding-top: var(--brand-box-spacing-normal);
   }
   .Box-regular-paddingTop--spacious {
-    padding-top: var(--brand-box-padding-spacious);
+    padding-top: var(--brand-box-spacing-spacious);
   }
   .Box-regular-paddingTop--4 {
     padding-top: var(--base-size-4);
@@ -431,13 +431,13 @@
 
 @media screen and (min-width: 80rem) {
   .Box-wide-paddingTop--condensed {
-    padding-top: var(--brand-box-padding-condensed);
+    padding-top: var(--brand-box-spacing-condensed);
   }
   .Box-wide-paddingTop--normal {
-    padding-top: var(--brand-box-padding-normal);
+    padding-top: var(--brand-box-spacing-normal);
   }
   .Box-wide-paddingTop--spacious {
-    padding-top: var(--brand-box-padding-spacious);
+    padding-top: var(--brand-box-spacing-spacious);
   }
   .Box-wide-paddingTop--4 {
     padding-top: var(--base-size-4);
@@ -490,13 +490,13 @@
  * 3. Padding Right
  */
 .Box-paddingRight--condensed {
-  padding-right: var(--brand-box-padding-condensed);
+  padding-right: var(--brand-box-spacing-condensed);
 }
 .Box-paddingRight--normal {
-  padding-right: var(--brand-box-padding-normal);
+  padding-right: var(--brand-box-spacing-normal);
 }
 .Box-paddingRight--spacious {
-  padding-right: var(--brand-box-padding-spacious);
+  padding-right: var(--brand-box-spacing-spacious);
 }
 .Box-paddingRight--4 {
   padding-right: var(--base-size-4);
@@ -551,13 +551,13 @@
 }
 
 .Box-narrow-paddingRight--condensed {
-  padding-right: var(--brand-box-padding-condensed);
+  padding-right: var(--brand-box-spacing-condensed);
 }
 .Box-narrow-paddingRight--normal {
-  padding-right: var(--brand-box-padding-normal);
+  padding-right: var(--brand-box-spacing-normal);
 }
 .Box-narrow-paddingRight--spacious {
-  padding-right: var(--brand-box-padding-spacious);
+  padding-right: var(--brand-box-spacing-spacious);
 }
 .Box-narrow-paddingRight--4 {
   padding-right: var(--base-size-4);
@@ -607,13 +607,13 @@
 
 @media screen and (min-width: 48rem) {
   .Box-regular-paddingRight--condensed {
-    padding-right: var(--brand-box-padding-condensed);
+    padding-right: var(--brand-box-spacing-condensed);
   }
   .Box-regular-paddingRight--normal {
-    padding-right: var(--brand-box-padding-normal);
+    padding-right: var(--brand-box-spacing-normal);
   }
   .Box-regular-paddingRight--spacious {
-    padding-right: var(--brand-box-padding-spacious);
+    padding-right: var(--brand-box-spacing-spacious);
   }
   .Box-regular-paddingRight--4 {
     padding-right: var(--base-size-4);
@@ -664,13 +664,13 @@
 
 @media screen and (min-width: 80rem) {
   .Box-wide-paddingRight--condensed {
-    padding-right: var(--brand-box-padding-condensed);
+    padding-right: var(--brand-box-spacing-condensed);
   }
   .Box-wide-paddingRight--normal {
-    padding-right: var(--brand-box-padding-normal);
+    padding-right: var(--brand-box-spacing-normal);
   }
   .Box-wide-paddingRight--spacious {
-    padding-right: var(--brand-box-padding-spacious);
+    padding-right: var(--brand-box-spacing-spacious);
   }
   .Box-wide-paddingRight--4 {
     padding-right: var(--base-size-4);
@@ -722,13 +722,13 @@
  * 4. Padding bottom
  */
 .Box-paddingBottom--condensed {
-  padding-bottom: var(--brand-box-padding-condensed);
+  padding-bottom: var(--brand-box-spacing-condensed);
 }
 .Box-paddingBottom--normal {
-  padding-bottom: var(--brand-box-padding-normal);
+  padding-bottom: var(--brand-box-spacing-normal);
 }
 .Box-paddingBottom--spacious {
-  padding-bottom: var(--brand-box-padding-spacious);
+  padding-bottom: var(--brand-box-spacing-spacious);
 }
 .Box-paddingBottom--4 {
   padding-bottom: var(--base-size-4);
@@ -783,13 +783,13 @@
 }
 
 .Box-narrow-paddingBottom--condensed {
-  padding-bottom: var(--brand-box-padding-condensed);
+  padding-bottom: var(--brand-box-spacing-condensed);
 }
 .Box-narrow-paddingBottom--normal {
-  padding-bottom: var(--brand-box-padding-normal);
+  padding-bottom: var(--brand-box-spacing-normal);
 }
 .Box-narrow-paddingBottom--spacious {
-  padding-bottom: var(--brand-box-padding-spacious);
+  padding-bottom: var(--brand-box-spacing-spacious);
 }
 .Box-narrow-paddingBottom--4 {
   padding-bottom: var(--base-size-4);
@@ -839,13 +839,13 @@
 
 @media screen and (min-width: 48rem) {
   .Box-regular-paddingBottom--condensed {
-    padding-bottom: var(--brand-box-padding-condensed);
+    padding-bottom: var(--brand-box-spacing-condensed);
   }
   .Box-regular-paddingBottom--normal {
-    padding-bottom: var(--brand-box-padding-normal);
+    padding-bottom: var(--brand-box-spacing-normal);
   }
   .Box-regular-paddingBottom--spacious {
-    padding-bottom: var(--brand-box-padding-spacious);
+    padding-bottom: var(--brand-box-spacing-spacious);
   }
   .Box-regular-paddingBottom--4 {
     padding-bottom: var(--base-size-4);
@@ -896,13 +896,13 @@
 
 @media screen and (min-width: 80rem) {
   .Box-wide-paddingBottom--condensed {
-    padding-bottom: var(--brand-box-padding-condensed);
+    padding-bottom: var(--brand-box-spacing-condensed);
   }
   .Box-wide-paddingBottom--normal {
-    padding-bottom: var(--brand-box-padding-normal);
+    padding-bottom: var(--brand-box-spacing-normal);
   }
   .Box-wide-paddingBottom--spacious {
-    padding-bottom: var(--brand-box-padding-spacious);
+    padding-bottom: var(--brand-box-spacing-spacious);
   }
   .Box-wide-paddingBottom--4 {
     padding-bottom: var(--base-size-4);
@@ -955,13 +955,13 @@
  * 5. Padding Left
  */
 .Box-paddingLeft--condensed {
-  padding-left: var(--brand-box-padding-condensed);
+  padding-left: var(--brand-box-spacing-condensed);
 }
 .Box-paddingLeft--normal {
-  padding-left: var(--brand-box-padding-normal);
+  padding-left: var(--brand-box-spacing-normal);
 }
 .Box-paddingLeft--spacious {
-  padding-left: var(--brand-box-padding-spacious);
+  padding-left: var(--brand-box-spacing-spacious);
 }
 .Box-paddingLeft--4 {
   padding-left: var(--base-size-4);
@@ -1016,13 +1016,13 @@
 }
 
 .Box-narrow-paddingLeft--condensed {
-  padding-left: var(--brand-box-padding-condensed);
+  padding-left: var(--brand-box-spacing-condensed);
 }
 .Box-narrow-paddingLeft--normal {
-  padding-left: var(--brand-box-padding-normal);
+  padding-left: var(--brand-box-spacing-normal);
 }
 .Box-narrow-paddingLeft--spacious {
-  padding-left: var(--brand-box-padding-spacious);
+  padding-left: var(--brand-box-spacing-spacious);
 }
 .Box-narrow-paddingLeft--4 {
   padding-left: var(--base-size-4);
@@ -1072,13 +1072,13 @@
 
 @media screen and (min-width: 48rem) {
   .Box-regular-paddingLeft--condensed {
-    padding-left: var(--brand-box-padding-condensed);
+    padding-left: var(--brand-box-spacing-condensed);
   }
   .Box-regular-paddingLeft--normal {
-    padding-left: var(--brand-box-padding-normal);
+    padding-left: var(--brand-box-spacing-normal);
   }
   .Box-regular-paddingLeft--spacious {
-    padding-left: var(--brand-box-padding-spacious);
+    padding-left: var(--brand-box-spacing-spacious);
   }
   .Box-regular-paddingLeft--4 {
     padding-left: var(--base-size-4);
@@ -1129,13 +1129,13 @@
 
 @media screen and (min-width: 80rem) {
   .Box-wide-paddingLeft--condensed {
-    padding-left: var(--brand-box-padding-condensed);
+    padding-left: var(--brand-box-spacing-condensed);
   }
   .Box-wide-paddingLeft--normal {
-    padding-left: var(--brand-box-padding-normal);
+    padding-left: var(--brand-box-spacing-normal);
   }
   .Box-wide-paddingLeft--spacious {
-    padding-left: var(--brand-box-padding-spacious);
+    padding-left: var(--brand-box-spacing-spacious);
   }
   .Box-wide-paddingLeft--4 {
     padding-left: var(--base-size-4);
@@ -1188,13 +1188,13 @@
  * 6. Margin
  */
 .Box-margin--condensed {
-  margin: var(--brand-box-padding-condensed);
+  margin: var(--brand-box-spacing-condensed);
 }
 .Box-margin--normal {
-  margin: var(--brand-box-padding-normal);
+  margin: var(--brand-box-spacing-normal);
 }
 .Box-margin--spacious {
-  margin: var(--brand-box-padding-spacious);
+  margin: var(--brand-box-spacing-spacious);
 }
 .Box-margin--4 {
   margin: var(--base-size-4);
@@ -1248,13 +1248,13 @@
   margin: var(--base-size-128);
 }
 .Box-narrow-margin--condensed {
-  margin: var(--brand-box-padding-condensed);
+  margin: var(--brand-box-spacing-condensed);
 }
 .Box-narrow-margin--normal {
-  margin: var(--brand-box-padding-normal);
+  margin: var(--brand-box-spacing-normal);
 }
 .Box-narrow-margin--spacious {
-  margin: var(--brand-box-padding-spacious);
+  margin: var(--brand-box-spacing-spacious);
 }
 .Box-narrow-margin--4 {
   margin: var(--base-size-4);
@@ -1304,13 +1304,13 @@
 
 @media screen and (min-width: 48rem) {
   .Box-regular-margin--condensed {
-    margin: var(--brand-box-padding-condensed);
+    margin: var(--brand-box-spacing-condensed);
   }
   .Box-regular-margin--normal {
-    margin: var(--brand-box-padding-normal);
+    margin: var(--brand-box-spacing-normal);
   }
   .Box-regular-margin--spacious {
-    margin: var(--brand-box-padding-spacious);
+    margin: var(--brand-box-spacing-spacious);
   }
   .Box-regular-margin--4 {
     margin: var(--base-size-4);
@@ -1361,13 +1361,13 @@
 
 @media screen and (min-width: 80rem) {
   .Box-wide-margin--condensed {
-    margin: var(--brand-box-padding-condensed);
+    margin: var(--brand-box-spacing-condensed);
   }
   .Box-wide-margin--normal {
-    margin: var(--brand-box-padding-normal);
+    margin: var(--brand-box-spacing-normal);
   }
   .Box-wide-margin--spacious {
-    margin: var(--brand-box-padding-spacious);
+    margin: var(--brand-box-spacing-spacious);
   }
   .Box-wide-margin--4 {
     margin: var(--base-size-4);
@@ -1420,13 +1420,13 @@
  * 7. Margin Top
  */
 .Box-marginTop--condensed {
-  margin-top: var(--brand-box-padding-condensed);
+  margin-top: var(--brand-box-spacing-condensed);
 }
 .Box-marginTop--normal {
-  margin-top: var(--brand-box-padding-normal);
+  margin-top: var(--brand-box-spacing-normal);
 }
 .Box-marginTop--spacious {
-  margin-top: var(--brand-box-padding-spacious);
+  margin-top: var(--brand-box-spacing-spacious);
 }
 .Box-marginTop--4 {
   margin-top: var(--base-size-4);
@@ -1481,13 +1481,13 @@
 }
 
 .Box-narrow-marginTop--condensed {
-  margin-top: var(--brand-box-padding-condensed);
+  margin-top: var(--brand-box-spacing-condensed);
 }
 .Box-narrow-marginTop--normal {
-  margin-top: var(--brand-box-padding-normal);
+  margin-top: var(--brand-box-spacing-normal);
 }
 .Box-narrow-marginTop--spacious {
-  margin-top: var(--brand-box-padding-spacious);
+  margin-top: var(--brand-box-spacing-spacious);
 }
 .Box-narrow-marginTop--4 {
   margin-top: var(--base-size-4);
@@ -1537,13 +1537,13 @@
 
 @media screen and (min-width: 48rem) {
   .Box-regular-marginTop--condensed {
-    margin-top: var(--brand-box-padding-condensed);
+    margin-top: var(--brand-box-spacing-condensed);
   }
   .Box-regular-marginTop--normal {
-    margin-top: var(--brand-box-padding-normal);
+    margin-top: var(--brand-box-spacing-normal);
   }
   .Box-regular-marginTop--spacious {
-    margin-top: var(--brand-box-padding-spacious);
+    margin-top: var(--brand-box-spacing-spacious);
   }
   .Box-regular-marginTop--4 {
     margin-top: var(--base-size-4);
@@ -1594,13 +1594,13 @@
 
 @media screen and (min-width: 80rem) {
   .Box-wide-marginTop--condensed {
-    margin-top: var(--brand-box-padding-condensed);
+    margin-top: var(--brand-box-spacing-condensed);
   }
   .Box-wide-marginTop--normal {
-    margin-top: var(--brand-box-padding-normal);
+    margin-top: var(--brand-box-spacing-normal);
   }
   .Box-wide-marginTop--spacious {
-    margin-top: var(--brand-box-padding-spacious);
+    margin-top: var(--brand-box-spacing-spacious);
   }
   .Box-wide-marginTop--4 {
     margin-top: var(--base-size-4);
@@ -1653,13 +1653,13 @@
  * 8. Margin Right
  */
 .Box-marginRight--condensed {
-  margin-right: var(--brand-box-padding-condensed);
+  margin-right: var(--brand-box-spacing-condensed);
 }
 .Box-marginRight--normal {
-  margin-right: var(--brand-box-padding-normal);
+  margin-right: var(--brand-box-spacing-normal);
 }
 .Box-marginRight--spacious {
-  margin-right: var(--brand-box-padding-spacious);
+  margin-right: var(--brand-box-spacing-spacious);
 }
 .Box-marginRight--4 {
   margin-right: var(--base-size-4);
@@ -1714,13 +1714,13 @@
 }
 
 .Box-narrow-marginRight--condensed {
-  margin-right: var(--brand-box-padding-condensed);
+  margin-right: var(--brand-box-spacing-condensed);
 }
 .Box-narrow-marginRight--normal {
-  margin-right: var(--brand-box-padding-normal);
+  margin-right: var(--brand-box-spacing-normal);
 }
 .Box-narrow-marginRight--spacious {
-  margin-right: var(--brand-box-padding-spacious);
+  margin-right: var(--brand-box-spacing-spacious);
 }
 .Box-narrow-marginRight--4 {
   margin-right: var(--base-size-4);
@@ -1770,13 +1770,13 @@
 
 @media screen and (min-width: 48rem) {
   .Box-regular-marginRight--condensed {
-    margin-right: var(--brand-box-padding-condensed);
+    margin-right: var(--brand-box-spacing-condensed);
   }
   .Box-regular-marginRight--normal {
-    margin-right: var(--brand-box-padding-normal);
+    margin-right: var(--brand-box-spacing-normal);
   }
   .Box-regular-marginRight--spacious {
-    margin-right: var(--brand-box-padding-spacious);
+    margin-right: var(--brand-box-spacing-spacious);
   }
   .Box-regular-marginRight--4 {
     margin-right: var(--base-size-4);
@@ -1827,13 +1827,13 @@
 
 @media screen and (min-width: 80rem) {
   .Box-wide-marginRight--condensed {
-    margin-right: var(--brand-box-padding-condensed);
+    margin-right: var(--brand-box-spacing-condensed);
   }
   .Box-wide-marginRight--normal {
-    margin-right: var(--brand-box-padding-normal);
+    margin-right: var(--brand-box-spacing-normal);
   }
   .Box-wide-marginRight--spacious {
-    margin-right: var(--brand-box-padding-spacious);
+    margin-right: var(--brand-box-spacing-spacious);
   }
   .Box-wide-marginRight--4 {
     margin-right: var(--base-size-4);
@@ -1885,13 +1885,13 @@
  * 9. Margin bottom
  */
 .Box-marginBottom--condensed {
-  margin-bottom: var(--brand-box-padding-condensed);
+  margin-bottom: var(--brand-box-spacing-condensed);
 }
 .Box-marginBottom--normal {
-  margin-bottom: var(--brand-box-padding-normal);
+  margin-bottom: var(--brand-box-spacing-normal);
 }
 .Box-marginBottom--spacious {
-  margin-bottom: var(--brand-box-padding-spacious);
+  margin-bottom: var(--brand-box-spacing-spacious);
 }
 .Box-marginBottom--4 {
   margin-bottom: var(--base-size-4);
@@ -1946,13 +1946,13 @@
 }
 
 .Box-narrow-marginBottom--condensed {
-  margin-bottom: var(--brand-box-padding-condensed);
+  margin-bottom: var(--brand-box-spacing-condensed);
 }
 .Box-narrow-marginBottom--normal {
-  margin-bottom: var(--brand-box-padding-normal);
+  margin-bottom: var(--brand-box-spacing-normal);
 }
 .Box-narrow-marginBottom--spacious {
-  margin-bottom: var(--brand-box-padding-spacious);
+  margin-bottom: var(--brand-box-spacing-spacious);
 }
 .Box-narrow-marginBottom--4 {
   margin-bottom: var(--base-size-4);
@@ -2002,13 +2002,13 @@
 
 @media screen and (min-width: 48rem) {
   .Box-regular-marginBottom--condensed {
-    margin-bottom: var(--brand-box-padding-condensed);
+    margin-bottom: var(--brand-box-spacing-condensed);
   }
   .Box-regular-marginBottom--normal {
-    margin-bottom: var(--brand-box-padding-normal);
+    margin-bottom: var(--brand-box-spacing-normal);
   }
   .Box-regular-marginBottom--spacious {
-    margin-bottom: var(--brand-box-padding-spacious);
+    margin-bottom: var(--brand-box-spacing-spacious);
   }
   .Box-regular-marginBottom--4 {
     margin-bottom: var(--base-size-4);
@@ -2059,13 +2059,13 @@
 
 @media screen and (min-width: 80rem) {
   .Box-wide-marginBottom--condensed {
-    margin-bottom: var(--brand-box-padding-condensed);
+    margin-bottom: var(--brand-box-spacing-condensed);
   }
   .Box-wide-marginBottom--normal {
-    margin-bottom: var(--brand-box-padding-normal);
+    margin-bottom: var(--brand-box-spacing-normal);
   }
   .Box-wide-marginBottom--spacious {
-    margin-bottom: var(--brand-box-padding-spacious);
+    margin-bottom: var(--brand-box-spacing-spacious);
   }
   .Box-wide-marginBottom--4 {
     margin-bottom: var(--base-size-4);
@@ -2118,13 +2118,13 @@
  * 10. Margin Left
  */
 .Box-marginLeft--condensed {
-  margin-left: var(--brand-box-padding-condensed);
+  margin-left: var(--brand-box-spacing-condensed);
 }
 .Box-marginLeft--normal {
-  margin-left: var(--brand-box-padding-normal);
+  margin-left: var(--brand-box-spacing-normal);
 }
 .Box-marginLeft--spacious {
-  margin-left: var(--brand-box-padding-spacious);
+  margin-left: var(--brand-box-spacing-spacious);
 }
 .Box-marginLeft--4 {
   margin-left: var(--base-size-4);
@@ -2179,13 +2179,13 @@
 }
 
 .Box-narrow-marginLeft--condensed {
-  margin-left: var(--brand-box-padding-condensed);
+  margin-left: var(--brand-box-spacing-condensed);
 }
 .Box-narrow-marginLeft--normal {
-  margin-left: var(--brand-box-padding-normal);
+  margin-left: var(--brand-box-spacing-normal);
 }
 .Box-narrow-marginLeft--spacious {
-  margin-left: var(--brand-box-padding-spacious);
+  margin-left: var(--brand-box-spacing-spacious);
 }
 .Box-narrow-marginLeft--4 {
   margin-left: var(--base-size-4);
@@ -2235,13 +2235,13 @@
 
 @media screen and (min-width: 48rem) {
   .Box-regular-marginLeft--condensed {
-    margin-left: var(--brand-box-padding-condensed);
+    margin-left: var(--brand-box-spacing-condensed);
   }
   .Box-regular-marginLeft--normal {
-    margin-left: var(--brand-box-padding-normal);
+    margin-left: var(--brand-box-spacing-normal);
   }
   .Box-regular-marginLeft--spacious {
-    margin-left: var(--brand-box-padding-spacious);
+    margin-left: var(--brand-box-spacing-spacious);
   }
   .Box-regular-marginLeft--4 {
     margin-left: var(--base-size-4);
@@ -2292,13 +2292,13 @@
 
 @media screen and (min-width: 80rem) {
   .Box-wide-marginLeft--condensed {
-    margin-left: var(--brand-box-padding-condensed);
+    margin-left: var(--brand-box-spacing-condensed);
   }
   .Box-wide-marginLeft--normal {
-    margin-left: var(--brand-box-padding-normal);
+    margin-left: var(--brand-box-spacing-normal);
   }
   .Box-wide-marginLeft--spacious {
-    margin-left: var(--brand-box-padding-spacious);
+    margin-left: var(--brand-box-spacing-spacious);
   }
   .Box-wide-marginLeft--4 {
     margin-left: var(--base-size-4);
