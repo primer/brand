@@ -36,12 +36,7 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
     )
 
     return (
-      <section
-        className={clsx(styles.Hero, styles[`Hero--align-${align}`], className)}
-        ref={ref}
-        aria-labelledby="hero-section-brand-heading"
-        {...rest}
-      >
+      <section className={clsx(styles.Hero, styles[`Hero--align-${align}`], className)} ref={ref} {...rest}>
         {HeroChildren}
         <div className={styles['Hero-actions']}>{HeroActions}</div>
       </section>
@@ -53,7 +48,7 @@ type HeroHeadingProps = Omit<HeadingProps, 'as'>
 
 const HeroHeading = forwardRef<HTMLHeadingElement, HeroHeadingProps>(({children, ...rest}, ref) => {
   return (
-    <Heading id="hero-section-brand-heading" className={styles['Hero-heading']} as="h1" ref={ref} {...rest}>
+    <Heading className={styles['Hero-heading']} as="h1" ref={ref} {...rest}>
       {children}
     </Heading>
   )
