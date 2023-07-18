@@ -33,7 +33,7 @@ export type ButtonBaseProps = {
   /**
    * The size variations available in Button
    */
-  size?: (typeof ButtonSizes)[number];
+  size?: (typeof ButtonSizes)[number]
   /**
    * A flag to show/hide the arrow icon
    */
