@@ -12,7 +12,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 import styles from './Button.module.css'
 
 export const ButtonVariants = ['primary', 'secondary', 'subtle'] as const
-export const ButtonSizes = ['medium', 'large'] as const;
+export const ButtonSizes = ['medium', 'large'] as const
 
 export const defaultButtonVariant = ButtonVariants[1]
 export const defaultButtonSize = ButtonSizes[0]
