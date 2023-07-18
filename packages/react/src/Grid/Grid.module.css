@@ -366,6 +366,22 @@
     grid-column: auto / span 8;
   }
 
+  .Grid__column--medium-span-9 {
+    grid-column: auto / span 9;
+  }
+
+  .Grid__column--medium-span-10 {
+    grid-column: auto / span 10;
+  }
+
+  .Grid__column--medium-span-11 {
+    grid-column: auto / span 11;
+  }
+
+  .Grid__column--medium-span-12 {
+    grid-column: auto / span 12;
+  }
+
   /* MEDIUM start */
   .Grid__column--medium-start-1 {
     grid-column-start: 1;

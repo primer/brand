@@ -82,6 +82,10 @@ declare const styles: {
   readonly "Grid__column--medium-span-6": string;
   readonly "Grid__column--medium-span-7": string;
   readonly "Grid__column--medium-span-8": string;
+  readonly "Grid__column--medium-span-9": string;
+  readonly "Grid__column--medium-span-10": string;
+  readonly "Grid__column--medium-span-11": string;
+  readonly "Grid__column--medium-span-12": string;
   readonly "Grid__column--medium-start-1": string;
   readonly "Grid__column--medium-start-2": string;
   readonly "Grid__column--medium-start-3": string;
