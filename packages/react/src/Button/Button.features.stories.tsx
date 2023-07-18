@@ -84,9 +84,9 @@ export const Large = () => (
   </Button>
 )
 
-export const FullWidth = () => (
-  <Button as="a" variant="primary" size="full-width" href="#">
-    Full Width
+export const Block = () => (
+  <Button as="a" variant="primary" block="true" href="#">
+    Block
   </Button>
 )
 
