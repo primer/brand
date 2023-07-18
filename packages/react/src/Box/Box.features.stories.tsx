@@ -36,7 +36,7 @@ export const DirectionalPaddingTop = () => (
   <Stack direction="horizontal" alignItems="center" className={styles.spacingContainer}>
     {BoxSpacingValues.map(value => (
       <div className={styles.paddingItem} key={value}>
-        <Box paddingTop={value}>
+        <Box paddingBlockStart={value}>
           <Text size="200" className={styles.paddingInnerItem}>
             {value}
           </Text>
@@ -52,7 +52,7 @@ export const DirectionalPaddingRight = () => (
   <Stack direction="horizontal" alignItems="center" className={styles.spacingContainer}>
     {BoxSpacingValues.map(value => (
       <div className={styles.paddingItem} key={value}>
-        <Box paddingRight={value}>
+        <Box paddingInlineEnd={value}>
           <Text size="200" className={styles.paddingInnerItem}>
             {value}
           </Text>
@@ -68,7 +68,7 @@ export const DirectionalPaddingBottom = () => (
   <Stack direction="horizontal" alignItems="center" className={styles.spacingContainer}>
     {BoxSpacingValues.map(value => (
       <div className={styles.paddingItem} key={value}>
-        <Box paddingBottom={value}>
+        <Box paddingBlockEnd={value}>
           <Text size="200" className={styles.paddingInnerItem}>
             {value}
           </Text>
@@ -84,7 +84,7 @@ export const DirectionalPaddingLeft = () => (
   <Stack direction="horizontal" alignItems="center" className={styles.spacingContainer}>
     {BoxSpacingValues.map(value => (
       <div className={styles.paddingItem} key={value}>
-        <Box paddingLeft={value}>
+        <Box paddingInlineStart={value}>
           <Text size="200" className={styles.paddingInnerItem}>
             {value}
           </Text>
@@ -114,7 +114,7 @@ export const DirectionalMarginTop = () => (
   <Stack direction="horizontal" alignItems="center" className={styles.spacingContainer}>
     {BoxSpacingValues.map(value => (
       <RedlineBackground key={value} className={styles.marginOuterItem}>
-        <Box marginTop={value}>
+        <Box marginBlockStart={value}>
           <Text size="200" className={styles.marginInnerItem}>
             {value}
           </Text>
@@ -130,7 +130,7 @@ export const DirectionalMarginRight = () => (
   <Stack direction="horizontal" alignItems="center" className={styles.spacingContainer}>
     {BoxSpacingValues.map(value => (
       <RedlineBackground key={value} className={styles.marginOuterItem}>
-        <Box marginRight={value}>
+        <Box marginInlineEnd={value}>
           <Text size="200" className={styles.marginInnerItem}>
             {value}
           </Text>
@@ -146,7 +146,7 @@ export const DirectionalMarginBottom = () => (
   <Stack direction="horizontal" alignItems="center" className={styles.spacingContainer}>
     {BoxSpacingValues.map(value => (
       <RedlineBackground key={value} className={styles.marginOuterItem}>
-        <Box marginBottom={value}>
+        <Box marginBlockEnd={value}>
           <Text size="200" className={styles.marginInnerItem}>
             {value}
           </Text>
@@ -162,7 +162,7 @@ export const DirectionalMarginLeft = () => (
   <Stack direction="horizontal" alignItems="center" className={styles.spacingContainer}>
     {BoxSpacingValues.map(value => (
       <RedlineBackground key={value} className={styles.marginOuterItem}>
-        <Box marginLeft={value}>
+        <Box marginInlineStart={value}>
           <Text size="200" className={styles.marginInnerItem}>
             {value}
           </Text>

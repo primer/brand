@@ -38,19 +38,19 @@ type BoxProps = {
   /**
    * Adding padding on the internal top side of the Box
    */
-  paddingTop?: SpacingValues | ResponsiveSpacingMap
+  paddingBlockStart?: SpacingValues | ResponsiveSpacingMap
   /**
    * Adding padding on the internal right side of the Box
    */
-  paddingRight?: SpacingValues | ResponsiveSpacingMap
+  paddingInlineEnd?: SpacingValues | ResponsiveSpacingMap
   /**
    * Adding padding on the internal bottom side of the Box
    */
-  paddingBottom?: SpacingValues | ResponsiveSpacingMap
+  paddingBlockEnd?: SpacingValues | ResponsiveSpacingMap
   /**
    * Adding padding on the internal left side of the Box
    */
-  paddingLeft?: SpacingValues | ResponsiveSpacingMap
+  paddingInlineStart?: SpacingValues | ResponsiveSpacingMap
   /*
    * Adding margin on all external sides of the Box
    */
@@ -58,19 +58,19 @@ type BoxProps = {
   /**
    * Adding margin on the external top side of the Box
    */
-  marginTop?: SpacingValues | ResponsiveSpacingMap
+  marginBlockStart?: SpacingValues | ResponsiveSpacingMap
   /**
    * Adding margin on the external right side of the Box
    */
-  marginRight?: SpacingValues | ResponsiveSpacingMap
+  marginInlineEnd?: SpacingValues | ResponsiveSpacingMap
   /**
    * Adding margin on the external bottom side of the Box
    */
-  marginBottom?: SpacingValues | ResponsiveSpacingMap
+  marginBlockEnd?: SpacingValues | ResponsiveSpacingMap
   /**
    * Adding margin on the external left side of the Box
    */
-  marginLeft?: SpacingValues | ResponsiveSpacingMap
+  marginInlineStart?: SpacingValues | ResponsiveSpacingMap
   /*
    * Apply a system-level background color
    */
@@ -135,15 +135,15 @@ export const Box = ({
   'data-testid': testId,
   style,
   padding,
-  paddingTop,
-  paddingRight,
-  paddingBottom,
-  paddingLeft,
+  paddingBlockStart,
+  paddingInlineEnd,
+  paddingBlockEnd,
+  paddingInlineStart,
   margin,
-  marginTop,
-  marginRight,
-  marginBottom,
-  marginLeft,
+  marginBlockStart,
+  marginInlineEnd,
+  marginBlockEnd,
+  marginInlineStart,
   backgroundColor,
   borderRadius,
   borderWidth,
@@ -153,15 +153,24 @@ export const Box = ({
   const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
 
   const paddingClasses = useMemo(() => classBuilder('padding', padding), [padding])
-  const paddingTopClasses = useMemo(() => classBuilder('paddingTop', paddingTop), [paddingTop])
-  const paddingRightClasses = useMemo(() => classBuilder('paddingRight', paddingRight), [paddingRight])
-  const paddingBottomClasses = useMemo(() => classBuilder('paddingBottom', paddingBottom), [paddingBottom])
-  const paddingLeftClasses = useMemo(() => classBuilder('paddingLeft', paddingLeft), [paddingLeft])
+  const paddingBlockStartClasses = useMemo(
+    () => classBuilder('paddingBlockStart', paddingBlockStart),
+    [paddingBlockStart],
+  )
+  const paddingInlineEndClasses = useMemo(() => classBuilder('paddingInlineEnd', paddingInlineEnd), [paddingInlineEnd])
+  const paddingBlockEndClasses = useMemo(() => classBuilder('paddingBlockEnd', paddingBlockEnd), [paddingBlockEnd])
+  const paddingInlineStartClasses = useMemo(
+    () => classBuilder('paddingInlineStart', paddingInlineStart),
+    [paddingInlineStart],
+  )
   const marginClasses = useMemo(() => classBuilder('margin', margin), [margin])
-  const marginTopClasses = useMemo(() => classBuilder('marginTop', marginTop), [marginTop])
-  const marginRightClasses = useMemo(() => classBuilder('marginRight', marginRight), [marginRight])
-  const marginBottomClasses = useMemo(() => classBuilder('marginBottom', marginBottom), [marginBottom])
-  const marginLeftClasses = useMemo(() => classBuilder('marginLeft', marginLeft), [marginLeft])
+  const marginBlockStartClasses = useMemo(() => classBuilder('marginBlockStart', marginBlockStart), [marginBlockStart])
+  const marginInlineEndClasses = useMemo(() => classBuilder('marginInlineEnd', marginInlineEnd), [marginInlineEnd])
+  const marginBlockEndClasses = useMemo(() => classBuilder('marginBlockEnd', marginBlockEnd), [marginBlockEnd])
+  const marginInlineStartClasses = useMemo(
+    () => classBuilder('marginInlineStart', marginInlineStart),
+    [marginInlineStart],
+  )
   const backgroundColorClasses = useMemo(() => classBuilder('backgroundColor', backgroundColor), [backgroundColor])
   const borderRadiusClasses = useMemo(() => classBuilder('borderRadius', borderRadius), [borderRadius])
   const borderWidthClasses = useMemo(() => classBuilder('borderWidth', borderWidth), [borderWidth])
@@ -173,15 +182,15 @@ export const Box = ({
       className={clsx(
         animationClasses,
         paddingClasses,
-        paddingTopClasses,
-        paddingRightClasses,
-        paddingBottomClasses,
-        paddingLeftClasses,
+        paddingBlockStartClasses,
+        paddingInlineEndClasses,
+        paddingBlockEndClasses,
+        paddingInlineStartClasses,
         marginClasses,
-        marginTopClasses,
-        marginRightClasses,
-        marginBottomClasses,
-        marginLeftClasses,
+        marginBlockStartClasses,
+        marginInlineEndClasses,
+        marginBlockEndClasses,
+        marginInlineStartClasses,
         backgroundColorClasses,
         borderRadiusClasses,
         borderWidthClasses,
