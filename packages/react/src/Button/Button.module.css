@@ -25,8 +25,7 @@
 
 .Button__text {
   position: relative;
-  top: 0.5px;
-  /* visual offset for off-center mona sans glyphs */
+  top: 0.5px; /* visual offset for off-center mona sans glyphs */
   line-height: var(--brand-text-lineHeight-200);
 }
 
