@@ -32,7 +32,7 @@ export const Padding = () => (
   </Stack>
 )
 
-export const DirectionalPaddingTop = () => (
+export const DirectionalPaddingBlockStart = () => (
   <Stack direction="horizontal" alignItems="center" className={styles.spacingContainer}>
     {BoxSpacingValues.map(value => (
       <div className={styles.paddingItem} key={value}>
@@ -46,9 +46,9 @@ export const DirectionalPaddingTop = () => (
   </Stack>
 )
 
-DirectionalPaddingTop.storyName = 'Directional Padding: Top'
+DirectionalPaddingBlockStart.storyName = 'Directional Padding: Block start (top)'
 
-export const DirectionalPaddingRight = () => (
+export const DirectionalPaddingInlineEnd = () => (
   <Stack direction="horizontal" alignItems="center" className={styles.spacingContainer}>
     {BoxSpacingValues.map(value => (
       <div className={styles.paddingItem} key={value}>
@@ -62,9 +62,9 @@ export const DirectionalPaddingRight = () => (
   </Stack>
 )
 
-DirectionalPaddingRight.storyName = 'Directional Padding: Right'
+DirectionalPaddingInlineEnd.storyName = 'Directional Padding: Inline end (right)'
 
-export const DirectionalPaddingBottom = () => (
+export const DirectionalPaddingBlockEnd = () => (
   <Stack direction="horizontal" alignItems="center" className={styles.spacingContainer}>
     {BoxSpacingValues.map(value => (
       <div className={styles.paddingItem} key={value}>
@@ -78,9 +78,9 @@ export const DirectionalPaddingBottom = () => (
   </Stack>
 )
 
-DirectionalPaddingBottom.storyName = 'Directional Padding: Bottom'
+DirectionalPaddingBlockEnd.storyName = 'Directional Padding: Block end (bottom)'
 
-export const DirectionalPaddingLeft = () => (
+export const DirectionalPaddingInlineStart = () => (
   <Stack direction="horizontal" alignItems="center" className={styles.spacingContainer}>
     {BoxSpacingValues.map(value => (
       <div className={styles.paddingItem} key={value}>
@@ -94,7 +94,7 @@ export const DirectionalPaddingLeft = () => (
   </Stack>
 )
 
-DirectionalPaddingLeft.storyName = 'Directional Padding: Left'
+DirectionalPaddingInlineStart.storyName = 'Directional Padding: Inline start (left)'
 
 export const Margin = () => (
   <Stack direction="horizontal" alignItems="center" className={styles.spacingContainer}>
@@ -110,7 +110,7 @@ export const Margin = () => (
   </Stack>
 )
 
-export const DirectionalMarginTop = () => (
+export const DirectionalMarginBlockStart = () => (
   <Stack direction="horizontal" alignItems="center" className={styles.spacingContainer}>
     {BoxSpacingValues.map(value => (
       <RedlineBackground key={value} className={styles.marginOuterItem}>
@@ -124,7 +124,7 @@ export const DirectionalMarginTop = () => (
   </Stack>
 )
 
-DirectionalMarginTop.storyName = 'Directional Margin: Top'
+DirectionalMarginBlockStart.storyName = 'Directional Margin: Block start (top)'
 
 export const DirectionalMarginRight = () => (
   <Stack direction="horizontal" alignItems="center" className={styles.spacingContainer}>
@@ -140,7 +140,7 @@ export const DirectionalMarginRight = () => (
   </Stack>
 )
 
-DirectionalMarginRight.storyName = 'Directional Margin: Right'
+DirectionalMarginRight.storyName = 'Directional Margin: Inline end (right)'
 
 export const DirectionalMarginBottom = () => (
   <Stack direction="horizontal" alignItems="center" className={styles.spacingContainer}>
@@ -156,7 +156,7 @@ export const DirectionalMarginBottom = () => (
   </Stack>
 )
 
-DirectionalMarginBottom.storyName = 'Directional Margin: Bottom'
+DirectionalMarginBottom.storyName = 'Directional Margin: Block end (bottom)'
 
 export const DirectionalMarginLeft = () => (
   <Stack direction="horizontal" alignItems="center" className={styles.spacingContainer}>
@@ -172,7 +172,7 @@ export const DirectionalMarginLeft = () => (
   </Stack>
 )
 
-DirectionalMarginLeft.storyName = 'Directional Margin: Left'
+DirectionalMarginLeft.storyName = 'Directional Margin: Inline start (left)'
 
 export const BackgroundColors = () => (
   <Stack direction="horizontal" alignItems="center" className={styles.spacingContainer}>
