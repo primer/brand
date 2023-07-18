@@ -12,7 +12,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 import styles from './Button.module.css'
 
 export const ButtonVariants = ['primary', 'secondary', 'subtle'] as const
-export const ButtonSizes = ['medium', 'large'] as const
+export const ButtonSizes = ['medium', 'large'] as const;
 
 export const defaultButtonVariant = ButtonVariants[1]
 export const defaultButtonSize = ButtonSizes[0]
@@ -33,11 +33,15 @@ export type ButtonBaseProps = {
   /**
    * The size variations available in Button
    */
-  size?: (typeof ButtonSizes)[number]
+  size?: (typeof ButtonSizes)[number];
   /**
    * A flag to show/hide the arrow icon
    */
   hasArrow?: boolean
+  /**
+   * The Button spans the full width
+   */
+  block?: boolean
 }
 
 export type ButtonProps<C extends React.ElementType> = BaseProps<C> & {
@@ -66,6 +70,7 @@ export const _Button = forwardRef(
       variant = defaultButtonVariant,
       size = defaultButtonSize,
       hasArrow = true,
+      block = false,
       className,
       children,
       disabled,
@@ -149,6 +154,7 @@ export const _Button = forwardRef(
           styles.Button,
           styles[`Button--${variant}`],
           styles[`Button--size-${size}`],
+          block && styles['Button--block'],
           isDisabled && styles[`Button--disabled`],
           animationClasses,
           className,

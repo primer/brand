@@ -25,7 +25,8 @@
 
 .Button__text {
   position: relative;
-  top: 0.5px; /* visual offset for off-center mona sans glyphs */
+  top: 0.5px;
+  /* visual offset for off-center mona sans glyphs */
   line-height: var(--brand-text-lineHeight-200);
 }
 
@@ -137,6 +138,10 @@
   line-height: var(--brand-text-lineHeight-300);
 }
 
+.Button--block {
+  width: 100%;
+}
+
 .Button--disabled,
 .Button--disabled:hover,
 .Button--disabled:focus {
@@ -149,6 +154,7 @@
 }
 
 @media (forced-colors: active) {
+
   .Button--primary,
   .Button--secondary,
   .Button--disabled:hover {

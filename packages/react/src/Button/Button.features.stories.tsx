@@ -84,6 +84,12 @@ export const Large = () => (
   </Button>
 )
 
+export const FullWidth = () => (
+  <Button as="a" variant="primary" size="full-width" href="#">
+    Full Width
+  </Button>
+)
+
 export const Polymorphism = () => (
   <Button
     as="button"
