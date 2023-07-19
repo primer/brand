@@ -4,15 +4,18 @@ status: Experimental
 figma: https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=418%3A8416
 source: https://github.com/primer/brand/blob/main/packages/react/src/River/River.tsx
 storybook: '/brand/storybook/?path=/story/components-river--default'
-description: Use the river component to render text and image pairs.
+description: Use the river component to introduce a feature using a type and media pairing.
 ---
+
+import ComponentLayout from '../../../src/layouts/component-layout'
+export default ComponentLayout
 
 import {Box as Container, Label} from '@primer/react'
 import {
   defaultRiverImageTextRatio,
   defaultRiverAlign,
 } from '@primer/react-brand'
-import {PropTableValues} from '../../src/components'
+import {PropTableValues} from '../../../src/components'
 
 ```js
 import {River} from '@primer/react-brand'
@@ -97,7 +100,7 @@ import {River} from '@primer/react-brand'
       </Text>
     </River.Content>
   </River>
-  {/* 60/40 example */};
+  {/* 60/40 example */}
   <River imageTextRatio="60:40">
     <River.Visual>
       <img
