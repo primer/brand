@@ -6,7 +6,7 @@ module.exports = {
     header: {
       title: 'Primer Design System',
     },
-    shortName: 'Brand',
+    shortName: '',
     description: 'React components for GitHub marketing pages',
   },
   plugins: [
