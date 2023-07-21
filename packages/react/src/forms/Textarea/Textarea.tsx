@@ -94,7 +94,7 @@ const _Textarea = (
         placeholder={placeholder}
         disabled={disabled}
         aria-invalid={validationStatus === 'error'}
-        aria-required={required ? 'true' : 'false'}
+        required={required}
         rows={rows}
         cols={cols}
         {...rest}
