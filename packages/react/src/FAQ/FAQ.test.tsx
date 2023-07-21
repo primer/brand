@@ -16,15 +16,18 @@ describe('FAQ', () => {
   afterEach(cleanup)
 
   it('renders into the document', () => {
+    const mockGroupId = 'mock-group-id'
     const {getByText, getByRole} = render(
       <FAQ>
-        <FAQ.Heading>{mockHeading}</FAQ.Heading>
-        <FAQ.Item>
-          <FAQ.Question>{mockQuestion}</FAQ.Question>
-          <FAQ.Answer>
-            <p>{mockFAQAnswer}</p>
-          </FAQ.Answer>
-        </FAQ.Item>
+        <FAQ.Heading id={mockGroupId}>{mockHeading}</FAQ.Heading>
+        <FAQ.Group aria-labelledby={mockGroupId}>
+          <FAQ.Item>
+            <FAQ.Question>{mockQuestion}</FAQ.Question>
+            <FAQ.Answer>
+              <p>{mockFAQAnswer}</p>
+            </FAQ.Answer>
+          </FAQ.Item>
+        </FAQ.Group>
       </FAQ>,
     )
     const headingEl = getByRole('heading', {level: 3, name: mockHeading})
@@ -37,15 +40,18 @@ describe('FAQ', () => {
   })
 
   it('has no a11y violations', async () => {
+    const mockGroupId = 'mock-group-id'
     const {container} = render(
       <FAQ>
-        <FAQ.Heading>{mockHeading}</FAQ.Heading>
-        <FAQ.Item>
-          <FAQ.Question>{mockQuestion}</FAQ.Question>
-          <FAQ.Answer>
-            <p>{mockFAQAnswer}</p>
-          </FAQ.Answer>
-        </FAQ.Item>
+        <FAQ.Heading id={mockGroupId}>{mockHeading}</FAQ.Heading>
+        <FAQ.Group aria-labelledby={mockGroupId}>
+          <FAQ.Item>
+            <FAQ.Question>{mockQuestion}</FAQ.Question>
+            <FAQ.Answer>
+              <p>{mockFAQAnswer}</p>
+            </FAQ.Answer>
+          </FAQ.Item>
+        </FAQ.Group>
       </FAQ>,
     )
     const results = await axe(container)
@@ -54,15 +60,18 @@ describe('FAQ', () => {
   })
 
   it('hides answers by default', () => {
+    const mockGroupId = 'mock-group-id'
     const {getByText} = render(
       <FAQ>
-        <FAQ.Heading>{mockHeading}</FAQ.Heading>
-        <FAQ.Item>
-          <FAQ.Question>{mockQuestion}</FAQ.Question>
-          <FAQ.Answer>
-            <p>{mockFAQAnswer}</p>
-          </FAQ.Answer>
-        </FAQ.Item>
+        <FAQ.Heading id={mockGroupId}>{mockHeading}</FAQ.Heading>
+        <FAQ.Group aria-labelledby={mockGroupId}>
+          <FAQ.Item>
+            <FAQ.Question>{mockQuestion}</FAQ.Question>
+            <FAQ.Answer>
+              <p>{mockFAQAnswer}</p>
+            </FAQ.Answer>
+          </FAQ.Item>
+        </FAQ.Group>
       </FAQ>,
     )
     const answerEl = getByText(mockFAQAnswer)
@@ -71,15 +80,18 @@ describe('FAQ', () => {
   })
 
   it('can optionally show answer immediately using the open prop', () => {
+    const mockGroupId = 'mock-group-id'
     const {getByText} = render(
       <FAQ>
-        <FAQ.Heading>{mockHeading}</FAQ.Heading>
-        <FAQ.Item open data-testid={questionRoot}>
-          <FAQ.Question>{mockQuestion}</FAQ.Question>
-          <FAQ.Answer>
-            <p>{mockFAQAnswer}</p>
-          </FAQ.Answer>
-        </FAQ.Item>
+        <FAQ.Heading id={mockGroupId}>{mockHeading}</FAQ.Heading>
+        <FAQ.Group aria-labelledby={mockGroupId}>
+          <FAQ.Item open data-testid={questionRoot}>
+            <FAQ.Question>{mockQuestion}</FAQ.Question>
+            <FAQ.Answer>
+              <p>{mockFAQAnswer}</p>
+            </FAQ.Answer>
+          </FAQ.Item>
+        </FAQ.Group>
       </FAQ>,
     )
     const answerEl = getByText(mockFAQAnswer)
@@ -88,15 +100,18 @@ describe('FAQ', () => {
   })
 
   it('shows answer by after clicking on the corresponding question', () => {
+    const mockGroupId = 'mock-group-id'
     const {getByText, getByTestId} = render(
       <FAQ>
-        <FAQ.Heading>{mockHeading}</FAQ.Heading>
-        <FAQ.Item data-testid={questionRoot}>
-          <FAQ.Question>{mockQuestion}</FAQ.Question>
-          <FAQ.Answer>
-            <p>{mockFAQAnswer}</p>
-          </FAQ.Answer>
-        </FAQ.Item>
+        <FAQ.Heading id={mockGroupId}>{mockHeading}</FAQ.Heading>
+        <FAQ.Group aria-labelledby={mockGroupId}>
+          <FAQ.Item data-testid={questionRoot}>
+            <FAQ.Question>{mockQuestion}</FAQ.Question>
+            <FAQ.Answer>
+              <p>{mockFAQAnswer}</p>
+            </FAQ.Answer>
+          </FAQ.Item>
+        </FAQ.Group>
       </FAQ>,
     )
 
@@ -118,15 +133,18 @@ describe('FAQ', () => {
 
   it('restricts children of the parent component using an allowlist', () => {
     const invalidChild = <div>This is an invalid child</div>
+    const mockGroupId = 'mock-group-id'
     const {queryByText} = render(
       <FAQ>
-        <FAQ.Heading>{mockHeading}</FAQ.Heading>
-        <FAQ.Item>
-          <FAQ.Question>{mockQuestion}</FAQ.Question>
-          <FAQ.Answer>
-            <p>{mockFAQAnswer}</p>
-          </FAQ.Answer>
-        </FAQ.Item>
+        <FAQ.Heading id={mockGroupId}>{mockHeading}</FAQ.Heading>
+        <FAQ.Group aria-labelledby={mockGroupId}>
+          <FAQ.Item>
+            <FAQ.Question>{mockQuestion}</FAQ.Question>
+            <FAQ.Answer>
+              <p>{mockFAQAnswer}</p>
+            </FAQ.Answer>
+          </FAQ.Item>
+        </FAQ.Group>
         {invalidChild}
       </FAQ>,
     )
@@ -160,16 +178,21 @@ describe('FAQ', () => {
 
   it('renders alternative headling levels', () => {
     const mockSubheading = 'this is a mock subheading'
+    const mockGroupId = 'mock-group-id'
     const {getByRole} = render(
       <FAQ>
         <FAQ.Heading as="h3">{mockHeading}</FAQ.Heading>
-        <FAQ.Subheading as="h4">{mockSubheading}</FAQ.Subheading>
-        <FAQ.Item>
-          <FAQ.Question as="h5">{mockQuestion}</FAQ.Question>
-          <FAQ.Answer>
-            <p>{mockFAQAnswer}</p>
-          </FAQ.Answer>
-        </FAQ.Item>
+        <FAQ.Subheading id={mockGroupId} as="h4">
+          {mockSubheading}
+        </FAQ.Subheading>
+        <FAQ.Group aria-labelledby={mockGroupId}>
+          <FAQ.Item>
+            <FAQ.Question as="h5">{mockQuestion}</FAQ.Question>
+            <FAQ.Answer>
+              <p>{mockFAQAnswer}</p>
+            </FAQ.Answer>
+          </FAQ.Item>
+        </FAQ.Group>
       </FAQ>,
     )
 
