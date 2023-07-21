@@ -27,97 +27,100 @@ import {FAQ} from '@primer/react-brand'
 ```jsx live
 <>
   <FAQ>
-    <FAQ.Heading>Frequently asked questions</FAQ.Heading>
-    <FAQ.Item>
-      <FAQ.Question>
-        What&apos;s included in the GitHub for Startups offer?
-      </FAQ.Question>
-      <FAQ.Answer>
-        <p>
-          All GitHub for Startups companies receive up to 20 seats of GitHub
-          Enterprise for free for year one and 50% off year two. Learn more
-          about the features and capabilities of GitHub Enterprise{' '}
-          <InlineLink
-            href="https://www.github.com"
-            target="_blank"
-            rel="noreferrer"
-          >
-            here
-          </InlineLink>
-          .
-        </p>
-      </FAQ.Answer>
-    </FAQ.Item>
-    <FAQ.Item>
-      <FAQ.Question>Who is eligible to apply?</FAQ.Question>
-      <FAQ.Answer>
-        <p>
-          Startups who meet the following criteria are eligible to apply for the
-          program:
-        </p>
-        <ol>
-          <li>
-            <Text size="300" variant="muted">
-              Must be associated with a current GitHub for Startups partner.
-            </Text>
-          </li>
-          <li>
-            <Text size="300" variant="muted">
-              Self-funded or funded (Seed-Series A)
-            </Text>
-          </li>
-          <li>
-            <Text size="300" variant="muted">
-              Not a current GitHub Enterprise customer
-            </Text>
-          </li>
-          <li>
-            <Text size="300" variant="muted">
-              Must not have previously received credits for GitHub Enterprise
-            </Text>
-          </li>
-        </ol>
-      </FAQ.Answer>
-    </FAQ.Item>
-    <FAQ.Item>
-      <FAQ.Question>
-        What if my startup is not eligible? Are there other resources for me?
-      </FAQ.Question>
-      <FAQ.Answer>
-        <p>
-          If you’re not currently eligible for the GitHub for Startups but would
-          like to try GitHub Enterprise, please feel to sign up for a trial
-          <InlineLink
-            href="https://www.github.com"
-            target="_blank"
-            rel="noreferrer"
-          >
-            here
-          </InlineLink>.
-        </p>
-      </FAQ.Answer>
-    </FAQ.Item>
-    <FAQ.Item>
-      <FAQ.Question>
-        How can my organization become a GitHub for Startups partner?
-      </FAQ.Question>
-      <FAQ.Answer>
-        <p>
-          Any investor, accelerator, or startup support organization is eligible
-          to apply for the GitHub for Startups program.
-        </p>
-        <p>
-          <InlineLink
-            href="https://www.github.com"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Apply here
-          </InlineLink>
-          .
-        </p>
-      </FAQ.Answer>
-    </FAQ.Item>
+    <FAQ.Heading id="FAQ">Frequently asked questions</FAQ.Heading>
+    <FAQ.Group aria-labeledby="FAQ">
+      <FAQ.Item>
+        <FAQ.Question>
+          What&apos;s included in the GitHub for Startups offer?
+        </FAQ.Question>
+        <FAQ.Answer>
+          <p>
+            All GitHub for Startups companies receive up to 20 seats of GitHub
+            Enterprise for free for year one and 50% off year two.{' '}
+            <InlineLink
+              href="https://www.github.com"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Learn more about the features and capabilities of GitHub
+              Enterprise here
+            </InlineLink>
+            .
+          </p>
+        </FAQ.Answer>
+      </FAQ.Item>
+      <FAQ.Item>
+        <FAQ.Question>Who is eligible to apply?</FAQ.Question>
+        <FAQ.Answer>
+          <p>
+            Startups who meet the following criteria are eligible to apply for
+            the program:
+          </p>
+          <ol>
+            <li>
+              <Text size="300" variant="muted">
+                Must be associated with a current GitHub for Startups partner.
+              </Text>
+            </li>
+            <li>
+              <Text size="300" variant="muted">
+                Self-funded or funded (Seed-Series A)
+              </Text>
+            </li>
+            <li>
+              <Text size="300" variant="muted">
+                Not a current GitHub Enterprise customer
+              </Text>
+            </li>
+            <li>
+              <Text size="300" variant="muted">
+                Must not have previously received credits for GitHub Enterprise
+              </Text>
+            </li>
+          </ol>
+        </FAQ.Answer>
+      </FAQ.Item>
+      <FAQ.Item>
+        <FAQ.Question>
+          What if my startup is not eligible? Are there other resources for me?
+        </FAQ.Question>
+        <FAQ.Answer>
+          <p>
+            If you’re not currently eligible for the GitHub for Startups but
+            would like to try GitHub Enterprise, please feel to{' '}
+            <InlineLink
+              href="https://www.github.com"
+              target="_blank"
+              rel="noreferrer"
+            >
+              sign up for a trial here
+            </InlineLink>
+            .
+          </p>
+        </FAQ.Answer>
+      </FAQ.Item>
+      <FAQ.Item>
+        <FAQ.Question>
+          How can my organization become a GitHub for Startups partner?
+        </FAQ.Question>
+        <FAQ.Answer>
+          <p>
+            Any investor, accelerator, or startup support organization is
+            eligible to apply for the GitHub for Startups program.
+          </p>
+          <p>
+            <InlineLink
+              href="https://www.github.com"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Apply here
+            </InlineLink>
+            .
+          </p>
+        </FAQ.Answer>
+      </FAQ.Item>
+    </FAQ.Group>
   </FAQ>
 </>
 ```
@@ -138,55 +141,62 @@ Use `FAQ.Subheading` to create a visual separation between your `FAQ.Question` d
 ```jsx live
 <FAQ>
   <FAQ.Heading>Frequently asked questions</FAQ.Heading>
-  <FAQ.Subheading>Subscriptions & Payments</FAQ.Subheading>
-  <FAQ.Item>
-    <FAQ.Question>
-      What are the differences between GitHub Free, GitHub Pro, GitHub Team and
-      GitHub Enterprise plans?
-    </FAQ.Question>
-    <FAQ.Answer>
-      <p>
-        GitHub Free is our basic plan created for individuals and small teams to
-        collaborate on private and public repositories.
-      </p>
-    </FAQ.Answer>
-  </FAQ.Item>
-  <FAQ.Item>
-    <FAQ.Question>How do I view and manage my subscription?</FAQ.Question>
-    <FAQ.Answer>
-      <p>
-        You can view your account's subscription, your other paid features and
-        products, and your next billing date in your account's billing settings.
-      </p>
-    </FAQ.Answer>
-  </FAQ.Item>
-  <FAQ.Subheading>Actions & Packages</FAQ.Subheading>
-  <FAQ.Item>
-    <FAQ.Question>
-      Which plans include access to GitHub Actions and Packages?
-    </FAQ.Question>
-    <FAQ.Answer>
-      <p>
-        GitHub Actions and Packages are free for public repositories and
-        packages on all our current per-user plans, while private repositories
-        and packages receive a set amount of free minutes, storage, and data
-        transfer depending on the per-user plan. Legacy per-repository plans
-        (Bronze, Silver, Gold etc) do not come with access to GitHub Actions and
-        Packages but they can be upgraded to a current per-user plan.
-      </p>
-    </FAQ.Answer>
-  </FAQ.Item>
-  <FAQ.Item>
-    <FAQ.Question>
-      How do I manage my spending for Actions and Packages?
-    </FAQ.Question>
-    <FAQ.Answer>
-      <p>
-        You can manage your spending for Actions and Packages in your billing
-        settings page under the payment information tab.
-      </p>
-    </FAQ.Answer>
-  </FAQ.Item>
+  <FAQ.Subheading id="subs-and-payments">
+    Subscriptions & Payments
+  </FAQ.Subheading>
+  <FAQ.Group aria-labeledby="subs-and-payments">
+    <FAQ.Item>
+      <FAQ.Question>
+        What are the differences between GitHub Free, GitHub Pro, GitHub Team
+        and GitHub Enterprise plans?
+      </FAQ.Question>
+      <FAQ.Answer>
+        <p>
+          GitHub Free is our basic plan created for individuals and small teams
+          to collaborate on private and public repositories.
+        </p>
+      </FAQ.Answer>
+    </FAQ.Item>
+    <FAQ.Item>
+      <FAQ.Question>How do I view and manage my subscription?</FAQ.Question>
+      <FAQ.Answer>
+        <p>
+          You can view your account's subscription, your other paid features and
+          products, and your next billing date in your account's billing
+          settings.
+        </p>
+      </FAQ.Answer>
+    </FAQ.Item>
+  </FAQ.Group>
+  <FAQ.Subheading id="actions-and-packages">Actions & Packages</FAQ.Subheading>
+  <FAQ.Group aria-labeledby="actions-and-packages">
+    <FAQ.Item>
+      <FAQ.Question>
+        Which plans include access to GitHub Actions and Packages?
+      </FAQ.Question>
+      <FAQ.Answer>
+        <p>
+          GitHub Actions and Packages are free for public repositories and
+          packages on all our current per-user plans, while private repositories
+          and packages receive a set amount of free minutes, storage, and data
+          transfer depending on the per-user plan. Legacy per-repository plans
+          (Bronze, Silver, Gold etc) do not come with access to GitHub Actions
+          and Packages but they can be upgraded to a current per-user plan.
+        </p>
+      </FAQ.Answer>
+    </FAQ.Item>
+    <FAQ.Item>
+      <FAQ.Question>
+        How do I manage my spending for Actions and Packages?
+      </FAQ.Question>
+      <FAQ.Answer>
+        <p>
+          You can manage your spending for Actions and Packages in your billing
+          settings page under the payment information tab.
+        </p>
+      </FAQ.Answer>
+    </FAQ.Item>
+  </FAQ.Group>
 </FAQ>
 ```
 
@@ -280,8 +290,8 @@ const App = () => {
 
   return (
     <FAQ>
-      <FAQ.Heading>Frequently asked questions</FAQ.Heading>
-      <>
+      <FAQ.Heading id="dynamic-faq">Frequently asked questions</FAQ.Heading>
+      <FAQ.Group aria-labeledby="dynamic-faq">
         {fixtureData.map(({question, answer}) => {
           return (
             <FAQ.Item key={question} open={false}>
@@ -290,7 +300,7 @@ const App = () => {
             </FAQ.Item>
           )
         })}
-      </>
+      </FAQ.Group>
     </FAQ>
   )
 }
@@ -335,39 +345,47 @@ const App = () => {
         <FAQ.Heading className="custom-heading">
           Frequently asked questions
         </FAQ.Heading>
-        <FAQ.Subheading>Subscriptions & Payments</FAQ.Subheading>
-        <FAQ.Item>
-          <FAQ.Question>
-            What are the differences between GitHub Free, GitHub Pro, GitHub
-            Team and GitHub Enterprise plans?
-          </FAQ.Question>
-          <FAQ.Answer>
-            <p>
-              GitHub Free is our basic plan created for individuals and small
-              teams to collaborate on private and public repositories.
-            </p>
-          </FAQ.Answer>
-        </FAQ.Item>
-        <FAQ.Item>
-          <FAQ.Question>How do I view and manage my subscription?</FAQ.Question>
-          <FAQ.Answer>
-            <p>
-              You can view your account's subscription, your other paid features
-              and products, and your next billing date in your account's billing
-              settings.
-            </p>
-          </FAQ.Answer>
-        </FAQ.Item>
-        <FAQ.Item>
-          <FAQ.Question>How can I change my GitHub subscription?</FAQ.Question>
-          <FAQ.Answer>
-            <p>
-              You can upgrade or downgrade your subscription, add and remove
-              seats, or change the billing cadence on
-              https://github.com/settings/billing.
-            </p>
-          </FAQ.Answer>
-        </FAQ.Item>
+        <FAQ.Subheading id="color-customization">
+          Subscriptions & Payments
+        </FAQ.Subheading>
+        <FAQ.Group aria-labeledby="color-customization">
+          <FAQ.Item>
+            <FAQ.Question>
+              What are the differences between GitHub Free, GitHub Pro, GitHub
+              Team and GitHub Enterprise plans?
+            </FAQ.Question>
+            <FAQ.Answer>
+              <p>
+                GitHub Free is our basic plan created for individuals and small
+                teams to collaborate on private and public repositories.
+              </p>
+            </FAQ.Answer>
+          </FAQ.Item>
+          <FAQ.Item>
+            <FAQ.Question>
+              How do I view and manage my subscription?
+            </FAQ.Question>
+            <FAQ.Answer>
+              <p>
+                You can view your account's subscription, your other paid
+                features and products, and your next billing date in your
+                account's billing settings.
+              </p>
+            </FAQ.Answer>
+          </FAQ.Item>
+          <FAQ.Item>
+            <FAQ.Question>
+              How can I change my GitHub subscription?
+            </FAQ.Question>
+            <FAQ.Answer>
+              <p>
+                You can upgrade or downgrade your subscription, add and remove
+                seats, or change the billing cadence on
+                https://github.com/settings/billing.
+              </p>
+            </FAQ.Answer>
+          </FAQ.Item>
+        </FAQ.Group>
       </FAQ>
     </ThemeProvider>
   )
@@ -410,6 +428,16 @@ render(<App />)
 | `id`        | `string`                                                        |         | Sets a custom id                         |
 | `as`        | <PropTableValues values={HeadingTags.slice(1)} addLineBreaks /> | `'h3'`  | Applies the underlying HTML element      |
 | `ref`       | `React.RefObject`                                               |         | Forward a Ref to the underlying DOM node |
+
+<h3 id="faq-group">FAQ.Group</h3>
+
+| Name             | Type                                                                                                                        | Default | required | Description                                                          |
+| :--------------- | :-------------------------------------------------------------------------------------------------------------------------- | :-----: | :------: | :------------------------------------------------------------------- |
+| `className`      | `string`                                                                                                                    |         | `false`  | Sets a custom class                                                  |
+| `children`       | <PropTableValues values={[<a href="#faq-question">FAQ.Question</a>, <a href="#faq-answer">FAQ.Answer</a>]} addLineBreaks /> |         |  `true`  | FAQ question and answer pair                                         |
+| `aria-labeledby` | `string`                                                                                                                    |         |  `true`  | The id of the subheading or heading element that describes the block |
+| `id`             | `string`                                                                                                                    |         | `false`  | Sets a custom id                                                     |
+| `ref`            | `React.RefObject`                                                                                                           |         | `false`  | Forward a Ref to the underlying DOM node                             |
 
 <h3 id="faq-item">FAQ.Item</h3>
 

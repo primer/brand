@@ -100,8 +100,8 @@ export const AllClosed: StoryFn<typeof FAQ> = () => {
   return (
     <Container>
       <FAQ>
-        <FAQ.Heading>Frequently asked&nbsp;questions</FAQ.Heading>
-        <>
+        <FAQ.Heading id="all-closed-faq">Frequently asked&nbsp;questions</FAQ.Heading>
+        <FAQ.Group aria-labelledby="all-closed-faq">
           {fixtureData.map(({question, answer}) => {
             return (
               <FAQ.Item key={question} open={false}>
@@ -110,7 +110,7 @@ export const AllClosed: StoryFn<typeof FAQ> = () => {
               </FAQ.Item>
             )
           })}
-        </>
+        </FAQ.Group>
       </FAQ>
     </Container>
   )
@@ -120,8 +120,8 @@ export const AllOpen: StoryFn<typeof FAQ> = () => {
   return (
     <Container>
       <FAQ>
-        <FAQ.Heading>Frequently asked&nbsp;questions</FAQ.Heading>
-        <>
+        <FAQ.Heading id="all-open-faq">Frequently asked&nbsp;questions</FAQ.Heading>
+        <FAQ.Group aria-labelledby="all-open-faq">
           {fixtureData.map(({question, answer}) => {
             return (
               <FAQ.Item key={question} open={true}>
@@ -130,7 +130,7 @@ export const AllOpen: StoryFn<typeof FAQ> = () => {
               </FAQ.Item>
             )
           })}
-        </>
+        </FAQ.Group>
       </FAQ>
     </Container>
   )
@@ -145,8 +145,10 @@ export const HeadingLeftAligned: StoryFn<typeof FAQ> = () => {
   return (
     <Container>
       <FAQ>
-        <FAQ.Heading align="start">Frequently asked&nbsp;questions</FAQ.Heading>
-        <>
+        <FAQ.Heading id="heading-left-aligned" align="start">
+          Frequently asked&nbsp;questions
+        </FAQ.Heading>
+        <FAQ.Group aria-labelledby="heading-left-aligned">
           {fixtureData.map(({question, answer}) => {
             return (
               <FAQ.Item key={question}>
@@ -155,7 +157,7 @@ export const HeadingLeftAligned: StoryFn<typeof FAQ> = () => {
               </FAQ.Item>
             )
           })}
-        </>
+        </FAQ.Group>
       </FAQ>
     </Container>
   )
@@ -166,8 +168,8 @@ export const Groups: StoryFn<typeof FAQ> = () => {
     <Container>
       <FAQ>
         <FAQ.Heading size="large">Frequently asked&nbsp;questions</FAQ.Heading>
-        <FAQ.Subheading>Group heading</FAQ.Subheading>
-        <>
+        <FAQ.Subheading id="group">Group heading</FAQ.Subheading>
+        <FAQ.Group aria-labelledby="group">
           {fixtureData.map(({question, answer}) => {
             return (
               <FAQ.Item key={question}>
@@ -176,7 +178,7 @@ export const Groups: StoryFn<typeof FAQ> = () => {
               </FAQ.Item>
             )
           })}
-        </>
+        </FAQ.Group>
       </FAQ>
     </Container>
   )
@@ -291,15 +293,17 @@ export const DynamicDataExample: StoryFn<typeof FAQ> = () => {
   return (
     <Container>
       <FAQ>
-        <FAQ.Heading>Frequently asked questions</FAQ.Heading>
-        {faqs.map((item, index) => {
-          return (
-            <FAQ.Item key={index}>
-              <FAQ.Question>{item.title}</FAQ.Question>
-              <FAQ.Answer>{item.content}</FAQ.Answer>
-            </FAQ.Item>
-          )
-        })}
+        <FAQ.Heading id="dynamic">Frequently asked questions</FAQ.Heading>
+        <FAQ.Group aria-labelledby="dynamic">
+          {faqs.map((item, index) => {
+            return (
+              <FAQ.Item key={index}>
+                <FAQ.Question>{item.title}</FAQ.Question>
+                <FAQ.Answer>{item.content}</FAQ.Answer>
+              </FAQ.Item>
+            )
+          })}
+        </FAQ.Group>
       </FAQ>
     </Container>
   )

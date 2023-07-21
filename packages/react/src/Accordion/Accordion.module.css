@@ -107,7 +107,7 @@ details[open] .Accordion__summary--expanded::after {
 details[open] > .Accordion__content {
   padding-left: var(--base-size-40);
   padding-bottom: var(--base-size-24);
-  margin-top: calc(var(--base-size-16) * -1); /* for 8px gap between question and answer */
+  margin-top: 0;
   animation: fade-in 0.5s;
 }
 .Accordion__content-item {
