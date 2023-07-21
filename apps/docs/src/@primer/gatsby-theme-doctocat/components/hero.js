@@ -1,4 +1,4 @@
-import {Box, Heading, Text, ThemeProvider} from '@primer/react'
+import {Box as PRCBox, Heading, Text, ThemeProvider} from '@primer/react'
 import React from 'react'
 import {Container} from '@primer/gatsby-theme-doctocat'
 import heroIllustration from '../primer-components-hero.svg'
@@ -7,7 +7,7 @@ import {version} from '../../../../../../package'
 export default function Hero() {
   return (
     <ThemeProvider colorMode="night" nightScheme="dark_dimmed">
-      <Box bg="canvas.default" py={6}>
+      <PRCBox bg="canvas.default" py={6}>
         <Container>
           <Heading
             sx={{
@@ -32,7 +32,7 @@ export default function Hero() {
           </Text>
           <img src={heroIllustration} alt="" width="100%" />
         </Container>
-      </Box>
+      </PRCBox>
     </ThemeProvider>
   )
 }

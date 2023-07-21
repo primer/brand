@@ -30,7 +30,7 @@ Please refer to our [Storybook examples](https://primer.style/brand/storybook/?p
 ### Basic
 
 ```jsx live
-<Box sx={{position: 'relative', overflowX: 'scroll'}}>
+<Container sx={{position: 'relative', overflowX: 'scroll'}}>
   <SubdomainNavBar title="Subdomain" fixed={false}>
     <SubdomainNavBar.Link href="#">Collections</SubdomainNavBar.Link>
     <SubdomainNavBar.Link href="#">Topics</SubdomainNavBar.Link>
@@ -46,7 +46,7 @@ Please refer to our [Storybook examples](https://primer.style/brand/storybook/?p
       Secondary CTA
     </SubdomainNavBar.SecondaryAction>
   </SubdomainNavBar>
-</Box>
+</Container>
 ```
 
 ### Search
@@ -101,7 +101,7 @@ const App = () => {
   }
 
   return (
-    <Box sx={{position: 'relative', overflowX: 'scroll'}}>
+    <Container sx={{position: 'relative', overflowX: 'scroll'}}>
       <SubdomainNavBar title="Subdomain" fixed={false}>
         <SubdomainNavBar.Link href="#collections">
           Collections
@@ -115,7 +115,7 @@ const App = () => {
           searchResults={searchResults}
         />
       </SubdomainNavBar>
-    </Box>
+    </Container>
   )
 }
 
