@@ -1,5 +1,5 @@
 import React from 'react'
-import {Grid, FAQ, Prose, ProseProps} from '../..'
+import {Grid, FAQ, Prose, ProseProps} from '../../..'
 
 type FAQItem = {
   question: string

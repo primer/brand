@@ -1,5 +1,5 @@
 import React from 'react'
-import {Grid, Image, Text} from '../..'
+import {Grid, Image, Text} from '../../..'
 
 export type FeaturedMediaBlockProps = {
   type: 'image' | 'video' // Note that Video is not implemented yet

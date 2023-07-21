@@ -1,7 +1,7 @@
 import React from 'react'
 import {Meta} from '@storybook/react'
 
-import {ShowcaseBlock} from './ShowcaseBlock'
+import {ShowcaseBlock} from './'
 
 export default {
   title: 'Evergreen templates/Blocks/Showcase',

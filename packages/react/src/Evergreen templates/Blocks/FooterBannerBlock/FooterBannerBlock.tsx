@@ -1,5 +1,5 @@
 import React from 'react'
-import {Grid, CTABanner, Button} from '../..'
+import {Grid, CTABanner, Button} from '../../..'
 
 export type FooterBannerBlockProps = {
   heading: string

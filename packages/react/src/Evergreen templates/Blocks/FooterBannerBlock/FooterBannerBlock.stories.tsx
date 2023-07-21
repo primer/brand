@@ -1,7 +1,7 @@
 import React from 'react'
 import {Meta} from '@storybook/react'
 
-import {FooterBannerBlock} from './FooterBannerBlock'
+import {FooterBannerBlock} from './'
 
 export default {
   title: 'Evergreen templates/Blocks/Footer banner',

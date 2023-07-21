@@ -1,7 +1,7 @@
 import React from 'react'
 import {Meta} from '@storybook/react'
 
-import {ProseBlock} from './ProseBlock'
+import {ProseBlock} from './'
 
 export default {
   title: 'Evergreen templates/Blocks/Prose',

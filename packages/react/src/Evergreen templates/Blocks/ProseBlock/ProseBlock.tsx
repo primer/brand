@@ -1,5 +1,5 @@
 import React from 'react'
-import {Grid, Prose, ProseProps} from '../..'
+import {Grid, Prose, ProseProps} from '../../..'
 
 export type ProseBlockProps = {
   html: ProseProps['html']

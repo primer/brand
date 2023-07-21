@@ -1,5 +1,5 @@
 import React from 'react'
-import {Grid, Card, type GridColumnIndex} from '../..'
+import {Grid, Card, type GridColumnIndex} from '../../..'
 
 type HeaderActionsBlockItem = {
   heading: string

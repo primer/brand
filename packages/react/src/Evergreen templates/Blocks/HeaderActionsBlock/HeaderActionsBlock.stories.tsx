@@ -1,7 +1,7 @@
 import React from 'react'
 import {Meta} from '@storybook/react'
 
-import {HeaderActionsBlock} from './HeaderActionsBlock'
+import {HeaderActionsBlock} from './'
 
 export default {
   title: 'Evergreen templates/Blocks/Header actions',

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Grid, Hero} from '../..'
+import {Grid, Hero} from '../../..'
 
 export type HeaderHeroBlockProps = {
   heading: string

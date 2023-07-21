@@ -1,5 +1,5 @@
 import React from 'react'
-import {Grid, River, Stack, Image, Heading, Text} from '../..'
+import {Grid, River, Stack, Image, Heading, Text} from '../../..'
 
 type ShowcaseBlockItem = {
   heading: string

@@ -1,7 +1,7 @@
 import React from 'react'
 import {Meta} from '@storybook/react'
 
-import {FeaturedMediaBlock} from './FeaturedMediaBlock'
+import {FeaturedMediaBlock} from './'
 
 export default {
   title: 'Evergreen templates/Blocks/Featured media',

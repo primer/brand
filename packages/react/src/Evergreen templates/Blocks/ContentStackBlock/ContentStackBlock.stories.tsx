@@ -2,7 +2,7 @@ import React from 'react'
 import {Meta} from '@storybook/react'
 import {PeopleIcon, ImageIcon, TerminalIcon} from '@primer/octicons-react'
 
-import {ContentStackBlock} from './ContentStackBlock'
+import {ContentStackBlock} from './'
 
 export default {
   title: 'Evergreen templates/Blocks/Content stack',

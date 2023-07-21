@@ -1,7 +1,7 @@
 import React from 'react'
 import {Meta} from '@storybook/react'
 
-import {HeaderHeroBlock} from './HeaderHeroBlock'
+import {HeaderHeroBlock} from './'
 
 export default {
   title: 'Evergreen templates/Blocks/Header hero banner',
