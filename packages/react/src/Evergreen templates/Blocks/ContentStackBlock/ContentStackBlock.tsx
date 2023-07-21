@@ -1,5 +1,5 @@
 import React from 'react'
-import {Grid, Pillar, PillarIconColors, type GridColumnIndex} from '../..'
+import {Grid, Pillar, PillarIconColors, type GridColumnIndex} from '../../..'
 import {Icon} from '@primer/octicons-react'
 
 type ContentStackBlockItem = {
