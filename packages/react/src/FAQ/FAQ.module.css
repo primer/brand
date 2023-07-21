@@ -3,6 +3,12 @@
   margin: 0 auto;
 }
 
+.FAQ__group {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 .FAQ__heading {
   /*Visual appearance as a h3*/
   font-weight: var(--brand-heading-weight-700);

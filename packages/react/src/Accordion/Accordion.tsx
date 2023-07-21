@@ -1,5 +1,6 @@
 import React, {forwardRef} from 'react'
 import clsx from 'clsx'
+import {useId} from '@reach/auto-id'
 
 import {Heading, Text} from '../'
 import type {BaseProps} from '../component-helpers'
@@ -57,11 +58,12 @@ type AccordionHeadingProps = BaseProps<HTMLHeadingElement> & {
 }
 
 export const AccordionHeading = forwardRef<HTMLHeadingElement, AccordionHeadingProps>(
-  ({children, className, as = 'h4', ...rest}, ref) => {
+  ({children, className, as = 'h4', id, ...rest}, ref) => {
+    const ariaId = useId()
     return (
-      <summary className={clsx(styles.Accordion__summary, className)} ref={ref} {...rest}>
+      <summary aria-labelledby={ariaId} className={clsx(styles.Accordion__summary, className)} ref={ref} {...rest}>
         <span aria-hidden="true" className={styles['Accordion__summary--collapsed']}></span>
-        <Heading as={as} className={styles['Accordion__summary-heading']}>
+        <Heading id={ariaId} as={as} className={styles['Accordion__summary-heading']}>
           {children}
         </Heading>
         <span aria-hidden="true" className={styles['Accordion__summary--expanded']}></span>

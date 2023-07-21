@@ -2,7 +2,15 @@ import React, {forwardRef, PropsWithChildren} from 'react'
 import {isFragment} from 'react-is'
 import clsx from 'clsx'
 
-import {useAnimation, Heading, AccordionHeading, AccordionContent, AccordionRoot, HeadingProps} from '..'
+import {
+  useAnimation,
+  Heading,
+  AccordionHeading,
+  AccordionContent,
+  AccordionRoot,
+  HeadingProps,
+  AccordionRootProps,
+} from '..'
 import type {BaseProps} from '../component-helpers'
 
 /**
@@ -28,6 +36,7 @@ const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, style, animate
         isFragment(child) ||
         child.type === FAQHeading ||
         child.type === FAQSubheading ||
+        child.type === FAQGroup ||
         child.type === AccordionRoot
       ) {
         return true
@@ -104,6 +113,28 @@ function FAQSubheading({children, className, as = 'h3', ...rest}: FAQSubheadingP
   )
 }
 
+type FAQGroupProps = BaseProps<HTMLUListElement> & {
+  children: React.ReactNode | React.ReactNode[]
+  'aria-labelledby': string
+}
+
+function FAQGroup({className, children}: FAQGroupProps) {
+  return (
+    // eslint-disable-next-line jsx-a11y/no-redundant-roles
+    <ul role="list" className={clsx(styles.FAQ__group, className)}>
+      {children}
+    </ul>
+  )
+}
+
+function FAQItem(props: AccordionRootProps) {
+  return (
+    <li>
+      <AccordionRoot {...props} />
+    </li>
+  )
+}
+
 /**
  * FAQ component:
  * {@link https://primer.style/brand/components/FAQ/ See usage examples}.
@@ -111,7 +142,8 @@ function FAQSubheading({children, className, as = 'h3', ...rest}: FAQSubheadingP
 export const FAQ = Object.assign(FAQRoot, {
   Subheading: FAQSubheading,
   Heading: FAQHeading,
-  Item: AccordionRoot,
+  Item: FAQItem,
+  Group: FAQGroup,
   Question: AccordionHeading,
   Answer: AccordionContent,
 })
