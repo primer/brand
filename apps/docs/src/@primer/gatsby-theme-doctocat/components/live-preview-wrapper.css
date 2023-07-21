@@ -1,0 +1,31 @@
+.bg-red-lines {
+  display: inline-block;
+  border: var(--brand-borderWidth-thin) solid var(--base-color-scale-red-2);
+  background-image: linear-gradient(
+    45deg,
+    var(--base-color-scale-red-0) 12.5%,
+    hsla(var(--base-color-scale-red-2-hsl) / 50%) 12.5%,
+    hsla(var(--base-color-scale-red-2-hsl) / 50%) 50%,
+    var(--base-color-scale-red-0) 50%,
+    var(--base-color-scale-red-0) 62.5%,
+    hsla(var(--base-color-scale-red-2-hsl) / 50%) 62.5%,
+    hsla(var(--base-color-scale-red-2-hsl) / 50%) 100%
+  );
+  background-size: 5.66px 5.66px;
+}
+
+.bg-yellow-lines {
+  display: inline-block;
+  border: var(--brand-borderWidth-thin) solid var(--base-color-scale-yellow-2);
+  background-image: linear-gradient(
+    45deg,
+    var(--base-color-scale-yellow-0) 12.5%,
+    hsla(var(--base-color-scale-yellow-2-hsl) / 50%) 12.5%,
+    hsla(var(--base-color-scale-yellow-2-hsl) / 50%) 50%,
+    var(--base-color-scale-yellow-0) 50%,
+    var(--base-color-scale-yellow-0) 62.5%,
+    hsla(var(--base-color-scale-yellow-2-hsl) / 50%) 62.5%,
+    hsla(var(--base-color-scale-yellow-2-hsl) / 50%) 100%
+  );
+  background-size: 5.66px 5.66px;
+}

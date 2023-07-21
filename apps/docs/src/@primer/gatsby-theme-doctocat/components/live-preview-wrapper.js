@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {
-  Box,
+  Box as PRCBox,
   ActionMenu,
   ActionList,
   ThemeProvider as PRCThemeProvider,
@@ -9,6 +9,8 @@ import {
   ColorModesEnum,
   ThemeProvider,
 } from '../../../../../../packages/react/src'
+
+import './live-preview-wrapper.css'
 
 export default function LivePreviewWrapper({children}) {
   const availableColorModes = Object.values(ColorModesEnum)
@@ -23,16 +25,16 @@ export default function LivePreviewWrapper({children}) {
           : ColorModesEnum.AUTO
       }
     >
-      <Box width="100%">
+      <PRCBox width="100%">
         <ThemeProvider colorMode={colorMode}>
-          <Box
+          <PRCBox
             bg="canvas.default"
             sx={{
               borderTopLeftRadius: 2,
               borderTopRightRadius: 2,
             }}
           >
-            <Box pt={2} px={2} display="flex" justifyContent="flex-end">
+            <PRCBox pt={2} px={2} display="flex" justifyContent="flex-end">
               <ActionMenu>
                 <ActionMenu.Button>{colorMode}</ActionMenu.Button>
 
@@ -50,13 +52,13 @@ export default function LivePreviewWrapper({children}) {
                   </ActionList>
                 </ActionMenu.Overlay>
               </ActionMenu>
-            </Box>
-            <Box px={5} py={3}>
+            </PRCBox>
+            <PRCBox px={5} py={3}>
               {children}
-            </Box>
-          </Box>
+            </PRCBox>
+          </PRCBox>
         </ThemeProvider>
-      </Box>
+      </PRCBox>
     </PRCThemeProvider>
   )
 }
