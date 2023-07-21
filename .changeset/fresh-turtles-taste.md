@@ -5,7 +5,7 @@
 Added `flexWrap` prop to Stack component to enable automatic wrapping of flex items.
 
 ```jsx
-<Stack direction="horizonta" flexWrap="wrap">
+<Stack direction="horizontal" flexWrap="wrap">
   <Item />
   <Item />
   <Item />
