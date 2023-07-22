@@ -12,13 +12,18 @@ export default ComponentLayout
 ![An image displaying a Radio with a radio and label.](https://github.com/primer/brand/assets/131988618/1b494cdb-4991-4fc9-beac-feb02b296cb9)
 
 - Radio: A selection control.
-- Label: A description for the Radio. 
+- Label: A description for the radio. 
 
 ## Usage
 
 Use the radio component to enable users to select a single option from a list.
 
-For scenarios that allow for multiple selections, use the [checkbox](/components/Checkbox) component instead. Keep the radio label descriptive and concise: aim for no more than 3 words. Write labels in sentence case and without ending in punctuation
+For scenarios that allow for multiple selections, use the [checkbox](/components/Checkbox) component instead. Keep the radio label descriptive and concise: aim for no more than 3 words. Write labels in sentence case and without ending in punctuation.
+
+### Grouping radio components
+Use the `name` prop to group together related radio components in a list.
+
+If you're not building something custom, you should use the `Stack` and `FormControl` component to render a group of radio inputs.
 
 <DoDontContainer>
   <Do>
@@ -64,7 +69,7 @@ Radios have static dimensions and three different states when checked or uncheck
 
 ### Caption
 
-A caption for a Radio can be useful in certain scenarios where additional information or clarification is needed for the Radio option. Some examples include complex or technical options, ambiguous or unclear options, legal or compliance requirements, or accessibility considerations.
+A caption for a radio can be useful in certain scenarios where additional information or clarification is needed for the radio option. Some examples include complex or technical options, ambiguous or unclear options, legal or compliance requirements, or accessibility considerations.
 
 ## Accessibility 
 
