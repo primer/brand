@@ -1,0 +1,129 @@
+---
+title: River
+description: Use the river component to introduce a feature using a type and media pairing.
+---
+
+import ComponentLayout from '../../../src/layouts/component-layout'
+export default ComponentLayout
+
+![A river component used to showcase a security feature. The title reads "Get security feedback with every git push" and it includes an image showing screenshots of of a CLI prompt with the git push command and a code scanning screenshot.](https://github.com/primer/brand/assets/175638/203f49ae-e87c-4b66-8df0-22a1c8bad1b6)
+
+## Usage
+
+Use rivers to showcase features and introduce topics. Rivers compose images or videos and text together. River's text includes a heading, body text, and an optional link.
+
+River content should be short and concise, no longer than 3 or 4 sentences and in a single paragraph when possible.
+
+<DoDontContainer>
+  <Do>
+    <img
+      alt=""
+      src="https://github.com/primer/brand/assets/175638/8b3057f9-00c5-4bf5-af44-00b0129c6c6e"
+    />
+    <Caption>Write short and concise text content.</Caption>
+  </Do>
+  <Dont>
+    <img
+      alt=""
+      src="https://github.com/primer/brand/assets/175638/ea902be3-2032-49de-bdb4-23be0c0f090d"
+    />
+    <Caption>Don't overload the river with too much content.</Caption>
+  </Dont>
+</DoDontContainer>
+
+### Stacked
+
+Two or more rivers can be stacked to guide the user through a set of feautres. When stacking rivers, use alternating between left and right alignments to create a more dynamic reading flow. When alternating alignments, use a `40:60` image to text ratio, otherwise keep the ratio to `50:50`.
+
+<DoDontContainer>
+  <Do>
+    <img
+      alt=""
+      src="https://github.com/primer/brand/assets/912236/2b763c62-4d56-4d60-9cae-f663407e0506"
+    />
+    <Caption>Alternate rivers with left and right alignments.</Caption>
+  </Do>
+  <Dont>
+    <img
+      alt=""
+      src="https://github.com/primer/brand/assets/912236/6c7b42a7-0048-4539-99f3-a1c3beb8ee70"
+    />
+    <Caption>
+      Don't stack numerous rivers with 40:60 ratio without alternating left and
+      right alignments.
+    </Caption>
+  </Dont>
+</DoDontContainer>
+
+Note that too many rivers can make the design feel repetitive. In that situation, consider introducing a breakout section or break the content with a different component, such as [pillar](/components/Pillar) or [card](/components/Card) to provide a better visual hierarchy and experience. For example, use the river for the top features you want to highlight and then use pillars to showcase the rest.
+
+<DoDontContainer>
+  <Do>
+    <img
+      alt=""
+      src="https://github.com/primer/brand/assets/912236/c847e394-3062-4b2a-83d5-77142aafed67"
+    />
+    <Caption>
+      Use pillars or cards to breakout a multiple river section and provide a
+      better visual hierarchy.
+    </Caption>
+  </Do>
+  <Dont>
+    <img
+      alt=""
+      src="https://github.com/primer/brand/assets/912236/8eb9d19c-8869-4efd-8f72-ea003e5516c4"
+    />
+    <Caption>
+      Don't stack numerous rivers without breaking the content to avoid
+      repetitive a layout that can make the design feel repetitive.
+    </Caption>
+  </Dont>
+</DoDontContainer>
+
+### Sections with rivers
+
+A single river component acts as a section and it should not include any child sections within in. Multiple rivers can be used to conform a section. In that case, the section should include a [section intro](/components/SectionIntro) that introduces the main topic or features.
+
+<DoDontContainer>
+  <Do>
+    <img
+      alt=""
+      src="https://github.com/primer/brand/assets/912236/b4339bb2-419b-4ffc-98ff-23f76d190496"
+    />
+    <Caption>Use a section intro to introduce multiple rivers.</Caption>
+  </Do>
+  <Dont>
+    <img
+      alt=""
+      src="https://github.com/primer/brand/assets/912236/8b503c41-5715-4757-a3cd-23614308b0ab"
+    />
+    <Caption>
+      Don't add child sections or other components to the river body content.
+    </Caption>
+  </Dont>
+</DoDontContainer>
+
+## Anatomy
+
+![A river component used to showcase a security feature. The title reads "Get security feedback with every git push" and it includes an image showing screenshots of of a CLI prompt with the git push command and a code scanning screenshot.](https://github.com/primer/brand/assets/912236/859bef31-aff0-4f75-83b1-e1dc22305f9d)
+
+### Content
+
+River provides a heading as the main title and a body text as the main content that describes the adjacent visual. The heading should be short and concise and the body should describe the feature or topic in a short paragraph.
+
+### Visual
+
+A river can include either an image or video to illustrate the feature or topic. The media should be relevant to the content and should not be used as a decorative element.
+
+Always use high quality images and videos. Avoid using images with text or single logos. Ensure the image fills the provided container.
+
+The image is automatically styled to fit the width of the parent container. If you have bespoke styling requirements, you can disable the provided default styles and style the image manually.
+
+### Link
+
+River can include an optional call to action to link to more detailed content about the feature or topic.
+
+## Related components
+
+- [Pillar](/components/Pillar): To display non-navigational related content in a compact way.
+- [Card](/components/Card): To display navigational related content in a compact way.

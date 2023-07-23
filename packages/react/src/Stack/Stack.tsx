@@ -19,6 +19,9 @@ export const defaultStackSpacing = StackSpacingVariants[1]
 export const StackAlignItemVariants = ['center', 'flex-start', 'flex-end'] as const
 type StackAlignItemVariants = (typeof StackAlignItemVariants)[number]
 
+export const StackFlexWrapVariants = ['wrap', 'nowrap'] as const
+type StackFlexWrapVariants = (typeof StackFlexWrapVariants)[number]
+
 export const StackJustifyContentVariants = [
   ...StackAlignItemVariants,
   'space-between',
@@ -49,6 +52,12 @@ type ResponsiveSpacingMap = {
   narrow?: StackSpacingVariants
   regular?: StackSpacingVariants
   wide?: StackSpacingVariants
+}
+
+type ResponsiveFlexWrapMap = {
+  narrow?: StackFlexWrapVariants
+  regular?: StackFlexWrapVariants
+  wide?: StackFlexWrapVariants
 }
 
 export type StackProps = BaseProps<HTMLElement> & {
@@ -87,6 +96,10 @@ export type StackProps = BaseProps<HTMLElement> & {
    * Forward inline styles
    */
   style?: React.CSSProperties
+  /**
+   * Applies flex-wrap to the Stack, using the flex-wrap CSS property.
+   */
+  flexWrap?: StackFlexWrapVariants | ResponsiveFlexWrapMap
 } & BaseProps<HTMLDivElement>
 
 const _Stack = (
@@ -100,6 +113,7 @@ const _Stack = (
     justifyContent,
     className,
     style,
+    flexWrap,
     ...rest
   }: StackProps,
   ref,
@@ -160,6 +174,18 @@ const _Stack = (
     [justifyContent],
   )
 
+  const flexWrapClass = useMemo(
+    () =>
+      typeof flexWrap === 'string'
+        ? styles[`Stack-flexWrap--${flexWrap}`]
+        : typeof flexWrap === 'object'
+        ? Object.keys(flexWrap)
+            .map(viewport => styles[`Stack-${viewport}-flexWrap--${flexWrap[viewport]}`])
+            .join(' ')
+        : null,
+    [flexWrap],
+  )
+
   return (
     <div
       ref={ref}
@@ -171,6 +197,7 @@ const _Stack = (
         alignItemsClass,
         justifyContentClass,
         paddingClass,
+        flexWrapClass,
         className,
       )}
       style={{...animationInlineStyles, ...style}}

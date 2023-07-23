@@ -75,7 +75,7 @@ An example of a typical layout composed using `FormControl`:
 
 ```jsx live
 <form>
-  <Box
+  <Container
     sx={{
       alignItems: 'center',
       display: 'grid',
@@ -85,7 +85,7 @@ An example of a typical layout composed using `FormControl`:
       paddingBottom: 3,
     }}
   >
-    <Box
+    <Container
       sx={{
         display: 'grid',
         gridTemplateColumns: '0.5fr 1fr 1fr',
@@ -112,7 +112,7 @@ An example of a typical layout composed using `FormControl`:
         <FormControl.Label>Last name</FormControl.Label>
         <TextInput required />
       </FormControl>
-    </Box>
+    </Container>
 
     <FormControl fullWidth required>
       <FormControl.Label>Enterprise name</FormControl.Label>
@@ -153,7 +153,7 @@ An example of a typical layout composed using `FormControl`:
       </FormControl.Label>
       <Checkbox />
     </FormControl>
-    <Box
+    <Container
       sx={{
         borderWidth: 1,
         borderStyle: 'solid',
@@ -170,7 +170,7 @@ An example of a typical layout composed using `FormControl`:
       <Text size="200" variant="muted">
         Captcha
       </Text>
-    </Box>
+    </Container>
     <FormControl required>
       <FormControl.Label>
         <Text size="200" variant="muted">
@@ -197,7 +197,7 @@ An example of a typical layout composed using `FormControl`:
 
       <Checkbox />
     </FormControl>
-    <Box
+    <Container
       sx={{
         justifyContent: 'end',
         display: 'inline-grid',
@@ -207,8 +207,8 @@ An example of a typical layout composed using `FormControl`:
       <Button variant="primary" type="submit">
         Start trial
       </Button>
-    </Box>
-  </Box>
+    </Container>
+  </Container>
 </form>
 ```
 
@@ -309,7 +309,7 @@ Pass the `fullWidth` prop to `FormControl` to provide additional behavior and st
 `FormControl` can appear in `medium` and `large` dimensions using the `size` prop.
 
 ```jsx live
-<Box sx={{display: 'grid', gap: 3}}>
+<Container sx={{display: 'grid', gap: 3}}>
   <FormControl size="medium">
     <FormControl.Label>Medium</FormControl.Label>
     <TextInput />
@@ -319,7 +319,7 @@ Pass the `fullWidth` prop to `FormControl` to provide additional behavior and st
     <FormControl.Label>Large</FormControl.Label>
     <TextInput />
   </FormControl>
-</Box>
+</Container>
 ```
 
 ### Required
@@ -350,7 +350,7 @@ const App = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Box
+      <Container
         sx={{
           display: 'grid',
           gap: 'var(--base-size-16)',
@@ -365,7 +365,7 @@ const App = () => {
         <Button type="submit" variant="primary">
           Submit
         </Button>
-      </Box>
+      </Container>
     </form>
   )
 }
