@@ -126,7 +126,7 @@ test.describe('Visual Comparison: Box', () => {
   test('Box / Animation', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-box-features--animation&viewMode=story')
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(6000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
