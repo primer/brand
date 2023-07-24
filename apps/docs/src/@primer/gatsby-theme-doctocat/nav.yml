@@ -20,6 +20,8 @@
       url: /components/AnchorNav
     - title: Avatar
       url: /components/Avatar
+    - title: Box
+      url: /components/Box
     - title: Button
       url: /components/Button
     - title: Button group

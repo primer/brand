@@ -1,4 +1,4 @@
-import {Box} from '@primer/react'
+import {Box as PRCBox} from '@primer/react'
 import React from 'react'
 import {useColorTheme, availableModes} from './ColorThemeContext'
 import globalFunctionalTokens from '@primer/brand-primitives/lib/design-tokens/js/module/tokens/base/colors/color-scales'
@@ -6,7 +6,7 @@ import globalFunctionalTokens from '@primer/brand-primitives/lib/design-tokens/j
 export function ColorThemePicker() {
   const [colorTheme, setColorTheme] = useColorTheme()
   return (
-    <Box
+    <PRCBox
       sx={{
         display: 'grid',
         gridGap: 3,
@@ -14,7 +14,7 @@ export function ColorThemePicker() {
       }}
     >
       {availableModes.map((key) => (
-        <Box
+        <PRCBox
           as="label"
           key={key}
           sx={{
@@ -26,7 +26,7 @@ export function ColorThemePicker() {
           }}
         >
           <ColorThemePreview colorTheme={key} />
-          <Box sx={{p: 2}}>
+          <PRCBox sx={{p: 2}}>
             <input
               type="radio"
               id={key}
@@ -37,19 +37,19 @@ export function ColorThemePicker() {
                 setColorTheme(event.target.value)
               }}
             />
-            <Box as="span" sx={{ml: 1, textTransform: 'capitalize'}}>
+            <PRCBox as="span" sx={{ml: 1, textTransform: 'capitalize'}}>
               {key}
-            </Box>
-          </Box>
-        </Box>
+            </PRCBox>
+          </PRCBox>
+        </PRCBox>
       ))}
-    </Box>
+    </PRCBox>
   )
 }
 
 function ColorThemePreview() {
   return (
-    <Box
+    <PRCBox
       sx={{
         color: 'var(--brand-color-text-default)',
         bg: 'var(--brand-color-canvas-default)',
@@ -62,7 +62,7 @@ function ColorThemePreview() {
     >
       {['gray', 'blue', 'green', 'orange', 'red', 'purple', 'pink'].map(
         (name) => (
-          <Box
+          <PRCBox
             key={name}
             sx={{
               width: 20,
@@ -76,6 +76,6 @@ function ColorThemePreview() {
           />
         ),
       )}
-    </Box>
+    </PRCBox>
   )
 }
