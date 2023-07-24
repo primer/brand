@@ -152,7 +152,7 @@
     width: 2px;
     height: 50%;
     background-color: var(--brand-AnchorNav-link-underline-default);
-    transition: opacity 300ms, transform 300ms;
+    transition: opacity var(--brand-animation-duration-fast), transform var(--brand-animation-duration-fast);
     opacity: 1;
     transform: scale(0);
     transform-origin: left;
@@ -191,7 +191,7 @@
   font-family: var(--brand-heading-fontFamily);
   letter-spacing: var(--brand-heading-letterSpacing-400);
   color: var(--brand-color-text-default);
-  transition: color cubic-bezier(0.33, 1, 0.68, 1) 0.2s; /* TODO: replace with global token for animation timings */
+  transition: color cubic-bezier(0.33, 1, 0.68, 1) var(--brand-animation-duration-faster);
   white-space: nowrap;
   position: relative;
 }
@@ -246,7 +246,8 @@
     width: 100%;
     height: 2px;
     background-color: var(--brand-AnchorNav-link-underline-default);
-    transition: opacity 300ms, transform 300ms, background-color 300ms;
+    transition: opacity var(--brand-animation-duration-fast), transform var(--brand-animation-duration-fast),
+      background-color var(--brand-animation-duration-fast);
     opacity: 1;
     transform: scale(0);
     transform-origin: center;
