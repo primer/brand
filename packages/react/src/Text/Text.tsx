@@ -55,7 +55,7 @@ export type TextProps = {
    * Corresponds to the CSS `text-align` property.
    * Note: Only applies to block elements.
    */
-  align?: 'start' | 'center' | 'end' | 'left' | 'right'
+  align?: 'start' | 'center' | 'end'
 } & TextTags
 
 export function Text({

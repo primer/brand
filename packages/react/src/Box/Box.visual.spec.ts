@@ -14,36 +14,36 @@ test.describe('Visual Comparison: Box', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Box / Directional Padding: Top', async ({page}) => {
+  test('Box / Directional Padding: Block start (top)', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-box-features--directional-padding-top&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-box-features--directional-padding-block-start&viewMode=story',
     )
 
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Box / Directional Padding: Right', async ({page}) => {
+  test('Box / Directional Padding: Inline end (right)', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-box-features--directional-padding-right&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-box-features--directional-padding-inline-end&viewMode=story',
     )
 
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Box / Directional Padding: Bottom', async ({page}) => {
+  test('Box / Directional Padding: Block end (bottom)', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-box-features--directional-padding-bottom&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-box-features--directional-padding-block-end&viewMode=story',
     )
 
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Box / Directional Padding: Left', async ({page}) => {
+  test('Box / Directional Padding: Inline start (left)', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-box-features--directional-padding-left&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-box-features--directional-padding-inline-start&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -57,16 +57,16 @@ test.describe('Visual Comparison: Box', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Box / Directional Margin: Top', async ({page}) => {
+  test('Box / Directional Margin: Block start (top)', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-box-features--directional-margin-top&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-box-features--directional-margin-block-start&viewMode=story',
     )
 
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Box / Directional Margin: Right', async ({page}) => {
+  test('Box / Directional Margin: Inline end (right)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-box-features--directional-margin-right&viewMode=story',
     )
@@ -75,7 +75,7 @@ test.describe('Visual Comparison: Box', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Box / Directional Margin: Bottom', async ({page}) => {
+  test('Box / Directional Margin: Block end (bottom)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-box-features--directional-margin-bottom&viewMode=story',
     )
@@ -84,7 +84,7 @@ test.describe('Visual Comparison: Box', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Box / Directional Margin: Left', async ({page}) => {
+  test('Box / Directional Margin: Inline start (left)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-box-features--directional-margin-left&viewMode=story',
     )

@@ -74,11 +74,5 @@ export const Alignment = () => (
     <Text as="p" align="end">
       End
     </Text>
-    <Text as="p" align="left">
-      Left
-    </Text>
-    <Text as="p" align="right">
-      Right
-    </Text>
   </Stack>
 )

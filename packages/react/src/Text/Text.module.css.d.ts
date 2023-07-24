@@ -40,8 +40,6 @@ declare const styles: {
   readonly "Text-align--start": string;
   readonly "Text-align--end": string;
   readonly "Text-align--center": string;
-  readonly "Text-align--left": string;
-  readonly "Text-align--right": string;
 };
 export = styles;
 
