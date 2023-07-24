@@ -134,7 +134,7 @@
 .AnchorNav--expanded .AnchorNav-link {
   margin: 0 0 2px; /* allow space for focus border */
   animation: fade-in 1s;
-  animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1); /* TODO: replace with global token for animation timings */
+  animation-timing-function: var(--brand-animation-easing-glide);
 }
 
 /* Up to large breakpoint */
@@ -191,7 +191,7 @@
   font-family: var(--brand-heading-fontFamily);
   letter-spacing: var(--brand-heading-letterSpacing-400);
   color: var(--brand-color-text-default);
-  transition: color cubic-bezier(0.33, 1, 0.68, 1) var(--brand-animation-duration-faster);
+  transition: color var(--brand-animation-easing-glide) var(--brand-animation-duration-faster);
   white-space: nowrap;
   position: relative;
 }
@@ -322,7 +322,7 @@
     background: hsla(var(--base-color-scale-black-0-hsl) / 0.5);
     transform: translateZ(-1px);
     animation: fade-in 0.5s;
-    animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+    animation-timing-function: var(--brand-animation-easing-glide);
     cursor: pointer;
   }
 }

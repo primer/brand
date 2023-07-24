@@ -43,7 +43,7 @@
 
 .ActionMenu__menu--visible {
   visibility: visible;
-  animation: 189ms cubic-bezier(0.33, 1, 0.68, 1) 0s 1 normal none running overlay-appear;
+  animation: 189ms var(--brand-animation-easing-glide) 0s 1 normal none running overlay-appear;
 }
 
 @keyframes overlay-appear {

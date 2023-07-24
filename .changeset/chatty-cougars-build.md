@@ -5,10 +5,11 @@
 
 Updated custom animation times and easing values across all components to leverage globally available values.
 
-Two new variables have been added to `@primer/brand-primitives`:
+Three new variables have been added to `@primer/brand-primitives`:
 
 - `--brand-animation-duration-fast`
 - `--brand-animation-duration-faster`
+- `--brand-animation-easing-glide`
 
 Example:
 
