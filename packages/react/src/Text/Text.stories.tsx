@@ -1,6 +1,7 @@
 import {Meta, StoryFn} from '@storybook/react'
 import React from 'react'
 import {Text, TextSizes, TextWeights} from '.'
+import {Stack} from '../Stack'
 
 export default {
   title: 'Components/Text',
@@ -59,4 +60,19 @@ export const Composition = () => (
     </Text>{' '}
     on improving collaboration, security practices, and developer productivity is right around the corner.
   </Text>
+)
+
+export const Alignment = () => (
+  <Stack direction="vertical">
+    <Text as="p">Default</Text>
+    <Text as="p" align="start">
+      Start
+    </Text>
+    <Text as="p" align="center">
+      Center
+    </Text>
+    <Text as="p" align="end">
+      End
+    </Text>
+  </Stack>
 )

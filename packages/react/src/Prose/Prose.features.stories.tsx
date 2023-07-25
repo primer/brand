@@ -2,6 +2,7 @@ import React from 'react'
 import {ComponentMeta, ComponentStory} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {Prose} from './Prose'
+import placeholderImage from '../fixtures/images/placeholder-600x400.png'
 
 export default {
   title: 'Components/Prose/Features',
@@ -30,7 +31,7 @@ const ExampleHtmlMarkup = `
     <h3>Heading level 3</h3>
     <p>Pellentesque non ornare ligula. Suspendisse nibh purus, pretium id tortor sit amet, tincidunt gravida augue. Ut malesuada, nisl vel dignissim mollis</p>
     <img
-      src="https://via.placeholder.com/400x400/f5f5f5/f5f5f5.png"
+      src="${placeholderImage}"
       alt="placeholder, blank area with an off-white background color"
       />
     <h4>Heading level  4</h4>
