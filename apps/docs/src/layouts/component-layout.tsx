@@ -25,15 +25,10 @@ export default function ComponentLayout({pageContext, children, path}) {
 
   return (
     <BaseLayout title={title} description={description}>
-<<<<<<< HEAD
       <PRCBox sx={{maxWidth: 1200, width: '100%', p: [4, 5, 6, 7], mx: 'auto'}}>
-        <Heading as="h1">{title}</Heading>
-=======
-      <Box sx={{maxWidth: 1200, width: '100%', p: [4, 5, 6, 7], mx: 'auto'}}>
         <Heading as="h1" sx={{fontSize: 7}}>
           {title}
         </Heading>
->>>>>>> ea37bc3 (Adjust component layout page)
         {description ? (
           <Text as="p" sx={{fontSize: 3, m: 0, mb: 3, maxWidth: '60ch'}}>
             {description}
