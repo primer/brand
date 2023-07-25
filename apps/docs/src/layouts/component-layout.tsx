@@ -25,8 +25,15 @@ export default function ComponentLayout({pageContext, children, path}) {
 
   return (
     <BaseLayout title={title} description={description}>
+<<<<<<< HEAD
       <PRCBox sx={{maxWidth: 1200, width: '100%', p: [4, 5, 6, 7], mx: 'auto'}}>
         <Heading as="h1">{title}</Heading>
+=======
+      <Box sx={{maxWidth: 1200, width: '100%', p: [4, 5, 6, 7], mx: 'auto'}}>
+        <Heading as="h1" sx={{fontSize: 7}}>
+          {title}
+        </Heading>
+>>>>>>> ea37bc3 (Adjust component layout page)
         {description ? (
           <Text as="p" sx={{fontSize: 3, m: 0, mb: 3, maxWidth: '60ch'}}>
             {description}
@@ -43,7 +50,7 @@ export default function ComponentLayout({pageContext, children, path}) {
             display: 'flex',
             flexDirection: 'row-reverse',
             alignItems: 'start',
-            gap: 4,
+            gap: [null, 7, 8, 9],
           }}
         >
           <PRCBox
@@ -61,7 +68,7 @@ export default function ComponentLayout({pageContext, children, path}) {
                 <Heading
                   as="h3"
                   sx={{
-                    fontSize: 2,
+                    fontSize: 1,
                     display: 'inline-block',
                     fontWeight: 'bold',
                     pl: 3,
@@ -159,7 +166,7 @@ export default function ComponentLayout({pageContext, children, path}) {
                   >
                     <Heading
                       as="h3"
-                      sx={{fontSize: 2, fontWeight: 'bold'}}
+                      sx={{fontSize: 1, fontWeight: 'bold'}}
                       id="toc-heading-narrow"
                     >
                       On this page
