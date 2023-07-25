@@ -9,30 +9,26 @@ export default ComponentLayout
 
 ## Anatomy
 
-![An image displaying a checkbox with a checkbox and label.](https://github.com/primer/brand/assets/131988618/61d1c706-2e3a-427c-bc37-0b77891b8007)
+![An image displaying a checkbox with a checkbox and label.](https://github.com/primer/brand/assets/131988618/2b4f1ee3-3d41-428a-aca7-bd442fc9f066)
 
 - Checkbox: A selection control.
 - Label: A description for the checkbox. 
 
 ## Usage
 
-The Checkbox enables users to choose multiple options from a group, making them well-suited for situations where users may select more than one option. 
-
-Unlike the [Radio](/components/Radio) component or [Select](/components/Select) component, Checkbox does not restrict users to choosing just a single option. Instead, they necessitate a submission step, such as selecting an option or consent action. 
-
-Checkbox is commonly employed in forms to gather user input, granting them the ability to select zero or more options from a list.
+Use checkboxes to allow users to select multiple items from a list of individual items, or to mark one individual item as selected. Unlike the [Radio](/components/Radio) component or [Select](/components/Select) component, Checkbox does not restrict users to choosing just a single option. 
 
 Checkbox labels should be descriptive and concise: aim for no more than 3 words. Write labels in sentence case. Examples: "Repository name", "Payment method".
 
 <DoDontContainer>
   <Do>
-    <img src="https://github.com/primer/brand/assets/131988618/1687e5bd-8c81-4113-a2b5-60f2dcdcb4c0" />
+    <img src="https://github.com/primer/brand/assets/131988618/3732b682-cc61-425a-85ad-be87ee944be0" />
     <Caption>
-        Ensure checkbox labels are direct. 
+        Checkbox labels should be descriptive and concise. 
     </Caption>
   </Do>
   <Dont>
-    <img src="https://github.com/primer/brand/assets/131988618/92e2004a-d304-4988-aa4d-b8f8fead15fa" />
+    <img src="https://github.com/primer/brand/assets/131988618/afcba2b2-2754-40ec-9337-2734470faf08" />
     <Caption>
         Don't make checkbox labels confusing, indirect, and avoid negative statements. 
     </Caption>
@@ -41,13 +37,13 @@ Checkbox labels should be descriptive and concise: aim for no more than 3 words.
 
 <DoDontContainer>
   <Do>
-    <img src="https://github.com/primer/brand/assets/131988618/27a536e8-6bdb-4515-bb9c-029cd7deb482" />
+    <img src="https://github.com/primer/brand/assets/131988618/a09bfb8f-7c7e-466a-8abc-e527cdce7d9b" />
     <Caption>
         Use consistent styling (starting with capitalization and not ending with punctuation).
     </Caption>
   </Do>
   <Dont>
-    <img src="https://github.com/primer/brand/assets/131988618/87460a05-c0e6-4d9b-89fe-56d1a889d0e8" />
+    <img src="https://github.com/primer/brand/assets/131988618/bf9feff5-bbdb-4414-8152-024652924a74" />
     <Caption>
         Don't have inconsistent styling (not starting with capitalization or ending in punctuation).
     </Caption>
@@ -56,13 +52,13 @@ Checkbox labels should be descriptive and concise: aim for no more than 3 words.
 
 <DoDontContainer>
   <Do>
-    <img src="https://github.com/primer/brand/assets/131988618/89fb2b6e-c178-4b6d-ba61-9205fc382770" />
+    <img src="https://github.com/primer/brand/assets/131988618/43ae7520-8d25-43bc-b891-1e1abaebf44c" />
     <Caption>
         Use first-person when asking users for acknowledgement or consent.
     </Caption>
   </Do>
   <Dont>
-    <img src="https://github.com/primer/brand/assets/131988618/e59627c9-d4f3-455d-8232-f08eef5a03b1" />
+    <img src="https://github.com/primer/brand/assets/131988618/7225b935-b05d-46ef-9374-76a8404e8ebd" />
     <Caption>
         Don't use third-person when asking users for acknowledgement or consent.
     </Caption>
@@ -71,15 +67,15 @@ Checkbox labels should be descriptive and concise: aim for no more than 3 words.
 
 <DoDontContainer>
   <Do>
-    <img src="https://github.com/primer/brand/assets/131988618/a788949c-0d08-4951-b9e2-6adf8d40c675" />
+    <img src="https://github.com/primer/brand/assets/131988618/eecb8764-453d-474f-9e34-21d95c9aadef" />
     <Caption>
-        When used in groups, order checkboxes in logical order, like smallest to largest or least restrictive to most restrictive. 
+        Create checkbox options that are non-exclusive and allow for multiple selections. 
     </Caption>
   </Do>
   <Dont>
-    <img src="https://github.com/primer/brand/assets/131988618/0199ab3d-a199-468e-abba-8776b3a34c14" />
+    <img src="https://github.com/primer/brand/assets/131988618/9566ff9c-68e8-428e-967f-969edbd47139" />
     <Caption>
-        When possible, don't order checkboxes without logic. 
+        Don't use checkbox options exclusive to one another. They should not be automatically deselected. 
     </Caption>
   </Dont>
 </DoDontContainer>
@@ -94,21 +90,15 @@ Checkboxes have static dimensions and three different states: rest (default), fo
   src="https://user-images.githubusercontent.com/586552/204882576-5b698ce7-c471-4f4e-9f33-c861842f5743.png"
 />
 
+### Indeterminate
+
+An indeterminate checkbox state should be used if the input value is neither true nor false. This can be useful in situations where you are required to display an incomplete state, or one that is dependent on other input selections to determine a value.
+
 ## Accessibility 
 
 Please use [FormControl](/components/FormControl) to display accessible checkboxes in the UI. This Checkbox component is intended only as an ingredient for other custom components, or as a drop-in replacement for native HTML checkboxes outside of form use-cases.
 
 If you intend to use this component as part of another component, it should always be accompanied by a corresponding `<label>` to improve support for assistive technologies.
-
-## Options
-
-### Indeterminate
-
-An indeterminate checkbox state should be used if the input value is neither true nor false. This can be useful in situations where you are required to display an incomplete state, or one that is dependent on other input selections to determine a value.
-
-### Description
-
-A description for a checkbox can be useful in certain scenarios where additional information or clarification is needed for the checkbox option. Some examples include complex or technical options, ambiguous or unclear options, legal or compliance requirements, or accessibility considerations.
 
 ## Related components
 
