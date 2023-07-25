@@ -76,8 +76,5 @@
   "engines": {
     "node": ">=16.0.0",
     "npm": ">=8.0.0"
-  },
-  "dependencies": {
-    "@primer/react-brand": "^0.20.1"
   }
 }
