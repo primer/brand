@@ -1,5 +1,95 @@
 # @primer/react-brand
 
+## 0.21.0
+
+### Minor Changes
+
+- [#347](https://github.com/primer/brand/pull/347) [`6f8cd9d`](https://github.com/primer/brand/commit/6f8cd9d82abbe447871a78f175e52fad8b502aa4) Thanks [@rezrah](https://github.com/rezrah)! - Added Box component
+
+  Use a box to simplify the process of applying one-off styles to an element
+
+  ```jsx
+  <>
+    <Box padding="condensed">condensed, uniform padding</Box>
+    <Box padding="normal">normal, uniform padding</Box>
+    <Box padding="spacious">spacious, uniform padding</Box>
+
+    <Box margin="condensed">condensed, uniform margin</Box>
+    <Box margin="normal">normal, uniform margin</Box>
+    <Box margin="spacious">spacious, uniform margin</Box>
+
+    <Box background="subtle">alternate background colors</Box>
+
+    <Box borderRadius="full">rounded borders</Box>
+
+    <Box borderWidth="thicker">thicker border widths</Box>
+  </>
+  ```
+
+  :link: [See the documentation for more details, options and usage examples.](https://primer.style/brand/components/Box)
+
+### Patch Changes
+
+- [#360](https://github.com/primer/brand/pull/360) [`d1ee031`](https://github.com/primer/brand/commit/d1ee0316662b92ca18ee32feba56233cdf4b42e0) Thanks [@rezrah](https://github.com/rezrah)! - Updated custom animation times and easing values across all components to leverage globally available values.
+
+  Three new variables have been added to `@primer/brand-primitives`:
+
+  - `--brand-animation-duration-fast`
+  - `--brand-animation-duration-faster`
+  - `--brand-animation-easing-glide`
+
+  Example:
+
+  ```diff
+  - 0.3s cubic-bezier(0.16, 1, 0.3, 1)
+  + var(--brand-animation-duration-fast) var(--brand-animation-easing-default)
+  ```
+
+- [#337](https://github.com/primer/brand/pull/337) [`b7e1423`](https://github.com/primer/brand/commit/b7e1423929f7185834fb1d4e0be0fe9e3b7f2cd0) Thanks [@danielguillan](https://github.com/danielguillan)! - Fixes SectionIntro description to use the muted text variant
+
+- [#347](https://github.com/primer/brand/pull/347) [`6f8cd9d`](https://github.com/primer/brand/commit/6f8cd9d82abbe447871a78f175e52fad8b502aa4) Thanks [@rezrah](https://github.com/rezrah)! - Added `flexWrap` prop to Stack component to enable automatic wrapping of flex items.
+
+  ```jsx
+  <Stack direction="horizontal" flexWrap="wrap">
+    <Item />
+    <Item />
+    <Item />
+  </Stack>
+  ```
+
+- [#342](https://github.com/primer/brand/pull/342) [`e7239ad`](https://github.com/primer/brand/commit/e7239ade2578320beeffdc979db943ef3663ebf0) Thanks [@rezrah](https://github.com/rezrah)! - Fixed grid column appearance at medium breakpoints for columns that span beyond `9`. Required styles, which were previously missing have been backfilled.
+
+  ```jsx
+  <Grid>
+    <Grid.Column
+      span={{
+        medium: 9,
+      }}
+    ></Grid.Column>
+    <Grid.Column
+      span={{
+        medium: 3,
+      }}
+    ></Grid.Column>
+  </Grid>
+  ```
+
+- [#341](https://github.com/primer/brand/pull/341) [`f2b74f6`](https://github.com/primer/brand/commit/f2b74f69f4c3325d20346e2a39303ab4443e237a) Thanks [@rezrah](https://github.com/rezrah)! - Added optional `align` prop to Text component.
+
+  ```jsx
+  <>
+    <Text as="p" align="start">
+      Start
+    </Text>
+    <Text as="p" align="center">
+      Center
+    </Text>
+    <Text as="p" align="end">
+      End
+    </Text>
+  </>
+  ```
+
 ## 0.20.1
 
 ### Patch Changes
