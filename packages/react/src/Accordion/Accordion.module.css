@@ -8,7 +8,7 @@
   content: '';
   border: 3px solid var(--brand-color-border-default);
   height: 0;
-  transition: 0.3s transform;
+  transition: var(--brand-animation-duration-fast) transform;
   transform: scaleY(0);
   transform-origin: 50% 100%;
   width: 100%;
@@ -58,7 +58,7 @@
 
 .Accordion__summary--collapsed::before,
 .Accordion__summary--expanded::after {
-  transition: transform 0.3s ease, opacity 0.2s ease;
+  transition: transform var(--brand-animation-duration-fast) ease, opacity var(--brand-animation-duration-faster) ease;
   display: block;
   background: linear-gradient(
     -70deg,

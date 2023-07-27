@@ -1,5 +1,32 @@
 # @primer/brand-primitives
 
+## 0.21.0
+
+### Patch Changes
+
+- [#360](https://github.com/primer/brand/pull/360) [`d1ee031`](https://github.com/primer/brand/commit/d1ee0316662b92ca18ee32feba56233cdf4b42e0) Thanks [@rezrah](https://github.com/rezrah)! - Updated custom animation times and easing values across all components to leverage globally available values.
+
+  Three new variables have been added to `@primer/brand-primitives`:
+
+  - `--brand-animation-duration-fast`
+  - `--brand-animation-duration-faster`
+  - `--brand-animation-easing-glide`
+
+  Example:
+
+  ```diff
+  - 0.3s cubic-bezier(0.16, 1, 0.3, 1)
+  + var(--brand-animation-duration-fast) var(--brand-animation-easing-default)
+  ```
+
+- [#347](https://github.com/primer/brand/pull/347) [`6f8cd9d`](https://github.com/primer/brand/commit/6f8cd9d82abbe447871a78f175e52fad8b502aa4) Thanks [@rezrah](https://github.com/rezrah)! - Added new primitives for the box component
+
+  ```css
+  --brand-box-spacing-condensed
+  --brand-box-spacing-normal
+  --brand-box-spacing-spacious
+  ```
+
 ## 0.20.1
 
 ### Patch Changes
