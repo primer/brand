@@ -1,0 +1,104 @@
+---
+title: Logo suite
+description: Use a logo suite to present a list logos, such as sponsors or vendors.
+---
+
+import CustomVideoPlayer from '../../../src/components/custom-video-player'
+import ComponentLayout from '../../../src/layouts/component-layout'
+export default ComponentLayout
+
+## Anatomy
+
+![A complete logo suite component, featuring a heading, description and two rows of 6 vendor logos in their default muted colors](https://github.com/primer/brand/assets/13340707/b541ba09-2e99-45be-bcb3-a95a1387c9ed)
+
+- **Heading:** an optional main title of the logo suite.
+- **Description:** a short description that extends the information provided by the heading and describes the logos shown.
+- **Logobar:** a space for a list of logos, with three appearance options.
+- **Divider:** an optional divider to separate the logo suite from following content.
+
+## Usage
+
+Use the logo suite component to showcase a list of logos, such as for clients, sponsors, or related enterprises. Use the logo suite to build credibility, trust, and provide social proof by displaying consistent logos.
+
+Logo suite should be used for groups of logos more than 4 and less than 12. In scenarios hoping to showcase more than 12 logos, considering stacking two components together. To create the best visual consistency and balance, rearrange and resize the logos when necessary to create similar area distribution and attention to each of the logos.
+
+### Arrangement
+
+<DoDontContainer stacked>
+  <Do>
+    <img src="https://via.placeholder.com/900x400/d3d9df/d3d9df.png" />
+    <Caption>
+      Arrange the logos so that the sizes, heights, colors, and areas of the
+      separate logos create consistency and balance.
+    </Caption>
+  </Do>
+  <Dont>
+    <img src="https://via.placeholder.com/900x400/d3d9df/d3d9df.png" />
+    <Caption>
+      Don’t place logos without considering the spatial balance of the logo
+      suite. Arrange to prevent using more than two rows.
+    </Caption>
+  </Dont>
+</DoDontContainer>
+
+### Contextual information
+
+<DoDontContainer stacked>
+  <Do>
+    <img src="https://via.placeholder.com/900x400/d3d9df/d3d9df.png" />
+    <Caption>
+      Do publish the logo suite with context. Introduce the logos and, when
+      applicable, share how the logos have been grouped together.
+    </Caption>
+  </Do>
+  <Dont>
+    <img src="https://via.placeholder.com/900x400/d3d9df/d3d9df.png" />
+    <Caption>
+      Don’t use the logo suite without a heading/description. Consider turning
+      off a visible description if needed.
+    </Caption>
+  </Dont>
+</DoDontContainer>
+
+### Color uniformity
+
+<DoDontContainer stacked>
+  <Do>
+    <img src="https://via.placeholder.com/900x400/d3d9df/d3d9df.png" />
+    <Caption>
+      Ensure that the colors are consistent across the logos to match the logo
+      bar option. Ensure spacing between logos are consistent.
+    </Caption>
+  </Do>
+  <Dont>
+    <img src="https://via.placeholder.com/900x400/d3d9df/d3d9df.png" />
+    <Caption>
+      Don’t use logos with inconsistent colors or don’t match the logo bar
+      option. Don’t use inconsistent spacing.
+    </Caption>
+  </Dont>
+</DoDontContainer>
+
+## Options
+
+### Logo bar appearance
+
+The logo suite offers three appearance options:
+
+- `muted`: The muted option is suitable for displaying 6+ logos and displays logos in a `secondary` color. It allows for two rows of logos, maintaining a clean and organized appearance.
+- `emphasis`: The emphasis option is designed for spotlighting ~5 logos in the `primary` color. It displays logos larger, drawing more attention to the logos.
+- `marquee`: The marquee option provides a flowing logo animation and can accommodate up to 12 logos. It is ideal for scenarios with limited page real estate.
+
+The muted and emphasis options on the logo bar contains an optional divider. This divider can serve as a visual separator. These three options can be used alongside one another when logo suite components are used adjacently.
+
+### Alignment
+
+The logo suite comes with start and center align options. Only the heading and description will have visible changes to their alignment as logos will be consistently center aligned to create balance. By default, the logo suite is aligned to the start of the page.
+
+## Accessibility
+
+- Always ensure that a heading is provided to the logo suite. Headings provide leading context to the logos shown, and serve as a navigation hook for assistive technologies. It can be visually hidden if needed.
+
+## Related components
+
+- [Image](/components/Image): to display a graphical representation.
