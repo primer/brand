@@ -103,7 +103,12 @@ const _Heading = forwardRef(
     return (
       <Heading
         ref={ref}
-        className={clsx(styles['LogoSuite__heading'], visuallyHidden && 'visually-hidden', className)}
+        className={clsx(
+          styles['LogoSuite__heading'],
+          visuallyHidden && styles['LogoSuite__heading--visually-hidden'],
+          visuallyHidden && 'visually-hidden',
+          className,
+        )}
         size={size}
         as={as}
         {...props}

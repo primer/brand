@@ -6,6 +6,7 @@ declare const styles: {
   readonly "LogoSuite--center": string;
   readonly "LogoSuite--justify": string;
   readonly "LogoSuite__logobar": string;
+  readonly "LogoSuite__heading--visually-hidden": string;
   readonly "LogoSuite__logobar--variant-muted": string;
   readonly "LogoSuite__logobar--variant-emphasis": string;
   readonly "LogoSuite--hasDivider": string;

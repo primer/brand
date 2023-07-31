@@ -280,7 +280,7 @@ export const MixedWidth = () => (
             <React.Fragment>{logos.slice(0, 4)}</React.Fragment>
           </LogoSuite.Logobar>
         </LogoSuite>
-        <LogoSuite>
+        <LogoSuite hasDivider={false}>
           <LogoSuite.Logobar variant="muted">
             <React.Fragment>{logos.slice(4, 8)}</React.Fragment>
           </LogoSuite.Logobar>
@@ -301,13 +301,22 @@ export const MixedWidth = () => (
   </>
 )
 
+export const OnlyHeading = () => (
+  <LogoSuite>
+    <LogoSuite.Heading>Heading</LogoSuite.Heading>
+    <LogoSuite.Logobar>
+      <React.Fragment>{logos.slice(0, 4)}</React.Fragment>
+    </LogoSuite.Logobar>
+  </LogoSuite>
+)
+
 export const OnlyDescription = () => (
   <LogoSuite>
     <LogoSuite.Heading visuallyHidden>Heading</LogoSuite.Heading>
     <LogoSuite.Description>
       Trusted by more than 90% of Fortune 100 companies, over 100 million users, and backed by Microsoft
     </LogoSuite.Description>
-    <LogoSuite.Logobar marquee marqueeSpeed="slow">
+    <LogoSuite.Logobar>
       <React.Fragment>{logos.slice(0, 4)}</React.Fragment>
     </LogoSuite.Logobar>
   </LogoSuite>

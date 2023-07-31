@@ -1,14 +1,13 @@
 .LogoSuite {
   padding-block-end: var(--base-size-40);
-  margin-block-end: var(--base-size-40);
 }
 
-.LogoSuite__heading {
-  margin-block-end: var(--base-size-16);
+.LogoSuite + .LogoSuite {
+  padding-block-start: var(--base-size-40);
 }
 
-.LogoSuite__description {
-  margin-block-end: var(--base-size-80);
+.LogoSuite__heading + .LogoSuite__description {
+  padding-block-start: var(--base-size-16);
 }
 
 .LogoSuite--start {
@@ -20,7 +19,7 @@
   text-align: center;
 }
 
-.LogoSuite__heading + .LogoSuite__logobar {
+.LogoSuite:not(.LogoSuite + .LogoSuite) .LogoSuite__logobar {
   padding-block-start: var(--base-size-32);
 }
 
@@ -30,6 +29,14 @@
   row-gap: var(--brand-LogoSuite-logobar-rowGap);
   column-gap: var(--brand-LogoSuite-logobar-columnGap);
   justify-content: center;
+}
+
+.LogoSuite:not(.LogoSuite + .LogoSuite)
+  .LogoSuite__heading:not(.LogoSuite__heading--visually-hidden)
+  + .LogoSuite__logobar,
+.LogoSuite:not(.LogoSuite + .LogoSuite) .LogoSuite__description + .LogoSuite__logobar {
+  padding-block-start: 0;
+  margin-block-start: var(--base-size-80);
 }
 
 .LogoSuite__logobar--variant-muted svg,

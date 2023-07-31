@@ -86,7 +86,6 @@
     'components-logosuite-features--marquee', // animation only
     'components-logosuite-features--slower-marquee-speed', // animation only
     'components-logosuite-features--mixed-width', // animation only
-    'components-logosuite-features--only-description', // animation only
     'components-logosuite-features--following-hero', // animation only
   ]
 
