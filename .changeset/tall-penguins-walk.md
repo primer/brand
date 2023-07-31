@@ -2,7 +2,7 @@
 '@primer/brand-primitives': minor
 ---
 
-Add design tokens for logo suite component
+Added design tokens for the logo suite component
 
 ```css
 --brand-LogoSuite-color-logo-muted
