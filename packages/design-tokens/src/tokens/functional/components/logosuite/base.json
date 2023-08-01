@@ -10,7 +10,7 @@
         },
         "marquee": {
           "default": {
-            "value": "20s"
+            "value": "30s"
           },
           "slow": {
             "value": "60s"
