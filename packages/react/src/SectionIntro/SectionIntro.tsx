@@ -3,6 +3,7 @@ import clsx from 'clsx'
 import {Link, LinkProps} from '../Link'
 import {Heading, HeadingProps, defaultHeadingTag} from '../Heading'
 import {Text} from '../Text'
+import {Label, LabelProps} from '../Label'
 import {useAnimation} from '../animation'
 
 import styles from './SectionIntro.module.css'
@@ -75,6 +76,18 @@ const _Description = forwardRef(
   },
 )
 
+type SectionIntroLabelProps = LabelProps & BaseProps<HTMLDivElement>
+
+function _Label({children, ...rest}: PropsWithChildren<SectionIntroLabelProps>) {
+  return (
+    <div>
+      <Label className={styles['SectionIntro-label']} {...rest}>
+        {children}
+      </Label>
+    </div>
+  )
+}
+
 type SectionIntroLinkProps = Omit<LinkProps, 'size'> & BaseProps<HTMLAnchorElement>
 
 const _Link = forwardRef(({className, children, ...props}: SectionIntroLinkProps, ref: Ref<HTMLAnchorElement>) => {
@@ -85,4 +98,9 @@ const _Link = forwardRef(({className, children, ...props}: SectionIntroLinkProps
   )
 })
 
-export const SectionIntro = Object.assign(Root, {Heading: _Heading, Description: _Description, Link: _Link})
+export const SectionIntro = Object.assign(Root, {
+  Heading: _Heading,
+  Description: _Description,
+  Link: _Link,
+  Label: _Label,
+})
