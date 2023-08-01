@@ -80,11 +80,9 @@ type SectionIntroLabelProps = LabelProps & BaseProps<HTMLDivElement>
 
 function _Label({children, ...rest}: PropsWithChildren<SectionIntroLabelProps>) {
   return (
-    <div>
-      <Label className={styles['SectionIntro-label']} {...rest}>
-        {children}
-      </Label>
-    </div>
+    <Label className={styles['SectionIntro-label']} {...rest}>
+      {children}
+    </Label>
   )
 }
 

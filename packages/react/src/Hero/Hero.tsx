@@ -73,15 +73,13 @@ function HeroDescription({size = '400', weight, children}: PropsWithChildren<Her
   )
 }
 
-type HeroLabelProps = LabelProps & BaseProps<HTMLDivElement>
+type HeroLabelProps = LabelProps & BaseProps<HTMLSpanElement>
 
 function HeroLabel({children, ...rest}: PropsWithChildren<HeroLabelProps>) {
   return (
-    <div>
-      <Label className={styles['Hero-label']} {...rest}>
-        {children}
-      </Label>
-    </div>
+    <Label className={styles['Hero-label']} {...rest}>
+      {children}
+    </Label>
   )
 }
 
