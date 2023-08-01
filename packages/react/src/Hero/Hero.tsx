@@ -46,6 +46,8 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
 
     const ContentTag = HeroImageChild ? 'div' : React.Fragment
 
+    const defaultContentProps = HeroImageChild ? {className: styles['Hero-content']} : {}
+
     return (
       <section
         className={clsx(
@@ -58,7 +60,7 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
         aria-labelledby="hero-section-brand-heading"
         {...rest}
       >
-        <ContentTag className={styles['Hero-content']}>
+        <ContentTag {...defaultContentProps}>
           {HeroChildren}
           <div className={styles['Hero-actions']}>{HeroActions}</div>
         </ContentTag>
