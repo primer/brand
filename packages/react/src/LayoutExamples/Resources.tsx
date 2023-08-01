@@ -14,8 +14,6 @@ import {
   Testimonial,
   ButtonGroup,
   Button,
-  AnimationProvider,
-  Animate,
   LogoSuite,
 } from '..'
 
