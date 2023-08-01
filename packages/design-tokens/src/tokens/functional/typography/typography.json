@@ -532,6 +532,11 @@
             "value": "'ital' 10"
           }
         }
+      },
+      "heading": {
+        "fontFamily": {
+          "value": "{<namespace>.fontStack.sansSerif}"
+        }
       }
     }
   }

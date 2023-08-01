@@ -578,6 +578,358 @@
             "value": "'ital' 10"
           }
         }
+      },
+      "body": {
+        "fontFamily": {
+          "value": "{<namespace>.fontStack.sansSerif}"
+        },
+        "weight": {
+          "semibold": {
+            "value": "{base.text.weight.semibold}"
+          },
+          "medium": {
+            "value": "{base.text.weight.medium}"
+          },
+          "normal": {
+            "value": "{base.text.weight.normal}"
+          }
+        },
+        "size": {
+          "subhead": {
+            "value": "16px"
+          },
+          "medium": {
+            "value": "16px"
+          },
+          "small": {
+            "value": "14px"
+          }
+        },
+        "lineHeight": {
+          "subhead": {
+            "value": "1.3"
+          },
+          "medium": {
+            "value": "1.5"
+          },
+          "small": {
+            "value": "1.5"
+          }
+        },
+        "letterSpacing": {
+          "value": "-0.05em"
+        },
+        "shorthand": {
+          "subhead": {
+            "value": {
+              "fontWeight": "{<namespace>.text.body.weight.semibold}",
+              "fontSize": "{<namespace>.text.body.size.subhead}",
+              "lineHeight": "{<namespace>.text.body.lineHeight.subhead}",
+              "fontFamily": "{<namespace>.text.body.fontFamily}",
+              "letterSpacing": "{<namespace>.text.body.letterSpacing}"
+            }
+          },
+          "medium": {
+            "value": {
+              "fontWeight": "{<namespace>.text.body.weight.medium}",
+              "fontSize": "{<namespace>.text.body.size.medium}",
+              "lineHeight": "{<namespace>.text.body.lineHeight.medium}",
+              "fontFamily": "{<namespace>.text.body.fontFamily}",
+              "letterSpacing": "{<namespace>.text.body.letterSpacing}"
+            }
+          },
+          "small": {
+            "value": {
+              "fontWeight": "{<namespace>.text.body.weight.normal}",
+              "fontSize": "{<namespace>.text.body.size.small}",
+              "lineHeight": "{<namespace>.text.body.lineHeight.small}",
+              "fontFamily": "{<namespace>.text.body.fontFamily}",
+              "letterSpacing": "{<namespace>.text.body.letterSpacing}"
+            }
+          }
+        }
+      },
+      "display": {
+        "weight": {
+          "value": "{base.text.weight.bold}"
+        },
+        "fontFamily": {
+          "value": "{<namespace>.fontStack.sansSerif}"
+        },
+        "size": {
+          "large": {
+            "value": "40px",
+            "responsive": {
+              "768px": {
+                "value": "64px"
+              },
+              "1012px": {
+                "value": "96px"
+              }
+            }
+          },
+          "medium": {
+            "value": "36px",
+            "responsive": {
+              "768px": {
+                "value": "48px"
+              },
+              "1012px": {
+                "value": "72px"
+              }
+            }
+          }
+        },
+        "lineHeight": {
+          "large": {
+            "value": "1.1",
+            "responsive": {
+              "768px": {
+                "value": "1.05"
+              },
+              "1012px": {
+                "value": "1"
+              }
+            }
+          },
+          "medium": {
+            "value": "1.1",
+            "responsive": {
+              "768px": {
+                "value": "1.05"
+              },
+              "1012px": {
+                "value": "1"
+              }
+            }
+          }
+        },
+        "letterSpacing": {
+          "large": {
+            "value": "-0.18em"
+          },
+          "medium": {
+            "value": "-0.045em",
+            "responsive": {
+              "768px": {
+                "value": "-0.18em"
+              }
+            }
+          }
+        },
+        "shorthand": {
+          "large": {
+            "value": {
+              "fontWeight": "{<namespace>.text.display.weight}",
+              "fontSize": "{<namespace>.text.display.size.large}",
+              "lineHeight": "{<namespace>.text.display.lineHeight.large}",
+              "fontFamily": "{<namespace>.text.display.fontFamily}",
+              "letterSpacing": "{<namespace>.text.display.letterSpacing.large}"
+            },
+            "$type": "typography"
+          },
+          "medium": {
+            "value": {
+              "fontWeight": "{<namespace>.text.display.weight}",
+              "fontSize": "{<namespace>.text.display.size.medium}",
+              "lineHeight": "{<namespace>.text.display.lineHeight.medium}",
+              "fontFamily": "{<namespace>.text.display.fontFamily}",
+              "letterSpacing": "{<namespace>.text.display.letterSpacing.medium}"
+            },
+            "$type": "typography"
+          }
+        }
+      },
+      "title": {
+        "weight": {
+          "semibold": {
+            "value": "{base.text.weight.semibold}"
+          },
+          "medium": {
+            "value": "{base.text.weight.medium}"
+          }
+        },
+        "fontFamily": {
+          "value": "{<namespace>.fontStack.sansSerif}"
+        },
+        "size": {
+          "xlarge": {
+            "value": "36px",
+            "responsive": {
+              "768px": {
+                "value": "40px"
+              },
+              "1012px": {
+                "value": "56px"
+              }
+            }
+          },
+          "large": {
+            "value": "32px",
+            "responsive": {
+              "768px": {
+                "value": "36px"
+              },
+              "1012px": {
+                "value": "48px"
+              }
+            }
+          },
+          "medium": {
+            "value": "28px",
+            "responsive": {
+              "768px": {
+                "value": "32px"
+              },
+              "1012px": {
+                "value": "40px"
+              }
+            }
+          },
+          "small": {
+            "value": "24px",
+            "responsive": {
+              "768px": {
+                "value": "24px"
+              },
+              "1012px": {
+                "value": "32px"
+              }
+            }
+          },
+          "xsmall": {
+            "value": "20px",
+            "responsive": {
+              "1012px": {
+                "value": "24px"
+              }
+            }
+          },
+          "xxsmall": {
+            "value": "16px",
+            "responsive": {
+              "1012px": {
+                "value": "20px"
+              }
+            }
+          }
+        },
+        "lineHeight": {
+          "xlarge": {
+            "value": "1.2"
+          },
+          "large": {
+            "value": "1.2"
+          },
+          "medium": {
+            "value": "1.2"
+          },
+          "small": {
+            "value": "1.3",
+            "responsive": {
+              "1012px": {
+                "value": "1.2"
+              }
+            }
+          },
+          "xsmall": {
+            "value": "1.3"
+          },
+          "xxsmall": {
+            "value": "1.3"
+          }
+        },
+        "letterSpacing": {
+          "xlarge": {
+            "value": "-0.02em",
+            "responsive": {
+              "1012px": {
+                "value": "-0.03em"
+              }
+            }
+          },
+          "large": {
+            "value": "-0.02em",
+            "responsive": {
+              "1012px": {
+                "value": "-0.03em"
+              }
+            }
+          },
+          "medium": {
+            "value": "-0.02em",
+            "responsive": {
+              "1012px": {
+                "value": "-0.03em"
+              }
+            }
+          },
+          "small": {
+            "value": "-0.02em"
+          },
+          "xsmall": {
+            "value": "-0.01em"
+          },
+          "xxsmall": {
+            "value": "-0.01em"
+          }
+        },
+        "shorthand": {
+          "xlarge": {
+            "value": {
+              "fontWeight": "{<namespace>.text.title.weight.semibold}",
+              "fontSize": "{<namespace>.text.title.size.xlarge}",
+              "lineHeight": "{<namespace>.text.title.lineHeight.xlarge}",
+              "fontFamily": "{<namespace>.text.title.fontFamily}",
+              "letterSpacing": "{<namespace>.text.title.letterSpacing.xlarge}"
+            }
+          },
+          "large": {
+            "value": {
+              "fontWeight": "{<namespace>.text.title.weight.semibold}",
+              "fontSize": "{<namespace>.text.title.size.large}",
+              "lineHeight": "{<namespace>.text.title.lineHeight.large}",
+              "fontFamily": "{<namespace>.text.title.fontFamily}",
+              "letterSpacing": "{<namespace>.text.title.letterSpacing.large}"
+            }
+          },
+          "medium": {
+            "value": {
+              "fontWeight": "{<namespace>.text.title.weight.semibold}",
+              "fontSize": "{<namespace>.text.title.size.medium}",
+              "lineHeight": "{<namespace>.text.title.lineHeight.medium}",
+              "fontFamily": "{<namespace>.text.title.fontFamily}",
+              "letterSpacing": "{<namespace>.text.title.letterSpacing.medium}"
+            }
+          },
+          "small": {
+            "value": {
+              "fontWeight": "{<namespace>.text.title.weight.semibold}",
+              "fontSize": "{<namespace>.text.title.size.small}",
+              "lineHeight": "{<namespace>.text.title.lineHeight.small}",
+              "fontFamily": "{<namespace>.text.title.fontFamily}",
+              "letterSpacing": "{<namespace>.text.title.letterSpacing.small}"
+            }
+          },
+          "xsmall": {
+            "value": {
+              "fontWeight": "{<namespace>.text.title.weight.semibold}",
+              "fontSize": "{<namespace>.text.title.size.xsmall}",
+              "lineHeight": "{<namespace>.text.title.lineHeight.xsmall}",
+              "fontFamily": "{<namespace>.text.title.fontFamily}",
+              "letterSpacing": "{<namespace>.text.title.letterSpacing.xsmall}"
+            }
+          },
+          "xxsmall": {
+            "value": {
+              "fontWeight": "{<namespace>.text.title.weight.semibold}",
+              "fontSize": "{<namespace>.text.title.size.xxsmall}",
+              "lineHeight": "{<namespace>.text.title.lineHeight.xxsmall}",
+              "fontFamily": "{<namespace>.text.title.fontFamily}",
+              "letterSpacing": "{<namespace>.text.title.letterSpacing.xxsmall}"
+            }
+          }
+        }
       }
     }
   }
