@@ -31,6 +31,7 @@ import {Hero} from '@primer/react-brand'
 
 ```jsx live
 <Hero>
+  <Hero.Label>Label</Hero.Label>
   <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
   <Hero.Description>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
@@ -48,6 +49,7 @@ import {Hero} from '@primer/react-brand'
 
 ```jsx live
 <Hero align="center">
+  <Hero.Label>Label</Hero.Label>
   <Hero.Heading>
     Blazing fast cloud
     <br />
@@ -66,6 +68,16 @@ import {Hero} from '@primer/react-brand'
 | `align`     | `'center'`, `'start'` | `'start'` | Optional text alignment                  |
 | `className` | `string`              |           | Sets a custom class on the root element  |
 | `ref`       | `React.RefObject`     |           | Forward a Ref to the underlying DOM node |
+
+### Hero.Label
+
+| name        | type              | default | description                                  |
+| ----------- | ----------------- | ------- | -------------------------------------------- |
+| `className` | `string`          |         | Sets a custom class on the root of the label |
+| `id`        | `string`          |         | Sets a custom id on the root of the label    |
+| `ref`       | `React.RefObject` |         | Forward a Ref to the underlying DOM node     |
+
+Forwards all props from the [Label component](/components/Label), including `size` and `color`.
 
 ### Hero.Heading
 
