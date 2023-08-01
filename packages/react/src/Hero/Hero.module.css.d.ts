@@ -8,6 +8,7 @@ declare const styles: {
   readonly "Hero-actions": string;
   readonly "Hero-content": string;
   readonly "Hero-image": string;
+  readonly "Hero-label": string;
   readonly "Hero-heading": string;
   readonly "Hero-description": string;
 };

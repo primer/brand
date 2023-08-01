@@ -3,18 +3,6 @@
   display: flex;
   flex-direction: column;
 }
-/* 
-.Hero-image--pos-block-end {
-  margin-block-start: var(--base-size-40);
-  border-radius: var(--brand-borderRadius-large);
-  width: 100%;
-}
-
-@media screen and (min-width: 48rem) {
-  .Hero-image--pos-block-end {
-    margin-block-start: var(--base-size-80);
-  }
-} */
 
 .Hero--layout-image {
   display: grid;
@@ -67,6 +55,10 @@
 .Hero-image {
   border-radius: var(--brand-borderRadius-large);
   width: 100%;
+}
+
+.Hero-label {
+  margin-block-end: var(--base-size-24);
 }
 
 .Hero-heading {
