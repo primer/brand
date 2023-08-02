@@ -3,6 +3,7 @@ declare const styles: {
   readonly "Hero--align-start": string;
   readonly "Hero--align-center": string;
   readonly "Hero-actions": string;
+  readonly "Hero-label": string;
   readonly "Hero-heading": string;
   readonly "Hero-description": string;
 };

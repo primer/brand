@@ -11,7 +11,7 @@
           }
         },
         "timing": {
-          "value": "0.3s"
+          "value": "var(--brand-animation-duration-fast)"
         }
       }
     }

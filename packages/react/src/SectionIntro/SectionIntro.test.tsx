@@ -131,6 +131,40 @@ describe('SectionIntro', () => {
     expect(rootEl.classList).not.toContain(unexpectedRootClass)
   })
 
+  test('renders an optional label', () => {
+    const mockLabel = 'Label'
+
+    const {getByText} = render(
+      <SectionIntro>
+        <SectionIntro.Label>{mockLabel}</SectionIntro.Label>
+        <SectionIntro.Heading>{mockHeading}</SectionIntro.Heading>
+        <SectionIntro.Link href="#">{mockLinkText}</SectionIntro.Link>
+      </SectionIntro>,
+    )
+    const labelEl = getByText(mockLabel)
+
+    expect(labelEl).toBeInTheDocument()
+  })
+
+  test('renders with default colors and size', () => {
+    const mockLabel = 'Label'
+    const expectedSize = 'medium'
+    const expectedColor = 'default'
+
+    const {getByTestId} = render(
+      <SectionIntro>
+        <SectionIntro.Label>{mockLabel}</SectionIntro.Label>
+        <SectionIntro.Heading>{mockHeading}</SectionIntro.Heading>
+        <SectionIntro.Link href="#">{mockLinkText}</SectionIntro.Link>
+      </SectionIntro>,
+    )
+    const labelEl = getByTestId(mockLabel)
+
+    expect(labelEl).toBeInTheDocument()
+    expect(labelEl).toHaveClass(`Label--size-${expectedSize}`)
+    expect(labelEl).toHaveClass(`Label--color-${expectedColor}`)
+  })
+
   it('has no a11y violations', async () => {
     const {container} = render(
       <SectionIntro>
