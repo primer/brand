@@ -2,146 +2,164 @@
   color: var(--brand-color-text-default);
 }
 
+.Heading--display-large {
+  font-weight: var(--brand-text-display-weight);
+  font-size: var(--brand-text-display-size-large);
+  line-height: var(--brand-text-display-lineHeight-large);
+  font-family: var(--brand-text-display-fontFamily);
+  letter-spacing: var(--brand-text-display-letterSpacing-large);
+}
+
+.Heading--display-medium {
+  font-weight: var(--brand-text-display-weight);
+  font-size: var(--brand-text-display-size-medium);
+  line-height: var(--brand-text-display-lineHeight-medium);
+  font-family: var(--brand-text-display-fontFamily);
+  letter-spacing: var(--brand-text-display-letterSpacing-medium);
+}
+
 .Heading--1 {
-  font-weight: var(--brand-text-weight-900);
-  font-size: var(--brand-text-size-900);
-  line-height: var(--brand-text-lineHeight-900);
-  font-family: var(--brand-heading-fontFamily);
-  letter-spacing: var(--brand-text-letterSpacing-900);
+  font-weight: var(--brand-text-heading-weight-semibold);
+  font-size: var(--brand-text-heading-size-xlarge);
+  line-height: var(--brand-text-heading-lineHeight-xlarge);
+  font-family: var(--brand-text-heading-fontFamily);
+  letter-spacing: var(--brand-text-heading-letterSpacing-xlarge);
 }
 
 .Heading--2 {
-  font-weight: var(--brand-text-weight-800);
-  font-size: var(--brand-text-size-800);
-  line-height: var(--brand-text-lineHeight-800);
-  font-family: var(--brand-heading-fontFamily);
-  letter-spacing: var(--brand-text-letterSpacing-800);
+  font-weight: var(--brand-text-heading-weight-semibold);
+  font-size: var(--brand-text-heading-size-large);
+  line-height: var(--brand-text-heading-lineHeight-large);
+  font-family: var(--brand-text-heading-fontFamily);
+  letter-spacing: var(--brand-text-heading-letterSpacing-large);
 }
 
 .Heading--3 {
-  font-weight: var(--brand-heading-weight-700);
-  font-size: var(--brand-text-size-700);
-  line-height: var(--brand-heading-lineHeight-700);
-  font-family: var(--brand-heading-fontFamily);
-  letter-spacing: var(--brand-heading-letterSpacing-700);
+  font-weight: var(--brand-text-heading-weight-semibold);
+  font-size: var(--brand-text-heading-size-medium);
+  line-height: var(--brand-text-heading-lineHeight-medium);
+  font-family: var(--brand-text-heading-fontFamily);
+  letter-spacing: var(--brand-text-heading-letterSpacing-medium);
 }
 
 .Heading--4 {
-  font-weight: var(--brand-heading-weight-600);
-  font-size: var(--brand-text-size-600);
-  line-height: var(--brand-text-lineHeight-600);
-  font-family: var(--brand-heading-fontFamily);
-  letter-spacing: var(--brand-heading-letterSpacing-600);
+  font-weight: var(--brand-text-heading-weight-semibold);
+  font-size: var(--brand-text-heading-size-small);
+  line-height: var(--brand-text-heading-lineHeight-small);
+  font-family: var(--brand-text-heading-fontFamily);
+  letter-spacing: var(--brand-text-heading-letterSpacing-small);
 }
 
 .Heading--5 {
-  font-weight: var(--brand-heading-weight-500);
-  font-size: var(--brand-text-size-500);
-  line-height: var(--brand-text-lineHeight-500);
-  font-family: var(--brand-heading-fontFamily);
-  letter-spacing: var(--brand-heading-letterSpacing-500);
+  font-weight: var(--brand-text-heading-weight-semibold);
+  font-size: var(--brand-text-heading-size-xsmall);
+  line-height: var(--brand-text-heading-lineHeight-xsmall);
+  font-family: var(--brand-text-heading-fontFamily);
+  letter-spacing: var(--brand-text-heading-letterSpacing-xsmall);
 }
 
 .Heading--6 {
-  font-weight: var(--brand-heading-weight-400);
-  font-size: var(--brand-text-size-400);
-  line-height: var(--brand-text-lineHeight-400);
-  font-family: var(--brand-heading-fontFamily);
-  letter-spacing: var(--brand-heading-letterSpacing-400);
+  font-weight: var(--brand-text-heading-weight-semibold);
+  font-size: var(--brand-text-heading-size-xxsmall);
+  line-height: var(--brand-text-heading-lineHeight-xxsmall);
+  font-family: var(--brand-text-heading-fontFamily);
+  letter-spacing: var(--brand-text-heading-letterSpacing-xxsmall);
 }
+
+/* force medium as the only style alternative without a breaking change */
 
 .Heading--weight-heavy,
 .Heading-narrow--weight-heavy {
-  font-weight: var(--base-text-weight-heavy);
+  font-weight: var(--brand-text-heading-weight-medium);
 }
 
 .Heading--weight-extrabold,
 .Heading-narrow--weight-extrabold {
-  font-weight: var(--base-text-weight-extrabold);
+  font-weight: var(--brand-text-heading-weight-medium);
 }
 
 .Heading--weight-bold,
 .Heading-narrow--weight-bold {
-  font-weight: var(--base-text-weight-bold);
+  font-weight: var(--brand-text-heading-weight-medium);
 }
 
 .Heading--weight-semibold,
 .Heading-narrow--weight-semibold {
-  font-weight: var(--base-text-weight-semibold);
+  font-weight: var(--brand-text-heading-weight-medium);
 }
 
 .Heading--weight-medium,
 .Heading-narrow--weight-medium {
-  font-weight: var(--base-text-weight-medium);
+  font-weight: var(--brand-text-heading-weight-medium);
 }
 
 .Heading--weight-normal,
 .Heading-narrow--weight-normal {
-  font-weight: var(--base-text-weight-normal);
+  font-weight: var(--brand-text-heading-weight-medium);
 }
 
 .Heading--weight-light,
 .Heading-narrow--weight-light {
-  font-weight: var(--base-text-weight-light);
+  font-weight: var(--brand-text-heading-weight-medium);
 }
 
 @media screen and (min-width: 48rem) {
   .Heading-regular--weight-heavy {
-    font-weight: var(--base-text-weight-heavy);
+    font-weight: var(--brand-text-heading-weight-medium);
   }
 
   .Heading-regular--weight-extrabold {
-    font-weight: var(--base-text-weight-extrabold);
+    font-weight: var(--brand-text-heading-weight-medium);
   }
 
   .Heading-regular--weight-bold {
-    font-weight: var(--base-text-weight-bold);
+    font-weight: var(--brand-text-heading-weight-medium);
   }
 
   .Heading-regular--weight-semibold {
-    font-weight: var(--base-text-weight-semibold);
+    font-weight: var(--brand-text-heading-weight-medium);
   }
 
   .Heading-regular--weight-medium {
-    font-weight: var(--base-text-weight-medium);
+    font-weight: var(--brand-text-heading-weight-medium);
   }
 
   .Heading-regular--weight-normal {
-    font-weight: var(--base-text-weight-normal);
+    font-weight: var(--brand-text-heading-weight-medium);
   }
 
   .Heading-regular--weight-light {
-    font-weight: var(--base-text-weight-light);
+    font-weight: var(--brand-text-heading-weight-medium);
   }
 }
 
 @media screen and (min-width: 80rem) {
   .Heading-wide--weight-heavy {
-    font-weight: var(--base-text-weight-heavy);
+    font-weight: var(--brand-text-heading-weight-medium);
   }
 
   .Heading-wide--weight-extrabold {
-    font-weight: var(--base-text-weight-extrabold);
+    font-weight: var(--brand-text-heading-weight-medium);
   }
 
   .Heading-wide--weight-bold {
-    font-weight: var(--base-text-weight-bold);
+    font-weight: var(--brand-text-heading-weight-medium);
   }
 
   .Heading-wide--weight-semibold {
-    font-weight: var(--base-text-weight-semibold);
+    font-weight: var(--brand-text-heading-weight-medium);
   }
 
   .Heading-wide--weight-medium {
-    font-weight: var(--base-text-weight-medium);
+    font-weight: var(--brand-text-heading-weight-medium);
   }
 
   .Heading-wide--weight-normal {
-    font-weight: var(--base-text-weight-normal);
+    font-weight: var(--brand-text-heading-weight-medium);
   }
 
   .Heading-wide--weight-light {
-    font-weight: var(--base-text-weight-light);
+    font-weight: var(--brand-text-heading-weight-medium);
   }
 }
 
@@ -196,14 +214,16 @@
  * Heading letter spacing
  */
 
+/* no idea what to do with letterspacing logic */
+
 .Heading--letter-spacing-condensed,
 .Heading-narrow--letter-spacing-condensed {
-  letter-spacing: var(--brand-text-letterSpacing-900);
+  letter-spacing: var(--brand-text-heading-letterSpacing-900);
 }
 
 .Heading--letter-spacing-normal,
 .Heading-narrow--letter-spacing-normal {
-  letter-spacing: var(--brand-heading-letterSpacing-700);
+  letter-spacing: var(--brand-text-heading-letterSpacing-700);
 }
 
 .Heading--letter-spacing-none,
@@ -213,11 +233,11 @@
 
 @media screen and (min-width: 48rem) {
   .Heading-regular--letter-spacing-condensed {
-    letter-spacing: var(--brand-text-letterSpacing-900);
+    letter-spacing: var(--brand-text-heading-letterSpacing-900);
   }
 
   .Heading-regular--letter-spacing-normal {
-    letter-spacing: var(--brand-heading-letterSpacing-700);
+    letter-spacing: var(--brand-text-heading-letterSpacing-700);
   }
 
   .Heading-regular--letter-spacing-none {
@@ -227,11 +247,11 @@
 
 @media screen and (min-width: 80rem) {
   .Heading-narrow--weight-wide .Heading-wide--letter-spacing-condensed {
-    letter-spacing: var(--brand-text-letterSpacing-900);
+    letter-spacing: var(--brand-text-heading-letterSpacing-900);
   }
 
   .Heading-wide--letter-spacing-normal {
-    letter-spacing: var(--brand-heading-letterSpacing-700);
+    letter-spacing: var(--brand-text-heading-letterSpacing-700);
   }
 
   .Heading-wide--letter-spacing-none {

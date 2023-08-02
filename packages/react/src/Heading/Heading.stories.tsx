@@ -1,6 +1,6 @@
 import React from 'react'
 import {Meta, StoryFn} from '@storybook/react'
-import {Heading, HeadingTags, HeadingWeights, HeadingLetterSpacing, HeadingStretch} from '.'
+import {Heading, HeadingTags, HeadingWeights, HeadingLetterSpacing, HeadingStretch, HeadingSizes} from '.'
 
 export default {
   title: 'Components/Heading',
@@ -13,6 +13,42 @@ export const Default = Template.bind({})
 Default.args = {
   children: 'Heading',
   as: 'h1',
+}
+
+export const Playground = Template.bind({})
+Playground.argTypes = {
+  children: {
+    control: {
+      type: 'text',
+    },
+  },
+  size: {
+    control: {
+      type: 'radio',
+    },
+    options: HeadingSizes,
+  },
+  weight: {
+    control: {
+      type: 'radio',
+    },
+    options: HeadingWeights,
+  },
+  stretch: {
+    control: {
+      type: 'radio',
+    },
+    options: HeadingStretch,
+  },
+  letterSpacing: {
+    control: {
+      type: 'radio',
+    },
+    options: HeadingLetterSpacing,
+  },
+}
+Playground.args = {
+  children: 'Heading',
 }
 
 export const Scale: StoryFn<typeof Heading> = () => (

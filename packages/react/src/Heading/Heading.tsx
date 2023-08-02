@@ -4,7 +4,7 @@ import styles from './Heading.module.css'
 import type {BaseProps} from '../component-helpers'
 import {useAnimation} from '..'
 
-export const HeadingSizes = ['1', '2', '3', '4', '5', '6'] as const
+export const HeadingSizes = ['display-large', 'display-medium', '1', '2', '3', '4', '5', '6'] as const
 export const HeadingTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const
 
 export const HeadingWeights = ['heavy', 'extrabold', 'bold', 'semibold', 'medium', 'normal', 'light'] as const
