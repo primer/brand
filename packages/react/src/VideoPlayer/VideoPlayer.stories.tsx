@@ -33,7 +33,7 @@ export default {
 export const Playground: StoryFn<typeof VideoPlayer> = args => (
   <VideoPlayer {...args} crossOrigin="anonymous">
     <source src="https://cdn.api.video/vod/vi36GGvd6PoTqViQLxBWwHjJ/mp4/1080/source.mp4" />
-    <track src="./sample.vtt" kind="subtitles" srcLang="en" label="English" />
+    <track src="./sample.vtt" default kind="subtitles" srcLang="en" label="English" />
   </VideoPlayer>
 )
 

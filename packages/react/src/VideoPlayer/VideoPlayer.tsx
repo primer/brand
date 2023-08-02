@@ -205,7 +205,7 @@ export function VideoPlayer({
             }
           }}
         >
-          {volume >= 0 ? (
+          {volume > 0 ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
@@ -257,13 +257,13 @@ export function VideoPlayer({
               />
             </svg>
           )}
-          <VideoPlayerTooltip>{volume >= 0 ? 'Mute' : 'Unmute'}</VideoPlayerTooltip>
+          <VideoPlayerTooltip>{volume > 0 ? 'Mute' : 'Unmute'}</VideoPlayerTooltip>
         </button>
         <input
           type="range"
           min="0"
           max={1}
-          step={10}
+          step={0.001}
           onChange={e => {
             handleVolumeChange(e.currentTarget.valueAsNumber)
           }}
