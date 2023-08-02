@@ -5,10 +5,13 @@ import {Button, ButtonBaseProps} from '../Button'
 import {Heading, HeadingProps} from '../Heading'
 import {Text, TextSizes, TextWeightVariants, ResponsiveWeightMap} from '../Text'
 import {Label, LabelProps} from '../Label'
+import {Image, ImageProps} from '../Image'
+import {Grid} from '../Grid'
+import {Stack} from '../Stack'
 
 import type {BaseProps} from '../component-helpers'
+
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/hero/base.css'
-import {Image, ImageProps} from '../Image'
 
 export type HeroProps = BaseProps<HTMLElement> & {
   align?: 'start' | 'center'
@@ -44,10 +47,6 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
 
     const heroLayoutClass = HeroImageChild ? styles['Hero--layout-image'] : styles['Hero--layout-default']
 
-    const ContentTag = HeroImageChild ? 'div' : React.Fragment
-
-    const defaultContentProps = HeroImageChild ? {className: styles['Hero-content']} : {}
-
     return (
       <section
         className={clsx(
@@ -60,11 +59,23 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
         aria-labelledby="hero-section-brand-heading"
         {...rest}
       >
-        <ContentTag {...defaultContentProps}>
-          {HeroChildren}
-          <div className={styles['Hero-actions']}>{HeroActions}</div>
-        </ContentTag>
-        {HeroImageChild && HeroImageChild}
+        <Grid fullWidth className={clsx(styles['Hero-grid'], styles[`Hero-grid--${imagePosition}`])}>
+          <Grid.Column span={{medium: HeroImageChild && imagePosition === 'inline-end' ? 6 : 12}}>
+            <Stack
+              direction="vertical"
+              gap="none"
+              padding="none"
+              alignItems={imagePosition === 'inline-end' ? undefined : align === 'start' ? 'flex-start' : 'center'}
+              justifyContent={imagePosition === 'inline-end' ? undefined : align === 'start' ? 'flex-start' : 'center'}
+            >
+              {HeroChildren}
+              <div className={styles['Hero-actions']}>{HeroActions}</div>
+            </Stack>
+          </Grid.Column>
+          {HeroImageChild && (
+            <Grid.Column span={{medium: imagePosition === 'inline-end' ? 6 : 12}}>{HeroImageChild}</Grid.Column>
+          )}
+        </Grid>
       </section>
     )
   },
