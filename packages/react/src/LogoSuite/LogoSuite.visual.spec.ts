@@ -34,13 +34,6 @@ test.describe('Visual Comparison: LogoSuite', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('LogoSuite / Stacked', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-logosuite-features--stacked&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
   test('LogoSuite / Only Heading', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--only-heading&viewMode=story',
@@ -50,9 +43,9 @@ test.describe('Visual Comparison: LogoSuite', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('LogoSuite / Only Description', async ({page}) => {
+  test('LogoSuite / Heading Hidden', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--only-description&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--heading-hidden&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -70,6 +63,13 @@ test.describe('Visual Comparison: LogoSuite', () => {
 
   test('LogoSuite / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-logosuite--default&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('LogoSuite / Playground', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-logosuite--playground&viewMode=story')
 
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()

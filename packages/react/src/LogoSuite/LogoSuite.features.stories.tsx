@@ -243,7 +243,7 @@ export const Stacked = () => (
         </LogoSuite.Logobar>
       </LogoSuite>
       <LogoSuite hasDivider={false}>
-        <LogoSuite.Logobar variant="muted">
+        <LogoSuite.Logobar variant="muted" marquee>
           <React.Fragment>{logos.slice(8, 12)}</React.Fragment>
         </LogoSuite.Logobar>
       </LogoSuite>
@@ -310,7 +310,7 @@ export const OnlyHeading = () => (
   </LogoSuite>
 )
 
-export const OnlyDescription = () => (
+export const HeadingHidden = () => (
   <LogoSuite>
     <LogoSuite.Heading visuallyHidden>Heading</LogoSuite.Heading>
     <LogoSuite.Description>

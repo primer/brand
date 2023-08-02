@@ -87,6 +87,7 @@
     'components-logosuite-features--slower-marquee-speed', // animation only
     'components-logosuite-features--mixed-width', // animation only
     'components-logosuite-features--following-hero', // animation only
+    'components-logosuite-features--stacked', // animation only
   ]
 
   const categorisedStories = Object.keys(stories as Stories).reduce((acc, key) => {
