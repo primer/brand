@@ -1,12 +1,36 @@
+/* ---------------------------------------------------------- */
+/* VideoPlayer Contents                                       */
+/* ---------------------------------------------------------- */
+/* Table of contents:                                         */
+/* 1. Container                                               */
+/* 2. Player                                                  */
+/* 2. Center Play Button                                      */
+/* 4. Title                                                   */
+/* 5. Controls                                                */
+/* 6. Tooltip                                                 */
+/* ---------------------------------------------------------- */
+
+/* ---------------------------------------------------------- */
+/* 1. Container                                               */
+/* ---------------------------------------------------------- */
+
 .VideoPlayer__container {
   width: 100%;
   position: relative;
 }
 
+/* ---------------------------------------------------------- */
+/* 2. Player                                                  */
+/* ---------------------------------------------------------- */
+
 .VideoPlayer {
   width: 100%;
-  border-radius: 15px;
+  border-radius: 6px;
 }
+
+/* ---------------------------------------------------------- */
+/* 3. Center Play Button                                      */
+/* ---------------------------------------------------------- */
 
 .VideoPlayer__playButton {
   position: absolute;
@@ -15,13 +39,13 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0);
-  pointer-events: none;
   border: none;
   z-index: 1;
 }
 
 .VideoPlayer__playButton svg {
   cursor: pointer;
+  color: white;
 }
 
 /* .VideoPlayer__playButton svg {
@@ -31,32 +55,44 @@
   border-radius: 50%;
 } */
 
-.VideoPlayer__controls {
-  position: absolute;
-  bottom: 0;
-  transform: translateY(-8px);
-  border-radius: 15px;
-  left: 0;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
-  display: grid;
-  grid-gap: 10px;
-  align-items: center;
-  grid-template-columns: auto 2fr auto;
-  z-index: 2;
-  padding: 10px;
-}
+/* ---------------------------------------------------------- */
+/* 4. Title                                                   */
+/* ---------------------------------------------------------- */
 
 .VideoPlayer__title {
   position: absolute;
   top: 0;
-  border-radius: 15px;
+  border-radius: 6px;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+  padding: 15px 24px;
+  color: white;
+  display: grid;
+  align-items: center;
+  justify-content: start;
+  grid-gap: 10px;
+  grid-template-columns: auto auto;
+}
+
+/* ---------------------------------------------------------- */
+/* 5. Controls                                                */
+/* ---------------------------------------------------------- */
+
+.VideoPlayer__controls {
+  position: absolute;
+  bottom: 0;
+  transform: translateY(-8px);
+  border-radius: 6px;
   left: 0;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.2);
+  display: grid;
+  grid-gap: 15px;
+  align-items: center;
+  grid-template-columns: auto 2fr auto auto auto auto;
   z-index: 2;
-  padding: 10px;
-  color: white;
+  padding: 15px 24px;
 }
 
 .VideoPlayer__iconControl {
@@ -67,18 +103,74 @@
   height: 24px;
   box-sizing: content-box;
   position: relative;
+  padding: 0;
+}
+
+.VideoPlayer__iconControl svg {
+  color: #fff;
 }
 
 .VideoPlayer__iconControl:hover .VideoPlayer__tooltip {
   opacity: 100;
 }
 
-.VideoPlayer__progress {
+.VideoPlayer__progressTime {
   width: 100%;
   color: white;
 }
 
-/* Parent must be relative */
+.VideoPlayer__progressBar {
+  -webkit-appearance: none; /* Override default CSS styles */
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: 5px; /* Specified height */
+  /* background: #fff; */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: 0.2s; /* 0.2 seconds transition on hover */
+  transition: opacity 0.2s;
+  border: none;
+}
+
+.VideoPlayer__progressBar:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+.VideoPlayer__progressBar::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 16px; /* Set a specific slider handle width */
+  height: 16px; /* Slider handle height */
+  border-radius: 8px;
+  background: var(--brand-InlineLink-color-rest); /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.VideoPlayer__progressBar::-moz-range-thumb {
+  width: 16px; /* Set a specific slider handle width */
+  height: 16px; /* Slider handle height */
+  background: var(--brand-InlineLink-color-rest); /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.VideoPlayer__progressBar::-moz-range-progress {
+  background-color: #43e5f7;
+}
+.VideoPlayer__progressBar::-moz-range-track {
+  background-color: #9a905d;
+}
+/* IE*/
+.VideoPlayer__progressBar::-ms-fill-lower {
+  background-color: #43e5f7;
+}
+.VideoPlayer__progressBar::-ms-fill-upper {
+  background-color: #9a905d;
+}
+
+/* ---------------------------------------------------------- */
+/* 6. Tooltip                                                 */
+/* ---------------------------------------------------------- */
+
 .VideoPlayer__tooltip {
   position: absolute;
   bottom: 100%;
@@ -110,10 +202,17 @@
   bottom: 0;
   left: 50%;
   z-index: -1;
-  color: blue;
   background: white;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
   transform: translate3d(-50%, 0, 0);
   padding: 5px 10px;
-  border-radius: 10px;
+  border-radius: 6px;
+}
+
+.VideoPlayer__tooltipText {
+  color: var(--brand-InlineLink-color-rest);
+}
+
+.VideoPlayer__controlTextColor {
+  color: var(--base-color-scale-white-0);
 }
