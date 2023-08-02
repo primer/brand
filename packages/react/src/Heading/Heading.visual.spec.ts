@@ -14,6 +14,13 @@ test.describe('Visual Comparison: Heading', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('Heading / Playground', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--playground&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Heading / Scale', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--scale&viewMode=story')
 
