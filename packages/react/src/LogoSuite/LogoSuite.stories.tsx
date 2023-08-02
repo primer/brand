@@ -9,18 +9,52 @@ export default {
   args: {
     align: 'center',
     variant: 'muted',
+    marqueeSpeed: 'default',
   },
   argTypes: {
-    align: {
+    hasDivider: {
       control: {
-        type: 'radio',
-        options: ['start', 'center', 'justify'],
+        type: 'boolean',
+      },
+      table: {
+        category: 'LogoSuite',
+      },
+    },
+    hasMarquee: {
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'LogoSuite.Logobar',
+      },
+    },
+    align: {
+      control: 'radio',
+      options: ['start', 'center', 'justify'],
+      table: {
+        category: 'LogoSuite',
       },
     },
     variant: {
+      control: 'radio',
+      options: ['muted', 'emphasis'],
+      table: {
+        category: 'LogoSuite.Logobar',
+      },
+    },
+    visuallyHidden: {
       control: {
-        type: 'radio',
-        options: ['muted', 'emphasis'],
+        type: 'boolean',
+      },
+      table: {
+        category: 'LogoSuite.Heading',
+      },
+    },
+    marqueeSpeed: {
+      control: 'radio',
+      options: ['slow', 'default'],
+      table: {
+        category: 'LogoSuite.Logobar',
       },
     },
   },
@@ -82,6 +116,16 @@ export const Default = () => (
     <LogoSuite.Heading>Heading</LogoSuite.Heading>
     <LogoSuite.Description>Body text maximus ligula felis, non egestas dolor rutrum vel.</LogoSuite.Description>
     <LogoSuite.Logobar>
+      <React.Fragment>{logos.slice(0, 5)}</React.Fragment>
+    </LogoSuite.Logobar>
+  </LogoSuite>
+)
+
+export const Playground = args => (
+  <LogoSuite {...args}>
+    <LogoSuite.Heading visuallyHidden={args.visuallyHidden}>Heading</LogoSuite.Heading>
+    <LogoSuite.Description>Body text maximus ligula felis, non egestas dolor rutrum vel.</LogoSuite.Description>
+    <LogoSuite.Logobar variant={args.variant} marquee={args.hasMarquee} marqueeSpeed={args.marqueeSpeed}>
       <React.Fragment>{logos.slice(0, 5)}</React.Fragment>
     </LogoSuite.Logobar>
   </LogoSuite>
