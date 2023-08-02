@@ -43,6 +43,15 @@ test.describe('Visual Comparison: SectionIntro', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('SectionIntro / With Label', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--with-label&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('SectionIntro / Aligned Center', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--aligned-center&viewMode=story',
