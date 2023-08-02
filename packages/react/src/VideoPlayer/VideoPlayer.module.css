@@ -1,0 +1,119 @@
+.VideoPlayer__container {
+  width: 100%;
+  position: relative;
+}
+
+.VideoPlayer {
+  width: 100%;
+  border-radius: 15px;
+}
+
+.VideoPlayer__playButton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  pointer-events: none;
+  border: none;
+  z-index: 1;
+}
+
+.VideoPlayer__playButton svg {
+  cursor: pointer;
+}
+
+/* .VideoPlayer__playButton svg {
+  background-color: red;
+  padding: 20px;
+  box-sizing: content-box;
+  border-radius: 50%;
+} */
+
+.VideoPlayer__controls {
+  position: absolute;
+  bottom: 0;
+  transform: translateY(-8px);
+  border-radius: 15px;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: grid;
+  grid-gap: 10px;
+  align-items: center;
+  grid-template-columns: auto 2fr auto;
+  z-index: 2;
+  padding: 10px;
+}
+
+.VideoPlayer__title {
+  position: absolute;
+  top: 0;
+  border-radius: 15px;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 2;
+  padding: 10px;
+  color: white;
+}
+
+.VideoPlayer__iconControl {
+  width: auto;
+  background: none;
+  border: none;
+  cursor: pointer;
+  height: 24px;
+  box-sizing: content-box;
+  position: relative;
+}
+
+.VideoPlayer__iconControl:hover .VideoPlayer__tooltip {
+  opacity: 100;
+}
+
+.VideoPlayer__progress {
+  width: 100%;
+  color: white;
+}
+
+/* Parent must be relative */
+.VideoPlayer__tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  z-index: 2;
+  width: 10px;
+  height: 10px;
+  margin-bottom: 16px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate3d(-50%, 50%, 0);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.VideoPlayer__tooltip::before {
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  content: '';
+  background: white;
+  border-radius: 2px;
+  transform: rotate(45deg);
+}
+
+.VideoPlayer__tooltipContent {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  z-index: -1;
+  color: blue;
+  background: white;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  transform: translate3d(-50%, 0, 0);
+  padding: 5px 10px;
+  border-radius: 10px;
+}

@@ -12,6 +12,10 @@ module.exports = {
     globalObject: 'this',
     umdNamedDefine: true,
   },
+  stats: {
+    errorDetails: true,
+    children: true,
+  },
   externals: {
     react: {
       root: 'React',
