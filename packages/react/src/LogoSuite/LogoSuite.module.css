@@ -1,9 +1,9 @@
 .LogoSuite {
-  padding-block-end: var(--base-size-40);
+  padding-block-end: var(--brand-LogoSuite-logobar-rowGap);
 }
 
 .LogoSuite + .LogoSuite {
-  padding-block-start: var(--base-size-40);
+  padding-block-start: var(--brand-LogoSuite-logobar-rowGap);
 }
 
 .LogoSuite__heading + .LogoSuite__description {
