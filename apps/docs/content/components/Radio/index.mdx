@@ -18,18 +18,16 @@ export default ComponentLayout
 
 Use the radio component to enable users to select a single option from a list.
 
-For scenarios that allow for multiple selections, use the [checkbox](/components/Checkbox) component instead. Keep the radio label descriptive and concise: aim for no more than 3 words. Write labels in sentence case and without ending in punctuation.
+For scenarios that allow for multiple selections, use the [Checkbox](/components/Checkbox) component instead. Keep the radio label descriptive and concise: aim for no more than 3 words. Write labels in sentence case and without ending in punctuation.
 
 ### Grouping
-Use the `name` prop to group together related radio components in a list.
-
-If you're not building something custom, you should use the `Stack` and `FormControl` component to render a group of radio inputs.
+To group related radio components together in a list, use the [Stack](/components/FormControl) and [FormControl](/components/FormControl) components. When rendering a group of radio components, make sure to consider all potential option. Remember to include "None" or "Other" options when necessary. 
 
 <DoDontContainer>
   <Do>
     <img src="https://github.com/primer/brand/assets/131988618/dff47404-e323-49d9-95f7-ab457a7195ef" />
     <Caption>
-        Ensure radio options are are mutually exclusive. E.g. include "None" or "Other" options if necessary. 
+        Ensure radio options are are mutually exclusive. Include "None" or "Other" options when necessary. 
     </Caption>
   </Do>
   <Dont>
@@ -57,18 +55,13 @@ If you're not building something custom, you should use the `Stack` and `FormCon
 
 ### States
 
-Radios have static dimensions and three different states when checked or unchecked: rest (default), focus, and disabled.
+Radios have static dimensions and three different states: default, checked, and disabled.
 
 <img
   width="960"
   role="presentation"
   src="https://user-images.githubusercontent.com/2313998/224133514-c583baf4-6dfc-444d-8714-dfc88cc00ff9.png"
 />
-
-## Options
-
-### Caption
-
 
 ## Accessibility 
 
