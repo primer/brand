@@ -144,6 +144,7 @@
   border-radius: 8px;
   background: var(--brand-InlineLink-color-rest); /* Green background */
   cursor: pointer; /* Cursor on hover */
+  border: none;
 }
 
 .VideoPlayer__progressBar::-moz-range-thumb {
@@ -151,20 +152,25 @@
   height: 16px; /* Slider handle height */
   background: var(--brand-InlineLink-color-rest); /* Green background */
   cursor: pointer; /* Cursor on hover */
+  border: none;
 }
 
 .VideoPlayer__progressBar::-moz-range-progress {
   background-color: #43e5f7;
+  border: none;
 }
 .VideoPlayer__progressBar::-moz-range-track {
-  background-color: #9a905d;
+  background-color: white;
+  border: none;
 }
 /* IE*/
 .VideoPlayer__progressBar::-ms-fill-lower {
   background-color: #43e5f7;
+  border: none;
 }
 .VideoPlayer__progressBar::-ms-fill-upper {
-  background-color: #9a905d;
+  background-color: white;
+  border: none;
 }
 
 /* ---------------------------------------------------------- */

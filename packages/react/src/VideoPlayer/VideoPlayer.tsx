@@ -27,12 +27,12 @@ export function VideoPlayer({
   const videoRef = ref ? ref : videoPlayerRef
   const [playing, setPlaying] = useState(false)
   const [playedTime, setPlayedTime] = useState(0)
-  const [playTimeChange, setPlayTimeChange] = useState(false)
   const [totalTime, setTotalTime] = useState(0)
   const [fullScreen, setFullScreen] = useState(false)
-  const [sound, setSound] = useState(true)
-  const [volume, setVolume] = useState(1)
+  const [volume, setVolume] = useState(0.1)
+  const [previousVolume, setPreviousVolume] = useState(volume)
 
+  //   Play Pause Functionality:
   const handleVideoPlayback = () => {
     if (videoRef.current) {
       if (videoRef.current.paused) {
@@ -43,16 +43,7 @@ export function VideoPlayer({
     }
   }
 
-  useEffect(() => {
-    if (videoRef.current) videoRef.current.volume = volume
-    // TODO: This needs to set and unset
-    // if (volume === 0 && sound === true) setSound(false)
-  }, [videoRef, volume])
-
-  useEffect(() => {
-    // TODO: This doesn't handle previous volume
-    !sound ? setVolume(0) : setVolume(1)
-  }, [sound])
+  // Full Screen Change:
 
   const handleFullScreen = () => {
     if (videoRef.current) {
@@ -72,10 +63,6 @@ export function VideoPlayer({
     }
   }
 
-  const handleSound = () => {
-    setSound(!sound)
-  }
-
   React.useEffect(() => {
     window.addEventListener('fullscreenchange', handleFullScreenMinimize)
 
@@ -85,6 +72,7 @@ export function VideoPlayer({
     }
   }, [])
 
+  //  Time to video format converter
   const getMinuteSecondTime = (time: number) => {
     const minutes = Math.floor(time / 60)
     const seconds = Math.floor(time - minutes * 60)
@@ -94,21 +82,33 @@ export function VideoPlayer({
     return `${x}:${y}`
   }
 
-  //   TODO: This needs to actually set the playTime
+  // Play Time Change:
+
   const handlePlayTimeChange = (value: number) => {
     if (videoRef.current) videoRef.current.currentTime = value
-    setPlayTimeChange(false)
   }
 
   React.useEffect(() => {
-    if (videoRef.current && !playTimeChange) {
+    if (videoRef.current) {
       videoRef.current.addEventListener('timeupdate', () => {
         setPlayedTime(videoRef.current?.currentTime || 0)
       })
     }
-  }, [videoRef, videoRef.current?.currentTime, playTimeChange])
+  }, [videoRef, videoRef.current?.currentTime])
+
+  // Volume Change:
+
+  const handleVolumeChange = (value: number) => {
+    console.log('setting volume to', value)
+    setVolume(value)
+  }
+
+  React.useEffect(() => {
+    if (videoRef.current) videoRef.current.volume = volume
+  }, [videoRef, videoRef.current?.volume, volume])
 
   // TODO: This needs to load as soon as the video loads
+  // Sets total time
   React.useEffect(() => {
     setTotalTime(videoRef.current?.duration || 0)
   }, [videoRef, videoRef.current?.duration])
@@ -184,7 +184,6 @@ export function VideoPlayer({
           max={totalTime}
           step={0.01}
           onChange={e => {
-            setPlayTimeChange(true)
             handlePlayTimeChange(e.currentTarget.valueAsNumber)
           }}
           value={playedTime}
@@ -195,8 +194,18 @@ export function VideoPlayer({
             {getMinuteSecondTime(playedTime || 0) || '00:00'} / {getMinuteSecondTime(totalTime || 0) || '00:00'}
           </Text>
         </div>
-        <button className={styles.VideoPlayer__iconControl} onClick={handleSound}>
-          {sound ? (
+        <button
+          className={styles.VideoPlayer__iconControl}
+          onClick={() => {
+            if (volume > 0) {
+              setPreviousVolume(volume)
+              setVolume(0)
+            } else {
+              setVolume(previousVolume)
+            }
+          }}
+        >
+          {volume >= 0 ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
@@ -248,7 +257,7 @@ export function VideoPlayer({
               />
             </svg>
           )}
-          <VideoPlayerTooltip>{sound ? 'Mute' : 'Unmute'}</VideoPlayerTooltip>
+          <VideoPlayerTooltip>{volume >= 0 ? 'Mute' : 'Unmute'}</VideoPlayerTooltip>
         </button>
         <input
           type="range"
@@ -256,7 +265,7 @@ export function VideoPlayer({
           max={1}
           step={10}
           onChange={e => {
-            setVolume(e.currentTarget.valueAsNumber)
+            handleVolumeChange(e.currentTarget.valueAsNumber)
           }}
           value={volume}
           className={styles.VideoPlayer__progressBar}
