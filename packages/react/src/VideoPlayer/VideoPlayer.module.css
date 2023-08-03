@@ -206,6 +206,12 @@
   top: 0;
 }
 
+.VideoPlayer__rangeInput::-moz-range-track,
+.VideoPlayer__rangeInput::-webkit-slider-runnable-track {
+  background: transparent;
+  border: none;
+}
+
 .VideoPlayer__rangeProgress {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -230,6 +236,15 @@
 
 .VideoPlayer__rangeProgress::-moz-progress-bar {
   background: #218bff;
+}
+
+.VideoPlayer__rangeProgress::-ms-fill-lower {
+  background-color: #218bff;
+  border: none;
+}
+.VideoPlayer__rangeProgress::-ms-fill-upper {
+  background-color: rgba(225, 225, 225, 0.5);
+  border: none;
 }
 
 /* ---------------------------------------------------------- */

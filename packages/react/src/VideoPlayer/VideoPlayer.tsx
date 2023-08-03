@@ -342,8 +342,8 @@ export function VideoPlayerTooltip({children}: {children: string}) {
   )
 }
 
-function VideoPlayerRange(props: React.HTMLProps<HTMLInputElement>) {
-  const [value, setValue] = useState(0)
+function VideoPlayerRange({className, onChange, value: startValue, ...props}: React.HTMLProps<HTMLInputElement>) {
+  const [value, setValue] = useState(startValue)
   return (
     <div className={styles.VideoPlayer__range}>
       <progress className={styles.VideoPlayer__rangeProgress} value={value} max={props.max} />
@@ -351,7 +351,10 @@ function VideoPlayerRange(props: React.HTMLProps<HTMLInputElement>) {
         type="range"
         className={styles.VideoPlayer__rangeInput}
         value={value}
-        onChange={e => setValue(e.currentTarget.valueAsNumber)}
+        onChange={e => {
+          setValue(e.currentTarget.valueAsNumber)
+          onChange && onChange(e)
+        }}
         {...props}
       />
     </div>
