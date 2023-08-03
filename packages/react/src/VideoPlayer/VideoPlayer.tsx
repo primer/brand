@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import clsx from 'clsx'
 import {Text} from '../Text'
 
@@ -11,6 +11,8 @@ type VideoPlayerProps = {
   children: React.ReactElement | React.ReactElement[]
   ref?: React.RefObject<HTMLVideoElement>
 } & React.HTMLProps<HTMLVideoElement>
+
+// TODO: Reacting to video events might be better for performance
 
 function Root({poster, title, branding = true, children, className, onPlay, onPause, ref, ...rest}: VideoPlayerProps) {
   const videoPlayerRef = useRef<HTMLVideoElement>(null)
@@ -125,7 +127,14 @@ function Root({poster, title, branding = true, children, className, onPlay, onPa
   }, [videoRef, videoRef.current?.duration])
 
   return (
-    <div className={styles.VideoPlayer__container} ref={videoWrapperRef}>
+    <div
+      className={clsx(
+        styles.VideoPlayer__container,
+        styles.VideoPlayer__overlays,
+        !playing && styles.VideoPlayer__showOverlays,
+      )}
+      ref={videoWrapperRef}
+    >
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <video
         ref={videoRef}
@@ -144,7 +153,7 @@ function Root({poster, title, branding = true, children, className, onPlay, onPa
       >
         {children}
       </video>
-      {title && !playing && (
+      {title && (
         <div className={styles.VideoPlayer__title}>
           {branding && (
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="48" height="48">
@@ -197,6 +206,7 @@ function Root({poster, title, branding = true, children, className, onPlay, onPa
           onChange={e => {
             handlePlayTimeChange(e.currentTarget.valueAsNumber)
           }}
+          //  TODO: This should update the component state below but it doesn't
           value={playedTime}
           className={styles.VideoPlayer__progressBar2}
         />
@@ -270,17 +280,6 @@ function Root({poster, title, branding = true, children, className, onPlay, onPa
           )}
           <VideoPlayerTooltip>{volume > 0 ? 'Mute' : 'Unmute'}</VideoPlayerTooltip>
         </button>
-        {/* <input
-          type="range"
-          min="0"
-          max={1}
-          step={0.001}
-          onChange={e => {
-            handleVolumeChange(e.currentTarget.valueAsNumber)
-          }}
-          value={volume}
-          className={styles.VideoPlayer__progressBar}
-        /> */}
         <VideoPlayerRange
           type="range"
           min="0"
@@ -345,6 +344,9 @@ export function VideoPlayerTooltip({children}: {children: string}) {
 
 function VideoPlayerRange({className, onChange, value: startValue, ...props}: React.HTMLProps<HTMLInputElement>) {
   const [value, setValue] = useState(startValue)
+  useEffect(() => {
+    setValue(startValue)
+  }, [startValue])
   return (
     <div className={styles.VideoPlayer__range}>
       <progress className={styles.VideoPlayer__rangeProgress} value={value} max={props.max} />

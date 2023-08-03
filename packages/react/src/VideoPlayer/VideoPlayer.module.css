@@ -18,6 +18,7 @@
 .VideoPlayer__container {
   width: 100%;
   position: relative;
+  overflow: hidden;
 }
 
 /* ---------------------------------------------------------- */
@@ -49,20 +50,16 @@
   color: white;
 }
 
-/* .VideoPlayer__playButton svg {
-  background-color: red;
-  padding: 20px;
-  box-sizing: content-box;
-  border-radius: 50%;
-} */
-
 /* ---------------------------------------------------------- */
 /* 4. Title                                                   */
 /* ---------------------------------------------------------- */
 
 .VideoPlayer__title {
+  transition-timing-function: ease-out;
+  transition-duration: 0.4s;
+  top: -10px;
+  opacity: 0;
   position: absolute;
-  top: 0;
   border-radius: 6px;
   left: 0;
   width: 100%;
@@ -74,6 +71,18 @@
   justify-content: start;
   grid-gap: 10px;
   grid-template-columns: auto auto;
+  background: rgba(0, 0, 0, 0.2);
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
+}
+
+.VideoPlayer__showOverlays .VideoPlayer__title {
+  top: 0px;
+  opacity: 1;
+}
+
+.VideoPlayer__overlays:hover .VideoPlayer__title {
+  top: 0px;
+  opacity: 1;
 }
 
 /* ---------------------------------------------------------- */
@@ -81,19 +90,34 @@
 /* ---------------------------------------------------------- */
 
 .VideoPlayer__controls {
+  transition-timing-function: ease-out;
+  transition-duration: 0.4s;
+  bottom: -10px;
+  opacity: 0;
   position: absolute;
-  bottom: 0;
   transform: translateY(-8px);
-  border-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
   left: 0;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.2);
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6));
   display: grid;
   grid-gap: 15px;
   align-items: center;
   grid-template-columns: auto 2fr auto auto auto auto;
   z-index: 2;
   padding: 15px 24px;
+}
+
+.VideoPlayer__showOverlays .VideoPlayer__controls {
+  bottom: 0px;
+  opacity: 1;
+}
+
+.VideoPlayer__overlays:hover .VideoPlayer__controls {
+  bottom: 0px;
+  opacity: 1;
 }
 
 .VideoPlayer__iconControl {
@@ -125,67 +149,13 @@
   height: 6px;
 }
 
-.VideoPlayer__progressBar {
-  -webkit-appearance: none; /* Override default CSS styles */
-  appearance: none;
-  width: 100%; /* Full-width */
-  height: 5px; /* Specified height */
-  /* background: #fff; */
-  outline: none; /* Remove outline */
-  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
-  -webkit-transition: 0.2s; /* 0.2 seconds transition on hover */
-  transition: opacity 0.2s;
-  border: none;
-}
-
-.VideoPlayer__progressBar:hover {
-  opacity: 1; /* Fully shown on mouse-over */
-}
-
-.VideoPlayer__progressBar::-webkit-slider-thumb {
-  -webkit-appearance: none; /* Override default look */
-  appearance: none;
-  width: 16px; /* Set a specific slider handle width */
-  height: 16px; /* Slider handle height */
-  border-radius: 8px;
-  background: var(--brand-InlineLink-color-rest); /* Green background */
-  cursor: pointer; /* Cursor on hover */
-  border: none;
-}
-
-.VideoPlayer__progressBar::-moz-range-thumb {
-  width: 16px; /* Set a specific slider handle width */
-  height: 16px; /* Slider handle height */
-  background: var(--brand-InlineLink-color-rest); /* Green background */
-  cursor: pointer; /* Cursor on hover */
-  border: none;
-}
-
-.VideoPlayer__progressBar::-moz-range-progress {
-  background-color: #43e5f7;
-  border: none;
-}
-.VideoPlayer__progressBar::-moz-range-track {
-  background-color: white;
-  border: none;
-}
-/* IE*/
-.VideoPlayer__progressBar::-ms-fill-lower {
-  background-color: #43e5f7;
-  border: none;
-}
-.VideoPlayer__progressBar::-ms-fill-upper {
-  background-color: white;
-  border: none;
-}
-
 /* ---------------------------------------------------------- */
 /* 6. Range Element                                           */
 /* ---------------------------------------------------------- */
 .VideoPlayer__range {
   position: relative;
   width: 100%;
-  min-width: 50px;
+  min-width: 150px;
   height: 6px;
   background-color: white;
   border-radius: 3px;
