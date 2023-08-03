@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from 'react'
+import React, {useState, useRef} from 'react'
 import clsx from 'clsx'
 import {Text} from '../Text'
 
@@ -12,21 +12,12 @@ type VideoPlayerProps = {
   ref?: React.RefObject<HTMLVideoElement>
 } & React.HTMLProps<HTMLVideoElement>
 
-export function VideoPlayer({
-  poster,
-  title,
-  branding = true,
-  children,
-  className,
-  onPlay,
-  onPause,
-  ref,
-  ...rest
-}: VideoPlayerProps) {
+function Root({poster, title, branding = true, children, className, onPlay, onPause, ref, ...rest}: VideoPlayerProps) {
   const videoPlayerRef = useRef<HTMLVideoElement>(null)
   const videoRef = ref ? ref : videoPlayerRef
   const [playing, setPlaying] = useState(false)
   const [playedTime, setPlayedTime] = useState(0)
+  const [seeking, setSeeking] = useState(false)
   const [totalTime, setTotalTime] = useState(0)
   const [fullScreen, setFullScreen] = useState(false)
   const [volume, setVolume] = useState(0.1)
@@ -85,21 +76,40 @@ export function VideoPlayer({
   // Play Time Change:
 
   const handlePlayTimeChange = (value: number) => {
-    if (videoRef.current) videoRef.current.currentTime = value
+    if (videoRef.current && !seeking) videoRef.current.currentTime = value
   }
 
   React.useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.addEventListener('timeupdate', () => {
-        setPlayedTime(videoRef.current?.currentTime || 0)
-      })
+    const setPlayedTimeToValue = () => {
+      setPlayedTime(videoRef.current?.currentTime || 0)
     }
+    if (videoRef.current) {
+      videoRef.current.addEventListener('timeupdate', setPlayedTimeToValue)
+    }
+    return () => window.removeEventListener('timeupdate', setPlayedTimeToValue)
   }, [videoRef, videoRef.current?.currentTime])
+
+  React.useEffect(() => {
+    // Seeking Event
+    const setSeekingLocal = () => {
+      setSeeking(videoRef.current?.seeking || false)
+    }
+    if (videoRef.current) {
+      videoRef.current.addEventListener('seeking', setSeekingLocal)
+    }
+    // Seeked Event
+    if (videoRef.current) {
+      videoRef.current.addEventListener('seeked', setSeekingLocal)
+    }
+    return () => {
+      window.removeEventListener('seeking', setSeekingLocal)
+      window.removeEventListener('seeked', setSeekingLocal)
+    }
+  }, [videoRef])
 
   // Volume Change:
 
   const handleVolumeChange = (value: number) => {
-    console.log('setting volume to', value)
     setVolume(value)
   }
 
@@ -178,11 +188,11 @@ export function VideoPlayer({
           )}
           <VideoPlayerTooltip>{!playing ? 'Play' : 'Pause'}</VideoPlayerTooltip>
         </button>
-        <input
+        <VideoPlayerRange
           type="range"
           min="0"
           max={totalTime}
-          step={0.01}
+          step={0.0001}
           onChange={e => {
             handlePlayTimeChange(e.currentTarget.valueAsNumber)
           }}
@@ -259,7 +269,7 @@ export function VideoPlayer({
           )}
           <VideoPlayerTooltip>{volume > 0 ? 'Mute' : 'Unmute'}</VideoPlayerTooltip>
         </button>
-        <input
+        {/* <input
           type="range"
           min="0"
           max={1}
@@ -269,6 +279,17 @@ export function VideoPlayer({
           }}
           value={volume}
           className={styles.VideoPlayer__progressBar}
+        /> */}
+        <VideoPlayerRange
+          type="range"
+          min="0"
+          max={1}
+          step={0.001}
+          onChange={e => {
+            handleVolumeChange(e.currentTarget.valueAsNumber)
+          }}
+          className={styles.VideoPlayer__progressBar2}
+          value={volume}
         />
         <button className={styles.VideoPlayer__iconControl} onClick={handleFullScreen}>
           {!fullScreen ? (
@@ -320,3 +341,33 @@ export function VideoPlayerTooltip({children}: {children: string}) {
     </div>
   )
 }
+
+function VideoPlayerRange(props: React.HTMLProps<HTMLInputElement>) {
+  const [value, setValue] = useState(0)
+  return (
+    <div className={styles.VideoPlayer__range}>
+      <progress className={styles.VideoPlayer__rangeProgress} value={value} max={props.max} />
+      <input
+        type="range"
+        className={styles.VideoPlayer__rangeInput}
+        value={value}
+        onChange={e => setValue(e.currentTarget.valueAsNumber)}
+        {...props}
+      />
+    </div>
+  )
+}
+
+function VideoPlayerSource(props: React.HTMLProps<HTMLSourceElement>) {
+  return <source {...props} />
+}
+
+function VideoPlayerTrack(props: React.HTMLProps<HTMLTrackElement>) {
+  return <track {...props} />
+}
+
+export const VideoPlayer = Object.assign(Root, {
+  Source: VideoPlayerSource,
+  Track: VideoPlayerTrack,
+  Range: VideoPlayerRange,
+})

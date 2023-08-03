@@ -31,10 +31,13 @@ export default {
 } as Meta<typeof VideoPlayer>
 
 export const Playground: StoryFn<typeof VideoPlayer> = args => (
-  <VideoPlayer {...args} crossOrigin="anonymous">
-    <source src="https://cdn.api.video/vod/vi36GGvd6PoTqViQLxBWwHjJ/mp4/1080/source.mp4" />
-    <track src="./sample.vtt" default kind="subtitles" srcLang="en" label="English" />
-  </VideoPlayer>
+  <>
+    <VideoPlayer {...args} crossOrigin="anonymous">
+      <VideoPlayer.Source src="https://cdn.api.video/vod/vi36GGvd6PoTqViQLxBWwHjJ/mp4/1080/source.mp4" />
+      <VideoPlayer.Track src="./sample.vtt" default kind="subtitles" srcLang="en" label="English" />
+    </VideoPlayer>
+    <VideoPlayer.Range max={1} step={0.001} />
+  </>
 )
 
 export const Default = Playground.bind({})
