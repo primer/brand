@@ -191,9 +191,8 @@ export const AlignJustified = () => (
     <Grid>
       <Grid.Column>
         <LogoSuite align="justify" hasDivider={false}>
-          <LogoSuite.Heading weight="semibold" size="4">
-            Special thanks to our sponsors.{' '}
-          </LogoSuite.Heading>
+          <LogoSuite.Heading>Heading</LogoSuite.Heading>
+          <LogoSuite.Description>Body text maximus ligula felis, non egestas dolor rutrum vel.</LogoSuite.Description>
           <LogoSuite.Logobar>
             <React.Fragment>{logos.slice(0, 4)}</React.Fragment>
           </LogoSuite.Logobar>
