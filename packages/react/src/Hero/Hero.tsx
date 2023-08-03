@@ -4,6 +4,7 @@ import styles from './Hero.module.css'
 import {Button, ButtonBaseProps} from '../Button'
 import {Heading, HeadingProps} from '../Heading'
 import {Text, TextSizes, TextWeightVariants, ResponsiveWeightMap} from '../Text'
+import {Label, LabelProps} from '../Label'
 
 import type {BaseProps} from '../component-helpers'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/hero/base.css'
@@ -72,6 +73,16 @@ function HeroDescription({size = '400', weight, children}: PropsWithChildren<Her
   )
 }
 
+type HeroLabelProps = LabelProps & BaseProps<HTMLSpanElement>
+
+function HeroLabel({children, ...rest}: PropsWithChildren<HeroLabelProps>) {
+  return (
+    <Label className={styles['Hero-label']} {...rest}>
+      {children}
+    </Label>
+  )
+}
+
 type RestrictedPolymorphism =
   | (BaseProps<HTMLAnchorElement> & {as?: 'a'})
   | (BaseProps<HTMLButtonElement> & {as?: 'button'})
@@ -107,4 +118,5 @@ export const Hero = Object.assign(Root, {
   Description: HeroDescription,
   PrimaryAction: HeroPrimaryAction,
   SecondaryAction: HeroSecondaryAction,
+  Label: HeroLabel,
 })
