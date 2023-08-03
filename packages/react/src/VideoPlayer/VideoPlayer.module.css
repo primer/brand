@@ -155,6 +155,7 @@
   padding: 0px 4px;
   border: 2px solid white;
   background-color: white;
+  position: relative;
 }
 
 .VideoPlayer__ccOff {

@@ -224,10 +224,15 @@ function Root({poster, title, branding = true, children, className, onPlay, onPa
           </Text>
         </div>
         <button
-          className={clsx(styles.VideoPlayer__closedCaption, !closedCaption && styles.VideoPlayer__ccOff)}
+          className={clsx(
+            styles.VideoPlayer__iconControl,
+            styles.VideoPlayer__closedCaption,
+            !closedCaption && styles.VideoPlayer__ccOff,
+          )}
           onClick={() => setClosedCaption(!closedCaption)}
         >
           <Text className={styles.VideoPlayer__ccText}>CC</Text>
+          <VideoPlayerTooltip>{!closedCaption ? 'Enable Captions' : 'Disable Captions'}</VideoPlayerTooltip>
         </button>
         <button
           className={styles.VideoPlayer__iconControl}
