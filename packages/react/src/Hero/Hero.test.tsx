@@ -97,7 +97,7 @@ describe('Hero', () => {
     const {getByAltText} = render(
       <Hero>
         <Hero.Heading>{mockHeading}</Hero.Heading>
-        <Hero.Image imagePosition="inline-end" src="mock.png" alt={mockAltText} />
+        <Hero.Image position="inline-end" src="mock.png" alt={mockAltText} />
       </Hero>,
     )
     const imageEl = getByAltText(mockAltText)

@@ -4,7 +4,7 @@
 
 Add optional foreground image support to Hero
 
-Use `imagePosition` to alternate between various layouts.
+Use `position` to alternate between various layouts.
 
 ```jsx
 <>
@@ -19,7 +19,7 @@ Use `imagePosition` to alternate between various layouts.
   <Hero>
     <Hero.Heading>Automate your workflow from idea to production</Hero.Heading>
     <Hero.Image
-      imagePosition="inline-end"
+      position="inline-end"
       src="https://via.placeholder.com/300x450/d3d9df/d3d9df.png"
       alt="placeholder, blank area with an off-white background color"
     />

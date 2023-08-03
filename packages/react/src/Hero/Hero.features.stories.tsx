@@ -34,6 +34,7 @@ export const WithImageBlockEndDefault: StoryFn<typeof Hero> = _args => (
   <Grid>
     <Grid.Column>
       <Hero>
+        <Hero.Label>Label</Hero.Label>
         <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
         <Hero.Description>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
@@ -68,17 +69,14 @@ export const WithImageInlineEnd: StoryFn<typeof Hero> = _args => (
   <Grid>
     <Grid.Column>
       <Hero align="center">
+        <Hero.Label>Label</Hero.Label>
         <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
         <Hero.Description>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
           turpis felis nam pulvinar risus elementum.
         </Hero.Description>
         <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
-        <Hero.Image
-          imagePosition="inline-end"
-          src={placeholderImage}
-          alt="placeholder image, blank with gray solid fill"
-        />
+        <Hero.Image position="inline-end" src={placeholderImage} alt="placeholder image, blank with gray solid fill" />
       </Hero>
     </Grid.Column>
   </Grid>

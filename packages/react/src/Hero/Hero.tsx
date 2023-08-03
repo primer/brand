@@ -43,7 +43,7 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
       [children],
     )
 
-    const imagePosition = HeroImageChild?.props?.imagePosition || 'block-end'
+    const imagePosition = HeroImageChild?.props?.position || 'block-end'
 
     const heroLayoutClass = HeroImageChild ? styles['Hero--layout-image'] : styles['Hero--layout-default']
 
@@ -65,7 +65,7 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
               direction="vertical"
               gap="none"
               padding="none"
-              alignItems={imagePosition === 'inline-end' ? undefined : align === 'start' ? 'flex-start' : 'center'}
+              alignItems={imagePosition === 'inline-end' || align === 'start' ? 'flex-start' : 'center'}
               justifyContent={imagePosition === 'inline-end' ? undefined : align === 'start' ? 'flex-start' : 'center'}
             >
               {HeroChildren}
@@ -105,14 +105,12 @@ function HeroDescription({size = '400', weight, children}: PropsWithChildren<Her
 }
 
 type HeroImageProps = {
-  imagePosition?: 'inline-end' | 'block-end'
+  position?: 'inline-end' | 'block-end'
 } & ImageProps &
   BaseProps<HTMLImageElement>
 
-function HeroImage({imagePosition = 'block-end', className, ...rest}: PropsWithChildren<HeroImageProps>) {
-  return (
-    <Image className={clsx(styles['Hero-image'], styles[`Hero-image--pos-${imagePosition}`], className)} {...rest} />
-  )
+function HeroImage({position = 'block-end', className, ...rest}: PropsWithChildren<HeroImageProps>) {
+  return <Image className={clsx(styles['Hero-image'], styles[`Hero-image--pos-${position}`], className)} {...rest} />
 }
 
 type HeroLabelProps = LabelProps & BaseProps<HTMLSpanElement>
