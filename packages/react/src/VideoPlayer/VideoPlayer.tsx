@@ -197,7 +197,7 @@ function Root({poster, title, branding = true, children, className, onPlay, onPa
             handlePlayTimeChange(e.currentTarget.valueAsNumber)
           }}
           value={playedTime}
-          className={styles.VideoPlayer__progressBar}
+          className={styles.VideoPlayer__progressBar2}
         />
         <div className={styles.VideoPlayer__progressTime}>
           <Text className={styles.VideoPlayer__controlTextColor}>
