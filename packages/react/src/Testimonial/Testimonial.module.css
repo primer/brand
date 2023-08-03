@@ -1,7 +1,9 @@
 .Testimonial {
+  --testimonial-quote-size: var(--brand-text-size-300);
   display: grid;
   gap: var(--base-size-16);
   font-family: var(--brand-fontStack-sansSerif);
+  font-size: var(--testimonial-quote-size);
   color: var(--brand-color-text-default);
 }
 
@@ -18,18 +20,32 @@
 }
 
 .Testimonial--size-large {
+  --testimonial-quote-size: var(--brand-text-size-700);
   gap: var(--base-size-24);
 }
 
+.Testimonial--size-large::before {
+  font-size: 3em;
+  line-height: 1;
+}
+
 .Testimonial-quote {
+  font-size: 1em;
   font-family: var(--brand-fontStack-sansSerif);
-  font-size: var(--brand-text-size-300);
   margin-top: calc(var(--base-size-16) * -1); /* negate grid gap */
   display: block;
 }
 
+.Testimonial-quote:has(em) {
+  color: var(--brand-color-text-subtle);
+}
+
+.Testimonial-quote em {
+  color: var(--brand-color-text-default);
+  font-style: normal;
+}
+
 .Testimonial--size-large .Testimonial-quote {
-  font-size: var(--brand-text-size-700);
   font-weight: var(--base-text-weight-semibold);
   letter-spacing: var(--brand-text-letterSpacing-900);
   line-height: 1.2; /* requires custom line-height */

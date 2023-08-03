@@ -89,7 +89,7 @@ const Root = forwardRef(_Root)
  * <Testimonial.Quote>
  */
 type QuoteProps = {
-  children: string
+  children: string | Array<string | React.ReactElement<HTMLElement>>
 } & React.HTMLAttributes<HTMLElement> &
   BaseProps<HTMLElement>
 
