@@ -14,6 +14,7 @@ type VideoPlayerProps = {
 
 function Root({poster, title, branding = true, children, className, onPlay, onPause, ref, ...rest}: VideoPlayerProps) {
   const videoPlayerRef = useRef<HTMLVideoElement>(null)
+  const videoWrapperRef = useRef<HTMLDivElement>(null)
   const videoRef = ref ? ref : videoPlayerRef
   const [playing, setPlaying] = useState(false)
   const [playedTime, setPlayedTime] = useState(0)
@@ -37,9 +38,9 @@ function Root({poster, title, branding = true, children, className, onPlay, onPa
   // Full Screen Change:
 
   const handleFullScreen = () => {
-    if (videoRef.current) {
+    if (videoWrapperRef.current) {
       if (!fullScreen) {
-        videoRef.current.requestFullscreen()
+        videoWrapperRef.current.requestFullscreen()
         setFullScreen(true)
       } else {
         document.exitFullscreen()
@@ -124,7 +125,7 @@ function Root({poster, title, branding = true, children, className, onPlay, onPa
   }, [videoRef, videoRef.current?.duration])
 
   return (
-    <div className={styles.VideoPlayer__container}>
+    <div className={styles.VideoPlayer__container} ref={videoWrapperRef}>
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <video
         ref={videoRef}
