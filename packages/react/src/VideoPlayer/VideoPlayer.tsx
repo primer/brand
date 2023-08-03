@@ -5,7 +5,7 @@ import {Text} from '../Text'
 import styles from './VideoPlayer.module.css'
 
 type VideoPlayerProps = {
-  poster: string
+  poster?: string
   title: string
   branding?: boolean
   children: React.ReactElement | React.ReactElement[]
@@ -130,7 +130,9 @@ function Root({poster, title, branding = true, children, className, onPlay, onPa
   // Closed Captioning:
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.textTracks[0].mode = closedCaption ? 'showing' : 'hidden'
+      for (let i = 0; i < videoRef.current.textTracks.length; i++) {
+        videoRef.current.textTracks[0].mode = closedCaption ? 'showing' : 'hidden'
+      }
     }
   }, [videoRef, closedCaption])
 

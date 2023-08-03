@@ -30,6 +30,18 @@
   border-radius: 6px;
 }
 
+.VideoPlayer::-webkit-media-text-track-container {
+  transform: translateY(-58px);
+}
+
+.VideoPlayer::-webkit-media-text-track-background {
+  background-color: black;
+}
+
+.VideoPlayer::-webkit-media-text-track-display {
+  overflow: visible !important;
+}
+
 /* ---------------------------------------------------------- */
 /* 3. Center Play Button                                      */
 /* ---------------------------------------------------------- */
