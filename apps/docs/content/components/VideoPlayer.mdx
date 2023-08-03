@@ -1,0 +1,115 @@
+---
+title: VideoPlayer
+status: Experimental
+source: https://github.com/primer/brand/blob/main/packages/react/src/VideoPlayer/VideoPlayer.tsx
+storybook: '/brand/storybook/?path=/story/components-videoplayer--playground'
+description: Use the video player component to present videos availible via CDN or local.
+---
+
+import {Label} from '@primer/react'
+
+```js
+import {VideoPlayer} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<VideoPlayer title="HLS On Demand Demo" crossOrigin="anonymous">
+  <VideoPlayer.Source src="https://cdn.api.video/vod/vi36GGvd6PoTqViQLxBWwHjJ/mp4/1080/source.mp4" />
+  <VideoPlayer.Track
+    src="./sample.vtt"
+    default
+    kind="subtitles"
+    srcLang="en"
+    label="English"
+  />
+</VideoPlayer>
+```
+
+## With poster
+
+```jsx live
+<VideoPlayer
+  poster="https://github.githubassets.com/images/icons/media-player/poster.jpg"
+  title="HLS On Demand Demo"
+  crossOrigin="anonymous"
+>
+  <VideoPlayer.Source src="https://cdn.api.video/vod/vi36GGvd6PoTqViQLxBWwHjJ/mp4/1080/source.mp4" />
+  <VideoPlayer.Track
+    src="./sample.vtt"
+    default
+    kind="subtitles"
+    srcLang="en"
+    label="English"
+  />
+</VideoPlayer>
+```
+
+## Without branding
+
+```jsx live
+<VideoPlayer
+  branding={false}
+  title="HLS On Demand Demo"
+  crossOrigin="anonymous"
+>
+  <VideoPlayer.Source src="https://cdn.api.video/vod/vi36GGvd6PoTqViQLxBWwHjJ/mp4/1080/source.mp4" />
+  <VideoPlayer.Track
+    src="./sample.vtt"
+    default
+    kind="subtitles"
+    srcLang="en"
+    label="English"
+  />
+</VideoPlayer>
+```
+
+## Component props
+
+<h3>
+  VideoPlayer <Label>Required</Label>
+</h3>
+
+`VideoPlayer` provides a React alternative to the native HTML `<video />`.
+
+The component API supports all standard HTML attribute props, while providing some additional behavior as described below.
+
+| Name        | Type                                   | Default | Required | Description                                                          |
+| :---------- | :------------------------------------- | :-----: | :------: | :------------------------------------------------------------------- |
+| `title`     | `boolean`                              |         |  `true`  | Sets the title of the video                                          |
+| `children`  | `React.ReactNode`, `React.ReactNode[]` |         |  `true`  | Takes `<source>` and `<track>` elements to present video information |
+| `poster`    | `string`                               |         | `false`  | Sets an image as the starting frame for the video element            |
+| `branding`  | `boolean`                              |         | `false`  | Displays GitHub branding next to video title                         |
+| `className` | `string`                               |         |  `true`  | Sets a custom class                                                  |
+
+<h3>
+  VideoPlayer.Source <Label>Required</Label>
+</h3>
+
+`VideoPlayer.Source` provides a React alternative to the native HTML `<source />`.
+
+The component API supports all standard HTML attribute props, while providing some additional behavior as described below.
+
+| Name   | Type     | Default | Required | Description                           |
+| :----- | :------- | :-----: | :------: | :------------------------------------ |
+| `src`  | `string` |         |  `true`  | Sets the URL of the video content     |
+| `type` | `string` |         | `false`  | Sets media type for the video content |
+
+<h3>
+  VideoPlayer.Track <Label>Required</Label>
+</h3>
+
+`VideoPlayer.Track` provides a React alternative to the native HTML `<track />`.
+
+The component API supports all standard HTML attribute props, while providing some additional behavior as described below.
+
+| Name      | Type                                                            | Default | Required | Description                                                                                                                              |
+| :-------- | :-------------------------------------------------------------- | :-----: | :------: | :--------------------------------------------------------------------------------------------------------------------------------------- |
+| `src`     | `boolean`                                                       |         |  `true`  | Sets the source of the VTT file containing captions                                                                                      |
+| `kind`    | `subtitles`, `captions`, `descriptions`, `chapters`, `metadata` |         | `false`  | Sets how the text track is meant to be used                                                                                              |
+| `srcLang` | `string`                                                        |         | `false`  | Language of the text data. It must be a valid [BCP 47](https://r12a.github.io/app-subtags/) language tag.                                |
+| `label`   | `string`                                                        |         | `false`  | A user-readable title of the text track which is used by the browser when listing available text tracks.                                 |
+| `default` | `boolean`                                                       |         | `false`  | This attribute indicates that the track should be enabled unless the user's preferences indicate that another track is more appropriate. |
