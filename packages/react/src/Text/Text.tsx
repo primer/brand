@@ -10,7 +10,7 @@ export const TextVariants = ['default', 'muted'] as const
 export const TextWeights = ['heavy', 'extrabold', 'bold', 'semibold', 'medium', 'normal', 'light'] as const
 
 export const defaultTextTag = TextTags[1]
-export const defaultTextSize = TextSizes[2]
+export const defaultTextSize = TextSizes[4]
 export const defaultTextVariant = TextVariants[0]
 
 export type TextWeightVariants = (typeof TextWeights)[number]
