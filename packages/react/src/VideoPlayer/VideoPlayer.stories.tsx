@@ -20,10 +20,6 @@ export default {
       type: 'string',
       description: 'Specify the title of the video',
     },
-    track: {
-      type: 'string',
-      description: 'Specify the URL of VTT track',
-    },
     branding: {
       type: 'boolean',
     },
