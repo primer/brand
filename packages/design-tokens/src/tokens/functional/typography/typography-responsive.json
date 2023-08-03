@@ -40,10 +40,10 @@
           "value": "var(--base-text-weight-semibold)"
         },
         "900": {
-          "value": "var(--base-text-weight-semibold)"
+          "value": "var(--base-text-weight-bold)"
         },
         "1000": {
-          "value": "var(--base-text-weight-semibold)"
+          "value": "var(--base-text-weight-bold)"
         }
       },
       "letterSpacing": {
@@ -132,114 +132,34 @@
     "text": {
       "weight": {
         "100": {
-          "value": "var(--base-text-weight-normal)",
-          "responsive": {
-            "768px": {
-              "value": "var(--base-text-weight-normal)"
-            },
-            "1012px": {
-              "value": "var(--base-text-weight-normal)"
-            }
-          }
+          "value": "var(--base-text-weight-normal)"
         },
         "200": {
-          "value": "var(--base-text-weight-normal)",
-          "responsive": {
-            "768px": {
-              "value": "var(--base-text-weight-normal)"
-            },
-            "1012px": {
-              "value": "var(--base-text-weight-normal)"
-            }
-          }
+          "value": "var(--base-text-weight-normal)"
         },
         "300": {
-          "value": "var(--base-text-weight-normal)",
-          "responsive": {
-            "768px": {
-              "value": "var(--base-text-weight-normal)"
-            },
-            "1012px": {
-              "value": "var(--base-text-weight-normal)"
-            }
-          }
+          "value": "var(--base-text-weight-normal)"
         },
         "400": {
-          "value": "var(--base-text-weight-semibold)",
-          "responsive": {
-            "768px": {
-              "value": "var(--base-text-weight-semibold)"
-            },
-            "1012px": {
-              "value": "var(--base-text-weight-semibold)"
-            }
-          }
+          "value": "var(--base-text-weight-semibold)"
         },
         "500": {
-          "value": "var(--base-text-weight-semibold)",
-          "responsive": {
-            "768px": {
-              "value": "var(--base-text-weight-semibold)"
-            },
-            "1012px": {
-              "value": "var(--base-text-weight-semibold)"
-            }
-          }
+          "value": "var(--base-text-weight-semibold)"
         },
         "600": {
-          "value": "var(--base-text-weight-semibold)",
-          "responsive": {
-            "768px": {
-              "value": "var(--base-text-weight-semibold)"
-            },
-            "1012px": {
-              "value": "var(--base-text-weight-semibold)"
-            }
-          }
+          "value": "var(--base-text-weight-semibold)"
         },
         "700": {
-          "value": "var(--base-text-weight-semibold)",
-          "responsive": {
-            "768px": {
-              "value": "var(--base-text-weight-semibold)"
-            },
-            "1012px": {
-              "value": "var(--base-text-weight-semibold)"
-            }
-          }
+          "value": "var(--base-text-weight-semibold)"
         },
         "800": {
-          "value": "var(--base-text-weight-semibold)",
-          "responsive": {
-            "768px": {
-              "value": "var(--base-text-weight-semibold)"
-            },
-            "1012px": {
-              "value": "var(--base-text-weight-semibold)"
-            }
-          }
+          "value": "var(--base-text-weight-semibold)"
         },
         "900": {
-          "value": "var(--base-text-weight-semibold)",
-          "responsive": {
-            "768px": {
-              "value": "var(--base-text-weight-semibold)"
-            },
-            "1012px": {
-              "value": "var(--base-text-weight-semibold)"
-            }
-          }
+          "value": "var(--base-text-weight-bold)"
         },
         "1000": {
-          "value": "var(--base-text-weight-semibold)",
-          "responsive": {
-            "768px": {
-              "value": "var(--base-text-weight-semibold)"
-            },
-            "1012px": {
-              "value": "var(--base-text-weight-semibold)"
-            }
-          }
+          "value": "var(--base-text-weight-bold)"
         }
       },
       "size": {
