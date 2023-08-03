@@ -105,7 +105,7 @@
   display: grid;
   grid-gap: 15px;
   align-items: center;
-  grid-template-columns: auto 2fr auto auto auto auto;
+  grid-template-columns: auto 2fr auto auto auto 1fr auto;
   z-index: 2;
   padding: 15px 24px;
 }
@@ -147,6 +147,26 @@
 .VideoPlayer__progressBar2 {
   width: 100%;
   height: 6px;
+}
+
+.VideoPlayer__closedCaption {
+  border: none;
+  border-radius: 6px;
+  padding: 0px 4px;
+  border: 2px solid white;
+  background-color: white;
+}
+
+.VideoPlayer__ccOff {
+  background-color: transparent;
+}
+
+.VideoPlayer__ccText {
+  color: black;
+}
+
+.VideoPlayer__ccOff .VideoPlayer__ccText {
+  color: white;
 }
 
 /* ---------------------------------------------------------- */

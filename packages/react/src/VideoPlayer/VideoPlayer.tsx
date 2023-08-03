@@ -25,6 +25,7 @@ function Root({poster, title, branding = true, children, className, onPlay, onPa
   const [fullScreen, setFullScreen] = useState(false)
   const [volume, setVolume] = useState(0.1)
   const [previousVolume, setPreviousVolume] = useState(volume)
+  const [closedCaption, setClosedCaption] = useState(true)
 
   //   Play Pause Functionality:
   const handleVideoPlayback = () => {
@@ -126,6 +127,13 @@ function Root({poster, title, branding = true, children, className, onPlay, onPa
     setTotalTime(videoRef.current?.duration || 0)
   }, [videoRef, videoRef.current?.duration])
 
+  // Closed Captioning:
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.textTracks[0].mode = closedCaption ? 'showing' : 'hidden'
+    }
+  }, [videoRef, closedCaption])
+
   return (
     <div
       className={clsx(
@@ -215,6 +223,12 @@ function Root({poster, title, branding = true, children, className, onPlay, onPa
             {getMinuteSecondTime(playedTime || 0) || '00:00'} / {getMinuteSecondTime(totalTime || 0) || '00:00'}
           </Text>
         </div>
+        <button
+          className={clsx(styles.VideoPlayer__closedCaption, !closedCaption && styles.VideoPlayer__ccOff)}
+          onClick={() => setClosedCaption(!closedCaption)}
+        >
+          <Text className={styles.VideoPlayer__ccText}>CC</Text>
+        </button>
         <button
           className={styles.VideoPlayer__iconControl}
           onClick={() => {
