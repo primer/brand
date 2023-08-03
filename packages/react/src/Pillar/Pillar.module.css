@@ -17,26 +17,19 @@
 
 .Pillar__icon {
   display: flex;
-  margin-bottom: var(--base-size-8);
+  margin-bottom: var(--base-size-24);
 }
 
 .Pillar__heading {
-  margin-bottom: var(--base-size-4);
-}
-
-/* Overrides the default size 6 to have a smaller font size, using 300 values instead of 400 */
-.Pillar__heading.Pillar__heading--size-6 {
-  font-size: var(--brand-text-size-300);
-  line-height: var(--brand-text-lineHeight-300);
-  letter-spacing: var(--brand-heading-letterSpacing-300);
+  margin-bottom: var(--base-size-16);
 }
 
 .Pillar__description {
-  color: var(--brand-color-text-muted);
+  margin-bottom: var(--base-size-24);
 }
 
 .Pillar__link {
-  margin-top: var(--base-size-8);
+  margin-top: auto;
 }
 
 .Pillar__icon--color-default {
