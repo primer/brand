@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import clsx from 'clsx'
 import {Text} from '../../Text'
 
@@ -24,7 +24,7 @@ export const Captions = ({videoRef, disabled, trackInformation}: CaptionsProps) 
             videoRef.current.currentTime >= cue.startTime &&
             videoRef.current.currentTime <= cue.endTime
           ) {
-            setCaption(cue.text)
+            setCaption(cue['text'])
             break
           }
         }
@@ -39,7 +39,9 @@ export const Captions = ({videoRef, disabled, trackInformation}: CaptionsProps) 
 
   return (
     <div className={clsx(styles.Captions, (disabled || !caption) && styles.Captions__empty)}>
-      <Text className={styles.Captions__text}>{caption}</Text>
+      <Text as="p" className={styles.Captions__text}>
+        {caption}
+      </Text>
     </div>
   )
 }

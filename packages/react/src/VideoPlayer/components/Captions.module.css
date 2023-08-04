@@ -1,9 +1,8 @@
 .Captions {
   width: 90%;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 10px;
-  border-radius: 6px;
   margin: 0 auto 15px auto;
+  display: grid;
+  justify-content: center;
 }
 
 .Captions__empty {
@@ -15,4 +14,8 @@
   font-size: 14px;
   line-height: 1.5;
   text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 6px;
+  display: inline-block;
 }
