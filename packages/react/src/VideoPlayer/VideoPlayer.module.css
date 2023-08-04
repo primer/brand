@@ -112,14 +112,7 @@
   bottom: -10px;
   position: absolute;
   transform: translateY(-8px);
-  border-bottom-right-radius: 6px;
-  border-bottom-left-radius: 6px;
-  left: 0;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.2);
-  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6));
   z-index: 2;
-  padding: 15px 24px;
 }
 
 .VideoPlayer__controlsWrapper {
@@ -128,6 +121,13 @@
   align-items: center;
   grid-template-columns: auto 2fr auto auto auto 1fr auto;
   opacity: 0;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6));
+  padding: 15px 24px;
 }
 
 .VideoPlayer__showOverlays .VideoPlayer__controls {
