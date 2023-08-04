@@ -8,6 +8,11 @@
   margin: 0 auto;
 }
 
+.Grid--full-width {
+  width: 100%;
+  max-width: none;
+}
+
 .Grid + .Grid {
   margin-top: var(--brand-Grid-spacing-row);
 }
