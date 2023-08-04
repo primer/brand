@@ -9,6 +9,7 @@ export default {
   component: Testimonial,
   args: {
     align: 'start',
+    quoteMarkFill: 'var(--brand-color-text-primary)',
     name: 'David Ross',
     position: 'Staff Security Engineer',
     quote:
@@ -20,6 +21,9 @@ export default {
   argTypes: {
     align: {
       options: ['start', 'center'],
+    },
+    quoteMarkFill: {
+      control: {type: 'text'},
     },
     name: {
       control: {type: 'text'},
@@ -228,6 +232,25 @@ export const Trio = args => (
 )
 Trio.args = {
   align: 'center',
+}
+
+export const ColoredQuoteMark = args => (
+  <Testimonial {...args}>
+    <Testimonial.Quote>
+      <em>GitHub helps us ensure that we have our security controls baked into our pipelines</em> all the way from the
+      first line of code we&apos;re writing.
+    </Testimonial.Quote>
+    <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
+
+    <Testimonial.Avatar
+      src="https://avatars.githubusercontent.com/u/92997159?v=4"
+      alt="Circular avatar from David Ross's GitHub profile"
+    />
+  </Testimonial>
+)
+
+ColoredQuoteMark.args = {
+  quoteMarkFill: 'var(--brand-color-accent-primary)',
 }
 
 export const Large = args => (

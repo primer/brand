@@ -1,4 +1,4 @@
-import React, {HTMLAttributes, PropsWithChildren, forwardRef, SVGProps} from 'react'
+import React, {HTMLAttributes, PropsWithChildren, forwardRef, SVGProps, CSSProperties} from 'react'
 import clsx from 'clsx'
 import {BaseProps} from '../component-helpers'
 import {Text, Avatar as BaseAvatar, useAnimation} from '../'
@@ -27,6 +27,8 @@ export type TestimonialProps = {
    * Sets the testimonial text size
    */
   size?: TestimonialSize
+  /** Sets the color of the quote mark */
+  quoteMarkFill?: React.CSSProperties['color']
 } & BaseProps<HTMLElement> &
   React.HTMLAttributes<HTMLElement>
 
@@ -34,7 +36,10 @@ export type TestimonialProps = {
  * Testimonial parent element
  * <Testimonial>
  */
-function _Root({align, animate, className, children, size, style, ...rest}: PropsWithChildren<TestimonialProps>, ref) {
+function _Root(
+  {quoteMarkFill, align, animate, className, children, size, style, ...rest}: PropsWithChildren<TestimonialProps>,
+  ref,
+) {
   const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
 
   return (
@@ -47,7 +52,7 @@ function _Root({align, animate, className, children, size, style, ...rest}: Prop
         size && styles[`Testimonial--size-${size}`],
         className,
       )}
-      style={{...animationInlineStyles, ...style}}
+      style={{...animationInlineStyles, ...style, ['--testimonial-accent-color' as keyof CSSProperties]: quoteMarkFill}}
       {...rest}
     >
       {React.Children.map(children, child => {
