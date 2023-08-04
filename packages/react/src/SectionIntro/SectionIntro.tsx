@@ -1,4 +1,4 @@
-import React, {forwardRef, PropsWithChildren, useMemo, type Ref} from 'react'
+import React, {forwardRef, PropsWithChildren, useMemo, type Ref, useCallback} from 'react'
 import clsx from 'clsx'
 import {Link, LinkProps} from '../Link'
 import {Heading, HeadingProps, defaultHeadingTag} from '../Heading'
@@ -50,14 +50,14 @@ const _Heading = forwardRef(
   ) => {
     const childrenArray = useMemo(() => React.Children.toArray(children), [children])
 
-    const findVariant = () => {
+    const getConditionalVariant = useCallback(() => {
       if (childrenArray.some(child => React.isValidElement(child) && child.type === 'em')) {
         return 'muted'
       }
       return 'default'
-    }
+    }, [childrenArray])
 
-    const defaultColor = childrenArray.length === 1 ? 'default' : findVariant()
+    const defaultColor = childrenArray.length === 1 ? 'default' : getConditionalVariant()
 
     return (
       <Heading
