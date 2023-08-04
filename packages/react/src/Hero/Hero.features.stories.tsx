@@ -2,8 +2,10 @@ import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {HeartFillIcon, StarFillIcon} from '@primer/octicons-react'
+import placeholderImage from '../fixtures/images/placeholder-600x400.png'
 
 import {Hero} from '.'
+import {Grid} from '../Grid'
 
 export default {
   title: 'Components/Hero/Features',
@@ -27,6 +29,59 @@ export const Centered: StoryFn<typeof Hero> = _args => (
     <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
   </Hero>
 )
+
+export const WithImageBlockEndDefault: StoryFn<typeof Hero> = _args => (
+  <Grid>
+    <Grid.Column>
+      <Hero>
+        <Hero.Label>Label</Hero.Label>
+        <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+        <Hero.Description>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Hero.Description>
+        <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+        <Hero.Image src={placeholderImage} alt="placeholder image, blank with gray solid fill" />
+      </Hero>
+    </Grid.Column>
+  </Grid>
+)
+WithImageBlockEndDefault.storyName = 'With an image (left + bottom)'
+
+export const WithImageBlockEndCenter: StoryFn<typeof Hero> = _args => (
+  <Grid>
+    <Grid.Column>
+      <Hero align="center">
+        <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+        <Hero.Description>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Hero.Description>
+        <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+        <Hero.Image src={placeholderImage} alt="placeholder image, blank with gray solid fill" />
+      </Hero>
+    </Grid.Column>
+  </Grid>
+)
+WithImageBlockEndCenter.storyName = 'With an image (centered + bottom)'
+
+export const WithImageInlineEnd: StoryFn<typeof Hero> = _args => (
+  <Grid>
+    <Grid.Column>
+      <Hero align="center">
+        <Hero.Label>Label</Hero.Label>
+        <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+        <Hero.Description>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Hero.Description>
+        <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+        <Hero.Image position="inline-end" src={placeholderImage} alt="placeholder image, blank with gray solid fill" />
+      </Hero>
+    </Grid.Column>
+  </Grid>
+)
+WithImageInlineEnd.storyName = 'With an image (right)'
 
 export const WithoutDescription: StoryFn<typeof Hero> = _args => (
   <Hero>
