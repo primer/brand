@@ -1,6 +1,6 @@
 import React from 'react'
 import clsx from 'clsx'
-import {Text} from '../../Text'
+import {Text} from '../../../Text'
 
 import styles from './Captions.module.css'
 
@@ -15,7 +15,6 @@ export const Captions = ({videoRef, disabled, trackInformation}: CaptionsProps) 
 
   React.useEffect(() => {
     const compareAndSetCaption = () => {
-      //   Create logic to compare and set caption based on time
       if (trackInformation) {
         for (let i = 0; i < trackInformation.length; i++) {
           const cue = trackInformation[i]
@@ -26,6 +25,8 @@ export const Captions = ({videoRef, disabled, trackInformation}: CaptionsProps) 
           ) {
             setCaption(cue['text'])
             break
+          } else {
+            setCaption('')
           }
         }
       }

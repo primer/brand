@@ -1,4 +1,5 @@
 declare const styles: {
+  readonly "VideoPlayer__srOnly": string;
   readonly "VideoPlayer__container": string;
   readonly "VideoPlayer": string;
   readonly "VideoPlayer__playButton": string;
@@ -6,6 +7,7 @@ declare const styles: {
   readonly "VideoPlayer__showOverlays": string;
   readonly "VideoPlayer__overlays": string;
   readonly "VideoPlayer__controls": string;
+  readonly "VideoPlayer__controlsWrapper": string;
   readonly "VideoPlayer__iconControl": string;
   readonly "VideoPlayer__tooltip": string;
   readonly "VideoPlayer__progressTime": string;

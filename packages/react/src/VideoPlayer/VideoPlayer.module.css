@@ -11,6 +11,16 @@
 /* 7. Tooltip                                                 */
 /* ---------------------------------------------------------- */
 
+.VideoPlayer__srOnly:not(:focus):not(:active) {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
 /* ---------------------------------------------------------- */
 /* 1. Container                                               */
 /* ---------------------------------------------------------- */
@@ -62,6 +72,11 @@
   z-index: 1;
 }
 
+.VideoPlayer__playButton:focus {
+  border: 2px solid var(--brand-color-focus);
+  box-shadow: 0 0 0 2px var(--brand-color-focus);
+}
+
 .VideoPlayer__playButton svg {
   cursor: pointer;
   color: white;
@@ -109,7 +124,7 @@
 .VideoPlayer__controls {
   transition-timing-function: ease-out;
   transition-duration: 0.4s;
-  bottom: -10px;
+  bottom: -58px;
   position: absolute;
   transform: translateY(-8px);
   z-index: 2;
@@ -157,6 +172,13 @@
   box-sizing: content-box;
   position: relative;
   padding: 0;
+}
+
+.VideoPlayer__iconControl:focus-visible {
+  border-color: var(--brand-color-focus);
+  outline: none;
+  box-shadow: 0 0 0 2px var(--brand-color-focus);
+  opacity: 1;
 }
 
 .VideoPlayer__iconControl svg {
@@ -226,6 +248,13 @@
   opacity: 0;
 }
 
+.VideoPlayer__rangeInput:focus-visible {
+  border-color: var(--brand-color-focus);
+  outline: none;
+  box-shadow: 0 0 0 2px var(--brand-color-focus);
+  opacity: 1;
+}
+
 .VideoPlayer__range:hover .VideoPlayer__rangeInput {
   opacity: 1;
 }
@@ -266,6 +295,7 @@
   background-color: #218bff;
   border: none;
 }
+
 .VideoPlayer__rangeProgress::-ms-fill-upper {
   background-color: rgba(225, 225, 225, 0.5);
   border: none;

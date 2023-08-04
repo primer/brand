@@ -60,6 +60,8 @@
       url: /components/Testimonial
     - title: Unordered list
       url: /components/UnorderedList
+    - title: Video player
+      url: /components/VideoPlayer
 
 - title: Forms
   children:
