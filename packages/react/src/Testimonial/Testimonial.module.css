@@ -37,6 +37,10 @@
   display: block;
 }
 
+.Testimonial--size-large .Testimonial-quote {
+  margin-top: calc(var(--base-size-24) * -1); /* negate grid gap */
+}
+
 .Testimonial-quote:has(em) {
   color: var(--brand-color-text-subtle);
 }
