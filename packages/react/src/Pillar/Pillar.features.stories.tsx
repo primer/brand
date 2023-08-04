@@ -179,7 +179,7 @@ export const StackedCentered: StoryFn<typeof Pillar> = () => {
 
 export const StackedWithLink: StoryFn<typeof Pillar> = () => {
   return (
-    <Stack direction="horizontal" gap={'spacious'} padding={'spacious'}>
+    <Stack direction="horizontal" gap="spacious" padding="spacious">
       {fixtureData.map(({heading, description, icon, iconColor, href}, id) => {
         return (
           <Pillar key={id} style={{width: '33.3333%'}}>
