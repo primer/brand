@@ -42,6 +42,8 @@
       url: /components/Image
     - title: Label
       url: /components/Label
+    - title: LogoSuite
+      url: /components/LogoSuite
     - title: Minimal footer
       url: /components/MinimalFooter
     - title: Ordered list
