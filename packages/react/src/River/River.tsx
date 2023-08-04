@@ -157,6 +157,7 @@ const Content = forwardRef(
               // as uses h3 default, but can be overridden
               as: HeadingChild.props.as || 'h3',
               size: HeadingChild.props.size || '3',
+              weight: HeadingChild.props.weight || 'semibold',
             })}
           </div>
         )}

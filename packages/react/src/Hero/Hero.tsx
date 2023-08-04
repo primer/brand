@@ -52,9 +52,16 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
 
 type HeroHeadingProps = Omit<HeadingProps, 'as'>
 
-const HeroHeading = forwardRef<HTMLHeadingElement, HeroHeadingProps>(({children, ...rest}, ref) => {
+const HeroHeading = forwardRef<HTMLHeadingElement, HeroHeadingProps>(({children, weight = 'bold', ...rest}, ref) => {
   return (
-    <Heading id="hero-section-brand-heading" className={styles['Hero-heading']} as="h1" ref={ref} {...rest}>
+    <Heading
+      id="hero-section-brand-heading"
+      className={styles['Hero-heading']}
+      as="h1"
+      ref={ref}
+      weight={weight}
+      {...rest}
+    >
       {children}
     </Heading>
   )

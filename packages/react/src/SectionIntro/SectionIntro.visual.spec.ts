@@ -61,6 +61,15 @@ test.describe('Visual Comparison: SectionIntro', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('SectionIntro / With Emphasized Text', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--with-emphasized-text&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('SectionIntro / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-sectionintro--playground&viewMode=story')
 

@@ -1,4 +1,4 @@
-import React, {forwardRef, PropsWithChildren, type Ref} from 'react'
+import React, {forwardRef, PropsWithChildren, useMemo, type Ref} from 'react'
 import clsx from 'clsx'
 import {Link, LinkProps} from '../Link'
 import {Heading, HeadingProps, defaultHeadingTag} from '../Heading'
@@ -34,21 +34,44 @@ const Root = forwardRef<HTMLHeadingElement, PropsWithChildren<SectionIntroProps>
 
 type SectionIntroHeadingProps = BaseProps<HTMLHeadingElement> & HeadingProps
 
-const defaultHeadingSize = '2'
+const defaultHeadingSize = '3'
 
 const _Heading = forwardRef(
   (
     {
       as = defaultHeadingTag,
       size = defaultHeadingSize,
+      weight = 'semibold',
       className,
       children,
       ...props
     }: PropsWithChildren<SectionIntroHeadingProps>,
     ref: Ref<HTMLHeadingElement>,
   ) => {
+    const childrenArray = useMemo(() => React.Children.toArray(children), [children])
+
+    const findVariant = () => {
+      if (childrenArray.some(child => React.isValidElement(child) && child.type === 'em')) {
+        return 'muted'
+      }
+      return 'default'
+    }
+
+    const defaultColor = childrenArray.length === 1 ? 'default' : findVariant()
+
     return (
-      <Heading ref={ref} className={clsx(styles[`SectionIntro-heading`], className)} size={size} as={as} {...props}>
+      <Heading
+        ref={ref}
+        className={clsx(
+          styles[`SectionIntro-heading`],
+          defaultColor === 'muted' && styles[`SectionIntro-heading--muted`],
+          className,
+        )}
+        size={size}
+        as={as}
+        weight={weight}
+        {...props}
+      >
         {children}
       </Heading>
     )

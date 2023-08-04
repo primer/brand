@@ -6,6 +6,15 @@
   padding-block: var(--base-size-24);
 }
 
+.SectionIntro-heading--muted {
+  color: var(--brand-color-text-muted);
+}
+
+.SectionIntro-heading--muted em {
+  font-style: normal;
+  color: var(--brand-color-text-default);
+}
+
 .SectionIntro--align-start {
   text-align: start;
 }
