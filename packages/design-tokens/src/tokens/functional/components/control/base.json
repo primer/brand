@@ -39,7 +39,7 @@
           "value": "80ms"
         },
         "easing": {
-          "value": "cubic-bezier(0.33, 1, 0.68, 1)"
+          "value": "var(--brand-animation-easing-glide)"
         }
       }
     }

@@ -65,7 +65,8 @@
     'components-actionmenu-features--open-by-default': 1000, // for the menu to open
     'components-actionmenu-features--longer-lists-open': 1000, // for the menu to open
     'components-actionmenu-features--menu-alignment': 1000, // for the menu to open
-    'components-actionmenu-features--disabled-item': 1000, // flakey test
+    'components-actionmenu-features--disabled-item': 1000, // flakey test,
+    'components-box-features--animation': 6000, // for the animation
   }
 
   /**
@@ -82,6 +83,11 @@
     'components-animations-examples--logo-bar', // animation only
     'components-animations-examples--timeline-bar', // animation only
     'components-animations--playground', // animation only
+    'components-logosuite-features--marquee', // animation only
+    'components-logosuite-features--slower-marquee-speed', // animation only
+    'components-logosuite-features--mixed-width', // animation only
+    'components-logosuite-features--following-hero', // animation only
+    'components-logosuite-features--stacked', // animation only
   ]
 
   const categorisedStories = Object.keys(stories as Stories).reduce((acc, key) => {

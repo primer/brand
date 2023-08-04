@@ -60,6 +60,72 @@ describe('Hero', () => {
     expect(descriptionEl).toBeNull()
   })
 
+  test('renders without description', () => {
+    const mockLabel = 'Label'
+
+    const {getByText} = render(
+      <Hero>
+        <Hero.Label>{mockLabel}</Hero.Label>
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.PrimaryAction href={mockPrimaryAction.href}>{mockPrimaryAction.text}</Hero.PrimaryAction>
+        <Hero.SecondaryAction href={mockSecondaryAction.href}>{mockSecondaryAction.text}</Hero.SecondaryAction>
+      </Hero>,
+    )
+    const labelEl = getByText(mockLabel)
+
+    expect(labelEl).toBeInTheDocument()
+  })
+
+  test('renders with an optional image in block end alignment by default', () => {
+    const mockAltText = 'placeholder image, blank with gray solid fill'
+
+    const {getByAltText} = render(
+      <Hero>
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.Image src="mock.png" alt={mockAltText} />
+      </Hero>,
+    )
+    const imageEl = getByAltText(mockAltText)
+
+    expect(imageEl).toBeInTheDocument()
+    expect(imageEl).toHaveClass('Hero-image--pos-block-end')
+  })
+
+  test('it can optionally render an image in inline end alignment', () => {
+    const mockAltText = 'placeholder image, blank with gray solid fill'
+
+    const {getByAltText} = render(
+      <Hero>
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.Image position="inline-end" src="mock.png" alt={mockAltText} />
+      </Hero>,
+    )
+    const imageEl = getByAltText(mockAltText)
+
+    expect(imageEl).toBeInTheDocument()
+    expect(imageEl).toHaveClass('Hero-image--pos-inline-end')
+  })
+
+  test('renders with default colors and size', () => {
+    const mockLabel = 'Label'
+    const expectedSize = 'medium'
+    const expectedColor = 'default'
+
+    const {getByTestId} = render(
+      <Hero>
+        <Hero.Label>{mockLabel}</Hero.Label>
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.PrimaryAction href={mockPrimaryAction.href}>{mockPrimaryAction.text}</Hero.PrimaryAction>
+        <Hero.SecondaryAction href={mockSecondaryAction.href}>{mockSecondaryAction.text}</Hero.SecondaryAction>
+      </Hero>,
+    )
+    const labelEl = getByTestId(mockLabel)
+
+    expect(labelEl).toBeInTheDocument()
+    expect(labelEl).toHaveClass(`Label--size-${expectedSize}`)
+    expect(labelEl).toHaveClass(`Label--color-${expectedColor}`)
+  })
+
   test('no a11y violations', async () => {
     const {container} = render(
       <Hero>

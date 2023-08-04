@@ -4,7 +4,6 @@ declare const styles: {
   readonly "Pillar--align-start": string;
   readonly "Pillar__icon": string;
   readonly "Pillar__heading": string;
-  readonly "Pillar__heading--size-6": string;
   readonly "Pillar__description": string;
   readonly "Pillar__link": string;
   readonly "Pillar__icon--color-default": string;

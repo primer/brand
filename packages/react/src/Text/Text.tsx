@@ -50,9 +50,16 @@ export type TextProps = {
    * Specify the text weight
    */
   weight?: TextWeightVariants | ResponsiveWeightMap
+  /**
+   * Specify the text alignment.
+   * Corresponds to the CSS `text-align` property.
+   * Note: Only applies to block elements.
+   */
+  align?: 'start' | 'center' | 'end'
 } & TextTags
 
 export function Text({
+  align,
   animate,
   as = defaultTextTag,
   className,
@@ -83,6 +90,7 @@ export function Text({
     styles[`Text--${variant}`],
     styles[`Text--${size}`],
     weight && weightClass,
+    align && styles[`Text-align--${align}`],
     className,
   )
 

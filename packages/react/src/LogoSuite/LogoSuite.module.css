@@ -1,0 +1,141 @@
+.LogoSuite {
+  padding-block-end: var(--brand-LogoSuite-logobar-rowGap);
+}
+
+.LogoSuite + .LogoSuite {
+  padding-block-start: var(--brand-LogoSuite-logobar-rowGap);
+}
+
+.LogoSuite__heading + .LogoSuite__description {
+  padding-block-start: var(--base-size-16);
+}
+
+.LogoSuite--start {
+  text-align: left;
+}
+
+.LogoSuite--center,
+.LogoSuite--justify {
+  text-align: center;
+}
+
+.LogoSuite:not(.LogoSuite + .LogoSuite) .LogoSuite__logobar {
+  padding-block-start: var(--base-size-32);
+}
+
+.LogoSuite__logobar {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: var(--brand-LogoSuite-logobar-rowGap);
+  column-gap: var(--brand-LogoSuite-logobar-columnGap);
+  justify-content: center;
+}
+
+.LogoSuite:not(.LogoSuite + .LogoSuite)
+  .LogoSuite__heading:not(.LogoSuite__heading--visually-hidden)
+  + .LogoSuite__logobar,
+.LogoSuite:not(.LogoSuite + .LogoSuite) .LogoSuite__description + .LogoSuite__logobar {
+  padding-block-start: 0;
+  margin-block-start: var(--base-size-80);
+}
+
+.LogoSuite__logobar--variant-muted svg,
+.LogoSuite__logobar--variant-muted a {
+  width: auto;
+  height: var(--base-size-40);
+}
+
+.LogoSuite__logobar--variant-emphasis svg,
+.LogoSuite__logobar--variant-emphasis a {
+  width: auto;
+  height: var(--base-size-48);
+}
+
+.LogoSuite__logobar--variant-muted svg,
+.LogoSuite__logobar--variant-muted path {
+  fill: var(--brand-LogoSuite-color-logo-muted);
+}
+
+.LogoSuite__logobar--variant-emphasis svg,
+.LogoSuite__logobar--variant-emphasis path {
+  fill: var(--brand-LogoSuite-color-logo-emphasis);
+}
+
+.LogoSuite--start .LogoSuite__logobar {
+  justify-content: center;
+}
+
+@media screen and (min-width: 48rem) {
+  .LogoSuite--justify .LogoSuite__logobar {
+    justify-content: space-between;
+  }
+}
+
+.LogoSuite--start .LogoSuite__logobar a:focus-visible {
+  outline-color: var(--brand-color-focus);
+}
+
+.LogoSuite--hasDivider {
+  border-bottom: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+.LogoSuite__logobar--has-marquee {
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-40);
+  margin: auto;
+  max-width: 100dvw;
+}
+
+.LogoSuite__logobar-marqueeGroup {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: var(--brand-LogoSuite-logobar-marquee-gap);
+  min-width: 100%;
+  animation-name: LogobarScrollX;
+  animation-duration: var(--brand-LogoSuite-logobar-marquee-default);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-fill-mode: none;
+  animation-play-state: running;
+}
+
+.LogoSuite__logobar-marqueeGroup--speed-default {
+  animation-duration: var(--brand-LogoSuite-logobar-marquee-default);
+}
+
+.LogoSuite__logobar-marqueeGroup--speed-slow {
+  animation-duration: var(--brand-LogoSuite-logobar-marquee-slow);
+}
+
+@keyframes LogobarScrollX {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--brand-LogoSuite-logobar-marquee-gap)));
+  }
+}
+
+.LogoSuite__logobar--has-marquee:hover .LogoSuite__logobar-marqueeGroup {
+  animation-play-state: paused;
+}
+
+.LogoSuite__logobar-marquee {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: var(--brand-LogoSuite-logobar-marquee-gap);
+  width: 100%;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    hsl(0 0% 0% / 0),
+    hsl(0 0% 0% / 1) 20%,
+    hsl(0 0% 0% / 1) 80%,
+    hsl(0 0% 0% / 0)
+  );
+  mask-image: linear-gradient(to right, hsl(0 0% 0% / 0), hsl(0 0% 0% / 1) 20%, hsl(0 0% 0% / 1) 80%, hsl(0 0% 0% / 0));
+}

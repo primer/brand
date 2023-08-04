@@ -3,7 +3,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: box-shadow 0.2s;
+  transition: box-shadow var(--brand-animation-duration-faster);
   text-decoration: none;
   cursor: pointer;
 }
@@ -27,18 +27,19 @@
 
 @media screen and (prefers-reduced-motion: no-preference) {
   .Link::after {
-    transition: transform 0.3s ease;
+    transition: transform var(--brand-animation-duration-fast) ease;
   }
 }
 
 .Link:active:after,
-.Link:hover:after,
-.Link:focus:after {
+.Link:hover:after {
   transform: scaleX(1);
 }
 
-.Link:focus {
-  outline: 0;
+.Link:focus:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--brand-color-canvas-default), 0 0 2px 5px var(--brand-color-focus);
+  transition: none;
 }
 
 .Link--default,
