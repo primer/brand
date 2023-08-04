@@ -38,6 +38,7 @@
 .VideoPlayer {
   width: 100%;
   border-radius: 6px;
+  display: block;
 }
 
 .VideoPlayer ::cue {
@@ -126,7 +127,6 @@
   transition-duration: 0.4s;
   bottom: -58px;
   position: absolute;
-  transform: translateY(-8px);
   z-index: 2;
   width: 100%;
 }
