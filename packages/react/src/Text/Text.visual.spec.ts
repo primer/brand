@@ -43,4 +43,11 @@ test.describe('Visual Comparison: Text', () => {
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
+
+  test('Text / Alignment', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--alignment&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
 })

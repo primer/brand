@@ -3,11 +3,11 @@
     "InlineLink": {
       "color": {
         "rest": {
-          "value": "var(--base-color-scale-blue-5)",
+          "value": "var(--base-color-scale-blue-6)",
           "dark": "var(--base-color-scale-blue-4)"
         },
         "pressed": {
-          "value": "var(--base-color-scale-blue-7)",
+          "value": "var(--base-color-scale-blue-8)",
           "dark": "var(--base-color-scale-blue-2)"
         }
       }

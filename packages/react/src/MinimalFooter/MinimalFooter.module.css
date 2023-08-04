@@ -100,7 +100,7 @@
   background-color: inherit;
   cursor: pointer;
   padding: 0 0 var(--base-size-4) 0;
-  transition: border 300ms cubic-bezier(0.33, 1, 0.68, 1);
+  transition: border var(--brand-animation-duration-fast) var(--brand-animation-easing-glide);
 }
 
 .Footer__link:hover {

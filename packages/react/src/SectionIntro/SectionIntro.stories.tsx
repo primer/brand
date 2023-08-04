@@ -26,6 +26,7 @@ export default {
 
 export const Playground: StoryFn<typeof SectionIntro> = args => (
   <SectionIntro {...args}>
+    <SectionIntro.Label>Label</SectionIntro.Label>
     <SectionIntro.Heading>This is my super sweet SectionIntro heading</SectionIntro.Heading>
     <SectionIntro.Description>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit id. Aliquam luctus sed turpis felis nam
@@ -37,6 +38,7 @@ export const Playground: StoryFn<typeof SectionIntro> = args => (
 
 export const Default = () => (
   <SectionIntro>
+    <SectionIntro.Label>Label</SectionIntro.Label>
     <SectionIntro.Heading>This is my super sweet SectionIntro heading</SectionIntro.Heading>
     <SectionIntro.Description>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit id. Aliquam luctus sed turpis felis nam
