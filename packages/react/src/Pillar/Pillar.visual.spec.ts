@@ -53,6 +53,15 @@ test.describe('Visual Comparison: Pillar', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('Pillar / Stacked With Link', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-pillar-features--stacked-with-link&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Pillar / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar--default&viewMode=story')
 
