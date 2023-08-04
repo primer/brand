@@ -113,6 +113,7 @@
   position: absolute;
   transform: translateY(-8px);
   z-index: 2;
+  width: 100%;
 }
 
 .VideoPlayer__controlsWrapper {
