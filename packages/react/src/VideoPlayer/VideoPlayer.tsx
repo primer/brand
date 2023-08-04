@@ -1,8 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react'
 import clsx from 'clsx'
 import {Text} from '../Text'
-import {Captions} from './components/captions/Captions'
-import {Range as VideoPlayerRange, Tooltip as VideoPlayerTooltip, IconControl, Controls} from './components'
+import {Controls} from './components'
 
 import styles from './VideoPlayer.module.css'
 
@@ -13,8 +12,6 @@ type VideoPlayerProps = {
   children: React.ReactElement | React.ReactElement[]
   ref?: React.RefObject<HTMLVideoElement>
 } & React.HTMLProps<HTMLVideoElement>
-
-// TODO: Reacting to video events might be better for performance
 
 function Root({
   poster,
@@ -34,12 +31,7 @@ function Root({
   const videoRef = ref ? ref : videoPlayerRef
   const [playing, setPlaying] = useState(false)
   const [playedTime, setPlayedTime] = useState(0)
-  const [seeking, setSeeking] = useState(false)
   const [totalTime, setTotalTime] = useState(0)
-  const [fullScreen, setFullScreen] = useState(false)
-  const [volume, setVolume] = useState(0.1)
-  const [previousVolume, setPreviousVolume] = useState(volume)
-  const [closedCaption, setClosedCaption] = useState(true)
   const [trackInformation, setTrackInformation] = useState<TextTrackCueList | undefined>(undefined)
 
   /* > Play / Pause                                                    */
@@ -54,14 +46,13 @@ function Root({
   }
 
   /* > Hide Default Captions                                                   */
-
   useEffect(() => {
     if (videoRef.current) {
       for (let i = 0; i < videoRef.current.textTracks.length; i++) {
         videoRef.current.textTracks[0].mode = 'hidden'
       }
     }
-  }, [videoRef, closedCaption])
+  }, [videoRef])
 
   return (
     <div
@@ -151,5 +142,4 @@ function VideoPlayerTrack(props: React.HTMLProps<HTMLTrackElement>) {
 export const VideoPlayer = Object.assign(Root, {
   Source: VideoPlayerSource,
   Track: VideoPlayerTrack,
-  Range: VideoPlayerRange,
 })
