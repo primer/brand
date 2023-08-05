@@ -63,14 +63,12 @@ function Root({
   /* > Set breakpoint classes                                                   */
 
   useEffect(() => {
-    // TODO: This needs to run on load
+    // TODO: This needs to run on load on play this doesn't get re-ran
     const handleResize = () => {
       const breakpoint = videoWrapperRef.current?.getBoundingClientRect().width
       if (breakpoint && breakpoint < 650) {
-        console.log('set')
         videoWrapperRef.current.classList.add(styles.VideoPlayer__breakpointSmall)
       } else {
-        console.log('unset')
         videoWrapperRef.current?.classList.remove(styles.VideoPlayer__breakpointSmall)
       }
     }
@@ -89,7 +87,7 @@ function Root({
     return () => {
       resizeObserver.unobserve(currentRef as Element)
     }
-  }, [videoWrapperRef])
+  }, [videoWrapperRef, playing])
 
   return (
     <div

@@ -68,7 +68,7 @@
           "value": "3px"
         },
         "minWidth": {
-          "value": "150px"
+          "value": "75px"
         },
         "background": {
           "value": "rgba(225, 225, 225, 0.5)"

@@ -111,6 +111,7 @@
   position: absolute;
   z-index: 2;
   width: 100%;
+  pointer-events: none;
 }
 
 .VideoPlayer__controlsWrapper {
@@ -126,6 +127,7 @@
   background: var(--brand-VideoPlayer-controls-background);
   background: var(--brand-VideoPlayer-controls-backgroundGradient);
   padding: var(--brand-VideoPlayer-controls-padding);
+  pointer-events: all;
 }
 
 .VideoPlayer__breakpointSmall .VideoPlayer__controlsWrapper {
