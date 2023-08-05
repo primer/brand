@@ -3,6 +3,12 @@ import clsx from 'clsx'
 import {Text} from '../Text'
 import {Controls} from './components'
 
+/**
+ * Design tokens
+ */
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/video-player/base.css'
+
+/** * Main Stylesheet (as a CSS Module) */
 import styles from './VideoPlayer.module.css'
 
 type VideoPlayerProps = {
@@ -57,19 +63,25 @@ function Root({
   /* > Set breakpoint classes                                                   */
 
   useEffect(() => {
+    // TODO: This needs to run on load
+    const handleResize = () => {
+      const breakpoint = videoWrapperRef.current?.getBoundingClientRect().width
+      if (breakpoint && breakpoint < 650) {
+        console.log('set')
+        videoWrapperRef.current.classList.add(styles.VideoPlayer__breakpointSmall)
+      } else {
+        console.log('unset')
+        videoWrapperRef.current?.classList.remove(styles.VideoPlayer__breakpointSmall)
+      }
+    }
+
     const resizeObserver = new ResizeObserver(_ => {
       if (videoWrapperRef.current) {
-        const handleResize = () => {
-          const breakpoint = videoWrapperRef.current?.getBoundingClientRect().width
-          if (breakpoint && breakpoint < 650) {
-            videoWrapperRef.current.classList.add(styles.VideoPlayer__breakpointSmall)
-          } else {
-            videoWrapperRef.current?.classList.remove(styles.VideoPlayer__breakpointSmall)
-          }
-        }
         handleResize()
       }
     })
+
+    handleResize()
 
     const currentRef = videoWrapperRef.current
 

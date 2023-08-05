@@ -1,0 +1,113 @@
+{
+  "brand": {
+    "VideoPlayer": {
+      "border": {
+        "radius": {
+          "value": "var(--brand-borderRadius-medium)"
+        }
+      },
+      "controls": {
+        "color": {
+          "value": "var(--brand-color-white)"
+        },
+        "gap": {
+          "value": "15px"
+        },
+        "background": {
+          "value": "rgba(0, 0, 0, 0.2)"
+        },
+        "backgroundGradient": {
+          "value": "linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6))"
+        },
+        "padding": {
+          "value": "15px 24px"
+        },
+        "icon": {
+          "height": {
+            "value": "24px"
+          }
+        },
+        "focus": {
+          "borderColor": {
+            "value": "var(--brand-color-focus)"
+          },
+          "boxShadow": {
+            "value": "0 0 0 2px var(--brand-color-focus)"
+          }
+        }
+      },
+      "closedCaption": {
+        "padding": {
+          "value": "1px 4px"
+        },
+        "backgroundColor": {
+          "value": "var(--brand-color-white)"
+        },
+        "color": {
+          "value": "black"
+        },
+        "margin": {
+          "value": "0 auto 15px auto"
+        },
+        "text": {
+          "padding": {
+            "value": "10px"
+          }
+        }
+      },
+      "range": {
+        "height": {
+          "value": "6px"
+        },
+        "borderRadius": {
+          "value": "3px"
+        },
+        "minWidth": {
+          "value": "150px"
+        },
+        "background": {
+          "value": "rgba(225, 225, 225, 0.5)"
+        }
+      },
+      "transition": {
+        "value": "all 0.4s ease-out"
+      },
+      "tooltip": {
+        "padding": {
+          "value": "5px 10px"
+        },
+        "boxShadow": {
+          "value": "0 4px 4px rgba(0, 0, 0, 0.2)"
+        }
+      },
+      "heading": {
+        "color": {
+          "value": "var(--brand-color-white)"
+        },
+        "padding": {
+          "value": "15px 24px"
+        },
+        "gap": {
+          "value": "10px"
+        },
+        "background": {
+          "value": "rgba(0, 0, 0, 0.2)"
+        },
+        "backgroundGradient": {
+          "value": "linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0))"
+        }
+      },
+      "cc": {
+        "padding": {
+          "value": "0px 4px"
+        },
+        "border": {
+          "value": "2px solid var(--brand-color-white)"
+        },
+        "background-color": {
+          "value": "var(--brand-color-white)"
+        }
+      }
+    }
+  }
+}
