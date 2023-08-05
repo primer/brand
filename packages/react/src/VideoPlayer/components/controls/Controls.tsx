@@ -45,7 +45,7 @@ export const Controls = ({
 }: ControlsProps) => {
   const [playing, setPlaying] = useState(playingProp)
   const [playedTime, setPlayedTime] = useState(0)
-  const [volume, setVolume] = useState(0.1)
+  const [volume, setVolume] = useState(0.5)
   const [previousVolume, setPreviousVolume] = useState(volume)
   const [closedCaption, setClosedCaption] = useState(true)
   const [fullScreen, setFullScreen] = useState(false)
@@ -113,8 +113,9 @@ export const Controls = ({
           tooltipFormatter={value => getMinuteSecondTime(value as number)}
         />
         <div className={styles.VideoPlayer__progressTime}>
-          <Text className={styles.VideoPlayer__controlTextColor}>
-            {getMinuteSecondTime(playedTime || 0) || '00:00'} / {getMinuteSecondTime(totalTime || 0) || '00:00'}
+          <Text as="p" className={styles.VideoPlayer__controlTextColor}>
+            {<span>{getMinuteSecondTime(playedTime || 0) || '00:00'}</span>}
+            {<span className={styles.VideoPlayer__totalTime}> / {getMinuteSecondTime(totalTime || 0) || '00:00'}</span>}
           </Text>
         </div>
       </>
@@ -226,7 +227,7 @@ export const Controls = ({
         onInput={e => {
           setVolume(e.currentTarget.valueAsNumber)
         }}
-        className={styles.VideoPlayer__progressBar2}
+        className={styles.VideoPlayer__volumeBar}
         value={volume}
         a11yStep={0.1}
       />

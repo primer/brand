@@ -9,6 +9,7 @@
 /* 5. Controls                                                */
 /* 6. Range Element                                           */
 /* 7. Tooltip                                                 */
+/* 8. Captions                                                */
 /* ---------------------------------------------------------- */
 
 .VideoPlayer__srOnly:not(:focus):not(:active) {
@@ -39,6 +40,7 @@
   width: 100%;
   border-radius: 6px;
   display: block;
+  container: videoPlayer / inline-size;
 }
 
 .VideoPlayer ::cue {
@@ -135,7 +137,7 @@
   display: grid;
   grid-gap: 15px;
   align-items: center;
-  grid-template-columns: auto 2fr auto auto auto 1fr auto;
+  grid-template-columns: auto 2fr auto auto auto auto auto;
   opacity: 0;
   border-bottom-right-radius: 6px;
   border-bottom-left-radius: 6px;
@@ -144,6 +146,10 @@
   background: rgba(0, 0, 0, 0.2);
   background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6));
   padding: 15px 24px;
+}
+
+.VideoPlayer__breakpointSmall .VideoPlayer__controlsWrapper {
+  grid-template-columns: auto 2fr auto auto auto auto;
 }
 
 .VideoPlayer__controls:focus,
@@ -204,6 +210,14 @@
   color: white;
 }
 
+.VideoPlayer__totalTime {
+  display: inline-block;
+}
+
+.VideoPlayer__breakpointSmall .VideoPlayer__totalTime {
+  display: none;
+}
+
 .VideoPlayer__progressBar2 {
   width: 100%;
   height: 6px;
@@ -240,6 +254,10 @@
   height: 6px;
   background-color: white;
   border-radius: 3px;
+}
+
+.VideoPlayer__breakpointSmall .VideoPlayer__volumeBar {
+  display: none;
 }
 
 .VideoPlayer__range:hover .VideoPlayer__tooltip {

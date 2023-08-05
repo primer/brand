@@ -54,6 +54,31 @@ function Root({
     }
   }, [videoRef])
 
+  /* > Set breakpoint classes                                                   */
+
+  useEffect(() => {
+    const resizeObserver = new ResizeObserver(_ => {
+      if (videoWrapperRef.current) {
+        const handleResize = () => {
+          const breakpoint = videoWrapperRef.current?.getBoundingClientRect().width
+          if (breakpoint && breakpoint < 650) {
+            videoWrapperRef.current.classList.add(styles.VideoPlayer__breakpointSmall)
+          } else {
+            videoWrapperRef.current?.classList.remove(styles.VideoPlayer__breakpointSmall)
+          }
+        }
+        handleResize()
+      }
+    })
+
+    const currentRef = videoWrapperRef.current
+
+    resizeObserver.observe(videoWrapperRef.current as Element)
+    return () => {
+      resizeObserver.unobserve(currentRef as Element)
+    }
+  }, [videoWrapperRef])
+
   return (
     <div
       className={clsx(

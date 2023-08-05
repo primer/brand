@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import clsx from 'clsx'
 import {Tooltip} from '../index'
 
 import styles from '../../VideoPlayer.module.css'
@@ -52,12 +53,12 @@ export const Range = ({
   }
 
   return (
-    <div className={styles.VideoPlayer__range}>
+    <div className={clsx(styles.VideoPlayer__range, className)}>
       <progress className={styles.VideoPlayer__rangeProgress} value={value} max={max} />
       <input
         tabIndex={0}
         type="range"
-        className={styles.VideoPlayer__rangeInput}
+        className={clsx(styles.VideoPlayer__rangeInput, styles.VideoPlayer__progressBar2)}
         value={value}
         onChange={e => {
           setValue(e.currentTarget.valueAsNumber)
