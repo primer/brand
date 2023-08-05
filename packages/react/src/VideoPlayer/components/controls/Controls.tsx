@@ -109,6 +109,8 @@ export const Controls = ({
           }}
           value={currentTime}
           className={styles.VideoPlayer__progressBar2}
+          tooltip
+          tooltipFormatter={value => getMinuteSecondTime(value as number)}
         />
         <div className={styles.VideoPlayer__progressTime}>
           <Text className={styles.VideoPlayer__controlTextColor}>
