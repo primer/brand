@@ -2,7 +2,7 @@ import React from 'react'
 import clsx from 'clsx'
 import {Text} from '../../../Text'
 
-import styles from './Captions.module.css'
+import styles from '../../VideoPlayer.module.css'
 
 type CaptionsProps = {
   videoRef: React.RefObject<HTMLVideoElement>
@@ -39,8 +39,8 @@ export const Captions = ({videoRef, disabled, trackInformation}: CaptionsProps) 
   }, [videoRef, trackInformation])
 
   return (
-    <div className={clsx(styles.Captions, (disabled || !caption) && styles.Captions__empty)}>
-      <Text as="p" className={styles.Captions__text}>
+    <div className={clsx(styles.VideoPlayer__captions, (disabled || !caption) && styles.VideoPlayer__captions__empty)}>
+      <Text as="p" className={styles.VideoPlayer__captions__text}>
         {caption}
       </Text>
     </div>

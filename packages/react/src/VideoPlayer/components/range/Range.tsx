@@ -7,6 +7,7 @@ type RangeProps = {
   tooltip?: boolean
   tooltipFormatter?: (value: number | string | readonly string[]) => string
   max?: number
+  a11yStep?: number
 } & React.HTMLProps<HTMLInputElement>
 
 export const Range = ({
@@ -14,6 +15,8 @@ export const Range = ({
   onChange,
   value: startValue,
   max,
+  onKeyDown,
+  a11yStep = 1,
   tooltip,
   tooltipFormatter = value => value.toString(),
   ...props
@@ -38,6 +41,16 @@ export const Range = ({
     }
   }, [max])
 
+  const handleKeyDown = event => {
+    if (value) {
+      if (event.keyCode === 38) {
+        setValue((value as number) + a11yStep)
+      } else if (event.keyCode === 40) {
+        setValue((value as number) - a11yStep)
+      }
+    }
+  }
+
   return (
     <div className={styles.VideoPlayer__range}>
       <progress className={styles.VideoPlayer__rangeProgress} value={value} max={max} />
@@ -51,6 +64,10 @@ export const Range = ({
           onChange && onChange(e)
         }}
         max={max}
+        onKeyDown={e => {
+          handleKeyDown(e)
+          onKeyDown && onKeyDown(e)
+        }}
         {...props}
       />
       {tooltip && !!hoverValue && (

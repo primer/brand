@@ -228,6 +228,7 @@ export const Controls = ({
         }}
         className={styles.VideoPlayer__progressBar2}
         value={volume}
+        a11yStep={0.1}
       />
     ),
     [volume],
