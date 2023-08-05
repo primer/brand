@@ -10,7 +10,6 @@ expect.extend(toHaveNoViolations)
 
 describe('Button', () => {
   const disabledClass = 'Button--disabled'
-
   afterEach(() => {
     cleanup()
   })
@@ -247,5 +246,27 @@ describe('Button', () => {
 
     expect(trailingIconSlot.childNodes).toContain(trailingIconSlot.querySelector(`[data-testid="${mockId}"]`))
     expect(leadingIconSlot.childNodes).toContain(leadingIconSlot.querySelector(`[data-testid="${mockId}"]`))
+  })
+
+  it('spans full width when block prop is true', () => {
+    const {getByTestId} = render(
+      <Button block={true} data-testid="test-button">
+        Full-Width Button
+      </Button>,
+    )
+
+    const btnEl = getByTestId('test-button')
+
+    // Ensure the button has the block CSS class when block is true
+    expect(btnEl.classList).toContain('Button--block')
+  })
+
+  it('is not block by default', () => {
+    const {getByTestId} = render(<Button data-testid="test-button">Default Button</Button>)
+
+    const btnEl = getByTestId('test-button')
+
+    // Ensure the button does not have the CSS class when block is false (default)
+    expect(btnEl.classList).not.toContain('Button--block')
   })
 })
