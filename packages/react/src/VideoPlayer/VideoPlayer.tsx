@@ -63,7 +63,6 @@ function Root({
   /* > Set breakpoint classes                                                   */
 
   useEffect(() => {
-    // TODO: This needs to run on load on play this doesn't get re-ran
     const handleResize = () => {
       const breakpoint = videoWrapperRef.current?.getBoundingClientRect().width
       if (breakpoint && breakpoint < 650) {
