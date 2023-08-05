@@ -40,7 +40,6 @@
   width: 100%;
   border-radius: 6px;
   display: block;
-  container: videoPlayer / inline-size;
 }
 
 .VideoPlayer ::cue {
