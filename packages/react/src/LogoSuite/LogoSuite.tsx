@@ -6,8 +6,8 @@ import {Heading, HeadingProps, defaultHeadingTag, Text, TextProps} from '../'
 /**
  * Design tokens
  */
-// import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/logosuite/colors-with-modes.css'
-// import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/logosuite/base.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/logosuite/colors-with-modes.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/logosuite/base.css'
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './LogoSuite.module.css'
