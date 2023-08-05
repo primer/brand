@@ -29,6 +29,7 @@
 .VideoPlayer__container {
   width: 100%;
   position: relative;
+  overflow-y: hidden;
 }
 
 /* ---------------------------------------------------------- */
@@ -204,7 +205,8 @@
 
 .VideoPlayer__closedCaption {
   border-radius: var(--brand-VideoPlayer-border-radius);
-  padding: var(--brand-VideoPlayer-closedCaption-padding);
+  padding: var(--brand-VideoPlayer-closedCaption-padding-vertical)
+    var(--brand-VideoPlayer-closedCaption-padding-horizontal);
   border: 2px solid var(--brand-VideoPlayer-controls-color);
   background: var(--brand-VideoPlayer-controls-color);
   position: relative;
