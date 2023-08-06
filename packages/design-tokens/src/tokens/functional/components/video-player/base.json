@@ -7,9 +7,6 @@
         }
       },
       "controls": {
-        "color": {
-          "value": "var(--brand-color-white)"
-        },
         "gap": {
           "value": "15px"
         },
