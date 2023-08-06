@@ -1,7 +1,7 @@
 import React, {useEffect, useMemo, useState} from 'react'
 import clsx from 'clsx'
 import {IconControl, Captions, Range, Tooltip} from '../index'
-import {Text} from '../../../index'
+import {Text} from '../../../Text'
 
 import styles from '../../VideoPlayer.module.css'
 
@@ -104,13 +104,15 @@ export const Controls = ({
           min="0"
           max={totalTime || 0}
           step={0.0001}
-          onChange={e => {
+          onInput={e => {
             if (videoRef.current) videoRef.current.currentTime = e.currentTarget.valueAsNumber
           }}
           value={currentTime}
           className={styles.VideoPlayer__progressBar2}
           tooltip
           tooltipFormatter={value => getMinuteSecondTime(value as number)}
+          label="Seek"
+          id="VideoPlayer__Seek"
         />
         <div className={styles.VideoPlayer__progressTime}>
           <Text as="p" className={styles.VideoPlayer__controlTextColor}>
@@ -230,6 +232,8 @@ export const Controls = ({
         className={styles.VideoPlayer__volumeBar}
         value={volume}
         a11yStep={0.1}
+        label="Volume"
+        id="VideoPlayer__Volume"
       />
     ),
     [volume],
