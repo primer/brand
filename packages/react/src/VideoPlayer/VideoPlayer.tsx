@@ -19,7 +19,7 @@ type VideoPlayerProps = {
   ref?: React.RefObject<HTMLVideoElement>
 } & React.HTMLProps<HTMLVideoElement>
 
-function Root({
+const Root = ({
   poster,
   title,
   branding = true,
@@ -31,7 +31,7 @@ function Root({
   onPlaying,
   ref,
   ...rest
-}: VideoPlayerProps) {
+}: VideoPlayerProps) => {
   const videoPlayerRef = useRef<HTMLVideoElement>(null)
   const videoWrapperRef = useRef<HTMLDivElement>(null)
   const videoRef = ref ? ref : videoPlayerRef
@@ -100,6 +100,7 @@ function Root({
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <video
         ref={videoRef}
+        title={title}
         controls={false}
         poster={poster}
         {...rest}
@@ -142,16 +143,23 @@ function Root({
         </div>
       )}
       <button className={styles.VideoPlayer__playButton} onClick={handleVideoPlayback}>
-        <span>
-          {!playing && (
-            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none">
+        {!playing && (
+          <span className={styles.VideoPlayer__playButtonInner}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              style={{marginLeft: 5}}
+            >
               <path
                 d="M1.56489 23.8112C0.884817 24.2389 1.07491e-06 23.7501 1.0398e-06 22.9467L8.28679e-08 1.05473C4.73246e-08 0.241596 0.904067 -0.245404 1.58307 0.201969L18.5829 11.4026C19.2032 11.8113 19.1935 12.7244 18.5647 13.1198L1.56489 23.8112Z"
                 fill="currentColor"
               />
             </svg>
-          )}
-        </span>
+          </span>
+        )}
       </button>
       <Controls
         videoRef={videoRef}
@@ -165,11 +173,11 @@ function Root({
   )
 }
 
-function VideoPlayerSource(props: React.HTMLProps<HTMLSourceElement>) {
+const VideoPlayerSource = (props: React.HTMLProps<HTMLSourceElement>) => {
   return <source {...props} />
 }
 
-function VideoPlayerTrack(props: React.HTMLProps<HTMLTrackElement>) {
+const VideoPlayerTrack = (props: React.HTMLProps<HTMLTrackElement>) => {
   return <track {...props} />
 }
 

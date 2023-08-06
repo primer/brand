@@ -57,6 +57,16 @@
   z-index: 1;
 }
 
+.VideoPlayer__playButtonInner {
+  height: var(--brand-VideoPlayer-playButton-height);
+  width: var(--brand-VideoPlayer-playButton-width);
+  display: inline-block;
+  padding: var(--brand-VideoPlayer-playButton-padding);
+  box-sizing: content-box;
+  background: var(--brand-VideoPlayer-playButton-background);
+  border-radius: 50%;
+}
+
 .VideoPlayer__playButton:focus {
   border: 2px solid var(--brand-color-focus);
   box-shadow: 0 0 0 2px var(--brand-color-focus);

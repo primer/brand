@@ -3,6 +3,7 @@ declare const styles: {
   readonly "VideoPlayer__container": string;
   readonly "VideoPlayer": string;
   readonly "VideoPlayer__playButton": string;
+  readonly "VideoPlayer__playButtonInner": string;
   readonly "VideoPlayer__title": string;
   readonly "VideoPlayer__showOverlays": string;
   readonly "VideoPlayer__overlays": string;

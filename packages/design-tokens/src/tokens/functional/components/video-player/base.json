@@ -60,6 +60,20 @@
           }
         }
       },
+      "playButton": {
+        "height": {
+          "value": "24px"
+        },
+        "width": {
+          "value": "24px"
+        },
+        "padding": {
+          "value": "25px"
+        },
+        "background": {
+          "value": "var(--base-color-scale-blue-5)"
+        }
+      },
       "range": {
         "height": {
           "value": "6px"
