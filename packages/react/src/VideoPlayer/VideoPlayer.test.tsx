@@ -6,8 +6,10 @@ import {VideoPlayer} from '.'
 
 describe('VideoPlayer', () => {
   HTMLMediaElement.prototype.pause = () => {}
-  const pauseStub = jest.spyOn(window.HTMLMediaElement.prototype, 'pause').mockImplementation(() => {})
-  const playStub = jest.spyOn(window.HTMLMediaElement.prototype, 'play').mockImplementation(() => new Promise(() => {}))
+  const pauseStub = jest.spyOn(window.HTMLMediaElement.prototype, 'pause').mockImplementation(() => console.log('play'))
+  const playStub = jest
+    .spyOn(window.HTMLMediaElement.prototype, 'play')
+    .mockImplementation(() => new Promise(() => console.log('pause')))
 
   const videoPlayer = (
     <VideoPlayer
@@ -66,10 +68,10 @@ describe('VideoPlayer', () => {
     render(videoPlayer)
 
     const muteButton = Array.from(document.querySelectorAll('button')).find(
-      btn => btn && btn.textContent && btn.textContent.includes('Mute'),
+      btn => btn.textContent && btn.textContent.includes('Mute'),
     ) as Element
 
-    muteButton && fireEvent.click(muteButton)
+    fireEvent.click(muteButton)
 
     expect(document.querySelector('video')?.volume).toBe(0)
   })
@@ -78,11 +80,11 @@ describe('VideoPlayer', () => {
     render(videoPlayer)
 
     const muteButton = Array.from(document.querySelectorAll('button')).find(
-      btn => btn && btn.textContent && btn.textContent.includes('Mute'),
+      btn => btn.textContent && btn.textContent.includes('Mute'),
     ) as Element
 
-    muteButton && fireEvent.click(muteButton)
-    muteButton && fireEvent.click(muteButton)
+    fireEvent.click(muteButton)
+    fireEvent.click(muteButton)
 
     expect(document.querySelector('video')?.volume).toBe(0.5)
   })
