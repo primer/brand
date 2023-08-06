@@ -5,11 +5,10 @@ import '@testing-library/jest-dom'
 import {VideoPlayer} from '.'
 
 describe('VideoPlayer', () => {
-  HTMLMediaElement.prototype.pause = () => {}
-  const pauseStub = jest.spyOn(window.HTMLMediaElement.prototype, 'pause').mockImplementation(() => console.log('play'))
+  const pauseStub = jest.spyOn(window.HTMLMediaElement.prototype, 'pause').mockImplementation(() => 'play')
   const playStub = jest
     .spyOn(window.HTMLMediaElement.prototype, 'play')
-    .mockImplementation(() => new Promise(() => console.log('pause')))
+    .mockImplementation(() => new Promise(() => 'pause'))
 
   const videoPlayer = (
     <VideoPlayer
