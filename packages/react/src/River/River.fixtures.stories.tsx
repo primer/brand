@@ -6,7 +6,7 @@ import {Container} from '../component-helpers'
 import placeholderImage from '../fixtures/images/placeholder-600x400.png'
 
 export default {
-  title: 'Components/River/fixtures',
+  title: 'Components/River/features',
   component: River,
 } as Meta<typeof River>
 
@@ -100,6 +100,20 @@ export const AlternativeHeadingLevel: StoryFn<typeof River> = () => (
       </River.Visual>
       <River.Content>
         <Heading as="h1">This is a h1</Heading>
+        <Text>Use alternative heading levels, while maintaining the default text size.</Text>
+      </River.Content>
+    </River>
+  </Container>
+)
+
+export const NoRoundedVisualCorners: StoryFn<typeof River> = () => (
+  <Container>
+    <River>
+      <River.Visual rounded={false}>
+        <PlaceholderImage />
+      </River.Visual>
+      <River.Content>
+        <Heading>This is a h1</Heading>
         <Text>Use alternative heading levels, while maintaining the default text size.</Text>
       </River.Content>
     </River>

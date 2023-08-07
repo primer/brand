@@ -22,6 +22,11 @@
   object-fit: cover;
 }
 
+.River__visual--rounded,
+.River__visual--rounded img {
+  border-radius: var(--brand-borderRadius-large);
+}
+
 .River__visual--has-shadow {
   box-shadow: var(--brand-River-visual-shadow);
 }
