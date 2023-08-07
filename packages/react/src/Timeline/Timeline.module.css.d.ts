@@ -1,6 +1,6 @@
 declare const styles: {
   readonly "Timeline": string;
-  readonly "Timeline-item": string;
+  readonly "Timeline__item": string;
 };
 export = styles;
 

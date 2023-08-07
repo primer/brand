@@ -1,61 +1,49 @@
 .Timeline {
-  --timelineSpacing: var(--base-size-16);
-  --itemLineHeight: var(--brand-text-lineHeight-300);
-  --bulletSize: var(--base-size-8);
-  --bulletSpacing: 2px;
-  --bulletY: calc(var(--itemLineHeight) / 2 - var(--bulletSize) / 2);
-  --lineWidth: 1.5px;
+  --bulletY: calc(var(--brand-Timeline-lineHeight) / 2 - var(--brand-Timeline-bullet-size) / 2 - 1px);
 
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.Timeline-item {
+.Timeline__item {
   position: relative;
-  max-width: 44ch;
-  padding-inline-start: calc(var(--bulletSize) + var(--timelineSpacing));
+  max-width: var(--brand-Timeline-lineLength);
+  padding-inline-start: calc(var(--brand-Timeline-bullet-size) + var(--brand-Timeline-spacing));
   color: var(--brand-color-text-default);
-  font-family: var(--brand-body-fontFamily);
-  font-size: var(--brand-text-size-300);
-  font-weight: var(--brand-text-weight-200);
-  line-height: var(--itemLineHeight);
+  line-height: var(--brand-Timeline-lineHeight);
 }
 
-.Timeline-item:not(:last-child) {
+.Timeline__item:not(:last-child) {
   padding-bottom: var(--base-size-32);
 }
 
-.Timeline-item::before,
-.Timeline-item::after {
+.Timeline__item::before,
+.Timeline__item::after {
   content: '';
   position: absolute;
 }
 
-.Timeline-item::before {
-  width: var(--bulletSize);
-  height: var(--bulletSize);
+.Timeline__item::before {
+  width: var(--brand-Timeline-bullet-size);
+  height: var(--brand-Timeline-bullet-size);
   top: var(--bulletY);
   left: 0;
-  border: solid var(--lineWidth) var(--brand-color-border-default);
+  border: solid var(--brand-Timeline-strokeWidth) var(--brand-color-border-default);
   border-radius: 100%;
 }
 
-.Timeline-item:not(:last-child)::after {
-  top: calc(var(--bulletY) + var(--bulletSize) + var(--bulletSpacing));
-  left: calc(var(--bulletSize) / 2);
-  width: var(--lineWidth);
-  height: calc(100% - var(--bulletSize) - var(--bulletSpacing) * 2);
+.Timeline__item:not(:last-child)::after {
+  top: calc(var(--bulletY) + var(--brand-Timeline-bullet-size) + var(--brand-Timeline-bullet-spacing));
+  left: calc(var(--brand-Timeline-bullet-size) / 2);
+  width: var(--brand-Timeline-strokeWidth);
+  height: calc(100% - var(--brand-Timeline-bullet-size) - var(--brand-Timeline-bullet-spacing) * 2);
   transform: translateX(-50%);
   background-color: var(--brand-color-border-default);
-  border-radius: var(--lineWidth);
+  border-radius: var(--brand-Timeline-strokeWidth);
 }
 
-.Timeline-item:has(em) {
-  color: var(--brand-color-text-muted);
-}
-
-.Timeline-item em {
+.Timeline__item em {
   color: var(--brand-color-text-default);
   font-style: normal;
   font-weight: 500; /* TODO: update with token when available */

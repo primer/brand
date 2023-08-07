@@ -1,8 +1,11 @@
-import React, {PropsWithChildren} from 'react'
+import React, {PropsWithChildren, useMemo, useCallback} from 'react'
 import clsx from 'clsx'
 import styles from './Timeline.module.css'
 import {BaseProps} from '../component-helpers'
 import {useAnimation} from '../animation'
+import {Text} from '../Text'
+
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/timeline/base.css'
 
 export type TimelineProps = BaseProps<HTMLUListElement>
 
@@ -12,7 +15,6 @@ const _TimelineRoot = ({animate, className, children, ...rest}: PropsWithChildre
   const timelineClassName = clsx(animationClasses, styles.Timeline, className)
 
   return (
-    // TODO add ...stye
     <ul className={timelineClassName} style={{...animationInlineStyles}} {...rest}>
       {children}
     </ul>
@@ -22,11 +24,23 @@ const _TimelineRoot = ({animate, className, children, ...rest}: PropsWithChildre
 export type TimelineItemProps = BaseProps<HTMLLIElement>
 
 const Item = ({className, children, ...rest}: PropsWithChildren<TimelineItemProps>) => {
-  const itemClassName = clsx(styles['Timeline-item'], className)
+  const itemClassName = clsx(styles['Timeline__item'], className)
+  const childrenArray = useMemo(() => React.Children.toArray(children), [children])
+
+  const getConditionalVariant = useCallback(() => {
+    if (childrenArray.some(child => React.isValidElement(child) && child.type === 'em')) {
+      return 'muted'
+    }
+    return 'default'
+  }, [childrenArray])
+
+  const defaultColor = childrenArray.length === 1 ? 'default' : getConditionalVariant()
 
   return (
     <li className={itemClassName} {...rest}>
-      {children}
+      <Text size="300" variant={defaultColor}>
+        {children}
+      </Text>
     </li>
   )
 }
