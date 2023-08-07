@@ -24,4 +24,4 @@ const Template: StoryFn<typeof Timeline> = () => (
   </Timeline>
 )
 
-export const Playground = Template.bind({})
+export const Default = Template.bind({})
