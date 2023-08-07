@@ -64,6 +64,33 @@ test.describe('Visual Comparison: River', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('River / Custom trailing content', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-river-fixtures--custom-trailing-content&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('River / Custom trailing content w/ divider', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-river-fixtures--custom-trailing-content-with-divider&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('River / Custom Trailing Content Alternative', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-river-fixtures--custom-trailing-content-alternative&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('River / Alternating Layout', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-river-fixtures--alternating-layout&viewMode=story',
