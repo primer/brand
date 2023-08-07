@@ -1,5 +1,6 @@
 declare const styles: {
   readonly "Grid": string;
+  readonly "Grid--full-width": string;
   readonly "Grid__column": string;
   readonly "Grid--has-overlay": string;
   readonly "Grid__column--span-1": string;

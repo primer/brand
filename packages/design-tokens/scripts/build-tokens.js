@@ -204,6 +204,7 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
     `tokens/functional/components/footer/colors.json`,
     `tokens/functional/components/action-menu/colors.js`,
     `tokens/functional/components/grid/colors.json`,
+    `tokens/functional/components/logosuite/colors.json`,
   ]
 
   for (const path of filesForColorModes) {

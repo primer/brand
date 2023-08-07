@@ -14,6 +14,33 @@ test.describe('Visual Comparison: Hero', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('Hero / With an image (left + bottom)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-image-block-end-default&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Hero / With an image (centered + bottom)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-image-block-end-center&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Hero / With an image (right)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-image-inline-end&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Hero / Without Description', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-hero-features--without-description&viewMode=story',
