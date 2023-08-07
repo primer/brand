@@ -1,0 +1,25 @@
+{
+  "brand": {
+    "LogoSuite": {
+      "logobar": {
+        "columnGap": {
+          "value": "var(--base-size-80)"
+        },
+        "rowGap": {
+          "value": "var(--base-size-40)"
+        },
+        "marquee": {
+          "default": {
+            "value": "30s"
+          },
+          "slow": {
+            "value": "60s"
+          },
+          "gap": {
+            "value": "var(--base-size-96)"
+          }
+        }
+      }
+    }
+  }
+}
