@@ -32,7 +32,7 @@ const Item = ({className, children, ...rest}: PropsWithChildren<TimelineItemProp
 }
 
 /**
- * Use Timeline to display a list of connected items as vertical timeline.
+ * Use Timeline to display a list of connected items as a vertical timeline.
  * @see https://primer.style/brand/components/Timeline
  */
 export const Timeline = Object.assign(_TimelineRoot, {
