@@ -6,6 +6,41 @@
   padding-bottom: var(--brand-River-spacing-outer);
 }
 
+.River--breakout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--brand-River-spacing-inner);
+  padding-top: var(--brand-River-spacing-outer);
+  padding-bottom: var(--brand-River-spacing-outer);
+}
+
+.River--breakout .River__text {
+  color: var(--brand-color-text-default);
+  font-size: var(--brand-text-size-500);
+  font-weight: var(--base-text-weight-semibold);
+  letter-spacing: var(--brand-heading-letterSpacing-500);
+  line-height: var(--brand-text-lineHeight-500);
+}
+
+.River--breakout .River__text:has(em) {
+  color: var(--brand-color-text-subtle);
+}
+
+.River--breakout .River__text em {
+  color: var(--brand-color-text-default);
+  font-style: normal;
+}
+
+.River__hiddenBreakoutHeading {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
 .River--align-center {
   text-align: center;
 }
