@@ -2,7 +2,7 @@
 '@primer/react-brand': minor
 ---
 
-Use the timeline component to display a list of related items as a sequence of events.
+Use the timeline component to display a list of connected items as vertical timeline.
 
 Usage example:
 
