@@ -2,14 +2,15 @@
 
 export const supportedComponents = [
   'Button',
+  'Box',
   'ComparisonTable',
   'FAQ',
   'Heading',
   'Image',
   'Label',
   'River',
-  'Stack',
   'SectionIntro',
+  'Stack',
   'Testimonial',
   'Text',
   'Animate',

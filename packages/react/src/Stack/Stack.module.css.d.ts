@@ -212,6 +212,14 @@ declare const styles: {
   readonly "Stack-wide--justify-content-space-between": string;
   readonly "Stack-wide--justify-content-space-evenly": string;
   readonly "Stack-wide--justify-content-space-around": string;
+  readonly "Stack-flexWrap--wrap": string;
+  readonly "Stack-flexWrap--no-wrap": string;
+  readonly "Stack-narrow-flexWrap--wrap": string;
+  readonly "Stack-narrow-flexWrap--no-wrap": string;
+  readonly "Stack-regular-flexWrap--wrap": string;
+  readonly "Stack-regular-flexWrap--no-wrap": string;
+  readonly "Stack-wide-flexWrap--wrap": string;
+  readonly "Stack-wide-flexWrap--no-wrap": string;
 };
 export = styles;
 

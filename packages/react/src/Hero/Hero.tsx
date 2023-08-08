@@ -4,8 +4,13 @@ import styles from './Hero.module.css'
 import {Button, ButtonBaseProps} from '../Button'
 import {Heading, HeadingProps} from '../Heading'
 import {Text, TextSizes, TextWeightVariants, ResponsiveWeightMap} from '../Text'
+import {Label, LabelProps} from '../Label'
+import {Image, ImageProps} from '../Image'
+import {Grid} from '../Grid'
+import {Stack} from '../Stack'
 
 import type {BaseProps} from '../component-helpers'
+
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/hero/base.css'
 
 export type HeroProps = BaseProps<HTMLElement> & {
@@ -14,36 +19,63 @@ export type HeroProps = BaseProps<HTMLElement> & {
 
 const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
   ({className, align = 'start', children, ...rest}, ref) => {
-    const {HeroActions, HeroChildren} = useMemo(
+    const {HeroActions, HeroChildren, HeroImageChild} = useMemo(
       () =>
         React.Children.toArray(children).reduce<{
           HeroActions: React.ReactElement[]
+          HeroImageChild?: React.ReactElement
           HeroChildren: React.ReactElement[]
         }>(
           (acc, child) => {
             if (React.isValidElement(child)) {
               if (child.type === HeroPrimaryAction || child.type === HeroSecondaryAction) {
                 acc.HeroActions.push(child)
+              } else if (child.type === HeroImage) {
+                acc.HeroImageChild = child
               } else {
                 acc.HeroChildren.push(child)
               }
             }
             return acc
           },
-          {HeroActions: [], HeroChildren: []},
+          {HeroActions: [], HeroChildren: [], HeroImageChild: undefined},
         ),
       [children],
     )
 
+    const imagePosition = HeroImageChild?.props?.position || 'block-end'
+
+    const heroLayoutClass = HeroImageChild ? styles['Hero--layout-image'] : styles['Hero--layout-default']
+
     return (
       <section
-        className={clsx(styles.Hero, styles[`Hero--align-${align}`], className)}
+        className={clsx(
+          styles.Hero,
+          imagePosition !== 'inline-end' && styles[`Hero--align-${align}`],
+          heroLayoutClass,
+          HeroImageChild && styles[`Hero--image-pos-${imagePosition}`],
+        )}
         ref={ref}
         aria-labelledby="hero-section-brand-heading"
         {...rest}
       >
-        {HeroChildren}
-        <div className={styles['Hero-actions']}>{HeroActions}</div>
+        <Grid fullWidth className={clsx(styles['Hero-grid'], styles[`Hero-grid--${imagePosition}`])}>
+          <Grid.Column span={{medium: HeroImageChild && imagePosition === 'inline-end' ? 6 : 12}}>
+            <Stack
+              direction="vertical"
+              gap="none"
+              padding="none"
+              alignItems={imagePosition === 'inline-end' || align === 'start' ? 'flex-start' : 'center'}
+              justifyContent={imagePosition === 'inline-end' ? undefined : align === 'start' ? 'flex-start' : 'center'}
+            >
+              {HeroChildren}
+              <div className={styles['Hero-actions']}>{HeroActions}</div>
+            </Stack>
+          </Grid.Column>
+          {HeroImageChild && (
+            <Grid.Column span={{medium: imagePosition === 'inline-end' ? 6 : 12}}>{HeroImageChild}</Grid.Column>
+          )}
+        </Grid>
       </section>
     )
   },
@@ -69,6 +101,25 @@ function HeroDescription({size = '400', weight, children}: PropsWithChildren<Her
     <Text className={styles['Hero-description']} as="p" size={size} weight={weight} variant="muted">
       {children}
     </Text>
+  )
+}
+
+type HeroImageProps = {
+  position?: 'inline-end' | 'block-end'
+} & ImageProps &
+  BaseProps<HTMLImageElement>
+
+function HeroImage({position = 'block-end', className, ...rest}: PropsWithChildren<HeroImageProps>) {
+  return <Image className={clsx(styles['Hero-image'], styles[`Hero-image--pos-${position}`], className)} {...rest} />
+}
+
+type HeroLabelProps = LabelProps & BaseProps<HTMLSpanElement>
+
+function HeroLabel({children, ...rest}: PropsWithChildren<HeroLabelProps>) {
+  return (
+    <Label className={styles['Hero-label']} {...rest}>
+      {children}
+    </Label>
   )
 }
 
@@ -107,4 +158,6 @@ export const Hero = Object.assign(Root, {
   Description: HeroDescription,
   PrimaryAction: HeroPrimaryAction,
   SecondaryAction: HeroSecondaryAction,
+  Image: HeroImage,
+  Label: HeroLabel,
 })

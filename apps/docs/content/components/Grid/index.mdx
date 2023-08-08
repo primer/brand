@@ -3,7 +3,7 @@ title: Grid
 description: Use the grid component to create flexible and responsive grid-based layouts.
 ---
 
-import {Box, Text} from '@primer/react'
+import {Text} from '@primer/react'
 import CustomVideoPlayer from '../../../src/components/custom-video-player'
 import ComponentLayout from '../../../src/layouts/component-layout'
 export default ComponentLayout
@@ -127,7 +127,7 @@ We recommend using either the grid or stack component, depending on how the chil
 
 ### Grid examples
 
-<Box
+<Container
   as="figure"
   display="flex"
   alignItems="flex-start"
@@ -137,21 +137,21 @@ We recommend using either the grid or stack component, depending on how the chil
   mb={3}
   sx={{gap: 3}}
 >
-  <Box as="figcaption" mt="1">
+  <Container as="figcaption" mt="1">
     <Text as="h4">Page or section layout</Text>
     <Text as="p" mt="0">
       When defining the page or a section layout. E.g. A page with sidebar, main
       and navigation areas.
     </Text>
-  </Box>
+  </Container>
   <img
     src="https://github.com/primer/brand/assets/912236/7c418d9e-3e44-4a0e-9f4f-18f5a62d89d0"
     role="presentation"
     width="456"
   />
-</Box>
+</Container>
 
-<Box
+<Container
   as="figure"
   display="flex"
   alignItems="flex-start"
@@ -161,21 +161,21 @@ We recommend using either the grid or stack component, depending on how the chil
   mb={3}
   sx={{gap: 3}}
 >
-  <Box as="figcaption" mt="1">
+  <Container as="figcaption" mt="1">
     <Text as="h4">Sub sections</Text>
     <Text as="p" mt="0">
       When dividing an area into two areas. E.g. A "Send feedback" sidebar and a
       form, and the form uses the grid for the form layout itself.
     </Text>
-  </Box>
+  </Container>
   <img
     src="https://github.com/primer/brand/assets/912236/d617bfea-0758-4066-9ccc-7853eeb35cf3"
     role="presentation"
     width="456"
   />
-</Box>
+</Container>
 
-<Box
+<Container
   as="figure"
   display="flex"
   alignItems="flex-start"
@@ -185,22 +185,22 @@ We recommend using either the grid or stack component, depending on how the chil
   mb={3}
   sx={{gap: 3}}
 >
-  <Box as="figcaption" mt="1">
+  <Container as="figcaption" mt="1">
     <h4 style={{marginBottom: 0}}>Card or pillar grids</h4>
     <Text as="p" mt="0">
       When laying out cards, pillars, or similar content-based elements.
     </Text>
-  </Box>
+  </Container>
   <img
     src="https://github.com/primer/brand/assets/912236/56dfbcd8-72ff-401c-a530-25f11f671f7f"
     role="presentation"
     width="456"
   />
-</Box>
+</Container>
 
 ### Stack examples
 
-<Box
+<Container
   as="figure"
   display="flex"
   alignItems="flex-start"
@@ -210,21 +210,21 @@ We recommend using either the grid or stack component, depending on how the chil
   mb={3}
   sx={{gap: 3}}
 >
-  <Box as="figcaption" mt="1">
+  <Container as="figcaption" mt="1">
     <h4 style={{marginBottom: 0}}>Navigation</h4>
     <Text as="p" mt="0">
       For the page navigation or a list of links. E.g. Having a logo on the left
       side and the navigation on the right.
     </Text>
-  </Box>
+  </Container>
   <img
     src="https://github.com/primer/brand/assets/912236/022fc146-6286-4074-abc5-7341743da82e"
     role="presentation"
     width="456"
   />
-</Box>
+</Container>
 
-<Box
+<Container
   as="figure"
   display="flex"
   alignItems="flex-start"
@@ -234,22 +234,22 @@ We recommend using either the grid or stack component, depending on how the chil
   mb={3}
   sx={{gap: 3}}
 >
-  <Box as="figcaption" mt="1">
+  <Container as="figcaption" mt="1">
     <h4 style={{marginBottom: 0}}>List of actions</h4>
     <Text as="p" mt="0">
       For a group of action or buttons, where items are displayed next to each
       other, and they are distributed horizontally or vertically, depending on
       the content length and the screen size.
     </Text>
-  </Box>
+  </Container>
   <img
     src="https://github.com/primer/brand/assets/912236/0b1025c7-1c07-4ff3-adab-5d685d78ea99"
     role="presentation"
     width="456"
   />
-</Box>
+</Container>
 
-<Box
+<Container
   as="figure"
   display="flex"
   alignItems="flex-start"
@@ -259,20 +259,20 @@ We recommend using either the grid or stack component, depending on how the chil
   mb={3}
   sx={{gap: 3}}
 >
-  <Box as="figcaption" mt="1">
+  <Container as="figcaption" mt="1">
     <h4 style={{marginBottom: 0}}>Form elements</h4>
     <Text as="p" mt="0">
       For combinations of input fields with a button next to it.
     </Text>
-  </Box>
+  </Container>
   <img
     src="https://github.com/primer/brand/assets/912236/8f83eae5-995b-426a-bf54-7407579cdb8c"
     role="presentation"
     width="456"
   />
-</Box>
+</Container>
 
-<Box
+<Container
   as="figure"
   display="flex"
   alignItems="flex-start"
@@ -282,20 +282,20 @@ We recommend using either the grid or stack component, depending on how the chil
   mb={3}
   sx={{gap: 3}}
 >
-  <Box as="figcaption" mt="1">
+  <Container as="figcaption" mt="1">
     <h4 style={{marginBottom: 0}}>Profile cards</h4>
     <Text as="p" mt="0">
       For combinations of an avatar and descriptive content, where the
       information takes the remaining space from its parent element. This could
       be applied to any combinations of an icon and text too.
     </Text>
-  </Box>
+  </Container>
   <img
     src="https://github.com/primer/brand/assets/912236/c53f2ee7-93f1-416f-8fd5-bd965fd37f86"
     role="presentation"
     width="456"
   />
-</Box>
+</Container>
 
 [^2]: This section is based on the article [Grid for layout, Flexbox for components](https://ishadeed.com/article/grid-layout-flexbox-components/) by [@shadeed](https://github.com/shadeed)
 

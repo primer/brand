@@ -4,7 +4,7 @@ import TableOfContents from '@primer/gatsby-theme-doctocat/src/components/table-
 import SourceLink from '@primer/gatsby-theme-doctocat/src/components/source-link'
 import StorybookLink from '@primer/gatsby-theme-doctocat/src/components/storybook-link'
 import {AccessibilityLabel, StatusLabel} from '@primer/gatsby-theme-doctocat'
-import {Box, Heading, Label, Text} from '@primer/react'
+import {Box as PRCBox, Heading, Label, Text} from '@primer/react'
 import React from 'react'
 import {BaseLayout} from './base-layout'
 import {ComponentPageNav} from '../components/component-page-nav'
@@ -25,28 +25,30 @@ export default function ComponentLayout({pageContext, children, path}) {
 
   return (
     <BaseLayout title={title} description={description}>
-      <Box sx={{maxWidth: 1200, width: '100%', p: [4, 5, 6, 7], mx: 'auto'}}>
-        <Heading as="h1">{title}</Heading>
+      <PRCBox sx={{maxWidth: 1200, width: '100%', p: [4, 5, 6, 7], mx: 'auto'}}>
+        <Heading as="h1" sx={{fontSize: 7}}>
+          {title}
+        </Heading>
         {description ? (
           <Text as="p" sx={{fontSize: 3, m: 0, mb: 3, maxWidth: '60ch'}}>
             {description}
           </Text>
         ) : null}
-        <Box sx={{mb: 4}}>
+        <PRCBox sx={{mb: 4}}>
           <ComponentPageNav
             basePath={basePath}
             current={isReactPage ? 'react' : 'overview'}
           />
-        </Box>
-        <Box
+        </PRCBox>
+        <PRCBox
           sx={{
             display: 'flex',
             flexDirection: 'row-reverse',
             alignItems: 'start',
-            gap: 4,
+            gap: [null, 7, 8, 9],
           }}
         >
-          <Box
+          <PRCBox
             sx={{
               width: 220,
               flex: '0 0 auto',
@@ -61,7 +63,7 @@ export default function ComponentLayout({pageContext, children, path}) {
                 <Heading
                   as="h3"
                   sx={{
-                    fontSize: 2,
+                    fontSize: 1,
                     display: 'inline-block',
                     fontWeight: 'bold',
                     pl: 3,
@@ -76,10 +78,10 @@ export default function ComponentLayout({pageContext, children, path}) {
                 />
               </>
             ) : null}
-          </Box>
-          <Box sx={{minWidth: 0}}>
+          </PRCBox>
+          <PRCBox sx={{minWidth: 0}}>
             {isReactPage && (
-              <Box
+              <PRCBox
                 sx={{
                   display: 'flex',
                   flexDirection: ['column', null, null, null, 'row'],
@@ -88,7 +90,7 @@ export default function ComponentLayout({pageContext, children, path}) {
                   mb: 4,
                 }}
               >
-                <Box
+                <PRCBox
                   as={'ul'}
                   sx={{
                     display: 'flex',
@@ -113,8 +115,8 @@ export default function ComponentLayout({pageContext, children, path}) {
                       short={false}
                     />
                   </li>
-                </Box>
-                <Box
+                </PRCBox>
+                <PRCBox
                   as={'ul'}
                   sx={{
                     display: 'flex',
@@ -132,12 +134,12 @@ export default function ComponentLayout({pageContext, children, path}) {
                 >
                   <SourceLink href={source} />
                   <StorybookLink href={storybook} />
-                </Box>
-              </Box>
+                </PRCBox>
+              </PRCBox>
             )}
             {/* Narrow table of contents */}
             {pageContext.tableOfContents.items ? (
-              <Box
+              <PRCBox
                 sx={{
                   display: ['block', null, 'none'],
                   mb: 5,
@@ -148,8 +150,8 @@ export default function ComponentLayout({pageContext, children, path}) {
                   borderRadius: 2,
                 }}
               >
-                <Box sx={{px: 3, py: 2}}>
-                  <Box
+                <PRCBox sx={{px: 3, py: 2}}>
+                  <PRCBox
                     sx={{
                       flexDirection: 'row',
                       justifyContent: 'space-between',
@@ -159,22 +161,24 @@ export default function ComponentLayout({pageContext, children, path}) {
                   >
                     <Heading
                       as="h3"
-                      sx={{fontSize: 2, fontWeight: 'bold'}}
+                      sx={{fontSize: 1, fontWeight: 'bold'}}
                       id="toc-heading-narrow"
                     >
                       On this page
                     </Heading>
-                  </Box>
-                </Box>
-                <Box sx={{borderTop: '1px solid', borderColor: 'border.muted'}}>
+                  </PRCBox>
+                </PRCBox>
+                <PRCBox
+                  sx={{borderTop: '1px solid', borderColor: 'border.muted'}}
+                >
                   <TableOfContents
                     aria-labelledby="toc-heading-narrow"
                     items={pageContext.tableOfContents.items}
                   />
-                </Box>
-              </Box>
+                </PRCBox>
+              </PRCBox>
             ) : null}
-            <Box
+            <PRCBox
               sx={{
                 '& > :first-child': {
                   mt: 0,
@@ -185,14 +189,14 @@ export default function ComponentLayout({pageContext, children, path}) {
               }}
             >
               {children}
-            </Box>
-          </Box>
-        </Box>
+            </PRCBox>
+          </PRCBox>
+        </PRCBox>
         <PageFooter
           editUrl={pageContext.editUrl}
           contributors={pageContext.contributors}
         />
-      </Box>
+      </PRCBox>
     </BaseLayout>
   )
 }

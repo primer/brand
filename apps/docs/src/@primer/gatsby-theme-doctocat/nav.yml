@@ -20,6 +20,8 @@
       url: /components/AnchorNav
     - title: Avatar
       url: /components/Avatar
+    - title: Box
+      url: /components/Box
     - title: Button
       url: /components/Button
     - title: Button group
@@ -40,6 +42,8 @@
       url: /components/Image
     - title: Label
       url: /components/Label
+    - title: Logo suite
+      url: /components/LogoSuite
     - title: Minimal footer
       url: /components/MinimalFooter
     - title: Ordered list

@@ -1,5 +1,52 @@
 # @primer/brand-primitives
 
+## 0.22.0
+
+### Minor Changes
+
+- [#362](https://github.com/primer/brand/pull/362) [`db9e54d`](https://github.com/primer/brand/commit/db9e54da130fd33f6908847113d9a2b2a82ff41e) Thanks [@rezrah](https://github.com/rezrah)! - Added design tokens for the logo suite component
+
+  ```css
+  --brand-LogoSuite-color-logo-muted
+  --brand-LogoSuite-color-logo-emphasis
+  --brand-LogoSuite-logobar-marquee-gap
+  --brand-LogoSuite-logobar-marquee-slow
+  --brand-LogoSuite-logobar-marquee-default
+  --brand-LogoSuite-logobar-rowGap
+  --brand-LogoSuite-logobar-columnGap
+  ```
+
+### Patch Changes
+
+- [#374](https://github.com/primer/brand/pull/374) [`52abf2f`](https://github.com/primer/brand/commit/52abf2fe33bb7b4a96f5f9340177e20b600c004b) Thanks [@josepmartins](https://github.com/josepmartins)! - Adjust dark mode color shade in icons (used in `Card` and `Pillar` components) and `Label` component.
+
+## 0.21.0
+
+### Patch Changes
+
+- [#360](https://github.com/primer/brand/pull/360) [`d1ee031`](https://github.com/primer/brand/commit/d1ee0316662b92ca18ee32feba56233cdf4b42e0) Thanks [@rezrah](https://github.com/rezrah)! - Updated custom animation times and easing values across all components to leverage globally available values.
+
+  Three new variables have been added to `@primer/brand-primitives`:
+
+  - `--brand-animation-duration-fast`
+  - `--brand-animation-duration-faster`
+  - `--brand-animation-easing-glide`
+
+  Example:
+
+  ```diff
+  - 0.3s cubic-bezier(0.16, 1, 0.3, 1)
+  + var(--brand-animation-duration-fast) var(--brand-animation-easing-default)
+  ```
+
+- [#347](https://github.com/primer/brand/pull/347) [`6f8cd9d`](https://github.com/primer/brand/commit/6f8cd9d82abbe447871a78f175e52fad8b502aa4) Thanks [@rezrah](https://github.com/rezrah)! - Added new primitives for the box component
+
+  ```css
+  --brand-box-spacing-condensed
+  --brand-box-spacing-normal
+  --brand-box-spacing-spacious
+  ```
+
 ## 0.20.1
 
 ### Patch Changes

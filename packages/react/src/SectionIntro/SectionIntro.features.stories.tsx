@@ -45,8 +45,21 @@ export const WithSecondaryAction = () => (
   </SectionIntro>
 )
 
+export const WithLabel = () => (
+  <SectionIntro>
+    <SectionIntro.Label>Label</SectionIntro.Label>
+    <SectionIntro.Heading>This is my super sweet SectionIntro heading</SectionIntro.Heading>
+    <SectionIntro.Description>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit id. Aliquam luctus sed turpis felis nam
+      pulvinar risus elementum.
+    </SectionIntro.Description>
+    <SectionIntro.Link href="#">My link</SectionIntro.Link>
+  </SectionIntro>
+)
+
 export const AlignedCenter = () => (
   <SectionIntro align="center">
+    <SectionIntro.Label>Label</SectionIntro.Label>
     <SectionIntro.Heading>This is my super sweet SectionIntro heading</SectionIntro.Heading>
     <SectionIntro.Description>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit id. Aliquam luctus sed turpis felis nam

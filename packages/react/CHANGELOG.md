@@ -1,5 +1,171 @@
 # @primer/react-brand
 
+## 0.22.0
+
+### Minor Changes
+
+- [#362](https://github.com/primer/brand/pull/362) [`db9e54d`](https://github.com/primer/brand/commit/db9e54da130fd33f6908847113d9a2b2a82ff41e) Thanks [@rezrah](https://github.com/rezrah)! - Use a LogoSuite to present a list logos, such as sponsors or vendors.
+
+  Usage example:
+
+  ```jsx
+  <LogoSuite>
+    <LogoSuite.Heading>Heading</LogoSuite.Heading>
+    <LogoSuite.Description>Description</LogoSuite.Description>
+    <LogoSuite.Logobar>
+      <svg />
+      <svg />
+    </LogoSuite.Logobar>
+  </LogoSuite>
+  ```
+
+  See the [documentation](https://primer.style/brand/components/LogoSuite) or [Storybook](https://primer.style/brand/storybook/?path=/story/components-logosuite--default) for more usage examples.
+
+### Patch Changes
+
+- [#359](https://github.com/primer/brand/pull/359) [`ed7bd1e`](https://github.com/primer/brand/commit/ed7bd1e17a73be4a42cccd03d9b2266c51ee1b6c) Thanks [@mperrotti](https://github.com/mperrotti)! - Replaces aria-required with required for the Textarea component
+
+- [#363](https://github.com/primer/brand/pull/363) [`151eca0`](https://github.com/primer/brand/commit/151eca008950d0fc2cbeb8d179960de736618d14) Thanks [@rezrah](https://github.com/rezrah)! - Added optional label to section intro component
+
+  ```jsx
+  <SectionIntro>
+    <SectionIntro.Label>Label</SectionIntro.Label>
+    <SectionIntro.Heading>...</SectionIntro.Heading>
+  </SectionIntro>
+  ```
+
+- [#366](https://github.com/primer/brand/pull/366) [`81abab1`](https://github.com/primer/brand/commit/81abab1b815596e7e533991fbe75bce573c4b49e) Thanks [@rezrah](https://github.com/rezrah)! - Add optional foreground image support to Hero
+
+  Use `position` to alternate between various layouts.
+
+  ```jsx
+  <>
+    <Hero>
+      <Hero.Heading>Automate your workflow from idea to production</Hero.Heading>
+      <Hero.Image
+        src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+        alt="placeholder, blank area with an off-white background color"
+      />
+    </Hero>
+    <br />
+    <Hero>
+      <Hero.Heading>Automate your workflow from idea to production</Hero.Heading>
+      <Hero.Image
+        position="inline-end"
+        src="https://via.placeholder.com/300x450/d3d9df/d3d9df.png"
+        alt="placeholder, blank area with an off-white background color"
+      />
+    </Hero>
+  </>
+  ```
+
+- [#363](https://github.com/primer/brand/pull/363) [`151eca0`](https://github.com/primer/brand/commit/151eca008950d0fc2cbeb8d179960de736618d14) Thanks [@rezrah](https://github.com/rezrah)! - Added optional label to the hero component
+
+  ```jsx
+  <Hero>
+    <Hero.Label>Label</Hero.Label>
+    <Hero.Heading>...</Hero.Heading>
+  </Hero>
+  ```
+
+- [#370](https://github.com/primer/brand/pull/370) [`6e8a648`](https://github.com/primer/brand/commit/6e8a648c1a2f1991b9eee591867c986dad8381aa) Thanks [@josepmartins](https://github.com/josepmartins)! - Updates `Pillar` icon size, spacing and font settings.
+
+  - updated icon size to be medium (32px)
+  - updated heading font settings to use size 6 (20px/14px)
+  - updated spacing between icon and heading, heading and description, description and link
+  - updated link spacing to use margin-top: auto. This property adjust the position depending on it's sibling height size.
+  - added stacked with link story
+
+## 0.21.0
+
+### Minor Changes
+
+- [#347](https://github.com/primer/brand/pull/347) [`6f8cd9d`](https://github.com/primer/brand/commit/6f8cd9d82abbe447871a78f175e52fad8b502aa4) Thanks [@rezrah](https://github.com/rezrah)! - Added Box component
+
+  Use a box to simplify the process of applying one-off styles to an element
+
+  ```jsx
+  <>
+    <Box padding="condensed">condensed, uniform padding</Box>
+    <Box padding="normal">normal, uniform padding</Box>
+    <Box padding="spacious">spacious, uniform padding</Box>
+
+    <Box margin="condensed">condensed, uniform margin</Box>
+    <Box margin="normal">normal, uniform margin</Box>
+    <Box margin="spacious">spacious, uniform margin</Box>
+
+    <Box background="subtle">alternate background colors</Box>
+
+    <Box borderRadius="full">rounded borders</Box>
+
+    <Box borderWidth="thicker">thicker border widths</Box>
+  </>
+  ```
+
+  :link: [See the documentation for more details, options and usage examples.](https://primer.style/brand/components/Box)
+
+### Patch Changes
+
+- [#360](https://github.com/primer/brand/pull/360) [`d1ee031`](https://github.com/primer/brand/commit/d1ee0316662b92ca18ee32feba56233cdf4b42e0) Thanks [@rezrah](https://github.com/rezrah)! - Updated custom animation times and easing values across all components to leverage globally available values.
+
+  Three new variables have been added to `@primer/brand-primitives`:
+
+  - `--brand-animation-duration-fast`
+  - `--brand-animation-duration-faster`
+  - `--brand-animation-easing-glide`
+
+  Example:
+
+  ```diff
+  - 0.3s cubic-bezier(0.16, 1, 0.3, 1)
+  + var(--brand-animation-duration-fast) var(--brand-animation-easing-default)
+  ```
+
+- [#337](https://github.com/primer/brand/pull/337) [`b7e1423`](https://github.com/primer/brand/commit/b7e1423929f7185834fb1d4e0be0fe9e3b7f2cd0) Thanks [@danielguillan](https://github.com/danielguillan)! - Fixes SectionIntro description to use the muted text variant
+
+- [#347](https://github.com/primer/brand/pull/347) [`6f8cd9d`](https://github.com/primer/brand/commit/6f8cd9d82abbe447871a78f175e52fad8b502aa4) Thanks [@rezrah](https://github.com/rezrah)! - Added `flexWrap` prop to Stack component to enable automatic wrapping of flex items.
+
+  ```jsx
+  <Stack direction="horizontal" flexWrap="wrap">
+    <Item />
+    <Item />
+    <Item />
+  </Stack>
+  ```
+
+- [#342](https://github.com/primer/brand/pull/342) [`e7239ad`](https://github.com/primer/brand/commit/e7239ade2578320beeffdc979db943ef3663ebf0) Thanks [@rezrah](https://github.com/rezrah)! - Fixed grid column appearance at medium breakpoints for columns that span beyond `9`. Required styles, which were previously missing have been backfilled.
+
+  ```jsx
+  <Grid>
+    <Grid.Column
+      span={{
+        medium: 9,
+      }}
+    ></Grid.Column>
+    <Grid.Column
+      span={{
+        medium: 3,
+      }}
+    ></Grid.Column>
+  </Grid>
+  ```
+
+- [#341](https://github.com/primer/brand/pull/341) [`f2b74f6`](https://github.com/primer/brand/commit/f2b74f69f4c3325d20346e2a39303ab4443e237a) Thanks [@rezrah](https://github.com/rezrah)! - Added optional `align` prop to Text component.
+
+  ```jsx
+  <>
+    <Text as="p" align="start">
+      Start
+    </Text>
+    <Text as="p" align="center">
+      Center
+    </Text>
+    <Text as="p" align="end">
+      End
+    </Text>
+  </>
+  ```
+
 ## 0.20.1
 
 ### Patch Changes
