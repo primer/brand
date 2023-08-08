@@ -85,7 +85,7 @@ export const Large = () => (
 )
 
 export const Block = () => (
-  <Button as="a" variant="primary" block="true" href="#">
+  <Button variant="primary" block>
     Block
   </Button>
 )
