@@ -62,6 +62,7 @@ const example1 = {
             },
           },
           headerActions: {
+            heading: 'Download options',
             items: {
               item1: {
                 heading: 'Feeling brave?',
