@@ -84,18 +84,11 @@ const defaultHeadingSize = '2'
 
 const _Heading = forwardRef(
   (
-    {
-      as = defaultHeadingLevel,
-      size = defaultHeadingSize,
-      className,
-      children,
-      weight = 'semibold',
-      ...props
-    }: CTABannerHeadingProps,
+    {as = defaultHeadingLevel, size = defaultHeadingSize, className, children, ...props}: CTABannerHeadingProps,
     ref: Ref<HTMLHeadingElement>,
   ) => {
     return (
-      <Heading ref={ref} className={className} size={size} as={as} weight={weight} {...props}>
+      <Heading ref={ref} className={className} size={size} as={as} {...props}>
         {children}
       </Heading>
     )

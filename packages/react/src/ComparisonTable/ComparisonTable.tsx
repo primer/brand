@@ -152,7 +152,7 @@ export const _ComparisonTable = forwardRef(
         {...props}
       >
         {heading && (
-          <Heading className={styles['ComparisonTable--heading']} as="h3" weight="semibold">
+          <Heading className={styles['ComparisonTable--heading']} as="h3">
             {heading}
           </Heading>
         )}

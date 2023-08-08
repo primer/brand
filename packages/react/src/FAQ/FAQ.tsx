@@ -70,7 +70,7 @@ type FAQHeadingProps = BaseProps<HTMLHeadingElement> & {
 } & HeadingProps
 
 const FAQHeading = forwardRef<HTMLHeadingElement, FAQHeadingProps>(
-  ({children, className, size = '3', align = 'center', as, weight = 'semibold', ...rest}, ref) => {
+  ({children, className, size = '3', align = 'center', as, ...rest}, ref) => {
     const headingLevel = size === '3' ? 'h3' : 'h2'
     return (
       <Heading
@@ -78,7 +78,6 @@ const FAQHeading = forwardRef<HTMLHeadingElement, FAQHeadingProps>(
         size={size}
         className={clsx(styles.FAQ__heading, styles[`FAQ__heading--${align}`], className)}
         ref={ref}
-        weight={weight}
         {...rest}
       >
         {children}
@@ -93,7 +92,7 @@ type FAQSubheadingProps = BaseProps<HTMLHeadingElement> & {
   as?: Exclude<HeadingProps['as'], 'h1'>
 } & HeadingProps
 
-function FAQSubheading({children, className, as = 'h3', size = '4', weight = 'semibold', ...rest}: FAQSubheadingProps) {
+function FAQSubheading({children, className, as = 'h3', size = '4', weight, ...rest}: FAQSubheadingProps) {
   return (
     <Heading as={as} className={clsx(styles.FAQ__subheading, className)} weight={weight} size={size} {...rest}>
       {children}

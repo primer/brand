@@ -41,7 +41,6 @@ const _Heading = forwardRef(
     {
       as = defaultHeadingTag,
       size = defaultHeadingSize,
-      weight = 'semibold',
       className,
       children,
       ...props
@@ -69,7 +68,6 @@ const _Heading = forwardRef(
         )}
         size={size}
         as={as}
-        weight={weight}
         {...props}
       >
         {children}
