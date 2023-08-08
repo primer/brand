@@ -2,7 +2,7 @@ import React from 'react'
 
 import type {EvergreenTemplate, Content, Section, Slot, Settings} from '../EvergreenTemplate'
 
-import {AnchorNav, Grid, MinimalFooter, SectionIntro, Stack, SubdomainNavBar, ThemeProvider} from '../..'
+import {AnchorNav, Box, Grid, MinimalFooter, SectionIntro, Stack, SubdomainNavBar, ThemeProvider} from '../..'
 import {ContentStackBlock, type ContentStackBlockProps} from '../Blocks/ContentStackBlock'
 import {FAQBlock, type FAQBlockProps} from '../Blocks/FAQBlock'
 import {FeaturedMediaBlock, type FeaturedMediaBlockProps} from '../Blocks/FeaturedMediaBlock'
@@ -105,8 +105,7 @@ export function OakTemplate({
 
   return (
     <ThemeProvider colorMode={_theme.colorMode} style={themeStyles}>
-      {/* TODO replace with Box component when available to avoid style overrides */}
-      <Stack gap="none" padding="none" style={{paddingBlockStart: 80}}>
+      <Box paddingBlockStart={80}>
         {/* Page header ----------------------------------------------- */}
         <SubdomainNavBar title={siteMetadata.title}>
           {navigation.items &&
@@ -139,10 +138,9 @@ export function OakTemplate({
 
               {/* Header actions */}
               {headerSection.blocks.headerActions && (
-                // TODO replace with Box component when available to avoid style overrides
-                <Stack gap="none" padding="none" style={{paddingBlockStart: 128}}>
+                <Box paddingBlockStart={128}>
                   <HeaderActionsBlock {...headerSection.blocks.headerActions} />
-                </Stack>
+                </Box>
               )}
 
               {/* Header slot */}
@@ -193,11 +191,10 @@ export function OakTemplate({
           </Stack>
         </main>
         {/* Page footer ----------------------------------------------- */}
-        {/* TODO replace with Box component when available to avoid style overrides */}
-        <Stack gap="none" padding="none" style={{paddingBlockStart: 128}}>
+        <Box paddingBlockStart={128}>
           <MinimalFooter />
-        </Stack>
-      </Stack>
+        </Box>
+      </Box>
     </ThemeProvider>
   )
 }
