@@ -5,6 +5,10 @@ import {BaseProps} from '../component-helpers'
 import {useAnimation} from '../animation'
 import {Text} from '../Text'
 
+/**
+ * Design tokens
+ */
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/timeline/colors-with-modes.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/timeline/base.css'
 
 export type TimelineProps = BaseProps<HTMLUListElement>

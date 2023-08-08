@@ -29,7 +29,9 @@
   height: var(--brand-Timeline-bullet-size);
   top: var(--bulletY);
   left: 0;
-  border: solid var(--brand-Timeline-strokeWidth) var(--brand-color-border-default);
+  border-style: solid;
+  border-width: var(--brand-Timeline-strokeWidth);
+  border-color: var(--brand-Timeline-line-color);
   border-radius: 100%;
 }
 
@@ -39,7 +41,7 @@
   width: var(--brand-Timeline-strokeWidth);
   height: calc(100% - var(--brand-Timeline-bullet-size) - var(--brand-Timeline-bullet-spacing) * 2);
   transform: translateX(-50%);
-  background-color: var(--brand-color-border-default);
+  background-color: var(--brand-Timeline-line-color);
   border-radius: var(--brand-Timeline-strokeWidth);
 }
 
