@@ -26,7 +26,7 @@ export default {
 } as Meta<typeof VideoPlayer>
 
 export const Playground: StoryFn<typeof VideoPlayer> = args => (
-  <VideoPlayer {...args} crossOrigin="anonymous">
+  <VideoPlayer {...args}>
     <VideoPlayer.Source
       src="https://github.githubassets.com/images/modules/growth/actions/ci-cd-actions.h264.mp4"
       type="video/mp4"

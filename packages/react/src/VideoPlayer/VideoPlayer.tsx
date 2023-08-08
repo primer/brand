@@ -7,6 +7,7 @@ import {Controls} from './components'
  * Design tokens
  */
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/video-player/base.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/video-player/colors.css'
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './VideoPlayer.module.css'
@@ -49,6 +50,10 @@ const Root = ({
         videoRef.current.pause()
       }
     }
+  }
+
+  const handleVideoOnPlaying = () => {
+    videoRef.current?.textTracks[0].cues && setTrackInformation(videoRef.current.textTracks[0].cues)
   }
 
   /* > Hide Default Captions                                                   */
@@ -114,7 +119,7 @@ const Root = ({
           onPause && onPause(e)
         }}
         onPlaying={e => {
-          videoRef.current?.textTracks[0].cues && setTrackInformation(videoRef.current.textTracks[0].cues)
+          handleVideoOnPlaying()
           onPlaying && onPlaying(e)
         }}
         onLoadedMetadata={e => {
