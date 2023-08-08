@@ -27,7 +27,10 @@ export default {
 
 export const Playground: StoryFn<typeof VideoPlayer> = args => (
   <VideoPlayer {...args} crossOrigin="anonymous">
-    <VideoPlayer.Source src="https://cdn.api.video/vod/vi36GGvd6PoTqViQLxBWwHjJ/mp4/1080/source.mp4" type="video/mp4" />
+    <VideoPlayer.Source
+      src="https://github.githubassets.com/images/modules/growth/actions/ci-cd-actions.h264.mp4"
+      type="video/mp4"
+    />
     <VideoPlayer.Track
       src="https://raw.githubusercontent.com/JoshBowdenConcepts/Subtitles-Example/main/sample.vtt"
       default

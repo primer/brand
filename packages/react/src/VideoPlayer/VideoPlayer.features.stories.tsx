@@ -14,7 +14,10 @@ export const WithPoster = () => (
     title="HLS On Demand Demo"
     crossOrigin="anonymous"
   >
-    <VideoPlayer.Source src="https://cdn.api.video/vod/vi36GGvd6PoTqViQLxBWwHjJ/mp4/1080/source.mp4" type="video/mp4" />
+    <VideoPlayer.Source
+      src="https://github.githubassets.com/images/modules/growth/actions/ci-cd-actions.h264.mp4"
+      type="video/mp4"
+    />
     <VideoPlayer.Track
       src="https://raw.githubusercontent.com/JoshBowdenConcepts/Subtitles-Example/main/sample.vtt"
       default
@@ -28,7 +31,7 @@ export const WithPoster = () => (
 export const WithoutBranding = () => (
   <VideoPlayer branding={false} title="HLS On Demand Demo">
     <VideoPlayer.Source
-      src="https://cdn.api.video/vod/vi36GGvd6PoTqViQLxBWwHjJ/mp4/1080/source.mp4"
+      src="https://github.githubassets.com/images/modules/growth/actions/ci-cd-actions.h264.mp4"
       type="video/mp4"
       crossOrigin="anonymous"
     />
