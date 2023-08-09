@@ -14,6 +14,13 @@ test.describe('Visual Comparison: Text', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('Text / Playground', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--playground&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Text / Scale', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--scale&viewMode=story')
 
@@ -46,6 +53,13 @@ test.describe('Visual Comparison: Text', () => {
 
   test('Text / Alignment', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--alignment&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Text / Updated Scale', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--updated-scale&viewMode=story')
 
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
