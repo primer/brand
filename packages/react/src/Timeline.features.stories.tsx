@@ -1,7 +1,7 @@
 import React from 'react'
-import { StoryFn, Meta } from '@storybook/react'
+import {StoryFn, Meta} from '@storybook/react'
 
-import { Timeline } from '.'
+import {Timeline} from '.'
 
 export default {
   title: 'Components/Timeline/features',
