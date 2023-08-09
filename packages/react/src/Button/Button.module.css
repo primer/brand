@@ -137,6 +137,10 @@
   line-height: var(--brand-text-lineHeight-300);
 }
 
+.Button--block {
+  width: 100%;
+}
+
 .Button--disabled,
 .Button--disabled:hover,
 .Button--disabled:focus {
