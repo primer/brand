@@ -1,5 +1,8 @@
 declare const styles: {
   readonly "Heading": string;
+  readonly "Heading--display": string;
+  readonly "Heading--subhead-large": string;
+  readonly "Heading--subhead-medium": string;
   readonly "Heading--1": string;
   readonly "Heading--2": string;
   readonly "Heading--3": string;
