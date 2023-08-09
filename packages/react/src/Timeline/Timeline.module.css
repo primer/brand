@@ -42,7 +42,7 @@
   height: calc(100% - var(--brand-Timeline-bullet-size) - var(--brand-Timeline-bullet-spacing) * 2);
   transform: translateX(-50%);
   background-color: var(--brand-Timeline-line-color);
-  border-radius: var(var(--brand-borderRadius-full);
+  border-radius: var(--brand-borderRadius-full);
 }
 
 .Timeline__item em {
