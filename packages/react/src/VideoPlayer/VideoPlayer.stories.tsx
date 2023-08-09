@@ -28,7 +28,7 @@ export default {
 export const Playground: StoryFn<typeof VideoPlayer> = args => (
   <VideoPlayer {...args}>
     <VideoPlayer.Source src="/example.mov" type="video/mp4" />
-    <VideoPlayer.Track src="/example.vtt" default kind="subtitles" srcLang="en" label="English" />
+    <VideoPlayer.Track src="/example.vtt" />
   </VideoPlayer>
 )
 

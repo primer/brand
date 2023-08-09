@@ -11,13 +11,13 @@ export default {
 export const WithPoster = () => (
   <VideoPlayer poster="https://github.githubassets.com/images/icons/media-player/poster.jpg" title="HLS On Demand Demo">
     <VideoPlayer.Source src="/example.mov" type="video/mp4" />
-    <VideoPlayer.Track src="/example.vtt" default kind="subtitles" srcLang="en" label="English" />
+    <VideoPlayer.Track src="/example.vtt" />
   </VideoPlayer>
 )
 
 export const WithoutBranding = () => (
   <VideoPlayer branding={false} title="HLS On Demand Demo">
     <VideoPlayer.Source src="/example.mov" type="video/mp4" />
-    <VideoPlayer.Track src="/example.vtt" default kind="subtitles" srcLang="en" label="English" />
+    <VideoPlayer.Track src="/example.vtt" />
   </VideoPlayer>
 )
