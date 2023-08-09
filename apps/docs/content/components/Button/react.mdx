@@ -54,6 +54,12 @@ The `subtle` variant of Button indicates that the action is a low priority one.
 </Stack>
 ```
 
+### Block
+
+```jsx live
+<Button block>Full-width button</Button>
+```
+
 ### Removing the arrow
 
 The animated arrow indicator can be removed using the `hasArrow` prop.
@@ -96,4 +102,5 @@ The `Button` component can render as a `button` or `a` HTML element. By default,
 | `trailingVisual` | `ReactElement`                                            |  `undefined`  | The trailing visual appears after the button content |
 | `variants`       | <PropTableValues values={ButtonVariants} addLineBreaks /> | `'secondary'` | The styling variations available in Button           |
 | `size`           | <PropTableValues values={ButtonSizes} addLineBreaks />    |  `'medium'`   | The size variations available in Button              |
+| `block`          | `boolean`                                                 |   `false`     | The full-width option available in Button            |
 | `hasArrow`       | `boolean`                                                 |    `true`     | A flag to show/hide the arrow icon                   |
