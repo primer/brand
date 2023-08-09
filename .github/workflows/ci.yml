@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+      - next-minor
+      - changeset-release/**
   pull_request:
 
 jobs:
