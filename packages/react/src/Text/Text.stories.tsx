@@ -16,6 +16,30 @@ Default.args = {
   size: '400',
 }
 
+export const Playground = Template.bind({})
+Playground.argTypes = {
+  children: {
+    control: {
+      type: 'text',
+    },
+  },
+  size: {
+    control: {
+      type: 'radio',
+    },
+    options: TextSizes,
+  },
+  weight: {
+    control: {
+      type: 'radio',
+    },
+    options: TextWeights,
+  },
+}
+Playground.args = {
+  children: 'Text',
+}
+
 export const Scale: StoryFn<typeof Text> = args => (
   <>
     {TextSizes.map(size => (
@@ -74,5 +98,13 @@ export const Alignment = () => (
     <Text as="p" align="end">
       End
     </Text>
+  </Stack>
+)
+
+export const UpdatedScale = () => (
+  <Stack direction="vertical">
+    <Text size="300">Body large</Text>
+    <Text size="200">Body medium (default)</Text>
+    <Text size="100">Body small</Text>
   </Stack>
 )

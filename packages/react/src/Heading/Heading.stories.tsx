@@ -1,6 +1,7 @@
 import React from 'react'
 import {Meta, StoryFn} from '@storybook/react'
 import {Heading, HeadingTags, HeadingWeights, HeadingLetterSpacing, HeadingStretch, HeadingSizes} from '.'
+import {Stack} from '../Stack'
 
 export default {
   title: 'Components/Heading',
@@ -122,4 +123,42 @@ export const OverrideLetterSpacing = () => (
       </Heading>
     ))}
   </>
+)
+
+export const UpdatedScale = () => (
+  <Stack direction="vertical">
+    <Heading as="h1" size="display">
+      Display
+    </Heading>
+    <Heading as="h1" size="1">
+      Heading 1
+    </Heading>
+    <Heading as="h2" size="2">
+      Heading 2
+    </Heading>
+    <Heading as="h3" size="3">
+      Heading 3
+    </Heading>
+    <Heading as="h4" size="4">
+      Heading 4
+    </Heading>
+    <Heading as="h4" size="4" weight="medium">
+      Heading 4 medium
+    </Heading>
+    <Heading as="h5" size="5">
+      Heading 5
+    </Heading>
+    <Heading as="h5" size="5" weight="medium">
+      Heading 5 medium
+    </Heading>
+    <Heading as="h6" size="6">
+      Heading 6
+    </Heading>
+    <Heading as="h6" size="subhead-large">
+      Subhead large
+    </Heading>
+    <Heading as="h6" size="subhead-medium">
+      Subhead medium
+    </Heading>
+  </Stack>
 )
