@@ -32,7 +32,7 @@
   border-style: solid;
   border-width: var(--brand-Timeline-strokeWidth);
   border-color: var(--brand-Timeline-line-color);
-  border-radius: 100%;
+  border-radius: var(--brand-borderRadius-full);
 }
 
 .Timeline__item:not(:last-child)::after {
