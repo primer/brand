@@ -57,7 +57,7 @@ export const CustomClass: StoryFn<typeof Image> = () => (
   <Image
     src={placeholderImage}
     className={style['custom-image']}
-    alt="placeholder, blank area with an off-white background color, height and width specified to 200px"
+    alt="placeholder, blank area with an off-white background color and a red border, height and width specified to 200px"
     height={200}
     width={200}
   />
@@ -67,7 +67,7 @@ export const CustomClassOnPicture: StoryFn<typeof Image> = () => (
   <Image
     src={placeholderImage}
     className={style['custom-image']}
-    alt="placeholder, blank area with an off-white background color, height and width specified to 200px"
+    alt="placeholder, blank area with an off-white background color and a red border, height and width specified to 200px"
     height={200}
     width={200}
     as="picture"
@@ -78,7 +78,7 @@ export const CustomClassWithAspectRatio: StoryFn<typeof Image> = () => (
   <Image
     src={placeholderImage}
     className={style['custom-image']}
-    alt="placeholder, blank area with an off-white background color, custom aspect ratio"
+    alt="placeholder, blank area with an off-white background color and a red border, custom aspect ratio"
     aspectRatio="custom"
   />
 )
