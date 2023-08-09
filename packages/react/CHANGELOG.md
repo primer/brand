@@ -1,5 +1,81 @@
 # @primer/react-brand
 
+## 0.22.0
+
+### Minor Changes
+
+- [#362](https://github.com/primer/brand/pull/362) [`db9e54d`](https://github.com/primer/brand/commit/db9e54da130fd33f6908847113d9a2b2a82ff41e) Thanks [@rezrah](https://github.com/rezrah)! - Use a LogoSuite to present a list logos, such as sponsors or vendors.
+
+  Usage example:
+
+  ```jsx
+  <LogoSuite>
+    <LogoSuite.Heading>Heading</LogoSuite.Heading>
+    <LogoSuite.Description>Description</LogoSuite.Description>
+    <LogoSuite.Logobar>
+      <svg />
+      <svg />
+    </LogoSuite.Logobar>
+  </LogoSuite>
+  ```
+
+  See the [documentation](https://primer.style/brand/components/LogoSuite) or [Storybook](https://primer.style/brand/storybook/?path=/story/components-logosuite--default) for more usage examples.
+
+### Patch Changes
+
+- [#359](https://github.com/primer/brand/pull/359) [`ed7bd1e`](https://github.com/primer/brand/commit/ed7bd1e17a73be4a42cccd03d9b2266c51ee1b6c) Thanks [@mperrotti](https://github.com/mperrotti)! - Replaces aria-required with required for the Textarea component
+
+- [#363](https://github.com/primer/brand/pull/363) [`151eca0`](https://github.com/primer/brand/commit/151eca008950d0fc2cbeb8d179960de736618d14) Thanks [@rezrah](https://github.com/rezrah)! - Added optional label to section intro component
+
+  ```jsx
+  <SectionIntro>
+    <SectionIntro.Label>Label</SectionIntro.Label>
+    <SectionIntro.Heading>...</SectionIntro.Heading>
+  </SectionIntro>
+  ```
+
+- [#366](https://github.com/primer/brand/pull/366) [`81abab1`](https://github.com/primer/brand/commit/81abab1b815596e7e533991fbe75bce573c4b49e) Thanks [@rezrah](https://github.com/rezrah)! - Add optional foreground image support to Hero
+
+  Use `position` to alternate between various layouts.
+
+  ```jsx
+  <>
+    <Hero>
+      <Hero.Heading>Automate your workflow from idea to production</Hero.Heading>
+      <Hero.Image
+        src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+        alt="placeholder, blank area with an off-white background color"
+      />
+    </Hero>
+    <br />
+    <Hero>
+      <Hero.Heading>Automate your workflow from idea to production</Hero.Heading>
+      <Hero.Image
+        position="inline-end"
+        src="https://via.placeholder.com/300x450/d3d9df/d3d9df.png"
+        alt="placeholder, blank area with an off-white background color"
+      />
+    </Hero>
+  </>
+  ```
+
+- [#363](https://github.com/primer/brand/pull/363) [`151eca0`](https://github.com/primer/brand/commit/151eca008950d0fc2cbeb8d179960de736618d14) Thanks [@rezrah](https://github.com/rezrah)! - Added optional label to the hero component
+
+  ```jsx
+  <Hero>
+    <Hero.Label>Label</Hero.Label>
+    <Hero.Heading>...</Hero.Heading>
+  </Hero>
+  ```
+
+- [#370](https://github.com/primer/brand/pull/370) [`6e8a648`](https://github.com/primer/brand/commit/6e8a648c1a2f1991b9eee591867c986dad8381aa) Thanks [@josepmartins](https://github.com/josepmartins)! - Updates `Pillar` icon size, spacing and font settings.
+
+  - updated icon size to be medium (32px)
+  - updated heading font settings to use size 6 (20px/14px)
+  - updated spacing between icon and heading, heading and description, description and link
+  - updated link spacing to use margin-top: auto. This property adjust the position depending on it's sibling height size.
+  - added stacked with link story
+
 ## 0.21.0
 
 ### Minor Changes
