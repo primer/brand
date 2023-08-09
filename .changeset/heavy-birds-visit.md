@@ -23,4 +23,3 @@ Usage example:
 ```
 
 See the [documentation](https://primer.style/brand/components/Timeline) or [Storybook](https://primer.style/brand/storybook/?path=/story/components-timeline--default)
-[
