@@ -175,7 +175,7 @@ export const _Button = forwardRef(
         <span className={styles['Button__text']}>
           <Text
             as="span"
-            size={size === 'medium' ? '300' : '400'}
+            size={size === 'medium' ? '200' : '300'}
             className={clsx(
               styles['Button--label'],
               styles[`Button--label-${variant}`],

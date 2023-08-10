@@ -52,15 +52,42 @@ Playground.args = {
   children: 'Heading',
 }
 
-export const Scale: StoryFn<typeof Heading> = () => (
-  <>
-    {HeadingTags.map(tag => (
-      <Heading key={tag} as={tag}>
-        Heading {tag}
-      </Heading>
-    ))}
-  </>
-)
+export const Scale: StoryFn<typeof Heading> = () => {
+  const tagMap = {
+    display: 'h1',
+    '1': 'h1',
+    '2': 'h3',
+    '3': 'h4',
+    '4': 'h5',
+    '5': 'h6',
+    'subhead-large': 'h6',
+    'subhead-medium': 'h6',
+  }
+
+  return (
+    <>
+      {HeadingSizes.map(size => (
+        <Heading key={size} size={size} as={tagMap[size]}>
+          Heading ({size})
+        </Heading>
+      ))}
+    </>
+  )
+}
+
+Scale.storyName = 'Scale (sizes)'
+
+export const Levels: StoryFn<typeof Heading> = () => {
+  return (
+    <>
+      {HeadingTags.map(tag => (
+        <Heading key={tag} as={tag}>
+          Heading ({tag})
+        </Heading>
+      ))}
+    </>
+  )
+}
 
 export const OverrideSize = Template.bind({})
 OverrideSize.args = {
@@ -123,42 +150,4 @@ export const OverrideLetterSpacing = () => (
       </Heading>
     ))}
   </>
-)
-
-export const UpdatedScale = () => (
-  <Stack direction="vertical">
-    <Heading as="h1" size="display">
-      Display
-    </Heading>
-    <Heading as="h1" size="1">
-      Heading 1
-    </Heading>
-    <Heading as="h2" size="2">
-      Heading 2
-    </Heading>
-    <Heading as="h3" size="3">
-      Heading 3
-    </Heading>
-    <Heading as="h4" size="4">
-      Heading 4
-    </Heading>
-    <Heading as="h4" size="4" weight="medium">
-      Heading 4 medium
-    </Heading>
-    <Heading as="h5" size="5">
-      Heading 5
-    </Heading>
-    <Heading as="h5" size="5" weight="medium">
-      Heading 5 medium
-    </Heading>
-    <Heading as="h6" size="6">
-      Heading 6
-    </Heading>
-    <Heading as="h6" size="subhead-large">
-      Subhead large
-    </Heading>
-    <Heading as="h6" size="subhead-medium">
-      Subhead medium
-    </Heading>
-  </Stack>
 )

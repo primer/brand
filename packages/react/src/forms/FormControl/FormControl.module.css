@@ -54,10 +54,10 @@
 
 .FormControl-label--checkbox {
   cursor: pointer;
-  font-size: var(--brand-text-size-300);
+  font-size: var(--brand-text-size-200);
   font-weight: var(--base-text-weight-semibold);
-  letter-spacing: var(--brand-text-letterSpacing-300);
-  line-height: var(--brand-text-lineHeight-300);
+  letter-spacing: var(--brand-text-letterSpacing-200);
+  line-height: var(--brand-text-lineHeight-200);
   position: relative;
   top: 1px;
   width: 100%;

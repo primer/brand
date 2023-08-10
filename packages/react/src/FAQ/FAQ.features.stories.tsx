@@ -54,26 +54,10 @@ const fixtureData: FixtureData = [
           non eros.
         </p>
         <ol>
-          <li>
-            <Text size="300" variant="muted">
-              Must be associated with a current GitHub for Startups partner.
-            </Text>
-          </li>
-          <li>
-            <Text size="300" variant="muted">
-              Self-funded or funded (Seed-Series A)
-            </Text>
-          </li>
-          <li>
-            <Text size="300" variant="muted">
-              Not a current GitHub Enterprise customer
-            </Text>
-          </li>
-          <li>
-            <Text size="300" variant="muted">
-              Must not have previously received credits for GitHub Enterprise
-            </Text>
-          </li>
+          <li>Must be associated with a current GitHub for Startups partner.</li>
+          <li>Self-funded or funded (Seed-Series A)</li>
+          <li>Not a current GitHub Enterprise customer</li>
+          <li>Must not have previously received credits for GitHub Enterprise</li>
         </ol>
       </React.Fragment>
     ),

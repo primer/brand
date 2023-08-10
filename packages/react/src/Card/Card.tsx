@@ -125,7 +125,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
           return child
         })}
         <div className={styles.Card__action}>
-          <Text as="span" size="300" className={clsx(stylesLink['Link--label'])}>
+          <Text as="span" className={clsx(stylesLink['Link--label'])}>
             {ctaText}
           </Text>
           <ExpandableArrow
@@ -205,7 +205,7 @@ type CardHeadingProps = BaseProps<HTMLHeadingElement> & {
 const CardHeading = forwardRef<HTMLHeadingElement, CardHeadingProps>(
   ({children, as = 'h3', className, href, onMouseEnter, onMouseLeave, onBlur, onFocus, ...rest}, ref) => {
     return (
-      <Heading size="6" className={clsx(styles.Card__heading, className)} ref={ref} as={as} {...rest}>
+      <Heading size="subhead-large" className={clsx(styles.Card__heading, className)} ref={ref} as={as} {...rest}>
         <a
           href={href}
           className={clsx(styles.Card__link)}

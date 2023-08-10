@@ -34,7 +34,7 @@ const Root = forwardRef<HTMLHeadingElement, PropsWithChildren<SectionIntroProps>
 
 type SectionIntroHeadingProps = BaseProps<HTMLHeadingElement> & HeadingProps
 
-const defaultHeadingSize = '3'
+const defaultHeadingSize = '4'
 
 const _Heading = forwardRef(
   (
@@ -83,14 +83,7 @@ type SectionIntroDescriptionProps = BaseProps<HTMLParagraphElement> & {
 const _Description = forwardRef(
   ({className, children, ...props}: SectionIntroDescriptionProps, ref: Ref<HTMLParagraphElement>) => {
     return (
-      <Text
-        as="p"
-        className={clsx(styles['SectionIntro-description'], className)}
-        ref={ref}
-        size="400"
-        variant="muted"
-        {...props}
-      >
+      <Text as="p" className={clsx(styles['SectionIntro-description'], className)} ref={ref} variant="muted" {...props}>
         {children}
       </Text>
     )
@@ -99,9 +92,9 @@ const _Description = forwardRef(
 
 type SectionIntroLabelProps = LabelProps & BaseProps<HTMLDivElement>
 
-function _Label({children, ...rest}: PropsWithChildren<SectionIntroLabelProps>) {
+function _Label({children, size = 'small', ...rest}: PropsWithChildren<SectionIntroLabelProps>) {
   return (
-    <Label className={styles['SectionIntro-label']} {...rest}>
+    <Label className={styles['SectionIntro-label']} size={size} {...rest}>
       {children}
     </Label>
   )
@@ -111,7 +104,7 @@ type SectionIntroLinkProps = Omit<LinkProps, 'size'> & BaseProps<HTMLAnchorEleme
 
 const _Link = forwardRef(({className, children, ...props}: SectionIntroLinkProps, ref: Ref<HTMLAnchorElement>) => {
   return (
-    <Link ref={ref} className={clsx(styles['SectionIntro-link'], className)} size="large" {...props}>
+    <Link ref={ref} className={clsx(styles['SectionIntro-link'], className)} size="medium" {...props}>
       {children}
     </Link>
   )

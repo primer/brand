@@ -80,7 +80,7 @@ type CTABannerHeadingProps = BaseProps<HTMLHeadingElement> & {
   children: React.ReactNode | React.ReactNode[]
 } & HeadingProps
 
-const defaultHeadingSize = '2'
+const defaultHeadingSize = '1'
 
 const _Heading = forwardRef(
   (
@@ -102,7 +102,7 @@ type CTABannerDescriptionProps = BaseProps<HTMLParagraphElement> & {
 const Description = forwardRef(
   ({className, children, ...props}: CTABannerDescriptionProps, ref: Ref<HTMLParagraphElement>) => {
     return (
-      <Text ref={ref} className={clsx(styles['CTABanner-description'], className)} size={'400'} as="p" {...props}>
+      <Text ref={ref} className={clsx(styles['CTABanner-description'], className)} as="p" {...props}>
         {children}
       </Text>
     )
@@ -111,7 +111,7 @@ const Description = forwardRef(
 
 const _ButtonGroup = forwardRef(
   (
-    {className, buttonSize = 'large', buttonsAs, children, ...props}: React.ComponentProps<typeof ButtonGroup>,
+    {className, buttonSize = 'medium', buttonsAs, children, ...props}: React.ComponentProps<typeof ButtonGroup>,
     ref: Ref<HTMLDivElement>,
   ) => {
     return (

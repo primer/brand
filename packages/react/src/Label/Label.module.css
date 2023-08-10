@@ -32,9 +32,9 @@
 }
 
 .Label--size-small {
-  padding-left: var(--base-size-8);
-  padding-right: var(--base-size-8);
-  height: var(--base-size-24);
+  padding-left: var(--base-size-16);
+  padding-right: var(--base-size-16);
+  height: var(--base-size-28);
 }
 
 .Label--size-medium {

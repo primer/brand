@@ -156,8 +156,8 @@ const Content = forwardRef(
             {React.cloneElement(HeadingChild as React.ReactElement<HeadingProps>, {
               // as uses h3 default, but can be overridden
               as: HeadingChild.props.as || 'h3',
-              size: HeadingChild.props.size || '3',
-              weight: HeadingChild.props.weight || 'semibold',
+              size: HeadingChild.props.size || '4',
+              weight: HeadingChild.props.weight,
             })}
           </div>
         )}
@@ -165,7 +165,7 @@ const Content = forwardRef(
         {React.isValidElement(TextChild) && (
           <div className={styles['River__body-text']}>
             {React.cloneElement(TextChild as React.ReactElement<TextProps>, {
-              variant: 'muted',
+              variant: 'default',
               as: 'p',
               className: clsx(styles.River__text, TextChild.props.className),
             })}
@@ -173,7 +173,7 @@ const Content = forwardRef(
         )}
         {React.isValidElement(LinkChild) && (
           <div className={styles['River__call-to-action']}>
-            {React.cloneElement(LinkChild as React.ReactElement<LinkProps>, {size: 'large'})}
+            {React.cloneElement(LinkChild as React.ReactElement<LinkProps>, {size: 'medium'})}
           </div>
         )}
         {TrailingComponent && (

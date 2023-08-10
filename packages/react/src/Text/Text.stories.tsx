@@ -13,7 +13,7 @@ const Template: StoryFn<typeof Text> = args => <Text {...args} />
 export const Default = Template.bind({})
 Default.args = {
   children: 'Text',
-  size: '400',
+  size: '200',
 }
 
 export const Playground = Template.bind({})
@@ -38,6 +38,7 @@ Playground.argTypes = {
 }
 Playground.args = {
   children: 'Text',
+  size: '200',
 }
 
 export const Scale: StoryFn<typeof Text> = args => (
@@ -78,8 +79,8 @@ export const OverrideWeightResponsive = () => (
 )
 
 export const Composition = () => (
-  <Text as="p" size="500">
-    <Text as="strong" weight="semibold" size="500">
+  <Text as="p" size="500" variant="muted" weight="medium">
+    <Text as="strong" size="500" variant="default">
       Registration for our global enterprise event
     </Text>{' '}
     on improving collaboration, security practices, and developer productivity is right around the corner.
@@ -98,13 +99,5 @@ export const Alignment = () => (
     <Text as="p" align="end">
       End
     </Text>
-  </Stack>
-)
-
-export const UpdatedScale = () => (
-  <Stack direction="vertical">
-    <Text size="300">Body large</Text>
-    <Text size="200">Body medium (default)</Text>
-    <Text size="100">Body small</Text>
   </Stack>
 )
