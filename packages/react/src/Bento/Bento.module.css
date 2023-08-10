@@ -10,7 +10,6 @@
 .Bento__Item {
   background-color: #efefef;
   border-radius: var(--brand-borderRadius-large); /* Not 24px */
-  display: flex;
   align-items: center;
   justify-content: center;
   color: grey;
@@ -253,6 +252,8 @@
 .Bento__Item-flow--column,
 .Bento__Item-flow--column-reverse {
   grid-auto-flow: column;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
 }
 
 .Bento__Item-flow--row,
@@ -260,13 +261,9 @@
   grid-auto-flow: row;
 }
 
-.Bento__Item-flow--row-reverse > div,
-.Bento__Item-flow--column-reverse > div {
-  order: -1;
-}
-
-.Bento-flow--row-reverse {
-  grid-auto-flow: row;
+.Bento__Item-flow--row-reverse > div:first-of-type,
+.Bento__Item-flow--column-reverse > div:first-of-type {
+  order: 2;
 }
 
 /* Bento Heading */

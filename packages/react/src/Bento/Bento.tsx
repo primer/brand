@@ -51,7 +51,7 @@ const Item = ({
         rowSpan && styles[`Bento__Item--row-span-${rowSpan}`],
         columnStart && styles[`Bento__Item--column-start-${columnStart}`],
         rowStart && styles[`Bento__Item--row-start-${rowStart}`],
-        flow && styles[`Bento__Item--flow-${flow}`],
+        flow && styles[`Bento__Item-flow--${flow}`],
         className,
       )}
       {...rest}
