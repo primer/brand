@@ -120,6 +120,7 @@
 }
 
 .Button--size-medium {
+  max-height: var(--base-size-48);
   padding: calc(var(--base-size-16) - 2px) var(--base-size-24);
 }
 

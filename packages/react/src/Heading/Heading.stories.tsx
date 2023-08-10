@@ -1,7 +1,6 @@
 import React from 'react'
 import {Meta, StoryFn} from '@storybook/react'
 import {Heading, HeadingTags, HeadingWeights, HeadingLetterSpacing, HeadingStretch, HeadingSizes} from '.'
-import {Stack} from '../Stack'
 
 export default {
   title: 'Components/Heading',

@@ -1,7 +1,7 @@
 import {Meta} from '@storybook/react'
 import React from 'react'
 import {Accordion} from '.'
-import {Text, InlineLink, UnorderedList} from '../'
+import {InlineLink, UnorderedList} from '../'
 
 export default {
   title: 'Components/Accordion',

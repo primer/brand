@@ -1,7 +1,7 @@
 import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 import {FAQ} from '.'
-import {Text, InlineLink} from '..'
+import {InlineLink} from '..'
 import {Container} from '../component-helpers'
 
 export default {

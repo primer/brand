@@ -1,7 +1,7 @@
 import React from 'react'
 import {Meta} from '@storybook/react'
 import {FAQ} from '.'
-import {Text, InlineLink} from '..'
+import {InlineLink} from '..'
 
 export default {
   title: 'Components/FAQ',

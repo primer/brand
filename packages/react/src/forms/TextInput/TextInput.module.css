@@ -7,7 +7,7 @@
   background-color: var(--brand-color-canvas-default);
   border: none;
   border-radius: var(--brand-control-border-radius);
-  line-height: var(--brand-text-lineHeight-200);
+  line-height: var(--brand-text-lineHeight-100);
   transition: var(--brand-control-animation-duration) var(--brand-control-animation-easing);
   transition-property: color, background-color, box-shadow;
 }
@@ -33,15 +33,15 @@
  * Sizes
  */
 .TextInput--medium {
-  font-weight: var(--brand-text-weight-200);
-  font-size: var(--brand-text-size-200);
+  font-weight: var(--brand-text-weight-100);
+  font-size: var(--brand-text-size-100);
   height: var(--brand-control-medium-size, 40px);
   padding: var(--brand-control-medium-padding, 12px 10px 10px);
 }
 
 .TextInput--large {
-  font-weight: var(--brand-text-weight-300);
-  font-size: var(--brand-text-size-300);
+  font-weight: var(--brand-text-weight-200);
+  font-size: var(--brand-text-size-200);
   height: var(--brand-control-large-size, 48px);
   padding: var(--brand-control-large-padding, 12px);
 }
@@ -209,8 +209,8 @@
 
 .TextInput-leading-text--medium,
 .TextInput-trailing-text--medium {
-  font-weight: var(--brand-text-weight-200);
-  font-size: var(--brand-text-size-200);
+  font-weight: var(--brand-text-weight-100);
+  font-size: var(--brand-text-size-100);
   height: 40px;
 }
 

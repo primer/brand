@@ -25,7 +25,7 @@
 .FormControl-label {
   color: var(--brand-color-text-default);
   font-weight: var(--base-text-weight-semibold);
-  font-family: var(--brand-text-fontFamily);
+  font-family: var(--brand-body-fontFamily);
 }
 
 .FormControl-label--visually-hidden {
@@ -41,20 +41,20 @@
 }
 
 .FormControl-label--medium {
+  letter-spacing: var(--brand-text-letterSpacing-100);
+  font-size: var(--brand-text-size-100);
+  line-height: var(--brand-text-lineHeight-100);
+}
+
+.FormControl-label--large {
   letter-spacing: var(--brand-text-letterSpacing-200);
   font-size: var(--brand-text-size-200);
   line-height: var(--brand-text-lineHeight-200);
 }
 
-.FormControl-label--large {
-  letter-spacing: var(--brand-text-letterSpacing-300);
-  font-size: var(--brand-text-size-300);
-  line-height: var(--brand-text-lineHeight-300);
-}
-
 .FormControl-label--checkbox {
   cursor: pointer;
-  font-size: var(--brand-text-size-200);
+  font-size: var(--brand-text-size-100);
   font-weight: var(--base-text-weight-semibold);
   letter-spacing: var(--brand-text-letterSpacing-200);
   line-height: var(--brand-text-lineHeight-200);
