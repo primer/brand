@@ -275,26 +275,10 @@ export function KitchenSink(props: KitchenSinkProps) {
                   <FAQ.Answer>
                     <p>Startups who meet the following criteria are eligible to apply for the program:</p>
                     <ol>
-                      <li>
-                        <Text size="300" variant="muted">
-                          Must be associated with a current GitHub for Startups partner.
-                        </Text>
-                      </li>
-                      <li>
-                        <Text size="300" variant="muted">
-                          Self-funded or funded (Seed-Series A)
-                        </Text>
-                      </li>
-                      <li>
-                        <Text size="300" variant="muted">
-                          Not a current GitHub Enterprise customer
-                        </Text>
-                      </li>
-                      <li>
-                        <Text size="300" variant="muted">
-                          Must not have previously received credits for GitHub Enterprise
-                        </Text>
-                      </li>
+                      <li>Must be associated with a current GitHub for Startups partner.</li>
+                      <li>Self-funded or funded (Seed-Series A)</li>
+                      <li>Not a current GitHub Enterprise customer</li>
+                      <li>Must not have previously received credits for GitHub Enterprise</li>
                     </ol>
                   </FAQ.Answer>
                 </FAQ.Item>

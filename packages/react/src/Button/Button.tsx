@@ -38,6 +38,10 @@ export type ButtonBaseProps = {
    * A flag to show/hide the arrow icon
    */
   hasArrow?: boolean
+  /**
+   * The Button spans the full width
+   */
+  block?: boolean
 }
 
 export type ButtonProps<C extends React.ElementType> = BaseProps<C> & {
@@ -66,6 +70,7 @@ export const _Button = forwardRef(
       variant = defaultButtonVariant,
       size = defaultButtonSize,
       hasArrow = true,
+      block = false,
       className,
       children,
       disabled,
@@ -149,6 +154,7 @@ export const _Button = forwardRef(
           styles.Button,
           styles[`Button--${variant}`],
           styles[`Button--size-${size}`],
+          block && styles['Button--block'],
           isDisabled && styles[`Button--disabled`],
           animationClasses,
           className,

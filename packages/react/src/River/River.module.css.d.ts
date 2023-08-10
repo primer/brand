@@ -7,6 +7,8 @@ declare const styles: {
   readonly "River__heading": string;
   readonly "River__call-to-action": string;
   readonly "River__text": string;
+  readonly "River__trailingComponent": string;
+  readonly "River__trailingComponent--divider": string;
   readonly "River--50-50": string;
   readonly "River--60-40": string;
   readonly "River--align-start": string;

@@ -38,6 +38,15 @@
   color: var(--brand-color-text-default);
 }
 
+.River__trailingComponent {
+  margin-block-start: var(--base-size-48);
+}
+
+.River__trailingComponent--divider {
+  padding-block-start: var(--base-size-48);
+  border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
 /* Medium breakpoint and up */
 @media screen and (min-width: 48rem) {
   .River {
