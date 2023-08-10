@@ -101,6 +101,10 @@ type RiverContentProps = BaseProps<HTMLDivElement> & {
    */
   trailingComponent?: React.FunctionComponent
   /**
+   * When `true`, a divider will be rendered between the standard river and optional trailing content.
+   */
+  trailingComponentDivider?: boolean
+  /**
    * Escape-hatch for inserting custom React components.
    * Warning:
    *   This prop isn't advertised in our docs but remains part of the public API for edge-cases.
@@ -124,6 +128,7 @@ const Content = forwardRef(
       className,
       leadingComponent: LeadingComponent,
       trailingComponent: TrailingComponent,
+      trailingComponentDivider = false,
       style,
       ...rest
     }: RiverContentProps,
@@ -176,7 +181,12 @@ const Content = forwardRef(
           </div>
         )}
         {TrailingComponent && (
-          <div>
+          <div
+            className={clsx(
+              styles.River__trailingComponent,
+              trailingComponentDivider && styles['River__trailingComponent--divider'],
+            )}
+          >
             <TrailingComponent />
           </div>
         )}
