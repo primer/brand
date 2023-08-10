@@ -25,7 +25,7 @@ type BentoItemProps = {
   columnSpan?: ColumnIndex | ResponsiveMap // defaults to 1
   rowStart?: number | ResponsiveMap // defaults to 1
   rowSpan?: number | ResponsiveMap // defaults to 1
-  flow?: 'row' | 'column' | ResponsiveMap // defaults to row
+  flow?: 'row' | 'column' | 'row-reverse' | 'column-reverse' // defaults to row
   align?: 'start' | 'center' | ResponsiveMap // defaults to start
   verticalAlign?: 'start' | 'center' | 'end' | ResponsiveMap // defaults to start
   colorMode?: 'light | dark' // default to light
@@ -51,6 +51,7 @@ const Item = ({
         rowSpan && styles[`Bento__Item--row-span-${rowSpan}`],
         columnStart && styles[`Bento__Item--column-start-${columnStart}`],
         rowStart && styles[`Bento__Item--row-start-${rowStart}`],
+        flow && styles[`Bento__Item--flow-${flow}`],
         className,
       )}
       {...rest}
@@ -118,7 +119,8 @@ const Visual = ({
     if (React.isValidElement(child)) {
       if (child.type === 'img') {
         return React.cloneElement(child, {
-          // TODO: This works but the type is incorrect
+          //   TODO: This works but the type is incorrect
+          // @ts-ignore
           style: {objectPosition: position},
         })
       }

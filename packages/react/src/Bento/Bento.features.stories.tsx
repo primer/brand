@@ -10,12 +10,7 @@ export default {
 
 export const Universe: StoryFn<typeof Bento> = () => (
   <Bento>
-    <Bento.Item columnSpan={3} rowSpan={8}>
-      <p>hi</p>
-      <Bento.Visual position="50% 100%" fillMedia={true}>
-        <img className="test" src={placeholderImage} />
-      </Bento.Visual>
-    </Bento.Item>
+    <Bento.Item columnSpan={3} rowSpan={8} />
     <Bento.Item columnSpan={3} rowSpan={4} />
     <Bento.Item columnSpan={6} rowSpan={8} />
     <Bento.Item columnSpan={3} rowSpan={4} rowStart={9} />

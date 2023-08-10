@@ -10,7 +10,7 @@ export default {
 } as Meta<typeof Bento>
 
 export const VisualPositionBottom: StoryFn<typeof Bento> = () => (
-  <Bento.Item>
+  <Bento.Item flow="row-reverse">
     <Bento.Content padding="condensed">
       <Heading as="h3">Heading</Heading>
       <Text>

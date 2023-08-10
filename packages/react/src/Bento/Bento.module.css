@@ -2,7 +2,7 @@
   display: grid;
   width: 100%;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  grid-template-rows: repeat(12, minmax(40px, auto));
+  grid-template-rows: minmax(40px, auto);
   grid-gap: 24px;
   position: relative;
 }
@@ -247,6 +247,26 @@
 }
 .Bento-padding--spacious {
   padding: var(--brand-box-spacing-spacious);
+}
+
+/* Bento Flow */
+.Bento__Item-flow--column,
+.Bento__Item-flow--column-reverse {
+  grid-auto-flow: column;
+}
+
+.Bento__Item-flow--row,
+.Bento__Item-flow--row-reverse {
+  grid-auto-flow: row;
+}
+
+.Bento__Item-flow--row-reverse > div,
+.Bento__Item-flow--column-reverse > div {
+  order: -1;
+}
+
+.Bento-flow--row-reverse {
+  grid-auto-flow: row;
 }
 
 /* Bento Heading */
