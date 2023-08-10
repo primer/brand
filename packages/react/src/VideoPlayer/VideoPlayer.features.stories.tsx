@@ -1,5 +1,6 @@
 import React from 'react'
 import {Meta} from '@storybook/react'
+import posterImage from '../fixtures/images/example-poster.png'
 
 import {VideoPlayer} from '.'
 
@@ -9,15 +10,15 @@ export default {
 } as Meta<typeof VideoPlayer>
 
 export const WithPoster = () => (
-  <VideoPlayer poster="https://github.githubassets.com/images/icons/media-player/poster.jpg" title="HLS On Demand Demo">
-    <VideoPlayer.Source src="/example.mov" type="video/mp4" />
+  <VideoPlayer poster={posterImage} title="GitHub Video Demo">
+    <VideoPlayer.Source src="/example.mp4" type="video/mp4" />
     <VideoPlayer.Track src="/example.vtt" />
   </VideoPlayer>
 )
 
 export const WithoutBranding = () => (
-  <VideoPlayer branding={false} title="HLS On Demand Demo">
-    <VideoPlayer.Source src="/example.mov" type="video/mp4" />
+  <VideoPlayer branding={false} title="GitHub Video Demo">
+    <VideoPlayer.Source src="/example.mp4" type="video/mp4" />
     <VideoPlayer.Track src="/example.vtt" />
   </VideoPlayer>
 )

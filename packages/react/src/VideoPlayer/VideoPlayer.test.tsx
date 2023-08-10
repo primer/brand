@@ -11,10 +11,10 @@ describe('VideoPlayer', () => {
     .mockImplementation(() => new Promise(() => 'pause'))
 
   const videoPlayer = (
-    <VideoPlayer poster="https://github.githubassets.com/images/icons/media-player/poster.jpg" title="Hello world">
-      <VideoPlayer.Source src="https://github.githubassets.com/images/modules/growth/actions/ci-cd-actions.h264.mp4" />
+    <VideoPlayer poster="/example-poster.jpg" title="Hello world">
+      <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
       <VideoPlayer.Track
-        src="https://raw.githubusercontent.com/JoshBowdenConcepts/Subtitles-Example/main/sample.vtt"
+        src="../../../apps/docs/static/example.vtt"
         default
         kind="subtitles"
         srcLang="en"

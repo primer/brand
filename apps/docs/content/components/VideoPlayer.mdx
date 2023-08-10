@@ -18,7 +18,7 @@ import {VideoPlayer} from '@primer/react-brand'
 
 ```jsx live
 <VideoPlayer title="GitHub media player">
-  <VideoPlayer.Source src="/example.mov" />
+  <VideoPlayer.Source src="/example.mp4" />
   <VideoPlayer.Track src="/example.vtt" />
 </VideoPlayer>
 ```
@@ -26,11 +26,8 @@ import {VideoPlayer} from '@primer/react-brand'
 ## With poster
 
 ```jsx live
-<VideoPlayer
-  poster="https://github.githubassets.com/images/icons/media-player/poster.jpg"
-  title="HLS On Demand Demo"
->
-  <VideoPlayer.Source src="/example.mov" />
+<VideoPlayer poster="/example-poster.png" title="GitHub Video Demo">
+  <VideoPlayer.Source src="/example.mp4" />
   <VideoPlayer.Track src="/example.vtt" />
 </VideoPlayer>
 ```
@@ -38,8 +35,8 @@ import {VideoPlayer} from '@primer/react-brand'
 ## Without branding
 
 ```jsx live
-<VideoPlayer branding={false} title="HLS On Demand Demo">
-  <VideoPlayer.Source src="/example.mov" />
+<VideoPlayer branding={false} title="GitHub Video Demo">
+  <VideoPlayer.Source src="/example.mp4" />
   <VideoPlayer.Track src="/example.vtt" />
 </VideoPlayer>
 ```

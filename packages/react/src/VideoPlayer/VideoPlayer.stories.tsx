@@ -1,13 +1,14 @@
 import {Meta, StoryFn} from '@storybook/react'
 import React from 'react'
+import posterImage from '../fixtures/images/example-poster.png'
 import {VideoPlayer} from '.'
 
 export default {
   title: 'Components/VideoPlayer',
   component: VideoPlayer,
   args: {
-    poster: 'https://github.githubassets.com/images/icons/media-player/poster.jpg',
-    title: 'HLS On Demand Demo',
+    poster: posterImage,
+    title: 'GitHub Video Demo',
     branding: true,
   },
   argTypes: {
@@ -27,7 +28,7 @@ export default {
 
 export const Playground: StoryFn<typeof VideoPlayer> = args => (
   <VideoPlayer {...args}>
-    <VideoPlayer.Source src="/example.mov" type="video/mp4" />
+    <VideoPlayer.Source src="/example.mp4" type="video/mp4" />
     <VideoPlayer.Track src="/example.vtt" />
   </VideoPlayer>
 )

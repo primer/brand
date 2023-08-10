@@ -63,7 +63,7 @@
   display: inline-block;
   padding: var(--brand-VideoPlayer-playButton-padding);
   box-sizing: content-box;
-  background: var(--brand-VideoPlayer-playButton-background);
+  background: var(--base-color-scale-blue-5);
   border-radius: 50%;
 }
 
@@ -97,8 +97,8 @@
   justify-content: start;
   grid-gap: var(--brand-VideoPlayer-heading-gap);
   grid-template-columns: auto auto;
-  background: var(--brand-VideoPlayer-heading-background);
-  background: var(--brand-VideoPlayer-heading-backgroundGradient);
+  background: hsl(var(--base-color-scale-black-0-hsl) / 80%);
+  background: linear-gradient(hsl(var(--base-color-scale-black-0-hsl) / 40%), rgba(0, 0, 0, 0));
 }
 
 .VideoPlayer__showOverlays .VideoPlayer__title {
@@ -134,8 +134,8 @@
   border-bottom-left-radius: var(--brand-borderRadius-medium);
   left: 0;
   width: 100%;
-  background: var(--brand-VideoPlayer-controls-background);
-  background: var(--brand-VideoPlayer-controls-backgroundGradient);
+  background: hsl(var(--base-color-scale-black-0-hsl) / 80%);
+  background: linear-gradient(rgba(0, 0, 0, 0), hsl(var(--base-color-scale-black-0-hsl) / 40%));
   padding: var(--brand-VideoPlayer-controls-padding);
   pointer-events: all;
 }
@@ -228,7 +228,7 @@
 }
 
 .VideoPlayer__ccText {
-  color: var(--brand-VideoPlayer-closedCaption-color);
+  color: var(--base-color-scale-black-0);
 }
 
 .VideoPlayer__ccOff .VideoPlayer__ccText {
@@ -293,7 +293,7 @@
   -moz-appearance: none;
   appearance: none;
   overflow: hidden;
-  background: var(--brand-VideoPlayer-range-background);
+  background: hsl(var(--base-color-scale-gray-0-hsl) / 50%);
   border: 0;
   border-radius: var(--brand-VideoPlayer-range-borderRadius);
   width: 100%;
@@ -303,7 +303,7 @@
 }
 
 .VideoPlayer__rangeProgress::-webkit-progress-bar {
-  background-color: var(--brand-VideoPlayer-range-background);
+  background-color: hsl(var(--base-color-scale-gray-0-hsl) / 50%);
 }
 
 .VideoPlayer__rangeProgress::-webkit-progress-value {
@@ -320,7 +320,7 @@
 }
 
 .VideoPlayer__rangeProgress::-ms-fill-upper {
-  background-color: var(--brand-VideoPlayer-range-background);
+  background-color: hsl(var(--base-color-scale-gray-0-hsl) / 50%);
   border: none;
 }
 

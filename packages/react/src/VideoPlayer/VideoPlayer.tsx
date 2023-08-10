@@ -8,7 +8,6 @@ import {MarkGithubIcon} from '@primer/octicons-react'
  * Design tokens
  */
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/video-player/base.css'
-import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/video-player/colors.css'
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './VideoPlayer.module.css'
