@@ -1,5 +1,6 @@
 import React from 'react'
 import clsx from 'clsx'
+import {Heading, Text, Link} from '../'
 
 import styles from './Bento.module.css'
 
@@ -60,21 +61,66 @@ const Item = ({
 type BentoContentProps = {
   // Similar to the River.Content component:
   // Icon, Text,Heading, Link are the only children accepted. They can be composed in any order, but their rendered output will always be in a predetermined order.
-}
+} & React.HTMLAttributes<HTMLDivElement>
 
-const Content = ({}: BentoContentProps) => {
-  return <div></div>
+//   const filteredChildren = React.Children.toArray(children).filter(child => {
+//     if (React.isValidElement(child) && typeof child.type !== 'string') {
+//       if (isFragment(child) || child.type === HTMLImageElement) {
+//         return true
+//       }
+//     }
+//     return false
+//   })
+
+const Content = ({children}: BentoContentProps) => {
+  const HeadingChild = React.Children.toArray(children).find(
+    child => React.isValidElement(child) && child.type === Heading,
+  )
+  const TextChild = React.Children.toArray(children).find(child => React.isValidElement(child) && child.type === Text)
+  const LinkChild = React.Children.toArray(children).find(child => React.isValidElement(child) && child.type === Link)
+  return <div>{children}</div>
 }
 
 type BentoVisualProps = {
-  fillMedia?: 'false' | 'true' // defaults to true
+  fillMedia?: boolean // defaults to true
   isBackground?: 'false' | 'true' // defaults to false
   position?: string // defaults to 50% 50%
-  padding?: 'none' | 'condensed' | 'normal' | 'spacious' //defaults to none
-}
+  padding?: 'condensed' | 'normal' | 'spacious' //defaults to none
+} & React.HTMLAttributes<HTMLDivElement>
 
-const Visual = ({}: BentoVisualProps) => {
-  return <div></div>
+const Visual = ({
+  fillMedia = true,
+  isBackground,
+  position = '50% 50%',
+  padding,
+  className,
+  children,
+  ...rest
+}: BentoVisualProps) => {
+  const childrenToRender = React.Children.map(children, child => {
+    if (React.isValidElement(child)) {
+      if (child.type === 'img') {
+        return React.cloneElement(child, {
+          // TODO: This works but the type is incorrect
+          style: {objectPosition: position},
+        })
+      }
+      return child
+    }
+  })
+  return (
+    <div
+      className={clsx(
+        styles.Bento__Visual,
+        !fillMedia && styles['Bento__Visual-no-fill'],
+        !!padding && styles[`Bento-padding--${padding}`],
+        className,
+      )}
+      {...rest}
+    >
+      {childrenToRender}
+    </div>
+  )
 }
 
 export const Bento = Object.assign(Root, {Item, Visual, Content})

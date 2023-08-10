@@ -9,14 +9,15 @@
 
 .Bento__Item {
   background-color: #efefef;
-  border-radius: 24px;
-  grid-column: auto/span 4;
+  border-radius: var(--brand-borderRadius-large); /* Not 24px */
   display: flex;
   align-items: center;
   justify-content: center;
   color: grey;
   display: grid;
   grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr;
+  overflow: hidden;
 }
 
 /* Column Span */
@@ -213,4 +214,37 @@
 
 .Bento__Item--row-start-12 {
   grid-row-start: 12;
+}
+
+/* Bento Visual */
+
+.Bento__Visual {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.Bento__Visual > img {
+  height: 100%;
+  width: 100%;
+  object-fit: fill;
+}
+
+.Bento__Visual-no-fill > img {
+  height: initial;
+  width: initial;
+  object-fit: initial;
+  border-radius: 0px;
+}
+
+/* Bento Padding */
+/* TODO: Swap values for bento padding */
+.Bento-padding--condensed {
+  padding: var(--brand-box-spacing-condensed);
+}
+.Bento-padding--normal {
+  padding: var(--brand-box-spacing-normal);
+}
+.Bento-padding--spacious {
+  padding: var(--brand-box-spacing-spacious);
 }

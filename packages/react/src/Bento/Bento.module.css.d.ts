@@ -49,6 +49,11 @@ declare const styles: {
   readonly "Bento__Item--row-start-10": string;
   readonly "Bento__Item--row-start-11": string;
   readonly "Bento__Item--row-start-12": string;
+  readonly "Bento__Visual": string;
+  readonly "Bento__Visual-no-fill": string;
+  readonly "Bento-padding--condensed": string;
+  readonly "Bento-padding--normal": string;
+  readonly "Bento-padding--spacious": string;
 };
 export = styles;
 
