@@ -11,7 +11,7 @@ export default {
 
 export const VisualPositionBottom: StoryFn<typeof Bento> = () => (
   <Bento.Item>
-    <Bento.Content>
+    <Bento.Content padding="condensed">
       <Heading as="h3">Heading</Heading>
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis

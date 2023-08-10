@@ -248,3 +248,21 @@
 .Bento-padding--spacious {
   padding: var(--brand-box-spacing-spacious);
 }
+
+/* Bento Heading */
+.Bento__heading {
+  /* TBD */
+}
+
+/* Bento Text */
+.Bento__text {
+  /* TBD */
+}
+
+.Bento__body-text {
+  /* TBD */
+}
+
+.Bento__call-to-action {
+  /* TBD */
+}

@@ -54,6 +54,10 @@ declare const styles: {
   readonly "Bento-padding--condensed": string;
   readonly "Bento-padding--normal": string;
   readonly "Bento-padding--spacious": string;
+  readonly "Bento__heading": string;
+  readonly "Bento__text": string;
+  readonly "Bento__body-text": string;
+  readonly "Bento__call-to-action": string;
 };
 export = styles;
 

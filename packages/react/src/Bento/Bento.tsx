@@ -1,6 +1,6 @@
 import React from 'react'
 import clsx from 'clsx'
-import {Heading, Text, Link} from '../'
+import {Heading, Text, Link, HeadingProps, TextProps, LinkProps} from '../'
 
 import styles from './Bento.module.css'
 
@@ -59,26 +59,43 @@ const Item = ({
 }
 
 type BentoContentProps = {
-  // Similar to the River.Content component:
-  // Icon, Text,Heading, Link are the only children accepted. They can be composed in any order, but their rendered output will always be in a predetermined order.
+  padding?: 'condensed' | 'normal' | 'spacious'
 } & React.HTMLAttributes<HTMLDivElement>
 
-//   const filteredChildren = React.Children.toArray(children).filter(child => {
-//     if (React.isValidElement(child) && typeof child.type !== 'string') {
-//       if (isFragment(child) || child.type === HTMLImageElement) {
-//         return true
-//       }
-//     }
-//     return false
-//   })
-
-const Content = ({children}: BentoContentProps) => {
+const Content = ({children, padding, className}: BentoContentProps) => {
   const HeadingChild = React.Children.toArray(children).find(
     child => React.isValidElement(child) && child.type === Heading,
   )
   const TextChild = React.Children.toArray(children).find(child => React.isValidElement(child) && child.type === Text)
   const LinkChild = React.Children.toArray(children).find(child => React.isValidElement(child) && child.type === Link)
-  return <div>{children}</div>
+  return (
+    <div className={clsx(!!padding && styles[`Bento-padding--${padding}`], className)}>
+      {React.isValidElement(HeadingChild) && (
+        <div className={styles.Bento__heading}>
+          {React.cloneElement(HeadingChild as React.ReactElement<HeadingProps>, {
+            // as uses h3 default, but can be overridden
+            as: HeadingChild.props.as || 'h3',
+            size: HeadingChild.props.size || '3',
+          })}
+        </div>
+      )}
+
+      {React.isValidElement(TextChild) && (
+        <div className={styles['Bento__body-text']}>
+          {React.cloneElement(TextChild as React.ReactElement<TextProps>, {
+            variant: 'muted',
+            as: 'p',
+            className: clsx(styles.Bento__text, TextChild.props.className),
+          })}
+        </div>
+      )}
+      {React.isValidElement(LinkChild) && (
+        <div className={styles['Bento__call-to-action']}>
+          {React.cloneElement(LinkChild as React.ReactElement<LinkProps>, {size: 'large'})}
+        </div>
+      )}
+    </div>
+  )
 }
 
 type BentoVisualProps = {
