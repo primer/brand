@@ -14,11 +14,6 @@
         "padding": {
           "value": "var(--base-size-16) var(--base-size-24)"
         },
-        "icon": {
-          "height": {
-            "value": "24px"
-          }
-        },
         "focus": {
           "boxShadow": {
             "value": "0 0 0 2px var(--brand-color-focus)"

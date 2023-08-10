@@ -176,7 +176,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  height: var(--brand-VideoPlayer-controls-icon-height);
+  height: 24px;
   box-sizing: content-box;
   position: relative;
   padding: 0;
