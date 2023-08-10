@@ -5,7 +5,7 @@ import {Heading, Text, Link} from '../'
 import placeholderImage from '../fixtures/images/placeholder-600x400.png'
 
 export default {
-  title: 'Components/Bento/Item/features',
+  title: 'Components/Bento/Item',
   component: Bento,
 } as Meta<typeof Bento>
 
