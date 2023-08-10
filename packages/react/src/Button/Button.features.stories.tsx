@@ -84,6 +84,12 @@ export const Large = () => (
   </Button>
 )
 
+export const Block = () => (
+  <Button variant="primary" block>
+    Block
+  </Button>
+)
+
 export const Polymorphism = () => (
   <Button
     as="button"
