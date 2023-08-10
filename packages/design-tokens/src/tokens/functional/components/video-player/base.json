@@ -9,7 +9,7 @@
           "value": "hsl(var(--base-color-scale-black-0-hsl) / 80%)"
         },
         "backgroundGradient": {
-          "value": "linear-gradient(rgba(0, 0, 0, 0), hsl(var(--base-color-scale-black-0-hsl) / 40%))"
+          "value": "linear-gradient(var(--base-color-scale-black-0), hsl(var(--base-color-scale-black-0-hsl) / 40%))"
         },
         "padding": {
           "value": "var(--base-size-16) var(--base-size-24)"

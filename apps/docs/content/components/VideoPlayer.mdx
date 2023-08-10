@@ -1,9 +1,9 @@
 ---
-title: VideoPlayer
+title: Video player
 status: Experimental
 source: https://github.com/primer/brand/blob/main/packages/react/src/VideoPlayer/VideoPlayer.tsx
 storybook: '/brand/storybook/?path=/story/components-videoplayer--playground'
-description: Use the video player component to present videos availible via CDN or local.
+description: Use the video player component to enable playback of self-hosted videos
 ---
 
 import {Label} from '@primer/react'
@@ -17,7 +17,7 @@ import {VideoPlayer} from '@primer/react-brand'
 ### Default
 
 ```jsx live
-<VideoPlayer title="HLS On Demand Demo">
+<VideoPlayer title="GitHub media player">
   <VideoPlayer.Source src="/example.mov" />
   <VideoPlayer.Track src="/example.vtt" />
 </VideoPlayer>
