@@ -63,14 +63,14 @@ type BentoContentProps = {
   padding?: 'condensed' | 'normal' | 'spacious'
 } & React.HTMLAttributes<HTMLDivElement>
 
-const Content = ({children, padding, className}: BentoContentProps) => {
+const Content = ({children, padding, className, ...rest}: BentoContentProps) => {
   const HeadingChild = React.Children.toArray(children).find(
     child => React.isValidElement(child) && child.type === Heading,
   )
   const TextChild = React.Children.toArray(children).find(child => React.isValidElement(child) && child.type === Text)
   const LinkChild = React.Children.toArray(children).find(child => React.isValidElement(child) && child.type === Link)
   return (
-    <div className={clsx(!!padding && styles[`Bento-padding--${padding}`], className)}>
+    <div className={clsx(!!padding && styles[`Bento-padding--${padding}`], className)} {...rest}>
       {React.isValidElement(HeadingChild) && (
         <div className={styles.Bento__heading}>
           {React.cloneElement(HeadingChild as React.ReactElement<HeadingProps>, {
