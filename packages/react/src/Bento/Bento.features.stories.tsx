@@ -1,7 +1,6 @@
 import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 import {Bento} from '.'
-import placeholderImage from '../fixtures/images/placeholder-600x400.png'
 
 export default {
   title: 'Components/Bento/features',

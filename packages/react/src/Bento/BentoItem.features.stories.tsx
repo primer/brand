@@ -20,7 +20,7 @@ export const VisualPositionBottom: StoryFn<typeof Bento> = () => (
       <Link href="#">Call to action</Link>
     </Bento.Content>
     <Bento.Visual position="50% 100%">
-      <img className="test" src={placeholderImage} />
+      <img className="test" alt="placeholder, blank area with an gray background color" src={placeholderImage} />
     </Bento.Visual>
   </Bento.Item>
 )
@@ -36,7 +36,7 @@ export const FlowRowReversed: StoryFn<typeof Bento> = () => (
       <Link href="#">Call to action</Link>
     </Bento.Content>
     <Bento.Visual>
-      <img className="test" src={placeholderImage} />
+      <img className="test" alt="placeholder, blank area with an gray background color" src={placeholderImage} />
     </Bento.Visual>
   </Bento.Item>
 )
@@ -52,7 +52,7 @@ export const FlowColumn: StoryFn<typeof Bento> = () => (
       <Link href="#">Call to action</Link>
     </Bento.Content>
     <Bento.Visual>
-      <img className="test" src={placeholderImage} />
+      <img className="test" alt="placeholder, blank area with an gray background color" src={placeholderImage} />
     </Bento.Visual>
   </Bento.Item>
 )
@@ -68,7 +68,7 @@ export const FlowColumnReversed: StoryFn<typeof Bento> = () => (
       <Link href="#">Call to action</Link>
     </Bento.Content>
     <Bento.Visual>
-      <img className="test" src={placeholderImage} />
+      <img className="test" alt="placeholder, blank area with an gray background color" src={placeholderImage} />
     </Bento.Visual>
   </Bento.Item>
 )
@@ -84,7 +84,7 @@ export const PaddingCondensed: StoryFn<typeof Bento> = () => (
       <Link href="#">Call to action</Link>
     </Bento.Content>
     <Bento.Visual padding="condensed">
-      <img className="test" src={placeholderImage} />
+      <img className="test" alt="placeholder, blank area with an gray background color" src={placeholderImage} />
     </Bento.Visual>
   </Bento.Item>
 )
@@ -100,7 +100,7 @@ export const PaddingNormal: StoryFn<typeof Bento> = () => (
       <Link href="#">Call to action</Link>
     </Bento.Content>
     <Bento.Visual padding="normal">
-      <img className="test" src={placeholderImage} />
+      <img className="test" alt="placeholder, blank area with an gray background color" src={placeholderImage} />
     </Bento.Visual>
   </Bento.Item>
 )
@@ -116,7 +116,7 @@ export const PaddingSpacious: StoryFn<typeof Bento> = () => (
       <Link href="#">Call to action</Link>
     </Bento.Content>
     <Bento.Visual padding="spacious">
-      <img className="test" src={placeholderImage} />
+      <img className="test" alt="placeholder, blank area with an gray background color" src={placeholderImage} />
     </Bento.Visual>
   </Bento.Item>
 )

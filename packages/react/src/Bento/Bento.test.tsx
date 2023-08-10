@@ -176,7 +176,7 @@ describe('Bento.Visual', () => {
   it('adds objectPosition style to img elements as children', () => {
     const {getByTestId} = render(
       <Bento.Visual data-testid={testId}>
-        <img src="test.png" />
+        <img src="test.png" alt="placeholder, blank area with an gray background color" />
       </Bento.Visual>,
     )
 

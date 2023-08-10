@@ -118,9 +118,7 @@ const Visual = ({
   const childrenToRender = React.Children.map(children, child => {
     if (React.isValidElement(child)) {
       if (child.type === 'img') {
-        return React.cloneElement(child, {
-          //   TODO: This works but the type is incorrect
-          // @ts-ignore
+        return React.cloneElement(child as React.ReactElement<any>, {
           style: {objectPosition: position},
         })
       }
