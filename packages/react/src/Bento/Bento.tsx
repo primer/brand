@@ -1,5 +1,6 @@
 import React, {ReactHTML} from 'react'
 import clsx from 'clsx'
+import type {BaseProps} from '../component-helpers'
 import {Heading, Text, Link, HeadingProps, TextProps, LinkProps} from '../'
 
 import styles from './Bento.module.css'
@@ -14,7 +15,7 @@ type ResponsiveMap = {
   xxl?: 12
 }
 
-type BentoProps = React.HTMLAttributes<HTMLDivElement>
+type BentoProps = React.HTMLAttributes<HTMLDivElement> & BaseProps<HTMLDivElement>
 
 const Root = ({className, ...rest}: BentoProps) => {
   return <section className={clsx(styles.Bento, className)} {...rest}></section>
@@ -29,7 +30,8 @@ type BentoItemProps = {
   horizontalAlign?: 'start' | 'center' | 'end'
   verticalAlign?: 'start' | 'center' | 'end'
   colorMode?: 'light' | 'dark'
-} & React.HTMLAttributes<HTMLDivElement>
+} & React.HTMLAttributes<HTMLDivElement> &
+  BaseProps<HTMLDivElement>
 
 const Item = ({
   className,
@@ -67,7 +69,8 @@ const Item = ({
 
 type BentoContentProps = {
   padding?: 'condensed' | 'normal' | 'spacious'
-} & React.HTMLAttributes<HTMLDivElement>
+} & React.HTMLAttributes<HTMLDivElement> &
+  BaseProps<HTMLDivElement>
 
 const Content = ({children, padding, className, ...rest}: BentoContentProps) => {
   const HeadingChild = React.Children.toArray(children).find(
@@ -110,7 +113,8 @@ type BentoVisualProps = {
   // isBackground?: boolean // defaults to false - NOT IMPLEMENTED
   position?: string // defaults to 50% 50%
   padding?: 'condensed' | 'normal' | 'spacious' //defaults to none
-} & React.HTMLAttributes<HTMLDivElement>
+} & React.HTMLAttributes<HTMLDivElement> &
+  BaseProps<HTMLDivElement>
 
 const Visual = ({
   fillMedia = true,
