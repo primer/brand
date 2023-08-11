@@ -9,53 +9,6 @@
           "value": "{base.size.44}"
         }
       },
-      "xsmall": {
-        "size": {
-          "value": "{base.size.24}"
-        },
-        "lineBoxHeight": {
-          "value": "{base.size.20}"
-        },
-        "paddingBlock": {
-          "value": "calc(({<namespace>.control.xsmall.size} - {<namespace>.control.xsmall.lineBoxHeight}) / 2)"
-        },
-        "paddingInline": {
-          "condensed": {
-            "value": "{base.size.4}"
-          },
-          "normal": {
-            "value": "{base.size.8}"
-          },
-          "spacious": {
-            "value": "{base.size.12}"
-          }
-        },
-        "gap": {
-          "value": "{base.size.4}"
-        }
-      },
-      "small": {
-        "size": {
-          "value": "{base.size.28}"
-        },
-        "lineBoxHeight": {
-          "value": "{base.size.20}"
-        },
-        "paddingBlock": {
-          "value": "calc(({<namespace>.control.small.size} - {<namespace>.control.small.lineBoxHeight}) / 2)"
-        },
-        "paddingInline": {
-          "condensed": {
-            "value": "{base.size.8}"
-          },
-          "normal": {
-            "value": "{base.size.12}"
-          }
-        },
-        "gap": {
-          "value": "{base.size.4}"
-        }
-      },
       "medium": {
         "size": {
           "value": "{base.size.48}"
@@ -106,26 +59,17 @@
           "value": "{base.size.16}"
         }
       },
-      "xlarge": {
-        "size": {
-          "value": "{base.size.48}"
+      "border": {
+        "radius": {
+          "value": "var(--brand-borderRadius-medium)"
+        }
+      },
+      "animation": {
+        "duration": {
+          "value": "80ms"
         },
-        "lineBoxHeight": {
-          "value": "{base.size.20}"
-        },
-        "paddingBlock": {
-          "value": "calc(({<namespace>.control.xlarge.size} - {<namespace>.control.xlarge.lineBoxHeight}) / 2)"
-        },
-        "paddingInline": {
-          "normal": {
-            "value": "{base.size.12}"
-          },
-          "spacious": {
-            "value": "{base.size.16}"
-          }
-        },
-        "gap": {
-          "value": "{base.size.8}"
+        "easing": {
+          "value": "var(--brand-animation-easing-glide)"
         }
       }
     },
