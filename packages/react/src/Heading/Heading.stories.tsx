@@ -67,7 +67,7 @@ export const Scale: StoryFn<typeof Heading> = () => {
   return (
     <>
       {HeadingSizes.map(size => (
-        <Heading key={size} size={size} as={tagMap[size]}>
+        <Heading key={size} size={size} as={tagMap[size] as (typeof HeadingTags)[number]}>
           Heading ({size})
         </Heading>
       ))}
