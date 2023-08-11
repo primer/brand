@@ -136,7 +136,7 @@ const _TextInput = (
           styles[`TextInput--${size}`],
           fullWidth && styles['TextInput--fullWidth'],
           LeadingVisual && styles[`TextInput--has-leading-visual--${size}`],
-          TrailingVisual && styles['TextInput--has-trailing-visual'],
+          TrailingVisual && styles[`TextInput--has-trailing-visual--${size}`],
           validationStatus && styles[`TextInput--${validationStatus}`],
           leadingText && !LeadingVisual && styles['TextInput--has-leading-text'],
           trailingText && !TrailingVisual && styles['TextInput--has-trailing-text'],
