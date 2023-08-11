@@ -168,3 +168,60 @@ export const VisualPaddingSpacious: StoryFn<typeof Bento> = () => (
     </Bento.Visual>
   </Bento.Item>
 )
+
+export const VerticalAlignStart: StoryFn<typeof Bento> = () => (
+  <Bento.Item verticalAlign="start">
+    <Bento.Content>
+      <Heading as="h3">Heading</Heading>
+      <Text>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </Bento.Content>
+    <Bento.Visual>
+      <img className="test" alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+    </Bento.Visual>
+  </Bento.Item>
+)
+
+export const VerticalAlignEnd: StoryFn<typeof Bento> = () => (
+  <Bento.Item verticalAlign="end">
+    <Bento.Content>
+      <Heading as="h3">Heading</Heading>
+      <Text>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </Bento.Content>
+    <Bento.Visual>
+      <img className="test" alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+    </Bento.Visual>
+  </Bento.Item>
+)
+
+// TODO: This isn't working as expected yet
+export const HorizontalAlignStart: StoryFn<typeof Bento> = () => (
+  <Bento.Item horizontalAlign="start">
+    <Bento.Content>
+      <Heading as="h3">Heading</Heading>
+      <Link href="#">Call to action</Link>
+    </Bento.Content>
+    <Bento.Visual>
+      <img className="test" alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+    </Bento.Visual>
+  </Bento.Item>
+)
+
+export const HorizontalAlignEnd: StoryFn<typeof Bento> = () => (
+  <Bento.Item horizontalAlign="end">
+    <Bento.Content>
+      <Heading as="h3">Heading</Heading>
+      <Link href="#">Call to action</Link>
+    </Bento.Content>
+    <Bento.Visual>
+      <img className="test" alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+    </Bento.Visual>
+  </Bento.Item>
+)

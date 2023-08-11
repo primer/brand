@@ -3,13 +3,13 @@
   width: 100%;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   grid-template-rows: minmax(40px, auto);
-  grid-gap: 12px;
+  grid-gap: var(--base-size-12);
   position: relative;
 }
 
 .Bento__Item {
   background-color: #efefef;
-  border-radius: var(--brand-borderRadius-medium); /* Not 24px */
+  border-radius: 16px; /* Should be configurable in tokens*/
   align-items: center;
   justify-content: center;
   color: grey;
@@ -21,16 +21,16 @@
 
 @media screen and (min-width: 80rem) {
   .Bento {
-    gap: 24;
+    gap: var(--base-size-32);
   }
   .Bento__Item {
-    border-radius: var(--brand-borderRadius-large);
+    border-radius: 24px; /* Should be configurable in tokens*/
   }
 }
 
 @media screen and (min-width: 48rem) {
   .Bento {
-    gap: 16;
+    gap: var(--base-size-16);
   }
 }
 
@@ -228,6 +228,32 @@
 
 .Bento__Item--row-start-12 {
   grid-row-start: 12;
+}
+
+/* Bento Item Vertical Align */
+.Bento__Item-verticalAlign--start {
+  align-items: start;
+}
+
+.Bento__Item-verticalAlign--center {
+  align-items: center;
+}
+
+.Bento__Item-verticalAlign--end {
+  align-items: end;
+}
+
+/* Bento Item Horizontal Align */
+.Bento__Item-horizontalAlign--top {
+  justify-content: start;
+}
+
+.Bento__Item-horizontalAlign--center {
+  justify-content: center;
+}
+
+.Bento__Item-horizontalAlign--end {
+  justify-content: end;
 }
 
 /* Bento Visual */

@@ -88,6 +88,30 @@ describe('Bento.Item', () => {
     expect(BentoItemEl.classList).toContain(`Bento__Item-flow--${flow}`)
   })
 
+  it('adds the class for horizontalAlign', () => {
+    const horizontalAlign = 'center'
+    const {getByTestId} = render(<Bento.Item data-testid={testId} horizontalAlign={horizontalAlign} />)
+
+    const BentoItemEl = getByTestId(testId)
+    expect(BentoItemEl.classList).toContain(`Bento__Item-horizontalAlign--${horizontalAlign}`)
+  })
+
+  it('adds the class for verticalAlign', () => {
+    const verticalAlign = 'center'
+    const {getByTestId} = render(<Bento.Item data-testid={testId} verticalAlign={verticalAlign} />)
+
+    const BentoItemEl = getByTestId(testId)
+    expect(BentoItemEl.classList).toContain(`Bento__Item-verticalAlign--${verticalAlign}`)
+  })
+
+  it('adds the color mode data attribute', () => {
+    const colorMode = 'light'
+    const {getByTestId} = render(<Bento.Item data-testid={testId} colorMode={colorMode} />)
+
+    const BentoItemEl = getByTestId(testId)
+    expect(BentoItemEl.getAttribute('data-color-mode')).toBe(colorMode)
+  })
+
   it('has no a11y violations', async () => {
     const {container} = render(<Bento.Item />)
 

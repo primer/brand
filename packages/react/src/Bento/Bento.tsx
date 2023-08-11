@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {ReactHTML} from 'react'
 import clsx from 'clsx'
 import {Heading, Text, Link, HeadingProps, TextProps, LinkProps} from '../'
 
@@ -21,14 +21,14 @@ const Root = ({className, ...rest}: BentoProps) => {
 }
 
 type BentoItemProps = {
-  columnStart?: ColumnIndex | ResponsiveMap // defaults to 12
-  columnSpan?: ColumnIndex | ResponsiveMap // defaults to 1
-  rowStart?: number | ResponsiveMap // defaults to 1
-  rowSpan?: number | ResponsiveMap // defaults to 1
-  flow?: 'row' | 'column' // defaults to row
-  align?: 'start' | 'center' | ResponsiveMap // defaults to start - NOT IMPLEMENTED
-  verticalAlign?: 'start' | 'center' | 'end' | ResponsiveMap // defaults to start - NOT IMPLEMENTED
-  colorMode?: 'light | dark' // default to light - NOT IMPLEMENTED
+  columnStart?: ColumnIndex | ResponsiveMap
+  columnSpan?: ColumnIndex | ResponsiveMap
+  rowStart?: number | ResponsiveMap
+  rowSpan?: number | ResponsiveMap
+  flow?: 'row' | 'column'
+  horizontalAlign?: 'start' | 'center' | 'end'
+  verticalAlign?: 'start' | 'center' | 'end'
+  colorMode?: 'light' | 'dark'
 } & React.HTMLAttributes<HTMLDivElement>
 
 const Item = ({
@@ -38,13 +38,17 @@ const Item = ({
   rowStart,
   rowSpan,
   flow,
-  align,
-  verticalAlign,
-  colorMode,
+  horizontalAlign = 'center',
+  verticalAlign = 'center',
+  colorMode = 'light',
   ...rest
 }: BentoItemProps) => {
+  // Check for isBackground prop on Image child
+  // Set the Image child to be full width behind Content
+  // Both items should take up the size of the parent
   return (
     <div
+      data-color-mode={colorMode}
       className={clsx(
         styles.Bento__Item,
         columnSpan && styles[`Bento__Item--column-span-${columnSpan}`],
@@ -52,6 +56,8 @@ const Item = ({
         columnStart && styles[`Bento__Item--column-start-${columnStart}`],
         rowStart && styles[`Bento__Item--row-start-${rowStart}`],
         flow && styles[`Bento__Item-flow--${flow}`],
+        verticalAlign && styles[`Bento__Item-verticalAlign--${verticalAlign}`],
+        horizontalAlign && styles[`Bento__Item-horizontalAlign--${horizontalAlign}`],
         className,
       )}
       {...rest}
@@ -101,14 +107,14 @@ const Content = ({children, padding, className, ...rest}: BentoContentProps) => 
 
 type BentoVisualProps = {
   fillMedia?: boolean // defaults to true
-  isBackground?: 'false' | 'true' // defaults to false
+  isBackground?: boolean // defaults to false - NOT IMPLEMENTED
   position?: string // defaults to 50% 50%
   padding?: 'condensed' | 'normal' | 'spacious' //defaults to none
 } & React.HTMLAttributes<HTMLDivElement>
 
 const Visual = ({
   fillMedia = true,
-  isBackground,
+  isBackground = false, // TODO: Using grid set image full width behind content
   position = '50% 50%',
   padding,
   className,
@@ -118,7 +124,7 @@ const Visual = ({
   const childrenToRender = React.Children.map(children, child => {
     if (React.isValidElement(child)) {
       if (child.type === 'img') {
-        return React.cloneElement(child as React.ReactElement<any>, {
+        return React.cloneElement(child as ReturnType<ReactHTML['img']>, {
           style: {objectPosition: position},
         })
       }
