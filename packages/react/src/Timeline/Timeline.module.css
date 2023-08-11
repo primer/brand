@@ -29,16 +29,17 @@
   height: var(--brand-Timeline-bullet-size);
   top: var(--bulletY);
   left: 0;
-  box-shadow: inset 0 0 0 var(--brand-Timeline-strokeWidth) var(--brand-Timeline-line-color);
+  border-style: solid;
+  border-width: var(--brand-Timeline-strokeWidth);
+  border-color: var(--brand-Timeline-line-color);
   border-radius: var(--brand-borderRadius-full);
 }
 
 .Timeline__item:not(:last-child)::after {
   top: calc(var(--bulletY) + var(--brand-Timeline-bullet-size) + var(--brand-Timeline-bullet-spacing));
-  left: calc(var(--brand-Timeline-bullet-size) / 2);
+  left: calc(var(--brand-Timeline-bullet-size) / 2 - var(--brand-Timeline-strokeWidth) / 2);
   width: var(--brand-Timeline-strokeWidth);
   height: calc(100% - var(--brand-Timeline-bullet-size) - var(--brand-Timeline-bullet-spacing) * 2);
-  transform: translateX(-50%);
   background-color: var(--brand-Timeline-line-color);
   border-radius: var(--brand-borderRadius-full);
 }
