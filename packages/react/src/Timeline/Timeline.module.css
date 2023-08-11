@@ -29,9 +29,7 @@
   height: var(--brand-Timeline-bullet-size);
   top: var(--bulletY);
   left: 0;
-  border-style: solid;
-  border-width: var(--brand-Timeline-strokeWidth);
-  border-color: var(--brand-Timeline-line-color);
+  box-shadow: inset 0 0 0 var(--brand-Timeline-strokeWidth) var(--brand-Timeline-line-color);
   border-radius: var(--brand-borderRadius-full);
 }
 
