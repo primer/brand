@@ -1,5 +1,6 @@
 import React, {useState, useRef, useEffect} from 'react'
 import clsx from 'clsx'
+import type {BaseProps} from '../component-helpers'
 import {Text} from '../Text'
 import {Controls} from './components'
 import {MarkGithubIcon} from '@primer/octicons-react'
@@ -18,7 +19,8 @@ type VideoPlayerProps = {
   branding?: boolean
   children: React.ReactElement | React.ReactElement[]
   ref?: React.RefObject<HTMLVideoElement>
-} & React.HTMLProps<HTMLVideoElement>
+} & React.HTMLProps<HTMLVideoElement> &
+  BaseProps<HTMLVideoElement>
 
 const Root = ({
   poster,
