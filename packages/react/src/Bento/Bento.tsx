@@ -30,6 +30,7 @@ type BentoItemProps = {
   horizontalAlign?: 'start' | 'center' | 'end'
   verticalAlign?: 'start' | 'center' | 'end'
   colorMode?: 'light' | 'dark'
+  visualAsBackground?: boolean
 } & React.HTMLAttributes<HTMLDivElement> &
   BaseProps<HTMLDivElement>
 
@@ -43,11 +44,10 @@ const Item = ({
   horizontalAlign = 'center',
   verticalAlign = 'center',
   colorMode = 'light',
+  visualAsBackground = false,
+  children,
   ...rest
 }: BentoItemProps) => {
-  // Check for isBackground prop on Image child
-  // Set the Image child to be full width behind Content
-  // Both items should take up the size of the parent
   return (
     <div
       data-color-mode={colorMode}
@@ -60,10 +60,13 @@ const Item = ({
         flow && styles[`Bento__Item-flow--${flow}`],
         styles[`Bento__Item-verticalAlign--${verticalAlign}`],
         styles[`Bento__Item-horizontalAlign--${horizontalAlign}`],
+        visualAsBackground && styles[`Bento__Item--visual-as-background`],
         className,
       )}
       {...rest}
-    ></div>
+    >
+      {children}
+    </div>
   )
 }
 
@@ -79,7 +82,7 @@ const Content = ({children, padding, className, ...rest}: BentoContentProps) => 
   const TextChild = React.Children.toArray(children).find(child => React.isValidElement(child) && child.type === Text)
   const LinkChild = React.Children.toArray(children).find(child => React.isValidElement(child) && child.type === Link)
   return (
-    <div className={clsx(!!padding && styles[`Bento-padding--${padding}`], className)} {...rest}>
+    <div className={clsx(!!padding && styles[`Bento-padding--${padding}`], styles.Bento__Content, className)} {...rest}>
       {React.isValidElement(HeadingChild) && (
         <div className={styles.Bento__heading}>
           {React.cloneElement(HeadingChild as React.ReactElement<HeadingProps>, {
