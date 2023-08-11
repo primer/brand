@@ -26,9 +26,9 @@ type BentoItemProps = {
   rowStart?: number | ResponsiveMap // defaults to 1
   rowSpan?: number | ResponsiveMap // defaults to 1
   flow?: 'row' | 'column' // defaults to row
-  align?: 'start' | 'center' | ResponsiveMap // defaults to start
-  verticalAlign?: 'start' | 'center' | 'end' | ResponsiveMap // defaults to start
-  colorMode?: 'light | dark' // default to light
+  align?: 'start' | 'center' | ResponsiveMap // defaults to start - NOT IMPLEMENTED
+  verticalAlign?: 'start' | 'center' | 'end' | ResponsiveMap // defaults to start - NOT IMPLEMENTED
+  colorMode?: 'light | dark' // default to light - NOT IMPLEMENTED
 } & React.HTMLAttributes<HTMLDivElement>
 
 const Item = ({
