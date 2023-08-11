@@ -34,7 +34,7 @@
  */
 
 .TextInput-wrapper--medium {
-  height: var(--brand-control-medium-size);
+  height: 2.5rem;
 }
 
 .TextInput--medium {
@@ -50,7 +50,7 @@
 }
 
 .TextInput-wrapper--large {
-  height: var(--brand-control-large-size);
+  height: 3rem;
 }
 
 /*
