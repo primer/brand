@@ -1,0 +1,30 @@
+{
+  "brand": {
+    "Bento": {
+      "gap": {
+        "large": {
+          "value": "var(--base-size-32)"
+        },
+        "medium": {
+          "value": "var(--base-size-24)"
+        },
+        "small": {
+          "value": "var(--base-size-16)"
+        }
+      },
+      "Item": {
+        "borderRadius": {
+          "small": {
+            "value": "16px"
+          },
+          "medium": {
+            "value": "20px"
+          },
+          "large": {
+            "value": "24px"
+          }
+        }
+      }
+    }
+  }
+}

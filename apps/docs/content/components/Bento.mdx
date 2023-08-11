@@ -70,15 +70,19 @@ The Bento component API supports all standard HTML attribute props for the inter
 
 ### Bento.Item
 
-| Name          | Type                                                          | Default | Required | Description                                                                |
-| :------------ | :------------------------------------------------------------ | :-----: | :------- | -------------------------------------------------------------------------- |
-| `className`   | `string`                                                      |         | `false`  | Sets a custom class on the root element                                    |
-| `children`    | `React.ReactNode`, `React.ReactNode[]`                        |         | `false`  | The children to be rendered within the `Bento.Item` component              |
-| `columnStart` | `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12` |         | `false`  | The column number in which this content should start                       |
-| `columnSpan`  | `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12` |         | `false`  | The number of columns this content should span                             |
-| `rowStart`    | `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12` |         | `false`  | The row number in which this content should start                          |
-| `rowSpan`     | `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12` |         | `false`  | The number of rows this content should span                                |
-| `flow`        | `"row"`, `"column"`, `"row-reverse"`, `"column-reverse"`      |         | `false`  | The flow of the `Bento.Content` and `Bento.Visual` within the `Bento.Item` |
+| Name                 | Type                                                          |  Default   | Required | Description                                                                                                     |
+| :------------------- | :------------------------------------------------------------ | :--------: | :------- | --------------------------------------------------------------------------------------------------------------- |
+| `className`          | `string`                                                      |            | `false`  | Sets a custom class on the root element                                                                         |
+| `children`           | `React.ReactNode`, `React.ReactNode[]`                        |            | `false`  | The children to be rendered within the `Bento.Item` component                                                   |
+| `columnStart`        | `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12` |            | `false`  | The column number in which this content should start                                                            |
+| `columnSpan`         | `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12` |            | `false`  | The number of columns this content should span                                                                  |
+| `rowStart`           | `number`                                                      |            | `false`  | The row number in which this content should start                                                               |
+| `rowSpan`            | `number`                                                      |            | `false`  | The number of rows this content should span                                                                     |
+| `flow`               | `"row"`, `"column"`                                           |            | `false`  | The flow of the `Bento.Content` and `Bento.Visual` within the `Bento.Item`                                      |
+| `horizontalAlign`    | `"start"`, `"center"`, `"end"`                                | `"center"` | `false`  | The horozontal alignment of children within the `Bento.Item`                                                    |
+| `verticalAlign`      | `"start"`, `"center"`, `"end"`                                | `"center"` | `false`  | The vertical alignment of children within the `Bento.Item`                                                      |
+| `colorMode`          | `"light"`, `"dark"`                                           | `"light"`  | `false`  | The color mode specified for this `Bento.Item`                                                                  |
+| `visualAsBackground` | `boolean`                                                     |  `false`   | `false`  | Determines if the Visual child is set as the background for the `Bento.Item` with the `Bento.Content` overlayed |
 
 The Bento.Item component API supports all standard HTML attribute props for the interface HTMLDivElement, while providing some additional behavior as described above.
 

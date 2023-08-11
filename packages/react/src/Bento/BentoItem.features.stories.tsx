@@ -4,7 +4,7 @@ import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {Bento} from '.'
 import {Heading, Text, Link} from '../'
 import placeholderImage from '../fixtures/images/placeholder-600x400.png'
-import avatarImage from '../fixtures/images/avatar-mona.png'
+import universeImage from '../fixtures/images/placeholder-visual-universe.png'
 
 export default {
   title: 'Components/Bento/Item',
@@ -329,12 +329,34 @@ export const VisualAsBackground: StoryFn<typeof Bento> = () => (
       <Link href="#">Call to action</Link>
     </Bento.Content>
     <Bento.Visual>
-      <img className="test" alt="A random avatar picture" src={avatarImage} />
+      <img className="test" alt="A random avatar" src={universeImage} />
     </Bento.Visual>
   </Bento.Item>
 )
 
 VisualAsBackground.parameters = {
+  viewport: {
+    defaultViewport: 'iphonexr',
+  },
+}
+
+export const DarkModeItem: StoryFn<typeof Bento> = () => (
+  <Bento.Item colorMode="dark">
+    <Bento.Content>
+      <Heading as="h3">Heading</Heading>
+      <Text>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </Bento.Content>
+    <Bento.Visual>
+      <img className="test" alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+    </Bento.Visual>
+  </Bento.Item>
+)
+
+DarkModeItem.parameters = {
   viewport: {
     defaultViewport: 'iphonexr',
   },

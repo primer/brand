@@ -3,6 +3,8 @@ import clsx from 'clsx'
 import type {BaseProps} from '../component-helpers'
 import {Heading, Text, Link, HeadingProps, TextProps, LinkProps} from '../'
 
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/bento/base.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/bento/colors.css'
 import styles from './Bento.module.css'
 
 export type ColumnIndex = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
@@ -112,22 +114,13 @@ const Content = ({children, padding, className, ...rest}: BentoContentProps) => 
 }
 
 type BentoVisualProps = {
-  fillMedia?: boolean // defaults to true
-  // isBackground?: boolean // defaults to false - NOT IMPLEMENTED
-  position?: string // defaults to 50% 50%
-  padding?: 'condensed' | 'normal' | 'spacious' //defaults to none
+  fillMedia?: boolean
+  position?: string
+  padding?: 'condensed' | 'normal' | 'spacious'
 } & React.HTMLAttributes<HTMLDivElement> &
   BaseProps<HTMLDivElement>
 
-const Visual = ({
-  fillMedia = true,
-  // isBackground = false, // TODO: Using grid set image full width behind content
-  position = '50% 50%',
-  padding,
-  className,
-  children,
-  ...rest
-}: BentoVisualProps) => {
+const Visual = ({fillMedia = true, position = '50% 50%', padding, className, children, ...rest}: BentoVisualProps) => {
   const childrenToRender = React.Children.map(children, child => {
     if (React.isValidElement(child)) {
       if (child.type === 'img') {
