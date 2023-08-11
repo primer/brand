@@ -1,8 +1,8 @@
 {
   "brand": {
     "Bento": {
-      "color": {
-        "background": {
+      "background": {
+        "default": {
           "value": "var(--base-color-scale-gray-0)",
           "dark": "var(--base-color-scale-gray-9)"
         }
