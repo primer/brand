@@ -56,8 +56,8 @@ const Item = ({
         columnStart && styles[`Bento__Item--column-start-${columnStart}`],
         rowStart && styles[`Bento__Item--row-start-${rowStart}`],
         flow && styles[`Bento__Item-flow--${flow}`],
-        verticalAlign && styles[`Bento__Item-verticalAlign--${verticalAlign}`],
-        horizontalAlign && styles[`Bento__Item-horizontalAlign--${horizontalAlign}`],
+        styles[`Bento__Item-verticalAlign--${verticalAlign}`],
+        styles[`Bento__Item-horizontalAlign--${horizontalAlign}`],
         className,
       )}
       {...rest}
@@ -107,14 +107,14 @@ const Content = ({children, padding, className, ...rest}: BentoContentProps) => 
 
 type BentoVisualProps = {
   fillMedia?: boolean // defaults to true
-  isBackground?: boolean // defaults to false - NOT IMPLEMENTED
+  // isBackground?: boolean // defaults to false - NOT IMPLEMENTED
   position?: string // defaults to 50% 50%
   padding?: 'condensed' | 'normal' | 'spacious' //defaults to none
 } & React.HTMLAttributes<HTMLDivElement>
 
 const Visual = ({
   fillMedia = true,
-  isBackground = false, // TODO: Using grid set image full width behind content
+  // isBackground = false, // TODO: Using grid set image full width behind content
   position = '50% 50%',
   padding,
   className,
