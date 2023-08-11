@@ -116,14 +116,12 @@
 
 .Button--size-medium {
   height: var(--brand-control-medium-size);
-  padding-inline: var(--brand-control-medium-paddingInline-spacious);
-  padding-block: var(--brand-control-medium-paddingBlock);
+  padding: var(--brand-control-medium-paddingBlock) var(--brand-control-medium-paddingInline-spacious);
 }
 
 .Button--size-large {
   height: var(--brand-control-large-size);
-  padding-inline: var(--brand-control-large-paddingInline-spacious);
-  padding-block: var(--brand-control-large-paddingBlock);
+  padding: var(--brand-control-large-paddingBlock) var(--brand-control-large-paddingInline-spacious);
 }
 
 .Button--block {
