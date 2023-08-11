@@ -329,7 +329,7 @@ export const VisualAsBackground: StoryFn<typeof Bento> = () => (
       <Link href="#">Call to action</Link>
     </Bento.Content>
     <Bento.Visual>
-      <img className="test" alt="placeholder, blank area with an gray background color" src={avatarImage} />
+      <img className="test" alt="A random avatar picture" src={avatarImage} />
     </Bento.Visual>
   </Bento.Item>
 )
