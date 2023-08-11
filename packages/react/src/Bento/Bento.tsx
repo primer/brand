@@ -14,7 +14,7 @@ type ResponsiveMap = {
   xxl?: 12
 }
 
-type BentoProps = {} & React.HTMLAttributes<HTMLDivElement>
+type BentoProps = React.HTMLAttributes<HTMLDivElement>
 
 const Root = ({className, ...rest}: BentoProps) => {
   return <section className={clsx(styles.Bento, className)} {...rest}></section>
