@@ -11,6 +11,7 @@
   border: none;
   background: none;
   display: inline-flex;
+  gap: var(--brand-control-medium-gap);
 }
 
 .Button:hover {
@@ -25,8 +26,8 @@
 
 .Button__text {
   position: relative;
-  top: 0.5px; /* visual offset for off-center mona sans glyphs */
-  line-height: var(--brand-text-lineHeight-200);
+  /*top: 0.5px;  visual offset for off-center mona sans glyphs */
+  /* line-height: var(--brand-text-lineHeight-200); */
 }
 
 .Button__icon-visual {
@@ -37,27 +38,21 @@
   fill: currentcolor;
 }
 
-.Button__trailing-visual {
-  display: flex;
-  margin-left: var(--base-size-8);
-}
-
-.Button__trailing-visual--arrow {
-  margin-left: var(--base-size-8);
-}
-
+.Button__trailing-visual,
 .Button__leading-visual {
   display: flex;
-  margin-right: var(--base-size-8);
-}
-
-.Button--label {
-  font-weight: var(--base-text-weight-semibold);
 }
 
 .Button--label.Button-label--disabled,
 .Button__icon-visual--disabled {
   color: var(--brand-Button-fg-primary-disabled);
+}
+
+/* optically adjust arrow to align with the end (right) padding */
+/* reduce gap between label and arrow */
+.Button-arrow {
+  margin-inline-end: calc(var(--base-size-4) * -1);
+  margin-inline-start: calc(var(--base-size-8) * -1);
 }
 
 .Button--primary .Button-arrow--disabled,
@@ -120,21 +115,15 @@
 }
 
 .Button--size-medium {
-  padding: calc(var(--base-size-16) - 2px) var(--base-size-24);
-}
-
-.Button--size-medium .Button--label {
-  /* Brings overall default height down to 48px */
-  line-height: var(--brand-text-lineHeight-200);
+  height: var(--brand-control-medium-size);
+  padding-inline: var(--brand-control-medium-paddingInline-spacious);
+  padding-block: var(--brand-control-medium-paddingBlock);
 }
 
 .Button--size-large {
-  padding: var(--base-size-16) var(--base-size-32);
-}
-
-.Button--size-large .Button--label {
-  /* Brings overall default height down to 56px */
-  line-height: var(--brand-text-lineHeight-300);
+  height: var(--brand-control-large-size);
+  padding-inline: var(--brand-control-large-paddingInline-spacious);
+  padding-block: var(--brand-control-large-paddingBlock);
 }
 
 .Button--block {

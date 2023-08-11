@@ -8,6 +8,8 @@ declare const styles: {
   readonly "TextInput-wrapper--invisible": string;
   readonly "TextInput-wrapper--fullWidth": string;
   readonly "TextInput-wrapper--monospace": string;
+  readonly "TextInput-wrapper--medium": string;
+  readonly "TextInput-wrapper--large": string;
   readonly "TextInput-wrapper--success": string;
   readonly "TextInput-wrapper--error": string;
   readonly "TextInput--has-leading-visual--medium": string;
@@ -24,14 +26,6 @@ declare const styles: {
   readonly "TextInput-trailing-text--disabled": string;
   readonly "TextInput-leading-text-inner": string;
   readonly "TextInput-trailing-text-inner": string;
-  readonly "TextInput-leading-text-inner--medium": string;
-  readonly "TextInput-trailing-text-inner--medium": string;
-  readonly "TextInput-leading-text-inner--large": string;
-  readonly "TextInput-trailing-text-inner--large": string;
-  readonly "TextInput-leading-text--medium": string;
-  readonly "TextInput-trailing-text--medium": string;
-  readonly "TextInput-leading-text--large": string;
-  readonly "TextInput-trailing-text--large": string;
   readonly "TextInput--has-leading-text": string;
   readonly "TextInput--has-trailing-text": string;
   readonly "TextInput-leading-text--success": string;

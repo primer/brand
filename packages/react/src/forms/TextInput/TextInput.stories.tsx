@@ -2,6 +2,8 @@ import React from 'react'
 import {Meta, StoryFn} from '@storybook/react'
 import {TextInput} from '.'
 import {CheckIcon, SearchIcon} from '@primer/octicons-react'
+import {Button} from '../../Button'
+import {Stack} from '../../Stack'
 
 export default {
   title: 'Components/Forms/TextInput',
@@ -101,12 +103,15 @@ export default {
 } as Meta<typeof TextInput>
 
 export const Playground: StoryFn<typeof TextInput> = args => (
-  <TextInput
-    aria-label="Standalone text input"
-    {...args}
-    leadingVisual={args.leadingVisual ? CheckIcon : undefined}
-    trailingVisual={args.trailingVisual ? SearchIcon : undefined}
-  />
+  <Stack direction="horizontal">
+    <TextInput
+      aria-label="Standalone text input"
+      {...args}
+      leadingVisual={args.leadingVisual ? CheckIcon : undefined}
+      trailingVisual={args.trailingVisual ? SearchIcon : undefined}
+    />
+    <Button size="large">Hello</Button>
+  </Stack>
 )
 
 Playground.storyName = 'TextInput - Playground'

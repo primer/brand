@@ -58,49 +58,52 @@
       },
       "medium": {
         "size": {
-          "value": "{base.size.32}"
+          "value": "{base.size.48}"
         },
         "lineBoxHeight": {
           "value": "{base.size.20}"
         },
         "paddingBlock": {
-          "value": "calc(({<namespace>.control.medium.size} - {<namespace>.control.medium.lineBoxHeight}) / 2)"
+          "value": "{base.size.16}"
         },
         "paddingInline": {
           "condensed": {
-            "value": "{base.size.8}"
-          },
-          "normal": {
             "value": "{base.size.12}"
           },
-          "spacious": {
+          "normal": {
             "value": "{base.size.16}"
+          },
+          "spacious": {
+            "value": "{base.size.28}"
           }
         },
         "gap": {
-          "value": "{base.size.8}"
+          "value": "{base.size.12}"
         }
       },
       "large": {
         "size": {
-          "value": "{base.size.40}"
+          "value": "60px"
         },
         "lineBoxHeight": {
           "value": "{base.size.20}"
         },
         "paddingBlock": {
-          "value": "calc(({<namespace>.control.large.size} - {<namespace>.control.large.lineBoxHeight}) / 2)"
+          "value": "{base.size.20}"
         },
         "paddingInline": {
+          "condensed": {
+            "value": "{base.size.20}"
+          },
           "normal": {
-            "value": "{base.size.12}"
+            "value": "{base.size.16}"
           },
           "spacious": {
-            "value": "{base.size.16}"
+            "value": "{base.size.32}"
           }
         },
         "gap": {
-          "value": "{base.size.8}"
+          "value": "{base.size.16}"
         }
       },
       "xlarge": {

@@ -6,34 +6,6 @@
           "value": "var(--brand-borderRadius-medium)"
         }
       },
-      "medium": {
-        "size": {
-          "value": "40px"
-        },
-        "padding": {
-          "value": "10px"
-        },
-        "fontWeight": {
-          "value": "var(--brand-text-weight-200)"
-        },
-        "fontSize": {
-          "value": "var(--brand-text-size-200)"
-        }
-      },
-      "large": {
-        "size": {
-          "value": "var(--base-size-48)"
-        },
-        "padding": {
-          "value": "var(--base-size-12)"
-        },
-        "fontWeight": {
-          "value": "var(--brand-text-weight-300)"
-        },
-        "fontSize": {
-          "value": "var(--brand-text-size-300)"
-        }
-      },
       "animation": {
         "duration": {
           "value": "80ms"
