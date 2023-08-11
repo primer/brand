@@ -249,21 +249,14 @@
 }
 
 /* Bento Flow */
-.Bento__Item-flow--column,
-.Bento__Item-flow--column-reverse {
+.Bento__Item-flow--column {
   grid-auto-flow: column;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
 }
 
-.Bento__Item-flow--row,
-.Bento__Item-flow--row-reverse {
+.Bento__Item-flow--row {
   grid-auto-flow: row;
-}
-
-.Bento__Item-flow--row-reverse > div:first-of-type,
-.Bento__Item-flow--column-reverse > div:first-of-type {
-  order: 2;
 }
 
 /* Bento Heading */

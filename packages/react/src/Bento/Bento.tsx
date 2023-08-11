@@ -25,7 +25,7 @@ type BentoItemProps = {
   columnSpan?: ColumnIndex | ResponsiveMap // defaults to 1
   rowStart?: number | ResponsiveMap // defaults to 1
   rowSpan?: number | ResponsiveMap // defaults to 1
-  flow?: 'row' | 'column' | 'row-reverse' | 'column-reverse' // defaults to row
+  flow?: 'row' | 'column' // defaults to row
   align?: 'start' | 'center' | ResponsiveMap // defaults to start
   verticalAlign?: 'start' | 'center' | 'end' | ResponsiveMap // defaults to start
   colorMode?: 'light | dark' // default to light
