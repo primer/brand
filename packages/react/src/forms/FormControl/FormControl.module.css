@@ -56,10 +56,9 @@
   cursor: pointer;
   font-size: var(--brand-text-size-100);
   font-weight: var(--base-text-weight-semibold);
-  letter-spacing: var(--brand-text-letterSpacing-200);
-  line-height: var(--brand-text-lineHeight-200);
+  line-height: var(--base-size-24); /* FIXME */
   position: relative;
-  top: 1px;
+  top: 2px;
   width: 100%;
 }
 

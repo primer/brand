@@ -22,8 +22,6 @@
 }
 
 .Testimonial-quote {
-  font-family: var(--brand-fontStack-sansSerif);
-  font-size: var(--brand-text-size-300);
   margin-top: calc(var(--base-size-16) * -1); /* negate grid gap */
   display: block;
 }

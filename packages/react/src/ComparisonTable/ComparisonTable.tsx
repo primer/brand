@@ -188,7 +188,7 @@ export type FootnoteProps = BaseProps<HTMLParagraphElement>
 const Footnote = ({children, ...props}: PropsWithChildren<FootnoteProps>) => {
   if (typeof children === 'string') {
     return (
-      <Text as="p" size="200" variant="muted">
+      <Text as="p" size="100" variant="muted">
         {children}
       </Text>
     )

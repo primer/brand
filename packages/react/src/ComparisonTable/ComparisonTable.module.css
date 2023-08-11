@@ -52,16 +52,16 @@
 
 .ComparisonTable-cell {
   color: var(--brand-color-text-default);
-  font-weight: var(--brand-text-weight-300);
-  font-size: var(--brand-text-size-300);
-  line-height: var(--brand-text-lineHeight-300);
+  font-weight: var(--brand-text-weight-200);
+  font-size: var(--brand-text-size-200);
+  line-height: var(--brand-text-lineHeight-200);
   padding-bottom: var(--base-size-24);
 }
 
 .ComparisonTable-cell-heading {
   font-weight: var(--base-text-weight-semibold);
-  font-size: var(--brand-text-size-300);
-  line-height: var(--brand-text-lineHeight-300);
+  font-size: var(--brand-text-size-200);
+  line-height: var(--brand-text-lineHeight-200);
 }
 
 .ComparisonTable-cell-container {
@@ -87,17 +87,17 @@
   }
 
   .ComparisonTable-inline-cell-label {
-    font-weight: var(--brand-heading-weight-600);
-    font-size: var(--brand-text-size-600);
-    line-height: var(--brand-heading-lineHeight-600);
+    font-weight: var(--brand-heading-weight-400);
+    font-size: var(--brand-text-size-400);
+    line-height: var(--brand-heading-lineHeight-400);
   }
 
   .ComparisonTable tbody .ComparisonTable-cell-heading {
     margin-top: var(--base-size-24);
     margin-bottom: var(--base-size-16);
-    font-weight: var(--brand-heading-weight-500);
-    font-size: var(--brand-text-size-500);
-    line-height: var(--brand-heading-lineHeight-500);
+    font-weight: var(--brand-heading-weight-300);
+    font-size: var(--brand-text-size-300);
+    line-height: var(--brand-heading-lineHeight-300);
   }
 }
 
@@ -198,9 +198,9 @@
     background-clip: text;
   }
   :global(.ComparisonTable--default) thead .ComparisonTable-cell-heading {
-    font-weight: var(--brand-heading-weight-500);
-    font-size: var(--brand-text-size-500);
-    line-height: var(--brand-heading-lineHeight-500);
+    font-weight: var(--brand-heading-weight-400);
+    font-size: var(--brand-text-size-400);
+    line-height: var(--brand-heading-lineHeight-400);
     display: inline-flex;
     align-items: flex-end;
   }
