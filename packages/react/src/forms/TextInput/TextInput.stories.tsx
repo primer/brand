@@ -4,6 +4,7 @@ import {TextInput} from '.'
 import {CheckIcon, SearchIcon} from '@primer/octicons-react'
 import {Button} from '../../Button'
 import {Stack} from '../../Stack'
+import {Select} from '../Select'
 
 export default {
   title: 'Components/Forms/TextInput',
@@ -110,6 +111,14 @@ export const Playground: StoryFn<typeof TextInput> = args => (
       leadingVisual={args.leadingVisual ? CheckIcon : undefined}
       trailingVisual={args.trailingVisual ? SearchIcon : undefined}
     />
+
+    <Select aria-label="Standalone select input" defaultValue="select a handle" size="large">
+      <Select.Option value="select a handle" disabled>
+        Select a handle
+      </Select.Option>
+      <Select.Option value="mona">Monalisa</Select.Option>
+      <Select.Option value="hubot">Hubot</Select.Option>
+    </Select>
     <Button size="large">Hello</Button>
   </Stack>
 )

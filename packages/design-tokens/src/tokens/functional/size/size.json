@@ -64,7 +64,7 @@
           "value": "{base.size.20}"
         },
         "paddingBlock": {
-          "value": "{base.size.16}"
+          "value": "0.875rem"
         },
         "paddingInline": {
           "condensed": {
@@ -93,10 +93,10 @@
         },
         "paddingInline": {
           "condensed": {
-            "value": "{base.size.20}"
+            "value": "{base.size.16}"
           },
           "normal": {
-            "value": "{base.size.16}"
+            "value": "{base.size.20}"
           },
           "spacious": {
             "value": "{base.size.32}"

@@ -32,6 +32,11 @@
 /*
  * Sizes
  */
+
+.TextInput-wrapper--medium {
+  height: var(--brand-control-medium-size);
+}
+
 .TextInput--medium {
   font-weight: var(--brand-text-weight-200);
   font-size: var(--brand-text-size-200);
@@ -44,6 +49,10 @@
   font-size: var(--brand-text-size-300);
   padding-inline: var(--brand-control-large-paddingInline-condensed);
   padding-block: var(--brand-control-large-paddingBlock);
+}
+
+.TextInput-wrapper--large {
+  height: var(--brand-control-large-size);
 }
 
 /*
@@ -87,14 +96,6 @@
   border-color: var(--brand-color-focus);
   box-shadow: 0 0 0 1px var(--brand-color-focus);
   outline: none;
-}
-
-.TextInput-wrapper--medium {
-  height: var(--brand-control-medium-size);
-}
-
-.TextInput-wrapper--large {
-  height: var(--brand-control-large-size);
 }
 
 /*
