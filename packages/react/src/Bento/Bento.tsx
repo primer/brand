@@ -3,8 +3,8 @@ import clsx from 'clsx'
 import type {BaseProps} from '../component-helpers'
 import {Heading, Text, Link, HeadingProps, TextProps, LinkProps} from '../'
 
-import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/bento/base.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/bento/colors.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/bento/base.css'
 import styles from './Bento.module.css'
 
 export type ColumnIndex = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12

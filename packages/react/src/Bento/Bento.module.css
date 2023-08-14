@@ -8,8 +8,8 @@
 }
 
 .Bento__Item {
-  background-color: var(--brand-Bento-background-default);
-  border-radius: var(--brand-Bento-Item-borderRadius-small); /* Should be configurable in tokens*/
+  background-color: var(--brand-Bento-background);
+  border-radius: var(--brand-Bento-Item-borderRadius-small);
   display: grid;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr;
