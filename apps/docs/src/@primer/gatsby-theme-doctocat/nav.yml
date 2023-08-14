@@ -60,6 +60,8 @@
       url: /components/SubdomainNavBar
     - title: Testimonial
       url: /components/Testimonial
+    - title: Timeline
+      url: /components/Timeline
     - title: Unordered list
       url: /components/UnorderedList
 
