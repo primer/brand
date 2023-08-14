@@ -1,6 +1,60 @@
 .FAQ {
-  max-width: var(--brand-FAQ-maxWidth);
+  max-width: var(--brand-FAQ-maxWidth-list);
   margin: 0 auto;
+}
+
+.FAQTabbedGroup {
+  display: none;
+  max-width: var(--brand-FAQ-maxWidth-group);
+  justify-content: space-between;
+  gap: var(--brand-stack-gap-spacious);
+}
+
+@media screen and (min-width: 34rem) {
+  .FAQTabbedGroup {
+    display: flex;
+  }
+
+  .FAQAccordionGroup {
+    display: none;
+  }
+}
+
+.FAQTabbedGroup__tablist {
+  display: flex;
+  flex-direction: column;
+  gap: var(--brand-stack-gap-condensed);
+  width: 100%;
+  max-width: var(--brand-FAQ-maxWidth-tablist);
+}
+
+.FAQTabbedGroup__tablist button {
+  /* reset browser button styles */
+  appearance: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--brand-body-fontFamily);
+  text-align: left;
+  text-decoration: none;
+  user-select: none;
+
+  /* tablist button styles */
+  border-radius: 6px; /* TODO: use a token */
+  color: var(--brand-color-text-subtle);
+  font-weight: var(--base-text-weight-medium);
+  padding: var(--brand-FAQ-tab-paddingBlock) var(--brand-FAQ-tab-paddingInline);
+  width: 100%;
+}
+
+.FAQTabbedGroup__tablist button[aria-selected="true"] {
+  background-color: var(--brand-FAQ-color-tabBg-selected);
+  border: 1px solid var(--brand-FAQ-color-tabBorder-selected);
+  color: var(--brand-FAQ-color-tabLabel-selected);
+}
+
+.FAQTabbedGroup__tabpanelContainer {
+  max-width: var(--brand-FAQ-maxWidth);
 }
 
 .FAQ__heading {
@@ -10,7 +64,7 @@
   line-height: var(--brand-heading-lineHeight-700);
   letter-spacing: var(--brand-heading-letterSpacing-700);
 
-  color: var(--brand-FAQ-heading-color);
+  color: var(--brand-FAQ-color-heading);
   margin-bottom: var(--brand-FAQ-heading-marginBottom);
 }
 

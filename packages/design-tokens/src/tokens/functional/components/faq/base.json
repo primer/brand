@@ -2,7 +2,15 @@
   "brand": {
     "FAQ": {
       "maxWidth": {
-        "value": "816px"
+        "list": {
+          "value": "816px"
+        },
+        "tablist": {
+          "value": "348px"
+        },
+        "group": {
+          "value": "1250px"
+        }
       }
     }
   }

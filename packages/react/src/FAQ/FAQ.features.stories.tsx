@@ -182,6 +182,39 @@ export const Groups: StoryFn<typeof FAQ> = () => {
   )
 }
 
+export const TabedGroups: StoryFn<typeof FAQ> = () => {
+  return (
+    <Container>
+      <FAQ.Group>
+        <FAQ.Heading>Frequently asked&nbsp;questions</FAQ.Heading>
+        <FAQ>
+          <FAQ.GroupHeading>Batch one</FAQ.GroupHeading>
+          {fixtureData.map(({question, answer}) => {
+            return (
+              <FAQ.Item key={question}>
+                <FAQ.Question>{question}</FAQ.Question>
+                <FAQ.Answer>{answer}</FAQ.Answer>
+              </FAQ.Item>
+            )
+          })}
+        </FAQ>
+
+        <FAQ>
+          <FAQ.GroupHeading>Batch two</FAQ.GroupHeading>
+          {fixtureData.map(({question, answer}) => {
+            return (
+              <FAQ.Item key={question}>
+                <FAQ.Question>{question}</FAQ.Question>
+                <FAQ.Answer>{answer}</FAQ.Answer>
+              </FAQ.Item>
+            )
+          })}
+        </FAQ>
+      </FAQ.Group>
+    </Container>
+  )
+}
+
 export const DynamicDataExample: StoryFn<typeof FAQ> = () => {
   const faqs = [
     {
