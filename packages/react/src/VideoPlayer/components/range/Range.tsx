@@ -60,26 +60,26 @@ export const Range = ({
   return (
     <div className={clsx(styles.VideoPlayer__range, className)}>
       <progress aria-hidden="true" className={styles.VideoPlayer__rangeProgress} value={value} max={max} />
-      <label htmlFor={inputId} className={styles.VideoPlayer__srOnly}>
-        Seek
+      <label htmlFor={inputId}>
+        <span className={styles.VideoPlayer__srOnly}>Seek</span>
+        <input
+          tabIndex={0}
+          type="range"
+          className={clsx(styles.VideoPlayer__rangeInput, styles.VideoPlayer__progressBar2)}
+          value={value}
+          onChange={e => {
+            setValue(e.currentTarget.valueAsNumber)
+            onChange && onChange(e)
+          }}
+          max={max}
+          onKeyDown={e => {
+            handleKeyDown(e)
+            onKeyDown && onKeyDown(e)
+          }}
+          id={inputId}
+          {...props}
+        />
       </label>
-      <input
-        tabIndex={0}
-        type="range"
-        className={clsx(styles.VideoPlayer__rangeInput, styles.VideoPlayer__progressBar2)}
-        value={value}
-        onChange={e => {
-          setValue(e.currentTarget.valueAsNumber)
-          onChange && onChange(e)
-        }}
-        max={max}
-        onKeyDown={e => {
-          handleKeyDown(e)
-          onKeyDown && onKeyDown(e)
-        }}
-        id={inputId}
-        {...props}
-      />
       {tooltip && !!hoverValue && (
         <Tooltip style={{left: mousePos}}>{hoverValue ? tooltipFormatter(hoverValue) : ''}</Tooltip>
       )}
