@@ -75,7 +75,7 @@ test.describe('Visual Comparison: River', () => {
 
   test('River / Custom trailing content', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-river-fixtures--custom-trailing-content&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-river-features--custom-trailing-content&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -84,7 +84,7 @@ test.describe('Visual Comparison: River', () => {
 
   test('River / Custom trailing content w/ divider', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-river-fixtures--custom-trailing-content-with-divider&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-river-features--custom-trailing-content-with-divider&viewMode=story',
     )
 
     await page.waitForTimeout(500)
