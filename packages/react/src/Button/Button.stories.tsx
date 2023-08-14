@@ -9,6 +9,7 @@ export default {
     as: 'a',
     variant: defaultButtonVariant,
     size: defaultButtonSize,
+    block: false,
     href: '#',
     children: 'Button',
     disabled: false,
@@ -20,15 +21,15 @@ export default {
       description: 'The HTML element used to render the root of Button.',
       control: {
         type: 'inline-radio',
-        options: ['a', 'button'],
       },
+      options: ['a', 'button'],
     },
     variant: {
       description: 'The HTML element used to render the root of Button.',
       control: {
         type: 'inline-radio',
-        options: [...ButtonVariants],
       },
+      options: [...ButtonVariants],
     },
     href: {
       name: 'href',
@@ -42,8 +43,8 @@ export default {
       description: 'Size of button',
       control: {
         type: 'inline-radio',
-        options: [...ButtonSizes],
       },
+      options: [...ButtonSizes],
     },
     children: {
       name: 'children',

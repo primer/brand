@@ -122,12 +122,12 @@ describe('Textarea', () => {
     expect(textareaElement).not.toHaveAttribute('disabled')
   })
 
-  it('renders an aria-required attribute correctly', () => {
+  it('renders a required attribute correctly', () => {
     const {getByRole} = render(<Textarea required />)
 
     const textareaElement = getByRole('textbox') as HTMLTextAreaElement
 
-    expect(textareaElement).toHaveAttribute('aria-required', 'true')
+    expect(textareaElement).toHaveAttribute('required')
   })
 
   it('renders an invalid aria state when validation prop indicates an error', () => {
