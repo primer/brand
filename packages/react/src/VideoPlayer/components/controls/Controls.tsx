@@ -99,9 +99,6 @@ export const Controls = ({
   const renderSeek = useMemo(() => {
     return (
       <>
-        <label htmlFor="VideoPlayer__Seek" className={styles.VideoPlayer__srOnly}>
-          Seek
-        </label>
         <Range
           type="range"
           min="0"
@@ -223,24 +220,19 @@ export const Controls = ({
 
   const renderVolume = useMemo(
     () => (
-      <>
-        <label htmlFor="VideoPlayer__Volume" className={styles.VideoPlayer__srOnly}>
-          Volume
-        </label>
-        <Range
-          type="range"
-          min="0"
-          max={1}
-          step={0.001}
-          onInput={e => {
-            setVolume(e.currentTarget.valueAsNumber)
-          }}
-          className={styles.VideoPlayer__volumeBar}
-          value={volume}
-          a11yStep={0.1}
-          id="VideoPlayer__Volume"
-        />
-      </>
+      <Range
+        type="range"
+        min="0"
+        max={1}
+        step={0.001}
+        onInput={e => {
+          setVolume(e.currentTarget.valueAsNumber)
+        }}
+        className={styles.VideoPlayer__volumeBar}
+        value={volume}
+        a11yStep={0.1}
+        id="VideoPlayer__Volume"
+      />
     ),
     [volume],
   )

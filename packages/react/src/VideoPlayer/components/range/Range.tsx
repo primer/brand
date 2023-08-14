@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import clsx from 'clsx'
+import {useId} from '@reach/auto-id'
 import {Tooltip} from '../index'
 
 import styles from '../../VideoPlayer.module.css'
@@ -20,11 +21,15 @@ export const Range = ({
   a11yStep = 1,
   tooltip,
   tooltipFormatter = value => value.toString(),
+  id,
   ...props
 }: RangeProps) => {
   const [value, setValue] = useState(startValue)
   const [mousePos, setMousePos] = useState(0)
   const [hoverValue, setHoverValue] = useState(0)
+  const generatedId = useId()
+  const inputId = id || generatedId
+
   useEffect(() => {
     setValue(startValue)
   }, [startValue])
@@ -54,7 +59,10 @@ export const Range = ({
 
   return (
     <div className={clsx(styles.VideoPlayer__range, className)}>
-      <progress className={styles.VideoPlayer__rangeProgress} value={value} max={max} />
+      <progress aria-hidden="true" className={styles.VideoPlayer__rangeProgress} value={value} max={max} />
+      <label htmlFor={inputId} className={styles.VideoPlayer__srOnly}>
+        Seek
+      </label>
       <input
         tabIndex={0}
         type="range"
@@ -69,6 +77,7 @@ export const Range = ({
           handleKeyDown(e)
           onKeyDown && onKeyDown(e)
         }}
+        id={inputId}
         {...props}
       />
       {tooltip && !!hoverValue && (
