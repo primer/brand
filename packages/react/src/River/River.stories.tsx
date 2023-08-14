@@ -1,7 +1,7 @@
 import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 
-import {River, RiverBreakout} from '.'
+import {River} from '.'
 import {Heading, Text, Link} from '..'
 import {Container} from '../component-helpers'
 import placeholderImage from '../fixtures/images/placeholder-600x400.png'
@@ -311,38 +311,4 @@ export const CustomLogos: StoryFn<typeof River> = () => (
       </River>
     </div>
   </div>
-)
-
-// export const WithBreakout: StoryFn<typeof River> = args => (
-//   <Container>
-//     <River {...args}>
-//       <River.Visual>
-//         <PlaceholderImage />
-//       </River.Visual>
-//       <River.Content>
-//         <River.Breakout a11yHeading="Accelerate workflows">
-//           <em>Accelerate your workflows and scale your business fast</em> with access to millions of open source
-//           projects on GitHub, the largest source code host.
-//         </River.Breakout>
-//         <Link href="#">Call to action</Link>
-//       </River.Content>
-//     </River>
-//   </Container>
-// )
-
-export const WithBreakout: StoryFn<typeof River> = args => (
-  <Container>
-    <RiverBreakout a11yHeading="Accelerate workflows">
-      <River.Visual>
-        <PlaceholderImage />
-      </River.Visual>
-      <River.Content>
-        <Text>
-          Accelerate your workflows and scale your business fast with access to millions of open source projects on
-          GitHub, the largest source code host.
-        </Text>
-        <Link href="#">Call to action</Link>
-      </River.Content>
-    </RiverBreakout>
-  </Container>
 )

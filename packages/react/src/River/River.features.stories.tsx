@@ -1,6 +1,6 @@
 import React from 'react'
 import {Meta, StoryFn} from '@storybook/react'
-import {River} from '.'
+import {River, RiverBreakout} from '.'
 import {Heading, Link, Stack, Text, Timeline} from '..'
 import {Container} from '../component-helpers'
 import placeholderImage from '../fixtures/images/placeholder-600x400.png'
@@ -223,4 +223,49 @@ export const AlternatingLayout: StoryFn<typeof River> = () => (
       </River.Content>
     </River>
   </>
+)
+
+const TrailingTimeline = () => (
+  <Timeline>
+    <Timeline.Item>
+      <em>GitHub Codespaces</em> offers a complete dev environment in seconds.
+    </Timeline.Item>
+    <Timeline.Item>
+      <em>GitHub Copilot</em> is your AI pair programmer that empowers you to complete tasks.
+    </Timeline.Item>
+  </Timeline>
+)
+
+export const WithBreakout: StoryFn<typeof River> = () => (
+  <Container>
+    <RiverBreakout a11yHeading="Accelerate workflows">
+      <River.Visual>
+        <PlaceholderImage />
+      </River.Visual>
+      <River.Content trailingComponent={TrailingTimeline}>
+        <Text>
+          Accelerate your workflows and scale your business fast with access to millions of open source projects on
+          GitHub, the largest source code host.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </River.Content>
+    </RiverBreakout>
+  </Container>
+)
+
+export const WithBreakoutAndHighlightedText: StoryFn<typeof River> = () => (
+  <Container>
+    <RiverBreakout a11yHeading="Accelerate workflows">
+      <River.Visual>
+        <PlaceholderImage />
+      </River.Visual>
+      <River.Content trailingComponent={TrailingTimeline}>
+        <Text>
+          <em>This first sentence is a river breakout headline.</em> And this is where the body copy starts. Remember to
+          keep these nice and succinct.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </River.Content>
+    </RiverBreakout>
+  </Container>
 )

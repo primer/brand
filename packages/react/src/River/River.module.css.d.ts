@@ -1,8 +1,5 @@
 declare const styles: {
   readonly "River": string;
-  readonly "River--breakout": string;
-  readonly "River__text": string;
-  readonly "River__hiddenBreakoutHeading": string;
   readonly "River--align-center": string;
   readonly "River__visual": string;
   readonly "River__visual--fill-media": string;
@@ -19,6 +16,9 @@ declare const styles: {
   readonly "River--align-end": string;
   readonly "River__content": string;
   readonly "River__body-text": string;
+  readonly "RiverBreakout": string;
+  readonly "RiverBreakout--muted": string;
+  readonly "RiverBreakout__hiddenHeading": string;
 };
 export = styles;
 
