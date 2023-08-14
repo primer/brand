@@ -188,10 +188,11 @@ import {River} from '@primer/react-brand'
 | :---------- | :---------------- | :-----: | :-------------------------------------------------------------------------------------------------------------------------------------------- |
 | `fillMedia` | `boolean`         |  true   | Automatically styles images and video to fill and fit the width of the parent. Disable this setting if you have bespoke styling requirements. |
 | `children`  | `ReactElement`    |         | Bring your own component (BYOC) `img` or `ReactElement` (E.g. Next.js `Image` component)                                                      |
-| `hasShadow` | `boolean`         | `true`  | Shadow automatically applied to the `children`. Set be `false` when the child node has a transparent background.                              |
+| `hasShadow` | `boolean`         | `false` | Shadow applied to the `children`. Set be `false` when the child node has a transparent background.                                            |
 | `className` | `string`          |         | Sets a custom class on the root element                                                                                                       |
 | `id`        | `string`          |         | Sets a custom id                                                                                                                              |
 | `ref`       | `React.RefObject` |         | Forward a Ref to the underlying DOM node                                                                                                      |
+| `rounded`   | `boolean`         | `true`  | Toggle visually rounded corners. Enabled by default.                                                                                          |
 
 ### River.Content <Label>Required</Label>
 

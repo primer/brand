@@ -208,11 +208,23 @@ type RiverVisualProps = BaseProps<HTMLDivElement> &
      * This can be disabled by setting this prop to `false`.
      */
     hasShadow?: boolean
+    /**
+     * Enables rounded corners.
+     * Can optionally be disabled.
+     */
+    rounded?: boolean
   }>
 
 const Visual = forwardRef(
   (
-    {fillMedia = true, children, className, hasShadow = true, ...rest}: PropsWithChildren<RiverVisualProps>,
+    {
+      fillMedia = true,
+      children,
+      className,
+      hasShadow = false,
+      rounded = true,
+      ...rest
+    }: PropsWithChildren<RiverVisualProps>,
     ref: Ref<HTMLDivElement>,
   ) => {
     return (
@@ -221,6 +233,7 @@ const Visual = forwardRef(
           styles.River__visual,
           hasShadow && styles['River__visual--has-shadow'],
           fillMedia && styles['River__visual--fill-media'],
+          rounded && styles['River__visual--rounded'],
           className,
         )}
         {...rest}
