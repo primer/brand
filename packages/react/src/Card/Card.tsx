@@ -125,7 +125,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
           return child
         })}
         <div className={styles.Card__action}>
-          <Text as="span" className={clsx(stylesLink['Link--label'])}>
+          <Text as="span" size="200" className={clsx(stylesLink['Link--label'])}>
             {ctaText}
           </Text>
           <ExpandableArrow
@@ -189,7 +189,9 @@ const CardLabel = forwardRef<HTMLSpanElement, CardLabelProps>(
   ({children, className, color = LabelColors[0], ...rest}, ref) => {
     return (
       <span className={clsx(styles.Card__label, className)} ref={ref} {...rest}>
-        <Label color={color}>{children}</Label>
+        <Label size="small" color={color}>
+          {children}
+        </Label>
       </span>
     )
   },
@@ -228,7 +230,7 @@ type CardDescriptionProps = BaseProps<HTMLParagraphElement> & {
 const CardDescription = forwardRef<HTMLParagraphElement, CardDescriptionProps>(
   ({children, className, ...rest}, ref) => {
     return (
-      <Text variant="muted" ref={ref} size="300" as="p" className={clsx(styles.Card__description, className)} {...rest}>
+      <Text variant="muted" ref={ref} size="200" as="p" className={clsx(styles.Card__description, className)} {...rest}>
         {children}
       </Text>
     )

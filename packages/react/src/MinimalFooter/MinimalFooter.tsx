@@ -134,7 +134,7 @@ function Footnotes({children, className}: PropsWithChildren<FootnoteProps>) {
       return React.cloneElement(child as React.ReactElement, {
         as: 'p',
         variant: 'muted',
-        size: 200,
+        size: 100,
         className: clsx(styles['Footer__terms-item'], child.props.className),
         ...child.props, // allow overrides for escape hatch
       })
@@ -297,7 +297,7 @@ const Link = <C extends React.ElementType = 'a'>({as, children, ...rest}: PropsW
       }
       {...rest}
     >
-      <Text variant="muted" size="300">
+      <Text variant="muted" size="200">
         {children}
       </Text>
     </Component>
