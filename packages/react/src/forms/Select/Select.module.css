@@ -63,8 +63,8 @@
   padding-inline: var(--brand-control-medium-paddingInline-condensed);
   padding-inline-end: calc(var(--brand-control-medium-paddingInline-condensed) + var(--base-size-16));
   padding-block: calc(var(--brand-control-medium-paddingBlock) - var(--brand-borderWidth-thin));
-  font-weight: var(--brand-text-weight-200);
-  font-size: var(--brand-text-size-200);
+  font-weight: var(--brand-text-weight-100);
+  font-size: var(--brand-text-size-100);
 }
 
 .Select-wrapper--large {
@@ -76,8 +76,8 @@
 }
 
 .Select--large {
-  font-weight: var(--brand-text-weight-300);
-  font-size: var(--brand-text-size-300);
+  font-weight: var(--brand-text-weight-200);
+  font-size: var(--brand-text-size-200);
   padding-inline: var(--brand-control-large-paddingInline-condensed);
   padding-inline-end: calc(var(--brand-control-large-paddingInline-condensed) + var(--base-size-16));
   padding-block: calc(var(--brand-control-large-paddingBlock) - var(--brand-borderWidth-thin));
@@ -100,7 +100,7 @@
   border-radius: var(--brand-borderRadius-medium, 6px);
   font-family: var(--brand-body-fontFamily);
   position: relative;
-  display: grid;
+  display: inline-grid;
   grid-template-columns: minmax(0, auto) var(--base-size-16);
 }
 

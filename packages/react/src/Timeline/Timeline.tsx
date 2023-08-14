@@ -42,7 +42,7 @@ const Item = ({className, children, ...rest}: PropsWithChildren<TimelineItemProp
 
   return (
     <li className={itemClassName} {...rest}>
-      <Text size="300" variant={defaultColor}>
+      <Text size="200" variant={defaultColor}>
         {children}
       </Text>
     </li>

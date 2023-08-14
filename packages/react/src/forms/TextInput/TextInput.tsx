@@ -97,7 +97,7 @@ const _TextInput = (
           )}
         >
           <Text
-            size={size === 'large' ? '300' : '200'}
+            size={size === 'large' ? '200' : '100'}
             as="span"
             className={clsx(styles['TextInput-leading-text-inner'], styles[`TextInput-leading-text-inner--${size}`])}
           >
@@ -178,7 +178,7 @@ const _TextInput = (
           )}
         >
           <Text
-            size={size === 'large' ? '300' : '200'}
+            size={size === 'large' ? '200' : '100'}
             as="span"
             className={clsx(styles['TextInput-trailing-text-inner'], styles[`TextInput-trailing-text-inner--${size}`])}
           >

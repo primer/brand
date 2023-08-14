@@ -2,8 +2,30 @@
   color: var(--brand-color-text-default);
 }
 
+.Heading--display {
+  font-weight: var(--brand-heading-weight-1000);
+  font-size: var(--brand-text-size-1000);
+  line-height: var(--brand-text-lineHeight-1000);
+  font-family: var(--brand-heading-fontFamily);
+  letter-spacing: var(--brand-text-letterSpacing-1000);
+}
+
+.Heading--subhead-large {
+  font-weight: var(--brand-text-subhead-weight-large);
+  font-size: var(--brand-text-subhead-size-large);
+  line-height: var(--brand-text-subhead-lineHeight-large);
+  font-family: var(--brand-heading-fontFamily);
+}
+
+.Heading--subhead-medium {
+  font-weight: var(--brand-text-subhead-weight-medium);
+  font-size: var(--brand-text-subhead-size-medium);
+  line-height: var(--brand-text-subhead-lineHeight-medium);
+  font-family: var(--brand-heading-fontFamily);
+}
+
 .Heading--1 {
-  font-weight: var(--brand-text-weight-900);
+  font-weight: var(--brand-heading-weight-900);
   font-size: var(--brand-text-size-900);
   line-height: var(--brand-text-lineHeight-900);
   font-family: var(--brand-heading-fontFamily);
@@ -11,7 +33,7 @@
 }
 
 .Heading--2 {
-  font-weight: var(--brand-text-weight-800);
+  font-weight: var(--brand-heading-weight-800);
   font-size: var(--brand-text-size-800);
   line-height: var(--brand-text-lineHeight-800);
   font-family: var(--brand-heading-fontFamily);

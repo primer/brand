@@ -106,9 +106,9 @@ describe('Hero', () => {
     expect(imageEl).toHaveClass('Hero-image--pos-inline-end')
   })
 
-  test('renders with default colors and size', () => {
+  test('renders a label with default colors and size', () => {
     const mockLabel = 'Label'
-    const expectedSize = 'medium'
+    const expectedSize = 'small'
     const expectedColor = 'default'
 
     const {getByTestId} = render(

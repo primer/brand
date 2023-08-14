@@ -1,6 +1,7 @@
 import React, {type Ref, useContext} from 'react'
 import clsx from 'clsx'
 import {CheckIcon, DashIcon} from '@primer/octicons-react'
+import {Text} from '../../Text'
 import type {BaseProps} from '../../component-helpers'
 import {ListContext} from '../listContext'
 
@@ -34,7 +35,7 @@ function Root({className, children, ...props}: ListItemProps) {
   return (
     <li className={clsx(styles.ListItem, !variant && styles.OrderedList__item, className)} {...props}>
       {leadingVisual()}
-      {children}
+      <Text as="span">{children}</Text>
     </li>
   )
 }

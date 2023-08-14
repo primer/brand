@@ -4,7 +4,7 @@ import styles from './Heading.module.css'
 import type {BaseProps} from '../component-helpers'
 import {useAnimation} from '..'
 
-export const HeadingSizes = ['1', '2', '3', '4', '5', '6'] as const
+export const HeadingSizes = ['display', '1', '2', '3', '4', '5', '6', 'subhead-large', 'subhead-medium'] as const
 export const HeadingTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const
 
 export const HeadingWeights = ['heavy', 'extrabold', 'bold', 'semibold', 'medium', 'normal', 'light'] as const
@@ -36,12 +36,12 @@ type ResponsiveWeightMap = {
 }
 
 export const classMap = {
-  h1: HeadingSizes[0],
-  h2: HeadingSizes[1],
-  h3: HeadingSizes[2],
-  h4: HeadingSizes[3],
-  h5: HeadingSizes[4],
-  h6: HeadingSizes[5],
+  h1: HeadingSizes[1],
+  h2: HeadingSizes[2],
+  h3: HeadingSizes[3],
+  h4: HeadingSizes[4],
+  h5: HeadingSizes[5],
+  h6: HeadingSizes[6],
 }
 
 export type HeadingProps = {
