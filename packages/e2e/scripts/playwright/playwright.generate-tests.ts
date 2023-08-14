@@ -88,10 +88,6 @@
     'components-logosuite-features--mixed-width', // animation only
     'components-logosuite-features--following-hero', // animation only
     'components-logosuite-features--stacked', // animation only
-    'components-videoplayer--default', // video makes this too flakey
-    'components-videoplayer--with-poster', // video makes this too flakey
-    'components-videoplayer--without-branding', // video makes this too flakey
-    'components-videoplayer--playground', // video makes this too flakey
   ]
 
   const categorisedStories = Object.keys(stories as Stories).reduce((acc, key) => {
