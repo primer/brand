@@ -41,7 +41,7 @@
   margin-top: calc(var(--base-size-24) * -1); /* negate grid gap */
 }
 
-.Testimonial-quote:has(em) {
+.Testimonial-quote--muted {
   color: var(--brand-color-text-subtle);
 }
 

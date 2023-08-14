@@ -1,4 +1,12 @@
-import React, {HTMLAttributes, PropsWithChildren, forwardRef, SVGProps, CSSProperties} from 'react'
+import React, {
+  HTMLAttributes,
+  PropsWithChildren,
+  forwardRef,
+  SVGProps,
+  CSSProperties,
+  useMemo,
+  useCallback,
+} from 'react'
 import clsx from 'clsx'
 import {BaseProps} from '../component-helpers'
 import {Text, Avatar as BaseAvatar, useAnimation} from '../'
@@ -99,9 +107,29 @@ type QuoteProps = {
   BaseProps<HTMLElement>
 
 function _Quote({children, className}: QuoteProps, ref) {
+  const childrenArray = useMemo(() => React.Children.toArray(children), [children])
+
+  // TODO: when Firefox supports :has() selector, we should use that instead of JS
+  const getConditionalVariant = useCallback(() => {
+    if (childrenArray.some(child => React.isValidElement(child) && child.type === 'em')) {
+      return 'muted'
+    }
+    return 'default'
+  }, [childrenArray])
+
+  const defaultColor = childrenArray.length === 1 ? 'default' : getConditionalVariant()
+
   return (
     <blockquote ref={ref}>
-      <Text className={clsx(styles['Testimonial-quote'], className)}>{children}</Text>
+      <Text
+        className={clsx(
+          styles['Testimonial-quote'],
+          defaultColor === 'muted' && styles['Testimonial-quote--muted'],
+          className,
+        )}
+      >
+        {children}
+      </Text>
     </blockquote>
   )
 }
