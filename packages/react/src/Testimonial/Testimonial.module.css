@@ -1,9 +1,8 @@
 .Testimonial {
-  --testimonial-quote-size: var(--brand-text-size-300);
   display: grid;
   gap: var(--base-size-16);
   font-family: var(--brand-fontStack-sansSerif);
-  font-size: var(--testimonial-quote-size);
+  font-size: var(--brand-Testimonial-quoteSize-default);
   color: var(--brand-color-text-default);
 }
 
@@ -21,7 +20,7 @@
 }
 
 .Testimonial--size-large {
-  --testimonial-quote-size: var(--brand-text-size-700);
+  font-size: var(--brand-Testimonial-quoteSize-large);
   gap: var(--base-size-24);
 }
 

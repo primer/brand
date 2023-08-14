@@ -1,0 +1,15 @@
+{
+    "brand": {
+      "Testimonial": {
+        "quoteSize": {
+          "default": {
+            "value": "var(--brand-text-size-300)"
+          },
+          "large": {
+            "value": "var(--brand-text-size-700)"
+          }
+        }
+      }
+    }
+  }
+  

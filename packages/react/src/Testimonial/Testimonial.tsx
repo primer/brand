@@ -12,6 +12,8 @@ import {BaseProps} from '../component-helpers'
 import {Text, Avatar as BaseAvatar, useAnimation} from '../'
 import type {AvatarProps} from '../'
 
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/testimonial/base.css'
+
 import styles from './Testimonial.module.css'
 
 type TestimonialAlignment = 'start' | 'center'
