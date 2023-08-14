@@ -5,12 +5,6 @@
         "gap": {
           "value": "var(--base-size-16)"
         },
-        "background": {
-          "value": "hsl(var(--base-color-scale-black-0-hsl) / 80%)"
-        },
-        "backgroundGradient": {
-          "value": "linear-gradient(rgba(0,0,0,0), hsl(var(--base-color-scale-black-0-hsl) / 40%))"
-        },
         "padding": {
           "value": "var(--base-size-16) var(--base-size-24)"
         },
@@ -58,9 +52,6 @@
       "tooltip": {
         "padding": {
           "value": "5px 10px"
-        },
-        "boxShadow": {
-          "value": "0 4px 4px rgba(0, 0, 0, 0.2)"
         }
       },
       "heading": {
