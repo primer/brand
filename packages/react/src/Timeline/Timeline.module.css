@@ -1,5 +1,5 @@
 .Timeline {
-  --bulletY: calc(var(--brand-Timeline-lineHeight) / 2 - var(--brand-Timeline-bullet-size) / 2 + var(--base-size-4));
+  --bulletY: calc(var(--base-size-8) / 2 - var(--brand-Timeline-bullet-size) / 2 + var(--base-size-8));
 
   margin: 0;
   padding: 0;

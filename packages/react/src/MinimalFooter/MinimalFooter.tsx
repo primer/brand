@@ -110,7 +110,7 @@ function Root({
               >
                 <>{LinkChildren}</>
               </Stack>
-              <Text as="p" size="300" variant="muted" className={styles['Footer__copyright']}>
+              <Text as="p" size="200" variant="muted" className={styles['Footer__copyright']}>
                 {copyrightStatement ? copyrightStatement : `\u00A9 ${currentYear} GitHub. All rights reserved.`}
               </Text>
             </Stack>
@@ -134,7 +134,7 @@ function Footnotes({children, className}: PropsWithChildren<FootnoteProps>) {
       return React.cloneElement(child as React.ReactElement, {
         as: 'p',
         variant: 'muted',
-        size: 100,
+        size: '100',
         className: clsx(styles['Footer__terms-item'], child.props.className),
         ...child.props, // allow overrides for escape hatch
       })
