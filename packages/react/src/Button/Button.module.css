@@ -48,13 +48,6 @@
   color: var(--brand-Button-fg-primary-disabled);
 }
 
-/* optically adjust arrow to align with the end (right) padding */
-/* reduce gap between label and arrow */
-.Button-arrow {
-  margin-inline-end: calc(var(--base-size-4) * -1);
-  margin-inline-start: calc(var(--base-size-8) * -1);
-}
-
 .Button--primary .Button-arrow--disabled,
 .Button--primary .Button__icon-visual--disabled {
   color: var(--brand-Button-fg-primary-disabled);

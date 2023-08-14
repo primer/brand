@@ -17,7 +17,7 @@
           "value": "{base.size.20}"
         },
         "paddingBlock": {
-          "value": "14px"
+          "value": "{base.size.12}"
         },
         "paddingInline": {
           "condensed": {
@@ -31,7 +31,7 @@
           }
         },
         "gap": {
-          "value": "{base.size.16}"
+          "value": "{base.size.8}"
         }
       },
       "large": {
