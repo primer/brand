@@ -2,7 +2,7 @@
   "brand": {
     "Timeline": {
       "lineHeight": {
-        "value": "var(--base-size-16)"
+        "value": "var(--brand-text-lineHeight-200)"
       },
       "lineLength": {
         "value": "44ch"
