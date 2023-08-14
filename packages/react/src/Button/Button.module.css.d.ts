@@ -17,6 +17,7 @@ declare const styles: {
   readonly "Button--label-secondary": string;
   readonly "Button--size-medium": string;
   readonly "Button--size-large": string;
+  readonly "Button--block": string;
 };
 export = styles;
 

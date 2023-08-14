@@ -108,7 +108,9 @@ jobs:
       #     write-mode: overwrite
 
       - name: Excluded cypress tests in-place
-        run: npx json -I -f ${{env.NEXTJS_FOLDER}}/tsconfig.json -e 'this.exclude=["node_modules", "**/*.cy.ts"]'
+        # includes temp workaround for cypress bug. remove when fixed
+        # https://github.com/cypress-io/cypress/issues/27448
+        run: npx json -I -f ${{env.NEXTJS_FOLDER}}/tsconfig.json -e 'this.exclude=["node_modules", "**/*.cy.ts"]; this.compilerOptions.moduleResolution="node"'
 
       - name: Fix monorepo-related linting issues
         run: |

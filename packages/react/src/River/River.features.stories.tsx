@@ -1,12 +1,12 @@
 import React from 'react'
-import {StoryFn, Meta} from '@storybook/react'
+import {Meta, StoryFn} from '@storybook/react'
 import {River} from '.'
-import {Heading, Text, Link} from '..'
+import {Heading, Link, Stack, Text, Timeline} from '..'
 import {Container} from '../component-helpers'
 import placeholderImage from '../fixtures/images/placeholder-600x400.png'
 
 export default {
-  title: 'Components/River/fixtures',
+  title: 'Components/River/features',
   component: River,
 } as Meta<typeof River>
 
@@ -106,6 +106,20 @@ export const AlternativeHeadingLevel: StoryFn<typeof River> = () => (
   </Container>
 )
 
+export const NoRoundedVisualCorners: StoryFn<typeof River> = () => (
+  <Container>
+    <River>
+      <River.Visual rounded={false}>
+        <PlaceholderImage />
+      </River.Visual>
+      <River.Content>
+        <Heading>This is a h1</Heading>
+        <Text>Use alternative heading levels, while maintaining the default text size.</Text>
+      </River.Content>
+    </River>
+  </Container>
+)
+
 export const AlternativeHeadingSize: StoryFn<typeof River> = () => (
   <Container>
     <River>
@@ -119,6 +133,53 @@ export const AlternativeHeadingSize: StoryFn<typeof River> = () => (
     </River>
   </Container>
 )
+
+const ExampleTrailingComponent = () => (
+  <Stack direction="vertical" padding="none" gap="spacious" alignItems="flex-start">
+    <Timeline>
+      <Timeline.Item>
+        <em>GitHub Codespaces</em> offers a complete dev environment in seconds.
+      </Timeline.Item>
+      <Timeline.Item>
+        <em>GitHub Copilot</em> is your AI pair programmer that empowers you to complete tasks.
+      </Timeline.Item>
+    </Timeline>
+    <Link href="#" variant="accent">
+      Learn more about a thing
+    </Link>
+  </Stack>
+)
+
+export const CustomTrailingContent: StoryFn<typeof River> = () => (
+  <Container>
+    <River>
+      <River.Visual>
+        <PlaceholderImage />
+      </River.Visual>
+      <River.Content trailingComponent={ExampleTrailingComponent}>
+        <Heading>Heading</Heading>
+        <Text>Use alternative heading sizes, while maintaining the default heading level.</Text>
+      </River.Content>
+    </River>
+  </Container>
+)
+CustomTrailingContent.storyName = 'Custom trailing content'
+
+export const CustomTrailingContentWithDivider: StoryFn<typeof River> = () => (
+  <Container>
+    <River>
+      <River.Visual>
+        <PlaceholderImage />
+      </River.Visual>
+      <River.Content trailingComponent={ExampleTrailingComponent} trailingComponentDivider>
+        <Heading>Heading</Heading>
+        <Text>Use alternative heading sizes, while maintaining the default heading level.</Text>
+      </River.Content>
+    </River>
+  </Container>
+)
+
+CustomTrailingContentWithDivider.storyName = 'Custom trailing content w/ divider'
 
 export const AlternatingLayout: StoryFn<typeof River> = () => (
   <>

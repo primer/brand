@@ -10,12 +10,39 @@
 }
 
 .Hero--align-center {
+  justify-items: center;
   align-items: center;
   text-align: center;
 }
 
+.Hero-grid {
+  --brand-Grid-spacing-margin: 0;
+}
+
+.Hero-grid--block-end,
+.Hero-grid--inline-end {
+  --brand-Grid-spacing-row: var(--base-size-40);
+}
+
+@media screen and (min-width: 48rem) {
+  .Hero-grid--block-end {
+    --brand-Grid-spacing-row: var(--base-size-80);
+  }
+}
+
 .Hero--align-center .Hero-actions {
   justify-content: center;
+}
+
+.Hero--align-center .Hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Hero-image {
+  border-radius: var(--brand-borderRadius-large);
+  width: 100%;
 }
 
 .Hero-label {

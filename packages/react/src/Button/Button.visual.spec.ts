@@ -89,6 +89,13 @@ test.describe('Visual Comparison: Button', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('Button / Block', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--block&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Button / Polymorphism', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-button-features--polymorphism&viewMode=story',

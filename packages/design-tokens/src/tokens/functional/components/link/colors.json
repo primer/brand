@@ -7,8 +7,8 @@
           "dark": "var(--brand-color-text-default)"
         },
         "accent": {
-          "value": "var(--base-color-scale-blue-5)",
-          "dark": "var(--base-color-scale-blue-4)"
+          "value": "var(--base-color-scale-blue-6)",
+          "dark": "var(--base-color-scale-blue-2)"
         }
       }
     }
