@@ -26,7 +26,7 @@ import {VideoPlayer} from '@primer/react-brand'
 ## With poster
 
 ```jsx live
-<VideoPlayer poster="/example-poster.png" title="GitHub Video Demo">
+<VideoPlayer poster="/example-poster.png" title="GitHub media player">
   <VideoPlayer.Source src="/example.mp4" />
   <VideoPlayer.Track src="/example.vtt" />
 </VideoPlayer>
@@ -35,7 +35,7 @@ import {VideoPlayer} from '@primer/react-brand'
 ## Without branding
 
 ```jsx live
-<VideoPlayer branding={false} title="GitHub Video Demo">
+<VideoPlayer branding={false} title="GitHub media player">
   <VideoPlayer.Source src="/example.mp4" />
   <VideoPlayer.Track src="/example.vtt" />
 </VideoPlayer>
@@ -78,10 +78,10 @@ The component API supports all standard HTML attribute props, while providing so
 
 The component API supports all standard HTML attribute props, while providing some additional behavior as described below.
 
-| Name      | Type                                                            | Default | Required | Description                                                                                                                              |
-| :-------- | :-------------------------------------------------------------- | :-----: | :------: | :--------------------------------------------------------------------------------------------------------------------------------------- |
-| `src`     | `string`                                                        |         |  `true`  | Sets the source of the VTT file containing captions                                                                                      |
-| `kind`    | `subtitles`, `captions`, `descriptions`, `chapters`, `metadata` |         | `false`  | Sets how the text track is meant to be used                                                                                              |
-| `srcLang` | `string`                                                        |         | `false`  | Language of the text data. It must be a valid [BCP 47](https://r12a.github.io/app-subtags/) language tag.                                |
-| `label`   | `string`                                                        |         | `false`  | A user-readable title of the text track which is used by the browser when listing available text tracks.                                 |
-| `default` | `boolean`                                                       |         | `false`  | This attribute indicates that the track should be enabled unless the user's preferences indicate that another track is more appropriate. |
+| Name      | Type                                                                      | Default | Required | Description                                                                                                                              |
+| :-------- | :------------------------------------------------------------------------ | :-----: | :------: | :--------------------------------------------------------------------------------------------------------------------------------------- |
+| `src`     | `string`                                                                  |         |  `true`  | Sets the source of the VTT file containing captions                                                                                      |
+| `kind`    | `'subtitles'`, `'captions'`, `'descriptions'`, `'chapters'`, `'metadata'` |         | `false`  | Sets how the text track is meant to be used                                                                                              |
+| `srcLang` | `string`                                                                  |         | `false`  | Language of the text data. It must be a valid [BCP 47](https://r12a.github.io/app-subtags/) language tag.                                |
+| `label`   | `string`                                                                  |         | `false`  | A user-readable title of the text track which is used by the browser when listing available text tracks.                                 |
+| `default` | `boolean`                                                                 |         | `false`  | This attribute indicates that the track should be enabled unless the user's preferences indicate that another track is more appropriate. |

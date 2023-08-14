@@ -8,7 +8,7 @@ export default {
   component: VideoPlayer,
   args: {
     poster: posterImage,
-    title: 'GitHub Video Demo',
+    title: 'GitHub media player',
     branding: true,
   },
   argTypes: {

@@ -120,6 +120,9 @@ export const Controls = ({
             {<span className={styles.VideoPlayer__totalTime}> / {getMinuteSecondTime(totalTime || 0) || '00:00'}</span>}
           </Text>
         </div>
+        <label htmlFor="VideoPlayer__Seek" className={styles.VideoPlayer__srOnly}>
+          Seek
+        </label>
       </>
     )
   }, [videoRef, totalTime, currentTime, playedTime])
@@ -221,20 +224,25 @@ export const Controls = ({
 
   const renderVolume = useMemo(
     () => (
-      <Range
-        type="range"
-        min="0"
-        max={1}
-        step={0.001}
-        onInput={e => {
-          setVolume(e.currentTarget.valueAsNumber)
-        }}
-        className={styles.VideoPlayer__volumeBar}
-        value={volume}
-        a11yStep={0.1}
-        label="Volume"
-        id="VideoPlayer__Volume"
-      />
+      <>
+        <Range
+          type="range"
+          min="0"
+          max={1}
+          step={0.001}
+          onInput={e => {
+            setVolume(e.currentTarget.valueAsNumber)
+          }}
+          className={styles.VideoPlayer__volumeBar}
+          value={volume}
+          a11yStep={0.1}
+          label="Volume"
+          id="VideoPlayer__Volume"
+        />
+        <label htmlFor="VideoPlayer__Volume" className={styles.VideoPlayer__srOnly}>
+          Volume
+        </label>
+      </>
     ),
     [volume],
   )
