@@ -39,6 +39,10 @@ export type GridProps<T extends keyof JSX.IntrinsicElements = 'div'> = React.HTM
    */
   enableOverlay?: boolean
   /**
+   * Fills the width of the parent container and removes the max-width.
+   */
+  fullWidth?: boolean
+  /**
    * Test id for the root element.
    */
   ['data-testid']?: string
@@ -53,11 +57,17 @@ const _GridRoot = memo(
     className,
     children,
     as = 'div',
+    fullWidth = false,
     enableOverlay = false,
     ['data-testid']: testId,
     ...rest
   }: PropsWithChildren<GridProps>) => {
-    const gridClass = clsx(styles.Grid, enableOverlay && styles['Grid--has-overlay'], className)
+    const gridClass = clsx(
+      styles.Grid,
+      enableOverlay && styles['Grid--has-overlay'],
+      fullWidth && styles['Grid--full-width'],
+      className,
+    )
 
     const testIdUID = useId(testId)
 

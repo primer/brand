@@ -1,0 +1,26 @@
+{
+  "brand": {
+    "Timeline": {
+      "lineHeight": {
+        "value": "var(--brand-text-lineHeight-300)"
+      },
+      "lineLength": {
+        "value": "44ch"
+      },
+      "strokeWidth": {
+        "value": "2px"
+      },
+      "spacing": {
+        "value": "var(--base-size-16)"
+      },
+      "bullet": {
+        "size": {
+          "value": "var(--base-size-8)"
+        },
+        "spacing": {
+          "value": "2px"
+        }
+      }
+    }
+  }
+}

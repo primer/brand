@@ -88,6 +88,63 @@ describe('River', () => {
     expect(elTwo.classList).toContain(expectRightChildClass) // should be the visual DOM node
   })
 
+  it('renders with rounded corners by default', () => {
+    const visualId = 'visual-el'
+    const {getByTestId} = render(
+      <River>
+        <River.Visual data-testid={visualId}>
+          <MockImage />
+        </River.Visual>
+        <River.Content>
+          <Text>{mockText}</Text>
+        </River.Content>
+      </River>,
+    )
+
+    const visualEl = getByTestId(visualId)
+    const expectedClass = 'River__visual--rounded'
+
+    expect(visualEl).toHaveClass(expectedClass)
+  })
+
+  it('renders with shadows turned off by default', () => {
+    const visualId = 'visual-el'
+    const {getByTestId} = render(
+      <River>
+        <River.Visual data-testid={visualId}>
+          <MockImage />
+        </River.Visual>
+        <River.Content>
+          <Text>{mockText}</Text>
+        </River.Content>
+      </River>,
+    )
+
+    const visualEl = getByTestId(visualId)
+    const expectedClass = 'River__visual--has-shadow'
+
+    expect(visualEl).not.toHaveClass(expectedClass)
+  })
+
+  it('optionally renders with shadows turned on', () => {
+    const visualId = 'visual-el'
+    const {getByTestId} = render(
+      <River>
+        <River.Visual data-testid={visualId} hasShadow>
+          <MockImage />
+        </River.Visual>
+        <River.Content>
+          <Text>{mockText}</Text>
+        </River.Content>
+      </River>,
+    )
+
+    const visualEl = getByTestId(visualId)
+    const expectedClass = 'River__visual--has-shadow'
+
+    expect(visualEl).toHaveClass(expectedClass)
+  })
+
   it('can optionally render content in end alignment visually and semantically', () => {
     const rootId = 'root-el'
     const {getByTestId} = render(
