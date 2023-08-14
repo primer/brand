@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import type {BaseProps} from '../component-helpers'
 import {Heading, Text, Link, HeadingProps, TextProps, LinkProps} from '../'
 
-import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/bento/colors.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/bento/colors-with-modes.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/bento/base.css'
 import styles from './Bento.module.css'
 
