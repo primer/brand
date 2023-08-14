@@ -52,7 +52,7 @@ const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, style, animate
           if (child.type === FAQHeading) {
             return React.cloneElement(child as React.ReactElement, {
               align: hasSubheading ? 'start' : child.props.align,
-              size: hasSubheading ? '2' : child.props.size,
+              size: hasSubheading ? '3' : child.props.size,
               weight: hasSubheading ? 'semibold' : child.props.weight,
             })
           }
@@ -92,7 +92,7 @@ type FAQSubheadingProps = BaseProps<HTMLHeadingElement> & {
   as?: Exclude<HeadingProps['as'], 'h1'>
 } & HeadingProps
 
-function FAQSubheading({children, className, as = 'h3', size = '4', weight, ...rest}: FAQSubheadingProps) {
+function FAQSubheading({children, className, as = 'h3', size = '5', weight, ...rest}: FAQSubheadingProps) {
   return (
     <Heading as={as} className={clsx(styles.FAQ__subheading, className)} weight={weight} size={size} {...rest}>
       {children}
