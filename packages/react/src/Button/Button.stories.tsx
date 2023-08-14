@@ -14,6 +14,7 @@ export default {
     children: 'Button',
     disabled: false,
     'aria-disabled': false,
+    hasArrow: true,
   },
   // overriding default type inference for args with more useful control types
   argTypes: {
@@ -52,6 +53,20 @@ export default {
       type: {name: 'string', required: true},
       control: {
         type: 'text',
+      },
+    },
+    disabled: {
+      name: 'disabled',
+      type: {name: 'boolean', required: false},
+      control: {
+        type: 'boolean',
+      },
+    },
+    hasArrow: {
+      name: 'hasArrow',
+      type: {name: 'boolean', required: false},
+      control: {
+        type: 'boolean',
       },
     },
   },

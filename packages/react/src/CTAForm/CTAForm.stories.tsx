@@ -20,7 +20,7 @@ export const Playground: StoryFn<typeof CTAForm> = _args => (
     <CTAForm.Confirm>
       <FormControl required>
         <FormControl.Label>
-          <Text size="300" variant="muted">
+          <Text size="200" variant="muted">
             I agree to the <InlineLink href="https://github.com">Privacy Policy</InlineLink> and{' '}
             <InlineLink href="https://github.com">Terms of Service</InlineLink>
           </Text>

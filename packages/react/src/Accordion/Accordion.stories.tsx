@@ -1,7 +1,7 @@
 import {Meta} from '@storybook/react'
 import React from 'react'
 import {Accordion} from '.'
-import {Text, InlineLink} from '../'
+import {InlineLink, UnorderedList} from '../'
 
 export default {
   title: 'Components/Accordion',
@@ -37,28 +37,12 @@ export const Composition = () => (
       <Accordion.Heading>Who is eligible to apply?</Accordion.Heading>
       <Accordion.Content>
         <p>Startups who meet the following criteria are eligible to apply for the program:</p>
-        <ol>
-          <li>
-            <Text size="300" variant="muted">
-              Must be associated with a current GitHub for Startups partner.
-            </Text>
-          </li>
-          <li>
-            <Text size="300" variant="muted">
-              Self-funded or funded (Seed-Series A)
-            </Text>
-          </li>
-          <li>
-            <Text size="300" variant="muted">
-              Not a current GitHub Enterprise customer
-            </Text>
-          </li>
-          <li>
-            <Text size="300" variant="muted">
-              Must not have previously received credits for GitHub Enterprise
-            </Text>
-          </li>
-        </ol>
+        <UnorderedList>
+          <UnorderedList.Item>Must be associated with a current GitHub for Startups partner.</UnorderedList.Item>
+          <UnorderedList.Item>Self-funded or funded (Seed-Series A)</UnorderedList.Item>
+          <UnorderedList.Item>Not a current GitHub Enterprise customer</UnorderedList.Item>
+          <UnorderedList.Item>Must not have previously received credits for GitHub Enterprise</UnorderedList.Item>
+        </UnorderedList>
       </Accordion.Content>
     </Accordion>
     <Accordion>

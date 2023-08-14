@@ -71,19 +71,15 @@ const Template: StoryFn<typeof ComparisonTable> = args => (
     <ComparisonTable.Row>
       <ComparisonTable.Cell>Automation & CI/CD</ComparisonTable.Cell>
       <ComparisonTable.Cell>
-        <Text as="p" size="300">
-          Comparable native core capabilities
-        </Text>
-        <Text as="p" size="300">
+        <Text as="p">Comparable native core capabilities</Text>
+        <Text as="p">
           <InlineLink href="#">Over 13,000 GitHub Actions are available</InlineLink>
           &nbsp;in the GitHub Marketplace to automate your development workflow.
         </Text>
       </ComparisonTable.Cell>
       <ComparisonTable.Cell>
-        <Text as="p" size="300">
-          Comparable native capabilities
-        </Text>
-        <Text as="p" size="300">
+        <Text as="p">Comparable native capabilities</Text>
+        <Text as="p">
           1,800+ community contributed Jenkins plugins <InlineLink href="#">in Jenkins Plugin Marketplace.</InlineLink>
         </Text>
       </ComparisonTable.Cell>
@@ -92,12 +88,8 @@ const Template: StoryFn<typeof ComparisonTable> = args => (
       <ComparisonTable.Cell>Deployment models</ComparisonTable.Cell>
       <ComparisonTable.Cell>Cloud or self-hosted</ComparisonTable.Cell>
       <ComparisonTable.Cell>
-        <Text as="p" size="300">
-          Self-hosted only
-        </Text>
-        <Text as="p" size="300">
-          CloudBees is the cloud alternative
-        </Text>
+        <Text as="p">Self-hosted only</Text>
+        <Text as="p">CloudBees is the cloud alternative</Text>
       </ComparisonTable.Cell>
     </ComparisonTable.Row>
     {args.footnote && <ComparisonTable.Footnote>{args.footnote}</ComparisonTable.Footnote>}

@@ -76,7 +76,7 @@
   flex: 1 0 auto;
   display: grid;
   align-items: center;
-  padding: var(--base-size-12) var(--base-size-16);
+  padding: var(--brand-control-medium-paddingBlock) var(--brand-control-medium-paddingInline-normal);
   overflow: hidden;
   text-overflow: ellipsis;
   grid-template-areas: 'leadingVisual text';
@@ -123,7 +123,6 @@
 
 .ActionMenu__item-text {
   grid-area: text / text;
-  line-height: calc(1.42857);
 }
 
 .ActionMenu__item-icon {

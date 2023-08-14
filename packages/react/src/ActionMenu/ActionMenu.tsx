@@ -337,7 +337,7 @@ const ActionMenuItem = ({
       <span className={styles['ActionMenu__item-text']}>
         <Text
           variant={disabled ? 'muted' : 'default'}
-          size="300"
+          size="200"
           className={clsx(disabled && styles['ActionMenu__item-content--disabled'])}
         >
           {children}

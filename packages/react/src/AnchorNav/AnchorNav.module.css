@@ -185,11 +185,11 @@
  * 4. AnchorNav link labels
  */
 .AnchorNav-link-label {
-  font-weight: var(--brand-heading-weight-400);
-  font-size: var(--brand-text-size-300);
-  line-height: var(--brand-text-lineHeight-300);
+  font-weight: var(--brand-text-weight-400);
+  font-size: var(--brand-text-size-200);
+  line-height: var(--brand-text-lineHeight-200);
   font-family: var(--brand-heading-fontFamily);
-  letter-spacing: var(--brand-heading-letterSpacing-400);
+  letter-spacing: var(--brand-heading-letterSpacing-200);
   color: var(--brand-color-text-default);
   transition: color var(--brand-animation-easing-glide) var(--brand-animation-duration-faster);
   white-space: nowrap;
