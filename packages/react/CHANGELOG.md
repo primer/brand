@@ -1,5 +1,56 @@
 # @primer/react-brand
 
+## 0.23.0
+
+### Minor Changes
+
+- [#380](https://github.com/primer/brand/pull/380) [`49ef70b`](https://github.com/primer/brand/commit/49ef70bf565ec2c0caad53d7c145c7ff40b5eb6f) Thanks [@danielguillan](https://github.com/danielguillan)! - Use the timeline component to display a list of connected items as a vertical timeline.
+
+  Usage example:
+
+  ```jsx
+  <Timeline>
+    <Timeline.Item>
+      <em>GitHub Codespaces</em> offers a complete dev environment in seconds, so you can code, build, test, and open
+      pull requests from any repo anywhere.
+    </Timeline.Item>
+    <Timeline.Item>
+      <em>GitHub Copilot</em> is your AI pair programmer that empowers you to complete tasks 55% faster by turning
+      natural language prompts into coding suggestions.
+    </Timeline.Item>
+    <Timeline.Item>
+      <em>GitHub Actions</em> automates your build, test, and deployment workflow with simple and secure CI/CD.
+    </Timeline.Item>
+  </Timeline>
+  ```
+
+  See the [documentation](https://primer.style/brand/components/Timeline) or [Storybook](https://primer.style/brand/storybook/?path=/story/components-timeline--default)
+
+### Patch Changes
+
+- [#352](https://github.com/primer/brand/pull/352) [`fd039af`](https://github.com/primer/brand/commit/fd039af7c114f4fe6af5c7351d3ebf4fdffe64c7) Thanks [@jesskuo4](https://github.com/jesskuo4)! - Added a `block` prop to Button to allow for a full width button.
+
+- [#381](https://github.com/primer/brand/pull/381) [`f9c3ea5`](https://github.com/primer/brand/commit/f9c3ea534a56886099af1b7b6c40849aa786b74b) Thanks [@rezrah](https://github.com/rezrah)! - Add default spacing and optional divider to `trailingComponent` styles to `River.Content`
+
+  ```jsx
+  <River.Content
+    trailingComponent={() => (
+      <Stack direction="vertical" padding="none" alignItems="flex-start">
+        <Heading as="h3" size="3">
+          +50%
+        </Heading>
+        <Text variant="muted" as="p" size="300">
+          Developer efficiency
+        </Text>
+      </Stack>
+    )}
+    trailingComponentDivider
+  >
+    <Heading>Heading</Heading>
+    <Text>Use trailing components to provide additional, custom content immediately after the main content.</Text>
+  </River.Content>
+  ```
+
 ## 0.22.0
 
 ### Minor Changes
