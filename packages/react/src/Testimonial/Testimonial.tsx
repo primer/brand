@@ -47,7 +47,16 @@ export type TestimonialProps = {
  * <Testimonial>
  */
 function _Root(
-  {quoteMarkFill, align, animate, className, children, size, style, ...rest}: PropsWithChildren<TestimonialProps>,
+  {
+    quoteMarkFill = 'currentColor',
+    align,
+    animate,
+    className,
+    children,
+    size,
+    style,
+    ...rest
+  }: PropsWithChildren<TestimonialProps>,
   ref,
 ) {
   const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
