@@ -2,7 +2,8 @@
   display: grid;
   width: 100%;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  grid-auto-rows: var(--base-size-40);
+  /* grid-auto-rows: minmax(var(--base-size-40), auto); */
+  grid-auto-rows: minmax(20px, auto);
   grid-gap: var(--brand-Bento-gap-small);
   position: relative;
 }
@@ -11,10 +12,10 @@
   background-color: var(--brand-Bento-background);
   border-radius: var(--brand-Bento-Item-borderRadius-small);
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: auto 1fr;
   grid-template-columns: 1fr;
   overflow: hidden;
-  border: 1px solid var(--base-color-scale-gray-3);
+  border: 1px solid var(--brand-color-border-default);
 }
 
 @media screen and (min-width: 80rem) {
@@ -264,6 +265,12 @@
   grid-column: 1 / span 2;
 }
 
+.Bento__Content {
+  display: grid;
+  height: 100%;
+  align-content: space-between; /* Needs to be space-around to handle without img */
+}
+
 /* Bento Visual */
 
 .Bento__Visual {
@@ -281,13 +288,13 @@
 .Bento__Visual > img {
   height: 100%;
   width: 100%;
-  object-fit: fill;
+  object-fit: cover;
 }
 
 .Bento__Visual-no-fill > img {
-  height: initial;
-  width: initial;
-  object-fit: initial;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
   border-radius: 0px;
 }
 
@@ -301,6 +308,40 @@
 }
 .Bento-padding--spacious {
   padding: var(--brand-box-spacing-spacious);
+}
+
+.Bento-padding--condensed > img {
+  border-radius: var(--brand-Bento-Item-borderRadius-small);
+}
+.Bento-padding--normal > img {
+  border-radius: var(--brand-Bento-Item-borderRadius-small);
+}
+.Bento-padding--spacious > img {
+  border-radius: var(--brand-Bento-Item-borderRadius-small);
+}
+
+@media screen and (min-width: 80rem) {
+  .Bento-padding--condensed > img {
+    border-radius: var(--brand-Bento-Item-borderRadius-large);
+  }
+  .Bento-padding--normal > img {
+    border-radius: var(--brand-Bento-Item-borderRadius-large);
+  }
+  .Bento-padding--spacious > img {
+    border-radius: var(--brand-Bento-Item-borderRadius-large);
+  }
+}
+
+@media screen and (min-width: 48rem) {
+  .Bento-padding--condensed > img {
+    border-radius: var(--brand-Bento-Item-borderRadius-medium);
+  }
+  .Bento-padding--normal > img {
+    border-radius: var(--brand-Bento-Item-borderRadius-medium);
+  }
+  .Bento-padding--spacious > img {
+    border-radius: var(--brand-Bento-Item-borderRadius-medium);
+  }
 }
 
 /* Bento Flow */
@@ -329,5 +370,5 @@
 }
 
 .Bento__call-to-action {
-  /* TBD */
+  align-self: end;
 }

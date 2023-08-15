@@ -85,28 +85,32 @@ const Content = ({children, padding, className, ...rest}: BentoContentProps) => 
   const LinkChild = React.Children.toArray(children).find(child => React.isValidElement(child) && child.type === Link)
   return (
     <div className={clsx(!!padding && styles[`Bento-padding--${padding}`], styles.Bento__Content, className)} {...rest}>
-      {React.isValidElement(HeadingChild) && (
-        <div className={styles.Bento__heading}>
-          {React.cloneElement(HeadingChild as React.ReactElement<HeadingProps>, {
-            // as uses h3 default, but can be overridden
-            as: HeadingChild.props.as || 'h3',
-            size: HeadingChild.props.size || '3',
-          })}
-        </div>
-      )}
+      <div>
+        {React.isValidElement(HeadingChild) && (
+          <div className={styles.Bento__heading}>
+            {React.cloneElement(HeadingChild as React.ReactElement<HeadingProps>, {
+              // as uses h3 default, but can be overridden
+              as: HeadingChild.props.as || 'h3',
+              size: HeadingChild.props.size || '3',
+            })}
+          </div>
+        )}
 
-      {React.isValidElement(TextChild) && (
-        <div className={styles['Bento__body-text']}>
-          {React.cloneElement(TextChild as React.ReactElement<TextProps>, {
-            variant: 'muted',
-            as: 'p',
-            className: clsx(styles.Bento__text, TextChild.props.className),
-          })}
-        </div>
-      )}
+        {React.isValidElement(TextChild) && (
+          <div className={styles['Bento__body-text']}>
+            {React.cloneElement(TextChild as React.ReactElement<TextProps>, {
+              variant: 'muted',
+              as: 'p',
+              className: clsx(styles.Bento__text, TextChild.props.className),
+            })}
+          </div>
+        )}
+      </div>
       {React.isValidElement(LinkChild) && (
         <div className={styles['Bento__call-to-action']}>
-          {React.cloneElement(LinkChild as React.ReactElement<LinkProps>, {size: 'large'})}
+          {React.cloneElement(LinkChild as React.ReactElement<LinkProps>, {
+            className: clsx(styles['Bento__call-to-action'], LinkChild.props.className),
+          })}
         </div>
       )}
     </div>
