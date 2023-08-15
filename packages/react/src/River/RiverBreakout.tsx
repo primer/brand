@@ -2,8 +2,9 @@ import React, {Ref, forwardRef} from 'react'
 import clsx from 'clsx'
 import {RiverProps} from '.'
 import {useAnimation} from '../animation'
-import styles from './River.module.css'
 import {Heading} from '../Heading'
+
+import styles from './River.module.css'
 
 type RiverBreakoutProps = {a11yHeading: string; a11yHeadingTag?: 'h2' | 'h3'} & Omit<
   RiverProps,
