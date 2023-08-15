@@ -9,7 +9,7 @@ export default {
   component: Testimonial,
   args: {
     align: 'start',
-    quoteMarkFill: 'var(--brand-color-text-primary)',
+    quoteMarkFill: 'var(--brand-color-text-default)',
     name: 'David Ross',
     position: 'Staff Security Engineer',
     quote:
