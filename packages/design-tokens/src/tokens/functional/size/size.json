@@ -32,6 +32,9 @@
         },
         "gap": {
           "value": "{base.size.12}"
+        },
+        "borderRadius": {
+          "value": "var(--brand-borderRadius-medium)"
         }
       },
       "large": {
@@ -57,6 +60,9 @@
         },
         "gap": {
           "value": "{base.size.16}"
+        },
+        "borderRadius": {
+          "value": "{base.size.8}"
         }
       },
       "border": {

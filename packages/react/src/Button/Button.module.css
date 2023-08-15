@@ -6,7 +6,7 @@
   justify-content: center;
   transition: box-shadow var(--brand-animation-duration-faster);
   text-decoration: none;
-  border-radius: 6px;
+  border-radius: var(--brand-control-medium-borderRadius);
   cursor: pointer;
   border: none;
   background: none;
@@ -120,6 +120,7 @@
 .Button--size-large {
   height: var(--brand-control-large-size);
   padding: var(--brand-control-large-paddingBlock) var(--brand-control-large-paddingInline-spacious);
+  border-radius: var(--brand-control-large-borderRadius);
 }
 
 .Button--block {

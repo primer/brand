@@ -60,11 +60,11 @@
 }
 
 .Select--medium {
-  padding-inline: var(--brand-control-medium-paddingInline-condensed);
-  padding-inline-end: calc(var(--brand-control-medium-paddingInline-condensed) + var(--base-size-16));
-  padding-block: calc(var(--brand-control-medium-paddingBlock) - var(--brand-borderWidth-thin));
   font-weight: var(--brand-text-weight-100);
   font-size: var(--brand-text-size-100);
+  padding-inline: var(--brand-control-medium-paddingInline-condensed);
+  padding-inline-end: calc(var(--brand-control-medium-paddingInline-condensed) + var(--base-size-16));
+  padding-block: 0;
 }
 
 .Select-wrapper--large {
@@ -80,7 +80,7 @@
   font-size: var(--brand-text-size-200);
   padding-inline: var(--brand-control-large-paddingInline-condensed);
   padding-inline-end: calc(var(--brand-control-large-paddingInline-condensed) + var(--base-size-16));
-  padding-block: calc(var(--brand-control-large-paddingBlock) - var(--brand-borderWidth-thin));
+  padding-block: 0;
 }
 
 /*
