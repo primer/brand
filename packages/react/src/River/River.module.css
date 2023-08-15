@@ -45,11 +45,11 @@
 }
 
 .River__trailingComponent {
-  margin-block-start: var(--base-size-48);
+  margin-block-start: var(--brand-River-spacing-inner);
 }
 
 .River__trailingComponent--divider {
-  padding-block-start: var(--base-size-48);
+  padding-block-start: var(--brand-River-spacing-inner);
   border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
 }
 
@@ -106,10 +106,11 @@
   }
 
   .River--align-center .River__visual {
-    margin-bottom: var(--base-size-48);
+    margin-bottom: var(--brand-River-spacing-inner);
   }
+
   .River--align-center .River__content {
-    margin-top: var(--base-size-48);
+    margin-top: var(--brand-River-spacing-inner);
   }
 }
 /* end River */
@@ -157,7 +158,7 @@
 @media screen and (min-width: 48rem) {
   .RiverBreakout .River__content {
     display: grid;
-    gap: var(--brand-River-spacing-inner);
+    gap: var(--brand-River-spacing-inner) calc(var(--brand-River-spacing-inner) / 2);
     grid-template-areas:
       'text trailingComponent'
       'cta trailingComponent';
@@ -173,10 +174,17 @@
     grid-area: trailingComponent;
     justify-self: end;
     margin-block-start: 0;
+    padding-inline-start: calc(var(--brand-River-spacing-inner) / 2);
   }
 
   .RiverBreakout .River__text {
     grid-area: text;
+  }
+
+  .RiverBreakout .River__trailingComponent--divider {
+    padding-block-start: unset;
+    border-top: 0;
+    border-left: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   }
 }
 /* end RiverBreakout */
