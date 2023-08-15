@@ -59,7 +59,7 @@ export const RiverBreakout = forwardRef(
         style={{...animationInlineStyles, ...style}}
         {...rest}
       >
-        <Heading className={clsx(styles.RiverBreakout__hiddenHeading)} as={a11yHeadingTag}>
+        <Heading className="visually-hidden" as={a11yHeadingTag}>
           {a11yHeading}
         </Heading>
         {children}
