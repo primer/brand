@@ -1,12 +1,12 @@
 import React, {Ref, forwardRef} from 'react'
 import clsx from 'clsx'
-import {RiverProps} from '.'
+import {RiverProps} from '../River'
 import {useAnimation} from '../animation'
 import findElementInChildren from '../findElementInChildren'
 import {Heading} from '../Heading'
-import {River} from './River'
+import {River} from '../River/River'
 
-import styles from './River.module.css'
+import styles from './RiverBreakout.module.css'
 
 type RiverBreakoutProps = Omit<RiverProps, 'align' | 'imageTextRatio'>
 
