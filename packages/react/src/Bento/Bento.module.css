@@ -2,8 +2,7 @@
   display: grid;
   width: 100%;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  /* grid-auto-rows: minmax(var(--base-size-40), auto); */
-  grid-auto-rows: minmax(20px, auto);
+  grid-auto-rows: var(--base-size-80);
   grid-gap: var(--brand-Bento-gap-small);
   position: relative;
 }
