@@ -150,7 +150,7 @@ type NameProps = {
 function _Name({children, className, position}: NameProps, ref) {
   return (
     <figcaption ref={ref}>
-      <Text size="200" className={clsx(styles['Testimonial-from'], className)} variant="muted">
+      <Text size="100" className={clsx(styles['Testimonial-from'], className)} variant="muted">
         {children}{' '}
         {position && (
           <span>

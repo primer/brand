@@ -60,6 +60,10 @@
   margin-left: 4px;
 }
 
+.Link--large .Link--label {
+  font-size: var(--base-size-20);
+}
+
 .Link--large .Link-arrow {
   width: 20px;
   height: 20px;

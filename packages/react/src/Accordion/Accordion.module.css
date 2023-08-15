@@ -79,14 +79,6 @@
   content: '+';
 }
 
-.Accordion__summary-heading {
-  /*Visual appearance as a h6*/
-  font-weight: var(--brand-heading-weight-400);
-  font-size: var(--brand-text-size-400);
-  line-height: var(--brand-text-lineHeight-400);
-  letter-spacing: var(--brand-heading-letterSpacing-400);
-}
-
 details[open] .Accordion__summary--collapsed::before {
   opacity: 1;
   transform: rotateZ(180deg);
@@ -99,9 +91,9 @@ details[open] .Accordion__summary--expanded::after {
 .Accordion__content {
   color: var(--brand-color-text-muted);
   font-family: var(--brand-fontStack-sansSerif);
-  font-weight: var(--brand-text-weight-300);
-  font-size: var(--brand-text-size-300);
-  line-height: var(--brand-text-lineHeight-300);
+  font-weight: var(--brand-text-weight-200);
+  font-size: var(--brand-text-size-200);
+  line-height: var(--brand-text-lineHeight-200);
 }
 
 details[open] > .Accordion__content {

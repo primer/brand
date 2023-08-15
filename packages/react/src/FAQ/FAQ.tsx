@@ -52,7 +52,8 @@ const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, style, animate
           if (child.type === FAQHeading) {
             return React.cloneElement(child as React.ReactElement, {
               align: hasSubheading ? 'start' : child.props.align,
-              size: hasSubheading ? 'large' : child.props.size,
+              size: hasSubheading ? '3' : child.props.size,
+              weight: hasSubheading ? 'semibold' : child.props.weight,
             })
           }
         }
@@ -63,24 +64,19 @@ const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, style, animate
 })
 
 type FAQHeadingProps = BaseProps<HTMLHeadingElement> & {
-  size?: 'medium' | 'large'
   align?: 'start' | 'center'
   children: React.ReactNode | React.ReactNode[]
   as?: HeadingProps['as']
-}
+} & HeadingProps
 
 const FAQHeading = forwardRef<HTMLHeadingElement, FAQHeadingProps>(
-  ({children, className, size = 'medium', align = 'center', as, ...rest}, ref) => {
-    const headingSize = size === 'medium' ? 'h3' : 'h2'
+  ({children, className, size = '3', align = 'center', as, ...rest}, ref) => {
+    const headingLevel = size === '3' ? 'h3' : 'h2'
     return (
       <Heading
-        as={as || headingSize}
-        className={clsx(
-          styles.FAQ__heading,
-          size === 'large' && styles['FAQ__heading--large'],
-          styles[`FAQ__heading--${align}`],
-          className,
-        )}
+        as={as || headingLevel}
+        size={size}
+        className={clsx(styles.FAQ__heading, styles[`FAQ__heading--${align}`], className)}
         ref={ref}
         {...rest}
       >
@@ -94,11 +90,11 @@ type FAQSubheadingProps = BaseProps<HTMLHeadingElement> & {
   align?: 'start' | 'center'
   children: React.ReactNode | React.ReactNode[]
   as?: Exclude<HeadingProps['as'], 'h1'>
-}
+} & HeadingProps
 
-function FAQSubheading({children, className, as = 'h3', ...rest}: FAQSubheadingProps) {
+function FAQSubheading({children, className, as = 'h3', size = '5', weight, ...rest}: FAQSubheadingProps) {
   return (
-    <Heading as={as} className={clsx(styles.FAQ__subheading, className)} {...rest}>
+    <Heading as={as} className={clsx(styles.FAQ__subheading, className)} weight={weight} size={size} {...rest}>
       {children}
     </Heading>
   )
