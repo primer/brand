@@ -126,7 +126,7 @@ type LogoSuiteDescriptionProps = BaseProps<HTMLParagraphElement> &
 
 const _Description = forwardRef(
   (
-    {className, children, size = '400', variant = 'muted', ...props}: LogoSuiteDescriptionProps,
+    {className, children, size = '300', variant = 'muted', ...props}: LogoSuiteDescriptionProps,
     ref: Ref<HTMLParagraphElement>,
   ) => {
     return (

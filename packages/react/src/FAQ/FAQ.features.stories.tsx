@@ -1,7 +1,7 @@
 import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 import {FAQ} from '.'
-import {Text, InlineLink} from '..'
+import {InlineLink} from '..'
 import {Container} from '../component-helpers'
 
 export default {
@@ -54,26 +54,10 @@ const fixtureData: FixtureData = [
           non eros.
         </p>
         <ol>
-          <li>
-            <Text size="300" variant="muted">
-              Must be associated with a current GitHub for Startups partner.
-            </Text>
-          </li>
-          <li>
-            <Text size="300" variant="muted">
-              Self-funded or funded (Seed-Series A)
-            </Text>
-          </li>
-          <li>
-            <Text size="300" variant="muted">
-              Not a current GitHub Enterprise customer
-            </Text>
-          </li>
-          <li>
-            <Text size="300" variant="muted">
-              Must not have previously received credits for GitHub Enterprise
-            </Text>
-          </li>
+          <li>Must be associated with a current GitHub for Startups partner.</li>
+          <li>Self-funded or funded (Seed-Series A)</li>
+          <li>Not a current GitHub Enterprise customer</li>
+          <li>Must not have previously received credits for GitHub Enterprise</li>
         </ol>
       </React.Fragment>
     ),
@@ -165,7 +149,18 @@ export const Groups: StoryFn<typeof FAQ> = () => {
   return (
     <Container>
       <FAQ>
-        <FAQ.Heading size="large">Frequently asked&nbsp;questions</FAQ.Heading>
+        <FAQ.Heading>Frequently asked&nbsp;questions</FAQ.Heading>
+        <FAQ.Subheading>Group heading</FAQ.Subheading>
+        <>
+          {fixtureData.map(({question, answer}) => {
+            return (
+              <FAQ.Item key={question}>
+                <FAQ.Question>{question}</FAQ.Question>
+                <FAQ.Answer>{answer}</FAQ.Answer>
+              </FAQ.Item>
+            )
+          })}
+        </>
         <FAQ.Subheading>Group heading</FAQ.Subheading>
         <>
           {fixtureData.map(({question, answer}) => {

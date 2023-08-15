@@ -71,7 +71,7 @@ describe('Text', () => {
 
   test('applies the correct default size', () => {
     const mockId = 'mock-id'
-    const expectedDefaultSize = '400'
+    const expectedDefaultSize = '200'
     const {getByTestId} = render(
       <Text as="div" data-testid={mockId}>
         {mockText}
