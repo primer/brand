@@ -42,7 +42,7 @@ const Root = forwardRef(({animate, className, children, style, ...rest}: RiverBr
   )
 })
 
-const A11yHeading = ({as = 'h2', children}: React.PropsWithChildren<{as?: 'h2' | 'h3'}>) => (
+const A11yHeading = ({as = 'h3', children}: React.PropsWithChildren<{as?: 'h2' | 'h3'}>) => (
   <Heading className="visually-hidden" as={as}>
     {children}
   </Heading>
