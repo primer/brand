@@ -122,7 +122,7 @@
   padding-block-end: var(--brand-River-spacing-outer);
   padding-block-start: var(--brand-River-spacing-outer);
 }
-  
+
 .RiverBreakout .River__text {
   color: var(--brand-color-text-default);
   font-size: var(--brand-text-size-500);
@@ -159,8 +159,8 @@
     display: grid;
     gap: var(--brand-River-spacing-inner);
     grid-template-areas:
-    'text trailingComponent'
-    'cta trailingComponent';
+      'text trailingComponent'
+      'cta trailingComponent';
     grid-template-columns: 5fr 3fr;
   }
 
