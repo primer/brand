@@ -18,10 +18,10 @@
   text-decoration: none;
 }
 
-.Button:focus:not(.Button[disabled]) {
-  outline: none;
-  box-shadow: 0 0 0 2px var(--brand-color-canvas-default), 0 0 0 5px var(--brand-color-focus);
+.Button:focus-visible:not(.Button[disabled]) {
   transition: none;
+  outline: 4px solid var(--brand-color-focus);
+  outline-offset: 2px;
 }
 
 .Button--disabled,
@@ -68,7 +68,8 @@
   border-color: var(--brand-button-primary-borderColor-hover);
 }
 
-.Button--primary:not(.Button[disabled], .Button[aria-disabled='true']):active {
+.Button--primary:not(.Button[disabled], .Button[aria-disabled='true']):active,
+.Button[aria-expanded='true'] {
   background-color: var(--brand-button-primary-bgColor-active);
   border-color: var(--brand-button-primary-borderColor-active);
   box-shadow: var(--brand-button-primary-shadow-active);
@@ -107,7 +108,8 @@
   border-color: var(--brand-button-secondary-borderColor-hover);
 }
 
-.Button--secondary:not(.Button[disabled], .Button[aria-disabled='true']):active {
+.Button--secondary:not(.Button[disabled], .Button[aria-disabled='true']):active,
+.Button[aria-expanded='true'] {
   background-color: var(--brand-button-secondary-bgColor-active);
   border-color: var(--brand-button-secondary-borderColor-active);
 }

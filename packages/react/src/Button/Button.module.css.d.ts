@@ -1,5 +1,6 @@
 declare const styles: {
   readonly "Button": string;
+  readonly "Button--disabled": string;
   readonly "Button__text": string;
   readonly "Button__icon-visual": string;
   readonly "Button__trailing-visual": string;
@@ -7,7 +8,6 @@ declare const styles: {
   readonly "Button-arrow": string;
   readonly "Button--primary": string;
   readonly "Button--label-primary": string;
-  readonly "Button--disabled": string;
   readonly "Button-arrow--disabled": string;
   readonly "Button__icon-visual--disabled": string;
   readonly "Button-label--disabled": string;

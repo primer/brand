@@ -113,8 +113,8 @@ module.exports = {
         },
         shadow: {
           active: {
-            value: 'inset 0px 1px 0px 0px var(--brand-Button-primary-borderColor-active)',
-            dark: 'inset 0px 1px 0px 0px var(--brand-Button-primary-borderColor-active)',
+            value: 'inset 0px 1px 0px 0px var(--brand-button-primary-borderColor-active)',
+            dark: 'inset 0px 1px 0px 0px var(--brand-button-primary-borderColor-active)',
           },
         },
       },
@@ -125,12 +125,12 @@ module.exports = {
             dark: 'transparent',
           },
           hover: {
-            value: 'hsl(var(--base-color-scale-gray-4-hsl) / 20%)',
-            dark: 'hsl(var(--base-color-scale-gray-4-hsl) / 20%)',
+            value: 'hsl(var(--base-color-scale-gray-3-hsl) / 20%)',
+            dark: 'hsl(var(--base-color-scale-gray-3-hsl) / 20%)',
           },
           active: {
-            value: 'hsl(var(--base-color-scale-gray-4-hsl) / 40%)',
-            dark: 'hsl(var(--base-color-scale-gray-4-hsl) / 40%)',
+            value: 'hsl(var(--base-color-scale-gray-3-hsl) / 40%)',
+            dark: 'hsl(var(--base-color-scale-gray-3-hsl) / 40%)',
           },
         },
         borderColor: {
