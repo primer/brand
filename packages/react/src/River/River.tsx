@@ -146,7 +146,7 @@ const Content = forwardRef(
 
     return (
       <div
-        className={clsx(animationClasses, styles.River__content)}
+        className={clsx(animationClasses, styles.River__content, className)}
         style={{...animationInlineStyles, ...style}}
         {...rest}
         ref={ref}

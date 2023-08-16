@@ -1,0 +1,19 @@
+/**
+ * Overrides
+ * Should be fixed in the respective components
+ */
+.SectionIntro__heading--no-max-width {
+  max-width: none;
+}
+
+.FeaturePreview__borderTop {
+  border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
+}
+
+.FeaturePreview__trailingSection {
+  --brand-color-canvas-subtle: var(--base-color-scale-gray-1);
+}
+
+[data-color-mode='dark'] .FeaturePreview__trailingSection {
+  --brand-color-canvas-subtle: var(--base-color-scale-gray-7);
+}

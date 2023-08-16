@@ -1,0 +1,28 @@
+/**
+ * Overrides
+ * Should be fixed in the respective components
+ */
+
+.SectionIntro__heading--no-max-width {
+  max-width: none;
+}
+
+@media screen and (min-width: 48rem) {
+  .FeaturePreview {
+    --brand-River-spacing-outer: var(--base-size-96);
+  }
+}
+
+.FeaturePreview__trailingSection {
+  --brand-color-canvas-subtle: var(--base-color-scale-gray-1);
+}
+
+[data-color-mode='dark'] .FeaturePreview__trailingSection {
+  --brand-color-canvas-subtle: var(--base-color-scale-gray-7);
+}
+
+@media screen and (min-width: 48rem) {
+  .RiverContent {
+    padding-inline-start: calc(var(--brand-River-spacing-inner) * 2);
+  }
+}

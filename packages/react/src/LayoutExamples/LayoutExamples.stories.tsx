@@ -4,6 +4,9 @@ import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 
 import {KitchenSink} from './KitchenSink'
 import {ResourcesHubExample} from './Resources'
+import {FeaturePreviewLevelZero} from './FeaturePreviewLevelZero'
+import {FeaturePreviewLevelTwo} from './FeaturePreviewLevelTwo'
+import {FeaturePreviewLevelOne} from './FeaturePreviewLevelOne'
 
 export default {
   title: 'Layout/Full page examples',
@@ -43,3 +46,15 @@ ResourcesHubExampleMobilePlayground.parameters = {
     defaultViewport: 'iphonex',
   },
 }
+
+export const LevelZero: StoryFn<typeof FeaturePreviewLevelZero> = () => <FeaturePreviewLevelZero />
+
+LevelZero.storyName = 'Feature LP - Level 0'
+
+export const LevelOne: StoryFn<typeof FeaturePreviewLevelOne> = () => <FeaturePreviewLevelOne />
+
+LevelOne.storyName = 'Feature LP - Level 1'
+
+export const LevelTwo: StoryFn<typeof FeaturePreviewLevelTwo> = () => <FeaturePreviewLevelTwo />
+
+LevelTwo.storyName = 'Feature LP - Level 2'
