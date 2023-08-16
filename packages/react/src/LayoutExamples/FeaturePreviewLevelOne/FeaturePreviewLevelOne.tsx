@@ -40,7 +40,7 @@ export function FeaturePreviewLevelOne() {
       colorMode={isLightMode ? 'light' : 'dark'}
       style={{backgroundColor: 'var(--brand-color-canvas-default)'}}
     >
-      <SubdomainNavBar title="Preview">
+      <SubdomainNavBar title="Preview" fixed={false}>
         <SubdomainNavBar.SecondaryAction href="#" onClick={handleMode}>
           Change color mode
         </SubdomainNavBar.SecondaryAction>
@@ -49,12 +49,7 @@ export function FeaturePreviewLevelOne() {
         </SubdomainNavBar.PrimaryAction>
       </SubdomainNavBar>
       <main>
-        <Box
-          backgroundColor="subtle"
-          paddingBlockStart={96}
-          marginBlockEnd={96}
-          className={styles['FeaturePreview__trailingSection']}
-        >
+        <Box backgroundColor="subtle" marginBlockEnd={96} className={styles['FeaturePreview__trailingSection']}>
           <Grid enableOverlay={enableGridOverlay}>
             <Grid.Column>
               <Hero align="start">

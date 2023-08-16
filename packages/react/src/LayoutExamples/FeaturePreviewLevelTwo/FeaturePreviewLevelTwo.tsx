@@ -44,7 +44,7 @@ export function FeaturePreviewLevelTwo() {
       colorMode={isLightMode ? 'light' : 'dark'}
       style={{backgroundColor: 'var(--brand-color-canvas-default)'}}
     >
-      <SubdomainNavBar title="Preview">
+      <SubdomainNavBar title="Preview" fixed={false}>
         <SubdomainNavBar.SecondaryAction href="#" onClick={handleMode}>
           Change color mode
         </SubdomainNavBar.SecondaryAction>
@@ -55,7 +55,7 @@ export function FeaturePreviewLevelTwo() {
       <main className={styles.FeaturePreview}>
         <Grid enableOverlay={enableGridOverlay}>
           <Grid.Column>
-            <Hero>
+            <Hero className={styles.Hero}>
               <Hero.Label>Label</Hero.Label>
               <Hero.Heading>Expressive headline about a sweet feature</Hero.Heading>
               <Hero.Description>

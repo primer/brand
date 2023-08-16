@@ -54,6 +54,7 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
           imagePosition !== 'inline-end' && styles[`Hero--align-${align}`],
           heroLayoutClass,
           HeroImageChild && styles[`Hero--image-pos-${imagePosition}`],
+          className,
         )}
         ref={ref}
         aria-labelledby="hero-section-brand-heading"

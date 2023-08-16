@@ -3,6 +3,10 @@
  * Should be fixed in the respective components
  */
 
+.Hero {
+  padding: var(--brand-Hero-narrow-padding);
+}
+
 .SectionIntro__heading--no-max-width {
   max-width: none;
 }
