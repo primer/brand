@@ -58,19 +58,19 @@ export function FeaturePreviewLevelZero() {
               <Grid enableOverlay={enableGridOverlay}>
                 <Grid.Column span={6} start={4}>
                   <Stack padding="none">
-                    <SectionIntro>
-                      <SectionIntro.Heading className={styles['SectionIntro__heading--no-max-width']} size="5">
+                    <SectionIntro fullWidth>
+                      <SectionIntro.Heading size="5">
                         Signup for this cool feature to enable you to do this before everyone else. Be among the first
                         to learn the latest about our platforms, technologies, and tools.
                       </SectionIntro.Heading>
                     </SectionIntro>
                     <Stack direction="vertical" padding="none">
-                      <Text as="p" variant="muted">
+                      <Text as="p" size="300" variant="muted">
                         It’s often considered polite to tell people what they are about to sign up for. Even if it
                         involves making them read a bunch. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
                         sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum.
                       </Text>
-                      <Text as="p" variant="muted">
+                      <Text as="p" size="300" variant="muted">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
                         laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in

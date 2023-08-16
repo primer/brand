@@ -29,6 +29,10 @@
   max-width: 18ch;
 }
 
+.SectionIntro--full-width .SectionIntro-heading {
+  max-width: none;
+}
+
 .SectionIntro-label {
   margin-block-end: var(--base-size-8);
 }

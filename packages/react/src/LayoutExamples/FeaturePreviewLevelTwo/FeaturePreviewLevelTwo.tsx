@@ -70,8 +70,8 @@ export function FeaturePreviewLevelTwo() {
               <Grid enableOverlay={enableGridOverlay}>
                 <Grid.Column span={9}>
                   <Box marginBlockEnd={64}>
-                    <SectionIntro>
-                      <SectionIntro.Heading className={styles['SectionIntro__heading--no-max-width']}>
+                    <SectionIntro fullWidth>
+                      <SectionIntro.Heading>
                         <em>Here we explain why this came to be.</em> This is a short statement about the intention of
                         the feature and why we think it&apos;s cool, keep it real.
                       </SectionIntro.Heading>
@@ -162,8 +162,8 @@ export function FeaturePreviewLevelTwo() {
                 </Grid.Column>
                 <Grid.Column span={{small: 12, medium: 7}}>
                   <Stack direction="vertical" padding="none" alignItems="flex-start">
-                    <SectionIntro>
-                      <SectionIntro.Heading size="5" className={styles['SectionIntro__heading--no-max-width']}>
+                    <SectionIntro fullWidth>
+                      <SectionIntro.Heading size="5">
                         <em>Here we explain why this came to be.</em> This is a short statement about the intention of
                         the feature and why we think it&apos;s cool, keep it real.
                       </SectionIntro.Heading>

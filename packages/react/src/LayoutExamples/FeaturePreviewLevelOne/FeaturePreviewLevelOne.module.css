@@ -2,9 +2,6 @@
  * Overrides
  * Should be fixed in the respective components
  */
-.SectionIntro__heading--no-max-width {
-  max-width: none;
-}
 
 .FeaturePreview__borderTop {
   border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
