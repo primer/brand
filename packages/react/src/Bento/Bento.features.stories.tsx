@@ -126,7 +126,7 @@ export const Example: StoryFn<typeof Bento> = () => (
       <Bento.Item columnSpan={12} rowSpan={4} flow="column" colorMode="dark">
         <Bento.Content padding="normal">
           <Heading as="h4" size="4">
-            Mercado Libre frees developers' minds to focus on their missions with GitHub.
+            Mercado Libre frees developers minds to focus on their missions with GitHub.
           </Heading>
           <Link href="#">Read customer story</Link>
         </Bento.Content>
