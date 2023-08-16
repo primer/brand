@@ -8,7 +8,7 @@
   text-decoration: none;
   border-radius: var(--brand-control-medium-borderRadius);
   cursor: pointer;
-  border: none;
+  border: solid var(--brand-borderWidth-thick) transparent;
   background: none;
   display: inline-flex;
   gap: var(--brand-control-medium-gap);
@@ -22,6 +22,13 @@
   outline: none;
   box-shadow: 0 0 0 2px var(--brand-color-canvas-default), 0 0 0 5px var(--brand-color-focus);
   transition: none;
+}
+
+.Button--disabled,
+.Button--disabled:hover,
+.Button--disabled:focus {
+  cursor: not-allowed;
+  outline: none;
 }
 
 .Button__text {
@@ -41,11 +48,6 @@
   display: flex;
 }
 
-.Button--label.Button-label--disabled,
-.Button__icon-visual--disabled {
-  color: var(--brand-Button-fg-primary-disabled);
-}
-
 /* optically adjust arrow to align with the end (right) padding */
 /* reduce gap between label and arrow */
 .Button-arrow {
@@ -53,64 +55,109 @@
   margin-inline-start: calc(var(--base-size-8) * -1);
 }
 
-.Button--primary .Button-arrow--disabled,
-.Button--primary .Button__icon-visual--disabled {
-  color: var(--brand-Button-fg-primary-disabled);
-}
-
-.Button--secondary .Button-arrow--disabled,
-.Button--subtle .Button-arrow--disabled,
-.Button--subtle .Button__icon-visual--disabled,
-.Button--secondary .Button__icon-visual--disabled {
-  color: var(--brand-Button-fg-secondary-disabled);
-}
+/* primary */
 
 .Button--primary {
-  color: var(--brand-color-text-onEmphasis);
-  background-color: var(--brand-Button-background-base);
-  background: var(--brand-Button-background-overlay);
+  color: var(--brand-button-primary-fgColor-rest);
+  background-color: var(--brand-button-primary-bgColor-rest);
+  border: solid var(--brand-borderWidth-thin) var(--brand-button-primary-borderColor-rest);
 }
 
 .Button--primary:not(.Button[disabled], .Button[aria-disabled='true']):hover {
-  box-shadow: var(--brand-Button-shadow-primary-hover);
+  background-color: var(--brand-button-primary-bgColor-hover);
+  border-color: var(--brand-button-primary-borderColor-hover);
 }
 
-.Button--primary.Button--disabled {
-  background-color: var(--base-color-scale-gray-4);
+.Button--primary:not(.Button[disabled], .Button[aria-disabled='true']):active {
+  background-color: var(--brand-button-primary-bgColor-active);
+  border-color: var(--brand-button-primary-borderColor-active);
+  box-shadow: var(--brand-button-primary-shadow-active);
 }
 
 .Button--label-primary {
-  color: var(--brand-color-text-onEmphasis);
+  color: var(--brand-button-primary-fgColor-rest);
 }
 
-.Button--label-primary.Button-label--disabled {
-  color: var(--brand-Button-fg-primary-disabled);
+.Button--primary:disabled,
+.Button--primary[aria-disabled='true'],
+.Button--primary.Button--disabled {
+  background-color: var(--brand-button-primary-bgColor-disabled);
+  border-color: var(--brand-button-primary-borderColor-disabled);
 }
+
+.Button--primary:disabled .Button-arrow--disabled,
+.Button--primary[aria-disabled='true'] .Button-arrow--disabled,
+.Button--primary.Button--disabled .Button-arrow--disabled,
+.Button--primary:disabled .Button__icon-visual--disabled,
+.Button--primary[aria-disabled='true'] .Button__icon-visual--disabled,
+.Button--primary.Button--disabled .Button__icon-visual--disabled,
+.Button--label-primary.Button-label--disabled {
+  color: var(--brand-button-primary-fgColor-disabled);
+}
+
+/* secondary */
 
 .Button--secondary {
-  color: var(--brand-color-text-default);
-  box-shadow: var(--brand-Button-shadow-secondary-default);
-  transition: box-shadow 200ms;
+  transition: background-color, border-color 200ms;
+  border-color: var(--brand-button-secondary-borderColor-rest);
 }
 
 .Button--secondary:not(.Button[disabled], .Button[aria-disabled='true']):hover {
-  box-shadow: var(--brand-Button-shadow-secondary-hover);
+  background-color: var(--brand-button-secondary-bgColor-hover);
+  border-color: var(--brand-button-secondary-borderColor-hover);
 }
 
-.Button--label-secondary.Button-label--disabled,
-.Button--label-secondary.Button-label--disabled,
-.Button__icon-visual--disabled {
-  color: var(--brand-Button-fg-secondary-disabled);
+.Button--secondary:not(.Button[disabled], .Button[aria-disabled='true']):active {
+  background-color: var(--brand-button-secondary-bgColor-active);
+  border-color: var(--brand-button-secondary-borderColor-active);
 }
+
+.Button--label-secondary {
+  color: var(--brand-button-secondary-fgColor-rest);
+}
+
+.Button--secondary .Button__icon-visual,
+.Button--secondary .Button-arrow {
+  color: var(--brand-button-secondary-fgColor-rest);
+}
+
+.Button--secondary:disabled .Button-arrow--disabled,
+.Button--secondary[aria-disabled='true'] .Button-arrow--disabled,
+.Button--secondary.Button--disabled .Button-arrow--disabled,
+.Button--secondary:disabled .Button__icon-visual--disabled,
+.Button--secondary[aria-disabled='true'] .Button__icon-visual--disabled,
+.Button--secondary.Button--disabled .Button__icon-visual--disabled,
+.Button--label-secondary.Button-label--disabled {
+  color: var(--brand-button-secondary-fgColor-disabled);
+}
+
+/* subtle */
 
 .Button--subtle {
   color: var(--brand-color-text-default);
-  transition: box-shadow 200ms;
+  border-color: var(--brand-button-subtle-borderColor-rest);
+  transition: background-color, border-color 200ms;
 }
 
 .Button--subtle:hover:not(.Button[disabled]) {
-  box-shadow: var(--brand-Button-shadow-subtle-hover);
+  border-color: var(--brand-button-subtle-borderColor-hover);
 }
+
+.Button--label-subtle {
+  color: var(--brand-button-sungle-fgColor-rest);
+}
+
+.Button--subtle:disabled .Button-arrow--disabled,
+.Button--subtle[aria-disabled='true'] .Button-arrow--disabled,
+.Button--subtle.Button--disabled .Button-arrow--disabled,
+.Button--subtle:disabled .Button__icon-visual--disabled,
+.Button--subtle[aria-disabled='true'] .Button__icon-visual--disabled,
+.Button--subtle.Button--disabled .Button__icon-visual--disabled,
+.Button--label-subtle.Button-label--disabled {
+  color: var(--brand-button-subtle-fgColor-disabled);
+}
+
+/* size */
 
 .Button--size-medium {
   height: var(--brand-control-medium-size);
@@ -125,17 +172,6 @@
 
 .Button--block {
   width: 100%;
-}
-
-.Button--disabled,
-.Button--disabled:hover,
-.Button--disabled:focus {
-  cursor: not-allowed;
-  outline: none;
-}
-
-.Button--disabled:not(.Button--secondary) {
-  box-shadow: none;
 }
 
 @media (forced-colors: active) {
