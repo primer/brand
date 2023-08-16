@@ -32,6 +32,7 @@ const Root = ({
   onPause,
   onLoadedMetadata,
   onPlaying,
+  onTimeUpdate,
   ref,
   ...rest
 }: VideoPlayerProps) => {
@@ -110,7 +111,6 @@ const Root = ({
         title={title}
         controls={false}
         poster={poster}
-        {...rest}
         className={clsx(styles.VideoPlayer, className)}
         onPlay={e => {
           setPlaying(true)
@@ -129,7 +129,11 @@ const Root = ({
 
           onLoadedMetadata && onLoadedMetadata(e)
         }}
-        onTimeUpdate={() => setPlayedTime(videoRef.current?.currentTime || 0)}
+        onTimeUpdate={e => {
+          setPlayedTime(videoRef.current?.currentTime || 0)
+          onTimeUpdate && onTimeUpdate(e)
+        }}
+        {...rest}
       >
         {children}
       </video>
