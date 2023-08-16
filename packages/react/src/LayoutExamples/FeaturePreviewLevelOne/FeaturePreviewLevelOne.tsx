@@ -48,7 +48,7 @@ export function FeaturePreviewLevelOne() {
           {enableGridOverlay ? 'Disable' : 'Enable'} grid
         </SubdomainNavBar.PrimaryAction>
       </SubdomainNavBar>
-      <main className={styles.FeaturePreview}>
+      <main>
         <Box
           backgroundColor="subtle"
           paddingBlockStart={96}

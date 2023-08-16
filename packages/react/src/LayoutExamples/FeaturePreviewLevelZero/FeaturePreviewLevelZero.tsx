@@ -42,7 +42,7 @@ export function FeaturePreviewLevelZero() {
           {enableGridOverlay ? 'Disable' : 'Enable'} grid
         </SubdomainNavBar.PrimaryAction>
       </SubdomainNavBar>
-      <main className={styles.FeaturePreview}>
+      <main>
         <Grid enableOverlay={enableGridOverlay}>
           <Grid.Column>
             <Hero align="center">
