@@ -90,12 +90,12 @@
   left: 0;
   width: 100%;
   z-index: 2;
-  padding: var(--brand-VideoPlayer-heading-padding);
+  padding: var(--base-size-16) var(--base-size-24);
   color: var(--base-color-scale-gray-0);
   display: grid;
   align-items: center;
   justify-content: start;
-  grid-gap: var(--brand-VideoPlayer-heading-gap);
+  grid-gap: 10px;
   grid-template-columns: auto auto;
   background: hsl(var(--base-color-scale-black-0-hsl) / 80%);
   background: linear-gradient(hsl(var(--base-color-scale-black-0-hsl) / 40%), rgba(0, 0, 0, 0));
@@ -126,7 +126,7 @@
 
 .VideoPlayer__controlsWrapper {
   display: grid;
-  grid-gap: var(--brand-VideoPlayer-controls-gap);
+  grid-gap: var(--base-size-16);
   align-items: center;
   grid-template-columns: auto 2fr auto auto auto auto auto;
   opacity: 0;
@@ -136,7 +136,7 @@
   width: 100%;
   background: hsl(var(--base-color-scale-black-0-hsl) / 80%);
   background: linear-gradient(rgba(0, 0, 0, 0), hsl(var(--base-color-scale-black-0-hsl) / 40%));
-  padding: var(--brand-VideoPlayer-controls-padding);
+  padding: var(--base-size-16) var(--base-size-24);
   pointer-events: all;
 }
 
@@ -185,7 +185,7 @@
 .VideoPlayer__iconControl:focus-visible {
   border-color: var(--brand-color-focus);
   outline: none;
-  box-shadow: var(--brand-VideoPlayer-controls-focus-boxShadow);
+  box-shadow: 0 0 0 2px var(--brand-color-focus);
   opacity: 1;
 }
 

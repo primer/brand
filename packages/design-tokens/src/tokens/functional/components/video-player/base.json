@@ -1,19 +1,6 @@
 {
   "brand": {
     "VideoPlayer": {
-      "controls": {
-        "gap": {
-          "value": "var(--base-size-16)"
-        },
-        "padding": {
-          "value": "var(--base-size-16) var(--base-size-24)"
-        },
-        "focus": {
-          "boxShadow": {
-            "value": "0 0 0 2px var(--brand-color-focus)"
-          }
-        }
-      },
       "closedCaption": {
         "margin": {
           "value": "0 auto 15px auto"
@@ -52,14 +39,6 @@
       "tooltip": {
         "padding": {
           "value": "5px 10px"
-        }
-      },
-      "heading": {
-        "padding": {
-          "value": "var(--base-size-16) var(--base-size-24)"
-        },
-        "gap": {
-          "value": "10px"
         }
       }
     }
