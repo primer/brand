@@ -59,7 +59,7 @@ export function FeaturePreviewLevelZero() {
                 <Grid.Column span={6} start={4}>
                   <Stack padding="none">
                     <SectionIntro>
-                      <SectionIntro.Heading className={styles['SectionIntro__heading--no-max-width']}>
+                      <SectionIntro.Heading className={styles['SectionIntro__heading--no-max-width']} size="5">
                         Signup for this cool feature to enable you to do this before everyone else. Be among the first
                         to learn the latest about our platforms, technologies, and tools.
                       </SectionIntro.Heading>
