@@ -374,6 +374,10 @@
   color: var(--base-color-scale-white-0);
 }
 
+.VideoPlayer__shiftTooltipRight .VideoPlayer__tooltip {
+  transform: translateX(10px);
+}
+
 /* ---------------------------------------------------------- */
 /* 8. Captions                                                */
 /* ---------------------------------------------------------- */

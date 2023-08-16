@@ -71,6 +71,7 @@ export const Controls = ({
         onClick={() => {
           setPlaying(!playing)
         }}
+        className={styles.VideoPlayer__shiftTooltipRight}
         tooltip={!playing ? 'Play Video' : 'Pause Video'}
       >
         {!playing ? (

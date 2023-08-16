@@ -25,6 +25,7 @@ declare const styles: {
   readonly "VideoPlayer__tooltipContent": string;
   readonly "VideoPlayer__tooltipText": string;
   readonly "VideoPlayer__controlTextColor": string;
+  readonly "VideoPlayer__shiftTooltipRight": string;
   readonly "VideoPlayer__captions": string;
   readonly "VideoPlayer__captions__empty": string;
   readonly "VideoPlayer__captions__text": string;
