@@ -34,7 +34,7 @@ export function FeaturePreviewLevelZero() {
       colorMode={isLightMode ? 'light' : 'dark'}
       style={{backgroundColor: 'var(--brand-color-canvas-default)'}}
     >
-      <SubdomainNavBar title="Preview">
+      <SubdomainNavBar title="Preview" fixed={false}>
         <SubdomainNavBar.SecondaryAction href="#" onClick={handleMode}>
           Change color mode
         </SubdomainNavBar.SecondaryAction>
