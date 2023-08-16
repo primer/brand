@@ -49,8 +49,6 @@ import {VideoPlayer} from '@primer/react-brand'
 
 `VideoPlayer` provides a React alternative to the native HTML `<video />`.
 
-The component API supports all standard HTML attribute props, while providing some additional behavior as described below.
-
 | Name        | Type                                   | Default | Required | Description                                                          |
 | :---------- | :------------------------------------- | :-----: | :------: | :------------------------------------------------------------------- |
 | `title`     | `string`                               |         |  `true`  | Sets the title of the video                                          |
@@ -59,24 +57,26 @@ The component API supports all standard HTML attribute props, while providing so
 | `branding`  | `boolean`                              |         | `false`  | Displays GitHub branding next to video title                         |
 | `className` | `string`                               |         | `false`  | Sets a custom class                                                  |
 
+The component API supports all standard HTML attribute props, while providing some additional behavior as described above.
+
 <h3>
   VideoPlayer.Source <Label>Required</Label>
 </h3>
 
 `VideoPlayer.Source` provides a React alternative to the native HTML `<source />`.
 
-The component API supports all standard HTML attribute props, while providing some additional behavior as described below.
-
 | Name   | Type     | Default | Required | Description                           |
 | :----- | :------- | :-----: | :------: | :------------------------------------ |
 | `src`  | `string` |         |  `true`  | Sets the URL of the video content     |
 | `type` | `string` |         | `false`  | Sets media type for the video content |
 
-<h3>VideoPlayer.Track</h3>
+The component API supports all standard HTML attribute props, while providing some additional behavior as described above.
+
+<h3>
+  VideoPlayer.Track <Label>Required</Label>
+</h3>
 
 `VideoPlayer.Track` provides a React alternative to the native HTML `<track />`.
-
-The component API supports all standard HTML attribute props, while providing some additional behavior as described below.
 
 | Name      | Type                                                                      | Default | Required | Description                                                                                                                              |
 | :-------- | :------------------------------------------------------------------------ | :-----: | :------: | :--------------------------------------------------------------------------------------------------------------------------------------- |
@@ -85,3 +85,5 @@ The component API supports all standard HTML attribute props, while providing so
 | `srcLang` | `string`                                                                  |         | `false`  | Language of the text data. It must be a valid [BCP 47](https://r12a.github.io/app-subtags/) language tag.                                |
 | `label`   | `string`                                                                  |         | `false`  | A user-readable title of the text track which is used by the browser when listing available text tracks.                                 |
 | `default` | `boolean`                                                                 |         | `false`  | This attribute indicates that the track should be enabled unless the user's preferences indicate that another track is more appropriate. |
+
+The component API supports all standard HTML attribute props, while providing some additional behavior as described above.
