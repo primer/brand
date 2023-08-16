@@ -271,3 +271,21 @@ export const WithBreakoutAndHighlightedText: StoryFn<typeof River> = () => (
     </RiverBreakout>
   </Container>
 )
+
+export const WithoutTrailingContent: StoryFn<typeof River> = () => (
+  <Container>
+    <RiverBreakout>
+      <RiverBreakout.A11yHeading>Accelerate workflows</RiverBreakout.A11yHeading>
+      <RiverBreakout.Visual>
+        <PlaceholderImage />
+      </RiverBreakout.Visual>
+      <RiverBreakout.Content>
+        <Text>
+          Accelerate your workflows and scale your business fast with access to millions of open source projects on
+          GitHub, the largest source code host.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </RiverBreakout.Content>
+    </RiverBreakout>
+  </Container>
+)
