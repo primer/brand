@@ -38,8 +38,8 @@
 }
 
 .TextInput--medium {
-  font-weight: var(--brand-text-weight-200);
-  font-size: var(--brand-text-size-200);
+  font-weight: var(--brand-text-weight-100);
+  font-size: var(--brand-text-size-100);
   padding: var(--brand-control-medium-paddingBlock) var(--brand-control-medium-paddingInline-condensed);
 }
 

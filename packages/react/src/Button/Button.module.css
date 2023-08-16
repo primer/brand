@@ -35,6 +35,10 @@
   position: relative;
 }
 
+.Button--label {
+  line-height: 1;
+}
+
 .Button__icon-visual {
   display: flex;
   align-self: center;
