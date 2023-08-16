@@ -145,15 +145,6 @@
   order: unset;
 }
 
-.RiverBreakout__hiddenHeading {
-  border: 0;
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-}
 
 @media screen and (min-width: 48rem) {
   .RiverBreakout .River__content {
