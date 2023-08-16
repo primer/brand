@@ -214,6 +214,35 @@ export function FeaturePreviewLevelOne() {
         <MinimalFooter.Link href="https://github.com/enterprise">Enterprise</MinimalFooter.Link>
         <MinimalFooter.Link href="https://github.com/enterprise/contact">Email us</MinimalFooter.Link>
       </MinimalFooter>
+      {enableGridOverlay && (
+        <Grid
+          enableOverlay={enableGridOverlay}
+          style={{
+            zIndex: 1,
+            position: 'fixed',
+            top: 0,
+            left: '50%',
+            transform: 'translate(-50%, 0)',
+            maxWidth: '1280px',
+            bottom: 0,
+            width: '100%',
+            height: '100%',
+          }}
+        >
+          <Grid.Column span={1}></Grid.Column>
+          <Grid.Column span={1}></Grid.Column>
+          <Grid.Column span={1}></Grid.Column>
+          <Grid.Column span={1}></Grid.Column>
+          <Grid.Column span={1}></Grid.Column>
+          <Grid.Column span={1}></Grid.Column>
+          <Grid.Column span={1}></Grid.Column>
+          <Grid.Column span={1}></Grid.Column>
+          <Grid.Column span={1}></Grid.Column>
+          <Grid.Column span={1}></Grid.Column>
+          <Grid.Column span={1}></Grid.Column>
+          <Grid.Column span={1}></Grid.Column>
+        </Grid>
+      )}
     </ThemeProvider>
   )
 }
