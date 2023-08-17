@@ -50,7 +50,7 @@ const Root = ({
       setPlaying(true)
       onPlay && onPlay(e)
     },
-    [onPlaying],
+    [onPlay],
   )
 
   const handleOnPause = useCallback(
@@ -58,7 +58,7 @@ const Root = ({
       setPlaying(false)
       onPause && onPause(e)
     },
-    [onPlaying],
+    [onPause],
   )
 
   const handleOnPlaying = useCallback(
@@ -66,7 +66,7 @@ const Root = ({
       videoRef.current?.textTracks[0].cues && setTrackInformation(videoRef.current.textTracks[0].cues)
       onPlaying && onPlaying(e)
     },
-    [onPlaying],
+    [onPlaying, videoRef],
   )
 
   const handleOnLoadedMetadata = useCallback(
@@ -74,7 +74,7 @@ const Root = ({
       setTotalTime(videoRef.current?.duration || 0)
       onLoadedMetadata && onLoadedMetadata(e)
     },
-    [onLoadedMetadata],
+    [onLoadedMetadata, videoRef],
   )
 
   const handleOnTimeUpdate = useCallback(
@@ -82,7 +82,7 @@ const Root = ({
       setPlayedTime(videoRef.current?.currentTime || 0)
       onTimeUpdate && onTimeUpdate(e)
     },
-    [onTimeUpdate],
+    [onTimeUpdate, videoRef],
   )
 
   /* > Play / Pause                                                    */
