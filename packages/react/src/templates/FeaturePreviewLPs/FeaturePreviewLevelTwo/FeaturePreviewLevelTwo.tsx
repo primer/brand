@@ -219,7 +219,7 @@ export function FeaturePreviewLevelTwo({accentColor}: FeaturePreviewLevelZeroPro
           backgroundColor="subtle"
           paddingBlockStart={128}
           paddingBlockEnd={128}
-          className={styles['FeaturePreviewLevelTwo__trailingSection']}
+          className={styles['FeaturePreview__trailingSection']}
         >
           <Grid enableOverlay={enableGridOverlay}>
             <Grid.Column start={2} span={10}>
