@@ -1,4 +1,3 @@
-/* River */
 .River {
   display: grid;
   gap: var(--brand-River-spacing-inner);
@@ -113,68 +112,3 @@
     margin-top: var(--brand-River-spacing-inner);
   }
 }
-/* end River */
-
-/* RiverBreakout */
-.RiverBreakout {
-  display: flex;
-  flex-direction: column;
-  gap: var(--brand-River-spacing-inner);
-  padding-block-end: var(--brand-River-spacing-outer);
-  padding-block-start: var(--brand-River-spacing-outer);
-}
-
-.RiverBreakout .River__text {
-  color: var(--brand-color-text-default);
-  font-size: var(--brand-text-size-500);
-  font-weight: var(--brand-heading-weight-500);
-  letter-spacing: var(--brand-heading-letterSpacing-500);
-  line-height: var(--brand-text-lineHeight-500);
-}
-
-.RiverBreakout--muted .River__text {
-  color: var(--brand-color-text-subtle);
-}
-
-.RiverBreakout .River__text em {
-  color: var(--brand-color-text-default);
-  font-style: normal;
-}
-
-.RiverBreakout .River__visual {
-  order: unset;
-}
-
-@media screen and (min-width: 48rem) {
-  .RiverBreakout .River__content {
-    display: grid;
-    gap: var(--brand-River-spacing-inner) calc(var(--brand-River-spacing-inner) / 2);
-    grid-template-areas:
-      'text trailingComponent'
-      'cta trailingComponent';
-    grid-template-columns: 5fr 3fr;
-  }
-
-  .RiverBreakout .River__call-to-action {
-    grid-area: cta;
-    margin-block-start: 0;
-  }
-
-  .RiverBreakout .River__trailingComponent {
-    grid-area: trailingComponent;
-    justify-self: end;
-    margin-block-start: 0;
-    padding-inline-start: calc(var(--brand-River-spacing-inner) / 2);
-  }
-
-  .RiverBreakout .River__text {
-    grid-area: text;
-  }
-
-  .RiverBreakout .River__trailingComponent--divider {
-    padding-block-start: unset;
-    border-top: 0;
-    border-left: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-  }
-}
-/* end RiverBreakout */

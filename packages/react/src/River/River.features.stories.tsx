@@ -1,9 +1,10 @@
 import React from 'react'
 import {Meta, StoryFn} from '@storybook/react'
-import {River, RiverBreakout} from '.'
+import {River} from '.'
 import {Heading, Link, Stack, Text, Timeline} from '..'
 import {Container} from '../component-helpers'
 import placeholderImage from '../fixtures/images/placeholder-600x400.png'
+import {RiverBreakout} from '../RiverBreakout'
 
 export default {
   title: 'Components/River/features',
