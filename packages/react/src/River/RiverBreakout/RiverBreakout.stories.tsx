@@ -25,7 +25,7 @@ const PlaceholderImage = () => (
   <img src={placeholderImage} alt="placeholder, blank area with an off-white background color" />
 )
 
-export const WithBreakout: StoryFn<typeof RiverBreakout> = () => (
+export const Default: StoryFn<typeof RiverBreakout> = () => (
   <Container>
     <RiverBreakout>
       <RiverBreakout.A11yHeading>Accelerate workflows</RiverBreakout.A11yHeading>
@@ -43,7 +43,7 @@ export const WithBreakout: StoryFn<typeof RiverBreakout> = () => (
   </Container>
 )
 
-export const WithBreakoutAndHighlightedText: StoryFn<typeof RiverBreakout> = () => (
+export const HighlightedPortion: StoryFn<typeof RiverBreakout> = () => (
   <Container>
     <RiverBreakout>
       <RiverBreakout.A11yHeading>River breakout highlight</RiverBreakout.A11yHeading>
@@ -61,7 +61,7 @@ export const WithBreakoutAndHighlightedText: StoryFn<typeof RiverBreakout> = () 
   </Container>
 )
 
-export const WithoutTrailingContent: StoryFn<typeof RiverBreakout> = () => (
+export const WithoutTrailingComponent: StoryFn<typeof RiverBreakout> = () => (
   <Container>
     <RiverBreakout>
       <RiverBreakout.A11yHeading>Accelerate workflows</RiverBreakout.A11yHeading>

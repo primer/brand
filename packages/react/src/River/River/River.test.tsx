@@ -1,18 +1,18 @@
 import React, {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
-import {River, RiverBreakout} from '.'
-import {Text, Link, Heading} from '..'
+import {River} from '../'
+import {Text, Link, Heading} from '../../'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 expect.extend(toHaveNoViolations)
 
-const mockText = 'Minimal description'
-const mockHeading = 'Mock heading'
-const mockLinkText = 'call to action'
-const MockImage = () => <img src="file.jpg" alt="mock" />
+describe('River', () => {
+  const mockText = 'Minimal description'
+  const mockHeading = 'Mock heading'
+  const mockLinkText = 'call to action'
+  const MockImage = () => <img src="file.jpg" alt="mock" />
 
-describe.skip('River', () => {
   afterEach(() => {
     cleanup()
     jest.clearAllMocks()
@@ -327,87 +327,6 @@ describe.skip('River', () => {
           <Link>{mockLinkText}</Link>
         </River.Content>
       </River>,
-    )
-    const results = await axe(container)
-
-    expect(results).toHaveNoViolations()
-  })
-})
-
-describe('RiverBreakout', () => {
-  afterEach(() => {
-    cleanup()
-    jest.clearAllMocks()
-  })
-
-  it('renders correctly into the document', () => {
-    const {getByText} = render(
-      <RiverBreakout>
-        <RiverBreakout.A11yHeading>{mockHeading}</RiverBreakout.A11yHeading>
-        <RiverBreakout.Visual>
-          <MockImage />
-        </RiverBreakout.Visual>
-        <RiverBreakout.Content>
-          <Text>{mockText}</Text>
-        </RiverBreakout.Content>
-      </RiverBreakout>,
-    )
-
-    const textEl = getByText(mockText)
-    const a11yHeadingEl = getByText(mockHeading)
-
-    expect(textEl).toBeInTheDocument()
-    expect(a11yHeadingEl).toBeInTheDocument()
-  })
-
-  it('warns if a11y heading is not passed', () => {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
-    render(
-      <RiverBreakout>
-        <RiverBreakout.Visual>
-          <MockImage />
-        </RiverBreakout.Visual>
-        <RiverBreakout.Content>
-          <Text>{mockText}</Text>
-        </RiverBreakout.Content>
-      </RiverBreakout>,
-    )
-    expect(consoleWarnSpy).toHaveBeenCalledWith(
-      'RiverBreakout: A11yHeading child is required. This element will not be visible, only read by screenreaders.',
-    )
-    consoleWarnSpy.mockRestore()
-  })
-
-  it('renders a h3 a11y heading by default', () => {
-    const {getByRole} = render(
-      <RiverBreakout>
-        <RiverBreakout.A11yHeading>{mockHeading}</RiverBreakout.A11yHeading>
-        <RiverBreakout.Visual>
-          <MockImage />
-        </RiverBreakout.Visual>
-        <RiverBreakout.Content>
-          <Text>{mockText}</Text>
-        </RiverBreakout.Content>
-      </RiverBreakout>,
-    )
-
-    const elHeading = getByRole('heading', {level: 3})
-
-    expect(elHeading).toBeInTheDocument()
-  })
-
-  it('has no a11y violations', async () => {
-    const {container} = render(
-      <RiverBreakout>
-        <RiverBreakout.A11yHeading>{mockHeading}</RiverBreakout.A11yHeading>
-        <RiverBreakout.Visual>
-          <MockImage />
-        </RiverBreakout.Visual>
-        <RiverBreakout.Content>
-          <Text>{mockText}</Text>
-        </RiverBreakout.Content>
-      </RiverBreakout>,
     )
     const results = await axe(container)
 
