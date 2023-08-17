@@ -9,7 +9,7 @@
           "value": "var(--base-size-24)"
         },
         "small": {
-          "value": "var(--base-size-16)"
+          "value": "var(--base-size-20)"
         }
       },
       "Item": {

@@ -2,8 +2,8 @@ module.exports = {
   brand: {
     Bento: {
       background: {
-        value: 'var(--base-color-scale-white-0)',
-        dark: 'var(--base-color-scale-gray-9)',
+        value: 'var(--brand-color-canvas-default)',
+        dark: 'var(--brand-color-canvas-subtle)',
       },
     },
   },
