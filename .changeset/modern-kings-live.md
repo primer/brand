@@ -2,4 +2,4 @@
 '@primer/react-brand': patch
 ---
 
-Updates Testimonial component to align with 2023 design refactor.
+Updated Testimonial component visuals, and enables customization of the quote color.
