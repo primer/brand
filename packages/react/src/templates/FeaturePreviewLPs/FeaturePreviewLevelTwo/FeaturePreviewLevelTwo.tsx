@@ -24,10 +24,15 @@ import {
 import styles from './FeaturePreviewLevelTwo.module.css'
 
 import placeholderImage from '../../../fixtures/images/placeholder-600x400.png'
+import {themeMap} from '../helpers'
 
-export function FeaturePreviewLevelTwo() {
+type FeaturePreviewLevelZeroProps = {
+  accentColor?: string
+}
+export function FeaturePreviewLevelTwo({accentColor}: FeaturePreviewLevelZeroProps) {
   const [enableGridOverlay, setEnableGridOverlay] = React.useState(false)
   const [isLightMode, setIsLightMode] = React.useState(true)
+  const accentColorValue = themeMap[accentColor || 'default']
 
   const handleOverlay = e => {
     e.preventDefault()
@@ -42,7 +47,12 @@ export function FeaturePreviewLevelTwo() {
   return (
     <ThemeProvider
       colorMode={isLightMode ? 'light' : 'dark'}
-      style={{backgroundColor: 'var(--brand-color-canvas-default)'}}
+      style={{
+        ['--brand-Pillar-icon-color-default' as string]: accentColorValue,
+        ['--brand-Label-color-default' as string]: accentColorValue,
+        ['--brand-color-accent-primary' as string]: accentColorValue,
+        backgroundColor: 'var(--brand-color-canvas-default)',
+      }}
     >
       <SubdomainNavBar title="Preview" fixed={false}>
         <SubdomainNavBar.SecondaryAction href="#" onClick={handleMode}>
@@ -52,7 +62,7 @@ export function FeaturePreviewLevelTwo() {
           {enableGridOverlay ? 'Disable' : 'Enable'} grid
         </SubdomainNavBar.PrimaryAction>
       </SubdomainNavBar>
-      <main className={styles.FeaturePreview}>
+      <div className={styles.FeaturePreview}>
         <Grid enableOverlay={enableGridOverlay}>
           <Grid.Column>
             <Hero className={styles.Hero}>
@@ -318,7 +328,7 @@ export function FeaturePreviewLevelTwo() {
             </Grid.Column>
           </Grid>
         </Box>
-      </main>
+      </div>
       <MinimalFooter>
         <MinimalFooter.Link href="https://github.com/organizations/enterprise_plan">
           Try GitHub for free
