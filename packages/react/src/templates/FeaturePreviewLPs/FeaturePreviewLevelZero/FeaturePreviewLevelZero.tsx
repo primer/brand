@@ -11,7 +11,7 @@ import {
   SubdomainNavBar,
   Text,
   ThemeProvider,
-} from '../..'
+} from '../../../'
 
 import styles from './FeaturePreviewLevelZero.module.css'
 

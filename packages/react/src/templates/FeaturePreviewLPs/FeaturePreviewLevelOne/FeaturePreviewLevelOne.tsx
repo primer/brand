@@ -17,7 +17,7 @@ import {
   TextInput,
   Textarea,
   ThemeProvider,
-} from '../..'
+} from '../../../'
 
 import styles from './FeaturePreviewLevelOne.module.css'
 

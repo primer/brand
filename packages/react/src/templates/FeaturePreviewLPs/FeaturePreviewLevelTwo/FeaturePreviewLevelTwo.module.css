@@ -1,9 +1,13 @@
 /**
- * Overrides
+ * Custom overrides
  * Should be fixed in the respective components
  */
 
 .Hero {
+  /* In this template, the vertical spacing in Hero 
+   * at wider viewports uses the same value
+   * as that used in narrower viewports.
+   */
   padding: var(--brand-Hero-narrow-padding);
 }
 
@@ -22,6 +26,7 @@
 }
 
 @media screen and (min-width: 48rem) {
+  /* This will eventually be fixed by using the Grid inside the River */
   .RiverContent {
     padding-inline-start: calc(var(--brand-River-spacing-inner) * 2);
   }

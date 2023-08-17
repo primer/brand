@@ -19,11 +19,11 @@ import {
   Text,
   ThemeProvider,
   Timeline,
-} from '../..'
+} from '../../../'
 
 import styles from './FeaturePreviewLevelTwo.module.css'
 
-import placeholderImage from '../../fixtures/images/placeholder-600x400.png'
+import placeholderImage from '../../../fixtures/images/placeholder-600x400.png'
 
 export function FeaturePreviewLevelTwo() {
   const [enableGridOverlay, setEnableGridOverlay] = React.useState(false)
@@ -75,7 +75,7 @@ export function FeaturePreviewLevelTwo() {
                         <em>Here we explain why this came to be.</em> This is a short statement about the intention of
                         the feature and why we think it&apos;s cool, keep it real.
                       </SectionIntro.Heading>
-                    </SectionIntro>{' '}
+                    </SectionIntro>
                   </Box>
                 </Grid.Column>
               </Grid>
@@ -173,7 +173,7 @@ export function FeaturePreviewLevelTwo() {
                 </Grid.Column>
                 <Grid.Column span={{small: 12, medium: 5}}>
                   <Box marginBlockStart={24}>
-                    <Timeline>
+                    <Timeline fullWidth>
                       <Timeline.Item>
                         <em>This is what it is and it’s great. </em>That’s why and how the greatness happens here, we
                         love sub bullets, they allow for more specific technical details.
