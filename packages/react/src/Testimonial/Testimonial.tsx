@@ -11,6 +11,7 @@ import clsx from 'clsx'
 import {BaseProps} from '../component-helpers'
 import {Text, Avatar as BaseAvatar, useAnimation} from '../'
 import type {AvatarProps} from '../'
+import findElementInChildren from '../findElementInChildren'
 
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/testimonial/base.css'
 
@@ -122,11 +123,11 @@ function _Quote({children, className}: QuoteProps, ref) {
 
   // TODO: when Firefox supports :has() selector, we should use that instead of JS
   const getConditionalVariant = useCallback(() => {
-    if (childrenArray.some(child => React.isValidElement(child) && child.type === 'em')) {
+    if (findElementInChildren(children, 'em')) {
       return 'muted'
     }
     return 'default'
-  }, [childrenArray])
+  }, [children])
 
   const defaultColor = childrenArray.length === 1 ? 'default' : getConditionalVariant()
 
