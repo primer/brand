@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from 'react'
+import React, {useState, useRef, useEffect, useCallback} from 'react'
 import clsx from 'clsx'
 import type {BaseProps} from '../component-helpers'
 import {Text} from '../Text'
@@ -44,6 +44,47 @@ const Root = ({
   const [totalTime, setTotalTime] = useState(0)
   const [trackInformation, setTrackInformation] = useState<TextTrackCueList | undefined>(undefined)
 
+  /* > Video Attr Functions                                            */
+  const handleOnPlay = useCallback(
+    e => {
+      setPlaying(true)
+      onPlay && onPlay(e)
+    },
+    [onPlaying],
+  )
+
+  const handleOnPause = useCallback(
+    e => {
+      setPlaying(false)
+      onPause && onPause(e)
+    },
+    [onPlaying],
+  )
+
+  const handleOnPlaying = useCallback(
+    e => {
+      videoRef.current?.textTracks[0].cues && setTrackInformation(videoRef.current.textTracks[0].cues)
+      onPlaying && onPlaying(e)
+    },
+    [onPlaying],
+  )
+
+  const handleOnLoadedMetadata = useCallback(
+    e => {
+      setTotalTime(videoRef.current?.duration || 0)
+      onLoadedMetadata && onLoadedMetadata(e)
+    },
+    [onLoadedMetadata],
+  )
+
+  const handleOnTimeUpdate = useCallback(
+    e => {
+      setPlayedTime(videoRef.current?.currentTime || 0)
+      onTimeUpdate && onTimeUpdate(e)
+    },
+    [onTimeUpdate],
+  )
+
   /* > Play / Pause                                                    */
   const handleVideoPlayback = () => {
     if (videoRef.current) {
@@ -53,10 +94,6 @@ const Root = ({
         videoRef.current.pause()
       }
     }
-  }
-
-  const handleVideoOnPlaying = () => {
-    videoRef.current?.textTracks[0].cues && setTrackInformation(videoRef.current.textTracks[0].cues)
   }
 
   /* > Hide Default Captions                                                   */
@@ -112,27 +149,11 @@ const Root = ({
         controls={false}
         poster={poster}
         className={clsx(styles.VideoPlayer, className)}
-        onPlay={e => {
-          setPlaying(true)
-          onPlay && onPlay(e)
-        }}
-        onPause={e => {
-          setPlaying(false)
-          onPause && onPause(e)
-        }}
-        onPlaying={e => {
-          handleVideoOnPlaying()
-          onPlaying && onPlaying(e)
-        }}
-        onLoadedMetadata={e => {
-          setTotalTime(videoRef.current?.duration || 0)
-
-          onLoadedMetadata && onLoadedMetadata(e)
-        }}
-        onTimeUpdate={e => {
-          setPlayedTime(videoRef.current?.currentTime || 0)
-          onTimeUpdate && onTimeUpdate(e)
-        }}
+        onPlay={handleOnPlay}
+        onPause={handleOnPause}
+        onPlaying={handleOnPlaying}
+        onLoadedMetadata={handleOnLoadedMetadata}
+        onTimeUpdate={handleOnTimeUpdate}
         {...rest}
       >
         {children}
