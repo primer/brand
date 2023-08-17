@@ -24,7 +24,8 @@
     "build:preview": "npm run clean && scripts/build-storybook preview",
     "build:prod": "npm run clean && scripts/build-storybook",
     "clean": "rm -rf out",
-    "start": "storybook dev -p 6006"
+    "start": "storybook dev -p 6006",
+    "start:axe": "storybook dev -p 6006 --no-version-updates"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.22.0",
