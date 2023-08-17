@@ -24,7 +24,7 @@ export default {
       control: 'radio',
       options: Object.keys(themeMap),
       table: {
-        category: 'Themeing',
+        category: 'Theming',
       },
     },
   },
