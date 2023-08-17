@@ -1,8 +1,8 @@
 import React, {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
-import {River} from './River'
-import {Text, Link, Heading} from '../'
+import {River} from '../'
+import {Text, Link, Heading} from '../../'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 expect.extend(toHaveNoViolations)
