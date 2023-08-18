@@ -148,7 +148,7 @@ describe('SectionIntro', () => {
 
   test('renders a label with default colors and size', () => {
     const mockLabel = 'Label'
-    const expectedSize = 'small'
+    const expectedSize = 'medium'
     const expectedColor = 'default'
 
     const {getByTestId} = render(
