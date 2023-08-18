@@ -1,10 +1,31 @@
 declare const styles: {
   readonly "Testimonial": string;
+  readonly "Testimonial__quoteMark": string;
   readonly "Testimonial--center": string;
   readonly "Testimonial--size-large": string;
   readonly "Testimonial-quote": string;
+  readonly "Testimonial-quote--muted": string;
   readonly "Testimonial-from": string;
   readonly "Testimonial-logo-image": string;
+  readonly "Testimonial--quoteMarkColor-default": string;
+  readonly "Testimonial--quoteMarkColor-blue": string;
+  readonly "Testimonial--quoteMarkColor-blue-purple": string;
+  readonly "Testimonial--quoteMarkColor-coral": string;
+  readonly "Testimonial--quoteMarkColor-green": string;
+  readonly "Testimonial--quoteMarkColor-green-blue": string;
+  readonly "Testimonial--quoteMarkColor-gray": string;
+  readonly "Testimonial--quoteMarkColor-indigo": string;
+  readonly "Testimonial--quoteMarkColor-lemon": string;
+  readonly "Testimonial--quoteMarkColor-lime": string;
+  readonly "Testimonial--quoteMarkColor-orange": string;
+  readonly "Testimonial--quoteMarkColor-pink": string;
+  readonly "Testimonial--quoteMarkColor-pink-blue": string;
+  readonly "Testimonial--quoteMarkColor-purple": string;
+  readonly "Testimonial--quoteMarkColor-purple-red": string;
+  readonly "Testimonial--quoteMarkColor-red": string;
+  readonly "Testimonial--quoteMarkColor-red-orange": string;
+  readonly "Testimonial--quoteMarkColor-teal": string;
+  readonly "Testimonial--quoteMarkColor-yellow": string;
 };
 export = styles;
 
