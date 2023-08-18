@@ -8,13 +8,36 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 import styles from './Bento.module.css'
 
 export type ColumnIndex = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+
 type ResponsiveMap = {
-  xs?: 2
-  sm?: 4
-  md?: 6
-  lg?: 8
-  xl?: 10
-  xxl?: 12
+  xsmall?: ColumnIndex
+  small?: ColumnIndex
+  medium?: ColumnIndex
+  large?: ColumnIndex
+  xlarge?: ColumnIndex
+  xxlarge?: ColumnIndex
+}
+
+type Flow = 'row' | 'column'
+
+type ResponsiveFlow = {
+  xsmall?: Flow
+  small?: Flow
+  medium?: Flow
+  large?: Flow
+  xlarge?: Flow
+  xxlarge?: Flow
+}
+
+type Align = 'start' | 'center' | 'end'
+
+type ResponsiveAlign = {
+  xsmall?: Flow
+  small?: Flow
+  medium?: Flow
+  large?: Flow
+  xlarge?: Flow
+  xxlarge?: Flow
 }
 
 type BentoProps = React.HTMLAttributes<HTMLDivElement> & BaseProps<HTMLDivElement>
@@ -28,13 +51,28 @@ type BentoItemProps = {
   columnSpan?: ColumnIndex | ResponsiveMap
   rowStart?: number | ResponsiveMap
   rowSpan?: number | ResponsiveMap
-  flow?: 'row' | 'column'
-  horizontalAlign?: 'start' | 'center' | 'end'
-  verticalAlign?: 'start' | 'center' | 'end'
+  flow?: Flow | ResponsiveFlow
+  horizontalAlign?: Align | ResponsiveAlign
+  verticalAlign?: Align | ResponsiveAlign
   colorMode?: 'light' | 'dark'
   visualAsBackground?: boolean
 } & React.HTMLAttributes<HTMLDivElement> &
   BaseProps<HTMLDivElement>
+
+const returnClassBasedOnResponsiveMap = (
+  propName: string,
+  prop?: (ColumnIndex | ResponsiveMap) | (number | ResponsiveMap) | (Flow | ResponsiveFlow) | (Align | ResponsiveAlign),
+) => {
+  const classesToMerge: string[] = []
+  if (typeof prop === 'number' || typeof prop === 'string') {
+    classesToMerge.push(styles[`Bento__Item--${propName}-${prop}`])
+  } else if (typeof prop === 'object') {
+    for (const [key, value] of Object.entries(prop)) {
+      classesToMerge.push(styles[`Bento__Item--${key}-${propName}-${value}`])
+    }
+  }
+  return classesToMerge
+}
 
 const Item = ({
   className,
@@ -50,16 +88,23 @@ const Item = ({
   children,
   ...rest
 }: BentoItemProps) => {
+  const bentoItemClassArray = [styles.Bento__Item]
+  bentoItemClassArray.push(
+    ...returnClassBasedOnResponsiveMap('column-span', columnSpan),
+    ...returnClassBasedOnResponsiveMap('row-span', rowSpan),
+    ...returnClassBasedOnResponsiveMap('column-start', columnStart),
+    ...returnClassBasedOnResponsiveMap('row-start', rowStart),
+    ...returnClassBasedOnResponsiveMap('flow', flow),
+    ...returnClassBasedOnResponsiveMap('horizontalAlign', horizontalAlign),
+    ...returnClassBasedOnResponsiveMap('verticalAlign', verticalAlign),
+  )
+
   return (
     <div
       data-color-mode={colorMode}
       className={clsx(
-        styles.Bento__Item,
-        columnSpan && styles[`Bento__Item--column-span-${columnSpan}`],
-        rowSpan && styles[`Bento__Item--row-span-${rowSpan}`],
-        columnStart && styles[`Bento__Item--column-start-${columnStart}`],
-        rowStart && styles[`Bento__Item--row-start-${rowStart}`],
-        flow && styles[`Bento__Item-flow--${flow}`],
+        ...bentoItemClassArray,
+        // flow && styles[`Bento__Item--flow-${flow}`],
         styles[`Bento__Item-verticalAlign--${verticalAlign}`],
         styles[`Bento__Item-horizontalAlign--${horizontalAlign}`],
         visualAsBackground && styles[`Bento__Item--visual-as-background`],
