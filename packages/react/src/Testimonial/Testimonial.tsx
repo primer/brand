@@ -14,11 +14,17 @@ import type {AvatarProps} from '../'
 import findElementInChildren from '../findElementInChildren'
 
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/testimonial/base.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/testimonial/colors.css'
 
 import styles from './Testimonial.module.css'
+import {Colors, Gradients} from '../constants'
 
 type TestimonialAlignment = 'start' | 'center'
 type TestimonialSize = 'small' | 'large'
+
+export const TestimonialQuoteMarkColors = [...Colors, ...Gradients] as const
+
+export const defaultQuoteMarkColor = TestimonialQuoteMarkColors[0]
 
 export type TestimonialProps = {
   /**
@@ -39,7 +45,7 @@ export type TestimonialProps = {
    */
   size?: TestimonialSize
   /** Sets the color of the quote mark */
-  quoteMarkFill?: React.CSSProperties['color']
+  quoteMarkColor?: (typeof TestimonialQuoteMarkColors)[number]
 } & BaseProps<HTMLElement> &
   React.HTMLAttributes<HTMLElement>
 
@@ -49,7 +55,7 @@ export type TestimonialProps = {
  */
 function _Root(
   {
-    quoteMarkFill = 'currentColor',
+    quoteMarkColor = 'default',
     align,
     animate,
     className,
@@ -72,9 +78,19 @@ function _Root(
         size && styles[`Testimonial--size-${size}`],
         className,
       )}
-      style={{...animationInlineStyles, ...style, ['--testimonial-accent-color' as keyof CSSProperties]: quoteMarkFill}}
+      style={{
+        ...animationInlineStyles,
+        ...style,
+        ['--testimonial-accent-color' as keyof CSSProperties]: quoteMarkColor,
+      }}
       {...rest}
     >
+      <div
+        aria-hidden="true"
+        className={clsx(styles['Testimonial__quoteMark'], styles[`Testimonial__quoteMark--${quoteMarkColor}`])}
+      >
+        “
+      </div>
       {React.Children.map(children, child => {
         if (React.isValidElement(child)) {
           if (child.type === Quote) {

@@ -1,7 +1,7 @@
 import React from 'react'
 import {Meta} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
-import {Testimonial, TestimonialProps} from '.'
+import {Testimonial, TestimonialProps, TestimonialQuoteMarkColors, defaultQuoteMarkColor} from '.'
 import {Stack} from '../'
 
 export default {
@@ -9,7 +9,7 @@ export default {
   component: Testimonial,
   args: {
     align: 'start',
-    quoteMarkFill: 'var(--brand-color-text-default)',
+    quoteMarkColor: defaultQuoteMarkColor,
     name: 'David Ross',
     position: 'Staff Security Engineer',
     quote:
@@ -22,8 +22,11 @@ export default {
     align: {
       options: ['start', 'center'],
     },
-    quoteMarkFill: {
-      control: {type: 'text'},
+    quoteMarkColor: {
+      control: {
+        type: 'radio',
+        options: TestimonialQuoteMarkColors,
+      },
     },
     name: {
       control: {type: 'text'},
@@ -250,7 +253,7 @@ export const ColoredQuoteMark = args => (
 )
 
 ColoredQuoteMark.args = {
-  quoteMarkFill: 'var(--brand-color-accent-primary)',
+  quoteMarkColor: 'blue',
 }
 
 export const Large = args => (
