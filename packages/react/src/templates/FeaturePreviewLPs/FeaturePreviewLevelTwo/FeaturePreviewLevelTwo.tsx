@@ -12,6 +12,7 @@ import {
   MinimalFooter,
   Pillar,
   River,
+  RiverBreakout,
   SectionIntro,
   Stack,
   SubdomainNavBar,
@@ -152,51 +153,39 @@ export function FeaturePreviewLevelTwo({accentColor}: FeaturePreviewLevelZeroPro
               </River.Content>
             </River>
             {/* TODO REPLACE WITH RIVER BREAKOUT */}
-            <Box
-              marginBlockStart={{
-                narrow: 24,
-                regular: 96,
-              }}
-              marginBlockEnd={{
-                narrow: 24,
-                regular: 96,
-              }}
-            >
-              <Grid as="section">
-                <Grid.Column span={12}>
-                  <Box borderRadius="large">
-                    <River.Visual>
-                      <img src={placeholderImage} alt="placeholder, blank area with an off-white background color" />
-                    </River.Visual>
-                  </Box>
-                </Grid.Column>
-                <Grid.Column span={{small: 12, medium: 7}}>
-                  <Stack direction="vertical" padding="none" alignItems="flex-start">
-                    <SectionIntro fullWidth>
-                      <SectionIntro.Heading size="5">
-                        <em>Here we explain why this came to be.</em> This is a short statement about the intention of
-                        the feature and why we think it&apos;s cool, keep it real.
-                      </SectionIntro.Heading>
-                    </SectionIntro>
+
+            <Grid as="section">
+              <Grid.Column span={12}>
+                <RiverBreakout>
+                  <RiverBreakout.A11yHeading>
+                    An accessible heading describing the subsequent content
+                  </RiverBreakout.A11yHeading>
+                  <RiverBreakout.Visual>
+                    <img src={placeholderImage} alt="placeholder, blank area with an off-white background color" />
+                  </RiverBreakout.Visual>
+                  <RiverBreakout.Content
+                    trailingComponent={() => (
+                      <Timeline fullWidth>
+                        <Timeline.Item>
+                          <em>This is what it is and it&apos;s great. </em>That&apos;s why and how the greatness happens
+                          here, we love sub bullets, they allow for more specific technical details.
+                        </Timeline.Item>
+                        <Timeline.Item>
+                          <em>This is what it is and it&apos;s great. </em>That&apos;s why and how the greatness happens
+                          here, we love sub bullets, they allow for more specific technical details.
+                        </Timeline.Item>
+                      </Timeline>
+                    )}
+                  >
+                    <Text>
+                      <em>Here we explain why this came to be.</em> This is a short statement about the intention of the
+                      feature and why we think it&apos;s cool, keep it real.
+                    </Text>
                     <Link href="#">Learn more</Link>
-                  </Stack>
-                </Grid.Column>
-                <Grid.Column span={{small: 12, medium: 5}}>
-                  <Box marginBlockStart={24}>
-                    <Timeline fullWidth>
-                      <Timeline.Item>
-                        <em>This is what it is and it’s great. </em>That’s why and how the greatness happens here, we
-                        love sub bullets, they allow for more specific technical details.
-                      </Timeline.Item>
-                      <Timeline.Item>
-                        <em>This is what it is and it’s great. </em>That’s why and how the greatness happens here, we
-                        love sub bullets, they allow for more specific technical details.
-                      </Timeline.Item>
-                    </Timeline>
-                  </Box>
-                </Grid.Column>
-              </Grid>
-            </Box>
+                  </RiverBreakout.Content>
+                </RiverBreakout>
+              </Grid.Column>
+            </Grid>
             <River align="end">
               <River.Visual>
                 <img src={placeholderImage} alt="placeholder, blank area with an off-white background color" />
@@ -226,9 +215,9 @@ export function FeaturePreviewLevelTwo({accentColor}: FeaturePreviewLevelZeroPro
               <Box marginBlockEnd={128}>
                 <Testimonial size="large">
                   <Testimonial.Quote>
-                    We’ve used GitHub from the inception of Datadog. It’s a high-quality product, and a lot of our
-                    engineers contribute to open source so there’s a sense of community there. GitHub is ingrained in
-                    the DNA of our engineering, it’s become part of the culture.”
+                    We&apos;ve used GitHub from the inception of Datadog. It&apos;s a high-quality product, and a lot of
+                    our engineers contribute to open source so there&apos;s a sense of community there. GitHub is
+                    ingrained in the DNA of our engineering, it&apos;s become part of the culture.”
                   </Testimonial.Quote>
                   <Testimonial.Name position="Staff Software Engineer">David Ross</Testimonial.Name>
                 </Testimonial>
@@ -236,7 +225,7 @@ export function FeaturePreviewLevelTwo({accentColor}: FeaturePreviewLevelZeroPro
             </Grid.Column>
             <Grid.Column>
               <CTABanner align="center" hasShadow={false}>
-                <CTABanner.Heading>Get it, it’s super nice</CTABanner.Heading>
+                <CTABanner.Heading>Get it, it&apos;s super nice</CTABanner.Heading>
                 <CTABanner.Description>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus
                   sed turpis felis nam pulvinar.
@@ -297,7 +286,7 @@ export function FeaturePreviewLevelTwo({accentColor}: FeaturePreviewLevelZeroPro
                     </FAQ.Answer>
                   </FAQ.Item>
                   <FAQ.Item>
-                    <FAQ.Question>What’s the difference between this & that?</FAQ.Question>
+                    <FAQ.Question>What&apos;s the difference between this & that?</FAQ.Question>
                     <FAQ.Answer>
                       <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam

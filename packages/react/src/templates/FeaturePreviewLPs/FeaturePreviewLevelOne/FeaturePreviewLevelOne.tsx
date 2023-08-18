@@ -10,6 +10,7 @@ import {
   InlineLink,
   Link,
   MinimalFooter,
+  SectionIntro,
   Select,
   Stack,
   SubdomainNavBar,
@@ -79,12 +80,14 @@ export function FeaturePreviewLevelOne({accentColor}: FeaturePreviewLevelOneProp
           <Grid.Column>
             <section>
               <Grid enableOverlay={enableGridOverlay}>
-                <Grid.Column span={5}>
+                <Grid.Column span={{small: 12, medium: 5}}>
                   <Box marginBlockEnd={96}>
                     <Stack padding="none">
-                      <Heading as="h2" size="5">
-                        Signup for this cool feature to enable you to do this before everyone else.
-                      </Heading>
+                      <SectionIntro fullWidth>
+                        <SectionIntro.Heading as="h2" size="5">
+                          Signup for this cool feature to enable you to do this before everyone else.
+                        </SectionIntro.Heading>
+                      </SectionIntro>
                       <Stack direction="vertical" padding="none" alignItems="flex-start">
                         <Text as="p" variant="muted">
                           It;s often considered polit to tell people what they are about to sign up for. Even if it
@@ -98,7 +101,7 @@ export function FeaturePreviewLevelOne({accentColor}: FeaturePreviewLevelOneProp
                     </Stack>
                   </Box>
                 </Grid.Column>
-                <Grid.Column span={6} start={7}>
+                <Grid.Column span={{small: 12, medium: 6}} start={{medium: 7}}>
                   <form>
                     <>
                       <Stack direction="vertical" padding="none">
