@@ -8,7 +8,7 @@
 }
 
 .Bento__Item {
-  background-color: var(--brand-Bento-background);
+  background-color: var(--brand-Bento-bgColor);
   border-radius: var(--brand-Bento-Item-borderRadius-small);
   display: grid;
   grid-template-rows: auto 1fr;
@@ -267,7 +267,6 @@
 .Bento__Content {
   display: grid;
   height: 100%;
-  align-content: space-between; /* Needs to be space-around to handle without img */
 }
 
 /* Bento Visual */
