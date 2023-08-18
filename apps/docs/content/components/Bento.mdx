@@ -16,12 +16,12 @@ import {Bento} from '@primer/react-brand'
 
 ```jsx live
 <Bento>
-  <Bento.Item columnSpan={3} rowSpan={8} />
   <Bento.Item columnSpan={3} rowSpan={4} />
-  <Bento.Item columnSpan={6} rowSpan={8} />
-  <Bento.Item columnSpan={3} rowSpan={4} rowStart={9} />
-  <Bento.Item columnSpan={3} rowSpan={8} />
+  <Bento.Item columnSpan={3} rowSpan={2} />
   <Bento.Item columnSpan={6} rowSpan={4} />
+  <Bento.Item columnSpan={3} rowSpan={2} rowStart={5} />
+  <Bento.Item columnSpan={3} rowSpan={4} />
+  <Bento.Item columnSpan={6} rowSpan={2} />
 </Bento>
 ```
 
@@ -29,10 +29,10 @@ import {Bento} from '@primer/react-brand'
 
 ```jsx live
 <Bento>
-  <Bento.Item columnSpan={12} rowSpan={4} />
-  <Bento.Item columnSpan={7} rowSpan={4} />
-  <Bento.Item columnSpan={5} rowSpan={4} />
-  <Bento.Item columnSpan={12} rowSpan={4} />
+  <Bento.Item columnSpan={12} rowSpan={2} />
+  <Bento.Item columnSpan={7} rowSpan={2} />
+  <Bento.Item columnSpan={5} rowSpan={2} />
+  <Bento.Item columnSpan={12} rowSpan={2} />
 </Bento>
 ```
 
@@ -40,10 +40,10 @@ import {Bento} from '@primer/react-brand'
 
 ```jsx live
 <Bento>
-  <Bento.Item columnSpan={12} rowSpan={4} />
-  <Bento.Item columnSpan={5} rowSpan={4} />
-  <Bento.Item columnSpan={7} rowSpan={4} />
-  <Bento.Item columnSpan={12} rowSpan={4} />
+  <Bento.Item columnSpan={12} rowSpan={2} />
+  <Bento.Item columnSpan={5} rowSpan={2} />
+  <Bento.Item columnSpan={7} rowSpan={2} />
+  <Bento.Item columnSpan={12} rowSpan={2} />
 </Bento>
 ```
 
@@ -51,10 +51,10 @@ import {Bento} from '@primer/react-brand'
 
 ```jsx live
 <Bento>
-  <Bento.Item columnSpan={7} rowSpan={4} />
-  <Bento.Item columnSpan={5} rowSpan={4} />
-  <Bento.Item columnSpan={12} rowSpan={4} />
-  <Bento.Item columnSpan={12} rowSpan={4} />
+  <Bento.Item columnSpan={7} rowSpan={2} />
+  <Bento.Item columnSpan={5} rowSpan={2} />
+  <Bento.Item columnSpan={12} rowSpan={2} />
+  <Bento.Item columnSpan={12} rowSpan={2} />
 </Bento>
 ```
 
@@ -62,11 +62,174 @@ import {Bento} from '@primer/react-brand'
 
 ```jsx live
 <Bento>
-  <Bento.Item columnSpan={7} rowSpan={4} colorMode="dark" />
-  <Bento.Item columnSpan={5} rowSpan={4} colorMode="dark" />
-  <Bento.Item columnSpan={12} rowSpan={4} colorMode="dark" />
-  <Bento.Item columnSpan={12} rowSpan={4} colorMode="dark" />
+  <Bento.Item columnSpan={7} rowSpan={2} colorMode="dark" />
+  <Bento.Item columnSpan={5} rowSpan={2} colorMode="dark" />
+  <Bento.Item columnSpan={12} rowSpan={2} colorMode="dark" />
+  <Bento.Item columnSpan={12} rowSpan={2} colorMode="dark" />
 </Bento>
+```
+
+### Responsive behavior
+
+Use `columnSpan`, `rowSpan`, `columnStart`, `rowStart`, `flow`, `verticalAlign`, `horizontalAlign` with an `Object` of breakpoint-specific keys and values corresponding to each type to enable responsive behavior for each of these properties.
+
+Breakpoints use `min-width`, where it will also apply your chosen `span` value to all larger breakpoints.
+
+```jsx live
+<Bento>
+  <Bento.Item
+    columnSpan={{
+      xsmall: 12,
+      small: 12,
+      medium: 6,
+      large: 4,
+      xlarge: 3,
+      xxlarge: 2,
+    }}
+    rowSpan={{xsmall: 1, small: 2, medium: 3, large: 4, xlarge: 4, xxlarge: 4}}
+  />
+  <Bento.Item
+    columnSpan={{
+      xsmall: 12,
+      small: 12,
+      medium: 6,
+      large: 4,
+      xlarge: 3,
+      xxlarge: 2,
+    }}
+    rowSpan={{xsmall: 1, small: 2, medium: 3, large: 4, xlarge: 4, xxlarge: 4}}
+  />
+  <Bento.Item
+    columnSpan={{
+      xsmall: 12,
+      small: 12,
+      medium: 6,
+      large: 4,
+      xlarge: 3,
+      xxlarge: 2,
+    }}
+    rowSpan={{xsmall: 1, small: 2, medium: 3, large: 4, xlarge: 4, xxlarge: 4}}
+  />
+  <Bento.Item
+    columnSpan={{
+      xsmall: 12,
+      small: 12,
+      medium: 6,
+      large: 4,
+      xlarge: 3,
+      xxlarge: 2,
+    }}
+    rowSpan={{xsmall: 1, small: 2, medium: 3, large: 4, xlarge: 4, xxlarge: 4}}
+  />
+  <Bento.Item
+    columnSpan={{
+      xsmall: 12,
+      small: 12,
+      medium: 6,
+      large: 4,
+      xlarge: 3,
+      xxlarge: 2,
+    }}
+    rowSpan={{xsmall: 1, small: 2, medium: 3, large: 4, xlarge: 4, xxlarge: 4}}
+  />
+  <Bento.Item
+    columnSpan={{
+      xsmall: 12,
+      small: 12,
+      medium: 6,
+      large: 4,
+      xlarge: 3,
+      xxlarge: 2,
+    }}
+    rowSpan={{xsmall: 1, small: 2, medium: 3, large: 4, xlarge: 4, xxlarge: 4}}
+  />
+</Bento>
+```
+
+#### Responsive flow
+
+```jsx live
+<Bento.Item
+  flow={{
+    xsmall: 'row',
+    small: 'row',
+    medium: 'column',
+    large: 'column',
+    xlarge: 'column',
+    xxlarge: 'column',
+  }}
+>
+  <Bento.Content padding="normal">
+    <Heading as="h3">Heading</Heading>
+    <Text>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
+      ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
+      elementum.
+    </Text>
+    <Link href="#">Call to action</Link>
+  </Bento.Content>
+  <Bento.Visual position="50% 100%">
+    <img
+      className="test"
+      alt="placeholder, blank area with an gray background color"
+      src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
+    />
+  </Bento.Visual>
+</Bento.Item>
+```
+
+#### Responsive horozontal align
+
+```jsx live
+<Bento.Item
+  horizontalAlign={{
+    xsmall: 'start',
+    small: 'start',
+    medium: 'center',
+    large: 'center',
+    xlarge: 'center',
+    xxlarge: 'center',
+  }}
+>
+  <Bento.Content padding="normal">
+    <Heading as="h3">Heading</Heading>
+    <Link href="#">Call to action</Link>
+  </Bento.Content>
+  <Bento.Visual position="50% 100%">
+    <img
+      className="test"
+      alt="placeholder, blank area with an gray background color"
+      src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
+    />
+  </Bento.Visual>
+</Bento.Item>
+```
+
+#### Responsive vertical align
+
+```jsx live
+<Bento.Item
+  verticalAlign={{
+    xsmall: 'start',
+    small: 'start',
+    medium: 'center',
+    large: 'center',
+    xlarge: 'center',
+    xxlarge: 'center',
+  }}
+>
+  <Bento.Content padding="normal">
+    <Heading as="h3">Heading</Heading>
+    <Link href="#">Call to action</Link>
+  </Bento.Content>
+  <Bento.Visual position="50% 100%">
+    <img
+      className="test"
+      alt="placeholder, blank area with an gray background color"
+      src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
+    />
+  </Bento.Visual>
+</Bento.Item>
 ```
 
 ## Component props
@@ -81,19 +244,19 @@ The Bento component API supports all standard HTML attribute props for the inter
 
 ### Bento.Item
 
-| Name                 | Type                                                          |  Default   | Required | Description                                                                                                     |
-| :------------------- | :------------------------------------------------------------ | :--------: | :------- | --------------------------------------------------------------------------------------------------------------- |
-| `className`          | `string`                                                      |            | `false`  | Sets a custom class on the root element                                                                         |
-| `children`           | `React.ReactNode`, `React.ReactNode[]`                        |            | `false`  | The children to be rendered within the `Bento.Item` component                                                   |
-| `columnStart`        | `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12` |            | `false`  | The column number in which this content should start                                                            |
-| `columnSpan`         | `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12` |            | `false`  | The number of columns this content should span                                                                  |
-| `rowStart`           | `number`                                                      |            | `false`  | The row number in which this content should start                                                               |
-| `rowSpan`            | `number`                                                      |            | `false`  | The number of rows this content should span                                                                     |
-| `flow`               | `"row"`, `"column"`                                           |            | `false`  | The flow of the `Bento.Content` and `Bento.Visual` within the `Bento.Item`                                      |
-| `horizontalAlign`    | `"start"`, `"center"`, `"end"`                                | `"center"` | `false`  | The horozontal alignment of children within the `Bento.Item`                                                    |
-| `verticalAlign`      | `"start"`, `"center"`, `"end"`                                | `"center"` | `false`  | The vertical alignment of children within the `Bento.Item`                                                      |
-| `colorMode`          | `"light"`, `"dark"`                                           | `"light"`  | `false`  | The color mode specified for this `Bento.Item`                                                                  |
-| `visualAsBackground` | `boolean`                                                     |  `false`   | `false`  | Determines if the Visual child is set as the background for the `Bento.Item` with the `Bento.Content` overlayed |
+| Name                 | Type                                                                                   |  Default   | Required | Description                                                                                                     |
+| :------------------- | :------------------------------------------------------------------------------------- | :--------: | :------- | --------------------------------------------------------------------------------------------------------------- |
+| `className`          | `string`                                                                               |            | `false`  | Sets a custom class on the root element                                                                         |
+| `children`           | `React.ReactNode`, `React.ReactNode[]`                                                 |            | `false`  | The children to be rendered within the `Bento.Item` component                                                   |
+| `columnStart`        | `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, `ResponsiveColumnIndex` |            | `false`  | The column number in which this content should start                                                            |
+| `columnSpan`         | `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, `ResponsiveColumnIndex` |            | `false`  | The number of columns this content should span                                                                  |
+| `rowStart`           | `number`, `ResponsiveRowIndex`                                                         |            | `false`  | The row number in which this content should start                                                               |
+| `rowSpan`            | `number`, `ResponsiveRowIndex`                                                         |            | `false`  | The number of rows this content should span                                                                     |
+| `flow`               | `"row"`, `"column"`, `ResponsiveFlow`                                                  |            | `false`  | The flow of the `Bento.Content` and `Bento.Visual` within the `Bento.Item`                                      |
+| `horizontalAlign`    | `"start"`, `"center"`, `"end"`, `ResponsiveAlign`                                      | `"center"` | `false`  | The horozontal alignment of children within the `Bento.Item`                                                    |
+| `verticalAlign`      | `"start"`, `"center"`, `"end"`, `ResponsiveAlign`                                      | `"center"` | `false`  | The vertical alignment of children within the `Bento.Item`                                                      |
+| `colorMode`          | `"light"`, `"dark"`                                                                    | `"light"`  | `false`  | The color mode specified for this `Bento.Item`                                                                  |
+| `visualAsBackground` | `boolean`                                                                              |  `false`   | `false`  | Determines if the Visual child is set as the background for the `Bento.Item` with the `Bento.Content` overlayed |
 
 The Bento.Item component API supports all standard HTML attribute props for the interface HTMLDivElement, while providing some additional behavior as described above.
 

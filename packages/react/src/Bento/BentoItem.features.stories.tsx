@@ -361,3 +361,28 @@ DarkModeItem.parameters = {
     defaultViewport: 'iphonexr',
   },
 }
+
+export const ResponsiveFlow: StoryFn<typeof Bento> = () => (
+  <Bento.Item
+    flow={{
+      xsmall: 'row',
+      small: 'row',
+      medium: 'column',
+      large: 'column',
+      xlarge: 'column',
+      xxlarge: 'column',
+    }}
+  >
+    <Bento.Content padding="normal">
+      <Heading as="h3">Heading</Heading>
+      <Text>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </Bento.Content>
+    <Bento.Visual>
+      <img className="test" alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+    </Bento.Visual>
+  </Bento.Item>
+)

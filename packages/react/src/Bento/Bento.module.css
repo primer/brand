@@ -580,6 +580,8 @@
 
   .Bento__Item--xsmall-flow-row {
     grid-auto-flow: row;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
   /* XSMALL Vertical Align */
@@ -816,6 +818,8 @@
 
   .Bento__Item--small-flow-row {
     grid-auto-flow: row;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
   /* SMALL Vertical Align */
@@ -1052,6 +1056,8 @@
 
   .Bento__Item--medium-flow-row {
     grid-auto-flow: row;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
   /* MEDIUM Vertical Align */
@@ -1288,6 +1294,8 @@
 
   .Bento__Item--large-flow-row {
     grid-auto-flow: row;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
   /* LARGE Vertical Align */
@@ -1524,6 +1532,8 @@
 
   .Bento__Item--xlarge-flow-row {
     grid-auto-flow: row;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
   /* XLARGE Vertical Align */
@@ -1760,6 +1770,8 @@
 
   .Bento__Item--xxlarge-flow-row {
     grid-auto-flow: row;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
   /* XXLARGE Vertical Align */
