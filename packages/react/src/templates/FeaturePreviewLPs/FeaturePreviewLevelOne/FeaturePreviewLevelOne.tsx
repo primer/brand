@@ -5,7 +5,6 @@ import {
   Checkbox,
   FormControl,
   Grid,
-  Heading,
   Hero,
   InlineLink,
   Link,
@@ -20,8 +19,8 @@ import {
   ThemeProvider,
 } from '../../../'
 
-import styles from './FeaturePreviewLevelOne.module.css'
 import {themeMap} from '../helpers'
+import styles from './FeaturePreviewLevelOne.module.css'
 
 type FeaturePreviewLevelOneProps = {
   accentColor?: string
