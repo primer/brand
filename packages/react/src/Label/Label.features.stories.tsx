@@ -8,8 +8,6 @@ export default {
   component: Label,
 } as Meta<typeof Label>
 
-export const Small = () => <Label size="small">Small</Label>
-
 export const Large = () => <Label size="large">Large</Label>
 
 export const Color = () => (
