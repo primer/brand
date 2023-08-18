@@ -85,7 +85,7 @@ describe('Bento.Item', () => {
     const {getByTestId} = render(<Bento.Item data-testid={testId} flow={flow} />)
 
     const BentoItemEl = getByTestId(testId)
-    expect(BentoItemEl.classList).toContain(`Bento__Item-flow--${flow}`)
+    expect(BentoItemEl.classList).toContain(`Bento__Item--flow-${flow}`)
   })
 
   it('adds the class for horizontalAlign', () => {
@@ -93,7 +93,7 @@ describe('Bento.Item', () => {
     const {getByTestId} = render(<Bento.Item data-testid={testId} horizontalAlign={horizontalAlign} />)
 
     const BentoItemEl = getByTestId(testId)
-    expect(BentoItemEl.classList).toContain(`Bento__Item-horizontalAlign--${horizontalAlign}`)
+    expect(BentoItemEl.classList).toContain(`Bento__Item--horizontalAlign-${horizontalAlign}`)
   })
 
   it('adds the class for verticalAlign', () => {
@@ -101,7 +101,27 @@ describe('Bento.Item', () => {
     const {getByTestId} = render(<Bento.Item data-testid={testId} verticalAlign={verticalAlign} />)
 
     const BentoItemEl = getByTestId(testId)
-    expect(BentoItemEl.classList).toContain(`Bento__Item-verticalAlign--${verticalAlign}`)
+    expect(BentoItemEl.classList).toContain(`Bento__Item--verticalAlign-${verticalAlign}`)
+  })
+
+  it('adds responsive classes', () => {
+    const flow = 'row'
+    const {getByTestId} = render(
+      <Bento.Item
+        data-testid={testId}
+        flow={{xsmall: flow, small: flow, medium: flow, large: flow, xlarge: flow, xxlarge: flow}}
+      />,
+    )
+
+    const BentoItemEl = getByTestId(testId)
+    expect(BentoItemEl.classList).toContain(`Bento__Item--small-flow-${flow}`)
+  })
+
+  it('adds class for setting the visual as background', () => {
+    const {getByTestId} = render(<Bento.Item data-testid={testId} visualAsBackground />)
+
+    const BentoItemEl = getByTestId(testId)
+    expect(BentoItemEl.classList).toContain(`Bento__Item--visual-as-background`)
   })
 
   it('adds the color mode data attribute', () => {
