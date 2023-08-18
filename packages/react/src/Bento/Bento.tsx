@@ -7,38 +7,17 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/bento/base.css'
 import styles from './Bento.module.css'
 
+export type Size = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'
 export type ColumnIndex = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
 
-type ResponsiveMap = {
-  xsmall?: ColumnIndex
-  small?: ColumnIndex
-  medium?: ColumnIndex
-  large?: ColumnIndex
-  xlarge?: ColumnIndex
-  xxlarge?: ColumnIndex
-}
+type ResponsiveColumnIndex = Record<Size, ColumnIndex> | ColumnIndex
+type ResponsiveRowIndex = Record<Size, number> | number
 
 type Flow = 'row' | 'column'
-
-type ResponsiveFlow = {
-  xsmall?: Flow
-  small?: Flow
-  medium?: Flow
-  large?: Flow
-  xlarge?: Flow
-  xxlarge?: Flow
-}
+type ResponsiveFlow = Record<Size, Flow> | Flow
 
 type Align = 'start' | 'center' | 'end'
-
-type ResponsiveAlign = {
-  xsmall?: Flow
-  small?: Flow
-  medium?: Flow
-  large?: Flow
-  xlarge?: Flow
-  xxlarge?: Flow
-}
+type ResponsiveAlign = Record<Size, Align> | Align
 
 type BentoProps = React.HTMLAttributes<HTMLDivElement> & BaseProps<HTMLDivElement>
 
@@ -47,13 +26,13 @@ const Root = ({className, ...rest}: BentoProps) => {
 }
 
 type BentoItemProps = {
-  columnStart?: ColumnIndex | ResponsiveMap
-  columnSpan?: ColumnIndex | ResponsiveMap
-  rowStart?: number | ResponsiveMap
-  rowSpan?: number | ResponsiveMap
-  flow?: Flow | ResponsiveFlow
-  horizontalAlign?: Align | ResponsiveAlign
-  verticalAlign?: Align | ResponsiveAlign
+  columnStart?: ResponsiveColumnIndex
+  columnSpan?: ResponsiveColumnIndex
+  rowStart?: ResponsiveRowIndex
+  rowSpan?: ResponsiveRowIndex
+  flow?: ResponsiveFlow
+  horizontalAlign?: ResponsiveAlign
+  verticalAlign?: ResponsiveAlign
   colorMode?: 'light' | 'dark'
   visualAsBackground?: boolean
 } & React.HTMLAttributes<HTMLDivElement> &
@@ -61,7 +40,7 @@ type BentoItemProps = {
 
 const returnClassBasedOnResponsiveMap = (
   propName: string,
-  prop?: (ColumnIndex | ResponsiveMap) | (number | ResponsiveMap) | (Flow | ResponsiveFlow) | (Align | ResponsiveAlign),
+  prop?: ResponsiveColumnIndex | ResponsiveRowIndex | ResponsiveFlow | ResponsiveAlign,
 ) => {
   const classesToMerge: string[] = []
   if (typeof prop === 'number' || typeof prop === 'string') {
@@ -104,9 +83,6 @@ const Item = ({
       data-color-mode={colorMode}
       className={clsx(
         ...bentoItemClassArray,
-        // flow && styles[`Bento__Item--flow-${flow}`],
-        styles[`Bento__Item-verticalAlign--${verticalAlign}`],
-        styles[`Bento__Item-horizontalAlign--${horizontalAlign}`],
         visualAsBackground && styles[`Bento__Item--visual-as-background`],
         className,
       )}
