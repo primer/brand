@@ -100,24 +100,6 @@ test.describe('Visual Comparison: River', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('River / With Breakout', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-river-features--with-breakout&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('River / With Breakout And Highlighted Text', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-river-features--with-breakout-and-highlighted-text&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
   test('River / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-river--default&viewMode=story')
 
