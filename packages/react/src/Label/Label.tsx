@@ -16,10 +16,10 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 import styles from './Label.module.css'
 
 export const LabelColors = [...Colors, ...Gradients] as const
-export const LabelSizes = ['small', 'medium', 'large'] as const
+export const LabelSizes = ['medium', 'large'] as const
 
 export const defaultLabelColor = LabelColors[0]
-export const defaultLabelSize = LabelSizes[1]
+export const defaultLabelSize = LabelSizes[0]
 
 export type LabelProps = BaseProps<HTMLSpanElement> & {
   /**
@@ -89,11 +89,7 @@ const _Label = forwardRef<HTMLSpanElement, LabelProps>(
           </span>
         )}
         <span className={styles['Label__text']}>
-          <Text
-            as="span"
-            size={size === 'small' ? '100' : size === 'medium' ? '100' : '200'}
-            className={clsx(styles['Label__label'])}
-          >
+          <Text as="span" size={size === 'medium' ? '100' : '200'} className={clsx(styles['Label__label'])}>
             {children}
           </Text>
         </span>
