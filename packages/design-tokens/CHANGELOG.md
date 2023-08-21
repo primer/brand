@@ -1,5 +1,35 @@
 # @primer/brand-primitives
 
+## 0.24.0
+
+### Minor Changes
+
+- [#394](https://github.com/primer/brand/pull/394) [`c9029d4`](https://github.com/primer/brand/commit/c9029d4a69f7f0311c008a2af4b6124642145369) Thanks [@mperrotti](https://github.com/mperrotti)! - Adds RiverBreakout component and its supporting design tokens.
+
+  Usage example:
+
+  ```jsx
+  <RiverBreakout>
+    <RiverBreakout.A11yHeading>Accelerate workflows</RiverBreakout.A11yHeading>
+    <RiverBreakout.Visual>
+      <PlaceholderImage />
+    </RiverBreakout.Visual>
+    <RiverBreakout.Content
+      trailingComponent={() => {
+        ;<div>Trailing component</div>
+      }}
+    >
+      <Text>
+        Accelerate your workflows and scale your business fast with access to millions of open source projects on
+        GitHub, the largest source code host.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </RiverBreakout.Content>
+  </RiverBreakout>
+  ```
+
+  See the [Storybook](https://primer.style/brand/storybook/?path=/story/components-river-features--with-breakout)
+
 ## 0.23.0
 
 ## 0.22.0
