@@ -117,19 +117,14 @@ export const Example: StoryFn<typeof Bento> = () => (
       {`.purple-background {
                 background: linear-gradient(90deg, #6C5DD3 0%, #613DB4 100%);
     	}
-		.align-center {
-			text-align: center;
-		}
 		.block-icon {
 			display: block !important;
-			margin-bottom: 10px;
 		}
 		`}
     </style>
     <Bento>
       <Bento.Item columnSpan={7} rowSpan={4} colorMode="dark" visualAsBackground className="purple-background">
-        <Bento.Content padding="normal" fixedBottomLink>
-          <CopilotIcon size={32} className="block-icon" />
+        <Bento.Content padding="normal" fixedBottomLink leadingVisual={<CopilotIcon />}>
           <Heading as="h4" size="4">
             Unlocking innovation at scale with AI-driven software development.
           </Heading>
@@ -137,11 +132,11 @@ export const Example: StoryFn<typeof Bento> = () => (
         </Bento.Content>
       </Bento.Item>
       <Bento.Item columnSpan={5} rowSpan={4} colorMode="dark">
-        <Bento.Content padding="normal" className="align-center">
+        <Bento.Content padding="normal" verticalAlign={'center'}>
           <Heading as="h4" size="1">
             88%
           </Heading>
-          <Text>of developers experience increased productivity.</Text>
+          <Text align="center">of developers experience increased productivity.</Text>
         </Bento.Content>
         <Bento.Visual padding="normal" fillMedia={false}>
           <img src={placeholderImage} alt="random" />

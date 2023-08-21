@@ -1,6 +1,5 @@
 import React, {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
-import {CopilotIcon} from '@primer/octicons-react'
 import {Bento, ColumnIndex} from './Bento'
 import {Heading, Text, Link} from '../'
 import {axe, toHaveNoViolations} from 'jest-axe'
@@ -181,7 +180,6 @@ describe('Bento.Content', () => {
     const linkText = 'Allowed 3'
     const {getByText} = render(
       <Bento.Content>
-        <CopilotIcon data-testid={testId} />
         <Heading>{headingText}</Heading>
         <Text>{textText}</Text>
         <Link href="#">{linkText}</Link>
@@ -196,7 +194,6 @@ describe('Bento.Content', () => {
   it('adds the class for fixedBottomLink', () => {
     const {getByTestId} = render(
       <Bento.Content fixedBottomLink>
-        <CopilotIcon />
         <Link href="#" data-testid={testId}></Link>
       </Bento.Content>,
     )

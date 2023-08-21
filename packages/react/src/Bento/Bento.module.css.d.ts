@@ -1,6 +1,8 @@
 declare const styles: {
   readonly "Bento": string;
   readonly "Bento__Item": string;
+  readonly "Bento__Item--visual-as-background": string;
+  readonly "Bento__Content": string;
   readonly "Bento__Item--column-span-1": string;
   readonly "Bento__Item--column-span-2": string;
   readonly "Bento__Item--column-span-3": string;
@@ -52,11 +54,9 @@ declare const styles: {
   readonly "Bento__Item--verticalAlign-start": string;
   readonly "Bento__Item--verticalAlign-center": string;
   readonly "Bento__Item--verticalAlign-end": string;
-  readonly "Bento__Item--horizontalAlign-top": string;
+  readonly "Bento__Item--horizontalAlign-start": string;
   readonly "Bento__Item--horizontalAlign-center": string;
   readonly "Bento__Item--horizontalAlign-end": string;
-  readonly "Bento__Item--visual-as-background": string;
-  readonly "Bento__Content": string;
   readonly "Bento__Visual": string;
   readonly "Bento__Visual-no-fill": string;
   readonly "Bento-padding--condensed": string;
@@ -64,10 +64,9 @@ declare const styles: {
   readonly "Bento-padding--spacious": string;
   readonly "Bento__Item--flow-column": string;
   readonly "Bento__Item--flow-row": string;
-  readonly "Bento__heading": string;
-  readonly "Bento__text": string;
   readonly "Bento__body-text": string;
   readonly "Bento__call-to-action": string;
+  readonly "Bento__call-to-action--fixed": string;
   readonly "Bento__Item--xsmall-column-span-1": string;
   readonly "Bento__Item--xsmall-column-span-2": string;
   readonly "Bento__Item--xsmall-column-span-3": string;
@@ -121,7 +120,7 @@ declare const styles: {
   readonly "Bento__Item--xsmall-verticalAlign-start": string;
   readonly "Bento__Item--xsmall-verticalAlign-center": string;
   readonly "Bento__Item--xsmall-verticalAlign-end": string;
-  readonly "Bento__Item--xsmall-horizontalAlign-top": string;
+  readonly "Bento__Item--xsmall-horizontalAlign-start": string;
   readonly "Bento__Item--xsmall-horizontalAlign-center": string;
   readonly "Bento__Item--xsmall-horizontalAlign-end": string;
   readonly "Bento__Item--small-column-span-1": string;
@@ -177,7 +176,7 @@ declare const styles: {
   readonly "Bento__Item--small-verticalAlign-start": string;
   readonly "Bento__Item--small-verticalAlign-center": string;
   readonly "Bento__Item--small-verticalAlign-end": string;
-  readonly "Bento__Item--small-horizontalAlign-top": string;
+  readonly "Bento__Item--small-horizontalAlign-start": string;
   readonly "Bento__Item--small-horizontalAlign-center": string;
   readonly "Bento__Item--small-horizontalAlign-end": string;
   readonly "Bento__Item--medium-column-span-1": string;
@@ -233,7 +232,7 @@ declare const styles: {
   readonly "Bento__Item--medium-verticalAlign-start": string;
   readonly "Bento__Item--medium-verticalAlign-center": string;
   readonly "Bento__Item--medium-verticalAlign-end": string;
-  readonly "Bento__Item--medium-horizontalAlign-top": string;
+  readonly "Bento__Item--medium-horizontalAlign-start": string;
   readonly "Bento__Item--medium-horizontalAlign-center": string;
   readonly "Bento__Item--medium-horizontalAlign-end": string;
   readonly "Bento__Item--large-column-span-1": string;
@@ -289,7 +288,7 @@ declare const styles: {
   readonly "Bento__Item--large-verticalAlign-start": string;
   readonly "Bento__Item--large-verticalAlign-center": string;
   readonly "Bento__Item--large-verticalAlign-end": string;
-  readonly "Bento__Item--large-horizontalAlign-top": string;
+  readonly "Bento__Item--large-horizontalAlign-start": string;
   readonly "Bento__Item--large-horizontalAlign-center": string;
   readonly "Bento__Item--large-horizontalAlign-end": string;
   readonly "Bento__Item--xlarge-column-span-1": string;
@@ -345,7 +344,7 @@ declare const styles: {
   readonly "Bento__Item--xlarge-verticalAlign-start": string;
   readonly "Bento__Item--xlarge-verticalAlign-center": string;
   readonly "Bento__Item--xlarge-verticalAlign-end": string;
-  readonly "Bento__Item--xlarge-horizontalAlign-top": string;
+  readonly "Bento__Item--xlarge-horizontalAlign-start": string;
   readonly "Bento__Item--xlarge-horizontalAlign-center": string;
   readonly "Bento__Item--xlarge-horizontalAlign-end": string;
   readonly "Bento__Item--xxlarge-column-span-1": string;
@@ -401,7 +400,7 @@ declare const styles: {
   readonly "Bento__Item--xxlarge-verticalAlign-start": string;
   readonly "Bento__Item--xxlarge-verticalAlign-center": string;
   readonly "Bento__Item--xxlarge-verticalAlign-end": string;
-  readonly "Bento__Item--xxlarge-horizontalAlign-top": string;
+  readonly "Bento__Item--xxlarge-horizontalAlign-start": string;
   readonly "Bento__Item--xxlarge-horizontalAlign-center": string;
   readonly "Bento__Item--xxlarge-horizontalAlign-end": string;
 };
