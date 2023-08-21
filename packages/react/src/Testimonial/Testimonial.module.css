@@ -15,7 +15,10 @@
     var(--brand-Testimonial-quoteMarkColor-start),
     var(--brand-Testimonial-quoteMarkColor-end)
   );
-  --brand-Testimonial-quoteMarkColor-background: var(--brand-Testimonial-quoteMarkColor-gradient, var(--brand-Testimonial-quoteMarkColor, currentColor));
+  --brand-Testimonial-quoteMarkColor-background: var(
+    --brand-Testimonial-quoteMarkColor-gradient,
+    var(--brand-Testimonial-quoteMarkColor, currentColor)
+  );
   color: var(--brand-Testimonial-quoteMarkColor-start, var(--brand-Testimonial-quoteMarkColor, currentColor));
   font-size: var(--base-size-48);
   line-height: var(--base-size-48);
