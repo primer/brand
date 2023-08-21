@@ -1,6 +1,7 @@
 import React from 'react'
 import {
   Box,
+  ColorModesEnum,
   Grid,
   Heading,
   Hero,
@@ -17,12 +18,13 @@ import styles from './FeaturePreviewLevelZero.module.css'
 import {themeMap} from '../helpers'
 
 type FeaturePreviewLevelZeroProps = {
+  colorMode?: ColorModesEnum.LIGHT | ColorModesEnum.DARK
   accentColor?: string
 }
 
-export function FeaturePreviewLevelZero({accentColor}: FeaturePreviewLevelZeroProps) {
+export function FeaturePreviewLevelZero({accentColor, colorMode}: FeaturePreviewLevelZeroProps) {
   const [enableGridOverlay, setEnableGridOverlay] = React.useState(false)
-  const [isLightMode, setIsLightMode] = React.useState(true)
+  const [isLightMode, setIsLightMode] = React.useState(colorMode === ColorModesEnum.LIGHT)
   const accentColorValue = themeMap[accentColor || 'default']
 
   const handleOverlay = e => {

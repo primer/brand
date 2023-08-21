@@ -3,8 +3,10 @@
  * Should be fixed in the respective components
  */
 
-.FeaturePreview__trailingSection {
-  --brand-color-canvas-subtle: var(--base-color-scale-gray-1);
+.FeaturePreview__hero {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right center;
 }
 
 [data-color-mode='dark'] .FeaturePreview__trailingSection {

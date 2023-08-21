@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   Checkbox,
+  ColorModesEnum,
   FormControl,
   Grid,
   Hero,
@@ -19,17 +20,18 @@ import {
   ThemeProvider,
 } from '../../../'
 
-import {themeMap} from '../helpers'
+import {themeMap, themeDetailsMap, Themes} from '../helpers'
 import styles from './FeaturePreviewLevelOne.module.css'
 
 type FeaturePreviewLevelOneProps = {
-  accentColor?: string
+  accentColor: Themes
 }
 
 export function FeaturePreviewLevelOne({accentColor}: FeaturePreviewLevelOneProps) {
   const [enableGridOverlay, setEnableGridOverlay] = React.useState(false)
   const [isLightMode, setIsLightMode] = React.useState(true)
-  const accentColorValue = themeMap[accentColor || 'default']
+  const selectedColorMode = isLightMode ? ColorModesEnum.LIGHT : ColorModesEnum.DARK
+  const accentColorValue = themeDetailsMap[accentColor][selectedColorMode].color || themeMap[accentColor]
 
   const handleOverlay = e => {
     e.preventDefault()
@@ -43,7 +45,7 @@ export function FeaturePreviewLevelOne({accentColor}: FeaturePreviewLevelOneProp
 
   return (
     <ThemeProvider
-      colorMode={isLightMode ? 'light' : 'dark'}
+      colorMode={selectedColorMode}
       style={{
         ['--brand-Pillar-icon-color-default' as string]: accentColorValue,
         ['--brand-Label-color-default' as string]: accentColorValue,
@@ -60,7 +62,12 @@ export function FeaturePreviewLevelOne({accentColor}: FeaturePreviewLevelOneProp
         </SubdomainNavBar.PrimaryAction>
       </SubdomainNavBar>
       <div>
-        <Box backgroundColor="subtle" marginBlockEnd={96} className={styles['FeaturePreview__trailingSection']}>
+        <Box
+          backgroundColor="subtle"
+          marginBlockEnd={96}
+          className={styles['FeaturePreview__hero']}
+          style={{backgroundImage: `url(${themeDetailsMap[accentColor][selectedColorMode].images.heroBg})`}}
+        >
           <Grid enableOverlay={enableGridOverlay}>
             <Grid.Column>
               <Hero align="start">

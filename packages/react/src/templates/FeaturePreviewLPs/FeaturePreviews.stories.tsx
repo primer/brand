@@ -5,7 +5,8 @@ import {Meta, StoryFn} from '@storybook/react'
 import {FeaturePreviewLevelOne} from './FeaturePreviewLevelOne'
 import {FeaturePreviewLevelTwo} from './FeaturePreviewLevelTwo'
 import {FeaturePreviewLevelZero} from './FeaturePreviewLevelZero'
-import {themeMap} from './helpers'
+import {themeDetailsMap} from './helpers'
+import {ColorModesEnum} from '../../ThemeProvider'
 
 export default {
   title: 'Templates/Feature previews',
@@ -17,12 +18,20 @@ export default {
     layout: 'fullscreen',
   },
   args: {
-    accentColor: 'default',
+    colorMode: ColorModesEnum.LIGHT,
+    accentColor: 'ai',
   },
   argTypes: {
+    colorMode: {
+      control: 'radio',
+      options: [ColorModesEnum.LIGHT, ColorModesEnum.DARK],
+      table: {
+        category: 'Theming',
+      },
+    },
     accentColor: {
       control: 'radio',
-      options: Object.keys(themeMap),
+      options: Object.keys(themeDetailsMap),
       table: {
         category: 'Theming',
       },
@@ -31,19 +40,19 @@ export default {
 } as Meta<typeof FeaturePreviewLevelOne>
 
 export const LevelZero: StoryFn<typeof FeaturePreviewLevelZero> = args => (
-  <FeaturePreviewLevelZero accentColor={args.accentColor} />
+  <FeaturePreviewLevelZero accentColor={args.accentColor} colorMode={args.colorMode} />
 )
 
 LevelZero.storyName = 'Level 0'
 
 export const LevelOne: StoryFn<typeof FeaturePreviewLevelOne> = args => (
-  <FeaturePreviewLevelOne accentColor={args.accentColor} />
+  <FeaturePreviewLevelOne accentColor={args.accentColor} colorMode={args.colorMode} />
 )
 
 LevelOne.storyName = 'Level 1'
 
 export const LevelTwo: StoryFn<typeof FeaturePreviewLevelTwo> = args => (
-  <FeaturePreviewLevelTwo accentColor={args.accentColor} />
+  <FeaturePreviewLevelTwo accentColor={args.accentColor} colorMode={args.colorMode} />
 )
 
 LevelTwo.storyName = 'Level 2'

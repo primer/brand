@@ -17,6 +17,22 @@
   }
 }
 
+.FeaturePreview__heroImageContainer {
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: var(--brand-borderRadius-large);
+  overflow: hidden;
+}
+
+.FeaturePreview__ctaBanner {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.FeaturePreview__heroImageContainer img {
+  display: block;
+}
+
 .FeaturePreview__trailingSection {
   --brand-color-canvas-subtle: var(--base-color-scale-gray-1);
 }

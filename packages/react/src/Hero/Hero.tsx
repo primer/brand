@@ -15,10 +15,12 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 
 export type HeroProps = BaseProps<HTMLElement> & {
   align?: 'start' | 'center'
+  imageContainerClassName?: string
+  imageContainerStyle?: React.CSSProperties
 }
 
 const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
-  ({className, align = 'start', children, ...rest}, ref) => {
+  ({className, align = 'start', children, imageContainerClassName, imageContainerStyle, ...rest}, ref) => {
     const {HeroActions, HeroChildren, HeroImageChild} = useMemo(
       () =>
         React.Children.toArray(children).reduce<{
@@ -46,7 +48,6 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
     const imagePosition = HeroImageChild?.props?.position || 'block-end'
 
     const heroLayoutClass = HeroImageChild ? styles['Hero--layout-image'] : styles['Hero--layout-default']
-
     return (
       <section
         className={clsx(
@@ -74,7 +75,13 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
             </Stack>
           </Grid.Column>
           {HeroImageChild && (
-            <Grid.Column span={{medium: imagePosition === 'inline-end' ? 6 : 12}}>{HeroImageChild}</Grid.Column>
+            <Grid.Column
+              span={{medium: imagePosition === 'inline-end' ? 6 : 12}}
+              className={imageContainerClassName}
+              style={{...imageContainerStyle}}
+            >
+              {HeroImageChild}
+            </Grid.Column>
           )}
         </Grid>
       </section>

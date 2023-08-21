@@ -1,9 +1,10 @@
 import {ZapIcon} from '@primer/octicons-react'
-import React from 'react'
+import React, {useEffect} from 'react'
 import {
   Box,
   Button,
   CTABanner,
+  ColorModesEnum,
   FAQ,
   Grid,
   Heading,
@@ -23,16 +24,25 @@ import {
 
 import styles from './FeaturePreviewLevelTwo.module.css'
 
+import emptyBrowser from '../fixtures/images/fg/empty-browser.png'
+import emptyBrowserDark from '../fixtures/images/fg/empty-browser-dark.png'
+
 import placeholderImage from '../../../fixtures/images/placeholder-600x400.png'
-import {themeMap} from '../helpers'
+import {Themes, themeDetailsMap, themeMap} from '../helpers'
 
 type FeaturePreviewLevelZeroProps = {
-  accentColor?: string
+  colorMode?: ColorModesEnum.LIGHT | ColorModesEnum.DARK
+  accentColor: Themes
 }
-export function FeaturePreviewLevelTwo({accentColor}: FeaturePreviewLevelZeroProps) {
+export function FeaturePreviewLevelTwo({accentColor, colorMode}: FeaturePreviewLevelZeroProps) {
   const [enableGridOverlay, setEnableGridOverlay] = React.useState(false)
-  const [isLightMode, setIsLightMode] = React.useState(true)
-  const accentColorValue = themeMap[accentColor || 'default']
+  const [isLightMode, setIsLightMode] = React.useState(colorMode === ColorModesEnum.LIGHT)
+  const selectedColorMode = isLightMode ? ColorModesEnum.LIGHT : ColorModesEnum.DARK
+  const accentColorValue = themeDetailsMap[accentColor][selectedColorMode].color || themeMap[accentColor]
+
+  useEffect(() => {
+    setIsLightMode(colorMode === ColorModesEnum.LIGHT)
+  }, [colorMode])
 
   const handleOverlay = e => {
     e.preventDefault()
@@ -46,7 +56,7 @@ export function FeaturePreviewLevelTwo({accentColor}: FeaturePreviewLevelZeroPro
 
   return (
     <ThemeProvider
-      colorMode={isLightMode ? 'light' : 'dark'}
+      colorMode={selectedColorMode}
       style={{
         ['--brand-Pillar-icon-color-default' as string]: accentColorValue,
         ['--brand-Label-color-default' as string]: accentColorValue,
@@ -65,7 +75,13 @@ export function FeaturePreviewLevelTwo({accentColor}: FeaturePreviewLevelZeroPro
       <div className={styles.FeaturePreview}>
         <Grid enableOverlay={enableGridOverlay}>
           <Grid.Column>
-            <Hero className={styles.Hero}>
+            <Hero
+              className={styles.Hero}
+              imageContainerClassName={styles.FeaturePreview__heroImageContainer}
+              imageContainerStyle={{
+                backgroundImage: `url(${themeDetailsMap[accentColor][selectedColorMode].images.heroVisualBg})`,
+              }}
+            >
               <Hero.Label>Label</Hero.Label>
               <Hero.Heading>Expressive headline about a sweet feature</Hero.Heading>
               <Hero.Description>
@@ -74,7 +90,10 @@ export function FeaturePreviewLevelTwo({accentColor}: FeaturePreviewLevelZeroPro
               </Hero.Description>
               <Hero.PrimaryAction href="#">Primary CTA</Hero.PrimaryAction>
               <Hero.SecondaryAction href="#">Secondary CTA</Hero.SecondaryAction>
-              <Hero.Image src={placeholderImage} alt="placeholder, blank area with an off-white background color" />
+              <Hero.Image
+                src={isLightMode ? emptyBrowser : emptyBrowserDark}
+                alt="placeholder, blank area with an off-white background color"
+              />
             </Hero>
             <section>
               <Grid enableOverlay={enableGridOverlay}>
@@ -223,7 +242,13 @@ export function FeaturePreviewLevelTwo({accentColor}: FeaturePreviewLevelZeroPro
               </Box>
             </Grid.Column>
             <Grid.Column>
-              <CTABanner align="center" hasShadow={false}>
+              <CTABanner
+                className={styles.FeaturePreview__ctaBanner}
+                align="center"
+                hasShadow={false}
+                hasBackground={false}
+                style={{backgroundImage: `url(${themeDetailsMap[accentColor][selectedColorMode].images.ctaBannerBg})`}}
+              >
                 <CTABanner.Heading>Get it, it&apos;s super nice</CTABanner.Heading>
                 <CTABanner.Description>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus

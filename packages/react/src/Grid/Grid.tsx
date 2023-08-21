@@ -91,10 +91,10 @@ type GridColumnProps<T extends keyof JSX.IntrinsicElements = 'div'> = {
   span?: GridColumnIndex | ResponsiveMap
   start?: GridColumnIndex | ResponsiveMap
 } & (T extends 'span'
-  ? BaseProps<HTMLSpanElement>
+  ? BaseProps<HTMLSpanElement> & React.HTMLAttributes<HTMLSpanElement>
   : T extends 'section'
-  ? BaseProps<HTMLElement>
-  : BaseProps<HTMLDivElement>)
+  ? BaseProps<HTMLElement> & React.HTMLAttributes<HTMLElement>
+  : BaseProps<HTMLDivElement> & React.HTMLAttributes<HTMLDivElement>)
 
 const Column = memo(
   ({children, as = 'div', span = 12, start, className, ...rest}: PropsWithChildren<GridColumnProps>) => {
