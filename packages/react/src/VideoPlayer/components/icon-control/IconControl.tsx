@@ -12,7 +12,7 @@ export const IconControl = ({tooltip, children, className, ...rest}: IconControl
   return (
     <button className={clsx(styles.VideoPlayer__iconControl, className)} {...rest} aria-label={tooltip}>
       {children}
-      <span className={styles.VideoPlayer__srOnly}>{tooltip}</span>
+      <span className="visually-hidden">{tooltip}</span>
       <Tooltip>{tooltip}</Tooltip>
     </button>
   )

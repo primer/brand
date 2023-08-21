@@ -87,7 +87,7 @@ describe('VideoPlayer', () => {
   it('sets volume to new value when the volume input is changed', () => {
     const testValue = 0.8
     render(videoPlayer)
-    const input = document.querySelector('#VideoPlayer__Volume') as HTMLInputElement
+    const input = document.querySelector('input[name="Volume"]') as HTMLInputElement
     fireEvent.input(input, {target: {value: testValue}})
 
     expect(input.value).toBe(testValue.toString())

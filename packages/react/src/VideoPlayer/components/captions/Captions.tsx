@@ -38,11 +38,15 @@ export const Captions = ({videoRef, disabled, trackInformation}: CaptionsProps) 
     return () => window.removeEventListener('timeupdate', compareAndSetCaption)
   }, [videoRef, trackInformation])
 
-  return (
-    <div className={clsx(styles.VideoPlayer__captions, (disabled || !caption) && styles.VideoPlayer__captions__empty)}>
-      <Text as="p" className={styles.VideoPlayer__captions__text}>
-        {caption}
-      </Text>
-    </div>
-  )
+  if (disabled || !caption) {
+    return null
+  } else {
+    return (
+      <div className={clsx(styles.VideoPlayer__captions)}>
+        <Text as="p" className={styles.VideoPlayer__captionText}>
+          {caption}
+        </Text>
+      </div>
+    )
+  }
 }

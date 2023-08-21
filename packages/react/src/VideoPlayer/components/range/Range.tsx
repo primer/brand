@@ -61,11 +61,11 @@ export const Range = ({
     <div className={clsx(styles.VideoPlayer__range, className)}>
       <progress aria-hidden="true" className={styles.VideoPlayer__rangeProgress} value={value} max={max} />
       <label htmlFor={inputId}>
-        <span className={styles.VideoPlayer__srOnly}>Seek</span>
+        <span className="visually-hidden">Seek</span>
         <input
           tabIndex={0}
           type="range"
-          className={clsx(styles.VideoPlayer__rangeInput, styles.VideoPlayer__progressBar2)}
+          className={clsx(styles.VideoPlayer__rangeInput, styles.VideoPlayer__progressBar)}
           value={value}
           onChange={e => {
             setValue(e.currentTarget.valueAsNumber)

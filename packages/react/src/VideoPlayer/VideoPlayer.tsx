@@ -175,7 +175,6 @@ const Root = ({
               height="24"
               viewBox="0 0 24 24"
               fill="none"
-              style={{marginLeft: 5}}
               aria-hidden="true"
             >
               <path
@@ -185,7 +184,7 @@ const Root = ({
             </svg>
           </span>
         )}
-        <span className={styles.VideoPlayer__srOnly}>Play</span>
+        <span className="visually-hidden">Play</span>
       </button>
       <Controls
         videoRef={videoRef}
