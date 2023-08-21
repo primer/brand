@@ -23,6 +23,7 @@ export const MinimalFooterSocialLinks = [
   'facebook',
   'twitch',
   'tiktok',
+  'instagram',
 ] as const
 
 type SocialLinks = (typeof MinimalFooterSocialLinks)[number]
