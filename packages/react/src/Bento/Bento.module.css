@@ -35,6 +35,21 @@
   }
 }
 
+/* Bento Content */
+.Bento__Item--visual-as-background .Bento__Content {
+  order: 1;
+  grid-row: 1 / span 2;
+  grid-column: 1 / span 2;
+}
+
+.Bento__Content {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  height: 100%;
+  color: var(--brand-color-text-default);
+}
+
 /* Column Span */
 .Bento__Item--column-span-1 {
   grid-column: auto/span 1;
@@ -245,8 +260,9 @@
 }
 
 /* Bento Item Horizontal Align */
-.Bento__Item--horizontalAlign-top {
+.Bento__Item--horizontalAlign-start {
   justify-content: start;
+  text-align: left;
 }
 
 .Bento__Item--horizontalAlign-center {
@@ -257,20 +273,7 @@
   justify-content: end;
 }
 
-/* Bento Content */
-.Bento__Item--visual-as-background .Bento__Content {
-  order: 1;
-  grid-row: 1 / span 2;
-  grid-column: 1 / span 2;
-}
-
-.Bento__Content {
-  display: grid;
-  height: 100%;
-}
-
 /* Bento Visual */
-
 .Bento__Visual {
   height: 100%;
   width: 100%;
@@ -353,22 +356,17 @@
   grid-auto-flow: row;
 }
 
-/* Bento Heading */
-.Bento__heading {
-  /* TBD */
-}
-
 /* Bento Text */
-.Bento__text {
-  /* TBD */
-}
-
 .Bento__body-text {
   /* TBD */
 }
 
 .Bento__call-to-action {
-  align-self: end;
+  justify-content: inherit;
+}
+
+.Bento__call-to-action--fixed {
+  margin-top: auto;
 }
 
 /* RESPONSIVE Values */
@@ -598,7 +596,7 @@
   }
 
   /* XSMALL Horizontal Align */
-  .Bento__Item--xsmall-horizontalAlign-top {
+  .Bento__Item--xsmall-horizontalAlign-start {
     justify-content: start;
   }
 
@@ -836,7 +834,7 @@
   }
 
   /* SMALL Horizontal Align */
-  .Bento__Item--small-horizontalAlign-top {
+  .Bento__Item--small-horizontalAlign-start {
     justify-content: start;
   }
 
@@ -1074,7 +1072,7 @@
   }
 
   /* MEDIUM Horizontal Align */
-  .Bento__Item--medium-horizontalAlign-top {
+  .Bento__Item--medium-horizontalAlign-start {
     justify-content: start;
   }
 
@@ -1312,7 +1310,7 @@
   }
 
   /* LARGE Horizontal Align */
-  .Bento__Item--large-horizontalAlign-top {
+  .Bento__Item--large-horizontalAlign-start {
     justify-content: start;
   }
 
@@ -1550,7 +1548,7 @@
   }
 
   /* XLARGE Horizontal Align */
-  .Bento__Item--xlarge-horizontalAlign-top {
+  .Bento__Item--xlarge-horizontalAlign-start {
     justify-content: start;
   }
 
@@ -1788,7 +1786,7 @@
   }
 
   /* XXLARGE Horizontal Align */
-  .Bento__Item--xxlarge-horizontalAlign-top {
+  .Bento__Item--xxlarge-horizontalAlign-start {
     justify-content: start;
   }
 

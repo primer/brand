@@ -1,6 +1,6 @@
 import React, {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
-
+import {CopilotIcon} from '@primer/octicons-react'
 import {Bento, ColumnIndex} from './Bento'
 import {Heading, Text, Link} from '../'
 import {axe, toHaveNoViolations} from 'jest-axe'
@@ -90,7 +90,11 @@ describe('Bento.Item', () => {
 
   it('adds the class for horizontalAlign', () => {
     const horizontalAlign = 'center'
-    const {getByTestId} = render(<Bento.Item data-testid={testId} horizontalAlign={horizontalAlign} />)
+    const {getByTestId} = render(
+      <Bento.Item>
+        <Bento.Content data-testid={testId} horizontalAlign={horizontalAlign} />
+      </Bento.Item>,
+    )
 
     const BentoItemEl = getByTestId(testId)
     expect(BentoItemEl.classList).toContain(`Bento__Item--horizontalAlign-${horizontalAlign}`)
@@ -98,7 +102,11 @@ describe('Bento.Item', () => {
 
   it('adds the class for verticalAlign', () => {
     const verticalAlign = 'center'
-    const {getByTestId} = render(<Bento.Item data-testid={testId} verticalAlign={verticalAlign} />)
+    const {getByTestId} = render(
+      <Bento.Item>
+        <Bento.Content data-testid={testId} verticalAlign={verticalAlign} />
+      </Bento.Item>,
+    )
 
     const BentoItemEl = getByTestId(testId)
     expect(BentoItemEl.classList).toContain(`Bento__Item--verticalAlign-${verticalAlign}`)
@@ -173,6 +181,7 @@ describe('Bento.Content', () => {
     const linkText = 'Allowed 3'
     const {getByText} = render(
       <Bento.Content>
+        <CopilotIcon data-testid={testId} />
         <Heading>{headingText}</Heading>
         <Text>{textText}</Text>
         <Link href="#">{linkText}</Link>
@@ -182,6 +191,18 @@ describe('Bento.Content', () => {
     expect(getByText(headingText)).toBeInTheDocument()
     expect(getByText(textText)).toBeInTheDocument()
     expect(getByText(linkText)).toBeInTheDocument()
+  })
+
+  it('adds the class for fixedBottomLink', () => {
+    const {getByTestId} = render(
+      <Bento.Content fixedBottomLink>
+        <CopilotIcon />
+        <Link href="#" data-testid={testId}></Link>
+      </Bento.Content>,
+    )
+
+    const BentoLinkElement = getByTestId(testId)
+    expect(BentoLinkElement.classList).toContain('Bento__call-to-action--fixed')
   })
 
   it('adds the class for padding', () => {

@@ -6,6 +6,7 @@ import {Heading, Text, Link, HeadingProps, TextProps, LinkProps} from '../'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/bento/colors-with-modes.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/bento/base.css'
 import styles from './Bento.module.css'
+import {IconProps} from '@primer/octicons-react'
 
 export type Size = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'
 export type ColumnIndex = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
@@ -60,8 +61,6 @@ const Item = ({
   rowStart,
   rowSpan,
   flow,
-  horizontalAlign = 'center',
-  verticalAlign = 'center',
   colorMode = 'light',
   visualAsBackground = false,
   children,
@@ -74,8 +73,6 @@ const Item = ({
     ...returnClassBasedOnResponsiveMap('column-start', columnStart),
     ...returnClassBasedOnResponsiveMap('row-start', rowStart),
     ...returnClassBasedOnResponsiveMap('flow', flow),
-    ...returnClassBasedOnResponsiveMap('horizontalAlign', horizontalAlign),
-    ...returnClassBasedOnResponsiveMap('verticalAlign', verticalAlign),
   )
 
   return (
@@ -95,45 +92,64 @@ const Item = ({
 
 type BentoContentProps = {
   padding?: 'condensed' | 'normal' | 'spacious'
+  verticalAlign?: ResponsiveAlign
+  horizontalAlign?: ResponsiveAlign
+  fixedBottomLink?: boolean
 } & React.HTMLAttributes<HTMLDivElement> &
   BaseProps<HTMLDivElement>
 
-const Content = ({children, padding, className, ...rest}: BentoContentProps) => {
+const Content = ({
+  children,
+  padding,
+  verticalAlign,
+  horizontalAlign = 'start',
+  fixedBottomLink = false,
+  className,
+  ...rest
+}: BentoContentProps) => {
+  const bentoContentClassArray = [styles.Bento__Content]
+  bentoContentClassArray.push(
+    ...returnClassBasedOnResponsiveMap('verticalAlign', verticalAlign),
+    ...returnClassBasedOnResponsiveMap('horizontalAlign', horizontalAlign),
+  )
+  const OcticonChild = React.Children.toArray(children).find(
+    child => React.isValidElement(child) && child.props.className === 'block-icon',
+  )
   const HeadingChild = React.Children.toArray(children).find(
     child => React.isValidElement(child) && child.type === Heading,
   )
   const TextChild = React.Children.toArray(children).find(child => React.isValidElement(child) && child.type === Text)
   const LinkChild = React.Children.toArray(children).find(child => React.isValidElement(child) && child.type === Link)
   return (
-    <div className={clsx(!!padding && styles[`Bento-padding--${padding}`], styles.Bento__Content, className)} {...rest}>
-      <div>
-        {React.isValidElement(HeadingChild) && (
-          <div className={styles.Bento__heading}>
-            {React.cloneElement(HeadingChild as React.ReactElement<HeadingProps>, {
-              // as uses h3 default, but can be overridden
-              as: HeadingChild.props.as || 'h3',
-              size: HeadingChild.props.size || '3',
-            })}
-          </div>
-        )}
-
-        {React.isValidElement(TextChild) && (
-          <div className={styles['Bento__body-text']}>
-            {React.cloneElement(TextChild as React.ReactElement<TextProps>, {
-              variant: 'muted',
-              as: 'p',
-              className: clsx(styles.Bento__text, TextChild.props.className),
-            })}
-          </div>
-        )}
-      </div>
-      {React.isValidElement(LinkChild) && (
-        <div className={styles['Bento__call-to-action']}>
-          {React.cloneElement(LinkChild as React.ReactElement<LinkProps>, {
-            className: clsx(styles['Bento__call-to-action'], LinkChild.props.className),
+    <div
+      className={clsx(!!padding && styles[`Bento-padding--${padding}`], ...bentoContentClassArray, className)}
+      {...rest}
+    >
+      {React.isValidElement(OcticonChild) &&
+        React.cloneElement(OcticonChild as React.ReactElement<IconProps>, {
+          size: OcticonChild.props.size || 32,
+        })}
+      {React.isValidElement(HeadingChild) &&
+        React.cloneElement(HeadingChild as React.ReactElement<HeadingProps>, {
+          as: HeadingChild.props.as || 'h3',
+          size: HeadingChild.props.size || '3',
+        })}
+      {React.isValidElement(TextChild) && (
+        <div className={styles['Bento__body-text']}>
+          {React.cloneElement(TextChild as React.ReactElement<TextProps>, {
+            variant: 'muted',
+            as: 'p',
           })}
         </div>
       )}
+      {React.isValidElement(LinkChild) &&
+        React.cloneElement(LinkChild as React.ReactElement<LinkProps>, {
+          className: clsx(
+            LinkChild.props.className,
+            styles['Bento__call-to-action'],
+            fixedBottomLink && styles['Bento__call-to-action--fixed'],
+          ),
+        })}
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
+import {CopilotIcon} from '@primer/octicons-react'
 import {Bento} from '.'
 import {Heading, Text, Link} from '../'
 import placeholderImage from '../fixtures/images/placeholder-600x400.png'
@@ -237,87 +238,6 @@ VisualPaddingSpacious.parameters = {
   },
 }
 
-export const VerticalAlignStart: StoryFn<typeof Bento> = () => (
-  <Bento.Item verticalAlign="start">
-    <Bento.Content>
-      <Heading as="h3">Heading</Heading>
-      <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
-        felis nam pulvinar risus elementum.
-      </Text>
-      <Link href="#">Call to action</Link>
-    </Bento.Content>
-    <Bento.Visual>
-      <img className="test" alt="placeholder, blank area with an gray background color" src={placeholderImage} />
-    </Bento.Visual>
-  </Bento.Item>
-)
-
-VerticalAlignStart.parameters = {
-  viewport: {
-    defaultViewport: 'iphonexr',
-  },
-}
-
-export const VerticalAlignEnd: StoryFn<typeof Bento> = () => (
-  <Bento.Item verticalAlign="end">
-    <Bento.Content>
-      <Heading as="h3">Heading</Heading>
-      <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
-        felis nam pulvinar risus elementum.
-      </Text>
-      <Link href="#">Call to action</Link>
-    </Bento.Content>
-    <Bento.Visual>
-      <img className="test" alt="placeholder, blank area with an gray background color" src={placeholderImage} />
-    </Bento.Visual>
-  </Bento.Item>
-)
-
-VerticalAlignEnd.parameters = {
-  viewport: {
-    defaultViewport: 'iphonexr',
-  },
-}
-
-// TODO: This isn't working as expected yet
-export const HorizontalAlignStart: StoryFn<typeof Bento> = () => (
-  <Bento.Item horizontalAlign="start">
-    <Bento.Content>
-      <Heading as="h3">Heading</Heading>
-      <Link href="#">Call to action</Link>
-    </Bento.Content>
-    <Bento.Visual>
-      <img className="test" alt="placeholder, blank area with an gray background color" src={placeholderImage} />
-    </Bento.Visual>
-  </Bento.Item>
-)
-
-HorizontalAlignStart.parameters = {
-  viewport: {
-    defaultViewport: 'iphonexr',
-  },
-}
-
-export const HorizontalAlignEnd: StoryFn<typeof Bento> = () => (
-  <Bento.Item horizontalAlign="end">
-    <Bento.Content>
-      <Heading as="h3">Heading</Heading>
-      <Link href="#">Call to action</Link>
-    </Bento.Content>
-    <Bento.Visual>
-      <img className="test" alt="placeholder, blank area with an gray background color" src={placeholderImage} />
-    </Bento.Visual>
-  </Bento.Item>
-)
-
-HorizontalAlignEnd.parameters = {
-  viewport: {
-    defaultViewport: 'iphonexr',
-  },
-}
-
 export const VisualAsBackground: StoryFn<typeof Bento> = () => (
   <Bento.Item visualAsBackground colorMode="dark">
     <Bento.Content>
@@ -343,6 +263,7 @@ VisualAsBackground.parameters = {
 export const DarkModeItem: StoryFn<typeof Bento> = () => (
   <Bento.Item colorMode="dark">
     <Bento.Content>
+      <CopilotIcon size={32} className="block-icon" />
       <Heading as="h3">Heading</Heading>
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
@@ -374,6 +295,106 @@ export const ResponsiveFlow: StoryFn<typeof Bento> = () => (
     }}
   >
     <Bento.Content padding="normal">
+      <Heading as="h3">Heading</Heading>
+      <Text>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </Bento.Content>
+    <Bento.Visual>
+      <img className="test" alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+    </Bento.Visual>
+  </Bento.Item>
+)
+
+export const VerticalAlignStart: StoryFn<typeof Bento> = () => (
+  <Bento.Item flow="column">
+    <Bento.Content padding="normal" verticalAlign="start">
+      <Heading as="h3">Heading</Heading>
+      <Text>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </Bento.Content>
+    <Bento.Visual>
+      <img className="test" alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+    </Bento.Visual>
+  </Bento.Item>
+)
+
+export const VerticalAlignCenter: StoryFn<typeof Bento> = () => (
+  <Bento.Item flow="column">
+    <Bento.Content padding="normal" verticalAlign="center">
+      <Heading as="h3">Heading</Heading>
+      <Text>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </Bento.Content>
+    <Bento.Visual>
+      <img className="test" alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+    </Bento.Visual>
+  </Bento.Item>
+)
+
+export const VerticalAlignEnd: StoryFn<typeof Bento> = () => (
+  <Bento.Item flow="column">
+    <Bento.Content padding="normal" verticalAlign="end">
+      <Heading as="h3">Heading</Heading>
+      <Text>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </Bento.Content>
+    <Bento.Visual>
+      <img className="test" alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+    </Bento.Visual>
+  </Bento.Item>
+)
+
+// TODO: This isn't working as expected yet
+export const HorizontalAlignStart: StoryFn<typeof Bento> = () => (
+  <Bento.Item flow="column">
+    <Bento.Content padding="normal" horizontalAlign="start">
+      <CopilotIcon size={32} className="block-icon" />
+      <Heading as="h3">Heading</Heading>
+      <Text>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </Bento.Content>
+    <Bento.Visual>
+      <img className="test" alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+    </Bento.Visual>
+  </Bento.Item>
+)
+
+export const HorizontalAlignCenter: StoryFn<typeof Bento> = () => (
+  <Bento.Item flow="column">
+    <Bento.Content padding="normal" horizontalAlign="center">
+      <CopilotIcon size={32} className="block-icon" />
+      <Heading as="h3">Heading</Heading>
+      <Text>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </Bento.Content>
+    <Bento.Visual>
+      <img className="test" alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+    </Bento.Visual>
+  </Bento.Item>
+)
+
+export const HorizontalAlignEnd: StoryFn<typeof Bento> = () => (
+  <Bento.Item flow="column">
+    <Bento.Content padding="normal" horizontalAlign="end">
+      <CopilotIcon size={32} className="block-icon" />
       <Heading as="h3">Heading</Heading>
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis

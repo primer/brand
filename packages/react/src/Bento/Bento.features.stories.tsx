@@ -128,9 +128,9 @@ export const Example: StoryFn<typeof Bento> = () => (
     </style>
     <Bento>
       <Bento.Item columnSpan={7} rowSpan={4} colorMode="dark" visualAsBackground className="purple-background">
-        <Bento.Content padding="normal">
+        <Bento.Content padding="normal" fixedBottomLink>
+          <CopilotIcon size={32} className="block-icon" />
           <Heading as="h4" size="4">
-            <CopilotIcon size={32} className="block-icon" />
             Unlocking innovation at scale with AI-driven software development.
           </Heading>
           <Link href="#">Learn more about Copilot</Link>
@@ -153,7 +153,7 @@ export const Example: StoryFn<typeof Bento> = () => (
         </Bento.Visual>
       </Bento.Item>
       <Bento.Item columnSpan={12} rowSpan={4} flow="column" colorMode="dark">
-        <Bento.Content padding="normal">
+        <Bento.Content padding="normal" fixedBottomLink>
           <Heading as="h4" size="4">
             Mercado Libre frees developers minds to focus on their missions with GitHub.
           </Heading>
