@@ -101,7 +101,7 @@ const Content = ({
   children,
   leadingVisual: LeadingVisual,
   padding = 'normal',
-  verticalAlign,
+  verticalAlign = 'start',
   horizontalAlign = 'start',
   fixedBottomLink = false,
   className,
