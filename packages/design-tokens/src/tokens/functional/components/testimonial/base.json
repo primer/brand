@@ -1,0 +1,40 @@
+{
+  "brand": {
+    "Testimonial": {
+      "quote": {
+        "fontSize": {
+          "default": {
+            "value": "var(--brand-text-size-300)"
+          },
+          "large": {
+            "value": "var(--brand-text-size-600)"
+          }
+        },
+        "fontWeight": {
+          "default": {
+            "value": "var(--brand-text-weight-300)"
+          },
+          "large": {
+            "value": "var(--brand-heading-weight-600)"
+          }
+        },
+        "lineHeight": {
+          "default": {
+            "value": "var(--brand-text-lineHeight-300)"
+          },
+          "large": {
+            "value": "var(--brand-text-lineHeight-600)"
+          }
+        },
+        "letterSpacing": {
+          "default": {
+            "value": "var(--brand-text-letterSpacing-300)"
+          },
+          "large": {
+            "value": "var(--brand-text-letterSpacing-600)"
+          }
+        }
+      }
+    }
+  }
+}

@@ -123,9 +123,9 @@ function HeroImage({position = 'block-end', className, ...rest}: PropsWithChildr
 
 type HeroLabelProps = LabelProps & BaseProps<HTMLSpanElement>
 
-function HeroLabel({children, size = 'small', ...rest}: PropsWithChildren<HeroLabelProps>) {
+function HeroLabel({children, ...rest}: PropsWithChildren<HeroLabelProps>) {
   return (
-    <Label className={styles['Hero-label']} size={size} {...rest}>
+    <Label className={styles['Hero-label']} {...rest}>
       {children}
     </Label>
   )
