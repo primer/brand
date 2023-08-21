@@ -197,6 +197,7 @@ const Content = forwardRef(
 )
 
 type RiverVisualProps = BaseProps<HTMLDivElement> &
+  React.HtmlHTMLAttributes<HTMLDivElement> &
   PropsWithChildren<{
     /**
      * Applies automatic size constraints to child images and video.

@@ -4,6 +4,10 @@ import securityLightHeroVisualBg from './fixtures/images/security/hero-visual-bg
 import securityDarkHeroVisualBg from './fixtures/images/security/hero-visual-bg-dark.png'
 import securityLightCtaBannerBg from './fixtures/images/security/cta-banner-bg-light.png'
 import securityDarkCtaBannerBg from './fixtures/images/security/cta-banner-bg-dark.png'
+import securityLightRiverBg1 from './fixtures/images/security/river-bg-light-1.png'
+import securityDarkRiverBg1 from './fixtures/images/security/river-bg-dark-1.png'
+import securityLightRiverBg2 from './fixtures/images/security/river-bg-light-2.png'
+import securityDarkRiverBg2 from './fixtures/images/security/river-bg-dark-2.png'
 
 import aiLightHeroBg from './fixtures/images/ai/hero-light.png'
 import aiDarkHeroBg from './fixtures/images/ai/hero-dark.png'
@@ -11,6 +15,10 @@ import aiLightHeroVisualBg from './fixtures/images/ai/hero-visual-bg-light.png'
 import aiDarkHeroVisualBg from './fixtures/images/ai/hero-visual-bg-dark.png'
 import aiLightCtaBannerBg from './fixtures/images/ai/cta-banner-bg-light.png'
 import aiDarkCtaBannerBg from './fixtures/images/ai/cta-banner-bg-dark.png'
+import aiLightRiverBg1 from './fixtures/images/ai/river-bg-light-1.png'
+import aiDarkRiverBg1 from './fixtures/images/ai/river-bg-dark-1.png'
+import aiLightRiverBg2 from './fixtures/images/ai/river-bg-light-2.png'
+import aiDarkRiverBg2 from './fixtures/images/ai/river-bg-dark-2.png'
 
 import collaborationLightHeroBg from './fixtures/images/collaboration/hero-light.png'
 import collaborationDarkHeroBg from './fixtures/images/collaboration/hero-dark.png'
@@ -18,21 +26,21 @@ import collaborationLightHeroVisualBg from './fixtures/images/collaboration/hero
 import collaborationDarkHeroVisualBg from './fixtures/images/collaboration/hero-visual-bg-dark.png'
 import collaborationLightCtaBannerBg from './fixtures/images/collaboration/cta-banner-bg-light.png'
 import collaborationDarkCtaBannerBg from './fixtures/images/collaboration/cta-banner-bg-dark.png'
+import collaborationLightRiverBg1 from './fixtures/images/collaboration/river-bg-light-1.png'
+import collaborationDarkRiverBg1 from './fixtures/images/collaboration/river-bg-dark-1.png'
+import collaborationLightRiverBg2 from './fixtures/images/collaboration/river-bg-light-2.png'
+import collaborationDarkRiverBg2 from './fixtures/images/collaboration/river-bg-dark-2.png'
 
 import productivityLightHeroVisualBg from './fixtures/images/productivity/hero-visual-bg-light.png'
 import productivityDarkHeroVisualBg from './fixtures/images/productivity/hero-visual-bg-dark.png'
 import productivityLightCtaBannerBg from './fixtures/images/productivity/cta-banner-bg-light.png'
 import productivityDarkCtaBannerBg from './fixtures/images/productivity/cta-banner-bg-dark.png'
+import productivityLightRiverBg1 from './fixtures/images/productivity/river-bg-light-1.png'
+import productivityDarkRiverBg1 from './fixtures/images/productivity/river-bg-dark-1.png'
+import productivityLightRiverBg2 from './fixtures/images/productivity/river-bg-light-2.png'
+import productivityDarkRiverBg2 from './fixtures/images/productivity/river-bg-dark-2.png'
 
 import {ColorModesEnum} from '../../ThemeProvider'
-
-export const themeMap = {
-  default: 'var(--brand-color-text-default)',
-  security: '#096BDE',
-  collaboration: '#FF507A',
-  ai: '#8E47FE',
-  productivity: '#2DA44E',
-}
 
 export type Themes = 'ai' | 'collaboration' | 'security' | 'productivity'
 
@@ -68,7 +76,7 @@ export const themeDetailsMap: ThemeDetailsMap = {
       images: {
         heroBg: securityLightHeroBg,
         heroVisualBg: securityLightHeroVisualBg,
-        riverVisualBgs: ['', ''],
+        riverVisualBgs: [securityLightRiverBg1, securityLightRiverBg2],
         ctaBannerBg: securityLightCtaBannerBg,
         testimonialBg: '',
       },
@@ -78,7 +86,7 @@ export const themeDetailsMap: ThemeDetailsMap = {
       images: {
         heroBg: securityDarkHeroBg,
         heroVisualBg: securityDarkHeroVisualBg,
-        riverVisualBgs: ['', ''],
+        riverVisualBgs: [securityDarkRiverBg1, securityDarkRiverBg2],
         ctaBannerBg: securityDarkCtaBannerBg,
         testimonialBg: '',
       },
@@ -90,7 +98,7 @@ export const themeDetailsMap: ThemeDetailsMap = {
       images: {
         heroBg: collaborationLightHeroBg,
         heroVisualBg: collaborationLightHeroVisualBg,
-        riverVisualBgs: ['', ''],
+        riverVisualBgs: [collaborationLightRiverBg1, collaborationLightRiverBg2],
         ctaBannerBg: collaborationLightCtaBannerBg,
         testimonialBg: '',
       },
@@ -100,7 +108,7 @@ export const themeDetailsMap: ThemeDetailsMap = {
       images: {
         heroBg: collaborationDarkHeroBg,
         heroVisualBg: collaborationDarkHeroVisualBg,
-        riverVisualBgs: ['', ''],
+        riverVisualBgs: [collaborationDarkRiverBg1, collaborationDarkRiverBg2],
         ctaBannerBg: collaborationDarkCtaBannerBg,
         testimonialBg: '',
       },
@@ -112,7 +120,7 @@ export const themeDetailsMap: ThemeDetailsMap = {
       images: {
         heroBg: aiLightHeroBg,
         heroVisualBg: aiLightHeroVisualBg,
-        riverVisualBgs: ['', ''],
+        riverVisualBgs: [aiLightRiverBg1, aiLightRiverBg2],
         ctaBannerBg: aiLightCtaBannerBg,
         testimonialBg: '',
       },
@@ -122,7 +130,7 @@ export const themeDetailsMap: ThemeDetailsMap = {
       images: {
         heroBg: aiDarkHeroBg,
         heroVisualBg: aiDarkHeroVisualBg,
-        riverVisualBgs: ['', ''],
+        riverVisualBgs: [aiDarkRiverBg1, aiDarkRiverBg2],
         ctaBannerBg: aiDarkCtaBannerBg,
         testimonialBg: '',
       },
@@ -134,7 +142,7 @@ export const themeDetailsMap: ThemeDetailsMap = {
       images: {
         heroBg: '',
         heroVisualBg: productivityLightHeroVisualBg,
-        riverVisualBgs: ['', ''],
+        riverVisualBgs: [productivityLightRiverBg1, productivityLightRiverBg2],
         ctaBannerBg: productivityLightCtaBannerBg,
         testimonialBg: '',
       },
@@ -144,7 +152,7 @@ export const themeDetailsMap: ThemeDetailsMap = {
       images: {
         heroBg: '',
         heroVisualBg: productivityDarkHeroVisualBg,
-        riverVisualBgs: ['', ''],
+        riverVisualBgs: [productivityDarkRiverBg1, productivityDarkRiverBg2],
         ctaBannerBg: productivityDarkCtaBannerBg,
         testimonialBg: '',
       },
