@@ -299,15 +299,14 @@
 }
 
 /* Bento Padding */
-/* TODO: Swap values for bento padding */
 .Bento-padding--condensed {
-  padding: var(--brand-box-spacing-condensed);
+  padding: var(--brand-Bento-Content-padding-condensed);
 }
 .Bento-padding--normal {
-  padding: var(--brand-box-spacing-normal);
+  padding: var(--brand-Bento-Content-padding-normal);
 }
 .Bento-padding--spacious {
-  padding: var(--brand-box-spacing-spacious);
+  padding: var(--brand-Bento-Content-padding-spacious);
 }
 
 .Bento-padding--condensed > img {
@@ -353,11 +352,6 @@
 
 .Bento__Item--flow-row {
   grid-auto-flow: row;
-}
-
-/* Bento Text */
-.Bento__body-text {
-  /* TBD */
 }
 
 .Bento__call-to-action {

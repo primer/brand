@@ -354,7 +354,6 @@ export const VerticalAlignEnd: StoryFn<typeof Bento> = () => (
   </Bento.Item>
 )
 
-// TODO: This isn't working as expected yet
 export const HorizontalAlignStart: StoryFn<typeof Bento> = () => (
   <Bento.Item flow="column">
     <Bento.Content padding="normal" horizontalAlign="start">
