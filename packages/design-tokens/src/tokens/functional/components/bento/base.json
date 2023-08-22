@@ -28,13 +28,13 @@
       "Content": {
         "padding": {
           "condensed": {
-            "value": "24px"
+            "value": "16px"
           },
           "normal": {
-            "value": "56px"
+            "value": "24px"
           },
           "spacious": {
-            "value": "72px"
+            "value": "56px"
           }
         }
       }
