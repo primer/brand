@@ -3,6 +3,7 @@ import clsx from 'clsx'
 
 import type {BaseProps} from '../../component-helpers'
 import type {FormInputSizes, FormValidationStatus} from '../form-types'
+import {Text} from '../../Text'
 
 import styles from './TextInput.module.css'
 
@@ -78,6 +79,7 @@ const _TextInput = (
     <span
       className={clsx(
         styles['TextInput-wrapper'],
+        styles[`TextInput-wrapper--${size}`],
         fullWidth && styles['TextInput-wrapper--fullWidth'],
         invisible && styles['TextInput-wrapper--invisible'],
         disabled && styles['TextInput-wrapper--disabled'],
@@ -94,15 +96,17 @@ const _TextInput = (
             validationStatus && styles[`TextInput-leading-text--${validationStatus}`],
           )}
         >
-          <span
+          <Text
+            size={size === 'large' ? '200' : '100'}
+            as="span"
             className={clsx(styles['TextInput-leading-text-inner'], styles[`TextInput-leading-text-inner--${size}`])}
           >
             {leadingText}
-          </span>
+          </Text>
         </span>
       )}
       {LeadingVisual && !leadingText && (
-        <span className={styles['TextInput-leading-visual']}>
+        <span className={clsx(styles['TextInput-leading-visual'], styles[`TextInput-leading-visual--${size}`])}>
           {typeof LeadingVisual === 'function' ? (
             <LeadingVisual
               className={clsx(
@@ -132,7 +136,7 @@ const _TextInput = (
           styles[`TextInput--${size}`],
           fullWidth && styles['TextInput--fullWidth'],
           LeadingVisual && styles[`TextInput--has-leading-visual--${size}`],
-          TrailingVisual && styles['TextInput--has-trailing-visual'],
+          TrailingVisual && styles[`TextInput--has-trailing-visual--${size}`],
           validationStatus && styles[`TextInput--${validationStatus}`],
           leadingText && !LeadingVisual && styles['TextInput--has-leading-text'],
           trailingText && !TrailingVisual && styles['TextInput--has-trailing-text'],
@@ -144,7 +148,7 @@ const _TextInput = (
         {...rest}
       />
       {TrailingVisual && !trailingText && (
-        <span className={styles['TextInput-trailing-visual']}>
+        <span className={clsx(styles['TextInput-trailing-visual'], styles[`TextInput-trailing-visual--${size}`])}>
           {typeof TrailingVisual === 'function' ? (
             <TrailingVisual
               className={clsx(
@@ -173,11 +177,13 @@ const _TextInput = (
             validationStatus && styles[`TextInput-trailing-text--${validationStatus}`],
           )}
         >
-          <span
+          <Text
+            size={size === 'large' ? '200' : '100'}
+            as="span"
             className={clsx(styles['TextInput-trailing-text-inner'], styles[`TextInput-trailing-text-inner--${size}`])}
           >
             {trailingText}
-          </span>
+          </Text>
         </span>
       )}
     </span>

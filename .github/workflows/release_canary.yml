@@ -4,6 +4,7 @@ on:
   push:
     branches-ignore:
       - main
+      - next-minor
       - 'changeset-release/main'
 
 jobs:

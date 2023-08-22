@@ -3,7 +3,6 @@
  */
 .Select {
   appearance: none;
-  display: flex;
   color: var(--brand-control-color-fg-default);
   cursor: pointer;
   background-color: var(--brand-color-canvas-default);
@@ -13,6 +12,8 @@
   transition: var(--brand-control-animation-duration) var(--brand-control-animation-easing);
   transition-property: color, background-color, box-shadow, border-color;
   width: 100%;
+  grid-column: 1 / -1;
+  grid-row: 1;
 }
 
 @media screen and (forced-colors: active) {
@@ -42,43 +43,44 @@
   opacity: 1;
 }
 
-.Select-arrow-indicator {
-  display: flex;
-  height: 16px;
-  pointer-events: none;
-  position: absolute;
-  right: var(--base-size-12);
-  top: 50%;
-  transform: translateY(-50%);
-  width: 16px;
-  color: var(--brand-control-color-fg-default);
-}
-
-.Select-arrow-indicator--disabled {
-  color: var(--brand-control-color-fg-disabled);
-}
-
-.Select-arrow-indicator svg {
-  pointer-events: none;
+.Select-wrapper--disabled.Select-wrapper::after {
+  background-color: var(--brand-control-color-fg-disabled);
 }
 
 /*
  * Sizes
  */
+
+.Select-wrapper--medium {
+  height: var(--brand-control-medium-size);
+  height: 2.5rem;
+}
+
+.Select-wrapper--medium::after {
+  margin-inline-end: var(--base-size-8);
+}
+
 .Select--medium {
-  font-weight: var(--brand-text-weight-200);
-  font-size: var(--brand-text-size-200);
-  height: calc(var(--brand-control-medium-size, 40px) - 2px);
-  padding: var(--brand-control-medium-padding, 12px 10px 10px);
-  padding-right: var(--base-size-44);
+  font-weight: var(--brand-text-weight-100);
+  font-size: var(--brand-text-size-100);
+  padding-inline: 10px;
+  padding-inline-end: calc(var(--brand-control-medium-paddingInline-condensed) + var(--base-size-16));
+}
+
+.Select-wrapper--large {
+  height: var(--brand-control-large-size);
+  height: 3rem;
+}
+
+.Select-wrapper--large::after {
+  margin-inline-end: var(--base-size-12);
 }
 
 .Select--large {
-  font-weight: var(--brand-text-weight-300);
-  font-size: var(--brand-text-size-300);
-  height: calc(var(--brand-control-large-size, 48px) - 2px);
-  padding: var(--brand-control-large-padding, 12px);
-  padding-right: var(--base-size-44);
+  font-weight: var(--brand-text-weight-200);
+  font-size: var(--brand-text-size-200);
+  padding-inline: 12px;
+  padding-inline-end: calc(var(--brand-control-large-paddingInline-condensed) + var(--base-size-16));
 }
 
 /*
@@ -94,12 +96,29 @@
  */
 
 .Select-wrapper {
-  align-items: center;
   border: solid var(--brand-borderWidth-thin, 1px) var(--brand-control-color-border-default);
   border-radius: var(--brand-borderRadius-medium, 6px);
   font-family: var(--brand-body-fontFamily);
-  display: inline-flex;
   position: relative;
+  display: inline-grid;
+  grid-template-columns: minmax(0, auto) var(--base-size-16);
+}
+
+.Select-wrapper::after {
+  width: var(--base-size-16);
+  height: var(--base-size-16);
+  pointer-events: none;
+  content: '';
+  background-color: var(--brand-control-color-fg-default);
+  mask: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0iIzU4NjA2OSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNC40MjcgOS40MjdsMy4zOTYgMy4zOTZhLjI1MS4yNTEgMCAwMC4zNTQgMGwzLjM5Ni0zLjM5NkEuMjUuMjUgMCAwMDExLjM5NiA5SDQuNjA0YS4yNS4yNSAwIDAwLS4xNzcuNDI3ek00LjQyMyA2LjQ3TDcuODIgMy4wNzJhLjI1LjI1IDAgMDEuMzU0IDBMMTEuNTcgNi40N2EuMjUuMjUgMCAwMS0uMTc3LjQyN0g0LjZhLjI1LjI1IDAgMDEtLjE3Ny0uNDI3eiIgLz48L3N2Zz4=');
+  -webkit-mask: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0iIzU4NjA2OSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNC40MjcgOS40MjdsMy4zOTYgMy4zOTZhLjI1MS4yNTEgMCAwMC4zNTQgMGwzLjM5Ni0zLjM5NkEuMjUuMjUgMCAwMDExLjM5NiA5SDQuNjA0YS4yNS4yNSAwIDAwLS4xNzcuNDI3ek00LjQyMyA2LjQ3TDcuODIgMy4wNzJhLjI1LjI1IDAgMDEuMzU0IDBMMTEuNTcgNi40N2EuMjUuMjUgMCAwMS0uMTc3LjQyN0g0LjZhLjI1LjI1IDAgMDEtLjE3Ny0uNDI3eiIgLz48L3N2Zz4=');
+  mask-size: contain;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  grid-column: 2;
+  grid-row: 1;
+  place-self: center end;
 }
 
 .Select-wrapper--disabled {

@@ -103,6 +103,61 @@ A single river component acts as a section and it should not include any child s
   </Dont>
 </DoDontContainer>
 
+### Breakout river
+
+A river breakout component has an image that fills the width of the container while providing more space for content such as text and lists.
+
+This is useful when you want to create a highlight which can be used to create more emphasis or simply break a monotonous vertical flow of left/right rivers. It can also be helpful on smaller viewports to avoid stacking two images or two chunks of text from adjacent river components.
+
+Some examples of when to use a breakout river:
+
+- Expand on more complex feature that require more room for content
+- Give designer a tool to emphasize the feature story
+- Use a branded wallpaper in a more cinematic way than the standard 50/50 or 60/40 text-to-image column ratios
+
+<DoDontContainer>
+  <Do>
+    <img
+      alt=""
+      src="https://github.com/primer/brand/assets/2313998/103940cc-d3fc-47da-94c3-698c7c0c9b4a"
+    />
+    <Caption>
+      Use a river breakout to emphasize a part of the river or break up a series
+      of river components.
+    </Caption>
+  </Do>
+  <Dont>
+    <img
+      alt=""
+      src="https://github.com/primer/brand/assets/2313998/e23fcbc7-a974-4e3e-8551-5e2346813093"
+    />
+    <Caption>
+      Don't stack river breakouts on top of other river breakout components or
+      center-aligned river components. These both show a full-width image. This
+      diminishes the visual impact the river breakout is intended to provide.
+    </Caption>
+  </Dont>
+</DoDontContainer>
+
+The headline in the river component must always be present, but the supplemental content is optional.
+
+<DoDontContainer>
+  <Do>
+    <img
+      alt=""
+      src="https://github.com/primer/brand/assets/2313998/433b1fba-4505-452b-8f8c-7cda69cc316d"
+    />
+    <Caption>Exclude the supplemental content if it's not needed.</Caption>
+  </Do>
+  <Dont>
+    <img
+      alt=""
+      src="https://github.com/primer/brand/assets/2313998/62cf1c98-6b7d-46e9-a2d4-6d211a9103ad"
+    />
+    <Caption>Don't exclude the headline.</Caption>
+  </Dont>
+</DoDontContainer>
+
 ## Anatomy
 
 ![A river component used to showcase a security feature. The title reads "Get security feedback with every git push" and it includes an image showing screenshots of of a CLI prompt with the git push command and a code scanning screenshot.](https://github.com/primer/brand/assets/912236/859bef31-aff0-4f75-83b1-e1dc22305f9d)

@@ -1,7 +1,7 @@
 import React from 'react'
 import {Meta} from '@storybook/react'
 import {FAQ} from '.'
-import {Text, InlineLink} from '..'
+import {InlineLink} from '..'
 
 export default {
   title: 'Components/FAQ',
@@ -30,26 +30,10 @@ export const Default = () => (
       <FAQ.Answer>
         <p>Startups who meet the following criteria are eligible to apply for the program:</p>
         <ol>
-          <li>
-            <Text size="300" variant="muted">
-              Must be associated with a current GitHub for Startups partner.
-            </Text>
-          </li>
-          <li>
-            <Text size="300" variant="muted">
-              Self-funded or funded (Seed-Series A)
-            </Text>
-          </li>
-          <li>
-            <Text size="300" variant="muted">
-              Not a current GitHub Enterprise customer
-            </Text>
-          </li>
-          <li>
-            <Text size="300" variant="muted">
-              Must not have previously received credits for GitHub Enterprise
-            </Text>
-          </li>
+          <li>Must be associated with a current GitHub for Startups partner.</li>
+          <li>Self-funded or funded (Seed-Series A)</li>
+          <li>Not a current GitHub Enterprise customer</li>
+          <li>Must not have previously received credits for GitHub Enterprise</li>
         </ol>
       </FAQ.Answer>
     </FAQ.Item>
@@ -57,8 +41,8 @@ export const Default = () => (
       <FAQ.Question>What if my startup is not eligible? Are there other resources for me?</FAQ.Question>
       <FAQ.Answer>
         <p>
-          If you’re not currently eligible for the GitHub for Startups but would like to try GitHub Enterprise, please
-          feel to sign up for a trial
+          If you&apos;re not currently eligible for the GitHub for Startups but would like to try GitHub Enterprise,
+          please feel to sign up for a trial
           <InlineLink href="https://copilot.github.com/" target="_blank" rel="noreferrer">
             here
           </InlineLink>
@@ -74,7 +58,6 @@ export const Default = () => (
           program.
         </p>
         <p>
-          {' '}
           <InlineLink href="https://copilot.github.com/" target="_blank" rel="noreferrer">
             Apply here
           </InlineLink>

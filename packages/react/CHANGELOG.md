@@ -1,5 +1,128 @@
 # @primer/react-brand
 
+## 0.24.0
+
+### Minor Changes
+
+- [#389](https://github.com/primer/brand/pull/389) [`957c839`](https://github.com/primer/brand/commit/957c83975e74f0c0062bf6fb8e73dd93091a603c) Thanks [@langermank](https://github.com/langermank)! - :warning: This update contains breaking changes as part of a Site Refactor update.
+
+  Please refer to the following Discussion post for full details on all changes.
+
+  :link: [Primer Brand v0.25 RC - Technical Preview](https://github.com/github/primer/discussions/2547)
+
+- [#398](https://github.com/primer/brand/pull/398) [`2e9ca53`](https://github.com/primer/brand/commit/2e9ca53206ee360871b9c154d963bc412ec37711) Thanks [@josepmartins](https://github.com/josepmartins)! - Remove `small` size variant to `Label` component. The default `medium` size should be used instead.
+
+  ⚠️ This is a breaking change
+
+- [#394](https://github.com/primer/brand/pull/394) [`c9029d4`](https://github.com/primer/brand/commit/c9029d4a69f7f0311c008a2af4b6124642145369) Thanks [@mperrotti](https://github.com/mperrotti)! - Adds RiverBreakout component and its supporting design tokens.
+
+  Usage example:
+
+  ```jsx
+  <RiverBreakout>
+    <RiverBreakout.A11yHeading>Accelerate workflows</RiverBreakout.A11yHeading>
+    <RiverBreakout.Visual>
+      <PlaceholderImage />
+    </RiverBreakout.Visual>
+    <RiverBreakout.Content
+      trailingComponent={() => {
+        ;<div>Trailing component</div>
+      }}
+    >
+      <Text>
+        Accelerate your workflows and scale your business fast with access to millions of open source projects on
+        GitHub, the largest source code host.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </RiverBreakout.Content>
+  </RiverBreakout>
+  ```
+
+  See the [Storybook](https://primer.style/brand/storybook/?path=/story/components-river-features--with-breakout)
+
+- [#379](https://github.com/primer/brand/pull/379) [`a1aa9b9`](https://github.com/primer/brand/commit/a1aa9b9d3c43727a3249e4326856b0b19e231e6d) Thanks [@rezrah](https://github.com/rezrah)! - Added default rounded corners to River.Visual and removed shadows
+
+  ⚠️ This is a visual breaking change
+
+  To restore the previous visual appearance, use the following
+
+  ```diff
+  - <River.Visual>
+  + <River.Visual rounded={false} hasShadow>
+  ```
+
+### Patch Changes
+
+- [#372](https://github.com/primer/brand/pull/372) [`dfa33f7`](https://github.com/primer/brand/commit/dfa33f771fa3271cd18b2117c4c31a97738a3a7a) Thanks [@mperrotti](https://github.com/mperrotti)! - Updated Testimonial component visuals, and enables customization of the quote color.
+
+  Usage example:
+
+  ```jsx
+  <Testimonial>
+    <Testimonial.Quote>
+      <em>GitHub helps us ensure that we have our security controls baked into our pipelines</em> all the way from the
+      first line of code we&apos;re writing.
+    </Testimonial.Quote>
+    <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
+
+    <Testimonial.Avatar
+      src="https://avatars.githubusercontent.com/u/92997159?v=4"
+      alt="Circular avatar from David Ross's GitHub profile"
+    />
+  </Testimonial>
+  ```
+
+## 0.23.0
+
+### Minor Changes
+
+- [#380](https://github.com/primer/brand/pull/380) [`49ef70b`](https://github.com/primer/brand/commit/49ef70bf565ec2c0caad53d7c145c7ff40b5eb6f) Thanks [@danielguillan](https://github.com/danielguillan)! - Use the timeline component to display a list of connected items as a vertical timeline.
+
+  Usage example:
+
+  ```jsx
+  <Timeline>
+    <Timeline.Item>
+      <em>GitHub Codespaces</em> offers a complete dev environment in seconds, so you can code, build, test, and open
+      pull requests from any repo anywhere.
+    </Timeline.Item>
+    <Timeline.Item>
+      <em>GitHub Copilot</em> is your AI pair programmer that empowers you to complete tasks 55% faster by turning
+      natural language prompts into coding suggestions.
+    </Timeline.Item>
+    <Timeline.Item>
+      <em>GitHub Actions</em> automates your build, test, and deployment workflow with simple and secure CI/CD.
+    </Timeline.Item>
+  </Timeline>
+  ```
+
+  See the [documentation](https://primer.style/brand/components/Timeline) or [Storybook](https://primer.style/brand/storybook/?path=/story/components-timeline--default)
+
+### Patch Changes
+
+- [#352](https://github.com/primer/brand/pull/352) [`fd039af`](https://github.com/primer/brand/commit/fd039af7c114f4fe6af5c7351d3ebf4fdffe64c7) Thanks [@jesskuo4](https://github.com/jesskuo4)! - Added a `block` prop to Button to allow for a full width button.
+
+- [#381](https://github.com/primer/brand/pull/381) [`f9c3ea5`](https://github.com/primer/brand/commit/f9c3ea534a56886099af1b7b6c40849aa786b74b) Thanks [@rezrah](https://github.com/rezrah)! - Add default spacing and optional divider to `trailingComponent` styles to `River.Content`
+
+  ```jsx
+  <River.Content
+    trailingComponent={() => (
+      <Stack direction="vertical" padding="none" alignItems="flex-start">
+        <Heading as="h3" size="3">
+          +50%
+        </Heading>
+        <Text variant="muted" as="p" size="300">
+          Developer efficiency
+        </Text>
+      </Stack>
+    )}
+    trailingComponentDivider
+  >
+    <Heading>Heading</Heading>
+    <Text>Use trailing components to provide additional, custom content immediately after the main content.</Text>
+  </River.Content>
+  ```
+
 ## 0.22.0
 
 ### Minor Changes

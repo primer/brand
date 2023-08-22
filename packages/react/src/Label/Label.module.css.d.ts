@@ -1,6 +1,5 @@
 declare const styles: {
   readonly "Label": string;
-  readonly "Label--size-small": string;
   readonly "Label--size-medium": string;
   readonly "Label--size-large": string;
   readonly "Label--color-default": string;

@@ -1,7 +1,7 @@
 import React from 'react'
 import {Meta} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
-import {Testimonial, TestimonialProps} from '.'
+import {Testimonial, TestimonialProps, TestimonialQuoteMarkColors, defaultQuoteMarkColor} from '.'
 import {Stack} from '../'
 
 export default {
@@ -9,6 +9,7 @@ export default {
   component: Testimonial,
   args: {
     align: 'start',
+    quoteMarkColor: defaultQuoteMarkColor,
     name: 'David Ross',
     position: 'Staff Security Engineer',
     quote:
@@ -20,6 +21,12 @@ export default {
   argTypes: {
     align: {
       options: ['start', 'center'],
+    },
+    quoteMarkColor: {
+      control: {
+        type: 'radio',
+        options: TestimonialQuoteMarkColors,
+      },
     },
     name: {
       control: {type: 'text'},
@@ -230,6 +237,25 @@ Trio.args = {
   align: 'center',
 }
 
+export const ColoredQuoteMark = args => (
+  <Testimonial {...args}>
+    <Testimonial.Quote>
+      <em>GitHub helps us ensure that we have our security controls baked into our pipelines</em> all the way from the
+      first line of code we&apos;re writing.
+    </Testimonial.Quote>
+    <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
+
+    <Testimonial.Avatar
+      src="https://avatars.githubusercontent.com/u/92997159?v=4"
+      alt="Circular avatar from David Ross's GitHub profile"
+    />
+  </Testimonial>
+)
+
+ColoredQuoteMark.args = {
+  quoteMarkColor: 'blue',
+}
+
 export const Large = args => (
   <Testimonial {...args}>
     <Testimonial.Quote>
@@ -246,5 +272,24 @@ export const Large = args => (
 )
 
 Large.args = {
+  size: 'large',
+}
+
+export const HighlightedPortion = args => (
+  <Testimonial {...args}>
+    <Testimonial.Quote>
+      <em>GitHub helps us ensure that we have our security controls baked into our pipelines</em> all the way from the
+      first line of code we&apos;re writing.
+    </Testimonial.Quote>
+    <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
+
+    <Testimonial.Avatar
+      src="https://avatars.githubusercontent.com/u/92997159?v=4"
+      alt="Circular avatar from David Ross's GitHub profile"
+    />
+  </Testimonial>
+)
+
+HighlightedPortion.args = {
   size: 'large',
 }

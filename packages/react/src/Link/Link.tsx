@@ -43,8 +43,8 @@ export function Link({
   const [isFocused, setIsFocused] = React.useState(false)
 
   const sizeMap = {
-    medium: '300',
-    large: '400',
+    medium: '200',
+    large: '300',
   } as const
 
   const handleMouseEnter = useCallback(
