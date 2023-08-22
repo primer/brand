@@ -62,7 +62,7 @@
 }
 
 .VideoPlayer__playButton:focus {
-  border: 2px solid var(--brand-color-focus);
+  border: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
   box-shadow: 0 0 0 2px var(--brand-color-focus);
 }
 
@@ -96,7 +96,7 @@
 }
 
 .VideoPlayer__showOverlays .VideoPlayer__title {
-  top: 0px;
+  top: 0;
   opacity: 1;
 }
 
@@ -329,11 +329,11 @@
   z-index: 2;
   width: 10px;
   height: 10px;
-  margin-bottom: 16px;
+  margin-bottom: var(--base-size-16);
   pointer-events: none;
   opacity: 0;
   transform: translate3d(0%, 50%, 0);
-  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default), transform var(--brand-animation-duration-default) var(--brand-animation-easing-default);
 }
 
 .VideoPlayer__tooltip::before {
