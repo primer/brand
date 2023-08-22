@@ -15,18 +15,6 @@ type ControlsProps = {
   trackInformation?: TextTrackCueList
 }
 
-/* ---------------------------------------------------------- */
-/* Controls                                                   */
-/* ---------------------------------------------------------- */
-/* Table of contents:                                         */
-/* 1. Play / Pause                                            */
-/* 2. Seek                                                    */
-/* 3. Closed Captions                                         */
-/* 4. Mute                                                    */
-/* 5. Volume                                                  */
-/* ---------------------------------------------------------- */
-
-/* 1. Utility                                                 */
 const getMinuteSecondTime = (time: number) => {
   const minutes = Math.floor(time / 60)
   const seconds = Math.floor(time - minutes * 60)
@@ -51,7 +39,6 @@ export const Controls = ({
   const [closedCaption, setClosedCaption] = useState(true)
   const [fullScreen, setFullScreen] = useState(false)
 
-  /* 1. Play / Pause                                            */
   useEffect(() => {
     if (videoRef.current) {
       if (playing) {
@@ -92,13 +79,15 @@ export const Controls = ({
     )
   }, [playing])
 
-  /* 2. Seek                                                    */
-
   useEffect(() => {
     setPlayedTime(videoRef.current?.currentTime || 0)
   }, [videoRef, videoRef.current?.currentTime])
 
   const renderSeek = useMemo(() => {
+    const handleSeek = (e: React.FormEvent<HTMLInputElement>) => {
+      if (videoRef.current) videoRef.current.currentTime = e.currentTarget.valueAsNumber
+    }
+
     return (
       <>
         <Range
@@ -106,9 +95,7 @@ export const Controls = ({
           min="0"
           max={totalTime || 0}
           step={0.0001}
-          onInput={e => {
-            if (videoRef.current) videoRef.current.currentTime = e.currentTarget.valueAsNumber
-          }}
+          onInput={handleSeek}
           value={currentTime}
           className={styles.VideoPlayer__progressBar}
           tooltip
@@ -125,8 +112,6 @@ export const Controls = ({
     )
   }, [videoRef, totalTime, currentTime, playedTime])
 
-  /* 3. Closed Captions                                         */
-
   const renderCCButton = useMemo(() => {
     return (
       <button
@@ -142,8 +127,6 @@ export const Controls = ({
       </button>
     )
   }, [closedCaption])
-
-  /* 4. Mute                                                    */
 
   const renderMuteButton = useMemo(
     () => (

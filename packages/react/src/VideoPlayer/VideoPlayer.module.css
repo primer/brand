@@ -101,7 +101,7 @@
 }
 
 .VideoPlayer__overlays:hover .VideoPlayer__title {
-  top: 0px;
+  top: 0;
   opacity: 1;
 }
 
@@ -140,7 +140,7 @@
 
 .VideoPlayer__controls:focus,
 .VideoPlayer__controls:focus-within {
-  bottom: 0px;
+  bottom: 0;
 }
 
 .VideoPlayer__controls:focus .VideoPlayer__controlsWrapper,
@@ -149,7 +149,7 @@
 }
 
 .VideoPlayer__showOverlays .VideoPlayer__controls {
-  bottom: 0px;
+  bottom: 0;
 }
 
 .VideoPlayer__showOverlays .VideoPlayer__controlsWrapper {
@@ -161,7 +161,7 @@
 }
 
 .VideoPlayer__overlays:hover .VideoPlayer__controls {
-  bottom: 0px;
+  bottom: 0;
   opacity: 1;
 }
 
@@ -333,7 +333,8 @@
   pointer-events: none;
   opacity: 0;
   transform: translate3d(0%, 50%, 0);
-  transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default), transform var(--brand-animation-duration-default) var(--brand-animation-easing-default);
+  transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
+    transform var(--brand-animation-duration-default) var(--brand-animation-easing-default);
 }
 
 .VideoPlayer__tooltip::before {

@@ -4,6 +4,7 @@ import type {BaseProps} from '../component-helpers'
 import {Text} from '../Text'
 import {Controls} from './components'
 import {MarkGithubIcon} from '@primer/octicons-react'
+import {useProvidedRefOrCreate} from '../hooks/useRef'
 
 /**
  * Design tokens
@@ -36,15 +37,13 @@ const Root = ({
   ref,
   ...rest
 }: VideoPlayerProps) => {
-  const videoPlayerRef = useRef<HTMLVideoElement>(null)
   const videoWrapperRef = useRef<HTMLDivElement>(null)
-  const videoRef = ref ? ref : videoPlayerRef
+  const videoRef = useProvidedRefOrCreate(ref)
   const [playing, setPlaying] = useState(false)
   const [playedTime, setPlayedTime] = useState(0)
   const [totalTime, setTotalTime] = useState(0)
   const [trackInformation, setTrackInformation] = useState<TextTrackCueList | undefined>(undefined)
 
-  /* > Video Attr Functions                                            */
   const handleOnPlay = useCallback(
     e => {
       setPlaying(true)
@@ -85,7 +84,6 @@ const Root = ({
     [onTimeUpdate, videoRef],
   )
 
-  /* > Play / Pause                                                    */
   const handleVideoPlayback = () => {
     if (videoRef.current) {
       if (videoRef.current.paused) {
@@ -96,7 +94,6 @@ const Root = ({
     }
   }
 
-  /* > Hide Default Captions                                                   */
   useEffect(() => {
     if (videoRef.current) {
       for (let i = 0; i < videoRef.current.textTracks.length; i++) {
@@ -104,8 +101,6 @@ const Root = ({
       }
     }
   }, [videoRef])
-
-  /* > Set breakpoint classes                                                   */
 
   useEffect(() => {
     const handleResize = () => {

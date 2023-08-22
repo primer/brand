@@ -5,10 +5,8 @@ import '@testing-library/jest-dom'
 import {VideoPlayer} from '.'
 
 describe('VideoPlayer', () => {
-  const pauseStub = jest.spyOn(window.HTMLMediaElement.prototype, 'pause').mockImplementation(() => 'play')
-  const playStub = jest
-    .spyOn(window.HTMLMediaElement.prototype, 'play')
-    .mockImplementation(() => new Promise(() => 'pause'))
+  let pauseSpy: jest.SpyInstance
+  let playSpy: jest.SpyInstance
 
   const videoPlayer = (
     <VideoPlayer poster="/example-poster.jpg" title="Hello world">
@@ -23,9 +21,14 @@ describe('VideoPlayer', () => {
     </VideoPlayer>
   )
 
+  beforeEach(() => {
+    pauseSpy = jest.spyOn(HTMLMediaElement.prototype, 'pause').mockReturnValue(undefined)
+    playSpy = jest.spyOn(HTMLMediaElement.prototype, 'play').mockReturnValue(Promise.resolve())
+  })
+
   afterEach(() => {
     cleanup()
-    jest.clearAllMocks()
+    jest.restoreAllMocks()
   })
 
   it('renders correctly into the document', () => {
@@ -40,18 +43,54 @@ describe('VideoPlayer', () => {
   it('pauses the video by default', () => {
     render(videoPlayer)
     expect(document.querySelector('video')?.paused).toBe(true)
+    expect(pauseSpy).toHaveBeenCalled()
   })
 
   it('plays the video when the playButton element is clicked', () => {
     render(videoPlayer)
 
     fireEvent.click(document.querySelector('.VideoPlayer__playButton') as Element)
+    expect(playSpy).toHaveBeenCalled()
+  })
 
-    // Pause is called because when the video is rendered the pause action runs
-    expect(pauseStub).toHaveBeenCalledTimes(1)
-    expect(playStub).toHaveBeenCalledTimes(1)
-    playStub.mockRestore()
-    pauseStub.mockRestore()
+  it('passes the play event function along to the play handler', () => {
+    const testOnPlayFunction = jest.fn()
+    render(
+      <VideoPlayer poster="/example-poster.jpg" onPlay={testOnPlayFunction} title="Hello world">
+        <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
+        <VideoPlayer.Track
+          src="../../../apps/docs/static/example.vtt"
+          default
+          kind="subtitles"
+          srcLang="en"
+          label="English"
+        />
+      </VideoPlayer>,
+    )
+
+    fireEvent.play(document.querySelector('.VideoPlayer') as Element)
+
+    expect(testOnPlayFunction.mock.calls).toHaveLength(1)
+  })
+
+  it('passes the pause event function along to the pause handler', () => {
+    const testOnPauseFunction = jest.fn()
+    render(
+      <VideoPlayer poster="/example-poster.jpg" onPause={testOnPauseFunction} title="Hello world">
+        <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
+        <VideoPlayer.Track
+          src="../../../apps/docs/static/example.vtt"
+          default
+          kind="subtitles"
+          srcLang="en"
+          label="English"
+        />
+      </VideoPlayer>,
+    )
+
+    fireEvent.pause(document.querySelector('.VideoPlayer') as Element)
+
+    expect(testOnPauseFunction.mock.calls).toHaveLength(1)
   })
 
   it('is not muted by default', () => {

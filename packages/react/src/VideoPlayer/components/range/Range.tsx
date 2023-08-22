@@ -21,6 +21,7 @@ export const Range = ({
   a11yStep = 1,
   tooltip,
   tooltipFormatter = value => value.toString(),
+  name,
   id,
   ...props
 }: RangeProps) => {
@@ -61,7 +62,7 @@ export const Range = ({
     <div className={clsx(styles.VideoPlayer__range, className)}>
       <progress aria-hidden="true" className={styles.VideoPlayer__rangeProgress} value={value} max={max} />
       <label htmlFor={inputId}>
-        <span className="visually-hidden">Seek</span>
+        <span className="visually-hidden">{name}</span>
         <input
           tabIndex={0}
           type="range"
@@ -77,6 +78,7 @@ export const Range = ({
             onKeyDown && onKeyDown(e)
           }}
           id={inputId}
+          name={name}
           {...props}
         />
       </label>
