@@ -111,9 +111,9 @@ const Root = ({
     const handleResize = () => {
       const breakpoint = videoWrapperRef.current?.getBoundingClientRect().width
       if (breakpoint && breakpoint < 650) {
-        videoWrapperRef.current.classList.add(styles.VideoPlayer__breakpointSmall)
+        videoWrapperRef.current.classList.add(styles['VideoPlayer__container--small'])
       } else {
-        videoWrapperRef.current?.classList.remove(styles.VideoPlayer__breakpointSmall)
+        videoWrapperRef.current?.classList.remove(styles['VideoPlayer__container--small'])
       }
     }
 

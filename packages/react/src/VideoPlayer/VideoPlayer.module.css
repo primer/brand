@@ -134,7 +134,7 @@
   pointer-events: all;
 }
 
-.VideoPlayer__breakpointSmall .VideoPlayer__controlsWrapper {
+.VideoPlayer__container--small .VideoPlayer__controlsWrapper {
   grid-template-columns: auto 2fr auto auto auto auto;
 }
 
@@ -200,7 +200,7 @@
   display: inline-block;
 }
 
-.VideoPlayer__breakpointSmall .VideoPlayer__totalTime {
+.VideoPlayer__container--small .VideoPlayer__totalTime {
   display: none;
 }
 
@@ -241,7 +241,7 @@
   border-radius: var(--brand-VideoPlayer-range-borderRadius);
 }
 
-.VideoPlayer__breakpointSmall .VideoPlayer__volumeBar {
+.VideoPlayer__container--small .VideoPlayer__volumeBar {
   display: none;
 }
 
