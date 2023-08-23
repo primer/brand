@@ -106,7 +106,6 @@ export const Playground: StoryFn<typeof TextInput> = args => (
     {...args}
     leadingVisual={args.leadingVisual ? CheckIcon : undefined}
     trailingVisual={args.trailingVisual ? SearchIcon : undefined}
-    size="medium"
   />
 )
 

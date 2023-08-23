@@ -14,10 +14,10 @@
           "value": "{base.size.48}"
         },
         "lineBoxHeight": {
-          "value": "{base.size.20}"
+          "value": "{base.size.16}"
         },
         "paddingBlock": {
-          "value": "0.875rem"
+          "value": "{base.size.16}"
         },
         "paddingInline": {
           "condensed": {

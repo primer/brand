@@ -35,10 +35,6 @@
   position: relative;
 }
 
-.Button--label {
-  line-height: 1;
-}
-
 .Button__icon-visual {
   display: flex;
   align-self: center;
@@ -151,7 +147,6 @@
 
 .Button--label-subtle {
   color: var(--brand-button-subtle-fgColor-rest);
-``
 }
 
 .Button--subtle:disabled .Button-arrow--disabled,
@@ -175,6 +170,12 @@
   height: var(--brand-control-large-size);
   padding: var(--brand-control-large-paddingBlock) var(--brand-control-large-paddingInline-spacious);
   border-radius: var(--brand-control-large-borderRadius);
+}
+
+.Button--size-large .Button__icon-visual,
+.Button--size-large .Button-arrow {
+  height: var(--base-size-20);
+  width: var(--base-size-20);
 }
 
 .Button--block {
