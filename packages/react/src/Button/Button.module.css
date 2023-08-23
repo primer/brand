@@ -150,7 +150,8 @@
 }
 
 .Button--label-subtle {
-  color: var(--brand-button-sungle-fgColor-rest);
+  color: var(--brand-button-subtle-fgColor-rest);
+``
 }
 
 .Button--subtle:disabled .Button-arrow--disabled,
