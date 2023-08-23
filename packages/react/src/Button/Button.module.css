@@ -142,7 +142,7 @@
 .Button--subtle {
   color: var(--brand-color-text-default);
   border-color: var(--brand-button-subtle-borderColor-rest);
-  transition: background-color, border-color 200ms;
+  transition: background-color, border-color var(--brand-animation-duration-faster);
 }
 
 .Button--subtle:hover:not(.Button[disabled]) {
