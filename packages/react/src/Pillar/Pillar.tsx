@@ -90,7 +90,7 @@ type PillarHeadingProps = BaseProps<HTMLHeadingElement> & {
 } & HeadingProps
 
 const PillarHeading = forwardRef<HTMLHeadingElement, PillarHeadingProps>(
-  ({children, as = 'h3', size = '6', className, ...rest}, ref) => {
+  ({children, as = 'h3', size = 'subhead-large', className, ...rest}, ref) => {
     return (
       <Heading
         size={size}
@@ -113,7 +113,7 @@ const PillarDescription = forwardRef<HTMLParagraphElement, PillarDescriptionProp
       <Text
         variant="muted"
         ref={ref}
-        size="300"
+        size="200"
         as="p"
         className={clsx(styles.Pillar__description, className)}
         {...rest}

@@ -68,3 +68,11 @@ export const AlignedCenter = () => (
     <SectionIntro.Link href="#">My link</SectionIntro.Link>
   </SectionIntro>
 )
+
+export const WithEmphasizedText = () => (
+  <SectionIntro>
+    <SectionIntro.Heading>
+      <em>Expressive headline</em> about an exclusive set of features.
+    </SectionIntro.Heading>
+  </SectionIntro>
+)

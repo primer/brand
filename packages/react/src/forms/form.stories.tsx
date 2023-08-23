@@ -38,7 +38,7 @@ export const GitHubEnterprise = args => {
     <Container
       style={{alignItems: 'center', display: 'grid', gap: 16, maxWidth: 600, marginTop: 'var(--base-size-32)'}}
     >
-      <Heading as="h4">Get started</Heading>
+      <Heading as="h5">Get started</Heading>
       <form>
         <Container
           style={{
@@ -122,7 +122,7 @@ export const GitHubEnterprise = args => {
             )}
           </FormControl>
 
-          <Heading as="h4" size="6">
+          <Heading as="h4" size="subhead-large">
             Number of users
           </Heading>
           {/* Todo convert to a fieldset */}
@@ -148,9 +148,9 @@ export const GitHubEnterprise = args => {
             <FormControl.Label>
               Contact me about GitHub Enterprise Server{' '}
               <FormControl.Hint>
-                <Text size="200" variant="muted">
+                <Text size="100" variant="muted">
                   I&apos;m interested in learning more about{' '}
-                  <InlineLink size="200" href="https://github.com/enterprise" target="_blank">
+                  <InlineLink size="100" href="https://github.com/enterprise" target="_blank">
                     GitHub Enterprise Server
                   </InlineLink>{' '}
                   and would like to be contacted by GitHub’s sales team.
@@ -173,21 +173,21 @@ export const GitHubEnterprise = args => {
               alignItems: 'center',
             }}
           >
-            <Text size="200" variant="muted">
+            <Text size="100" variant="muted">
               Captcha
             </Text>
           </div>
           <FormControl required>
             <FormControl.Label>
-              <Text size="200" variant="muted">
+              <Text size="100" variant="muted">
                 I hereby accept the{' '}
-                <InlineLink size="200" href="https://github.com/customer-terms" target="_blank">
+                <InlineLink size="100" href="https://github.com/customer-terms" target="_blank">
                   GitHub Customer Agreement
                 </InlineLink>{' '}
                 on behalf of my organization and confirm that I have the authority to do so. For more information about
                 GitHub&apos;s privacy practices, see the{' '}
                 <InlineLink
-                  size="200"
+                  size="100"
                   href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement"
                   target="_blank"
                 >

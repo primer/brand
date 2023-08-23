@@ -61,7 +61,7 @@ export const AccordionHeading = forwardRef<HTMLHeadingElement, AccordionHeadingP
     return (
       <summary className={clsx(styles.Accordion__summary, className)} ref={ref} {...rest}>
         <span aria-hidden="true" className={styles['Accordion__summary--collapsed']}></span>
-        <Heading as={as} className={styles['Accordion__summary-heading']}>
+        <Heading as={as} size="subhead-large">
           {children}
         </Heading>
         <span aria-hidden="true" className={styles['Accordion__summary--expanded']}></span>
@@ -87,7 +87,7 @@ export function AccordionContent({children, className, ...rest}: AccordionConten
       if (targetChildTypes.includes(child.type)) {
         return React.cloneElement(child as React.ReactElement, {
           children: (
-            <Text variant="muted" size="300" as="span">
+            <Text variant="muted" size="200" as="span">
               {child.props.children}
             </Text>
           ),

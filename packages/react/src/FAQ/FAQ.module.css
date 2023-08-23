@@ -4,23 +4,11 @@
 }
 
 .FAQ__heading {
-  /*Visual appearance as a h3*/
-  font-weight: var(--brand-heading-weight-700);
-  font-size: var(--brand-text-size-700);
-  line-height: var(--brand-heading-lineHeight-700);
-  letter-spacing: var(--brand-heading-letterSpacing-700);
-
   color: var(--brand-FAQ-heading-color);
   margin-bottom: var(--brand-FAQ-heading-marginBottom);
 }
 
 .FAQ__subheading {
-  /*Visual appearance as a h4*/
-  font-weight: var(--brand-heading-weight-600);
-  font-size: var(--brand-text-size-600);
-  line-height: var(--brand-text-lineHeight-600);
-  letter-spacing: var(--brand-heading-letterSpacing-600);
-
   margin-bottom: var(--base-size-16);
 }
 
@@ -41,4 +29,8 @@
   font-size: var(--brand-text-size-800);
   line-height: var(--brand-text-lineHeight-800);
   letter-spacing: var(--brand-text-letterSpacing-800);
+}
+
+.FAQ details + .FAQ__subheading {
+  margin-top: var(--base-size-48);
 }

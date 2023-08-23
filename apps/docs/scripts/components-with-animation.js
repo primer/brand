@@ -13,5 +13,6 @@ export const supportedComponents = [
   'Stack',
   'Testimonial',
   'Text',
+  'Timeline',
   'Animate',
 ]

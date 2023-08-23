@@ -31,12 +31,6 @@
   mask-composite: exclude;
 }
 
-.Label--size-small {
-  padding-left: var(--base-size-8);
-  padding-right: var(--base-size-8);
-  height: var(--base-size-24);
-}
-
 .Label--size-medium {
   padding-left: var(--base-size-16);
   padding-right: var(--base-size-16);
@@ -137,10 +131,6 @@
   -webkit-text-fill-color: transparent;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
-}
-
-.Label--size-small .Label__text {
-  line-height: var(--brand-text-lineHeight-100);
 }
 
 .Label--size-medium .Label__text {

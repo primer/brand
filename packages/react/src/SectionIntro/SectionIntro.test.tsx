@@ -146,7 +146,7 @@ describe('SectionIntro', () => {
     expect(labelEl).toBeInTheDocument()
   })
 
-  test('renders with default colors and size', () => {
+  test('renders a label with default colors and size', () => {
     const mockLabel = 'Label'
     const expectedSize = 'medium'
     const expectedColor = 'default'
@@ -163,6 +163,32 @@ describe('SectionIntro', () => {
     expect(labelEl).toBeInTheDocument()
     expect(labelEl).toHaveClass(`Label--size-${expectedSize}`)
     expect(labelEl).toHaveClass(`Label--color-${expectedColor}`)
+  })
+
+  test('renders the default color as muted if <em> is passed as a child', () => {
+    const {getByRole} = render(
+      <SectionIntro>
+        <SectionIntro.Heading>
+          <em>Expressive headline</em> about an exclusive set of features.
+        </SectionIntro.Heading>
+      </SectionIntro>,
+    )
+    const headingEl = getByRole('heading')
+
+    expect(headingEl).toHaveClass(`SectionIntro-heading--muted`)
+  })
+
+  test('renders the default color as text-default if a non-<em> child is passed', () => {
+    const {getByRole} = render(
+      <SectionIntro>
+        <SectionIntro.Heading>
+          <span>Expressive headline</span> about an exclusive set of features.
+        </SectionIntro.Heading>
+      </SectionIntro>,
+    )
+    const headingEl = getByRole('heading')
+
+    expect(headingEl).not.toHaveClass(`SectionIntro-heading--muted`)
   })
 
   it('has no a11y violations', async () => {

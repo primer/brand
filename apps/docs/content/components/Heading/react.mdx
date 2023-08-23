@@ -36,30 +36,29 @@ import {Heading} from '@primer/react-brand'
 
 ### Scale
 
-Heading sizes range from 1-6 and map to positions 900-400 on the Brand type scale respectively.
-
 ```jsx live
 <>
-  <Heading as="h1">1: 72px</Heading>
-  <Heading as="h2">2: 64px</Heading>
-  <Heading as="h3">3: 48px</Heading>
-  <Heading as="h4">4: 32px</Heading>
-  <Heading as="h5">5: 24px</Heading>
-  <Heading as="h6">6: 20px</Heading>
+  <Heading size="display">Display: 96px</Heading>
+  <Heading size="1">1: 72px</Heading>
+  <Heading size="2">2: 64px</Heading>
+  <Heading size="3">3: 48px</Heading>
+  <Heading size="4">4: 40px</Heading>
+  <Heading size="5">5: 32px</Heading>
+  <Heading size="6">6: 24px</Heading>
+  <Heading size="subhead-large">subhead-large: 20px</Heading>
+  <Heading size="subhead-medium">subhead-medium: 16px</Heading>
 </>
 ```
 
-### Sizes
+### Levels
 
-The `Heading` size by default is determined by the type of HTML element specified. E.g. `h1`, `h2`, `h3`, `h4`, `h5` or `h6`.
+The `Heading` level can be assigned using the `as` prop, which accepts any valid HTML heading tag.
 
-```jsx live
-<Heading as="h6">This is my super sweet heading</Heading>
-```
-
-Occasionally, you may need to apply a different visual size to override the default appearance. This can be achieved using the `size` prop.
+Its visual appearance corresponds to the `1-6` scale values, but can be overridden using the `size` prop.
 
 ```jsx live
+<Heading as="h6">This is my super sweet heading as a h6</Heading>
+
 <Heading as="h2" size="4">
   This h2 will appear visually identical to a h4
 </Heading>
