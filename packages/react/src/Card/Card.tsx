@@ -189,9 +189,7 @@ const CardLabel = forwardRef<HTMLSpanElement, CardLabelProps>(
   ({children, className, color = LabelColors[0], ...rest}, ref) => {
     return (
       <span className={clsx(styles.Card__label, className)} ref={ref} {...rest}>
-        <Label size="small" color={color}>
-          {children}
-        </Label>
+        <Label color={color}>{children}</Label>
       </span>
     )
   },

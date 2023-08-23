@@ -92,9 +92,9 @@ const _Description = forwardRef(
 
 type SectionIntroLabelProps = LabelProps & BaseProps<HTMLDivElement>
 
-function _Label({children, size = 'small', ...rest}: PropsWithChildren<SectionIntroLabelProps>) {
+function _Label({children, ...rest}: PropsWithChildren<SectionIntroLabelProps>) {
   return (
-    <Label className={styles['SectionIntro-label']} size={size} {...rest}>
+    <Label className={styles['SectionIntro-label']} {...rest}>
       {children}
     </Label>
   )

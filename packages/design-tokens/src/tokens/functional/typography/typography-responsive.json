@@ -212,7 +212,7 @@
           }
         },
         "500": {
-          "value": "24px",
+          "value": "22px",
           "responsive": {
             "1012px": {
               "value": "32px"
@@ -220,7 +220,7 @@
           }
         },
         "600": {
-          "value": "28px",
+          "value": "24px",
           "responsive": {
             "768px": {
               "value": "32px"
@@ -231,7 +231,7 @@
           }
         },
         "700": {
-          "value": "32px",
+          "value": "28px",
           "responsive": {
             "768px": {
               "value": "36px"
