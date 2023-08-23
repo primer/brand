@@ -9,7 +9,7 @@ describe('VideoPlayer', () => {
   let playSpy: jest.SpyInstance
 
   const videoPlayer = (
-    <VideoPlayer poster="/example-poster.jpg" title="Hello world">
+    <VideoPlayer poster="/example-poster.jpg" title="Hello world" data-testid={'video-player'}>
       <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
       <VideoPlayer.Track
         src="../../../apps/docs/static/example.vtt"
@@ -131,5 +131,22 @@ describe('VideoPlayer', () => {
 
     expect(input.value).toBe(testValue.toString())
     expect(document.querySelector('video')?.volume).toBe(testValue)
+  })
+
+  it('sets volume to new value when the volume input is changed', () => {
+    const testValue = 0.8
+    render(videoPlayer)
+    const input = document.querySelector('input[name="Volume"]') as HTMLInputElement
+    fireEvent.input(input, {target: {value: testValue}})
+
+    expect(input.value).toBe(testValue.toString())
+    expect(document.querySelector('video')?.volume).toBe(testValue)
+  })
+
+  it('displays the captions element', () => {
+    const {getByTestId} = render(videoPlayer)
+    const captionElement = getByTestId('video-player').querySelector('VideoPlayer__captions')
+
+    expect(captionElement).toBeInTheDocument()
   })
 })

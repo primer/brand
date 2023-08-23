@@ -34,7 +34,7 @@
         }
       },
       "transition": {
-        "value": "all 0.4s ease-out"
+        "value": "all var(--brand-animation-duration-fast) var(--brand-animation-easing-default)"
       },
       "tooltip": {
         "padding": {
