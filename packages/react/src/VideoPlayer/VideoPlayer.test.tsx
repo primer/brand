@@ -8,7 +8,7 @@ describe('VideoPlayer', () => {
   let pauseSpy: jest.SpyInstance
   let playSpy: jest.SpyInstance
 
-  const videoPlayer = (
+  const VideoPlayerEle = (
     <VideoPlayer poster="/example-poster.jpg" title="Hello world" data-testid={'video-player'}>
       <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
       <VideoPlayer.Track
@@ -33,7 +33,7 @@ describe('VideoPlayer', () => {
 
   it('renders correctly into the document', () => {
     const testTitle = 'Hello world'
-    const {getByTitle} = render(videoPlayer)
+    const {getByTitle} = render(VideoPlayerEle)
 
     const textEl = getByTitle(testTitle)
 
@@ -41,13 +41,13 @@ describe('VideoPlayer', () => {
   })
 
   it('pauses the video by default', () => {
-    render(videoPlayer)
+    render(VideoPlayerEle)
     expect(document.querySelector('video')?.paused).toBe(true)
     expect(pauseSpy).toHaveBeenCalled()
   })
 
   it('plays the video when the playButton element is clicked', () => {
-    render(videoPlayer)
+    render(VideoPlayerEle)
 
     fireEvent.click(document.querySelector('.VideoPlayer__playButton') as Element)
     expect(playSpy).toHaveBeenCalled()
@@ -94,12 +94,12 @@ describe('VideoPlayer', () => {
   })
 
   it('is not muted by default', () => {
-    render(videoPlayer)
+    render(VideoPlayerEle)
     expect(document.querySelector('video')?.muted).toBe(false)
   })
 
   it('sets volume to 0 when mute button is clicked', () => {
-    render(videoPlayer)
+    render(VideoPlayerEle)
 
     const muteButton = Array.from(document.querySelectorAll('button')).find(
       btn => btn.textContent && btn.textContent.includes('Mute'),
@@ -111,7 +111,7 @@ describe('VideoPlayer', () => {
   })
 
   it('sets volume to initial volume when mute button is clicked twice', () => {
-    render(videoPlayer)
+    render(VideoPlayerEle)
 
     const muteButton = Array.from(document.querySelectorAll('button')).find(
       btn => btn.textContent && btn.textContent.includes('Mute'),
@@ -125,7 +125,7 @@ describe('VideoPlayer', () => {
 
   it('sets volume to new value when the volume input is changed', () => {
     const testValue = 0.8
-    render(videoPlayer)
+    render(VideoPlayerEle)
     const input = document.querySelector('input[name="Volume"]') as HTMLInputElement
     fireEvent.input(input, {target: {value: testValue}})
 
@@ -135,11 +135,63 @@ describe('VideoPlayer', () => {
 
   it('sets volume to new value when the volume input is changed', () => {
     const testValue = 0.8
-    render(videoPlayer)
+    render(VideoPlayerEle)
     const input = document.querySelector('input[name="Volume"]') as HTMLInputElement
     fireEvent.input(input, {target: {value: testValue}})
 
     expect(input.value).toBe(testValue.toString())
     expect(document.querySelector('video')?.volume).toBe(testValue)
+  })
+
+  it('calls the onTimeUpdate function', () => {
+    const onTimeUpdate = jest.fn()
+    const {getByTestId} = render(
+      <VideoPlayer
+        poster="/example-poster.jpg"
+        title="Hello world"
+        data-testid="video-player"
+        onTimeUpdate={onTimeUpdate}
+      >
+        <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
+        <VideoPlayer.Track
+          src="../../../apps/docs/static/example.vtt"
+          default
+          kind="subtitles"
+          srcLang="en"
+          label="English"
+        />
+      </VideoPlayer>,
+    )
+    const video = getByTestId('video-player')
+
+    fireEvent.timeUpdate(video)
+    // Fire correct event and expect it to be passed
+    expect(onTimeUpdate).toHaveBeenCalled()
+  })
+
+  it('calls the onLoadedMetadata function', () => {
+    const onLoadedMetadata = jest.fn()
+    const {getByTestId} = render(
+      <VideoPlayer
+        poster="/example-poster.jpg"
+        title="Hello world"
+        data-testid="video-player"
+        onLoadedMetadata={onLoadedMetadata}
+      >
+        <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
+        <VideoPlayer.Track
+          src="../../../apps/docs/static/example.vtt"
+          default
+          kind="subtitles"
+          srcLang="en"
+          label="English"
+        />
+      </VideoPlayer>,
+    )
+    const video = getByTestId('video-player')
+
+    fireEvent.loadedMetadata(video)
+    // Fire correct event and expect it to be passed
+    expect(onLoadedMetadata).toHaveBeenCalled()
   })
 })
