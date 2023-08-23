@@ -85,7 +85,7 @@ module.exports = {
         },
         borderColor: {
           rest: {
-            value: 'var(--base-color-scale-gray-8)',
+            value: 'var(--base-color-scale-black-0)',
             dark: 'var(--base-color-scale-white-0)',
           },
           hover: {
@@ -93,7 +93,7 @@ module.exports = {
             dark: 'var(--base-color-scale-white-0)',
           },
           active: {
-            value: 'var(--base-color-scale-white-6)',
+            value: 'var(--base-color-scale-gray-6)',
             dark: 'var(--base-color-scale-white-0)',
           },
           disabled: {
