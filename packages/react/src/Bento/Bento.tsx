@@ -11,14 +11,14 @@ import styles from './Bento.module.css'
 export type Size = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'
 export type ColumnIndex = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
 
-type ResponsiveColumnIndex = Record<Size, ColumnIndex> | ColumnIndex
-type ResponsiveRowIndex = Record<Size, number> | number
+type ResponsiveColumnIndex = Partial<Record<Size, ColumnIndex>> | ColumnIndex
+type ResponsiveRowIndex = Partial<Record<Size, number>> | number
 
 type Flow = 'row' | 'column'
-type ResponsiveFlow = Record<Size, Flow> | Flow
+type ResponsiveFlow = Partial<Record<Size, Flow>> | Flow
 
 type Align = 'start' | 'center' | 'end'
-type ResponsiveAlign = Record<Size, Align> | Align
+type ResponsiveAlign = Partial<Record<Size, Align>> | Align
 
 type BentoProps = React.HTMLAttributes<HTMLDivElement> & BaseProps<HTMLDivElement>
 
