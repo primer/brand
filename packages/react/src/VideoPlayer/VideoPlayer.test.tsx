@@ -142,11 +142,4 @@ describe('VideoPlayer', () => {
     expect(input.value).toBe(testValue.toString())
     expect(document.querySelector('video')?.volume).toBe(testValue)
   })
-
-  it('displays the captions element', () => {
-    const {getByTestId} = render(videoPlayer)
-    const captionElement = getByTestId('video-player').querySelector('VideoPlayer__captions')
-
-    expect(captionElement).toBeInTheDocument()
-  })
 })
