@@ -118,8 +118,8 @@ export const ImageGallery: StoryFn<typeof Bento> = () => (
 export const Example: StoryFn<typeof Bento> = () => (
   <Bento>
     <Bento.Item
-      columnSpan={7}
-      rowSpan={4}
+      columnSpan={{xsmall: 12, small: 7}}
+      rowSpan={{xsmall: 3, small: 4}}
       colorMode={ColorModesEnum.DARK}
       visualAsBackground
       className={styles['purple-background']}
@@ -131,7 +131,7 @@ export const Example: StoryFn<typeof Bento> = () => (
         <Link href="#">Learn more about Copilot</Link>
       </Bento.Content>
     </Bento.Item>
-    <Bento.Item columnSpan={5} rowSpan={4} colorMode={ColorModesEnum.DARK}>
+    <Bento.Item columnSpan={{xsmall: 12, small: 5}} rowSpan={{xsmall: 3, small: 4}} colorMode={ColorModesEnum.DARK}>
       <Bento.Content padding="normal" horizontalAlign={'center'}>
         <Heading as="h4" size="1">
           88%
@@ -142,7 +142,7 @@ export const Example: StoryFn<typeof Bento> = () => (
         <img src={platformAI} alt="Platform Artificial Intelligence Logo" />
       </Bento.Visual>
     </Bento.Item>
-    <Bento.Item columnSpan={12} rowSpan={4} visualAsBackground>
+    <Bento.Item columnSpan={12} rowSpan={{xsmall: 3, small: 4}} visualAsBackground>
       <Bento.Visual>
         <img
           src={analyzeAndDebug}
@@ -150,7 +150,12 @@ export const Example: StoryFn<typeof Bento> = () => (
         />
       </Bento.Visual>
     </Bento.Item>
-    <Bento.Item columnSpan={12} rowSpan={4} flow="column" colorMode={ColorModesEnum.DARK}>
+    <Bento.Item
+      columnSpan={12}
+      rowSpan={{xsmall: 6, small: 4}}
+      flow={{xsmall: 'row', small: 'column'}}
+      colorMode={ColorModesEnum.DARK}
+    >
       <Bento.Content padding="normal" fixedBottomLink>
         <Heading as="h4" size="4">
           Mercado Libre frees developers minds to focus on their missions with GitHub.
