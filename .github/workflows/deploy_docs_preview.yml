@@ -23,8 +23,13 @@ jobs:
       output_dir: apps/docs/public/
 
   # Storybook is deployed to a separate repo (primer/brand-storybook)
-  # This step dispatches a build request there
-  - name: Prod Storybook build notifier
+  # This job dispatches a build request there
+  dispatch-test:
+    if: ${{ github.repository == 'primer/brand' }}
+    name: Dispatch test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prod Storybook build notifier
         run: |
           curl -L \
             -X POST \
