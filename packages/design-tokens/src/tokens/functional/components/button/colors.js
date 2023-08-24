@@ -89,11 +89,11 @@ module.exports = {
             dark: 'var(--base-color-scale-white-0)',
           },
           hover: {
-            value: 'var(--base-color-scale-gray-6)',
+            value: 'var(--base-color-scale-gray-8)',
             dark: 'var(--base-color-scale-white-0)',
           },
           active: {
-            value: 'var(--base-color-scale-gray-6)',
+            value: 'var(--base-color-scale-gray-8)',
             dark: 'var(--base-color-scale-white-0)',
           },
           disabled: {
