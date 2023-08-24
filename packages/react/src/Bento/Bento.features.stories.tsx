@@ -120,19 +120,20 @@ export const Example: StoryFn<typeof Bento> = () => (
     <Bento.Item
       columnSpan={{xsmall: 12, small: 7}}
       rowSpan={{xsmall: 3, small: 4}}
+      flow={{xsmall: 'row', small: 'row'}}
       colorMode={ColorModesEnum.DARK}
       visualAsBackground
       className={styles['purple-background']}
     >
-      <Bento.Content padding="normal" fixedBottomLink leadingVisual={<CopilotIcon />}>
-        <Heading as="h4" size="4">
+      <Bento.Content padding={{xsmall: 'normal', small: 'spacious'}} fixedBottomLink leadingVisual={<CopilotIcon />}>
+        <Heading as="h4" size="5">
           Unlocking innovation at scale with AI-driven software development.
         </Heading>
         <Link href="#">Learn more about Copilot</Link>
       </Bento.Content>
     </Bento.Item>
     <Bento.Item columnSpan={{xsmall: 12, small: 5}} rowSpan={{xsmall: 3, small: 4}} colorMode={ColorModesEnum.DARK}>
-      <Bento.Content padding="spacious" horizontalAlign={'center'}>
+      <Bento.Content padding={{xsmall: 'normal', small: 'spacious'}} horizontalAlign={'center'}>
         <Heading as="h4" size="1">
           88%
         </Heading>
@@ -156,8 +157,8 @@ export const Example: StoryFn<typeof Bento> = () => (
       flow={{xsmall: 'row', small: 'column'}}
       colorMode={ColorModesEnum.DARK}
     >
-      <Bento.Content padding="normal" fixedBottomLink>
-        <Heading as="h4" size="4">
+      <Bento.Content padding={{xsmall: 'normal', small: 'spacious'}} fixedBottomLink>
+        <Heading as="h4" size="5">
           Mercado Libre frees developers minds to focus on their missions with GitHub.
         </Heading>
         <Link href="#">Read customer story</Link>

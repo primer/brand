@@ -20,6 +20,9 @@ type ResponsiveFlow = Partial<Record<Size, Flow>> | Flow
 type Align = 'start' | 'center' | 'end'
 type ResponsiveAlign = Partial<Record<Size, Align>> | Align
 
+type Padding = 'condensed' | 'normal' | 'spacious'
+type ResponsivePadding = Partial<Record<Size, Padding>> | Padding
+
 type BentoProps = React.HTMLAttributes<HTMLDivElement> & BaseProps<HTMLDivElement>
 
 const Root = ({className, ...rest}: BentoProps) => {
@@ -38,15 +41,16 @@ type BentoItemProps = {
   BaseProps<HTMLDivElement>
 
 const returnClassBasedOnResponsiveMap = (
+  classIdentifier: string,
   propName: string,
-  prop?: ResponsiveColumnIndex | ResponsiveRowIndex | ResponsiveFlow | ResponsiveAlign,
+  prop?: ResponsiveColumnIndex | ResponsiveRowIndex | ResponsiveFlow | ResponsiveAlign | ResponsivePadding,
 ) => {
   const classesToMerge: string[] = []
   if (typeof prop === 'number' || typeof prop === 'string') {
-    classesToMerge.push(styles[`Bento__Item--${propName}-${prop}`])
+    classesToMerge.push(styles[`${classIdentifier}--${propName}-${prop}`])
   } else if (typeof prop === 'object') {
     for (const [key, value] of Object.entries(prop)) {
-      classesToMerge.push(styles[`Bento__Item--${key}-${propName}-${value}`])
+      classesToMerge.push(styles[`${classIdentifier}--${key}-${propName}-${value}`])
     }
   }
   return classesToMerge
@@ -58,7 +62,7 @@ const Item = ({
   columnSpan,
   rowStart,
   rowSpan,
-  flow,
+  flow = 'row',
   colorMode,
   visualAsBackground = false,
   children,
@@ -66,11 +70,13 @@ const Item = ({
 }: BentoItemProps) => {
   const bentoItemClassArray = [styles.Bento__Item]
   bentoItemClassArray.push(
-    ...returnClassBasedOnResponsiveMap('column-span', columnSpan),
-    ...returnClassBasedOnResponsiveMap('row-span', rowSpan),
-    ...returnClassBasedOnResponsiveMap('column-start', columnStart),
-    ...returnClassBasedOnResponsiveMap('row-start', rowStart),
-    ...returnClassBasedOnResponsiveMap('flow', flow),
+    ...returnClassBasedOnResponsiveMap('Bento__Item', 'column-span', columnSpan),
+    ...returnClassBasedOnResponsiveMap('Bento__Item', 'row-span', rowSpan),
+    ...returnClassBasedOnResponsiveMap('Bento__Item', 'column-start', columnStart),
+    ...returnClassBasedOnResponsiveMap('Bento__Item', 'row-start', rowStart),
+    ...returnClassBasedOnResponsiveMap('Bento__Item', 'flow', flow),
+    !visualAsBackground && flow === 'column' && styles['Bento-column-padding-override'],
+    !visualAsBackground && flow === 'row' && styles['Bento-row-padding-override'],
   )
 
   const colorModeProp = colorMode ? {'data-color-mode': colorMode} : {}
@@ -92,7 +98,7 @@ const Item = ({
 
 type BentoContentProps = {
   leadingVisual?: ReactElement | Icon
-  padding?: 'condensed' | 'normal' | 'spacious'
+  padding?: ResponsivePadding
   verticalAlign?: ResponsiveAlign
   horizontalAlign?: ResponsiveAlign
   fixedBottomLink?: boolean
@@ -111,8 +117,9 @@ const Content = ({
 }: BentoContentProps) => {
   const bentoContentClassArray = [styles.Bento__Content]
   bentoContentClassArray.push(
-    ...returnClassBasedOnResponsiveMap('verticalAlign', verticalAlign),
-    ...returnClassBasedOnResponsiveMap('horizontalAlign', horizontalAlign),
+    ...returnClassBasedOnResponsiveMap('Bento__Item', 'verticalAlign', verticalAlign),
+    ...returnClassBasedOnResponsiveMap('Bento__Item', 'horizontalAlign', horizontalAlign),
+    ...returnClassBasedOnResponsiveMap('Bento', 'padding', padding),
   )
   const HeadingChild = React.Children.toArray(children).find(
     child => React.isValidElement(child) && child.type === Heading,
