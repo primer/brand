@@ -3,6 +3,9 @@ import {StoryFn, Meta} from '@storybook/react'
 import {Bento} from '.'
 import {Heading, Text, Link, ColorModesEnum} from '../'
 import placeholderImage from '../fixtures/images/placeholder-visual-universe.png'
+import platformAI from '../fixtures/images/Platform-AI.png'
+import mercardo from '../fixtures/images/mercado.png'
+import analyzeAndDebug from '../fixtures/images/analyzeAndDebug.png'
 import {CopilotIcon} from '@primer/octicons-react'
 import styles from './Bento.features.stories.module.css'
 
@@ -136,12 +139,15 @@ export const Example: StoryFn<typeof Bento> = () => (
         <Text align="center">of developers experience increased productivity.</Text>
       </Bento.Content>
       <Bento.Visual padding="normal" fillMedia={false}>
-        <img src={placeholderImage} alt="random" />
+        <img src={platformAI} alt="Platform Artificial Intelligence Logo" />
       </Bento.Visual>
     </Bento.Item>
     <Bento.Item columnSpan={12} rowSpan={4} visualAsBackground>
       <Bento.Visual>
-        <img src={placeholderImage} alt="random" />
+        <img
+          src={analyzeAndDebug}
+          alt="A green and purple gradient screen with a input that has the placeholder, ask a question or type '/' for topics"
+        />
       </Bento.Visual>
     </Bento.Item>
     <Bento.Item columnSpan={12} rowSpan={4} flow="column" colorMode={ColorModesEnum.DARK}>
@@ -152,7 +158,7 @@ export const Example: StoryFn<typeof Bento> = () => (
         <Link href="#">Read customer story</Link>
       </Bento.Content>
       <Bento.Visual padding="condensed">
-        <img src={placeholderImage} alt="random" />
+        <img src={mercardo} alt="A white man with grey hair and a beard, running a coffee stand, waving." />
       </Bento.Visual>
     </Bento.Item>
   </Bento>

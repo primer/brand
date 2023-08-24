@@ -50,6 +50,10 @@
   color: var(--brand-color-text-default);
 }
 
+.Bento__Content-icon {
+  margin-bottom: var(--base-size-32);
+}
+
 /* Bento Visual */
 .Bento__Visual {
   height: 100%;
@@ -87,38 +91,10 @@
   padding: var(--brand-Bento-content-padding-spacious);
 }
 
-.Bento-padding--condensed > img {
-  border-radius: var(--brand-Bento-item-borderRadius-small);
-}
-.Bento-padding--normal > img {
-  border-radius: var(--brand-Bento-item-borderRadius-small);
-}
-.Bento-padding--spacious > img {
-  border-radius: var(--brand-Bento-item-borderRadius-small);
-}
-
-@media screen and (min-width: 80rem) {
-  .Bento-padding--condensed > img {
-    border-radius: var(--brand-Bento-item-borderRadius-large);
-  }
-  .Bento-padding--normal > img {
-    border-radius: var(--brand-Bento-item-borderRadius-large);
-  }
-  .Bento-padding--spacious > img {
-    border-radius: var(--brand-Bento-item-borderRadius-large);
-  }
-}
-
-@media screen and (min-width: 48rem) {
-  .Bento-padding--condensed > img {
-    border-radius: var(--brand-Bento-item-borderRadius-medium);
-  }
-  .Bento-padding--normal > img {
-    border-radius: var(--brand-Bento-item-borderRadius-medium);
-  }
-  .Bento-padding--spacious > img {
-    border-radius: var(--brand-Bento-item-borderRadius-medium);
-  }
+.Bento-padding--condensed > img,
+.Bento-padding--normal > img,
+.Bento-padding--spacious {
+  border-radius: var(--base-size-12);
 }
 
 /* Bento Flow */

@@ -122,13 +122,14 @@ const Content = ({
   return (
     <div className={clsx(styles[`Bento-padding--${padding}`], ...bentoContentClassArray, className)} {...rest}>
       {React.isValidElement(LeadingVisual) &&
-        React.cloneElement(LeadingVisual as React.ReactElement<IconProps>, {
+        React.cloneElement(LeadingVisual as React.ReactElement<IconProps & SVGAElement>, {
+          className: clsx(styles['Bento__Content-icon'], LeadingVisual.props.className),
           size: LeadingVisual['size'] || 44,
         })}
       {React.isValidElement(HeadingChild) &&
         React.cloneElement(HeadingChild as React.ReactElement<HeadingProps>, {
           as: HeadingChild.props.as || 'h3',
-          size: HeadingChild.props.size || '3',
+          size: HeadingChild.props.size || '4',
         })}
       {React.isValidElement(TextChild) &&
         React.cloneElement(TextChild as React.ReactElement<TextProps>, {
@@ -137,6 +138,7 @@ const Content = ({
         })}
       {React.isValidElement(LinkChild) &&
         React.cloneElement(LinkChild as React.ReactElement<LinkProps>, {
+          variant: 'accent',
           className: clsx(
             styles['Bento__call-to-action'],
             fixedBottomLink && styles['Bento__call-to-action--fixed'],

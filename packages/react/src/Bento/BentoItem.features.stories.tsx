@@ -4,7 +4,6 @@ import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {Bento} from '.'
 import {Heading, Text, Link, ColorModesEnum} from '../'
 import placeholderImage from '../fixtures/images/placeholder-600x400.png'
-import universeImage from '../fixtures/images/placeholder-visual-universe.png'
 
 export default {
   title: 'Components/Bento/Item',
