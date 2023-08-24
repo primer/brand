@@ -64,7 +64,6 @@ declare const styles: {
   readonly "Bento-padding--spacious": string;
   readonly "Bento__Item--flow-column": string;
   readonly "Bento__Item--flow-row": string;
-  readonly "Bento__body-text": string;
   readonly "Bento__call-to-action": string;
   readonly "Bento__call-to-action--fixed": string;
   readonly "Bento__Item--xsmall-column-span-1": string;

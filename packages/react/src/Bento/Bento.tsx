@@ -2,7 +2,7 @@ import React, {ReactHTML, ReactElement} from 'react'
 import clsx from 'clsx'
 import {Icon, IconProps} from '@primer/octicons-react'
 import type {BaseProps} from '../component-helpers'
-import {Heading, Text, Link, HeadingProps, TextProps, LinkProps} from '../'
+import {Heading, Text, Link, HeadingProps, TextProps, LinkProps, ColorModesEnum} from '../'
 
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/bento/colors-with-modes.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/bento/base.css'
@@ -32,7 +32,7 @@ type BentoItemProps = {
   rowStart?: ResponsiveRowIndex
   rowSpan?: ResponsiveRowIndex
   flow?: ResponsiveFlow
-  colorMode?: 'light' | 'dark'
+  colorMode?: ColorModesEnum.LIGHT | ColorModesEnum.DARK
   visualAsBackground?: boolean
 } & React.HTMLAttributes<HTMLDivElement> &
   BaseProps<HTMLDivElement>
@@ -59,7 +59,7 @@ const Item = ({
   rowStart,
   rowSpan,
   flow,
-  colorMode = 'light',
+  colorMode,
   visualAsBackground = false,
   children,
   ...rest
@@ -73,9 +73,11 @@ const Item = ({
     ...returnClassBasedOnResponsiveMap('flow', flow),
   )
 
+  const colorModeProp = colorMode ? {'data-color-mode': colorMode} : {}
+
   return (
     <div
-      data-color-mode={colorMode}
+      {...colorModeProp}
       className={clsx(
         ...bentoItemClassArray,
         visualAsBackground && styles[`Bento__Item--visual-as-background`],
@@ -121,7 +123,7 @@ const Content = ({
     <div className={clsx(styles[`Bento-padding--${padding}`], ...bentoContentClassArray, className)} {...rest}>
       {React.isValidElement(LeadingVisual) &&
         React.cloneElement(LeadingVisual as React.ReactElement<IconProps>, {
-          size: LeadingVisual['size'] || 32,
+          size: LeadingVisual['size'] || 44,
         })}
       {React.isValidElement(HeadingChild) &&
         React.cloneElement(HeadingChild as React.ReactElement<HeadingProps>, {
@@ -130,15 +132,15 @@ const Content = ({
         })}
       {React.isValidElement(TextChild) &&
         React.cloneElement(TextChild as React.ReactElement<TextProps>, {
-          variant: 'muted',
+          variant: TextChild.props.variant || 'muted',
           as: 'p',
         })}
       {React.isValidElement(LinkChild) &&
         React.cloneElement(LinkChild as React.ReactElement<LinkProps>, {
           className: clsx(
-            LinkChild.props.className,
             styles['Bento__call-to-action'],
             fixedBottomLink && styles['Bento__call-to-action--fixed'],
+            LinkChild.props.className,
           ),
         })}
     </div>

@@ -2,7 +2,7 @@ import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {Bento} from '.'
-import {Heading, Text, Link} from '../'
+import {Heading, Text, Link, ColorModesEnum} from '../'
 import placeholderImage from '../fixtures/images/placeholder-600x400.png'
 import universeImage from '../fixtures/images/placeholder-visual-universe.png'
 
@@ -238,8 +238,8 @@ VisualPaddingSpacious.parameters = {
 }
 
 export const VisualAsBackground: StoryFn<typeof Bento> = () => (
-  <Bento.Item visualAsBackground colorMode="dark">
-    <Bento.Content>
+  <Bento.Item visualAsBackground>
+    <Bento.Content fixedBottomLink>
       <Heading as="h3">Heading</Heading>
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
@@ -248,7 +248,7 @@ export const VisualAsBackground: StoryFn<typeof Bento> = () => (
       <Link href="#">Call to action</Link>
     </Bento.Content>
     <Bento.Visual>
-      <img className="test" alt="A random avatar" src={universeImage} />
+      <img className="test" alt="placeholder, blank area with an gray background color" src={placeholderImage} />
     </Bento.Visual>
   </Bento.Item>
 )
@@ -260,7 +260,7 @@ VisualAsBackground.parameters = {
 }
 
 export const DarkModeItem: StoryFn<typeof Bento> = () => (
-  <Bento.Item colorMode="dark">
+  <Bento.Item colorMode={ColorModesEnum.DARK}>
     <Bento.Content>
       <Heading as="h3">Heading</Heading>
       <Text>

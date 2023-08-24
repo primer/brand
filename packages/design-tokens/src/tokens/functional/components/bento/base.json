@@ -12,29 +12,29 @@
           "value": "var(--base-size-20)"
         }
       },
-      "Item": {
+      "item": {
         "borderRadius": {
           "small": {
-            "value": "16px"
+            "value": "var(--base-size-16)"
           },
           "medium": {
-            "value": "20px"
+            "value": "var(--base-size-20)"
           },
           "large": {
-            "value": "24px"
+            "value": "var(--base-size-24)"
           }
         }
       },
-      "Content": {
+      "content": {
         "padding": {
           "condensed": {
-            "value": "16px"
+            "value": "var(--base-size-16)"
           },
           "normal": {
-            "value": "24px"
+            "value": "var(--base-size-24)"
           },
           "spacious": {
-            "value": "56px"
+            "value": "3.5rem"
           }
         }
       }

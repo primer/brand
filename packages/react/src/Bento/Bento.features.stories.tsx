@@ -1,9 +1,10 @@
 import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 import {Bento} from '.'
-import {Heading, Text, Link} from '../'
+import {Heading, Text, Link, ColorModesEnum} from '../'
 import placeholderImage from '../fixtures/images/placeholder-visual-universe.png'
 import {CopilotIcon} from '@primer/octicons-react'
+import styles from './Bento.features.stories.module.css'
 
 export default {
   title: 'Components/Bento/features',
@@ -50,10 +51,10 @@ export const EnterpriseThree: StoryFn<typeof Bento> = () => (
 
 export const MixedThemeItems: StoryFn<typeof Bento> = () => (
   <Bento>
-    <Bento.Item columnSpan={7} rowSpan={4} colorMode="dark" />
-    <Bento.Item columnSpan={5} rowSpan={4} />
-    <Bento.Item columnSpan={12} rowSpan={4} />
-    <Bento.Item columnSpan={12} rowSpan={4} colorMode="dark" />
+    <Bento.Item columnSpan={7} rowSpan={4} colorMode={ColorModesEnum.DARK} />
+    <Bento.Item columnSpan={5} rowSpan={4} colorMode={ColorModesEnum.LIGHT} />
+    <Bento.Item columnSpan={12} rowSpan={4} colorMode={ColorModesEnum.LIGHT} />
+    <Bento.Item columnSpan={12} rowSpan={4} colorMode={ColorModesEnum.DARK} />
   </Bento>
 )
 
@@ -112,52 +113,47 @@ export const ImageGallery: StoryFn<typeof Bento> = () => (
 )
 
 export const Example: StoryFn<typeof Bento> = () => (
-  <>
-    <style>
-      {`.purple-background {
-                background: linear-gradient(90deg, #6C5DD3 0%, #613DB4 100%);
-    	}
-		.block-icon {
-			display: block !important;
-		}
-		`}
-    </style>
-    <Bento>
-      <Bento.Item columnSpan={7} rowSpan={4} colorMode="dark" visualAsBackground className="purple-background">
-        <Bento.Content padding="normal" fixedBottomLink leadingVisual={<CopilotIcon />}>
-          <Heading as="h4" size="4">
-            Unlocking innovation at scale with AI-driven software development.
-          </Heading>
-          <Link href="#">Learn more about Copilot</Link>
-        </Bento.Content>
-      </Bento.Item>
-      <Bento.Item columnSpan={5} rowSpan={4} colorMode="dark">
-        <Bento.Content padding="normal" verticalAlign={'center'}>
-          <Heading as="h4" size="1">
-            88%
-          </Heading>
-          <Text align="center">of developers experience increased productivity.</Text>
-        </Bento.Content>
-        <Bento.Visual padding="normal" fillMedia={false}>
-          <img src={placeholderImage} alt="random" />
-        </Bento.Visual>
-      </Bento.Item>
-      <Bento.Item columnSpan={12} rowSpan={4} visualAsBackground>
-        <Bento.Visual>
-          <img src={placeholderImage} alt="random" />
-        </Bento.Visual>
-      </Bento.Item>
-      <Bento.Item columnSpan={12} rowSpan={4} flow="column" colorMode="dark">
-        <Bento.Content padding="normal" fixedBottomLink>
-          <Heading as="h4" size="4">
-            Mercado Libre frees developers minds to focus on their missions with GitHub.
-          </Heading>
-          <Link href="#">Read customer story</Link>
-        </Bento.Content>
-        <Bento.Visual padding="condensed">
-          <img src={placeholderImage} alt="random" />
-        </Bento.Visual>
-      </Bento.Item>
-    </Bento>
-  </>
+  <Bento>
+    <Bento.Item
+      columnSpan={7}
+      rowSpan={4}
+      colorMode={ColorModesEnum.DARK}
+      visualAsBackground
+      className={styles['purple-background']}
+    >
+      <Bento.Content padding="normal" fixedBottomLink leadingVisual={<CopilotIcon />}>
+        <Heading as="h4" size="4">
+          Unlocking innovation at scale with AI-driven software development.
+        </Heading>
+        <Link href="#">Learn more about Copilot</Link>
+      </Bento.Content>
+    </Bento.Item>
+    <Bento.Item columnSpan={5} rowSpan={4} colorMode={ColorModesEnum.DARK}>
+      <Bento.Content padding="normal" horizontalAlign={'center'}>
+        <Heading as="h4" size="1">
+          88%
+        </Heading>
+        <Text align="center">of developers experience increased productivity.</Text>
+      </Bento.Content>
+      <Bento.Visual padding="normal" fillMedia={false}>
+        <img src={placeholderImage} alt="random" />
+      </Bento.Visual>
+    </Bento.Item>
+    <Bento.Item columnSpan={12} rowSpan={4} visualAsBackground>
+      <Bento.Visual>
+        <img src={placeholderImage} alt="random" />
+      </Bento.Visual>
+    </Bento.Item>
+    <Bento.Item columnSpan={12} rowSpan={4} flow="column" colorMode={ColorModesEnum.DARK}>
+      <Bento.Content padding="normal" fixedBottomLink>
+        <Heading as="h4" size="4">
+          Mercado Libre frees developers minds to focus on their missions with GitHub.
+        </Heading>
+        <Link href="#">Read customer story</Link>
+      </Bento.Content>
+      <Bento.Visual padding="condensed">
+        <img src={placeholderImage} alt="random" />
+      </Bento.Visual>
+    </Bento.Item>
+  </Bento>
 )

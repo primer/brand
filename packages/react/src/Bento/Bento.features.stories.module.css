@@ -1,0 +1,3 @@
+.purple-background {
+  background: linear-gradient(90deg, var(--base-color-scale-purple-5) 0%, var(--base-color-scale-purple-6) 100%);
+}
