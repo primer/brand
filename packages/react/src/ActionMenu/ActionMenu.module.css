@@ -110,6 +110,12 @@
 
 .ActionMenu__item-text {
   grid-area: text / text;
+  /* display grid collapses the text line box height for optical alignment */
+  display: grid;
+}
+
+.ActionMenu__item-text > span {
+  line-height: var(--brand-control-medium-lineBoxHeight);
 }
 
 .ActionMenu__item-icon {
