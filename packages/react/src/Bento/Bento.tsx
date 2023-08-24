@@ -130,11 +130,13 @@ const Content = ({
         React.cloneElement(HeadingChild as React.ReactElement<HeadingProps>, {
           as: HeadingChild.props.as || 'h3',
           size: HeadingChild.props.size || '4',
+          weight: 'medium',
         })}
       {React.isValidElement(TextChild) &&
         React.cloneElement(TextChild as React.ReactElement<TextProps>, {
           variant: TextChild.props.variant || 'muted',
           as: 'p',
+          className: clsx(styles['Bento_Content-text'], TextChild.props.className),
         })}
       {React.isValidElement(LinkChild) &&
         React.cloneElement(LinkChild as React.ReactElement<LinkProps>, {

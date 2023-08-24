@@ -132,7 +132,7 @@ export const Example: StoryFn<typeof Bento> = () => (
       </Bento.Content>
     </Bento.Item>
     <Bento.Item columnSpan={{xsmall: 12, small: 5}} rowSpan={{xsmall: 3, small: 4}} colorMode={ColorModesEnum.DARK}>
-      <Bento.Content padding="normal" horizontalAlign={'center'}>
+      <Bento.Content padding="spacious" horizontalAlign={'center'}>
         <Heading as="h4" size="1">
           88%
         </Heading>

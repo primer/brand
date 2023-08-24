@@ -116,6 +116,10 @@
   margin-top: auto;
 }
 
+.Bento_Content-text {
+  margin-top: var(--base-size-8);
+}
+
 /* Column Span */
 .Bento__Item--column-span-1 {
   grid-column: auto/span 1;
