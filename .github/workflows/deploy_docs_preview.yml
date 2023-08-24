@@ -5,7 +5,7 @@ on:
 
 permissions:
   checks: write
-  contents: write
+  contents: read
   deployments: write
   pages: write
   id-token: write
