@@ -95,3 +95,8 @@
       url: /components/Heading
     - title: Text
       url: /components/Text
+
+- title: GitHub staff
+  children:
+    - title: Storybook
+      url: /github-staff/storybook

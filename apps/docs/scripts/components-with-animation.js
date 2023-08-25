@@ -8,11 +8,12 @@ export const supportedComponents = [
   'Heading',
   'Image',
   'Label',
-  'River',
   'SectionIntro',
   'Stack',
   'Testimonial',
   'Text',
   'Timeline',
   'Animate',
+  'River',
+  'RiverBreakout',
 ]
