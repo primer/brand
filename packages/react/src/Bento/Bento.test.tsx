@@ -180,7 +180,7 @@ describe('Bento.Content', () => {
     const linkText = 'Allowed 3'
     const {getByText} = render(
       <Bento.Content>
-        <Heading>{headingText}</Heading>
+        <Bento.Heading>{headingText}</Heading>
         <Text>{textText}</Text>
         <Link href="#">{linkText}</Link>
       </Bento.Content>,

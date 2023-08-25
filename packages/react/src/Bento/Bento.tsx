@@ -1,4 +1,4 @@
-import React, {ReactHTML, ReactElement} from 'react'
+import React, {ReactHTML, ReactElement, forwardRef, useCallback, useMemo, Ref, PropsWithChildren} from 'react'
 import clsx from 'clsx'
 import {Icon, IconProps} from '@primer/octicons-react'
 import type {BaseProps} from '../component-helpers'
@@ -75,9 +75,12 @@ const Item = ({
     ...returnClassBasedOnResponsiveMap('Bento__Item', 'column-start', columnStart),
     ...returnClassBasedOnResponsiveMap('Bento__Item', 'row-start', rowStart),
     ...returnClassBasedOnResponsiveMap('Bento__Item', 'flow', flow),
-    !visualAsBackground && flow === 'column' && styles['Bento-column-padding-override'],
-    !visualAsBackground && flow === 'row' && styles['Bento-row-padding-override'],
   )
+
+  if (!visualAsBackground) {
+    flow === 'column' && bentoItemClassArray.push(styles['Bento-column-padding-override'])
+    flow === 'row' && bentoItemClassArray.push(styles['Bento-row-padding-override'])
+  }
 
   const colorModeProp = colorMode ? {'data-color-mode': colorMode} : {}
 
@@ -122,32 +125,29 @@ const Content = ({
     ...returnClassBasedOnResponsiveMap('Bento', 'padding', padding),
   )
   const HeadingChild = React.Children.toArray(children).find(
-    child => React.isValidElement(child) && child.type === Heading,
+    child => React.isValidElement(child) && child.type === _Heading,
   )
+
   const TextChild = React.Children.toArray(children).find(child => React.isValidElement(child) && child.type === Text)
   const LinkChild = React.Children.toArray(children).find(child => React.isValidElement(child) && child.type === Link)
   return (
     <div className={clsx(styles[`Bento-padding--${padding}`], ...bentoContentClassArray, className)} {...rest}>
       {React.isValidElement(LeadingVisual) &&
-        React.cloneElement(LeadingVisual as React.ReactElement<IconProps & SVGAElement>, {
-          className: clsx(styles['Bento__Content-icon'], LeadingVisual.props.className),
+        React.cloneElement(LeadingVisual as React.ReactElement<IconProps>, {
+          className: styles['Bento__Content-icon'],
           size: LeadingVisual['size'] || 44,
         })}
-      {React.isValidElement(HeadingChild) &&
-        React.cloneElement(HeadingChild as React.ReactElement<HeadingProps>, {
-          as: HeadingChild.props.as || 'h3',
-          size: HeadingChild.props.size || '4',
-          weight: 'medium',
-        })}
+      {React.isValidElement(HeadingChild) && React.cloneElement(HeadingChild as React.ReactElement<BentoHeadingProps>)}
       {React.isValidElement(TextChild) &&
         React.cloneElement(TextChild as React.ReactElement<TextProps>, {
           variant: TextChild.props.variant || 'muted',
-          as: 'p',
+          as: TextChild.props.as || 'p',
+          size: TextChild.props.size || '300',
           className: clsx(styles['Bento_Content-text'], TextChild.props.className),
         })}
       {React.isValidElement(LinkChild) &&
         React.cloneElement(LinkChild as React.ReactElement<LinkProps>, {
-          variant: 'accent',
+          variant: LinkChild.props.variant || 'accent',
           className: clsx(
             styles['Bento__call-to-action'],
             fixedBottomLink && styles['Bento__call-to-action--fixed'],
@@ -157,6 +157,50 @@ const Content = ({
     </div>
   )
 }
+
+type BentoHeadingProps = BaseProps<HTMLHeadingElement> & HeadingProps
+
+const defaultHeadingTag = 'h3'
+const defaultHeadingSize = '5'
+const defaultHeadingWeight = 'medium'
+
+const _Heading = forwardRef(
+  (
+    {
+      as = defaultHeadingTag,
+      size = defaultHeadingSize,
+      weight = defaultHeadingWeight,
+      className,
+      children,
+      ...props
+    }: PropsWithChildren<BentoHeadingProps>,
+    ref: Ref<HTMLHeadingElement>,
+  ) => {
+    const childrenArray = useMemo(() => React.Children.toArray(children), [children])
+
+    const getConditionalVariant = useCallback(() => {
+      if (childrenArray.some(child => React.isValidElement(child) && child.type === 'em')) {
+        return 'muted'
+      }
+      return 'default'
+    }, [childrenArray])
+
+    const defaultColor = childrenArray.length === 1 ? 'default' : getConditionalVariant()
+
+    return (
+      <Heading
+        ref={ref}
+        className={clsx(defaultColor === 'muted' && styles[`Bento__heading--muted`], className)}
+        size={size}
+        as={as}
+        weight={weight}
+        {...props}
+      >
+        {children}
+      </Heading>
+    )
+  },
+)
 
 type BentoVisualProps = {
   fillMedia?: boolean
@@ -191,4 +235,4 @@ const Visual = ({fillMedia = true, position = '50% 50%', padding, className, chi
   )
 }
 
-export const Bento = Object.assign(Root, {Item, Visual, Content})
+export const Bento = Object.assign(Root, {Item, Visual, Content, Heading: _Heading})

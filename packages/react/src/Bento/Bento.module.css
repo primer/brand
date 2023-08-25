@@ -55,6 +55,15 @@
   margin-bottom: var(--base-size-32);
 }
 
+.Bento__heading--muted {
+  color: var(--brand-color-text-muted);
+}
+
+.Bento__heading--muted em {
+  font-style: normal;
+  color: var(--brand-color-text-default);
+}
+
 /* Bento Visual */
 .Bento__Visual {
   height: 100%;
@@ -95,7 +104,7 @@
 .Bento-padding--condensed > img,
 .Bento-padding--normal > img,
 .Bento-padding--spacious {
-  border-radius: var(--base-size-12);
+  border-radius: var(--brand-borderRadius-large);
 }
 
 /* Bento Flow */
@@ -111,6 +120,7 @@
 
 .Bento__call-to-action {
   justify-content: inherit;
+  margin-top: 24px;
 }
 
 .Bento__call-to-action--fixed {

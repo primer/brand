@@ -1,7 +1,7 @@
 import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 import {Bento} from '.'
-import {Heading, Text, Link, ColorModesEnum} from '../'
+import {Text, Link, ColorModesEnum} from '../'
 import placeholderImage from '../fixtures/images/placeholder-visual-universe.png'
 import platformAI from '../fixtures/images/Platform-AI.png'
 import mercardo from '../fixtures/images/mercado.png'
@@ -126,17 +126,17 @@ export const Example: StoryFn<typeof Bento> = () => (
       className={styles['purple-background']}
     >
       <Bento.Content padding={{xsmall: 'normal', small: 'spacious'}} fixedBottomLink leadingVisual={<CopilotIcon />}>
-        <Heading as="h4" size="5">
+        <Bento.Heading as="h4" size="5">
           Unlocking innovation at scale with AI-driven software development.
-        </Heading>
+        </Bento.Heading>
         <Link href="#">Learn more about Copilot</Link>
       </Bento.Content>
     </Bento.Item>
     <Bento.Item columnSpan={{xsmall: 12, small: 5}} rowSpan={{xsmall: 3, small: 4}} colorMode={ColorModesEnum.DARK}>
       <Bento.Content padding={{xsmall: 'normal', small: 'spacious'}} horizontalAlign={'center'}>
-        <Heading as="h4" size="1">
+        <Bento.Heading as="h4" size="1">
           88%
-        </Heading>
+        </Bento.Heading>
         <Text align="center">of developers experience increased productivity.</Text>
       </Bento.Content>
       <Bento.Visual padding="normal" fillMedia={false}>
@@ -158,9 +158,9 @@ export const Example: StoryFn<typeof Bento> = () => (
       colorMode={ColorModesEnum.DARK}
     >
       <Bento.Content padding={{xsmall: 'normal', small: 'spacious'}} fixedBottomLink>
-        <Heading as="h4" size="5">
+        <Bento.Heading as="h4" size="5">
           Mercado Libre frees developers minds to focus on their missions with GitHub.
-        </Heading>
+        </Bento.Heading>
         <Link href="#">Read customer story</Link>
       </Bento.Content>
       <Bento.Visual padding="condensed">

@@ -157,7 +157,7 @@ Breakpoints use `min-width`, where it will also apply your chosen `span` value t
   }}
 >
   <Bento.Content padding="normal">
-    <Heading as="h3">Heading</Heading>
+    <Bento.Heading as="h3">Heading</Bento.Heading>
     <Text>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
       ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
@@ -203,17 +203,28 @@ The Bento.Item component API supports all standard HTML attribute props for the 
 
 ### Bento.Content
 
-| Name              | Type                                                                                                                                                                  |  Default   | Required | Description                                                                                                                                               |
-| :---------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------: | :------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `className`       | `string`                                                                                                                                                              |            | `false`  | Sets a custom class on the root element                                                                                                                   |
-| `children`        | [`Text`](https://primer.style/brand/components/Text),[`Heading`](https://primer.style/brand/components/Heading), [`Link`](https://primer.style/brand/components/Link) |            | `false`  | The children to be rendered within the `Bento.Content`                                                                                                    |
-| `leadingVisual`   | `ReactElement`, `Icon`                                                                                                                                                |            | `false`  | Sets the icon before the heading text                                                                                                                     |
-| `padding`         | `"condensed"`, `"normal"`, `"spacious"`                                                                                                                               | `"normal"` | `false`  | Sets a custom class on the root element                                                                                                                   |
-| `horizontalAlign` | `"start"`, `"center"`, `"end"`, `ResponsiveAlign`                                                                                                                     | `"start"`  | `false`  | The horizontal alignment of children within the `Bento.Content`                                                                                           |
-| `verticalAlign`   | `"start"`, `"center"`, `"end"`, `ResponsiveAlign`                                                                                                                     | `"start"`  | `false`  | The vertical alignment of children within the `Bento.Content`. This cannot be used with the `fixedBottomLink` property.                                   |
-| `fixedBottomLink` | `boolean`                                                                                                                                                             |  `false`   | `false`  | Sets the link within the `Bento.Content` to have a margin-top of `auto` pushing it to the bottom. With this set you can not vertically align the content. |
+| Name              | Type                                                                                                                       |  Default   | Required | Description                                                                                                                                               |
+| :---------------- | :------------------------------------------------------------------------------------------------------------------------- | :--------: | :------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `className`       | `string`                                                                                                                   |            | `false`  | Sets a custom class on the root element                                                                                                                   |
+| `children`        | [`Text`](https://primer.style/brand/components/Text),`Bento.Heading`, [`Link`](https://primer.style/brand/components/Link) |            | `false`  | The children to be rendered within the `Bento.Content`                                                                                                    |
+| `leadingVisual`   | `ReactElement`, `Icon`                                                                                                     |            | `false`  | Sets the icon before the heading text                                                                                                                     |
+| `padding`         | `"condensed"`, `"normal"`, `"spacious"`                                                                                    | `"normal"` | `false`  | Sets a custom class on the root element                                                                                                                   |
+| `horizontalAlign` | `"start"`, `"center"`, `"end"`, `ResponsiveAlign`                                                                          | `"start"`  | `false`  | The horizontal alignment of children within the `Bento.Content`                                                                                           |
+| `verticalAlign`   | `"start"`, `"center"`, `"end"`, `ResponsiveAlign`                                                                          | `"start"`  | `false`  | The vertical alignment of children within the `Bento.Content`. This cannot be used with the `fixedBottomLink` property.                                   |
+| `fixedBottomLink` | `boolean`                                                                                                                  |  `false`   | `false`  | Sets the link within the `Bento.Content` to have a margin-top of `auto` pushing it to the bottom. With this set you can not vertically align the content. |
 
 The Bento.Content component API supports all standard HTML attribute props for the interface HTMLDivElement, while providing some additional behavior as described above.
+
+### Bento.Heading
+
+Required node that is used to provide a heading for the `Bento.Content`.
+
+| name        | type                       | default     | required | description                                           |
+| ----------- | -------------------------- | ----------- | -------- | ----------------------------------------------------- |
+| `className` | `string`                   |             | `false`  | Custom class name for the heading component           |
+| `children`  | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | Content to be displayed inside the heading component. |
+
+Forwards all props from the [Heading component](/components/Heading), including `as`, `size`, and `weight`.
 
 ### Bento.Visual
 

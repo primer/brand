@@ -3,6 +3,17 @@ declare const styles: {
   readonly "Bento__Item": string;
   readonly "Bento__Item--visual-as-background": string;
   readonly "Bento__Content": string;
+  readonly "Bento__Content-icon": string;
+  readonly "Bento__Visual": string;
+  readonly "Bento__Visual-no-fill": string;
+  readonly "Bento-padding--condensed": string;
+  readonly "Bento-padding--normal": string;
+  readonly "Bento-padding--spacious": string;
+  readonly "Bento__Item--flow-column": string;
+  readonly "Bento__Item--flow-row": string;
+  readonly "Bento__call-to-action": string;
+  readonly "Bento__call-to-action--fixed": string;
+  readonly "Bento_Content-text": string;
   readonly "Bento__Item--column-span-1": string;
   readonly "Bento__Item--column-span-2": string;
   readonly "Bento__Item--column-span-3": string;
@@ -57,15 +68,6 @@ declare const styles: {
   readonly "Bento__Item--horizontalAlign-start": string;
   readonly "Bento__Item--horizontalAlign-center": string;
   readonly "Bento__Item--horizontalAlign-end": string;
-  readonly "Bento__Visual": string;
-  readonly "Bento__Visual-no-fill": string;
-  readonly "Bento-padding--condensed": string;
-  readonly "Bento-padding--normal": string;
-  readonly "Bento-padding--spacious": string;
-  readonly "Bento__Item--flow-column": string;
-  readonly "Bento__Item--flow-row": string;
-  readonly "Bento__call-to-action": string;
-  readonly "Bento__call-to-action--fixed": string;
   readonly "Bento__Item--xsmall-column-span-1": string;
   readonly "Bento__Item--xsmall-column-span-2": string;
   readonly "Bento__Item--xsmall-column-span-3": string;
@@ -122,6 +124,9 @@ declare const styles: {
   readonly "Bento__Item--xsmall-horizontalAlign-start": string;
   readonly "Bento__Item--xsmall-horizontalAlign-center": string;
   readonly "Bento__Item--xsmall-horizontalAlign-end": string;
+  readonly "Bento--xsmall-padding-condensed": string;
+  readonly "Bento--xsmall-padding-normal": string;
+  readonly "Bento--xsmall-padding-spacious": string;
   readonly "Bento__Item--small-column-span-1": string;
   readonly "Bento__Item--small-column-span-2": string;
   readonly "Bento__Item--small-column-span-3": string;
@@ -178,6 +183,9 @@ declare const styles: {
   readonly "Bento__Item--small-horizontalAlign-start": string;
   readonly "Bento__Item--small-horizontalAlign-center": string;
   readonly "Bento__Item--small-horizontalAlign-end": string;
+  readonly "Bento--small-padding-condensed": string;
+  readonly "Bento--small-padding-normal": string;
+  readonly "Bento--small-padding-spacious": string;
   readonly "Bento__Item--medium-column-span-1": string;
   readonly "Bento__Item--medium-column-span-2": string;
   readonly "Bento__Item--medium-column-span-3": string;
@@ -234,6 +242,9 @@ declare const styles: {
   readonly "Bento__Item--medium-horizontalAlign-start": string;
   readonly "Bento__Item--medium-horizontalAlign-center": string;
   readonly "Bento__Item--medium-horizontalAlign-end": string;
+  readonly "Bento--medium-padding-condensed": string;
+  readonly "Bento--medium-padding-normal": string;
+  readonly "Bento--medium-padding-spacious": string;
   readonly "Bento__Item--large-column-span-1": string;
   readonly "Bento__Item--large-column-span-2": string;
   readonly "Bento__Item--large-column-span-3": string;
@@ -290,6 +301,9 @@ declare const styles: {
   readonly "Bento__Item--large-horizontalAlign-start": string;
   readonly "Bento__Item--large-horizontalAlign-center": string;
   readonly "Bento__Item--large-horizontalAlign-end": string;
+  readonly "Bento-padding--large-condensed": string;
+  readonly "Bento-padding--large-normal": string;
+  readonly "Bento-padding--large-spacious": string;
   readonly "Bento__Item--xlarge-column-span-1": string;
   readonly "Bento__Item--xlarge-column-span-2": string;
   readonly "Bento__Item--xlarge-column-span-3": string;
@@ -346,6 +360,9 @@ declare const styles: {
   readonly "Bento__Item--xlarge-horizontalAlign-start": string;
   readonly "Bento__Item--xlarge-horizontalAlign-center": string;
   readonly "Bento__Item--xlarge-horizontalAlign-end": string;
+  readonly "Bento--xlarge-padding-condensed": string;
+  readonly "Bento--xlarge-padding-normal": string;
+  readonly "Bento--xlarge-padding-spacious": string;
   readonly "Bento__Item--xxlarge-column-span-1": string;
   readonly "Bento__Item--xxlarge-column-span-2": string;
   readonly "Bento__Item--xxlarge-column-span-3": string;
@@ -402,6 +419,11 @@ declare const styles: {
   readonly "Bento__Item--xxlarge-horizontalAlign-start": string;
   readonly "Bento__Item--xxlarge-horizontalAlign-center": string;
   readonly "Bento__Item--xxlarge-horizontalAlign-end": string;
+  readonly "Bento--xxlarge-padding-condensed": string;
+  readonly "Bento---xxlarge-padding-normal": string;
+  readonly "Bento--xxlarge-padding-spacious": string;
+  readonly "Bento-column-padding-override": string;
+  readonly "Bento-row-padding-override": string;
 };
 export = styles;
 

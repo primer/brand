@@ -2,7 +2,7 @@ import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {Bento} from '.'
-import {Heading, Text, Link, ColorModesEnum} from '../'
+import {Text, Link, ColorModesEnum} from '../'
 import placeholderImage from '../fixtures/images/placeholder-600x400.png'
 
 export default {
@@ -16,10 +16,30 @@ export default {
   },
 } as Meta<typeof Bento>
 
+export const HeadingWithEmphasizedText: StoryFn<typeof Bento> = () => (
+  <Bento.Item>
+    <Bento.Content>
+      <Bento.Heading as="h3">
+        <em>Heading</em> with emphasis
+      </Bento.Heading>
+      <Link href="#">Call to action</Link>
+    </Bento.Content>
+    <Bento.Visual position="50% 100%">
+      <img className="test" alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+    </Bento.Visual>
+  </Bento.Item>
+)
+
+HeadingWithEmphasizedText.parameters = {
+  viewport: {
+    defaultViewport: 'iphonexr',
+  },
+}
+
 export const VisualPositionBottom: StoryFn<typeof Bento> = () => (
   <Bento.Item>
     <Bento.Content>
-      <Heading as="h3">Heading</Heading>
+      <Bento.Heading as="h3">Heading</Bento.Heading>
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
@@ -41,7 +61,7 @@ VisualPositionBottom.parameters = {
 export const FlowColumn: StoryFn<typeof Bento> = () => (
   <Bento.Item flow="column">
     <Bento.Content>
-      <Heading as="h3">Heading</Heading>
+      <Bento.Heading as="h3">Heading</Bento.Heading>
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
@@ -66,7 +86,7 @@ export const FlowColumnVisualFirst: StoryFn<typeof Bento> = () => (
       <img className="test" alt="placeholder, blank area with an gray background color" src={placeholderImage} />
     </Bento.Visual>
     <Bento.Content>
-      <Heading as="h3">Heading</Heading>
+      <Bento.Heading as="h3">Heading</Bento.Heading>
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
@@ -88,7 +108,7 @@ export const FlowRowVisualFirst: StoryFn<typeof Bento> = () => (
       <img className="test" alt="placeholder, blank area with an gray background color" src={placeholderImage} />
     </Bento.Visual>
     <Bento.Content>
-      <Heading as="h3">Heading</Heading>
+      <Bento.Heading as="h3">Heading</Bento.Heading>
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
@@ -107,7 +127,7 @@ FlowRowVisualFirst.parameters = {
 export const HeadingPaddingCondensed: StoryFn<typeof Bento> = () => (
   <Bento.Item>
     <Bento.Content padding="condensed">
-      <Heading as="h3">Heading</Heading>
+      <Bento.Heading as="h3">Heading</Bento.Heading>
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
@@ -129,7 +149,7 @@ HeadingPaddingCondensed.parameters = {
 export const HeadingPaddingNormal: StoryFn<typeof Bento> = () => (
   <Bento.Item>
     <Bento.Content padding="normal">
-      <Heading as="h3">Heading</Heading>
+      <Bento.Heading as="h3">Heading</Bento.Heading>
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
@@ -151,7 +171,7 @@ HeadingPaddingNormal.parameters = {
 export const HeadingPaddingSpacious: StoryFn<typeof Bento> = () => (
   <Bento.Item>
     <Bento.Content padding="spacious">
-      <Heading as="h3">Heading</Heading>
+      <Bento.Heading as="h3">Heading</Bento.Heading>
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
@@ -173,7 +193,7 @@ HeadingPaddingSpacious.parameters = {
 export const VisualPaddingCondensed: StoryFn<typeof Bento> = () => (
   <Bento.Item>
     <Bento.Content>
-      <Heading as="h3">Heading</Heading>
+      <Bento.Heading as="h3">Heading</Bento.Heading>
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
@@ -195,7 +215,7 @@ VisualPaddingCondensed.parameters = {
 export const VisualPaddingNormal: StoryFn<typeof Bento> = () => (
   <Bento.Item>
     <Bento.Content>
-      <Heading as="h3">Heading</Heading>
+      <Bento.Heading as="h3">Heading</Bento.Heading>
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
@@ -217,7 +237,7 @@ VisualPaddingNormal.parameters = {
 export const VisualPaddingSpacious: StoryFn<typeof Bento> = () => (
   <Bento.Item>
     <Bento.Content>
-      <Heading as="h3">Heading</Heading>
+      <Bento.Heading as="h3">Heading</Bento.Heading>
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
@@ -239,7 +259,7 @@ VisualPaddingSpacious.parameters = {
 export const VisualAsBackground: StoryFn<typeof Bento> = () => (
   <Bento.Item visualAsBackground>
     <Bento.Content fixedBottomLink>
-      <Heading as="h3">Heading</Heading>
+      <Bento.Heading as="h3">Heading</Bento.Heading>
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
@@ -261,7 +281,7 @@ VisualAsBackground.parameters = {
 export const DarkModeItem: StoryFn<typeof Bento> = () => (
   <Bento.Item colorMode={ColorModesEnum.DARK}>
     <Bento.Content>
-      <Heading as="h3">Heading</Heading>
+      <Bento.Heading as="h3">Heading</Bento.Heading>
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
@@ -292,7 +312,7 @@ export const ResponsiveFlow: StoryFn<typeof Bento> = () => (
     }}
   >
     <Bento.Content padding="normal">
-      <Heading as="h3">Heading</Heading>
+      <Bento.Heading as="h3">Heading</Bento.Heading>
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
@@ -308,7 +328,7 @@ export const ResponsiveFlow: StoryFn<typeof Bento> = () => (
 export const VerticalAlignStart: StoryFn<typeof Bento> = () => (
   <Bento.Item flow="column">
     <Bento.Content padding="normal" verticalAlign="start">
-      <Heading as="h3">Heading</Heading>
+      <Bento.Heading as="h3">Heading</Bento.Heading>
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
@@ -324,7 +344,7 @@ export const VerticalAlignStart: StoryFn<typeof Bento> = () => (
 export const VerticalAlignCenter: StoryFn<typeof Bento> = () => (
   <Bento.Item flow="column">
     <Bento.Content padding="normal" verticalAlign="center">
-      <Heading as="h3">Heading</Heading>
+      <Bento.Heading as="h3">Heading</Bento.Heading>
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
@@ -340,7 +360,7 @@ export const VerticalAlignCenter: StoryFn<typeof Bento> = () => (
 export const VerticalAlignEnd: StoryFn<typeof Bento> = () => (
   <Bento.Item flow="column">
     <Bento.Content padding="normal" verticalAlign="end">
-      <Heading as="h3">Heading</Heading>
+      <Bento.Heading as="h3">Heading</Bento.Heading>
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
@@ -356,7 +376,7 @@ export const VerticalAlignEnd: StoryFn<typeof Bento> = () => (
 export const HorizontalAlignStart: StoryFn<typeof Bento> = () => (
   <Bento.Item flow="column">
     <Bento.Content padding="normal" horizontalAlign="start">
-      <Heading as="h3">Heading</Heading>
+      <Bento.Heading as="h3">Heading</Bento.Heading>
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
@@ -372,7 +392,7 @@ export const HorizontalAlignStart: StoryFn<typeof Bento> = () => (
 export const HorizontalAlignCenter: StoryFn<typeof Bento> = () => (
   <Bento.Item flow="column">
     <Bento.Content padding="normal" horizontalAlign="center">
-      <Heading as="h3">Heading</Heading>
+      <Bento.Heading as="h3">Heading</Bento.Heading>
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
@@ -388,7 +408,7 @@ export const HorizontalAlignCenter: StoryFn<typeof Bento> = () => (
 export const HorizontalAlignEnd: StoryFn<typeof Bento> = () => (
   <Bento.Item flow="column">
     <Bento.Content padding="normal" horizontalAlign="end">
-      <Heading as="h3">Heading</Heading>
+      <Bento.Heading as="h3">Heading</Bento.Heading>
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
@@ -414,7 +434,7 @@ export const ResponsiveHorizontalAlign: StoryFn<typeof Bento> = () => (
         xxlarge: 'center',
       }}
     >
-      <Heading as="h3">Heading</Heading>
+      <Bento.Heading as="h3">Heading</Bento.Heading>
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
@@ -440,7 +460,7 @@ export const ResponsiveVerticalAlign: StoryFn<typeof Bento> = () => (
         xxlarge: 'center',
       }}
     >
-      <Heading as="h3">Heading</Heading>
+      <Bento.Heading as="h3">Heading</Bento.Heading>
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
