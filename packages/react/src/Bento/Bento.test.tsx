@@ -1,7 +1,7 @@
 import React, {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import {Bento, ColumnIndex} from './Bento'
-import {Heading, Text, Link} from '../'
+import {Text, Link, ColorModesEnum} from '../'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 expect.extend(toHaveNoViolations)
@@ -132,7 +132,7 @@ describe('Bento.Item', () => {
   })
 
   it('adds the color mode data attribute', () => {
-    const colorMode = 'light'
+    const colorMode = ColorModesEnum.LIGHT
     const {getByTestId} = render(<Bento.Item data-testid={testId} colorMode={colorMode} />)
 
     const BentoItemEl = getByTestId(testId)
@@ -180,7 +180,7 @@ describe('Bento.Content', () => {
     const linkText = 'Allowed 3'
     const {getByText} = render(
       <Bento.Content>
-        <Bento.Heading>{headingText}</Heading>
+        <Bento.Heading>{headingText}</Bento.Heading>
         <Text>{textText}</Text>
         <Link href="#">{linkText}</Link>
       </Bento.Content>,
