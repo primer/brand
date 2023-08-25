@@ -4,6 +4,7 @@ declare const styles: {
   readonly "Bento__Item--visual-as-background": string;
   readonly "Bento__Content": string;
   readonly "Bento__Content-icon": string;
+  readonly "Bento__heading--muted": string;
   readonly "Bento__Visual": string;
   readonly "Bento__Visual-no-fill": string;
   readonly "Bento-padding--condensed": string;

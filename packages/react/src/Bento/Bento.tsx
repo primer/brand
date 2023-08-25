@@ -11,17 +11,17 @@ import styles from './Bento.module.css'
 export type Size = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'
 export type ColumnIndex = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
 
-type ResponsiveColumnIndex = Partial<Record<Size, ColumnIndex>> | ColumnIndex
-type ResponsiveRowIndex = Partial<Record<Size, number>> | number
+type ResponsiveColumnIndex = Partial<Record<Size, ColumnIndex>>
+type ResponsiveRowIndex = Partial<Record<Size, number>>
 
 type Flow = 'row' | 'column'
-type ResponsiveFlow = Partial<Record<Size, Flow>> | Flow
+type ResponsiveFlow = Partial<Record<Size, Flow>>
 
 type Align = 'start' | 'center' | 'end'
-type ResponsiveAlign = Partial<Record<Size, Align>> | Align
+type ResponsiveAlign = Partial<Record<Size, Align>>
 
 type Padding = 'condensed' | 'normal' | 'spacious'
-type ResponsivePadding = Partial<Record<Size, Padding>> | Padding
+type ResponsivePadding = Partial<Record<Size, Padding>>
 
 type BentoProps = React.HTMLAttributes<HTMLDivElement> & BaseProps<HTMLDivElement>
 
@@ -30,11 +30,11 @@ const Root = ({className, ...rest}: BentoProps) => {
 }
 
 type BentoItemProps = {
-  columnStart?: ResponsiveColumnIndex
-  columnSpan?: ResponsiveColumnIndex
-  rowStart?: ResponsiveRowIndex
-  rowSpan?: ResponsiveRowIndex
-  flow?: ResponsiveFlow
+  columnStart?: ColumnIndex | ResponsiveColumnIndex
+  columnSpan?: ColumnIndex | ResponsiveColumnIndex
+  rowStart?: number | ResponsiveRowIndex
+  rowSpan?: number | ResponsiveRowIndex
+  flow?: Flow | ResponsiveFlow
   colorMode?: ColorModesEnum.LIGHT | ColorModesEnum.DARK
   visualAsBackground?: boolean
 } & React.HTMLAttributes<HTMLDivElement> &
@@ -43,7 +43,17 @@ type BentoItemProps = {
 const returnClassBasedOnResponsiveMap = (
   classIdentifier: string,
   propName: string,
-  prop?: ResponsiveColumnIndex | ResponsiveRowIndex | ResponsiveFlow | ResponsiveAlign | ResponsivePadding,
+  prop?:
+    | ResponsiveColumnIndex
+    | ColumnIndex
+    | ResponsiveRowIndex
+    | number
+    | ResponsiveFlow
+    | Flow
+    | ResponsiveAlign
+    | Align
+    | ResponsivePadding
+    | Padding,
 ) => {
   const classesToMerge: string[] = []
   if (typeof prop === 'number' || typeof prop === 'string') {
@@ -101,9 +111,9 @@ const Item = ({
 
 type BentoContentProps = {
   leadingVisual?: ReactElement | Icon
-  padding?: ResponsivePadding
-  verticalAlign?: ResponsiveAlign
-  horizontalAlign?: ResponsiveAlign
+  padding?: Padding | ResponsivePadding
+  verticalAlign?: Align | ResponsiveAlign
+  horizontalAlign?: Align | ResponsiveAlign
   fixedBottomLink?: boolean
 } & React.HTMLAttributes<HTMLDivElement> &
   BaseProps<HTMLDivElement>
