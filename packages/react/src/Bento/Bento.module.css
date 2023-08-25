@@ -18,6 +18,10 @@
   border: 1px solid var(--brand-color-border-default);
 }
 
+.Bento__Item--visual-as-background.Bento__Item {
+  grid-gap: 0;
+}
+
 @media screen and (min-width: 80rem) {
   .Bento {
     gap: var(--brand-Bento-gap-large);
