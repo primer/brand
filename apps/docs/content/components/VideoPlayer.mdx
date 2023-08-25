@@ -14,6 +14,8 @@ import {VideoPlayer} from '@primer/react-brand'
 
 ## Examples
 
+{/* Note: These assets will not load in local development. The way gatsby works prefixes the assets URLs which cannot currently be done in these files. */}
+
 ### Default
 
 ```jsx live
@@ -26,7 +28,10 @@ import {VideoPlayer} from '@primer/react-brand'
 ## With poster
 
 ```jsx live
-<VideoPlayer poster="/example-poster.png" title="GitHub media player">
+<VideoPlayer
+  poster="/brand/assets/example-poster.png"
+  title="GitHub media player"
+>
   <VideoPlayer.Source src="/brand/assets/example.mp4" />
   <VideoPlayer.Track src="/brand/assets/example.vtt" />
 </VideoPlayer>
