@@ -120,7 +120,7 @@
 
 .Bento__call-to-action {
   justify-content: inherit;
-  margin-top: 24px;
+  margin-top: var(--base-size-24);
 }
 
 .Bento__call-to-action--fixed {
