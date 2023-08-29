@@ -1,6 +1,6 @@
 import React from 'react'
 import {Meta, StoryFn} from '@storybook/react'
-import {Heading, HeadingTags, HeadingWeights, HeadingLetterSpacing, HeadingStretch} from '.'
+import {Heading, HeadingTags, HeadingWeights, HeadingLetterSpacing, HeadingStretch, HeadingSizes} from '.'
 
 export default {
   title: 'Components/Heading',
@@ -15,15 +15,79 @@ Default.args = {
   as: 'h1',
 }
 
-export const Scale: StoryFn<typeof Heading> = () => (
-  <>
-    {HeadingTags.map(tag => (
-      <Heading key={tag} as={tag}>
-        Heading {tag}
-      </Heading>
-    ))}
-  </>
-)
+export const Playground = Template.bind({})
+Playground.argTypes = {
+  children: {
+    control: {
+      type: 'text',
+    },
+  },
+  size: {
+    control: {
+      type: 'radio',
+    },
+    options: HeadingSizes,
+  },
+  weight: {
+    control: {
+      type: 'radio',
+    },
+    options: HeadingWeights,
+  },
+  stretch: {
+    control: {
+      type: 'radio',
+    },
+    options: HeadingStretch,
+  },
+  letterSpacing: {
+    control: {
+      type: 'radio',
+    },
+    options: HeadingLetterSpacing,
+  },
+}
+Playground.args = {
+  children: 'Heading',
+}
+
+export const Scale: StoryFn<typeof Heading> = () => {
+  const tagMap = {
+    display: 'h1',
+    '1': 'h1',
+    '2': 'h2',
+    '3': 'h3',
+    '4': 'h4',
+    '5': 'h5',
+    '6': 'h5',
+    'subhead-large': 'h6',
+    'subhead-medium': 'h6',
+  }
+
+  return (
+    <>
+      {HeadingSizes.map(size => (
+        <Heading key={size} size={size} as={tagMap[size] as (typeof HeadingTags)[number]}>
+          Heading ({size})
+        </Heading>
+      ))}
+    </>
+  )
+}
+
+Scale.storyName = 'Scale (sizes)'
+
+export const Levels: StoryFn<typeof Heading> = () => {
+  return (
+    <>
+      {HeadingTags.map(tag => (
+        <Heading key={tag} as={tag}>
+          Heading ({tag})
+        </Heading>
+      ))}
+    </>
+  )
+}
 
 export const OverrideSize = Template.bind({})
 OverrideSize.args = {

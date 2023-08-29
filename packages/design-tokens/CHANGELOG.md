@@ -1,5 +1,57 @@
 # @primer/brand-primitives
 
+## 0.24.0
+
+### Minor Changes
+
+- [#394](https://github.com/primer/brand/pull/394) [`c9029d4`](https://github.com/primer/brand/commit/c9029d4a69f7f0311c008a2af4b6124642145369) Thanks [@mperrotti](https://github.com/mperrotti)! - Adds RiverBreakout component and its supporting design tokens.
+
+  Usage example:
+
+  ```jsx
+  <RiverBreakout>
+    <RiverBreakout.A11yHeading>Accelerate workflows</RiverBreakout.A11yHeading>
+    <RiverBreakout.Visual>
+      <PlaceholderImage />
+    </RiverBreakout.Visual>
+    <RiverBreakout.Content
+      trailingComponent={() => {
+        ;<div>Trailing component</div>
+      }}
+    >
+      <Text>
+        Accelerate your workflows and scale your business fast with access to millions of open source projects on
+        GitHub, the largest source code host.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </RiverBreakout.Content>
+  </RiverBreakout>
+  ```
+
+  See the [Storybook](https://primer.style/brand/storybook/?path=/story/components-river-features--with-breakout)
+
+## 0.23.0
+
+## 0.22.0
+
+### Minor Changes
+
+- [#362](https://github.com/primer/brand/pull/362) [`db9e54d`](https://github.com/primer/brand/commit/db9e54da130fd33f6908847113d9a2b2a82ff41e) Thanks [@rezrah](https://github.com/rezrah)! - Added design tokens for the logo suite component
+
+  ```css
+  --brand-LogoSuite-color-logo-muted
+  --brand-LogoSuite-color-logo-emphasis
+  --brand-LogoSuite-logobar-marquee-gap
+  --brand-LogoSuite-logobar-marquee-slow
+  --brand-LogoSuite-logobar-marquee-default
+  --brand-LogoSuite-logobar-rowGap
+  --brand-LogoSuite-logobar-columnGap
+  ```
+
+### Patch Changes
+
+- [#374](https://github.com/primer/brand/pull/374) [`52abf2f`](https://github.com/primer/brand/commit/52abf2fe33bb7b4a96f5f9340177e20b600c004b) Thanks [@josepmartins](https://github.com/josepmartins)! - Adjust dark mode color shade in icons (used in `Card` and `Pillar` components) and `Label` component.
+
 ## 0.21.0
 
 ### Patch Changes

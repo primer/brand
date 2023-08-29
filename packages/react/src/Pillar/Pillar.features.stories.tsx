@@ -147,10 +147,10 @@ type FixtureData = {
 
 export const Stacked: StoryFn<typeof Pillar> = () => {
   return (
-    <Stack direction="horizontal" gap={'spacious'} padding={'spacious'}>
+    <Stack direction={{narrow: 'vertical', regular: 'horizontal'}} gap="spacious" padding="spacious">
       {fixtureData.map(({heading, description, icon, iconColor}, id) => {
         return (
-          <Pillar key={id} style={{width: '33.3333%'}}>
+          <Pillar key={id} style={{flex: 1}}>
             <Pillar.Icon icon={icon} color={iconColor} />
             <Pillar.Heading>{heading}</Pillar.Heading>
             <Pillar.Description>{description}</Pillar.Description>
@@ -163,13 +163,30 @@ export const Stacked: StoryFn<typeof Pillar> = () => {
 
 export const StackedCentered: StoryFn<typeof Pillar> = () => {
   return (
-    <Stack direction="horizontal" gap={'spacious'} padding={'spacious'}>
+    <Stack direction={{narrow: 'vertical', regular: 'horizontal'}} gap="spacious" padding="spacious">
       {fixtureData.map(({heading, description, icon, iconColor}, id) => {
         return (
-          <Pillar align="center" key={id} style={{width: '33.3333%'}}>
+          <Pillar align="center" key={id} style={{flex: 1}}>
             <Pillar.Icon icon={icon} color={iconColor} />
             <Pillar.Heading>{heading}</Pillar.Heading>
             <Pillar.Description>{description}</Pillar.Description>
+          </Pillar>
+        )
+      })}
+    </Stack>
+  )
+}
+
+export const StackedWithLink: StoryFn<typeof Pillar> = () => {
+  return (
+    <Stack direction={{narrow: 'vertical', regular: 'horizontal'}} gap="spacious" padding="spacious">
+      {fixtureData.map(({heading, description, icon, iconColor, href}, id) => {
+        return (
+          <Pillar key={id} style={{flex: 1}}>
+            <Pillar.Icon icon={icon} color={iconColor} />
+            <Pillar.Heading>{heading}</Pillar.Heading>
+            <Pillar.Description>{description}</Pillar.Description>
+            <Pillar.Link href={href}>Read the documentation</Pillar.Link>
           </Pillar>
         )
       })}

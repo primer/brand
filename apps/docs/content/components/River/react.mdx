@@ -18,7 +18,7 @@ import {
 import {PropTableValues} from '../../../src/components'
 
 ```js
-import {River} from '@primer/react-brand'
+import {River, RiverBreakout} from '@primer/react-brand'
 ```
 
 ## Examples
@@ -170,6 +170,40 @@ import {River} from '@primer/react-brand'
 </River>
 ```
 
+### River breakout
+
+```jsx live
+<RiverBreakout>
+  <RiverBreakout.A11yHeading>Accelerate workflows</RiverBreakout.A11yHeading>
+  <RiverBreakout.Visual>
+    <img
+      src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
+      alt="placeholder, blank area with an off-white background color"
+    />
+  </RiverBreakout.Visual>
+  <RiverBreakout.Content
+    trailingComponent={() => (
+      <Timeline>
+        <Timeline.Item>
+          <em>GitHub Codespaces</em> offers a complete dev environment in
+          seconds.
+        </Timeline.Item>
+        <Timeline.Item>
+          <em>GitHub Copilot</em> is your AI pair programmer that empowers you
+          to complete tasks.
+        </Timeline.Item>
+      </Timeline>
+    )}
+  >
+    <Text>
+      <em>This first sentence is a river breakout headline.</em> And this is
+      where the body copy starts. Remember to keep these nice and succinct.
+    </Text>
+    <Link href="#">Call to action</Link>
+  </RiverBreakout.Content>
+</RiverBreakout>
+```
+
 ## Component props
 
 ### River <Label>Required</Label>
@@ -182,18 +216,19 @@ import {River} from '@primer/react-brand'
 | `id`             | `string`                       |                                                           | Sets a custom id                                                                                            |
 | `ref`            | `React.RefObject`              |                                                           | Forward a Ref to the underlying DOM node                                                                    |
 
-### River.Visual <Label>Required</Label>
+### River.Visual and RiverBreakout.Visual <Label>Required</Label>
 
 | Name        | Type              | Default | Description                                                                                                                                   |
 | :---------- | :---------------- | :-----: | :-------------------------------------------------------------------------------------------------------------------------------------------- |
 | `fillMedia` | `boolean`         |  true   | Automatically styles images and video to fill and fit the width of the parent. Disable this setting if you have bespoke styling requirements. |
 | `children`  | `ReactElement`    |         | Bring your own component (BYOC) `img` or `ReactElement` (E.g. Next.js `Image` component)                                                      |
-| `hasShadow` | `boolean`         | `true`  | Shadow automatically applied to the `children`. Set be `false` when the child node has a transparent background.                              |
+| `hasShadow` | `boolean`         | `false` | Shadow applied to the `children`. Set be `false` when the child node has a transparent background.                                            |
 | `className` | `string`          |         | Sets a custom class on the root element                                                                                                       |
 | `id`        | `string`          |         | Sets a custom id                                                                                                                              |
 | `ref`       | `React.RefObject` |         | Forward a Ref to the underlying DOM node                                                                                                      |
+| `rounded`   | `boolean`         | `true`  | Toggle visually rounded corners. Enabled by default.                                                                                          |
 
-### River.Content <Label>Required</Label>
+### River.Content and RiverBreakout.Content <Label>Required</Label>
 
 [`Text`](https://primer.style/brand/components/Text),[`Heading`](https://primer.style/brand/components/Heading), [`Link`](https://primer.style/brand/components/Link) are the only `children` accepted. They can be composed in any order, but their rendered output will always be in a predetermined order.
 
@@ -203,3 +238,17 @@ import {River} from '@primer/react-brand'
 | `className` | `string`                                                                                                                                                              |         | Sets a custom class on the root element          |
 | `id`        | `string`                                                                                                                                                              |         | Sets a custom id                                 |
 | `ref`       | `React.RefObject`                                                                                                                                                     |         | Forward a Ref to the underlying DOM node         |
+
+### RiverBreakout
+
+| Name        | Type              | Default | Description                              |
+| :---------- | :---------------- | :-----: | :--------------------------------------- |
+| `className` | `string`          |         | Sets a custom class on the root element  |
+| `id`        | `string`          |         | Sets a custom id                         |
+| `ref`       | `React.RefObject` |         | Forward a Ref to the underlying DOM node |
+
+### RiverBreakout.A11yHeading <Label>Required</Label>
+
+| Name       | Type        | Default | Description                                                                         |
+| :--------- | :---------- | :-----: | :---------------------------------------------------------------------------------- |
+| `children` | `ReactNode` |         | The heading text that will be read aloud to screen readers, but is visually hidden. |

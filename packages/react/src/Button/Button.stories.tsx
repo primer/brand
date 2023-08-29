@@ -9,10 +9,12 @@ export default {
     as: 'a',
     variant: defaultButtonVariant,
     size: defaultButtonSize,
+    block: false,
     href: '#',
     children: 'Button',
     disabled: false,
     'aria-disabled': false,
+    hasArrow: true,
   },
   // overriding default type inference for args with more useful control types
   argTypes: {
@@ -20,15 +22,15 @@ export default {
       description: 'The HTML element used to render the root of Button.',
       control: {
         type: 'inline-radio',
-        options: ['a', 'button'],
       },
+      options: ['a', 'button'],
     },
     variant: {
       description: 'The HTML element used to render the root of Button.',
       control: {
         type: 'inline-radio',
-        options: [...ButtonVariants],
       },
+      options: [...ButtonVariants],
     },
     href: {
       name: 'href',
@@ -42,8 +44,8 @@ export default {
       description: 'Size of button',
       control: {
         type: 'inline-radio',
-        options: [...ButtonSizes],
       },
+      options: [...ButtonSizes],
     },
     children: {
       name: 'children',
@@ -51,6 +53,20 @@ export default {
       type: {name: 'string', required: true},
       control: {
         type: 'text',
+      },
+    },
+    disabled: {
+      name: 'disabled',
+      type: {name: 'boolean', required: false},
+      control: {
+        type: 'boolean',
+      },
+    },
+    hasArrow: {
+      name: 'hasArrow',
+      type: {name: 'boolean', required: false},
+      control: {
+        type: 'boolean',
       },
     },
   },

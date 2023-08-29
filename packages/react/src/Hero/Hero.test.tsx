@@ -76,7 +76,37 @@ describe('Hero', () => {
     expect(labelEl).toBeInTheDocument()
   })
 
-  test('renders with default colors and size', () => {
+  test('renders with an optional image in block end alignment by default', () => {
+    const mockAltText = 'placeholder image, blank with gray solid fill'
+
+    const {getByAltText} = render(
+      <Hero>
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.Image src="mock.png" alt={mockAltText} />
+      </Hero>,
+    )
+    const imageEl = getByAltText(mockAltText)
+
+    expect(imageEl).toBeInTheDocument()
+    expect(imageEl).toHaveClass('Hero-image--pos-block-end')
+  })
+
+  test('it can optionally render an image in inline end alignment', () => {
+    const mockAltText = 'placeholder image, blank with gray solid fill'
+
+    const {getByAltText} = render(
+      <Hero>
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.Image position="inline-end" src="mock.png" alt={mockAltText} />
+      </Hero>,
+    )
+    const imageEl = getByAltText(mockAltText)
+
+    expect(imageEl).toBeInTheDocument()
+    expect(imageEl).toHaveClass('Hero-image--pos-inline-end')
+  })
+
+  test('renders a label with default colors and size', () => {
     const mockLabel = 'Label'
     const expectedSize = 'medium'
     const expectedColor = 'default'

@@ -38,6 +38,10 @@ export type ButtonBaseProps = {
    * A flag to show/hide the arrow icon
    */
   hasArrow?: boolean
+  /**
+   * The Button spans the full width
+   */
+  block?: boolean
 }
 
 export type ButtonProps<C extends React.ElementType> = BaseProps<C> & {
@@ -66,6 +70,7 @@ export const _Button = forwardRef(
       variant = defaultButtonVariant,
       size = defaultButtonSize,
       hasArrow = true,
+      block = false,
       className,
       children,
       disabled,
@@ -149,6 +154,7 @@ export const _Button = forwardRef(
           styles.Button,
           styles[`Button--${variant}`],
           styles[`Button--size-${size}`],
+          block && styles['Button--block'],
           isDisabled && styles[`Button--disabled`],
           animationClasses,
           className,
@@ -175,7 +181,8 @@ export const _Button = forwardRef(
         <span className={styles['Button__text']}>
           <Text
             as="span"
-            size={size === 'medium' ? '300' : '400'}
+            size={size === 'medium' ? '200' : '300'}
+            weight="semibold"
             className={clsx(
               styles['Button--label'],
               styles[`Button--label-${variant}`],
@@ -187,7 +194,7 @@ export const _Button = forwardRef(
         </span>
 
         {!TrailingVisual && hasArrow && (
-          <span className={clsx(styles['Button__trailing-visual'], styles['Button__trailing-visual--arrow'])}>
+          <span className={clsx(styles['Button__trailing-visual'])}>
             <ExpandableArrow
               hidden
               className={clsx(styles['Button-arrow'], isDisabled && styles[`Button-arrow--disabled`])}

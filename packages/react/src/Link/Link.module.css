@@ -32,13 +32,14 @@
 }
 
 .Link:active:after,
-.Link:hover:after,
-.Link:focus:after {
+.Link:hover:after {
   transform: scaleX(1);
 }
 
-.Link:focus {
-  outline: 0;
+.Link:focus:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--brand-color-canvas-default), 0 0 2px 5px var(--brand-color-focus);
+  transition: none;
 }
 
 .Link--default,
@@ -57,6 +58,10 @@
 
 .Link-arrow {
   margin-left: 4px;
+}
+
+.Link--large .Link--label {
+  font-size: var(--base-size-20);
 }
 
 .Link--large .Link-arrow {
