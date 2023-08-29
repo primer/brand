@@ -118,8 +118,8 @@ export const ImageGallery: StoryFn<typeof Bento> = () => (
 export const Example: StoryFn<typeof Bento> = () => (
   <Bento>
     <Bento.Item
-      columnSpan={{xsmall: 12, small: 7}}
-      rowSpan={{xsmall: 3, small: 4}}
+      columnSpan={{xsmall: 12, medium: 7}}
+      rowSpan={{xsmall: 3, small: 5}}
       flow={{xsmall: 'row', small: 'row'}}
       colorMode={ColorModesEnum.DARK}
       visualAsBackground
@@ -132,7 +132,7 @@ export const Example: StoryFn<typeof Bento> = () => (
         <Link href="#">Learn more about Copilot</Link>
       </Bento.Content>
     </Bento.Item>
-    <Bento.Item columnSpan={{xsmall: 12, small: 5}} rowSpan={{xsmall: 3, small: 4}} colorMode={ColorModesEnum.DARK}>
+    <Bento.Item columnSpan={{xsmall: 12, medium: 5}} rowSpan={{xsmall: 3, small: 5}} colorMode={ColorModesEnum.DARK}>
       <Bento.Content padding={{xsmall: 'normal', small: 'spacious'}} horizontalAlign={'center'}>
         <Bento.Heading as="h4" size="1">
           88%
@@ -143,7 +143,7 @@ export const Example: StoryFn<typeof Bento> = () => (
         <img src={platformAI} alt="Platform Artificial Intelligence Logo" />
       </Bento.Visual>
     </Bento.Item>
-    <Bento.Item columnSpan={12} rowSpan={{xsmall: 3, small: 4}} visualAsBackground>
+    <Bento.Item columnSpan={12} rowSpan={{xsmall: 3, small: 5}} visualAsBackground>
       <Bento.Visual>
         <img
           src={analyzeAndDebug}
@@ -151,12 +151,7 @@ export const Example: StoryFn<typeof Bento> = () => (
         />
       </Bento.Visual>
     </Bento.Item>
-    <Bento.Item
-      columnSpan={12}
-      rowSpan={{xsmall: 6, small: 4}}
-      flow={{xsmall: 'row', small: 'column'}}
-      colorMode={ColorModesEnum.DARK}
-    >
+    <Bento.Item columnSpan={12} rowSpan={6} flow={{xsmall: 'row', medium: 'column'}} colorMode={ColorModesEnum.DARK}>
       <Bento.Content padding={{xsmall: 'normal', small: 'spacious'}} fixedBottomLink>
         <Bento.Heading as="h4" size="5">
           Mercado Libre frees developers minds to focus on their missions with GitHub.
