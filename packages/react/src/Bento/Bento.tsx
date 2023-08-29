@@ -20,6 +20,9 @@ type ResponsiveFlow = Partial<Record<Size, Flow>>
 type Align = 'start' | 'center' | 'end'
 type ResponsiveAlign = Partial<Record<Size, Align>>
 
+type ReducedAlign = 'start' | 'center'
+type ResponsiveReducedAlign = Partial<Record<Size, Align>>
+
 type Padding = 'condensed' | 'normal' | 'spacious'
 type ResponsivePadding = Partial<Record<Size, Padding>>
 
@@ -113,7 +116,7 @@ type BentoContentProps = {
   leadingVisual?: ReactElement | Icon
   padding?: Padding | ResponsivePadding
   verticalAlign?: Align | ResponsiveAlign
-  horizontalAlign?: Align | ResponsiveAlign
+  horizontalAlign?: ReducedAlign | ResponsiveReducedAlign
   fixedBottomLink?: boolean
 } & React.HTMLAttributes<HTMLDivElement> &
   BaseProps<HTMLDivElement>

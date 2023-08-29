@@ -353,10 +353,6 @@
   align-items: center;
 }
 
-.Bento__Item--horizontalAlign-end {
-  align-items: end;
-}
-
 /* RESPONSIVE Values */
 
 /* XSMALL breakpoint */
@@ -608,10 +604,6 @@
 
   .Bento__Item--xsmall-horizontalAlign-center {
     align-items: center;
-  }
-
-  .Bento__Item--xsmall-horizontalAlign-end {
-    align-items: end;
   }
 
   .Bento--xsmall-padding-condensed {
@@ -876,10 +868,6 @@
     align-items: center;
   }
 
-  .Bento__Item--small-horizontalAlign-end {
-    align-items: end;
-  }
-
   .Bento--small-padding-condensed {
     padding: var(--brand-Bento-content-padding-condensed);
   }
@@ -1140,10 +1128,6 @@
 
   .Bento__Item--medium-horizontalAlign-center {
     align-items: center;
-  }
-
-  .Bento__Item--medium-horizontalAlign-end {
-    align-items: end;
   }
 
   .Bento--medium-padding-condensed {
@@ -1408,10 +1392,6 @@
     align-items: center;
   }
 
-  .Bento__Item--large-horizontalAlign-end {
-    align-items: end;
-  }
-
   .Bento-padding--large-condensed {
     padding: var(--brand-Bento-content-padding-condensed);
   }
@@ -1674,10 +1654,6 @@
     align-items: center;
   }
 
-  .Bento__Item--xlarge-horizontalAlign-end {
-    align-items: end;
-  }
-
   .Bento--xlarge-padding-condensed {
     padding: var(--brand-Bento-content-padding-condensed);
   }
@@ -1938,10 +1914,6 @@
 
   .Bento__Item--xxlarge-horizontalAlign-center {
     align-items: center;
-  }
-
-  .Bento__Item--xxlarge-horizontalAlign-end {
-    align-items: end;
   }
 
   .Bento--xxlarge-padding-condensed {
