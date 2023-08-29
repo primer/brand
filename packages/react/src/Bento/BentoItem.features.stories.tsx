@@ -256,6 +256,28 @@ VisualPaddingSpacious.parameters = {
   },
 }
 
+export const StyleOrderReversed: StoryFn<typeof Bento> = () => (
+  <Bento.Item styleOrder="reversed">
+    <Bento.Content>
+      <Bento.Heading as="h3">Heading</Bento.Heading>
+      <Text>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </Bento.Content>
+    <Bento.Visual>
+      <img className="test" alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+    </Bento.Visual>
+  </Bento.Item>
+)
+
+StyleOrderReversed.parameters = {
+  viewport: {
+    defaultViewport: 'iphonexr',
+  },
+}
+
 export const VisualAsBackground: StoryFn<typeof Bento> = () => (
   <Bento.Item visualAsBackground>
     <Bento.Content fixedBottomLink>

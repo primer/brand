@@ -151,7 +151,16 @@ export const Example: StoryFn<typeof Bento> = () => (
         />
       </Bento.Visual>
     </Bento.Item>
-    <Bento.Item columnSpan={12} rowSpan={6} flow={{xsmall: 'row', medium: 'column'}} colorMode={ColorModesEnum.DARK}>
+    <Bento.Item
+      columnSpan={12}
+      rowSpan={6}
+      flow={{xsmall: 'row', medium: 'column'}}
+      colorMode={ColorModesEnum.DARK}
+      styleOrder={{
+        xsmall: 'reversed',
+        medium: 'default',
+      }}
+    >
       <Bento.Content padding={{xsmall: 'normal', small: 'spacious'}} fixedBottomLink>
         <Bento.Heading as="h4" size="5">
           Mercado Libre frees developers minds to focus on their missions with GitHub.
