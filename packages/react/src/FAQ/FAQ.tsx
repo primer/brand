@@ -1,9 +1,8 @@
 import React, {forwardRef, PropsWithChildren} from 'react'
 import {isFragment} from 'react-is'
 import clsx from 'clsx'
-import {useId} from '@reach/auto-id'
 
-import {useAnimation, Heading, AccordionHeading, AccordionContent, AccordionRoot, HeadingProps, Accordion} from '..'
+import {useAnimation, Heading, AccordionHeading, AccordionContent, AccordionRoot, HeadingProps} from '..'
 import type {BaseProps} from '../component-helpers'
 
 /**
@@ -18,7 +17,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
  */
 import styles from './FAQ.module.css'
 
-type FAQRootProps = PropsWithChildren<BaseProps<HTMLElement>> & React.HTMLAttributes<HTMLElement>
+export type FAQRootProps = PropsWithChildren<BaseProps<HTMLElement>> & React.HTMLAttributes<HTMLElement>
 
 const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, style, animate, className, ...rest}, ref) => {
   const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
@@ -29,7 +28,6 @@ const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, style, animate
         isFragment(child) ||
         child.type === FAQHeading ||
         child.type === FAQSubheading ||
-        child.type === FAQGroupHeading ||
         child.type === AccordionRoot
       ) {
         return true
@@ -88,111 +86,24 @@ const FAQHeading = forwardRef<HTMLHeadingElement, FAQHeadingProps>(
   },
 )
 
-type FAQSubheadingProps = BaseProps<HTMLHeadingElement> & {
+export type FAQSubheadingProps = BaseProps<HTMLHeadingElement> & {
   align?: 'start' | 'center'
   children: React.ReactNode | React.ReactNode[]
   as?: Exclude<HeadingProps['as'], 'h1'>
 } & HeadingProps
 
-function FAQSubheading({children, className, as = 'h3', size = '5', weight, ...rest}: FAQSubheadingProps) {
+function FAQSubheading({
+  children,
+  className,
+  as = 'h3',
+  size = 'subhead-large',
+  weight = 'medium',
+  ...rest
+}: FAQSubheadingProps) {
   return (
     <Heading as={as} className={clsx(styles.FAQ__subheading, className)} weight={weight} size={size} {...rest}>
       {children}
     </Heading>
-  )
-}
-
-function FAQGroupHeading({children, className, as = 'h3', ...rest}: FAQSubheadingProps) {
-  // TODO: update styling to match mocks
-  return (
-    <Heading as={as} className={clsx(styles.FAQ__subheading, className)} {...rest}>
-      {children}
-    </Heading>
-  )
-}
-
-function FAQGroup({
-  children,
-  id,
-  defaultSelectedIndex = 0,
-}: React.PropsWithChildren<{id?: string; defaultSelectedIndex?: number}>) {
-  const [selectedIndex, setSelectedIndex] = React.useState(defaultSelectedIndex)
-  const instanceId = useId(id)
-  const handleTabClick = (index: number) => (_event: React.MouseEvent<HTMLButtonElement>) => {
-    setSelectedIndex(index)
-  }
-
-  const faqChildren = React.Children.toArray(children).filter(
-    child => React.isValidElement<FAQRootProps>(child) && child.type === FAQ,
-  )
-
-  const Tabs = React.Children.map(faqChildren, (faqChild, index) => {
-    if (React.isValidElement<FAQRootProps>(faqChild) && faqChild.props.children) {
-      const GroupHeadingChild = React.Children.toArray(faqChild.props.children).find(
-        child => React.isValidElement(child) && child.type === FAQGroupHeading,
-      )
-
-      return (
-        <button
-          type="button"
-          role="tab"
-          id={`${instanceId}-tab-${index}`}
-          aria-controls={`${instanceId}-panel-${index}`}
-          aria-selected={selectedIndex === index}
-          onClick={handleTabClick(index)}
-          key={index}
-        >
-          {React.isValidElement(GroupHeadingChild) && GroupHeadingChild.props.children}
-        </button>
-      )
-    }
-    return null
-  })
-
-  const TabPanels = React.Children.map(faqChildren, (faqChild, index) => {
-    return (
-      <div
-        role="tabpanel"
-        id={`${instanceId}-panel-${index}`}
-        aria-labelledby={`${instanceId}-tab-${index}`}
-        hidden={selectedIndex !== index}
-        key={index}
-      >
-        {faqChild}
-      </div>
-    )
-  })
-
-  const SectionedAccordion = React.Children.map(faqChildren, (faqChild, index) => {
-    if (React.isValidElement<FAQRootProps>(faqChild) && faqChild.props.children) {
-      const GroupHeadingChild = React.Children.toArray(faqChild.props.children).find(
-        child => React.isValidElement(child) && child.type === FAQGroupHeading,
-      )
-      const FAQItemChild = React.Children.map(faqChild.props.children, child =>
-        React.isValidElement(child) && child.type !== FAQGroupHeading ? child : null,
-      )
-
-      return (
-        <Accordion key={index}>
-          <Accordion.Heading>
-            {React.isValidElement(GroupHeadingChild) && GroupHeadingChild.props.children}
-          </Accordion.Heading>
-          <Accordion.Content>{FAQItemChild}</Accordion.Content>
-        </Accordion>
-      )
-    }
-  })
-
-  return (
-    <>
-      <div className={clsx(styles.FAQAccordionGroup)}>{SectionedAccordion}</div>
-      <div className={clsx(styles.FAQTabbedGroup)}>
-        <div className={clsx(styles.FAQTabbedGroup__tablist)} role="tablist">
-          {Tabs}
-        </div>
-        <div className={clsx(styles.FAQTabbedGroup__tabpanelContainer)}>{TabPanels}</div>
-      </div>
-    </>
   )
 }
 
@@ -206,6 +117,4 @@ export const FAQ = Object.assign(FAQRoot, {
   Item: AccordionRoot,
   Question: AccordionHeading,
   Answer: AccordionContent,
-  Group: FAQGroup,
-  GroupHeading: FAQGroupHeading,
 })

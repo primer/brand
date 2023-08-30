@@ -1,0 +1,53 @@
+.FAQGroup {
+  display: none;
+  justify-content: space-between;
+  gap: var(--brand-stack-gap-spacious);
+}
+
+@media screen and (min-width: 48rem) {
+  .FAQGroup {
+    display: grid;
+  }
+
+  .FAQGroup__accordion {
+    display: none;
+  }
+}
+
+.FAQ__subheading {
+  margin-bottom: var(--base-size-16);
+}
+
+.FAQGroup__tablist .FAQ__heading {
+  display: none;
+}
+
+.FAQGroup__tablist-button {
+  justify-content: start;
+  border: var(--brand-borderWidth-thin) solid transparent;
+}
+
+.FAQGroup__tablist-button > span {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.FAQGroup__tablist-button[aria-selected='true'] {
+  background-color: var(--brand-FAQ-color-tabBg-selected);
+  border-color: var(--brand-FAQ-color-tabBorder-selected);
+}
+
+.FAQGroup__tablist-button span {
+  color: var(--brand-color-text-muted);
+}
+
+.FAQGroup__tablist-button[aria-selected='true'] span {
+  color: var(--brand-FAQ-color-tabLabel-selected);
+}
+
+.FAQGroup__nested-accordion-item summary h4 {
+  font-weight: var(--brand-text-weight-200);
+  font-size: var(--brand-text-size-200);
+  line-height: var(--brand-text-lineHeight-200);
+}

@@ -17,7 +17,7 @@ import {PropTableValues} from '../../../src/components'
 import {Label} from '@primer/react'
 
 ```js
-import {FAQ} from '@primer/react-brand'
+import {FAQ, FAQGroup} from '@primer/react-brand'
 ```
 
 ## Examples
@@ -124,70 +124,85 @@ import {FAQ} from '@primer/react-brand'
 
 ### Grouped FAQs
 
-`FAQ` supports content as groupings.
-
-Use `FAQ.Subheading` to create a visual separation between your `FAQ.Question` declarations.
-
-<Note>
-  Using <InlineCode>FAQ.Subheading</InlineCode> inside{' '}
-  <InlineCode>FAQ</InlineCode> will automatically change text alignment and size
-  of <InlineCode>FAQ.Heading</InlineCode>. It will also adjust the underlying
-  HTML tag from a <InlineCode>H3</InlineCode> to a <InlineCode>H2</InlineCode>.
-</Note>
+Use `FAQGroup` to display FAQ content in a compact and intuitive format.
 
 ```jsx live
-<FAQ>
-  <FAQ.Heading>Frequently asked questions</FAQ.Heading>
-  <FAQ.Subheading>Subscriptions & Payments</FAQ.Subheading>
-  <FAQ.Item>
-    <FAQ.Question>
-      What are the differences between GitHub Free, GitHub Pro, GitHub Team and
-      GitHub Enterprise plans?
-    </FAQ.Question>
-    <FAQ.Answer>
-      <p>
-        GitHub Free is our basic plan created for individuals and small teams to
-        collaborate on private and public repositories.
-      </p>
-    </FAQ.Answer>
-  </FAQ.Item>
-  <FAQ.Item>
-    <FAQ.Question>How do I view and manage my subscription?</FAQ.Question>
-    <FAQ.Answer>
-      <p>
-        You can view your account's subscription, your other paid features and
-        products, and your next billing date in your account's billing settings.
-      </p>
-    </FAQ.Answer>
-  </FAQ.Item>
-  <FAQ.Subheading>Actions & Packages</FAQ.Subheading>
-  <FAQ.Item>
-    <FAQ.Question>
-      Which plans include access to GitHub Actions and Packages?
-    </FAQ.Question>
-    <FAQ.Answer>
-      <p>
-        GitHub Actions and Packages are free for public repositories and
-        packages on all our current per-user plans, while private repositories
-        and packages receive a set amount of free minutes, storage, and data
-        transfer depending on the per-user plan. Legacy per-repository plans
-        (Bronze, Silver, Gold etc) do not come with access to GitHub Actions and
-        Packages but they can be upgraded to a current per-user plan.
-      </p>
-    </FAQ.Answer>
-  </FAQ.Item>
-  <FAQ.Item>
-    <FAQ.Question>
-      How do I manage my spending for Actions and Packages?
-    </FAQ.Question>
-    <FAQ.Answer>
-      <p>
-        You can manage your spending for Actions and Packages in your billing
-        settings page under the payment information tab.
-      </p>
-    </FAQ.Answer>
-  </FAQ.Item>
-</FAQ>
+<FAQGroup>
+  <FAQGroup.Heading>
+    Frequently asked <br /> questions
+  </FAQGroup.Heading>
+  <FAQ>
+    <FAQ.Heading>Using GitHub Enterprise</FAQ.Heading>
+    <FAQ.Item>
+      <FAQ.Question>What is GitHub Enterprise?</FAQ.Question>
+      <FAQ.Answer>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
+          ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
+          elementum.
+        </p>
+      </FAQ.Answer>
+    </FAQ.Item>
+    <FAQ.Item>
+      <FAQ.Question>How can GitHub Enterprise be deployed?</FAQ.Question>
+      <FAQ.Answer>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
+          ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
+          elementum.
+        </p>
+      </FAQ.Answer>
+    </FAQ.Item>
+    <FAQ.Item>
+      <FAQ.Question>What is GitHub Enterprise Cloud?</FAQ.Question>
+      <FAQ.Answer>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
+          ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
+          elementum.
+        </p>
+      </FAQ.Answer>
+    </FAQ.Item>
+  </FAQ>
+
+  <FAQ>
+    <FAQ.Heading>About GitHub Enterprise</FAQ.Heading>
+    <FAQ.Item>
+      <FAQ.Question>
+        What is the difference between GitHub and GitHub Enterprise?
+      </FAQ.Question>
+      <FAQ.Answer>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
+          ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
+          elementum.
+        </p>
+      </FAQ.Answer>
+    </FAQ.Item>
+    <FAQ.Item>
+      <FAQ.Question>
+        Why should organizations use GitHub Enterprise?
+      </FAQ.Question>
+      <FAQ.Answer>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
+          ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
+          elementum.
+        </p>
+      </FAQ.Answer>
+    </FAQ.Item>
+    <FAQ.Item>
+      <FAQ.Question>Who uses GitHub Enterprise?</FAQ.Question>
+      <FAQ.Answer>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
+          ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
+          elementum.
+        </p>
+      </FAQ.Answer>
+    </FAQ.Item>
+  </FAQ>
+</FAQGroup>
 ```
 
 ### Rendering with dynamic data
@@ -313,7 +328,7 @@ const App = () => {
      */
     --brand-Accordion-toggle-color-start: var(--base-color-scale-green-1);
     --brand-Accordion-toggle-color-end: var(--base-color-scale-blue-3);
-    --brand-FAQ-heading-color: linear-gradient(271.72deg, var(--base-color-scale-green-1) 7.09%, var(--base-color-scale-blue-3) 96.61%);
+    --brand-FAQ-color-heading: linear-gradient(271.72deg, var(--base-color-scale-green-1) 7.09%, var(--base-color-scale-blue-3) 96.61%);
 
     padding: 3rem;
     background-color: var(--brand-color-canvas-default);
@@ -321,7 +336,7 @@ const App = () => {
 
 
   .custom-heading {
-    background: var(--brand-FAQ-heading-color);
+    background: var(--brand-FAQ-color-heading);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -439,3 +454,20 @@ render(<App />)
 | `children`  | `ReactElement`    |         | `<p>` or `<Text>` components are recommended |
 | `id`        | `string`          |         | Sets a custom id                             |
 | `ref`       | `React.RefObject` |         | Forward a Ref to the underlying DOM node     |
+
+### FAQGroup
+
+| Name        | Type                                                                                                                           | Default | Description                              |
+| :---------- | :----------------------------------------------------------------------------------------------------------------------------- | :-----: | :--------------------------------------- |
+| `className` | `string`                                                                                                                       |         | Sets a custom class                      |
+| `id`        | `string`                                                                                                                       |         | Sets a custom id                         |
+| `ref`       | `React.RefObject`                                                                                                              |         | Forward a Ref to the underlying DOM node |
+| `children`  | <PropTableValues values={[<a href="#faq-required">FAQ</a>, <a href="#faqgroup-heading">FAQGroup.Heading</a>]} addLineBreaks /> |         | Root element for the FAQGroup component. |
+
+### FAQGroup.Heading
+
+| Name | Type                                                   | Default | Description                         |
+| :--- | :----------------------------------------------------- | :-----: | :---------------------------------- |
+| `as` | <PropTableValues values={HeadingTags} addLineBreaks /> |         | Applies the underlying HTML element |
+
+Forwards all the props from the [Heading component](/components/Heading), including `size`, and `weight`.

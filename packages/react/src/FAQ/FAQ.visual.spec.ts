@@ -21,9 +21,27 @@ test.describe('Visual Comparison: FAQ', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('FAQ / Reversed Toggles', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-faq-features--reversed-toggles&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('FAQ / Heading Left Aligned', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-faq-features--heading-left-aligned&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('FAQ / With Subheadings', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-faq-features--with-subheadings&viewMode=story',
     )
 
     await page.waitForTimeout(500)

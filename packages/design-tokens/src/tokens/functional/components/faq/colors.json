@@ -8,8 +8,8 @@
         },
         "tabBorder": {
           "selected": {
-            "value": "hsl(var(--brand-Link-color-accentHSL) / 20%)",
-            "dark": "hsl(var(--brand-Link-color-accentHSL) / 20%)"
+            "value": "hsl(var(--base-color-scale-blue-5-hsl) / 20%)",
+            "dark": "hsl(var(--base-color-scale-blue-4-hsl) / 20%)"
           }
         },
         "tabLabel": {
@@ -20,8 +20,8 @@
         },
         "tabBg": {
           "selected": {
-            "value": "hsl(var(--brand-Link-color-accentHSL) / 08%)",
-            "dark": "hsl(var(--brand-Link-color-accentHSL) / 08%)"
+            "value": "hsl(var(--base-color-scale-blue-5-hsl) / 08%)",
+            "dark": "hsl(var(--base-color-scale-blue-4-hsl) / 08%)"
           }
         }
       }

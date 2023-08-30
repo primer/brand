@@ -1,6 +1,6 @@
 import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
-import {FAQ} from '.'
+import {FAQ, FAQGroup} from '.'
 import {InlineLink} from '..'
 import {Container} from '../component-helpers'
 
@@ -125,6 +125,31 @@ AllOpen.parameters = {
   },
 }
 
+export const ReversedToggles: StoryFn<typeof FAQ> = () => {
+  return (
+    <Container>
+      <FAQ>
+        <FAQ.Heading>Frequently asked&nbsp;questions</FAQ.Heading>
+        <>
+          {fixtureData.map(({question, answer}) => {
+            return (
+              <FAQ.Item key={question} open={true}>
+                <FAQ.Question reversedToggles>{question}</FAQ.Question>
+                <FAQ.Answer>{answer}</FAQ.Answer>
+              </FAQ.Item>
+            )
+          })}
+        </>
+      </FAQ>
+    </Container>
+  )
+}
+AllOpen.parameters = {
+  axe: {
+    timeout: 5000,
+  },
+}
+
 export const HeadingLeftAligned: StoryFn<typeof FAQ> = () => {
   return (
     <Container>
@@ -145,7 +170,7 @@ export const HeadingLeftAligned: StoryFn<typeof FAQ> = () => {
   )
 }
 
-export const Groups: StoryFn<typeof FAQ> = () => {
+export const WithSubheadings: StoryFn<typeof FAQ> = () => {
   return (
     <Container>
       <FAQ>
@@ -177,36 +202,76 @@ export const Groups: StoryFn<typeof FAQ> = () => {
   )
 }
 
-export const TabedGroups: StoryFn<typeof FAQ> = () => {
+export const Groups: StoryFn<typeof FAQ> = () => {
   return (
-    <Container>
-      <FAQ.Group>
-        <FAQ.Heading>Frequently asked&nbsp;questions</FAQ.Heading>
-        <FAQ>
-          <FAQ.GroupHeading>Batch one</FAQ.GroupHeading>
-          {fixtureData.map(({question, answer}) => {
-            return (
-              <FAQ.Item key={question}>
-                <FAQ.Question>{question}</FAQ.Question>
-                <FAQ.Answer>{answer}</FAQ.Answer>
-              </FAQ.Item>
-            )
-          })}
-        </FAQ>
+    <FAQGroup>
+      <FAQGroup.Heading>
+        Frequently asked
+        <br />
+        questions
+      </FAQGroup.Heading>
+      <FAQ>
+        <FAQ.Heading>Using GitHub Enterprise</FAQ.Heading>
+        <FAQ.Item>
+          <FAQ.Question>What is GitHub Enterprise?</FAQ.Question>
+          <FAQ.Answer>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+              turpis felis nam pulvinar risus elementum.
+            </p>
+          </FAQ.Answer>
+        </FAQ.Item>
+        <FAQ.Item>
+          <FAQ.Question>How can GitHub Enterprise be deployed?</FAQ.Question>
+          <FAQ.Answer>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+              turpis felis nam pulvinar risus elementum.
+            </p>
+          </FAQ.Answer>
+        </FAQ.Item>
+        <FAQ.Item>
+          <FAQ.Question>What is GitHub Enterprise Cloud?</FAQ.Question>
+          <FAQ.Answer>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+              turpis felis nam pulvinar risus elementum.
+            </p>
+          </FAQ.Answer>
+        </FAQ.Item>
+      </FAQ>
 
-        <FAQ>
-          <FAQ.GroupHeading>Batch two</FAQ.GroupHeading>
-          {fixtureData.map(({question, answer}) => {
-            return (
-              <FAQ.Item key={question}>
-                <FAQ.Question>{question}</FAQ.Question>
-                <FAQ.Answer>{answer}</FAQ.Answer>
-              </FAQ.Item>
-            )
-          })}
-        </FAQ>
-      </FAQ.Group>
-    </Container>
+      <FAQ>
+        <FAQ.Heading>About GitHub Enterprise</FAQ.Heading>
+        <FAQ.Item>
+          <FAQ.Question>What is the difference between GitHub and GitHub Enterprise?</FAQ.Question>
+          <FAQ.Answer>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+              turpis felis nam pulvinar risus elementum.
+            </p>
+          </FAQ.Answer>
+        </FAQ.Item>
+        <FAQ.Item>
+          <FAQ.Question>Why should organizations use GitHub Enterprise?</FAQ.Question>
+          <FAQ.Answer>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+              turpis felis nam pulvinar risus elementum.
+            </p>
+          </FAQ.Answer>
+        </FAQ.Item>
+        <FAQ.Item>
+          <FAQ.Question>Who uses GitHub Enterprise?</FAQ.Question>
+          <FAQ.Answer>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+              turpis felis nam pulvinar risus elementum.
+            </p>
+          </FAQ.Answer>
+        </FAQ.Item>
+      </FAQ>
+    </FAQGroup>
   )
 }
 
