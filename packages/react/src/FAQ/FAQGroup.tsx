@@ -30,7 +30,7 @@ type FAQGroupProps = React.PropsWithChildren<{
   defaultSelectedIndex?: number
 }>
 
-function _FAQGroup({children, id, defaultSelectedIndex = 0}: FAQGroupProps) {
+function _FAQGroup({children, id, defaultSelectedIndex = 0, ...rest}: FAQGroupProps) {
   const [selectedIndex, setSelectedIndex] = React.useState(defaultSelectedIndex)
   const instanceId = useId(id)
 
@@ -75,6 +75,10 @@ function _FAQGroup({children, id, defaultSelectedIndex = 0}: FAQGroupProps) {
         React.isValidElement(child) && child.type !== FAQ.Heading ? child : null,
       )
 
+      const FAQItemHeadingText = React.Children.map(faqChild.props.children, child =>
+        React.isValidElement(child) && child.type === FAQ.Heading ? child.props.children : null,
+      )
+
       return (
         <div
           role="tabpanel"
@@ -83,6 +87,7 @@ function _FAQGroup({children, id, defaultSelectedIndex = 0}: FAQGroupProps) {
           hidden={selectedIndex !== index}
           key={index}
         >
+          {FAQItemHeadingText && <FAQ.Subheading>{FAQItemHeadingText}</FAQ.Subheading>}
           {FAQItemChild}
         </div>
       )
@@ -120,7 +125,7 @@ function _FAQGroup({children, id, defaultSelectedIndex = 0}: FAQGroupProps) {
   )
 
   return (
-    <Grid>
+    <Grid {...rest}>
       <Grid.Column>
         {GroupHeading && (
           <Box marginBlockEnd={{narrow: 48, regular: 112}}>
