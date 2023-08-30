@@ -16,14 +16,6 @@
             }
           }
         }
-      },
-      "tab": {
-        "paddingInline": {
-          "value": "var(--base-size-20)"
-        },
-        "paddingBlock": {
-          "value": "var(--base-size-16)"
-        }
       }
     }
   }

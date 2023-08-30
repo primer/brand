@@ -55,6 +55,18 @@ test.describe('Visual Comparison: FAQ', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for Group narrow view (mobile)', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('FAQ / Group narrow view (mobile)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-faq-features--groups-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot()).toMatchSnapshot()
+    })
+  })
   test('FAQ / Dynamic Data Example', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-faq-features--dynamic-data-example&viewMode=story',

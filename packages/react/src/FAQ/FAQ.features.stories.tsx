@@ -1,5 +1,6 @@
 import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
+import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {FAQ, FAQGroup} from '.'
 import {InlineLink} from '..'
 import {Container} from '../component-helpers'
@@ -8,6 +9,10 @@ export default {
   title: 'Components/FAQ/features',
   component: FAQ,
   parameters: {
+    layout: 'fullscreen',
+    viewport: {
+      viewports: INITIAL_VIEWPORTS,
+    },
     a11y: {
       config: {
         rules: [
@@ -274,6 +279,85 @@ export const Groups: StoryFn<typeof FAQ> = () => {
     </FAQGroup>
   )
 }
+
+export const GroupsNarrow: StoryFn<typeof FAQ> = () => {
+  return (
+    <FAQGroup>
+      <FAQGroup.Heading>
+        Frequently asked
+        <br />
+        questions
+      </FAQGroup.Heading>
+      <FAQ>
+        <FAQ.Heading>Using GitHub Enterprise</FAQ.Heading>
+        <FAQ.Item>
+          <FAQ.Question>What is GitHub Enterprise?</FAQ.Question>
+          <FAQ.Answer>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+              turpis felis nam pulvinar risus elementum.
+            </p>
+          </FAQ.Answer>
+        </FAQ.Item>
+        <FAQ.Item>
+          <FAQ.Question>How can GitHub Enterprise be deployed?</FAQ.Question>
+          <FAQ.Answer>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+              turpis felis nam pulvinar risus elementum.
+            </p>
+          </FAQ.Answer>
+        </FAQ.Item>
+        <FAQ.Item>
+          <FAQ.Question>What is GitHub Enterprise Cloud?</FAQ.Question>
+          <FAQ.Answer>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+              turpis felis nam pulvinar risus elementum.
+            </p>
+          </FAQ.Answer>
+        </FAQ.Item>
+      </FAQ>
+
+      <FAQ>
+        <FAQ.Heading>About GitHub Enterprise</FAQ.Heading>
+        <FAQ.Item>
+          <FAQ.Question>What is the difference between GitHub and GitHub Enterprise?</FAQ.Question>
+          <FAQ.Answer>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+              turpis felis nam pulvinar risus elementum.
+            </p>
+          </FAQ.Answer>
+        </FAQ.Item>
+        <FAQ.Item>
+          <FAQ.Question>Why should organizations use GitHub Enterprise?</FAQ.Question>
+          <FAQ.Answer>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+              turpis felis nam pulvinar risus elementum.
+            </p>
+          </FAQ.Answer>
+        </FAQ.Item>
+        <FAQ.Item>
+          <FAQ.Question>Who uses GitHub Enterprise?</FAQ.Question>
+          <FAQ.Answer>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+              turpis felis nam pulvinar risus elementum.
+            </p>
+          </FAQ.Answer>
+        </FAQ.Item>
+      </FAQ>
+    </FAQGroup>
+  )
+}
+GroupsNarrow.parameters = {
+  viewport: {
+    defaultViewport: 'iphonexr',
+  },
+}
+GroupsNarrow.storyName = 'Group narrow view (mobile)'
 
 export const DynamicDataExample: StoryFn<typeof FAQ> = () => {
   const faqs = [
