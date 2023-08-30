@@ -107,7 +107,7 @@
 
 .Bento-padding--condensed > img,
 .Bento-padding--normal > img,
-.Bento-padding--spacious {
+.Bento-padding--spacious > img {
   border-radius: var(--brand-borderRadius-large);
 }
 
