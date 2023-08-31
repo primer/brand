@@ -155,7 +155,6 @@ Breakpoints use `min-width`, where it will also apply your chosen `span` value t
   </Bento.Content>
   <Bento.Visual>
     <img
-      className="test"
       alt="placeholder, blank area with an gray background color"
       src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
     />
@@ -186,7 +185,7 @@ The Bento component API supports all standard HTML attribute props for the inter
 | `flow`               | `"row"`, `"column"`, `ResponsiveFlow`                                                  |           | `false`  | The flow of the `Bento.Content` and `Bento.Visual` within the `Bento.Item`                                                      |
 | `colorMode`          | `"light"`, `"dark"`                                                                    | `"light"` | `false`  | The color mode specified for this `Bento.Item`                                                                                  |
 | `visualAsBackground` | `boolean`                                                                              |  `false`  | `false`  | Determines if the `Bento.Visual` child element is set as the background for the `Bento.Item` with the `Bento.Content` overlayed |
-| `styleOrder`         | `"default"`, `"reversed"`, `ResponsiveStyleOrder`                                      | `default` | `false`  | Determines the visual order for the `Bento.Item`. This changes the semantic ordering of elements for accessibility.             |
+| `order`              | `"default"`, `"reversed"`, `ResponsiveOrder`                                           | `default` | `false`  | Determines the visual order for the `Bento.Item`. This changes the semantic ordering of elements for accessibility.             |
 
 The Bento.Item component API supports all standard HTML attribute props for the interface HTMLDivElement, while providing some additional behavior as described above.
 

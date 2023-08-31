@@ -21,14 +21,11 @@ type ResponsiveFlow = Partial<Record<Size, Flow>>
 type Align = 'start' | 'center' | 'end'
 type ResponsiveAlign = Partial<Record<Size, Align>>
 
-type ReducedAlign = 'start' | 'center'
-type ResponsiveReducedAlign = Partial<Record<Size, ReducedAlign>>
-
 type Padding = 'condensed' | 'normal' | 'spacious'
 type ResponsivePadding = Partial<Record<Size, Padding>>
 
-type StyleOrder = 'default' | 'reversed'
-type ResponsiveStyleOrder = Partial<Record<Size, StyleOrder>>
+type Order = 'default' | 'reversed'
+type ResponsiveOrder = Partial<Record<Size, Order>>
 
 type BentoProps = React.HTMLAttributes<HTMLDivElement> & BaseProps<HTMLDivElement>
 
@@ -46,7 +43,7 @@ type BentoItemProps = {
   flow?: Flow | ResponsiveFlow
   colorMode?: ColorModesEnum.LIGHT | ColorModesEnum.DARK
   visualAsBackground?: boolean
-  styleOrder?: StyleOrder | ResponsiveStyleOrder
+  order?: Order | ResponsiveOrder
 } & React.HTMLAttributes<HTMLDivElement> &
   BaseProps<HTMLDivElement>
 
@@ -77,22 +74,22 @@ const returnClassBasedOnResponsiveMap = (
 }
 
 type ReturnOrderedChildrenProps = {
-  styleOrder: StyleOrder | ResponsiveStyleOrder
+  order: Order | ResponsiveOrder
   children: React.ReactNode
   currentBreakpointSize?: BreakpointSize
 }
 
-const returnOrderedChildren = ({styleOrder, children, currentBreakpointSize}: ReturnOrderedChildrenProps) => {
-  if (typeof styleOrder === 'string') {
-    return styleOrder === 'default' ? children : React.Children.toArray(children).reverse()
-  } else if (typeof styleOrder === 'object' && currentBreakpointSize) {
-    // This handles setting the styleOrder based on breakpoints as you might expect via CSS
-    const filledStyleOrder: ResponsiveStyleOrder = {}
-    let previousSize: StyleOrder = 'default'
+const returnOrderedChildren = ({order, children, currentBreakpointSize}: ReturnOrderedChildrenProps) => {
+  if (typeof order === 'string') {
+    return order === 'default' ? children : React.Children.toArray(children).reverse()
+  } else if (typeof order === 'object' && currentBreakpointSize) {
+    // This handles setting the order based on breakpoints as you might expect via CSS
+    const filledStyleOrder: ResponsiveOrder = {}
+    let previousSize: Order = 'default'
     for (const size of Object.keys(BreakpointSize)) {
       const lowerCaseSize = size.toLocaleLowerCase()
-      if (styleOrder[lowerCaseSize]) previousSize = styleOrder[lowerCaseSize]
-      filledStyleOrder[lowerCaseSize] = styleOrder[lowerCaseSize] || previousSize
+      if (order[lowerCaseSize]) previousSize = order[lowerCaseSize]
+      filledStyleOrder[lowerCaseSize] = order[lowerCaseSize] || previousSize
     }
     return filledStyleOrder[currentBreakpointSize] === 'default' ? children : React.Children.toArray(children).reverse()
   } else {
@@ -103,13 +100,13 @@ const returnOrderedChildren = ({styleOrder, children, currentBreakpointSize}: Re
 const Item = ({
   className,
   columnStart,
-  columnSpan,
+  columnSpan = 12,
   rowStart,
   rowSpan,
   flow = 'row',
   colorMode,
   visualAsBackground = false,
-  styleOrder = 'default',
+  order = 'default',
   children,
   ...rest
 }: BentoItemProps) => {
@@ -142,7 +139,7 @@ const Item = ({
     return acc
   }, [])
 
-  const orderedChildren = returnOrderedChildren({styleOrder, children: validChildren, currentBreakpointSize})
+  const orderedChildren = returnOrderedChildren({order, children: validChildren, currentBreakpointSize})
 
   return (
     <div
@@ -171,7 +168,7 @@ type BentoContentProps = {
 const Content = ({
   children,
   leadingVisual: LeadingVisual,
-  padding = 'normal',
+  padding = 'spacious',
   verticalAlign = 'start',
   horizontalAlign = 'start',
   fixedBottomLink = false,
@@ -203,7 +200,7 @@ const Content = ({
           variant: TextChild.props.variant || 'muted',
           as: TextChild.props.as || 'p',
           size: TextChild.props.size || '300',
-          className: clsx(styles['Bento_Content-text'], TextChild.props.className),
+          className: clsx(styles['Bento__Content-text'], TextChild.props.className),
         })}
       {React.isValidElement(LinkChild) &&
         React.cloneElement(LinkChild as React.ReactElement<LinkProps>, {
@@ -265,11 +262,13 @@ const _Heading = forwardRef(
 type BentoVisualProps = {
   fillMedia?: boolean
   position?: string
-  padding?: 'condensed' | 'normal' | 'spacious'
+  padding?: Padding | ResponsivePadding
 } & React.HTMLAttributes<HTMLDivElement> &
   BaseProps<HTMLDivElement>
 
 const Visual = ({fillMedia = true, position = '50% 50%', padding, className, children, ...rest}: BentoVisualProps) => {
+  const bentoVisualClassArray = [styles.Bento__Visual]
+  bentoVisualClassArray.push(...returnClassBasedOnResponsiveMap('Bento', 'padding', padding))
   const childrenToRender = React.Children.map(children, child => {
     if (React.isValidElement(child)) {
       if (child.type === 'img') {
@@ -281,15 +280,7 @@ const Visual = ({fillMedia = true, position = '50% 50%', padding, className, chi
     }
   })
   return (
-    <div
-      className={clsx(
-        styles.Bento__Visual,
-        !fillMedia && styles['Bento__Visual-no-fill'],
-        !!padding && styles[`Bento-padding--${padding}`],
-        className,
-      )}
-      {...rest}
-    >
+    <div className={clsx(...bentoVisualClassArray, !fillMedia && styles['Bento__Visual-no-fill'], className)} {...rest}>
       {childrenToRender}
     </div>
   )

@@ -131,8 +131,9 @@
   margin-top: auto;
 }
 
-.Bento_Content-text {
+.Bento__Content-text {
   margin-top: var(--base-size-8);
+  margin-bottom: var(--base-size-24);
 }
 
 /* Column Span */

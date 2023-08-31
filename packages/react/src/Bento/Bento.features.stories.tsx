@@ -1,12 +1,12 @@
 import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
-import {Bento} from '.'
+import {CopilotIcon} from '@primer/octicons-react'
 import {Text, Link, ColorModesEnum} from '../'
+import {Bento} from '.'
 import placeholderImage from '../fixtures/images/placeholder-visual-universe.png'
 import platformAI from '../fixtures/images/Platform-AI.png'
 import mercardo from '../fixtures/images/mercado.png'
 import analyzeAndDebug from '../fixtures/images/analyzeAndDebug.png'
-import {CopilotIcon} from '@primer/octicons-react'
 import styles from './Bento.features.stories.module.css'
 
 export default {
@@ -129,7 +129,9 @@ export const Example: StoryFn<typeof Bento> = () => (
         <Bento.Heading as="h4" size="5">
           Unlocking innovation at scale with AI-driven software development.
         </Bento.Heading>
-        <Link href="#">Learn more about Copilot</Link>
+        <Link href="#" variant="default">
+          Learn more about Copilot
+        </Link>
       </Bento.Content>
     </Bento.Item>
     <Bento.Item columnSpan={{xsmall: 12, medium: 5}} rowSpan={{xsmall: 3, small: 5}} colorMode={ColorModesEnum.DARK}>
@@ -156,7 +158,7 @@ export const Example: StoryFn<typeof Bento> = () => (
       rowSpan={6}
       flow={{xsmall: 'row', medium: 'column'}}
       colorMode={ColorModesEnum.DARK}
-      styleOrder={{
+      order={{
         xsmall: 'reversed',
         medium: 'default',
       }}

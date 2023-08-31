@@ -207,7 +207,7 @@ describe('Bento.Content', () => {
     const {getByTestId} = render(<Bento.Content data-testid={testId} padding={padding} />)
 
     const BentoContentEl = getByTestId(testId)
-    expect(BentoContentEl.classList).toContain(`Bento-padding--${padding}`)
+    expect(BentoContentEl.classList).toContain(`Bento--padding-${padding}`)
   })
 
   it('has no a11y violations', async () => {
@@ -262,7 +262,7 @@ describe('Bento.Visual', () => {
     const {getByTestId} = render(<Bento.Visual data-testid={testId} padding={padding} />)
 
     const BentoVisualEl = getByTestId(testId)
-    expect(BentoVisualEl.classList).toContain(`Bento-padding--${padding}`)
+    expect(BentoVisualEl.classList).toContain(`Bento--padding-${padding}`)
   })
 
   it('adds the class for fillMedia', () => {

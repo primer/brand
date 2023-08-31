@@ -256,8 +256,8 @@ VisualPaddingSpacious.parameters = {
   },
 }
 
-export const StyleOrderReversed: StoryFn<typeof Bento> = () => (
-  <Bento.Item styleOrder="reversed">
+export const OrderReversed: StoryFn<typeof Bento> = () => (
+  <Bento.Item order="reversed">
     <Bento.Content>
       <Bento.Heading as="h3">Heading</Bento.Heading>
       <Text>
@@ -272,7 +272,7 @@ export const StyleOrderReversed: StoryFn<typeof Bento> = () => (
   </Bento.Item>
 )
 
-StyleOrderReversed.parameters = {
+OrderReversed.parameters = {
   viewport: {
     defaultViewport: 'iphonexr',
   },
@@ -381,7 +381,7 @@ export const VerticalAlignCenter: StoryFn<typeof Bento> = () => (
 
 export const VerticalAlignEnd: StoryFn<typeof Bento> = () => (
   <Bento.Item flow="column">
-    <Bento.Content padding="normal" verticalAlign="end">
+    <Bento.Content padding="normal" verticalAlign="end" fixedBottomLink>
       <Bento.Heading as="h3">Heading</Bento.Heading>
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
