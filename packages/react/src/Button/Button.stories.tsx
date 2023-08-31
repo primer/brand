@@ -1,12 +1,13 @@
 import {Meta, StoryFn} from '@storybook/react'
 import React from 'react'
+import {ChevronDownIcon, SearchIcon} from '@primer/octicons-react'
 import {Button, ButtonVariants, ButtonSizes, defaultButtonVariant, defaultButtonSize} from '.'
 
 export default {
   title: 'Components/Button',
   component: Button,
   args: {
-    as: 'a',
+    as: 'button',
     variant: defaultButtonVariant,
     size: defaultButtonSize,
     block: false,
@@ -15,6 +16,8 @@ export default {
     disabled: false,
     'aria-disabled': false,
     hasArrow: true,
+    leadingVisual: false,
+    trailingVisual: false,
   },
   // overriding default type inference for args with more useful control types
   argTypes: {
@@ -69,10 +72,26 @@ export default {
         type: 'boolean',
       },
     },
+    leadingVisual: {
+      control: {type: 'boolean'},
+      name: 'leading visual',
+      description: 'Octicon',
+    },
+    trailingVisual: {
+      control: {type: 'boolean'},
+      name: 'trailing visual',
+      description: 'Octicon',
+    },
   },
 } as Meta<typeof Button>
 
-const Template: StoryFn<typeof Button> = args => <Button {...args} />
+const Template: StoryFn<typeof Button> = args => (
+  <Button
+    {...args}
+    leadingVisual={args.leadingVisual ? SearchIcon : undefined}
+    trailingVisual={args.trailingVisual ? ChevronDownIcon : undefined}
+  />
+)
 
 export const Playground = Template.bind({})
 export const Default = () => <Button>Default</Button>

@@ -393,7 +393,7 @@ const _SearchInternal = (
         >
           <div className={clsx(styles['SubdomainNavBar-search-dialog-control-area'])}>
             <form className={clsx(styles['SubdomainNavBar-search-form'])} onSubmit={onSubmit} role="search">
-              <FormControl fullWidth size="large">
+              <FormControl fullWidth size="medium">
                 <FormControl.Label visuallyHidden>Search</FormControl.Label>
                 <TextInput
                   ref={ref}

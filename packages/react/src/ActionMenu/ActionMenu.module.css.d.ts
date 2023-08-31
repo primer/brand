@@ -6,7 +6,6 @@ declare const styles: {
   readonly "ActionMenu__menu--visible": string;
   readonly "ActionMenu__item": string;
   readonly "ActionMenu__item--selection-type-single": string;
-  readonly "ActionMenu__button--active": string;
   readonly "ActionMenu__item-leadingVisual": string;
   readonly "ActionMenu__item-text": string;
   readonly "ActionMenu__item-icon": string;

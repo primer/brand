@@ -53,7 +53,6 @@
 
 .Select-wrapper--medium {
   height: var(--brand-control-medium-size);
-  height: 2.5rem;
 }
 
 .Select-wrapper--medium::after {
@@ -63,13 +62,13 @@
 .Select--medium {
   font-weight: var(--brand-text-weight-100);
   font-size: var(--brand-text-size-100);
-  padding-inline: 10px;
+  padding-inline: var(--brand-control-medium-paddingInline-condensed);
   padding-inline-end: calc(var(--brand-control-medium-paddingInline-condensed) + var(--base-size-16));
+  padding-block: 0;
 }
 
 .Select-wrapper--large {
   height: var(--brand-control-large-size);
-  height: 3rem;
 }
 
 .Select-wrapper--large::after {
@@ -79,8 +78,9 @@
 .Select--large {
   font-weight: var(--brand-text-weight-200);
   font-size: var(--brand-text-size-200);
-  padding-inline: 12px;
+  padding-inline: var(--brand-control-large-paddingInline-condensed);
   padding-inline-end: calc(var(--brand-control-large-paddingInline-condensed) + var(--base-size-16));
+  padding-block: 0;
 }
 
 /*
