@@ -19,22 +19,36 @@ export default {
       description: 'Color of Icon',
       control: {
         type: 'inline-radio',
-        options: [...CardIconColors],
       },
+      options: [...CardIconColors],
     },
     iconHasBackground: {
-      description: 'Icon has background',
+      name: 'iconHasBackground',
+      type: {name: 'boolean', required: false},
       control: {
-        type: 'inline-radio',
-        options: [false, true],
+        type: 'boolean',
+      },
+    },
+    hasBorder: {
+      name: 'hasBorder',
+      type: {name: 'boolean', required: false},
+      control: {
+        type: 'boolean',
+      },
+    },
+    hasShadow: {
+      name: 'hasShadow',
+      type: {name: 'boolean', required: false},
+      control: {
+        type: 'boolean',
       },
     },
     labelColor: {
       description: 'Color of Label',
       control: {
         type: 'inline-radio',
-        options: [...LabelColors],
       },
+      options: [...LabelColors],
     },
     heading: {
       name: 'heading',
@@ -59,7 +73,7 @@ export default {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Template: StoryFn<typeof Card> = (_, storyArgs: any) => (
-  <Card href="https://github.com">
+  <Card href="https://github.com" hasBorder={storyArgs.args.hasBorder} hasShadow={storyArgs.args.hasShadow}>
     <Card.Icon hasBackground={storyArgs.args.iconHasBackground} icon={CopilotIcon} color={storyArgs.args.iconColor} />
     <Card.Heading>{storyArgs.args.heading}</Card.Heading>
     <Card.Label color={storyArgs.args.labelColor}>Beta</Card.Label>

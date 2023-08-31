@@ -45,13 +45,28 @@ export type CardProps = {
    * Changes the cta text of the card
    * */
   ctaText?: string
+  hasBorder?: boolean
+  hasShadow?: boolean
 } & Omit<BaseProps<HTMLDivElement>, 'animate'> &
   Omit<React.ComponentPropsWithoutRef<'div'>, 'onMouseEnter' | 'onMouseLeave' | 'onFocus' | 'onBlur'> &
   Pick<React.ComponentPropsWithoutRef<'a'>, 'onMouseEnter' | 'onMouseLeave' | 'onFocus' | 'onBlur'>
 
 const CardRoot = forwardRef<HTMLDivElement, CardProps>(
   (
-    {onMouseEnter, onMouseLeave, onFocus, onBlur, children, className, ctaText = 'Learn more', href, style, ...props},
+    {
+      onMouseEnter,
+      onMouseLeave,
+      onFocus,
+      onBlur,
+      children,
+      className,
+      ctaText = 'Learn more',
+      href,
+      hasBorder = false,
+      hasShadow = false,
+      style,
+      ...props
+    },
     ref,
   ) => {
     const cardRef = useProvidedRefOrCreate(ref as RefObject<HTMLDivElement>)
@@ -111,7 +126,17 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
     )
 
     return (
-      <div className={clsx(styles.Card, hasIcon && styles['Card--has-icon'], className)} ref={cardRef} {...props}>
+      <div
+        className={clsx(
+          styles.Card,
+          hasIcon && styles['Card--icon'],
+          hasBorder && styles['Card--border'],
+          hasShadow && styles['Card--shadow'],
+          className,
+        )}
+        ref={cardRef}
+        {...props}
+      >
         {React.Children.map(filteredChildren, child => {
           if (React.isValidElement(child) && typeof child.type !== 'string' && child.type === CardHeading) {
             return React.cloneElement<CardHeadingProps>(child as React.ReactElement<CardHeadingProps>, {
