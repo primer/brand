@@ -14,21 +14,28 @@ import {VideoPlayer} from '@primer/react-brand'
 
 ## Examples
 
+<!---
+TODO: Fix asset loading in environments that don't use `pathPrefix`. This is a temporary solution to load assets in production deployments, but currently doesn't work in dev mode or preview URLs
+-->
+
 ### Default
 
 ```jsx live
 <VideoPlayer title="GitHub media player">
-  <VideoPlayer.Source src="/example.mp4" />
-  <VideoPlayer.Track src="/example.vtt" />
+  <VideoPlayer.Source src="/brand/assets/example.mp4" />
+  <VideoPlayer.Track src="/brand/assets/example.vtt" />
 </VideoPlayer>
 ```
 
 ## With poster
 
 ```jsx live
-<VideoPlayer poster="/example-poster.png" title="GitHub media player">
-  <VideoPlayer.Source src="/example.mp4" />
-  <VideoPlayer.Track src="/example.vtt" />
+<VideoPlayer
+  poster="/brand/assets/example-poster.png"
+  title="GitHub media player"
+>
+  <VideoPlayer.Source src="/brand/assets/example.mp4" />
+  <VideoPlayer.Track src="/brand/assets/example.vtt" />
 </VideoPlayer>
 ```
 
@@ -36,8 +43,8 @@ import {VideoPlayer} from '@primer/react-brand'
 
 ```jsx live
 <VideoPlayer branding={false} title="GitHub media player">
-  <VideoPlayer.Source src="/example.mp4" />
-  <VideoPlayer.Track src="/example.vtt" />
+  <VideoPlayer.Source src="/brand/assets/example.mp4" />
+  <VideoPlayer.Track src="/brand/assets/example.vtt" />
 </VideoPlayer>
 ```
 

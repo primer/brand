@@ -17,7 +17,6 @@ const _Input = forwardRef(
         if (child.type === FormControl) {
           return React.cloneElement(child, {
             fullWidth: true,
-            size: 'large',
             required: true,
             ...child.props,
           })
