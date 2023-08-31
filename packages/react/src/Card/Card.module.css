@@ -5,7 +5,8 @@
   background-color: var(--brand-Card-background-default);
   border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
   box-shadow: var(--brand-Card-shadow);
-  border-radius: var(--brand-borderRadius-medium);
+  /* Temporary values until a new scale is defined https://github.com/github/primer/issues/2607 */
+  border-radius: var(--base-size-16);
   padding: var(--base-size-32);
   transition: transform var(--brand-Card-animation-duration) var(--brand-Card-animation-easing);
   display: grid;
@@ -70,7 +71,8 @@
 
 .Card__image {
   margin-bottom: var(--base-size-28);
-  border-radius: var(--brand-borderRadius-small);
+  /* Temporary values until a new scale is defined https://github.com/github/primer/issues/2607 */
+  border-radius: var(--base-size-8);
   overflow: hidden;
   grid-area: image;
 }
