@@ -87,7 +87,7 @@
   object-fit: cover;
 }
 
-.Bento__Visual-no-fill > img {
+.Bento__Visual--no-fill > img {
   height: 100%;
   width: 100%;
   object-fit: contain;

@@ -280,7 +280,10 @@ const Visual = ({fillMedia = true, position = '50% 50%', padding, className, chi
     }
   })
   return (
-    <div className={clsx(...bentoVisualClassArray, !fillMedia && styles['Bento__Visual-no-fill'], className)} {...rest}>
+    <div
+      className={clsx(...bentoVisualClassArray, !fillMedia && styles['Bento__Visual--no-fill'], className)}
+      {...rest}
+    >
       {childrenToRender}
     </div>
   )

@@ -6,7 +6,7 @@ declare const styles: {
   readonly 'Bento__Content-icon': string
   readonly 'Bento__heading--muted': string
   readonly Bento__Visual: string
-  readonly 'Bento__Visual-no-fill': string
+  readonly 'Bento__Visual--no-fill': string
   readonly 'Bento-padding--condensed': string
   readonly 'Bento-padding--normal': string
   readonly 'Bento-padding--spacious': string

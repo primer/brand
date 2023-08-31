@@ -270,7 +270,7 @@ describe('Bento.Visual', () => {
     const {getByTestId} = render(<Bento.Visual data-testid={testId} fillMedia={fillMedia} />)
 
     const BentoVisualEl = getByTestId(testId)
-    expect(BentoVisualEl.classList).toContain('Bento__Visual-no-fill')
+    expect(BentoVisualEl.classList).toContain('Bento__Visual--no-fill')
   })
 
   it('has no a11y violations', async () => {
