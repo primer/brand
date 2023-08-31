@@ -5,7 +5,7 @@
 Updated tokens for FAQ
 
 ```diff
-- --brand-FAQ-maxWidt;
+- --brand-FAQ-maxWidth;
 + --brand-FAQ-maxWidth-list
 ```
 
