@@ -15,7 +15,7 @@
   grid-template-rows: auto 1fr;
   grid-template-columns: 1fr;
   overflow: hidden;
-  border: 1px solid var(--brand-color-border-default);
+  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
 }
 
 .Bento__Item--visual-as-background.Bento__Item {
