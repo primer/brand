@@ -61,6 +61,7 @@ function _FAQGroup({children, id, defaultSelectedIndex = 0, ...rest}: FAQGroupPr
           aria-selected={selectedIndex === index}
           onClick={handleTabClick(index)}
           key={index}
+          data-testid={`FAQGroup-tab-${index + 1}`}
         >
           {React.isValidElement(GroupHeadingChild) && GroupHeadingChild.props.children}
         </Button>
@@ -86,8 +87,13 @@ function _FAQGroup({children, id, defaultSelectedIndex = 0, ...rest}: FAQGroupPr
           aria-labelledby={`${instanceId}-tab-${index}`}
           hidden={selectedIndex !== index}
           key={index}
+          data-testid={`FAQGroup-tab-panel-${index + 1}`}
         >
-          {FAQItemHeadingText && <FAQ.Subheading>{FAQItemHeadingText}</FAQ.Subheading>}
+          {FAQItemHeadingText && (
+            <FAQ.Subheading data-testid={`FAQGroup-tab-panel-heading-${index + 1}`}>
+              {FAQItemHeadingText}
+            </FAQ.Subheading>
+          )}
           {FAQItemChild}
         </div>
       )
