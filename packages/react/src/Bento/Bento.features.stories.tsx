@@ -125,7 +125,7 @@ export const Example: StoryFn<typeof Bento> = () => (
       visualAsBackground
       className={styles['purple-background']}
     >
-      <Bento.Content padding={{xsmall: 'normal', small: 'spacious'}} fixedBottomLink leadingVisual={<CopilotIcon />}>
+      <Bento.Content padding={{xsmall: 'normal', small: 'spacious'}} leadingVisual={<CopilotIcon />}>
         <Bento.Heading as="h4" size="5">
           Unlocking innovation at scale with AI-driven software development.
         </Bento.Heading>
@@ -163,7 +163,7 @@ export const Example: StoryFn<typeof Bento> = () => (
         medium: 'default',
       }}
     >
-      <Bento.Content padding={{xsmall: 'normal', small: 'spacious'}} fixedBottomLink>
+      <Bento.Content padding={{xsmall: 'normal', small: 'spacious'}}>
         <Bento.Heading as="h4" size="5">
           Mercado Libre frees developers minds to focus on their missions with GitHub.
         </Bento.Heading>

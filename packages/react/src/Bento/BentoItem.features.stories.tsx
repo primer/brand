@@ -280,7 +280,7 @@ OrderReversed.parameters = {
 
 export const VisualAsBackground: StoryFn<typeof Bento> = () => (
   <Bento.Item visualAsBackground>
-    <Bento.Content fixedBottomLink>
+    <Bento.Content>
       <Bento.Heading>Heading</Bento.Heading>
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
@@ -381,7 +381,7 @@ export const VerticalAlignCenter: StoryFn<typeof Bento> = () => (
 
 export const VerticalAlignEnd: StoryFn<typeof Bento> = () => (
   <Bento.Item flow="column">
-    <Bento.Content padding="normal" verticalAlign="end" fixedBottomLink>
+    <Bento.Content padding="normal" verticalAlign="end">
       <Bento.Heading>Heading</Bento.Heading>
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
