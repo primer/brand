@@ -168,7 +168,7 @@ const Content = ({
   children,
   leadingVisual: LeadingVisual,
   padding = 'spacious',
-  verticalAlign = 'start',
+  verticalAlign,
   horizontalAlign = 'start',
   className,
   ...rest

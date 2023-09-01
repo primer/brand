@@ -64,27 +64,27 @@ export const MixedThemeItems: StoryFn<typeof Bento> = () => (
 export const ResponsiveItems: StoryFn<typeof Bento> = () => (
   <Bento>
     <Bento.Item
-      columnSpan={{xsmall: 12, small: 12, medium: 6, large: 4, xlarge: 3, xxlarge: 2}}
+      columnSpan={{xsmall: 12, small: 12, medium: 6, large: 4, xxlarge: 2}}
       rowSpan={{xsmall: 1, small: 2, medium: 3, large: 4}}
     />
     <Bento.Item
-      columnSpan={{xsmall: 12, small: 12, medium: 6, large: 4, xlarge: 3, xxlarge: 2}}
+      columnSpan={{xsmall: 12, small: 12, medium: 6, large: 4, xxlarge: 2}}
       rowSpan={{xsmall: 1, small: 2, medium: 3, large: 4}}
     />
     <Bento.Item
-      columnSpan={{xsmall: 12, small: 12, medium: 6, large: 4, xlarge: 3, xxlarge: 2}}
+      columnSpan={{xsmall: 12, small: 12, medium: 6, large: 4, xxlarge: 2}}
       rowSpan={{xsmall: 1, small: 2, medium: 3, large: 4}}
     />
     <Bento.Item
-      columnSpan={{xsmall: 12, small: 12, medium: 6, large: 4, xlarge: 3, xxlarge: 2}}
+      columnSpan={{xsmall: 12, small: 12, medium: 6, large: 4, xxlarge: 2}}
       rowSpan={{xsmall: 1, small: 2, medium: 3, large: 4}}
     />
     <Bento.Item
-      columnSpan={{xsmall: 12, small: 12, medium: 6, large: 4, xlarge: 3, xxlarge: 2}}
+      columnSpan={{xsmall: 12, small: 12, medium: 6, large: 4, xxlarge: 2}}
       rowSpan={{xsmall: 1, small: 2, medium: 3, large: 4}}
     />
     <Bento.Item
-      columnSpan={{xsmall: 12, small: 12, medium: 6, large: 4, xlarge: 3, xxlarge: 2}}
+      columnSpan={{xsmall: 12, small: 12, medium: 6, large: 4, xxlarge: 2}}
       rowSpan={{xsmall: 1, small: 2, medium: 3, large: 4}}
     />
   </Bento>

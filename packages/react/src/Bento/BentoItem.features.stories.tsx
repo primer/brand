@@ -17,17 +17,19 @@ export default {
 } as Meta<typeof Bento>
 
 export const HeadingWithEmphasizedText: StoryFn<typeof Bento> = () => (
-  <Bento.Item>
-    <Bento.Content>
-      <Bento.Heading>
-        <em>Heading</em> with emphasis
-      </Bento.Heading>
-      <Link href="#">Call to action</Link>
-    </Bento.Content>
-    <Bento.Visual position="50% 100%">
-      <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
-    </Bento.Visual>
-  </Bento.Item>
+  <Bento>
+    <Bento.Item rowSpan={4}>
+      <Bento.Content>
+        <Bento.Heading>
+          <em>Heading</em> with emphasis
+        </Bento.Heading>
+        <Link href="#">Call to action</Link>
+      </Bento.Content>
+      <Bento.Visual position="50% 100%">
+        <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+      </Bento.Visual>
+    </Bento.Item>
+  </Bento>
 )
 
 HeadingWithEmphasizedText.parameters = {
@@ -37,19 +39,21 @@ HeadingWithEmphasizedText.parameters = {
 }
 
 export const VisualPositionBottom: StoryFn<typeof Bento> = () => (
-  <Bento.Item>
-    <Bento.Content>
-      <Bento.Heading>Heading</Bento.Heading>
-      <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
-        felis nam pulvinar risus elementum.
-      </Text>
-      <Link href="#">Call to action</Link>
-    </Bento.Content>
-    <Bento.Visual position="50% 100%">
-      <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
-    </Bento.Visual>
-  </Bento.Item>
+  <Bento>
+    <Bento.Item rowSpan={4}>
+      <Bento.Content>
+        <Bento.Heading>Heading</Bento.Heading>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </Bento.Content>
+      <Bento.Visual position="50% 100%">
+        <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+      </Bento.Visual>
+    </Bento.Item>
+  </Bento>
 )
 
 VisualPositionBottom.parameters = {
@@ -59,63 +63,69 @@ VisualPositionBottom.parameters = {
 }
 
 export const FlowColumn: StoryFn<typeof Bento> = () => (
-  <Bento.Item flow="column">
-    <Bento.Content>
-      <Bento.Heading>Heading</Bento.Heading>
-      <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
-        felis nam pulvinar risus elementum.
-      </Text>
-      <Link href="#">Call to action</Link>
-    </Bento.Content>
-    <Bento.Visual>
-      <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
-    </Bento.Visual>
-  </Bento.Item>
+  <Bento>
+    <Bento.Item flow="column" rowSpan={4}>
+      <Bento.Content>
+        <Bento.Heading>Heading</Bento.Heading>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </Bento.Content>
+      <Bento.Visual>
+        <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+      </Bento.Visual>
+    </Bento.Item>
+  </Bento>
 )
 
 FlowColumn.parameters = {
   viewport: {
-    defaultViewport: 'iphonexr',
+    defaultViewport: 'desktop',
   },
 }
 
 export const FlowColumnVisualFirst: StoryFn<typeof Bento> = () => (
-  <Bento.Item flow="column">
-    <Bento.Visual>
-      <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
-    </Bento.Visual>
-    <Bento.Content>
-      <Bento.Heading>Heading</Bento.Heading>
-      <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
-        felis nam pulvinar risus elementum.
-      </Text>
-      <Link href="#">Call to action</Link>
-    </Bento.Content>
-  </Bento.Item>
+  <Bento>
+    <Bento.Item flow="column" rowSpan={4}>
+      <Bento.Visual>
+        <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+      </Bento.Visual>
+      <Bento.Content>
+        <Bento.Heading>Heading</Bento.Heading>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </Bento.Content>
+    </Bento.Item>
+  </Bento>
 )
 
 FlowColumnVisualFirst.parameters = {
   viewport: {
-    defaultViewport: 'iphonexr',
+    defaultViewport: 'desktop',
   },
 }
 
 export const FlowRowVisualFirst: StoryFn<typeof Bento> = () => (
-  <Bento.Item flow="row">
-    <Bento.Visual>
-      <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
-    </Bento.Visual>
-    <Bento.Content>
-      <Bento.Heading>Heading</Bento.Heading>
-      <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
-        felis nam pulvinar risus elementum.
-      </Text>
-      <Link href="#">Call to action</Link>
-    </Bento.Content>
-  </Bento.Item>
+  <Bento>
+    <Bento.Item flow="row" rowSpan={4}>
+      <Bento.Visual>
+        <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+      </Bento.Visual>
+      <Bento.Content>
+        <Bento.Heading>Heading</Bento.Heading>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </Bento.Content>
+    </Bento.Item>
+  </Bento>
 )
 
 FlowRowVisualFirst.parameters = {
@@ -125,19 +135,21 @@ FlowRowVisualFirst.parameters = {
 }
 
 export const ContentPaddingCondensed: StoryFn<typeof Bento> = () => (
-  <Bento.Item>
-    <Bento.Content padding="condensed">
-      <Bento.Heading>Heading</Bento.Heading>
-      <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
-        felis nam pulvinar risus elementum.
-      </Text>
-      <Link href="#">Call to action</Link>
-    </Bento.Content>
-    <Bento.Visual>
-      <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
-    </Bento.Visual>
-  </Bento.Item>
+  <Bento>
+    <Bento.Item rowSpan={4}>
+      <Bento.Content padding="condensed">
+        <Bento.Heading>Heading</Bento.Heading>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </Bento.Content>
+      <Bento.Visual>
+        <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+      </Bento.Visual>
+    </Bento.Item>
+  </Bento>
 )
 
 ContentPaddingCondensed.parameters = {
@@ -147,19 +159,21 @@ ContentPaddingCondensed.parameters = {
 }
 
 export const ContentPaddingNormal: StoryFn<typeof Bento> = () => (
-  <Bento.Item>
-    <Bento.Content padding="normal">
-      <Bento.Heading>Heading</Bento.Heading>
-      <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
-        felis nam pulvinar risus elementum.
-      </Text>
-      <Link href="#">Call to action</Link>
-    </Bento.Content>
-    <Bento.Visual>
-      <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
-    </Bento.Visual>
-  </Bento.Item>
+  <Bento>
+    <Bento.Item rowSpan={4}>
+      <Bento.Content padding="normal">
+        <Bento.Heading>Heading</Bento.Heading>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </Bento.Content>
+      <Bento.Visual>
+        <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+      </Bento.Visual>
+    </Bento.Item>
+  </Bento>
 )
 
 ContentPaddingNormal.parameters = {
@@ -169,19 +183,21 @@ ContentPaddingNormal.parameters = {
 }
 
 export const ContentPaddingSpacious: StoryFn<typeof Bento> = () => (
-  <Bento.Item>
-    <Bento.Content padding="spacious">
-      <Bento.Heading>Heading</Bento.Heading>
-      <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
-        felis nam pulvinar risus elementum.
-      </Text>
-      <Link href="#">Call to action</Link>
-    </Bento.Content>
-    <Bento.Visual>
-      <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
-    </Bento.Visual>
-  </Bento.Item>
+  <Bento>
+    <Bento.Item rowSpan={4}>
+      <Bento.Content padding="spacious">
+        <Bento.Heading>Heading</Bento.Heading>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </Bento.Content>
+      <Bento.Visual>
+        <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+      </Bento.Visual>
+    </Bento.Item>
+  </Bento>
 )
 
 ContentPaddingSpacious.parameters = {
@@ -191,19 +207,21 @@ ContentPaddingSpacious.parameters = {
 }
 
 export const VisualPaddingCondensed: StoryFn<typeof Bento> = () => (
-  <Bento.Item>
-    <Bento.Content>
-      <Bento.Heading>Heading</Bento.Heading>
-      <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
-        felis nam pulvinar risus elementum.
-      </Text>
-      <Link href="#">Call to action</Link>
-    </Bento.Content>
-    <Bento.Visual padding="condensed">
-      <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
-    </Bento.Visual>
-  </Bento.Item>
+  <Bento>
+    <Bento.Item rowSpan={4}>
+      <Bento.Content>
+        <Bento.Heading>Heading</Bento.Heading>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </Bento.Content>
+      <Bento.Visual padding="condensed">
+        <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+      </Bento.Visual>
+    </Bento.Item>
+  </Bento>
 )
 
 VisualPaddingCondensed.parameters = {
@@ -213,19 +231,21 @@ VisualPaddingCondensed.parameters = {
 }
 
 export const VisualPaddingNormal: StoryFn<typeof Bento> = () => (
-  <Bento.Item>
-    <Bento.Content>
-      <Bento.Heading>Heading</Bento.Heading>
-      <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
-        felis nam pulvinar risus elementum.
-      </Text>
-      <Link href="#">Call to action</Link>
-    </Bento.Content>
-    <Bento.Visual padding="normal">
-      <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
-    </Bento.Visual>
-  </Bento.Item>
+  <Bento>
+    <Bento.Item rowSpan={4}>
+      <Bento.Content>
+        <Bento.Heading>Heading</Bento.Heading>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </Bento.Content>
+      <Bento.Visual padding="normal">
+        <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+      </Bento.Visual>
+    </Bento.Item>
+  </Bento>
 )
 
 VisualPaddingNormal.parameters = {
@@ -235,19 +255,21 @@ VisualPaddingNormal.parameters = {
 }
 
 export const VisualPaddingSpacious: StoryFn<typeof Bento> = () => (
-  <Bento.Item>
-    <Bento.Content>
-      <Bento.Heading>Heading</Bento.Heading>
-      <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
-        felis nam pulvinar risus elementum.
-      </Text>
-      <Link href="#">Call to action</Link>
-    </Bento.Content>
-    <Bento.Visual padding="spacious">
-      <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
-    </Bento.Visual>
-  </Bento.Item>
+  <Bento>
+    <Bento.Item rowSpan={4}>
+      <Bento.Content>
+        <Bento.Heading>Heading</Bento.Heading>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </Bento.Content>
+      <Bento.Visual padding="spacious">
+        <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+      </Bento.Visual>
+    </Bento.Item>
+  </Bento>
 )
 
 VisualPaddingSpacious.parameters = {
@@ -257,19 +279,21 @@ VisualPaddingSpacious.parameters = {
 }
 
 export const OrderReversed: StoryFn<typeof Bento> = () => (
-  <Bento.Item order="reversed">
-    <Bento.Content>
-      <Bento.Heading>Heading</Bento.Heading>
-      <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
-        felis nam pulvinar risus elementum.
-      </Text>
-      <Link href="#">Call to action</Link>
-    </Bento.Content>
-    <Bento.Visual>
-      <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
-    </Bento.Visual>
-  </Bento.Item>
+  <Bento>
+    <Bento.Item order="reversed" rowSpan={4}>
+      <Bento.Content>
+        <Bento.Heading>Heading</Bento.Heading>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </Bento.Content>
+      <Bento.Visual>
+        <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+      </Bento.Visual>
+    </Bento.Item>
+  </Bento>
 )
 
 OrderReversed.parameters = {
@@ -279,19 +303,21 @@ OrderReversed.parameters = {
 }
 
 export const VisualAsBackground: StoryFn<typeof Bento> = () => (
-  <Bento.Item visualAsBackground>
-    <Bento.Content>
-      <Bento.Heading>Heading</Bento.Heading>
-      <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
-        felis nam pulvinar risus elementum.
-      </Text>
-      <Link href="#">Call to action</Link>
-    </Bento.Content>
-    <Bento.Visual>
-      <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
-    </Bento.Visual>
-  </Bento.Item>
+  <Bento>
+    <Bento.Item visualAsBackground rowSpan={4}>
+      <Bento.Content>
+        <Bento.Heading>Heading</Bento.Heading>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </Bento.Content>
+      <Bento.Visual>
+        <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+      </Bento.Visual>
+    </Bento.Item>
+  </Bento>
 )
 
 VisualAsBackground.parameters = {
@@ -301,19 +327,21 @@ VisualAsBackground.parameters = {
 }
 
 export const DarkModeItem: StoryFn<typeof Bento> = () => (
-  <Bento.Item colorMode={ColorModesEnum.DARK}>
-    <Bento.Content>
-      <Bento.Heading>Heading</Bento.Heading>
-      <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
-        felis nam pulvinar risus elementum.
-      </Text>
-      <Link href="#">Call to action</Link>
-    </Bento.Content>
-    <Bento.Visual>
-      <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
-    </Bento.Visual>
-  </Bento.Item>
+  <Bento>
+    <Bento.Item colorMode={ColorModesEnum.DARK} rowSpan={4}>
+      <Bento.Content>
+        <Bento.Heading>Heading</Bento.Heading>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </Bento.Content>
+      <Bento.Visual>
+        <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+      </Bento.Visual>
+    </Bento.Item>
+  </Bento>
 )
 
 DarkModeItem.parameters = {
@@ -323,158 +351,175 @@ DarkModeItem.parameters = {
 }
 
 export const ResponsiveFlow: StoryFn<typeof Bento> = () => (
-  <Bento.Item
-    flow={{
-      xsmall: 'row',
-      small: 'row',
-      medium: 'column',
-      large: 'column',
-      xlarge: 'column',
-      xxlarge: 'column',
-    }}
-  >
-    <Bento.Content padding="normal">
-      <Bento.Heading>Heading</Bento.Heading>
-      <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
-        felis nam pulvinar risus elementum.
-      </Text>
-      <Link href="#">Call to action</Link>
-    </Bento.Content>
-    <Bento.Visual>
-      <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
-    </Bento.Visual>
-  </Bento.Item>
+  <Bento>
+    <Bento.Item
+      flow={{
+        xsmall: 'row',
+        small: 'row',
+        medium: 'column',
+        large: 'column',
+        xlarge: 'column',
+        xxlarge: 'column',
+      }}
+      rowSpan={4}
+    >
+      <Bento.Content padding="normal">
+        <Bento.Heading>Heading</Bento.Heading>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </Bento.Content>
+      <Bento.Visual>
+        <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+      </Bento.Visual>
+    </Bento.Item>
+  </Bento>
 )
 
 export const VerticalAlignStart: StoryFn<typeof Bento> = () => (
-  <Bento.Item flow="column">
-    <Bento.Content padding="normal" verticalAlign="start">
-      <Bento.Heading>Heading</Bento.Heading>
-      <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
-        felis nam pulvinar risus elementum.
-      </Text>
-      <Link href="#">Call to action</Link>
-    </Bento.Content>
-    <Bento.Visual>
-      <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
-    </Bento.Visual>
-  </Bento.Item>
+  <Bento>
+    <Bento.Item flow="column" rowSpan={4}>
+      <Bento.Content padding="normal" verticalAlign="start">
+        <Bento.Heading>Heading</Bento.Heading>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </Bento.Content>
+      <Bento.Visual>
+        <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+      </Bento.Visual>
+    </Bento.Item>
+  </Bento>
 )
 
 export const VerticalAlignCenter: StoryFn<typeof Bento> = () => (
-  <Bento.Item flow="column">
-    <Bento.Content padding="normal" verticalAlign="center">
-      <Bento.Heading>Heading</Bento.Heading>
-      <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
-        felis nam pulvinar risus elementum.
-      </Text>
-      <Link href="#">Call to action</Link>
-    </Bento.Content>
-    <Bento.Visual>
-      <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
-    </Bento.Visual>
-  </Bento.Item>
+  <Bento>
+    <Bento.Item flow="column" rowSpan={4}>
+      <Bento.Content padding="normal" verticalAlign="center">
+        <Bento.Heading>Heading</Bento.Heading>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </Bento.Content>
+      <Bento.Visual>
+        <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+      </Bento.Visual>
+    </Bento.Item>
+  </Bento>
 )
 
 export const VerticalAlignEnd: StoryFn<typeof Bento> = () => (
-  <Bento.Item flow="column">
-    <Bento.Content padding="normal" verticalAlign="end">
-      <Bento.Heading>Heading</Bento.Heading>
-      <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
-        felis nam pulvinar risus elementum.
-      </Text>
-      <Link href="#">Call to action</Link>
-    </Bento.Content>
-    <Bento.Visual>
-      <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
-    </Bento.Visual>
-  </Bento.Item>
+  <Bento>
+    <Bento.Item flow="column" rowSpan={4}>
+      <Bento.Content padding="normal" verticalAlign="end">
+        <Bento.Heading>Heading</Bento.Heading>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </Bento.Content>
+      <Bento.Visual>
+        <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+      </Bento.Visual>
+    </Bento.Item>
+  </Bento>
 )
 
 export const HorizontalAlignStart: StoryFn<typeof Bento> = () => (
-  <Bento.Item flow="column">
-    <Bento.Content padding="normal" horizontalAlign="start">
-      <Bento.Heading>Heading</Bento.Heading>
-      <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
-        felis nam pulvinar risus elementum.
-      </Text>
-      <Link href="#">Call to action</Link>
-    </Bento.Content>
-    <Bento.Visual>
-      <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
-    </Bento.Visual>
-  </Bento.Item>
+  <Bento>
+    <Bento.Item flow="column" rowSpan={4}>
+      <Bento.Content padding="normal" horizontalAlign="start">
+        <Bento.Heading>Heading</Bento.Heading>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </Bento.Content>
+      <Bento.Visual>
+        <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+      </Bento.Visual>
+    </Bento.Item>
+  </Bento>
 )
 
 export const HorizontalAlignCenter: StoryFn<typeof Bento> = () => (
-  <Bento.Item flow="column">
-    <Bento.Content padding="normal" horizontalAlign="center">
-      <Bento.Heading>Heading</Bento.Heading>
-      <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
-        felis nam pulvinar risus elementum.
-      </Text>
-      <Link href="#">Call to action</Link>
-    </Bento.Content>
-    <Bento.Visual>
-      <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
-    </Bento.Visual>
-  </Bento.Item>
+  <Bento>
+    <Bento.Item flow="column" rowSpan={4}>
+      <Bento.Content padding="normal" horizontalAlign="center">
+        <Bento.Heading>Heading</Bento.Heading>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </Bento.Content>
+      <Bento.Visual>
+        <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+      </Bento.Visual>
+    </Bento.Item>
+  </Bento>
 )
 
 export const ResponsiveHorizontalAlign: StoryFn<typeof Bento> = () => (
-  <Bento.Item flow="column">
-    <Bento.Content
-      padding="normal"
-      horizontalAlign={{
-        xsmall: 'start',
-        small: 'start',
-        medium: 'center',
-        large: 'center',
-        xlarge: 'center',
-        xxlarge: 'center',
-      }}
-    >
-      <Bento.Heading>Heading</Bento.Heading>
-      <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
-        felis nam pulvinar risus elementum.
-      </Text>
-      <Link href="#">Call to action</Link>
-    </Bento.Content>
-    <Bento.Visual>
-      <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
-    </Bento.Visual>
-  </Bento.Item>
+  <Bento>
+    <Bento.Item flow="column" rowSpan={4}>
+      <Bento.Content
+        padding="normal"
+        horizontalAlign={{
+          xsmall: 'start',
+          small: 'start',
+          medium: 'center',
+          large: 'center',
+          xlarge: 'center',
+          xxlarge: 'center',
+        }}
+      >
+        <Bento.Heading>Heading</Bento.Heading>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </Bento.Content>
+      <Bento.Visual>
+        <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+      </Bento.Visual>
+    </Bento.Item>
+  </Bento>
 )
 
 export const ResponsiveVerticalAlign: StoryFn<typeof Bento> = () => (
-  <Bento.Item flow="column">
-    <Bento.Content
-      padding="normal"
-      verticalAlign={{
-        xsmall: 'start',
-        small: 'start',
-        medium: 'center',
-        large: 'center',
-        xlarge: 'center',
-        xxlarge: 'center',
-      }}
-    >
-      <Bento.Heading>Heading</Bento.Heading>
-      <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
-        felis nam pulvinar risus elementum.
-      </Text>
-      <Link href="#">Call to action</Link>
-    </Bento.Content>
-    <Bento.Visual>
-      <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
-    </Bento.Visual>
-  </Bento.Item>
+  <Bento>
+    <Bento.Item flow="column" rowSpan={4}>
+      <Bento.Content
+        padding="normal"
+        verticalAlign={{
+          xsmall: 'start',
+          small: 'start',
+          medium: 'center',
+          large: 'center',
+          xlarge: 'center',
+          xxlarge: 'center',
+        }}
+      >
+        <Bento.Heading>Heading</Bento.Heading>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </Bento.Content>
+      <Bento.Visual>
+        <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+      </Bento.Visual>
+    </Bento.Item>
+  </Bento>
 )
