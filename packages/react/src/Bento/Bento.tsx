@@ -161,7 +161,6 @@ type BentoContentProps = {
   padding?: Padding | ResponsivePadding
   verticalAlign?: Align | ResponsiveAlign
   horizontalAlign?: Exclude<Align, 'end'> | Partial<Record<Size, Exclude<Align, 'end'>>>
-  fixedBottomLink?: boolean
 } & React.HTMLAttributes<HTMLDivElement> &
   BaseProps<HTMLDivElement>
 
@@ -171,7 +170,6 @@ const Content = ({
   padding = 'spacious',
   verticalAlign = 'start',
   horizontalAlign = 'start',
-  fixedBottomLink = false,
   className,
   ...rest
 }: BentoContentProps) => {
@@ -205,11 +203,7 @@ const Content = ({
       {React.isValidElement(LinkChild) &&
         React.cloneElement(LinkChild as React.ReactElement<LinkProps>, {
           variant: LinkChild.props.variant || 'accent',
-          className: clsx(
-            styles['Bento__call-to-action'],
-            fixedBottomLink && styles['Bento__call-to-action--fixed'],
-            LinkChild.props.className,
-          ),
+          className: clsx(styles['Bento__call-to-action'], LinkChild.props.className),
         })}
     </div>
   )
