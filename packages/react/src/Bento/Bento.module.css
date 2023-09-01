@@ -5,6 +5,7 @@
   grid-auto-rows: var(--base-size-80);
   grid-gap: var(--brand-Bento-gap-small);
   position: relative;
+  max-width: var(--brand-breakpoint-xlarge);
 }
 
 .Bento__Item {
