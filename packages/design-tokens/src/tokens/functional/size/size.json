@@ -14,10 +14,10 @@
           "value": "{base.size.48}"
         },
         "lineBoxHeight": {
-          "value": "{base.size.20}"
+          "value": "{base.size.16}"
         },
         "paddingBlock": {
-          "value": "{base.size.12}"
+          "value": "{base.size.16}"
         },
         "paddingInline": {
           "condensed": {
@@ -27,22 +27,25 @@
             "value": "{base.size.16}"
           },
           "spacious": {
-            "value": "{base.size.24}"
+            "value": "{base.size.28}"
           }
         },
         "gap": {
-          "value": "{base.size.8}"
+          "value": "{base.size.12}"
+        },
+        "borderRadius": {
+          "value": "var(--brand-borderRadius-medium)"
         }
       },
       "large": {
         "size": {
-          "value": "56px"
+          "value": "60px"
         },
         "lineBoxHeight": {
           "value": "{base.size.20}"
         },
         "paddingBlock": {
-          "value": "18px"
+          "value": "{base.size.20}"
         },
         "paddingInline": {
           "condensed": {
@@ -57,6 +60,9 @@
         },
         "gap": {
           "value": "{base.size.16}"
+        },
+        "borderRadius": {
+          "value": "{base.size.8}"
         }
       },
       "border": {

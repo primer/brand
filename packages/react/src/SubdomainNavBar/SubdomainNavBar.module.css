@@ -352,6 +352,7 @@
   display: flex;
   align-items: center;
   margin-left: auto;
+  min-width: 0;
 }
 .SubdomainNavBar-search-trigger {
   display: flex;
@@ -454,11 +455,13 @@
   display: inline-flex;
   gap: var(--base-size-16);
   align-items: center;
+  min-width: 0;
 }
 
 .SubdomainNavBar-button-area-inner {
   display: flex;
   gap: 16px;
+  min-width: 0;
 }
 
 @media screen and (max-width: 48rem) {
@@ -488,14 +491,14 @@
   .SubdomainNavBar-button-area-inner {
     width: 100%;
     flex-direction: column;
-
     margin: 24px;
+    min-width: 0;
   }
 }
 
 .SubdomainNavBar-cta-button {
-  height: 48px; /*TODO: investigate why this is shorter than medium default height*/
   white-space: nowrap;
+  min-width: 0;
 }
 
 @media screen and (min-width: 1024px) {

@@ -100,7 +100,8 @@ export type StackProps = BaseProps<HTMLElement> & {
    * Applies flex-wrap to the Stack, using the flex-wrap CSS property.
    */
   flexWrap?: StackFlexWrapVariants | ResponsiveFlexWrapMap
-} & BaseProps<HTMLDivElement>
+} & BaseProps<HTMLDivElement> &
+  React.HTMLAttributes<HTMLDivElement>
 
 const _Stack = (
   {

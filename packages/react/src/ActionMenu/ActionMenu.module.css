@@ -7,12 +7,9 @@
 }
 
 .ActionMenu__button {
-  border-radius: var(--base-size-48);
-}
-
-.ActionMenu__button:focus:not(.ActionMenu__button[disabled]),
-.ActionMenu__button:focus-visible:not(.ActionMenu__button[disabled]) {
-  box-shadow: 0 0 0 3px var(--brand-color-focus);
+  /* avoid specificity issues */
+  --brand-control-medium-borderRadius: var(--brand-borderRadius-full);
+  --brand-control-large-borderRadius: var(--brand-borderRadius-full);
 }
 
 .ActionMenu__button > span:first-of-type {
@@ -22,10 +19,6 @@
   white-space: nowrap;
 }
 
-.ActionMenu__button:hover {
-  border-color: var(--brand-ActionMenu-color-border-hover);
-}
-
 .ActionMenu__menu {
   position: absolute;
   z-index: 100;
@@ -33,7 +26,7 @@
   margin-top: var(--base-size-8);
   visibility: hidden;
   background-color: var(--brand-color-canvas-default);
-  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
+  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   border-radius: var(--brand-borderRadius-large);
   max-height: 460px;
   overflow-y: auto;
@@ -106,12 +99,6 @@
   transition: none;
 }
 
-.ActionMenu__button--active {
-  border-color: var(--brand-ActionMenu-color-border-active) !important;
-  box-shadow: 0 0 0 3px var(--brand-ActionMenu-color-border-active) !important;
-  transition: none;
-}
-
 .ActionMenu__item-leadingVisual {
   display: flex;
   min-width: var(--base-size-16);
@@ -123,6 +110,12 @@
 
 .ActionMenu__item-text {
   grid-area: text / text;
+  /* display grid collapses the text line box height for optical alignment */
+  display: grid;
+}
+
+.ActionMenu__item-text > span {
+  line-height: var(--brand-control-medium-lineBoxHeight);
 }
 
 .ActionMenu__item-icon {

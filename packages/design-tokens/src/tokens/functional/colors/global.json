@@ -103,7 +103,7 @@
       },
       "border": {
         "default": {
-          "value": "var(--base-color-scale-gray-2)",
+          "value": "var(--base-color-scale-gray-3)",
           "dark": "var(--base-color-scale-gray-6)"
         },
         "muted": {
