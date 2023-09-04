@@ -1,15 +1,16 @@
 .FAQ {
-  max-width: var(--brand-FAQ-maxWidth);
+  max-width: var(--brand-FAQ-maxWidth-list);
   margin: 0 auto;
 }
 
 .FAQ__heading {
-  color: var(--brand-FAQ-heading-color);
+  color: var(--brand-FAQ-color-heading);
   margin-bottom: var(--brand-FAQ-heading-marginBottom);
 }
 
 .FAQ__subheading {
   margin-bottom: var(--base-size-16);
+  color: var(--brand-color-text-muted);
 }
 
 .FAQ__heading--start {
