@@ -20,8 +20,8 @@
         },
         "tabBg": {
           "selected": {
-            "value": "hsl(var(--base-color-scale-blue-5-hsl) / 08%)",
-            "dark": "hsl(var(--base-color-scale-blue-4-hsl) / 08%)"
+            "value": "var(--base-color-scale-blue-0)",
+            "dark": "var(--base-color-scale-blue-9)"
           }
         }
       }
