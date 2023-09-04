@@ -17,7 +17,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
  */
 import styles from './FAQ.module.css'
 
-type FAQRootProps = PropsWithChildren<BaseProps<HTMLElement>> & React.HTMLAttributes<HTMLElement>
+export type FAQRootProps = PropsWithChildren<BaseProps<HTMLElement>> & React.HTMLAttributes<HTMLElement>
 
 const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, style, animate, className, ...rest}, ref) => {
   const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
@@ -86,13 +86,20 @@ const FAQHeading = forwardRef<HTMLHeadingElement, FAQHeadingProps>(
   },
 )
 
-type FAQSubheadingProps = BaseProps<HTMLHeadingElement> & {
+export type FAQSubheadingProps = BaseProps<HTMLHeadingElement> & {
   align?: 'start' | 'center'
   children: React.ReactNode | React.ReactNode[]
   as?: Exclude<HeadingProps['as'], 'h1'>
 } & HeadingProps
 
-function FAQSubheading({children, className, as = 'h3', size = '5', weight, ...rest}: FAQSubheadingProps) {
+function FAQSubheading({
+  children,
+  className,
+  as = 'h3',
+  size = 'subhead-large',
+  weight = 'medium',
+  ...rest
+}: FAQSubheadingProps) {
   return (
     <Heading as={as} className={clsx(styles.FAQ__subheading, className)} weight={weight} size={size} {...rest}>
       {children}

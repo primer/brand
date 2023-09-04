@@ -1,10 +1,28 @@
 {
   "brand": {
     "FAQ": {
-      "heading": {
-        "color": {
+      "color": {
+        "heading": {
           "value": "var(--brand-color-text-default)",
           "dark": "var(--brand-color-text-default)"
+        },
+        "tabBorder": {
+          "selected": {
+            "value": "hsl(var(--base-color-scale-blue-5-hsl) / 20%)",
+            "dark": "hsl(var(--base-color-scale-blue-4-hsl) / 20%)"
+          }
+        },
+        "tabLabel": {
+          "selected": {
+            "value": "var(--brand-Link-color-accent)",
+            "dark": "var(--brand-Link-color-accent)"
+          }
+        },
+        "tabBg": {
+          "selected": {
+            "value": "var(--base-color-scale-blue-0)",
+            "dark": "var(--base-color-scale-blue-9)"
+          }
         }
       }
     }
