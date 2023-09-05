@@ -1,7 +1,7 @@
 import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 import {CopilotIcon} from '@primer/octicons-react'
-import {Text, Link, ColorModesEnum} from '../'
+import {Text, Link} from '../'
 import {Bento} from '.'
 import placeholderImage from '../fixtures/images/placeholder-visual-universe.png'
 import platformAI from '../fixtures/images/Platform-AI.png'
@@ -61,10 +61,10 @@ export const EnterpriseThree: StoryFn<typeof Bento> = () => (
 
 export const MixedThemeItems: StoryFn<typeof Bento> = () => (
   <Bento>
-    <Bento.Item columnSpan={7} rowSpan={4} colorMode={ColorModesEnum.DARK} />
-    <Bento.Item columnSpan={5} rowSpan={4} colorMode={ColorModesEnum.LIGHT} />
-    <Bento.Item columnSpan={12} rowSpan={4} colorMode={ColorModesEnum.LIGHT} />
-    <Bento.Item columnSpan={12} rowSpan={4} colorMode={ColorModesEnum.DARK} />
+    <Bento.Item columnSpan={7} rowSpan={4} colorMode="dark" />
+    <Bento.Item columnSpan={5} rowSpan={4} colorMode="light" />
+    <Bento.Item columnSpan={12} rowSpan={4} colorMode="light" />
+    <Bento.Item columnSpan={12} rowSpan={4} colorMode="dark" />
   </Bento>
 )
 
@@ -128,7 +128,7 @@ export const Example: StoryFn<typeof Bento> = () => (
       columnSpan={{xsmall: 12, medium: 7}}
       rowSpan={{xsmall: 3, small: 5}}
       flow={{xsmall: 'row', small: 'row'}}
-      colorMode={ColorModesEnum.DARK}
+      colorMode="dark"
       visualAsBackground
       className={styles['purple-background']}
     >
@@ -141,7 +141,7 @@ export const Example: StoryFn<typeof Bento> = () => (
         </Link>
       </Bento.Content>
     </Bento.Item>
-    <Bento.Item columnSpan={{xsmall: 12, medium: 5}} rowSpan={{xsmall: 3, small: 5}} colorMode={ColorModesEnum.DARK}>
+    <Bento.Item columnSpan={{xsmall: 12, medium: 5}} rowSpan={{xsmall: 3, small: 5}} colorMode="dark">
       <Bento.Content padding={{xsmall: 'normal', small: 'spacious'}} horizontalAlign={'center'}>
         <Bento.Heading as="h4" size="display">
           88%
@@ -164,7 +164,7 @@ export const Example: StoryFn<typeof Bento> = () => (
       columnSpan={12}
       rowSpan={6}
       flow={{xsmall: 'row', medium: 'column'}}
-      colorMode={ColorModesEnum.DARK}
+      colorMode="dark"
       order={{
         xsmall: 'reversed',
         medium: 'default',

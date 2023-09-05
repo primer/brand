@@ -2,7 +2,7 @@ import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {Bento} from '.'
-import {Text, Link, ColorModesEnum} from '../'
+import {Text, Link} from '../'
 import placeholderImage from '../fixtures/images/placeholder-600x400.png'
 import styles from './Bento.features.stories.module.css'
 
@@ -374,7 +374,7 @@ NoContent.parameters = {
 
 export const DarkModeItem: StoryFn<typeof Bento> = () => (
   <Bento>
-    <Bento.Item colorMode={ColorModesEnum.DARK} rowSpan={4}>
+    <Bento.Item colorMode="dark" rowSpan={4}>
       <Bento.Content>
         <Bento.Heading>Heading</Bento.Heading>
         <Text>

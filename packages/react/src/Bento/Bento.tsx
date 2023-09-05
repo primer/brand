@@ -9,6 +9,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/bento/base.css'
 import styles from './Bento.module.css'
 
+export type ColorMode = `${Exclude<ColorModesEnum, ColorModesEnum.AUTO>}`
 export type Size = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'
 export type ColumnIndex = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
 
@@ -42,7 +43,7 @@ type BentoItemProps = {
   rowStart?: number | ResponsiveRowIndex
   rowSpan?: number | ResponsiveRowIndex
   flow?: Flow | ResponsiveFlow
-  colorMode?: ColorModesEnum.LIGHT | ColorModesEnum.DARK
+  colorMode?: ColorMode
   visualAsBackground?: boolean
   order?: Order | ResponsiveOrder
 } & React.HTMLAttributes<HTMLDivElement> &
