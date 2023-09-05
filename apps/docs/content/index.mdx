@@ -1,6 +1,10 @@
 import {HeroLayout} from '@primer/gatsby-theme-doctocat'
+import InlineCode from '@primer/gatsby-theme-doctocat/src/components/inline-code'
+
 import {Box as PRCBox} from '@primer/react'
-import {Link, Button, Heading, Text} from '@primer/react-brand'
+import {Link, Button, Heading, InlineLink, Text} from '@primer/react-brand'
+import {version} from '../../../packages/react/package.json'
+import {LinkExternalIcon} from '@primer/octicons-react'
 
 <PRCBox
   sx={{
@@ -45,6 +49,26 @@ import {Link, Button, Heading, Text} from '@primer/react-brand'
         Contribute
       </Button>
     </p>
+  </PRCBox>
+  <PRCBox
+    sx={{
+      mt: 5,
+    }}
+  >
+    <Text as="p">
+      <Text weight="semibold">Latest release:</Text>{' '}
+      <PRCBox as="span" sx={{mr: 3, display: 'inline-block'}}>
+        <InlineCode sx={{mr: 2}}>
+          <a href="https://github.com/primer/brand/releases">v{version}</a>
+        </InlineCode>
+        .
+      </PRCBox>
+      <Text size="100">
+        <a href="https://github.com/primer/brand/blob/main/packages/react/CHANGELOG.md">
+          Read the change log <LinkExternalIcon />
+        </a>
+      </Text>
+    </Text>
   </PRCBox>
 </PRCBox>
 

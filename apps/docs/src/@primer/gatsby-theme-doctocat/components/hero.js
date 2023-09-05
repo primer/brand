@@ -2,7 +2,7 @@ import {Box as PRCBox, Heading, Text, ThemeProvider} from '@primer/react'
 import React from 'react'
 import {Container} from '@primer/gatsby-theme-doctocat'
 import heroIllustration from '../primer-components-hero.svg'
-import {version} from '../../../../../../package'
+import {version} from '../../../../../../packages/react/package'
 
 export default function Hero() {
   return (
@@ -25,7 +25,7 @@ export default function Hero() {
             fontFamily="mono"
             mt={0}
             mb={2}
-            color="var(--brand-color-text-default)"
+            color="fg.muted"
             fontSize={2}
           >
             v{version}
