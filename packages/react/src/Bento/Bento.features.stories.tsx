@@ -148,7 +148,7 @@ export const Example: StoryFn<typeof Bento> = () => (
         </Bento.Heading>
         <Text align="center">of developers experience increased productivity.</Text>
       </Bento.Content>
-      <Bento.Visual padding="normal" fillMedia={false}>
+      <Bento.Visual padding={{xsmall: 'condensed', small: 'normal', medium: 'spacious'}} fillMedia={false}>
         <img src={platformAI} alt="Platform Artificial Intelligence Logo" />
       </Bento.Visual>
     </Bento.Item>
