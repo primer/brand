@@ -15,7 +15,7 @@ import {Bento} from '@primer/react-brand'
 ### Default
 
 ```jsx live
-<Bento>
+<Bento style={{background: 'var(--base-color-scale-gray-1)', padding: '20px'}}>
   <Bento.Item />
 </Bento>
 ```
@@ -23,7 +23,7 @@ import {Bento} from '@primer/react-brand'
 ### Example layout 1
 
 ```jsx live
-<Bento>
+<Bento style={{background: 'var(--base-color-scale-gray-1)', padding: '20px'}}>
   <Bento.Item columnSpan={12} rowSpan={2} />
   <Bento.Item columnSpan={7} rowSpan={2} />
   <Bento.Item columnSpan={5} rowSpan={2} />
@@ -34,7 +34,7 @@ import {Bento} from '@primer/react-brand'
 ### Example layout 2
 
 ```jsx live
-<Bento>
+<Bento style={{background: 'var(--base-color-scale-gray-1)', padding: '20px'}}>
   <Bento.Item columnSpan={12} rowSpan={2} />
   <Bento.Item columnSpan={5} rowSpan={2} />
   <Bento.Item columnSpan={7} rowSpan={2} />
@@ -45,7 +45,7 @@ import {Bento} from '@primer/react-brand'
 ### Example layout 3
 
 ```jsx live
-<Bento>
+<Bento style={{background: 'var(--base-color-scale-gray-1)', padding: '20px'}}>
   <Bento.Item columnSpan={7} rowSpan={2} />
   <Bento.Item columnSpan={5} rowSpan={2} />
   <Bento.Item columnSpan={12} rowSpan={2} />
@@ -56,7 +56,7 @@ import {Bento} from '@primer/react-brand'
 ### Dark mode items
 
 ```jsx live
-<Bento>
+<Bento style={{background: 'var(--base-color-scale-gray-1)', padding: '20px'}}>
   <Bento.Item columnSpan={7} rowSpan={2} colorMode="dark" />
   <Bento.Item columnSpan={5} rowSpan={2} colorMode="dark" />
   <Bento.Item columnSpan={12} rowSpan={2} colorMode="dark" />
@@ -71,7 +71,7 @@ Use `columnSpan`, `rowSpan`, `columnStart`, `rowStart`, `flow`, `verticalAlign`,
 Breakpoints use `min-width`, where it will also apply your chosen `span` value to all larger breakpoints.
 
 ```jsx live
-<Bento>
+<Bento style={{background: 'var(--base-color-scale-gray-1)', padding: '20px'}}>
   <Bento.Item
     columnSpan={{
       xsmall: 12,
@@ -132,29 +132,31 @@ Breakpoints use `min-width`, where it will also apply your chosen `span` value t
 #### Responsive flow
 
 ```jsx live
-<Bento.Item
-  flow={{
-    xsmall: 'row',
-    small: 'row',
-    medium: 'column',
-  }}
->
-  <Bento.Content padding="normal">
-    <Bento.Heading as="h3">Heading</Bento.Heading>
-    <Text>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
-      ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
-      elementum.
-    </Text>
-    <Link href="#">Call to action</Link>
-  </Bento.Content>
-  <Bento.Visual>
-    <img
-      alt="placeholder, blank area with an gray background color"
-      src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
-    />
-  </Bento.Visual>
-</Bento.Item>
+<Bento style={{background: 'var(--base-color-scale-gray-1)', padding: '20px'}}>
+  <Bento.Item
+    flow={{
+      xsmall: 'row',
+      small: 'row',
+      medium: 'column',
+    }}
+  >
+    <Bento.Content padding="normal">
+      <Bento.Heading as="h3">Heading</Bento.Heading>
+      <Text>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
+        ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
+        elementum.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </Bento.Content>
+    <Bento.Visual>
+      <img
+        alt="placeholder, blank area with an gray background color"
+        src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
+      />
+    </Bento.Visual>
+  </Bento.Item>
+</Bento>
 ```
 
 ## Component props
