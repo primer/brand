@@ -12,6 +12,13 @@ import styles from './Bento.features.stories.module.css'
 export default {
   title: 'Components/Bento/features',
   component: Bento,
+  decorators: [
+    Story => (
+      <div className={styles['story-background-decorator']}>
+        <Story />
+      </div>
+    ),
+  ],
 } as Meta<typeof Bento>
 
 export const Universe: StoryFn<typeof Bento> = () => (

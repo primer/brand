@@ -4,6 +4,7 @@ import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {Bento} from '.'
 import {Text, Link, ColorModesEnum} from '../'
 import placeholderImage from '../fixtures/images/placeholder-600x400.png'
+import styles from './Bento.features.stories.module.css'
 
 export default {
   title: 'Components/Bento/Item',
@@ -14,6 +15,13 @@ export default {
       viewports: INITIAL_VIEWPORTS,
     },
   },
+  decorators: [
+    Story => (
+      <div className={styles['story-background-decorator']}>
+        <Story />
+      </div>
+    ),
+  ],
 } as Meta<typeof Bento>
 
 export const HeadingWithEmphasizedText: StoryFn<typeof Bento> = () => (
@@ -36,6 +44,7 @@ HeadingWithEmphasizedText.parameters = {
   viewport: {
     defaultViewport: 'iphonexr',
   },
+  //   backgrounds: [{name: 'dark background', value: '#000', default: true}],
 }
 
 export const VisualPositionBottom: StoryFn<typeof Bento> = () => (

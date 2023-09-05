@@ -13,7 +13,6 @@ declare const styles: {
   readonly "Bento__Item--flow-column": string;
   readonly "Bento__Item--flow-row": string;
   readonly "Bento__call-to-action": string;
-  readonly "Bento__call-to-action--fixed": string;
   readonly "Bento__Content-text": string;
   readonly "Bento__Item--column-span-1": string;
   readonly "Bento__Item--column-span-2": string;
