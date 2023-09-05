@@ -3,13 +3,14 @@ import clsx from 'clsx'
 import {Icon, IconProps} from '@primer/octicons-react'
 import {useWindowSize, BreakpointSize} from '../hooks/useWindowSize'
 import type {BaseProps} from '../component-helpers'
-import {Heading, Text, Link, HeadingProps, TextProps, LinkProps, ColorModesEnum} from '../'
+import {Heading, Text, Link, HeadingProps, TextProps, LinkProps, ColorMode as FullColorMode} from '../'
 
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/bento/colors-with-modes.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/bento/base.css'
 import styles from './Bento.module.css'
 
-export type ColorMode = `${Exclude<ColorModesEnum, ColorModesEnum.AUTO>}`
+type ColorMode = Exclude<FullColorMode, 'auto'>
+
 export type Size = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'
 export type ColumnIndex = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
 
