@@ -99,22 +99,22 @@ export const ResponsiveItems: StoryFn<typeof Bento> = () => (
 
 export const ImageGallery: StoryFn<typeof Bento> = () => (
   <Bento>
-    <Bento.Item columnSpan={7} rowSpan={4} visualAsBackground>
+    <Bento.Item columnSpan={7} rowSpan={4}>
       <Bento.Visual>
         <img src={placeholderImage} alt="random" />
       </Bento.Visual>
     </Bento.Item>
-    <Bento.Item columnSpan={5} rowSpan={4} visualAsBackground>
+    <Bento.Item columnSpan={5} rowSpan={4}>
       <Bento.Visual>
         <img src={placeholderImage} alt="random" />
       </Bento.Visual>
     </Bento.Item>
-    <Bento.Item columnSpan={12} rowSpan={4} visualAsBackground>
+    <Bento.Item columnSpan={12} rowSpan={4}>
       <Bento.Visual>
         <img src={placeholderImage} alt="random" />
       </Bento.Visual>
     </Bento.Item>
-    <Bento.Item columnSpan={12} rowSpan={4} visualAsBackground>
+    <Bento.Item columnSpan={12} rowSpan={4}>
       <Bento.Visual>
         <img src={placeholderImage} alt="random" />
       </Bento.Visual>
