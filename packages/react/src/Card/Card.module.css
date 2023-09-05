@@ -3,7 +3,9 @@
   text-decoration: none;
   color: var(--brand-color-text-default);
   background-color: var(--brand-Card-background-default);
-  border-radius: var(--brand-borderRadius-large);
+  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
+  box-shadow: var(--brand-Card-shadow);
+  border-radius: var(--brand-borderRadius-medium);
   padding: var(--base-size-32);
   transition: transform var(--brand-Card-animation-duration) var(--brand-Card-animation-easing);
   display: grid;
