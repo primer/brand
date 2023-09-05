@@ -59,6 +59,10 @@
   margin-bottom: var(--base-size-32);
 }
 
+.Bento__heading--no-text {
+  margin-bottom: var(--base-size-24);
+}
+
 .Bento__heading--muted {
   color: var(--brand-color-text-muted);
 }

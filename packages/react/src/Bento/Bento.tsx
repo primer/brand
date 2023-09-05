@@ -192,7 +192,14 @@ const Content = ({
           className: styles['Bento__Content-icon'],
           size: LeadingVisual['size'] || 44,
         })}
-      {React.isValidElement(HeadingChild) && React.cloneElement(HeadingChild as React.ReactElement<BentoHeadingProps>)}
+      {/* TODO: If there is no TextChild apply the correct margin to the heading */}
+      {React.isValidElement(HeadingChild) &&
+        React.cloneElement(HeadingChild as React.ReactElement<BentoHeadingProps>, {
+          className: clsx(
+            !React.isValidElement(TextChild) && styles['Bento__heading--no-text'],
+            HeadingChild.props.className,
+          ),
+        })}
       {React.isValidElement(TextChild) &&
         React.cloneElement(TextChild as React.ReactElement<TextProps>, {
           variant: TextChild.props.variant || 'muted',
