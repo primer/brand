@@ -194,6 +194,12 @@
   .Box-regular-padding--96 {
     padding: var(--base-size-96);
   }
+  .Box-regular-padding--112 {
+    padding: var(--base-size-112);
+  }
+  .Box-regular-padding--128 {
+    padding: var(--base-size-128);
+  }
 }
 
 @media screen and (min-width: 80rem) {
@@ -250,6 +256,12 @@
   }
   .Box-wide-padding--96 {
     padding: var(--base-size-96);
+  }
+  .Box-wide-padding--112 {
+    padding: var(--base-size-112);
+  }
+  .Box-wide-padding--128 {
+    padding: var(--base-size-128);
   }
 }
 
@@ -371,6 +383,12 @@
 .Box-narrow-paddingBlockStart--96 {
   padding-block-start: var(--base-size-96);
 }
+.Box-narrow-paddingBlockStart--112 {
+  padding-block-start: var(--base-size-112);
+}
+.Box-narrow-paddingBlockStart--128 {
+  padding-block-start: var(--base-size-128);
+}
 
 @media screen and (min-width: 48rem) {
   .Box-regular-paddingBlockStart--condensed {
@@ -426,6 +444,12 @@
   }
   .Box-regular-paddingBlockStart--96 {
     padding-block-start: var(--base-size-96);
+  }
+  .Box-regular-paddingBlockStart--112 {
+    padding-block-start: var(--base-size-112);
+  }
+  .Box-regular-paddingBlockStart--128 {
+    padding-block-start: var(--base-size-128);
   }
 }
 
@@ -483,6 +507,12 @@
   }
   .Box-wide-paddingBlockStart--96 {
     padding-block-start: var(--base-size-96);
+  }
+  .Box-wide-paddingBlockStart--112 {
+    padding-block-start: var(--base-size-112);
+  }
+  .Box-wide-paddingBlockStart--128 {
+    padding-block-start: var(--base-size-128);
   }
 }
 
@@ -660,6 +690,12 @@
   .Box-regular-paddingInlineEnd--96 {
     padding-inline-end: var(--base-size-96);
   }
+  .Box-regular-paddingInlineEnd--112 {
+    padding-inline-end: var(--base-size-112);
+  }
+  .Box-regular-paddingInlineEnd--128 {
+    padding-inline-end: var(--base-size-128);
+  }
 }
 
 @media screen and (min-width: 80rem) {
@@ -716,6 +752,12 @@
   }
   .Box-wide-paddingInlineEnd--96 {
     padding-inline-end: var(--base-size-96);
+  }
+  .Box-wide-paddingInlineEnd--112 {
+    padding-inline-end: var(--base-size-112);
+  }
+  .Box-wide-paddingInlineEnd--128 {
+    padding-inline-end: var(--base-size-128);
   }
 }
 /**
@@ -836,6 +878,12 @@
 .Box-narrow-paddingBlockEnd--96 {
   padding-block-end: var(--base-size-96);
 }
+.Box-narrow-paddingBlockEnd--112 {
+  padding-block-end: var(--base-size-112);
+}
+.Box-narrow-paddingBlockEnd--128 {
+  padding-block-end: var(--base-size-128);
+}
 
 @media screen and (min-width: 48rem) {
   .Box-regular-paddingBlockEnd--condensed {
@@ -891,6 +939,12 @@
   }
   .Box-regular-paddingBlockEnd--96 {
     padding-block-end: var(--base-size-96);
+  }
+  .Box-regular-paddingBlockEnd--112 {
+    padding-block-end: var(--base-size-112);
+  }
+  .Box-regular-paddingBlockEnd--128 {
+    padding-block-end: var(--base-size-128);
   }
 }
 
@@ -948,6 +1002,12 @@
   }
   .Box-wide-paddingBlockEnd--96 {
     padding-block-end: var(--base-size-96);
+  }
+  .Box-wide-paddingBlockEnd--112 {
+    padding-block-end: var(--base-size-112);
+  }
+  .Box-wide-paddingBlockEnd--128 {
+    padding-block-end: var(--base-size-128);
   }
 }
 
@@ -1069,6 +1129,12 @@
 .Box-narrow-paddingInlineStart--96 {
   padding-inline-start: var(--base-size-96);
 }
+.Box-narrow-paddingInlineStart--112 {
+  padding-inline-start: var(--base-size-112);
+}
+.Box-narrow-paddingInlineStart--128 {
+  padding-inline-start: var(--base-size-128);
+}
 
 @media screen and (min-width: 48rem) {
   .Box-regular-paddingInlineStart--condensed {
@@ -1124,6 +1190,12 @@
   }
   .Box-regular-paddingInlineStart--96 {
     padding-inline-start: var(--base-size-96);
+  }
+  .Box-regular-paddingInlineStart--112 {
+    padding-inline-start: var(--base-size-112);
+  }
+  .Box-regular-paddingInlineStart--128 {
+    padding-inline-start: var(--base-size-128);
   }
 }
 
@@ -1181,6 +1253,12 @@
   }
   .Box-wide-paddingInlineStart--96 {
     padding-inline-start: var(--base-size-96);
+  }
+  .Box-wide-paddingInlineStart--112 {
+    padding-inline-start: var(--base-size-112);
+  }
+  .Box-wide-paddingInlineStart--128 {
+    padding-inline-start: var(--base-size-128);
   }
 }
 

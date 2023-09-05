@@ -2,15 +2,13 @@ import React from 'react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {Meta, StoryFn} from '@storybook/react'
 
-import {FeaturePreviewLevelOne} from './FeaturePreviewLevelOne'
-import {FeaturePreviewLevelTwoConfigurable} from './FeaturePreviewLevelTwo'
-import {FeaturePreviewLevelZero} from './FeaturePreviewLevelZero'
-import {themeDetailsMap} from './helpers'
-import {ColorModesEnum} from '../../ThemeProvider'
+import {ColorModesEnum} from '../../../ThemeProvider'
+import {themeDetailsMap} from '../helpers'
+import {FeaturePreviewLevelTwo} from './FeaturePreviewLevelTwo'
 
 export default {
-  title: 'Templates/Feature previews/Configurable',
-  component: FeaturePreviewLevelOne,
+  title: 'Recipes/Feature previews/Level2',
+  component: FeaturePreviewLevelTwo,
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,
@@ -35,7 +33,7 @@ export default {
     of the feature and why we think it's cool, keep it real.`,
 
     pillarVisibile: true,
-    pillarQuantity: 3,
+    pillarBackground: false,
 
     riverOneVisible: true,
     riverOneType: 'end',
@@ -57,6 +55,17 @@ export default {
     riverThreeDescription:
       'Here we explain why this came to be. This is a short statement about the intention of the feature and why we think its cool, keep it real.',
     riverThreeCtaText: 'Learn more',
+
+    testimonialVisible: true,
+    testimonialQuantity: 1,
+
+    ctaBannerVisible: true,
+    ctaBannerShowBg: true,
+
+    faqVisible: true,
+    faqType: 'group',
+
+    cardsVisible: true,
   },
   argTypes: {
     colorMode: {
@@ -89,6 +98,14 @@ export default {
     showHeroVisual: {
       control: 'boolean',
       name: 'show visual',
+      table: {
+        category: 'Section: Hero',
+      },
+    },
+    heroVisualPosition: {
+      control: 'inline-radio',
+      options: ['block-end', 'inline-end'],
+      name: 'visual position',
       table: {
         category: 'Section: Hero',
       },
@@ -136,21 +153,21 @@ export default {
       options: ['start', 'center'],
       name: 'align',
       table: {
-        category: 'Section: Intro',
+        category: 'Section: Introduce',
       },
     },
     sectionIntroText: {
       control: 'text',
       name: 'text',
       table: {
-        category: 'Section: Intro',
+        category: 'Section: Introduce',
       },
     },
     sectionIntroVisible: {
       control: 'boolean',
       name: 'visible',
       table: {
-        category: 'Section: Intro',
+        category: 'Section: Introduce',
       },
     },
     /**
@@ -163,14 +180,13 @@ export default {
         category: 'Section: Pillars',
       },
     },
-    pillarQuantity: {
-      control: 'number',
-      name: 'quantity',
+    pillarBackground: {
+      control: 'boolean',
+      name: 'hasBackground',
       table: {
         category: 'Section: Pillars',
       },
     },
-
     /**
      * River one
      */
@@ -183,7 +199,7 @@ export default {
     },
     riverOneType: {
       control: 'inline-radio',
-      options: ['center', 'start', 'end', 'breakout'],
+      options: ['start', 'end', 'breakout'],
       name: 'river 1 type',
       table: {
         category: 'Section: Rivers (1)',
@@ -223,7 +239,7 @@ export default {
     },
     riverTwoType: {
       control: 'inline-radio',
-      options: ['center', 'start', 'end', 'breakout'],
+      options: ['start', 'end', 'breakout'],
       name: 'river 2 type',
       table: {
         category: 'Section: Rivers (2)',
@@ -263,7 +279,7 @@ export default {
     },
     riverThreeType: {
       control: 'inline-radio',
-      options: ['center', 'start', 'end', 'breakout'],
+      options: ['start', 'end', 'breakout'],
       name: 'river 3 type',
       table: {
         category: 'Section: Rivers (3)',
@@ -290,23 +306,91 @@ export default {
         category: 'Section: Rivers (3)',
       },
     },
+    /**
+     * Testimonial
+     */
+    testimonialVisible: {
+      control: 'boolean',
+      name: 'visible',
+      table: {
+        category: 'Section: Testimonial',
+      },
+    },
+    testimonialQuantity: {
+      control: 'inline-radio',
+      options: [1, 2],
+      name: 'quantity',
+      table: {
+        category: 'Section: Testimonial',
+      },
+    },
+    /**
+     * CTABanner
+     */
+    ctaBannerVisible: {
+      control: 'boolean',
+      name: 'visible',
+      table: {
+        category: 'Section: CTABanner',
+      },
+    },
+    ctaBannerShowBg: {
+      control: 'boolean',
+      name: 'showBg',
+      table: {
+        category: 'Section: CTABanner',
+      },
+    },
+    /**
+     * FAQ
+     */
+    faqVisible: {
+      control: 'boolean',
+      name: 'visible',
+      table: {
+        category: 'Section: FAQ',
+      },
+    },
+    faqType: {
+      control: 'inline-radio',
+      options: ['single', 'group'],
+      name: 'type',
+      table: {
+        category: 'Section: FAQ',
+      },
+    },
+    /**
+     * Cards
+     */
+    cardsVisible: {
+      control: 'boolean',
+      name: 'visible',
+      table: {
+        category: 'Section: Cards',
+      },
+    },
   },
-} as Meta<typeof FeaturePreviewLevelOne>
+} as Meta<typeof FeaturePreviewLevelTwo>
 
-export const LevelZero: StoryFn<typeof FeaturePreviewLevelZero> = args => (
-  <FeaturePreviewLevelZero accentColor={args.accentColor} colorMode={args.colorMode} />
-)
+export const LevelTwoPlayground: StoryFn<typeof FeaturePreviewLevelTwo> = args => <FeaturePreviewLevelTwo {...args} />
 
-LevelZero.storyName = 'Level 0'
+LevelTwoPlayground.storyName = 'Playground'
 
-export const LevelOne: StoryFn<typeof FeaturePreviewLevelOne> = args => (
-  <FeaturePreviewLevelOne accentColor={args.accentColor} colorMode={args.colorMode} />
-)
+export const LevelTwoMinimal: StoryFn<typeof FeaturePreviewLevelTwo> = args => <FeaturePreviewLevelTwo {...args} />
 
-LevelOne.storyName = 'Level 1'
-
-export const LevelTwo: StoryFn<typeof FeaturePreviewLevelTwoConfigurable> = args => (
-  <FeaturePreviewLevelTwoConfigurable {...args} />
-)
-
-LevelTwo.storyName = 'Level 2'
+LevelTwoMinimal.storyName = 'Minimal'
+LevelTwoMinimal.args = {
+  heroLabel: undefined,
+  heroCtaTextSecondary: undefined,
+  sectionIntroVisible: false,
+  pillarVisibile: false,
+  riverOneType: 'end',
+  riverTwoType: 'end',
+  riverOneVisible: false,
+  testimonialVisible: false,
+  faqVisible: false,
+  cardsVisible: false,
+  faqType: 'single',
+  testimonialQuantity: 1,
+  ctaBannerShowBg: false,
+}

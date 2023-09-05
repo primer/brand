@@ -27,6 +27,8 @@
 .FeaturePreview__ctaBanner {
   background-repeat: no-repeat;
   background-size: cover;
+  border-radius: var(--brand-borderRadius-large);
+  overflow: hidden;
 }
 
 .FeaturePreview__heroImageContainer img {

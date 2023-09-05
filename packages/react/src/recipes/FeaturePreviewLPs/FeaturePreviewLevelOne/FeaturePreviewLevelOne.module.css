@@ -3,10 +3,11 @@
  * Should be fixed in the respective components
  */
 
-.FeaturePreview__hero {
+.FeaturePreview {
+  --brand-Hero-regular-padding: var(--brand-Hero-narrow-padding);
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: right center;
+  background-position: top center;
 }
 
 [data-color-mode='dark'] .FeaturePreview__trailingSection {
@@ -15,11 +16,4 @@
 
 .FeaturePreview__borderTop {
   border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
-}
-
-.FeaturePreview__contentArea {
-  border-top-left-radius: var(--brand-borderRadius-large);
-  border-top-right-radius: var(--brand-borderRadius-large);
-  background: var(--brand-color-canvas-default);
-  margin-top: calc(0px - var(--base-size-24));
 }

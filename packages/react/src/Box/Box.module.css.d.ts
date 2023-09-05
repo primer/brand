@@ -55,6 +55,8 @@ declare const styles: {
   readonly "Box-regular-padding--64": string;
   readonly "Box-regular-padding--80": string;
   readonly "Box-regular-padding--96": string;
+  readonly "Box-regular-padding--112": string;
+  readonly "Box-regular-padding--128": string;
   readonly "Box-wide-padding--condensed": string;
   readonly "Box-wide-padding--normal": string;
   readonly "Box-wide-padding--spacious": string;
@@ -73,6 +75,8 @@ declare const styles: {
   readonly "Box-wide-padding--64": string;
   readonly "Box-wide-padding--80": string;
   readonly "Box-wide-padding--96": string;
+  readonly "Box-wide-padding--112": string;
+  readonly "Box-wide-padding--128": string;
   readonly "Box-paddingBlockStart--condensed": string;
   readonly "Box-paddingBlockStart--normal": string;
   readonly "Box-paddingBlockStart--spacious": string;
@@ -111,6 +115,8 @@ declare const styles: {
   readonly "Box-narrow-paddingBlockStart--64": string;
   readonly "Box-narrow-paddingBlockStart--80": string;
   readonly "Box-narrow-paddingBlockStart--96": string;
+  readonly "Box-narrow-paddingBlockStart--112": string;
+  readonly "Box-narrow-paddingBlockStart--128": string;
   readonly "Box-regular-paddingBlockStart--condensed": string;
   readonly "Box-regular-paddingBlockStart--normal": string;
   readonly "Box-regular-paddingBlockStart--spacious": string;
@@ -129,6 +135,8 @@ declare const styles: {
   readonly "Box-regular-paddingBlockStart--64": string;
   readonly "Box-regular-paddingBlockStart--80": string;
   readonly "Box-regular-paddingBlockStart--96": string;
+  readonly "Box-regular-paddingBlockStart--112": string;
+  readonly "Box-regular-paddingBlockStart--128": string;
   readonly "Box-wide-paddingBlockStart--condensed": string;
   readonly "Box-wide-paddingBlockStart--normal": string;
   readonly "Box-wide-paddingBlockStart--spacious": string;
@@ -147,6 +155,8 @@ declare const styles: {
   readonly "Box-wide-paddingBlockStart--64": string;
   readonly "Box-wide-paddingBlockStart--80": string;
   readonly "Box-wide-paddingBlockStart--96": string;
+  readonly "Box-wide-paddingBlockStart--112": string;
+  readonly "Box-wide-paddingBlockStart--128": string;
   readonly "Box-paddingInlineEnd--condensed": string;
   readonly "Box-paddingInlineEnd--normal": string;
   readonly "Box-paddingInlineEnd--spacious": string;
@@ -203,6 +213,8 @@ declare const styles: {
   readonly "Box-regular-paddingInlineEnd--64": string;
   readonly "Box-regular-paddingInlineEnd--80": string;
   readonly "Box-regular-paddingInlineEnd--96": string;
+  readonly "Box-regular-paddingInlineEnd--112": string;
+  readonly "Box-regular-paddingInlineEnd--128": string;
   readonly "Box-wide-paddingInlineEnd--condensed": string;
   readonly "Box-wide-paddingInlineEnd--normal": string;
   readonly "Box-wide-paddingInlineEnd--spacious": string;
@@ -221,6 +233,8 @@ declare const styles: {
   readonly "Box-wide-paddingInlineEnd--64": string;
   readonly "Box-wide-paddingInlineEnd--80": string;
   readonly "Box-wide-paddingInlineEnd--96": string;
+  readonly "Box-wide-paddingInlineEnd--112": string;
+  readonly "Box-wide-paddingInlineEnd--128": string;
   readonly "Box-paddingBlockEnd--condensed": string;
   readonly "Box-paddingBlockEnd--normal": string;
   readonly "Box-paddingBlockEnd--spacious": string;
@@ -259,6 +273,8 @@ declare const styles: {
   readonly "Box-narrow-paddingBlockEnd--64": string;
   readonly "Box-narrow-paddingBlockEnd--80": string;
   readonly "Box-narrow-paddingBlockEnd--96": string;
+  readonly "Box-narrow-paddingBlockEnd--112": string;
+  readonly "Box-narrow-paddingBlockEnd--128": string;
   readonly "Box-regular-paddingBlockEnd--condensed": string;
   readonly "Box-regular-paddingBlockEnd--normal": string;
   readonly "Box-regular-paddingBlockEnd--spacious": string;
@@ -277,6 +293,8 @@ declare const styles: {
   readonly "Box-regular-paddingBlockEnd--64": string;
   readonly "Box-regular-paddingBlockEnd--80": string;
   readonly "Box-regular-paddingBlockEnd--96": string;
+  readonly "Box-regular-paddingBlockEnd--112": string;
+  readonly "Box-regular-paddingBlockEnd--128": string;
   readonly "Box-wide-paddingBlockEnd--condensed": string;
   readonly "Box-wide-paddingBlockEnd--normal": string;
   readonly "Box-wide-paddingBlockEnd--spacious": string;
@@ -295,6 +313,8 @@ declare const styles: {
   readonly "Box-wide-paddingBlockEnd--64": string;
   readonly "Box-wide-paddingBlockEnd--80": string;
   readonly "Box-wide-paddingBlockEnd--96": string;
+  readonly "Box-wide-paddingBlockEnd--112": string;
+  readonly "Box-wide-paddingBlockEnd--128": string;
   readonly "Box-paddingInlineStart--condensed": string;
   readonly "Box-paddingInlineStart--normal": string;
   readonly "Box-paddingInlineStart--spacious": string;
@@ -333,6 +353,8 @@ declare const styles: {
   readonly "Box-narrow-paddingInlineStart--64": string;
   readonly "Box-narrow-paddingInlineStart--80": string;
   readonly "Box-narrow-paddingInlineStart--96": string;
+  readonly "Box-narrow-paddingInlineStart--112": string;
+  readonly "Box-narrow-paddingInlineStart--128": string;
   readonly "Box-regular-paddingInlineStart--condensed": string;
   readonly "Box-regular-paddingInlineStart--normal": string;
   readonly "Box-regular-paddingInlineStart--spacious": string;
@@ -351,6 +373,8 @@ declare const styles: {
   readonly "Box-regular-paddingInlineStart--64": string;
   readonly "Box-regular-paddingInlineStart--80": string;
   readonly "Box-regular-paddingInlineStart--96": string;
+  readonly "Box-regular-paddingInlineStart--112": string;
+  readonly "Box-regular-paddingInlineStart--128": string;
   readonly "Box-wide-paddingInlineStart--condensed": string;
   readonly "Box-wide-paddingInlineStart--normal": string;
   readonly "Box-wide-paddingInlineStart--spacious": string;
@@ -369,6 +393,8 @@ declare const styles: {
   readonly "Box-wide-paddingInlineStart--64": string;
   readonly "Box-wide-paddingInlineStart--80": string;
   readonly "Box-wide-paddingInlineStart--96": string;
+  readonly "Box-wide-paddingInlineStart--112": string;
+  readonly "Box-wide-paddingInlineStart--128": string;
   readonly "Box-margin--condensed": string;
   readonly "Box-margin--normal": string;
   readonly "Box-margin--spacious": string;

@@ -12,17 +12,27 @@ import {
   SubdomainNavBar,
   Text,
   ThemeProvider,
-} from '../../../'
+} from '../../..'
 
 import {Themes, themeDetailsMap} from '../helpers'
 import styles from './FeaturePreviewLevelZero.module.css'
 
+import placeholderImage from '../../../fixtures/images/placeholder-600x400.png'
+
 type FeaturePreviewLevelZeroProps = {
   colorMode?: ColorModesEnum.LIGHT | ColorModesEnum.DARK
   accentColor: Themes
+  heroAlign: 'start' | 'center'
+  heroVisualPosition: 'block-end' | 'inline-end'
+  showHeroVisual: boolean
+  heroLabel: string
+  heroTitle: string
+  heroDescription: string
+  heroCtaTextPrimary: string
+  heroCtaTextSecondary: string
 }
 
-export function FeaturePreviewLevelZero({accentColor, colorMode}: FeaturePreviewLevelZeroProps) {
+export function FeaturePreviewLevelZero({accentColor, colorMode, ...args}: FeaturePreviewLevelZeroProps) {
   const [enableGridOverlay, setEnableGridOverlay] = React.useState(false)
   const [isLightMode, setIsLightMode] = React.useState(colorMode === ColorModesEnum.LIGHT)
   const selectedColorMode = isLightMode ? ColorModesEnum.LIGHT : ColorModesEnum.DARK
@@ -52,7 +62,7 @@ export function FeaturePreviewLevelZero({accentColor, colorMode}: FeaturePreview
         backgroundColor: 'var(--brand-color-canvas-default)',
       }}
     >
-      <SubdomainNavBar title="Preview" fixed={false}>
+      <SubdomainNavBar title={`${accentColor.charAt(0).toUpperCase() + accentColor.slice(1)} Preview`} fixed={false}>
         <SubdomainNavBar.SecondaryAction href="#" onClick={handleMode}>
           Change color mode
         </SubdomainNavBar.SecondaryAction>
@@ -68,14 +78,22 @@ export function FeaturePreviewLevelZero({accentColor, colorMode}: FeaturePreview
       >
         <Grid enableOverlay={enableGridOverlay}>
           <Grid.Column>
-            <Hero align="center">
-              <Hero.Label>Label</Hero.Label>
-              <Hero.Heading>Expressive headline about a sweet feature</Hero.Heading>
-              <Hero.Description>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus
-                sed turpis felis nam pulvinar.
-              </Hero.Description>
-              <Hero.PrimaryAction href="#">Primary CTA</Hero.PrimaryAction>
+            <Hero align={args.heroAlign} className={styles.Hero}>
+              {args.heroLabel && <Hero.Label>{args.heroLabel}</Hero.Label>}
+              {args.heroTitle && <Hero.Heading>{args.heroTitle}</Hero.Heading>}
+              {args.heroDescription && <Hero.Description>{args.heroDescription}</Hero.Description>}
+              {args.heroCtaTextPrimary && <Hero.PrimaryAction href="#">{args.heroCtaTextPrimary}</Hero.PrimaryAction>}
+              {args.heroCtaTextSecondary && (
+                <Hero.SecondaryAction href="#">{args.heroCtaTextSecondary}</Hero.SecondaryAction>
+              )}
+              {args.showHeroVisual && (
+                <Hero.Image
+                  position={args.heroVisualPosition}
+                  src={placeholderImage}
+                  alt="placeholder, blank area with an off-white background color"
+                  height="100%"
+                />
+              )}
             </Hero>
           </Grid.Column>
         </Grid>
@@ -88,19 +106,19 @@ export function FeaturePreviewLevelZero({accentColor, colorMode}: FeaturePreview
               <Grid enableOverlay={enableGridOverlay}>
                 <Grid.Column span={6} start={4}>
                   <Stack padding="none">
-                    <SectionIntro fullWidth>
+                    <SectionIntro fullWidth align={args.heroAlign === 'center' ? 'center' : 'start'}>
                       <SectionIntro.Heading size="5">
                         Signup for this cool feature to enable you to do this before everyone else. Be among the first
                         to learn the latest about our platforms, technologies, and tools.
                       </SectionIntro.Heading>
                     </SectionIntro>
                     <Stack direction="vertical" padding="none">
-                      <Text as="p" size="300" variant="muted">
+                      <Text as="p" size="300" variant="muted" align={args.heroAlign === 'center' ? 'center' : 'start'}>
                         It’s often considered polite to tell people what they are about to sign up for. Even if it
                         involves making them read a bunch. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
                         sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum.
                       </Text>
-                      <Text as="p" size="300" variant="muted">
+                      <Text as="p" size="300" variant="muted" align={args.heroAlign === 'center' ? 'center' : 'start'}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
                         laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
@@ -115,14 +133,18 @@ export function FeaturePreviewLevelZero({accentColor, colorMode}: FeaturePreview
                       paddingBlockEnd={{narrow: 24, regular: 48}}
                       marginBlockEnd={{narrow: 24, regular: 48}}
                     >
-                      <Stack direction="vertical" padding="none">
+                      <Stack
+                        direction="vertical"
+                        padding="none"
+                        alignItems={args.heroAlign === 'center' ? 'center' : 'flex-start'}
+                      >
                         <Heading as="h2" size="subhead-large">
                           Learn more about this
                         </Heading>
-                        <Text as="p">
+                        <Text as="p" align={args.heroAlign === 'center' ? 'center' : 'start'}>
                           Name of this relevant thing: <InlineLink href="#">Lorem ipsum dolor sit amet</InlineLink>
                         </Text>
-                        <Text as="p">
+                        <Text as="p" align={args.heroAlign === 'center' ? 'center' : 'start'}>
                           Name of this relevant thing: <InlineLink href="#">Consectetur adipiscing elit</InlineLink>
                         </Text>
                       </Stack>
