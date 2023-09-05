@@ -33,7 +33,8 @@ const Root = ({className, ...rest}: BentoProps) => {
   return <section className={clsx(styles.Bento, className)} {...rest}></section>
 }
 
-type ValidItemChildren = React.ReactElement<BentoVisualProps | BentoContentProps>[]
+type ValidChildren = React.ReactElement<BentoVisualProps | BentoContentProps>
+type ValidItemChildren = [ValidChildren?, ValidChildren?]
 
 type BentoItemProps = {
   columnStart?: ColumnIndex | ResponsiveColumnIndex
