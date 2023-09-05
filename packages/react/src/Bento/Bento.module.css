@@ -99,19 +99,19 @@
 }
 
 /* Bento Padding */
-.Bento-padding--condensed {
+.Bento--padding-condensed {
   padding: var(--brand-Bento-content-padding-condensed);
 }
-.Bento-padding--normal {
+.Bento--padding-normal {
   padding: var(--brand-Bento-content-padding-normal);
 }
-.Bento-padding--spacious {
+.Bento--padding-spacious {
   padding: var(--brand-Bento-content-padding-spacious);
 }
 
-.Bento-padding--condensed > img,
-.Bento-padding--normal > img,
-.Bento-padding--spacious > img {
+.Bento--padding-condensed > img,
+.Bento--padding-normal > img,
+.Bento--padding-spacious > img {
   border-radius: var(--brand-borderRadius-large);
 }
 

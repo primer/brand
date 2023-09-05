@@ -192,7 +192,6 @@ const Content = ({
           className: styles['Bento__Content-icon'],
           size: LeadingVisual['size'] || 44,
         })}
-      {/* TODO: If there is no TextChild apply the correct margin to the heading */}
       {React.isValidElement(HeadingChild) &&
         React.cloneElement(HeadingChild as React.ReactElement<BentoHeadingProps>, {
           className: clsx(
