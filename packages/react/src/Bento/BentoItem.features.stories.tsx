@@ -335,6 +335,43 @@ VisualAsBackground.parameters = {
   },
 }
 
+export const NoVisual: StoryFn<typeof Bento> = () => (
+  <Bento>
+    <Bento.Item visualAsBackground rowSpan={4}>
+      <Bento.Content>
+        <Bento.Heading>Heading</Bento.Heading>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </Bento.Content>
+    </Bento.Item>
+  </Bento>
+)
+
+NoVisual.parameters = {
+  viewport: {
+    defaultViewport: 'iphonexr',
+  },
+}
+
+export const NoContent: StoryFn<typeof Bento> = () => (
+  <Bento>
+    <Bento.Item visualAsBackground rowSpan={4}>
+      <Bento.Visual>
+        <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
+      </Bento.Visual>
+    </Bento.Item>
+  </Bento>
+)
+
+NoContent.parameters = {
+  viewport: {
+    defaultViewport: 'iphonexr',
+  },
+}
+
 export const DarkModeItem: StoryFn<typeof Bento> = () => (
   <Bento>
     <Bento.Item colorMode={ColorModesEnum.DARK} rowSpan={4}>

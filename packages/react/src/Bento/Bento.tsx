@@ -121,7 +121,7 @@ const Item = ({
     ...returnClassBasedOnResponsiveMap('Bento__Item', 'flow', flow),
   )
 
-  if (!visualAsBackground) {
+  if (!visualAsBackground && React.Children.toArray(children).length >= 1) {
     flow === 'column' && bentoItemClassArray.push(styles['Bento-column-padding-override'])
     flow === 'row' && bentoItemClassArray.push(styles['Bento-row-padding-override'])
   }
@@ -147,7 +147,8 @@ const Item = ({
       {...colorModeProp}
       className={clsx(
         ...bentoItemClassArray,
-        visualAsBackground && styles[`Bento__Item--visual-as-background`],
+        (visualAsBackground || React.Children.toArray(children).length === 1) &&
+          styles[`Bento__Item--visual-as-background`],
         className,
       )}
       {...rest}
