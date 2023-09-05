@@ -259,7 +259,9 @@ export function FeaturePreviewLevelTwo({accentColor, colorMode, ...args}: Featur
               <>
                 {args.riverOneType === 'breakout' ? (
                   <RiverBreakout>
-                    <RiverBreakout.A11yHeading>{args.riverOneTitle}</RiverBreakout.A11yHeading>
+                    <RiverBreakout.A11yHeading as={args.sectionIntroVisible ? 'h3' : 'h2'}>
+                      {args.riverOneTitle}
+                    </RiverBreakout.A11yHeading>
                     <RiverBreakout.Visual
                       className={styles.FeaturePreview__heroImageContainer}
                       style={{
@@ -305,7 +307,7 @@ export function FeaturePreviewLevelTwo({accentColor, colorMode, ...args}: Featur
                       />
                     </River.Visual>
                     <River.Content className={clsx(args.riverOneType === 'end' && styles.RiverContent)}>
-                      <Heading>{args.riverOneTitle}</Heading>
+                      <Heading as={args.sectionIntroVisible ? 'h3' : 'h2'}>{args.riverOneTitle}</Heading>
                       <Text>{args.riverOneDescription}</Text>
                       <Link href="#">{args.riverOneCtaText}</Link>
                     </River.Content>
@@ -318,7 +320,9 @@ export function FeaturePreviewLevelTwo({accentColor, colorMode, ...args}: Featur
               <>
                 {args.riverTwoType === 'breakout' ? (
                   <RiverBreakout>
-                    <RiverBreakout.A11yHeading>{args.riverTwoTitle}</RiverBreakout.A11yHeading>
+                    <RiverBreakout.A11yHeading as={args.sectionIntroVisible ? 'h3' : 'h2'}>
+                      {args.riverTwoTitle}
+                    </RiverBreakout.A11yHeading>
                     <RiverBreakout.Visual
                       className={styles.FeaturePreview__heroImageContainer}
                       style={{
@@ -364,7 +368,7 @@ export function FeaturePreviewLevelTwo({accentColor, colorMode, ...args}: Featur
                       />
                     </River.Visual>
                     <River.Content className={clsx(args.riverTwoType === 'end' && styles.RiverContent)}>
-                      <Heading>{args.riverTwoTitle}</Heading>
+                      <Heading as={args.sectionIntroVisible ? 'h3' : 'h2'}>{args.riverTwoTitle}</Heading>
                       <Text>{args.riverTwoDescription}</Text>
                       <Link href="#">{args.riverTwoCtaText}</Link>
                     </River.Content>
@@ -376,7 +380,9 @@ export function FeaturePreviewLevelTwo({accentColor, colorMode, ...args}: Featur
               <>
                 {args.riverThreeType === 'breakout' ? (
                   <RiverBreakout>
-                    <RiverBreakout.A11yHeading>{args.riverThreeTitle}</RiverBreakout.A11yHeading>
+                    <RiverBreakout.A11yHeading as={args.sectionIntroVisible ? 'h3' : 'h2'}>
+                      {args.riverThreeTitle}
+                    </RiverBreakout.A11yHeading>
                     <RiverBreakout.Visual
                       className={styles.FeaturePreview__heroImageContainer}
                       style={{
@@ -422,7 +428,7 @@ export function FeaturePreviewLevelTwo({accentColor, colorMode, ...args}: Featur
                       />
                     </River.Visual>
                     <River.Content className={clsx(args.riverThreeType === 'end' && styles.RiverContent)}>
-                      <Heading>{args.riverThreeTitle}</Heading>
+                      <Heading as={args.sectionIntroVisible ? 'h3' : 'h2'}>{args.riverThreeTitle}</Heading>
                       <Text>{args.riverThreeDescription}</Text>
                       <Link href="#">{args.riverThreeCtaText}</Link>
                     </River.Content>
