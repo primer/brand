@@ -25,7 +25,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('FeaturePreviewLevelTwo / 2.1', async ({page}) => {
+  test('FeaturePreviewLevelTwo / 2.1 variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-feature-previews-level-2--level-two-point-one&viewMode=story',
     )
@@ -34,7 +34,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('FeaturePreviewLevelTwo / 2.2', async ({page}) => {
+  test('FeaturePreviewLevelTwo / 2.2 variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-feature-previews-level-2--level-two-point-two&viewMode=story',
     )
@@ -43,7 +43,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('FeaturePreviewLevelTwo / 2.3', async ({page}) => {
+  test('FeaturePreviewLevelTwo / 2.3 variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=recipes-feature-previews-level-2--level-two-point-three&viewMode=story',
     )

@@ -430,6 +430,7 @@ LevelTwoPointThree.args = {
   sectionIntroAlign: 'center',
   sectionIntroText: [
     <em key="highlighted-statement">Highlighted statement in 4-6 words max.</em>,
+    <br key="separator" />,
     <span key="body-text">The rest of body text should be between 80 to 100 characters.</span>,
   ],
   pillarBackground: true,
