@@ -1379,6 +1379,12 @@
 .Box-narrow-margin--96 {
   margin: var(--base-size-96);
 }
+.Box-narrow-margin--112 {
+  margin: var(--base-size-112);
+}
+.Box-narrow-margin--128 {
+  margin: var(--base-size-128);
+}
 
 @media screen and (min-width: 48rem) {
   .Box-regular-margin--condensed {
@@ -1435,6 +1441,12 @@
   .Box-regular-margin--96 {
     margin: var(--base-size-96);
   }
+  .Box-regular-margin--112 {
+    margin: var(--base-size-112);
+  }
+  .Box-regular-margin--128 {
+    margin: var(--base-size-128);
+  }
 }
 
 @media screen and (min-width: 80rem) {
@@ -1489,8 +1501,11 @@
   .Box-wide-margin--80 {
     margin: var(--base-size-80);
   }
-  .Box-wide-margin--96 {
-    margin: var(--base-size-96);
+  .Box-wide-margin--112 {
+    margin: var(--base-size-112);
+  }
+  .Box-wide-margin--128 {
+    margin: var(--base-size-128);
   }
 }
 
@@ -1612,6 +1627,12 @@
 .Box-narrow-marginBlockStart--96 {
   margin-block-start: var(--base-size-96);
 }
+.Box-narrow-marginBlockStart--112 {
+  margin-block-start: var(--base-size-112);
+}
+.Box-narrow-marginBlockStart--128 {
+  margin-block-start: var(--base-size-128);
+}
 
 @media screen and (min-width: 48rem) {
   .Box-regular-marginBlockStart--condensed {
@@ -1667,6 +1688,12 @@
   }
   .Box-regular-marginBlockStart--96 {
     margin-block-start: var(--base-size-96);
+  }
+  .Box-regular-marginBlockStart--112 {
+    margin-block-start: var(--base-size-112);
+  }
+  .Box-regular-marginBlockStart--128 {
+    margin-block-start: var(--base-size-128);
   }
 }
 
@@ -1724,6 +1751,12 @@
   }
   .Box-wide-marginBlockStart--96 {
     margin-block-start: var(--base-size-96);
+  }
+  .Box-wide-marginBlockStart--112 {
+    margin-block-start: var(--base-size-112);
+  }
+  .Box-wide-marginBlockStart--128 {
+    margin-block-start: var(--base-size-128);
   }
 }
 

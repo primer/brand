@@ -433,6 +433,8 @@ declare const styles: {
   readonly "Box-narrow-margin--64": string;
   readonly "Box-narrow-margin--80": string;
   readonly "Box-narrow-margin--96": string;
+  readonly "Box-narrow-margin--112": string;
+  readonly "Box-narrow-margin--128": string;
   readonly "Box-regular-margin--condensed": string;
   readonly "Box-regular-margin--normal": string;
   readonly "Box-regular-margin--spacious": string;
@@ -451,6 +453,8 @@ declare const styles: {
   readonly "Box-regular-margin--64": string;
   readonly "Box-regular-margin--80": string;
   readonly "Box-regular-margin--96": string;
+  readonly "Box-regular-margin--112": string;
+  readonly "Box-regular-margin--128": string;
   readonly "Box-wide-margin--condensed": string;
   readonly "Box-wide-margin--normal": string;
   readonly "Box-wide-margin--spacious": string;
@@ -468,7 +472,8 @@ declare const styles: {
   readonly "Box-wide-margin--48": string;
   readonly "Box-wide-margin--64": string;
   readonly "Box-wide-margin--80": string;
-  readonly "Box-wide-margin--96": string;
+  readonly "Box-wide-margin--112": string;
+  readonly "Box-wide-margin--128": string;
   readonly "Box-marginBlockStart--condensed": string;
   readonly "Box-marginBlockStart--normal": string;
   readonly "Box-marginBlockStart--spacious": string;
@@ -507,6 +512,8 @@ declare const styles: {
   readonly "Box-narrow-marginBlockStart--64": string;
   readonly "Box-narrow-marginBlockStart--80": string;
   readonly "Box-narrow-marginBlockStart--96": string;
+  readonly "Box-narrow-marginBlockStart--112": string;
+  readonly "Box-narrow-marginBlockStart--128": string;
   readonly "Box-regular-marginBlockStart--condensed": string;
   readonly "Box-regular-marginBlockStart--normal": string;
   readonly "Box-regular-marginBlockStart--spacious": string;
@@ -525,6 +532,8 @@ declare const styles: {
   readonly "Box-regular-marginBlockStart--64": string;
   readonly "Box-regular-marginBlockStart--80": string;
   readonly "Box-regular-marginBlockStart--96": string;
+  readonly "Box-regular-marginBlockStart--112": string;
+  readonly "Box-regular-marginBlockStart--128": string;
   readonly "Box-wide-marginBlockStart--condensed": string;
   readonly "Box-wide-marginBlockStart--normal": string;
   readonly "Box-wide-marginBlockStart--spacious": string;
@@ -543,6 +552,8 @@ declare const styles: {
   readonly "Box-wide-marginBlockStart--64": string;
   readonly "Box-wide-marginBlockStart--80": string;
   readonly "Box-wide-marginBlockStart--96": string;
+  readonly "Box-wide-marginBlockStart--112": string;
+  readonly "Box-wide-marginBlockStart--128": string;
   readonly "Box-marginInlineEnd--condensed": string;
   readonly "Box-marginInlineEnd--normal": string;
   readonly "Box-marginInlineEnd--spacious": string;

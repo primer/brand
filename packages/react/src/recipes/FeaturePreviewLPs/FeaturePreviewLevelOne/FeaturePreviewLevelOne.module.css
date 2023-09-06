@@ -14,6 +14,29 @@
   --brand-color-canvas-subtle: var(--base-color-scale-gray-7);
 }
 
+.FeaturePreview__mainContentGrid {
+  padding: 0;
+}
+
 .FeaturePreview__borderTop {
   border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
+}
+
+.FeaturePreview__hero {
+  background-color: var(--base-color-scale-black-0);
+  z-index: 1;
+}
+
+@media screen and (min-width: 64rem) {
+  .FeaturePreview__heroBg {
+    background-color: var(--base-color-scale-black-0);
+  }
+}
+
+.FeaturePreview__splitLayout {
+  position: absolute;
+  height: 100vh;
+  top: 75px;
+  width: 100%;
+  padding: 0;
 }

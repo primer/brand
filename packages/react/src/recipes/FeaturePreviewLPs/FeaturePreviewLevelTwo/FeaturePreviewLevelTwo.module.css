@@ -13,7 +13,7 @@
 
 @media screen and (min-width: 48rem) {
   .FeaturePreview {
-    --brand-River-spacing-outer: var(--base-size-96);
+    --brand-River-spacing-outer: var(--base-size-48);
   }
 }
 

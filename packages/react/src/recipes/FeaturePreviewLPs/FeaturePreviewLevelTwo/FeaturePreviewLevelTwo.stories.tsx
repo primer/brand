@@ -7,7 +7,7 @@ import {themeDetailsMap} from '../helpers'
 import {FeaturePreviewLevelTwo} from './FeaturePreviewLevelTwo'
 
 export default {
-  title: 'Recipes/Feature previews/Level2',
+  title: 'Recipes/Feature previews/Level 2',
   component: FeaturePreviewLevelTwo,
   parameters: {
     viewport: {
@@ -29,8 +29,11 @@ export default {
 
     sectionIntroAlign: 'start',
     sectionIntroVisible: true,
-    sectionIntroText: `Here we explain why this came to be. This is a short statement about the intention
+    sectionIntroText: [
+      <em key="highlighted-text">Here we explain why this came to be.</em>,
+      ` This is a short statement about the intention
     of the feature and why we think it's cool, keep it real.`,
+    ],
 
     pillarVisibile: true,
     pillarBackground: false,
@@ -393,4 +396,45 @@ LevelTwoMinimal.args = {
   faqType: 'single',
   testimonialQuantity: 1,
   ctaBannerShowBg: false,
+}
+
+export const LevelTwoPointOne: StoryFn<typeof FeaturePreviewLevelTwo> = args => <FeaturePreviewLevelTwo {...args} />
+
+LevelTwoPointOne.storyName = '2.1 variant'
+LevelTwoPointOne.args = {
+  pillarBackground: true,
+  riverThreeVisible: false,
+  faqVisible: false,
+}
+
+export const LevelTwoPointTwo: StoryFn<typeof FeaturePreviewLevelTwo> = args => <FeaturePreviewLevelTwo {...args} />
+
+LevelTwoPointTwo.storyName = '2.2 variant'
+LevelTwoPointTwo.args = {
+  showHeroVisual: false,
+  heroAlign: 'start',
+  sectionIntroAlign: 'start',
+  pillarBackground: true,
+  testimonialVisible: false,
+  faqVisible: false,
+  cardsVisible: false,
+}
+
+export const LevelTwoPointThree: StoryFn<typeof FeaturePreviewLevelTwo> = args => <FeaturePreviewLevelTwo {...args} />
+
+LevelTwoPointThree.storyName = '2.3 variant'
+LevelTwoPointThree.args = {
+  showHeroVisual: false,
+  heroLabel: '',
+  heroAlign: 'center',
+  sectionIntroAlign: 'center',
+  sectionIntroText: [
+    <em key="highlighted-statement">Highlighted statement in 4-6 words max.</em>,
+    <span key="body-text">The rest of body text should be between 80 to 100 characters.</span>,
+  ],
+  pillarBackground: true,
+  riverOneVisible: false,
+  testimonialVisible: false,
+  faqVisible: false,
+  ctaBannerVisible: false,
 }

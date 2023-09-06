@@ -3,11 +3,13 @@ import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {Meta, StoryFn} from '@storybook/react'
 
 import {FeaturePreviewLevelOne} from './FeaturePreviewLevelOne'
+import {FeaturePreviewLevelOneSideBySide} from './FeaturePreviewLevelOneSideBySide'
+
 import {themeDetailsMap} from '../helpers'
 import {ColorModesEnum} from '../../../ThemeProvider'
 
 export default {
-  title: 'Recipes/Feature previews/Level1',
+  title: 'Recipes/Feature previews/Level 1',
   component: FeaturePreviewLevelOne,
   parameters: {
     viewport: {
@@ -67,6 +69,12 @@ export default {
   },
 } as Meta<typeof FeaturePreviewLevelOne>
 
-export const LevelOne: StoryFn<typeof FeaturePreviewLevelOne> = args => <FeaturePreviewLevelOne {...args} />
+export const LevelOneDefault: StoryFn<typeof FeaturePreviewLevelOne> = args => <FeaturePreviewLevelOne {...args} />
 
-LevelOne.storyName = 'Level 1'
+LevelOneDefault.storyName = 'Default'
+
+export const LevelOneSideBySide: StoryFn<typeof FeaturePreviewLevelOneSideBySide> = args => (
+  <FeaturePreviewLevelOneSideBySide {...args} />
+)
+
+LevelOneSideBySide.storyName = 'Side-by-side'
