@@ -46,7 +46,6 @@ export type CardProps = {
    * */
   ctaText?: string
   hasBorder?: boolean
-  hasShadow?: boolean
 } & Omit<BaseProps<HTMLDivElement>, 'animate'> &
   Omit<React.ComponentPropsWithoutRef<'div'>, 'onMouseEnter' | 'onMouseLeave' | 'onFocus' | 'onBlur'> &
   Pick<React.ComponentPropsWithoutRef<'a'>, 'onMouseEnter' | 'onMouseLeave' | 'onFocus' | 'onBlur'>
@@ -63,7 +62,6 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
       ctaText = 'Learn more',
       href,
       hasBorder = false,
-      hasShadow = false,
       style,
       ...props
     },
@@ -127,13 +125,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
 
     return (
       <div
-        className={clsx(
-          styles.Card,
-          hasIcon && styles['Card--icon'],
-          hasBorder && styles['Card--border'],
-          hasShadow && styles['Card--shadow'],
-          className,
-        )}
+        className={clsx(styles.Card, hasIcon && styles['Card--icon'], hasBorder && styles['Card--border'], className)}
         ref={cardRef}
         {...props}
       >

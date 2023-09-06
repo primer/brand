@@ -36,13 +36,6 @@ export default {
         type: 'boolean',
       },
     },
-    hasShadow: {
-      name: 'hasShadow',
-      type: {name: 'boolean', required: false},
-      control: {
-        type: 'boolean',
-      },
-    },
     labelColor: {
       description: 'Color of Label',
       control: {
@@ -73,7 +66,7 @@ export default {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Template: StoryFn<typeof Card> = (_, storyArgs: any) => (
-  <Card href="https://github.com" hasBorder={storyArgs.args.hasBorder} hasShadow={storyArgs.args.hasShadow}>
+  <Card href="https://github.com" hasBorder={storyArgs.args.hasBorder}>
     <Card.Icon hasBackground={storyArgs.args.iconHasBackground} icon={CopilotIcon} color={storyArgs.args.iconColor} />
     <Card.Heading>{storyArgs.args.heading}</Card.Heading>
     <Card.Label color={storyArgs.args.labelColor}>Beta</Card.Label>

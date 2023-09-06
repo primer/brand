@@ -147,21 +147,6 @@ describe('Card', () => {
     expect(cardEl).toHaveClass(classToCheck)
   })
 
-  it('renders the Card with shadow', () => {
-    const mockTestId = 'test'
-    const classToCheck = 'Card--shadow'
-
-    const {getByTestId} = render(
-      <Card href={mockHref} data-testid={mockTestId} hasShadow>
-        <Card.Heading>{mockHeading}</Card.Heading>
-        <Card.Description>{mockDescription}</Card.Description>
-      </Card>,
-    )
-
-    const cardEl = getByTestId(mockTestId)
-    expect(cardEl).toHaveClass(classToCheck)
-  })
-
   it('renders the Card with border', () => {
     const mockTestId = 'test'
     const classToCheck = 'Card--border'

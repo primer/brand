@@ -57,18 +57,6 @@ export const Border: StoryFn<typeof Card> = () => {
   )
 }
 
-export const Shadow: StoryFn<typeof Card> = () => {
-  return (
-    <Card href="https://github.com" hasShadow>
-      <Card.Icon icon={RocketIcon} />
-      <Card.Heading>Code search & code view</Card.Heading>
-      <Card.Description>
-        Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
-      </Card.Description>
-    </Card>
-  )
-}
-
 export const IconColors: StoryFn<typeof Card> = () => {
   return (
     <Stack padding={'none'} direction="horizontal" gap={'normal'} style={{flexWrap: 'wrap'}}>
