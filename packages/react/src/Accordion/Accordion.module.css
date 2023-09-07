@@ -145,7 +145,7 @@ details[open] > .Accordion__content {
   animation: fade-in 0.5s;
 }
 
-.Accordion__summary--default > .Accordion__content {
+.Accordion__summary--default + .Accordion__content {
   margin-top: calc(var(--base-size-16) * -1); /* for 8px gap between question and answer */
 }
 
