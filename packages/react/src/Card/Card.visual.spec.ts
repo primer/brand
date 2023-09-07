@@ -28,6 +28,13 @@ test.describe('Visual Comparison: Card', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('Card / Border', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--border&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Card / Icon Colors', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--icon-colors&viewMode=story')
 

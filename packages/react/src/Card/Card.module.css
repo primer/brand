@@ -3,9 +3,8 @@
   text-decoration: none;
   color: var(--brand-color-text-default);
   background-color: var(--brand-Card-background-default);
-  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
-  box-shadow: var(--brand-Card-shadow);
-  border-radius: var(--brand-borderRadius-medium);
+  /* Temporary values until a new scale is defined https://github.com/github/primer/issues/2607 */
+  border-radius: var(--base-size-16);
   padding: var(--base-size-32);
   transition: transform var(--brand-Card-animation-duration) var(--brand-Card-animation-easing);
   display: grid;
@@ -46,7 +45,11 @@
   inset: 0;
 }
 
-.Card--has-icon {
+.Card--border {
+  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
+}
+
+.Card--icon {
   grid-template-areas:
     'image image'
     'icon label'
@@ -55,12 +58,12 @@
     'action action';
 }
 
-.Card--has-icon .Card__label {
+.Card--icon .Card__label {
   justify-self: flex-end;
 }
 
-.Card--has-icon .Card__label,
-.Card--has-icon .Card__icon {
+.Card--icon .Card__label,
+.Card--icon .Card__icon {
   align-self: center;
 }
 
@@ -70,7 +73,8 @@
 
 .Card__image {
   margin-bottom: var(--base-size-28);
-  border-radius: var(--brand-borderRadius-small);
+  /* Temporary values until a new scale is defined https://github.com/github/primer/issues/2607 */
+  border-radius: var(--base-size-8);
   overflow: hidden;
   grid-area: image;
 }
@@ -105,7 +109,7 @@
 }
 
 .Card__description {
-  margin-bottom: var(--base-size-48);
+  margin-bottom: var(--base-size-32);
   grid-area: description;
 }
 
@@ -114,6 +118,11 @@
   margin-top: auto;
   display: inline-flex;
   align-items: center;
+}
+
+.Card__action,
+.Card__action span {
+  color: var(--brand-Link-color-accent);
 }
 
 .Card__icon svg {
