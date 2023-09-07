@@ -1,0 +1,398 @@
+/* ---------------------------------------------------------- */
+/* VideoPlayer Contents                                       */
+/* ---------------------------------------------------------- */
+/* Table of contents:                                         */
+/* 1. Container                                               */
+/* 2. Player                                                  */
+/* 2. Center Play Button                                      */
+/* 4. Title                                                   */
+/* 5. Controls                                                */
+/* 6. Range Element                                           */
+/* 7. Tooltip                                                 */
+/* 8. Captions                                                */
+/* ---------------------------------------------------------- */
+
+/* ---------------------------------------------------------- */
+/* 1. Container                                               */
+/* ---------------------------------------------------------- */
+
+.VideoPlayer__container {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ---------------------------------------------------------- */
+/* 2. Player                                                  */
+/* ---------------------------------------------------------- */
+
+.VideoPlayer {
+  width: 100%;
+  border-radius: var(--brand-borderRadius-medium);
+  display: block;
+}
+
+/* ---------------------------------------------------------- */
+/* 3. Center Play Button                                      */
+/* ---------------------------------------------------------- */
+
+.VideoPlayer__playButton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  z-index: 1;
+}
+
+.VideoPlayer__playButtonInner {
+  height: var(--brand-VideoPlayer-playButton-height);
+  width: var(--brand-VideoPlayer-playButton-width);
+  display: inline-block;
+  padding: var(--brand-VideoPlayer-playButton-padding);
+  box-sizing: content-box;
+  background: var(--base-color-scale-blue-5);
+  border-radius: 50%;
+}
+
+.VideoPlayer__playButtonInner > svg {
+  margin-left: 0.3125rem;
+}
+
+.VideoPlayer__playButton:focus {
+  border: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
+  box-shadow: 0 0 0 2px var(--brand-color-focus);
+}
+
+.VideoPlayer__playButton svg {
+  cursor: pointer;
+  color: var(--base-color-scale-gray-0);
+}
+
+/* ---------------------------------------------------------- */
+/* 4. Title                                                   */
+/* ---------------------------------------------------------- */
+
+.VideoPlayer__title {
+  transition: var(--brand-VideoPlayer-transition);
+  top: -10px;
+  opacity: 0;
+  position: absolute;
+  border-radius: var(--brand-borderRadius-medium);
+  left: 0;
+  width: 100%;
+  z-index: 2;
+  padding: var(--base-size-16) var(--base-size-24);
+  color: var(--base-color-scale-gray-0);
+  display: grid;
+  align-items: center;
+  justify-content: start;
+  grid-gap: 10px;
+  grid-template-columns: auto auto;
+  background: hsl(var(--base-color-scale-black-0-hsl) / 80%);
+  background: linear-gradient(hsl(var(--base-color-scale-black-0-hsl) / 40%), rgba(0, 0, 0, 0));
+}
+
+.VideoPlayer__showOverlays .VideoPlayer__title {
+  top: 0;
+  opacity: 1;
+}
+
+.VideoPlayer__overlays:hover .VideoPlayer__title {
+  top: 0;
+  opacity: 1;
+}
+
+/* ---------------------------------------------------------- */
+/* 5. Controls                                                */
+/* ---------------------------------------------------------- */
+
+.VideoPlayer__controls {
+  transition: var(--brand-VideoPlayer-transition);
+  bottom: -58px;
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  pointer-events: none;
+}
+
+.VideoPlayer__controlsWrapper {
+  display: grid;
+  grid-gap: var(--base-size-16);
+  align-items: center;
+  grid-template-columns: auto 2fr auto auto auto auto auto;
+  opacity: 0;
+  border-bottom-right-radius: var(--brand-borderRadius-medium);
+  border-bottom-left-radius: var(--brand-borderRadius-medium);
+  left: 0;
+  width: 100%;
+  background: hsl(var(--base-color-scale-black-0-hsl) / 80%);
+  background: linear-gradient(rgba(0, 0, 0, 0), hsl(var(--base-color-scale-black-0-hsl) / 40%));
+  padding: var(--base-size-16) var(--base-size-24);
+  pointer-events: all;
+}
+
+.VideoPlayer__container--small .VideoPlayer__controlsWrapper {
+  grid-template-columns: auto 2fr auto auto auto auto;
+}
+
+.VideoPlayer__controls:focus,
+.VideoPlayer__controls:focus-within {
+  bottom: 0;
+}
+
+.VideoPlayer__controls:focus .VideoPlayer__controlsWrapper,
+.VideoPlayer__controls:focus-within .VideoPlayer__controlsWrapper {
+  opacity: 1;
+}
+
+.VideoPlayer__showOverlays .VideoPlayer__controls {
+  bottom: 0;
+}
+
+.VideoPlayer__showOverlays .VideoPlayer__controlsWrapper {
+  opacity: 1;
+}
+
+.VideoPlayer__overlays:hover .VideoPlayer__controlsWrapper {
+  opacity: 1;
+}
+
+.VideoPlayer__overlays:hover .VideoPlayer__controls {
+  bottom: 0;
+  opacity: 1;
+}
+
+.VideoPlayer__iconControl {
+  width: auto;
+  background: none;
+  border: none;
+  cursor: pointer;
+  height: 24px;
+  box-sizing: content-box;
+  position: relative;
+  padding: 0;
+}
+
+.VideoPlayer__iconControl:focus-visible {
+  border-color: var(--brand-color-focus);
+  outline: none;
+  box-shadow: 0 0 0 2px var(--brand-color-focus);
+  opacity: 1;
+}
+
+.VideoPlayer__iconControl svg {
+  color: var(--base-color-scale-gray-0);
+}
+
+.VideoPlayer__iconControl:hover .VideoPlayer__tooltip {
+  opacity: 1;
+}
+
+.VideoPlayer__progressTime {
+  width: 100%;
+  color: var(--base-color-scale-gray-0);
+}
+
+.VideoPlayer__totalTime {
+  display: inline-block;
+}
+
+.VideoPlayer__container--small .VideoPlayer__totalTime {
+  display: none;
+}
+
+.VideoPlayer__progressBar {
+  width: 100%;
+  height: 6px;
+}
+
+.VideoPlayer__closedCaption {
+  border-radius: var(--brand-borderRadius-medium);
+  padding: 1px 5px;
+  border: 2px solid var(--base-color-scale-gray-0);
+  background: var(--base-color-scale-gray-0);
+  position: relative;
+}
+
+.VideoPlayer__ccOff {
+  background-color: transparent;
+}
+
+.VideoPlayer__ccText {
+  color: var(--base-color-scale-black-0);
+}
+
+.VideoPlayer__ccOff .VideoPlayer__ccText {
+  color: var(--base-color-scale-gray-0);
+}
+
+/* ---------------------------------------------------------- */
+/* 6. Range Element                                           */
+/* ---------------------------------------------------------- */
+.VideoPlayer__range {
+  position: relative;
+  width: 100%;
+  min-width: var(--brand-VideoPlayer-range-minWidth);
+  height: var(--brand-VideoPlayer-range-height);
+  background-color: var(--base-color-scale-gray-0);
+  border-radius: var(--brand-VideoPlayer-range-borderRadius);
+}
+
+.VideoPlayer__container--small .VideoPlayer__volumeBar {
+  display: none;
+}
+
+.VideoPlayer__range:hover .VideoPlayer__tooltip {
+  opacity: 1;
+}
+
+.VideoPlayer__rangeInput {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: var(--brand-VideoPlayer-range-height);
+  margin: 0;
+  cursor: pointer;
+  background: transparent;
+  position: absolute;
+  top: 0;
+  opacity: 0;
+}
+
+.VideoPlayer__rangeInput:focus-visible {
+  border-color: var(--brand-color-focus);
+  outline: none;
+  box-shadow: 0 0 0 2px var(--brand-color-focus);
+  opacity: 1;
+}
+
+.VideoPlayer__range:hover .VideoPlayer__rangeInput {
+  opacity: 1;
+}
+
+.VideoPlayer__rangeInput::-moz-range-track,
+.VideoPlayer__rangeInput::-webkit-slider-runnable-track {
+  background: transparent;
+  border: none;
+}
+
+.VideoPlayer__rangeProgress {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  overflow: hidden;
+  background: hsl(var(--base-color-scale-gray-0-hsl) / 50%);
+  border: 0;
+  border-radius: var(--brand-VideoPlayer-range-borderRadius);
+  width: 100%;
+  position: absolute;
+  height: var(--brand-VideoPlayer-range-height);
+  top: 0;
+}
+
+.VideoPlayer__rangeProgress::-webkit-progress-bar {
+  background-color: hsl(var(--base-color-scale-gray-0-hsl) / 50%);
+}
+
+.VideoPlayer__rangeProgress::-webkit-progress-value {
+  background-color: var(--base-color-scale-blue-5);
+}
+
+.VideoPlayer__rangeProgress::-moz-progress-bar {
+  background: var(--base-color-scale-blue-5);
+}
+
+.VideoPlayer__rangeProgress::-ms-fill-lower {
+  background-color: var(--base-color-scale-blue-5);
+  border: none;
+}
+
+.VideoPlayer__rangeProgress::-ms-fill-upper {
+  background-color: hsl(var(--base-color-scale-gray-0-hsl) / 50%);
+  border: none;
+}
+
+/* ---------------------------------------------------------- */
+/* 7. Tooltip                                                 */
+/* ---------------------------------------------------------- */
+
+.VideoPlayer__tooltip {
+  position: absolute;
+  bottom: 100%;
+  z-index: 2;
+  width: 10px;
+  height: 10px;
+  margin-bottom: var(--base-size-16);
+  pointer-events: none;
+  opacity: 0;
+  transform: translate3d(0%, 50%, 0);
+  transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
+    transform var(--brand-animation-duration-default) var(--brand-animation-easing-default);
+}
+
+.VideoPlayer__tooltip::before {
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  content: '';
+  background: var(--base-color-scale-white-0);
+  border-radius: var(--brand-borderRadius-small);
+  transform: rotate(45deg);
+}
+
+.VideoPlayer__tooltipContent {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  z-index: -1;
+  background: white;
+  box-shadow: 0 4px 4px hsl(var(--base-color-scale-black-0-hsl) / 20%);
+  transform: translate3d(-50%, 0, 0);
+  padding: var(--brand-VideoPlayer-tooltip-padding);
+  border-radius: var(--brand-borderRadius-medium);
+}
+
+.VideoPlayer__tooltipText {
+  color: var(--brand-InlineLink-color-rest);
+}
+
+.VideoPlayer__controlTextColor {
+  color: var(--base-color-scale-white-0);
+}
+
+.VideoPlayer__shiftTooltipRight .VideoPlayer__tooltip {
+  transform: translateX(10px);
+}
+
+/* ---------------------------------------------------------- */
+/* 8. Captions                                                */
+/* ---------------------------------------------------------- */
+
+.VideoPlayer__captions {
+  width: 90%;
+  margin: var(--brand-VideoPlayer-closedCaption-margin);
+  display: grid;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.VideoPlayer__captions__empty {
+  display: none;
+}
+
+.VideoPlayer__captionText {
+  color: var(--base-color-scale-white-0);
+  text-align: center;
+  background: hsl(var(--base-color-scale-black-0-hsl) / 50%);
+  padding: var(--brand-VideoPlayer-closedCaption-text-padding);
+  border-radius: var(--brand-borderRadius-medium);
+  display: inline-block;
+}

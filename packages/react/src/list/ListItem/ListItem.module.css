@@ -14,5 +14,5 @@
   counter-increment: li;
   min-width: var(--base-size-16);
   text-align: center;
-  color: var(--brand-color-text-muted);
+  font-weight: var(--brand-text-size-200);
 }

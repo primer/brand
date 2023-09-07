@@ -66,6 +66,8 @@
       url: /components/Timeline
     - title: Unordered list
       url: /components/UnorderedList
+    - title: Video player
+      url: /components/VideoPlayer
 
 - title: Forms
   children:
@@ -95,3 +97,8 @@
       url: /components/Heading
     - title: Text
       url: /components/Text
+
+- title: GitHub staff
+  children:
+    - title: Storybook
+      url: /github-staff/storybook

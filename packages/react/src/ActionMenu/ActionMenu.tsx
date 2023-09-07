@@ -211,7 +211,7 @@ const _ActionMenuRoot = memo(
           acc['Button'] = cloneElement(child as ReactElement<ActionMenuButtonProps>, {
             onClick: toggleMenu,
             ref: anchorElementRef as React.RefObject<HTMLButtonElement>,
-            className: clsx(child.props.className, showMenu && styles['ActionMenu__button--active']),
+            className: clsx(child.props.className, showMenu),
             menuOpen: showMenu,
             disabled,
             id: `${instanceId}-button`,
@@ -337,7 +337,7 @@ const ActionMenuItem = ({
       <span className={styles['ActionMenu__item-text']}>
         <Text
           variant={disabled ? 'muted' : 'default'}
-          size="300"
+          size="200"
           className={clsx(disabled && styles['ActionMenu__item-content--disabled'])}
         >
           {children}

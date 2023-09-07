@@ -1,5 +1,5 @@
 .Timeline {
-  --bulletY: calc(var(--brand-Timeline-lineHeight) / 2 - var(--brand-Timeline-bullet-size) / 2 - 1px);
+  --bulletY: calc(var(--base-size-8) / 2 - var(--brand-Timeline-bullet-size) / 2 + var(--base-size-8));
 
   margin: 0;
   padding: 0;
@@ -37,10 +37,9 @@
 
 .Timeline__item:not(:last-child)::after {
   top: calc(var(--bulletY) + var(--brand-Timeline-bullet-size) + var(--brand-Timeline-bullet-spacing));
-  left: calc(var(--brand-Timeline-bullet-size) / 2);
+  left: calc(var(--brand-Timeline-bullet-size) / 2 - var(--brand-Timeline-strokeWidth) / 2);
   width: var(--brand-Timeline-strokeWidth);
   height: calc(100% - var(--brand-Timeline-bullet-size) - var(--brand-Timeline-bullet-spacing) * 2);
-  transform: translateX(-50%);
   background-color: var(--brand-Timeline-line-color);
   border-radius: var(--brand-borderRadius-full);
 }

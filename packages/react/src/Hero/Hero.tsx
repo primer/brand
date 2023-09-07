@@ -96,9 +96,9 @@ type HeroDescriptionProps = {
   weight?: TextWeightVariants | ResponsiveWeightMap
 } & BaseProps<HTMLParagraphElement>
 
-function HeroDescription({size = '400', weight, children}: PropsWithChildren<HeroDescriptionProps>) {
+function HeroDescription({size = '200', weight, children}: PropsWithChildren<HeroDescriptionProps>) {
   return (
-    <Text className={styles['Hero-description']} as="p" size={size} weight={weight} variant="muted">
+    <Text className={styles['Hero-description']} as="p" size={size} weight={weight}>
       {children}
     </Text>
   )
@@ -136,7 +136,7 @@ type HeroActions = {
 const HeroPrimaryAction = forwardRef<HTMLAnchorElement | HTMLButtonElement, PropsWithChildren<HeroActions>>(
   ({href, as = 'a', children, ...rest}, ref) => {
     return (
-      <Button as={as} variant="primary" size="large" href={href} {...rest} ref={ref as React.Ref<HTMLButtonElement>}>
+      <Button as={as} variant="primary" size="medium" href={href} {...rest} ref={ref as React.Ref<HTMLButtonElement>}>
         {children}
       </Button>
     )
@@ -146,7 +146,7 @@ const HeroPrimaryAction = forwardRef<HTMLAnchorElement | HTMLButtonElement, Prop
 const HeroSecondaryAction = forwardRef<HTMLAnchorElement | HTMLButtonElement, PropsWithChildren<HeroActions>>(
   ({href, as = 'a', children, ...rest}, ref) => {
     return (
-      <Button as={as} variant="secondary" size="large" href={href} {...rest} ref={ref as React.Ref<HTMLButtonElement>}>
+      <Button as={as} variant="secondary" size="medium" href={href} {...rest} ref={ref as React.Ref<HTMLButtonElement>}>
         {children}
       </Button>
     )

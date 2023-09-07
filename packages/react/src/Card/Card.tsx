@@ -45,13 +45,26 @@ export type CardProps = {
    * Changes the cta text of the card
    * */
   ctaText?: string
+  hasBorder?: boolean
 } & Omit<BaseProps<HTMLDivElement>, 'animate'> &
   Omit<React.ComponentPropsWithoutRef<'div'>, 'onMouseEnter' | 'onMouseLeave' | 'onFocus' | 'onBlur'> &
   Pick<React.ComponentPropsWithoutRef<'a'>, 'onMouseEnter' | 'onMouseLeave' | 'onFocus' | 'onBlur'>
 
 const CardRoot = forwardRef<HTMLDivElement, CardProps>(
   (
-    {onMouseEnter, onMouseLeave, onFocus, onBlur, children, className, ctaText = 'Learn more', href, style, ...props},
+    {
+      onMouseEnter,
+      onMouseLeave,
+      onFocus,
+      onBlur,
+      children,
+      className,
+      ctaText = 'Learn more',
+      href,
+      hasBorder = false,
+      style,
+      ...props
+    },
     ref,
   ) => {
     const cardRef = useProvidedRefOrCreate(ref as RefObject<HTMLDivElement>)
@@ -111,7 +124,11 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
     )
 
     return (
-      <div className={clsx(styles.Card, hasIcon && styles['Card--has-icon'], className)} ref={cardRef} {...props}>
+      <div
+        className={clsx(styles.Card, hasIcon && styles['Card--icon'], hasBorder && styles['Card--border'], className)}
+        ref={cardRef}
+        {...props}
+      >
         {React.Children.map(filteredChildren, child => {
           if (React.isValidElement(child) && typeof child.type !== 'string' && child.type === CardHeading) {
             return React.cloneElement<CardHeadingProps>(child as React.ReactElement<CardHeadingProps>, {
@@ -125,7 +142,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
           return child
         })}
         <div className={styles.Card__action}>
-          <Text as="span" size="300" className={clsx(stylesLink['Link--label'])}>
+          <Text as="span" size="200" className={clsx(stylesLink['Link--label'])}>
             {ctaText}
           </Text>
           <ExpandableArrow
@@ -205,7 +222,7 @@ type CardHeadingProps = BaseProps<HTMLHeadingElement> & {
 const CardHeading = forwardRef<HTMLHeadingElement, CardHeadingProps>(
   ({children, as = 'h3', className, href, onMouseEnter, onMouseLeave, onBlur, onFocus, ...rest}, ref) => {
     return (
-      <Heading size="6" className={clsx(styles.Card__heading, className)} ref={ref} as={as} {...rest}>
+      <Heading size="subhead-large" className={clsx(styles.Card__heading, className)} ref={ref} as={as} {...rest}>
         <a
           href={href}
           className={clsx(styles.Card__link)}
@@ -228,7 +245,7 @@ type CardDescriptionProps = BaseProps<HTMLParagraphElement> & {
 const CardDescription = forwardRef<HTMLParagraphElement, CardDescriptionProps>(
   ({children, className, ...rest}, ref) => {
     return (
-      <Text variant="muted" ref={ref} size="300" as="p" className={clsx(styles.Card__description, className)} {...rest}>
+      <Text variant="muted" ref={ref} size="200" as="p" className={clsx(styles.Card__description, className)} {...rest}>
         {children}
       </Text>
     )

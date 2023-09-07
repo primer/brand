@@ -1,13 +1,18 @@
 import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
-import {FAQ} from '.'
-import {Text, InlineLink} from '..'
+import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
+import {FAQ, FAQGroup} from '.'
+import {InlineLink} from '..'
 import {Container} from '../component-helpers'
 
 export default {
   title: 'Components/FAQ/features',
   component: FAQ,
   parameters: {
+    layout: 'fullscreen',
+    viewport: {
+      viewports: INITIAL_VIEWPORTS,
+    },
     a11y: {
       config: {
         rules: [
@@ -54,26 +59,10 @@ const fixtureData: FixtureData = [
           non eros.
         </p>
         <ol>
-          <li>
-            <Text size="300" variant="muted">
-              Must be associated with a current GitHub for Startups partner.
-            </Text>
-          </li>
-          <li>
-            <Text size="300" variant="muted">
-              Self-funded or funded (Seed-Series A)
-            </Text>
-          </li>
-          <li>
-            <Text size="300" variant="muted">
-              Not a current GitHub Enterprise customer
-            </Text>
-          </li>
-          <li>
-            <Text size="300" variant="muted">
-              Must not have previously received credits for GitHub Enterprise
-            </Text>
-          </li>
+          <li>Must be associated with a current GitHub for Startups partner.</li>
+          <li>Self-funded or funded (Seed-Series A)</li>
+          <li>Not a current GitHub Enterprise customer</li>
+          <li>Must not have previously received credits for GitHub Enterprise</li>
         </ol>
       </React.Fragment>
     ),
@@ -141,6 +130,31 @@ AllOpen.parameters = {
   },
 }
 
+export const ReversedToggles: StoryFn<typeof FAQ> = () => {
+  return (
+    <Container>
+      <FAQ>
+        <FAQ.Heading>Frequently asked&nbsp;questions</FAQ.Heading>
+        <>
+          {fixtureData.map(({question, answer}) => {
+            return (
+              <FAQ.Item key={question} open={true}>
+                <FAQ.Question reversedToggles>{question}</FAQ.Question>
+                <FAQ.Answer>{answer}</FAQ.Answer>
+              </FAQ.Item>
+            )
+          })}
+        </>
+      </FAQ>
+    </Container>
+  )
+}
+AllOpen.parameters = {
+  axe: {
+    timeout: 5000,
+  },
+}
+
 export const HeadingLeftAligned: StoryFn<typeof FAQ> = () => {
   return (
     <Container>
@@ -161,11 +175,22 @@ export const HeadingLeftAligned: StoryFn<typeof FAQ> = () => {
   )
 }
 
-export const Groups: StoryFn<typeof FAQ> = () => {
+export const WithSubheadings: StoryFn<typeof FAQ> = () => {
   return (
     <Container>
       <FAQ>
-        <FAQ.Heading size="large">Frequently asked&nbsp;questions</FAQ.Heading>
+        <FAQ.Heading>Frequently asked&nbsp;questions</FAQ.Heading>
+        <FAQ.Subheading>Group heading</FAQ.Subheading>
+        <>
+          {fixtureData.map(({question, answer}) => {
+            return (
+              <FAQ.Item key={question}>
+                <FAQ.Question>{question}</FAQ.Question>
+                <FAQ.Answer>{answer}</FAQ.Answer>
+              </FAQ.Item>
+            )
+          })}
+        </>
         <FAQ.Subheading>Group heading</FAQ.Subheading>
         <>
           {fixtureData.map(({question, answer}) => {
@@ -181,6 +206,158 @@ export const Groups: StoryFn<typeof FAQ> = () => {
     </Container>
   )
 }
+
+export const Groups: StoryFn<typeof FAQ> = () => {
+  return (
+    <FAQGroup>
+      <FAQGroup.Heading>
+        Frequently asked
+        <br />
+        questions
+      </FAQGroup.Heading>
+      <FAQ>
+        <FAQ.Heading>Using GitHub Enterprise</FAQ.Heading>
+        <FAQ.Item>
+          <FAQ.Question>What is GitHub Enterprise?</FAQ.Question>
+          <FAQ.Answer>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+              turpis felis nam pulvinar risus elementum.
+            </p>
+          </FAQ.Answer>
+        </FAQ.Item>
+        <FAQ.Item>
+          <FAQ.Question>How can GitHub Enterprise be deployed?</FAQ.Question>
+          <FAQ.Answer>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+              turpis felis nam pulvinar risus elementum.
+            </p>
+          </FAQ.Answer>
+        </FAQ.Item>
+        <FAQ.Item>
+          <FAQ.Question>What is GitHub Enterprise Cloud?</FAQ.Question>
+          <FAQ.Answer>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+              turpis felis nam pulvinar risus elementum.
+            </p>
+          </FAQ.Answer>
+        </FAQ.Item>
+      </FAQ>
+
+      <FAQ>
+        <FAQ.Heading>About GitHub Enterprise</FAQ.Heading>
+        <FAQ.Item>
+          <FAQ.Question>What is the difference between GitHub and GitHub Enterprise?</FAQ.Question>
+          <FAQ.Answer>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+              turpis felis nam pulvinar risus elementum.
+            </p>
+          </FAQ.Answer>
+        </FAQ.Item>
+        <FAQ.Item>
+          <FAQ.Question>Why should organizations use GitHub Enterprise?</FAQ.Question>
+          <FAQ.Answer>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+              turpis felis nam pulvinar risus elementum.
+            </p>
+          </FAQ.Answer>
+        </FAQ.Item>
+        <FAQ.Item>
+          <FAQ.Question>Who uses GitHub Enterprise?</FAQ.Question>
+          <FAQ.Answer>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+              turpis felis nam pulvinar risus elementum.
+            </p>
+          </FAQ.Answer>
+        </FAQ.Item>
+      </FAQ>
+    </FAQGroup>
+  )
+}
+
+export const GroupsNarrow: StoryFn<typeof FAQ> = () => {
+  return (
+    <FAQGroup>
+      <FAQGroup.Heading>
+        Frequently asked
+        <br />
+        questions
+      </FAQGroup.Heading>
+      <FAQ>
+        <FAQ.Heading>Using GitHub Enterprise</FAQ.Heading>
+        <FAQ.Item>
+          <FAQ.Question>What is GitHub Enterprise?</FAQ.Question>
+          <FAQ.Answer>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+              turpis felis nam pulvinar risus elementum.
+            </p>
+          </FAQ.Answer>
+        </FAQ.Item>
+        <FAQ.Item>
+          <FAQ.Question>How can GitHub Enterprise be deployed?</FAQ.Question>
+          <FAQ.Answer>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+              turpis felis nam pulvinar risus elementum.
+            </p>
+          </FAQ.Answer>
+        </FAQ.Item>
+        <FAQ.Item>
+          <FAQ.Question>What is GitHub Enterprise Cloud?</FAQ.Question>
+          <FAQ.Answer>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+              turpis felis nam pulvinar risus elementum.
+            </p>
+          </FAQ.Answer>
+        </FAQ.Item>
+      </FAQ>
+
+      <FAQ>
+        <FAQ.Heading>About GitHub Enterprise</FAQ.Heading>
+        <FAQ.Item>
+          <FAQ.Question>What is the difference between GitHub and GitHub Enterprise?</FAQ.Question>
+          <FAQ.Answer>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+              turpis felis nam pulvinar risus elementum.
+            </p>
+          </FAQ.Answer>
+        </FAQ.Item>
+        <FAQ.Item>
+          <FAQ.Question>Why should organizations use GitHub Enterprise?</FAQ.Question>
+          <FAQ.Answer>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+              turpis felis nam pulvinar risus elementum.
+            </p>
+          </FAQ.Answer>
+        </FAQ.Item>
+        <FAQ.Item>
+          <FAQ.Question>Who uses GitHub Enterprise?</FAQ.Question>
+          <FAQ.Answer>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+              turpis felis nam pulvinar risus elementum.
+            </p>
+          </FAQ.Answer>
+        </FAQ.Item>
+      </FAQ>
+    </FAQGroup>
+  )
+}
+GroupsNarrow.parameters = {
+  viewport: {
+    defaultViewport: 'iphonexr',
+  },
+}
+GroupsNarrow.storyName = 'Group narrow view (mobile)'
 
 export const DynamicDataExample: StoryFn<typeof FAQ> = () => {
   const faqs = [

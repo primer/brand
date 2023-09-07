@@ -53,6 +53,10 @@ const testsToSkip = [
   'components-river--video', // video is an example and not an official primer pattern
   'components-subdomainnavbar--search-results-visible', // has been a11y remediated already,
   'components-subdomainnavbar--mobile-search-results-visible', // has been a11y remediated already,
+  'components-videoplayer--default', // video makes this too flakey
+  'components-videoplayer-features--with-poster', // video makes this too flakey
+  'components-videoplayer-features--without-branding', // video makes this too flakey
+  'components-videoplayer--playground', // video makes this too flakey
 ]
 const testsWithCustomDelay = {
   'components-subdomainnavbar--mobile-menu-open': 5000, // takes a while for the menu to open

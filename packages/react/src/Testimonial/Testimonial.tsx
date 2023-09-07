@@ -1,13 +1,30 @@
-import React, {HTMLAttributes, PropsWithChildren, forwardRef, SVGProps} from 'react'
+import React, {
+  HTMLAttributes,
+  PropsWithChildren,
+  forwardRef,
+  SVGProps,
+  CSSProperties,
+  useMemo,
+  useCallback,
+} from 'react'
 import clsx from 'clsx'
 import {BaseProps} from '../component-helpers'
 import {Text, Avatar as BaseAvatar, useAnimation} from '../'
 import type {AvatarProps} from '../'
+import findElementInChildren from '../findElementInChildren'
+
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/testimonial/base.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/testimonial/colors.css'
 
 import styles from './Testimonial.module.css'
+import {Colors, Gradients} from '../constants'
 
 type TestimonialAlignment = 'start' | 'center'
 type TestimonialSize = 'small' | 'large'
+
+export const TestimonialQuoteMarkColors = [...Colors, ...Gradients] as const
+
+export const defaultQuoteMarkColor = TestimonialQuoteMarkColors[0]
 
 export type TestimonialProps = {
   /**
@@ -27,6 +44,8 @@ export type TestimonialProps = {
    * Sets the testimonial text size
    */
   size?: TestimonialSize
+  /** Sets the color of the quote mark */
+  quoteMarkColor?: (typeof TestimonialQuoteMarkColors)[number]
 } & BaseProps<HTMLElement> &
   React.HTMLAttributes<HTMLElement>
 
@@ -34,7 +53,19 @@ export type TestimonialProps = {
  * Testimonial parent element
  * <Testimonial>
  */
-function _Root({align, animate, className, children, size, style, ...rest}: PropsWithChildren<TestimonialProps>, ref) {
+function _Root(
+  {
+    quoteMarkColor = 'default',
+    align,
+    animate,
+    className,
+    children,
+    size,
+    style,
+    ...rest
+  }: PropsWithChildren<TestimonialProps>,
+  ref,
+) {
   const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
 
   return (
@@ -47,9 +78,19 @@ function _Root({align, animate, className, children, size, style, ...rest}: Prop
         size && styles[`Testimonial--size-${size}`],
         className,
       )}
-      style={{...animationInlineStyles, ...style}}
+      style={{
+        ...animationInlineStyles,
+        ...style,
+        ['--testimonial-accent-color' as keyof CSSProperties]: quoteMarkColor,
+      }}
       {...rest}
     >
+      <div
+        aria-hidden="true"
+        className={clsx(styles['Testimonial__quoteMark'], styles[`Testimonial__quoteMark--${quoteMarkColor}`])}
+      >
+        “
+      </div>
       {React.Children.map(children, child => {
         if (React.isValidElement(child)) {
           if (child.type === Quote) {
@@ -89,14 +130,34 @@ const Root = forwardRef(_Root)
  * <Testimonial.Quote>
  */
 type QuoteProps = {
-  children: string
+  children: string | Array<string | React.ReactElement<HTMLElement>>
 } & React.HTMLAttributes<HTMLElement> &
   BaseProps<HTMLElement>
 
 function _Quote({children, className}: QuoteProps, ref) {
+  const childrenArray = useMemo(() => React.Children.toArray(children), [children])
+
+  // TODO: when Firefox supports :has() selector, we should use that instead of JS
+  const getConditionalVariant = useCallback(() => {
+    if (findElementInChildren(children, 'em')) {
+      return 'muted'
+    }
+    return 'default'
+  }, [children])
+
+  const defaultColor = childrenArray.length === 1 ? 'default' : getConditionalVariant()
+
   return (
     <blockquote ref={ref}>
-      <Text className={clsx(styles['Testimonial-quote'], className)}>{children}</Text>
+      <Text
+        className={clsx(
+          styles['Testimonial-quote'],
+          defaultColor === 'muted' && styles['Testimonial-quote--muted'],
+          className,
+        )}
+      >
+        {children}
+      </Text>
     </blockquote>
   )
 }
@@ -115,7 +176,7 @@ type NameProps = {
 function _Name({children, className, position}: NameProps, ref) {
   return (
     <figcaption ref={ref}>
-      <Text size="200" className={clsx(styles['Testimonial-from'], className)} variant="muted">
+      <Text size="100" className={clsx(styles['Testimonial-from'], className)} variant="muted">
         {children}{' '}
         {position && (
           <span>

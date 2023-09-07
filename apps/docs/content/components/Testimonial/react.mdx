@@ -10,6 +10,7 @@ description: Use the testimonial component to display a quote from a customer or
 import ComponentLayout from '../../../src/layouts/component-layout'
 export default ComponentLayout
 
+import {TestimonialQuoteMarkColors} from '@primer/react-brand'
 import {Box as Container, Label} from '@primer/react'
 import {PropTableValues} from '../../../src/components'
 
@@ -137,14 +138,15 @@ Pass additional content about the testimonial provider using `position`.
 
 `Testimonial` passes contextual data to its child inputs, labels, validation messaging and more.
 
-| Name        | Type                                                                                                                                                         |  Default  | Description                              |
-| :---------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------: | :--------------------------------------- |
-| `children`  | <PropTableValues addLineBreaks values={['Testimonial.Quote','Testimonial.Name','Testimonial.Logo','Testimonial.Avatar','React.ReactNode' ]} addLineBreaks /> |           | Valid child nodes                        |
-| `className` | `string`                                                                                                                                                     |           | Sets a custom class                      |
-| `id`        | `string`                                                                                                                                                     |           | Sets a custom id                         |
-| `align`     | <PropTableValues addLineBreaks values={['start','center']}/>                                                                                                 | `'start'` | Set alignment of inner text              |
-| `ref`       | `React.RefObject`                                                                                                                                            |           | Forward a Ref to the underlying DOM node |
-| `size`      | <PropTableValues addLineBreaks values={['small','large']}/>                                                                                                  | `'small'` | Set size of quote's text                 |
+| Name             | Type                                                                                                                                                         |   Default   | Description                                   |
+| :--------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------: | :-------------------------------------------- |
+| `children`       | <PropTableValues addLineBreaks values={['Testimonial.Quote','Testimonial.Name','Testimonial.Logo','Testimonial.Avatar','React.ReactNode' ]} addLineBreaks /> |             | Valid child nodes                             |
+| `className`      | `string`                                                                                                                                                     |             | Sets a custom class                           |
+| `id`             | `string`                                                                                                                                                     |             | Sets a custom id                              |
+| `align`          | <PropTableValues addLineBreaks values={['start','center']}/>                                                                                                 |  `'start'`  | Set alignment of inner text                   |
+| `ref`            | `React.RefObject`                                                                                                                                            |             | Forward a Ref to the underlying DOM node      |
+| `size`           | <PropTableValues addLineBreaks values={['small','large']}/>                                                                                                  |  `'small'`  | Set size of quote's text                      |
+| `quoteMarkColor` | <PropTableValues addLineBreaks values={TestimonialQuoteMarkColors}/>                                                                                         | `'default'` | Color or gradient fill of the the quote mark. |
 
 <h3 id="Testimonial-name">
   Testimonial.Name <Label>Required</Label>

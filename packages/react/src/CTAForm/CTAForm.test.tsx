@@ -97,8 +97,8 @@ describe('CTAForm', () => {
     // Testing that the input has the full width class
     expect(inputEl.classList).toContain('TextInput--fullWidth')
     // Testing that the label and input are set to the large size
-    expect(inputEl.classList).toContain(`TextInput--large`)
-    expect(labelEl?.classList).toContain('FormControl-label--large')
+    expect(inputEl.classList).toContain(`TextInput--medium`)
+    expect(labelEl?.classList).toContain('FormControl-label--medium')
   })
 
   it('allows and passes expected attributes to the CTAForm.Confirm component', async () => {

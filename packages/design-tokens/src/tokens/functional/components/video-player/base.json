@@ -1,0 +1,46 @@
+{
+  "brand": {
+    "VideoPlayer": {
+      "closedCaption": {
+        "margin": {
+          "value": "0 auto 15px auto"
+        },
+        "text": {
+          "padding": {
+            "value": "10px"
+          }
+        }
+      },
+      "playButton": {
+        "height": {
+          "value": "24px"
+        },
+        "width": {
+          "value": "24px"
+        },
+        "padding": {
+          "value": "25px"
+        }
+      },
+      "range": {
+        "height": {
+          "value": "6px"
+        },
+        "borderRadius": {
+          "value": "3px"
+        },
+        "minWidth": {
+          "value": "75px"
+        }
+      },
+      "transition": {
+        "value": "all var(--brand-animation-duration-fast) var(--brand-animation-easing-default)"
+      },
+      "tooltip": {
+        "padding": {
+          "value": "5px 10px"
+        }
+      }
+    }
+  }
+}

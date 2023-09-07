@@ -157,19 +157,15 @@ export function KitchenSink(props: KitchenSinkProps) {
               <ComparisonTable.Row>
                 <ComparisonTable.Cell>Automation & CI/CD</ComparisonTable.Cell>
                 <ComparisonTable.Cell>
-                  <Text as="p" size="300">
-                    Comparable native core capabilities
-                  </Text>
-                  <Text as="p" size="300">
+                  <Text as="p">Comparable native core capabilities</Text>
+                  <Text as="p">
                     <InlineLink href="#">Over 13,000 GitHub Actions are available</InlineLink>
                     &nbsp;in the GitHub Marketplace to automate your development workflow.
                   </Text>
                 </ComparisonTable.Cell>
                 <ComparisonTable.Cell>
-                  <Text as="p" size="300">
-                    Comparable native capabilities
-                  </Text>
-                  <Text as="p" size="300">
+                  <Text as="p">Comparable native capabilities</Text>
+                  <Text as="p">
                     1,800+ community contributed Jenkins plugins{' '}
                     <InlineLink href="#">in Jenkins Plugin Marketplace.</InlineLink>
                   </Text>
@@ -179,12 +175,8 @@ export function KitchenSink(props: KitchenSinkProps) {
                 <ComparisonTable.Cell>Deployment models</ComparisonTable.Cell>
                 <ComparisonTable.Cell>Cloud or self-hosted</ComparisonTable.Cell>
                 <ComparisonTable.Cell>
-                  <Text as="p" size="300">
-                    Self-hosted only
-                  </Text>
-                  <Text as="p" size="300">
-                    CloudBees is the cloud alternative
-                  </Text>
+                  <Text as="p">Self-hosted only</Text>
+                  <Text as="p">CloudBees is the cloud alternative</Text>
                 </ComparisonTable.Cell>
               </ComparisonTable.Row>
               <ComparisonTable.Footnote>
@@ -198,7 +190,7 @@ export function KitchenSink(props: KitchenSinkProps) {
               <Grid style={{justifyItems: 'center'}}>
                 <Grid.Column>
                   <Stack alignItems="center">
-                    <Heading as="h2" size="3">
+                    <Heading as="h2" size="4">
                       Cards
                     </Heading>
                   </Stack>
@@ -275,26 +267,10 @@ export function KitchenSink(props: KitchenSinkProps) {
                   <FAQ.Answer>
                     <p>Startups who meet the following criteria are eligible to apply for the program:</p>
                     <ol>
-                      <li>
-                        <Text size="300" variant="muted">
-                          Must be associated with a current GitHub for Startups partner.
-                        </Text>
-                      </li>
-                      <li>
-                        <Text size="300" variant="muted">
-                          Self-funded or funded (Seed-Series A)
-                        </Text>
-                      </li>
-                      <li>
-                        <Text size="300" variant="muted">
-                          Not a current GitHub Enterprise customer
-                        </Text>
-                      </li>
-                      <li>
-                        <Text size="300" variant="muted">
-                          Must not have previously received credits for GitHub Enterprise
-                        </Text>
-                      </li>
+                      <li>Must be associated with a current GitHub for Startups partner.</li>
+                      <li>Self-funded or funded (Seed-Series A)</li>
+                      <li>Not a current GitHub Enterprise customer</li>
+                      <li>Must not have previously received credits for GitHub Enterprise</li>
                     </ol>
                   </FAQ.Answer>
                 </FAQ.Item>
@@ -339,7 +315,7 @@ export function KitchenSink(props: KitchenSinkProps) {
               <Grid style={{justifyItems: 'center'}}>
                 <Grid.Column>
                   <Stack alignItems="center">
-                    <Heading as="h2" size="3">
+                    <Heading as="h2" size="4">
                       Testimonials
                     </Heading>
                   </Stack>
@@ -583,9 +559,9 @@ export function KitchenSink(props: KitchenSinkProps) {
                     <FormControl.Label>
                       Contact me about GitHub Enterprise Server{' '}
                       <FormControl.Hint>
-                        <Text size="200" variant="muted">
+                        <Text size="100" variant="muted">
                           I&apos;m interested in learning more about{' '}
-                          <InlineLink size="200" href="https://github.com/enterprise" target="_blank">
+                          <InlineLink size="100" href="https://github.com/enterprise" target="_blank">
                             GitHub Enterprise Server
                           </InlineLink>{' '}
                           and would like to be contacted by GitHub’s sales team.
@@ -614,15 +590,15 @@ export function KitchenSink(props: KitchenSinkProps) {
                   </div>
                   <FormControl required>
                     <FormControl.Label>
-                      <Text size="200" variant="muted">
+                      <Text size="100" variant="muted">
                         I hereby accept the{' '}
-                        <InlineLink size="200" href="https://github.com/customer-terms" target="_blank">
+                        <InlineLink size="100" href="https://github.com/customer-terms" target="_blank">
                           GitHub Customer Agreement
                         </InlineLink>{' '}
                         on behalf of my organization and confirm that I have the authority to do so. For more
                         information about GitHub&apos;s privacy practices, see the{' '}
                         <InlineLink
-                          size="200"
+                          size="100"
                           href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement"
                           target="_blank"
                         >

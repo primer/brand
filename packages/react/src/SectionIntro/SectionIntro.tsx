@@ -1,4 +1,4 @@
-import React, {forwardRef, PropsWithChildren, type Ref} from 'react'
+import React, {forwardRef, PropsWithChildren, useMemo, type Ref, useCallback} from 'react'
 import clsx from 'clsx'
 import {Link, LinkProps} from '../Link'
 import {Heading, HeadingProps, defaultHeadingTag} from '../Heading'
@@ -34,7 +34,7 @@ const Root = forwardRef<HTMLHeadingElement, PropsWithChildren<SectionIntroProps>
 
 type SectionIntroHeadingProps = BaseProps<HTMLHeadingElement> & HeadingProps
 
-const defaultHeadingSize = '2'
+const defaultHeadingSize = '4'
 
 const _Heading = forwardRef(
   (
@@ -47,8 +47,29 @@ const _Heading = forwardRef(
     }: PropsWithChildren<SectionIntroHeadingProps>,
     ref: Ref<HTMLHeadingElement>,
   ) => {
+    const childrenArray = useMemo(() => React.Children.toArray(children), [children])
+
+    const getConditionalVariant = useCallback(() => {
+      if (childrenArray.some(child => React.isValidElement(child) && child.type === 'em')) {
+        return 'muted'
+      }
+      return 'default'
+    }, [childrenArray])
+
+    const defaultColor = childrenArray.length === 1 ? 'default' : getConditionalVariant()
+
     return (
-      <Heading ref={ref} className={clsx(styles[`SectionIntro-heading`], className)} size={size} as={as} {...props}>
+      <Heading
+        ref={ref}
+        className={clsx(
+          styles[`SectionIntro-heading`],
+          defaultColor === 'muted' && styles[`SectionIntro-heading--muted`],
+          className,
+        )}
+        size={size}
+        as={as}
+        {...props}
+      >
         {children}
       </Heading>
     )
@@ -62,14 +83,7 @@ type SectionIntroDescriptionProps = BaseProps<HTMLParagraphElement> & {
 const _Description = forwardRef(
   ({className, children, ...props}: SectionIntroDescriptionProps, ref: Ref<HTMLParagraphElement>) => {
     return (
-      <Text
-        as="p"
-        className={clsx(styles['SectionIntro-description'], className)}
-        ref={ref}
-        size="400"
-        variant="muted"
-        {...props}
-      >
+      <Text as="p" className={clsx(styles['SectionIntro-description'], className)} ref={ref} variant="muted" {...props}>
         {children}
       </Text>
     )
@@ -90,7 +104,7 @@ type SectionIntroLinkProps = Omit<LinkProps, 'size'> & BaseProps<HTMLAnchorEleme
 
 const _Link = forwardRef(({className, children, ...props}: SectionIntroLinkProps, ref: Ref<HTMLAnchorElement>) => {
   return (
-    <Link ref={ref} className={clsx(styles['SectionIntro-link'], className)} size="large" {...props}>
+    <Link ref={ref} className={clsx(styles['SectionIntro-link'], className)} size="medium" {...props}>
       {children}
     </Link>
   )

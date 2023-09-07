@@ -152,7 +152,7 @@ export const _ComparisonTable = forwardRef(
         {...props}
       >
         {heading && (
-          <Heading className={styles['ComparisonTable--heading']} as="h3">
+          <Heading className={styles['ComparisonTable--heading']} as="h3" size="4">
             {heading}
           </Heading>
         )}
@@ -188,7 +188,7 @@ export type FootnoteProps = BaseProps<HTMLParagraphElement>
 const Footnote = ({children, ...props}: PropsWithChildren<FootnoteProps>) => {
   if (typeof children === 'string') {
     return (
-      <Text as="p" size="200" variant="muted">
+      <Text as="p" size="100" variant="muted">
         {children}
       </Text>
     )

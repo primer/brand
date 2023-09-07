@@ -1,10 +1,18 @@
 .Accordion {
   box-sizing: border-box;
   position: relative;
+}
+
+.Accordion--default {
   border-bottom: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
 }
 
-.Accordion::after {
+.Accordion--emphasis:not(.Accordion .Accordion) > .Accordion__summary {
+  border-bottom: var(--brand-borderWidth-thicker) solid var(--brand-color-border-default);
+  margin-block-end: var(--base-size-12);
+}
+
+.Accordion--default::after {
   content: '';
   border: 3px solid var(--brand-color-border-default);
   height: 0;
@@ -17,7 +25,7 @@
   left: 0;
 }
 
-.Accordion:hover::after {
+.Accordion--default:hover::after {
   transform: scaleY(0.35);
 }
 
@@ -25,9 +33,12 @@
   cursor: pointer;
   padding: var(--base-size-24) 0;
   position: relative;
-  display: grid;
-  grid-template-columns: var(--base-size-24) auto;
-  gap: var(--base-size-8);
+  display: flex;
+  justify-content: space-between;
+}
+
+.Accordion__summary--reversed-toggles {
+  padding-inline-start: var(--base-size-48);
 }
 
 .Accordion__summary::-webkit-details-marker {
@@ -51,13 +62,21 @@
   -webkit-text-fill-color: transparent;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
-  grid-column: 1 / 2;
-  grid-row: 1;
-  place-self: center center;
+  position: absolute;
 }
 
-.Accordion__summary--collapsed::before,
-.Accordion__summary--expanded::after {
+.Accordion__summary:not(.Accordion__summary--reversed-toggles) .Accordion__summary--collapsed,
+.Accordion__summary:not(.Accordion__summary--reversed-toggles) .Accordion__summary--expanded {
+  right: 0;
+}
+
+.Accordion__summary--reversed-toggles .Accordion__summary--collapsed,
+.Accordion__summary--reversed-toggles .Accordion__summary--expanded {
+  left: 0;
+}
+
+.Accordion__summary--default .Accordion__summary--collapsed::before,
+.Accordion__summary--default .Accordion__summary--expanded::after {
   transition: transform var(--brand-animation-duration-fast) ease, opacity var(--brand-animation-duration-faster) ease;
   display: block;
   background: linear-gradient(
@@ -69,57 +88,73 @@
   background-clip: text;
 }
 
-.Accordion__summary--collapsed::before {
+.Accordion__summary--default .Accordion__summary--collapsed::before {
   font-weight: var(--base-text-weight-medium);
   content: '–';
   opacity: 0;
 }
 
-.Accordion__summary--expanded::after {
+.Accordion__summary--default .Accordion__summary--expanded::after {
   content: '+';
 }
 
-.Accordion__summary-heading {
-  /*Visual appearance as a h6*/
-  font-weight: var(--brand-heading-weight-400);
-  font-size: var(--brand-text-size-400);
-  line-height: var(--brand-text-lineHeight-400);
-  letter-spacing: var(--brand-heading-letterSpacing-400);
+.Accordion__summary.Accordion__summary--emphasis .Accordion__summary--collapsed,
+.Accordion__summary.Accordion__summary--emphasis .Accordion__summary--expanded {
+  transform: translate(0, -2px);
 }
 
-details[open] .Accordion__summary--collapsed::before {
+.Accordion__summary.Accordion__summary--emphasis .Accordion__summary--expanded {
+  opacity: 0;
+}
+
+details[open] .Accordion__summary.Accordion__summary--emphasis .Accordion__summary--expanded {
+  opacity: 1;
+}
+
+details[open] .Accordion__summary.Accordion__summary--emphasis .Accordion__summary--collapsed {
+  opacity: 0;
+}
+
+details[open] > .Accordion__summary.Accordion__summary--default .Accordion__summary--collapsed::before {
   opacity: 1;
   transform: rotateZ(180deg);
 }
-details[open] .Accordion__summary--expanded::after {
+
+details[open] > .Accordion__summary.Accordion__summary--default .Accordion__summary--expanded::after {
   opacity: 0;
   transform: rotateZ(180deg);
+}
+
+.Accordion__summary:not(.Accordion__summary--reversed-toggles) {
+  padding-inline-end: var(--base-size-48);
+}
+
+.Accordion__summary--reversed-toggles {
+  padding-inline-start: var(--base-size-48);
 }
 
 .Accordion__content {
   color: var(--brand-color-text-muted);
   font-family: var(--brand-fontStack-sansSerif);
-  font-weight: var(--brand-text-weight-300);
-  font-size: var(--brand-text-size-300);
-  line-height: var(--brand-text-lineHeight-300);
+  font-weight: var(--brand-text-weight-200);
+  font-size: var(--brand-text-size-200);
+  line-height: var(--brand-text-lineHeight-200);
 }
 
 details[open] > .Accordion__content {
-  padding-left: var(--base-size-40);
   padding-bottom: var(--base-size-24);
   margin-top: calc(var(--base-size-16) * -1); /* for 8px gap between question and answer */
   animation: fade-in 0.5s;
 }
-.Accordion__content-item {
-  margin-bottom: var(--base-size-12);
+
+details[open] > .Accordion__summary--reversed-toggles + .Accordion__content {
+  padding-inline-start: var(--base-size-48);
 }
+
 /* Medium breakpoint and up */
 @media screen and (min-width: 48rem) {
   .Accordion__summary {
     gap: var(--base-size-40);
-  }
-  details[open] > .Accordion__content {
-    padding-left: calc(var(--base-size-48) + var(--base-size-16));
   }
 }
 
