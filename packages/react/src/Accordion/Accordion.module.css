@@ -13,7 +13,7 @@
 
 .Accordion--default::after {
   content: '';
-  border: 3px solid var(--brand-FAQ-border-color-default);
+  border: 3px solid var(--brand-Accordion-border-color-default);
   height: 0;
   transition: var(--brand-animation-duration-fast) transform;
   transform: scaleY(0);
