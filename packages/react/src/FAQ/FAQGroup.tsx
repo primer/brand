@@ -90,7 +90,10 @@ function _FAQGroup({children, id, defaultSelectedIndex = 0, ...rest}: FAQGroupPr
           data-testid={`FAQGroup-tab-panel-${index + 1}`}
         >
           {FAQItemHeadingText && (
-            <FAQ.Subheading data-testid={`FAQGroup-tab-panel-heading-${index + 1}`}>
+            <FAQ.Subheading
+              data-testid={`FAQGroup-tab-panel-heading-${index + 1}`}
+              className={clsx(styles['FAQGroup__panel-subHeading'])}
+            >
               {FAQItemHeadingText}
             </FAQ.Subheading>
           )}

@@ -2,6 +2,7 @@ declare const styles: {
   readonly "FAQGroup": string;
   readonly "FAQGroup__accordion": string;
   readonly "FAQ__subheading": string;
+  readonly "FAQGroup__panel-subHeading": string;
   readonly "FAQGroup__tablist": string;
   readonly "FAQ__heading": string;
   readonly "FAQGroup__tablist-button": string;
