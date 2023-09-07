@@ -3,6 +3,7 @@ import clsx from 'clsx'
 
 import {Heading, Text} from '../'
 import type {BaseProps} from '../component-helpers'
+import {ChevronDownIcon, ChevronUpIcon} from '@primer/octicons-react'
 
 /**
  * Design tokens
@@ -11,7 +12,6 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './Accordion.module.css'
-import {ChevronDownIcon, ChevronUpIcon} from '@primer/octicons-react'
 
 export type AccordionRootProps = BaseProps<HTMLDetailsElement> & {
   open?: boolean // Manually declared due to known issue with the native open attribute: https://github.com/facebook/react/issues/15486
