@@ -47,6 +47,21 @@ The cta text defaults to `Learn more` and can be customized using the `ctaText` 
 </Card>
 ```
 
+### Border
+
+A border can be provided using the `hasBorder` prop. This will render a border around the Card component giving further separation between the foreground and background. Especially when there is no shadow present on the background.
+
+```jsx live
+<Card href="https://github.com" hasBorder>
+  <Card.Heading>Code search & code view</Card.Heading>
+  <Card.Label>Limited</Card.Label>
+  <Card.Description>
+    Enables you to rapidly search, navigate, and understand code, right from
+    GitHub.com.
+  </Card.Description>
+</Card>
+```
+
 ### Icon
 
 You can add an `icon` to enhance the visual context. We recommend using an [Octicon](https://primer.style/design/foundations/icons). The `Icon` can be customized using the `color` prop and used with or without a background color by using the `hasBackground` prop.
@@ -170,10 +185,11 @@ Use the `Stack` component to stack multiple cards horizontally or vertically.
 
 ### Card
 
-| name      | type     | default     | required | description                                 |
-| --------- | -------- | ----------- | -------- | ------------------------------------------- |
-| `href`    | `string` |             | `true`   | URL to the card content                     |
-| `ctaText` | `string` | `Read more` | `false`  | Label of the link at the bottom of the Card |
+| name        | type      | default     | required | description                                 |
+| ----------- | --------- | ----------- | -------- | ------------------------------------------- |
+| `href`      | `string`  |             | `true`   | URL to the card content                     |
+| `ctaText`   | `string`  | `Read more` | `false`  | Label of the link at the bottom of the Card |
+| `hasBorder` | `boolean` | `false`     | `false`  | A flag used to provide a border to the Card |
 
 ### Card.Image
 

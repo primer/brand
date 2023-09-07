@@ -14,6 +14,6 @@ export const supportedComponents = [
   'Text',
   'Timeline',
   'Animate',
-  'River',
   'RiverBreakout',
+  'River',
 ]

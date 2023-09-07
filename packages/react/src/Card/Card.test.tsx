@@ -146,4 +146,19 @@ describe('Card', () => {
     const cardEl = getByAltText(testAltText)
     expect(cardEl).toHaveClass(classToCheck)
   })
+
+  it('renders the Card with border', () => {
+    const mockTestId = 'test'
+    const classToCheck = 'Card--border'
+
+    const {getByTestId} = render(
+      <Card href={mockHref} data-testid={mockTestId} hasBorder>
+        <Card.Heading>{mockHeading}</Card.Heading>
+        <Card.Description>{mockDescription}</Card.Description>
+      </Card>,
+    )
+
+    const cardEl = getByTestId(mockTestId)
+    expect(cardEl).toHaveClass(classToCheck)
+  })
 })
