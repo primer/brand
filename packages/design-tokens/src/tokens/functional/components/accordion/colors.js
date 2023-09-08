@@ -13,6 +13,18 @@ module.exports = {
           },
         },
       },
+      border: {
+        color: {
+          default: {
+            value: 'var(--brand-color-border-default)',
+            dark: 'var(--base-color-scale-gray-5)',
+          },
+          emphasis: {
+            value: 'var(--base-color-scale-black-0)',
+            dark: 'var(--base-color-scale-white-0)',
+          },
+        },
+      },
     },
   },
 }
