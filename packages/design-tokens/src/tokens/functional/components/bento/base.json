@@ -6,22 +6,35 @@
           "value": "var(--base-size-32)"
         },
         "medium": {
-          "value": "var(--base-size-24)"
+          "value": "var(--base-size-32)"
         },
         "small": {
           "value": "var(--base-size-20)"
         }
       },
-      "Item": {
+      "item": {
         "borderRadius": {
           "small": {
-            "value": "16px"
+            "value": "var(--base-size-16)"
           },
           "medium": {
-            "value": "20px"
+            "value": "var(--base-size-24)"
           },
           "large": {
-            "value": "24px"
+            "value": "var(--base-size-24)"
+          }
+        }
+      },
+      "content": {
+        "padding": {
+          "condensed": {
+            "value": "var(--base-size-16)"
+          },
+          "normal": {
+            "value": "var(--base-size-24)"
+          },
+          "spacious": {
+            "value": "3.5rem"
           }
         }
       }

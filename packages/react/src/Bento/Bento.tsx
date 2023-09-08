@@ -1,23 +1,33 @@
-import React, {ReactHTML} from 'react'
+import React, {ReactHTML, ReactElement, forwardRef, useCallback, useMemo, Ref, PropsWithChildren} from 'react'
 import clsx from 'clsx'
+import {Icon, IconProps} from '@primer/octicons-react'
+import {useWindowSize, BreakpointSize} from '../hooks/useWindowSize'
 import type {BaseProps} from '../component-helpers'
-import {Heading, Text, Link, HeadingProps, TextProps, LinkProps} from '../'
+import {Heading, Text, Link, HeadingProps, TextProps, LinkProps, ColorMode as FullColorMode} from '../'
 
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/bento/colors-with-modes.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/bento/base.css'
 import styles from './Bento.module.css'
 
+type ColorMode = Exclude<FullColorMode, 'auto'>
+
 export type Size = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'
 export type ColumnIndex = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
 
-type ResponsiveColumnIndex = Record<Size, ColumnIndex> | ColumnIndex
-type ResponsiveRowIndex = Record<Size, number> | number
+type ResponsiveColumnIndex = Partial<Record<Size, ColumnIndex>>
+type ResponsiveRowIndex = Partial<Record<Size, number>>
 
 type Flow = 'row' | 'column'
-type ResponsiveFlow = Record<Size, Flow> | Flow
+type ResponsiveFlow = Partial<Record<Size, Flow>>
 
 type Align = 'start' | 'center' | 'end'
-type ResponsiveAlign = Record<Size, Align> | Align
+type ResponsiveAlign = Partial<Record<Size, Align>>
+
+type Padding = 'condensed' | 'normal' | 'spacious'
+type ResponsivePadding = Partial<Record<Size, Padding>>
+
+type Order = 'default' | 'reversed'
+type ResponsiveOrder = Partial<Record<Size, Order>>
 
 type BentoProps = React.HTMLAttributes<HTMLDivElement> & BaseProps<HTMLDivElement>
 
@@ -25,127 +35,244 @@ const Root = ({className, ...rest}: BentoProps) => {
   return <section className={clsx(styles.Bento, className)} {...rest}></section>
 }
 
+type ValidChildren = React.ReactElement<BentoVisualProps | BentoContentProps>
+type ValidItemChildren = [ValidChildren?, ValidChildren?]
+
 type BentoItemProps = {
-  columnStart?: ResponsiveColumnIndex
-  columnSpan?: ResponsiveColumnIndex
-  rowStart?: ResponsiveRowIndex
-  rowSpan?: ResponsiveRowIndex
-  flow?: ResponsiveFlow
-  horizontalAlign?: ResponsiveAlign
-  verticalAlign?: ResponsiveAlign
-  colorMode?: 'light' | 'dark'
+  columnStart?: ColumnIndex | ResponsiveColumnIndex
+  columnSpan?: ColumnIndex | ResponsiveColumnIndex
+  rowStart?: number | ResponsiveRowIndex
+  rowSpan?: number | ResponsiveRowIndex
+  flow?: Flow | ResponsiveFlow
+  colorMode?: ColorMode
   visualAsBackground?: boolean
+  order?: Order | ResponsiveOrder
 } & React.HTMLAttributes<HTMLDivElement> &
   BaseProps<HTMLDivElement>
 
 const returnClassBasedOnResponsiveMap = (
+  classIdentifier: string,
   propName: string,
-  prop?: ResponsiveColumnIndex | ResponsiveRowIndex | ResponsiveFlow | ResponsiveAlign,
+  prop?:
+    | ResponsiveColumnIndex
+    | ColumnIndex
+    | ResponsiveRowIndex
+    | number
+    | ResponsiveFlow
+    | Flow
+    | ResponsiveAlign
+    | Align
+    | ResponsivePadding
+    | Padding,
 ) => {
   const classesToMerge: string[] = []
   if (typeof prop === 'number' || typeof prop === 'string') {
-    classesToMerge.push(styles[`Bento__Item--${propName}-${prop}`])
+    classesToMerge.push(styles[`${classIdentifier}--${propName}-${prop}`])
   } else if (typeof prop === 'object') {
     for (const [key, value] of Object.entries(prop)) {
-      classesToMerge.push(styles[`Bento__Item--${key}-${propName}-${value}`])
+      classesToMerge.push(styles[`${classIdentifier}--${key}-${propName}-${value}`])
     }
   }
   return classesToMerge
 }
 
+type ReturnOrderedChildrenProps = {
+  order: Order | ResponsiveOrder
+  children: React.ReactNode
+  currentBreakpointSize?: BreakpointSize
+}
+
+const returnOrderedChildren = ({order, children, currentBreakpointSize}: ReturnOrderedChildrenProps) => {
+  if (typeof order === 'string') {
+    return order === 'default' ? children : React.Children.toArray(children).reverse()
+  } else if (typeof order === 'object' && currentBreakpointSize) {
+    // This handles setting the order based on breakpoints as you might expect via CSS
+    const filledStyleOrder: ResponsiveOrder = {}
+    let previousSize: Order = 'default'
+    for (const size of Object.keys(BreakpointSize)) {
+      const lowerCaseSize = size.toLocaleLowerCase()
+      if (order[lowerCaseSize]) previousSize = order[lowerCaseSize]
+      filledStyleOrder[lowerCaseSize] = order[lowerCaseSize] || previousSize
+    }
+    return filledStyleOrder[currentBreakpointSize] === 'default' ? children : React.Children.toArray(children).reverse()
+  } else {
+    return children
+  }
+}
+
 const Item = ({
   className,
   columnStart,
-  columnSpan,
+  columnSpan = 12,
   rowStart,
   rowSpan,
-  flow,
-  horizontalAlign = 'center',
-  verticalAlign = 'center',
-  colorMode = 'light',
+  flow = 'row',
+  colorMode,
   visualAsBackground = false,
+  order = 'default',
   children,
   ...rest
 }: BentoItemProps) => {
+  const {currentBreakpointSize} = useWindowSize()
   const bentoItemClassArray = [styles.Bento__Item]
   bentoItemClassArray.push(
-    ...returnClassBasedOnResponsiveMap('column-span', columnSpan),
-    ...returnClassBasedOnResponsiveMap('row-span', rowSpan),
-    ...returnClassBasedOnResponsiveMap('column-start', columnStart),
-    ...returnClassBasedOnResponsiveMap('row-start', rowStart),
-    ...returnClassBasedOnResponsiveMap('flow', flow),
-    ...returnClassBasedOnResponsiveMap('horizontalAlign', horizontalAlign),
-    ...returnClassBasedOnResponsiveMap('verticalAlign', verticalAlign),
+    ...returnClassBasedOnResponsiveMap('Bento__Item', 'column-span', columnSpan),
+    ...returnClassBasedOnResponsiveMap('Bento__Item', 'row-span', rowSpan),
+    ...returnClassBasedOnResponsiveMap('Bento__Item', 'column-start', columnStart),
+    ...returnClassBasedOnResponsiveMap('Bento__Item', 'row-start', rowStart),
+    ...returnClassBasedOnResponsiveMap('Bento__Item', 'flow', flow),
   )
+
+  if (!visualAsBackground && React.Children.toArray(children).length >= 1) {
+    flow === 'column' && bentoItemClassArray.push(styles['Bento-column-padding-override'])
+    flow === 'row' && bentoItemClassArray.push(styles['Bento-row-padding-override'])
+  }
+
+  const colorModeProp = colorMode ? {'data-color-mode': colorMode} : {}
+
+  const validChildren = React.Children.toArray(children).reduce<ValidItemChildren>((acc, child) => {
+    if (React.isValidElement(child) && typeof child.type !== 'string') {
+      if (child.type === Visual) {
+        acc.push(child as React.ReactElement<BentoVisualProps>)
+      }
+      if (child.type === Content) {
+        acc.push(child as React.ReactElement<BentoContentProps>)
+      }
+    }
+    return acc
+  }, [])
+
+  const orderedChildren = returnOrderedChildren({order, children: validChildren, currentBreakpointSize})
 
   return (
     <div
-      data-color-mode={colorMode}
+      {...colorModeProp}
       className={clsx(
         ...bentoItemClassArray,
-        visualAsBackground && styles[`Bento__Item--visual-as-background`],
+        (visualAsBackground || React.Children.toArray(children).length === 1) &&
+          styles[`Bento__Item--visual-as-background`],
         className,
       )}
       {...rest}
     >
-      {children}
+      {orderedChildren}
     </div>
   )
 }
 
 type BentoContentProps = {
-  padding?: 'condensed' | 'normal' | 'spacious'
+  leadingVisual?: ReactElement | Icon
+  padding?: Padding | ResponsivePadding
+  verticalAlign?: Align | ResponsiveAlign
+  horizontalAlign?: Exclude<Align, 'end'> | Partial<Record<Size, Exclude<Align, 'end'>>>
 } & React.HTMLAttributes<HTMLDivElement> &
   BaseProps<HTMLDivElement>
 
-const Content = ({children, padding, className, ...rest}: BentoContentProps) => {
-  const HeadingChild = React.Children.toArray(children).find(
-    child => React.isValidElement(child) && child.type === Heading,
+const Content = ({
+  children,
+  leadingVisual: LeadingVisual,
+  padding = 'spacious',
+  verticalAlign,
+  horizontalAlign = 'start',
+  className,
+  ...rest
+}: BentoContentProps) => {
+  const bentoContentClassArray = [styles.Bento__Content]
+  bentoContentClassArray.push(
+    ...returnClassBasedOnResponsiveMap('Bento__Item', 'verticalAlign', verticalAlign),
+    ...returnClassBasedOnResponsiveMap('Bento__Item', 'horizontalAlign', horizontalAlign),
+    ...returnClassBasedOnResponsiveMap('Bento', 'padding', padding),
   )
+  const HeadingChild = React.Children.toArray(children).find(
+    child => React.isValidElement(child) && child.type === _Heading,
+  )
+
   const TextChild = React.Children.toArray(children).find(child => React.isValidElement(child) && child.type === Text)
   const LinkChild = React.Children.toArray(children).find(child => React.isValidElement(child) && child.type === Link)
   return (
-    <div className={clsx(!!padding && styles[`Bento-padding--${padding}`], styles.Bento__Content, className)} {...rest}>
-      <div>
-        {React.isValidElement(HeadingChild) && (
-          <div className={styles.Bento__heading}>
-            {React.cloneElement(HeadingChild as React.ReactElement<HeadingProps>, {
-              // as uses h3 default, but can be overridden
-              as: HeadingChild.props.as || 'h3',
-              size: HeadingChild.props.size || '3',
-            })}
-          </div>
-        )}
-
-        {React.isValidElement(TextChild) && (
-          <div className={styles['Bento__body-text']}>
-            {React.cloneElement(TextChild as React.ReactElement<TextProps>, {
-              variant: 'muted',
-              as: 'p',
-              className: clsx(styles.Bento__text, TextChild.props.className),
-            })}
-          </div>
-        )}
-      </div>
-      {React.isValidElement(LinkChild) && (
-        <div className={styles['Bento__call-to-action']}>
-          {React.cloneElement(LinkChild as React.ReactElement<LinkProps>, {
-            className: clsx(styles['Bento__call-to-action'], LinkChild.props.className),
-          })}
-        </div>
-      )}
+    <div className={clsx(styles[`Bento-padding--${padding}`], ...bentoContentClassArray, className)} {...rest}>
+      {React.isValidElement(LeadingVisual) &&
+        React.cloneElement(LeadingVisual as React.ReactElement<IconProps>, {
+          className: styles['Bento__Content-icon'],
+          size: LeadingVisual['size'] || 44,
+        })}
+      {React.isValidElement(HeadingChild) &&
+        React.cloneElement(HeadingChild as React.ReactElement<BentoHeadingProps>, {
+          className: clsx(
+            !React.isValidElement(TextChild) && styles['Bento__heading--no-text'],
+            HeadingChild.props.className,
+          ),
+        })}
+      {React.isValidElement(TextChild) &&
+        React.cloneElement(TextChild as React.ReactElement<TextProps>, {
+          variant: TextChild.props.variant || 'muted',
+          as: TextChild.props.as || 'p',
+          size: TextChild.props.size || '300',
+          className: clsx(styles['Bento__Content-text'], TextChild.props.className),
+        })}
+      {React.isValidElement(LinkChild) &&
+        React.cloneElement(LinkChild as React.ReactElement<LinkProps>, {
+          variant: LinkChild.props.variant || 'accent',
+          className: clsx(styles['Bento__call-to-action'], LinkChild.props.className),
+        })}
     </div>
   )
 }
 
+type BentoHeadingProps = BaseProps<HTMLHeadingElement> & HeadingProps
+
+const defaultHeadingTag = 'h3'
+const defaultHeadingSize = '5'
+const defaultHeadingWeight = 'medium'
+
+const _Heading = forwardRef(
+  (
+    {
+      as = defaultHeadingTag,
+      size = defaultHeadingSize,
+      weight = defaultHeadingWeight,
+      className,
+      children,
+      ...props
+    }: PropsWithChildren<BentoHeadingProps>,
+    ref: Ref<HTMLHeadingElement>,
+  ) => {
+    const childrenArray = useMemo(() => React.Children.toArray(children), [children])
+
+    const getConditionalVariant = useCallback(() => {
+      if (childrenArray.some(child => React.isValidElement(child) && child.type === 'em')) {
+        return 'muted'
+      }
+      return 'default'
+    }, [childrenArray])
+
+    const defaultColor = childrenArray.length === 1 ? 'default' : getConditionalVariant()
+
+    return (
+      <Heading
+        ref={ref}
+        className={clsx(defaultColor === 'muted' && styles[`Bento__heading--muted`], className)}
+        size={size}
+        as={as}
+        weight={weight}
+        {...props}
+      >
+        {children}
+      </Heading>
+    )
+  },
+)
+
 type BentoVisualProps = {
   fillMedia?: boolean
   position?: string
-  padding?: 'condensed' | 'normal' | 'spacious'
+  padding?: Padding | ResponsivePadding
 } & React.HTMLAttributes<HTMLDivElement> &
   BaseProps<HTMLDivElement>
 
 const Visual = ({fillMedia = true, position = '50% 50%', padding, className, children, ...rest}: BentoVisualProps) => {
+  const bentoVisualClassArray = [styles.Bento__Visual]
+  bentoVisualClassArray.push(...returnClassBasedOnResponsiveMap('Bento', 'padding', padding))
   const childrenToRender = React.Children.map(children, child => {
     if (React.isValidElement(child)) {
       if (child.type === 'img') {
@@ -158,12 +285,7 @@ const Visual = ({fillMedia = true, position = '50% 50%', padding, className, chi
   })
   return (
     <div
-      className={clsx(
-        styles.Bento__Visual,
-        !fillMedia && styles['Bento__Visual-no-fill'],
-        !!padding && styles[`Bento-padding--${padding}`],
-        className,
-      )}
+      className={clsx(...bentoVisualClassArray, !fillMedia && styles['Bento__Visual--no-fill'], className)}
       {...rest}
     >
       {childrenToRender}
@@ -171,4 +293,4 @@ const Visual = ({fillMedia = true, position = '50% 50%', padding, className, chi
   )
 }
 
-export const Bento = Object.assign(Root, {Item, Visual, Content})
+export const Bento = Object.assign(Root, {Item, Visual, Content, Heading: _Heading})

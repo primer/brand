@@ -1,8 +1,7 @@
 import React, {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
-
 import {Bento, ColumnIndex} from './Bento'
-import {Heading, Text, Link} from '../'
+import {Text, Link, ColorModesEnum} from '../'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 expect.extend(toHaveNoViolations)
@@ -90,7 +89,11 @@ describe('Bento.Item', () => {
 
   it('adds the class for horizontalAlign', () => {
     const horizontalAlign = 'center'
-    const {getByTestId} = render(<Bento.Item data-testid={testId} horizontalAlign={horizontalAlign} />)
+    const {getByTestId} = render(
+      <Bento.Item>
+        <Bento.Content data-testid={testId} horizontalAlign={horizontalAlign} />
+      </Bento.Item>,
+    )
 
     const BentoItemEl = getByTestId(testId)
     expect(BentoItemEl.classList).toContain(`Bento__Item--horizontalAlign-${horizontalAlign}`)
@@ -98,7 +101,11 @@ describe('Bento.Item', () => {
 
   it('adds the class for verticalAlign', () => {
     const verticalAlign = 'center'
-    const {getByTestId} = render(<Bento.Item data-testid={testId} verticalAlign={verticalAlign} />)
+    const {getByTestId} = render(
+      <Bento.Item>
+        <Bento.Content data-testid={testId} verticalAlign={verticalAlign} />
+      </Bento.Item>,
+    )
 
     const BentoItemEl = getByTestId(testId)
     expect(BentoItemEl.classList).toContain(`Bento__Item--verticalAlign-${verticalAlign}`)
@@ -125,7 +132,7 @@ describe('Bento.Item', () => {
   })
 
   it('adds the color mode data attribute', () => {
-    const colorMode = 'light'
+    const colorMode = ColorModesEnum.LIGHT
     const {getByTestId} = render(<Bento.Item data-testid={testId} colorMode={colorMode} />)
 
     const BentoItemEl = getByTestId(testId)
@@ -173,7 +180,7 @@ describe('Bento.Content', () => {
     const linkText = 'Allowed 3'
     const {getByText} = render(
       <Bento.Content>
-        <Heading>{headingText}</Heading>
+        <Bento.Heading>{headingText}</Bento.Heading>
         <Text>{textText}</Text>
         <Link href="#">{linkText}</Link>
       </Bento.Content>,
@@ -184,12 +191,23 @@ describe('Bento.Content', () => {
     expect(getByText(linkText)).toBeInTheDocument()
   })
 
+  it('adds the class for fixedBottomLink', () => {
+    const {getByTestId} = render(
+      <Bento.Content fixedBottomLink>
+        <Link href="#" data-testid={testId}></Link>
+      </Bento.Content>,
+    )
+
+    const BentoLinkElement = getByTestId(testId)
+    expect(BentoLinkElement.classList).toContain('Bento__call-to-action--fixed')
+  })
+
   it('adds the class for padding', () => {
     const padding = 'condensed'
     const {getByTestId} = render(<Bento.Content data-testid={testId} padding={padding} />)
 
     const BentoContentEl = getByTestId(testId)
-    expect(BentoContentEl.classList).toContain(`Bento-padding--${padding}`)
+    expect(BentoContentEl.classList).toContain(`Bento--padding-${padding}`)
   })
 
   it('has no a11y violations', async () => {
@@ -244,7 +262,7 @@ describe('Bento.Visual', () => {
     const {getByTestId} = render(<Bento.Visual data-testid={testId} padding={padding} />)
 
     const BentoVisualEl = getByTestId(testId)
-    expect(BentoVisualEl.classList).toContain(`Bento-padding--${padding}`)
+    expect(BentoVisualEl.classList).toContain(`Bento--padding-${padding}`)
   })
 
   it('adds the class for fillMedia', () => {
@@ -252,7 +270,7 @@ describe('Bento.Visual', () => {
     const {getByTestId} = render(<Bento.Visual data-testid={testId} fillMedia={fillMedia} />)
 
     const BentoVisualEl = getByTestId(testId)
-    expect(BentoVisualEl.classList).toContain('Bento__Visual-no-fill')
+    expect(BentoVisualEl.classList).toContain('Bento__Visual--no-fill')
   })
 
   it('has no a11y violations', async () => {
