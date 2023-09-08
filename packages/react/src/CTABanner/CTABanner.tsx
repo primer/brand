@@ -13,13 +13,14 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './CTABanner.module.css'
 
-export type CTABannerProps = BaseProps<HTMLElement> & {
-  children: React.ReactNode | React.ReactNode[]
-  align?: 'start' | 'center'
-  hasBorder?: boolean
-  hasShadow?: boolean
-  hasBackground?: boolean
-}
+export type CTABannerProps = BaseProps<HTMLElement> &
+  React.HTMLAttributes<HTMLElement> & {
+    children: React.ReactNode | React.ReactNode[]
+    align?: 'start' | 'center'
+    hasBorder?: boolean
+    hasShadow?: boolean
+    hasBackground?: boolean
+  }
 
 const Root = forwardRef(
   (
