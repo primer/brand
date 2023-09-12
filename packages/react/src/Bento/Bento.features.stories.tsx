@@ -458,7 +458,7 @@ export const Mixed3: StoryFn<typeof Bento> = () => (
       rowSpan={5}
       flow={{
         xsmall: 'row',
-        xlarge: 'column',
+        large: 'column',
       }}
       colorMode="dark"
       className={styles.Mixed3__bento}
