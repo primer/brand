@@ -1,6 +1,9 @@
 import React from 'react'
 import {Meta, StoryFn} from '@storybook/react'
 import {Bento} from '.'
+import {Link} from '../Link'
+
+import {CopilotIcon} from '@primer/octicons-react'
 
 export default {
   title: 'Components/Bento',
@@ -22,6 +25,20 @@ const Template: StoryFn<typeof Bento> = args => (
   </Bento>
 )
 
-export const Default = Template.bind({})
+export const Default = () => (
+  <Bento>
+    <Bento.Item rowSpan={{xsmall: 4, small: 5}} flow={{xsmall: 'row', small: 'row'}}>
+      <Bento.Content padding={{xsmall: 'normal', small: 'spacious'}} leadingVisual={<CopilotIcon />}>
+        <Bento.Heading>
+          Push what&apos;s possible with GitHub Copilot, the world&apos;s most trusted and widely adopted AI developer
+          tool.
+        </Bento.Heading>
+        <Link href="#" variant="default">
+          Learn more about Copilot
+        </Link>
+      </Bento.Content>
+    </Bento.Item>
+  </Bento>
+)
 
 export const Playground = Template.bind({})

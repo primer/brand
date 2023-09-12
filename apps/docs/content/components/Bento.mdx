@@ -3,7 +3,7 @@ title: Bento
 status: Experimental
 source: https://github.com/primer/brand/blob/main/packages/react/src/Bento/Bento.tsx
 storybook: '/brand/storybook/?path=/story/components-bento--default'
-description: Use the bento component to create a presentational layout for brand content
+description: Use the bento to present content in a responsive grid layout.
 ---
 
 ```js
@@ -15,48 +15,38 @@ import {Bento} from '@primer/react-brand'
 ### Default
 
 ```jsx live
-<Bento style={{background: 'var(--base-color-scale-gray-1)', padding: '20px'}}>
-  <Bento.Item />
-</Bento>
+<Box
+  style={{backgroundColor: 'var(--base-color-scale-gray-2)'}}
+  padding="normal"
+>
+  <Bento>
+    <Bento.Item />
+    <Bento.Item />
+    <Bento.Item />
+  </Bento>
+</Box>
 ```
 
-### Example layout 1
+### Example layout
 
 ```jsx live
-<Bento style={{background: 'var(--base-color-scale-gray-1)', padding: '20px'}}>
-  <Bento.Item columnSpan={12} rowSpan={2} />
-  <Bento.Item columnSpan={7} rowSpan={2} />
-  <Bento.Item columnSpan={5} rowSpan={2} />
-  <Bento.Item columnSpan={12} rowSpan={2} />
-</Bento>
-```
-
-### Example layout 2
-
-```jsx live
-<Bento style={{background: 'var(--base-color-scale-gray-1)', padding: '20px'}}>
-  <Bento.Item columnSpan={12} rowSpan={2} />
-  <Bento.Item columnSpan={5} rowSpan={2} />
-  <Bento.Item columnSpan={7} rowSpan={2} />
-  <Bento.Item columnSpan={12} rowSpan={2} />
-</Bento>
-```
-
-### Example layout 3
-
-```jsx live
-<Bento style={{background: 'var(--base-color-scale-gray-1)', padding: '20px'}}>
-  <Bento.Item columnSpan={7} rowSpan={2} />
-  <Bento.Item columnSpan={5} rowSpan={2} />
-  <Bento.Item columnSpan={12} rowSpan={2} />
-  <Bento.Item columnSpan={12} rowSpan={2} />
-</Bento>
+<Box
+  style={{backgroundColor: 'var(--base-color-scale-gray-2)'}}
+  padding="normal"
+>
+  <Bento>
+    <Bento.Item columnSpan={12} rowSpan={2} />
+    <Bento.Item columnSpan={7} rowSpan={2} />
+    <Bento.Item columnSpan={5} rowSpan={2} />
+    <Bento.Item columnSpan={12} rowSpan={2} />
+  </Bento>
+</Box>
 ```
 
 ### Dark mode items
 
 ```jsx live
-<Bento style={{background: 'var(--base-color-scale-gray-1)', padding: '20px'}}>
+<Bento>
   <Bento.Item columnSpan={7} rowSpan={2} colorMode="dark" />
   <Bento.Item columnSpan={5} rowSpan={2} colorMode="dark" />
   <Bento.Item columnSpan={12} rowSpan={2} colorMode="dark" />
@@ -71,92 +61,112 @@ Use `columnSpan`, `rowSpan`, `columnStart`, `rowStart`, `flow`, `verticalAlign`,
 Breakpoints use `min-width`, where it will also apply your chosen `span` value to all larger breakpoints.
 
 ```jsx live
-<Bento style={{background: 'var(--base-color-scale-gray-1)', padding: '20px'}}>
-  <Bento.Item
-    columnSpan={{
-      xsmall: 12,
-      small: 12,
-      medium: 6,
-      large: 4,
-    }}
-    rowSpan={{xsmall: 1, small: 2, medium: 3}}
-  />
-  <Bento.Item
-    columnSpan={{
-      xsmall: 12,
-      small: 12,
-      medium: 6,
-      large: 4,
-    }}
-    rowSpan={{xsmall: 1, small: 2, medium: 3}}
-  />
-  <Bento.Item
-    columnSpan={{
-      xsmall: 12,
-      small: 12,
-      medium: 6,
-      large: 4,
-    }}
-    rowSpan={{xsmall: 1, small: 2, medium: 3}}
-  />
-  <Bento.Item
-    columnSpan={{
-      xsmall: 12,
-      small: 12,
-      medium: 6,
-      large: 4,
-    }}
-    rowSpan={{xsmall: 1, small: 2, medium: 3}}
-  />
-  <Bento.Item
-    columnSpan={{
-      xsmall: 12,
-      small: 12,
-      medium: 6,
-      large: 4,
-    }}
-    rowSpan={{xsmall: 1, small: 2, medium: 3}}
-  />
-  <Bento.Item
-    columnSpan={{
-      xsmall: 12,
-      small: 12,
-      medium: 6,
-      large: 4,
-    }}
-    rowSpan={{xsmall: 1, small: 2, medium: 3}}
-  />
-</Bento>
+<Box
+  style={{backgroundColor: 'var(--base-color-scale-gray-2)'}}
+  padding="normal"
+>
+  <Bento>
+    <Bento.Item
+      columnSpan={{
+        xsmall: 12,
+        small: 6,
+        large: 3,
+      }}
+      rowSpan={{
+        xsmall: 4,
+        large: 4,
+      }}
+    />
+    <Bento.Item
+      columnSpan={{
+        xsmall: 12,
+        small: 6,
+        large: 3,
+      }}
+      rowSpan={{
+        xsmall: 4,
+        large: 2,
+      }}
+    />
+    <Bento.Item
+      columnSpan={{
+        xsmall: 12,
+        small: 6,
+        large: 6,
+      }}
+      rowSpan={{
+        xsmall: 4,
+        large: 4,
+      }}
+    />
+    <Bento.Item
+      columnSpan={{
+        xsmall: 12,
+        small: 6,
+        large: 3,
+      }}
+      rowSpan={{
+        xsmall: 4,
+        large: 3,
+      }}
+      rowStart={{
+        large: 5,
+      }}
+    />
+    <Bento.Item
+      columnSpan={{
+        xsmall: 12,
+        small: 6,
+        large: 3,
+      }}
+      rowSpan={{
+        xsmall: 4,
+        large: 5,
+      }}
+    />
+    <Bento.Item
+      columnSpan={{
+        xsmall: 12,
+        small: 6,
+        large: 6,
+      }}
+      rowSpan={{
+        xsmall: 4,
+        large: 3,
+      }}
+    />
+  </Bento>
+</Box>
 ```
 
 #### Responsive flow
 
 ```jsx live
-<Bento style={{background: 'var(--base-color-scale-gray-1)', padding: '20px'}}>
-  <Bento.Item
-    flow={{
-      xsmall: 'row',
-      small: 'row',
-      medium: 'column',
-    }}
-  >
-    <Bento.Content padding="normal">
-      <Bento.Heading as="h3">Heading</Bento.Heading>
-      <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
-        ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
-        elementum.
-      </Text>
-      <Link href="#">Call to action</Link>
-    </Bento.Content>
-    <Bento.Visual>
-      <img
-        alt="placeholder, blank area with an gray background color"
-        src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
-      />
-    </Bento.Visual>
-  </Bento.Item>
-</Bento>
+<Box
+  style={{backgroundColor: 'var(--base-color-scale-gray-2)'}}
+  padding="normal"
+>
+  <Bento>
+    <Bento.Item
+      flow={{
+        xsmall: 'row',
+        small: 'row',
+        medium: 'column',
+      }}
+    >
+      <Bento.Content padding="normal">
+        <Bento.Heading as="h3">Heading</Bento.Heading>
+        <Link href="#">Call to action</Link>
+      </Bento.Content>
+      <Bento.Visual>
+        <img
+          alt="placeholder, blank area with an gray background color"
+          src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
+        />
+      </Bento.Visual>
+    </Bento.Item>
+  </Bento>
+</Box>
 ```
 
 ## Component props
@@ -167,7 +177,7 @@ Breakpoints use `min-width`, where it will also apply your chosen `span` value t
 | :---------- | :------- | :-----: | :------- | --------------------------------------- |
 | `className` | `string` |         | `false`  | Sets a custom class on the root element |
 
-The Bento component API supports all standard HTML attribute props for the interface HTMLDivElement.
+The Bento component API supports all standard HTML attribute props for the interface `HTMLDivElement`.
 
 ### Bento.Item
 
@@ -184,20 +194,20 @@ The Bento component API supports all standard HTML attribute props for the inter
 | `visualAsBackground` | `boolean`                                                                              |  `false`  | `false`  | Determines if the `Bento.Visual` child element is set as the background for the `Bento.Item` with the `Bento.Content` overlayed |
 | `order`              | `"default"`, `"reversed"`, `ResponsiveOrder`                                           | `default` | `false`  | Determines the visual order for the `Bento.Item`. This changes the semantic ordering of elements for accessibility.             |
 
-The Bento.Item component API supports all standard HTML attribute props for the interface HTMLDivElement, while providing some additional behavior as described above.
+The Bento.Item component API supports all standard HTML attribute props for the interface `HTMLDivElement`, while providing some additional behavior as described above.
 
 ### Bento.Content
 
-| Name              | Type                                                                                                                       |  Default   | Required | Description                                                                                                             |
-| :---------------- | :------------------------------------------------------------------------------------------------------------------------- | :--------: | :------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `className`       | `string`                                                                                                                   |            | `false`  | Sets a custom class on the root element                                                                                 |
-| `children`        | [`Text`](https://primer.style/brand/components/Text),`Bento.Heading`, [`Link`](https://primer.style/brand/components/Link) |            | `false`  | The children to be rendered within the `Bento.Content`                                                                  |
-| `leadingVisual`   | `ReactElement`, `Icon`                                                                                                     |            | `false`  | Sets the icon before the heading text                                                                                   |
-| `padding`         | `"condensed"`, `"normal"`, `"spacious"`, `ResponsivePadding`                                                               | `"normal"` | `false`  | Sets a custom class on the root element                                                                                 |
-| `horizontalAlign` | `"start"`, `"center"`, `"end"`, `ResponsiveAlign`                                                                          | `"start"`  | `false`  | The horizontal alignment of children within the `Bento.Content`                                                         |
-| `verticalAlign`   | `"start"`, `"center"`, `"end"`, `ResponsiveAlign`                                                                          | `"start"`  | `false`  | The vertical alignment of children within the `Bento.Content`. This cannot be used with the `fixedBottomLink` property. |
+| Name              | Type                                                                                                                       |  Default   | Required | Description                                                     |
+| :---------------- | :------------------------------------------------------------------------------------------------------------------------- | :--------: | :------- | --------------------------------------------------------------- |
+| `className`       | `string`                                                                                                                   |            | `false`  | Sets a custom class on the root element                         |
+| `children`        | [`Text`](https://primer.style/brand/components/Text),`Bento.Heading`, [`Link`](https://primer.style/brand/components/Link) |            | `false`  | The children to be rendered within the `Bento.Content`          |
+| `leadingVisual`   | `ReactElement`, `Icon`                                                                                                     |            | `false`  | Sets the icon before the heading text                           |
+| `padding`         | `"condensed"`, `"normal"`, `"spacious"`, `ResponsivePadding`                                                               | `"normal"` | `false`  | Sets a custom class on the root element                         |
+| `horizontalAlign` | `"start"`, `"center"`, `"end"`, `ResponsiveAlign`                                                                          | `"start"`  | `false`  | The horizontal alignment of children within the `Bento.Content` |
+| `verticalAlign`   | `"start"`, `"center"`, `"end"`, `ResponsiveAlign`                                                                          | `"start"`  | `false`  | The vertical alignment of children within the `Bento.Content`.  |
 
-The Bento.Content component API supports all standard HTML attribute props for the interface HTMLDivElement, while providing some additional behavior as described above.
+The Bento.Content component API supports all standard HTML attribute props for the interface `HTMLDivElement`, while providing some additional behavior as described above.
 
 ### Bento.Heading
 
@@ -219,4 +229,4 @@ Forwards all props from the [Heading component](/components/Heading), including 
 | `position`  | `string`                                                     | `"50% 50%"` | `false`  | The positioning of the visual.                                                                           |
 | `padding`   | `"condensed"`, `"normal"`, `"spacious"`, `ResponsivePadding` |             | `false`  | Sets a custom class on the root element                                                                  |
 
-The Bento.Visual component API supports all standard HTML attribute props for the interface HTMLDivElement, while providing some additional behavior as described above.
+The Bento.Visual component API supports all standard HTML attribute props for the interface `HTMLDivElement`, while providing some additional behavior as described above.

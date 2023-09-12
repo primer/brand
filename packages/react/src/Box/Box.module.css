@@ -194,6 +194,12 @@
   .Box-regular-padding--96 {
     padding: var(--base-size-96);
   }
+  .Box-regular-padding--112 {
+    padding: var(--base-size-112);
+  }
+  .Box-regular-padding--128 {
+    padding: var(--base-size-128);
+  }
 }
 
 @media screen and (min-width: 80rem) {
@@ -250,6 +256,12 @@
   }
   .Box-wide-padding--96 {
     padding: var(--base-size-96);
+  }
+  .Box-wide-padding--112 {
+    padding: var(--base-size-112);
+  }
+  .Box-wide-padding--128 {
+    padding: var(--base-size-128);
   }
 }
 
@@ -371,6 +383,12 @@
 .Box-narrow-paddingBlockStart--96 {
   padding-block-start: var(--base-size-96);
 }
+.Box-narrow-paddingBlockStart--112 {
+  padding-block-start: var(--base-size-112);
+}
+.Box-narrow-paddingBlockStart--128 {
+  padding-block-start: var(--base-size-128);
+}
 
 @media screen and (min-width: 48rem) {
   .Box-regular-paddingBlockStart--condensed {
@@ -426,6 +444,12 @@
   }
   .Box-regular-paddingBlockStart--96 {
     padding-block-start: var(--base-size-96);
+  }
+  .Box-regular-paddingBlockStart--112 {
+    padding-block-start: var(--base-size-112);
+  }
+  .Box-regular-paddingBlockStart--128 {
+    padding-block-start: var(--base-size-128);
   }
 }
 
@@ -483,6 +507,12 @@
   }
   .Box-wide-paddingBlockStart--96 {
     padding-block-start: var(--base-size-96);
+  }
+  .Box-wide-paddingBlockStart--112 {
+    padding-block-start: var(--base-size-112);
+  }
+  .Box-wide-paddingBlockStart--128 {
+    padding-block-start: var(--base-size-128);
   }
 }
 
@@ -660,6 +690,12 @@
   .Box-regular-paddingInlineEnd--96 {
     padding-inline-end: var(--base-size-96);
   }
+  .Box-regular-paddingInlineEnd--112 {
+    padding-inline-end: var(--base-size-112);
+  }
+  .Box-regular-paddingInlineEnd--128 {
+    padding-inline-end: var(--base-size-128);
+  }
 }
 
 @media screen and (min-width: 80rem) {
@@ -716,6 +752,12 @@
   }
   .Box-wide-paddingInlineEnd--96 {
     padding-inline-end: var(--base-size-96);
+  }
+  .Box-wide-paddingInlineEnd--112 {
+    padding-inline-end: var(--base-size-112);
+  }
+  .Box-wide-paddingInlineEnd--128 {
+    padding-inline-end: var(--base-size-128);
   }
 }
 /**
@@ -836,6 +878,12 @@
 .Box-narrow-paddingBlockEnd--96 {
   padding-block-end: var(--base-size-96);
 }
+.Box-narrow-paddingBlockEnd--112 {
+  padding-block-end: var(--base-size-112);
+}
+.Box-narrow-paddingBlockEnd--128 {
+  padding-block-end: var(--base-size-128);
+}
 
 @media screen and (min-width: 48rem) {
   .Box-regular-paddingBlockEnd--condensed {
@@ -891,6 +939,12 @@
   }
   .Box-regular-paddingBlockEnd--96 {
     padding-block-end: var(--base-size-96);
+  }
+  .Box-regular-paddingBlockEnd--112 {
+    padding-block-end: var(--base-size-112);
+  }
+  .Box-regular-paddingBlockEnd--128 {
+    padding-block-end: var(--base-size-128);
   }
 }
 
@@ -948,6 +1002,12 @@
   }
   .Box-wide-paddingBlockEnd--96 {
     padding-block-end: var(--base-size-96);
+  }
+  .Box-wide-paddingBlockEnd--112 {
+    padding-block-end: var(--base-size-112);
+  }
+  .Box-wide-paddingBlockEnd--128 {
+    padding-block-end: var(--base-size-128);
   }
 }
 
@@ -1069,6 +1129,12 @@
 .Box-narrow-paddingInlineStart--96 {
   padding-inline-start: var(--base-size-96);
 }
+.Box-narrow-paddingInlineStart--112 {
+  padding-inline-start: var(--base-size-112);
+}
+.Box-narrow-paddingInlineStart--128 {
+  padding-inline-start: var(--base-size-128);
+}
 
 @media screen and (min-width: 48rem) {
   .Box-regular-paddingInlineStart--condensed {
@@ -1124,6 +1190,12 @@
   }
   .Box-regular-paddingInlineStart--96 {
     padding-inline-start: var(--base-size-96);
+  }
+  .Box-regular-paddingInlineStart--112 {
+    padding-inline-start: var(--base-size-112);
+  }
+  .Box-regular-paddingInlineStart--128 {
+    padding-inline-start: var(--base-size-128);
   }
 }
 
@@ -1181,6 +1253,12 @@
   }
   .Box-wide-paddingInlineStart--96 {
     padding-inline-start: var(--base-size-96);
+  }
+  .Box-wide-paddingInlineStart--112 {
+    padding-inline-start: var(--base-size-112);
+  }
+  .Box-wide-paddingInlineStart--128 {
+    padding-inline-start: var(--base-size-128);
   }
 }
 
@@ -1301,6 +1379,12 @@
 .Box-narrow-margin--96 {
   margin: var(--base-size-96);
 }
+.Box-narrow-margin--112 {
+  margin: var(--base-size-112);
+}
+.Box-narrow-margin--128 {
+  margin: var(--base-size-128);
+}
 
 @media screen and (min-width: 48rem) {
   .Box-regular-margin--condensed {
@@ -1357,6 +1441,12 @@
   .Box-regular-margin--96 {
     margin: var(--base-size-96);
   }
+  .Box-regular-margin--112 {
+    margin: var(--base-size-112);
+  }
+  .Box-regular-margin--128 {
+    margin: var(--base-size-128);
+  }
 }
 
 @media screen and (min-width: 80rem) {
@@ -1411,8 +1501,11 @@
   .Box-wide-margin--80 {
     margin: var(--base-size-80);
   }
-  .Box-wide-margin--96 {
-    margin: var(--base-size-96);
+  .Box-wide-margin--112 {
+    margin: var(--base-size-112);
+  }
+  .Box-wide-margin--128 {
+    margin: var(--base-size-128);
   }
 }
 
@@ -1534,6 +1627,12 @@
 .Box-narrow-marginBlockStart--96 {
   margin-block-start: var(--base-size-96);
 }
+.Box-narrow-marginBlockStart--112 {
+  margin-block-start: var(--base-size-112);
+}
+.Box-narrow-marginBlockStart--128 {
+  margin-block-start: var(--base-size-128);
+}
 
 @media screen and (min-width: 48rem) {
   .Box-regular-marginBlockStart--condensed {
@@ -1589,6 +1688,12 @@
   }
   .Box-regular-marginBlockStart--96 {
     margin-block-start: var(--base-size-96);
+  }
+  .Box-regular-marginBlockStart--112 {
+    margin-block-start: var(--base-size-112);
+  }
+  .Box-regular-marginBlockStart--128 {
+    margin-block-start: var(--base-size-128);
   }
 }
 
@@ -1646,6 +1751,12 @@
   }
   .Box-wide-marginBlockStart--96 {
     margin-block-start: var(--base-size-96);
+  }
+  .Box-wide-marginBlockStart--112 {
+    margin-block-start: var(--base-size-112);
+  }
+  .Box-wide-marginBlockStart--128 {
+    margin-block-start: var(--base-size-128);
   }
 }
 
@@ -2055,6 +2166,12 @@
   .Box-regular-marginBlockEnd--96 {
     margin-block-end: var(--base-size-96);
   }
+  .Box-regular-marginBlockEnd--112 {
+    margin-block-end: var(--base-size-112);
+  }
+  .Box-regular-marginBlockEnd--128 {
+    margin-block-end: var(--base-size-128);
+  }
 }
 
 @media screen and (min-width: 80rem) {
@@ -2111,6 +2228,12 @@
   }
   .Box-wide-marginBlockEnd--96 {
     margin-block-end: var(--base-size-96);
+  }
+  .Box-wide-marginBlockEnd--112 {
+    margin-block-end: var(--base-size-112);
+  }
+  .Box-wide-marginBlockEnd--128 {
+    margin-block-end: var(--base-size-128);
   }
 }
 
@@ -2178,172 +2301,190 @@
   margin-inline-start: var(--base-size-128);
 }
 
-.Box-narrow-marginInlineStart-condensed {
+.Box-narrow-marginInlineStart--condensed {
   margin-inline-start: var(--brand-box-spacing-condensed);
 }
-.Box-narrow-marginInlineStart-normal {
+.Box-narrow-marginInlineStart--normal {
   margin-inline-start: var(--brand-box-spacing-normal);
 }
-.Box-narrow-marginInlineStart-spacious {
+.Box-narrow-marginInlineStart--spacious {
   margin-inline-start: var(--brand-box-spacing-spacious);
 }
-.Box-narrow-marginInlineStart-4 {
+.Box-narrow-marginInlineStart--4 {
   margin-inline-start: var(--base-size-4);
 }
-.Box-narrow-marginInlineStart-8 {
+.Box-narrow-marginInlineStart--8 {
   margin-inline-start: var(--base-size-8);
 }
-.Box-narrow-marginInlineStart-12 {
+.Box-narrow-marginInlineStart--12 {
   margin-inline-start: var(--base-size-12);
 }
-.Box-narrow-marginInlineStart-16 {
+.Box-narrow-marginInlineStart--16 {
   margin-inline-start: var(--base-size-16);
 }
-.Box-narrow-marginInlineStart-20 {
+.Box-narrow-marginInlineStart--20 {
   margin-inline-start: var(--base-size-20);
 }
-.Box-narrow-marginInlineStart-24 {
+.Box-narrow-marginInlineStart--24 {
   margin-inline-start: var(--base-size-24);
 }
-.Box-narrow-marginInlineStart-28 {
+.Box-narrow-marginInlineStart--28 {
   margin-inline-start: var(--base-size-28);
 }
-.Box-narrow-marginInlineStart-32 {
+.Box-narrow-marginInlineStart--32 {
   margin-inline-start: var(--base-size-32);
 }
-.Box-narrow-marginInlineStart-36 {
+.Box-narrow-marginInlineStart--36 {
   margin-inline-start: var(--base-size-36);
 }
-.Box-narrow-marginInlineStart-40 {
+.Box-narrow-marginInlineStart--40 {
   margin-inline-start: var(--base-size-40);
 }
-.Box-narrow-marginInlineStart-44 {
+.Box-narrow-marginInlineStart--44 {
   margin-inline-start: var(--base-size-44);
 }
-.Box-narrow-marginInlineStart-48 {
+.Box-narrow-marginInlineStart--48 {
   margin-inline-start: var(--base-size-48);
 }
-.Box-narrow-marginInlineStart-64 {
+.Box-narrow-marginInlineStart--64 {
   margin-inline-start: var(--base-size-64);
 }
-.Box-narrow-marginInlineStart-80 {
+.Box-narrow-marginInlineStart--80 {
   margin-inline-start: var(--base-size-80);
 }
-.Box-narrow-marginInlineStart-96 {
+.Box-narrow-marginInlineStart--96 {
   margin-inline-start: var(--base-size-96);
+}
+.Box-narrow-marginInlineStart--112 {
+  margin-inline-start: var(--base-size-112);
+}
+.Box-narrow-marginInlineStart--128 {
+  margin-inline-start: var(--base-size-128);
 }
 
 @media screen and (min-width: 48rem) {
-  .Box-regular-marginInlineStart-condensed {
+  .Box-regular-marginInlineStart--condensed {
     margin-inline-start: var(--brand-box-spacing-condensed);
   }
-  .Box-regular-marginInlineStart-normal {
+  .Box-regular-marginInlineStart--normal {
     margin-inline-start: var(--brand-box-spacing-normal);
   }
-  .Box-regular-marginInlineStart-spacious {
+  .Box-regular-marginInlineStart--spacious {
     margin-inline-start: var(--brand-box-spacing-spacious);
   }
-  .Box-regular-marginInlineStart-4 {
+  .Box-regular-marginInlineStart--4 {
     margin-inline-start: var(--base-size-4);
   }
-  .Box-regular-marginInlineStart-8 {
+  .Box-regular-marginInlineStart--8 {
     margin-inline-start: var(--base-size-8);
   }
-  .Box-regular-marginInlineStart-12 {
+  .Box-regular-marginInlineStart--12 {
     margin-inline-start: var(--base-size-12);
   }
-  .Box-regular-marginInlineStart-16 {
+  .Box-regular-marginInlineStart--16 {
     margin-inline-start: var(--base-size-16);
   }
-  .Box-regular-marginInlineStart-20 {
+  .Box-regular-marginInlineStart--20 {
     margin-inline-start: var(--base-size-20);
   }
-  .Box-regular-marginInlineStart-24 {
+  .Box-regular-marginInlineStart--24 {
     margin-inline-start: var(--base-size-24);
   }
-  .Box-regular-marginInlineStart-28 {
+  .Box-regular-marginInlineStart--28 {
     margin-inline-start: var(--base-size-28);
   }
-  .Box-regular-marginInlineStart-32 {
+  .Box-regular-marginInlineStart--32 {
     margin-inline-start: var(--base-size-32);
   }
-  .Box-regular-marginInlineStart-36 {
+  .Box-regular-marginInlineStart--36 {
     margin-inline-start: var(--base-size-36);
   }
-  .Box-regular-marginInlineStart-40 {
+  .Box-regular-marginInlineStart--40 {
     margin-inline-start: var(--base-size-40);
   }
-  .Box-regular-marginInlineStart-44 {
+  .Box-regular-marginInlineStart--44 {
     margin-inline-start: var(--base-size-44);
   }
-  .Box-regular-marginInlineStart-48 {
+  .Box-regular-marginInlineStart--48 {
     margin-inline-start: var(--base-size-48);
   }
-  .Box-regular-marginInlineStart-64 {
+  .Box-regular-marginInlineStart--64 {
     margin-inline-start: var(--base-size-64);
   }
-  .Box-regular-marginInlineStart-80 {
+  .Box-regular-marginInlineStart--80 {
     margin-inline-start: var(--base-size-80);
   }
-  .Box-regular-marginInlineStart-96 {
+  .Box-regular-marginInlineStart--96 {
     margin-inline-start: var(--base-size-96);
+  }
+  .Box-regular-marginInlineStart--112 {
+    margin-inline-start: var(--base-size-112);
+  }
+  .Box-regular-marginInlineStart--128 {
+    margin-inline-start: var(--base-size-128);
   }
 }
 
 @media screen and (min-width: 80rem) {
-  .Box-wide-marginInlineStart-condensed {
+  .Box-wide-marginInlineStart--condensed {
     margin-inline-start: var(--brand-box-spacing-condensed);
   }
-  .Box-wide-marginInlineStart-normal {
+  .Box-wide-marginInlineStart--normal {
     margin-inline-start: var(--brand-box-spacing-normal);
   }
-  .Box-wide-marginInlineStart-spacious {
+  .Box-wide-marginInlineStart--spacious {
     margin-inline-start: var(--brand-box-spacing-spacious);
   }
-  .Box-wide-marginInlineStart-4 {
+  .Box-wide-marginInlineStart--4 {
     margin-inline-start: var(--base-size-4);
   }
-  .Box-wide-marginInlineStart-8 {
+  .Box-wide-marginInlineStart--8 {
     margin-inline-start: var(--base-size-8);
   }
-  .Box-wide-marginInlineStart-12 {
+  .Box-wide-marginInlineStart--12 {
     margin-inline-start: var(--base-size-12);
   }
-  .Box-wide-marginInlineStart-16 {
+  .Box-wide-marginInlineStart--16 {
     margin-inline-start: var(--base-size-16);
   }
-  .Box-wide-marginInlineStart-20 {
+  .Box-wide-marginInlineStart--20 {
     margin-inline-start: var(--base-size-20);
   }
-  .Box-wide-marginInlineStart-24 {
+  .Box-wide-marginInlineStart--24 {
     margin-inline-start: var(--base-size-24);
   }
-  .Box-wide-marginInlineStart-28 {
+  .Box-wide-marginInlineStart--28 {
     margin-inline-start: var(--base-size-28);
   }
-  .Box-wide-marginInlineStart-32 {
+  .Box-wide-marginInlineStart--32 {
     margin-inline-start: var(--base-size-32);
   }
-  .Box-wide-marginInlineStart-36 {
+  .Box-wide-marginInlineStart--36 {
     margin-inline-start: var(--base-size-36);
   }
-  .Box-wide-marginInlineStart-40 {
+  .Box-wide-marginInlineStart--40 {
     margin-inline-start: var(--base-size-40);
   }
-  .Box-wide-marginInlineStart-44 {
+  .Box-wide-marginInlineStart--44 {
     margin-inline-start: var(--base-size-44);
   }
-  .Box-wide-marginInlineStart-48 {
+  .Box-wide-marginInlineStart--48 {
     margin-inline-start: var(--base-size-48);
   }
-  .Box-wide-marginInlineStart-64 {
+  .Box-wide-marginInlineStart--64 {
     margin-inline-start: var(--base-size-64);
   }
-  .Box-wide-marginInlineStart-80 {
+  .Box-wide-marginInlineStart--80 {
     margin-inline-start: var(--base-size-80);
   }
-  .Box-wide-marginInlineStart-96 {
+  .Box-wide-marginInlineStart--96 {
     margin-inline-start: var(--base-size-96);
+  }
+  .Box-wide-marginInlineStart--112 {
+    margin-inline-start: var(--base-size-112);
+  }
+  .Box-wide-marginInlineStart--128 {
+    margin-inline-start: var(--base-size-128);
   }
 }
 

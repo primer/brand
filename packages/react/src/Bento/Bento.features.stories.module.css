@@ -2,7 +2,15 @@
   background: linear-gradient(90deg, var(--base-color-scale-purple-5) 0%, var(--base-color-scale-purple-6) 100%);
 }
 
-.story-background-decorator {
-  padding: 20px;
-  background: var(--base-color-scale-gray-1);
+.Mixed3 {
+  background-color: #f9f8f6;
+}
+
+.Mixed3__bento {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.Mixed3__image {
+  opacity: 0.8;
 }

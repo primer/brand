@@ -191,17 +191,6 @@ describe('Bento.Content', () => {
     expect(getByText(linkText)).toBeInTheDocument()
   })
 
-  it('adds the class for fixedBottomLink', () => {
-    const {getByTestId} = render(
-      <Bento.Content fixedBottomLink>
-        <Link href="#" data-testid={testId}></Link>
-      </Bento.Content>,
-    )
-
-    const BentoLinkElement = getByTestId(testId)
-    expect(BentoLinkElement.classList).toContain('Bento__call-to-action--fixed')
-  })
-
   it('adds the class for padding', () => {
     const padding = 'condensed'
     const {getByTestId} = render(<Bento.Content data-testid={testId} padding={padding} />)

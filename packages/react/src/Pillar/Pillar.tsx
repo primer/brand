@@ -3,6 +3,7 @@ import clsx from 'clsx'
 import {Heading, HeadingProps, Text, Link, LinkProps} from '..'
 import type {BaseProps} from '../component-helpers'
 import {Colors} from '../constants'
+import {useAnimation} from '../animation'
 
 /**
  * Design tokens
@@ -31,9 +32,11 @@ export type PillarProps<C extends keyof JSX.IntrinsicElements = 'div'> = React.H
 
 const PillarRoot = forwardRef(
   (
-    {children, className, as = 'div', align = 'start', ...rest}: PropsWithChildren<PillarProps>,
+    {children, className, animate, as = 'div', align = 'start', style, ...rest}: PropsWithChildren<PillarProps>,
     ref: Ref<HTMLDivElement>,
   ) => {
+    const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
+
     const filteredChildren = React.Children.toArray(children).filter(child => {
       if (React.isValidElement(child) && typeof child.type !== 'string') {
         if (
@@ -53,9 +56,10 @@ const PillarRoot = forwardRef(
 
     return (
       <Component
-        className={clsx(styles.Pillar, className, styles[`Pillar--align-${align}`])}
+        className={clsx(styles.Pillar, styles[`Pillar--align-${align}`], animationClasses, className)}
         ref={ref}
         {...(rest as HTMLAttributes<HTMLElement>)}
+        style={{...animationInlineStyles, ...style}}
       >
         {filteredChildren}
       </Component>

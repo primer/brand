@@ -1,15 +1,25 @@
 declare const styles: {
   readonly "Bento": string;
   readonly "Bento__Item": string;
+  readonly "Bento__Item--bgColor-default": string;
+  readonly "Bento__Item--bgColor-subtle": string;
   readonly "Bento__Item--visual-as-background": string;
   readonly "Bento__Content": string;
   readonly "Bento__Content-icon": string;
+  readonly "Bento__heading--no-text": string;
   readonly "Bento__heading--muted": string;
   readonly "Bento__Visual": string;
+  readonly "Bento__Visual--horizontalAlign-center": string;
+  readonly "Bento__Visual--horizontalAlign-end": string;
+  readonly "Bento__Visual--horizontalAlign-start": string;
+  readonly "Bento__Visual--verticalAlign-center": string;
+  readonly "Bento__Visual--verticalAlign-end": string;
+  readonly "Bento__Visual--verticalAlign-start": string;
+  readonly "Bento__Visual--fill": string;
   readonly "Bento__Visual--no-fill": string;
-  readonly "Bento-padding--condensed": string;
-  readonly "Bento-padding--normal": string;
-  readonly "Bento-padding--spacious": string;
+  readonly "Bento--padding-condensed": string;
+  readonly "Bento--padding-normal": string;
+  readonly "Bento--padding-spacious": string;
   readonly "Bento__Item--flow-column": string;
   readonly "Bento__Item--flow-row": string;
   readonly "Bento__call-to-action": string;

@@ -5,17 +5,23 @@
   grid-auto-rows: var(--base-size-80);
   grid-gap: var(--brand-Bento-gap-small);
   position: relative;
-  max-width: var(--brand-breakpoint-xlarge);
 }
 
 .Bento__Item {
-  background-color: var(--brand-Bento-bgColor);
   border-radius: var(--brand-Bento-item-borderRadius-small);
   display: grid;
   grid-gap: var(--base-size-32);
   grid-template-rows: auto 1fr;
   grid-template-columns: 1fr;
   overflow: hidden;
+}
+
+.Bento__Item--bgColor-default {
+  background-color: var(--brand-color-canvas-default);
+}
+
+.Bento__Item--bgColor-subtle {
+  background-color: var(--brand-color-canvas-subtle);
 }
 
 .Bento__Item--visual-as-background.Bento__Item {
@@ -77,6 +83,31 @@
   height: 100%;
   width: 100%;
   overflow: hidden;
+  display: flex;
+}
+
+.Bento__Visual--horizontalAlign-center {
+  justify-content: center;
+}
+
+.Bento__Visual--horizontalAlign-end {
+  justify-content: flex-end;
+}
+
+.Bento__Visual--horizontalAlign-start {
+  justify-content: flex-start;
+}
+
+.Bento__Visual--verticalAlign-center {
+  align-items: center;
+}
+
+.Bento__Visual--verticalAlign-end {
+  align-items: flex-end;
+}
+
+.Bento__Visual--verticalAlign-start {
+  align-items: flex-start;
 }
 
 .Bento__Item--visual-as-background .Bento__Visual {
@@ -85,15 +116,13 @@
   grid-column: 1 /-1;
 }
 
-.Bento__Visual > img {
+.Bento__Visual--fill > img {
   height: 100%;
   width: 100%;
   object-fit: cover;
 }
 
 .Bento__Visual--no-fill > img {
-  height: 100%;
-  width: 100%;
   object-fit: contain;
   border-radius: 0;
 }
@@ -360,10 +389,12 @@
 /* Bento Item Horizontal Align */
 .Bento__Item--horizontalAlign-start {
   align-items: start;
+  text-align: start;
 }
 
 .Bento__Item--horizontalAlign-center {
   align-items: center;
+  text-align: center;
 }
 
 /* RESPONSIVE Values */

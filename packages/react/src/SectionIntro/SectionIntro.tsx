@@ -12,17 +12,24 @@ import type {BaseProps} from '../component-helpers'
 
 export type SectionIntroProps = {
   align?: 'start' | 'center'
+  fullWidth?: boolean
 } & React.HTMLAttributes<HTMLHeadingElement> &
   BaseProps<HTMLHeadingElement>
 
 const Root = forwardRef<HTMLHeadingElement, PropsWithChildren<SectionIntroProps>>(
-  ({align = 'start', animate, className, children, style, ...props}, ref) => {
+  ({align = 'start', animate, className, children, fullWidth = false, style, ...props}, ref) => {
     const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
 
     return (
       <header
         ref={ref}
-        className={clsx(styles.SectionIntro, styles[`SectionIntro--align-${align}`], animationClasses, className)}
+        className={clsx(
+          styles.SectionIntro,
+          styles[`SectionIntro--align-${align}`],
+          fullWidth && styles['SectionIntro--full-width'],
+          animationClasses,
+          className,
+        )}
         {...props}
         style={{...animationInlineStyles, ...style}}
       >

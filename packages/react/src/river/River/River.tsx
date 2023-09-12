@@ -146,7 +146,7 @@ const Content = forwardRef(
 
     return (
       <div
-        className={clsx(animationClasses, styles.River__content)}
+        className={clsx(animationClasses, styles.River__content, className)}
         style={{...animationInlineStyles, ...style}}
         {...rest}
         ref={ref}
@@ -197,6 +197,7 @@ const Content = forwardRef(
 )
 
 type RiverVisualProps = BaseProps<HTMLDivElement> &
+  React.HtmlHTMLAttributes<HTMLDivElement> &
   PropsWithChildren<{
     /**
      * Applies automatic size constraints to child images and video.

@@ -11,12 +11,25 @@ import {Text} from '../Text'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/timeline/colors-with-modes.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/timeline/base.css'
 
-export type TimelineProps = BaseProps<HTMLUListElement>
+export type TimelineProps = {
+  fullWidth?: boolean
+} & BaseProps<HTMLUListElement>
 
-const _TimelineRoot = ({animate, className, children, ...rest}: PropsWithChildren<TimelineProps>) => {
+const _TimelineRoot = ({
+  animate,
+  className,
+  children,
+  fullWidth = false,
+  ...rest
+}: PropsWithChildren<TimelineProps>) => {
   const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
 
-  const timelineClassName = clsx(animationClasses, styles.Timeline, className)
+  const timelineClassName = clsx(
+    animationClasses,
+    styles.Timeline,
+    fullWidth && styles['Timeline--full-width'],
+    className,
+  )
 
   return (
     <ul className={timelineClassName} style={{...animationInlineStyles}} {...rest}>
