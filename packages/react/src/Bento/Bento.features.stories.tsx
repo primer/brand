@@ -318,7 +318,7 @@ export const Mixed: StoryFn<typeof Bento> = () => (
       }}
     >
       <Bento.Content padding={{xsmall: 'normal', small: 'spacious'}}>
-        <Bento.Heading as="h4" size="4">
+        <Bento.Heading as="h4" size="4" weight="semibold">
           Mercado Libre frees developers minds to focus on their missions with GitHub.
         </Bento.Heading>
         <Link href="#" size="large">
@@ -423,7 +423,7 @@ export const Mixed2: StoryFn<typeof Bento> = () => (
       }}
     >
       <Bento.Content padding={{xsmall: 'normal', small: 'spacious'}}>
-        <Bento.Heading as="h4" size="4">
+        <Bento.Heading as="h4" size="4" weight="semibold">
           Mercado Libre frees developers minds to focus on their missions with GitHub.
         </Bento.Heading>
         <Link href="#" size="large">
@@ -517,7 +517,7 @@ export const Mixed3: StoryFn<typeof Bento> = () => (
       }}
     >
       <Bento.Content padding={{xsmall: 'normal', small: 'spacious'}}>
-        <Bento.Heading as="h4" size="4">
+        <Bento.Heading as="h4" size="4" weight="semibold">
           Mercado Libre frees developers minds to focus on their missions with GitHub.
         </Bento.Heading>
         <Link href="#" size="large">
