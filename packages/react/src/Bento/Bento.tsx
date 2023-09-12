@@ -3,6 +3,8 @@ import clsx from 'clsx'
 import {Icon, IconProps} from '@primer/octicons-react'
 import {useWindowSize, BreakpointSize} from '../hooks/useWindowSize'
 import type {BaseProps} from '../component-helpers'
+import findElementInChildren from '../findElementInChildren'
+
 import {Heading, Text, Link, HeadingProps, TextProps, LinkProps, ColorMode as FullColorMode, Image} from '../'
 
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/bento/base.css'
@@ -246,11 +248,11 @@ const _Heading = forwardRef(
     const childrenArray = useMemo(() => React.Children.toArray(children), [children])
 
     const getConditionalVariant = useCallback(() => {
-      if (childrenArray.some(child => React.isValidElement(child) && child.type === 'em')) {
+      if (findElementInChildren(children, 'em')) {
         return 'muted'
       }
       return 'default'
-    }, [childrenArray])
+    }, [children])
 
     const defaultColor = childrenArray.length === 1 ? 'default' : getConditionalVariant()
 
@@ -258,7 +260,8 @@ const _Heading = forwardRef(
       <Heading
         ref={ref}
         className={clsx(
-          defaultColor === 'muted' || (variant === 'muted' && styles[`Bento__heading--muted`]),
+          defaultColor === 'muted' && styles[`Bento__heading--muted`],
+          variant === 'muted' && styles[`Bento__heading--muted`],
           className,
         )}
         size={size}

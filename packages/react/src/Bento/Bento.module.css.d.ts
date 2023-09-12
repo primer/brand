@@ -1,6 +1,9 @@
 declare const styles: {
   readonly "Bento": string;
   readonly "Bento__Item": string;
+  readonly "Bento--gap-condensed": string;
+  readonly "Bento--gap-normal": string;
+  readonly "Bento--gap-spacious": string;
   readonly "Bento__Item--bgColor-default": string;
   readonly "Bento__Item--bgColor-subtle": string;
   readonly "Bento__Item--visual-as-background": string;

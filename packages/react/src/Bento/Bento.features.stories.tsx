@@ -455,7 +455,10 @@ export const Mixed3: StoryFn<typeof Bento> = () => (
   <Bento>
     <Bento.Item
       columnSpan={12}
-      rowSpan={5}
+      rowSpan={{
+        xsmall: 8,
+        large: 5,
+      }}
       flow={{
         xsmall: 'row',
         large: 'column',

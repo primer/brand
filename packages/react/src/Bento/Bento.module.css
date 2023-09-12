@@ -10,10 +10,22 @@
 .Bento__Item {
   border-radius: var(--brand-Bento-item-borderRadius-small);
   display: grid;
-  grid-gap: var(--base-size-32);
+  grid-gap: var(--brand-Bento-content-padding-spacious);
   grid-template-rows: auto 1fr;
   grid-template-columns: 1fr;
   overflow: hidden;
+}
+
+.Bento--gap-condensed .Bento__Item {
+  grid-gap: var(--brand-Bento-content-padding-condensed);
+}
+
+.Bento--gap-normal .Bento__Item {
+  grid-gap: var(--brand-Bento-content-padding-normal);
+}
+
+.Bento--gap-spacious .Bento__Item {
+  grid-gap: var(--brand-Bento-content-padding-spacious);
 }
 
 .Bento__Item--bgColor-default {
@@ -82,6 +94,7 @@
 .Bento__Visual {
   height: 100%;
   width: 100%;
+  overflow: hidden;
   display: flex;
 }
 
