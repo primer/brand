@@ -3,7 +3,7 @@ import {Meta, StoryFn} from '@storybook/react'
 import {Bento} from '.'
 import {Box, Grid, Image, Link, ThemeProvider} from '../'
 
-import mercardo from '../fixtures/images/mercado.png'
+import mercardo from '../fixtures/images/bento/mercado.png'
 
 import photoOne from '../fixtures/images/bento/1.png'
 import photoTwo from '../fixtures/images/bento/2.png'

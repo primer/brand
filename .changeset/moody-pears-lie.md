@@ -2,7 +2,7 @@
 '@primer/react-brand': minor
 ---
 
-Use the Bento component to create presentational layouts of content.
+Use the bento to present content in a responsive grid layout.
 
 ```jsx
 <Bento>

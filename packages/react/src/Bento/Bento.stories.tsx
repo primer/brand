@@ -1,5 +1,5 @@
 import React from 'react'
-import {Meta, StoryFn} from '@storybook/react'
+import {Meta} from '@storybook/react'
 import {Bento} from '.'
 import {Link} from '../Link'
 
@@ -19,12 +19,6 @@ export default {
   },
 } as Meta<typeof Bento>
 
-const Template: StoryFn<typeof Bento> = args => (
-  <Bento {...args}>
-    <Bento.Item />
-  </Bento>
-)
-
 export const Default = () => (
   <Bento>
     <Bento.Item rowSpan={{xsmall: 4, small: 5}} flow={{xsmall: 'row', small: 'row'}}>
@@ -40,5 +34,3 @@ export const Default = () => (
     </Bento.Item>
   </Bento>
 )
-
-export const Playground = Template.bind({})
