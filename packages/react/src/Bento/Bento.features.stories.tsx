@@ -292,7 +292,10 @@ export const Mixed: StoryFn<typeof Bento> = () => (
       <Bento.Visual
         horizontalAlign="center"
         verticalAlign="center"
-        padding={{xsmall: 'condensed', small: 'normal', medium: 'spacious'}}
+        padding={{
+          xsmall: 'normal',
+          medium: 'spacious',
+        }}
         fillMedia={false}
         position="50% 100%"
       >
@@ -352,7 +355,13 @@ export const Mixed2: StoryFn<typeof Bento> = () => (
       style={{backgroundImage: `url(${mixed2GradientBg})`, maxHeight: 690}}
       className={styles.bentoImageBg}
     >
-      <Bento.Content padding="spacious" horizontalAlign="center">
+      <Bento.Content
+        padding={{
+          xsmall: 'normal',
+          medium: 'spacious',
+        }}
+        horizontalAlign="center"
+      >
         <Bento.Heading as="h3" size="3" className={styles['Mixed2__heading1']}>
           Deliver secure software fast, with enterprise-ready CI/CD using GitHub Actions.
         </Bento.Heading>
@@ -381,7 +390,14 @@ export const Mixed2: StoryFn<typeof Bento> = () => (
           <img src={timerImage} alt="Time icon" width="112" height="100%" />
         </Box>
       </Bento.Visual>
-      <Bento.Content padding="spacious" horizontalAlign="center" verticalAlign="center">
+      <Bento.Content
+        padding={{
+          xsmall: 'normal',
+          medium: 'spacious',
+        }}
+        horizontalAlign="center"
+        verticalAlign="center"
+      >
         <Bento.Heading as="h3" size="4" style={{color: 'var(--base-color-scale-blue-6)'}}>
           Fix vulnerabilities in minutes, not months.
         </Bento.Heading>
@@ -400,7 +416,13 @@ export const Mixed2: StoryFn<typeof Bento> = () => (
       style={{backgroundImage: `url(${mixed2GradientBg})`, maxHeight: 690}}
       className={styles.bentoImageBg}
     >
-      <Bento.Content padding="spacious" horizontalAlign="center">
+      <Bento.Content
+        padding={{
+          xsmall: 'normal',
+          medium: 'spacious',
+        }}
+        horizontalAlign="center"
+      >
         <Bento.Heading as="h4" size="4">
           Stay secure end-to-end
         </Bento.Heading>
@@ -489,14 +511,25 @@ export const Mixed3: StoryFn<typeof Bento> = () => (
       <Bento.Visual position="90% 90%">
         <Image src={globeBg} alt="An illustration of the globe" />
       </Bento.Visual>
-      <Bento.Content padding="spacious">
+      <Bento.Content
+        padding={{
+          xsmall: 'normal',
+          medium: 'spacious',
+        }}
+      >
         <Bento.Heading as="h3" size="4" weight="semibold">
           Reliability when it matters most with GitHub’s distributed architecture.
         </Bento.Heading>
       </Bento.Content>
     </Bento.Item>
     <Bento.Item columnSpan={{xsmall: 12, large: 5}} rowSpan={{xsmall: 5, large: 5}} order="reversed" bgColor="default">
-      <Bento.Content padding="spacious" verticalAlign="end">
+      <Bento.Content
+        padding={{
+          xsmall: 'normal',
+          medium: 'spacious',
+        }}
+        verticalAlign="end"
+      >
         <Bento.Heading as="h3" size="display" className={styles.customStatNumber}>
           <span style={{color: 'var(--base-color-scale-purple-7)'}}>75%</span>
         </Bento.Heading>
@@ -506,7 +539,13 @@ export const Mixed3: StoryFn<typeof Bento> = () => (
           managing tools.
         </Bento.Heading>
       </Bento.Content>
-      <Bento.Visual fillMedia={false} padding="spacious">
+      <Bento.Visual
+        fillMedia={false}
+        padding={{
+          xsmall: 'normal',
+          medium: 'spacious',
+        }}
+      >
         <Image src={ringDownImage} alt="An icon illustrating reduction" width="112" height="112" />
       </Bento.Visual>
     </Bento.Item>
