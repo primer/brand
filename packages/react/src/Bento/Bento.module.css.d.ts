@@ -1,9 +1,6 @@
 declare const styles: {
   readonly "Bento": string;
   readonly "Bento__Item": string;
-  readonly "Bento--gap-condensed": string;
-  readonly "Bento--gap-normal": string;
-  readonly "Bento--gap-spacious": string;
   readonly "Bento__Item--bgColor-default": string;
   readonly "Bento__Item--bgColor-subtle": string;
   readonly "Bento__Item--visual-as-background": string;
@@ -138,6 +135,9 @@ declare const styles: {
   readonly "Bento--xsmall-padding-condensed": string;
   readonly "Bento--xsmall-padding-normal": string;
   readonly "Bento--xsmall-padding-spacious": string;
+  readonly "Bento__Item--xsmall-gap-condensed": string;
+  readonly "Bento__Item--xsmall-gap-normal": string;
+  readonly "Bento__Item--xsmall-gap-spacious": string;
   readonly "Bento__Item--small-column-span-1": string;
   readonly "Bento__Item--small-column-span-2": string;
   readonly "Bento__Item--small-column-span-3": string;
@@ -196,6 +196,9 @@ declare const styles: {
   readonly "Bento--small-padding-condensed": string;
   readonly "Bento--small-padding-normal": string;
   readonly "Bento--small-padding-spacious": string;
+  readonly "Bento__Item--small-gap-condensed": string;
+  readonly "Bento__Item--small-gap-normal": string;
+  readonly "Bento__Item--small-gap-spacious": string;
   readonly "Bento__Item--medium-column-span-1": string;
   readonly "Bento__Item--medium-column-span-2": string;
   readonly "Bento__Item--medium-column-span-3": string;
@@ -254,6 +257,9 @@ declare const styles: {
   readonly "Bento--medium-padding-condensed": string;
   readonly "Bento--medium-padding-normal": string;
   readonly "Bento--medium-padding-spacious": string;
+  readonly "Bento__Item--medium-gap-condensed": string;
+  readonly "Bento__Item--medium-gap-normal": string;
+  readonly "Bento__Item--medium-gap-spacious": string;
   readonly "Bento__Item--large-column-span-1": string;
   readonly "Bento__Item--large-column-span-2": string;
   readonly "Bento__Item--large-column-span-3": string;
@@ -312,6 +318,9 @@ declare const styles: {
   readonly "Bento-padding--large-condensed": string;
   readonly "Bento-padding--large-normal": string;
   readonly "Bento-padding--large-spacious": string;
+  readonly "Bento__Item--large-gap-condensed": string;
+  readonly "Bento__Item--large-gap-normal": string;
+  readonly "Bento__Item--large-gap-spacious": string;
   readonly "Bento__Item--xlarge-column-span-1": string;
   readonly "Bento__Item--xlarge-column-span-2": string;
   readonly "Bento__Item--xlarge-column-span-3": string;
@@ -370,6 +379,9 @@ declare const styles: {
   readonly "Bento--xlarge-padding-condensed": string;
   readonly "Bento--xlarge-padding-normal": string;
   readonly "Bento--xlarge-padding-spacious": string;
+  readonly "Bento__Item--xlarge-gap-condensed": string;
+  readonly "Bento__Item--xlarge-gap-normal": string;
+  readonly "Bento__Item--xlarge-gap-spacious": string;
   readonly "Bento__Item--xxlarge-column-span-1": string;
   readonly "Bento__Item--xxlarge-column-span-2": string;
   readonly "Bento__Item--xxlarge-column-span-3": string;
@@ -428,6 +440,9 @@ declare const styles: {
   readonly "Bento--xxlarge-padding-condensed": string;
   readonly "Bento---xxlarge-padding-normal": string;
   readonly "Bento--xxlarge-padding-spacious": string;
+  readonly "Bento__Item--xxlarge-gap-condensed": string;
+  readonly "Bento__Item--xxlarge-gap-normal": string;
+  readonly "Bento__Item--xxlarge-gap-spacious": string;
   readonly "Bento-column-padding-override": string;
   readonly "Bento-row-padding-override": string;
 };

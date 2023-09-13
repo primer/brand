@@ -117,22 +117,6 @@ const Item = ({
   ...rest
 }: BentoItemProps) => {
   const {currentBreakpointSize} = useWindowSize()
-  const bentoItemClassArray = [styles.Bento__Item, styles[`Bento__Item--bgColor-${bgColor}`]]
-
-  bentoItemClassArray.push(
-    ...returnClassBasedOnResponsiveMap('Bento__Item', 'column-span', columnSpan),
-    ...returnClassBasedOnResponsiveMap('Bento__Item', 'row-span', rowSpan),
-    ...returnClassBasedOnResponsiveMap('Bento__Item', 'column-start', columnStart),
-    ...returnClassBasedOnResponsiveMap('Bento__Item', 'row-start', rowStart),
-    ...returnClassBasedOnResponsiveMap('Bento__Item', 'flow', flow),
-  )
-
-  if (!visualAsBackground && React.Children.toArray(children).length >= 1) {
-    flow === 'column' && bentoItemClassArray.push(styles['Bento-column-padding-override'])
-    flow === 'row' && bentoItemClassArray.push(styles['Bento-row-padding-override'])
-  }
-
-  const colorModeProp = colorMode ? {'data-color-mode': colorMode} : {}
 
   const validChildren = React.Children.toArray(children).reduce<ValidItemChildren>((acc, child) => {
     if (React.isValidElement(child) && typeof child.type !== 'string') {
@@ -145,6 +129,26 @@ const Item = ({
     }
     return acc
   }, [])
+
+  const contentChildPadding = validChildren.find(child => child?.type === Content)?.props.padding || 'spacious'
+
+  const bentoItemClassArray = [styles.Bento__Item, styles[`Bento__Item--bgColor-${bgColor}`]]
+
+  bentoItemClassArray.push(
+    ...returnClassBasedOnResponsiveMap('Bento__Item', 'column-span', columnSpan),
+    ...returnClassBasedOnResponsiveMap('Bento__Item', 'row-span', rowSpan),
+    ...returnClassBasedOnResponsiveMap('Bento__Item', 'column-start', columnStart),
+    ...returnClassBasedOnResponsiveMap('Bento__Item', 'row-start', rowStart),
+    ...returnClassBasedOnResponsiveMap('Bento__Item', 'flow', flow),
+    ...returnClassBasedOnResponsiveMap('Bento__Item', 'gap', contentChildPadding),
+  )
+
+  if (!visualAsBackground && React.Children.toArray(children).length >= 1) {
+    flow === 'column' && bentoItemClassArray.push(styles['Bento-column-padding-override'])
+    flow === 'row' && bentoItemClassArray.push(styles['Bento-row-padding-override'])
+  }
+
+  const colorModeProp = colorMode ? {'data-color-mode': colorMode} : {}
 
   const orderedChildren = returnOrderedChildren({order, children: validChildren, currentBreakpointSize})
 

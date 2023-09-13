@@ -17,13 +17,15 @@ import gradientBg from '../fixtures/images/bento/gradient-bg.png'
 
 import ciCD from '../fixtures/images/bento/ci-cd.png'
 import globeBg from '../fixtures/images/bento/globe.png'
-import greenGradientBg from '../fixtures/images/bento/green-gradient-bg.png'
+import purpleGradientBg from '../fixtures/images/bento/purple-gradient-bg.png'
 import ringDownImage from '../fixtures/images/bento/ring-down.png'
 import terminalImage from '../fixtures/images/bento/terminal.png'
 import testingImage from '../fixtures/images/bento/testing.png'
 import timerImage from '../fixtures/images/bento/timer.png'
+import mixed2GradientBg from '../fixtures/images/bento/mixed-2-gradient-bg.png'
 
 import styles from './Bento.features.stories.module.css'
+import clsx from 'clsx'
 
 export default {
   title: 'Components/Bento/features',
@@ -273,14 +275,14 @@ export const Mixed: StoryFn<typeof Bento> = () => (
           Push what&apos;s possible with GitHub Copilot, the world&apos;s most trusted and widely adopted AI developer
           tool.
         </Bento.Heading>
-        <Link href="#" variant="default" size="large">
+        <Link href="#" variant="default">
           Learn more about Copilot
         </Link>
       </Bento.Content>
     </Bento.Item>
     <Bento.Item columnSpan={{xsmall: 12, medium: 5}} rowSpan={{xsmall: 4, small: 5}} colorMode="dark" bgColor="default">
       <Bento.Content padding={{xsmall: 'normal', small: 'spacious'}} horizontalAlign="center" verticalAlign="center">
-        <Bento.Heading as="h4" size="display">
+        <Bento.Heading as="h4" size="display" className={styles.customStatNumber}>
           88%
         </Bento.Heading>
         <Bento.Heading as="h5" size="6" weight="medium" variant="muted">
@@ -297,13 +299,13 @@ export const Mixed: StoryFn<typeof Bento> = () => (
         <img src={copilotBadge} alt="Platform Artificial Intelligence Logo" width={112} height={112} />
       </Bento.Visual>
     </Bento.Item>
-    <Bento.Item columnSpan={12} rowSpan={{xsmall: 3, small: 5}} visualAsBackground>
+    <Bento.Item columnSpan={12} rowSpan={{xsmall: 5, small: 5}} visualAsBackground>
       <Bento.Visual
         style={{
           backgroundImage: `url(${gradientBg})`,
         }}
       >
-        <img src={codeWindow} alt="a browser window with code in it" />
+        <img src={codeWindow} alt="a browser window with code in it" className={styles['Mixed1__codeWindow']} />
       </Bento.Visual>
     </Bento.Item>
     <Bento.Item
@@ -312,18 +314,13 @@ export const Mixed: StoryFn<typeof Bento> = () => (
       rowSpan={5}
       flow={{xsmall: 'row', medium: 'column'}}
       colorMode="dark"
-      order={{
-        xsmall: 'reversed',
-        medium: 'default',
-      }}
+      order="default"
     >
       <Bento.Content padding={{xsmall: 'normal', small: 'spacious'}}>
         <Bento.Heading as="h4" size="4" weight="semibold">
           Mercado Libre frees developers minds to focus on their missions with GitHub.
         </Bento.Heading>
-        <Link href="#" size="large">
-          Read customer story
-        </Link>
+        <Link href="#">Read customer story</Link>
       </Bento.Content>
       <Bento.Visual padding="condensed">
         <img src={mercardo} alt="A white man with grey hair and a beard, running a coffee stand, waving." />
@@ -350,15 +347,16 @@ export const Mixed2: StoryFn<typeof Bento> = () => (
   <Bento>
     <Bento.Item
       columnSpan={12}
-      rowSpan={{xsmall: 5, large: 6}}
+      rowSpan={{xsmall: 5, large: 7}}
       colorMode="dark"
-      style={{background: 'var(--base-color-scale-blue-8)'}}
+      style={{backgroundImage: `url(${mixed2GradientBg})`, maxHeight: 690}}
+      className={styles.bentoImageBg}
     >
       <Bento.Content padding="spacious" horizontalAlign="center">
-        <Bento.Heading as="h3" size="3">
-          Deliver secure software fast, with enterprise-ready CI/CD.
+        <Bento.Heading as="h3" size="3" className={styles['Mixed2__heading1']}>
+          Deliver secure software fast, with enterprise-ready CI/CD using GitHub Actions.
         </Bento.Heading>
-        <Link href="#" size="large">
+        <Link href="#" variant="default">
           Learn more about CI/CD
         </Link>
       </Bento.Content>
@@ -367,6 +365,7 @@ export const Mixed2: StoryFn<typeof Bento> = () => (
       </Bento.Visual>
     </Bento.Item>
     <Bento.Item
+      className={styles['Mixed2__item']}
       columnSpan={{
         xsmall: 12,
         large: 5,
@@ -379,7 +378,7 @@ export const Mixed2: StoryFn<typeof Bento> = () => (
     >
       <Bento.Visual fillMedia={false} padding="spacious" horizontalAlign="center" verticalAlign="center">
         <Box marginBlockStart={24}>
-          <img src={timerImage} alt="Time icon" width="112" height="112" />
+          <img src={timerImage} alt="Time icon" width="112" height="100%" />
         </Box>
       </Bento.Visual>
       <Bento.Content padding="spacious" horizontalAlign="center" verticalAlign="center">
@@ -389,6 +388,7 @@ export const Mixed2: StoryFn<typeof Bento> = () => (
       </Bento.Content>
     </Bento.Item>
     <Bento.Item
+      colorMode="dark"
       columnSpan={{
         xsmall: 12,
         large: 7,
@@ -397,17 +397,23 @@ export const Mixed2: StoryFn<typeof Bento> = () => (
         xsmall: 4,
         large: 5,
       }}
-      style={{background: 'var(--base-color-scale-blue-1)'}}
+      style={{backgroundImage: `url(${mixed2GradientBg})`, maxHeight: 690}}
+      className={styles.bentoImageBg}
     >
       <Bento.Content padding="spacious" horizontalAlign="center">
         <Bento.Heading as="h4" size="4">
-          Make continuous testing easy and end-to-end.
+          Stay secure end-to-end
         </Bento.Heading>
-        <Link href="#" size="large">
+        <Link href="#" variant="default">
           Learn more about actions
         </Link>
       </Bento.Content>
-      <Bento.Visual fillMedia={false} horizontalAlign="end">
+      <Bento.Visual
+        fillMedia={false}
+        horizontalAlign="end"
+        verticalAlign="end"
+        className={styles['Mixed2__testingImageVisual']}
+      >
         <img src={testingImage} alt="UI of workflow runs" />
       </Bento.Visual>
     </Bento.Item>
@@ -417,18 +423,13 @@ export const Mixed2: StoryFn<typeof Bento> = () => (
       columnSpan={12}
       rowSpan={5}
       flow={{xsmall: 'row', medium: 'column'}}
-      order={{
-        xsmall: 'reversed',
-        medium: 'default',
-      }}
+      order="default"
     >
       <Bento.Content padding={{xsmall: 'normal', small: 'spacious'}}>
         <Bento.Heading as="h4" size="4" weight="semibold">
           Mercado Libre frees developers minds to focus on their missions with GitHub.
         </Bento.Heading>
-        <Link href="#" size="large">
-          Read customer story
-        </Link>
+        <Link href="#">Read customer story</Link>
       </Bento.Content>
       <Bento.Visual padding="condensed">
         <img src={mercardo} alt="A white man with grey hair and a beard, running a coffee stand, waving." />
@@ -456,35 +457,35 @@ export const Mixed3: StoryFn<typeof Bento> = () => (
     <Bento.Item
       columnSpan={12}
       rowSpan={{
-        xsmall: 8,
-        large: 5,
+        xsmall: 7,
+        large: 6,
       }}
       flow={{
         xsmall: 'row',
         large: 'column',
       }}
       colorMode="dark"
-      className={styles.Mixed3__bento}
-      style={{backgroundImage: `url(${greenGradientBg})`}}
+      className={clsx(styles.bentoImageBg, styles['Mixed3__customColumns'])}
+      style={{backgroundImage: `url(${purpleGradientBg})`}}
     >
-      <Bento.Content padding="spacious">
+      <Bento.Content
+        padding={{
+          xsmall: 'normal',
+          medium: 'spacious',
+        }}
+      >
         <Bento.Heading as="h3" size="3" weight="semibold">
           Migrate, scale, and use cloud-based compute to accelerate digital transformation.
         </Bento.Heading>
-        <Link href="#" size="large" variant="default">
+        <Link href="#" variant="default">
           Learn more about GEI
         </Link>
       </Bento.Content>
-      <Bento.Visual>
+      <Bento.Visual verticalAlign="end" horizontalAlign="end" className={styles['Mixed3__leadingImageVisual']}>
         <img className={styles['Mixed3__image']} src={terminalImage} alt="A terminal showcasing the GitHub CLI" />
       </Bento.Visual>
     </Bento.Item>
-    <Bento.Item
-      columnSpan={{xsmall: 12, large: 7}}
-      rowSpan={{xsmall: 4, large: 5}}
-      visualAsBackground
-      style={{backgroundColor: '#eff0ef'}}
-    >
+    <Bento.Item columnSpan={{xsmall: 12, large: 7}} rowSpan={{xsmall: 4, large: 5}} visualAsBackground colorMode="dark">
       <Bento.Visual position="90% 90%">
         <Image src={globeBg} alt="An illustration of the globe" />
       </Bento.Visual>
@@ -494,10 +495,10 @@ export const Mixed3: StoryFn<typeof Bento> = () => (
         </Bento.Heading>
       </Bento.Content>
     </Bento.Item>
-    <Bento.Item columnSpan={{xsmall: 12, large: 5}} rowSpan={{xsmall: 4, large: 5}} order="reversed" bgColor="default">
+    <Bento.Item columnSpan={{xsmall: 12, large: 5}} rowSpan={{xsmall: 5, large: 5}} order="reversed" bgColor="default">
       <Bento.Content padding="spacious" verticalAlign="end">
-        <Bento.Heading as="h3" size="display">
-          75%
+        <Bento.Heading as="h3" size="display" className={styles.customStatNumber}>
+          <span style={{color: 'var(--base-color-scale-purple-7)'}}>75%</span>
         </Bento.Heading>
         <Bento.Heading as="h4" size="6" weight="medium" variant="muted">
           Reduced time spent
@@ -509,23 +510,12 @@ export const Mixed3: StoryFn<typeof Bento> = () => (
         <Image src={ringDownImage} alt="An icon illustrating reduction" width="112" height="112" />
       </Bento.Visual>
     </Bento.Item>
-    <Bento.Item
-      bgColor="default"
-      columnSpan={12}
-      rowSpan={5}
-      flow={{xsmall: 'row', medium: 'column'}}
-      order={{
-        xsmall: 'reversed',
-        medium: 'default',
-      }}
-    >
+    <Bento.Item bgColor="default" columnSpan={12} rowSpan={5} flow={{xsmall: 'row', medium: 'column'}} order="default">
       <Bento.Content padding={{xsmall: 'normal', small: 'spacious'}}>
         <Bento.Heading as="h4" size="4" weight="semibold">
           Mercado Libre frees developers minds to focus on their missions with GitHub.
         </Bento.Heading>
-        <Link href="#" size="large">
-          Read customer story
-        </Link>
+        <Link href="#">Read customer story</Link>
       </Bento.Content>
       <Bento.Visual padding="condensed">
         <img src={mercardo} alt="A white man with grey hair and a beard, running a coffee stand, waving." />

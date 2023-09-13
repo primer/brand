@@ -2,7 +2,7 @@ import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {Bento} from '.'
-import {Text, Link} from '../'
+import {Link} from '../'
 import placeholderImage from '../fixtures/images/placeholder-600x400.png'
 import styles from './Bento.features.stories.module.css'
 
