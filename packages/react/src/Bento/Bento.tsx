@@ -283,6 +283,7 @@ type BentoVisualProps = {
   horizontalAlign?: Align
   verticalAlign?: Align
   fillMedia?: boolean
+  overflow?: 'hidden' | 'initial'
   position?: string
   padding?: Padding | ResponsivePadding
 } & React.HTMLAttributes<HTMLDivElement> &
@@ -292,6 +293,7 @@ const Visual = ({
   horizontalAlign,
   verticalAlign,
   fillMedia = true,
+  overflow = 'hidden',
   position = '50% 50%',
   padding,
   className,
@@ -302,6 +304,7 @@ const Visual = ({
     styles.Bento__Visual,
     horizontalAlign && styles[`Bento__Visual--horizontalAlign-${horizontalAlign}`],
     verticalAlign && styles[`Bento__Visual--verticalAlign-${verticalAlign}`],
+    styles[`Bento__Visual--overflow-${overflow}`],
   ]
   bentoVisualClassArray.push(...returnClassBasedOnResponsiveMap('Bento', 'padding', padding))
   const childrenToRender = React.Children.map(children, child => {

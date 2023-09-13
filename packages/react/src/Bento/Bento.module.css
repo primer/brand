@@ -82,8 +82,15 @@
 .Bento__Visual {
   height: 100%;
   width: 100%;
-  overflow: hidden;
   display: flex;
+}
+
+.Bento__Visual--overflow-hidden {
+  overflow: hidden;
+}
+
+.Bento__Visual--overflow-initial {
+  overflow: initial;
 }
 
 .Bento__Visual--horizontalAlign-center {

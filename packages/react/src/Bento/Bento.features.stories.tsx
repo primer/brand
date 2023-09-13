@@ -430,12 +430,7 @@ export const Mixed2: StoryFn<typeof Bento> = () => (
           Learn more about actions
         </Link>
       </Bento.Content>
-      <Bento.Visual
-        fillMedia={false}
-        horizontalAlign="end"
-        verticalAlign="end"
-        className={styles['Mixed2__testingImageVisual']}
-      >
+      <Bento.Visual fillMedia={false} horizontalAlign="end" verticalAlign="end" overflow="initial">
         <img src={testingImage} alt="UI of workflow runs" />
       </Bento.Visual>
     </Bento.Item>
@@ -503,7 +498,7 @@ export const Mixed3: StoryFn<typeof Bento> = () => (
           Learn more about GEI
         </Link>
       </Bento.Content>
-      <Bento.Visual verticalAlign="end" horizontalAlign="end" className={styles['Mixed3__leadingImageVisual']}>
+      <Bento.Visual verticalAlign="end" horizontalAlign="end" overflow="initial">
         <img className={styles['Mixed3__image']} src={terminalImage} alt="A terminal showcasing the GitHub CLI" />
       </Bento.Visual>
     </Bento.Item>

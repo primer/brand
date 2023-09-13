@@ -27,10 +27,6 @@
   grid-gap: var(--base-size-16);
 }
 
-.Mixed2__testingImageVisual {
-  overflow: initial;
-}
-
 .Mixed3 {
   background-color: #f9f8f6;
 }
@@ -39,10 +35,6 @@
   .Mixed3__customColumns {
     grid-template-columns: 0.9fr 1.1fr;
   }
-}
-
-.Mixed3__leadingImageVisual {
-  overflow: initial;
 }
 
 .bentoImageBg {
