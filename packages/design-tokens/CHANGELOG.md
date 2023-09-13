@@ -1,5 +1,62 @@
 # @primer/brand-primitives
 
+## 0.25.0
+
+### Minor Changes
+
+- [#392](https://github.com/primer/brand/pull/392) [`6003ba5`](https://github.com/primer/brand/commit/6003ba572bbda10095d7998079483f8776cce4a5) Thanks [@langermank](https://github.com/langermank)! - - Update Button, TextInput, and Select size options
+
+  - Update Button color variant designs for site refactor
+  - Update `control` token sizing
+  - Remove `Button` design tokens and replace with new options
+
+  Tokens removed:
+
+  - --brand-Button-background-base
+  - --brand-Button-background-overlay
+  - --brand-Button-background-disabled
+  - --brand-Button-fg-primary-disabled
+  - --brand-Button-fg-secondary-disabled
+  - --brand-Button-shadow-primary-default
+  - --brand-Button-shadow-primary-hover
+  - --brand-Button-shadow-secondary-default
+  - --brand-Button-shadow-secondary-hover
+  - --brand-Button-shadow-subtle-hover
+  - --brand-Button-shadow-focus
+  - --brand-Button-background-base
+  - --brand-Button-background-overlay
+  - --brand-Button-background-disabled
+  - --brand-Button-fg-primary-disabled
+  - --brand-Button-fg-secondary-disabled
+  - --brand-Button-shadow-primary-default
+  - --brand-Button-shadow-primary-hover
+  - --brand-Button-shadow-secondary-default
+  - --brand-Button-shadow-secondary-hover
+  - --brand-Button-shadow-subtle-hover
+  - --brand-Button-shadow-focus
+
+- [#410](https://github.com/primer/brand/pull/410) [`8933e19`](https://github.com/primer/brand/commit/8933e19c19b2bd244f446c6dbd8713f0be709b4e) Thanks [@rezrah](https://github.com/rezrah)! - Updated tokens for FAQ
+
+  ```diff
+  - --brand-FAQ-maxWidth;
+  + --brand-FAQ-maxWidth-list
+  ```
+
+  New tokens:
+
+  ```css
+  --brand-FAQ-color-tabBg-selected
+  ```
+
+### Patch Changes
+
+- [#416](https://github.com/primer/brand/pull/416) [`d36709d`](https://github.com/primer/brand/commit/d36709d170f3ffe0f81cf74f318b423aaaef1bcf) Thanks [@rezrah](https://github.com/rezrah)! - Added new design tokens for Accordion
+
+  ```css
+  --brand-Accordion-border-color-default
+  --brand-Accordion-border-color-emphasis
+  ```
+
 ## 0.24.0
 
 ### Minor Changes

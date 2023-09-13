@@ -1,5 +1,124 @@
 # @primer/react-brand
 
+## 0.25.0
+
+### Minor Changes
+
+- [#412](https://github.com/primer/brand/pull/412) [`d985e1f`](https://github.com/primer/brand/commit/d985e1f376e5bb25415f060f81e69997edd4f437) Thanks [@josepmartins](https://github.com/josepmartins)! - Visual updates to the Card component.
+
+  - Increase border radius to 16px.
+  - Adjust inner spacing between body text and link.
+  - Use accent color in the link.
+  - Removed shadow
+  - Removed border by default, add `hasBorder` prop to add it back.
+
+  ⚠️ This is a visual breaking change
+
+  To restore the previous visual appearance, use the following
+
+  ```diff
+  - <Card>
+  + <Card hasBorder>
+  ```
+
+- [#422](https://github.com/primer/brand/pull/422) [`c9d5e05`](https://github.com/primer/brand/commit/c9d5e05c7f1914ffb22c5ef47554797c942df775) Thanks [@rezrah](https://github.com/rezrah)! - Replaced twitter references in MinimalFooter with X
+
+  > [!WARNING]
+  > This is a breaking, but necessary change to the API.
+
+  Migration steps:
+
+  ```diff
+  - <MinimalFooter socialLinks={['twitter']} />
+  + <MinimalFooter socialLinks={['x']} />
+  ```
+
+- [#410](https://github.com/primer/brand/pull/410) [`8933e19`](https://github.com/primer/brand/commit/8933e19c19b2bd244f446c6dbd8713f0be709b4e) Thanks [@rezrah](https://github.com/rezrah)! - Added `FAQGroup` component for displaying a group of FAQ items.
+
+  ```js
+  import {FAQGroup} from '@primer/react-brand'
+  ```
+
+  ```jsx
+  <FAQGroup>
+    <FAQGroup.Heading>Frequently asked questions</FAQGroup.Heading>
+    <FAQ />
+    <FAQ />
+  </FAQGroup>
+  ```
+
+  See [Storybook](https://primer.style/brand/storybook/?path=/story/components-faq-features--groups) for more examples.
+
+- [#392](https://github.com/primer/brand/pull/392) [`6003ba5`](https://github.com/primer/brand/commit/6003ba572bbda10095d7998079483f8776cce4a5) Thanks [@langermank](https://github.com/langermank)! - - Update Button, TextInput, and Select size options
+
+  - Update Button color variant designs for site refactor
+  - Update `control` token sizing
+  - Remove `Button` design tokens and replace with new options
+
+  Tokens removed:
+
+  - --brand-Button-background-base
+  - --brand-Button-background-overlay
+  - --brand-Button-background-disabled
+  - --brand-Button-fg-primary-disabled
+  - --brand-Button-fg-secondary-disabled
+  - --brand-Button-shadow-primary-default
+  - --brand-Button-shadow-primary-hover
+  - --brand-Button-shadow-secondary-default
+  - --brand-Button-shadow-secondary-hover
+  - --brand-Button-shadow-subtle-hover
+  - --brand-Button-shadow-focus
+  - --brand-Button-background-base
+  - --brand-Button-background-overlay
+  - --brand-Button-background-disabled
+  - --brand-Button-fg-primary-disabled
+  - --brand-Button-fg-secondary-disabled
+  - --brand-Button-shadow-primary-default
+  - --brand-Button-shadow-primary-hover
+  - --brand-Button-shadow-secondary-default
+  - --brand-Button-shadow-secondary-hover
+  - --brand-Button-shadow-subtle-hover
+  - --brand-Button-shadow-focus
+
+- [#373](https://github.com/primer/brand/pull/373) [`b952a37`](https://github.com/primer/brand/commit/b952a377ed0a5bff621012f8af29b05b2a951495) Thanks [@JoshBowdenConcepts](https://github.com/JoshBowdenConcepts)! - Use VideoPlayer component to render hosted videos
+
+  ```jsx
+  <VideoPlayer title="GitHub media player">
+    <VideoPlayer.Source src="/example.mp4" />
+    <VideoPlayer.Track src="/example.vtt" srcLang="en" label="English" />
+  </VideoPlayer>
+  ```
+
+### Patch Changes
+
+- [#397](https://github.com/primer/brand/pull/397) [`7acec10`](https://github.com/primer/brand/commit/7acec109cfa635f7ebc9df53bcae1243e5bebc40) Thanks [@rezrah](https://github.com/rezrah)! - Backfilled missing directional spacing styles in Box for `112` and `128`.
+
+- [#397](https://github.com/primer/brand/pull/397) [`7acec10`](https://github.com/primer/brand/commit/7acec109cfa635f7ebc9df53bcae1243e5bebc40) Thanks [@rezrah](https://github.com/rezrah)! - Added fullWidth props to ` SectionIntro` and `Timeline`
+
+  ```jsx
+  <SectionIntro fullWidth>
+    <SectionIntro.Heading>This heading will fill the maximum width of its parent container.</SectionIntro.Heading>
+  </SectionIntro>
+  ```
+
+  ```jsx
+  <Timeline fullWidth>
+    <Timeline.Item>This text will fill the maximum width of its parent container.</Timeline.Item>
+  </Timeline>
+  ```
+
+- [#397](https://github.com/primer/brand/pull/397) [`7acec10`](https://github.com/primer/brand/commit/7acec109cfa635f7ebc9df53bcae1243e5bebc40) Thanks [@rezrah](https://github.com/rezrah)! - Enable `className`` forwarding in the River component.
+
+- [#397](https://github.com/primer/brand/pull/397) [`7acec10`](https://github.com/primer/brand/commit/7acec109cfa635f7ebc9df53bcae1243e5bebc40) Thanks [@rezrah](https://github.com/rezrah)! - Backfilled missing styles in `Box` for directional margins and paddings above `96px`
+
+- [#416](https://github.com/primer/brand/pull/416) [`d36709d`](https://github.com/primer/brand/commit/d36709d170f3ffe0f81cf74f318b423aaaef1bcf) Thanks [@rezrah](https://github.com/rezrah)! - Visual updates to FAQ groups
+
+  - Optical alignment of heading in FAQ group panels
+  - Removed extra padding from FAQ group tabs
+  - Use dedicated tokens for accordion borders
+
+- [#399](https://github.com/primer/brand/pull/399) [`0479092`](https://github.com/primer/brand/commit/04790926c578c535cd39b410441ca8252180b2d8) Thanks [@simurai](https://github.com/simurai)! - **added** `instagram` to `MinimalFooter` to avoid Type error
+
 ## 0.24.0
 
 ### Minor Changes
