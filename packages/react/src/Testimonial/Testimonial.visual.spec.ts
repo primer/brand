@@ -58,9 +58,9 @@ test.describe('Visual Comparison: Testimonial', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Testimonial / Highlighted Portion', async ({page}) => {
+  test('Testimonial / Large Highlighted Portion', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-testimonial--highlighted-portion&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-testimonial--large-highlighted-portion&viewMode=story',
     )
 
     await page.waitForTimeout(500)

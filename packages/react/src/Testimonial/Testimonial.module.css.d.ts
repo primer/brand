@@ -6,6 +6,7 @@ declare const styles: {
   readonly "Testimonial-quote--muted": string;
   readonly "Testimonial__media": string;
   readonly "Testimonial-caption": string;
+  readonly "Testimonial-from": string;
   readonly "Testimonial-position": string;
   readonly "Testimonial__quoteMark--default": string;
   readonly "Testimonial__quoteMark--blue": string;
