@@ -16,7 +16,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 import styles from './MinimalFooter.module.css'
 
 export const MinimalFooterSocialLinks = [
-  'twitter',
+  'x',
   'github',
   'linkedin',
   'youtube',
@@ -159,12 +159,12 @@ function SocialLogomarks({socialLinks, logoHref}: SocialLogomarksProps) {
 
   const socialLinkData = [
     {
-      name: 'twitter',
-      fullName: 'Twitter',
-      url: 'https://twitter.com/github',
-      icon: 'https://github.githubassets.com/images/modules/site/icons/footer/twitter.svg',
-      iconWidth: 22,
-      iconHeight: 18,
+      name: 'x',
+      fullName: 'X',
+      url: 'https://x.com/github',
+      icon: 'https://github.githubassets.com/images/modules/site/icons/footer/x.svg',
+      iconWidth: 20,
+      iconHeight: 16,
     },
     {
       name: 'github',
