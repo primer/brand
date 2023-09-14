@@ -281,9 +281,17 @@ export const Mixed: StoryFn<typeof Bento> = () => (
       </Bento.Content>
     </Bento.Item>
     <Bento.Item columnSpan={{xsmall: 12, medium: 5}} rowSpan={{xsmall: 4, small: 5}} colorMode="dark" bgColor="default">
-      <Bento.Content padding={{xsmall: 'normal', small: 'spacious'}} horizontalAlign="center" verticalAlign="center">
+      <Bento.Content padding={{xsmall: 'normal', xlarge: 'spacious'}} horizontalAlign="center" verticalAlign="center">
         <Bento.Heading as="h4" size="display" className={styles.customStatNumber}>
-          88%
+          <Box
+            paddingBlockStart={{
+              narrow: 4,
+              regular: 'spacious',
+              wide: 4,
+            }}
+          >
+            88%
+          </Box>
         </Bento.Heading>
         <Bento.Heading as="h5" size="6" weight="medium" variant="muted">
           of developers experience increased productivity.
