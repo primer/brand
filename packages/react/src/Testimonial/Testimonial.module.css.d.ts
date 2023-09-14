@@ -1,12 +1,12 @@
 declare const styles: {
   readonly "Testimonial": string;
   readonly "Testimonial__quoteMark": string;
-  readonly "Testimonial--center": string;
   readonly "Testimonial--size-large": string;
   readonly "Testimonial-quote": string;
   readonly "Testimonial-quote--muted": string;
-  readonly "Testimonial-from": string;
-  readonly "Testimonial-logo-image": string;
+  readonly "Testimonial__media": string;
+  readonly "Testimonial-caption": string;
+  readonly "Testimonial-position": string;
   readonly "Testimonial__quoteMark--default": string;
   readonly "Testimonial__quoteMark--blue": string;
   readonly "Testimonial__quoteMark--blue-purple": string;
