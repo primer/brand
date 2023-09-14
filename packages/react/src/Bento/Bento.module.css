@@ -78,6 +78,10 @@
   color: var(--brand-color-text-default);
 }
 
+.Bento__heading--with-max-width {
+  max-width: 600px;
+}
+
 /* Bento Visual */
 .Bento__Visual {
   height: 100%;

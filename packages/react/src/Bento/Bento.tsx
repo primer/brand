@@ -211,6 +211,7 @@ const Content = ({
           React.cloneElement(HeadingChild as React.ReactElement<BentoHeadingProps>, {
             className: clsx(
               !React.isValidElement(TextChild) && styles['Bento__heading--no-text'],
+              horizontalAlign === 'center' && styles['Bento__heading--with-max-width'],
               HeadingChild.props.className,
             ),
           }),

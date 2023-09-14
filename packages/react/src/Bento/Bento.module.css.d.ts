@@ -8,6 +8,7 @@ declare const styles: {
   readonly "Bento__Content-icon": string;
   readonly "Bento__heading--no-text": string;
   readonly "Bento__heading--muted": string;
+  readonly "Bento__heading--with-max-width": string;
   readonly "Bento__Visual": string;
   readonly "Bento__Visual--overflow-hidden": string;
   readonly "Bento__Visual--overflow-initial": string;

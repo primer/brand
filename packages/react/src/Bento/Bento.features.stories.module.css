@@ -19,10 +19,6 @@
   }
 }
 
-.Mixed2__heading1 {
-  max-width: 650px;
-}
-
 .Mixed2__item {
   grid-gap: var(--base-size-16);
 }
