@@ -7,7 +7,7 @@
   margin-bottom: var(--base-size-20);
 }
 
-@media screen and (min-width: 48rem) {
+@media screen and (min-width: 63.25rem) {
   .customStatNumber {
     font-size: var(--base-size-112);
   }
@@ -31,7 +31,7 @@
   background-color: #f9f8f6;
 }
 
-@media screen and (min-width: 64rem) {
+@media screen and (min-width: 63.25rem) {
   .Mixed3__customColumns {
     grid-template-columns: 0.9fr 1.1fr;
   }

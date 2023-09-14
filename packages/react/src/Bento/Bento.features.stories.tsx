@@ -377,7 +377,8 @@ export const Mixed2: StoryFn<typeof Bento> = () => (
       className={styles['Mixed2__item']}
       columnSpan={{
         xsmall: 12,
-        large: 5,
+        small: 5,
+        medium: 5,
       }}
       rowSpan={{
         xsmall: 4,
@@ -407,7 +408,8 @@ export const Mixed2: StoryFn<typeof Bento> = () => (
       colorMode="dark"
       columnSpan={{
         xsmall: 12,
-        large: 7,
+        small: 7,
+        medium: 7,
       }}
       rowSpan={{
         xsmall: 4,
