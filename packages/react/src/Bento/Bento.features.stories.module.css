@@ -1,0 +1,45 @@
+.purple-background {
+  background: linear-gradient(90deg, var(--base-color-scale-purple-5) 0%, var(--base-color-scale-purple-6) 100%);
+}
+
+.customStatNumber {
+  font-size: var(--base-size-80);
+  margin-bottom: var(--base-size-20);
+}
+
+@media screen and (min-width: 63.25rem) {
+  .customStatNumber {
+    font-size: var(--base-size-112);
+  }
+}
+
+@media screen and (max-width: 48rem) {
+  .Mixed1__codeWindow {
+    object-position: 20% 80% !important;
+  }
+}
+
+.Mixed2__item {
+  grid-gap: var(--base-size-16);
+}
+
+.Mixed3 {
+  background-color: #f9f8f6;
+}
+
+@media screen and (min-width: 63.25rem) {
+  .Mixed3__customColumns {
+    grid-template-columns: 0.9fr 1.1fr;
+  }
+}
+
+.bentoImageBg {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.Mixed3__image {
+  opacity: 0.8;
+  height: auto;
+  width: 100%;
+}
