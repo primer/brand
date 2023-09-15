@@ -116,7 +116,7 @@
 .RiverBreakout {
   display: flex;
   flex-direction: column;
-  gap: var(--brand-River-spacing-inner);
+  gap: var(--brand-RiverBreakout-spacing-inner);
   padding-block-end: var(--brand-River-spacing-outer);
   padding-block-start: var(--brand-River-spacing-outer);
 }

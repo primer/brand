@@ -25,6 +25,21 @@
           }
         }
       }
+    },
+    "RiverBreakout": {
+      "spacing": {
+        "inner": {
+          "value": "var(--base-size-40)",
+          "responsive": {
+            "768px": {
+              "value": "var(--base-size-48)"
+            },
+            "1280px": {
+              "value": "var(--base-size-64)"
+            }
+          }
+        }
+      }
     }
   }
 }
