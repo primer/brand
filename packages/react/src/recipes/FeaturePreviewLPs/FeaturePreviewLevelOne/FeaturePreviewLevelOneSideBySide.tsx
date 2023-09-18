@@ -4,14 +4,12 @@ import {
   ColorModesEnum,
   Grid,
   Heading,
-  Hero,
   Label,
   MinimalFooter,
   Stack,
   SubdomainNavBar,
   Text,
   ThemeProvider,
-  UnorderedList,
 } from '../../..'
 
 import {Themes, themeDetailsMap} from '../helpers'
