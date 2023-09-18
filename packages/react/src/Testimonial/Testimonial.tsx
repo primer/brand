@@ -19,7 +19,6 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 import styles from './Testimonial.module.css'
 import {Colors, Gradients} from '../constants'
 
-type TestimonialAlignment = 'start' | 'center'
 type TestimonialSize = 'small' | 'large'
 
 export const TestimonialQuoteMarkColors = [...Colors, ...Gradients] as const
@@ -37,10 +36,6 @@ export type TestimonialProps = {
     | React.ReactElement<AvatarProps>
     | React.ReactElement<LogoProps>[]
   /**
-   * Aligns the testimonial content
-   */
-  align?: TestimonialAlignment
-  /**
    * Sets the testimonial text size
    */
   size?: TestimonialSize
@@ -54,16 +49,7 @@ export type TestimonialProps = {
  * <Testimonial>
  */
 function _Root(
-  {
-    quoteMarkColor = 'default',
-    align,
-    animate,
-    className,
-    children,
-    size,
-    style,
-    ...rest
-  }: PropsWithChildren<TestimonialProps>,
+  {quoteMarkColor = 'default', animate, className, children, size, style, ...rest}: PropsWithChildren<TestimonialProps>,
   ref,
 ) {
   const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
@@ -71,13 +57,7 @@ function _Root(
   return (
     <figure
       ref={ref}
-      className={clsx(
-        animationClasses,
-        styles['Testimonial'],
-        align && styles[`Testimonial--${align}`],
-        size && styles[`Testimonial--size-${size}`],
-        className,
-      )}
+      className={clsx(animationClasses, styles['Testimonial'], size && styles[`Testimonial--size-${size}`], className)}
       style={{
         ...animationInlineStyles,
         ...style,
@@ -98,27 +78,29 @@ function _Root(
           }
         }
       })}
-      {React.Children.map(children, child => {
-        if (React.isValidElement(child)) {
-          if (child.type === Name) {
-            return child
+      <div className={clsx(styles['Testimonial__media'])}>
+        {React.Children.map(children, child => {
+          if (React.isValidElement(child)) {
+            if (child.type === Avatar) {
+              return child
+            }
           }
-        }
-      })}
-      {React.Children.map(children, child => {
-        if (React.isValidElement(child)) {
-          if (child.type === Avatar) {
-            return child
+        })}
+        {React.Children.map(children, child => {
+          if (React.isValidElement(child)) {
+            if (child.type === Logo) {
+              return child
+            }
           }
-        }
-      })}
-      {React.Children.map(children, child => {
-        if (React.isValidElement(child)) {
-          if (child.type === Logo) {
-            return child
+        })}
+        {React.Children.map(children, child => {
+          if (React.isValidElement(child)) {
+            if (child.type === Name) {
+              return child
+            }
           }
-        }
-      })}
+        })}
+      </div>
     </figure>
   )
 }
@@ -175,16 +157,15 @@ type NameProps = {
 
 function _Name({children, className, position}: NameProps, ref) {
   return (
-    <figcaption ref={ref}>
-      <Text size="100" className={clsx(styles['Testimonial-from'], className)} variant="muted">
-        {children}{' '}
-        {position && (
-          <span>
-            {' // '}
-            {position}
-          </span>
-        )}
+    <figcaption ref={ref} className={clsx(styles['Testimonial-caption'], className)}>
+      <Text size="200" className={clsx(styles['Testimonial-from'])}>
+        {children}
       </Text>
+      {position && (
+        <Text size="200" className={clsx(styles['Testimonial-position'])} variant="muted">
+          {position}
+        </Text>
+      )}
     </figcaption>
   )
 }

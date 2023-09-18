@@ -4,7 +4,7 @@
       "quote": {
         "fontSize": {
           "default": {
-            "value": "var(--brand-text-size-300)"
+            "value": "var(--brand-text-size-400)"
           },
           "large": {
             "value": "var(--brand-text-size-600)"
@@ -12,26 +12,18 @@
         },
         "fontWeight": {
           "default": {
-            "value": "var(--brand-text-weight-300)"
+            "value": "var(--brand-heading-weight-600)"
           },
           "large": {
             "value": "var(--brand-heading-weight-600)"
           }
         },
-        "lineHeight": {
-          "default": {
-            "value": "var(--brand-text-lineHeight-300)"
-          },
-          "large": {
-            "value": "var(--brand-text-lineHeight-600)"
-          }
-        },
         "letterSpacing": {
           "default": {
-            "value": "var(--brand-text-letterSpacing-300)"
+            "value": "var(--brand-text-letterSpacing-400)"
           },
           "large": {
-            "value": "var(--brand-text-letterSpacing-600)"
+            "value": "var(--brand-text-letterSpacing-900)"
           }
         }
       }

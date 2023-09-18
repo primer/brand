@@ -8,7 +8,6 @@ export default {
   title: 'Components/Testimonial',
   component: Testimonial,
   args: {
-    align: 'start',
     quoteMarkColor: defaultQuoteMarkColor,
     name: 'David Ross',
     position: 'Staff Security Engineer',
@@ -19,9 +18,6 @@ export default {
     width: 400,
   },
   argTypes: {
-    align: {
-      options: ['start', 'center'],
-    },
     quoteMarkColor: {
       control: {
         type: 'radio',
@@ -178,9 +174,6 @@ Duo.parameters = {
     defaultViewport: 'ipad12p',
   },
 }
-Duo.args = {
-  align: 'center',
-}
 
 export const Trio = args => (
   <Stack
@@ -233,15 +226,12 @@ export const Trio = args => (
     </Testimonial>
   </Stack>
 )
-Trio.args = {
-  align: 'center',
-}
 
 export const ColoredQuoteMark = args => (
-  <Testimonial {...args}>
+  <Testimonial style={{width: 400}} {...args}>
     <Testimonial.Quote>
-      <em>GitHub helps us ensure that we have our security controls baked into our pipelines</em> all the way from the
-      first line of code we&apos;re writing.
+      GitHub helps us ensure that we have our security controls baked into our pipelines all the way from the first line
+      of code we&apos;re writing.
     </Testimonial.Quote>
     <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
 
@@ -257,13 +247,12 @@ ColoredQuoteMark.args = {
 }
 
 export const Large = args => (
-  <Testimonial {...args}>
+  <Testimonial style={{width: 720}} {...args}>
     <Testimonial.Quote>
       GitHub helps us ensure that we have our security controls baked into our pipelines all the way from the first line
       of code we&apos;re writing.
     </Testimonial.Quote>
     <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
-
     <Testimonial.Avatar
       src="https://avatars.githubusercontent.com/u/92997159?v=4"
       alt="Circular avatar from David Ross's GitHub profile"
@@ -275,8 +264,8 @@ Large.args = {
   size: 'large',
 }
 
-export const HighlightedPortion = args => (
-  <Testimonial {...args}>
+export const LargeHighlightedPortion = args => (
+  <Testimonial style={{width: 720}} {...args}>
     <Testimonial.Quote>
       <em>GitHub helps us ensure that we have our security controls baked into our pipelines</em> all the way from the
       first line of code we&apos;re writing.
@@ -290,6 +279,6 @@ export const HighlightedPortion = args => (
   </Testimonial>
 )
 
-HighlightedPortion.args = {
+LargeHighlightedPortion.args = {
   size: 'large',
 }

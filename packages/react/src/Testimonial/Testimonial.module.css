@@ -1,12 +1,7 @@
 .Testimonial {
   display: grid;
-  gap: var(--base-size-16);
   color: var(--brand-color-text-default);
   font-family: var(--brand-fontStack-sansSerif);
-  font-size: var(--brand-Testimonial-quote-fontSize-default);
-  font-weight: var(--brand-Testimonial-quote-fontWeight-default);
-  letter-spacing: var(--brand-Testimonial-quote-letterSpacing-default);
-  line-height: var(--brand-Testimonial-quote-lineHeight-default);
 }
 
 .Testimonial__quoteMark {
@@ -39,33 +34,24 @@
   mask-composite: exclude;
 }
 
-.Testimonial--center {
-  text-align: center;
-  justify-items: center;
-}
-
-.Testimonial--size-large {
-  font-size: var(--brand-Testimonial-quote-fontSize-large);
-  font-weight: var(--brand-Testimonial-quote-fontWeight-large);
-  letter-spacing: var(--brand-Testimonial-quote-letterSpacing-large);
-  line-height: var(--brand-Testimonial-quote-lineHeight-large);
-  gap: var(--base-size-24);
-}
-
 .Testimonial--size-large .Testimonial__quoteMark {
-  font-size: 3em;
+  font-size: 7.5rem; /* 120px */
   line-height: 1;
 }
 
 .Testimonial-quote {
-  font-size: 1em;
   font-family: var(--brand-fontStack-sansSerif);
-  margin-top: calc(var(--base-size-16) * -1); /* negate grid gap */
+  font-size: var(--brand-Testimonial-quote-fontSize-default);
+  font-weight: var(--brand-Testimonial-quote-fontWeight-default);
+  letter-spacing: var(--brand-Testimonial-quote-letterSpacing-default);
+  line-height: 1.2; /* requires custom line-height */
   display: block;
 }
 
 .Testimonial--size-large .Testimonial-quote {
-  margin-top: calc(var(--base-size-24) * -1); /* negate grid gap */
+  font-size: var(--brand-Testimonial-quote-fontSize-large);
+  font-weight: var(--brand-Testimonial-quote-fontWeight-large);
+  letter-spacing: var(--brand-Testimonial-quote-letterSpacing-large);
 }
 
 .Testimonial-quote--muted {
@@ -77,19 +63,28 @@
   font-style: normal;
 }
 
-.Testimonial--size-large .Testimonial-quote {
-  font-weight: var(--base-text-weight-semibold);
-  letter-spacing: var(--brand-text-letterSpacing-900);
-  line-height: 1.2; /* requires custom line-height */
+.Testimonial__media {
+  display: flex;
+  gap: var(--base-size-16);
+  align-items: center;
+  margin-top: var(--base-size-24);
+}
+
+.Testimonial--size-large .Testimonial__media {
+  margin-top: var(--base-size-64);
+}
+
+.Testimonial-caption {
+  display: flex;
+  flex-direction: column;
 }
 
 .Testimonial-from {
-  font-family: var(--brand-fontStack-monospace);
+  font-weight: var(--base-text-weight-semibold);
 }
 
-.Testimonial--center .Testimonial-logo-image {
-  margin-left: auto;
-  margin-right: auto;
+.Testimonial-position {
+  font-family: var(--brand-fontStack-monospace);
 }
 
 .Testimonial__quoteMark--default {
