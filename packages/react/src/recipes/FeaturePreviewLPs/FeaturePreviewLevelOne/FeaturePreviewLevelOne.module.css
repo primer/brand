@@ -19,7 +19,11 @@
 }
 
 .FeaturePreview__borderTop {
-  border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
+  border-top: var(--brand-borderWidth-thin) solid var(--brand-control-color-border-default);
+}
+
+.FeaturePreview__contactMe {
+  border-top: var(--brand-borderWidth-thin) solid var(--brand-control-color-border-default);
 }
 
 .FeaturePreview__hero {

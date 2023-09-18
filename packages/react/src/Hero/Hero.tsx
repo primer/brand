@@ -71,7 +71,7 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
               justifyContent={imagePosition === 'inline-end' ? undefined : align === 'start' ? 'flex-start' : 'center'}
             >
               {HeroChildren}
-              <div className={styles['Hero-actions']}>{HeroActions}</div>
+              {HeroActions.length > 0 && <div className={styles['Hero-actions']}>{HeroActions}</div>}
             </Stack>
           </Grid.Column>
           {HeroImageChild && (

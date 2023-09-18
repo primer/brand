@@ -41,6 +41,7 @@ type FeaturePreviewLevelTwoProps = {
   colorMode?: ColorModesEnum.LIGHT | ColorModesEnum.DARK
   accentColor: Themes
   heroAlign: 'start' | 'center'
+  heroBg: boolean
   showHeroVisual: boolean
   heroLabel: string
   heroTitle: string
@@ -149,46 +150,60 @@ export function FeaturePreviewLevelTwo({accentColor, colorMode, ...args}: Featur
         </SubdomainNavBar.PrimaryAction>
       </SubdomainNavBar>
       <div className={styles.FeaturePreview}>
-        <Grid enableOverlay={enableGridOverlay}>
-          <Grid.Column>
-            <Box
-              marginBlockStart={{
-                narrow: 24,
-                regular: 64,
-                wide: 112,
-              }}
-            >
-              <Hero
-                align={args.heroAlign}
-                className={styles.Hero}
-                imageContainerClassName={styles.FeaturePreview__heroImageContainer}
-                imageContainerStyle={{
-                  backgroundImage: `url(${themeDetailsMap[accentColor][selectedColorMode].images.heroVisualBg})`,
+        <Box
+          backgroundColor={args.heroBg ? 'subtle' : 'default'}
+          className={args.heroBg ? styles['FeaturePreview__heroBg'] : ''}
+          paddingBlockEnd={args.heroBg ? 24 : 0}
+          marginBlockEnd={args.heroBg ? 96 : 0}
+        >
+          <Grid enableOverlay={enableGridOverlay}>
+            <Grid.Column>
+              <Box
+                paddingBlockEnd={{wide: 8}}
+                marginBlockStart={{
+                  narrow: 24,
+                  regular: 64,
+                  wide: 80,
                 }}
               >
-                {args.heroLabel && <Hero.Label>{args.heroLabel}</Hero.Label>}
-                {args.heroTitle && <Hero.Heading>{args.heroTitle}</Hero.Heading>}
-                {args.heroDescription && <Hero.Description>{args.heroDescription}</Hero.Description>}
-                {args.heroCtaTextPrimary && <Hero.PrimaryAction href="#">{args.heroCtaTextPrimary}</Hero.PrimaryAction>}
-                {args.heroCtaTextSecondary && (
-                  <Hero.SecondaryAction href="#">{args.heroCtaTextSecondary}</Hero.SecondaryAction>
-                )}
-                {args.showHeroVisual && (
-                  <Hero.Image
-                    src={isLightMode ? emptyBrowser : emptyBrowserDark}
-                    alt="placeholder, blank area with an off-white background color"
-                  />
-                )}
-              </Hero>
-            </Box>
+                <Hero
+                  align={args.heroAlign}
+                  className={styles.Hero}
+                  imageContainerClassName={styles.FeaturePreview__heroImageContainer}
+                  imageContainerStyle={{
+                    backgroundImage: `url(${themeDetailsMap[accentColor][selectedColorMode].images.heroVisualBg})`,
+                  }}
+                >
+                  {args.heroLabel && <Hero.Label>{args.heroLabel}</Hero.Label>}
+                  {args.heroTitle && <Hero.Heading>{args.heroTitle}</Hero.Heading>}
+                  {args.heroDescription && <Hero.Description>{args.heroDescription}</Hero.Description>}
+                  {args.heroCtaTextPrimary && (
+                    <Hero.PrimaryAction href="#">{args.heroCtaTextPrimary}</Hero.PrimaryAction>
+                  )}
+                  {args.heroCtaTextSecondary && (
+                    <Hero.SecondaryAction href="#">{args.heroCtaTextSecondary}</Hero.SecondaryAction>
+                  )}
+                  {args.showHeroVisual && (
+                    <Hero.Image
+                      src={isLightMode ? emptyBrowser : emptyBrowserDark}
+                      alt="placeholder, blank area with an off-white background color"
+                    />
+                  )}
+                </Hero>
+              </Box>
+            </Grid.Column>
+          </Grid>
+        </Box>
+        <Grid enableOverlay={enableGridOverlay}>
+          <Grid.Column>
             <section>
               {args.sectionIntroText && args.sectionIntroVisible && (
                 <Grid enableOverlay={enableGridOverlay}>
                   <Grid.Column
-                    span={args.sectionIntroAlign === 'center' ? 8 : 9}
+                    span={{medium: args.sectionIntroAlign === 'center' ? 8 : 9}}
                     start={{medium: args.sectionIntroAlign === 'center' ? 3 : 1}}
                   >
-                    <Box marginBlockEnd={64}>
+                    <Box marginBlockEnd={40}>
                       <SectionIntro fullWidth align={args.sectionIntroAlign}>
                         <SectionIntro.Heading>{args.sectionIntroText}</SectionIntro.Heading>
                       </SectionIntro>
@@ -257,7 +272,7 @@ export function FeaturePreviewLevelTwo({accentColor, colorMode, ...args}: Featur
                 </Box>
               )}
             </section>
-            <Box paddingBlockEnd={48}>
+            <Box paddingBlockStart={48} paddingBlockEnd={80}>
               {args.riverOneVisible && (
                 <>
                   {args.riverOneType === 'breakout' ? (
@@ -452,16 +467,16 @@ export function FeaturePreviewLevelTwo({accentColor, colorMode, ...args}: Featur
             {args.testimonialVisible && (
               <>
                 {args.testimonialQuantity === 1 ? (
-                  <Grid.Column start={2} span={10}>
-                    <Box marginBlockEnd={128}>{renderTestimonial(args.testimonialQuantity)}</Box>
+                  <Grid.Column start={{medium: 2}} span={{medium: 10}}>
+                    <Box marginBlockEnd={112}>{renderTestimonial(args.testimonialQuantity)}</Box>
                   </Grid.Column>
                 ) : (
                   <>
                     <Grid.Column span={6}>
-                      <Box marginBlockEnd={128}>{renderTestimonial(args.testimonialQuantity)}</Box>
+                      <Box marginBlockEnd={112}>{renderTestimonial(args.testimonialQuantity)}</Box>
                     </Grid.Column>
                     <Grid.Column span={6}>
-                      <Box marginBlockEnd={128}>{renderTestimonial(args.testimonialQuantity)}</Box>
+                      <Box marginBlockEnd={112}>{renderTestimonial(args.testimonialQuantity)}</Box>
                     </Grid.Column>
                   </>
                 )}
@@ -469,8 +484,72 @@ export function FeaturePreviewLevelTwo({accentColor, colorMode, ...args}: Featur
             )}
 
             <Grid.Column>
+              {args.ctaBannerVisible && (
+                <Grid.Column>
+                  <Box>
+                    <CTABanner
+                      className={styles.FeaturePreview__ctaBanner}
+                      align="center"
+                      hasShadow={false}
+                      hasBackground={args.ctaBannerShowBg ? false : true}
+                      style={
+                        args.ctaBannerShowBg
+                          ? {
+                              backgroundImage: `url(${themeDetailsMap[accentColor][selectedColorMode].images.ctaBannerBg})`,
+                            }
+                          : {}
+                      }
+                    >
+                      <CTABanner.Heading>Get it, it&apos;s super nice</CTABanner.Heading>
+                      <CTABanner.Description>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam
+                        luctus sed turpis felis nam pulvinar.
+                      </CTABanner.Description>
+                      <CTABanner.ButtonGroup>
+                        <Button>Primary Action</Button>
+                        <Button>Secondary Action</Button>
+                      </CTABanner.ButtonGroup>
+                    </CTABanner>
+                  </Box>
+                </Grid.Column>
+              )}
+              {args.cardsVisible && (
+                <Box marginBlockStart={args.ctaBannerVisible ? 128 : undefined}>
+                  <Stack direction="vertical" padding="none" gap={64} alignItems="center">
+                    <Heading as="h3" size="3">
+                      Go further with these
+                    </Heading>
+                    <Grid>
+                      <Grid.Column span={{medium: 4}}>
+                        <Card href="#">
+                          <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+                          <Card.Description>
+                            Everything you need to know about getting started with GitHub Actions.
+                          </Card.Description>
+                        </Card>
+                      </Grid.Column>
+                      <Grid.Column span={{medium: 4}}>
+                        <Card href="#">
+                          <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+                          <Card.Description>
+                            Everything you need to know about getting started with GitHub Actions.
+                          </Card.Description>
+                        </Card>
+                      </Grid.Column>
+                      <Grid.Column span={{medium: 4}}>
+                        <Card href="#">
+                          <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+                          <Card.Description>
+                            Everything you need to know about getting started with GitHub Actions.
+                          </Card.Description>
+                        </Card>
+                      </Grid.Column>
+                    </Grid>
+                  </Stack>
+                </Box>
+              )}
               {args.faqVisible && (
-                <Box>
+                <Box marginBlockStart={args.cardsVisible || args.ctaBannerVisible ? 128 : undefined}>
                   {args.faqType === 'single' ? (
                     <FAQ>
                       <FAQ.Heading>Frequently asked questions</FAQ.Heading>
@@ -617,70 +696,6 @@ export function FeaturePreviewLevelTwo({accentColor, colorMode, ...args}: Featur
                       </FAQ>
                     </FAQGroup>
                   )}
-                </Box>
-              )}
-              {args.ctaBannerVisible && (
-                <Grid.Column>
-                  <Box marginBlockStart={args.faqVisible ? 128 : undefined}>
-                    <CTABanner
-                      className={styles.FeaturePreview__ctaBanner}
-                      align="center"
-                      hasShadow={false}
-                      hasBackground={args.ctaBannerShowBg ? false : true}
-                      style={
-                        args.ctaBannerShowBg
-                          ? {
-                              backgroundImage: `url(${themeDetailsMap[accentColor][selectedColorMode].images.ctaBannerBg})`,
-                            }
-                          : {}
-                      }
-                    >
-                      <CTABanner.Heading>Get it, it&apos;s super nice</CTABanner.Heading>
-                      <CTABanner.Description>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam
-                        luctus sed turpis felis nam pulvinar.
-                      </CTABanner.Description>
-                      <CTABanner.ButtonGroup>
-                        <Button>Primary Action</Button>
-                        <Button>Secondary Action</Button>
-                      </CTABanner.ButtonGroup>
-                    </CTABanner>
-                  </Box>
-                </Grid.Column>
-              )}
-              {args.cardsVisible && (
-                <Box marginBlockStart={args.ctaBannerVisible ? 128 : undefined}>
-                  <Stack direction="vertical" padding="none" gap={64} alignItems="center">
-                    <Heading as="h3" size="3">
-                      Go further with these
-                    </Heading>
-                    <Grid>
-                      <Grid.Column span={{medium: 4}}>
-                        <Card href="#">
-                          <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
-                          <Card.Description>
-                            Everything you need to know about getting started with GitHub Actions.
-                          </Card.Description>
-                        </Card>
-                      </Grid.Column>
-                      <Grid.Column span={{medium: 4}}>
-                        <Card href="#">
-                          <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
-                          <Card.Description>
-                            Everything you need to know about getting started with GitHub Actions.
-                          </Card.Description>
-                        </Card>
-                      </Grid.Column>
-                      <Grid.Column span={{medium: 4}}>
-                        <Card href="#">
-                          <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
-                          <Card.Description>
-                            Everything you need to know about getting started with GitHub Actions.
-                          </Card.Description>
-                        </Card>
-                      </Grid.Column>
-                    </Grid>
-                  </Stack>
                 </Box>
               )}
             </Grid.Column>

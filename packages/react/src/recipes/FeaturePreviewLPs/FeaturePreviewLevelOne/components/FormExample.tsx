@@ -6,7 +6,7 @@ export function FormExample() {
   return (
     <form>
       <>
-        <Stack direction="vertical" padding="none">
+        <Stack direction="vertical" padding="none" gap={24}>
           <Box marginBlockEnd={16}>
             <Text as="p" size="100">
               All fields marked with an asterisk (*) are required
@@ -44,28 +44,30 @@ export function FormExample() {
         </Stack>
 
         <Box
-          className={styles.FeaturePreview__borderTop}
+          className={styles.FeaturePreview__contactMe}
           paddingBlockStart={{narrow: 16, regular: 24}}
           marginBlockStart={{narrow: 16, regular: 24}}
           paddingBlockEnd={{narrow: 16, regular: 24}}
           marginBlockEnd={{narrow: 16, regular: 24}}
         >
-          <Stack direction="vertical" padding="none">
-            <FormControl hasBorder required>
-              <FormControl.Label>
-                Contact me about GitHub Enterprise Server{' '}
-                <FormControl.Hint>
-                  <Text size="100" variant="muted">
-                    I&apos;m interested in learning more about{' '}
-                    <InlineLink size="100" href="https://github.com/enterprise" target="_blank">
-                      GitHub Enterprise Server
-                    </InlineLink>{' '}
-                    and would like to be contacted by GitHub’s sales team.
-                  </Text>
-                </FormControl.Hint>
-              </FormControl.Label>
-              <Checkbox />
-            </FormControl>
+          <Stack direction="vertical" padding="none" gap={24}>
+            <Box backgroundColor="default">
+              <FormControl hasBorder required>
+                <FormControl.Label>
+                  Contact me about GitHub Enterprise Server{' '}
+                  <FormControl.Hint>
+                    <Text size="100" variant="muted">
+                      I&apos;m interested in learning more about{' '}
+                      <InlineLink size="100" href="https://github.com/enterprise" target="_blank">
+                        GitHub Enterprise Server
+                      </InlineLink>{' '}
+                      and would like to be contacted by GitHub’s sales team.
+                    </Text>
+                  </FormControl.Hint>
+                </FormControl.Label>
+                <Checkbox />
+              </FormControl>
+            </Box>
             <div
               style={{
                 borderWidth: 1,
@@ -106,7 +108,17 @@ export function FormExample() {
               <Checkbox />
             </FormControl>
             <Box marginBlockStart={16}>
-              <Stack direction="horizontal" padding="none" justifyContent="flex-end">
+              <Stack
+                direction={{
+                  narrow: 'vertical',
+                  regular: 'horizontal',
+                }}
+                padding="none"
+                justifyContent={{
+                  narrow: 'flex-start',
+                  regular: 'flex-end',
+                }}
+              >
                 <Button variant="subtle">Skip trial and upgrade</Button>
                 <Button variant="primary" type="submit">
                   Start trial

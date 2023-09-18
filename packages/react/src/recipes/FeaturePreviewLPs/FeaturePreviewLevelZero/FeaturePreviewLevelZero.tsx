@@ -104,7 +104,7 @@ export function FeaturePreviewLevelZero({accentColor, colorMode, ...args}: Featu
           <Grid.Column>
             <section>
               <Grid enableOverlay={enableGridOverlay}>
-                <Grid.Column span={6} start={4}>
+                <Grid.Column span={{large: 6}} start={{large: 4}}>
                   <Stack padding="none">
                     <SectionIntro fullWidth align={args.heroAlign === 'center' ? 'center' : 'start'}>
                       <SectionIntro.Heading size="5">

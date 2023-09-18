@@ -7,7 +7,7 @@ import {BaseSizeScale} from '../constants'
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './Box.module.css'
 
-export const BoxSpacingValues = ['condensed', 'normal', 'spacious', ...BaseSizeScale] as const
+export const BoxSpacingValues = ['condensed', 'normal', 'spacious', 0, ...BaseSizeScale] as const
 type SpacingValues = (typeof BoxSpacingValues)[number]
 
 type ResponsiveSpacingMap = {
