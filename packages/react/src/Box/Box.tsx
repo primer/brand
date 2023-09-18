@@ -113,7 +113,7 @@ const classBuilder = (
     | BorderColorOptions
     | BorderStyleOptions,
 ) => {
-  if (!value) return ''
+  if (!value && value !== 0) return ''
 
   if (typeof value === 'string' || typeof value === 'number') {
     return styles[`Box-${property}--${value}`]
