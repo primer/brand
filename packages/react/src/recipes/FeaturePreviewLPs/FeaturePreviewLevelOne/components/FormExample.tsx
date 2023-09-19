@@ -111,7 +111,8 @@ export function FormExample() {
               <Stack
                 direction={{
                   narrow: 'vertical',
-                  regular: 'horizontal',
+                  regular: 'vertical',
+                  wide: 'horizontal',
                 }}
                 padding="none"
                 justifyContent={{

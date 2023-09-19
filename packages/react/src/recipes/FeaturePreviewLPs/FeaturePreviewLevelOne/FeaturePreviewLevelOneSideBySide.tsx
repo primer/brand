@@ -133,6 +133,7 @@ export function FeaturePreviewLevelOneSideBySide({
             <Box
               padding={24}
               paddingBlockStart={{narrow: 64, regular: 128, wide: 24}}
+              paddingBlockEnd={{narrow: 24, regular: 80}}
               marginBlockStart={{
                 wide: 128,
               }}

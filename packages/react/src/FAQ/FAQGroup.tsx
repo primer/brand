@@ -19,7 +19,7 @@ import styles from './FAQGroup.module.css'
 
 function _Heading({children, className, as = 'h3', ...rest}: FAQSubheadingProps) {
   return (
-    <Heading as={as} className={clsx(styles.FAQ__subheading, className)} {...rest}>
+    <Heading as={as} className={clsx(className)} {...rest}>
       {children}
     </Heading>
   )
@@ -137,7 +137,7 @@ function _FAQGroup({children, id, defaultSelectedIndex = 0, ...rest}: FAQGroupPr
     <Grid {...rest}>
       <Grid.Column>
         {GroupHeading && (
-          <Box marginBlockEnd={{narrow: 48, regular: 112}}>
+          <Box marginBlockEnd={{narrow: 48, regular: 80}}>
             <Grid>
               <Grid.Column>{GroupHeading}</Grid.Column>
             </Grid>
