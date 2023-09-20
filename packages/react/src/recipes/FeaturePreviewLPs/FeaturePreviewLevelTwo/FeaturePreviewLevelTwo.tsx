@@ -153,8 +153,8 @@ export function FeaturePreviewLevelTwo({accentColor, colorMode, ...args}: Featur
         <Box
           backgroundColor={args.heroBg ? 'subtle' : 'default'}
           className={args.heroBg ? styles['FeaturePreview__heroBg'] : ''}
-          paddingBlockEnd={args.heroBg ? 24 : 0}
-          marginBlockEnd={args.heroBg ? 96 : 0}
+          paddingBlockEnd={args.heroBg ? 24 : 'none'}
+          marginBlockEnd={args.heroBg ? 96 : 'none'}
         >
           <Grid enableOverlay={enableGridOverlay}>
             <Grid.Column>

@@ -7,7 +7,7 @@ import {BaseSizeScale} from '../constants'
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './Box.module.css'
 
-export const BoxSpacingValues = ['condensed', 'normal', 'spacious', 0, ...BaseSizeScale] as const
+export const BoxSpacingValues = ['none', 'condensed', 'normal', 'spacious', ...BaseSizeScale] as const
 type SpacingValues = (typeof BoxSpacingValues)[number]
 
 type ResponsiveSpacingMap = {
@@ -113,7 +113,7 @@ const classBuilder = (
     | BorderColorOptions
     | BorderStyleOptions,
 ) => {
-  if (!value && value !== 0) return ''
+  if (!value) return ''
 
   if (typeof value === 'string' || typeof value === 'number') {
     return styles[`Box-${property}--${value}`]

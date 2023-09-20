@@ -34,7 +34,7 @@
   padding: var(--brand-box-spacing-spacious);
 }
 
-.Box-padding--0 {
+.Box-padding--none {
   padding: 0;
 }
 
@@ -99,7 +99,7 @@
   padding: var(--brand-box-spacing-spacious);
 }
 
-.Box-narrow-padding--0 {
+.Box-narrow-padding--none {
   padding: 0;
 }
 
@@ -160,7 +160,7 @@
     padding: var(--brand-box-spacing-spacious);
   }
 
-  .Box-regular-padding--0 {
+  .Box-regular-padding--none {
     padding: 0;
   }
   .Box-regular-padding--4 {
@@ -227,7 +227,7 @@
     padding: var(--brand-box-spacing-spacious);
   }
 
-  .Box-wide-padding--0 {
+  .Box-wide-padding--none {
     padding: 0;
   }
   .Box-wide-padding--4 {
@@ -296,7 +296,7 @@
   padding-block-start: var(--brand-box-spacing-spacious);
 }
 
-.Box-paddingBlockStart--0 {
+.Box-paddingBlockStart--none {
   padding-block-start: 0;
 }
 .Box-paddingBlockStart--4 {
@@ -361,7 +361,7 @@
   padding-block-start: var(--brand-box-spacing-spacious);
 }
 
-.Box-narrow-paddingBlockStart--0 {
+.Box-narrow-paddingBlockStart--none {
   padding-block-start: 0;
 }
 
@@ -428,7 +428,7 @@
     padding-block-start: var(--brand-box-spacing-spacious);
   }
 
-  .Box-regular-paddingBlockStart--0 {
+  .Box-regular-paddingBlockStart--none {
     padding-block-start: 0;
   }
   .Box-regular-paddingBlockStart--4 {
@@ -495,7 +495,7 @@
     padding-block-start: var(--brand-box-spacing-spacious);
   }
 
-  .Box-wide-paddingBlockStart--0 {
+  .Box-wide-paddingBlockStart--none {
     padding-block-start: 0;
   }
   .Box-wide-paddingBlockStart--4 {
@@ -564,7 +564,7 @@
   padding-inline-end: var(--brand-box-spacing-spacious);
 }
 
-.Box-paddingInlineEnd--0 {
+.Box-paddingInlineEnd--none {
   padding-inline-end: 0;
 }
 .Box-paddingInlineEnd--4 {
@@ -629,7 +629,7 @@
   padding-inline-end: var(--brand-box-spacing-spacious);
 }
 
-.Box-narrow-paddingInlineEnd--0 {
+.Box-narrow-paddingInlineEnd--none {
   padding-inline-end: 0;
 }
 .Box-narrow-paddingInlineEnd--4 {
@@ -689,7 +689,7 @@
     padding-inline-end: var(--brand-box-spacing-spacious);
   }
 
-  .Box-regular-paddingInlineEnd--0 {
+  .Box-regular-paddingInlineEnd--none {
     padding-inline-end: 0;
   }
   .Box-regular-paddingInlineEnd--4 {
@@ -756,7 +756,7 @@
     padding-inline-end: var(--brand-box-spacing-spacious);
   }
 
-  .Box-wide-paddingInlineEnd--0 {
+  .Box-wide-paddingInlineEnd--none {
     padding-inline-end: 0;
   }
   .Box-wide-paddingInlineEnd--4 {
@@ -824,7 +824,7 @@
   padding-block-end: var(--brand-box-spacing-spacious);
 }
 
-.Box-paddingBlockEnd--0 {
+.Box-paddingBlockEnd--none {
   padding-block-end: 0;
 }
 .Box-paddingBlockEnd--4 {
@@ -889,7 +889,7 @@
   padding-block-end: var(--brand-box-spacing-spacious);
 }
 
-.Box-narrow-paddingBlockEnd--0 {
+.Box-narrow-paddingBlockEnd--none {
   padding-block-end: 0;
 }
 .Box-narrow-paddingBlockEnd--4 {
@@ -955,7 +955,7 @@
     padding-block-end: var(--brand-box-spacing-spacious);
   }
 
-  .Box-regular-paddingBlockEnd--0 {
+  .Box-regular-paddingBlockEnd--none {
     padding-block-end: 0;
   }
   .Box-regular-paddingBlockEnd--4 {
@@ -1022,7 +1022,7 @@
     padding-block-end: var(--brand-box-spacing-spacious);
   }
 
-  .Box-wide-paddingBlockEnd--0 {
+  .Box-wide-paddingBlockEnd--none {
     padding-block-end: 0;
   }
   .Box-wide-paddingBlockEnd--4 {
@@ -1091,7 +1091,7 @@
   padding-inline-start: var(--brand-box-spacing-spacious);
 }
 
-.Box-paddingInlineStart--0 {
+.Box-paddingInlineStart--none {
   padding-inline-start: 0;
 }
 .Box-paddingInlineStart--4 {
@@ -1156,7 +1156,7 @@
   padding-inline-start: var(--brand-box-spacing-spacious);
 }
 
-.Box-narrow-paddingInlineStart--0 {
+.Box-narrow-paddingInlineStart--none {
   padding-inline-start: 0;
 }
 .Box-narrow-paddingInlineStart--4 {
@@ -1222,7 +1222,7 @@
     padding-inline-start: var(--brand-box-spacing-spacious);
   }
 
-  .Box-regular-paddingInlineStart--0 {
+  .Box-regular-paddingInlineStart--none {
     padding-inline-start: 0;
   }
   .Box-regular-paddingInlineStart--4 {
@@ -1289,7 +1289,7 @@
     padding-inline-start: var(--brand-box-spacing-spacious);
   }
 
-  .Box-wide-paddingInlineStart--0 {
+  .Box-wide-paddingInlineStart--none {
     padding-inline-start: 0;
   }
   .Box-wide-paddingInlineStart--4 {
@@ -1358,7 +1358,7 @@
   margin: var(--brand-box-spacing-spacious);
 }
 
-.Box-margin--0 {
+.Box-margin--none {
   margin: 0;
 }
 .Box-margin--4 {
@@ -1422,7 +1422,7 @@
   margin: var(--brand-box-spacing-spacious);
 }
 
-.Box-narrow-margin--0 {
+.Box-narrow-margin--none {
   margin: 0;
 }
 .Box-narrow-margin--4 {
@@ -1488,7 +1488,7 @@
     margin: var(--brand-box-spacing-spacious);
   }
 
-  .Box-regular-margin--0 {
+  .Box-regular-margin--none {
     margin: 0;
   }
   .Box-regular-margin--4 {
@@ -1555,7 +1555,7 @@
     margin: var(--brand-box-spacing-spacious);
   }
 
-  .Box-wide-margin--0 {
+  .Box-wide-margin--none {
     margin: 0;
   }
   .Box-wide-margin--4 {
@@ -1621,7 +1621,7 @@
   margin-block-start: var(--brand-box-spacing-spacious);
 }
 
-.Box-marginBlockStart--0 {
+.Box-marginBlockStart--none {
   margin-block-start: 0;
 }
 .Box-marginBlockStart--4 {
@@ -1686,7 +1686,7 @@
   margin-block-start: var(--brand-box-spacing-spacious);
 }
 
-.Box-narrow-marginBlockStart--0 {
+.Box-narrow-marginBlockStart--none {
   margin-block-start: 0;
 }
 .Box-narrow-marginBlockStart--4 {
@@ -1752,7 +1752,7 @@
     margin-block-start: var(--brand-box-spacing-spacious);
   }
 
-  .Box-regular-marginBlockStart--0 {
+  .Box-regular-marginBlockStart--none {
     margin-block-start: 0;
   }
   .Box-regular-marginBlockStart--4 {
@@ -1819,7 +1819,7 @@
     margin-block-start: var(--brand-box-spacing-spacious);
   }
 
-  .Box-wide-marginBlockStart--0 {
+  .Box-wide-marginBlockStart--none {
     margin-block-start: 0;
   }
   .Box-wide-marginBlockStart--4 {
@@ -1888,7 +1888,7 @@
   margin-inline-end: var(--brand-box-spacing-spacious);
 }
 
-.Box-marginInlineEnd--0 {
+.Box-marginInlineEnd--none {
   margin-inline-end: 0;
 }
 .Box-marginInlineEnd--4 {
@@ -1953,7 +1953,7 @@
   margin-inline-end: var(--brand-box-spacing-spacious);
 }
 
-.Box-narrow-marginInlineEnd--0 {
+.Box-narrow-marginInlineEnd--none {
   margin-inline-end: 0;
 }
 .Box-narrow-marginInlineEnd--4 {
@@ -2013,7 +2013,7 @@
     margin-inline-end: var(--brand-box-spacing-spacious);
   }
 
-  .Box-regular-marginInlineEnd--0 {
+  .Box-regular-marginInlineEnd--none {
     margin-inline-end: 0;
   }
   .Box-regular-marginInlineEnd--4 {
@@ -2074,7 +2074,7 @@
     margin-inline-end: var(--brand-box-spacing-spacious);
   }
 
-  .Box-wide-marginInlineEnd--0 {
+  .Box-wide-marginInlineEnd--none {
     margin-inline-end: 0;
   }
   .Box-wide-marginInlineEnd--4 {
@@ -2136,7 +2136,7 @@
   margin-block-end: var(--brand-box-spacing-spacious);
 }
 
-.Box-marginBlockEnd--0 {
+.Box-marginBlockEnd--none {
   margin-block-end: 0;
 }
 .Box-marginBlockEnd--4 {
@@ -2201,7 +2201,7 @@
   margin-block-end: var(--brand-box-spacing-spacious);
 }
 
-.Box-narrow-marginBlockEnd--0 {
+.Box-narrow-marginBlockEnd--none {
   margin-block-end: 0;
 }
 .Box-narrow-marginBlockEnd--4 {
@@ -2261,7 +2261,7 @@
     margin-block-end: var(--brand-box-spacing-spacious);
   }
 
-  .Box-regular-marginBlockEnd--0 {
+  .Box-regular-marginBlockEnd--none {
     margin-block-end: 0;
   }
   .Box-regular-marginBlockEnd--4 {
@@ -2328,7 +2328,7 @@
     margin-block-end: var(--brand-box-spacing-spacious);
   }
 
-  .Box-wide-marginBlockEnd--0 {
+  .Box-wide-marginBlockEnd--none {
     margin-block-end: 0;
   }
   .Box-wide-marginBlockEnd--4 {
@@ -2397,7 +2397,7 @@
   margin-inline-start: var(--brand-box-spacing-spacious);
 }
 
-.Box-marginInlineStart--0 {
+.Box-marginInlineStart--none {
   margin-inline-start: 0;
 }
 .Box-marginInlineStart--4 {
@@ -2462,7 +2462,7 @@
   margin-inline-start: var(--brand-box-spacing-spacious);
 }
 
-.Box-narrow-marginInlineStart--0 {
+.Box-narrow-marginInlineStart--none {
   margin-inline-start: 0;
 }
 .Box-narrow-marginInlineStart--4 {
@@ -2528,7 +2528,7 @@
     margin-inline-start: var(--brand-box-spacing-spacious);
   }
 
-  .Box-regular-marginInlineStart--0 {
+  .Box-regular-marginInlineStart--none {
     margin-inline-start: 0;
   }
   .Box-regular-marginInlineStart--4 {
@@ -2595,7 +2595,7 @@
     margin-inline-start: var(--brand-box-spacing-spacious);
   }
 
-  .Box-wide-marginInlineStart--0 {
+  .Box-wide-marginInlineStart--none {
     margin-inline-start: 0;
   }
   .Box-wide-marginInlineStart--4 {
