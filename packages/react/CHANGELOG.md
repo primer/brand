@@ -1,5 +1,48 @@
 # @primer/react-brand
 
+## 0.26.0
+
+### Minor Changes
+
+- [#424](https://github.com/primer/brand/pull/424) [`61eba57`](https://github.com/primer/brand/commit/61eba570a20bc39e08a57ac5fba73b9b78cbfc4e) Thanks [@josepmartins](https://github.com/josepmartins)! - > **Warning**
+
+  > This is a breaking change to the `Testimonial ` component.
+
+  - Update `Testimonial` component provider layout styles
+  - Remove `Testimonial` `align` prop
+
+- [#420](https://github.com/primer/brand/pull/420) [`ad6c877`](https://github.com/primer/brand/commit/ad6c87739387d410b810b6549d25ae49e71915db) Thanks [@rezrah](https://github.com/rezrah)! - Use the bento to present content in a responsive grid layout.
+
+  ```jsx
+  <Bento>
+    <Bento.Item columnSpan={3} rowSpan={8} />
+    <Bento.Item columnSpan={3} rowSpan={4} />
+    <Bento.Item columnSpan={6} rowSpan={8} />
+    <Bento.Item columnSpan={3} rowSpan={4} rowStart={9} />
+    <Bento.Item columnSpan={3} rowSpan={8} />
+    <Bento.Item columnSpan={6} rowSpan={4} />
+  </Bento>
+  ```
+
+### Patch Changes
+
+- [#427](https://github.com/primer/brand/pull/427) [`084db13`](https://github.com/primer/brand/commit/084db13d4ad33cf974493908df5b6df37854ab51) Thanks [@rezrah](https://github.com/rezrah)! - Increase space between river heading and description to 16px from 8px
+
+- [#425](https://github.com/primer/brand/pull/425) [`88e42f0`](https://github.com/primer/brand/commit/88e42f0c8090a6c19a732d093cd73fb524bf4ac3) Thanks [@josepmartins](https://github.com/josepmartins)! - Adjust `FAQGroup` navigation styles for selected items
+
+- [#427](https://github.com/primer/brand/pull/427) [`084db13`](https://github.com/primer/brand/commit/084db13d4ad33cf974493908df5b6df37854ab51) Thanks [@rezrah](https://github.com/rezrah)! - Fixed a bug in `Hero` where an empty div with end-specific margin is erroneously defined for CTAs.
+
+- [#427](https://github.com/primer/brand/pull/427) [`084db13`](https://github.com/primer/brand/commit/084db13d4ad33cf974493908df5b6df37854ab51) Thanks [@rezrah](https://github.com/rezrah)! - Update FormControl hasBorder color value to match control borders
+
+- [#427](https://github.com/primer/brand/pull/427) [`084db13`](https://github.com/primer/brand/commit/084db13d4ad33cf974493908df5b6df37854ab51) Thanks [@rezrah](https://github.com/rezrah)! - Add `none` option to Box spacing props to reset defined paddings at larger viewports.
+
+  ```
+  <Box padding={{
+      narrow: 24,
+      wide: 'none' // <-- this will remove padding at the wide viewport
+  }} />
+  ```
+
 ## 0.25.0
 
 ### Minor Changes
