@@ -4,12 +4,12 @@ import {
   ColorModesEnum,
   Grid,
   Heading,
-  Hero,
+  Label,
   MinimalFooter,
   Stack,
   SubdomainNavBar,
+  Text,
   ThemeProvider,
-  UnorderedList,
 } from '../../..'
 
 import {Themes, themeDetailsMap} from '../helpers'
@@ -93,22 +93,38 @@ export function FeaturePreviewLevelOneSideBySide({
             <Stack padding="none" justifyContent={{wide: 'flex-end'}}>
               <Box padding={24}>
                 <ThemeProvider colorMode="dark">
-                  <Hero align="start">
-                    {args.heroLabel && <Hero.Label color="blue-purple">{args.heroLabel}</Hero.Label>}
-                    {args.heroTitle && (
-                      <Hero.Heading size="3">
-                        Set up your <br /> enterprise trial
-                      </Hero.Heading>
-                    )}
-                    {args.heroDescription && <Hero.Description>{args.heroDescription}</Hero.Description>}
-                    <Box marginBlockStart={48}>
-                      <UnorderedList variant="checked">
-                        <UnorderedList.Item>Access to core collaboration features</UnorderedList.Item>
-                        <UnorderedList.Item>Unlimited public repositories</UnorderedList.Item>
-                        <UnorderedList.Item>Community support</UnorderedList.Item>
-                      </UnorderedList>
-                    </Box>
-                  </Hero>
+                  <Box
+                    paddingBlockStart={{
+                      narrow: 80,
+                      wide: 'none',
+                    }}
+                    paddingBlockEnd={{
+                      narrow: 80,
+                      wide: 'none',
+                    }}
+                    marginBlockStart={{
+                      wide: 128,
+                    }}
+                  >
+                    <Stack direction="vertical" padding="none" alignItems="flex-start">
+                      {args.heroLabel && <Label color="blue-purple">{args.heroLabel}</Label>}
+                      {args.heroTitle && (
+                        <Heading size="3">
+                          Set up your <br /> enterprise trial
+                        </Heading>
+                      )}
+
+                      <Heading as="h2" size="subhead-large" style={{color: 'var(--base-color-scale-purple-2)'}}>
+                        Subheader
+                      </Heading>
+
+                      {args.heroDescription && (
+                        <Text as="p" variant="muted">
+                          {args.heroDescription}
+                        </Text>
+                      )}
+                    </Stack>
+                  </Box>
                 </ThemeProvider>
               </Box>
             </Stack>
@@ -116,6 +132,8 @@ export function FeaturePreviewLevelOneSideBySide({
           <Grid.Column span={{large: 5}} start={{xlarge: 8}}>
             <Box
               padding={24}
+              paddingBlockStart={{narrow: 64, regular: 128, wide: 24}}
+              paddingBlockEnd={{narrow: 24, regular: 80}}
               marginBlockStart={{
                 wide: 128,
               }}

@@ -19,6 +19,7 @@ export default {
     colorMode: ColorModesEnum.LIGHT,
     accentColor: 'ai',
     heroAlign: 'start',
+    heroBg: false,
     showHeroVisual: true,
     heroLabel: 'Label',
     heroTitle: 'Expressive headline about a sweet feature',
@@ -94,6 +95,13 @@ export default {
       control: 'inline-radio',
       options: ['start', 'center'],
       name: 'align',
+      table: {
+        category: 'Section: Hero',
+      },
+    },
+    heroBg: {
+      control: 'boolean',
+      name: 'has background',
       table: {
         category: 'Section: Hero',
       },
@@ -413,6 +421,7 @@ LevelTwoPointTwo.storyName = '2.2 variant'
 LevelTwoPointTwo.args = {
   showHeroVisual: false,
   heroAlign: 'start',
+  heroBg: true,
   sectionIntroAlign: 'start',
   pillarBackground: true,
   testimonialVisible: false,
@@ -427,6 +436,7 @@ LevelTwoPointThree.args = {
   showHeroVisual: false,
   heroLabel: '',
   heroAlign: 'center',
+  heroBg: true,
   sectionIntroAlign: 'center',
   sectionIntroText: [
     <em key="highlighted-statement">Highlighted statement in 4-6 words max.</em>,

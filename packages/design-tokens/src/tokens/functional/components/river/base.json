@@ -3,7 +3,7 @@
     "River": {
       "heading": {
         "margin": {
-          "value": "var(--base-size-8)"
+          "value": "var(--base-size-16)"
         }
       },
       "visual": {
