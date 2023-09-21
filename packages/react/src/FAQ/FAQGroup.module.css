@@ -14,10 +14,6 @@
   }
 }
 
-.FAQ__subheading {
-  margin-block-end: var(--base-size-16);
-}
-
 .FAQGroup__panel-subHeading {
   margin-block-start: calc(var(--base-size-8) + 1px);
 }
@@ -28,7 +24,6 @@
 
 .FAQGroup__tablist-button {
   justify-content: start;
-  border: var(--brand-borderWidth-thin) solid transparent;
 }
 
 .FAQGroup__tablist-button > span {
@@ -39,7 +34,6 @@
 
 .FAQGroup__tablist-button[aria-selected='true'] {
   background-color: var(--brand-FAQ-color-tabBg-selected);
-  border-color: var(--brand-FAQ-color-tabBorder-selected);
 }
 
 .FAQGroup__tablist-button span {

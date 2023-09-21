@@ -66,11 +66,11 @@ export function FeaturePreviewLevelOne({accentColor, colorMode, ...args}: Featur
             <Grid.Column>
               <section>
                 <Grid enableOverlay={enableGridOverlay}>
-                  <Grid.Column span={{small: 12, medium: 8}} start={{medium: 3}}>
+                  <Grid.Column span={{small: 12, xlarge: 8}} start={{xlarge: 3}}>
                     <Box
                       backgroundColor="subtle"
                       borderRadius="large"
-                      borderColor="subtle"
+                      borderColor={colorMode === ColorModesEnum.LIGHT ? 'subtle' : 'default'}
                       borderWidth="thin"
                       borderStyle="solid"
                       paddingBlockStart={{narrow: 24, regular: 80}}

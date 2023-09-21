@@ -17,6 +17,12 @@
   }
 }
 
+.FeaturePreview__heroBg {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right center;
+}
+
 .FeaturePreview__heroImageContainer {
   background-repeat: no-repeat;
   background-size: cover;

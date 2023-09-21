@@ -1,5 +1,13 @@
 # @primer/brand-primitives
 
+## 0.26.0
+
+### Patch Changes
+
+- [#423](https://github.com/primer/brand/pull/423) [`9299f25`](https://github.com/primer/brand/commit/9299f25b722bb4f29f2f31e0614046bc387cc1c6) Thanks [@josepmartins](https://github.com/josepmartins)! - Add inner spacing values for RiverBreakout. Uses 64px in desktop, 48px in tablet and 40px in mobile.
+
+  `--brand-RiverBreakout-spacing-inner`
+
 ## 0.25.0
 
 ### Minor Changes
