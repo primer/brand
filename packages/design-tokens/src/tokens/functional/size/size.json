@@ -32,9 +32,6 @@
         },
         "gap": {
           "value": "{base.size.12}"
-        },
-        "borderRadius": {
-          "value": "var(--brand-borderRadius-medium)"
         }
       },
       "large": {
@@ -60,14 +57,6 @@
         },
         "gap": {
           "value": "{base.size.16}"
-        },
-        "borderRadius": {
-          "value": "{base.size.8}"
-        }
-      },
-      "border": {
-        "radius": {
-          "value": "var(--brand-borderRadius-medium)"
         }
       },
       "animation": {
@@ -77,6 +66,20 @@
         "easing": {
           "value": "var(--brand-animation-easing-glide)"
         }
+      }
+    },
+    "borderRadius": {
+      "small": {
+        "value": "{base.size.4}"
+      },
+      "medium": {
+        "value": "{base.size.8}"
+      },
+      "large": {
+        "value": "{base.size.16}"
+      },
+      "xlarge": {
+        "value": "{base.size.24}"
       }
     },
     "box": {

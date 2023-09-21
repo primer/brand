@@ -6,7 +6,7 @@
   justify-content: center;
   transition: box-shadow var(--brand-animation-duration-faster);
   text-decoration: none;
-  border-radius: var(--brand-control-medium-borderRadius);
+  border-radius: var(--brand-borderRadius-medium);
   cursor: pointer;
   border: solid var(--brand-borderWidth-thick) transparent;
   background: none;
@@ -169,7 +169,6 @@
 .Button--size-large {
   height: var(--brand-control-large-size);
   padding: var(--brand-control-large-paddingBlock) var(--brand-control-large-paddingInline-spacious);
-  border-radius: var(--brand-control-large-borderRadius);
 }
 
 .Button--size-large .Button__icon-visual,

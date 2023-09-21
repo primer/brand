@@ -20,7 +20,7 @@
 }
 
 .CTABanner-container {
-  border-radius: var(--brand-borderRadius-medium);
+  border-radius: var(--brand-borderRadius-xlarge);
   padding: var(--base-size-40) var(--base-size-32);
   z-index: 1;
   width: 100%;

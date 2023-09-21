@@ -19,7 +19,7 @@ type ResponsiveSpacingMap = {
 export const BoxBackgroundColors = ['default', 'inset', 'subtle', 'overlay'] as const
 type BackgroundColors = (typeof BoxBackgroundColors)[number]
 
-export const BoxBorderRadiusOptions = ['small', 'medium', 'large', 'full'] as const
+export const BoxBorderRadiusOptions = ['small', 'medium', 'large', 'xlarge', 'full'] as const
 type BorderRadiusOptions = (typeof BoxBorderRadiusOptions)[number]
 
 export const BoxBorderWidthOptions = ['thin', 'thick', 'thicker'] as const

@@ -15,13 +15,13 @@
       "item": {
         "borderRadius": {
           "small": {
-            "value": "var(--base-size-16)"
+            "value": "var(--brand-borderRadius-large)"
           },
           "medium": {
-            "value": "var(--base-size-24)"
+            "value": "var(--brand-borderRadius-xlarge)"
           },
           "large": {
-            "value": "var(--base-size-24)"
+            "value": "var(--brand-borderRadius-xlarge)"
           }
         }
       },

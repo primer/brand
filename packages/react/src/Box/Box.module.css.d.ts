@@ -793,6 +793,7 @@ declare const styles: {
   readonly "Box-borderRadius--small": string;
   readonly "Box-borderRadius--medium": string;
   readonly "Box-borderRadius--large": string;
+  readonly "Box-borderRadius--xlarge": string;
   readonly "Box-borderRadius--full": string;
   readonly "Box-borderWidth--thin": string;
   readonly "Box-borderWidth--thick": string;

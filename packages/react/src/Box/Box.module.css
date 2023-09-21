@@ -2522,6 +2522,10 @@
   border-radius: var(--brand-borderRadius-large);
 }
 
+.Box-borderRadius--xlarge {
+  border-radius: var(--brand-borderRadius-xlarge);
+}
+
 .Box-borderRadius--full {
   border-radius: var(--brand-borderRadius-full);
 }

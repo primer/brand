@@ -6,7 +6,7 @@
   color: var(--brand-control-color-fg-default);
   background-color: var(--brand-color-canvas-default);
   border: none;
-  border-radius: var(--brand-control-border-radius);
+  border-radius: var(--brand-borderRadius-medium);
   line-height: var(--brand-text-lineHeight-200);
   transition: var(--brand-control-animation-duration) var(--brand-control-animation-easing);
   transition-property: color, background-color, box-shadow;
@@ -85,7 +85,7 @@
   display: inline-flex;
   position: relative;
   border: solid var(--brand-borderWidth-thin, 1px) var(--brand-control-color-border-default);
-  border-radius: var(--brand-control-border-radius);
+  border-radius: var(--brand-borderRadius-medium);
   transition: var(--brand-control-animation-duration) var(--brand-control-animation-easing);
   transition-property: border;
 }
