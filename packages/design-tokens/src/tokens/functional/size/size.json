@@ -80,6 +80,9 @@
       },
       "xlarge": {
         "value": "{base.size.24}"
+      },
+      "full": {
+        "value": "100vh"
       }
     },
     "box": {
