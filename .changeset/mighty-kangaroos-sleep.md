@@ -1,5 +1,5 @@
 ---
-'@primer/brand-primitives': patch
+'@primer/brand-primitives': minor
 ---
 
 Removes old control border radius tokens
