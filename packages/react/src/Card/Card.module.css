@@ -72,7 +72,6 @@
 
 .Card__image {
   margin-bottom: var(--base-size-28);
-  /* Temporary values until a new scale is defined https://github.com/github/primer/issues/2607 */
   border-radius: var(--brand-borderRadius-medium);
   overflow: hidden;
   grid-area: image;
