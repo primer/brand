@@ -62,7 +62,6 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
       ctaText = 'Learn more',
       href,
       hasBorder = false,
-      style,
       ...props
     },
     ref,
