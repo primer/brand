@@ -68,23 +68,6 @@
         }
       }
     },
-    "borderRadius": {
-      "small": {
-        "value": "{base.size.4}"
-      },
-      "medium": {
-        "value": "{base.size.8}"
-      },
-      "large": {
-        "value": "{base.size.16}"
-      },
-      "xlarge": {
-        "value": "{base.size.24}"
-      },
-      "full": {
-        "value": "100vh"
-      }
-    },
     "box": {
       "spacing": {
         "condensed": {
