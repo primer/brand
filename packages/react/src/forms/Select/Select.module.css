@@ -7,7 +7,7 @@
   cursor: pointer;
   background-color: var(--brand-color-canvas-default);
   border: none;
-  border-radius: var(--brand-control-border-radius);
+  border-radius: var(--brand-borderRadius-medium);
   line-height: var(--brand-text-lineHeight-200);
   transition: var(--brand-control-animation-duration) var(--brand-control-animation-easing);
   transition-property: color, background-color, box-shadow, border-color;

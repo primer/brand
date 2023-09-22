@@ -8,8 +8,7 @@
 
 .ActionMenu__button {
   /* avoid specificity issues */
-  --brand-control-medium-borderRadius: var(--brand-borderRadius-full);
-  --brand-control-large-borderRadius: var(--brand-borderRadius-full);
+  --brand-borderRadius-medium: var(--brand-borderRadius-full);
 }
 
 .ActionMenu__button > span:first-of-type {

@@ -150,9 +150,12 @@
 }
 
 .Bento--padding-condensed > img,
-.Bento--padding-normal > img,
-.Bento--padding-spacious > img {
+.Bento--padding-normal > img {
   border-radius: var(--brand-borderRadius-large);
+}
+
+.Bento--padding-spacious > img {
+  border-radius: var(--brand-borderRadius-medium);
 }
 
 /* Bento Flow */
