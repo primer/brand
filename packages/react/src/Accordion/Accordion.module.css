@@ -143,6 +143,8 @@ details[open] > .Accordion__summary.Accordion__summary--default .Accordion__summ
 details[open] > .Accordion__content {
   padding-bottom: var(--base-size-24);
   animation: fade-in 0.5s;
+  position: relative;
+  z-index: 0;
 }
 
 .Accordion__summary--default + .Accordion__content {
