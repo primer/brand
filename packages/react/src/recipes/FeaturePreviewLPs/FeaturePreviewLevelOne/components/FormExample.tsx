@@ -1,130 +1,237 @@
 import React from 'react'
-import {Box, Button, Checkbox, FormControl, InlineLink, Select, Stack, Text, TextInput, Textarea} from '../../../../'
-import styles from '../FeaturePreviewLevelOne.module.css'
+import {
+  Box,
+  Button,
+  Checkbox,
+  FormControl,
+  Heading,
+  InlineLink,
+  Select,
+  Stack,
+  Text,
+  TextInput,
+  Textarea,
+} from '../../../../'
+import {PeopleIcon} from '@primer/octicons-react'
 
-export function FormExample() {
+type FormExampleProps = {
+  type?: 'default' | 'extended'
+}
+
+export function FormExample({type = 'default'}: FormExampleProps) {
   return (
     <form>
       <>
         <Stack direction="vertical" padding="none" gap={24}>
+          {type === 'extended' && (
+            <Heading as="h2" size="subhead-large">
+              Tell us about your enterprise
+            </Heading>
+          )}
           <Box marginBlockEnd={16}>
             <Text as="p" size="100">
               All fields marked with an asterisk (*) are required
             </Text>
           </Box>
-          <FormControl required fullWidth>
-            <FormControl.Label>Full name</FormControl.Label>
-            <TextInput required />
-          </FormControl>
+
+          {type === 'extended' && (
+            <>
+              <FormControl required fullWidth>
+                <FormControl.Label>Enterprise name</FormControl.Label>
+                <TextInput required placeholder="e.g. Acme Inc." />
+              </FormControl>
+
+              <FormControl required fullWidth>
+                <FormControl.Label>Enterprise URL slug</FormControl.Label>
+                <TextInput required placeholder="e.g. acme-inc." />
+              </FormControl>
+
+              <FormControl required fullWidth>
+                <FormControl.Label>Industry</FormControl.Label>
+                <Select>
+                  <Select.Option value="it">Information Technology</Select.Option>
+                  <Select.Option value="bs">Business services</Select.Option>
+                </Select>
+              </FormControl>
+
+              <FormControl required fullWidth>
+                <FormControl.Label>Number of employees</FormControl.Label>
+                <Select>
+                  <Select.Option value="0-50">0-50</Select.Option>
+                  <Select.Option value="50-100">50-100</Select.Option>
+                </Select>
+              </FormControl>
+
+              <Box
+                borderColor="default"
+                borderStyle="solid"
+                borderWidth="thin"
+                backgroundColor="subtle"
+                padding="normal"
+                borderRadius="medium"
+              >
+                <Stack direction="vertical" padding="none">
+                  <Heading as="h3" size="subhead-medium">
+                    <Stack
+                      direction="horizontal"
+                      padding="none"
+                      gap={8}
+                      style={{color: 'var(--brand-InlineLink-color-rest)'}}
+                    >
+                      <PeopleIcon size={20} />
+                      About Enterprise Managed Users
+                    </Stack>
+                  </Heading>
+                  <Text as="p" variant="muted">
+                    GitHub Enterprise lets developers use their personal accounts for work and it supports SAML SSO from
+                    various identity providers. Or, if you want to control access through an external identity
+                    management system, you can use Enterprise Managed Users.
+                  </Text>
+                  <Heading as="h4" size="subhead-medium">
+                    Interested in a trial with Enterprise Managed Users? <InlineLink href="#">Contact Us</InlineLink>
+                  </Heading>
+                </Stack>
+              </Box>
+
+              <FormControl required fullWidth>
+                <FormControl.Label>Organization</FormControl.Label>
+                <Select>
+                  <Select.Option value="scranton-engineering">Scranton Engineering</Select.Option>
+                </Select>
+                <FormControl.Hint>
+                  Note: Billing for any selected organization will be delegated to the enterprise account.{' '}
+                  <InlineLink href="#">Learn about changes to your billing during trial.</InlineLink>
+                </FormControl.Hint>
+              </FormControl>
+
+              <Box marginBlockStart={16}>
+                <Heading as="h2" size="subhead-large">
+                  Contact information
+                </Heading>
+              </Box>
+            </>
+          )}
 
           <FormControl required fullWidth>
-            <FormControl.Label>Enterprise name</FormControl.Label>
-            <TextInput required />
+            <FormControl.Label>Name</FormControl.Label>
+            <TextInput required placeholder="First and last name" />
           </FormControl>
 
-          <FormControl required fullWidth>
-            <FormControl.Label>Enterprise URL</FormControl.Label>
-            <TextInput leadingText="github.com/" required />
-          </FormControl>
+          {type === 'default' && (
+            <FormControl required fullWidth>
+              <FormControl.Label>Company</FormControl.Label>
+              <TextInput required placeholder="e.g. Acme Inc." />
+            </FormControl>
+          )}
 
           <FormControl required fullWidth>
-            <FormControl.Label>Country</FormControl.Label>
-            <Select defaultValue="">
-              <Select.Option value="" disabled>
-                Country
-              </Select.Option>
-              <Select.Option value="us">United States of America</Select.Option>
-              <Select.Option value="uk">United Kingdom</Select.Option>
-            </Select>
+            <FormControl.Label>Work email</FormControl.Label>
+            <TextInput required placeholder="e.g. name@company.com" />
           </FormControl>
-          <FormControl required fullWidth>
-            <FormControl.Label>Message</FormControl.Label>
-            <Textarea />
-          </FormControl>
+          {type === 'default' && (
+            <FormControl required fullWidth>
+              <FormControl.Label>Phone Number</FormControl.Label>
+              <TextInput type="tel" required />
+            </FormControl>
+          )}
+
+          {type === 'extended' && (
+            <FormControl required fullWidth>
+              <FormControl.Label>Country</FormControl.Label>
+              <Select defaultValue="">
+                <Select.Option value="" disabled>
+                  Country
+                </Select.Option>
+                <Select.Option value="us">United States of America</Select.Option>
+                <Select.Option value="uk">United Kingdom</Select.Option>
+              </Select>
+            </FormControl>
+          )}
+          {type === 'default' && (
+            <FormControl required fullWidth>
+              <FormControl.Label>Message</FormControl.Label>
+              <Textarea placeholder="Describe your project, needs and timeline." />
+            </FormControl>
+          )}
         </Stack>
 
-        <Box
-          className={styles.FeaturePreview__contactMe}
-          paddingBlockStart={{narrow: 16, regular: 24}}
-          marginBlockStart={{narrow: 16, regular: 24}}
-          paddingBlockEnd={{narrow: 16, regular: 24}}
-          marginBlockEnd={{narrow: 16, regular: 24}}
-        >
+        <Box marginBlockStart={{narrow: 16, regular: 32}} marginBlockEnd={{narrow: 16, regular: 32}}>
           <Stack direction="vertical" padding="none" gap={24}>
-            <Box backgroundColor="default">
-              <FormControl hasBorder required>
-                <FormControl.Label>
-                  Contact me about GitHub Enterprise Server{' '}
-                  <FormControl.Hint>
-                    <Text size="100" variant="muted">
-                      I&apos;m interested in learning more about{' '}
-                      <InlineLink size="100" href="https://github.com/enterprise" target="_blank">
-                        GitHub Enterprise Server
-                      </InlineLink>{' '}
-                      and would like to be contacted by GitHub’s sales team.
+            {type === 'default' && (
+              <Box backgroundColor="default" marginBlockEnd={16}>
+                <FormControl required>
+                  <FormControl.Label>
+                    <Text weight="medium" size="100">
+                      Yes, I would like to be emailed with the latest news and happenings, products, and special offers
+                      from GitHub.
                     </Text>
-                  </FormControl.Hint>
-                </FormControl.Label>
-                <Checkbox />
-              </FormControl>
-            </Box>
-            <div
-              style={{
-                borderWidth: 1,
-                borderStyle: 'solid',
-                borderColor: 'var(--brand-control-color-border-default)',
-                backgroundColor: 'var(--brand-color-canvas-inset)',
-                height: 150,
-                width: '100%',
-                borderRadius: 6,
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <Text size="100" variant="muted">
-                Captcha
-              </Text>
-            </div>
-            <FormControl required>
-              <FormControl.Label>
-                <Text size="100" variant="muted">
-                  I hereby accept the{' '}
-                  <InlineLink size="100" href="https://github.com/customer-terms" target="_blank">
-                    GitHub Customer Agreement
-                  </InlineLink>{' '}
-                  on behalf of my organization and confirm that I have the authority to do so. For more information
-                  about GitHub&apos;s privacy practices, see the{' '}
-                  <InlineLink
-                    size="100"
-                    href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement"
-                    target="_blank"
-                  >
-                    GitHub Privacy Statement.
-                  </InlineLink>{' '}
-                </Text>
-              </FormControl.Label>
-
-              <Checkbox />
-            </FormControl>
-            <Box marginBlockStart={16}>
-              <Stack
-                direction={{
-                  narrow: 'vertical',
-                  regular: 'vertical',
-                  wide: 'horizontal',
-                }}
-                padding="none"
-                justifyContent={{
-                  narrow: 'flex-start',
-                  regular: 'flex-end',
+                    <FormControl.Hint>
+                      <Text weight="normal" variant="muted" size="100">
+                        If you change your mind, you can unsubscribe at any time.
+                      </Text>
+                    </FormControl.Hint>
+                  </FormControl.Label>
+                  <Checkbox />
+                </FormControl>
+              </Box>
+            )}
+            <Stack padding="none" direction="vertical">
+              <Heading as="h3" size="subhead-medium">
+                Verify your account
+              </Heading>
+              <div
+                style={{
+                  borderWidth: 1,
+                  borderStyle: 'solid',
+                  borderColor: 'var(--brand-control-color-border-default)',
+                  backgroundColor: 'var(--brand-color-canvas-inset)',
+                  width: '100%',
+                  borderRadius: 6,
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
                 }}
               >
-                <Button variant="subtle">Skip trial and upgrade</Button>
-                <Button variant="primary" type="submit">
-                  Start trial
-                </Button>
-              </Stack>
+                <Stack direction="vertical" padding="spacious" alignItems="center">
+                  <Text size="100" variant="muted" align="center">
+                    Please solve this puzzle so we know you are a real person
+                  </Text>
+                  <Button variant="secondary">Verify</Button>
+                </Stack>
+              </div>
+            </Stack>
+            {type === 'extended' && (
+              <Box backgroundColor="default">
+                <FormControl required>
+                  <FormControl.Label>
+                    <Text weight="medium" size="100">
+                      I understand that <InlineLink href="#">certain features</InlineLink> are unavailable during the
+                      trial experience.
+                    </Text>
+                  </FormControl.Label>
+                  <Checkbox />
+                </FormControl>
+              </Box>
+            )}
+            {type === 'extended' && (
+              <Box backgroundColor="default">
+                <FormControl required>
+                  <FormControl.Label>
+                    <Text weight="medium" size="100">
+                      I hereby accept the <InlineLink href="#">GitHub Customer Agreement</InlineLink> and confirm that I
+                      have the authority to do so on behalf of my organization. For more information about GitHub&apos;s
+                      privacy practices, see the <InlineLink href="#">GitHub Privacy Statement</InlineLink>.
+                    </Text>
+                  </FormControl.Label>
+                  <Checkbox />
+                </FormControl>
+              </Box>
+            )}
+
+            <Box marginBlockStart={16}>
+              <Button variant="primary" type="submit" block>
+                {type === 'default' ? 'Contact Sales' : 'Create your enterprise'}
+              </Button>
             </Box>
           </Stack>
         </Box>

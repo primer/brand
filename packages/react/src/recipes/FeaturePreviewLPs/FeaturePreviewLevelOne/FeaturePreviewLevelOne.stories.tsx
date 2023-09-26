@@ -19,6 +19,7 @@ export default {
   },
   args: {
     colorMode: ColorModesEnum.LIGHT,
+    formType: 'default',
     accentColor: 'ai',
     heroLabel: 'Release type',
     heroTitle: 'Expressive headline about a sweet feature',
@@ -40,6 +41,14 @@ export default {
       options: Object.keys(themeDetailsMap),
       table: {
         category: 'Theming',
+      },
+    },
+    formType: {
+      name: 'form type',
+      control: 'radio',
+      options: ['default', 'extended'],
+      table: {
+        category: 'Section: Form',
       },
     },
     /**

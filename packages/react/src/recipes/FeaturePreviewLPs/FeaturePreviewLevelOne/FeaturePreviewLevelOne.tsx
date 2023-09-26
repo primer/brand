@@ -11,6 +11,7 @@ import {FormExample} from './components/FormExample'
 type FeaturePreviewLevelOneProps = {
   colorMode?: ColorModesEnum.LIGHT | ColorModesEnum.DARK
   accentColor: Themes
+  formType: 'default' | 'extended'
   heroLabel: string
   heroTitle: string
   heroDescription: string
@@ -46,7 +47,7 @@ export function FeaturePreviewLevelOne({accentColor, colorMode, ...args}: Featur
         backgroundColor: 'var(--brand-color-canvas-default)',
       }}
     >
-      <SubdomainNavBar title="Preview" fixed={false}>
+      <SubdomainNavBar title={`Level 1`} fixed={false}>
         <SubdomainNavBar.PrimaryAction href="#" onClick={handleOverlay}>
           {enableGridOverlay ? 'Disable' : 'Enable'} grid
         </SubdomainNavBar.PrimaryAction>
@@ -79,7 +80,7 @@ export function FeaturePreviewLevelOne({accentColor, colorMode, ...args}: Featur
                       paddingInlineEnd={{narrow: 24, regular: 128}}
                       marginBlockEnd={{narrow: 64, regular: 96}}
                     >
-                      <FormExample />
+                      <FormExample type={args.formType} />
                     </Box>
                   </Grid.Column>
                 </Grid>

@@ -22,25 +22,44 @@
   border-top: var(--brand-borderWidth-thin) solid var(--brand-control-color-border-default);
 }
 
-.FeaturePreview__contactMe {
-  border-top: var(--brand-borderWidth-thin) solid var(--brand-control-color-border-default);
-}
-
 .FeaturePreview__hero {
-  background-color: var(--base-color-scale-black-0);
   z-index: 1;
 }
-
-@media screen and (min-width: 64rem) {
-  .FeaturePreview__heroBg {
+@media screen and (max-width: 63.25rem) {
+  .FeaturePreview__heroContent {
     background-color: var(--base-color-scale-black-0);
   }
 }
 
-.FeaturePreview__splitLayout {
-  position: absolute;
-  height: 100vh;
-  top: 75px;
-  width: 100%;
-  padding: 0;
+@media screen and (max-width: 63.25rem) {
+  .FeaturePreview__heroBg {
+    background-size: cover;
+    background-image: none !important;
+    background-color: var(--base-color-scale-black-0);
+  }
+}
+
+@media screen and (min-width: 63.25rem) {
+  .FeaturePreview__heroBg {
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-color: #000;
+  }
+}
+
+@media screen and (min-width: 150rem) {
+  .FeaturePreview__heroBg {
+    background-size: cover;
+    background-position: center bottom;
+  }
+}
+
+@media screen and (min-width: 63.25rem) {
+  .FeaturePreview__splitLayout {
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    padding: 0;
+  }
 }
