@@ -167,7 +167,7 @@ export function FormExample({type = 'default'}: FormExampleProps) {
                     </Text>
                     <FormControl.Hint>
                       <Text weight="normal" variant="muted" size="100">
-                        If you change your mind, you can unsubscribe at any time.
+                        If you change your mind, you can <InlineLink href="#">unsubscribe</InlineLink> at any time.
                       </Text>
                     </FormControl.Hint>
                   </FormControl.Label>
