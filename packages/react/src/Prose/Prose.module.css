@@ -247,11 +247,7 @@
   top: 0;
   left: 0;
   background-color: var(--base-color-scale-indigo-5);
-  background-image: linear-gradient(
-    180deg,
-    var(--base-color-scale-blue-5) 0.87%,
-    var(--base-color-scale-purple-5) 75.12%
-  );
+  background-image: linear-gradient(180deg, var(--base-color-scale-blue-5), var(--base-color-scale-purple-5));
 }
 
 .Prose figure figcaption {
