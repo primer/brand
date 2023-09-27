@@ -2,4 +2,4 @@
 '@primer/react-brand': patch
 ---
 
-Adds `Blockquote` and `Code` to the `Prose` component.
+Adds `Blockquote`, `Code`, `Figure` and `Figcaption` to the `Prose` component.
