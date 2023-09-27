@@ -254,7 +254,7 @@
   );
 }
 
-.Prose figcaption {
+.Prose figure figcaption {
   font-family: var(--brand-fontStack-monospace);
   font-size: var(--brand-text-size-100);
   line-height: var(--brand-text-lineHeight-100);

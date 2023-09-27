@@ -22,10 +22,12 @@ export default {
 const ExampleHtmlMarkup = `
 <h2>Heading level 2</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempor lectus ipsum, consectetur convallis diam pretium quis. Proin ut felis ut eros tristique tincidunt.</p>
-    <blockquote>
-      <p>Nulla ac odio eu magna hendrerit porta. Donec nec eros quis tortor tincidunt vulputate. Aenean id pharetra diam, sit amet auctor leo. Aliquam erat volutpat.</p>
-      <figcaption>Lisa Vanderschuit, Engineering Program Manager, Shopify</figcaption>
-    </blockquote>
+    <figure>
+      <blockquote>
+        <p>Nulla ac odio eu magna hendrerit porta. Donec nec eros quis tortor tincidunt vulputate. Aenean id pharetra diam, sit amet auctor leo. Aliquam erat volutpat.</p>
+        <figcaption>Lisa Vanderschuit, Engineering Program Manager, Shopify</figcaption>
+      </blockquote>
+    </figure>
     <p>Integer pellentesque pretium nulla viverra molestie. Praesent quis pretium sapien. Sed convallis eget lectus et pulvinar:</p>
     <ul>
       <li>
