@@ -33,7 +33,6 @@ Verify that the implementation is aligned with the design proposal:
 - 
 -
 
-
 ## Steps to test:
 
 <!--
