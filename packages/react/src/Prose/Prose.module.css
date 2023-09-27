@@ -10,10 +10,11 @@
 /* 6. Lists                                                   */
 /* 7. Inline elements                                         */
 /* 8. Images                                                  */
+/* 9. Block elements                                          */
 /* ---------------------------------------------------------- */
 
 /* ---------------------------------------------------------- */
-/* 1, Container                                               */
+/* 1. Container                                               */
 /* ---------------------------------------------------------- */
 
 .Prose {
@@ -190,6 +191,15 @@
   border-color: var(--brand-InlineLink-color-pressed);
 }
 
+.Prose code {
+  font-family: var(--brand-fontStack-monospace);
+  font-size: var(--brand-text-size-100);
+  white-space: break-spaces;
+  padding: var(--base-size-4) var(--base-size-8);
+  border-radius: var(--brand-borderRadius-small);
+  background-color: var(--base-color-scale-indigo-0);
+}
+
 /* ---------------------------------------------------------- */
 /* 8. Images                                                  */
 /* ---------------------------------------------------------- */
@@ -202,4 +212,28 @@
   margin-left: auto;
   margin-right: auto;
   margin-block-end: var(--spacing);
+}
+
+/* ---------------------------------------------------------- */
+/* 9. Block elements                                          */
+/* ---------------------------------------------------------- */
+
+.Prose blockquote {
+  --spacing: var(--brand-Prose-blockquote-spacing);
+  font-size: var(--brand-Testimonial-quote-fontSize-default);
+  font-weight: var(--brand-Testimonial-quote-fontWeight-default);
+  letter-spacing: var(--brand-Testimonial-quote-letterSpacing-default);
+  line-height: 1.2;
+  position: relative;
+  padding-top: var(--base-size-48);
+  margin-bottom: var(--spacing);
+}
+
+.Prose blockquote::before {
+  content: '“';
+  font-size: var(--base-size-48);
+  font-weight: var(--base-text-weight-extrabold);
+  line-height: var(--base-size-48);
+  position: absolute;
+  top: 0;
 }
