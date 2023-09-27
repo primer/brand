@@ -46,8 +46,8 @@ E.g.
 -->
 
 1.
-2.
-3.
+1.
+1.
 
 ## Supporting resources (related issues, external links, etc):
 
