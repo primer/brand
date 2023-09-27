@@ -19,8 +19,20 @@ E.g.
 
 ## What should reviewers focus on?
 
+<!--
+Help reviewers check the changes applied.
+
+E.g. For site designers
+
+Verify that the implementation is aligned with the design proposal:
+- Ensure the layout and the spacing are correct in different viewport sizes (desktop, tablet and mobile). 
+- Check dark and light color modes.
+- Check the interactive states, such as hover, focus or active ones.
+-->
+
+- 
 -
--
+
 
 ## Steps to test:
 
@@ -35,8 +47,8 @@ E.g.
 -->
 
 1.
-1.
-1.
+2.
+3.
 
 ## Supporting resources (related issues, external links, etc):
 
