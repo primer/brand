@@ -176,7 +176,7 @@ export function FormExample({type = 'default'}: FormExampleProps) {
               </Box>
             )}
             <Stack padding="none" direction="vertical">
-              <Heading as="h3" size="subhead-medium">
+              <Heading as="h2" size="subhead-medium">
                 Verify your account
               </Heading>
               <div
