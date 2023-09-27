@@ -129,9 +129,9 @@ export function FormExample({type = 'default'}: FormExampleProps) {
             <TextInput required placeholder="e.g. name@company.com" />
           </FormControl>
           {type === 'default' && (
-            <FormControl required fullWidth>
+            <FormControl fullWidth>
               <FormControl.Label>Phone Number</FormControl.Label>
-              <TextInput type="tel" required />
+              <TextInput type="tel" />
             </FormControl>
           )}
 
@@ -148,7 +148,7 @@ export function FormExample({type = 'default'}: FormExampleProps) {
             </FormControl>
           )}
           {type === 'default' && (
-            <FormControl required fullWidth>
+            <FormControl fullWidth>
               <FormControl.Label>Message</FormControl.Label>
               <Textarea placeholder="Describe your project, needs and timeline." />
             </FormControl>

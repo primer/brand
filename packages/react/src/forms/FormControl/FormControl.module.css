@@ -41,9 +41,9 @@
 }
 
 .FormControl-label--medium {
-  letter-spacing: var(--brand-text-letterSpacing-200);
-  font-size: var(--brand-text-size-200);
-  line-height: var(--brand-text-lineHeight-200);
+  letter-spacing: var(--brand-text-letterSpacing-100);
+  font-size: var(--brand-text-size-100);
+  line-height: var(--brand-text-lineHeight-100);
 }
 
 .FormControl-label--large {
