@@ -7,9 +7,9 @@ declare const styles: {
   readonly "FeaturePreview__borderTop": string;
   readonly "FeaturePreview__hero": string;
   readonly "FeaturePreview__heroContent": string;
+  readonly "FeaturePreview__splitLayout": string;
   readonly "FeaturePreview__splitLayoutBg": string;
   readonly "FeaturePreview__heroBg": string;
-  readonly "FeaturePreview__splitLayout": string;
   readonly "FeaturePreview__splitLayoutEnterprise": string;
   readonly "FeaturePreview__formContent": string;
   readonly "FeaturePreview__heroContentInnerSticky": string;

@@ -5,7 +5,6 @@
 
 .FeaturePreview {
   --brand-Hero-regular-padding: var(--brand-Hero-narrow-padding);
-  --brand-featurepreview-dark-bgColor: #000;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top center;
@@ -40,6 +39,10 @@
   .FeaturePreview__heroContent {
     background-color: var(--base-color-scale-black-0);
   }
+}
+
+.FeaturePreview__splitLayout {
+  --brand-featurepreview-dark-bgColor: #000;
 }
 
 @media screen and (max-width: 63.25rem) {
@@ -146,7 +149,10 @@
 }
 
 @media screen and (max-width: 63.25rem) {
-  .FeaturePreview__enterpriseVideo {
+  .FeaturePreview__enterpriseVideo,
+  .FeaturePreview__enterpriseVideoOverlayRight,
+  .FeaturePreview__enterpriseVideoOverlayTop,
+  .FeaturePreview__enterpriseVideoOverlayLeft {
     display: none;
   }
 }
@@ -160,6 +166,7 @@
 @media screen and (min-width: 80rem) {
   .FeaturePreview__enterpriseVideo {
     left: 5%;
+    bottom: -370px;
   }
 }
 
