@@ -13,12 +13,14 @@ import {
   Textarea,
 } from '../../../../'
 import {PeopleIcon} from '@primer/octicons-react'
+import {ColorModesEnum} from '../../../../ThemeProvider'
 
 type FormExampleProps = {
+  colorMode?: ColorModesEnum.LIGHT | ColorModesEnum.DARK
   type?: 'default' | 'extended'
 }
 
-export function FormExample({type = 'default'}: FormExampleProps) {
+export function FormExample({type = 'default', colorMode = ColorModesEnum.LIGHT}: FormExampleProps) {
   return (
     <form>
       <>
@@ -158,7 +160,7 @@ export function FormExample({type = 'default'}: FormExampleProps) {
         <Box marginBlockStart={{narrow: 16, regular: 32}} marginBlockEnd={{narrow: 16, regular: 32}}>
           <Stack direction="vertical" padding="none" gap={24}>
             {type === 'default' && (
-              <Box backgroundColor="default" marginBlockEnd={16}>
+              <Box backgroundColor={colorMode === ColorModesEnum.LIGHT ? 'default' : 'subtle'} marginBlockEnd={16}>
                 <FormControl required>
                   <FormControl.Label>
                     <Text weight="medium" size="100">
@@ -201,7 +203,7 @@ export function FormExample({type = 'default'}: FormExampleProps) {
               </div>
             </Stack>
             {type === 'extended' && (
-              <Box backgroundColor="default">
+              <Box backgroundColor={colorMode === ColorModesEnum.LIGHT ? 'default' : 'subtle'}>
                 <FormControl required>
                   <FormControl.Label>
                     <Text weight="medium" size="100">
@@ -214,7 +216,7 @@ export function FormExample({type = 'default'}: FormExampleProps) {
               </Box>
             )}
             {type === 'extended' && (
-              <Box backgroundColor="default">
+              <Box backgroundColor={colorMode === ColorModesEnum.LIGHT ? 'default' : 'subtle'}>
                 <FormControl required>
                   <FormControl.Label>
                     <Text weight="medium" size="100">

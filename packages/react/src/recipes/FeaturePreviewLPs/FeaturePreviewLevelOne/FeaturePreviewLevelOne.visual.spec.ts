@@ -24,4 +24,13 @@ test.describe('Visual Comparison: FeaturePreviewLevelOne', () => {
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
+
+  test('FeaturePreviewLevelOne / Side-by-side - Enteprise', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=recipes-feature-previews-level-1--level-one-side-by-side-enterprise&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
 })

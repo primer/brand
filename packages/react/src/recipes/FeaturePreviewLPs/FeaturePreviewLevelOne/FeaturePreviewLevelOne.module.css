@@ -5,6 +5,7 @@
 
 .FeaturePreview {
   --brand-Hero-regular-padding: var(--brand-Hero-narrow-padding);
+  --brand-featurepreview-dark-bgColor: #000;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top center;
@@ -14,8 +15,18 @@
   --brand-color-canvas-subtle: var(--base-color-scale-gray-7);
 }
 
+.FeaturePreview__footer {
+  z-index: 2;
+}
+
+.FeaturePreview__mainContent {
+  position: relative;
+  z-index: 1;
+}
+
 .FeaturePreview__mainContentGrid {
   padding: 0;
+  position: relative;
 }
 
 .FeaturePreview__borderTop {
@@ -32,34 +43,151 @@
 }
 
 @media screen and (max-width: 63.25rem) {
+  .FeaturePreview__splitLayoutBg {
+    background-image: none !important;
+  }
+
   .FeaturePreview__heroBg {
     background-size: cover;
     background-image: none !important;
-    background-color: var(--base-color-scale-black-0);
-  }
-}
-
-@media screen and (min-width: 63.25rem) {
-  .FeaturePreview__heroBg {
-    background-size: cover;
-    background-position: center bottom;
-    background-repeat: no-repeat;
-    background-color: #000;
-  }
-}
-
-@media screen and (min-width: 150rem) {
-  .FeaturePreview__heroBg {
-    background-size: cover;
-    background-position: center bottom;
   }
 }
 
 @media screen and (min-width: 63.25rem) {
   .FeaturePreview__splitLayout {
     position: absolute;
-    height: 100vh;
+    height: 100%;
     width: 100%;
     padding: 0;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: cover;
+  }
+
+  .FeaturePreview__splitLayoutBg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: cover;
+    z-index: 0;
+  }
+
+  .FeaturePreview__splitLayoutEnterprise {
+    background-color: var(--brand-featurepreview-dark-bgColor);
+  }
+
+  .FeaturePreview__formContent {
+    background-color: var(--brand-color-canvas-default);
+    position: relative;
+    z-index: 1;
+  }
+
+  [data-color-mode='dark'] .FeaturePreview__formContent {
+    background-color: var(--brand-color-canvas-subtle);
+  }
+
+  .FeaturePreview__heroContentInnerSticky {
+    height: 100vh;
+  }
+
+  .FeaturePreview__heroContentInnerStickyContent {
+    position: fixed;
+  }
+}
+
+/**
+ * Enterprise story
+ * Positional overrides that are required as the video doesn't fade. 
+ * FIXME: by replacing the video with one that fades into background on its edges
+ */
+
+.FeaturePreview__enterpriseVideo {
+  position: fixed;
+  bottom: -250px;
+  left: 0;
+  width: 54%;
+  max-width: 1200px;
+  z-index: 0;
+  height: auto;
+}
+
+.FeaturePreview__enterpriseVideoOverlayTop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 54%;
+  height: 100%;
+  z-index: 1;
+  background-image: linear-gradient(black 40%, transparent 50%);
+}
+
+.FeaturePreview__enterpriseVideoOverlayLeft {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 54%;
+  height: 100%;
+  z-index: 1;
+  background-image: linear-gradient(to right, black 5%, transparent 20%);
+}
+
+.FeaturePreview__enterpriseVideoOverlayRight {
+  position: fixed;
+  top: 0;
+  right: 45%;
+  width: 50%;
+  height: 100%;
+  z-index: 1;
+  background-image: linear-gradient(to left, black 0%, transparent 20%);
+}
+
+@media screen and (max-width: 63.25rem) {
+  .FeaturePreview__enterpriseVideo {
+    display: none;
+  }
+}
+
+@media screen and (max-height: 37.5rem) {
+  .FeaturePreview__enterpriseVideo {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 80rem) {
+  .FeaturePreview__enterpriseVideo {
+    left: 5%;
+  }
+}
+
+@media screen and (min-height: 1040px) {
+  .FeaturePreview__enterpriseVideo {
+    bottom: -250px;
+  }
+}
+
+@media screen and (min-width: 125rem) and (max-height: 1040px) {
+  .FeaturePreview__enterpriseVideo {
+    bottom: -460px;
+  }
+}
+
+@media screen and (min-width: 125rem) and (min-height: 1040px) {
+  .FeaturePreview__enterpriseVideo {
+    left: 10%;
+    top: 150px;
+  }
+
+  .FeaturePreview__enterpriseVideoOverlayLeft {
+    background-image: linear-gradient(to right, black 25%, transparent 55%);
+  }
+}
+
+@media screen and (min-width: 150rem) and (min-height: 1040px) {
+  .FeaturePreview__enterpriseVideo {
+    left: 15%;
   }
 }

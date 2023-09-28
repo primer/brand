@@ -8,6 +8,7 @@ import securityLightRiverBg1 from './fixtures/images/security/river-bg-light-1.p
 import securityDarkRiverBg1 from './fixtures/images/security/river-bg-dark-1.png'
 import securityLightRiverBg2 from './fixtures/images/security/river-bg-light-2.png'
 import securityDarkRiverBg2 from './fixtures/images/security/river-bg-dark-2.png'
+import securitySideBySideFormBg from './fixtures/images/security/form-bg.png'
 
 import aiLightHeroBg from './fixtures/images/ai/hero-light.png'
 import aiDarkHeroBg from './fixtures/images/ai/hero-dark.png'
@@ -19,6 +20,7 @@ import aiLightRiverBg1 from './fixtures/images/ai/river-bg-light-1.png'
 import aiDarkRiverBg1 from './fixtures/images/ai/river-bg-dark-1.png'
 import aiLightRiverBg2 from './fixtures/images/ai/river-bg-light-2.png'
 import aiDarkRiverBg2 from './fixtures/images/ai/river-bg-dark-2.png'
+import aiSideBySideFormBg from './fixtures/images/ai/form-bg.png'
 
 import collaborationLightHeroBg from './fixtures/images/collaboration/hero-light.png'
 import collaborationDarkHeroBg from './fixtures/images/collaboration/hero-dark.png'
@@ -30,6 +32,7 @@ import collaborationLightRiverBg1 from './fixtures/images/collaboration/river-bg
 import collaborationDarkRiverBg1 from './fixtures/images/collaboration/river-bg-dark-1.png'
 import collaborationLightRiverBg2 from './fixtures/images/collaboration/river-bg-light-2.png'
 import collaborationDarkRiverBg2 from './fixtures/images/collaboration/river-bg-dark-2.png'
+import collaborationSideBySideFormBg from './fixtures/images/collaboration/form-bg.png'
 
 import productivityLightHeroVisualBg from './fixtures/images/productivity/hero-visual-bg-light.png'
 import productivityDarkHeroVisualBg from './fixtures/images/productivity/hero-visual-bg-dark.png'
@@ -39,6 +42,7 @@ import productivityLightRiverBg1 from './fixtures/images/productivity/river-bg-l
 import productivityDarkRiverBg1 from './fixtures/images/productivity/river-bg-dark-1.png'
 import productivityLightRiverBg2 from './fixtures/images/productivity/river-bg-light-2.png'
 import productivityDarkRiverBg2 from './fixtures/images/productivity/river-bg-dark-2.png'
+import productivitySideBySideFormBg from './fixtures/images/productivity/form-bg.png'
 
 import {ColorModesEnum} from '../../ThemeProvider'
 
@@ -54,6 +58,7 @@ export type ThemeDetailsMap = {
         riverVisualBgs: string[]
         ctaBannerBg: string
         testimonialBg: string
+        sideBySideFormBg?: string
       }
     }
     [ColorModesEnum.DARK]: {
@@ -64,6 +69,7 @@ export type ThemeDetailsMap = {
         riverVisualBgs: string[]
         ctaBannerBg: string
         testimonialBg: string
+        sideBySideFormBg?: string
       }
     }
   }
@@ -79,6 +85,7 @@ export const themeDetailsMap: ThemeDetailsMap = {
         riverVisualBgs: [securityLightRiverBg1, securityLightRiverBg2],
         ctaBannerBg: securityLightCtaBannerBg,
         testimonialBg: '',
+        sideBySideFormBg: securitySideBySideFormBg,
       },
     },
     dark: {
@@ -89,6 +96,7 @@ export const themeDetailsMap: ThemeDetailsMap = {
         riverVisualBgs: [securityDarkRiverBg1, securityDarkRiverBg2],
         ctaBannerBg: securityDarkCtaBannerBg,
         testimonialBg: '',
+        sideBySideFormBg: securitySideBySideFormBg,
       },
     },
   },
@@ -101,6 +109,7 @@ export const themeDetailsMap: ThemeDetailsMap = {
         riverVisualBgs: [collaborationLightRiverBg1, collaborationLightRiverBg2],
         ctaBannerBg: collaborationLightCtaBannerBg,
         testimonialBg: '',
+        sideBySideFormBg: collaborationSideBySideFormBg,
       },
     },
     dark: {
@@ -111,6 +120,7 @@ export const themeDetailsMap: ThemeDetailsMap = {
         riverVisualBgs: [collaborationDarkRiverBg1, collaborationDarkRiverBg2],
         ctaBannerBg: collaborationDarkCtaBannerBg,
         testimonialBg: '',
+        sideBySideFormBg: collaborationSideBySideFormBg,
       },
     },
   },
@@ -123,6 +133,7 @@ export const themeDetailsMap: ThemeDetailsMap = {
         riverVisualBgs: [aiLightRiverBg1, aiLightRiverBg2],
         ctaBannerBg: aiLightCtaBannerBg,
         testimonialBg: '',
+        sideBySideFormBg: aiSideBySideFormBg,
       },
     },
     dark: {
@@ -133,6 +144,7 @@ export const themeDetailsMap: ThemeDetailsMap = {
         riverVisualBgs: [aiDarkRiverBg1, aiDarkRiverBg2],
         ctaBannerBg: aiDarkCtaBannerBg,
         testimonialBg: '',
+        sideBySideFormBg: aiSideBySideFormBg,
       },
     },
   },
@@ -145,6 +157,7 @@ export const themeDetailsMap: ThemeDetailsMap = {
         riverVisualBgs: [productivityLightRiverBg1, productivityLightRiverBg2],
         ctaBannerBg: productivityLightCtaBannerBg,
         testimonialBg: '',
+        sideBySideFormBg: productivitySideBySideFormBg,
       },
     },
     dark: {
@@ -155,6 +168,7 @@ export const themeDetailsMap: ThemeDetailsMap = {
         riverVisualBgs: [productivityDarkRiverBg1, productivityDarkRiverBg2],
         ctaBannerBg: productivityDarkCtaBannerBg,
         testimonialBg: '',
+        sideBySideFormBg: productivitySideBySideFormBg,
       },
     },
   },

@@ -38,7 +38,7 @@ export default {
     accentColor: {
       name: 'theme',
       control: 'radio',
-      options: Object.keys(themeDetailsMap),
+      options: [...Object.keys(themeDetailsMap)],
       table: {
         category: 'Theming',
       },
@@ -87,3 +87,17 @@ export const LevelOneSideBySide: StoryFn<typeof FeaturePreviewLevelOneSideBySide
 )
 
 LevelOneSideBySide.storyName = 'Side-by-side'
+LevelOneSideBySide.args = {
+  heroLabel: 'Label',
+}
+
+export const LevelOneSideBySideEnterprise: StoryFn<typeof FeaturePreviewLevelOneSideBySide> = args => (
+  <FeaturePreviewLevelOneSideBySide {...args} isEnterprise />
+)
+
+LevelOneSideBySideEnterprise.storyName = 'Side-by-side - Enteprise'
+LevelOneSideBySideEnterprise.args = {
+  heroLabel: 'Label',
+  formType: 'extended',
+  colorMode: ColorModesEnum.DARK,
+}
