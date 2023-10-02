@@ -1,5 +1,31 @@
 # @primer/react-brand
 
+## 0.27.0
+
+### Minor Changes
+
+- [#431](https://github.com/primer/brand/pull/431) [`2243ae4`](https://github.com/primer/brand/commit/2243ae4f651189e882ab5d7806f3132ca27c4de7) Thanks [@rezrah](https://github.com/rezrah)! - Fix erroneous `InlineLink` appearance on multiline.
+
+  Removed the following design tokens:
+
+  ```diff
+  - --brand-InlineLink-transition-scale-start
+  - --brand-InlineLink-transition-scale-end
+  ```
+
+- [#428](https://github.com/primer/brand/pull/428) [`6141bff`](https://github.com/primer/brand/commit/6141bff7ea7354afc78b3d5f29c842e7f569bfe0) Thanks [@josepmartins](https://github.com/josepmartins)! - - Updates the border radius scale to use the updated `small`, `medium`, `large`, and the new `xlarge` tokens.
+  - Adds `xlarge` border radius option to the `Box` component properties.
+
+### Patch Changes
+
+- [#429](https://github.com/primer/brand/pull/429) [`aacbde1`](https://github.com/primer/brand/commit/aacbde1301a4a76a4d390dd93a9be83b07bbf3cb) Thanks [@josepmartins](https://github.com/josepmartins)! - Fixes style not being passed as general props to the `Card` component
+
+- [#433](https://github.com/primer/brand/pull/433) [`dd02bc2`](https://github.com/primer/brand/commit/dd02bc2737bcddbdea2f00c27d55a2fd415065fa) Thanks [@rezrah](https://github.com/rezrah)! - Fixed incorrect click target area for Accordion answers
+
+- [#436](https://github.com/primer/brand/pull/436) [`28bdf5e`](https://github.com/primer/brand/commit/28bdf5e7d82d24f6272169698b42ad35b3de3b97) Thanks [@josepmartins](https://github.com/josepmartins)! - Adds default height to `Card` to align vertical size when using `Grid` or `Stack` components as a wrappers.
+
+- [#431](https://github.com/primer/brand/pull/431) [`2243ae4`](https://github.com/primer/brand/commit/2243ae4f651189e882ab5d7806f3132ca27c4de7) Thanks [@rezrah](https://github.com/rezrah)! - Reduced Textarea text size to 14px and 16px for medium and large sizes respectively, for consistency with other free text inputs.
+
 ## 0.26.0
 
 ### Minor Changes
