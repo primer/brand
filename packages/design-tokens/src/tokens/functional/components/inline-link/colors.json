@@ -4,11 +4,11 @@
       "color": {
         "rest": {
           "value": "var(--base-color-scale-blue-6)",
-          "dark": "var(--base-color-scale-blue-4)"
+          "dark": "var(--base-color-scale-blue-2)"
         },
         "pressed": {
           "value": "var(--base-color-scale-blue-8)",
-          "dark": "var(--base-color-scale-blue-2)"
+          "dark": "var(--base-color-scale-blue-1)"
         }
       }
     }

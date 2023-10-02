@@ -1,9 +1,10 @@
-import React, {useEffect} from 'react'
+import React, {useCallback, useEffect} from 'react'
 import {
   Box,
   ColorModesEnum,
   Grid,
   Heading,
+  InlineLink,
   Label,
   MinimalFooter,
   Stack,
@@ -13,43 +14,70 @@ import {
 } from '../../..'
 
 import {Themes, themeDetailsMap} from '../helpers'
+import {FormExample} from './components/FormExample'
+import enterpriseVideo from '../fixtures/images/other/enterprise.mp4'
 
 import styles from './FeaturePreviewLevelOne.module.css'
-import {FormExample} from './components/FormExample'
+import clsx from 'clsx'
+import {useWindowSize} from '../../../hooks/useWindowSize'
 
 type FeaturePreviewLevelOneSideBySideProps = {
   colorMode?: ColorModesEnum.LIGHT | ColorModesEnum.DARK
+  formType?: 'default' | 'extended'
   accentColor: Themes
   heroLabel: string
   heroTitle: string
   heroDescription: string
+  isEnterprise: boolean
 }
 
 export function FeaturePreviewLevelOneSideBySide({
   accentColor,
   colorMode,
+  isEnterprise = false,
   ...args
 }: FeaturePreviewLevelOneSideBySideProps) {
+  const {isLarge} = useWindowSize()
   const [enableGridOverlay, setEnableGridOverlay] = React.useState(false)
   const [isLightMode, setIsLightMode] = React.useState(colorMode === ColorModesEnum.LIGHT)
   const selectedColorMode = isLightMode ? ColorModesEnum.LIGHT : ColorModesEnum.DARK
   const accentColorValue = themeDetailsMap[accentColor][selectedColorMode].color
+
+  const handleHeroContentVerticalAlignment = useCallback(() => {
+    if (!isLarge) return
+    const formControlFullnameEl = document.querySelector('#fullname') as HTMLDivElement | null
+    const heroContentEl = document.querySelector('#hero-content-inner-sticky') as HTMLDivElement | null
+
+    const distanceFromTop = formControlFullnameEl?.getBoundingClientRect().top as number
+
+    const labelOffset = 28 + 16 // Label height + margin
+
+    if (heroContentEl) {
+      heroContentEl.style.top = `${distanceFromTop - labelOffset}px`
+      heroContentEl.style.margin = `0px`
+      heroContentEl.style.padding = `0px`
+    }
+  }, [isLarge])
 
   useEffect(() => {
     setIsLightMode(colorMode === ColorModesEnum.LIGHT)
   }, [colorMode])
 
   useEffect(() => {
-    const mainContent = document.querySelector('.main-content') as HTMLDivElement | null
-    const splitLayout = document.querySelector(`.${styles.FeaturePreview__heroBg}`) as HTMLDivElement | null
+    const mainContent = document.querySelector(`.${styles.FeaturePreview__mainContent}`) as HTMLDivElement | null
+    const splitLayout = document.querySelector(`.${styles.FeaturePreview__splitLayout}`) as HTMLDivElement | null
 
     const handleResize = () => {
       if (mainContent && splitLayout) {
-        if (window.innerWidth >= 1280) {
+        if (window.innerWidth >= 1012) {
           splitLayout.style.height = `${mainContent.clientHeight}px`
         } else {
-          splitLayout.style.height = 'auto'
+          splitLayout.style.height = 'unset'
         }
+      }
+
+      if (args.formType === 'default') {
+        handleHeroContentVerticalAlignment()
       }
     }
 
@@ -61,7 +89,7 @@ export function FeaturePreviewLevelOneSideBySide({
     return () => {
       window.removeEventListener('resize', handleResize) // Remove event listener on unmount
     }
-  }, [])
+  }, [args.formType, handleHeroContentVerticalAlignment])
 
   const handleOverlay = e => {
     e.preventDefault()
@@ -78,22 +106,53 @@ export function FeaturePreviewLevelOneSideBySide({
         backgroundColor: 'var(--brand-color-canvas-default)',
       }}
     >
-      <SubdomainNavBar title="Preview" fixed={false}>
-        <SubdomainNavBar.PrimaryAction href="#" onClick={handleOverlay}>
-          {enableGridOverlay ? 'Disable' : 'Enable'} grid
-        </SubdomainNavBar.PrimaryAction>
-      </SubdomainNavBar>
-      <Grid fullWidth enableOverlay={enableGridOverlay} className={styles.FeaturePreview__splitLayout}>
-        <Grid.Column span={{large: 6}} className={styles.FeaturePreview__heroBg} />
-        <Grid.Column span={{large: 6}} />
+      <ThemeProvider colorMode="dark">
+        <SubdomainNavBar title={`Level 1`}>
+          <SubdomainNavBar.PrimaryAction href="#" onClick={handleOverlay}>
+            {enableGridOverlay ? 'Disable' : 'Enable'} grid
+          </SubdomainNavBar.PrimaryAction>
+        </SubdomainNavBar>
+      </ThemeProvider>
+      <Box
+        className={styles.FeaturePreview__splitLayoutBg}
+        style={{
+          backgroundImage: !isEnterprise
+            ? `url(${themeDetailsMap[accentColor][selectedColorMode].images.sideBySideFormBg})`
+            : 'none',
+        }}
+      />
+      <Grid
+        fullWidth
+        enableOverlay={enableGridOverlay}
+        className={clsx(
+          styles.FeaturePreview__splitLayout,
+          isEnterprise && styles.FeaturePreview__splitLayoutEnterprise,
+        )}
+      >
+        <Grid.Column span={{large: 6}} className={styles.FeaturePreview__heroBg}>
+          {isEnterprise && (
+            <>
+              {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+              <video className={styles.FeaturePreview__enterpriseVideo} autoPlay muted>
+                <source src={enterpriseVideo} type="video/mp4" />
+              </video>
+              <div className={styles.FeaturePreview__enterpriseVideoOverlayTop} />
+              <div className={styles.FeaturePreview__enterpriseVideoOverlayLeft} />
+              <div className={styles.FeaturePreview__enterpriseVideoOverlayRight} />
+            </>
+          )}
+        </Grid.Column>
+        <Grid.Column span={{large: 6}} className={styles.FeaturePreview__formContent} />
       </Grid>
-      <Box className="main-content">
+      <Box className={styles['FeaturePreview__mainContent']}>
         <Grid enableOverlay={enableGridOverlay} className={styles.FeaturePreview__mainContentGrid}>
           <Grid.Column span={{large: 6}} className={styles.FeaturePreview__hero}>
             <Stack padding="none" justifyContent={{wide: 'flex-end'}}>
-              <Box padding={24}>
-                <ThemeProvider colorMode="dark">
+              <Box padding={24} className={styles.FeaturePreview__heroContent}>
+                <ThemeProvider colorMode="dark" className={styles.FeaturePreview__heroContentInnerSticky}>
                   <Box
+                    id="hero-content-inner-sticky"
+                    className={styles.FeaturePreview__heroContentInnerStickyContent}
                     paddingBlockStart={{
                       narrow: 80,
                       wide: 'none',
@@ -106,22 +165,60 @@ export function FeaturePreviewLevelOneSideBySide({
                       wide: 128,
                     }}
                   >
-                    <Stack direction="vertical" padding="none" alignItems="flex-start">
-                      {args.heroLabel && <Label color="blue-purple">{args.heroLabel}</Label>}
-                      {args.heroTitle && (
-                        <Heading size="3">
-                          Set up your <br /> enterprise trial
-                        </Heading>
+                    <Stack
+                      direction="vertical"
+                      gap={args.formType === 'default' ? 40 : 24}
+                      padding="none"
+                      alignItems="flex-start"
+                    >
+                      {args.formType === 'default' && (
+                        <>
+                          <Stack direction="vertical" padding="none" gap={16} alignItems="flex-start">
+                            {args.heroLabel && <Label>{args.heroLabel}</Label>}
+                            {args.heroTitle && <Heading size="3">Talk to our sales team</Heading>}
+                          </Stack>
+                          <Box marginBlockStart={8}>
+                            <Stack direction="vertical" gap={8} padding="none">
+                              <Heading as="h2" size="subhead-medium">
+                                Need customer support?
+                              </Heading>
+                              <Text as="p">
+                                Questions about your existing GitHub Enterprise Installations? <br />
+                                <InlineLink href="#">Contact Enterprise Support</InlineLink>
+                              </Text>
+                            </Stack>
+                          </Box>
+                          {!isEnterprise && (
+                            <Stack direction="vertical" gap={8} padding="none">
+                              <Heading as="h2" size="subhead-medium">
+                                GitHub mailing address
+                              </Heading>
+                              <Text as="p">
+                                88 Colin P Kelly Jr St
+                                <br />
+                                San Francisco, CA 94107
+                                <br />
+                                United States
+                              </Text>
+                            </Stack>
+                          )}
+                        </>
                       )}
-
-                      <Heading as="h2" size="subhead-large" style={{color: 'var(--base-color-scale-purple-2)'}}>
-                        Subheader
-                      </Heading>
-
-                      {args.heroDescription && (
-                        <Text as="p" variant="muted">
-                          {args.heroDescription}
-                        </Text>
+                      {args.formType === 'extended' && (
+                        <>
+                          <Stack direction="vertical" padding="none" gap={16} alignItems="flex-start">
+                            {args.heroLabel && <Label>{args.heroLabel}</Label>}
+                            {args.heroTitle && (
+                              <Heading size="3">
+                                Set up your <br />
+                                Enterprise trial
+                              </Heading>
+                            )}
+                          </Stack>
+                          <Text as="p" variant="muted" size="300">
+                            Try GitHub Enterprise Cloud free for 30 days.
+                          </Text>
+                        </>
                       )}
                     </Stack>
                   </Box>
@@ -129,26 +226,21 @@ export function FeaturePreviewLevelOneSideBySide({
               </Box>
             </Stack>
           </Grid.Column>
-          <Grid.Column span={{large: 5}} start={{xlarge: 8}}>
+          <Grid.Column span={{large: 6}} start={{xlarge: 8}}>
             <Box
               padding={24}
-              paddingBlockStart={{narrow: 64, regular: 128, wide: 24}}
+              paddingBlockStart={{narrow: 64, regular: 128, wide: 48}}
               paddingBlockEnd={{narrow: 24, regular: 80}}
               marginBlockStart={{
                 wide: 128,
               }}
             >
-              <Stack direction="vertical" padding="none">
-                <Heading as="h2" size="6">
-                  Get started
-                </Heading>
-                <FormExample />
-              </Stack>
+              <FormExample type={args.formType} colorMode={colorMode} />
             </Box>
           </Grid.Column>
         </Grid>
       </Box>
-      <MinimalFooter>
+      <MinimalFooter className={styles.FeaturePreview__footer}>
         <MinimalFooter.Link href="https://github.com/organizations/enterprise_plan">
           Try GitHub for free
         </MinimalFooter.Link>

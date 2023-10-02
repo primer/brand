@@ -1,4 +1,5 @@
 .Footer {
+  position: relative;
   background-color: var(--brand-footer-bg-color);
 }
 

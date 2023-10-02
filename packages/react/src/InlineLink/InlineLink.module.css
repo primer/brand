@@ -1,39 +1,23 @@
 .InlineLink {
-  text-decoration: none;
   position: relative;
+  text-decoration: underline;
+  text-decoration-color: var(--brand-InlineLink-color-rest);
+  text-decoration-thickness: var(--brand-borderWidth-thin);
+  text-underline-position: under;
+  transition: var(--brand-InlineLink-transition-timing) text-decoration;
 }
 
 .InlineLink:hover {
-  text-decoration: none;
+  text-decoration-thickness: var(--brand-borderWidth-thick);
 }
 
 .InlineLink,
 .InlineLink > span {
+  font-weight: inherit;
   color: var(--brand-InlineLink-color-rest);
 }
 
 .InlineLink:active,
 .InlineLink:active > span {
   color: var(--brand-InlineLink-color-pressed);
-}
-
-.InlineLink::after {
-  content: '';
-  border-bottom: var(--brand-borderWidth-thin) solid var(--brand-InlineLink-color-rest);
-  height: 0;
-  transition: var(--brand-InlineLink-transition-timing) transform;
-  transform: scaleY(var(--brand-InlineLink-transition-scale-start));
-  transform-origin: 50% 100%;
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-}
-
-.InlineLink:hover::after {
-  transform: scaleY(var(--brand-InlineLink-transition-scale-end));
-}
-
-.InlineLink:active::after {
-  border-color: var(--brand-InlineLink-color-pressed);
 }
