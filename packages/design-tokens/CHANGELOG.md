@@ -1,5 +1,35 @@
 # @primer/brand-primitives
 
+## 0.27.0
+
+### Minor Changes
+
+- [#428](https://github.com/primer/brand/pull/428) [`6141bff`](https://github.com/primer/brand/commit/6141bff7ea7354afc78b3d5f29c842e7f569bfe0) Thanks [@josepmartins](https://github.com/josepmartins)! - Removes old control border radius tokens
+
+  ```diff
+  -  --brand-control-border-radius
+  -  --brand-control-large-borderRadius
+  -  --brand-control-medium-borderRadius
+  ```
+
+  Modifies border radius scale values and adds new `xlarge` border radius option to the scale
+
+  ```diff
+  + --brand-borderRadius-small: 4px
+  + --brand-borderRadius-medium: 8px
+  + --brand-borderRadius-large: 16px
+  + --brand-borderRadius-xlarge: 24px
+  ```
+
+- [#431](https://github.com/primer/brand/pull/431) [`2243ae4`](https://github.com/primer/brand/commit/2243ae4f651189e882ab5d7806f3132ca27c4de7) Thanks [@rezrah](https://github.com/rezrah)! - Fix erroneous `InlineLink` appearance on multiline.
+
+  Removed the following design tokens:
+
+  ```diff
+  - --brand-InlineLink-transition-scale-start
+  - --brand-InlineLink-transition-scale-end
+  ```
+
 ## 0.26.0
 
 ### Patch Changes
