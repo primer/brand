@@ -189,7 +189,7 @@ export const Stacked: StoryFn<typeof Card> = () => {
       {fixtureData.map(({heading, description, href, icon, iconColor}, id) => {
         return (
           <Grid.Column key={id} span={{small: 6, medium: 6, large: 3, xlarge: 3}}>
-            <Card key={id} href={href} style={{height: '100%'}}>
+            <Card key={id} href={href}>
               <Card.Icon icon={icon} hasBackground color={iconColor} />
               <Card.Heading>{heading}</Card.Heading>
               <Card.Description>{description}</Card.Description>

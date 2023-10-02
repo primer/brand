@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useCallback, useEffect} from 'react'
 import {
   Box,
   ColorModesEnum,
@@ -19,6 +19,7 @@ import enterpriseVideo from '../fixtures/images/other/enterprise.mp4'
 
 import styles from './FeaturePreviewLevelOne.module.css'
 import clsx from 'clsx'
+import {useWindowSize} from '../../../hooks/useWindowSize'
 
 type FeaturePreviewLevelOneSideBySideProps = {
   colorMode?: ColorModesEnum.LIGHT | ColorModesEnum.DARK
@@ -36,10 +37,27 @@ export function FeaturePreviewLevelOneSideBySide({
   isEnterprise = false,
   ...args
 }: FeaturePreviewLevelOneSideBySideProps) {
+  const {isLarge} = useWindowSize()
   const [enableGridOverlay, setEnableGridOverlay] = React.useState(false)
   const [isLightMode, setIsLightMode] = React.useState(colorMode === ColorModesEnum.LIGHT)
   const selectedColorMode = isLightMode ? ColorModesEnum.LIGHT : ColorModesEnum.DARK
   const accentColorValue = themeDetailsMap[accentColor][selectedColorMode].color
+
+  const handleHeroContentVerticalAlignment = useCallback(() => {
+    if (!isLarge) return
+    const formControlFullnameEl = document.querySelector('#fullname') as HTMLDivElement | null
+    const heroContentEl = document.querySelector('#hero-content-inner-sticky') as HTMLDivElement | null
+
+    const distanceFromTop = formControlFullnameEl?.getBoundingClientRect().top as number
+
+    const labelOffset = 28 + 16 // Label height + margin
+
+    if (heroContentEl) {
+      heroContentEl.style.top = `${distanceFromTop - labelOffset}px`
+      heroContentEl.style.margin = `0px`
+      heroContentEl.style.padding = `0px`
+    }
+  }, [isLarge])
 
   useEffect(() => {
     setIsLightMode(colorMode === ColorModesEnum.LIGHT)
@@ -57,6 +75,10 @@ export function FeaturePreviewLevelOneSideBySide({
           splitLayout.style.height = 'unset'
         }
       }
+
+      if (args.formType === 'default') {
+        handleHeroContentVerticalAlignment()
+      }
     }
 
     handleResize() // Set initial height on mount
@@ -67,7 +89,7 @@ export function FeaturePreviewLevelOneSideBySide({
     return () => {
       window.removeEventListener('resize', handleResize) // Remove event listener on unmount
     }
-  }, [args.formType])
+  }, [args.formType, handleHeroContentVerticalAlignment])
 
   const handleOverlay = e => {
     e.preventDefault()
@@ -129,6 +151,7 @@ export function FeaturePreviewLevelOneSideBySide({
               <Box padding={24} className={styles.FeaturePreview__heroContent}>
                 <ThemeProvider colorMode="dark" className={styles.FeaturePreview__heroContentInnerSticky}>
                   <Box
+                    id="hero-content-inner-sticky"
                     className={styles.FeaturePreview__heroContentInnerStickyContent}
                     paddingBlockStart={{
                       narrow: 80,

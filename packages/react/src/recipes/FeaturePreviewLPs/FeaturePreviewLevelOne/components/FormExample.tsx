@@ -114,7 +114,7 @@ export function FormExample({type = 'default', colorMode = ColorModesEnum.LIGHT}
             </>
           )}
 
-          <FormControl required fullWidth>
+          <FormControl id="fullname" required fullWidth>
             <FormControl.Label>Name</FormControl.Label>
             <TextInput required placeholder="First and last name" />
           </FormControl>

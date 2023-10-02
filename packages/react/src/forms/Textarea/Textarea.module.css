@@ -7,7 +7,7 @@
   background-color: var(--brand-color-canvas-default);
   border: none;
   border-radius: var(--brand-borderRadius-medium);
-  line-height: var(--brand-text-lineHeight-200);
+  line-height: var(--brand-text-lineHeight-100);
   transition: var(--brand-control-animation-duration) var(--brand-control-animation-easing);
   transition-property: color, background-color, box-shadow;
 }
@@ -54,14 +54,14 @@
  * Sizes
  */
 .Textarea--medium {
-  font-weight: var(--brand-text-weight-200);
-  font-size: var(--brand-text-size-200);
+  font-weight: var(--brand-text-weight-100);
+  font-size: var(--brand-text-size-100);
   padding: var(--brand-control-medium-paddingBlock) var(--brand-control-medium-paddingInline-condensed);
 }
 
 .Textarea--large {
-  font-weight: var(--brand-text-weight-300);
-  font-size: var(--brand-text-size-300);
+  font-weight: var(--brand-text-weight-200);
+  font-size: var(--brand-text-size-200);
   padding: var(--brand-control-large-paddingBlock) var(--brand-control-large-paddingInline-condensed);
 }
 
