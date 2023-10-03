@@ -14,10 +14,10 @@ const mockData = [
   {title: 'Section four', id: 'section4'},
   {title: 'Section five', id: 'section5'},
 ]
-const MockAnchorNavFixture = ({data = mockData}) => {
+const MockAnchorNavFixture = ({data = mockData, ...rest}) => {
   return (
     <>
-      <AnchorNav data-testid={AnchorNav.testIds.root}>
+      <AnchorNav data-testid={AnchorNav.testIds.root} {...rest}>
         {data.map((item, index) => {
           return (
             <AnchorNav.Link key={index} href={`#${item.id}`}>
@@ -136,10 +136,10 @@ describe('AnchorNav', () => {
   })
 
   it('renders correct class for hideUntilSticky behavior', () => {
-    const {getByTestId} = render(<MockAnchorNavFixture />)
+    const {getByTestId} = render(<MockAnchorNavFixture hideUntilSticky />)
     const rootEl = getByTestId(AnchorNav.testIds.root)
 
-    expect(rootEl.classList).toContain('AnchorNav--hideUntilSticky')
+    expect(rootEl.classList).toContain('AnchorNav--hide-until-sticky')
   })
 
   it('has no a11y violations on initial render', async () => {
