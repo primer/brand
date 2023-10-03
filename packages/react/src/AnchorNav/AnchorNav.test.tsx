@@ -135,6 +135,13 @@ describe('AnchorNav', () => {
     expect(windowSpy).toHaveBeenCalled() // scroll to is called
   })
 
+  it('renders correct class for hideUntilSticky behavior', () => {
+    const {getByTestId} = render(<MockAnchorNavFixture />)
+    const rootEl = getByTestId(AnchorNav.testIds.root)
+
+    expect(rootEl.classList).toContain('AnchorNav--hideUntilSticky')
+  })
+
   it('has no a11y violations on initial render', async () => {
     const {container} = render(<MockAnchorNavFixture />)
     const results = await axe(container)

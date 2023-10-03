@@ -40,9 +40,13 @@ export type AnchorNavProps = BaseProps<HTMLElement> & {
    * Enable the idle state background color, which is transparent by default.
    */
   enableDefaultBgColor?: boolean
+  /**
+   * When true, the anchor nav will hide until it is sticky.
+   */
+  hideUntilSticky?: boolean
 } & React.ComponentPropsWithoutRef<'nav'>
 
-function _AnchorNav({children, enableDefaultBgColor = false, ...props}: AnchorNavProps) {
+function _AnchorNav({children, enableDefaultBgColor = false, hideUntilSticky = false, ...rest}: AnchorNavProps) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
   const [currentActiveNavItem, setCurrentActiveNavItem] = useState<string | null>()
@@ -167,13 +171,15 @@ function _AnchorNav({children, enableDefaultBgColor = false, ...props}: AnchorNa
     <nav
       ref={rootRef}
       aria-label="Anchored navigation"
+      data-sticky={navShouldFix.toString()}
       className={clsx(
         styles.AnchorNav,
+        hideUntilSticky && styles['AnchorNav--hide-until-sticky'],
         navShouldFix && styles['AnchorNav--stuck'],
         menuOpen && styles['AnchorNav--expanded'],
         enableDefaultBgColor && styles['AnchorNav--with-default-background-color'],
       )}
-      {...props}
+      {...rest}
     >
       <div
         className={clsx(styles['AnchorNav-inner-container'], menuOpen && styles['AnchorNav-inner-container--expanded'])}

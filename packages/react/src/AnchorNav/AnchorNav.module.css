@@ -43,6 +43,15 @@
   z-index: 91; /* must be higher than subdomain nav bar */
 }
 
+.AnchorNav--hide-until-sticky:not(.AnchorNav--stuck) {
+  opacity: 0;
+  transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default);
+}
+
+.AnchorNav--hide-until-sticky.AnchorNav--stuck {
+  opacity: 1;
+}
+
 .AnchorNav--with-default-background-color {
   background-color: var(--brand-color-canvas-default);
 }
