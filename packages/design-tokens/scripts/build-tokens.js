@@ -186,6 +186,44 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
     },
   })
 
+  buildPrimitives({
+    source: [`tokens/base/colors/light.json`],
+    namespace,
+    platforms: {
+      css: {
+        buildPath: `${outputPath}/css/`,
+        transformGroup: 'css',
+        files: [
+          {
+            destination: `tokens/base/colors/light-with-modes.css`,
+            format: `css/color-mode-attributes`,
+          },
+          {
+            destination: `tokens/base/colors/light.css`,
+            format: `css/variables`,
+          },
+        ],
+      },
+    },
+  })
+
+  buildPrimitives({
+    source: [`tokens/base/colors/dark.json`],
+    namespace,
+    platforms: {
+      css: {
+        buildPath: `${outputPath}/css/`,
+        transformGroup: 'css',
+        files: [
+          {
+            destination: `tokens/base/colors/dark.css`,
+            format: `css/color-mode-attributes`,
+          },
+        ],
+      },
+    },
+  })
+
   const filesForColorModes = [
     `tokens/functional/colors/global.json`,
     `tokens/functional/components/button/colors.js`,

@@ -343,7 +343,7 @@
   width: 10px;
   height: 10px;
   content: '';
-  background: var(--base-color-scale-white-0);
+  background: var(--base-color-scale-white);
   border-radius: var(--brand-borderRadius-small);
   transform: rotate(45deg);
 }
@@ -365,7 +365,7 @@
 }
 
 .VideoPlayer__controlTextColor {
-  color: var(--base-color-scale-white-0);
+  color: var(--base-color-scale-white);
 }
 
 .VideoPlayer__shiftTooltipRight .VideoPlayer__tooltip {
@@ -389,7 +389,7 @@
 }
 
 .VideoPlayer__captionText {
-  color: var(--base-color-scale-white-0);
+  color: var(--base-color-scale-white);
   text-align: center;
   background: hsl(var(--base-color-scale-black-0-hsl) / 50%);
   padding: var(--brand-VideoPlayer-closedCaption-text-padding);

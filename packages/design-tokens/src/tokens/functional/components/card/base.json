@@ -4,9 +4,6 @@
       "maxWidth": {
         "value": "420px"
       },
-      "shadow": {
-        "value": "0 3px 2px hsl(var(--base-color-scale-black-0-hsl) / 4%), 0 7px 5px hsl(var(--base-color-scale-black-0-hsl) / 2%), 0 13px 10px hsl(var(--base-color-scale-black-0-hsl) / 2%), 0 22px 17px hsl(var(--base-color-scale-black-0-hsl) / 2%)"
-      },
       "animation": {
         "duration": {
           "value": "600ms"

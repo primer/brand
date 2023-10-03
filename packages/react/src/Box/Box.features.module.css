@@ -8,18 +8,18 @@
   background-image: linear-gradient(
     45deg,
     var(--base-color-scale-red-0) 12.5%,
-    hsla(var(--base-color-scale-red-2-hsl) / 50%) 12.5%,
-    hsla(var(--base-color-scale-red-2-hsl) / 50%) 50%,
+    #ffb5b380 12.5%,
+    #ffb5b380 50%,
     var(--base-color-scale-red-0) 50%,
     var(--base-color-scale-red-0) 62.5%,
-    hsla(var(--base-color-scale-red-2-hsl) / 50%) 62.5%,
-    hsla(var(--base-color-scale-red-2-hsl) / 50%) 100%
+    #ffb5b380 62.5%,
+    #ffb5b380 100%
   );
   background-size: 5.66px 5.66px;
 }
 
 .paddingInnerItem {
-  background-color: hsla(var(--base-color-scale-red-1-hsl) / 50%);
+  background-color: #ffb5b380;
   padding: var(--base-size-4) var(--base-size-8);
 }
 
@@ -28,7 +28,7 @@
 }
 
 .marginInnerItem {
-  background-color: var(--base-color-scale-white-0);
+  background-color: var(--base-color-scale-white);
   padding: var(--base-size-4) var(--base-size-8);
 }
 
@@ -37,12 +37,12 @@
   background-image: linear-gradient(
     45deg,
     var(--base-color-scale-red-0) 12.5%,
-    hsla(var(--base-color-scale-red-2-hsl) / 50%) 12.5%,
-    hsla(var(--base-color-scale-red-2-hsl) / 50%) 50%,
+    #ffb5b380 12.5%,
+    #ffb5b380 50%,
     var(--base-color-scale-red-0) 50%,
     var(--base-color-scale-red-0) 62.5%,
-    hsla(var(--base-color-scale-red-2-hsl) / 50%) 62.5%,
-    hsla(var(--base-color-scale-red-2-hsl) / 50%) 100%
+    #ffb5b380 62.5%,
+    #ffb5b380 100%
   );
   background-size: 5.66px 5.66px;
 }
