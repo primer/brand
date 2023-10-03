@@ -602,7 +602,7 @@
   line-height: var(--base-size-24);
   margin-bottom: var(--base-size-20);
   padding: 0 var(--base-size-8);
-  color: var(--base-color-scale-black-0);
+  color: var(--base-color-scale-black);
 }
 
 .SubdomainNavBar-search-result-item {
@@ -622,7 +622,7 @@
 
 .SubdomainNavBar-search-result-item-container a {
   display: block;
-  color: var(--base-color-scale-black-0);
+  color: var(--base-color-scale-black);
   text-decoration: none;
   margin: 0 0 var(--base-size-12);
   font-size: var(--base-size-16);
@@ -636,7 +636,7 @@
 }
 
 .SubdomainNavBar-search-result-item-desc {
-  color: var(--base-color-scale-black-0);
+  color: var(--base-color-scale-black);
 }
 
 /*
