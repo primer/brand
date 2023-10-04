@@ -79,6 +79,10 @@
   flex-direction: column;
 }
 
+.Testimonial-avatar {
+  flex: none;
+}
+
 .Testimonial-from {
   font-weight: var(--base-text-weight-semibold);
 }
