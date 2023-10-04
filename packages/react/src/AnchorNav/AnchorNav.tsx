@@ -44,9 +44,20 @@ export type AnchorNavProps = BaseProps<HTMLElement> & {
    * When true, the anchor nav will hide until it is sticky.
    */
   hideUntilSticky?: boolean
+  /**
+   * When true, the anchor nav will automatically offset the next sibling element
+   * by the height of the anchor nav to prevent layout shift
+   */
+  autoOffsetNextSibling?: boolean
 } & React.ComponentPropsWithoutRef<'nav'>
 
-function _AnchorNav({children, enableDefaultBgColor = false, hideUntilSticky = false, ...rest}: AnchorNavProps) {
+function _AnchorNav({
+  children,
+  enableDefaultBgColor = false,
+  hideUntilSticky = false,
+  autoOffsetNextSibling = true,
+  ...rest
+}: AnchorNavProps) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
   const [currentActiveNavItem, setCurrentActiveNavItem] = useState<string | null>()
@@ -121,6 +132,27 @@ function _AnchorNav({children, enableDefaultBgColor = false, hideUntilSticky = f
 
     return () => observer.disconnect()
   }, [])
+
+  useEffect(() => {
+    if (!autoOffsetNextSibling) return
+
+    const anchorNav = rootRef.current
+    const nextSibling = anchorNav?.nextElementSibling
+    const anchorNavHeight = anchorNav?.offsetHeight
+    if (nextSibling && anchorNavHeight) {
+      if (navShouldFix) {
+        ;(nextSibling as HTMLElement).style.paddingTop = `${anchorNavHeight}px`
+      } else {
+        ;(nextSibling as HTMLElement).style.paddingTop = '0px'
+      }
+    }
+
+    return () => {
+      if (nextSibling) {
+        ;(nextSibling as HTMLElement).style.paddingTop = '0px'
+      }
+    }
+  }, [navShouldFix, autoOffsetNextSibling])
 
   const handleMenuToggle = useCallback(
     event => {

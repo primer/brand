@@ -61,7 +61,7 @@
 
 .AnchorNav--stuck {
   box-shadow: 0 3px 6px rgba(140, 149, 159, 0.15), 0 1px 1px rgba(0, 0, 0, 0.1); /* TODO: replace with a global token */
-  position: sticky;
+  position: fixed;
 }
 
 .AnchorNav--expanded {
