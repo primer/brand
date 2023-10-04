@@ -206,7 +206,7 @@ const Logo = forwardRef(_Logo)
  */
 
 function _Avatar({size, ...rest}: AvatarProps) {
-  return <BaseAvatar size={48} {...rest} />
+  return <BaseAvatar className={clsx(styles['Testimonial-avatar'])} size={48} {...rest} />
 }
 
 const Avatar = _Avatar
