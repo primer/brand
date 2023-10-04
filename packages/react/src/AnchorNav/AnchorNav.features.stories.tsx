@@ -144,16 +144,14 @@ ShorterLabels.args = {
 export const CustomBackground = ({data, ...args}: {data: MockData; offset: number}) => {
   return (
     <div style={{backgroundColor: 'var(--base-color-scale-green-0)', paddingTop: args.offset}}>
-      <div>
-        <AnchorNav {...args}>
-          {Object.entries(data).map(([key, value]) => (
-            <AnchorNav.Link href={value} key={value}>
-              {key}
-            </AnchorNav.Link>
-          ))}
-          <AnchorNav.Action href="#">Sign up</AnchorNav.Action>
-        </AnchorNav>
-      </div>
+      <AnchorNav {...args}>
+        {Object.entries(data).map(([key, value]) => (
+          <AnchorNav.Link href={value} key={value}>
+            {key}
+          </AnchorNav.Link>
+        ))}
+        <AnchorNav.Action href="#">Sign up</AnchorNav.Action>
+      </AnchorNav>
       <div>
         {/**
          *  The following markup is provided for demonstration purposes only.
