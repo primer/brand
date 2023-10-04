@@ -45,17 +45,19 @@ export type AnchorNavProps = BaseProps<HTMLElement> & {
    */
   hideUntilSticky?: boolean
   /**
-   * When true, the anchor nav will automatically offset the next sibling element
-   * by the height of the anchor nav to prevent layout shift
+   * The id attribute value of the next, sibling element adjacent to the anchor nav.
+   * This element - if found - will apply a padding-top to itself equal to the height of the anchor nav when the anchor nav is sticky.
+   * This is useful for preventing content from jumping when the anchor nav becomes sticky.
+   * @important This element should not have a padding inline style already applied to it.
    */
-  autoOffsetNextSibling?: boolean
+  nextSiblingId?: string
 } & React.ComponentPropsWithoutRef<'nav'>
 
 function _AnchorNav({
   children,
   enableDefaultBgColor = false,
   hideUntilSticky = false,
-  autoOffsetNextSibling = true,
+  nextSiblingId,
   ...rest
 }: AnchorNavProps) {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -134,25 +136,36 @@ function _AnchorNav({
   }, [])
 
   useEffect(() => {
-    if (!autoOffsetNextSibling) return
+    if (!nextSiblingId || !rootRef.current) return
 
-    const anchorNav = rootRef.current
-    const nextSibling = anchorNav?.nextElementSibling
-    const anchorNavHeight = anchorNav?.offsetHeight
-    if (nextSibling && anchorNavHeight) {
-      if (navShouldFix) {
-        ;(nextSibling as HTMLElement).style.paddingTop = `${anchorNavHeight}px`
-      } else {
-        ;(nextSibling as HTMLElement).style.paddingTop = '0px'
+    const nextSiblingEl = document.getElementById(nextSiblingId)
+
+    if (!nextSiblingEl) return
+
+    const anchorNavEl = rootRef.current
+    const anchorNavHeight = anchorNavEl.getBoundingClientRect().height
+
+    const observer = new MutationObserver(mutations => {
+      for (const mutation of mutations) {
+        if (mutation.attributeName === 'data-sticky') {
+          if (mutation.target instanceof HTMLElement) {
+            const dataSticky = mutation.target.getAttribute('data-sticky')
+            if (dataSticky === 'true' && nextSiblingEl instanceof HTMLElement) {
+              nextSiblingEl.style.paddingTop = `${anchorNavHeight}px`
+            } else if (nextSiblingEl instanceof HTMLElement) {
+              nextSiblingEl.style.paddingTop = '0px'
+            }
+          }
+        }
       }
-    }
+    })
+
+    observer.observe(anchorNavEl, {attributes: true})
 
     return () => {
-      if (nextSibling) {
-        ;(nextSibling as HTMLElement).style.paddingTop = '0px'
-      }
+      observer.disconnect()
     }
-  }, [navShouldFix, autoOffsetNextSibling])
+  }, [navShouldFix, nextSiblingId])
 
   const handleMenuToggle = useCallback(
     event => {

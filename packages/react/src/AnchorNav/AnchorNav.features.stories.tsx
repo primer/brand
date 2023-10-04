@@ -22,6 +22,7 @@ export default {
     },
   },
   args: {
+    nextSiblingId: 'stack-next-sibling',
     enableDefaultBgColor: true,
     data: {
       ['GitHub vs Jenkins']: 'githubvsjenkins',
@@ -91,6 +92,7 @@ const Template: StoryFn<typeof AnchorNav> = (_, storyArgs: any) => {
        *  It is not part of the AnchorNav component.
        */}
       <Stack
+        id="stack-next-sibling"
         direction="vertical"
         justifyContent="space-around"
         gap="none"
