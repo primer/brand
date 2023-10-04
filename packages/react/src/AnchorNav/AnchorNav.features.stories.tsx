@@ -152,35 +152,31 @@ export const CustomBackground = ({data, ...args}: {data: MockData; offset: numbe
         ))}
         <AnchorNav.Action href="#">Sign up</AnchorNav.Action>
       </AnchorNav>
-      <div>
-        {/**
-         *  The following markup is provided for demonstration purposes only.
-         *  It is not part of the AnchorNav component.
-         */}
-        <Stack
-          direction="vertical"
-          justifyContent="space-around"
-          gap="none"
-          style={{marginBottom: '100px'}}
-          padding="none"
-        >
-          {Object.entries(data).map(([key, value]) => (
-            <Stack
-              key={value}
-              id={value}
-              direction="vertical"
-              style={{
-                padding: '500px var(--base-size-24)',
-              }}
-            >
-              <Heading>{key}</Heading>
-              <Text as="p">
-                AnchorNav is a component that allows users to navigate to different sections of a page.
-              </Text>
-            </Stack>
-          ))}
-        </Stack>
-      </div>
+      {/**
+       *  The following markup is provided for demonstration purposes only.
+       *  It is not part of the AnchorNav component.
+       */}
+      <Stack
+        direction="vertical"
+        justifyContent="space-around"
+        gap="none"
+        style={{marginBottom: '100px'}}
+        padding="none"
+      >
+        {Object.entries(data).map(([key, value]) => (
+          <Stack
+            key={value}
+            id={value}
+            direction="vertical"
+            style={{
+              padding: '500px var(--base-size-24)',
+            }}
+          >
+            <Heading>{key}</Heading>
+            <Text as="p">AnchorNav is a component that allows users to navigate to different sections of a page.</Text>
+          </Stack>
+        ))}
+      </Stack>
     </div>
   )
 }
