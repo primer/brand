@@ -44,22 +44,9 @@ export type AnchorNavProps = BaseProps<HTMLElement> & {
    * When true, the anchor nav will hide until it is sticky.
    */
   hideUntilSticky?: boolean
-  /**
-   * The id attribute value of the next, sibling element adjacent to the anchor nav.
-   * This element - if found - will apply a padding-top to itself equal to the height of the anchor nav when the anchor nav is sticky.
-   * This is useful for preventing content from jumping when the anchor nav becomes sticky.
-   * @important This element should not have a padding inline style already applied to it.
-   */
-  nextSiblingId?: string
 } & React.ComponentPropsWithoutRef<'nav'>
 
-function _AnchorNav({
-  children,
-  enableDefaultBgColor = false,
-  hideUntilSticky = false,
-  nextSiblingId,
-  ...rest
-}: AnchorNavProps) {
+function _AnchorNav({children, enableDefaultBgColor = false, hideUntilSticky = false, ...rest}: AnchorNavProps) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
   const [currentActiveNavItem, setCurrentActiveNavItem] = useState<string | null>()
@@ -67,6 +54,7 @@ function _AnchorNav({
   const [initialYOffset, setInitialYOffset] = useState<undefined | number>()
   const [navShouldFix, setNavShouldFix] = useState<boolean>(false)
 
+  const wrapperRef = useRef<HTMLDivElement | null>(null)
   const rootRef = useRef<HTMLElement | null>(null)
   const menuToggleButtonRef = useRef<HTMLButtonElement | null>(null)
   const linkContainerRef = useRef<HTMLDivElement | null>(null)
@@ -87,7 +75,7 @@ function _AnchorNav({
 
   useEffect(() => {
     if (initialYOffset === undefined && intersectionEntry) {
-      setInitialYOffset(intersectionEntry.boundingClientRect.y)
+      setInitialYOffset(intersectionEntry.boundingClientRect.y + window.scrollY)
     }
   }, [initialYOffset, intersectionEntry])
 
@@ -119,7 +107,7 @@ function _AnchorNav({
   }, [initialYOffset])
 
   useEffect(() => {
-    const node = rootRef.current
+    const node = hideUntilSticky ? wrapperRef.current : rootRef.current
 
     const supportsIntersectionObserver = !!window.IntersectionObserver
 
@@ -133,39 +121,7 @@ function _AnchorNav({
     observer.observe(node)
 
     return () => observer.disconnect()
-  }, [])
-
-  useEffect(() => {
-    if (!nextSiblingId || !rootRef.current) return
-
-    const nextSiblingEl = document.getElementById(nextSiblingId)
-
-    if (!nextSiblingEl) return
-
-    const anchorNavEl = rootRef.current
-    const anchorNavHeight = anchorNavEl.getBoundingClientRect().height
-
-    const observer = new MutationObserver(mutations => {
-      for (const mutation of mutations) {
-        if (mutation.attributeName === 'data-sticky') {
-          if (mutation.target instanceof HTMLElement) {
-            const dataSticky = mutation.target.getAttribute('data-sticky')
-            if (dataSticky === 'true' && nextSiblingEl instanceof HTMLElement) {
-              nextSiblingEl.style.paddingTop = `${anchorNavHeight}px`
-            } else if (nextSiblingEl instanceof HTMLElement) {
-              nextSiblingEl.style.paddingTop = '0px'
-            }
-          }
-        }
-      }
-    })
-
-    observer.observe(anchorNavEl, {attributes: true})
-
-    return () => {
-      observer.disconnect()
-    }
-  }, [navShouldFix, nextSiblingId])
+  }, [hideUntilSticky])
 
   const handleMenuToggle = useCallback(
     event => {
@@ -213,57 +169,62 @@ function _AnchorNav({
   }).filter(Boolean)
 
   return (
-    <nav
-      ref={rootRef}
-      aria-label="Anchored navigation"
-      data-sticky={navShouldFix.toString()}
-      className={clsx(
-        styles.AnchorNav,
-        hideUntilSticky && styles['AnchorNav--hide-until-sticky'],
-        navShouldFix && styles['AnchorNav--stuck'],
-        menuOpen && styles['AnchorNav--expanded'],
-        enableDefaultBgColor && styles['AnchorNav--with-default-background-color'],
-      )}
-      {...rest}
-    >
-      <div
-        className={clsx(styles['AnchorNav-inner-container'], menuOpen && styles['AnchorNav-inner-container--expanded'])}
+    <div ref={wrapperRef}>
+      <nav
+        ref={rootRef}
+        aria-label="Anchored navigation"
+        data-sticky={navShouldFix.toString()}
+        className={clsx(
+          styles.AnchorNav,
+          hideUntilSticky && styles['AnchorNav--hide-until-sticky'],
+          navShouldFix && styles['AnchorNav--stuck'],
+          menuOpen && styles['AnchorNav--expanded'],
+          enableDefaultBgColor && styles['AnchorNav--with-default-background-color'],
+        )}
+        {...rest}
       >
-        <button
-          ref={menuToggleButtonRef}
-          onClick={handleMenuToggle}
-          className={clsx(styles['AnchorNav-menu-button'])}
-          aria-expanded={menuOpen ? 'true' : 'false'}
-          aria-controls={idForLinkContainer}
-          aria-label={`${menuOpen ? 'close' : 'open'} anchor navigation menu`}
-          data-testid={testIds.menuButton}
-        >
-          {menuOpen ? (
-            <ChevronUpIcon size={16} className={styles['AnchorNav-menu-button-arrow']} fill="currentcolor" />
-          ) : (
-            <ChevronDownIcon size={16} className={styles['AnchorNav-menu-button-arrow']} fill="currentcolor" />
-          )}
-          <Text as="span" className={clsx(styles['AnchorNav-link-label'])}>
-            {currentActiveNavItem}
-          </Text>
-        </button>
-        {/**Replace with unique ids and test ids */}
         <div
-          id={idForLinkContainer}
-          data-testid={testIds.menuLinks}
-          className={styles['AnchorNav-link-container']}
-          ref={linkContainerRef}
+          className={clsx(
+            styles['AnchorNav-inner-container'],
+            menuOpen && styles['AnchorNav-inner-container--expanded'],
+          )}
         >
-          {Links}
+          <button
+            ref={menuToggleButtonRef}
+            onClick={handleMenuToggle}
+            className={clsx(styles['AnchorNav-menu-button'])}
+            aria-expanded={menuOpen ? 'true' : 'false'}
+            aria-controls={idForLinkContainer}
+            aria-label={`${menuOpen ? 'close' : 'open'} anchor navigation menu`}
+            data-testid={testIds.menuButton}
+          >
+            {menuOpen ? (
+              <ChevronUpIcon size={16} className={styles['AnchorNav-menu-button-arrow']} fill="currentcolor" />
+            ) : (
+              <ChevronDownIcon size={16} className={styles['AnchorNav-menu-button-arrow']} fill="currentcolor" />
+            )}
+            <Text as="span" className={clsx(styles['AnchorNav-link-label'])}>
+              {currentActiveNavItem}
+            </Text>
+          </button>
+          {/**Replace with unique ids and test ids */}
+          <div
+            id={idForLinkContainer}
+            data-testid={testIds.menuLinks}
+            className={styles['AnchorNav-link-container']}
+            ref={linkContainerRef}
+          >
+            {Links}
+          </div>
+          {Action}
         </div>
-        {Action}
-      </div>
-      <span
-        className={clsx(menuOpen && styles['AnchorNav-overlay--expanded'])}
-        onClick={closeMenuCallback}
-        aria-hidden
-      />
-    </nav>
+        <span
+          className={clsx(menuOpen && styles['AnchorNav-overlay--expanded'])}
+          onClick={closeMenuCallback}
+          aria-hidden
+        />
+      </nav>
+    </div>
   )
 }
 

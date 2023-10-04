@@ -22,7 +22,6 @@ export default {
     },
   },
   args: {
-    nextSiblingId: 'stack-next-sibling',
     enableDefaultBgColor: true,
     data: {
       ['GitHub vs Jenkins']: 'githubvsjenkins',
@@ -92,7 +91,6 @@ const Template: StoryFn<typeof AnchorNav> = (_, storyArgs: any) => {
        *  It is not part of the AnchorNav component.
        */}
       <Stack
-        id="stack-next-sibling"
         direction="vertical"
         justifyContent="space-around"
         gap="none"
@@ -146,39 +144,45 @@ ShorterLabels.args = {
 export const CustomBackground = ({data, ...args}: {data: MockData; offset: number}) => {
   return (
     <div style={{backgroundColor: 'var(--base-color-scale-green-0)', paddingTop: args.offset}}>
-      <AnchorNav {...args}>
-        {Object.entries(data).map(([key, value]) => (
-          <AnchorNav.Link href={value} key={value}>
-            {key}
-          </AnchorNav.Link>
-        ))}
-        <AnchorNav.Action href="#">Sign up</AnchorNav.Action>
-      </AnchorNav>
-      {/**
-       *  The following markup is provided for demonstration purposes only.
-       *  It is not part of the AnchorNav component.
-       */}
-      <Stack
-        direction="vertical"
-        justifyContent="space-around"
-        gap="none"
-        style={{marginBottom: '100px'}}
-        padding="none"
-      >
-        {Object.entries(data).map(([key, value]) => (
-          <Stack
-            key={value}
-            id={value}
-            direction="vertical"
-            style={{
-              padding: '500px var(--base-size-24)',
-            }}
-          >
-            <Heading>{key}</Heading>
-            <Text as="p">AnchorNav is a component that allows users to navigate to different sections of a page.</Text>
-          </Stack>
-        ))}
-      </Stack>
+      <div>
+        <AnchorNav {...args}>
+          {Object.entries(data).map(([key, value]) => (
+            <AnchorNav.Link href={value} key={value}>
+              {key}
+            </AnchorNav.Link>
+          ))}
+          <AnchorNav.Action href="#">Sign up</AnchorNav.Action>
+        </AnchorNav>
+      </div>
+      <div>
+        {/**
+         *  The following markup is provided for demonstration purposes only.
+         *  It is not part of the AnchorNav component.
+         */}
+        <Stack
+          direction="vertical"
+          justifyContent="space-around"
+          gap="none"
+          style={{marginBottom: '100px'}}
+          padding="none"
+        >
+          {Object.entries(data).map(([key, value]) => (
+            <Stack
+              key={value}
+              id={value}
+              direction="vertical"
+              style={{
+                padding: '500px var(--base-size-24)',
+              }}
+            >
+              <Heading>{key}</Heading>
+              <Text as="p">
+                AnchorNav is a component that allows users to navigate to different sections of a page.
+              </Text>
+            </Stack>
+          ))}
+        </Stack>
+      </div>
     </div>
   )
 }
