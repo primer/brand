@@ -1,0 +1,28 @@
+name: Update a11y datadog branch
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync-with-main:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: warning/a11y-test-do-not-delete
+          fetch-depth: 0
+
+      - name: Pull latest changes from main
+        run: |
+          git fetch -p
+          git merge --ff-only main
+
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v4.16.0
+        with:
+          branch: warning/a11y-test-do-not-delete
+          commit_message: github-actions[bot] sync with main
