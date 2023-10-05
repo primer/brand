@@ -7,6 +7,7 @@ import {NavigationVisbilityObserver} from './NavigationVisbilityObserver'
 import {useOnClickOutside} from '../hooks/useOnClickOutside'
 import {useFocusTrap} from '../hooks/useFocusTrap'
 import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
+import {useWindowSize} from '../hooks/useWindowSize'
 
 /**
  * Design tokens
@@ -79,9 +80,16 @@ function Root({
 }: SubdomainNavBarProps) {
   const [menuHidden, setMenuHidden] = useState(true)
   const [searchVisible, setSearchVisible] = useState(false)
+  const {width} = useWindowSize()
 
   const handleMobileMenuClick = () => setMenuHidden(!menuHidden)
   const handleSearchVisibility = () => setSearchVisible(!searchVisible)
+
+  useEffect(() => {
+    if (width && width >= 768) {
+      setMenuHidden(true)
+    }
+  }, [width, menuHidden])
 
   useEffect(() => {
     const newOverflowState = menuHidden ? 'auto' : 'hidden'

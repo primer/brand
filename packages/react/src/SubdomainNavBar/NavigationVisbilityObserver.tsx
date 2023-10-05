@@ -11,14 +11,13 @@ import styles from './SubdomainNavBar.module.css'
 import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
 import {useWindowSize} from '../hooks/useWindowSize'
 
-export function NavigationVisbilityObserver({children, className, showOnlyOnNarrow = false, ...rest}) {
+export function NavigationVisbilityObserver({children, className, ...rest}) {
   const navRef = useRef<HTMLUListElement | null>(null)
   const [visibilityMap] = useVisibilityObserver(navRef, children)
   const {width} = useWindowSize()
 
   const showOverflow = Object.values(visibilityMap).includes(false)
 
-  if (showOnlyOnNarrow && width && width > 768) return null
   return (
     <ul className={clsx(styles['SubdomainNavBar-primary-nav-list'], className)} ref={navRef} {...rest}>
       {React.Children.map(children, child => {
