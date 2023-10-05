@@ -83,6 +83,11 @@ function Root({
   const handleMobileMenuClick = () => setMenuHidden(!menuHidden)
   const handleSearchVisibility = () => setSearchVisible(!searchVisible)
 
+  useEffect(() => {
+    const newOverflowState = menuHidden ? 'auto' : 'hidden'
+    document.body.style.overflow = newOverflowState
+  }, [menuHidden])
+
   const hasLinks =
     useMemo(
       () =>
@@ -204,40 +209,42 @@ function Root({
               </button>
             )}
 
-            {hasLinks && !menuHidden && (
-              <NavigationVisbilityObserver className={clsx(styles['SubdomainNavBar-primary-nav-list--visible'])}>
-                {menuItems}
-              </NavigationVisbilityObserver>
-            )}
-
-            <div
-              className={clsx(
-                styles['SubdomainNavBar-button-area'],
-                !menuHidden && styles['SubdomainNavBar-button-area--visible'],
+            <div className={clsx(styles['SubdomainNavBar-foobarbaz'])}>
+              {hasLinks && !menuHidden && (
+                <NavigationVisbilityObserver className={clsx(styles['SubdomainNavBar-primary-nav-list--visible'])}>
+                  {menuItems}
+                </NavigationVisbilityObserver>
               )}
-            >
-              <div className={styles['SubdomainNavBar-button-area-inner']}>
-                {React.Children.toArray(children)
-                  .map(child => {
-                    if (React.isValidElement(child) && typeof child.type !== 'string') {
-                      if (child.type === PrimaryAction) {
-                        return child
-                      }
-                      return null
-                    }
-                  })
-                  .filter(Boolean)}
 
-                {React.Children.toArray(children)
-                  .map(child => {
-                    if (React.isValidElement(child) && typeof child.type !== 'string') {
-                      if (child.type === SecondaryAction) {
-                        return child
+              <div
+                className={clsx(
+                  styles['SubdomainNavBar-button-area'],
+                  !menuHidden && styles['SubdomainNavBar-button-area--visible'],
+                )}
+              >
+                <div className={styles['SubdomainNavBar-button-area-inner']}>
+                  {React.Children.toArray(children)
+                    .map(child => {
+                      if (React.isValidElement(child) && typeof child.type !== 'string') {
+                        if (child.type === PrimaryAction) {
+                          return child
+                        }
+                        return null
                       }
-                      return null
-                    }
-                  })
-                  .filter(Boolean)}
+                    })
+                    .filter(Boolean)}
+
+                  {React.Children.toArray(children)
+                    .map(child => {
+                      if (React.isValidElement(child) && typeof child.type !== 'string') {
+                        if (child.type === SecondaryAction) {
+                          return child
+                        }
+                        return null
+                      }
+                    })
+                    .filter(Boolean)}
+                </div>
               </div>
             </div>
           </div>
