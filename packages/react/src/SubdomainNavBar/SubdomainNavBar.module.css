@@ -479,11 +479,9 @@
 
   .SubdomainNavBar-button-area--visible {
     display: flex;
-    /* position: absolute; */
     left: 0;
     z-index: 99;
     width: 100%;
-    /* bottom: calc(calc(-100vh - 75px) - -150px); */
     height: auto;
     animation-name: fade-in-down-staggered;
     animation-duration: 500ms;
