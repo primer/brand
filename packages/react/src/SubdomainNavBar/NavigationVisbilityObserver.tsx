@@ -11,13 +11,15 @@ import styles from './SubdomainNavBar.module.css'
 import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
 import {useWindowSize} from '../hooks/useWindowSize'
 
-export function NavigationVisbilityObserver({children, className, ...rest}) {
+export function NavigationVisbilityObserver({children, className, onlyNarrow = false, ...rest}) {
   const navRef = useRef<HTMLUListElement | null>(null)
   const [visibilityMap] = useVisibilityObserver(navRef, children)
   const {width} = useWindowSize()
 
   const showOverflow = Object.values(visibilityMap).includes(false)
+  const breakpoint = 768
 
+  if (width && width > breakpoint && onlyNarrow) return null
   return (
     <ul className={clsx(styles['SubdomainNavBar-primary-nav-list'], className)} ref={navRef} {...rest}>
       {React.Children.map(children, child => {
@@ -25,11 +27,11 @@ export function NavigationVisbilityObserver({children, className, ...rest}) {
           className: clsx(
             child.props.className,
             width &&
-              width >= 768 &&
+              width >= breakpoint &&
               !!visibilityMap[child.props['data-navitemid']] &&
               styles['SubdomainNavBar-primary-nav-list-item--visible'],
             width &&
-              width >= 768 &&
+              width >= breakpoint &&
               !visibilityMap[child.props['data-navitemid']] &&
               styles['SubdomainNavBar-primary-nav-list-item--invisible'],
           ),

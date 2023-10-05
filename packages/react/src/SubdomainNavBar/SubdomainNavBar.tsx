@@ -7,6 +7,7 @@ import {NavigationVisbilityObserver} from './NavigationVisbilityObserver'
 import {useOnClickOutside} from '../hooks/useOnClickOutside'
 import {useFocusTrap} from '../hooks/useFocusTrap'
 import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
+import {useWindowSize} from '../hooks/useWindowSize'
 
 /**
  * Design tokens
@@ -77,6 +78,7 @@ function Root({
   titleHref = '/',
   ...rest
 }: SubdomainNavBarProps) {
+  // const {width} = useWindowSize()
   const [menuHidden, setMenuHidden] = useState(true)
   const [searchVisible, setSearchVisible] = useState(false)
 
@@ -183,7 +185,6 @@ function Root({
                 }
               })
               .filter(Boolean)}
-
             {hasLinks && (
               <button
                 aria-expanded={!menuHidden}
@@ -205,7 +206,10 @@ function Root({
             )}
 
             {hasLinks && !menuHidden && (
-              <NavigationVisbilityObserver className={clsx(styles['SubdomainNavBar-primary-nav-list--visible'])}>
+              <NavigationVisbilityObserver
+                onlyNarrow={true}
+                className={clsx(styles['SubdomainNavBar-primary-nav-list--visible'])}
+              >
                 {menuItems}
               </NavigationVisbilityObserver>
             )}
