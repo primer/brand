@@ -23,6 +23,7 @@ export default {
       ['GitHub vs BitBucket']: 'githubvsvsbitbucket',
       ['GitHub vs TravisCI']: 'githubvsvstravis',
     },
+    sectionHeight: 1000,
     offset: 100,
   },
   argTypes: {
@@ -31,6 +32,16 @@ export default {
       description: 'Test data',
       control: {
         type: 'object',
+      },
+      table: {
+        category: 'Story customization',
+      },
+    },
+    sectionHeight: {
+      name: 'Section height',
+      description: 'Section height',
+      control: {
+        type: 'number',
       },
       table: {
         category: 'Story customization',
@@ -62,7 +73,7 @@ export const Default = ({data, ...args}: {data: MockData}) => {
   )
 }
 
-export const Playground = ({data, ...args}: {data: MockData; offset: number}) => {
+export const Playground = ({data, ...args}: {data: MockData; offset: number; sectionHeight: number}) => {
   return (
     <div style={{backgroundColor: 'var(--base-color-scale-red-0)'}}>
       <RedlineBackground height={args.offset}>
@@ -101,7 +112,7 @@ export const Playground = ({data, ...args}: {data: MockData; offset: number}) =>
               id={value}
               direction="vertical"
               style={{
-                padding: '500px var(--base-size-24)',
+                padding: `${args.sectionHeight / 2}px var(--base-size-24)`,
               }}
             >
               <Heading>{key}</Heading>
