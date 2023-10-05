@@ -209,9 +209,12 @@ function Root({
               </button>
             )}
 
-            <div className={clsx(styles['SubdomainNavBar-foobarbaz'])}>
+            <div className={clsx(styles['SubdomainNavBar-menu-wrapper'])}>
               {hasLinks && !menuHidden && (
-                <NavigationVisbilityObserver className={clsx(styles['SubdomainNavBar-primary-nav-list--visible'])}>
+                <NavigationVisbilityObserver
+                  showOnlyOnNarrow
+                  className={clsx(styles['SubdomainNavBar-primary-nav-list--visible'])}
+                >
                   {menuItems}
                 </NavigationVisbilityObserver>
               )}
