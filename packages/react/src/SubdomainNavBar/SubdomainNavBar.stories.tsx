@@ -405,17 +405,19 @@ const Template: StoryFn<Args> = args => {
     <>
       <div>
         <SubdomainNavBar {...args} title={args.title}>
-          {['collections', 'topics', 'articles', 'events', 'video', 'social'].slice(0, args.numLinks).map(link => {
-            return (
-              <SubdomainNavBar.Link key={link} href={`#${link}`}>
-                {link
-                  .toLowerCase()
-                  .split(' ')
-                  .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                  .join(' ')}
-              </SubdomainNavBar.Link>
-            )
-          })}
+          {['collections', 'topics', 'articles', 'events', 'video', 'social', 'podcasts', 'books', 'guides', 'webcasts']
+            .slice(0, args.numLinks)
+            .map(link => {
+              return (
+                <SubdomainNavBar.Link key={link} href={`#${link}`}>
+                  {link
+                    .toLowerCase()
+                    .split(' ')
+                    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join(' ')}
+                </SubdomainNavBar.Link>
+              )
+            })}
           {args.showSearch && (
             <SubdomainNavBar.Search
               ref={inputRef}
@@ -543,6 +545,18 @@ MobileMenuOpen.parameters = {
   },
 }
 MobileMenuOpen.play = async ({canvasElement}) => {
+  const canvas = within(canvasElement)
+  await userEvent.click(canvas.getByLabelText('Menu'))
+}
+
+export const MobileMenuOpenManyItems = Template.bind({})
+MobileMenuOpenManyItems.args = {numLinks: 10}
+MobileMenuOpenManyItems.parameters = {
+  viewport: {
+    defaultViewport: 'iphonex',
+  },
+}
+MobileMenuOpenManyItems.play = async ({canvasElement}) => {
   const canvas = within(canvasElement)
   await userEvent.click(canvas.getByLabelText('Menu'))
 }
