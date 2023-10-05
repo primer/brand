@@ -235,3 +235,9 @@ RegularViewMenuOpen.play = async ({canvasElement}) => {
   await userEvent.click(canvas.getByTestId(AnchorNav.testIds.menuButton))
   await expect(menubar).toBeVisible()
 }
+
+export const HideUntilSticky = Template.bind({})
+HideUntilSticky.args = {
+  hideUntilSticky: true,
+}
+HideUntilSticky.storyName = 'Hide until sticky'

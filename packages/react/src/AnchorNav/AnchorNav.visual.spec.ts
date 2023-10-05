@@ -85,6 +85,15 @@ test.describe('Visual Comparison: AnchorNav', () => {
       expect(await page.screenshot()).toMatchSnapshot()
     })
   })
+  test('AnchorNav / Hide until sticky', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--hide-until-sticky&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('AnchorNav / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-anchornav--default&viewMode=story')
 

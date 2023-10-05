@@ -1,7 +1,8 @@
 declare const styles: {
   readonly "AnchorNav": string;
-  readonly "AnchorNav--with-default-background-color": string;
+  readonly "AnchorNav--hide-until-sticky": string;
   readonly "AnchorNav--stuck": string;
+  readonly "AnchorNav--with-default-background-color": string;
   readonly "AnchorNav--expanded": string;
   readonly "AnchorNav-link-container": string;
   readonly "AnchorNav-inner-container": string;
