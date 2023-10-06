@@ -27,8 +27,7 @@
 }
 
 .Grid--has-overlay .Grid__column {
-  /* background-color: var(--brand-Grid-column-bgColor-overlay); */
-  background-color: var(--brand-color-neutral-muted);
+  background-color: var(--brand-Grid-column-bgColor-overlay);
   min-height: var(--base-size-24);
 }
 

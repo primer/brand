@@ -3,13 +3,17 @@
     "color": {
       "scale": {
         "black": {
-          "value": "#010409"
-        },
-        "white": {
-          "value": "#ffffff"
+          "0": {
+            "value": "#010409"
+          }
         },
         "transparent": {
           "value": "#00000000"
+        },
+        "white": {
+          "0": {
+            "value": "#ffffff"
+          }
         },
         "gray": {
           "0": {

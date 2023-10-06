@@ -4,6 +4,9 @@ const {buildPrimitives, StyleDictionary} = require('@primer/primitives/build')
 const mediaQueryFormat = require('../src/formats/responsive-media-query')
 const colorModeFormat = require('../src/formats/color-mode-attributes')
 
+const lightJson = require('../src/tokens/base/colors/light')
+const darkJson = require('../src/tokens/base/colors/dark')
+
 ;(function () {
   const namespace = 'brand'
   const outputPath = './lib/design-tokens'
@@ -14,7 +17,6 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
    * Step 1:
    * Create a temporary directory with JSON files to convert into tokens
    */
-  // move over base configs
 
   fs.cpSync('../../node_modules/@primer/primitives/tokens', dest, {recursive: true})
 
@@ -24,6 +26,30 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
 
   /**
    * Step 2:
+   * Produce a color-scales.json src file temporarily
+   */
+
+  const mergeLightAndDark = (light, dark) => {
+    const merged = {}
+
+    for (const key in dark) {
+      if (typeof dark[key] === 'object' && dark[key] !== null) {
+        merged[key] = mergeLightAndDark(light[key] || {}, dark[key])
+      } else if (key === 'value' && light) {
+        merged[key] = light[key]
+        merged['dark'] = dark[key]
+      }
+    }
+
+    return merged
+  }
+
+  const mergedColorScales = mergeLightAndDark(lightJson, darkJson)
+
+  fs.writeFileSync(`${dest}/base/colors/color-scales.json`, JSON.stringify(mergedColorScales))
+
+  /**
+   * Step 3:
    * Build tokens by running function against the temporary directory
    */
 
@@ -178,46 +204,7 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
             format: `css/color-mode-attributes`,
             options: {
               outputReferences: false,
-              containsRawHSL: true,
             },
-          },
-        ],
-      },
-    },
-  })
-
-  buildPrimitives({
-    source: [`tokens/base/colors/light.json`],
-    namespace,
-    platforms: {
-      css: {
-        buildPath: `${outputPath}/css/`,
-        transformGroup: 'css',
-        files: [
-          {
-            destination: `tokens/base/colors/light-with-modes.css`,
-            format: `css/color-mode-attributes`,
-          },
-          {
-            destination: `tokens/base/colors/light.css`,
-            format: `css/variables`,
-          },
-        ],
-      },
-    },
-  })
-
-  buildPrimitives({
-    source: [`tokens/base/colors/dark.json`],
-    namespace,
-    platforms: {
-      css: {
-        buildPath: `${outputPath}/css/`,
-        transformGroup: 'css',
-        files: [
-          {
-            destination: `tokens/base/colors/dark.css`,
-            format: `css/color-mode-attributes`,
           },
         ],
       },
@@ -263,7 +250,6 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
               format: `css/color-mode-attributes`,
               options: {
                 outputReferences: false,
-                containsRawHSL: false,
               },
             },
           ],
@@ -273,7 +259,7 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
   }
 
   /**
-   * Step 3:
+   * Step 4:
    * Clean up the temporary directory
    */
   fs.rmdirSync(dest, {recursive: true})

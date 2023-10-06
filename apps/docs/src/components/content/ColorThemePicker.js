@@ -1,7 +1,7 @@
 import {Box as PRCBox} from '@primer/react'
 import React from 'react'
 import {useColorTheme, availableModes} from './ColorThemeContext'
-import globalFunctionalTokens from '@primer/brand-primitives/lib/design-tokens/js/module/tokens/base/colors/color-scales'
+import baseColorScales from '@primer/brand-primitives/lib/design-tokens/js/module/tokens/base/colors/light'
 
 export function ColorThemePicker() {
   const [colorTheme, setColorTheme] = useColorTheme()
@@ -67,10 +67,7 @@ function ColorThemePreview() {
             sx={{
               width: 20,
               height: 20,
-              bg: `hsl(${globalFunctionalTokens.base.color.scale[name][5].value
-                .split(' ')
-                .join(', ')})`,
-              margin: '2px',
+              bg: baseColorScales.base.color.scale[name][5].value,
               borderRadius: 999,
             }}
           />

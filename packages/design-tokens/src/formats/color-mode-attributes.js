@@ -7,7 +7,7 @@ const prettier = require('prettier')
  * Custom style dictionary formatter for outputting CSS variables that are
  * compatible with the ThemeProvider component.
  */
-function colorModeAttributes({dictionary: origDictionary, file, options}) {
+function colorModeAttributes({dictionary, file, options}) {
   /**
    * Need to add a new color mode? Add it here!
    */
@@ -23,42 +23,6 @@ function colorModeAttributes({dictionary: origDictionary, file, options}) {
     'dark_tritanopia',
   ]
   const defaultMode = supportedModes[0]
-
-  const convertToHSL = value => `hsl(${value.split(' ').join(', ')})`
-
-  const dictionary = options.containsRawHSL ? JSON.parse(JSON.stringify(origDictionary)) : origDictionary
-
-  if (options.containsRawHSL) {
-    const reduceProperties = (acc, token) => {
-      acc.push({
-        ...token,
-        name: `${token.name}-hsl`,
-        path: [...token.path, 'hsl'],
-      })
-
-      /**
-       * Creates a new token object adjacent to the original
-       * This takes the raw HSL values and wraps it in a HSL css function
-       */
-      const tokenWithHSL = {...token, value: convertToHSL(token.value)}
-
-      /**
-       * Checks if the token object contains one of the supported modes
-       * If yes; mutate the HSL-specific token object with the converted HSL value for the alternate mode
-       */
-      for (const mode of supportedModes) {
-        if (token.hasOwnProperty(mode)) {
-          tokenWithHSL[mode] = convertToHSL(token[mode])
-        }
-      }
-
-      acc.push(tokenWithHSL)
-      return acc
-    }
-
-    dictionary.allTokens = dictionary.allTokens.reduce(reduceProperties, [])
-    dictionary.allProperties = dictionary.allProperties.reduce(reduceProperties, [])
-  }
 
   const {outputReferences} = options
   let {allTokens} = dictionary
@@ -123,7 +87,6 @@ function colorModeAttributes({dictionary: origDictionary, file, options}) {
       
     }\n`
   }
-
   const template = `
       ${fileHeader({file})}
  
