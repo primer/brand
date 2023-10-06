@@ -80,7 +80,7 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
         'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--mobile-menu-open-many-items&viewMode=story',
       )
 
-      await page.waitForTimeout(500)
+      await page.waitForTimeout(5500)
       expect(await page.screenshot()).toMatchSnapshot()
     })
   })
