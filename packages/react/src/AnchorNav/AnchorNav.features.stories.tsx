@@ -30,6 +30,7 @@ export default {
       ['GitHub vs BitBucket']: 'githubvsvsbitbucket',
       ['GitHub vs TravisCI']: 'githubvsvstravis',
     },
+    sectionHeight: 1000,
     offset: 100,
   },
   argTypes: {
@@ -38,6 +39,16 @@ export default {
       description: 'Test data',
       control: {
         type: 'object',
+      },
+      table: {
+        category: 'Story customization',
+      },
+    },
+    sectionHeight: {
+      name: 'Section height',
+      description: 'Section height',
+      control: {
+        type: 'number',
       },
       table: {
         category: 'Story customization',
@@ -104,7 +115,7 @@ const Template: StoryFn<typeof AnchorNav> = (_, storyArgs: any) => {
               id={value}
               direction="vertical"
               style={{
-                padding: '500px var(--base-size-24)',
+                padding: `${storyArgs.args.sectionHeight / 2}px var(--base-size-24)`,
               }}
             >
               <Heading>{key}</Heading>
@@ -235,3 +246,9 @@ RegularViewMenuOpen.play = async ({canvasElement}) => {
   await userEvent.click(canvas.getByTestId(AnchorNav.testIds.menuButton))
   await expect(menubar).toBeVisible()
 }
+
+export const HideUntilSticky = Template.bind({})
+HideUntilSticky.args = {
+  hideUntilSticky: true,
+}
+HideUntilSticky.storyName = 'Hide until sticky'
