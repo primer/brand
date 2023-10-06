@@ -159,6 +159,10 @@
     animation: fade-in-down 500ms;
     animation-timing-function: var(--brand-animation-easing-default);
   }
+
+  .SubdomainNavBar-menu-wrapper--close {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 48rem) {

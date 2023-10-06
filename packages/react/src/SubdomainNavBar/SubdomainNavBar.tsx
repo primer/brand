@@ -217,7 +217,12 @@ function Root({
               </button>
             )}
 
-            <div className={clsx(styles['SubdomainNavBar-menu-wrapper'])}>
+            <div
+              className={clsx(
+                styles['SubdomainNavBar-menu-wrapper'],
+                menuHidden && styles['SubdomainNavBar-menu-wrapper--close'],
+              )}
+            >
               {hasLinks && !menuHidden && (
                 <NavigationVisbilityObserver
                   showOnlyOnNarrow
