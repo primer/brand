@@ -386,11 +386,15 @@ export default {
 export const LevelTwoPlayground: StoryFn<typeof FeaturePreviewLevelTwo> = args => <FeaturePreviewLevelTwo {...args} />
 
 LevelTwoPlayground.storyName = 'Playground'
+LevelTwoPlayground.args = {
+  variant: 'Maximum',
+}
 
 export const LevelTwoMinimal: StoryFn<typeof FeaturePreviewLevelTwo> = args => <FeaturePreviewLevelTwo {...args} />
 
 LevelTwoMinimal.storyName = 'Minimal'
 LevelTwoMinimal.args = {
+  variant: 'Minimum',
   heroLabel: undefined,
   heroCtaTextSecondary: undefined,
   sectionIntroVisible: false,

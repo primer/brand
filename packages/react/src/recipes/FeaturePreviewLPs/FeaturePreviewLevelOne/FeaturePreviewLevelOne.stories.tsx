@@ -19,6 +19,7 @@ export default {
   },
   args: {
     colorMode: ColorModesEnum.LIGHT,
+    formType: 'default',
     accentColor: 'ai',
     heroLabel: 'Release type',
     heroTitle: 'Expressive headline about a sweet feature',
@@ -37,9 +38,17 @@ export default {
     accentColor: {
       name: 'theme',
       control: 'radio',
-      options: Object.keys(themeDetailsMap),
+      options: [...Object.keys(themeDetailsMap)],
       table: {
         category: 'Theming',
+      },
+    },
+    formType: {
+      name: 'form type',
+      control: 'radio',
+      options: ['default', 'extended'],
+      table: {
+        category: 'Section: Form',
       },
     },
     /**
@@ -78,3 +87,17 @@ export const LevelOneSideBySide: StoryFn<typeof FeaturePreviewLevelOneSideBySide
 )
 
 LevelOneSideBySide.storyName = 'Side-by-side'
+LevelOneSideBySide.args = {
+  heroLabel: 'Label',
+}
+
+export const LevelOneSideBySideEnterprise: StoryFn<typeof FeaturePreviewLevelOneSideBySide> = args => (
+  <FeaturePreviewLevelOneSideBySide {...args} isEnterprise />
+)
+
+LevelOneSideBySideEnterprise.storyName = 'Side-by-side - Enteprise'
+LevelOneSideBySideEnterprise.args = {
+  heroLabel: 'Label',
+  formType: 'extended',
+  colorMode: ColorModesEnum.DARK,
+}

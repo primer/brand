@@ -149,6 +149,7 @@ export const Box = ({
   borderWidth,
   borderColor,
   borderStyle,
+  ...rest
 }: PropsWithChildren<BoxProps>) => {
   const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
 
@@ -203,6 +204,7 @@ export const Box = ({
         ...animationInlineStyles,
         ...style,
       }}
+      {...rest}
     >
       {children}
     </div>

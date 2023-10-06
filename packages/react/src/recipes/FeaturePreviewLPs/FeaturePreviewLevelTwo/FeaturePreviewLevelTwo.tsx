@@ -38,6 +38,7 @@ import {Themes, themeDetailsMap} from '../helpers'
 import clsx from 'clsx'
 
 type FeaturePreviewLevelTwoProps = {
+  variant?: 'Maximum' | 'Minimum'
   colorMode?: ColorModesEnum.LIGHT | ColorModesEnum.DARK
   accentColor: Themes
   heroAlign: 'start' | 'center'
@@ -86,7 +87,7 @@ type FeaturePreviewLevelTwoProps = {
   cardsVisible: boolean
 }
 
-export function FeaturePreviewLevelTwo({accentColor, colorMode, ...args}: FeaturePreviewLevelTwoProps) {
+export function FeaturePreviewLevelTwo({accentColor, variant, colorMode, ...args}: FeaturePreviewLevelTwoProps) {
   const [enableGridOverlay, setEnableGridOverlay] = React.useState(false)
   const [isLightMode, setIsLightMode] = React.useState(colorMode === ColorModesEnum.LIGHT)
   const selectedColorMode = isLightMode ? ColorModesEnum.LIGHT : ColorModesEnum.DARK
@@ -141,7 +142,7 @@ export function FeaturePreviewLevelTwo({accentColor, colorMode, ...args}: Featur
         backgroundColor: 'var(--brand-color-canvas-default)',
       }}
     >
-      <SubdomainNavBar title={`${accentColor.charAt(0).toUpperCase() + accentColor.slice(1)} Preview`} fixed={true}>
+      <SubdomainNavBar title={`Level 2 ${variant ? `- ${variant}` : ''}`} fixed={true}>
         <SubdomainNavBar.SecondaryAction href="#" onClick={handleMode}>
           Change color mode
         </SubdomainNavBar.SecondaryAction>

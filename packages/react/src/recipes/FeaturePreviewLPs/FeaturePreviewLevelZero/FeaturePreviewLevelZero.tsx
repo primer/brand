@@ -62,7 +62,7 @@ export function FeaturePreviewLevelZero({accentColor, colorMode, ...args}: Featu
         backgroundColor: 'var(--brand-color-canvas-default)',
       }}
     >
-      <SubdomainNavBar title={`${accentColor.charAt(0).toUpperCase() + accentColor.slice(1)} Preview`} fixed={false}>
+      <SubdomainNavBar title={`Level 0`} fixed={false}>
         <SubdomainNavBar.SecondaryAction href="#" onClick={handleMode}>
           Change color mode
         </SubdomainNavBar.SecondaryAction>
