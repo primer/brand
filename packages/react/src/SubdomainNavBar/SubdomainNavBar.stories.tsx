@@ -553,7 +553,7 @@ export const MobileMenuOpenManyItems = Template.bind({})
 MobileMenuOpenManyItems.args = {numLinks: 10}
 MobileMenuOpenManyItems.parameters = {
   viewport: {
-    defaultViewport: 'iphonex',
+    defaultViewport: 'iphone5',
   },
 }
 MobileMenuOpenManyItems.play = async ({canvasElement}) => {
