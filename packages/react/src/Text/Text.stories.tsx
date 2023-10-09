@@ -73,7 +73,7 @@ export const OverrideWeightResponsive = () => (
     weight={{
       narrow: 'extrabold',
       regular: 'semibold',
-      wide: 'normal',
+      wide: 'regular',
     }}
   >
     Responsive text weights
