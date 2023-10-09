@@ -1,5 +1,25 @@
 # @primer/react-brand
 
+## 0.27.1
+
+### Patch Changes
+
+- [#449](https://github.com/primer/brand/pull/449) [`d009559`](https://github.com/primer/brand/commit/d0095592854bab08dd2fd04dfb54b67ce12b0444) Thanks [@rezrah](https://github.com/rezrah)! - Fixed bug in `AnchorNav` whereby the active link would not be highlighted when the page first loads.
+
+- [#443](https://github.com/primer/brand/pull/443) [`6a7dc95`](https://github.com/primer/brand/commit/6a7dc9577fccd6e74169916497938a4f9e302911) Thanks [@josepmartins](https://github.com/josepmartins)! - Fixes bug in the `Testimonial` component that prevents avatar get squished
+
+- [#440](https://github.com/primer/brand/pull/440) [`4c0bd32`](https://github.com/primer/brand/commit/4c0bd32cc10a9e9f4b6d1845188da0052314c5fa) Thanks [@rezrah](https://github.com/rezrah)! - Added `hideUntilSticky` option to AnchorNav component. This will visibly hide the `AnchorNav` until it becomes sticky.
+
+  ```jsx
+  <AnchorNav hideUntilSticky>
+    <AnchorNav.Link href="#section">...</AnchorNav.Link>
+  </AnchorNav>
+  ```
+
+  For any additional client-side customization, a `data-sticky` attribute is available and will be set to `true` when the `AnchorNav` is sticky.
+
+- [#447](https://github.com/primer/brand/pull/447) [`4803d21`](https://github.com/primer/brand/commit/4803d2129ab4d0b5bb0b0d957010c203ffeb7c96) Thanks [@rezrah](https://github.com/rezrah)! - Reduced `large` button text size to `20px`.
+
 ## 0.27.0
 
 ### Minor Changes
