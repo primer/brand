@@ -135,10 +135,10 @@ const TypeFixture = ({font}: {font: (typeof TextFontVariants)[number]}) => (
         }}
       >
         <Box className={styles.separator} marginBlockEnd={{narrow: 24, wide: 64}} />
-        <Text font={font} size="400" weight="light" className={styles['break-words']}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis dapibus erat, suscipit scelerisque enim.
-          Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nunc suscipit elit a
-          est efficitur scelerisque. Nam euismod mi a dapibus euismod.
+        <Text font={font} size="500" weight="light" className={styles['break-words']}>
+          An organization&apos;s taste is defined by the process and style in which they make design decisions. What
+          features belong in our product? Which prototype feels better? Do we need more iterations, or is this good
+          enough? Are these questions answered by tools? By a process? By a person?
         </Text>
       </Grid.Column>
       <Grid.Column
@@ -148,21 +148,26 @@ const TypeFixture = ({font}: {font: (typeof TextFontVariants)[number]}) => (
       >
         <Box className={styles.separator} marginBlockEnd={{narrow: 24, wide: 64}} />
         <Stack direction="vertical" padding="none">
-          <Text as="p" font={font} size="200" weight="normal" className={styles['break-words']}>
-            Mauris dignissim, magna ac venenatis gravida, dolor nisi tincidunt velit, eu dignissim lacus magna sit amet
-            sapien. Sed pulvinar tempor cursus. Fusce aliquet commodo diam, maximus viverra urna aliquet ac. Maecenas
-            bibendum venenatis vulputate.
+          <Text as="p" font={font} size="100" weight="regular" className={styles['break-words']}>
+            An organization&apos;s taste is defined by the process and style in which they make design decisions. What
+            features belong in our product? Which prototype feels better? Do we need more iterations, or is this good
+            enough? Are these questions answered by tools? By a process? By a person? Those answers are the essence of
+            taste.{' '}
+            <strong>
+              In other words, an organization&apos;s taste is the way the organization makes design decisions.
+            </strong>
           </Text>
 
-          <Text as="p" font={font} size="200" weight="normal" className={styles['break-words']}>
-            Duis sed suscipit turpis, tincidunt mollis mauris. Donec ac massa nibh. Donec interdum gravida interdum.
-            Nullam id blandit sem. <strong>Duis rutrum erat ante, vitae fringilla augue viverra et.</strong> Sed vel
-            efficitur leo, ac congue est.
+          <Text as="p" font={font} size="100" weight="regular" className={styles['break-words']}>
+            If the decisions are bold, opinionated, and cohesive — we tend to say the organization has taste. But if any
+            of these are missing, we tend to label the entire organization as lacking taste.
           </Text>
 
-          <Text as="p" font={font} size="200" weight="normal" className={styles['break-words']}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus arcu mi, aliquet nec bibendum quis,
-            sollicitudin at enim.
+          <Text as="p" font={font} size="100" weight="regular" className={styles['break-words']}>
+            This is one of the biggest challenges a design leader faces. How do you ensure your team is capable of
+            making bold, opinionated, and cohesive decisions together? It was certainly challenging me. With new
+            employees came different tastes — often clashing against each other, resulting in unproductive debate and
+            unclear results.
           </Text>
         </Stack>
       </Grid.Column>

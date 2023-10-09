@@ -13,7 +13,7 @@ export const HeadingWeights = [
   'bold',
   'semibold',
   'medium',
-  'normal',
+  'regular',
   'light',
   'extralight',
 ] as const

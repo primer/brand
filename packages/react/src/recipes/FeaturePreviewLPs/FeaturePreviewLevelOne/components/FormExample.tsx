@@ -168,7 +168,7 @@ export function FormExample({type = 'default', colorMode = ColorModesEnum.LIGHT}
                       from GitHub.
                     </Text>
                     <FormControl.Hint>
-                      <Text weight="normal" variant="muted" size="100">
+                      <Text weight="regular" variant="muted" size="100">
                         If you change your mind, you can <InlineLink href="#">unsubscribe</InlineLink> at any time.
                       </Text>
                     </FormControl.Hint>
