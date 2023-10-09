@@ -3,7 +3,6 @@ import clsx from 'clsx'
 import {InlineLink, InlineLinkProps, useAnimation} from '../'
 import styles from './Text.module.css'
 import {BaseProps} from '../component-helpers'
-import {type} from 'os'
 
 export const TextSizes = ['700', '600', '500', '400', '300', '200', '100'] as const
 export const TextTags = ['p', 'span', 'div', 'strong', 'em'] as const
