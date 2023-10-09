@@ -185,6 +185,7 @@ export const _Button = forwardRef(
             weight="semibold"
             className={clsx(
               styles['Button--label'],
+              styles[`Button--label-${size}`],
               styles[`Button--label-${variant}`],
               isDisabled && styles[`Button-label--disabled`],
             )}
