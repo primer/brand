@@ -1,6 +1,17 @@
 import React from 'react'
 import {Meta, StoryFn} from '@storybook/react'
-import {Heading, HeadingTags, HeadingWeights, HeadingLetterSpacing, HeadingStretch, HeadingSizes} from '.'
+import {Stack, Grid, Text, Box} from '../'
+import {
+  Heading,
+  HeadingTags,
+  HeadingWeights,
+  HeadingLetterSpacing,
+  HeadingStretch,
+  HeadingSizes,
+  HeadingFontVariants,
+} from '.'
+
+import styles from './Heading.stories.module.css'
 
 export default {
   title: 'Components/Heading',
@@ -8,6 +19,18 @@ export default {
 } as Meta<typeof Heading>
 
 const Template: StoryFn<typeof Heading> = args => <Heading {...args} />
+
+const tagMap = {
+  display: 'h1',
+  '1': 'h1',
+  '2': 'h2',
+  '3': 'h3',
+  '4': 'h4',
+  '5': 'h5',
+  '6': 'h5',
+  'subhead-large': 'h6',
+  'subhead-medium': 'h6',
+}
 
 export const Default = Template.bind({})
 Default.args = {
@@ -46,24 +69,18 @@ Playground.argTypes = {
     },
     options: HeadingLetterSpacing,
   },
+  font: {
+    control: {
+      type: 'radio',
+    },
+    options: HeadingFontVariants,
+  },
 }
 Playground.args = {
   children: 'Heading',
 }
 
 export const Scale: StoryFn<typeof Heading> = () => {
-  const tagMap = {
-    display: 'h1',
-    '1': 'h1',
-    '2': 'h2',
-    '3': 'h3',
-    '4': 'h4',
-    '5': 'h5',
-    '6': 'h5',
-    'subhead-large': 'h6',
-    'subhead-medium': 'h6',
-  }
-
   return (
     <>
       {HeadingSizes.map(size => (
@@ -151,3 +168,81 @@ export const OverrideLetterSpacing = () => (
     ))}
   </>
 )
+
+const TypeFixture = ({font}: {font: (typeof HeadingFontVariants)[number]}) => (
+  <Stack direction="vertical" padding="none" gap="spacious">
+    <Grid>
+      <Grid.Column
+        span={{
+          medium: 6,
+        }}
+      >
+        <Heading font={font} size="3" weight="light" letterSpacing="none" className={styles['break-words']}>
+          {/*eslint-disable-next-line react/no-unescaped-entities*/}
+          ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzåäö#%&~$()[]1234567890 !*"”'@!?;:&_
+        </Heading>
+      </Grid.Column>
+      <Grid.Column
+        span={{
+          medium: 6,
+        }}
+      >
+        <Heading font={font} size="3" weight="semibold" letterSpacing="none" className={styles['break-words']}>
+          {/*eslint-disable-next-line react/no-unescaped-entities*/}
+          ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzåäö#%&~$()[]1234567890 !*"”'@!?;:&_
+        </Heading>
+      </Grid.Column>
+    </Grid>
+    <Grid>
+      <Grid.Column>
+        <Box className={styles.separator} marginBlockEnd="spacious" />
+        <Stack direction="vertical" padding="none" gap="spacious">
+          <Stack direction="vertical" padding="none" gap="condensed">
+            <Heading font={font} size="1" stretch="condensed" weight="extralight" letterSpacing="none">
+              If a squirrel tells you to ship it, you must ship it.
+            </Heading>
+            <Text>Weight: extralight, Stretch: condensed</Text>
+          </Stack>
+          <Stack direction="vertical" padding="none" gap="condensed">
+            <Heading font={font} size="1" stretch="condensed" weight="medium" letterSpacing="none">
+              Fast, flexible, open source and free
+            </Heading>
+            <Text>Weight: medium, Stretch: condensed</Text>
+          </Stack>
+          <Stack direction="vertical" padding="none" gap="condensed">
+            <Heading font={font} size="1" stretch="condensed" weight="black" letterSpacing="none">
+              The next big thing is a lot of small things.
+            </Heading>
+            <Text>Weight: black, Stretch: condensed</Text>
+          </Stack>
+          <Stack direction="vertical" padding="none" gap="condensed">
+            <Heading font={font} size="1" stretch="condensed" weight="extralight" letterSpacing="none">
+              Demos, not memos.
+            </Heading>
+            <Text>Weight: extralight, Stretch: condensed</Text>
+          </Stack>
+          <Stack direction="vertical" padding="none" gap="condensed">
+            <Heading font={font} size="1" stretch="expanded" weight="medium" letterSpacing="none">
+              Where the world builds software.
+            </Heading>
+            <Text>Weight: medium, Stretch: expanded</Text>
+          </Stack>
+          <Stack direction="vertical" padding="none" gap="condensed">
+            <Heading font={font} size="1" stretch="expanded" weight="black" letterSpacing="none">
+              One font file, infinite possibilities.
+            </Heading>
+            <Text>Weight: black, Stretch: expanded</Text>
+          </Stack>
+        </Stack>
+      </Grid.Column>
+    </Grid>
+  </Stack>
+)
+
+export const MonaSans: StoryFn<typeof Heading> = () => {
+  return <TypeFixture font="mona-sans" />
+}
+
+export const HubotSans: StoryFn<typeof Heading> = () => {
+  return <TypeFixture font="hubot-sans" />
+}

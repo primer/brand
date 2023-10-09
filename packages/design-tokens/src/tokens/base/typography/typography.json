@@ -2,11 +2,14 @@
   "base": {
     "text": {
       "weight": {
+        "extralight": {
+          "value": 200
+        },
         "light": {
           "value": 300
         },
-        "normal": {
-          "value": 450
+        "regular": {
+          "value": 400
         },
         "medium": {
           "value": 500
@@ -20,7 +23,7 @@
         "extrabold": {
           "value": 800
         },
-        "heavy": {
+        "black": {
           "value": 900
         }
       }

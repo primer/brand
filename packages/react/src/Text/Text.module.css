@@ -10,6 +10,14 @@
   color: var(--brand-color-text-muted);
 }
 
+.Text-font--mona-sans {
+  font-family: var(--brand-body-fontFamily);
+}
+
+.Text-font--hubot-sans {
+  font-family: var(--brand-body-fontFamilyAlt);
+}
+
 .Text--700 {
   font-weight: var(--brand-text-weight-700);
   font-size: var(--brand-text-size-700);
@@ -53,9 +61,9 @@
   line-height: var(--brand-text-lineHeight-100);
 }
 
-.Text--weight-heavy,
-.Text-narrow--weight-heavy {
-  font-weight: var(--base-text-weight-heavy);
+.Text--weight-black,
+.Text-narrow--weight-black {
+  font-weight: var(--base-text-weight-black);
 }
 
 .Text--weight-extrabold,
@@ -78,9 +86,9 @@
   font-weight: var(--base-text-weight-medium);
 }
 
-.Text--weight-normal,
-.Text-narrow--weight-normal {
-  font-weight: var(--base-text-weight-normal);
+.Text--weight-regular,
+.Text-narrow--weight-regular {
+  font-weight: var(--base-text-weight-regular);
 }
 
 .Text--weight-light,
@@ -88,9 +96,14 @@
   font-weight: var(--base-text-weight-light);
 }
 
+.Text--weight-extralight,
+.Text-narrow--weight-extralight {
+  font-weight: var(--base-text-weight-extralight);
+}
+
 @media screen and (min-width: 48rem) {
-  .Text-regular--weight-heavy {
-    font-weight: var(--base-text-weight-heavy);
+  .Text-regular--weight-black {
+    font-weight: var(--base-text-weight-black);
   }
 
   .Text-regular--weight-extrabold {
@@ -109,18 +122,22 @@
     font-weight: var(--base-text-weight-medium);
   }
 
-  .Text-regular--weight-normal {
-    font-weight: var(--base-text-weight-normal);
+  .Text-regular--weight-regular {
+    font-weight: var(--base-text-weight-regular);
   }
 
   .Text-regular--weight-light {
     font-weight: var(--base-text-weight-light);
   }
+
+  .Text-regular--weight-extralight {
+    font-weight: var(--base-text-weight-extralight);
+  }
 }
 
 @media screen and (min-width: 80rem) {
-  .Text-wide--weight-heavy {
-    font-weight: var(--base-text-weight-heavy);
+  .Text-wide--weight-black {
+    font-weight: var(--base-text-weight-black);
   }
 
   .Text-wide--weight-extrabold {
@@ -139,12 +156,16 @@
     font-weight: var(--base-text-weight-medium);
   }
 
-  .Text-wide--weight-normal {
-    font-weight: var(--base-text-weight-normal);
+  .Text-wide--weight-regular {
+    font-weight: var(--base-text-weight-regular);
   }
 
   .Text-wide--weight-light {
     font-weight: var(--base-text-weight-light);
+  }
+
+  .Text-wide--weight-extralight {
+    font-weight: var(--base-text-weight-extralight);
   }
 }
 

@@ -2,11 +2,18 @@
   color: var(--brand-color-text-default);
 }
 
+.Heading-font--mona-sans {
+  font-family: var(--brand-heading-fontFamily);
+}
+
+.Heading-font--hubot-sans {
+  font-family: var(--brand-heading-fontFamilyAlt);
+}
+
 .Heading--display {
   font-weight: var(--brand-heading-weight-1000);
   font-size: var(--brand-text-size-1000);
   line-height: var(--brand-text-lineHeight-1000);
-  font-family: var(--brand-heading-fontFamily);
   letter-spacing: var(--brand-text-letterSpacing-1000);
 }
 
@@ -14,21 +21,18 @@
   font-weight: var(--brand-text-subhead-weight-large);
   font-size: var(--brand-text-subhead-size-large);
   line-height: var(--brand-text-subhead-lineHeight-large);
-  font-family: var(--brand-heading-fontFamily);
 }
 
 .Heading--subhead-medium {
   font-weight: var(--brand-text-subhead-weight-medium);
   font-size: var(--brand-text-subhead-size-medium);
   line-height: var(--brand-text-subhead-lineHeight-medium);
-  font-family: var(--brand-heading-fontFamily);
 }
 
 .Heading--1 {
   font-weight: var(--brand-heading-weight-900);
   font-size: var(--brand-text-size-900);
   line-height: var(--brand-text-lineHeight-900);
-  font-family: var(--brand-heading-fontFamily);
   letter-spacing: var(--brand-text-letterSpacing-900);
 }
 
@@ -36,7 +40,6 @@
   font-weight: var(--brand-heading-weight-800);
   font-size: var(--brand-text-size-800);
   line-height: var(--brand-text-lineHeight-800);
-  font-family: var(--brand-heading-fontFamily);
   letter-spacing: var(--brand-text-letterSpacing-800);
 }
 
@@ -44,7 +47,6 @@
   font-weight: var(--brand-heading-weight-700);
   font-size: var(--brand-text-size-700);
   line-height: var(--brand-heading-lineHeight-700);
-  font-family: var(--brand-heading-fontFamily);
   letter-spacing: var(--brand-heading-letterSpacing-700);
 }
 
@@ -52,7 +54,6 @@
   font-weight: var(--brand-heading-weight-600);
   font-size: var(--brand-text-size-600);
   line-height: var(--brand-text-lineHeight-600);
-  font-family: var(--brand-heading-fontFamily);
   letter-spacing: var(--brand-heading-letterSpacing-600);
 }
 
@@ -60,7 +61,6 @@
   font-weight: var(--brand-heading-weight-500);
   font-size: var(--brand-text-size-500);
   line-height: var(--brand-text-lineHeight-500);
-  font-family: var(--brand-heading-fontFamily);
   letter-spacing: var(--brand-heading-letterSpacing-500);
 }
 
@@ -68,13 +68,12 @@
   font-weight: var(--brand-heading-weight-400);
   font-size: var(--brand-text-size-400);
   line-height: var(--brand-text-lineHeight-400);
-  font-family: var(--brand-heading-fontFamily);
   letter-spacing: var(--brand-heading-letterSpacing-400);
 }
 
-.Heading--weight-heavy,
-.Heading-narrow--weight-heavy {
-  font-weight: var(--base-text-weight-heavy);
+.Heading--weight-black,
+.Heading-narrow--weight-black {
+  font-weight: var(--base-text-weight-black);
 }
 
 .Heading--weight-extrabold,
@@ -97,9 +96,9 @@
   font-weight: var(--base-text-weight-medium);
 }
 
-.Heading--weight-normal,
-.Heading-narrow--weight-normal {
-  font-weight: var(--base-text-weight-normal);
+.Heading--weight-regular,
+.Heading-narrow--weight-regular {
+  font-weight: var(--base-text-weight-regular);
 }
 
 .Heading--weight-light,
@@ -107,9 +106,14 @@
   font-weight: var(--base-text-weight-light);
 }
 
+.Heading--weight-extralight,
+.Heading-narrow--weight-extralight {
+  font-weight: var(--base-text-weight-extralight);
+}
+
 @media screen and (min-width: 48rem) {
-  .Heading-regular--weight-heavy {
-    font-weight: var(--base-text-weight-heavy);
+  .Heading-regular--weight-black {
+    font-weight: var(--base-text-weight-black);
   }
 
   .Heading-regular--weight-extrabold {
@@ -128,18 +132,22 @@
     font-weight: var(--base-text-weight-medium);
   }
 
-  .Heading-regular--weight-normal {
-    font-weight: var(--base-text-weight-normal);
+  .Heading-regular--weight-regular {
+    font-weight: var(--base-text-weight-regular);
   }
 
   .Heading-regular--weight-light {
     font-weight: var(--base-text-weight-light);
   }
+
+  .Heading-regular--weight-extralight {
+    font-weight: var(--base-text-weight-extralight);
+  }
 }
 
 @media screen and (min-width: 80rem) {
-  .Heading-wide--weight-heavy {
-    font-weight: var(--base-text-weight-heavy);
+  .Heading-wide--weight-black {
+    font-weight: var(--base-text-weight-black);
   }
 
   .Heading-wide--weight-extrabold {
@@ -158,8 +166,8 @@
     font-weight: var(--base-text-weight-medium);
   }
 
-  .Heading-wide--weight-normal {
-    font-weight: var(--base-text-weight-normal);
+  .Heading-wide--weight-regular {
+    font-weight: var(--base-text-weight-regular);
   }
 
   .Heading-wide--weight-light {

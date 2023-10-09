@@ -229,7 +229,7 @@
   display: block;
   color: var(--brand-color-text-default);
   font-family: var(--brand-heading-fontFamily);
-  font-weight: var(--base-text-weight-normal);
+  font-weight: var(--base-text-weight-regular);
   font-size: var(--base-size-20);
   line-height: var(--base-size-20);
   padding: var(--base-size-8) var(--base-size-16) var(--base-size-16) var(--base-size-28);
