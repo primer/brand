@@ -168,6 +168,17 @@ function _AnchorNav({children, enableDefaultBgColor = false, hideUntilSticky = f
     return null
   }).filter(Boolean)
 
+  /* On page load, the rootMargin positions and/or thresholds of the IntersectionObserver
+   * may not be met depending on the position of the AnchorNav on the page.
+   * The following useEffect ensures that the first link always marked as the active link, until
+   * the observer kicks in. Without this, the active link is undefined.
+   */
+  useEffect(() => {
+    if (!currentActiveNavItem && Links.length > 0) {
+      setCurrentActiveNavItem(Links[0]?.props.children as string)
+    }
+  }, [currentActiveNavItem, Links])
+
   return (
     <div ref={wrapperRef}>
       <nav
@@ -286,12 +297,12 @@ function _AnchorNavLink({
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (!supportsIntersectionObserver || !node) return
 
-    const rootMarginTop = '0px 0px -100%'
+    const rootMarginTop = '0px'
     const rootMarginCenter = '-50% 0% -50% 0%'
 
     const rootMargin = intersectionOptions.rootMargin === 'start' ? rootMarginTop : rootMarginCenter
 
-    const observerParams = {threshold: 0, root: null, rootMargin}
+    const observerParams = {threshold: intersectionOptions.rootMargin === 'start' ? 0.4 : 0, root: null, rootMargin}
 
     const observer = new IntersectionObserver(handleIntersectionUpdate, observerParams)
 
