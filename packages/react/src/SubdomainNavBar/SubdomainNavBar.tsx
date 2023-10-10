@@ -80,7 +80,7 @@ function Root({
 }: SubdomainNavBarProps) {
   const [menuHidden, setMenuHidden] = useState(true)
   const [searchVisible, setSearchVisible] = useState(false)
-  const {isMedium} = useWindowSize()
+  const {isSmall, isMedium} = useWindowSize()
 
   const handleMobileMenuClick = () => setMenuHidden(!menuHidden)
   const handleSearchVisibility = () => setSearchVisible(!searchVisible)
@@ -154,7 +154,7 @@ function Root({
                   <MarkGithubIcon fill="currentColor" size={24} />
                 </a>
               </li>
-              {title && (
+              {title && isSmall && (
                 <>
                   <li role="separator" className={styles['SubdomainNavBar-title-separator']} aria-hidden>
                     /
