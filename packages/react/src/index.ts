@@ -36,3 +36,6 @@ export * from './VideoPlayer'
 export * from './LogoSuite'
 export * from './Timeline'
 export * from './Bento'
+
+// hooks
+export * from './hooks/useWindowSize'

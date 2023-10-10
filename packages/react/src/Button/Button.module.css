@@ -177,6 +177,11 @@
   width: var(--base-size-20);
 }
 
+.Button--label-large {
+  font-size: var(--brand-text-subhead-size-large);
+  line-height: var(--brand-text-subhead-lineHeight-large);
+}
+
 .Button--block {
   width: 100%;
 }

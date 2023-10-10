@@ -40,9 +40,13 @@ export type AnchorNavProps = BaseProps<HTMLElement> & {
    * Enable the idle state background color, which is transparent by default.
    */
   enableDefaultBgColor?: boolean
+  /**
+   * When true, the anchor nav will hide until it is sticky.
+   */
+  hideUntilSticky?: boolean
 } & React.ComponentPropsWithoutRef<'nav'>
 
-function _AnchorNav({children, enableDefaultBgColor = false, ...props}: AnchorNavProps) {
+function _AnchorNav({children, enableDefaultBgColor = false, hideUntilSticky = false, ...rest}: AnchorNavProps) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
   const [currentActiveNavItem, setCurrentActiveNavItem] = useState<string | null>()
@@ -50,6 +54,7 @@ function _AnchorNav({children, enableDefaultBgColor = false, ...props}: AnchorNa
   const [initialYOffset, setInitialYOffset] = useState<undefined | number>()
   const [navShouldFix, setNavShouldFix] = useState<boolean>(false)
 
+  const wrapperRef = useRef<HTMLDivElement | null>(null)
   const rootRef = useRef<HTMLElement | null>(null)
   const menuToggleButtonRef = useRef<HTMLButtonElement | null>(null)
   const linkContainerRef = useRef<HTMLDivElement | null>(null)
@@ -70,7 +75,7 @@ function _AnchorNav({children, enableDefaultBgColor = false, ...props}: AnchorNa
 
   useEffect(() => {
     if (initialYOffset === undefined && intersectionEntry) {
-      setInitialYOffset(intersectionEntry.boundingClientRect.y)
+      setInitialYOffset(intersectionEntry.boundingClientRect.y + window.scrollY)
     }
   }, [initialYOffset, intersectionEntry])
 
@@ -102,7 +107,7 @@ function _AnchorNav({children, enableDefaultBgColor = false, ...props}: AnchorNa
   }, [initialYOffset])
 
   useEffect(() => {
-    const node = rootRef.current
+    const node = hideUntilSticky ? wrapperRef.current : rootRef.current
 
     const supportsIntersectionObserver = !!window.IntersectionObserver
 
@@ -116,7 +121,7 @@ function _AnchorNav({children, enableDefaultBgColor = false, ...props}: AnchorNa
     observer.observe(node)
 
     return () => observer.disconnect()
-  }, [])
+  }, [hideUntilSticky])
 
   const handleMenuToggle = useCallback(
     event => {
@@ -163,56 +168,74 @@ function _AnchorNav({children, enableDefaultBgColor = false, ...props}: AnchorNa
     return null
   }).filter(Boolean)
 
+  /* On page load, the rootMargin positions and/or thresholds of the IntersectionObserver
+   * may not be met depending on the position of the AnchorNav on the page.
+   * The following useEffect ensures that the first link always marked as the active link, until
+   * the observer kicks in. Without this, the active link is undefined.
+   */
+  useEffect(() => {
+    if (!currentActiveNavItem && Links.length > 0) {
+      setCurrentActiveNavItem(Links[0]?.props.children as string)
+    }
+  }, [currentActiveNavItem, Links])
+
   return (
-    <nav
-      ref={rootRef}
-      aria-label="Anchored navigation"
-      className={clsx(
-        styles.AnchorNav,
-        navShouldFix && styles['AnchorNav--stuck'],
-        menuOpen && styles['AnchorNav--expanded'],
-        enableDefaultBgColor && styles['AnchorNav--with-default-background-color'],
-      )}
-      {...props}
-    >
-      <div
-        className={clsx(styles['AnchorNav-inner-container'], menuOpen && styles['AnchorNav-inner-container--expanded'])}
+    <div ref={wrapperRef}>
+      <nav
+        ref={rootRef}
+        aria-label="Anchored navigation"
+        data-sticky={navShouldFix.toString()}
+        className={clsx(
+          styles.AnchorNav,
+          hideUntilSticky && styles['AnchorNav--hide-until-sticky'],
+          navShouldFix && styles['AnchorNav--stuck'],
+          menuOpen && styles['AnchorNav--expanded'],
+          enableDefaultBgColor && styles['AnchorNav--with-default-background-color'],
+        )}
+        {...rest}
       >
-        <button
-          ref={menuToggleButtonRef}
-          onClick={handleMenuToggle}
-          className={clsx(styles['AnchorNav-menu-button'])}
-          aria-expanded={menuOpen ? 'true' : 'false'}
-          aria-controls={idForLinkContainer}
-          aria-label={`${menuOpen ? 'close' : 'open'} anchor navigation menu`}
-          data-testid={testIds.menuButton}
-        >
-          {menuOpen ? (
-            <ChevronUpIcon size={16} className={styles['AnchorNav-menu-button-arrow']} fill="currentcolor" />
-          ) : (
-            <ChevronDownIcon size={16} className={styles['AnchorNav-menu-button-arrow']} fill="currentcolor" />
-          )}
-          <Text as="span" className={clsx(styles['AnchorNav-link-label'])}>
-            {currentActiveNavItem}
-          </Text>
-        </button>
-        {/**Replace with unique ids and test ids */}
         <div
-          id={idForLinkContainer}
-          data-testid={testIds.menuLinks}
-          className={styles['AnchorNav-link-container']}
-          ref={linkContainerRef}
+          className={clsx(
+            styles['AnchorNav-inner-container'],
+            menuOpen && styles['AnchorNav-inner-container--expanded'],
+          )}
         >
-          {Links}
+          <button
+            ref={menuToggleButtonRef}
+            onClick={handleMenuToggle}
+            className={clsx(styles['AnchorNav-menu-button'])}
+            aria-expanded={menuOpen ? 'true' : 'false'}
+            aria-controls={idForLinkContainer}
+            aria-label={`${menuOpen ? 'close' : 'open'} anchor navigation menu`}
+            data-testid={testIds.menuButton}
+          >
+            {menuOpen ? (
+              <ChevronUpIcon size={16} className={styles['AnchorNav-menu-button-arrow']} fill="currentcolor" />
+            ) : (
+              <ChevronDownIcon size={16} className={styles['AnchorNav-menu-button-arrow']} fill="currentcolor" />
+            )}
+            <Text as="span" className={clsx(styles['AnchorNav-link-label'])}>
+              {currentActiveNavItem}
+            </Text>
+          </button>
+          {/**Replace with unique ids and test ids */}
+          <div
+            id={idForLinkContainer}
+            data-testid={testIds.menuLinks}
+            className={styles['AnchorNav-link-container']}
+            ref={linkContainerRef}
+          >
+            {Links}
+          </div>
+          {Action}
         </div>
-        {Action}
-      </div>
-      <span
-        className={clsx(menuOpen && styles['AnchorNav-overlay--expanded'])}
-        onClick={closeMenuCallback}
-        aria-hidden
-      />
-    </nav>
+        <span
+          className={clsx(menuOpen && styles['AnchorNav-overlay--expanded'])}
+          onClick={closeMenuCallback}
+          aria-hidden
+        />
+      </nav>
+    </div>
   )
 }
 
@@ -274,12 +297,12 @@ function _AnchorNavLink({
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (!supportsIntersectionObserver || !node) return
 
-    const rootMarginTop = '0px 0px -100%'
+    const rootMarginTop = '0px'
     const rootMarginCenter = '-50% 0% -50% 0%'
 
     const rootMargin = intersectionOptions.rootMargin === 'start' ? rootMarginTop : rootMarginCenter
 
-    const observerParams = {threshold: 0, root: null, rootMargin}
+    const observerParams = {threshold: intersectionOptions.rootMargin === 'start' ? 0.4 : 0, root: null, rootMargin}
 
     const observer = new IntersectionObserver(handleIntersectionUpdate, observerParams)
 
