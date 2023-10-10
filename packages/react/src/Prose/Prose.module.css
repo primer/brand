@@ -10,10 +10,11 @@
 /* 6. Lists                                                   */
 /* 7. Inline elements                                         */
 /* 8. Images                                                  */
+/* 9. Block elements                                          */
 /* ---------------------------------------------------------- */
 
 /* ---------------------------------------------------------- */
-/* 1, Container                                               */
+/* 1. Container                                               */
 /* ---------------------------------------------------------- */
 
 .Prose {
@@ -190,6 +191,15 @@
   border-color: var(--brand-InlineLink-color-pressed);
 }
 
+.Prose code {
+  font-family: var(--brand-fontStack-monospace);
+  font-size: var(--brand-text-size-100);
+  white-space: break-spaces;
+  padding: var(--base-size-4) var(--base-size-8);
+  border-radius: var(--brand-borderRadius-small);
+  background-color: var(--base-color-scale-indigo-0);
+}
+
 /* ---------------------------------------------------------- */
 /* 8. Images                                                  */
 /* ---------------------------------------------------------- */
@@ -202,4 +212,47 @@
   margin-left: auto;
   margin-right: auto;
   margin-block-end: var(--spacing);
+}
+
+/* ---------------------------------------------------------- */
+/* 9. Block elements                                          */
+/* ---------------------------------------------------------- */
+
+.Prose blockquote {
+  --spacing: var(--brand-Prose-blockquote-spacing);
+  position: relative;
+  font-size: var(--brand-text-size-400);
+  line-height: var(--brand-text-lineHeight-400);
+  padding-top: var(--base-size-48);
+  padding-left: var(--base-size-40);
+  padding-bottom: var(--base-size-8);
+  margin-bottom: var(--spacing);
+}
+
+.Prose blockquote::before {
+  content: '“';
+  font-size: var(--base-size-48);
+  line-height: var(--base-size-64);
+  font-weight: var(--base-text-weight-extrabold);
+  position: absolute;
+  top: 0;
+}
+
+.Prose blockquote::after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: var(--brand-borderWidth-thick);
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: var(--base-color-scale-indigo-5);
+  background-image: linear-gradient(180deg, var(--base-color-scale-blue-5), var(--base-color-scale-purple-5));
+}
+
+.Prose figure figcaption {
+  font-family: var(--brand-fontStack-monospace);
+  font-size: var(--brand-text-size-100);
+  line-height: var(--brand-text-lineHeight-100);
+  color: var(--brand-color-text-muted);
 }
