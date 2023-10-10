@@ -64,19 +64,34 @@ const ExampleHtmlMarkup = `
     <p>Nunc velit odio, posuere eu felis eget, consectetur fermentum nisi. Aenean tempor odio id ornare ultrices. Quisque blandit condimentum tellus, semper efficitur sapien dapibus nec. </p>
 `
 
+const UnorderedListHtmlMarkup = `
+<ul>
+  <li>
+    Vivamus eu risus nec lectus consequat rutrum at vel lacus.
+  </li>
+  <li>
+    Donec at dolor ut metus imperdiet congue vel porta nunc.
+  </li>
+  <li>
+    Quisque eu tortor suscipit, congue quam in, bibendum tellus.
+  </li>
+</ul>
+`
+
 export const Playground: StoryFn = args => <Prose {...args} html={ExampleHtmlMarkup} />
+const UnorderedListStory: StoryFn = args => <Prose {...args} html={UnorderedListHtmlMarkup} />
 
 export const Default = Playground.bind({})
-export const DarkTheme = Playground.bind({})
-DarkTheme.args = {
+export const UnorderedList = UnorderedListStory.bind({})
+UnorderedList.args = {
   darkMode: true,
 }
-DarkTheme.argTypes = {
+UnorderedList.argTypes = {
   colorMode: {
     darkMode: 'boolean',
   },
 }
-DarkTheme.decorators = [
+UnorderedList.decorators = [
   (Story, {args: {darkMode}}) => (
     <>
       <div style={{backgroundColor: darkMode ? 'black' : 'white'}}>
