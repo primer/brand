@@ -14,7 +14,7 @@ import {useWindowSize} from '../hooks/useWindowSize'
 export function NavigationVisbilityObserver({children, className, ...rest}) {
   const navRef = useRef<HTMLUListElement | null>(null)
   const [visibilityMap] = useVisibilityObserver(navRef, children)
-  const {width} = useWindowSize()
+  const {isMedium} = useWindowSize()
 
   const showOverflow = Object.values(visibilityMap).includes(false)
 
@@ -24,12 +24,10 @@ export function NavigationVisbilityObserver({children, className, ...rest}) {
         return React.cloneElement(child, {
           className: clsx(
             child.props.className,
-            width &&
-              width >= 768 &&
+            isMedium &&
               !!visibilityMap[child.props['data-navitemid']] &&
               styles['SubdomainNavBar-primary-nav-list-item--visible'],
-            width &&
-              width >= 768 &&
+            isMedium &&
               !visibilityMap[child.props['data-navitemid']] &&
               styles['SubdomainNavBar-primary-nav-list-item--invisible'],
           ),

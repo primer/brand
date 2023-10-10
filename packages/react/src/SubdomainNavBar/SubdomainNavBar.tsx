@@ -80,16 +80,16 @@ function Root({
 }: SubdomainNavBarProps) {
   const [menuHidden, setMenuHidden] = useState(true)
   const [searchVisible, setSearchVisible] = useState(false)
-  const {width} = useWindowSize()
+  const {isMedium} = useWindowSize()
 
   const handleMobileMenuClick = () => setMenuHidden(!menuHidden)
   const handleSearchVisibility = () => setSearchVisible(!searchVisible)
 
   useEffect(() => {
-    if (width && width >= 768) {
+    if (isMedium) {
       setMenuHidden(true)
     }
-  }, [width, menuHidden])
+  }, [isMedium, menuHidden])
 
   useEffect(() => {
     const newOverflowState = menuHidden ? 'auto' : 'hidden'
