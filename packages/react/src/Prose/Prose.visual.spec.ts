@@ -52,4 +52,11 @@ test.describe('Visual Comparison: Prose', () => {
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
+
+  test('Prose / Unordered List', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-prose--unordered-list&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
 })
