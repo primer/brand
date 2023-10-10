@@ -1,7 +1,8 @@
 import React from 'react'
-import {ComponentMeta, ComponentStory} from '@storybook/react'
+import {StoryFn, Meta} from '@storybook/react'
 import {Prose} from './Prose'
 import placeholderImage from '../fixtures/images/placeholder-600x400.png'
+import {ThemeProvider} from '../ThemeProvider'
 
 export default {
   title: 'Components/Prose',
@@ -17,7 +18,7 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Prose>
+} as Meta
 
 const ExampleHtmlMarkup = `
 <h2>Heading level 2</h2>
@@ -63,7 +64,27 @@ const ExampleHtmlMarkup = `
     <p>Nunc velit odio, posuere eu felis eget, consectetur fermentum nisi. Aenean tempor odio id ornare ultrices. Quisque blandit condimentum tellus, semper efficitur sapien dapibus nec. </p>
 `
 
-export const Playground: ComponentStory<typeof Prose> = args => <Prose {...args} html={ExampleHtmlMarkup} />
+export const Playground: StoryFn = args => <Prose {...args} html={ExampleHtmlMarkup} />
 
 export const Default = Playground.bind({})
+export const DarkTheme = Playground.bind({})
+DarkTheme.args = {
+  darkMode: true,
+}
+DarkTheme.argTypes = {
+  colorMode: {
+    darkMode: 'boolean',
+  },
+}
+DarkTheme.decorators = [
+  (Story, {args: {darkMode}}) => (
+    <>
+      <div style={{backgroundColor: darkMode ? 'black' : 'white'}}>
+        <ThemeProvider colorMode={darkMode ? 'dark' : 'light'}>
+          <Story />
+        </ThemeProvider>
+      </div>
+    </>
+  ),
+]
 Default.args = {}
