@@ -49,7 +49,6 @@ let allViolations: Result[] = []
 
 const hostname = 'http://localhost:6006'
 const testsToSkip = [
-  'layout-full-page-examples--resources-hub-example-playground', // example layout page, not a real page
   'components-river--video', // video is an example and not an official primer pattern
   'components-subdomainnavbar--search-results-visible', // has been a11y remediated already,
   'components-subdomainnavbar--mobile-search-results-visible', // has been a11y remediated already,
@@ -59,6 +58,7 @@ const testsToSkip = [
   'components-videoplayer--playground', // video makes this too flakey
   'components-videoplayer--playground', // video makes this too flakey
   'recipes-feature-previews-level-1--level-one-side-by-side-enterprise', // video makes this too flakey
+  'recipes-feature-previews-level-1--level-one-side-by-side', // custom, temporary background image
 ]
 const testsWithCustomDelay = {
   'components-subdomainnavbar--mobile-menu-open': 5000, // takes a while for the menu to open

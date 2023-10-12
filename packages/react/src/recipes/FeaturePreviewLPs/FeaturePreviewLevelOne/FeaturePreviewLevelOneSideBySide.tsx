@@ -6,7 +6,6 @@ import {
   Heading,
   InlineLink,
   Label,
-  MinimalFooter,
   Stack,
   SubdomainNavBar,
   Text,
@@ -107,11 +106,13 @@ export function FeaturePreviewLevelOneSideBySide({
       }}
     >
       <ThemeProvider colorMode="dark">
-        <SubdomainNavBar title={`Level 1`}>
-          <SubdomainNavBar.PrimaryAction href="#" onClick={handleOverlay}>
-            {enableGridOverlay ? 'Disable' : 'Enable'} grid
-          </SubdomainNavBar.PrimaryAction>
-        </SubdomainNavBar>
+        <Box backgroundColor="default">
+          <SubdomainNavBar title="" fixed={false}>
+            <SubdomainNavBar.PrimaryAction href="#" onClick={handleOverlay}>
+              {enableGridOverlay ? 'Disable' : 'Enable'} grid
+            </SubdomainNavBar.PrimaryAction>
+          </SubdomainNavBar>
+        </Box>
       </ThemeProvider>
       <Box
         className={styles.FeaturePreview__splitLayoutBg}
@@ -235,18 +236,40 @@ export function FeaturePreviewLevelOneSideBySide({
                 wide: 128,
               }}
             >
-              <FormExample type={args.formType} colorMode={colorMode} />
+              <Stack padding="none" direction="vertical">
+                <FormExample type={args.formType} colorMode={colorMode} />
+                <Box
+                  borderBlockStartWidth="thin"
+                  borderColor="default"
+                  borderStyle="solid"
+                  paddingBlockStart={16}
+                  marginBlockStart={96}
+                >
+                  <Stack direction="horizontal" padding="none" justifyContent="space-between" style={{width: '100%'}}>
+                    <Text as="p" size="100" variant="muted" className={styles['Footer__copyright']}>
+                      {`\u00A9 2023 GitHub. All rights reserved.`}
+                    </Text>
+                    <Stack direction="horizontal" padding="none">
+                      <a className={styles['FeaturePreview__footerLink']} href="https://github.com/enterprise">
+                        <Text variant="muted" size="100">
+                          Enterprise
+                        </Text>
+                      </a>
+
+                      <a className={styles['FeaturePreview__footerLink']} href="https://github.com/enterprise/contact">
+                        <Text variant="muted" size="100">
+                          Email us
+                        </Text>
+                      </a>
+                    </Stack>
+                  </Stack>
+                </Box>
+              </Stack>
             </Box>
           </Grid.Column>
         </Grid>
       </Box>
-      <MinimalFooter className={styles.FeaturePreview__footer}>
-        <MinimalFooter.Link href="https://github.com/organizations/enterprise_plan">
-          Try GitHub for free
-        </MinimalFooter.Link>
-        <MinimalFooter.Link href="https://github.com/enterprise">Enterprise</MinimalFooter.Link>
-        <MinimalFooter.Link href="https://github.com/enterprise/contact">Email us</MinimalFooter.Link>
-      </MinimalFooter>
+
       {enableGridOverlay && (
         <Grid
           enableOverlay={enableGridOverlay}
