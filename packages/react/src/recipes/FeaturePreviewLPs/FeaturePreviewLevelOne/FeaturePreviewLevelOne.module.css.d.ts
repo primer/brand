@@ -14,6 +14,7 @@ declare const styles: {
   readonly "FeaturePreview__formContent": string;
   readonly "FeaturePreview__heroContentInnerSticky": string;
   readonly "FeaturePreview__heroContentInnerStickyContent": string;
+  readonly "FeaturePreview__footerLink": string;
   readonly "FeaturePreview__enterpriseVideo": string;
   readonly "FeaturePreview__enterpriseVideoOverlayTop": string;
   readonly "FeaturePreview__enterpriseVideoOverlayLeft": string;

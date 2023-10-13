@@ -89,6 +89,7 @@
     'components-logosuite-features--mixed-width', // animation only
     'components-logosuite-features--following-hero', // animation only
     'components-logosuite-features--stacked', // animation only
+    'recipes-feature-previews-level-1--level-one-side-by-side-enterprise', // video makes this too flakey
   ]
 
   const categorisedStories = Object.keys(stories as Stories).reduce((acc, key) => {

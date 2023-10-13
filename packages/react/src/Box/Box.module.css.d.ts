@@ -838,6 +838,18 @@ declare const styles: {
   readonly "Box-borderWidth--thin": string;
   readonly "Box-borderWidth--thick": string;
   readonly "Box-borderWidth--thicker": string;
+  readonly "Box-borderBlockStartWidth--thin": string;
+  readonly "Box-borderBlockStartWidth--thick": string;
+  readonly "Box-borderBlockStartWidth--thicker": string;
+  readonly "Box-borderInlineEndWidth--thin": string;
+  readonly "Box-borderInlineEndWidth--thick": string;
+  readonly "Box-borderInlineEndWidth--thicker": string;
+  readonly "Box-borderBlockEndWidth--thin": string;
+  readonly "Box-borderBlockEndWidth--thick": string;
+  readonly "Box-borderBlockEndWidth--thicker": string;
+  readonly "Box-borderInlineStartWidth--thin": string;
+  readonly "Box-borderInlineStartWidth--thick": string;
+  readonly "Box-borderInlineStartWidth--thicker": string;
   readonly "Box-borderColor--default": string;
   readonly "Box-borderColor--muted": string;
   readonly "Box-borderColor--subtle": string;
