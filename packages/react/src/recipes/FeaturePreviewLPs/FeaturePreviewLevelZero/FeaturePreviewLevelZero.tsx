@@ -78,7 +78,7 @@ export function FeaturePreviewLevelZero({accentColor, colorMode, ...args}: Featu
       >
         <Grid enableOverlay={enableGridOverlay}>
           <Grid.Column>
-            <Hero align={args.heroAlign} className={styles.Hero}>
+            <Hero align={args.heroAlign}>
               {args.heroLabel && <Hero.Label>{args.heroLabel}</Hero.Label>}
               {args.heroTitle && <Hero.Heading>{args.heroTitle}</Hero.Heading>}
               {args.heroDescription && <Hero.Description>{args.heroDescription}</Hero.Description>}
