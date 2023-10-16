@@ -324,21 +324,25 @@ All padding and margin options can be configured for indivisual viewports: Each 
 
 ### Box
 
-| Name                | Type                                                                     |   Default   | Description                                                                 |
-| :------------------ | :----------------------------------------------------------------------- | :---------: | :-------------------------------------------------------------------------- |
-| `padding`           | <PropTableValues values={[...BoxSpacingValues]} commaSeparated  />       | `undefined` | Adds padding to all internal sides of the Box.                              |
-| `paddingBlockStart` | <PropTableValues values={[...BoxSpacingValues]} commaSeparated  />       | `undefined` | Adds padding to the internal block start (top) side of the Box.             |
-| `paddingRight`      | <PropTableValues values={[...BoxSpacingValues]} commaSeparated  />       | `undefined` | Adds padding to the internal inline end (right) of the Box.                 |
-| `paddingBlockEnd`   | <PropTableValues values={[...BoxSpacingValues]} commaSeparated  />       | `undefined` | Adds padding to the internal block end (bottom) side of the Box.            |
-| `paddingLeft`       | <PropTableValues values={[...BoxSpacingValues]} commaSeparated  />       | `undefined` | Adds padding to the internal inline start (left) side of the Box.           |
-| `margin`            | <PropTableValues values={[...BoxSpacingValues]} commaSeparated  />       | `undefined` | Adds margin to all external sides of the Box.                               |
-| `marginBlockStart`  | <PropTableValues values={[...BoxSpacingValues]} commaSeparated  />       | `undefined` | Adds margin to the external block start (top) side of the Box.              |
-| `marginInlineEnd`   | <PropTableValues values={[...BoxSpacingValues]} commaSeparated  />       | `undefined` | Adds margin to the external inline end (right) side of the Box.             |
-| `marginBlockEnd`    | <PropTableValues values={[...BoxSpacingValues]} commaSeparated  />       | `undefined` | Adds margin to the external block end (bottom) side of the Box.             |
-| `marginInlineStart` | <PropTableValues values={[...BoxSpacingValues]} commaSeparated  />       | `undefined` | Adds margin to the external inline start (left) side of the Box.            |
-| `backgroundColor`   | <PropTableValues values={[...BoxBackgroundColors]} commaSeparated  />    | `undefined` | Applies a system-level background color to the Box.                         |
-| `borderRadius`      | <PropTableValues values={[...BoxBorderRadiusOptions]} commaSeparated  /> | `undefined` | Applies a system-level border radius value to the Box.                      |
-| `borderWidth`       | <PropTableValues values={[...BoxBorderWidthOptions]} commaSeparated  />  | `undefined` | Applies a system-level border width value to the Box.                       |
-| `borderColor`       | <PropTableValues values={[...BoxBorderColorOptions]} commaSeparated  />  | `undefined` | Applies a system-level border color value to the Box.                       |
-| `borderStyle`       | <PropTableValues values={['solid', 'none']} commaSeparated />            | `undefined` | Applies border style. Values correspond to the CSS `border-style` property. |
-| `animate`           | <PropTableValues values={[...AnimationVariants]} commaSeparated />       | `undefined` | Applies one-off animations to direct children of the Box.                   |
+| Name                     | Type                                                                     |   Default   | Description                                                                 |
+| :----------------------- | :----------------------------------------------------------------------- | :---------: | :-------------------------------------------------------------------------- |
+| `padding`                | <PropTableValues values={[...BoxSpacingValues]} commaSeparated  />       | `undefined` | Adds padding to all internal sides of the Box.                              |
+| `paddingBlockStart`      | <PropTableValues values={[...BoxSpacingValues]} commaSeparated  />       | `undefined` | Adds padding to the internal block start (top) side of the Box.             |
+| `paddingRight`           | <PropTableValues values={[...BoxSpacingValues]} commaSeparated  />       | `undefined` | Adds padding to the internal inline end (right) of the Box.                 |
+| `paddingBlockEnd`        | <PropTableValues values={[...BoxSpacingValues]} commaSeparated  />       | `undefined` | Adds padding to the internal block end (bottom) side of the Box.            |
+| `paddingLeft`            | <PropTableValues values={[...BoxSpacingValues]} commaSeparated  />       | `undefined` | Adds padding to the internal inline start (left) side of the Box.           |
+| `margin`                 | <PropTableValues values={[...BoxSpacingValues]} commaSeparated  />       | `undefined` | Adds margin to all external sides of the Box.                               |
+| `marginBlockStart`       | <PropTableValues values={[...BoxSpacingValues]} commaSeparated  />       | `undefined` | Adds margin to the external block start (top) side of the Box.              |
+| `marginInlineEnd`        | <PropTableValues values={[...BoxSpacingValues]} commaSeparated  />       | `undefined` | Adds margin to the external inline end (right) side of the Box.             |
+| `marginBlockEnd`         | <PropTableValues values={[...BoxSpacingValues]} commaSeparated  />       | `undefined` | Adds margin to the external block end (bottom) side of the Box.             |
+| `marginInlineStart`      | <PropTableValues values={[...BoxSpacingValues]} commaSeparated  />       | `undefined` | Adds margin to the external inline start (left) side of the Box.            |
+| `backgroundColor`        | <PropTableValues values={[...BoxBackgroundColors]} commaSeparated  />    | `undefined` | Applies a system-level background color to the Box.                         |
+| `borderRadius`           | <PropTableValues values={[...BoxBorderRadiusOptions]} commaSeparated  /> | `undefined` | Applies a system-level border radius value to the Box.                      |
+| `borderWidth`            | <PropTableValues values={[...BoxBorderWidthOptions]} commaSeparated  />  | `undefined` | Applies a system-level border width value to the Box.                       |
+| `borderBlockStartWidth`  | <PropTableValues values={[...BoxBorderWidthOptions]} commaSeparated  />  | `undefined` | Applies a system-level border width value to block-start side of the Box.   |
+| `borderInlineEndWidth`   | <PropTableValues values={[...BoxBorderWidthOptions]} commaSeparated  />  | `undefined` | Applies a system-level border width value to inline-end side of the Box.    |
+| `borderBlockEndWidth`    | <PropTableValues values={[...BoxBorderWidthOptions]} commaSeparated  />  | `undefined` | Applies a system-level border width value to block-end side of the Box.     |
+| `borderInlineStartWidth` | <PropTableValues values={[...BoxBorderWidthOptions]} commaSeparated  />  | `undefined` | Applies a system-level border width value to inline-start side of the Box.  |
+| `borderColor`            | <PropTableValues values={[...BoxBorderColorOptions]} commaSeparated  />  | `undefined` | Applies a system-level border color value to the Box.                       |
+| `borderStyle`            | <PropTableValues values={['solid', 'none']} commaSeparated />            | `undefined` | Applies border style. Values correspond to the CSS `border-style` property. |
+| `animate`                | <PropTableValues values={[...AnimationVariants]} commaSeparated />       | `undefined` | Applies one-off animations to direct children of the Box.                   |

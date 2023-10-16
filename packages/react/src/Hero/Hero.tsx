@@ -104,32 +104,44 @@ type HeroDescriptionProps = {
   weight?: TextWeightVariants | ResponsiveWeightMap
 } & BaseProps<HTMLParagraphElement>
 
-function HeroDescription({size = '200', weight, children}: PropsWithChildren<HeroDescriptionProps>) {
-  return (
-    <Text className={styles['Hero-description']} as="p" size={size} weight={weight}>
-      {children}
-    </Text>
-  )
-}
+const HeroDescription = forwardRef<HTMLParagraphElement, PropsWithChildren<HeroDescriptionProps>>(
+  ({size = '200', weight, children}: PropsWithChildren<HeroDescriptionProps>, ref) => {
+    return (
+      <Text ref={ref} className={styles['Hero-description']} as="p" size={size} weight={weight}>
+        {children}
+      </Text>
+    )
+  },
+)
 
 type HeroImageProps = {
   position?: 'inline-end' | 'block-end'
 } & ImageProps &
   BaseProps<HTMLImageElement>
 
-function HeroImage({position = 'block-end', className, ...rest}: PropsWithChildren<HeroImageProps>) {
-  return <Image className={clsx(styles['Hero-image'], styles[`Hero-image--pos-${position}`], className)} {...rest} />
-}
+const HeroImage = forwardRef<HTMLImageElement, HeroImageProps>(
+  ({position = 'block-end', className, ...rest}: PropsWithChildren<HeroImageProps>, ref) => {
+    return (
+      <Image
+        ref={ref}
+        className={clsx(styles['Hero-image'], styles[`Hero-image--pos-${position}`], className)}
+        {...rest}
+      />
+    )
+  },
+)
 
 type HeroLabelProps = LabelProps & BaseProps<HTMLSpanElement>
 
-function HeroLabel({children, ...rest}: PropsWithChildren<HeroLabelProps>) {
-  return (
-    <Label className={styles['Hero-label']} {...rest}>
-      {children}
-    </Label>
-  )
-}
+const HeroLabel = forwardRef<HTMLSpanElement, HeroLabelProps>(
+  ({children, ...rest}: PropsWithChildren<HeroLabelProps>, ref) => {
+    return (
+      <Label ref={ref} className={styles['Hero-label']} {...rest}>
+        {children}
+      </Label>
+    )
+  },
+)
 
 type RestrictedPolymorphism =
   | (BaseProps<HTMLAnchorElement> & {as?: 'a'})
