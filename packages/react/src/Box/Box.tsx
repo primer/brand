@@ -84,6 +84,22 @@ type BoxProps = {
    */
   borderWidth?: BorderWidthOptions
   /*
+   * Apply a directional border width value
+   */
+  borderBlockStartWidth?: BorderWidthOptions
+  /*
+   * Apply a directional border width value
+   */
+  borderInlineEndWidth?: BorderWidthOptions
+  /*
+   * Apply a directional border width value
+   */
+  borderBlockEndWidth?: BorderWidthOptions
+  /*
+   * Apply a directional border width value
+   */
+  borderInlineStartWidth?: BorderWidthOptions
+  /*
    * Apply a system-level border color value
    */
   borderColor?: BorderColorOptions
@@ -147,6 +163,10 @@ export const Box = ({
   backgroundColor,
   borderRadius,
   borderWidth,
+  borderBlockStartWidth,
+  borderInlineEndWidth,
+  borderBlockEndWidth,
+  borderInlineStartWidth,
   borderColor,
   borderStyle,
   ...rest
@@ -175,6 +195,22 @@ export const Box = ({
   const backgroundColorClasses = useMemo(() => classBuilder('backgroundColor', backgroundColor), [backgroundColor])
   const borderRadiusClasses = useMemo(() => classBuilder('borderRadius', borderRadius), [borderRadius])
   const borderWidthClasses = useMemo(() => classBuilder('borderWidth', borderWidth), [borderWidth])
+  const borderBlockStartWidthClasses = useMemo(
+    () => classBuilder('borderBlockStartWidth', borderBlockStartWidth),
+    [borderBlockStartWidth],
+  )
+  const borderInlineEndWidthClasses = useMemo(
+    () => classBuilder('borderInlineEndWidth', borderInlineEndWidth),
+    [borderInlineEndWidth],
+  )
+  const borderBlockEndWidthClasses = useMemo(
+    () => classBuilder('borderBlockEndWidth', borderBlockEndWidth),
+    [borderBlockEndWidth],
+  )
+  const borderInlineStartWidthClasses = useMemo(
+    () => classBuilder('borderInlineStartWidth', borderInlineStartWidth),
+    [borderInlineStartWidth],
+  )
   const borderColorClasses = useMemo(() => classBuilder('borderColor', borderColor), [borderColor])
   const borderStyleClasses = useMemo(() => classBuilder('borderStyle', borderStyle), [borderStyle])
 
@@ -195,6 +231,10 @@ export const Box = ({
         backgroundColorClasses,
         borderRadiusClasses,
         borderWidthClasses,
+        borderBlockStartWidthClasses,
+        borderInlineEndWidthClasses,
+        borderBlockEndWidthClasses,
+        borderInlineStartWidthClasses,
         borderColorClasses,
         borderStyleClasses,
         className,

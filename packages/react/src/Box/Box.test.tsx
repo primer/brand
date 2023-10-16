@@ -3,7 +3,14 @@ import '@testing-library/jest-dom'
 import {cleanup, render} from '@testing-library/react'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
-import {Box, BoxBackgroundColors, BoxBorderColorOptions, BoxBorderRadiusOptions, BoxSpacingValues} from './Box'
+import {
+  Box,
+  BoxBackgroundColors,
+  BoxBorderColorOptions,
+  BoxBorderRadiusOptions,
+  BoxSpacingValues,
+  BoxBorderWidthOptions,
+} from './Box'
 
 expect.extend(toHaveNoViolations)
 
@@ -211,6 +218,36 @@ describe('Box', () => {
 
       const boxEl = getByTestId(id)
       expect(boxEl).toHaveClass(expectedClass)
+    }
+  })
+
+  it('will set the correct styles for directional border width', () => {
+    const borderDirections = [
+      'borderBlockStartWidth',
+      'borderInlineEndWidth',
+      'borderBlockEndWidth',
+      'borderInlineStartWidth',
+    ]
+
+    for (const width of BoxBorderWidthOptions) {
+      for (const direction of borderDirections) {
+        const expectedClass = `Box-${direction}--${width}`
+
+        const id = `box-${direction}-${width}`
+
+        const props = {
+          [direction]: width,
+        }
+
+        const {getByTestId} = render(
+          <Box data-testid={id} {...props}>
+            {mockText}
+          </Box>,
+        )
+
+        const boxEl = getByTestId(id)
+        expect(boxEl).toHaveClass(expectedClass)
+      }
     }
   })
 })
