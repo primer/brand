@@ -109,7 +109,7 @@ jobs:
       # FIXME: When there is a workaround in both Cypress and Astro
       # See https://github.com/cypress-io/cypress/issues/28052
       - name: Remove base tsconfig due to bundler error
-        run: npx json -I -f tsconfig.json -e 'delete this.extends'
+        run: npx json -I -f ${{env.ASTRO_FOLDER}}/tsconfig.json -e 'delete this.extends'
 
       - name: Test runtime for errors and warnings
         run: cd ${{env.ASTRO_FOLDER}} && npx start-server-and-test 'npx http-server ./dist -p 3000' 3000 'npx cypress run --spec "./integration-tests/tests/*" --config video=false'
