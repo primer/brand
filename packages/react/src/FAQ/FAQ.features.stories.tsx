@@ -2,7 +2,7 @@ import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {FAQ, FAQGroup} from '.'
-import {InlineLink} from '..'
+import {Prose} from '..'
 import {Container} from '../component-helpers'
 
 export default {
@@ -38,9 +38,9 @@ const fixtureData: FixtureData = [
     answer: (
       <p>
         Vestibulum at dolor justo.{' '}
-        <InlineLink href="https://copilot.github.com/" target="_blank" rel="noreferrer">
+        <a href="https://copilot.github.com/" target="_blank" rel="noreferrer">
           Curabitur
-        </InlineLink>{' '}
+        </a>{' '}
         dictum feugiat elit, vitae vestibulum orci vestibulum sed. Donec interdum ligula at nisi rhoncus malesuada et
         non eros.
       </p>
@@ -52,9 +52,9 @@ const fixtureData: FixtureData = [
       <React.Fragment>
         <p>
           Vestibulum at dolor justo.{' '}
-          <InlineLink href="https://copilot.github.com/" target="_blank" rel="noreferrer">
+          <a href="https://copilot.github.com/" target="_blank" rel="noreferrer">
             Curabitur
-          </InlineLink>{' '}
+          </a>{' '}
           dictum feugiat elit, vitae vestibulum orci vestibulum sed. Donec interdum ligula at nisi rhoncus malesuada et
           non eros.
         </p>
@@ -73,9 +73,9 @@ const fixtureData: FixtureData = [
       <React.Fragment>
         <p>
           Vestibulum at dolor justo.{' '}
-          <InlineLink href="https://copilot.github.com/" target="_blank" rel="noreferrer">
+          <a href="https://copilot.github.com/" target="_blank" rel="noreferrer">
             Curabitur
-          </InlineLink>{' '}
+          </a>{' '}
           dictum feugiat elit, vitae vestibulum orci vestibulum sed. Donec interdum ligula at nisi rhoncus malesuada et
           non eros.
         </p>
@@ -477,6 +477,129 @@ export const DynamicDataExample: StoryFn<typeof FAQ> = () => {
             </FAQ.Item>
           )
         })}
+      </FAQ>
+    </Container>
+  )
+}
+
+export const WithProse: StoryFn<typeof FAQ> = () => {
+  return (
+    <Container>
+      <FAQ>
+        <FAQ.Heading>Frequently asked&nbsp;questions</FAQ.Heading>
+        <FAQ.Item open={true}>
+          <FAQ.Question>What is GitHub Enterprise?</FAQ.Question>
+          <FAQ.Answer>
+            <Prose
+              html={`
+                <p>
+                  <a href="https://docs.github.com/en/enterprise-server@3.5/admin/overview/about-github-enterprise-server">GitHub Enterprise Server</a> 
+                  is the self-hosted version of GitHub Enterprise. It is installed on-premises or on a private
+                  cloud and provides organizations with a secure and customizable source code management and
+                  collaboration platform.
+                </p>
+
+                <p>
+                  One of the key advantages of GitHub Enterprise Server is that it provides organizations with
+                  complete control over their source code and data. Organizations can choose where to store their
+                  repositories and can control who has access to them. Administrators can also customize the
+                  platform to meet specific needs, such as integrating other tools or implementing custom
+                  workflows.
+                </p>
+
+                <p>
+                  GitHub Enterprise Server also offers enhanced security and compliance features. Organizations
+                  can configure their instance to meet their specific security requirements, such as using LDAP or
+                  SAML for authentication, setting up two-factor authentication, or implementing network security
+                  measures. Compliance features are also included, such as audit logs, access controls, and
+                  vulnerability scanning.
+                </p>
+              `}
+            />
+          </FAQ.Answer>
+        </FAQ.Item>
+        <FAQ.Item open={true}>
+          <FAQ.Question>How secure is GitHub Enterprise?</FAQ.Question>
+          <FAQ.Answer className="enterprise-faq-answer">
+            <Prose
+              html={`
+                <p>
+                  GitHub Enterprise is designed with security in mind and includes a range of features to help organizations
+                  protect their code and data. Here are some of the key security features that GitHub Enterprise offers:
+                </p>
+                <ol>
+                  <li>
+                    Authentication and access controls: GitHub Enterprise includes two-factor authentication, LDAP and
+                    Active Directory integration, and OAuth authentication. This helps organizations ensure that only
+                    authorized users can access their repositories and data.
+                  </li>
+                  <li>
+                    Encryption: All data in transit between the user&apos;s computer and GitHub Enterprise server is
+                    encrypted using HTTPS. All data at rest uses AES-256 encryption.
+                  </li>
+                  <li>
+                    Vulnerability scanning: GitHub Enterprise includes built-in security scanning features that can detect
+                    known vulnerabilities and alert users.
+                  </li>
+                  <li>
+                    Audit logs: The platform provides detailed audit logs that record all user actions, including repository
+                    access, changes, and deletions. This helps organizations track and monitor user activity and identify
+                    potential security issues.
+                  </li>
+                  <li>
+                    Customizable policies: GitHub Enterprise allows organizations to create custom policies for repository
+                    access. This can help enforce compliance requirements and prevent unauthorized access to sensitive data.
+                  </li>
+                  <li>
+                    Regular security updates: There is also a dedicated security team that provides regular updates,
+                    monitors for potential security threats, and responds quickly to any issues that arise.
+                  </li>
+                </ol>
+              `}
+            />
+          </FAQ.Answer>
+        </FAQ.Item>
+        <FAQ.Item open={true}>
+          <FAQ.Question>What is GitHub Enterprise Cloud?</FAQ.Question>
+          <FAQ.Answer>
+            <Prose
+              html={`
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+                  turpis felis nam pulvinar risus elementum.
+                </p>
+                <ul>
+                  <li>
+                    Authentication and access controls: GitHub Enterprise includes two-factor authentication, LDAP and
+                    Active Directory integration, and OAuth authentication. This helps organizations ensure that only
+                    authorized users can access their repositories and data.
+                  </li>
+                  <li>
+                    Encryption: All data in transit between the user&apos;s computer and GitHub Enterprise server is
+                    encrypted using HTTPS. All data at rest uses AES-256 encryption.
+                  </li>
+                  <li>
+                    Vulnerability scanning: GitHub Enterprise includes built-in security scanning features that can detect
+                    known vulnerabilities and alert users.
+                  </li>
+                  <li>
+                    Audit logs: The platform provides detailed audit logs that record all user actions, including repository
+                    access, changes, and deletions. This helps organizations track and monitor user activity and identify
+                    potential security issues.
+                  </li>
+                  <li>
+                    Customizable policies: GitHub Enterprise allows organizations to create custom policies for repository
+                    access. This can help enforce compliance requirements and prevent unauthorized access to sensitive data.
+                  </li>
+                  <li>
+                    Regular security updates: There is also a dedicated security team that provides regular updates,
+                    monitors for potential security threats, and responds quickly to any issues that arise.
+                  </li>
+                </ul>
+              `}
+            />
+          </FAQ.Answer>
+        </FAQ.Item>
       </FAQ>
     </Container>
   )
