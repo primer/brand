@@ -102,11 +102,6 @@ jobs:
       - name: Excluded cypress tests in-place
         run: npx json -I -f ${{env.CRA_FOLDER}}/tsconfig.json -e 'this.exclude=["node_modules", "**/*.cy.ts"]'
 
-      # We use start to respect reading direction
-      # autoprefixer warning can be safely ignored here
-      - name: Remove autoprefixer warning about start vs flex-start
-        run: npx json -I -f ${{env.CRA_FOLDER}}/package.json -e 'this.ignoreWarnings=["autoprefixer:\ start value has mixed support, consider using flex-start instead"]'
-
       - name: Testing compile-time build
         run: cd ${{env.CRA_FOLDER}} && npm run build
 
