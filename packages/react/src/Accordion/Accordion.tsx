@@ -1,7 +1,7 @@
 import React, {forwardRef} from 'react'
 import clsx from 'clsx'
 
-import {Heading, Text} from '../'
+import {Heading} from '../'
 import type {BaseProps} from '../component-helpers'
 import {ChevronDownIcon, ChevronUpIcon} from '@primer/octicons-react'
 
