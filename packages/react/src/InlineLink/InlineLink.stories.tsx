@@ -47,3 +47,25 @@ export const SizeInheritence = () => (
     </Text>
   </>
 )
+
+export const SizeInheritenceWithCustomCSS = () => (
+  <>
+    <style
+      dangerouslySetInnerHTML={{
+        __html: `
+        .custom-css p {
+          margin-bottom: 32px;
+          font-size: 32px;
+          line-height: 28px;
+      }
+  `,
+      }}
+    />
+    <div className="custom-css">
+      <Text as="p">
+        The size of the following link will be inherited from the parent, without the need for specifying additional
+        `size` parameters. <InlineLink href="#">condimentum nulla donec blandit</InlineLink>.
+      </Text>
+    </div>
+  </>
+)

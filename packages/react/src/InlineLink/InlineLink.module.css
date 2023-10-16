@@ -13,6 +13,7 @@
 
 .InlineLink,
 .InlineLink > span {
+  font-size: inherit;
   font-weight: inherit;
   color: var(--brand-InlineLink-color-rest);
 }
