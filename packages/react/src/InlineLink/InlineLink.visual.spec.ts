@@ -34,4 +34,13 @@ test.describe('Visual Comparison: InlineLink', () => {
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
+
+  test('InlineLink / Size Inheritence With Custom CSS', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-inlinelink--size-inheritence-with-custom-css&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
 })
