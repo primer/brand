@@ -617,13 +617,7 @@ export const CustomVisual: StoryFn<typeof Bento> = () => (
       <Bento.Visual>
         <CustomElement icon="zap" />
       </Bento.Visual>
-      <Bento.Content
-        padding={{
-          xsmall: 'normal',
-          medium: 'spacious',
-        }}
-        verticalAlign="end"
-      >
+      <Bento.Content padding="spacious" verticalAlign="end">
         <Bento.Heading as="h3" size="display">
           75%
         </Bento.Heading>
@@ -644,14 +638,7 @@ export const CustomVisual: StoryFn<typeof Bento> = () => (
       <Bento.Visual horizontalAlign="center">
         <CustomElement icon="copilot" align="center" />
       </Bento.Visual>
-      <Bento.Content
-        padding={{
-          xsmall: 'normal',
-          medium: 'spacious',
-        }}
-        horizontalAlign="center"
-        verticalAlign="end"
-      >
+      <Bento.Content padding="spacious" horizontalAlign="center" verticalAlign="end">
         <Bento.Heading as="h3" size="display">
           55%
         </Bento.Heading>
