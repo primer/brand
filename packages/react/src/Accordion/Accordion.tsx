@@ -1,7 +1,7 @@
 import React, {forwardRef} from 'react'
 import clsx from 'clsx'
 
-import {Heading, Text} from '../'
+import {Heading} from '../'
 import type {BaseProps} from '../component-helpers'
 import {ChevronDownIcon, ChevronUpIcon} from '@primer/octicons-react'
 
@@ -95,41 +95,13 @@ export const AccordionHeading = forwardRef<HTMLHeadingElement, AccordionHeadingP
 )
 
 type AccordionContentProps = BaseProps<HTMLElement> & {
-  className?: string
   children: React.ReactElement | React.ReactElement[]
 }
 
 export function AccordionContent({children, className, ...rest}: AccordionContentProps) {
-  const resolvedChildren =
-    React.isValidElement(children) && children.type === React.Fragment
-      ? (children as React.ReactElement).props.children
-      : children
-
-  const transformedChildren = React.Children.map<React.ReactNode, React.ReactNode>(resolvedChildren, child => {
-    const targetChildTypes = ['p', 'span']
-    if (React.isValidElement(child) && typeof child.type === 'string') {
-      if (targetChildTypes.includes(child.type)) {
-        return React.cloneElement(child as React.ReactElement, {
-          children: (
-            <Text variant="muted" size="200" as="span">
-              {child.props.children}
-            </Text>
-          ),
-        })
-      }
-    }
-    return child
-  })
-
   return (
     <section className={clsx(styles.Accordion__content, className)} {...rest}>
-      {React.Children.toArray(transformedChildren).map(
-        textNode =>
-          React.isValidElement(textNode) &&
-          React.cloneElement(textNode as React.ReactElement, {
-            className: clsx(styles['Accordion__content-item'], textNode.props.className),
-          }),
-      )}
+      {children}
     </section>
   )
 }

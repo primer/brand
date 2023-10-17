@@ -11,6 +11,8 @@ import {useWindowSize} from '@primer/react-brand'
 ```
 
 ```jsx
-const {width, height, isXSmall, isSmall, isMedium, isLarge, isXLarge, isXXLarge, currentBreakpointSize} =
-  useWindowSize()
+function Component() {
+  const {width, height, isXSmall, isSmall, isMedium, isLarge, isXLarge, isXXLarge, currentBreakpointSize} =
+    useWindowSize()
+}
 ```
