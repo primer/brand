@@ -23,7 +23,7 @@
 }
 
 .FAQGroup__tablist-button {
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .FAQGroup__tablist-button > span {
