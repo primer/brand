@@ -1,5 +1,45 @@
 # @primer/react-brand
 
+## 0.27.2
+
+### Patch Changes
+
+- [#459](https://github.com/primer/brand/pull/459) [`0166b19`](https://github.com/primer/brand/commit/0166b1924834a6b5c6c4863c26eb07e0d95f949e) Thanks [@rezrah](https://github.com/rezrah)! - Adds `borderBlockStartWidth`, `borderBlockEndWidth`, `borderInlineStartWidth`, and `borderInlineEndWidth` props to the `Box` component to support directional borders.
+
+  ```jsx
+  <>
+    <Box borderBlockStartWidth="thin" borderColor="default" borderStyle="solid" />
+    <Box borderBlockEndWidth="thin" borderColor="default" borderStyle="solid" />
+    <Box borderInlineStartWidth="thin" borderColor="default" borderStyle="solid" />
+    <Box borderInlineEndWidth="thin" borderColor="default" borderStyle="solid" />
+  </>
+  ```
+
+- [#456](https://github.com/primer/brand/pull/456) [`64318fd`](https://github.com/primer/brand/commit/64318fdd7a64006aa5b63649d6c7d76515dbb5ce) Thanks [@rezrah](https://github.com/rezrah)! - Added hook for `useWindowSize` to the library exports.
+
+  Usage example:
+
+  ```js
+  import {useWindowSize} from '@primer/react-brand'
+  ```
+
+  ```jsx
+  function Component() {
+    const {width, height, isXSmall, isSmall, isMedium, isLarge, isXLarge, isXXLarge, currentBreakpointSize} =
+      useWindowSize()
+  }
+  ```
+
+- [#460](https://github.com/primer/brand/pull/460) [`893df22`](https://github.com/primer/brand/commit/893df22dd54dd0cd5dfe6ae3226b27e2a4994036) Thanks [@rezrah](https://github.com/rezrah)! - Improvements to default styling in FAQ content.
+
+- [#456](https://github.com/primer/brand/pull/456) [`64318fd`](https://github.com/primer/brand/commit/64318fdd7a64006aa5b63649d6c7d76515dbb5ce) Thanks [@rezrah](https://github.com/rezrah)! - Enabled `forwardRef` on `Hero.Description`, `Hero.Label` and `Hero.Image`.
+
+- [#435](https://github.com/primer/brand/pull/435) [`3227a7d`](https://github.com/primer/brand/commit/3227a7dd0366961618899e236b48398272e7a7c1) Thanks [@josepmartins](https://github.com/josepmartins)! - Adds `Blockquote`, `Code`, `Figure` and `Figcaption` to the `Prose` component.
+
+- [#464](https://github.com/primer/brand/pull/464) [`8e858cb`](https://github.com/primer/brand/commit/8e858cb22f1ae3eafc6b21a652e767158f7b2ce5) Thanks [@rezrah](https://github.com/rezrah)! - Replace usage of `start` with `flex-start` in `Bento`, `Hero` and `FAQGroup` components.
+
+- [#461](https://github.com/primer/brand/pull/461) [`4ebe9a5`](https://github.com/primer/brand/commit/4ebe9a591c65e2310f15c1d3901a78e0812063e1) Thanks [@rezrah](https://github.com/rezrah)! - Add `font-smoothing` to base stylesheet, for better font rendering on macOS.
+
 ## 0.27.1
 
 ### Patch Changes
