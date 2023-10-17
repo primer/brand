@@ -111,7 +111,6 @@
   100% {
     transform: rotate(360deg);
   }
-  /* Add an extra keyframe at 0% that matches the starting keyframe */
   0.01% {
     transform: rotate(0deg);
   }
