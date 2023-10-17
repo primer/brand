@@ -39,6 +39,15 @@ test.describe('Visual Comparison: Prose', () => {
       expect(await page.screenshot()).toMatchSnapshot()
     })
   })
+  test('Prose / Unordered List', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-prose-features--unordered-list&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Prose / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-prose--playground&viewMode=story')
 
@@ -48,13 +57,6 @@ test.describe('Visual Comparison: Prose', () => {
 
   test('Prose / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-prose--default&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('Prose / Unordered List', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-prose--unordered-list&viewMode=story')
 
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
