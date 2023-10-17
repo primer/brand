@@ -140,7 +140,7 @@
 
 .Prose ul {
   list-style-type: image;
-  list-style-image: var(--brand-Prose-imageUrl-default);
+  list-style-image: var(--brand-Prose-unorderedList-imageUrl);
 }
 
 .Prose li {
