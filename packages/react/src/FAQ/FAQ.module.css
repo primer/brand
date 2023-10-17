@@ -35,3 +35,17 @@
 .FAQ details + .FAQ__subheading {
   margin-top: var(--base-size-48);
 }
+
+.FAQ.details__summary {
+  font-weight: var(--brand-text-weight-800);
+  font-size: var(--brand-text-size-800);
+  line-height: var(--brand-text-lineHeight-800);
+  letter-spacing: var(--brand-text-letterSpacing-800);
+  color: var(--brand-FAQ-color-heading);
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+}

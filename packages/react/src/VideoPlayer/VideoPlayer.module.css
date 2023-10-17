@@ -88,7 +88,7 @@
   color: var(--base-color-scale-gray-0);
   display: grid;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
   grid-gap: 10px;
   grid-template-columns: auto auto;
   background: hsl(var(--base-color-scale-black-0-hsl) / 80%);

@@ -1,7 +1,6 @@
 import React from 'react'
 import {Meta} from '@storybook/react'
 import {FAQ} from '.'
-import {InlineLink} from '..'
 
 export default {
   title: 'Components/FAQ',
@@ -18,9 +17,9 @@ export const Default = () => (
         <p>
           All GitHub for Startups companies receive up to 20 seats of GitHub Enterprise for free for year one and 50%
           off year two. Learn more about the features and capabilities of GitHub Enterprise{' '}
-          <InlineLink href="https://copilot.github.com/" target="_blank" rel="noreferrer">
+          <a href="https://copilot.github.com/" target="_blank" rel="noreferrer">
             here
-          </InlineLink>
+          </a>
           .
         </p>
       </FAQ.Answer>
@@ -43,9 +42,9 @@ export const Default = () => (
         <p>
           If you&apos;re not currently eligible for the GitHub for Startups but would like to try GitHub Enterprise,
           please feel to sign up for a trial
-          <InlineLink href="https://copilot.github.com/" target="_blank" rel="noreferrer">
+          <a href="https://copilot.github.com/" target="_blank" rel="noreferrer">
             here
-          </InlineLink>
+          </a>
           .
         </p>
       </FAQ.Answer>
@@ -58,9 +57,9 @@ export const Default = () => (
           program.
         </p>
         <p>
-          <InlineLink href="https://copilot.github.com/" target="_blank" rel="noreferrer">
+          <a href="https://copilot.github.com/" target="_blank" rel="noreferrer">
             Apply here
-          </InlineLink>
+          </a>
           .
         </p>
       </FAQ.Answer>
