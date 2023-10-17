@@ -608,9 +608,9 @@ export const CustomVisual: StoryFn<typeof Bento> = () => (
     <Bento.Item
       columnSpan={{
         xsmall: 12,
-        large: 6,
+        medium: 6,
       }}
-      rowSpan={5}
+      rowSpan={{xsmall: 4, large: 5}}
       bgColor="default"
       className={styles.CustomVisual__item}
     >
@@ -635,9 +635,9 @@ export const CustomVisual: StoryFn<typeof Bento> = () => (
     <Bento.Item
       columnSpan={{
         xsmall: 12,
-        large: 6,
+        medium: 6,
       }}
-      rowSpan={5}
+      rowSpan={{xsmall: 4, large: 5}}
       bgColor="default"
       className={styles.CustomVisual__item}
     >
