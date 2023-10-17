@@ -116,6 +116,15 @@ test.describe('Visual Comparison: Box', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('Box / Directional Border Width', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-box-features--directional-border-width&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Box / Border Color', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-box-features--border-color&viewMode=story')
 

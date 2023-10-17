@@ -2,15 +2,6 @@
  * Overrides
  * Should be fixed in the respective components
  */
-
-.Hero {
-  /* In this template, the vertical spacing in Hero 
-   * at wider viewports uses the same value
-   * as that used in narrower viewports.
-   */
-  padding: var(--brand-Hero-narrow-padding);
-}
-
 .FeaturePreview__hero {
   background-repeat: no-repeat;
   background-size: cover;
