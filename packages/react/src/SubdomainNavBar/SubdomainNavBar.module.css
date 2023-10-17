@@ -142,12 +142,17 @@
     padding: 0;
   }
 
+  @media screen and (min-width: 47.75rem) {
+    .SubdomainNavBar-menu-wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow-y: auto;
+    }
+  }
+
   .SubdomainNavBar-menu-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     position: absolute;
-    overflow-y: auto;
     top: 75px;
     left: 0;
     right: 0;
