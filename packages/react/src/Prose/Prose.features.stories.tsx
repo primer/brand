@@ -1,8 +1,9 @@
 import React from 'react'
-import {ComponentMeta, ComponentStory} from '@storybook/react'
+import {Meta, StoryFn} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {Prose} from './Prose'
 import placeholderImage from '../fixtures/images/placeholder-600x400.png'
+import {ThemeProvider} from '../ThemeProvider'
 
 export default {
   title: 'Components/Prose/Features',
@@ -13,7 +14,7 @@ export default {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-} as ComponentMeta<typeof Prose>
+} as Meta
 
 const ExampleHtmlMarkup = `
 <h2>Heading level 2</h2>
@@ -59,11 +60,9 @@ const ExampleHtmlMarkup = `
     <p>Nunc velit odio, posuere eu felis eget, consectetur fermentum nisi. Aenean tempor odio id ornare ultrices. Quisque blandit condimentum tellus, semper efficitur sapien dapibus nec. </p>
 `
 
-export const FullWidth: ComponentStory<typeof Prose> = () => <Prose enableFullWidth html={ExampleHtmlMarkup} />
+export const FullWidth: StoryFn = () => <Prose enableFullWidth html={ExampleHtmlMarkup} />
 
-export const NarrowViewFullWidth: ComponentStory<typeof Prose> = () => (
-  <Prose enableFullWidth html={ExampleHtmlMarkup} />
-)
+export const NarrowViewFullWidth: StoryFn = () => <Prose enableFullWidth html={ExampleHtmlMarkup} />
 NarrowViewFullWidth.parameters = {
   viewport: {
     defaultViewport: 'iphonexr',
@@ -71,12 +70,45 @@ NarrowViewFullWidth.parameters = {
 }
 NarrowViewFullWidth.storyName = 'Narrow view, full width (mobile)'
 
-export const RegularViewFullWidth: ComponentStory<typeof Prose> = () => (
-  <Prose enableFullWidth html={ExampleHtmlMarkup} />
-)
+export const RegularViewFullWidth: StoryFn = () => <Prose enableFullWidth html={ExampleHtmlMarkup} />
 RegularViewFullWidth.parameters = {
   viewport: {
     defaultViewport: 'ipad10p',
   },
 }
 RegularViewFullWidth.storyName = 'Regular view, full width (tablet)'
+
+const UnorderedListHtmlMarkup = `
+<ul>
+  <li>
+    Vivamus eu risus nec lectus consequat rutrum at vel lacus.
+  </li>
+  <li>
+    Donec at dolor ut metus imperdiet congue vel porta nunc.
+  </li>
+  <li>
+    Quisque eu tortor suscipit, congue quam in, bibendum tellus.
+  </li>
+</ul>
+`
+const UnorderedListStory: StoryFn = args => <Prose {...args} html={UnorderedListHtmlMarkup} />
+export const UnorderedList = UnorderedListStory.bind({})
+UnorderedList.args = {
+  darkMode: true,
+}
+UnorderedList.argTypes = {
+  colorMode: {
+    darkMode: 'boolean',
+  },
+}
+UnorderedList.decorators = [
+  (Story, {args: {darkMode}}) => (
+    <>
+      <div style={{backgroundColor: darkMode ? 'black' : 'white'}}>
+        <ThemeProvider colorMode={darkMode ? 'dark' : 'light'}>
+          <Story />
+        </ThemeProvider>
+      </div>
+    </>
+  ),
+]

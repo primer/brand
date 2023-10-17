@@ -1,8 +1,7 @@
 import React from 'react'
-import {StoryFn, Meta} from '@storybook/react'
+import {ComponentMeta, ComponentStory} from '@storybook/react'
 import {Prose} from './Prose'
 import placeholderImage from '../fixtures/images/placeholder-600x400.png'
-import {ThemeProvider} from '../ThemeProvider'
 
 export default {
   title: 'Components/Prose',
@@ -18,7 +17,7 @@ export default {
       },
     },
   },
-} as Meta
+} as ComponentMeta<typeof Prose>
 
 const ExampleHtmlMarkup = `
 <h2>Heading level 2</h2>
@@ -64,42 +63,7 @@ const ExampleHtmlMarkup = `
     <p>Nunc velit odio, posuere eu felis eget, consectetur fermentum nisi. Aenean tempor odio id ornare ultrices. Quisque blandit condimentum tellus, semper efficitur sapien dapibus nec. </p>
 `
 
-const UnorderedListHtmlMarkup = `
-<ul>
-  <li>
-    Vivamus eu risus nec lectus consequat rutrum at vel lacus.
-  </li>
-  <li>
-    Donec at dolor ut metus imperdiet congue vel porta nunc.
-  </li>
-  <li>
-    Quisque eu tortor suscipit, congue quam in, bibendum tellus.
-  </li>
-</ul>
-`
-
-export const Playground: StoryFn = args => <Prose {...args} html={ExampleHtmlMarkup} />
-const UnorderedListStory: StoryFn = args => <Prose {...args} html={UnorderedListHtmlMarkup} />
+export const Playground: ComponentStory<typeof Prose> = args => <Prose {...args} html={ExampleHtmlMarkup} />
 
 export const Default = Playground.bind({})
-export const UnorderedList = UnorderedListStory.bind({})
-UnorderedList.args = {
-  darkMode: true,
-}
-UnorderedList.argTypes = {
-  colorMode: {
-    darkMode: 'boolean',
-  },
-}
-UnorderedList.decorators = [
-  (Story, {args: {darkMode}}) => (
-    <>
-      <div style={{backgroundColor: darkMode ? 'black' : 'white'}}>
-        <ThemeProvider colorMode={darkMode ? 'dark' : 'light'}>
-          <Story />
-        </ThemeProvider>
-      </div>
-    </>
-  ),
-]
 Default.args = {}
