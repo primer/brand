@@ -4,6 +4,7 @@ import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {Prose} from './Prose'
 import placeholderImage from '../fixtures/images/placeholder-600x400.png'
 import {ThemeProvider} from '../ThemeProvider'
+import {Box} from '../Box'
 
 export default {
   title: 'Components/Prose/Features',
@@ -103,12 +104,10 @@ UnorderedList.argTypes = {
 }
 UnorderedList.decorators = [
   (Story, {args: {darkMode}}) => (
-    <>
-      <div style={{backgroundColor: darkMode ? 'black' : 'white'}}>
-        <ThemeProvider colorMode={darkMode ? 'dark' : 'light'}>
-          <Story />
-        </ThemeProvider>
-      </div>
-    </>
+    <ThemeProvider colorMode={darkMode ? 'dark' : 'light'}>
+      <Box backgroundColor="default">
+        <Story />
+      </Box>
+    </ThemeProvider>
   ),
 ]
