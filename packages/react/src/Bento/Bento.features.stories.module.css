@@ -43,3 +43,74 @@
   height: auto;
   width: 100%;
 }
+
+.CustomVisual__item {
+  position: relative;
+  overflow: hidden;
+}
+
+.CustomElement {
+  --border-width: var(--base-size-4);
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  margin-top: var(--brand-Bento-content-padding-spacious);
+  color: white;
+  border-radius: var(--brand-borderRadius-full);
+  z-index: 0;
+  box-shadow: 0 0 120 48px rgb(87 0 189 / 49%), 0 0 100px 190px rgb(87 0 189 / 16%);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: calc(-1 * var(--border-width) + 5px);
+    left: calc(-1 * var(--border-width) + 5px);
+    z-index: -1;
+    width: calc(100% + var(--border-width) * 2 - 10px);
+    height: calc(100% + var(--border-width) * 2 - 10px);
+    background: var(--brand-color-canvas-default);
+    border-radius: var(--brand-borderRadius-full);
+    z-index: 0;
+  }
+
+  &::after {
+    position: absolute;
+    content: '';
+    top: calc(-1 * var(--border-width));
+    left: calc(-1 * var(--border-width));
+    z-index: -1;
+    width: calc(100% + var(--border-width) * 2);
+    height: calc(100% + var(--border-width) * 2);
+    background: radial-gradient(circle at top left, #096bde, #0dff50, #8e47fe, #7c3ffe, #140fff);
+
+    border-radius: var(--brand-borderRadius-full);
+    animation: moveGradient 2s linear infinite;
+    z-index: -1;
+  }
+}
+
+.CustomElement--start {
+  margin-inline-start: var(--brand-Bento-content-padding-spacious);
+}
+
+.CustomElement__icon {
+  position: relative;
+  z-index: 2;
+  display: flex;
+}
+
+@keyframes moveGradient {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+  /* Add an extra keyframe at 0% that matches the starting keyframe */
+  0.01% {
+    transform: rotate(0deg);
+  }
+}
