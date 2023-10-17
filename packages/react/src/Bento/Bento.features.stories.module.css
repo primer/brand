@@ -89,7 +89,7 @@
     background: radial-gradient(circle at top left, #096bde, #0dff50, #8e47fe, #7c3ffe, #140fff);
 
     border-radius: var(--brand-borderRadius-full);
-    animation: moveGradient 2s linear infinite;
+    animation: moveGradient 6s linear infinite;
     z-index: -1;
   }
 }
