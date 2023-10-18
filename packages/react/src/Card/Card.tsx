@@ -1,12 +1,13 @@
 import React, {RefObject, forwardRef, useCallback} from 'react'
 import {isFragment} from 'react-is'
 import clsx from 'clsx'
-import {Heading, HeadingProps, Text} from '..'
+import {Heading, HeadingProps, Text, useTheme} from '..'
 import {ExpandableArrow} from '../ExpandableArrow'
 import {Label, LabelColors} from '../Label'
 import {Image, ImageProps} from '../Image'
 import type {BaseProps} from '../component-helpers'
 import {Colors} from '../constants'
+import {CardSkewEffect} from './CardSkewEffect'
 
 /**
  * Design tokens
@@ -62,11 +63,13 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
       ctaText = 'Learn more',
       href,
       hasBorder = false,
+      style,
       ...props
     },
     ref,
   ) => {
     const cardRef = useProvidedRefOrCreate(ref as RefObject<HTMLDivElement>)
+    const {colorMode} = useTheme()
     const isHovered = React.useRef(false)
     const isFocused = React.useRef(false)
 
@@ -122,38 +125,54 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
       child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === CardIcon,
     )
 
+    const Tag = colorMode === 'dark' ? CardSkewEffect : LightCardWrapperComponent
+
     return (
-      <div
-        className={clsx(styles.Card, hasIcon && styles['Card--icon'], hasBorder && styles['Card--border'], className)}
-        ref={cardRef}
-        {...props}
-      >
-        {React.Children.map(filteredChildren, child => {
-          if (React.isValidElement(child) && typeof child.type !== 'string' && child.type === CardHeading) {
-            return React.cloneElement<CardHeadingProps>(child as React.ReactElement<CardHeadingProps>, {
-              onMouseEnter: handleMouseEnter,
-              onMouseLeave: handleMouseLeave,
-              onFocus: handleOnFocus,
-              onBlur: handleOnBlur,
-              href,
-            })
-          }
-          return child
-        })}
-        <div className={styles.Card__action}>
-          <Text as="span" size="200" className={clsx(stylesLink['Link--label'])}>
-            {ctaText}
-          </Text>
-          <ExpandableArrow
-            className={stylesLink['Link-arrow']}
-            expanded={isHovered.current || isFocused.current}
-            aria-hidden="true"
-          />
+      <Tag style={style}>
+        <div
+          className={clsx(
+            styles.Card,
+            styles[`Card--colorMode-${colorMode}`],
+            hasIcon && styles['Card--icon'],
+            hasBorder && styles['Card--border'],
+            styles[`Card--colorMode-${colorMode}`],
+            className,
+          )}
+          ref={cardRef}
+          style={style}
+          {...props}
+        >
+          {React.Children.map(filteredChildren, child => {
+            if (React.isValidElement(child) && typeof child.type !== 'string' && child.type === CardHeading) {
+              return React.cloneElement<CardHeadingProps>(child as React.ReactElement<CardHeadingProps>, {
+                onMouseEnter: handleMouseEnter,
+                onMouseLeave: handleMouseLeave,
+                onFocus: handleOnFocus,
+                onBlur: handleOnBlur,
+                href,
+              })
+            }
+            return child
+          })}
+          <div className={styles.Card__action}>
+            <Text as="span" size="200" className={clsx(stylesLink['Link--label'])}>
+              {ctaText}
+            </Text>
+            <ExpandableArrow
+              className={stylesLink['Link-arrow']}
+              expanded={isHovered.current || isFocused.current}
+              aria-hidden="true"
+            />
+          </div>
         </div>
-      </div>
+      </Tag>
     )
   },
 )
+
+function LightCardWrapperComponent({children}) {
+  return <div className={styles['Card__inner']}>{children}</div>
+}
 
 type CardImageProps = ImageProps
 
