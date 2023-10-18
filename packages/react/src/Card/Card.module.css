@@ -255,7 +255,7 @@
   border-radius: var(--brand-borderRadius-large);
 }
 
-.Card--skew:hover .Card__shine {
+.Card--skew:hover .Card__torch {
   opacity: 0.85;
 }
 
@@ -268,7 +268,7 @@
   background-color: var(--brand-Card-background-default);
 }
 
-.Card__shine {
+.Card__torch {
   width: 650px;
   height: 650px;
   background-color: var(--brand-color-accent-primary);
