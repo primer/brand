@@ -204,7 +204,13 @@ export const Stacked: StoryFn<typeof Card> = () => {
 export const DarkColorModeEffect = () => {
   return (
     <>
-      <Stack direction="horizontal" gap={36}>
+      <Stack
+        direction={{
+          narrow: 'vertical',
+          regular: 'horizontal',
+        }}
+        gap={36}
+      >
         <Card href="https://github.com">
           <Card.Icon icon={ZapIcon} hasBackground />
           <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
@@ -228,7 +234,13 @@ export const DarkColorModeEffect = () => {
           <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
         </Card>
       </Stack>
-      <Stack direction="horizontal" gap={36}>
+      <Stack
+        direction={{
+          narrow: 'vertical',
+          regular: 'horizontal',
+        }}
+        gap={36}
+      >
         <Card
           href="https://github.com"
           style={{['--brand-color-accent-primary' as string]: 'var(--base-color-scale-red-2)'}}
