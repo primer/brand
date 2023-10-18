@@ -1,6 +1,6 @@
 import React from 'react'
 import {Meta, StoryFn} from '@storybook/react'
-import {TextSizes, Text} from '../'
+import {TextSizes, Text, Heading, Prose} from '../'
 import {InlineLink} from '.'
 
 export default {
@@ -45,5 +45,20 @@ export const SizeInheritence = () => (
       The size of the following link will be inherited from the parent, without the need for specifying additional
       `size` parameters. <InlineLink href="#">condimentum nulla donec blandit</InlineLink>.
     </Text>
+  </>
+)
+
+export const InsideHeader = () => (
+  <>
+    <Heading as="h3" size="2">
+      Hey <InlineLink href="#">there</InlineLink>!
+    </Heading>
+
+    <Text as="p" size="600">
+      Hey <InlineLink href="#">there</InlineLink>!
+    </Text>
+
+    {/* eslint-disable-next-line github/unescaped-html-literal */}
+    <Prose html={`<h3>Hey <a href="#">there</a>!"</h3>`} />
   </>
 )
