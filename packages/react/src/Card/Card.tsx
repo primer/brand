@@ -70,39 +70,22 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
   ) => {
     const cardRef = useProvidedRefOrCreate(ref as RefObject<HTMLDivElement>)
     const {colorMode} = useTheme()
-    const isHovered = React.useRef(false)
-    const isFocused = React.useRef(false)
+    const [isActive, setIsActive] = React.useState(false)
 
-    const handleMouseEnter = useCallback(
+    const handleActiveCard = useCallback(
       (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-        isHovered.current = !isHovered.current
+        setIsActive(true)
         onMouseEnter?.(event)
       },
-      [onMouseEnter, isHovered],
+      [onMouseEnter, setIsActive],
     )
 
-    const handleMouseLeave = useCallback(
+    const handleInactiveCard = useCallback(
       (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-        isHovered.current = !isHovered.current
+        setIsActive(false)
         onMouseLeave?.(event)
       },
-      [onMouseLeave, isHovered],
-    )
-
-    const handleOnFocus = useCallback(
-      (event: React.FocusEvent<HTMLAnchorElement, Element>) => {
-        isFocused.current = !isFocused.current
-        onFocus?.(event)
-      },
-      [onFocus, isFocused],
-    )
-
-    const handleOnBlur = useCallback(
-      (event: React.FocusEvent<HTMLAnchorElement, Element>) => {
-        isFocused.current = !isFocused.current
-        onBlur?.(event)
-      },
-      [onBlur, isFocused],
+      [onMouseLeave, setIsActive],
     )
 
     const filteredChildren = React.Children.toArray(children).filter(child => {
@@ -138,17 +121,15 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
             styles[`Card--colorMode-${colorMode}`],
             className,
           )}
-          ref={cardRef}
           style={style}
+          ref={cardRef}
           {...props}
         >
           {React.Children.map(filteredChildren, child => {
             if (React.isValidElement(child) && typeof child.type !== 'string' && child.type === CardHeading) {
               return React.cloneElement<CardHeadingProps>(child as React.ReactElement<CardHeadingProps>, {
-                onMouseEnter: handleMouseEnter,
-                onMouseLeave: handleMouseLeave,
-                onFocus: handleOnFocus,
-                onBlur: handleOnBlur,
+                onMouseEnter: handleActiveCard,
+                onMouseLeave: handleInactiveCard,
                 href,
               })
             }
@@ -158,11 +139,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
             <Text as="span" size="200" className={clsx(stylesLink['Link--label'])}>
               {ctaText}
             </Text>
-            <ExpandableArrow
-              className={stylesLink['Link-arrow']}
-              expanded={isHovered.current || isFocused.current}
-              aria-hidden="true"
-            />
+            <ExpandableArrow className={stylesLink['Link-arrow']} expanded={isActive} aria-hidden="true" />
           </div>
         </div>
       </Tag>
@@ -171,7 +148,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
 )
 
 function LightCardWrapperComponent({children}) {
-  return <div className={styles['Card__inner']}>{children}</div>
+  return <div className={styles['Card__outer']}>{children}</div>
 }
 
 type CardImageProps = ImageProps

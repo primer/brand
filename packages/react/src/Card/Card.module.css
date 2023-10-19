@@ -52,7 +52,7 @@
   border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
 }
 
-.Card__inner {
+.Card__outer {
   height: 100%;
 }
 

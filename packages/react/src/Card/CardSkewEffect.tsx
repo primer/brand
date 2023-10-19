@@ -2,13 +2,15 @@ import React, {useRef, useEffect, PropsWithChildren} from 'react'
 import clsx from 'clsx'
 
 import {useTheme} from '../'
+import {BaseProps} from '../component-helpers'
 
 import styles from './Card.module.css'
 
 type CardSkewEffectProps = {
   perspective?: number
   disableSkew?: boolean
-} & React.HTMLAttributes<HTMLDivElement>
+} & BaseProps<HTMLDivElement> &
+  React.HTMLAttributes<HTMLDivElement>
 
 export const CardSkewEffect = ({
   color,
