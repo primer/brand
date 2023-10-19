@@ -37,6 +37,10 @@
   text-decoration: none !important;
 }
 
+.Card--disableAnimation:hover .Card__link {
+  text-decoration: underline !important;
+}
+
 /* The focus outline will appear around the entire card, not just the title */
 .Card__link:focus {
   outline: none;
@@ -74,7 +78,7 @@
   align-self: center;
 }
 
-.Card--colorMode-light:hover {
+.Card--colorMode-light:not(.Card--disableAnimation):hover {
   transform: scale3d(1.025, 1.025, 1);
 }
 

@@ -37,7 +37,10 @@ export type CardProps = {
     | React.ReactElement<CardLabelProps>
     | React.ReactElement<CardHeadingProps>
     | React.ReactElement<CardDescriptionProps>
-
+  /**
+   * Disable the default hover animation
+   */
+  disableAnimation?: boolean
   /**
    * The href of the link
    * */
@@ -61,6 +64,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
       children,
       className,
       ctaText = 'Learn more',
+      disableAnimation = false,
       href,
       hasBorder = false,
       style,
@@ -111,10 +115,11 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
     const Tag = colorMode === 'dark' ? CardSkewEffect : LightCardWrapperComponent
 
     return (
-      <Tag style={style}>
+      <Tag style={style} disableSkew={disableAnimation}>
         <div
           className={clsx(
             styles.Card,
+            disableAnimation && styles['Card--disableAnimation'],
             styles[`Card--colorMode-${colorMode}`],
             hasIcon && styles['Card--icon'],
             hasBorder && styles['Card--border'],

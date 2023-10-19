@@ -24,7 +24,7 @@ export const CardSkewEffect = ({
   const torchRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    if (colorMode === 'light') return
+    if (colorMode === 'light' || disableSkew) return
 
     const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
 
@@ -47,18 +47,16 @@ export const CardSkewEffect = ({
       const rect = boundingElement.getBoundingClientRect()
       const x = torchElement ? rect.width - (e.clientX - rect.left) - torchElement.offsetWidth / 2 : 0
       const y = torchElement ? rect.height - (e.clientY - rect.top) - torchElement.offsetHeight / 2 : 0
-      const skewY = !disableSkew ? -((e.clientX - rect.left - rect.width / 2) / rect.width) * 3 : 0
-      const skewX = !disableSkew ? ((e.clientY - rect.top - rect.height / 2) / rect.height) * 2 : 0
+      const skewY = -((e.clientX - rect.left - rect.width / 2) / rect.width) * 3
+      const skewX = ((e.clientY - rect.top - rect.height / 2) / rect.height) * 2
 
       if (torchElement) {
         torchElement.style.transform = `translate(${-x}px, ${-y / 2}px)`
       }
 
-      if (!disableSkew) {
-        boundingElement.style.transform = `perspective(${perspective}px) rotateX(${
-          Math.round(skewX * 100) / 100
-        }deg) rotateY(${Math.round(skewY * 100) / 100}deg)`
-      }
+      boundingElement.style.transform = `perspective(${perspective}px) rotateX(${
+        Math.round(skewX * 100) / 100
+      }deg) rotateY(${Math.round(skewY * 100) / 100}deg)`
     }
 
     motionQuery.addEventListener('change', handleReducedMotionChange)
@@ -74,10 +72,13 @@ export const CardSkewEffect = ({
   }, [disableSkew, perspective, colorMode])
 
   return (
-    <div ref={boundingRef} className={styles['Card--skew']} {...rest}>
+    <div ref={boundingRef} className={clsx(styles['Card--skew'])} {...rest}>
       <div className={styles['Card__skew-bounding']}>
         {children}
-        <div ref={torchRef} className={clsx(styles.Card__torch, styles[`Card--skew-colorMode-${colorMode}`])} />
+        <div
+          ref={torchRef}
+          className={clsx(!disableSkew && styles.Card__torch, styles[`Card--skew-colorMode-${colorMode}`])}
+        />
       </div>
     </div>
   )
