@@ -1,9 +1,9 @@
 import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 import {Card, CardIconColors} from '.'
-import {Stack, LabelColors, Grid} from '..'
+import {Stack, LabelColors, Grid, ThemeProvider, Box} from '..'
 import placeholderImage from '../fixtures/images/placeholder-600x400.png'
-import {CopilotIcon, RocketIcon, GitBranchIcon, HeartIcon} from '@primer/octicons-react'
+import {CopilotIcon, ZapIcon, RocketIcon, GitBranchIcon, HeartIcon} from '@primer/octicons-react'
 
 export default {
   title: 'Components/Card/features',
@@ -62,7 +62,7 @@ export const IconColors: StoryFn<typeof Card> = () => {
     <Stack padding={'none'} direction="horizontal" gap={'normal'} style={{flexWrap: 'wrap'}}>
       {CardIconColors.map((color, id) => {
         return (
-          <Card key={id} href="https://github.com" style={{maxWidth: '25%'}}>
+          <Card key={id} href="https://github.com">
             <Card.Icon icon={CopilotIcon} hasBackground color={color} />
             <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
             <Card.Description>
@@ -200,3 +200,83 @@ export const Stacked: StoryFn<typeof Card> = () => {
     </Grid>
   )
 }
+
+export const DarkColorModeEffect = () => {
+  return (
+    <>
+      <Stack
+        direction={{
+          narrow: 'vertical',
+          regular: 'horizontal',
+        }}
+        gap={36}
+      >
+        <Card href="https://github.com">
+          <Card.Icon icon={ZapIcon} hasBackground />
+          <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+          <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
+        </Card>
+        <Card
+          href="https://github.com"
+          style={{['--brand-color-accent-primary' as string]: 'var(--base-color-scale-indigo-2)'}}
+        >
+          <Card.Icon icon={CopilotIcon} hasBackground color="indigo" />
+          <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+          <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
+        </Card>
+
+        <Card
+          href="https://github.com"
+          style={{['--brand-color-accent-primary' as string]: 'var(--base-color-scale-yellow-2)'}}
+        >
+          <Card.Icon icon={GitBranchIcon} hasBackground color="yellow" />
+          <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+          <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
+        </Card>
+      </Stack>
+      <Stack
+        direction={{
+          narrow: 'vertical',
+          regular: 'horizontal',
+        }}
+        gap={36}
+      >
+        <Card
+          href="https://github.com"
+          style={{['--brand-color-accent-primary' as string]: 'var(--base-color-scale-red-2)'}}
+        >
+          <Card.Icon icon={HeartIcon} hasBackground color="red" />
+          <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+          <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
+        </Card>
+
+        <Card
+          href="https://github.com"
+          style={{['--brand-color-accent-primary' as string]: 'var(--base-color-scale-orange-2)'}}
+        >
+          <Card.Icon icon={ZapIcon} hasBackground color="orange" />
+          <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+          <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
+        </Card>
+        <Card
+          href="https://github.com"
+          style={{['--brand-color-accent-primary' as string]: 'var(--base-color-scale-lime-2)'}}
+        >
+          <Card.Icon icon={RocketIcon} hasBackground color="lime" />
+          <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+          <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
+        </Card>
+      </Stack>
+    </>
+  )
+}
+
+DarkColorModeEffect.decorators = [
+  Story => (
+    <ThemeProvider colorMode="dark">
+      <Box backgroundColor="default">
+        <Story />
+      </Box>
+    </ThemeProvider>
+  ),
+]
