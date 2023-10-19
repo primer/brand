@@ -50,15 +50,40 @@ export const SizeInheritence = () => (
 
 export const InsideHeader = () => (
   <>
-    <Heading as="h3" size="2">
+    <Heading size="display">
       Hey <InlineLink href="#">there</InlineLink>!
     </Heading>
 
-    <Text as="p" size="600">
+    <Heading size="1">
       Hey <InlineLink href="#">there</InlineLink>!
-    </Text>
+    </Heading>
 
-    {/* eslint-disable-next-line github/unescaped-html-literal */}
-    <Prose html={`<h3>Hey <a href="#">there</a>!"</h3>`} />
+    <Heading size="2">
+      Hey <InlineLink href="#">there</InlineLink>!
+    </Heading>
+
+    <Heading size="3">
+      Hey <InlineLink href="#">there</InlineLink>!
+    </Heading>
+
+    <Heading size="4">
+      Hey <InlineLink href="#">there</InlineLink>!
+    </Heading>
+
+    <Heading size="5">
+      Hey <InlineLink href="#">there</InlineLink>!
+    </Heading>
+
+    <Heading size="6">
+      Hey <InlineLink href="#">there</InlineLink>!
+    </Heading>
+
+    <Heading size="subhead-large">
+      Hey <InlineLink href="#">there</InlineLink>!
+    </Heading>
+
+    <Heading size="subhead-medium">
+      Hey <InlineLink href="#">there</InlineLink>!
+    </Heading>
   </>
 )
