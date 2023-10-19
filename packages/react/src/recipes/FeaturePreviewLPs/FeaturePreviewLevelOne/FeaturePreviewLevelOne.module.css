@@ -37,7 +37,7 @@
 }
 @media screen and (max-width: 63.25rem) {
   .FeaturePreview__heroContent {
-    background-color: var(--base-color-scale-black);
+    background-color: var(--base-color-scale-black-0);
   }
 }
 

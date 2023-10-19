@@ -44,8 +44,8 @@ module.exports = {
         },
         fgColor: {
           enabled: {
-            value: 'var(--base-color-scale-black)',
-            dark: 'var(--base-color-scale-black)',
+            value: 'var(--base-color-scale-black-0)',
+            dark: 'var(--base-color-scale-black-0)',
           },
           disabled: {
             value: 'var(--base-color-scale-gray-0)',

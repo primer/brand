@@ -50,7 +50,7 @@
       "text": {
         "default": {
           "value": "var(--base-color-scale-gray-9)",
-          "dark": "var(--base-color-scale-white)"
+          "dark": "var(--base-color-scale-white-0)"
         },
         "muted": {
           "value": "var(--base-color-scale-gray-6)",
@@ -61,7 +61,7 @@
           "dark": "var(--base-color-scale-gray-4)"
         },
         "onEmphasis": {
-          "value": "var(--base-color-scale-white)",
+          "value": "var(--base-color-scale-white-0)",
           "dark": "var(--base-color-scale-black-0)"
         }
       },
@@ -85,11 +85,11 @@
       },
       "canvas": {
         "default": {
-          "value": "var(--base-color-scale-white)",
+          "value": "var(--base-color-scale-white-0)",
           "dark": "var(--base-color-scale-gray-9)"
         },
         "overlay": {
-          "value": "var(--base-color-scale-white)",
+          "value": "var(--base-color-scale-white-0)",
           "dark": "var(--base-color-scale-gray-8)"
         },
         "inset": {

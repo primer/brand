@@ -328,7 +328,7 @@
   position: absolute;
   right: 0;
   top: var(--base-size-48);
-  background-color: var(--base-color-scale-white);
+  background-color: var(--base-color-scale-white-0);
   border-radius: var(--brand-borderRadius-large);
   animation: fade-in-down 0.25s, enlarge-shadow 250ms forwards;
   animation-timing-function: var(--brand-animation-easing-default);
@@ -577,7 +577,7 @@
 .SubdomainNavBar-search-results-container {
   animation: fade-in-down 500ms;
   padding: var(--base-size-24);
-  background-color: var(--base-color-scale-white);
+  background-color: var(--base-color-scale-white-0);
   border-radius: var(--brand-borderRadius-large);
   box-shadow: 0px 8px 24px rgba(1, 4, 9, 0.15);
   max-height: 514px;
@@ -602,7 +602,7 @@
   line-height: var(--base-size-24);
   margin-bottom: var(--base-size-20);
   padding: 0 var(--base-size-8);
-  color: var(--base-color-scale-black);
+  color: var(--base-color-scale-black-0);
 }
 
 .SubdomainNavBar-search-result-item {
@@ -622,7 +622,7 @@
 
 .SubdomainNavBar-search-result-item-container a {
   display: block;
-  color: var(--base-color-scale-black);
+  color: var(--base-color-scale-black-0);
   text-decoration: none;
   margin: 0 0 var(--base-size-12);
   font-size: var(--base-size-16);
@@ -636,7 +636,7 @@
 }
 
 .SubdomainNavBar-search-result-item-desc {
-  color: var(--base-color-scale-black);
+  color: var(--base-color-scale-black-0);
 }
 
 /*

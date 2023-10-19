@@ -28,7 +28,7 @@
 }
 
 .marginInnerItem {
-  background-color: var(--base-color-scale-white);
+  background-color: var(--base-color-scale-white-0);
   padding: var(--base-size-4) var(--base-size-8);
 }
 
