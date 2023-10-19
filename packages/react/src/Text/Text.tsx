@@ -21,8 +21,6 @@ export type ResponsiveWeightMap = {
   wide?: TextWeightVariants
 }
 
-type AnchorProps = InlineLinkProps & React.HTMLAttributes<HTMLAnchorElement> & React.ReactElement<HTMLAnchorElement>
-
 type RestrictedPolymorphism =
   | (React.HTMLAttributes<HTMLParagraphElement> & BaseProps<HTMLParagraphElement> & {as?: 'p'})
   | (React.HTMLAttributes<HTMLSpanElement> & BaseProps<HTMLSpanElement> & {as?: 'span'})
@@ -94,20 +92,6 @@ export function Text({
     className,
   )
 
-  /**
-   * Valid children like InlineLinks will inherit parent parameters for convenience.
-   */
-  const transformedChildren = React.Children.toArray(children).map(child => {
-    if (React.isValidElement(child) && typeof child.type !== 'string') {
-      if (child.type === InlineLink) {
-        return React.cloneElement(child, {
-          size,
-        } as AnchorProps)
-      }
-    }
-    return child
-  })
-
   if (as === 'p') {
     return (
       <p
@@ -115,7 +99,7 @@ export function Text({
         style={{...animationInlineStyles, ...style}}
         {...(rest as BaseProps<HTMLParagraphElement>)}
       >
-        {transformedChildren}
+        {children}
       </p>
     )
   }
@@ -123,7 +107,7 @@ export function Text({
   if (as === 'em') {
     return (
       <em className={textClassName} style={{...animationInlineStyles, ...style}} {...rest}>
-        {transformedChildren}
+        {children}
       </em>
     )
   }
@@ -135,7 +119,7 @@ export function Text({
         style={{...animationInlineStyles, ...style}}
         {...(rest as BaseProps<HTMLDivElement>)}
       >
-        {transformedChildren}
+        {children}
       </div>
     )
   }
@@ -143,14 +127,14 @@ export function Text({
   if (as === 'strong') {
     return (
       <strong className={textClassName} style={{...animationInlineStyles, ...style}} {...rest}>
-        {transformedChildren}
+        {children}
       </strong>
     )
   }
 
   return (
     <span className={textClassName} style={{...animationInlineStyles, ...style}} {...rest}>
-      {transformedChildren}
+      {children}
     </span>
   )
 }
