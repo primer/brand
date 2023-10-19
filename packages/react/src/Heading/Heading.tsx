@@ -8,12 +8,12 @@ export const HeadingSizes = ['display', '1', '2', '3', '4', '5', '6', 'subhead-l
 export const HeadingTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const
 
 export const HeadingWeights = [
-  'black',
+  'heavy',
   'extrabold',
   'bold',
   'semibold',
   'medium',
-  'regular',
+  'normal',
   'light',
   'extralight',
 ] as const

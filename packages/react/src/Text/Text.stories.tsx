@@ -73,7 +73,7 @@ export const OverrideWeightResponsive = () => (
     weight={{
       narrow: 'extrabold',
       regular: 'semibold',
-      wide: 'regular',
+      wide: 'normal',
     }}
   >
     Responsive text weights
@@ -148,7 +148,7 @@ const TypeFixture = ({font}: {font: (typeof TextFontVariants)[number]}) => (
       >
         <Box className={styles.separator} marginBlockEnd={{narrow: 24, wide: 64}} />
         <Stack direction="vertical" padding="none">
-          <Text as="p" font={font} size="100" weight="regular" className={styles['break-words']}>
+          <Text as="p" font={font} size="100" weight="normal" className={styles['break-words']}>
             An organization&apos;s taste is defined by the process and style in which they make design decisions. What
             features belong in our product? Which prototype feels better? Do we need more iterations, or is this good
             enough? Are these questions answered by tools? By a process? By a person? Those answers are the essence of
@@ -158,12 +158,12 @@ const TypeFixture = ({font}: {font: (typeof TextFontVariants)[number]}) => (
             </strong>
           </Text>
 
-          <Text as="p" font={font} size="100" weight="regular" className={styles['break-words']}>
+          <Text as="p" font={font} size="100" weight="normal" className={styles['break-words']}>
             If the decisions are bold, opinionated, and cohesive — we tend to say the organization has taste. But if any
             of these are missing, we tend to label the entire organization as lacking taste.
           </Text>
 
-          <Text as="p" font={font} size="100" weight="regular" className={styles['break-words']}>
+          <Text as="p" font={font} size="100" weight="normal" className={styles['break-words']}>
             This is one of the biggest challenges a design leader faces. How do you ensure your team is capable of
             making bold, opinionated, and cohesive decisions together? It was certainly challenging me. With new
             employees came different tastes — often clashing against each other, resulting in unproductive debate and
@@ -189,10 +189,10 @@ const TypeFixture = ({font}: {font: (typeof TextFontVariants)[number]}) => (
             <Text>Weight: medium, Stretch: condensed</Text>
           </Stack>
           <Stack direction="vertical" padding="none" gap="condensed">
-            <Text font={font} size="700" weight="black">
+            <Text font={font} size="700" weight="heavy">
               The next big thing is a lot of small things.
             </Text>
-            <Text>Weight: black, Stretch: condensed</Text>
+            <Text>Weight: heavy, Stretch: condensed</Text>
           </Stack>
           <Stack direction="vertical" padding="none" gap="condensed">
             <Text font={font} size="700" weight="extralight">
@@ -207,10 +207,10 @@ const TypeFixture = ({font}: {font: (typeof TextFontVariants)[number]}) => (
             <Text>Weight: medium, Stretch: expanded</Text>
           </Stack>
           <Stack direction="vertical" padding="none" gap="condensed">
-            <Text font={font} size="700" weight="black">
+            <Text font={font} size="700" weight="heavy">
               One font file, infinite possibilities.
             </Text>
-            <Text>Weight: black, Stretch: expanded</Text>
+            <Text>Weight: heavy, Stretch: expanded</Text>
           </Stack>
         </Stack>
       </Grid.Column>

@@ -129,7 +129,7 @@ export const OverrideWeightResponsive = () => (
     weight={{
       narrow: 'extrabold',
       regular: 'semibold',
-      wide: 'regular',
+      wide: 'normal',
     }}
   >
     Responsive heading weights
@@ -210,10 +210,10 @@ const TypeFixture = ({font}: {font: (typeof HeadingFontVariants)[number]}) => (
             <Text>Weight: medium, Stretch: condensed</Text>
           </Stack>
           <Stack direction="vertical" padding="none" gap="condensed">
-            <Heading font={font} size="1" stretch="condensed" weight="black" letterSpacing="none">
+            <Heading font={font} size="1" stretch="condensed" weight="heavy" letterSpacing="none">
               The next big thing is a lot of small things.
             </Heading>
-            <Text>Weight: black, Stretch: condensed</Text>
+            <Text>Weight: heavy, Stretch: condensed</Text>
           </Stack>
           <Stack direction="vertical" padding="none" gap="condensed">
             <Heading font={font} size="1" stretch="condensed" weight="extralight" letterSpacing="none">
@@ -228,10 +228,10 @@ const TypeFixture = ({font}: {font: (typeof HeadingFontVariants)[number]}) => (
             <Text>Weight: medium, Stretch: expanded</Text>
           </Stack>
           <Stack direction="vertical" padding="none" gap="condensed">
-            <Heading font={font} size="1" stretch="expanded" weight="black" letterSpacing="none">
+            <Heading font={font} size="1" stretch="expanded" weight="heavy" letterSpacing="none">
               One font file, infinite possibilities.
             </Heading>
-            <Text>Weight: black, Stretch: expanded</Text>
+            <Text>Weight: heavy, Stretch: expanded</Text>
           </Stack>
         </Stack>
       </Grid.Column>

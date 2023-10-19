@@ -60,13 +60,13 @@
     "text": {
       "weight": {
         "100": {
-          "value": "var(--base-text-weight-regular)"
+          "value": "var(--base-text-weight-normal)"
         },
         "200": {
-          "value": "var(--base-text-weight-regular)"
+          "value": "var(--base-text-weight-normal)"
         },
         "300": {
-          "value": "var(--base-text-weight-regular)"
+          "value": "var(--base-text-weight-normal)"
         },
         "400": {
           "value": "var(--base-text-weight-semibold)"

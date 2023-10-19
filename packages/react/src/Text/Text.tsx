@@ -8,12 +8,12 @@ export const TextSizes = ['700', '600', '500', '400', '300', '200', '100'] as co
 export const TextTags = ['p', 'span', 'div', 'strong', 'em'] as const
 export const TextVariants = ['default', 'muted'] as const
 export const TextWeights = [
-  'black',
+  'heavy',
   'extrabold',
   'bold',
   'semibold',
   'medium',
-  'regular',
+  'normal',
   'light',
   'extralight',
 ] as const

@@ -8,7 +8,7 @@
         "light": {
           "value": 300
         },
-        "regular": {
+        "normal": {
           "value": 450
         },
         "medium": {
@@ -23,7 +23,7 @@
         "extrabold": {
           "value": 800
         },
-        "black": {
+        "heavy": {
           "value": 900
         }
       }

@@ -71,9 +71,9 @@
   letter-spacing: var(--brand-heading-letterSpacing-400);
 }
 
-.Heading--weight-black,
-.Heading-narrow--weight-black {
-  font-weight: var(--base-text-weight-black);
+.Heading--weight-heavy,
+.Heading-narrow--weight-heavy {
+  font-weight: var(--base-text-weight-heavy);
 }
 
 .Heading--weight-extrabold,
@@ -96,9 +96,9 @@
   font-weight: var(--base-text-weight-medium);
 }
 
-.Heading--weight-regular,
-.Heading-narrow--weight-regular {
-  font-weight: var(--base-text-weight-regular);
+.Heading--weight-normal,
+.Heading-narrow--weight-normal {
+  font-weight: var(--base-text-weight-normal);
 }
 
 .Heading--weight-light,
@@ -112,8 +112,8 @@
 }
 
 @media screen and (min-width: 48rem) {
-  .Heading-regular--weight-black {
-    font-weight: var(--base-text-weight-black);
+  .Heading-regular--weight-heavy {
+    font-weight: var(--base-text-weight-heavy);
   }
 
   .Heading-regular--weight-extrabold {
@@ -132,8 +132,8 @@
     font-weight: var(--base-text-weight-medium);
   }
 
-  .Heading-regular--weight-regular {
-    font-weight: var(--base-text-weight-regular);
+  .Heading-regular--weight-normal {
+    font-weight: var(--base-text-weight-normal);
   }
 
   .Heading-regular--weight-light {
@@ -146,8 +146,8 @@
 }
 
 @media screen and (min-width: 80rem) {
-  .Heading-wide--weight-black {
-    font-weight: var(--base-text-weight-black);
+  .Heading-wide--weight-heavy {
+    font-weight: var(--base-text-weight-heavy);
   }
 
   .Heading-wide--weight-extrabold {
@@ -166,8 +166,8 @@
     font-weight: var(--base-text-weight-medium);
   }
 
-  .Heading-wide--weight-regular {
-    font-weight: var(--base-text-weight-regular);
+  .Heading-wide--weight-normal {
+    font-weight: var(--base-text-weight-normal);
   }
 
   .Heading-wide--weight-light {
