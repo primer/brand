@@ -133,12 +133,45 @@ details[open] > .Accordion__summary.Accordion__summary--default .Accordion__summ
   padding-inline-start: var(--base-size-48);
 }
 
-.Accordion__content {
+.Accordion__content,
+.Accordion__content p,
+.Accordion__content span:not(.Accordion__summary--expanded):not(.Accordion__summary--collapsed),
+.Accordion__content ul,
+.Accordion__content ol {
   color: var(--brand-color-text-muted);
   font-family: var(--brand-fontStack-sansSerif);
   font-weight: var(--brand-text-weight-200);
   font-size: var(--brand-text-size-200);
   line-height: var(--brand-text-lineHeight-200);
+}
+
+.Accordion__content p:not(:first-child) {
+  margin-block-start: var(--base-size-16);
+}
+
+.Accordion__content a {
+  color: var(--brand-InlineLink-color-rest);
+  position: relative;
+  text-decoration: underline;
+  text-decoration-color: var(--brand-InlineLink-color-rest);
+  text-decoration-thickness: var(--brand-borderWidth-thin);
+  text-underline-position: under;
+  transition: var(--brand-InlineLink-transition-timing) text-decoration;
+}
+
+.Accordion__content a:hover {
+  text-decoration-thickness: var(--brand-borderWidth-thick);
+}
+
+.Accordion__content a,
+.Accordion__content a > span {
+  font-weight: inherit;
+  color: var(--brand-InlineLink-color-rest);
+}
+
+.Accordion__content a:active,
+.Accordion__content a:active > span {
+  color: var(--brand-InlineLink-color-pressed);
 }
 
 details[open] > .Accordion__content {

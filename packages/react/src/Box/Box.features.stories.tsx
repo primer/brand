@@ -204,6 +204,67 @@ export const BorderWidth = () => (
   </Stack>
 )
 
+export const DirectionalBorderWidth = () => (
+  <>
+    <Stack direction="horizontal" alignItems="center" className={styles.spacingContainer}>
+      {BoxBorderWidthOptions.map(value => (
+        <Box
+          key={value}
+          borderBlockStartWidth={value}
+          borderColor="default"
+          padding="spacious"
+          borderStyle="solid"
+          backgroundColor="subtle"
+        >
+          <Text size="100">{`block-start: ${value}`}</Text>
+        </Box>
+      ))}
+    </Stack>
+    <Stack direction="horizontal" alignItems="center" className={styles.spacingContainer}>
+      {BoxBorderWidthOptions.map(value => (
+        <Box
+          key={value}
+          borderInlineEndWidth={value}
+          borderColor="default"
+          padding="spacious"
+          borderStyle="solid"
+          backgroundColor="subtle"
+        >
+          <Text size="100">{`inline-end: ${value}`}</Text>
+        </Box>
+      ))}
+    </Stack>
+    <Stack direction="horizontal" alignItems="center" className={styles.spacingContainer}>
+      {BoxBorderWidthOptions.map(value => (
+        <Box
+          key={value}
+          borderBlockEndWidth={value}
+          borderColor="default"
+          padding="spacious"
+          borderStyle="solid"
+          backgroundColor="subtle"
+        >
+          <Text size="100">{`inline-end: ${value}`}</Text>
+        </Box>
+      ))}
+    </Stack>
+    <Stack direction="horizontal" alignItems="center" className={styles.spacingContainer}>
+      {BoxBorderWidthOptions.map(value => (
+        <Box
+          key={value}
+          borderInlineStartWidth={value}
+          borderColor="default"
+          padding="spacious"
+          borderStyle="solid"
+          backgroundColor="subtle"
+        >
+          <Text size="100">{`block-end: ${value}`}</Text>
+        </Box>
+      ))}
+    </Stack>
+  </>
+)
+
 export const BorderColor = () => (
   <Stack direction="horizontal" alignItems="center" className={styles.spacingContainer}>
     {BoxBorderColorOptions.map(value => (

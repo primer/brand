@@ -46,6 +46,9 @@
 }
 
 @media screen and (max-width: 63.25rem) {
+  .FeaturePreview__splitLayout {
+    display: none;
+  }
   .FeaturePreview__splitLayoutBg {
     background-image: none !important;
   }
@@ -100,6 +103,10 @@
   .FeaturePreview__heroContentInnerStickyContent {
     position: fixed;
   }
+}
+
+.FeaturePreview__footerLink {
+  color: var(--brand-color-text-muted);
 }
 
 /**

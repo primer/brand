@@ -88,7 +88,7 @@
   color: var(--brand-videoPlayer-title-fgColor);
   display: grid;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
   grid-gap: 10px;
   grid-template-columns: auto auto;
   background: var(--brand-videoPlayer-title-bgColor);

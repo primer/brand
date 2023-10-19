@@ -81,6 +81,15 @@ test.describe('Visual Comparison: Card', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('Card / Dark Color Mode Effect', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-card-features--dark-color-mode-effect&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Card / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-card--default&viewMode=story')
 

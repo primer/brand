@@ -6,8 +6,8 @@ export const supportedComponents = [
   'ComparisonTable',
   'FAQ',
   'Heading',
-  'Label',
   'Image',
+  'Label',
   'Pillar',
   'SectionIntro',
   'Stack',
@@ -16,6 +16,6 @@ export const supportedComponents = [
   'Text',
   'Timeline',
   'Animate',
-  'RiverBreakout',
   'River',
+  'RiverBreakout',
 ]
