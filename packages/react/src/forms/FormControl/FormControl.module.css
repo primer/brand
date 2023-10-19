@@ -70,14 +70,14 @@
   color: var(--brand-color-text-muted);
   display: block;
   font-size: var(--brand-text-size-200);
-  font-weight: var(--base-text-weight-normal);
+  font-weight: var(--base-text-weight-regular);
   letter-spacing: var(--brand-text-letterSpacing-200);
   line-height: var(--brand-text-lineHeight-200);
 }
 
 /*Validation*/
 .FormControl-validation {
-  font-weight: var(--base-text-weight-normal);
+  font-weight: var(--base-text-weight-regular);
   font-size: var(--brand-text-size-200);
   line-height: var(--brand-text-lineHeight-200);
   display: flex;
