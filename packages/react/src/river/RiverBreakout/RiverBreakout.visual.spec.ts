@@ -11,7 +11,7 @@ test.describe('Visual Comparison: RiverBreakout', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-riverbreakout--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('RiverBreakout / Highlighted Portion', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: RiverBreakout', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('RiverBreakout / Without Trailing Component', async ({page}) => {
@@ -29,6 +29,6 @@ test.describe('Visual Comparison: RiverBreakout', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })
