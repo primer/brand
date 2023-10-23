@@ -127,7 +127,7 @@
   list-style-type: none;
 }
 
-@media screen and (max-width: 48rem) {
+@media screen and (max-width: 767px) {
   .SubdomainNavBar-primary-nav-list {
     display: none;
   }
