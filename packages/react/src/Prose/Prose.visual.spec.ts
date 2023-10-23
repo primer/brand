@@ -11,7 +11,7 @@ test.describe('Visual Comparison: Prose', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-prose-features--full-width&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   // eslint-disable-next-line i18n-text/no-en
@@ -23,7 +23,7 @@ test.describe('Visual Comparison: Prose', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot()).toMatchSnapshot()
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
     })
   })
 
@@ -36,7 +36,7 @@ test.describe('Visual Comparison: Prose', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot()).toMatchSnapshot()
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
     })
   })
   test('Prose / Unordered List', async ({page}) => {
@@ -52,13 +52,13 @@ test.describe('Visual Comparison: Prose', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-prose--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Prose / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-prose--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })

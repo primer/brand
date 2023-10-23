@@ -13,7 +13,7 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Timeline / With Shorter Text', async ({page}) => {
@@ -22,7 +22,7 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Timeline / With Longer Text', async ({page}) => {
@@ -31,13 +31,13 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Timeline / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-timeline--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })

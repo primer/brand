@@ -13,7 +13,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('CTABanner / With No Shadow', async ({page}) => {
@@ -22,7 +22,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('CTABanner / Aligned Center', async ({page}) => {
@@ -31,7 +31,7 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('CTABanner / Custom Shadow', async ({page}) => {
@@ -40,20 +40,20 @@ test.describe('Visual Comparison: CTABanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('CTABanner / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-ctabanner--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('CTABanner / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-ctabanner--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })
