@@ -11,7 +11,7 @@ test.describe('Visual Comparison: Button', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--primary&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Primary Disabled', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: Button', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Primary w/ aria-disabled', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: Button', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Primary Focus', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: Button', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Primary Focus w/ non-standard background', async ({page}) => {
@@ -47,14 +47,14 @@ test.describe('Visual Comparison: Button', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Secondary', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--secondary&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Secondary Disabled', async ({page}) => {
@@ -63,14 +63,14 @@ test.describe('Visual Comparison: Button', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Subtle', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--subtle&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Subtle Disabled', async ({page}) => {
@@ -79,21 +79,21 @@ test.describe('Visual Comparison: Button', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Large', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--large&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Block', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--block&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Polymorphism', async ({page}) => {
@@ -102,7 +102,7 @@ test.describe('Visual Comparison: Button', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Primary button with hover interaction', async ({page}) => {
@@ -111,7 +111,7 @@ test.describe('Visual Comparison: Button', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Secondary button with hover interaction', async ({page}) => {
@@ -120,7 +120,7 @@ test.describe('Visual Comparison: Button', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Subtle button with hover interaction', async ({page}) => {
@@ -129,7 +129,7 @@ test.describe('Visual Comparison: Button', () => {
     )
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Leading visual (native)', async ({page}) => {
@@ -138,7 +138,7 @@ test.describe('Visual Comparison: Button', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Trailing visual (native)', async ({page}) => {
@@ -147,7 +147,7 @@ test.describe('Visual Comparison: Button', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Leading and trailing visual (native)', async ({page}) => {
@@ -156,7 +156,7 @@ test.describe('Visual Comparison: Button', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / With an Octicon', async ({page}) => {
@@ -165,7 +165,7 @@ test.describe('Visual Comparison: Button', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / With an Octicon (large)', async ({page}) => {
@@ -174,7 +174,7 @@ test.describe('Visual Comparison: Button', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / With visuals and disabled', async ({page}) => {
@@ -183,20 +183,20 @@ test.describe('Visual Comparison: Button', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-button--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Button / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-button--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 })

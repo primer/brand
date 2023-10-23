@@ -11,28 +11,28 @@ test.describe('Visual Comparison: Text', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Text / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Text / Scale', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--scale&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Text / Override Weight', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--override-weight&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Text / Override Weight Responsive', async ({page}) => {
@@ -41,34 +41,34 @@ test.describe('Visual Comparison: Text', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Text / Composition', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--composition&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Text / Alignment', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--alignment&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Text / Mona Sans', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--mona-sans&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Text / Hubot Sans', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--hubot-sans&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 })

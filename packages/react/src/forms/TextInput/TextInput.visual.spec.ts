@@ -11,6 +11,6 @@ test.describe('Visual Comparison: TextInput', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-forms-textinput--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 })
