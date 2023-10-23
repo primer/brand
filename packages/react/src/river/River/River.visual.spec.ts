@@ -11,21 +11,21 @@ test.describe('Visual Comparison: River', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-river-features--left&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('River / Right', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-river-features--right&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('River / Center', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-river-features--center&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('River / 60:40 image ratio', async ({page}) => {
@@ -34,7 +34,7 @@ test.describe('Visual Comparison: River', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('River / 50:50 image ratio', async ({page}) => {
@@ -43,7 +43,7 @@ test.describe('Visual Comparison: River', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('River / Alternative Heading Level', async ({page}) => {
@@ -52,7 +52,7 @@ test.describe('Visual Comparison: River', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('River / No Rounded Visual Corners', async ({page}) => {
@@ -61,7 +61,7 @@ test.describe('Visual Comparison: River', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('River / Alternative Heading Size', async ({page}) => {
@@ -70,7 +70,7 @@ test.describe('Visual Comparison: River', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('River / Custom trailing content', async ({page}) => {
@@ -79,7 +79,7 @@ test.describe('Visual Comparison: River', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('River / Custom trailing content w/ divider', async ({page}) => {
@@ -88,7 +88,7 @@ test.describe('Visual Comparison: River', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('River / Alternating Layout', async ({page}) => {
@@ -97,14 +97,14 @@ test.describe('Visual Comparison: River', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('River / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-river--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('River / Larger Placeholder Image', async ({page}) => {
@@ -113,13 +113,13 @@ test.describe('Visual Comparison: River', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('River / Copilot', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-river--copilot&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })

@@ -2,7 +2,6 @@
   max-width: var(--brand-Card-maxWidth);
   text-decoration: none;
   color: var(--brand-color-text-default);
-  background-color: var(--brand-Card-background-default);
   border-radius: var(--brand-borderRadius-large);
   padding: var(--base-size-32);
   transition: transform var(--brand-Card-animation-duration) var(--brand-Card-animation-easing);
@@ -21,6 +20,10 @@
   height: 100%;
 }
 
+.Card--colorMode-light {
+  background-color: var(--brand-Card-background-default);
+}
+
 .Card:focus-within {
   outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
 }
@@ -31,7 +34,11 @@
 
 .Card__link {
   color: currentColor;
-  text-decoration: none;
+  text-decoration: none !important;
+}
+
+.Card--disableAnimation:hover .Card__link {
+  text-decoration: underline !important;
 }
 
 /* The focus outline will appear around the entire card, not just the title */
@@ -47,6 +54,10 @@
 
 .Card--border {
   border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
+}
+
+.Card__outer {
+  height: 100%;
 }
 
 .Card--icon {
@@ -67,7 +78,7 @@
   align-self: center;
 }
 
-.Card:hover {
+.Card--colorMode-light:not(.Card--disableAnimation):hover {
   transform: scale3d(1.025, 1.025, 1);
 }
 
@@ -239,4 +250,41 @@
 
 .Card__icon--color-yellow.Card__icon--badge {
   background-color: var(--brand-Card-icon-background-yellow);
+}
+
+.Card--skew {
+  height: 100%;
+  display: inline-block;
+  overflow: hidden;
+  border-radius: var(--brand-borderRadius-large);
+}
+
+.Card--skew:hover .Card__torch {
+  opacity: 0.85;
+}
+
+.Card__skew-bounding {
+  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
+  border-radius: var(--brand-borderRadius-large);
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  background-color: var(--brand-Card-background-default);
+}
+
+.Card__torch {
+  width: 650px;
+  height: 650px;
+  background-color: var(--brand-color-accent-primary);
+  filter: blur(180px);
+  border-radius: 300px;
+  opacity: 0;
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  mix-blend-mode: soft-light;
+  will-change: transform;
+  pointer-events: none;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
 }

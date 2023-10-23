@@ -7,13 +7,25 @@ import {BaseProps} from '../component-helpers'
 export const TextSizes = ['700', '600', '500', '400', '300', '200', '100'] as const
 export const TextTags = ['p', 'span', 'div', 'strong', 'em'] as const
 export const TextVariants = ['default', 'muted'] as const
-export const TextWeights = ['heavy', 'extrabold', 'bold', 'semibold', 'medium', 'normal', 'light'] as const
+export const TextWeights = [
+  'heavy',
+  'extrabold',
+  'bold',
+  'semibold',
+  'medium',
+  'normal',
+  'light',
+  'extralight',
+] as const
+export const TextFontVariants = ['mona-sans', 'hubot-sans'] as const
 
 export const defaultTextTag = TextTags[1]
 export const defaultTextSize = TextSizes[5]
 export const defaultTextVariant = TextVariants[0]
+export const defaultFontVariant = TextFontVariants[0]
 
 export type TextWeightVariants = (typeof TextWeights)[number]
+export type TextFontVariants = (typeof TextFontVariants)[number]
 
 export type ResponsiveWeightMap = {
   narrow?: TextWeightVariants
@@ -36,6 +48,7 @@ type TextTags = {
 } & RestrictedPolymorphism
 
 export type TextProps = {
+  font?: TextFontVariants
   /**
    * Specify the text size
    */
@@ -62,6 +75,7 @@ export function Text({
   as = defaultTextTag,
   className,
   children,
+  font = defaultFontVariant,
   size = defaultTextSize,
   variant = defaultTextVariant,
   weight,
@@ -85,6 +99,7 @@ export function Text({
   const textClassName = clsx(
     animationClasses,
     styles.Text,
+    styles[`Text-font--${font}`],
     styles[`Text--${variant}`],
     styles[`Text--${size}`],
     weight && weightClass,

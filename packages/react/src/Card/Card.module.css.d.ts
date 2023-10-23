@@ -1,7 +1,10 @@
 declare const styles: {
   readonly "Card": string;
+  readonly "Card--colorMode-light": string;
   readonly "Card__link": string;
+  readonly "Card--disableAnimation": string;
   readonly "Card--border": string;
+  readonly "Card__outer": string;
   readonly "Card--icon": string;
   readonly "Card__label": string;
   readonly "Card__icon": string;
@@ -24,6 +27,9 @@ declare const styles: {
   readonly "Card__icon--color-red": string;
   readonly "Card__icon--color-teal": string;
   readonly "Card__icon--color-yellow": string;
+  readonly "Card--skew": string;
+  readonly "Card__torch": string;
+  readonly "Card__skew-bounding": string;
 };
 export = styles;
 

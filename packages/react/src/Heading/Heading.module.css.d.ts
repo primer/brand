@@ -1,5 +1,7 @@
 declare const styles: {
   readonly "Heading": string;
+  readonly "Heading-font--mona-sans": string;
+  readonly "Heading-font--hubot-sans": string;
   readonly "Heading--display": string;
   readonly "Heading--subhead-large": string;
   readonly "Heading--subhead-medium": string;
@@ -23,6 +25,8 @@ declare const styles: {
   readonly "Heading-narrow--weight-normal": string;
   readonly "Heading--weight-light": string;
   readonly "Heading-narrow--weight-light": string;
+  readonly "Heading--weight-extralight": string;
+  readonly "Heading-narrow--weight-extralight": string;
   readonly "Heading-regular--weight-heavy": string;
   readonly "Heading-regular--weight-extrabold": string;
   readonly "Heading-regular--weight-bold": string;
@@ -30,6 +34,7 @@ declare const styles: {
   readonly "Heading-regular--weight-medium": string;
   readonly "Heading-regular--weight-normal": string;
   readonly "Heading-regular--weight-light": string;
+  readonly "Heading-regular--weight-extralight": string;
   readonly "Heading-wide--weight-heavy": string;
   readonly "Heading-wide--weight-extrabold": string;
   readonly "Heading-wide--weight-bold": string;
