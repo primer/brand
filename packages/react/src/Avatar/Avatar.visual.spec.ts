@@ -11,14 +11,14 @@ test.describe('Visual Comparison: Avatar', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-avatar-features--sizes&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Avatar / Shapes', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-avatar-features--shapes&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Avatar / Responsive Sizes', async ({page}) => {
@@ -27,20 +27,20 @@ test.describe('Visual Comparison: Avatar', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Avatar / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-avatar--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Avatar / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-avatar--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 })
