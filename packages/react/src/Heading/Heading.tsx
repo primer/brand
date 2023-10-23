@@ -7,15 +7,27 @@ import {useAnimation} from '..'
 export const HeadingSizes = ['display', '1', '2', '3', '4', '5', '6', 'subhead-large', 'subhead-medium'] as const
 export const HeadingTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const
 
-export const HeadingWeights = ['heavy', 'extrabold', 'bold', 'semibold', 'medium', 'normal', 'light'] as const
+export const HeadingWeights = [
+  'heavy',
+  'extrabold',
+  'bold',
+  'semibold',
+  'medium',
+  'normal',
+  'light',
+  'extralight',
+] as const
 export const HeadingStretch = ['condensed', 'normal', 'expanded'] as const
 export const HeadingLetterSpacing = ['condensed', 'normal', 'none'] as const
+export const HeadingFontVariants = ['mona-sans', 'hubot-sans'] as const
 
 export const defaultHeadingTag = HeadingTags[1]
+export const defaultHeadingFont = HeadingFontVariants[0]
 
 type HeadingWeightVariants = (typeof HeadingWeights)[number]
 type HeadingStretchVariants = (typeof HeadingStretch)[number]
 type HeadingLetterSpacingVariants = (typeof HeadingLetterSpacing)[number]
+type HeadingFontVariants = (typeof HeadingFontVariants)[number]
 
 type ResponsiveStretchMap = {
   narrow?: HeadingStretchVariants
@@ -50,6 +62,7 @@ export type HeadingProps = {
   weight?: HeadingWeightVariants | ResponsiveWeightMap
   stretch?: HeadingStretchVariants | ResponsiveStretchMap
   letterSpacing?: HeadingLetterSpacingVariants | ResponsiveLetterSpacingMap
+  font?: HeadingFontVariants
 } & React.HTMLAttributes<HTMLHeadingElement> &
   BaseProps<HTMLHeadingElement>
 
@@ -65,6 +78,7 @@ export const Heading = forwardRef(
       weight,
       stretch,
       style,
+      font = 'mona-sans',
       ...rest
     }: PropsWithChildren<HeadingProps>,
     ref: Ref<HTMLHeadingElement>,
@@ -89,6 +103,7 @@ export const Heading = forwardRef(
     const headingClassNames = clsx(
       animationClasses,
       styles.Heading,
+      styles[`Heading-font--${font}`],
       !size && styles[`Heading--${classMap[as]}`],
       size && styles[`Heading--${size}`],
       weight && weightClass,

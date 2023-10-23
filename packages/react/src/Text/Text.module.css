@@ -10,6 +10,14 @@
   color: var(--brand-color-text-muted);
 }
 
+.Text-font--mona-sans {
+  font-family: var(--brand-body-fontFamily);
+}
+
+.Text-font--hubot-sans {
+  font-family: var(--brand-body-fontFamilyAlt);
+}
+
 .Text--700 {
   font-weight: var(--brand-text-weight-700);
   font-size: var(--brand-text-size-700);
@@ -88,6 +96,11 @@
   font-weight: var(--base-text-weight-light);
 }
 
+.Text--weight-extralight,
+.Text-narrow--weight-extralight {
+  font-weight: var(--base-text-weight-extralight);
+}
+
 @media screen and (min-width: 48rem) {
   .Text-regular--weight-heavy {
     font-weight: var(--base-text-weight-heavy);
@@ -115,6 +128,10 @@
 
   .Text-regular--weight-light {
     font-weight: var(--base-text-weight-light);
+  }
+
+  .Text-regular--weight-extralight {
+    font-weight: var(--base-text-weight-extralight);
   }
 }
 
@@ -145,6 +162,10 @@
 
   .Text-wide--weight-light {
     font-weight: var(--base-text-weight-light);
+  }
+
+  .Text-wide--weight-extralight {
+    font-weight: var(--base-text-weight-extralight);
   }
 }
 
