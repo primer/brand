@@ -127,7 +127,12 @@ export function FeaturePreviewLevelOneSideBySide({
         <Grid enableOverlay={enableGridOverlay} className={styles.FeaturePreview__mainContentGrid}>
           <Grid.Column span={{large: 6}} className={styles.FeaturePreview__hero}>
             <Stack padding="none" justifyContent={{wide: 'flex-end'}}>
-              <Box padding={24} className={styles.FeaturePreview__heroContent}>
+              <Box
+                paddingInlineStart={24}
+                paddingInlineEnd={24}
+                paddingBlockEnd={24}
+                className={styles.FeaturePreview__heroContent}
+              >
                 <ThemeProvider colorMode="dark" className={styles.FeaturePreview__heroContentInnerSticky}>
                   <Box
                     id="hero-content-inner-sticky"
@@ -208,11 +213,8 @@ export function FeaturePreviewLevelOneSideBySide({
           <Grid.Column span={{large: 6}} start={{xlarge: 8}}>
             <Box
               padding={24}
-              paddingBlockStart={{narrow: 64, regular: 128, wide: 48}}
+              paddingBlockStart={{narrow: 24, regular: 80, wide: 128}}
               paddingBlockEnd={{narrow: 24, regular: 80}}
-              marginBlockStart={{
-                wide: 128,
-              }}
             >
               <Stack padding="none" direction="vertical">
                 <FormExample type={args.formType} colorMode={colorMode} />
