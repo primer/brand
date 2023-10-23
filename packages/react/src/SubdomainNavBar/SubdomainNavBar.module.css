@@ -142,7 +142,7 @@
     padding: 0;
   }
 
-  @media screen and (min-width: 47.75rem) {
+  @media screen and (max-width: 48rem) {
     .SubdomainNavBar-menu-wrapper {
       display: flex;
       flex-direction: column;
