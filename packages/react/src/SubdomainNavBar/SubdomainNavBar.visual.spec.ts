@@ -42,7 +42,7 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
       'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--overflow-menu-open&viewMode=story',
     )
 
-    await page.waitForTimeout(5500)
+    await page.waitForTimeout(7500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
