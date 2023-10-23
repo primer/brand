@@ -217,26 +217,9 @@ function Root({
               </button>
             )}
 
-            <div
-              className={clsx(
-                styles['SubdomainNavBar-menu-wrapper'],
-                menuHidden && styles['SubdomainNavBar-menu-wrapper--close'],
-              )}
-            >
-              {hasLinks && !menuHidden && (
-                <NavigationVisbilityObserver
-                  showOnlyOnNarrow
-                  className={clsx(styles['SubdomainNavBar-primary-nav-list--visible'])}
-                >
-                  {menuItems}
-                </NavigationVisbilityObserver>
-              )}
-
+            {isMedium && (
               <div
-                className={clsx(
-                  styles['SubdomainNavBar-button-area'],
-                  !menuHidden && styles['SubdomainNavBar-button-area--visible'],
-                )}
+                className={clsx(styles['SubdomainNavBar-button-area'], styles['SubdomainNavBar-button-area--visible'])}
               >
                 <div className={styles['SubdomainNavBar-button-area-inner']}>
                   {React.Children.toArray(children)
@@ -262,7 +245,50 @@ function Root({
                     .filter(Boolean)}
                 </div>
               </div>
-            </div>
+            )}
+            {!menuHidden && (
+              <>
+                {hasLinks && (
+                  <NavigationVisbilityObserver
+                    showOnlyOnNarrow
+                    className={clsx(styles['SubdomainNavBar-primary-nav-list--visible'])}
+                  >
+                    {menuItems}
+                  </NavigationVisbilityObserver>
+                )}
+
+                <div
+                  className={clsx(
+                    styles['SubdomainNavBar-button-area'],
+                    styles['SubdomainNavBar-button-area--visible'],
+                  )}
+                >
+                  <div className={styles['SubdomainNavBar-button-area-inner']}>
+                    {React.Children.toArray(children)
+                      .map(child => {
+                        if (React.isValidElement(child) && typeof child.type !== 'string') {
+                          if (child.type === PrimaryAction) {
+                            return child
+                          }
+                          return null
+                        }
+                      })
+                      .filter(Boolean)}
+
+                    {React.Children.toArray(children)
+                      .map(child => {
+                        if (React.isValidElement(child) && typeof child.type !== 'string') {
+                          if (child.type === SecondaryAction) {
+                            return child
+                          }
+                          return null
+                        }
+                      })
+                      .filter(Boolean)}
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </header>

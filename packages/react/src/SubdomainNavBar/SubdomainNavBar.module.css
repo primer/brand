@@ -142,16 +142,11 @@
     padding: 0;
   }
 
-  @media screen and (max-width: 48rem) {
-    .SubdomainNavBar-menu-wrapper {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      overflow-y: auto;
-    }
-  }
-
   .SubdomainNavBar-menu-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: auto;
     position: absolute;
     top: 75px;
     left: 0;
@@ -469,7 +464,7 @@
 }
 
 .SubdomainNavBar-button-area {
-  display: inline-flex;
+  display: inline-block;
   gap: var(--base-size-16);
   align-items: center;
   min-width: 0;
