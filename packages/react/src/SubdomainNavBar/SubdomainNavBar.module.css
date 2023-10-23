@@ -41,7 +41,7 @@
   margin: 0 auto;
 }
 
-@media screen and (min-width: 47.75rem) {
+@media screen and (min-width: 48rem) {
   .SubdomainNavBar-inner-container {
     padding: 4px 32px;
   }
@@ -127,7 +127,7 @@
   list-style-type: none;
 }
 
-@media screen and (max-width: 47.75rem) {
+@media screen and (max-width: 48rem) {
   .SubdomainNavBar-primary-nav-list {
     display: none;
   }
@@ -170,7 +170,7 @@
   }
 }
 
-@media screen and (min-width: 47.75rem) {
+@media screen and (min-width: 48rem) {
   .SubdomainNavBar-primary-nav-list {
     display: flex;
     align-items: center;
@@ -182,7 +182,7 @@
   }
 }
 
-@media screen and (min-width: 47.75rem) {
+@media screen and (min-width: 48rem) {
   .SubdomainNavBar-primary-nav-list {
     max-width: 100px;
   }
@@ -211,7 +211,7 @@
   white-space: nowrap;
 }
 
-@media screen and (max-width: 47.75rem) {
+@media screen and (max-width: 48rem) {
   .SubdomainNavBar-primary-nav-list-item {
     animation-name: fade-in-down-staggered;
     animation-duration: 500ms;
@@ -221,7 +221,7 @@
   }
 }
 
-@media screen and (min-width: 47.75rem) {
+@media screen and (min-width: 48rem) {
   .SubdomainNavBar-primary-nav-list-item--visible {
     order: 0;
     visibility: visible;
@@ -257,13 +257,13 @@
   text-decoration: none;
 }
 
-@media screen and (max-width: 47.75rem) {
+@media screen and (max-width: 48rem) {
   .SubdomainNavBar-link:first-of-type {
     padding-top: var(--base-size-24);
   }
 }
 
-@media screen and (min-width: 47.75rem) {
+@media screen and (min-width: 48rem) {
   .SubdomainNavBar-link {
     font-family: var(--brand-heading-fontFamily);
     font-weight: var(--base-text-weight-semibold);
@@ -329,7 +329,7 @@
   display: none;
 }
 
-@media screen and (min-width: 47.75rem) {
+@media screen and (min-width: 48rem) {
   .SubdomainNavBar-more-link {
     cursor: pointer;
     appearance: none;
@@ -442,7 +442,7 @@
   transform: rotate(45deg) translateY(3px);
 }
 
-@media screen and (min-width: 47.75rem) {
+@media screen and (min-width: 48rem) {
   .SubdomainNavBar-search-button:hover,
   .SubdomainNavBar-menu-button:hover {
     border: var(--brand-borderWidth-thick) solid var(--brand-SubdomainNavBar-border-button-hover);
@@ -481,7 +481,7 @@
   min-width: 0;
 }
 
-@media screen and (max-width: 47.75rem) {
+@media screen and (max-width: 48rem) {
   .SubdomainNavBar-button-area {
     display: none;
   }
@@ -535,7 +535,7 @@
   z-index: 99;
 }
 
-@media screen and (max-width: 47.75rem) {
+@media screen and (max-width: 48rem) {
   .SubdomainNavBar-search-dialog {
     top: 0;
     left: 0;
@@ -550,7 +550,7 @@
   }
 }
 
-@media screen and (min-width: 47.75rem) {
+@media screen and (min-width: 48rem) {
   .SubdomainNavBar-search-dialog {
     position: absolute;
     top: 0;
@@ -578,7 +578,7 @@
   gap: var(--base-size-4);
 }
 
-@media screen and (min-width: 47.75rem) {
+@media screen and (min-width: 48rem) {
   .SubdomainNavBar-search-dialog-control-area {
     max-width: 570px;
     margin: 0 auto;
