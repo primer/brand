@@ -13,7 +13,7 @@ test.describe('Visual Comparison: FeaturePreviewLevelOne', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('FeaturePreviewLevelOne / Side-by-side', async ({page}) => {
@@ -22,6 +22,6 @@ test.describe('Visual Comparison: FeaturePreviewLevelOne', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 })

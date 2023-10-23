@@ -11,20 +11,20 @@ test.describe('Visual Comparison: Stack', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-stack--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Stack / Responsive', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-stack--responsive&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Stack / Responsive Base Scale', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-stack--responsive-base-scale&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 })
