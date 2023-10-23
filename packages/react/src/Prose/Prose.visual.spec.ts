@@ -45,7 +45,7 @@ test.describe('Visual Comparison: Prose', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Prose / Playground', async ({page}) => {
