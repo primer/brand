@@ -182,7 +182,7 @@
   }
 }
 
-@media screen and (min-width: 48rem) {
+@media screen and (min-width: 768px) {
   .SubdomainNavBar-primary-nav-list {
     max-width: 100px;
   }
@@ -211,7 +211,7 @@
   white-space: nowrap;
 }
 
-@media screen and (max-width: 48rem) {
+@media screen and (max-width: 768px) {
   .SubdomainNavBar-primary-nav-list-item {
     animation-name: fade-in-down-staggered;
     animation-duration: 500ms;
@@ -257,7 +257,7 @@
   text-decoration: none;
 }
 
-@media screen and (max-width: 48rem) {
+@media screen and (max-width: 768px) {
   .SubdomainNavBar-link:first-of-type {
     padding-top: var(--base-size-24);
   }
@@ -535,7 +535,7 @@
   z-index: 99;
 }
 
-@media screen and (max-width: 48rem) {
+@media screen and (max-width: 768px) {
   .SubdomainNavBar-search-dialog {
     top: 0;
     left: 0;
