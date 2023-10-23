@@ -6,6 +6,7 @@ import {
   FormControl,
   Heading,
   InlineLink,
+  Link,
   Select,
   Stack,
   Text,
@@ -25,6 +26,20 @@ export function FormExample({type = 'default', colorMode = ColorModesEnum.LIGHT}
     <form>
       <>
         <Stack direction="vertical" padding="none" gap={24}>
+          <Box
+            borderWidth="thin"
+            borderStyle="solid"
+            borderColor="default"
+            backgroundColor="subtle"
+            padding="condensed"
+            borderRadius="medium"
+            marginBlockEnd={24}
+          >
+            <Stack padding="none" alignItems="flex-start" gap={8}>
+              <Text>Are you an administrator for an organization using GitHub Enterprise Cloud or GitHub Copilot?</Text>
+              <Link href="#">Sign in to skip ahead</Link>
+            </Stack>
+          </Box>
           {type === 'extended' && (
             <Heading as="h2" size="subhead-large">
               Tell us about your enterprise
