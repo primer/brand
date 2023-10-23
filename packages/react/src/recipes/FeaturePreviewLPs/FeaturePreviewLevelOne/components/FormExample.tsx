@@ -134,6 +134,11 @@ export function FormExample({type = 'default', colorMode = ColorModesEnum.LIGHT}
             <TextInput required placeholder="First and last name" />
           </FormControl>
 
+          <FormControl required fullWidth>
+            <FormControl.Label>Work email</FormControl.Label>
+            <TextInput required placeholder="e.g. name@company.com" />
+          </FormControl>
+
           {type === 'default' && (
             <FormControl required fullWidth>
               <FormControl.Label>Company</FormControl.Label>
@@ -141,10 +146,6 @@ export function FormExample({type = 'default', colorMode = ColorModesEnum.LIGHT}
             </FormControl>
           )}
 
-          <FormControl required fullWidth>
-            <FormControl.Label>Work email</FormControl.Label>
-            <TextInput required placeholder="e.g. name@company.com" />
-          </FormControl>
           {type === 'default' && (
             <FormControl fullWidth>
               <FormControl.Label>Phone Number</FormControl.Label>
