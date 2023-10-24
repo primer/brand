@@ -231,11 +231,8 @@ const darkJson = require('../src/tokens/base/colors/dark')
     `tokens/functional/components/grid/colors.json`,
     `tokens/functional/components/logosuite/colors.json`,
     `tokens/functional/components/timeline/colors.json`,
-<<<<<<< HEAD
     `tokens/functional/components/video-player/colors.js`,
-=======
     `tokens/functional/components/prose/colors.js`,
->>>>>>> d8850addd71a8f94181596a0e8e4d7ef5d6990a9
   ]
 
   for (const path of filesForColorModes) {
