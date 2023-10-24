@@ -1,13 +1,12 @@
 import React, {RefObject, forwardRef, useCallback} from 'react'
 import {isFragment} from 'react-is'
 import clsx from 'clsx'
-import {Heading, HeadingProps, Text, useTheme} from '..'
+import {Heading, HeadingProps, Text, useTheme, CardSkewEffect} from '..'
 import {ExpandableArrow} from '../ExpandableArrow'
 import {Label, LabelColors} from '../Label'
 import {Image, ImageProps} from '../Image'
 import type {BaseProps} from '../component-helpers'
 import {Colors} from '../constants'
-import {CardSkewEffect} from './CardSkewEffect'
 
 /**
  * Design tokens

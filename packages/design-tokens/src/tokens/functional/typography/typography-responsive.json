@@ -335,8 +335,17 @@
         }
       },
       "letterSpacing": {
+        "100": {
+          "value": "0.02em"
+        },
+        "200": {
+          "value": "0em"
+        },
+        "300": {
+          "value": "0em"
+        },
         "400": {
-          "value": "-0.01em"
+          "value": "0em"
         },
         "500": {
           "value": "-0.01em"
