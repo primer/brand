@@ -464,7 +464,7 @@
 }
 
 .SubdomainNavBar-button-area {
-  display: inline-block;
+  display: inline-flex;
   gap: var(--base-size-16);
   align-items: center;
   min-width: 0;
