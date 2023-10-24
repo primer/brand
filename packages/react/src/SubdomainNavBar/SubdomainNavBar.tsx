@@ -154,7 +154,7 @@ function Root({
                   <MarkGithubIcon fill="currentColor" size={24} />
                 </a>
               </li>
-              {title && isSmall && (
+              {title && (
                 <>
                   <li role="separator" className={styles['SubdomainNavBar-title-separator']} aria-hidden>
                     /
@@ -246,9 +246,15 @@ function Root({
                 </div>
               </div>
             )}
-            {!menuHidden && (
-              <>
-                {hasLinks && (
+
+            {!isMedium && (
+              <div
+                className={clsx(
+                  styles['SubdomainNavBar-menu-wrapper'],
+                  menuHidden && styles['SubdomainNavBar-menu-wrapper--close'],
+                )}
+              >
+                {hasLinks && !menuHidden && (
                   <NavigationVisbilityObserver
                     showOnlyOnNarrow
                     className={clsx(styles['SubdomainNavBar-primary-nav-list--visible'])}
@@ -256,7 +262,6 @@ function Root({
                     {menuItems}
                   </NavigationVisbilityObserver>
                 )}
-
                 <div
                   className={clsx(
                     styles['SubdomainNavBar-button-area'],
@@ -287,7 +292,7 @@ function Root({
                       .filter(Boolean)}
                   </div>
                 </div>
-              </>
+              </div>
             )}
           </div>
         </div>
