@@ -82,4 +82,18 @@ test.describe('Visual Comparison: Heading', () => {
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
+
+  test('Heading / Mona Sans', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--mona-sans&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Heading / Hubot Sans', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-heading--hubot-sans&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
 })

@@ -260,7 +260,7 @@ function SocialLogomarks({socialLinks, logoHref}: SocialLogomarksProps) {
             <a
               href={logoHref}
               data-analytics-event='{"category":"Footer","action":"go to home","label":"text:home"}'
-              aria-label="Go to GitHub homepage"
+              aria-label="GitHub"
             >
               <LogoGithubIcon fill={colorMode === ColorModesEnum.DARK ? 'white' : 'black'} size="medium" />
             </a>

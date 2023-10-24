@@ -2,6 +2,9 @@
   "base": {
     "text": {
       "weight": {
+        "extralight": {
+          "value": 200
+        },
         "light": {
           "value": 300
         },

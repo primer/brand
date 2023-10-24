@@ -21,9 +21,9 @@
 }
 
 @font-face {
-  font-family: 'Alliance2';
-  src: url('./alliance-2.woff2') format('woff2 supports variations'),
-    url('./alliance-2.woff2') format('woff2-variations');
+  font-family: 'Hubot Sans';
+  src: url('./Hubot-Sans.woff2') format('woff2 supports variations'),
+    url('./Hubot-Sans.woff2') format('woff2-variations');
   font-weight: 200 900;
   font-display: swap;
 }
