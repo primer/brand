@@ -84,6 +84,9 @@ function Root({
 
   const handleMobileMenuClick = () => setMenuHidden(!menuHidden)
   const handleSearchVisibility = () => setSearchVisible(!searchVisible)
+  const focusTrapRef = useRef<HTMLDivElement | null>(null)
+
+  useFocusTrap({containerRef: focusTrapRef, restoreFocusOnCleanUp: true, disabled: menuHidden})
 
   useEffect(() => {
     if (isMedium) {
@@ -137,6 +140,7 @@ function Root({
     >
       <header className={clsx(styles['SubdomainNavBar'], className)} data-testid={testIds.root} {...rest}>
         <div
+          ref={focusTrapRef}
           className={clsx(
             styles['SubdomainNavBar-inner-container'],
             searchVisible && styles['SubdomainNavBar-inner-container--search-open'],
