@@ -1,102 +1,113 @@
-- title: Introduction
+- title: Guides
   children:
     - title: Getting started
-      url: /getting-started
+      url: /guides/getting-started
     - title: Theming
-      url: /getting-started/theming
+      url: /guides/theming
     - title: Animation
-      url: /getting-started/animation
+      url: /guides/animation
 
-- title: Primitives
+- title: Foundations
   children:
     - title: Colors
       url: /primitives/color
 
 - title: Components
   children:
-    - title: Action menu
-      url: /components/ActionMenu
-    - title: Anchor nav
-      url: /components/AnchorNav
-    - title: Avatar
-      url: /components/Avatar
-    - title: Bento
-      url: /components/Bento
-    - title: Box
-      url: /components/Box
-    - title: Button
-      url: /components/Button
-    - title: Button group
-      url: /components/ButtonGroup
-    - title: Card
-      url: /components/Card
-    - title: Comparison table
-      url: /components/ComparisonTable
-    - title: CTA banner
-      url: /components/CTABanner
-    - title: CTA form
-      url: /components/CTAForm
-    - title: FAQ
-      url: /components/FAQ
-    - title: Hero
-      url: /components/Hero
-    - title: Image
-      url: /components/Image
-    - title: Label
-      url: /components/Label
-    - title: Logo suite
-      url: /components/LogoSuite
-    - title: Minimal footer
-      url: /components/MinimalFooter
-    - title: Ordered list
-      url: /components/OrderedList
-    - title: Pillar
-      url: /components/Pillar
-    - title: Prose
-      url: /components/Prose
-    - title: River
-      url: /components/River
-    - title: Section intro
-      url: /components/SectionIntro
-    - title: Subdomain nav bar
-      url: /components/SubdomainNavBar
-    - title: Testimonial
-      url: /components/Testimonial
-    - title: Timeline
-      url: /components/Timeline
-    - title: Unordered list
-      url: /components/UnorderedList
-    - title: Video player
-      url: /components/VideoPlayer
+    - title: Actions
+      children:
+        - title: Button
+          url: /components/Button
+        - title: Button group
+          url: /components/ButtonGroup
+        - title: Action menu
+          url: /components/ActionMenu
+    - title: Forms
+      children:
+        - title: Checkbox
+          url: /components/Checkbox
+        - title: CTA form
+          url: /components/CTAForm
+        - title: Form control
+          url: /components/FormControl
+        - title: Radio
+          url: /components/Radio
+        - title: Select
+          url: /components/Select
+        - title: Textarea
+          url: /components/Textarea
+        - title: Text input
+          url: /components/TextInput
+    - title: Layout and structure
+      children:
+        - title: Bento
+          url: /components/Bento
+        - title: Box
+          url: /components/Box
+        - title: Card
+          url: /components/Card
+        - title: CTA banner
+          url: /components/CTABanner
+        - title: FAQ
+          url: /components/FAQ
+        - title: Grid
+          url: /components/Grid
+        - title: Hero
+          url: /components/Hero
+        - title: Pillar
+          url: /components/Pillar
+        - title: Stack
+          url: /components/Stack
+        - title: River
+          url: /components/River
+        - title: Section intro
+          url: /components/SectionIntro
+        - title: Testimonial
+          url: /components/Testimonial
+    - title: Images and media
+      children:
+        - title: Avatar
+          url: /components/Avatar
+        - title: Image
+          url: /components/Image
+        - title: Logo suite
+          url: /components/LogoSuite
+        - title: Video player
+          url: /components/VideoPlayer
+    - title: Tables
+      children:
+        - title: Comparison table
+          url: /components/ComparisonTable
+    - title: Feedback indicators
+      children:
+        - title: Label
+          url: /components/Label
+    - title: Lists
+      children:
+        - title: Timeline
+          url: /components/Timeline
+        - title: Ordered list
+          url: /components/OrderedList
+        - title: Unordered list
+          url: /components/UnorderedList
 
-- title: Forms
-  children:
-    - title: Checkbox
-      url: /components/Checkbox
-    - title: Form control
-      url: /components/FormControl
-    - title: Radio
-      url: /components/Radio
-    - title: Select
-      url: /components/Select
-    - title: Textarea
-      url: /components/Textarea
-    - title: Text input
-      url: /components/TextInput
+    - title: Navigation
+      children:
+        - title: Anchor nav
+          url: /components/AnchorNav
+        - title: Minimal footer
+          url: /components/MinimalFooter
+        - title: Subdomain nav bar
+          url: /components/SubdomainNavBar
 
-- title: Layout
-  children:
-    - title: Grid
-      url: /components/Grid
-    - title: Stack
-      url: /components/Stack
-
-- title: Typography
-  children:
-    - title: Heading
-      url: /components/Heading
-    - title: Text
-      url: /components/Text
+    - title: Typography
+      children:
+        - title: Heading
+          url: /components/Heading
+        - title: Text
+          url: /components/Text
+        - title: Prose
+          url: /components/Prose
 
 - title: GitHub staff
   children:
