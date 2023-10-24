@@ -22,7 +22,7 @@
   font-weight: var(--brand-text-weight-700);
   font-size: var(--brand-text-size-700);
   line-height: var(--brand-text-lineHeight-700);
-  letter-spacing: var(--brand-text-body-letterSpacing-100);
+  letter-spacing: var(--brand-text-letterSpacing-700);
 }
 
 .Text--600 {
@@ -41,24 +41,28 @@
   font-weight: var(--brand-text-weight-400);
   font-size: var(--brand-text-size-400);
   line-height: var(--brand-text-lineHeight-400);
+  letter-spacing: var(--brand-text-letterSpacing-400);
 }
 
 .Text--300 {
   font-weight: var(--brand-text-weight-300);
   font-size: var(--brand-text-size-300);
   line-height: var(--brand-text-lineHeight-300);
+  letter-spacing: var(--brand-text-letterSpacing-300);
 }
 
 .Text--200 {
   font-weight: var(--brand-text-weight-200);
   font-size: var(--brand-text-size-200);
   line-height: var(--brand-text-lineHeight-200);
+  letter-spacing: var(--brand-text-letterSpacing-200);
 }
 
 .Text--100 {
   font-weight: var(--brand-text-weight-100);
   font-size: var(--brand-text-size-100);
   line-height: var(--brand-text-lineHeight-100);
+  letter-spacing: var(--brand-text-letterSpacing-100);
 }
 
 .Text--weight-heavy,
