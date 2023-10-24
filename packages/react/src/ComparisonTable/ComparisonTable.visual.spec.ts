@@ -11,7 +11,7 @@ test.describe('Visual Comparison: ComparisonTable', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-comparisontable--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   // eslint-disable-next-line i18n-text/no-en
@@ -23,13 +23,13 @@ test.describe('Visual Comparison: ComparisonTable', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      expect(await page.screenshot()).toMatchSnapshot()
     })
   })
   test('ComparisonTable / Minimal', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-comparisontable--minimal&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 })

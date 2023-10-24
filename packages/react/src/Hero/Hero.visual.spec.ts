@@ -11,7 +11,7 @@ test.describe('Visual Comparison: Hero', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero-features--centered&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Hero / With an image (left + bottom)', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Hero / With an image (centered + bottom)', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Hero / With an image (right)', async ({page}) => {
@@ -38,7 +38,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Hero / Without Description', async ({page}) => {
@@ -47,7 +47,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Hero / With Secondary Action', async ({page}) => {
@@ -56,21 +56,21 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Hero / Codespaces', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero-features--codespaces&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Hero / Issues', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero-features--issues&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Hero / With Custom Classnames', async ({page}) => {
@@ -79,7 +79,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('Hero / With custom icon and variant', async ({page}) => {
@@ -88,7 +88,7 @@ test.describe('Visual Comparison: Hero', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   // eslint-disable-next-line i18n-text/no-en
@@ -98,7 +98,7 @@ test.describe('Visual Comparison: Hero', () => {
       await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero-features--narrow-view&viewMode=story')
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      expect(await page.screenshot()).toMatchSnapshot()
     })
   })
 
@@ -111,13 +111,13 @@ test.describe('Visual Comparison: Hero', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+      expect(await page.screenshot()).toMatchSnapshot()
     })
   })
   test('Hero / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 })

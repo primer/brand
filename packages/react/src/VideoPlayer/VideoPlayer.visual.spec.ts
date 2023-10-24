@@ -13,7 +13,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('VideoPlayer / Without Branding', async ({page}) => {
@@ -22,20 +22,20 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('VideoPlayer / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-videoplayer--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('VideoPlayer / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-videoplayer--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    expect(await page.screenshot()).toMatchSnapshot()
   })
 })
