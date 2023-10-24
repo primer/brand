@@ -87,6 +87,9 @@ function Root({
   const focusTrapRef = useRef<HTMLDivElement | null>(null)
 
   useFocusTrap({containerRef: focusTrapRef, restoreFocusOnCleanUp: true, disabled: menuHidden})
+  useKeyboardEscape(() => {
+    setMenuHidden(true)
+  })
 
   useEffect(() => {
     if (isMedium) {
