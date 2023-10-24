@@ -7,6 +7,7 @@ import {NavigationVisbilityObserver} from './NavigationVisbilityObserver'
 import {useOnClickOutside} from '../hooks/useOnClickOutside'
 import {useFocusTrap} from '../hooks/useFocusTrap'
 import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
+import {useWindowSize} from '../hooks/useWindowSize'
 
 /**
  * Design tokens
@@ -79,9 +80,21 @@ function Root({
 }: SubdomainNavBarProps) {
   const [menuHidden, setMenuHidden] = useState(true)
   const [searchVisible, setSearchVisible] = useState(false)
+  const {isSmall, isMedium} = useWindowSize()
 
   const handleMobileMenuClick = () => setMenuHidden(!menuHidden)
   const handleSearchVisibility = () => setSearchVisible(!searchVisible)
+
+  useEffect(() => {
+    if (isMedium) {
+      setMenuHidden(true)
+    }
+  }, [isMedium, menuHidden])
+
+  useEffect(() => {
+    const newOverflowState = menuHidden ? 'auto' : 'hidden'
+    document.body.style.overflow = newOverflowState
+  }, [menuHidden])
 
   const hasLinks =
     useMemo(
@@ -141,7 +154,7 @@ function Root({
                   <MarkGithubIcon fill="currentColor" size={24} />
                 </a>
               </li>
-              {title && (
+              {title && isSmall && (
                 <>
                   <li role="separator" className={styles['SubdomainNavBar-title-separator']} aria-hidden>
                     /
@@ -204,42 +217,83 @@ function Root({
               </button>
             )}
 
-            {hasLinks && !menuHidden && (
-              <NavigationVisbilityObserver className={clsx(styles['SubdomainNavBar-primary-nav-list--visible'])}>
-                {menuItems}
-              </NavigationVisbilityObserver>
+            {isMedium && (
+              <div
+                className={clsx(styles['SubdomainNavBar-button-area'], styles['SubdomainNavBar-button-area--visible'])}
+              >
+                <div className={styles['SubdomainNavBar-button-area-inner']}>
+                  {React.Children.toArray(children)
+                    .map(child => {
+                      if (React.isValidElement(child) && typeof child.type !== 'string') {
+                        if (child.type === PrimaryAction) {
+                          return child
+                        }
+                        return null
+                      }
+                    })
+                    .filter(Boolean)}
+
+                  {React.Children.toArray(children)
+                    .map(child => {
+                      if (React.isValidElement(child) && typeof child.type !== 'string') {
+                        if (child.type === SecondaryAction) {
+                          return child
+                        }
+                        return null
+                      }
+                    })
+                    .filter(Boolean)}
+                </div>
+              </div>
             )}
 
-            <div
-              className={clsx(
-                styles['SubdomainNavBar-button-area'],
-                !menuHidden && styles['SubdomainNavBar-button-area--visible'],
-              )}
-            >
-              <div className={styles['SubdomainNavBar-button-area-inner']}>
-                {React.Children.toArray(children)
-                  .map(child => {
-                    if (React.isValidElement(child) && typeof child.type !== 'string') {
-                      if (child.type === PrimaryAction) {
-                        return child
-                      }
-                      return null
-                    }
-                  })
-                  .filter(Boolean)}
+            {!isMedium && (
+              <div
+                className={clsx(
+                  styles['SubdomainNavBar-menu-wrapper'],
+                  menuHidden && styles['SubdomainNavBar-menu-wrapper--close'],
+                )}
+              >
+                {hasLinks && !menuHidden && (
+                  <NavigationVisbilityObserver
+                    showOnlyOnNarrow
+                    className={clsx(styles['SubdomainNavBar-primary-nav-list--visible'])}
+                  >
+                    {menuItems}
+                  </NavigationVisbilityObserver>
+                )}
+                <div
+                  className={clsx(
+                    styles['SubdomainNavBar-button-area'],
+                    styles['SubdomainNavBar-button-area--visible'],
+                  )}
+                >
+                  <div className={styles['SubdomainNavBar-button-area-inner']}>
+                    {React.Children.toArray(children)
+                      .map(child => {
+                        if (React.isValidElement(child) && typeof child.type !== 'string') {
+                          if (child.type === PrimaryAction) {
+                            return child
+                          }
+                          return null
+                        }
+                      })
+                      .filter(Boolean)}
 
-                {React.Children.toArray(children)
-                  .map(child => {
-                    if (React.isValidElement(child) && typeof child.type !== 'string') {
-                      if (child.type === SecondaryAction) {
-                        return child
-                      }
-                      return null
-                    }
-                  })
-                  .filter(Boolean)}
+                    {React.Children.toArray(children)
+                      .map(child => {
+                        if (React.isValidElement(child) && typeof child.type !== 'string') {
+                          if (child.type === SecondaryAction) {
+                            return child
+                          }
+                          return null
+                        }
+                      })
+                      .filter(Boolean)}
+                  </div>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </header>

@@ -15,7 +15,9 @@ declare const styles: {
   readonly "SubdomainNavBar-primary-nav-list": string;
   readonly "SubdomainNavBar-primary-nav-list--invisible": string;
   readonly "SubdomainNavBar-primary-nav-list--visible": string;
+  readonly "SubdomainNavBar-menu-wrapper": string;
   readonly "fade-in-down": string;
+  readonly "SubdomainNavBar-menu-wrapper--close": string;
   readonly "SubdomainNavBar-primary-nav-list-item": string;
   readonly "fade-in-down-staggered": string;
   readonly "SubdomainNavBar-primary-nav-list-item--visible": string;
