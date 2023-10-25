@@ -1,5 +1,13 @@
 # @primer/brand-primitives
 
+## 0.28.0
+
+### Patch Changes
+
+- [#457](https://github.com/primer/brand/pull/457) [`9ea0803`](https://github.com/primer/brand/commit/9ea08039caee4679b22d283013f4fb3beb48436c) Thanks [@joseph-lozano](https://github.com/joseph-lozano)! - Fixed issue with prose un-ordered lists in dark mode
+
+- [#479](https://github.com/primer/brand/pull/479) [`1896326`](https://github.com/primer/brand/commit/1896326cd84137409b87c402addad9bc8ace9772) Thanks [@rezrah](https://github.com/rezrah)! - Increase tracking of 100 typographic position to improve readability
+
 ## 0.27.2
 
 ## 0.27.1
