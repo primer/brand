@@ -16,7 +16,7 @@
   inset: var(--base-size-16);
   filter: blur(var(--base-size-48));
   transform: translateZ(0);
-  background: linear-gradient(to right, hsl(208 100% 74%), hsl(269 100% 83%));
+  background: linear-gradient(to right, var(--base-color-scale-blue-2), var(--base-color-scale-purple-2));
 }
 
 .DiscussionsExampleHero__image {

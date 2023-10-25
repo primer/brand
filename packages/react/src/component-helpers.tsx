@@ -26,7 +26,7 @@ export function RedlineBackground({height, hasBorder = true, ...rest}: PropsWith
         overflow: 'hidden',
         border: hasBorder ? '1px solid var(--base-color-scale-red-2)' : undefined,
         backgroundImage:
-          'linear-gradient(45deg, var(--base-color-scale-red-0) 12.5%, #ffb5b380 12.5%, #ffb5b380 50%, var(--base-color-scale-red-0) 50%, var(--base-color-scale-red-0) 62.5%, #ffb5b380 62.5%, #ffb5b380 100%)',
+          'linear-gradient(45deg, var(--base-color-scale-red-0) 12.5%, #ffb5b380 12.5%, #ffb5b380 50%, var(--base-color-scale-red-0) 50%, var(--base-color-scale-red-0) 62.5%, #ffb5b380 62.5%, #ffb5b380 100%)', // hex value is scale-red-2 with 50% opacity
         backgroundSize: '5.66px 5.66px',
         WebkitBoxPack: 'center',
         justifyContent: 'center',
