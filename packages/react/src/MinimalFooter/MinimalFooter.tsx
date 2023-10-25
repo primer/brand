@@ -1,6 +1,6 @@
 import React, {PropsWithChildren} from 'react'
 import clsx from 'clsx'
-import {LogoGithubIcon} from '@primer/octicons-react'
+import {LogoGithubIcon, MarkGithubIcon} from '@primer/octicons-react'
 
 import {ColorModesEnum, Stack, Text, useTheme} from '../'
 import {BaseProps} from '../component-helpers'
@@ -262,7 +262,10 @@ function SocialLogomarks({socialLinks, logoHref}: SocialLogomarksProps) {
               data-analytics-event='{"category":"Footer","action":"go to home","label":"text:home"}'
               aria-label="GitHub"
             >
-              <LogoGithubIcon fill={colorMode === ColorModesEnum.DARK ? 'white' : 'black'} size="medium" />
+              <Stack direction="horizontal" gap={8}>
+                <MarkGithubIcon fill={colorMode === ColorModesEnum.DARK ? 'white' : 'black'} size="medium" />
+                <LogoGithubIcon fill={colorMode === ColorModesEnum.DARK ? 'white' : 'black'} size="medium" />
+              </Stack>
             </a>
           </div>
           {socialLinks !== false ? (
