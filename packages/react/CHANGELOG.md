@@ -1,5 +1,35 @@
 # @primer/react-brand
 
+## 0.28.0
+
+### Minor Changes
+
+- [#453](https://github.com/primer/brand/pull/453) [`5855526`](https://github.com/primer/brand/commit/58555261fb7ec0df19891c8c72d392d48a07578d) Thanks [@rezrah](https://github.com/rezrah)! - - New `font` prop added to `Text` and `Heading` components to alternate between `mona-sans` and `hubot-sans` variable fonts. `mona-sans` remains the default.
+  - Uses latest `v1.0.1` releases of (`Hubot Sans`)[https://github.com/github/hubot-sans/releases/tag/v1.0.1] and (`Mona Sans`)[https://github.com/github/mona-sans/releases/tag/v1.0.1] fonts.
+  - Added `extralight` weight option
+
+### Patch Changes
+
+- [#468](https://github.com/primer/brand/pull/468) [`a6251df`](https://github.com/primer/brand/commit/a6251dfaa3996cd0298151f786466cd25504a9f8) Thanks [@rezrah](https://github.com/rezrah)! - Force removal of link underlines in Card components, to prevent specificity issues with local stylesheet overrides.
+
+- [#451](https://github.com/primer/brand/pull/451) [`b15ab24`](https://github.com/primer/brand/commit/b15ab249a8feae9ecff60f990d1e2725d78f3002) Thanks [@joseph-lozano](https://github.com/joseph-lozano)! - Fixed menu item overflow issues on narrow viewports in `SubdomainNavBar`.
+
+  In addition, the `body` element will now hide overflow content and prevent background scrolling when the menu is open.
+
+- [#480](https://github.com/primer/brand/pull/480) [`0e1e3bb`](https://github.com/primer/brand/commit/0e1e3bb5051614c3161d4309cdce84378bb4076c) Thanks [@joseph-lozano](https://github.com/joseph-lozano)! - Improved keyboard navigation in the `SubdomainNavBar` mobile menu using focus trapping.
+
+- [#469](https://github.com/primer/brand/pull/469) [`da4e989`](https://github.com/primer/brand/commit/da4e989f140eabc013886f9474907861f08d3f7e) Thanks [@joseph-lozano](https://github.com/joseph-lozano)! - Changed the aria-label for the GitHub link in the footer
+
+- [#457](https://github.com/primer/brand/pull/457) [`9ea0803`](https://github.com/primer/brand/commit/9ea08039caee4679b22d283013f4fb3beb48436c) Thanks [@joseph-lozano](https://github.com/joseph-lozano)! - Fixed issue with prose un-ordered lists in dark mode
+
+- [#479](https://github.com/primer/brand/pull/479) [`1896326`](https://github.com/primer/brand/commit/1896326cd84137409b87c402addad9bc8ace9772) Thanks [@rezrah](https://github.com/rezrah)! - Increase tracking of 100 typographic position to improve readability
+
+- [#479](https://github.com/primer/brand/pull/479) [`1896326`](https://github.com/primer/brand/commit/1896326cd84137409b87c402addad9bc8ace9772) Thanks [@rezrah](https://github.com/rezrah)! - Added export for CardSkewEffect component
+
+- [#468](https://github.com/primer/brand/pull/468) [`a6251df`](https://github.com/primer/brand/commit/a6251dfaa3996cd0298151f786466cd25504a9f8) Thanks [@rezrah](https://github.com/rezrah)! - Added 'torchlight' hover effect to dark mode Card instances.
+
+  See: https://primer.style/brand/components/Card/react#torchlight-effect
+
 ## 0.27.2
 
 ### Patch Changes
