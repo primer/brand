@@ -2,4 +2,4 @@
 '@primer/react-brand': patch
 ---
 
-Improved SubdomainNavBar keyboard navigation
+Improved keyboard navigation in the `SubdomainNavBar` mobile menu using focus trapping.
