@@ -262,7 +262,7 @@ function SocialLogomarks({socialLinks, logoHref}: SocialLogomarksProps) {
               data-analytics-event='{"category":"Footer","action":"go to home","label":"text:home"}'
               aria-label="GitHub"
             >
-              <Stack direction="horizontal" gap={8}>
+              <Stack direction="horizontal" gap={8} padding="none">
                 <MarkGithubIcon fill={colorMode === ColorModesEnum.DARK ? 'white' : 'black'} size="medium" />
                 <LogoGithubIcon fill={colorMode === ColorModesEnum.DARK ? 'white' : 'black'} size="medium" />
               </Stack>
