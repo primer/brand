@@ -2,6 +2,11 @@
   color: var(--brand-color-text-default);
 }
 
+[data-color-mode='dark'] .Heading {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .Heading-font--mona-sans {
   font-family: var(--brand-heading-fontFamily);
 }

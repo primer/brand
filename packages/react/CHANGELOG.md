@@ -1,5 +1,11 @@
 # @primer/react-brand
 
+## 0.28.1
+
+### Patch Changes
+
+- [#482](https://github.com/primer/brand/pull/482) [`536adda`](https://github.com/primer/brand/commit/536addad5b8cf0e17ce39df1b6dbc2f026ef13de) Thanks [@rezrah](https://github.com/rezrah)! - Replaced global font-smoothing options with more targetted, and locally scoped usage in dark mode Heading instances only.
+
 ## 0.28.0
 
 ### Minor Changes
