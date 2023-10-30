@@ -332,7 +332,7 @@
     height: 100vh; /* Keep as fallback */
     height: 100dvh;
     /* replace with overlay-backdrop-bgColor */
-    background: #8c959f33;
+    background: #00000080;
     transform: translateZ(-1px);
     animation: fade-in 0.5s;
     animation-timing-function: var(--brand-animation-easing-glide);
