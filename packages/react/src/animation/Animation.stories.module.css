@@ -16,11 +16,7 @@
   inset: var(--base-size-16);
   filter: blur(var(--base-size-48));
   transform: translateZ(0);
-  background: linear-gradient(
-    to right,
-    hsl(var(--base-color-scale-blue-2-hsl)),
-    hsl(var(--base-color-scale-purple-2-hsl))
-  );
+  background: linear-gradient(to right, var(--base-color-scale-blue-2), var(--base-color-scale-purple-2));
 }
 
 .DiscussionsExampleHero__image {
@@ -143,7 +139,7 @@
 .TimelineBarExample__icon {
   padding: var(--base-size-8);
   border-radius: 50%;
-  background-color: hsl(var(--base-color-scale-green-7-hsl) / 1);
+  background-color: var(--base-color-scale-green-7);
   display: flex;
   height: var(--base-size-48);
   width: var(--base-size-48);

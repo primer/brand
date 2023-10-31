@@ -11,6 +11,7 @@ export const supportedComponents = [
   'Pillar',
   'SectionIntro',
   'Stack',
+  'Pillar',
   'Testimonial',
   'Text',
   'Timeline',

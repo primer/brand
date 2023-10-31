@@ -53,8 +53,8 @@ export const AlignedCenter = () => (
 
 const designTokenOverrides = `
   .custom-colors {
-    --brand-CTABanner-shadow-color-start: var(--base-color-scale-purple-5-hsl);
-    --brand-CTABanner-shadow-color-end: var(--base-color-scale-red-5-hsl);
+    --brand-CTABanner-shadow-color-start: var(--base-color-scale-purple-5);
+    --brand-CTABanner-shadow-color-end: var(--base-color-scale-red-5);
   }
 `
 

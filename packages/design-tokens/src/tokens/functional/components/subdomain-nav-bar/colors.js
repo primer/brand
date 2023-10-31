@@ -3,8 +3,8 @@ module.exports = {
     SubdomainNavBar: {
       canvas: {
         default: {
-          value: 'hsl(var(--base-color-scale-white-0-hsl) / 50%)',
-          dark: 'hsl(var(--base-color-scale-gray-9-hsl) / 50%)',
+          value: '#ffffff80', // base.color.white 0.5 alpha
+          dark: '#0d111780', // base.color.gray.9 0.5 alpha
         },
         search: {
           value: 'var(--base-color-scale-white-0)',
