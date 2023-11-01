@@ -11,12 +11,12 @@
           "dark": "var(--base-color-scale-green-5)"
         },
         "muted": {
-          "value": "hsl(var(--base-color-scale-green-3-hsl) / 60%)",
-          "dark": "hsl(var(--base-color-scale-green-4-hsl) / 60%)"
+          "value": "#4bc36b99",
+          "dark": "#2e9e4299"
         },
         "subtle": {
           "value": "var(--base-color-scale-green-0)",
-          "dark": "hsl(var(--base-color-scale-green-4-hsl) / 85%)"
+          "dark": "#2e9e42d9"
         }
       },
       "error": {
@@ -29,12 +29,12 @@
           "dark": "var(--base-color-scale-red-5)"
         },
         "muted": {
-          "value": "hsl(var(--base-color-scale-red-3-hsl) / 60%)",
-          "dark": "hsl(var(--base-color-scale-red-4-hsl) / 60%)"
+          "value": "#ff878599",
+          "dark": "#f8524999"
         },
         "subtle": {
           "value": "var(--base-color-scale-red-0)",
-          "dark": "hsl(var(--base-color-scale-red-4-hsl) / 85%)"
+          "dark": "#f85249d9"
         }
       },
       "accent": {
@@ -75,12 +75,12 @@
           "dark": "var(--base-color-scale-gray-4)"
         },
         "muted": {
-          "value": "hsl(var(--base-color-scale-gray-3-hsl) / 99.8%)",
-          "dark": "hsl(var(--base-color-scale-gray-4-hsl) / 99.6%)"
+          "value": "#b7bfc8fe",
+          "dark": "#6e7681fe"
         },
         "subtle": {
-          "value": "hsl(var(--base-color-scale-gray-1-hsl) / 99.5%)",
-          "dark": "hsl(var(--base-color-scale-gray-4-hsl) / 99.9%)"
+          "value": "#e9edf1fe",
+          "dark": "#6e7681ff"
         }
       },
       "canvas": {
@@ -107,11 +107,11 @@
           "dark": "var(--base-color-scale-gray-6)"
         },
         "muted": {
-          "value": "hsl(var(--base-color-scale-gray-2-hsl) / 99.7%)",
+          "value": "#d3d9dffe",
           "dark": "var(--base-color-scale-gray-7)"
         },
         "subtle": {
-          "value": "hsl(var(--base-color-scale-gray-1-hsl) / 99.7%)",
+          "value": "#e9edf1fe",
           "dark": "var(--base-color-scale-gray-8)"
         }
       },

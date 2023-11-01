@@ -187,45 +187,45 @@ describe('Design tokens', () => {
             scale: {
               gray: {
                 0: {
-                  value: '210 25% 98%',
-                  dark: '210 67% 96%',
-                  dark_dimmed: '210 57% 96%',
+                  value: '#f6f8fa',
+                  dark: '#f0f6fc',
+                  dark_dimmed: '#f0f6fc',
                   filePath: 'tokens/base/colors/color-scales.json',
                   isSource: true,
                   original: {
                     value: '210 25% 98%',
                     dark: '210 67% 96%',
-                    dark_dimmed: '210 57% 96%',
+                    dark_dimmed: '#f0f6fc',
                   },
                   name: 'base-color-scale-gray-0',
                   attributes: {},
                   path: ['base', 'color', 'scale', 'gray', '0'],
                 },
                 1: {
-                  value: '210 24% 93%',
-                  dark: '210 17% 82%',
-                  dark_dimmed: '210 19% 87%',
+                  value: '#eaeef2',
+                  dark: '#c9d1d9',
+                  dark_dimmed: '#c9d1d9',
                   filePath: 'tokens/base/colors/color-scales.json',
                   isSource: true,
                   original: {
-                    value: '210 24% 93%',
-                    dark: '210 17% 82%',
-                    dark_dimmed: '210 19% 87%',
+                    value: '#eaeef2',
+                    dark: '#c9d1d9',
+                    dark_dimmed: '#c9d1d9',
                   },
                   name: 'base-color-scale-gray-1',
                   attributes: {},
                   path: ['base', 'color', 'scale', 'gray', '1'],
                 },
                 2: {
-                  value: '210 16% 85%',
-                  dark: '212 14% 73%',
-                  dark_dimmed: '212 15% 63%',
+                  value: '#b1bac4',
+                  dark: '#b1bac4',
+                  dark_dimmed: '#b1bac4',
                   filePath: 'tokens/base/colors/color-scales.json',
                   isSource: true,
                   original: {
-                    value: '210 16% 85%',
-                    dark: '212 14% 73%',
-                    dark_dimmed: '212 15% 63%',
+                    value: '#b1bac4',
+                    dark: '#b1bac4',
+                    dark_dimmed: '#b1bac4',
                   },
                   name: 'base-color-scale-gray-2',
                   attributes: {},
@@ -238,45 +238,45 @@ describe('Design tokens', () => {
       },
       allProperties: [
         {
-          value: '210 25% 98%',
-          dark: '210 67% 96%',
-          dark_dimmed: '210 57% 96%',
+          value: '#f6f8fa',
+          dark: '#f0f6fc',
+          dark_dimmed: '#f0f6fc',
           filePath: 'tokens/base/colors/color-scales.json',
           isSource: true,
           original: {
-            value: '210 25% 98%',
-            dark: '210 67% 96%',
-            dark_dimmed: '210 57% 96%',
+            value: '#f6f8fa',
+            dark: '#f0f6fc',
+            dark_dimmed: '#f0f6fc',
           },
           name: 'base-color-scale-gray-0',
           attributes: {},
           path: ['base', 'color', 'scale', 'gray', '0'],
         },
         {
-          value: '210 24% 93%',
-          dark: '210 17% 82%',
-          dark_dimmed: '210 19% 87%',
+          value: '#eaeef2',
+          dark: '#c9d1d9',
+          dark_dimmed: '#c9d1d9',
           filePath: 'tokens/base/colors/color-scales.json',
           isSource: true,
           original: {
-            value: '210 24% 93%',
-            dark: '210 17% 82%',
-            dark_dimmed: '210 19% 87%',
+            value: '#eaeef2',
+            dark: '#c9d1d9',
+            dark_dimmed: '#c9d1d9',
           },
           name: 'base-color-scale-gray-1',
           attributes: {},
           path: ['base', 'color', 'scale', 'gray', '1'],
         },
         {
-          value: '210 16% 85%',
-          dark: '212 14% 73%',
-          dark_dimmed: '212 15% 63%',
+          value: '#b1bac4',
+          dark: '#b1bac4',
+          dark_dimmed: '#b1bac4',
           filePath: 'tokens/base/colors/color-scales.json',
           isSource: true,
           original: {
-            value: '210 16% 85%',
-            dark: '212 14% 73%',
-            dark_dimmed: '212 15% 63%',
+            value: '#b1bac4',
+            dark: '#b1bac4',
+            dark_dimmed: '#b1bac4',
           },
           name: 'base-color-scale-gray-2',
           attributes: {},
@@ -289,45 +289,45 @@ describe('Design tokens', () => {
             scale: {
               gray: {
                 0: {
-                  value: '210 25% 98%',
-                  dark: '210 67% 96%',
-                  dark_dimmed: '210 57% 96%',
+                  value: '#f6f8fa',
+                  dark: '#f0f6fc',
+                  dark_dimmed: '#f0f6fc',
                   filePath: 'tokens/base/colors/color-scales.json',
                   isSource: true,
                   original: {
-                    value: '210 25% 98%',
-                    dark: '210 67% 96%',
-                    dark_dimmed: '210 57% 96%',
+                    value: '#f6f8fa',
+                    dark: '#f0f6fc',
+                    dark_dimmed: '#f0f6fc',
                   },
                   name: 'base-color-scale-gray-0',
                   attributes: {},
                   path: ['base', 'color', 'scale', 'gray', '0'],
                 },
                 1: {
-                  value: '210 24% 93%',
-                  dark: '210 17% 82%',
-                  dark_dimmed: '210 19% 87%',
+                  value: '#eaeef2',
+                  dark: '#c9d1d9',
+                  dark_dimmed: '#c9d1d9',
                   filePath: 'tokens/base/colors/color-scales.json',
                   isSource: true,
                   original: {
-                    value: '210 24% 93%',
-                    dark: '210 17% 82%',
-                    dark_dimmed: '210 19% 87%',
+                    value: '#eaeef2',
+                    dark: '#c9d1d9',
+                    dark_dimmed: '#c9d1d9',
                   },
                   name: 'base-color-scale-gray-1',
                   attributes: {},
                   path: ['base', 'color', 'scale', 'gray', '1'],
                 },
                 2: {
-                  value: '210 16% 85%',
-                  dark: '212 14% 73%',
-                  dark_dimmed: '212 15% 63%',
+                  value: '#b1bac4',
+                  dark: '#b1bac4',
+                  dark_dimmed: '#b1bac4',
                   filePath: 'tokens/base/colors/color-scales.json',
                   isSource: true,
                   original: {
-                    value: '210 16% 85%',
-                    dark: '212 14% 73%',
-                    dark_dimmed: '212 15% 63%',
+                    value: '#b1bac4',
+                    dark: '#b1bac4',
+                    dark_dimmed: '#b1bac4',
                   },
                   name: 'base-color-scale-gray-2',
                   attributes: {},
@@ -340,45 +340,45 @@ describe('Design tokens', () => {
       },
       allTokens: [
         {
-          value: '210 25% 98%',
-          dark: '210 67% 96%',
-          dark_dimmed: '210 57% 96%',
+          value: '#f6f8fa',
+          dark: '#f0f6fc',
+          dark_dimmed: '#f0f6fc',
           filePath: 'tokens/base/colors/color-scales.json',
           isSource: true,
           original: {
-            value: '210 25% 98%',
-            dark: '210 67% 96%',
-            dark_dimmed: '210 57% 96%',
+            value: '#f6f8fa',
+            dark: '#f0f6fc',
+            dark_dimmed: '#f0f6fc',
           },
           name: 'base-color-scale-gray-0',
           attributes: {},
           path: ['base', 'color', 'scale', 'gray', '0'],
         },
         {
-          value: '210 24% 93%',
-          dark: '210 17% 82%',
-          dark_dimmed: '210 19% 87%',
+          value: '#eaeef2',
+          dark: '#c9d1d9',
+          dark_dimmed: '#c9d1d9',
           filePath: 'tokens/base/colors/color-scales.json',
           isSource: true,
           original: {
-            value: '210 24% 93%',
-            dark: '210 17% 82%',
-            dark_dimmed: '210 19% 87%',
+            value: '#eaeef2',
+            dark: '#c9d1d9',
+            dark_dimmed: '#c9d1d9',
           },
           name: 'base-color-scale-gray-1',
           attributes: {},
           path: ['base', 'color', 'scale', 'gray', '1'],
         },
         {
-          value: '210 16% 85%',
-          dark: '212 14% 73%',
-          dark_dimmed: '212 15% 63%',
+          value: '#b1bac4',
+          dark: '#b1bac4',
+          dark_dimmed: '#b1bac4',
           filePath: 'tokens/base/colors/color-scales.json',
           isSource: true,
           original: {
-            value: '210 16% 85%',
-            dark: '212 14% 73%',
-            dark_dimmed: '212 15% 63%',
+            value: '#b1bac4',
+            dark: '#b1bac4',
+            dark_dimmed: '#b1bac4',
           },
           name: 'base-color-scale-gray-2',
           attributes: {},
@@ -391,45 +391,45 @@ describe('Design tokens', () => {
             scale: {
               gray: {
                 0: {
-                  value: '210 25% 98%',
-                  dark: '210 67% 96%',
-                  dark_dimmed: '210 57% 96%',
+                  value: '#f6f8fa',
+                  dark: '#f0f6fc',
+                  dark_dimmed: '#f0f6fc',
                   filePath: 'tokens/base/colors/color-scales.json',
                   isSource: true,
                   original: {
-                    value: '210 25% 98%',
-                    dark: '210 67% 96%',
-                    dark_dimmed: '210 57% 96%',
+                    value: '#f6f8fa',
+                    dark: '#f0f6fc',
+                    dark_dimmed: '#f0f6fc',
                   },
                   name: 'base-color-scale-gray-0',
                   attributes: {},
                   path: ['base', 'color', 'scale', 'gray', '0'],
                 },
                 1: {
-                  value: '210 24% 93%',
-                  dark: '210 17% 82%',
-                  dark_dimmed: '210 19% 87%',
+                  value: '#eaeef2',
+                  dark: '#c9d1d9',
+                  dark_dimmed: '#c9d1d9',
                   filePath: 'tokens/base/colors/color-scales.json',
                   isSource: true,
                   original: {
-                    value: '210 24% 93%',
-                    dark: '210 17% 82%',
-                    dark_dimmed: '210 19% 87%',
+                    value: '#eaeef2',
+                    dark: '#c9d1d9',
+                    dark_dimmed: '#c9d1d9',
                   },
                   name: 'base-color-scale-gray-1',
                   attributes: {},
                   path: ['base', 'color', 'scale', 'gray', '1'],
                 },
                 2: {
-                  value: '210 16% 85%',
-                  dark: '212 14% 73%',
-                  dark_dimmed: '212 15% 63%',
+                  value: '#b1bac4',
+                  dark: '#b1bac4',
+                  dark_dimmed: '#b1bac4',
                   filePath: 'tokens/base/colors/color-scales.json',
                   isSource: true,
                   original: {
-                    value: '210 16% 85%',
-                    dark: '212 14% 73%',
-                    dark_dimmed: '212 15% 63%',
+                    value: '#b1bac4',
+                    dark: '#b1bac4',
+                    dark_dimmed: '#b1bac4',
                   },
                   name: 'base-color-scale-gray-2',
                   attributes: {},
@@ -460,30 +460,21 @@ describe('Design tokens', () => {
     const expectedOutput = `
 :root,
 [data-color-mode="light"] {
-  --base-color-scale-gray-0-hsl: 210 25% 98%;
-  --base-color-scale-gray-0: hsl(210, 25%, 98%);
-  --base-color-scale-gray-1-hsl: 210 24% 93%;
-  --base-color-scale-gray-1: hsl(210, 24%, 93%);
-  --base-color-scale-gray-2-hsl: 210 16% 85%;
-  --base-color-scale-gray-2: hsl(210, 16%, 85%);
+  --base-color-scale-gray-0: #f6f8fa;
+  --base-color-scale-gray-1: #eaeef2;
+  --base-color-scale-gray-2: #b1bac4;
 }
 
 [data-color-mode="dark"] {
-  --base-color-scale-gray-0-hsl: 210 67% 96%;
-  --base-color-scale-gray-0: hsl(210, 67%, 96%);
-  --base-color-scale-gray-1-hsl: 210 17% 82%;
-  --base-color-scale-gray-1: hsl(210, 17%, 82%);
-  --base-color-scale-gray-2-hsl: 212 14% 73%;
-  --base-color-scale-gray-2: hsl(212, 14%, 73%);
+  --base-color-scale-gray-0: #f0f6fc;
+  --base-color-scale-gray-1: #c9d1d9;
+  --base-color-scale-gray-2: #b1bac4;
 }
 
 [data-color-mode="dark_dimmed"] {
-  --base-color-scale-gray-0-hsl: 210 57% 96%;
-  --base-color-scale-gray-0: hsl(210, 57%, 96%);
-  --base-color-scale-gray-1-hsl: 210 19% 87%;
-  --base-color-scale-gray-1: hsl(210, 19%, 87%);
-  --base-color-scale-gray-2-hsl: 212 15% 63%;
-  --base-color-scale-gray-2: hsl(212, 15%, 63%);
+  --base-color-scale-gray-0: #f0f6fc;
+  --base-color-scale-gray-1: #c9d1d9;
+  --base-color-scale-gray-2: #b1bac4;
 }    
 `.trim()
 

@@ -1,6 +1,6 @@
 /*
  * AnchorNav
- * 
+ *
  * 1. Globals
  * 2. AnchorNav root and inner bounding containers
  * 3. AnchorNav links
@@ -331,7 +331,8 @@
     width: 100%;
     height: 100vh; /* Keep as fallback */
     height: 100dvh;
-    background: hsla(var(--base-color-scale-black-0-hsl) / 0.5);
+    /* replace with overlay-backdrop-bgColor */
+    background: #00000080;
     transform: translateZ(-1px);
     animation: fade-in 0.5s;
     animation-timing-function: var(--brand-animation-easing-glide);
