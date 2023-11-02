@@ -88,8 +88,8 @@ export default {
 const Template: StoryFn<typeof Button> = args => (
   <Button
     {...args}
-    leadingVisual={args.leadingVisual ? SearchIcon : undefined}
-    trailingVisual={args.trailingVisual ? ChevronDownIcon : undefined}
+    leadingVisual={args.leadingVisual ? <SearchIcon /> : undefined}
+    trailingVisual={args.trailingVisual ? <ChevronDownIcon /> : undefined}
   />
 )
 

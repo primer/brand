@@ -76,12 +76,13 @@ function PillarIcon({icon: Icon, className, color = defaultPillarIconColor, ...r
   return (
     <span className={clsx(styles.Pillar__icon, styles[`Pillar__icon--color-${color}`], className)} {...rest}>
       {typeof Icon === 'function' ? (
-        <Icon size="medium" />
+        <Icon size={32} />
       ) : (
         React.isValidElement(Icon) &&
         React.cloneElement(Icon as React.ReactElement, {
           ['aria-hidden']: 'true',
           focusable: 'false',
+          size: 32,
         })
       )}
     </span>

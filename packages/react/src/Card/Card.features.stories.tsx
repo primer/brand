@@ -36,7 +36,7 @@ export const Label: StoryFn<typeof Card> = () => {
 export const Icon: StoryFn<typeof Card> = () => {
   return (
     <Card href="https://github.com">
-      <Card.Icon icon={RocketIcon} />
+      <Card.Icon icon={<RocketIcon />} />
       <Card.Heading>Code search & code view</Card.Heading>
       <Card.Description>
         Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
@@ -48,7 +48,7 @@ export const Icon: StoryFn<typeof Card> = () => {
 export const Border: StoryFn<typeof Card> = () => {
   return (
     <Card href="https://github.com" hasBorder>
-      <Card.Icon icon={RocketIcon} />
+      <Card.Icon icon={<RocketIcon />} />
       <Card.Heading>Code search & code view</Card.Heading>
       <Card.Description>
         Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
@@ -63,7 +63,7 @@ export const IconColors: StoryFn<typeof Card> = () => {
       {CardIconColors.map((color, id) => {
         return (
           <Card key={id} href="https://github.com">
-            <Card.Icon icon={CopilotIcon} hasBackground color={color} />
+            <Card.Icon icon={<CopilotIcon />} hasBackground color={color} />
             <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
             <Card.Description>
               This Card uses the <b>{color}</b> icon color
@@ -100,7 +100,7 @@ WithIconSVG.storyName = 'Icon (native)'
 export const IconAndLabel: StoryFn<typeof Card> = () => {
   return (
     <Card href="https://github.com">
-      <Card.Icon icon={GitBranchIcon} color="purple" hasBackground />
+      <Card.Icon icon={<GitBranchIcon />} color="purple" hasBackground />
       <Card.Heading>Code search & code view</Card.Heading>
       <Card.Label color="blue-purple">Beta</Card.Label>
       <Card.Description>
@@ -138,14 +138,14 @@ export const ImageAndLabel: StoryFn<typeof Card> = () => {
 const fixtureData: FixtureData = [
   {
     href: 'https://github.com',
-    icon: CopilotIcon,
+    icon: <CopilotIcon />,
     iconColor: 'indigo',
     heading: 'Collaboration is the key to DevOps success',
     description: 'Everything you need to know about getting started with GitHub Actions.',
   },
   {
     href: 'https://github.com',
-    icon: RocketIcon,
+    icon: <RocketIcon />,
     iconColor: 'purple',
     heading: 'GitHub Actions cheat sheet and more',
     description: (
@@ -156,7 +156,7 @@ const fixtureData: FixtureData = [
   },
   {
     href: 'https://github.com',
-    icon: GitBranchIcon,
+    icon: <GitBranchIcon />,
     iconColor: 'teal',
     heading: 'How healthy teams build better software',
     description: (
@@ -165,7 +165,7 @@ const fixtureData: FixtureData = [
   },
   {
     href: 'https://github.com',
-    icon: HeartIcon,
+    icon: <HeartIcon />,
     iconColor: 'pink',
     heading: 'GitHub sponsors',
     description:
@@ -212,7 +212,7 @@ export const DarkColorModeEffect = () => {
         gap={36}
       >
         <Card href="https://github.com">
-          <Card.Icon icon={ZapIcon} hasBackground />
+          <Card.Icon icon={<ZapIcon />} hasBackground />
           <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
           <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
         </Card>
@@ -220,7 +220,7 @@ export const DarkColorModeEffect = () => {
           href="https://github.com"
           style={{['--brand-color-accent-primary' as string]: 'var(--base-color-scale-indigo-2)'}}
         >
-          <Card.Icon icon={CopilotIcon} hasBackground color="indigo" />
+          <Card.Icon icon={<CopilotIcon />} hasBackground color="indigo" />
           <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
           <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
         </Card>
@@ -229,7 +229,7 @@ export const DarkColorModeEffect = () => {
           href="https://github.com"
           style={{['--brand-color-accent-primary' as string]: 'var(--base-color-scale-yellow-2)'}}
         >
-          <Card.Icon icon={GitBranchIcon} hasBackground color="yellow" />
+          <Card.Icon icon={<GitBranchIcon />} hasBackground color="yellow" />
           <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
           <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
         </Card>
@@ -245,7 +245,7 @@ export const DarkColorModeEffect = () => {
           href="https://github.com"
           style={{['--brand-color-accent-primary' as string]: 'var(--base-color-scale-red-2)'}}
         >
-          <Card.Icon icon={HeartIcon} hasBackground color="red" />
+          <Card.Icon icon={<HeartIcon />} hasBackground color="red" />
           <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
           <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
         </Card>
@@ -254,7 +254,7 @@ export const DarkColorModeEffect = () => {
           href="https://github.com"
           style={{['--brand-color-accent-primary' as string]: 'var(--base-color-scale-orange-2)'}}
         >
-          <Card.Icon icon={ZapIcon} hasBackground color="orange" />
+          <Card.Icon icon={<ZapIcon />} hasBackground color="orange" />
           <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
           <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
         </Card>
@@ -262,7 +262,7 @@ export const DarkColorModeEffect = () => {
           href="https://github.com"
           style={{['--brand-color-accent-primary' as string]: 'var(--base-color-scale-lime-2)'}}
         >
-          <Card.Icon icon={RocketIcon} hasBackground color="lime" />
+          <Card.Icon icon={<RocketIcon />} hasBackground color="lime" />
           <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
           <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
         </Card>

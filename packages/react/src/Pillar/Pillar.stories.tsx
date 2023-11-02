@@ -42,7 +42,7 @@ export default {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Template: StoryFn<typeof Pillar> = (_, storyArgs: any) => (
   <Pillar>
-    <Pillar.Icon icon={CopilotIcon} color={storyArgs.args.iconColor} />
+    <Pillar.Icon icon={<CopilotIcon />} color={storyArgs.args.iconColor} />
     <Pillar.Heading>{storyArgs.args.heading}</Pillar.Heading>
     <Pillar.Description>{storyArgs.args.description}</Pillar.Description>
   </Pillar>

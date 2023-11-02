@@ -41,7 +41,7 @@ You can add an `icon` to enhance the visual context. We recommend using an [Octi
 
 ```jsx live
 <Pillar>
-  <Pillar.Icon icon={CopilotIcon} color="purple" />
+  <Pillar.Icon icon={<CopilotIcon />} color="purple" />
   <Pillar.Heading>Code search & code view</Pillar.Heading>
   <Pillar.Description>
     Enables you to rapidly search, navigate, and understand code, right from
@@ -71,7 +71,7 @@ The content alignment can be changed using the `align` prop on the root `Pillar`
 
 ```jsx live
 <Pillar align="center">
-  <Pillar.Icon icon={CopilotIcon} color="purple" />
+  <Pillar.Icon icon={<CopilotIcon />} color="purple" />
   <Pillar.Heading>Code search & code view</Pillar.Heading>
   <Pillar.Description>
     Enables you to rapidly search, navigate, and understand code, right from
@@ -92,7 +92,7 @@ Use the `Stack` component to stack multiple Pillars horizontally or vertically.
   gap="normal"
 >
   <Pillar>
-    <Pillar.Icon icon={CopilotIcon} color="blue" />
+    <Pillar.Icon icon={<CopilotIcon />} color="blue" />
     <Pillar.Heading>Heading</Pillar.Heading>
     <Pillar.Description>
       Everything you need to know about getting started with GitHub Actions.

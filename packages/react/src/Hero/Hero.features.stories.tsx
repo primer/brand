@@ -157,10 +157,10 @@ export const WithCustomIconAndVariant: StoryFn<typeof Hero> = _args => (
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
       felis nam pulvinar risus elementum.
     </Hero.Description>
-    <Hero.PrimaryAction href="#" leadingVisual={HeartFillIcon}>
+    <Hero.PrimaryAction href="#" leadingVisual={<HeartFillIcon />}>
       Primary action with leading icon
     </Hero.PrimaryAction>
-    <Hero.SecondaryAction href="#" trailingVisual={StarFillIcon} variant="subtle">
+    <Hero.SecondaryAction href="#" trailingVisual={<StarFillIcon />} variant="subtle">
       Subtle action with trailing icon
     </Hero.SecondaryAction>
   </Hero>
