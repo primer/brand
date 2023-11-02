@@ -30,10 +30,10 @@
 .EyebrowBanner__leadingVisual img,
 .EyebrowBanner__leadingVisual picture,
 .EyebrowBanner__leadingVisual svg {
-  height: 44px;
+  height: var(--base-size-44);
   width: auto;
-  max-width: 44px;
-  max-height: 44px;
+  max-width: var(--base-size-44);
+  max-height: var(--base-size-44);
 }
 
 .EyebrowBanner__trailingVisual {
