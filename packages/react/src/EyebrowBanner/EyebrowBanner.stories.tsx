@@ -94,7 +94,7 @@ export default {
       },
     },
     leadingLabelText: {
-      name: '.Label text',
+      name: 'text',
       control: {
         type: 'text',
       },
