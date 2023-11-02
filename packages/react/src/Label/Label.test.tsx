@@ -74,7 +74,7 @@ describe('Label', () => {
   it('can optionally render a leading visual', () => {
     const leadingVisualId = Label.testIds.leadingVisual
 
-    const {getByTestId} = render(<Label leadingVisual={CopilotIcon}>{mockText}</Label>)
+    const {getByTestId} = render(<Label leadingVisual={<CopilotIcon />}>{mockText}</Label>)
 
     const el = getByTestId(leadingVisualId)
 

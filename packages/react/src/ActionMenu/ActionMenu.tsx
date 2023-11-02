@@ -272,7 +272,7 @@ const ActionMenuButton = forwardRef<HTMLButtonElement, ActionMenuButtonProps>(
         hasArrow={false}
         aria-haspopup="true"
         aria-expanded={menuOpen ? 'true' : 'false'}
-        trailingVisual={ChevronDownIcon}
+        trailingVisual={<ChevronDownIcon />}
         disabled={disabled}
         data-testid={testId || testIds.button}
         {...props}

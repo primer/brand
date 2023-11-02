@@ -12,7 +12,7 @@ export default {
 export const Icon: StoryFn<typeof Pillar> = () => {
   return (
     <Pillar>
-      <Pillar.Icon icon={RocketIcon} />
+      <Pillar.Icon icon={<RocketIcon />} />
       <Pillar.Heading>Code search & code view</Pillar.Heading>
       <Pillar.Description>
         Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
@@ -28,7 +28,7 @@ export const IconColors: StoryFn<typeof Pillar> = () => {
         return (
           <Grid.Column key={id} span={4}>
             <Pillar>
-              <Pillar.Icon icon={CopilotIcon} color={color} />
+              <Pillar.Icon icon={<CopilotIcon />} color={color} />
               <Pillar.Heading>Collaboration is the key to DevOps success</Pillar.Heading>
               <Pillar.Description>
                 This Pillar uses the <b>{color}</b> icon color
@@ -109,14 +109,14 @@ export const Link: StoryFn<typeof Pillar> = () => {
 const fixtureData: FixtureData = [
   {
     href: 'https://github.com',
-    icon: CopilotIcon,
+    icon: <CopilotIcon />,
     iconColor: PillarIconColors[5],
     heading: 'Collaboration is the key to DevOps success',
     description: 'Everything you need to know about getting started with GitHub Actions.',
   },
   {
     href: 'https://github.com',
-    icon: RocketIcon,
+    icon: <RocketIcon />,
     iconColor: PillarIconColors[5],
     heading: 'GitHub Actions cheat sheet and more',
     description: (
@@ -128,7 +128,7 @@ const fixtureData: FixtureData = [
   },
   {
     href: 'https://github.com',
-    icon: GitBranchIcon,
+    icon: <GitBranchIcon />,
     iconColor: PillarIconColors[5],
     heading: 'How healthy teams build better software',
     description: (

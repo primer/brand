@@ -185,7 +185,7 @@ describe('Button', () => {
   it('can optionally render a leading visual', () => {
     const leadingVisualId = Button.testIds.leadingVisual
 
-    const {getByTestId} = render(<Button leadingVisual={SearchIcon}>Button</Button>)
+    const {getByTestId} = render(<Button leadingVisual={<SearchIcon />}>Button</Button>)
 
     const el = getByTestId(leadingVisualId)
 
@@ -195,7 +195,7 @@ describe('Button', () => {
   it('can optionally render a trailing visual', () => {
     const trailingVisualId = Button.testIds.trailingVisual
 
-    const {getByTestId} = render(<Button trailingVisual={SearchIcon}>Button</Button>)
+    const {getByTestId} = render(<Button trailingVisual={<SearchIcon />}>Button</Button>)
 
     const el = getByTestId(trailingVisualId)
 
@@ -208,7 +208,7 @@ describe('Button', () => {
     for (const slot of slots) {
       const visualId = Button.testIds[slot]
 
-      const {getByTestId} = render(<Button {...{[slot]: SearchIcon}}>Button</Button>)
+      const {getByTestId} = render(<Button {...{[slot]: <SearchIcon />}}>Button</Button>)
 
       const el = getByTestId(visualId).querySelector('svg')
 
@@ -220,7 +220,7 @@ describe('Button', () => {
     const expectedClass = 'Button__icon-visual--disabled'
 
     const {getByTestId} = render(
-      <Button trailingVisual={SearchIcon} leadingVisual={SearchIcon} disabled>
+      <Button trailingVisual={<SearchIcon />} leadingVisual={<SearchIcon />} disabled>
         Primary Button
       </Button>,
     )
