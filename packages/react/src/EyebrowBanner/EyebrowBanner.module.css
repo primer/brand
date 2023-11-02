@@ -5,7 +5,7 @@
   background: var(--brand-Eyebrowbanner-bgColor-rest);
   border: var(--brand-borderWidth-thin) solid var(--brand-Eyebrowbanner-borderColor-rest);
   padding: var(--brand-EyebrowBanner-spacing-inner-block) var(--brand-EyebrowBanner-spacing-inner-inline);
-  border-radius: 100px;
+  border-radius: var(--brand-EyebrowBanner-borderRadius);
 }
 
 .EyebrowBanner:focus-visible {
@@ -53,7 +53,7 @@
   display: flex;
   font-family: var(--brand-body-fontFamily);
   font-weight: var(--base-text-weight-bold);
-  font-size: var(--brand-text-size-200);
+  font-size: var(--brand-EyebrowBanner-label-size);
   line-height: 1em; /* for optical alignment */
   letter-spacing: var(--brand-text-letterSpacing-200);
   background: linear-gradient(

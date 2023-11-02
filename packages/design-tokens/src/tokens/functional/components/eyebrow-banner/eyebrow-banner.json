@@ -1,6 +1,14 @@
 {
   "brand": {
     "EyebrowBanner": {
+      "borderRadius": {
+        "value": "var(--base-size-16)",
+        "responsive": {
+          "768px": {
+            "value": "100px"
+          }
+        }
+      },
       "spacing": {
         "inner": {
           "block": {
@@ -12,6 +20,16 @@
               "768px": {
                 "value": "var(--base-size-20)"
               }
+            }
+          }
+        }
+      },
+      "label": {
+        "size": {
+          "value": "var(--brand-text-size-100)",
+          "responsive": {
+            "768px": {
+              "value": "var(--brand-text-size-200)"
             }
           }
         }

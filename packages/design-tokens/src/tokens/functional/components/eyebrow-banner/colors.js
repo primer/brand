@@ -3,8 +3,8 @@ module.exports = {
     Eyebrowbanner: {
       bgColor: {
         rest: {
-          value: 'linear-gradient(90deg, #ffffffB0 0%, #ffffff69 59.76%, transparent 100%);', // hex: white 60%, white 41%
-          dark: 'linear-gradient(90deg, #000000B0 0%, #00000069 59.76%, transparent 100%);', // hex: black 60%, black 41%
+          value: '#FFFFFF99', // white at 60%
+          dark: '#0D111799', // 0D1117 at 60%
         },
       },
       borderColor: {
