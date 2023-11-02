@@ -3,7 +3,7 @@
     "footer": {
       "bg": {
         "color": {
-          "value": "var(--base-color-scale-white-0)",
+          "value": "var(--base-color-scale-white)",
           "dark": "var(--base-color-scale-gray-9)"
         }
       }

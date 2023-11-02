@@ -62,12 +62,12 @@ module.exports = {
             dark: 'transparent',
           },
           hover: {
-            value: 'hsl(var(--base-color-scale-gray-3-hsl) / 20%)',
-            dark: 'hsl(var(--base-color-scale-gray-3-hsl) / 20%)',
+            value: '#b7bfc833',
+            dark: '#8a939e33',
           },
           active: {
-            value: 'hsl(var(--base-color-scale-gray-3-hsl) / 40%)',
-            dark: 'hsl(var(--base-color-scale-gray-3-hsl) / 40%)',
+            value: '#b7bfc866',
+            dark: '#8a939e66',
           },
         },
         borderColor: {

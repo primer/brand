@@ -14,8 +14,8 @@
   transform: translateZ(0);
   background: linear-gradient(
     to right,
-    hsl(var(--brand-CTABanner-shadow-color-start)),
-    hsl(var(--brand-CTABanner-shadow-color-end))
+    var(--brand-CTABanner-shadow-color-start),
+    var(--brand-CTABanner-shadow-color-end)
   );
 }
 

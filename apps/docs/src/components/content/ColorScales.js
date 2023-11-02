@@ -1,4 +1,4 @@
-import colors from '@primer/brand-primitives/lib/design-tokens/js/module/tokens/base/colors/color-scales'
+import colors from '@primer/brand-primitives/lib/design-tokens/js/module/tokens/base/colors/light'
 import React from 'react'
 import {
   Box as PRCBox,
@@ -14,16 +14,16 @@ import {useColorTheme} from './ColorThemeContext'
 
 const availableColorModes = Object.values(ColorModesEnum)
 
-const convertToHsl = (rawHSL) => `hsl(${rawHSL.split(' ').join(', ')})`
-
 export function ColorScales() {
   const [colorTheme, setCurrentMode] = useColorTheme()
 
   const predicateFn = (colorEntry) => ['black', 'white'].includes(colorEntry[0])
 
-  const rgbScales = Object.entries(colors.base.color.scale).filter(
-    (color) => !predicateFn(color),
-  )
+  const rgbScales = Object.entries(colors.base.color.scale)
+    .filter(([scaleName]) => {
+      return scaleName !== 'transparent'
+    })
+    .filter((color) => !predicateFn(color))
 
   const blackWhiteScales = Object.entries(colors.base.color.scale).filter(
     (color) => predicateFn(color),
@@ -35,14 +35,15 @@ export function ColorScales() {
       <PRCBox key={name}>
         {Object.entries(colorScale).map(([key, obj]) => {
           const value = colorTheme === 'dark' ? obj.dark : obj.value
-          const hslValue = convertToHsl(value)
+
+          if (!value) return null
 
           return (
             <PRCBox
-              key={`${key}-${hslValue}`}
+              key={`${key}-${value}`}
               sx={{
-                color: readableColor(hslValue),
-                bg: hslValue,
+                color: readableColor(value),
+                bg: value,
                 p: 2,
                 display: 'flex',
                 justifyContent: 'space-between',
@@ -53,7 +54,7 @@ export function ColorScales() {
               <Text>
                 {name}.{key}
               </Text>
-              <Text>{hslValue}</Text>
+              <Text>{value}</Text>
             </PRCBox>
           )
         })}

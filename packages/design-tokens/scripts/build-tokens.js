@@ -4,6 +4,9 @@ const {buildPrimitives, StyleDictionary} = require('@primer/primitives/build')
 const mediaQueryFormat = require('../src/formats/responsive-media-query')
 const colorModeFormat = require('../src/formats/color-mode-attributes')
 
+const lightJson = require('../src/tokens/base/colors/light')
+const darkJson = require('../src/tokens/base/colors/dark')
+
 ;(function () {
   const namespace = 'brand'
   const outputPath = './lib/design-tokens'
@@ -14,7 +17,6 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
    * Step 1:
    * Create a temporary directory with JSON files to convert into tokens
    */
-  // move over base configs
 
   fs.cpSync('../../node_modules/@primer/primitives/tokens', dest, {recursive: true})
 
@@ -24,6 +26,30 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
 
   /**
    * Step 2:
+   * Produce a color-scales.json src file temporarily
+   */
+
+  const mergeLightAndDark = (light, dark) => {
+    const merged = {}
+
+    for (const key in dark) {
+      if (typeof dark[key] === 'object' && dark[key] !== null) {
+        merged[key] = mergeLightAndDark(light[key] || {}, dark[key])
+      } else if (key === 'value' && light) {
+        merged[key] = light[key]
+        merged['dark'] = dark[key]
+      }
+    }
+
+    return merged
+  }
+
+  const mergedColorScales = mergeLightAndDark(lightJson, darkJson)
+
+  fs.writeFileSync(`${dest}/base/colors/color-scales.json`, JSON.stringify(mergedColorScales))
+
+  /**
+   * Step 3:
    * Build tokens by running function against the temporary directory
    */
 
@@ -179,7 +205,6 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
             format: `css/color-mode-attributes`,
             options: {
               outputReferences: false,
-              containsRawHSL: true,
             },
           },
         ],
@@ -207,6 +232,7 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
     `tokens/functional/components/grid/colors.json`,
     `tokens/functional/components/logosuite/colors.json`,
     `tokens/functional/components/timeline/colors.json`,
+    `tokens/functional/components/video-player/colors.js`,
     `tokens/functional/components/prose/colors.js`,
     `tokens/functional/components/eyebrow-banner/colors.js`,
   ]
@@ -227,7 +253,6 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
               format: `css/color-mode-attributes`,
               options: {
                 outputReferences: false,
-                containsRawHSL: false,
               },
             },
           ],
@@ -237,7 +262,7 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
   }
 
   /**
-   * Step 3:
+   * Step 4:
    * Clean up the temporary directory
    */
   fs.rmdirSync(dest, {recursive: true})
