@@ -139,6 +139,7 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
     `tokens/functional/components/river/river.json`,
     `tokens/functional/components/faq/faq.json`,
     `tokens/functional/components/comparison-table/comparison-table.json`,
+    `tokens/functional/components/eyebrow-banner/eyebrow-banner.json`,
   ]
 
   for (const path of filesForResponsiveTokens) {
@@ -207,6 +208,7 @@ const colorModeFormat = require('../src/formats/color-mode-attributes')
     `tokens/functional/components/logosuite/colors.json`,
     `tokens/functional/components/timeline/colors.json`,
     `tokens/functional/components/prose/colors.js`,
+    `tokens/functional/components/eyebrow-banner/colors.js`,
   ]
 
   for (const path of filesForColorModes) {

@@ -1,0 +1,315 @@
+.EyebrowBanner {
+  display: inline-block;
+  align-self: flex-start;
+  text-decoration: none;
+  background: var(--brand-Eyebrowbanner-bgColor-rest);
+  border: var(--brand-borderWidth-thin) solid var(--brand-Eyebrowbanner-borderColor-rest);
+  padding: var(--brand-EyebrowBanner-spacing-inner-block) var(--brand-EyebrowBanner-spacing-inner-inline);
+  border-radius: 100px;
+}
+
+.EyebrowBanner:focus-visible {
+  transition: none;
+  outline: var(--base-size-4) solid var(--brand-color-focus);
+  outline-offset: 2px;
+}
+
+.EyebrowBanner__inner {
+  display: flex;
+  align-items: center;
+}
+
+.EyebrowBanner__headings {
+  margin-inline-start: var(--brand-EyebrowBanner-spacing-inner-inline);
+}
+
+.EyebrowBanner__leadingVisual {
+  display: flex;
+}
+
+.EyebrowBanner__leadingVisual img,
+.EyebrowBanner__leadingVisual picture,
+.EyebrowBanner__leadingVisual svg {
+  height: 44px;
+  width: auto;
+  max-width: 44px;
+  max-height: 44px;
+}
+
+.EyebrowBanner__trailingVisual {
+  display: flex;
+}
+
+.EyebrowBanner__trailingVisual-icon {
+  margin-inline-start: var(--base-size-20);
+  color: var(--brand-color-text-default);
+}
+
+.EyebrowBanner__trailingVisual-icon {
+  fill: var(--brand-color-text-default);
+}
+
+.EyebrowBanner__leadingLabel {
+  display: flex;
+  font-family: var(--brand-body-fontFamily);
+  font-weight: var(--base-text-weight-bold);
+  font-size: var(--brand-text-size-200);
+  line-height: 1em; /* for optical alignment */
+  letter-spacing: var(--brand-text-letterSpacing-200);
+  background: linear-gradient(
+    92deg,
+    var(--brand-EyebrowBanner-leadingLabel-color-start, var(--brand-Eyebrowbanner-fgColor-default-start)) 12.09%,
+    var(--brand-EyebrowBanner-leadingLabel-color-middle, var(--brand-Eyebrowbanner-fgColor-default-middle)) 42.58%,
+    var(--brand-EyebrowBanner-leadingLabel-color-end, var(--brand-Eyebrowbanner-fgColor-default-end)) 84.96%
+  );
+  text-transform: uppercase;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.EyebrowBanner__leadingLabel--color-blue {
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-blue);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-blue);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-blue);
+}
+
+.EyebrowBanner__leadingLabel--color-blue-purple {
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-blue-purple-start);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-blue-purple-end);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-blue-purple-end);
+}
+
+.EyebrowBanner__leadingLabel--color-coral {
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-coral);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-coral);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-coral);
+}
+
+.EyebrowBanner__leadingLabel--color-green {
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-green);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-green);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-green);
+}
+
+.EyebrowBanner__leadingLabel--color-green-blue {
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-green-blue-start);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-green-blue-start);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-green-blue-end);
+}
+
+.EyebrowBanner__leadingLabel--color-gray {
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-gray);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-gray);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-gray);
+}
+
+.EyebrowBanner__leadingLabel--color-indigo {
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-indigo);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-indigo);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-indigo);
+}
+
+.EyebrowBanner__leadingLabel--color-lemon {
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-lemon);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-lemon);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-lemon);
+}
+
+.EyebrowBanner__leadingLabel--color-lime {
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-lime);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-lime);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-lime);
+}
+
+.EyebrowBanner__leadingLabel--color-orange {
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-orange);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-orange);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-orange);
+}
+
+.EyebrowBanner__leadingLabel--color-pink {
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-pink);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-pink);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-pink);
+}
+
+.EyebrowBanner__leadingLabel--color-pink-blue {
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-pink-blue-start);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-pink-blue-start);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-pink-blue-end);
+}
+
+.EyebrowBanner__leadingLabel--color-purple {
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-purple);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-purple);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-purple);
+}
+
+.EyebrowBanner__leadingLabel--color-purple-red {
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-purple-red-start);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-purple-red-start);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-purple-red-end);
+}
+
+.EyebrowBanner__leadingLabel--color-red {
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-red);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-red);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-red);
+}
+
+.EyebrowBanner__leadingLabel--color-red-orange {
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-red-orange-start);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-red-orange-start);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-red-orange-end);
+}
+
+.EyebrowBanner__leadingLabel--color-teal {
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-teal);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-teal);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-teal);
+}
+
+.EyebrowBanner__leadingLabel--color-yellow {
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-yellow);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-yellow);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-yellow);
+}
+
+.EyebrowBanner__heading {
+  display: block;
+  color: var(--brand-Eyebrowbanner-heading-fgColor);
+  font-size: var(--brand-EyebrowBanner-heading-size);
+}
+
+.EyebrowBanner__subHeading {
+  display: block;
+  color: var(--brand-Eyebrowbanner-subHeading-fgColor);
+  font-size: var(--brand-EyebrowBanner-subHeading-size);
+}
+
+.EyebrowBanner__icon--badge {
+  width: var(--base-size-44);
+  height: var(--base-size-44);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.EyebrowBanner__icon svg {
+  width: var(--base-size-20);
+  height: var(--base-size-20);
+}
+
+.EyebrowBanner__icon--color-default {
+  color: var(--brand-color-text-default);
+}
+
+.EyebrowBanner__icon--color-default.EyebrowBanner__icon--badge {
+  background-color: var(--brand-Eyebrowbanner-icon-background-default);
+}
+
+.EyebrowBanner__icon--color-blue {
+  color: var(--brand-Eyebrowbanner-fgColor-blue);
+}
+
+.EyebrowBanner__icon--color-blue.EyebrowBanner__icon--badge {
+  background-color: var(--brand-Eyebrowbanner-icon-background-blue);
+}
+
+.EyebrowBanner__icon--color-coral {
+  color: var(--brand-Eyebrowbanner-fgColor-coral);
+}
+
+.EyebrowBanner__icon--color-coral.EyebrowBanner__icon--badge {
+  background-color: var(--brand-Eyebrowbanner-icon-background-coral);
+}
+
+.EyebrowBanner__icon--color-green {
+  color: var(--brand-Eyebrowbanner-fgColor-green);
+}
+
+.EyebrowBanner__icon--color-green.EyebrowBanner__icon--badge {
+  background-color: var(--brand-Eyebrowbanner-icon-background-green);
+}
+
+.EyebrowBanner__icon--color-gray {
+  color: var(--brand-Eyebrowbanner-fgColor-gray);
+}
+
+.EyebrowBanner__icon--color-gray.EyebrowBanner__icon--badge {
+  background-color: var(--brand-Eyebrowbanner-icon-background-gray);
+}
+
+.EyebrowBanner__icon--color-indigo {
+  color: var(--brand-Eyebrowbanner-fgColor-indigo);
+}
+
+.EyebrowBanner__icon--color-indigo.EyebrowBanner__icon--badge {
+  background-color: var(--brand-Eyebrowbanner-icon-background-indigo);
+}
+
+.EyebrowBanner__icon--color-lemon {
+  color: var(--brand-Eyebrowbanner-fgColor-lemon);
+}
+
+.EyebrowBanner__icon--color-lemon.EyebrowBanner__icon--badge {
+  background-color: var(--brand-Eyebrowbanner-icon-background-lemon);
+}
+
+.EyebrowBanner__icon--color-lime {
+  color: var(--brand-Eyebrowbanner-fgColor-lime);
+}
+
+.EyebrowBanner__icon--color-lime.EyebrowBanner__icon--badge {
+  background-color: var(--brand-Eyebrowbanner-icon-background-lime);
+}
+
+.EyebrowBanner__icon--color-orange {
+  color: var(--brand-Eyebrowbanner-fgColor-orange);
+}
+
+.EyebrowBanner__icon--color-orange.EyebrowBanner__icon--badge {
+  background-color: var(--brand-Eyebrowbanner-icon-background-orange);
+}
+
+.EyebrowBanner__icon--color-pink {
+  color: var(--brand-Eyebrowbanner-fgColor-pink);
+}
+
+.EyebrowBanner__icon--color-pink.EyebrowBanner__icon--badge {
+  background-color: var(--brand-Eyebrowbanner-icon-background-pink);
+}
+
+.EyebrowBanner__icon--color-purple {
+  color: var(--brand-Eyebrowbanner-fgColor-purple);
+}
+
+.EyebrowBanner__icon--color-purple.EyebrowBanner__icon--badge {
+  background-color: var(--brand-Eyebrowbanner-icon-background-purple);
+}
+
+.EyebrowBanner__icon--color-red {
+  color: var(--brand-Eyebrowbanner-fgColor-red);
+}
+
+.EyebrowBanner__icon--color-red.EyebrowBanner__icon--badge {
+  background-color: var(--brand-Eyebrowbanner-icon-background-red);
+}
+
+.EyebrowBanner__icon--color-teal {
+  color: var(--brand-Eyebrowbanner-fgColor-teal);
+}
+
+.EyebrowBanner__icon--color-teal.EyebrowBanner__icon--badge {
+  background-color: var(--brand-Eyebrowbanner-icon-background-teal);
+}
+
+.EyebrowBanner__icon--color-yellow {
+  color: var(--brand-Eyebrowbanner-fgColor-yellow);
+}
+
+.EyebrowBanner__icon--color-yellow.EyebrowBanner__icon--badge {
+  background-color: var(--brand-Eyebrowbanner-icon-background-yellow);
+}
