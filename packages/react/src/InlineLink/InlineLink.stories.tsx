@@ -1,6 +1,6 @@
 import React from 'react'
 import {Meta, StoryFn} from '@storybook/react'
-import {TextSizes, Text} from '../'
+import {Text, Heading, Stack, UnorderedList} from '../'
 import {InlineLink} from '.'
 
 export default {
@@ -16,19 +16,6 @@ Default.args = {
   href: '#',
 }
 
-export const Scale: StoryFn<typeof InlineLink> = args => (
-  <>
-    {TextSizes.map(size => (
-      <>
-        <InlineLink key={size} size={size} {...args} href="#">
-          InlineLink {size}
-        </InlineLink>
-        <br />
-      </>
-    ))}
-  </>
-)
-
 export const Example = () => (
   <>
     <Text as="p">
@@ -40,10 +27,36 @@ export const Example = () => (
 )
 
 export const SizeInheritence = () => (
-  <>
+  <Stack gap="spacious">
+    <Heading size="1">
+      This is a <InlineLink href="#">Header</InlineLink> component!
+    </Heading>
     <Text as="p" size="600">
-      The size of the following link will be inherited from the parent, without the need for specifying additional
-      `size` parameters. <InlineLink href="#">condimentum nulla donec blandit</InlineLink>.
+      This is a Text component. <InlineLink href="#">This is a an InlineLink</InlineLink>. It should be the same size as
+      the rest of the text.
     </Text>
-  </>
+    <Text as="em">
+      It also matches font decorations, like <InlineLink href="#">this</InlineLink>.
+    </Text>
+
+    <Text weight="extrabold">
+      And font <InlineLink href="#">weights</InlineLink> too!
+    </Text>
+
+    <UnorderedList>
+      <UnorderedList.Item>foo</UnorderedList.Item>
+      <UnorderedList.Item>
+        <InlineLink href="#">bar</InlineLink>
+      </UnorderedList.Item>
+      <UnorderedList.Item>baz</UnorderedList.Item>
+    </UnorderedList>
+
+    <Text>
+      Links can be made different sizes or given different styles by wrapping them in an inner
+      <Text size="700">
+        <InlineLink href="#">Text</InlineLink>
+      </Text>{' '}
+      tag.
+    </Text>
+  </Stack>
 )
