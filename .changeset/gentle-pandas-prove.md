@@ -4,7 +4,7 @@
 
 Type widening for `FormControl` children.
 
-`FormControl` now uses `PropsWithChildren` to increase support for `null` and `false` values. This allows for more flexibility when using `FormControl.*` with conditional rendering.
+`FormControl` now uses `PropsWithChildren` to include support for `null` and `false` values. This allows for more flexibility when using `FormControl.*` with conditional rendering.
 
 ```jsx
 <FormControl>
