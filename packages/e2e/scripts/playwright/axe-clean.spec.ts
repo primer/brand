@@ -58,7 +58,9 @@ const testsToSkip = [
   'components-videoplayer--playground', // video makes this too flakey
   'components-videoplayer--playground', // video makes this too flakey
   'recipes-feature-previews-level-1--level-one-side-by-side-enterprise', // video makes this too flakey
-  'recipes-feature-previews-level-1--level-one-side-by-side', // custom, temporary background image
+  'recipes-feature-previews-level-1--level-one-side-by-side', // custom, unrelated background image
+  'components-eyebrowbanner-features--on-custom-background-dark', // custom, unrelated background image
+  'components-eyebrowbanner-features--on-custom-background-light', // custom, unrelated background image
 ]
 const testsWithCustomDelay = {
   'components-subdomainnavbar--mobile-menu-open': 5000, // takes a while for the menu to open
