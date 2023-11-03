@@ -9,6 +9,6 @@ Type widening for `FormControl` children.
 ```jsx
 <FormControl>
   {/* `maybeValue can be truthy, but also null or false` */}
-  {maybeValue && <FormControl.Validation>{maybeField.error}</FormControl.Validation>}
+  {maybeValue && <FormControl.Validation>Message</FormControl.Validation>}
 </FormControl>
 ```
