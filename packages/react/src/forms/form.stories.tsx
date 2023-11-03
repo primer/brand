@@ -150,7 +150,7 @@ export const GitHubEnterprise = args => {
               <FormControl.Hint>
                 <Text size="100" variant="muted">
                   I&apos;m interested in learning more about{' '}
-                  <InlineLink size="100" href="https://github.com/enterprise" target="_blank">
+                  <InlineLink href="https://github.com/enterprise" target="_blank">
                     GitHub Enterprise Server
                   </InlineLink>{' '}
                   and would like to be contacted by GitHub’s sales team.
@@ -181,13 +181,12 @@ export const GitHubEnterprise = args => {
             <FormControl.Label>
               <Text size="100" variant="muted">
                 I hereby accept the{' '}
-                <InlineLink size="100" href="https://github.com/customer-terms" target="_blank">
+                <InlineLink href="https://github.com/customer-terms" target="_blank">
                   GitHub Customer Agreement
                 </InlineLink>{' '}
                 on behalf of my organization and confirm that I have the authority to do so. For more information about
                 GitHub&apos;s privacy practices, see the{' '}
                 <InlineLink
-                  size="100"
                   href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement"
                   target="_blank"
                 >

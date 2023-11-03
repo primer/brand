@@ -124,7 +124,7 @@ export const Icons = () => (
     <Stack>
       {EyebrowBannerIconColors.map(color => (
         <EyebrowBanner href="/" key={color}>
-          <EyebrowBanner.Visual icon={SparkleFillIcon} color={color}></EyebrowBanner.Visual>
+          <EyebrowBanner.Visual icon={<SparkleFillIcon />} color={color}></EyebrowBanner.Visual>
           <EyebrowBanner.Heading>color: {color}</EyebrowBanner.Heading>
           <EyebrowBanner.SubHeading>hasBackground: false</EyebrowBanner.SubHeading>
         </EyebrowBanner>
@@ -133,7 +133,7 @@ export const Icons = () => (
     <Stack>
       {EyebrowBannerIconColors.map(color => (
         <EyebrowBanner href="/" key={color}>
-          <EyebrowBanner.Visual icon={SparkleFillIcon} color={color} hasBackground></EyebrowBanner.Visual>
+          <EyebrowBanner.Visual icon={<SparkleFillIcon />} color={color} hasBackground></EyebrowBanner.Visual>
           <EyebrowBanner.Heading>color: {color}</EyebrowBanner.Heading>
           <EyebrowBanner.SubHeading>hasBackground: true</EyebrowBanner.SubHeading>
         </EyebrowBanner>
