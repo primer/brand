@@ -16,10 +16,6 @@ import styles from './FormControl.module.css'
 
 export type FormControlProps = BaseProps<HTMLElement> & {
   /**
-   * Namespaced children include: `FormControl.Label`, `FormControl.Hint`, `FormControl.Validation`, `TextInput`, `Select`, `Checkbox`.
-   */
-  children?: React.ReactElement[]
-  /**
    * Apply a decorative border to the form control.
    */
   hasBorder?: boolean
@@ -57,7 +53,7 @@ const Root = ({
   size = 'medium',
   validationStatus,
   ...rest
-}: FormControlProps) => {
+}: PropsWithChildren<FormControlProps>) => {
   const generatedId = useId(id)
   const uniqueId = id || generatedId
   const childrenArr = React.Children.toArray(children)
