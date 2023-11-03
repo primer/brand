@@ -74,9 +74,9 @@ You can place an icon inside the Button in either the leading or the trailing po
 
 ```jsx live
 <Stack direction="vertical" alignItems="flex-start">
-  <Button leadingVisual={SearchIcon}>Search</Button>
-  <Button trailingVisual={ChevronDownIcon}>Select</Button>
-  <Button leadingVisual={FilterIcon} trailingVisual={ChevronDownIcon}>
+  <Button leadingVisual={<SearchIcon />}>Search</Button>
+  <Button trailingVisual={<ChevronDownIcon />}>Select</Button>
+  <Button leadingVisual={<FilterIcon />} trailingVisual={<ChevronDownIcon />}>
     Filter
   </Button>
 </Stack>
@@ -102,5 +102,5 @@ The `Button` component can render as a `button` or `a` HTML element. By default,
 | `trailingVisual` | `ReactElement`                                            |  `undefined`  | The trailing visual appears after the button content |
 | `variants`       | <PropTableValues values={ButtonVariants} addLineBreaks /> | `'secondary'` | The styling variations available in Button           |
 | `size`           | <PropTableValues values={ButtonSizes} addLineBreaks />    |  `'medium'`   | The size variations available in Button              |
-| `block`          | `boolean`                                                 |   `false`     | The full-width option available in Button            |
+| `block`          | `boolean`                                                 |    `false`    | The full-width option available in Button            |
 | `hasArrow`       | `boolean`                                                 |    `true`     | A flag to show/hide the arrow icon                   |

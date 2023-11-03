@@ -55,16 +55,20 @@
 }
 
 .Hero-description {
-  margin: 1.5rem 0 0;
+  margin: var(--base-size-24) 0 0;
   max-width: 50ch;
 }
 
 .Hero-actions {
-  margin-top: 2rem;
+  margin-top: var(--base-size-32);
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   gap: var(--base-size-16);
+}
+
+.Hero-eyebrow {
+  margin-block-end: var(--base-size-32);
 }
 
 /* Small breakpoint and up */

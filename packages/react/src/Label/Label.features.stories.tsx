@@ -50,7 +50,7 @@ export const WithLeadingVisualSVG = () => (
 )
 WithLeadingVisualSVG.storyName = 'Leading visual (native)'
 
-export const WithOcticon = () => <Label leadingVisual={CopilotIcon}>With Octicon</Label>
+export const WithOcticon = () => <Label leadingVisual={<CopilotIcon />}>With Octicon</Label>
 WithOcticon.storyName = 'With an Octicon'
 
 export const WithOcticonLarge = () => (
@@ -61,7 +61,7 @@ export const WithOcticonLarge = () => (
 WithOcticonLarge.storyName = 'With an Octicon (large)'
 
 export const WithOcticonColor = () => (
-  <Label color="blue-purple" leadingVisual={CopilotIcon}>
+  <Label color="blue-purple" leadingVisual={<CopilotIcon />}>
     With Octicon
   </Label>
 )

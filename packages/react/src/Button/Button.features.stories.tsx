@@ -206,21 +206,21 @@ export const WithLeadingAndTrailingVisualSVG = () => (
 WithLeadingAndTrailingVisualSVG.storyName = 'Leading and trailing visual (native)'
 
 export const WithOcticon = () => (
-  <Button variant="subtle" leadingVisual={PlayIcon} hasArrow={false}>
+  <Button variant="subtle" leadingVisual={<PlayIcon />} hasArrow={false}>
     With Octicon
   </Button>
 )
 WithOcticon.storyName = 'With an Octicon'
 
 export const WithOcticonLarge = () => (
-  <Button variant="primary" leadingVisual={() => <MarkGithubIcon size={24} />}>
+  <Button variant="primary" leadingVisual={<MarkGithubIcon size={24} />}>
     With Octicon
   </Button>
 )
 WithOcticonLarge.storyName = 'With an Octicon (large)'
 
 export const WithVisualsAndDisabled = () => (
-  <Button disabled variant="primary" leadingVisual={HeartFillIcon} trailingVisual={HeartFillIcon}>
+  <Button disabled variant="primary" leadingVisual={<HeartFillIcon />} trailingVisual={<HeartFillIcon />}>
     With visuals and disabled
   </Button>
 )

@@ -114,6 +114,13 @@ test.describe('Visual Comparison: Hero', () => {
       expect(await page.screenshot()).toMatchSnapshot()
     })
   })
+  test('Hero / Eyebrow', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero-features--eyebrow&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Hero / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero--default&viewMode=story')
 

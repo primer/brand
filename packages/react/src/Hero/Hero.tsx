@@ -131,6 +131,18 @@ const HeroImage = forwardRef<HTMLImageElement, HeroImageProps>(
   },
 )
 
+type HeroEyebrowProps = PropsWithChildren<BaseProps<HTMLDivElement>>
+
+const HeroEyebrow = forwardRef<HTMLDivElement, HeroEyebrowProps>(
+  ({children, ...rest}: PropsWithChildren<HeroEyebrowProps>, ref) => {
+    return (
+      <div ref={ref} className={styles['Hero-eyebrow']} {...rest}>
+        {children}
+      </div>
+    )
+  },
+)
+
 type HeroLabelProps = LabelProps & BaseProps<HTMLSpanElement>
 
 const HeroLabel = forwardRef<HTMLSpanElement, HeroLabelProps>(
@@ -180,4 +192,5 @@ export const Hero = Object.assign(Root, {
   SecondaryAction: HeroSecondaryAction,
   Image: HeroImage,
   Label: HeroLabel,
+  Eyebrow: HeroEyebrow,
 })
