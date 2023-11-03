@@ -1,7 +1,6 @@
 .Accordion {
   box-sizing: border-box;
   position: relative;
-  background: var(--color-scale-blue-0);
 }
 
 .Accordion--default {
