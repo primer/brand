@@ -36,6 +36,7 @@ export * from './VideoPlayer'
 export * from './LogoSuite'
 export * from './Timeline'
 export * from './Bento'
+export * from './EyebrowBanner'
 
 // hooks
 export * from './hooks/useWindowSize'

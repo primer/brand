@@ -11,6 +11,7 @@ declare const styles: {
   readonly "Hero-label": string;
   readonly "Hero-heading": string;
   readonly "Hero-description": string;
+  readonly "Hero-eyebrow": string;
 };
 export = styles;
 

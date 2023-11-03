@@ -6,6 +6,7 @@ import placeholderImage from '../fixtures/images/placeholder-600x400.png'
 
 import {Hero} from '.'
 import {Grid} from '../Grid'
+import {EyebrowBanner} from '../EyebrowBanner'
 
 export default {
   title: 'Components/Hero/Features',
@@ -204,3 +205,31 @@ NarrowViewCentered.parameters = {
     defaultViewport: 'iphonexr',
   },
 }
+
+export const Eyebrow: StoryFn<typeof Hero> = _args => (
+  <Hero>
+    <Hero.Eyebrow>
+      <EyebrowBanner href="http://githubuniverse.com/">
+        <EyebrowBanner.Visual>
+          <img
+            width="44"
+            height="44"
+            loading="lazy"
+            decoding="async"
+            alt=""
+            aria-hidden="true"
+            src="https://github.githubassets.com/assets/eyebrow-23@2x-563f292d9e30.png"
+          />
+        </EyebrowBanner.Visual>
+        <EyebrowBanner.Heading>GitHub Universe: Dive in to AI, security, and DevEx</EyebrowBanner.Heading>
+        <EyebrowBanner.SubHeading>Get your tickets now to join us on Nov. 8-9.</EyebrowBanner.SubHeading>
+      </EyebrowBanner>
+    </Hero.Eyebrow>
+    <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+    <Hero.Description>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+      felis nam pulvinar risus elementum.
+    </Hero.Description>
+    <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+  </Hero>
+)

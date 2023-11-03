@@ -165,6 +165,7 @@ const darkJson = require('../src/tokens/base/colors/dark')
     `tokens/functional/components/river/river.json`,
     `tokens/functional/components/faq/faq.json`,
     `tokens/functional/components/comparison-table/comparison-table.json`,
+    `tokens/functional/components/eyebrow-banner/eyebrow-banner.json`,
   ]
 
   for (const path of filesForResponsiveTokens) {
@@ -233,6 +234,7 @@ const darkJson = require('../src/tokens/base/colors/dark')
     `tokens/functional/components/timeline/colors.json`,
     `tokens/functional/components/video-player/colors.js`,
     `tokens/functional/components/prose/colors.js`,
+    `tokens/functional/components/eyebrow-banner/colors.js`,
   ]
 
   for (const path of filesForColorModes) {

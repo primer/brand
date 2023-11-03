@@ -36,6 +36,8 @@
       url: /components/CTABanner
     - title: CTA form
       url: /components/CTAForm
+    - title: Eyebrow banner
+      url: /components/EyebrowBanner
     - title: FAQ
       url: /components/FAQ
     - title: Hero
