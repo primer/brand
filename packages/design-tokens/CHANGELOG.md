@@ -1,5 +1,64 @@
 # @primer/brand-primitives
 
+## 0.29.0
+
+### Minor Changes
+
+- [#442](https://github.com/primer/brand/pull/442) [`d2408f2`](https://github.com/primer/brand/commit/d2408f23460562e8cabfa5d059444a352fd61cdc) Thanks [@langermank](https://github.com/langermank)! - - Change base color scales to hex instead of hsl
+
+  - Adds new tokens for `VideoPlayer`
+
+- [#487](https://github.com/primer/brand/pull/487) [`6cdeba7`](https://github.com/primer/brand/commit/6cdeba7bbf3bc2a1ba2eb4483cb15a63744f8525) Thanks [@rezrah](https://github.com/rezrah)! - New tokens available for the new eyebrow banner component:
+
+  ```css
+  --brand-Eyebrowbanner-bgColor-rest
+  --brand-Eyebrowbanner-borderColor-rest
+  --brand-Eyebrowbanner-heading-fgColor
+  --brand-Eyebrowbanner-subHeading-fgColor
+  --brand-Eyebrowbanner-icon-background-default
+  --brand-Eyebrowbanner-icon-background-blue
+  --brand-Eyebrowbanner-icon-background-coral
+  --brand-Eyebrowbanner-icon-background-green
+  --brand-Eyebrowbanner-icon-background-gray
+  --brand-Eyebrowbanner-icon-background-indigo
+  --brand-Eyebrowbanner-icon-background-lemon
+  --brand-Eyebrowbanner-icon-background-lime
+  --brand-Eyebrowbanner-icon-background-orange
+  --brand-Eyebrowbanner-icon-background-pink
+  --brand-Eyebrowbanner-icon-background-purple
+  --brand-Eyebrowbanner-icon-background-red
+  --brand-Eyebrowbanner-icon-background-teal
+  --brand-Eyebrowbanner-icon-background-yellow
+  --brand-Eyebrowbanner-fgColor-default-start
+  --brand-Eyebrowbanner-fgColor-default-middle
+  --brand-Eyebrowbanner-fgColor-default-end
+  --brand-Eyebrowbanner-fgColor-blue
+  --brand-Eyebrowbanner-fgColor-blue-purple-start
+  --brand-Eyebrowbanner-fgColor-blue-purple-end
+  --brand-Eyebrowbanner-fgColor-coral
+  --brand-Eyebrowbanner-fgColor-green
+  --brand-Eyebrowbanner-fgColor-green-blue-start
+  --brand-Eyebrowbanner-fgColor-green-blue-end
+  --brand-Eyebrowbanner-fgColor-gray
+  --brand-Eyebrowbanner-fgColor-indigo
+  --brand-Eyebrowbanner-fgColor-lemon
+  --brand-Eyebrowbanner-fgColor-lime
+  --brand-Eyebrowbanner-fgColor-orange
+  --brand-Eyebrowbanner-fgColor-pink
+  --brand-Eyebrowbanner-fgColor-pink-blue-start
+  --brand-Eyebrowbanner-fgColor-pink-blue-end
+  --brand-Eyebrowbanner-fgColor-purple
+  --brand-Eyebrowbanner-fgColor-purple-red-start
+  --brand-Eyebrowbanner-fgColor-purple-red-end
+  --brand-Eyebrowbanner-fgColor-red
+  --brand-Eyebrowbanner-fgColor-red-orange-start
+  --brand-Eyebrowbanner-fgColor-red-orange-end
+  --brand-Eyebrowbanner-fgColor-teal
+  --brand-Eyebrowbanner-fgColor-yellow
+  ```
+
+  :link: [Read the documentation for examples of this component](https://primer.style/brand/components/EyebrowBanner)
+
 ## 0.28.1
 
 ## 0.28.0

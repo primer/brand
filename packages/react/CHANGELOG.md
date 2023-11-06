@@ -1,5 +1,90 @@
 # @primer/react-brand
 
+## 0.29.0
+
+### Minor Changes
+
+- [#442](https://github.com/primer/brand/pull/442) [`d2408f2`](https://github.com/primer/brand/commit/d2408f23460562e8cabfa5d059444a352fd61cdc) Thanks [@langermank](https://github.com/langermank)! - - Change base color scales to hex instead of hsl
+
+  - Adds new tokens for `VideoPlayer`
+
+- [#467](https://github.com/primer/brand/pull/467) [`a7e471b`](https://github.com/primer/brand/commit/a7e471b97d5e233d3b7a721bbdcef63264e6b60a) Thanks [@joseph-lozano](https://github.com/joseph-lozano)! - **breaking** InlineLink components no longer take a `size` prop, but will now inherit their size in all cases.
+
+  ```jsx
+  // Before
+  <Text size="200">
+    This is a link with the <InlineLink size="200">same</InlineLink> size
+  </Text>
+  ```
+
+  ```jsx
+  // After
+  <Text size="200">
+    This is a link with the <InlineLink>same</InlineLink> size
+  </Text>
+  ```
+
+  If you want the Inline Link to have a different size than its parent, wrap it in a new `<Text>` component.
+
+  ```jsx
+  // Before
+  <Text size="200">
+    This is a link with a <InlineLink size="400">different</InlineLink>Size
+  </Text>
+  ```
+
+  ```jsx
+  // After
+  <Text size="200">
+    This is a link with a{' '}
+    <Text as="span" size="400">
+      <InlineLink>different</InlineLink>
+    </Text>
+    Size
+  </Text>
+  ```
+
+  InlineLinks now work inside of `Header` components.
+
+  ```jsx
+  <Header size="3">
+    This is a <InlineLink>Header</InlineLink> link!
+  </Header>
+  ```
+
+- [#489](https://github.com/primer/brand/pull/489) [`be9a635`](https://github.com/primer/brand/commit/be9a63504180aaa206294861f87cf965936677e5) Thanks [@rezrah](https://github.com/rezrah)! - Updated dependency for @primer/octicons-react to `19.8.0`
+
+  Octicons should now be passed as JSX instead of Objects.
+
+  ```diff
+  - icon={RocketIcon}
+  + icon={<RocketIcon />}
+  ```
+
+- [#487](https://github.com/primer/brand/pull/487) [`6cdeba7`](https://github.com/primer/brand/commit/6cdeba7bbf3bc2a1ba2eb4483cb15a63744f8525) Thanks [@rezrah](https://github.com/rezrah)! - New eyebrow banner component now generally available
+
+  ```jsx
+  <EyebrowBanner href="http://githubuniverse.com">
+    <EyebrowBanner.Heading>GitHub Universe: Dive in to AI, security, and DevEx</EyebrowBanner.Heading>
+    <EyebrowBanner.SubHeading>Get your tickets now to join us on Nov. 8-9.</EyebrowBanner.SubHeading>
+  </EyebrowBanner>
+  ```
+
+  :link: [Read the documentation for more examples](https://primer.style/brand/components/EyebrowBanner)
+
+### Patch Changes
+
+- [#490](https://github.com/primer/brand/pull/490) [`b93531e`](https://github.com/primer/brand/commit/b93531e77baf5797bd63118f96b7ce61addb14cd) Thanks [@rezrah](https://github.com/rezrah)! - Type widening for `FormControl` children.
+
+  `FormControl` now uses `PropsWithChildren` to include support for `null` and `false` values. This allows for more flexibility when using `FormControl.*` with conditional rendering.
+
+  ```jsx
+  <FormControl>
+    {/* `maybeValue can be truthy, but also null or false` */}
+    {maybeValue && <FormControl.Validation>Message</FormControl.Validation>}
+  </FormControl>
+  ```
+
 ## 0.28.1
 
 ### Patch Changes
