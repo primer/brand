@@ -121,6 +121,15 @@ test.describe('Visual Comparison: Hero', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('Hero / Eyebrow Centered', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--eyebrow-centered&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Hero / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero--default&viewMode=story')
 

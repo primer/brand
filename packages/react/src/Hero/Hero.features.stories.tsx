@@ -207,7 +207,7 @@ NarrowViewCentered.parameters = {
 }
 
 export const Eyebrow: StoryFn<typeof Hero> = _args => (
-  <Hero>
+  <Hero align={_args.align}>
     <Hero.Eyebrow>
       <EyebrowBanner href="http://githubuniverse.com/">
         <EyebrowBanner.Visual>
@@ -233,3 +233,5 @@ export const Eyebrow: StoryFn<typeof Hero> = _args => (
     <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
   </Hero>
 )
+
+export const EyebrowCentered = () => <Eyebrow align="center" />
