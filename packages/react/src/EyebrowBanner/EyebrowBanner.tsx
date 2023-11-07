@@ -19,15 +19,19 @@ import styles from './EyebrowBanner.module.css'
 
 export type EyebrowBannerProps = BaseProps<HTMLAnchorElement> & {
   href: string
+  ['data-testid']?: string
 } & React.HTMLAttributes<HTMLAnchorElement> &
   React.AnchorHTMLAttributes<HTMLAnchorElement>
 
 const testIds = {
   root: 'EyebrowBanner',
+  visual: 'EyebrowBanner__visual',
+  label: 'EyebrowBanner__label',
+  expandableArrow: 'EyebrowBanner__expandableArrow',
 }
 
 const _EyebrowBanner = forwardRef<HTMLAnchorElement, EyebrowBannerProps>(
-  ({className, children, href, onMouseEnter, onMouseLeave, onFocus, onBlur, ...rest}, ref) => {
+  ({className, children, 'data-testid': testId, href, onMouseEnter, onMouseLeave, onFocus, onBlur, ...rest}, ref) => {
     const [isHovered, setIsHovered] = React.useState(false)
     const [isFocused, setIsFocused] = React.useState(false)
 
@@ -90,6 +94,7 @@ const _EyebrowBanner = forwardRef<HTMLAnchorElement, EyebrowBannerProps>(
         onMouseLeave={handleMouseLeave}
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
+        data-testid={testId || testIds.root}
         {...rest}
       >
         <span className={styles['EyebrowBanner__inner']}>
@@ -101,6 +106,7 @@ const _EyebrowBanner = forwardRef<HTMLAnchorElement, EyebrowBannerProps>(
             <ExpandableArrow
               className={styles['EyebrowBanner__trailingVisual-icon']}
               expanded={isHovered || isFocused}
+              data-testid={testIds.expandableArrow}
             />
           </span>
         </span>
@@ -181,10 +187,11 @@ const EyebrowBannerVisual = forwardRef<HTMLSpanElement, EyebrowBannerVisual>(
           hasBackground && styles['EyebrowBanner__icon--badge'],
           className,
         )}
+        data-testid={testIds.visual}
         aria-hidden={ariaHidden || typeof Icon !== 'function'}
         {...rest}
       >
-        {Icon ? typeof Icon === 'function' ? <Icon /> : Icon : children}
+        {Icon ? Icon : children}
       </span>
     )
   },
@@ -209,6 +216,7 @@ const EyebrowBannerLabel = forwardRef<HTMLSpanElement, PropsWithChildren<Eyebrow
           color && styles[`EyebrowBanner__leadingLabel--color-${color}`],
           className,
         )}
+        data-testid={testIds.label}
         {...rest}
       >
         {children}

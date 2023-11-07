@@ -8,6 +8,10 @@
   border-radius: var(--brand-EyebrowBanner-borderRadius);
 }
 
+.EyebrowBanner:hover {
+  text-decoration: none !important; /* Required to override dotcom default */
+}
+
 .EyebrowBanner:focus-visible {
   transition: none;
   outline: var(--base-size-4) solid var(--brand-color-focus);
@@ -21,6 +25,7 @@
 
 .EyebrowBanner__headings {
   margin-inline-start: var(--brand-EyebrowBanner-spacing-inner-inline);
+  text-align: start;
 }
 
 .EyebrowBanner__leadingVisual {
