@@ -1,5 +1,14 @@
 # @primer/react-brand
 
+## 0.29.1
+
+### Patch Changes
+
+- [#493](https://github.com/primer/brand/pull/493) [`ba6e320`](https://github.com/primer/brand/commit/ba6e320b3881482c48734813d92469f8bee72f84) Thanks [@rezrah](https://github.com/rezrah)! - Fixed text alignment on centered `EyebrowBanner`.
+
+  - Headings now always start aligned
+  - Forces removal of text-decoration on hover state
+
 ## 0.29.0
 
 ### Minor Changes
