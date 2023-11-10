@@ -1,6 +1,7 @@
 ---
 title: Bento
-status: Experimental
+status: Alpha
+a11yReviewed: true
 source: https://github.com/primer/brand/blob/main/packages/react/src/Bento/Bento.tsx
 storybook: '/brand/storybook/?path=/story/components-bento--default'
 description: Use the bento to present content in a responsive grid layout.
@@ -9,8 +10,6 @@ description: Use the bento to present content in a responsive grid layout.
 ```js
 import {Bento} from '@primer/react-brand'
 ```
-
-## Examples
 
 ### Default
 
@@ -28,6 +27,8 @@ import {Bento} from '@primer/react-brand'
 ```
 
 ### Example layout
+
+## Examples
 
 ```jsx live
 <Box
@@ -59,6 +60,12 @@ import {Bento} from '@primer/react-brand'
 Use `columnSpan`, `rowSpan`, `columnStart`, `rowStart`, `flow`, `verticalAlign`, `horizontalAlign` with an `Object` of breakpoint-specific keys and values corresponding to each type to enable responsive behavior for each of these properties.
 
 Breakpoints use `min-width`, where it will also apply your chosen `span` value to all larger breakpoints.
+
+<Note>
+  Bento items can render in a different source order to what is presented
+  visually. It's important to ensure that the content of each item is
+  self-contained and can be read independently of its adjacent items.
+</Note>
 
 ```jsx live
 <Box
