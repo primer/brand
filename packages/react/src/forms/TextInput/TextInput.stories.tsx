@@ -104,8 +104,8 @@ export const Playground: StoryFn<typeof TextInput> = args => (
   <TextInput
     aria-label="Standalone text input"
     {...args}
-    leadingVisual={args.leadingVisual ? CheckIcon : undefined}
-    trailingVisual={args.trailingVisual ? SearchIcon : undefined}
+    leadingVisual={args.leadingVisual ? <CheckIcon /> : undefined}
+    trailingVisual={args.trailingVisual ? <SearchIcon /> : undefined}
   />
 )
 
