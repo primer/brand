@@ -87,6 +87,50 @@ Please refer to our [Storybook examples](https://primer.style/brand/storybook/?p
 </Container>
 ```
 
+### Secondary action
+
+`AnchorNav` can also feature secondary actions. When two actions are present, the first will be presented as the `primary` variant.
+
+```jsx live
+<Container sx={{position: 'relative', overflowX: 'scroll'}}>
+  <AnchorNav>
+    <AnchorNav.Link href="#fewer-links-section1">Section one</AnchorNav.Link>
+    <AnchorNav.Link href="#fewer-links-section2">Section two</AnchorNav.Link>
+    <AnchorNav.Link href="#fewer-links-section3">Section three</AnchorNav.Link>
+    <AnchorNav.Action href="#">Sign up</AnchorNav.Action>
+    <AnchorNav.SecondaryAction href="#">Learn more</AnchorNav.SecondaryAction>
+  </AnchorNav>
+
+  <section
+    id="fewer-links-section1"
+    style={{
+      padding: '100px 2rem',
+      backgroundColor: 'var(--base-color-scale-lemon-0)',
+    }}
+  >
+    Section 1
+  </section>
+  <section
+    id="fewer-links-section2"
+    style={{
+      padding: '100px 2rem',
+      backgroundColor: 'var(--base-color-scale-yellow-0)',
+    }}
+  >
+    Section 2
+  </section>
+  <section
+    id="fewer-links-section3"
+    style={{
+      padding: '100px 2rem',
+      backgroundColor: 'var(--base-color-scale-lime-0)',
+    }}
+  >
+    Section 3
+  </section>
+</Container>
+```
+
 ### Fewer links
 
 `AnchorNav` implementations with fewer than `5` links, will automatically align links to the `start`.
@@ -160,11 +204,23 @@ Please refer to our [Storybook examples](https://primer.style/brand/storybook/?p
 
 Additional props can be passed to the `<a>` element. [See MDN for a list of props](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#attributes) accepted by the `<anchor>` element.
 
-<h3 id="AnchorNav-action">
-  AnchorNav.Action <Label>Required</Label>
-</h3>
+<h3 id="AnchorNav-action">AnchorNav.Action</h3>
 
 `AnchorNav.Action` is the primary call to action for the AnchorNav
+
+| Name        | Type              | Default | Description                                         |
+| :---------- | :---------------- | :-----: | :-------------------------------------------------- |
+| `children`  | `string`          |         | Required. Label text                                |
+| `className` | `string`          |         | Applies a custom class                              |
+| `href`      | `string`          |         | Required. Local identifier for the anchored element |
+| `id`        | `string`          |         | Sets a custom id                                    |
+| `ref`       | `React.RefObject` |         | Forward a Ref to the underlying DOM node            |
+
+Additional props can be passed to the `<a>` element. [See MDN for a list of props](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#attributes) accepted by the `<anchor>` element.
+
+<h3 id="AnchorNav-secondary-action">AnchorNav.SecondaryAction</h3>
+
+`AnchorNav.SecondaryAction` is an alternative call to action available for the AnchorNav
 
 | Name        | Type              | Default | Description                                         |
 | :---------- | :---------------- | :-----: | :-------------------------------------------------- |

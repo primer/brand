@@ -95,7 +95,8 @@ const Template: StoryFn<typeof AnchorNav> = (_, storyArgs: any) => {
             {key}
           </AnchorNav.Link>
         ))}
-        <AnchorNav.Action href="#">Sign up</AnchorNav.Action>
+        <AnchorNav.Action href="#">Get started</AnchorNav.Action>
+        <AnchorNav.SecondaryAction href="#">Compare plans</AnchorNav.SecondaryAction>
       </AnchorNav>
       {/**
        *  The following markup is provided for demonstration purposes only.
@@ -149,6 +150,16 @@ ShorterLabels.args = {
     ['Baz']: 'baz',
     ['Qux']: 'qux',
     ['Quux']: 'quux',
+  },
+} as never
+
+export const LongerLabels = Template.bind({})
+LongerLabels.storyName = 'Longer labels'
+LongerLabels.args = {
+  data: {
+    ['Donec ultricies euismod']: 'donecultricieseuismodporttitor',
+    ['Pellentesque eleifend metus']: 'pellentesqueeleifendmetus',
+    ['Vestibulum consequat at']: 'vestibulumconsequatat',
   },
 } as never
 

@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react'
+import React, {ReactElement, useCallback, useEffect, useMemo, useRef, useState} from 'react'
 import {ChevronDownIcon, ChevronUpIcon} from '@primer/octicons-react'
 import {useId} from '@reach/auto-id'
 
@@ -28,6 +28,9 @@ const testIds = {
   },
   get action() {
     return `${this.root}-action`
+  },
+  get secondaryAction() {
+    return `${this.root}-secondary-action`
   },
 }
 
@@ -168,6 +171,13 @@ function _AnchorNav({children, enableDefaultBgColor = false, hideUntilSticky = f
     return null
   }).filter(Boolean)
 
+  const SecondaryAction = ValidChildren.map(child => {
+    if (React.isValidElement(child) && child.type === _AnchorNavActionSecondary) {
+      return React.cloneElement(child)
+    }
+    return null
+  }).filter(Boolean)
+
   /* On page load, the rootMargin positions and/or thresholds of the IntersectionObserver
    * may not be met depending on the position of the AnchorNav on the page.
    * The following useEffect ensures that the first link always marked as the active link, until
@@ -178,6 +188,8 @@ function _AnchorNav({children, enableDefaultBgColor = false, hideUntilSticky = f
       setCurrentActiveNavItem(Links[0]?.props.children as string)
     }
   }, [currentActiveNavItem, Links])
+
+  const hasTwoActions = Action.length > 0 && SecondaryAction.length > 0
 
   return (
     <div ref={wrapperRef}>
@@ -227,7 +239,19 @@ function _AnchorNav({children, enableDefaultBgColor = false, hideUntilSticky = f
           >
             {Links}
           </div>
-          {Action}
+          <span
+            className={clsx(
+              styles['AnchorNav__actionsContainer'],
+              hasTwoActions && styles['AnchorNav__actionsContainer--multiple'],
+            )}
+          >
+            {Action.length && SecondaryAction.length && React.isValidElement(Action[0])
+              ? React.cloneElement(Action[0] as ReactElement, {
+                  variant: 'primary',
+                })
+              : Action}
+            {SecondaryAction}
+          </span>
         </div>
         <span
           className={clsx(menuOpen && styles['AnchorNav-overlay--expanded'])}
@@ -397,6 +421,22 @@ function _AnchorNavAction({children, href, ...rest}: AnchorNavActionProps) {
   )
 }
 
+function _AnchorNavActionSecondary({children, href, ...rest}: AnchorNavActionProps) {
+  return (
+    <Button
+      as="a"
+      variant="secondary"
+      className={clsx(styles['AnchorNav-action'])}
+      href={href}
+      hasArrow={false}
+      data-testid={testIds.secondaryAction}
+      {...rest}
+    >
+      {children}
+    </Button>
+  )
+}
+
 /**
  * AnchorNav allows users to navigate to different sections of a page.
  * @see https://primer.style/brand/components/AnchorNav
@@ -404,5 +444,6 @@ function _AnchorNavAction({children, href, ...rest}: AnchorNavActionProps) {
 export const AnchorNav = Object.assign(_AnchorNav, {
   Link: _AnchorNavLink,
   Action: _AnchorNavAction,
+  SecondaryAction: _AnchorNavActionSecondary,
   testIds,
 })
