@@ -77,7 +77,7 @@ const storybookRoutes = Object.values(Stories.stories)
         component: story.parameters.fileName,
         story: story.story,
         parameters: story.parameters,
-      }) as const,
+      } as const),
   )
   .filter(({id}) => {
     return !testsToSkip.includes(id)
