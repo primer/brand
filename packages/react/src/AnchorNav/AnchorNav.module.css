@@ -344,6 +344,11 @@
  * 6. AnchorNav action
  */
 
+.AnchorNav__actionsContainer {
+  display: flex;
+  gap: var(--base-size-8);
+}
+
 .AnchorNav-action {
   z-index: 1;
   display: flex;
@@ -356,22 +361,37 @@
   align-self: flex-start;
 }
 
-@media screen and (max-width: 34rem) {
+@media screen and (max-width: 40rem) {
   .AnchorNav-action {
     display: none;
   }
+
+  .AnchorNav__actionsContainer {
+    flex-direction: column;
+  }
+
   .AnchorNav--expanded .AnchorNav-action {
     display: flex;
+    width: 100%;
     margin-top: var(--base-size-8);
   }
 }
 
-@media screen and (min-width: 34rem) and (max-width: 63.25rem) {
-  .AnchorNav-action {
-    display: flex;
+@media screen and (min-width: 40rem) and (max-width: 63.25rem) {
+  .AnchorNav__actionsContainer {
     position: absolute;
     top: 0;
     right: 0;
+  }
+}
+
+@media screen and (min-width: 40rem) {
+  .AnchorNav__actionsContainer {
+    gap: var(--base-size-16);
+  }
+
+  .AnchorNav__actionsContainer--multiple {
+    margin-inline-start: var(--base-size-16);
   }
 }
 

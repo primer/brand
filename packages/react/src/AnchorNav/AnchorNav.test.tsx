@@ -14,7 +14,7 @@ const mockData = [
   {title: 'Section four', id: 'section4'},
   {title: 'Section five', id: 'section5'},
 ]
-const MockAnchorNavFixture = ({data = mockData, ...rest}) => {
+const MockAnchorNavFixture = ({data = mockData, withSecondAction = false, ...rest}) => {
   return (
     <>
       <AnchorNav data-testid={AnchorNav.testIds.root} {...rest}>
@@ -26,6 +26,7 @@ const MockAnchorNavFixture = ({data = mockData, ...rest}) => {
           )
         })}
         <AnchorNav.Action href="#">Action</AnchorNav.Action>
+        {withSecondAction && <AnchorNav.SecondaryAction href="#">Secondary action</AnchorNav.SecondaryAction>}
       </AnchorNav>
       {data.map((item, index) => {
         return (
@@ -109,6 +110,28 @@ describe('AnchorNav', () => {
     expect(actionEl).toBeInTheDocument() // renders
     expect(actionEl).toBeInTheDocument() // renders as an anchor
     expect(actionEl).toHaveAttribute('href', '#') // renders with correct href
+  })
+
+  it('renders an secondary correctly', () => {
+    const {getByTestId} = render(<MockAnchorNavFixture withSecondAction />)
+    const secondaryActionEl = getByTestId(AnchorNav.testIds.secondaryAction)
+    expect(secondaryActionEl).toBeInTheDocument() // renders
+    expect(secondaryActionEl).toBeInTheDocument() // renders as an anchor
+    expect(secondaryActionEl).toHaveAttribute('href', '#') // renders with correct href
+  })
+
+  it('applies secondary as default variant when one action is present', () => {
+    const {getByTestId} = render(<MockAnchorNavFixture />)
+    const actionEl = getByTestId(AnchorNav.testIds.action)
+    expect(actionEl).toHaveClass('Button--secondary')
+  })
+
+  it('applies correct variant attributes to multiple actions', () => {
+    const {getByTestId} = render(<MockAnchorNavFixture withSecondAction />)
+    const actionEl = getByTestId(AnchorNav.testIds.action)
+    const secondaryActionEl = getByTestId(AnchorNav.testIds.secondaryAction)
+    expect(actionEl).toHaveClass('Button--primary')
+    expect(secondaryActionEl).toHaveClass('Button--secondary')
   })
 
   it('renders applies correct behaviors when menu button is toggled', () => {
