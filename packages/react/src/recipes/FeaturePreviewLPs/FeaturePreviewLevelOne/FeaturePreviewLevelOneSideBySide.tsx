@@ -111,9 +111,9 @@ export function FeaturePreviewLevelOneSideBySide({
         <Grid.Column span={{large: 6}} className={styles.FeaturePreview__heroBg}>
           {isEnterprise && (
             <>
-              {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
               <video className={styles.FeaturePreview__enterpriseVideo} autoPlay muted>
                 <source src={enterpriseVideo} type="video/mp4" />
+                <track kind="captions" />
               </video>
               <div className={styles.FeaturePreview__enterpriseVideoOverlayTop} />
               <div className={styles.FeaturePreview__enterpriseVideoOverlayLeft} />

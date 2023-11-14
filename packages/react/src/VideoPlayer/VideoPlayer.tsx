@@ -138,7 +138,6 @@ const Root = ({
       )}
       ref={videoWrapperRef}
     >
-      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <video
         ref={videoRef}
         title={title}
@@ -153,6 +152,7 @@ const Root = ({
         {...rest}
       >
         {children}
+        <track kind="captions" />
       </video>
       {title && (
         <div className={styles.VideoPlayer__title}>
@@ -198,8 +198,8 @@ const VideoPlayerSource = (props: React.HTMLProps<HTMLSourceElement>) => {
   return <source {...props} />
 }
 
-const VideoPlayerTrack = (props: React.HTMLProps<HTMLTrackElement>) => {
-  return <track {...props} />
+const VideoPlayerTrack = ({kind = 'captions', ...rest}: React.HTMLProps<HTMLTrackElement>) => {
+  return <track kind={kind} {...rest} />
 }
 
 export const VideoPlayer = Object.assign(Root, {
