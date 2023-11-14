@@ -156,10 +156,10 @@ const _Stack = (
       typeof alignItems === 'string'
         ? styles[`Stack--align-items-${alignItems}`]
         : typeof alignItems === 'object'
-        ? Object.keys(alignItems)
-            .map(viewport => styles[`Stack-${viewport}--align-items-${alignItems[viewport]}`])
-            .join(' ')
-        : null,
+          ? Object.keys(alignItems)
+              .map(viewport => styles[`Stack-${viewport}--align-items-${alignItems[viewport]}`])
+              .join(' ')
+          : null,
     [alignItems],
   )
 
@@ -168,10 +168,10 @@ const _Stack = (
       typeof justifyContent === 'string'
         ? styles[`Stack--justify-content-${justifyContent}`]
         : typeof justifyContent === 'object'
-        ? Object.keys(justifyContent)
-            .map(viewport => styles[`Stack-${viewport}--justify-content-${justifyContent[viewport]}`])
-            .join(' ')
-        : null,
+          ? Object.keys(justifyContent)
+              .map(viewport => styles[`Stack-${viewport}--justify-content-${justifyContent[viewport]}`])
+              .join(' ')
+          : null,
     [justifyContent],
   )
 
@@ -180,10 +180,10 @@ const _Stack = (
       typeof flexWrap === 'string'
         ? styles[`Stack-flexWrap--${flexWrap}`]
         : typeof flexWrap === 'object'
-        ? Object.keys(flexWrap)
-            .map(viewport => styles[`Stack-${viewport}-flexWrap--${flexWrap[viewport]}`])
-            .join(' ')
-        : null,
+          ? Object.keys(flexWrap)
+              .map(viewport => styles[`Stack-${viewport}-flexWrap--${flexWrap[viewport]}`])
+              .join(' ')
+          : null,
     [flexWrap],
   )
 

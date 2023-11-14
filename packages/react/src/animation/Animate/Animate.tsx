@@ -8,10 +8,10 @@ export type BoxProps<T extends keyof JSX.IntrinsicElements = 'div'> = React.HTML
 } & (T extends 'span'
     ? BaseProps<HTMLSpanElement>
     : T extends 'section'
-    ? BaseProps<HTMLElement>
-    : T extends 'section'
-    ? BaseProps<HTMLDivElement>
-    : BaseProps<HTMLElement>)
+      ? BaseProps<HTMLElement>
+      : T extends 'section'
+        ? BaseProps<HTMLDivElement>
+        : BaseProps<HTMLElement>)
 
 /**
  * An animation-helper component that can be rendered as any HTML element.

@@ -52,12 +52,6 @@ module.exports = {
     'react/prop-types': 0,
     'react/display-name': 0,
     'react-hooks/exhaustive-deps': 'error',
-    'jsx-a11y/label-has-for': [
-      2,
-      {
-        components: [],
-      },
-    ],
     camelcase: [
       'error',
       {

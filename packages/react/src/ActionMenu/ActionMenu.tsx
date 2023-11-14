@@ -317,6 +317,7 @@ const ActionMenuItem = ({
       aria-checked={type === 'none' ? undefined : selected ? 'true' : 'false'}
       aria-disabled={disabled ? 'true' : 'false'}
       onClick={handler && !disabled ? () => handler(value) : undefined}
+      onKeyDown={handler && !disabled ? event => event.key === 'Enter' && handler(value) : undefined}
       tabIndex={0}
       data-value={value}
       {...props}
