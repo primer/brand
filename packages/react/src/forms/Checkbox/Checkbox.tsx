@@ -78,7 +78,6 @@ const _Checkbox = (
         value={value}
         {...rest}
       />
-      {/* eslint-disable-next-line jsx-a11y/label-has-for */}
       <label
         htmlFor={uniqueId}
         className={clsx(styles.Checkbox, indeterminate && styles['Checkbox--indeterminate'], className)}

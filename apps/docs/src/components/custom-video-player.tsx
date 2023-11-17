@@ -35,7 +35,6 @@ const CustomVideoPlayer = (props: React.HTMLProps<HTMLVideoElement>) => {
       }}
     >
       {/* component users would be able to pass their own <track> children */}
-      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <video {...props} ref={videoElement} />
       {!props.controls && (
         <PRCBox

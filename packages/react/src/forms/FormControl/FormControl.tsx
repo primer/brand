@@ -176,7 +176,6 @@ const FormControlLabel = ({
   ...rest
 }: PropsWithChildren<FormControlLabelProps>) => {
   return (
-    // eslint-disable-next-line jsx-a11y/label-has-for
     <label
       htmlFor={htmlFor}
       className={clsx(

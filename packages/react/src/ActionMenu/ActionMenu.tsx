@@ -307,18 +307,17 @@ const ActionMenuItem = ({
   ...props
 }: ActionMenuItemProps) => {
   return (
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
     <li
       className={clsx(
         styles.ActionMenu__item,
         type === 'single' && styles[`ActionMenu__item--selection-type-${type}`],
         className,
       )}
-      // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
       role={roleTypeMap[type || 'single']}
       aria-checked={type === 'none' ? undefined : selected ? 'true' : 'false'}
       aria-disabled={disabled ? 'true' : 'false'}
       onClick={handler && !disabled ? () => handler(value) : undefined}
+      onKeyDown={handler && !disabled ? event => event.key === 'Enter' && handler(value) : undefined}
       tabIndex={0}
       data-value={value}
       {...props}
