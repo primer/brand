@@ -10,9 +10,9 @@ export default ComponentLayout
 
 ## Usage
 
-Use rivers to showcase features and introduce topics. Rivers compose images or videos and text together. River's text includes a heading, body text, and an optional link.
+Use rivers to showcase features and introduce topics. Rivers are composed of images or videos paired alongside text content like headings, paragraphs, and links.
 
-River content should be short and concise, no longer than 3 or 4 sentences and in a single paragraph when possible.
+A river’s content should be short and concise, no longer than 3 or 4 sentences and in a single paragraph when possible.
 
 <DoDontContainer>
   <Do>
@@ -33,7 +33,9 @@ River content should be short and concise, no longer than 3 or 4 sentences and i
 
 ### Stacked
 
-Two or more rivers can be stacked to guide the user through a set of feautres. When stacking rivers, use alternating between left and right alignments to create a more dynamic reading flow. When alternating alignments, use a `40:60` image to text ratio, otherwise keep the ratio to `50:50`.
+Two or more rivers can be stacked to guide the user through a set of features. When stacking rivers, alternate between left and right alignments to create a more dynamic reading flow. When alternating alignments, use a `40:60` image to text ratio, otherwise keep the ratio to `50:50`.
+
+It is possible to use 2 or more following left or right river to create a simple alignment promoting easy scroll scan.
 
 <DoDontContainer>
   <Do>
@@ -46,11 +48,10 @@ Two or more rivers can be stacked to guide the user through a set of feautres. W
   <Dont>
     <img
       alt=""
-      src="https://github.com/primer/brand/assets/912236/ff254125-73ae-4838-9ee9-32aac6bcf19b"
+      src="https://github.com/primer/brand/assets/6951037/169d5c19-67f4-4f15-8e3b-80c877b34af1"
     />
     <Caption>
-      Don't stack numerous rivers with 40:60 ratio without alternating left and
-      right alignments.
+      Don't break the flow in a stack of rivers that would otherwise stay aligned.
     </Caption>
   </Dont>
 </DoDontContainer>
@@ -103,13 +104,15 @@ A single river component acts as a section and it should not include any child s
   </Dont>
 </DoDontContainer>
 
-### Breakout river
+### River breakout
 
 A river breakout component has an image that fills the width of the container while providing more space for content such as text and lists.
 
-This is useful when you want to create a highlight which can be used to create more emphasis or simply break a monotonous vertical flow of left/right rivers. It can also be helpful on smaller viewports to avoid stacking two images or two chunks of text from adjacent river components.
+This is useful when you want to create a highlight which can be used to create more emphasis or simply break a monotonous vertical flow of left/right rivers. It can also be helpful on smaller viewports to avoid stacking two images or two chunks of text from adjacent river components. 
 
-Some examples of when to use a breakout river:
+As its name suggest, a river breakout should not be the first in the stack, it should be positioned in-between two standard rivers.
+
+Some examples of when to use a river breakout:
 
 - Expand on more complex feature that require more room for content
 - Give designer a tool to emphasize the feature story
@@ -160,7 +163,7 @@ The headline in the river component must always be present, but the supplemental
 
 ## Anatomy
 
-![A river component used to showcase a security feature. The title reads "Get security feedback with every git push" and it includes an image showing screenshots of of a CLI prompt with the git push command and a code scanning screenshot.](https://github.com/primer/brand/assets/912236/2fe68d1b-4279-48ad-969c-451b94848eeb)
+![A river component used to showcase a security feature. The title reads "Get security feedback with every git push" and it includes an image showing screenshots of of a CLI prompt with the git push command and a code scanning screenshot.](https://github.com/primer/brand/assets/10632534/bf32364f-02b7-4f0d-8784-471eaf97b4bb)
 
 ### Content
 
@@ -173,6 +176,12 @@ A river can include either an image or video to illustrate the feature or topic.
 Always use high quality images and videos. Avoid using images with text or single logos. Ensure the image fills the provided container.
 
 The image is automatically styled to fit the width of the parent container. If you have bespoke styling requirements, you can disable the provided default styles and style the image manually.
+
+### Additional guidance
+
+- We recommend using a river left as the first river of the flow to start with a visual and avoid stacking text with above section on mobile
+- River components stacks create a unit, the set should be considered to be the main parent section. The parent section should be spaced as a regular section with the largest spacing while internal elements should use smaller spacing
+- If the image is critical for the user to understand the message, default to right aligned. If the text is critical for the user to understand the image, choose left aligned.
 
 ### Link
 
