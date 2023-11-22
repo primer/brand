@@ -1,13 +1,13 @@
-import {ChevronLeftIcon, MarkGithubIcon, SearchIcon, XIcon} from '@primer/octicons-react'
+import React, {useState, useCallback, useRef, PropsWithChildren, forwardRef, useMemo, useEffect} from 'react'
 import clsx from 'clsx'
-import React, {PropsWithChildren, forwardRef, useCallback, useEffect, useMemo, useRef, useState} from 'react'
+import {ChevronLeftIcon, MarkGithubIcon, SearchIcon, XIcon} from '@primer/octicons-react'
 
 import {Button, FormControl, Text, TextInput} from '..'
+import {NavigationVisbilityObserver} from './NavigationVisbilityObserver'
+import {useOnClickOutside} from '../hooks/useOnClickOutside'
 import {useFocusTrap} from '../hooks/useFocusTrap'
 import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
-import {useOnClickOutside} from '../hooks/useOnClickOutside'
 import {useWindowSize} from '../hooks/useWindowSize'
-import {NavigationVisbilityObserver} from './NavigationVisbilityObserver'
 
 /**
  * Design tokens
