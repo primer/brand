@@ -1,13 +1,13 @@
-import React, {useState, useCallback, useRef, PropsWithChildren, forwardRef, useMemo, useEffect} from 'react'
-import clsx from 'clsx'
 import {ChevronLeftIcon, MarkGithubIcon, SearchIcon, XIcon} from '@primer/octicons-react'
+import clsx from 'clsx'
+import React, {PropsWithChildren, forwardRef, useCallback, useEffect, useMemo, useRef, useState} from 'react'
 
 import {Button, FormControl, Text, TextInput} from '..'
-import {NavigationVisbilityObserver} from './NavigationVisbilityObserver'
-import {useOnClickOutside} from '../hooks/useOnClickOutside'
 import {useFocusTrap} from '../hooks/useFocusTrap'
 import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
+import {useOnClickOutside} from '../hooks/useOnClickOutside'
 import {useWindowSize} from '../hooks/useWindowSize'
+import {NavigationVisbilityObserver} from './NavigationVisbilityObserver'
 
 /**
  * Design tokens
@@ -135,140 +135,109 @@ function Root({
   )
 
   return (
-    <div
-      className={clsx(
-        styles['SubdomainNavBar-outer-container'],
-        fixed && styles['SubdomainNavBar-outer-container--fixed'],
-      )}
-    >
-      <header className={clsx(styles['SubdomainNavBar'], className)} data-testid={testIds.root} {...rest}>
-        <div
-          ref={focusTrapRef}
-          className={clsx(
-            styles['SubdomainNavBar-inner-container'],
-            searchVisible && styles['SubdomainNavBar-inner-container--search-open'],
-            !fullWidth && styles['SubdomainNavBar-inner-container--centered'],
-          )}
-          data-testid={testIds.innerContainer}
-        >
-          <nav aria-label="global breadcrumb">
-            <ol className={styles['SubdomainNavBar-title-area']}>
-              <li>
-                <a href={logoHref} aria-label="Github Home" className={styles['SubdomainNavBar-logo-mark']}>
-                  <span className={clsx(styles['SubdomainNavBar-back-arrow'])}>
-                    <ChevronLeftIcon fill="currentColor" size={24} />
-                  </span>
-                  <MarkGithubIcon fill="currentColor" size={24} />
-                </a>
-              </li>
-              {title && isSmall && (
-                <>
-                  <li role="separator" className={styles['SubdomainNavBar-title-separator']} aria-hidden>
-                    /
-                  </li>
-                  <li>
-                    <a href={titleHref} aria-label={`${title} home`} className={clsx(styles['SubdomainNavBar-title'])}>
-                      {title}
-                    </a>
-                  </li>
-                </>
-              )}
-            </ol>
-          </nav>
-          {hasLinks && (
-            <nav
-              id="menu-navigation"
-              aria-label={title}
-              className={styles['SubdomainNavBar-primary-nav']}
-              data-testid={testIds.menuLinks}
-            >
-              <NavigationVisbilityObserver className={clsx(styles['SubdomainNavBar-primary-nav-list--invisible'])}>
-                {menuItems}
-              </NavigationVisbilityObserver>
+    <>
+      <Button
+        as="a"
+        href="#start-of-content"
+        variant="primary"
+        className={clsx(styles['SubdomainNavBar-skip-to-content'])}
+      >
+        Skip to content
+      </Button>
+      <div
+        className={clsx(
+          styles['SubdomainNavBar-outer-container'],
+          fixed && styles['SubdomainNavBar-outer-container--fixed'],
+        )}
+      >
+        <header className={clsx(styles['SubdomainNavBar'], className)} data-testid={testIds.root} {...rest}>
+          <div
+            ref={focusTrapRef}
+            className={clsx(
+              styles['SubdomainNavBar-inner-container'],
+              searchVisible && styles['SubdomainNavBar-inner-container--search-open'],
+              !fullWidth && styles['SubdomainNavBar-inner-container--centered'],
+            )}
+            data-testid={testIds.innerContainer}
+          >
+            <nav aria-label="global breadcrumb">
+              <ol className={styles['SubdomainNavBar-title-area']}>
+                <li>
+                  <a href={logoHref} aria-label="Github Home" className={styles['SubdomainNavBar-logo-mark']}>
+                    <span className={clsx(styles['SubdomainNavBar-back-arrow'])}>
+                      <ChevronLeftIcon fill="currentColor" size={24} />
+                    </span>
+                    <MarkGithubIcon fill="currentColor" size={24} />
+                  </a>
+                </li>
+                {title && isSmall && (
+                  <>
+                    <li role="separator" className={styles['SubdomainNavBar-title-separator']} aria-hidden>
+                      /
+                    </li>
+                    <li>
+                      <a
+                        href={titleHref}
+                        aria-label={`${title} home`}
+                        className={clsx(styles['SubdomainNavBar-title'])}
+                      >
+                        {title}
+                      </a>
+                    </li>
+                  </>
+                )}
+              </ol>
             </nav>
-          )}
-
-          <div className={clsx(styles['SubdomainNavBar-secondary-nav'])}>
-            {React.Children.toArray(children)
-              .map(child => {
-                if (React.isValidElement(child) && typeof child.type !== 'string') {
-                  if (child.type === Search) {
-                    return React.cloneElement(child as React.ReactElement, {
-                      active: searchVisible,
-                      handlerFn: handleSearchVisibility,
-                      title,
-                    })
-                  }
-                  return null
-                }
-              })
-              .filter(Boolean)}
-
             {hasLinks && (
-              <button
-                aria-expanded={!menuHidden}
-                aria-label="Menu"
-                aria-controls="menu-navigation"
-                aria-haspopup="true"
-                className={clsx(
-                  styles['SubdomainNavBar-menu-button'],
-                  styles['SubdomainNavBar-mobile-menu-button'],
-                  !menuHidden && styles['SubdomainNavBar-menu-button--close'],
-                )}
-                data-testid={testIds.menuButton}
-                onClick={handleMobileMenuClick}
+              <nav
+                id="menu-navigation"
+                aria-label={title}
+                className={styles['SubdomainNavBar-primary-nav']}
+                data-testid={testIds.menuLinks}
               >
-                <div className={clsx(styles['SubdomainNavBar-menu-button-bar'])}></div>
-                <div className={clsx(styles['SubdomainNavBar-menu-button-bar'])}></div>
-                <div className={clsx(styles['SubdomainNavBar-menu-button-bar'])}></div>
-              </button>
+                <NavigationVisbilityObserver className={clsx(styles['SubdomainNavBar-primary-nav-list--invisible'])}>
+                  {menuItems}
+                </NavigationVisbilityObserver>
+              </nav>
             )}
 
-            {isMedium && (
-              <div
-                className={clsx(styles['SubdomainNavBar-button-area'], styles['SubdomainNavBar-button-area--visible'])}
-              >
-                <div className={styles['SubdomainNavBar-button-area-inner']}>
-                  {React.Children.toArray(children)
-                    .map(child => {
-                      if (React.isValidElement(child) && typeof child.type !== 'string') {
-                        if (child.type === PrimaryAction) {
-                          return child
-                        }
-                        return null
-                      }
-                    })
-                    .filter(Boolean)}
+            <div className={clsx(styles['SubdomainNavBar-secondary-nav'])}>
+              {React.Children.toArray(children)
+                .map(child => {
+                  if (React.isValidElement(child) && typeof child.type !== 'string') {
+                    if (child.type === Search) {
+                      return React.cloneElement(child as React.ReactElement, {
+                        active: searchVisible,
+                        handlerFn: handleSearchVisibility,
+                        title,
+                      })
+                    }
+                    return null
+                  }
+                })
+                .filter(Boolean)}
 
-                  {React.Children.toArray(children)
-                    .map(child => {
-                      if (React.isValidElement(child) && typeof child.type !== 'string') {
-                        if (child.type === SecondaryAction) {
-                          return child
-                        }
-                        return null
-                      }
-                    })
-                    .filter(Boolean)}
-                </div>
-              </div>
-            )}
+              {hasLinks && (
+                <button
+                  aria-expanded={!menuHidden}
+                  aria-label="Menu"
+                  aria-controls="menu-navigation"
+                  aria-haspopup="true"
+                  className={clsx(
+                    styles['SubdomainNavBar-menu-button'],
+                    styles['SubdomainNavBar-mobile-menu-button'],
+                    !menuHidden && styles['SubdomainNavBar-menu-button--close'],
+                  )}
+                  data-testid={testIds.menuButton}
+                  onClick={handleMobileMenuClick}
+                >
+                  <div className={clsx(styles['SubdomainNavBar-menu-button-bar'])}></div>
+                  <div className={clsx(styles['SubdomainNavBar-menu-button-bar'])}></div>
+                  <div className={clsx(styles['SubdomainNavBar-menu-button-bar'])}></div>
+                </button>
+              )}
 
-            {!isMedium && (
-              <div
-                className={clsx(
-                  styles['SubdomainNavBar-menu-wrapper'],
-                  menuHidden && styles['SubdomainNavBar-menu-wrapper--close'],
-                )}
-              >
-                {hasLinks && !menuHidden && (
-                  <NavigationVisbilityObserver
-                    showOnlyOnNarrow
-                    className={clsx(styles['SubdomainNavBar-primary-nav-list--visible'])}
-                  >
-                    {menuItems}
-                  </NavigationVisbilityObserver>
-                )}
+              {isMedium && (
                 <div
                   className={clsx(
                     styles['SubdomainNavBar-button-area'],
@@ -299,12 +268,61 @@ function Root({
                       .filter(Boolean)}
                   </div>
                 </div>
-              </div>
-            )}
+              )}
+
+              {!isMedium && (
+                <div
+                  className={clsx(
+                    styles['SubdomainNavBar-menu-wrapper'],
+                    menuHidden && styles['SubdomainNavBar-menu-wrapper--close'],
+                  )}
+                >
+                  {hasLinks && !menuHidden && (
+                    <NavigationVisbilityObserver
+                      showOnlyOnNarrow
+                      className={clsx(styles['SubdomainNavBar-primary-nav-list--visible'])}
+                    >
+                      {menuItems}
+                    </NavigationVisbilityObserver>
+                  )}
+                  <div
+                    className={clsx(
+                      styles['SubdomainNavBar-button-area'],
+                      styles['SubdomainNavBar-button-area--visible'],
+                    )}
+                  >
+                    <div className={styles['SubdomainNavBar-button-area-inner']}>
+                      {React.Children.toArray(children)
+                        .map(child => {
+                          if (React.isValidElement(child) && typeof child.type !== 'string') {
+                            if (child.type === PrimaryAction) {
+                              return child
+                            }
+                            return null
+                          }
+                        })
+                        .filter(Boolean)}
+
+                      {React.Children.toArray(children)
+                        .map(child => {
+                          if (React.isValidElement(child) && typeof child.type !== 'string') {
+                            if (child.type === SecondaryAction) {
+                              return child
+                            }
+                            return null
+                          }
+                        })
+                        .filter(Boolean)}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      </header>
-    </div>
+        </header>
+      </div>
+      <div id="start-of-content" />
+    </>
   )
 }
 

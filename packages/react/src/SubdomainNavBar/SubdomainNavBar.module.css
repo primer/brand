@@ -649,6 +649,24 @@
   color: var(--base-color-scale-black-0);
 }
 
+.SubdomainNavBar-skip-to-content {
+  position: fixed;
+
+  /* Visually center button (header 75px - button 49px) / 2 = 13px */
+  top: 13px;
+  left: 13px;
+  z-index: 100;
+}
+
+.SubdomainNavBar-skip-to-content:not(:focus) {
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  border: 0;
+}
+
 /*
  * Reusable animations
  */
