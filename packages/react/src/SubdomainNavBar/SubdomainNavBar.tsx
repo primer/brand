@@ -82,6 +82,7 @@ function Root({
   const [menuHidden, setMenuHidden] = useState(true)
   const [searchVisible, setSearchVisible] = useState(false)
   const {isSmall, isMedium} = useWindowSize()
+  const [startOfContentButtonFocused, setStartOfContentButtonFocused] = useState(false)
   const startOfContentID = useId()
 
   const handleMobileMenuClick = () => setMenuHidden(!menuHidden)
@@ -142,7 +143,9 @@ function Root({
         as="a"
         href={`#${startOfContentID}`}
         variant="primary"
-        className={clsx(styles['SubdomainNavBar-skip-to-content'])}
+        className={clsx(styles['SubdomainNavBar-skip-to-content'], !startOfContentButtonFocused && 'visually-hidden')}
+        onFocus={() => setStartOfContentButtonFocused(true)}
+        onBlur={() => setStartOfContentButtonFocused(false)}
       >
         Skip to content
       </Button>
@@ -323,7 +326,7 @@ function Root({
           </div>
         </header>
       </div>
-      <div id={`#${startOfContentID}`} />
+      <div id={`${startOfContentID}`} />
     </>
   )
 }
