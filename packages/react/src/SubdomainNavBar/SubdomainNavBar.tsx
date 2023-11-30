@@ -16,6 +16,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './SubdomainNavBar.module.css'
+import {useId} from '@reach/auto-id'
 
 export type SubdomainNavBarProps = {
   /**
@@ -81,6 +82,7 @@ function Root({
   const [menuHidden, setMenuHidden] = useState(true)
   const [searchVisible, setSearchVisible] = useState(false)
   const {isSmall, isMedium} = useWindowSize()
+  const startOfContentID = useId()
 
   const handleMobileMenuClick = () => setMenuHidden(!menuHidden)
   const handleSearchVisibility = () => setSearchVisible(!searchVisible)
@@ -138,7 +140,7 @@ function Root({
     <>
       <Button
         as="a"
-        href="#start-of-content"
+        href={`#${startOfContentID}`}
         variant="primary"
         className={clsx(styles['SubdomainNavBar-skip-to-content'])}
       >
@@ -321,7 +323,7 @@ function Root({
           </div>
         </header>
       </div>
-      <div id="start-of-content" />
+      <div id={`#${startOfContentID}`} />
     </>
   )
 }

@@ -652,9 +652,8 @@
 .SubdomainNavBar-skip-to-content {
   position: fixed;
 
-  /* Visually center button (header 75px - button 49px) / 2 = 13px */
-  top: 13px;
-  left: 13px;
+  top: var(--base-size-12);
+  left: var(--base-size-12);
   z-index: 100;
 }
 
