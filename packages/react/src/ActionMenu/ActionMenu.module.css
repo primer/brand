@@ -76,7 +76,6 @@
   white-space: pre;
   list-style: none;
   border-radius: var(--brand-borderRadius-medium);
-  border-color: var(--brand-ActionMenu-color-border-rest);
 }
 
 .ActionMenu__item[aria-disabled='true'] {
