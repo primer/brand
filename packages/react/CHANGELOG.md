@@ -1,5 +1,34 @@
 # @primer/react-brand
 
+## 0.30.0
+
+### Minor Changes
+
+- [#507](https://github.com/primer/brand/pull/507) [`2309d7d`](https://github.com/primer/brand/commit/2309d7d5d96c3f390661117d56e77fe828ff0154) Thanks [@langermank](https://github.com/langermank)! - Renames --brand-Image-ratio-custom to --brand-image-aspectRatio
+
+### Patch Changes
+
+- [#499](https://github.com/primer/brand/pull/499) [`a3b02ad`](https://github.com/primer/brand/commit/a3b02adc8cf12ecfa8a45b91c614ac9dff2d645a) Thanks [@rezrah](https://github.com/rezrah)! - Added onKeyDown event handler to ActionMenu to replicate onClick using Enter key
+
+- [#506](https://github.com/primer/brand/pull/506) [`3b6eb7b`](https://github.com/primer/brand/commit/3b6eb7b84bca8dab2f1e4957b8605ade4764a9de) Thanks [@langermank](https://github.com/langermank)! - Remove unused ActionMenu color tokens
+
+  Tokens removed:
+  --brand-ActionMenu-color-border-rest
+  --brand-ActionMenu-color-border-hover
+  --brand-ActionMenu-color-border-active
+
+- [#498](https://github.com/primer/brand/pull/498) [`c3d7bdb`](https://github.com/primer/brand/commit/c3d7bdb32a5686841ce2a045d1ad72d2d51b991a) Thanks [@rezrah](https://github.com/rezrah)! - Added secondary action support to anchor nav.
+
+  When two actions are present, the first action becomes a primary button variant.
+
+  ```jsx
+  <AnchorNav>
+    {/* ... */}
+    <AnchorNav.Action href="#">Get started</AnchorNav.Action>
+    <AnchorNav.SecondaryAction href="#">Compare plans</AnchorNav.SecondaryAction>
+  </AnchorNav>
+  ```
+
 ## 0.29.1
 
 ### Patch Changes
