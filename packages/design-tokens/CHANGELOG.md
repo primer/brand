@@ -1,5 +1,20 @@
 # @primer/brand-primitives
 
+## 0.30.0
+
+### Minor Changes
+
+- [#507](https://github.com/primer/brand/pull/507) [`2309d7d`](https://github.com/primer/brand/commit/2309d7d5d96c3f390661117d56e77fe828ff0154) Thanks [@langermank](https://github.com/langermank)! - Renames --brand-Image-ratio-custom to --brand-image-aspectRatio
+
+### Patch Changes
+
+- [#506](https://github.com/primer/brand/pull/506) [`3b6eb7b`](https://github.com/primer/brand/commit/3b6eb7b84bca8dab2f1e4957b8605ade4764a9de) Thanks [@langermank](https://github.com/langermank)! - Remove unused ActionMenu color tokens
+
+  Tokens removed:
+  --brand-ActionMenu-color-border-rest
+  --brand-ActionMenu-color-border-hover
+  --brand-ActionMenu-color-border-active
+
 ## 0.29.1
 
 ## 0.29.0
