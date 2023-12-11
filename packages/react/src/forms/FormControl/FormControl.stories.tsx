@@ -296,6 +296,18 @@ export const CheckboxPlayground = args => {
 
 CheckboxPlayground.storyName = 'w/ Checkbox - Playground'
 
+export const CheckboxValidationPlayground = args => {
+  return (
+    <FormControl validationStatus="error">
+      <FormControl.Label>Day</FormControl.Label>
+      <Checkbox name="day" value="" />
+      <FormControl.Validation className="test">Please select at least one day</FormControl.Validation>
+    </FormControl>
+  )
+}
+
+CheckboxValidationPlayground.storyName = 'w/ Checkbox - Errors'
+
 export const RadioPlayground = () => (
   <>
     <Stack direction={{narrow: 'vertical', regular: 'horizontal'}} gap="condensed" padding="condensed">

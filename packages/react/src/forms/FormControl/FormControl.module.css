@@ -1,3 +1,8 @@
+section {
+  display: flex;
+  flex-direction: column;
+}
+
 .FormControl {
   display: inline-flex;
   font-family: var(--brand-body-fontFamily);
@@ -56,7 +61,8 @@
   cursor: pointer;
   font-size: var(--brand-text-size-100);
   font-weight: var(--base-text-weight-semibold);
-  line-height: var(--base-size-24); /* FIXME */
+  line-height: var(--base-size-24);
+  /* FIXME */
   position: relative;
   top: 2px;
   width: 100%;
@@ -105,6 +111,7 @@
     opacity: 0;
     transform: translateY(-100%);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);

@@ -1,4 +1,4 @@
-import React, {PropsWithChildren} from 'react'
+import React, {PropsWithChildren, ReactElement} from 'react'
 import {useId} from '@reach/auto-id' // TODO: Replace with useId from React v18 after upgrade
 import clsx from 'clsx'
 import {AlertFillIcon, CheckCircleFillIcon} from '@primer/octicons-react'
@@ -62,95 +62,97 @@ const Root = ({
     child => React.isValidElement(child) && (child.type === Checkbox || child.type === Radio),
   )
 
-  return (
-    <section
-      id={`FormControl--${uniqueId}`}
-      className={clsx(
-        styles.FormControl,
-        fullWidth && styles[`FormControl--fullWidth`],
-        isInlineControl && styles['FormControl--checkbox'],
-        hasBorder && styles['FormControl--border'],
-        className,
-      )}
-      {...rest}
-    >
-      {React.Children.map(children, child => {
-        if (React.isValidElement(child)) {
-          const inputId = `${uniqueId}`
+  const childrenWithoutValidation = childrenArr.filter(child => (child as ReactElement).type !== FormControlValidation)
+  const validation = childrenArr.find(child => (child as ReactElement).type === FormControlValidation)
 
-          /**
-           * TextInput
-           */
-          if (child.type === TextInput || child.type === Textarea) {
-            return React.cloneElement(child as React.ReactElement, {
-              className: clsx(child.props.className),
-              id: inputId,
-              name: child.props.name || inputId,
-              required: child.props.required || required,
-              validationStatus: child.props.validationStatus || validationStatus,
-              fullWidth,
-              size,
-            })
-          } else if (child.type === Select) {
+  const classNameTest = clsx(
+    styles.FormControl,
+    fullWidth && styles[`FormControl--fullWidth`],
+    isInlineControl && styles['FormControl--checkbox'],
+    hasBorder && styles['FormControl--border'],
+    className,
+  )
+  return (
+    <section id={`FormControl--${uniqueId}`} {...rest}>
+      <div className={classNameTest}>
+        {childrenWithoutValidation.map(child => {
+          if (React.isValidElement(child)) {
+            const inputId = `${uniqueId}`
+
             /**
-             * Select
+             * TextInput
              */
-            return React.cloneElement(child as React.ReactElement, {
-              className: clsx(child.props.className),
-              id: inputId,
-              name: inputId,
-              required: child.props.required || required,
-              validationStatus: child.props.validationStatus || validationStatus,
-              fullWidth,
-              size,
-            })
-          } else if (child.type === Checkbox) {
-            /**
-             * Checkbox
-             */
-            return React.cloneElement(child as React.ReactElement, {
-              className: clsx(child.props.className),
-              id: inputId,
-              name: child.props.name || inputId,
-              required: child.props.required || required,
-              validationStatus: child.props.validationStatus || validationStatus,
-            })
-          } else if (child.type === Radio) {
-            /**
-             * Radio
-             */
-            return React.cloneElement(child as React.ReactElement, {
-              className: clsx(isInlineControl && styles['FormControl-control--radio'], child.props.className),
-              id: inputId,
-              name: child.props.name,
-              required: child.props.required || required,
-              validationStatus: child.props.validationStatus || validationStatus,
-            })
-          } else if (child.type === FormControlLabel) {
-            /**
-             * Label
-             */
-            return React.cloneElement(child as React.ReactElement, {
-              className: clsx(isInlineControl && styles['FormControl-label--checkbox'], child.props.className),
-              htmlFor: inputId,
-              children: child.props.children,
-              required,
-              validationStatus,
-              size,
-              showRequiredIndicator: isInlineControl ? false : child.props.showRequiredIndicator,
-            })
-          } else if (child.type === FormControlValidation) {
-            /**
-             * Validation
-             */
-            return React.cloneElement(child as React.ReactElement, {
-              validationStatus,
-            })
-          } else {
-            return child
+            if (child.type === TextInput || child.type === Textarea) {
+              return React.cloneElement(child as React.ReactElement, {
+                className: clsx(child.props.className),
+                id: inputId,
+                name: child.props.name || inputId,
+                required: child.props.required || required,
+                validationStatus: child.props.validationStatus || validationStatus,
+                fullWidth,
+                size,
+              })
+            } else if (child.type === Select) {
+              /**
+               * Select
+               */
+              return React.cloneElement(child as React.ReactElement, {
+                className: clsx(child.props.className),
+                id: inputId,
+                name: inputId,
+                required: child.props.required || required,
+                validationStatus: child.props.validationStatus || validationStatus,
+                fullWidth,
+                size,
+              })
+            } else if (child.type === Checkbox) {
+              /**
+               * Checkbox
+               */
+              return React.cloneElement(child as React.ReactElement, {
+                className: clsx(child.props.className),
+                id: inputId,
+                name: child.props.name || inputId,
+                required: child.props.required || required,
+                validationStatus: child.props.validationStatus || validationStatus,
+              })
+            } else if (child.type === Radio) {
+              /**
+               * Radio
+               */
+              return React.cloneElement(child as React.ReactElement, {
+                className: clsx(isInlineControl && styles['FormControl-control--radio'], child.props.className),
+                id: inputId,
+                name: child.props.name,
+                required: child.props.required || required,
+                validationStatus: child.props.validationStatus || validationStatus,
+              })
+            } else if (child.type === FormControlLabel) {
+              /**
+               * Label
+               */
+              return React.cloneElement(child as React.ReactElement, {
+                className: clsx(isInlineControl && styles['FormControl-label--checkbox'], child.props.className),
+                htmlFor: inputId,
+                children: child.props.children,
+                required,
+                validationStatus,
+                size,
+                showRequiredIndicator: isInlineControl ? false : child.props.showRequiredIndicator,
+              })
+            } else {
+              return child
+            }
           }
-        }
-      })}
+        })}
+      </div>
+      {validation && (
+        <div className={classNameTest}>
+          {React.cloneElement(validation as React.ReactElement, {
+            validationStatus,
+          })}
+        </div>
+      )}
     </section>
   )
 }
