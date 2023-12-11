@@ -16,9 +16,9 @@ export default {
     align: {
       description: 'The alignment of the content',
       control: {
-        type: 'radio',
-        options: ['start', 'center'],
+        type: 'inline-radio',
       },
+      options: ['start', 'center'],
     },
     hasBorder: {
       description: 'Toggle to show or hide the border',

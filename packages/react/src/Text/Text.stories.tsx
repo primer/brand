@@ -27,13 +27,13 @@ Playground.argTypes = {
   },
   size: {
     control: {
-      type: 'radio',
+      type: 'inline-radio',
     },
     options: TextSizes,
   },
   weight: {
     control: {
-      type: 'radio',
+      type: 'inline-radio',
     },
     options: TextWeights,
   },

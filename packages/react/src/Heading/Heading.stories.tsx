@@ -47,31 +47,31 @@ Playground.argTypes = {
   },
   size: {
     control: {
-      type: 'radio',
+      type: 'inline-radio',
     },
     options: HeadingSizes,
   },
   weight: {
     control: {
-      type: 'radio',
+      type: 'inline-radio',
     },
     options: HeadingWeights,
   },
   stretch: {
     control: {
-      type: 'radio',
+      type: 'inline-radio',
     },
     options: HeadingStretch,
   },
   letterSpacing: {
     control: {
-      type: 'radio',
+      type: 'inline-radio',
     },
     options: HeadingLetterSpacing,
   },
   font: {
     control: {
-      type: 'radio',
+      type: 'inline-radio',
     },
     options: HeadingFontVariants,
   },

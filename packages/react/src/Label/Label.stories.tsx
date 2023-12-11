@@ -16,15 +16,15 @@ export default {
       description: 'Color of Label',
       control: {
         type: 'inline-radio',
-        options: [...LabelColors],
       },
+      options: LabelColors,
     },
     size: {
       description: 'Size of Label',
       control: {
         type: 'inline-radio',
-        options: [...LabelSizes],
       },
+      options: LabelSizes,
     },
     children: {
       name: 'children',

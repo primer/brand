@@ -15,8 +15,8 @@ export default {
       description: 'Color of Icon',
       control: {
         type: 'inline-radio',
-        options: [...PillarIconColors],
       },
+      options: PillarIconColors,
     },
     heading: {
       name: 'heading',

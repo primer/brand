@@ -20,7 +20,7 @@ export default {
       control: {
         type: 'inline-radio',
       },
-      options: [...CardIconColors],
+      options: CardIconColors,
     },
     iconHasBackground: {
       name: 'iconHasBackground',
@@ -41,7 +41,7 @@ export default {
       control: {
         type: 'inline-radio',
       },
-      options: [...LabelColors],
+      options: LabelColors,
     },
     heading: {
       name: 'heading',

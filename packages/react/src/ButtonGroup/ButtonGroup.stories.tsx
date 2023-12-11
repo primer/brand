@@ -1,30 +1,30 @@
 import React from 'react'
 import {Meta, StoryFn} from '@storybook/react'
 import {ButtonGroup} from '.'
-import {Button} from '../Button'
+import {Button, ButtonSizes, defaultButtonSize} from '../Button'
 
 export default {
   title: 'Components/ButtonGroup',
   component: ButtonGroup,
   subcomponents: {Button},
   args: {
-    buttonSize: 'medium',
+    buttonSize: defaultButtonSize,
     buttonsAs: 'button',
   },
   argTypes: {
     buttonSize: {
       description: 'The size of the button elements',
       control: {
-        type: 'radio',
-        options: ['medium', 'large'],
+        type: 'inline-radio',
       },
+      options: ButtonSizes,
     },
     buttonsAs: {
       description: 'The HTML element the button is rendered as',
       control: {
-        type: 'radio',
-        options: ['button', 'a'],
+        type: 'inline-radio',
       },
+      options: ['button', 'a'],
     },
     children: {
       table: {

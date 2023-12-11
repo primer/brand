@@ -29,16 +29,16 @@ export default {
     as: {
       description: 'Sets the underlying HTML element',
       control: {
-        type: 'radio',
-        options: ['img', 'picture'],
+        type: 'inline-radio',
       },
+      options: ['img', 'picture'],
     },
     aspectRatio: {
       description: 'Sets the image aspect ratio. A custom ratio can be provided in the design tokens.',
       control: {
-        type: 'radio',
-        options: ['1:1', '16:9', '16:10', '4:3', 'custom'],
+        type: 'inline-radio',
       },
+      options: ['1:1', '16:9', '16:10', '4:3', 'custom'],
     },
     width: {
       description: 'The width of the image',
@@ -56,17 +56,17 @@ export default {
       description:
         'The loading attribute specifies whether a browser should load an image immediately or to defer loading of off-screen images until for example the user scrolls near them.',
       control: {
-        type: 'radio',
-        options: ['eager', 'lazy'],
+        type: 'inline-radio',
       },
+      options: ['eager', 'lazy'],
     },
     decoding: {
       description:
         'Sets the image decoding strategy. Representing a hint given to the browser on how it should decode the image.',
       control: {
-        type: 'radio',
-        options: ['auto', 'sync', 'async'],
+        type: 'inline-radio',
       },
+      options: ['auto', 'sync', 'async'],
     },
   },
 } as Meta<typeof Image>
