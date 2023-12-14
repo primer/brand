@@ -105,6 +105,9 @@ function Root({
     document.body.style.overflow = newOverflowState
   }, [menuHidden])
 
+  const setStartOfContentButtonFocusedTrue = useCallback(() => setStartOfContentButtonFocused(true), [])
+  const setStartOfContentButtonFocusedFalse = useCallback(() => setStartOfContentButtonFocused(false), [])
+
   const hasLinks =
     useMemo(
       () =>
@@ -139,22 +142,22 @@ function Root({
 
   return (
     <>
-      <Button
-        as="a"
-        href={`#${startOfContentID}`}
-        variant="primary"
-        className={clsx(styles['SubdomainNavBar-skip-to-content'], !startOfContentButtonFocused && 'visually-hidden')}
-        onFocus={() => setStartOfContentButtonFocused(true)}
-        onBlur={() => setStartOfContentButtonFocused(false)}
-      >
-        Skip to content
-      </Button>
       <div
         className={clsx(
           styles['SubdomainNavBar-outer-container'],
           fixed && styles['SubdomainNavBar-outer-container--fixed'],
         )}
       >
+        <Button
+          as="a"
+          href={`#${startOfContentID}`}
+          variant="primary"
+          className={clsx(styles['SubdomainNavBar-skip-to-content'], !startOfContentButtonFocused && 'visually-hidden')}
+          onFocus={setStartOfContentButtonFocusedTrue}
+          onBlur={setStartOfContentButtonFocusedFalse}
+        >
+          Skip to content
+        </Button>
         <header className={clsx(styles['SubdomainNavBar'], className)} data-testid={testIds.root} {...rest}>
           <div
             ref={focusTrapRef}

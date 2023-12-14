@@ -651,9 +651,9 @@
 
 .SubdomainNavBar-skip-to-content {
   position: fixed;
-
-  top: var(--base-size-12);
-  left: var(--base-size-12);
+  top: 75px;
+  border-radius: 0px;
+  width: 100vw;
   z-index: 100;
 }
 
