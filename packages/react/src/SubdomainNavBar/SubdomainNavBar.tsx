@@ -337,7 +337,7 @@ function Root({
           </div>
         </header>
       </div>
-      {!mainTag && <div id={`${startOfContentID}`} />}
+      {!mainTag && <div id={`${startOfContentID}`} tabIndex={-1} />}
     </>
   )
 }
