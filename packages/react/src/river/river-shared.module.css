@@ -52,6 +52,10 @@
   border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
 }
 
+.River__label {
+  margin-block-end: var(--brand-River-label-margin);
+}
+
 /* Medium breakpoint and up */
 @media screen and (min-width: 48rem) {
   .River {

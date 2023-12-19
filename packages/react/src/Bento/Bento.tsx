@@ -5,7 +5,7 @@ import {useWindowSize, BreakpointSize} from '../hooks/useWindowSize'
 import type {BaseProps} from '../component-helpers'
 import findElementInChildren from '../findElementInChildren'
 
-import {Heading, Text, Link, HeadingProps, TextProps, LinkProps, ColorMode as FullColorMode, Image} from '../'
+import {Heading, Text, Link, HeadingProps, TextProps, LinkProps, ColorMode as FullColorMode, Image, Label} from '../'
 
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/bento/base.css'
 import styles from './Bento.module.css'
@@ -195,6 +195,8 @@ const Content = ({
   const memoizedChildren = useMemo(() => React.Children.toArray(children), [children])
 
   const HeadingChildren = memoizedChildren.filter(child => React.isValidElement(child) && child.type === _Heading)
+
+  const LabelChild = memoizedChildren.find(child => React.isValidElement(child) && child.type === Label)
   const TextChild = memoizedChildren.find(child => React.isValidElement(child) && child.type === Text)
   const LinkChild = memoizedChildren.find(child => React.isValidElement(child) && child.type === Link)
 
@@ -205,6 +207,12 @@ const Content = ({
           className: styles['Bento__Content-icon'],
           size: LeadingVisual['size'] || 44,
         })}
+
+      {React.isValidElement(LabelChild) &&
+        React.cloneElement(LabelChild as React.ReactElement<TextProps>, {
+          className: clsx(styles['Bento__Content-label'], LabelChild.props.className),
+        })}
+
       {HeadingChildren.map(
         HeadingChild =>
           React.isValidElement(HeadingChild) &&
@@ -216,6 +224,7 @@ const Content = ({
             ),
           }),
       )}
+
       {React.isValidElement(TextChild) &&
         React.cloneElement(TextChild as React.ReactElement<TextProps>, {
           variant: TextChild.props.variant || 'muted',
@@ -223,6 +232,7 @@ const Content = ({
           size: TextChild.props.size || '300',
           className: clsx(styles['Bento__Content-text'], TextChild.props.className),
         })}
+
       {React.isValidElement(LinkChild) &&
         React.cloneElement(LinkChild as React.ReactElement<LinkProps>, {
           variant: LinkChild.props.variant || 'accent',
