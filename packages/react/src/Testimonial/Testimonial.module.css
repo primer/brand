@@ -92,82 +92,82 @@
 }
 
 .Testimonial__quoteMark--default {
-  --brand-Testimonial-quoteMarkColor: var(--brand-Testimonial-quoteMarkColor-default);
+  --brand-Testimonial-quoteMarkColor: var(--brand-color-text-default);
 }
 
 .Testimonial__quoteMark--blue {
-  --brand-Testimonial-quoteMarkColor: var(--brand-Testimonial-quoteMarkColor-blue);
+  --brand-Testimonial-quoteMarkColor: var(--brand-fgColor-blue);
 }
 
 .Testimonial__quoteMark--blue-purple {
-  --brand-Testimonial-quoteMarkColor-start: var(--brand-Testimonial-quoteMarkColor-blue-purple-start);
-  --brand-Testimonial-quoteMarkColor-end: var(--brand-Testimonial-quoteMarkColor-blue-purple-end);
+  --brand-Testimonial-quoteMarkColor-start: var(--brand-fgColor-bluePurple-start);
+  --brand-Testimonial-quoteMarkColor-end: var(--brand-fgColor-bluePurple-end);
 }
 
 .Testimonial__quoteMark--coral {
-  --brand-Testimonial-quoteMarkColor: var(--brand-Testimonial-quoteMarkColor-coral);
+  --brand-Testimonial-quoteMarkColor: var(--brand-fgColor-coral);
 }
 
 .Testimonial__quoteMark--green {
-  --brand-Testimonial-quoteMarkColor: var(--brand-Testimonial-quoteMarkColor-green);
+  --brand-Testimonial-quoteMarkColor: var(--brand-fgColor-green);
 }
 
 .Testimonial__quoteMark--green-blue {
-  --brand-Testimonial-quoteMarkColor-start: var(--brand-Testimonial-quoteMarkColor-green-blue-start);
-  --brand-Testimonial-quoteMarkColor-end: var(--brand-Testimonial-quoteMarkColor-green-blue-end);
+  --brand-Testimonial-quoteMarkColor-start: var(--brand-fgColor-greenBlue-start);
+  --brand-Testimonial-quoteMarkColor-end: var(--brand-fgColor-greenBlue-end);
 }
 
 .Testimonial__quoteMark--gray {
-  --brand-Testimonial-quoteMarkColor: var(--brand-Testimonial-quoteMarkColor-gray);
+  --brand-Testimonial-quoteMarkColor: var(--brand-fgColor-gray);
 }
 
 .Testimonial__quoteMark--indigo {
-  --brand-Testimonial-quoteMarkColor: var(--brand-Testimonial-quoteMarkColor-indigo);
+  --brand-Testimonial-quoteMarkColor: var(--brand-fgColor-indigo);
 }
 
 .Testimonial__quoteMark--lemon {
-  --brand-Testimonial-quoteMarkColor: var(--brand-Testimonial-quoteMarkColor-lemon);
+  --brand-Testimonial-quoteMarkColor: var(--brand-fgColor-lemon);
 }
 
 .Testimonial__quoteMark--lime {
-  --brand-Testimonial-quoteMarkColor: var(--brand-Testimonial-quoteMarkColor-lime);
+  --brand-Testimonial-quoteMarkColor: var(--brand-fgColor-lime);
 }
 
 .Testimonial__quoteMark--orange {
-  --brand-Testimonial-quoteMarkColor: var(--brand-Testimonial-quoteMarkColor-orange);
+  --brand-Testimonial-quoteMarkColor: var(--brand-fgColor-orange);
 }
 
 .Testimonial__quoteMark--pink {
-  --brand-Testimonial-quoteMarkColor: var(--brand-Testimonial-quoteMarkColor-pink);
+  --brand-Testimonial-quoteMarkColor: var(--brand-fgColor-pink);
 }
 
 .Testimonial__quoteMark--pink-blue {
-  --brand-Testimonial-quoteMarkColor-start: var(--brand-Testimonial-quoteMarkColor-pink-blue-start);
-  --brand-Testimonial-quoteMarkColor-end: var(--brand-Testimonial-quoteMarkColor-pink-blue-end);
+  --brand-Testimonial-quoteMarkColor-start: var(--brand-fgColor-pinkBlue-start);
+  --brand-Testimonial-quoteMarkColor-end: var(--brand-fgColor-pinkBlue-end);
 }
 
 .Testimonial__quoteMark--purple {
-  --brand-Testimonial-quoteMarkColor: var(--brand-Testimonial-quoteMarkColor-purple);
+  --brand-Testimonial-quoteMarkColor: var(--brand-fgColor-purple);
 }
 
 .Testimonial__quoteMark--purple-red {
-  --brand-Testimonial-quoteMarkColor-start: var(--brand-Testimonial-quoteMarkColor-purple-red-start);
-  --brand-Testimonial-quoteMarkColor-end: var(--brand-Testimonial-quoteMarkColor-purple-red-end);
+  --brand-Testimonial-quoteMarkColor-start: var(--brand-fgColor-purpleRed-start);
+  --brand-Testimonial-quoteMarkColor-end: var(--brand-fgColor-purpleRed-end);
 }
 
 .Testimonial__quoteMark--red {
-  --brand-Testimonial-quoteMarkColor: var(--brand-Testimonial-quoteMarkColor-red);
+  --brand-Testimonial-quoteMarkColor: var(--brand-fgColor-red);
 }
 
 .Testimonial__quoteMark--red-orange {
-  --brand-Testimonial-quoteMarkColor-start: var(--brand-Testimonial-quoteMarkColor-red-orange-start);
-  --brand-Testimonial-quoteMarkColor-end: var(--brand-Testimonial-quoteMarkColor-red-orange-end);
+  --brand-Testimonial-quoteMarkColor-start: var(--brand-fgColor-redOrange-start);
+  --brand-Testimonial-quoteMarkColor-end: var(--brand-fgColor-redOrange-end);
 }
 
 .Testimonial__quoteMark--teal {
-  --brand-Testimonial-quoteMarkColor: var(--brand-Testimonial-quoteMarkColor-teal);
+  --brand-Testimonial-quoteMarkColor: var(--brand-fgColor-teal);
 }
 
 .Testimonial__quoteMark--yellow {
-  --brand-Testimonial-quoteMarkColor: var(--brand-Testimonial-quoteMarkColor-yellow);
+  --brand-Testimonial-quoteMarkColor: var(--brand-fgColor-yellow);
 }

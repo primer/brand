@@ -6,11 +6,6 @@ import {Colors} from '../constants'
 import {useAnimation} from '../animation'
 
 /**
- * Design tokens
- */
-import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/pillar/colors-with-modes.css'
-
-/**
  * Main stylesheet (as a CSS Module)
  */
 import styles from './Pillar.module.css'
