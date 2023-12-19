@@ -73,6 +73,13 @@ test.describe('Visual Comparison: River', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('River / With Label', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-river-features--with-label&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('River / Custom trailing content', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-river-features--custom-trailing-content&viewMode=story',
