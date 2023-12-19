@@ -1,7 +1,7 @@
 import React, {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import {Bento, ColumnIndex} from './Bento'
-import {Text, Link, ColorModesEnum} from '../'
+import {Text, Link, ColorModesEnum, Label} from '../'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 expect.extend(toHaveNoViolations)
@@ -178,8 +178,10 @@ describe('Bento.Content', () => {
     const headingText = 'Allowed'
     const textText = 'Allowed 2'
     const linkText = 'Allowed 3'
+    const labelText = 'Allowed 4'
     const {getByText} = render(
       <Bento.Content>
+        <Label>{labelText}</Label>
         <Bento.Heading>{headingText}</Bento.Heading>
         <Text>{textText}</Text>
         <Link href="#">{linkText}</Link>
@@ -189,6 +191,7 @@ describe('Bento.Content', () => {
     expect(getByText(headingText)).toBeInTheDocument()
     expect(getByText(textText)).toBeInTheDocument()
     expect(getByText(linkText)).toBeInTheDocument()
+    expect(getByText(labelText)).toBeInTheDocument()
   })
 
   it('adds the class for padding', () => {

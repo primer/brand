@@ -71,6 +71,13 @@ test.describe('Visual Comparison: Bento', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('Bento / With Label', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento-item--with-label&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Bento / Visual Position Bottom', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-bento-item--visual-position-bottom&viewMode=story',
