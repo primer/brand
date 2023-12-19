@@ -1,7 +1,7 @@
 import React from 'react'
 import {Meta, StoryFn} from '@storybook/react'
 import {River} from '.'
-import {Heading, Link, Stack, Text, Timeline} from '../../'
+import {Heading, Label, Link, Stack, Text, Timeline} from '../../'
 import {Container} from '../../component-helpers'
 import placeholderImage from '../../fixtures/images/placeholder-600x400.png'
 
@@ -127,6 +127,21 @@ export const AlternativeHeadingSize: StoryFn<typeof River> = () => (
         <PlaceholderImage />
       </River.Visual>
       <River.Content>
+        <Heading size="1">Heading</Heading>
+        <Text>Use alternative heading sizes, while maintaining the default heading level.</Text>
+      </River.Content>
+    </River>
+  </Container>
+)
+
+export const WithLabel: StoryFn<typeof River> = () => (
+  <Container>
+    <River>
+      <River.Visual>
+        <PlaceholderImage />
+      </River.Visual>
+      <River.Content>
+        <Label color="green">Label</Label>
         <Heading size="1">Heading</Heading>
         <Text>Use alternative heading sizes, while maintaining the default heading level.</Text>
       </River.Content>

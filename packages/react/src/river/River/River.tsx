@@ -1,6 +1,6 @@
-import React, {forwardRef, PropsWithChildren, type Ref} from 'react'
+import React, {forwardRef, PropsWithChildren, useMemo, type Ref} from 'react'
 import clsx from 'clsx'
-import {Heading, LinkProps, HeadingProps, TextProps, Text, Link, useAnimation} from '../../'
+import {Heading, LinkProps, HeadingProps, TextProps, Text, Link, useAnimation, Label, LabelProps} from '../../'
 
 import type {BaseProps} from '../../component-helpers'
 
@@ -136,13 +136,15 @@ const Content = forwardRef(
   ) => {
     const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
 
-    const HeadingChild = React.Children.toArray(children).find(
-      child => React.isValidElement(child) && child.type === Heading,
-    )
+    const Children = useMemo(() => React.Children.toArray(children), [children])
 
-    const TextChild = React.Children.toArray(children).find(child => React.isValidElement(child) && child.type === Text)
+    const HeadingChild = Children.find(child => React.isValidElement(child) && child.type === Heading)
 
-    const LinkChild = React.Children.toArray(children).find(child => React.isValidElement(child) && child.type === Link)
+    const TextChild = Children.find(child => React.isValidElement(child) && child.type === Text)
+
+    const LinkChild = Children.find(child => React.isValidElement(child) && child.type === Link)
+
+    const LabelChild = Children.find(child => React.isValidElement(child) && child.type === Label)
 
     return (
       <div
@@ -151,11 +153,18 @@ const Content = forwardRef(
         {...rest}
         ref={ref}
       >
-        {LeadingComponent && (
+        {React.isValidElement(LabelChild) && !LeadingComponent && (
+          <div className={styles.River__label}>
+            {React.cloneElement(LabelChild as React.ReactElement<LabelProps>, {})}
+          </div>
+        )}
+
+        {!LabelChild && LeadingComponent && (
           <div>
             <LeadingComponent />
           </div>
         )}
+
         {React.isValidElement(HeadingChild) && (
           <div className={styles.River__heading}>
             {React.cloneElement(HeadingChild as React.ReactElement<HeadingProps>, {

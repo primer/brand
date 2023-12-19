@@ -2,12 +2,13 @@ import React, {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
 import {River} from '../'
-import {Text, Link, Heading} from '../../'
+import {Text, Link, Heading, Label} from '../../'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 expect.extend(toHaveNoViolations)
 
 describe('River', () => {
+  const mockLabel = 'Label'
   const mockText = 'Minimal description'
   const mockHeading = 'Mock heading'
   const mockLinkText = 'call to action'
@@ -25,14 +26,20 @@ describe('River', () => {
           <MockImage />
         </River.Visual>
         <River.Content>
+          <Label>{mockLabel}</Label>
           <Text>{mockText}</Text>
+          <Link href="#">{mockLinkText}</Link>
         </River.Content>
       </River>,
     )
 
     const textEl = getByText(mockText)
+    const labelEl = getByText(mockLabel)
+    const linkEl = getByText(mockLinkText)
 
     expect(textEl).toBeInTheDocument()
+    expect(labelEl).toBeInTheDocument()
+    expect(linkEl).toBeInTheDocument()
   })
 
   it('renders in 50:50 image ratio mode by default', () => {
