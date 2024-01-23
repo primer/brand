@@ -1,4 +1,4 @@
-import React, {forwardRef} from 'react'
+import React, {forwardRef, useCallback, useEffect, useRef} from 'react'
 import clsx from 'clsx'
 
 import {Heading} from '../'
@@ -12,11 +12,13 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './Accordion.module.css'
+import {useProvidedRefOrCreate} from '../hooks/useRef'
 
 export type AccordionRootProps = BaseProps<HTMLDetailsElement> & {
   open?: boolean // Manually declared due to known issue with the native open attribute: https://github.com/facebook/react/issues/15486
   children: React.ReactElement<AccordionHeadingProps | AccordionContentProps>[]
   variant?: 'default' | 'emphasis'
+  ref?: React.RefObject<HTMLDetailsElement>
 } & React.HTMLAttributes<HTMLDetailsElement>
 
 type ValidRootChildren = {
@@ -26,17 +28,27 @@ type ValidRootChildren = {
 
 export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
   ({children, className, open = false, variant = 'default', ...rest}, ref) => {
+    const detailsRef = useProvidedRefOrCreate(ref as React.RefObject<HTMLDetailsElement>)
+    const [isOpen, setIsOpen] = React.useState(open)
+
     const {AccordionHeading: HeadingChild, AccordionContent: AccordionContentChild} = React.Children.toArray(
       children,
     ).reduce<ValidRootChildren>(
       (acc, child) => {
         if (React.isValidElement(child) && typeof child.type !== 'string') {
           if (child.type === AccordionContent) {
-            acc.AccordionContent = child as React.ReactElement<AccordionContentProps>
+            acc.AccordionContent = React.cloneElement(child as React.ReactElement<AccordionContentProps>, {
+              open: isOpen,
+              handleOpen: (newValue: boolean) => setIsOpen(newValue),
+              parentRef: detailsRef,
+            }) as React.ReactElement<AccordionContentProps>
           }
           if (child.type === AccordionHeading) {
             acc.AccordionHeading = React.cloneElement(child as React.ReactElement, {
               variant,
+              open: isOpen,
+              handleOpen: (newValue: boolean) => setIsOpen(newValue),
+              parentRef: detailsRef,
             }) as React.ReactElement<AccordionHeadingProps>
           }
         }
@@ -48,9 +60,9 @@ export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
     return (
       <details
         className={clsx(styles.Accordion, styles[`Accordion--${variant}`], className)}
-        open={open}
+        open={isOpen}
         {...rest}
-        ref={ref}
+        ref={detailsRef}
       >
         {HeadingChild}
         {AccordionContentChild}
@@ -65,10 +77,40 @@ type AccordionHeadingProps = BaseProps<HTMLHeadingElement> & {
   as?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
   reversedToggles?: boolean
   variant?: 'default' | 'emphasis'
+  open?: boolean // private prop passed from AccordionRoot
+  handleOpen?: (boolean) => void // private prop passed from AccordionRoot
+  parentRef?: React.RefObject<HTMLDetailsElement> // private prop passed from AccordionRoot
 }
 
 export const AccordionHeading = forwardRef<HTMLHeadingElement, AccordionHeadingProps>(
-  ({children, className, as = 'h4', variant = 'default', reversedToggles, ...rest}, ref) => {
+  (
+    {children, className, as = 'h4', variant = 'default', reversedToggles, open, handleOpen, parentRef, ...rest},
+    ref,
+  ) => {
+    const handleClick = useCallback(
+      (event: React.MouseEvent<HTMLDetailsElement, MouseEvent>) => {
+        event.preventDefault()
+        if (handleOpen) handleOpen(!open)
+      },
+      [handleOpen, open],
+    )
+
+    const handleKeyPress = useCallback(
+      (event: React.KeyboardEvent<HTMLDetailsElement>) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault()
+          if (handleOpen) handleOpen(!open)
+        }
+
+        // add escape key to close accordion
+        if (event.key === 'Escape') {
+          event.preventDefault()
+          if (handleOpen) handleOpen(false)
+        }
+      },
+      [handleOpen, open],
+    )
+
     return (
       <summary
         className={clsx(
@@ -79,6 +121,8 @@ export const AccordionHeading = forwardRef<HTMLHeadingElement, AccordionHeadingP
         )}
         ref={ref}
         {...rest}
+        onClick={handleClick}
+        onKeyDown={handleKeyPress}
       >
         <span aria-hidden="true" className={styles['Accordion__summary--collapsed']}>
           {variant === 'emphasis' && <ChevronDownIcon size={24} fill="var(--brand-color-text-default)" />}
@@ -96,11 +140,47 @@ export const AccordionHeading = forwardRef<HTMLHeadingElement, AccordionHeadingP
 
 type AccordionContentProps = BaseProps<HTMLElement> & {
   children: React.ReactElement | React.ReactElement[]
+  open?: boolean // private prop passed from AccordionRoot
+  handleOpen?: (boolean) => void // private prop passed from AccordionRoot
+  parentRef?: React.RefObject<HTMLDetailsElement> // private prop passed from AccordionRoot
 }
 
-export function AccordionContent({children, className, ...rest}: AccordionContentProps) {
+export function AccordionContent({children, className, open, handleOpen, parentRef, ...rest}: AccordionContentProps) {
+  const contentRef = useRef<HTMLElement>(null)
+
+  const handleKeyPress = useCallback(
+    (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        event.preventDefault()
+        const focusedElement = document.activeElement
+        if (contentRef.current && contentRef.current.contains(focusedElement)) {
+          // Close the accordion
+          if (handleOpen) handleOpen(false)
+          if (parentRef && parentRef.current) {
+            const summary = parentRef.current.querySelector('summary')
+            if (summary) summary.focus()
+          }
+        }
+      }
+    },
+    [parentRef, handleOpen],
+  )
+
+  useEffect(() => {
+    const contentEl = contentRef.current as HTMLElement | null
+
+    if (open && contentEl) {
+      contentEl.addEventListener('keydown', ev => handleKeyPress(ev))
+    }
+    return () => {
+      if (open && contentEl) {
+        contentEl.removeEventListener('keydown', ev => handleKeyPress(ev))
+      }
+    }
+  }, [open, handleKeyPress])
+
   return (
-    <section className={clsx(styles.Accordion__content, className)} {...rest}>
+    <section className={clsx(styles.Accordion__content, className)} {...rest} ref={contentRef}>
       {children}
     </section>
   )
