@@ -102,7 +102,6 @@ export const AccordionHeading = forwardRef<HTMLHeadingElement, AccordionHeadingP
           if (handleOpen) handleOpen(!open)
         }
 
-        // add escape key to close accordion
         if (event.key === 'Escape') {
           event.preventDefault()
           if (handleOpen) handleOpen(false)
