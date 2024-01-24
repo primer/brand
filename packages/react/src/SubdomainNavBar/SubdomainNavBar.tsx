@@ -2,7 +2,7 @@ import React, {useState, useCallback, useRef, PropsWithChildren, forwardRef, use
 import clsx from 'clsx'
 import {ChevronLeftIcon, MarkGithubIcon, SearchIcon, XIcon} from '@primer/octicons-react'
 
-import {Button, FormControl, Text, TextInput} from '..'
+import {Button, FormControl, Heading, Text, TextInput} from '..'
 import {NavigationVisbilityObserver} from './NavigationVisbilityObserver'
 import {useOnClickOutside} from '../hooks/useOnClickOutside'
 import {useFocusTrap} from '../hooks/useFocusTrap'
@@ -261,14 +261,27 @@ function Root({
                   menuHidden && styles['SubdomainNavBar-menu-wrapper--close'],
                 )}
               >
-                {hasLinks && !menuHidden && (
-                  <NavigationVisbilityObserver
-                    showOnlyOnNarrow
-                    className={clsx(styles['SubdomainNavBar-primary-nav-list--visible'])}
-                  >
-                    {menuItems}
-                  </NavigationVisbilityObserver>
-                )}
+                <div>
+                  {title && titleHref && (
+                    <Text as="p">
+                      <a
+                        href={titleHref}
+                        aria-label={`${title} home`}
+                        className={clsx(styles['SubdomainNavBar-link'], styles['SubdomainNavBar-link--title'])}
+                      >
+                        {title}
+                      </a>
+                    </Text>
+                  )}
+                  {hasLinks && !menuHidden && (
+                    <NavigationVisbilityObserver
+                      showOnlyOnNarrow
+                      className={clsx(styles['SubdomainNavBar-primary-nav-list--visible'])}
+                    >
+                      {menuItems}
+                    </NavigationVisbilityObserver>
+                  )}
+                </div>
                 <div
                   className={clsx(
                     styles['SubdomainNavBar-button-area'],
