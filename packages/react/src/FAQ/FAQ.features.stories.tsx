@@ -221,8 +221,11 @@ export const Groups: StoryFn<typeof FAQ> = () => {
           <FAQ.Question>What is GitHub Enterprise?</FAQ.Question>
           <FAQ.Answer>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-              turpis felis nam pulvinar risus elementum.
+              Lorem ipsum dolor sit amet,{' '}
+              <a href="/" target="_blank" rel="noreferrer">
+                consectetur adipiscing elit
+              </a>
+              . In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum.
             </p>
           </FAQ.Answer>
         </FAQ.Item>
@@ -230,8 +233,11 @@ export const Groups: StoryFn<typeof FAQ> = () => {
           <FAQ.Question>How can GitHub Enterprise be deployed?</FAQ.Question>
           <FAQ.Answer>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-              turpis felis nam pulvinar risus elementum.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.{' '}
+              <a href="/" target="_blank" rel="noreferrer">
+                In sapien sit ullamcorper id.
+              </a>{' '}
+              Aliquam luctus sed turpis felis nam pulvinar risus elementum.
             </p>
           </FAQ.Answer>
         </FAQ.Item>
@@ -240,7 +246,10 @@ export const Groups: StoryFn<typeof FAQ> = () => {
           <FAQ.Answer>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-              turpis felis nam pulvinar risus elementum.
+              turpis felis{' '}
+              <a href="/" target="_blank" rel="noreferrer">
+                nam pulvinar risus elementum.
+              </a>
             </p>
           </FAQ.Answer>
         </FAQ.Item>
