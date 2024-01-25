@@ -10,9 +10,14 @@ else
   echo '<base href="/brand/storybook/" />' >> .storybook/manager-head.html
 fi
 
-mkdir -p ../../apps/docs/public/storybook
+OUT_DIR="../../apps/docs/public/storybook"
+mkdir -p "$OUT_DIR"
+
+STATIC_DIR="../../apps/docs/public/static"
+mkdir -p "$STATIC_DIR"
+
 # Build storybook inside docs
-npx storybook build -o ../../apps/docs/public/storybook -s ../../apps/docs/public/static
+npx storybook build -o "$OUT_DIR" -s "$STATIC_DIR"
 
 # Remove manager-head after build to not interfere with dev builds
 rm .storybook/manager-head.html
