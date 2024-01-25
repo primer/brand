@@ -19,7 +19,7 @@ export default {
   args: {
     showSearch: true,
     numLinks: 6,
-    title: 'Subdomain',
+    title: 'Site title',
     titleHref: '/',
   },
   argTypes: {
