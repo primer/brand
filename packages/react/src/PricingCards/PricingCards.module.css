@@ -1,0 +1,246 @@
+/* ---------------------------------------------------------- */
+/* Pricing cards component                                    */
+/* ---------------------------------------------------------- */
+/* Table of contents:                                         */
+/* 1. Container                                               */
+/* 2. Column layout                                           */
+/* 3. 3-column item styling                                   */
+/* 4. Dividers                                                */
+/* 5. Item inner layout                                       */
+/* 4. Content                                                 */
+/* ---------------------------------------------------------- */
+
+/* ---------------------------------------------------------- */
+/* 1. Container                                               */
+/* ---------------------------------------------------------- */
+
+.PricingCards {
+  --pricing-cards-item-gap: var(--base-size-32);
+  --pricing-cards-container-padding-inline: var(--base-size-32);
+  --pricing-cards-container-padding-block: var(--base-size-40);
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  row-gap: var(--pricing-cards-item-gap);
+  padding-block: var(--pricing-cards-container-padding-inline);
+  padding-inline: var(--pricing-cards-container-padding-block);
+  border-radius: var(--brand-borderRadius-xlarge);
+  border: solid 1px var(--brand-color-border-default);
+  background-color: var(--brand-color-canvas-default);
+}
+
+/* ---------------------------------------------------------- */
+/* 2. Column layout                                           */
+/* ---------------------------------------------------------- */
+
+@media (min-width: 63.25rem) {
+  .PricingCards--items-2,
+  .PricingCards--items-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    column-gap: var(--pricing-cards-item-gap);
+    row-gap: 0;
+
+    grid-template-areas:
+      'label'
+      'heading'
+      'description'
+      'price'
+      'actions'
+      'feature-list'
+      'footnote';
+  }
+
+  .PricingCards--items-2 {
+    --pricing-cards-item-gap: var(--base-size-96);
+  }
+}
+
+@media (min-width: 80rem) {
+  .PricingCards--items-2 {
+    --pricing-cards-item-gap: calc(var(--base-size-96) * 3);
+    --pricing-cards-container-padding-inline: var(--base-size-64);
+    --pricing-cards-container-padding-block: var(--base-size-48);
+  }
+}
+
+/* ---------------------------------------------------------- */
+/* 3. 3-column item styles                                    */
+/* ---------------------------------------------------------- */
+
+@media (min-width: 63.28rem) {
+  /* Remove styling from the container */
+  .PricingCards--items-3 {
+    border-radius: 0;
+    border: 0;
+    background-color: transparent;
+  }
+
+  .PricingCards--items-3 .PricingCards__item {
+    padding-block: var(--base-size-48);
+    padding-inline: var(--base-size-32);
+    border-radius: var(--brand-borderRadius-xlarge);
+    border: solid 1px var(--brand-color-border-default);
+    background-color: var(--brand-color-canvas-default);
+  }
+}
+
+/* ---------------------------------------------------------- */
+/* 4. Dividers                                                */
+/* ---------------------------------------------------------- */
+
+.PricingCards__item {
+  position: relative; /* Used for positioning the divider between items */
+}
+
+/* Horizontal border between items */
+.PricingCards__item:nth-child(n + 2)::before {
+  content: '';
+  position: absolute;
+  inset-inline: calc(var(--pricing-cards-container-padding-inline) * -1);
+  height: 1px;
+  margin-block-start: calc(var(--pricing-cards-item-gap) / 2 * -1);
+  background-color: var(--brand-color-border-default);
+}
+
+/* Vertical border between items */
+@media (min-width: 63.25rem) {
+  .PricingCards--items-2 .PricingCards__item:nth-child(2)::before {
+    inset-inline: 0;
+    inset-block: 0;
+    width: 1px;
+    height: auto;
+    margin-block-start: 0;
+    margin-inline-start: calc(var(--pricing-cards-item-gap) / 2 * -1);
+  }
+
+  /* No dividers on 3-column layout */
+  .PricingCards--items-3 .PricingCards__item::before {
+    content: none;
+  }
+}
+
+/* ---------------------------------------------------------- */
+/* 5. Item inner layout                                       */
+/* ---------------------------------------------------------- */
+
+@media (min-width: 63.28rem) {
+  .PricingCards__item {
+    display: grid;
+    grid-row: label / footnote;
+    grid-template-rows: subgrid;
+  }
+}
+
+/*
+ * Backwards compatibility for browsers that don't support subgrid.
+ * Can be remove fully once subgrid is supported in the last 3 major versions of Safari.
+ * https://caniuse.com/?search=subgrid
+ */
+@supports not (grid-template-rows: subgrid) {
+  .PricingCards__item {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      'label'
+      'heading'
+      'description'
+      'price'
+      'feature-list'
+      'footnote';
+  }
+}
+
+/* ---------------------------------------------------------- */
+/* 7. Content                                                 */
+/* ---------------------------------------------------------- */
+
+.PricingCards__label {
+  grid-row: label;
+  padding-inline: 0;
+  color: var(--brand-color-accent-primary);
+}
+
+.PricingCards__heading {
+  grid-row: heading;
+  margin-block-start: var(--base-size-8);
+  margin-block-end: var(--base-size-16);
+}
+
+.PricingCards__description {
+  grid-row: description;
+}
+
+.PricingCards__price {
+  display: flex;
+  gap: var(--base-size-12);
+  grid-row: price;
+  padding-block: var(--base-size-24);
+}
+
+.PricingCards__feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-8);
+  grid-row: feature-list;
+  border-block-start: solid 1px var(--brand-color-border-default);
+  margin: 0;
+  margin-block-start: var(--base-size-24);
+  padding-block-start: var(--base-size-40);
+  padding-inline: 0;
+}
+
+.PricingCards__feature-list-set:nth-child(n + 2) {
+  margin-block-start: var(--base-size-24);
+}
+
+.PricingCards__feature-list-heading {
+  color: var(--brand-color-accent-primary);
+  margin-block-end: var(--base-size-8);
+}
+
+.PricingCards__feature-list-item--excluded span {
+  color: var(--brand-color-text-muted);
+}
+
+.PricingCards__feature-list + .PricingCards__feature-list-heading {
+  margin-block-start: 24px;
+}
+
+.PricingCards__footnote {
+  grid-row: footnote;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: var(--base-size-24);
+}
+
+.PricingCards__actions {
+  grid-row: actions;
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-8);
+  align-items: flex-end;
+  padding-block-start: var(--base-size-24);
+}
+
+.PricingCards__secondary-action {
+}
+
+.PricingCards__price-currency-symbol {
+  line-height: 1.4;
+}
+
+.PricingCards__price-value {
+  font-size: 56px;
+  line-height: 1;
+}
+
+.PricingCards__price-trailing-text {
+  align-self: center;
+}
+
+.PricingCards__footnote {
+  margin-block-start: var(--base-size-40);
+}
