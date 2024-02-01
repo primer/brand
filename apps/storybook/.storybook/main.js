@@ -16,6 +16,15 @@ module.exports = {
     name: getAbsolutePath('@storybook/react-webpack5'),
     options: {builder: {useSWC: true}},
   },
+  swc: () => ({
+    jsc: {
+      transform: {
+        react: {
+          runtime: 'automatic',
+        },
+      },
+    },
+  }),
   features: {
     buildStoriesJson: true,
     disableTelemetry: true,
