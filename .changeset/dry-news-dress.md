@@ -2,4 +2,4 @@
 '@primer/react-brand': patch
 ---
 
-Add className to HeroDescription
+Added `className` forwarding to `Hero.Description`
