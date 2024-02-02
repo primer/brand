@@ -105,9 +105,9 @@ type HeroDescriptionProps = {
 } & BaseProps<HTMLParagraphElement>
 
 const HeroDescription = forwardRef<HTMLParagraphElement, PropsWithChildren<HeroDescriptionProps>>(
-  ({size = '200', weight, children, ...rest}: PropsWithChildren<HeroDescriptionProps>, ref) => {
+  ({size = '200', weight, children, className}: PropsWithChildren<HeroDescriptionProps>, ref) => {
     return (
-      <Text ref={ref} className={styles['Hero-description']} as="p" size={size} weight={weight} {...rest}>
+      <Text ref={ref} className={clsx(styles['Hero-description'], className)} as="p" size={size} weight={weight}>
         {children}
       </Text>
     )
