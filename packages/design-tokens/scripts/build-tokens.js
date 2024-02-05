@@ -218,8 +218,6 @@ const darkJson = require('../src/tokens/base/colors/dark')
     `tokens/functional/components/accordion/colors.js`,
     `tokens/functional/components/faq/colors.json`,
     `tokens/functional/components/card/colors.json`,
-    `tokens/functional/components/pillar/colors.json`,
-    `tokens/functional/components/label/colors.json`,
     `tokens/functional/components/link/colors.json`,
     `tokens/functional/components/inline-link/colors.json`,
     `tokens/functional/components/control/colors.js`,

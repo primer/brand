@@ -7,11 +7,6 @@ import {useAnimation} from '../animation'
 import type {BaseProps} from '../component-helpers'
 import {Colors, Gradients} from '../constants'
 
-/**
- * Design tokens
- */
-import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/label/colors-with-modes.css'
-
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './Label.module.css'
 

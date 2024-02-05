@@ -74,111 +74,111 @@
 }
 
 .EyebrowBanner__leadingLabel--color-blue {
-  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-blue);
-  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-blue);
-  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-blue);
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-fgColor-blue);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-fgColor-blue);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-fgColor-blue);
 }
 
 .EyebrowBanner__leadingLabel--color-blue-purple {
-  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-blue-purple-start);
-  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-blue-purple-end);
-  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-blue-purple-end);
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-fgColor-bluePurple-start);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-fgColor-bluePurple-end);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-fgColor-bluePurple-end);
 }
 
 .EyebrowBanner__leadingLabel--color-coral {
-  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-coral);
-  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-coral);
-  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-coral);
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-fgColor-coral);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-fgColor-coral);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-fgColor-coral);
 }
 
 .EyebrowBanner__leadingLabel--color-green {
-  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-green);
-  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-green);
-  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-green);
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-fgColor-green);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-fgColor-green);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-fgColor-green);
 }
 
 .EyebrowBanner__leadingLabel--color-green-blue {
-  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-green-blue-start);
-  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-green-blue-start);
-  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-green-blue-end);
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-fgColor-greenBlue-start);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-fgColor-greenBlue-start);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-fgColor-greenBlue-end);
 }
 
 .EyebrowBanner__leadingLabel--color-gray {
-  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-gray);
-  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-gray);
-  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-gray);
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-fgColor-gray);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-fgColor-gray);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-fgColor-gray);
 }
 
 .EyebrowBanner__leadingLabel--color-indigo {
-  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-indigo);
-  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-indigo);
-  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-indigo);
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-fgColor-indigo);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-fgColor-indigo);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-fgColor-indigo);
 }
 
 .EyebrowBanner__leadingLabel--color-lemon {
-  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-lemon);
-  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-lemon);
-  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-lemon);
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-fgColor-lemon);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-fgColor-lemon);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-fgColor-lemon);
 }
 
 .EyebrowBanner__leadingLabel--color-lime {
-  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-lime);
-  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-lime);
-  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-lime);
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-fgColor-lime);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-fgColor-lime);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-fgColor-lime);
 }
 
 .EyebrowBanner__leadingLabel--color-orange {
-  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-orange);
-  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-orange);
-  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-orange);
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-fgColor-orange);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-fgColor-orange);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-fgColor-orange);
 }
 
 .EyebrowBanner__leadingLabel--color-pink {
-  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-pink);
-  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-pink);
-  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-pink);
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-fgColor-pink);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-fgColor-pink);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-fgColor-pink);
 }
 
 .EyebrowBanner__leadingLabel--color-pink-blue {
-  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-pink-blue-start);
-  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-pink-blue-start);
-  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-pink-blue-end);
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-fgColor-pinkBlue-start);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-fgColor-pinkBlue-start);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-fgColor-pinkBlue-end);
 }
 
 .EyebrowBanner__leadingLabel--color-purple {
-  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-purple);
-  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-purple);
-  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-purple);
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-fgColor-purple);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-fgColor-purple);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-fgColor-purple);
 }
 
 .EyebrowBanner__leadingLabel--color-purple-red {
-  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-purple-red-start);
-  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-purple-red-start);
-  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-purple-red-end);
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-fgColor-purpleRed-start);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-fgColor-purpleRed-start);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-fgColor-purpleRed-end);
 }
 
 .EyebrowBanner__leadingLabel--color-red {
-  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-red);
-  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-red);
-  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-red);
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-fgColor-red);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-fgColor-red);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-fgColor-red);
 }
 
 .EyebrowBanner__leadingLabel--color-red-orange {
-  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-red-orange-start);
-  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-red-orange-start);
-  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-red-orange-end);
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-fgColor-redOrange-start);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-fgColor-redOrange-start);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-fgColor-redOrange-end);
 }
 
 .EyebrowBanner__leadingLabel--color-teal {
-  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-teal);
-  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-teal);
-  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-teal);
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-fgColor-teal);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-fgColor-teal);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-fgColor-teal);
 }
 
 .EyebrowBanner__leadingLabel--color-yellow {
-  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-yellow);
-  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-yellow);
-  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-yellow);
+  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-fgColor-yellow);
+  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-fgColor-yellow);
+  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-fgColor-yellow);
 }
 
 .EyebrowBanner__heading {
@@ -212,109 +212,109 @@
 }
 
 .EyebrowBanner__icon--color-default.EyebrowBanner__icon--badge {
-  background-color: var(--brand-Eyebrowbanner-icon-background-default);
+  background-color: var(--brand-bgColor-gray);
 }
 
 .EyebrowBanner__icon--color-blue {
-  color: var(--brand-Eyebrowbanner-fgColor-blue);
+  color: var(--brand-fgColor-blue);
 }
 
 .EyebrowBanner__icon--color-blue.EyebrowBanner__icon--badge {
-  background-color: var(--brand-Eyebrowbanner-icon-background-blue);
+  background-color: var(--brand-bgColor-blue);
 }
 
 .EyebrowBanner__icon--color-coral {
-  color: var(--brand-Eyebrowbanner-fgColor-coral);
+  color: var(--brand-fgColor-coral);
 }
 
 .EyebrowBanner__icon--color-coral.EyebrowBanner__icon--badge {
-  background-color: var(--brand-Eyebrowbanner-icon-background-coral);
+  background-color: var(--brand-bgColor-coral);
 }
 
 .EyebrowBanner__icon--color-green {
-  color: var(--brand-Eyebrowbanner-fgColor-green);
+  color: var(--brand-fgColor-green);
 }
 
 .EyebrowBanner__icon--color-green.EyebrowBanner__icon--badge {
-  background-color: var(--brand-Eyebrowbanner-icon-background-green);
+  background-color: var(--brand-bgColor-green);
 }
 
 .EyebrowBanner__icon--color-gray {
-  color: var(--brand-Eyebrowbanner-fgColor-gray);
+  color: var(--brand-fgColor-gray);
 }
 
 .EyebrowBanner__icon--color-gray.EyebrowBanner__icon--badge {
-  background-color: var(--brand-Eyebrowbanner-icon-background-gray);
+  background-color: var(--brand-bgColor-gray);
 }
 
 .EyebrowBanner__icon--color-indigo {
-  color: var(--brand-Eyebrowbanner-fgColor-indigo);
+  color: var(--brand-fgColor-indigo);
 }
 
 .EyebrowBanner__icon--color-indigo.EyebrowBanner__icon--badge {
-  background-color: var(--brand-Eyebrowbanner-icon-background-indigo);
+  background-color: var(--brand-bgColor-indigo);
 }
 
 .EyebrowBanner__icon--color-lemon {
-  color: var(--brand-Eyebrowbanner-fgColor-lemon);
+  color: var(--brand-fgColor-lemon);
 }
 
 .EyebrowBanner__icon--color-lemon.EyebrowBanner__icon--badge {
-  background-color: var(--brand-Eyebrowbanner-icon-background-lemon);
+  background-color: var(--brand-bgColor-lemon);
 }
 
 .EyebrowBanner__icon--color-lime {
-  color: var(--brand-Eyebrowbanner-fgColor-lime);
+  color: var(--brand-fgColor-lime);
 }
 
 .EyebrowBanner__icon--color-lime.EyebrowBanner__icon--badge {
-  background-color: var(--brand-Eyebrowbanner-icon-background-lime);
+  background-color: var(--brand-bgColor-lime);
 }
 
 .EyebrowBanner__icon--color-orange {
-  color: var(--brand-Eyebrowbanner-fgColor-orange);
+  color: var(--brand-fgColor-orange);
 }
 
 .EyebrowBanner__icon--color-orange.EyebrowBanner__icon--badge {
-  background-color: var(--brand-Eyebrowbanner-icon-background-orange);
+  background-color: var(--brand-bgColor-orange);
 }
 
 .EyebrowBanner__icon--color-pink {
-  color: var(--brand-Eyebrowbanner-fgColor-pink);
+  color: var(--brand-fgColor-pink);
 }
 
 .EyebrowBanner__icon--color-pink.EyebrowBanner__icon--badge {
-  background-color: var(--brand-Eyebrowbanner-icon-background-pink);
+  background-color: var(--brand-bgColor-pink);
 }
 
 .EyebrowBanner__icon--color-purple {
-  color: var(--brand-Eyebrowbanner-fgColor-purple);
+  color: var(--brand-fgColor-purple);
 }
 
 .EyebrowBanner__icon--color-purple.EyebrowBanner__icon--badge {
-  background-color: var(--brand-Eyebrowbanner-icon-background-purple);
+  background-color: var(--brand-bgColor-purple);
 }
 
 .EyebrowBanner__icon--color-red {
-  color: var(--brand-Eyebrowbanner-fgColor-red);
+  color: var(--brand-fgColor-red);
 }
 
 .EyebrowBanner__icon--color-red.EyebrowBanner__icon--badge {
-  background-color: var(--brand-Eyebrowbanner-icon-background-red);
+  background-color: var(--brand-bgColor-red);
 }
 
 .EyebrowBanner__icon--color-teal {
-  color: var(--brand-Eyebrowbanner-fgColor-teal);
+  color: var(--brand-fgColor-teal);
 }
 
 .EyebrowBanner__icon--color-teal.EyebrowBanner__icon--badge {
-  background-color: var(--brand-Eyebrowbanner-icon-background-teal);
+  background-color: var(--brand-bgColor-teal);
 }
 
 .EyebrowBanner__icon--color-yellow {
-  color: var(--brand-Eyebrowbanner-fgColor-yellow);
+  color: var(--brand-fgColor-yellow);
 }
 
 .EyebrowBanner__icon--color-yellow.EyebrowBanner__icon--badge {
-  background-color: var(--brand-Eyebrowbanner-icon-background-yellow);
+  background-color: var(--brand-bgColor-yellow);
 }

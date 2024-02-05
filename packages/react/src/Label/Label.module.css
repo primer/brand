@@ -44,84 +44,84 @@
 }
 
 .Label--color-default {
-  --brand-Label-color: var(--brand-Label-color-default);
+  --brand-Label-color: var(--brand-color-text-default);
 }
 
 .Label--color-blue {
-  --brand-Label-color: var(--brand-Label-color-blue);
+  --brand-Label-color: var(--brand-fgColor-blue);
 }
 
 .Label--color-blue-purple {
-  --brand-Label-color-start: var(--brand-Label-color-blue-purple-start);
-  --brand-Label-color-end: var(--brand-Label-color-blue-purple-end);
+  --brand-Label-color-start: var(--brand-fgColor-bluePurple-start);
+  --brand-Label-color-end: var(--brand-fgColor-bluePurple-end);
 }
 
 .Label--color-coral {
-  --brand-Label-color: var(--brand-Label-color-coral);
+  --brand-Label-color: var(--brand-fgColor-coral);
 }
 
 .Label--color-green {
-  --brand-Label-color: var(--brand-Label-color-green);
+  --brand-Label-color: var(--brand-fgColor-green);
 }
 
 .Label--color-green-blue {
-  --brand-Label-color-start: var(--brand-Label-color-green-blue-start);
-  --brand-Label-color-end: var(--brand-Label-color-green-blue-end);
+  --brand-Label-color-start: var(--brand-fgColor-greenBlue-start);
+  --brand-Label-color-end: var(--brand-fgColor-greenBlue-end);
 }
 
 .Label--color-gray {
-  --brand-Label-color: var(--brand-Label-color-gray);
+  --brand-Label-color: var(--brand-fgColor-gray);
 }
 
 .Label--color-indigo {
-  --brand-Label-color: var(--brand-Label-color-indigo);
+  --brand-Label-color: var(--brand-fgColor-indigo);
 }
 
 .Label--color-lemon {
-  --brand-Label-color: var(--brand-Label-color-lemon);
+  --brand-Label-color: var(--brand-fgColor-lemon);
 }
 
 .Label--color-lime {
-  --brand-Label-color: var(--brand-Label-color-lime);
+  --brand-Label-color: var(--brand-fgColor-lime);
 }
 
 .Label--color-orange {
-  --brand-Label-color: var(--brand-Label-color-orange);
+  --brand-Label-color: var(--brand-fgColor-orange);
 }
 
 .Label--color-pink {
-  --brand-Label-color: var(--brand-Label-color-pink);
+  --brand-Label-color: var(--brand-fgColor-pink);
 }
 
 .Label--color-pink-blue {
-  --brand-Label-color-start: var(--brand-Label-color-pink-blue-start);
-  --brand-Label-color-end: var(--brand-Label-color-pink-blue-end);
+  --brand-Label-color-start: var(--brand-fgColor-pinkBlue-start);
+  --brand-Label-color-end: var(--brand-fgColor-pinkBlue-end);
 }
 
 .Label--color-purple {
-  --brand-Label-color: var(--brand-Label-color-purple);
+  --brand-Label-color: var(--brand-fgColor-purple);
 }
 
 .Label--color-purple-red {
-  --brand-Label-color-start: var(--brand-Label-color-purple-red-start);
-  --brand-Label-color-end: var(--brand-Label-color-purple-red-end);
+  --brand-Label-color-start: var(--brand-fgColor-purpleRed-start);
+  --brand-Label-color-end: var(--brand-fgColor-purpleRed-end);
 }
 
 .Label--color-red {
-  --brand-Label-color: var(--brand-Label-color-red);
+  --brand-Label-color: var(--brand-fgColor-red);
 }
 
 .Label--color-red-orange {
-  --brand-Label-color-start: var(--brand-Label-color-red-orange-start);
-  --brand-Label-color-end: var(--brand-Label-color-red-orange-end);
+  --brand-Label-color-start: var(--brand-fgColor-redOrange-start);
+  --brand-Label-color-end: var(--brand-fgColor-redOrange-end);
 }
 
 .Label--color-teal {
-  --brand-Label-color: var(--brand-Label-color-teal);
+  --brand-Label-color: var(--brand-fgColor-teal);
 }
 
 .Label--color-yellow {
-  --brand-Label-color: var(--brand-Label-color-yellow);
+  --brand-Label-color: var(--brand-fgColor-yellow);
 }
 
 .Label__text {
