@@ -14,7 +14,7 @@ import type {AvatarProps} from '../'
 import findElementInChildren from '../findElementInChildren'
 
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/testimonial/base.css'
-import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/testimonial/colors.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/testimonial/colors-with-modes.css'
 
 import styles from './Testimonial.module.css'
 import {Colors, Gradients} from '../constants'
