@@ -25,6 +25,15 @@ test.describe('Visual Comparison: Timeline', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('Timeline / With Links', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-timeline-features--with-links&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Timeline / With Longer Text', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-timeline-features--with-longer-text&viewMode=story',

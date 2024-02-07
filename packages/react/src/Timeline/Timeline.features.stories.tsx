@@ -42,6 +42,22 @@ export const WithShorterText: StoryFn<typeof Timeline> = () => {
   )
 }
 
+export const WithLinks: StoryFn<typeof Timeline> = () => {
+  return (
+    <Timeline>
+      <Timeline.Item>
+        <em>GitHub Codespaces</em> offers a <a href="/">complete dev environment</a> in seconds.
+      </Timeline.Item>
+      <Timeline.Item>
+        <em>GitHub Copilot</em> is your AI pair programmer that empowers you.
+      </Timeline.Item>
+      <Timeline.Item>
+        <em>GitHub Actions</em> automates your build, test, and deployment workflows.
+      </Timeline.Item>
+    </Timeline>
+  )
+}
+
 export const WithLongerText: StoryFn<typeof Timeline> = () => {
   return (
     <Timeline>
