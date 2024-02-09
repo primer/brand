@@ -1,5 +1,23 @@
 # @primer/react-brand
 
+## 0.30.1
+
+### Patch Changes
+
+- [#523](https://github.com/primer/brand/pull/523) [`f6f4c66`](https://github.com/primer/brand/commit/f6f4c662c432cc223025339f860e805b657982fc) Thanks [@rezrah](https://github.com/rezrah)! - - Improved keyboard navigation for FAQ and accordion components.
+
+  - Pressing the escape key will now return focus to the closest accordion toggle.
+
+- [#529](https://github.com/primer/brand/pull/529) [`d00cf4e`](https://github.com/primer/brand/commit/d00cf4ef63f50c8dc0a53c02ffaafb62885a0e72) Thanks [@alexbuiltit](https://github.com/alexbuiltit)! - Added `className` forwarding to `Hero.Description`
+
+- [#533](https://github.com/primer/brand/pull/533) [`143c4f8`](https://github.com/primer/brand/commit/143c4f8fd82115595f88b67de4a7be4a1d8aec62) Thanks [@rezrah](https://github.com/rezrah)! - Add default inline link colors to Timeline.Item
+
+- [#532](https://github.com/primer/brand/pull/532) [`17df500`](https://github.com/primer/brand/commit/17df500b53996828c4e61d9c28ac735caab062a6) Thanks [@danielguillan](https://github.com/danielguillan)! - Adds color mode support to the Testimonial component
+
+- [#524](https://github.com/primer/brand/pull/524) [`365e01e`](https://github.com/primer/brand/commit/365e01e4dc0c04138126fcc0216fc8e48dae2a54) Thanks [@rezrah](https://github.com/rezrah)! - Added previously missing site title to SubdomainNavBar component menu on narrow viewports
+
+- [#517](https://github.com/primer/brand/pull/517) [`6874019`](https://github.com/primer/brand/commit/6874019d0ae3c6961060d2157b188ecc01f7e92c) Thanks [@rezrah](https://github.com/rezrah)! - Added Label child support for River and Bento component
+
 ## 0.30.0
 
 ### Minor Changes
