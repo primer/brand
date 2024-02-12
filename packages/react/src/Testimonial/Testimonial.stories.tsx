@@ -20,9 +20,9 @@ export default {
   argTypes: {
     quoteMarkColor: {
       control: {
-        type: 'radio',
-        options: TestimonialQuoteMarkColors,
+        type: 'inline-radio',
       },
+      options: TestimonialQuoteMarkColors,
     },
     name: {
       control: {type: 'text'},
@@ -38,7 +38,7 @@ export default {
     },
     type: {
       options: ['avatar', 'logo'],
-      control: {type: 'radio'},
+      control: {type: 'inline-radio'},
     },
     width: {
       control: {

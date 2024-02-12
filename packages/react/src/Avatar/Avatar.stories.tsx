@@ -17,16 +17,16 @@ export default {
     size: {
       description: 'The size of the Avatar',
       control: {
-        type: 'radio',
-        options: AvatarSizes,
+        type: 'inline-radio',
       },
+      options: AvatarSizes,
     },
     shape: {
       description: 'The shape of the Avatar',
       control: {
-        type: 'radio',
-        options: AvatarShapes,
+        type: 'inline-radio',
       },
+      options: AvatarShapes,
     },
     src: {
       description: 'The url of the image to display',

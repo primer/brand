@@ -33,7 +33,7 @@ export default {
       control: {
         type: 'inline-radio',
       },
-      options: [...ButtonVariants],
+      options: ButtonVariants,
     },
     href: {
       name: 'href',
@@ -48,7 +48,7 @@ export default {
       control: {
         type: 'inline-radio',
       },
-      options: [...ButtonSizes],
+      options: ButtonSizes,
     },
     children: {
       name: 'children',

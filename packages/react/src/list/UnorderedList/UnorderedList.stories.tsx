@@ -19,9 +19,9 @@ export default {
     variant: {
       description: 'Specify alternative leading visuals for list items',
       control: {
-        type: 'radio',
-        options: ['default', 'checked'],
+        type: 'inline-radio',
       },
+      options: ['default', 'checked'],
     },
     data: {
       name: 'Data',

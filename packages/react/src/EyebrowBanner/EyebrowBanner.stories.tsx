@@ -69,7 +69,7 @@ export default {
       control: {
         type: 'inline-radio',
       },
-      options: [...EyebrowBannerIconColors],
+      options: EyebrowBannerIconColors,
       table: {
         category: 'EyebrowBanner.Visual',
       },

@@ -38,7 +38,7 @@ export default {
     accentColor: {
       name: 'theme',
       control: 'radio',
-      options: [...Object.keys(themeDetailsMap)],
+      options: Object.keys(themeDetailsMap),
       table: {
         category: 'Theming',
       },

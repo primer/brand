@@ -20,8 +20,8 @@ export default {
       description: 'The HTML element used to render the root component.',
       control: {
         type: 'inline-radio',
-        options: ['section', 'large'],
       },
+      options: ['section', 'large'],
       table: {
         category: 'ComparisonTable',
       },
@@ -29,8 +29,8 @@ export default {
     variant: {
       control: {
         type: 'inline-radio',
-        options: ['undefined', 'default', 'minimal'],
       },
+      options: ['undefined', 'default', 'minimal'],
       table: {
         category: 'ComparisonTable',
       },

@@ -12,9 +12,9 @@ export default {
     align: {
       description: 'The alignment of the SectionIntro',
       control: {
-        type: 'radio',
-        options: ['start', 'center'],
+        type: 'inline-radio',
       },
+      options: ['start', 'center'],
     },
     children: {
       table: {

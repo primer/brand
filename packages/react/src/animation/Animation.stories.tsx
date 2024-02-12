@@ -35,7 +35,7 @@ Playground.argTypes = {
   variant: {
     control: {
       type: 'inline-radio',
-      options: AnimationVariants,
     },
+    options: AnimationVariants,
   },
 }
