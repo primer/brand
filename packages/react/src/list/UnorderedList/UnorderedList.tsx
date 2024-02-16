@@ -10,7 +10,7 @@ export type UnorderedListProps = PropsWithChildren<BaseProps<HTMLUListElement>> 
   /**
    * The semantic structure of list that is presented visually setting 'ol' vs 'ul' based on the style the style of the list.
    */
-  variant?: 'default' | 'checked'
+  variant?: 'default' | 'checked' | 'x'
 }
 
 function Root({variant = 'default', children, ...props}: UnorderedListProps) {
