@@ -4,9 +4,20 @@
   gap: var(--base-size-12);
 }
 
+.ListItem--default {
+  color: var(--brand-color-text-default);
+}
+
+.ListItem--muted {
+  color: var(--brand-color-text-muted);
+}
+
 .ListItem__leading-visual {
-  fill: var(--brand-color-text-muted);
   margin: var(--base-size-4) 0;
+}
+
+.ListItem__leading-visual--muted {
+  fill: var(--brand-color-text-muted);
 }
 
 .OrderedList__item::before {

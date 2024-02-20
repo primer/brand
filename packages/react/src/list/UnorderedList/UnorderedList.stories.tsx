@@ -20,7 +20,7 @@ export default {
       description: 'Specify alternative leading visuals for list items',
       control: {
         type: 'radio',
-        options: ['default', 'checked'],
+        options: ['default', 'checked', 'x'],
       },
     },
     data: {
