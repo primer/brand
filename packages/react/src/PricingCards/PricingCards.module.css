@@ -7,7 +7,8 @@
 /* 3. 3-column item styling                                   */
 /* 4. Dividers                                                */
 /* 5. Item inner layout                                       */
-/* 4. Content                                                 */
+/* 6. Content                                                 */
+/* 7. Feature list                                             */
 /* ---------------------------------------------------------- */
 
 /* ---------------------------------------------------------- */
@@ -147,13 +148,13 @@
       'heading'
       'description'
       'price'
-      'feature-list'
+      '``eature-list'
       'footnote';
   }
 }
 
 /* ---------------------------------------------------------- */
-/* 7. Content                                                 */
+/* 6. Content                                                 */
 /* ---------------------------------------------------------- */
 
 .PricingCards__label {
@@ -178,6 +179,41 @@
   grid-row: price;
   padding-block: var(--base-size-24);
 }
+
+.PricingCards__price-currency-symbol {
+  line-height: 1.4;
+}
+
+.PricingCards__price-value {
+  font-size: 56px;
+  line-height: 1;
+}
+
+.PricingCards__price-trailing-text {
+  align-self: center;
+}
+
+.PricingCards__actions {
+  grid-row: actions;
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-8);
+  align-items: flex-end;
+  padding-block-start: var(--base-size-24);
+}
+
+.PricingCards__footnote {
+  grid-row: footnote;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: var(--base-size-24);
+  margin-block-start: var(--base-size-40);
+}
+
+/* ---------------------------------------------------------- */
+/* 7. Feature list                                            */
+/* ---------------------------------------------------------- */
 
 .PricingCards__feature-list {
   display: flex;
@@ -206,41 +242,4 @@
 
 .PricingCards__feature-list + .PricingCards__feature-list-heading {
   margin-block-start: 24px;
-}
-
-.PricingCards__footnote {
-  grid-row: footnote;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: var(--base-size-24);
-}
-
-.PricingCards__actions {
-  grid-row: actions;
-  display: flex;
-  flex-direction: column;
-  gap: var(--base-size-8);
-  align-items: flex-end;
-  padding-block-start: var(--base-size-24);
-}
-
-.PricingCards__secondary-action {
-}
-
-.PricingCards__price-currency-symbol {
-  line-height: 1.4;
-}
-
-.PricingCards__price-value {
-  font-size: 56px;
-  line-height: 1;
-}
-
-.PricingCards__price-trailing-text {
-  align-self: center;
-}
-
-.PricingCards__footnote {
-  margin-block-start: var(--base-size-40);
 }
