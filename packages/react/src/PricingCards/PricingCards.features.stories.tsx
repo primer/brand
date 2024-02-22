@@ -24,7 +24,7 @@ const decorators = Story => (
 )
 
 export default {
-  title: 'Components/PricingCards/features',
+  title: 'Components/PricingCards/Features',
   component: PricingCards,
   decorators: [decorators],
 } as Meta<typeof PricingCards>
@@ -353,7 +353,6 @@ export const WithoutFeatures: StoryFn<typeof PricingCards> = () => {
           19
         </PricingCards.Price>
         <PricingCards.PrimaryAction href="/buy">Buy now</PricingCards.PrimaryAction>
-        <PricingCards.SecondaryAction href="/contact">Contact sales</PricingCards.SecondaryAction>
       </PricingCards.Item>
 
       <PricingCards.Item>
