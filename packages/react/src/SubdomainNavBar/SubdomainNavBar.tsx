@@ -253,7 +253,34 @@ function Root({
                 </button>
               )}
 
-              {isMedium && (
+            {!isMedium && (
+              <div
+                className={clsx(
+                  styles['SubdomainNavBar-menu-wrapper'],
+                  menuHidden && styles['SubdomainNavBar-menu-wrapper--close'],
+                )}
+              >
+                <div>
+                  {title && titleHref && (
+                    <Text as="p">
+                      <a
+                        href={titleHref}
+                        aria-label={`${title} home`}
+                        className={clsx(styles['SubdomainNavBar-link'], styles['SubdomainNavBar-link--title'])}
+                      >
+                        {title}
+                      </a>
+                    </Text>
+                  )}
+                  {hasLinks && !menuHidden && (
+                    <NavigationVisbilityObserver
+                      showOnlyOnNarrow
+                      className={clsx(styles['SubdomainNavBar-primary-nav-list--visible'])}
+                    >
+                      {menuItems}
+                    </NavigationVisbilityObserver>
+                  )}
+                </div>
                 <div
                   className={clsx(
                     styles['SubdomainNavBar-button-area'],

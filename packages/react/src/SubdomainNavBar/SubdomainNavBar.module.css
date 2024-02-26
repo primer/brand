@@ -256,6 +256,10 @@
   .SubdomainNavBar-link:first-of-type {
     padding-top: var(--base-size-24);
   }
+
+  .SubdomainNavBar-link--title {
+    font-weight: var(--base-text-weight-bold);
+  }
 }
 
 @media screen and (min-width: 48rem) {

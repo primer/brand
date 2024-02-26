@@ -53,3 +53,26 @@
   font-style: normal;
   font-weight: 500; /* TODO: update with token when available */
 }
+
+.Timeline__item a {
+  color: var(--brand-InlineLink-color-rest);
+  position: relative;
+  text-decoration: underline;
+  text-decoration-color: var(--brand-InlineLink-color-rest);
+  text-decoration-thickness: var(--brand-borderWidth-thin);
+  text-underline-position: under;
+  transition: var(--brand-InlineLink-transition-timing) text-decoration;
+}
+
+.Timeline__item a:hover {
+  text-decoration-thickness: var(--brand-borderWidth-thick);
+}
+
+.Timeline__item a {
+  font-weight: inherit;
+  color: var(--brand-InlineLink-color-rest);
+}
+
+.Timeline__item a:active {
+  color: var(--brand-InlineLink-color-pressed);
+}
