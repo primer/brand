@@ -7,16 +7,15 @@ declare const styles: {
   readonly "PricingCards__heading": string;
   readonly "PricingCards__description": string;
   readonly "PricingCards__price": string;
+  readonly "PricingCards__price-currency-symbol": string;
+  readonly "PricingCards__price-value": string;
+  readonly "PricingCards__price-trailing-text": string;
+  readonly "PricingCards__actions": string;
+  readonly "PricingCards__footnote": string;
   readonly "PricingCards__feature-list": string;
   readonly "PricingCards__feature-list-set": string;
   readonly "PricingCards__feature-list-heading": string;
   readonly "PricingCards__feature-list-item--excluded": string;
-  readonly "PricingCards__footnote": string;
-  readonly "PricingCards__actions": string;
-  readonly "PricingCards__secondary-action": string;
-  readonly "PricingCards__price-currency-symbol": string;
-  readonly "PricingCards__price-value": string;
-  readonly "PricingCards__price-trailing-text": string;
 };
 export = styles;
 

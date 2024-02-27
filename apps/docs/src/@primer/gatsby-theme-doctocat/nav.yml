@@ -54,6 +54,8 @@
       url: /components/OrderedList
     - title: Pillar
       url: /components/Pillar
+    - title: Pricing cards
+      url: /components/PricingCards
     - title: Prose
       url: /components/Prose
     - title: River

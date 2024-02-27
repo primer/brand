@@ -60,7 +60,7 @@
 
 @media (min-width: 80rem) {
   .PricingCards--items-2 {
-    --pricing-cards-item-gap: calc(var(--base-size-96) * 3);
+    --pricing-cards-item-gap: calc(var(--base-size-96) * 2);
     --pricing-cards-container-padding-inline: var(--base-size-64);
     --pricing-cards-container-padding-block: var(--base-size-48);
   }
