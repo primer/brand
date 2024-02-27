@@ -229,6 +229,7 @@ function SocialLogomarks({socialLinks, logoHref}: SocialLogomarksProps) {
       <li key={link.name}>
         <a
           href={link.url}
+          className={styles['Footer__social-link']}
           data-analytics-event={`{"category":"Footer","action":"go to ${link.fullName}","label":"text:${link.name}"}`}
         >
           <img

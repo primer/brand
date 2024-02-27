@@ -59,6 +59,10 @@
   padding-bottom: var(--base-size-48);
 }
 
+.Footer__social-link:hover .Footer__social-icon {
+  filter: var(--brand-footer-socialIcon-hoverFilter);
+}
+
 .Footer__social-icon {
   width: 24px;
   height: auto;
