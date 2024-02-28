@@ -640,10 +640,10 @@ export const ConditionalRendering = () => {
   )
 }
 
-export const withMainTag = () => {
+export const SkipToMainTag = () => {
   return (
     <>
-      <SubdomainNavBar title="With Main Tag" />
+      <SubdomainNavBar title="Skip to Main Tag" />
       <main
         style={{
           maxWidth: 1280,
@@ -664,10 +664,10 @@ export const withMainTag = () => {
   )
 }
 
-export const withMainTagWithId = () => {
+export const skipToMainTagWithId = () => {
   return (
     <>
-      <SubdomainNavBar title="With Main Tag" />
+      <SubdomainNavBar title="Skip to Main Tag with ID" />
       <main
         id="the-main-tag"
         style={{
