@@ -1,9 +1,10 @@
-import React, {forwardRef, PropsWithChildren, HTMLAttributes, type Ref} from 'react'
-import clsx from 'clsx'
 import {CheckIcon, XIcon} from '@primer/octicons-react'
-import {Button, ButtonBaseProps, Heading, HeadingProps, Text, UnorderedList, UnorderedListProps} from '..'
+import clsx from 'clsx'
+import React, {HTMLAttributes, PropsWithChildren, forwardRef, type Ref} from 'react'
 import {useAnimation} from '../animation'
 import type {BaseProps} from '../component-helpers'
+
+import {Button, ButtonBaseProps, Heading, HeadingProps, Label, Text, UnorderedList, UnorderedListProps} from '..'
 
 /**
  * Design tokens
@@ -20,6 +21,11 @@ export type PricingCardsProps<C extends keyof JSX.IntrinsicElements = 'section'>
    * The HTML element used to render the PricingCards.
    */
   as?: C | 'section' | 'div'
+  /**
+   * The layout of the PricingCards.
+   */
+  layout?: 'default' | 'cards'
+
   ['data-testid']?: string
 } & (C extends 'section' ? PropsWithChildren<BaseProps<HTMLElement>> : PropsWithChildren<BaseProps<HTMLDivElement>>)
 
@@ -39,11 +45,12 @@ const testIds = {
 const PricingCardsRoot = forwardRef(
   (
     {
+      animate,
+      as = 'section',
       children,
       className,
       'data-testid': testId,
-      animate,
-      as = 'section',
+      layout = 'default',
       style,
       ...rest
     }: PropsWithChildren<PricingCardsProps>,
@@ -67,6 +74,7 @@ const PricingCardsRoot = forwardRef(
       <Component
         className={clsx(
           styles.PricingCards,
+          styles[`PricingCards--layout-${layout}`],
           styles[`PricingCards--items-${filteredChildren.length}`],
           animationClasses,
           className,
@@ -92,20 +100,11 @@ export type PricingCardsItem<C extends keyof JSX.IntrinsicElements = 'article'> 
    * The HTML element used to render individual PricingCards items.
    */
   as?: C | 'article' | 'div'
-  featured?: boolean
 } & (C extends 'article' ? PropsWithChildren<BaseProps<HTMLElement>> : PropsWithChildren<BaseProps<HTMLDivElement>>)
 
 const PricingCardsItem = forwardRef(
   (
-    {
-      children,
-      className,
-      animate,
-      as = 'article',
-      featured = false,
-      style,
-      ...rest
-    }: PropsWithChildren<PricingCardsItem>,
+    {children, className, animate, as = 'article', style, ...rest}: PropsWithChildren<PricingCardsItem>,
     ref: Ref<HTMLDivElement>,
   ) => {
     const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
@@ -160,12 +159,7 @@ const PricingCardsItem = forwardRef(
 
     return (
       <Component
-        className={clsx(
-          styles.PricingCards__item,
-          {[styles[`PricingCards__item--featured`]]: featured},
-          animationClasses,
-          className,
-        )}
+        className={clsx(styles.PricingCards__item, animationClasses, className)}
         ref={ref}
         {...(rest as HTMLAttributes<HTMLElement>)}
         style={{...animationInlineStyles, ...style}}
@@ -183,9 +177,9 @@ type PricingCardsLabelProps = PropsWithChildren<BaseProps<HTMLSpanElement>>
 
 const PricingCardsLabel = forwardRef<HTMLSpanElement, PricingCardsLabelProps>(({children, className, ...rest}, ref) => {
   return (
-    <Text ref={ref} size="100" weight="semibold" className={clsx(styles.PricingCards__label, className)} {...rest}>
+    <Label ref={ref} size="medium" className={clsx(styles.PricingCards__label, className)} {...rest}>
       {children}
-    </Text>
+    </Label>
   )
 })
 

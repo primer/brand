@@ -3,12 +3,13 @@
 /* ---------------------------------------------------------- */
 /* Table of contents:                                         */
 /* 1. Container                                               */
-/* 2. Column layout                                           */
-/* 3. 3-column item styling                                   */
-/* 4. Dividers                                                */
-/* 5. Item inner layout                                       */
-/* 6. Content                                                 */
-/* 7. Feature list                                             */
+/* 2. Layout: default                                         */
+/* 3. Layout: cards                                           */
+/* 4. Single item                                             */
+/* 5. Multiple items                                          */
+/* 7. Item inner layout                                       */
+/* 8. Content                                                 */
+/* 9. Feature list                                             */
 /* ---------------------------------------------------------- */
 
 /* ---------------------------------------------------------- */
@@ -16,23 +17,110 @@
 /* ---------------------------------------------------------- */
 
 .PricingCards {
-  --pricing-cards-item-gap: var(--base-size-32);
-  --pricing-cards-container-padding-inline: var(--base-size-32);
-  --pricing-cards-container-padding-block: var(--base-size-40);
+  --pricing-cards-item-gap: var(--base-size-24);
+  --pricing-cards-container-padding-inline: 0;
 
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto;
   row-gap: var(--pricing-cards-item-gap);
-  padding-block: var(--pricing-cards-container-padding-inline);
-  padding-inline: var(--pricing-cards-container-padding-block);
+  padding-inline: var(--pricing-cards-container-padding-inline);
+}
+
+/* ---------------------------------------------------------- */
+/* 2. Layout: default                                         */
+/* ---------------------------------------------------------- */
+
+.PricingCards--layout-default {
   border-radius: var(--brand-borderRadius-xlarge);
   border: solid 1px var(--brand-color-border-default);
   background-color: var(--brand-color-canvas-default);
 }
 
+@media (min-width: 63.25rem) {
+  .PricingCards--layout-default {
+    padding-inline: var(--pricing-cards-container-padding-inline);
+  }
+}
+
+.PricingCards--layout-default .PricingCards__item {
+  position: relative; /* Used for positioning the divider between items */
+  padding-inline: var(--base-size-24);
+  padding-block: var(--base-size-24);
+}
+
+@media (min-width: 63.25rem) {
+  .PricingCards--layout-default .PricingCards__item {
+    padding-inline: 0;
+    padding-block: var(--base-size-40);
+  }
+}
+
+/* Horizontal divider between items on small viewports */
+.PricingCards--layout-default .PricingCards__item:nth-child(n + 2)::before {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  height: 1px;
+  margin-block-start: calc(var(--pricing-cards-item-gap) * -1);
+  background-color: var(--brand-color-border-default);
+}
+
+/* Vertical divider between items on larger viewports */
+@media (min-width: 63.25rem) {
+  .PricingCards--layout-default .PricingCards__item:nth-child(n + 2)::before {
+    inset-inline: 0;
+    inset-block: 0;
+    width: 1px;
+    height: auto;
+    margin-block-start: 0;
+    margin-inline-start: calc(var(--pricing-cards-item-gap) / 2 * -1);
+  }
+}
+
 /* ---------------------------------------------------------- */
-/* 2. Column layout                                           */
+/* 3. Layout: cards                                           */
+/* ---------------------------------------------------------- */
+
+.PricingCards--layout-cards .PricingCards__item {
+  padding-inline: var(--base-size-32);
+  border-radius: var(--brand-borderRadius-xlarge);
+  border: solid 1px var(--brand-color-border-default);
+  background-color: var(--brand-color-canvas-default);
+  padding-block: var(--base-size-32);
+}
+
+/* ---------------------------------------------------------- */
+/* 4. Single item                                             */
+/* ---------------------------------------------------------- */
+
+@media (min-width: 63.25rem) {
+  .PricingCards--items-1 {
+    --pricing-cards-container-padding-inline: var(--base-size-48);
+
+    display: block;
+  }
+
+  .PricingCards--items-1 .PricingCards__item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: calc(var(--base-size-96) * 2);
+    grid-template-rows: repeat(auto-fit, minmax(0, 1fr));
+    grid-template-areas:
+      'label actions'
+      'heading actions'
+      'description actions'
+      'price actions'
+      'feature-list actions';
+  }
+
+  .PricingCards--items-1 .PricingCards__actions {
+    align-self: center;
+  }
+}
+
+/* ---------------------------------------------------------- */
+/* 5. Multiple items                                          */
 /* ---------------------------------------------------------- */
 
 @media (min-width: 63.25rem) {
@@ -53,72 +141,21 @@
       'footnote';
   }
 
-  .PricingCards--items-2 {
+  .PricingCards--layout-default.PricingCards--items-2 {
     --pricing-cards-item-gap: var(--base-size-96);
+    --pricing-cards-container-padding-inline: var(--base-size-48);
+  }
+
+  .PricingCards--layout-default.PricingCards--items-3 {
+    --pricing-cards-item-gap: var(--base-size-64);
+    --pricing-cards-container-padding-inline: var(--base-size-24);
   }
 }
 
 @media (min-width: 80rem) {
-  .PricingCards--items-2 {
+  .PricingCards--layout-default.PricingCards--items-2 {
     --pricing-cards-item-gap: calc(var(--base-size-96) * 2);
-    --pricing-cards-container-padding-inline: var(--base-size-64);
-    --pricing-cards-container-padding-block: var(--base-size-48);
-  }
-}
-
-/* ---------------------------------------------------------- */
-/* 3. 3-column item styles                                    */
-/* ---------------------------------------------------------- */
-
-@media (min-width: 63.28rem) {
-  /* Remove styling from the container */
-  .PricingCards--items-3 {
-    border-radius: 0;
-    border: 0;
-    background-color: transparent;
-  }
-
-  .PricingCards--items-3 .PricingCards__item {
-    padding-block: var(--base-size-48);
-    padding-inline: var(--base-size-32);
-    border-radius: var(--brand-borderRadius-xlarge);
-    border: solid 1px var(--brand-color-border-default);
-    background-color: var(--brand-color-canvas-default);
-  }
-}
-
-/* ---------------------------------------------------------- */
-/* 4. Dividers                                                */
-/* ---------------------------------------------------------- */
-
-.PricingCards__item {
-  position: relative; /* Used for positioning the divider between items */
-}
-
-/* Horizontal border between items */
-.PricingCards__item:nth-child(n + 2)::before {
-  content: '';
-  position: absolute;
-  inset-inline: calc(var(--pricing-cards-container-padding-inline) * -1);
-  height: 1px;
-  margin-block-start: calc(var(--pricing-cards-item-gap) / 2 * -1);
-  background-color: var(--brand-color-border-default);
-}
-
-/* Vertical border between items */
-@media (min-width: 63.25rem) {
-  .PricingCards--items-2 .PricingCards__item:nth-child(2)::before {
-    inset-inline: 0;
-    inset-block: 0;
-    width: 1px;
-    height: auto;
-    margin-block-start: 0;
-    margin-inline-start: calc(var(--pricing-cards-item-gap) / 2 * -1);
-  }
-
-  /* No dividers on 3-column layout */
-  .PricingCards--items-3 .PricingCards__item::before {
-    content: none;
+    --pricing-cards-container-padding-inline: var(--base-size-48);
   }
 }
 
@@ -140,16 +177,19 @@
  * https://caniuse.com/?search=subgrid
  */
 @supports not (grid-template-rows: subgrid) {
-  .PricingCards__item {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    grid-template-areas:
-      'label'
-      'heading'
-      'description'
-      'price'
-      '``eature-list'
-      'footnote';
+  @media (min-width: 63.28rem) {
+    .PricingCards__item {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      grid-template-areas:
+        'label'
+        'heading'
+        'description'
+        'price'
+        'actions'
+        'feature-list'
+        'footnote';
+    }
   }
 }
 
@@ -158,15 +198,21 @@
 /* ---------------------------------------------------------- */
 
 .PricingCards__label {
+  /* Sets the color of the label to the primary accent color, if it exists */
+  --brand-Label-color: var(--brand-color-accent-primary);
+
+  /* Sets the color of the label to the primary accent gradient, if it exists */
+  /* TODO accent grandient tokens do not exist yet */
+  --brand-Label-color-start: var(--brand-color-accent-primary-start);
+  --brand-Label-color-end: var(--brand-color-accent-primary-end);
+
   grid-row: label;
-  padding-inline: 0;
-  color: var(--brand-color-accent-primary);
+  justify-self: flex-start;
 }
 
 .PricingCards__heading {
   grid-row: heading;
-  margin-block-start: var(--base-size-8);
-  margin-block-end: var(--base-size-16);
+  margin-block: var(--base-size-16);
 }
 
 .PricingCards__description {
