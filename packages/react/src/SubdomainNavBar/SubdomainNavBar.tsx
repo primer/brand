@@ -83,7 +83,7 @@ function Root({
   const [searchVisible, setSearchVisible] = useState(false)
   const {isSmall, isMedium} = useWindowSize()
   const [startOfContentButtonFocused, setStartOfContentButtonFocused] = useState(false)
-  const [mainTag, setMainTag] = useState<HTMLElement | undefined>(undefined)
+  const mainElRef = useRef<HTMLElement | null>(null)
   const startOfContentID = useId('start-of-content')
 
   const handleMobileMenuClick = () => setMenuHidden(!menuHidden)
@@ -91,11 +91,12 @@ function Root({
   const focusTrapRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    const main = document.getElementsByTagName('main')[0] as HTMLElement | undefined
-    if (!main) return
-    if (!main.id && startOfContentID) main.id = startOfContentID
-    setMainTag(main)
-  }, [setMainTag, startOfContentID])
+    const mainEl = document.querySelector('main')
+    if (mainEl) {
+      mainEl.id = mainEl.id || startOfContentID
+      mainElRef.current = mainEl
+    }
+  }, [startOfContentID])
 
   useFocusTrap({containerRef: focusTrapRef, restoreFocusOnCleanUp: true, disabled: menuHidden})
   useKeyboardEscape(() => {
@@ -158,7 +159,7 @@ function Root({
       >
         <Button
           as="a"
-          href={`#${mainTag?.id || startOfContentID}`}
+          href={`#${mainElRef.current?.id || startOfContentID}`}
           variant="primary"
           className={clsx(styles['SubdomainNavBar-skip-to-content'], !startOfContentButtonFocused && 'visually-hidden')}
           onFocus={setStartOfContentButtonFocusedTrue}
@@ -350,7 +351,7 @@ function Root({
           </div>
         </header>
       </div>
-      {!mainTag && <div id={`${startOfContentID}`} tabIndex={-1} />}
+      {!mainElRef.current && <div id={`${startOfContentID}`} tabIndex={-1} />}
     </>
   )
 }
