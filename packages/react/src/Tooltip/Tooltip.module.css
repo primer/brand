@@ -1,0 +1,25 @@
+.Tooltip {
+    display: none;
+}
+
+.Tooltip[popover] {
+    position: absolute;
+    padding: 0.5em 0.75em;
+    width: max-content;
+    margin: auto;
+    clip: auto;
+    white-space: normal;
+    font: normal normal 11px/1.5 var(----fontStack-system);
+    -webkit-font-smoothing: subpixel-antialiased;
+    color: var(--fgColor-onEmphasis);
+    text-align: center;
+    word-wrap: break-word;
+    background: var(--bgColor-emphasis);
+    border-radius: var(--borderRadius-medium);
+    border: 0;
+    opacity: 0;
+    max-width: 250px;
+    inset: auto;
+    /* for scrollbar */
+    overflow: visible;
+}
