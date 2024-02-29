@@ -7,6 +7,24 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: PricingCards', () => {
+  test('PricingCards / Default Presentation', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-pricingcards-features--default-presentation&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('PricingCards / Cards Presentation', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-pricingcards-features--cards-presentation&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('PricingCards / One Item', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pricingcards-features--one-item&viewMode=story',
@@ -28,6 +46,15 @@ test.describe('Visual Comparison: PricingCards', () => {
   test('PricingCards / Three Items', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pricingcards-features--three-items&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('PricingCards / Dark Color Mode', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-pricingcards-features--dark-color-mode&viewMode=story',
     )
 
     await page.waitForTimeout(500)
