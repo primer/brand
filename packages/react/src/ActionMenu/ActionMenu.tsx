@@ -21,7 +21,7 @@ import {default as clsx} from 'clsx'
 import {CheckIcon, ChevronDownIcon} from '@primer/octicons-react'
 import {useId} from '@reach/auto-id'
 
-import {FocusKeys, focusZone} from '@primer/behaviors'
+import {FocusKeys, PositionSettings, focusZone} from '@primer/behaviors'
 import type {BaseProps} from '../component-helpers'
 
 /**
@@ -48,7 +48,23 @@ const testIds = {
   },
 }
 
-type ActionMenuProps = {
+// primer behaviors doesn't export these values, recreating manually
+// https://github.com/primer/behaviors/blob/main/src/anchored-position.ts#L5
+export const actionMenuOverlaySides = [
+  'inside-top',
+  'inside-bottom',
+  'inside-left',
+  'inside-right',
+  'inside-center',
+  'outside-top',
+  'outside-bottom',
+  'outside-left',
+  'outside-right',
+] as PositionSettings['side'][]
+
+export type ActionMenuSizes = 'small' | 'medium'
+
+export type ActionMenuProps = {
   /**
    * The content of the ActionMenu. Must be an ActionMenu.Button and an ActionMenu.Overlay
    */
@@ -83,7 +99,32 @@ type ActionMenuProps = {
    * Horizontal alignment of the menu relative to the bottom of the button
    */
   menuAlignment?: 'start' | 'end'
+  /**
+   * Size configuratin of the ActionMenu
+   */
+  size?: ActionMenuSizes
+  /*
+   * Side the menu overlay appears
+   */
+  menuSide?: PositionSettings['side']
 } & BaseProps<HTMLDivElement>
+
+type ActionMenuContextType = {
+  size?: ActionMenuSizes
+  setSize?: React.Dispatch<React.SetStateAction<ActionMenuSizes | undefined>>
+}
+
+const ActionMenuContext = React.createContext<ActionMenuContextType>({})
+
+export const useActionMenuContext = (): ActionMenuContextType => {
+  return React.useContext(ActionMenuContext)
+}
+
+export const ActionMenuProvider: React.FC<ActionMenuProps> = ({size, children}) => {
+  const [currentSize, setSize] = useState(size)
+
+  return <ActionMenuContext.Provider value={{size: currentSize, setSize}}>{children}</ActionMenuContext.Provider>
+}
 
 const _ActionMenuRoot = memo(
   ({
@@ -94,6 +135,8 @@ const _ActionMenuRoot = memo(
     open = false,
     selectionVariant = 'none',
     menuAlignment = 'start',
+    size = 'medium',
+    menuSide,
     onSelect,
   }: ActionMenuProps) => {
     const [showMenu, setShowMenu] = useState(open)
@@ -195,9 +238,9 @@ const _ActionMenuRoot = memo(
       {
         floatingElementRef,
         anchorElementRef,
-        side: 'outside-bottom',
         align: menuAlignment,
         allowOutOfBounds: true,
+        side: menuSide,
       },
       [showMenu],
     )
@@ -215,11 +258,17 @@ const _ActionMenuRoot = memo(
             menuOpen: showMenu,
             disabled,
             id: `${instanceId}-button`,
+            size: size,
           })
         } else if (child.type === ActionMenuOverlay) {
           acc['Overlay'] = cloneElement(child as ReactElement<ActionMenuOverlayProps>, {
             ref: floatingElementRef as React.RefObject<HTMLUListElement>,
-            className: clsx(styles.ActionMenu__menu, position && styles['ActionMenu__menu--visible']),
+            className: clsx(
+              styles.ActionMenu__menu,
+              position && styles['ActionMenu__menu--visible'],
+              position && styles[`ActionMenu__menu--pos-${position.anchorSide}`],
+              size && styles[`ActionMenu__menu--${size}`],
+            ),
             style: {
               top: `${position?.top ?? 0}px`,
               left: `${position?.left ?? 0}px`,
@@ -241,14 +290,16 @@ const _ActionMenuRoot = memo(
     }, {})
 
     return (
-      <div
-        id={instanceId}
-        className={clsx(styles.ActionMenu, disabled && styles['ActionMenu--disabled'])}
-        data-testid={testId || testIds.root}
-      >
-        {SelectButton}
-        {showMenu ? SelectOverlay : null}
-      </div>
+      <ActionMenuProvider size={size}>
+        <div
+          id={instanceId}
+          className={clsx(styles.ActionMenu, disabled && styles['ActionMenu--disabled'])}
+          data-testid={testId || testIds.root}
+        >
+          {SelectButton}
+          {showMenu ? SelectOverlay : null}
+        </div>
+      </ActionMenuProvider>
     )
   },
 )
@@ -261,10 +312,11 @@ type ActionMenuButtonProps = PropsWithChildren<Ref<HTMLButtonElement>> & {
   disabled?: boolean
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
   'data-testid'?: string
+  size?: ActionMenuSizes
 }
 
 const ActionMenuButton = forwardRef<HTMLButtonElement, ActionMenuButtonProps>(
-  ({children, className, 'data-testid': testId, disabled, menuOpen, ...props}, ref) => {
+  ({children, className, 'data-testid': testId, disabled, menuOpen, size, ...props}, ref) => {
     return (
       <Button
         ref={ref}
@@ -275,6 +327,7 @@ const ActionMenuButton = forwardRef<HTMLButtonElement, ActionMenuButtonProps>(
         trailingVisual={<ChevronDownIcon />}
         disabled={disabled}
         data-testid={testId || testIds.button}
+        size={size}
         {...props}
       >
         <span className={styles['ActionMenu__button-text']}>{children}</span>
@@ -289,6 +342,7 @@ type ActionMenuItemProps = {
   selected?: boolean
   type?: 'none' | 'single'
   disabled?: boolean
+  size?: ActionMenuSizes
 } & PropsWithChildren<React.HTMLProps<HTMLLIElement>>
 
 const roleTypeMap = {
@@ -306,11 +360,14 @@ const ActionMenuItem = ({
   value,
   ...props
 }: ActionMenuItemProps) => {
+  const {size} = useActionMenuContext()
+
   return (
     <li
       className={clsx(
         styles.ActionMenu__item,
         type === 'single' && styles[`ActionMenu__item--selection-type-${type}`],
+        size && styles[`ActionMenu__item--${size}`],
         className,
       )}
       role={roleTypeMap[type || 'single']}
@@ -336,7 +393,7 @@ const ActionMenuItem = ({
       <span className={styles['ActionMenu__item-text']}>
         <Text
           variant={disabled ? 'muted' : 'default'}
-          size="200"
+          size={size === 'medium' ? '200' : '100'}
           className={clsx(disabled && styles['ActionMenu__item-content--disabled'])}
         >
           {children}
