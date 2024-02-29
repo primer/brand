@@ -258,7 +258,7 @@ const _ActionMenuRoot = memo(
             menuOpen: showMenu,
             disabled,
             id: `${instanceId}-button`,
-            size: size,
+            size,
           })
         } else if (child.type === ActionMenuOverlay) {
           acc['Overlay'] = cloneElement(child as ReactElement<ActionMenuOverlayProps>, {
@@ -267,7 +267,7 @@ const _ActionMenuRoot = memo(
               styles.ActionMenu__menu,
               position && styles['ActionMenu__menu--visible'],
               position && styles[`ActionMenu__menu--pos-${position.anchorSide}`],
-              size && styles[`ActionMenu__menu--${size}`],
+              styles[`ActionMenu__menu--${size}`],
             ),
             style: {
               top: `${position?.top ?? 0}px`,
