@@ -22,9 +22,9 @@ export type PricingCardsProps<C extends keyof JSX.IntrinsicElements = 'section'>
    */
   as?: C | 'section' | 'div'
   /**
-   * The layout of the PricingCards.
+   * The presentation style of the PricingCards.
    */
-  layout?: 'default' | 'cards'
+  presentation?: 'default' | 'cards'
 
   ['data-testid']?: string
 } & (C extends 'section' ? PropsWithChildren<BaseProps<HTMLElement>> : PropsWithChildren<BaseProps<HTMLDivElement>>)
@@ -50,7 +50,7 @@ const PricingCardsRoot = forwardRef(
       children,
       className,
       'data-testid': testId,
-      layout = 'default',
+      presentation: layout = 'default',
       style,
       ...rest
     }: PropsWithChildren<PricingCardsProps>,
