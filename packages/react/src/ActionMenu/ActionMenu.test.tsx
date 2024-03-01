@@ -321,4 +321,32 @@ describe('ActionMenu', () => {
     const updatedButton = getByText('Quote reply')
     expect(updatedButton).toBeInTheDocument()
   })
+
+  it('should render with the correct size', async () => {
+    const {getByTestId} = render(
+      <ActionMenu size="small">
+        <ActionMenu.Button>Open menu</ActionMenu.Button>
+        <ActionMenu.Overlay aria-label="Actions">
+          <ActionMenu.Item value="1" data-testid="option-1">
+            Option 1
+          </ActionMenu.Item>
+          <ActionMenu.Item value="2">Option 2</ActionMenu.Item>
+        </ActionMenu.Overlay>
+      </ActionMenu>,
+    )
+
+    const button = getByTestId(ActionMenu.testIds.button)
+    expect(button).toHaveClass('Button--size-small')
+
+    fireEvent.click(button)
+
+    await waitFor(
+      () => {
+        const menuitem = getByTestId('option-1')
+
+        expect(menuitem).toHaveClass('ActionMenu__item--small')
+      },
+      {timeout: 100},
+    )
+  })
 })

@@ -161,6 +161,16 @@
 
 /* size */
 
+.Button--size-small {
+  height: var(--brand-control-small-size);
+  padding: var(--brand-control-small-paddingBlock) var(--brand-control-small-paddingInline-normal);
+}
+
+.Button--label-large {
+  font-size: var(--brand-text-subhead-size-medium);
+  line-height: var(--brand-text-subhead-lineHeight-medium);
+}
+
 .Button--size-medium {
   height: var(--brand-control-medium-size);
   padding: var(--brand-control-medium-paddingBlock) var(--brand-control-medium-paddingInline-spacious);
