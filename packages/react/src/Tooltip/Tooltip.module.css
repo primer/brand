@@ -2,6 +2,13 @@
     display: none;
 }
 
+@media (forced-colors: active) {
+    .Tooltip {
+        outline: 1px solid transparent;
+    }
+}
+
+/* Overriding the default popover styles */
 .Tooltip[popover] {
     position: absolute;
     padding: 0.5em 0.75em;
@@ -9,7 +16,7 @@
     margin: auto;
     clip: auto;
     white-space: normal;
-    font: normal normal 11px/1.5 var(----fontStack-system);
+    font: normal normal 11px/1.5 var(--fontStack-system);
     -webkit-font-smoothing: subpixel-antialiased;
     color: var(--fgColor-onEmphasis);
     text-align: center;
@@ -22,4 +29,67 @@
     inset: auto;
     /* for scrollbar */
     overflow: visible;
+}
+
+.Tooltip[popover]:popover-open, /* selector in chrome is :popover-open */
+.Tooltip[popover].\:popover-open { /* selector in firefox and safari is \:popover-open */
+    display: block;
+    animation-name: tooltip-appear;
+    animation-duration: 0.1s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in;
+    animation-delay: 0s;
+}
+
+
+/* This is needed to keep the tooltip open when the user leaves the trigger element to hover tooltip */
+.Tooltip::after {
+  position: absolute;
+  display: block;
+  right: 0;
+  left: 0;
+  height: 8px; /* This is a "magic number". Just gives some room to make sure the tooltip stay open when mouse leaves the trigger to hover tooltip */
+  content: "";
+}
+
+/* Directional styles */
+&[data-direction='n']::after,
+&[data-direction='ne']::after,
+&[data-direction='nw']::after {
+    top: 100%;
+}
+
+&[data-direction='s']::after,
+&[data-direction='se']::after,
+&[data-direction='sw']::after {
+    bottom: 100%;
+}
+
+&[data-direction='w']::after {
+    position: absolute;
+    display: block;
+    height: 100%;
+    width: 8px; /* This is a "magic number". Just gives some room to make sure the tooltip stay open when mouse leaves the trigger to hover tooltip */
+    content: "";
+    bottom: 0;
+    left: 100%;
+}
+&[data-direction='e']::after {
+    position: absolute;
+    display: block;
+    height: 100%;
+    width: 8px;
+    content: "";
+    bottom: 0;
+    right: 100%;
+    margin-left: -8px; /* This is a "magic number". Just gives some room to make sure the tooltip stay open when mouse leaves the trigger to hover tooltip */
+}
+
+@keyframes tooltip-appear {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }

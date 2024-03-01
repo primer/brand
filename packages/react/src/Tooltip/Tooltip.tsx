@@ -1,137 +1,18 @@
 import React, {Children, useEffect, useRef, useState} from 'react'
-import type {SxProp} from '../sx'
-import sx from '../sx'
-import {useId, useProvidedRefOrCreate} from '../hooks'
-import {invariant} from '../utils/invariant'
-import {warning} from '../utils/warning'
-import styled from 'styled-components'
-import {get} from '../constants'
-import type {ComponentProps} from '../utils/types'
+import {useId} from '@reach/auto-id'
+import {useProvidedRefOrCreate} from '../hooks/useRef'
 import {getAnchoredPosition} from '@primer/behaviors'
 import type {AnchorSide, AnchorAlignment} from '@primer/behaviors'
 import {isSupported, apply} from '@oddbird/popover-polyfill/fn'
 
-const animationStyles = `
-  animation-name: tooltip-appear;
-  animation-duration: 0.1s;
-  animation-fill-mode: forwards;
-  animation-timing-function: ease-in;
-  animation-delay: 0s;
-`
-
-const StyledTooltip = styled.div`
-  /* Overriding the default popover styles */
-  display: none;
-  &[popover] {
-    position: absolute;
-    padding: 0.5em 0.75em;
-    width: max-content;
-    margin: auto;
-    clip: auto;
-    white-space: normal;
-    font: normal normal 11px/1.5 ${get('fonts.normal')};
-    -webkit-font-smoothing: subpixel-antialiased;
-    color: ${get('colors.fg.onEmphasis')};
-    text-align: center;
-    word-wrap: break-word;
-    background: ${get('colors.neutral.emphasisPlus')};
-    border-radius: ${get('radii.2')};
-    border: 0;
-    opacity: 0;
-    max-width: 250px;
-    inset: auto;
-    /* for scrollbar */
-    overflow: visible;
-  }
-  /* class name in chrome is :popover-open */
-  &[popover]:popover-open {
-    display: block;
-  }
-  /* class name in firefox and safari is \:popover-open */
-  &[popover].\\:popover-open {
-    display: block;
-  }
-
-  @media (forced-colors: active) {
-    outline: 1px solid transparent;
-  }
-
-  // This is needed to keep the tooltip open when the user leaves the trigger element to hover tooltip
-  &::after {
-    position: absolute;
-    display: block;
-    right: 0;
-    left: 0;
-    height: 8px;
-    content: '';
-  }
-
-  /* South, East, Southeast, Southwest after */
-  &[data-direction='n']::after,
-  &[data-direction='ne']::after,
-  &[data-direction='nw']::after {
-    top: 100%;
-  }
-  &[data-direction='s']::after,
-  &[data-direction='se']::after,
-  &[data-direction='sw']::after {
-    bottom: 100%;
-  }
-
-  &[data-direction='w']::after {
-    position: absolute;
-    display: block;
-    height: 100%;
-    width: 8px;
-    content: '';
-    bottom: 0;
-    left: 100%;
-  }
-  /* East before and after */
-  &[data-direction='e']::after {
-    position: absolute;
-    display: block;
-    height: 100%;
-    width: 8px;
-    content: '';
-    bottom: 0;
-    right: 100%;
-    margin-left: -8px;
-  }
-
-  /* Animation definition */
-  @keyframes tooltip-appear {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  /* Animation styles */
-  &:popover-open,
-  &:popover-open::before {
-    ${animationStyles}
-  }
-
-  /* Animation styles */
-  &.\\:popover-open,
-  &.\\:popover-open::before {
-    ${animationStyles}
-  }
-
-  ${sx};
-`
-
 type TooltipDirection = 'nw' | 'n' | 'ne' | 'e' | 'se' | 's' | 'sw' | 'w'
-export type TooltipProps = React.PropsWithChildren<
-  {
-    direction?: TooltipDirection
-    text: string
-    type?: 'label' | 'description'
-  } & SxProp &
-    ComponentProps<typeof StyledTooltip>
->
+export type TooltipProps = React.PropsWithChildren<{
+  direction?: TooltipDirection
+  id?: string
+  text: string
+  type?: 'label' | 'description'
+  children?: React.ReactNode
+}>
 
 export type TriggerPropsType = {
   'aria-describedby'?: string
@@ -181,6 +62,7 @@ const interactiveElements = [
 const isInteractive = (element: HTMLElement) => {
   return (
     interactiveElements.some(selector => element.matches(selector)) ||
+    element.tagName === 'BUTTON' ||
     (element.hasAttribute('role') && element.getAttribute('role') === 'button')
   )
 }
@@ -197,11 +79,13 @@ export const Tooltip = React.forwardRef(
 
     const openTooltip = () => {
       if (tooltipElRef.current && triggerRef.current && !tooltipElRef.current.matches(':popover-open')) {
+        // @ts-ignore-next-line
         tooltipElRef.current.showPopover()
       }
     }
     const closeTooltip = () => {
       if (tooltipElRef.current && triggerRef.current && tooltipElRef.current.matches(':popover-open')) {
+        // @ts-ignore-next-line
         tooltipElRef.current.hidePopover()
       }
     }
@@ -217,20 +101,32 @@ export const Tooltip = React.forwardRef(
       const hasInteractiveChild = Array.from(triggerChildren).some(child => {
         return child instanceof HTMLElement && isInteractive(child)
       })
-      invariant(
-        isTriggerInteractive || hasInteractiveChild,
-        'The `Tooltip` component expects a single React element that contains interactive content. Consider using a `<button>` or equivalent interactive element instead.',
-      )
+
+      if (
+        (isTriggerInteractive || hasInteractiveChild) &&
+        (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test')
+      ) {
+        throw new Error(
+          'The `Tooltip` component expects a single React element that contains interactive content. Consider using a `<button>` or equivalent interactive element instead.',
+        )
+      }
+
       // If the tooltip is used for labelling the interactive element, the trigger element or any of its children should not have aria-label
       if (type === 'label') {
         const hasAriaLabel = triggerRef.current.hasAttribute('aria-label')
         const hasAriaLabelInChildren = Array.from(triggerRef.current.childNodes).some(
           child => child instanceof HTMLElement && child.hasAttribute('aria-label'),
         )
-        warning(
-          hasAriaLabel || hasAriaLabelInChildren,
-          'The label type `Tooltip` is going to be used here to label the trigger element. Please remove the aria-label from the trigger element.',
-        )
+
+        if (
+          (hasAriaLabel || hasAriaLabelInChildren) &&
+          (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test')
+        ) {
+          // eslint-disable-next-line no-console
+          console.warn(
+            'The label type `Tooltip` is going to be used here to label the trigger element. Please remove the aria-label from the trigger element.',
+          )
+        }
       }
 
       // SSR safe polyfill apply
