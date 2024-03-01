@@ -35,7 +35,7 @@ import {ActionMenu} from '@primer/react-brand'
 ### Single selection
 
 In single selection mode it is important to apply an `aria-label` to the
-`ActionMenu.Overlay` child. This provides the user with important and durable
+`ActionMenu.Button` child. This provides the user with important and durable
 context on the selection they need to make.
 
 ```javascript live noinline
@@ -47,8 +47,10 @@ const App = () => {
       onSelect={(newValue) => setSelection(newValue)}
       selectionVariant="single"
     >
-      <ActionMenu.Button>{selection}</ActionMenu.Button>
-      <ActionMenu.Overlay aria-label="GitHub features">
+      <ActionMenu.Button aria-label="Select a GitHub feature">
+        {selection}
+      </ActionMenu.Button>
+      <ActionMenu.Overlay>
         <ActionMenu.Item value="Copilot" selected={'Copilot' === selection}>
           Copilot
         </ActionMenu.Item>
