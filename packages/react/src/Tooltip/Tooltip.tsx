@@ -1,9 +1,13 @@
 import React, {Children, useEffect, useRef, useState} from 'react'
+import clsx from 'clsx'
 import {useId} from '@reach/auto-id'
-import {useProvidedRefOrCreate} from '../hooks/useRef'
 import {getAnchoredPosition} from '@primer/behaviors'
 import type {AnchorSide, AnchorAlignment} from '@primer/behaviors'
 import {isSupported, apply} from '@oddbird/popover-polyfill/fn'
+import {useProvidedRefOrCreate} from '../hooks/useRef'
+
+/** * Main Stylesheet (as a CSS Module) */
+import styles from './Tooltip.module.css'
 
 type TooltipDirection = 'nw' | 'n' | 'ne' | 'e' | 'se' | 's' | 'sw' | 'w'
 export type TooltipProps = React.PropsWithChildren<{
@@ -12,6 +16,7 @@ export type TooltipProps = React.PropsWithChildren<{
   text: string
   type?: 'label' | 'description'
   children?: React.ReactNode
+  className?: string
 }>
 
 export type TriggerPropsType = {
@@ -62,14 +67,13 @@ const interactiveElements = [
 const isInteractive = (element: HTMLElement) => {
   return (
     interactiveElements.some(selector => element.matches(selector)) ||
-    element.tagName === 'BUTTON' ||
     (element.hasAttribute('role') && element.getAttribute('role') === 'button')
   )
 }
 export const TooltipContext = React.createContext<{tooltipId?: string}>({})
 
 export const Tooltip = React.forwardRef(
-  ({direction = 's', text, type = 'description', children, id, ...rest}: TooltipProps, forwardedRef) => {
+  ({direction = 's', text, type = 'description', children, id, className, ...rest}: TooltipProps, forwardedRef) => {
     const tooltipId = useId(id)
     const child = Children.only(children)
     const triggerRef = useProvidedRefOrCreate(forwardedRef as React.RefObject<HTMLElement>)
@@ -103,7 +107,7 @@ export const Tooltip = React.forwardRef(
       })
 
       if (
-        (isTriggerInteractive || hasInteractiveChild) &&
+        !(isTriggerInteractive || hasInteractiveChild) &&
         (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test')
       ) {
         throw new Error(
@@ -192,6 +196,7 @@ export const Tooltip = React.forwardRef(
               },
             })}
           <div
+            className={clsx(styles.Tooltip, className)}
             ref={tooltipElRef}
             data-direction={calculatedDirection}
             {...rest}

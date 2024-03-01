@@ -16,13 +16,13 @@
     margin: auto;
     clip: auto;
     white-space: normal;
-    font: normal normal 11px/1.5 var(--fontStack-system);
+    font: normal normal 11px/1.5 var(--brand-fontStack-sansSerif);
     -webkit-font-smoothing: subpixel-antialiased;
-    color: var(--fgColor-onEmphasis);
+    color: var(--brand-color-text-onEmphasis);
     text-align: center;
     word-wrap: break-word;
-    background: var(--bgColor-emphasis);
-    border-radius: var(--borderRadius-medium);
+    background: var(--brand-color-neutral-emphasisPlus);
+    border-radius: var(--brand-borderRadius-medium);
     border: 0;
     opacity: 0;
     max-width: 250px;

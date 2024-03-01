@@ -4,7 +4,7 @@ import {Tooltip} from './Tooltip'
 import {BookIcon} from '@primer/octicons-react'
 
 export default {
-  title: 'Components/TooltipV2/Features',
+  title: 'Components/Tooltip/Features',
   component: Tooltip,
 }
 
