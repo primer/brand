@@ -22,7 +22,141 @@ import {EyebrowBanner} from '@primer/react-brand'
 
 ## Examples
 
-### One-item layout
+### Default presentation
+
+```jsx live
+<PricingCards>
+  <PricingCards.Item>
+    <PricingCards.Label>Recommended</PricingCards.Label>
+    <PricingCards.Heading>Copilot</PricingCards.Heading>
+    <PricingCards.Description>
+      Copilot in the coding environment.
+    </PricingCards.Description>
+    <PricingCards.Price
+      currencySymbol="$"
+      trailingText="per month / $100 per year"
+    >
+      10
+    </PricingCards.Price>
+    <PricingCards.FeatureList>
+      <PricingCards.FeatureListItem>
+        Everything in Copilot Business plus:
+      </PricingCards.FeatureListItem>
+      <PricingCards.FeatureListItem>
+        Chat in IDE and Mobile
+      </PricingCards.FeatureListItem>
+      <PricingCards.FeatureListItem>
+        CLI assistance
+      </PricingCards.FeatureListItem>
+      <PricingCards.FeatureListItem>
+        Code completions
+      </PricingCards.FeatureListItem>
+    </PricingCards.FeatureList>
+    <PricingCards.PrimaryAction href="/buy">Buy now</PricingCards.PrimaryAction>
+    <PricingCards.SecondaryAction href="/contact">
+      Contact sales
+    </PricingCards.SecondaryAction>
+  </PricingCards.Item>
+
+  <PricingCards.Item>
+    <PricingCards.Label>Recommended</PricingCards.Label>
+    <PricingCards.Heading>Copilot Business</PricingCards.Heading>
+    <PricingCards.Description>
+      Copilot personalized to your organization throughout the software
+      development lifecycle. Requires GitHub Enterprise Cloud.
+    </PricingCards.Description>
+    <PricingCards.Price currencySymbol="$" trailingText="per user / month">
+      39
+    </PricingCards.Price>
+    <PricingCards.FeatureList>
+      <PricingCards.FeatureListItem>
+        Everything in Copilot Business plus:
+      </PricingCards.FeatureListItem>
+      <PricingCards.FeatureListItem>
+        Chat in IDE and Mobile
+      </PricingCards.FeatureListItem>
+      <PricingCards.FeatureListItem>
+        CLI assistance
+      </PricingCards.FeatureListItem>
+      <PricingCards.FeatureListItem>
+        Code completions
+      </PricingCards.FeatureListItem>
+    </PricingCards.FeatureList>
+    <PricingCards.PrimaryAction href="/buy">
+      Join waitlist
+    </PricingCards.PrimaryAction>
+  </PricingCards.Item>
+</PricingCards>
+```
+
+### Cards presentation
+
+```jsx live
+<PricingCards presentation="cards">
+  <PricingCards.Item>
+    <PricingCards.Label>Recommended</PricingCards.Label>
+    <PricingCards.Heading>Copilot</PricingCards.Heading>
+    <PricingCards.Description>
+      Copilot in the coding environment.
+    </PricingCards.Description>
+    <PricingCards.Price
+      currencySymbol="$"
+      trailingText="per month / $100 per year"
+    >
+      10
+    </PricingCards.Price>
+    <PricingCards.FeatureList>
+      <PricingCards.FeatureListItem>
+        Everything in Copilot Business plus:
+      </PricingCards.FeatureListItem>
+      <PricingCards.FeatureListItem>
+        Chat in IDE and Mobile
+      </PricingCards.FeatureListItem>
+      <PricingCards.FeatureListItem>
+        CLI assistance
+      </PricingCards.FeatureListItem>
+      <PricingCards.FeatureListItem>
+        Code completions
+      </PricingCards.FeatureListItem>
+    </PricingCards.FeatureList>
+    <PricingCards.PrimaryAction href="/buy">Buy now</PricingCards.PrimaryAction>
+    <PricingCards.SecondaryAction href="/contact">
+      Contact sales
+    </PricingCards.SecondaryAction>
+  </PricingCards.Item>
+
+  <PricingCards.Item>
+    <PricingCards.Label>Recommended</PricingCards.Label>
+    <PricingCards.Heading>Copilot Business</PricingCards.Heading>
+    <PricingCards.Description>
+      Copilot personalized to your organization throughout the software
+      development lifecycle. Requires GitHub Enterprise Cloud.
+    </PricingCards.Description>
+    <PricingCards.Price currencySymbol="$" trailingText="per user / month">
+      39
+    </PricingCards.Price>
+    <PricingCards.FeatureList>
+      <PricingCards.FeatureListItem>
+        Everything in Copilot Business plus:
+      </PricingCards.FeatureListItem>
+      <PricingCards.FeatureListItem>
+        Chat in IDE and Mobile
+      </PricingCards.FeatureListItem>
+      <PricingCards.FeatureListItem>
+        CLI assistance
+      </PricingCards.FeatureListItem>
+      <PricingCards.FeatureListItem>
+        Code completions
+      </PricingCards.FeatureListItem>
+    </PricingCards.FeatureList>
+    <PricingCards.PrimaryAction href="/buy">
+      Join waitlist
+    </PricingCards.PrimaryAction>
+  </PricingCards.Item>
+</PricingCards>
+```
+
+### One item
 
 This is the one-item layout for the pricing cards component
 
@@ -47,7 +181,7 @@ This is the one-item layout for the pricing cards component
 </PricingCards>
 ```
 
-### Two-item layout
+### Two items
 
 This is the two-item layout for the pricing cards component.
 
@@ -116,7 +250,7 @@ This is the two-item layout for the pricing cards component.
 </PricingCards>
 ```
 
-### Three-item layout
+### Three items
 
 This is the three-item layout for the pricing cards component.
 
@@ -516,11 +650,11 @@ Use `PricingCards.FeatureListItem` with `variant="included"` and `variant="exclu
 
 ### PricingCards <Label>Required</Label>
 
-| Name       | Type                |  Default  | required | Description                         |
-| :--------- | :------------------ | :-------: | :------: | :---------------------------------- |
-| `as`       | `section , div`     | `section` | `false`  | Applies the underlying HTML element |
-| `children` | `PricingCards.Item` |           |  `true`  | Applies the underlying HTML element |
-| `presentation` | `default, cards` |           |  `false`  | The presentation styling |
+| Name           | Type                |  Default  | required | Description                         |
+| :------------- | :------------------ | :-------: | :------: | :---------------------------------- |
+| `as`           | `section , div`     | `section` | `false`  | Applies the underlying HTML element |
+| `children`     | `PricingCards.Item` |           |  `true`  | Applies the underlying HTML element |
+| `presentation` | `default, cards`    |           | `false`  | The presentation styling            |
 
 ### PricingCards.Item <Label>Required</Label>
 
@@ -583,3 +717,5 @@ One item per pricing plan to be displayed. Maximum of 3 items.
 | Name       | Type        |   Default   | required | Description              |
 | :--------- | :---------- | :---------: | :------: | :----------------------- |
 | `children` | `ReactNode` | `undefined` |  `true`  | The footnote of the item |
+
+x

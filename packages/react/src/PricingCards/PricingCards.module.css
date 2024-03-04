@@ -31,33 +31,33 @@
 /* 2. Layout: default                                         */
 /* ---------------------------------------------------------- */
 
-.PricingCards--layout-default {
+.PricingCards--presentation-default {
   border-radius: var(--brand-borderRadius-xlarge);
   border: solid 1px var(--brand-color-border-default);
   background-color: var(--brand-color-canvas-default);
 }
 
 @media (min-width: 63.25rem) {
-  .PricingCards--layout-default {
+  .PricingCards--presentation-default {
     padding-inline: var(--pricing-cards-container-padding-inline);
   }
 }
 
-.PricingCards--layout-default .PricingCards__item {
+.PricingCards--presentation-default .PricingCards__item {
   position: relative; /* Used for positioning the divider between items */
   padding-inline: var(--base-size-24);
   padding-block: var(--base-size-24);
 }
 
 @media (min-width: 63.25rem) {
-  .PricingCards--layout-default .PricingCards__item {
+  .PricingCards--presentation-default .PricingCards__item {
     padding-inline: 0;
     padding-block: var(--base-size-40);
   }
 }
 
 /* Horizontal divider between items on small viewports */
-.PricingCards--layout-default .PricingCards__item:nth-child(n + 2)::before {
+.PricingCards--presentation-default .PricingCards__item:nth-child(n + 2)::before {
   content: '';
   position: absolute;
   inset-inline: 0;
@@ -68,7 +68,7 @@
 
 /* Vertical divider between items on larger viewports */
 @media (min-width: 63.25rem) {
-  .PricingCards--layout-default .PricingCards__item:nth-child(n + 2)::before {
+  .PricingCards--presentation-default .PricingCards__item:nth-child(n + 2)::before {
     inset-inline: 0;
     inset-block: 0;
     width: 1px;
@@ -82,7 +82,7 @@
 /* 3. Layout: cards                                           */
 /* ---------------------------------------------------------- */
 
-.PricingCards--layout-cards .PricingCards__item {
+.PricingCards--presentation-cards .PricingCards__item {
   padding-inline: var(--base-size-32);
   border-radius: var(--brand-borderRadius-xlarge);
   border: solid 1px var(--brand-color-border-default);
@@ -141,19 +141,19 @@
       'footnote';
   }
 
-  .PricingCards--layout-default.PricingCards--items-2 {
+  .PricingCards--presentation-default.PricingCards--items-2 {
     --pricing-cards-item-gap: var(--base-size-96);
     --pricing-cards-container-padding-inline: var(--base-size-48);
   }
 
-  .PricingCards--layout-default.PricingCards--items-3 {
+  .PricingCards--presentation-default.PricingCards--items-3 {
     --pricing-cards-item-gap: var(--base-size-64);
     --pricing-cards-container-padding-inline: var(--base-size-24);
   }
 }
 
 @media (min-width: 80rem) {
-  .PricingCards--layout-default.PricingCards--items-2 {
+  .PricingCards--presentation-default.PricingCards--items-2 {
     --pricing-cards-item-gap: calc(var(--base-size-96) * 2);
     --pricing-cards-container-padding-inline: var(--base-size-48);
   }

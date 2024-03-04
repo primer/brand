@@ -50,7 +50,7 @@ const PricingCardsRoot = forwardRef(
       children,
       className,
       'data-testid': testId,
-      presentation: layout = 'default',
+      presentation = 'default',
       style,
       ...rest
     }: PropsWithChildren<PricingCardsProps>,
@@ -58,14 +58,9 @@ const PricingCardsRoot = forwardRef(
   ) => {
     const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
 
-    const filteredChildren = React.Children.toArray(children).filter(child => {
-      if (React.isValidElement(child) && typeof child.type !== 'string') {
-        if (child.type === PricingCardsItem) {
-          return true
-        }
-      }
-      return false
-    })
+    const filteredChildren = React.Children.toArray(children).filter(
+      child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === PricingCardsItem,
+    )
 
     const validElements = ['div', 'section']
     const Component = validElements.includes(as) ? as : 'div'
@@ -74,7 +69,7 @@ const PricingCardsRoot = forwardRef(
       <Component
         className={clsx(
           styles.PricingCards,
-          styles[`PricingCards--layout-${layout}`],
+          styles[`PricingCards--presentation-${presentation}`],
           styles[`PricingCards--items-${filteredChildren.length}`],
           animationClasses,
           className,
@@ -84,12 +79,7 @@ const PricingCardsRoot = forwardRef(
         style={{...animationInlineStyles, ...style}}
         data-testid={testId || testIds.root}
       >
-        {filteredChildren.filter(child => {
-          if (React.isValidElement(child) && child.type === PricingCardsItem) {
-            return true
-          }
-          return false
-        })}
+        {filteredChildren.filter(child => React.isValidElement(child) && child.type === PricingCardsItem)}
       </Component>
     )
   },
