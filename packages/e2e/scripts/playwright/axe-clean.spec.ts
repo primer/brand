@@ -122,7 +122,7 @@ for (const story of storybookRoutes) {
           html: true,
         },
       })
-      
+
       violations = violations.filter(violation => {
         return !ignoreViolations.includes(violation.id)
       })
