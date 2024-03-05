@@ -1,0 +1,47 @@
+{
+  "brand": {
+    "PricingCards": {
+      "items": {
+        "gap": {
+          "value": "var(--base-size-24)"
+        },
+        "container": {
+          "padding": {
+            "inline": {
+              "value": "0"
+            }
+          }
+        }
+      },
+      "items-2": {
+        "gap": {
+          "value": "var(--base-size-96)",
+          "responsive": {
+            "1280px": {
+              "value": "calc(var(--base-size-96) * 2)"
+            }
+          }
+        },
+        "container": {
+          "padding": {
+            "inline": {
+              "value": "var(--base-size-48)"
+            }
+          }
+        }
+      },
+      "items-3": {
+        "gap": {
+          "value": "var(--base-size-64)"
+        },
+        "container": {
+          "padding": {
+            "inline": {
+              "value": "var(--base-size-24)"
+            }
+          }
+        }
+      }
+    }
+  }
+}
