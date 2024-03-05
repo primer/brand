@@ -61,6 +61,8 @@ const testsToSkip = [
   'recipes-feature-previews-level-1--level-one-side-by-side', // custom, unrelated background image
   'components-eyebrowbanner-features--on-custom-background-dark', // custom, unrelated background image
   'components-eyebrowbanner-features--on-custom-background-light', // custom, unrelated background image
+  'components-subdomainnavbar--skip-to-main-tag', // contains main tag which is in conflict with the default role="main" element
+  'components-subdomainnavbar--skip-to-main-tag-with-id' // contains main tag which is in conflict with the default role="main" element
 ]
 const testsWithCustomDelay = {
   'components-subdomainnavbar--mobile-menu-open': 5000, // takes a while for the menu to open
