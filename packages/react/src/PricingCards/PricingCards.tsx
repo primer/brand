@@ -9,7 +9,7 @@ import {Button, ButtonBaseProps, Heading, HeadingProps, Label, Text, UnorderedLi
 /**
  * Design tokens
  */
-// import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/pricing-cards/base.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/pricing-cards/pricing-cards.css'
 
 /**
  * Main stylesheet (as a CSS Module)

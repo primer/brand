@@ -7,9 +7,9 @@
 /* 3. Layout: cards                                           */
 /* 4. Single item                                             */
 /* 5. Multiple items                                          */
-/* 7. Item inner layout                                       */
-/* 8. Content                                                 */
-/* 9. Feature list                                             */
+/* 6. Item inner layout                                       */
+/* 7. Content                                                 */
+/* 8. Feature list                                             */
 /* ---------------------------------------------------------- */
 
 /* ---------------------------------------------------------- */
@@ -17,8 +17,8 @@
 /* ---------------------------------------------------------- */
 
 .PricingCards {
-  --pricing-cards-item-gap: var(--base-size-24);
-  --pricing-cards-container-padding-inline: 0;
+  --pricing-cards-item-gap: var(--brand-PricingCards-items-gap);
+  --pricing-cards-container-padding-inline: var(--brand-PricingCards-items-container-padding-inline);
 
   display: grid;
   grid-template-columns: 1fr;
@@ -142,25 +142,18 @@
   }
 
   .PricingCards--presentation-default.PricingCards--items-2 {
-    --pricing-cards-item-gap: var(--base-size-96);
-    --pricing-cards-container-padding-inline: var(--base-size-48);
+    --pricing-cards-item-gap: var(--brand-PricingCards-items-2-gap);
+    --pricing-cards-container-padding-inline: var(--brand-PricingCards-items-2-container-padding-inline);
   }
 
   .PricingCards--presentation-default.PricingCards--items-3 {
-    --pricing-cards-item-gap: var(--base-size-64);
-    --pricing-cards-container-padding-inline: var(--base-size-24);
-  }
-}
-
-@media (min-width: 80rem) {
-  .PricingCards--presentation-default.PricingCards--items-2 {
-    --pricing-cards-item-gap: calc(var(--base-size-96) * 2);
-    --pricing-cards-container-padding-inline: var(--base-size-48);
+    --pricing-cards-item-gap: var(--brand-PricingCards-items-3-gap);
+    --pricing-cards-container-padding-inline: var(--brand-PricingCards-items-3-container-padding-inline);
   }
 }
 
 /* ---------------------------------------------------------- */
-/* 5. Item inner layout                                       */
+/* 6. Item inner layout                                       */
 /* ---------------------------------------------------------- */
 
 @media (min-width: 63.28rem) {
@@ -173,8 +166,8 @@
 
 /*
  * Backwards compatibility for browsers that don't support subgrid.
- * Can be remove fully once subgrid is supported in the last 3 major versions of Safari.
- * https://caniuse.com/?search=subgrid
+ * Once subgrid is supported in the last 3 major versions of Safari (i.e., when Safari 18 is released), it can be fully removed.
+ * https://caniuse.com/css-subgrid
  */
 @supports not (grid-template-rows: subgrid) {
   @media (min-width: 63.28rem) {
@@ -194,7 +187,7 @@
 }
 
 /* ---------------------------------------------------------- */
-/* 6. Content                                                 */
+/* 7. Content                                                 */
 /* ---------------------------------------------------------- */
 
 .PricingCards__label {
@@ -258,7 +251,7 @@
 }
 
 /* ---------------------------------------------------------- */
-/* 7. Feature list                                            */
+/* 8. Feature list                                            */
 /* ---------------------------------------------------------- */
 
 .PricingCards__feature-list {
@@ -287,5 +280,5 @@
 }
 
 .PricingCards__feature-list + .PricingCards__feature-list-heading {
-  margin-block-start: 24px;
+  margin-block-start: var(--base-size-24);
 }
