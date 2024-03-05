@@ -17,15 +17,8 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 import styles from './PricingCards.module.css'
 
 export type PricingCardsProps<C extends keyof JSX.IntrinsicElements = 'section'> = React.HTMLAttributes<C> & {
-  /**
-   * The HTML element used to render the PricingCards.
-   */
   as?: C | 'section' | 'div'
-  /**
-   * The presentation style of the PricingCards.
-   */
   presentation?: 'default' | 'cards'
-
   ['data-testid']?: string
 } & (C extends 'section' ? PropsWithChildren<BaseProps<HTMLElement>> : PropsWithChildren<BaseProps<HTMLDivElement>>)
 
@@ -33,9 +26,10 @@ const testIds = {
   root: 'PricingCards',
   item: 'PricingCards__item',
   heading: 'PricingCards__heading',
+  label: 'PricingCards__label',
   description: 'PricingCards__description',
   price: 'PricingCards__price',
-  button: 'PricingCards__button',
+  primaryAction: 'PricingCards__primaryAction',
   featureList: 'PricingCards__featureList',
   featureListItem: 'PricingCards__featureListItem',
   featureListHeading: 'PricingCards__featureListHeading',
@@ -86,15 +80,21 @@ const PricingCardsRoot = forwardRef(
 )
 
 export type PricingCardsItem<C extends keyof JSX.IntrinsicElements = 'article'> = React.HTMLAttributes<C> & {
-  /**
-   * The HTML element used to render individual PricingCards items.
-   */
   as?: C | 'article' | 'div'
+  ['data-testid']?: string
 } & (C extends 'article' ? PropsWithChildren<BaseProps<HTMLElement>> : PropsWithChildren<BaseProps<HTMLDivElement>>)
 
 const PricingCardsItem = forwardRef(
   (
-    {children, className, animate, as = 'article', style, ...rest}: PropsWithChildren<PricingCardsItem>,
+    {
+      animate,
+      as = 'article',
+      'data-testid': testId,
+      children,
+      className,
+      style,
+      ...rest
+    }: PropsWithChildren<PricingCardsItem>,
     ref: Ref<HTMLDivElement>,
   ) => {
     const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
@@ -150,9 +150,10 @@ const PricingCardsItem = forwardRef(
     return (
       <Component
         className={clsx(styles.PricingCards__item, animationClasses, className)}
+        data-testid={testId || testIds.item}
         ref={ref}
-        {...(rest as HTMLAttributes<HTMLElement>)}
         style={{...animationInlineStyles, ...style}}
+        {...(rest as HTMLAttributes<HTMLElement>)}
       >
         {Content}
         {Actions.length > 0 && <div className={styles.PricingCards__actions}>{Actions}</div>}
@@ -163,27 +164,40 @@ const PricingCardsItem = forwardRef(
   },
 )
 
-type PricingCardsLabelProps = PropsWithChildren<BaseProps<HTMLSpanElement>>
+type PricingCardsLabelProps = PropsWithChildren<BaseProps<HTMLSpanElement>> & {
+  'data-testid'?: string
+}
 
-const PricingCardsLabel = forwardRef<HTMLSpanElement, PricingCardsLabelProps>(({children, className, ...rest}, ref) => {
-  return (
-    <Label ref={ref} size="medium" className={clsx(styles.PricingCards__label, className)} {...rest}>
-      {children}
-    </Label>
-  )
-})
+const PricingCardsLabel = forwardRef<HTMLSpanElement, PricingCardsLabelProps>(
+  ({children, className, 'data-testid': testId, ...rest}, ref) => {
+    return (
+      <Label
+        className={clsx(styles.PricingCards__label, className)}
+        data-testid={testId || testIds.label}
+        ref={ref}
+        size="medium"
+        {...rest}
+      >
+        {children}
+      </Label>
+    )
+  },
+)
 
-type PricingCardsDescriptionProps = PropsWithChildren<BaseProps<HTMLParagraphElement>>
+type PricingCardsDescriptionProps = PropsWithChildren<BaseProps<HTMLParagraphElement>> & {
+  'data-testid'?: string
+}
 
 const PricingCardsDescription = forwardRef<HTMLParagraphElement, PricingCardsDescriptionProps>(
-  ({children, className, ...rest}, ref) => {
+  ({children, className, 'data-testid': testId, ...rest}, ref) => {
     return (
       <Text
-        variant="muted"
-        ref={ref}
-        size="200"
         as="p"
         className={clsx(styles.PricingCards__description, className)}
+        data-testid={testId || testIds.description}
+        ref={ref}
+        size="200"
+        variant="muted"
         {...rest}
       >
         {children}
@@ -193,18 +207,20 @@ const PricingCardsDescription = forwardRef<HTMLParagraphElement, PricingCardsDes
 )
 
 type PricingCardsHeadingProps = BaseProps<HTMLHeadingElement> & {
-  children: React.ReactNode | React.ReactNode[]
   as?: Exclude<HeadingProps['as'], 'h1' | 'h2'>
+  children: React.ReactNode | React.ReactNode[]
+  'data-testid'?: string
 } & HeadingProps
 
 const PricingCardsHeading = forwardRef<HTMLHeadingElement, PricingCardsHeadingProps>(
-  ({children, as = 'h3', size = '5', className, ...rest}, ref) => {
+  ({as = 'h3', children, 'data-testid': testId, size = '5', className, ...rest}, ref) => {
     return (
       <Heading
-        size={size}
-        className={clsx(styles.PricingCards__heading, styles[`PricingCards__heading--size-${size}`], className)}
-        ref={ref}
         as={as}
+        className={clsx(styles.PricingCards__heading, styles[`PricingCards__heading--size-${size}`], className)}
+        data-testid={testId || testIds.heading}
+        ref={ref}
+        size={size}
         {...rest}
       >
         {children}
@@ -216,22 +232,41 @@ const PricingCardsHeading = forwardRef<HTMLHeadingElement, PricingCardsHeadingPr
 type PricingCardsPriceProps = PropsWithChildren<BaseProps<HTMLParagraphElement>> & {
   currencySymbol?: string
   currencySymbolPosition?: 'leading' | 'trailing'
+  'data-testid'?: string
   trailingText?: string
 }
 
 const PricingCardsPrice = forwardRef<HTMLParagraphElement, PricingCardsPriceProps>(
-  ({children, className, currencySymbol, currencySymbolPosition = 'leading', trailingText, ...rest}, ref) => {
+  (
+    {
+      children,
+      className,
+      currencySymbol,
+      currencySymbolPosition = 'leading',
+      'data-testid': testId,
+      trailingText,
+      ...rest
+    },
+    ref,
+  ) => {
     const currencySymbolMarkup = (
-      <Text as="span" size="500" weight="normal" className={styles['PricingCards__price-currency-symbol']}>
+      <Text as="span" className={styles['PricingCards__price-currency-symbol']} size="500" weight="normal">
         {currencySymbol}
       </Text>
     )
 
     return (
-      <Text as="p" weight="normal" ref={ref} className={clsx(styles.PricingCards__price, className)} {...rest}>
+      <Text
+        as="p"
+        className={clsx(styles.PricingCards__price, className)}
+        data-tesstid={testId || testIds.price}
+        ref={ref}
+        weight="normal"
+        {...rest}
+      >
         {currencySymbolPosition === 'leading' && currencySymbolMarkup}
 
-        <Text as="span" size="700" weight="normal" className={styles['PricingCards__price-value']}>
+        <Text as="span" className={styles['PricingCards__price-value']} size="700" weight="normal">
           {children}
         </Text>
 
@@ -240,10 +275,10 @@ const PricingCardsPrice = forwardRef<HTMLParagraphElement, PricingCardsPriceProp
         {trailingText && (
           <Text
             as="span"
-            size="100"
-            weight="light"
-            variant="muted"
             className={styles['PricingCards__price-trailing-text']}
+            size="100"
+            variant="muted"
+            weight="light"
           >
             {trailingText}
           </Text>
@@ -255,6 +290,7 @@ const PricingCardsPrice = forwardRef<HTMLParagraphElement, PricingCardsPriceProp
 
 type PricingCardsFeatureListProps = BaseProps<HTMLUListElement> & {
   children: React.ReactElement<PricingCardsFeatureHeadingProps | PricingCardsFeatureListItemProps>[]
+  'data-testid'?: string
 }
 
 type ValidFeatureListChildren = {
@@ -263,7 +299,7 @@ type ValidFeatureListChildren = {
 }[]
 
 const PricingCardsFeatureList = forwardRef<HTMLDivElement, PricingCardsFeatureListProps>(
-  ({children, className, ...rest}, ref) => {
+  ({children, className, 'data-testid': testId, ...rest}, ref) => {
     const FilteredChidlrenSets = React.Children.toArray(children).reduce<ValidFeatureListChildren>((acc, child) => {
       if (React.isValidElement(child) && child.type === PricingCardsFeatureListItem) {
         if (acc.length === 0) {
@@ -281,9 +317,13 @@ const PricingCardsFeatureList = forwardRef<HTMLDivElement, PricingCardsFeatureLi
     }, [])
 
     return (
-      <div ref={ref} className={clsx(styles['PricingCards__feature-list'], className)}>
+      <div
+        className={clsx(styles['PricingCards__feature-list'], className)}
+        data-testid={testId || testIds.featureList}
+        ref={ref}
+      >
         {FilteredChidlrenSets.map(({Heading: HeadingChild, Items}, index) => (
-          <div key={index} className={styles['PricingCards__feature-list-set']}>
+          <div className={styles['PricingCards__feature-list-set']} key={index}>
             {HeadingChild}
 
             <UnorderedList variant="checked" {...(rest as UnorderedListProps)}>
@@ -296,16 +336,19 @@ const PricingCardsFeatureList = forwardRef<HTMLDivElement, PricingCardsFeatureLi
   },
 )
 
-type PricingCardsFeatureHeadingProps = PropsWithChildren<BaseProps<HTMLHeadingElement>>
+type PricingCardsFeatureHeadingProps = PropsWithChildren<BaseProps<HTMLHeadingElement>> & {
+  'data-testid'?: string
+}
 
 const PricingCardsFeatureHeading = forwardRef<HTMLHeadingElement, PricingCardsFeatureHeadingProps>(
-  ({children, className, ...rest}, ref) => {
+  ({children, className, 'data-testid': testId, ...rest}, ref) => {
     return (
       <Heading
         as="h4"
-        size="subhead-medium"
         className={clsx(styles['PricingCards__feature-list-heading'], className)}
+        data-testid={testId || testIds.featureListHeading}
         ref={ref}
+        size="subhead-medium"
         {...rest}
       >
         {children}
@@ -315,11 +358,12 @@ const PricingCardsFeatureHeading = forwardRef<HTMLHeadingElement, PricingCardsFe
 )
 
 type PricingCardsFeatureListItemProps = PropsWithChildren<BaseProps<HTMLLIElement>> & {
+  'data-testid'?: string
   variant?: 'included' | 'excluded'
 }
 
 const PricingCardsFeatureListItem = forwardRef<HTMLLIElement, PricingCardsFeatureListItemProps>(
-  ({children, className, variant = 'included', ...rest}, ref) => {
+  ({children, className, variant = 'included', 'data-testid': testId, ...rest}, ref) => {
     const itemLeadingVisual = variant === 'included' ? CheckIcon : XIcon
     const itemLeadingVisualAriaLabel = variant === 'included' ? 'Includes' : 'Does not include'
     const itemLeadingVisualFill =
@@ -327,15 +371,16 @@ const PricingCardsFeatureListItem = forwardRef<HTMLLIElement, PricingCardsFeatur
 
     return (
       <UnorderedList.Item
-        ref={ref}
-        leadingVisual={itemLeadingVisual}
-        leadingVisualFill={itemLeadingVisualFill}
-        leadingVisualAriaLabel={itemLeadingVisualAriaLabel}
         className={clsx(
           styles['PricingCards__feature-list-item'],
           {[styles['PricingCards__feature-list-item--excluded']]: variant === 'excluded'},
           className,
         )}
+        data-testid={testId || testIds.featureListItem}
+        leadingVisual={itemLeadingVisual}
+        leadingVisualAriaLabel={itemLeadingVisualAriaLabel}
+        leadingVisualFill={itemLeadingVisualFill}
+        ref={ref}
         {...rest}
       >
         {children}
@@ -351,16 +396,18 @@ type RestrictedPolymorphism =
 type PricingCardsActionsProps = {
   as?: 'a' | 'button'
   href: string
+  'data-testid'?: string
 } & ButtonBaseProps &
   RestrictedPolymorphism
 
 const PricingCardsPrimaryAction = forwardRef<
   HTMLAnchorElement | HTMLButtonElement,
   PropsWithChildren<PricingCardsActionsProps>
->(({as, children, className, ...rest}, ref) => {
+>(({as, children, className, 'data-testid': testId, ...rest}, ref) => {
   return (
     <Button
       as={as}
+      data-testid={testId || testIds.primaryAction}
       className={clsx(styles['PricingCards__primary-action'], className)}
       size="medium"
       variant="primary"
@@ -376,11 +423,12 @@ const PricingCardsPrimaryAction = forwardRef<
 const PricingCardsSecondaryAction = forwardRef<
   HTMLAnchorElement | HTMLButtonElement,
   PropsWithChildren<PricingCardsActionsProps>
->(({as, children, className, ...rest}, ref) => {
+>(({as, children, className, 'data-testid': testId, ...rest}, ref) => {
   return (
     <Button
       as={as}
       className={clsx(styles['PricingCards__primary-action'], className)}
+      data-testid={testId || testIds.secondaryAction}
       variant="secondary"
       {...rest}
       ref={ref as React.Ref<HTMLButtonElement>}
@@ -391,18 +439,21 @@ const PricingCardsSecondaryAction = forwardRef<
   )
 })
 
-type PricingCardsFootnoteProps = PropsWithChildren<BaseProps<HTMLParagraphElement>>
+type PricingCardsFootnoteProps = PropsWithChildren<BaseProps<HTMLParagraphElement>> & {
+  'data-testid'?: string
+}
 
 const PricingCardsFootnote = forwardRef<HTMLParagraphElement, PricingCardsFootnoteProps>(
-  ({children, className, ...rest}, ref) => {
+  ({children, className, 'data-testid': testId, ...rest}, ref) => {
     return (
       <Text
         as="p"
+        className={clsx(styles.PricingCards__footnote, className)}
+        data-testid={testId || testIds.footnote}
         ref={ref}
         size="100"
-        weight="light"
         variant="muted"
-        className={clsx(styles.PricingCards__footnote, className)}
+        weight="light"
         {...rest}
       >
         {children}
@@ -416,16 +467,16 @@ const PricingCardsFootnote = forwardRef<HTMLParagraphElement, PricingCardsFootno
  * {@link https://primer.style/brand/components/PricingCards/ See usage examples}.
  */
 export const PricingCards = Object.assign(PricingCardsRoot, {
-  Item: PricingCardsItem,
-  Label: PricingCardsLabel,
-  Heading: PricingCardsHeading,
   Description: PricingCardsDescription,
-  Price: PricingCardsPrice,
   FeatureList: PricingCardsFeatureList,
   FeatureListHeading: PricingCardsFeatureHeading,
   FeatureListItem: PricingCardsFeatureListItem,
+  Footnote: PricingCardsFootnote,
+  Heading: PricingCardsHeading,
+  Item: PricingCardsItem,
+  Label: PricingCardsLabel,
+  Price: PricingCardsPrice,
   PrimaryAction: PricingCardsPrimaryAction,
   SecondaryAction: PricingCardsSecondaryAction,
-  Footnote: PricingCardsFootnote,
   testIds,
 })
