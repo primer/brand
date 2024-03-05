@@ -56,7 +56,6 @@ const testsToSkip = [
   'components-videoplayer-features--with-poster', // video makes this too flakey
   'components-videoplayer-features--without-branding', // video makes this too flakey
   'components-videoplayer--playground', // video makes this too flakey
-  'components-videoplayer--playground', // video makes this too flakey
   'recipes-feature-previews-level-1--level-one-side-by-side-enterprise', // video makes this too flakey
   'recipes-feature-previews-level-1--level-one-side-by-side', // custom, unrelated background image
   'components-eyebrowbanner-features--on-custom-background-dark', // custom, unrelated background image
