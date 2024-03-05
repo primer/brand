@@ -47,7 +47,7 @@ let page: Page
 
 let allViolations: Result[] = []
 
-const hostname = 'http://localhost:6006'
+const hostname = 'http://localhost:6006/iframe.html?viewMode=story'
 const testsToSkip = [
   'components-river--video', // video is an example and not an official primer pattern
   'components-subdomainnavbar--search-results-visible', // has been a11y remediated already,
@@ -64,6 +64,11 @@ const testsToSkip = [
 const testsWithCustomDelay = {
   'components-subdomainnavbar--mobile-menu-open': 5000, // takes a while for the menu to open
 }
+const ignoreViolations = [
+  'landmark-one-main', // on most of the sotries we don't have a main landmark
+  'page-has-heading-one', // on some stories we dont have a heading,
+  'region', // on some stories we don't have a region
+]
 const defaultDelay = 1000
 
 const storybookRoutes = Object.values(Stories.stories)
@@ -88,7 +93,7 @@ for (const story of storybookRoutes) {
     beforeAll(async () => {
       browser = await chromium.launch()
       page = await browser.newPage()
-      const route = `${hostname}?path=${story.path}`
+      const route = `${hostname}&id=${story.id}`
       // eslint-disable-next-line no-console
       console.info(`Navigating to ${route}`)
       await page.goto(route)
@@ -111,11 +116,15 @@ for (const story of storybookRoutes) {
     test('it completes AXE page validation', async () => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      const violations = await getViolations(page, null, {
+      let violations = await getViolations(page, null, {
         detailedReport: true,
         detailedReportOptions: {
           html: true,
         },
+      })
+      
+      violations = violations.filter(violation => {
+        return !ignoreViolations.includes(violation.id)
       })
 
       if (violations.length > 0) {
