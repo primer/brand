@@ -30,6 +30,7 @@ const testIds = {
   description: 'PricingCards__description',
   price: 'PricingCards__price',
   primaryAction: 'PricingCards__primaryAction',
+  secondaryAction: 'PricingCards__secondaryAction',
   featureList: 'PricingCards__featureList',
   featureListItem: 'PricingCards__featureListItem',
   featureListHeading: 'PricingCards__featureListHeading',
