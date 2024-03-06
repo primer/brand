@@ -45,7 +45,7 @@ const {describe, beforeAll, afterAll} = test
 let browser: Browser
 let page: Page
 
-let allViolations: Result[] = []
+const allViolations: Result[] = []
 
 const hostname = 'http://localhost:6006/iframe.html?viewMode=story'
 const testsToSkip = [
