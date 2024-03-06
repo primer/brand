@@ -62,7 +62,7 @@ export const Default = () => (
               <PricingCards.PrimaryAction href="/buy">Start a free trial</PricingCards.PrimaryAction>
             </PricingCards.Item>
 
-            <PricingCards.Item featured>
+            <PricingCards.Item>
               <PricingCards.Label>Recommended</PricingCards.Label>
               <PricingCards.Heading>Copilot Business</PricingCards.Heading>
               <PricingCards.Description>Copilot personalized to your organization.</PricingCards.Description>
