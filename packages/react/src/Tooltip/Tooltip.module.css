@@ -16,7 +16,7 @@
     margin: auto;
     clip: auto;
     white-space: normal;
-    font: normal normal 11px/1.5 var(--brand-fontStack-sansSerif);
+    font: normal normal var(--brand-text-size-100)/var(--brand-text-lineHeight-100) var(--brand-fontStack-sansSerif);
     -webkit-font-smoothing: subpixel-antialiased;
     color: var(--brand-color-text-onEmphasis);
     text-align: center;
@@ -53,19 +53,19 @@
 }
 
 /* Directional styles */
-&[data-direction='n']::after,
-&[data-direction='ne']::after,
-&[data-direction='nw']::after {
+[data-direction='n']::after,
+[data-direction='ne']::after,
+[data-direction='nw']::after {
     top: 100%;
 }
 
-&[data-direction='s']::after,
-&[data-direction='se']::after,
-&[data-direction='sw']::after {
+[data-direction='s']::after,
+[data-direction='se']::after,
+[data-direction='sw']::after {
     bottom: 100%;
 }
 
-&[data-direction='w']::after {
+[data-direction='w']::after {
     position: absolute;
     display: block;
     height: 100%;
@@ -74,7 +74,7 @@
     bottom: 0;
     left: 100%;
 }
-&[data-direction='e']::after {
+[data-direction='e']::after {
     position: absolute;
     display: block;
     height: 100%;

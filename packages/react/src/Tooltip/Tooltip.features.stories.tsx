@@ -1,4 +1,5 @@
 import React from 'react'
+import type {Meta} from '@storybook/react'
 import {Button, Box, Link, Stack} from '..'
 import {Tooltip} from './Tooltip'
 import {BookIcon} from '@primer/octicons-react'
@@ -6,7 +7,7 @@ import {BookIcon} from '@primer/octicons-react'
 export default {
   title: 'Components/Tooltip/Features',
   component: Tooltip,
-}
+} as Meta<typeof Tooltip>
 
 export const AnchorHasMargin = () => (
   <Box padding="spacious">
@@ -36,7 +37,7 @@ export const DescriptionType = () => (
 )
 
 export const AllDirections = () => (
-  <Stack gap="spacious" padding="spacious">
+  <Stack gap="spacious" padding="spacious" direction="horizontal">
     <Tooltip direction="n" text="Supplementary text">
       <Button>North</Button>
     </Tooltip>

@@ -11,7 +11,7 @@ export default {
 } as Meta<typeof Tooltip>
 
 export const Default = () => (
-  <Box>
+  <Box padding="spacious">
     <Tooltip text="Hello, Tooltip!">
       <Button>Hover me</Button>
     </Tooltip>
@@ -23,7 +23,7 @@ export const Playground = args => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const {text, type, ...rest} = args
   return (
-    <Box sx={{p: 6}}>
+    <Box padding="spacious">
       <Tooltip text={text} type="description" {...rest}>
         <Button>Delete</Button>
       </Tooltip>
