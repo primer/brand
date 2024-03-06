@@ -3,7 +3,7 @@ import {getAnchoredPosition} from '@primer/behaviors'
 import type {AnchorPosition, PositionSettings} from '@primer/behaviors'
 import {useResizeObserver} from './useResizeObserver'
 
-export interface AnchoredPositionHookSettings extends Partial<PositionSettings> {
+export type AnchoredPositionHookSettings = Partial<PositionSettings> & {
   floatingElementRef?: React.RefObject<Element>
   anchorElementRef?: React.RefObject<Element>
 }
@@ -33,7 +33,11 @@ export function useAnchoredPosition(
   const updatePosition = useCallback(
     () => {
       if (floatingElementRef.current instanceof Element && anchorElementRef.current instanceof Element) {
-        setPosition(getAnchoredPosition(floatingElementRef.current, anchorElementRef.current, settings))
+        const anchoredPosition = getAnchoredPosition(floatingElementRef.current, anchorElementRef.current, {
+          side: settings?.side,
+          align: settings?.align,
+        })
+        setPosition(anchoredPosition)
       } else {
         setPosition(undefined)
       }

@@ -9,6 +9,7 @@ description: Use the action menu component to display a list of actions or selec
 
 import {Label} from '@primer/react'
 import {PropTableValues} from '../../src/components'
+import {actionMenuOverlaySides} from '@primer/react-brand'
 
 ```js
 import {ActionMenu} from '@primer/react-brand'
@@ -33,6 +34,10 @@ import {ActionMenu} from '@primer/react-brand'
 
 ### Single selection
 
+In single selection mode it is important to apply an `aria-label` to the
+`ActionMenu.Button` child. This provides the user with important and durable
+context on the selection they need to make.
+
 ```javascript live noinline
 const App = () => {
   const [selection, setSelection] = React.useState('Copilot')
@@ -42,8 +47,10 @@ const App = () => {
       onSelect={(newValue) => setSelection(newValue)}
       selectionVariant="single"
     >
-      <ActionMenu.Button>{selection}</ActionMenu.Button>
-      <ActionMenu.Overlay aria-label="GitHub features">
+      <ActionMenu.Button aria-label="Select a GitHub feature">
+        {selection}
+      </ActionMenu.Button>
+      <ActionMenu.Overlay>
         <ActionMenu.Item value="Copilot" selected={'Copilot' === selection}>
           Copilot
         </ActionMenu.Item>
@@ -64,17 +71,42 @@ const App = () => {
 render(<App />)
 ```
 
+### Sizes
+
+`ActionMenu` is currently available in `small` and `medium` sizes, with the latter being the default.
+
+```jsx live
+<Stack direction="horizontal" alignItems="center" gap={112}>
+  <ActionMenu size="small">
+    <ActionMenu.Button>Small</ActionMenu.Button>
+    <ActionMenu.Overlay aria-label="Menu items">
+      <ActionMenu.Item value="Item 1">Item 1</ActionMenu.Item>
+      <ActionMenu.Item value="Item 2">Item 2</ActionMenu.Item>
+    </ActionMenu.Overlay>
+  </ActionMenu>
+  <ActionMenu size="medium">
+    <ActionMenu.Button>Medium</ActionMenu.Button>
+    <ActionMenu.Overlay aria-label="Menu items">
+      <ActionMenu.Item value="Item 1">Item 1</ActionMenu.Item>
+      <ActionMenu.Item value="Item 2">Item 2</ActionMenu.Item>
+    </ActionMenu.Overlay>
+  </ActionMenu>
+</Stack>
+```
+
 ## Component props
 
 ### ActionMenu <Label>Required</Label>
 
-| name               | type                                                          | default  | required  | description                                                           |
-| ------------------ | ------------------------------------------------------------- | -------- | --------- | --------------------------------------------------------------------- |
-| `disabled`         | `boolean`                                                     | `false`  | `false`   | Controls the ActionMenu active/inactive state                         |
-| `open`             | `boolean`                                                     | `false`  | `false`   | Determines whether the ActionMenu is open by default                  |
-| `onSelect`         | `(newValue: string) => void`                                  |          | `false`   | Callback that is called when an item is selected                      |
-| `selectionVariant` | <PropTableValues values={['single', 'none']} addLineBreaks /> | `'none'` | `false`   | The selection variant of the ActionMenu                               |
-| `menuAlignment`    | <PropTableValues values={['start', 'end']} addLineBreaks />   |          | `'start'` | Horizontal alignment of the menu relative to the bottom of the button |
+| name               | type                                                              | default     | required | description                                                           |
+| ------------------ | ----------------------------------------------------------------- | ----------- | -------- | --------------------------------------------------------------------- |
+| `disabled`         | `boolean`                                                         | `false`     | `false`  | Controls the ActionMenu active/inactive state                         |
+| `open`             | `boolean`                                                         | `false`     | `false`  | Determines whether the ActionMenu is open by default                  |
+| `onSelect`         | `(newValue: string) => void`                                      |             | `false`  | Callback that is called when an item is selected                      |
+| `selectionVariant` | <PropTableValues values={['single', 'none']} addLineBreaks />     | `'none'`    | `false`  | The selection variant of the ActionMenu                               |
+| `menuAlignment`    | <PropTableValues values={['start', 'end']} addLineBreaks />       | `start`     | `false`  | Horizontal alignment of the menu relative to the bottom of the button |
+| `size`             | <PropTableValues values={['small', 'medium']} addLineBreaks />    | `medium`    | `false`  | Size configuration of the ActionMenu                                  |
+| `menuSide`         | <PropTableValues values={actionMenuOverlaySides} addLineBreaks /> | `undefined` | `false`  | Location of the menu overlay                                          |
 
 ### ActionMenu.Button <Label>Required</Label>
 

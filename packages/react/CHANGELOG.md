@@ -1,5 +1,59 @@
 # @primer/react-brand
 
+## 0.30.3
+
+### Patch Changes
+
+- [#541](https://github.com/primer/brand/pull/541) [`392d4c4`](https://github.com/primer/brand/commit/392d4c4ba4d74a4c66b39a5e6d7cbeef7798237d) Thanks [@danielguillan](https://github.com/danielguillan)! - Adds hover states to the social icon links in MinimalFooter
+
+- [#542](https://github.com/primer/brand/pull/542) [`79fa589`](https://github.com/primer/brand/commit/79fa589838fcac3bfc532e68e03955900c5993d7) Thanks [@rezrah](https://github.com/rezrah)! - - Added new `size` option to `ActionMenu`
+
+  - Improved, automatic overlay positioning dependent on the action menu's location in the viewport.
+
+  Example:
+
+  ```jsx
+  <>
+    <ActionMenu size="small">
+      <ActionMenu.Button>Small</ActionMenu.Button>
+      <ActionMenu.Overlay aria-label="Menu items">
+        <ActionMenu.Item value="Item 1">Item 1</ActionMenu.Item>
+        <ActionMenu.Item value="Item 2">Item 2</ActionMenu.Item>
+      </ActionMenu.Overlay>
+    </ActionMenu>
+    <ActionMenu size="medium">
+      <ActionMenu.Button>Medium</ActionMenu.Button>
+      <ActionMenu.Overlay aria-label="Menu items">
+        <ActionMenu.Item value="Item 1">Item 1</ActionMenu.Item>
+        <ActionMenu.Item value="Item 2">Item 2</ActionMenu.Item>
+      </ActionMenu.Overlay>
+    </ActionMenu>
+  </>
+  ```
+
+  🔗 [See the documentation for more examples](https://primer.style/brand/components/ActionMenu#sizes)
+
+## 0.30.2
+
+### Patch Changes
+
+- [#534](https://github.com/primer/brand/pull/534) [`f196cea`](https://github.com/primer/brand/commit/f196cea112da9f78696fb9917b50391f16427897) Thanks [@rezrah](https://github.com/rezrah)! - Added `x` variant to `UnorderedList`, and `leadingVisual`, `variant`, `leadingVisualAriaLabel` and `leadingVisualFill` props to list items.
+
+  Example:
+
+  ```jsx
+  <UnorderedList variant="x">
+    <UnorderedList.Item leadingVisual={CheckIcon} leadingVisualFill="green">
+      Check icon override in green
+    </UnorderedList.Item>
+    <UnorderedList.Item leadingVisualFill="orange">X icon in orange</UnorderedList.Item>
+    <UnorderedList.Item leadingVisualFill="red">X icon in red</UnorderedList.Item>
+    <UnorderedList.Item leadingVisualFill="blue">X icon in blue</UnorderedList.Item>
+    <UnorderedList.Item leadingVisualFill="purple">X icon in purple</UnorderedList.Item>{' '}
+    <UnorderedList.Item variant="muted">Muted text color</UnorderedList.Item>
+  </UnorderedList>
+  ```
+
 ## 0.30.1
 
 ### Patch Changes

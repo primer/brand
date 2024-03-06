@@ -16,10 +16,26 @@ test.describe('Visual Comparison: ActionMenu', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('ActionMenu / Single Selection Small Open', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--single-selection-small-open&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('ActionMenu / In Stack', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--in-stack&viewMode=story',
     )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('ActionMenu / Sizes', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--sizes&viewMode=story')
 
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
@@ -73,6 +89,24 @@ test.describe('Visual Comparison: ActionMenu', () => {
   test('ActionMenu / Disabled Menu', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--disabled-menu&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('ActionMenu / Anchored Positioning', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--anchored-positioning&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('ActionMenu / Anchored Positioning Overrides', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--anchored-positioning-overrides&viewMode=story',
     )
 
     await page.waitForTimeout(500)

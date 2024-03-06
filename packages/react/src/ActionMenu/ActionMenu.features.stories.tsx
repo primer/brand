@@ -2,9 +2,9 @@ import {Meta} from '@storybook/react'
 import React from 'react'
 import {userEvent, within, waitFor} from '@storybook/testing-library'
 import {expect} from '@storybook/jest'
-import {ActionMenu} from './ActionMenu'
+import {ActionMenu, actionMenuOverlaySides, ActionMenuProps} from './ActionMenu'
 import {countries} from '../test-utils/fixtures/data'
-import {Heading, Stack, Text, OrderedList} from '../'
+import {Heading, Stack, Text, OrderedList, Box, Grid} from '../'
 
 import styles from './ActionMenu.stories.module.css'
 
@@ -18,6 +18,27 @@ export const SingleSelection = () => {
 
   return (
     <ActionMenu onSelect={newValue => setSelectedItem(newValue)} selectionVariant="single">
+      <ActionMenu.Button>{selectedItem}</ActionMenu.Button>
+      <ActionMenu.Overlay aria-label="GitHub features">
+        <ActionMenu.Item value="Copilot" selected={'Copilot' === selectedItem}>
+          Copilot
+        </ActionMenu.Item>
+        <ActionMenu.Item value="Codespaces" selected={'Codespaces' === selectedItem}>
+          Codespaces
+        </ActionMenu.Item>
+        <ActionMenu.Item value="CodeQL" selected={'CodeQL' === selectedItem}>
+          CodeQL
+        </ActionMenu.Item>
+      </ActionMenu.Overlay>
+    </ActionMenu>
+  )
+}
+
+export const SingleSelectionSmallOpen = () => {
+  const [selectedItem, setSelectedItem] = React.useState('Copilot')
+
+  return (
+    <ActionMenu size="small" onSelect={newValue => setSelectedItem(newValue)} selectionVariant="single" open>
       <ActionMenu.Button>{selectedItem}</ActionMenu.Button>
       <ActionMenu.Overlay aria-label="GitHub features">
         <ActionMenu.Item value="Copilot" selected={'Copilot' === selectedItem}>
@@ -64,6 +85,24 @@ export const InStack = () => {
           ))}
         </ActionMenu.Overlay>
       </ActionMenu>
+    </Stack>
+  )
+}
+
+export const Sizes = () => {
+  const sizes = ['small', 'medium'] as ActionMenuProps['size'][]
+
+  return (
+    <Stack direction="horizontal" alignItems="center" gap={112}>
+      {sizes.map(size => (
+        <ActionMenu key={size?.toString()} size={size}>
+          <ActionMenu.Button>{size}</ActionMenu.Button>
+          <ActionMenu.Overlay aria-label="GitHub features">
+            <ActionMenu.Item value="Copilot">Copilot</ActionMenu.Item>
+            <ActionMenu.Item value="Copilot">Advanced Security</ActionMenu.Item>
+          </ActionMenu.Overlay>
+        </ActionMenu>
+      ))}
     </Stack>
   )
 }
@@ -188,6 +227,43 @@ export const DisabledMenu = () => {
         </ActionMenu.Item>
       </ActionMenu.Overlay>
     </ActionMenu>
+  )
+}
+
+export const AnchoredPositioning = () => {
+  return (
+    <Box style={{height: '90dvh', display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end'}}>
+      <ActionMenu selectionVariant="single" open>
+        <ActionMenu.Button>Open menu</ActionMenu.Button>
+        <ActionMenu.Overlay aria-label="GitHub features">
+          <ActionMenu.Item value="Copilot">Copilot</ActionMenu.Item>
+          <ActionMenu.Item value="Codespaces">Codespaces</ActionMenu.Item>
+          <ActionMenu.Item value="CodeQL">CodeQL</ActionMenu.Item>
+        </ActionMenu.Overlay>
+      </ActionMenu>
+    </Box>
+  )
+}
+
+export const AnchoredPositioningOverrides = () => {
+  return (
+    <Grid enableOverlay>
+      {actionMenuOverlaySides.map(side => (
+        <Grid.Column key={side} span={{large: 4}}>
+          <Stack direction="vertical" padding="condensed">
+            <ActionMenu selectionVariant="single" menuSide={side}>
+              <ActionMenu.Button>Open menu</ActionMenu.Button>
+              <ActionMenu.Overlay aria-label="GitHub features">
+                <ActionMenu.Item value="Copilot">Copilot</ActionMenu.Item>
+                <ActionMenu.Item value="Codespaces">Codespaces</ActionMenu.Item>
+                <ActionMenu.Item value="CodeQL">CodeQL</ActionMenu.Item>
+              </ActionMenu.Overlay>
+            </ActionMenu>
+            <Text>{side}</Text>
+          </Stack>
+        </Grid.Column>
+      ))}
+    </Grid>
   )
 }
 
