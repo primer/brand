@@ -61,14 +61,22 @@ const testsToSkip = [
   'components-eyebrowbanner-features--on-custom-background-dark', // custom, unrelated background image
   'components-eyebrowbanner-features--on-custom-background-light', // custom, unrelated background image
 ]
+const ignoreViolations = {
+  'landmark-one-main': {except: []}, // on most of the sotries we don't have a main landmark
+  'page-has-heading-one': {except: ['components-hero', 'recipes-feature-previews']}, // on some stories we dont have a heading,
+  region: {except: []}, // on most of the stories we don't have a region landmark
+}
+function matchesStoryId(storyId: string, fragment: string): boolean {
+  return storyId.includes(fragment)
+}
+function shouldIgnoreViolation(violation: Result, story: {id: string}) {
+  const ignoreViolation = ignoreViolations[violation.id]
+  if (!ignoreViolation) return false
+  return !ignoreViolation.except.some((except: string) => matchesStoryId(story.id, except))
+}
 const testsWithCustomDelay = {
   'components-subdomainnavbar--mobile-menu-open': 5000, // takes a while for the menu to open
 }
-const ignoreViolations = [
-  'landmark-one-main', // on most of the sotries we don't have a main landmark
-  'page-has-heading-one', // on some stories we dont have a heading,
-  'region', // on some stories we don't have a region
-]
 const defaultDelay = 1000
 
 const storybookRoutes = Object.values(Stories.stories)
@@ -123,9 +131,7 @@ for (const story of storybookRoutes) {
         },
       })
 
-      violations = violations.filter(violation => {
-        return !ignoreViolations.includes(violation.id)
-      })
+      violations = violations.filter(violation => !shouldIgnoreViolation(violation, story))
 
       if (violations.length > 0) {
         allViolations = [...allViolations, ...violations]
