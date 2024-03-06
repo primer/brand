@@ -97,7 +97,7 @@ function printViolations(violations: Result[]) {
     const violation = violations[i]
     // eslint-disable-next-line no-console
     console.log(
-      `\s\s\x1b[90m${i + 1}\x1b[0m \x1b[31m🪓 violation:\x1b[0m ${violation.id} [${colorViolationImpact(
+      `    🪓 \x1b[90m${i + 1}\x1b[0m \x1b[31mviolation:\x1b[0m ${violation.id} [${colorViolationImpact(
         violation.impact,
       )}] ${violation.help}`,
     )
