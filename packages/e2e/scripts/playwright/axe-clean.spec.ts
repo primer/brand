@@ -74,6 +74,35 @@ function shouldIgnoreViolation(violation: Result, story: {id: string}) {
   if (!ignoreViolation) return false
   return !ignoreViolation.except.some((except: string) => matchesStoryId(story.id, except))
 }
+function colorViolationImpact(impact: string | null | undefined) {
+  let color = '\x1b[37m' // white
+  switch (impact) {
+    case 'minor':
+      color = '\x1b[32m' // green
+      break
+    case 'moderate':
+      color = '\x1b[33m' // yellow
+      break
+    case 'serious':
+      color = '\x1b[35m' // magenta
+      break
+    case 'critical':
+      color = '\x1b[31m' // red
+      break
+  }
+  return `${color}${impact}\x1b[0m`
+}
+function printViolations(violations: Result[]) {
+  for (let i = 0; i < violations.length; i++) {
+    const violation = violations[i]
+    // eslint-disable-next-line no-console
+    console.log(
+      `\s\s\x1b[90m${i + 1}\x1b[0m \x1b[31m🪓 violation:\x1b[0m ${violation.id} [${colorViolationImpact(
+        violation.impact,
+      )}] ${violation.help}`,
+    )
+  }
+}
 const testsWithCustomDelay = {
   'components-subdomainnavbar--mobile-menu-open': 5000, // takes a while for the menu to open
 }
@@ -135,6 +164,8 @@ for (const story of storybookRoutes) {
 
       if (violations.length > 0) {
         allViolations = [...allViolations, ...violations]
+
+        printViolations(violations)
       }
 
       expect(violations.length).toBe(0)
@@ -144,7 +175,7 @@ for (const story of storybookRoutes) {
       await browser.close()
       if (allViolations.length > 0) {
         // eslint-disable-next-line no-console
-        console.warn(`${allViolations.length} violations found}`)
+        console.warn(`${allViolations.length} violations found`)
         fs.writeFileSync('a11y-violations.json', JSON.stringify(allViolations, null, 2))
       }
     })
