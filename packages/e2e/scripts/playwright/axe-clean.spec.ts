@@ -61,19 +61,23 @@ const testsToSkip = [
   'components-eyebrowbanner-features--on-custom-background-dark', // custom, unrelated background image
   'components-eyebrowbanner-features--on-custom-background-light', // custom, unrelated background image
 ]
+
 const ignoreViolations = {
   'landmark-one-main': {except: []}, // on most of the sotries we don't have a main landmark
   'page-has-heading-one': {except: ['components-hero', 'recipes-feature-previews']}, // on some stories we dont have a heading,
   region: {except: []}, // on most of the stories we don't have a region landmark
 }
+
 function matchesStoryId(storyId: string, fragment: string): boolean {
   return storyId.includes(fragment)
 }
+
 function shouldIgnoreViolation(violation: Result, story: {id: string}) {
   const ignoreViolation = ignoreViolations[violation.id]
   if (!ignoreViolation) return false
   return !ignoreViolation.except.some((except: string) => matchesStoryId(story.id, except))
 }
+
 function colorViolationImpact(impact: string | null | undefined) {
   let color = '\x1b[37m' // white
   switch (impact) {
@@ -92,6 +96,7 @@ function colorViolationImpact(impact: string | null | undefined) {
   }
   return `${color}${impact}\x1b[0m`
 }
+
 function printViolations(violations: Result[]) {
   for (let i = 0; i < violations.length; i++) {
     const violation = violations[i]
@@ -103,6 +108,7 @@ function printViolations(violations: Result[]) {
     )
   }
 }
+
 const testsWithCustomDelay = {
   'components-subdomainnavbar--mobile-menu-open': 5000, // takes a while for the menu to open
 }
@@ -124,68 +130,60 @@ const storybookRoutes = Object.values(Stories.stories)
     return !testsToSkip.includes(id)
   })
 
-describe('Web page accessibility tests', () => {
-  beforeAll(async () => {
-    browser = await chromium.launch()
-  })
-
-  afterAll(async () => {
-    await browser.close()
-  })
-
-  for (const story of storybookRoutes) {
-    // eslint-disable-next-line i18n-text/no-en
-    describe(`Web page accessibility test for ${story.name} - ${story.story}`, () => {
-      beforeAll(async () => {
-        page = await browser.newPage()
-        const route = `${hostname}&id=${story.id}`
-        // eslint-disable-next-line no-console
-        console.info(`Navigating to ${route}`)
-        await page.goto(route)
-        await page.waitForTimeout(testsWithCustomDelay[story.id] ? testsWithCustomDelay[story.id] : defaultDelay)
-        await injectAxe(page)
-        // inject github house rules
-        const configSrc = fs.readFileSync(
-          path.resolve(
-            __dirname,
-            '../../../../node_modules/@github/axe-github/dist/configure-browser/configure-browser.js',
-          ),
-          'utf8',
-        )
-        // eslint-disable-next-line @typescript-eslint/no-shadow
-        page.evaluate(configSrc => {
-          window.eval(configSrc)
-        }, configSrc)
-      })
-
-      test('it completes AXE page validation', async () => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        let violations = await getViolations(page, null, {
-          detailedReport: true,
-          detailedReportOptions: {
-            html: true,
-          },
-        })
-
-        violations = violations.filter(violation => !shouldIgnoreViolation(violation, story))
-
-        if (violations.length > 0) {
-          allViolations = [...allViolations, ...violations]
-
-          printViolations(violations)
-        }
-
-        expect(violations.length).toBe(0)
-      })
-
-      afterAll(async () => {
-        if (allViolations.length > 0) {
-          // eslint-disable-next-line no-console
-          console.warn(`${allViolations.length} violations found`)
-          fs.writeFileSync('a11y-violations.json', JSON.stringify(allViolations, null, 2))
-        }
-      })
+for (const story of storybookRoutes) {
+  // eslint-disable-next-line i18n-text/no-en
+  describe(`Web page accessibility test for ${story.name} - ${story.story}`, () => {
+    beforeAll(async () => {
+      browser = await chromium.launch()
+      page = await browser.newPage()
+      const route = `${hostname}&id=${story.id}`
+      // eslint-disable-next-line no-console
+      console.info(`Navigating to ${route}`)
+      await page.goto(route)
+      await page.waitForTimeout(testsWithCustomDelay[story.id] ? testsWithCustomDelay[story.id] : defaultDelay)
+      await injectAxe(page)
+      // inject github house rules
+      const configSrc = fs.readFileSync(
+        path.resolve(
+          __dirname,
+          '../../../../node_modules/@github/axe-github/dist/configure-browser/configure-browser.js',
+        ),
+        'utf8',
+      )
+      // eslint-disable-next-line @typescript-eslint/no-shadow
+      page.evaluate(configSrc => {
+        window.eval(configSrc)
+      }, configSrc)
     })
-  }
-})
+
+    test('it completes AXE page validation', async () => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      let violations = await getViolations(page, null, {
+        detailedReport: true,
+        detailedReportOptions: {
+          html: true,
+        },
+      })
+
+      violations = violations.filter(violation => !shouldIgnoreViolation(violation, story))
+
+      if (violations.length > 0) {
+        allViolations.push(...violations)
+
+        printViolations(violations)
+      }
+
+      expect(violations.length).toBe(0)
+    })
+
+    afterAll(async () => {
+      await browser.close()
+      if (allViolations.length > 0) {
+        // eslint-disable-next-line no-console
+        console.warn(`${allViolations.length} violations found}`)
+        fs.writeFileSync('a11y-violations.json', JSON.stringify(allViolations, null, 2))
+      }
+    })
+  })
+}
