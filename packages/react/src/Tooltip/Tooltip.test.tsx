@@ -1,9 +1,11 @@
+// needed so Jest can parse @oddbird/popover-polyfill/fn
+require = require('esm')(module)
+
 import React from 'react'
-import type {TooltipProps} from '../Tooltip'
-import {Tooltip} from '../Tooltip'
+import {Tooltip, TooltipProps} from './Tooltip'
 import {render as HTMLRender} from '@testing-library/react'
-import {Button, ActionMenu, ThemeProvider, Link} from '../..'
-import {BookIcon, XIcon} from '@primer/octicons-react'
+import {Button, Link} from '../..'
+import {BookIcon} from '@primer/octicons-react'
 
 const TooltipComponent = (props: Omit<TooltipProps, 'text'> & {text?: string}) => (
   <Tooltip text="Tooltip text" {...props}>
