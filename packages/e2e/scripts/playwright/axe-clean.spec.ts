@@ -124,60 +124,68 @@ const storybookRoutes = Object.values(Stories.stories)
     return !testsToSkip.includes(id)
   })
 
-for (const story of storybookRoutes) {
-  // eslint-disable-next-line i18n-text/no-en
-  describe(`Web page accessibility test for ${story.name} - ${story.story}`, () => {
-    beforeAll(async () => {
-      browser = await chromium.launch()
-      page = await browser.newPage()
-      const route = `${hostname}&id=${story.id}`
-      // eslint-disable-next-line no-console
-      console.info(`Navigating to ${route}`)
-      await page.goto(route)
-      await page.waitForTimeout(testsWithCustomDelay[story.id] ? testsWithCustomDelay[story.id] : defaultDelay)
-      await injectAxe(page)
-      // inject github house rules
-      const configSrc = fs.readFileSync(
-        path.resolve(
-          __dirname,
-          '../../../../node_modules/@github/axe-github/dist/configure-browser/configure-browser.js',
-        ),
-        'utf8',
-      )
-      // eslint-disable-next-line @typescript-eslint/no-shadow
-      page.evaluate(configSrc => {
-        window.eval(configSrc)
-      }, configSrc)
-    })
+describe('Web page accessibility tests', () => {
+  beforeAll(async () => {
+    browser = await chromium.launch()
+  })
 
-    test('it completes AXE page validation', async () => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      let violations = await getViolations(page, null, {
-        detailedReport: true,
-        detailedReportOptions: {
-          html: true,
-        },
+  afterAll(async () => {
+    await browser.close()
+  })
+
+  for (const story of storybookRoutes) {
+    // eslint-disable-next-line i18n-text/no-en
+    describe(`Web page accessibility test for ${story.name} - ${story.story}`, () => {
+      beforeAll(async () => {
+        page = await browser.newPage()
+        const route = `${hostname}&id=${story.id}`
+        // eslint-disable-next-line no-console
+        console.info(`Navigating to ${route}`)
+        await page.goto(route)
+        await page.waitForTimeout(testsWithCustomDelay[story.id] ? testsWithCustomDelay[story.id] : defaultDelay)
+        await injectAxe(page)
+        // inject github house rules
+        const configSrc = fs.readFileSync(
+          path.resolve(
+            __dirname,
+            '../../../../node_modules/@github/axe-github/dist/configure-browser/configure-browser.js',
+          ),
+          'utf8',
+        )
+        // eslint-disable-next-line @typescript-eslint/no-shadow
+        page.evaluate(configSrc => {
+          window.eval(configSrc)
+        }, configSrc)
       })
 
-      violations = violations.filter(violation => !shouldIgnoreViolation(violation, story))
+      test('it completes AXE page validation', async () => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        let violations = await getViolations(page, null, {
+          detailedReport: true,
+          detailedReportOptions: {
+            html: true,
+          },
+        })
 
-      if (violations.length > 0) {
-        allViolations = [...allViolations, ...violations]
+        violations = violations.filter(violation => !shouldIgnoreViolation(violation, story))
 
-        printViolations(violations)
-      }
+        if (violations.length > 0) {
+          allViolations = [...allViolations, ...violations]
 
-      expect(violations.length).toBe(0)
+          printViolations(violations)
+        }
+
+        expect(violations.length).toBe(0)
+      })
+
+      afterAll(async () => {
+        if (allViolations.length > 0) {
+          // eslint-disable-next-line no-console
+          console.warn(`${allViolations.length} violations found`)
+          fs.writeFileSync('a11y-violations.json', JSON.stringify(allViolations, null, 2))
+        }
+      })
     })
-
-    afterAll(async () => {
-      await browser.close()
-      if (allViolations.length > 0) {
-        // eslint-disable-next-line no-console
-        console.warn(`${allViolations.length} violations found`)
-        fs.writeFileSync('a11y-violations.json', JSON.stringify(allViolations, null, 2))
-      }
-    })
-  })
-}
+  }
+})
