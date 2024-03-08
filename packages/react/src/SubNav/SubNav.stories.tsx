@@ -9,7 +9,7 @@ export default {
 
 const Template: StoryFn<typeof SubNav> = args => (
   <SubNav {...args}>
-    <SubNav.Heading>Heading</SubNav.Heading>
+    <SubNav.Heading href="#">Heading</SubNav.Heading>
     <SubNav.Link href="#">Link</SubNav.Link>
     <SubNav.Link href="#">Link</SubNav.Link>
     <SubNav.Link href="#">Link</SubNav.Link>

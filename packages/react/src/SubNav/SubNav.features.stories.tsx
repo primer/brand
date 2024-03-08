@@ -23,7 +23,7 @@ export const ExampleUsage = ({hasShadow, ...args}) => (
   <>
     <Box paddingBlockStart={64} backgroundColor="subtle"></Box>
     <SubNav {...args} hasShadow={hasShadow}>
-      <SubNav.Heading>Features</SubNav.Heading>
+      <SubNav.Heading href="#">Features</SubNav.Heading>
       <SubNav.Link href="#">Actions</SubNav.Link>
       <SubNav.Link href="#">Packages</SubNav.Link>
       <SubNav.Link href="#">Security</SubNav.Link>

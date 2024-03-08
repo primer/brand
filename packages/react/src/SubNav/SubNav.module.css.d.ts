@@ -1,8 +1,8 @@
 declare const styles: {
   readonly "SubNav": string;
+  readonly "SubNav__heading": string;
   readonly "SubNav__heading-container": string;
   readonly "SubNav--has-shadow": string;
-  readonly "SubNav__heading": string;
   readonly "SubNav--open": string;
   readonly "fade-in": string;
   readonly "SubNav__links-overlay": string;

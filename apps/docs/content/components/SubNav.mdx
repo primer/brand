@@ -20,7 +20,7 @@ import {SubNav} from '@primer/react-brand'
 ```jsx live
 <Container sx={{position: 'relative', height: 100}}>
   <SubNav>
-    <SubNav.Heading>Features</SubNav.Heading>
+    <SubNav.Heading href="#">Features</SubNav.Heading>
     <SubNav.Link href="#">Actions</SubNav.Link>
     <SubNav.Link href="#">Packages</SubNav.Link>
     <SubNav.Link href="#" aria-current="page">
@@ -36,7 +36,7 @@ import {SubNav} from '@primer/react-brand'
 ```jsx live
 <Container sx={{position: 'relative', height: 100}}>
   <SubNav hasShadow>
-    <SubNav.Heading>Features</SubNav.Heading>
+    <SubNav.Heading href="#">Features</SubNav.Heading>
     <SubNav.Link href="#">Actions</SubNav.Link>
     <SubNav.Link href="#">Packages</SubNav.Link>
     <SubNav.Link href="#" aria-current="page">
@@ -57,15 +57,13 @@ import {SubNav} from '@primer/react-brand'
 
 ### SubNav.Heading <Label>Required</Label>
 
-| name        | type           | default | required | description                        |
-| ----------- | -------------- | ------- | -------- | ---------------------------------- |
-| `className` | `string`       |         |          | Sets a custom class on the element |
-| `children`  | `ReactElement` |         |          |
-| `id`        | `string`       |         |          | Sets a custom `id`                 |
+| name   | type     | default | required | description                      |
+| ------ | -------- | ------- | -------- | -------------------------------- |
+| `href` | `string` |         |          | URL of the page the link goes to |
 
 ### SubNav.Link <Label>Required</Label>
 
 | name           | type     | default | required | description                                     |
 | -------------- | -------- | ------- | -------- | ----------------------------------------------- |
 | `aria-current` | `string` |         | `true`   | Required for indicating the current active link |
-| `href`         | `string` |         | `true`   | Specifies the URL of the page the link goes to  |
+| `href`         | `string` |         | `true`   | URL of the page the link goes to                |

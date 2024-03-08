@@ -17,6 +17,17 @@
   }
 }
 
+.SubNav__heading {
+  font-weight: var(--base-text-weight-bold);
+  color: var(--brand-color-text-default);
+  font-family: var(--brand-heading-fontFamily);
+  text-decoration: none;
+}
+
+.SubNav__heading:hover {
+  color: var(--brand-SubNav-color-link-active);
+}
+
 .SubNav__heading-container {
   position: relative;
   z-index: 9998;
@@ -100,7 +111,7 @@
   }
 
   .SubNav__links-overlay--open .SubNav__link[aria-current] * {
-    color: var(--brand-color-focus);
+    color: var(--brand-SubNav-color-link-active);
   }
 
   .SubNav__links-overlay--open .SubNav__link {
@@ -150,7 +161,7 @@
 
   .SubNav__link:hover *,
   .SubNav__link[aria-current] * {
-    color: var(--brand-color-focus);
+    color: var(--brand-SubNav-color-link-active);
   }
 
   .SubNav__link-label::after {
@@ -160,7 +171,7 @@
     left: 0;
     width: 100%;
     height: 2px;
-    background-color: var(--brand-color-focus);
+    background-color: var(--brand-SubNav-color-link-active);
     transition: opacity var(--brand-animation-duration-fast), transform var(--brand-animation-duration-fast),
       background-color var(--brand-animation-duration-fast);
     opacity: 1;

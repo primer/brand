@@ -8,7 +8,7 @@ import React, {
   ReactNode,
   useCallback,
 } from 'react'
-import {Text, Heading, HeadingProps} from '..'
+import {Text} from '..'
 
 import {default as clsx} from 'clsx'
 import {ChevronDownIcon, XIcon} from '@primer/octicons-react'
@@ -103,13 +103,14 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, hasSh
   )
 })
 
-type SubNavHeadingProps = HeadingProps & PropsWithChildren<React.HTMLProps<HTMLHeadingElement>>
+type SubNavHeadingProps = {href: string} & PropsWithChildren<React.HTMLProps<HTMLAnchorElement>> &
+  BaseProps<HTMLAnchorElement>
 
-const SubNavHeading = ({as = 'h3', children, className, ...props}: SubNavHeadingProps) => {
+const SubNavHeading = ({href, children, className, ...props}: SubNavHeadingProps) => {
   return (
-    <Heading as={as} weight={{narrow: 'bold'}} className={clsx(styles['SubNav__heading'], className)} {...props}>
+    <a href={href} className={clsx(styles['SubNav__heading'], className)} {...props}>
       {children}
-    </Heading>
+    </a>
   )
 }
 
