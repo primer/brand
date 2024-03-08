@@ -1,36 +1,57 @@
-import React, {Children, isValidElement, useState, PropsWithChildren, memo, ReactElement, ReactNode} from 'react'
+import React, {
+  Children,
+  isValidElement,
+  useState,
+  PropsWithChildren,
+  memo,
+  ReactElement,
+  ReactNode,
+  useCallback,
+} from 'react'
 import {Text, Heading, HeadingProps} from '..'
 
 import {default as clsx} from 'clsx'
 import {ChevronDownIcon, XIcon} from '@primer/octicons-react'
+import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
+import {useFocusTrap} from '../hooks/useFocusTrap'
 
 import type {BaseProps} from '../component-helpers'
 
-/** * Main Stylesheet (as a CSS Module) */
-import styles from './SubNav.module.css'
+/**
+ * Design tokens
+ */
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/sub-nav/colors-with-modes.css'
+
+/** * Main Stylesheet (as a CSS Module) */ import styles from './SubNav.module.css'
 
 const testIds = {
-  root: 'SubNav',
+  root: 'SubNav-root',
   get button() {
     return `${this.root}-button`
   },
   get overlay() {
     return `${this.root}-overlay`
   },
-  get list() {
-    return `${this.root}-list`
-  },
-  get item() {
-    return `${this.root}-list-item`
+  get link() {
+    return `${this.root}-link`
   },
 }
 
 export type SubNavProps = {
+  hasShadow?: boolean
   'data-testid'?: string
 } & PropsWithChildren<BaseProps<HTMLElement>>
 
-const _SubNavRoot = memo(({id, children, 'data-testid': testId}: SubNavProps) => {
+const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, hasShadow}: SubNavProps) => {
+  const overlayRef = React.useRef<HTMLDivElement>(null)
   const [isOpenAtNarrow, setIsOpenAtNarrow] = useState(false)
+
+  const closeMenuCallback = useCallback(() => {
+    setIsOpenAtNarrow(false)
+  }, [])
+
+  useKeyboardEscape(closeMenuCallback)
+  useFocusTrap({containerRef: overlayRef, restoreFocusOnCleanUp: true, disabled: !isOpenAtNarrow})
 
   const {heading: HeadingChild, links: LinkChildren} = Children.toArray(children).reduce(
     (acc: {heading?: ReactNode; links: ReactElement[]}, child) => {
@@ -47,10 +68,18 @@ const _SubNavRoot = memo(({id, children, 'data-testid': testId}: SubNavProps) =>
   )
 
   return (
-    <nav className={clsx(styles.SubNav, isOpenAtNarrow && styles['SubNav--open'])}>
+    <nav
+      id={id}
+      className={clsx(
+        styles.SubNav,
+        isOpenAtNarrow && styles['SubNav--open'],
+        hasShadow && styles['SubNav--has-shadow'],
+        className,
+      )}
+      data-testid={testId || testIds.root}
+    >
       <button
         className={styles['SubNav__overlay-toggle']}
-        aria-haspopup="dialog"
         data-testid={testIds.button}
         onClick={() => setIsOpenAtNarrow(!isOpenAtNarrow)}
         aria-label="Toggle sub navigation"
@@ -63,7 +92,10 @@ const _SubNavRoot = memo(({id, children, 'data-testid': testId}: SubNavProps) =>
       </button>
       {HeadingChild && <div className={styles['SubNav__heading-container']}>{HeadingChild}</div>}
       {LinkChildren.length && (
-        <div className={clsx(styles['SubNav__links-overlay'], isOpenAtNarrow && styles['SubNav__links-overlay--open'])}>
+        <div
+          ref={overlayRef}
+          className={clsx(styles['SubNav__links-overlay'], isOpenAtNarrow && styles['SubNav__links-overlay--open'])}
+        >
           {LinkChildren}
         </div>
       )}
@@ -73,9 +105,9 @@ const _SubNavRoot = memo(({id, children, 'data-testid': testId}: SubNavProps) =>
 
 type SubNavHeadingProps = HeadingProps & PropsWithChildren<React.HTMLProps<HTMLHeadingElement>>
 
-const SubNavHeading = ({children, className, ...props}: SubNavHeadingProps) => {
+const SubNavHeading = ({as = 'h3', children, className, ...props}: SubNavHeadingProps) => {
   return (
-    <Heading as="h3" size="5" className={clsx(styles['SubNav__heading'], className)} {...props}>
+    <Heading as={as} weight={{narrow: 'bold'}} className={clsx(styles['SubNav__heading'], className)} {...props}>
       {children}
     </Heading>
   )
@@ -83,20 +115,28 @@ const SubNavHeading = ({children, className, ...props}: SubNavHeadingProps) => {
 
 type SubNavLinkProps = {
   href: string
-  'aria-current'?: 'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'
+  'data-testid'?: string
 } & PropsWithChildren<React.HTMLProps<HTMLAnchorElement>> &
   BaseProps<HTMLAnchorElement>
 
-const SubNavLink = ({children, href, 'aria-current': ariaCurrent, className, ...props}: SubNavLinkProps) => {
+const SubNavLink = ({
+  children,
+  href,
+  'aria-current': ariaCurrent,
+  'data-testid': testId,
+  className,
+  ...props
+}: SubNavLinkProps) => {
   return (
     <a
       href={href}
       className={clsx(styles['SubNav__link'], ariaCurrent && styles['SubNav__link--active'], className)}
       aria-current={ariaCurrent}
       tabIndex={ariaCurrent ? -1 : undefined}
+      data-testid={testId || testIds.link}
       {...props}
     >
-      <Text as="span" size="200" weight="medium" className={styles['SubNav__link-label']}>
+      <Text as="span" size="200" className={styles['SubNav__link-label']}>
         {children}
       </Text>
     </a>
@@ -104,7 +144,7 @@ const SubNavLink = ({children, href, 'aria-current': ariaCurrent, className, ...
 }
 
 /**
- * Use SubNav to display a secondary navigation beneath the primary header.
+ * Use SubNav to display a secondary navigation beneath a primary header.
  * @see https://primer.style/brand/components/SubNav
  */
 export const SubNav = Object.assign(_SubNavRoot, {

@@ -1,0 +1,71 @@
+---
+title: Sub nav
+status: Experimental
+source: https://github.com/primer/brand/tree/main/packages/react/src/SubNav/SubNav.tsx
+storybook: '/brand/storybook/?path=/story/components-subnav--default'
+description: A sub nav is a secondary navigation element, typically positioned beneath a primary navigation.
+---
+
+import {Label} from '@primer/react'
+import {PropTableValues} from '../../src/components'
+
+```js
+import {SubNav} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<Container sx={{position: 'relative', height: 100}}>
+  <SubNav>
+    <SubNav.Heading>Features</SubNav.Heading>
+    <SubNav.Link href="#">Actions</SubNav.Link>
+    <SubNav.Link href="#">Packages</SubNav.Link>
+    <SubNav.Link href="#" aria-current="page">
+      Copilot
+    </SubNav.Link>
+    <SubNav.Link href="#">Code review</SubNav.Link>
+  </SubNav>
+</Container>
+```
+
+### Shadow
+
+```jsx live
+<Container sx={{position: 'relative', height: 100}}>
+  <SubNav hasShadow>
+    <SubNav.Heading>Features</SubNav.Heading>
+    <SubNav.Link href="#">Actions</SubNav.Link>
+    <SubNav.Link href="#">Packages</SubNav.Link>
+    <SubNav.Link href="#" aria-current="page">
+      Copilot
+    </SubNav.Link>
+    <SubNav.Link href="#">Code review</SubNav.Link>
+  </SubNav>
+</Container>
+```
+
+## Component props
+
+### SubNav <Label>Required</Label>
+
+| name        | type      | default | required | description                                                  |
+| ----------- | --------- | ------- | -------- | ------------------------------------------------------------ |
+| `hasShadow` | `boolean` | `false` | `false`  | Applies optional shadow, along with a fixed background color |
+
+### SubNav.Heading <Label>Required</Label>
+
+| name        | type           | default | required | description                        |
+| ----------- | -------------- | ------- | -------- | ---------------------------------- |
+| `className` | `string`       |         |          | Sets a custom class on the element |
+| `children`  | `ReactElement` |         |          |
+| `id`        | `string`       |         |          | Sets a custom `id`                 |
+
+### SubNav.Link <Label>Required</Label>
+
+| name           | type     | default | required | description                                     |
+| -------------- | -------- | ------- | -------- | ----------------------------------------------- |
+| `aria-current` | `string` |         | `true`   | Required for indicating the current active link |
+| `href`         | `string` |         | `true`   | Specifies the URL of the page the link goes to  |

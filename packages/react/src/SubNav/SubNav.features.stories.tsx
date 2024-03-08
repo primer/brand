@@ -1,5 +1,7 @@
 import React from 'react'
 import {Meta} from '@storybook/react'
+import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
+
 import {SubNav} from './SubNav'
 import bgPath from '../fixtures/images/background-stars.png'
 import {ThemeProvider} from '../ThemeProvider'
@@ -8,14 +10,19 @@ import {Hero} from '../Hero'
 import {Grid} from '../Grid'
 
 export default {
-  title: 'Components/SubNav',
+  title: 'Components/SubNav/Features',
   component: SubNav,
+  parameters: {
+    viewport: {
+      viewports: INITIAL_VIEWPORTS,
+    },
+  },
 } as Meta<typeof SubNav>
 
-export const ExampleUsage = args => (
+export const ExampleUsage = ({hasShadow, ...args}) => (
   <>
     <Box paddingBlockStart={64} backgroundColor="subtle"></Box>
-    <SubNav {...args}>
+    <SubNav {...args} hasShadow={hasShadow}>
       <SubNav.Heading>Features</SubNav.Heading>
       <SubNav.Link href="#">Actions</SubNav.Link>
       <SubNav.Link href="#">Packages</SubNav.Link>
@@ -33,7 +40,7 @@ export const ExampleUsage = args => (
       <Grid.Column>
         <Hero align="center">
           <Hero.Label>Copilot Enterprise</Hero.Label>
-          <Hero.Heading>The world's most widely adopted AI tool.</Hero.Heading>
+          <Hero.Heading>The world&apos;s most widely adopted AI tool.</Hero.Heading>
 
           <Hero.PrimaryAction href="#">Get started with Copilot</Hero.PrimaryAction>
         </Hero>
@@ -54,3 +61,18 @@ ExampleUsage.decorators = [
     </ThemeProvider>
   ),
 ]
+
+export const NarrowExampleUsage = args => <ExampleUsage {...args} />
+NarrowExampleUsage.parameters = {
+  layout: 'fullscreen',
+  viewport: {
+    defaultViewport: 'iphonex',
+  },
+}
+
+NarrowExampleUsage.decorators = [Story => <Story />]
+
+export const WithShadow = args => <ExampleUsage {...args} hasShadow={true} />
+WithShadow.parameters = {
+  layout: 'fullscreen',
+}
