@@ -12,6 +12,7 @@ declare const styles: {
   readonly "PricingCards__description": string;
   readonly "PricingCards__price": string;
   readonly "PricingCards__price-currency-symbol": string;
+  readonly "PricingCards__price-currency-code": string;
   readonly "PricingCards__price-value": string;
   readonly "PricingCards__price-trailing-text": string;
   readonly "PricingCards__footnote": string;

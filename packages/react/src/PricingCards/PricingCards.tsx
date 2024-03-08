@@ -231,31 +231,17 @@ const PricingCardsHeading = forwardRef<HTMLHeadingElement, PricingCardsHeadingPr
 )
 
 type PricingCardsPriceProps = PropsWithChildren<BaseProps<HTMLParagraphElement>> & {
+  currencyCode?: string
   currencySymbol?: string
-  currencySymbolPosition?: 'leading' | 'trailing'
   'data-testid'?: string
   trailingText?: string
 }
 
 const PricingCardsPrice = forwardRef<HTMLParagraphElement, PricingCardsPriceProps>(
   (
-    {
-      children,
-      className,
-      currencySymbol,
-      currencySymbolPosition = 'leading',
-      'data-testid': testId,
-      trailingText,
-      ...rest
-    },
+    {children, className, currencyCode = 'USD', currencySymbol = '$', 'data-testid': testId, trailingText, ...rest},
     ref,
   ) => {
-    const currencySymbolMarkup = (
-      <Text as="span" className={styles['PricingCards__price-currency-symbol']} size="500" weight="normal">
-        {currencySymbol}
-      </Text>
-    )
-
     return (
       <Text
         as="p"
@@ -265,22 +251,20 @@ const PricingCardsPrice = forwardRef<HTMLParagraphElement, PricingCardsPriceProp
         weight="normal"
         {...rest}
       >
-        {currencySymbolPosition === 'leading' && currencySymbolMarkup}
+        <Text as="span" className={styles['PricingCards__price-currency-symbol']} size="500" weight="normal">
+          {currencySymbol}
+        </Text>
 
         <Text as="span" className={styles['PricingCards__price-value']} size="700" weight="normal">
           {children}
         </Text>
 
-        {currencySymbolPosition === 'trailing' && currencySymbolMarkup}
+        <Text as="span" className={styles['PricingCards__price-currency-code']} size="500" weight="normal">
+          {currencyCode}
+        </Text>
 
         {trailingText && (
-          <Text
-            as="span"
-            className={styles['PricingCards__price-trailing-text']}
-            size="100"
-            variant="muted"
-            weight="light"
-          >
+          <Text as="span" className={styles['PricingCards__price-trailing-text']} size="200" variant="muted">
             {trailingText}
           </Text>
         )}

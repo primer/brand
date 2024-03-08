@@ -214,7 +214,8 @@
 
 .PricingCards__price {
   display: flex;
-  gap: var(--base-size-12);
+  flex-wrap: wrap;
+  column-gap: var(--base-size-12);
   grid-row: price;
   padding-block: var(--base-size-24);
 }
@@ -223,13 +224,18 @@
   line-height: 1.4;
 }
 
+.PricingCards__price-currency-code {
+  align-self: flex-end;
+}
+
 .PricingCards__price-value {
   font-size: 56px;
   line-height: 1;
 }
 
 .PricingCards__price-trailing-text {
-  align-self: center;
+  flex: 1 0 100%;
+  display: block;
 }
 
 .PricingCards__actions {

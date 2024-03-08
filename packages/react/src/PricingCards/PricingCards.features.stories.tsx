@@ -37,7 +37,7 @@ export const DefaultPresentation: StoryFn<typeof PricingCards> = () => {
         <PricingCards.Description>
           Code completions, Chat, and more for indie developers and freelancers.
         </PricingCards.Description>
-        <PricingCards.Price currencySymbol="$" trailingText="per month / $100 per year">
+        <PricingCards.Price currencyCode="USD" currencySymbol="$" trailingText="per month / $100 per year">
           10
         </PricingCards.Price>
         <PricingCards.FeatureList>
@@ -56,7 +56,7 @@ export const DefaultPresentation: StoryFn<typeof PricingCards> = () => {
         <PricingCards.Label>Recommended</PricingCards.Label>
         <PricingCards.Heading>Copilot Business</PricingCards.Heading>
         <PricingCards.Description>Copilot personalized to your organization.</PricingCards.Description>
-        <PricingCards.Price currencySymbol="$" trailingText="per user / month">
+        <PricingCards.Price currencyCode="USD" currencySymbol="$" trailingText="per user / month">
           19
         </PricingCards.Price>
         <PricingCards.PrimaryAction href="/buy">Buy now</PricingCards.PrimaryAction>
@@ -80,7 +80,7 @@ export const DefaultPresentation: StoryFn<typeof PricingCards> = () => {
           Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
           Enterprise Cloud.
         </PricingCards.Description>
-        <PricingCards.Price currencySymbol="$" trailingText="per user / month">
+        <PricingCards.Price currencyCode="USD" currencySymbol="$" trailingText="per user / month">
           39
         </PricingCards.Price>
         <PricingCards.FeatureList>
@@ -103,7 +103,7 @@ export const CardsPresentation: StoryFn<typeof PricingCards> = () => {
         <PricingCards.Description>
           Code completions, Chat, and more for indie developers and freelancers.
         </PricingCards.Description>
-        <PricingCards.Price currencySymbol="$" trailingText="per month / $100 per year">
+        <PricingCards.Price currencyCode="USD" currencySymbol="$" trailingText="per month / $100 per year">
           10
         </PricingCards.Price>
         <PricingCards.FeatureList>
@@ -122,7 +122,7 @@ export const CardsPresentation: StoryFn<typeof PricingCards> = () => {
         <PricingCards.Label>Recommended</PricingCards.Label>
         <PricingCards.Heading>Copilot Business</PricingCards.Heading>
         <PricingCards.Description>Copilot personalized to your organization.</PricingCards.Description>
-        <PricingCards.Price currencySymbol="$" trailingText="per user / month">
+        <PricingCards.Price currencyCode="USD" currencySymbol="$" trailingText="per user / month">
           19
         </PricingCards.Price>
         <PricingCards.PrimaryAction href="/buy">Buy now</PricingCards.PrimaryAction>
@@ -146,7 +146,7 @@ export const CardsPresentation: StoryFn<typeof PricingCards> = () => {
           Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
           Enterprise Cloud.
         </PricingCards.Description>
-        <PricingCards.Price currencySymbol="$" trailingText="per user / month">
+        <PricingCards.Price currencyCode="USD" currencySymbol="$" trailingText="per user / month">
           39
         </PricingCards.Price>
         <PricingCards.FeatureList>
@@ -169,7 +169,7 @@ export const OneItem: StoryFn<typeof PricingCards> = () => {
         <PricingCards.Description>
           Code completions, Chat, and more for indie developers and freelancers.
         </PricingCards.Description>
-        <PricingCards.Price currencySymbol="$" trailingText="per month / $100 per year">
+        <PricingCards.Price currencyCode="USD" currencySymbol="$" trailingText="per month / $100 per year">
           10
         </PricingCards.Price>
         <PricingCards.PrimaryAction href="/buy">Buy now</PricingCards.PrimaryAction>
@@ -186,7 +186,7 @@ export const TwoItems: StoryFn<typeof PricingCards> = () => {
         <PricingCards.Label>Recommended</PricingCards.Label>
         <PricingCards.Heading>Copilot</PricingCards.Heading>
         <PricingCards.Description>Copilot in the coding environment.</PricingCards.Description>
-        <PricingCards.Price currencySymbol="$" trailingText="per month / $100 per year">
+        <PricingCards.Price currencyCode="USD" currencySymbol="$" trailingText="per month / $100 per year">
           10
         </PricingCards.Price>
         <PricingCards.FeatureList>
@@ -205,7 +205,7 @@ export const TwoItems: StoryFn<typeof PricingCards> = () => {
           Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
           Enterprise Cloud.
         </PricingCards.Description>
-        <PricingCards.Price currencySymbol="$" trailingText="per user / month">
+        <PricingCards.Price currencyCode="USD" currencySymbol="$" trailingText="per user / month">
           39
         </PricingCards.Price>
         <PricingCards.FeatureList>
@@ -228,7 +228,7 @@ export const ThreeItems: StoryFn<typeof PricingCards> = () => {
         <PricingCards.Description>
           Code completions, Chat, and more for indie developers and freelancers.
         </PricingCards.Description>
-        <PricingCards.Price currencySymbol="$" trailingText="per month / $100 per year">
+        <PricingCards.Price currencyCode="USD" currencySymbol="$" trailingText="per month / $100 per year">
           10
         </PricingCards.Price>
         <PricingCards.FeatureList>
@@ -247,7 +247,7 @@ export const ThreeItems: StoryFn<typeof PricingCards> = () => {
         <PricingCards.Label>Recommended</PricingCards.Label>
         <PricingCards.Heading>Copilot Business</PricingCards.Heading>
         <PricingCards.Description>Copilot personalized to your organization.</PricingCards.Description>
-        <PricingCards.Price currencySymbol="$" trailingText="per user / month">
+        <PricingCards.Price currencyCode="USD" currencySymbol="$" trailingText="per user / month">
           19
         </PricingCards.Price>
         <PricingCards.PrimaryAction href="/buy">Buy now</PricingCards.PrimaryAction>
@@ -271,7 +271,7 @@ export const ThreeItems: StoryFn<typeof PricingCards> = () => {
           Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
           Enterprise Cloud.
         </PricingCards.Description>
-        <PricingCards.Price currencySymbol="$" trailingText="per user / month">
+        <PricingCards.Price currencyCode="USD" currencySymbol="$" trailingText="per user / month">
           39
         </PricingCards.Price>
         <PricingCards.FeatureList>
@@ -294,7 +294,7 @@ export const DarkColorMode: StoryFn<typeof PricingCards> = () => {
         <PricingCards.Description>
           Code completions, Chat, and more for indie developers and freelancers.
         </PricingCards.Description>
-        <PricingCards.Price currencySymbol="$" trailingText="per month / $100 per year">
+        <PricingCards.Price currencyCode="USD" currencySymbol="$" trailingText="per month / $100 per year">
           10
         </PricingCards.Price>
         <PricingCards.FeatureList>
@@ -313,7 +313,7 @@ export const DarkColorMode: StoryFn<typeof PricingCards> = () => {
         <PricingCards.Label>Recommended</PricingCards.Label>
         <PricingCards.Heading>Copilot Business</PricingCards.Heading>
         <PricingCards.Description>Copilot personalized to your organization.</PricingCards.Description>
-        <PricingCards.Price currencySymbol="$" trailingText="per user / month">
+        <PricingCards.Price currencyCode="USD" currencySymbol="$" trailingText="per user / month">
           19
         </PricingCards.Price>
         <PricingCards.PrimaryAction href="/buy">Buy now</PricingCards.PrimaryAction>
@@ -337,7 +337,7 @@ export const DarkColorMode: StoryFn<typeof PricingCards> = () => {
           Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
           Enterprise Cloud.
         </PricingCards.Description>
-        <PricingCards.Price currencySymbol="$" trailingText="per user / month">
+        <PricingCards.Price currencyCode="USD" currencySymbol="$" trailingText="per user / month">
           39
         </PricingCards.Price>
         <PricingCards.FeatureList>
@@ -364,7 +364,7 @@ export const WithFeatureSets: StoryFn<typeof PricingCards> = () => {
         <PricingCards.Description>
           Code completions, Chat, and more for indie developers and freelancers.
         </PricingCards.Description>
-        <PricingCards.Price currencySymbol="$" trailingText="per month / $100 per year">
+        <PricingCards.Price currencyCode="USD" currencySymbol="$" trailingText="per month / $100 per year">
           10
         </PricingCards.Price>
         <PricingCards.FeatureList>
@@ -388,7 +388,7 @@ export const WithFeatureSets: StoryFn<typeof PricingCards> = () => {
         <PricingCards.Label>Recommended</PricingCards.Label>
         <PricingCards.Heading>Copilot Business</PricingCards.Heading>
         <PricingCards.Description>Copilot personalized to your organization.</PricingCards.Description>
-        <PricingCards.Price currencySymbol="$" trailingText="per user / month">
+        <PricingCards.Price currencyCode="USD" currencySymbol="$" trailingText="per user / month">
           19
         </PricingCards.Price>
         <PricingCards.PrimaryAction href="/buy">Buy now</PricingCards.PrimaryAction>
@@ -413,7 +413,7 @@ export const WithFeatureSets: StoryFn<typeof PricingCards> = () => {
           Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
           Enterprise Cloud.
         </PricingCards.Description>
-        <PricingCards.Price currencySymbol="$" trailingText="per user / month">
+        <PricingCards.Price currencyCode="USD" currencySymbol="$" trailingText="per user / month">
           39
         </PricingCards.Price>
         <PricingCards.FeatureList>
@@ -442,7 +442,7 @@ export const WithIncludedAndExcludedFeatures: StoryFn<typeof PricingCards> = () 
         <PricingCards.Description>
           Code completions, Chat, and more for indie developers and freelancers.
         </PricingCards.Description>
-        <PricingCards.Price currencySymbol="$" trailingText="per month / $100 per year">
+        <PricingCards.Price currencyCode="USD" currencySymbol="$" trailingText="per month / $100 per year">
           10
         </PricingCards.Price>
         <PricingCards.FeatureList>
@@ -475,7 +475,7 @@ export const WithIncludedAndExcludedFeatures: StoryFn<typeof PricingCards> = () 
         <PricingCards.Label>Recommended</PricingCards.Label>
         <PricingCards.Heading>Copilot Business</PricingCards.Heading>
         <PricingCards.Description>Copilot personalized to your organization.</PricingCards.Description>
-        <PricingCards.Price currencySymbol="$" trailingText="per user / month">
+        <PricingCards.Price currencyCode="USD" currencySymbol="$" trailingText="per user / month">
           19
         </PricingCards.Price>
         <PricingCards.PrimaryAction href="/buy">Buy now</PricingCards.PrimaryAction>
@@ -503,7 +503,7 @@ export const WithIncludedAndExcludedFeatures: StoryFn<typeof PricingCards> = () 
           Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
           Enterprise Cloud.
         </PricingCards.Description>
-        <PricingCards.Price currencySymbol="$" trailingText="per user / month">
+        <PricingCards.Price currencyCode="USD" currencySymbol="$" trailingText="per user / month">
           39
         </PricingCards.Price>
         <PricingCards.FeatureList>
@@ -531,7 +531,7 @@ export const WithoutFeatures: StoryFn<typeof PricingCards> = () => {
         <PricingCards.Description>
           Code completions, Chat, and more for indie developers and freelancers.
         </PricingCards.Description>
-        <PricingCards.Price currencySymbol="$" trailingText="per month / $100 per year">
+        <PricingCards.Price currencyCode="USD" currencySymbol="$" trailingText="per month / $100 per year">
           10
         </PricingCards.Price>
         <PricingCards.PrimaryAction href="/buy">Start a free trial</PricingCards.PrimaryAction>
@@ -541,7 +541,7 @@ export const WithoutFeatures: StoryFn<typeof PricingCards> = () => {
         <PricingCards.Label>Recommended</PricingCards.Label>
         <PricingCards.Heading>Copilot Business</PricingCards.Heading>
         <PricingCards.Description>Copilot personalized to your organization.</PricingCards.Description>
-        <PricingCards.Price currencySymbol="$" trailingText="per user / month">
+        <PricingCards.Price currencyCode="USD" currencySymbol="$" trailingText="per user / month">
           19
         </PricingCards.Price>
         <PricingCards.PrimaryAction href="/buy">Buy now</PricingCards.PrimaryAction>
@@ -554,7 +554,7 @@ export const WithoutFeatures: StoryFn<typeof PricingCards> = () => {
           Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
           Enterprise Cloud.
         </PricingCards.Description>
-        <PricingCards.Price currencySymbol="$" trailingText="per user / month">
+        <PricingCards.Price currencyCode="USD" currencySymbol="$" trailingText="per user / month">
           39
         </PricingCards.Price>
         <PricingCards.PrimaryAction href="/waitlist">Join waitlist</PricingCards.PrimaryAction>
