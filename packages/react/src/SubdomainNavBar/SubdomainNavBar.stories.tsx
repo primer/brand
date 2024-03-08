@@ -639,3 +639,52 @@ export const ConditionalRendering = () => {
     </SubdomainNavBar>
   )
 }
+
+export const SkipToMainTag = () => {
+  return (
+    <>
+      <SubdomainNavBar title="Skip to Main Tag" />
+      <main
+        style={{
+          maxWidth: 1280,
+          margin: '100px auto',
+        }}
+      >
+        <Hero align="center">
+          <Hero.Heading>This is the main content</Hero.Heading>
+          <Hero.Description>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis nam pulvinar risus elementum.
+          </Hero.Description>
+          <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+          <Hero.SecondaryAction href="#">Secondary action</Hero.SecondaryAction>
+        </Hero>
+      </main>
+    </>
+  )
+}
+
+export const skipToMainTagWithId = () => {
+  return (
+    <>
+      <SubdomainNavBar title="Skip to Main Tag with ID" />
+      <main
+        id="the-main-tag"
+        style={{
+          maxWidth: 1280,
+          margin: '100px auto',
+        }}
+      >
+        <Hero align="center">
+          <Hero.Heading>This is the main content</Hero.Heading>
+          <Hero.Description>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis nam pulvinar risus elementum.
+          </Hero.Description>
+          <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+          <Hero.SecondaryAction href="#">Secondary action</Hero.SecondaryAction>
+        </Hero>
+      </main>
+    </>
+  )
+}
