@@ -288,3 +288,52 @@
 .PricingCards__feature-list + .PricingCards__feature-list-heading {
   margin-block-start: var(--base-size-24);
 }
+
+/*
+ * Accordion component overrides
+ */
+
+/* Remove paddings and borders */
+.PricingCards__feature-list-accordion {
+  border: 0;
+  padding: 0;
+}
+
+/* Remove hover effect */
+.PricingCards__feature-list-accordion::after {
+  content: none;
+}
+
+/* Adjust heading spacing */
+.PricingCards__feature-list-accordion-heading {
+  padding: var(--base-size-16) 0;
+  margin-block-start: calc(var(--base-size-16) * -1);
+  margin-block-end: var(--base-size-8);
+}
+
+/* Accordion heading styling */
+.PricingCards__feature-list-accordion .PricingCards__feature-list-accordion-heading h4 {
+  color: var(--brand-color-text-muted);
+  font-size: var(--brand-text-size-300);
+  line-height: var(--brand-text-lineHeight-300);
+  gap: var(--base-size-8);
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Hide default icon */
+.PricingCards__feature-list-accordion .PricingCards__feature-list-accordion-heading span {
+  display: none;
+}
+
+/* Adjust content paddings */
+.PricingCards__feature-list-accordion .PricingCards__feature-list-accordion-content {
+  padding: 0;
+  padding-block-start: var(--base-size-40);
+  padding-inline-start: 0 !important;
+}
+
+/* Chevron up icon */
+.PricingCards__feature-list-accordion[open] .PricingCards__feature-list-accordion-chevron {
+  transform: rotate(180deg);
+}

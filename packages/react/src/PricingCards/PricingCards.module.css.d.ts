@@ -20,6 +20,10 @@ declare const styles: {
   readonly "PricingCards__feature-list-set": string;
   readonly "PricingCards__feature-list-heading": string;
   readonly "PricingCards__feature-list-item--excluded": string;
+  readonly "PricingCards__feature-list-accordion": string;
+  readonly "PricingCards__feature-list-accordion-heading": string;
+  readonly "PricingCards__feature-list-accordion-content": string;
+  readonly "PricingCards__feature-list-accordion-chevron": string;
 };
 export = styles;
 

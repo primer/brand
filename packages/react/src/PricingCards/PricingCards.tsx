@@ -1,10 +1,21 @@
-import {CheckIcon, XIcon} from '@primer/octicons-react'
+import React, {forwardRef, HTMLAttributes, PropsWithChildren, type Ref} from 'react'
+import {CheckIcon, ChevronDownIcon, XIcon} from '@primer/octicons-react'
 import clsx from 'clsx'
-import React, {HTMLAttributes, PropsWithChildren, forwardRef, type Ref} from 'react'
 import {useAnimation} from '../animation'
 import type {BaseProps} from '../component-helpers'
 
-import {Button, ButtonBaseProps, Heading, HeadingProps, Label, Text, UnorderedList, UnorderedListProps} from '..'
+import {
+  Accordion,
+  Button,
+  ButtonBaseProps,
+  Heading,
+  HeadingProps,
+  Label,
+  Text,
+  UnorderedList,
+  UnorderedListProps,
+  useWindowSize,
+} from '..'
 
 /**
  * Design tokens
@@ -285,6 +296,8 @@ type ValidFeatureListChildren = {
 
 const PricingCardsFeatureList = forwardRef<HTMLDivElement, PricingCardsFeatureListProps>(
   ({children, className, 'data-testid': testId, ...rest}, ref) => {
+    const {isLarge} = useWindowSize()
+
     const FilteredChidlrenSets = React.Children.toArray(children).reduce<ValidFeatureListChildren>((acc, child) => {
       if (React.isValidElement(child) && child.type === PricingCardsFeatureListItem) {
         if (acc.length === 0) {
@@ -301,21 +314,44 @@ const PricingCardsFeatureList = forwardRef<HTMLDivElement, PricingCardsFeatureLi
       return acc
     }, [])
 
+    const FeautreListItems = FilteredChidlrenSets.map(({Heading: HeadingChild, Items}, index) => (
+      <div className={styles['PricingCards__feature-list-set']} key={index}>
+        {HeadingChild}
+
+        <UnorderedList variant="checked" {...(rest as UnorderedListProps)}>
+          {Items}
+        </UnorderedList>
+      </div>
+    ))
+
     return (
       <div
         className={clsx(styles['PricingCards__feature-list'], className)}
         data-testid={testId || testIds.featureList}
         ref={ref}
       >
-        {FilteredChidlrenSets.map(({Heading: HeadingChild, Items}, index) => (
-          <div className={styles['PricingCards__feature-list-set']} key={index}>
-            {HeadingChild}
-
-            <UnorderedList variant="checked" {...(rest as UnorderedListProps)}>
-              {Items}
-            </UnorderedList>
-          </div>
-        ))}
+        {!isLarge ? (
+          <Accordion className={styles['PricingCards__feature-list-accordion']} open={false}>
+            <Accordion.Heading
+              as="h4"
+              className={styles['PricingCards__feature-list-accordion-heading']}
+              reversedToggles
+            >
+              <ChevronDownIcon className={styles['PricingCards__feature-list-accordion-chevron']} />
+              What&apos;s included
+            </Accordion.Heading>
+            <Accordion.Content className={styles['PricingCards__feature-list-accordion-content']}>
+              {FeautreListItems}
+            </Accordion.Content>
+          </Accordion>
+        ) : (
+          <>
+            <Text size="200" variant="muted" className={styles['PricingCards__feature-list-toggle']}>
+              What&apos;s included:
+            </Text>
+            {FeautreListItems}
+          </>
+        )}
       </div>
     )
   },
