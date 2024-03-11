@@ -9,7 +9,7 @@ export const supportedComponents = [
   'Image',
   'Label',
   'Pillar',
-  'PricingCards',
+  'PricingOptions',
   'SectionIntro',
   'Stack',
   'Text',

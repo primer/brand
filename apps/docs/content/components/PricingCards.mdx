@@ -2,9 +2,9 @@
 title: Pricing cards
 status: Experimental
 a11yReviewed: false
-source: https://github.com/primer/brand/blob/main/packages/react/src/PricingCards/PricingCards.tsx
-storybook: '/brand/storybook/?path=/story/components-pricingcards--default'
-description: Use the pricing cards to display pricing plan information on a page.
+source: https://github.com/primer/brand/blob/main/packages/react/src/PricingOptions/PricingOptions.tsx
+storybook: '/brand/storybook/?path=/story/components-pricingoptions--default'
+description: Use the pricing options to display pricing plan information on a page.
 ---
 
 import {Label} from '@primer/react'
@@ -25,665 +25,691 @@ import {EyebrowBanner} from '@primer/react-brand'
 ### Default presentation
 
 ```jsx live
-<PricingCards>
-  <PricingCards.Item>
-    <PricingCards.Label>Recommended</PricingCards.Label>
-    <PricingCards.Heading>Copilot</PricingCards.Heading>
-    <PricingCards.Description>
+<PricingOptions>
+  <PricingOptions.Item>
+    <PricingOptions.Label>Recommended</PricingOptions.Label>
+    <PricingOptions.Heading>Copilot</PricingOptions.Heading>
+    <PricingOptions.Description>
       Copilot in the coding environment.
-    </PricingCards.Description>
-    <PricingCards.Price
+    </PricingOptions.Description>
+    <PricingOptions.Price
       currencySymbol="$"
       trailingText="per month / $100 per year"
     >
       10
-    </PricingCards.Price>
-    <PricingCards.FeatureList>
-      <PricingCards.FeatureListItem>
+    </PricingOptions.Price>
+    <PricingOptions.FeatureList>
+      <PricingOptions.FeatureListItem>
         Everything in Copilot Business plus:
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Chat in IDE and Mobile
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         CLI assistance
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Code completions
-      </PricingCards.FeatureListItem>
-    </PricingCards.FeatureList>
-    <PricingCards.PrimaryAction href="/buy">Buy now</PricingCards.PrimaryAction>
-    <PricingCards.SecondaryAction href="/contact">
+      </PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
+    <PricingOptions.PrimaryAction href="/buy">
+      Buy now
+    </PricingOptions.PrimaryAction>
+    <PricingOptions.SecondaryAction href="/contact">
       Contact sales
-    </PricingCards.SecondaryAction>
-  </PricingCards.Item>
+    </PricingOptions.SecondaryAction>
+  </PricingOptions.Item>
 
-  <PricingCards.Item>
-    <PricingCards.Label>Recommended</PricingCards.Label>
-    <PricingCards.Heading>Copilot Business</PricingCards.Heading>
-    <PricingCards.Description>
+  <PricingOptions.Item>
+    <PricingOptions.Label>Recommended</PricingOptions.Label>
+    <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+    <PricingOptions.Description>
       Copilot personalized to your organization throughout the software
       development lifecycle. Requires GitHub Enterprise Cloud.
-    </PricingCards.Description>
-    <PricingCards.Price currencySymbol="$" trailingText="per user / month">
+    </PricingOptions.Description>
+    <PricingOptions.Price currencySymbol="$" trailingText="per user / month">
       39
-    </PricingCards.Price>
-    <PricingCards.FeatureList>
-      <PricingCards.FeatureListItem>
+    </PricingOptions.Price>
+    <PricingOptions.FeatureList>
+      <PricingOptions.FeatureListItem>
         Everything in Copilot Business plus:
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Chat in IDE and Mobile
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         CLI assistance
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Code completions
-      </PricingCards.FeatureListItem>
-    </PricingCards.FeatureList>
-    <PricingCards.PrimaryAction href="/buy">
+      </PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
+    <PricingOptions.PrimaryAction href="/buy">
       Join waitlist
-    </PricingCards.PrimaryAction>
-  </PricingCards.Item>
-</PricingCards>
+    </PricingOptions.PrimaryAction>
+  </PricingOptions.Item>
+</PricingOptions>
 ```
 
 ### Cards presentation
 
 ```jsx live
-<PricingCards presentation="cards">
-  <PricingCards.Item>
-    <PricingCards.Label>Recommended</PricingCards.Label>
-    <PricingCards.Heading>Copilot</PricingCards.Heading>
-    <PricingCards.Description>
+<PricingOptions presentation="cards">
+  <PricingOptions.Item>
+    <PricingOptions.Label>Recommended</PricingOptions.Label>
+    <PricingOptions.Heading>Copilot</PricingOptions.Heading>
+    <PricingOptions.Description>
       Copilot in the coding environment.
-    </PricingCards.Description>
-    <PricingCards.Price
+    </PricingOptions.Description>
+    <PricingOptions.Price
       currencySymbol="$"
       trailingText="per month / $100 per year"
     >
       10
-    </PricingCards.Price>
-    <PricingCards.FeatureList>
-      <PricingCards.FeatureListItem>
+    </PricingOptions.Price>
+    <PricingOptions.FeatureList>
+      <PricingOptions.FeatureListItem>
         Everything in Copilot Business plus:
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Chat in IDE and Mobile
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         CLI assistance
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Code completions
-      </PricingCards.FeatureListItem>
-    </PricingCards.FeatureList>
-    <PricingCards.PrimaryAction href="/buy">Buy now</PricingCards.PrimaryAction>
-    <PricingCards.SecondaryAction href="/contact">
+      </PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
+    <PricingOptions.PrimaryAction href="/buy">
+      Buy now
+    </PricingOptions.PrimaryAction>
+    <PricingOptions.SecondaryAction href="/contact">
       Contact sales
-    </PricingCards.SecondaryAction>
-  </PricingCards.Item>
+    </PricingOptions.SecondaryAction>
+  </PricingOptions.Item>
 
-  <PricingCards.Item>
-    <PricingCards.Label>Recommended</PricingCards.Label>
-    <PricingCards.Heading>Copilot Business</PricingCards.Heading>
-    <PricingCards.Description>
+  <PricingOptions.Item>
+    <PricingOptions.Label>Recommended</PricingOptions.Label>
+    <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+    <PricingOptions.Description>
       Copilot personalized to your organization throughout the software
       development lifecycle. Requires GitHub Enterprise Cloud.
-    </PricingCards.Description>
-    <PricingCards.Price currencySymbol="$" trailingText="per user / month">
+    </PricingOptions.Description>
+    <PricingOptions.Price currencySymbol="$" trailingText="per user / month">
       39
-    </PricingCards.Price>
-    <PricingCards.FeatureList>
-      <PricingCards.FeatureListItem>
+    </PricingOptions.Price>
+    <PricingOptions.FeatureList>
+      <PricingOptions.FeatureListItem>
         Everything in Copilot Business plus:
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Chat in IDE and Mobile
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         CLI assistance
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Code completions
-      </PricingCards.FeatureListItem>
-    </PricingCards.FeatureList>
-    <PricingCards.PrimaryAction href="/buy">
+      </PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
+    <PricingOptions.PrimaryAction href="/buy">
       Join waitlist
-    </PricingCards.PrimaryAction>
-  </PricingCards.Item>
-</PricingCards>
+    </PricingOptions.PrimaryAction>
+  </PricingOptions.Item>
+</PricingOptions>
 ```
 
 ### One item
 
-This is the one-item layout for the pricing cards component
+This is the one-item layout for the pricing options component
 
 ```jsx live
-<PricingCards>
-  <PricingCards.Item>
-    <PricingCards.Heading>Copilot Individual</PricingCards.Heading>
-    <PricingCards.Description>
+<PricingOptions>
+  <PricingOptions.Item>
+    <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+    <PricingOptions.Description>
       Code completions, Chat, and more for indie developers and freelancers.
-    </PricingCards.Description>
-    <PricingCards.Price
+    </PricingOptions.Description>
+    <PricingOptions.Price
       currencySymbol="$"
       trailingText="per month / $100 per year"
     >
       10
-    </PricingCards.Price>
-    <PricingCards.PrimaryAction href="/buy">Buy now</PricingCards.PrimaryAction>
-    <PricingCards.SecondaryAction href="/contact">
+    </PricingOptions.Price>
+    <PricingOptions.PrimaryAction href="/buy">
+      Buy now
+    </PricingOptions.PrimaryAction>
+    <PricingOptions.SecondaryAction href="/contact">
       Contact sales
-    </PricingCards.SecondaryAction>
-  </PricingCards.Item>
-</PricingCards>
+    </PricingOptions.SecondaryAction>
+  </PricingOptions.Item>
+</PricingOptions>
 ```
 
 ### Two items
 
-This is the two-item layout for the pricing cards component.
+This is the two-item layout for the pricing options component.
 
 ```jsx live
-<PricingCards>
-  <PricingCards.Item>
-    <PricingCards.Label>Recommended</PricingCards.Label>
-    <PricingCards.Heading>Copilot</PricingCards.Heading>
-    <PricingCards.Description>
+<PricingOptions>
+  <PricingOptions.Item>
+    <PricingOptions.Label>Recommended</PricingOptions.Label>
+    <PricingOptions.Heading>Copilot</PricingOptions.Heading>
+    <PricingOptions.Description>
       Copilot in the coding environment.
-    </PricingCards.Description>
-    <PricingCards.Price
+    </PricingOptions.Description>
+    <PricingOptions.Price
       currencySymbol="$"
       trailingText="per month / $100 per year"
     >
       10
-    </PricingCards.Price>
-    <PricingCards.FeatureList>
-      <PricingCards.FeatureListItem>
+    </PricingOptions.Price>
+    <PricingOptions.FeatureList>
+      <PricingOptions.FeatureListItem>
         Everything in Copilot Business plus:
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Chat in IDE and Mobile
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         CLI assistance
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Code completions
-      </PricingCards.FeatureListItem>
-    </PricingCards.FeatureList>
-    <PricingCards.PrimaryAction href="/buy">Buy now</PricingCards.PrimaryAction>
-    <PricingCards.SecondaryAction href="/contact">
+      </PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
+    <PricingOptions.PrimaryAction href="/buy">
+      Buy now
+    </PricingOptions.PrimaryAction>
+    <PricingOptions.SecondaryAction href="/contact">
       Contact sales
-    </PricingCards.SecondaryAction>
-  </PricingCards.Item>
+    </PricingOptions.SecondaryAction>
+  </PricingOptions.Item>
 
-  <PricingCards.Item>
-    <PricingCards.Label>Recommended</PricingCards.Label>
-    <PricingCards.Heading>Copilot Business</PricingCards.Heading>
-    <PricingCards.Description>
+  <PricingOptions.Item>
+    <PricingOptions.Label>Recommended</PricingOptions.Label>
+    <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+    <PricingOptions.Description>
       Copilot personalized to your organization throughout the software
       development lifecycle. Requires GitHub Enterprise Cloud.
-    </PricingCards.Description>
-    <PricingCards.Price currencySymbol="$" trailingText="per user / month">
+    </PricingOptions.Description>
+    <PricingOptions.Price currencySymbol="$" trailingText="per user / month">
       39
-    </PricingCards.Price>
-    <PricingCards.FeatureList>
-      <PricingCards.FeatureListItem>
+    </PricingOptions.Price>
+    <PricingOptions.FeatureList>
+      <PricingOptions.FeatureListItem>
         Everything in Copilot Business plus:
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Chat in IDE and Mobile
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         CLI assistance
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Code completions
-      </PricingCards.FeatureListItem>
-    </PricingCards.FeatureList>
-    <PricingCards.PrimaryAction href="/buy">
+      </PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
+    <PricingOptions.PrimaryAction href="/buy">
       Join waitlist
-    </PricingCards.PrimaryAction>
-  </PricingCards.Item>
-</PricingCards>
+    </PricingOptions.PrimaryAction>
+  </PricingOptions.Item>
+</PricingOptions>
 ```
 
 ### Three items
 
-This is the three-item layout for the pricing cards component.
+This is the three-item layout for the pricing options component.
 
 ```jsx live
-<PricingCards>
-  <PricingCards.Item>
-    <PricingCards.Heading>Copilot Individual</PricingCards.Heading>
-    <PricingCards.Description>
+<PricingOptions>
+  <PricingOptions.Item>
+    <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+    <PricingOptions.Description>
       Code completions, Chat, and more for indie developers and freelancers.
-    </PricingCards.Description>
-    <PricingCards.Price
+    </PricingOptions.Description>
+    <PricingOptions.Price
       currencySymbol="$"
       trailingText="per month / $100 per year"
     >
       10
-    </PricingCards.Price>
-    <PricingCards.FeatureList>
-      <PricingCards.FeatureListItem>
+    </PricingOptions.Price>
+    <PricingOptions.FeatureList>
+      <PricingOptions.FeatureListItem>
         Code completions
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Chat in IDE and Mobile
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         CLI assistance
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Security vulnerability filter
-      </PricingCards.FeatureListItem>
-    </PricingCards.FeatureList>
-    <PricingCards.Footnote>
+      </PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
+    <PricingOptions.Footnote>
       Free for verified students, teachers, and maintainers of popular open
       source projects.
-    </PricingCards.Footnote>
-    <PricingCards.PrimaryAction href="/buy">
+    </PricingOptions.Footnote>
+    <PricingOptions.PrimaryAction href="/buy">
       Start a free trial
-    </PricingCards.PrimaryAction>
-  </PricingCards.Item>
+    </PricingOptions.PrimaryAction>
+  </PricingOptions.Item>
 
-  <PricingCards.Item>
-    <PricingCards.Label>Recommended</PricingCards.Label>
-    <PricingCards.Heading>Copilot Business</PricingCards.Heading>
-    <PricingCards.Description>
+  <PricingOptions.Item>
+    <PricingOptions.Label>Recommended</PricingOptions.Label>
+    <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+    <PricingOptions.Description>
       Copilot personalized to your organization.
-    </PricingCards.Description>
-    <PricingCards.Price currencySymbol="$" trailingText="per user / month">
+    </PricingOptions.Description>
+    <PricingOptions.Price currencySymbol="$" trailingText="per user / month">
       19
-    </PricingCards.Price>
-    <PricingCards.PrimaryAction href="/buy">Buy now</PricingCards.PrimaryAction>
-    <PricingCards.SecondaryAction href="/contact">
+    </PricingOptions.Price>
+    <PricingOptions.PrimaryAction href="/buy">
+      Buy now
+    </PricingOptions.PrimaryAction>
+    <PricingOptions.SecondaryAction href="/contact">
       Contact sales
-    </PricingCards.SecondaryAction>
-    <PricingCards.FeatureList>
-      <PricingCards.FeatureListItem>
+    </PricingOptions.SecondaryAction>
+    <PricingOptions.FeatureList>
+      <PricingOptions.FeatureListItem>
         Everything in Copilot Individual plus:
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Chat in IDE and Mobile
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         CLI assistance
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Security vulnerability filter
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Code referencing
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Public code filter
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>IP indemnity</PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
+        IP indemnity
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Enterprise-grade security, safety, and privacy
-      </PricingCards.FeatureListItem>
-    </PricingCards.FeatureList>
-  </PricingCards.Item>
+      </PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
+  </PricingOptions.Item>
 
-  <PricingCards.Item>
-    <PricingCards.Label>Available Feb 2024</PricingCards.Label>
-    <PricingCards.Heading>Copilot Enterprise</PricingCards.Heading>
-    <PricingCards.Description>
+  <PricingOptions.Item>
+    <PricingOptions.Label>Available Feb 2024</PricingOptions.Label>
+    <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
+    <PricingOptions.Description>
       Copilot personalized to your organization throughout the software
       development lifecycle. Requires GitHub Enterprise Cloud.
-    </PricingCards.Description>
-    <PricingCards.Price currencySymbol="$" trailingText="per user / month">
+    </PricingOptions.Description>
+    <PricingOptions.Price currencySymbol="$" trailingText="per user / month">
       39
-    </PricingCards.Price>
-    <PricingCards.FeatureList>
-      <PricingCards.FeatureListItem>
+    </PricingOptions.Price>
+    <PricingOptions.FeatureList>
+      <PricingOptions.FeatureListItem>
         Everything in Copilot Business plus:
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Chat in IDE and Mobile
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         CLI assistance
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Code completions
-      </PricingCards.FeatureListItem>
-    </PricingCards.FeatureList>
-    <PricingCards.PrimaryAction href="/waitlist">
+      </PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
+    <PricingOptions.PrimaryAction href="/waitlist">
       Join waitlist
-    </PricingCards.PrimaryAction>
-  </PricingCards.Item>
-</PricingCards>
+    </PricingOptions.PrimaryAction>
+  </PricingOptions.Item>
+</PricingOptions>
 ```
 
 ### Feature list sets
 
-Use `PricingCards.FeatureListHeading` to group feature items together.
+Use `PricingOptions.FeatureListHeading` to group feature items together.
 
 ```jsx live
-<PricingCards>
-  <PricingCards.Item>
-    <PricingCards.Heading>Copilot Individual</PricingCards.Heading>
-    <PricingCards.Description>
+<PricingOptions>
+  <PricingOptions.Item>
+    <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+    <PricingOptions.Description>
       Code completions, Chat, and more for indie developers and freelancers.
-    </PricingCards.Description>
-    <PricingCards.Price
+    </PricingOptions.Description>
+    <PricingOptions.Price
       currencySymbol="$"
       trailingText="per month / $100 per year"
     >
       10
-    </PricingCards.Price>
-    <PricingCards.FeatureList>
-      <PricingCards.FeatureListHeading>
+    </PricingOptions.Price>
+    <PricingOptions.FeatureList>
+      <PricingOptions.FeatureListHeading>
         Base features
-      </PricingCards.FeatureListHeading>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListItem>
         Code completions
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Chat in IDE and Mobile
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         CLI assistance
-      </PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
 
-      <PricingCards.FeatureListHeading>
+      <PricingOptions.FeatureListHeading>
         Security
-      </PricingCards.FeatureListHeading>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListItem>
         Security vulnerability filter
-      </PricingCards.FeatureListItem>
-    </PricingCards.FeatureList>
+      </PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
 
-    <PricingCards.Footnote>
+    <PricingOptions.Footnote>
       Free for verified students, teachers, and maintainers of popular open
       source projects.
-    </PricingCards.Footnote>
+    </PricingOptions.Footnote>
 
-    <PricingCards.PrimaryAction href="/buy">
+    <PricingOptions.PrimaryAction href="/buy">
       Start a free trial
-    </PricingCards.PrimaryAction>
-  </PricingCards.Item>
+    </PricingOptions.PrimaryAction>
+  </PricingOptions.Item>
 
-  <PricingCards.Item>
-    <PricingCards.Label>Recommended</PricingCards.Label>
-    <PricingCards.Heading>Copilot Business</PricingCards.Heading>
-    <PricingCards.Description>
+  <PricingOptions.Item>
+    <PricingOptions.Label>Recommended</PricingOptions.Label>
+    <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+    <PricingOptions.Description>
       Copilot personalized to your organization.
-    </PricingCards.Description>
-    <PricingCards.Price currencySymbol="$" trailingText="per user / month">
+    </PricingOptions.Description>
+    <PricingOptions.Price currencySymbol="$" trailingText="per user / month">
       19
-    </PricingCards.Price>
-    <PricingCards.PrimaryAction href="/buy">Buy now</PricingCards.PrimaryAction>
-    <PricingCards.SecondaryAction href="/contact">
+    </PricingOptions.Price>
+    <PricingOptions.PrimaryAction href="/buy">
+      Buy now
+    </PricingOptions.PrimaryAction>
+    <PricingOptions.SecondaryAction href="/contact">
       Contact sales
-    </PricingCards.SecondaryAction>
-    <PricingCards.FeatureList>
-      <PricingCards.FeatureListHeading>
+    </PricingOptions.SecondaryAction>
+    <PricingOptions.FeatureList>
+      <PricingOptions.FeatureListHeading>
         Base features
-      </PricingCards.FeatureListHeading>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListItem>
         Everything in Copilot Individual
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Code referencing
-      </PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
 
-      <PricingCards.FeatureListHeading>
+      <PricingOptions.FeatureListHeading>
         Security
-      </PricingCards.FeatureListHeading>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListItem>
         Security vulnerability filter
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Public code filter
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>IP indemnity</PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
+        IP indemnity
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Enterprise-grade security, safety, and privacy
-      </PricingCards.FeatureListItem>
-    </PricingCards.FeatureList>
-  </PricingCards.Item>
+      </PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
+  </PricingOptions.Item>
 
-  <PricingCards.Item>
-    <PricingCards.Label>Available Feb 2024</PricingCards.Label>
-    <PricingCards.Heading>Copilot Enterprise</PricingCards.Heading>
-    <PricingCards.Description>
+  <PricingOptions.Item>
+    <PricingOptions.Label>Available Feb 2024</PricingOptions.Label>
+    <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
+    <PricingOptions.Description>
       Copilot personalized to your organization throughout the software
       development lifecycle. Requires GitHub Enterprise Cloud.
-    </PricingCards.Description>
-    <PricingCards.Price currencySymbol="$" trailingText="per user / month">
+    </PricingOptions.Description>
+    <PricingOptions.Price currencySymbol="$" trailingText="per user / month">
       39
-    </PricingCards.Price>
-    <PricingCards.FeatureList>
-      <PricingCards.FeatureListHeading>
+    </PricingOptions.Price>
+    <PricingOptions.FeatureList>
+      <PricingOptions.FeatureListHeading>
         Base features
-      </PricingCards.FeatureListHeading>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListItem>
         Everything in Copilot Business
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Documentation search and summaries
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Pull request summaries
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Code review skills
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListHeading>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListHeading>
         Security
-      </PricingCards.FeatureListHeading>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListItem>
         Security vulnerability filter
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Public code filter
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>IP indemnity</PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
+        IP indemnity
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Enterprise-grade security, safety, and privacy
-      </PricingCards.FeatureListItem>
-    </PricingCards.FeatureList>
-    <PricingCards.PrimaryAction href="/waitlist">
+      </PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
+    <PricingOptions.PrimaryAction href="/waitlist">
       Join waitlist
-    </PricingCards.PrimaryAction>
-  </PricingCards.Item>
-</PricingCards>
+    </PricingOptions.PrimaryAction>
+  </PricingOptions.Item>
+</PricingOptions>
 ```
 
 ### Included and excluded features
 
-Use `PricingCards.FeatureListItem` with `variant="included"` and `variant="excluded"` to list included and excluded features.
+Use `PricingOptions.FeatureListItem` with `variant="included"` and `variant="excluded"` to list included and excluded features.
 
 ```jsx live
-<PricingCards>
-  <PricingCards.Item>
-    <PricingCards.Heading>Copilot Individual</PricingCards.Heading>
-    <PricingCards.Description>
+<PricingOptions>
+  <PricingOptions.Item>
+    <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+    <PricingOptions.Description>
       Code completions, Chat, and more for indie developers and freelancers.
-    </PricingCards.Description>
-    <PricingCards.Price
+    </PricingOptions.Description>
+    <PricingOptions.Price
       currencySymbol="$"
       trailingText="per month / $100 per year"
     >
       10
-    </PricingCards.Price>
-    <PricingCards.FeatureList>
-      <PricingCards.FeatureListHeading>Chat</PricingCards.FeatureListHeading>
-      <PricingCards.FeatureListItem>
+    </PricingOptions.Price>
+    <PricingOptions.FeatureList>
+      <PricingOptions.FeatureListHeading>
+        Chat
+      </PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListItem>
         Unlimited messages, interactions, and history
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Context-aware coding support and explanations
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem variant="excluded">
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem variant="excluded">
         Debugging and security remediation assistance
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem variant="excluded">
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem variant="excluded">
         Repository-based semantic search
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem variant="excluded">
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem variant="excluded">
         Access your knowledge base
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListHeading>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListHeading>
         Code completion
-      </PricingCards.FeatureListHeading>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListItem>
         Code suggestions as you type
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Comments to code
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem variant="excluded">
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem variant="excluded">
         Fine-tuned models (coming soon)
-      </PricingCards.FeatureListItem>
-    </PricingCards.FeatureList>
+      </PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
 
-    <PricingCards.Footnote>
+    <PricingOptions.Footnote>
       Free for verified students, teachers, and maintainers of popular open
       source projects.
-    </PricingCards.Footnote>
+    </PricingOptions.Footnote>
 
-    <PricingCards.PrimaryAction href="/buy">
+    <PricingOptions.PrimaryAction href="/buy">
       Start a free trial
-    </PricingCards.PrimaryAction>
-  </PricingCards.Item>
+    </PricingOptions.PrimaryAction>
+  </PricingOptions.Item>
 
-  <PricingCards.Item>
-    <PricingCards.Label>Recommended</PricingCards.Label>
-    <PricingCards.Heading>Copilot Business</PricingCards.Heading>
-    <PricingCards.Description>
+  <PricingOptions.Item>
+    <PricingOptions.Label>Recommended</PricingOptions.Label>
+    <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+    <PricingOptions.Description>
       Copilot personalized to your organization.
-    </PricingCards.Description>
-    <PricingCards.Price currencySymbol="$" trailingText="per user / month">
+    </PricingOptions.Description>
+    <PricingOptions.Price currencySymbol="$" trailingText="per user / month">
       19
-    </PricingCards.Price>
-    <PricingCards.PrimaryAction href="/buy">Buy now</PricingCards.PrimaryAction>
-    <PricingCards.SecondaryAction href="/contact">
+    </PricingOptions.Price>
+    <PricingOptions.PrimaryAction href="/buy">
+      Buy now
+    </PricingOptions.PrimaryAction>
+    <PricingOptions.SecondaryAction href="/contact">
       Contact sales
-    </PricingCards.SecondaryAction>
-    <PricingCards.FeatureList>
-      <PricingCards.FeatureListHeading>Chat</PricingCards.FeatureListHeading>
-      <PricingCards.FeatureListItem>
+    </PricingOptions.SecondaryAction>
+    <PricingOptions.FeatureList>
+      <PricingOptions.FeatureListHeading>
+        Chat
+      </PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListItem>
         Unlimited messages, interactions, and history
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Context-aware coding support and explanations
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Debugging and security remediation assistance
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Repository-based semantic search
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem variant="excluded">
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem variant="excluded">
         Access your knowledge base
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListHeading>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListHeading>
         Code completion
-      </PricingCards.FeatureListHeading>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListItem>
         Code suggestions as you type
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Comments to code
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem variant="excluded">
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem variant="excluded">
         Fine-tuned models (coming soon)
-      </PricingCards.FeatureListItem>
-    </PricingCards.FeatureList>
-  </PricingCards.Item>
+      </PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
+  </PricingOptions.Item>
 
-  <PricingCards.Item>
-    <PricingCards.Label>Available Feb 2024</PricingCards.Label>
-    <PricingCards.Heading>Copilot Enterprise</PricingCards.Heading>
-    <PricingCards.Description>
+  <PricingOptions.Item>
+    <PricingOptions.Label>Available Feb 2024</PricingOptions.Label>
+    <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
+    <PricingOptions.Description>
       Copilot personalized to your organization throughout the software
       development lifecycle. Requires GitHub Enterprise Cloud.
-    </PricingCards.Description>
-    <PricingCards.Price currencySymbol="$" trailingText="per user / month">
+    </PricingOptions.Description>
+    <PricingOptions.Price currencySymbol="$" trailingText="per user / month">
       39
-    </PricingCards.Price>
-    <PricingCards.FeatureList>
-      <PricingCards.FeatureListHeading>Chat</PricingCards.FeatureListHeading>
-      <PricingCards.FeatureListItem>
+    </PricingOptions.Price>
+    <PricingOptions.FeatureList>
+      <PricingOptions.FeatureListHeading>
+        Chat
+      </PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListItem>
         Unlimited messages, interactions, and history
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Context-aware coding support and explanations
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Debugging and security remediation assistance
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Repository-based semantic search
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Access your knowledge base
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListHeading>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListHeading>
         Code completion
-      </PricingCards.FeatureListHeading>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListItem>
         Code suggestions as you type
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Comments to code
-      </PricingCards.FeatureListItem>
-      <PricingCards.FeatureListItem>
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
         Fine-tuned models (coming soon)
-      </PricingCards.FeatureListItem>
-    </PricingCards.FeatureList>
-    <PricingCards.PrimaryAction href="/waitlist">
+      </PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
+    <PricingOptions.PrimaryAction href="/waitlist">
       Join waitlist
-    </PricingCards.PrimaryAction>
-  </PricingCards.Item>
-</PricingCards>
+    </PricingOptions.PrimaryAction>
+  </PricingOptions.Item>
+</PricingOptions>
 ```
 
 ## Component props
 
-### PricingCards <Label>Required</Label>
+### PricingOptions <Label>Required</Label>
 
-| Name           | Type                |  Default  | required | Description                         |
-| :------------- | :------------------ | :-------: | :------: | :---------------------------------- |
-| `as`           | `section , div`     | `section` | `false`  | Applies the underlying HTML element |
-| `children`     | `PricingCards.Item` |           |  `true`  | Applies the underlying HTML element |
-| `presentation` | `default, cards`    |           | `false`  | The presentation styling            |
+| Name           | Type                  |  Default  | required | Description                         |
+| :------------- | :-------------------- | :-------: | :------: | :---------------------------------- |
+| `as`           | `section , div`       | `section` | `false`  | Applies the underlying HTML element |
+| `children`     | `PricingOptions.Item` |           |  `true`  | Applies the underlying HTML element |
+| `presentation` | `default, cards`      |           | `false`  | The presentation styling            |
 
-### PricingCards.Item <Label>Required</Label>
+### PricingOptions.Item <Label>Required</Label>
 
 One item per pricing plan to be displayed. Maximum of 3 items.
 
-| Name       | Type                                                                                                                                                                 |   Default   | required | Description              |
-| :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------: | :------: | :----------------------- |
-| `children` | <PropTableValues values={['PricingCards.Heading', 'PricingCards.Label', 'PricingCards.Price', 'PricingCards.FeatureList', 'PricingCards.Footnote']} addLineBreaks /> | `undefined` |  `true`  | The contents of the item |
+| Name       | Type                                                                                                                                                                           |   Default   | required | Description              |
+| :--------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------: | :------: | :----------------------- |
+| `children` | <PropTableValues values={['PricingOptions.Heading', 'PricingOptions.Label', 'PricingOptions.Price', 'PricingOptions.FeatureList', 'PricingOptions.Footnote']} addLineBreaks /> | `undefined` |  `true`  | The contents of the item |
 
-### PricingCards.Heading <Label>Required</Label>
+### PricingOptions.Heading <Label>Required</Label>
 
 | Name       | Type             |   Default   | required | Description                                       |
 | :--------- | :--------------- | :---------: | :------: | :------------------------------------------------ |
 | `as`       | `h3, h4, h5, h6` |    `h3`     | `false`  | Applies the underlying HTML heading level element |
 | `children` | `ReactNode`      | `undefined` |  `true`  | The heading of the item                           |
 
-### PricingCards.Label
+### PricingOptions.Label
 
 | Name       | Type        |   Default   | required | Description           |
 | :--------- | :---------- | :---------: | :------: | :-------------------- |
 | `children` | `ReactNode` | `undefined` |  `true`  | The label of the item |
 
-### PricingCards.Description
+### PricingOptions.Description
 
 | Name       | Type        |   Default   | required | Description                |
 | :--------- | :---------- | :---------: | :------: | :------------------------- |
 | `children` | `ReactNode` | `undefined` |  `true`  | The desciption of the item |
 
-### PricingCards.Price
+### PricingOptions.Price
 
 | Name             | Type        |   Default   | required | Description           |
 | :--------------- | :---------- | :---------: | :------: | :-------------------- |
@@ -692,27 +718,27 @@ One item per pricing plan to be displayed. Maximum of 3 items.
 | `currencySymbol` | `string`    |     `$`     | `false`  | The currency symbol   |
 | `trailingText`   | `string`    |             | `false`  | The trailing text     |
 
-### PricingCards.FeatureList
+### PricingOptions.FeatureList
 
-| Name       | Type                                                                                       |   Default   | required | Description          |
-| :--------- | :----------------------------------------------------------------------------------------- | :---------: | :------: | :------------------- |
-| `children` | <PropTableValues values={['PricingCards.Heading', 'PricingCards.Item', ]} addLineBreaks /> | `undefined` |  `true`  | The list of features |
+| Name       | Type                                                                                           |   Default   | required | Description          |
+| :--------- | :--------------------------------------------------------------------------------------------- | :---------: | :------: | :------------------- |
+| `children` | <PropTableValues values={['PricingOptions.Heading', 'PricingOptions.Item', ]} addLineBreaks /> | `undefined` |  `true`  | The list of features |
 
-### PricingCards.FeatureListHeading
+### PricingOptions.FeatureListHeading
 
 | Name       | Type         |   Default   | required | Description                                       |
 | :--------- | :----------- | :---------: | :------: | :------------------------------------------------ |
 | `as`       | `h4, h5, h6` |    `h4`     | `false`  | Applies the underlying HTML heading level element |
 | `children` | `ReactNode`  | `undefined` |  `true`  | The heading of the feature list set               |
 
-### PricingCards.FeatureListItem
+### PricingOptions.FeatureListItem
 
 | Name       | Type                 |   Default   | required | Description                         |
 | :--------- | :------------------- | :---------: | :------: | :---------------------------------- |
 | `children` | `ReactNode`          | `undefined` |  `true`  | The item of the feature list set    |
 | `variant`  | `included, excluded` | `included`  | `false`  | The variant of the feature list set |
 
-### PricingCards.Footnote
+### PricingOptions.Footnote
 
 | Name       | Type        |   Default   | required | Description              |
 | :--------- | :---------- | :---------: | :------: | :----------------------- |

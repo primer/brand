@@ -16,9 +16,9 @@
 /* 1. Container                                               */
 /* ---------------------------------------------------------- */
 
-.PricingCards {
-  --pricing-cards-item-gap: var(--brand-PricingCards-items-gap);
-  --pricing-cards-container-padding-inline: var(--brand-PricingCards-items-container-padding-inline);
+.PricingOptions {
+  --pricing-cards-item-gap: var(--brand-PricingOptions-items-gap);
+  --pricing-cards-container-padding-inline: var(--brand-PricingOptions-items-container-padding-inline);
 
   display: grid;
   grid-template-columns: 1fr;
@@ -31,33 +31,33 @@
 /* 2. Layout: default                                         */
 /* ---------------------------------------------------------- */
 
-.PricingCards--presentation-default {
+.PricingOptions--presentation-default {
   border-radius: var(--brand-borderRadius-xlarge);
   border: solid 1px var(--brand-color-border-default);
   background-color: var(--brand-color-canvas-default);
 }
 
 @media (min-width: 63.25rem) {
-  .PricingCards--presentation-default {
+  .PricingOptions--presentation-default {
     padding-inline: var(--pricing-cards-container-padding-inline);
   }
 }
 
-.PricingCards--presentation-default .PricingCards__item {
+.PricingOptions--presentation-default .PricingOptions__item {
   position: relative; /* Used for positioning the divider between items */
   padding-inline: var(--base-size-24);
   padding-block: var(--base-size-24);
 }
 
 @media (min-width: 63.25rem) {
-  .PricingCards--presentation-default .PricingCards__item {
+  .PricingOptions--presentation-default .PricingOptions__item {
     padding-inline: 0;
     padding-block: var(--base-size-40);
   }
 }
 
 /* Horizontal divider between items on small viewports */
-.PricingCards--presentation-default .PricingCards__item:nth-child(n + 2)::before {
+.PricingOptions--presentation-default .PricingOptions__item:nth-child(n + 2)::before {
   content: '';
   position: absolute;
   inset-inline: 0;
@@ -68,7 +68,7 @@
 
 /* Vertical divider between items on larger viewports */
 @media (min-width: 63.25rem) {
-  .PricingCards--presentation-default .PricingCards__item:nth-child(n + 2)::before {
+  .PricingOptions--presentation-default .PricingOptions__item:nth-child(n + 2)::before {
     inset-inline: 0;
     inset-block: 0;
     width: 1px;
@@ -82,7 +82,7 @@
 /* 3. Layout: cards                                           */
 /* ---------------------------------------------------------- */
 
-.PricingCards--presentation-cards .PricingCards__item {
+.PricingOptions--presentation-cards .PricingOptions__item {
   padding-inline: var(--base-size-32);
   border-radius: var(--brand-borderRadius-xlarge);
   border: solid 1px var(--brand-color-border-default);
@@ -95,13 +95,13 @@
 /* ---------------------------------------------------------- */
 
 @media (min-width: 63.25rem) {
-  .PricingCards--items-1 {
+  .PricingOptions--items-1 {
     --pricing-cards-container-padding-inline: var(--base-size-48);
 
     display: block;
   }
 
-  .PricingCards--items-1 .PricingCards__item {
+  .PricingOptions--items-1 .PricingOptions__item {
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: calc(var(--base-size-96) * 2);
@@ -114,7 +114,7 @@
       'feature-list actions';
   }
 
-  .PricingCards--items-1 .PricingCards__actions {
+  .PricingOptions--items-1 .PricingOptions__actions {
     align-self: center;
   }
 }
@@ -124,8 +124,8 @@
 /* ---------------------------------------------------------- */
 
 @media (min-width: 63.25rem) {
-  .PricingCards--items-2,
-  .PricingCards--items-3 {
+  .PricingOptions--items-2,
+  .PricingOptions--items-3 {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
     column-gap: var(--pricing-cards-item-gap);
@@ -141,14 +141,14 @@
       'footnote';
   }
 
-  .PricingCards--presentation-default.PricingCards--items-2 {
-    --pricing-cards-item-gap: var(--brand-PricingCards-items-2-gap);
-    --pricing-cards-container-padding-inline: var(--brand-PricingCards-items-2-container-padding-inline);
+  .PricingOptions--presentation-default.PricingOptions--items-2 {
+    --pricing-cards-item-gap: var(--brand-PricingOptions-items-2-gap);
+    --pricing-cards-container-padding-inline: var(--brand-PricingOptions-items-2-container-padding-inline);
   }
 
-  .PricingCards--presentation-default.PricingCards--items-3 {
-    --pricing-cards-item-gap: var(--brand-PricingCards-items-3-gap);
-    --pricing-cards-container-padding-inline: var(--brand-PricingCards-items-3-container-padding-inline);
+  .PricingOptions--presentation-default.PricingOptions--items-3 {
+    --pricing-cards-item-gap: var(--brand-PricingOptions-items-3-gap);
+    --pricing-cards-container-padding-inline: var(--brand-PricingOptions-items-3-container-padding-inline);
   }
 }
 
@@ -157,7 +157,7 @@
 /* ---------------------------------------------------------- */
 
 @media (min-width: 63.28rem) {
-  .PricingCards__item {
+  .PricingOptions__item {
     display: grid;
     grid-row: label / footnote;
     grid-template-rows: subgrid;
@@ -171,7 +171,7 @@
  */
 @supports not (grid-template-rows: subgrid) {
   @media (min-width: 63.28rem) {
-    .PricingCards__item {
+    .PricingOptions__item {
       grid-template-columns: 1fr;
       grid-template-rows: auto;
       grid-template-areas:
@@ -190,7 +190,7 @@
 /* 7. Content                                                 */
 /* ---------------------------------------------------------- */
 
-.PricingCards__label {
+.PricingOptions__label {
   /* Sets the color of the label to the primary accent color, if it exists */
   --brand-Label-color: var(--brand-color-accent-primary);
 
@@ -203,16 +203,16 @@
   justify-self: flex-start;
 }
 
-.PricingCards__heading {
+.PricingOptions__heading {
   grid-row: heading;
   margin-block: var(--base-size-16);
 }
 
-.PricingCards__description {
+.PricingOptions__description {
   grid-row: description;
 }
 
-.PricingCards__price {
+.PricingOptions__price {
   display: flex;
   flex-wrap: wrap;
   column-gap: var(--base-size-12);
@@ -220,25 +220,25 @@
   padding-block: var(--base-size-24);
 }
 
-.PricingCards__price-currency-symbol {
+.PricingOptions__price-currency-symbol {
   line-height: 1.4;
 }
 
-.PricingCards__price-currency-code {
+.PricingOptions__price-currency-code {
   align-self: flex-end;
 }
 
-.PricingCards__price-value {
+.PricingOptions__price-value {
   font-size: 56px;
   line-height: 1;
 }
 
-.PricingCards__price-trailing-text {
+.PricingOptions__price-trailing-text {
   flex: 1 0 100%;
   display: block;
 }
 
-.PricingCards__actions {
+.PricingOptions__actions {
   grid-row: actions;
   display: flex;
   flex-direction: column;
@@ -247,7 +247,7 @@
   padding-block-start: var(--base-size-24);
 }
 
-.PricingCards__footnote {
+.PricingOptions__footnote {
   grid-row: footnote;
   display: flex;
   flex-direction: column;
@@ -260,7 +260,7 @@
 /* 8. Feature list                                            */
 /* ---------------------------------------------------------- */
 
-.PricingCards__feature-list {
+.PricingOptions__feature-list {
   display: flex;
   flex-direction: column;
   gap: var(--base-size-8);
@@ -272,20 +272,20 @@
   padding-inline: 0;
 }
 
-.PricingCards__feature-list-set:nth-child(n + 2) {
+.PricingOptions__feature-list-set:nth-child(n + 2) {
   margin-block-start: var(--base-size-24);
 }
 
-.PricingCards__feature-list-heading {
+.PricingOptions__feature-list-heading {
   color: var(--brand-color-accent-primary);
   margin-block-end: var(--base-size-8);
 }
 
-.PricingCards__feature-list-item--excluded span {
+.PricingOptions__feature-list-item--excluded span {
   color: var(--brand-color-text-muted);
 }
 
-.PricingCards__feature-list + .PricingCards__feature-list-heading {
+.PricingOptions__feature-list + .PricingOptions__feature-list-heading {
   margin-block-start: var(--base-size-24);
 }
 
@@ -294,25 +294,25 @@
  */
 
 /* Remove paddings and borders */
-.PricingCards__feature-list-accordion {
+.PricingOptions__feature-list-accordion {
   border: 0;
   padding: 0;
 }
 
 /* Remove hover effect */
-.PricingCards__feature-list-accordion::after {
+.PricingOptions__feature-list-accordion::after {
   content: none;
 }
 
 /* Adjust heading spacing */
-.PricingCards__feature-list-accordion-heading {
+.PricingOptions__feature-list-accordion-heading {
   padding: var(--base-size-16) 0;
   margin-block-start: calc(var(--base-size-16) * -1);
   margin-block-end: var(--base-size-8);
 }
 
 /* Accordion heading styling */
-.PricingCards__feature-list-accordion .PricingCards__feature-list-accordion-heading h4 {
+.PricingOptions__feature-list-accordion .PricingOptions__feature-list-accordion-heading h4 {
   color: var(--brand-color-text-muted);
   font-size: var(--brand-text-size-300);
   line-height: var(--brand-text-lineHeight-300);
@@ -322,18 +322,18 @@
 }
 
 /* Hide default icon */
-.PricingCards__feature-list-accordion .PricingCards__feature-list-accordion-heading span {
+.PricingOptions__feature-list-accordion .PricingOptions__feature-list-accordion-heading span {
   display: none;
 }
 
 /* Adjust content paddings */
-.PricingCards__feature-list-accordion .PricingCards__feature-list-accordion-content {
+.PricingOptions__feature-list-accordion .PricingOptions__feature-list-accordion-content {
   padding: 0;
   padding-block-start: var(--base-size-40);
   padding-inline-start: 0 !important;
 }
 
 /* Chevron up icon */
-.PricingCards__feature-list-accordion[open] .PricingCards__feature-list-accordion-chevron {
+.PricingOptions__feature-list-accordion[open] .PricingOptions__feature-list-accordion-chevron {
   transform: rotate(180deg);
 }

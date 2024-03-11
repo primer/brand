@@ -3,12 +3,12 @@ import '@testing-library/jest-dom'
 
 import {axe, toHaveNoViolations} from 'jest-axe'
 
-import {PricingCards} from './PricingCards'
+import {PricingOptions} from './PricingOptions'
 import '../test-utils/mocks/match-media-mock'
 
 expect.extend(toHaveNoViolations)
 
-describe('PricingCards', () => {
+describe('PricingOptions', () => {
   const testId = 'test'
 
   afterEach(() => {
@@ -17,25 +17,25 @@ describe('PricingCards', () => {
   })
 
   it('renders correctly into the document', async () => {
-    const expectedClass = 'PricingCards'
+    const expectedClass = 'PricingOptions'
 
-    const {getByTestId} = render(<PricingCards data-testid={testId}></PricingCards>)
+    const {getByTestId} = render(<PricingOptions data-testid={testId}></PricingOptions>)
 
-    const PricingCardsEl = getByTestId(testId)
-    expect(PricingCardsEl.classList).toContain(expectedClass)
+    const PricingOptionsEl = getByTestId(testId)
+    expect(PricingOptionsEl.classList).toContain(expectedClass)
   })
 
   it('adds the class for cards presentation', () => {
-    const cardsPresentationClass = 'PricingCards--presentation-cards'
+    const cardsPresentationClass = 'PricingOptions--presentation-cards'
 
-    const {getByTestId} = render(<PricingCards data-testid={testId} presentation="cards"></PricingCards>)
+    const {getByTestId} = render(<PricingOptions data-testid={testId} presentation="cards"></PricingOptions>)
 
-    const PricingCardsEl = getByTestId(testId)
-    expect(PricingCardsEl.classList).toContain(cardsPresentationClass)
+    const PricingOptionsEl = getByTestId(testId)
+    expect(PricingOptionsEl.classList).toContain(cardsPresentationClass)
   })
 
   it('has no a11y violations', async () => {
-    const {container} = render(<PricingCards />)
+    const {container} = render(<PricingOptions />)
 
     const results = await axe(container)
 
@@ -43,7 +43,7 @@ describe('PricingCards', () => {
   })
 })
 
-describe('PricingCards.Item', () => {
+describe('PricingOptions.Item', () => {
   const testId = 'test'
 
   const mockLabel = 'Mock label'
@@ -62,19 +62,19 @@ describe('PricingCards.Item', () => {
   })
 
   it('renders correctly into the document', () => {
-    const expectedClass = 'PricingCards__Item'
+    const expectedClass = 'PricingOptions__Item'
 
-    const {getByTestId} = render(<PricingCards.Item data-testid={testId} className={expectedClass} />)
+    const {getByTestId} = render(<PricingOptions.Item data-testid={testId} className={expectedClass} />)
 
-    const PricingCardsItemEl = getByTestId(testId)
-    expect(PricingCardsItemEl.classList).toContain(expectedClass)
+    const PricingOptionsItemEl = getByTestId(testId)
+    expect(PricingOptionsItemEl.classList).toContain(expectedClass)
   })
 
   it('removes children that are not allowed', () => {
     const {getByText} = render(
-      <PricingCards.Item>
+      <PricingOptions.Item>
         <div>Not allowed</div>
-      </PricingCards.Item>,
+      </PricingOptions.Item>,
     )
 
     expect(() => getByText('Not allowed')).toThrow()
@@ -82,19 +82,19 @@ describe('PricingCards.Item', () => {
 
   it('renders children that are allowed', () => {
     const {getByText} = render(
-      <PricingCards.Item>
-        <PricingCards.Label>{mockLabel}</PricingCards.Label>
-        <PricingCards.Heading>{mockHeading}</PricingCards.Heading>
-        <PricingCards.Description>{mockDescription}</PricingCards.Description>
-        <PricingCards.Price>{mockPrice}</PricingCards.Price>
-        <PricingCards.PrimaryAction href="#">{mockPrimaryAction}</PricingCards.PrimaryAction>
-        <PricingCards.SecondaryAction href="#">{mockSecondaryAction}</PricingCards.SecondaryAction>
-        <PricingCards.FeatureList>
-          <PricingCards.FeatureListHeading>{mockFeaturedListHeading}</PricingCards.FeatureListHeading>
-          <PricingCards.FeatureListItem>{mockFeatureListItem}</PricingCards.FeatureListItem>
-        </PricingCards.FeatureList>
-        <PricingCards.Footnote>{mockFootnote}</PricingCards.Footnote>
-      </PricingCards.Item>,
+      <PricingOptions.Item>
+        <PricingOptions.Label>{mockLabel}</PricingOptions.Label>
+        <PricingOptions.Heading>{mockHeading}</PricingOptions.Heading>
+        <PricingOptions.Description>{mockDescription}</PricingOptions.Description>
+        <PricingOptions.Price>{mockPrice}</PricingOptions.Price>
+        <PricingOptions.PrimaryAction href="#">{mockPrimaryAction}</PricingOptions.PrimaryAction>
+        <PricingOptions.SecondaryAction href="#">{mockSecondaryAction}</PricingOptions.SecondaryAction>
+        <PricingOptions.FeatureList>
+          <PricingOptions.FeatureListHeading>{mockFeaturedListHeading}</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListItem>{mockFeatureListItem}</PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+        <PricingOptions.Footnote>{mockFootnote}</PricingOptions.Footnote>
+      </PricingOptions.Item>,
     )
 
     expect(getByText(mockLabel)).toBeInTheDocument()

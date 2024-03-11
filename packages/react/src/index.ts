@@ -37,7 +37,7 @@ export * from './LogoSuite'
 export * from './Timeline'
 export * from './Bento'
 export * from './EyebrowBanner'
-export * from './PricingCards'
+export * from './PricingOptions'
 
 // hooks
 export * from './hooks/useWindowSize'
