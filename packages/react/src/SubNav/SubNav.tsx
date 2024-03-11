@@ -12,8 +12,10 @@ import {Text} from '..'
 
 import {default as clsx} from 'clsx'
 import {ChevronDownIcon, XIcon} from '@primer/octicons-react'
+import {useId} from '@reach/auto-id'
 import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
 import {useFocusTrap} from '../hooks/useFocusTrap'
+import {useOnClickOutside} from '../hooks/useOnClickOutside'
 
 import type {BaseProps} from '../component-helpers'
 
@@ -22,8 +24,8 @@ import type {BaseProps} from '../component-helpers'
  */
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/sub-nav/colors-with-modes.css'
 
-/** * Main Stylesheet (as a CSS Module) */ import styles from './SubNav.module.css'
-import {useOnClickOutside} from '../hooks/useOnClickOutside'
+/** * Main Stylesheet (as a CSS Module) */
+import styles from './SubNav.module.css'
 
 const testIds = {
   root: 'SubNav-root',
@@ -47,6 +49,7 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, hasSh
   const navRef = React.useRef<HTMLElement>(null)
   const overlayRef = React.useRef<HTMLDivElement>(null)
   const [isOpenAtNarrow, setIsOpenAtNarrow] = useState(false)
+  const idForLinkContainer = useId()
 
   const closeMenuCallback = useCallback(() => {
     setIsOpenAtNarrow(false)
@@ -59,6 +62,13 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, hasSh
   useOnClickOutside(navRef, closeMenuCallback)
   useKeyboardEscape(closeMenuCallback)
   useFocusTrap({containerRef: overlayRef, restoreFocusOnCleanUp: true, disabled: !isOpenAtNarrow})
+
+  const activeLink = Children.toArray(children).find(child => {
+    if (isValidElement(child)) {
+      return child.props['aria-current']
+    }
+    return undefined
+  }) as React.ReactElement | undefined
 
   const {heading: HeadingChild, links: LinkChildren} = Children.toArray(children).reduce(
     (acc: {heading?: ReactNode; links: ReactElement[]}, child) => {
@@ -94,6 +104,7 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, hasSh
       {LinkChildren.length && (
         <div
           ref={overlayRef}
+          id={idForLinkContainer}
           className={clsx(styles['SubNav__links-overlay'], isOpenAtNarrow && styles['SubNav__links-overlay--open'])}
         >
           {LinkChildren}
@@ -103,12 +114,17 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, hasSh
         className={styles['SubNav__overlay-toggle']}
         data-testid={testIds.button}
         onClick={handleMenuToggle}
-        aria-label="Toggle sub navigation"
+        aria-expanded={isOpenAtNarrow ? 'true' : 'false'}
+        aria-controls={idForLinkContainer}
+        aria-label={`${isOpenAtNarrow ? 'close' : 'open'} navigation menu`}
       >
         {isOpenAtNarrow ? (
           <XIcon className={styles['SubNav__overlay-toggle-icon']} size={24} />
         ) : (
-          <ChevronDownIcon className={styles['SubNav__overlay-toggle-icon']} size={24} />
+          <div className={styles['SubNav__overlay-toggle-content']}>
+            <Text as="span">{activeLink && activeLink.props.children}</Text>
+            <ChevronDownIcon className={styles['SubNav__overlay-toggle-icon']} size={24} />
+          </div>
         )}
       </button>
     </nav>

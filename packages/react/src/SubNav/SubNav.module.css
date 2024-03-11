@@ -106,12 +106,6 @@
     text-decoration: none;
   }
 
-  .SubNav__link[aria-current]:not(.SubNav__links-overlay--open .SubNav__link[aria-current]) {
-    display: inline-block;
-    text-align: end;
-    margin-right: var(--base-size-48);
-  }
-
   .SubNav__links-overlay--open .SubNav__link[aria-current] * {
     color: var(--brand-SubNav-color-link-active);
   }
@@ -125,6 +119,16 @@
 
 .SubNav__overlay-toggle-icon {
   fill: var(--brand-color-text-default);
+}
+
+.SubNav__overlay-toggle-content {
+  display: flex;
+  align-items: center;
+  gap: var(--base-size-8);
+
+  /* optical alignment */
+  position: relative;
+  top: calc(var(--base-size-4) / 4 * -1);
 }
 
 @media screen and (min-width: 48rem) {
