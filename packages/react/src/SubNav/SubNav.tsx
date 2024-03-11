@@ -46,6 +46,10 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, hasSh
   const overlayRef = React.useRef<HTMLDivElement>(null)
   const [isOpenAtNarrow, setIsOpenAtNarrow] = useState(false)
 
+  const handleMenuToggle = useCallback(() => {
+    setIsOpenAtNarrow(!isOpenAtNarrow)
+  }, [isOpenAtNarrow])
+
   const closeMenuCallback = useCallback(() => {
     setIsOpenAtNarrow(false)
   }, [])
@@ -59,7 +63,11 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, hasSh
         if (child.type === SubNavHeading) {
           acc.heading = child
         } else if (child.type === SubNavLink) {
-          acc.links.push(child)
+          acc.links.push(
+            React.cloneElement(child as ReactElement<SubNavLinkProps>, {
+              onClick: child.props['aria-current'] ? handleMenuToggle : child.props.onClick,
+            }),
+          )
         }
       }
       return acc
@@ -78,18 +86,6 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, hasSh
       )}
       data-testid={testId || testIds.root}
     >
-      <button
-        className={styles['SubNav__overlay-toggle']}
-        data-testid={testIds.button}
-        onClick={() => setIsOpenAtNarrow(!isOpenAtNarrow)}
-        aria-label="Toggle sub navigation"
-      >
-        {isOpenAtNarrow ? (
-          <XIcon className={styles['SubNav__overlay-toggle-icon']} size={24} />
-        ) : (
-          <ChevronDownIcon className={styles['SubNav__overlay-toggle-icon']} size={24} />
-        )}
-      </button>
       {HeadingChild && <div className={styles['SubNav__heading-container']}>{HeadingChild}</div>}
       {LinkChildren.length && (
         <div
@@ -99,6 +95,18 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, hasSh
           {LinkChildren}
         </div>
       )}
+      <button
+        className={styles['SubNav__overlay-toggle']}
+        data-testid={testIds.button}
+        onClick={handleMenuToggle}
+        aria-label="Toggle sub navigation"
+      >
+        {isOpenAtNarrow ? (
+          <XIcon className={styles['SubNav__overlay-toggle-icon']} size={24} />
+        ) : (
+          <ChevronDownIcon className={styles['SubNav__overlay-toggle-icon']} size={24} />
+        )}
+      </button>
     </nav>
   )
 })
@@ -133,7 +141,6 @@ const SubNavLink = ({
       href={href}
       className={clsx(styles['SubNav__link'], ariaCurrent && styles['SubNav__link--active'], className)}
       aria-current={ariaCurrent}
-      tabIndex={ariaCurrent ? -1 : undefined}
       data-testid={testId || testIds.link}
       {...props}
     >

@@ -21,7 +21,7 @@ export default {
 
 export const ExampleUsage = ({hasShadow, ...args}) => (
   <>
-    <Box paddingBlockStart={64} backgroundColor="subtle"></Box>
+    <Box paddingBlockStart={64} backgroundColor="subtle" style={{position: 'relative', zIndex: 32}}></Box>
     <SubNav {...args} hasShadow={hasShadow}>
       <SubNav.Heading href="#">Features</SubNav.Heading>
       <SubNav.Link href="#">Actions</SubNav.Link>
