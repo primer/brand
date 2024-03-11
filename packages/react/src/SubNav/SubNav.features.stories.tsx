@@ -21,7 +21,7 @@ export default {
 } as Meta<typeof SubNav>
 
 export const ExampleUsage = ({hasShadow, ...args}) => (
-  <>
+  <main>
     <Box paddingBlockStart={64} backgroundColor="subtle" style={{position: 'relative', zIndex: 32}}></Box>
     <SubNav {...args} hasShadow={hasShadow}>
       <SubNav.Heading href="#">Features</SubNav.Heading>
@@ -47,7 +47,7 @@ export const ExampleUsage = ({hasShadow, ...args}) => (
         </Hero>
       </Grid.Column>
     </Grid>
-  </>
+  </main>
 )
 ExampleUsage.parameters = {
   layout: 'fullscreen',

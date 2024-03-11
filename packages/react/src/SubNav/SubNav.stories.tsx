@@ -11,17 +11,19 @@ export default {
 } as Meta<typeof SubNav>
 
 const Template: StoryFn<typeof SubNav> = args => (
-  <SubNav {...args}>
-    <SubNav.Heading href="#">Heading</SubNav.Heading>
-    <SubNav.Link href="#">Link</SubNav.Link>
-    <SubNav.Link href="#">Link</SubNav.Link>
-    <SubNav.Link href="#">Link</SubNav.Link>
-    <SubNav.Link href="#" aria-current="page">
-      Link
-    </SubNav.Link>
-    <SubNav.Link href="#">Link</SubNav.Link>
-    <SubNav.Link href="#">Link</SubNav.Link>
-  </SubNav>
+  <main>
+    <SubNav {...args}>
+      <SubNav.Heading href="#">Heading</SubNav.Heading>
+      <SubNav.Link href="#">Link</SubNav.Link>
+      <SubNav.Link href="#">Link</SubNav.Link>
+      <SubNav.Link href="#">Link</SubNav.Link>
+      <SubNav.Link href="#" aria-current="page">
+        Link
+      </SubNav.Link>
+      <SubNav.Link href="#">Link</SubNav.Link>
+      <SubNav.Link href="#">Link</SubNav.Link>
+    </SubNav>
+  </main>
 )
 
 export const Default = Template.bind({})
