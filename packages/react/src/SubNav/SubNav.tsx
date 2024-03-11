@@ -23,6 +23,7 @@ import type {BaseProps} from '../component-helpers'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/sub-nav/colors-with-modes.css'
 
 /** * Main Stylesheet (as a CSS Module) */ import styles from './SubNav.module.css'
+import {useOnClickOutside} from '../hooks/useOnClickOutside'
 
 const testIds = {
   root: 'SubNav-root',
@@ -43,17 +44,19 @@ export type SubNavProps = {
 } & PropsWithChildren<BaseProps<HTMLElement>>
 
 const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, hasShadow}: SubNavProps) => {
+  const navRef = React.useRef<HTMLElement>(null)
   const overlayRef = React.useRef<HTMLDivElement>(null)
   const [isOpenAtNarrow, setIsOpenAtNarrow] = useState(false)
-
-  const handleMenuToggle = useCallback(() => {
-    setIsOpenAtNarrow(!isOpenAtNarrow)
-  }, [isOpenAtNarrow])
 
   const closeMenuCallback = useCallback(() => {
     setIsOpenAtNarrow(false)
   }, [])
 
+  const handleMenuToggle = useCallback(() => {
+    setIsOpenAtNarrow(!isOpenAtNarrow)
+  }, [isOpenAtNarrow])
+
+  useOnClickOutside(navRef, closeMenuCallback)
   useKeyboardEscape(closeMenuCallback)
   useFocusTrap({containerRef: overlayRef, restoreFocusOnCleanUp: true, disabled: !isOpenAtNarrow})
 
@@ -77,6 +80,7 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, hasSh
 
   return (
     <nav
+      ref={navRef}
       id={id}
       className={clsx(
         styles.SubNav,
