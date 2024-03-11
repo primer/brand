@@ -148,4 +148,22 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
+
+  test('SubdomainNavBar / Skip To Main Tag', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--skip-to-main-tag&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('SubdomainNavBar / Skip To Main Tag With Id', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--skip-to-main-tag-with-id&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
 })
