@@ -13,6 +13,7 @@ export default {
   title: 'Components/SubNav/Features',
   component: SubNav,
   parameters: {
+    layout: 'fullscreen',
     viewport: {
       viewports: INITIAL_VIEWPORTS,
     },

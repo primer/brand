@@ -5,6 +5,9 @@ import {SubNav} from './SubNav'
 export default {
   title: 'Components/SubNav',
   component: SubNav,
+  parameters: {
+    layout: 'fullscreen',
+  },
 } as Meta<typeof SubNav>
 
 const Template: StoryFn<typeof SubNav> = args => (
