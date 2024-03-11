@@ -487,7 +487,7 @@ const PricingOptionsFootnote = forwardRef<HTMLParagraphElement, PricingOptionsFo
 )
 
 /**
- * Pricing card component:
+ * Pricing options component:
  * {@link https://primer.style/brand/components/PricingOptions/ See usage examples}.
  */
 export const PricingOptions = Object.assign(PricingOptionsRoot, {
