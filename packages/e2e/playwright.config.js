@@ -5,7 +5,6 @@ const config = {
   outputDir: './playwright-test-results',
   use: {
     screenshot: 'only-on-failure',
-    channel: 'chrome',
   },
   expect: {
     toHaveScreenshot: {maxDiffPixels: 20, animations: 'disabled'},
