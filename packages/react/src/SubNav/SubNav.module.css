@@ -14,7 +14,7 @@
 
 .SubNav__heading:hover {
   color: var(--brand-SubNav-color-link-active);
-  text-decoration: none;
+  text-decoration: none !important; /* dotcom override */
 }
 
 .SubNav__heading-container {
@@ -180,7 +180,7 @@
   .SubNav__link:hover *,
   .SubNav__link[aria-current] * {
     color: var(--brand-SubNav-color-link-active);
-    text-decoration: none;
+    text-decoration: none !important; /* dotcom override */
   }
 
   .SubNav__link-label::after {
