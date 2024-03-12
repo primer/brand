@@ -38,6 +38,9 @@ const testIds = {
   get link() {
     return `${this.root}-link`
   },
+  get heading() {
+    return `${this.root}-heading`
+  },
 }
 
 export type SubNavProps = {
@@ -67,7 +70,6 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, hasSh
     if (isValidElement(child)) {
       return child.props['aria-current']
     }
-    return undefined
   }) as React.ReactElement | undefined
 
   const {heading: HeadingChild, links: LinkChildren} = Children.toArray(children).reduce(
@@ -106,6 +108,7 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, hasSh
           ref={overlayRef}
           id={idForLinkContainer}
           className={clsx(styles['SubNav__links-overlay'], isOpenAtNarrow && styles['SubNav__links-overlay--open'])}
+          data-testid={testIds.overlay}
         >
           {LinkChildren}
         </div>
@@ -131,12 +134,20 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, hasSh
   )
 })
 
-type SubNavHeadingProps = {href: string} & PropsWithChildren<React.HTMLProps<HTMLAnchorElement>> &
+type SubNavHeadingProps = {
+  href: string
+  'data-testid'?: string
+} & PropsWithChildren<React.HTMLProps<HTMLAnchorElement>> &
   BaseProps<HTMLAnchorElement>
 
-const SubNavHeading = ({href, children, className, ...props}: SubNavHeadingProps) => {
+const SubNavHeading = ({href, children, className, 'data-testid': testID, ...props}: SubNavHeadingProps) => {
   return (
-    <a href={href} className={clsx(styles['SubNav__heading'], className)} {...props}>
+    <a
+      href={href}
+      className={clsx(styles['SubNav__heading'], className)}
+      data-testid={testIds.heading || testID}
+      {...props}
+    >
       {children}
     </a>
   )
