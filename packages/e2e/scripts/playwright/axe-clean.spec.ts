@@ -63,7 +63,7 @@ const testsToSkip = [
 ]
 
 const ignoreViolations = {
-  'landmark-one-main': {except: []}, // on most of the sotries we don't have a main landmark
+  'landmark-one-main': {except: []}, // on most of the stories we don't have a main landmark
   'page-has-heading-one': {except: ['components-hero', 'recipes-feature-previews']}, // on some stories we dont have a heading,
   region: {except: []}, // on most of the stories we don't have a region landmark
 }
