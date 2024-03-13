@@ -1,7 +1,5 @@
-// needed so Jest can parse @oddbird/popover-polyfill/fn
-require = require('esm')(module)
-
 import React from 'react'
+import '@testing-library/jest-dom'
 import {Tooltip, TooltipProps} from './Tooltip'
 import {render as HTMLRender} from '@testing-library/react'
 import {Button, Link} from '../..'
@@ -12,6 +10,12 @@ const TooltipComponent = (props: Omit<TooltipProps, 'text'> & {text?: string}) =
     <Button>Button Text</Button>
   </Tooltip>
 )
+
+// Mock the popover polyfill since Jest can't handle ESM imports
+jest.mock('@oddbird/popover-polyfill/fn', () => ({
+  apply: jest.fn(),
+  isSupported: () => false,
+}))
 
 describe('Tooltip', () => {
   it('renders `data-direction="s"` by default', () => {
@@ -53,7 +57,7 @@ describe('Tooltip', () => {
         </Link>
       </Tooltip>,
     )
-    const triggerEL = getByRole('button')
+    const triggerEL = getByRole('link')
     expect(triggerEL).toHaveAttribute('aria-labelledby', 'custom-tooltip-id')
   })
   it('should use the custom tooltip id (if present) to described the trigger element', () => {
