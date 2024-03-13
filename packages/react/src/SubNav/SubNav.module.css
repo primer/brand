@@ -172,7 +172,7 @@
   }
 
   .SubNav__link {
-    text-decoration: none;
+    text-decoration: none !important; /* dotcom override */
     transition: color 0.2s var(--brand-animation-easing-glide);
     position: relative;
   }
