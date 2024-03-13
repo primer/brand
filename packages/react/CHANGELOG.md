@@ -1,5 +1,62 @@
 # @primer/react-brand
 
+## 0.31.0
+
+### Minor Changes
+
+- [#503](https://github.com/primer/brand/pull/503) [`3098b3b`](https://github.com/primer/brand/commit/3098b3b54745e64a5ef0115edc81e12ea268e278) Thanks [@joseph-lozano](https://github.com/joseph-lozano)! - Added SkipToContent button to SubdomainNavBar
+
+- [#548](https://github.com/primer/brand/pull/548) [`f0a581c`](https://github.com/primer/brand/commit/f0a581ce0f65580120f5184142c6819d7f74d9cb) Thanks [@rezrah](https://github.com/rezrah)! - Added new `SubNav` component
+
+  Example:
+
+  ```jsx
+  <SubNav>
+    <SubNav.Heading>Features</SubNav.Heading>
+    <SubNav.Link href="#">Actions</SubNav.Link>
+    <SubNav.Link href="#">Packages</SubNav.Link>
+    <SubNav.Link href="#" aria-current="page">
+      Copilot
+    </SubNav.Link>
+    <SubNav.Link href="#">Code review</SubNav.Link>
+  </SubNav>
+  ```
+
+  🔗 [See the documentation for more examples](https://primer.style/brand/components/SubNav)
+
+## 0.30.3
+
+### Patch Changes
+
+- [#541](https://github.com/primer/brand/pull/541) [`392d4c4`](https://github.com/primer/brand/commit/392d4c4ba4d74a4c66b39a5e6d7cbeef7798237d) Thanks [@danielguillan](https://github.com/danielguillan)! - Adds hover states to the social icon links in MinimalFooter
+
+- [#542](https://github.com/primer/brand/pull/542) [`79fa589`](https://github.com/primer/brand/commit/79fa589838fcac3bfc532e68e03955900c5993d7) Thanks [@rezrah](https://github.com/rezrah)! - - Added new `size` option to `ActionMenu`
+
+  - Improved, automatic overlay positioning dependent on the action menu's location in the viewport.
+
+  Example:
+
+  ```jsx
+  <>
+    <ActionMenu size="small">
+      <ActionMenu.Button>Small</ActionMenu.Button>
+      <ActionMenu.Overlay aria-label="Menu items">
+        <ActionMenu.Item value="Item 1">Item 1</ActionMenu.Item>
+        <ActionMenu.Item value="Item 2">Item 2</ActionMenu.Item>
+      </ActionMenu.Overlay>
+    </ActionMenu>
+    <ActionMenu size="medium">
+      <ActionMenu.Button>Medium</ActionMenu.Button>
+      <ActionMenu.Overlay aria-label="Menu items">
+        <ActionMenu.Item value="Item 1">Item 1</ActionMenu.Item>
+        <ActionMenu.Item value="Item 2">Item 2</ActionMenu.Item>
+      </ActionMenu.Overlay>
+    </ActionMenu>
+  </>
+  ```
+
+  🔗 [See the documentation for more examples](https://primer.style/brand/components/ActionMenu#sizes)
+
 ## 0.30.2
 
 ### Patch Changes

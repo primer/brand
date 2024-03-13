@@ -15,9 +15,10 @@ declare const styles: {
   readonly "Button--label-secondary": string;
   readonly "Button--subtle": string;
   readonly "Button--label-subtle": string;
+  readonly "Button--size-small": string;
+  readonly "Button--label-large": string;
   readonly "Button--size-medium": string;
   readonly "Button--size-large": string;
-  readonly "Button--label-large": string;
   readonly "Button--block": string;
   readonly "Button--label": string;
 };

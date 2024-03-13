@@ -9,6 +9,31 @@
           "value": "{base.size.44}"
         }
       },
+      "small": {
+        "size": {
+          "value": "{base.size.32}"
+        },
+        "lineBoxHeight": {
+          "value": "{base.size.12}"
+        },
+        "paddingBlock": {
+          "value": "{base.size.12}"
+        },
+        "paddingInline": {
+          "condensed": {
+            "value": "{base.size.8}"
+          },
+          "normal": {
+            "value": "{base.size.12}"
+          },
+          "spacious": {
+            "value": "{base.size.24}"
+          }
+        },
+        "gap": {
+          "value": "{base.size.8}"
+        }
+      },
       "medium": {
         "size": {
           "value": "{base.size.48}"

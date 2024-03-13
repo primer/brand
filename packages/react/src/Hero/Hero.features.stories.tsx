@@ -214,8 +214,6 @@ export const Eyebrow: StoryFn<typeof Hero> = _args => (
           <img
             width="44"
             height="44"
-            loading="lazy"
-            decoding="async"
             alt=""
             aria-hidden="true"
             src="https://github.githubassets.com/assets/eyebrow-23@2x-563f292d9e30.png"
@@ -226,6 +224,7 @@ export const Eyebrow: StoryFn<typeof Hero> = _args => (
       </EyebrowBanner>
     </Hero.Eyebrow>
     <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+
     <Hero.Description>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
       felis nam pulvinar risus elementum.

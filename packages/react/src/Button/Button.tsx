@@ -12,10 +12,10 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 import styles from './Button.module.css'
 
 export const ButtonVariants = ['primary', 'secondary', 'subtle'] as const
-export const ButtonSizes = ['medium', 'large'] as const
+export const ButtonSizes = ['small', 'medium', 'large'] as const
 
 export const defaultButtonVariant = ButtonVariants[1]
-export const defaultButtonSize = ButtonSizes[0]
+export const defaultButtonSize = ButtonSizes[1]
 
 export type ButtonBaseProps = {
   /**
@@ -181,7 +181,7 @@ export const _Button = forwardRef(
         <span className={styles['Button__text']}>
           <Text
             as="span"
-            size={size === 'medium' ? '200' : '400'}
+            size={size === 'small' ? '100' : size === 'medium' ? '200' : '400'}
             weight="semibold"
             className={clsx(
               styles['Button--label'],
