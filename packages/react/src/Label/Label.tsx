@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import React, {forwardRef, type Ref} from 'react'
+import React, {forwardRef, useMemo, type Ref} from 'react'
 import {Text} from '../Text'
 
 import {useAnimation} from '../animation'
@@ -61,7 +61,7 @@ const _Label = forwardRef<HTMLSpanElement, LabelProps>(
   ) => {
     const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
 
-    const isGradient = Gradients.find(gradient => gradient === color)
+    const isGradient = useMemo(() => Gradients.find(gradient => gradient === color), [color])
 
     return (
       <span
