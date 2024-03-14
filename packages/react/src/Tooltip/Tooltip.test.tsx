@@ -48,7 +48,7 @@ describe('Tooltip', () => {
   })
   it('should use the custom tooltip id (if present) to label the trigger element', () => {
     const {getByRole} = HTMLRender(
-      <Tooltip id="custom-tooltip-id" text="Close feedback form" direction="nw" type="label">
+      <Tooltip id="custom-tooltip-id" text="Close feedback form" direction="n" type="label">
         <Link
           aria-labelledby="custom-tooltip-id"
           href="https://github.com/primer/react/contributor-docs/CONTRIBUTING.md"

@@ -41,7 +41,7 @@ Playground.argTypes = {
   text: {control: {type: 'text'}},
   direction: {
     control: {type: 'radio'},
-    options: ['n', 'ne', 'e', 'se', 's', 'sw', 'w', 'nw'],
+    options: ['n', 'e', 's', 'w'],
   },
   type: {
     control: false,

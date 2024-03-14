@@ -100,15 +100,11 @@
         0 min(100%,var(--p) + var(--b)/2));
 }
 
-.Tooltip[data-direction='n']::after,
-.Tooltip[data-direction='ne']::after,
-.Tooltip[data-direction='nw']::after {
+.Tooltip[data-direction='n']::after {
     top: 100%;
 }
 
-.Tooltip[data-direction='s']::after,
-.Tooltip[data-direction='se']::after,
-.Tooltip[data-direction='sw']::after {
+.Tooltip[data-direction='s']::after {
     bottom: 100%;
 }
 

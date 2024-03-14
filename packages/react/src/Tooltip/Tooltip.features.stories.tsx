@@ -50,18 +50,6 @@ export const AllDirections = () => (
     <Tooltip direction="w" text="Supplementary text">
       <Button>West</Button>
     </Tooltip>
-    <Tooltip direction="ne" text="Supplementary text">
-      <Button>North East</Button>
-    </Tooltip>
-    <Tooltip direction="nw" text="Supplementary text">
-      <Button>North West</Button>
-    </Tooltip>
-    <Tooltip direction="se" text="Supplementary text">
-      <Button>Southeast</Button>
-    </Tooltip>
-    <Tooltip direction="sw" text="Supplementary text">
-      <Button>Southwest</Button>
-    </Tooltip>
   </Stack>
 )
 
