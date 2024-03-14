@@ -10,6 +10,13 @@
 
 /* Overriding the default popover styles */
 .Tooltip[popover] {
+    /* these vars are for the triangle, via https://www.smashingmagazine.com/2024/03/modern-css-tooltips-speech-bubbles-part1/ */
+    --b: 1em; /* triangle base width */
+    --h: 0.5em; /* triangle height */
+    --p: 50%; /* center triangle position (0%:left 100%:right) */
+    --r: var(--brand-borderRadius-medium); /* border radius */
+    --c: var(--brand-color-neutral-emphasisPlus); /* bg color */
+
     position: absolute;
     padding: 0.5em 0.75em;
     width: max-content;
@@ -21,8 +28,8 @@
     color: var(--brand-color-text-onEmphasis);
     text-align: center;
     word-wrap: break-word;
-    background: var(--brand-color-neutral-emphasisPlus);
-    border-radius: var(--brand-borderRadius-medium);
+    background: var(--c);
+    border-radius: var(--r);
     border: 0;
     opacity: 0;
     max-width: 250px;
@@ -53,19 +60,59 @@
 }
 
 /* Directional styles */
-[data-direction='n']::after,
-[data-direction='ne']::after,
-[data-direction='nw']::after {
+.Tooltip[data-direction='n'] {
+    border-image: conic-gradient(var(--c) 0 0) fill 0/
+        var(--r) calc(100% - var(--p) - var(--b)/2) 0 calc(var(--p) - var(--b)/2)/
+        0 0 var(--h) 0;
+    clip-path: polygon(0 100%,0 0,100% 0,100% 100%,
+        min(100%,var(--p) + var(--b)/2) 100%,
+        var(--p) calc(100% + var(--h)),
+        max(0%  ,var(--p) - var(--b)/2) 100%);
+}
+
+.Tooltip[data-direction='s'] {
+    border-image: conic-gradient(var(--c) 0 0) fill 0/
+        0 calc(100% - var(--p) - var(--b)/2) var(--r) calc(var(--p) - var(--b)/2)/
+        var(--h) 0 0 0;
+    clip-path: polygon(0 0,0 100%,100% 100%,100% 0,
+        min(100%,var(--p) + var(--b)/2) 0,
+        var(--p) calc(-1*var(--h)),
+        max(0%  ,var(--p) - var(--b)/2) 0);
+}
+
+.Tooltip[data-direction='w'] {
+    border-image: conic-gradient(var(--c) 0 0) fill 0/
+        calc(var(--p) - var(--b)/2) 0 calc(100% - var(--p) - var(--b)/2) var(--r)/
+        0 var(--h) 0 0;
+    clip-path: polygon(100% 100%,0 100%,0 0,100% 0,
+        100% max(0%  ,var(--p) - var(--b)/2),
+        calc(100% + var(--h)) var(--p),
+        100% min(100%,var(--p) + var(--b)/2));
+}
+
+.Tooltip[data-direction='e'] {
+    border-image: conic-gradient(var(--c) 0 0) fill 0/
+        calc(var(--p) - var(--b)/2) var(--r) calc(100% - var(--p) - var(--b)/2) 0/
+        0 0 0 var(--h);
+    clip-path: polygon(0 100%,100% 100%,100% 0,0 0,
+        0 max(0%  ,var(--p) - var(--b)/2),
+        calc(-1*var(--h)) var(--p),
+        0 min(100%,var(--p) + var(--b)/2));
+}
+
+.Tooltip[data-direction='n']::after,
+.Tooltip[data-direction='ne']::after,
+.Tooltip[data-direction='nw']::after {
     top: 100%;
 }
 
-[data-direction='s']::after,
-[data-direction='se']::after,
-[data-direction='sw']::after {
+.Tooltip[data-direction='s']::after,
+.Tooltip[data-direction='se']::after,
+.Tooltip[data-direction='sw']::after {
     bottom: 100%;
 }
 
-[data-direction='w']::after {
+.Tooltip[data-direction='w']::after {
     position: absolute;
     display: block;
     height: 100%;
@@ -74,7 +121,8 @@
     bottom: 0;
     left: 100%;
 }
-[data-direction='e']::after {
+
+.Tooltip[data-direction='e']::after {
     position: absolute;
     display: block;
     height: 100%;

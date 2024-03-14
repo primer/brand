@@ -149,6 +149,7 @@ export const Tooltip = React.forwardRef(
       const settings = {
         side: directionToPosition[direction].side,
         align: directionToPosition[direction].align,
+        anchorOffset: 8,
       }
 
       const positionSet = () => {
