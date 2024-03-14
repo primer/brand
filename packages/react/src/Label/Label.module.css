@@ -124,7 +124,7 @@
   --brand-Label-color: var(--brand-Label-color-yellow);
 }
 
-.Label__text {
+.Label__text:not(.Label--gradient .Label__text) {
   background: var(--brand-Label-background);
   -webkit-background-clip: text;
   background-clip: text;

@@ -61,6 +61,18 @@ describe('Label', () => {
     expect(labelEl.classList).toContain(expectedColorClass)
   })
 
+  it('adds an additional CSS class if the color value is a gradient', () => {
+    const expectedColor = `red-orange`
+    const expectedColorClasses = [`Label--color-${expectedColor}`, `Label--gradient`]
+
+    const {getByTestId} = render(<Label color={expectedColor}>{mockText}</Label>)
+    const labelEl = getByTestId(Label.testIds.root)
+
+    for (const expectedClass of expectedColorClasses) {
+      expect(labelEl.classList).toContain(expectedClass)
+    }
+  })
+
   it('does not render the leading icon by default', () => {
     const leadingVisualId = Label.testIds.leadingVisual
 
