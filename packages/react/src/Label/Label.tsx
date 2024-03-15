@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import React, {forwardRef, type Ref} from 'react'
+import React, {forwardRef, useMemo, type Ref} from 'react'
 import {Text} from '../Text'
 
 import {useAnimation} from '../animation'
@@ -61,6 +61,8 @@ const _Label = forwardRef<HTMLSpanElement, LabelProps>(
   ) => {
     const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
 
+    const isGradient = useMemo(() => Gradients.find(gradient => gradient === color), [color])
+
     return (
       <span
         ref={ref}
@@ -69,6 +71,7 @@ const _Label = forwardRef<HTMLSpanElement, LabelProps>(
           styles.Label,
           styles[`Label--color-${color}`],
           styles[`Label--size-${size}`],
+          isGradient && styles['Label--gradient'],
           className,
         )}
         data-testid={testId || testIds.root}
@@ -88,7 +91,7 @@ const _Label = forwardRef<HTMLSpanElement, LabelProps>(
             )}
           </span>
         )}
-        <span className={styles['Label__text']}>
+        <span className={clsx(styles['Label__text'])}>
           <Text as="span" size={size === 'medium' ? '100' : '200'} className={clsx(styles['Label__label'])}>
             {children}
           </Text>
