@@ -75,13 +75,11 @@ export const Tooltip = React.forwardRef(
 
     const openTooltip = () => {
       if (tooltipElRef.current && triggerRef.current && !tooltipElRef.current.matches(':popover-open')) {
-        // @ts-ignore-next-line
         tooltipElRef.current.showPopover()
       }
     }
     const closeTooltip = () => {
       if (tooltipElRef.current && triggerRef.current && tooltipElRef.current.matches(':popover-open')) {
-        // @ts-ignore-next-line
         tooltipElRef.current.hidePopover()
       }
     }
@@ -94,8 +92,8 @@ export const Tooltip = React.forwardRef(
       // Has trigger element or any of its children interactive elements?
       const isTriggerInteractive = isInteractive(triggerRef.current)
       const triggerChildren = triggerRef.current.childNodes
-      const hasInteractiveChild = Array.from(triggerChildren).some(child => {
-        return child instanceof HTMLElement && isInteractive(child)
+      const hasInteractiveChild = Array.from(triggerChildren).some(triggerChild => {
+        return triggerChild instanceof HTMLElement && isInteractive(triggerChild)
       })
 
       if (
@@ -111,7 +109,7 @@ export const Tooltip = React.forwardRef(
       if (type === 'label') {
         const hasAriaLabel = triggerRef.current.hasAttribute('aria-label')
         const hasAriaLabelInChildren = Array.from(triggerRef.current.childNodes).some(
-          child => child instanceof HTMLElement && child.hasAttribute('aria-label'),
+          triggerChild => triggerChild instanceof HTMLElement && triggerChild.hasAttribute('aria-label'),
         )
 
         if (
@@ -150,8 +148,8 @@ export const Tooltip = React.forwardRef(
         tooltip.style.top = `${top}px`
         tooltip.style.left = `${left}px`
         // This is required to make sure the popover is positioned correctly i.e. when there is not enough space on the specified direction, we set a new direction to position the ::after
-        const calculatedDirection = positionToDirection[`${anchorSide}-${anchorAlign}` as string]
-        setCalculatedDirection(calculatedDirection)
+        const calculatedDirectionString = positionToDirection[`${anchorSide}-${anchorAlign}` as string]
+        setCalculatedDirection(calculatedDirectionString)
       }
 
       tooltip.addEventListener('toggle', positionSet)
