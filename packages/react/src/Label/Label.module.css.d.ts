@@ -22,6 +22,7 @@ declare const styles: {
   readonly "Label--color-teal": string;
   readonly "Label--color-yellow": string;
   readonly "Label__text": string;
+  readonly "Label--gradient": string;
   readonly "Label__icon-visual": string;
   readonly "Label__leading-visual": string;
   readonly "Label__label": string;
