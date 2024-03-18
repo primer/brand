@@ -1,7 +1,6 @@
 import React, {forwardRef, HTMLAttributes, PropsWithChildren, type Ref} from 'react'
 import {CheckIcon, ChevronDownIcon, XIcon} from '@primer/octicons-react'
 import clsx from 'clsx'
-import {useAnimation} from '../animation'
 import type {BaseProps} from '../component-helpers'
 
 import {
@@ -27,11 +26,10 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
  */
 import styles from './PricingOptions.module.css'
 
-export type PricingOptionsProps<C extends keyof JSX.IntrinsicElements = 'section'> = React.HTMLAttributes<C> & {
-  as?: C | 'section' | 'div'
+export type PricingOptionsProps = {
   presentation?: 'default' | 'cards'
   ['data-testid']?: string
-} & (C extends 'section' ? PropsWithChildren<BaseProps<HTMLElement>> : PropsWithChildren<BaseProps<HTMLDivElement>>)
+} & PropsWithChildren<BaseProps<HTMLDivElement>>
 
 const testIds = {
   root: 'PricingOptions',
@@ -51,66 +49,45 @@ const testIds = {
 const PricingOptionsRoot = forwardRef(
   (
     {
-      animate,
-      as = 'section',
       children,
       className,
       'data-testid': testId,
       presentation = 'default',
-      style,
       ...rest
     }: PropsWithChildren<PricingOptionsProps>,
     ref: Ref<HTMLDivElement>,
   ) => {
-    const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
-
     const filteredChildren = React.Children.toArray(children).filter(
       child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === PricingOptionsItem,
     )
 
-    const validElements = ['div', 'section']
-    const Component = validElements.includes(as) ? as : 'div'
-
     return (
-      <Component
+      <div
         className={clsx(
           styles.PricingOptions,
           styles[`PricingOptions--presentation-${presentation}`],
           styles[`PricingOptions--items-${filteredChildren.length}`],
-          animationClasses,
           className,
         )}
+        data-testid={testId || testIds.root}
         ref={ref}
         {...(rest as HTMLAttributes<HTMLElement>)}
-        style={{...animationInlineStyles, ...style}}
-        data-testid={testId || testIds.root}
       >
         {filteredChildren.filter(child => React.isValidElement(child) && child.type === PricingOptionsItem)}
-      </Component>
+      </div>
     )
   },
 )
 
-export type PricingOptionsItem<C extends keyof JSX.IntrinsicElements = 'article'> = React.HTMLAttributes<C> & {
-  as?: C | 'article' | 'div'
+export type PricingOptionsItem = {
   ['data-testid']?: string
-} & (C extends 'article' ? PropsWithChildren<BaseProps<HTMLElement>> : PropsWithChildren<BaseProps<HTMLDivElement>>)
+} & PropsWithChildren<BaseProps<HTMLDivElement>>
 
 const PricingOptionsItem = forwardRef(
   (
-    {
-      animate,
-      as = 'article',
-      'data-testid': testId,
-      children,
-      className,
-      style,
-      ...rest
-    }: PropsWithChildren<PricingOptionsItem>,
+    {animate, 'data-testid': testId, children, className, ...rest}: PropsWithChildren<PricingOptionsItem>,
     ref: Ref<HTMLDivElement>,
   ) => {
-    const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
-
     type FilteredChildren = {
       Content: React.ReactElement<
         | PricingOptionsLabelProps
@@ -159,22 +136,18 @@ const PricingOptionsItem = forwardRef(
       {Content: [], FeatureList: null, Actions: [], Footnote: null},
     )
 
-    const validElements = ['div', 'article']
-    const Component = validElements.includes(as) ? as : 'div'
-
     return (
-      <Component
-        className={clsx(styles.PricingOptions__item, animationClasses, className)}
+      <div
+        className={clsx(styles.PricingOptions__item, className)}
         data-testid={testId || testIds.item}
         ref={ref}
-        style={{...animationInlineStyles, ...style}}
         {...(rest as HTMLAttributes<HTMLElement>)}
       >
         {Content}
         {Actions.length > 0 && <div className={styles.PricingOptions__actions}>{Actions}</div>}
         {FeatureList}
         {Footnote}
-      </Component>
+      </div>
     )
   },
 )
