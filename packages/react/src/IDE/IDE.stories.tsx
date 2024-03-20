@@ -1,6 +1,6 @@
 import {Meta, StoryFn} from '@storybook/react'
 import React, {useEffect} from 'react'
-import {IDE} from './IDE'
+import {IDE, IDEChatMessage, IDEEditorFile} from './IDE'
 
 import hljs from 'highlight.js/lib/core'
 import javascript from 'highlight.js/lib/languages/javascript'
@@ -24,7 +24,7 @@ export default {
   ],
 } as Meta<typeof IDE>
 
-const chatScript = [
+const chatScript: IDEChatMessage[] = [
   {
     role: 'user',
     handle: 'monalisa',
@@ -36,11 +36,8 @@ const chatScript = [
     handle: 'GitHub Copilot',
     avatar: 'https://github.com/copilot.png',
     message: "To concatenate two arrays in JavaScript, you can use the `concat` method. Here's an example:",
-    codeSnippet: hljs.highlight(
+    codeSnippet:
       'const array1 = [1, 2, 3];\nconst array2 = [4, 5, 6];\nconst resultArray = array1.concat(array2);\nconsole.log(resultArray); // Output: [1, 2, 3, 4, 5, 6]',
-      {language: 'javascript'},
-    ).value,
-    highlighter: 'hljs',
   },
   {
     role: 'user',
@@ -113,7 +110,7 @@ const chatScript = [
   },
 ]
 
-const files = [
+const files: IDEEditorFile[] = [
   {
     name: 'sentiments.ts',
     animatedLineStart: 5,

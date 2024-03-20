@@ -3,6 +3,7 @@ import React, {
   forwardRef,
   isValidElement,
   memo,
+  PropsWithChildren,
   ReactElement,
   Ref,
   useCallback,
@@ -10,7 +11,7 @@ import React, {
   useRef,
   useState,
 } from 'react'
-import {Avatar, Text, TextInput, ThemeProvider} from '..'
+import {Avatar, ColorModesEnum, Text, TextInput, ThemeProvider} from '..'
 
 import {
   CommentIcon,
@@ -43,20 +44,16 @@ const testIds = {
 
 export type IDEProps = {
   /**
-   * The content of the IDE. Must be an IDE.Button and an IDE.Overlay
-   */
-  children: ReactElement
-  /**
    * Test id for the IDE
    */
   'data-testid'?: string
   /**
    * Color mode
    */
-  mode?: 'light' | 'dark'
+  mode?: ColorModesEnum.LIGHT | ColorModesEnum.DARK
 } & BaseProps<HTMLDivElement>
 
-const _IDERoot = memo(({children, 'data-testid': testId, mode = 'dark', size = 'small'}: IDEProps) => {
+const _IDERoot = memo(({children, 'data-testid': mode = ColorModesEnum.DARK}: PropsWithChildren<IDEProps>) => {
   const ActivityBarChild = Children.toArray(children).find(
     child => isValidElement(child) && child.type === IDE.ActivityBar,
   )
@@ -66,8 +63,8 @@ const _IDERoot = memo(({children, 'data-testid': testId, mode = 'dark', size = '
   const EditorChild = Children.toArray(children).find(child => isValidElement(child) && child.type === IDE.Editor)
 
   return (
-    <ThemeProvider colorMode={mode}>
-      <div className={clsx(styles.IDE, styles[`IDE--color-mode-${mode}`])}>
+    <ThemeProvider colorMode={mode as ColorModesEnum.LIGHT | ColorModesEnum.DARK | undefined}>
+      <div className={clsx(styles[`IDE--color-mode-${mode}`])}>
         <div className={styles['IDE__inner']}>
           <div className={styles.IDE__dots}>
             <div className={clsx(styles['IDE__dot'], styles['IDE__dot--red'])}></div>
@@ -124,12 +121,12 @@ const _ActivityBar = memo(({active}: IDEActivityBarProps) => {
 })
 
 type IDEChatProps = {
-  script: Message[]
+  script: IDEChatMessage[]
 } & BaseProps<HTMLElement>
 
 type MessageRole = 'user' | 'assistant'
 
-type Message = {
+export type IDEChatMessage = {
   role: MessageRole
   handle: string
   avatar: string
@@ -262,26 +259,26 @@ const _Chat = memo(({script}: IDEChatProps) => {
 
 type IDEEditorProps = {
   activeTab?: number
-  files: IDEFile[]
+  files: IDEEditorFile[]
   showLineNumbers?: boolean
   /**
    * Controls editor text size
    */
-  size?: 'small' | 'medium'
+  size?: 'small' | 'medium' | 'large'
   /**
    * Used for triggering animation externally
    */
   triggerAnimation?: boolean
 } & BaseProps<HTMLDivElement>
 
-type IDEFile = {
+export type IDEEditorFile = {
   name: string
   /**
    * Controls line at which the Copilot suggestion begins
    */
   suggestedLineStart?: number
   animatedLineStart?: number // where animation begins
-  code: string[]
+  code: string | string[]
   highlighter?: 'hljs'
 }
 
@@ -335,7 +332,6 @@ const _Editor = memo(
           })
         }
       }, [activeFile, activeTab, triggerAnimation])
-
       return (
         <div className={clsx(styles.IDE__Editor, styles[`IDE__Editor--${size}`])} ref={ref} {...props}>
           <div className={styles['IDE__Editor-tabs']}>
@@ -359,13 +355,13 @@ const _Editor = memo(
             {showLineNumbers && (
               <div className={styles['IDE__Editor-lineNumbers']}>
                 {Array.isArray(files[activeFile].code) &&
-                  files[activeFile].code.map((_, index) => (
+                  (files[activeFile].code as string[]).map((_, index) => (
                     <div key={index} className={styles['IDE__Editor-lineNumber']}>
                       {index + 1}
                     </div>
                   ))}
                 {typeof files[activeFile].code === 'string' &&
-                  files[activeFile].code.split('\n').map((_, index) => (
+                  (files[activeFile].code as string).split('\n').map((_, index) => (
                     <div key={index} className={styles['IDE__Editor-lineNumber']}>
                       {index + 1}
                     </div>
@@ -374,7 +370,7 @@ const _Editor = memo(
             )}
             {files[activeFile].highlighter === 'hljs' && Array.isArray(files[activeFile].code) && (
               <div ref={presRef}>
-                {files[activeFile].code.map((line, index) => {
+                {(files[activeFile].code as string[]).map((line, index) => {
                   const hasSuggestion = index + 1 >= (files[activeFile].suggestedLineStart ?? Infinity)
                   return (
                     <>
@@ -393,7 +389,7 @@ const _Editor = memo(
                       {hasSuggestion && index === files[activeFile].code.length - 1 && (
                         <pre
                           className={clsx(
-                            hasSuggestion && animationStyles['Animation--slide-in-down'],
+                            animationStyles['Animation--slide-in-down'],
                             styles['IDE__Chat-copilot-indicator'],
                           )}
                           data-has-suggestion={hasSuggestion}
