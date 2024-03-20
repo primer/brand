@@ -33,7 +33,7 @@
 
 .PricingOptions--presentation-default {
   border-radius: var(--brand-borderRadius-xlarge);
-  border: solid 1px var(--brand-color-border-default);
+  border: solid var(--brand-borderWidth-thin) var(--brand-color-border-default);
   background-color: var(--brand-color-canvas-default);
 }
 
