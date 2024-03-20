@@ -46,6 +46,7 @@
     "axe-core": "^4.7.2",
     "axe-playwright": "^1.2.3",
     "css-loader": "^6.7.4",
+    "highlight.js": "^11.9.0",
     "identity-obj-proxy": "^3.0.0",
     "postcss": "^8.4.23",
     "postcss-loader": "^6.2.1",
