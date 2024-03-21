@@ -27,7 +27,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 import styles from './PricingOptions.module.css'
 
 export type PricingOptionsProps = {
-  presentation?: 'default' | 'cards'
+  variant?: 'default' | 'cards'
   ['data-testid']?: string
 } & PropsWithChildren<BaseProps<HTMLDivElement>>
 
@@ -48,13 +48,7 @@ const testIds = {
 
 const PricingOptionsRoot = forwardRef(
   (
-    {
-      children,
-      className,
-      'data-testid': testId,
-      presentation = 'default',
-      ...rest
-    }: PropsWithChildren<PricingOptionsProps>,
+    {children, className, 'data-testid': testId, variant = 'default', ...rest}: PropsWithChildren<PricingOptionsProps>,
     ref: Ref<HTMLDivElement>,
   ) => {
     const filteredChildren = React.useMemo(
@@ -69,7 +63,7 @@ const PricingOptionsRoot = forwardRef(
       <div
         className={clsx(
           styles.PricingOptions,
-          styles[`PricingOptions--presentation-${presentation}`],
+          styles[`PricingOptions--variant-${variant}`],
           styles[`PricingOptions--items-${filteredChildren.length}`],
           className,
         )}

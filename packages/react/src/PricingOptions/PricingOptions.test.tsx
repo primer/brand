@@ -25,10 +25,10 @@ describe('PricingOptions', () => {
     expect(PricingOptionsEl.classList).toContain(expectedClass)
   })
 
-  it('adds the class for cards presentation', () => {
-    const cardsPresentationClass = 'PricingOptions--presentation-cards'
+  it('adds the class for cards variant', () => {
+    const cardsPresentationClass = 'PricingOptions--variant-cards'
 
-    const {getByTestId} = render(<PricingOptions data-testid={testId} presentation="cards"></PricingOptions>)
+    const {getByTestId} = render(<PricingOptions data-testid={testId} variant="cards"></PricingOptions>)
 
     const PricingOptionsEl = getByTestId(testId)
     expect(PricingOptionsEl.classList).toContain(cardsPresentationClass)

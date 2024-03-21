@@ -17,33 +17,33 @@
 /* Layout: default                                         */
 /* ---------------------------------------------------------- */
 
-.PricingOptions--presentation-default {
+.PricingOptions--variant-default {
   border-radius: var(--brand-borderRadius-xlarge);
   border: solid var(--brand-borderWidth-thin) var(--brand-color-border-default);
   background-color: var(--brand-color-canvas-default);
 }
 
 @media (min-width: 63.25rem) {
-  .PricingOptions--presentation-default {
+  .PricingOptions--variant-default {
     padding-inline: var(--brand-pricing-options-container-padding-inline);
   }
 }
 
-.PricingOptions--presentation-default .PricingOptions__item {
+.PricingOptions--variant-default .PricingOptions__item {
   position: relative; /* Used for positioning the divider between items */
   padding-inline: var(--base-size-24);
   padding-block: var(--base-size-24);
 }
 
 @media (min-width: 63.25rem) {
-  .PricingOptions--presentation-default .PricingOptions__item {
+  .PricingOptions--variant-default .PricingOptions__item {
     padding-inline: 0;
     padding-block: var(--base-size-40);
   }
 }
 
 /* Horizontal divider between items on small viewports */
-.PricingOptions--presentation-default .PricingOptions__item:nth-child(n + 2)::before {
+.PricingOptions--variant-default .PricingOptions__item:nth-child(n + 2)::before {
   content: '';
   position: absolute;
   inset-inline: 0;
@@ -54,7 +54,7 @@
 
 /* Vertical divider between items on larger viewports */
 @media (min-width: 63.25rem) {
-  .PricingOptions--presentation-default .PricingOptions__item:nth-child(n + 2)::before {
+  .PricingOptions--variant-default .PricingOptions__item:nth-child(n + 2)::before {
     inset-inline: 0;
     inset-block: 0;
     width: 1px;
@@ -68,7 +68,7 @@
 /* Layout: cards                                           */
 /* ---------------------------------------------------------- */
 
-.PricingOptions--presentation-cards .PricingOptions__item {
+.PricingOptions--variant-cards .PricingOptions__item {
   padding-inline: var(--base-size-32);
   border-radius: var(--brand-borderRadius-xlarge);
   border: solid 1px var(--brand-color-border-default);
@@ -127,12 +127,12 @@
       'footnote';
   }
 
-  .PricingOptions--presentation-default.PricingOptions--items-2 {
+  .PricingOptions--variant-default.PricingOptions--items-2 {
     --brand-pricing-options-item-gap: var(--brand-PricingOptions-items-2-gap);
     --brand-pricing-options-container-padding-inline: var(--brand-PricingOptions-items-2-container-padding-inline);
   }
 
-  .PricingOptions--presentation-default.PricingOptions--items-3 {
+  .PricingOptions--variant-default.PricingOptions--items-3 {
     --brand-pricing-options-item-gap: var(--brand-PricingOptions-items-3-gap);
     --brand-pricing-options-container-padding-inline: var(--brand-PricingOptions-items-3-container-padding-inline);
   }
@@ -207,7 +207,7 @@
 }
 
 .PricingOptions__price-currency-symbol {
-  line-height: 1.4;
+  line-height: var(--brand-text-lineHeight-400);
 }
 
 .PricingOptions__price-currency-code {
@@ -215,7 +215,7 @@
 }
 
 .PricingOptions__price-value {
-  font-size: 56px;
+  font-size: 3.5rem;
   line-height: 1;
 }
 

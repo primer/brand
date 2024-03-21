@@ -84,10 +84,10 @@ import {PricingOptions} from '@primer/react-brand'
 </PricingOptions>
 ```
 
-### Cards presentation
+### Cards variant
 
 ```jsx live
-<PricingOptions presentation="cards">
+<PricingOptions variant="cards">
   <PricingOptions.Item>
     <PricingOptions.Label>Recommended</PricingOptions.Label>
     <PricingOptions.Heading>Copilot</PricingOptions.Heading>
@@ -155,7 +155,7 @@ import {PricingOptions} from '@primer/react-brand'
 
 ### One option
 
-This is the one-item layout for the pricing options component
+This is the one-option layout for the pricing options component
 
 ```jsx live
 <PricingOptions>
@@ -253,15 +253,15 @@ This is the two-item layout for the pricing options component.
 
 ### Three options
 
-This is the three-item layout for the pricing options component.
+This is the three-option layout for the pricing options component.
 
 ```jsx live
 <Note>
   `PricingOptions` is designed to fill the width of the page's main container,
   thus it cannot be accurately represented within the narrower container of this
-  documentation. Please refer to our [Storybook
-  examples](https://primer.style/brand/storybook/?path=/story/components-pricingoptions-features--three-items)
-  to see the component in a full-width context as originally intended.
+  documentation. 
+  
+  Please refer to our [Storybook examples](https://primer.style/brand/storybook/?path=/story/components-pricingoptions-features--three-options) to see the component in a full-width context as originally intended.
 </Note>
 ```
 
@@ -569,11 +569,11 @@ Use `PricingOptions.FeatureListItem` with `variant="included"` and `variant="exc
 
 ### PricingOptions <Label>Required</Label>
 
-| Name           | Type                                                             |  Default  | required | Description                         |
-| :------------- | :--------------------------------------------------------------- | :-------: | :------: | :---------------------------------- |
-| `as`           | <PropTableValues values={[`section`, `div` ]} addLineBreaks />   | `section` | `false`  | Applies the underlying HTML element |
-| `children`     | `PricingOptions.Item`                                            |           |  `true`  | Applies the underlying HTML element |
-| `presentation` | <PropTableValues values={[`default`, `cards` ]} addLineBreaks /> |           | `false`  | The presentation styling            |
+| Name       | Type                                                             |  Default  | required | Description                         |
+| :--------- | :--------------------------------------------------------------- | :-------: | :------: | :---------------------------------- |
+| `as`       | <PropTableValues values={[`section`, `div` ]} addLineBreaks />   | `section` | `false`  | Applies the underlying HTML element |
+| `children` | `PricingOptions.Item`                                            |           |  `true`  | Applies the underlying HTML element |
+| `variant`  | <PropTableValues values={[`default`, `cards` ]} addLineBreaks /> |           | `false`  | The variant styling                 |
 
 ### PricingOptions.Item <Label>Required</Label>
 

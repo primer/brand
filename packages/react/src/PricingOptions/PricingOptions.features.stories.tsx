@@ -29,7 +29,7 @@ export default {
   decorators: [decorators],
 } as Meta<typeof PricingOptions>
 
-export const DefaultPresentation: StoryFn<typeof PricingOptions> = () => {
+export const DefaultVariant: StoryFn<typeof PricingOptions> = () => {
   return (
     <PricingOptions>
       <PricingOptions.Item>
@@ -99,9 +99,9 @@ export const DefaultPresentation: StoryFn<typeof PricingOptions> = () => {
   )
 }
 
-export const CardsPresentation: StoryFn<typeof PricingOptions> = () => {
+export const CardsVariant: StoryFn<typeof PricingOptions> = () => {
   return (
-    <PricingOptions presentation="cards">
+    <PricingOptions variant="cards">
       <PricingOptions.Item>
         <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
         <PricingOptions.Description>
@@ -169,7 +169,7 @@ export const CardsPresentation: StoryFn<typeof PricingOptions> = () => {
   )
 }
 
-export const OneItem: StoryFn<typeof PricingOptions> = () => {
+export const OneOption: StoryFn<typeof PricingOptions> = () => {
   return (
     <PricingOptions>
       <PricingOptions.Item>
@@ -189,7 +189,7 @@ export const OneItem: StoryFn<typeof PricingOptions> = () => {
   )
 }
 
-export const TwoItems: StoryFn<typeof PricingOptions> = () => {
+export const TwoOptions: StoryFn<typeof PricingOptions> = () => {
   return (
     <PricingOptions>
       <PricingOptions.Item>
@@ -232,7 +232,7 @@ export const TwoItems: StoryFn<typeof PricingOptions> = () => {
   )
 }
 
-export const ThreeItems: StoryFn<typeof PricingOptions> = () => {
+export const ThreeOptions: StoryFn<typeof PricingOptions> = () => {
   return (
     <PricingOptions>
       <PricingOptions.Item>

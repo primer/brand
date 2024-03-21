@@ -7,18 +7,18 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: PricingOptions', () => {
-  test('PricingOptions / Default Presentation', async ({page}) => {
+  test('PricingOptions / Default variant', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--default-presentation&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--default-variant&viewMode=story',
     )
 
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('PricingOptions / Cards Presentation', async ({page}) => {
+  test('PricingOptions / Cards variant', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--cards-presentation&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--cards-variant&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -27,7 +27,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
 
   test('PricingOptions / One Item', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--one-item&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--one-option&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -36,7 +36,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
 
   test('PricingOptions / Two Items', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--two-items&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--two-options&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -45,7 +45,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
 
   test('PricingOptions / Three Items', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--three-items&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--three-options&viewMode=story',
     )
 
     await page.waitForTimeout(500)
