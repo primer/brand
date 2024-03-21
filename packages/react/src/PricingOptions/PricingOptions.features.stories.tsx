@@ -10,7 +10,7 @@ const decorators = (Story, context) => (
       paddingBlockStart="spacious"
       paddingBlockEnd="spacious"
       style={{
-        ['--brand-color-accent-primary' as string]: 'var(--base-color-scale-purple-4)',
+        ['--brand-color-accent-primary' as string]: 'var(--base-color-scale-purple-5)',
         minHeight: '100vh',
       }}
     >
