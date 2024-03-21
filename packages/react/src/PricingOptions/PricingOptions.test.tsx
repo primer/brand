@@ -87,8 +87,12 @@ describe('PricingOptions.Item', () => {
         <PricingOptions.Heading>{mockHeading}</PricingOptions.Heading>
         <PricingOptions.Description>{mockDescription}</PricingOptions.Description>
         <PricingOptions.Price>{mockPrice}</PricingOptions.Price>
-        <PricingOptions.PrimaryAction href="#">{mockPrimaryAction}</PricingOptions.PrimaryAction>
-        <PricingOptions.SecondaryAction href="#">{mockSecondaryAction}</PricingOptions.SecondaryAction>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          {mockPrimaryAction}
+        </PricingOptions.PrimaryAction>
+        <PricingOptions.SecondaryAction as="a" href="#">
+          {mockSecondaryAction}
+        </PricingOptions.SecondaryAction>
         <PricingOptions.FeatureList>
           <PricingOptions.FeatureListHeading>{mockFeaturedListHeading}</PricingOptions.FeatureListHeading>
           <PricingOptions.FeatureListItem>{mockFeatureListItem}</PricingOptions.FeatureListItem>

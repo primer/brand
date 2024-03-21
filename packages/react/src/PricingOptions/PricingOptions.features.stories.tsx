@@ -47,7 +47,9 @@ export const DefaultPresentation: StoryFn<typeof PricingOptions> = () => {
         <PricingOptions.Footnote>
           Free for verified students, teachers, and maintainers of popular open source projects.
         </PricingOptions.Footnote>
-        <PricingOptions.PrimaryAction href="/buy">Start a free trial</PricingOptions.PrimaryAction>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Start a free trial
+        </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
 
       <PricingOptions.Item>
@@ -55,8 +57,12 @@ export const DefaultPresentation: StoryFn<typeof PricingOptions> = () => {
         <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
         <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
         <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
-        <PricingOptions.PrimaryAction href="/buy">Buy now</PricingOptions.PrimaryAction>
-        <PricingOptions.SecondaryAction href="/contact">Contact sales</PricingOptions.SecondaryAction>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Buy now
+        </PricingOptions.PrimaryAction>
+        <PricingOptions.SecondaryAction as="a" href="#">
+          Contact sales
+        </PricingOptions.SecondaryAction>
         <PricingOptions.FeatureList>
           <PricingOptions.FeatureListItem>Everything in Copilot Individual plus:</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
@@ -85,7 +91,9 @@ export const DefaultPresentation: StoryFn<typeof PricingOptions> = () => {
           <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
         </PricingOptions.FeatureList>
-        <PricingOptions.PrimaryAction href="/waitlist">Join waitlist</PricingOptions.PrimaryAction>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Join waitlist
+        </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
     </PricingOptions>
   )
@@ -109,7 +117,9 @@ export const CardsPresentation: StoryFn<typeof PricingOptions> = () => {
         <PricingOptions.Footnote>
           Free for verified students, teachers, and maintainers of popular open source projects.
         </PricingOptions.Footnote>
-        <PricingOptions.PrimaryAction href="/buy">Start a free trial</PricingOptions.PrimaryAction>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Start a free trial
+        </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
 
       <PricingOptions.Item>
@@ -117,8 +127,12 @@ export const CardsPresentation: StoryFn<typeof PricingOptions> = () => {
         <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
         <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
         <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
-        <PricingOptions.PrimaryAction href="/buy">Buy now</PricingOptions.PrimaryAction>
-        <PricingOptions.SecondaryAction href="/contact">Contact sales</PricingOptions.SecondaryAction>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Buy now
+        </PricingOptions.PrimaryAction>
+        <PricingOptions.SecondaryAction as="a" href="#">
+          Contact sales
+        </PricingOptions.SecondaryAction>
         <PricingOptions.FeatureList>
           <PricingOptions.FeatureListItem>Everything in Copilot Individual plus:</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
@@ -147,7 +161,9 @@ export const CardsPresentation: StoryFn<typeof PricingOptions> = () => {
           <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
         </PricingOptions.FeatureList>
-        <PricingOptions.PrimaryAction href="/waitlist">Join waitlist</PricingOptions.PrimaryAction>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Join waitlist
+        </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
     </PricingOptions>
   )
@@ -162,8 +178,12 @@ export const OneItem: StoryFn<typeof PricingOptions> = () => {
           Code completions, Chat, and more for indie developers and freelancers.
         </PricingOptions.Description>
         <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
-        <PricingOptions.PrimaryAction href="/buy">Buy now</PricingOptions.PrimaryAction>
-        <PricingOptions.SecondaryAction href="/contact">Contact sales</PricingOptions.SecondaryAction>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Buy now
+        </PricingOptions.PrimaryAction>
+        <PricingOptions.SecondaryAction as="a" href="#">
+          Contact sales
+        </PricingOptions.SecondaryAction>
       </PricingOptions.Item>
     </PricingOptions>
   )
@@ -183,8 +203,12 @@ export const TwoItems: StoryFn<typeof PricingOptions> = () => {
           <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
         </PricingOptions.FeatureList>
-        <PricingOptions.PrimaryAction href="/buy">Buy now</PricingOptions.PrimaryAction>
-        <PricingOptions.SecondaryAction href="/contact">Contact sales</PricingOptions.SecondaryAction>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Buy now
+        </PricingOptions.PrimaryAction>
+        <PricingOptions.SecondaryAction as="a" href="#">
+          Contact sales
+        </PricingOptions.SecondaryAction>
       </PricingOptions.Item>
       <PricingOptions.Item>
         <PricingOptions.Label>Recommended</PricingOptions.Label>
@@ -200,7 +224,9 @@ export const TwoItems: StoryFn<typeof PricingOptions> = () => {
           <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
         </PricingOptions.FeatureList>
-        <PricingOptions.PrimaryAction href="/waitlist">Join waitlist</PricingOptions.PrimaryAction>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Join waitlist
+        </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
     </PricingOptions>
   )
@@ -224,7 +250,9 @@ export const ThreeItems: StoryFn<typeof PricingOptions> = () => {
         <PricingOptions.Footnote>
           Free for verified students, teachers, and maintainers of popular open source projects.
         </PricingOptions.Footnote>
-        <PricingOptions.PrimaryAction href="/buy">Start a free trial</PricingOptions.PrimaryAction>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Start a free trial
+        </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
 
       <PricingOptions.Item>
@@ -232,8 +260,12 @@ export const ThreeItems: StoryFn<typeof PricingOptions> = () => {
         <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
         <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
         <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
-        <PricingOptions.PrimaryAction href="/buy">Buy now</PricingOptions.PrimaryAction>
-        <PricingOptions.SecondaryAction href="/contact">Contact sales</PricingOptions.SecondaryAction>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Buy now
+        </PricingOptions.PrimaryAction>
+        <PricingOptions.SecondaryAction as="a" href="#">
+          Contact sales
+        </PricingOptions.SecondaryAction>
         <PricingOptions.FeatureList>
           <PricingOptions.FeatureListItem>Everything in Copilot Individual plus:</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
@@ -262,7 +294,9 @@ export const ThreeItems: StoryFn<typeof PricingOptions> = () => {
           <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
         </PricingOptions.FeatureList>
-        <PricingOptions.PrimaryAction href="/waitlist">Join waitlist</PricingOptions.PrimaryAction>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Join waitlist
+        </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
     </PricingOptions>
   )
@@ -286,7 +320,9 @@ export const DarkColorMode: StoryFn<typeof PricingOptions> = () => {
         <PricingOptions.Footnote>
           Free for verified students, teachers, and maintainers of popular open source projects.
         </PricingOptions.Footnote>
-        <PricingOptions.PrimaryAction href="/buy">Start a free trial</PricingOptions.PrimaryAction>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Start a free trial
+        </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
 
       <PricingOptions.Item>
@@ -294,8 +330,12 @@ export const DarkColorMode: StoryFn<typeof PricingOptions> = () => {
         <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
         <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
         <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
-        <PricingOptions.PrimaryAction href="/buy">Buy now</PricingOptions.PrimaryAction>
-        <PricingOptions.SecondaryAction href="/contact">Contact sales</PricingOptions.SecondaryAction>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Buy now
+        </PricingOptions.PrimaryAction>
+        <PricingOptions.SecondaryAction as="a" href="#">
+          Contact sales
+        </PricingOptions.SecondaryAction>
         <PricingOptions.FeatureList>
           <PricingOptions.FeatureListItem>Everything in Copilot Individual plus:</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
@@ -324,7 +364,9 @@ export const DarkColorMode: StoryFn<typeof PricingOptions> = () => {
           <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
         </PricingOptions.FeatureList>
-        <PricingOptions.PrimaryAction href="/waitlist">Join waitlist</PricingOptions.PrimaryAction>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Join waitlist
+        </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
     </PricingOptions>
   )
@@ -357,7 +399,9 @@ export const WithFeatureSets: StoryFn<typeof PricingOptions> = () => {
           Free for verified students, teachers, and maintainers of popular open source projects.
         </PricingOptions.Footnote>
 
-        <PricingOptions.PrimaryAction href="/buy">Start a free trial</PricingOptions.PrimaryAction>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Start a free trial
+        </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
 
       <PricingOptions.Item>
@@ -365,8 +409,12 @@ export const WithFeatureSets: StoryFn<typeof PricingOptions> = () => {
         <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
         <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
         <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
-        <PricingOptions.PrimaryAction href="/buy">Buy now</PricingOptions.PrimaryAction>
-        <PricingOptions.SecondaryAction href="/contact">Contact sales</PricingOptions.SecondaryAction>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Buy now
+        </PricingOptions.PrimaryAction>
+        <PricingOptions.SecondaryAction as="a" href="#">
+          Contact sales
+        </PricingOptions.SecondaryAction>
         <PricingOptions.FeatureList>
           <PricingOptions.FeatureListHeading>Base features</PricingOptions.FeatureListHeading>
           <PricingOptions.FeatureListItem>Everything in Copilot Individual</PricingOptions.FeatureListItem>
@@ -404,7 +452,9 @@ export const WithFeatureSets: StoryFn<typeof PricingOptions> = () => {
             Enterprise-grade security, safety, and privacy
           </PricingOptions.FeatureListItem>
         </PricingOptions.FeatureList>
-        <PricingOptions.PrimaryAction href="/waitlist">Join waitlist</PricingOptions.PrimaryAction>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Join waitlist
+        </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
     </PricingOptions>
   )
@@ -442,7 +492,9 @@ export const WithIncludedAndExcludedFeatures: StoryFn<typeof PricingOptions> = (
           Free for verified students, teachers, and maintainers of popular open source projects.
         </PricingOptions.Footnote>
 
-        <PricingOptions.PrimaryAction href="/buy">Start a free trial</PricingOptions.PrimaryAction>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Start a free trial
+        </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
 
       <PricingOptions.Item>
@@ -450,8 +502,12 @@ export const WithIncludedAndExcludedFeatures: StoryFn<typeof PricingOptions> = (
         <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
         <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
         <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
-        <PricingOptions.PrimaryAction href="/buy">Buy now</PricingOptions.PrimaryAction>
-        <PricingOptions.SecondaryAction href="/contact">Contact sales</PricingOptions.SecondaryAction>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Buy now
+        </PricingOptions.PrimaryAction>
+        <PricingOptions.SecondaryAction as="a" href="#">
+          Contact sales
+        </PricingOptions.SecondaryAction>
         <PricingOptions.FeatureList>
           <PricingOptions.FeatureListHeading>Chat</PricingOptions.FeatureListHeading>
           <PricingOptions.FeatureListItem>Unlimited messages, interactions, and history</PricingOptions.FeatureListItem>
@@ -488,7 +544,9 @@ export const WithIncludedAndExcludedFeatures: StoryFn<typeof PricingOptions> = (
           <PricingOptions.FeatureListItem>Comments to code</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Fine-tuned models (coming soon)</PricingOptions.FeatureListItem>
         </PricingOptions.FeatureList>
-        <PricingOptions.PrimaryAction href="/waitlist">Join waitlist</PricingOptions.PrimaryAction>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Join waitlist
+        </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
     </PricingOptions>
   )
@@ -502,7 +560,9 @@ export const WithoutFeatures: StoryFn<typeof PricingOptions> = () => {
           Code completions, Chat, and more for indie developers and freelancers.
         </PricingOptions.Description>
         <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
-        <PricingOptions.PrimaryAction href="/buy">Start a free trial</PricingOptions.PrimaryAction>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Start a free trial
+        </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
 
       <PricingOptions.Item>
@@ -510,7 +570,9 @@ export const WithoutFeatures: StoryFn<typeof PricingOptions> = () => {
         <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
         <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
         <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
-        <PricingOptions.PrimaryAction href="/buy">Buy now</PricingOptions.PrimaryAction>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Buy now
+        </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
 
       <PricingOptions.Item>
@@ -521,7 +583,9 @@ export const WithoutFeatures: StoryFn<typeof PricingOptions> = () => {
           Enterprise Cloud.
         </PricingOptions.Description>
         <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
-        <PricingOptions.PrimaryAction href="/waitlist">Join waitlist</PricingOptions.PrimaryAction>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Join waitlist
+        </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
     </PricingOptions>
   )

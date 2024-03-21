@@ -57,7 +57,9 @@ export const Default = () => (
                 Free for verified students, teachers, and maintainers of popular open source projects.
               </PricingOptions.Footnote>
 
-              <PricingOptions.PrimaryAction href="/buy">Start a free trial</PricingOptions.PrimaryAction>
+              <PricingOptions.PrimaryAction as="a" href="#">
+                Start a free trial
+              </PricingOptions.PrimaryAction>
             </PricingOptions.Item>
 
             <PricingOptions.Item>
@@ -65,8 +67,12 @@ export const Default = () => (
               <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
               <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
               <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
-              <PricingOptions.PrimaryAction href="/buy">Buy now</PricingOptions.PrimaryAction>
-              <PricingOptions.SecondaryAction href="/contact">Contact sales</PricingOptions.SecondaryAction>
+              <PricingOptions.PrimaryAction as="a" href="#">
+                Buy now
+              </PricingOptions.PrimaryAction>
+              <PricingOptions.SecondaryAction as="a" href="#">
+                Contact sales
+              </PricingOptions.SecondaryAction>
               <PricingOptions.FeatureList>
                 <PricingOptions.FeatureListHeading>Chat</PricingOptions.FeatureListHeading>
                 <PricingOptions.FeatureListItem>
@@ -117,7 +123,9 @@ export const Default = () => (
                 <PricingOptions.FeatureListItem>Comments to code</PricingOptions.FeatureListItem>
                 <PricingOptions.FeatureListItem>Fine-tuned models (coming soon)</PricingOptions.FeatureListItem>
               </PricingOptions.FeatureList>
-              <PricingOptions.PrimaryAction href="/waitlist">Join waitlist</PricingOptions.PrimaryAction>
+              <PricingOptions.PrimaryAction as="a" href="#">
+                Join waitlist
+              </PricingOptions.PrimaryAction>
             </PricingOptions.Item>
           </PricingOptions>
         </Grid.Column>

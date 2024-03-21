@@ -57,9 +57,13 @@ const PricingOptionsRoot = forwardRef(
     }: PropsWithChildren<PricingOptionsProps>,
     ref: Ref<HTMLDivElement>,
   ) => {
-    const filteredChildren = React.useMemo(React.Children.toArray(children).filter(
-      child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === PricingOptionsItem,
-    ), [children])
+    const filteredChildren = React.useMemo(
+      () =>
+        React.Children.toArray(children).filter(
+          child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === PricingOptionsItem,
+        ),
+      [children],
+    )
 
     return (
       <div
@@ -289,7 +293,7 @@ const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatu
       return acc
     }, [])
 
-    const FeatureListItems = FilteredChildrenSets.map(({Heading: HeadingChild, Items}, index) => (
+    const FeatureListItems = FilteredChidlrenSets.map(({Heading: HeadingChild, Items}, index) => (
       <div className={styles['PricingOptions__feature-list-set']} key={index}>
         {HeadingChild}
 
@@ -316,7 +320,7 @@ const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatu
               What&apos;s included
             </Accordion.Heading>
             <Accordion.Content className={styles['PricingOptions__feature-list-accordion-content']}>
-              {FeautreListItems}
+              {FeatureListItems}
             </Accordion.Content>
           </Accordion>
         ) : (
@@ -324,7 +328,7 @@ const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatu
             <Text size="200" variant="muted" className={styles['PricingOptions__feature-list-toggle']}>
               What&apos;s included:
             </Text>
-            {FeautreListItems}
+            {FeatureListItems}
           </>
         )}
       </div>
