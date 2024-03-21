@@ -3,10 +3,10 @@ declare const styles: {
   readonly "PricingOptions--variant-default": string;
   readonly "PricingOptions__item": string;
   readonly "PricingOptions--variant-cards": string;
-  readonly "PricingOptions--items-1": string;
+  readonly "PricingOptions--items1": string;
   readonly "PricingOptions__actions": string;
-  readonly "PricingOptions--items-2": string;
-  readonly "PricingOptions--items-3": string;
+  readonly "PricingOptions--items2": string;
+  readonly "PricingOptions--items3": string;
   readonly "PricingOptions__label": string;
   readonly "PricingOptions__heading": string;
   readonly "PricingOptions__description": string;

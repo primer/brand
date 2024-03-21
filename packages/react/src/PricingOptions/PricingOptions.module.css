@@ -4,7 +4,7 @@
 
 .PricingOptions {
   --brand-pricing-options-item-gap: var(--brand-PricingOptions-items-gap);
-  --brand-pricing-options-container-padding-inline: var(--brand-PricingOptions-items-container-padding-inline);
+  --brand-pricing-options-container-padding-inline: 0;
 
   display: grid;
   grid-template-columns: 1fr;
@@ -81,13 +81,13 @@
 /* ---------------------------------------------------------- */
 
 @media (min-width: 63.25rem) {
-  .PricingOptions--items-1 {
+  .PricingOptions--items1 {
     --brand-pricing-options-container-padding-inline: var(--base-size-48);
 
     display: block;
   }
 
-  .PricingOptions--items-1 .PricingOptions__item {
+  .PricingOptions--items1 .PricingOptions__item {
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: calc(var(--base-size-96) * 2);
@@ -100,7 +100,7 @@
       'feature-list actions';
   }
 
-  .PricingOptions--items-1 .PricingOptions__actions {
+  .PricingOptions--items1 .PricingOptions__actions {
     align-self: center;
   }
 }
@@ -110,8 +110,8 @@
 /* ---------------------------------------------------------- */
 
 @media (min-width: 63.25rem) {
-  .PricingOptions--items-2,
-  .PricingOptions--items-3 {
+  .PricingOptions--items2,
+  .PricingOptions--items3 {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
     column-gap: var(--brand-pricing-options-item-gap);
@@ -127,12 +127,12 @@
       'footnote';
   }
 
-  .PricingOptions--variant-default.PricingOptions--items-2 {
+  .PricingOptions--variant-default.PricingOptions--items2 {
     --brand-pricing-options-item-gap: var(--brand-PricingOptions-items-2-gap);
     --brand-pricing-options-container-padding-inline: var(--brand-PricingOptions-items-2-container-padding-inline);
   }
 
-  .PricingOptions--variant-default.PricingOptions--items-3 {
+  .PricingOptions--variant-default.PricingOptions--items3 {
     --brand-pricing-options-item-gap: var(--brand-PricingOptions-items-3-gap);
     --brand-pricing-options-container-padding-inline: var(--brand-PricingOptions-items-3-container-padding-inline);
   }

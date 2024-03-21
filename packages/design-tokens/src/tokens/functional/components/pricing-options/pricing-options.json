@@ -4,16 +4,9 @@
       "items": {
         "gap": {
           "value": "var(--base-size-24)"
-        },
-        "container": {
-          "padding": {
-            "inline": {
-              "value": "0"
-            }
-          }
         }
       },
-      "items-2": {
+      "items2": {
         "gap": {
           "value": "var(--base-size-96)"
         },
@@ -25,7 +18,7 @@
           }
         }
       },
-      "items-3": {
+      "items3": {
         "gap": {
           "value": "var(--base-size-64)"
         },

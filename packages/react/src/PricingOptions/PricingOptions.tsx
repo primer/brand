@@ -19,7 +19,7 @@ import {
 /**
  * Design tokens
  */
-import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/pricing-cards/pricing-cards.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/pricing-options/pricing-options.css'
 
 /**
  * Main stylesheet (as a CSS Module)
@@ -64,7 +64,7 @@ const PricingOptionsRoot = forwardRef(
         className={clsx(
           styles.PricingOptions,
           styles[`PricingOptions--variant-${variant}`],
-          styles[`PricingOptions--items-${filteredChildren.length}`],
+          styles[`PricingOptions--items${filteredChildren.length}`],
           className,
         )}
         data-testid={testId || testIds.root}
