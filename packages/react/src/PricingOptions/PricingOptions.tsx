@@ -1,4 +1,4 @@
-import React, {forwardRef, HTMLAttributes, PropsWithChildren, type Ref} from 'react'
+import React, {forwardRef, HTMLAttributes, PropsWithChildren, useMemo, type Ref} from 'react'
 import {CheckIcon, ChevronDownIcon, XIcon} from '@primer/octicons-react'
 import clsx from 'clsx'
 import type {BaseProps} from '../component-helpers'
@@ -51,7 +51,7 @@ const PricingOptionsRoot = forwardRef(
     {children, className, 'data-testid': testId, variant = 'default', ...rest}: PropsWithChildren<PricingOptionsProps>,
     ref: Ref<HTMLDivElement>,
   ) => {
-    const filteredChildren = React.useMemo(
+    const filteredChildren = useMemo(
       () =>
         React.Children.toArray(children).filter(
           child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === PricingOptionsItem,
@@ -98,7 +98,9 @@ const PricingOptionsItem = forwardRef(
       Footnote: React.ReactElement<PricingOptionsFootnoteProps> | null
     }
 
-    const {Content, FeatureList, Actions, Footnote} = React.Children.toArray(children).reduce<FilteredChildren>(
+    const memoizedChildren = useMemo(() => React.Children.toArray(children), [children])
+
+    const {Content, FeatureList, Actions, Footnote} = memoizedChildren.reduce<FilteredChildren>(
       (acc, child) => {
         if (React.isValidElement(child) && typeof child.type !== 'string') {
           if (child.type === PricingOptionsFeatureList) {
