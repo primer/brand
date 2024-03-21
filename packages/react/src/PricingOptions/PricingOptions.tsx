@@ -57,7 +57,7 @@ const PricingOptionsRoot = forwardRef(
           child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === PricingOptionsItem,
         ),
       [children],
-    )
+    ).slice(0, 3)
 
     return (
       <div
