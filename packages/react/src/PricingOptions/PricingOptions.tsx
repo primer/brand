@@ -85,7 +85,7 @@ export type PricingOptionsItem = {
 
 const PricingOptionsItem = forwardRef(
   (
-    {animate, 'data-testid': testId, children, className, ...rest}: PropsWithChildren<PricingOptionsItem>,
+    {'data-testid': testId, children, className, ...rest}: PropsWithChildren<PricingOptionsItem>,
     ref: Ref<HTMLDivElement>,
   ) => {
     type FilteredChildren = {
@@ -194,9 +194,8 @@ const PricingOptionsDescription = forwardRef<HTMLParagraphElement, PricingOption
   },
 )
 
-type PricingOptionsHeadingProps = BaseProps<HTMLHeadingElement> & {
+type PricingOptionsHeadingProps = PropsWithChildren<BaseProps<HTMLHeadingElement>> & {
   as?: Exclude<HeadingProps['as'], 'h1' | 'h2'>
-  children: React.ReactNode | React.ReactNode[]
   'data-testid'?: string
 } & HeadingProps
 
@@ -387,11 +386,11 @@ const PricingOptionsFeatureListItem = forwardRef<HTMLLIElement, PricingOptionsFe
 )
 
 type RestrictedPolymorphism =
-  | (BaseProps<HTMLAnchorElement> & {as?: 'a'})
-  | (BaseProps<HTMLButtonElement> & {as?: 'button'})
+  | (BaseProps<HTMLAnchorElement> & {as: 'a'; href: string})
+  | (BaseProps<HTMLButtonElement> & {as: 'button'})
 
 type PricingOptionsActionsProps = {
-  as?: 'a' | 'button'
+  as: 'a' | 'button'
   href: string
   'data-testid'?: string
 } & ButtonBaseProps &

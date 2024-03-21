@@ -1,34 +1,20 @@
 /* ---------------------------------------------------------- */
-/* Pricing options component                                  */
-/* ---------------------------------------------------------- */
-/* Table of contents:                                         */
-/* 1. Container                                               */
-/* 2. Layout: default                                         */
-/* 3. Layout: cards                                           */
-/* 4. Single item                                             */
-/* 5. Multiple items                                          */
-/* 6. Item inner layout                                       */
-/* 7. Content                                                 */
-/* 8. Feature list                                             */
-/* ---------------------------------------------------------- */
-
-/* ---------------------------------------------------------- */
-/* 1. Container                                               */
+/* Container                                               */
 /* ---------------------------------------------------------- */
 
 .PricingOptions {
-  --pricing-cards-item-gap: var(--brand-PricingOptions-items-gap);
-  --pricing-cards-container-padding-inline: var(--brand-PricingOptions-items-container-padding-inline);
+  --brand-pricing-options-item-gap: var(--brand-PricingOptions-items-gap);
+  --brand-pricing-options-container-padding-inline: var(--brand-PricingOptions-items-container-padding-inline);
 
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto;
-  row-gap: var(--pricing-cards-item-gap);
-  padding-inline: var(--pricing-cards-container-padding-inline);
+  row-gap: var(--brand-pricing-options-item-gap);
+  padding-inline: var(--brand-pricing-options-container-padding-inline);
 }
 
 /* ---------------------------------------------------------- */
-/* 2. Layout: default                                         */
+/* Layout: default                                         */
 /* ---------------------------------------------------------- */
 
 .PricingOptions--presentation-default {
@@ -39,7 +25,7 @@
 
 @media (min-width: 63.25rem) {
   .PricingOptions--presentation-default {
-    padding-inline: var(--pricing-cards-container-padding-inline);
+    padding-inline: var(--brand-pricing-options-container-padding-inline);
   }
 }
 
@@ -62,7 +48,7 @@
   position: absolute;
   inset-inline: 0;
   height: 1px;
-  margin-block-start: calc(var(--pricing-cards-item-gap) * -1);
+  margin-block-start: calc(var(--brand-pricing-options-item-gap) * -1);
   background-color: var(--brand-color-border-default);
 }
 
@@ -74,12 +60,12 @@
     width: 1px;
     height: auto;
     margin-block-start: 0;
-    margin-inline-start: calc(var(--pricing-cards-item-gap) / 2 * -1);
+    margin-inline-start: calc(var(--brand-pricing-options-item-gap) / 2 * -1);
   }
 }
 
 /* ---------------------------------------------------------- */
-/* 3. Layout: cards                                           */
+/* Layout: cards                                           */
 /* ---------------------------------------------------------- */
 
 .PricingOptions--presentation-cards .PricingOptions__item {
@@ -91,12 +77,12 @@
 }
 
 /* ---------------------------------------------------------- */
-/* 4. Single item                                             */
+/* Single item                                             */
 /* ---------------------------------------------------------- */
 
 @media (min-width: 63.25rem) {
   .PricingOptions--items-1 {
-    --pricing-cards-container-padding-inline: var(--base-size-48);
+    --brand-pricing-options-container-padding-inline: var(--base-size-48);
 
     display: block;
   }
@@ -120,7 +106,7 @@
 }
 
 /* ---------------------------------------------------------- */
-/* 5. Multiple items                                          */
+/* Multiple items                                          */
 /* ---------------------------------------------------------- */
 
 @media (min-width: 63.25rem) {
@@ -128,7 +114,7 @@
   .PricingOptions--items-3 {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
-    column-gap: var(--pricing-cards-item-gap);
+    column-gap: var(--brand-pricing-options-item-gap);
     row-gap: 0;
 
     grid-template-areas:
@@ -142,18 +128,18 @@
   }
 
   .PricingOptions--presentation-default.PricingOptions--items-2 {
-    --pricing-cards-item-gap: var(--brand-PricingOptions-items-2-gap);
-    --pricing-cards-container-padding-inline: var(--brand-PricingOptions-items-2-container-padding-inline);
+    --brand-pricing-options-item-gap: var(--brand-PricingOptions-items-2-gap);
+    --brand-pricing-options-container-padding-inline: var(--brand-PricingOptions-items-2-container-padding-inline);
   }
 
   .PricingOptions--presentation-default.PricingOptions--items-3 {
-    --pricing-cards-item-gap: var(--brand-PricingOptions-items-3-gap);
-    --pricing-cards-container-padding-inline: var(--brand-PricingOptions-items-3-container-padding-inline);
+    --brand-pricing-options-item-gap: var(--brand-PricingOptions-items-3-gap);
+    --brand-pricing-options-container-padding-inline: var(--brand-PricingOptions-items-3-container-padding-inline);
   }
 }
 
 /* ---------------------------------------------------------- */
-/* 6. Item inner layout                                       */
+/* Item inner layout                                       */
 /* ---------------------------------------------------------- */
 
 @media (min-width: 63.28rem) {
@@ -187,7 +173,7 @@
 }
 
 /* ---------------------------------------------------------- */
-/* 7. Content                                                 */
+/* Content                                                 */
 /* ---------------------------------------------------------- */
 
 .PricingOptions__label {
@@ -257,7 +243,7 @@
 }
 
 /* ---------------------------------------------------------- */
-/* 8. Feature list                                            */
+/* Feature list                                            */
 /* ---------------------------------------------------------- */
 
 .PricingOptions__feature-list {

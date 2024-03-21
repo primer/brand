@@ -27,9 +27,7 @@ export const Default = () => (
               <PricingOptions.Description>
                 Code completions, Chat, and more for indie developers and freelancers.
               </PricingOptions.Description>
-              <PricingOptions.Price currencyCode="USD" currencySymbol="$" trailingText="per month / $100 per year">
-                10
-              </PricingOptions.Price>
+              <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
               <PricingOptions.FeatureList>
                 <PricingOptions.FeatureListHeading>Chat</PricingOptions.FeatureListHeading>
                 <PricingOptions.FeatureListItem>
@@ -66,9 +64,7 @@ export const Default = () => (
               <PricingOptions.Label>Recommended</PricingOptions.Label>
               <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
               <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
-              <PricingOptions.Price currencyCode="USD" currencySymbol="$" trailingText="per user / month">
-                19
-              </PricingOptions.Price>
+              <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
               <PricingOptions.PrimaryAction href="/buy">Buy now</PricingOptions.PrimaryAction>
               <PricingOptions.SecondaryAction href="/contact">Contact sales</PricingOptions.SecondaryAction>
               <PricingOptions.FeatureList>
@@ -102,9 +98,7 @@ export const Default = () => (
                 Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
                 Enterprise Cloud.
               </PricingOptions.Description>
-              <PricingOptions.Price currencyCode="USD" currencySymbol="$" trailingText="per user / month">
-                39
-              </PricingOptions.Price>
+              <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
               <PricingOptions.FeatureList>
                 <PricingOptions.FeatureListHeading>Chat</PricingOptions.FeatureListHeading>
                 <PricingOptions.FeatureListItem>

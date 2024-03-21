@@ -37,9 +37,7 @@ export const DefaultPresentation: StoryFn<typeof PricingOptions> = () => {
         <PricingOptions.Description>
           Code completions, Chat, and more for indie developers and freelancers.
         </PricingOptions.Description>
-        <PricingOptions.Price currencyCode="USD" currencySymbol="$" trailingText="per month / $100 per year">
-          10
-        </PricingOptions.Price>
+        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
         <PricingOptions.FeatureList>
           <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
@@ -56,9 +54,7 @@ export const DefaultPresentation: StoryFn<typeof PricingOptions> = () => {
         <PricingOptions.Label>Recommended</PricingOptions.Label>
         <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
         <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
-        <PricingOptions.Price currencyCode="USD" currencySymbol="$" trailingText="per user / month">
-          19
-        </PricingOptions.Price>
+        <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
         <PricingOptions.PrimaryAction href="/buy">Buy now</PricingOptions.PrimaryAction>
         <PricingOptions.SecondaryAction href="/contact">Contact sales</PricingOptions.SecondaryAction>
         <PricingOptions.FeatureList>
@@ -82,9 +78,7 @@ export const DefaultPresentation: StoryFn<typeof PricingOptions> = () => {
           Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
           Enterprise Cloud.
         </PricingOptions.Description>
-        <PricingOptions.Price currencyCode="USD" currencySymbol="$" trailingText="per user / month">
-          39
-        </PricingOptions.Price>
+        <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
         <PricingOptions.FeatureList>
           <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
@@ -105,9 +99,7 @@ export const CardsPresentation: StoryFn<typeof PricingOptions> = () => {
         <PricingOptions.Description>
           Code completions, Chat, and more for indie developers and freelancers.
         </PricingOptions.Description>
-        <PricingOptions.Price currencyCode="USD" currencySymbol="$" trailingText="per month / $100 per year">
-          10
-        </PricingOptions.Price>
+        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
         <PricingOptions.FeatureList>
           <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
@@ -124,9 +116,7 @@ export const CardsPresentation: StoryFn<typeof PricingOptions> = () => {
         <PricingOptions.Label>Recommended</PricingOptions.Label>
         <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
         <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
-        <PricingOptions.Price currencyCode="USD" currencySymbol="$" trailingText="per user / month">
-          19
-        </PricingOptions.Price>
+        <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
         <PricingOptions.PrimaryAction href="/buy">Buy now</PricingOptions.PrimaryAction>
         <PricingOptions.SecondaryAction href="/contact">Contact sales</PricingOptions.SecondaryAction>
         <PricingOptions.FeatureList>
@@ -150,9 +140,7 @@ export const CardsPresentation: StoryFn<typeof PricingOptions> = () => {
           Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
           Enterprise Cloud.
         </PricingOptions.Description>
-        <PricingOptions.Price currencyCode="USD" currencySymbol="$" trailingText="per user / month">
-          39
-        </PricingOptions.Price>
+        <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
         <PricingOptions.FeatureList>
           <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
@@ -173,9 +161,7 @@ export const OneItem: StoryFn<typeof PricingOptions> = () => {
         <PricingOptions.Description>
           Code completions, Chat, and more for indie developers and freelancers.
         </PricingOptions.Description>
-        <PricingOptions.Price currencyCode="USD" currencySymbol="$" trailingText="per month / $100 per year">
-          10
-        </PricingOptions.Price>
+        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
         <PricingOptions.PrimaryAction href="/buy">Buy now</PricingOptions.PrimaryAction>
         <PricingOptions.SecondaryAction href="/contact">Contact sales</PricingOptions.SecondaryAction>
       </PricingOptions.Item>
@@ -190,9 +176,7 @@ export const TwoItems: StoryFn<typeof PricingOptions> = () => {
         <PricingOptions.Label>Recommended</PricingOptions.Label>
         <PricingOptions.Heading>Copilot</PricingOptions.Heading>
         <PricingOptions.Description>Copilot in the coding environment.</PricingOptions.Description>
-        <PricingOptions.Price currencyCode="USD" currencySymbol="$" trailingText="per month / $100 per year">
-          10
-        </PricingOptions.Price>
+        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
         <PricingOptions.FeatureList>
           <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
@@ -209,9 +193,7 @@ export const TwoItems: StoryFn<typeof PricingOptions> = () => {
           Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
           Enterprise Cloud.
         </PricingOptions.Description>
-        <PricingOptions.Price currencyCode="USD" currencySymbol="$" trailingText="per user / month">
-          39
-        </PricingOptions.Price>
+        <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
         <PricingOptions.FeatureList>
           <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
@@ -232,9 +214,7 @@ export const ThreeItems: StoryFn<typeof PricingOptions> = () => {
         <PricingOptions.Description>
           Code completions, Chat, and more for indie developers and freelancers.
         </PricingOptions.Description>
-        <PricingOptions.Price currencyCode="USD" currencySymbol="$" trailingText="per month / $100 per year">
-          10
-        </PricingOptions.Price>
+        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
         <PricingOptions.FeatureList>
           <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
@@ -251,9 +231,7 @@ export const ThreeItems: StoryFn<typeof PricingOptions> = () => {
         <PricingOptions.Label>Recommended</PricingOptions.Label>
         <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
         <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
-        <PricingOptions.Price currencyCode="USD" currencySymbol="$" trailingText="per user / month">
-          19
-        </PricingOptions.Price>
+        <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
         <PricingOptions.PrimaryAction href="/buy">Buy now</PricingOptions.PrimaryAction>
         <PricingOptions.SecondaryAction href="/contact">Contact sales</PricingOptions.SecondaryAction>
         <PricingOptions.FeatureList>
@@ -277,9 +255,7 @@ export const ThreeItems: StoryFn<typeof PricingOptions> = () => {
           Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
           Enterprise Cloud.
         </PricingOptions.Description>
-        <PricingOptions.Price currencyCode="USD" currencySymbol="$" trailingText="per user / month">
-          39
-        </PricingOptions.Price>
+        <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
         <PricingOptions.FeatureList>
           <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
@@ -300,9 +276,7 @@ export const DarkColorMode: StoryFn<typeof PricingOptions> = () => {
         <PricingOptions.Description>
           Code completions, Chat, and more for indie developers and freelancers.
         </PricingOptions.Description>
-        <PricingOptions.Price currencyCode="USD" currencySymbol="$" trailingText="per month / $100 per year">
-          10
-        </PricingOptions.Price>
+        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
         <PricingOptions.FeatureList>
           <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
@@ -319,9 +293,7 @@ export const DarkColorMode: StoryFn<typeof PricingOptions> = () => {
         <PricingOptions.Label>Recommended</PricingOptions.Label>
         <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
         <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
-        <PricingOptions.Price currencyCode="USD" currencySymbol="$" trailingText="per user / month">
-          19
-        </PricingOptions.Price>
+        <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
         <PricingOptions.PrimaryAction href="/buy">Buy now</PricingOptions.PrimaryAction>
         <PricingOptions.SecondaryAction href="/contact">Contact sales</PricingOptions.SecondaryAction>
         <PricingOptions.FeatureList>
@@ -345,9 +317,7 @@ export const DarkColorMode: StoryFn<typeof PricingOptions> = () => {
           Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
           Enterprise Cloud.
         </PricingOptions.Description>
-        <PricingOptions.Price currencyCode="USD" currencySymbol="$" trailingText="per user / month">
-          39
-        </PricingOptions.Price>
+        <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
         <PricingOptions.FeatureList>
           <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
@@ -372,9 +342,7 @@ export const WithFeatureSets: StoryFn<typeof PricingOptions> = () => {
         <PricingOptions.Description>
           Code completions, Chat, and more for indie developers and freelancers.
         </PricingOptions.Description>
-        <PricingOptions.Price currencyCode="USD" currencySymbol="$" trailingText="per month / $100 per year">
-          10
-        </PricingOptions.Price>
+        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
         <PricingOptions.FeatureList>
           <PricingOptions.FeatureListHeading>Base features</PricingOptions.FeatureListHeading>
           <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
@@ -396,9 +364,7 @@ export const WithFeatureSets: StoryFn<typeof PricingOptions> = () => {
         <PricingOptions.Label>Recommended</PricingOptions.Label>
         <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
         <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
-        <PricingOptions.Price currencyCode="USD" currencySymbol="$" trailingText="per user / month">
-          19
-        </PricingOptions.Price>
+        <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
         <PricingOptions.PrimaryAction href="/buy">Buy now</PricingOptions.PrimaryAction>
         <PricingOptions.SecondaryAction href="/contact">Contact sales</PricingOptions.SecondaryAction>
         <PricingOptions.FeatureList>
@@ -423,9 +389,7 @@ export const WithFeatureSets: StoryFn<typeof PricingOptions> = () => {
           Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
           Enterprise Cloud.
         </PricingOptions.Description>
-        <PricingOptions.Price currencyCode="USD" currencySymbol="$" trailingText="per user / month">
-          39
-        </PricingOptions.Price>
+        <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
         <PricingOptions.FeatureList>
           <PricingOptions.FeatureListHeading>Base features</PricingOptions.FeatureListHeading>
           <PricingOptions.FeatureListItem>Everything in Copilot Business</PricingOptions.FeatureListItem>
@@ -454,9 +418,7 @@ export const WithIncludedAndExcludedFeatures: StoryFn<typeof PricingOptions> = (
         <PricingOptions.Description>
           Code completions, Chat, and more for indie developers and freelancers.
         </PricingOptions.Description>
-        <PricingOptions.Price currencyCode="USD" currencySymbol="$" trailingText="per month / $100 per year">
-          10
-        </PricingOptions.Price>
+        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
         <PricingOptions.FeatureList>
           <PricingOptions.FeatureListHeading>Chat</PricingOptions.FeatureListHeading>
           <PricingOptions.FeatureListItem>Unlimited messages, interactions, and history</PricingOptions.FeatureListItem>
@@ -487,9 +449,7 @@ export const WithIncludedAndExcludedFeatures: StoryFn<typeof PricingOptions> = (
         <PricingOptions.Label>Recommended</PricingOptions.Label>
         <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
         <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
-        <PricingOptions.Price currencyCode="USD" currencySymbol="$" trailingText="per user / month">
-          19
-        </PricingOptions.Price>
+        <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
         <PricingOptions.PrimaryAction href="/buy">Buy now</PricingOptions.PrimaryAction>
         <PricingOptions.SecondaryAction href="/contact">Contact sales</PricingOptions.SecondaryAction>
         <PricingOptions.FeatureList>
@@ -515,9 +475,7 @@ export const WithIncludedAndExcludedFeatures: StoryFn<typeof PricingOptions> = (
           Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
           Enterprise Cloud.
         </PricingOptions.Description>
-        <PricingOptions.Price currencyCode="USD" currencySymbol="$" trailingText="per user / month">
-          39
-        </PricingOptions.Price>
+        <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
         <PricingOptions.FeatureList>
           <PricingOptions.FeatureListHeading>Chat</PricingOptions.FeatureListHeading>
           <PricingOptions.FeatureListItem>Unlimited messages, interactions, and history</PricingOptions.FeatureListItem>
@@ -543,9 +501,7 @@ export const WithoutFeatures: StoryFn<typeof PricingOptions> = () => {
         <PricingOptions.Description>
           Code completions, Chat, and more for indie developers and freelancers.
         </PricingOptions.Description>
-        <PricingOptions.Price currencyCode="USD" currencySymbol="$" trailingText="per month / $100 per year">
-          10
-        </PricingOptions.Price>
+        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
         <PricingOptions.PrimaryAction href="/buy">Start a free trial</PricingOptions.PrimaryAction>
       </PricingOptions.Item>
 
@@ -553,9 +509,7 @@ export const WithoutFeatures: StoryFn<typeof PricingOptions> = () => {
         <PricingOptions.Label>Recommended</PricingOptions.Label>
         <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
         <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
-        <PricingOptions.Price currencyCode="USD" currencySymbol="$" trailingText="per user / month">
-          19
-        </PricingOptions.Price>
+        <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
         <PricingOptions.PrimaryAction href="/buy">Buy now</PricingOptions.PrimaryAction>
       </PricingOptions.Item>
 
@@ -566,9 +520,7 @@ export const WithoutFeatures: StoryFn<typeof PricingOptions> = () => {
           Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
           Enterprise Cloud.
         </PricingOptions.Description>
-        <PricingOptions.Price currencyCode="USD" currencySymbol="$" trailingText="per user / month">
-          39
-        </PricingOptions.Price>
+        <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
         <PricingOptions.PrimaryAction href="/waitlist">Join waitlist</PricingOptions.PrimaryAction>
       </PricingOptions.Item>
     </PricingOptions>
