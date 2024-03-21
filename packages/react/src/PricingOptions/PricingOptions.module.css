@@ -128,13 +128,13 @@
   }
 
   .PricingOptions--variant-default.PricingOptions--items2 {
-    --brand-pricing-options-item-gap: var(--brand-PricingOptions-items-2-gap);
-    --brand-pricing-options-container-padding-inline: var(--brand-PricingOptions-items-2-container-padding-inline);
+    --brand-pricing-options-item-gap: var(--brand-PricingOptions-items2-gap);
+    --brand-pricing-options-container-padding-inline: var(--brand-PricingOptions-items2-container-padding-inline);
   }
 
   .PricingOptions--variant-default.PricingOptions--items3 {
-    --brand-pricing-options-item-gap: var(--brand-PricingOptions-items-3-gap);
-    --brand-pricing-options-container-padding-inline: var(--brand-PricingOptions-items-3-container-padding-inline);
+    --brand-pricing-options-item-gap: var(--brand-PricingOptions-items3-gap);
+    --brand-pricing-options-container-padding-inline: var(--brand-PricingOptions-items3-container-padding-inline);
   }
 }
 

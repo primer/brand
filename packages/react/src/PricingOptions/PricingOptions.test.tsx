@@ -26,12 +26,12 @@ describe('PricingOptions', () => {
   })
 
   it('adds the class for cards variant', () => {
-    const cardsPresentationClass = 'PricingOptions--variant-cards'
+    const cardsVariantClass = 'PricingOptions--variant-cards'
 
     const {getByTestId} = render(<PricingOptions data-testid={testId} variant="cards"></PricingOptions>)
 
     const PricingOptionsEl = getByTestId(testId)
-    expect(PricingOptionsEl.classList).toContain(cardsPresentationClass)
+    expect(PricingOptionsEl.classList).toContain(cardsVariantClass)
   })
 
   it('has no a11y violations', async () => {
