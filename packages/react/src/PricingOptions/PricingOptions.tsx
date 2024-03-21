@@ -57,9 +57,9 @@ const PricingOptionsRoot = forwardRef(
     }: PropsWithChildren<PricingOptionsProps>,
     ref: Ref<HTMLDivElement>,
   ) => {
-    const filteredChildren = React.Children.toArray(children).filter(
+    const filteredChildren = React.useMemo(React.Children.toArray(children).filter(
       child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === PricingOptionsItem,
-    )
+    ), [children])
 
     return (
       <div
@@ -290,7 +290,7 @@ const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatu
       return acc
     }, [])
 
-    const FeautreListItems = FilteredChidlrenSets.map(({Heading: HeadingChild, Items}, index) => (
+    const FeatureListItems = FilteredChildrenSets.map(({Heading: HeadingChild, Items}, index) => (
       <div className={styles['PricingOptions__feature-list-set']} key={index}>
         {HeadingChild}
 

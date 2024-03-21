@@ -677,7 +677,7 @@ Use `PricingOptions.FeatureListItem` with `variant="included"` and `variant="exc
 | :------------- | :-------------------- | :-------: | :------: | :---------------------------------- |
 | `as`           | <PropTableValues values={[`section`, `div` ]} addLineBreaks />       | `section` | `false`  | Applies the underlying HTML element |
 | `children`     | `PricingOptions.Item` |           |  `true`  | Applies the underlying HTML element |
-| `presentation` | `default, cards`      |           | `false`  | The presentation styling            |
+| `presentation` | <PropTableValues values={[`default`, `cards` ]} addLineBreaks />      |           | `false`  | The presentation styling            |
 
 ### PricingOptions.Item <Label>Required</Label>
 
@@ -704,7 +704,7 @@ One item per pricing plan to be displayed. Maximum of 3 items.
 
 | Name       | Type        |   Default   | required | Description                |
 | :--------- | :---------- | :---------: | :------: | :------------------------- |
-| `children` | `ReactNode` | `undefined` |  `true`  | The desciption of the item |
+| `children` | `ReactNode` | `undefined` |  `true`  | The description of the item |
 
 ### PricingOptions.Price
 
@@ -741,4 +741,3 @@ One item per pricing plan to be displayed. Maximum of 3 items.
 | :--------- | :---------- | :---------: | :------: | :----------------------- |
 | `children` | `ReactNode` | `undefined` |  `true`  | The footnote of the item |
 
-x
