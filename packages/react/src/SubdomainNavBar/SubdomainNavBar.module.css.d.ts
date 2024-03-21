@@ -52,6 +52,7 @@ declare const styles: {
   readonly "SubdomainNavBar-search-result-item": string;
   readonly "SubdomainNavBar-search-result-item-container": string;
   readonly "SubdomainNavBar-search-result-item-desc": string;
+  readonly "SubdomainNavBar-skip-to-content": string;
 };
 export = styles;
 

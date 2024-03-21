@@ -1,5 +1,29 @@
 # @primer/react-brand
 
+## 0.31.0
+
+### Minor Changes
+
+- [#503](https://github.com/primer/brand/pull/503) [`3098b3b`](https://github.com/primer/brand/commit/3098b3b54745e64a5ef0115edc81e12ea268e278) Thanks [@joseph-lozano](https://github.com/joseph-lozano)! - Added SkipToContent button to SubdomainNavBar
+
+- [#548](https://github.com/primer/brand/pull/548) [`f0a581c`](https://github.com/primer/brand/commit/f0a581ce0f65580120f5184142c6819d7f74d9cb) Thanks [@rezrah](https://github.com/rezrah)! - Added new `SubNav` component
+
+  Example:
+
+  ```jsx
+  <SubNav>
+    <SubNav.Heading>Features</SubNav.Heading>
+    <SubNav.Link href="#">Actions</SubNav.Link>
+    <SubNav.Link href="#">Packages</SubNav.Link>
+    <SubNav.Link href="#" aria-current="page">
+      Copilot
+    </SubNav.Link>
+    <SubNav.Link href="#">Code review</SubNav.Link>
+  </SubNav>
+  ```
+
+  🔗 [See the documentation for more examples](https://primer.style/brand/components/SubNav)
+
 ## 0.30.3
 
 ### Patch Changes

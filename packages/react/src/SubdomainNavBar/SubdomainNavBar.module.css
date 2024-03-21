@@ -653,6 +653,14 @@
   color: var(--base-color-scale-black-0);
 }
 
+.SubdomainNavBar-skip-to-content {
+  position: fixed;
+  top: 75px;
+  border-radius: 0px;
+  width: 100vw;
+  z-index: 100;
+}
+
 /*
  * Reusable animations
  */

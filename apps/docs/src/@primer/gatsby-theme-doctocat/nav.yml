@@ -64,6 +64,8 @@
       url: /components/SectionIntro
     - title: Subdomain nav bar
       url: /components/SubdomainNavBar
+    - title: Sub nav
+      url: /components/SubNav
     - title: Testimonial
       url: /components/Testimonial
     - title: Timeline

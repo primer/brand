@@ -237,6 +237,7 @@ const darkJson = require('../src/tokens/base/colors/dark')
     `tokens/functional/components/prose/colors.js`,
     `tokens/functional/components/eyebrow-banner/colors.js`,
     `tokens/functional/components/testimonial/colors.json`,
+    `tokens/functional/components/sub-nav/colors.js`,
   ]
 
   for (const path of filesForColorModes) {

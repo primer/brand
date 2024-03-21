@@ -38,6 +38,7 @@ export * from './Timeline'
 export * from './Bento'
 export * from './EyebrowBanner'
 export * from './PricingOptions'
+export * from './SubNav'
 
 // hooks
 export * from './hooks/useWindowSize'

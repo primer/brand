@@ -45,9 +45,9 @@ const {describe, beforeAll, afterAll} = test
 let browser: Browser
 let page: Page
 
-let allViolations: Result[] = []
+const allViolations: Result[] = []
 
-const hostname = 'http://localhost:6006'
+const hostname = 'http://localhost:6006/iframe.html?viewMode=story'
 const testsToSkip = [
   'components-river--video', // video is an example and not an official primer pattern
   'components-subdomainnavbar--search-results-visible', // has been a11y remediated already,
@@ -56,12 +56,61 @@ const testsToSkip = [
   'components-videoplayer-features--with-poster', // video makes this too flakey
   'components-videoplayer-features--without-branding', // video makes this too flakey
   'components-videoplayer--playground', // video makes this too flakey
-  'components-videoplayer--playground', // video makes this too flakey
   'recipes-feature-previews-level-1--level-one-side-by-side-enterprise', // video makes this too flakey
   'recipes-feature-previews-level-1--level-one-side-by-side', // custom, unrelated background image
   'components-eyebrowbanner-features--on-custom-background-dark', // custom, unrelated background image
   'components-eyebrowbanner-features--on-custom-background-light', // custom, unrelated background image
+  'components-subdomainnavbar--skip-to-main-tag', // contains main tag which is in conflict with the default role="main" element
+  'components-subdomainnavbar--skip-to-main-tag-with-id', // contains main tag which is in conflict with the default role="main" element
 ]
+
+const ignoreViolations = {
+  'landmark-one-main': {except: []}, // on most of the stories we don't have a main landmark
+  'page-has-heading-one': {except: ['components-hero', 'recipes-feature-previews']}, // on some stories we dont have a heading,
+  region: {except: []}, // on most of the stories we don't have a region landmark
+}
+
+function matchesStoryId(storyId: string, fragment: string): boolean {
+  return storyId.includes(fragment)
+}
+
+function shouldIgnoreViolation(violation: Result, story: {id: string}) {
+  const ignoreViolation = ignoreViolations[violation.id]
+  if (!ignoreViolation) return false
+  return !ignoreViolation.except.some((except: string) => matchesStoryId(story.id, except))
+}
+
+function colorViolationImpact(impact: string | null | undefined) {
+  let color = '\x1b[37m' // white
+  switch (impact) {
+    case 'minor':
+      color = '\x1b[32m' // green
+      break
+    case 'moderate':
+      color = '\x1b[33m' // yellow
+      break
+    case 'serious':
+      color = '\x1b[35m' // magenta
+      break
+    case 'critical':
+      color = '\x1b[31m' // red
+      break
+  }
+  return `${color}${impact}\x1b[0m`
+}
+
+function printViolations(violations: Result[]) {
+  for (let i = 0; i < violations.length; i++) {
+    const violation = violations[i]
+    // eslint-disable-next-line no-console
+    console.log(
+      `    🪓 \x1b[90m${i + 1}\x1b[0m \x1b[31mviolation:\x1b[0m ${violation.id} [${colorViolationImpact(
+        violation.impact,
+      )}] ${violation.help}`,
+    )
+  }
+}
+
 const testsWithCustomDelay = {
   'components-subdomainnavbar--mobile-menu-open': 5000, // takes a while for the menu to open
 }
@@ -89,7 +138,7 @@ for (const story of storybookRoutes) {
     beforeAll(async () => {
       browser = await chromium.launch()
       page = await browser.newPage()
-      const route = `${hostname}?path=${story.path}`
+      const route = `${hostname}&id=${story.id}`
       // eslint-disable-next-line no-console
       console.info(`Navigating to ${route}`)
       await page.goto(route)
@@ -112,15 +161,19 @@ for (const story of storybookRoutes) {
     test('it completes AXE page validation', async () => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      const violations = await getViolations(page, null, {
+      let violations = await getViolations(page, null, {
         detailedReport: true,
         detailedReportOptions: {
           html: true,
         },
       })
 
+      violations = violations.filter(violation => !shouldIgnoreViolation(violation, story))
+
       if (violations.length > 0) {
-        allViolations = [...allViolations, ...violations]
+        allViolations.push(...violations)
+
+        printViolations(violations)
       }
 
       expect(violations.length).toBe(0)

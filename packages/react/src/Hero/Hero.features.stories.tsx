@@ -224,6 +224,7 @@ export const Eyebrow: StoryFn<typeof Hero> = _args => (
       </EyebrowBanner>
     </Hero.Eyebrow>
     <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+
     <Hero.Description>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
       felis nam pulvinar risus elementum.
