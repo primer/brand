@@ -11,11 +11,7 @@ import {Label} from '@primer/react'
 import {StarIcon, CopilotIcon} from '@primer/octicons-react'
 
 import {PropTableValues} from '../../src/components'
-import {
-
-```js
-import { PricingOptions } from '@primer/react-brand'
-```
+import {PricingOptions} from '@primer/react-brand'
 
 ## Examples
 
@@ -573,11 +569,11 @@ Use `PricingOptions.FeatureListItem` with `variant="included"` and `variant="exc
 
 ### PricingOptions <Label>Required</Label>
 
-| Name           | Type                  |  Default  | required | Description                         |
-| :------------- | :-------------------- | :-------: | :------: | :---------------------------------- |
-| `as`           | <PropTableValues values={[`section`, `div` ]} addLineBreaks />       | `section` | `false`  | Applies the underlying HTML element |
-| `children`     | `PricingOptions.Item` |           |  `true`  | Applies the underlying HTML element |
-| `presentation` | <PropTableValues values={[`default`, `cards` ]} addLineBreaks />      |           | `false`  | The presentation styling            |
+| Name           | Type                                                             |  Default  | required | Description                         |
+| :------------- | :--------------------------------------------------------------- | :-------: | :------: | :---------------------------------- |
+| `as`           | <PropTableValues values={[`section`, `div` ]} addLineBreaks />   | `section` | `false`  | Applies the underlying HTML element |
+| `children`     | `PricingOptions.Item`                                            |           |  `true`  | Applies the underlying HTML element |
+| `presentation` | <PropTableValues values={[`default`, `cards` ]} addLineBreaks /> |           | `false`  | The presentation styling            |
 
 ### PricingOptions.Item <Label>Required</Label>
 
@@ -602,8 +598,8 @@ One item per pricing plan to be displayed. Maximum of 3 items.
 
 ### PricingOptions.Description
 
-| Name       | Type        |   Default   | required | Description                |
-| :--------- | :---------- | :---------: | :------: | :------------------------- |
+| Name       | Type        |   Default   | required | Description                 |
+| :--------- | :---------- | :---------: | :------: | :-------------------------- |
 | `children` | `ReactNode` | `undefined` |  `true`  | The description of the item |
 
 ### PricingOptions.Price
@@ -640,4 +636,3 @@ One item per pricing plan to be displayed. Maximum of 3 items.
 | Name       | Type        |   Default   | required | Description              |
 | :--------- | :---------- | :---------: | :------: | :----------------------- |
 | `children` | `ReactNode` | `undefined` |  `true`  | The footnote of the item |
-
