@@ -3,7 +3,8 @@ import clsx from 'clsx'
 import {useId} from '@reach/auto-id'
 import {getAnchoredPosition} from '@primer/behaviors'
 import type {AnchorSide, AnchorAlignment} from '@primer/behaviors'
-// eslint-disable-next-line import/no-unresolved - mysteriously failing in eslint despite resolving correctly in the build
+// @oddbird/popover-polyfill/fn import is mysteriously failing in eslint despite resolving correctly in the build
+// eslint-disable-next-line import/no-unresolved
 import {isSupported, apply} from '@oddbird/popover-polyfill/fn'
 import {useProvidedRefOrCreate} from '../hooks/useRef'
 
