@@ -1,4 +1,4 @@
-import React, {forwardRef, useCallback, useEffect, useRef} from 'react'
+import React, {forwardRef, PropsWithChildren, useCallback, useEffect, useRef} from 'react'
 import clsx from 'clsx'
 
 import {Heading} from '../'
@@ -71,9 +71,8 @@ export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
   },
 )
 
-type AccordionHeadingProps = BaseProps<HTMLHeadingElement> & {
+type AccordionHeadingProps = PropsWithChildren<BaseProps<HTMLHeadingElement>> & {
   className?: string
-  children: string
   as?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
   reversedToggles?: boolean
   variant?: 'default' | 'emphasis'
