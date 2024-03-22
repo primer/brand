@@ -1,0 +1,325 @@
+/* ---------------------------------------------------------- */
+/* Container                                               */
+/* ---------------------------------------------------------- */
+
+.PricingOptions {
+  --brand-pricing-options-item-gap: var(--brand-PricingOptions-items-gap);
+  --brand-pricing-options-container-padding-inline: 0;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  row-gap: var(--brand-pricing-options-item-gap);
+  padding-inline: var(--brand-pricing-options-container-padding-inline);
+}
+
+/* ---------------------------------------------------------- */
+/* Layout: default                                         */
+/* ---------------------------------------------------------- */
+
+.PricingOptions--variant-default {
+  border-radius: var(--brand-borderRadius-xlarge);
+  border: solid var(--brand-borderWidth-thin) var(--brand-color-border-default);
+  background-color: var(--brand-color-canvas-default);
+}
+
+@media (min-width: 63.25rem) {
+  .PricingOptions--variant-default {
+    padding-inline: var(--brand-pricing-options-container-padding-inline);
+  }
+}
+
+.PricingOptions--variant-default .PricingOptions__item {
+  position: relative; /* Used for positioning the divider between items */
+  padding-inline: var(--base-size-24);
+  padding-block: var(--base-size-24);
+}
+
+@media (min-width: 63.25rem) {
+  .PricingOptions--variant-default .PricingOptions__item {
+    padding-inline: 0;
+    padding-block: var(--base-size-40);
+  }
+}
+
+/* Horizontal divider between items on small viewports */
+.PricingOptions--variant-default .PricingOptions__item:nth-child(n + 2)::before {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  height: 1px;
+  margin-block-start: calc(var(--brand-pricing-options-item-gap) * -1);
+  background-color: var(--brand-color-border-default);
+}
+
+/* Vertical divider between items on larger viewports */
+@media (min-width: 63.25rem) {
+  .PricingOptions--variant-default .PricingOptions__item:nth-child(n + 2)::before {
+    inset-inline: 0;
+    inset-block: 0;
+    width: 1px;
+    height: auto;
+    margin-block-start: 0;
+    margin-inline-start: calc(var(--brand-pricing-options-item-gap) / 2 * -1);
+  }
+}
+
+/* ---------------------------------------------------------- */
+/* Layout: cards                                           */
+/* ---------------------------------------------------------- */
+
+.PricingOptions--variant-cards .PricingOptions__item {
+  padding-inline: var(--base-size-32);
+  border-radius: var(--brand-borderRadius-xlarge);
+  border: solid 1px var(--brand-color-border-default);
+  background-color: var(--brand-color-canvas-default);
+  padding-block: var(--base-size-32);
+}
+
+/* ---------------------------------------------------------- */
+/* Single item                                             */
+/* ---------------------------------------------------------- */
+
+@media (min-width: 63.25rem) {
+  .PricingOptions--items1 {
+    --brand-pricing-options-container-padding-inline: var(--base-size-48);
+
+    display: block;
+  }
+
+  .PricingOptions--items1 .PricingOptions__item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: calc(var(--base-size-96) * 2);
+    grid-template-rows: repeat(auto-fit, minmax(0, 1fr));
+    grid-template-areas:
+      'label actions'
+      'heading actions'
+      'description actions'
+      'price actions'
+      'feature-list actions';
+  }
+
+  .PricingOptions--items1 .PricingOptions__actions {
+    align-self: center;
+  }
+}
+
+/* ---------------------------------------------------------- */
+/* Multiple items                                          */
+/* ---------------------------------------------------------- */
+
+@media (min-width: 63.25rem) {
+  .PricingOptions--items2,
+  .PricingOptions--items3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    column-gap: var(--brand-pricing-options-item-gap);
+    row-gap: 0;
+
+    grid-template-areas:
+      'label'
+      'heading'
+      'description'
+      'price'
+      'actions'
+      'feature-list'
+      'footnote';
+  }
+
+  .PricingOptions--variant-default.PricingOptions--items2 {
+    --brand-pricing-options-item-gap: var(--brand-PricingOptions-items2-gap);
+    --brand-pricing-options-container-padding-inline: var(--brand-PricingOptions-items2-container-padding-inline);
+  }
+
+  .PricingOptions--variant-default.PricingOptions--items3 {
+    --brand-pricing-options-item-gap: var(--brand-PricingOptions-items3-gap);
+    --brand-pricing-options-container-padding-inline: var(--brand-PricingOptions-items3-container-padding-inline);
+  }
+}
+
+/* ---------------------------------------------------------- */
+/* Item inner layout                                       */
+/* ---------------------------------------------------------- */
+
+@media (min-width: 63.28rem) {
+  .PricingOptions__item {
+    display: grid;
+    grid-row: label / footnote;
+    grid-template-rows: subgrid;
+  }
+}
+
+/*
+ * Backwards compatibility for browsers that don't support subgrid.
+ * Once subgrid is supported in the last 3 major versions of Safari (i.e., when Safari 18 is released), it can be fully removed.
+ * https://caniuse.com/css-subgrid
+ */
+@supports not (grid-template-rows: subgrid) {
+  @media (min-width: 63.28rem) {
+    .PricingOptions__item {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      grid-template-areas:
+        'label'
+        'heading'
+        'description'
+        'price'
+        'actions'
+        'feature-list'
+        'footnote';
+    }
+  }
+}
+
+/* ---------------------------------------------------------- */
+/* Content                                                 */
+/* ---------------------------------------------------------- */
+
+.PricingOptions__label {
+  /* Sets the color of the label to the primary accent color, if it exists */
+  --brand-Label-color: var(--brand-color-accent-primary);
+
+  /* Sets the color of the label to the primary accent gradient, if it exists */
+  /* TODO accent grandient tokens do not exist yet */
+  --brand-Label-color-start: var(--brand-color-accent-primary-start);
+  --brand-Label-color-end: var(--brand-color-accent-primary-end);
+
+  grid-row: label;
+  justify-self: flex-start;
+}
+
+.PricingOptions__heading {
+  grid-row: heading;
+  margin-block: var(--base-size-16);
+}
+
+.PricingOptions__description {
+  grid-row: description;
+}
+
+.PricingOptions__price {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--base-size-12);
+  grid-row: price;
+  padding-block: var(--base-size-24);
+}
+
+.PricingOptions__price-currency-symbol {
+  line-height: var(--brand-text-lineHeight-400);
+}
+
+.PricingOptions__price-currency-code {
+  align-self: flex-end;
+}
+
+.PricingOptions__price-value {
+  font-size: 3.5rem;
+  line-height: 1;
+}
+
+.PricingOptions__price-trailing-text {
+  flex: 1 0 100%;
+  display: block;
+}
+
+.PricingOptions__actions {
+  grid-row: actions;
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-8);
+  align-items: flex-end;
+  padding-block-start: var(--base-size-24);
+}
+
+.PricingOptions__footnote {
+  grid-row: footnote;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: var(--base-size-24);
+  margin-block-start: var(--base-size-40);
+}
+
+/* ---------------------------------------------------------- */
+/* Feature list                                            */
+/* ---------------------------------------------------------- */
+
+.PricingOptions__feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-8);
+  grid-row: feature-list;
+  border-block-start: solid 1px var(--brand-color-border-default);
+  margin: 0;
+  margin-block-start: var(--base-size-24);
+  padding-block-start: var(--base-size-40);
+  padding-inline: 0;
+}
+
+.PricingOptions__feature-list-set:nth-child(n + 2) {
+  margin-block-start: var(--base-size-24);
+}
+
+.PricingOptions__feature-list-heading {
+  color: var(--brand-color-accent-primary);
+  margin-block-end: var(--base-size-8);
+}
+
+.PricingOptions__feature-list-item--excluded span {
+  color: var(--brand-color-text-muted);
+}
+
+.PricingOptions__feature-list + .PricingOptions__feature-list-heading {
+  margin-block-start: var(--base-size-24);
+}
+
+/*
+ * Accordion component overrides
+ */
+
+/* Remove paddings and borders */
+.PricingOptions__feature-list-accordion {
+  border: 0;
+  padding: 0;
+}
+
+/* Remove hover effect */
+.PricingOptions__feature-list-accordion::after {
+  content: none;
+}
+
+/* Adjust heading spacing */
+.PricingOptions__feature-list-accordion-heading {
+  padding: var(--base-size-16) 0;
+  margin-block-start: calc(var(--base-size-16) * -1);
+  margin-block-end: var(--base-size-8);
+}
+
+/* Accordion heading styling */
+.PricingOptions__feature-list-accordion .PricingOptions__feature-list-accordion-heading h4 {
+  color: var(--brand-color-text-muted);
+  font-size: var(--brand-text-size-300);
+  line-height: var(--brand-text-lineHeight-300);
+  gap: var(--base-size-8);
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Hide default icon */
+.PricingOptions__feature-list-accordion .PricingOptions__feature-list-accordion-heading span {
+  display: none;
+}
+
+/* Adjust content paddings */
+.PricingOptions__feature-list-accordion .PricingOptions__feature-list-accordion-content {
+  padding: 0;
+  padding-block-start: var(--base-size-40);
+  padding-inline-start: 0 !important;
+}
+
+/* Chevron up icon */
+.PricingOptions__feature-list-accordion[open] .PricingOptions__feature-list-accordion-chevron {
+  transform: rotate(180deg);
+}
