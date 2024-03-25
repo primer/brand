@@ -4,7 +4,6 @@ import React, {
   isValidElement,
   memo,
   PropsWithChildren,
-  ReactElement,
   Ref,
   useCallback,
   useEffect,
@@ -13,15 +12,7 @@ import React, {
 } from 'react'
 import {Avatar, ColorModesEnum, Text, TextInput, ThemeProvider} from '..'
 
-import {
-  CommentIcon,
-  CopilotIcon,
-  FileIcon,
-  GitBranchIcon,
-  PaperAirplaneIcon,
-  SearchIcon,
-  XIcon,
-} from '@primer/octicons-react'
+import {CommentIcon, CopilotIcon, FileIcon, GitBranchIcon, PaperAirplaneIcon, SearchIcon} from '@primer/octicons-react'
 import {default as clsx} from 'clsx'
 
 import type {BaseProps} from '../component-helpers'
@@ -44,6 +35,12 @@ const testIds = {
 
 export type IDEProps = {
   /**
+   * Description of the IDE for users of assistive technologies.
+   * IDE is considered a decorative element, so this description is important
+   * for accurately describing what the user is being presented.
+   */
+  'aria-label': string
+  /**
    * Test id for the IDE
    */
   'data-testid'?: string
@@ -53,34 +50,40 @@ export type IDEProps = {
   mode?: ColorModesEnum.LIGHT | ColorModesEnum.DARK
 } & BaseProps<HTMLDivElement>
 
-const _IDERoot = memo(({children, 'data-testid': mode = ColorModesEnum.DARK}: PropsWithChildren<IDEProps>) => {
-  const ActivityBarChild = Children.toArray(children).find(
-    child => isValidElement(child) && child.type === IDE.ActivityBar,
-  )
+const _IDERoot = memo(
+  ({'aria-label': ariaLabel, children, 'data-testid': mode = ColorModesEnum.DARK}: PropsWithChildren<IDEProps>) => {
+    // const ActivityBarChild = Children.toArray(children).find(
+    //   child => isValidElement(child) && child.type === IDE.ActivityBar,
+    // )
 
-  const ChatChild = Children.toArray(children).find(child => isValidElement(child) && child.type === IDE.Chat)
+    const ChatChild = Children.toArray(children).find(child => isValidElement(child) && child.type === IDE.Chat)
 
-  const EditorChild = Children.toArray(children).find(child => isValidElement(child) && child.type === IDE.Editor)
+    const EditorChild = Children.toArray(children).find(child => isValidElement(child) && child.type === IDE.Editor)
 
-  return (
-    <ThemeProvider colorMode={mode as ColorModesEnum.LIGHT | ColorModesEnum.DARK | undefined}>
-      <div className={clsx(styles[`IDE--color-mode-${mode}`])}>
-        <div className={styles['IDE__inner']}>
-          <div className={styles.IDE__dots}>
+    return (
+      <ThemeProvider
+        colorMode={mode as ColorModesEnum.LIGHT | ColorModesEnum.DARK | undefined}
+        role="presentation"
+        aria-label={ariaLabel}
+      >
+        <div className={clsx(styles[`IDE--color-mode-${mode}`], ChatChild && EditorChild && styles['IDE--full-exp'])}>
+          <div className={styles['IDE__inner']}>
+            {/* <div className={styles.IDE__dots}>
             <div className={clsx(styles['IDE__dot'], styles['IDE__dot--red'])}></div>
             <div className={clsx(styles['IDE__dot'], styles['IDE__dot--amber'])}></div>
             <div className={clsx(styles['IDE__dot'], styles['IDE__dot--green'])}></div>
-          </div>
-          <div className={styles.IDE__main}>
-            <div>{ActivityBarChild}</div>
-            {ChatChild && <>{ChatChild}</>}
-            {EditorChild && <>{EditorChild}</>}
+          </div> */}
+            <div className={styles.IDE__main}>
+              {/* <div>{ActivityBarChild}</div> */}
+              {ChatChild && <>{ChatChild}</>}
+              {EditorChild && <>{EditorChild}</>}
+            </div>
           </div>
         </div>
-      </div>
-    </ThemeProvider>
-  )
-})
+      </ThemeProvider>
+    )
+  },
+)
 
 type IDEActivityBarProps = {
   active?: 'explorer' | 'search' | 'source control' | 'run and debug' | 'extensions' | 'chat'
@@ -199,7 +202,7 @@ const _Chat = memo(({script}: IDEChatProps) => {
 
   return (
     <section className={styles.IDE__Chat}>
-      <h3 className={styles['IDE__Chat-title']}>Chat: GitHub Copilot</h3>
+      {/* <h3 className={styles['IDE__Chat-title']}>Chat: GitHub Copilot</h3> */}
       <div ref={messagesRef} className={styles['IDE__Chat-messages']}>
         {script && script.length > 0 ? (
           script.map((message, index) => (
@@ -247,6 +250,7 @@ const _Chat = memo(({script}: IDEChatProps) => {
       </div>
       <div className={styles['IDE__Chat-input-area']}>
         <TextInput
+          disabled
           className={styles['IDE__Chat-input']}
           fullWidth
           placeholder="Ask a question or type '/' for commands."
@@ -347,7 +351,7 @@ const _Editor = memo(
                     fill="#519ABA"
                   />
                 </svg>{' '}
-                {file.name} <XIcon className={styles['IDE__Editor-tab-close-icon']} size={16} />
+                {file.name}
               </button>
             ))}
           </div>

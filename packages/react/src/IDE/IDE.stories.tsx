@@ -1,11 +1,13 @@
 import {Meta, StoryFn} from '@storybook/react'
-import React, {useEffect} from 'react'
+import React from 'react'
 import {IDE, IDEChatMessage, IDEEditorFile} from './IDE'
 
 import hljs from 'highlight.js/lib/core'
 import javascript from 'highlight.js/lib/languages/javascript'
 import python from 'highlight.js/lib/languages/python'
 import {Button} from '../Button'
+
+import './IDE.stories.hljs.theme.css'
 
 hljs.registerLanguage('javascript', javascript)
 hljs.registerLanguage('python', python)
@@ -17,7 +19,6 @@ export default {
     Story => (
       <>
         <link rel="stylesheet" href="https://unpkg.com/highlight.js@11.9.0/styles/default.css" />
-        <link rel="stylesheet" href="https://unpkg.com/highlight.js@11.9.0/styles/github-dark.css" />
         <Story />
       </>
     ),
@@ -36,8 +37,11 @@ const chatScript: IDEChatMessage[] = [
     handle: 'GitHub Copilot',
     avatar: 'https://github.com/copilot.png',
     message: "To concatenate two arrays in JavaScript, you can use the `concat` method. Here's an example:",
-    codeSnippet:
+    codeSnippet: hljs.highlight(
       'const array1 = [1, 2, 3];\nconst array2 = [4, 5, 6];\nconst resultArray = array1.concat(array2);\nconsole.log(resultArray); // Output: [1, 2, 3, 4, 5, 6]',
+      {language: 'javascript'},
+    ).value,
+    highlighter: 'hljs',
   },
   {
     role: 'user',
@@ -199,7 +203,7 @@ const Template: StoryFn<typeof IDE> = args => {
   return (
     <>
       <IDE {...args}>
-        <IDE.ActivityBar></IDE.ActivityBar>
+        {/* <IDE.ActivityBar></IDE.ActivityBar> */}
         <IDE.Chat script={chatScript}></IDE.Chat>
         <IDE.Editor size="large" activeTab={0} files={files} triggerAnimation={animationPlaying} />
       </IDE>
