@@ -26,16 +26,11 @@ pre code.hljs {
   }
 
   .hljs-title,
-  .hljs-section {
-    color: #FFDD95 !important
-  }
-
-  .hljs-title,
   .hljs-title.class_,
   .hljs-title.class_.inherited__,
   .hljs-title.function_ {
     /* prettylights-syntax-entity */
-    color: #d2a8ff !important
+    color: #FFDD95 !important
   }
   .hljs-attr,
   .hljs-attribute,

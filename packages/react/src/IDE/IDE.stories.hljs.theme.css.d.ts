@@ -9,7 +9,6 @@ declare const styles: {
   readonly "hljs-variable": string;
   readonly "language_": string;
   readonly "hljs-title": string;
-  readonly "hljs-section": string;
   readonly "class_": string;
   readonly "inherited__": string;
   readonly "function_": string;
@@ -33,6 +32,7 @@ declare const styles: {
   readonly "hljs-selector-tag": string;
   readonly "hljs-selector-pseudo": string;
   readonly "hljs-subst": string;
+  readonly "hljs-section": string;
   readonly "hljs-bullet": string;
   readonly "hljs-emphasis": string;
   readonly "hljs-strong": string;
