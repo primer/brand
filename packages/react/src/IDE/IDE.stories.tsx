@@ -9,6 +9,12 @@ import {Button} from '../Button'
 
 import './IDE.stories.hljs.theme.css'
 
+import storyStyles from './IDE.stories.module.css'
+import {ThemeProvider} from '../ThemeProvider'
+import {Box} from '../Box'
+import {Stack} from '../Stack'
+import {FormControl, TextInput} from '../forms'
+
 hljs.registerLanguage('javascript', javascript)
 hljs.registerLanguage('python', python)
 
@@ -237,3 +243,74 @@ export const ChatOnly = args => {
     </IDE>
   )
 }
+
+export const VFX = args => {
+  const [animationPlaying, setAnimationPlaying] = React.useState(false)
+  const [perspective, setPerspective] = React.useState(220)
+  const [rotate, setRotate] = React.useState(2)
+  const [rotateY, setRotateY] = React.useState(-4)
+
+  const handleReplay = () => {
+    setAnimationPlaying(prev => !prev)
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const {name, value} = e.target
+    switch (name) {
+      case 'perspective':
+        setPerspective(Number(value))
+        break
+      case 'rotate':
+        setRotate(Number(value))
+        break
+      case 'rotateY':
+        setRotateY(Number(value))
+        break
+    }
+  }
+
+  return (
+    <>
+      <IDE
+        {...args}
+        className={storyStyles.vfx}
+        style={{transform: `perspective(${perspective}px) rotate(${rotate}deg) rotateY(${rotateY}deg)`}}
+      >
+        <IDE.Editor size="large" activeTab={0} files={files} triggerAnimation={animationPlaying} />
+      </IDE>
+      <Box marginInlineStart={48}>
+        <Stack direction="vertical" gap={48} alignItems="flex-start">
+          <Button onClick={handleReplay}>Replay editor animation</Button>
+          <Stack direction="horizontal" gap={48}>
+            <FormControl>
+              <FormControl.Label>Perspective</FormControl.Label>
+              <input name="perspective" type="range" onChange={handleChange} min="100" max="600" value={perspective} />
+            </FormControl>
+            <FormControl>
+              <FormControl.Label>Rotate</FormControl.Label>
+              <input name="rotate" type="range" onChange={handleChange} min="-10" max="5" value={rotate} />
+            </FormControl>
+            <FormControl>
+              <FormControl.Label>Rotate Y axis</FormControl.Label>
+              <input name="rotateY" type="range" onChange={handleChange} min="-10" max="0" value={rotateY} />
+            </FormControl>
+          </Stack>
+        </Stack>
+      </Box>
+    </>
+  )
+}
+
+VFX.parameters = {
+  layout: 'fullscreen',
+}
+
+VFX.decorators = [
+  Story => (
+    <ThemeProvider colorMode="dark">
+      <div style={{backgroundColor: 'black', minHeight: '100dvh', overflow: 'hidden'}}>
+        <Story />
+      </div>
+    </ThemeProvider>
+  ),
+]

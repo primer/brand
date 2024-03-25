@@ -1,0 +1,5 @@
+.vfx {
+  -webkit-mask-image: linear-gradient(to  right,var(--brand-color-canvas-default) 10%,transparent 80%);
+  mask-image: linear-gradient(to  right,var(--brand-color-canvas-default) 10%,transparent 80%);
+  transform: perspective(220px) rotate(2deg) rotateY(-4deg)
+}

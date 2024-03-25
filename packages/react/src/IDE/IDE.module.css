@@ -8,9 +8,7 @@
   width: 100%;
   height: var(--brand-IDE-container-height);
   margin: 10px auto;
-
   border-radius: 16px;
-
   overflow: hidden;
 }
 

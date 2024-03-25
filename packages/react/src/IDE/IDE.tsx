@@ -51,7 +51,13 @@ export type IDEProps = {
 } & BaseProps<HTMLDivElement>
 
 const _IDERoot = memo(
-  ({'aria-label': ariaLabel, children, 'data-testid': mode = ColorModesEnum.DARK}: PropsWithChildren<IDEProps>) => {
+  ({
+    'aria-label': ariaLabel,
+    children,
+    className,
+    'data-testid': mode = ColorModesEnum.DARK,
+    ...rest
+  }: PropsWithChildren<IDEProps>) => {
     // const ActivityBarChild = Children.toArray(children).find(
     //   child => isValidElement(child) && child.type === IDE.ActivityBar,
     // )
@@ -66,7 +72,15 @@ const _IDERoot = memo(
         role="presentation"
         aria-label={ariaLabel}
       >
-        <div className={clsx(styles[`IDE--color-mode-${mode}`], ChatChild && EditorChild && styles['IDE--full-exp'])}>
+        <div
+          className={clsx(
+            styles[`IDE--color-mode-${mode}`],
+            ChatChild && EditorChild && styles['IDE--full-exp'],
+            className,
+          )}
+          aria-hidden
+          {...rest}
+        >
           <div className={styles['IDE__inner']}>
             {/* <div className={styles.IDE__dots}>
             <div className={clsx(styles['IDE__dot'], styles['IDE__dot--red'])}></div>
@@ -144,7 +158,7 @@ const _Chat = memo(({script}: IDEChatProps) => {
 
   useEffect(() => {
     const scrollIntoParentView = element => {
-      if (!element || !messagesRef?.current) return
+      if (!element || !messagesRef.current) return
       const container = messagesRef.current
       const elementRect = element.getBoundingClientRect()
       const containerRect = container.getBoundingClientRect()
@@ -336,11 +350,13 @@ const _Editor = memo(
           })
         }
       }, [activeFile, activeTab, triggerAnimation])
+
       return (
         <div className={clsx(styles.IDE__Editor, styles[`IDE__Editor--${size}`])} ref={ref} {...props}>
           <div className={styles['IDE__Editor-tabs']}>
             {files.map((file, index) => (
               <button
+                tabIndex={-1} // make unfocussable
                 key={index}
                 className={clsx(styles['IDE__Editor-tab'], activeFile === index && styles.active)}
                 onClick={() => handlePress(index)}
