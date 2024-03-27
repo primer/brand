@@ -1,4 +1,4 @@
-import {ZapIcon} from '@primer/octicons-react'
+import {MoonIcon, SunIcon, ZapIcon} from '@primer/octicons-react'
 import React, {useEffect} from 'react'
 import {
   Box,
@@ -19,6 +19,7 @@ import {
   RiverBreakout,
   SectionIntro,
   Stack,
+  SubNav,
   SubdomainNavBar,
   Testimonial,
   Text,
@@ -38,9 +39,12 @@ import {Themes, themeDetailsMap} from '../helpers'
 import clsx from 'clsx'
 
 type FeaturePreviewLevelTwoProps = {
+  gridOverlay?: boolean
   variant?: 'Maximum' | 'Minimum'
   colorMode?: ColorModesEnum.LIGHT | ColorModesEnum.DARK
   accentColor: Themes
+
+  subNavVisible: boolean
   heroAlign: 'start' | 'center'
   heroBg: boolean
   showHeroVisual: boolean
@@ -87,20 +91,25 @@ type FeaturePreviewLevelTwoProps = {
   cardsVisible: boolean
 }
 
-export function FeaturePreviewLevelTwo({accentColor, variant, colorMode, ...args}: FeaturePreviewLevelTwoProps) {
-  const [enableGridOverlay, setEnableGridOverlay] = React.useState(false)
+export function FeaturePreviewLevelTwo({
+  accentColor,
+  variant,
+  gridOverlay = false,
+  colorMode,
+  ...args
+}: FeaturePreviewLevelTwoProps) {
+  const [enableGridOverlay, setGridOverlay] = React.useState(gridOverlay)
   const [isLightMode, setIsLightMode] = React.useState(colorMode === ColorModesEnum.LIGHT)
   const selectedColorMode = isLightMode ? ColorModesEnum.LIGHT : ColorModesEnum.DARK
   const accentColorValue = themeDetailsMap[accentColor][selectedColorMode].color
 
   useEffect(() => {
+    setGridOverlay(gridOverlay)
+  }, [gridOverlay])
+
+  useEffect(() => {
     setIsLightMode(colorMode === ColorModesEnum.LIGHT)
   }, [colorMode])
-
-  const handleOverlay = e => {
-    e.preventDefault()
-    setEnableGridOverlay(!enableGridOverlay)
-  }
 
   const handleMode = e => {
     e.preventDefault()
@@ -142,31 +151,42 @@ export function FeaturePreviewLevelTwo({accentColor, variant, colorMode, ...args
         backgroundColor: 'var(--brand-color-canvas-default)',
       }}
     >
-      <SubdomainNavBar title={`Level 2 ${variant ? `- ${variant}` : ''}`} fixed={true}>
-        <SubdomainNavBar.SecondaryAction href="#" onClick={handleMode}>
-          Change color mode
+      <SubdomainNavBar title="" fixed={false} fullWidth>
+        <SubdomainNavBar.SecondaryAction
+          aria-label={isLightMode ? 'Switch to dark mode' : 'Switch to light mode'}
+          href="#"
+          onClick={handleMode}
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          variant="invisible"
+        >
+          {isLightMode ? <MoonIcon size={24} /> : <SunIcon size={24} />}
         </SubdomainNavBar.SecondaryAction>
-        <SubdomainNavBar.PrimaryAction href="#" onClick={handleOverlay}>
-          {enableGridOverlay ? 'Disable' : 'Enable'} grid
-        </SubdomainNavBar.PrimaryAction>
       </SubdomainNavBar>
+      {args.subNavVisible && (
+        <SubNav>
+          <SubNav.Heading href="#">Heading</SubNav.Heading>
+          <SubNav.Link href="#">Link</SubNav.Link>
+          <SubNav.Link href="#">Link</SubNav.Link>
+          <SubNav.Link href="#">Link</SubNav.Link>
+          <SubNav.Link href="#" aria-current="page">
+            Link
+          </SubNav.Link>
+          <SubNav.Link href="#">Link</SubNav.Link>
+          <SubNav.Link href="#">Link</SubNav.Link>
+        </SubNav>
+      )}
       <div className={styles.FeaturePreview}>
         <Box
           backgroundColor={args.heroBg ? 'subtle' : 'default'}
           className={args.heroBg ? styles['FeaturePreview__heroBg'] : ''}
+          paddingBlockStart={28}
           paddingBlockEnd={args.heroBg ? 24 : 'none'}
           marginBlockEnd={args.heroBg ? 96 : 'none'}
         >
           <Grid enableOverlay={enableGridOverlay}>
             <Grid.Column>
-              <Box
-                paddingBlockEnd={{wide: 8}}
-                marginBlockStart={{
-                  narrow: 24,
-                  regular: 64,
-                  wide: 80,
-                }}
-              >
+              <Box paddingBlockEnd={{wide: 8}}>
                 <Hero
                   align={args.heroAlign}
                   className={styles.Hero}

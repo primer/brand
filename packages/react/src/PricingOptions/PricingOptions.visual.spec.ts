@@ -7,7 +7,7 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: PricingOptions', () => {
-  test('PricingOptions / Default variant', async ({page}) => {
+  test('PricingOptions / Default Variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--default-variant&viewMode=story',
     )
@@ -16,7 +16,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('PricingOptions / Cards variant', async ({page}) => {
+  test('PricingOptions / Cards Variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--cards-variant&viewMode=story',
     )
@@ -25,7 +25,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('PricingOptions / One Item', async ({page}) => {
+  test('PricingOptions / One Option', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--one-option&viewMode=story',
     )
@@ -34,7 +34,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('PricingOptions / Two Items', async ({page}) => {
+  test('PricingOptions / Two Options', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--two-options&viewMode=story',
     )
@@ -43,7 +43,7 @@ test.describe('Visual Comparison: PricingOptions', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('PricingOptions / Three Items', async ({page}) => {
+  test('PricingOptions / Three Options', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--three-options&viewMode=story',
     )
