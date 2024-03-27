@@ -1,0 +1,35 @@
+declare const styles: {
+  readonly "IDE__inner": string;
+  readonly "IDE--color-mode-dark": string;
+  readonly "IDE--color-mode-light": string;
+  readonly "IDE__main": string;
+  readonly "IDE__ActivityBar": string;
+  readonly "active": string;
+  readonly "IDE__Chat": string;
+  readonly "IDE--full-exp": string;
+  readonly "IDE__Chat-message-user": string;
+  readonly "IDE__Chat-messages": string;
+  readonly "IDE__Chat-input-area": string;
+  readonly "IDE__Chat-input": string;
+  readonly "IDE__Chat-message-content": string;
+  readonly "IDE__Chat-message-snippet": string;
+  readonly "IDE__Chat-message": string;
+  readonly "IDE__Chat-message--visible": string;
+  readonly "IDE__Chat-message--faded": string;
+  readonly "IDE__Editor": string;
+  readonly "IDE__Editor-tabs": string;
+  readonly "IDE__Editor-tab": string;
+  readonly "IDE__Editor-tab-close-icon": string;
+  readonly "IDE__Editor-content": string;
+  readonly "IDE__Editor-pane": string;
+  readonly "IDE__Editor-pane--suggested": string;
+  readonly "IDE__Editor-lineNumbers": string;
+  readonly "IDE__Editor--small": string;
+  readonly "IDE__Editor--medium": string;
+  readonly "IDE__Editor--large": string;
+  readonly "IDE__Editor-lineNumber": string;
+  readonly "IDE__Editor-lineNumber-text": string;
+  readonly "IDE__Chat-copilot-indicator": string;
+};
+export = styles;
+
