@@ -1,5 +1,58 @@
 # @primer/react-brand
 
+## 0.32.0
+
+### Minor Changes
+
+- [#530](https://github.com/primer/brand/pull/530) [`a9f0c1a`](https://github.com/primer/brand/commit/a9f0c1a034060e56ac00966792dd50a85fd2a0b8) Thanks [@danielguillan](https://github.com/danielguillan)! - New pricing options component now generally available
+
+  ```jsx
+  <PricingOptions>
+    <PricingOptions.Item>
+      <PricingOptions.Label>Recommended</PricingOptions.Label>
+      <PricingOptions.Heading>Copilot</PricingOptions.Heading>
+      <PricingOptions.Description>Copilot in the coding environment.</PricingOptions.Description>
+      <PricingOptions.Price currencySymbol="$" trailingText="per month / $100 per year">
+        10
+      </PricingOptions.Price>
+      <PricingOptions.FeatureList>
+        <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
+        <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
+        <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
+        <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
+      </PricingOptions.FeatureList>
+      <PricingOptions.PrimaryAction href="/buy">Buy now</PricingOptions.PrimaryAction>
+      <PricingOptions.SecondaryAction href="/contact">Contact sales</PricingOptions.SecondaryAction>
+    </PricingOptions.Item>
+    <PricingOptions.Item>
+      <PricingOptions.Label>Recommended</PricingOptions.Label>
+      <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+      <PricingOptions.Description>
+        Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
+        Enterprise Cloud.
+      </PricingOptions.Description>
+      <PricingOptions.Price currencySymbol="$" trailingText="per user / month">
+        39
+      </PricingOptions.Price>
+      <PricingOptions.FeatureList>
+        <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
+        <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
+        <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
+        <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
+      </PricingOptions.FeatureList>
+      <PricingOptions.PrimaryAction href="/waitlist">Join waitlist</PricingOptions.PrimaryAction>
+    </PricingOptions.Item>
+  </PricingOptions>
+  ```
+
+  :link: [Read the documentation for more examples](https://primer.style/brand/components/PricingOptions)
+
+### Patch Changes
+
+- [#553](https://github.com/primer/brand/pull/553) [`0fb9052`](https://github.com/primer/brand/commit/0fb90529ac532167a43f6eeac2a904c9922325fc) Thanks [@rezrah](https://github.com/rezrah)! - Use default text color in labels that feature gradients
+
+- [#560](https://github.com/primer/brand/pull/560) [`9b150a7`](https://github.com/primer/brand/commit/9b150a7695c1b2e70afab901550b1cc91f742bcb) Thanks [@rezrah](https://github.com/rezrah)! - Removed redundant spacing on SubNav menu toggle button
+
 ## 0.31.0
 
 ### Minor Changes
