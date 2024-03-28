@@ -93,6 +93,7 @@
     column-gap: calc(var(--base-size-96) * 2);
     grid-template-rows: repeat(auto-fit, minmax(0, 1fr));
     grid-template-areas:
+      'leadingComponent actions'
       'label actions'
       'heading actions'
       'description actions'
@@ -118,6 +119,7 @@
     row-gap: 0;
 
     grid-template-areas:
+      'leadingComponent'
       'label'
       'heading'
       'description'
@@ -148,6 +150,10 @@
     grid-row: label / footnote;
     grid-template-rows: subgrid;
   }
+
+  .PricingOptions__item--has-leading-component {
+    grid-row: leadingComponent / footnote;
+  }
 }
 
 /*
@@ -161,6 +167,7 @@
       grid-template-columns: 1fr;
       grid-template-rows: auto;
       grid-template-areas:
+        'leadingComponent'
         'label'
         'heading'
         'description'
@@ -175,6 +182,10 @@
 /* ---------------------------------------------------------- */
 /* Content                                                 */
 /* ---------------------------------------------------------- */
+
+.PricingOptions__leading-component {
+  grid-row: leadingComponent;
+}
 
 .PricingOptions__label {
   /* Sets the color of the label to the primary accent color, if it exists */
@@ -293,6 +304,7 @@
 /* Adjust heading spacing */
 .PricingOptions__feature-list-accordion-heading {
   padding: var(--base-size-16) 0;
+  padding-inline-start: 0 !important; /* Fixes dotcom specificity issue */
   margin-block-start: calc(var(--base-size-16) * -1);
   margin-block-end: var(--base-size-8);
 }

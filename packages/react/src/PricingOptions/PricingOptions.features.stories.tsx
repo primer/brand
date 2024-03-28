@@ -1,7 +1,9 @@
 import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 import {PricingOptions} from '.'
-import {Box, Grid, ThemeProvider} from '..'
+import {Box, Grid, Stack, ThemeProvider} from '..'
+import imageExample from '../fixtures/images/bento/3.png'
+import {CopilotIcon} from '@primer/octicons-react'
 
 const decorators = (Story, context) => (
   <ThemeProvider colorMode={context.parameters.darkMode ? 'dark' : 'light'}>
@@ -186,6 +188,78 @@ export const OneOption: StoryFn<typeof PricingOptions> = () => {
         </PricingOptions.SecondaryAction>
       </PricingOptions.Item>
     </PricingOptions>
+  )
+}
+
+export const LeadingComponent: StoryFn<typeof PricingOptions> = () => {
+  const Image = () => (
+    <Box marginBlockEnd={24}>
+      <img src={imageExample} alt="Copilot Individual" />
+    </Box>
+  )
+
+  const IconVisual = () => (
+    <Box>
+      <CopilotIcon size={24} />
+    </Box>
+  )
+
+  return (
+    <Stack direction="vertical">
+      <PricingOptions variant="cards">
+        <PricingOptions.Item leadingComponent={<Image />}>
+          <PricingOptions.Label>Recommended</PricingOptions.Label>
+          <PricingOptions.Heading>Copilot</PricingOptions.Heading>
+          <PricingOptions.Description>Copilot in the coding environment.</PricingOptions.Description>
+          <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            Buy now
+          </PricingOptions.PrimaryAction>
+          <PricingOptions.SecondaryAction as="a" href="#">
+            Contact sales
+          </PricingOptions.SecondaryAction>
+        </PricingOptions.Item>
+        <PricingOptions.Item leadingComponent={<Image />}>
+          <PricingOptions.Label>Recommended</PricingOptions.Label>
+          <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+          <PricingOptions.Description>
+            Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
+            Enterprise Cloud.
+          </PricingOptions.Description>
+          <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            Join waitlist
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
+      </PricingOptions>
+      <PricingOptions>
+        <PricingOptions.Item leadingComponent={<IconVisual />}>
+          <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+          <PricingOptions.Description>
+            Code completions, Chat, and more for indie developers and freelancers.
+          </PricingOptions.Description>
+          <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            Buy now
+          </PricingOptions.PrimaryAction>
+          <PricingOptions.SecondaryAction as="a" href="#">
+            Contact sales
+          </PricingOptions.SecondaryAction>
+        </PricingOptions.Item>
+      </PricingOptions>
+    </Stack>
   )
 }
 
