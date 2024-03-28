@@ -206,7 +206,7 @@ export const LeadingComponent: StoryFn<typeof PricingOptions> = () => {
 
   return (
     <Stack direction="vertical">
-      <PricingOptions>
+      <PricingOptions variant="cards">
         <PricingOptions.Item leadingComponent={<Image />}>
           <PricingOptions.Label>Recommended</PricingOptions.Label>
           <PricingOptions.Heading>Copilot</PricingOptions.Heading>

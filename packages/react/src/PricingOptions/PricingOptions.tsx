@@ -144,7 +144,6 @@ const PricingOptionsItem = forwardRef(
     )
 
     if (leadingComponent) {
-      // add to the beginning of the content array
       Content.unshift(<div className={styles['PricingOptions__leading-component']}>{leadingComponent}</div>)
     }
 
