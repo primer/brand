@@ -34,6 +34,15 @@ test.describe('Visual Comparison: PricingOptions', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('PricingOptions / Leading Component', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--leading-component&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('PricingOptions / Two Options', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--two-options&viewMode=story',
