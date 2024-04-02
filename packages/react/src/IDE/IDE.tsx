@@ -77,11 +77,7 @@ const _IDERoot = memo(
     const EditorChild = Children.toArray(children).find(child => isValidElement(child) && child.type === IDE.Editor)
 
     return (
-      <ThemeProvider
-        colorMode={mode as ColorModesEnum.LIGHT | ColorModesEnum.DARK | undefined}
-        role="presentation"
-        aria-label={ariaLabel}
-      >
+      <ThemeProvider colorMode={mode as ColorModesEnum.LIGHT | ColorModesEnum.DARK | undefined} aria-label={ariaLabel}>
         <div
           className={clsx(
             styles.IDE,
