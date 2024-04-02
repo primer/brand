@@ -1,8 +1,11 @@
 declare const styles: {
-  readonly "IDE__inner": string;
+  readonly "IDE": string;
   readonly "IDE--color-mode-dark": string;
+  readonly "IDE__inner": string;
   readonly "IDE--color-mode-light": string;
+  readonly "IDE--glass": string;
   readonly "IDE__main": string;
+  readonly "IDE--default": string;
   readonly "IDE__ActivityBar": string;
   readonly "active": string;
   readonly "IDE__Chat": string;

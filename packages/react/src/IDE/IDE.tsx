@@ -48,6 +48,14 @@ export type IDEProps = {
    * Color mode
    */
   mode?: ColorModesEnum.LIGHT | ColorModesEnum.DARK
+  /**
+   * The optionally configurable height of the IDE
+   */
+  height?: number
+  /**
+   * Alternative presentation of the IDE
+   */
+  variant?: 'default' | 'glass'
 } & BaseProps<HTMLDivElement>
 
 const _IDERoot = memo(
@@ -56,6 +64,8 @@ const _IDERoot = memo(
     children,
     className,
     'data-testid': mode = ColorModesEnum.DARK,
+    height,
+    variant = 'default',
     ...rest
   }: PropsWithChildren<IDEProps>) => {
     // const ActivityBarChild = Children.toArray(children).find(
@@ -74,14 +84,19 @@ const _IDERoot = memo(
       >
         <div
           className={clsx(
+            styles.IDE,
             styles[`IDE--color-mode-${mode}`],
+            styles[`IDE--${variant}`],
             ChatChild && EditorChild && styles['IDE--full-exp'],
             className,
           )}
           aria-hidden
           {...rest}
         >
-          <div className={styles['IDE__inner']}>
+          <div
+            className={styles['IDE__inner']}
+            style={{['--brand-IDE-container-height' as string]: height ? `${height}px` : undefined}}
+          >
             {/* <div className={styles.IDE__dots}>
             <div className={clsx(styles['IDE__dot'], styles['IDE__dot--red'])}></div>
             <div className={clsx(styles['IDE__dot'], styles['IDE__dot--amber'])}></div>

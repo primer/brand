@@ -1,5 +1,5 @@
 declare const styles: {
-  readonly "vfx": string;
+  readonly "riverVisual": string;
 };
 export = styles;
 
