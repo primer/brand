@@ -51,4 +51,13 @@ test.describe('Visual Comparison: FeaturePreviewLevelTwo', () => {
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
+
+  test('FeaturePreviewLevelTwo / 2.4 variant', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=recipes-feature-previews-level-2--level-two-point-four&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
 })
