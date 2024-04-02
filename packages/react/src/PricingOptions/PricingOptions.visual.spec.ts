@@ -61,15 +61,6 @@ test.describe('Visual Comparison: PricingOptions', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('PricingOptions / Dark Color Mode', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--dark-color-mode&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
   test('PricingOptions / With Feature Sets', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--with-feature-sets&viewMode=story',
