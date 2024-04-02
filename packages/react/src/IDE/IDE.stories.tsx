@@ -345,7 +345,7 @@ export const WithRiver = args => {
             style={{backgroundImage: `url(${backgroundImage1})`}}
             className={storyStyles.riverVisual}
           >
-            <IDE {...args} variant="glass">
+            <IDE {...args} variant="glass" height={630}>
               <IDE.Editor size="large" activeTab={0} files={files} triggerAnimation={animationPlaying} />
             </IDE>
           </Box>
@@ -366,7 +366,9 @@ export const WithRiver = args => {
             <em>This first sentence is a river breakout headline.</em> And this is where the body copy starts. Remember
             to keep these nice and succinct.
           </Text>
-          <Link href="#">Call to action</Link>
+          <Link href="#" onClick={handleReplay}>
+            Replay animation
+          </Link>
         </RiverBreakout.Content>
       </RiverBreakout>
       <River imageTextRatio="60:40">
@@ -377,7 +379,7 @@ export const WithRiver = args => {
             style={{backgroundImage: `url(${backgroundImage2})`}}
             className={storyStyles.riverVisual}
           >
-            <IDE {...args} height={500} variant="glass">
+            <IDE {...args} height={440} variant="glass">
               <IDE.Editor
                 size="large"
                 files={[

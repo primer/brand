@@ -282,9 +282,17 @@
   border: none;
 }
 
+.IDE--glass .IDE__Editor-tab {
+  background: #2425389d;
+}
+
 .IDE__Editor-tab.active {
   color: var(--brand-color-text-default);
   background: #242538;
+}
+
+.IDE--glass .IDE__Editor-tab.active {
+  background: #242538c4;
 }
 
 .IDE__Editor-tab:hover {
