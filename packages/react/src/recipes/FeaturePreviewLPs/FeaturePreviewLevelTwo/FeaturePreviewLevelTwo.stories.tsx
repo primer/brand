@@ -16,6 +16,8 @@ export default {
     layout: 'fullscreen',
   },
   args: {
+    subNavVisible: false,
+    gridOverlay: false,
     colorMode: ColorModesEnum.LIGHT,
     accentColor: 'ai',
     heroAlign: 'start',
@@ -72,6 +74,18 @@ export default {
     cardsVisible: true,
   },
   argTypes: {
+    variant: {
+      table: {
+        disable: true,
+      },
+    },
+    gridOverlay: {
+      name: 'enable grid overlay',
+      control: 'boolean',
+      table: {
+        category: 'General',
+      },
+    },
     colorMode: {
       name: 'mode',
       control: 'inline-radio',
@@ -91,6 +105,13 @@ export default {
     /**
      * Hero
      */
+    subNavVisible: {
+      name: 'sub nav visible',
+      control: 'boolean',
+      table: {
+        category: 'Section: Hero',
+      },
+    },
     heroAlign: {
       control: 'inline-radio',
       options: ['start', 'center'],
@@ -452,4 +473,12 @@ LevelTwoPointThree.args = {
   testimonialVisible: false,
   faqVisible: false,
   ctaBannerVisible: false,
+}
+
+export const LevelTwoPointFour: StoryFn<typeof FeaturePreviewLevelTwo> = args => <FeaturePreviewLevelTwo {...args} />
+
+LevelTwoPointFour.storyName = '2.4 variant'
+LevelTwoPointFour.args = {
+  variant: 'Maximum',
+  subNavVisible: true,
 }

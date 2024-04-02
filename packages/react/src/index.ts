@@ -37,6 +37,7 @@ export * from './LogoSuite'
 export * from './Timeline'
 export * from './Bento'
 export * from './EyebrowBanner'
+export * from './PricingOptions'
 export * from './SubNav'
 export * from './IDE'
 

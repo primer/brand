@@ -3,6 +3,7 @@
   width: 100%;
   display: flex;
   padding: var(--base-size-16);
+  z-index: 1;
 }
 
 .SubNav__heading {
@@ -100,6 +101,7 @@
     right: var(--base-size-16);
     order: 1;
     z-index: 9999;
+    padding-inline: 0;
   }
 
   .SubNav__link {
