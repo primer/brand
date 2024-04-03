@@ -235,12 +235,22 @@ type PricingOptionsPriceProps = PropsWithChildren<BaseProps<HTMLParagraphElement
   currencyCode?: string
   currencySymbol?: string
   'data-testid'?: string
+  originalPrice?: string
   trailingText?: string
 }
 
 const PricingOptionsPrice = forwardRef<HTMLParagraphElement, PricingOptionsPriceProps>(
   (
-    {children, className, currencyCode = 'USD', currencySymbol = '$', 'data-testid': testId, trailingText, ...rest},
+    {
+      children,
+      className,
+      currencyCode = 'USD',
+      currencySymbol = '$',
+      'data-testid': testId,
+      originalPrice,
+      trailingText,
+      ...rest
+    },
     ref,
   ) => {
     return (
@@ -252,17 +262,46 @@ const PricingOptionsPrice = forwardRef<HTMLParagraphElement, PricingOptionsPrice
         weight="normal"
         {...rest}
       >
-        <Text as="span" className={styles['PricingOptions__price-currency-symbol']} size="500" weight="normal">
+        <Text
+          as="span"
+          className={styles['PricingOptions__price-currency-symbol']}
+          font="hubot-sans"
+          size="500"
+          weight="normal"
+        >
           {currencySymbol}
         </Text>
 
-        <Text as="span" className={styles['PricingOptions__price-value']} size="700" weight="normal">
+        <Text as="span" className={styles['PricingOptions__price-value']} font="hubot-sans" size="700" weight="normal">
           {children}
         </Text>
 
-        <Text as="span" className={styles['PricingOptions__price-currency-code']} size="500" weight="normal">
+        <Text
+          as="span"
+          className={styles['PricingOptions__price-currency-code']}
+          font="hubot-sans"
+          size="500"
+          weight="normal"
+        >
           {currencyCode}
         </Text>
+
+        {originalPrice && (
+          <del className={styles['PricingOptions__price-original-price']}>
+            <Text font="hubot-sans" size="400" variant="muted" weight="normal">
+              {currencySymbol}
+            </Text>
+            <Text
+              className={styles['PricingOptions__price-original-price-value']}
+              font="hubot-sans"
+              size="500"
+              variant="muted"
+              weight="normal"
+            >
+              {originalPrice}
+            </Text>
+          </del>
+        )}
 
         {trailingText && (
           <Text as="span" className={styles['PricingOptions__price-trailing-text']} size="200" variant="muted">

@@ -604,12 +604,13 @@ One item per pricing plan to be displayed. Maximum of 3 items.
 
 ### PricingOptions.Price
 
-| Name             | Type        |   Default   | required | Description           |
-| :--------------- | :---------- | :---------: | :------: | :-------------------- |
-| `children`       | `ReactNode` | `undefined` |  `true`  | The price of the item |
-| `currencyCode`   | `string`    |    `USD`    | `false`  | The currency code     |
-| `currencySymbol` | `string`    |     `$`     | `false`  | The currency symbol   |
-| `trailingText`   | `string`    |             | `false`  | The trailing text     |
+| Name             | Type        |   Default   | required | Description                                        |
+| :--------------- | :---------- | :---------: | :------: | :------------------------------------------------- |
+| `children`       | `ReactNode` | `undefined` |  `true`  | The price of the item                              |
+| `currencyCode`   | `string`    |    `USD`    | `false`  | The currency code                                  |
+| `currencySymbol` | `string`    |     `$`     | `false`  | The currency symbol                                |
+| `originalPrice`  | `string`    | `undefined` | `false`  | The initial price before any discounts are applied |
+| `trailingText`   | `string`    |             | `false`  | The trailing text                                  |
 
 ### PricingOptions.FeatureList
 
