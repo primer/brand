@@ -9,8 +9,6 @@ import React, {
   useEffect,
   useRef,
   useState,
-  startTransition,
-  useTransition,
 } from 'react'
 import {default as clsx} from 'clsx'
 import {
