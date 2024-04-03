@@ -1,19 +1,9 @@
 .IDE {
-  --brand-IDE-container-height: 800px;
-  --brand-IDE-bgColor: #131337;
 }
 
-.IDE--color-mode-dark .IDE__inner {
-  background: #131337;
-  border: 1px solid #171d22;
-  border-bottom: 1px solid #191919;
-}
-
-.IDE--color-mode-light .IDE__inner {
-  background: #f5f5f5;
-  background: radial-gradient(81.34% 137.89% at 50% 107.14%, #ffffff 0%, #e6e6e6 100%);
-  border: 1px solid #e0e0e0;
-  border-bottom: 1px solid #d4d4d4;
+.IDE__inner {
+  background: var(--brand-IDE-default-bgColor);
+  border: 1px solid var(--brand-IDE-borderColor);
 }
 
 .IDE--glass {
@@ -21,28 +11,19 @@
 }
 
 .IDE--glass .IDE__inner {
-  --brand-IDE-bgColor: transparent;
-  background: rgba(0, 0, 0, 0.7);
+  background: var(--brand-IDE-glass-bgColor);
   border-color: transparent !important;
   opacity: 0.95;
 }
-/* 
-.IDE__dots {
-  position: absolute;
-  top: 9px;
-  left: 12px;
-  display: flex;
-  gap: var(--base-size-8);
-} */
 
 .IDE__main {
   display: flex;
-  height: calc(var(--brand-IDE-container-height) - 32px);
+  height: calc(var(--brand-IDE-height) - 32px);
   width: 100%;
 }
 
 .IDE--glass .IDE__main {
-  height: var(--brand-IDE-container-height);
+  height: var(--brand-IDE-height);
 }
 
 .IDE--default .IDE__main {
@@ -52,9 +33,9 @@
 .IDE__inner {
   position: relative;
   width: 100%;
-  height: var(--brand-IDE-container-height);
+  height: var(--brand-IDE-height);
   margin: 10px auto;
-  border-radius: 16px;
+  border-radius: var(--brand-borderRadius-large);
   overflow: hidden;
 }
 
@@ -138,7 +119,7 @@
 }
 
 .IDE--glass .IDE__Chat {
-  background: #242538;
+  background: var(--brand-IDE-default-editor-bgColor);
 }
 
 .IDE--full-exp .IDE__Chat {
@@ -180,7 +161,7 @@
 
 .IDE__Chat-messages {
   scrollbar-width: thin;
-  scrollbar-color: #666671 #242538;
+  scrollbar-color: #666671 var(--brand-IDE-default-editor-bgColor);
 }
 
 .IDE__Chat-messages::-webkit-scrollbar {
@@ -188,13 +169,13 @@
 }
 
 .IDE__Chat-messages::-webkit-scrollbar-track {
-  background: #242538;
+  background: var(--brand-IDE-default-editor-bgColor);
 }
 
 .IDE__Chat-messages::-webkit-scrollbar-thumb {
   background-color: #666671;
   border-radius: 20px;
-  border: 3px solid #242538;
+  border: 3px solid var(--brand-IDE-default-editor-bgColor);
 }
 
 .IDE__Chat-input-area {
@@ -205,7 +186,7 @@
 }
 
 .IDE__Chat-input {
-  background: var(--brand-IDE-bgColor) !important;
+  background: var(--brand-IDE-default-bgColor) !important;
   color: var(--brand-color-text-muted) !important;
   -webkit-text-fill-color: var(--brand-color-text-muted) !important;
   border-color: var(--brand-color-border-default);
@@ -266,7 +247,15 @@
 
 .IDE__Editor-tabs {
   display: inline-flex;
-  background: linear-gradient(0deg, rgba(0, 56, 255, 0.02) 0%, rgba(0, 56, 255, 0.02) 100%), #17182c;
+  background: var(--brand-IDE-default-editor-tabs-bgColor);
+}
+
+.IDE--default .IDE__Editor-tabs {
+  background: var(--brand-IDE-default-editor-tabs-bgColor);
+}
+
+.IDE--glass .IDE__Editor-tabs {
+  background: var(--brand-IDE-glass-editor-tabs-bgColor);
 }
 
 .IDE__Editor-tab {
@@ -274,7 +263,6 @@
   padding: 8px 12px;
   align-items: center;
   gap: 4px;
-  background: rgba(36, 37, 56, 0.5);
   font-family: var(--brand-fontStack-monospace);
   font-size: 14px;
   color: var(--brand-color-text-muted);
@@ -282,17 +270,24 @@
   border: none;
 }
 
+.IDE--default .IDE__Editor-tab {
+  background: var(--brand-IDE-default-editor-tab-bgColor-rest);
+}
+
 .IDE--glass .IDE__Editor-tab {
-  background: #2425389d;
+  background: var(--brand-IDE-glass-editor-tab-bgColor-rest);
 }
 
 .IDE__Editor-tab.active {
   color: var(--brand-color-text-default);
-  background: #242538;
+}
+
+.IDE--default .IDE__Editor-tab.active {
+  background: var(--brand-IDE-default-editor-tab-bgColor-active);
 }
 
 .IDE--glass .IDE__Editor-tab.active {
-  background: #242538c4;
+  background: var(--brand-IDE-glass-editor-tab-bgColor-active);
 }
 
 .IDE__Editor-tab:hover {
@@ -315,12 +310,12 @@
   padding-top: var(--base-size-16);
 }
 
-[data-color-mode='dark'] .IDE__Editor-content {
-  background: #242538;
+.IDE--default .IDE__Editor-content {
+  background: var(--brand-IDE-default-editor-bgColor);
 }
 
 .IDE--glass .IDE__Editor-content {
-  background: #242538c4;
+  background: var(--brand-IDE-glass-editor-bgColor);
 }
 
 .IDE__Editor-pane {
@@ -328,7 +323,7 @@
 }
 
 .IDE__Editor-pane--suggested {
-  background-color: var(--base-color-scale-blue-9);
+  background-color: var(--brand-IDE-autoSuggestLine-bgColor);
 }
 
 .IDE__Editor-lineNumbers {
@@ -362,7 +357,7 @@
   display: block;
   padding: 0 8px;
   text-align: right;
-  color: #626483;
+  color: var(--brand-color-text-subtle);
   user-select: none;
   cursor: default;
   white-space: nowrap;
@@ -388,7 +383,7 @@
 }
 
 pre.IDE__Chat-copilot-indicator {
-  background-color: #0969da;
+  background-color: var(--brand-IDE-autoSuggest-bgColor);
   padding-left: 0;
   position: absolute;
   display: inline-flex;
@@ -401,6 +396,11 @@ pre.IDE__Chat-copilot-indicator {
   margin-top: 4px;
 
   box-shadow: -9px 10px 39px 0px rgba(0, 0, 0, 0.25);
+}
+
+.IDE__Chat-copilot-indicator-label {
+  color: var(--brand-IDE-autoSuggest-fgColor);
+  fill: var(--brand-IDE-autoSuggest-fgColor);
 }
 
 .IDE__Editor--small {

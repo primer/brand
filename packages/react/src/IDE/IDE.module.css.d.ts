@@ -1,8 +1,6 @@
 declare const styles: {
   readonly "IDE": string;
-  readonly "IDE--color-mode-dark": string;
   readonly "IDE__inner": string;
-  readonly "IDE--color-mode-light": string;
   readonly "IDE--glass": string;
   readonly "IDE__main": string;
   readonly "IDE--default": string;
@@ -33,6 +31,7 @@ declare const styles: {
   readonly "IDE__Editor-lineNumber": string;
   readonly "IDE__Editor-lineNumber-text": string;
   readonly "IDE__Chat-copilot-indicator": string;
+  readonly "IDE__Chat-copilot-indicator-label": string;
 };
 export = styles;
 

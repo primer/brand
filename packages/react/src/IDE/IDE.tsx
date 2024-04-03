@@ -10,17 +10,17 @@ import React, {
   useRef,
   useState,
 } from 'react'
-import {Avatar, ColorModesEnum, Text, TextInput, ThemeProvider} from '..'
-
-import {CommentIcon, CopilotIcon, FileIcon, GitBranchIcon, PaperAirplaneIcon, SearchIcon} from '@primer/octicons-react'
 import {default as clsx} from 'clsx'
+import {CommentIcon, CopilotIcon, FileIcon, GitBranchIcon, PaperAirplaneIcon, SearchIcon} from '@primer/octicons-react'
 
+import {Avatar, ColorModesEnum, Text, TextInput, ThemeProvider} from '..'
 import type {BaseProps} from '../component-helpers'
 
 /**
  * Design tokens
  */
-import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/action-menu/colors-with-modes.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/ide/base.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/ide/colors-with-modes.css'
 
 /** * Main Stylesheet (as a CSS Module) */
 import animationStyles from '../animation/Animation.module.css'
@@ -47,7 +47,7 @@ export type IDEProps = {
   /**
    * Color mode
    */
-  mode?: ColorModesEnum.LIGHT | ColorModesEnum.DARK
+  colorMode?: ColorModesEnum.LIGHT | ColorModesEnum.DARK
   /**
    * The optionally configurable height of the IDE
    */
@@ -63,7 +63,7 @@ const _IDERoot = memo(
     'aria-label': ariaLabel,
     children,
     className,
-    'data-testid': mode = ColorModesEnum.DARK,
+    colorMode = ColorModesEnum.DARK,
     height,
     variant = 'default',
     ...rest
@@ -75,13 +75,12 @@ const _IDERoot = memo(
     const ChatChild = Children.toArray(children).find(child => isValidElement(child) && child.type === IDE.Chat)
 
     const EditorChild = Children.toArray(children).find(child => isValidElement(child) && child.type === IDE.Editor)
-
     return (
-      <ThemeProvider colorMode={mode as ColorModesEnum.LIGHT | ColorModesEnum.DARK | undefined} aria-label={ariaLabel}>
+      <div aria-label={ariaLabel}>
         <div
           className={clsx(
             styles.IDE,
-            styles[`IDE--color-mode-${mode}`],
+            styles[`IDE--color-mode-${colorMode}`],
             styles[`IDE--${variant}`],
             ChatChild && EditorChild && styles['IDE--full-exp'],
             className,
@@ -91,7 +90,7 @@ const _IDERoot = memo(
         >
           <div
             className={styles['IDE__inner']}
-            style={{['--brand-IDE-container-height' as string]: height ? `${height}px` : undefined}}
+            style={{['--brand-IDE-height' as string]: height ? `${height}px` : undefined}}
           >
             {/* <div className={styles.IDE__dots}>
             <div className={clsx(styles['IDE__dot'], styles['IDE__dot--red'])}></div>
@@ -105,7 +104,7 @@ const _IDERoot = memo(
             </div>
           </div>
         </div>
-      </ThemeProvider>
+      </div>
     )
   },
 )
@@ -425,8 +424,10 @@ const _Editor = memo(
                           )}
                           data-has-suggestion={hasSuggestion}
                         >
-                          <CopilotIcon size={24} />
-                          <Text as="span">Copilot</Text>
+                          <CopilotIcon size={24} className={styles['IDE__Chat-copilot-indicator-label']} />
+                          <Text as="span" className={styles['IDE__Chat-copilot-indicator-label']}>
+                            Copilot
+                          </Text>
                         </pre>
                       )}
                     </>

@@ -10,7 +10,7 @@ import {Button} from '../Button'
 import './IDE.stories.hljs.theme.css'
 
 import storyStyles from './IDE.stories.module.css'
-import {ThemeProvider} from '../ThemeProvider'
+import {ThemeProvider, useTheme} from '../ThemeProvider'
 import {Box} from '../Box'
 import {Stack} from '../Stack'
 import {FormControl, TextInput} from '../forms'
@@ -18,9 +18,10 @@ import {River, RiverBreakout} from '../river'
 import {Heading} from '../Heading'
 import {Text} from '../Text'
 import {Link} from '../Link'
-
-import backgroundImage1 from '../recipes/FeaturePreviewLPs/fixtures/images/security/river-bg-dark-1.png'
-import backgroundImage2 from '../recipes/FeaturePreviewLPs/fixtures/images/ai/river-bg-dark-2.png'
+import backgroundImageLight1 from '../recipes/FeaturePreviewLPs/fixtures/images/security/river-bg-light-1.png'
+import backgroundImageLight2 from '../recipes/FeaturePreviewLPs/fixtures/images/ai/river-bg-light-2.png'
+import backgroundImageDark1 from '../recipes/FeaturePreviewLPs/fixtures/images/security/river-bg-dark-1.png'
+import backgroundImageDark2 from '../recipes/FeaturePreviewLPs/fixtures/images/ai/river-bg-dark-2.png'
 import {Grid} from '../Grid'
 import {Timeline} from '../Timeline'
 
@@ -331,63 +332,71 @@ export const WithRiver = args => {
     setAnimationPlaying(prev => !prev)
   }
 
+  const {colorMode} = useTheme()
+
   return (
-    <>
-      <RiverBreakout>
-        <RiverBreakout.A11yHeading>Accelerate workflows</RiverBreakout.A11yHeading>
-        <RiverBreakout.Visual>
-          <Box
-            paddingBlockStart={48}
-            paddingBlockEnd={48}
-            paddingInlineStart={128}
-            paddingInlineEnd={128}
-            borderRadius="large"
-            style={{backgroundImage: `url(${backgroundImage1})`}}
-            className={storyStyles.riverVisual}
-          >
-            <IDE {...args} variant="glass" height={630}>
-              <IDE.Editor size="large" activeTab={0} files={files} triggerAnimation={animationPlaying} />
-            </IDE>
-          </Box>
-        </RiverBreakout.Visual>
-        <RiverBreakout.Content
-          trailingComponent={() => (
-            <Timeline>
-              <Timeline.Item>
-                <em>GitHub Codespaces</em> offers a complete dev environment in seconds.
-              </Timeline.Item>
-              <Timeline.Item>
-                <em>GitHub Copilot</em> is your AI pair programmer that empowers you to complete tasks.
-              </Timeline.Item>
-            </Timeline>
-          )}
-        >
-          <Text>
-            <em>This first sentence is a river breakout headline.</em> And this is where the body copy starts. Remember
-            to keep these nice and succinct.
-          </Text>
-          <Link href="#" onClick={handleReplay}>
-            Replay animation
-          </Link>
-        </RiverBreakout.Content>
-      </RiverBreakout>
-      <River imageTextRatio="60:40">
-        <River.Visual>
-          <Box
-            padding={48}
-            borderRadius="large"
-            style={{backgroundImage: `url(${backgroundImage2})`}}
-            className={storyStyles.riverVisual}
-          >
-            <IDE {...args} height={440} variant="glass">
-              <IDE.Editor
-                size="large"
-                files={[
-                  {
-                    name: 'sentiments.ts',
-                    animatedLineStart: 5,
-                    suggestedLineStart: 6,
-                    code: `async function isPositive(text: string): Promise<boolean> {
+    <div style={{backgroundColor: 'var(--brand-color-canvas-default)', minHeight: '100dvh', overflow: 'hidden'}}>
+      <Grid>
+        <Grid.Column>
+          <RiverBreakout>
+            <RiverBreakout.A11yHeading>Accelerate workflows</RiverBreakout.A11yHeading>
+            <RiverBreakout.Visual>
+              <Box
+                paddingBlockStart={{narrow: 24, regular: 48}}
+                paddingBlockEnd={{narrow: 24, regular: 48}}
+                paddingInlineStart={{narrow: 24, regular: 128}}
+                paddingInlineEnd={{narrow: 24, regular: 128}}
+                borderRadius="large"
+                style={{
+                  backgroundImage: `url(${colorMode === 'dark' ? backgroundImageDark1 : backgroundImageLight1})`,
+                }}
+                className={storyStyles.riverVisual}
+              >
+                <IDE {...args} variant="glass" height={630}>
+                  <IDE.Editor size="large" activeTab={0} files={files} triggerAnimation={animationPlaying} />
+                </IDE>
+              </Box>
+            </RiverBreakout.Visual>
+            <RiverBreakout.Content
+              trailingComponent={() => (
+                <Timeline>
+                  <Timeline.Item>
+                    <em>GitHub Codespaces</em> offers a complete dev environment in seconds.
+                  </Timeline.Item>
+                  <Timeline.Item>
+                    <em>GitHub Copilot</em> is your AI pair programmer that empowers you to complete tasks.
+                  </Timeline.Item>
+                </Timeline>
+              )}
+            >
+              <Text>
+                <em>This first sentence is a river breakout headline.</em> And this is where the body copy starts.
+                Remember to keep these nice and succinct.
+              </Text>
+              <Link href="#" onClick={handleReplay}>
+                Replay animation
+              </Link>
+            </RiverBreakout.Content>
+          </RiverBreakout>
+          <River imageTextRatio="60:40">
+            <River.Visual>
+              <Box
+                padding={48}
+                borderRadius="large"
+                style={{
+                  backgroundImage: `url(${colorMode === 'dark' ? backgroundImageDark2 : backgroundImageLight2})`,
+                }}
+                className={storyStyles.riverVisual}
+              >
+                <IDE {...args} height={440} variant="glass">
+                  <IDE.Editor
+                    size="large"
+                    files={[
+                      {
+                        name: 'sentiments.ts',
+                        animatedLineStart: 5,
+                        suggestedLineStart: 6,
+                        code: `async function isPositive(text: string): Promise<boolean> {
   const response = await fetch(...)
   const drawScatterplot = (data, height, width) => {
     const svg = d3.select("#scatterplot")
@@ -399,44 +408,32 @@ export const WithRiver = args => {
   const json = await response.json();
   return json.label === "pos";
 }`
-                      .split('\n')
-                      .map(line => hljs.highlight(line, {language: 'javascript'}).value),
-                    highlighter: 'hljs',
-                  },
-                ]}
-                triggerAnimation={animationPlaying}
-              />
-            </IDE>
-          </Box>
-        </River.Visual>
-        <River.Content>
-          <Heading>Heading</Heading>
-          <Text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-            turpis felis nam pulvinar risus elementum.
-          </Text>
-          <Link href="#" onClick={handleReplay}>
-            Replay animation
-          </Link>
-        </River.Content>
-      </River>
-    </>
+                          .split('\n')
+                          .map(line => hljs.highlight(line, {language: 'javascript'}).value),
+                        highlighter: 'hljs',
+                      },
+                    ]}
+                    triggerAnimation={animationPlaying}
+                  />
+                </IDE>
+              </Box>
+            </River.Visual>
+            <River.Content>
+              <Heading>Heading</Heading>
+              <Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus
+                sed turpis felis nam pulvinar risus elementum.
+              </Text>
+              <Link href="#" onClick={handleReplay}>
+                Replay animation
+              </Link>
+            </River.Content>
+          </River>
+        </Grid.Column>
+      </Grid>
+    </div>
   )
 }
 WithRiver.parameters = {
   layout: 'fullscreen',
 }
-
-WithRiver.decorators = [
-  Story => (
-    <ThemeProvider colorMode="dark">
-      <div style={{backgroundColor: 'black', minHeight: '100dvh', overflow: 'hidden'}}>
-        <Grid>
-          <Grid.Column>
-            <Story />
-          </Grid.Column>
-        </Grid>
-      </div>
-    </ThemeProvider>
-  ),
-]
