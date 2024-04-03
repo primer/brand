@@ -211,38 +211,22 @@ return expenses`,
 ]
 
 const Template: StoryFn<typeof IDE> = args => {
-  const [animationPlaying, setAnimationPlaying] = React.useState(false)
-  const handleReplay = () => {
-    setAnimationPlaying(prev => !prev)
-  }
-
   return (
-    <>
-      <IDE {...args}>
-        {/* <IDE.ActivityBar></IDE.ActivityBar> */}
-        <IDE.Chat script={chatScript}></IDE.Chat>
-        <IDE.Editor size="large" activeTab={0} files={files} triggerAnimation={animationPlaying} />
-      </IDE>
-      <Button onClick={handleReplay}>Replay editor animation</Button>
-    </>
+    <IDE {...args}>
+      {/* <IDE.ActivityBar></IDE.ActivityBar> */}
+      <IDE.Chat script={chatScript}></IDE.Chat>
+      <IDE.Editor size="large" activeTab={0} files={files} />
+    </IDE>
   )
 }
 
 export const Default = Template.bind({})
 
 export const EditorOnly = args => {
-  const [animationPlaying, setAnimationPlaying] = React.useState(false)
-  const handleReplay = () => {
-    setAnimationPlaying(prev => !prev)
-  }
-
   return (
-    <>
-      <IDE {...args}>
-        <IDE.Editor size="large" activeTab={0} files={files} triggerAnimation={animationPlaying} />
-      </IDE>
-      <Button onClick={handleReplay}>Replay editor animation</Button>
-    </>
+    <IDE {...args}>
+      <IDE.Editor size="large" activeTab={0} files={files} />
+    </IDE>
   )
 }
 
@@ -388,7 +372,7 @@ export const WithRiver = args => {
                 }}
                 className={storyStyles.riverVisual}
               >
-                <IDE {...args} height={440} variant="glass">
+                <IDE {...args} height={530} variant="glass">
                   <IDE.Editor
                     size="large"
                     files={[

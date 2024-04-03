@@ -316,6 +316,7 @@
 
 .IDE--glass .IDE__Editor-content {
   background: var(--brand-IDE-glass-editor-bgColor);
+  border-bottom-left-radius: var(--brand-borderRadius-large);
 }
 
 .IDE__Editor-pane {
@@ -416,4 +417,12 @@ pre.IDE__Chat-copilot-indicator {
 .IDE__Editor--large {
   font-size: 18px;
   line-height: 23.9px;
+}
+
+.IDE__Editor-replay {
+  margin-block-start: var(--base-size-24);
+  margin-block-end: var(--base-size-16);
+  align-self: center;
+  position: relative;
+  z-index: 1;
 }

@@ -9,11 +9,21 @@ import React, {
   useEffect,
   useRef,
   useState,
+  startTransition,
+  useTransition,
 } from 'react'
 import {default as clsx} from 'clsx'
-import {CommentIcon, CopilotIcon, FileIcon, GitBranchIcon, PaperAirplaneIcon, SearchIcon} from '@primer/octicons-react'
+import {
+  CommentIcon,
+  CopilotIcon,
+  FileIcon,
+  GitBranchIcon,
+  PaperAirplaneIcon,
+  SearchIcon,
+  SyncIcon,
+} from '@primer/octicons-react'
 
-import {Avatar, ColorModesEnum, Text, TextInput, ThemeProvider} from '..'
+import {Avatar, Button, ColorModesEnum, Text, TextInput} from '..'
 import type {BaseProps} from '../component-helpers'
 
 /**
@@ -228,7 +238,7 @@ const _Chat = memo(({script}: IDEChatProps) => {
     <section className={styles.IDE__Chat}>
       {/* <h3 className={styles['IDE__Chat-title']}>Chat: GitHub Copilot</h3> */}
       <div ref={messagesRef} className={styles['IDE__Chat-messages']}>
-        {script && script.length > 0 ? (
+        {script.length > 0 ? (
           script.map((message, index) => (
             <div
               id={`IDE__Chat-message-${index}`}
@@ -297,6 +307,7 @@ type IDEEditorProps = {
    * Used for triggering animation externally
    */
   triggerAnimation?: boolean
+  hasReplayButton?: boolean
 } & BaseProps<HTMLDivElement>
 
 export type IDEEditorFile = {
@@ -313,9 +324,18 @@ export type IDEEditorFile = {
 const _Editor = memo(
   forwardRef(
     (
-      {activeTab = 0, files, triggerAnimation, showLineNumbers = true, size = 'small', ...props}: IDEEditorProps,
+      {
+        activeTab = 0,
+        files,
+        triggerAnimation,
+        showLineNumbers = true,
+        hasReplayButton = true,
+        size = 'small',
+        ...props
+      }: IDEEditorProps,
       ref: Ref<HTMLDivElement>,
     ) => {
+      const [localAnimationCouner, setLocalAnimationCounter] = useState(0)
       const presRef = useRef<HTMLDivElement>(null)
       const [activeFile, setActiveFile] = useState(activeTab)
       const [animationIsActive, setAnimationIsActive] = useState(triggerAnimation)
@@ -327,39 +347,61 @@ const _Editor = memo(
         [setActiveFile],
       )
 
+      const resetAnimation = useCallback(() => {
+        const pres = presRef.current?.querySelectorAll('pre')
+        console.log(pres)
+        if (pres) {
+          for (const pre of Array.from(pres)) {
+            pre.classList.remove(animationStyles['Animation--active'])
+          }
+        }
+      }, [])
+
+      const handleReplayButton = useCallback(() => {
+        resetAnimation()
+        setLocalAnimationCounter(prev => prev + 1)
+      }, [setLocalAnimationCounter, resetAnimation])
+
       useEffect(() => {
+        if (animationIsActive) return
+
         setAnimationIsActive(true)
         const pres = presRef.current?.querySelectorAll('pre')
 
         let fixedDelay = 0
-        // incrementally make visible
-        pres?.forEach((pre, index) => {
-          if (pre.getAttribute('data-has-suggestion') === 'true' && fixedDelay === 0) {
-            fixedDelay = 200 * index * 1.5
-            setTimeout(() => {
-              pre.classList.add(animationStyles['Animation--active'])
-            }, fixedDelay)
-          } else if (pre.getAttribute('data-has-suggestion') === 'true' && fixedDelay > 0) {
-            setTimeout(() => {
-              pre.classList.add(animationStyles['Animation--active'])
-            }, fixedDelay)
-          } else {
-            setTimeout(() => {
-              pre.classList.add(animationStyles['Animation--active'])
-            }, 200 * index)
+        // incrementally make each line visible
+        if (pres) {
+          let index = 0
+          const presArray = Array.from(pres)
+          for (const pre of presArray) {
+            if (pre.getAttribute('data-has-suggestion') === 'true' && fixedDelay === 0) {
+              fixedDelay = 200 * index * 1.5
+              setTimeout(() => {
+                pre.classList.add(animationStyles['Animation--active'])
+              }, fixedDelay)
+            } else if (pre.getAttribute('data-has-suggestion') === 'true' && fixedDelay > 0) {
+              setTimeout(() => {
+                pre.classList.add(animationStyles['Animation--active'])
+              }, fixedDelay)
+            } else {
+              setTimeout(() => {
+                pre.classList.add(animationStyles['Animation--active'])
+              }, 200 * index)
+            }
+            index++
           }
-        })
-
-        if (animationIsActive) {
-          setAnimationIsActive(false)
         }
+
+        setAnimationIsActive(false)
 
         return () => {
-          pres?.forEach(pre => {
-            pre.classList.remove(animationStyles['Animation--active'])
-          })
+          if (pres) {
+            for (const pre of Array.from(pres)) {
+              pre.classList.remove(animationStyles['Animation--active'])
+            }
+          }
         }
-      }, [activeFile, activeTab, triggerAnimation])
+      }, [activeFile, activeTab, triggerAnimation, animationIsActive, localAnimationCouner])
 
       return (
         <div className={clsx(styles.IDE__Editor, styles[`IDE__Editor--${size}`])} ref={ref} {...props}>
@@ -453,6 +495,18 @@ const _Editor = memo(
               </div>
             )}
           </div>
+          {hasReplayButton && (
+            <Button
+              variant="subtle"
+              hasArrow={false}
+              className={styles['IDE__Editor-replay']}
+              onClick={handleReplayButton}
+              leadingVisual={<SyncIcon size={24} />}
+              size="small"
+            >
+              Replay
+            </Button>
+          )}
         </div>
       )
     },

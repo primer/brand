@@ -32,6 +32,7 @@ declare const styles: {
   readonly "IDE__Editor-lineNumber-text": string;
   readonly "IDE__Chat-copilot-indicator": string;
   readonly "IDE__Chat-copilot-indicator-label": string;
+  readonly "IDE__Editor-replay": string;
 };
 export = styles;
 
