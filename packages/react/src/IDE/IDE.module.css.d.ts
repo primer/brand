@@ -21,6 +21,7 @@ declare const styles: {
   readonly "IDE__Editor-tabs": string;
   readonly "IDE__Editor-tab": string;
   readonly "IDE__Editor-tab-close-icon": string;
+  readonly "IDE__Editor-tab-icon": string;
   readonly "IDE__Editor-content": string;
   readonly "IDE__Editor-pane": string;
   readonly "IDE__Editor-pane--suggested": string;

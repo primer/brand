@@ -5,8 +5,10 @@ import React, {
   memo,
   PropsWithChildren,
   Ref,
+  RefObject,
   useCallback,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from 'react'
@@ -21,8 +23,9 @@ import {
   SyncIcon,
 } from '@primer/octicons-react'
 
-import {Avatar, Button, ColorModesEnum, Text, TextInput} from '..'
+import {Avatar, Button, Text, TextInput} from '..'
 import type {BaseProps} from '../component-helpers'
+import {useProvidedRefOrCreate} from '../hooks/useRef'
 
 /**
  * Design tokens
@@ -53,10 +56,6 @@ export type IDEProps = {
    */
   'data-testid'?: string
   /**
-   * Color mode
-   */
-  colorMode?: ColorModesEnum.LIGHT | ColorModesEnum.DARK
-  /**
    * The optionally configurable height of the IDE
    */
   height?: number
@@ -71,15 +70,10 @@ const _IDERoot = memo(
     'aria-label': ariaLabel,
     children,
     className,
-    colorMode = ColorModesEnum.DARK,
     height,
     variant = 'default',
     ...rest
   }: PropsWithChildren<IDEProps>) => {
-    // const ActivityBarChild = Children.toArray(children).find(
-    //   child => isValidElement(child) && child.type === IDE.ActivityBar,
-    // )
-
     const ChatChild = Children.toArray(children).find(child => isValidElement(child) && child.type === IDE.Chat)
 
     const EditorChild = Children.toArray(children).find(child => isValidElement(child) && child.type === IDE.Editor)
@@ -88,7 +82,6 @@ const _IDERoot = memo(
         <div
           className={clsx(
             styles.IDE,
-            styles[`IDE--color-mode-${colorMode}`],
             styles[`IDE--${variant}`],
             ChatChild && EditorChild && styles['IDE--full-exp'],
             className,
@@ -100,13 +93,7 @@ const _IDERoot = memo(
             className={styles['IDE__inner']}
             style={{['--brand-IDE-height' as string]: height ? `${height}px` : undefined}}
           >
-            {/* <div className={styles.IDE__dots}>
-            <div className={clsx(styles['IDE__dot'], styles['IDE__dot--red'])}></div>
-            <div className={clsx(styles['IDE__dot'], styles['IDE__dot--amber'])}></div>
-            <div className={clsx(styles['IDE__dot'], styles['IDE__dot--green'])}></div>
-          </div> */}
             <div className={styles.IDE__main}>
-              {/* <div>{ActivityBarChild}</div> */}
               {ChatChild && <>{ChatChild}</>}
               {EditorChild && <>{EditorChild}</>}
             </div>
@@ -157,6 +144,7 @@ const _ActivityBar = memo(({active}: IDEActivityBarProps) => {
 
 type IDEChatProps = {
   script: IDEChatMessage[]
+  animationDelay?: number
 } & BaseProps<HTMLElement>
 
 type MessageRole = 'user' | 'assistant'
@@ -170,8 +158,8 @@ export type IDEChatMessage = {
   highlighter?: 'hljs'
 }
 
-const _Chat = memo(({script}: IDEChatProps) => {
-  const delay = 2000
+const _Chat = memo(({script, animationDelay = 3000}: IDEChatProps) => {
+  const delay = animationDelay
   const messagesRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -201,36 +189,36 @@ const _Chat = memo(({script}: IDEChatProps) => {
     const newerMessages = Array.from(allMessages).slice(1)
 
     setTimeout(() => {
+      // eslint-disable-next-line github/array-foreach
       newerMessages.forEach((message, index) => {
         setTimeout(() => {
           if (index % 2 === 0) {
             scrollIntoParentView(message)
           }
+          for (const defaultMessage of defaultMessages) {
+            defaultMessage.classList.add(styles['IDE__Chat-message--faded'])
+          }
 
-          defaultMessages.forEach((message, i) => {
-            message.classList.add(styles['IDE__Chat-message--faded'])
-          })
-          newerMessages
-            .filter((_, i) => i < index)
-            .forEach((message, i) => {
-              message.classList.add(styles['IDE__Chat-message--faded'])
-            })
+          const filteredNewerMessage = newerMessages.filter((_, i) => i < index)
 
+          for (const filteredMessage of filteredNewerMessage) {
+            filteredMessage.classList.add(styles['IDE__Chat-message--faded'])
+          }
           message.classList.add(styles['IDE__Chat-message--visible'])
 
           // remove faded class from all messages at the end
           if (index === newerMessages.length - 1) {
-            defaultMessages.forEach(message => {
-              message.classList.remove(styles['IDE__Chat-message--faded'])
-            })
-            newerMessages.forEach(message => {
-              message.classList.remove(styles['IDE__Chat-message--faded'])
-            })
+            for (const defaultMessage of defaultMessages) {
+              defaultMessage.classList.remove(styles['IDE__Chat-message--faded'])
+            }
+            for (const newerMessage of newerMessages) {
+              newerMessage.classList.remove(styles['IDE__Chat-message--faded'])
+            }
           }
         }, delay * (index + 1))
       })
     }, delay / 4)
-  }, [script])
+  }, [script, delay])
 
   return (
     <section className={styles.IDE__Chat}>
@@ -286,7 +274,7 @@ const _Chat = memo(({script}: IDEChatProps) => {
           className={styles['IDE__Chat-input']}
           fullWidth
           placeholder="Ask a question or type '/' for commands."
-          trailingVisual={<PaperAirplaneIcon />}
+          trailingVisual={<PaperAirplaneIcon className={styles['IDE__Chat-input-icon']} />}
         />
       </div>
     </section>
@@ -314,7 +302,6 @@ export type IDEEditorFile = {
    * Controls line at which the Copilot suggestion begins
    */
   suggestedLineStart?: number
-  animatedLineStart?: number // where animation begins
   code: string | string[]
   highlighter?: 'hljs'
 }
@@ -328,15 +315,27 @@ const _Editor = memo(
         triggerAnimation,
         showLineNumbers = true,
         hasReplayButton = true,
-        size = 'small',
+        size = 'medium',
         ...props
       }: IDEEditorProps,
       ref: Ref<HTMLDivElement>,
     ) => {
+      const rootRef = useProvidedRefOrCreate(ref as RefObject<HTMLDivElement>)
       const [localAnimationCouner, setLocalAnimationCounter] = useState(0)
       const presRef = useRef<HTMLDivElement>(null)
+      const buttonRef = useRef<HTMLButtonElement>(null)
+      const tabsRef = useRef<HTMLDivElement>(null)
       const [activeFile, setActiveFile] = useState(activeTab)
       const [animationIsActive, setAnimationIsActive] = useState(triggerAnimation)
+
+      const iconMap = useMemo(
+        () => ({
+          py: 'file_type_python.svg',
+          ts: 'file_type_typescript.svg',
+          js: 'file_type_js.svg',
+        }),
+        [],
+      )
 
       const handlePress = useCallback(
         (index: number) => {
@@ -347,7 +346,6 @@ const _Editor = memo(
 
       const resetAnimation = useCallback(() => {
         const pres = presRef.current?.querySelectorAll('pre')
-        console.log(pres)
         if (pres) {
           for (const pre of Array.from(pres)) {
             pre.classList.remove(animationStyles['Animation--active'])
@@ -364,16 +362,40 @@ const _Editor = memo(
         if (animationIsActive) return
 
         setAnimationIsActive(true)
+        rootRef.current?.setAttribute('data-animation-active', 'true')
         const pres = presRef.current?.querySelectorAll('pre')
 
         let fixedDelay = 0
+        let totalDelay = 0
+
+        // disable button
+        if (hasReplayButton) {
+          if (buttonRef.current) {
+            buttonRef.current.disabled = true
+          }
+        }
+
+        // disable other tabs
+        if (tabsRef.current) {
+          const tabs = tabsRef.current.querySelectorAll('button')
+          let tabIndex = 0
+          for (const tab of Array.from(tabs)) {
+            if (tabIndex !== activeFile) {
+              tab.disabled = true
+            }
+            tabIndex++
+          }
+        }
+
         // incrementally make each line visible
         if (pres) {
           let index = 0
+          let delay = 0
           const presArray = Array.from(pres)
           for (const pre of presArray) {
             if (pre.getAttribute('data-has-suggestion') === 'true' && fixedDelay === 0) {
-              fixedDelay = 200 * index * 1.5
+              delay = 200 * index * 1.5
+              fixedDelay = delay
               setTimeout(() => {
                 pre.classList.add(animationStyles['Animation--active'])
               }, fixedDelay)
@@ -381,16 +403,35 @@ const _Editor = memo(
               setTimeout(() => {
                 pre.classList.add(animationStyles['Animation--active'])
               }, fixedDelay)
+              delay = fixedDelay
             } else {
               setTimeout(() => {
                 pre.classList.add(animationStyles['Animation--active'])
               }, 200 * index)
+              delay = 200 * index
             }
             index++
           }
+          totalDelay += delay
         }
-
         setAnimationIsActive(false)
+
+        setTimeout(() => {
+          rootRef.current?.setAttribute('data-animation-active', 'false')
+          // reenable button
+          if (hasReplayButton) {
+            if (buttonRef.current) {
+              buttonRef.current.disabled = false
+            }
+          }
+          // reenable other tabs
+          if (tabsRef.current) {
+            const tabs = tabsRef.current.querySelectorAll('button')
+            for (const tab of Array.from(tabs)) {
+              tab.disabled = false
+            }
+          }
+        }, totalDelay)
 
         return () => {
           if (pres) {
@@ -399,27 +440,43 @@ const _Editor = memo(
             }
           }
         }
-      }, [activeFile, activeTab, triggerAnimation, animationIsActive, localAnimationCouner])
+      }, [
+        activeFile,
+        activeTab,
+        triggerAnimation,
+        animationIsActive,
+        localAnimationCouner,
+        buttonRef,
+        hasReplayButton,
+        rootRef,
+      ])
 
       return (
-        <div className={clsx(styles.IDE__Editor, styles[`IDE__Editor--${size}`])} ref={ref} {...props}>
-          <div className={styles['IDE__Editor-tabs']}>
-            {files.map((file, index) => (
-              <button
-                tabIndex={-1} // make unfocussable
-                key={index}
-                className={clsx(styles['IDE__Editor-tab'], activeFile === index && styles.active)}
-                onClick={() => handlePress(index)}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
-                  <path
-                    d="M7.76475 8.20451H6.58238C5.75472 8.20451 5.22266 8.73658 5.22266 9.56423V10.6284C5.22266 10.7466 5.16354 10.8057 5.0453 10.8057H4.51324C3.98117 10.8057 3.56734 10.5692 3.33087 10.0963C3.15351 9.74159 3.03528 9.38688 3.03528 9.03217C2.97616 8.38187 2.97616 7.73156 3.21263 7.08126C3.38999 6.5492 3.7447 6.13537 4.33588 6.01713H7.76475C7.82386 6.01713 7.9421 6.01713 7.9421 5.95801V5.66242C7.9421 5.66242 7.82386 5.6033 7.76475 5.6033H5.75472C5.57737 5.6033 5.51825 5.54418 5.51825 5.36683V4.59829C5.51825 4.18446 5.6956 3.88887 6.05031 3.77063C6.3459 3.6524 6.6415 3.53416 6.93709 3.47504C7.64651 3.35681 8.35593 3.35681 9.06535 3.53416C9.36094 3.59328 9.65653 3.71152 9.89301 3.88887C10.1295 4.12534 10.3068 4.36182 10.2477 4.71653V6.84479C10.2477 7.67244 9.77477 8.14539 8.94711 8.14539C8.53328 8.20451 8.11946 8.20451 7.76475 8.20451ZM6.10943 4.65741C6.10943 4.89388 6.28679 5.13036 6.58238 5.13036C6.81885 5.13036 7.05532 4.89388 7.05532 4.65741C7.05532 4.42094 6.81885 4.24358 6.58238 4.18446C6.28679 4.18446 6.10943 4.42094 6.10943 4.65741ZM8.23769 8.79569H9.42006C10.2477 8.79569 10.7798 8.26363 10.7798 7.43597V6.37184C10.7798 6.2536 10.8389 6.19449 10.9571 6.19449H11.4892C12.0213 6.19449 12.4351 6.43096 12.6716 6.90391C12.8489 7.25862 12.9672 7.61333 12.9672 7.96804C13.0263 8.61834 13.0263 9.26864 12.7898 9.91894C12.6124 10.451 12.2577 10.8648 11.6666 10.9831H8.23769C8.17857 10.9831 8.06034 10.9831 8.06034 11.0422V11.3378C8.06034 11.3378 8.17857 11.3969 8.23769 11.3969H10.2477C10.4251 11.3969 10.4842 11.456 10.4842 11.6334V12.4019C10.4842 12.8157 10.3068 13.1113 9.95212 13.2296C9.65653 13.3478 9.36094 13.466 9.06535 13.5252C8.35593 13.6434 7.64651 13.6434 6.93709 13.466C6.6415 13.4069 6.3459 13.2887 6.10943 13.1113C5.87296 12.8749 5.6956 12.6384 5.75472 12.2837V10.1554C5.75472 9.32776 6.22767 8.85481 7.05532 8.85481C7.46915 8.79569 7.88298 8.79569 8.23769 8.79569ZM9.89301 12.3428C9.89301 12.1063 9.71565 11.8698 9.42006 11.8698C9.18358 11.8698 8.94711 12.1063 8.94711 12.3428C8.94711 12.5793 9.18358 12.7566 9.42006 12.8157C9.71565 12.8157 9.89301 12.5793 9.89301 12.3428Z"
-                    fill="#519ABA"
-                  />
-                </svg>{' '}
-                {file.name}
-              </button>
-            ))}
+        <div className={clsx(styles.IDE__Editor, styles[`IDE__Editor--${size}`])} ref={rootRef} {...props}>
+          <div className={styles['IDE__Editor-tabs']} ref={tabsRef}>
+            {files.map((file, index) => {
+              const language = file.name.split('.').pop()
+
+              return (
+                <button
+                  tabIndex={-1}
+                  key={index}
+                  className={clsx(styles['IDE__Editor-tab'], activeFile === index && styles.active)}
+                  onClick={() => handlePress(index)}
+                >
+                  {language && (
+                    <img
+                      className={styles['IDE__Editor-tab-icon']}
+                      alt={`Logo for ${language}`}
+                      width={16}
+                      height={16}
+                      src={`https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/${iconMap[language]}`}
+                    />
+                  )}{' '}
+                  {file.name}
+                </button>
+              )
+            })}
           </div>
           <div className={styles['IDE__Editor-content']}>
             {showLineNumbers && (
@@ -443,7 +500,7 @@ const _Editor = memo(
                 {(files[activeFile].code as string[]).map((line, index) => {
                   const hasSuggestion = index + 1 >= (files[activeFile].suggestedLineStart ?? Infinity)
                   return (
-                    <>
+                    <React.Fragment key={line + index}>
                       <pre
                         key={index}
                         className={clsx(
@@ -470,7 +527,7 @@ const _Editor = memo(
                           </Text>
                         </pre>
                       )}
-                    </>
+                    </React.Fragment>
                   )
                 })}
               </div>
@@ -495,6 +552,8 @@ const _Editor = memo(
           </div>
           {hasReplayButton && (
             <Button
+              tabIndex={-1}
+              ref={buttonRef}
               variant="subtle"
               hasArrow={false}
               className={styles['IDE__Editor-replay']}
