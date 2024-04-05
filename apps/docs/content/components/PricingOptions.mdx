@@ -27,6 +27,7 @@ import {PricingOptions} from '@primer/react-brand'
     </PricingOptions.Description>
     <PricingOptions.Price
       currencySymbol="$"
+      originalPrice="20"
       trailingText="per month / $100 per year"
     >
       10
@@ -60,7 +61,11 @@ import {PricingOptions} from '@primer/react-brand'
       Copilot personalized to your organization throughout the software
       development lifecycle. Requires GitHub Enterprise Cloud.
     </PricingOptions.Description>
-    <PricingOptions.Price currencySymbol="$" trailingText="per user / month">
+    <PricingOptions.Price
+      currencySymbol="$"
+      trailingText="per user / month"
+      originalPrice="49"
+    >
       39
     </PricingOptions.Price>
     <PricingOptions.FeatureList>
@@ -255,15 +260,17 @@ This is the two-item layout for the pricing options component.
 
 This is the three-option layout for the pricing options component.
 
-```jsx live
 <Note>
-  `PricingOptions` is designed to fill the width of the page's main container,
-  thus it cannot be accurately represented within the narrower container of this
-  documentation. 
-  
-  Please refer to our [Storybook examples](https://primer.style/brand/storybook/?path=/story/components-pricingoptions-features--three-options) to see the component in a full-width context as originally intended.
+
+`PricingOptions` is designed to fill the width of the page's main container,
+thus it cannot be accurately represented within the narrower container of this
+documentation.
+
+Please refer to our [Storybook
+examples](https://primer.style/brand/storybook/?path=/story/components-pricingoptions-features--three-options)
+to see the component in a full-width context as originally intended.
+
 </Note>
-```
 
 ### Feature list sets
 
@@ -357,53 +364,6 @@ Use `PricingOptions.FeatureListHeading` to group feature items together.
       </PricingOptions.FeatureListItem>
     </PricingOptions.FeatureList>
   </PricingOptions.Item>
-
-  <PricingOptions.Item>
-    <PricingOptions.Label>Available Feb 2024</PricingOptions.Label>
-    <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
-    <PricingOptions.Description>
-      Copilot personalized to your organization throughout the software
-      development lifecycle. Requires GitHub Enterprise Cloud.
-    </PricingOptions.Description>
-    <PricingOptions.Price currencySymbol="$" trailingText="per user / month">
-      39
-    </PricingOptions.Price>
-    <PricingOptions.FeatureList>
-      <PricingOptions.FeatureListHeading>
-        Base features
-      </PricingOptions.FeatureListHeading>
-      <PricingOptions.FeatureListItem>
-        Everything in Copilot Business
-      </PricingOptions.FeatureListItem>
-      <PricingOptions.FeatureListItem>
-        Documentation search and summaries
-      </PricingOptions.FeatureListItem>
-      <PricingOptions.FeatureListItem>
-        Pull request summaries
-      </PricingOptions.FeatureListItem>
-      <PricingOptions.FeatureListItem>
-        Code review skills
-      </PricingOptions.FeatureListItem>
-      <PricingOptions.FeatureListHeading>
-        Security
-      </PricingOptions.FeatureListHeading>
-      <PricingOptions.FeatureListItem>
-        Security vulnerability filter
-      </PricingOptions.FeatureListItem>
-      <PricingOptions.FeatureListItem>
-        Public code filter
-      </PricingOptions.FeatureListItem>
-      <PricingOptions.FeatureListItem>
-        IP indemnity
-      </PricingOptions.FeatureListItem>
-      <PricingOptions.FeatureListItem>
-        Enterprise-grade security, safety, and privacy
-      </PricingOptions.FeatureListItem>
-    </PricingOptions.FeatureList>
-    <PricingOptions.PrimaryAction href="/waitlist">
-      Join waitlist
-    </PricingOptions.PrimaryAction>
-  </PricingOptions.Item>
 </PricingOptions>
 ```
 
@@ -465,55 +425,6 @@ Use `PricingOptions.FeatureListItem` with `variant="included"` and `variant="exc
     <PricingOptions.PrimaryAction href="/buy">
       Start a free trial
     </PricingOptions.PrimaryAction>
-  </PricingOptions.Item>
-
-  <PricingOptions.Item>
-    <PricingOptions.Label>Recommended</PricingOptions.Label>
-    <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
-    <PricingOptions.Description>
-      Copilot personalized to your organization.
-    </PricingOptions.Description>
-    <PricingOptions.Price currencySymbol="$" trailingText="per user / month">
-      19
-    </PricingOptions.Price>
-    <PricingOptions.PrimaryAction href="/buy">
-      Buy now
-    </PricingOptions.PrimaryAction>
-    <PricingOptions.SecondaryAction href="/contact">
-      Contact sales
-    </PricingOptions.SecondaryAction>
-    <PricingOptions.FeatureList>
-      <PricingOptions.FeatureListHeading>
-        Chat
-      </PricingOptions.FeatureListHeading>
-      <PricingOptions.FeatureListItem>
-        Unlimited messages, interactions, and history
-      </PricingOptions.FeatureListItem>
-      <PricingOptions.FeatureListItem>
-        Context-aware coding support and explanations
-      </PricingOptions.FeatureListItem>
-      <PricingOptions.FeatureListItem>
-        Debugging and security remediation assistance
-      </PricingOptions.FeatureListItem>
-      <PricingOptions.FeatureListItem>
-        Repository-based semantic search
-      </PricingOptions.FeatureListItem>
-      <PricingOptions.FeatureListItem variant="excluded">
-        Access your knowledge base
-      </PricingOptions.FeatureListItem>
-      <PricingOptions.FeatureListHeading>
-        Code completion
-      </PricingOptions.FeatureListHeading>
-      <PricingOptions.FeatureListItem>
-        Code suggestions as you type
-      </PricingOptions.FeatureListItem>
-      <PricingOptions.FeatureListItem>
-        Comments to code
-      </PricingOptions.FeatureListItem>
-      <PricingOptions.FeatureListItem variant="excluded">
-        Fine-tuned models (coming soon)
-      </PricingOptions.FeatureListItem>
-    </PricingOptions.FeatureList>
   </PricingOptions.Item>
 
   <PricingOptions.Item>
