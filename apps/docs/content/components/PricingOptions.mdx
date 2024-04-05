@@ -27,6 +27,7 @@ import {PricingOptions} from '@primer/react-brand'
     </PricingOptions.Description>
     <PricingOptions.Price
       currencySymbol="$"
+      originalPrice="20"
       trailingText="per month / $100 per year"
     >
       10
@@ -60,7 +61,11 @@ import {PricingOptions} from '@primer/react-brand'
       Copilot personalized to your organization throughout the software
       development lifecycle. Requires GitHub Enterprise Cloud.
     </PricingOptions.Description>
-    <PricingOptions.Price currencySymbol="$" trailingText="per user / month">
+    <PricingOptions.Price
+      currencySymbol="$"
+      trailingText="per user / month"
+      originalPrice="49"
+    >
       39
     </PricingOptions.Price>
     <PricingOptions.FeatureList>
