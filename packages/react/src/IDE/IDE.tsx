@@ -1,3 +1,5 @@
+import {CopilotIcon, PaperAirplaneIcon, SyncIcon} from '@primer/octicons-react'
+import {default as clsx} from 'clsx'
 import React, {
   Children,
   forwardRef,
@@ -12,16 +14,6 @@ import React, {
   useRef,
   useState,
 } from 'react'
-import {default as clsx} from 'clsx'
-import {
-  CommentIcon,
-  CopilotIcon,
-  FileIcon,
-  GitBranchIcon,
-  PaperAirplaneIcon,
-  SearchIcon,
-  SyncIcon,
-} from '@primer/octicons-react'
 
 import {Avatar, Button, Text, TextInput} from '..'
 import type {BaseProps} from '../component-helpers'
@@ -103,44 +95,6 @@ const _IDERoot = memo(
     )
   },
 )
-
-type IDEActivityBarProps = {
-  active?: 'explorer' | 'search' | 'source control' | 'run and debug' | 'extensions' | 'chat'
-} & BaseProps<HTMLDivElement>
-
-const _ActivityBar = memo(({active}: IDEActivityBarProps) => {
-  const [activeTab, setActiveTab] = useState(active || 'chat')
-
-  const handlePress = useCallback(
-    newTab => {
-      setActiveTab(newTab)
-    },
-    [setActiveTab],
-  )
-
-  return (
-    <div className={styles.IDE__ActivityBar}>
-      <button className={clsx(activeTab === 'explorer' && styles.active)} onClick={() => handlePress('explorer')}>
-        <FileIcon size={24} />
-      </button>
-
-      <button className={clsx(activeTab === 'search' && styles.active)} onClick={() => handlePress('search')}>
-        <SearchIcon size={24} />
-      </button>
-
-      <button
-        className={clsx(activeTab === 'source control' && styles.active)}
-        onClick={() => handlePress('source control')}
-      >
-        <GitBranchIcon size={24} />
-      </button>
-
-      <button className={clsx(activeTab === 'chat' && styles.active)} onClick={() => handlePress('chat')}>
-        <CommentIcon size={24} />
-      </button>
-    </div>
-  )
-})
 
 type IDEChatProps = {
   script: IDEChatMessage[]
@@ -293,7 +247,7 @@ type IDEEditorProps = {
    * Used for triggering animation externally
    */
   triggerAnimation?: boolean
-  hasReplayButton?: boolean
+  showReplayButton?: boolean
 } & BaseProps<HTMLDivElement>
 
 export type IDEEditorFile = {
@@ -314,7 +268,7 @@ const _Editor = memo(
         files,
         triggerAnimation,
         showLineNumbers = true,
-        hasReplayButton = true,
+        showReplayButton = true,
         size = 'medium',
         ...props
       }: IDEEditorProps,
@@ -369,7 +323,7 @@ const _Editor = memo(
         let totalDelay = 0
 
         // disable button
-        if (hasReplayButton) {
+        if (showReplayButton) {
           if (buttonRef.current) {
             buttonRef.current.disabled = true
           }
@@ -419,7 +373,7 @@ const _Editor = memo(
         setTimeout(() => {
           rootRef.current?.setAttribute('data-animation-active', 'false')
           // reenable button
-          if (hasReplayButton) {
+          if (showReplayButton) {
             if (buttonRef.current) {
               buttonRef.current.disabled = false
             }
@@ -447,7 +401,7 @@ const _Editor = memo(
         animationIsActive,
         localAnimationCouner,
         buttonRef,
-        hasReplayButton,
+        showReplayButton,
         rootRef,
       ])
 
@@ -550,7 +504,7 @@ const _Editor = memo(
               </div>
             )}
           </div>
-          {hasReplayButton && (
+          {showReplayButton && (
             <Button
               tabIndex={-1}
               ref={buttonRef}
@@ -576,7 +530,6 @@ const _Editor = memo(
  */
 export const IDE = Object.assign(_IDERoot, {
   testIds,
-  ActivityBar: _ActivityBar,
   Chat: _Chat,
   Editor: _Editor,
 })

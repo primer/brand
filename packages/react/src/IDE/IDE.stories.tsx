@@ -27,6 +27,7 @@ export default {
   args: {
     showChat: true,
     height: 800,
+    showReplayButton: true,
   },
   argTypes: {
     showChat: {
@@ -42,6 +43,13 @@ export default {
       control: {
         type: 'number',
       },
+      showReplayButton: {
+        name: 'show replay button',
+        description: 'toggle replay button visibility',
+        control: {
+          type: 'boolean',
+        },
+      },
     },
     //hide className, id, and data-test-id
     className: {table: {disable: true}},
@@ -50,18 +58,32 @@ export default {
     ref: {table: {disable: true}},
     animate: {table: {disable: true}},
   },
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          // disable color-contrast rule as the IDE is presentational
+          {
+            id: 'color-contrast',
+            enabled: false,
+          },
+        ],
+      },
+    },
+  },
 } as Meta<typeof IDE>
 
 type StoryProps = {
   showChat: boolean
+  showReplayButton: boolean
   height: number
 } & IDEProps
 
-const Template: StoryFn<StoryProps> = args => {
+const Template: StoryFn<StoryProps> = ({showChat, showReplayButton, ...args}) => {
   return (
     <IDE {...args}>
-      {args.showChat && <IDE.Chat script={chatScript}></IDE.Chat>}
-      <IDE.Editor files={files} />
+      {showChat && <IDE.Chat script={chatScript}></IDE.Chat>}
+      <IDE.Editor files={files} showReplayButton={showReplayButton} />
     </IDE>
   )
 }

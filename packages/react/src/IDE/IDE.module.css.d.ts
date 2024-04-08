@@ -4,8 +4,6 @@ declare const styles: {
   readonly "IDE--glass": string;
   readonly "IDE__main": string;
   readonly "IDE--default": string;
-  readonly "IDE__ActivityBar": string;
-  readonly "active": string;
   readonly "IDE__Chat": string;
   readonly "IDE--full-exp": string;
   readonly "IDE__Chat-message-user": string;
@@ -20,6 +18,7 @@ declare const styles: {
   readonly "IDE__Editor": string;
   readonly "IDE__Editor-tabs": string;
   readonly "IDE__Editor-tab": string;
+  readonly "active": string;
   readonly "IDE__Editor-tab-close-icon": string;
   readonly "IDE__Editor-tab-icon": string;
   readonly "IDE__Editor-content": string;

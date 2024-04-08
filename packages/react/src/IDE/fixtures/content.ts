@@ -58,42 +58,6 @@ export const chatScript: IDEChatMessage[] = [
     ).value,
     highlighter: 'hljs',
   },
-  // },
-  // {
-  //   role: 'user',
-  //   handle: 'monalisa',
-  //   avatar: 'https://github.com/mona.png',
-  //   message: 'How do I convert a string to a number?',
-  // },
-  // {
-  //   role: 'assistant',
-  //   handle: 'GitHub Copilot',
-  //   avatar: 'https://github.com/copilot.png',
-  //   message:
-  //     "You can use the `Number` function or the `parseFloat`/`parseInt` functions to convert a string to a number. Here's an example:",
-  //   codeSnippet: hljs.highlight(
-  //     "const string = '123';\nconst number = Number(string);\nconsole.log(number); // Output: 123",
-  //     {language: 'javascript'},
-  //   ).value,
-  //   highlighter: 'hljs',
-  // },
-  // {
-  //   role: 'user',
-  //   handle: 'monalisa',
-  //   avatar: 'https://github.com/mona.png',
-  //   message: 'How do I create a function in JavaScript?',
-  // },
-  // {
-  //   role: 'assistant',
-  //   handle: 'GitHub Copilot',
-  //   avatar: 'https://github.com/copilot.png',
-  //   message: "You can declare a function using the `function` keyword. Here's an example:",
-  //   codeSnippet: hljs.highlight(
-  //     "function greet(name) {\n  console.log('Hello, ' + name + '!');\n}\ngreet('Alice'); // Output: Hello, Alice!",
-  //     {language: 'javascript'},
-  //   ).value,
-  //   highlighter: 'hljs',
-  // },
 ]
 
 export const singleFile: IDEEditorFile[] = [
@@ -124,31 +88,8 @@ export const files: IDEEditorFile[] = [
     suggestedLineStart: 10,
     code: `import { fetch } from "fetch-h2";
     
-  async function isPositive(text: string): Promise<boolean> {
-    const response = await fetch(...)
-    const drawScatterplot = (data, height, width) => {
-      const svg = d3.select("#scatterplot")
-        .append("svg")
-        .attr("height", height)
-        .attr("width", width)
-      svg.selectAll("circle")
-        .data(data)
-        .enter()
-        .append("circle")
-        .attr("cx", d => d.x)
-        .attr("cy", d => d.y)
-        .attr("r", 5)
-    }
-    const json = await response.json();
-    return json.label === "pos";
-  }`
-      .split('\n')
-      .map(line => hljs.highlight(line, {language: 'javascript'}).value),
-    highlighter: 'hljs',
-  },
-  {
-    name: 'draw_scatterplot.js',
-    code: `import d3 from "d3"
+async function isPositive(text: string): Promise<boolean> {
+  const response = await fetch(...)
   const drawScatterplot = (data, height, width) => {
     const svg = d3.select("#scatterplot")
       .append("svg")
@@ -161,7 +102,30 @@ export const files: IDEEditorFile[] = [
       .attr("cx", d => d.x)
       .attr("cy", d => d.y)
       .attr("r", 5)
-  }`
+  }
+  const json = await response.json();
+  return json.label === "pos";
+}`
+      .split('\n')
+      .map(line => hljs.highlight(line, {language: 'javascript'}).value),
+    highlighter: 'hljs',
+  },
+  {
+    name: 'draw_scatterplot.js',
+    code: `import d3 from "d3"
+const drawScatterplot = (data, height, width) => {
+  const svg = d3.select("#scatterplot")
+    .append("svg")
+    .attr("height", height)
+    .attr("width", width)
+  svg.selectAll("circle")
+    .data(data)
+    .enter()
+    .append("circle")
+    .attr("cx", d => d.x)
+    .attr("cy", d => d.y)
+    .attr("r", 5)
+}`
       .split('\n')
       .map(line => hljs.highlight(line, {language: 'javascript'}).value),
     highlighter: 'hljs',
@@ -173,24 +137,24 @@ export const files: IDEEditorFile[] = [
     code: hljs.highlight(
       `import datetime
   
-  def parse_expenses(expenses_string):
-  """Parse the list of expenses and return the list of triples (date, value, currency).
-  Ignore lines starting with #.
-  Parse the date using datetime.
-  Example expenses_string:
-  2016-01-02 -34.01 USD
-  2016-01-03 2.59 DKK
-  2016-01-03 -2.72 EUR
-  """
-  expenses = []
-  for line in expenses_string.splitlines():
-  if line.startswith("#"):
-  continue
-  date, value, currency = line.split(" ")
-  expenses.append((datetime.datetime.strptime(date, "%Y-%m-%d"),
-            float(value),
-            currency))
-  return expenses`,
+def parse_expenses(expenses_string):
+"""Parse the list of expenses and return the list of triples (date, value, currency).
+Ignore lines starting with #.
+Parse the date using datetime.
+Example expenses_string:
+2016-01-02 -34.01 USD
+2016-01-03 2.59 DKK
+2016-01-03 -2.72 EUR
+"""
+expenses = []
+for line in expenses_string.splitlines():
+if line.startswith("#"):
+continue
+date, value, currency = line.split(" ")
+expenses.append((datetime.datetime.strptime(date, "%Y-%m-%d"),
+          float(value),
+          currency))
+return expenses`,
       {language: 'python'},
     ).value,
     highlighter: 'hljs',

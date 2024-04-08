@@ -18,7 +18,7 @@
 
 .IDE__main {
   display: flex;
-  height: calc(var(--brand-IDE-height) - 32px);
+  height: 100%;
   width: 100%;
 }
 
@@ -34,71 +34,9 @@
   position: relative;
   width: 100%;
   height: var(--brand-IDE-height);
-  margin: 10px auto;
+  margin: calc(var(--base-size-12) - 2px) auto;
   border-radius: var(--brand-borderRadius-large);
   overflow: hidden;
-}
-
-/* 
-.IDE__dot {
-  display: block;
-  width: var(--base-size-12);
-  height: var(--base-size-12);
-  border-radius: 50%;
-}
-
-.IDE__dot--red {
-  background: #ff6057;
-  border: 1px solid #e14640;
-}
-
-.IDE__dot--amber {
-  background: #ffbd2e;
-  border: 1px solid #dfa123;
-}
-
-.IDE__dot--green {
-  background: #27c93f;
-  border: 1px solid #1dad2b;
-} */
-
-/**
-* Activity bar
-*/
-
-.IDE__ActivityBar {
-  grid-area: activityBar;
-  display: flex;
-  width: 48px;
-  height: 100%;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  border-right: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-}
-
-.IDE__ActivityBar button {
-  all: unset;
-  padding: var(--base-size-12);
-  color: #808080;
-  opacity: 0.2;
-}
-
-.IDE__ActivityBar button.active,
-.IDE__ActivityBar button:hover {
-  position: relative;
-  opacity: 1;
-  color: var(--brand-color-text-default);
-}
-
-.IDE__ActivityBar button.active::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 2px;
-  height: 100%;
-  background: var(--brand-color-text-default);
 }
 
 /**
@@ -110,7 +48,6 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  padding-bottom: var(--base-size-16);
   gap: var(--base-size-16);
   color: var(--brand-color-text-default);
   height: 100%;
@@ -133,21 +70,6 @@
   }
 }
 
-/* .IDE__Chat-title {
-  font-family: var(--brand-fontStack-monospace);
-  font-weight: 400;
-  color: var(--brand-color-text-muted);
-  text-transform: uppercase;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: var(--base-size-8) var(--base-size-20);
-  font-size: 11px;
-  line-height: 11px;
-  background-color: #191b36;
-} */
-
 .IDE__Chat-message-user {
   display: inline-flex;
   gap: var(--base-size-8);
@@ -156,7 +78,7 @@
 
 .IDE__Chat-messages {
   overflow-y: scroll;
-  height: 90%;
+  height: calc(100% - 78px);
 }
 
 .IDE__Chat-messages {
@@ -165,7 +87,7 @@
 }
 
 .IDE__Chat-messages::-webkit-scrollbar {
-  width: 12px;
+  width: var(--base-size-12);
 }
 
 .IDE__Chat-messages::-webkit-scrollbar-track {
@@ -180,9 +102,10 @@
 
 .IDE__Chat-input-area {
   position: absolute;
-  bottom: 0;
+  bottom: var(--base-size-16);
   width: 100%;
   padding: 0 var(--base-size-20);
+  opacity: 0.5;
 }
 
 .IDE__Chat-input {
@@ -206,7 +129,7 @@
 
 .IDE__Chat-message {
   font-family: var(--brand-fontStack-sansSerif);
-  font-size: 16px;
+  font-size: var(--base-size-16);
   border-bottom: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   padding: var(--base-size-20);
 
@@ -264,7 +187,7 @@
 
 .IDE__Editor-tab {
   display: flex;
-  padding: 8px 12px;
+  padding: var(--base-size-8) var(--base-size-12);
   align-items: center;
   gap: 4px;
   font-family: var(--brand-fontStack-monospace);
@@ -307,15 +230,15 @@
 }
 
 .IDE__Editor-tab-close-icon {
-  width: 12px;
-  height: 12px;
+  width: var(--base-size-12);
+  height: var(--base-size-12);
   margin-inline-start: var(--base-size-4);
   fill: var(--brand-color-text-muted);
 }
 
 img.IDE__Editor-tab-icon {
-  width: 16px;
-  height: 16px;
+  width: var(--base-size-16);
+  height: var(--base-size-16);
   -webkit-filter: grayscale(10%);
   filter: grayscale(10%);
 }
@@ -353,12 +276,12 @@ img.IDE__Editor-tab-icon {
   font-weight: var(--brand-text-weight-200);
   font-feature-settings: 'liga' 0, 'calt' 0;
   font-variation-settings: normal;
-  letter-spacing: 0px;
+  letter-spacing: 0;
   width: 45px;
 }
 
 .IDE__Editor--small .IDE__Editor-lineNumbers {
-  font-size: 12px;
+  font-size: var(--base-size-12);
   line-height: 18px;
 }
 
@@ -375,7 +298,7 @@ img.IDE__Editor-tab-icon {
 .IDE__Editor-lineNumber {
   position: relative;
   display: block;
-  padding: 0 8px;
+  padding: 0 var(--base-size-8);
   text-align: right;
   color: var(--brand-color-text-subtle);
   user-select: none;
@@ -409,7 +332,7 @@ pre.IDE__Chat-copilot-indicator {
   display: inline-flex;
   padding: var(--base-size-8) var(--base-size-24);
   border-radius: var(--brand-borderRadius-small);
-  gap: 16px;
+  gap: var(--base-size-16);
   margin-left: 62px;
   margin: 0;
   margin-left: 60px;

@@ -10,16 +10,15 @@ import {Box} from '../Box'
 import {Grid} from '../Grid'
 import {Heading} from '../Heading'
 import {Link} from '../Link'
-import backgroundImageDark2 from '../recipes/FeaturePreviewLPs/fixtures/images/ai/river-bg-dark-2.png'
-import backgroundImageLight2 from '../recipes/FeaturePreviewLPs/fixtures/images/ai/river-bg-light-2.png'
-import backgroundImageDark1 from '../recipes/FeaturePreviewLPs/fixtures/images/security/river-bg-dark-1.png'
-import backgroundImageLight1 from '../recipes/FeaturePreviewLPs/fixtures/images/security/river-bg-light-1.png'
+import backgroundImageDark from '../recipes/FeaturePreviewLPs/fixtures/images/productivity/river-bg-dark-1.png'
+import backgroundImageLight1 from '../recipes/FeaturePreviewLPs/fixtures/images/productivity/river-bg-light-1.png'
+import backgroundImageLight2 from '../recipes/FeaturePreviewLPs/fixtures/images/productivity/river-bg-light-2.png'
 import {River, RiverBreakout} from '../river'
 import {Text} from '../Text'
 import {ThemeProvider, useTheme} from '../ThemeProvider'
 import {Timeline} from '../Timeline'
-import storyStyles from './IDE.stories.module.css'
 import {chatScript, files, singleFile} from './fixtures/content'
+import storyStyles from './IDE.stories.module.css'
 
 import './IDE.stories.hljs.theme.css'
 
@@ -37,6 +36,19 @@ export default {
       </>
     ),
   ],
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          // disable color-contrast rule as the IDE is presentational
+          {
+            id: 'color-contrast',
+            enabled: false,
+          },
+        ],
+      },
+    },
+  },
 } as Meta<typeof IDE>
 
 export const EditorOnly = args => {
@@ -46,6 +58,16 @@ export const EditorOnly = args => {
     </IDE>
   )
 }
+
+export const EditorNoReplayButton = args => {
+  return (
+    <IDE {...args}>
+      <IDE.Editor size="large" activeTab={0} files={files} showReplayButton={false} />
+    </IDE>
+  )
+}
+
+EditorNoReplayButton.storyName = 'Editor Only (no replay button)'
 
 export const ChatOnly = args => {
   return (
@@ -78,7 +100,7 @@ export const WithRiver = args => {
                 paddingInlineEnd={{narrow: 24, regular: 128}}
                 borderRadius="large"
                 style={{
-                  backgroundImage: `url(${colorMode === 'dark' ? backgroundImageDark1 : backgroundImageLight1})`,
+                  backgroundImage: `url(${colorMode === 'dark' ? backgroundImageDark : backgroundImageLight1})`,
                 }}
                 className={storyStyles.riverVisual}
               >
@@ -91,16 +113,16 @@ export const WithRiver = args => {
               trailingComponent={() => (
                 <Timeline>
                   <Timeline.Item>
-                    <em>GitHub Codespaces</em> offers a complete dev environment in seconds.
+                    <em>Optionally use a timeline </em> to provide context or additional information.
                   </Timeline.Item>
                   <Timeline.Item>
-                    <em>GitHub Copilot</em> is your AI pair programmer that empowers you to complete tasks.
+                    <em>Keep it concise</em> to ensure the user can quickly understand the content.
                   </Timeline.Item>
                 </Timeline>
               )}
             >
               <Text>
-                <em>This first sentence is a river breakout headline.</em> And this is where the body copy starts.
+                <em>Editor in River Breakout</em> <br />
                 Remember to keep these nice and succinct.
               </Text>
               <Link href="#" onClick={handleReplay}>
@@ -114,7 +136,7 @@ export const WithRiver = args => {
                 padding={48}
                 borderRadius="large"
                 style={{
-                  backgroundImage: `url(${colorMode === 'dark' ? backgroundImageDark2 : backgroundImageLight2})`,
+                  backgroundImage: `url(${colorMode === 'dark' ? backgroundImageDark : backgroundImageLight2})`,
                 }}
                 className={storyStyles.riverVisual}
               >
@@ -124,14 +146,29 @@ export const WithRiver = args => {
               </Box>
             </River.Visual>
             <River.Content>
-              <Heading>Heading</Heading>
-              <Text>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus
-                sed turpis felis nam pulvinar risus elementum.
-              </Text>
+              <Heading>Editor example</Heading>
               <Link href="#" onClick={handleReplay}>
                 Replay animation
               </Link>
+            </River.Content>
+          </River>
+          <River imageTextRatio="60:40">
+            <River.Visual>
+              <Box
+                padding={48}
+                borderRadius="large"
+                style={{
+                  backgroundImage: `url(${colorMode === 'dark' ? backgroundImageDark : backgroundImageLight2})`,
+                }}
+                className={storyStyles.riverVisual}
+              >
+                <IDE {...args} height={700} variant="glass">
+                  <IDE.Chat script={chatScript}></IDE.Chat>
+                </IDE>
+              </Box>
+            </River.Visual>
+            <River.Content>
+              <Heading>Chat example</Heading>
             </River.Content>
           </River>
         </Grid.Column>

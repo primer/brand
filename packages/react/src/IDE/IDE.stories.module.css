@@ -1,8 +1,8 @@
 .perspective {
   max-width: 1024px;
-  -webkit-mask-image: linear-gradient(to right, var(--brand-color-canvas-default) 10%, transparent 80%);
-  mask-image: linear-gradient(to right, var(--brand-color-canvas-default) 10%, transparent 80%);
-  transform: perspective(320px) rotateX(0deg) rotateY(-4deg);
+  -webkit-mask-image: linear-gradient(to right, var(--brand-color-canvas-default) 20%, transparent 80%);
+  mask-image: linear-gradient(to right, var(--brand-color-canvas-default) 20%, transparent 80%);
+  transform: perspective(620px) rotateX(2deg) rotateY(-3deg);
 }
 
 .riverVisual {
