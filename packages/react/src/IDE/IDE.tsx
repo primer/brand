@@ -14,6 +14,7 @@ import React, {
   useRef,
   useState,
 } from 'react'
+import {useId} from '@reach/auto-id'
 
 import {Avatar, Button, Text, TextInput} from '..'
 import type {BaseProps} from '../component-helpers'
@@ -60,11 +61,12 @@ export type IDEProps = {
 
 const _IDERoot = memo(
   ({alternativeText, children, className, height, variant = 'default', ...rest}: PropsWithChildren<IDEProps>) => {
+    const uniqueId = useId()
     const ChatChild = Children.toArray(children).find(child => isValidElement(child) && child.type === IDE.Chat)
 
     const EditorChild = Children.toArray(children).find(child => isValidElement(child) && child.type === IDE.Editor)
     return (
-      <section aria-labelledby="IDE-sr-only-message" role="banner">
+      <section aria-labelledby={`${uniqueId}-IDE-sr-only-message`} role="application">
         <div
           className={clsx(
             styles.IDE,
@@ -85,7 +87,7 @@ const _IDERoot = memo(
             </div>
           </div>
         </div>
-        <div id="IDE-sr-only-message" className="visually-hidden">
+        <div id={`${uniqueId}-IDE-sr-only-message`} className="visually-hidden">
           {alternativeText}
         </div>
       </section>
