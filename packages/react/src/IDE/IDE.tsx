@@ -38,11 +38,12 @@ const testIds = {
 
 export type IDEProps = {
   /**
-   * Description of the IDE for users of assistive technologies.
+   * Alternative description of the IDE for users of assistive technologies.
    * IDE is considered a decorative element, so this description is important
    * for accurately describing what the user is being presented.
+   * This text will be visually hidden.
    */
-  'aria-label': string
+  alternativeText: string
   /**
    * Test id for the IDE
    */
@@ -58,19 +59,12 @@ export type IDEProps = {
 } & BaseProps<HTMLDivElement>
 
 const _IDERoot = memo(
-  ({
-    'aria-label': ariaLabel,
-    children,
-    className,
-    height,
-    variant = 'default',
-    ...rest
-  }: PropsWithChildren<IDEProps>) => {
+  ({alternativeText, children, className, height, variant = 'default', ...rest}: PropsWithChildren<IDEProps>) => {
     const ChatChild = Children.toArray(children).find(child => isValidElement(child) && child.type === IDE.Chat)
 
     const EditorChild = Children.toArray(children).find(child => isValidElement(child) && child.type === IDE.Editor)
     return (
-      <div aria-label={ariaLabel}>
+      <div aria-labelledby="IDE-sr-only-message">
         <div
           className={clsx(
             styles.IDE,
@@ -90,6 +84,9 @@ const _IDERoot = memo(
               {EditorChild && <>{EditorChild}</>}
             </div>
           </div>
+        </div>
+        <div id="IDE-sr-only-message" className="visually-hidden">
+          {alternativeText}
         </div>
       </div>
     )

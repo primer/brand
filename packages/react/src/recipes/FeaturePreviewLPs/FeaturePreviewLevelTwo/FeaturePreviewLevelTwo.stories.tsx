@@ -14,6 +14,18 @@ export default {
       viewports: INITIAL_VIEWPORTS,
     },
     layout: 'fullscreen',
+    a11y: {
+      config: {
+        rules: [
+          // disable color-contrast rule as the IDE is presentational
+          {
+            id: 'color-contrast',
+            enabled: false,
+            element: 'breakout-with-ide',
+          },
+        ],
+      },
+    },
   },
   args: {
     subNavVisible: false,
