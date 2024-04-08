@@ -64,7 +64,7 @@ const _IDERoot = memo(
 
     const EditorChild = Children.toArray(children).find(child => isValidElement(child) && child.type === IDE.Editor)
     return (
-      <div aria-labelledby="IDE-sr-only-message">
+      <section aria-labelledby="IDE-sr-only-message" role="banner">
         <div
           className={clsx(
             styles.IDE,
@@ -88,7 +88,7 @@ const _IDERoot = memo(
         <div id="IDE-sr-only-message" className="visually-hidden">
           {alternativeText}
         </div>
-      </div>
+      </section>
     )
   },
 )

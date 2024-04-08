@@ -124,6 +124,7 @@
 }
 
 .IDE__Chat-message-snippet {
+  background-color: var(--brand-IDE-default-editor-bgColor);
   overflow-x: hidden;
 }
 

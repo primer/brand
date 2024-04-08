@@ -34,7 +34,7 @@ code.hljs {
 [data-color-mode='light'] .hljs-type,
 [data-color-mode='light'] .hljs-variable.language_ {
   /* prettylights-syntax-keyword */
-  color: var(--base-color-scale-pink-4) !important;
+  color: var(--base-color-scale-pink-5) !important;
 }
 
 [data-color-mode='dark'] .hljs-title,
