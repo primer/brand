@@ -29,7 +29,7 @@ The IDE does not automatically apply syntax highlighting to code snippets. Usage
 See Storybook for examples of IDE using `highlight.js` syntax highlighter.
 
 <Link href="https://primer.style/brand/storybook/?path=/story/components-ide--default">
-  Go to Storybook
+  See syntax highlighter examples
 </Link>
 
 </Note>
@@ -167,7 +167,7 @@ Simulate GitHub Copilot Chat using the `IDE.Chat` sub-component. The script is f
 See Storybook for a comprehensive example of the Chat feature, inclusive of syntax highlighting.
 
 <Link href="https://primer.style/brand/storybook/?path=/story/components-ide-features--chat-only">
-  Go to Storybook
+  See Chat example in Storybook
 </Link>
 
 </Note>
@@ -271,14 +271,14 @@ Example expenses_string:
 
 ### IDE.Editor
 
-| name               | type                                                       | default | required | description                     |
-| ------------------ | ---------------------------------------------------------- | ------- | -------- | ------------------------------- |
-| `activeTab`        | `number`                                                   |         | `false`  | Active tab index                |
-| `files`            | `IDEEditorFile[]`                                          |         | `true`   | Array of editor files           |
-| `showLineNumbers`  | `boolean`                                                  |         | `false`  | Show line numbers in the editor |
-| `size`             | <PropTableValues values{['small' , 'medium' , 'large']} /> |         | `false`  | Controls editor text size       |
-| `triggerAnimation` | `boolean`                                                  |         | `false`  | Trigger animation externally    |
-| `showReplayButton` | `boolean`                                                  |         | `false`  | Show replay button              |
+| name               | type                                                                      | default | required | description                     |
+| ------------------ | ------------------------------------------------------------------------- | ------- | -------- | ------------------------------- |
+| `activeTab`        | `number`                                                                  |         | `false`  | Active tab index                |
+| `files`            | `IDEEditorFile[]`                                                         |         | `true`   | Array of editor files           |
+| `showLineNumbers`  | `boolean`                                                                 |         | `false`  | Show line numbers in the editor |
+| `size`             | <PropTableValues values={['small' , 'medium' , 'large']} addLineBreaks /> |         | `false`  | Controls editor text size       |
+| `triggerAnimation` | `boolean`                                                                 |         | `false`  | Trigger animation externally    |
+| `showReplayButton` | `boolean`                                                                 |         | `false`  | Show replay button              |
 
 ### IDE.Chat
 

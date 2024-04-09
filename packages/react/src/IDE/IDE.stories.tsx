@@ -8,7 +8,7 @@ import python from 'highlight.js/lib/languages/python'
 
 import './IDE.stories.hljs.theme.css'
 
-import {chatScript, defaultFiles, files} from './fixtures/content'
+import {chatScript, defaultFiles} from './fixtures/content'
 
 hljs.registerLanguage('javascript', javascript)
 hljs.registerLanguage('python', python)

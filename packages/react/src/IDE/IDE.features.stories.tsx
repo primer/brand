@@ -13,6 +13,7 @@ import {Link} from '../Link'
 import backgroundImageDark from '../recipes/FeaturePreviewLPs/fixtures/images/productivity/river-bg-dark-1.png'
 import backgroundImageLight1 from '../recipes/FeaturePreviewLPs/fixtures/images/productivity/river-bg-light-1.png'
 import backgroundImageLight2 from '../recipes/FeaturePreviewLPs/fixtures/images/productivity/river-bg-light-2.png'
+import swatchBackground from '../fixtures/images/background-multicolor.png'
 import {River, RiverBreakout} from '../river'
 import {Text} from '../Text'
 import {ThemeProvider, useTheme} from '../ThemeProvider'
@@ -209,6 +210,39 @@ PerspectiveExampleLight.decorators = [
     <ThemeProvider colorMode="light">
       <div style={{backgroundColor: 'white', minHeight: '100dvh', overflow: 'hidden'}}>
         <Story />
+      </div>
+    </ThemeProvider>
+  ),
+]
+
+export const AllGlass = args => (
+  <IDE {...args} variant="glass">
+    <IDE.Chat script={chatScript}></IDE.Chat>
+    <IDE.Editor size="large" files={files} />
+  </IDE>
+)
+
+AllGlass.parameters = {
+  layout: 'fullscreen',
+}
+
+AllGlass.decorators = [
+  Story => (
+    <ThemeProvider colorMode="light">
+      <div
+        style={{
+          backgroundImage: `url(${swatchBackground})`,
+          minHeight: '100dvh',
+          overflow: 'hidden',
+          paddingTop: 'var(--base-size-112)',
+        }}
+        className={storyStyles.riverVisual}
+      >
+        <Grid>
+          <Grid.Column>
+            <Story />
+          </Grid.Column>
+        </Grid>
       </div>
     </ThemeProvider>
   ),

@@ -7,13 +7,12 @@
 }
 
 .IDE--glass {
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(12px);
 }
 
 .IDE--glass .IDE__inner {
-  background: var(--brand-IDE-glass-bgColor);
+  background: var(--brand-IDE-glass-bgColor-rest);
   border-color: transparent !important;
-  opacity: 0.95;
 }
 
 .IDE__main {
@@ -56,7 +55,7 @@
 }
 
 .IDE--glass .IDE__Chat {
-  background: var(--brand-IDE-default-editor-bgColor);
+  background: var(--brand-IDE-glass-chat-bgColor);
 }
 
 .IDE--full-exp .IDE__Chat {
@@ -220,6 +219,10 @@
   background: var(--brand-IDE-glass-editor-tab-bgColor-active);
 }
 
+.IDE--full-exp.IDE--glass .IDE__Editor-tab.active {
+  background: var(--brand-IDE-default-editor-bgColor);
+}
+
 .IDE__Editor-tab:hover {
   color: var(--brand-color-text-default);
 }
@@ -260,6 +263,10 @@ img.IDE__Editor-tab-icon {
 .IDE--glass .IDE__Editor-content {
   background: var(--brand-IDE-glass-editor-bgColor);
   border-bottom-left-radius: var(--brand-borderRadius-large);
+}
+
+.IDE--full-exp.IDE--glass .IDE__Editor-content {
+  background: var(--brand-IDE-default-editor-bgColor);
 }
 
 .IDE__Editor-pane {

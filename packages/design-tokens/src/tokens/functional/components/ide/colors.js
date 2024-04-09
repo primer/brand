@@ -34,13 +34,19 @@ module.exports = {
       glass: {
         bgColor: {
           rest: {
-            value: 'rgba(255, 255, 255, 0.7)',
+            value: 'rgba(255, 255, 255, 0.85)',
             dark: 'rgba(0, 0, 0, 0.7)',
+          },
+        },
+        chat: {
+          bgColor: {
+            value: 'rgba(255, 255, 255, 0.06)',
+            dark: 'rgba(0, 0, 0, 0.06)',
           },
         },
         editor: {
           bgColor: {
-            value: '#ffffffc4',
+            value: 'rgba(255, 255, 255, 0.06)',
             dark: '#242538c4',
           },
           tabs: {
@@ -56,7 +62,7 @@ module.exports = {
                 dark: '#24253880',
               },
               active: {
-                value: '#ffffffc4',
+                value: 'rgba(255, 255, 255, 0.06)',
                 dark: '#242538c4',
               },
             },
