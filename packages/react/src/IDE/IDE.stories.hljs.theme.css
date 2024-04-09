@@ -1,3 +1,10 @@
+/*!
+  Theme: GitHub
+  Description: 
+    Dark theme adapted from HLJS' GitHub theme.
+    This is used for Storybook examples only, and is not a published artifact
+*/
+
 pre code.hljs {
   display: block;
   overflow-x: auto;
@@ -6,10 +13,7 @@ pre code.hljs {
 code.hljs {
   padding: 3px 5px;
 }
-/*!
-    Theme: GitHub Dark
-    Description: Dark theme adapted from HLJS' GitHub theme.
-  */
+
 .hljs {
   color: #c9d1d9;
   background: #0d1117;

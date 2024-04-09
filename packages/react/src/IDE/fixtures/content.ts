@@ -60,6 +60,27 @@ export const chatScript: IDEChatMessage[] = [
   },
 ]
 
+export const defaultFiles: IDEEditorFile[] = [
+  {
+    name: 'index.js',
+    suggestedLineStart: 6,
+    code: `import { fetch } from "fetch-h2";
+
+async function isPositive(text: string): Promise<boolean> {
+  const response = await fetch(...)
+  const drawScatterplot = (data, height, width) => {
+    const svg = d3.select("#scatterplot")
+      .data(data)
+      .attr("cx", d => d.x)
+      .attr("cy", d => d.y)
+      .attr("r", 5)
+  }
+  const json = await response.json();
+  return json.label === "pos";
+}`,
+  },
+]
+
 export const singleFile: IDEEditorFile[] = [
   {
     name: 'sentiments.ts',

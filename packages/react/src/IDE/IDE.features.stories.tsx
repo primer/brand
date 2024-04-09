@@ -141,7 +141,7 @@ export const WithRiver = args => {
                 className={storyStyles.riverVisual}
               >
                 <IDE {...args} height={530} variant="glass">
-                  <IDE.Editor size="large" files={singleFile} triggerAnimation={animationPlaying} />
+                  <IDE.Editor files={singleFile} triggerAnimation={animationPlaying} />
                 </IDE>
               </Box>
             </River.Visual>

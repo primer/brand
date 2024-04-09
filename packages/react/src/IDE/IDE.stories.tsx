@@ -8,7 +8,7 @@ import python from 'highlight.js/lib/languages/python'
 
 import './IDE.stories.hljs.theme.css'
 
-import {chatScript, files} from './fixtures/content'
+import {chatScript, defaultFiles, files} from './fixtures/content'
 
 hljs.registerLanguage('javascript', javascript)
 hljs.registerLanguage('python', python)
@@ -83,7 +83,7 @@ const Template: StoryFn<StoryProps> = ({showChat, showReplayButton, ...args}) =>
   return (
     <IDE {...args}>
       {showChat && <IDE.Chat script={chatScript}></IDE.Chat>}
-      <IDE.Editor files={files} showReplayButton={showReplayButton} />
+      <IDE.Editor files={defaultFiles} showReplayButton={showReplayButton} />
     </IDE>
   )
 }

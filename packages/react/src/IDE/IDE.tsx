@@ -448,7 +448,7 @@ const _Editor = memo(
                   ))}
               </div>
             )}
-            {files[activeFile].highlighter === 'hljs' && Array.isArray(files[activeFile].code) && (
+            {Array.isArray(files[activeFile].code) && (
               <div ref={presRef}>
                 {(files[activeFile].code as string[]).map((line, index) => {
                   const hasSuggestion = index + 1 >= (files[activeFile].suggestedLineStart ?? Infinity)
@@ -486,20 +486,12 @@ const _Editor = memo(
               </div>
             )}
 
-            {files[activeFile].highlighter === 'hljs' && typeof files[activeFile].code === 'string' && (
+            {typeof files[activeFile].code === 'string' && (
               <div ref={presRef}>
                 <pre
                   className={clsx(styles['IDE__Editor-pane'], animationStyles['Animation--slide-in-right'])}
                   dangerouslySetInnerHTML={{__html: files[activeFile].code}}
                 />
-              </div>
-            )}
-
-            {!files[activeFile].highlighter && (
-              <div ref={presRef}>
-                <pre className={clsx(styles['IDE__Editor-pane'], animationStyles['Animation--slide-in-right'])}>
-                  {files[activeFile].code}
-                </pre>
               </div>
             )}
           </div>

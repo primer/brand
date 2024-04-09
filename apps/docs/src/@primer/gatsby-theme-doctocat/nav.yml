@@ -42,6 +42,8 @@
       url: /components/FAQ
     - title: Hero
       url: /components/Hero
+    - title: IDE
+      url: /components/IDE
     - title: Image
       url: /components/Image
     - title: Label
