@@ -69,6 +69,7 @@ const testsToSkip = [
   'components-ide-features--with-river', // presentational component and contains animation
   'components-ide-features--perspective-example', // presentational component and contains animation
   'components-ide-features--perspective-example-light', // presentational component and contains animation
+  'components-ide-features--all-glass', // presentational component and contains animation
 ]
 
 const ignoreViolations = {
