@@ -2,7 +2,7 @@ import React, {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 
-import {Button} from './Button'
+import {Button, ButtonSizes} from './Button'
 import {axe, toHaveNoViolations} from 'jest-axe'
 import {SearchIcon} from '@primer/octicons-react'
 
@@ -270,9 +270,16 @@ describe('Button', () => {
     expect(btnEl.classList).not.toContain('Button--block')
   })
 
-  it.each(['small', 'medium', 'large'])('has the correct class when size="%s"', size => {
-    const {getByRole} = render(<Button size={size}>Button</Button>)
+  it('applies the correct class for each size', () => {
+    for (const size of ButtonSizes) {
+      const testId = `test-button-${size}`
+      const {getByTestId} = render(
+        <Button size={size} data-testid={testId}>
+          Button
+        </Button>,
+      )
 
-    expect(getByRole('button')).toHaveClass(`Button--size-${size}`)
+      expect(getByTestId(testId)).toHaveClass(`Button--size-${size}`)
+    }
   })
 })
