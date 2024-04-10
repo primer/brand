@@ -35,6 +35,18 @@ const testIds = {
   get chat() {
     return `${this.root}-chat`
   },
+  get editor() {
+    return `${this.root}-editor`
+  },
+  get editorContent() {
+    return `${this.editor}-content`
+  },
+  get editorTabs() {
+    return `${this.editor}-tab`
+  },
+  get altText() {
+    return `${this.root}-sr-only-message`
+  },
 }
 
 export type IDEProps = {
@@ -60,23 +72,35 @@ export type IDEProps = {
 } & BaseProps<HTMLDivElement>
 
 const _IDERoot = memo(
-  ({alternativeText, children, className, height, variant = 'default', ...rest}: PropsWithChildren<IDEProps>) => {
+  ({
+    alternativeText,
+    children,
+    className,
+    'data-testid': testId,
+    height,
+    variant = 'default',
+    ...rest
+  }: PropsWithChildren<IDEProps>) => {
     const uniqueId = useId()
-    const ChatChild = Children.toArray(children).find(child => isValidElement(child) && child.type === IDE.Chat)
 
-    const EditorChild = Children.toArray(children).find(child => isValidElement(child) && child.type === IDE.Editor)
+    const childrenArray = useMemo(() => Children.toArray(children), [children])
+
+    const ChatChild = childrenArray.find(child => isValidElement(child) && child.type === IDE.Chat)
+
+    const EditorChild = childrenArray.find(child => isValidElement(child) && child.type === IDE.Editor)
     return (
-      <section aria-labelledby={`${uniqueId}-IDE-sr-only-message`} role="application">
-        <div
-          className={clsx(
-            styles.IDE,
-            styles[`IDE--${variant}`],
-            ChatChild && EditorChild && styles['IDE--full-exp'],
-            className,
-          )}
-          aria-hidden
-          {...rest}
-        >
+      <section
+        aria-labelledby={`${uniqueId}-IDE-sr-only-message`}
+        role="application"
+        data-testid={testId || testIds.root}
+        className={clsx(
+          styles.IDE,
+          styles[`IDE--${variant}`],
+          ChatChild && EditorChild && styles['IDE--full-exp'],
+          className,
+        )}
+      >
+        <div aria-hidden {...rest}>
           <div
             className={styles['IDE__inner']}
             style={{['--brand-IDE-height' as string]: height ? `${height}px` : undefined}}
@@ -87,7 +111,7 @@ const _IDERoot = memo(
             </div>
           </div>
         </div>
-        <div id={`${uniqueId}-IDE-sr-only-message`} className="visually-hidden">
+        <div id={`${uniqueId}-IDE-sr-only-message`} className="visually-hidden" data-testid={testIds.altText}>
           {alternativeText}
         </div>
       </section>
@@ -96,8 +120,18 @@ const _IDERoot = memo(
 )
 
 type IDEChatProps = {
+  /**
+   * The chat script
+   */
   script: IDEChatMessage[]
+  /**
+   * The delay between messages
+   */
   animationDelay?: number
+  /**
+   * Test id for the IDE
+   */
+  'data-testid'?: string
 } & BaseProps<HTMLElement>
 
 type MessageRole = 'user' | 'assistant'
@@ -111,7 +145,7 @@ export type IDEChatMessage = {
   highlighter?: 'hljs'
 }
 
-const _Chat = memo(({script, animationDelay = 3000}: IDEChatProps) => {
+const _Chat = memo(({'data-testid': testId, script, animationDelay = 3000, ...rest}: IDEChatProps) => {
   const delay = animationDelay
   const messagesRef = useRef<HTMLDivElement>(null)
 
@@ -174,8 +208,7 @@ const _Chat = memo(({script, animationDelay = 3000}: IDEChatProps) => {
   }, [script, delay])
 
   return (
-    <section className={styles.IDE__Chat}>
-      {/* <h3 className={styles['IDE__Chat-title']}>Chat: GitHub Copilot</h3> */}
+    <section className={styles.IDE__Chat} data-testid={testId || testIds.chat} {...rest}>
       <div ref={messagesRef} className={styles['IDE__Chat-messages']}>
         {script.length > 0 ? (
           script.map((message, index) => (
@@ -235,18 +268,40 @@ const _Chat = memo(({script, animationDelay = 3000}: IDEChatProps) => {
 })
 
 type IDEEditorProps = {
-  activeTab?: number
-  files: IDEEditorFile[]
-  showLineNumbers?: boolean
   /**
-   * Controls editor text size
+   * The index of the active tab.
+   */
+  activeTab?: number
+
+  /**
+   * An array of IDE editor files.
+   */
+  files: IDEEditorFile[]
+
+  /**
+   * Determines whether line numbers should be shown in the editor.
+   */
+  showLineNumbers?: boolean
+
+  /**
+   * Controls the size of the editor text.
    */
   size?: 'small' | 'medium' | 'large'
+
   /**
-   * Used for triggering animation externally
+   * Used for triggering animation externally.
    */
   triggerAnimation?: boolean
+
+  /**
+   * Determines whether the replay button should be shown.
+   */
   showReplayButton?: boolean
+
+  /**
+   * Test id for the IDE.
+   */
+  'data-testid'?: string
 } & BaseProps<HTMLDivElement>
 
 export type IDEEditorFile = {
@@ -264,12 +319,13 @@ const _Editor = memo(
     (
       {
         activeTab = 0,
+        'data-testid': testId,
         files,
         triggerAnimation,
         showLineNumbers = true,
         showReplayButton = true,
         size = 'medium',
-        ...props
+        ...rest
       }: IDEEditorProps,
       ref: Ref<HTMLDivElement>,
     ) => {
@@ -405,8 +461,13 @@ const _Editor = memo(
       ])
 
       return (
-        <div className={clsx(styles.IDE__Editor, styles[`IDE__Editor--${size}`])} ref={rootRef} {...props}>
-          <div className={styles['IDE__Editor-tabs']} ref={tabsRef}>
+        <div
+          className={clsx(styles.IDE__Editor, styles[`IDE__Editor--${size}`])}
+          ref={rootRef}
+          data-testid={testId || testIds.editor}
+          {...rest}
+        >
+          <div className={styles['IDE__Editor-tabs']} ref={tabsRef} data-testid={testIds.editorTabs}>
             {files.map((file, index) => {
               const language = file.name.split('.').pop()
 
@@ -449,7 +510,7 @@ const _Editor = memo(
               </div>
             )}
             {Array.isArray(files[activeFile].code) && (
-              <div ref={presRef}>
+              <div ref={presRef} data-testid={testIds.editorContent}>
                 {(files[activeFile].code as string[]).map((line, index) => {
                   const hasSuggestion = index + 1 >= (files[activeFile].suggestedLineStart ?? Infinity)
                   return (
@@ -487,7 +548,7 @@ const _Editor = memo(
             )}
 
             {typeof files[activeFile].code === 'string' && (
-              <div ref={presRef}>
+              <div ref={presRef} data-testid={testIds.editorContent}>
                 <pre
                   className={clsx(styles['IDE__Editor-pane'], animationStyles['Animation--slide-in-right'])}
                   dangerouslySetInnerHTML={{__html: files[activeFile].code}}

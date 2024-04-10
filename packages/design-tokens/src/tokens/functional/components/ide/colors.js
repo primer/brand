@@ -58,7 +58,7 @@ module.exports = {
           tab: {
             bgColor: {
               rest: {
-                value: '#ffffff80',
+                value: 'rgba(255, 255, 255, 0.10)',
                 dark: '#24253880',
               },
               active: {

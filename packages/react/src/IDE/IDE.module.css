@@ -215,7 +215,13 @@
   background: var(--brand-IDE-default-editor-tab-bgColor-active);
 }
 
+.IDE--glass .IDE__Editor-tab {
+  background: transparent;
+  color: var(--brand-color-text-subtle);
+}
+
 .IDE--glass .IDE__Editor-tab.active {
+  color: var(--brand-color-text-default);
   background: var(--brand-IDE-glass-editor-tab-bgColor-active);
 }
 
