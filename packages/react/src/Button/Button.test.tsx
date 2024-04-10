@@ -269,4 +269,10 @@ describe('Button', () => {
     // Ensure the button does not have the CSS class when block is false (default)
     expect(btnEl.classList).not.toContain('Button--block')
   })
+
+  it.each(['small', 'medium', 'large'])('has the correct class when size="%s"', size => {
+    const {getByRole} = render(<Button size={size}>Button</Button>)
+
+    expect(getByRole('button')).toHaveClass(`Button--size-${size}`)
+  })
 })
