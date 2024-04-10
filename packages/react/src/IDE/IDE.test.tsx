@@ -226,7 +226,7 @@ describe('IDE', () => {
       },
     ]
 
-    const {getByTestId, debug} = render(
+    const {getByTestId} = render(
       <IDE alternativeText={mockAltText}>
         <IDE.Editor size="large" activeTab={0} files={mockFiles} />
       </IDE>,
