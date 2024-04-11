@@ -101,7 +101,7 @@ export const Tooltip = React.forwardRef(
         !(isTriggerInteractive || hasInteractiveChild) &&
         (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test')
       ) {
-        throw new Error(
+        console.warn(
           'The `Tooltip` component expects a single React element that contains interactive content. Consider using a `<button>` or equivalent interactive element instead.',
         )
       }
