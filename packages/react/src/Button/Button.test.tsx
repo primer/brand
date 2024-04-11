@@ -249,24 +249,18 @@ describe('Button', () => {
   })
 
   it('spans full width when block prop is true', () => {
-    const {getByTestId} = render(
-      <Button block={true} data-testid="test-button">
-        Full-Width Button
-      </Button>,
-    )
+    const {getByRole} = render(<Button block={true}>Full-Width Button</Button>)
 
-    const btnEl = getByTestId('test-button')
+    const btnEl = getByRole('button')
 
-    // Ensure the button has the block CSS class when block is true
     expect(btnEl.classList).toContain('Button--block')
   })
 
   it('is not block by default', () => {
-    const {getByTestId} = render(<Button data-testid="test-button">Default Button</Button>)
+    const {getByRole} = render(<Button>Default Button</Button>)
 
-    const btnEl = getByTestId('test-button')
+    const btnEl = getByRole('button')
 
-    // Ensure the button does not have the CSS class when block is false (default)
     expect(btnEl.classList).not.toContain('Button--block')
   })
 
@@ -279,7 +273,9 @@ describe('Button', () => {
         </Button>,
       )
 
-      expect(getByTestId(testId)).toHaveClass(`Button--size-${size}`)
+      const btnEl = getByTestId(testId)
+
+      expect(btnEl.classList).toContain(`Button--size-${size}`)
     }
   })
 })
