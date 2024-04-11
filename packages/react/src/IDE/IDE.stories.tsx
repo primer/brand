@@ -51,7 +51,6 @@ export default {
         },
       },
     },
-    //hide className, id, and data-test-id
     className: {table: {disable: true}},
     id: {table: {disable: true}},
     'data-testid': {table: {disable: true}},

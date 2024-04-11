@@ -142,7 +142,7 @@ export type IDEChatMessage = {
   avatar: string
   message: string
   codeSnippet?: string
-  highlighter?: 'hljs'
+  highlighter?: 'hljs' // add additional highlighters as needed
 }
 
 const _Chat = memo(({'data-testid': testId, script, animationDelay = 3000, ...rest}: IDEChatProps) => {
@@ -150,6 +150,8 @@ const _Chat = memo(({'data-testid': testId, script, animationDelay = 3000, ...re
   const messagesRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    if (!script.length) return
+
     const scrollIntoParentView = element => {
       if (!element || !messagesRef.current) return
       const container = messagesRef.current
@@ -210,7 +212,7 @@ const _Chat = memo(({'data-testid': testId, script, animationDelay = 3000, ...re
   return (
     <section className={styles.IDE__Chat} data-testid={testId || testIds.chat} {...rest}>
       <div ref={messagesRef} className={styles['IDE__Chat-messages']}>
-        {script.length > 0 ? (
+        {script.length &&
           script.map((message, index) => (
             <div
               id={`IDE__Chat-message-${index}`}
@@ -233,7 +235,7 @@ const _Chat = memo(({'data-testid': testId, script, animationDelay = 3000, ...re
               <div className={styles['IDE__Chat-message-content']}>
                 <div className={styles['IDE__Chat-message-text']}>{message.message}</div>
 
-                {message.highlighter === 'hljs' && message.codeSnippet && (
+                {message.highlighter && message.codeSnippet && (
                   <pre
                     className={styles['IDE__Chat-message-snippet']}
                     dangerouslySetInnerHTML={{__html: message.codeSnippet}}
@@ -245,14 +247,7 @@ const _Chat = memo(({'data-testid': testId, script, animationDelay = 3000, ...re
                 )}
               </div>
             </div>
-          ))
-        ) : (
-          <div className={styles['IDE__Chat-message']}>
-            <div className={styles['IDE__Chat-message-content']}>
-              <div className={styles['IDE__Chat-message-text']}>No messages</div>
-            </div>
-          </div>
-        )}
+          ))}
       </div>
       <div className={styles['IDE__Chat-input-area']}>
         <TextInput
@@ -311,8 +306,29 @@ export type IDEEditorFile = {
    */
   suggestedLineStart?: number
   code: string | string[]
-  highlighter?: 'hljs'
+  highlighter?: 'hljs' // add additional highlighters as needed
 }
+
+const iconMap = {
+  py: 'file_type_python.svg',
+  ts: 'file_type_typescript.svg',
+  js: 'file_type_js.svg',
+  jsx: 'file_type_reactjs.svg',
+  hs: 'file_type_haskell.svg',
+  html: 'file_type_html.svg',
+  css: 'file_type_css.svg',
+  scss: 'file_type_scss.svg',
+  json: 'file_type_json.svg',
+  md: 'file_type_markdown.svg',
+  yml: 'file_type_yaml.svg',
+  yaml: 'file_type_yaml.svg',
+  txt: 'file_type_text.svg',
+  sh: 'file_type_shell.svg',
+  sql: 'file_type_sql.svg',
+  // add additional icons as needed
+}
+
+export const IDEFileExtensions = Object.keys(iconMap)
 
 const _Editor = memo(
   forwardRef(
@@ -336,15 +352,6 @@ const _Editor = memo(
       const tabsRef = useRef<HTMLDivElement>(null)
       const [activeFile, setActiveFile] = useState(activeTab)
       const [animationIsActive, setAnimationIsActive] = useState(triggerAnimation)
-
-      const iconMap = useMemo(
-        () => ({
-          py: 'file_type_python.svg',
-          ts: 'file_type_typescript.svg',
-          js: 'file_type_js.svg',
-        }),
-        [],
-      )
 
       const handlePress = useCallback(
         (index: number) => {

@@ -8,7 +8,7 @@ description: Use the IDE to showcase a simulated integrated developer environmen
 
 import {Label} from '@primer/react'
 import {PropTableValues} from '../../src/components'
-import {Link} from '@primer/react-brand'
+import {Link, IDEFileExtensions} from '@primer/react-brand'
 
 ```js
 import {IDE} from '@primer/react-brand'
@@ -274,11 +274,13 @@ Example expenses_string:
 | name               | type                                                                      | default | required | description                     |
 | ------------------ | ------------------------------------------------------------------------- | ------- | -------- | ------------------------------- |
 | `activeTab`        | `number`                                                                  |         | `false`  | Active tab index                |
-| `files`            | `IDEEditorFile[]`                                                         |         | `true`   | Array of editor files           |
+| `files`            | [`IDEEditorFile[]`](#)                                                    |         | `true`   | Array of editor files           |
 | `showLineNumbers`  | `boolean`                                                                 |         | `false`  | Show line numbers in the editor |
 | `size`             | <PropTableValues values={['small' , 'medium' , 'large']} addLineBreaks /> |         | `false`  | Controls editor text size       |
 | `triggerAnimation` | `boolean`                                                                 |         | `false`  | Trigger animation externally    |
 | `showReplayButton` | `boolean`                                                                 |         | `false`  | Show replay button              |
+
+Supported file extensions in the editor include: <PropTableValues values={IDEFileExtensions} removeApostrophes commaSeparated />
 
 ### IDE.Chat
 
