@@ -16,6 +16,8 @@ declare const styles: {
   readonly "PricingOptions__price-currency-symbol": string;
   readonly "PricingOptions__price-currency-code": string;
   readonly "PricingOptions__price-value": string;
+  readonly "PricingOptions__price-original-price": string;
+  readonly "PricingOptions__price-original-price-value": string;
   readonly "PricingOptions__price-trailing-text": string;
   readonly "PricingOptions__footnote": string;
   readonly "PricingOptions__feature-list": string;

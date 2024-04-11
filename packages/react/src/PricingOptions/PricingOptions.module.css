@@ -230,6 +230,16 @@
   line-height: 1;
 }
 
+.PricingOptions__price-original-price {
+  display: inline-flex;
+  align-self: flex-end;
+  text-decoration: none;
+}
+
+.PricingOptions__price-original-price-value {
+  text-decoration: line-through;
+}
+
 .PricingOptions__price-trailing-text {
   flex: 1 0 100%;
   display: block;
