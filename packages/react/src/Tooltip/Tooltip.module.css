@@ -55,7 +55,7 @@
   display: block;
   right: 0;
   left: 0;
-  height: 8px; /* This is a "magic number". Just gives some room to make sure the tooltip stay open when mouse leaves the trigger to hover tooltip */
+  height: var(--base-size-8); /* This is a "magic number". Just gives some room to make sure the tooltip stay open when mouse leaves the trigger to hover tooltip */
   content: '';
 }
 
