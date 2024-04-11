@@ -10,7 +10,10 @@
 
 /* Overriding the default popover styles */
 .Tooltip[popover] {
-  --offset: var(--base-size-8, 8px); /* This is a "magic number". Just gives some room to make sure the tooltip stay open when mouse leaves the trigger to hover tooltip */
+  --offset: var(
+    --base-size-8,
+    8px
+  ); /* This is a "magic number". Just gives some room to make sure the tooltip stay open when mouse leaves the trigger to hover tooltip */
   /* these vars are for the triangle, via https://www.smashingmagazine.com/2024/03/modern-css-tooltips-speech-bubbles-part1/ */
   --b: 1em; /* triangle base width */
   --h: 0.5em; /* triangle height */
@@ -56,7 +59,7 @@
   display: block;
   right: 0;
   left: 0;
-  height: var(--offset); 
+  height: var(--offset);
   content: '';
 }
 
