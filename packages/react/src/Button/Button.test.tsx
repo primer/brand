@@ -265,17 +265,13 @@ describe('Button', () => {
   })
 
   it('applies the correct class for each size', () => {
-    for (const size of ButtonSizes) {
-      const testId = `test-button-${size}`
-      const {getByTestId} = render(
-        <Button size={size} data-testid={testId}>
-          Button
-        </Button>,
-      )
+    for (const i in ButtonSizes) {
+      const size = ButtonSizes[i]
+      const {getAllByRole} = render(<Button size={size}>Button</Button>)
 
-      const btnEl = getByTestId(testId)
+      const btnEl = getAllByRole('button')
 
-      expect(btnEl.classList).toContain(`Button--size-${size}`)
+      expect(btnEl[i].classList).toContain(`Button--size-${size}`)
     }
   })
 })
