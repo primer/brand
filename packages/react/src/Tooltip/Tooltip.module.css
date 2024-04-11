@@ -139,7 +139,7 @@
   position: absolute;
   display: block;
   height: 100%;
-  width: 8px;
+  width: var(--base-size-8);
   content: '';
   bottom: 0;
   right: 100%;
