@@ -3,11 +3,11 @@
 
 .IDE__inner {
   background: var(--brand-IDE-default-bgColor);
-  border: 1px solid var(--brand-IDE-borderColor);
+  border: var(--brand-borderWidth-thin) solid var(--brand-IDE-borderColor);
 }
 
 .IDE--glass {
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(var(--base-size-12));
 }
 
 .IDE--glass .IDE__inner {
@@ -82,7 +82,7 @@
 
 .IDE__Chat-messages {
   scrollbar-width: thin;
-  scrollbar-color: #666671 var(--brand-IDE-default-editor-bgColor);
+  scrollbar-color: var(--brand-IDE-scrollBar-fgColor) var(--brand-IDE-scrollBar-bgColor);
 }
 
 .IDE__Chat-messages::-webkit-scrollbar {
@@ -90,13 +90,13 @@
 }
 
 .IDE__Chat-messages::-webkit-scrollbar-track {
-  background: var(--brand-IDE-default-editor-bgColor);
+  background: var(--brand-IDE-scrollBar-bgColor);
 }
 
 .IDE__Chat-messages::-webkit-scrollbar-thumb {
-  background-color: #666671;
-  border-radius: 20px;
-  border: 3px solid var(--brand-IDE-default-editor-bgColor);
+  background-color: var(--brand-IDE-scrollBar-fgColor);
+  border-radius: var(--base-size-20);
+  border: var(--brand-borderRadius-small) solid var(--brand-IDE-scrollBar-bgColor);
 }
 
 .IDE__Chat-input-area {
@@ -153,7 +153,7 @@
   padding: var(--base-size-16);
   border-radius: var(--brand-borderRadius-large);
   font-family: var(--brand-fontStack-monospace);
-  font-size: 14px;
+  font-size: var(--base-size-14);
 }
 
 /**
@@ -189,9 +189,9 @@
   display: flex;
   padding: var(--base-size-8) var(--base-size-12);
   align-items: center;
-  gap: 4px;
+  gap: var(--base-size-4);
   font-family: var(--brand-fontStack-monospace);
-  font-size: 14px;
+  font-size: var(--base-size-14);
   color: var(--brand-color-text-muted);
   cursor: pointer;
   border: none;
@@ -300,13 +300,13 @@ img.IDE__Editor-tab-icon {
 }
 
 .IDE__Editor--medium .IDE__Editor-lineNumbers {
-  font-size: 14px;
-  line-height: 20px;
+  font-size: var(--base-size-14);
+  line-height: var(--base-size-20);
 }
 
 .IDE__Editor--large .IDE__Editor-lineNumbers {
   font-size: 18px;
-  line-height: 24px;
+  line-height: var(--base-size-24);
 }
 
 .IDE__Editor-lineNumber {
@@ -347,10 +347,9 @@ pre.IDE__Chat-copilot-indicator {
   padding: var(--base-size-8) var(--base-size-24);
   border-radius: var(--brand-borderRadius-small);
   gap: var(--base-size-16);
-  margin-left: 62px;
   margin: 0;
   margin-left: 60px;
-  margin-top: 4px;
+  margin-top: var(--base-size-4);
 
   box-shadow: -9px 10px 39px 0px rgba(0, 0, 0, 0.25);
 }

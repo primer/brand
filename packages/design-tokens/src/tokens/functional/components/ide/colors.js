@@ -89,6 +89,16 @@ module.exports = {
           dark: 'var(--base-color-scale-blue-9)',
         },
       },
+      scrollBar: {
+        bgColor: {
+          value: 'var(--base-color-scale-white-0)',
+          dark: '#242538',
+        },
+        fgColor: {
+          value: 'var(--base-color-scale-gray-2)',
+          dark: 'var(--base-color-scale-gray-5)',
+        },
+      },
     },
   },
 }
