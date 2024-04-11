@@ -18,18 +18,13 @@ export const Default = () => (
   </Box>
 )
 
-export const Playground = args => {
-  // this is a hack to remove the `type` prop from the args because for this example type label is not a valid choice and violates accessibility
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const {text, type, ...rest} = args
-  return (
-    <Box padding="spacious">
-      <Tooltip text={text} type="description" {...rest}>
-        <Button>Delete</Button>
-      </Tooltip>
-    </Box>
-  )
-}
+export const Playground = args => (
+  <Box padding="spacious">
+    <Tooltip {...args} type="description">
+      <Button>Delete</Button>
+    </Tooltip>
+  </Box>
+)
 
 Playground.args = {
   text: 'This is the tooltip text',
@@ -44,6 +39,8 @@ Playground.argTypes = {
     options: ['n', 'e', 's', 'w'],
   },
   type: {
-    control: false,
+    table: {
+      disable: true,
+    },
   },
 }

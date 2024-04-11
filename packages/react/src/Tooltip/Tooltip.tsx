@@ -10,16 +10,15 @@ import {useProvidedRefOrCreate} from '../hooks/useRef'
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './Tooltip.module.css'
+import {BaseProps} from '../component-helpers'
 
 type TooltipDirection = 'n' | 'e' | 's' | 'w'
-export type TooltipProps = React.PropsWithChildren<{
+export type TooltipProps = {
   direction?: TooltipDirection
-  id?: string
   text: string
   type?: 'label' | 'description'
   children?: React.ReactNode
-  className?: string
-}>
+} & BaseProps<HTMLDivElement>
 
 export type TriggerPropsType = {
   'aria-describedby'?: string

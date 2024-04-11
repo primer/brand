@@ -12,7 +12,7 @@ export default {
 export const AnchorHasMargin = () => (
   <Box padding="spacious">
     <Tooltip text="Tooltip is still centered">
-      <Button sx={{marginLeft: 3}}>Button has 16px margin Left</Button>
+      <Button style={{marginLeft: '16px'}}>Button has 16px margin Left</Button>
     </Tooltip>
   </Box>
 )
@@ -23,15 +23,6 @@ export const LabelType = () => (
       <Link href="https://github.com/primer/react/contributor-docs/CONTRIBUTING.md">
         <BookIcon />
       </Link>
-    </Tooltip>
-  </Box>
-)
-
-// As a supplementary description for a button
-export const DescriptionType = () => (
-  <Box padding="spacious">
-    <Tooltip text="Supplementary text" direction="n">
-      <Button>Save</Button>
     </Tooltip>
   </Box>
 )
@@ -65,7 +56,7 @@ export const MultilineText = () => (
 )
 
 export const CalculatedDirection = () => (
-  <Stack gap="spacious" padding="spacious">
+  <Stack gap="spacious" padding="spacious" direction="horizontal">
     <Tooltip direction="w" text="But appears in the east direction due to not having enough space in the west">
       <Button>West</Button>
     </Tooltip>

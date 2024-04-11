@@ -10,6 +10,7 @@
 
 /* Overriding the default popover styles */
 .Tooltip[popover] {
+  --offset: var(--base-size-8, 8px); /* This is a "magic number". Just gives some room to make sure the tooltip stay open when mouse leaves the trigger to hover tooltip */
   /* these vars are for the triangle, via https://www.smashingmagazine.com/2024/03/modern-css-tooltips-speech-bubbles-part1/ */
   --b: 1em; /* triangle base width */
   --h: 0.5em; /* triangle height */
@@ -43,7 +44,7 @@
   /* selector in firefox and safari is \:popover-open */
   display: block;
   animation-name: tooltip-appear;
-  animation-duration: 0.1s;
+  animation-duration: var(--brand-animation-duration-faster, 0.2s);
   animation-fill-mode: forwards;
   animation-timing-function: ease-in;
   animation-delay: 0s;
@@ -55,7 +56,7 @@
   display: block;
   right: 0;
   left: 0;
-  height: 8px; /* This is a "magic number". Just gives some room to make sure the tooltip stay open when mouse leaves the trigger to hover tooltip */
+  height: var(--offset); 
   content: '';
 }
 
@@ -129,7 +130,7 @@
   position: absolute;
   display: block;
   height: 100%;
-  width: 8px; /* This is a "magic number". Just gives some room to make sure the tooltip stay open when mouse leaves the trigger to hover tooltip */
+  width: var(--offset);
   content: '';
   bottom: 0;
   left: 100%;
@@ -139,11 +140,11 @@
   position: absolute;
   display: block;
   height: 100%;
-  width: var(--base-size-8);
+  width: var(--offset);
   content: '';
   bottom: 0;
   right: 100%;
-  margin-left: -8px; /* This is a "magic number". Just gives some room to make sure the tooltip stay open when mouse leaves the trigger to hover tooltip */
+  margin-left: calc(var(--offset) * -1px);
 }
 
 @keyframes tooltip-appear {
