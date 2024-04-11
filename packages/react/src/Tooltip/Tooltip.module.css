@@ -4,7 +4,7 @@
 
 @media (forced-colors: active) {
   .Tooltip {
-    outline: 1px solid transparent;
+    outline: var(--brand-borderWidth-thin) solid transparent;
   }
 }
 
