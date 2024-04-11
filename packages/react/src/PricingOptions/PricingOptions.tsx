@@ -79,11 +79,18 @@ const PricingOptionsRoot = forwardRef(
 
 export type PricingOptionsItem = {
   ['data-testid']?: string
+  /**
+   * Escape-hatch for inserting custom React components.
+   * Warning:
+   *   This prop isn't advertised in our docs but remains part of the public API for edge-cases.
+   *   Need to use this prop? Please check in with #primer-brand first to confirm correct usage.
+   */
+  leadingComponent?: React.ReactElement
 } & PropsWithChildren<BaseProps<HTMLDivElement>>
 
 const PricingOptionsItem = forwardRef(
   (
-    {'data-testid': testId, children, className, ...rest}: PropsWithChildren<PricingOptionsItem>,
+    {'data-testid': testId, children, className, leadingComponent, ...rest}: PropsWithChildren<PricingOptionsItem>,
     ref: Ref<HTMLDivElement>,
   ) => {
     type FilteredChildren = {
@@ -136,9 +143,17 @@ const PricingOptionsItem = forwardRef(
       {Content: [], FeatureList: null, Actions: [], Footnote: null},
     )
 
+    if (leadingComponent) {
+      Content.unshift(<div className={styles['PricingOptions__leading-component']}>{leadingComponent}</div>)
+    }
+
     return (
       <div
-        className={clsx(styles.PricingOptions__item, className)}
+        className={clsx(
+          styles.PricingOptions__item,
+          leadingComponent && styles['PricingOptions__item--has-leading-component'],
+          className,
+        )}
         data-testid={testId || testIds.item}
         ref={ref}
         {...(rest as HTMLAttributes<HTMLElement>)}
@@ -220,12 +235,22 @@ type PricingOptionsPriceProps = PropsWithChildren<BaseProps<HTMLParagraphElement
   currencyCode?: string
   currencySymbol?: string
   'data-testid'?: string
+  originalPrice?: string
   trailingText?: string
 }
 
 const PricingOptionsPrice = forwardRef<HTMLParagraphElement, PricingOptionsPriceProps>(
   (
-    {children, className, currencyCode = 'USD', currencySymbol = '$', 'data-testid': testId, trailingText, ...rest},
+    {
+      children,
+      className,
+      currencyCode = 'USD',
+      currencySymbol = '$',
+      'data-testid': testId,
+      originalPrice,
+      trailingText,
+      ...rest
+    },
     ref,
   ) => {
     return (
@@ -237,17 +262,46 @@ const PricingOptionsPrice = forwardRef<HTMLParagraphElement, PricingOptionsPrice
         weight="normal"
         {...rest}
       >
-        <Text as="span" className={styles['PricingOptions__price-currency-symbol']} size="500" weight="normal">
+        <Text
+          as="span"
+          className={styles['PricingOptions__price-currency-symbol']}
+          font="hubot-sans"
+          size="500"
+          weight="normal"
+        >
           {currencySymbol}
         </Text>
 
-        <Text as="span" className={styles['PricingOptions__price-value']} size="700" weight="normal">
+        <Text as="span" className={styles['PricingOptions__price-value']} font="hubot-sans" size="700" weight="normal">
           {children}
         </Text>
 
-        <Text as="span" className={styles['PricingOptions__price-currency-code']} size="500" weight="normal">
+        <Text
+          as="span"
+          className={styles['PricingOptions__price-currency-code']}
+          font="hubot-sans"
+          size="500"
+          weight="normal"
+        >
           {currencyCode}
         </Text>
+
+        {originalPrice && (
+          <del className={styles['PricingOptions__price-original-price']}>
+            <Text font="hubot-sans" size="400" variant="muted" weight="normal">
+              {currencySymbol}
+            </Text>
+            <Text
+              className={styles['PricingOptions__price-original-price-value']}
+              font="hubot-sans"
+              size="500"
+              variant="muted"
+              weight="normal"
+            >
+              {originalPrice}
+            </Text>
+          </del>
+        )}
 
         {trailingText && (
           <Text as="span" className={styles['PricingOptions__price-trailing-text']} size="200" variant="muted">
@@ -385,16 +439,13 @@ const PricingOptionsFeatureListItem = forwardRef<HTMLLIElement, PricingOptionsFe
   },
 )
 
-type RestrictedPolymorphism =
-  | (BaseProps<HTMLAnchorElement> & {as: 'a'; href: string})
-  | (BaseProps<HTMLButtonElement> & {as: 'button'})
+type AsA = {as: 'a'; href: string; 'data-testid'?: string} & React.AnchorHTMLAttributes<BaseProps<HTMLAnchorElement>> &
+  ButtonBaseProps
 
-type PricingOptionsActionsProps = {
-  as: 'a' | 'button'
-  href: string
-  'data-testid'?: string
-} & ButtonBaseProps &
-  RestrictedPolymorphism
+type AsButton = {as: 'button'; 'data-testid'?: string} & React.ButtonHTMLAttributes<BaseProps<HTMLButtonElement>> &
+  ButtonBaseProps
+
+type PricingOptionsActionsProps = AsA | AsButton
 
 const PricingOptionsPrimaryAction = forwardRef<
   HTMLAnchorElement | HTMLButtonElement,

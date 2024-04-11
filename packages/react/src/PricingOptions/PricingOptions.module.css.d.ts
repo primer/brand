@@ -7,6 +7,8 @@ declare const styles: {
   readonly "PricingOptions__actions": string;
   readonly "PricingOptions--items2": string;
   readonly "PricingOptions--items3": string;
+  readonly "PricingOptions__item--has-leading-component": string;
+  readonly "PricingOptions__leading-component": string;
   readonly "PricingOptions__label": string;
   readonly "PricingOptions__heading": string;
   readonly "PricingOptions__description": string;
@@ -14,6 +16,8 @@ declare const styles: {
   readonly "PricingOptions__price-currency-symbol": string;
   readonly "PricingOptions__price-currency-code": string;
   readonly "PricingOptions__price-value": string;
+  readonly "PricingOptions__price-original-price": string;
+  readonly "PricingOptions__price-original-price-value": string;
   readonly "PricingOptions__price-trailing-text": string;
   readonly "PricingOptions__footnote": string;
   readonly "PricingOptions__feature-list": string;
