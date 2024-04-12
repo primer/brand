@@ -174,6 +174,9 @@ export function FeaturePreviewLevelTwo({
           </SubNav.Link>
           <SubNav.Link href="#">Link</SubNav.Link>
           <SubNav.Link href="#">Link</SubNav.Link>
+          <SubNav.Action href="#" variant="secondary">
+            Optional CTA
+          </SubNav.Action>
         </SubNav>
       )}
       <div className={styles.FeaturePreview}>

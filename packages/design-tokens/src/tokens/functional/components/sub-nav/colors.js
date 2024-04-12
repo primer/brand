@@ -12,6 +12,12 @@ module.exports = {
             dark: 'var(--base-color-scale-blue-3)',
           },
         },
+        subMenu: {
+          bgColor: {
+            value: 'var(--base-color-scale-white-0)',
+            dark: 'var(--base-color-scale-black-0)',
+          },
+        },
       },
       shadow: {
         value: '0 1px 0 0px rgba(53, 72, 91, 0.14), 0 3px 2px rgba(0, 0, 0, 0.04), 0 7px 7px rgba(0, 0, 0, 0.03)',
