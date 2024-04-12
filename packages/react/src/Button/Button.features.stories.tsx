@@ -78,6 +78,12 @@ export const SubtleDisabled = () => (
   </Button>
 )
 
+export const Small = () => (
+  <Button as="a" variant="primary" size="small" href="#">
+    Small action
+  </Button>
+)
+
 export const Large = () => (
   <Button as="a" variant="primary" size="large" href="#">
     Large action
@@ -101,8 +107,8 @@ export const Polymorphism = () => (
   </Button>
 )
 
-/* 
-  Storybook Interactions cannot natively simulate hover state on CSS pseudo-class. 
+/*
+  Storybook Interactions cannot natively simulate hover state on CSS pseudo-class.
   Only simulates JS-based state.
   TODO: Investigate perf impact of using "https://storybook.js.org/addons/storybook-addon-pseudo-states"
 */
@@ -120,8 +126,8 @@ WithHoverInteraction.play = async ({canvasElement}) => {
 }
 WithHoverInteraction.storyName = 'Primary button with hover interaction'
 
-/* 
-  Storybook Interactions cannot natively simulate hover state on CSS pseudo-class. 
+/*
+  Storybook Interactions cannot natively simulate hover state on CSS pseudo-class.
   Only simulates JS-based state.
   TODO: Investigate perf impact of using "https://storybook.js.org/addons/storybook-addon-pseudo-states"
 */
@@ -139,8 +145,8 @@ SecondaryWithHoverInteraction.play = async ({canvasElement}) => {
 }
 SecondaryWithHoverInteraction.storyName = 'Secondary button with hover interaction'
 
-/* 
-  Storybook Interactions cannot natively simulate hover state on CSS pseudo-class. 
+/*
+  Storybook Interactions cannot natively simulate hover state on CSS pseudo-class.
   Only simulates JS-based state.
   TODO: Investigate perf impact of using "https://storybook.js.org/addons/storybook-addon-pseudo-states"
 */
