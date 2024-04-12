@@ -27,7 +27,7 @@ export default {
   args: {
     showChat: true,
     height: 800,
-    showReplayButton: true,
+    showReplayButton: false,
   },
   argTypes: {
     showChat: {

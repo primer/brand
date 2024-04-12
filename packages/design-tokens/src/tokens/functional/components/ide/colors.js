@@ -91,8 +91,8 @@ module.exports = {
       },
       scrollBar: {
         bgColor: {
-          value: 'var(--base-color-scale-white-0)',
-          dark: '#242538',
+          value: 'transparent',
+          dark: 'transparent',
         },
         fgColor: {
           value: 'var(--base-color-scale-gray-2)',

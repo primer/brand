@@ -218,7 +218,7 @@ PerspectiveExampleLight.decorators = [
 export const AllGlass = args => (
   <IDE {...args} variant="glass">
     <IDE.Chat script={chatScript}></IDE.Chat>
-    <IDE.Editor size="large" files={files} />
+    <IDE.Editor size="large" files={files} showReplayButton={false} />
   </IDE>
 )
 
