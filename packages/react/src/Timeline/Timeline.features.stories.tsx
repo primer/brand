@@ -90,21 +90,21 @@ export const WithIcon: StoryFn<typeof Timeline> = () => {
         <Timeline.Icon>
           <IssueOpenedIcon size={16} />
         </Timeline.Icon>
-        GitHub Codespaces offers a complete dev environment in seconds, so you can code, build, test, and open pull
-        requests from any repo anywhere.
+        <em>GitHub Codespaces</em> offers a complete dev environment in seconds, so you can code, build, test, and open
+        pull requests from any repo anywhere.
       </Timeline.Item>
       <Timeline.Item>
         <Timeline.Icon>
           <IssueClosedIcon size={16} />
         </Timeline.Icon>
-        GitHub Copilot is your AI pair programmer that empowers you to complete tasks 55% faster by turning natural
-        language prompts into coding suggestions.
+        <em>GitHub Copilot</em> is your AI pair programmer that empowers you to complete tasks 55% faster by turning
+        natural language prompts into coding suggestions.
       </Timeline.Item>
       <Timeline.Item>
         <Timeline.Icon>
           <StackIcon size={16} />
         </Timeline.Icon>
-        GitHub Actions automates your build, test, and deployment workflow with simple and secure CI/CD.
+        <em>GitHub Actions</em> automates your build, test, and deployment workflow with simple and secure CI/CD.
       </Timeline.Item>
     </Timeline>
   )
