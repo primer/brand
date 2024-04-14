@@ -65,7 +65,7 @@ describe('Timeline', () => {
         </Timeline.Item>
       </Timeline>,
     )
-    const itemIconEl = getByRole('listitem').firstChild
+    const itemIconEl = getByRole('listitem').firstChild?.firstChild
 
     expect(itemIconEl).toHaveClass(`Timeline__icon`)
     expect(itemIconEl?.firstChild).toHaveProperty('tagName', 'svg')
