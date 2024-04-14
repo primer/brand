@@ -53,4 +53,21 @@ describe('Timeline', () => {
 
     expect(itemTextEl).not.toHaveClass(`Text--muted`)
   })
+
+  it('renders an icon if passed as a child', () => {
+    const {getByRole} = render(
+      <Timeline>
+        <Timeline.Item>
+          <Timeline.Icon>
+            <svg />
+          </Timeline.Icon>
+          <em>Item 1</em>. Lorem ipsum dolor sit amet.
+        </Timeline.Item>
+      </Timeline>,
+    )
+    const itemIconEl = getByRole('listitem').firstChild
+
+    expect(itemIconEl).toHaveClass(`Timeline__icon`)
+    expect(itemIconEl?.firstChild).toHaveProperty('tagName', 'svg')
+  })
 })

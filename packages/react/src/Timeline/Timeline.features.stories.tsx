@@ -1,6 +1,7 @@
 import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 
+import {IssueOpenedIcon, IssueClosedIcon, StackIcon} from '@primer/octicons-react'
 import {Timeline} from '.'
 
 export default {
@@ -77,6 +78,33 @@ export const WithLongerText: StoryFn<typeof Timeline> = () => {
       <Timeline.Item>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel nisi consequat, tempus nisl non, ultrices arcu.
         Sed sed nunc lorem.
+      </Timeline.Item>
+    </Timeline>
+  )
+}
+
+export const WithIcon: StoryFn<typeof Timeline> = () => {
+  return (
+    <Timeline>
+      <Timeline.Item>
+        <Timeline.Icon>
+          <IssueOpenedIcon size={16} />
+        </Timeline.Icon>
+        GitHub Codespaces offers a complete dev environment in seconds, so you can code, build, test, and open pull
+        requests from any repo anywhere.
+      </Timeline.Item>
+      <Timeline.Item>
+        <Timeline.Icon>
+          <IssueClosedIcon size={16} />
+        </Timeline.Icon>
+        GitHub Copilot is your AI pair programmer that empowers you to complete tasks 55% faster by turning natural
+        language prompts into coding suggestions.
+      </Timeline.Item>
+      <Timeline.Item>
+        <Timeline.Icon>
+          <StackIcon size={16} />
+        </Timeline.Icon>
+        GitHub Actions automates your build, test, and deployment workflow with simple and secure CI/CD.
       </Timeline.Item>
     </Timeline>
   )

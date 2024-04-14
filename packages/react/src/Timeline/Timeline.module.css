@@ -76,3 +76,19 @@
 .Timeline__item a:active {
   color: var(--brand-InlineLink-color-pressed);
 }
+
+.Timeline__icon {
+  width: var(--base-size-40);
+  height: var(--base-size-40);
+  display: block;
+  position: absolute;
+  left: calc(var(--bulletY) / 2);
+  top: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--brand-color-canvas-default);
+  transform: translate3d(-50%, -25%, 0);
+  z-index: 1;
+}

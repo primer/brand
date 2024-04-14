@@ -62,10 +62,23 @@ const Item = ({className, children, ...rest}: PropsWithChildren<TimelineItemProp
   )
 }
 
+export type TimelineIconProps = BaseProps<HTMLLIElement>
+
+const Icon = ({className, children, ...rest}: PropsWithChildren<TimelineIconProps>) => {
+  const iconClassName = clsx(styles['Timeline__icon'], className)
+
+  return (
+    <span className={iconClassName} {...rest}>
+      {children}
+    </span>
+  )
+}
+
 /**
  * Use Timeline to display a list of connected items as a vertical timeline.
  * @see https://primer.style/brand/components/Timeline
  */
 export const Timeline = Object.assign(_TimelineRoot, {
   Item,
+  Icon,
 })
