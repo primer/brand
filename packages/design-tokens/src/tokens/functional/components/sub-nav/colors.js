@@ -20,8 +20,9 @@ module.exports = {
         },
       },
       shadow: {
-        value: '0 1px 0 0px rgba(53, 72, 91, 0.14), 0 3px 2px rgba(0, 0, 0, 0.04), 0 7px 7px rgba(0, 0, 0, 0.03)',
-        dark: '0 1px 0 0px rgba(53, 72, 91, 0.14), 0 3px 2px rgba(255, 255, 255, 0.04), 0 7px 7px rgba(255, 255, 255, 0.03)',
+        value:
+          '0px 100px 80px rgba(0, 0, 0, 0.01), 0px 41px 33px rgba(0, 0, 0, 0.02), 0px 22px 17px rgba(0, 0, 0, 0.02), 0px 12px 10px rgba(0, 0, 0, 0.03), 0px 6px 5px rgba(0, 0, 0, 0.04), 0px 2px 2px rgba(0, 0, 0, 0.07);',
+        dark: '0px 100px 80px rgba(0, 0, 0, 0.01), 0px 41px 33px rgba(0, 0, 0, 0.02), 0px 22px 17px rgba(0, 0, 0, 0.02), 0px 12px 10px rgba(0, 0, 0, 0.03), 0px 6px 5px rgba(0, 0, 0, 0.04), 0px 2px 2px rgba(0, 0, 0, 0.07);',
       },
     },
   },
