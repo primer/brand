@@ -23,7 +23,8 @@
     "lib"
   ],
   "scripts": {
-    "build": "node scripts/build-tokens.js",
+    "build": "node scripts/build-tokens.js && npm run build:v8",
+    "build:v8": "node scripts/build-tokens.js -- --v8",
     "check": "tsc --noEmit",
     "clean": "rm -rf lib",
     "format": "prettier --check '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
@@ -33,7 +34,7 @@
     "test": "jest"
   },
   "devDependencies": {
-    "@primer/primitives": "^7.15.0",
+    "@primer/primitives": "7.17.0-rc.61b28bca",
     "color2k": "^2.0.2",
     "style-dictionary": "3.8.0"
   },

@@ -8,8 +8,9 @@ const lightJson = require('../src/tokens/base/colors/light')
 const darkJson = require('../src/tokens/base/colors/dark')
 
 ;(function () {
+  const flags = process.argv.slice(2)
   const namespace = 'brand'
-  const outputPath = './lib/design-tokens'
+  const outputPath = flags.includes('--v8') ? './lib-v8' : './lib/design-tokens'
   const src = './src/tokens'
   const dest = 'tokens'
 
@@ -18,7 +19,11 @@ const darkJson = require('../src/tokens/base/colors/dark')
    * Create a temporary directory with JSON files to convert into tokens
    */
 
-  fs.cpSync('../../node_modules/@primer/primitives/tokens', dest, {recursive: true})
+  if (flags.includes('--v8')) {
+    fs.cpSync('./node_modules/@primer/primitives/src/tokens', dest, {recursive: true})
+  } else {
+    fs.cpSync('./node_modules/@primer/primitives/tokens', dest, {recursive: true})
+  }
 
   if (fs.existsSync(src)) {
     fs.cpSync(src, dest, {force: true, recursive: true})

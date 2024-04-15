@@ -3,6 +3,7 @@ node_modules
 
 #output
 lib/
+lib-v8/
 storybook-static
 
 # testing
