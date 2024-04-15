@@ -43,6 +43,13 @@ test.describe('Visual Comparison: Timeline', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('Timeline / With Icon', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-timeline-features--with-icon&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Timeline / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-timeline--default&viewMode=story')
 
