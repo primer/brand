@@ -43,9 +43,9 @@
     "start:docs": "cd apps/docs && npm run start",
     "start:lib": "npm run start --workspace=packages/react",
     "start:storybook": "npm run build:lib && npm run start --workspace=apps/storybook",
-    "update:snapshots": "npm run test:visual:update --workspace=packages/e2e",
     "test": "npm run test --workspaces --if-present",
     "test:visual": "npm run test:visual --workspace=packages/e2e",
+    "test:visual:update": "npm run test:visual:update --workspace=packages/e2e",
     "test:storybook": "npm run test:storybook --workspace=apps/storybook",
     "test:axe": "npm run test:axe --workspace=packages/e2e"
   },
