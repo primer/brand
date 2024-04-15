@@ -1,0 +1,11 @@
+{
+  "brand": {
+    "SubNav": {
+      "width": {
+        "subMenu": {
+          "value": "300px"
+        }
+      }
+    }
+  }
+}

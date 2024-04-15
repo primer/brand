@@ -31,6 +31,12 @@ export const ExampleUsage = ({hasShadow, ...args}) => (
       <SubNav.Link href="#">Codespaces</SubNav.Link>
       <SubNav.Link href="#" aria-current="page">
         Copilot
+        <SubNav.SubMenu>
+          <SubNav.Link href="#">Copilot feature page one</SubNav.Link>
+          <SubNav.Link href="#">Copilot feature page two</SubNav.Link>
+          <SubNav.Link href="#">Copilot feature page three</SubNav.Link>
+          <SubNav.Link href="#">Copilot feature page four</SubNav.Link>
+        </SubNav.SubMenu>
       </SubNav.Link>
       <SubNav.Link href="#">Code review</SubNav.Link>
       <SubNav.Link href="#">Search</SubNav.Link>
@@ -42,7 +48,6 @@ export const ExampleUsage = ({hasShadow, ...args}) => (
         <Hero align="center">
           <Hero.Label>Copilot Enterprise</Hero.Label>
           <Hero.Heading>The world&apos;s most widely adopted AI tool.</Hero.Heading>
-
           <Hero.PrimaryAction href="#">Get started with Copilot</Hero.PrimaryAction>
         </Hero>
       </Grid.Column>
