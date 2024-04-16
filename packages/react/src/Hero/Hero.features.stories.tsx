@@ -5,6 +5,7 @@ import {HeartFillIcon, StarFillIcon} from '@primer/octicons-react'
 import placeholderImage from '../fixtures/images/placeholder-600x400.png'
 
 import {Hero} from '.'
+import {ActionMenu} from '../ActionMenu'
 import {Grid} from '../Grid'
 import {EyebrowBanner} from '../EyebrowBanner'
 
@@ -131,6 +132,33 @@ export const Issues: StoryFn<typeof Hero> = _args => (
     <Hero.PrimaryAction href="#">Watch video</Hero.PrimaryAction>
     <Hero.SecondaryAction href="#">Start using project tables</Hero.SecondaryAction>
   </Hero>
+)
+
+const ExampleTrailingComponent = () => (
+  <ActionMenu>
+    <ActionMenu.Button>Open menu</ActionMenu.Button>
+    <ActionMenu.Overlay aria-label="GitHub features">
+      <ActionMenu.Item value="Copilot" selected>
+        Copilot
+      </ActionMenu.Item>
+      <ActionMenu.Item value="Codespaces">Codespaces</ActionMenu.Item>
+      <ActionMenu.Item value="CodeQL">CodeQL</ActionMenu.Item>
+    </ActionMenu.Overlay>
+  </ActionMenu>
+)
+
+export const WithTrailingComponent: StoryFn<typeof Hero> = _args => (
+  <Grid>
+    <Grid.Column>
+      <Hero trailingComponent={ExampleTrailingComponent}>
+        <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+        <Hero.Description>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Hero.Description>
+      </Hero>
+    </Grid.Column>
+  </Grid>
 )
 
 export const WithCustomClassnames: StoryFn<typeof Hero> = _args => (
