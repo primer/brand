@@ -17,10 +17,22 @@ export type HeroProps = BaseProps<HTMLElement> & {
   align?: 'start' | 'center'
   imageContainerClassName?: string
   imageContainerStyle?: React.CSSProperties
+  trailingComponent?: React.FunctionComponent
 }
 
 const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
-  ({className, align = 'start', children, imageContainerClassName, imageContainerStyle, ...rest}, ref) => {
+  (
+    {
+      className,
+      align = 'start',
+      children,
+      imageContainerClassName,
+      imageContainerStyle,
+      trailingComponent: TrailingComponent,
+      ...rest
+    },
+    ref,
+  ) => {
     const {HeroActions, HeroChildren, HeroImageChild} = useMemo(
       () =>
         React.Children.toArray(children).reduce<{
@@ -72,6 +84,11 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
             >
               {HeroChildren}
               {HeroActions.length > 0 && <div className={styles['Hero-actions']}>{HeroActions}</div>}
+              {TrailingComponent && (
+                <div className={styles['Hero-trailing']}>
+                  <TrailingComponent />
+                </div>
+              )}
             </Stack>
           </Grid.Column>
           {HeroImageChild && (
