@@ -171,9 +171,18 @@ export function FeaturePreviewLevelTwo({
           <SubNav.Link href="#">Link</SubNav.Link>
           <SubNav.Link href="#" aria-current="page">
             Link
+            <SubNav.SubMenu>
+              <SubNav.Link href="#">Link feature one</SubNav.Link>
+              <SubNav.Link href="#">Link feature two</SubNav.Link>
+              <SubNav.Link href="#">Link feature three</SubNav.Link>
+              <SubNav.Link href="#">Link feature four</SubNav.Link>
+            </SubNav.SubMenu>
           </SubNav.Link>
           <SubNav.Link href="#">Link</SubNav.Link>
           <SubNav.Link href="#">Link</SubNav.Link>
+          <SubNav.Action href="#" variant="secondary">
+            Optional CTA
+          </SubNav.Action>
         </SubNav>
       )}
       <div className={styles.FeaturePreview}>
