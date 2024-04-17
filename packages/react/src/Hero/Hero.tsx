@@ -17,6 +17,12 @@ export type HeroProps = BaseProps<HTMLElement> & {
   align?: 'start' | 'center'
   imageContainerClassName?: string
   imageContainerStyle?: React.CSSProperties
+  /**
+   * Escape-hatch for inserting custom React components.
+   * Warning:
+   *   This prop isn't advertised in our docs but remains part of the public API for edge-cases.
+   *   Need to use this prop? Please check in with #primer-brand first to confirm correct usage.
+   */
   trailingComponent?: React.FunctionComponent
 }
 
