@@ -126,6 +126,22 @@ describe('Hero', () => {
     expect(labelEl).toHaveClass(`Label--color-${expectedColor}`)
   })
 
+  it('provides an escape hatch to render a custom trailing component', () => {
+    const trailingText = 'Custom trailing'
+    const MockTrailingComponent = () => <div>{trailingText}</div>
+
+    const {getByText} = render(
+      <Hero trailingComponent={MockTrailingComponent}>
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.Description>{mockDescription}</Hero.Description>
+      </Hero>,
+    )
+
+    const elTrailing = getByText(trailingText)
+
+    expect(elTrailing).toBeInTheDocument()
+  })
+
   test('no a11y violations', async () => {
     const {container} = render(
       <Hero>
