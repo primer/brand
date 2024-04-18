@@ -54,6 +54,8 @@
       url: /components/MinimalFooter
     - title: Ordered list
       url: /components/OrderedList
+    - title: Pagination
+      url: /components/Pagination
     - title: Pillar
       url: /components/Pillar
     - title: Pricing options

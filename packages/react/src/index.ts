@@ -40,6 +40,7 @@ export * from './EyebrowBanner'
 export * from './PricingOptions'
 export * from './SubNav'
 export * from './Breadcrumbs'
+export * from './Pagination'
 
 // hooks
 export * from './hooks/useWindowSize'

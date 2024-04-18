@@ -28,12 +28,19 @@ type ResponsivePageVisibilityMap = {
 }
 
 export type PaginationProps = {
+  /* The total number of pages */
   pageCount: number
+  /* The current page number */
   currentPage: number
+  /* Callback function for when the page changes */
   onPageChange?: (e: React.MouseEvent, n: number) => void
+  /* Function to build the href for each page */
   hrefBuilder?: (n: number) => string
+  /* Defines how many pages are to to be displayed on the left and right of the component */
   marginPageCount?: number
+  /* Whether to show the page numbers */
   showPages?: boolean | ResponsivePageVisibilityMap
+  /* The number of pages to show on each side of the current page */
   surroundingPageCount?: number
   'data-testid'?: string
 } & PropsWithChildren<BaseProps<HTMLElement>>
@@ -172,7 +179,7 @@ function defaultHrefBuilder(pageNum: number) {
 }
 
 /**
- * Use Pagination to
+ * Use Pagination to display a sequence of links that allow navigation to discrete, related pages.
  * @see https://primer.style/brand/components/Pagination
  */
 export const Pagination = Object.assign(_PaginationRoot, {
