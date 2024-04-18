@@ -39,6 +39,7 @@ export * from './Bento'
 export * from './EyebrowBanner'
 export * from './PricingOptions'
 export * from './SubNav'
+export * from './Breadcrumbs'
 
 // hooks
 export * from './hooks/useWindowSize'
