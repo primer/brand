@@ -28,7 +28,6 @@ type ResponsivePageVisibilityMap = {
 }
 
 export type PaginationProps = {
-  theme?: Record<string, unknown>
   pageCount: number
   currentPage: number
   onPageChange?: (e: React.MouseEvent, n: number) => void
@@ -44,7 +43,6 @@ const _PaginationRoot = memo(
     id,
     children,
     className,
-    theme,
     pageCount,
     currentPage,
     onPageChange,
@@ -57,7 +55,6 @@ const _PaginationRoot = memo(
   }: PaginationProps) => {
     const navRef = React.useRef<HTMLElement>(null)
     const pageElements = usePaginationPages({
-      theme,
       pageCount,
       currentPage,
       onPageChange,
@@ -83,7 +80,6 @@ const _PaginationRoot = memo(
 )
 
 type UsePaginationPagesParameters = {
-  theme?: Record<string, unknown> // set to theme type once /src/theme.js is converted
   pageCount: number
   currentPage: number
   onPageChange?: (e: React.MouseEvent, n: number) => void
@@ -158,6 +154,8 @@ export function usePaginationPages({
           variant={props['aria-current'] ? 'accent' : 'default'}
           arrowDirection="none"
           className={clsx(styles.Pagination__item, getPagesClasses())}
+          role="button"
+          tabIndex={0}
           {...props}
         >
           {content}

@@ -4,6 +4,14 @@ type PaginationModel =
   | {type: string; num: number}
   | {type: string; num: number; selected: boolean; precedesBreak: boolean}
 
+type PageType = {
+  type: string
+  num: number
+  disabled?: boolean
+  selected?: boolean
+  precedesBreak?: boolean
+}
+
 export function buildPaginationModel(
   pageCount: number,
   currentPage: number,
@@ -130,14 +138,6 @@ export function buildPaginationModel(
   const prev = {type: 'PREV', num: currentPage - 1, disabled: currentPage === 1}
   const next = {type: 'NEXT', num: currentPage + 1, disabled: currentPage === pageCount}
   return [prev, ...pages, next]
-}
-
-type PageType = {
-  type: string
-  num: number
-  disabled?: boolean
-  selected?: boolean
-  precedesBreak?: boolean
 }
 
 export function buildComponentData(
