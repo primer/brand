@@ -2,7 +2,7 @@ import React, {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 
-import {Button} from './Button'
+import {Button, ButtonSizes} from './Button'
 import {axe, toHaveNoViolations} from 'jest-axe'
 import {SearchIcon} from '@primer/octicons-react'
 
@@ -249,24 +249,29 @@ describe('Button', () => {
   })
 
   it('spans full width when block prop is true', () => {
-    const {getByTestId} = render(
-      <Button block={true} data-testid="test-button">
-        Full-Width Button
-      </Button>,
-    )
+    const {getByRole} = render(<Button block={true}>Full-Width Button</Button>)
 
-    const btnEl = getByTestId('test-button')
+    const btnEl = getByRole('button')
 
-    // Ensure the button has the block CSS class when block is true
     expect(btnEl.classList).toContain('Button--block')
   })
 
   it('is not block by default', () => {
-    const {getByTestId} = render(<Button data-testid="test-button">Default Button</Button>)
+    const {getByRole} = render(<Button>Default Button</Button>)
 
-    const btnEl = getByTestId('test-button')
+    const btnEl = getByRole('button')
 
-    // Ensure the button does not have the CSS class when block is false (default)
     expect(btnEl.classList).not.toContain('Button--block')
+  })
+
+  it('applies the correct class for each size', () => {
+    for (const i in ButtonSizes) {
+      const size = ButtonSizes[i]
+      const {getAllByRole} = render(<Button size={size}>Button</Button>)
+
+      const btnEl = getAllByRole('button')
+
+      expect(btnEl[i].classList).toContain(`Button--size-${size}`)
+    }
   })
 })

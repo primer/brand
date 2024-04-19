@@ -73,6 +73,15 @@ test.describe('Visual Comparison: Hero', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('Hero / With Trailing Component', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-trailing-component&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Hero / With Custom Classnames', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-custom-classnames&viewMode=story',

@@ -47,6 +47,47 @@ import {SubNav} from '@primer/react-brand'
 </Container>
 ```
 
+### Optional CTA
+
+```jsx live
+<Container sx={{position: 'relative', height: 100}}>
+  <SubNav hasShadow>
+    <SubNav.Heading href="#">Features</SubNav.Heading>
+    <SubNav.Link href="#">Actions</SubNav.Link>
+    <SubNav.Link href="#">Packages</SubNav.Link>
+    <SubNav.Link href="#" aria-current="page">
+      Copilot
+    </SubNav.Link>
+    <SubNav.Link href="#">Code review</SubNav.Link>
+    <SubNav.Action href="#">CTA</SubNav.Action>
+  </SubNav>
+</Container>
+```
+
+### Optional sub menu
+
+```jsx live
+<Container sx={{position: 'relative', height: 300}}>
+  <SubNav hasShadow>
+    <SubNav.Heading href="#">Features</SubNav.Heading>
+    <SubNav.Link href="#">
+      Actions
+      <SubNav.SubMenu>
+        <SubNav.Link href="#">Actions feature one</SubNav.Link>
+        <SubNav.Link href="#">Actions feature two</SubNav.Link>
+        <SubNav.Link href="#">Actions feature three</SubNav.Link>
+        <SubNav.Link href="#">Actions feature four</SubNav.Link>
+      </SubNav.SubMenu>
+    </SubNav.Link>
+    <SubNav.Link href="#">Packages</SubNav.Link>
+    <SubNav.Link href="#" aria-current="page">
+      Copilot
+    </SubNav.Link>
+    <SubNav.Link href="#">Code review</SubNav.Link>
+  </SubNav>
+</Container>
+```
+
 ## Component props
 
 ### SubNav <Label>Required</Label>
@@ -67,3 +108,15 @@ import {SubNav} from '@primer/react-brand'
 | -------------- | -------- | ------- | -------- | ----------------------------------------------- |
 | `aria-current` | `string` |         | `true`   | Required for indicating the current active link |
 | `href`         | `string` |         | `true`   | URL of the page the link goes to                |
+
+### SubNav.Action
+
+| name   | type     | default | required | description                        |
+| ------ | -------- | ------- | -------- | ---------------------------------- |
+| `href` | `string` |         | `false`  | URL of the page the action goes to |
+
+### SubNav.SubMenu
+
+| name       | type          | default | required | description                  |
+| ---------- | ------------- | ------- | -------- | ---------------------------- |
+| `children` | `SubNav.Link` |         | `false`  | Container for sub menu links |
