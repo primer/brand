@@ -87,6 +87,7 @@ export const PageHandlers = () => {
   const totalPages = 10
 
   const _handlePageChange = (e: React.MouseEvent, pageNumber: number) => {
+    e.preventDefault()
     if (pageNumber === currentPage + 1 && currentPage < totalPages) {
       // Next page handler
       setCurrentPage(currentPage + 1)
@@ -101,12 +102,5 @@ export const PageHandlers = () => {
   // eslint-disable-next-line no-console
   console.log('currentPage: ', currentPage)
 
-  return (
-    <Pagination
-      pageCount={10}
-      currentPage={currentPage}
-      onPageChange={_handlePageChange}
-      hrefBuilder={n => `https://primer.style/brand/page/${n}`}
-    />
-  )
+  return <Pagination pageCount={10} currentPage={currentPage} onPageChange={_handlePageChange} />
 }

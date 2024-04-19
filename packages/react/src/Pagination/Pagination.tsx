@@ -145,7 +145,6 @@ export function usePaginationPages({
             key={key}
             arrowDirection={props.rel === 'prev' ? 'start' : 'end'}
             size="medium"
-            variant="accent"
             className={clsx(styles.Pagination__item)}
             {...props}
           >
@@ -158,7 +157,6 @@ export function usePaginationPages({
         <Link
           key={key}
           size="medium"
-          variant={props['aria-current'] ? 'accent' : 'default'}
           arrowDirection="none"
           className={clsx(styles.Pagination__item, getPagesClasses())}
           role="button"
