@@ -14,13 +14,6 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './Pagination.module.css'
 
-const testIds = {
-  root: 'Pagination-root',
-  get button() {
-    return `${this.root}-button`
-  },
-}
-
 type ResponsivePageVisibilityMap = {
   narrow?: boolean
   regular?: boolean
@@ -46,7 +39,11 @@ export type PaginationProps = {
 } & PropsWithChildren<BaseProps<HTMLElement>> &
   React.HTMLAttributes<HTMLElement>
 
-const _PaginationRoot = memo(
+/**
+ * Use Pagination to display a sequence of links that allow navigation to discrete, related pages.
+ * @see https://primer.style/brand/components/Pagination
+ */
+export const Pagination = memo(
   ({
     id,
     children,
@@ -78,7 +75,7 @@ const _PaginationRoot = memo(
         ref={navRef}
         id={id}
         className={clsx(styles.Pagination, className)}
-        data-testid={testId || testIds.root}
+        data-testid={testId}
         aria-label={ariaLabel || 'Pagination'}
         {...rest}
       >
@@ -177,11 +174,3 @@ export function usePaginationPages({
 function defaultHrefBuilder(pageNum: number) {
   return `#${pageNum}`
 }
-
-/**
- * Use Pagination to display a sequence of links that allow navigation to discrete, related pages.
- * @see https://primer.style/brand/components/Pagination
- */
-export const Pagination = Object.assign(_PaginationRoot, {
-  testIds,
-})
