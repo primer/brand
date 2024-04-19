@@ -231,7 +231,7 @@ AllGlass.decorators = [
     <ThemeProvider colorMode="light">
       <div
         style={{
-          backgroundImage: `url(${swatchBackground})`,
+          backgroundImage: `url(https://github.com/primer/brand/assets/13340707/7fe496dc-f6e0-417e-9453-32cec638ca68)`,
           minHeight: '100dvh',
           overflow: 'hidden',
           paddingTop: 'var(--base-size-112)',
