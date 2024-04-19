@@ -12,7 +12,7 @@ export default {
 export const AnchorHasMargin = () => (
   <Box padding="spacious">
     <Tooltip text="Tooltip is still centered">
-      <Button style={{marginLeft: '16px'}}>Button has 16px margin Left</Button>
+      <Button style={{marginLeft: '16px'}}>Button has 16px margin left</Button>
     </Tooltip>
   </Box>
 )
