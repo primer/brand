@@ -1,0 +1,13 @@
+{
+  "brand": {
+    "Tooltip": {
+      "color": {
+        "default": {
+          "value": "var(--brand-color-text-onEmphasis)",
+          "dark": "var(--brand-color-text-default)"
+        }
+      }
+    }
+  }
+}
+  

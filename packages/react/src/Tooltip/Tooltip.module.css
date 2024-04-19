@@ -29,7 +29,7 @@
   white-space: normal;
   font: normal normal var(--brand-text-size-100) / var(--brand-text-lineHeight-100) var(--brand-fontStack-sansSerif);
   -webkit-font-smoothing: subpixel-antialiased;
-  color: var(--brand-color-text-onEmphasis);
+  color: var(--brand-Tooltip-color-default);
   text-align: center;
   word-wrap: break-word;
   background: var(--c);

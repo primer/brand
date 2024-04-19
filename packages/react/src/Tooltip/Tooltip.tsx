@@ -10,6 +10,7 @@ import {useProvidedRefOrCreate} from '../hooks/useRef'
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './Tooltip.module.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/tooltip/colors-with-modes.css'
 import {BaseProps} from '../component-helpers'
 
 type TooltipDirection = 'n' | 'e' | 's' | 'w'
@@ -74,16 +75,17 @@ export const Tooltip = React.forwardRef(
 
     const [calculatedDirection, setCalculatedDirection] = useState<TooltipDirection>(direction)
 
-    const openTooltip = () => {
+    const openTooltip = React.useCallback(() => {
       if (tooltipElRef.current && triggerRef.current && !tooltipElRef.current.matches(':popover-open')) {
         tooltipElRef.current.showPopover()
       }
-    }
-    const closeTooltip = () => {
+    }, [tooltipElRef, triggerRef])
+
+    const closeTooltip = React.useCallback(() => {
       if (tooltipElRef.current && triggerRef.current && tooltipElRef.current.matches(':popover-open')) {
         tooltipElRef.current.hidePopover()
       }
-    }
+    }, [tooltipElRef, triggerRef])
 
     useEffect(() => {
       if (!tooltipElRef.current || !triggerRef.current) return
