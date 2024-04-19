@@ -43,7 +43,8 @@ export type PaginationProps = {
   /* The number of pages to show on each side of the current page */
   surroundingPageCount?: number
   'data-testid'?: string
-} & PropsWithChildren<BaseProps<HTMLElement>>
+} & PropsWithChildren<BaseProps<HTMLElement>> &
+  React.HTMLAttributes<HTMLElement>
 
 const _PaginationRoot = memo(
   ({
@@ -57,6 +58,7 @@ const _PaginationRoot = memo(
     marginPageCount = 1,
     showPages = true,
     surroundingPageCount = 2,
+    'aria-label': ariaLabel,
     'data-testid': testId,
     ...rest
   }: PaginationProps) => {
@@ -77,7 +79,7 @@ const _PaginationRoot = memo(
         id={id}
         className={clsx(styles.Pagination, className)}
         data-testid={testId || testIds.root}
-        aria-label="Pagination"
+        aria-label={ariaLabel || 'Pagination'}
         {...rest}
       >
         <div className={clsx(styles.Pagination__inner)}>{pageElements}</div>

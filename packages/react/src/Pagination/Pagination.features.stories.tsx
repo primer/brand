@@ -34,6 +34,7 @@ export const HidePageNumbersByViewport = () => (
         currentPage={5}
         showPages={{narrow: false, regular: false, wide: false}}
         onPageChange={handlePageChange}
+        aria-label="Pagination with hidden page numbers on all viewports"
       />
     </div>
     <div>
@@ -45,6 +46,7 @@ export const HidePageNumbersByViewport = () => (
         currentPage={5}
         showPages={{narrow: false, regular: true, wide: true}}
         onPageChange={handlePageChange}
+        aria-label="Pagination with hidden page numbers on narrow viewports"
       />
     </div>
     <div>
@@ -56,6 +58,7 @@ export const HidePageNumbersByViewport = () => (
         currentPage={5}
         showPages={{narrow: false, regular: false, wide: true}}
         onPageChange={handlePageChange}
+        aria-label="Pagination with hidden page numbers on narrow and regular viewports"
       />
     </div>
     <div>
@@ -67,6 +70,7 @@ export const HidePageNumbersByViewport = () => (
         currentPage={5}
         showPages={{narrow: true, regular: true, wide: true}}
         onPageChange={handlePageChange}
+        aria-label="Pagination with visible page numbers on all viewports"
       />
     </div>
   </Stack>
