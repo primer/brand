@@ -8,7 +8,7 @@ import React, {
   ReactNode,
   useCallback,
 } from 'react'
-import {Text} from '..'
+import {Button, ButtonSizes, ButtonVariants, Text} from '..'
 
 import {default as clsx} from 'clsx'
 import {ChevronDownIcon, XIcon} from '@primer/octicons-react'
@@ -22,6 +22,7 @@ import type {BaseProps} from '../component-helpers'
 /**
  * Design tokens
  */
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/sub-nav/base.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/sub-nav/colors-with-modes.css'
 
 /** * Main Stylesheet (as a CSS Module) */
@@ -40,6 +41,9 @@ const testIds = {
   },
   get heading() {
     return `${this.root}-heading`
+  },
+  get action() {
+    return `${this.root}-action`
   },
 }
 
@@ -72,8 +76,12 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, hasSh
     }
   }) as React.ReactElement | undefined
 
-  const {heading: HeadingChild, links: LinkChildren} = Children.toArray(children).reduce(
-    (acc: {heading?: ReactNode; links: ReactElement[]}, child) => {
+  const {
+    heading: HeadingChild,
+    links: LinkChildren,
+    action: ActionChild,
+  } = Children.toArray(children).reduce(
+    (acc: {heading?: ReactNode; links: ReactElement[]; action?: ReactNode}, child) => {
       if (isValidElement(child)) {
         if (child.type === SubNavHeading) {
           acc.heading = child
@@ -83,11 +91,13 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, hasSh
               onClick: child.props['aria-current'] ? handleMenuToggle : child.props.onClick,
             }),
           )
+        } else if (child.type === _SubNavAction) {
+          acc.action = child
         }
       }
       return acc
     },
-    {heading: undefined, links: []},
+    {heading: undefined, links: [], action: undefined},
   )
 
   return (
@@ -111,6 +121,7 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, hasSh
           data-testid={testIds.overlay}
         >
           {LinkChildren}
+          {ActionChild && <div className={styles['SubNav__action-container']}>{ActionChild}</div>}
         </div>
       )}
       <button
@@ -167,18 +178,88 @@ const SubNavLink = ({
   className,
   ...props
 }: SubNavLinkProps) => {
+  const hasSubMenu = Children.toArray(children).some(child => {
+    if (isValidElement(child)) {
+      return child.type === _SubMenu
+    }
+  })
+
+  const [label, SubMenuChildren] = children as ReactNode[]
+
   return (
-    <a
+    <>
+      {hasSubMenu ? (
+        <div
+          className={clsx(styles['SubNav__link'], styles['SubNav__link--has-sub-menu'])}
+          data-testid={testId || testIds.link}
+        >
+          <a
+            href={href}
+            className={clsx(styles['SubNav__link'], ariaCurrent && styles['SubNav__link--active'], className)}
+            aria-current={ariaCurrent}
+            {...props}
+          >
+            <Text as="span" size="200" className={styles['SubNav__link-label']}>
+              {label}
+            </Text>
+          </a>
+          <>{SubMenuChildren}</>
+          {<ChevronDownIcon className={styles['SubNav__sub-menu-icon']} size={16} />}
+        </div>
+      ) : (
+        <a
+          href={href}
+          className={clsx(styles['SubNav__link'], ariaCurrent && styles['SubNav__link--active'], className)}
+          aria-current={ariaCurrent}
+          data-testid={testId || testIds.link}
+          {...props}
+        >
+          <Text as="span" size="200" className={styles['SubNav__link-label']}>
+            {children}
+          </Text>
+        </a>
+      )}
+    </>
+  )
+}
+
+function _SubMenu({children, className, ...props}: PropsWithChildren<BaseProps<HTMLDivElement>>) {
+  return (
+    <div className={clsx(styles['SubNav__sub-menu'], className)} {...props}>
+      {children}
+    </div>
+  )
+}
+
+type SubNavActionProps = {
+  /**
+   * Required path or location for the action button to link to.
+   */
+  href: string
+  /**
+   * Optional sizes for the button.
+   */
+  size?: (typeof ButtonSizes)[number]
+  /**
+   * Optional sizes for the button.
+   */
+  variant?: (typeof ButtonVariants)[number]
+} & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>
+
+function _SubNavAction({children, href, variant = 'primary', size = 'small', ...rest}: SubNavActionProps) {
+  return (
+    <Button
+      className={styles['SubNav__action']}
+      as="a"
       href={href}
-      className={clsx(styles['SubNav__link'], ariaCurrent && styles['SubNav__link--active'], className)}
-      aria-current={ariaCurrent}
-      data-testid={testId || testIds.link}
-      {...props}
+      variant={variant}
+      hasArrow={false}
+      data-testid={testIds.action}
+      size={size}
+      {...rest}
     >
-      <Text as="span" size="200" className={styles['SubNav__link-label']}>
-        {children}
-      </Text>
-    </a>
+      {children}
+    </Button>
   )
 }
 
@@ -189,5 +270,7 @@ const SubNavLink = ({
 export const SubNav = Object.assign(_SubNavRoot, {
   Heading: SubNavHeading,
   Link: SubNavLink,
+  Action: _SubNavAction,
+  SubMenu: _SubMenu,
   testIds,
 })
