@@ -40,6 +40,14 @@ jobs:
       - name: Build
         run: npm run build --workspace=packages/design-tokens
 
+      - name: Debug
+        run: |
+          cd temp-main && ls
+          cd node_modules && ls
+          cd @primer && ls
+          cd primitives && ls
+          cd ../../../../ && ls
+
       - name: Build (reference)
         run: pushd temp-main; npm run build --workspace=packages/design-tokens; popd
 
