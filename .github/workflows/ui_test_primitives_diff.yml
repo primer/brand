@@ -35,7 +35,12 @@ jobs:
         run: npm ci --legacy-peer-deps && cd apps/docs && npm ci --legacy-peer-deps
 
       - name: Install dependencies (reference)
-        run: pushd temp-main; npm ci --legacy-peer-deps && cd apps/docs && npm ci --legacy-peer-deps; popd
+        run: |
+          pushd temp-main
+          npm ci --legacy-peer-deps
+          cd apps/docs
+          npm ci --legacy-peer-deps
+          popd
 
       - name: Build
         run: npm run build --workspace=packages/design-tokens
