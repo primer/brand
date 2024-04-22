@@ -43,6 +43,7 @@
     "@storybook/react-webpack5": "7.6.17",
     "@storybook/test-runner": "^0.10.0",
     "@storybook/testing-library": "^0.1.0",
+    "@storybook/theming": "7.6.17",
     "axe-core": "^4.7.2",
     "axe-playwright": "^1.2.3",
     "css-loader": "^6.7.4",
