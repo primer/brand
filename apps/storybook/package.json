@@ -38,11 +38,9 @@
     "@storybook/addon-interactions": "^7.6.17",
     "@storybook/addon-links": "^7.6.17",
     "@storybook/addon-storysource": "^7.6.17",
-    "@storybook/jest": "^0.1.0",
     "@storybook/react": "^7.6.17",
     "@storybook/react-webpack5": "^7.6.17",
     "@storybook/test-runner": "^0.10.0",
-    "@storybook/testing-library": "^0.1.0",
     "@storybook/theming": "^7.6.17",
     "axe-core": "^4.7.2",
     "axe-playwright": "^1.2.3",
@@ -66,5 +64,8 @@
   "engines": {
     "node": ">=16.0.0",
     "npm": ">=8.0.0"
+  },
+  "dependencies": {
+    "@storybook/test": "^7.6.17"
   }
 }

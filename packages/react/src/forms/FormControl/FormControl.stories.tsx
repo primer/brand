@@ -194,7 +194,6 @@ export const TextInputPlayground = args => {
         placeholder={args.placeholder}
         required={args.required}
       />
-
       {args.validationStatus && args.validationStatus === 'error' && (
         // eslint-disable-next-line i18n-text/no-en
         <FormControl.Validation>{args.validationText || 'This is an error message'}</FormControl.Validation>
@@ -224,7 +223,6 @@ export const TextareaPlayground = args => {
         placeholder={args.placeholder}
         required={args.required}
       />
-
       {args.validationStatus && args.validationStatus === 'error' && (
         // eslint-disable-next-line i18n-text/no-en
         <FormControl.Validation>{args.validationText || 'This is an error message'}</FormControl.Validation>
@@ -257,7 +255,6 @@ export const SelectPlayground = args => {
         <Select.Option value="us">United States of America</Select.Option>
         <Select.Option value="uk">United Kingdom</Select.Option>
       </Select>
-
       {args.validationStatus && args.validationStatus === 'error' && (
         // eslint-disable-next-line i18n-text/no-en
         <FormControl.Validation>{args.validationText || 'This is an error message'}</FormControl.Validation>
@@ -282,7 +279,6 @@ export const CheckboxPlayground = args => {
     >
       <FormControl.Label visuallyHidden={args.visuallyHidden ? true : false}>{args.label}</FormControl.Label>
       <Checkbox disabled={args.disabled} />
-
       {args.validationStatus && args.validationStatus === 'error' && (
         // eslint-disable-next-line i18n-text/no-en
         <FormControl.Validation>{args.validationText || 'This is an error message'}</FormControl.Validation>
