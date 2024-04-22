@@ -49,6 +49,7 @@
     "@juggle/resize-observer": "^3.4.0",
     "@primer/octicons-react": "^19.8.0",
     "@reach/auto-id": "^0.17.0",
+    "@storybook/react": "^7.6.17",
     "@testing-library/dom": "^8.20.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^12.1.5",
