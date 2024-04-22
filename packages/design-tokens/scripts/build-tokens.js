@@ -239,6 +239,7 @@ const darkJson = require('../src/tokens/base/colors/dark')
     `tokens/functional/components/testimonial/colors.json`,
     `tokens/functional/components/sub-nav/colors.js`,
     `tokens/functional/components/pagination/colors.js`,
+    `tokens/functional/components/ide/colors.js`,
     `tokens/functional/components/breadcrumbs/colors.js`,
   ]
 
