@@ -78,7 +78,6 @@
 
 .Pagination__item[aria-current],
 .Pagination__item[aria-current]:hover {
-  color: white;
   background-color: var(--brand-pagination-link-bgColor-active);
   border-color: transparent;
 }
