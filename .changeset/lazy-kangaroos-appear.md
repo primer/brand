@@ -1,5 +1,5 @@
 ---
-'@primer/react-brand': minor
+'@primer/react-brand': patch
 ---
 
 Added `none` optiona to `arrowDirection` prop of `Link` component. This value removes the arrow entirely.
