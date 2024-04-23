@@ -9,11 +9,21 @@ module.exports = {
     getAbsolutePath('@storybook/addon-interactions'),
     getAbsolutePath('storybook-css-modules-preset'),
     getAbsolutePath('@storybook/addon-storysource'),
+    getAbsolutePath('@storybook/addon-webpack5-compiler-swc'),
   ],
   framework: {
     name: getAbsolutePath('@storybook/react-webpack5'),
-    options: {},
+    options: {builder: {useSWC: true}},
   },
+  swc: () => ({
+    jsc: {
+      transform: {
+        react: {
+          runtime: 'automatic',
+        },
+      },
+    },
+  }),
   features: {
     buildStoriesJson: true,
     disableTelemetry: true,
