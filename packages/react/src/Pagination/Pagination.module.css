@@ -1,0 +1,115 @@
+.Pagination {
+  margin-top: var(--base-size-20);
+  margin-bottom: var(--base-size-16);
+  text-align: center;
+}
+
+.Pagination__inner {
+  display: inline-flex;
+  align-items: center;
+}
+
+.Pagination__item {
+  min-width: var(--base-size-36);
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  padding: var(--base-size-4) var(--base-size-8);
+  margin-right: var(--base-size-8);
+  border: var(--brand-borderWidth-thick) solid transparent;
+  border-radius: var(--brand-borderRadius-medium);
+  transition: border-color var(--brand-animation-duration-fast) var(--brand-animation-easing-default);
+}
+
+.Pagination__item--hidden,
+.Pagination__item--hidden-narrow,
+.Pagination__item--hidden-regular,
+.Pagination__item--hidden-wide {
+  display: none;
+}
+
+.Pagination__item--visible,
+.Pagination__item--visible-narrow {
+  display: block;
+}
+
+@media screen and (min-width: 48rem) {
+  .Pagination__item--hidden-regular {
+    display: none;
+  }
+
+  .Pagination__item--visible-regular {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 80rem) {
+  .Pagination__item--hidden-wide {
+    display: none;
+  }
+
+  .Pagination__item--visible-wide {
+    display: block;
+  }
+}
+
+.Pagination__item:last-child {
+  margin-right: 0;
+}
+
+.Pagination__item:hover,
+.Pagination__item:focus {
+  text-decoration: none;
+  outline: 0;
+  transition-duration: 0.1s;
+  border-color: var(--brand-pagination-borderColor-hover);
+}
+
+.Pagination__item::after {
+  display: none;
+}
+
+.Pagination__item:active {
+  border-color: var(--brand-pagination-link-bgColor-active);
+}
+
+.Pagination__item[aria-current],
+.Pagination__item[aria-current]:hover {
+  background-color: var(--brand-pagination-link-bgColor-active);
+  border-color: transparent;
+}
+
+.Pagination__item[aria-current] * {
+  color: var(--brand-color-text-onEmphasis);
+}
+
+.Pagination__item[aria-disabled],
+.Pagination__item[aria-disabled]:hover,
+.Pagination__item[role='presentation'],
+.Pagination__item[role='presentation']:hover {
+  color: var(--brand-color-text-muted);
+  cursor: default;
+  background-color: transparent;
+  border-color: transparent;
+  font-size: inherit;
+  font-family: inherit;
+  padding-top: inherit;
+  padding-bottom: inherit;
+}
+
+.Pagination__item[aria-disabled] *,
+.Pagination__item[aria-disabled]:hover *,
+.Pagination__item[role='presentation'] *,
+.Pagination__item[role='presentation']:hover * {
+  color: inherit;
+}
+
+.Pagination__item[rel='prev'] {
+  margin-inline-end: var(--base-size-16);
+}
+.Pagination__item[rel='next'] {
+  margin-inline-start: var(--base-size-16);
+}
