@@ -1,6 +1,6 @@
 import React from 'react'
 import type {Meta} from '@storybook/react'
-import {Button, Box, Link, Stack} from '..'
+import {Button, Box, Stack} from '..'
 import {Tooltip} from './Tooltip'
 import {ScreenFullIcon} from '@primer/octicons-react'
 
