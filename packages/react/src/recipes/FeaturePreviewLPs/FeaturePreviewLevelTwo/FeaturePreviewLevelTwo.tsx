@@ -25,6 +25,7 @@ import {
   Text,
   ThemeProvider,
   Timeline,
+  IDE,
 } from '../../..'
 
 import styles from './FeaturePreviewLevelTwo.module.css'
@@ -37,6 +38,7 @@ import emptyBrowserDarkFull from '../fixtures/images/fg/empty-browser-full-dark.
 import monaAvatar from '../../../fixtures/images/avatar-mona.png'
 import {Themes, themeDetailsMap} from '../helpers'
 import clsx from 'clsx'
+import {files} from '../../../IDE/fixtures/content'
 
 type FeaturePreviewLevelTwoProps = {
   gridOverlay?: boolean
@@ -367,7 +369,7 @@ export function FeaturePreviewLevelTwo({
               {args.riverTwoVisible && (
                 <>
                   {args.riverTwoType === 'breakout' ? (
-                    <RiverBreakout>
+                    <RiverBreakout id="breakout-with-ide">
                       <RiverBreakout.A11yHeading as={args.sectionIntroVisible ? 'h3' : 'h2'}>
                         {args.riverTwoTitle}
                       </RiverBreakout.A11yHeading>
@@ -377,10 +379,15 @@ export function FeaturePreviewLevelTwo({
                           backgroundImage: `url(${themeDetailsMap[accentColor][selectedColorMode].images.heroVisualBg})`,
                         }}
                       >
-                        <Image
-                          src={isLightMode ? emptyBrowserLightFull : emptyBrowserDarkFull}
-                          alt="placeholder, blank area with an off-white background color"
-                        />
+                        <Box padding={48} paddingBlockEnd={4}>
+                          <IDE
+                            height={600}
+                            variant="glass"
+                            alternativeText="A code editor showing animated JavaScript appearing line-by-line, ending in a Copilot autosuggest"
+                          >
+                            <IDE.Editor files={files} />
+                          </IDE>
+                        </Box>
                       </RiverBreakout.Visual>
                       <RiverBreakout.Content
                         trailingComponent={() => (
