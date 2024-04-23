@@ -2,7 +2,7 @@ import React from 'react'
 import type {Meta} from '@storybook/react'
 import {Button, Box, Link, Stack} from '..'
 import {Tooltip} from './Tooltip'
-import {BookIcon} from '@primer/octicons-react'
+import {ScreenFullIcon} from '@primer/octicons-react'
 
 export default {
   title: 'Components/Tooltip/Features',
@@ -19,10 +19,10 @@ export const AnchorHasMargin = () => (
 
 export const LabelType = () => (
   <Box padding="spacious">
-    <Tooltip text="Contribution Documentation for 'Primer React'" type="label">
-      <Link href="https://github.com/primer/react/contributor-docs/CONTRIBUTING.md">
-        <BookIcon />
-      </Link>
+    <Tooltip text="Go fullscreen" type="label">
+      <Button hasArrow={false}>
+        <ScreenFullIcon />
+      </Button>
     </Tooltip>
   </Box>
 )
