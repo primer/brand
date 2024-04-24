@@ -1,5 +1,13 @@
 # @primer/brand-primitives
 
+## 0.33.0
+
+### Patch Changes
+
+- [#566](https://github.com/primer/brand/pull/566) [`eaeb50e`](https://github.com/primer/brand/commit/eaeb50e31e87748c7d1aadcdfa9518c28ee31765) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Adjusted block padding of small button controls from `12px` to `8px`.
+
+  This change affects all small size `Button` and `ActionMenu` instances.
+
 ## 0.32.0
 
 ## 0.31.0
