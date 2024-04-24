@@ -329,7 +329,7 @@ export const IDEDefaultIconMap: IDEEditorTabIcon = {
   sh: `${iconBaseUrl}/13340707/549ce181-4541-4811-8712-a9c5abd8eeae`,
   sql: `${iconBaseUrl}/13340707/b2b73a2e-e4e1-47c8-aabc-c204836244b8`,
   // Add additional default icons as needed
-  // Note: These can also be customised ane extended by end user using the tabIcons prop
+  // Note: These can also be customised and extended by end user using the tabIcons prop
 }
 
 export const IDEFileExtensions = Object.keys(IDEDefaultIconMap)
