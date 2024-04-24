@@ -42,6 +42,7 @@ export * from './SubNav'
 export * from './IDE'
 export * from './Breadcrumbs'
 export * from './Pagination'
+export * from './Tooltip'
 
 // hooks
 export * from './hooks/useWindowSize'
