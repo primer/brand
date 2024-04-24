@@ -150,7 +150,7 @@
   padding: var(--base-size-16);
   border-radius: var(--brand-borderRadius-large);
   font-family: var(--brand-fontStack-monospace);
-  font-size: var(--base-size-14) !important; /* workaround dotcom specificity */
+  font-size: calc(var(--base-size-12) + 2px) !important; /* workaround dotcom specificity */
 }
 
 /**
@@ -188,7 +188,7 @@
   align-items: center;
   gap: var(--base-size-4);
   font-family: var(--brand-fontStack-monospace);
-  font-size: var(--base-size-14);
+  font-size: calc(var(--base-size-12) + 2px);
   color: var(--brand-color-text-muted);
   cursor: pointer;
   border: none;
@@ -278,8 +278,8 @@ img.IDE__Editor-tab-icon {
 
 .IDE__Editor--small .IDE__Editor-pane,
 .IDE__Editor--small .IDE__Editor-lineNumbers {
-  font-size: 11px !important; /* workaround dotcom specificity */
-  line-height: 18px !important; /* workaround dotcom specificity */
+  font-size: calc(var(--base-size-12) -1px) !important; /* workaround dotcom specificity */
+  line-height: calc(var(--base-size-16) + 2px) !important; /* workaround dotcom specificity */
 }
 
 .IDE__Editor--medium .IDE__Editor-pane,
