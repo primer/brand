@@ -1,5 +1,4 @@
 declare const styles: {
-  readonly "IDE": string;
   readonly "IDE__inner": string;
   readonly "IDE--glass": string;
   readonly "IDE__main": string;
@@ -23,11 +22,11 @@ declare const styles: {
   readonly "IDE__Editor-tab-icon": string;
   readonly "IDE__Editor-content": string;
   readonly "IDE__Editor-pane": string;
-  readonly "IDE__Editor-pane--suggested": string;
-  readonly "IDE__Editor-lineNumbers": string;
   readonly "IDE__Editor--small": string;
+  readonly "IDE__Editor-lineNumbers": string;
   readonly "IDE__Editor--medium": string;
   readonly "IDE__Editor--large": string;
+  readonly "IDE__Editor-pane--suggested": string;
   readonly "IDE__Editor-lineNumber": string;
   readonly "IDE__Editor-lineNumber-text": string;
   readonly "IDE__Chat-copilot-indicator": string;

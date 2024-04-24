@@ -4,6 +4,8 @@
 
 Added support for optional `Button` and sub menu's in `SubNav` component.
 
+Also added `fullWidth` prop to optionally remove the default component padding.
+
 ```jsx
 <SubNav>
   <SubNav.Heading href="#">Heading</SubNav.Heading>

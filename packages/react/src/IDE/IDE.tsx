@@ -93,12 +93,7 @@ const _IDERoot = memo(
         aria-labelledby={`${uniqueId}-IDE-sr-only-message`}
         role="application"
         data-testid={testId || testIds.root}
-        className={clsx(
-          styles.IDE,
-          styles[`IDE--${variant}`],
-          ChatChild && EditorChild && styles['IDE--full-exp'],
-          className,
-        )}
+        className={clsx(styles[`IDE--${variant}`], ChatChild && EditorChild && styles['IDE--full-exp'], className)}
       >
         <div aria-hidden {...rest}>
           <div
@@ -297,6 +292,10 @@ type IDEEditorProps = {
    * Test id for the IDE.
    */
   'data-testid'?: string
+  /**
+   * Enable user customisation of the icons used in file tabs.
+   */
+  tabIcons?: IDEEditorTabIcon
 } & BaseProps<HTMLDivElement>
 
 export type IDEEditorFile = {
@@ -309,26 +308,31 @@ export type IDEEditorFile = {
   highlighter?: 'hljs' // add additional highlighters as needed
 }
 
-const iconMap = {
-  py: 'file_type_python.svg',
-  ts: 'file_type_typescript.svg',
-  js: 'file_type_js.svg',
-  jsx: 'file_type_reactjs.svg',
-  hs: 'file_type_haskell.svg',
-  html: 'file_type_html.svg',
-  css: 'file_type_css.svg',
-  scss: 'file_type_scss.svg',
-  json: 'file_type_json.svg',
-  md: 'file_type_markdown.svg',
-  yml: 'file_type_yaml.svg',
-  yaml: 'file_type_yaml.svg',
-  txt: 'file_type_text.svg',
-  sh: 'file_type_shell.svg',
-  sql: 'file_type_sql.svg',
-  // add additional icons as needed
+type IDEEditorTabIcon = Record<string, string>
+
+const iconBaseUrl = 'https://github.com/primer/brand/assets'
+
+export const IDEDefaultIconMap: IDEEditorTabIcon = {
+  py: `${iconBaseUrl}/13340707/7ca66487-d958-4c30-acbc-397f7a6169b7`,
+  ts: `${iconBaseUrl}/13340707/2a7b87cf-b522-4ab5-a127-5a2c69bd0a89`,
+  js: `${iconBaseUrl}/13340707/5a7bfffa-af38-4e32-ab39-a9e7efbcc7c6`,
+  jsx: `${iconBaseUrl}/13340707/d975a978-dbc7-4626-b995-c00cac9bc132`,
+  hs: `${iconBaseUrl}/13340707/826843ce-424b-4693-84d3-a43e4b7f1280`,
+  html: `${iconBaseUrl}/13340707/f5b03413-b8f4-4cd5-9d91-6b574ada14ed`,
+  css: `${iconBaseUrl}/13340707/3df2f0ba-daff-4b76-8492-f5773c515369`,
+  scss: `${iconBaseUrl}/13340707/a1d21f2e-c813-4211-8d9a-2869c1968e9a`,
+  json: `${iconBaseUrl}/13340707/ca21068e-8c27-4b84-9a1d-b965b49b3568`,
+  md: `${iconBaseUrl}/13340707/39e7ff2b-9d0a-47e9-9686-bed51800084c`,
+  yml: `${iconBaseUrl}/13340707/afb28101-1352-444f-8a8e-419b6883132f`,
+  yaml: `${iconBaseUrl}/13340707/afb28101-1352-444f-8a8e-419b6883132f`,
+  txt: `${iconBaseUrl}/13340707/7c52da20-1fe2-496c-b4bb-6ea61d0fe3dd`,
+  sh: `${iconBaseUrl}/13340707/549ce181-4541-4811-8712-a9c5abd8eeae`,
+  sql: `${iconBaseUrl}/13340707/b2b73a2e-e4e1-47c8-aabc-c204836244b8`,
+  // Add additional default icons as needed
+  // Note: These can also be customised and extended by end user using the tabIcons prop
 }
 
-export const IDEFileExtensions = Object.keys(iconMap)
+export const IDEFileExtensions = Object.keys(IDEDefaultIconMap)
 
 const _Editor = memo(
   forwardRef(
@@ -341,6 +345,7 @@ const _Editor = memo(
         showLineNumbers = true,
         showReplayButton = true,
         size = 'medium',
+        tabIcons = IDEDefaultIconMap,
         ...rest
       }: IDEEditorProps,
       ref: Ref<HTMLDivElement>,
@@ -491,7 +496,7 @@ const _Editor = memo(
                       alt={`Logo for ${language}`}
                       width={16}
                       height={16}
-                      src={`https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/${iconMap[language]}`}
+                      src={tabIcons[language]}
                     />
                   )}{' '}
                   {file.name}
