@@ -1,6 +1,6 @@
 import {Meta} from '@storybook/react'
 import React from 'react'
-import {IDE} from './IDE'
+import {IDE, IDEDefaultIconMap} from './IDE'
 
 import hljs from 'highlight.js/lib/core'
 import javascript from 'highlight.js/lib/languages/javascript'
@@ -63,6 +63,27 @@ export const EditorNoReplayButton = args => {
   return (
     <IDE {...args}>
       <IDE.Editor size="large" activeTab={0} files={files} showReplayButton={false} />
+    </IDE>
+  )
+}
+
+EditorNoReplayButton.storyName = 'Editor Only (no replay button)'
+
+export const EditorCustomIcons = args => {
+  return (
+    <IDE {...args}>
+      <IDE.Editor
+        size="large"
+        activeTab={0}
+        files={files}
+        showReplayButton={false}
+        tabIcons={{
+          ...Object.keys(IDEDefaultIconMap).reduce((acc, key) => {
+            acc[key] = 'https://github.com/primer/brand/assets/13340707/fede56eb-578f-4d17-b045-5f6fdfae28cf'
+            return acc
+          }, {}),
+        }}
+      />
     </IDE>
   )
 }

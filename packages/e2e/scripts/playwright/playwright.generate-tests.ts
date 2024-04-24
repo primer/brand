@@ -99,6 +99,7 @@
     'components-ide-features--perspective-example', // animation too long
     'components-ide-features--perspective-example-light', // animation too long
     'components-ide-features--all-glass', // animation too long
+    'components-ide-features--editor-custom-icons', // animation too long
   ]
 
   const categorisedStories = Object.keys(stories as Stories).reduce((acc, key) => {

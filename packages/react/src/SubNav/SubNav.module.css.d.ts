@@ -3,6 +3,7 @@ declare const styles: {
   readonly "SubNav__heading": string;
   readonly "SubNav__heading-container": string;
   readonly "SubNav--has-shadow": string;
+  readonly "SubNav--full-width": string;
   readonly "SubNav__action-container": string;
   readonly "SubNav__sub-menu-icon": string;
   readonly "SubNav--open": string;
