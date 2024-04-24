@@ -93,12 +93,7 @@ const _IDERoot = memo(
         aria-labelledby={`${uniqueId}-IDE-sr-only-message`}
         role="application"
         data-testid={testId || testIds.root}
-        className={clsx(
-          styles.IDE,
-          styles[`IDE--${variant}`],
-          ChatChild && EditorChild && styles['IDE--full-exp'],
-          className,
-        )}
+        className={clsx(styles[`IDE--${variant}`], ChatChild && EditorChild && styles['IDE--full-exp'], className)}
       >
         <div aria-hidden {...rest}>
           <div
