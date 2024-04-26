@@ -2,7 +2,7 @@ import React from 'react'
 import '@testing-library/jest-dom'
 import {Tooltip, TooltipProps} from './Tooltip'
 import {render as HTMLRender} from '@testing-library/react'
-import {Button, Link} from '../..'
+import {Button, Link} from '..'
 import {BookIcon} from '@primer/octicons-react'
 
 const TooltipComponent = (props: Omit<TooltipProps, 'text'> & {text?: string}) => (
