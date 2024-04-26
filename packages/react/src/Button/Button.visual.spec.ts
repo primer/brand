@@ -82,6 +82,13 @@ test.describe('Visual Comparison: Button', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('Button / Small', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--small&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Button / Large', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--large&viewMode=story')
 

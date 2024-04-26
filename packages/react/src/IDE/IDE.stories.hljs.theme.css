@@ -1,0 +1,160 @@
+/*!
+  Theme: GitHub
+  Description: 
+    Dark theme adapted from HLJS' GitHub theme.
+    This is used for Storybook examples only, and is not a published artifact
+*/
+
+pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em;
+}
+code.hljs {
+  padding: 3px 5px;
+}
+
+.hljs {
+  color: #c9d1d9;
+  background: #0d1117;
+}
+
+[data-color-mode='dark'] .hljs-doctag,
+[data-color-mode='dark'] .hljs-keyword,
+[data-color-mode='dark'] .hljs-meta .hljs-keyword,
+[data-color-mode='dark'] .hljs-template-tag,
+[data-color-mode='dark'] .hljs-template-variable,
+[data-color-mode='dark'] .hljs-type,
+[data-color-mode='dark'] .hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: var(--base-color-scale-pink-2) !important;
+}
+
+[data-color-mode='light'] .hljs-doctag,
+[data-color-mode='light'] .hljs-keyword,
+[data-color-mode='light'] .hljs-meta .hljs-keyword,
+[data-color-mode='light'] .hljs-template-tag,
+[data-color-mode='light'] .hljs-template-variable,
+[data-color-mode='light'] .hljs-type,
+[data-color-mode='light'] .hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: var(--base-color-scale-pink-5) !important;
+}
+
+[data-color-mode='dark'] .hljs-title,
+[data-color-mode='dark'] .hljs-title.class_,
+[data-color-mode='dark'] .hljs-title.class_.inherited__,
+[data-color-mode='dark'] .hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: var(--base-color-scale-yellow-0) !important;
+}
+
+[data-color-mode='light'] .hljs-title,
+[data-color-mode='light'] .hljs-title.class_,
+[data-color-mode='light'] .hljs-title.class_.inherited__,
+[data-color-mode='light'] .hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: var(--base-color-scale-yellow-3) !important;
+}
+
+[data-color-mode='dark'] .hljs-attr,
+[data-color-mode='dark'] .hljs-attribute,
+[data-color-mode='dark'] .hljs-literal,
+[data-color-mode='dark'] .hljs-meta,
+[data-color-mode='dark'] .hljs-number,
+[data-color-mode='dark'] .hljs-operator,
+[data-color-mode='dark'] .hljs-variable,
+[data-color-mode='dark'] .hljs-selector-attr,
+[data-color-mode='dark'] .hljs-selector-class,
+[data-color-mode='dark'] .hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: var(--base-color-scale-blue-3) !important;
+}
+
+[data-color-mode='light'] .hljs-attr,
+[data-color-mode='light'] .hljs-attribute,
+[data-color-mode='light'] .hljs-literal,
+[data-color-mode='light'] .hljs-meta,
+[data-color-mode='light'] .hljs-number,
+[data-color-mode='light'] .hljs-operator,
+[data-color-mode='light'] .hljs-variable,
+[data-color-mode='light'] .hljs-selector-attr,
+[data-color-mode='light'] .hljs-selector-class,
+[data-color-mode='light'] .hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: var(--base-color-scale-blue-5) !important;
+}
+
+[data-color-mode='dark'] .hljs-regexp,
+[data-color-mode='dark'] .hljs-string,
+[data-color-mode='dark'] .hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: var(--base-color-scale-teal-2) !important;
+}
+
+[data-color-mode='light'] .hljs-regexp,
+[data-color-mode='light'] .hljs-string,
+[data-color-mode='light'] .hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: var(--base-color-scale-teal-5) !important;
+}
+
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #ffa657 !important;
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #8b949e !important;
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #7ee787 !important;
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #c9d1d9 !important;
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #1f6feb !important;
+  font-weight: bold;
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #f2cc60 !important;
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #c9d1d9;
+  font-style: italic;
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #c9d1d9;
+  font-weight: bold;
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #aff5b4 !important;
+  background-color: #033a16;
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #ffdcd7 !important;
+  background-color: #67060c;
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+}

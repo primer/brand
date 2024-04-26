@@ -16,7 +16,7 @@ export type LinkProps = {
   /**
    * Position of the arrow.
    */
-  arrowDirection?: 'start' | 'end'
+  arrowDirection?: 'start' | 'end' | 'none'
   /**
    * Specify alternative link appearance
    */

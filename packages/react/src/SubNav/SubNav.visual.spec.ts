@@ -35,6 +35,25 @@ test.describe('Visual Comparison: SubNav', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('SubNav / Full Width', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-subnav-features--full-width&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for Full Width Narrow', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('SubNav / Full Width Narrow', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-subnav-features--full-width-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot()).toMatchSnapshot()
+    })
+  })
   test('SubNav / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-subnav--default&viewMode=story')
 

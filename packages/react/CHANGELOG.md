@@ -1,5 +1,85 @@
 # @primer/react-brand
 
+## 0.33.0
+
+### Minor Changes
+
+- [#575](https://github.com/primer/brand/pull/575) [`89d6590`](https://github.com/primer/brand/commit/89d659084eedb60ebeea198ead43dd0f89a4fac0) Thanks [@rezrah](https://github.com/rezrah)! - New pagination component generally available
+
+  ```jsx
+  <Pagination pageCount={15} currentPage={5} />
+  ```
+
+  :link: [Read the documentation for more examples](https://primer.style/brand/components/Pagination)
+
+- [#574](https://github.com/primer/brand/pull/574) [`95f15ba`](https://github.com/primer/brand/commit/95f15ba12156aa3ce11b5e436c9bcf10747ff1ff) Thanks [@rezrah](https://github.com/rezrah)! - New breadcrumbs component generally available
+
+  ```jsx
+  <Breadcrumbs>
+    <Breadcrumbs.Item href="/">Resources</Breadcrumbs.Item>
+    <Breadcrumbs.Item href="/copilot">GitHub Copilot</Breadcrumbs.Item>
+    <Breadcrumbs.Item href="/copilot/chat" selected>
+      Chat
+    </Breadcrumbs.Item>
+  </Breadcrumbs>
+  ```
+
+  :link: [Read the documentation for more examples](https://primer.style/brand/components/Breadcrumbs)
+
+- [#555](https://github.com/primer/brand/pull/555) [`3980daa`](https://github.com/primer/brand/commit/3980daa4a492aefcd5e151e5451200d9ac6f9b43) Thanks [@rezrah](https://github.com/rezrah)! - Added new `IDE` component
+
+  Example:
+
+  ```jsx
+  <IDE alternativeText="description of the IDE, including any animations for users of assistive technologies">
+    <IDE.Editor />
+    <IDE.Chat />
+  </IDE>
+  ```
+
+  🔗 [See the documentation for more examples](https://primer.style/brand/components/IDE)
+
+### Patch Changes
+
+- [#568](https://github.com/primer/brand/pull/568) [`40a129d`](https://github.com/primer/brand/commit/40a129d78024612b625238d8a826fc06aa933465) Thanks [@rezrah](https://github.com/rezrah)! - Added support for optional `Button` and sub menu's in `SubNav` component.
+
+  Also added `fullWidth` prop to optionally remove the default component padding.
+
+  ```jsx
+  <SubNav>
+    <SubNav.Heading href="#">Heading</SubNav.Heading>
+    <SubNav.Link href="#">Link</SubNav.Link>
+    <SubNav.Link href="#">Link</SubNav.Link>
+    <SubNav.Link href="#">Link</SubNav.Link>
+    <SubNav.Link href="#" aria-current="page">
+      Link
+      <SubNav.SubMenu>
+        <SubNav.Link href="#">Link feature one</SubNav.Link>
+        <SubNav.Link href="#">Link feature two</SubNav.Link>
+        <SubNav.Link href="#">Link feature three</SubNav.Link>
+        <SubNav.Link href="#">Link feature four</SubNav.Link>
+      </SubNav.SubMenu>
+    </SubNav.Link>
+    <SubNav.Link href="#">Link</SubNav.Link>
+    <SubNav.Link href="#">Link</SubNav.Link>
+    <SubNav.Action href="#" variant="secondary">
+      Optional CTA
+    </SubNav.Action>
+  </SubNav>
+  ```
+
+- [#566](https://github.com/primer/brand/pull/566) [`eaeb50e`](https://github.com/primer/brand/commit/eaeb50e31e87748c7d1aadcdfa9518c28ee31765) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Adjusted block padding of small button controls from `12px` to `8px`.
+
+  This change affects all small size `Button` and `ActionMenu` instances.
+
+- [#575](https://github.com/primer/brand/pull/575) [`89d6590`](https://github.com/primer/brand/commit/89d659084eedb60ebeea198ead43dd0f89a4fac0) Thanks [@rezrah](https://github.com/rezrah)! - Added `none` optiona to `arrowDirection` prop of `Link` component. This value removes the arrow entirely.
+
+  ```jsx
+  <Link arrowDirection="none" {...rest} />
+  ```
+
+- [#573](https://github.com/primer/brand/pull/573) [`e76c92b`](https://github.com/primer/brand/commit/e76c92b73cb428c64cd14324d1a7a7fbe48c8daf) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Add `trailingComponent` prop to Hero
+
 ## 0.32.0
 
 ### Minor Changes
