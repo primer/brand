@@ -10,6 +10,7 @@ import {useProvidedRefOrCreate} from '../hooks/useRef'
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './Tooltip.module.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/tooltip/colors-with-modes.css'
 import {BaseProps} from '../component-helpers'
 
 type TooltipDirection = 'n' | 'e' | 's' | 'w'
@@ -74,16 +75,17 @@ export const Tooltip = React.forwardRef(
 
     const [calculatedDirection, setCalculatedDirection] = useState<TooltipDirection>(direction)
 
-    const openTooltip = () => {
+    const openTooltip = React.useCallback(() => {
       if (tooltipElRef.current && triggerRef.current && !tooltipElRef.current.matches(':popover-open')) {
         tooltipElRef.current.showPopover()
       }
-    }
-    const closeTooltip = () => {
+    }, [tooltipElRef, triggerRef])
+
+    const closeTooltip = React.useCallback(() => {
       if (tooltipElRef.current && triggerRef.current && tooltipElRef.current.matches(':popover-open')) {
         tooltipElRef.current.hidePopover()
       }
-    }
+    }, [tooltipElRef, triggerRef])
 
     useEffect(() => {
       if (!tooltipElRef.current || !triggerRef.current) return
@@ -163,48 +165,46 @@ export const Tooltip = React.forwardRef(
 
     return (
       <TooltipContext.Provider value={{tooltipId}}>
-        <>
-          {React.isValidElement(child) &&
-            React.cloneElement(child as React.ReactElement<TriggerPropsType>, {
-              ref: triggerRef,
-              // If it is a type description, we use tooltip to describe the trigger
-              'aria-describedby': type === 'description' ? tooltipId : child.props['aria-describedby'],
-              // If it is a label type, we use tooltip to label the trigger
-              'aria-labelledby': type === 'label' ? tooltipId : child.props['aria-labelledby'],
-              onBlur: (event: React.FocusEvent) => {
-                closeTooltip()
-                child.props.onBlur?.(event)
-              },
-              onFocus: (event: React.FocusEvent) => {
-                openTooltip()
-                child.props.onFocus?.(event)
-              },
-              onMouseEnter: (event: React.MouseEvent) => {
-                openTooltip()
-                child.props.onMouseEnter?.(event)
-              },
-              onMouseLeave: (event: React.MouseEvent) => {
-                closeTooltip()
-                child.props.onMouseLeave?.(event)
-              },
-            })}
-          <div
-            className={clsx(styles.Tooltip, className)}
-            ref={tooltipElRef}
-            data-direction={calculatedDirection}
-            {...rest}
-            // Only need tooltip role if the tooltip is a description for supplementary information
-            role={type === 'description' ? 'tooltip' : undefined}
-            // stop AT from announcing the tooltip twice when it is a label type because it will be announced with "aria-labelledby"
-            aria-hidden={type === 'label' ? true : undefined}
-            id={tooltipId}
-            // mouse leave and enter on the tooltip itself is needed to keep the tooltip open when the mouse is over the tooltip
-            onMouseEnter={openTooltip}
-            onMouseLeave={closeTooltip}
-          >
-            {text}
-          </div>
-        </>
+        {React.isValidElement(child) &&
+          React.cloneElement(child as React.ReactElement<TriggerPropsType>, {
+            ref: triggerRef,
+            // If it is a type description, we use tooltip to describe the trigger
+            'aria-describedby': type === 'description' ? tooltipId : child.props['aria-describedby'],
+            // If it is a label type, we use tooltip to label the trigger
+            'aria-labelledby': type === 'label' ? tooltipId : child.props['aria-labelledby'],
+            onBlur: (event: React.FocusEvent) => {
+              closeTooltip()
+              child.props.onBlur?.(event)
+            },
+            onFocus: (event: React.FocusEvent) => {
+              openTooltip()
+              child.props.onFocus?.(event)
+            },
+            onMouseEnter: (event: React.MouseEvent) => {
+              openTooltip()
+              child.props.onMouseEnter?.(event)
+            },
+            onMouseLeave: (event: React.MouseEvent) => {
+              closeTooltip()
+              child.props.onMouseLeave?.(event)
+            },
+          })}
+        <div
+          className={clsx(styles.Tooltip, className)}
+          ref={tooltipElRef}
+          data-direction={calculatedDirection}
+          {...rest}
+          // Only need tooltip role if the tooltip is a description for supplementary information
+          role={type === 'description' ? 'tooltip' : undefined}
+          // stop AT from announcing the tooltip twice when it is a label type because it will be announced with "aria-labelledby"
+          aria-hidden={type === 'label' ? true : undefined}
+          id={tooltipId}
+          // mouse leave and enter on the tooltip itself is needed to keep the tooltip open when the mouse is over the tooltip
+          onMouseEnter={openTooltip}
+          onMouseLeave={closeTooltip}
+        >
+          {text}
+        </div>
       </TooltipContext.Provider>
     )
   },

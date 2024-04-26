@@ -76,6 +76,8 @@
       url: /components/Testimonial
     - title: Timeline
       url: /components/Timeline
+    - title: Tooltip
+      url: /components/Tooltip
     - title: Unordered list
       url: /components/UnorderedList
     - title: Video player

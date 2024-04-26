@@ -12,7 +12,7 @@
 .Tooltip[popover] {
   --offset: var(
     --base-size-8,
-    8px
+    --base-size-8
   ); /* This is a "magic number". Just gives some room to make sure the tooltip stay open when mouse leaves the trigger to hover tooltip */
   /* these vars are for the triangle, via https://www.smashingmagazine.com/2024/03/modern-css-tooltips-speech-bubbles-part1/ */
   --b: 1em; /* triangle base width */
@@ -29,7 +29,7 @@
   white-space: normal;
   font: normal normal var(--brand-text-size-100) / var(--brand-text-lineHeight-100) var(--brand-fontStack-sansSerif);
   -webkit-font-smoothing: subpixel-antialiased;
-  color: var(--brand-color-text-onEmphasis);
+  color: var(--brand-Tooltip-color-default);
   text-align: center;
   word-wrap: break-word;
   background: var(--c);
