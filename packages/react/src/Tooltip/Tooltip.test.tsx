@@ -2,7 +2,7 @@ import React from 'react'
 import '@testing-library/jest-dom'
 import {Tooltip, TooltipProps} from './Tooltip'
 import {render as HTMLRender} from '@testing-library/react'
-import {Button, Link} from '..'
+import {Button} from '..'
 import {BookIcon} from '@primer/octicons-react'
 
 const TooltipComponent = (props: Omit<TooltipProps, 'text'> & {text?: string}) => (
@@ -10,12 +10,6 @@ const TooltipComponent = (props: Omit<TooltipProps, 'text'> & {text?: string}) =
     <Button>Button Text</Button>
   </Tooltip>
 )
-
-// Mock the popover polyfill since Jest can't handle ESM imports
-jest.mock('@oddbird/popover-polyfill/fn', () => ({
-  apply: jest.fn(),
-  isSupported: () => false,
-}))
 
 describe('Tooltip', () => {
   it('renders `data-direction="s"` by default', () => {
@@ -49,12 +43,9 @@ describe('Tooltip', () => {
   it('should use the custom tooltip id (if present) to label the trigger element', () => {
     const {getByRole} = HTMLRender(
       <Tooltip id="custom-tooltip-id" text="Close feedback form" direction="n" type="label">
-        <Link
-          aria-labelledby="custom-tooltip-id"
-          href="https://github.com/primer/react/contributor-docs/CONTRIBUTING.md"
-        >
+        <a aria-labelledby="custom-tooltip-id" href="https://github.com/primer/react/contributor-docs/CONTRIBUTING.md">
           <BookIcon />
-        </Link>
+        </a>
       </Tooltip>,
     )
     const triggerEL = getByRole('link')
