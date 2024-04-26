@@ -292,8 +292,8 @@ export function FeaturePreviewLevelTwo({
                 {args.heroLogoBarVisible && (
                   <Box paddingBlockEnd="spacious">
                     <LogoSuite hasDivider={false}>
-                      <LogoSuite.Heading visuallyHidden>Featured sponsors</LogoSuite.Heading>
-                      <LogoSuite.Logobar marquee>
+                      <LogoSuite.Heading visuallyHidden>Logo suite heading</LogoSuite.Heading>
+                      <LogoSuite.Logobar>
                         <Logos />
                       </LogoSuite.Logobar>
                     </LogoSuite>
