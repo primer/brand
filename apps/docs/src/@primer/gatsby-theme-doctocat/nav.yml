@@ -44,6 +44,8 @@
       url: /components/FAQ
     - title: Hero
       url: /components/Hero
+    - title: IDE
+      url: /components/IDE
     - title: Image
       url: /components/Image
     - title: Label
@@ -54,6 +56,8 @@
       url: /components/MinimalFooter
     - title: Ordered list
       url: /components/OrderedList
+    - title: Pagination
+      url: /components/Pagination
     - title: Pillar
       url: /components/Pillar
     - title: Pricing options

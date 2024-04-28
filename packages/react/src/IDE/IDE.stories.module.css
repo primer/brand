@@ -1,0 +1,12 @@
+.perspective {
+  max-width: 1024px;
+  -webkit-mask-image: linear-gradient(to right, var(--brand-color-canvas-default) 20%, transparent 80%);
+  mask-image: linear-gradient(to right, var(--brand-color-canvas-default) 20%, transparent 80%);
+  transform: perspective(620px) rotateX(2deg) rotateY(-3deg);
+}
+
+.riverVisual {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}

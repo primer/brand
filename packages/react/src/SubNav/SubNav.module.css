@@ -30,6 +30,10 @@
   background-color: var(--brand-color-canvas-default);
 }
 
+.SubNav--full-width {
+  padding-inline: 0;
+}
+
 .SubNav__action-container {
   margin-left: auto;
 }
@@ -112,6 +116,10 @@
     padding-inline: 0;
   }
 
+  .SubNav--full-width .SubNav__overlay-toggle {
+    right: 0;
+  }
+
   .SubNav__link,
   .SubNav__action-container {
     display: none;
@@ -159,6 +167,10 @@
   .SubNav {
     padding: var(--base-size-16) var(--base-size-24);
   }
+
+  .SubNav--full-width {
+    padding-inline: 0;
+  }
 }
 
 /*
@@ -169,6 +181,10 @@
   .SubNav {
     padding: var(--base-size-16) var(--base-size-32);
     align-items: center;
+  }
+
+  .SubNav--full-width {
+    padding-inline: 0;
   }
 
   .SubNav__overlay-toggle {

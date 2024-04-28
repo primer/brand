@@ -24,9 +24,9 @@ test.describe('Visual Comparison: Breadcrumbs', () => {
   })
 
   // eslint-disable-next-line i18n-text/no-en
-  test.describe('Mobile viewport test for Long Links Narrow', () => {
+  test.describe('Mobile viewport test for Long links (narrow viewport)', () => {
     test.use({viewport: {width: 360, height: 800}})
-    test('Breadcrumbs / Long Links Narrow', async ({page}) => {
+    test('Breadcrumbs / Long links (narrow viewport)', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-breadcrumbs-features--long-links-narrow&viewMode=story',
       )

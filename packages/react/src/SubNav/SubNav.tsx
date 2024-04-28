@@ -49,10 +49,15 @@ const testIds = {
 
 export type SubNavProps = {
   hasShadow?: boolean
+  /**
+   * Allows the SubNav to be used at full width,
+   * removing any internal padding and guttering.
+   */
+  fullWidth?: boolean
   'data-testid'?: string
 } & PropsWithChildren<BaseProps<HTMLElement>>
 
-const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, hasShadow}: SubNavProps) => {
+const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullWidth, hasShadow}: SubNavProps) => {
   const navRef = React.useRef<HTMLElement>(null)
   const overlayRef = React.useRef<HTMLDivElement>(null)
   const [isOpenAtNarrow, setIsOpenAtNarrow] = useState(false)
@@ -108,6 +113,7 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, hasSh
         styles.SubNav,
         isOpenAtNarrow && styles['SubNav--open'],
         hasShadow && styles['SubNav--has-shadow'],
+        fullWidth && styles['SubNav--full-width'],
         className,
       )}
       data-testid={testId || testIds.root}
