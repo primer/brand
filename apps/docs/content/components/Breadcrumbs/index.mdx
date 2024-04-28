@@ -1,0 +1,46 @@
+---
+
+title: Breadcrumbs
+description: Breadcrumbs display the current page or context within the site, allowing them to navigate different levels of the hierarchy.
+
+import CustomVideoPlayer from '../../../src/components/custom-video-player'
+import ComponentLayout from '../../../src/layouts/component-layout'
+export default ComponentLayout
+
+![An image showing examples of the two different options for breadcrumbs.](https://github.com/primer/design/assets/6951037/212c5aae-9289-4034-b079-860ba5362c9f)
+
+## Usage
+
+Breadcrumbs are used to show taxonomical context on pages that are many levels deep in a site’s hierarchy. Breadcrumbs show and link to pages higher up in the ancestry.
+
+Breadcrumbs are most appropriate on pages that:
+
+- Are many levels deep on a site
+- Do not have a section-level navigation
+- May need the ability to quickly go back to the previous (parent) page
+- All items must contain links, with the last item as the user's current context
+
+## Anatomy
+
+Breadcrumbs are made of links (indicating parents), dividers, and the current page which presents itself as plain text and not a link. The default breadcrumbs component can be modified to change the number of items within the chain.
+
+![An image showing the anatomy of breadcrumbs: parent link, then divider, then current page.](https://github.com/primer/design/assets/6951037/e506ad2f-d886-4926-9e49-99390b1a9e14)
+
+## Options
+
+Breadcrumbs have different variants and different lengths they can support:
+
+### Variants
+
+Breadcrumb component offers two variants. A default variant where links aren't highlighted and an accent variant that applies an accent color to the parent links.
+
+![An image showing examples of the two different options for breadcrumbs.](https://github.com/primer/design/assets/6951037/212c5aae-9289-4034-b079-860ba5362c9f)
+
+- Use the default variant for most use cases in service of am effective use of color.
+- Use the accent variant for use cases where breadcrumb is at the center of the experience, for example a multiple level FAQ.
+
+### Breadcrumb length
+
+By default the breadcrumbs component can show up to 10 items within the chain plus the current page.
+
+![An image displaying all the different breadcrumb lengths from one to ten](https://github.com/primer/design/assets/6951037/cd94aad3-76c1-4a1f-9a93-c990f5b1d5c7)
