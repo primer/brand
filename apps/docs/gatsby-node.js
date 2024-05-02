@@ -1,6 +1,6 @@
 const defines = require('./babel-defines')
 
-exports.onCreateWebpackConfig = ({actions, plugins, getConfig}) => {
+exports.onCreateWebpackConfig = ({actions, loaders, plugins, getConfig}) => {
   const config = getConfig()
   // Add our `__DEV__` and `process.env.NODE_ENV` defines
   config.plugins.push(
@@ -20,6 +20,11 @@ exports.onCreateWebpackConfig = ({actions, plugins, getConfig}) => {
       fs: false,
     },
   }
+
+  config.module.rules.push({
+    test: /@oddbird\/popover-polyfill/,
+    use: loaders.null(),
+  })
 
   actions.replaceWebpackConfig(config)
 }
