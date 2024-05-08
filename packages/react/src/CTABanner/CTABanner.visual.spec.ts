@@ -34,18 +34,18 @@ test.describe('Visual Comparison: CTABanner', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('CTABanner / Custom Shadow', async ({page}) => {
+  test('CTABanner / With Trailing Component', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--custom-shadow&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--with-trailing-component&viewMode=story',
     )
 
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('CTABanner / With Trailing Component', async ({page}) => {
+  test('CTABanner / Custom Shadow', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--with-trailing-component&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--custom-shadow&viewMode=story',
     )
 
     await page.waitForTimeout(500)
