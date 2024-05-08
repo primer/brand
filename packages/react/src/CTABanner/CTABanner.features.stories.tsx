@@ -1,5 +1,6 @@
 import React from 'react'
 import {Meta} from '@storybook/react'
+import {ActionMenu} from '../ActionMenu'
 import {Button} from '../Button'
 
 import {CTABanner} from './CTABanner'
@@ -48,6 +49,29 @@ export const AlignedCenter = () => (
       <Button>Primary Action</Button>
       <Button>Secondary Action</Button>
     </CTABanner.ButtonGroup>
+  </CTABanner>
+)
+
+const ExampleTrailingComponent = () => (
+  <ActionMenu>
+    <ActionMenu.Button>Open menu</ActionMenu.Button>
+    <ActionMenu.Overlay aria-label="GitHub features">
+      <ActionMenu.Item value="Copilot" selected>
+        Copilot
+      </ActionMenu.Item>
+      <ActionMenu.Item value="Codespaces">Codespaces</ActionMenu.Item>
+      <ActionMenu.Item value="CodeQL">CodeQL</ActionMenu.Item>
+    </ActionMenu.Overlay>
+  </ActionMenu>
+)
+
+export const WithTrailingComponent = () => (
+  <CTABanner trailingComponent={ExampleTrailingComponent}>
+    <CTABanner.Heading>Where the most ambitious teams build great things</CTABanner.Heading>
+    <CTABanner.Description>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+      felis nam pulvinar risus elementum.
+    </CTABanner.Description>
   </CTABanner>
 )
 

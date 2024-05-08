@@ -43,6 +43,15 @@ test.describe('Visual Comparison: CTABanner', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('CTABanner / With Trailing Component', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--with-trailing-component&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('CTABanner / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-ctabanner--playground&viewMode=story')
 
