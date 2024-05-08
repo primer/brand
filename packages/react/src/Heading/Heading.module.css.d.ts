@@ -1,7 +1,7 @@
 declare const styles: {
   readonly "Heading": string;
-  readonly "Heading-font--mona-sans": string;
   readonly "Heading-font--hubot-sans": string;
+  readonly "Heading-font--mona-sans": string;
   readonly "Heading-font--monospace": string;
   readonly "Heading--display": string;
   readonly "Heading--subhead-large": string;

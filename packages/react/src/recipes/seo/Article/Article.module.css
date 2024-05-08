@@ -16,10 +16,6 @@
   overflow: hidden;
 }
 
-.heroHeading {
-  font-stretch: 80%;
-}
-
 .heroImage {
   display: block;
   width: 100%;
@@ -28,7 +24,6 @@
 .standfirst {
   max-width: var(--brand-Prose-lineLength);
   line-height: 1.3;
-  font-size: var(--base-size-32);
 }
 
 .standfirst::first-letter {

@@ -448,14 +448,7 @@ export function Article({
                     </Breadcrumbs>
                   </Box>
                   <Box animate="scale-in-up" marginBlockStart={{narrow: 64}} marginBlockEnd={{narrow: 16, wide: 24}}>
-                    <Heading
-                      as="h1"
-                      size="display"
-                      stretch="condensed"
-                      weight="semibold"
-                      font="hubot-sans"
-                      className={styles.heroHeading}
-                    >
+                    <Heading as="h1" size="1" stretch="condensed" weight="semibold" font="hubot-sans">
                       Should we think of DevOps as a methodology?
                     </Heading>
                   </Box>
@@ -497,7 +490,7 @@ export function Article({
                           <Grid.Column span={{xsmall: 12, large: 11}}>
                             <Box animate="slide-in-left">
                               <header>
-                                <Text as="p" className={styles.standfirst} size="400" font="hubot-sans" weight="medium">
+                                <Text as="p" className={styles.standfirst} size="500" font="hubot-sans" weight="medium">
                                   There&apos;s one word that perfectly describes successful DevOps: flow. As
                                   individuals, we experience a state of flow when everything in our work comes together
                                   naturally and at the right time. DevOps enables that kind of flow at the
