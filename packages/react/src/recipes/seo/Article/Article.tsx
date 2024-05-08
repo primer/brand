@@ -56,7 +56,7 @@ const socialLinkData = [
  * This is an example of a remote content that can be fetched from a CMS or a markdown file,
  * and used to a) populate the article content, and b) generate a table of contents.
  */
-const remoteContentExample = [
+const realWorldContent = [
   // eslint-disable-next-line github/unescaped-html-literal
   `<p>
     While DevOps is sometimes referred to as a methodology, it&apos;s better understood as a set of practices, 
@@ -152,17 +152,68 @@ const remoteContentExample = [
  `,
 ]
 
+const systemContent = [
+  // eslint-disable-next-line github/unescaped-html-literal
+  `<h2>Heading level 2</h2>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempor lectus ipsum, consectetur convallis diam pretium quis. Proin ut felis ut eros tristique tincidunt.</p>
+  <figure>
+    <blockquote>
+      <p>Nulla ac odio eu magna hendrerit porta. Donec nec eros quis tortor tincidunt vulputate. Aenean id pharetra diam, sit amet auctor leo. Aliquam erat volutpat.</p>
+      <figcaption>Lisa Vanderschuit, Engineering Program Manager, Shopify</figcaption>
+    </blockquote>
+  </figure>
+  <p>Integer pellentesque pretium nulla viverra molestie. Praesent quis pretium sapien. Sed convallis eget lectus et pulvinar:</p>
+  <ul>
+    <li>
+      <strong>Vivamus</strong> eu risus nec lectus consequat rutrum at vel lacus.
+    </li>
+    <li><strong>Donec</strong> at dolor ut metus imperdiet congue vel porta nunc.
+    </li>
+    <li><strong>Quisque</strong> eu tortor suscipit, congue quam in, bibendum tellus.</li>
+  </ul>`,
+  // eslint-disable-next-line github/unescaped-html-literal
+  `<h3>Heading level 3</h3>
+  <p>Pellentesque non ornare ligula. Suspendisse nibh purus, pretium id tortor sit amet, tincidunt gravida augue. Ut malesuada, nisl vel dignissim mollis</p>
+  `,
+  `
+  <h4>Heading level  4</h4>
+  <p>
+    Secure code as you write it. Automatically review every change to your codebase and identify vulnerabilities
+    before they reach production. <a href="/#">Learn more here.</a>
+  </p>
+  <h5>Heading level 5</h5>
+  <ol>
+    <li>
+      Vivamus eu risus nec lectus consequat rutrum at vel lacus.
+    </li>
+    <li>Donec at dolor ut metus imperdiet congue vel porta nunc.
+    </li>
+    <li>Quisque eu tortor suscipit, congue quam in, bibendum tellus.</li>
+  </ol>
+  <p><code>for-each-ref</code> is extremely useful for listing references, finding which references point at a given object (with <code>--points-at</code>), which references have been merged into a given branch (with <code>--merged</code>), or which references contain a given commit (with <code>--contains</code>).</p>    
+  <h6>Heading level 6</h6>
+  <p>Pellentesque non ornare ligula. Suspendisse nibh purus, pretium id tortor sit amet, tincidunt gravida augue.</p>
+  <p>Nunc velit odio, posuere eu felis eget, consectetur fermentum nisi. Aenean tempor odio id ornare ultrices. Quisque blandit condimentum tellus, semper efficitur sapien dapibus nec. </p>
+  `,
+]
+
+const contentMap = {
+  'real-world': realWorldContent,
+  system: systemContent,
+}
+
 const AsideHeading = ({children}) => (
   <Heading as="h2" size="subhead-medium" font="monospace" className={styles.asideHeading} weight="medium">
     {children}
   </Heading>
 )
 
-const TableOfContents = ({active}) => {
+const TableOfContents = ({content = 'real-world', active}) => {
+  const allContent = contentMap[content]
   const [narrowMenuOpen, setNarrowMenuOpen] = useState(false)
   const [narrowScrolledPastHeading, setNarrowScrolledPastHeading] = useState(false)
 
-  const mergedContent = remoteContentExample.join('')
+  const mergedContent = allContent.join('')
   const headings = mergedContent.match(/<h[2-4].*?>(.*?)<\/h[2-6]>/g) || []
   const toc = headings.map(heading => {
     const level = parseInt(heading[2])
@@ -270,11 +321,24 @@ const TableOfContents = ({active}) => {
   )
 }
 
-export function Article({accentColor, variant, gridOverlay = false, colorMode = ColorModesEnum.LIGHT, ...args}) {
+type ArticleProps = {
+  content: 'real-world' | 'system'
+  gridOverlay?: boolean
+  colorMode?: ColorModesEnum
+}
+
+export function Article({
+  content = 'real-world',
+  gridOverlay = false,
+  colorMode = ColorModesEnum.LIGHT,
+  ...args
+}: ArticleProps) {
   const [enableGridOverlay, setGridOverlay] = React.useState(gridOverlay)
   const [isLightMode, setIsLightMode] = React.useState(colorMode === ColorModesEnum.LIGHT)
   const [currVisibleHeading, setCurrVisibleHeading] = React.useState<string | undefined>()
   const selectedColorMode = isLightMode ? ColorModesEnum.LIGHT : ColorModesEnum.DARK
+
+  const selectedContent = contentMap[content]
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -444,7 +508,7 @@ export function Article({accentColor, variant, gridOverlay = false, colorMode = 
                         </Grid>
                         <Box marginBlockStart={{narrow: 24, wide: 48}}>
                           <AnimationProvider runOnce>
-                            <Prose variant="editorial" html={remoteContentExample[0]} />
+                            <Prose variant="editorial" html={selectedContent[0]} />
                             <Box marginBlockStart={{narrow: 24, wide: 48}}>
                               <figure>
                                 <img
@@ -456,46 +520,13 @@ export function Article({accentColor, variant, gridOverlay = false, colorMode = 
                               </figure>
                             </Box>
                             <Box marginBlockStart={{narrow: 24, wide: 48}}>
-                              <Prose variant="editorial" html={remoteContentExample[1]} />
+                              <Prose variant="editorial" html={selectedContent[1]} />
                             </Box>
                             {/*
                              * Interupt banner
                              */}
                             <Grid enableOverlay={enableGridOverlay}>
                               <Grid.Column span={{xsmall: 12, medium: 10}}>
-                                {/* <Box
-                                animate="scale-in-up"
-                                marginBlockStart={{narrow: 24, wide: 48}}
-                                paddingBlockEnd={36}
-                                borderStyle="solid"
-                                borderColor="default"
-                                borderBlockEndWidth="thin"
-                              >
-                                <Box
-                                  borderStyle="solid"
-                                  borderColor="default"
-                                  borderBlockStartWidth="thin"
-                                  paddingBlockStart={36}
-                                >
-                                  <Stack padding="none" direction="horizontal" gap={24}>
-                                    <CopilotIcon size="medium" />
-                                    <Stack direction="vertical" padding="none" alignItems="flex-start">
-                                      <Heading as="h6" size="6">
-                                        Interupt banner heading
-                                      </Heading>
-                                      <Text as="p">
-                                        Discover GitHub's AI coding assistant elevating developer workflows.
-                                        Organizations and developers all over the world use GitHub Copilot to focus on
-                                        doing what matters most: building great software.
-                                      </Text>
-                                      <Button size="small" as="a" href="/#" variant="primary">
-                                        Learn more
-                                      </Button>
-                                    </Stack>
-                                  </Stack>
-                                </Box>
-                              </Box> */}
-
                                 <Box
                                   animate="scale-in-up"
                                   marginBlockStart={40}
@@ -538,46 +569,13 @@ export function Article({accentColor, variant, gridOverlay = false, colorMode = 
                               </Grid.Column>
                             </Grid>
                             <Box marginBlockStart={{narrow: 24, wide: 48}}>
-                              <Prose variant="editorial" html={remoteContentExample[2]} />
+                              <Prose variant="editorial" html={selectedContent[2]} />
                             </Box>
                             {/*
                              * Interupt banner
                              */}
                             <Grid enableOverlay={enableGridOverlay}>
                               <Grid.Column span={{xsmall: 12, medium: 10}}>
-                                {/* <Box
-                                animate="scale-in-up"
-                                marginBlockStart={{narrow: 24, wide: 48}}
-                                paddingBlockEnd={36}
-                                borderStyle="solid"
-                                borderColor="default"
-                                borderBlockEndWidth="thin"
-                              >
-                                <Box
-                                  borderStyle="solid"
-                                  borderColor="default"
-                                  borderBlockStartWidth="thin"
-                                  paddingBlockStart={36}
-                                >
-                                  <Stack padding="none" direction="horizontal" gap={24}>
-                                    <CopilotIcon size="medium" />
-                                    <Stack direction="vertical" padding="none" alignItems="flex-start">
-                                      <Heading as="h6" size="6">
-                                        Interupt banner heading
-                                      </Heading>
-                                      <Text as="p">
-                                        Discover GitHub's AI coding assistant elevating developer workflows.
-                                        Organizations and developers all over the world use GitHub Copilot to focus on
-                                        doing what matters most: building great software.
-                                      </Text>
-                                      <Button size="small" as="a" href="/#" variant="primary">
-                                        Learn more
-                                      </Button>
-                                    </Stack>
-                                  </Stack>
-                                </Box>
-                              </Box> */}
-
                                 <Box
                                   animate="scale-in-up"
                                   marginBlockStart={40}
@@ -620,7 +618,7 @@ export function Article({accentColor, variant, gridOverlay = false, colorMode = 
                               </Grid.Column>
                             </Grid>
                             <Box marginBlockStart={{narrow: 24, wide: 48}}>
-                              <Prose variant="editorial" html={remoteContentExample[3]} />
+                              <Prose variant="editorial" html={selectedContent[3]} />
                             </Box>
 
                             <Grid enableOverlay={enableGridOverlay}>
@@ -659,7 +657,7 @@ export function Article({accentColor, variant, gridOverlay = false, colorMode = 
                       </Grid.Column>
                       <Grid.Column span={{xsmall: 12, large: 4}} start={{xsmall: 1, large: 10}}>
                         <aside className={styles.aside}>
-                          <TableOfContents active={currVisibleHeading} />
+                          <TableOfContents content={content} active={currVisibleHeading} />
                         </aside>
                       </Grid.Column>
                       <Grid.Column span={12}>

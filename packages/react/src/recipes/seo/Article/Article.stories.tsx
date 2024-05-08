@@ -24,7 +24,21 @@ export default {
         ],
       },
     },
+    argTypes: {
+      content: {
+        control: {
+          type: 'inline-radio',
+          options: ['real-world', 'system'],
+        },
+      },
+      accentColor: {
+        control: {
+          type: 'color',
+        },
+      },
+    },
   },
 } as Meta<typeof Article>
 
-export const Default: StoryFn = () => <Article accentColor={undefined} variant={undefined} />
+export const RealWorldExample: StoryFn = () => <Article content="real-world" />
+export const AllHeadings: StoryFn = () => <Article content="system" />
