@@ -27,6 +27,10 @@ export const CardIconColors = Colors
 export const defaultCardIconColor = CardIconColors[0]
 export type CardProps = {
   /**
+   * Specify alternative card appearance
+   */
+  variant?: 'default' | 'minimal'
+  /**
    * Valid children include Card.Image, Card.Heading, and Card.Description
    */
   children:
@@ -67,6 +71,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
       href,
       hasBorder = false,
       style,
+      variant = 'default',
       ...props
     },
     ref,
@@ -111,7 +116,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
       child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === CardIcon,
     )
 
-    const Tag = colorMode === 'dark' ? CardSkewEffect : LightCardWrapperComponent
+    const Tag = colorMode === 'dark' && variant !== 'minimal' ? CardSkewEffect : DefaultCardWrapperComponent
 
     return (
       <Tag style={style} disableSkew={disableAnimation}>
@@ -120,6 +125,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
             styles.Card,
             disableAnimation && styles['Card--disableAnimation'],
             styles[`Card--colorMode-${colorMode}`],
+            styles[`Card--variant-${variant}`],
             hasIcon && styles['Card--icon'],
             hasBorder && styles['Card--border'],
             styles[`Card--colorMode-${colorMode}`],
@@ -151,7 +157,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
   },
 )
 
-function LightCardWrapperComponent({children}) {
+function DefaultCardWrapperComponent({children}) {
   return <div className={styles['Card__outer']}>{children}</div>
 }
 

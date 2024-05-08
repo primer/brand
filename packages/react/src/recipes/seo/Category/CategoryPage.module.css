@@ -1,0 +1,33 @@
+.navListHeading {
+  font-size: var(--brand-text-size-100);
+  color: var(--brand-color-text-muted);
+  text-transform: uppercase;
+}
+
+.navList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-4);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navListItem {
+  display: block;
+  padding: var(--base-size-8) var(--base-size-12);
+  border-radius: var(--brand-borderRadius-medium);
+  cursor: pointer;
+  color: var(--brand-color-text-muted);
+  text-decoration: none;
+}
+
+.navListItem * {
+  color: inherit;
+}
+
+.navListItemSelected,
+.navListItem:hover {
+  color: var(--brand-color-text-default);
+  background-color: var(--brand-color-canvas-subtle);
+}

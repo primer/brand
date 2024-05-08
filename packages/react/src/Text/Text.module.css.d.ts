@@ -4,6 +4,7 @@ declare const styles: {
   readonly "Text--muted": string;
   readonly "Text-font--mona-sans": string;
   readonly "Text-font--hubot-sans": string;
+  readonly "Text-font--monospace": string;
   readonly "Text--700": string;
   readonly "Text--600": string;
   readonly "Text--500": string;

@@ -15,6 +15,10 @@
   font-family: var(--brand-heading-fontFamilyAlt);
 }
 
+.Heading-font--monospace {
+  font-family: var(--brand-fontStack-monospace);
+}
+
 .Heading--display {
   font-weight: var(--brand-heading-weight-1000);
   font-size: var(--brand-text-size-1000);
