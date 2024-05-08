@@ -4,7 +4,8 @@ import {Meta, StoryFn} from '@storybook/react'
 import placeholderImage from '../fixtures/images/placeholder-600x400.png'
 import style from './Image.stories.module.css'
 
-import {Image} from './Image'
+import {Image, ImageBorderRadiusOptions} from './Image'
+import {Stack} from '../Stack'
 
 export default {
   title: 'Components/Image/Features',
@@ -69,4 +70,19 @@ export const CustomClassWithAspectRatio: StoryFn<typeof Image> = () => (
     alt="placeholder, blank area with an off-white background color"
     aspectRatio="custom"
   />
+)
+
+export const BorderRadiusOptions: StoryFn<typeof Image> = () => (
+  <Stack direction="horizontal">
+    {ImageBorderRadiusOptions.map(borderRadius => (
+      <Image
+        key={borderRadius}
+        src={placeholderImage}
+        width={200}
+        height={200}
+        alt="placeholder, blank area with an off-white background color"
+        borderRadius={borderRadius}
+      />
+    ))}
+  </Stack>
 )

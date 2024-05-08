@@ -484,6 +484,7 @@ export function Article({
                   <Box marginBlockEnd={{narrow: 48}} paddingBlockEnd={{narrow: 48}}>
                     <Box borderRadius="large" className={styles.heroImageArea} marginBlockEnd={{narrow: 64, wide: 80}}>
                       <Image
+                        borderRadius="medium"
                         animate="scale-in-up"
                         alt="placeholder image"
                         src="https://via.placeholder.com/1200x600/f5f5f5/f5f5f5"
@@ -560,6 +561,7 @@ export function Article({
                                         </Button>
                                       </Stack>
                                       <Image
+                                        borderRadius="medium"
                                         src="https://via.placeholder.com/300x200/f5f5f5/f5f5f5.png"
                                         alt="placeholder, blank area with an off-white background color"
                                       />
@@ -609,6 +611,7 @@ export function Article({
                                         </Button>
                                       </Stack>
                                       <Image
+                                        borderRadius="medium"
                                         src="https://via.placeholder.com/300x200/f5f5f5/f5f5f5.png"
                                         alt="placeholder, blank area with an off-white background color"
                                       />
