@@ -3,6 +3,14 @@
   z-index: 91;
 }
 
+.articleCol {
+  order: 1;
+}
+
+.asideCol {
+  order: 2;
+}
+
 .socialLinks {
   list-style: none;
   display: inline-flex;

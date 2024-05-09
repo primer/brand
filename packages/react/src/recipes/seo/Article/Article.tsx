@@ -251,72 +251,74 @@ const TableOfContents = ({content = 'real-world', active}) => {
   }, [setNarrowMenuOpen, narrowMenuOpen])
 
   return (
-    <Stack
-      direction="vertical"
-      gap={64}
-      padding="none"
-      className={clsx(
-        styles.asideContent,
-        narrowMenuOpen && styles['asideContent--open'],
-        narrowScrolledPastHeading && styles['asideContent--visible'],
-      )}
-    >
-      <Stack direction="vertical" padding="none" gap={24}>
-        <Stack direction="horizontal" padding="none" justifyContent="space-between" alignItems="center">
-          <AsideHeading>Table of contents</AsideHeading>
-          <button className={styles.tableOfContentsMenuToggle} onClick={handleNarrowMenu}>
-            {narrowMenuOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
-          </button>
-        </Stack>
-        <nav className={clsx(styles.tableOfContentsNav, narrowMenuOpen && styles['tableOfContentsNav--visible'])}>
-          <ol className={styles.tableOfContentsList}>
-            {toc.map(({text, id}, index) => {
-              return (
-                <li key={id}>
-                  <a href={`#${id}`} onClick={handleLinkPress} aria-current={active === id ? 'location' : undefined}>
-                    <Text
-                      variant={active === id ? 'default' : 'muted'}
-                      size="100"
-                      weight={active === id ? 'bold' : 'normal'}
-                    >
-                      {text}
-                    </Text>
-                  </a>
-                </li>
-              )
-            })}
-          </ol>
-        </nav>
-      </Stack>
-
-      <Box
-        paddingBlockStart={8}
-        borderBlockStartWidth="thin"
-        borderStyle="solid"
-        borderColor="muted"
+    <nav aria-label="Table of contents">
+      <Stack
+        direction="vertical"
+        gap={64}
+        padding="none"
         className={clsx(
-          styles.tableOfContentsFeaturesBox,
-          narrowMenuOpen && styles['tableOfContentsFeaturesBox--visible'],
+          styles.asideContent,
+          narrowMenuOpen && styles['asideContent--open'],
+          narrowScrolledPastHeading && styles['asideContent--visible'],
         )}
       >
-        <AsideHeading>Featured</AsideHeading>
-        <Box marginBlockStart={24}>
-          <Box marginBlockEnd={4}>
-            <Heading as="h4" size="subhead-medium">
-              GitHub Copilot
-            </Heading>
+        <Stack direction="vertical" padding="none" gap={24}>
+          <Stack direction="horizontal" padding="none" justifyContent="space-between" alignItems="center">
+            <AsideHeading>Table of contents</AsideHeading>
+            <button className={styles.tableOfContentsMenuToggle} onClick={handleNarrowMenu}>
+              {narrowMenuOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
+            </button>
+          </Stack>
+          <div className={clsx(styles.tableOfContentsNav, narrowMenuOpen && styles['tableOfContentsNav--visible'])}>
+            <ol className={styles.tableOfContentsList}>
+              {toc.map(({text, id}) => {
+                return (
+                  <li key={id}>
+                    <a href={`#${id}`} onClick={handleLinkPress} aria-current={active === id ? 'location' : undefined}>
+                      <Text
+                        variant={active === id ? 'default' : 'muted'}
+                        size="100"
+                        weight={active === id ? 'bold' : 'normal'}
+                      >
+                        {text}
+                      </Text>
+                    </a>
+                  </li>
+                )
+              })}
+            </ol>
+          </div>
+        </Stack>
+
+        <Box
+          paddingBlockStart={8}
+          borderBlockStartWidth="thin"
+          borderStyle="solid"
+          borderColor="muted"
+          className={clsx(
+            styles.tableOfContentsFeaturesBox,
+            narrowMenuOpen && styles['tableOfContentsFeaturesBox--visible'],
+          )}
+        >
+          <AsideHeading>Featured</AsideHeading>
+          <Box marginBlockStart={24}>
+            <Box marginBlockEnd={4}>
+              <Heading as="h4" size="subhead-medium">
+                GitHub Copilot
+              </Heading>
+            </Box>
+            <Text as="p" size="100" variant="muted">
+              AI coding assistant elevating developer workflows
+            </Text>
           </Box>
-          <Text as="p" size="100" variant="muted">
-            AI coding assistant elevating developer workflows
-          </Text>
+          <Box marginBlockStart={16}>
+            <Button size="small" variant="primary">
+              Try Copilot
+            </Button>
+          </Box>
         </Box>
-        <Box marginBlockStart={16}>
-          <Button size="small" variant="primary">
-            Try Copilot
-          </Button>
-        </Box>
-      </Box>
-    </Stack>
+      </Stack>
+    </nav>
   )
 }
 
@@ -419,7 +421,7 @@ export function Article({
                       Devops
                     </Link>
                   </Box>
-                  <Box animate="fade-in" marginBlockStart={{narrow: 64}} marginBlockEnd={{narrow: 16, wide: 24}}>
+                  <Box animate="fade-in" marginBlockStart={64} marginBlockEnd={32}>
                     <Heading as="h1" size="1" stretch="condensed" weight="semibold" font="hubot-sans">
                       Should we think of DevOps as a methodology?
                     </Heading>
@@ -429,7 +431,7 @@ export function Article({
                   <Box marginBlockEnd={{narrow: 48}} paddingBlockEnd={{narrow: 48}}>
                     <Box borderRadius="large" className={styles.heroImageArea} marginBlockEnd={{narrow: 64, wide: 80}}>
                       <Image
-                        borderRadius="medium"
+                        borderRadius="xlarge"
                         animate="fade-in"
                         alt="placeholder image"
                         src="https://via.placeholder.com/1200x600/f5f5f5/f5f5f5"
@@ -437,7 +439,16 @@ export function Article({
                       />
                     </Box>
                     <Grid enableOverlay={enableGridOverlay}>
-                      <Grid.Column span={{xsmall: 12, large: 9}}>
+                      <Grid.Column
+                        span={{xsmall: 12, large: 4}}
+                        start={{xsmall: 1, large: 10}}
+                        className={styles.asideCol}
+                      >
+                        <aside className={styles.aside}>
+                          <TableOfContents content={content} active={currVisibleHeading} />
+                        </aside>
+                      </Grid.Column>
+                      <Grid.Column span={{xsmall: 12, large: 9}} className={styles.articleCol}>
                         <Grid enableOverlay={enableGridOverlay}>
                           <Grid.Column span={{xsmall: 12, large: 11}}>
                             <Box animate="slide-in-left">
@@ -569,11 +580,8 @@ export function Article({
                           </AnimationProvider>
                         </Box>
                       </Grid.Column>
-                      <Grid.Column span={{xsmall: 12, large: 4}} start={{xsmall: 1, large: 10}}>
-                        <aside className={styles.aside}>
-                          <TableOfContents content={content} active={currVisibleHeading} />
-                        </aside>
-                      </Grid.Column>
+                    </Grid>
+                    <Grid>
                       <Grid.Column span={12}>
                         <Box marginBlockStart={{narrow: 64, wide: 112}}>
                           <Stack direction="vertical" gap={128} padding="none">

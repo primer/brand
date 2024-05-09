@@ -1,5 +1,7 @@
 declare const styles: {
   readonly "articlePageBody": string;
+  readonly "articleCol": string;
+  readonly "asideCol": string;
   readonly "socialLinks": string;
   readonly "heroImageArea": string;
   readonly "heroImage": string;

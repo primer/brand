@@ -26,7 +26,7 @@
 
 .Prose--editorial {
   font-size: var(--brand-text-size-300);
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 /* ---------------------------------------------------------- */
@@ -155,6 +155,7 @@
 .Prose--editorial ol {
   --spacing: var(--base-size-48);
   gap: var(--base-size-16);
+  line-height: 1.7;
 }
 
 .Prose ul {
