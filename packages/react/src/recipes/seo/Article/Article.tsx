@@ -391,20 +391,6 @@ export function Article({
     setIsLightMode(!isLightMode)
   }
 
-  useEffect(() => {
-    // log out all headings (h1-h6) on the page in the order they appear, including the tag
-    const headings = Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6'))
-    const headingText = headings.map(heading => `${heading.tagName} - ${heading.textContent}`)
-    console.log(headingText)
-
-    // log out all headings (h1-h6) on the page in the order they appear, including the tag and the id
-    const headingsWithId = Array.from(document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]'))
-    const headingTextWithId = headingsWithId.map(
-      heading => `${heading.tagName} - ${heading.textContent} - ${heading.id}`,
-    )
-    console.log(headingTextWithId)
-  }, [])
-
   return (
     <ThemeProvider
       colorMode={selectedColorMode}
