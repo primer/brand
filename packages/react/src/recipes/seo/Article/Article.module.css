@@ -21,12 +21,12 @@
   width: 100%;
 }
 
-.standfirst {
+.lede {
   max-width: var(--brand-Prose-lineLength);
   line-height: 1.3;
 }
 
-.standfirst::first-letter {
+.lede::first-letter {
   font-size: var(--base-size-64);
   line-height: 1;
   padding: var(--base-size-4) var(--base-size-12);
@@ -57,7 +57,8 @@
     background-color: var(--brand-color-canvas-default);
     padding: var(--base-size-16);
     width: 100%;
-    box-shadow: 0px 8px 24px 0px rgba(140, 149, 159, 0.2);
+    box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.01), 0px 41px 33px rgba(0, 0, 0, 0.02), 0px 22px 17px rgba(0, 0, 0, 0.02),
+      0px 12px 10px rgba(0, 0, 0, 0.03), 0px 6px 5px rgba(0, 0, 0, 0.04), 0px 2px 2px rgba(0, 0, 0, 0.07);
     justify-content: center;
     transition: visibility var(--brand-animation-duration-default) var(--brand-animation-easing-default),
       opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
@@ -75,6 +76,7 @@
     height: auto;
     display: flex;
     justify-content: center;
+    padding: var(--base-size-16) var(--base-size-16) var(--base-size-32);
   }
 
   .asideContent--open::after {
@@ -85,9 +87,8 @@
     width: 100%;
     height: 100%;
     z-index: -1;
-    background-color: rgba(81, 81, 81, 0.4);
-    backdrop-filter: blur(var(--base-size-4));
-    -webkit-backdrop-filter: blur(var(--base-size-4));
+    background-color: var(--brand-color-canvas-subtle);
+    opacity: 0.8;
   }
 
   .asideHeading {
@@ -134,6 +135,9 @@
 }
 
 @media screen and (max-width: 63.25rem) {
+  .asideHeading {
+    padding-inline-start: var(--base-size-12);
+  }
   .tableOfContentsMenuToggle {
     display: block;
     background-color: var(--brand-color-canvas-subtle);
@@ -149,5 +153,13 @@
   }
   .tableOfContentsNav--visible {
     display: block;
+  }
+  .tableOfContentsList a {
+    padding: var(--base-size-8) var(--base-size-12);
+    display: block;
+  }
+  .tableOfContentsList a[aria-current] {
+    background-color: var(--brand-color-neutral-subtle);
+    border-radius: var(--brand-borderRadius-medium);
   }
 }

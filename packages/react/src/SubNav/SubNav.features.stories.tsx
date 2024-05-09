@@ -90,7 +90,7 @@ export const FullWidth = args => (
     <SubNav.Link href="#">Packages</SubNav.Link>
     <SubNav.Link href="#">Security</SubNav.Link>
     <SubNav.Link href="#">Codespaces</SubNav.Link>
-    <SubNav.Link href="#" aria-current="false">
+    <SubNav.Link href="#" aria-current="page">
       Copilot
       <SubNav.SubMenu>
         <SubNav.Link href="#">Copilot feature page one</SubNav.Link>

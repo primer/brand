@@ -3,7 +3,7 @@ declare const styles: {
   readonly "socialLinks": string;
   readonly "heroImageArea": string;
   readonly "heroImage": string;
-  readonly "standfirst": string;
+  readonly "lede": string;
   readonly "asideHeading": string;
   readonly "aside": string;
   readonly "asideContent": string;

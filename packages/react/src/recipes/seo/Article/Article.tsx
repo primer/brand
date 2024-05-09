@@ -1,4 +1,4 @@
-import {ChevronDownIcon, MoonIcon, SunIcon} from '@primer/octicons-react'
+import {ChevronDownIcon, ChevronUpIcon, MoonIcon, SunIcon} from '@primer/octicons-react'
 import clsx from 'clsx'
 import React, {useCallback, useEffect, useState} from 'react'
 import {
@@ -203,6 +203,20 @@ const TableOfContents = ({content = 'real-world', active}) => {
   }
 
   useEffect(() => {
+    const handleEscape = event => {
+      if (event.key === 'Escape') {
+        setNarrowMenuOpen(false)
+      }
+    }
+
+    if (narrowMenuOpen) {
+      window.addEventListener('keydown', handleEscape)
+    }
+
+    return () => window.removeEventListener('keydown', handleEscape)
+  }, [narrowMenuOpen])
+
+  useEffect(() => {
     const threshold = 0
     let lastScrollY = window.pageYOffset
     let ticking = false
@@ -251,7 +265,7 @@ const TableOfContents = ({content = 'real-world', active}) => {
         <Stack direction="horizontal" padding="none" justifyContent="space-between" alignItems="center">
           <AsideHeading>Table of contents</AsideHeading>
           <button className={styles.tableOfContentsMenuToggle} onClick={handleNarrowMenu}>
-            <ChevronDownIcon />
+            {narrowMenuOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
           </button>
         </Stack>
         <nav className={clsx(styles.tableOfContentsNav, narrowMenuOpen && styles['tableOfContentsNav--visible'])}>
@@ -259,7 +273,7 @@ const TableOfContents = ({content = 'real-world', active}) => {
             {toc.map(({text, id}, index) => {
               return (
                 <li key={id}>
-                  <a href={`#${id}`} onClick={handleLinkPress} tabIndex={index === 0 ? 1 : undefined}>
+                  <a href={`#${id}`} onClick={handleLinkPress} aria-current={active === id ? 'location' : undefined}>
                     <Text
                       variant={active === id ? 'default' : 'muted'}
                       size="100"
@@ -428,7 +442,7 @@ export function Article({
                           <Grid.Column span={{xsmall: 12, large: 11}}>
                             <Box animate="slide-in-left">
                               <header>
-                                <Text as="p" className={styles.standfirst} size="500" font="hubot-sans" weight="medium">
+                                <Text as="p" className={styles.lede} size="500" font="hubot-sans" weight="medium">
                                   There&apos;s one word that perfectly describes successful DevOps: flow. As
                                   individuals, we experience a state of flow when everything in our work comes together
                                   naturally and at the right time. DevOps enables that kind of flow at the
