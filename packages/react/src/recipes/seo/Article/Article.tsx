@@ -426,7 +426,7 @@ export function Article({
                       <Grid.Column span={{xsmall: 12, large: 9}}>
                         <Grid enableOverlay={enableGridOverlay}>
                           <Grid.Column span={{xsmall: 12, large: 11}}>
-                            <Box animate="slide-in-left" m>
+                            <Box animate="slide-in-left">
                               <header>
                                 <Text as="p" className={styles.standfirst} size="500" font="hubot-sans" weight="medium">
                                   There&apos;s one word that perfectly describes successful DevOps: flow. As
