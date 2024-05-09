@@ -11,6 +11,7 @@ import {
   FAQGroup,
   Grid,
   Heading,
+  HeadingProps,
   Image,
   Link,
   MinimalFooter,
@@ -175,8 +176,8 @@ const contentMap = {
   system: systemContent,
 }
 
-const AsideHeading = ({children}) => (
-  <Heading as="h2" size="subhead-medium" font="monospace" className={styles.asideHeading} weight="medium">
+const AsideHeading = ({as = 'h2', children}: HeadingProps) => (
+  <Heading as={as} size="subhead-medium" font="monospace" className={styles.asideHeading} weight="medium">
     {children}
   </Heading>
 )
@@ -300,7 +301,7 @@ const TableOfContents = ({content = 'real-world', active}) => {
             narrowMenuOpen && styles['tableOfContentsFeaturesBox--visible'],
           )}
         >
-          <AsideHeading>Featured</AsideHeading>
+          <AsideHeading as="h3">Featured</AsideHeading>
           <Box marginBlockStart={24}>
             <Box marginBlockEnd={4}>
               <Heading as="h4" size="subhead-medium">
@@ -389,6 +390,20 @@ export function Article({
     e.preventDefault()
     setIsLightMode(!isLightMode)
   }
+
+  useEffect(() => {
+    // log out all headings (h1-h6) on the page in the order they appear, including the tag
+    const headings = Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6'))
+    const headingText = headings.map(heading => `${heading.tagName} - ${heading.textContent}`)
+    console.log(headingText)
+
+    // log out all headings (h1-h6) on the page in the order they appear, including the tag and the id
+    const headingsWithId = Array.from(document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]'))
+    const headingTextWithId = headingsWithId.map(
+      heading => `${heading.tagName} - ${heading.textContent} - ${heading.id}`,
+    )
+    console.log(headingTextWithId)
+  }, [])
 
   return (
     <ThemeProvider
@@ -503,7 +518,7 @@ export function Article({
                                       gap={48}
                                     >
                                       <Stack direction="vertical" padding="none" alignItems="flex-start">
-                                        <Heading as="h6" size="6">
+                                        <Heading as="h3" size="6">
                                           Need some help moving to DevSecOps?
                                         </Heading>
                                         <Text as="p">
@@ -553,7 +568,7 @@ export function Article({
                                       gap={48}
                                     >
                                       <Stack direction="vertical" padding="none" alignItems="flex-start">
-                                        <Heading as="h6" size="6">
+                                        <Heading as="h4" size="6">
                                           Need some help moving to DevSecOps?
                                         </Heading>
                                         <Text as="p">
