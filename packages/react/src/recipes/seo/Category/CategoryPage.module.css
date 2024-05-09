@@ -31,3 +31,7 @@
   color: var(--brand-color-text-default);
   background-color: var(--brand-color-canvas-subtle);
 }
+
+.cardGrid {
+  --brand-Grid-spacing-row: var(--base-size-48);
+}

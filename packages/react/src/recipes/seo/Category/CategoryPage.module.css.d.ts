@@ -3,6 +3,7 @@ declare const styles: {
   readonly "navList": string;
   readonly "navListItem": string;
   readonly "navListItemSelected": string;
+  readonly "cardGrid": string;
 };
 export = styles;
 

@@ -236,6 +236,7 @@
 .Prose--editorial figure img {
   margin-block-end: 0;
   border-radius: var(--brand-borderRadius-medium);
+  display: block;
 }
 
 /* ---------------------------------------------------------- */
@@ -266,7 +267,6 @@
 @media screen and (min-width: 90rem) {
   .Prose--editorial blockquote {
     margin-block: var(--base-size-40);
-    margin-inline-start: calc(var(--spacing) * -2);
   }
 }
 
@@ -315,5 +315,5 @@
   --spacing: var(--base-size-80);
   margin-block-start: var(--spacing);
   margin-block-end: var(--spacing);
-  border-color: var(--brand-color-border-subtle);
+  border-color: var(--brand-color-border-muted);
 }

@@ -36,6 +36,10 @@
   color: var(--brand-color-accent-primary);
 }
 
+.asideHeading {
+  color: var(--brand-color-text-muted);
+}
+
 @media screen and (max-width: 63.25rem) {
   .aside {
     position: fixed;
@@ -105,7 +109,6 @@
 .asideHeading {
   font-size: var(--brand-text-size-100);
   text-transform: uppercase;
-  color: var(--brand-color-text-default);
 }
 
 .tableOfContentsList {
@@ -144,8 +147,7 @@
   .tableOfContentsFeaturesBox {
     display: none;
   }
-  .tableOfContentsNav--visible,
-  .tableOfContentsFeaturesBox--visible {
+  .tableOfContentsNav--visible {
     display: block;
   }
 }

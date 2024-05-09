@@ -13,6 +13,7 @@ import {
   Grid,
   Heading,
   Image,
+  Link,
   MinimalFooter,
   Prose,
   SectionIntro,
@@ -24,33 +25,6 @@ import {
 import {ColorModesEnum, ThemeProvider} from '../../../ThemeProvider'
 
 import styles from './Article.module.css'
-
-const socialLinkData = [
-  {
-    name: 'x',
-    fullName: 'X',
-    url: 'https://x.com/github',
-    icon: 'https://github.githubassets.com/images/modules/site/icons/footer/x.svg',
-    iconWidth: 20,
-    iconHeight: 16,
-  },
-  {
-    name: 'linkedin',
-    fullName: 'LinkedIn',
-    url: 'https://www.linkedin.com/company/github',
-    icon: 'https://github.githubassets.com/images/modules/site/icons/footer/linkedin.svg',
-    iconWidth: 19,
-    iconHeight: 18,
-  },
-  {
-    name: 'facebook',
-    fullName: 'Facebook',
-    url: 'https://www.facebook.com/GitHub',
-    icon: 'https://github.githubassets.com/images/modules/site/icons/footer/facebook.svg',
-    iconWidth: 18,
-    iconHeight: 18,
-  },
-]
 
 /**
  * This is an example of a remote content that can be fetched from a CMS or a markdown file,
@@ -230,23 +204,33 @@ const TableOfContents = ({content = 'real-world', active}) => {
   }
 
   useEffect(() => {
-    let prevScrollY = window.scrollY
+    const threshold = 0
+    let lastScrollY = window.pageYOffset
+    let ticking = false
 
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY
+    const updateScrollDir = () => {
+      const scrollY = window.pageYOffset
 
-      if (currentScrollY > prevScrollY && currentScrollY > 200) {
-        setNarrowScrolledPastHeading(true)
-      } else {
-        setNarrowScrolledPastHeading(false)
+      if (Math.abs(scrollY - lastScrollY) < threshold) {
+        ticking = false
+        return
       }
+      setNarrowScrolledPastHeading(scrollY > lastScrollY ? false : true)
+      lastScrollY = scrollY > 0 ? scrollY : 0
+      ticking = false
+    }
 
-      prevScrollY = currentScrollY
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScrollDir)
+        ticking = true
+      }
     }
 
     // eslint-disable-next-line github/prefer-observers
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', onScroll)
+
+    return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   const handleLinkPress = useCallback(() => {
@@ -296,7 +280,7 @@ const TableOfContents = ({content = 'real-world', active}) => {
         paddingBlockStart={8}
         borderBlockStartWidth="thin"
         borderStyle="solid"
-        borderColor="default"
+        borderColor="muted"
         className={clsx(
           styles.tableOfContentsFeaturesBox,
           narrowMenuOpen && styles['tableOfContentsFeaturesBox--visible'],
@@ -304,10 +288,12 @@ const TableOfContents = ({content = 'real-world', active}) => {
       >
         <AsideHeading>Featured</AsideHeading>
         <Box marginBlockStart={24}>
-          <Heading as="h4" size="subhead-medium">
-            GitHub Copilot
-          </Heading>
-          <Text as="p" size="100">
+          <Box marginBlockEnd={4}>
+            <Heading as="h4" size="subhead-medium">
+              GitHub Copilot
+            </Heading>
+          </Box>
+          <Text as="p" size="100" variant="muted">
             AI coding assistant elevating developer workflows
           </Text>
         </Box>
@@ -389,28 +375,6 @@ export function Article({
     setIsLightMode(!isLightMode)
   }
 
-  const displaySocialLink = (link: (typeof socialLinkData)[number]) => {
-    return (
-      <li key={link.name}>
-        <a
-          href={link.url}
-          data-analytics-event={`{"category":"Social link","action":"go to ${link.fullName}", "label":"text:${link.name}"}`}
-        >
-          <img
-            className={styles['Footer__social-icon']}
-            src={link.icon}
-            height={link.iconHeight}
-            width={link.iconWidth}
-            loading="lazy"
-            decoding="async"
-            alt=""
-          />
-          <span className="visually-hidden">Share this on {link.fullName}</span>
-        </a>
-      </li>
-    )
-  }
-
   return (
     <ThemeProvider
       colorMode={selectedColorMode}
@@ -438,39 +402,14 @@ export function Article({
               <AnimationProvider runOnce visibilityOptions={0.3}>
                 <header>
                   <Box marginBlockStart={16}>
-                    <Breadcrumbs>
-                      <Breadcrumbs.Item href="../?path=/story/recipes-seo-category-page--default">
-                        Topics
-                      </Breadcrumbs.Item>
-                      <Breadcrumbs.Item href="../?path=/story/recipes-seo-category-page--default">
-                        DevOps
-                      </Breadcrumbs.Item>
-                    </Breadcrumbs>
+                    <Link href="#" arrowDirection="start">
+                      Devops
+                    </Link>
                   </Box>
-                  <Box animate="scale-in-up" marginBlockStart={{narrow: 64}} marginBlockEnd={{narrow: 16, wide: 24}}>
+                  <Box animate="fade-in" marginBlockStart={{narrow: 64}} marginBlockEnd={{narrow: 16, wide: 24}}>
                     <Heading as="h1" size="1" stretch="condensed" weight="semibold" font="hubot-sans">
                       Should we think of DevOps as a methodology?
                     </Heading>
-                  </Box>
-                  <Box animate="scale-in-up" marginBlockEnd={{narrow: 16, wide: 24}}>
-                    <Stack padding="none" direction="horizontal">
-                      <Text as="p" font="monospace" variant="muted" size="200">
-                        12 minute read
-                      </Text>
-                      <Text as="p" font="monospace" variant="muted" size="200" aria-hidden="true">
-                        /
-                      </Text>
-                      <Text as="p" font="monospace" variant="muted" size="200">
-                        Share
-                      </Text>
-                      <Stack direction="horizontal" padding="none">
-                        <ul className={styles.socialLinks}>
-                          {socialLinkData.map((link: (typeof socialLinkData)[number]) => {
-                            return displaySocialLink(link)
-                          })}
-                        </ul>
-                      </Stack>
-                    </Stack>
                   </Box>
                 </header>
                 <article>
@@ -478,7 +417,7 @@ export function Article({
                     <Box borderRadius="large" className={styles.heroImageArea} marginBlockEnd={{narrow: 64, wide: 80}}>
                       <Image
                         borderRadius="medium"
-                        animate="scale-in-up"
+                        animate="fade-in"
                         alt="placeholder image"
                         src="https://via.placeholder.com/1200x600/f5f5f5/f5f5f5"
                         className={styles.heroImage}
@@ -488,7 +427,7 @@ export function Article({
                       <Grid.Column span={{xsmall: 12, large: 9}}>
                         <Grid enableOverlay={enableGridOverlay}>
                           <Grid.Column span={{xsmall: 12, large: 11}}>
-                            <Box animate="slide-in-left">
+                            <Box animate="slide-in-left" m>
                               <header>
                                 <Text as="p" className={styles.standfirst} size="500" font="hubot-sans" weight="medium">
                                   There&apos;s one word that perfectly describes successful DevOps: flow. As
@@ -504,14 +443,12 @@ export function Article({
                           <AnimationProvider runOnce>
                             <Prose variant="editorial" html={selectedContent[0]} />
                             <Box marginBlockStart={{narrow: 24, wide: 48}}>
-                              <figure>
-                                <img
-                                  width="100%"
-                                  src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
-                                  alt="placeholder, blank area with an off-white background color"
-                                />
-                                <figcaption>Image caption</figcaption>
-                              </figure>
+                              <Image
+                                borderRadius="medium"
+                                width="100%"
+                                src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
+                                alt="placeholder, blank area with an off-white background color"
+                              />
                             </Box>
                             <Box marginBlockStart={{narrow: 24, wide: 48}}>
                               <Prose variant="editorial" html={selectedContent[1]} />
@@ -523,16 +460,16 @@ export function Article({
                               <Grid.Column span={{xsmall: 12, medium: 10}}>
                                 <Box
                                   animate="scale-in-up"
-                                  marginBlockStart={40}
+                                  marginBlockStart={{narrow: 48, regular: 64, wide: 80}}
                                   marginBlockEnd={40}
                                   paddingBlockEnd={40}
                                   borderStyle="solid"
-                                  borderColor="default"
+                                  borderColor="muted"
                                   borderBlockEndWidth="thin"
                                 >
                                   <Box
                                     borderStyle="solid"
-                                    borderColor="default"
+                                    borderColor="muted"
                                     borderBlockStartWidth="thin"
                                     paddingBlockStart={40}
                                   >
@@ -573,16 +510,16 @@ export function Article({
                               <Grid.Column span={{xsmall: 12, medium: 10}}>
                                 <Box
                                   animate="scale-in-up"
-                                  marginBlockStart={40}
+                                  marginBlockStart={{narrow: 48, regular: 64, wide: 80}}
                                   marginBlockEnd={40}
                                   paddingBlockEnd={40}
                                   borderStyle="solid"
-                                  borderColor="default"
+                                  borderColor="muted"
                                   borderBlockEndWidth="thin"
                                 >
                                   <Box
                                     borderStyle="solid"
-                                    borderColor="default"
+                                    borderColor="muted"
                                     borderBlockStartWidth="thin"
                                     paddingBlockStart={40}
                                   >
@@ -616,38 +553,6 @@ export function Article({
                             <Box marginBlockStart={{narrow: 24, wide: 48}}>
                               <Prose variant="editorial" html={selectedContent[3]} />
                             </Box>
-
-                            <Grid enableOverlay={enableGridOverlay}>
-                              <Grid.Column span={{xsmall: 12, medium: 10}}>
-                                <Box
-                                  marginBlockStart={{narrow: 24, wide: 48}}
-                                  paddingBlockEnd={24}
-                                  borderStyle="solid"
-                                  borderColor="subtle"
-                                  borderBlockEndWidth="thin"
-                                >
-                                  <Box
-                                    borderStyle="solid"
-                                    borderColor="subtle"
-                                    borderBlockStartWidth="thin"
-                                    paddingBlockStart={24}
-                                  >
-                                    <Stack direction="horizontal" padding="none" justifyContent="space-between">
-                                      <Text as="p" font="monospace" variant="muted" size="200">
-                                        Share
-                                      </Text>
-                                      <Stack direction="horizontal" padding="none">
-                                        <ul className={styles.socialLinks}>
-                                          {socialLinkData.map((link: (typeof socialLinkData)[number]) => {
-                                            return displaySocialLink(link)
-                                          })}
-                                        </ul>
-                                      </Stack>
-                                    </Stack>
-                                  </Box>
-                                </Box>
-                              </Grid.Column>
-                            </Grid>
                           </AnimationProvider>
                         </Box>
                       </Grid.Column>

@@ -158,7 +158,7 @@ export function CategoryPage({accentColor, variant, gridOverlay = false, colorMo
               borderColor="default"
               borderStyle="solid"
             >
-              <Grid enableOverlay={enableGridOverlay}>
+              <Grid enableOverlay={enableGridOverlay} className={styles.cardGrid}>
                 {Array.from({length: 12}).map((_, index) => (
                   <Grid.Column span={{xsmall: 12, medium: 6}} key={index}>
                     <ThemeProvider colorMode={selectedColorMode}>
