@@ -4,7 +4,6 @@ import React, {useCallback, useEffect, useState} from 'react'
 import {
   AnimationProvider,
   Box,
-  Breadcrumbs,
   Button,
   Card,
   CTABanner,
