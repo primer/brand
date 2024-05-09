@@ -256,10 +256,10 @@ const TableOfContents = ({content = 'real-world', active}) => {
         </Stack>
         <nav className={clsx(styles.tableOfContentsNav, narrowMenuOpen && styles['tableOfContentsNav--visible'])}>
           <ol className={styles.tableOfContentsList}>
-            {toc.map(({text, id}) => {
+            {toc.map(({text, id}, index) => {
               return (
                 <li key={id}>
-                  <a href={`#${id}`} onClick={handleLinkPress}>
+                  <a href={`#${id}`} onClick={handleLinkPress} tabIndex={index === 0 ? 1 : undefined}>
                     <Text
                       variant={active === id ? 'default' : 'muted'}
                       size="100"

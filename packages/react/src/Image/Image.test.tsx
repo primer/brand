@@ -3,7 +3,7 @@ import {render} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
-import {Image} from './'
+import {Image, ImageBorderRadiusOptions} from './'
 
 expect.extend(toHaveNoViolations)
 
@@ -234,5 +234,20 @@ describe('Image', () => {
     )
 
     expect(container.querySelector('source')).toBeInTheDocument()
+  })
+
+  it('should add the appropriate class based on the borderRadius prop', async () => {
+    let index = 0
+    for (const size of ImageBorderRadiusOptions) {
+      const {getAllByRole} = render(
+        <Image
+          src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+          alt="alternative text"
+          borderRadius={size}
+        />,
+      )
+      expect(getAllByRole('img')[index]).toHaveClass(`Image--borderRadius-${size}`)
+      index++
+    }
   })
 })

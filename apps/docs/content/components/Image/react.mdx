@@ -7,6 +7,7 @@ description: Use the image component to display a graphical representation.
 ---
 
 import ComponentLayout from '../../../src/layouts/component-layout'
+import {ImageBorderRadiusOptions} from '@primer/react-brand'
 export default ComponentLayout
 
 import {Label} from '@primer/react'
@@ -99,6 +100,50 @@ The `height` prop can be used to set the height of the image. This can be used a
 />
 ```
 
+### Border radius
+
+The `borderRadius` prop can be used to apply rounded corners to images using preset values.
+
+```jsx live
+<Stack direction="horizontal">
+  <Image
+    src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+    alt="placeholder, blank area with an off-white background color"
+    height={100}
+    width={100}
+    borderRadius="small"
+  />
+  <Image
+    src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+    alt="placeholder, blank area with an off-white background color"
+    height={100}
+    width={100}
+    borderRadius="medium"
+  />
+  <Image
+    src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+    alt="placeholder, blank area with an off-white background color"
+    height={100}
+    width={100}
+    borderRadius="large"
+  />
+  <Image
+    src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+    alt="placeholder, blank area with an off-white background color"
+    height={100}
+    width={100}
+    borderRadius="xlarge"
+  />
+  <Image
+    src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+    alt="placeholder, blank area with an off-white background color"
+    height={100}
+    width={100}
+    borderRadius="full"
+  />
+</Stack>
+```
+
 ### Width
 
 The `width` prop can be used to set the width of the image. This can be used along side the `aspectRatio` prop to create a responsive image the same size as other images.
@@ -116,15 +161,16 @@ The `width` prop can be used to set the width of the image. This can be used alo
 
 ### Image <Label>Required</Label>
 
-| name          | type                                              | default     | required | description                                                                                                                                                               |
-| ------------- | ------------------------------------------------- | ----------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `src`         | `string`                                          |             | `true`   | Specifies the path to the image                                                                                                                                           |
-| `alt`         | `string`                                          |             | `true`   | Specifies a text value explaining the nature of the image for users of assistive technology                                                                               |
-| `as`          | `img`, `picture`                                  | `img`       | `false`  | Specification to create a picture component                                                                                                                               |
-| `sources`     | `{srcset: string, media: string}[]`               |             | `false`  | When picture is specified in the `as` prop sources allows you to set the source elements.                                                                                 |
-| `aspectRatio` | `'1:1'`, `'16:9'`, `'16:10'`, `'4:3'`, `'custom'` | `undefined` | `false`  | Sets the image aspect ratio. A custom ratio can be provided in the design tokens.                                                                                         |
-| `height`      | `number`                                          |             | `false`  | The height of the image element or its container if it has an aspect ratio                                                                                                |
-| `width`       | `number`                                          |             | `false`  | The width of the image element or its container if it has an aspect ratio                                                                                                 |
-| `loading`     | `eager`, `lazy`                                   | `eager`     | `false`  | The loading attribute specifies whether a browser should load an image immediately or to defer loading of off-screen images until for example the user scrolls near them. |
-| `decoding`    | `sync`, `async`, `auto`                           | `sync`      | `false`  | Sets the image decoding strategy. Representing a hint given to the browser on how it should decode the image.                                                             |
-| `className`   | `string`                                          |             | `false`  | Sets a custom CSS class                                                                                                                                                   |
+| name           | type                                                                       | default     | required | description                                                                                                                                                               |
+| -------------- | -------------------------------------------------------------------------- | ----------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `src`          | `string`                                                                   |             | `true`   | Specifies the path to the image                                                                                                                                           |
+| `alt`          | `string`                                                                   |             | `true`   | Specifies a text value explaining the nature of the image for users of assistive technology                                                                               |
+| `as`           | `img`, `picture`                                                           | `img`       | `false`  | Specification to create a picture component                                                                                                                               |
+| `sources`      | `{srcset: string, media: string}[]`                                        |             | `false`  | When picture is specified in the `as` prop sources allows you to set the source elements.                                                                                 |
+| `aspectRatio`  | `'1:1'`, `'16:9'`, `'16:10'`, `'4:3'`, `'custom'`                          | `undefined` | `false`  | Sets the image aspect ratio. A custom ratio can be provided in the design tokens.                                                                                         |
+| `borderRadius` | <PropTableValues values={[...ImageBorderRadiusOptions]} commaSeparated  /> | `undefined` | `false`  | Applies a system-level border radius value to the Image.                                                                                                                  |
+| `height`       | `number`                                                                   |             | `false`  | The height of the image element or its container if it has an aspect ratio                                                                                                |
+| `width`        | `number`                                                                   |             | `false`  | The width of the image element or its container if it has an aspect ratio                                                                                                 |
+| `loading`      | `eager`, `lazy`                                                            | `eager`     | `false`  | The loading attribute specifies whether a browser should load an image immediately or to defer loading of off-screen images until for example the user scrolls near them. |
+| `decoding`     | `sync`, `async`, `auto`                                                    | `sync`      | `false`  | Sets the image decoding strategy. Representing a hint given to the browser on how it should decode the image.                                                             |
+| `className`    | `string`                                                                   |             | `false`  | Sets a custom CSS class                                                                                                                                                   |
