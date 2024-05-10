@@ -24,12 +24,21 @@
   color: var(--brand-color-text-default);
 }
 
+.Prose--editorial {
+  font-size: var(--brand-text-size-300);
+  line-height: 1.7;
+}
+
 /* ---------------------------------------------------------- */
 /* 2. Element spacing                                         */
 /* ---------------------------------------------------------- */
 
 .Prose * + * {
   margin-block-start: var(--spacing, 1em);
+}
+
+.Prose--editorial * + * {
+  --spacing: var(--base-size-40);
 }
 
 /* ---------------------------------------------------------- */
@@ -45,11 +54,11 @@
 /* ---------------------------------------------------------- */
 
 .Prose h1 {
-  font-weight: var(--brand-heading-weight-900);
-  font-size: var(--brand-text-size-900);
-  line-height: var(--brand-text-lineHeight-900);
+  font-weight: var(--brand-heading-weight-700);
+  font-size: var(--brand-text-size-700);
+  line-height: var(--brand-text-lineHeight-700);
   font-family: var(--brand-heading-fontFamily);
-  letter-spacing: var(--brand-text-letterSpacing-900);
+  letter-spacing: var(--brand-text-letterSpacing-700);
 }
 
 .Prose--lineLength h1 {
@@ -57,11 +66,11 @@
 }
 
 .Prose h2 {
-  font-weight: var(--brand-heading-weight-800);
-  font-size: var(--brand-text-size-800);
-  line-height: var(--brand-text-lineHeight-800);
+  font-weight: var(--brand-heading-weight-600);
+  font-size: var(--brand-text-size-600);
+  line-height: var(--brand-text-lineHeight-600);
   font-family: var(--brand-heading-fontFamily);
-  letter-spacing: var(--brand-text-letterSpacing-800);
+  letter-spacing: var(--brand-text-letterSpacing-600);
 }
 
 .Prose--lineLength h2 {
@@ -69,11 +78,11 @@
 }
 
 .Prose h3 {
-  font-weight: var(--brand-heading-weight-700);
-  font-size: var(--brand-text-size-700);
-  line-height: var(--brand-heading-lineHeight-700);
+  font-weight: var(--brand-heading-weight-500);
+  font-size: var(--brand-text-size-500);
+  line-height: var(--brand-heading-lineHeight-500);
   font-family: var(--brand-heading-fontFamily);
-  letter-spacing: var(--brand-heading-letterSpacing-700);
+  letter-spacing: var(--brand-heading-letterSpacing-500);
 }
 
 .Prose--lineLength h1 {
@@ -82,29 +91,29 @@
 
 .Prose h4 {
   --spacing: var(--base-size-48);
-  font-weight: var(--brand-heading-weight-600);
-  font-size: var(--brand-text-size-600);
-  line-height: var(--brand-text-lineHeight-600);
-  font-family: var(--brand-heading-fontFamily);
-  letter-spacing: var(--brand-heading-letterSpacing-600);
-}
-
-.Prose h5 {
-  --spacing: var(--base-size-48);
-  font-weight: var(--brand-heading-weight-500);
-  font-size: var(--brand-text-size-500);
-  line-height: var(--brand-text-lineHeight-500);
-  font-family: var(--brand-heading-fontFamily);
-  letter-spacing: var(--brand-heading-letterSpacing-500);
-}
-
-.Prose h6 {
-  --spacing: var(--base-size-48);
   font-weight: var(--brand-heading-weight-400);
   font-size: var(--brand-text-size-400);
   line-height: var(--brand-text-lineHeight-400);
   font-family: var(--brand-heading-fontFamily);
   letter-spacing: var(--brand-heading-letterSpacing-400);
+}
+
+.Prose h5 {
+  --spacing: var(--base-size-48);
+  font-weight: var(--brand-text-subhead-weight-large);
+  font-size: var(--brand-text-subhead-size-large);
+  line-height: var(--brand-text-subhead-lineHeight-large);
+  font-family: var(--brand-heading-fontFamily);
+  letter-spacing: var(--brand-heading-letterSpacing-300);
+}
+
+.Prose h6 {
+  --spacing: var(--base-size-48);
+  font-weight: var(--brand-text-subhead-weight-medium);
+  font-size: var(--brand-text-subhead-size-medium);
+  line-height: var(--brand-text-subhead-lineHeight-medium);
+  font-family: var(--brand-heading-fontFamily);
+  letter-spacing: var(--brand-heading-letterSpacing-200);
 }
 
 .Prose :is(h1, h2, h3) {
@@ -123,6 +132,10 @@
   --spacing: var(--base-size-24);
 }
 
+.Prose--editorial p {
+  --spacing: var(--base-size-40);
+}
+
 /* ---------------------------------------------------------- */
 /* 6. Lists                                                   */
 /* ---------------------------------------------------------- */
@@ -136,6 +149,13 @@
   padding: 0;
   margin-inline-start: var(--base-size-24);
   line-height: var(--brand-text-lineHeight-300);
+}
+
+.Prose--editorial ul,
+.Prose--editorial ol {
+  --spacing: var(--base-size-48);
+  gap: var(--base-size-16);
+  line-height: 1.7;
 }
 
 .Prose ul {
@@ -214,6 +234,12 @@
   margin-block-end: var(--spacing);
 }
 
+.Prose--editorial figure img {
+  margin-block-end: 0;
+  border-radius: var(--brand-borderRadius-medium);
+  display: block;
+}
+
 /* ---------------------------------------------------------- */
 /* 9. Block elements                                          */
 /* ---------------------------------------------------------- */
@@ -224,9 +250,25 @@
   font-size: var(--brand-text-size-400);
   line-height: var(--brand-text-lineHeight-400);
   padding-top: var(--base-size-48);
-  padding-left: var(--base-size-40);
   padding-bottom: var(--base-size-8);
   margin-bottom: var(--spacing);
+}
+
+.Prose--default blockquote {
+  padding-left: var(--base-size-40);
+}
+
+.Prose--editorial blockquote {
+  font-size: var(--brand-text-size-500);
+  line-height: var(--brand-text-lineHeight-500);
+  font-weight: var(--brand-text-weight-500);
+  padding-top: var(--base-size-64);
+}
+
+@media screen and (min-width: 90rem) {
+  .Prose--editorial blockquote {
+    margin-block: var(--base-size-40);
+  }
 }
 
 .Prose blockquote::before {
@@ -238,7 +280,13 @@
   top: 0;
 }
 
-.Prose blockquote::after {
+.Prose--editorial blockquote::before {
+  color: var(--brand-color-accent-primary);
+  font-size: var(--base-size-64);
+  line-height: var(--base-size-64);
+}
+
+.Prose--default blockquote::after {
   content: '';
   display: block;
   position: absolute;
@@ -251,8 +299,22 @@
 }
 
 .Prose figure figcaption {
+  --spacing: var(--base-size-24);
   font-family: var(--brand-fontStack-monospace);
   font-size: var(--brand-text-size-100);
   line-height: var(--brand-text-lineHeight-100);
   color: var(--brand-color-text-muted);
+}
+
+.Prose--editorial figcaption {
+  font-size: var(--brand-text-size-100);
+  line-height: var(--brand-text-lineHeight-100);
+  font-weight: var(--brand-text-weight-100);
+}
+
+.Prose--editorial hr {
+  --spacing: var(--base-size-64);
+  margin-block-start: var(--spacing);
+  margin-block-end: var(--spacing);
+  border: 1px solid var(--brand-color-border-muted);
 }

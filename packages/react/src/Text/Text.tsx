@@ -17,7 +17,7 @@ export const TextWeights = [
   'light',
   'extralight',
 ] as const
-export const TextFontVariants = ['mona-sans', 'hubot-sans'] as const
+export const TextFontVariants = ['mona-sans', 'hubot-sans', 'monospace'] as const
 
 export const defaultTextTag = TextTags[1]
 export const defaultTextSize = TextSizes[5]

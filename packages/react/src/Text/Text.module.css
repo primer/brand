@@ -18,6 +18,10 @@
   font-family: var(--brand-body-fontFamilyAlt);
 }
 
+.Text-font--monospace {
+  font-family: var(--brand-fontStack-monospace);
+}
+
 .Text--700 {
   font-weight: var(--brand-text-weight-700);
   font-size: var(--brand-text-size-700);

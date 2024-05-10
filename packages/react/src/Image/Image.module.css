@@ -26,3 +26,28 @@
 .Image--aspect-ratio-4-3 {
   --brand-image-aspectRatio: 4 / 3;
 }
+
+.Image--borderRadius-small {
+  display: block;
+  border-radius: var(--brand-borderRadius-small);
+}
+
+.Image--borderRadius-medium {
+  display: block;
+  border-radius: var(--brand-borderRadius-medium);
+}
+
+.Image--borderRadius-large {
+  display: block;
+  border-radius: var(--brand-borderRadius-large);
+}
+
+.Image--borderRadius-xlarge {
+  display: block;
+  border-radius: var(--brand-borderRadius-xlarge);
+}
+
+.Image--borderRadius-full {
+  display: block;
+  border-radius: var(--brand-borderRadius-full);
+}

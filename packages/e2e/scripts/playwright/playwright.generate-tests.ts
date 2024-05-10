@@ -70,6 +70,9 @@
     'components-box-features--animation': 6000, // for the animation
     'components-ide--playground': 2000, // for the animation
     'components-ide--default': 2000, // for the animation
+    'recipes-seo-article-page--playground': 4000, // for the animation
+    'recipes-seo-article-page--real-world-example': 4000, // for the animation
+    'recipes-seo-article-page--all-headings': 4000, // for the animation
   }
 
   /**
@@ -100,6 +103,7 @@
     'components-ide-features--perspective-example-light', // animation too long
     'components-ide-features--all-glass', // animation too long
     'components-ide-features--editor-custom-icons', // animation too long
+    'recipes-seo-category-page--default', // template contains randomisation
   ]
 
   const categorisedStories = Object.keys(stories as Stories).reduce((acc, key) => {

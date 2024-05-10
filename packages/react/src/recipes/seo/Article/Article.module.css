@@ -1,0 +1,191 @@
+.articlePageBody {
+  position: relative;
+  z-index: 91;
+}
+
+[data-color-mode='light'] .articlePageBody {
+  --brand-color-accent-primary: var(--base-color-scale-purple-5);
+}
+
+[data-color-mode='dark'] .articlePageBody {
+  --brand-color-accent-primary: var(--base-color-scale-purple-1);
+}
+
+.articleCol {
+  order: 1;
+}
+
+.asideCol {
+  order: 2;
+}
+
+.socialLinks {
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--base-size-16);
+  margin: 0;
+  padding: 0;
+}
+
+.heroImageArea {
+  overflow: hidden;
+}
+
+.heroImage {
+  display: block;
+  width: 100%;
+}
+
+.lede {
+  max-width: var(--brand-Prose-lineLength);
+  line-height: 1.3;
+}
+
+.lede::first-letter {
+  font-size: var(--base-size-64);
+  line-height: 1;
+  padding: var(--base-size-4) var(--base-size-12);
+  border: var(--base-size-4) solid var(--brand-color-accent-primary);
+  margin-inline-end: var(--base-size-12);
+  float: left;
+}
+
+[data-color-mode='light'] .lede::first-letter {
+  border-color: var(--base-color-scale-purple-5);
+  color: var(--base-color-scale-purple-5);
+}
+
+[data-color-mode='dark'] .lede::first-letter {
+  border-color: var(--base-color-scale-purple-1);
+  color: var(--base-color-scale-purple-1);
+}
+
+.asideHeading {
+  color: var(--brand-color-text-muted);
+  letter-spacing: 0.031rem;
+}
+
+@media screen and (max-width: 63.25rem) {
+  .aside {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 99;
+  }
+
+  .asideContent {
+    display: flex;
+    opacity: 0;
+    visibility: hidden;
+    background-color: var(--brand-color-canvas-default);
+    padding: var(--base-size-16);
+    width: 100%;
+    box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.01), 0px 41px 33px rgba(0, 0, 0, 0.02), 0px 22px 17px rgba(0, 0, 0, 0.02),
+      0px 12px 10px rgba(0, 0, 0, 0.03), 0px 6px 5px rgba(0, 0, 0, 0.04), 0px 2px 2px rgba(0, 0, 0, 0.07);
+    justify-content: center;
+    transition: visibility var(--brand-animation-duration-default) var(--brand-animation-easing-default),
+      opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
+      transform var(--brand-animation-duration-default) var(--brand-animation-easing-default);
+    transform: translateY(-100%);
+  }
+
+  .asideContent--visible {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .asideContent--open {
+    height: auto;
+    display: flex;
+    justify-content: center;
+    padding: var(--base-size-16) var(--base-size-16) var(--base-size-32);
+  }
+
+  .asideContent--open::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: var(--brand-color-canvas-subtle);
+    opacity: 0.8;
+  }
+
+  .asideHeading {
+    height: 45px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 64rem) {
+  .aside {
+    position: sticky;
+    top: 0;
+    margin-block-start: -64px;
+    padding-block-start: var(--base-size-64);
+  }
+}
+
+.asideHeading {
+  font-size: var(--brand-text-size-100);
+  text-transform: uppercase;
+}
+
+.tableOfContentsList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-16);
+}
+
+.tableOfContentsList a {
+  color: var(--brand-color-text-muted);
+  text-decoration: none;
+}
+
+.tableOfContentsMenuToggle {
+  display: none;
+}
+
+.tableOfContentsMenuToggle:hover {
+  background-color: var(--brand-color-neutral-subtle);
+}
+
+@media screen and (max-width: 63.25rem) {
+  .asideHeading {
+    padding-inline-start: var(--base-size-12);
+  }
+  .tableOfContentsMenuToggle {
+    display: block;
+    background-color: var(--brand-color-canvas-subtle);
+    border-radius: var(--brand-borderRadius-full);
+    padding: var(--base-size-4);
+    width: var(--base-size-32);
+    border: none;
+    cursor: pointer;
+  }
+  .tableOfContentsNav,
+  .tableOfContentsFeaturesBox {
+    display: none;
+  }
+  .tableOfContentsNav--visible {
+    display: block;
+  }
+  .tableOfContentsList a {
+    padding: var(--base-size-8) var(--base-size-12);
+    display: block;
+  }
+  .tableOfContentsList a[aria-current] {
+    background-color: var(--brand-color-neutral-subtle);
+    border-radius: var(--brand-borderRadius-medium);
+  }
+}

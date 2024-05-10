@@ -10,6 +10,29 @@ export default {
   component: Card,
 } as Meta<typeof Card>
 
+export const Minimal: StoryFn<typeof Card> = () => {
+  return (
+    <Card href="https://github.com" variant="minimal">
+      <Card.Heading>Code search & code view</Card.Heading>
+      <Card.Label>Limited</Card.Label>
+      <Card.Description>
+        Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
+      </Card.Description>
+    </Card>
+  )
+}
+
+export const MinimalDark: StoryFn<typeof Card> = args => <Minimal {...args} />
+MinimalDark.decorators = [
+  Story => (
+    <ThemeProvider colorMode="dark">
+      <Box style={{backgroundColor: 'var(--base-color-scale-black-0)'}}>
+        <Story />
+      </Box>
+    </ThemeProvider>
+  ),
+]
+
 export const CTAText: StoryFn<typeof Card> = () => {
   return (
     <Card ctaText="Dicover how" href="https://github.com">
