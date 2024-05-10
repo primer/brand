@@ -17,7 +17,7 @@ jobs:
     # SHA for security hardening. Points at last verified HEAD of main branch.
     uses: primer/.github/.github/workflows/deploy_preview.yml@cd223835608ca5e9401e0ffe6081f6d2fcc912f3
     with:
-      node_version: 16
+      node_version: 18
       install: npm ci --legacy-peer-deps && cd apps/docs && npm ci --legacy-peer-deps && cd ..
       build: npm run build && npm run build:docs:preview && npm run build:storybook:preview
       output_dir: apps/docs/public/

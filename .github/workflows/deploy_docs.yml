@@ -29,7 +29,7 @@ jobs:
     # SHA for security hardening. Points at last verified HEAD of main branch.
     uses: primer/.github/.github/workflows/deploy.yml@rezrah/fix-prod-deployment
     with:
-      node_version: 16
+      node_version: 18
       install: npm ci --legacy-peer-deps && cd apps/docs && npm ci --legacy-peer-deps && cd ..
       build: npm run build:lib && npm run build:docs
       output_dir: apps/docs/public/
