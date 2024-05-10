@@ -231,7 +231,7 @@ export function CategoryPage({accentColor, variant, gridOverlay = false, colorMo
                 {Array.from({length: 6}).map((_, index) => (
                   <Grid.Column span={{xsmall: 12, medium: 6}} key={index}>
                     <ThemeProvider colorMode={selectedColorMode}>
-                      <Box animate="scale-in-right">
+                      <Box animate="fade-in">
                         <Card href="../?path=/story/recipes-seo-article-page--default" variant="minimal">
                           <Card.Image
                             src={cardImagePlaceholders[Math.floor(Math.random() * cardImagePlaceholders.length)]}
