@@ -326,12 +326,16 @@ const TableOfContents = ({content = 'real-world', active}) => {
 }
 
 type ArticleProps = {
+  heroTitle?: string
+  lede?: string
   content: 'real-world' | 'system'
   gridOverlay?: boolean
   colorMode?: ColorModesEnum
 }
 
 export function Article({
+  heroTitle,
+  lede,
   content = 'real-world',
   gridOverlay = false,
   colorMode = ColorModesEnum.LIGHT,
@@ -426,7 +430,7 @@ export function Article({
                   </Box>
                   <Box animate="fade-in" marginBlockStart={64} marginBlockEnd={32}>
                     <Heading as="h1" size="1" stretch="condensed" weight="semibold" font="hubot-sans">
-                      Should we think of DevOps as a methodology?
+                      {heroTitle}
                     </Heading>
                   </Box>
                 </header>
@@ -452,21 +456,20 @@ export function Article({
                         </aside>
                       </Grid.Column>
                       <Grid.Column span={{xsmall: 12, large: 9}} className={styles.articleCol}>
-                        <Grid enableOverlay={enableGridOverlay}>
-                          <Grid.Column span={{xsmall: 12, large: 11}}>
-                            <Box animate="slide-in-left">
-                              <header>
-                                <Text as="p" className={styles.lede} size="500" font="hubot-sans" weight="medium">
-                                  There&apos;s one word that perfectly describes successful DevOps: flow. As
-                                  individuals, we experience a state of flow when everything in our work comes together
-                                  naturally and at the right time. DevOps enables that kind of flow at the
-                                  organizational level through a combination of tooling, culture, and process.
-                                </Text>
-                              </header>
-                            </Box>
-                          </Grid.Column>
-                        </Grid>
-                        <Box marginBlockStart={{narrow: 24, wide: 48}}>
+                        {lede && (
+                          <Grid enableOverlay={enableGridOverlay}>
+                            <Grid.Column span={{xsmall: 12, large: 11}}>
+                              <Box animate="slide-in-left" marginBlockEnd={{narrow: 24, wide: 48}}>
+                                <header>
+                                  <Text as="p" className={styles.lede} size="500" font="hubot-sans" weight="medium">
+                                    {lede}
+                                  </Text>
+                                </header>
+                              </Box>
+                            </Grid.Column>
+                          </Grid>
+                        )}
+                        <Box>
                           <AnimationProvider runOnce>
                             <Prose variant="editorial" html={selectedContent[0]} />
                             <Box marginBlockStart={{narrow: 24, wide: 48}}>
@@ -480,105 +483,11 @@ export function Article({
                             <Box marginBlockStart={{narrow: 24, wide: 48}}>
                               <Prose variant="editorial" html={selectedContent[1]} />
                             </Box>
-                            {/*
-                             * Interupt banner
-                             */}
-                            <Grid enableOverlay={enableGridOverlay}>
-                              <Grid.Column span={{xsmall: 12, medium: 10}}>
-                                <Box
-                                  animate="scale-in-up"
-                                  marginBlockStart={{narrow: 48, regular: 64, wide: 80}}
-                                  marginBlockEnd={40}
-                                  paddingBlockEnd={40}
-                                  borderStyle="solid"
-                                  borderColor="muted"
-                                  borderBlockEndWidth="thin"
-                                >
-                                  <Box
-                                    borderStyle="solid"
-                                    borderColor="muted"
-                                    borderBlockStartWidth="thin"
-                                    paddingBlockStart={40}
-                                  >
-                                    <Grid>
-                                      <Grid.Column span={{xsmall: 12, medium: 6}}>
-                                        <Stack direction="vertical" padding="none" alignItems="flex-start">
-                                          <Heading as="h3" size="6">
-                                            Need some help moving to DevSecOps?
-                                          </Heading>
-                                          <Text as="p">
-                                            Discover GitHub&apos;s AI coding assistant elevating developer workflows,
-                                            for faster, happier devs.
-                                          </Text>
-                                          <Button size="small" as="a" href="/#" variant="primary">
-                                            Try GitHub Copilot
-                                          </Button>
-                                        </Stack>
-                                      </Grid.Column>
-                                      <Grid.Column span={{xsmall: 12, medium: 6}}>
-                                        <Image
-                                          width="100%"
-                                          borderRadius="xlarge"
-                                          src={placeholderImage}
-                                          alt="placeholder, blank area with an off-white background color"
-                                        />
-                                      </Grid.Column>
-                                    </Grid>
-                                  </Box>
-                                </Box>
-                              </Grid.Column>
-                            </Grid>
+
                             <Box marginBlockStart={{narrow: 24, wide: 48}}>
                               <Prose variant="editorial" html={selectedContent[2]} />
                             </Box>
-                            {/*
-                             * Interupt banner
-                             */}
-                            <Grid enableOverlay={enableGridOverlay}>
-                              <Grid.Column span={{xsmall: 12, medium: 10}}>
-                                <Box
-                                  animate="scale-in-up"
-                                  marginBlockStart={{narrow: 48, regular: 64, wide: 80}}
-                                  marginBlockEnd={40}
-                                  paddingBlockEnd={40}
-                                  borderStyle="solid"
-                                  borderColor="muted"
-                                  borderBlockEndWidth="thin"
-                                >
-                                  <Box
-                                    borderStyle="solid"
-                                    borderColor="muted"
-                                    borderBlockStartWidth="thin"
-                                    paddingBlockStart={40}
-                                  >
-                                    <Grid>
-                                      <Grid.Column span={{xsmall: 12, medium: 6}}>
-                                        <Stack direction="vertical" padding="none" alignItems="flex-start">
-                                          <Heading as="h3" size="6">
-                                            Need some help moving to DevSecOps?
-                                          </Heading>
-                                          <Text as="p">
-                                            Discover GitHub&apos;s AI coding assistant elevating developer workflows,
-                                            for faster, happier devs.
-                                          </Text>
-                                          <Button size="small" as="a" href="/#" variant="primary">
-                                            Try GitHub Copilot
-                                          </Button>
-                                        </Stack>
-                                      </Grid.Column>
-                                      <Grid.Column span={{xsmall: 12, medium: 6}}>
-                                        <Image
-                                          width="100%"
-                                          borderRadius="xlarge"
-                                          src={placeholderImage}
-                                          alt="placeholder, blank area with an off-white background color"
-                                        />
-                                      </Grid.Column>
-                                    </Grid>
-                                  </Box>
-                                </Box>
-                              </Grid.Column>
-                            </Grid>
+
                             <Box marginBlockStart={{narrow: 24, wide: 48}}>
                               <Prose variant="editorial" html={selectedContent[3]} />
                             </Box>
