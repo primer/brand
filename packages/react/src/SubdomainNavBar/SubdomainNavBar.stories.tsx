@@ -1,8 +1,7 @@
 import {Meta, StoryFn} from '@storybook/react'
-import {userEvent, within} from '@storybook/testing-library'
+import {expect, userEvent, within} from '@storybook/test'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 
-import {expect} from '@storybook/jest'
 import React, {useEffect, useState} from 'react'
 import {Hero, River, Heading, Text, Link} from '../'
 import placeholderImage from '../fixtures/images/placeholder-600x400.png'
