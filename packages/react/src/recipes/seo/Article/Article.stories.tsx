@@ -62,7 +62,7 @@ export default {
 
 export const Playground: StoryFn<typeof Article> = args => <Article {...args} />
 Playground.args = {
-  heroTitle: 'Lorem ipsum dolor sit amet',
+  heroTitle: 'Should we think of DevOps as a methodology?',
   lede: "There's one word that perfectly describes successful DevOps: flow. As individuals, we experience a state of flow when everything in our work comes together naturally and at the right time. DevOps enables that kind of flow at the organizational level through a combination of tooling, culture, and process.",
 }
 

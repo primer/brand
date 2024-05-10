@@ -77,6 +77,15 @@ test.describe('Visual Comparison: Image', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('Image / Border Radius Options', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-image-features--border-radius-options&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Image / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-image--playground&viewMode=story')
 

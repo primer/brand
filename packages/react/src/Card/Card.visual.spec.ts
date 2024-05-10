@@ -7,6 +7,20 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Card', () => {
+  test('Card / Minimal', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--minimal&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Card / Minimal Dark', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--minimal-dark&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Card / CTA Text', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--cta-text&viewMode=story')
 
