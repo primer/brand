@@ -23,6 +23,8 @@ import {
 } from '../../../'
 
 import {ColorModesEnum, ThemeProvider} from '../../../ThemeProvider'
+import heroImage from '../../../fixtures/images/background-lozenge-ai.png'
+import placeholderImage from '../../../fixtures/images/background-poster-ai.png'
 
 import styles from './Article.module.css'
 
@@ -97,7 +99,7 @@ const realWorldContent = [
   <figure>
     <img
       width="100%"
-      src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
+      src=${placeholderImage}
       alt="placeholder, blank area with an off-white background color"
     />
     <figcaption>Image caption</figcaption>
@@ -435,7 +437,7 @@ export function Article({
                         borderRadius="xlarge"
                         animate="fade-in"
                         alt="placeholder image"
-                        src="https://via.placeholder.com/1200x600/f5f5f5/f5f5f5"
+                        src={heroImage}
                         className={styles.heroImage}
                       />
                     </Box>
@@ -469,9 +471,9 @@ export function Article({
                             <Prose variant="editorial" html={selectedContent[0]} />
                             <Box marginBlockStart={{narrow: 24, wide: 48}}>
                               <Image
-                                borderRadius="medium"
+                                borderRadius="xlarge"
                                 width="100%"
-                                src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
+                                src={placeholderImage}
                                 alt="placeholder, blank area with an off-white background color"
                               />
                             </Box>
@@ -498,29 +500,30 @@ export function Article({
                                     borderBlockStartWidth="thin"
                                     paddingBlockStart={40}
                                   >
-                                    <Stack
-                                      padding="none"
-                                      direction={{narrow: 'vertical', regular: 'horizontal'}}
-                                      gap={48}
-                                    >
-                                      <Stack direction="vertical" padding="none" alignItems="flex-start">
-                                        <Heading as="h3" size="6">
-                                          Need some help moving to DevSecOps?
-                                        </Heading>
-                                        <Text as="p">
-                                          Discover GitHub&apos;s AI coding assistant elevating developer workflows, for
-                                          faster, happier devs.
-                                        </Text>
-                                        <Button size="small" as="a" href="/#" variant="primary">
-                                          Try GitHub Copilot
-                                        </Button>
-                                      </Stack>
-                                      <Image
-                                        borderRadius="medium"
-                                        src="https://via.placeholder.com/300x200/f5f5f5/f5f5f5.png"
-                                        alt="placeholder, blank area with an off-white background color"
-                                      />
-                                    </Stack>
+                                    <Grid>
+                                      <Grid.Column span={{xsmall: 12, medium: 6}}>
+                                        <Stack direction="vertical" padding="none" alignItems="flex-start">
+                                          <Heading as="h3" size="6">
+                                            Need some help moving to DevSecOps?
+                                          </Heading>
+                                          <Text as="p">
+                                            Discover GitHub&apos;s AI coding assistant elevating developer workflows,
+                                            for faster, happier devs.
+                                          </Text>
+                                          <Button size="small" as="a" href="/#" variant="primary">
+                                            Try GitHub Copilot
+                                          </Button>
+                                        </Stack>
+                                      </Grid.Column>
+                                      <Grid.Column span={{xsmall: 12, medium: 6}}>
+                                        <Image
+                                          width="100%"
+                                          borderRadius="xlarge"
+                                          src={placeholderImage}
+                                          alt="placeholder, blank area with an off-white background color"
+                                        />
+                                      </Grid.Column>
+                                    </Grid>
                                   </Box>
                                 </Box>
                               </Grid.Column>
@@ -548,29 +551,30 @@ export function Article({
                                     borderBlockStartWidth="thin"
                                     paddingBlockStart={40}
                                   >
-                                    <Stack
-                                      padding="none"
-                                      direction={{narrow: 'vertical', regular: 'horizontal'}}
-                                      gap={48}
-                                    >
-                                      <Stack direction="vertical" padding="none" alignItems="flex-start">
-                                        <Heading as="h4" size="6">
-                                          Need some help moving to DevSecOps?
-                                        </Heading>
-                                        <Text as="p">
-                                          Discover GitHub&apos;s AI coding assistant elevating developer workflows, for
-                                          faster, happier devs.
-                                        </Text>
-                                        <Button size="small" as="a" href="/#" variant="primary">
-                                          Try GitHub Copilot
-                                        </Button>
-                                      </Stack>
-                                      <Image
-                                        borderRadius="medium"
-                                        src="https://via.placeholder.com/300x200/f5f5f5/f5f5f5.png"
-                                        alt="placeholder, blank area with an off-white background color"
-                                      />
-                                    </Stack>
+                                    <Grid>
+                                      <Grid.Column span={{xsmall: 12, medium: 6}}>
+                                        <Stack direction="vertical" padding="none" alignItems="flex-start">
+                                          <Heading as="h3" size="6">
+                                            Need some help moving to DevSecOps?
+                                          </Heading>
+                                          <Text as="p">
+                                            Discover GitHub&apos;s AI coding assistant elevating developer workflows,
+                                            for faster, happier devs.
+                                          </Text>
+                                          <Button size="small" as="a" href="/#" variant="primary">
+                                            Try GitHub Copilot
+                                          </Button>
+                                        </Stack>
+                                      </Grid.Column>
+                                      <Grid.Column span={{xsmall: 12, medium: 6}}>
+                                        <Image
+                                          width="100%"
+                                          borderRadius="xlarge"
+                                          src={placeholderImage}
+                                          alt="placeholder, blank area with an off-white background color"
+                                        />
+                                      </Grid.Column>
+                                    </Grid>
                                   </Box>
                                 </Box>
                               </Grid.Column>

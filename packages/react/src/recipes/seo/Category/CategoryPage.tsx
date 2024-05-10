@@ -16,8 +16,17 @@ import {
 import {BaseProps} from '../../../component-helpers'
 
 import {ColorModesEnum, ThemeProvider} from '../../../ThemeProvider'
+import cardCover1 from '../../../fixtures/images/background-light-enterprise-shape-1.png'
+import cardCover2 from '../../../fixtures/images/background-light-enterprise-shape-2.png'
+import cardCover3 from '../../../fixtures/images/background-light-enterprise-shape-3.png'
+import cardCover4 from '../../../fixtures/images/background-light-enterprise-shape-4.png'
+import cardCover5 from '../../../fixtures/images/background-light-enterprise-shape-5.png'
+import cardCover6 from '../../../fixtures/images/background-light-enterprise-shape-6.png'
+import cardCover7 from '../../../fixtures/images/background-light-enterprise-shape-7.png'
 
 import styles from './CategoryPage.module.css'
+
+const cardImagePlaceholders = [cardCover1, cardCover2, cardCover3, cardCover4, cardCover5, cardCover6, cardCover7]
 
 const NavListHeading = ({children}) => (
   <Box borderBlockStartWidth="thin" borderStyle="solid" borderColor="subtle" paddingBlockStart={12}>
@@ -159,13 +168,13 @@ export function CategoryPage({accentColor, variant, gridOverlay = false, colorMo
               borderStyle="solid"
             >
               <Grid enableOverlay={enableGridOverlay} className={styles.cardGrid}>
-                {Array.from({length: 12}).map((_, index) => (
+                {Array.from({length: 6}).map((_, index) => (
                   <Grid.Column span={{xsmall: 12, medium: 6}} key={index}>
                     <ThemeProvider colorMode={selectedColorMode}>
                       <Box animate="scale-in-right">
                         <Card href="../?path=/story/recipes-seo-article-page--default" variant="minimal">
                           <Card.Image
-                            src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+                            src={cardImagePlaceholders[Math.floor(Math.random() * cardImagePlaceholders.length)]}
                             alt="placeholder, blank area with an gray background color"
                             aspectRatio="16:9"
                           />
