@@ -83,7 +83,7 @@ jobs:
 
       - name: Installing local build
         run: |
-          cd ${{env.ASTRO_FOLDER}} 
+          cd ${{env.ASTRO_FOLDER}}
           cp ../packages/react/primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz ./
           npm install primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz
 
