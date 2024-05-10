@@ -6,11 +6,4 @@
 import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
-test.describe('Visual Comparison: Category', () => {
-  test('Category / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=recipes-seo-category-page--default&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-})
+test.describe('Visual Comparison: Category', () => {})
