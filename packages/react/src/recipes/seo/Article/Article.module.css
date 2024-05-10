@@ -3,6 +3,14 @@
   z-index: 91;
 }
 
+[data-color-mode='light'] .articlePageBody {
+  --brand-color-accent-primary: var(--base-color-scale-purple-5);
+}
+
+[data-color-mode='dark'] .articlePageBody {
+  --brand-color-accent-primary: var(--base-color-scale-purple-1);
+}
+
 .articleCol {
   order: 1;
 }
