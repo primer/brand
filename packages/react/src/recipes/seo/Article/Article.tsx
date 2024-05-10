@@ -46,9 +46,7 @@ const realWorldContent = [
   <p>If you ask 10 people to define DevOps, you&apos;re likely to get at least five different answers. Some people might focus on the practical implementation of DevOps—CI/CD, test automation, and so on—and they&apos;ll call it a process. Others might call DevOps a methodology with a set of processes that work together under a coherent philosophy.</p>
   <p>But both of these definition miss the larger point: DevOps consists of a set of practices that are adaptable to each business that adopts them.</p>
   <p>At GitHub, we believe it&apos;s better to understand DevOps as a framework for thinking about how to deliver value through software. It&apos;s more than a single methodology or collection of processes. It&apos;s fundamentally a set of practices—both cultural and technological. Let&apos;s break that down.</p>
-  `,
-  // eslint-disable-next-line github/unescaped-html-literal
-  `<h3 id="understanding-devops-as-a-framework">Understanding DevOps as a framework</h3>
+  <h3 id="understanding-devops-as-a-framework">Understanding DevOps as a framework</h3>
   <p>For decades, people have promoted neatly defined ideas of how each step of the software development lifecycle should work. But what seems like genius in a whitepaper often falls apart in practice because each organization is different.</p>
   <p>DevOps acknowledges that. Rather than prescribe every detail, DevOps brings together a set of practices, cultural ideas, and tooling that work under a framework that's malleable for the needs of a given team and organization.</p>
   <p>At its core, DevOps seeks to get higher-quality software into the hands of end users as fast as possible. This commitment to continuously delivering value is foundational to any successful DevOps organization—and it&apos;s accomplish in three ways:</p>
@@ -63,11 +61,9 @@ const realWorldContent = [
       <strong>Automation:</strong> Anything that can be automated should be automated across the SDLC in a DevOps practice to deliver value to end users faster through new releases. Automation also helps organizations maximize the time spent building the product, while minimizing the chance for human error.
     </li>
   </ul>
-
   <h3 id="how-devops-differs-from-agile-and-friends">How DevOps differs from agile and friends</h3>
   <p>Agile, extreme programming, and other similar development methodologies were reactions to the conflict between traditional programming and software distribution through the web.</p>
   <p>Before those ideas became popular, one of the most popular development methodologies was the highly sequential waterfall methodology. In that system, each step had to be complete before the next could start. That often meant lots of paperwork and planning needed to happen before a single line of code could be written.</p>
-
   <figure>
     <blockquote>
       <p>In 16 months, we've gone from over 30 siloed software engineering groups to a largely cohesive team across McKesson.</p>
@@ -91,8 +87,6 @@ const realWorldContent = [
   </ul>
   <h2 id="what-is-the-goal-of-devops">What is the goal of DevOps?</h2>
   <p>The goal of DevOps is to match how we make software with the way the cloud enables us to use it. The cloud took us from an era of barriers—individual servers, software release dates, role-based silos—to an open world where software is ubiquitous.</p>
-  `,
-  `
   <p>In the past, software development had distinct stages and a final product that might be compared to a production line. This was understandable—in the era of physical media, software development was a far more regimented and linear process. After all, a final release actually was final in a sense since distributing updates meant restarting the linear production process from scratch.</p>
   <p>But the modern SDLC isn&apos;t a production line. Software as a service and other innovations in cloud-based technologies and platforms have made distinct releases as relevant today as punch cards and room-sized calculators.</p>
   <p>So, how does DevOps bring the SDLC closer to the always-on, always-up–to-date expectations of the cloud?</p>
@@ -107,8 +101,7 @@ const realWorldContent = [
   <h3 id="how-your-organization-can-adopt-devops">How your organization can adopt DevOps</h3>
   <p>
     Successfully adopting DevOps can require some big changes. But rather than reworking all of your processes and tooling overnight, you can take relatively small steps to get started. This might entail making cultural changes to how often your development team integrates their code or automating small pieces of the SDLC in your organization.
-  </p>`,
-  `
+  </p>
   <p>No matter where you are on your DevOps journey, there are six key steps you should take to successfully adopt DevOps:</p>
   <ul>
     <li>Change the culture: Success in DevOps starts with deep collaboration between everyone responsible for building, testing, operating, and shipping a product. And that starts with making sure everyone is unified and working together across all stages of the SDLC. This can be a big change for organizations that have role-based siloes between different teams. In a DevOps practice, everyone comes together to deliver higher-quality software faster to customers—and that requires deep collaboration between different people to ensure code is optimized to operate in production environments and production environments are optimized to run the software.</li>
@@ -146,12 +139,9 @@ const systemContent = [
     <li><strong>Donec</strong> at dolor ut metus imperdiet congue vel porta nunc.
     </li>
     <li><strong>Quisque</strong> eu tortor suscipit, congue quam in, bibendum tellus.</li>
-  </ul>`,
-  // eslint-disable-next-line github/unescaped-html-literal
-  `<h3>Heading level 3</h3>
+  </ul>
+  <h3>Heading level 3</h3>
   <p>Pellentesque non ornare ligula. Suspendisse nibh purus, pretium id tortor sit amet, tincidunt gravida augue. Ut malesuada, nisl vel dignissim mollis</p>
-  `,
-  `
   <h4>Heading level  4</h4>
   <p>
     Secure code as you write it. Automatically review every change to your codebase and identify vulnerabilities
@@ -423,7 +413,7 @@ export function Article({
             <section>
               <AnimationProvider runOnce visibilityOptions={0.3}>
                 <header>
-                  <Box marginBlockStart={16}>
+                  <Box marginBlockStart={20}>
                     <Link href="#" arrowDirection="start">
                       Devops
                     </Link>
@@ -472,25 +462,6 @@ export function Article({
                         <Box>
                           <AnimationProvider runOnce>
                             <Prose variant="editorial" html={selectedContent[0]} />
-                            <Box marginBlockStart={{narrow: 24, wide: 48}}>
-                              <Image
-                                borderRadius="xlarge"
-                                width="100%"
-                                src={placeholderImage}
-                                alt="placeholder, blank area with an off-white background color"
-                              />
-                            </Box>
-                            <Box marginBlockStart={{narrow: 24, wide: 48}}>
-                              <Prose variant="editorial" html={selectedContent[1]} />
-                            </Box>
-
-                            <Box marginBlockStart={{narrow: 24, wide: 48}}>
-                              <Prose variant="editorial" html={selectedContent[2]} />
-                            </Box>
-
-                            <Box marginBlockStart={{narrow: 24, wide: 48}}>
-                              <Prose variant="editorial" html={selectedContent[3]} />
-                            </Box>
                           </AnimationProvider>
                         </Box>
                       </Grid.Column>

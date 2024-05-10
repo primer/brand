@@ -313,8 +313,8 @@
 }
 
 .Prose--editorial hr {
-  --spacing: var(--base-size-80);
+  --spacing: var(--base-size-64);
   margin-block-start: var(--spacing);
   margin-block-end: var(--spacing);
-  border-color: var(--brand-color-border-muted);
+  border: 1px solid var(--brand-color-border-muted);
 }

@@ -41,11 +41,21 @@
   border: var(--base-size-4) solid var(--brand-color-accent-primary);
   margin-inline-end: var(--base-size-12);
   float: left;
-  color: var(--brand-color-accent-primary);
+}
+
+[data-color-mode='light'] .lede::first-letter {
+  border-color: var(--base-color-scale-purple-5);
+  color: var(--base-color-scale-purple-5);
+}
+
+[data-color-mode='dark'] .lede::first-letter {
+  border-color: var(--base-color-scale-purple-1);
+  color: var(--base-color-scale-purple-1);
 }
 
 .asideHeading {
   color: var(--brand-color-text-muted);
+  letter-spacing: 0.031rem;
 }
 
 @media screen and (max-width: 63.25rem) {

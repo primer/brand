@@ -30,7 +30,14 @@ const cardImagePlaceholders = [cardCover1, cardCover2, cardCover3, cardCover4, c
 
 const NavListHeading = ({children}) => (
   <Box borderBlockStartWidth="thin" borderStyle="solid" borderColor="subtle" paddingBlockStart={12}>
-    <Heading as="h2" size="subhead-medium" font="monospace" className={styles.navListHeading} weight="medium">
+    <Heading
+      as="h2"
+      size="subhead-medium"
+      font="monospace"
+      className={styles.navListHeading}
+      weight="medium"
+      stretch="expanded"
+    >
       {children}
     </Heading>
   </Box>
@@ -131,83 +138,84 @@ export function CategoryPage({accentColor, variant, gridOverlay = false, colorMo
           <Grid.Column span={{xsmall: 12, large: 3}}>
             <Stack direction="vertical" padding="none" gap={24}>
               <NavListHeading>Topics</NavListHeading>
-
-              <nav>
-                <ul className={styles.navList}>
-                  <li>
-                    <NavListItem
-                      href="#"
-                      selected={activeCategory === 'AI'}
-                      onClick={e => handleActiveCategory(e, 'AI')}
-                    >
-                      AI
-                    </NavListItem>
-                  </li>
-                  <li>
-                    <NavListItem
-                      href="#"
-                      selected={activeCategory === 'DevOps'}
-                      onClick={e => handleActiveCategory(e, 'DevOps')}
-                    >
-                      DevOps
-                    </NavListItem>
-                  </li>
-                  <li>
-                    <NavListItem
-                      href="#"
-                      selected={activeCategory === 'Security'}
-                      onClick={e => handleActiveCategory(e, 'Security')}
-                    >
-                      Security
-                    </NavListItem>
-                  </li>
-                  <li>
-                    <NavListItem
-                      href="#"
-                      selected={activeCategory === 'Productivity'}
-                      onClick={e => handleActiveCategory(e, 'Productivity')}
-                    >
-                      Productivity
-                    </NavListItem>
-                  </li>
-                  <li>
-                    <NavListItem
-                      href="#"
-                      selected={activeCategory === 'Infrastructure'}
-                      onClick={e => handleActiveCategory(e, 'Infrastructure')}
-                    >
-                      Infrastructure
-                    </NavListItem>
-                  </li>
-                  <li>
-                    <NavListItem
-                      href="#"
-                      selected={activeCategory === 'Networking'}
-                      onClick={e => handleActiveCategory(e, 'Networking')}
-                    >
-                      Networking
-                    </NavListItem>
-                  </li>
-                  <li>
-                    <NavListItem
-                      href="#"
-                      selected={activeCategory === 'Data'}
-                      onClick={e => handleActiveCategory(e, 'Data')}
-                    >
-                      Data
-                    </NavListItem>
-                  </li>
-                  <li>
-                    <NavListItem
-                      href="#"
-                      selected={activeCategory === 'Containers'}
-                      onClick={e => handleActiveCategory(e, 'Containers')}
-                    >
-                      Containers
-                    </NavListItem>
-                  </li>
-                </ul>
-              </nav>
+              <Box marginBlockEnd={24}>
+                <nav>
+                  <ul className={styles.navList}>
+                    <li>
+                      <NavListItem
+                        href="#"
+                        selected={activeCategory === 'AI'}
+                        onClick={e => handleActiveCategory(e, 'AI')}
+                      >
+                        AI
+                      </NavListItem>
+                    </li>
+                    <li>
+                      <NavListItem
+                        href="#"
+                        selected={activeCategory === 'DevOps'}
+                        onClick={e => handleActiveCategory(e, 'DevOps')}
+                      >
+                        DevOps
+                      </NavListItem>
+                    </li>
+                    <li>
+                      <NavListItem
+                        href="#"
+                        selected={activeCategory === 'Security'}
+                        onClick={e => handleActiveCategory(e, 'Security')}
+                      >
+                        Security
+                      </NavListItem>
+                    </li>
+                    <li>
+                      <NavListItem
+                        href="#"
+                        selected={activeCategory === 'Productivity'}
+                        onClick={e => handleActiveCategory(e, 'Productivity')}
+                      >
+                        Productivity
+                      </NavListItem>
+                    </li>
+                    <li>
+                      <NavListItem
+                        href="#"
+                        selected={activeCategory === 'Infrastructure'}
+                        onClick={e => handleActiveCategory(e, 'Infrastructure')}
+                      >
+                        Infrastructure
+                      </NavListItem>
+                    </li>
+                    <li>
+                      <NavListItem
+                        href="#"
+                        selected={activeCategory === 'Networking'}
+                        onClick={e => handleActiveCategory(e, 'Networking')}
+                      >
+                        Networking
+                      </NavListItem>
+                    </li>
+                    <li>
+                      <NavListItem
+                        href="#"
+                        selected={activeCategory === 'Data'}
+                        onClick={e => handleActiveCategory(e, 'Data')}
+                      >
+                        Data
+                      </NavListItem>
+                    </li>
+                    <li>
+                      <NavListItem
+                        href="#"
+                        selected={activeCategory === 'Containers'}
+                        onClick={e => handleActiveCategory(e, 'Containers')}
+                      >
+                        Containers
+                      </NavListItem>
+                    </li>
+                  </ul>
+                </nav>
+              </Box>
             </Stack>
           </Grid.Column>
 

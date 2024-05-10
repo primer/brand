@@ -2,6 +2,7 @@
   font-size: var(--brand-text-size-100);
   color: var(--brand-color-text-muted);
   text-transform: uppercase;
+  letter-spacing: 0.031rem;
 }
 
 .navList {
@@ -29,7 +30,12 @@
 .navListItemSelected,
 .navListItem:hover {
   color: var(--brand-color-text-default);
-  background-color: var(--brand-color-canvas-subtle);
+  background-color: var(--base-color-scale-gray-1);
+}
+
+[data-color-mode='dark'] .navListItemSelected,
+[data-color-mode='dark'] .navListItem:hover {
+  background-color: var(--base-color-scale-gray-6);
 }
 
 .cardGrid {
