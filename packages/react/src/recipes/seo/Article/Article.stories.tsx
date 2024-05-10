@@ -63,7 +63,7 @@ export default {
 export const Playground: StoryFn<typeof Article> = args => <Article {...args} />
 Playground.args = {
   heroTitle: 'Lorem ipsum dolor sit amet',
-  lede: 'There&apos;s one word that perfectly describes successful DevOps: flow. As individuals, we experience a state of flow when everything in our work comes together naturally and at the right time. DevOps enables that kind of flow at the organizational level through a combination of tooling, culture, and process.',
+  lede: "There's one word that perfectly describes successful DevOps: flow. As individuals, we experience a state of flow when everything in our work comes together naturally and at the right time. DevOps enables that kind of flow at the organizational level through a combination of tooling, culture, and process.",
 }
 
 export const RealWorldExample: StoryFn<typeof Article> = ({content, lede, ...rest}) => (
@@ -71,7 +71,7 @@ export const RealWorldExample: StoryFn<typeof Article> = ({content, lede, ...res
 )
 RealWorldExample.args = {
   heroTitle: 'Should we think of DevOps as a methodology?',
-  lede: 'There&apos;s one word that perfectly describes successful DevOps: flow. As individuals, we experience a state of flow when everything in our work comes together naturally and at the right time. DevOps enables that kind of flow at the organizational level through a combination of tooling, culture, and process.',
+  lede: "There's one word that perfectly describes successful DevOps: flow. As individuals, we experience a state of flow when everything in our work comes together naturally and at the right time. DevOps enables that kind of flow at the organizational level through a combination of tooling, culture, and process.",
 }
 export const AllHeadings: StoryFn<typeof Article> = ({content, heroTitle, lede, ...rest}) => (
   <Article heroTitle={heroTitle} content="system" lede={lede} {...rest} />
