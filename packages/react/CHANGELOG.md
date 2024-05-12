@@ -1,5 +1,46 @@
 # @primer/react-brand
 
+## 0.34.0
+
+### Minor Changes
+
+- [#547](https://github.com/primer/brand/pull/547) [`9cef031`](https://github.com/primer/brand/commit/9cef031eded3e4345b00c0e95ba6e397f1e31969) Thanks [@mperrotti](https://github.com/mperrotti)! - Adds a Tooltip component.
+
+  Example:
+
+  ```jsx
+  <Tooltip text="Hello, Tooltip!">
+    <Button>Hover me</Button>
+  </Tooltip>
+  ```
+
+### Patch Changes
+
+- [#588](https://github.com/primer/brand/pull/588) [`a600e38`](https://github.com/primer/brand/commit/a600e38c37851cb7c48561ccd9d19f9db26dce42) Thanks [@rezrah](https://github.com/rezrah)! - Added larger row gaps in `Grid` at wider breakpoints, which were previously missing. Now consistent with column gaps.
+
+- [#587](https://github.com/primer/brand/pull/587) [`16b87f1`](https://github.com/primer/brand/commit/16b87f134d613072a62268a275edb443842d0f51) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Add `trailingComponent` prop to CTABanner
+
+- [#588](https://github.com/primer/brand/pull/588) [`a600e38`](https://github.com/primer/brand/commit/a600e38c37851cb7c48561ccd9d19f9db26dce42) Thanks [@rezrah](https://github.com/rezrah)! - Added `borderRadius` prop to `Image` component.
+
+- [#588](https://github.com/primer/brand/pull/588) [`a600e38`](https://github.com/primer/brand/commit/a600e38c37851cb7c48561ccd9d19f9db26dce42) Thanks [@rezrah](https://github.com/rezrah)! - Added new `monospace` option to `Heading` and `Text` `font` property.
+
+- [#584](https://github.com/primer/brand/pull/584) [`682df70`](https://github.com/primer/brand/commit/682df70adbd5cef1af5ca8f47ba9437c4831ef4b) Thanks [@mgriffin](https://github.com/mgriffin)! - Adds a missing space around font-size calculation in the IDE component
+
+- [#588](https://github.com/primer/brand/pull/588) [`a600e38`](https://github.com/primer/brand/commit/a600e38c37851cb7c48561ccd9d19f9db26dce42) Thanks [@rezrah](https://github.com/rezrah)! - Added `minimal` Card variant, allowing for alternative presentation, with minimal internal padding.
+
+  ```jsx
+  <Card ctaText="Discover how" href="https://github.com" variant="minimal">
+    <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+    <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
+  </Card>
+  ```
+
+- [#588](https://github.com/primer/brand/pull/588) [`a600e38`](https://github.com/primer/brand/commit/a600e38c37851cb7c48561ccd9d19f9db26dce42) Thanks [@rezrah](https://github.com/rezrah)! - - Reduced sizes for all headings in Prose by two positions on the type scale. E.g. `h2` previously `64px`, now `40px`.
+
+  - Added `editorial` variant to Prose for alternative presentation. Provides more relaxed spacing and presentation for child elements.
+
+- [#585](https://github.com/primer/brand/pull/585) [`a033995`](https://github.com/primer/brand/commit/a033995d1277e4bf464b471a3d75c55f270b7a79) Thanks [@MelissaPastore](https://github.com/MelissaPastore)! - Update SubNav stylesheet to exclude Subnav links with aria-current set to "false" from active link styling
+
 ## 0.33.0
 
 ### Minor Changes
