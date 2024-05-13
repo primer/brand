@@ -35,7 +35,7 @@ import styles from './Article.module.css'
 const realWorldContent = [
   // eslint-disable-next-line github/unescaped-html-literal
   `<p>
-    While DevOps is sometimes referred to as a methodology, it&apos;s better understood as a set of practices, 
+    While DevOps is sometimes referred to as a methodology, it&apos;s better understood as a set of practices,
     ideas, and methodologies that share a common philosophy: continuous value delivery. Put simply, there&apos;s no one-size-fits-all approach to DevOps—and successful examples of DevOps can look very different from one organization to another.
   </p>
   <p>
@@ -156,7 +156,7 @@ const systemContent = [
     </li>
     <li>Quisque eu tortor suscipit, congue quam in, bibendum tellus.</li>
   </ol>
-  <p><code>for-each-ref</code> is extremely useful for listing references, finding which references point at a given object (with <code>--points-at</code>), which references have been merged into a given branch (with <code>--merged</code>), or which references contain a given commit (with <code>--contains</code>).</p>    
+  <p><code>for-each-ref</code> is extremely useful for listing references, finding which references point at a given object (with <code>--points-at</code>), which references have been merged into a given branch (with <code>--merged</code>), or which references contain a given commit (with <code>--contains</code>).</p>
   <h6>Heading level 6</h6>
   <p>Pellentesque non ornare ligula. Suspendisse nibh purus, pretium id tortor sit amet, tincidunt gravida augue.</p>
   <p>Nunc velit odio, posuere eu felis eget, consectetur fermentum nisi. Aenean tempor odio id ornare ultrices. Quisque blandit condimentum tellus, semper efficitur sapien dapibus nec. </p>
@@ -415,7 +415,7 @@ export function Article({
                 <header>
                   <Box marginBlockStart={20}>
                     <Link href="#" arrowDirection="start">
-                      Devops
+                      DevOps
                     </Link>
                   </Box>
                   <Box animate="fade-in" marginBlockStart={64} marginBlockEnd={32}>
