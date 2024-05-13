@@ -144,7 +144,7 @@ export function CategoryPage({accentColor, variant, gridOverlay = false, colorMo
             <Stack direction="vertical" padding="none" gap={24}>
               <NavListHeading id="topics-heading">Topics</NavListHeading>
               <Box marginBlockEnd={24}>
-                <nav aria-labelledby="topics-headifng">
+                <nav aria-labelledby="topics-heading">
                   <ul className={styles.navList}>
                     <li>
                       <NavListItem
