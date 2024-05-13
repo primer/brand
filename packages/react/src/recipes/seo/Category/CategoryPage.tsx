@@ -51,7 +51,12 @@ const NavListItem = ({
 }: PropsWithChildren<
   {children: string; selected?: boolean; href: string; onClick: (e) => void} & BaseProps<HTMLAnchorElement>
 >) => (
-  <a className={clsx(styles.navListItem, selected && styles.navListItemSelected)} href={href} onClick={onClick}>
+  <a
+    className={clsx(styles.navListItem, selected && styles.navListItemSelected)}
+    href={href}
+    onClick={onClick}
+    aria-current={selected ? 'page' : undefined}
+  >
     <Text size="200">{children}</Text>
   </a>
 )
