@@ -29,7 +29,7 @@ import styles from './CategoryPage.module.css'
 
 const cardImagePlaceholders = [cardCover1, cardCover2, cardCover3, cardCover4, cardCover5, cardCover6, cardCover7]
 
-const NavListHeading = (props: PropsWithChildren<HeadingProps>) => (
+const NavListHeading = (props: HeadingProps) => (
   <Box borderBlockStartWidth="thin" borderStyle="solid" borderColor="subtle" paddingBlockStart={12}>
     <Heading
       as="h2"
