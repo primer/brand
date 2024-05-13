@@ -168,10 +168,8 @@ const contentMap = {
   system: systemContent,
 }
 
-const AsideHeading = ({as = 'h2', children}: HeadingProps) => (
-  <Heading as={as} size="subhead-medium" font="monospace" className={styles.asideHeading} weight="medium">
-    {children}
-  </Heading>
+const AsideHeading = ({as = 'h2', ...props}: HeadingProps) => (
+  <Heading as={as} size="subhead-medium" font="monospace" className={styles.asideHeading} weight="medium" {...props} />
 )
 
 const TableOfContents = ({content = 'real-world', active}) => {
@@ -244,7 +242,7 @@ const TableOfContents = ({content = 'real-world', active}) => {
   }, [setNarrowMenuOpen, narrowMenuOpen])
 
   return (
-    <nav aria-label="Table of contents">
+    <nav aria-labelledby="table-of-contents-heading">
       <Stack
         direction="vertical"
         gap={64}
@@ -257,7 +255,7 @@ const TableOfContents = ({content = 'real-world', active}) => {
       >
         <Stack direction="vertical" padding="none" gap={24}>
           <Stack direction="horizontal" padding="none" justifyContent="space-between" alignItems="center">
-            <AsideHeading>Table of contents</AsideHeading>
+            <AsideHeading id="table-of-contents-heading">Table of contents</AsideHeading>
             <button className={styles.tableOfContentsMenuToggle} onClick={handleNarrowMenu}>
               {narrowMenuOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
             </button>
