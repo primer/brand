@@ -41,6 +41,7 @@ export default {
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar.',
     heroCtaTextPrimary: 'Primary CTA',
     heroCtaTextSecondary: 'Secondary CTA',
+    heroLogoBarVisible: true,
 
     sectionIntroAlign: 'start',
     sectionIntroVisible: true,
@@ -76,6 +77,8 @@ export default {
 
     testimonialVisible: true,
     testimonialQuantity: 1,
+
+    logoSuiteVisible: false,
 
     ctaBannerVisible: true,
     ctaBannerShowBg: true,
@@ -185,6 +188,13 @@ export default {
     heroCtaTextSecondary: {
       control: 'text',
       name: 'secondary CTA text',
+      table: {
+        category: 'Section: Hero',
+      },
+    },
+    heroLogoBarVisible: {
+      control: 'boolean',
+      name: 'show logobar',
       table: {
         category: 'Section: Hero',
       },
@@ -369,6 +379,16 @@ export default {
       },
     },
     /**
+     * LogoSuite
+     */
+    logoSuiteVisible: {
+      control: 'boolean',
+      name: 'visible',
+      table: {
+        category: 'Section: LogoSuite',
+      },
+    },
+    /**
      * CTABanner
      */
     ctaBannerVisible: {
@@ -421,6 +441,7 @@ export const LevelTwoPlayground: StoryFn<typeof FeaturePreviewLevelTwo> = args =
 LevelTwoPlayground.storyName = 'Playground'
 LevelTwoPlayground.args = {
   variant: 'Maximum',
+  logoSuiteVisible: true,
 }
 
 export const LevelTwoMinimal: StoryFn<typeof FeaturePreviewLevelTwo> = args => <FeaturePreviewLevelTwo {...args} />
@@ -430,6 +451,7 @@ LevelTwoMinimal.args = {
   variant: 'Minimum',
   heroLabel: undefined,
   heroCtaTextSecondary: undefined,
+  heroLogoBarVisible: false,
   sectionIntroVisible: false,
   pillarVisibile: false,
   riverOneType: 'end',
