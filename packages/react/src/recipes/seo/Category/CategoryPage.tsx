@@ -7,6 +7,7 @@ import {
   Card,
   Grid,
   Heading,
+  HeadingProps,
   MinimalFooter,
   Pagination,
   Stack,
@@ -28,7 +29,7 @@ import styles from './CategoryPage.module.css'
 
 const cardImagePlaceholders = [cardCover1, cardCover2, cardCover3, cardCover4, cardCover5, cardCover6, cardCover7]
 
-const NavListHeading = ({children}) => (
+const NavListHeading = (props: HeadingProps) => (
   <Box borderBlockStartWidth="thin" borderStyle="solid" borderColor="subtle" paddingBlockStart={12}>
     <Heading
       as="h2"
@@ -37,9 +38,8 @@ const NavListHeading = ({children}) => (
       className={styles.navListHeading}
       weight="medium"
       stretch="expanded"
-    >
-      {children}
-    </Heading>
+      {...props}
+    />
   </Box>
 )
 
@@ -51,7 +51,12 @@ const NavListItem = ({
 }: PropsWithChildren<
   {children: string; selected?: boolean; href: string; onClick: (e) => void} & BaseProps<HTMLAnchorElement>
 >) => (
-  <a className={clsx(styles.navListItem, selected && styles.navListItemSelected)} href={href} onClick={onClick}>
+  <a
+    className={clsx(styles.navListItem, selected && styles.navListItemSelected)}
+    href={href}
+    onClick={onClick}
+    aria-current={selected ? 'page' : undefined}
+  >
     <Text size="200">{children}</Text>
   </a>
 )
@@ -137,9 +142,9 @@ export function CategoryPage({accentColor, variant, gridOverlay = false, colorMo
           </Grid.Column>
           <Grid.Column span={{xsmall: 12, large: 3}}>
             <Stack direction="vertical" padding="none" gap={24}>
-              <NavListHeading>Topics</NavListHeading>
+              <NavListHeading id="topics-heading">Topics</NavListHeading>
               <Box marginBlockEnd={24}>
-                <nav>
+                <nav aria-labelledby="topics-heading">
                   <ul className={styles.navList}>
                     <li>
                       <NavListItem
