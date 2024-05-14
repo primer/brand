@@ -27,6 +27,7 @@ import heroImage from '../../../fixtures/images/background-lozenge-ai.png'
 import placeholderImage from '../../../fixtures/images/background-poster-ai.png'
 
 import styles from './Article.module.css'
+import {Themes, themeDetailsMap} from '../helpers'
 
 /**
  * This is an example of a remote content that can be fetched from a CMS or a markdown file,
@@ -319,6 +320,7 @@ type ArticleProps = {
   content: 'real-world' | 'system'
   gridOverlay?: boolean
   colorMode?: ColorModesEnum
+  accentColor: Themes
 }
 
 export function Article({
@@ -327,12 +329,14 @@ export function Article({
   content = 'real-world',
   gridOverlay = false,
   colorMode = ColorModesEnum.LIGHT,
+  accentColor,
   ...args
 }: ArticleProps) {
   const [enableGridOverlay, setGridOverlay] = React.useState(gridOverlay)
   const [isLightMode, setIsLightMode] = React.useState(colorMode === ColorModesEnum.LIGHT)
   const [currVisibleHeading, setCurrVisibleHeading] = React.useState<string | undefined>()
   const selectedColorMode = isLightMode ? ColorModesEnum.LIGHT : ColorModesEnum.DARK
+  const accentColorValue = themeDetailsMap[accentColor][selectedColorMode].color
 
   const selectedContent = contentMap[content]
 
@@ -389,6 +393,7 @@ export function Article({
     <ThemeProvider
       colorMode={selectedColorMode}
       style={{
+        ['--brand-color-accent-primary' as string]: accentColorValue,
         backgroundColor: 'var(--brand-color-canvas-default)',
       }}
       {...args}
