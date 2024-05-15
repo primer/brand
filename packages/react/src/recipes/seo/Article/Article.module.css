@@ -20,13 +20,114 @@
   padding: 0;
 }
 
-.heroImageArea {
-  overflow: hidden;
+.subdomainNavBarContainer {
+  width: 100%;
+  position: absolute;
+  z-index: 92;
+  background: var(--brand-color-canvas-default);
+}
+
+.hero {
+  /* TODO Is this the right color, and the right way to override? */
+  --brand-Link-color-default: var(--brand-color-canvas-default);
+  --brand-color-text-default: var(--brand-color-canvas-default);
+
+  --parallax-start-spacing: 74px;
+
+  background: black;
+  position: relative;
+  height: var(--hero-height);
+}
+
+.parallax {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: var(--hero-height);
+}
+
+.background,
+.foreground {
+  width: 100%;
+  height: 100%;
+
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  animation-timeline: scroll();
+  animation-range: 0vh var(--hero-height);
+}
+
+.background {
+  position: absolute;
+}
+
+.foreground {
+  position: relative;
 }
 
 .heroImage {
-  display: block;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.heroImageOverlay {
+  position: absolute;
+  top: 0;
   width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.6) 100%);
+}
+
+.foregroundContents {
+  padding: 0;
+  padding-block-start: calc(var(--base-size-20) + var(--parallax-start-spacing));
+  height: 100%;
+}
+
+.articleContents {
+  border-radius: var(--brand-borderRadius-xlarge);
+  margin-top: calc(-1 * var(--brand-borderRadius-xlarge));
+  background-color: var(--brand-color-canvas-default);
+  position: relative;
+  z-index: 90;
+}
+
+@keyframes parallax-background {
+  from {
+    top: 0;
+    filter: blur(0px);
+  }
+  to {
+    top: calc(var(--hero-height) * var(--parallax-background-speed) * -1);
+    filter: blur(10px) brightness(0%);
+  }
+}
+
+@keyframes parallax-foreground {
+  from {
+    top: 0;
+  }
+  to {
+    top: calc(var(--hero-height) * var(--parallax-foreground-speed) * -1);
+    filter: blur(2px) brightness(0%);
+  }
+}
+
+/* Progressive enhancement opt-in */
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .parallax {
+      position: fixed;
+    }
+
+    .foreground {
+      animation-name: parallax-foreground;
+    }
+
+    .background {
+      animation-name: parallax-background;
+    }
+  }
 }
 
 .lede {

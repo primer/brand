@@ -9,6 +9,7 @@ const meta: Meta<typeof Article> = {
   title: 'Recipes/SEO/Article page',
   component: Article,
   parameters: {
+    controls: {expanded: true},
     layout: 'fullscreen',
     viewport: {
       viewports: INITIAL_VIEWPORTS,
@@ -31,6 +32,9 @@ const meta: Meta<typeof Article> = {
     lede: "There's one word that perfectly describes successful DevOps: flow. As individuals, we experience a state of flow when everything in our work comes together naturally and at the right time. DevOps enables that kind of flow at the organizational level through a combination of tooling, culture, and process.",
     content: 'real-world',
     accentColor: 'ai',
+    heroHeight: 70,
+    heroForegroundSpeed: 70,
+    heroBackgroundSpeed: 40,
   },
   argTypes: {
     heroTitle: {
@@ -65,6 +69,36 @@ const meta: Meta<typeof Article> = {
       options: themes,
       table: {
         category: 'Theming',
+      },
+    },
+    heroHeight: {
+      description: 'Hero height as a percentage of the viewport height',
+      control: 'range',
+      min: 0,
+      max: 100,
+      step: 1,
+      table: {
+        category: 'Hero',
+      },
+    },
+    heroForegroundSpeed: {
+      description: 'Foreground parallax effect speed (0 = no movement, 100 = full speed)',
+      control: 'range',
+      min: 0,
+      max: 100,
+      step: 1,
+      table: {
+        category: 'Hero',
+      },
+    },
+    heroBackgroundSpeed: {
+      description: 'Background parallax effect speed (0 = no movement, 100 = full speed)',
+      control: 'range',
+      min: 0,
+      max: 100,
+      step: 1,
+      table: {
+        category: 'Hero',
       },
     },
   },

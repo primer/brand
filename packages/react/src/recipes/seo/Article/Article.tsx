@@ -23,7 +23,7 @@ import {
 } from '../../../'
 
 import {ColorModesEnum, ThemeProvider} from '../../../ThemeProvider'
-import heroImage from '../../../fixtures/images/background-lozenge-ai.png'
+import heroImage from '../../../fixtures/images/background-full-bleed.png'
 import placeholderImage from '../../../fixtures/images/background-poster-ai.png'
 
 import styles from './Article.module.css'
@@ -321,6 +321,9 @@ type ArticleProps = {
   gridOverlay?: boolean
   colorMode?: ColorModesEnum
   accentColor: Themes
+  heroHeight?: number
+  heroForegroundSpeed?: number
+  heroBackgroundSpeed?: number
 }
 
 export function Article({
@@ -330,6 +333,9 @@ export function Article({
   gridOverlay = false,
   colorMode = ColorModesEnum.LIGHT,
   accentColor,
+  heroHeight = 70,
+  heroForegroundSpeed = 70,
+  heroBackgroundSpeed = 40,
   ...args
 }: ArticleProps) {
   const [enableGridOverlay, setGridOverlay] = React.useState(gridOverlay)
@@ -394,239 +400,253 @@ export function Article({
       colorMode={selectedColorMode}
       style={{
         ['--brand-color-accent-primary' as string]: accentColorValue,
+        ['--parallax-foreground-speed' as string]: heroForegroundSpeed / 100,
+        ['--parallax-background-speed' as string]: heroBackgroundSpeed / 100,
+        ['--hero-height' as string]: `${heroHeight}vh`,
+
         backgroundColor: 'var(--brand-color-canvas-default)',
       }}
       {...args}
     >
-      <SubdomainNavBar title="" fixed={false}>
-        <SubdomainNavBar.SecondaryAction
-          aria-label={isLightMode ? 'Switch to dark mode' : 'Switch to light mode'}
-          href="#"
-          onClick={handleMode}
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          variant="invisible"
-        >
-          {isLightMode ? <MoonIcon size={24} /> : <SunIcon size={24} />}
-        </SubdomainNavBar.SecondaryAction>
-      </SubdomainNavBar>
+      <div className={styles.subdomainNavBarContainer}>
+        <SubdomainNavBar title="" fixed={false}>
+          <SubdomainNavBar.SecondaryAction
+            aria-label={isLightMode ? 'Switch to dark mode' : 'Switch to light mode'}
+            href="#"
+            onClick={handleMode}
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            variant="invisible"
+          >
+            {isLightMode ? <MoonIcon size={24} /> : <SunIcon size={24} />}
+          </SubdomainNavBar.SecondaryAction>
+        </SubdomainNavBar>
+      </div>
       <main className={styles.articlePageBody}>
-        <Grid enableOverlay={enableGridOverlay}>
-          <Grid.Column span={12}>
-            <section>
-              <AnimationProvider runOnce visibilityOptions={0.3}>
-                <header>
-                  <Box marginBlockStart={20}>
-                    <Link href="#" arrowDirection="start">
-                      DevOps
-                    </Link>
-                  </Box>
-                  <Box animate="fade-in" marginBlockStart={64} marginBlockEnd={32}>
-                    <Heading as="h1" size="1" stretch="condensed" weight="semibold" font="hubot-sans">
-                      {heroTitle}
-                    </Heading>
-                  </Box>
-                </header>
-                <article>
-                  <Box marginBlockEnd={{narrow: 48}} paddingBlockEnd={{narrow: 48}}>
-                    <Box borderRadius="large" className={styles.heroImageArea} marginBlockEnd={{narrow: 64, wide: 80}}>
-                      <Image
-                        borderRadius="xlarge"
-                        animate="fade-in"
-                        alt="placeholder image"
-                        src={heroImage}
-                        className={styles.heroImage}
-                      />
+        <section>
+          <AnimationProvider runOnce visibilityOptions={0.3}>
+            <header className={styles.hero}>
+              <div className={styles.parallax}>
+                <div className={styles.background}>
+                  <Image className={styles.heroImage} animate="fade-in" alt="placeholder image" src={heroImage} />
+                  <div className={styles.heroImageOverlay}></div>
+                </div>
+                <Grid enableOverlay={enableGridOverlay} className={styles.foreground}>
+                  <Grid.Column span={10} start={1}>
+                    <Stack
+                      className={styles.foregroundContents}
+                      direction="vertical"
+                      justifyContent="space-between"
+                      alignItems="flex-start"
+                    >
+                      <Link href="#" arrowDirection="start">
+                        DevOps
+                      </Link>
+                      <Box animate="fade-in" marginBlockEnd={64}>
+                        <Heading as="h1" size="1" stretch="condensed" weight="semibold" font="hubot-sans">
+                          {heroTitle}
+                        </Heading>
+                      </Box>
+                    </Stack>
+                  </Grid.Column>
+                </Grid>
+              </div>
+            </header>
+            <div className={styles.articleContents}>
+              <Grid enableOverlay={enableGridOverlay}>
+                <Grid.Column span={12}>
+                  <article>
+                    <Box marginBlockStart={80} marginBlockEnd={{narrow: 48}} paddingBlockEnd={{narrow: 48}}>
+                      <Grid enableOverlay={enableGridOverlay}>
+                        <Grid.Column
+                          span={{xsmall: 12, large: 4}}
+                          start={{xsmall: 1, large: 10}}
+                          className={styles.asideCol}
+                        >
+                          <aside className={styles.aside}>
+                            <TableOfContents content={content} active={currVisibleHeading} />
+                          </aside>
+                        </Grid.Column>
+                        <Grid.Column span={{xsmall: 12, large: 9}} className={styles.articleCol}>
+                          {lede && (
+                            <Grid enableOverlay={enableGridOverlay}>
+                              <Grid.Column span={{xsmall: 12, large: 11}}>
+                                <Box animate="slide-in-left" marginBlockEnd={{narrow: 24, wide: 48}}>
+                                  <header>
+                                    <Text as="p" className={styles.lede} size="500" font="hubot-sans" weight="medium">
+                                      {lede}
+                                    </Text>
+                                  </header>
+                                </Box>
+                              </Grid.Column>
+                            </Grid>
+                          )}
+                          <Box>
+                            <AnimationProvider runOnce>
+                              <Prose variant="editorial" html={selectedContent[0]} />
+                            </AnimationProvider>
+                          </Box>
+                        </Grid.Column>
+                      </Grid>
+                      <Grid>
+                        <Grid.Column span={12}>
+                          <Box marginBlockStart={{narrow: 64, wide: 112}}>
+                            <Stack direction="vertical" gap={128} padding="none">
+                              <CTABanner align="center" hasShadow={false} hasBorder>
+                                <CTABanner.Heading>Check it out</CTABanner.Heading>
+                                <CTABanner.Description>
+                                  AI code generation uses machine learning models to write code from input that
+                                  describes what the code should do, and the models provide context-based code
+                                  suggestions along the way. AI generated code isn&apos;t always perfect, but it often
+                                  gives developers a suitable starting point for writing code quickly and efficiently.
+                                </CTABanner.Description>
+                                <CTABanner.ButtonGroup>
+                                  <Button>Contact sales</Button>
+                                  <Button>Sign up</Button>
+                                </CTABanner.ButtonGroup>
+                              </CTABanner>
+                              <section>
+                                <Stack direction="vertical" gap={64} padding="none">
+                                  <SectionIntro align="center">
+                                    <SectionIntro.Heading as="h2">More AI resources</SectionIntro.Heading>
+                                  </SectionIntro>
+
+                                  <Grid enableOverlay={enableGridOverlay}>
+                                    <Grid.Column
+                                      span={{
+                                        xsmall: 12,
+                                        medium: 6,
+                                        large: 4,
+                                      }}
+                                    >
+                                      <Box animate="scale-in-up">
+                                        <Card href="https://github.com" hasBorder>
+                                          <Card.Label>Limited</Card.Label>
+                                          <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+                                          <Card.Description>
+                                            Everything you need to know about getting started with GitHub Actions.
+                                          </Card.Description>
+                                        </Card>
+                                      </Box>
+                                    </Grid.Column>
+                                    <Grid.Column
+                                      span={{
+                                        xsmall: 12,
+                                        medium: 6,
+                                        large: 4,
+                                      }}
+                                    >
+                                      <Box animate="scale-in-up">
+                                        <Card href="https://github.com" hasBorder>
+                                          <Card.Label>Limited</Card.Label>
+                                          <Card.Heading>GitHub Actions cheat sheet and more</Card.Heading>
+                                          <Card.Description>
+                                            In a recent study, 70% of organizations reported they had adopted DevOps.
+                                          </Card.Description>
+                                        </Card>
+                                      </Box>
+                                    </Grid.Column>
+                                    <Grid.Column
+                                      span={{
+                                        xsmall: 12,
+                                        medium: 6,
+                                        large: 4,
+                                      }}
+                                    >
+                                      <Box animate="scale-in-up">
+                                        <Card href="https://github.com" hasBorder>
+                                          <Card.Label>Limited</Card.Label>
+                                          <Card.Heading>GitHub Actions cheat sheet and more</Card.Heading>
+                                          <Card.Description>
+                                            In a recent study, 70% of organizations reported they had adopted DevOps.
+                                          </Card.Description>
+                                        </Card>
+                                      </Box>
+                                    </Grid.Column>
+                                  </Grid>
+                                </Stack>
+                              </section>
+                              <section>
+                                <FAQGroup>
+                                  <FAQGroup.Heading>
+                                    Frequently asked <br /> questions
+                                  </FAQGroup.Heading>
+                                  <FAQ>
+                                    <FAQ.Heading>Using GitHub Enterprise</FAQ.Heading>
+                                    <FAQ.Item>
+                                      <FAQ.Question>What is GitHub Enterprise?</FAQ.Question>
+                                      <FAQ.Answer>
+                                        <p>
+                                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
+                                          ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum.
+                                        </p>
+                                      </FAQ.Answer>
+                                    </FAQ.Item>
+                                    <FAQ.Item>
+                                      <FAQ.Question>How can GitHub Enterprise be deployed?</FAQ.Question>
+                                      <FAQ.Answer>
+                                        <p>
+                                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
+                                          ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum.
+                                        </p>
+                                      </FAQ.Answer>
+                                    </FAQ.Item>
+                                    <FAQ.Item>
+                                      <FAQ.Question>What is GitHub Enterprise Cloud?</FAQ.Question>
+                                      <FAQ.Answer>
+                                        <p>
+                                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
+                                          ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum.
+                                        </p>
+                                      </FAQ.Answer>
+                                    </FAQ.Item>
+                                  </FAQ>
+
+                                  <FAQ>
+                                    <FAQ.Heading>About GitHub Enterprise</FAQ.Heading>
+                                    <FAQ.Item>
+                                      <FAQ.Question>
+                                        What is the difference between GitHub and GitHub Enterprise?
+                                      </FAQ.Question>
+                                      <FAQ.Answer>
+                                        <p>
+                                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
+                                          ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum.
+                                        </p>
+                                      </FAQ.Answer>
+                                    </FAQ.Item>
+                                    <FAQ.Item>
+                                      <FAQ.Question>Why should organizations use GitHub Enterprise?</FAQ.Question>
+                                      <FAQ.Answer>
+                                        <p>
+                                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
+                                          ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum.
+                                        </p>
+                                      </FAQ.Answer>
+                                    </FAQ.Item>
+                                    <FAQ.Item>
+                                      <FAQ.Question>Who uses GitHub Enterprise?</FAQ.Question>
+                                      <FAQ.Answer>
+                                        <p>
+                                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
+                                          ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum.
+                                        </p>
+                                      </FAQ.Answer>
+                                    </FAQ.Item>
+                                  </FAQ>
+                                </FAQGroup>
+                              </section>
+                            </Stack>
+                          </Box>
+                        </Grid.Column>
+                      </Grid>
                     </Box>
-                    <Grid enableOverlay={enableGridOverlay}>
-                      <Grid.Column
-                        span={{xsmall: 12, large: 4}}
-                        start={{xsmall: 1, large: 10}}
-                        className={styles.asideCol}
-                      >
-                        <aside className={styles.aside}>
-                          <TableOfContents content={content} active={currVisibleHeading} />
-                        </aside>
-                      </Grid.Column>
-                      <Grid.Column span={{xsmall: 12, large: 9}} className={styles.articleCol}>
-                        {lede && (
-                          <Grid enableOverlay={enableGridOverlay}>
-                            <Grid.Column span={{xsmall: 12, large: 11}}>
-                              <Box animate="slide-in-left" marginBlockEnd={{narrow: 24, wide: 48}}>
-                                <header>
-                                  <Text as="p" className={styles.lede} size="500" font="hubot-sans" weight="medium">
-                                    {lede}
-                                  </Text>
-                                </header>
-                              </Box>
-                            </Grid.Column>
-                          </Grid>
-                        )}
-                        <Box>
-                          <AnimationProvider runOnce>
-                            <Prose variant="editorial" html={selectedContent[0]} />
-                          </AnimationProvider>
-                        </Box>
-                      </Grid.Column>
-                    </Grid>
-                    <Grid>
-                      <Grid.Column span={12}>
-                        <Box marginBlockStart={{narrow: 64, wide: 112}}>
-                          <Stack direction="vertical" gap={128} padding="none">
-                            <CTABanner align="center" hasShadow={false} hasBorder>
-                              <CTABanner.Heading>Check it out</CTABanner.Heading>
-                              <CTABanner.Description>
-                                AI code generation uses machine learning models to write code from input that describes
-                                what the code should do, and the models provide context-based code suggestions along the
-                                way. AI generated code isn&apos;t always perfect, but it often gives developers a
-                                suitable starting point for writing code quickly and efficiently.
-                              </CTABanner.Description>
-                              <CTABanner.ButtonGroup>
-                                <Button>Contact sales</Button>
-                                <Button>Sign up</Button>
-                              </CTABanner.ButtonGroup>
-                            </CTABanner>
-                            <section>
-                              <Stack direction="vertical" gap={64} padding="none">
-                                <SectionIntro align="center">
-                                  <SectionIntro.Heading as="h2">More AI resources</SectionIntro.Heading>
-                                </SectionIntro>
-
-                                <Grid enableOverlay={enableGridOverlay}>
-                                  <Grid.Column
-                                    span={{
-                                      xsmall: 12,
-                                      medium: 6,
-                                      large: 4,
-                                    }}
-                                  >
-                                    <Box animate="scale-in-up">
-                                      <Card href="https://github.com" hasBorder>
-                                        <Card.Label>Limited</Card.Label>
-                                        <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
-                                        <Card.Description>
-                                          Everything you need to know about getting started with GitHub Actions.
-                                        </Card.Description>
-                                      </Card>
-                                    </Box>
-                                  </Grid.Column>
-                                  <Grid.Column
-                                    span={{
-                                      xsmall: 12,
-                                      medium: 6,
-                                      large: 4,
-                                    }}
-                                  >
-                                    <Box animate="scale-in-up">
-                                      <Card href="https://github.com" hasBorder>
-                                        <Card.Label>Limited</Card.Label>
-                                        <Card.Heading>GitHub Actions cheat sheet and more</Card.Heading>
-                                        <Card.Description>
-                                          In a recent study, 70% of organizations reported they had adopted DevOps.
-                                        </Card.Description>
-                                      </Card>
-                                    </Box>
-                                  </Grid.Column>
-                                  <Grid.Column
-                                    span={{
-                                      xsmall: 12,
-                                      medium: 6,
-                                      large: 4,
-                                    }}
-                                  >
-                                    <Box animate="scale-in-up">
-                                      <Card href="https://github.com" hasBorder>
-                                        <Card.Label>Limited</Card.Label>
-                                        <Card.Heading>GitHub Actions cheat sheet and more</Card.Heading>
-                                        <Card.Description>
-                                          In a recent study, 70% of organizations reported they had adopted DevOps.
-                                        </Card.Description>
-                                      </Card>
-                                    </Box>
-                                  </Grid.Column>
-                                </Grid>
-                              </Stack>
-                            </section>
-                            <section>
-                              <FAQGroup>
-                                <FAQGroup.Heading>
-                                  Frequently asked <br /> questions
-                                </FAQGroup.Heading>
-                                <FAQ>
-                                  <FAQ.Heading>Using GitHub Enterprise</FAQ.Heading>
-                                  <FAQ.Item>
-                                    <FAQ.Question>What is GitHub Enterprise?</FAQ.Question>
-                                    <FAQ.Answer>
-                                      <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
-                                        ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum.
-                                      </p>
-                                    </FAQ.Answer>
-                                  </FAQ.Item>
-                                  <FAQ.Item>
-                                    <FAQ.Question>How can GitHub Enterprise be deployed?</FAQ.Question>
-                                    <FAQ.Answer>
-                                      <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
-                                        ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum.
-                                      </p>
-                                    </FAQ.Answer>
-                                  </FAQ.Item>
-                                  <FAQ.Item>
-                                    <FAQ.Question>What is GitHub Enterprise Cloud?</FAQ.Question>
-                                    <FAQ.Answer>
-                                      <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
-                                        ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum.
-                                      </p>
-                                    </FAQ.Answer>
-                                  </FAQ.Item>
-                                </FAQ>
-
-                                <FAQ>
-                                  <FAQ.Heading>About GitHub Enterprise</FAQ.Heading>
-                                  <FAQ.Item>
-                                    <FAQ.Question>
-                                      What is the difference between GitHub and GitHub Enterprise?
-                                    </FAQ.Question>
-                                    <FAQ.Answer>
-                                      <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
-                                        ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum.
-                                      </p>
-                                    </FAQ.Answer>
-                                  </FAQ.Item>
-                                  <FAQ.Item>
-                                    <FAQ.Question>Why should organizations use GitHub Enterprise?</FAQ.Question>
-                                    <FAQ.Answer>
-                                      <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
-                                        ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum.
-                                      </p>
-                                    </FAQ.Answer>
-                                  </FAQ.Item>
-                                  <FAQ.Item>
-                                    <FAQ.Question>Who uses GitHub Enterprise?</FAQ.Question>
-                                    <FAQ.Answer>
-                                      <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
-                                        ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus elementum.
-                                      </p>
-                                    </FAQ.Answer>
-                                  </FAQ.Item>
-                                </FAQ>
-                              </FAQGroup>
-                            </section>
-                          </Stack>
-                        </Box>
-                      </Grid.Column>
-                    </Grid>
-                  </Box>
-                </article>
-              </AnimationProvider>
-            </section>
-          </Grid.Column>
-        </Grid>
+                  </article>
+                </Grid.Column>
+              </Grid>
+            </div>
+          </AnimationProvider>
+        </section>
       </main>
       <MinimalFooter />
       {enableGridOverlay && (
