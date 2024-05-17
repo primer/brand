@@ -336,7 +336,7 @@ export function Article({
   const [isLightMode, setIsLightMode] = React.useState(colorMode === ColorModesEnum.LIGHT)
   const [currVisibleHeading, setCurrVisibleHeading] = React.useState<string | undefined>()
   const selectedColorMode = isLightMode ? ColorModesEnum.LIGHT : ColorModesEnum.DARK
-  const accentColorValue = themeDetailsMap[accentColor][selectedColorMode].color
+  const pillarColors = themeDetailsMap[accentColor][selectedColorMode]
 
   const selectedContent = contentMap[content]
 
@@ -393,7 +393,8 @@ export function Article({
     <ThemeProvider
       colorMode={selectedColorMode}
       style={{
-        ['--brand-color-accent-primary' as string]: accentColorValue,
+        ['--brand-color-accent-primary' as string]: pillarColors.accent1,
+        ['--brand-color-accent-secondary' as string]: pillarColors.accent2,
         backgroundColor: 'var(--brand-color-canvas-default)',
       }}
       {...args}

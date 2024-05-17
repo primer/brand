@@ -4,60 +4,67 @@ export const themes = ['ai', 'collaboration', 'enterprise', 'security', 'product
 
 export type Themes = (typeof themes)[number]
 
+type Palette = {
+  accent1: string
+  accent2: string
+}
+
 export type ThemeDetailsMap = {
   [theme in Themes]: {
-    [ColorModesEnum.LIGHT]: {
-      color: string
-    }
-    [ColorModesEnum.DARK]: {
-      color: string
-    }
+    [ColorModesEnum.LIGHT]: Palette
+    [ColorModesEnum.DARK]: Palette
   }
 }
 
 export const themeDetailsMap: ThemeDetailsMap = {
   ai: {
     light: {
-      color: 'var(--base-color-scale-purple-5)',
+      accent1: '#096BDE',
+      accent2: '#00FF46',
     },
     dark: {
-      // TODO: Update color with design
-      color: 'brown',
+      accent1: '#096BDE',
+      accent2: '#00FF46',
     },
   },
   collaboration: {
     light: {
-      color: 'var(--base-color-scale-pink-5)',
+      accent1: 'var(--base-color-scale-purple-5)',
+      accent2: '#FF5934',
     },
     dark: {
-      // TODO: Update color with design
-      color: 'brown',
+      accent1: 'var(--base-color-scale-purple-5)',
+      accent2: '#FF5934',
     },
   },
   enterprise: {
     light: {
-      color: 'var(--base-color-scale-indigo-6)',
+      accent1: 'var(--base-color-scale-purple-5)',
+      accent2: 'var(--base-color-scale-lemon-1)',
     },
     dark: {
-      color: 'var(--base-color-scale-indigo-4)',
+      accent1: 'var(--base-color-scale-purple-5)',
+      accent2: 'var(--base-color-scale-lemon-1)',
     },
   },
   security: {
     light: {
-      color: 'var(--base-color-scale-blue-5)',
+      accent1: 'var(--base-color-scale-teal-2)',
+      accent2: '#A9E500',
     },
     dark: {
-      // TODO: Update color with design
-      color: 'brown',
+      accent1: 'var(--base-color-scale-teal-2)',
+      accent2: '#A9E500',
     },
   },
   productivity: {
     light: {
-      color: 'var(--base-color-scale-green-5)',
+      accent1: '#7C72FF',
+      accent2: 'var(--base-color-scale-lemon-1)',
     },
     dark: {
-      // TODO: Update color with design
-      color: 'brown',
+      accent1: '#7C72FF',
+      accent2: 'var(--base-color-scale-lemon-1)',
     },
   },
 }
