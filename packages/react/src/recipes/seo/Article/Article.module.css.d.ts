@@ -3,6 +3,10 @@ declare const styles: {
   readonly "articleCol": string;
   readonly "asideCol": string;
   readonly "socialLinks": string;
+  readonly "heroTitle": string;
+  readonly "heroLines": string;
+  readonly "heroLine": string;
+  readonly "wipe": string;
   readonly "heroImageArea": string;
   readonly "heroImage": string;
   readonly "lede": string;

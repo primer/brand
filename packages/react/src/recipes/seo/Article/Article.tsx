@@ -422,9 +422,21 @@ export function Article({
                       DevOps
                     </Link>
                   </Box>
-                  <Box animate="fade-in" marginBlockStart={64} marginBlockEnd={32}>
-                    <Heading as="h1" size="1" stretch="condensed" weight="semibold" font="hubot-sans">
+                  <Box marginBlockStart={64} marginBlockEnd={32}>
+                    <Heading
+                      className={styles.heroTitle}
+                      as="h1"
+                      size="1"
+                      stretch="condensed"
+                      weight="semibold"
+                      font="hubot-sans"
+                    >
                       {heroTitle}
+                      <div className={styles.heroLines} aria-hidden>
+                        {Array.from({length: 10}).map((_, index) => (
+                          <div key={index} className={styles.heroLine} style={{animationDelay: `${150 * index}ms`}} />
+                        ))}
+                      </div>
                     </Heading>
                   </Box>
                 </header>
@@ -453,7 +465,7 @@ export function Article({
                         {lede && (
                           <Grid enableOverlay={enableGridOverlay}>
                             <Grid.Column span={{xsmall: 12, large: 11}}>
-                              <Box animate="slide-in-left" marginBlockEnd={{narrow: 24, wide: 48}}>
+                              <Box animate="fade-in" marginBlockEnd={{narrow: 24, wide: 48}}>
                                 <header>
                                   <Text as="p" className={styles.lede} size="500" font="hubot-sans" weight="medium">
                                     {lede}
