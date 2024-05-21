@@ -80,7 +80,7 @@
   width: 100%;
   position: relative;
   z-index: 91; /* must be higher than subdomain nav bar */
-  max-height: 100vh;
+  max-height: calc(100vh - var(--base-size-12) * 2);
   overflow-y: auto;
 }
 
