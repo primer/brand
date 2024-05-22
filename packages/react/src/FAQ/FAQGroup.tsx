@@ -38,6 +38,22 @@ function _FAQGroup({children, id, defaultSelectedIndex = 0, ...rest}: FAQGroupPr
     setSelectedIndex(index)
   }
 
+  const handleKeyDown = (index: number) => (_event: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (_event.key === 'ArrowUp') {
+      _event.preventDefault()
+      const prevIndex = (index - 1 + faqChildren.length) % faqChildren.length
+      setSelectedIndex(prevIndex)
+      return
+    }
+
+    if (_event.key === 'ArrowDown') {
+      _event.preventDefault()
+      const nextIndex = (index + 1) % faqChildren.length
+      setSelectedIndex(nextIndex)
+      return
+    }
+  }
+
   const faqChildren = React.Children.toArray(children).filter(
     child => React.isValidElement<FAQRootProps>(child) && child.type === FAQ,
   )
@@ -60,8 +76,11 @@ function _FAQGroup({children, id, defaultSelectedIndex = 0, ...rest}: FAQGroupPr
           aria-controls={`${instanceId}-panel-${index}`}
           aria-selected={selectedIndex === index}
           onClick={handleTabClick(index)}
+          onKeyDown={handleKeyDown(index)}
           key={index}
           data-testid={`FAQGroup-tab-${index + 1}`}
+          tabindex={selectedIndex === index ? null : -1}
+          ref={selectedIndex === index ? (el: HTMLButtonElement) => el?.focus() : null}
         >
           {React.isValidElement(GroupHeadingChild) && GroupHeadingChild.props.children}
         </Button>
@@ -147,7 +166,13 @@ function _FAQGroup({children, id, defaultSelectedIndex = 0, ...rest}: FAQGroupPr
         <div className={clsx(styles.FAQGroup__accordion)}>{SectionedAccordions}</div>
         <Grid className={clsx(styles.FAQGroup)}>
           <Grid.Column span={{medium: 5, large: 4}} className={styles.FAQGroup__tablist}>
-            <Stack direction="vertical" padding="none" role="tablist" alignItems="flex-start">
+            <Stack
+              direction="vertical"
+              aria-orientation="vertical"
+              padding="none"
+              role="tablist"
+              alignItems="flex-start"
+            >
               {Tabs}
             </Stack>
           </Grid.Column>
