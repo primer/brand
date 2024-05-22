@@ -33,6 +33,8 @@ type FAQGroupProps = React.PropsWithChildren<{
 function _FAQGroup({children, id, defaultSelectedIndex = 0, ...rest}: FAQGroupProps) {
   const [selectedIndex, setSelectedIndex] = React.useState(defaultSelectedIndex)
   const instanceId = useId(id)
+  const initialRender = React.useRef(true)
+  const selectedTabRef = React.useRef<HTMLButtonElement>(null)
 
   const handleTabClick = (index: number) => (_event: React.MouseEvent<HTMLButtonElement>) => {
     setSelectedIndex(index)
@@ -53,6 +55,11 @@ function _FAQGroup({children, id, defaultSelectedIndex = 0, ...rest}: FAQGroupPr
       return
     }
   }
+
+  React.useEffect(() => {
+    if (!initialRender.current && selectedTabRef.current) selectedTabRef.current.focus()
+    if (initialRender.current) initialRender.current = false
+  }, [selectedIndex])
 
   const faqChildren = React.Children.toArray(children).filter(
     child => React.isValidElement<FAQRootProps>(child) && child.type === FAQ,
@@ -80,7 +87,7 @@ function _FAQGroup({children, id, defaultSelectedIndex = 0, ...rest}: FAQGroupPr
           key={index}
           data-testid={`FAQGroup-tab-${index + 1}`}
           tabIndex={selectedIndex === index ? null : -1}
-          ref={selectedIndex === index ? (el: HTMLButtonElement) => el?.focus() : null}
+          ref={selectedIndex === index ? selectedTabRef : null}
         >
           {React.isValidElement(GroupHeadingChild) && GroupHeadingChild.props.children}
         </Button>
