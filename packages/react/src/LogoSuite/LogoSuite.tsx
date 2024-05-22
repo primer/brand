@@ -153,7 +153,7 @@ type LogoSuiteLogoBarProps = BaseProps<HTMLDivElement> & {
   /**
    * The speed of the marquee effect
    */
-  marqueeSpeed?: 'slow' | 'normal'
+  marqueeSpeed?: 'slow' | 'normal' | 'stop'
   /**
    * The stylistic variant of the LogoBar.
    */
