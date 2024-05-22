@@ -1,0 +1,150 @@
+.Section {
+  --rounded-radius: 16px; /* TODO should use var(--brand-borderRadius-large) */
+  --rounded-padding-overlap-adjustment: 0;
+  --padding-block-end: var(--brand-Section-padding-normal);
+  --compensated-padding-block-end: calc(var(--padding-block-end) + var(--rounded-padding-overlap-adjustment));
+
+  background-color: var(--brand-Section-narrow-background-color, var(--brand-Section-background-color));
+  background-image: var(--brand-Section-narrow-background-image-src, var(--brand-Section-background-image-src));
+  background-size: var(--brand-Section-narrow-background-image-size, var(--brand-Section-background-image-size, cover));
+
+  background-position: var(
+    --brand-Section-narrow-background-image-position,
+    var(--brand-Section-background-image-position, center)
+  );
+
+  padding-block-start: var(--padding-block-start);
+  padding-block-end: var(--compensated-padding-block-end);
+}
+
+.Section__container {
+  width: 100%;
+  max-width: var(--brand-Section-container-maxWidth);
+  margin-inline: auto;
+}
+
+.Section__container--fullWidth {
+  max-width: none;
+}
+
+.Section--rounded {
+  border-radius: var(--rounded-radius) var(--rounded-radius) 0 0;
+  margin-top: calc(-1 * var(--rounded-radius));
+}
+
+.Section--paddingBlockStart-none,
+.Section-narrow--paddingBlockStart-none {
+  padding-block-start: 0;
+}
+
+.Section--paddingBlockStart-condensed,
+.Section-narrow--paddingBlockStart-condensed {
+  padding-block-start: var(--brand-Section-padding-condensed);
+}
+.Section--paddingBlockStart-normal,
+.Section-narrow--paddingBlockStart-normal {
+  padding-block-start: var(--brand-Section-padding-normal);
+}
+.Section--paddingBlockStart-spacious,
+.Section-narrow--paddingBlockStart-spacious {
+  padding-block-start: var(--brand-Section-padding-spacious);
+}
+
+.Section--paddingBlockEnd-none,
+.Section-narrow--paddingBlockEnd-none {
+  padding-block-end: 0;
+}
+
+.Section--paddingBlockEnd-condensed,
+.Section-narrow--paddingBlockEnd-condensed {
+  padding-block-end: var(--brand-Section-padding-condensed);
+}
+.Section--paddingBlockEnd-normal,
+.Section-narrow--paddingBlockEnd-normal {
+  padding-block-end: var(--brand-Section-padding-normal);
+}
+.Section--paddingBlockEnd-spacious,
+.Section-narrow--paddingBlockEnd-spaciou {
+  padding-block-end: var(--brand-Section-padding-spacious);
+}
+
+@media screen and (min-width: 40rem) {
+  .Section {
+    background-color: var(--brand-Section-regular-background-color, var(--brand-Section-background-color));
+    background-image: var(--brand-Section-regular-background-image-src, var(--brand-Section-background-image-src));
+    background-size: var(--brand-Section-regular-background-image-size, var(--brand-Section-background-image-size));
+    background-position: var(
+      --brand-Section-regular-background-image-position,
+      var(--brand-Section-background-image-position)
+    );
+  }
+
+  .Section-regular--paddingBlockStart-none {
+    padding-block-start: 0;
+  }
+
+  .Section-regular--paddingBlockStart-condensed {
+    padding-block-start: var(--brand-Section-padding-condensed);
+  }
+  .Section-regular--paddingBlockStart-normal {
+    padding-block-start: var(--brand-Section-padding-normal);
+  }
+  .Section-regular--paddingBlockStart-spacious {
+    padding-block-start: var(--brand-Section-padding-spacious);
+  }
+
+  .Section-regular--paddingBlockEnd-none {
+    padding-block-end: 0;
+  }
+
+  .Section-regular--paddingBlockEnd-condensed {
+    padding-block-end: var(--brand-Section-padding-condensed);
+  }
+  .Section-regular--paddingBlockEnd-normal {
+    padding-block-end: var(--brand-Section-padding-normal);
+  }
+  .Section-regular--paddingBlockEnd-spacious {
+    padding-block-end: var(--brand-Section-padding-spacious);
+  }
+}
+
+@media screen and (min-width: 63.25rem) {
+  .Section {
+    background-color: var(--brand-Section-wide-background-color, var(--brand-Section-background-color));
+    background-image: var(--brand-Section-wide-background-image-src, var(--brand-Section-background-image-src));
+    background-size: var(--brand-Section-wide-background-image-size, var(--brand-Section-background-image-size));
+
+    background-position: var(
+      --brand-Section-wide-background-image-position,
+      var(--brand-Section-background-image-position)
+    );
+  }
+
+  .Section-wide--paddingBlockStart-none {
+    padding-block-start: 0;
+  }
+
+  .Section-wide--paddingBlockStart-condensed {
+    padding-block-start: var(--brand-Section-padding-condensed);
+  }
+  .Section-wide--paddingBlockStart-normal {
+    padding-block-start: var(--brand-Section-padding-normal);
+  }
+  .Section-wide--paddingBlockStart-spacious {
+    padding-block-start: var(--brand-Section-padding-spacious);
+  }
+
+  .Section-wide--paddingBlockEnd-none {
+    padding-block-end: 0;
+  }
+
+  .Section-wide--paddingBlockEnd-condensed {
+    padding-block-end: var(--brand-Section-padding-condensed);
+  }
+  .Section-wide--paddingBlockEnd-normal {
+    padding-block-end: var(--brand-Section-padding-normal);
+  }
+  .Section-wide--paddingBlockEnd-spacious {
+    padding-block-end: var(--brand-Section-padding-spacious);
+  }
+}

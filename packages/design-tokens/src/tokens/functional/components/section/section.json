@@ -1,0 +1,46 @@
+{
+  "brand": {
+    "Section": {
+      "padding": {
+        "condensed": {
+          "value": "var(--base-size-32)",
+          "responsive": {
+            "768px": {
+              "value": "var(--base-size-48)"
+            },
+            "1024px": {
+              "value": "var(--base-size-64)"
+            }
+          }
+        },
+        "normal": {
+          "value": "var(--base-size-48)",
+          "responsive": {
+            "768px": {
+              "value": "var(--base-size-64)"
+            },
+            "1024px": {
+              "value": "var(--base-size-96)"
+            }
+          }
+        },
+        "spacious": {
+          "value": "var(--base-size-64)",
+          "responsive": {
+            "768px": {
+              "value": "var(--base-size-80)"
+            },
+            "1024px": {
+              "value": "var(--base-size-128)"
+            }
+          }
+        }
+      },
+      "container": {
+        "maxWidth": {
+          "value": "1280px"
+        }
+      }
+    }
+  }
+}
