@@ -300,7 +300,6 @@ function _AnchorNavLink({
   updateCurrentActiveNav,
   ...rest
 }: AnchorNavLinkProps) {
-  const [offsetPosition, setOffsetPosition] = useState<undefined | number>()
   const {isLarge} = useWindowSize()
   const [intersectionEntry, setIntersectionEntry] = useState<IntersectionObserverEntry>()
 
@@ -334,19 +333,6 @@ function _AnchorNavLink({
     return () => observer.disconnect()
   }, [href, intersectionOptions.rootMargin, isAnchor])
 
-  useEffect(() => {
-    const element = document.querySelector(isAnchor ? href : `#${href}`)
-    if (!element) return
-
-    const offset = 0
-    const bodyRect = document.body.getBoundingClientRect().top
-    const elementRect = element.getBoundingClientRect().top
-    const elementPosition = elementRect - bodyRect
-    const nextOffsetPosition = elementPosition + offset
-
-    setOffsetPosition(nextOffsetPosition)
-  }, [href, isAnchor])
-
   // updates root AnchorNav to notify of active section
   useEffect(() => {
     if (anchoredContentIsVisible && updateCurrentActiveNav && typeof children === 'string') {
@@ -354,20 +340,11 @@ function _AnchorNavLink({
     }
   }, [anchoredContentIsVisible, children, updateCurrentActiveNav])
 
-  const handleClick = useCallback(
-    event => {
-      event.preventDefault()
-      const behavior = prefersReducedMotion ? 'auto' : 'smooth'
-      if (toggleMenuCallback && !isLarge) {
-        toggleMenuCallback()
-      }
-      window.scrollTo({
-        top: offsetPosition,
-        behavior,
-      })
-    },
-    [isLarge, offsetPosition, toggleMenuCallback, prefersReducedMotion],
-  )
+  const handleClick = useCallback(() => {
+    if (toggleMenuCallback && !isLarge) {
+      toggleMenuCallback()
+    }
+  }, [isLarge, toggleMenuCallback])
 
   return (
     <a

@@ -1,7 +1,7 @@
 import React from 'react'
 import {Meta} from '@storybook/react'
 import {AnchorNav} from '.'
-import {Heading, Text, Stack} from '../'
+import {Heading, Text, Stack, Button} from '../'
 import {RedlineBackground} from '../component-helpers'
 
 type MockData = {
@@ -119,6 +119,7 @@ export const Playground = ({data, ...args}: {data: MockData; offset: number; sec
               <Text as="p">
                 AnchorNav is a component that allows users to navigate to different sections of a page.
               </Text>
+              <Button>Learn More</Button>
             </Stack>
           </RedlineBackground>
         ))}
