@@ -19,22 +19,22 @@ export type ThemeDetailsMap = {
 export const themeDetailsMap: ThemeDetailsMap = {
   ai: {
     light: {
-      accent1: '#096BDE',
-      accent2: '#00FF46',
+      accent1: 'var(--base-color-scale-blue-5)',
+      accent2: 'var(--base-color-scale-lime-1)',
     },
     dark: {
-      accent1: '#096BDE',
-      accent2: '#00FF46',
+      accent1: 'var(--base-color-scale-blue-5)',
+      accent2: 'var(--base-color-scale-lime-1)',
     },
   },
   collaboration: {
     light: {
       accent1: 'var(--base-color-scale-purple-5)',
-      accent2: '#FF5934',
+      accent2: 'var(--base-color-scale-coral-4)',
     },
     dark: {
       accent1: 'var(--base-color-scale-purple-5)',
-      accent2: '#FF5934',
+      accent2: 'var(--base-color-scale-coral-4)',
     },
   },
   enterprise: {
@@ -50,20 +50,20 @@ export const themeDetailsMap: ThemeDetailsMap = {
   security: {
     light: {
       accent1: 'var(--base-color-scale-teal-2)',
-      accent2: '#A9E500',
+      accent2: 'var(--base-color-scale-lime-1)',
     },
     dark: {
       accent1: 'var(--base-color-scale-teal-2)',
-      accent2: '#A9E500',
+      accent2: 'var(--base-color-scale-lime-1)',
     },
   },
   productivity: {
     light: {
-      accent1: '#7C72FF',
+      accent1: 'var(--base-color-scale-indigo-4)',
       accent2: 'var(--base-color-scale-lemon-1)',
     },
     dark: {
-      accent1: '#7C72FF',
+      accent1: 'var(--base-color-scale-indigo-4)',
       accent2: 'var(--base-color-scale-lemon-1)',
     },
   },
