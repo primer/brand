@@ -4,7 +4,6 @@ declare const styles: {
   readonly "asideCol": string;
   readonly "socialLinks": string;
   readonly "heroTitle": string;
-  readonly "heroLines": string;
   readonly "heroLine": string;
   readonly "wipe": string;
   readonly "heroImageArea": string;

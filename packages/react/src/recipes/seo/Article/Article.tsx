@@ -1,6 +1,6 @@
 import {ChevronDownIcon, ChevronUpIcon, MoonIcon, SunIcon} from '@primer/octicons-react'
 import clsx from 'clsx'
-import React, {useCallback, useEffect, useState} from 'react'
+import React, {useRef, useCallback, useEffect, useState} from 'react'
 import {
   AnimationProvider,
   Box,
@@ -28,6 +28,78 @@ import placeholderImage from '../../../fixtures/images/background-poster-ai.png'
 
 import styles from './Article.module.css'
 import {Themes, themeDetailsMap} from '../helpers'
+
+const useWrapLines = ({
+  text,
+  getLineProps = () => ({}),
+}: {
+  text?: string
+  rerunOnResize?: boolean
+  getLineProps?: (index: number) => Record<string, unknown>
+}) => {
+  const ref = useRef<HTMLHeadingElement>(null)
+  const [hasRun, setHasRun] = useState(false)
+  const [lines, setLines] = useState<JSX.Element>()
+
+  useEffect(() => {
+    if (hasRun || !ref.current || !text) return
+
+    const wrapLines = () => {
+      const element = ref.current
+
+      if (!element || !text) return
+
+      const originalColor = window.getComputedStyle(element).color
+
+      element.style.color = 'transparent'
+      element.textContent = ''
+
+      const words = text.split(' ')
+
+      const lineBreakPositions: number[] = []
+      let prevHeight = 0
+      const linesArr: string[][] = []
+
+      for (const word of words) {
+        element.textContent += `${word} `
+        const height = element.offsetHeight
+
+        if (linesArr.length === 0) {
+          prevHeight = height
+          linesArr.push([word])
+          continue
+        }
+
+        if (height > prevHeight) {
+          lineBreakPositions.push(linesArr.length)
+          linesArr.push([word])
+        } else {
+          linesArr.at(-1)?.push(word)
+        }
+
+        prevHeight = height
+      }
+
+      element.style.color = originalColor
+      element.textContent = ''
+
+      setLines(
+        <>
+          {linesArr.map((line, i) => (
+            <span key={i} {...getLineProps(i)}>
+              {line.join(' ')}{' '}
+            </span>
+          ))}
+        </>,
+      )
+      setHasRun(true)
+    }
+
+    wrapLines()
+  }, [text, getLineProps, hasRun])
+
+  return {ref, lines}
+}
 
 /**
  * This is an example of a remote content that can be fetched from a CMS or a markdown file,
@@ -340,6 +412,17 @@ export function Article({
 
   const selectedContent = contentMap[content]
 
+  const {ref: wrapLinesRef, lines} = useWrapLines({
+    text: heroTitle,
+    getLineProps: useCallback(
+      index => ({
+        className: styles.heroLine,
+        style: {'--line-index': index},
+      }),
+      [],
+    ),
+  })
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       entries => {
@@ -431,12 +514,8 @@ export function Article({
                       weight="semibold"
                       font="hubot-sans"
                     >
-                      {heroTitle}
-                      <div className={styles.heroLines} aria-hidden>
-                        {Array.from({length: 10}).map((_, index) => (
-                          <div key={index} className={styles.heroLine} style={{animationDelay: `${150 * index}ms`}} />
-                        ))}
-                      </div>
+                      {/* TODO Why doesn't the Heading like this ref? */}
+                      <span ref={wrapLinesRef}>{lines}</span>
                     </Heading>
                   </Box>
                 </header>
