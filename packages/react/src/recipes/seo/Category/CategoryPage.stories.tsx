@@ -27,4 +27,5 @@ export default {
   },
 } as Meta<typeof CategoryPage>
 
-export const Default: StoryFn = () => <CategoryPage accentColor={undefined} variant={undefined} />
+export const Playground: StoryFn<typeof CategoryPage> = args => <CategoryPage {...args} />
+Playground.args = {}
