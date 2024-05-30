@@ -1,6 +1,6 @@
 import {ChevronDownIcon, ChevronUpIcon, MoonIcon, SunIcon} from '@primer/octicons-react'
 import clsx from 'clsx'
-import React, {useRef, useCallback, useEffect, useState} from 'react'
+import React, {useRef, useCallback, useEffect, useState, Fragment} from 'react'
 import {
   AnimationProvider,
   Box,
@@ -75,7 +75,7 @@ const useWrapLines = (text?: string) => {
       element.style.color = originalColor
       element.textContent = ''
 
-      setLines(linesArr.map(line => `${line.join(' ')} `))
+      setLines(linesArr.map(line => line.join(' ')))
     }
 
     wrapLines()
@@ -513,20 +513,21 @@ export function Article({
                           {/* TODO Why doesn't the Heading like this ref? */}
                           <span ref={wrapLinesRef}>
                             {lines?.map((line, i) => (
-                              <span
-                                key={line}
-                                className={hasHeroWipeAnimated ? styles.heroLine : styles.heroLineAnimated}
-                                style={
-                                  {'--animation-delay': `${200 + i * wipeAnimationStagger}ms`} as React.CSSProperties
-                                }
-                                onAnimationEnd={() => {
-                                  if (i === lines.length - 1) {
-                                    setHasHeroWipeAnimated(true)
+                              <Fragment key={line}>
+                                <span
+                                  className={hasHeroWipeAnimated ? styles.heroLine : styles.heroLineAnimated}
+                                  style={
+                                    {'--animation-delay': `${200 + i * wipeAnimationStagger}ms`} as React.CSSProperties
                                   }
-                                }}
-                              >
-                                {line}
-                              </span>
+                                  onAnimationEnd={() => {
+                                    if (i === lines.length - 1) {
+                                      setHasHeroWipeAnimated(true)
+                                    }
+                                  }}
+                                >
+                                  {line}
+                                </span>{' '}
+                              </Fragment>
                             ))}
                           </span>
                         </Heading>
