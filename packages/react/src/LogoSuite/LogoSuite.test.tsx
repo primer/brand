@@ -98,6 +98,7 @@ describe('LogoSuite', () => {
         <LogoSuite.Description>{mockDescription}</LogoSuite.Description>
         <LogoSuite.Logobar>
           <svg />
+          <img src="#" alt="Company Name" />
         </LogoSuite.Logobar>
       </LogoSuite>,
     )
