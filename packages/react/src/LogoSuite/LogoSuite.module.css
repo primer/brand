@@ -59,7 +59,7 @@
 }
 
 .LogoSuite__logobar--variant-muted img {
-  filter: var(--brand-LogoSuite-color-image-muted)
+  filter: var(--brand-LogoSuite-color-image-muted);
 }
 
 .LogoSuite__logobar--variant-emphasis svg,
@@ -68,7 +68,7 @@
 }
 
 .LogoSuite__logobar--variant-emphasis img {
-  filter: var(--brand-LogoSuite-color-image-emphasis)
+  filter: var(--brand-LogoSuite-color-image-emphasis);
 }
 
 .LogoSuite--start .LogoSuite__logobar {
