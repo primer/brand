@@ -36,8 +36,8 @@ const meta: Meta<typeof Article> = {
     heroForegroundSpeed: 70,
     heroBackgroundSpeed: 40,
     wipeAnimationEasing: '0.74, 0.04, 0.6, 1',
-    wipeAnimationDuration: 600,
-    wipeAnimationStagger: 150,
+    wipeAnimationDuration: 800,
+    wipeAnimationStagger: 200,
   },
   argTypes: {
     heroTitle: {
