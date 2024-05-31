@@ -2,12 +2,6 @@ import React from 'react'
 
 import {Meta} from '@storybook/react'
 import {LogoSuite} from './LogoSuite'
-import {Image} from '../'
-import pinterestLogo from '../fixtures/images/logos/pinterest.png'
-import uberLogo from '../fixtures/images/logos/uber.png'
-import shopifyLogo from '../fixtures/images/logos/shopify.png'
-import vercelLogo from '../fixtures/images/logos/vercel.png'
-import twilioLogo from '../fixtures/images/logos/twilio.png'
 
 export default {
   title: 'Components/LogoSuite',
@@ -133,20 +127,6 @@ export const Playground = args => (
     <LogoSuite.Description>Body text maximus ligula felis, non egestas dolor rutrum vel.</LogoSuite.Description>
     <LogoSuite.Logobar variant={args.variant} marquee={args.hasMarquee} marqueeSpeed={args.marqueeSpeed}>
       <React.Fragment>{logos.slice(0, 5)}</React.Fragment>
-    </LogoSuite.Logobar>
-  </LogoSuite>
-)
-
-export const WithPngLogos = args => (
-  <LogoSuite {...args}>
-    <LogoSuite.Heading visuallyHidden={args.visuallyHidden}>Heading</LogoSuite.Heading>
-    <LogoSuite.Description>Body text maximus ligula felis, non egestas dolor rutrum vel.</LogoSuite.Description>
-    <LogoSuite.Logobar variant={args.variant} marquee={args.hasMarquee} marqueeSpeed={args.marqueeSpeed}>
-      <Image alt="Uber" src={uberLogo} />
-      <Image alt="Vercel" src={vercelLogo} />
-      <Image alt="Shopify" src={shopifyLogo} />
-      <Image alt="Pinterest" src={pinterestLogo} />
-      <Image alt="Twilio" src={twilioLogo} />
     </LogoSuite.Logobar>
   </LogoSuite>
 )
