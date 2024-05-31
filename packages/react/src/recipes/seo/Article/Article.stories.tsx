@@ -35,7 +35,7 @@ const meta: Meta<typeof Article> = {
     heroHeight: 70,
     heroForegroundSpeed: 70,
     heroBackgroundSpeed: 40,
-    wipeAnimationEasing: '0.74, 0.04, 0.6, 1',
+    wipeAnimationEasing: '0.16, 1, 0.3, 1',
     wipeAnimationDuration: 800,
     wipeAnimationStagger: 200,
   },
