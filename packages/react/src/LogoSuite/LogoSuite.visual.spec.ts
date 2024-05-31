@@ -74,4 +74,11 @@ test.describe('Visual Comparison: LogoSuite', () => {
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
+
+  test('LogoSuite / With Png Logos', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-logosuite--with-png-logos&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
 })
