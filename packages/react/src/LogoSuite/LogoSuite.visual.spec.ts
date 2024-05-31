@@ -61,6 +61,15 @@ test.describe('Visual Comparison: LogoSuite', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('LogoSuite / With Png Logos', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--with-png-logos&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('LogoSuite / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-logosuite--default&viewMode=story')
 
@@ -70,13 +79,6 @@ test.describe('Visual Comparison: LogoSuite', () => {
 
   test('LogoSuite / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-logosuite--playground&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('LogoSuite / With Png Logos', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-logosuite--with-png-logos&viewMode=story')
 
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
