@@ -376,12 +376,6 @@ type ArticleProps = {
   gridOverlay?: boolean
   colorMode?: ColorModesEnum
   accentColor: Themes
-  heroHeight?: number
-  heroForegroundSpeed?: number
-  heroBackgroundSpeed?: number
-  wipeAnimationEasing?: string
-  wipeAnimationDuration?: number
-  wipeAnimationStagger?: number
 }
 
 export function Article({
@@ -391,12 +385,6 @@ export function Article({
   gridOverlay = false,
   colorMode = ColorModesEnum.LIGHT,
   accentColor,
-  heroHeight = 70,
-  heroForegroundSpeed = 70,
-  heroBackgroundSpeed = 40,
-  wipeAnimationEasing = '0.16, 1, 0.3, 1',
-  wipeAnimationDuration = 800,
-  wipeAnimationStagger = 200,
   ...args
 }: ArticleProps) {
   const [enableGridOverlay, setGridOverlay] = React.useState(gridOverlay)
@@ -465,11 +453,6 @@ export function Article({
       style={{
         ['--brand-color-accent-primary' as string]: pillarColors.accent1,
         ['--brand-color-accent-secondary' as string]: pillarColors.accent2,
-        ['--parallax-foreground-speed' as string]: heroForegroundSpeed / 100,
-        ['--parallax-background-speed' as string]: heroBackgroundSpeed / 100,
-        ['--hero-height' as string]: `${heroHeight}vh`,
-        ['--wipe-animation-easing' as string]: wipeAnimationEasing,
-        ['--wipe-animation-duration' as string]: `${wipeAnimationDuration}ms`,
         backgroundColor: 'var(--brand-color-canvas-default)',
       }}
       {...args}
@@ -516,9 +499,7 @@ export function Article({
                               <Fragment key={line}>
                                 <span
                                   className={hasHeroWipeAnimated ? styles.heroLine : styles.heroLineAnimated}
-                                  style={
-                                    {'--animation-delay': `${200 + i * wipeAnimationStagger}ms`} as React.CSSProperties
-                                  }
+                                  style={{'--animation-delay': `${200 + i * 200}ms`} as React.CSSProperties}
                                   onAnimationEnd={() => {
                                     if (i === lines.length - 1) {
                                       setHasHeroWipeAnimated(true)

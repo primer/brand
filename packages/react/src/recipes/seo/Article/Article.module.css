@@ -36,14 +36,14 @@
 
   background: black;
   position: relative;
-  height: var(--hero-height);
+  height: 70vh;
 }
 
 .parallax {
   position: absolute;
   top: 0;
   width: 100%;
-  height: var(--hero-height);
+  height: 70vh;
 }
 
 .background,
@@ -54,7 +54,7 @@
   animation-fill-mode: forwards;
   animation-timing-function: linear;
   animation-timeline: scroll();
-  animation-range: 0vh var(--hero-height);
+  animation-range: 0vh 70vh;
 }
 
 .background {
@@ -98,7 +98,7 @@
     filter: blur(0px);
   }
   to {
-    top: calc(var(--hero-height) * var(--parallax-background-speed) * -1);
+    top: calc(70vh * -0.4);
     filter: blur(10px) brightness(0%);
   }
 }
@@ -108,7 +108,7 @@
     top: 0;
   }
   to {
-    top: calc(var(--hero-height) * var(--parallax-foreground-speed) * -1);
+    top: calc(70vh * -0.7);
     filter: blur(2px) brightness(0%);
   }
 }
@@ -156,7 +156,7 @@
   height: 100%;
   background-color: var(--brand-color-accent-primary);
   transform-origin: right;
-  animation: wipe var(--wipe-animation-duration) forwards cubic-bezier(var(--wipe-animation-easing));
+  animation: wipe 800ms forwards cubic-bezier(0.16, 1, 0.3, 1);
   animation-delay: var(--animation-delay);
 }
 
