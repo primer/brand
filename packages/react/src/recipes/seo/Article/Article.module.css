@@ -28,10 +28,6 @@
 }
 
 .hero {
-  /* TODO Is this the right color, and the right way to override? */
-  --brand-Link-color-default: #ffffff;
-  --brand-color-text-default: #ffffff;
-
   --parallax-start-spacing: 74px;
 
   background: black;

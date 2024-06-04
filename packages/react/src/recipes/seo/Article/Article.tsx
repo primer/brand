@@ -393,12 +393,16 @@ export function Article({
     setIsLightMode(!isLightMode)
   }
 
+  const brandAccentStyles: Record<string, string> = {
+    '--brand-color-accent-primary': pillarColors.accent1,
+    '--brand-color-accent-secondary': pillarColors.accent2,
+  }
+
   return (
     <ThemeProvider
       colorMode={selectedColorMode}
       style={{
-        ['--brand-color-accent-primary' as string]: pillarColors.accent1,
-        ['--brand-color-accent-secondary' as string]: pillarColors.accent2,
+        ...brandAccentStyles,
         backgroundColor: 'var(--brand-color-canvas-default)',
       }}
       {...args}
@@ -420,50 +424,53 @@ export function Article({
       <main className={styles.articlePageBody}>
         <section>
           <AnimationProvider runOnce visibilityOptions={0.3}>
-            <header className={styles.hero}>
-              <div className={styles.parallax}>
-                <div className={styles.background}>
-                  <Image className={styles.heroImage} animate="fade-in" alt="placeholder image" src={heroImage} />
-                  <div className={styles.heroImageOverlay}></div>
+            <ThemeProvider colorMode="dark" style={{...brandAccentStyles}}>
+              <header className={styles.hero}>
+                <div className={styles.parallax}>
+                  <div className={styles.background}>
+                    <Image className={styles.heroImage} animate="fade-in" alt="placeholder image" src={heroImage} />
+                    <div className={styles.heroImageOverlay}></div>
+                  </div>
+                  <Grid enableOverlay={enableGridOverlay} className={styles.foreground}>
+                    <Grid.Column span={10} start={1}>
+                      <Stack
+                        className={styles.foregroundContents}
+                        direction="vertical"
+                        justifyContent="space-between"
+                        alignItems="flex-start"
+                      >
+                        <Link href="#" arrowDirection="start">
+                          DevOps
+                        </Link>
+                        <Box animate="fade-in" marginBlockEnd={64}>
+                          <Heading as="h1" size="1" stretch="condensed" weight="semibold" font="hubot-sans">
+                            {/* TODO Why doesn't the Heading like this ref? */}
+                            <span ref={wrapLinesRef}>
+                              {lines?.map((line, i) => (
+                                <Fragment key={line}>
+                                  <span
+                                    className={hasHeroWipeAnimated ? styles.heroLine : styles.heroLineAnimated}
+                                    style={{'--animation-delay': `${200 + i * 200}ms`} as React.CSSProperties}
+                                    onAnimationEnd={() => {
+                                      if (i === lines.length - 1) {
+                                        setHasHeroWipeAnimated(true)
+                                      }
+                                    }}
+                                  >
+                                    {line}
+                                  </span>{' '}
+                                </Fragment>
+                              ))}
+                            </span>
+                          </Heading>
+                        </Box>
+                      </Stack>
+                    </Grid.Column>
+                  </Grid>
                 </div>
-                <Grid enableOverlay={enableGridOverlay} className={styles.foreground}>
-                  <Grid.Column span={10} start={1}>
-                    <Stack
-                      className={styles.foregroundContents}
-                      direction="vertical"
-                      justifyContent="space-between"
-                      alignItems="flex-start"
-                    >
-                      <Link href="#" arrowDirection="start">
-                        DevOps
-                      </Link>
-                      <Box animate="fade-in" marginBlockEnd={64}>
-                        <Heading as="h1" size="1" stretch="condensed" weight="semibold" font="hubot-sans">
-                          {/* TODO Why doesn't the Heading like this ref? */}
-                          <span ref={wrapLinesRef}>
-                            {lines?.map((line, i) => (
-                              <Fragment key={line}>
-                                <span
-                                  className={hasHeroWipeAnimated ? styles.heroLine : styles.heroLineAnimated}
-                                  style={{'--animation-delay': `${200 + i * 200}ms`} as React.CSSProperties}
-                                  onAnimationEnd={() => {
-                                    if (i === lines.length - 1) {
-                                      setHasHeroWipeAnimated(true)
-                                    }
-                                  }}
-                                >
-                                  {line}
-                                </span>{' '}
-                              </Fragment>
-                            ))}
-                          </span>
-                        </Heading>
-                      </Box>
-                    </Stack>
-                  </Grid.Column>
-                </Grid>
-              </div>
-            </header>
+              </header>
+            </ThemeProvider>
+
             <div className={styles.articleContents}>
               <Grid enableOverlay={enableGridOverlay}>
                 <Grid.Column span={12}>
