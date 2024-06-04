@@ -71,8 +71,12 @@
     'components-ide--playground': 2000, // for the animation
     'components-ide--default': 2000, // for the animation
     'recipes-seo-article-page--playground': 4000, // for the animation
-    'recipes-seo-article-page--real-world-example': 4000, // for the animation
     'recipes-seo-article-page--all-headings': 4000, // for the animation
+    'recipes-seo-article-page--ai-theme': 4000, // for the animation
+    'recipes-seo-article-page--collaboration-theme': 4000, // for the animation
+    'recipes-seo-article-page--enterprise-theme': 4000, // for the animation
+    'recipes-seo-article-page--security-theme': 4000, // for the animation
+    'recipes-seo-article-page--productivity-theme': 4000, // for the animation
   }
 
   /**
@@ -147,10 +151,10 @@
     * Regenerate using: npm run test:visual:generate
     */
     import {test, expect} from '@playwright/test'
-  
+
     // eslint-disable-next-line i18n-text/no-en
     test.describe('Visual Comparison: ${key}', () => {
-  
+
       ${componentStories.reduce((acc, {id, storyName, groupName, timeout}) => {
         const requiresMobileViewport = validNarrowVieportNames.some(viewportName =>
           storyName.toLowerCase().includes(viewportName),
@@ -163,11 +167,11 @@
 
         const testCase = `test('${groupName} / ${storyName}', async ({page}) => {
           await page.goto('http://localhost:${port}/iframe.html?args=&id=${id}&viewMode=story')
-          
+
           ${timeout ? `await page.waitForTimeout(${timeout})` : ''}
           expect(await page.screenshot()).toMatchSnapshot()
         });
-        
+
         `
 
         if (requiresMobileViewport) {
@@ -194,7 +198,7 @@
       }, '')}
 
     })
-    
+
     `
     const final = prettier.format(content, {parser: 'typescript', ...prettierOptions})
     const dest = `${path.resolve(__dirname, storyFolder)}/${key}.visual.spec.ts`

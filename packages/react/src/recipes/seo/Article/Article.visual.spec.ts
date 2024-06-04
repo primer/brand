@@ -24,7 +24,7 @@ test.describe('Visual Comparison: Article', () => {
   test('Article / Ai Theme', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=recipes-seo-article-page--ai-theme&viewMode=story')
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(4000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -33,7 +33,7 @@ test.describe('Visual Comparison: Article', () => {
       'http://localhost:6006/iframe.html?args=&id=recipes-seo-article-page--collaboration-theme&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(4000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -42,7 +42,7 @@ test.describe('Visual Comparison: Article', () => {
       'http://localhost:6006/iframe.html?args=&id=recipes-seo-article-page--enterprise-theme&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(4000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -51,7 +51,7 @@ test.describe('Visual Comparison: Article', () => {
       'http://localhost:6006/iframe.html?args=&id=recipes-seo-article-page--security-theme&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(4000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -60,7 +60,7 @@ test.describe('Visual Comparison: Article', () => {
       'http://localhost:6006/iframe.html?args=&id=recipes-seo-article-page--productivity-theme&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(4000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 })
