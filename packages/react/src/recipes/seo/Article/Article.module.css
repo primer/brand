@@ -156,7 +156,7 @@
   height: 100%;
   background-color: var(--brand-color-accent-primary);
   transform-origin: right;
-  animation: wipe 800ms forwards cubic-bezier(0.16, 1, 0.3, 1);
+  animation: wipe 800ms forwards var(--brand-animation-easing-default);
   animation-delay: var(--animation-delay);
 }
 
