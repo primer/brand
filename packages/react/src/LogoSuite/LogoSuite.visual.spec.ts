@@ -61,9 +61,9 @@ test.describe('Visual Comparison: LogoSuite', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('LogoSuite / With Png Logos', async ({page}) => {
+  test('LogoSuite / With Raster Logos', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--with-png-logos&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--with-raster-logos&viewMode=story',
     )
 
     await page.waitForTimeout(500)
