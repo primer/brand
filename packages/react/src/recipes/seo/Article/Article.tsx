@@ -398,30 +398,27 @@ export function Article({
     '--brand-color-accent-secondary': pillarColors.accent2,
   }
 
+  const themeProviderStyles: Record<string, string> = {
+    ...brandAccentStyles,
+    '--brand-SubdomainNavBar-canvas-default': 'var(--brand-color-canvas-default)',
+    backgroundColor: 'var(--brand-color-canvas-default)',
+  }
+
   return (
-    <ThemeProvider
-      colorMode={selectedColorMode}
-      style={{
-        ...brandAccentStyles,
-        backgroundColor: 'var(--brand-color-canvas-default)',
-      }}
-      {...args}
-    >
-      <div className={styles.subdomainNavBarContainer}>
-        <SubdomainNavBar title="" fixed={false}>
-          <SubdomainNavBar.SecondaryAction
-            aria-label={isLightMode ? 'Switch to dark mode' : 'Switch to light mode'}
-            href="#"
-            onClick={handleMode}
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            variant="invisible"
-          >
-            {isLightMode ? <MoonIcon size={24} /> : <SunIcon size={24} />}
-          </SubdomainNavBar.SecondaryAction>
-        </SubdomainNavBar>
-      </div>
-      <main className={styles.articlePageBody}>
+    <ThemeProvider colorMode={selectedColorMode} style={themeProviderStyles} {...args}>
+      <SubdomainNavBar title="" fixed={false}>
+        <SubdomainNavBar.SecondaryAction
+          aria-label={isLightMode ? 'Switch to dark mode' : 'Switch to light mode'}
+          href="#"
+          onClick={handleMode}
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          variant="invisible"
+        >
+          {isLightMode ? <MoonIcon size={24} /> : <SunIcon size={24} />}
+        </SubdomainNavBar.SecondaryAction>
+      </SubdomainNavBar>
+      <main>
         <section>
           <AnimationProvider runOnce visibilityOptions={0.3}>
             <ThemeProvider colorMode="dark" style={{...brandAccentStyles}}>
@@ -444,7 +441,6 @@ export function Article({
                         </Link>
                         <Box animate="fade-in" marginBlockEnd={64}>
                           <Heading as="h1" size="1" stretch="condensed" weight="semibold" font="hubot-sans">
-                            {/* TODO Why doesn't the Heading like this ref? */}
                             <span ref={wrapLinesRef}>
                               {lines?.map((line, i) => (
                                 <Fragment key={line}>

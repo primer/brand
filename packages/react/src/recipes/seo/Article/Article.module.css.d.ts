@@ -1,9 +1,7 @@
 declare const styles: {
-  readonly "articlePageBody": string;
   readonly "articleCol": string;
   readonly "asideCol": string;
   readonly "socialLinks": string;
-  readonly "subdomainNavBarContainer": string;
   readonly "hero": string;
   readonly "parallax": string;
   readonly "background": string;

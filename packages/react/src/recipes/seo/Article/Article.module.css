@@ -1,8 +1,3 @@
-.articlePageBody {
-  position: relative;
-  z-index: 91;
-}
-
 .articleCol {
   order: 1;
 }
@@ -20,19 +15,12 @@
   padding: 0;
 }
 
-.subdomainNavBarContainer {
-  width: 100%;
-  position: absolute;
-  z-index: 92;
-  background: var(--brand-color-canvas-default);
-}
-
 .hero {
   --parallax-start-spacing: 74px;
 
   background: black;
   position: relative;
-  height: 70vh;
+  height: calc(70vh - var(--parallax-start-spacing));
 }
 
 .parallax {
