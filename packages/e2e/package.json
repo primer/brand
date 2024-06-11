@@ -18,7 +18,6 @@
     "type": "git",
     "url": "git+https://github.com/primer/brand.git"
   },
-  "license": "MIT",
   "author": "GitHub, Inc.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

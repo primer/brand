@@ -3,7 +3,7 @@ import {Meta, StoryFn} from '@storybook/react'
 import {RiverBreakout} from '.'
 import {Link, Text, Timeline} from '../../'
 import {Container} from '../../component-helpers'
-import placeholderImage from '../../fixtures/images/placeholder-600x400.png'
+import placeholderImage from '@primer/brand-templates-and-media/fixtures/images/placeholder-600x400.png'
 
 export default {
   title: 'Components/RiverBreakout',

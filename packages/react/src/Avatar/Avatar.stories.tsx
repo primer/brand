@@ -2,7 +2,7 @@ import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 
 import {Avatar, AvatarSizes, AvatarShapes} from '.'
-import placeholderAvatar from '../fixtures/images/avatar-mona.png'
+import placeholderAvatar from '@primer/brand-templates-and-media/fixtures/images/avatar-mona.png'
 
 export default {
   title: 'Components/Avatar',

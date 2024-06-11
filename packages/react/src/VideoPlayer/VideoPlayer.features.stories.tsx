@@ -1,6 +1,6 @@
 import React from 'react'
 import {Meta} from '@storybook/react'
-import posterImage from '../fixtures/images/example-poster.png'
+import posterImage from '@primer/brand-templates-and-media/fixtures/images/example-poster.png'
 
 import {VideoPlayer} from '.'
 

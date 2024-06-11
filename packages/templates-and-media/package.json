@@ -1,0 +1,36 @@
+{
+  "name": "@primer/brand-templates-and-media",
+  "description": "Bespoke artwork for GitHub's Primer Brand design system",
+  "author": "GitHub, Inc.",
+  "version": "0.34.0",
+  "private": true,
+  "homepage": "https://primer.style/brand",
+  "bugs": {
+    "url": "https://github.com/primer/brand/issues"
+  },
+  "scripts": {
+    "check": "tsc --noEmit",
+    "format": "prettier --check '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
+    "format:fix": "prettier --write '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
+    "lint": "eslint '**/*.{js,ts,tsx,md,mdx}' --max-warnings=0",
+    "lint:fix": "npm run lint -- --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/primer/brand.git"
+  },
+  "devDependencies": {
+    "@primer/octicons-react": "^19.8.0",
+    "clsx": "^1.2.1",
+    "typed-css-modules": "^0.7.2",
+    "typescript-plugin-css-modules": "^3.4.0"
+  },
+  "peerDependencies": {
+    "react": ">=17 <= 18",
+    "react-dom": ">=17 <= 18"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  }
+}

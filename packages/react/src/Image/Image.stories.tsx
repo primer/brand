@@ -1,7 +1,7 @@
 import React from 'react'
 import {Meta, StoryFn} from '@storybook/react'
 import {Image} from './'
-import placeholderImage from '../fixtures/images/placeholder-600x400.png'
+import placeholderImage from '@primer/brand-templates-and-media/fixtures/images/placeholder-600x400.png'
 
 export default {
   title: 'Components/Image',

@@ -2,7 +2,7 @@ import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 import {PricingOptions} from '.'
 import {Box, Grid, Stack} from '..'
-import imageExample from '../fixtures/images/bento/3.png'
+import imageExample from '@primer/brand-templates-and-media/fixtures/images/bento/3.png'
 import {CopilotIcon} from '@primer/octicons-react'
 
 const decorators = Story => (

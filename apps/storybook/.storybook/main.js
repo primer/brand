@@ -1,7 +1,10 @@
 import {dirname, join} from 'path'
 
 module.exports = {
-  stories: ['../../../packages/react/src/**/*.stories.@(js|jsx|ts|tsx)'],
+  stories: [
+    '../../../packages/react/src/**/*.stories.@(js|jsx|ts|tsx)',
+    '../../../packages/templates-and-media/**/*.stories.@(js|jsx|ts|tsx)',
+  ],
   addons: [
     getAbsolutePath('@storybook/addon-a11y'),
     getAbsolutePath('@storybook/addon-links'),

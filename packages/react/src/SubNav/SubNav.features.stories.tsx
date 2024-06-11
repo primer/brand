@@ -3,7 +3,7 @@ import {Meta} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 
 import {SubNav} from './SubNav'
-import bgPath from '../fixtures/images/background-stars.png'
+import bgPath from '@primer/brand-templates-and-media/fixtures/images/background-stars.png'
 import {ThemeProvider} from '../ThemeProvider'
 import {Box} from '../Box'
 import {Hero} from '../Hero'

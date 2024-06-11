@@ -53,4 +53,11 @@ You can find docs about our release process in [RELEASING.md](RELEASING.md).
 
 ## License
 
-[MIT](./LICENSE) &copy; [GitHub](https://github.com/)
+This repository contains software with different licensing terms:
+
+- `packages/react`: All contents are available under the MIT License (see [`packages/react/LICENSE`](packages/react/LICENSE))
+- `packages/design-tokens`: All contents are available under the MIT License (see [`packages/design-tokens/LICENSE`](packages/design-tokens/LICENSE))
+
+All other packages in this repository are proprietary. No license or warranty is provided for these packages, and they are not available for use, modification, or distribution without explicit permission.
+
+Copyright &copy;2024 GitHub, Inc.

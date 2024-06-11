@@ -11,6 +11,3 @@ cp ../fonts/*.woff2 ./fonts
 ## tokens
 mkdir lib/design-tokens
 cp -r ../design-tokens/lib/**/* ./lib/design-tokens
-
-## license
-cp ../../LICENSE ./lib
