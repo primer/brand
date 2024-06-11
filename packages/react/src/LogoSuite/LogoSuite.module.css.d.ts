@@ -15,6 +15,7 @@ declare const styles: {
   readonly "LogobarScrollX": string;
   readonly "LogoSuite__logobar-marqueeGroup--speed-default": string;
   readonly "LogoSuite__logobar-marqueeGroup--speed-slow": string;
+  readonly "LogoSuite__logobar-marqueeGroup--speed-idle": string;
   readonly "LogoSuite__logobar-marquee": string;
 };
 export = styles;

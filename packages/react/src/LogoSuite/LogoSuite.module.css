@@ -125,7 +125,7 @@
 }
 
 .LogoSuite__logobar--has-marquee:hover .LogoSuite__logobar-marqueeGroup,
-.LogoSuite__logobar-marqueeGroup--speed-stop {
+.LogoSuite__logobar-marqueeGroup--speed-idle {
   animation-play-state: paused;
 }
 
