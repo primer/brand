@@ -363,7 +363,7 @@ export const WithLinks = () => (
   </LogoSuite>
 )
 
-export const WithPngLogos = () => (
+export const WithRasterLogos = () => (
   <LogoSuite>
     <LogoSuite.Heading>Heading</LogoSuite.Heading>
     <LogoSuite.Description>Body text maximus ligula felis, non egestas dolor rutrum vel.</LogoSuite.Description>
