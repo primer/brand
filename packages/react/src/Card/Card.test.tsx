@@ -161,4 +161,18 @@ describe('Card', () => {
     const cardEl = getByTestId(mockTestId)
     expect(cardEl).toHaveClass(classToCheck)
   })
+
+  it('renders a full-width card', async () => {
+    const rootTestId = 'root'
+    const {getByTestId} = render(
+      <Card href={mockHref} data-testid={rootTestId} fullWidth>
+        <Card.Heading>{mockHeading}</Card.Heading>
+        <Card.Description>{mockDescription}</Card.Description>
+      </Card>,
+    )
+
+    const rootEl = getByTestId(rootTestId)
+
+    expect(rootEl).toHaveClass('Card--fullWidth')
+  })
 })

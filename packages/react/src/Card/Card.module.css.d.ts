@@ -1,5 +1,6 @@
 declare const styles: {
   readonly "Card": string;
+  readonly "Card--fullWidth": string;
   readonly "Card--variant-minimal": string;
   readonly "Card--colorMode-light": string;
   readonly "Card__link": string;

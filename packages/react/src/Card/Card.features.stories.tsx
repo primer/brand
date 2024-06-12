@@ -44,6 +44,25 @@ export const CTAText: StoryFn<typeof Card> = () => {
   )
 }
 
+export const FullWidth: StoryFn<typeof Card> = () => {
+  return (
+    <Card href="https://github.com" fullWidth hasBorder>
+      <Card.Image
+        aspectRatio="16:10"
+        src={placeholderImage}
+        alt="placeholder, blank area with an gray background color"
+      />
+      <Card.Heading>GitHub Actions cheat sheet</Card.Heading>
+      <Card.Description>
+        Integer pellentesque lorem ex, et ultricies tellus commodo vitae. In fringilla facilisis odio et interdum. Nulla
+        imperdiet facilisis erat, at gravida erat rutrum a. Nullam hendrerit est in arcu dapibus rhoncus. Ut a nisi
+        massa. Suspendisse id interdum risus, pretium consectetur sapien. Nullam ac elit nisi. Vivamus justo libero,
+        rutrum id semper ac, varius ut nisl. Nulla quis vehicula risus.
+      </Card.Description>
+    </Card>
+  )
+}
+
 export const Label: StoryFn<typeof Card> = () => {
   return (
     <Card href="https://github.com">

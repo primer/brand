@@ -53,6 +53,10 @@ export type CardProps = {
    * */
   ctaText?: string
   hasBorder?: boolean
+  /**
+   * Fills the width of the parent container and removes the default max-width.
+   */
+  fullWidth?: boolean
 } & Omit<BaseProps<HTMLDivElement>, 'animate'> &
   Omit<React.ComponentPropsWithoutRef<'div'>, 'onMouseEnter' | 'onMouseLeave' | 'onFocus' | 'onBlur'> &
   Pick<React.ComponentPropsWithoutRef<'a'>, 'onMouseEnter' | 'onMouseLeave' | 'onFocus' | 'onBlur'>
@@ -68,6 +72,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
       className,
       ctaText = 'Learn more',
       disableAnimation = false,
+      fullWidth = false,
       href,
       hasBorder = false,
       style,
@@ -129,6 +134,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
             hasIcon && styles['Card--icon'],
             hasBorder && styles['Card--border'],
             styles[`Card--colorMode-${colorMode}`],
+            fullWidth && styles['Card--fullWidth'],
             className,
           )}
           style={style}
