@@ -26,7 +26,7 @@
 
 .parallax {
   position: absolute;
-  top: 0;
+  top: calc(-1 * var(--parallax-start-spacing));
   width: 100%;
   height: var(--hero-height);
 }
@@ -103,6 +103,7 @@
   @media (prefers-reduced-motion: no-preference) {
     .parallax {
       position: fixed;
+      top: 0;
     }
 
     .foreground {
