@@ -17,17 +17,18 @@
 
 .hero {
   --parallax-start-spacing: 74px;
+  --hero-height: 70vh;
 
   background: black;
   position: relative;
-  height: calc(70vh - var(--parallax-start-spacing));
+  height: calc(var(--hero-height) - var(--parallax-start-spacing));
 }
 
 .parallax {
   position: absolute;
   top: 0;
   width: 100%;
-  height: 70vh;
+  height: var(--hero-height);
 }
 
 .background,
@@ -38,7 +39,7 @@
   animation-fill-mode: forwards;
   animation-timing-function: linear;
   animation-timeline: scroll();
-  animation-range: 0vh 70vh;
+  animation-range: 0vh var(--hero-height);
 }
 
 .background {
@@ -82,7 +83,7 @@
     filter: blur(0px);
   }
   to {
-    top: calc(70vh * -0.4);
+    top: calc(var(--hero-height) * -0.4);
     filter: blur(10px) brightness(0%);
   }
 }
@@ -92,7 +93,7 @@
     top: 0;
   }
   to {
-    top: calc(70vh * -0.7);
+    top: calc(var(--hero-height) * -0.7);
     filter: blur(2px) brightness(0%);
   }
 }
