@@ -18,9 +18,6 @@
     <img alt="" src="https://github.com/primer/brand/actions/workflows/ci.yml/badge.svg">
   </a>
   <img src="https://img.shields.io/badge/status-experimental-red" alt="status: experimental">
-  <a aria-label="license" href="https://github.com/primer/brand/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/primer/brand" alt="">
-  </a>
 </p>
 
 <p align="center">
