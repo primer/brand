@@ -13,6 +13,8 @@ export default {
     iconHasBackground: false,
     heading: 'Collaboration is the key to DevOps success',
     description: 'Everything you need to know about getting started with GitHub Actions.',
+    fullWidth: false,
+    hasBorder: false,
   },
   argTypes: {
     iconColor: {
@@ -61,12 +63,19 @@ export default {
         value: 'Everything you need to know about getting started with GitHub Actions.',
       },
     },
+    fullWidth: {
+      name: 'fullWidth',
+      type: {name: 'boolean', required: false},
+      control: {
+        type: 'boolean',
+      },
+    },
   },
 } as Meta<typeof Card>
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Template: StoryFn<typeof Card> = (_, storyArgs: any) => (
-  <Card href="https://github.com" hasBorder={storyArgs.args.hasBorder}>
+  <Card href="https://github.com" hasBorder={storyArgs.args.hasBorder} fullWidth={storyArgs.args.fullWidth}>
     <Card.Icon
       hasBackground={storyArgs.args.iconHasBackground}
       icon={<CopilotIcon />}
