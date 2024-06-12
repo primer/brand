@@ -33,10 +33,33 @@ type FAQGroupProps = React.PropsWithChildren<{
 function _FAQGroup({children, id, defaultSelectedIndex = 0, ...rest}: FAQGroupProps) {
   const [selectedIndex, setSelectedIndex] = React.useState(defaultSelectedIndex)
   const instanceId = useId(id)
+  const initialRender = React.useRef(true)
+  const selectedTabRef = React.useRef<HTMLButtonElement>(null)
 
   const handleTabClick = (index: number) => (_event: React.MouseEvent<HTMLButtonElement>) => {
     setSelectedIndex(index)
   }
+
+  const handleKeyDown = (index: number) => (_event: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (_event.key === 'ArrowUp') {
+      _event.preventDefault()
+      const prevIndex = (index - 1 + faqChildren.length) % faqChildren.length
+      setSelectedIndex(prevIndex)
+      return
+    }
+
+    if (_event.key === 'ArrowDown') {
+      _event.preventDefault()
+      const nextIndex = (index + 1) % faqChildren.length
+      setSelectedIndex(nextIndex)
+      return
+    }
+  }
+
+  React.useEffect(() => {
+    if (!initialRender.current && selectedTabRef.current) selectedTabRef.current.focus()
+    if (initialRender.current) initialRender.current = false
+  }, [selectedIndex])
 
   const faqChildren = React.Children.toArray(children).filter(
     child => React.isValidElement<FAQRootProps>(child) && child.type === FAQ,
@@ -60,8 +83,11 @@ function _FAQGroup({children, id, defaultSelectedIndex = 0, ...rest}: FAQGroupPr
           aria-controls={`${instanceId}-panel-${index}`}
           aria-selected={selectedIndex === index}
           onClick={handleTabClick(index)}
+          onKeyDown={handleKeyDown(index)}
           key={index}
           data-testid={`FAQGroup-tab-${index + 1}`}
+          tabIndex={selectedIndex !== index ? -1 : undefined}
+          ref={selectedIndex === index ? selectedTabRef : undefined}
         >
           {React.isValidElement(GroupHeadingChild) && GroupHeadingChild.props.children}
         </Button>
@@ -147,7 +173,13 @@ function _FAQGroup({children, id, defaultSelectedIndex = 0, ...rest}: FAQGroupPr
         <div className={clsx(styles.FAQGroup__accordion)}>{SectionedAccordions}</div>
         <Grid className={clsx(styles.FAQGroup)}>
           <Grid.Column span={{medium: 5, large: 4}} className={styles.FAQGroup__tablist}>
-            <Stack direction="vertical" padding="none" role="tablist" alignItems="flex-start">
+            <Stack
+              direction="vertical"
+              aria-orientation="vertical"
+              padding="none"
+              role="tablist"
+              alignItems="flex-start"
+            >
               {Tabs}
             </Stack>
           </Grid.Column>
