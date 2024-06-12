@@ -455,6 +455,7 @@ export function Article({
                                   >
                                     {line}
                                   </span>{' '}
+                                  {/* The trailing space above is intentional. It prevents adjacent words at the start/end of lines from being rendered as a single word */}
                                 </Fragment>
                               ))}
                             </span>
