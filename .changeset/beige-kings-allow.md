@@ -1,5 +1,5 @@
 ---
-"@primer/react-brand": patch
+'@primer/react-brand': patch
 ---
 
-[a11y] Tab action order for `FAQ Groups` according to specification
+Improved keyboard navigation for tab lists in the `FAQ Groups` component. Now features focus trapping, and `up` and `down` keypress navigation as specified in the ARIA tab panel pattern.

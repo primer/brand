@@ -86,8 +86,8 @@ function _FAQGroup({children, id, defaultSelectedIndex = 0, ...rest}: FAQGroupPr
           onKeyDown={handleKeyDown(index)}
           key={index}
           data-testid={`FAQGroup-tab-${index + 1}`}
-          tabIndex={selectedIndex === index ? null : -1}
-          ref={selectedIndex === index ? selectedTabRef : null}
+          tabIndex={selectedIndex !== index ? -1 : undefined}
+          ref={selectedIndex === index ? selectedTabRef : undefined}
         >
           {React.isValidElement(GroupHeadingChild) && GroupHeadingChild.props.children}
         </Button>
