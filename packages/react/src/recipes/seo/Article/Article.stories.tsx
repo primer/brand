@@ -36,6 +36,7 @@ const meta: Meta<typeof Article> = {
   argTypes: {
     heroTitle: {
       control: 'text',
+      description: 'Max 90 characters',
       name: 'title',
     },
     lede: {
@@ -45,7 +46,6 @@ const meta: Meta<typeof Article> = {
       control: 'inline-radio',
       options: ['real-world', 'system'],
     },
-
     colorMode: {
       name: 'mode',
       control: 'inline-radio',
