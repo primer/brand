@@ -209,7 +209,7 @@
     display: flex;
     gap: var(--base-size-24);
     z-index: 1;
-    width: 100%;
+    flex-grow: 1;
   }
 
   .SubNav__link {
@@ -289,7 +289,8 @@
     width: var(--brand-SubNav-width-subMenu);
   }
 
-  .SubNav__link:hover .SubNav__sub-menu {
+  .SubNav__link--has-sub-menu:hover .SubNav__sub-menu,
+  .SubNav__link--has-sub-menu:focus-visible .SubNav__sub-menu {
     visibility: visible;
     opacity: 1;
     transform: scale(1) translateY(0);
