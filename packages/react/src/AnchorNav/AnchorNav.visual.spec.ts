@@ -30,7 +30,7 @@ test.describe('Visual Comparison: AnchorNav', () => {
       'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--longer-labels&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(1000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
