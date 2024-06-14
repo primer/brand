@@ -4,22 +4,12 @@
       "color": {
         "logo": {
           "muted": {
-            "value": "var(--brand-color-text-muted)",
-            "dark": "var(--brand-color-text-muted)"
+            "value": "brightness(0) saturate(100%) invert(37%) sepia(7%) saturate(778%) hue-rotate(171deg) brightness(96%) contrast(91%)",
+            "dark": "brightness(0) saturate(100%) invert(61%) sepia(8%) saturate(430%) hue-rotate(171deg) brightness(94%) contrast(92%)"
           },
           "emphasis": {
-            "value": "var(--brand-color-text-default)",
-            "dark": "var(--brand-color-text-default)"
-          },
-          "filter": {
-            "muted": {
-              "value": "brightness(0) saturate(100%) invert(37%) sepia(7%) saturate(778%) hue-rotate(171deg) brightness(96%) contrast(91%)",
-              "dark": "brightness(0) saturate(100%) invert(61%) sepia(8%) saturate(430%) hue-rotate(171deg) brightness(94%) contrast(92%)"
-            },
-            "emphasis": {
-              "value": "brightness(0) saturate(100%) invert(12%) sepia(20%) saturate(450%) hue-rotate(172deg) brightness(100%) contrast(91%)",
-              "dark": "brightness(0) saturate(100%) invert(91%) sepia(2%) saturate(2455%) hue-rotate(193deg) brightness(107%) contrast(98%)"
-            }
+            "value": "brightness(0) saturate(100%) invert(12%) sepia(20%) saturate(450%) hue-rotate(172deg) brightness(100%) contrast(91%)",
+            "dark": "brightness(0) saturate(100%) invert(91%) sepia(2%) saturate(2455%) hue-rotate(193deg) brightness(107%) contrast(98%)"
           }
         }
       }
