@@ -28,6 +28,13 @@ test.describe('Visual Comparison: Card', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('Card / Full Width', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--full-width&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Card / Label', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--label&viewMode=story')
 
