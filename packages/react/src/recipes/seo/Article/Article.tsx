@@ -23,7 +23,6 @@ import {
 } from '../../../'
 
 import {ColorModesEnum, ThemeProvider} from '../../../ThemeProvider'
-import heroImage from '../../../fixtures/images/background-full-bleed.png'
 import placeholderImage from '../../../fixtures/images/background-poster-ai.png'
 
 import styles from './Article.module.css'
@@ -322,6 +321,8 @@ type ArticleProps = {
   gridOverlay?: boolean
   colorMode?: ColorModesEnum
   accentColor: Themes
+  isLightHero?: boolean
+  heroImage: string
 }
 
 export function Article({
@@ -330,7 +331,9 @@ export function Article({
   content = 'real-world',
   gridOverlay = false,
   colorMode = ColorModesEnum.LIGHT,
+  isLightHero = false,
   accentColor,
+  heroImage,
   ...args
 }: ArticleProps) {
   const [enableGridOverlay, setGridOverlay] = React.useState(gridOverlay)
@@ -393,6 +396,15 @@ export function Article({
     setIsLightMode(!isLightMode)
   }
 
+  const onLineAnimationEnd = useCallback(
+    (i: number) => {
+      if (lines && i === lines.length - 1) {
+        setHasHeroWipeAnimated(true)
+      }
+    },
+    [lines],
+  )
+
   const brandAccentStyles: Record<string, string> = {
     '--brand-color-accent-primary': pillarColors.accent1,
     '--brand-color-accent-secondary': pillarColors.accent2,
@@ -418,10 +430,10 @@ export function Article({
           {isLightMode ? <MoonIcon size={24} /> : <SunIcon size={24} />}
         </SubdomainNavBar.SecondaryAction>
       </SubdomainNavBar>
-      <main>
+      <main className={isLightHero ? styles.lightHero : styles.darkHero}>
         <section>
           <AnimationProvider runOnce visibilityOptions={0.3}>
-            <ThemeProvider colorMode="dark" style={{...brandAccentStyles}}>
+            <ThemeProvider colorMode={isLightHero ? 'light' : 'dark'} style={{...brandAccentStyles}}>
               <header className={styles.hero}>
                 <div className={styles.parallax}>
                   <div className={styles.background}>
@@ -447,11 +459,7 @@ export function Article({
                                   <span
                                     className={hasHeroWipeAnimated ? styles.heroLine : styles.heroLineAnimated}
                                     style={{'--animation-delay': `${200 + i * 200}ms`} as React.CSSProperties}
-                                    onAnimationEnd={() => {
-                                      if (i === lines.length - 1) {
-                                        setHasHeroWipeAnimated(true)
-                                      }
-                                    }}
+                                    onAnimationEnd={() => onLineAnimationEnd(i)}
                                   >
                                     {line}
                                   </span>{' '}

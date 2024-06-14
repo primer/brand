@@ -19,9 +19,16 @@
   --parallax-start-spacing: 74px;
   --hero-height: 70vh;
 
-  background: black;
   position: relative;
   height: calc(var(--hero-height) - var(--parallax-start-spacing));
+}
+
+.lightHero .hero {
+  background: var(--base-color-scale-white-0);
+}
+
+.darkHero .hero {
+  background: var(--base-color-scale-black-0);
 }
 
 .parallax {
@@ -60,6 +67,26 @@
   top: 0;
   width: 100%;
   height: 100%;
+}
+
+.lightHero .heroImageOverlay {
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(255, 255, 255, 0.6) 100%
+  );
+}
+
+.darkHero .heroImageOverlay {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.6) 100%);
+}
+
+.heroImageOverlayDark {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.6) 100%);
 }
 
@@ -75,6 +102,10 @@
   background-color: var(--brand-color-canvas-default);
   position: relative;
   z-index: 90;
+}
+
+.lightHero .articleContents {
+  box-shadow: 0px -2px 49px 0px rgba(0, 0, 0, 0.25);
 }
 
 @keyframes parallax-background {

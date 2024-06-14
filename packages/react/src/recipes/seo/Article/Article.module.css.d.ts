@@ -3,11 +3,14 @@ declare const styles: {
   readonly "asideCol": string;
   readonly "socialLinks": string;
   readonly "hero": string;
+  readonly "lightHero": string;
+  readonly "darkHero": string;
   readonly "parallax": string;
   readonly "background": string;
   readonly "foreground": string;
   readonly "heroImage": string;
   readonly "heroImageOverlay": string;
+  readonly "heroImageOverlayDark": string;
   readonly "foregroundContents": string;
   readonly "articleContents": string;
   readonly "parallax-foreground": string;

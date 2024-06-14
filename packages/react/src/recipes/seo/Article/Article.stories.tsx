@@ -4,6 +4,8 @@ import {Meta, StoryObj} from '@storybook/react'
 import {Article} from './Article'
 import {themes} from '../helpers'
 import {ColorModesEnum} from '../../../ThemeProvider'
+import heroImageLight from '../../../fixtures/images/background-light-collaboration.png'
+import heroImageDark from '../../../fixtures/images/background-dark-collaboration.png'
 
 const meta: Meta<typeof Article> = {
   title: 'Recipes/SEO/Article page',
@@ -31,13 +33,22 @@ const meta: Meta<typeof Article> = {
     heroTitle: 'Should we think of DevOps as a methodology?',
     lede: "There's one word that perfectly describes successful DevOps: flow. As individuals, we experience a state of flow when everything in our work comes together naturally and at the right time. DevOps enables that kind of flow at the organizational level through a combination of tooling, culture, and process.",
     content: 'real-world',
-    accentColor: 'ai',
+    accentColor: 'collaboration',
+    isLightHero: false,
+    heroImage: heroImageDark,
   },
   argTypes: {
     heroTitle: {
       control: 'text',
       description: 'Max 90 characters',
       name: 'title',
+    },
+    heroImage: {
+      control: false,
+    },
+    isLightHero: {
+      description: 'Should be true if hero image is light, false if dark',
+      control: 'boolean',
     },
     lede: {
       control: 'text',
@@ -79,6 +90,7 @@ type Story = StoryObj<typeof Article>
 const systemArgs: Partial<Story['args']> = {
   content: 'system',
   heroTitle: 'Lorem ipsum dolor sit amet',
+  heroImage: heroImageDark,
   lede: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempor lectus ipsum, consectetur convallis diam pretium quis. Proin ut felis ut eros tristique tincidunt.',
 }
 
@@ -122,5 +134,21 @@ export const ProductivityTheme: Story = {
   args: {
     ...systemArgs,
     accentColor: 'productivity',
+  },
+}
+
+export const LightHeroImage: Story = {
+  args: {
+    ...systemArgs,
+    isLightHero: true,
+    heroImage: heroImageLight,
+  },
+}
+
+export const DarkHeroImage: Story = {
+  args: {
+    ...systemArgs,
+    isLightHero: false,
+    heroImage: heroImageDark,
   },
 }
