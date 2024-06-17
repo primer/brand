@@ -54,6 +54,15 @@ test.describe('Visual Comparison: SubNav', () => {
       expect(await page.screenshot()).toMatchSnapshot()
     })
   })
+  test('SubNav / Longer Heading', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-subnav-features--longer-heading&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('SubNav / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-subnav--default&viewMode=story')
 
