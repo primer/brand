@@ -24,8 +24,8 @@ import {
 
 import {ColorModesEnum, ThemeProvider} from '../../../ThemeProvider'
 import placeholderImage from '../../../fixtures/images/background-poster-ai.png'
-import heroImageLight from '../../../fixtures/images/background-light-collaboration.png'
-import heroImageDark from '../../../fixtures/images/background-dark-collaboration.png'
+import heroImageLight from '../../../fixtures/images/background-light-collaboration.webp'
+import heroImageDark from '../../../fixtures/images/background-dark-collaboration.webp'
 
 import styles from './Article.module.css'
 import {Themes, themeDetailsMap} from '../helpers'
