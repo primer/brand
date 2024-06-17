@@ -173,7 +173,7 @@
   height: 100%;
   background-color: var(--brand-color-accent-primary);
   transform-origin: right;
-  animation: wipe 800ms forwards var(--brand-animation-easing-default);
+  animation: wipe var(--brand-animation-duration-extended) forwards var(--brand-animation-easing-default);
   animation-delay: var(--animation-delay);
 }
 
