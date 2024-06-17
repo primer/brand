@@ -115,3 +115,28 @@ FullWidthNarrow.parameters = {
     defaultViewport: 'iphonex',
   },
 }
+
+export const LongerHeading = args => (
+  <SubNav {...args} fullWidth>
+    <SubNav.Heading href="#">A longer heading</SubNav.Heading>
+    <SubNav.Link href="#">Actions</SubNav.Link>
+    <SubNav.Link href="#">Packages</SubNav.Link>
+    <SubNav.Link href="#">Security</SubNav.Link>
+    <SubNav.Link href="#">Codespaces</SubNav.Link>
+    <SubNav.Link href="#" aria-current="page">
+      Copilot
+      <SubNav.SubMenu>
+        <SubNav.Link href="#">Copilot feature page one</SubNav.Link>
+        <SubNav.Link href="#">Copilot feature page two</SubNav.Link>
+        <SubNav.Link href="#">Copilot feature page three</SubNav.Link>
+        <SubNav.Link href="#">Copilot feature page four</SubNav.Link>
+      </SubNav.SubMenu>
+    </SubNav.Link>
+    <SubNav.Link href="#">Code review</SubNav.Link>
+    <SubNav.Link href="#">Search</SubNav.Link>
+    <SubNav.Action href="#">Call to action</SubNav.Action>
+  </SubNav>
+)
+FullWidth.parameters = {
+  layout: 'fullscreen',
+}

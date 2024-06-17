@@ -57,6 +57,7 @@
     'components-anchornav-features--narrow-view-menu-open': 1000, // for the interaction test
     'components-anchornav-features--regular-view': 1000, // for the interaction test
     'components-anchornav-features--regular-view-menu-open': 1000, // for the interaction test
+    'components-anchornav-features--longer-labels': 1000, // for the animation
     'components-minimalfooter--default': 5000, // for external social imagery to load
     'components-minimalfooter--playground': 5000, // for external social imagery to load
     'components-minimalfooter-features--dark-theme': 5000, // for external social imagery to load
