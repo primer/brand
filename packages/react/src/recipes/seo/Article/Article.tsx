@@ -24,6 +24,8 @@ import {
 
 import {ColorModesEnum, ThemeProvider} from '../../../ThemeProvider'
 import placeholderImage from '../../../fixtures/images/background-poster-ai.png'
+import heroImageLight from '../../../fixtures/images/background-light-collaboration.png'
+import heroImageDark from '../../../fixtures/images/background-dark-collaboration.png'
 
 import styles from './Article.module.css'
 import {Themes, themeDetailsMap} from '../helpers'
@@ -322,7 +324,6 @@ type ArticleProps = {
   colorMode?: ColorModesEnum
   accentColor: Themes
   isLightHero?: boolean
-  heroImage: string
 }
 
 export function Article({
@@ -333,7 +334,6 @@ export function Article({
   colorMode = ColorModesEnum.LIGHT,
   isLightHero = false,
   accentColor,
-  heroImage,
   ...args
 }: ArticleProps) {
   const [enableGridOverlay, setGridOverlay] = React.useState(gridOverlay)
@@ -437,7 +437,12 @@ export function Article({
               <header className={styles.hero}>
                 <div className={styles.parallax}>
                   <div className={styles.background}>
-                    <Image className={styles.heroImage} animate="fade-in" alt="placeholder image" src={heroImage} />
+                    <Image
+                      className={styles.heroImage}
+                      animate="fade-in"
+                      alt="placeholder image"
+                      src={isLightHero ? heroImageLight : heroImageDark}
+                    />
                     <div className={styles.heroImageOverlay}></div>
                   </div>
                   <Grid enableOverlay={enableGridOverlay} className={styles.foreground}>

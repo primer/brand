@@ -4,8 +4,6 @@ import {Meta, StoryObj} from '@storybook/react'
 import {Article} from './Article'
 import {themes} from '../helpers'
 import {ColorModesEnum} from '../../../ThemeProvider'
-import heroImageLight from '../../../fixtures/images/background-light-collaboration.png'
-import heroImageDark from '../../../fixtures/images/background-dark-collaboration.png'
 
 const meta: Meta<typeof Article> = {
   title: 'Recipes/SEO/Article page',
@@ -35,7 +33,6 @@ const meta: Meta<typeof Article> = {
     content: 'real-world',
     accentColor: 'collaboration',
     isLightHero: false,
-    heroImage: heroImageDark,
   },
   argTypes: {
     heroTitle: {
@@ -43,11 +40,8 @@ const meta: Meta<typeof Article> = {
       description: 'Max 90 characters',
       name: 'title',
     },
-    heroImage: {
-      control: false,
-    },
     isLightHero: {
-      description: 'Should be true if hero image is light, false if dark',
+      name: 'light hero',
       control: 'boolean',
     },
     lede: {
@@ -90,7 +84,6 @@ type Story = StoryObj<typeof Article>
 const systemArgs: Partial<Story['args']> = {
   content: 'system',
   heroTitle: 'Lorem ipsum dolor sit amet',
-  heroImage: heroImageDark,
   lede: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempor lectus ipsum, consectetur convallis diam pretium quis. Proin ut felis ut eros tristique tincidunt.',
 }
 
@@ -141,7 +134,6 @@ export const LightHeroImage: Story = {
   args: {
     ...systemArgs,
     isLightHero: true,
-    heroImage: heroImageLight,
   },
 }
 
@@ -149,6 +141,5 @@ export const DarkHeroImage: Story = {
   args: {
     ...systemArgs,
     isLightHero: false,
-    heroImage: heroImageDark,
   },
 }
