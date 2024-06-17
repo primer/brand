@@ -3,6 +3,12 @@ import {Meta} from '@storybook/react'
 import {LogoSuite} from './LogoSuite'
 import {Grid} from '../Grid'
 import {Hero} from '../Hero'
+import {Image} from '../'
+import pinterestLogo from '../fixtures/images/logos/pinterest.png'
+import shopifyLogo from '../fixtures/images/logos/shopify.png'
+import twilioLogo from '../fixtures/images/logos/twilio.png'
+import uberLogo from '../fixtures/images/logos/uber.png'
+import vercelLogo from '../fixtures/images/logos/vercel.png'
 
 export default {
   title: 'Components/LogoSuite/Features',
@@ -353,6 +359,20 @@ export const WithLinks = () => (
           {logo}
         </a>
       ))}
+    </LogoSuite.Logobar>
+  </LogoSuite>
+)
+
+export const WithRasterLogos = () => (
+  <LogoSuite>
+    <LogoSuite.Heading>Heading</LogoSuite.Heading>
+    <LogoSuite.Description>Body text maximus ligula felis, non egestas dolor rutrum vel.</LogoSuite.Description>
+    <LogoSuite.Logobar>
+      <Image alt="Uber" src={uberLogo} />
+      <Image alt="Vercel" src={vercelLogo} />
+      <Image alt="Shopify" src={shopifyLogo} />
+      <Image alt="Pinterest" src={pinterestLogo} />
+      <Image alt="Twilio" src={twilioLogo} />
     </LogoSuite.Logobar>
   </LogoSuite>
 )
