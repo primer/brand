@@ -10,6 +10,7 @@ export default {
     align: 'center',
     variant: 'muted',
     marqueeSpeed: 'default',
+    hasMarquee: false,
   },
   argTypes: {
     hasDivider: {
@@ -52,7 +53,7 @@ export default {
     },
     marqueeSpeed: {
       control: 'radio',
-      options: ['slow', 'default'],
+      options: ['slow', 'default', 'idle'],
       table: {
         category: 'LogoSuite.Logobar',
       },
