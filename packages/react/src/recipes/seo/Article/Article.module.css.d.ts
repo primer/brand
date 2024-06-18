@@ -1,10 +1,23 @@
 declare const styles: {
-  readonly "articlePageBody": string;
   readonly "articleCol": string;
   readonly "asideCol": string;
   readonly "socialLinks": string;
-  readonly "heroImageArea": string;
+  readonly "hero": string;
+  readonly "lightHero": string;
+  readonly "darkHero": string;
+  readonly "parallax": string;
+  readonly "background": string;
+  readonly "foreground": string;
   readonly "heroImage": string;
+  readonly "heroImageOverlay": string;
+  readonly "heroImageOverlayDark": string;
+  readonly "foregroundContents": string;
+  readonly "articleContents": string;
+  readonly "parallax-foreground": string;
+  readonly "parallax-background": string;
+  readonly "heroLine": string;
+  readonly "heroLineAnimated": string;
+  readonly "wipe": string;
   readonly "lede": string;
   readonly "asideHeading": string;
   readonly "aside": string;

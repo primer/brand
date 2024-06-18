@@ -14,17 +14,51 @@ test.describe('Visual Comparison: Article', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Article / Real World Example', async ({page}) => {
+  test('Article / All Headings', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=recipes-seo-article-page--all-headings&viewMode=story')
+
+    await page.waitForTimeout(4000)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Article / Ai Theme', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=recipes-seo-article-page--ai-theme&viewMode=story')
+
+    await page.waitForTimeout(4000)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Article / Collaboration Theme', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=recipes-seo-article-page--real-world-example&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=recipes-seo-article-page--collaboration-theme&viewMode=story',
     )
 
     await page.waitForTimeout(4000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Article / All Headings', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=recipes-seo-article-page--all-headings&viewMode=story')
+  test('Article / Enterprise Theme', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=recipes-seo-article-page--enterprise-theme&viewMode=story',
+    )
+
+    await page.waitForTimeout(4000)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Article / Security Theme', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=recipes-seo-article-page--security-theme&viewMode=story',
+    )
+
+    await page.waitForTimeout(4000)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Article / Productivity Theme', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=recipes-seo-article-page--productivity-theme&viewMode=story',
+    )
 
     await page.waitForTimeout(4000)
     expect(await page.screenshot()).toMatchSnapshot()
