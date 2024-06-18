@@ -112,13 +112,11 @@ describe('Pagination', () => {
       'aria-label': `Go to page ${n}`,
     })
 
-    const {getByRole, debug} = render(
-      <Pagination pageCount={3} currentPage={1} pageAttributesBuilder={customAttributes} />,
-    )
+    const {getByRole} = render(<Pagination pageCount={3} currentPage={1} pageAttributesBuilder={customAttributes} />)
     const rootEl = getByRole('navigation')
 
     const pagedItems = Array.from(rootEl.querySelectorAll('a'))
-    debug()
+
     for (const [index, item] of pagedItems.entries()) {
       if (index !== 0 && index !== pagedItems.length - 1) {
         expect(item).toHaveAttribute('data-custom-attr', `custom-value-${index}`)
