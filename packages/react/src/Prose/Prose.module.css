@@ -221,6 +221,15 @@
   background-color: var(--brand-Prose-code-bgColor);
 }
 
+.Prose pre {
+  padding: var(--base-size-16);
+  border-radius: var(--brand-borderRadius-medium);
+  background-color: var(--brand-Prose-code-bgColor);
+}
+
+.Prose pre code {
+  padding: 0;
+}
 
 
 /* ---------------------------------------------------------- */
