@@ -46,6 +46,7 @@ const ExampleHtmlMarkup = `
       Secure code as you write it. Automatically review every change to your codebase and identify vulnerabilities
       before they reach production. <a href="/#">Learn more here.</a>
     </p>
+    <pre><code>const myVariable = [1, 2, 3];\nif (Array.isArray(myVariable)) {\n  console.log('It is an array!');\n} else {\n  console.log('It is not an array.');\n}</code></pre>
     <h5>Heading level 5</h5>
     <ol>
       <li>

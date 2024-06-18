@@ -211,14 +211,26 @@
   border-color: var(--brand-InlineLink-color-pressed);
 }
 
+
 .Prose code {
   font-family: var(--brand-fontStack-monospace);
   font-size: var(--brand-text-size-100);
   white-space: break-spaces;
   padding: var(--base-size-4) var(--base-size-8);
   border-radius: var(--brand-borderRadius-small);
-  background-color: var(--base-color-scale-indigo-0);
+  background-color: var(--brand-Prose-code-bgColor);
 }
+
+.Prose pre {
+  padding: var(--base-size-8);
+  border-radius: var(--brand-borderRadius-small);
+  background-color: var(--brand-Prose-code-bgColor);
+}
+
+.Prose pre code {
+  padding: 0;
+}
+
 
 /* ---------------------------------------------------------- */
 /* 8. Images                                                  */
