@@ -29,6 +29,8 @@ export type PaginationProps = {
   onPageChange?: (e: React.MouseEvent, n: number) => void
   /* Function to build the href for each page */
   hrefBuilder?: (n: number) => string
+  /* Function to forward custom attributes for each pagination item */
+  pageAttributesBuilder?: (n: number) => {[attributeName: string]: string}
   /* Defines how many pages are to to be displayed on the left and right of the component */
   marginPageCount?: number
   /* Whether to show the page numbers */
@@ -52,6 +54,7 @@ export const Pagination = memo(
     currentPage,
     onPageChange,
     hrefBuilder = defaultHrefBuilder,
+    pageAttributesBuilder,
     marginPageCount = 1,
     showPages = true,
     surroundingPageCount = 2,
@@ -65,6 +68,7 @@ export const Pagination = memo(
       currentPage,
       onPageChange,
       hrefBuilder,
+      pageAttributesBuilder,
       marginPageCount,
       showPages,
       surroundingPageCount,
@@ -90,6 +94,7 @@ type UsePaginationPagesParameters = {
   currentPage: number
   onPageChange?: (e: React.MouseEvent, n: number) => void
   hrefBuilder: (n: number) => string
+  pageAttributesBuilder?: (n: number) => {[key: string]: string}
   marginPageCount: number
   showPages?: PaginationProps['showPages']
   surroundingPageCount: number
@@ -100,6 +105,7 @@ export function usePaginationPages({
   currentPage,
   onPageChange,
   hrefBuilder,
+  pageAttributesBuilder,
   marginPageCount,
   showPages,
   surroundingPageCount,
@@ -138,6 +144,8 @@ export function usePaginationPages({
     return model.map(page => {
       const {props, key, content} = buildComponentData(page, hrefBuilder, pageChange(page.num))
 
+      const customAttributes = pageAttributesBuilder ? pageAttributesBuilder(page.num) : {}
+
       if (props.rel === 'next' || props.rel === 'prev') {
         return (
           <Link
@@ -146,6 +154,7 @@ export function usePaginationPages({
             size="medium"
             className={clsx(styles.Pagination__item)}
             {...props}
+            {...customAttributes}
           >
             {content}
           </Link>
@@ -161,12 +170,13 @@ export function usePaginationPages({
           role="button"
           tabIndex={0}
           {...props}
+          {...customAttributes}
         >
           {content}
         </Link>
       )
     })
-  }, [model, hrefBuilder, pageChange, getPagesClasses])
+  }, [model, hrefBuilder, pageChange, getPagesClasses, pageAttributesBuilder])
 
   return children
 }
