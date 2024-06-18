@@ -108,3 +108,17 @@ export const PageHandlers = () => {
 
   return <Pagination pageCount={10} currentPage={currentPage} onPageChange={_handlePageChange} />
 }
+
+export const CustomAttributeForwarding = () => (
+  <Pagination
+    pageCount={15}
+    currentPage={5}
+    surroundingPageCount={4}
+    pageAttributesBuilder={n => {
+      return {
+        'data-custom-attribute': `custom-attribute-${n}`,
+      }
+    }}
+    onPageChange={handlePageChange}
+  />
+)
