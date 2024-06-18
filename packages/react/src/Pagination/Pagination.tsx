@@ -144,7 +144,6 @@ export function usePaginationPages({
     return model.map(page => {
       const {props, key, content} = buildComponentData(page, hrefBuilder, pageChange(page.num))
 
-      // Apply custom attributes if pageAttributesBuilder is provided
       const customAttributes = pageAttributesBuilder ? pageAttributesBuilder(page.num) : {}
 
       if (props.rel === 'next' || props.rel === 'prev') {
