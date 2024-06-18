@@ -218,7 +218,7 @@ describe('LogoSuite', () => {
     expect(el.classList).toContain(expectedClass)
   })
 
-  it('can optionally render a marquee at slower speed ', () => {
+  it('can optionally render a marquee at slower speed', () => {
     const {getByTestId} = render(
       <LogoSuite>
         <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
@@ -231,6 +231,23 @@ describe('LogoSuite', () => {
 
     const el = getByTestId(LogoSuite.testIds.marqueeGroup)
     const expectedClass = 'LogoSuite__logobar-marqueeGroup--speed-slow'
+
+    expect(el.classList).toContain(expectedClass)
+  })
+
+  it('can optionally render an idle marquee', () => {
+    const {getByTestId} = render(
+      <LogoSuite>
+        <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
+        <LogoSuite.Logobar marquee marqueeSpeed="idle">
+          <svg data-testid="svg1" />
+          <svg data-testid="svg2" />
+        </LogoSuite.Logobar>
+      </LogoSuite>,
+    )
+
+    const el = getByTestId(LogoSuite.testIds.marqueeGroup)
+    const expectedClass = 'LogoSuite__logobar-marqueeGroup--speed-idle'
 
     expect(el.classList).toContain(expectedClass)
   })
