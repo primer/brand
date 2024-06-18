@@ -71,13 +71,15 @@
     'components-box-features--animation': 6000, // for the animation
     'components-ide--playground': 2000, // for the animation
     'components-ide--default': 2000, // for the animation
-    'recipes-seo-article-page--playground': 4000, // for the animation
-    'recipes-seo-article-page--all-headings': 4000, // for the animation
-    'recipes-seo-article-page--ai-theme': 4000, // for the animation
-    'recipes-seo-article-page--collaboration-theme': 4000, // for the animation
-    'recipes-seo-article-page--enterprise-theme': 4000, // for the animation
-    'recipes-seo-article-page--security-theme': 4000, // for the animation
-    'recipes-seo-article-page--productivity-theme': 4000, // for the animation
+    'recipes-seo-article-page--playground': 5000, // for the animation
+    'recipes-seo-article-page--all-headings': 5000, // for the animation
+    'recipes-seo-article-page--ai-theme': 5000, // for the animation
+    'recipes-seo-article-page--collaboration-theme': 5000, // for the animation
+    'recipes-seo-article-page--enterprise-theme': 5000, // for the animation
+    'recipes-seo-article-page--security-theme': 5000, // for the animation
+    'recipes-seo-article-page--productivity-theme': 5000, // for the animation
+    'recipes-seo-article-page--light-hero-image': 5000, // for the animation
+    'recipes-seo-article-page--dark-hero-image': 5000, // for the animation
   }
 
   /**
