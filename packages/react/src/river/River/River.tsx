@@ -179,7 +179,7 @@ const Content = forwardRef(
         {React.isValidElement(TextChild) && (
           <div className={styles['River__body-text']}>
             {React.cloneElement(TextChild as React.ReactElement<TextProps>, {
-              variant: 'default',
+              variant: 'muted',
               as: 'p',
               className: clsx(styles.River__text, TextChild.props.className),
             })}
