@@ -431,7 +431,7 @@ export function Article({
         </SubdomainNavBar.SecondaryAction>
       </SubdomainNavBar>
       <main className={isLightHero ? styles.lightHero : styles.darkHero}>
-        <section>
+        <section itemScope itemType="https://schema.org/Article">
           <AnimationProvider runOnce visibilityOptions={0.3}>
             <ThemeProvider colorMode={isLightHero ? 'light' : 'dark'} style={{...brandAccentStyles}}>
               <header className={styles.hero}>
@@ -458,7 +458,7 @@ export function Article({
                         </Link>
                         <Box animate="fade-in" marginBlockEnd={64}>
                           <Heading as="h1" size="1" stretch="condensed" weight="semibold" font="hubot-sans">
-                            <span ref={wrapLinesRef}>
+                            <span ref={wrapLinesRef} itemProp="name">
                               {lines?.map((line, i) => (
                                 <Fragment key={line}>
                                   <span
@@ -484,7 +484,7 @@ export function Article({
             <div className={styles.articleContents}>
               <Grid enableOverlay={enableGridOverlay}>
                 <Grid.Column span={12}>
-                  <article>
+                  <article itemProp="articleBody">
                     <Box marginBlockStart={80} marginBlockEnd={{narrow: 48}} paddingBlockEnd={{narrow: 48}}>
                       <Grid enableOverlay={enableGridOverlay}>
                         <Grid.Column
@@ -501,7 +501,7 @@ export function Article({
                             <Grid enableOverlay={enableGridOverlay}>
                               <Grid.Column span={{xsmall: 12, large: 11}}>
                                 <Box animate="fade-in" marginBlockEnd={{narrow: 24, wide: 48}}>
-                                  <header>
+                                  <header itemProp="abstract">
                                     <Text as="p" className={styles.lede} size="500" font="hubot-sans" weight="medium">
                                       {lede}
                                     </Text>
