@@ -10,12 +10,54 @@ export default {
   component: Card,
 } as Meta<typeof Card>
 
+export const Minimal: StoryFn<typeof Card> = () => {
+  return (
+    <Card href="https://github.com" variant="minimal">
+      <Card.Heading>Code search & code view</Card.Heading>
+      <Card.Label>Limited</Card.Label>
+      <Card.Description>
+        Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
+      </Card.Description>
+    </Card>
+  )
+}
+
+export const MinimalDark: StoryFn<typeof Card> = args => <Minimal {...args} />
+MinimalDark.decorators = [
+  Story => (
+    <ThemeProvider colorMode="dark">
+      <Box style={{backgroundColor: 'var(--base-color-scale-black-0)'}}>
+        <Story />
+      </Box>
+    </ThemeProvider>
+  ),
+]
+
 export const CTAText: StoryFn<typeof Card> = () => {
   return (
     <Card ctaText="Dicover how" href="https://github.com">
       <Card.Heading>GitHub Actions cheat sheet</Card.Heading>
       <Card.Description>
         In a recent TechTarget study, 70 percent of organizations reported they had adopted DevOps.
+      </Card.Description>
+    </Card>
+  )
+}
+
+export const FullWidth: StoryFn<typeof Card> = () => {
+  return (
+    <Card href="https://github.com" fullWidth hasBorder>
+      <Card.Image
+        aspectRatio="16:10"
+        src={placeholderImage}
+        alt="placeholder, blank area with an gray background color"
+      />
+      <Card.Heading>GitHub Actions cheat sheet</Card.Heading>
+      <Card.Description>
+        Integer pellentesque lorem ex, et ultricies tellus commodo vitae. In fringilla facilisis odio et interdum. Nulla
+        imperdiet facilisis erat, at gravida erat rutrum a. Nullam hendrerit est in arcu dapibus rhoncus. Ut a nisi
+        massa. Suspendisse id interdum risus, pretium consectetur sapien. Nullam ac elit nisi. Vivamus justo libero,
+        rutrum id semper ac, varius ut nisl. Nulla quis vehicula risus.
       </Card.Description>
     </Card>
   )

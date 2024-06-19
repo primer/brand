@@ -20,6 +20,7 @@ export type CTABannerProps = BaseProps<HTMLElement> &
     hasBorder?: boolean
     hasShadow?: boolean
     hasBackground?: boolean
+    trailingComponent?: React.FunctionComponent
   }
 
 const Root = forwardRef(
@@ -49,6 +50,13 @@ const Root = forwardRef(
        * React.ReactNode and React.ReactNode[] are valid children.
        */
       children,
+      /**
+       * Escape-hatch for inserting custom React components.
+       * Warning:
+       *   This prop isn't advertised in our docs but remains part of the public API for edge-cases.
+       *   Need to use this prop? Please check in with #primer-brand first to confirm correct usage.
+       */
+      trailingComponent: TrailingComponent,
       ...props
     }: CTABannerProps,
     ref: Ref<HTMLElement>,
@@ -68,6 +76,7 @@ const Root = forwardRef(
         >
           <div className={clsx(styles['CTABanner-content'], align === 'center' && styles['CTABanner-content--center'])}>
             {children}
+            {TrailingComponent && <TrailingComponent />}
           </div>
         </div>
       </section>

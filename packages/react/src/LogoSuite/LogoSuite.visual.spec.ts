@@ -61,6 +61,15 @@ test.describe('Visual Comparison: LogoSuite', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('LogoSuite / With Raster Logos', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--with-raster-logos&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('LogoSuite / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-logosuite--default&viewMode=story')
 

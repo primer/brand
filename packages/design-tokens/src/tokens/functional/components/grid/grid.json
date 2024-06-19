@@ -6,7 +6,10 @@
           "value": "var(--base-size-16)",
           "responsive": {
             "768px": {
-              "value": "var(--base-size-24)"
+              "value": "var(--base-size-32)"
+            },
+            "1280px": {
+              "value": "var(--base-size-48)"
             }
           }
         },

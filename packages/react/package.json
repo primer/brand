@@ -1,6 +1,6 @@
 {
   "name": "@primer/react-brand",
-  "version": "0.33.0",
+  "version": "0.34.0",
   "description": "Primer Brand is a GitHub's design system for creating React-based marketing websites and digital experiences.",
   "keywords": [
     "primer",
@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "@primer/behaviors": "^1.3.4",
+    "@oddbird/popover-polyfill": "0.4.3",
     "clsx": "^1.2.1"
   },
   "devDependencies": {

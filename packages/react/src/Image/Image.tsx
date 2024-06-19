@@ -4,6 +4,8 @@ import styles from './Image.module.css'
 import {BaseProps} from '../component-helpers'
 import {useAnimation} from '../animation'
 
+export const ImageBorderRadiusOptions = ['small', 'medium', 'large', 'xlarge', 'full'] as const
+export type ImageBorderRadiusOptions = (typeof ImageBorderRadiusOptions)[number]
 export type ImageAspectRatio = '1:1' | '16:9' | '16:10' | '4:3' | 'custom'
 
 export type ImageProps = React.ImgHTMLAttributes<HTMLImageElement> &
@@ -12,6 +14,10 @@ export type ImageProps = React.ImgHTMLAttributes<HTMLImageElement> &
     alt: string
     aspectRatio?: ImageAspectRatio
     media?: string
+    /*
+     * Apply a system-level border radius value
+     */
+    borderRadius?: ImageBorderRadiusOptions
     srcSet?: Pick<React.ImgHTMLAttributes<HTMLImageElement>, 'srcSet'>
   } & (
     | {
@@ -53,6 +59,7 @@ export const Image = ({
   media,
   srcSet,
   style,
+  borderRadius,
   ...rest
 }: ImageProps) => {
   const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
@@ -63,6 +70,7 @@ export const Image = ({
           animationClasses,
           styles['Image__container'],
           aspectRatio && styles[`Image--aspect-ratio-${aspectRatioResolver(aspectRatio)}`],
+          borderRadius && styles[`Image--borderRadius-${borderRadius}`],
         )}
         style={{...animationInlineStyles, ...style}}
       >
@@ -74,7 +82,7 @@ export const Image = ({
           alt={alt}
           width={width ?? '100%'}
           height={width ?? '100%'}
-          className={clsx(styles.Image, className)}
+          className={clsx(styles.Image, borderRadius && styles[`Image--borderRadius-${borderRadius}`], className)}
           {...objectWithoutKey(rest, 'sources')}
         />
       </picture>
@@ -90,7 +98,12 @@ export const Image = ({
           alt={alt}
           width={width ? width : '100%'}
           height={height ? height : '100%'}
-          className={clsx(animationClasses, styles.Image, className)}
+          className={clsx(
+            animationClasses,
+            styles.Image,
+            borderRadius && styles[`Image--borderRadius-${borderRadius}`],
+            className,
+          )}
           srcSet={srcSet}
           style={{...animationInlineStyles, ...style}}
           {...rest}
@@ -102,7 +115,12 @@ export const Image = ({
     <img
       ref={ref}
       alt={alt}
-      className={clsx(animationClasses, styles.Image, className)}
+      className={clsx(
+        animationClasses,
+        styles.Image,
+        borderRadius && styles[`Image--borderRadius-${borderRadius}`],
+        className,
+      )}
       width={width && width}
       height={height && height}
       srcSet={srcSet}

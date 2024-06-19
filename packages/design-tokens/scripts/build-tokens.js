@@ -241,6 +241,7 @@ const darkJson = require('../src/tokens/base/colors/dark')
     `tokens/functional/components/pagination/colors.js`,
     `tokens/functional/components/ide/colors.js`,
     `tokens/functional/components/breadcrumbs/colors.js`,
+    `tokens/functional/components/tooltip/colors.json`,
   ]
 
   for (const path of filesForColorModes) {

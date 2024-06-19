@@ -21,7 +21,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v2
         with:
-          node-version: '16'
+          node-version: 18
 
       - name: Cache dependencies
         uses: actions/cache@v2
@@ -31,17 +31,17 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Install dependencies
-        run: npm ci --legacy-peer-deps && cd apps/docs && npm ci --legacy-peer-deps
-
       - name: Install dependencies (reference)
-        run: pushd temp-main; npm ci --legacy-peer-deps && cd apps/docs && npm ci --legacy-peer-deps; popd
+        run: pushd temp-main; npm ci --legacy-peer-deps; popd
 
-      - name: Build
-        run: npm run build --workspace=packages/design-tokens
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
 
       - name: Build (reference)
         run: pushd temp-main; npm run build --workspace=packages/design-tokens; popd
+
+      - name: Build
+        run: npm run build --workspace=packages/design-tokens
 
       - name: Export diff
         run: |

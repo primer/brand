@@ -57,6 +57,7 @@
     'components-anchornav-features--narrow-view-menu-open': 1000, // for the interaction test
     'components-anchornav-features--regular-view': 1000, // for the interaction test
     'components-anchornav-features--regular-view-menu-open': 1000, // for the interaction test
+    'components-anchornav-features--longer-labels': 1000, // for the animation
     'components-minimalfooter--default': 5000, // for external social imagery to load
     'components-minimalfooter--playground': 5000, // for external social imagery to load
     'components-minimalfooter-features--dark-theme': 5000, // for external social imagery to load
@@ -70,6 +71,15 @@
     'components-box-features--animation': 6000, // for the animation
     'components-ide--playground': 2000, // for the animation
     'components-ide--default': 2000, // for the animation
+    'recipes-seo-article-page--playground': 5000, // for the animation
+    'recipes-seo-article-page--all-headings': 5000, // for the animation
+    'recipes-seo-article-page--ai-theme': 5000, // for the animation
+    'recipes-seo-article-page--collaboration-theme': 5000, // for the animation
+    'recipes-seo-article-page--enterprise-theme': 5000, // for the animation
+    'recipes-seo-article-page--security-theme': 5000, // for the animation
+    'recipes-seo-article-page--productivity-theme': 5000, // for the animation
+    'recipes-seo-article-page--light-hero-image': 5000, // for the animation
+    'recipes-seo-article-page--dark-hero-image': 5000, // for the animation
   }
 
   /**
@@ -100,6 +110,7 @@
     'components-ide-features--perspective-example-light', // animation too long
     'components-ide-features--all-glass', // animation too long
     'components-ide-features--editor-custom-icons', // animation too long
+    'recipes-seo-category-page--default', // template contains randomisation
   ]
 
   const categorisedStories = Object.keys(stories as Stories).reduce((acc, key) => {
@@ -143,10 +154,10 @@
     * Regenerate using: npm run test:visual:generate
     */
     import {test, expect} from '@playwright/test'
-  
+
     // eslint-disable-next-line i18n-text/no-en
     test.describe('Visual Comparison: ${key}', () => {
-  
+
       ${componentStories.reduce((acc, {id, storyName, groupName, timeout}) => {
         const requiresMobileViewport = validNarrowVieportNames.some(viewportName =>
           storyName.toLowerCase().includes(viewportName),
@@ -159,11 +170,11 @@
 
         const testCase = `test('${groupName} / ${storyName}', async ({page}) => {
           await page.goto('http://localhost:${port}/iframe.html?args=&id=${id}&viewMode=story')
-          
+
           ${timeout ? `await page.waitForTimeout(${timeout})` : ''}
           expect(await page.screenshot()).toMatchSnapshot()
         });
-        
+
         `
 
         if (requiresMobileViewport) {
@@ -190,7 +201,7 @@
       }, '')}
 
     })
-    
+
     `
     const final = prettier.format(content, {parser: 'typescript', ...prettierOptions})
     const dest = `${path.resolve(__dirname, storyFolder)}/${key}.visual.spec.ts`

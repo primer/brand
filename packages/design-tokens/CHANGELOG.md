@@ -1,5 +1,19 @@
 # @primer/brand-primitives
 
+## 0.34.0
+
+### Minor Changes
+
+- [#547](https://github.com/primer/brand/pull/547) [`9cef031`](https://github.com/primer/brand/commit/9cef031eded3e4345b00c0e95ba6e397f1e31969) Thanks [@mperrotti](https://github.com/mperrotti)! - Adds a Tooltip component.
+
+  Example:
+
+  ```jsx
+  <Tooltip text="Hello, Tooltip!">
+    <Button>Hover me</Button>
+  </Tooltip>
+  ```
+
 ## 0.33.0
 
 ### Patch Changes

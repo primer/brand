@@ -15,7 +15,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v2
         with:
-          node-version: '16'
+          node-version: 18
 
       - name: Cache dependencies
         uses: actions/cache@v2
@@ -66,7 +66,7 @@ jobs:
 
             Please review the differences by using the test artifacts to ensure that the changes were intentional.
 
-            Artifacts can be downloaded and reviewed locally. 
+            Artifacts can be downloaded and reviewed locally.
 
             Download links are available at the bottom of the workflow summary screen.
 
@@ -74,7 +74,7 @@ jobs:
             ![artifacts section of workflow run](https://user-images.githubusercontent.com/13340707/181026915-2bda8a90-58e3-40ef-a2f6-c9c4af6e9c4a.png)
 
             If the changes are expected, please run `npm run test:visual:update-snapshots` to replace the previous fixtures.
-            </details> 
+            </details>
 
             [Review visual differences](https://github.com/primer/brand/actions/runs/${{ github.run_id }})
 

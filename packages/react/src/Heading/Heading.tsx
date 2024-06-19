@@ -19,7 +19,7 @@ export const HeadingWeights = [
 ] as const
 export const HeadingStretch = ['condensed', 'normal', 'expanded'] as const
 export const HeadingLetterSpacing = ['condensed', 'normal', 'none'] as const
-export const HeadingFontVariants = ['mona-sans', 'hubot-sans'] as const
+export const HeadingFontVariants = ['mona-sans', 'hubot-sans', 'monospace'] as const
 
 export const defaultHeadingTag = HeadingTags[1]
 export const defaultHeadingFont = HeadingFontVariants[0]

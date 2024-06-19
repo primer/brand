@@ -1,5 +1,10 @@
 .Heading {
+  --condensed-stretch: 75%;
   color: var(--brand-color-text-default);
+}
+
+.Heading-font--hubot-sans {
+  --condensed-stretch: 90%;
 }
 
 [data-color-mode='dark'] .Heading {
@@ -13,6 +18,10 @@
 
 .Heading-font--hubot-sans {
   font-family: var(--brand-heading-fontFamilyAlt);
+}
+
+.Heading-font--monospace {
+  font-family: var(--brand-fontStack-monospace);
 }
 
 .Heading--display {
@@ -186,7 +195,7 @@
 
 .Heading--stretch-condensed,
 .Heading-narrow--stretch-condensed {
-  font-stretch: 75%;
+  font-stretch: var(--condensed-stretch);
 }
 
 .Heading--stretch-normal,
@@ -201,7 +210,7 @@
 
 @media screen and (min-width: 48rem) {
   .Heading-regular--stretch-condensed {
-    font-stretch: 75%;
+    font-stretch: var(--condensed-stretch);
   }
 
   .Heading-regular--stretch-normal {
@@ -215,7 +224,7 @@
 
 @media screen and (min-width: 80rem) {
   .Heading-narrow--weight-expanded .Heading-wide--stretch-condensed {
-    font-stretch: 75%;
+    font-stretch: var(--condensed-stretch);
   }
 
   .Heading-wide--stretch-normal {

@@ -240,6 +240,7 @@ function _AnchorNav({children, enableDefaultBgColor = false, hideUntilSticky = f
             {Links}
           </div>
           <span
+            data-forward-focus="true"
             className={clsx(
               styles['AnchorNav__actionsContainer'],
               hasTwoActions && styles['AnchorNav__actionsContainer--multiple'],

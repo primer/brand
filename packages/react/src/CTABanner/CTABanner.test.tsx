@@ -150,4 +150,20 @@ describe('CTABanner', () => {
     const buttonEl = getAllByRole('button')[1]
     expect(buttonEl.querySelector('svg')).toBeNull()
   })
+
+  it('provides an escape hatch to render a custom trailing component', () => {
+    const trailingText = 'Custom trailing'
+    const MockTrailingComponent = () => <div>{trailingText}</div>
+
+    const {getByText} = render(
+      <CTABanner trailingComponent={MockTrailingComponent}>
+        <CTABanner.Heading>This is your heading</CTABanner.Heading>
+        <CTABanner.Description>This is your description</CTABanner.Description>
+      </CTABanner>,
+    )
+
+    const elTrailing = getByText(trailingText)
+
+    expect(elTrailing).toBeInTheDocument()
+  })
 })

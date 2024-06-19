@@ -52,6 +52,15 @@ test.describe('Visual Comparison: Pagination', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('Pagination / Custom Attribute Forwarding', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-pagination-features--custom-attribute-forwarding&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Pagination / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-pagination--default&viewMode=story')
 
