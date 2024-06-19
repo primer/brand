@@ -40,7 +40,12 @@ export const useExpandedMenu = (
       // tab key
       if (event.key === 'Tab') {
         event.preventDefault()
-        nextNode?.focus()
+
+        if (nextNode?.getAttribute('data-forward-focus') === 'true' && nextNode.firstChild instanceof HTMLElement) {
+          nextNode.firstChild.focus()
+        } else {
+          nextNode?.focus()
+        }
       }
       // shift+tab
       if (event.shiftKey && event.key === 'Tab') {

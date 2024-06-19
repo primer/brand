@@ -60,7 +60,7 @@ describe('AnchorNav', () => {
     expect(getByTestId(AnchorNav.testIds.root).tagName).toBe('nav'.toUpperCase()) // expect root to be a <nav> element
   })
 
-  it('renders the correct number of links  into the document', () => {
+  it('renders the correct number of links into the document', () => {
     const {getByTestId} = render(<MockAnchorNavFixture />)
 
     expect(getByTestId(AnchorNav.testIds.menuLinks).children.length).toBe(mockData.length)
@@ -134,7 +134,7 @@ describe('AnchorNav', () => {
     expect(secondaryActionEl).toHaveClass('Button--secondary')
   })
 
-  it('renders applies correct behaviors when menu button is toggled', () => {
+  it('applies correct behaviors when menu button is toggled', () => {
     const {getByTestId} = render(<MockAnchorNavFixture />)
     const menuButton = getByTestId(AnchorNav.testIds.menuButton)
 
