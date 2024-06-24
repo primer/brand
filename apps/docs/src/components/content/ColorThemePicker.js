@@ -1,7 +1,6 @@
 import {Box as PRCBox} from '@primer/react'
 import React from 'react'
 import {useColorTheme, availableModes} from './ColorThemeContext'
-import baseColorScales from '@primer/brand-primitives/lib/design-tokens/js/module/tokens/base/colors/light'
 
 export function ColorThemePicker() {
   const [colorTheme, setColorTheme] = useColorTheme()
@@ -47,9 +46,10 @@ export function ColorThemePicker() {
   )
 }
 
-function ColorThemePreview() {
+function ColorThemePreview({colorTheme}) {
   return (
     <PRCBox
+      data-color-mode={colorTheme}
       sx={{
         color: 'var(--brand-color-text-default)',
         bg: 'var(--brand-color-canvas-default)',
@@ -67,7 +67,7 @@ function ColorThemePreview() {
             sx={{
               width: 20,
               height: 20,
-              bg: baseColorScales.base.color.scale[name][5].value,
+              bg: `var(--base-color-scale-${name}-5)`,
               borderRadius: 999,
             }}
           />
