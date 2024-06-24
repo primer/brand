@@ -2,7 +2,7 @@ import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 
 import {RiverStoryScroll, RiverStoryScrollProps} from '.'
-import {Heading, Text, Link, River, Box, Timeline} from '../..'
+import {Heading, Text, Link, River, Box, Timeline, ThemeProvider, Grid} from '../..'
 import {Container} from '../../component-helpers'
 
 export default {
@@ -128,4 +128,83 @@ ImageTextRatio.storyName = '60:40'
 export const Alignment = Template.bind({})
 Alignment.args = {
   align: 'end',
+}
+
+export const EnterpriseExample = () => (
+  <RiverStoryScroll>
+    <River>
+      <River.Visual>
+        <img
+          src="https://github.com/images/modules/site/enterprise/2023/devops.png"
+          alt="placeholder, blank area with an off-white background color"
+        />
+      </River.Visual>
+      <River.Content>
+        <Heading size="5" as="h3" weight="medium">
+          Consolidate DevSecOps processes and enable unparalleled collaboration.
+        </Heading>
+        <Link href="https://resources.github.com/forrester/" variant="accent">
+          Learn more about the ROI of GitHub
+        </Link>
+      </River.Content>
+    </River>
+    <River>
+      <River.Visual>
+        <img
+          src="https://github.com/images/modules/site/enterprise/2023/platform.png"
+          alt="placeholder, blank area with an off-white background color"
+        />
+      </River.Visual>
+      <River.Content
+        trailingComponent={() => (
+          <div className="pr-lg-10">
+            <hr className="enterprise-separator mb-6 mt-n3" />
+            <Heading as="h4" size="3">
+              17,000+
+            </Heading>
+            <Text as="p" size="300" weight="light" variant="muted">
+              Third-party tools support your favorite languages and frameworks <sup>1</sup>
+            </Text>
+          </div>
+        )}
+      >
+        <Heading size="5" as="h3" weight="medium">
+          Leverage the industry’s most flexible secure development platform.
+        </Heading>
+      </River.Content>
+    </River>
+    <River>
+      <River.Visual>
+        <img
+          src="https://github.com/images/modules/site/enterprise/2023/ai.png"
+          alt="placeholder, blank area with an off-white background color"
+        />
+      </River.Visual>
+      <River.Content>
+        <Heading size="5" as="h3" weight="medium">
+          Unlocking innovation at scale with AI-driven software development.
+        </Heading>
+      </River.Content>
+    </River>
+  </RiverStoryScroll>
+)
+
+EnterpriseExample.decorators = [
+  Story => (
+    <ThemeProvider colorMode="dark">
+      <div style={{backgroundColor: 'black', height: '100%', minHeight: '100dvh'}}>
+        <Grid>
+          <Grid.Column>
+            <Box style={{padding: '15dvh 0 200dvh'}}>
+              <Story />
+            </Box>
+          </Grid.Column>
+        </Grid>
+      </div>
+    </ThemeProvider>
+  ),
+]
+
+EnterpriseExample.parameters = {
+  layout: 'fullscreen',
 }

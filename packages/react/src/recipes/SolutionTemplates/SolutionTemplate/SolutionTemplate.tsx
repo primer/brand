@@ -193,29 +193,20 @@ export function SolutionTemplate({
                         <Prose html="<p>CI/CD automates many of the tasks involved in getting code from developers to production, such as building, testing, and deploying. This can significantly speed up the software delivery process, allowing enterprises to release new features and bug fixes more quickly. By having a common pipeline for building, testing, and deploying code, all teams can work together more effectively. This helps to ensure that higher quality software is released to production.</p><p>In short, an optimal CI/CD pipeline can help enterprises deliver high quality software faster and more cheaply. It can also improve developer productivity and collaboration, while reducing risks.</p>" />
                       )}
                       {args.introVariant === 'editorial list' && (
-                        <UnorderedList>
-                          <UnorderedList.Item
-                            leadingVisual={SparkleFillIcon}
-                            leadingVisualFill="var(--brand-color-text-muted)"
-                            leadingVisualAriaLabel="Sparkle icon"
-                          >
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                          </UnorderedList.Item>
-                          <UnorderedList.Item
-                            leadingVisual={SparkleFillIcon}
-                            leadingVisualFill="var(--brand-color-text-muted)"
-                            leadingVisualAriaLabel="Sparkle icon"
-                          >
-                            Aliquam tincidunt mauris eu risus.
-                          </UnorderedList.Item>
-                          <UnorderedList.Item
-                            leadingVisual={SparkleFillIcon}
-                            leadingVisualFill="var(--brand-color-text-muted)"
-                            leadingVisualAriaLabel="Sparkle icon"
-                          >
-                            Vestibulum auctor dapibus neque.
-                          </UnorderedList.Item>
-                        </UnorderedList>
+                        <Stack direction="vertical" padding="none" gap={24}>
+                          <Text as="p" variant="muted">
+                            <Text variant="default">Lorem ipsum dolor sit amet,</Text> consectetur adipiscing elit. In
+                            sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar.
+                          </Text>
+                          <Text as="p" variant="muted">
+                            <Text variant="default">Lorem ipsum dolor sit amet,</Text> consectetur adipiscing elit. In
+                            sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar.
+                          </Text>
+                          <Text as="p" variant="muted">
+                            <Text variant="default">Lorem ipsum dolor sit amet,</Text> consectetur adipiscing elit. In
+                            sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar.
+                          </Text>
+                        </Stack>
                       )}
                     </Grid.Column>
                   </Grid>
@@ -317,7 +308,17 @@ export function SolutionTemplate({
             {args.customerStoryVisible && (
               <Box paddingBlockStart={64} paddingBlockEnd={128}>
                 <Bento>
-                  <Bento.Item rowSpan={5} flow="column">
+                  <Bento.Item
+                    rowSpan={5}
+                    flow={{
+                      xsmall: 'row',
+                      small: 'row',
+                      medium: 'column',
+                      large: 'column',
+                      xlarge: 'column',
+                      xxlarge: 'column',
+                    }}
+                  >
                     <Bento.Content>
                       <Bento.Heading size="3">
                         <em>This is my super-sweet</em> bento heading
@@ -354,7 +355,7 @@ export function SolutionTemplate({
                   <Heading as="h4">You’re in good company</Heading>
                   <Grid>
                     <Grid.Column span={{xsmall: 12, medium: 4}}>
-                      <Card href="https://github.com" variant="minimal">
+                      <Card href="https://github.com" variant="minimal" fullWidth>
                         <Card.Image
                           src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
                           alt="placeholder, blank area with an gray background color"
@@ -367,7 +368,7 @@ export function SolutionTemplate({
                       </Card>
                     </Grid.Column>
                     <Grid.Column span={{xsmall: 12, medium: 4}}>
-                      <Card href="https://github.com" variant="minimal">
+                      <Card href="https://github.com" variant="minimal" fullWidth>
                         <Card.Image
                           src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
                           alt="placeholder, blank area with an gray background color"
@@ -380,7 +381,7 @@ export function SolutionTemplate({
                       </Card>
                     </Grid.Column>
                     <Grid.Column span={{xsmall: 12, medium: 4}}>
-                      <Card href="https://github.com" variant="minimal">
+                      <Card href="https://github.com" variant="minimal" fullWidth>
                         <Card.Image
                           src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
                           alt="placeholder, blank area with an gray background color"
@@ -688,7 +689,17 @@ function StoryScrollExample({align, bentoVisible}) {
       {bentoVisible && (
         <Box paddingBlockStart={64} paddingBlockEnd={128}>
           <Bento>
-            <Bento.Item rowSpan={5} flow="column">
+            <Bento.Item
+              rowSpan={5}
+              flow={{
+                xsmall: 'row',
+                small: 'row',
+                medium: 'column',
+                large: 'column',
+                xlarge: 'column',
+                xxlarge: 'column',
+              }}
+            >
               <Bento.Content>
                 <Bento.Heading size="3">
                   How the healthcare giant Doctolib drove digital improved efficiency by more than 80%
