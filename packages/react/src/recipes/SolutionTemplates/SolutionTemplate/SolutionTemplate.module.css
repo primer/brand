@@ -1,0 +1,7 @@
+.sectionIntro {
+  display: grid;
+  grid-template-rows: auto;
+  height: 100%;
+  grid-auto-rows: max-content;
+  justify-items: start;
+}

@@ -61,7 +61,7 @@ const Root = forwardRef(
           if (child.type === Visual) {
             acc.Visual = child as React.ReactElement<RiverVisualProps>
           }
-          if (child.type === Content) {
+          if (child.type === RiverContent) {
             acc.Content = child as React.ReactElement<RiverContentProps>
           }
         }
@@ -120,7 +120,7 @@ type RiverContentProps = BaseProps<HTMLDivElement> & {
   children: React.ReactElement<TextProps> | React.ReactElement<HeadingProps | TextProps | LinkProps>[]
 } & React.HTMLAttributes<HTMLDivElement>
 
-const Content = forwardRef(
+export const RiverContent = forwardRef(
   (
     {
       animate,
@@ -258,4 +258,4 @@ const Visual = forwardRef(
 /**
  * Alternating text and image pairs.
  */
-export const River = Object.assign(Root, {Visual, Content})
+export const River = Object.assign(Root, {Visual, Content: RiverContent})

@@ -1,0 +1,112 @@
+.RiverStoryScroll {
+  position: relative;
+}
+
+.RiverStoryScroll__inner {
+  --brand-River-spacing-outer: var(--base-size-64);
+
+  display: grid;
+  grid-gap: var(--brand-River-spacing-inner);
+}
+
+.RiverStoryScroll__inner--50-50 {
+  grid-template-columns: [content] 1fr [visual] 1fr;
+}
+
+.RiverStoryScroll__inner--60-40 {
+  grid-template-columns: [content] 4fr [visual] 6fr;
+}
+
+.RiverStoryScroll__inner--align-start {
+  grid-template-areas: 'content visual';
+}
+
+.RiverStoryScroll__inner--align-end {
+  grid-template-areas: 'visual content';
+}
+
+.RiverStoryScroll__item {
+  min-height: 50vh;
+  grid-template-columns: 1fr;
+}
+
+.RiverStoryScroll__visual-inner {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  /* padding: 10% 0; */
+  padding: 20% 0 0;
+  display: grid;
+  align-items: center;
+}
+
+.RiverStoryScroll__item * {
+  opacity: 0.7;
+  transition: opacity var(--brand-animation-easing-default) var(--brand-animation-duration-extended);
+}
+.RiverStoryScroll__item.visible * {
+  opacity: 1;
+}
+.RiverStoryScroll__visual {
+  grid-area: visual;
+  position: relative;
+}
+
+.RiverStoryScroll__content {
+  grid-area: content;
+  padding-block-start: 15vh;
+}
+
+.RiverStoryScroll__visual-image {
+  width: 100%;
+}
+
+/* --------------------------------------------------------------
+    Regular width, tall viewport
+  -------------------------------------------------------------- */
+/* @media screen and (min-width: 768px) and (min-height: 1000px) {
+  .RiverStoryScroll__inner {
+    margin-top: -15vh;
+  }
+
+  .RiverStoryScroll__content {
+    padding-block-start: 30vh;
+    padding-block-end: 12vh;
+  }
+
+  .RiverStoryScroll__visual-inner {
+    height: 100dvh;
+    padding-block-end: 0;
+  }
+} */
+
+/* --------------------------------------------------------------
+    Narrow viewport
+  -------------------------------------------------------------- */
+@media screen and (max-width: 767px) {
+  .RiverStoryScroll__content {
+    width: 100%;
+    padding: 0 15px;
+    max-width: 100%;
+  }
+
+  .RiverStoryScroll__inner {
+    display: block;
+  }
+
+  .RiverStoryScroll__visual {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 0 var(--base-size-16);
+    max-width: 100%;
+  }
+
+  .RiverStoryScroll__visual-inner {
+    height: auto;
+    background-color: var(--brand-color-canvas-default);
+    top: 0;
+    padding: 10% 0;
+  }
+}
