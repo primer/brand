@@ -158,13 +158,20 @@ export const EnterpriseExample = () => (
       <River.Content
         trailingComponent={() => (
           <div className="pr-lg-10">
-            <hr className="enterprise-separator mb-6 mt-n3" />
-            <Heading as="h4" size="3">
-              17,000+
-            </Heading>
-            <Text as="p" size="300" weight="light" variant="muted">
-              Third-party tools support your favorite languages and frameworks <sup>1</sup>
-            </Text>
+            <Box
+              borderBlockStartWidth="thin"
+              borderColor="default"
+              borderStyle="solid"
+              marginBlockStart={24}
+              paddingBlockStart={24}
+            >
+              <Heading as="h4" size="3">
+                17,000+
+              </Heading>
+              <Text as="p" size="300" weight="light" variant="muted">
+                Third-party tools support your favorite languages and frameworks <sup>1</sup>
+              </Text>
+            </Box>
           </div>
         )}
       >
