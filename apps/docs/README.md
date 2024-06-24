@@ -19,6 +19,8 @@ brew info vips
 npm i
 ```
 
+If issues with `vips/vips8` persist, try using Node >20 and npm >10 and repeat previous step.
+
 2. Build the site (this only needs to be done once)
 
 `npm run build`
