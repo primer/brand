@@ -1,4 +1,4 @@
-import {MoonIcon, SparkleFillIcon, SunIcon, ZapIcon} from '@primer/octicons-react'
+import {MoonIcon, SunIcon, ZapIcon} from '@primer/octicons-react'
 import React, {useCallback, useEffect} from 'react'
 import {
   AnimationProvider,
@@ -25,7 +25,6 @@ import {
   Prose,
   Timeline,
   RiverStoryScroll,
-  UnorderedList,
   FormControl,
   Checkbox,
 } from '../../..'
