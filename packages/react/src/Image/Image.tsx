@@ -8,6 +8,35 @@ export const ImageBorderRadiusOptions = ['small', 'medium', 'large', 'xlarge', '
 export type ImageBorderRadiusOptions = (typeof ImageBorderRadiusOptions)[number]
 export type ImageAspectRatio = '1:1' | '16:9' | '16:10' | '4:3' | 'custom'
 
+type ImgProps = React.ImgHTMLAttributes<HTMLImageElement> & BaseProps<HTMLImageElement> & {as?: 'img'; alt: string}
+type PictureProps = React.HTMLAttributes<HTMLPictureElement> &
+  BaseProps<HTMLPictureElement> & {
+    as: 'picture'
+  }
+
+type CustomProps = {
+  borderRadius?: ImageBorderRadiusOptions
+}
+
+type NewImageProps = (ImgProps | PictureProps) & CustomProps
+
+export const NewImage = ({animate, as = 'img', borderRadius, className, style, ...props}: NewImageProps) => {
+  const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
+
+  const commonProps = {
+    className: clsx(animationClasses, styles.Image, styles[`Image--borderRadius-${borderRadius}`], className),
+    style: {...animationInlineStyles, ...style},
+  }
+
+  return as === 'img' ? (
+    // alt prop is a required prop in {...props}
+    // eslint-disable-next-line jsx-a11y/alt-text
+    <img {...commonProps} {...(props as ImgProps)} />
+  ) : (
+    <picture {...commonProps} {...(props as PictureProps)} />
+  )
+}
+
 export type ImageProps = React.ImgHTMLAttributes<HTMLImageElement> &
   BaseProps<HTMLImageElement> & {
     src: string
@@ -34,48 +63,23 @@ export type ImageProps = React.ImgHTMLAttributes<HTMLImageElement> &
       }
   )
 
-const aspectRatioResolver = (ratio?: ImageAspectRatio) => {
-  if (typeof ratio === 'string') {
-    if (ratio === 'custom') return 'custom'
-    const [width, height] = ratio.split(':').map(Number)
-    return `${width}-${height}`
-  }
-}
-
-const objectWithoutKey = (object, key) => {
-  const {[key]: deletedKey, ...otherKeys} = object
-  return otherKeys
-}
-
-export const Image = ({
-  animate,
-  aspectRatio,
-  className,
-  as = 'img',
-  ref,
-  alt,
-  width,
-  height,
-  media,
-  srcSet,
-  style,
-  borderRadius,
-  ...rest
-}: ImageProps) => {
-  const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
+export const Image = ({animate, as = 'img', borderRadius, className, style, media, ...rest}: ImageProps) => {
   if (as === 'picture') {
+    // @ts-expect-error Incorrect typings from legacy code. Keeping as-is to avoid modifying API
+    const {sources, srcSet, ...pictureRest} = rest
+
     return (
-      <picture
-        className={clsx(
-          animationClasses,
-          styles['Image__container'],
-          aspectRatio && styles[`Image--aspect-ratio-${aspectRatioResolver(aspectRatio)}`],
-          borderRadius && styles[`Image--borderRadius-${borderRadius}`],
-        )}
-        style={{...animationInlineStyles, ...style}}
+      <NewImage
+        animate={animate}
+        as={as}
+        borderRadius={borderRadius}
+        className={clsx(className)}
+        style={style}
+        {...pictureRest}
       >
-        {rest['sources'] &&
-          rest['sources'].map((source, index) => <source key={index} srcSet={source.srcset} media={source.media} />)}
+        {sources
+          ? sources.map((source, index) => <source key={index} srcSet={source.srcset} media={source.media} />)
+          : null}
         {srcSet && <source srcSet={srcSet} media={media} />}
         <img
           ref={ref}
@@ -111,21 +115,24 @@ export const Image = ({
       </span>
     )
   }
+
   return (
-    <img
-      ref={ref}
-      alt={alt}
-      className={clsx(
-        animationClasses,
-        styles.Image,
-        borderRadius && styles[`Image--borderRadius-${borderRadius}`],
-        className,
-      )}
-      width={width && width}
-      height={height && height}
-      srcSet={srcSet}
-      style={{...animationInlineStyles, ...style}}
+    <NewImage
+      animate={animate}
+      as={as}
+      borderRadius={borderRadius}
+      className={clsx(className)}
+      style={style}
       {...rest}
     />
   )
 }
+
+/**
+ * What does this component actually do?
+ * - Adds guardrails around border radius
+ * - Makes src required
+ * - Makes alt required
+ */
+
+// TODO Test whether aspectRatio actually works. If it doesn't I can remove support
