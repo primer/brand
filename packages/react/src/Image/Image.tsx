@@ -66,17 +66,10 @@ export type ImageProps = React.ImgHTMLAttributes<HTMLImageElement> &
 export const Image = ({animate, as = 'img', borderRadius, className, style, media, ...rest}: ImageProps) => {
   if (as === 'picture') {
     // @ts-expect-error Incorrect typings from legacy code. Keeping as-is to avoid modifying API
-    const {sources, srcSet, ...pictureRest} = rest
+    const {sources, srcSet, ...imgRest} = rest
 
     return (
-      <NewImage
-        animate={animate}
-        as={as}
-        borderRadius={borderRadius}
-        className={clsx(className)}
-        style={style}
-        {...pictureRest}
-      >
+      <NewImage animate={animate} as={as} borderRadius={borderRadius} className={clsx(className)} style={style}>
         {sources
           ? sources.map((source, index) => <source key={index} srcSet={source.srcset} media={source.media} />)
           : null}
