@@ -3,7 +3,7 @@ import {render} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
-import {Image, ImageBorderRadiusOptions} from './'
+import {Image, imageBorderRadiusOptions} from './'
 
 expect.extend(toHaveNoViolations)
 
@@ -17,13 +17,26 @@ describe('Image', () => {
     expect(results).toHaveNoViolations()
   })
 
+  it('should render an img element', async () => {
+    const {getByAltText} = render(
+      <Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt="alternative text" />,
+    )
+
+    const imageElement = getByAltText('alternative text')
+
+    expect(imageElement).toBeInTheDocument()
+    expect(imageElement.tagName).toBe('IMG')
+  })
+
   it('should apply animation styles when `animate` is provided', async () => {
     const {getByRole} = render(
       <Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt="alternative text" animate="scale-in" />,
     )
 
-    expect(getByRole('img')).toHaveClass('Animation')
-    expect(getByRole('img')).toHaveClass('Animation--scale-in')
+    const imageElement = getByRole('img')
+
+    expect(imageElement).toHaveClass('Animation')
+    expect(imageElement).toHaveClass('Animation--scale-in')
   })
 
   it('should forward the `className` prop to the image', async () => {
@@ -52,29 +65,15 @@ describe('Image', () => {
     expect(getByRole('img')).toHaveStyle({background: 'red'})
   })
 
-  it('should render an img element if `as` is not provided', async () => {
+  it('should forward the `alt` prop to the image', async () => {
     const {getByAltText} = render(
       <Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt="alternative text" />,
     )
 
-    const imageElement = getByAltText('alternative text')
-
-    expect(imageElement).toBeInTheDocument()
-    expect(imageElement.tagName).toBe('IMG')
+    expect(getByAltText('alternative text')).toBeInTheDocument()
   })
 
-  it('should render a picture element if `as="picture"`', async () => {
-    const {getByAltText} = render(
-      <Image as="picture" src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt="alternative text" />,
-    )
-
-    const imageElement = getByAltText('alternative text')
-
-    expect(imageElement).toBeInTheDocument()
-    expect(imageElement.parentElement?.tagName).toBe('PICTURE')
-  })
-
-  it.each(ImageBorderRadiusOptions)('should add the appropriate class when `borderRadius="%s"`', async size => {
+  it.each(imageBorderRadiusOptions)('should add the appropriate class when `borderRadius="%s"`', async size => {
     const {getByRole} = render(
       <Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt="alternative text" borderRadius={size} />,
     )
