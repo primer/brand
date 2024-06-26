@@ -1,16 +1,3 @@
-.articlePageBody {
-  position: relative;
-  z-index: 91;
-}
-
-[data-color-mode='light'] .articlePageBody {
-  --brand-color-accent-primary: var(--base-color-scale-purple-5);
-}
-
-[data-color-mode='dark'] .articlePageBody {
-  --brand-color-accent-primary: var(--base-color-scale-purple-1);
-}
-
 .articleCol {
   order: 1;
 }
@@ -28,13 +15,166 @@
   padding: 0;
 }
 
-.heroImageArea {
-  overflow: hidden;
+.hero {
+  --parallax-start-spacing: 74px;
+  --hero-height: 70vh;
+
+  position: relative;
+  height: calc(var(--hero-height) - var(--parallax-start-spacing));
+}
+
+.lightHero .hero {
+  background: var(--base-color-scale-white-0);
+}
+
+.darkHero .hero {
+  background: var(--base-color-scale-black-0);
+}
+
+.parallax {
+  position: absolute;
+  top: calc(-1 * var(--parallax-start-spacing));
+  width: 100%;
+  height: var(--hero-height);
+}
+
+.background,
+.foreground {
+  width: 100%;
+  height: 100%;
+
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  animation-timeline: scroll();
+  animation-range: 0vh var(--hero-height);
+}
+
+.background {
+  position: absolute;
+}
+
+.foreground {
+  position: relative;
 }
 
 .heroImage {
-  display: block;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.heroImageOverlay {
+  position: absolute;
+  top: 0;
   width: 100%;
+  height: 100%;
+}
+
+.lightHero .heroImageOverlay {
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(255, 255, 255, 0.6) 100%
+  );
+}
+
+.darkHero .heroImageOverlay {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.6) 100%);
+}
+
+.heroImageOverlayDark {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.6) 100%);
+}
+
+.foregroundContents {
+  padding: 0;
+  padding-block-start: calc(var(--base-size-20) + var(--parallax-start-spacing));
+  height: 100%;
+}
+
+.articleContents {
+  border-radius: var(--brand-borderRadius-xlarge);
+  margin-top: calc(-1 * var(--brand-borderRadius-xlarge));
+  background-color: var(--brand-color-canvas-default);
+  position: relative;
+  z-index: 90;
+}
+
+.lightHero .articleContents {
+  box-shadow: 0px -2px 49px 0px rgba(0, 0, 0, 0.25);
+}
+
+@keyframes parallax-background {
+  from {
+    top: 0;
+    filter: blur(0px);
+  }
+  to {
+    top: calc(var(--hero-height) * -0.4);
+    filter: blur(10px) brightness(0%);
+  }
+}
+
+@keyframes parallax-foreground {
+  from {
+    top: 0;
+  }
+  to {
+    top: calc(var(--hero-height) * -0.7);
+    filter: blur(2px) brightness(0%);
+  }
+}
+
+/* Progressive enhancement opt-in */
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .parallax {
+      position: fixed;
+      top: 0;
+    }
+
+    .foreground {
+      animation-name: parallax-foreground;
+    }
+
+    .background {
+      animation-name: parallax-background;
+    }
+  }
+}
+
+@keyframes wipe {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}
+
+.heroLine,
+.heroLineAnimated {
+  width: 100%;
+  min-height: 1lh;
+  position: relative;
+}
+
+.heroLineAnimated::after {
+  content: '';
+  display: inline;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--brand-color-accent-primary);
+  transform-origin: right;
+  animation: wipe var(--brand-animation-duration-extended) forwards var(--brand-animation-easing-default);
+  animation-delay: var(--animation-delay);
 }
 
 .lede {
@@ -47,18 +187,9 @@
   line-height: 1;
   padding: var(--base-size-4) var(--base-size-12);
   border: var(--base-size-4) solid var(--brand-color-accent-primary);
+  color: var(--brand-color-accent-primary);
   margin-inline-end: var(--base-size-12);
   float: left;
-}
-
-[data-color-mode='light'] .lede::first-letter {
-  border-color: var(--base-color-scale-purple-5);
-  color: var(--base-color-scale-purple-5);
-}
-
-[data-color-mode='dark'] .lede::first-letter {
-  border-color: var(--base-color-scale-purple-1);
-  color: var(--base-color-scale-purple-1);
 }
 
 .asideHeading {

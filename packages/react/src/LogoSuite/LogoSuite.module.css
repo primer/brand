@@ -40,25 +40,29 @@
 }
 
 .LogoSuite__logobar--variant-muted svg,
+.LogoSuite__logobar--variant-muted img,
 .LogoSuite__logobar--variant-muted a {
   width: auto;
   height: var(--base-size-40);
 }
 
 .LogoSuite__logobar--variant-emphasis svg,
+.LogoSuite__logobar--variant-emphasis img,
 .LogoSuite__logobar--variant-emphasis a {
   width: auto;
   height: var(--base-size-48);
 }
 
 .LogoSuite__logobar--variant-muted svg,
-.LogoSuite__logobar--variant-muted path {
-  fill: var(--brand-LogoSuite-color-logo-muted);
+.LogoSuite__logobar--variant-muted path,
+.LogoSuite__logobar--variant-muted img {
+  filter: var(--brand-LogoSuite-color-logo-muted);
 }
 
 .LogoSuite__logobar--variant-emphasis svg,
-.LogoSuite__logobar--variant-emphasis path {
-  fill: var(--brand-LogoSuite-color-logo-emphasis);
+.LogoSuite__logobar--variant-emphasis path,
+.LogoSuite__logobar--variant-emphasis img {
+  filter: var(--brand-LogoSuite-color-logo-emphasis);
 }
 
 .LogoSuite--start .LogoSuite__logobar {
@@ -120,7 +124,8 @@
   }
 }
 
-.LogoSuite__logobar--has-marquee:hover .LogoSuite__logobar-marqueeGroup {
+.LogoSuite__logobar--has-marquee:hover .LogoSuite__logobar-marqueeGroup,
+.LogoSuite__logobar-marqueeGroup--speed-idle {
   animation-play-state: paused;
 }
 

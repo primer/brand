@@ -239,7 +239,7 @@ export function CategoryPage({accentColor, variant, gridOverlay = false, colorMo
                       <Box animate="fade-in">
                         <Card href="../?path=/story/recipes-seo-article-page--default" variant="minimal">
                           <Card.Image
-                            src={cardImagePlaceholders[Math.floor(Math.random() * cardImagePlaceholders.length)]}
+                            src={cardImagePlaceholders[index]}
                             alt="placeholder, blank area with an gray background color"
                             aspectRatio="16:9"
                           />

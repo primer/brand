@@ -52,7 +52,7 @@ describe('FAQGroup', () => {
         <FAQ key={index}>
           <FAQ.Heading>{group.heading}</FAQ.Heading>
           {group.faqs.map((faq, childIndex) => (
-            <FAQ.Item key={childIndex} data-testid={`item-${index}-${childIndex}`}>
+            <FAQ.Item key={childIndex}>
               <FAQ.Question>{faq.question}</FAQ.Question>
               <FAQ.Answer>
                 <p>{faq.answer}</p>
@@ -114,5 +114,28 @@ describe('FAQGroup', () => {
     const results = await axe(container)
 
     expect(results).toHaveNoViolations()
+  })
+
+  it('changes selected tab on ArrowUp and ArrowDown key presses', async () => {
+    const {getByTestId} = render(<Component />)
+    const firstTabButton = getByTestId('FAQGroup-tab-1')
+    const secondTabButton = getByTestId('FAQGroup-tab-2')
+    const lastTabButton = getByTestId(`FAQGroup-tab-2`)
+
+    await userEvent.type(firstTabButton, '{arrowdown}')
+    expect(secondTabButton).toHaveAttribute('aria-selected', 'true')
+    expect(getByTestId('FAQGroup-tab-panel-2')).not.toHaveAttribute('hidden')
+
+    await userEvent.type(secondTabButton, '{arrowup}')
+    expect(firstTabButton).toHaveAttribute('aria-selected', 'true')
+    expect(firstTabButton).not.toHaveAttribute('hidden')
+
+    await userEvent.type(firstTabButton, '{arrowup}')
+    expect(lastTabButton).toHaveAttribute('aria-selected', 'true')
+    expect(lastTabButton).not.toHaveAttribute('hidden')
+
+    await userEvent.type(lastTabButton, '{arrowdown}')
+    expect(firstTabButton).toHaveAttribute('aria-selected', 'true')
+    expect(firstTabButton).not.toHaveAttribute('hidden')
   })
 })

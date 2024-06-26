@@ -59,7 +59,6 @@ function _AnchorNav({children, enableDefaultBgColor = false, hideUntilSticky = f
 
   const wrapperRef = useRef<HTMLDivElement | null>(null)
   const rootRef = useRef<HTMLElement | null>(null)
-  const menuToggleButtonRef = useRef<HTMLButtonElement | null>(null)
   const linkContainerRef = useRef<HTMLDivElement | null>(null)
 
   const {isLarge} = useWindowSize()
@@ -87,7 +86,7 @@ function _AnchorNav({children, enableDefaultBgColor = false, hideUntilSticky = f
   }
 
   useKeyboardEscape(closeMenuCallback)
-  useExpandedMenu(menuOpen, linkContainerRef, menuToggleButtonRef, !isLarge)
+  useExpandedMenu(menuOpen, linkContainerRef, !isLarge)
 
   useEffect(() => {
     const queryResult = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -213,7 +212,6 @@ function _AnchorNav({children, enableDefaultBgColor = false, hideUntilSticky = f
           )}
         >
           <button
-            ref={menuToggleButtonRef}
             onClick={handleMenuToggle}
             className={clsx(styles['AnchorNav-menu-button'])}
             aria-expanded={menuOpen ? 'true' : 'false'}
@@ -240,6 +238,7 @@ function _AnchorNav({children, enableDefaultBgColor = false, hideUntilSticky = f
             {Links}
           </div>
           <span
+            data-forward-focus="true"
             className={clsx(
               styles['AnchorNav__actionsContainer'],
               hasTwoActions && styles['AnchorNav__actionsContainer--multiple'],
