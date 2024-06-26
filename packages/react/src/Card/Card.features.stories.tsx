@@ -48,7 +48,7 @@ export const FullWidth: StoryFn<typeof Card> = () => {
   return (
     <Card href="https://github.com" fullWidth hasBorder>
       <Card.Image
-        aspectRatio="16:10"
+        style={{aspectRatio: '16 / 10'}}
         src={placeholderImage}
         alt="placeholder, blank area with an gray background color"
       />
