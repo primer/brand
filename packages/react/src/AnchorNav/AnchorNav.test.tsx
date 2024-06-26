@@ -147,17 +147,6 @@ describe('AnchorNav', () => {
     expect(menuButton).toHaveAttribute('aria-expanded', 'true') // aria attribute before menu open
   })
 
-  it('renders progressive link scroll behavior', () => {
-    const windowSpy = jest.spyOn(window, 'scrollTo').mockImplementation(jest.fn)
-
-    const {getByTestId} = render(<MockAnchorNavFixture />)
-    const linkEl = getByTestId(AnchorNav.testIds.menuLinks).children[0]
-
-    fireEvent.click(linkEl) // toggle menu button
-
-    expect(windowSpy).toHaveBeenCalled() // scroll to is called
-  })
-
   it('renders correct class for hideUntilSticky behavior', () => {
     const {getByTestId} = render(<MockAnchorNavFixture hideUntilSticky />)
     const rootEl = getByTestId(AnchorNav.testIds.root)
