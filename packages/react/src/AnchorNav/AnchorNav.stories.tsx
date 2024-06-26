@@ -111,6 +111,7 @@ export const Playground = ({data, ...args}: {data: MockData; offset: number; sec
               key={value}
               id={value}
               direction="vertical"
+              alignItems="flex-start"
               style={{
                 padding: `${args.sectionHeight / 2}px var(--base-size-24)`,
               }}
