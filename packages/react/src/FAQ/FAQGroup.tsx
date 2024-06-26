@@ -32,12 +32,13 @@ type FAQGroupProps = React.PropsWithChildren<{
 
 function _FAQGroup({children, id, defaultSelectedIndex = 0, ...rest}: FAQGroupProps) {
   const [selectedIndex, setSelectedIndex] = React.useState(defaultSelectedIndex)
+  const [hasInteracted, setHasInteracted] = React.useState(false)
   const instanceId = useId(id)
-  const initialRender = React.useRef(true)
   const selectedTabRef = React.useRef<HTMLButtonElement>(null)
 
   const handleTabClick = (index: number) => (_event: React.MouseEvent<HTMLButtonElement>) => {
     setSelectedIndex(index)
+    if (!hasInteracted) setHasInteracted(true)
   }
 
   const handleKeyDown = (index: number) => (_event: React.KeyboardEvent<HTMLButtonElement>) => {
@@ -45,6 +46,7 @@ function _FAQGroup({children, id, defaultSelectedIndex = 0, ...rest}: FAQGroupPr
       _event.preventDefault()
       const prevIndex = (index - 1 + faqChildren.length) % faqChildren.length
       setSelectedIndex(prevIndex)
+      if (!hasInteracted) setHasInteracted(true)
       return
     }
 
@@ -52,14 +54,14 @@ function _FAQGroup({children, id, defaultSelectedIndex = 0, ...rest}: FAQGroupPr
       _event.preventDefault()
       const nextIndex = (index + 1) % faqChildren.length
       setSelectedIndex(nextIndex)
+      if (!hasInteracted) setHasInteracted(true)
       return
     }
   }
 
   React.useEffect(() => {
-    if (!initialRender.current && selectedTabRef.current) selectedTabRef.current.focus()
-    if (initialRender.current) initialRender.current = false
-  }, [selectedIndex])
+    if (hasInteracted) selectedTabRef.current?.focus()
+  }, [hasInteracted, selectedIndex])
 
   const faqChildren = React.Children.toArray(children).filter(
     child => React.isValidElement<FAQRootProps>(child) && child.type === FAQ,
