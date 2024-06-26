@@ -3,7 +3,7 @@ import {render} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
-import {Image, imageBorderRadiusOptions} from './'
+import {Image, ImageBorderRadiusOptions} from './'
 
 expect.extend(toHaveNoViolations)
 
@@ -73,7 +73,7 @@ describe('Image', () => {
     expect(getByAltText('alternative text')).toBeInTheDocument()
   })
 
-  it.each(imageBorderRadiusOptions)('should add the appropriate class when `borderRadius="%s"`', async size => {
+  it.each(ImageBorderRadiusOptions)('should add the appropriate class when `borderRadius="%s"`', async size => {
     const {getByRole} = render(
       <Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt="alternative text" borderRadius={size} />,
     )

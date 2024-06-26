@@ -4,8 +4,8 @@ import styles from './Image.module.css'
 import {BaseProps} from '../component-helpers'
 import {useAnimation} from '../animation'
 
-export const imageBorderRadiusOptions = ['small', 'medium', 'large', 'xlarge', 'full'] as const
-export type ImageBorderRadiusOptions = (typeof imageBorderRadiusOptions)[number]
+export const ImageBorderRadiusOptions = ['small', 'medium', 'large', 'xlarge', 'full'] as const
+export type ImageBorderRadiusOptions = (typeof ImageBorderRadiusOptions)[number]
 
 export type ImageProps = React.ImgHTMLAttributes<HTMLImageElement> &
   BaseProps<HTMLImageElement> & {alt: string; borderRadius?: ImageBorderRadiusOptions}

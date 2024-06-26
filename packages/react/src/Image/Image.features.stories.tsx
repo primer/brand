@@ -3,7 +3,7 @@ import {Meta, StoryFn} from '@storybook/react'
 
 import placeholderImage from '../fixtures/images/placeholder-600x400.png'
 
-import {Image, imageBorderRadiusOptions} from './Image'
+import {Image, ImageBorderRadiusOptions} from './Image'
 import {Stack} from '../Stack'
 
 export default {
@@ -29,7 +29,7 @@ export const AspectRatio: StoryFn<typeof Image> = () => (
 
 export const BorderRadius: StoryFn<typeof Image> = () => (
   <Stack direction="horizontal">
-    {imageBorderRadiusOptions.map(borderRadius => (
+    {ImageBorderRadiusOptions.map(borderRadius => (
       <Image
         key={borderRadius}
         src={placeholderImage}

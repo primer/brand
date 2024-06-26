@@ -1,6 +1,6 @@
 import React from 'react'
 import {Meta, StoryFn} from '@storybook/react'
-import {Image, imageBorderRadiusOptions} from './'
+import {Image, ImageBorderRadiusOptions} from './'
 import placeholderImage from '../fixtures/images/placeholder-600x400.png'
 
 export default {
@@ -40,7 +40,7 @@ export default {
     borderRadius: {
       description: 'Sets the border radius of the image.',
       control: 'radio',
-      options: [...imageBorderRadiusOptions, undefined],
+      options: [...ImageBorderRadiusOptions, undefined],
     },
   },
 } as Meta<typeof Image>
