@@ -4,7 +4,7 @@
 
 Refactored Image component and simplified its API.
 
-- Removed the (non-functional) `aspectRatio` prop. Use the standard `aspect-ratio` CSS property going forward.
+- Removed the (mostly non-functional) `aspectRatio` prop. Use the standard `aspect-ratio` CSS property going forward, or the `--brand-image-aspectRatio` CSS custom property.
 - Removed the `as`, `media`, and `sources` props, as well code paths which render a `<picture>` element. To use a `<picture>` element with the updated `Image` component, simply wrap the `Image` with a `picture` element, for example:
 
 ```jsx
