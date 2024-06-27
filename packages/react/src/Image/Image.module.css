@@ -1,6 +1,7 @@
 .Image {
   object-fit: cover;
   display: inline-block;
+  aspect-ratio: var(--brand-image-aspectRatio);
 }
 
 .Image--borderRadius-small {

@@ -1,14 +1,16 @@
 import React from 'react'
 import clsx from 'clsx'
 import styles from './Image.module.css'
-import {BaseProps} from '../component-helpers'
-import {useAnimation} from '../animation'
+import {AnimateProps, useAnimation} from '../animation'
 
 export const ImageBorderRadiusOptions = ['small', 'medium', 'large', 'xlarge', 'full'] as const
 export type ImageBorderRadiusOptions = (typeof ImageBorderRadiusOptions)[number]
 
-export type ImageProps = React.ImgHTMLAttributes<HTMLImageElement> &
-  BaseProps<HTMLImageElement> & {alt: string; borderRadius?: ImageBorderRadiusOptions}
+export type ImageProps = React.ImgHTMLAttributes<HTMLImageElement> & {
+  alt: string
+  animate?: AnimateProps
+  borderRadius?: ImageBorderRadiusOptions
+}
 
 <<<<<<< HEAD
 export const Image = ({animate, as = 'img', borderRadius, className, style, media, ...rest}: ImageProps) => {
