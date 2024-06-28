@@ -211,3 +211,7 @@ export const VideoPlayer = Object.assign(Root, {
 // C should toggle captions
 // Contrast on the captions feels very low
 // Pointer area on blue play button only covers icon, not the blue bit
+// Tidy up all my imports
+// Decide what components I'm exporting and tidy all that up
+// Add an onFullScreenChange prop as that might be handy for implementors
+// Split out the styles of controls to live alongside each control
