@@ -1,5 +1,20 @@
 # @primer/react-brand
 
+## 0.34.2
+
+### Patch Changes
+
+- [#595](https://github.com/primer/brand/pull/595) [`d0c1630`](https://github.com/primer/brand/commit/d0c1630576f5ed2882f0be3d423dc23fe72d0c6d) Thanks [@stamat](https://github.com/stamat)! - `AnchorNav` accessibility improvements.
+
+  - Removed JS-augmented scrolling behavior in `AnchorNav`, reverting to browser-defaults.
+  - Fixed zoom-related bug where certain anchor nav items were not visible.
+
+- [#629](https://github.com/primer/brand/pull/629) [`03237fa`](https://github.com/primer/brand/commit/03237fad26e57d986d390beb123730bf949f11ea) Thanks [@stamat](https://github.com/stamat)! - Updated `FAQGroup` autofocusing conditions
+
+- [#622](https://github.com/primer/brand/pull/622) [`3450e4b`](https://github.com/primer/brand/commit/3450e4bea7b1bf063f4b6eba9bef6f7ec39fa82b) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Improved keyboard navigation in mobile `AnchorNav` component. Arrow key navigation has been replaced with tab navigation.
+
+- [#630](https://github.com/primer/brand/pull/630) [`809960b`](https://github.com/primer/brand/commit/809960bf52b2787b92bc053518e45c21420ed181) Thanks [@joshfarrant](https://github.com/joshfarrant)! - In `Image` component, the `height` prop is now correctly forwarded to the underlying `img` element, when using `as="picture" customization.
+
 ## 0.34.1
 
 ### Patch Changes
