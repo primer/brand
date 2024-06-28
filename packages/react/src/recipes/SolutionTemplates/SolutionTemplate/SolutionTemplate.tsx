@@ -639,7 +639,7 @@ function StoryScrollExample({align, bentoVisible}) {
         <River align={align}>
           <River.Visual>
             <img
-              src="https://github.com/primer/brand/assets/10632534/75bf2a4d-1635-4aff-afb4-533adce39c05"
+              src="https://placehold.co/600x400/FF5733/ffffff?text=1"
               alt="placeholder, blank area with an off-white background color"
             />
           </River.Visual>
@@ -655,7 +655,7 @@ function StoryScrollExample({align, bentoVisible}) {
         <River align={align}>
           <River.Visual>
             <img
-              src="https://github.com/primer/brand/assets/10632534/4f274df5-f4b5-4a6e-83db-3c5e2de53c60"
+              src="https://placehold.co/600x400/AF7AC5/ffffff?text=2"
               alt="placeholder, blank area with an off-white background color"
             />
           </River.Visual>
@@ -671,7 +671,7 @@ function StoryScrollExample({align, bentoVisible}) {
         <River align={align}>
           <River.Visual>
             <img
-              src="https://github.com/primer/brand/assets/10632534/9442925f-7f83-464b-ac96-c85c6df6f15c"
+              src="https://placehold.co/600x400/FFC300/ffffff?text=3"
               alt="placeholder, blank area with an off-white background color"
             />
           </River.Visual>

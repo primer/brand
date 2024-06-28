@@ -11,6 +11,8 @@ declare const styles: {
   readonly "RiverStoryScroll__visual": string;
   readonly "RiverStoryScroll__content": string;
   readonly "RiverStoryScroll__visual-image": string;
+  readonly "RiverStoryScroll__visual-image--active": string;
+  readonly "RiverStoryScroll__visual-image--stacked": string;
 };
 export = styles;
 

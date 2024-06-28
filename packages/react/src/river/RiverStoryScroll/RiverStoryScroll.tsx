@@ -30,6 +30,7 @@ export function RiverStoryScroll({
 }: PropsWithChildren<RiverStoryScrollProps>) {
   const [prefersReducedMotion, setPrefersReducedMotion] = React.useState(false)
 
+  const riverImageContainerRef = React.useRef<HTMLDivElement>(null)
   const riverContainerRef = React.useRef<HTMLDivElement>(null)
   const [images, setImages] = React.useState<string[]>()
   const [currImage, setCurrImage] = React.useState<string>('')
@@ -86,10 +87,38 @@ export function RiverStoryScroll({
           entry.target.classList.toggle(styles.visible, entry.isIntersecting)
 
           if (entry.isIntersecting) {
-            const image = entry.target.querySelector('img')
-            if (image) {
-              setCurrImage(image.src)
+            const index = Array.from(targets).indexOf(entry.target) + 1
+
+            const imageContainerEl = riverImageContainerRef.current
+
+            if (imageContainerEl) {
+              // hide all images that are more than current index
+              const imageEls = imageContainerEl.querySelectorAll(`[data-storyscroll-image-index]`)
+              imageEls.forEach(imageEl => {
+                if (parseInt(imageEl.getAttribute('data-storyscroll-image-index') || '0') > index) {
+                  imageEl.classList.remove(styles['RiverStoryScroll__visual-image--active'])
+                }
+              })
+
+              const imageEl = imageContainerEl.querySelector(`[data-storyscroll-image-index="${index}"]`)
+              imageEl?.classList.add(styles['RiverStoryScroll__visual-image--active'])
+
+              /* for each image that is less than the current index, add inline styles for following
+                  transform: translateY(calc(15 * 4)) scale(0.8);
+                  filter: brightness(10%);
+                  */
+
+              imageEls.forEach((imageEl, newIndex) => {
+                if (parseInt(imageEl.getAttribute('data-storyscroll-image-index') || '0') < index) {
+                  imageEl.classList.add(styles['RiverStoryScroll__visual-image--stacked'])
+                } else {
+                  // remove
+                  imageEl.classList.remove(styles['RiverStoryScroll__visual-image--stacked'])
+                }
+              })
             }
+
+            // create image stacking effect
           }
         }
       },
@@ -123,15 +152,27 @@ export function RiverStoryScroll({
         <div ref={riverContainerRef} className={clsx(styles.RiverStoryScroll__content)}>
           {Children}
         </div>
-        <div className={clsx(styles.RiverStoryScroll__visual)}>
+        <div className={clsx(styles.RiverStoryScroll__visual)} ref={riverImageContainerRef}>
           <div className={styles['RiverStoryScroll__visual-inner']}>
-            <Image
+            {/* <Image
               borderRadius="large"
               src={currImage}
               className={clsx(styles['RiverStoryScroll__visual-image'])}
               // FIXME: infer alt text from original river
               alt="Story Image"
-            />
+            /> */}
+            {images &&
+              images.map(image => (
+                <Image
+                  key={image}
+                  borderRadius="large"
+                  src={image}
+                  className={clsx(styles['RiverStoryScroll__visual-image'])}
+                  data-storyscroll-image-index={images.indexOf(image) + 1}
+                  // FIXME: infer alt text from original river
+                  alt="Story Image"
+                />
+              ))}
           </div>
         </div>
       </div>
