@@ -92,7 +92,7 @@ const Root = forwardRef(
   },
 )
 
-type RiverContentProps = BaseProps<HTMLDivElement> & {
+export type RiverContentProps = BaseProps<HTMLDivElement> & {
   /**
    * Escape-hatch for inserting custom React components.
    * Warning:
@@ -205,7 +205,7 @@ export const RiverContent = forwardRef(
   },
 )
 
-type RiverVisualProps = BaseProps<HTMLDivElement> &
+export type RiverVisualProps = BaseProps<HTMLDivElement> &
   React.HtmlHTMLAttributes<HTMLDivElement> &
   PropsWithChildren<{
     /**

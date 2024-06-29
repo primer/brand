@@ -1,9 +1,10 @@
-import React, {PropsWithChildren, useEffect} from 'react'
-import clsx from 'clsx'
-
-import {River, Image, RiverProps} from '../..'
-
+import React, {useEffect, useRef} from 'react'
+import {Stack, Heading, River, RiverProps, Text} from '../../'
+import {RiverStoryScrollProvider} from './RiverStoryScrollProvider'
+import {RiverStoryScrollResponder} from './RiverStoryScrollResponder'
+import {RiverStoryScrollTracker} from './RiverStoryScrollTracker'
 import {BaseProps} from '../../component-helpers'
+import clsx from 'clsx'
 
 import styles from './RiverStoryScroll.module.css'
 
@@ -23,25 +24,26 @@ export type RiverStoryScrollProps = {
 } & BaseProps<HTMLDivElement>
 
 export function RiverStoryScroll({
-  align = 'start',
   children,
-  disable = false,
+  disable,
+  align = 'start',
   imageTextRatio = '50:50',
-}: PropsWithChildren<RiverStoryScrollProps>) {
-  const [prefersReducedMotion, setPrefersReducedMotion] = React.useState(false)
+}: React.PropsWithChildren<RiverStoryScrollProps>) {
+  const visualContainerRef = useRef<HTMLDivElement | null>()
+  const contentContainerRef = useRef<HTMLDivElement | null>()
 
-  const riverImageContainerRef = React.useRef<HTMLDivElement>(null)
-  const riverContainerRef = React.useRef<HTMLDivElement>(null)
+  const [prefersReducedMotion, setPrefersReducedMotion] = React.useState(false)
   const [images, setImages] = React.useState<string[]>()
-  const [currImage, setCurrImage] = React.useState<string>('')
 
   const Children = React.Children.map(children, child => {
     if (React.isValidElement(child) && child.type === River) {
       return React.cloneElement(child as React.ReactElement<RiverProps>, {
-        className: clsx(styles.RiverStoryScroll__item, 'animated'),
+        className: clsx(styles['RiverStoryScroll__internal-river'], styles['RiverStoryScroll__content-stack']),
       })
     }
   })
+
+  const initialVisibilityStates = Children ? new Array(Children.length).fill(false) : []
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -59,123 +61,106 @@ export function RiverStoryScroll({
   }, [])
 
   useEffect(() => {
-    if (!disable && !prefersReducedMotion && images) {
-      setCurrImage(images[0])
-    }
-  }, [images, disable, prefersReducedMotion])
+    if (disable || prefersReducedMotion) return
+    if (contentContainerRef.current) {
+      const origImages = Array.from(contentContainerRef.current.querySelectorAll('img'))
 
-  useEffect(() => {
-    if (disable && prefersReducedMotion) return
-    const targets = Array.from(document.querySelectorAll(`.animated`))
+      const imageSources = origImages.map(image => image.src)
 
-    const riverImgs = Array.from(riverContainerRef.current?.querySelectorAll('img') || [])
-
-    const tempImages: string[] = []
-    for (const image of riverImgs) {
-      tempImages.push(image.src)
-      const parentDiv = image.parentElement
-      if (parentDiv) {
-        parentDiv.style.display = 'none'
-      }
-    }
-
-    setImages(tempImages)
-
-    const observer = new IntersectionObserver(
-      entries => {
-        for (const entry of entries) {
-          entry.target.classList.toggle(styles.visible, entry.isIntersecting)
-
-          if (entry.isIntersecting) {
-            const index = Array.from(targets).indexOf(entry.target) + 1
-
-            const imageContainerEl = riverImageContainerRef.current
-
-            if (imageContainerEl) {
-              // hide all images that are more than current index
-              const imageEls = imageContainerEl.querySelectorAll(`[data-storyscroll-image-index]`)
-              imageEls.forEach(imageEl => {
-                if (parseInt(imageEl.getAttribute('data-storyscroll-image-index') || '0') > index) {
-                  imageEl.classList.remove(styles['RiverStoryScroll__visual-image--active'])
-                }
-              })
-
-              const imageEl = imageContainerEl.querySelector(`[data-storyscroll-image-index="${index}"]`)
-              imageEl?.classList.add(styles['RiverStoryScroll__visual-image--active'])
-
-              /* for each image that is less than the current index, add inline styles for following
-                  transform: translateY(calc(15 * 4)) scale(0.8);
-                  filter: brightness(10%);
-                  */
-
-              imageEls.forEach((imageEl, newIndex) => {
-                if (parseInt(imageEl.getAttribute('data-storyscroll-image-index') || '0') < index) {
-                  imageEl.classList.add(styles['RiverStoryScroll__visual-image--stacked'])
-                } else {
-                  // remove
-                  imageEl.classList.remove(styles['RiverStoryScroll__visual-image--stacked'])
-                }
-              })
-            }
-
-            // create image stacking effect
-          }
-        }
-      },
-      {threshold: 1},
-    )
-
-    for (const target of targets) {
-      observer.observe(target)
-    }
-
-    return () => {
-      for (const target of targets) {
-        observer.unobserve(target)
-      }
+      // set the images state
+      setImages(imageSources)
     }
   }, [disable, prefersReducedMotion])
 
   if (disable || prefersReducedMotion) {
-    return <div>{children}</div>
+    return <div className={clsx(styles.RiverStoryScroll, styles['RiverStoryScroll--disabled'])}>{Children}</div>
   }
 
   return (
-    <div className={clsx(styles.RiverStoryScroll)}>
-      <div
-        className={clsx(
-          styles.RiverStoryScroll__inner,
-          styles[`RiverStoryScroll__inner--align-${align}`],
-          styles[`RiverStoryScroll__inner--${imageTextRatio.replace(':', '-')}`],
-        )}
-      >
-        <div ref={riverContainerRef} className={clsx(styles.RiverStoryScroll__content)}>
-          {Children}
-        </div>
-        <div className={clsx(styles.RiverStoryScroll__visual)} ref={riverImageContainerRef}>
-          <div className={styles['RiverStoryScroll__visual-inner']}>
-            {/* <Image
-              borderRadius="large"
-              src={currImage}
-              className={clsx(styles['RiverStoryScroll__visual-image'])}
-              // FIXME: infer alt text from original river
-              alt="Story Image"
-            /> */}
-            {images &&
-              images.map(image => (
-                <Image
-                  key={image}
-                  borderRadius="large"
-                  src={image}
-                  className={clsx(styles['RiverStoryScroll__visual-image'])}
-                  data-storyscroll-image-index={images.indexOf(image) + 1}
-                  // FIXME: infer alt text from original river
-                  alt="Story Image"
-                />
+    <div className={clsx(styles.RiverStoryScroll, styles['RiverStoryScroll--enabled'])}>
+      <RiverStoryScrollProvider initialStates={initialVisibilityStates} className={styles.RiverStoryScroll__inner}>
+        <div className={styles['RiverStoryScroll__visual-container']} ref={visualContainerRef}>
+          <div
+            className={clsx(
+              styles['RiverStoryScroll__visual-container-inner'],
+              styles['RiverStoryScroll__visual--below'],
+            )}
+          >
+            <div className={styles['RiverStoryScroll__visual-cover']} />
+            {images?.map((item, index) => (
+              <RiverStoryScrollResponder
+                className={styles['RiverStoryScroll__visual-scroll-responder']}
+                key={index}
+                index={index}
+              >
+                {/* <video
+                    playsInline={true}
+                    muted={true}
+                    preload="auto"
+                    poster={`/assets/projects/copilot-workspace/river-poster-${
+                      index + 1
+                    }.webp`}
+                    width="1032"
+                    height="690"
+                    className={styles['RiverStoryScroll__image']}
+                  >
+                    <source
+                      src={`/assets/projects/copilot-workspace/features-river-${
+                        index + 1
+                      }.mp4`}
+                      type="video/mp4; codecs=avc1.4d002a"
+                    />
+                  </video> */}
+                <img className={styles['RiverStoryScroll__image']} src={`${images[index]}`} alt="" />
+              </RiverStoryScrollResponder>
+            ))}
+            <div className={styles['RiverStoryScroll__pagination']}>
+              {images?.map((item, index) => (
+                <div className={styles['RiverStoryScroll__pagination-dot']} key={index} />
               ))}
+            </div>
           </div>
         </div>
-      </div>
+
+        <div
+          ref={contentContainerRef}
+          className={clsx(
+            styles['RiverStoryScroll__content-container'],
+            styles['RiverStoryScroll__content-container--below'],
+          )}
+        >
+          {/*
+          {copy.map((item, index) => (
+            <RiverStoryScrollTracker
+              key={index}
+              location="below"
+              index={index}
+              className={styles.RiverStoryScroll__tracker}
+            >
+              <Stack
+                direction={{narrow: 'vertical', regular: 'vertical'}}
+                padding={'none'}
+                className={styles['RiverStoryScroll__content-stack']}
+              >
+                <Heading as="h5">{item.title}</Heading>
+                <Text as="p" variant="muted" size={'100'}>
+                  {item.description}
+                </Text>
+              </Stack>
+            </RiverStoryScrollTracker>
+          ))}*/}
+          {React.Children.map(Children, (child, index) => (
+            <RiverStoryScrollTracker
+              key={index}
+              location="below"
+              index={index}
+              className={styles.RiverStoryScroll__tracker}
+            >
+              {child}
+            </RiverStoryScrollTracker>
+          ))}
+        </div>
+      </RiverStoryScrollProvider>
     </div>
   )
 }

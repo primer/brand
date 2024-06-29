@@ -27,7 +27,7 @@ type TemplateProps = {
 const Template: StoryFn<TemplateProps> = args => {
   return (
     <Container>
-      <Box style={{padding: '15dvh 0 200dvh'}}>
+      <Box style={{padding: '100dvh 0 200dvh'}}>
         <RiverStoryScroll {...args} align={args.align} imageTextRatio={args.imageTextRatio}>
           <River>
             <River.Visual>

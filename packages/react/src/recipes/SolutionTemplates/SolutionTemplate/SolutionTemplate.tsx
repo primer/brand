@@ -27,6 +27,8 @@ import {
   RiverStoryScroll,
   FormControl,
   Checkbox,
+  AnchorNav,
+  PricingOptions,
 } from '../../..'
 
 import pinterestLogo from '../../../fixtures/images/logos/pinterest.png'
@@ -61,6 +63,7 @@ export function SolutionTemplate({
   colorMode = ColorModesEnum.LIGHT,
   ...args
 }: SolutionTemplateProps) {
+  console.log('args', args)
   const [enableGridOverlay, setGridOverlay] = React.useState(gridOverlay)
   const [isLightMode, setIsLightMode] = React.useState(colorMode === ColorModesEnum.LIGHT)
   const selectedColorMode = isLightMode ? ColorModesEnum.LIGHT : ColorModesEnum.DARK
@@ -113,7 +116,7 @@ export function SolutionTemplate({
       <AnimationProvider runOnce visibilityOptions={0.2}>
         <Box backgroundColor="subtle" paddingBlockEnd={24}>
           <Grid enableOverlay={enableGridOverlay}>
-            <Grid.Column span={{medium: 9}}>
+            <Grid.Column span={{medium: args.heroImage ? 12 : 8}}>
               <Box marginBlockStart={20}>
                 <Link href="#" arrowDirection="start">
                   Back
@@ -126,6 +129,13 @@ export function SolutionTemplate({
                 {args.heroCtaTextPrimary && <Hero.PrimaryAction href="#">{args.heroCtaTextPrimary}</Hero.PrimaryAction>}
                 {args.heroCtaTextSecondary && (
                   <Hero.SecondaryAction href="#">{args.heroCtaTextSecondary}</Hero.SecondaryAction>
+                )}
+                {args.heroImage && (
+                  <Hero.Image
+                    position="inline-end"
+                    src="https://via.placeholder.com/300x200/d3d9df/d3d9df.png"
+                    alt="placeholder, blank area with an off-white background color"
+                  />
                 )}
               </Hero>
             </Grid.Column>
@@ -212,7 +222,7 @@ export function SolutionTemplate({
                 </Box>
               )}
             </section>
-            {args.logobarVisible && (
+            {args.logoBarVisible && (
               <Box
                 marginBlockStart={96}
                 paddingBlockStart={64}
@@ -234,13 +244,51 @@ export function SolutionTemplate({
               </Box>
             )}
           </Grid.Column>
-          {args.storyScrollRiverVisible && (
-            <Grid.Column>
-              <StoryScrollExample align="start" bentoVisible />
-              <StoryScrollExample align="end" bentoVisible />
-              <StoryScrollExample align="start" bentoVisible={false} />
-            </Grid.Column>
-          )}
+        </Grid>
+        {variant === 'size' && (
+          <div className={styles.verticalOffset}>
+            {args.jtbd1Visible && (
+              <ThemeProvider colorMode="dark">
+                <Box backgroundColor="default" paddingBlockStart={16} paddingBlockEnd={64} borderRadius="xlarge">
+                  <Grid>
+                    <Grid.Column>
+                      <AnchorNav>
+                        <AnchorNav.Link href="#basic-section1">Section one</AnchorNav.Link>
+                        <AnchorNav.Link href="#basic-section2">Section two</AnchorNav.Link>
+                        <AnchorNav.Link href="#basic-section3">Section three</AnchorNav.Link>
+                        <AnchorNav.Link href="#basic-section4">Section four</AnchorNav.Link>
+                        <AnchorNav.Link href="#basic-section5">Section five</AnchorNav.Link>
+                        <AnchorNav.Action href="#">Sign up</AnchorNav.Action>
+                      </AnchorNav>
+                      <Box marginBlockStart={96}>
+                        <StoryScrollExample align="start" bentoVisible={args.jtbdBentosVisible} />
+                      </Box>
+                    </Grid.Column>
+                  </Grid>
+                </Box>
+              </ThemeProvider>
+            )}
+            {args.jtbd2Visible && (
+              <Box backgroundColor="subtle" paddingBlockStart={64} paddingBlockEnd={64} borderRadius="xlarge">
+                <Grid>
+                  <Grid.Column>
+                    <StoryScrollExample align="end" bentoVisible={args.jtbdBentosVisible} />
+                  </Grid.Column>
+                </Grid>
+              </Box>
+            )}
+            {args.jtbd3Visible && (
+              <Box backgroundColor="default" paddingBlockStart={64} paddingBlockEnd={64} borderRadius="xlarge">
+                <Grid>
+                  <Grid.Column>
+                    <StoryScrollExample align="start" bentoVisible={args.jtbdBentosVisible} />
+                  </Grid.Column>
+                </Grid>
+              </Box>
+            )}
+          </div>
+        )}
+        <Grid>
           <Grid.Column>
             {args.riverVisible && (
               <River>
@@ -398,151 +446,198 @@ export function SolutionTemplate({
             )}
           </Grid.Column>
         </Grid>
-        <Box backgroundColor="subtle" paddingBlockStart={128} paddingBlockEnd={112}>
-          <Grid>
-            <Grid.Column>
-              <Stack direction="vertical" padding="none" gap={{narrow: 64, regular: 112}}>
-                {args.testimonialsVisible && (
-                  <Grid>
-                    <Grid.Column span={{medium: 10}} start={{medium: 2}}>
-                      <Testimonial size="large">
-                        <Testimonial.Quote>
-                          GitHub helps us ensure that we have our security controls baked into our pipelines all the way
-                          from the first line of code we&apos;re writing.
-                        </Testimonial.Quote>
-                        <Testimonial.Name position="Staff Software Engineer">David Ross</Testimonial.Name>
-                      </Testimonial>
-                    </Grid.Column>
-                  </Grid>
-                )}
+        <div className={styles.verticalOffset}>
+          <ThemeProvider colorMode="dark">
+            <Box backgroundColor="default" paddingBlockStart={128} paddingBlockEnd={112} borderRadius="xlarge">
+              <Grid>
+                <Grid.Column>
+                  <Stack direction="vertical" padding="none" gap={{narrow: 64, regular: 112}}>
+                    {args.testimonialsVisible && (
+                      <Grid>
+                        <Grid.Column span={{medium: 10}} start={{medium: 2}}>
+                          <Testimonial size="large">
+                            <Testimonial.Quote>
+                              GitHub helps us ensure that we have our security controls baked into our pipelines all the
+                              way from the first line of code we&apos;re writing.
+                            </Testimonial.Quote>
+                            <Testimonial.Name position="Staff Software Engineer">David Ross</Testimonial.Name>
+                          </Testimonial>
+                        </Grid.Column>
+                      </Grid>
+                    )}
+                    {variant === 'industry' || variant === 'use-case' ? (
+                      <CTABanner hasBorder hasShadow={false}>
+                        <CTABanner.Heading>Where the most ambitious teams build great things</CTABanner.Heading>
+                        <CTABanner.Description>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam
+                          luctus sed turpis felis nam pulvinar risus elementum.
+                        </CTABanner.Description>
+                        <CTABanner.ButtonGroup>
+                          <Button>Primary Action</Button>
+                          <Button>Secondary Action</Button>
+                        </CTABanner.ButtonGroup>
+                      </CTABanner>
+                    ) : (
+                      <PricingOptions variant="cards">
+                        <PricingOptions.Item>
+                          <PricingOptions.Label>Recommended</PricingOptions.Label>
+                          <PricingOptions.Heading>FREE</PricingOptions.Heading>
+                          <PricingOptions.Description>Copilot in the coding environment.</PricingOptions.Description>
+                          <PricingOptions.Price currencySymbol="$" trailingText="per month / $100 per year">
+                            10
+                          </PricingOptions.Price>
+                          <PricingOptions.FeatureList>
+                            <PricingOptions.FeatureListItem>
+                              Everything in Copilot Business plus:
+                            </PricingOptions.FeatureListItem>
+                            <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
+                            <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
+                            <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
+                          </PricingOptions.FeatureList>
+                          <PricingOptions.PrimaryAction href="/buy">Buy now</PricingOptions.PrimaryAction>
+                          <PricingOptions.SecondaryAction href="/contact">Contact sales</PricingOptions.SecondaryAction>
+                        </PricingOptions.Item>
 
-                <CTABanner hasBorder hasShadow={false}>
-                  <CTABanner.Heading>Where the most ambitious teams build great things</CTABanner.Heading>
-                  <CTABanner.Description>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam
-                    luctus sed turpis felis nam pulvinar risus elementum.
-                  </CTABanner.Description>
-                  <CTABanner.ButtonGroup>
-                    <Button>Primary Action</Button>
-                    <Button>Secondary Action</Button>
-                  </CTABanner.ButtonGroup>
-                </CTABanner>
-                <Box>
-                  <Stack direction="vertical" padding="none" gap={64} alignItems="center">
-                    <Heading as="h3" size="3">
-                      Go further with these
-                    </Heading>
-                    <Grid>
-                      <Grid.Column span={{medium: 4}}>
-                        <Card href="#">
-                          <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
-                          <Card.Description>
-                            Everything you need to know about getting started with GitHub Actions.
-                          </Card.Description>
-                        </Card>
-                      </Grid.Column>
-                      <Grid.Column span={{medium: 4}}>
-                        <Card href="#">
-                          <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
-                          <Card.Description>
-                            Everything you need to know about getting started with GitHub Actions.
-                          </Card.Description>
-                        </Card>
-                      </Grid.Column>
-                      <Grid.Column span={{medium: 4}}>
-                        <Card href="#">
-                          <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
-                          <Card.Description>
-                            Everything you need to know about getting started with GitHub Actions.
-                          </Card.Description>
-                        </Card>
-                      </Grid.Column>
-                    </Grid>
+                        <PricingOptions.Item>
+                          <PricingOptions.Label>Recommended</PricingOptions.Label>
+                          <PricingOptions.Heading>GitHub for teams</PricingOptions.Heading>
+                          <PricingOptions.Description>
+                            Copilot personalized to your organization throughout the software development lifecycle.
+                            Requires GitHub Enterprise Cloud.
+                          </PricingOptions.Description>
+                          <PricingOptions.Price currencySymbol="$" trailingText="per user / month">
+                            39
+                          </PricingOptions.Price>
+                          <PricingOptions.FeatureList>
+                            <PricingOptions.FeatureListItem>
+                              Everything in Copilot Business plus:
+                            </PricingOptions.FeatureListItem>
+                            <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
+                            <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
+                            <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
+                          </PricingOptions.FeatureList>
+                          <PricingOptions.PrimaryAction href="/buy">Join waitlist</PricingOptions.PrimaryAction>
+                        </PricingOptions.Item>
+                      </PricingOptions>
+                    )}
+                    <Box>
+                      <Stack direction="vertical" padding="none" gap={64} alignItems="center">
+                        <Heading as="h3" size="3">
+                          Go further with these
+                        </Heading>
+                        <Grid>
+                          <Grid.Column span={{medium: 4}}>
+                            <Card href="#">
+                              <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+                              <Card.Description>
+                                Everything you need to know about getting started with GitHub Actions.
+                              </Card.Description>
+                            </Card>
+                          </Grid.Column>
+                          <Grid.Column span={{medium: 4}}>
+                            <Card href="#">
+                              <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+                              <Card.Description>
+                                Everything you need to know about getting started with GitHub Actions.
+                              </Card.Description>
+                            </Card>
+                          </Grid.Column>
+                          <Grid.Column span={{medium: 4}}>
+                            <Card href="#">
+                              <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+                              <Card.Description>
+                                Everything you need to know about getting started with GitHub Actions.
+                              </Card.Description>
+                            </Card>
+                          </Grid.Column>
+                        </Grid>
+                      </Stack>
+                    </Box>
+                    {args.faqVisible && (
+                      <Box>
+                        <FAQ>
+                          <FAQ.Heading>Frequently asked questions</FAQ.Heading>
+                          <FAQ.Item>
+                            <FAQ.Question>What is this feature?</FAQ.Question>
+                            <FAQ.Answer>
+                              <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
+                                Aliquam luctus sed turpis felis nam pulvinar risus elementum.
+                              </p>
+                            </FAQ.Answer>
+                          </FAQ.Item>
+                          <FAQ.Item>
+                            <FAQ.Question>When is it release planned?</FAQ.Question>
+                            <FAQ.Answer>
+                              <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
+                                Aliquam luctus sed turpis felis nam pulvinar risus elementum.
+                              </p>
+                            </FAQ.Answer>
+                          </FAQ.Item>
+                          <FAQ.Item>
+                            <FAQ.Question>Where is it available?</FAQ.Question>
+                            <FAQ.Answer>
+                              <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
+                                Aliquam luctus sed turpis felis nam pulvinar risus elementum.
+                              </p>
+                            </FAQ.Answer>
+                          </FAQ.Item>
+                          <FAQ.Item>
+                            <FAQ.Question>Who is it for?</FAQ.Question>
+                            <FAQ.Answer>
+                              <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
+                                Aliquam luctus sed turpis felis nam pulvinar risus elementum.
+                              </p>
+                            </FAQ.Answer>
+                          </FAQ.Item>
+                          <FAQ.Item>
+                            <FAQ.Question>What can I expect?</FAQ.Question>
+                            <FAQ.Answer>
+                              <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
+                                Aliquam luctus sed turpis felis nam pulvinar risus elementum.
+                              </p>
+                            </FAQ.Answer>
+                          </FAQ.Item>
+                          <FAQ.Item>
+                            <FAQ.Question>What&apos;s the difference between this & that?</FAQ.Question>
+                            <FAQ.Answer>
+                              <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
+                                Aliquam luctus sed turpis felis nam pulvinar risus elementum.
+                              </p>
+                            </FAQ.Answer>
+                          </FAQ.Item>
+                          <FAQ.Item>
+                            <FAQ.Question>Is this free?</FAQ.Question>
+                            <FAQ.Answer>
+                              <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
+                                Aliquam luctus sed turpis felis nam pulvinar risus elementum.
+                              </p>
+                            </FAQ.Answer>
+                          </FAQ.Item>
+                          <FAQ.Item>
+                            <FAQ.Question>Is this release invite-only?</FAQ.Question>
+                            <FAQ.Answer>
+                              <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
+                                Aliquam luctus sed turpis felis nam pulvinar risus elementum.
+                              </p>
+                            </FAQ.Answer>
+                          </FAQ.Item>
+                        </FAQ>
+                      </Box>
+                    )}
                   </Stack>
-                </Box>
-                {args.faqVisible && (
-                  <Box>
-                    <FAQ>
-                      <FAQ.Heading>Frequently asked questions</FAQ.Heading>
-                      <FAQ.Item>
-                        <FAQ.Question>What is this feature?</FAQ.Question>
-                        <FAQ.Answer>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
-                            Aliquam luctus sed turpis felis nam pulvinar risus elementum.
-                          </p>
-                        </FAQ.Answer>
-                      </FAQ.Item>
-                      <FAQ.Item>
-                        <FAQ.Question>When is it release planned?</FAQ.Question>
-                        <FAQ.Answer>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
-                            Aliquam luctus sed turpis felis nam pulvinar risus elementum.
-                          </p>
-                        </FAQ.Answer>
-                      </FAQ.Item>
-                      <FAQ.Item>
-                        <FAQ.Question>Where is it available?</FAQ.Question>
-                        <FAQ.Answer>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
-                            Aliquam luctus sed turpis felis nam pulvinar risus elementum.
-                          </p>
-                        </FAQ.Answer>
-                      </FAQ.Item>
-                      <FAQ.Item>
-                        <FAQ.Question>Who is it for?</FAQ.Question>
-                        <FAQ.Answer>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
-                            Aliquam luctus sed turpis felis nam pulvinar risus elementum.
-                          </p>
-                        </FAQ.Answer>
-                      </FAQ.Item>
-                      <FAQ.Item>
-                        <FAQ.Question>What can I expect?</FAQ.Question>
-                        <FAQ.Answer>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
-                            Aliquam luctus sed turpis felis nam pulvinar risus elementum.
-                          </p>
-                        </FAQ.Answer>
-                      </FAQ.Item>
-                      <FAQ.Item>
-                        <FAQ.Question>What&apos;s the difference between this & that?</FAQ.Question>
-                        <FAQ.Answer>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
-                            Aliquam luctus sed turpis felis nam pulvinar risus elementum.
-                          </p>
-                        </FAQ.Answer>
-                      </FAQ.Item>
-                      <FAQ.Item>
-                        <FAQ.Question>Is this free?</FAQ.Question>
-                        <FAQ.Answer>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
-                            Aliquam luctus sed turpis felis nam pulvinar risus elementum.
-                          </p>
-                        </FAQ.Answer>
-                      </FAQ.Item>
-                      <FAQ.Item>
-                        <FAQ.Question>Is this release invite-only?</FAQ.Question>
-                        <FAQ.Answer>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
-                            Aliquam luctus sed turpis felis nam pulvinar risus elementum.
-                          </p>
-                        </FAQ.Answer>
-                      </FAQ.Item>
-                    </FAQ>
-                  </Box>
-                )}
-              </Stack>
-            </Grid.Column>
-          </Grid>
-        </Box>
+                </Grid.Column>
+              </Grid>
+            </Box>
+          </ThemeProvider>
+        </div>
         {enableGridOverlay && (
           <Grid
             enableOverlay={enableGridOverlay}
@@ -622,17 +717,16 @@ function StoryScrollExample({align, bentoVisible}) {
     <section>
       <SectionIntro align="center">
         <SectionIntro.Label>Label</SectionIntro.Label>
-        <SectionIntro.Heading>Lorem ipsum of all sizes dolor sit amet</SectionIntro.Heading>
-        <SectionIntro.Description>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua
-        </SectionIntro.Description>
-        <form>
+        <SectionIntro.Heading size="2" className={styles.topOfStack}>
+          Lorem ipsum of all sizes dolor sit amet
+        </SectionIntro.Heading>
+
+        {/* <form>
           <FormControl>
             <FormControl.Label>Collapsed mode</FormControl.Label>
             <Checkbox onChange={() => setCollapsedMode(!collapsedMode)} />
           </FormControl>
-        </form>
+        </form> */}
       </SectionIntro>
 
       <RiverStoryScroll align={align} disable={collapsedMode}>

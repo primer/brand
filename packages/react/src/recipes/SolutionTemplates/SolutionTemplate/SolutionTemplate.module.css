@@ -5,3 +5,13 @@
   grid-auto-rows: max-content;
   justify-items: start;
 }
+
+.verticalOffset > div:nth-child(2),
+.verticalOffset > div:nth-child(3) {
+  margin-block-start: calc(var(--base-size-48) * -1);
+}
+
+.topOfStack {
+  position: relative;
+  z-index: 2;
+}

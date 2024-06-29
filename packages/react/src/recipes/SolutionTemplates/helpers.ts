@@ -1,4 +1,12 @@
 export const sharedArgTypes = {
+  variant: {
+    control: 'inline-radio',
+    options: ['use-case', 'industry', 'size'],
+    name: 'align',
+    table: {
+      category: 'Intro',
+    },
+  },
   /**
    * Hero
    */
