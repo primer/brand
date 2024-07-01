@@ -3,11 +3,9 @@ import '@testing-library/jest-dom'
 
 import {axe, toHaveNoViolations} from 'jest-axe'
 
-import {Statistic, StatisticSizes} from './Statistic'
+import {Statistic} from './Statistic'
 
 import '../test-utils/mocks/match-media-mock'
-
-type StatisticSize = keyof typeof StatisticSizes
 
 expect.extend(toHaveNoViolations)
 
