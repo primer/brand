@@ -1,7 +1,7 @@
 import React from 'react'
 import clsx from 'clsx'
-import {Text} from '../../../Text'
 
+import {Text} from '../../../Text'
 import styles from '../../VideoPlayer.module.css'
 
 type TooltipProps = React.HTMLAttributes<HTMLDivElement>

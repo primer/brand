@@ -1,8 +1,9 @@
 import React from 'react'
 import clsx from 'clsx'
-import {Text} from '../../../../Text'
-import styles from '../../../VideoPlayer.module.css'
-import {Tooltip} from '../../tooltip'
+
+import {Text} from '../../../Text'
+import styles from '../../VideoPlayer.module.css'
+import {Tooltip} from '../'
 
 type CCButtonProps = {
   closedCaptionsEnabled: boolean
