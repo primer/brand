@@ -1,7 +1,7 @@
-import {useEffect, useState, type RefObject} from 'react'
+import {useCallback, useEffect, useState, type Dispatch, type RefObject, type SetStateAction} from 'react'
 
-export const useIsElementFullScreen = (ref: RefObject<HTMLElement>): boolean => {
-  const [isFullScreen, setIsFullScreen] = useState(false)
+export const useIsElementFullScreen = (ref: RefObject<HTMLElement>): [boolean, Dispatch<SetStateAction<boolean>>] => {
+  const [isFullScreen, _setIsFullScreen] = useState(false)
 
   useEffect(() => {
     if (!ref.current) return
@@ -9,7 +9,7 @@ export const useIsElementFullScreen = (ref: RefObject<HTMLElement>): boolean => 
     const handleFullScreenChange = () => {
       const isCurrentlyFullScreen = document.fullscreenElement === ref.current
 
-      setIsFullScreen(isCurrentlyFullScreen)
+      _setIsFullScreen(isCurrentlyFullScreen)
     }
 
     document.addEventListener('fullscreenchange', handleFullScreenChange)
@@ -19,5 +19,21 @@ export const useIsElementFullScreen = (ref: RefObject<HTMLElement>): boolean => 
     }
   }, [ref])
 
-  return isFullScreen
+  const setIsFullScreen = useCallback(
+    (shouldFullScreenValOrFn: SetStateAction<boolean>) => {
+      const shouldFullScreen =
+        typeof shouldFullScreenValOrFn === 'function' ? shouldFullScreenValOrFn(isFullScreen) : shouldFullScreenValOrFn
+
+      if (!ref.current || isFullScreen === shouldFullScreen) return
+
+      if (shouldFullScreen) {
+        ref.current.requestFullscreen()
+      } else {
+        document.exitFullscreen()
+      }
+    },
+    [ref, isFullScreen],
+  )
+
+  return [isFullScreen, setIsFullScreen]
 }

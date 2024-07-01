@@ -1,52 +1,55 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import clsx from 'clsx'
 
 import {Text} from '../../../Text'
-import styles from '../../VideoPlayer.module.css'
+import styles from './Captions.module.css'
 
 type CaptionsProps = {
   videoRef: React.RefObject<HTMLVideoElement>
-  disabled?: boolean
-  trackInformation?: TextTrackCueList
 }
 
-export const Captions = ({videoRef, disabled, trackInformation}: CaptionsProps) => {
-  const [caption, setCaption] = React.useState('')
+export const Captions = ({videoRef}: CaptionsProps) => {
+  const [caption, setCaption] = useState('')
+  const trackInformation = videoRef.current?.textTracks[0]?.cues
 
-  React.useEffect(() => {
+  useEffect(() => {
+    const video = videoRef.current
+
+    if (!video) {
+      return
+    }
+
     const compareAndSetCaption = () => {
-      if (trackInformation) {
-        for (let i = 0; i < trackInformation.length; i++) {
-          const cue = trackInformation[i]
-          if (
-            videoRef.current?.currentTime &&
-            videoRef.current.currentTime >= cue.startTime &&
-            videoRef.current.currentTime <= cue.endTime
-          ) {
-            setCaption(cue['text'])
-            break
-          } else {
-            setCaption('')
-          }
+      if (!trackInformation) {
+        return
+      }
+
+      for (let i = 0; i < trackInformation.length; i++) {
+        const cue = trackInformation[i]
+
+        if (video.currentTime >= cue.startTime && video.currentTime < cue.endTime) {
+          setCaption(cue['text'])
+          break
         }
+
+        setCaption('')
       }
     }
 
-    if (videoRef.current) {
-      videoRef.current.addEventListener('timeupdate', compareAndSetCaption)
-    }
+    video.addEventListener('timeupdate', compareAndSetCaption)
+
     return () => window.removeEventListener('timeupdate', compareAndSetCaption)
   }, [videoRef, trackInformation])
 
-  if (disabled || !caption) {
+  if (!caption) {
     return null
-  } else {
-    return (
-      <div className={clsx(styles.VideoPlayer__captions)}>
-        <Text as="p" className={styles.VideoPlayer__captionText}>
-          {caption}
-        </Text>
-      </div>
-    )
   }
+
+  return (
+    <div className={clsx(styles.Captions)}>
+      <Text as="p" className={styles.Captions__text}>
+        {caption}
+      </Text>
+    </div>
+  )
 }
