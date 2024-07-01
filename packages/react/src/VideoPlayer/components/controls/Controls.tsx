@@ -1,14 +1,7 @@
 import React, {useState} from 'react'
 import clsx from 'clsx'
-import {Captions} from '../'
 
-import {PlayPauseButton} from './PlayPauseButton'
-import {CCButton} from './CCButton'
-import {SeekControl} from './SeekControl'
-import {MuteButton} from './MuteButton'
-import {VolumeControl} from './VolumeControl'
-import {FullScreenButton} from './FullScreenButton'
-
+import {PlayPauseButton, Captions, CCButton, SeekControl, MuteButton, VolumeControl, FullScreenButton} from '../'
 import styles from '../../VideoPlayer.module.css'
 
 export type ControlsProps = {

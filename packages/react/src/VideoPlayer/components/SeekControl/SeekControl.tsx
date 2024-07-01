@@ -1,9 +1,8 @@
 import React from 'react'
-import {type ControlsProps} from './../Controls'
-import {Range} from '../../index'
-import {Text} from '../../../../Text'
 
-import styles from '../../../VideoPlayer.module.css'
+import {Text} from '../../../Text'
+import {type ControlsProps, Range} from '../'
+import styles from '../../VideoPlayer.module.css'
 
 const getMinuteSecondTime = (time: number) => {
   // TODO I think this can be done with browser APIs

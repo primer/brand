@@ -1,8 +1,8 @@
 import React from 'react'
 import clsx from 'clsx'
-import {Tooltip} from '../../index'
 
-import styles from '../../../VideoPlayer.module.css'
+import {Tooltip} from '../'
+import styles from '../../VideoPlayer.module.css'
 
 type IconControlProps = {
   tooltip: string

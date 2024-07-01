@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
-import {IconControl} from '../IconControl'
-import {type ControlsProps} from './../Controls'
 import {MuteIcon, UnmuteIcon} from '@primer/octicons-react'
+
+import {type ControlsProps, IconControl} from '../'
 
 type MuteButtonProps = Pick<ControlsProps, 'volume' | 'setVolume'>
 

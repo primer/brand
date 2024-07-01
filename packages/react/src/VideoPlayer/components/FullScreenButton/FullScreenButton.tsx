@@ -1,7 +1,7 @@
 import React from 'react'
-import {IconControl} from '../IconControl'
-import {type ControlsProps} from './../Controls'
 import {ScreenFullIcon, ScreenNormalIcon} from '@primer/octicons-react'
+
+import {type ControlsProps, IconControl} from '../'
 
 type FullScreenButtonProps = Pick<ControlsProps, 'isFullScreen' | 'setIsFullScreen'>
 

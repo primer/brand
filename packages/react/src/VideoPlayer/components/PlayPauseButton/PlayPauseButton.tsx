@@ -1,7 +1,7 @@
 import React from 'react'
-import {IconControl} from '../IconControl'
-import {type ControlsProps} from './../Controls'
-import styles from '../../../VideoPlayer.module.css'
+
+import {type ControlsProps, IconControl} from '../'
+import styles from '../../VideoPlayer.module.css'
 
 type PlayPauseButtonProps = Pick<ControlsProps, 'isPlaying' | 'play' | 'pause'>
 
