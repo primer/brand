@@ -1,11 +1,10 @@
-import React, {useRef, useEffect, forwardRef, useCallback} from 'react'
+import React, {useRef, useEffect, forwardRef, useCallback, useState, type SetStateAction} from 'react'
 import clsx from 'clsx'
 import {Text} from '../Text'
 import {type AnimateProps} from '../animation'
 import {Controls} from './components'
 import {MarkGithubIcon} from '@primer/octicons-react'
 import {useProvidedRefOrCreate} from '../hooks/useRef'
-import {useVideoMetadata} from './hooks/useVideoMetadata'
 
 /**
  * Design tokens
@@ -15,7 +14,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './VideoPlayer.module.css'
-import {useIsElementFullScreen} from './hooks/useIsElementFullScreen'
+import {useIsElementFullScreen, useVideoKeypressHandlers, useVideo, useVideoResizeObserver} from './hooks/'
 
 type VideoPlayerProps = {
   poster?: string
@@ -29,103 +28,31 @@ const Root = forwardRef<HTMLVideoElement, VideoPlayerProps>(
   ({poster, title, branding = true, children, className, ...rest}, forwardedRef) => {
     const videoRef = useProvidedRefOrCreate(forwardedRef)
     const videoWrapperRef = useRef<HTMLDivElement>(null)
+    const isPlaying = useVideo(videoRef)
+    const isSmall = useVideoResizeObserver({videoWrapperRef, className: styles['VideoPlayer__container--small']})
 
-    const {isPlaying, currentTime, duration, trackInformation, volume} = useVideoMetadata(videoRef)
-    const isFullScreen = useIsElementFullScreen(videoWrapperRef)
+    const [isFullScreen, setIsFullScreen] = useIsElementFullScreen(videoWrapperRef)
 
-    useEffect(() => {
-      // TODO Do we need this? what's it doing?
-      if (videoRef.current) {
-        for (let i = 0; i < videoRef.current.textTracks.length; i++) {
-          videoRef.current.textTracks[0].mode = 'hidden'
-        }
-      }
-    }, [videoRef])
+    const toggleFullScreen = useCallback(() => {
+      setIsFullScreen(prev => !prev)
+    }, [setIsFullScreen])
 
-    useEffect(() => {
-      // TODO - A good use case for container queries?
-      const handleResize = () => {
-        const breakpoint = videoWrapperRef.current?.getBoundingClientRect().width
-        if (breakpoint && breakpoint < 650) {
-          videoWrapperRef.current.classList.add(styles['VideoPlayer__container--small'])
-        } else {
-          videoWrapperRef.current?.classList.remove(styles['VideoPlayer__container--small'])
-        }
-      }
+    const [closedCaptionsEnabled, setClosedCaptionsEnabled] = useState(true)
+    const toggleClosedCaptions = useCallback(() => {
+      setClosedCaptionsEnabled(prev => !prev)
+    }, [setClosedCaptionsEnabled])
 
-      const resizeObserver = new ResizeObserver(_ => {
-        if (videoWrapperRef.current) {
-          handleResize()
-        }
-      })
-
-      handleResize()
-
-      const currentRef = videoWrapperRef.current
-
-      resizeObserver.observe(videoWrapperRef.current as Element)
-      return () => {
-        resizeObserver.unobserve(currentRef as Element)
-      }
-    }, [videoWrapperRef, isPlaying])
-
-    const play = useCallback(() => {
-      if (videoRef.current) {
-        videoRef.current.play()
-      }
-    }, [videoRef])
-
-    const pause = useCallback(() => {
-      if (videoRef.current) {
-        videoRef.current.pause()
-      }
-    }, [videoRef])
-
-    const togglePlaying = useCallback(() => {
-      if (isPlaying) {
-        pause()
-      } else {
-        play()
-      }
-    }, [isPlaying, play, pause])
-
-    const seek = useCallback(
-      (time: number) => {
-        if (videoRef.current) {
-          videoRef.current.currentTime = time
-        }
-      },
-      [videoRef],
-    )
-
-    const setVolume = useCallback(
-      (value: number) => {
-        if (videoRef.current) {
-          videoRef.current.volume = value
-        }
-      },
-      [videoRef],
-    )
-
-    const setIsFullScreen = useCallback(
-      (value: boolean) => {
-        if (!videoWrapperRef.current || isFullScreen === value) return
-
-        if (value) {
-          videoWrapperRef.current.requestFullscreen()
-        } else {
-          document.exitFullscreen()
-        }
-      },
-      [videoWrapperRef, isFullScreen],
-    )
+    useVideoKeypressHandlers(videoRef, videoWrapperRef, {
+      toggleFullScreen,
+      toggleClosedCaptions,
+    })
 
     return (
       <div
         className={clsx(
           styles.VideoPlayer__container,
           styles.VideoPlayer__overlays,
-          !isPlaying && styles.VideoPlayer__showOverlays,
+          isPlaying ? null : styles.VideoPlayer__showOverlays,
         )}
         ref={videoWrapperRef}
       >
@@ -148,7 +75,15 @@ const Root = forwardRef<HTMLVideoElement, VideoPlayerProps>(
             </Text>
           </div>
         )}
-        <button className={styles.VideoPlayer__playButton} onClick={() => togglePlaying()}>
+        <button
+          className={styles.VideoPlayer__playButton}
+          onClick={() => {
+            const video = videoRef.current
+            if (!video) return
+
+            video.paused ? video.play() : video.pause()
+          }}
+        >
           {isPlaying ? null : (
             <span className={styles.VideoPlayer__playButtonInner}>
               <svg
@@ -170,17 +105,11 @@ const Root = forwardRef<HTMLVideoElement, VideoPlayerProps>(
         </button>
         <Controls
           videoRef={videoRef}
-          duration={duration}
-          currentTime={currentTime}
-          isPlaying={isPlaying}
-          trackInformation={trackInformation}
-          play={play}
-          pause={pause}
-          seek={seek}
-          volume={volume}
-          setVolume={setVolume}
           isFullScreen={isFullScreen}
           setIsFullScreen={setIsFullScreen}
+          closedCaptionsEnabled={closedCaptionsEnabled}
+          setClosedCaptionsEnabled={setClosedCaptionsEnabled}
+          isSmall={isSmall}
         />
       </div>
     )
@@ -201,17 +130,17 @@ export const VideoPlayer = Object.assign(Root, {
 })
 
 // TODO
-// Escape key needs to toggle fullScreen state
-// F should go fullscreen
-// Space should play/pause
-// K should play/pause
-// M should mute
-// Arrow keys should seek
-// J and L should seek
-// C should toggle captions
-// Contrast on the captions feels very low
-// Pointer area on blue play button only covers icon, not the blue bit
-// Tidy up all my imports
-// Decide what components I'm exporting and tidy all that up
-// Add an onFullScreenChange prop as that might be handy for implementors
-// Split out the styles of controls to live alongside each control
+// - [x] Escape key needs to toggle fullScreen state
+// - [x] F should go fullscreen
+// - [x] Space should play/pause
+// - [x] K should play/pause
+// - [x] M should mute
+// - [x] Arrow keys should seek
+// - [x] J and L should seek
+// - [x] C should toggle captions
+// - [x] Contrast on the captions feels very low
+// - [x] Pointer area on blue play button only covers icon, not the blue bit
+// - [x] Tidy up all my imports
+// - [x] Decide what components I'm exporting and tidy all that up
+// - [ ] Split out the styles of controls to live alongside each control
+// - [x] Add bindings for numbers 0 - 9 to jump to 0% - 90% of the video

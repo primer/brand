@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import clsx from 'clsx'
 
 import {PlayPauseButton, Captions, CCButton, SeekControl, MuteButton, VolumeControl, FullScreenButton} from '../'
@@ -6,44 +6,30 @@ import styles from '../../VideoPlayer.module.css'
 
 export type ControlsProps = {
   videoRef: React.RefObject<HTMLVideoElement>
-  duration: number
-  currentTime: number
-  trackInformation?: TextTrackCueList
-  isPlaying: boolean
-  play: () => void
-  pause: () => void
-  seek: (time: number) => void
-  volume: number
-  setVolume: (volume: number) => void
   isFullScreen: boolean
-  setIsFullScreen: (fullScreen: boolean) => void
+  setIsFullScreen: (isFullScreen: boolean) => void
+  closedCaptionsEnabled: boolean
+  setClosedCaptionsEnabled: (closedCaptionsEnabled: boolean) => void
+  isSmall?: boolean
 }
 
 export const Controls = ({
   videoRef,
-  duration,
-  currentTime,
-  isPlaying,
-  trackInformation,
-  play,
-  pause,
-  seek,
-  volume,
-  setVolume,
   isFullScreen,
   setIsFullScreen,
+  closedCaptionsEnabled,
+  setClosedCaptionsEnabled,
+  isSmall = false,
 }: ControlsProps) => {
-  const [closedCaptionsEnabled, setClosedCaptionsEnabled] = useState(true)
-
   return (
     <div className={clsx(styles.VideoPlayer__controls)}>
-      <Captions videoRef={videoRef} trackInformation={trackInformation} disabled={!closedCaptionsEnabled} />
+      {closedCaptionsEnabled ? <Captions videoRef={videoRef} /> : null}
       <div className={styles.VideoPlayer__controlsWrapper}>
-        <PlayPauseButton isPlaying={isPlaying} pause={pause} play={play} />
-        <SeekControl currentTime={currentTime} duration={duration} seek={seek} />
+        <PlayPauseButton videoRef={videoRef} />
+        <SeekControl videoRef={videoRef} />
         <CCButton closedCaptionsEnabled={closedCaptionsEnabled} setClosedCaptionsEnabled={setClosedCaptionsEnabled} />
-        <MuteButton volume={volume} setVolume={setVolume} />
-        <VolumeControl volume={volume} setVolume={setVolume} />
+        <MuteButton videoRef={videoRef} />
+        {isSmall ? null : <VolumeControl videoRef={videoRef} />}
         <FullScreenButton isFullScreen={isFullScreen} setIsFullScreen={setIsFullScreen} />
       </div>
     </div>

@@ -38,7 +38,7 @@ export default {
 export const Playground: StoryFn<typeof VideoPlayer> = args => (
   <VideoPlayer {...args}>
     <VideoPlayer.Source src="/example.mp4" type="video/mp4" />
-    <VideoPlayer.Track src="/example.vtt" />
+    <VideoPlayer.Track src="/example.vtt" default />
   </VideoPlayer>
 )
 

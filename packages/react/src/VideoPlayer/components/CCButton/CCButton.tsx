@@ -7,7 +7,7 @@ import {Tooltip} from '../'
 
 type CCButtonProps = {
   closedCaptionsEnabled: boolean
-  setClosedCaptionsEnabled: React.Dispatch<React.SetStateAction<boolean>>
+  setClosedCaptionsEnabled: (closedCaptionsEnabled: boolean) => void
 }
 
 export const CCButton = ({closedCaptionsEnabled, setClosedCaptionsEnabled}: CCButtonProps) => (
@@ -17,7 +17,7 @@ export const CCButton = ({closedCaptionsEnabled, setClosedCaptionsEnabled}: CCBu
       styles.VideoPlayer__closedCaption,
       !closedCaptionsEnabled && styles.VideoPlayer__ccOff,
     )}
-    onClick={() => setClosedCaptionsEnabled(prev => !prev)}
+    onClick={() => setClosedCaptionsEnabled(!closedCaptionsEnabled)}
   >
     <Text className={styles.VideoPlayer__ccText}>CC</Text>
     <Tooltip>{closedCaptionsEnabled ? 'Disable captions' : 'Enable captions'}</Tooltip>
