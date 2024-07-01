@@ -95,6 +95,15 @@ test.describe('Visual Comparison: Card', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('Card / Image Using Picture Element', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-card-features--image-using-picture-element&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Card / Stacked', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--stacked&viewMode=story')
 
