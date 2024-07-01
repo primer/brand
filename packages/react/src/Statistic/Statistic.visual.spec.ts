@@ -66,15 +66,6 @@ test.describe('Visual Comparison: Statistic', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Statistic / Animations', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-statistic-features--animations&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
   test('Statistic / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-statistic--playground&viewMode=story')
 

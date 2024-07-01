@@ -132,20 +132,20 @@ export const CustomIntro = () => (
   </Grid>
 )
 
-export const Animations = args => (
+export const Animations = () => (
   <AnimationProvider>
     <Stack direction="horizontal">
       <Statistic variant="boxed" animate="scale-in-right">
-        <Statistic.Heading>{args.heading}</Statistic.Heading>
-        <Statistic.Description>{args.description}</Statistic.Description>
+        <Statistic.Heading>$2M+</Statistic.Heading>
+        <Statistic.Description>Given back to our maintainers</Statistic.Description>
       </Statistic>
       <Statistic variant="boxed" animate="scale-in-right">
-        <Statistic.Heading>{args.heading}</Statistic.Heading>
-        <Statistic.Description>{args.description}</Statistic.Description>
+        <Statistic.Heading>3.5K+</Statistic.Heading>
+        <Statistic.Description>Companies actively sponsoring</Statistic.Description>
       </Statistic>
       <Statistic variant="boxed" animate="scale-in-right">
-        <Statistic.Heading>{args.heading}</Statistic.Heading>
-        <Statistic.Description>{args.description}</Statistic.Description>
+        <Statistic.Heading>30K+</Statistic.Heading>
+        <Statistic.Description>Sponsored maintainers and projects</Statistic.Description>
       </Statistic>
     </Stack>
   </AnimationProvider>
