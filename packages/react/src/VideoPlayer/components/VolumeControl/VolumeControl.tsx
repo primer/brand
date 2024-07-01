@@ -28,10 +28,6 @@ export const VolumeControl = ({videoRef}: VolumeControlProps) => {
       if (!video) return
 
       video.volume = e.currentTarget.valueAsNumber
-
-      // if (video.volume === 0) {
-      //   video.dispatchEvent(new Event('mute'))
-      // }
     },
     [videoRef],
   )

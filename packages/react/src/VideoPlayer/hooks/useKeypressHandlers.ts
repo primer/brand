@@ -4,7 +4,6 @@ export type KeypressHandler = [KeyboardEvent['key'], (e: KeyboardEvent) => void]
 
 export const useKeypressHandlers = (ref: RefObject<HTMLElement>, keypressHandlers: KeypressHandler[]) => {
   useEffect(() => {
-    console.debug('binding key handlers')
     const refCurrent = ref.current
 
     if (!refCurrent) return
