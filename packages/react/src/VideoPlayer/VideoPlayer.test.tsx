@@ -1,5 +1,5 @@
 import React from 'react'
-import {render, cleanup, waitFor, fireEvent, act} from '@testing-library/react'
+import {render, cleanup, waitFor, fireEvent} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 
