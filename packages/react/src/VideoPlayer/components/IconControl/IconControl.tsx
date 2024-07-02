@@ -1,7 +1,7 @@
 import React from 'react'
 import clsx from 'clsx'
 
-import {Tooltip} from '../'
+import {VideoTooltip} from '../'
 import styles from '../../VideoPlayer.module.css'
 
 type IconControlProps = {
@@ -13,7 +13,7 @@ export const IconControl = ({tooltip, children, className, ...rest}: IconControl
     <button className={clsx(styles.VideoPlayer__iconControl, className)} {...rest} aria-label={tooltip}>
       {children}
       <span className="visually-hidden">{tooltip}</span>
-      <Tooltip>{tooltip}</Tooltip>
+      <VideoTooltip>{tooltip}</VideoTooltip>
     </button>
   )
 }

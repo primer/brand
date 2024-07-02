@@ -3,7 +3,7 @@ import clsx from 'clsx'
 
 import {Text} from '../../../Text'
 import styles from '../../VideoPlayer.module.css'
-import {Tooltip} from '../'
+import {VideoTooltip} from '../'
 
 type CCButtonProps = {
   closedCaptionsEnabled: boolean
@@ -21,6 +21,6 @@ export const CCButton = ({closedCaptionsEnabled, setClosedCaptionsEnabled}: CCBu
     aria-label={closedCaptionsEnabled ? 'Disable captions' : 'Enable captions'}
   >
     <Text className={styles.VideoPlayer__ccText}>CC</Text>
-    <Tooltip>{closedCaptionsEnabled ? 'Disable captions' : 'Enable captions'}</Tooltip>
+    <VideoTooltip>{closedCaptionsEnabled ? 'Disable captions' : 'Enable captions'}</VideoTooltip>
   </button>
 )
