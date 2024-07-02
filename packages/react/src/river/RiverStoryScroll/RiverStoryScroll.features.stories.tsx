@@ -1,5 +1,6 @@
 import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
+import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 
 import {RiverStoryScroll, RiverStoryScrollProps} from '.'
 import {Heading, Text, Link, River, Box, Timeline, VideoPlayer} from '../..'
@@ -27,6 +28,11 @@ export default {
       </Container>
     ),
   ],
+  parameters: {
+    viewport: {
+      viewports: INITIAL_VIEWPORTS,
+    },
+  },
 } as Meta<typeof RiverStoryScroll>
 
 type TemplateProps = {
@@ -119,6 +125,14 @@ function TimelineExample() {
   )
 }
 
+export const WithTimelineNarrow = () => <WithTimeline withTrailingComponent />
+
+WithTimelineNarrow.parameters = {
+  viewport: {
+    defaultViewport: 'iphonexr',
+  },
+}
+
 export const Disable = Template.bind({})
 Disable.args = {
   disable: true,
@@ -182,8 +196,12 @@ export const EnterpriseExample = () => (
   </RiverStoryScroll>
 )
 
-EnterpriseExample.parameters = {
-  layout: 'fullscreen',
+export const EnterpriseExampleNarrow = () => <EnterpriseExample />
+
+EnterpriseExampleNarrow.parameters = {
+  viewport: {
+    defaultViewport: 'iphonexr',
+  },
 }
 
 export const Video = args => (
@@ -266,3 +284,11 @@ export const Video = args => (
     </River>
   </RiverStoryScroll>
 )
+
+export const VideoNarrow = () => <Video />
+
+VideoNarrow.parameters = {
+  viewport: {
+    defaultViewport: 'iphonexr',
+  },
+}
