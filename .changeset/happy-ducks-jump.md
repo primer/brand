@@ -3,4 +3,6 @@
 '@primer/react-brand': patch
 ---
 
-Style `LogoSuite` logos differently depending on their format. Images using the `<img>` tag will be styled with a CSS filter, whereas inline SVGs will be styled with CSS fill.
+Partial revert of changes to the `LogoSuite` logobar elements.
+
+To allow optimal treatment of logos based on their respective file formats, `<img>` tag will continue be styled with a CSS filter, whereas inline `<svg>` elements will be styled with CSS fill.
