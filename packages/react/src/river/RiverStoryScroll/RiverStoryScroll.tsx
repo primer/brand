@@ -1,11 +1,12 @@
+import clsx from 'clsx'
 import React, {useEffect, useRef} from 'react'
-import {Stack, Heading, River, RiverProps, Text} from '../../'
+import {River, RiverProps} from '../../'
+import {BaseProps} from '../../component-helpers'
 import {RiverStoryScrollProvider} from './RiverStoryScrollProvider'
 import {RiverStoryScrollResponder} from './RiverStoryScrollResponder'
 import {RiverStoryScrollTracker} from './RiverStoryScrollTracker'
-import {BaseProps} from '../../component-helpers'
-import clsx from 'clsx'
 
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/river-story-scroll/colors-with-modes.css'
 import styles from './RiverStoryScroll.module.css'
 
 export type RiverStoryScrollProps = {
@@ -23,17 +24,14 @@ export type RiverStoryScrollProps = {
   disable?: boolean
 } & BaseProps<HTMLDivElement>
 
-export function RiverStoryScroll({
-  children,
-  disable,
-  align = 'start',
-  imageTextRatio = '50:50',
-}: React.PropsWithChildren<RiverStoryScrollProps>) {
-  const visualContainerRef = useRef<HTMLDivElement | null>()
-  const contentContainerRef = useRef<HTMLDivElement | null>()
+export function RiverStoryScroll({children, disable}: React.PropsWithChildren<RiverStoryScrollProps>) {
+  const visualContainerRef = useRef<HTMLDivElement | null>(null)
+  const contentContainerRef = useRef<HTMLDivElement | null>(null)
 
   const [prefersReducedMotion, setPrefersReducedMotion] = React.useState(false)
-  const [images, setImages] = React.useState<string[]>()
+  const [media, setMedia] = React.useState<
+    Array<{type: 'image'; src: string} | {type: 'video'; src: string}> | undefined
+  >([])
 
   const Children = React.Children.map(children, child => {
     if (React.isValidElement(child) && child.type === River) {
@@ -62,13 +60,31 @@ export function RiverStoryScroll({
 
   useEffect(() => {
     if (disable || prefersReducedMotion) return
+
     if (contentContainerRef.current) {
-      const origImages = Array.from(contentContainerRef.current.querySelectorAll('img'))
+      const mediaElements = Array.from(contentContainerRef.current.querySelectorAll('img, video')).filter(element => {
+        return element.tagName === 'IMG' || element.tagName === 'VIDEO'
+      })
 
-      const imageSources = origImages.map(image => image.src)
+      const newMedia = mediaElements
+        .map((element): {type: 'image' | 'video'; src: string} | undefined => {
+          if (element.tagName === 'IMG') {
+            return {
+              type: 'image',
+              src: (element as HTMLImageElement).src,
+            }
+          } else if (element.tagName === 'VIDEO') {
+            return {
+              type: 'video',
+              src: (element as HTMLVideoElement).querySelector('source')?.src || '',
+            }
+          }
+          return undefined
+        })
+        .filter(Boolean) as Array<{type: 'image' | 'video'; src: string}>
 
-      // set the images state
-      setImages(imageSources)
+      // set new media
+      setMedia(newMedia)
     }
   }, [disable, prefersReducedMotion])
 
@@ -87,35 +103,24 @@ export function RiverStoryScroll({
             )}
           >
             <div className={styles['RiverStoryScroll__visual-cover']} />
-            {images?.map((item, index) => (
+            {media?.map((item, index) => (
               <RiverStoryScrollResponder
                 className={styles['RiverStoryScroll__visual-scroll-responder']}
                 key={index}
                 index={index}
               >
-                {/* <video
-                    playsInline={true}
-                    muted={true}
-                    preload="auto"
-                    poster={`/assets/projects/copilot-workspace/river-poster-${
-                      index + 1
-                    }.webp`}
-                    width="1032"
-                    height="690"
-                    className={styles['RiverStoryScroll__image']}
-                  >
-                    <source
-                      src={`/assets/projects/copilot-workspace/features-river-${
-                        index + 1
-                      }.mp4`}
-                      type="video/mp4; codecs=avc1.4d002a"
-                    />
-                  </video> */}
-                <img className={styles['RiverStoryScroll__image']} src={`${images[index]}`} alt="" />
+                {media[index].type === 'video' && (
+                  <video playsInline={true} muted={true} preload="auto" className={styles['RiverStoryScroll__image']}>
+                    <source src={media[index].src} type="video/mp4; codecs=avc1.4d002a" />
+                  </video>
+                )}
+                {media[index].type === 'image' && (
+                  <img className={styles['RiverStoryScroll__image']} src={`${media[index].src}`} alt="" />
+                )}
               </RiverStoryScrollResponder>
             ))}
             <div className={styles['RiverStoryScroll__pagination']}>
-              {images?.map((item, index) => (
+              {media?.map((_, index) => (
                 <div className={styles['RiverStoryScroll__pagination-dot']} key={index} />
               ))}
             </div>
@@ -129,26 +134,6 @@ export function RiverStoryScroll({
             styles['RiverStoryScroll__content-container--below'],
           )}
         >
-          {/*
-          {copy.map((item, index) => (
-            <RiverStoryScrollTracker
-              key={index}
-              location="below"
-              index={index}
-              className={styles.RiverStoryScroll__tracker}
-            >
-              <Stack
-                direction={{narrow: 'vertical', regular: 'vertical'}}
-                padding={'none'}
-                className={styles['RiverStoryScroll__content-stack']}
-              >
-                <Heading as="h5">{item.title}</Heading>
-                <Text as="p" variant="muted" size={'100'}>
-                  {item.description}
-                </Text>
-              </Stack>
-            </RiverStoryScrollTracker>
-          ))}*/}
           {React.Children.map(Children, (child, index) => (
             <RiverStoryScrollTracker
               key={index}

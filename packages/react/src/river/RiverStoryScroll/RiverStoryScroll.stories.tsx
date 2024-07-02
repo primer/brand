@@ -17,7 +17,7 @@ const Template: StoryFn<typeof RiverStoryScroll> = args => (
         <River>
           <River.Visual>
             <img
-              src="https://via.placeholder.com/600x400/FF5733/ffffff.png?text=1"
+              src="https://placehold.co/600x400/FF5733/ffffff.png?text=1"
               alt="placeholder, blank area with an off-white background color"
             />
           </River.Visual>
@@ -33,7 +33,7 @@ const Template: StoryFn<typeof RiverStoryScroll> = args => (
         <River>
           <River.Visual>
             <img
-              src="https://via.placeholder.com/600x400/AF7AC5/ffffff.png?text=2"
+              src="https://placehold.co/600x400/AF7AC5/ffffff.png?text=2"
               alt="placeholder, blank area with an off-white background color"
             />
           </River.Visual>
@@ -49,7 +49,7 @@ const Template: StoryFn<typeof RiverStoryScroll> = args => (
         <River>
           <River.Visual>
             <img
-              src="https://via.placeholder.com/600x400/FFC300/ffffff.png?text=3"
+              src="https://placehold.co/600x400/FFC300/ffffff.png?text=3"
               alt="placeholder, blank area with an off-white background color"
             />
           </River.Visual>
@@ -65,7 +65,7 @@ const Template: StoryFn<typeof RiverStoryScroll> = args => (
         <River>
           <River.Visual>
             <img
-              src="https://via.placeholder.com/600x400/48C9B0/ffffff.png?text=4"
+              src="https://placehold.co/600x400/48C9B0/ffffff.png?text=4"
               alt="placeholder, blank area with an off-white background color"
             />
           </River.Visual>

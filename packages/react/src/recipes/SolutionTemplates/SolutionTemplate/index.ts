@@ -1,1 +1,1 @@
-export * from './SolutionTemplate'
+export * from './SolutionPage'

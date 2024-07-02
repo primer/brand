@@ -1,19 +1,11 @@
-html:has(.copilotWorkspacePage) {
-  background-color: var(--base-color-scale-gray-9);
-}
-
-:root {
-}
-
 .RiverStoryScroll {
   --ease: cubic-bezier(0.22, 0.56, 0.23, 0.89);
   -webkit-font-smoothing: antialiased;
-  --roundedCorners: clamp(12px, 2vw, 24px);
-  --stackDistance: -25px;
+  --stackDistance: calc(var(--base-size-24) * -1);
 
   /* River visual (videos)
- * UL = unit-less, needed for division in certain scenarios
- */
+  * UL = unit-less, needed for division in certain scenarios
+  */
   --visualMaxWidth: 1032px;
   --visualMaxWidthUL: 1032;
   --visualMaxHeight: min(690px, 60vh);
@@ -45,7 +37,7 @@ html:has(.copilotWorkspacePage) {
   width: auto;
   z-index: 10;
   position: relative;
-  border-radius: var(--roundedCorners);
+  border-radius: var(--brand-borderRadius-large);
 }
 
 .RiverStoryScroll--enabled .RiverStoryScroll__internal-river {
@@ -53,7 +45,8 @@ html:has(.copilotWorkspacePage) {
   gap: 0;
 }
 
-.RiverStoryScroll--enabled .RiverStoryScroll__internal-river img {
+.RiverStoryScroll--enabled .RiverStoryScroll__internal-river img,
+.RiverStoryScroll--enabled .RiverStoryScroll__internal-river video {
   display: none;
 }
 
@@ -157,7 +150,7 @@ html:has(.copilotWorkspacePage) {
       height: auto;
       width: 100%;
       max-width: var(--visualWidth);
-      border-radius: var(--roundedCorners);
+      border-radius: var(--brand-borderRadius-large);
     }
 
     .RiverStoryScroll__visual-container-inner {
@@ -312,7 +305,7 @@ html:has(.copilotWorkspacePage) {
     .RiverStoryScroll__pagination {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: var(--base-size-4);
       position: absolute;
       left: calc((100vw - 100%) / 2 * -1 + min(20px, 1.8vw));
       right: 0;
@@ -324,50 +317,45 @@ html:has(.copilotWorkspacePage) {
     .RiverStoryScroll__pagination-dot {
       width: 6px;
       height: 6px;
-      border-radius: 30px;
+      border-radius: var(--brand-borderRadius-large);
       opacity: 0.55;
-      background: #fff;
-      transition: opacity 0.3s var(--ease), height 0.3s var(--ease);
+      background: var(--brand-RiverStoryScroll-pagination-fgColor);
+      transition: opacity var(--brand-animation-duration-default) var(--ease),
+        height var(--brand-animation-duration-default) var(--ease);
     }
 
     .tracker-in-viewport:nth-child(2) ~ .RiverStoryScroll__pagination .RiverStoryScroll__pagination-dot:nth-child(1) {
       opacity: 1;
-      height: 24px;
+      height: var(--base-size-24);
     }
 
     .tracker-in-viewport:nth-child(3) ~ .RiverStoryScroll__pagination .RiverStoryScroll__pagination-dot:nth-child(2) {
       opacity: 1;
-      height: 24px;
+      height: var(--base-size-24);
     }
 
     .tracker-in-viewport:nth-child(4) ~ .RiverStoryScroll__pagination .RiverStoryScroll__pagination-dot:nth-child(3) {
       opacity: 1;
-      height: 24px;
+      height: var(--base-size-24);
     }
 
     .tracker-in-viewport:nth-child(5) ~ .RiverStoryScroll__pagination .RiverStoryScroll__pagination-dot:nth-child(4) {
       opacity: 1;
-      height: 24px;
+      height: var(--base-size-24);
     }
 
     .tracker-in-viewport:nth-child(6) ~ .RiverStoryScroll__pagination .RiverStoryScroll__pagination-dot:nth-child(5) {
       opacity: 1;
-      height: 24px;
+      height: var(--base-size-24);
     }
   }
 }
 
 @media screen and (min-width: 768px) {
-  .copilotWorkspace {
-    padding-block: 100vh;
-    max-width: 1280px;
-    margin-left: auto;
-    margin-right: auto;
-  }
   .RiverStoryScroll__inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 24px;
+    gap: var(--base-size-24);
   }
 
   .RiverStoryScroll__visual-container {
@@ -378,6 +366,11 @@ html:has(.copilotWorkspacePage) {
     display: flex;
     align-items: center;
     order: 2;
+  }
+
+  .RiverStoryScroll__visual-container-inner,
+  .RiverStoryScroll__image {
+    width: 100%;
   }
 
   .RiverStoryScroll .RiverStoryScroll__visual-scroll-responder {
@@ -407,7 +400,7 @@ html:has(.copilotWorkspacePage) {
   }
 
   .RiverStoryScroll__content-container.RiverStoryScroll__content-container--below {
-    padding-top: 24vh;
+    padding-top: 10vh;
   }
 
   .RiverStoryScroll__content-container.RiverStoryScroll__content-container--below .RiverStoryScroll__tracker {
@@ -417,6 +410,16 @@ html:has(.copilotWorkspacePage) {
   .RiverStoryScroll__content-container.RiverStoryScroll__content-container--below
     .RiverStoryScroll__tracker.outside-viewport
     * {
-    opacity: 0.7;
+    opacity: 0.9;
+  }
+}
+
+@media screen and (min-width: 768px) and (min-height: 900px) {
+  .RiverStoryScroll {
+    margin-top: -20vh;
+  }
+
+  .RiverStoryScroll__content-container.RiverStoryScroll__content-container--below {
+    padding-top: 16vh;
   }
 }

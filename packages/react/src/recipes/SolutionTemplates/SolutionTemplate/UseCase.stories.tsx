@@ -2,15 +2,23 @@ import React from 'react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {Meta, StoryFn} from '@storybook/react'
 
-import {SolutionTemplate} from './SolutionTemplate'
+import {SolutionPage} from './SolutionPage'
 import {sharedArgTypes} from '../helpers'
 
 export default {
-  title: 'Recipes/Solutions/Use case',
-  component: SolutionTemplate,
+  title: 'Recipes/Solutions/Solution: Use case',
+  component: SolutionPage,
   args: {
-    introVariant: 'editorial prose',
-    logobarVisible: false,
+    heroImage: true,
+    heroLabel: 'DevOps',
+    heroTitle: 'The complete CI/CD solution',
+    heroDescription:
+      'Build, test, and deploy software with simple and secure enterprise CI/CD, all on the complete development platform.',
+    heroCtaTextPrimary: 'Start a free trial',
+    heroCtaTextSecondary: 'Contact Sales',
+    introVariant: 'editorial list',
+
+    logoBarVisible: true,
     riverVisible: false,
     customerStoryVisible: false,
     testimonialsVisible: false,
@@ -26,47 +34,41 @@ export default {
     },
     layout: 'fullscreen',
   },
-} as Meta<typeof SolutionTemplate>
+} as Meta<typeof SolutionPage>
 
-export const Playground: StoryFn<typeof SolutionTemplate> = args => <SolutionTemplate {...args} />
+export const Playground: StoryFn<typeof SolutionPage> = args => <SolutionPage {...args} />
 Playground.args = {
   variant: 'use-case',
 
-  heroLabel: 'Security',
-  heroTitle: 'The complete CI/CD solution',
   sectionIntroText: 'A single, integrated, enterprise-ready platform',
   sectionIntroCTAText: 'Explore GitHub Enterprise',
 
-  logobarVisible: true,
+  logoBarVisible: true,
   riverVisible: true,
-  customerStoryVisible: true,
+  customerStoryVisible: false,
   testimonialsVisible: true,
   faqVisible: true,
   statisticsVisible: true,
 }
 
-export const Minimum: StoryFn<typeof SolutionTemplate> = args => <SolutionTemplate {...args} />
+export const Minimum: StoryFn<typeof SolutionPage> = args => <SolutionPage {...args} />
 Minimum.args = {
   variant: 'use-case',
 
-  heroLabel: 'Security',
-  heroTitle: 'The complete CI/CD solution',
   sectionIntroText: 'A single, integrated, enterprise-ready platform',
   sectionIntroCTAText: 'Explore GitHub Enterprise',
 }
 
-export const Maximum: StoryFn<typeof SolutionTemplate> = args => <SolutionTemplate {...args} />
+export const Maximum: StoryFn<typeof SolutionPage> = args => <SolutionPage {...args} />
 Maximum.args = {
   variant: 'use-case',
 
-  heroLabel: 'Security',
-  heroTitle: 'The complete CI/CD solution',
   sectionIntroText: 'A single, integrated, enterprise-ready platform',
   sectionIntroCTAText: 'Explore GitHub Enterprise',
 
-  logobarVisible: true,
+  logoBarVisible: true,
   riverVisible: true,
-  customerStoryVisible: true,
+  customerStoryVisible: false,
   testimonialsVisible: true,
   faqVisible: true,
   statisticsVisible: true,

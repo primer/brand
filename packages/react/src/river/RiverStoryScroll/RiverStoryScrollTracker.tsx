@@ -18,19 +18,19 @@ export const RiverStoryScrollTracker = ({index, children, className = ''}: River
   const {setVisibilityStates} = useStoryScrollContext()
 
   useEffect(() => {
-    function useLandscapeTiming() {
+    function isLandscape() {
       return window.innerWidth / window.innerHeight >= 0.78
     }
 
     const observerCallback = ([entry]: IntersectionObserverEntry[]) => {
-      if (useLandscapeTiming()) {
+      if (isLandscape()) {
         setIsIntersecting(entry.isIntersecting)
         setVisibilityStates(index, entry.isIntersecting)
       }
     }
 
     const observerCallbackPortrait = ([entry]: IntersectionObserverEntry[]) => {
-      if (!useLandscapeTiming()) {
+      if (!isLandscape()) {
         setIsIntersecting(entry.isIntersecting)
         setVisibilityStates(index, entry.isIntersecting)
       }
@@ -65,7 +65,7 @@ export const RiverStoryScrollTracker = ({index, children, className = ''}: River
       observer.disconnect()
       observerPortrait.disconnect()
     }
-  }, [index, isLarge])
+  }, [index, isLarge, setVisibilityStates])
 
   const dynamicClassName = `${className} ${isIntersecting ? styles['in-viewport'] : styles['outside-viewport']}`
 

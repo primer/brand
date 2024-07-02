@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  ReactNode,
-  useEffect,
-} from 'react'
+import React, {createContext, ReactNode, useContext, useState} from 'react'
 
 type StoryScrollContextType = {
   visibilityStates: boolean[]
@@ -13,7 +7,9 @@ type StoryScrollContextType = {
 
 const StoryScrollContext = createContext<StoryScrollContextType>({
   visibilityStates: [],
-  setVisibilityStates: () => {},
+  setVisibilityStates: () => {
+    throw new Error('setVisibilityStates function must be implemented.')
+  },
 })
 
 export const useStoryScrollContext = () => useContext(StoryScrollContext)
@@ -27,10 +23,8 @@ export function RiverStoryScrollProvider({
   className?: string
   initialStates: boolean[]
 }) {
-  const [visibilityStates, setVisibilityStates] = useState<boolean[]>(
-    initialStates
-  )
-  const [visibleIndexes, setVisibleIndexes] = useState<Set<number>>(new Set())
+  const [visibilityStates, setVisibilityStates] = useState<boolean[]>(initialStates)
+  const [, setVisibleIndexes] = useState<Set<number>>(new Set())
   const [lastActiveIndex, setLastActiveIndex] = useState<number | null>(null) // Track the last active index
 
   const updateVisibilityStates = (index: number, isVisible: boolean) => {
@@ -44,17 +38,13 @@ export function RiverStoryScrollProvider({
       }
 
       const highestVisibleIndex =
-        newVisibleIndexes.size > 0
-          ? Math.max(...Array.from(newVisibleIndexes))
-          : lastActiveIndex
+        newVisibleIndexes.size > 0 ? Math.max(...Array.from(newVisibleIndexes)) : lastActiveIndex
 
       if (highestVisibleIndex !== null) {
         // Update the last active index if a new item becomes the highest visible item
         setLastActiveIndex(highestVisibleIndex)
         // Ensure only the highest visible (or last active) index is marked as visible
-        setVisibilityStates(states =>
-          states.map((_, idx) => idx === highestVisibleIndex)
-        )
+        setVisibilityStates(states => states.map((_, idx) => idx === highestVisibleIndex))
       }
 
       return newVisibleIndexes

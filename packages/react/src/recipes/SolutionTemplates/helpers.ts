@@ -50,7 +50,7 @@ export const sharedArgTypes = {
    */
   introVariant: {
     control: 'inline-radio',
-    options: ['pillars', 'editorial prose', 'editorial list'],
+    options: ['pillars', 'editorial list'],
     name: 'align',
     table: {
       category: 'Intro',

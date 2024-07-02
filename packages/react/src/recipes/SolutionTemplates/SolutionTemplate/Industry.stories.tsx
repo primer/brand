@@ -2,13 +2,14 @@ import React from 'react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {Meta, StoryFn} from '@storybook/react'
 
-import {SolutionTemplate} from './SolutionTemplate'
+import {SolutionPage} from './SolutionPage'
 import {sharedArgTypes} from '../helpers'
 
 export default {
-  title: 'Recipes/Solutions/Industry',
-  component: SolutionTemplate,
+  title: 'Recipes/Solutions/Solution: Industry',
+  component: SolutionPage,
   args: {
+    heroVideo: true,
     heroLabel: 'Healthcare',
     heroTitle: 'Empower healthcare development with a secure, AI-powered platform',
     heroDescription:
@@ -19,7 +20,7 @@ export default {
     sectionIntroText: 'A single, integrated, enterprise-ready platform',
 
     introVariant: 'pillars',
-    logobarVisible: false,
+    logoBarVisible: false,
     riverVisible: false,
     customerStoryVisible: false,
     testimonialsVisible: false,
@@ -34,29 +35,29 @@ export default {
     },
     layout: 'fullscreen',
   },
-} as Meta<typeof SolutionTemplate>
+} as Meta<typeof SolutionPage>
 
-export const Playground: StoryFn<typeof SolutionTemplate> = args => <SolutionTemplate {...args} />
+export const Playground: StoryFn<typeof SolutionPage> = args => <SolutionPage {...args} />
 Playground.args = {
   variant: 'industry',
 
-  logobarVisible: true,
+  logoBarVisible: true,
   riverVisible: true,
   customerStoryVisible: true,
   testimonialsVisible: true,
   faqVisible: true,
 }
 
-export const Minimum: StoryFn<typeof SolutionTemplate> = args => <SolutionTemplate {...args} />
+export const Minimum: StoryFn<typeof SolutionPage> = args => <SolutionPage {...args} />
 Minimum.args = {
   variant: 'industry',
 }
 
-export const Maximum: StoryFn<typeof SolutionTemplate> = args => <SolutionTemplate {...args} />
+export const Maximum: StoryFn<typeof SolutionPage> = args => <SolutionPage {...args} />
 Maximum.args = {
   variant: 'industry',
 
-  logobarVisible: true,
+  logoBarVisible: true,
   riverVisible: true,
   customerStoryVisible: true,
   testimonialsVisible: true,

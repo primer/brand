@@ -2,12 +2,12 @@ import React from 'react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {Meta, StoryFn} from '@storybook/react'
 
-import {SolutionTemplate} from './SolutionTemplate'
+import {SolutionPage} from './SolutionPage'
 import {sharedArgTypes} from '../helpers'
 
 export default {
-  title: 'Recipes/Solutions/Org size',
-  component: SolutionTemplate,
+  title: 'Recipes/Solutions/Solution: Org size',
+  component: SolutionPage,
   args: {
     variant: 'size',
     heroLabel: 'Teams',
@@ -16,7 +16,7 @@ export default {
       'With CI/CD, Dependabot, and the world’s largest developer community, GitHub gives your team everything they need to ship better software faster.',
     heroCtaTextPrimary: 'Get started with Teams',
     heroCtaTextSecondary: 'Create a free organization',
-    heroImage: true,
+    heroAlign: 'center',
 
     sectionIntroText: 'A single, integrated, enterprise-ready platform',
     sectionIntroCTAText: 'Explore GitHub Enterprise',
@@ -42,21 +42,21 @@ export default {
     },
     layout: 'fullscreen',
   },
-} as Meta<typeof SolutionTemplate>
+} as Meta<typeof SolutionPage>
 
-export const Playground: StoryFn<typeof SolutionTemplate> = args => <SolutionTemplate {...args} />
+export const Playground: StoryFn<typeof SolutionPage> = args => <SolutionPage {...args} />
 Playground.args = {
   variant: 'size',
   logoBarVisible: true,
   testimonialsVisible: true,
   faqVisible: true,
   jtbd1Visible: true,
-  jtbd2Visible: false,
-  jtbd3Visible: false,
+  jtbd2Visible: true,
+  jtbd3Visible: true,
   jtbdBentosVisible: false,
 }
 
-export const Minimum: StoryFn<typeof SolutionTemplate> = args => <SolutionTemplate {...args} />
+export const Minimum: StoryFn<typeof SolutionPage> = args => <SolutionPage {...args} />
 Minimum.args = {
   variant: 'size',
   jtbd1Visible: true,
@@ -65,7 +65,7 @@ Minimum.args = {
   jtbdBentosVisible: false,
 }
 
-export const Maximum: StoryFn<typeof SolutionTemplate> = args => <SolutionTemplate {...args} />
+export const Maximum: StoryFn<typeof SolutionPage> = args => <SolutionPage {...args} />
 Maximum.args = {
   variant: 'size',
   logoBarVisible: true,

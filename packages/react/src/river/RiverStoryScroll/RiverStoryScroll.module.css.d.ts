@@ -1,5 +1,4 @@
 declare const styles: {
-  readonly "copilotWorkspacePage": string;
   readonly "RiverStoryScroll": string;
   readonly "RiverStoryScroll__inner": string;
   readonly "RiverStoryScroll__visual-cover": string;
@@ -23,7 +22,6 @@ declare const styles: {
   readonly "RiverStoryScroll__content-stack": string;
   readonly "RiverStoryScroll__pagination": string;
   readonly "RiverStoryScroll__pagination-dot": string;
-  readonly "copilotWorkspace": string;
   readonly "RiverStoryScroll__content-container": string;
 };
 export = styles;

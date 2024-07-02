@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState, ReactElement} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import {useStoryScrollContext} from './RiverStoryScrollProvider' // Adjust the import path as necessary
 
 import styles from './RiverStoryScroll.module.css'
@@ -18,12 +18,14 @@ export function RiverStoryScrollResponder({
   visibleClassName = styles['tracker-in-viewport'],
   hiddenClassName = styles['tracker-outside-viewport'],
 }: RiverStoryScrollResponderProps) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const isVideo = React.Children.toArray(children).some(child => React.isValidElement(child) && child.type === 'video')
 
   const {visibilityStates} = useStoryScrollContext()
   const isVisible = visibilityStates[index]
   const dynamicClassName = `${className || ''} ${isVisible ? visibleClassName : hiddenClassName}`
   const videoRef = useRef<HTMLVideoElement>(null)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [videoStatus, setVideoStatus] = useState<'playing' | 'paused' | 'ended'>('paused')
 
   useEffect(() => {
@@ -32,7 +34,9 @@ export function RiverStoryScrollResponder({
       videoElement.onended = () => setVideoStatus('ended')
       if (isVisible) {
         setVideoStatus('playing')
+        // eslint-disable-next-line github/no-then
         videoElement.play().catch(error => {
+          // eslint-disable-next-line no-console
           console.error('Error playing the video:', error)
           setVideoStatus('paused')
         })
@@ -46,70 +50,10 @@ export function RiverStoryScrollResponder({
   // Parse children to attach ref to video elements
   const parsedChildren = React.Children.map(children, child => {
     if (React.isValidElement(child) && child.type === 'video') {
-      return React.cloneElement(child as ReactElement<any>, {ref: videoRef})
+      return React.cloneElement(child, {ref: videoRef} as React.HTMLAttributes<HTMLVideoElement>)
     }
     return child
   })
 
-  const handlePlayPause = () => {
-    const videoElement = videoRef.current
-    if (videoElement) {
-      if (videoStatus !== 'playing') {
-        videoElement.play()
-        setVideoStatus('playing')
-      } else {
-        videoElement.pause()
-        setVideoStatus('paused')
-      }
-    }
-  }
-
-  const handleReplay = () => {
-    const videoElement = videoRef.current
-    if (videoElement) {
-      videoElement.currentTime = 0
-      videoElement.play()
-      setVideoStatus('playing')
-    }
-  }
-
-  return (
-    <div className={dynamicClassName}>
-      {parsedChildren}
-      {isVideo && (
-        <div className={`video-controls video-controls-${videoStatus}`}>
-          {videoStatus === 'paused' && (
-            <button className="video-control" onClick={handlePlayPause}>
-              <img
-                src="/assets/projects/copilot-workspace/icon-play-small.webp"
-                className="video-control-img"
-                width="21"
-                height="21"
-              />
-            </button>
-          )}
-          {videoStatus === 'playing' && (
-            <button className="video-control" onClick={handlePlayPause}>
-              <img
-                src="/assets/projects/copilot-workspace/icon-pause.webp"
-                className="video-control-img"
-                width="21"
-                height="21"
-              />
-            </button>
-          )}
-          {videoStatus === 'ended' && (
-            <button className="video-control" onClick={handleReplay}>
-              <img
-                src="/assets/projects/copilot-workspace/icon-replay.webp"
-                className="video-control-img"
-                width="21"
-                height="21"
-              />
-            </button>
-          )}
-        </div>
-      )}
-    </div>
-  )
+  return <div className={dynamicClassName}>{parsedChildren}</div>
 }

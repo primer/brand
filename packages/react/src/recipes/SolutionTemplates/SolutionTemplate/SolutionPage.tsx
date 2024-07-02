@@ -22,13 +22,11 @@ import {
   CTABanner,
   Button,
   FAQ,
-  Prose,
   Timeline,
   RiverStoryScroll,
-  FormControl,
-  Checkbox,
   AnchorNav,
-  PricingOptions,
+  VideoPlayer,
+  Breadcrumbs,
 } from '../../..'
 
 import pinterestLogo from '../../../fixtures/images/logos/pinterest.png'
@@ -36,12 +34,17 @@ import shopifyLogo from '../../../fixtures/images/logos/shopify.png'
 import twilioLogo from '../../../fixtures/images/logos/twilio.png'
 import uberLogo from '../../../fixtures/images/logos/uber.png'
 import vercelLogo from '../../../fixtures/images/logos/vercel.png'
+import gitlinesBgLight from '../../../fixtures/images/background-light-gitlines-blur.png'
+import gitlinesBgDark from '../../../fixtures/images/background-dark-gitlines-blur.png'
+import ciCdRenderImage from '../../../fixtures/images/ci-cd-render-ui.png'
 
-import styles from './SolutionTemplate.module.css'
+import clsx from 'clsx'
+
+import styles from './SolutionPage.module.css'
 
 import {ColorModesEnum, ThemeProvider} from '../../../ThemeProvider'
 
-type SolutionTemplateProps = {
+type SolutionPageProps = {
   variant: 'size' | 'industry' | 'use-case'
   gridOverlay?: boolean
   colorMode?: ColorModesEnum.LIGHT | ColorModesEnum.DARK
@@ -52,18 +55,17 @@ type SolutionTemplateProps = {
   heroCtaTextPrimary: string
   heroCtaTextSecondary: string
 
-  introVariant: 'pillars' | 'editorial prose' | 'editorial list'
+  introVariant: 'pillars' | 'editorial list'
 
   [key: string]: unknown
 }
 
-export function SolutionTemplate({
+export function SolutionPage({
   variant,
   gridOverlay = false,
   colorMode = ColorModesEnum.LIGHT,
   ...args
-}: SolutionTemplateProps) {
-  console.log('args', args)
+}: SolutionPageProps) {
   const [enableGridOverlay, setGridOverlay] = React.useState(gridOverlay)
   const [isLightMode, setIsLightMode] = React.useState(colorMode === ColorModesEnum.LIGHT)
   const selectedColorMode = isLightMode ? ColorModesEnum.LIGHT : ColorModesEnum.DARK
@@ -114,17 +116,32 @@ export function SolutionTemplate({
         </SubdomainNavBar.SecondaryAction>
       </SubdomainNavBar>
       <AnimationProvider runOnce visibilityOptions={0.2}>
-        <Box backgroundColor="subtle" paddingBlockEnd={24}>
-          <Grid enableOverlay={enableGridOverlay}>
-            <Grid.Column span={{medium: args.heroImage ? 12 : 8}}>
+        <Box
+          className={clsx({
+            [styles.gitLinesBg]: variant === 'size',
+          })}
+          style={{
+            backgroundImage: variant === 'size' ? `url(${isLightMode ? gitlinesBgLight : gitlinesBgDark})` : undefined,
+          }}
+        >
+          <Grid enableOverlay={enableGridOverlay} className={clsx({[styles.customHero]: args.heroVideo})}>
+            <Grid.Column>
               <Box marginBlockStart={20}>
-                <Link href="#" arrowDirection="start">
-                  Back
-                </Link>
+                <Breadcrumbs>
+                  <Breadcrumbs.Item href="/">Solutions</Breadcrumbs.Item>
+                  <Breadcrumbs.Item href="/copilot">By {variant}</Breadcrumbs.Item>
+                  <Breadcrumbs.Item href="/copilot/chat" selected>
+                    {variant}
+                  </Breadcrumbs.Item>
+                </Breadcrumbs>
               </Box>
-              <Hero>
+              <Hero
+                className={styles.relative}
+                align={args.heroAlign ? 'center' : 'start'}
+                trailingComponent={args.heroVideo ? HeroVideo : undefined}
+              >
                 {args.heroLabel && <Hero.Label>{args.heroLabel}</Hero.Label>}
-                {args.heroTitle && <Hero.Heading fullWidth>{args.heroTitle}</Hero.Heading>}
+                {args.heroTitle && <Hero.Heading>{args.heroTitle}</Hero.Heading>}
                 {args.heroDescription && <Hero.Description>{args.heroDescription}</Hero.Description>}
                 {args.heroCtaTextPrimary && <Hero.PrimaryAction href="#">{args.heroCtaTextPrimary}</Hero.PrimaryAction>}
                 {args.heroCtaTextSecondary && (
@@ -132,8 +149,8 @@ export function SolutionTemplate({
                 )}
                 {args.heroImage && (
                   <Hero.Image
-                    position="inline-end"
-                    src="https://via.placeholder.com/300x200/d3d9df/d3d9df.png"
+                    position="block-end"
+                    src={ciCdRenderImage}
                     alt="placeholder, blank area with an off-white background color"
                   />
                 )}
@@ -144,64 +161,60 @@ export function SolutionTemplate({
         <Grid>
           <Grid.Column>
             <section>
-              {args.introVariant === 'pillars' && (
-                <>
-                  <Grid enableOverlay={enableGridOverlay}>
-                    <Grid.Column span={{medium: 8}}>
-                      <Box paddingBlockStart={{narrow: 64, regular: 128}} marginBlockEnd={40}>
-                        <SectionIntro fullWidth align="start">
-                          <SectionIntro.Heading>{args.sectionIntroText}</SectionIntro.Heading>
-                        </SectionIntro>
-                      </Box>
-                    </Grid.Column>
-                  </Grid>
-                  <Box
-                    marginBlockEnd={{
-                      narrow: 16,
-                      regular: 16,
-                      wide: 48,
-                    }}
-                  >
+              <Box paddingBlockStart={variant === 'size' ? {narrow: 64, regular: 96} : undefined}>
+                {args.introVariant === 'pillars' && (
+                  <>
                     <Grid enableOverlay={enableGridOverlay}>
-                      <Grid.Column span={{medium: 4}}>
-                        <Box>
-                          <PillarExample />
-                        </Box>
-                      </Grid.Column>
-                      <Grid.Column span={{medium: 4}}>
-                        <Box>
-                          <PillarExample />
-                        </Box>
-                      </Grid.Column>
-                      <Grid.Column span={{medium: 4}}>
-                        <Box>
-                          <PillarExample />
+                      <Grid.Column span={{medium: 8}}>
+                        <Box marginBlockEnd={40}>
+                          <SectionIntro fullWidth align="start">
+                            <SectionIntro.Heading>{args.sectionIntroText}</SectionIntro.Heading>
+                          </SectionIntro>
                         </Box>
                       </Grid.Column>
                     </Grid>
-                  </Box>
-                </>
-              )}
-              {(args.introVariant === 'editorial prose' || args.introVariant === 'editorial list') && (
-                <Box paddingBlockStart={{narrow: 64, regular: 128}} marginBlockEnd={40}>
-                  <Grid>
-                    <Grid.Column span={{medium: 5}}>
-                      <Box className={styles.sectionIntro}>
-                        <Box marginBlockEnd={24}>
-                          <Heading as="h2" size="3">
-                            {args.sectionIntroText}
-                          </Heading>
-                        </Box>
+                    <Box
+                      marginBlockEnd={{
+                        narrow: 16,
+                        regular: 16,
+                        wide: 48,
+                      }}
+                    >
+                      <Grid enableOverlay={enableGridOverlay}>
+                        <Grid.Column span={{medium: 4}}>
+                          <Box>
+                            <PillarExample />
+                          </Box>
+                        </Grid.Column>
+                        <Grid.Column span={{medium: 4}}>
+                          <Box>
+                            <PillarExample />
+                          </Box>
+                        </Grid.Column>
+                        <Grid.Column span={{medium: 4}}>
+                          <Box>
+                            <PillarExample />
+                          </Box>
+                        </Grid.Column>
+                      </Grid>
+                    </Box>
+                  </>
+                )}
+                {args.introVariant === 'editorial list' && (
+                  <Box marginBlockEnd={40}>
+                    <Grid>
+                      <Grid.Column span={{medium: 5}}>
+                        <Box className={styles.sectionIntro}>
+                          <Box marginBlockEnd={24}>
+                            <Heading as="h2" size="3">
+                              {args.sectionIntroText}
+                            </Heading>
+                          </Box>
 
-                        <Link>{args.sectionIntroCTAText}</Link>
-                      </Box>
-                    </Grid.Column>
-                    <Grid.Column span={{medium: 6}} start={{medium: 7}}>
-                      {args.introVariant === 'editorial prose' && (
-                        // eslint-disable-next-line github/unescaped-html-literal
-                        <Prose html="<p>CI/CD automates many of the tasks involved in getting code from developers to production, such as building, testing, and deploying. This can significantly speed up the software delivery process, allowing enterprises to release new features and bug fixes more quickly. By having a common pipeline for building, testing, and deploying code, all teams can work together more effectively. This helps to ensure that higher quality software is released to production.</p><p>In short, an optimal CI/CD pipeline can help enterprises deliver high quality software faster and more cheaply. It can also improve developer productivity and collaboration, while reducing risks.</p>" />
-                      )}
-                      {args.introVariant === 'editorial list' && (
+                          <Link>{args.sectionIntroCTAText}</Link>
+                        </Box>
+                      </Grid.Column>
+                      <Grid.Column span={{medium: 6}} start={{medium: 7}}>
                         <Stack direction="vertical" padding="none" gap={24}>
                           <Text as="p" variant="muted">
                             <Text variant="default">Lorem ipsum dolor sit amet,</Text> consectetur adipiscing elit. In
@@ -216,21 +229,19 @@ export function SolutionTemplate({
                             sapien sit ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar.
                           </Text>
                         </Stack>
-                      )}
-                    </Grid.Column>
-                  </Grid>
-                </Box>
-              )}
+                      </Grid.Column>
+                    </Grid>
+                  </Box>
+                )}
+              </Box>
             </section>
             {args.logoBarVisible && (
               <Box
-                marginBlockStart={96}
                 paddingBlockStart={64}
                 paddingBlockEnd={80}
-                borderBlockStartWidth={variant === 'industry' ? 'thin' : undefined}
-                borderBlockEndWidth={variant === 'use-case' ? 'thin' : undefined}
-                borderColor={variant === 'industry' || variant === 'use-case' ? 'muted' : undefined}
-                borderStyle={variant === 'industry' || variant === 'use-case' ? 'solid' : undefined}
+                borderBlockEndWidth={'thin'}
+                borderColor={'muted'}
+                borderStyle={'solid'}
               >
                 <LogoSuite hasDivider={false}>
                   <LogoSuite.Logobar>
@@ -248,19 +259,24 @@ export function SolutionTemplate({
         {variant === 'size' && (
           <div className={styles.verticalOffset}>
             {args.jtbd1Visible && (
-              <ThemeProvider colorMode="dark">
-                <Box backgroundColor="default" paddingBlockStart={16} paddingBlockEnd={64} borderRadius="xlarge">
+              <ThemeProvider colorMode={!args.jtbd2Visible && !args.jtbd3Visible ? 'light' : 'dark'}>
+                <Box
+                  backgroundColor="default"
+                  paddingBlockStart={16}
+                  paddingBlockEnd={128}
+                  borderRadius="xlarge"
+                  className={styles.noBottomRadius}
+                >
                   <Grid>
                     <Grid.Column>
                       <AnchorNav>
-                        <AnchorNav.Link href="#basic-section1">Section one</AnchorNav.Link>
-                        <AnchorNav.Link href="#basic-section2">Section two</AnchorNav.Link>
-                        <AnchorNav.Link href="#basic-section3">Section three</AnchorNav.Link>
-                        <AnchorNav.Link href="#basic-section4">Section four</AnchorNav.Link>
-                        <AnchorNav.Link href="#basic-section5">Section five</AnchorNav.Link>
-                        <AnchorNav.Action href="#">Sign up</AnchorNav.Action>
+                        <AnchorNav.Link href="#section1">Section 1</AnchorNav.Link>
+                        {args.jtbd2Visible && <AnchorNav.Link href="#section2">Section 2</AnchorNav.Link>}
+                        {args.jtbd3Visible && <AnchorNav.Link href="#section3">Section 3</AnchorNav.Link>}
+                        <AnchorNav.Action href="#">Start trial</AnchorNav.Action>
+                        <AnchorNav.SecondaryAction href="#">Contact sales</AnchorNav.SecondaryAction>
                       </AnchorNav>
-                      <Box marginBlockStart={96}>
+                      <Box marginBlockStart={96} id="section1">
                         <StoryScrollExample align="start" bentoVisible={args.jtbdBentosVisible} />
                       </Box>
                     </Grid.Column>
@@ -269,7 +285,13 @@ export function SolutionTemplate({
               </ThemeProvider>
             )}
             {args.jtbd2Visible && (
-              <Box backgroundColor="subtle" paddingBlockStart={64} paddingBlockEnd={64} borderRadius="xlarge">
+              <Box
+                id="section2"
+                backgroundColor="subtle"
+                paddingBlockStart={64}
+                paddingBlockEnd={128}
+                borderRadius="xlarge"
+              >
                 <Grid>
                   <Grid.Column>
                     <StoryScrollExample align="end" bentoVisible={args.jtbdBentosVisible} />
@@ -278,7 +300,13 @@ export function SolutionTemplate({
               </Box>
             )}
             {args.jtbd3Visible && (
-              <Box backgroundColor="default" paddingBlockStart={64} paddingBlockEnd={64} borderRadius="xlarge">
+              <Box
+                id="section3"
+                backgroundColor="default"
+                paddingBlockStart={64}
+                paddingBlockEnd={64}
+                borderRadius="xlarge"
+              >
                 <Grid>
                   <Grid.Column>
                     <StoryScrollExample align="start" bentoVisible={args.jtbdBentosVisible} />
@@ -313,7 +341,7 @@ export function SolutionTemplate({
 
             {args.riverVisible && (
               <>
-                <River align="end">
+                <River>
                   <River.Visual>
                     <img
                       src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
@@ -367,12 +395,12 @@ export function SolutionTemplate({
                     }}
                   >
                     <Bento.Content>
-                      <Bento.Heading size="3">
+                      <Bento.Heading size="4">
                         <em>This is my super-sweet</em> bento heading
                       </Bento.Heading>
-                      <Link href="#">Call to action</Link>
+                      <Link href="#">Read customer story</Link>
                     </Bento.Content>
-                    <Bento.Visual position="50% 100%">
+                    <Bento.Visual position="50% 100%" padding="normal">
                       <img
                         alt="placeholder, blank area with an gray background color"
                         src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
@@ -448,14 +476,20 @@ export function SolutionTemplate({
         </Grid>
         <div className={styles.verticalOffset}>
           <ThemeProvider colorMode="dark">
-            <Box backgroundColor="default" paddingBlockStart={128} paddingBlockEnd={112} borderRadius="xlarge">
+            <Box
+              backgroundColor="default"
+              paddingBlockStart={128}
+              paddingBlockEnd={112}
+              borderRadius="xlarge"
+              className={styles.noBottomRadius}
+            >
               <Grid>
                 <Grid.Column>
                   <Stack direction="vertical" padding="none" gap={{narrow: 64, regular: 112}}>
                     {args.testimonialsVisible && (
                       <Grid>
                         <Grid.Column span={{medium: 10}} start={{medium: 2}}>
-                          <Testimonial size="large">
+                          <Testimonial size="large" quoteMarkColor="pink">
                             <Testimonial.Quote>
                               GitHub helps us ensure that we have our security controls baked into our pipelines all the
                               way from the first line of code we&apos;re writing.
@@ -465,61 +499,17 @@ export function SolutionTemplate({
                         </Grid.Column>
                       </Grid>
                     )}
-                    {variant === 'industry' || variant === 'use-case' ? (
-                      <CTABanner hasBorder hasShadow={false}>
-                        <CTABanner.Heading>Where the most ambitious teams build great things</CTABanner.Heading>
-                        <CTABanner.Description>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam
-                          luctus sed turpis felis nam pulvinar risus elementum.
-                        </CTABanner.Description>
-                        <CTABanner.ButtonGroup>
-                          <Button>Primary Action</Button>
-                          <Button>Secondary Action</Button>
-                        </CTABanner.ButtonGroup>
-                      </CTABanner>
-                    ) : (
-                      <PricingOptions variant="cards">
-                        <PricingOptions.Item>
-                          <PricingOptions.Label>Recommended</PricingOptions.Label>
-                          <PricingOptions.Heading>FREE</PricingOptions.Heading>
-                          <PricingOptions.Description>Copilot in the coding environment.</PricingOptions.Description>
-                          <PricingOptions.Price currencySymbol="$" trailingText="per month / $100 per year">
-                            10
-                          </PricingOptions.Price>
-                          <PricingOptions.FeatureList>
-                            <PricingOptions.FeatureListItem>
-                              Everything in Copilot Business plus:
-                            </PricingOptions.FeatureListItem>
-                            <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-                            <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-                            <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
-                          </PricingOptions.FeatureList>
-                          <PricingOptions.PrimaryAction href="/buy">Buy now</PricingOptions.PrimaryAction>
-                          <PricingOptions.SecondaryAction href="/contact">Contact sales</PricingOptions.SecondaryAction>
-                        </PricingOptions.Item>
-
-                        <PricingOptions.Item>
-                          <PricingOptions.Label>Recommended</PricingOptions.Label>
-                          <PricingOptions.Heading>GitHub for teams</PricingOptions.Heading>
-                          <PricingOptions.Description>
-                            Copilot personalized to your organization throughout the software development lifecycle.
-                            Requires GitHub Enterprise Cloud.
-                          </PricingOptions.Description>
-                          <PricingOptions.Price currencySymbol="$" trailingText="per user / month">
-                            39
-                          </PricingOptions.Price>
-                          <PricingOptions.FeatureList>
-                            <PricingOptions.FeatureListItem>
-                              Everything in Copilot Business plus:
-                            </PricingOptions.FeatureListItem>
-                            <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-                            <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-                            <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
-                          </PricingOptions.FeatureList>
-                          <PricingOptions.PrimaryAction href="/buy">Join waitlist</PricingOptions.PrimaryAction>
-                        </PricingOptions.Item>
-                      </PricingOptions>
-                    )}
+                    <CTABanner hasBorder hasShadow={false} className={styles.ctaBanner} align="center">
+                      <CTABanner.Heading>Get started</CTABanner.Heading>
+                      <CTABanner.Description>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam
+                        luctus sed turpis felis nam pulvinar risus elementum.
+                      </CTABanner.Description>
+                      <CTABanner.ButtonGroup>
+                        <Button>Primary Action</Button>
+                        <Button>Secondary Action</Button>
+                      </CTABanner.ButtonGroup>
+                    </CTABanner>
                     <Box>
                       <Stack direction="vertical" padding="none" gap={64} alignItems="center">
                         <Heading as="h3" size="3">
@@ -668,7 +658,9 @@ export function SolutionTemplate({
           </Grid>
         )}
       </AnimationProvider>
-      <MinimalFooter />
+      <ThemeProvider colorMode="dark">
+        <MinimalFooter />
+      </ThemeProvider>
     </ThemeProvider>
   )
 }
@@ -701,7 +693,7 @@ function BoxedStatisticExample({heading, description}: {heading: string; descrip
 function PillarExample() {
   return (
     <Pillar>
-      <Pillar.Icon color="blue" icon={<ZapIcon />} />
+      <Pillar.Icon color="pink" icon={<ZapIcon />} />
       <Pillar.Heading>Here is a core value proposition of this new feature on one or two lines</Pillar.Heading>
       <Pillar.Description>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id aliquam luctus sed turpis.
@@ -711,7 +703,7 @@ function PillarExample() {
 }
 
 function StoryScrollExample({align, bentoVisible}) {
-  const [collapsedMode, setCollapsedMode] = React.useState(false)
+  const [collapsedMode] = React.useState(false)
 
   return (
     <section>
@@ -720,13 +712,6 @@ function StoryScrollExample({align, bentoVisible}) {
         <SectionIntro.Heading size="2" className={styles.topOfStack}>
           Lorem ipsum of all sizes dolor sit amet
         </SectionIntro.Heading>
-
-        {/* <form>
-          <FormControl>
-            <FormControl.Label>Collapsed mode</FormControl.Label>
-            <Checkbox onChange={() => setCollapsedMode(!collapsedMode)} />
-          </FormControl>
-        </form> */}
       </SectionIntro>
 
       <RiverStoryScroll align={align} disable={collapsedMode}>
@@ -780,35 +765,48 @@ function StoryScrollExample({align, bentoVisible}) {
         </River>
       </RiverStoryScroll>
       {bentoVisible && (
-        <Box paddingBlockStart={64} paddingBlockEnd={128}>
-          <Bento>
-            <Bento.Item
-              rowSpan={5}
-              flow={{
-                xsmall: 'row',
-                small: 'row',
-                medium: 'column',
-                large: 'column',
-                xlarge: 'column',
-                xxlarge: 'column',
-              }}
-            >
-              <Bento.Content>
-                <Bento.Heading size="3">
-                  How the healthcare giant Doctolib drove digital improved efficiency by more than 80%
-                </Bento.Heading>
-                <Link href="#">Call to action</Link>
-              </Bento.Content>
-              <Bento.Visual position="50% 100%">
-                <img
-                  alt="placeholder, blank area with an gray background color"
-                  src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
-                />
-              </Bento.Visual>
-            </Bento.Item>
-          </Bento>
-        </Box>
+        <ThemeProvider colorMode="dark">
+          <Box paddingBlockStart={64} paddingBlockEnd={128}>
+            <Bento>
+              <Bento.Item
+                rowSpan={5}
+                flow={{
+                  xsmall: 'row',
+                  small: 'row',
+                  medium: 'column',
+                  large: 'column',
+                  xlarge: 'column',
+                  xxlarge: 'column',
+                }}
+              >
+                <Bento.Content>
+                  <Bento.Heading size="3">
+                    How the healthcare giant Doctolib drove digital improved efficiency by more than 80%
+                  </Bento.Heading>
+                  <Link href="#">Call to action</Link>
+                </Bento.Content>
+                <Bento.Visual position="50% 100%">
+                  <img
+                    alt="placeholder, blank area with an gray background color"
+                    src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
+                  />
+                </Bento.Visual>
+              </Bento.Item>
+            </Bento>
+          </Box>
+        </ThemeProvider>
       )}
     </section>
+  )
+}
+
+function HeroVideo() {
+  return (
+    <Box marginBlockStart={32}>
+      <VideoPlayer title="GitHub media player" className={styles.relative}>
+        <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" />
+        <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
+      </VideoPlayer>
+    </Box>
   )
 }
