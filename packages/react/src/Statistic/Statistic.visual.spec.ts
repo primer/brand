@@ -16,6 +16,15 @@ test.describe('Visual Comparison: Statistic', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('Statistic / No Description', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-statistic-features--no-description&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Statistic / Sizes', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-statistic-features--sizes&viewMode=story')
 

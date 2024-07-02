@@ -104,7 +104,7 @@ const _Statistic = forwardRef<HTMLDivElement, PropsWithChildren<StatisticProps>>
     const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
     const paddingClasses = useMemo(() => classBuilder('padding', padding), [padding])
 
-    const HeadingChild = useMemo(
+    let HeadingChild = useMemo(
       () =>
         React.Children.toArray(children).find(child => {
           if (React.isValidElement(child) && child.type === StatisticHeading) {
@@ -117,12 +117,30 @@ const _Statistic = forwardRef<HTMLDivElement, PropsWithChildren<StatisticProps>>
     const DescriptionChild = useMemo(
       () =>
         React.Children.toArray(children).find(child => {
-          if (React.isValidElement(child)) {
-            return child.type === StatisticDescription
+          if (React.isValidElement(child) && child.type === StatisticDescription) {
+            return child
           }
         }),
       [children],
     )
+
+    /**
+     * To aid assistive technology, we append the optional description to the heading
+     */
+    if (DescriptionChild) {
+      const updatedHeadingChild = React.isValidElement(HeadingChild)
+        ? React.cloneElement(HeadingChild as React.ReactElement<HeadingProps>, {
+            children: (
+              <>
+                {HeadingChild.props.children}
+                {DescriptionChild}
+              </>
+            ),
+          })
+        : HeadingChild
+
+      HeadingChild = updatedHeadingChild
+    }
 
     return (
       <div
@@ -133,13 +151,12 @@ const _Statistic = forwardRef<HTMLDivElement, PropsWithChildren<StatisticProps>>
         {...rest}
       >
         {LeadingComponent && <LeadingComponent />}
-        <figure>
-          {React.isValidElement(HeadingChild) &&
-            React.cloneElement(HeadingChild as React.ReactElement<HeadingProps>, {
-              size: HeadingChild.props.size || _HeadingSizeMap[size],
-            })}
-          <figcaption>{DescriptionChild}</figcaption>
-        </figure>
+
+        {React.isValidElement(HeadingChild) &&
+          React.cloneElement(HeadingChild as React.ReactElement<HeadingProps>, {
+            size: HeadingChild.props.size || _HeadingSizeMap[size],
+          })}
+
         {TrailingComponent && <TrailingComponent />}
       </div>
     )
@@ -191,7 +208,8 @@ const StatisticDescription = forwardRef<HTMLSpanElement, PropsWithChildren<Stati
         variant={variant !== 'accent' ? variant : 'muted'}
         ref={ref}
         size={size}
-        className={clsx(styles[`Statistic__description--${variant}`], className)}
+        font="mona-sans"
+        className={clsx(styles['Statistic__description'], styles[`Statistic__description--${variant}`], className)}
         {...rest}
       >
         {children}

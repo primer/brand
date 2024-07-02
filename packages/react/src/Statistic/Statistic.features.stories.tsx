@@ -20,6 +20,12 @@ export const BoxedVariant = args => (
   </Statistic>
 )
 
+export const NoDescription = args => (
+  <Statistic>
+    <Statistic.Heading>{args.heading}</Statistic.Heading>
+  </Statistic>
+)
+
 export const Sizes = args => (
   <Stack direction="vertical" gap="spacious" padding="none">
     <Statistic size="small">

@@ -4,7 +4,7 @@
 
 Added `Statistic` component.
 
-Use the statistic component display concise numerical information.
+Use the statistic component to display concise numerical information.
 
 ```jsx
 <Statistic>

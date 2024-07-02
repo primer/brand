@@ -1,5 +1,4 @@
 declare const styles: {
-  readonly "Statistic": string;
   readonly "Statistic--variant-boxed": string;
   readonly "Statistic--padding-none": string;
   readonly "Statistic--padding-condensed": string;
@@ -17,7 +16,9 @@ declare const styles: {
   readonly "Statistic--wide-padding-normal": string;
   readonly "Statistic--wide-padding-spacious": string;
   readonly "Statistic--wide-padding-none": string;
+  readonly "Statistic__heading": string;
   readonly "Statistic__description--accent": string;
+  readonly "Statistic__description": string;
 };
 export = styles;
 

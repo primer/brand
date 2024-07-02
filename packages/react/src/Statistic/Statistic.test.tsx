@@ -10,8 +10,10 @@ import '../test-utils/mocks/match-media-mock'
 expect.extend(toHaveNoViolations)
 
 describe('EyebrowBanner', () => {
-  const mockHeading = 'Mock heading'
-  const mockDescription = 'Mock description'
+  const mockHeading = '$100M+'
+  const mockDescription = 'developers'
+
+  const mockReadAloudText = `${mockHeading} ${mockDescription}`
 
   afterEach(() => {
     cleanup()
@@ -19,15 +21,14 @@ describe('EyebrowBanner', () => {
   })
 
   it('renders the default component', async () => {
-    const {getByText, getByRole, container} = render(
+    const {getByRole, container} = render(
       <Statistic>
         <Statistic.Heading>{mockHeading}</Statistic.Heading>
         <Statistic.Description>{mockDescription}</Statistic.Description>
       </Statistic>,
     )
 
-    expect(getByRole('heading', {name: mockHeading})).toBeInTheDocument()
-    expect(getByText(mockDescription)).toBeInTheDocument()
+    expect(getByRole('heading', {name: mockReadAloudText})).toBeInTheDocument()
 
     const results = await axe(container)
 
@@ -45,8 +46,8 @@ describe('EyebrowBanner', () => {
       </Statistic>,
     )
 
-    expect(getByRole('heading', {name: mockHeading}).tagName).toBe(expectedLevel)
-    expect(getByRole('heading', {name: mockHeading}).classList).toContain(`Heading--${expectedSize}`)
+    expect(getByRole('heading', {name: mockReadAloudText}).tagName).toBe(expectedLevel)
+    expect(getByRole('heading', {name: mockReadAloudText}).classList).toContain(`Heading--${expectedSize}`)
     expect(getByText(mockHeading).tagName).toBe(expectedLevel)
   })
 
@@ -116,7 +117,7 @@ describe('EyebrowBanner', () => {
       </Statistic>,
     )
 
-    const heading = getByRole('heading', {name: mockHeading})
+    const heading = getByRole('heading', {name: mockReadAloudText})
 
     expect(heading).toHaveClass('Heading--2')
   })
