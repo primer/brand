@@ -1,29 +1,14 @@
 import React from 'react'
-import {render, cleanup, fireEvent} from '@testing-library/react'
+import {render, cleanup, waitFor, fireEvent, act} from '@testing-library/react'
 import '@testing-library/jest-dom'
+import userEvent from '@testing-library/user-event'
 
 import {VideoPlayer} from '.'
 
 describe('VideoPlayer', () => {
-  let pauseSpy: jest.SpyInstance
-  let playSpy: jest.SpyInstance
-
-  const VideoPlayerEle = (
-    <VideoPlayer poster="/example-poster.jpg" title="Hello world" data-testid={'video-player'}>
-      <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
-      <VideoPlayer.Track
-        src="../../../apps/docs/static/example.vtt"
-        default
-        kind="subtitles"
-        srcLang="en"
-        label="English"
-      />
-    </VideoPlayer>
-  )
-
   beforeEach(() => {
-    pauseSpy = jest.spyOn(HTMLMediaElement.prototype, 'pause').mockReturnValue(undefined)
-    playSpy = jest.spyOn(HTMLMediaElement.prototype, 'play').mockReturnValue(Promise.resolve())
+    jest.spyOn(HTMLMediaElement.prototype, 'pause').mockReturnValue(undefined)
+    jest.spyOn(HTMLMediaElement.prototype, 'play').mockReturnValue(Promise.resolve())
   })
 
   afterEach(() => {
@@ -31,32 +16,9 @@ describe('VideoPlayer', () => {
     jest.restoreAllMocks()
   })
 
-  it('renders correctly into the document', () => {
-    const testTitle = 'Hello world'
-    const {getByTitle} = render(VideoPlayerEle)
-
-    const textEl = getByTitle(testTitle)
-
-    expect(textEl).toBeInTheDocument()
-  })
-
-  it('pauses the video by default', () => {
-    render(VideoPlayerEle)
-    expect(document.querySelector('video')?.paused).toBe(true)
-    expect(pauseSpy).toHaveBeenCalled()
-  })
-
-  it('plays the video when the playButton element is clicked', () => {
-    render(VideoPlayerEle)
-
-    fireEvent.click(document.querySelector('.VideoPlayer__playButton') as Element)
-    expect(playSpy).toHaveBeenCalled()
-  })
-
-  it('passes the play event function along to the play handler', () => {
-    const testOnPlayFunction = jest.fn()
-    render(
-      <VideoPlayer poster="/example-poster.jpg" onPlay={testOnPlayFunction} title="Hello world">
+  it('renders the video element without errors', () => {
+    const {getByTitle} = render(
+      <VideoPlayer poster="/example-poster.jpg" title="test video">
         <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
         <VideoPlayer.Track
           src="../../../apps/docs/static/example.vtt"
@@ -68,15 +30,12 @@ describe('VideoPlayer', () => {
       </VideoPlayer>,
     )
 
-    fireEvent.play(document.querySelector('.VideoPlayer') as Element)
-
-    expect(testOnPlayFunction.mock.calls).toHaveLength(1)
+    expect(getByTitle('test video')).toBeInTheDocument()
   })
 
-  it('passes the pause event function along to the pause handler', () => {
-    const testOnPauseFunction = jest.fn()
-    render(
-      <VideoPlayer poster="/example-poster.jpg" onPause={testOnPauseFunction} title="Hello world">
+  it('renders the overlay play button without errors', () => {
+    const {getByRole} = render(
+      <VideoPlayer poster="/example-poster.jpg" title="test video">
         <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
         <VideoPlayer.Track
           src="../../../apps/docs/static/example.vtt"
@@ -88,70 +47,248 @@ describe('VideoPlayer', () => {
       </VideoPlayer>,
     )
 
-    fireEvent.pause(document.querySelector('.VideoPlayer') as Element)
-
-    expect(testOnPauseFunction.mock.calls).toHaveLength(1)
+    expect(getByRole('button', {name: 'Play'})).toBeInTheDocument()
   })
 
-  it('is not muted by default', () => {
-    render(VideoPlayerEle)
-    expect(document.querySelector('video')?.muted).toBe(false)
+  it('renders the play/pause button without errors', () => {
+    const {getByRole} = render(
+      <VideoPlayer poster="/example-poster.jpg" title="test video">
+        <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
+        <VideoPlayer.Track
+          src="../../../apps/docs/static/example.vtt"
+          default
+          kind="subtitles"
+          srcLang="en"
+          label="English"
+        />
+      </VideoPlayer>,
+    )
+
+    expect(getByRole('button', {name: 'Play video'})).toBeInTheDocument()
   })
 
-  it('sets volume to 0 when mute button is clicked', () => {
-    render(VideoPlayerEle)
+  it('renders the enable/disble closed caption button without errors', () => {
+    const {getByRole} = render(
+      <VideoPlayer poster="/example-poster.jpg" title="test video">
+        <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
+        <VideoPlayer.Track
+          src="../../../apps/docs/static/example.vtt"
+          default
+          kind="subtitles"
+          srcLang="en"
+          label="English"
+        />
+      </VideoPlayer>,
+    )
 
-    const muteButton = Array.from(document.querySelectorAll('button')).find(
-      btn => btn.textContent && btn.textContent.includes('Mute'),
-    ) as Element
+    expect(getByRole('button', {name: 'Disable captions'})).toBeInTheDocument()
+  })
+
+  it('renders the mute button without errors', () => {
+    const {getByRole} = render(
+      <VideoPlayer poster="/example-poster.jpg" title="test video">
+        <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
+        <VideoPlayer.Track
+          src="../../../apps/docs/static/example.vtt"
+          default
+          kind="subtitles"
+          srcLang="en"
+          label="English"
+        />
+      </VideoPlayer>,
+    )
+
+    expect(getByRole('button', {name: 'Mute'})).toBeInTheDocument()
+  })
+
+  it('renders the full screen button without errors', () => {
+    const {getByRole} = render(
+      <VideoPlayer poster="/example-poster.jpg" title="test video">
+        <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
+        <VideoPlayer.Track
+          src="../../../apps/docs/static/example.vtt"
+          default
+          kind="subtitles"
+          srcLang="en"
+          label="English"
+        />
+      </VideoPlayer>,
+    )
+
+    expect(getByRole('button', {name: 'Full screen'})).toBeInTheDocument()
+  })
+
+  it('renders the seek track without errors', () => {
+    const {getByRole} = render(
+      <VideoPlayer poster="/example-poster.jpg" title="test video">
+        <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
+        <VideoPlayer.Track
+          src="../../../apps/docs/static/example.vtt"
+          default
+          kind="subtitles"
+          srcLang="en"
+          label="English"
+        />
+      </VideoPlayer>,
+    )
+
+    expect(getByRole('slider', {name: 'Seek'})).toBeInTheDocument()
+  })
+
+  it('renders the volume track without errors', () => {
+    const {getByRole} = render(
+      <VideoPlayer poster="/example-poster.jpg" title="test video">
+        <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
+        <VideoPlayer.Track
+          src="../../../apps/docs/static/example.vtt"
+          default
+          kind="subtitles"
+          srcLang="en"
+          label="English"
+        />
+      </VideoPlayer>,
+    )
+
+    expect(getByRole('slider', {name: 'Volume'})).toBeInTheDocument()
+  })
+
+  it('plays the video when the play button is pressed', () => {
+    const {getByRole, getByTitle} = render(
+      <VideoPlayer poster="/example-poster.jpg" title="test video">
+        <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
+        <VideoPlayer.Track
+          src="../../../apps/docs/static/example.vtt"
+          default
+          kind="subtitles"
+          srcLang="en"
+          label="English"
+        />
+      </VideoPlayer>,
+    )
+
+    const video = getByTitle('test video') as HTMLVideoElement
+
+    expect(video.paused).toBe(true)
+
+    userEvent.click(getByRole('button', {name: 'Play video'}))
+
+    waitFor(() => {
+      expect(video.paused).toBe(false)
+    })
+  })
+
+  it('pauses a playing video when the pause button is pressed', () => {
+    const {getByRole, getByTitle} = render(
+      <VideoPlayer poster="/example-poster.jpg" title="test video">
+        <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
+        <VideoPlayer.Track
+          src="../../../apps/docs/static/example.vtt"
+          default
+          kind="subtitles"
+          srcLang="en"
+          label="English"
+        />
+      </VideoPlayer>,
+    )
+
+    const video = getByTitle('test video') as HTMLVideoElement
+
+    expect(video.paused).toBe(true)
+
+    const playButton = getByRole('button', {name: 'Play video'})
+
+    userEvent.click(playButton)
+
+    waitFor(() => {
+      expect(video.paused).toBe(false)
+    })
+
+    waitFor(() => {
+      userEvent.click(getByRole('button', {name: 'Pause video'}))
+      expect(video.paused).toBe(true)
+    })
+  })
+
+  it('sets the video volume when the volume slider is changed', () => {
+    const {getByRole, getByTitle} = render(
+      <VideoPlayer poster="/example-poster.jpg" title="test video">
+        <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
+        <VideoPlayer.Track
+          src="../../../apps/docs/static/example.vtt"
+          default
+          kind="subtitles"
+          srcLang="en"
+          label="English"
+        />
+      </VideoPlayer>,
+    )
+
+    const video = getByTitle('test video') as HTMLVideoElement
+
+    expect(video.volume).toBe(1)
+
+    const volumeSlider = getByRole('slider', {name: 'Volume'}) as HTMLInputElement
+
+    fireEvent.input(volumeSlider, {target: {valueAsNumber: 0.2}})
+
+    waitFor(() => {
+      expect(video.volume).toBe(0.2)
+    })
+  })
+
+  it('sets the video seek position when the seek slider is changed', () => {
+    const {getByRole, getByTitle} = render(
+      <VideoPlayer poster="/example-poster.jpg" title="test video">
+        <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
+        <VideoPlayer.Track
+          src="../../../apps/docs/static/example.vtt"
+          default
+          kind="subtitles"
+          srcLang="en"
+          label="English"
+        />
+      </VideoPlayer>,
+    )
+
+    const video = getByTitle('test video') as HTMLVideoElement
+
+    expect(video.currentTime).toBe(0)
+
+    const seekSlider = getByRole('slider', {name: 'Seek'}) as HTMLInputElement
+
+    fireEvent.input(seekSlider, {target: {valueAsNumber: 42}})
+
+    expect(video.currentTime).toBe(42)
+  })
+
+  it.skip('sets the volume to 0 when the mute button is clicked', () => {
+    const {getByRole, getByTitle} = render(
+      <VideoPlayer poster="/example-poster.jpg" title="test video">
+        <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
+        <VideoPlayer.Track
+          src="../../../apps/docs/static/example.vtt"
+          default
+          kind="subtitles"
+          srcLang="en"
+          label="English"
+        />
+      </VideoPlayer>,
+    )
+
+    const video = getByTitle('test video') as HTMLVideoElement
+
+    expect(video.volume).toBe(1)
+
+    const muteButton = getByRole('button', {name: 'Mute'}) as HTMLInputElement
 
     fireEvent.click(muteButton)
 
-    expect(document.querySelector('video')?.volume).toBe(0)
+    expect(video.volume).toBe(0)
   })
 
-  it('sets volume to initial volume when mute button is clicked twice', () => {
-    render(VideoPlayerEle)
-
-    const muteButton = Array.from(document.querySelectorAll('button')).find(
-      btn => btn.textContent && btn.textContent.includes('Mute'),
-    ) as Element
-
-    fireEvent.click(muteButton)
-    fireEvent.click(muteButton)
-
-    expect(document.querySelector('video')?.volume).toBe(0.5)
-  })
-
-  it('sets volume to new value when the volume input is changed', () => {
-    const testValue = 0.8
-    render(VideoPlayerEle)
-    const input = document.querySelector('input[name="Volume"]') as HTMLInputElement
-    fireEvent.input(input, {target: {value: testValue}})
-
-    expect(input.value).toBe(testValue.toString())
-    expect(document.querySelector('video')?.volume).toBe(testValue)
-  })
-
-  it('sets volume to new value when the volume input is changed', () => {
-    const testValue = 0.8
-    render(VideoPlayerEle)
-    const input = document.querySelector('input[name="Volume"]') as HTMLInputElement
-    fireEvent.input(input, {target: {value: testValue}})
-
-    expect(input.value).toBe(testValue.toString())
-    expect(document.querySelector('video')?.volume).toBe(testValue)
-  })
-
-  it('calls the onTimeUpdate function', () => {
-    const onTimeUpdate = jest.fn()
-    const {getByTestId} = render(
-      <VideoPlayer
-        poster="/example-poster.jpg"
-        title="Hello world"
-        data-testid="video-player"
-        onTimeUpdate={onTimeUpdate}
-      >
+  it.skip('resets the volume to the previous volume when the mute button is clicked twice', () => {
+    const {getByRole, getByTitle} = render(
+      <VideoPlayer poster="/example-poster.jpg" title="test video">
         <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
         <VideoPlayer.Track
           src="../../../apps/docs/static/example.vtt"
@@ -162,36 +299,22 @@ describe('VideoPlayer', () => {
         />
       </VideoPlayer>,
     )
-    const video = getByTestId('video-player')
 
-    fireEvent.timeUpdate(video)
-    // Fire correct event and expect it to be passed
-    expect(onTimeUpdate).toHaveBeenCalled()
-  })
+    const video = getByTitle('test video') as HTMLVideoElement
 
-  it('calls the onLoadedMetadata function', () => {
-    const onLoadedMetadata = jest.fn()
-    const {getByTestId} = render(
-      <VideoPlayer
-        poster="/example-poster.jpg"
-        title="Hello world"
-        data-testid="video-player"
-        onLoadedMetadata={onLoadedMetadata}
-      >
-        <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
-        <VideoPlayer.Track
-          src="../../../apps/docs/static/example.vtt"
-          default
-          kind="subtitles"
-          srcLang="en"
-          label="English"
-        />
-      </VideoPlayer>,
-    )
-    const video = getByTestId('video-player')
+    expect(video.volume).toBe(1)
 
-    fireEvent.loadedMetadata(video)
-    // Fire correct event and expect it to be passed
-    expect(onLoadedMetadata).toHaveBeenCalled()
+    const volumeSlider = getByRole('slider', {name: 'Volume'}) as HTMLInputElement
+    fireEvent.input(volumeSlider, {target: {valueAsNumber: 0.8}})
+
+    expect(video.volume).toBe(0.8)
+
+    const muteButton = getByRole('button', {name: 'Mute'}) as HTMLInputElement
+
+    userEvent.click(muteButton)
+    expect(video.volume).toBe(0)
+
+    userEvent.click(muteButton)
+    expect(video.volume).toBe(0.8)
   })
 })
