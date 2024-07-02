@@ -421,15 +421,15 @@ export function SolutionPage({
                 >
                   <Statistic variant="boxed">
                     <Statistic.Heading>$2M+</Statistic.Heading>
-                    <Statistic.Description>Given back to our maintainers</Statistic.Description>
+                    <Statistic.Description variant="accent">Given back to our maintainers</Statistic.Description>
                   </Statistic>
                   <Statistic variant="boxed">
                     <Statistic.Heading>30K+</Statistic.Heading>
-                    <Statistic.Description>Sponsored maintainers and projects</Statistic.Description>
+                    <Statistic.Description variant="accent">Sponsored maintainers and projects</Statistic.Description>
                   </Statistic>
                   <Statistic variant="boxed">
                     <Statistic.Heading>3.5K+</Statistic.Heading>
-                    <Statistic.Description>Companies actively sponsoring</Statistic.Description>
+                    <Statistic.Description variant="accent">Companies actively sponsoring</Statistic.Description>
                   </Statistic>
                 </Stack>
               </Box>
@@ -797,11 +797,13 @@ function StoryScrollExample({align, bentoVisible}) {
 
 function HeroVideo() {
   return (
-    <Box marginBlockStart={32}>
-      <VideoPlayer title="GitHub media player" className={styles.relative}>
-        <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" />
-        <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
-      </VideoPlayer>
-    </Box>
+    <AnimationProvider staggerDelayIncrement={1000} runOnce visibilityOptions={0.2}>
+      <Box marginBlockStart={32} animate="scale-in-up">
+        <VideoPlayer title="GitHub media player" className={styles.relative}>
+          <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" />
+          <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
+        </VideoPlayer>
+      </Box>
+    </AnimationProvider>
   )
 }
