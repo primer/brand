@@ -21,7 +21,7 @@ type VideoPlayerProps = PropsWithChildren<{
   title: string
   branding?: boolean
   animate?: AnimateProps
-  renderControls: (props: ControlsProps) => React.ReactElement
+  renderControls?: (props: ControlsProps) => React.ReactElement
 }> &
   React.HTMLProps<HTMLVideoElement>
 
