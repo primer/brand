@@ -18,6 +18,7 @@ export const CCButton = ({closedCaptionsEnabled, setClosedCaptionsEnabled}: CCBu
       !closedCaptionsEnabled && styles.VideoPlayer__ccOff,
     )}
     onClick={() => setClosedCaptionsEnabled(!closedCaptionsEnabled)}
+    aria-label={closedCaptionsEnabled ? 'Disable captions' : 'Enable captions'}
   >
     <Text className={styles.VideoPlayer__ccText}>CC</Text>
     <Tooltip>{closedCaptionsEnabled ? 'Disable captions' : 'Enable captions'}</Tooltip>
