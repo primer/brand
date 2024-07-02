@@ -241,7 +241,7 @@ export function CategoryPage({accentColor, variant, gridOverlay = false, colorMo
                           <Card.Image
                             src={cardImagePlaceholders[index]}
                             alt="placeholder, blank area with an gray background color"
-                            aspectRatio="16:9"
+                            style={{aspectRatio: '16 / 9'}}
                           />
                           <Card.Heading>Article page heading</Card.Heading>
                           <Card.Description>

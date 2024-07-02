@@ -169,12 +169,8 @@ function DefaultCardWrapperComponent({children}) {
 
 type CardImageProps = ImageProps
 
-function CardImage({className, ...rest}: CardImageProps) {
-  return (
-    <div className={styles.Card__image}>
-      <Image className={className} {...rest} />
-    </div>
-  )
+function CardImage({borderRadius = 'medium', className, ...props}: CardImageProps) {
+  return <Image borderRadius={borderRadius} className={clsx(styles.Card__image, className)} {...props} />
 }
 
 type CardIconProps = BaseProps<HTMLSpanElement> & {
