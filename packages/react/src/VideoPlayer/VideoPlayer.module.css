@@ -55,6 +55,7 @@
   box-sizing: content-box;
   background: var(--brand-videoPlayer-playButton-bgColor-rest);
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .VideoPlayer__playButtonInner > svg {
@@ -67,7 +68,6 @@
 }
 
 .VideoPlayer__playButton svg {
-  cursor: pointer;
   color: var(--brand-videoPlayer-playButton-fgColor-rest);
 }
 
@@ -117,7 +117,7 @@
   pointer-events: none;
 }
 
-.VideoPlayer__controlsWrapper {
+.VideoPlayer__controlsBar {
   display: grid;
   grid-gap: var(--base-size-16);
   align-items: center;
@@ -132,7 +132,7 @@
   pointer-events: all;
 }
 
-.VideoPlayer__container--small .VideoPlayer__controlsWrapper {
+.VideoPlayer__container--small .VideoPlayer__controlsBar {
   grid-template-columns: auto 2fr auto auto auto auto;
 }
 
@@ -141,8 +141,8 @@
   bottom: 0;
 }
 
-.VideoPlayer__controls:focus .VideoPlayer__controlsWrapper,
-.VideoPlayer__controls:focus-within .VideoPlayer__controlsWrapper {
+.VideoPlayer__controls:focus .VideoPlayer__controlsBar,
+.VideoPlayer__controls:focus-within .VideoPlayer__controlsBar {
   opacity: 1;
 }
 
@@ -150,11 +150,11 @@
   bottom: 0;
 }
 
-.VideoPlayer__showOverlays .VideoPlayer__controlsWrapper {
+.VideoPlayer__showOverlays .VideoPlayer__controlsBar {
   opacity: 1;
 }
 
-.VideoPlayer__overlays:hover .VideoPlayer__controlsWrapper {
+.VideoPlayer__overlays:hover .VideoPlayer__controlsBar {
   opacity: 1;
 }
 
@@ -238,11 +238,6 @@
   background-color: var(--brand-videoPlayer-range-bgColor-default);
   border-radius: var(--brand-VideoPlayer-range-borderRadius);
 }
-
-.VideoPlayer__container--small .VideoPlayer__volumeBar {
-  display: none;
-}
-
 .VideoPlayer__range:hover .VideoPlayer__tooltip {
   opacity: 1;
 }
@@ -367,29 +362,4 @@
 
 .VideoPlayer__shiftTooltipRight .VideoPlayer__tooltip {
   transform: translateX(10px);
-}
-
-/* ---------------------------------------------------------- */
-/* 8. Captions                                                */
-/* ---------------------------------------------------------- */
-
-.VideoPlayer__captions {
-  width: 90%;
-  margin: var(--brand-VideoPlayer-closedCaption-margin);
-  display: grid;
-  justify-content: center;
-  pointer-events: none;
-}
-
-.VideoPlayer__captions__empty {
-  display: none;
-}
-
-.VideoPlayer__captionText {
-  color: var(--base-color-scale-white-0);
-  text-align: center;
-  background: #1b1f2433;
-  padding: var(--brand-VideoPlayer-closedCaption-text-padding);
-  border-radius: var(--brand-borderRadius-medium);
-  display: inline-block;
 }

@@ -7,7 +7,7 @@ declare const styles: {
   readonly "VideoPlayer__showOverlays": string;
   readonly "VideoPlayer__overlays": string;
   readonly "VideoPlayer__controls": string;
-  readonly "VideoPlayer__controlsWrapper": string;
+  readonly "VideoPlayer__controlsBar": string;
   readonly "VideoPlayer__container--small": string;
   readonly "VideoPlayer__iconControl": string;
   readonly "VideoPlayer__tooltip": string;
@@ -18,16 +18,12 @@ declare const styles: {
   readonly "VideoPlayer__ccOff": string;
   readonly "VideoPlayer__ccText": string;
   readonly "VideoPlayer__range": string;
-  readonly "VideoPlayer__volumeBar": string;
   readonly "VideoPlayer__rangeInput": string;
   readonly "VideoPlayer__rangeProgress": string;
   readonly "VideoPlayer__tooltipContent": string;
   readonly "VideoPlayer__tooltipText": string;
   readonly "VideoPlayer__controlTextColor": string;
   readonly "VideoPlayer__shiftTooltipRight": string;
-  readonly "VideoPlayer__captions": string;
-  readonly "VideoPlayer__captions__empty": string;
-  readonly "VideoPlayer__captionText": string;
 };
 export = styles;
 

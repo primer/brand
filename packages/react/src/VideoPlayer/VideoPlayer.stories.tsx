@@ -1,4 +1,5 @@
 import {Meta, StoryFn} from '@storybook/react'
+import {fn} from '@storybook/test'
 import React from 'react'
 import posterImage from '../fixtures/images/example-poster.png'
 import {VideoPlayer} from '.'
@@ -10,6 +11,14 @@ export default {
     poster: posterImage,
     title: 'GitHub media player',
     branding: true,
+    onPlay: fn(),
+    onPause: fn(),
+    onEnded: fn(),
+    onSeeked: fn(),
+    onVolumeChange: fn(),
+    onLoadedMetadata: fn(),
+    onPlaying: fn(),
+    onTimeUpdate: fn(),
   },
   argTypes: {
     poster: {
@@ -29,7 +38,7 @@ export default {
 export const Playground: StoryFn<typeof VideoPlayer> = args => (
   <VideoPlayer {...args}>
     <VideoPlayer.Source src="/example.mp4" type="video/mp4" />
-    <VideoPlayer.Track src="/example.vtt" />
+    <VideoPlayer.Track src="/example.vtt" default />
   </VideoPlayer>
 )
 
