@@ -27,6 +27,7 @@ import {
   AnchorNav,
   VideoPlayer,
   Breadcrumbs,
+  Statistic,
 } from '../../..'
 
 import pinterestLogo from '../../../fixtures/images/logos/pinterest.png'
@@ -416,11 +417,20 @@ export function SolutionPage({
                   direction={{narrow: 'vertical', regular: 'horizontal'}}
                   padding="none"
                   gap={48}
-                  justifyContent="space-evenly"
+                  justifyContent="space-between"
                 >
-                  <BoxedStatisticExample heading="$2M+" description="Given back to our maintainers" />
-                  <BoxedStatisticExample heading="30K+" description="Sponsored maintainers and projects" />
-                  <BoxedStatisticExample heading="3.5K+" description="Companies actively sponsoring" />
+                  <Statistic variant="boxed">
+                    <Statistic.Heading>$2M+</Statistic.Heading>
+                    <Statistic.Description>Given back to our maintainers</Statistic.Description>
+                  </Statistic>
+                  <Statistic variant="boxed">
+                    <Statistic.Heading>30K+</Statistic.Heading>
+                    <Statistic.Description>Sponsored maintainers and projects</Statistic.Description>
+                  </Statistic>
+                  <Statistic variant="boxed">
+                    <Statistic.Heading>3.5K+</Statistic.Heading>
+                    <Statistic.Description>Companies actively sponsoring</Statistic.Description>
+                  </Statistic>
                 </Stack>
               </Box>
             )}
@@ -672,21 +682,6 @@ function TimelineExample() {
       <Timeline.Item>Faster feedback loops</Timeline.Item>
       <Timeline.Item>Secure every build</Timeline.Item>
     </Timeline>
-  )
-}
-
-function BoxedStatisticExample({heading, description}: {heading: string; description: string}) {
-  return (
-    <Box backgroundColor="subtle" padding={32} borderRadius="large" style={{width: '100%'}}>
-      <Stack direction="vertical" gap="normal" padding="none">
-        <Heading as="h4" size="display" font="hubot-sans" weight="medium" stretch="condensed">
-          {heading}
-        </Heading>
-        <Text as="p" variant="muted">
-          {description}
-        </Text>
-      </Stack>
-    </Box>
   )
 }
 

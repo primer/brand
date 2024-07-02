@@ -44,7 +44,7 @@
   z-index: 0;
   transform: translateY(-10%) scale(0);
   animation: scaleAnimation 4s var(--brand-animation-easing-default) forwards;
-  animation-delay: 0.3s;
+  animation-delay: 1s;
   opacity: 0;
 }
 

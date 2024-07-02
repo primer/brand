@@ -11,6 +11,7 @@ import {
   Hero,
   MinimalFooter,
   Stack,
+  Statistic,
   SubdomainNavBar,
   Text,
 } from '../../..'
@@ -238,17 +239,28 @@ export function CategoryPage({
         <Box marginBlockStart={{narrow: 64, regular: 128}} marginBlockEnd={{narrow: 64, regular: 80}}>
           <Grid>
             <Grid.Column span={{medium: 6, large: 3}}>
-              <StatisticExample heading="$2M+" description="Given back to our maintainers" />
+              <Statistic size="medium" animate="fade-in">
+                <Statistic.Heading size="1">$2M+</Statistic.Heading>
+                <Statistic.Description>Given back to our maintainers</Statistic.Description>
+              </Statistic>
             </Grid.Column>
             <Grid.Column span={{medium: 6, large: 3}}>
-              <StatisticExample heading="~25%" description="increase in developer speed with GitHub Copilot" />
+              <Statistic size="medium" animate="fade-in">
+                <Statistic.Heading size="1">~25%</Statistic.Heading>
+                <Statistic.Description>increase in developer speed with GitHub Copilot</Statistic.Description>
+              </Statistic>
             </Grid.Column>
             <Grid.Column span={{medium: 6, large: 3}}>
-              <StatisticExample heading="1min" description="set-up time for largest repo with Codespaces" />
+              <Statistic size="medium" animate="fade-in">
+                <Statistic.Heading size="1">1min</Statistic.Heading>
+                <Statistic.Description>set-up time for largest repo with Codespaces</Statistic.Description>
+              </Statistic>
             </Grid.Column>
-
             <Grid.Column span={{medium: 6, large: 3}}>
-              <StatisticExample heading="3.5K+" description="Companies actively sponsoring" />
+              <Statistic size="medium" animate="fade-in">
+                <Statistic.Heading size="1">3.5K+</Statistic.Heading>
+                <Statistic.Description>Companies actively sponsoring</Statistic.Description>
+              </Statistic>
             </Grid.Column>
           </Grid>
         </Box>
@@ -309,20 +321,5 @@ export function CategoryPage({
       )}
       <MinimalFooter />
     </ThemeProvider>
-  )
-}
-
-function StatisticExample({heading, description}: {heading: string; description: string}) {
-  return (
-    <Box style={{width: '100%'}}>
-      <Stack direction="vertical" gap="normal" padding="none">
-        <Heading as="h3" size="1" font="hubot-sans" weight="medium" stretch="condensed">
-          {heading}
-        </Heading>
-        <Text as="p" variant="muted">
-          {description}
-        </Text>
-      </Stack>
-    </Box>
   )
 }

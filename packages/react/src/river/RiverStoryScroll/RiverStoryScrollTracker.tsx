@@ -70,7 +70,7 @@ export const RiverStoryScrollTracker = ({index, children, className = ''}: River
   const dynamicClassName = `${className} ${isIntersecting ? styles['in-viewport'] : styles['outside-viewport']}`
 
   return (
-    <div ref={elementRef} className={dynamicClassName}>
+    <div ref={elementRef} className={dynamicClassName} aria-hidden={!isIntersecting}>
       {children}
     </div>
   )

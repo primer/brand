@@ -2,7 +2,7 @@ import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 
 import {RiverStoryScroll, RiverStoryScrollProps} from '.'
-import {Heading, Text, Link, River, Box, Timeline} from '../..'
+import {Heading, Text, Link, River, Box, Timeline, VideoPlayer} from '../..'
 import {Container} from '../../component-helpers'
 
 export default {
@@ -190,14 +190,13 @@ export const Video = args => (
   <RiverStoryScroll {...args} align={args.align} imageTextRatio={args.imageTextRatio}>
     <River>
       <River.Visual>
-        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-        <video>
-          <source
+        <VideoPlayer title="Example">
+          <VideoPlayer.Source
             src="https://githubnext.com/assets/projects/copilot-workspace/features-river-1.mp4"
             type="video/mp4; codecs=avc1.4d002a"
           />
-          <track src="https://primer.github.io/brand/assets/example.vtt" default />
-        </video>
+          <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" default />
+        </VideoPlayer>
       </River.Visual>
       <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
         <Heading>Heading 1</Heading>
@@ -210,14 +209,13 @@ export const Video = args => (
     </River>
     <River>
       <River.Visual>
-        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-        <video>
-          <source
+        <VideoPlayer title="Example">
+          <VideoPlayer.Source
             src="https://githubnext.com/assets/projects/copilot-workspace/features-river-2.mp4"
             type="video/mp4; codecs=avc1.4d002a"
           />
-          <track src="https://primer.github.io/brand/assets/example.vtt" default />
-        </video>
+          <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" default />
+        </VideoPlayer>
       </River.Visual>
       <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
         <Heading>Heading 2</Heading>
@@ -230,14 +228,13 @@ export const Video = args => (
     </River>
     <River>
       <River.Visual>
-        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-        <video>
-          <source
+        <VideoPlayer title="Example">
+          <VideoPlayer.Source
             src="https://githubnext.com/assets/projects/copilot-workspace/features-river-3.mp4"
             type="video/mp4; codecs=avc1.4d002a"
           />
-          <track src="https://primer.github.io/brand/assets/example.vtt" default />
-        </video>
+          <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" default />
+        </VideoPlayer>
       </River.Visual>
       <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
         <Heading>Heading 3 </Heading>
@@ -250,14 +247,13 @@ export const Video = args => (
     </River>
     <River>
       <River.Visual>
-        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-        <video>
-          <source
+        <VideoPlayer title="Example">
+          <VideoPlayer.Source
             src="https://githubnext.com/assets/projects/copilot-workspace/features-river-4.mp4"
             type="video/mp4; codecs=avc1.4d002a"
           />
-          <track src="https://primer.github.io/brand/assets/example.vtt" default />
-        </video>
+          <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" default />
+        </VideoPlayer>
       </River.Visual>
       <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
         <Heading>Heading 4</Heading>

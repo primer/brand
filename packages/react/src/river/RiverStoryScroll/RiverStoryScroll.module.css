@@ -411,6 +411,7 @@
     .RiverStoryScroll__tracker.outside-viewport
     * {
     opacity: 0.9;
+    pointer-events: none;
   }
 }
 

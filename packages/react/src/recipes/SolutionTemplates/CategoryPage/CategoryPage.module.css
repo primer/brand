@@ -26,7 +26,7 @@
   content: '';
   z-index: 0;
   transform: translateY(-10%) translateX(-60%) scale(0);
-  animation: scaleAnimation 4s var(--brand-animation-easing-default) forwards;
+  animation: scaleAnimation 4s var(--brand-animation-easing-glide) forwards;
   animation-delay: 0.3s;
 }
 
