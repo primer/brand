@@ -10,10 +10,8 @@ import {
   Heading,
   Hero,
   MinimalFooter,
-  Stack,
   Statistic,
   SubdomainNavBar,
-  Text,
 } from '../../..'
 
 import styles from './CategoryPage.module.css'
