@@ -111,6 +111,7 @@
     'components-ide-features--all-glass', // animation too long
     'components-ide-features--editor-custom-icons', // animation too long
     'recipes-seo-category-page--default', // template contains randomisation
+    'components-statistic-features--animations', // animation only
   ]
 
   const categorisedStories = Object.keys(stories as Stories).reduce((acc, key) => {
