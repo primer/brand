@@ -51,7 +51,11 @@
 
 .Hero-heading {
   margin: 0;
-  max-width: 18ch;
+  max-width: 24ch;
+}
+
+.Hero-heading--fullWidth {
+  max-width: unset;
 }
 
 .Hero-description {

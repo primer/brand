@@ -112,11 +112,19 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
   },
 )
 
-type HeroHeadingProps = Omit<HeadingProps, 'as'>
+type HeroHeadingProps = Omit<HeadingProps, 'as'> & {
+  fullWidth?: boolean
+}
 
-const HeroHeading = forwardRef<HTMLHeadingElement, HeroHeadingProps>(({children, ...rest}, ref) => {
+const HeroHeading = forwardRef<HTMLHeadingElement, HeroHeadingProps>(({children, fullWidth = false, ...rest}, ref) => {
   return (
-    <Heading id="hero-section-brand-heading" className={styles['Hero-heading']} as="h1" ref={ref} {...rest}>
+    <Heading
+      id="hero-section-brand-heading"
+      className={clsx(styles['Hero-heading'], fullWidth && styles['Hero-heading--fullWidth'])}
+      as="h1"
+      ref={ref}
+      {...rest}
+    >
       {children}
     </Heading>
   )
