@@ -1,0 +1,91 @@
+/**
+ * Variants
+ */
+.Statistic--variant-boxed {
+  background-color: var(--brand-color-canvas-subtle);
+  border-radius: var(--brand-borderRadius-large);
+}
+
+.Statistic--variant-boxed,
+.Statistic--variant-boxed.Statistic--padding-none {
+  padding: var(--brand-Statistic-spacing-spacious);
+}
+
+/**
+ * Padding options
+ */
+.Statistic--padding-none {
+  padding: 0;
+}
+
+.Statistic--padding-condensed {
+  padding: var(--brand-Statistic-spacing-condensed);
+}
+
+.Statistic--padding-normal {
+  padding: var(--brand-Statistic-spacing-normal);
+}
+
+.Statistic--padding-spacious {
+  padding: var(--brand-Statistic-spacing-spacious);
+}
+
+.Statistic--narrow-padding-condensed {
+  padding: var(--brand-box-spacing-condensed);
+}
+.Statistic--narrow-padding-normal {
+  padding: var(--brand-box-spacing-normal);
+}
+.Statistic--narrow-padding-spacious {
+  padding: var(--base-size-32);
+}
+.Statistic--narrow-padding-none {
+  padding: 0;
+}
+
+@media screen and (min-width: 48rem) {
+  .Statistic--regular-padding-condensed {
+    padding: var(--brand-Statistic-spacing-condensed);
+  }
+  .Statistic--regular-padding-normal {
+    padding: var(--brand-Statistic-spacing-normal);
+  }
+  .Statistic--regular-padding-spacious {
+    padding: var(--brand-Statistic-spacing-spacious);
+  }
+  .Statistic--regular-padding-none {
+    padding: 0;
+  }
+}
+
+@media screen and (min-width: 80rem) {
+  .Statistic--wide-padding-condensed {
+    padding: var(--brand-Statistic-spacing-condensed);
+  }
+  .Statistic--wide-padding-normal {
+    padding: var(--brand-Statistic-spacing-normal);
+  }
+  .Statistic--wide-padding-spacious {
+    padding: var(--brand-Statistic-spacing-spacious);
+  }
+  .Statistic--wide-padding-none {
+    padding: 0;
+  }
+}
+
+.Statistic__heading {
+  font-stretch: 75%;
+}
+
+/*
+ * Description
+ */
+.Statistic__description--accent {
+  color: var(--brand-color-accent-primary);
+}
+
+.Statistic__description {
+  display: block;
+  margin-block-start: var(--base-size-8);
+  font-stretch: normal;
+}
