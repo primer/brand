@@ -1,8 +1,8 @@
-import React, {useRef, useEffect, forwardRef, useCallback, useState, type SetStateAction} from 'react'
+import React, {useRef, forwardRef, useCallback, useState, type PropsWithChildren} from 'react'
 import clsx from 'clsx'
 import {Text} from '../Text'
 import {type AnimateProps} from '../animation'
-import {Controls} from './components'
+import {Captions, Controls, type ControlsProps} from './components'
 import {MarkGithubIcon} from '@primer/octicons-react'
 import {useProvidedRefOrCreate} from '../hooks/useRef'
 
@@ -16,16 +16,20 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 import styles from './VideoPlayer.module.css'
 import {useIsElementFullScreen, useVideoKeypressHandlers, useVideo, useVideoResizeObserver} from './hooks/'
 
-type VideoPlayerProps = {
+type VideoPlayerProps = PropsWithChildren<{
   poster?: string
   title: string
   branding?: boolean
-  children: React.ReactElement | React.ReactElement[]
   animate?: AnimateProps
-} & React.HTMLProps<HTMLVideoElement>
+  renderControls: (props: ControlsProps) => React.ReactElement
+}> &
+  React.HTMLProps<HTMLVideoElement>
 
 const Root = forwardRef<HTMLVideoElement, VideoPlayerProps>(
-  ({poster, title, branding = true, children, className, ...rest}, forwardedRef) => {
+  (
+    {poster, title, branding = true, children, className, renderControls = props => <Controls {...props} />, ...rest},
+    forwardedRef,
+  ) => {
     const videoRef = useProvidedRefOrCreate(forwardedRef)
     const videoWrapperRef = useRef<HTMLDivElement>(null)
     const isPlaying = useVideo(videoRef)
@@ -83,6 +87,7 @@ const Root = forwardRef<HTMLVideoElement, VideoPlayerProps>(
 
             video.paused ? video.play() : video.pause()
           }}
+          aria-label={isPlaying ? 'Pause' : 'Play'}
         >
           {isPlaying ? null : (
             <span className={styles.VideoPlayer__playButtonInner}>
@@ -101,16 +106,18 @@ const Root = forwardRef<HTMLVideoElement, VideoPlayerProps>(
               </svg>
             </span>
           )}
-          <span className="visually-hidden">Play</span>
         </button>
-        <Controls
-          videoRef={videoRef}
-          isFullScreen={isFullScreen}
-          setIsFullScreen={setIsFullScreen}
-          closedCaptionsEnabled={closedCaptionsEnabled}
-          setClosedCaptionsEnabled={setClosedCaptionsEnabled}
-          isSmall={isSmall}
-        />
+        <div className={styles.VideoPlayer__controls}>
+          {closedCaptionsEnabled ? <Captions videoRef={videoRef} /> : null}
+          {renderControls({
+            videoRef,
+            isFullScreen,
+            setIsFullScreen,
+            closedCaptionsEnabled,
+            setClosedCaptionsEnabled,
+            isSmall,
+          })}
+        </div>
       </div>
     )
   },
@@ -144,3 +151,4 @@ export const VideoPlayer = Object.assign(Root, {
 // - [x] Decide what components I'm exporting and tidy all that up
 // - [ ] Split out the styles of controls to live alongside each control
 // - [x] Add bindings for numbers 0 - 9 to jump to 0% - 90% of the video
+// - [ ] CSS variable for the accent colour

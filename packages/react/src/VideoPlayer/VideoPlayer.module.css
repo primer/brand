@@ -117,7 +117,7 @@
   pointer-events: none;
 }
 
-.VideoPlayer__controlsWrapper {
+.VideoPlayer__controlsBar {
   display: grid;
   grid-gap: var(--base-size-16);
   align-items: center;
@@ -132,7 +132,7 @@
   pointer-events: all;
 }
 
-.VideoPlayer__container--small .VideoPlayer__controlsWrapper {
+.VideoPlayer__container--small .VideoPlayer__controlsBar {
   grid-template-columns: auto 2fr auto auto auto auto;
 }
 
@@ -141,8 +141,8 @@
   bottom: 0;
 }
 
-.VideoPlayer__controls:focus .VideoPlayer__controlsWrapper,
-.VideoPlayer__controls:focus-within .VideoPlayer__controlsWrapper {
+.VideoPlayer__controls:focus .VideoPlayer__controlsBar,
+.VideoPlayer__controls:focus-within .VideoPlayer__controlsBar {
   opacity: 1;
 }
 
@@ -150,11 +150,11 @@
   bottom: 0;
 }
 
-.VideoPlayer__showOverlays .VideoPlayer__controlsWrapper {
+.VideoPlayer__showOverlays .VideoPlayer__controlsBar {
   opacity: 1;
 }
 
-.VideoPlayer__overlays:hover .VideoPlayer__controlsWrapper {
+.VideoPlayer__overlays:hover .VideoPlayer__controlsBar {
   opacity: 1;
 }
 
