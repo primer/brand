@@ -37,7 +37,7 @@ export default {
       description: 'Sets the image aspect ratio. A custom ratio can be provided in the design tokens.',
       control: {
         type: 'radio',
-        options: ['1:1', '16:9', '16:10', '4:3', 'custom'],
+        options: ['1:1', '4:3', '16:10', '16:9', 'custom'],
       },
     },
     width: {
