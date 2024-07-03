@@ -35,8 +35,8 @@ import shopifyLogo from '../../../fixtures/images/logos/shopify.png'
 import twilioLogo from '../../../fixtures/images/logos/twilio.png'
 import uberLogo from '../../../fixtures/images/logos/uber.png'
 import vercelLogo from '../../../fixtures/images/logos/vercel.png'
-import gitlinesBgLight from '../../../fixtures/images/background-light-gitlines-blur.png'
-import gitlinesBgDark from '../../../fixtures/images/background-dark-gitlines-blur.png'
+import lightHeroBg from '../../../fixtures/images/background-light-collaboration.webp'
+import darkHeroBg from '../../../fixtures/images/background-dark-collaboration.webp'
 import ciCdRenderImage from '../../../fixtures/images/ci-cd-render-ui.png'
 
 import clsx from 'clsx'
@@ -164,7 +164,7 @@ export function SolutionPage({
                   className={styles.heroImage}
                   animate="fade-in"
                   alt="placeholder image"
-                  src={isLightMode ? gitlinesBgLight : gitlinesBgDark}
+                  src={isLightMode ? lightHeroBg : darkHeroBg}
                 />
                 <div className={styles.heroImageOverlay}></div>
               </div>
