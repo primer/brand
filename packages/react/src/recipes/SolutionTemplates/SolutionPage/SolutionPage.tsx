@@ -42,6 +42,7 @@ import ciCdRenderImage from '../../../fixtures/images/ci-cd-render-ui.png'
 import clsx from 'clsx'
 
 import styles from './SolutionPage.module.css'
+import parallaxStyles from '../parallax.module.css'
 
 import {ColorModesEnum, ThemeProvider} from '../../../ThemeProvider'
 
@@ -158,18 +159,18 @@ export function SolutionPage({
             </Box>
           )}
           {variant === 'size' && (
-            <header className={styles.hero}>
-              <div className={styles.parallax}>
-                <div className={styles.background}>
+            <header className={parallaxStyles.hero}>
+              <div className={parallaxStyles.parallax}>
+                <div className={parallaxStyles.background}>
                   <Image
-                    className={styles.heroImage}
+                    className={parallaxStyles.heroImage}
                     animate="fade-in"
                     alt="placeholder image"
                     src={isLightMode ? lightHeroBg : darkHeroBg}
                   />
-                  <div className={styles.heroImageOverlay}></div>
+                  <div className={parallaxStyles.heroImageOverlay}></div>
                 </div>
-                <Grid enableOverlay={enableGridOverlay} className={styles.foreground}>
+                <Grid enableOverlay={enableGridOverlay} className={parallaxStyles.foreground}>
                   <Grid.Column>
                     <Box marginBlockStart={20}>
                       <Breadcrumbs>
@@ -208,7 +209,7 @@ export function SolutionPage({
             </header>
           )}
         </section>
-        <div className={styles.articleContents}>
+        <div className={parallaxStyles.articleContents}>
           <Grid>
             <Grid.Column>
               <section>
