@@ -2,8 +2,9 @@ import React from 'react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {Meta, StoryFn} from '@storybook/react'
 
-import {SolutionPage} from './SolutionPage'
-import {sharedArgTypes} from '../helpers'
+import {SolutionPage} from '../SolutionPage'
+import {sharedArgTypes} from '../../helpers'
+import {ColorModesEnum} from '../../../../ThemeProvider'
 
 export default {
   title: 'Recipes/Solutions/Solution: Org size',
@@ -44,29 +45,7 @@ export default {
   },
 } as Meta<typeof SolutionPage>
 
-export const Playground: StoryFn<typeof SolutionPage> = args => <SolutionPage {...args} />
-Playground.args = {
-  variant: 'size',
-  logoBarVisible: true,
-  testimonialsVisible: true,
-  faqVisible: true,
-  jtbd1Visible: true,
-  jtbd2Visible: true,
-  jtbd3Visible: true,
-  jtbdBentosVisible: false,
-}
-
-export const Minimum: StoryFn<typeof SolutionPage> = args => <SolutionPage {...args} />
-Minimum.args = {
-  variant: 'size',
-  jtbd1Visible: true,
-  jtbd2Visible: false,
-  jtbd3Visible: false,
-  jtbdBentosVisible: false,
-}
-
-export const Maximum: StoryFn<typeof SolutionPage> = args => <SolutionPage {...args} />
-Maximum.args = {
+const maximumArgs = {
   variant: 'size',
   logoBarVisible: true,
   testimonialsVisible: true,
@@ -74,4 +53,39 @@ Maximum.args = {
   jtbd2Visible: true,
   jtbd3Visible: true,
   jtbdBentosVisible: true,
+}
+
+export const Maximum: StoryFn<typeof SolutionPage> = args => <SolutionPage {...args} />
+Maximum.args = {
+  ...maximumArgs,
+  variant: 'size',
+}
+Maximum.storyName = 'Maximum Light'
+
+export const MaximumDark = Maximum.bind({})
+MaximumDark.args = {
+  ...maximumArgs,
+  variant: 'size',
+  colorMode: ColorModesEnum.DARK,
+}
+
+const minimumArgs = {
+  variant: 'size',
+  jtbd1Visible: true,
+  jtbd2Visible: false,
+  jtbd3Visible: false,
+  jtbdBentosVisible: false,
+}
+export const Minimum: StoryFn<typeof SolutionPage> = args => <SolutionPage {...args} />
+Minimum.args = {
+  ...minimumArgs,
+  variant: 'size',
+}
+Minimum.storyName = 'Minimum Light'
+
+export const MinimumDark = Minimum.bind({})
+MinimumDark.args = {
+  ...minimumArgs,
+  variant: 'size',
+  colorMode: ColorModesEnum.DARK,
 }

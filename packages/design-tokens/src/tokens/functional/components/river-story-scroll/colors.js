@@ -7,6 +7,14 @@ module.exports = {
           dark: 'var(--base-color-scale-white-0)',
         },
       },
+      content: {
+        inactive: {
+          bgColor: {
+            value: 'var(--brand-color-canvas-default)',
+            dark: 'var(--brand-color-canvas-default)',
+          },
+        },
+      },
     },
   },
 }

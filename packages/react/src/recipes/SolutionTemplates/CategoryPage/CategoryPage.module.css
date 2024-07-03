@@ -2,54 +2,63 @@
   --brand-Card-background-default: var(--brand-color-canvas-subtle);
 }
 
+.customHero {
+  --initialOpacity: 0.2;
+}
+
 @keyframes scaleAnimation {
   0% {
-    transform: translateX(-60%) translateY(-10%) scale(0);
+    opacity: var(--initialOpacity);
+    transform: scale(0.99);
   }
   100% {
-    transform: translateX(-60%) translateY(0) scale(1);
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
 .customHero::before,
 .customHero::after {
+  --diameter: 1200px;
+  --radius: 1227px;
+
   position: absolute;
-  top: 0;
+  top: -1125px;
   bottom: 0;
-  left: 70%;
+  left: 45%;
   z-index: -1;
   display: block;
-  width: 1800px;
-  height: 500px;
-  transform: translateX(-60%);
+  width: var(--diameter);
+  height: var(--diameter);
+  transform: scale(0.99);
   transform-origin: center 0;
   content: '';
   z-index: 0;
-  transform: translateY(-10%) translateX(-60%) scale(0);
-  animation: scaleAnimation 4s var(--brand-animation-easing-glide) forwards;
+  filter: blur(200px);
+  animation: scaleAnimation 2s var(--brand-animation-easing-glide) forwards;
   animation-delay: 0.3s;
+  opacity: var(--initialOpacity);
+  border-radius: var(--radius);
+}
+
+.customHero::before {
+  left: 20%;
 }
 
 [data-color-mode='light'] .customHero::before {
-  background: radial-gradient(40% 50% at 40% 27%, var(--base-color-scale-blue-2) 0, rgba(195, 186, 250, 0) 100%);
-
-  opacity: 0.33;
+  background: var(--base-color-scale-blue-2);
 }
 
 [data-color-mode='light'] .customHero::after {
-  background: radial-gradient(40% 50% at 40% 27%, var(--base-color-scale-purple-2) 0, rgba(195, 186, 250, 0) 100%);
-  opacity: 0.5;
+  background: var(--base-color-scale-purple-2);
 }
 
 [data-color-mode='dark'] .customHero::before {
-  background: radial-gradient(40% 50% at 40% 27%, var(--base-color-scale-blue-8) 0, rgba(195, 186, 250, 0) 100%);
-
-  opacity: 0.33;
+  background: var(--base-color-scale-blue-5);
 }
 
 [data-color-mode='dark'] .customHero::after {
-  background: radial-gradient(40% 50% at 40% 27%, var(--base-color-scale-purple-8) 0, rgba(195, 186, 250, 0) 100%);
-  opacity: 0.7;
+  background: var(--base-color-scale-purple-5);
 }
 
 .relative {

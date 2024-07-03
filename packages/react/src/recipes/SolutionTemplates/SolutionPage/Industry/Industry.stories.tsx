@@ -2,8 +2,9 @@ import React from 'react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {Meta, StoryFn} from '@storybook/react'
 
-import {SolutionPage} from './SolutionPage'
-import {sharedArgTypes} from '../helpers'
+import {SolutionPage} from '../SolutionPage'
+import {sharedArgTypes} from '../../helpers'
+import {ColorModesEnum} from '../../../../ThemeProvider'
 
 export default {
   title: 'Recipes/Solutions/Solution: Industry',
@@ -37,8 +38,7 @@ export default {
   },
 } as Meta<typeof SolutionPage>
 
-export const Playground: StoryFn<typeof SolutionPage> = args => <SolutionPage {...args} />
-Playground.args = {
+const maximumArgs = {
   variant: 'industry',
 
   logoBarVisible: true,
@@ -46,20 +46,29 @@ Playground.args = {
   customerStoryVisible: true,
   testimonialsVisible: true,
   faqVisible: true,
+}
+export const Maximum: StoryFn<typeof SolutionPage> = args => <SolutionPage {...args} />
+Maximum.args = {
+  ...maximumArgs,
+  variant: 'industry',
+}
+Maximum.storyName = 'Maximum Light'
+
+export const MaximumDark = Maximum.bind({})
+MaximumDark.args = {
+  ...maximumArgs,
+  variant: 'industry',
+  colorMode: ColorModesEnum.DARK,
 }
 
 export const Minimum: StoryFn<typeof SolutionPage> = args => <SolutionPage {...args} />
 Minimum.args = {
   variant: 'industry',
 }
+Minimum.storyName = 'Minimum Light'
 
-export const Maximum: StoryFn<typeof SolutionPage> = args => <SolutionPage {...args} />
-Maximum.args = {
+export const MinimumDark = Minimum.bind({})
+MinimumDark.args = {
   variant: 'industry',
-
-  logoBarVisible: true,
-  riverVisible: true,
-  customerStoryVisible: true,
-  testimonialsVisible: true,
-  faqVisible: true,
+  colorMode: ColorModesEnum.DARK,
 }
