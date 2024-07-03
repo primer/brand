@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {type HTMLAttributes} from 'react'
 
 import {PlayPauseButton, CCButton, ControlsBar, SeekControl, MuteButton, VolumeControl, FullScreenButton} from '../'
 
@@ -9,7 +9,7 @@ export type ControlsProps = {
   closedCaptionsEnabled: boolean
   setClosedCaptionsEnabled: (closedCaptionsEnabled: boolean) => void
   isSmall?: boolean
-}
+} & HTMLAttributes<HTMLDivElement>
 
 export const Controls = ({
   videoRef,
@@ -18,8 +18,9 @@ export const Controls = ({
   closedCaptionsEnabled,
   setClosedCaptionsEnabled,
   isSmall = false,
+  ...rest
 }: ControlsProps) => (
-  <ControlsBar>
+  <ControlsBar {...rest}>
     <PlayPauseButton videoRef={videoRef} />
     <SeekControl videoRef={videoRef} />
     <CCButton closedCaptionsEnabled={closedCaptionsEnabled} setClosedCaptionsEnabled={setClosedCaptionsEnabled} />

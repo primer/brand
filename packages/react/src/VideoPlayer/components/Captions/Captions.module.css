@@ -1,5 +1,6 @@
 .Captions {
-  width: 90%;
+  max-width: 80ch;
+  padding-inline: var(--base-size-16);
   margin: var(--brand-VideoPlayer-closedCaption-margin);
   display: grid;
   justify-content: center;

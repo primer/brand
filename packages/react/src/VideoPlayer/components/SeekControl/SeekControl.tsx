@@ -1,24 +1,23 @@
-import React, {useState, useEffect, useCallback} from 'react'
+import React, {useState, useEffect, useCallback, type HTMLAttributes} from 'react'
+import clsx from 'clsx'
 
-import {Text} from '../../../Text'
 import {Range} from '../'
 import styles from '../../VideoPlayer.module.css'
+import {Text} from '../../../Text'
 
-const getMinuteSecondTime = (time: number) => {
-  // TODO I think this can be done with browser APIs
-  const minutes = Math.floor(time / 60)
-  const seconds = Math.floor(time - minutes * 60)
-  const x = minutes < 10 ? `0${minutes}` : minutes
-  const y = seconds < 10 ? `0${seconds}` : seconds
+const padTime = (time: number) => time.toString().padStart(2, '0')
+const formatTime = (time: number) => {
+  const minutes = padTime(Math.floor(time / 60))
+  const seconds = padTime(Math.floor(time % 60))
 
-  return `${x}:${y}`
+  return `${minutes}:${seconds}`
 }
 
 type SeekControlProps = {
   videoRef: React.RefObject<HTMLVideoElement>
-}
+} & HTMLAttributes<HTMLDivElement>
 
-export const SeekControl = ({videoRef}: SeekControlProps) => {
+export const SeekControl = ({videoRef, className, ...rest}: SeekControlProps) => {
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
   const seek = useCallback(
@@ -52,11 +51,11 @@ export const SeekControl = ({videoRef}: SeekControlProps) => {
   }, [videoRef])
 
   return (
-    <>
+    <div className={clsx(styles['VideoPlayer__seek'], className)} {...rest}>
       <Range
         type="range"
         min="0"
-        max={duration || 0}
+        max={duration}
         step={0.0001}
         onInput={e => {
           seek(e.currentTarget.valueAsNumber)
@@ -64,15 +63,15 @@ export const SeekControl = ({videoRef}: SeekControlProps) => {
         value={currentTime}
         className={styles.VideoPlayer__progressBar}
         tooltip
-        tooltipFormatter={value => getMinuteSecondTime(value as number)}
+        tooltipFormatter={formatTime}
         name="Seek"
       />
       <div className={styles.VideoPlayer__progressTime}>
         <Text as="p" className={styles.VideoPlayer__controlTextColor}>
-          {<span>{getMinuteSecondTime(currentTime || 0) || '00:00'}</span>}
-          {<span className={styles.VideoPlayer__totalTime}> / {getMinuteSecondTime(duration || 0) || '00:00'}</span>}
+          {formatTime(currentTime)}
+          {<span className={styles.VideoPlayer__totalTime}> / {formatTime(duration)}</span>}
         </Text>
       </div>
-    </>
+    </div>
   )
 }

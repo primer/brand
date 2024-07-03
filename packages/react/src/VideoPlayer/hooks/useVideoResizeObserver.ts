@@ -1,5 +1,6 @@
 import {type RefObject, useEffect, useState} from 'react'
 
+// TODO Once Safari 18 is released we can drop this in favour of container queries
 export const useVideoResizeObserver = ({
   videoWrapperRef,
   className,

@@ -1,6 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react'
 
 import {Range} from '../'
+import styles from './VolumeControl.module.css'
 
 type VolumeControlProps = {videoRef: React.RefObject<HTMLVideoElement>}
 
@@ -33,6 +34,16 @@ export const VolumeControl = ({videoRef}: VolumeControlProps) => {
   )
 
   return (
-    <Range type="range" min="0" max={1} step={0.001} onInput={onInput} value={volume} a11yStep={0.1} name="Volume" />
+    <Range
+      className={styles.VolumeControl}
+      type="range"
+      min="0"
+      max={1}
+      step={0.001}
+      onInput={onInput}
+      value={volume}
+      a11yStep={0.1}
+      name="Volume"
+    />
   )
 }

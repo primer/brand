@@ -118,10 +118,9 @@
 }
 
 .VideoPlayer__controlsBar {
-  display: grid;
-  grid-gap: var(--base-size-16);
+  display: flex;
+  gap: var(--base-size-16);
   align-items: center;
-  grid-template-columns: auto 2fr auto auto auto auto auto;
   opacity: 0;
   border-bottom-right-radius: var(--brand-borderRadius-medium);
   border-bottom-left-radius: var(--brand-borderRadius-medium);
@@ -130,10 +129,6 @@
   background: var(--brand-videoPlayer-controls-bgColor);
   padding: var(--base-size-16) var(--base-size-24);
   pointer-events: all;
-}
-
-.VideoPlayer__container--small .VideoPlayer__controlsBar {
-  grid-template-columns: auto 2fr auto auto auto auto;
 }
 
 .VideoPlayer__controls:focus,
@@ -189,13 +184,15 @@
   opacity: 1;
 }
 
-.VideoPlayer__progressTime {
-  width: 100%;
-  color: var(--brand-videoPlayer-controls-fgColor);
+.VideoPlayer__seek {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--base-size-16);
 }
 
-.VideoPlayer__totalTime {
-  display: inline-block;
+.VideoPlayer__progressTime {
+  color: var(--brand-videoPlayer-controls-fgColor);
 }
 
 .VideoPlayer__container--small .VideoPlayer__totalTime {
@@ -203,7 +200,7 @@
 }
 
 .VideoPlayer__progressBar {
-  width: 100%;
+  flex: 1;
   height: 6px;
 }
 
@@ -238,6 +235,7 @@
   background-color: var(--brand-videoPlayer-range-bgColor-default);
   border-radius: var(--brand-VideoPlayer-range-borderRadius);
 }
+
 .VideoPlayer__range:hover .VideoPlayer__tooltip {
   opacity: 1;
 }
@@ -316,6 +314,7 @@
 
 .VideoPlayer__tooltip {
   position: absolute;
+  left: 50%;
   bottom: 100%;
   z-index: 2;
   width: 10px;
@@ -323,9 +322,8 @@
   margin-bottom: var(--base-size-16);
   pointer-events: none;
   opacity: 0;
-  transform: translate3d(0%, 50%, 0);
-  transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
-    transform var(--brand-animation-duration-default) var(--brand-animation-easing-default);
+  transform: translate(-50%, 50%);
+  transition: transform var(--brand-animation-duration-default) var(--brand-animation-easing-default);
 }
 
 .VideoPlayer__tooltip::before {
@@ -358,8 +356,4 @@
 
 .VideoPlayer__controlTextColor {
   color: var(--base-color-scale-white-0);
-}
-
-.VideoPlayer__shiftTooltipRight .VideoPlayer__tooltip {
-  transform: translateX(10px);
 }

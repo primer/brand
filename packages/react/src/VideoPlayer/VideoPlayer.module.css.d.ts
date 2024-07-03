@@ -8,10 +8,11 @@ declare const styles: {
   readonly "VideoPlayer__overlays": string;
   readonly "VideoPlayer__controls": string;
   readonly "VideoPlayer__controlsBar": string;
-  readonly "VideoPlayer__container--small": string;
   readonly "VideoPlayer__iconControl": string;
   readonly "VideoPlayer__tooltip": string;
+  readonly "VideoPlayer__seek": string;
   readonly "VideoPlayer__progressTime": string;
+  readonly "VideoPlayer__container--small": string;
   readonly "VideoPlayer__totalTime": string;
   readonly "VideoPlayer__progressBar": string;
   readonly "VideoPlayer__closedCaption": string;
@@ -23,7 +24,6 @@ declare const styles: {
   readonly "VideoPlayer__tooltipContent": string;
   readonly "VideoPlayer__tooltipText": string;
   readonly "VideoPlayer__controlTextColor": string;
-  readonly "VideoPlayer__shiftTooltipRight": string;
 };
 export = styles;
 
