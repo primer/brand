@@ -86,50 +86,53 @@ export function SolutionPortal({
       }}
       {...args}
     >
-      <SubdomainNavBar title="" fixed={false}>
-        <SubdomainNavBar.SecondaryAction
-          aria-label={isLightMode ? 'Switch to dark mode' : 'Switch to light mode'}
-          href="#"
-          onClick={handleMode}
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          variant="invisible"
-        >
-          {isLightMode ? <MoonIcon size={24} /> : <SunIcon size={24} />}
-        </SubdomainNavBar.SecondaryAction>
-      </SubdomainNavBar>
+      <ThemeProvider colorMode="dark">
+        <SubdomainNavBar title="" fixed={false}>
+          <SubdomainNavBar.SecondaryAction
+            aria-label={isLightMode ? 'Switch to dark mode' : 'Switch to light mode'}
+            href="#"
+            onClick={handleMode}
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            variant="invisible"
+          >
+            {isLightMode ? <MoonIcon size={24} /> : <SunIcon size={24} />}
+          </SubdomainNavBar.SecondaryAction>
+        </SubdomainNavBar>
+      </ThemeProvider>
       <AnimationProvider runOnce visibilityOptions={0.2}>
-        <section>
-          <header className={parallaxStyles.hero}>
-            <div className={parallaxStyles.parallax}>
-              <div className={parallaxStyles.background}>
-                <Image
-                  className={parallaxStyles.heroImage}
-                  animate="fade-in"
-                  alt="placeholder image"
-                  src={isLightMode ? lightHeroBg : darkHeroBg}
-                />
-                <div className={parallaxStyles.heroImageOverlay}></div>
-              </div>
-              <Grid enableOverlay={enableGridOverlay} className={parallaxStyles.foreground}>
-                <Grid.Column>
-                  <Hero align={args.heroAlign ? 'center' : 'start'}>
-                    {args.heroLabel && <Hero.Label>{args.heroLabel}</Hero.Label>}
-                    {args.heroTitle && <Hero.Heading>{args.heroTitle}</Hero.Heading>}
-                    {args.heroDescription && <Hero.Description>{args.heroDescription}</Hero.Description>}
-                    {args.heroCtaTextPrimary && (
-                      <Hero.PrimaryAction href="#">{args.heroCtaTextPrimary}</Hero.PrimaryAction>
-                    )}
-                    {args.heroCtaTextSecondary && (
-                      <Hero.SecondaryAction href="#">{args.heroCtaTextSecondary}</Hero.SecondaryAction>
-                    )}
-                  </Hero>
-                </Grid.Column>
-              </Grid>
-            </div>
-          </header>
-        </section>
-
+        <ThemeProvider colorMode="dark">
+          <section>
+            <header className={parallaxStyles.hero}>
+              <Box className={parallaxStyles.parallax} paddingBlockStart={{regular: 48}}>
+                <div className={parallaxStyles.background}>
+                  <Image
+                    className={parallaxStyles.heroImage}
+                    animate="fade-in"
+                    alt="placeholder image"
+                    src={darkHeroBg}
+                  />
+                  <div className={parallaxStyles.heroImageOverlay}></div>
+                </div>
+                <Grid enableOverlay={enableGridOverlay} className={parallaxStyles.foreground}>
+                  <Grid.Column>
+                    <Hero align={args.heroAlign ? 'center' : 'start'}>
+                      {args.heroLabel && <Hero.Label>{args.heroLabel}</Hero.Label>}
+                      {args.heroTitle && <Hero.Heading>{args.heroTitle}</Hero.Heading>}
+                      {args.heroDescription && <Hero.Description>{args.heroDescription}</Hero.Description>}
+                      {args.heroCtaTextPrimary && (
+                        <Hero.PrimaryAction href="#">{args.heroCtaTextPrimary}</Hero.PrimaryAction>
+                      )}
+                      {args.heroCtaTextSecondary && (
+                        <Hero.SecondaryAction href="#">{args.heroCtaTextSecondary}</Hero.SecondaryAction>
+                      )}
+                    </Hero>
+                  </Grid.Column>
+                </Grid>
+              </Box>
+            </header>
+          </section>
+        </ThemeProvider>
         <div className={parallaxStyles.articleContents}>
           <section className={styles.verticalOffset}>
             <Box

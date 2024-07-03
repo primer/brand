@@ -9,6 +9,7 @@ export default {
   title: 'Recipes/Solutions/Portal',
   component: SolutionPortal,
   args: {
+    heroAlign: 'center',
     heroLabel: 'Label',
     heroTitle: 'Solutions for lorem ipsum dolor sit amet',
     heroDescription: 'Line lengths for body text are usually between 60 to 130 characters.',
