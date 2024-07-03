@@ -117,58 +117,10 @@ export function SolutionPage({
         </SubdomainNavBar.SecondaryAction>
       </SubdomainNavBar>
       <AnimationProvider runOnce visibilityOptions={0.2}>
-        {(variant === 'industry' || variant === 'use-case') && (
-          <Box className={styles.hideHorizontalOverflow}>
-            <Grid enableOverlay={enableGridOverlay} className={clsx({[styles.heroVideoGlow]: args.heroVideo})}>
-              <Grid.Column>
-                <Box marginBlockStart={20}>
-                  <Breadcrumbs>
-                    <Breadcrumbs.Item href="/">Solutions</Breadcrumbs.Item>
-                    <Breadcrumbs.Item href="/copilot">By {variant}</Breadcrumbs.Item>
-                    <Breadcrumbs.Item href="/copilot/chat" selected>
-                      {variant}
-                    </Breadcrumbs.Item>
-                  </Breadcrumbs>
-                </Box>
-                <Hero
-                  className={styles.relative}
-                  align={args.heroAlign ? 'center' : 'start'}
-                  trailingComponent={args.heroVideo ? HeroVideo : undefined}
-                >
-                  {args.heroLabel && <Hero.Label>{args.heroLabel}</Hero.Label>}
-                  {args.heroTitle && <Hero.Heading>{args.heroTitle}</Hero.Heading>}
-                  {args.heroDescription && <Hero.Description>{args.heroDescription}</Hero.Description>}
-                  {args.heroCtaTextPrimary && (
-                    <Hero.PrimaryAction href="#">{args.heroCtaTextPrimary}</Hero.PrimaryAction>
-                  )}
-                  {args.heroCtaTextSecondary && (
-                    <Hero.SecondaryAction href="#">{args.heroCtaTextSecondary}</Hero.SecondaryAction>
-                  )}
-                  {args.heroImage && (
-                    <Hero.Image
-                      position="block-end"
-                      src={ciCdRenderImage}
-                      alt="placeholder, blank area with an off-white background color"
-                    />
-                  )}
-                </Hero>
-              </Grid.Column>
-            </Grid>
-          </Box>
-        )}
-        {variant === 'size' && (
-          <header className={styles.hero}>
-            <div className={styles.parallax}>
-              <div className={styles.background}>
-                <Image
-                  className={styles.heroImage}
-                  animate="fade-in"
-                  alt="placeholder image"
-                  src={isLightMode ? lightHeroBg : darkHeroBg}
-                />
-                <div className={styles.heroImageOverlay}></div>
-              </div>
-              <Grid enableOverlay={enableGridOverlay} className={styles.foreground}>
+        <section>
+          {(variant === 'industry' || variant === 'use-case') && (
+            <Box className={styles.hideHorizontalOverflow}>
+              <Grid enableOverlay={enableGridOverlay} className={clsx({[styles.heroVideoGlow]: args.heroVideo})}>
                 <Grid.Column>
                   <Box marginBlockStart={20}>
                     <Breadcrumbs>
@@ -203,9 +155,59 @@ export function SolutionPage({
                   </Hero>
                 </Grid.Column>
               </Grid>
-            </div>
-          </header>
-        )}
+            </Box>
+          )}
+          {variant === 'size' && (
+            <header className={styles.hero}>
+              <div className={styles.parallax}>
+                <div className={styles.background}>
+                  <Image
+                    className={styles.heroImage}
+                    animate="fade-in"
+                    alt="placeholder image"
+                    src={isLightMode ? lightHeroBg : darkHeroBg}
+                  />
+                  <div className={styles.heroImageOverlay}></div>
+                </div>
+                <Grid enableOverlay={enableGridOverlay} className={styles.foreground}>
+                  <Grid.Column>
+                    <Box marginBlockStart={20}>
+                      <Breadcrumbs>
+                        <Breadcrumbs.Item href="/">Solutions</Breadcrumbs.Item>
+                        <Breadcrumbs.Item href="/copilot">By {variant}</Breadcrumbs.Item>
+                        <Breadcrumbs.Item href="/copilot/chat" selected>
+                          {variant}
+                        </Breadcrumbs.Item>
+                      </Breadcrumbs>
+                    </Box>
+                    <Hero
+                      className={styles.relative}
+                      align={args.heroAlign ? 'center' : 'start'}
+                      trailingComponent={args.heroVideo ? HeroVideo : undefined}
+                    >
+                      {args.heroLabel && <Hero.Label>{args.heroLabel}</Hero.Label>}
+                      {args.heroTitle && <Hero.Heading>{args.heroTitle}</Hero.Heading>}
+                      {args.heroDescription && <Hero.Description>{args.heroDescription}</Hero.Description>}
+                      {args.heroCtaTextPrimary && (
+                        <Hero.PrimaryAction href="#">{args.heroCtaTextPrimary}</Hero.PrimaryAction>
+                      )}
+                      {args.heroCtaTextSecondary && (
+                        <Hero.SecondaryAction href="#">{args.heroCtaTextSecondary}</Hero.SecondaryAction>
+                      )}
+                      {args.heroImage && (
+                        <Hero.Image
+                          position="block-end"
+                          src={ciCdRenderImage}
+                          alt="placeholder, blank area with an off-white background color"
+                        />
+                      )}
+                    </Hero>
+                  </Grid.Column>
+                </Grid>
+              </div>
+            </header>
+          )}
+        </section>
         <div className={styles.articleContents}>
           <Grid>
             <Grid.Column>
