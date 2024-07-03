@@ -18,7 +18,6 @@ import {
   SubdomainNavBar,
 } from '../../..'
 
-import lightHeroBg from '../../../fixtures/images/background-light-collaboration.webp'
 import darkHeroBg from '../../../fixtures/images/background-dark-collaboration.webp'
 import darkPlaceholderImage from '../../../fixtures/images/enterprise-stack.png'
 
