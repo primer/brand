@@ -16,9 +16,6 @@ declare const styles: {
   readonly "tracker-outside-viewport": string;
   readonly "RiverStoryScroll__visual-scroll-responder": string;
   readonly "tracker-in-viewport": string;
-  readonly "video-controls": string;
-  readonly "video-controls-ended": string;
-  readonly "video-control": string;
   readonly "RiverStoryScroll__content-stack": string;
   readonly "RiverStoryScroll__pagination": string;
   readonly "RiverStoryScroll__pagination-dot": string;

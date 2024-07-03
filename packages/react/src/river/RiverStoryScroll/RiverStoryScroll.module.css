@@ -52,8 +52,6 @@
 
 @media screen and (max-width: 768px) {
   .RiverStoryScroll {
-    color-scheme: dark;
-
     @media (max-height: 720px) {
       --visualMaxHeight: 55vh;
     }
@@ -183,7 +181,7 @@
     }
 
     .RiverStoryScroll__visual--below .story-scroll-text {
-      margin-top: 40px;
+      margin-top: var(--base-size-40);
     }
 
     .tracker-outside-viewport {
@@ -252,6 +250,9 @@
       position: relative;
     }
 
+    /* 
+    TODO: Re-enable these at a later date
+    
     .video-controls {
       --distanceFromEdge: 12px;
       position: absolute;
@@ -288,7 +289,7 @@
     .video-control:hover,
     .video-control:focus {
       background-color: rgba(0, 0, 0, 0.35);
-    }
+    } */
 
     .RiverStoryScroll__content-stack {
       position: sticky;
@@ -307,7 +308,7 @@
       flex-direction: column;
       gap: var(--base-size-4);
       position: absolute;
-      left: calc((99vw - 100%) / 2 * -1 + min(10px, 2.8vw));
+      left: calc((100vw - 100%) / 2 * -1 + min(10px, 2.8vw));
       right: 0;
       margin: auto;
       height: var(--visualHeight);

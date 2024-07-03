@@ -10,14 +10,14 @@ test.describe('Visual Comparison: CategoryPage', () => {
   test('CategoryPage / Light', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=recipes-solutions-categorypage--light&viewMode=story')
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(3000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
   test('CategoryPage / Dark', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=recipes-solutions-categorypage--dark&viewMode=story')
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(3000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 })

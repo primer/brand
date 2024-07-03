@@ -80,6 +80,12 @@
     'recipes-seo-article-page--productivity-theme': 5000, // for the animation
     'recipes-seo-article-page--light-hero-image': 5000, // for the animation
     'recipes-seo-article-page--dark-hero-image': 5000, // for the animation
+    'recipes-solutions-categorypage--light': 3000, // for the animation
+    'recipes-solutions-categorypage--dark': 3000, // for the animation
+    'recipes-solutions-solution-industry--maximum': 3000, // for the animation
+    'recipes-solutions-solution-industry--maximum-dark': 3000, // for the animation
+    'recipes-solutions-solution-industry--minimum': 3000, // for the animation
+    'recipes-solutions-solution-industry--minimum-dark': 3000, // for the animation
   }
 
   /**
