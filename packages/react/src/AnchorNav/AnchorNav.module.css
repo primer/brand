@@ -81,7 +81,6 @@
   position: relative;
   z-index: 91; /* must be higher than subdomain nav bar */
   max-height: calc(100vh - var(--base-size-12) * 2);
-  overflow-y: auto;
 }
 
 .AnchorNav--with-default-background-color .AnchorNav-inner-container {
@@ -102,6 +101,7 @@
     display: none;
     padding-left: var(--base-size-16);
   }
+
   .AnchorNav--expanded .AnchorNav-link-container {
     display: flex;
     flex-direction: column;
@@ -370,12 +370,17 @@
 
   .AnchorNav__actionsContainer {
     flex-direction: column;
+    padding: 0 var(--base-size-8) var(--base-size-8);
   }
 
   .AnchorNav--expanded .AnchorNav-action {
     display: flex;
     width: 100%;
     margin-top: var(--base-size-8);
+  }
+
+  .AnchorNav-inner-container {
+    overflow-y: auto;
   }
 }
 
