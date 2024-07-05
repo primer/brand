@@ -7,7 +7,7 @@ import {AccessibilityLabel, StatusLabel} from '@primer/gatsby-theme-doctocat'
 import {Box as PRCBox, Heading, Label, Text} from '@primer/react'
 import React from 'react'
 import {BaseLayout} from './base-layout'
-import {ComponentPageNav} from '../components/component-page-nav'
+import {TabbedPageNav} from '../components/tabbed-page-nav'
 
 /** Convert a string to sentence case. */
 function sentenceCase(str: string) {
@@ -16,12 +16,16 @@ function sentenceCase(str: string) {
   })
 }
 
-export default function ComponentLayout({pageContext, children, path}) {
-  const {title, description, reactId, status, a11yReviewed, source, storybook} =
-    pageContext.frontmatter
+export default function MultiTabLayout(props) {
+  const {pageContext, children, path} = props
+  const {title, description, reactId, status, a11yReviewed, source, storybook } =
+  pageContext.frontmatter
   const pathParts = path.split('/')
-  const isReactPage = pathParts[pathParts.length - 1] === 'react'
-  const basePath = isReactPage ? pathParts.slice(0, -1).join('/') : path
+  
+  const tableOfContents = pageContext.tableOfContents.items
+  const tabs = tableOfContents
+  const [currentTab, setCurrentTab] = React.useState(tabs[0].title)
+  const tabTOC = tabs.find((tab) => tab.title === currentTab)?.items
 
   return (
     <BaseLayout title={title} description={description}>
@@ -35,11 +39,13 @@ export default function ComponentLayout({pageContext, children, path}) {
           </Text>
         ) : null}
         <PRCBox sx={{mb: 4}}>
-          <ComponentPageNav
-            basePath={basePath}
-            current={isReactPage ? 'react' : 'overview'}
+          <TabbedPageNav
+            items={tabs}
+            currentTab={currentTab}
+            setCurrentTab={setCurrentTab}
           />
         </PRCBox>
+
         <PRCBox
           sx={{
             display: 'flex',
@@ -58,7 +64,7 @@ export default function ComponentLayout({pageContext, children, path}) {
               display: ['none', null, 'block'],
             }}
           >
-            {pageContext.tableOfContents.items ? (
+            {tabTOC ? (
               <>
                 <Heading
                   as="h3"
@@ -72,15 +78,54 @@ export default function ComponentLayout({pageContext, children, path}) {
                 >
                   On this page
                 </Heading>
-                <TableOfContents
-                  aria-labelledby="toc-heading"
-                  items={pageContext.tableOfContents.items}
-                />
+                <TableOfContents aria-labelledby="toc-heading" items={tabTOC} />
               </>
             ) : null}
           </PRCBox>
           <PRCBox sx={{minWidth: 0}}>
-            {isReactPage && (
+            {/* Narrow table of contents */}
+            {tabTOC ? (
+              <PRCBox
+                sx={{
+                  display: ['block', null, 'none'],
+                  mb: 5,
+                  borderColor: 'border.muted',
+                  bg: 'canvas.subtle',
+                  borderWidth: '1px',
+                  borderStyle: 'solid',
+                  borderRadius: 2,
+                }}
+              >
+                <PRCBox sx={{px: 3, py: 2}}>
+                  <PRCBox
+                    sx={{
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      display: 'flex',
+                    }}
+                  >
+                    <Heading
+                      as="h3"
+                      sx={{fontSize: 1, fontWeight: 'bold'}}
+                      id="toc-heading-narrow"
+                    >
+                      On this page
+                    </Heading>
+                  </PRCBox>
+                </PRCBox>
+                <PRCBox
+                  sx={{borderTop: '1px solid', borderColor: 'border.muted'}}
+                >
+                  <TableOfContents
+                    aria-labelledby="toc-heading-narrow"
+                    items={tabTOC}
+                  />
+                </PRCBox>
+              </PRCBox>
+            ) : null}
+
+            {currentTab === 'Overview' && (
               <PRCBox
                 sx={{
                   display: 'flex',
@@ -137,47 +182,7 @@ export default function ComponentLayout({pageContext, children, path}) {
                 </PRCBox>
               </PRCBox>
             )}
-            {/* Narrow table of contents */}
-            {pageContext.tableOfContents.items ? (
-              <PRCBox
-                sx={{
-                  display: ['block', null, 'none'],
-                  mb: 5,
-                  borderColor: 'border.muted',
-                  bg: 'canvas.subtle',
-                  borderWidth: '1px',
-                  borderStyle: 'solid',
-                  borderRadius: 2,
-                }}
-              >
-                <PRCBox sx={{px: 3, py: 2}}>
-                  <PRCBox
-                    sx={{
-                      flexDirection: 'row',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      display: 'flex',
-                    }}
-                  >
-                    <Heading
-                      as="h3"
-                      sx={{fontSize: 1, fontWeight: 'bold'}}
-                      id="toc-heading-narrow"
-                    >
-                      On this page
-                    </Heading>
-                  </PRCBox>
-                </PRCBox>
-                <PRCBox
-                  sx={{borderTop: '1px solid', borderColor: 'border.muted'}}
-                >
-                  <TableOfContents
-                    aria-labelledby="toc-heading-narrow"
-                    items={pageContext.tableOfContents.items}
-                  />
-                </PRCBox>
-              </PRCBox>
-            ) : null}
+
             <PRCBox
               sx={{
                 '& > :first-child': {
