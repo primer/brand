@@ -5,6 +5,8 @@ declare const styles: {
   readonly "portalCustomerCards": string;
   readonly "gitLinesBg": string;
   readonly "ctaBanner": string;
+  readonly "fullHeight": string;
+  readonly "customerCards": string;
 };
 export = styles;
 

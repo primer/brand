@@ -21,12 +21,12 @@ import {
 import darkHeroBg from '../../../fixtures/images/background-dark-collaboration.webp'
 import darkPlaceholderImage from '../../../fixtures/images/enterprise-stack.png'
 
-import styles from './SolutionPortal.module.css'
+import styles from './SolutionsOverview.module.css'
 import parallaxStyles from '../parallax.module.css'
 
 import {ColorModesEnum, ThemeProvider} from '../../../ThemeProvider'
 
-type SolutionPortalProps = {
+type SolutionsOverviewProps = {
   variant: 'size' | 'industry' | 'use-case'
   gridOverlay?: boolean
   colorMode?: ColorModesEnum.LIGHT | ColorModesEnum.DARK
@@ -42,12 +42,12 @@ type SolutionPortalProps = {
   [key: string]: unknown
 }
 
-export function SolutionPortal({
+export function SolutionsOverview({
   variant,
   gridOverlay = false,
   colorMode = ColorModesEnum.LIGHT,
   ...args
-}: SolutionPortalProps) {
+}: SolutionsOverviewProps) {
   const [enableGridOverlay, setGridOverlay] = React.useState(gridOverlay)
   const [isLightMode, setIsLightMode] = React.useState(colorMode === ColorModesEnum.LIGHT)
   const selectedColorMode = isLightMode ? ColorModesEnum.LIGHT : ColorModesEnum.DARK
@@ -152,14 +152,14 @@ export function SolutionPortal({
 
                   <Box
                     marginBlockEnd={{
-                      narrow: 16,
-                      regular: 16,
+                      narrow: 32,
+                      regular: 32,
                       wide: 48,
                     }}
                   >
                     <Grid enableOverlay={enableGridOverlay}>
-                      <Grid.Column span={{medium: 4}}>
-                        <Box animate="fade-in">
+                      <Grid.Column span={{large: 4}}>
+                        <Box animate="fade-in" className={styles.fullHeight}>
                           <Card href="#" hasBorder fullWidth>
                             <Card.Icon icon={<StackIcon />} color="indigo" hasBackground />
                             <Card.Heading>Teams</Card.Heading>
@@ -171,8 +171,8 @@ export function SolutionPortal({
                           </Card>
                         </Box>
                       </Grid.Column>
-                      <Grid.Column span={{medium: 4}}>
-                        <Box animate="fade-in">
+                      <Grid.Column span={{large: 4}}>
+                        <Box animate="fade-in" className={styles.fullHeight}>
                           <Card href="#" hasBorder fullWidth>
                             <Card.Icon icon={<StarIcon />} color="indigo" hasBackground />
                             <Card.Heading>Startups</Card.Heading>
@@ -184,8 +184,8 @@ export function SolutionPortal({
                           </Card>
                         </Box>
                       </Grid.Column>
-                      <Grid.Column span={{medium: 4}}>
-                        <Box animate="fade-in">
+                      <Grid.Column span={{large: 4}}>
+                        <Box animate="fade-in" className={styles.fullHeight}>
                           <Card href="#" hasBorder fullWidth>
                             <Card.Icon icon={<HeartIcon />} color="indigo" hasBackground />
                             <Card.Heading>Non-Profit</Card.Heading>
@@ -202,17 +202,23 @@ export function SolutionPortal({
                     <Box paddingBlockEnd={128}>
                       <Bento>
                         <Bento.Item
-                          rowSpan={5}
                           flow={{
                             xsmall: 'row',
-                            small: 'row',
+                            small: 'column',
                             medium: 'column',
                             large: 'column',
                             xlarge: 'column',
                             xxlarge: 'column',
                           }}
+                          rowSpan={4}
                         >
-                          <Bento.Content leadingVisual={<GlobeIcon />}>
+                          <Bento.Content
+                            padding={{
+                              xsmall: 'normal',
+                              medium: 'spacious',
+                            }}
+                            leadingVisual={<GlobeIcon />}
+                          >
                             <Bento.Heading size="4">
                               The enterprise-ready platform that developers know and love.
                             </Bento.Heading>
@@ -259,7 +265,7 @@ export function SolutionPortal({
                   >
                     <Grid enableOverlay={enableGridOverlay}>
                       <Grid.Column span={{medium: 4}}>
-                        <Box animate="fade-in">
+                        <Box animate="fade-in" className={styles.fullHeight}>
                           <Card href="#" fullWidth>
                             <Card.Icon icon={<StackIcon />} color="indigo" hasBackground />
                             <Card.Heading>DevSecOps</Card.Heading>
@@ -271,7 +277,7 @@ export function SolutionPortal({
                         </Box>
                       </Grid.Column>
                       <Grid.Column span={{medium: 4}}>
-                        <Box animate="fade-in">
+                        <Box animate="fade-in" className={styles.fullHeight}>
                           <Card href="#" fullWidth>
                             <Card.Icon icon={<StarIcon />} color="indigo" hasBackground />
                             <Card.Heading>DevOps</Card.Heading>
@@ -283,7 +289,7 @@ export function SolutionPortal({
                         </Box>
                       </Grid.Column>
                       <Grid.Column span={{medium: 4}}>
-                        <Box animate="fade-in">
+                        <Box animate="fade-in" className={styles.fullHeight}>
                           <Card href="#" fullWidth>
                             <Card.Icon icon={<HeartIcon />} color="indigo" hasBackground />
                             <Card.Heading>CI/CD</Card.Heading>
@@ -325,7 +331,7 @@ export function SolutionPortal({
                   >
                     <Grid enableOverlay={enableGridOverlay}>
                       <Grid.Column span={{medium: 4}}>
-                        <Box animate="fade-in">
+                        <Box animate="fade-in" className={styles.fullHeight}>
                           <Card href="#" fullWidth hasBorder>
                             <Card.Icon icon={<StackIcon />} color="indigo" hasBackground />
                             <Card.Heading>DevSecOps</Card.Heading>
@@ -337,7 +343,7 @@ export function SolutionPortal({
                         </Box>
                       </Grid.Column>
                       <Grid.Column span={{medium: 4}}>
-                        <Box animate="fade-in">
+                        <Box animate="fade-in" className={styles.fullHeight}>
                           <Card href="#" fullWidth hasBorder>
                             <Card.Icon icon={<StarIcon />} color="indigo" hasBackground />
                             <Card.Heading>DevOps</Card.Heading>
@@ -349,7 +355,7 @@ export function SolutionPortal({
                         </Box>
                       </Grid.Column>
                       <Grid.Column span={{medium: 4}}>
-                        <Box animate="fade-in">
+                        <Box animate="fade-in" className={styles.fullHeight}>
                           <Card href="#" fullWidth hasBorder>
                             <Card.Icon icon={<HeartIcon />} color="indigo" hasBackground />
                             <Card.Heading>CI/CD</Card.Heading>
@@ -374,7 +380,7 @@ export function SolutionPortal({
                         wide: 128,
                       }}
                     >
-                      <Grid enableOverlay={enableGridOverlay}>
+                      <Grid className={styles.customerCards} enableOverlay={enableGridOverlay}>
                         <Grid.Column span={{medium: 4}}>
                           <Box>
                             <Card href="#" fullWidth variant="minimal">
@@ -429,8 +435,8 @@ export function SolutionPortal({
             <ThemeProvider colorMode="dark">
               <Box
                 backgroundColor="default"
-                paddingBlockStart={96}
-                paddingBlockEnd={112}
+                paddingBlockStart={{narrow: 64, regular: 96}}
+                paddingBlockEnd={{narrow: 64, regular: 112}}
                 borderRadius="xlarge"
                 className={styles.noBottomRadius}
               >

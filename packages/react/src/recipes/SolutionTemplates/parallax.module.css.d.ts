@@ -3,6 +3,7 @@ declare const styles: {
   readonly "parallax": string;
   readonly "background": string;
   readonly "foreground": string;
+  readonly "centeredHero": string;
   readonly "heroImage": string;
   readonly "heroImageOverlay": string;
   readonly "lightHero": string;

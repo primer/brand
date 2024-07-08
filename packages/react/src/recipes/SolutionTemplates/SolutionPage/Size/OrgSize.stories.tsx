@@ -11,7 +11,6 @@ export default {
   component: SolutionPage,
   args: {
     variant: 'size',
-    heroLabel: 'Teams',
     heroTitle: 'Build like the best teams on the planet',
     heroDescription:
       'With CI/CD, Dependabot, and the world’s largest developer community, GitHub gives your team everything they need to ship better software faster.',

@@ -5,10 +5,16 @@
 
 .hero {
   --parallax-start-spacing: 74px;
-  --hero-height: 90vh;
+  --hero-height: 110vh;
 
   position: relative;
   height: calc(var(--hero-height) - var(--parallax-start-spacing));
+}
+
+@media screen and (min-height: 600px) {
+  .hero {
+    --hero-height: 100vh;
+  }
 }
 
 @media screen and (min-height: 700px) {
@@ -29,6 +35,12 @@
   }
 }
 
+@media screen and (min-height: 1280px) and (min-height: 1000px) {
+  .hero {
+    --hero-height: 60vh;
+  }
+}
+
 .parallax {
   position: absolute;
   top: calc(-1 * var(--parallax-start-spacing));
@@ -40,7 +52,7 @@
 .background,
 .foreground {
   width: 100%;
-  height: 100%;
+  height: 100vh;
 
   animation-fill-mode: forwards;
   animation-timing-function: linear;
@@ -54,6 +66,12 @@
 
 .foreground {
   position: relative;
+}
+
+.centeredHero {
+  display: flex;
+  height: var(--hero-height);
+  justify-content: center;
 }
 
 .heroImage {

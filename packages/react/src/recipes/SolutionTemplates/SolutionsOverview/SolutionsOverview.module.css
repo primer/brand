@@ -24,3 +24,12 @@
 .ctaBanner {
   --brand-CTABanner-bgColor: var(--brand-color-canvas-subtle);
 }
+
+/* In dotcom, use h-full */
+.fullHeight {
+  height: 100%;
+}
+
+.customerCards {
+  --brand-Grid-spacing-row: var(--base-size-32);
+}

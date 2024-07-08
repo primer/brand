@@ -127,13 +127,10 @@ export function SolutionPage({
                     <Breadcrumbs>
                       <Breadcrumbs.Item href="/">Solutions</Breadcrumbs.Item>
                       <Breadcrumbs.Item href="/copilot">By {variant}</Breadcrumbs.Item>
-                      <Breadcrumbs.Item href="/copilot/chat" selected>
-                        {variant}
-                      </Breadcrumbs.Item>
                     </Breadcrumbs>
                   </Box>
                   <Hero
-                    className={styles.relative}
+                    className={clsx(styles.relative)}
                     align={args.heroAlign ? 'center' : 'start'}
                     trailingComponent={args.heroVideo ? HeroVideo : undefined}
                   >
@@ -182,7 +179,7 @@ export function SolutionPage({
                       </Breadcrumbs>
                     </Box>
                     <Hero
-                      className={styles.relative}
+                      className={clsx(styles.relative, parallaxStyles.centeredHero)}
                       align={args.heroAlign ? 'center' : 'start'}
                       trailingComponent={args.heroVideo ? HeroVideo : undefined}
                     >
@@ -293,7 +290,7 @@ export function SolutionPage({
               {args.logoBarVisible && (
                 <AnimationProvider visibilityOptions={0.5}>
                   <Box paddingBlockEnd={80} borderBlockEndWidth={'thin'} borderColor={'muted'} borderStyle={'solid'}>
-                    <LogoSuite hasDivider={false}>
+                    <LogoSuite hasDivider={false} align="justify">
                       <LogoSuite.Logobar>
                         <Box animate="slide-in-right">
                           <Image alt="Uber" src={uberLogo} />
@@ -839,7 +836,7 @@ function StoryScrollExample({align, bentoVisible}) {
                   </Bento.Heading>
                   <Link href="#">Call to action</Link>
                 </Bento.Content>
-                <Bento.Visual position="50% 100%">
+                <Bento.Visual position="50% 100%" padding="normal">
                   <img
                     alt="placeholder, blank area with an gray background color"
                     src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"

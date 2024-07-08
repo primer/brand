@@ -1,8 +1,15 @@
+.hideHorizontalOverflow {
+  position: relative;
+  overflow-x: hidden;
+}
+
 .subtleCards {
   --brand-Card-background-default: var(--brand-color-canvas-subtle);
 }
 
 .customHero {
+  overflow-x: hidden;
+  --brand-Hero-regular-padding: var(--base-size-112) 0 var(--base-size-96);
   --initialOpacity: 0.2;
 }
 
@@ -68,4 +75,9 @@
 
 .ctaBanner {
   --brand-CTABanner-bgColor: var(--brand-color-canvas-subtle);
+}
+
+/* In dotcom, use h-full */
+.fullHeight {
+  height: 100%;
 }
