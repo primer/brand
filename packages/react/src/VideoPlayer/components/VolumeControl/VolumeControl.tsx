@@ -1,7 +1,6 @@
 import React from 'react'
 
 import {Range} from '../'
-import styles from './VolumeControl.module.css'
 import {useVideo} from '../../hooks/useVideo'
 
 export const VolumeControl = () => {
@@ -9,7 +8,6 @@ export const VolumeControl = () => {
 
   return (
     <Range
-      className={styles.VolumeControl}
       type="range"
       min="0"
       max={1}

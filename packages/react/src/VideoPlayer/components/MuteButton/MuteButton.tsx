@@ -5,9 +5,9 @@ import {IconControl} from '../'
 import {useVideo} from '../../hooks/useVideo'
 
 export const MuteButton = () => {
-  const {isMuted, mute, unmute} = useVideo()
+  const {isMuted, toggleMute} = useVideo()
   return (
-    <IconControl tooltip={isMuted ? 'Unmute' : 'Mute'} onClick={() => (isMuted ? unmute() : mute())}>
+    <IconControl tooltip={isMuted ? 'Unmute' : 'Mute'} onClick={() => toggleMute()}>
       {isMuted ? <MuteIcon size={24} /> : <UnmuteIcon size={24} />}
     </IconControl>
   )
