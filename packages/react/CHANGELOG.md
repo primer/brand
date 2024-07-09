@@ -1,5 +1,28 @@
 # @primer/react-brand
 
+## 0.34.3
+
+### Patch Changes
+
+- [#632](https://github.com/primer/brand/pull/632) [`77b98a4c`](https://github.com/primer/brand/commit/77b98a4c5e399d4e33722ad92e6f54fd730f69d3) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Partial revert of changes to the `LogoSuite` logobar elements.
+
+  To allow optimal treatment of logos based on their respective file formats, `<img>` tag will continue be styled with a CSS filter, whereas inline `<svg>` elements will be styled with CSS fill.
+
+- [#637](https://github.com/primer/brand/pull/637) [`8887dc37`](https://github.com/primer/brand/commit/8887dc377360d0124b27398738a4297a42afa2f2) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Fixes previously non-functional `aspectRatio` prop on `Image` component
+
+- [#636](https://github.com/primer/brand/pull/636) [`3a76bfba`](https://github.com/primer/brand/commit/3a76bfba698051f6530f52c0180e4c1748df14c3) Thanks [@rezrah](https://github.com/rezrah)! - Added `Statistic` component.
+
+  Use the statistic component to display concise numerical information.
+
+  ```jsx
+  <Statistic>
+    <Statistic.Heading>+25%</Statistic.Heading>
+    <Statistic.Description>increase in developer speed</Statistic.Description>
+  </Statistic>
+  ```
+
+  See the [documentation](https://primer.style/brand/components/Statistic) for more usage examples.
+
 ## 0.34.2
 
 ### Patch Changes
