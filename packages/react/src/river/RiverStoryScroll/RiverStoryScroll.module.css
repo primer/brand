@@ -173,10 +173,10 @@
     .RiverStoryScroll__visual--below {
       background-image: linear-gradient(
         180deg,
-        var(--brand-color-canvas-default) calc(var(--topOffset) + var(--visualHeight) + 3px),
+        var(--brand-RiverStoryScroll-content-inactive-bgColor) calc(var(--topOffset) + var(--visualHeight) + 3px),
         transparent calc(var(--topOffset) + var(--visualHeight) + var(--textToVisualPadding)),
         transparent 93%,
-        var(--brand-color-canvas-default) 99%
+        var(--brand-RiverStoryScroll-content-inactive-bgColor) 99%
       );
     }
 

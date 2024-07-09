@@ -206,7 +206,7 @@ export function SolutionPage({
             </header>
           )}
         </section>
-        <div className={parallaxStyles.articleContents}>
+        <div className={clsx(styles.relative, {[parallaxStyles.articleContents]: variant === 'size'})}>
           <Grid>
             <Grid.Column>
               <section>
@@ -492,8 +492,8 @@ export function SolutionPage({
               {variant === 'size' && (
                 <Box paddingBlockStart={64} paddingBlockEnd={128}>
                   <Stack direction="vertical" gap={64} alignItems="center" padding="none">
-                    <Heading as="h4">You’re in good company</Heading>
-                    <Grid>
+                    <Heading as="h4">You&apos;re in good company</Heading>
+                    <Grid className={styles.cards}>
                       <Grid.Column span={{xsmall: 12, medium: 4}}>
                         <Card href="https://github.com" variant="minimal" fullWidth>
                           <Card.Image
@@ -817,7 +817,7 @@ function StoryScrollExample({align, bentoVisible}) {
       </RiverStoryScroll>
       {bentoVisible && (
         <ThemeProvider colorMode="dark">
-          <Box paddingBlockStart={64} paddingBlockEnd={128}>
+          <Box paddingBlockStart={{narrow: 'none', regular: 128}} paddingBlockEnd={{narrow: 'none', regular: 24}}>
             <Bento>
               <Bento.Item
                 rowSpan={5}
@@ -830,7 +830,7 @@ function StoryScrollExample({align, bentoVisible}) {
                   xxlarge: 'column',
                 }}
               >
-                <Bento.Content>
+                <Bento.Content padding={{xsmall: 'condensed', medium: 'spacious'}}>
                   <Bento.Heading size="3">
                     How the healthcare giant Doctolib drove digital improved efficiency by more than 80%
                   </Bento.Heading>

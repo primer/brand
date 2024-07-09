@@ -8,6 +8,7 @@ declare const styles: {
   readonly "ctaBanner": string;
   readonly "noBottomRadius": string;
   readonly "jtbd2Section": string;
+  readonly "cards": string;
   readonly "heroVideoGlow": string;
   readonly "scaleAnimation": string;
 };

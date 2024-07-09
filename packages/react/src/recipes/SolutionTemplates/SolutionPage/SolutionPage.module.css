@@ -1,5 +1,5 @@
 .hideHorizontalOverflow {
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 .sectionIntro {
@@ -41,6 +41,10 @@
 
 .jtbd2Section {
   --brand-RiverStoryScroll-content-inactive-bgColor: var(--brand-color-canvas-subtle);
+}
+
+.cards {
+  --brand-Grid-spacing-row: var(--base-size-32);
 }
 
 /*
