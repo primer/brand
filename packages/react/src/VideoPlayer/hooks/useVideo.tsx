@@ -21,6 +21,27 @@ type VideoState = {
   duration: number
 }
 
+export type UseVideoContext = VideoState & {
+  play: () => void
+  pause: () => void
+  togglePlaying: () => void
+  mute: () => void
+  unmute: () => void
+  toggleMute: () => void
+  setVolume: (volumeValOrFn: SetStateAction<number>) => void
+  seek: (time: number) => void
+  seekToPercent: (percent: number) => void
+  seekRelative: (secondsValOrFn: SetStateAction<number>) => void
+  enableCC: () => void
+  disableCC: () => void
+  toggleCC: () => void
+  enterFullScreen: () => void
+  exitFullScreen: () => void
+  toggleFullScreen: () => void
+  setDuration: (duration: number) => void
+  isFullScreen: boolean
+}
+
 type Action =
   | {type: 'play'}
   | {type: 'pause'}
@@ -31,7 +52,7 @@ type Action =
   | {type: 'disableCC'}
   | {type: 'setDuration'; payload: number}
 
-const VideoContext = createContext<Context | null>(null)
+const VideoContext = createContext<UseVideoContext | null>(null)
 
 const videoReducer = (state: VideoState, action: Action): VideoState => {
   const video = state.ref.current
@@ -78,27 +99,6 @@ const videoReducer = (state: VideoState, action: Action): VideoState => {
   }
 }
 
-type Context = VideoState & {
-  play: () => void
-  pause: () => void
-  togglePlaying: () => void
-  mute: () => void
-  unmute: () => void
-  toggleMute: () => void
-  setVolume: (volumeValOrFn: SetStateAction<number>) => void
-  seek: (time: number) => void
-  seekToPercent: (percent: number) => void
-  seekRelative: (secondsValOrFn: SetStateAction<number>) => void
-  enableCC: () => void
-  disableCC: () => void
-  toggleCC: () => void
-  enterFullScreen: () => void
-  exitFullScreen: () => void
-  toggleFullScreen: () => void
-  setDuration: (duration: number) => void
-  isFullScreen: boolean
-}
-
 export const useVideo = () => {
   const context = useContext(VideoContext)
 
@@ -126,7 +126,7 @@ export const VideoProvider = forwardRef<HTMLVideoElement, VideoProviderProps>(({
 
   const [isFullScreen, setIsFullScreen] = useIsElementFullScreen(ref.current?.parentElement)
 
-  const value: Context = {
+  const value: UseVideoContext = {
     ...state,
     isFullScreen,
     play: () => dispatch({type: 'play'}),

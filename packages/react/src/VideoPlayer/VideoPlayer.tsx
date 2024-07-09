@@ -1,4 +1,4 @@
-import React, {useRef, forwardRef, type PropsWithChildren, type HTMLProps, type ReactElement} from 'react'
+import React, {useRef, forwardRef, type HTMLProps, type ReactElement} from 'react'
 import clsx from 'clsx'
 import {Text} from '../Text'
 import {type AnimateProps} from '../animation'
@@ -14,21 +14,21 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './VideoPlayer.module.css'
 import {useVideoKeypressHandlers, useVideoResizeObserver} from './hooks/'
-import {useVideo, VideoProvider} from './hooks/useVideo'
+import {useVideo, type UseVideoContext, VideoProvider} from './hooks/useVideo'
 
-type VideoPlayerProps = PropsWithChildren<{
-  poster?: string
+type VideoPlayerProps = {
   title: string
-  branding?: boolean
+  showTitle?: boolean
+  showBranding?: boolean
   animate?: AnimateProps
-  renderControls?: (props: ControlsProps) => ReactElement | null
+  renderControls?: (props: ControlsProps, context: UseVideoContext) => ReactElement | null
   renderPlayOverlay?: () => ReactElement | null
-}> &
-  HTMLProps<HTMLVideoElement>
+} & HTMLProps<HTMLVideoElement>
 
 const Root = ({
   title,
-  branding = true,
+  showTitle = true,
+  showBranding = true,
   children,
   className,
   renderControls = props => <Controls {...props} />,
@@ -40,7 +40,8 @@ const Root = ({
   ...rest
 }: VideoPlayerProps) => {
   const videoWrapperRef = useRef<HTMLDivElement>(null)
-  const {ccEnabled, isPlaying, ref, play, pause} = useVideo()
+  const useVideoContext = useVideo()
+  const {ccEnabled, isPlaying, ref, play, pause} = useVideoContext
   const isSmall = useVideoResizeObserver({videoWrapperRef, className: styles['VideoPlayer__container--small']})
 
   useVideoKeypressHandlers(videoWrapperRef)
@@ -54,15 +55,17 @@ const Root = ({
       )}
       ref={videoWrapperRef}
     >
+      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <video ref={ref} title={title} controls={false} className={clsx(styles.VideoPlayer, className)} {...rest}>
         {children}
-        <track kind="captions" />
       </video>
       <div className={styles.VideoPlayer__title}>
-        {branding && <MarkGithubIcon size={40} />}
-        <Text size="400" weight="medium" className={styles.VideoPlayer__controlTextColor}>
-          {title}
-        </Text>
+        {showBranding && <MarkGithubIcon size={40} />}
+        {showTitle && (
+          <Text size="400" weight="medium" className={styles.VideoPlayer__controlTextColor}>
+            {title}
+          </Text>
+        )}
       </div>
       <button
         className={styles.VideoPlayer__playButton}
@@ -74,10 +77,13 @@ const Root = ({
         {!isPlaying && renderPlayOverlay()}
       </button>
       <div className={styles.VideoPlayer__controls}>
-        {ccEnabled ? <Captions /> : null}
-        {renderControls({
-          isSmall,
-        })}
+        {ccEnabled && <Captions />}
+        {renderControls(
+          {
+            isSmall,
+          },
+          useVideoContext,
+        )}
       </div>
     </div>
   )

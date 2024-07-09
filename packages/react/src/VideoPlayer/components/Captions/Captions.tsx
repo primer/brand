@@ -36,7 +36,7 @@ export const Captions = () => {
 
     videoRef.addEventListener('timeupdate', compareAndSetCaption)
 
-    return () => window.removeEventListener('timeupdate', compareAndSetCaption)
+    return () => videoRef.removeEventListener('timeupdate', compareAndSetCaption)
   }, [videoRef, trackInformation])
 
   if (!caption) {

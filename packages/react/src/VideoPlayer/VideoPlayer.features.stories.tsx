@@ -18,7 +18,14 @@ export const WithPoster = () => (
 )
 
 export const WithoutBranding = () => (
-  <VideoPlayer branding={false} title="GitHub media player">
+  <VideoPlayer showBranding={false} title="GitHub media player">
+    <VideoPlayer.Source src="/example.mp4" type="video/mp4" />
+    <VideoPlayer.Track src="/example.vtt" />
+  </VideoPlayer>
+)
+
+export const WithoutTitle = () => (
+  <VideoPlayer showTitle={false} title="GitHub media player">
     <VideoPlayer.Source src="/example.mp4" type="video/mp4" />
     <VideoPlayer.Track src="/example.vtt" />
   </VideoPlayer>
@@ -27,10 +34,10 @@ export const WithoutBranding = () => (
 export const WithCustomControls = () => (
   <VideoPlayer
     title="GitHub media player"
-    renderControls={({videoRef}) => (
+    renderControls={() => (
       <ControlsBar>
-        <PlayPauseButton videoRef={videoRef} />
-        <SeekControl videoRef={videoRef} />
+        <PlayPauseButton />
+        <SeekControl />
       </ControlsBar>
     )}
   >
@@ -42,13 +49,13 @@ export const WithCustomControls = () => (
 export const HideControlsUntilPlaying = () => (
   <VideoPlayer
     title="GitHub media player"
-    renderControls={({isPlaying, ...rest}) => (
+    renderControls={(controlsProps, {isPlaying}) => (
       <Controls
         style={{
           opacity: isPlaying ? 1 : 0,
           transition: 'opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default)',
         }}
-        {...rest}
+        {...controlsProps}
       />
     )}
   >
@@ -61,6 +68,27 @@ export const WithCustomPlayButton = () => (
   <VideoPlayer
     title="GitHub media player"
     renderPlayOverlay={() => <PlayIcon style={{width: 96, height: 96, opacity: 0.8}} />}
+  >
+    <VideoPlayer.Source src="/example.mp4" type="video/mp4" />
+    <VideoPlayer.Track src="/example.vtt" />
+  </VideoPlayer>
+)
+
+export const Minimal = () => (
+  <VideoPlayer
+    title="GitHub media player"
+    showTitle={false}
+    showBranding={false}
+    renderPlayOverlay={() => <PlayIcon style={{width: 96, height: 96, opacity: 0.8}} />}
+    renderControls={(controlsProps, {isPlaying}) => (
+      <Controls
+        style={{
+          opacity: isPlaying ? 1 : 0,
+          transition: 'opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default)',
+        }}
+        {...controlsProps}
+      />
+    )}
   >
     <VideoPlayer.Source src="/example.mp4" type="video/mp4" />
     <VideoPlayer.Track src="/example.vtt" />
