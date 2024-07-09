@@ -28,6 +28,7 @@
 
 .VideoPlayer {
   width: 100%;
+  max-height: 100%;
   border-radius: var(--brand-borderRadius-medium);
   display: block;
 }

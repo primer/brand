@@ -1,37 +1,13 @@
-import React, {useCallback, useEffect, useState} from 'react'
+import React from 'react'
 import {MuteIcon, UnmuteIcon} from '@primer/octicons-react'
 
 import {IconControl} from '../'
+import {useVideo} from '../../hooks/useVideo'
 
-type MuteButtonProps = {videoRef: React.RefObject<HTMLVideoElement>}
-
-export const MuteButton = ({videoRef}: MuteButtonProps) => {
-  const [isMuted, setIsMuted] = useState(false)
-
-  const toggleMute = useCallback(() => {
-    const video = videoRef.current
-    if (!video) return
-
-    video.dispatchEvent(new Event(isMuted ? 'unmute' : 'mute'))
-  }, [videoRef, isMuted])
-
-  useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
-
-    const onVolumeChange = () => {
-      setIsMuted(video.volume === 0)
-    }
-
-    video.addEventListener('volumechange', onVolumeChange)
-
-    return () => {
-      video.removeEventListener('volumechange', onVolumeChange)
-    }
-  }, [videoRef])
-
+export const MuteButton = () => {
+  const {isMuted, mute, unmute} = useVideo()
   return (
-    <IconControl tooltip={isMuted ? 'Unmute' : 'Mute'} onClick={toggleMute}>
+    <IconControl tooltip={isMuted ? 'Unmute' : 'Mute'} onClick={() => (isMuted ? unmute() : mute())}>
       {isMuted ? <MuteIcon size={24} /> : <UnmuteIcon size={24} />}
     </IconControl>
   )

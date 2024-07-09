@@ -1,17 +1,19 @@
 import React from 'react'
 import {ScreenFullIcon, ScreenNormalIcon} from '@primer/octicons-react'
 
-import {type ControlsProps, IconControl} from '../'
+import {IconControl} from '../'
+import {useVideo} from '../../hooks'
 
-type FullScreenButtonProps = Pick<ControlsProps, 'isFullScreen' | 'setIsFullScreen'>
-
-export const FullScreenButton = ({isFullScreen, setIsFullScreen}: FullScreenButtonProps) => (
-  <IconControl
-    onClick={() => {
-      setIsFullScreen(!isFullScreen)
-    }}
-    tooltip={isFullScreen ? 'Exit full screen' : 'Full screen'}
-  >
-    {isFullScreen ? <ScreenNormalIcon size={24} /> : <ScreenFullIcon size={24} />}
-  </IconControl>
-)
+export const FullScreenButton = () => {
+  const {isFullScreen, toggleFullScreen} = useVideo()
+  return (
+    <IconControl
+      onClick={() => {
+        toggleFullScreen()
+      }}
+      tooltip={isFullScreen ? 'Exit full screen' : 'Full screen'}
+    >
+      {isFullScreen ? <ScreenNormalIcon size={24} /> : <ScreenFullIcon size={24} />}
+    </IconControl>
+  )
+}

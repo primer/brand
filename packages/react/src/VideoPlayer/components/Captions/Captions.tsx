@@ -3,19 +3,17 @@ import clsx from 'clsx'
 
 import {Text} from '../../../Text'
 import styles from './Captions.module.css'
+import {useVideo} from '../../hooks/useVideo'
 
-type CaptionsProps = {
-  videoRef: React.RefObject<HTMLVideoElement>
-}
-
-export const Captions = ({videoRef}: CaptionsProps) => {
+export const Captions = () => {
   const [caption, setCaption] = useState('')
-  const trackInformation = videoRef.current?.textTracks[0]?.cues
+  const {ref} = useVideo()
+
+  const videoRef = ref.current
+  const trackInformation = videoRef?.textTracks[0]?.cues
 
   useEffect(() => {
-    const video = videoRef.current
-
-    if (!video) {
+    if (!videoRef) {
       return
     }
 
@@ -27,7 +25,7 @@ export const Captions = ({videoRef}: CaptionsProps) => {
       for (let i = 0; i < trackInformation.length; i++) {
         const cue = trackInformation[i]
 
-        if (video.currentTime >= cue.startTime && video.currentTime < cue.endTime) {
+        if (videoRef.currentTime >= cue.startTime && videoRef.currentTime < cue.endTime) {
           setCaption(cue['text'])
           break
         }
@@ -36,7 +34,7 @@ export const Captions = ({videoRef}: CaptionsProps) => {
       }
     }
 
-    video.addEventListener('timeupdate', compareAndSetCaption)
+    videoRef.addEventListener('timeupdate', compareAndSetCaption)
 
     return () => window.removeEventListener('timeupdate', compareAndSetCaption)
   }, [videoRef, trackInformation])

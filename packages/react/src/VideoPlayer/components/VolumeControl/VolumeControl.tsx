@@ -1,37 +1,11 @@
-import React, {useCallback, useEffect, useState} from 'react'
+import React from 'react'
 
 import {Range} from '../'
 import styles from './VolumeControl.module.css'
+import {useVideo} from '../../hooks/useVideo'
 
-type VolumeControlProps = {videoRef: React.RefObject<HTMLVideoElement>}
-
-export const VolumeControl = ({videoRef}: VolumeControlProps) => {
-  const [volume, setVolume] = useState(1)
-
-  useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
-
-    const onVolumeChange = () => {
-      setVolume(video.volume)
-    }
-
-    video.addEventListener('volumechange', onVolumeChange)
-
-    return () => {
-      video.removeEventListener('volumechange', onVolumeChange)
-    }
-  }, [videoRef])
-
-  const onInput = useCallback(
-    e => {
-      const video = videoRef.current
-      if (!video) return
-
-      video.volume = e.currentTarget.valueAsNumber
-    },
-    [videoRef],
-  )
+export const VolumeControl = () => {
+  const {volume, setVolume} = useVideo()
 
   return (
     <Range
@@ -40,7 +14,7 @@ export const VolumeControl = ({videoRef}: VolumeControlProps) => {
       min="0"
       max={1}
       step={0.001}
-      onInput={onInput}
+      onInput={e => setVolume(e.currentTarget.valueAsNumber)}
       value={volume}
       a11yStep={0.1}
       name="Volume"

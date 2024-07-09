@@ -4,23 +4,23 @@ import clsx from 'clsx'
 import {Text} from '../../../Text'
 import styles from '../../VideoPlayer.module.css'
 import {VideoTooltip} from '../'
+import {useVideo} from '../../hooks/useVideo'
 
-type CCButtonProps = {
-  closedCaptionsEnabled: boolean
-  setClosedCaptionsEnabled: (closedCaptionsEnabled: boolean) => void
+export const CCButton = () => {
+  const {ccEnabled, toggleCC} = useVideo()
+
+  return (
+    <button
+      className={clsx(
+        styles.VideoPlayer__iconControl,
+        styles.VideoPlayer__closedCaption,
+        !ccEnabled && styles.VideoPlayer__ccOff,
+      )}
+      onClick={() => toggleCC()}
+      aria-label={ccEnabled ? 'Disable captions' : 'Enable captions'}
+    >
+      <Text className={styles.VideoPlayer__ccText}>CC</Text>
+      <VideoTooltip>{ccEnabled ? 'Disable captions' : 'Enable captions'}</VideoTooltip>
+    </button>
+  )
 }
-
-export const CCButton = ({closedCaptionsEnabled, setClosedCaptionsEnabled}: CCButtonProps) => (
-  <button
-    className={clsx(
-      styles.VideoPlayer__iconControl,
-      styles.VideoPlayer__closedCaption,
-      !closedCaptionsEnabled && styles.VideoPlayer__ccOff,
-    )}
-    onClick={() => setClosedCaptionsEnabled(!closedCaptionsEnabled)}
-    aria-label={closedCaptionsEnabled ? 'Disable captions' : 'Enable captions'}
-  >
-    <Text className={styles.VideoPlayer__ccText}>CC</Text>
-    <VideoTooltip>{closedCaptionsEnabled ? 'Disable captions' : 'Enable captions'}</VideoTooltip>
-  </button>
-)

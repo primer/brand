@@ -9,14 +9,10 @@ description: Use the video player component to enable playback of self-hosted vi
 import {Label} from '@primer/react'
 
 ```js
-import {VideoPlayer} from '@primer/react-brand'
+import {VideoPlayer, Controls} from '@primer/react-brand'
 ```
 
 ## Examples
-
-<!---
-TODO: Fix asset loading in environments that don't use `pathPrefix`. This is a temporary solution to load assets in production deployments, but currently doesn't work in dev mode or preview URLs
--->
 
 ### Default
 
@@ -45,6 +41,23 @@ TODO: Fix asset loading in environments that don't use `pathPrefix`. This is a t
 <VideoPlayer branding={false} title="GitHub media player">
   <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" />
   <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
+</VideoPlayer>
+```
+
+## With custom controls
+
+```jsx live
+<VideoPlayer
+  title="GitHub media player"
+  renderControls={({videoRef}) => (
+    <Controls.Bar>
+      <Controls.PlayPause videoRef={videoRef} />
+      <Controls.Seek videoRef={videoRef} />
+    </Controls.Bar>
+  )}
+>
+  <VideoPlayer.Source src="/example.mp4" type="video/mp4" />
+  <VideoPlayer.Track src="/example.vtt" />
 </VideoPlayer>
 ```
 

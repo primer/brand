@@ -60,7 +60,7 @@ export const HideControlsUntilPlaying = () => (
 export const WithCustomPlayButton = () => (
   <VideoPlayer
     title="GitHub media player"
-    renderPlayButton={() => <PlayIcon style={{width: 96, height: 96, opacity: 0.8}} />}
+    renderPlayOverlay={() => <PlayIcon style={{width: 96, height: 96, opacity: 0.8}} />}
   >
     <VideoPlayer.Source src="/example.mp4" type="video/mp4" />
     <VideoPlayer.Track src="/example.vtt" />

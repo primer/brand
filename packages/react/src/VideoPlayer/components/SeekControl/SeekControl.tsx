@@ -4,6 +4,7 @@ import clsx from 'clsx'
 import {Range} from '../'
 import styles from '../../VideoPlayer.module.css'
 import {Text} from '../../../Text'
+import {useVideo} from '../../hooks/useVideo'
 
 const padTime = (time: number) => time.toString().padStart(2, '0')
 const formatTime = (time: number) => {
@@ -13,42 +14,34 @@ const formatTime = (time: number) => {
   return `${minutes}:${seconds}`
 }
 
-type SeekControlProps = {
-  videoRef: React.RefObject<HTMLVideoElement>
-} & HTMLAttributes<HTMLDivElement>
+type SeekControlProps = HTMLAttributes<HTMLDivElement>
 
-export const SeekControl = ({videoRef, className, ...rest}: SeekControlProps) => {
+export const SeekControl = ({className, ...rest}: SeekControlProps) => {
+  const {ref, duration} = useVideo()
   const [currentTime, setCurrentTime] = useState(0)
-  const [duration, setDuration] = useState(0)
   const seek = useCallback(
     (time: number) => {
-      if (videoRef.current) {
-        videoRef.current.currentTime = time
+      if (ref.current) {
+        ref.current.currentTime = time
       }
     },
-    [videoRef],
+    [ref],
   )
 
   useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
+    const videoRef = ref.current
+    if (!videoRef) return
 
     const onTimeUpdate = () => {
-      setCurrentTime(video.currentTime)
+      setCurrentTime(videoRef.currentTime)
     }
 
-    const onLoadedMetadata = () => {
-      setDuration(video.duration)
-    }
-
-    video.addEventListener('timeupdate', onTimeUpdate)
-    video.addEventListener('loadedmetadata', onLoadedMetadata)
+    videoRef.addEventListener('timeupdate', onTimeUpdate)
 
     return () => {
-      video.removeEventListener('timeupdate', onTimeUpdate)
-      video.removeEventListener('loadedmetadata', onLoadedMetadata)
+      videoRef.removeEventListener('timeupdate', onTimeUpdate)
     }
-  }, [videoRef])
+  }, [ref])
 
   return (
     <div className={clsx(styles['VideoPlayer__seek'], className)} {...rest}>
@@ -67,7 +60,7 @@ export const SeekControl = ({videoRef, className, ...rest}: SeekControlProps) =>
         name="Seek"
       />
       <div className={styles.VideoPlayer__progressTime}>
-        <Text as="p" className={styles.VideoPlayer__controlTextColor}>
+        <Text as="p" className={styles.VideoPlayer__controlTextColor} font="monospace">
           {formatTime(currentTime)}
           {<span className={styles.VideoPlayer__totalTime}> / {formatTime(duration)}</span>}
         </Text>
