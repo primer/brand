@@ -12,7 +12,7 @@ test.describe('Visual Comparison: Size', () => {
       'http://localhost:6006/iframe.html?args=&id=recipes-solutions-solution-org-size--maximum&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(3500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -21,7 +21,7 @@ test.describe('Visual Comparison: Size', () => {
       'http://localhost:6006/iframe.html?args=&id=recipes-solutions-solution-org-size--maximum-dark&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(3500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -30,7 +30,7 @@ test.describe('Visual Comparison: Size', () => {
       'http://localhost:6006/iframe.html?args=&id=recipes-solutions-solution-org-size--minimum&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(3500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -39,7 +39,7 @@ test.describe('Visual Comparison: Size', () => {
       'http://localhost:6006/iframe.html?args=&id=recipes-solutions-solution-org-size--minimum-dark&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(3500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 })

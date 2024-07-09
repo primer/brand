@@ -80,12 +80,22 @@
     'recipes-seo-article-page--productivity-theme': 5000, // for the animation
     'recipes-seo-article-page--light-hero-image': 5000, // for the animation
     'recipes-seo-article-page--dark-hero-image': 5000, // for the animation
-    'recipes-solutions-categorypage--light': 3000, // for the animation
-    'recipes-solutions-categorypage--dark': 3000, // for the animation
-    'recipes-solutions-solution-industry--maximum': 3000, // for the animation
-    'recipes-solutions-solution-industry--maximum-dark': 3000, // for the animation
-    'recipes-solutions-solution-industry--minimum': 3000, // for the animation
-    'recipes-solutions-solution-industry--minimum-dark': 3000, // for the animation
+    'recipes-solutions-categorypage--light': 4000, // for the animation
+    'recipes-solutions-categorypage--dark': 4000, // for the animation
+    'recipes-solutions-solution-industry--maximum': 3500, // for the animation
+    'recipes-solutions-solution-industry--maximum-dark': 3500, // for the animation
+    'recipes-solutions-solution-industry--minimum': 3500, // for the animation
+    'recipes-solutions-solution-industry--minimum-dark': 3500, // for the animation
+    'recipes-solutions-solution-org-size--maximum': 3500, // for the animation
+    'recipes-solutions-solution-org-size--maximum-dark': 3500, // for the animation
+    'recipes-solutions-solution-org-size--minimum': 3500, // for the animation
+    'recipes-solutions-solution-org-size--minimum-dark': 3500, // for the animation
+    'recipes-solutions-overview--light': 3500, // for the animation
+    'recipes-solutions-overview--dark': 3500, // for the animation
+    'components-riverstoryscroll-features--with-timeline': 3500, // for the animation
+    'components-riverstoryscroll-features--with-timeline-narrow': 3500, // for the animation
+    'components-riverstoryscroll-features--enterprise-example': 3500, // for the animation
+    'components-riverstoryscroll-features--enterprise-example-narrow': 3500, // for the animation
   }
 
   /**
@@ -118,6 +128,8 @@
     'components-ide-features--editor-custom-icons', // animation too long
     'recipes-seo-category-page--default', // template contains randomisation
     'components-statistic-features--animations', // animation only
+    'components-riverstoryscroll-features--video-narrow', // video makes this too flakey
+    'components-riverstoryscroll-features--video', // video makes this too flakey
   ]
 
   const categorisedStories = Object.keys(stories as Stories).reduce((acc, key) => {

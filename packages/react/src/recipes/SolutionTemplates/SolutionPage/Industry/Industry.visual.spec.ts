@@ -12,7 +12,7 @@ test.describe('Visual Comparison: Industry', () => {
       'http://localhost:6006/iframe.html?args=&id=recipes-solutions-solution-industry--maximum&viewMode=story',
     )
 
-    await page.waitForTimeout(3000)
+    await page.waitForTimeout(3500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -21,7 +21,7 @@ test.describe('Visual Comparison: Industry', () => {
       'http://localhost:6006/iframe.html?args=&id=recipes-solutions-solution-industry--maximum-dark&viewMode=story',
     )
 
-    await page.waitForTimeout(3000)
+    await page.waitForTimeout(3500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -30,7 +30,7 @@ test.describe('Visual Comparison: Industry', () => {
       'http://localhost:6006/iframe.html?args=&id=recipes-solutions-solution-industry--minimum&viewMode=story',
     )
 
-    await page.waitForTimeout(3000)
+    await page.waitForTimeout(3500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -39,7 +39,7 @@ test.describe('Visual Comparison: Industry', () => {
       'http://localhost:6006/iframe.html?args=&id=recipes-solutions-solution-industry--minimum-dark&viewMode=story',
     )
 
-    await page.waitForTimeout(3000)
+    await page.waitForTimeout(3500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 })

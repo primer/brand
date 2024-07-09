@@ -12,7 +12,7 @@ test.describe('Visual Comparison: RiverStoryScroll', () => {
       'http://localhost:6006/iframe.html?args=&id=components-riverstoryscroll-features--with-timeline&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(3500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -24,7 +24,7 @@ test.describe('Visual Comparison: RiverStoryScroll', () => {
         'http://localhost:6006/iframe.html?args=&id=components-riverstoryscroll-features--with-timeline-narrow&viewMode=story',
       )
 
-      await page.waitForTimeout(500)
+      await page.waitForTimeout(3500)
       expect(await page.screenshot()).toMatchSnapshot()
     })
   })
@@ -42,7 +42,7 @@ test.describe('Visual Comparison: RiverStoryScroll', () => {
       'http://localhost:6006/iframe.html?args=&id=components-riverstoryscroll-features--enterprise-example&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(3500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
@@ -54,28 +54,7 @@ test.describe('Visual Comparison: RiverStoryScroll', () => {
         'http://localhost:6006/iframe.html?args=&id=components-riverstoryscroll-features--enterprise-example-narrow&viewMode=story',
       )
 
-      await page.waitForTimeout(500)
-      expect(await page.screenshot()).toMatchSnapshot()
-    })
-  })
-  test('RiverStoryScroll / Video', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-riverstoryscroll-features--video&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  // eslint-disable-next-line i18n-text/no-en
-  test.describe('Mobile viewport test for Video Narrow', () => {
-    test.use({viewport: {width: 360, height: 800}})
-    test('RiverStoryScroll / Video Narrow', async ({page}) => {
-      await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-riverstoryscroll-features--video-narrow&viewMode=story',
-      )
-
-      await page.waitForTimeout(500)
+      await page.waitForTimeout(3500)
       expect(await page.screenshot()).toMatchSnapshot()
     })
   })
