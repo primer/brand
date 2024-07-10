@@ -8,10 +8,17 @@ import {useVideo} from '../../hooks/useVideo'
 
 const padTime = (time: number) => time.toString().padStart(2, '0')
 const formatTime = (time: number) => {
-  const minutes = padTime(Math.floor(time / 60))
+  const minutes = padTime(Math.floor((time % 3600) / 60))
   const seconds = padTime(Math.floor(time % 60))
 
-  return `${minutes}:${seconds}`
+  let formattedTime = `${minutes}:${seconds}`
+
+  if (time > 3600) {
+    const hours = padTime(Math.floor(time / 3600))
+    formattedTime = `${hours}:${formattedTime}`
+  }
+
+  return formattedTime
 }
 
 type SeekControlProps = HTMLAttributes<HTMLDivElement>
