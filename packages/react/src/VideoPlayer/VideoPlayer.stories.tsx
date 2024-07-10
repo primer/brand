@@ -40,8 +40,8 @@ export default {
 
 export const Playground: StoryFn<typeof VideoPlayer> = args => (
   <VideoPlayer {...args}>
-    <VideoPlayer.Source src="/example.mp4" type="video/mp4" />
-    <VideoPlayer.Track src="/example.vtt" default />
+    <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" type="video/mp4" />
+    <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" default />
   </VideoPlayer>
 )
 

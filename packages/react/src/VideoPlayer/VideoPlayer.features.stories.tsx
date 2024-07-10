@@ -12,22 +12,22 @@ export default {
 
 export const WithPoster = () => (
   <VideoPlayer poster={posterImage} title="GitHub media player">
-    <VideoPlayer.Source src="/example.mp4" type="video/mp4" />
-    <VideoPlayer.Track src="/example.vtt" />
+    <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" type="video/mp4" />
+    <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
   </VideoPlayer>
 )
 
 export const WithoutBranding = () => (
   <VideoPlayer showBranding={false} title="GitHub media player">
-    <VideoPlayer.Source src="/example.mp4" type="video/mp4" />
-    <VideoPlayer.Track src="/example.vtt" />
+    <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" type="video/mp4" />
+    <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
   </VideoPlayer>
 )
 
 export const WithoutTitle = () => (
   <VideoPlayer showTitle={false} title="GitHub media player">
-    <VideoPlayer.Source src="/example.mp4" type="video/mp4" />
-    <VideoPlayer.Track src="/example.vtt" />
+    <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" type="video/mp4" />
+    <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
   </VideoPlayer>
 )
 
@@ -41,8 +41,8 @@ export const WithCustomControls = () => (
       </ControlsBar>
     )}
   >
-    <VideoPlayer.Source src="/example.mp4" type="video/mp4" />
-    <VideoPlayer.Track src="/example.vtt" />
+    <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" type="video/mp4" />
+    <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
   </VideoPlayer>
 )
 
@@ -59,8 +59,8 @@ export const HideControlsUntilPlaying = () => (
       />
     )}
   >
-    <VideoPlayer.Source src="/example.mp4" type="video/mp4" />
-    <VideoPlayer.Track src="/example.vtt" />
+    <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" type="video/mp4" />
+    <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
   </VideoPlayer>
 )
 
@@ -69,8 +69,8 @@ export const WithCustomPlayButton = () => (
     title="GitHub media player"
     renderPlayOverlay={() => <PlayIcon style={{width: 96, height: 96, opacity: 0.8}} />}
   >
-    <VideoPlayer.Source src="/example.mp4" type="video/mp4" />
-    <VideoPlayer.Track src="/example.vtt" />
+    <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" type="video/mp4" />
+    <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
   </VideoPlayer>
 )
 
@@ -90,7 +90,7 @@ export const Minimal = () => (
       />
     )}
   >
-    <VideoPlayer.Source src="/example.mp4" type="video/mp4" />
-    <VideoPlayer.Track src="/example.vtt" />
+    <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" type="video/mp4" />
+    <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
   </VideoPlayer>
 )
