@@ -198,7 +198,9 @@ function Root({
                         aria-label={`${title} home`}
                         className={clsx(styles['SubdomainNavBar-title'])}
                       >
-                        {title}
+                        <Text size="400" weight="semibold">
+                          {title}
+                        </Text>
                       </a>
                     </li>
                   </>
@@ -613,6 +615,7 @@ function PrimaryAction({children, href, ...rest}: PropsWithChildren<CTAActionPro
       className={clsx(styles['SubdomainNavBar-cta-button'])}
       variant="primary"
       hasArrow={false}
+      size="small"
       {...rest}
     >
       {children}
@@ -627,6 +630,7 @@ function SecondaryAction({children, href, ...rest}: PropsWithChildren<CTAActionP
       href={href}
       className={clsx(styles['SubdomainNavBar-cta-button'], styles['SubdomainNavBar-cta-button--secondary'])}
       hasArrow={false}
+      size="small"
       {...rest}
     >
       {children}
