@@ -30,7 +30,6 @@ export default {
   component: PricingOptions,
   decorators: [decorators],
   parameters: {
-    layout: 'fullscreen',
     viewport: {
       viewports: INITIAL_VIEWPORTS,
     },
