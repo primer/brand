@@ -25,7 +25,6 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
  * Main stylesheet (as a CSS Module)
  */
 import styles from './PricingOptions.module.css'
-import {useProvidedRefOrCreate} from '../hooks/useRef'
 
 export type PricingOptionsProps = {
   variant?: 'default' | 'cards'
