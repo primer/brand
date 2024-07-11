@@ -58,12 +58,18 @@
   display: inline-flex;
   list-style-type: none;
   align-items: center;
-  gap: 16px;
+  gap: var(--base-size-8);
   padding: 0;
   margin: 0;
   max-width: 340px;
   color: var(--brand-color-text-default);
   padding: var(--base-size-16) 0;
+}
+
+@media screen and (min-width: 63.25rem) {
+  .SubdomainNavBar-title-area {
+    gap: var(--base-size-16);
+  }
 }
 
 .SubdomainNavBar-logo-mark {
@@ -514,7 +520,6 @@
 
 .SubdomainNavBar-cta-button {
   white-space: nowrap;
-  min-width: 0;
 }
 
 @media screen and (min-width: 1024px) {
