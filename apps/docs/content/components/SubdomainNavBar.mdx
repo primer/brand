@@ -39,12 +39,8 @@ Please refer to our [Storybook examples](https://primer.style/brand/storybook/?p
     <SubdomainNavBar.Link href="#">Video</SubdomainNavBar.Link>
     <SubdomainNavBar.Link href="#">Social</SubdomainNavBar.Link>
     <SubdomainNavBar.Search />
-    <SubdomainNavBar.PrimaryAction href="#">
-      Primary CTA
-    </SubdomainNavBar.PrimaryAction>
-    <SubdomainNavBar.SecondaryAction href="#">
-      Secondary CTA
-    </SubdomainNavBar.SecondaryAction>
+    <SubdomainNavBar.PrimaryAction href="#">Primary CTA</SubdomainNavBar.PrimaryAction>
+    <SubdomainNavBar.SecondaryAction href="#">Secondary CTA</SubdomainNavBar.SecondaryAction>
   </SubdomainNavBar>
 </Container>
 ```
@@ -89,7 +85,7 @@ const App = () => {
     }
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault()
     if (!inputRef.current) return
     if (!inputRef.current.value) {
@@ -103,9 +99,7 @@ const App = () => {
   return (
     <Container sx={{position: 'relative', overflowX: 'scroll'}}>
       <SubdomainNavBar title="Subdomain" fixed={false}>
-        <SubdomainNavBar.Link href="#collections">
-          Collections
-        </SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#collections">Collections</SubdomainNavBar.Link>
         <SubdomainNavBar.Link href="#topics">Topics</SubdomainNavBar.Link>
         <SubdomainNavBar.Search
           ref={inputRef}
@@ -142,12 +136,14 @@ render(App)
 
 `SubdomainNavBar.Link` are anchor links.
 
-| Name        | Type              | Default | Description                              |
-| :---------- | :---------------- | :-----: | :--------------------------------------- |
-| `children`  | `string`          |         | Label text                               |
-| `className` | `string`          |         | Applies a custom class                   |
-| `href`      | `string`          |         | Destination path for the anchor element  |
-| `id`        | `string`          |         | Sets a custom id                         |
-| `ref`       | `React.RefObject` |         | Forward a Ref to the underlying DOM node |
+| Name                | Type                      | Default | Description                              |
+| :------------------ | :------------------------ | :-----: | :--------------------------------------- |
+| `children`          | `string`                  |         | Label text                               |
+| `className`         | `string`                  |         | Applies a custom class                   |
+| `href`              | `string`                  |         | Destination path for the anchor element  |
+| `id`                | `string`                  |         | Sets a custom id                         |
+| `ref`               | `React.RefObject`         |         | Forward a Ref to the underlying DOM node |
+| `leadingComponent`  | `React.FunctionComponent` |         | A slot for a leading component           |
+| `trailingComponent` | `React.FunctionComponent` |         | A slot for a trailing component          |
 
 Additional props can be passed to the `<a>` element. [See MDN for a list of props](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#attributes) accepted by the `<anchor>` element.
