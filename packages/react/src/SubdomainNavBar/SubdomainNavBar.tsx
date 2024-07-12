@@ -356,13 +356,26 @@ function Root({
   )
 }
 
-type LinkProps = {href: string} & React.DetailedHTMLProps<React.LiHTMLAttributes<HTMLLIElement>, HTMLLIElement>
+type LinkProps = {
+  href: string
+  leadingComponent?: React.FunctionComponent
+  trailingComponent?: React.FunctionComponent
+} & React.DetailedHTMLProps<React.LiHTMLAttributes<HTMLLIElement>, HTMLLIElement>
 
-function Link({href, className, children, ...rest}: PropsWithChildren<LinkProps>) {
+function Link({
+  href,
+  className,
+  children,
+  leadingComponent: LeadingComponent,
+  trailingComponent: TrailingComponent,
+  ...rest
+}: PropsWithChildren<LinkProps>) {
   return (
     <li className={clsx(styles['SubdomainNavBar-primary-nav-list-item'], className)} {...rest}>
-      <a href={href} className={clsx(styles['SubdomainNavBar-link'])}>
-        {children}
+      <a href={href} className={styles['SubdomainNavBar-link']}>
+        {LeadingComponent && <LeadingComponent />}
+        <span className={styles['SubdomainNavBar-link-text']}>{children}</span>
+        {TrailingComponent && <TrailingComponent />}
       </a>
     </li>
   )

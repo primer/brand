@@ -24,6 +24,7 @@ declare const styles: {
   readonly "SubdomainNavBar-primary-nav-list-item--invisible": string;
   readonly "SubdomainNavBar-primary-nav-list-item--overflow": string;
   readonly "SubdomainNavBar-link": string;
+  readonly "SubdomainNavBar-link-text": string;
   readonly "SubdomainNavBar-link--title": string;
   readonly "SubdomainNavBar-overflow-menu-item": string;
   readonly "SubdomainNavBar-more-link": string;

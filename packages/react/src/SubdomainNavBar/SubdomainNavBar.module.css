@@ -238,7 +238,10 @@
 
 .SubdomainNavBar-link {
   position: relative;
-  display: block;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--base-size-8);
   color: var(--brand-color-text-default);
   font-family: var(--brand-heading-fontFamily);
   font-weight: var(--base-text-weight-normal);
@@ -250,6 +253,10 @@
 
 .SubdomainNavBar-link:hover {
   text-decoration: none;
+}
+
+.SubdomainNavBar-link-text {
+  position: relative;
 }
 
 @media screen and (max-width: 767px) {
@@ -271,31 +278,29 @@
     padding: var(--base-size-16) var(--base-size-24);
   }
 
-  .SubdomainNavBar-link::after {
+  .SubdomainNavBar-link-text::after {
     content: '';
     position: absolute;
-    bottom: 10px;
+    bottom: -6px;
     left: 0;
     width: 100%;
     height: 2px;
     background-color: var(--brand-SubdomainNavBar-border-nav-default);
     opacity: 0;
     transition: opacity var(--brand-animation-duration-fast), transform var(--brand-animation-duration-fast);
-    opacity: 1;
     transform: scale(0);
     transform-origin: center;
   }
 
-  .SubdomainNavBar-link:hover::after,
-  .SubdomainNavBar-link:focus::after {
+  .SubdomainNavBar-link:hover .SubdomainNavBar-link-text::after,
+  .SubdomainNavBar-link:focus .SubdomainNavBar-link-text::after {
     opacity: 1;
-    transform: translate3d(0, 0.2em, 0);
-    transform: scale(0.4);
+    transform: scale(0.75);
   }
 
-  .SubdomainNavBar-link:active::after {
+  .SubdomainNavBar-link:active .SubdomainNavBar-link-text::after {
     background-color: var(--brand-SubdomainNavBar-border-nav-pressed);
-    transform: scale(0.6);
+    transform: scale(0.75);
   }
 
   .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link {
@@ -304,7 +309,7 @@
     color: var(--brand-SubdomainNavBar-fg-overflow-default);
   }
 
-  .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link::after {
+  .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link .SubdomainNavBar-link-text::after {
     display: none;
   }
 
