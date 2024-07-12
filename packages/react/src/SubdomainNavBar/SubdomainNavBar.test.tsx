@@ -161,4 +161,32 @@ describe('SubdomainNavBar', () => {
 
     expect(liveRegion).not.toBeInTheDocument()
   })
+
+  it('renders a leading component when the `leadingComponent` prop is provided', async () => {
+    const {getByTestId} = render(
+      <SubdomainNavBar title="test">
+        <SubdomainNavBar.Link href="#">Collections</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#" leadingComponent={() => <div data-testid="leading-component" />}>
+          Topics
+        </SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#">Articles</SubdomainNavBar.Link>
+      </SubdomainNavBar>,
+    )
+
+    expect(getByTestId('leading-component')).toBeInTheDocument()
+  })
+
+  it('renders a trailing component when the `trailingComponent` prop is provided', async () => {
+    const {getByTestId} = render(
+      <SubdomainNavBar title="test">
+        <SubdomainNavBar.Link href="#">Collections</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#" trailingComponent={() => <div data-testid="trailing-component" />}>
+          Topics
+        </SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#">Articles</SubdomainNavBar.Link>
+      </SubdomainNavBar>,
+    )
+
+    expect(getByTestId('trailing-component')).toBeInTheDocument()
+  })
 })
