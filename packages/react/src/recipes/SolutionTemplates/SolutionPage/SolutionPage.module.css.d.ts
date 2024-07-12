@@ -9,6 +9,7 @@ declare const styles: {
   readonly "noBottomRadius": string;
   readonly "jtbd2Section": string;
   readonly "cards": string;
+  readonly "breadcrumbsOffset": string;
   readonly "heroVideoGlow": string;
   readonly "scaleAnimation": string;
 };

@@ -169,37 +169,36 @@ export function SolutionPage({
                 </div>
                 <Grid enableOverlay={enableGridOverlay} className={parallaxStyles.foreground}>
                   <Grid.Column>
-                    <Box marginBlockStart={20}>
+                    <Box marginBlockStart={96}>
                       <Breadcrumbs>
                         <Breadcrumbs.Item href="/">Solutions</Breadcrumbs.Item>
                         <Breadcrumbs.Item href="/copilot">By {variant}</Breadcrumbs.Item>
-                        <Breadcrumbs.Item href="/copilot/chat" selected>
-                          {variant}
-                        </Breadcrumbs.Item>
                       </Breadcrumbs>
                     </Box>
-                    <Hero
-                      className={clsx(styles.relative, parallaxStyles.centeredHero)}
-                      align={args.heroAlign ? 'center' : 'start'}
-                      trailingComponent={args.heroVideo ? HeroVideo : undefined}
-                    >
-                      {args.heroLabel && <Hero.Label>{args.heroLabel}</Hero.Label>}
-                      {args.heroTitle && <Hero.Heading>{args.heroTitle}</Hero.Heading>}
-                      {args.heroDescription && <Hero.Description>{args.heroDescription}</Hero.Description>}
-                      {args.heroCtaTextPrimary && (
-                        <Hero.PrimaryAction href="#">{args.heroCtaTextPrimary}</Hero.PrimaryAction>
-                      )}
-                      {args.heroCtaTextSecondary && (
-                        <Hero.SecondaryAction href="#">{args.heroCtaTextSecondary}</Hero.SecondaryAction>
-                      )}
-                      {args.heroImage && (
-                        <Hero.Image
-                          position="block-end"
-                          src={ciCdRenderImage}
-                          alt="placeholder, blank area with an off-white background color"
-                        />
-                      )}
-                    </Hero>
+                    <Box className={styles.breadcrumbsOffset}>
+                      <Hero
+                        className={clsx(styles.relative, parallaxStyles.centeredHero)}
+                        align={args.heroAlign ? 'center' : 'start'}
+                        trailingComponent={args.heroVideo ? HeroVideo : undefined}
+                      >
+                        {args.heroLabel && <Hero.Label>{args.heroLabel}</Hero.Label>}
+                        {args.heroTitle && <Hero.Heading>{args.heroTitle}</Hero.Heading>}
+                        {args.heroDescription && <Hero.Description>{args.heroDescription}</Hero.Description>}
+                        {args.heroCtaTextPrimary && (
+                          <Hero.PrimaryAction href="#">{args.heroCtaTextPrimary}</Hero.PrimaryAction>
+                        )}
+                        {args.heroCtaTextSecondary && (
+                          <Hero.SecondaryAction href="#">{args.heroCtaTextSecondary}</Hero.SecondaryAction>
+                        )}
+                        {args.heroImage && (
+                          <Hero.Image
+                            position="block-end"
+                            src={ciCdRenderImage}
+                            alt="placeholder, blank area with an off-white background color"
+                          />
+                        )}
+                      </Hero>
+                    </Box>
                   </Grid.Column>
                 </Grid>
               </div>
