@@ -8,7 +8,6 @@ import placeholderImage from '../fixtures/images/placeholder-600x400.png'
 
 import {SubdomainNavBar, SubdomainNavBarProps} from '.'
 import {waitFor} from '@testing-library/dom'
-import {BeakerIcon, LinkExternalIcon} from '@primer/octicons-react'
 
 type CustomStoryArgs = {showSearch: boolean; numLinks: number; title: string; fullWidth: boolean}
 type Args = CustomStoryArgs & SubdomainNavBarProps
