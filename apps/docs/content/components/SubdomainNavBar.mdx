@@ -136,14 +136,13 @@ render(App)
 
 `SubdomainNavBar.Link` are anchor links.
 
-| Name                | Type                      | Default | Description                              |
-| :------------------ | :------------------------ | :-----: | :--------------------------------------- |
-| `children`          | `string`                  |         | Label text                               |
-| `className`         | `string`                  |         | Applies a custom class                   |
-| `href`              | `string`                  |         | Destination path for the anchor element  |
-| `id`                | `string`                  |         | Sets a custom id                         |
-| `ref`               | `React.RefObject`         |         | Forward a Ref to the underlying DOM node |
-| `leadingComponent`  | `React.FunctionComponent` |         | A slot for a leading component           |
-| `trailingComponent` | `React.FunctionComponent` |         | A slot for a trailing component          |
+| Name         | Type              | Default | Description                                               |
+| :----------- | :---------------- | :-----: | :-------------------------------------------------------- |
+| `children`   | `string`          |         | Label text                                                |
+| `className`  | `string`          |         | Applies a custom class                                    |
+| `href`       | `string`          |         | Destination path for the anchor element                   |
+| `id`         | `string`          |         | Sets a custom id                                          |
+| `ref`        | `React.RefObject` |         | Forward a Ref to the underlying DOM node                  |
+| `isExternal` | `boolean`         | `false` | When true, renders a external link icon after to the link |
 
 Additional props can be passed to the `<a>` element. [See MDN for a list of props](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#attributes) accepted by the `<anchor>` element.

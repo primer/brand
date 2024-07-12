@@ -1,6 +1,6 @@
 import React, {useState, useCallback, useRef, PropsWithChildren, forwardRef, useMemo, useEffect} from 'react'
 import clsx from 'clsx'
-import {ChevronLeftIcon, MarkGithubIcon, SearchIcon, XIcon} from '@primer/octicons-react'
+import {ChevronLeftIcon, LinkExternalIcon, MarkGithubIcon, SearchIcon, XIcon} from '@primer/octicons-react'
 
 import {Button, FormControl, Text, TextInput} from '..'
 import {NavigationVisbilityObserver} from './NavigationVisbilityObserver'
@@ -358,24 +358,15 @@ function Root({
 
 type LinkProps = {
   href: string
-  leadingComponent?: React.FunctionComponent
-  trailingComponent?: React.FunctionComponent
+  isExternal?: boolean
 } & React.DetailedHTMLProps<React.LiHTMLAttributes<HTMLLIElement>, HTMLLIElement>
 
-function Link({
-  href,
-  className,
-  children,
-  leadingComponent: LeadingComponent,
-  trailingComponent: TrailingComponent,
-  ...rest
-}: PropsWithChildren<LinkProps>) {
+function Link({href, className, children, isExternal, ...rest}: PropsWithChildren<LinkProps>) {
   return (
     <li className={clsx(styles['SubdomainNavBar-primary-nav-list-item'], className)} {...rest}>
       <a href={href} className={styles['SubdomainNavBar-link']}>
-        {LeadingComponent && <LeadingComponent />}
         <span className={styles['SubdomainNavBar-link-text']}>{children}</span>
-        {TrailingComponent && <TrailingComponent />}
+        {isExternal && <LinkExternalIcon size={16} aria-label="External link" />}
       </a>
     </li>
   )
