@@ -8,7 +8,7 @@ import placeholderImage from '../fixtures/images/placeholder-600x400.png'
 
 import {SubdomainNavBar, SubdomainNavBarProps} from '.'
 import {waitFor} from '@testing-library/dom'
-import {LinkExternalIcon} from '@primer/octicons-react'
+import {BeakerIcon, LinkExternalIcon} from '@primer/octicons-react'
 
 type CustomStoryArgs = {showSearch: boolean; numLinks: number; title: string; fullWidth: boolean}
 type Args = CustomStoryArgs & SubdomainNavBarProps
@@ -694,6 +694,23 @@ export const TrailingComponent = () => {
     <SubdomainNavBar title="Subdomain">
       <SubdomainNavBar.Link href="#Collections">Collections</SubdomainNavBar.Link>
       <SubdomainNavBar.Link href="#Topics" trailingComponent={() => <LinkExternalIcon size={16} />}>
+        Topics
+      </SubdomainNavBar.Link>
+      <SubdomainNavBar.Link href="#Articles">Articles</SubdomainNavBar.Link>
+      <SubdomainNavBar.Link href="#Events">Events</SubdomainNavBar.Link>
+      <SubdomainNavBar.Link href="#Video">Video</SubdomainNavBar.Link>
+
+      <SubdomainNavBar.PrimaryAction href="#">Primary CTA</SubdomainNavBar.PrimaryAction>
+      <SubdomainNavBar.SecondaryAction href="#">Secondary CTA</SubdomainNavBar.SecondaryAction>
+    </SubdomainNavBar>
+  )
+}
+
+export const LeadingComponent = () => {
+  return (
+    <SubdomainNavBar title="Subdomain">
+      <SubdomainNavBar.Link href="#Collections">Collections</SubdomainNavBar.Link>
+      <SubdomainNavBar.Link href="#Topics" leadingComponent={() => <BeakerIcon size={16} />}>
         Topics
       </SubdomainNavBar.Link>
       <SubdomainNavBar.Link href="#Articles">Articles</SubdomainNavBar.Link>
