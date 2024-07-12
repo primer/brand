@@ -372,6 +372,7 @@ type ValidFeatureListChildren = {
 
 const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatureListProps>(
   ({children, className, 'data-testid': testId, hasDivider = true, expanded = defaultExpanded, ...rest}, ref) => {
+    const runOnce = React.useRef(false)
     const [isAccordionOpen, setIsAccordionOpen] = React.useState<boolean>(false)
     const {allFeatureListsExpanded, updateFeatureListExpanded} = usePricingOptions()
 
@@ -404,21 +405,25 @@ const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatu
     ))
 
     React.useEffect(() => {
-      if (typeof expanded === 'boolean') {
-        return setIsAccordionOpen(expanded)
-      } else if (typeof expanded === 'object') {
-        const {narrow, regular, wide} = expanded
-        if (isRegular) return setIsAccordionOpen(regular)
-        if (isWide) return setIsAccordionOpen(wide)
-        return setIsAccordionOpen(narrow)
+      if (!runOnce.current) {
+        if (typeof expanded === 'boolean') {
+          return setIsAccordionOpen(expanded)
+        } else if (typeof expanded === 'object') {
+          const {narrow, regular, wide} = expanded
+          if (isRegular) return setIsAccordionOpen(regular)
+          if (isWide) return setIsAccordionOpen(wide)
+          return setIsAccordionOpen(narrow)
+        }
+        runOnce.current = true
       }
-    }, [expanded, isRegular, isWide, isAccordionOpen, setIsAccordionOpen])
+    }, [expanded, isRegular, isWide])
 
     React.useEffect(() => {
-      if (!allFeatureListsExpanded && isAccordionOpen) {
-        updateFeatureListExpanded(isAccordionOpen)
+      if (isAccordionOpen && !runOnce.current) {
+        updateFeatureListExpanded(true)
+        runOnce.current = true
       }
-    }, [isAccordionOpen, allFeatureListsExpanded, updateFeatureListExpanded])
+    }, [isAccordionOpen, updateFeatureListExpanded])
 
     return (
       <div
@@ -433,12 +438,8 @@ const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatu
         <Accordion
           className={styles['PricingOptions__feature-list-accordion']}
           open={allFeatureListsExpanded}
-          handleOpen={open => {
-            if (open) {
-              setIsAccordionOpen(true)
-            } else {
-              setIsAccordionOpen(false)
-            }
+          handleOpen={newState => {
+            updateFeatureListExpanded(newState)
           }}
         >
           <Accordion.Heading className={styles['PricingOptions__feature-list-accordion-heading']} reversedToggles>
