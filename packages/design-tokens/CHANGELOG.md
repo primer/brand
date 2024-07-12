@@ -1,5 +1,13 @@
 # @primer/brand-primitives
 
+## 0.34.3
+
+### Patch Changes
+
+- [#632](https://github.com/primer/brand/pull/632) [`77b98a4c`](https://github.com/primer/brand/commit/77b98a4c5e399d4e33722ad92e6f54fd730f69d3) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Partial revert of changes to the `LogoSuite` logobar elements.
+
+  To allow optimal treatment of logos based on their respective file formats, `<img>` tag will continue be styled with a CSS filter, whereas inline `<svg>` elements will be styled with CSS fill.
+
 ## 0.34.2
 
 ## 0.34.1
