@@ -364,13 +364,16 @@
 }
 
 @media screen and (max-width: 40rem) {
+  .AnchorNav {
+    padding: 0;
+  }
+
   .AnchorNav-action {
     display: none;
   }
 
   .AnchorNav__actionsContainer {
     flex-direction: column;
-    padding: 0 var(--base-size-8) var(--base-size-8);
   }
 
   .AnchorNav--expanded .AnchorNav-action {
@@ -381,6 +384,7 @@
 
   .AnchorNav-inner-container {
     overflow-y: auto;
+    padding: var(--base-size-12) var(--base-size-16);
   }
 }
 
