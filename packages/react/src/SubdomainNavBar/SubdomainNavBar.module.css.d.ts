@@ -18,6 +18,7 @@ declare const styles: {
   readonly "SubdomainNavBar-menu-wrapper": string;
   readonly "fade-in-down": string;
   readonly "SubdomainNavBar-menu-wrapper--close": string;
+  readonly "SubdomainNavBar-outer-container--has-actions": string;
   readonly "SubdomainNavBar-primary-nav-list-item": string;
   readonly "fade-in-down-staggered": string;
   readonly "SubdomainNavBar-primary-nav-list-item--visible": string;

@@ -149,12 +149,23 @@ function Root({
     [children],
   )
 
+  const hasAllActions: boolean = useMemo(() => {
+    const primaryAction = React.Children.toArray(children).find(
+      child => React.isValidElement(child) && child.type === PrimaryAction,
+    )
+    const secondaryAction = React.Children.toArray(children).find(
+      child => React.isValidElement(child) && child.type === SecondaryAction,
+    )
+    return !!primaryAction && !!secondaryAction
+  }, [children])
+
   return (
     <>
       <div
         className={clsx(
           styles['SubdomainNavBar-outer-container'],
           fixed && styles['SubdomainNavBar-outer-container--fixed'],
+          hasAllActions && styles['SubdomainNavBar-outer-container--has-actions'],
         )}
       >
         <Button

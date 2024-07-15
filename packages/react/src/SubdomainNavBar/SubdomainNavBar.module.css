@@ -202,6 +202,10 @@
     max-width: 520px;
     margin-right: 80px;
   }
+
+  .SubdomainNavBar-outer-container--has-actions .SubdomainNavBar-primary-nav-list {
+    max-width: 465px;
+  }
 }
 
 .SubdomainNavBar-primary-nav-list-item {
