@@ -24,8 +24,8 @@ export const WithoutBranding = () => (
   </VideoPlayer>
 )
 
-export const WithoutTitle = () => (
-  <VideoPlayer showTitle={false} title="GitHub media player">
+export const WithVisuallyHiddenTitle = () => (
+  <VideoPlayer visuallyHiddenTitle title="GitHub media player">
     <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" type="video/mp4" />
     <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
   </VideoPlayer>
@@ -77,7 +77,7 @@ export const WithCustomPlayButton = () => (
 export const Minimal = () => (
   <VideoPlayer
     title="GitHub media player"
-    showTitle={false}
+    visuallyHiddenTitle
     showBranding={false}
     renderPlayOverlay={() => <PlayIcon style={{width: 96, height: 96, opacity: 0.8}} />}
     renderControls={(controlsProps, {isPlaying}) => (

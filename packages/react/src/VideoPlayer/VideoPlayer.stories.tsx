@@ -29,7 +29,7 @@ export default {
       type: 'string',
       description: 'Specify the title of the video',
     },
-    showTitle: {
+    visuallyHiddenTitle: {
       type: 'boolean',
     },
     showBranding: {

@@ -18,7 +18,7 @@ import {useVideo, type UseVideoContext, VideoProvider} from './hooks/useVideo'
 
 type VideoPlayerProps = {
   title: string
-  showTitle?: boolean
+  visuallyHiddenTitle?: boolean
   showBranding?: boolean
   animate?: AnimateProps
   renderControls?: (props: ControlsProps, context: UseVideoContext) => ReactElement | null
@@ -27,7 +27,7 @@ type VideoPlayerProps = {
 
 const Root = ({
   title,
-  showTitle = true,
+  visuallyHiddenTitle,
   showBranding = true,
   children,
   className,
@@ -61,7 +61,7 @@ const Root = ({
       </video>
       <div className={styles.VideoPlayer__title}>
         {showBranding && <MarkGithubIcon size={40} />}
-        {showTitle && (
+        {!visuallyHiddenTitle && (
           <Text size="400" weight="medium" className={styles.VideoPlayer__controlTextColor}>
             {title}
           </Text>

@@ -9,12 +9,7 @@ description: Use the video player component to enable playback of self-hosted vi
 import {Label} from '@primer/react'
 
 ```js
-import {
-  VideoPlayer,
-  PlayPauseButton,
-  ControlsBar,
-  SeekControl,
-} from '@primer/react-brand'
+import {VideoPlayer, PlayPauseButton, ControlsBar, SeekControl} from '@primer/react-brand'
 ```
 
 ## Examples
@@ -31,10 +26,7 @@ import {
 ## With poster
 
 ```jsx live
-<VideoPlayer
-  poster="https://primer.github.io/brand/assets/example-poster.png"
-  title="GitHub media player"
->
+<VideoPlayer poster="https://primer.github.io/brand/assets/example-poster.png" title="GitHub media player">
   <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" />
   <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
 </VideoPlayer>
@@ -74,16 +66,16 @@ import {
 
 `VideoPlayer` provides a React alternative to the native HTML `<video />`.
 
-| Name                | Type                                                               | Default | Required | Description                                                     |
-| :------------------ | :----------------------------------------------------------------- | :-----: | :------: | :-------------------------------------------------------------- |
-| `children`          | `React.ReactNode`, `React.ReactNode[]`                             |         |  `true`  | Takes `<VideoPlayer.Source>` and `<VideoPlayer.Track>` elements |
-| `title`             | `string`                                                           |         |  `true`  | Sets the title of the video                                     |
-| `showTitle`         | `boolean`                                                          | `true`  | `false`  | Displays the title of the video in the upper-left corner        |
-| `showBranding`      | `boolean`                                                          | `true`  | `false`  | Displays GitHub branding next to video title                    |
-| `poster`            | `string`                                                           |         | `false`  | Sets an image as the starting frame for the video element       |
-| `className`         | `string`                                                           |         | `false`  | Sets a custom class on the `<video>` element                    |
-| `renderControls`    | `(props: ControlsProps, context: UseVideoContext) => ReactElement` |         | `false`  | Sets a custom class on the `<video>` element                    |
-| `renderPlayOverlay` | `() => ReactElement`                                               |         | `false`  | Sets a custom class on the `<video>` element                    |
+| Name                  | Type                                                               | Default | Required | Description                                                     |
+| :-------------------- | :----------------------------------------------------------------- | :-----: | :------: | :-------------------------------------------------------------- |
+| `children`            | `React.ReactNode`, `React.ReactNode[]`                             |         |  `true`  | Takes `<VideoPlayer.Source>` and `<VideoPlayer.Track>` elements |
+| `title`               | `string`                                                           |         |  `true`  | Sets the title of the video                                     |
+| `visuallyHiddenTitle` | `boolean`                                                          |         | `false`  | Visually hides the title of the video in the upper-left corner  |
+| `showBranding`        | `boolean`                                                          | `true`  | `false`  | Displays GitHub branding next to video title                    |
+| `poster`              | `string`                                                           |         | `false`  | Sets an image as the starting frame for the video element       |
+| `className`           | `string`                                                           |         | `false`  | Sets a custom class on the `<video>` element                    |
+| `renderControls`      | `(props: ControlsProps, context: UseVideoContext) => ReactElement` |         | `false`  | Sets a custom class on the `<video>` element                    |
+| `renderPlayOverlay`   | `() => ReactElement`                                               |         | `false`  | Sets a custom class on the `<video>` element                    |
 
 The component API supports all standard HTML attribute props, while providing some additional behavior as described above.
 
