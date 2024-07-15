@@ -272,6 +272,10 @@
   flex-direction: column;
   gap: var(--base-size-8);
   grid-row: feature-list;
+  margin-block-start: var(--base-size-24);
+}
+
+.PricingOptions__feature-list--has-divider {
   border-block-start: solid 1px var(--brand-color-border-default);
   margin: 0;
   margin-block-start: var(--base-size-24);
@@ -308,7 +312,7 @@
 
 /* Remove hover effect */
 .PricingOptions__feature-list-accordion::after {
-  content: none;
+  content: none !important;
 }
 
 /* Adjust heading spacing */

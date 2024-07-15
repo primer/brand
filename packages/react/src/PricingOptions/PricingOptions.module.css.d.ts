@@ -21,6 +21,7 @@ declare const styles: {
   readonly "PricingOptions__price-trailing-text": string;
   readonly "PricingOptions__footnote": string;
   readonly "PricingOptions__feature-list": string;
+  readonly "PricingOptions__feature-list--has-divider": string;
   readonly "PricingOptions__feature-list-set": string;
   readonly "PricingOptions__feature-list-heading": string;
   readonly "PricingOptions__feature-list-item--excluded": string;
