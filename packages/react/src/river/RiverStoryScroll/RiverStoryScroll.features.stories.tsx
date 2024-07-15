@@ -133,9 +133,9 @@ WithTimelineNarrow.parameters = {
   },
 }
 
-export const Disable = Template.bind({})
-Disable.args = {
-  disable: true,
+export const Disabled = Template.bind({})
+Disabled.args = {
+  disabled: true,
 }
 
 export const EnterpriseExample = () => (

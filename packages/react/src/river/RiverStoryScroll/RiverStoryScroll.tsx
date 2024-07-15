@@ -21,10 +21,10 @@ export type RiverStoryScrollProps = {
   /**
    * Disable the scroll effect.
    */
-  disable?: boolean
+  disabled?: boolean
 } & BaseProps<HTMLDivElement>
 
-export function RiverStoryScroll({children, disable}: React.PropsWithChildren<RiverStoryScrollProps>) {
+export function RiverStoryScroll({children, disabled}: React.PropsWithChildren<RiverStoryScrollProps>) {
   const visualContainerRef = useRef<HTMLDivElement | null>(null)
   const contentContainerRef = useRef<HTMLDivElement | null>(null)
 
@@ -59,7 +59,7 @@ export function RiverStoryScroll({children, disable}: React.PropsWithChildren<Ri
   }, [])
 
   useEffect(() => {
-    if (disable || prefersReducedMotion) return
+    if (disabled || prefersReducedMotion) return
 
     if (contentContainerRef.current) {
       const mediaElements = Array.from(contentContainerRef.current.querySelectorAll('img, video')).filter(element => {
@@ -86,9 +86,9 @@ export function RiverStoryScroll({children, disable}: React.PropsWithChildren<Ri
       // set new media
       setMedia(newMedia)
     }
-  }, [disable, prefersReducedMotion])
+  }, [disabled, prefersReducedMotion])
 
-  if (disable || prefersReducedMotion) {
+  if (disabled || prefersReducedMotion) {
     return <div className={clsx(styles.RiverStoryScroll, styles['RiverStoryScroll--disabled'])}>{Children}</div>
   }
 

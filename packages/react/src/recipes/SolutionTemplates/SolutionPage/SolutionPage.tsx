@@ -764,7 +764,7 @@ function StoryScrollExample({align, bentoVisible}) {
         </SectionIntro.Heading>
       </SectionIntro>
 
-      <RiverStoryScroll align={align} disable={collapsedMode}>
+      <RiverStoryScroll align={align} disabled={collapsedMode}>
         <River align={align}>
           <River.Visual>
             <img

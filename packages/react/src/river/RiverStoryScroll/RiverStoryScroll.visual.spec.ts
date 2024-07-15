@@ -28,9 +28,9 @@ test.describe('Visual Comparison: RiverStoryScroll', () => {
       expect(await page.screenshot()).toMatchSnapshot()
     })
   })
-  test('RiverStoryScroll / Disable', async ({page}) => {
+  test('RiverStoryScroll / Disabled', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-riverstoryscroll-features--disable&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-riverstoryscroll-features--disabled&viewMode=story',
     )
 
     await page.waitForTimeout(500)
