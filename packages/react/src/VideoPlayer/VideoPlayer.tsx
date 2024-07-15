@@ -55,9 +55,9 @@ const Root = ({
       )}
       ref={videoWrapperRef}
     >
-      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <video ref={ref} title={title} controls={false} className={clsx(styles.VideoPlayer, className)} {...rest}>
         {children}
+        <track kind="captions" />
       </video>
       <div className={styles.VideoPlayer__title}>
         {showBranding && <MarkGithubIcon size={40} />}
