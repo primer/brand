@@ -41,7 +41,7 @@ const Root = ({
 }: VideoPlayerProps) => {
   const videoWrapperRef = useRef<HTMLDivElement>(null)
   const useVideoContext = useVideo()
-  const {ccEnabled, isPlaying, ref, play, pause} = useVideoContext
+  const {ccEnabled, isPlaying, ref, togglePlaying} = useVideoContext
   const isSmall = useVideoResizeObserver({videoWrapperRef, className: styles['VideoPlayer__container--small']})
 
   useVideoKeypressHandlers(videoWrapperRef)
@@ -69,9 +69,7 @@ const Root = ({
       </div>
       <button
         className={styles.VideoPlayer__playButton}
-        onClick={() => {
-          isPlaying ? pause() : play()
-        }}
+        onClick={togglePlaying}
         aria-label={isPlaying ? 'Pause' : 'Play'}
       >
         {!isPlaying && renderPlayOverlay()}

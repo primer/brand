@@ -16,7 +16,7 @@ export const CCButton = () => {
         styles.VideoPlayer__closedCaption,
         !ccEnabled && styles.VideoPlayer__ccOff,
       )}
-      onClick={() => toggleCC()}
+      onClick={toggleCC}
       aria-label={ccEnabled ? 'Disable captions' : 'Enable captions'}
     >
       <Text className={styles.VideoPlayer__ccText}>CC</Text>

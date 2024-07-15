@@ -7,12 +7,7 @@ export const PlayPauseButton = () => {
   const {isPlaying, togglePlaying} = useVideo()
 
   return (
-    <IconControl
-      onClick={() => {
-        togglePlaying()
-      }}
-      tooltip={isPlaying ? 'Pause video' : 'Play video'}
-    >
+    <IconControl onClick={togglePlaying} tooltip={isPlaying ? 'Pause video' : 'Play video'}>
       {isPlaying ? <PauseIcon /> : <PlayIcon />}
     </IconControl>
   )
