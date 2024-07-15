@@ -14,6 +14,7 @@ export const supportedComponents = [
   'Statistic',
   'Testimonial',
   'Text',
+  'Statistic',
   'Timeline',
   'Animate',
   'River',

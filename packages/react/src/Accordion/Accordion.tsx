@@ -19,6 +19,7 @@ export type AccordionRootProps = BaseProps<HTMLDetailsElement> & {
   children: React.ReactElement<AccordionHeadingProps | AccordionContentProps>[]
   variant?: 'default' | 'emphasis'
   ref?: React.RefObject<HTMLDetailsElement>
+  handleOpen?: (boolean) => void
 } & React.HTMLAttributes<HTMLDetailsElement>
 
 type ValidRootChildren = {
@@ -27,7 +28,7 @@ type ValidRootChildren = {
 }
 
 export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
-  ({children, className, open = false, variant = 'default', ...rest}, ref) => {
+  ({children, className, open = false, variant = 'default', handleOpen, ...rest}, ref) => {
     const detailsRef = useProvidedRefOrCreate(ref as React.RefObject<HTMLDetailsElement>)
     const [isOpen, setIsOpen] = React.useState(open)
 
@@ -39,7 +40,9 @@ export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
           if (child.type === AccordionContent) {
             acc.AccordionContent = React.cloneElement(child as React.ReactElement<AccordionContentProps>, {
               open: isOpen,
-              handleOpen: (newValue: boolean) => setIsOpen(newValue),
+              handleOpen: (newValue: boolean) => {
+                setIsOpen(newValue)
+              },
               parentRef: detailsRef,
             }) as React.ReactElement<AccordionContentProps>
           }
@@ -47,7 +50,12 @@ export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
             acc.AccordionHeading = React.cloneElement(child as React.ReactElement, {
               variant,
               open: isOpen,
-              handleOpen: (newValue: boolean) => setIsOpen(newValue),
+              handleOpen: (newValue: boolean) => {
+                if (handleOpen) {
+                  handleOpen(newValue)
+                }
+                setIsOpen(newValue)
+              },
               parentRef: detailsRef,
             }) as React.ReactElement<AccordionHeadingProps>
           }
@@ -56,6 +64,10 @@ export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
       },
       {AccordionHeading: null, AccordionContent: null},
     )
+
+    useEffect(() => {
+      setIsOpen(open)
+    }, [open])
 
     return (
       <details
@@ -89,7 +101,10 @@ export const AccordionHeading = forwardRef<HTMLHeadingElement, AccordionHeadingP
     const handleClick = useCallback(
       (event: React.MouseEvent<HTMLDetailsElement, MouseEvent>) => {
         event.preventDefault()
-        if (handleOpen) handleOpen(!open)
+
+        if (handleOpen) {
+          handleOpen(!open)
+        }
       },
       [handleOpen, open],
     )
