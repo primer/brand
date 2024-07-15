@@ -1,4 +1,4 @@
-import {useRef, type RefObject, type ForwardedRef} from 'react'
+import React, {useRef} from 'react'
 
 /**
  * There are some situations where we only want to create a new ref if one is not provided to a component
@@ -6,15 +6,11 @@ import {useRef, type RefObject, type ForwardedRef} from 'react'
  * only in the situations where the ref is not provided as a prop.
  * This hook aims to encapsulate that logic, so the consumer doesn't need to be concerned with violating `rules-of-hooks`.
  * @param providedRef The ref to use - if undefined, will use the ref from a call to React.useRef
- * @type T The type of the RefObject which should be created.
+ * @type TRef The type of the RefObject which should be created.
  */
 
-export function useProvidedRefOrCreate<T>(providedRef?: null | RefObject<T> | ForwardedRef<T>): RefObject<T> {
-  const createdRef = useRef<T>(null)
+export function useProvidedRefOrCreate<TRef>(providedRef?: React.RefObject<TRef>): React.RefObject<TRef> {
+  const createdRef = useRef<TRef>(null)
 
-  if (providedRef) {
-    return typeof providedRef === 'function' ? createdRef : providedRef
-  }
-
-  return createdRef
+  return providedRef ?? createdRef
 }

@@ -5,8 +5,8 @@ import React, {
   useEffect,
   useReducer,
   type PropsWithChildren,
-  type RefObject,
   type SetStateAction,
+  type RefObject,
 } from 'react'
 import {useProvidedRefOrCreate} from '../../hooks/useRef'
 import {useIsElementFullScreen} from './useIsElementFullScreen'
@@ -112,7 +112,7 @@ export const useVideo = () => {
 type VideoProviderProps = PropsWithChildren<Record<string, unknown>>
 
 export const VideoProvider = forwardRef<HTMLVideoElement, VideoProviderProps>(({children}, forwardedRef) => {
-  const ref = useProvidedRefOrCreate(forwardedRef)
+  const ref = useProvidedRefOrCreate(forwardedRef as RefObject<HTMLVideoElement>)
 
   const [state, dispatch] = useReducer(videoReducer, {
     isPlaying: false,
