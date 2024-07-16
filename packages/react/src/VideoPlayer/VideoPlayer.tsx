@@ -1,4 +1,4 @@
-import React, {useRef, forwardRef, type HTMLProps, type ReactElement} from 'react'
+import React, {useRef, forwardRef, type HTMLProps} from 'react'
 import clsx from 'clsx'
 import {Text} from '../Text'
 import {type AnimateProps} from '../animation'
