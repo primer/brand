@@ -8,9 +8,9 @@
 }
 
 .Captions__text {
-  color: var(--base-color-scale-white-0);
+  color: var(--brand-VideoPlayer-closedCaption-text-color);
   text-align: center;
-  background: rgba(0, 0, 0, 0.75);
+  background: var(--brand-VideoPlayer-closedCaption-text-backgroundColor);
   padding: var(--brand-VideoPlayer-closedCaption-text-padding);
   border-radius: var(--brand-borderRadius-medium);
   display: inline-block;

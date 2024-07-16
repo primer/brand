@@ -6,6 +6,12 @@
           "value": "0 auto 15px auto"
         },
         "text": {
+          "color": {
+            "value": "var(--base-color-scale-white-0)"
+          },
+          "backgroundColor": {
+            "value": "rgba(0, 0, 0, 0.75)"
+          },
           "padding": {
             "value": "10px"
           }
