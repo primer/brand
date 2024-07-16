@@ -42,7 +42,6 @@ type VideoPlayerProps = {
   showMuteButton?: boolean
   showVolumeControl?: boolean
   showFullScreenButton?: boolean
-  renderPlayOverlay?: () => ReactElement | null
 } & HTMLProps<HTMLVideoElement>
 
 const Root = ({
@@ -58,7 +57,6 @@ const Root = ({
   showMuteButton = true,
   showVolumeControl = true,
   showFullScreenButton = true,
-  renderPlayOverlay = () => <VideoPlayer.PlayIcon className={styles.VideoPlayer__playButtonOverlay} />,
   ...rest
 }: VideoPlayerProps) => {
   const videoWrapperRef = useRef<HTMLDivElement>(null)
@@ -87,10 +85,10 @@ const Root = ({
         onClick={togglePlaying}
         aria-label={isPlaying ? 'Pause' : 'Play'}
       >
-        {!isPlaying && renderPlayOverlay()}
+        {isPlaying ? null : <VideoPlayer.PlayIcon className={styles.VideoPlayer__playButtonOverlay} />}
       </button>
       <div className={styles.VideoPlayer__controls}>
-        {ccEnabled && <Captions />}
+        {ccEnabled ? <Captions /> : null}
         {hideControls ? null : (
           <ControlsBar>
             {showPlayPauseButton ? <PlayPauseButton /> : null}

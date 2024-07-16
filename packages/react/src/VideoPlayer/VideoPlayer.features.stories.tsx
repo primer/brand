@@ -45,7 +45,7 @@ export const WithCustomControls = () => (
   </VideoPlayer>
 )
 
-export const HideControlsUntilPlaying = () => (
+export const HideControlsWhenPaused = () => (
   <VideoPlayer title="GitHub media player" showControlsWhenPaused={false}>
     <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" type="video/mp4" />
     <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />

@@ -44,22 +44,48 @@ import {VideoPlayer} from '@primer/react-brand'
 </VideoPlayer>
 ```
 
+## With visually hidden title
+
+```jsx live
+<VideoPlayer visuallyHiddenTitle title="GitHub media player">
+  <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" />
+  <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
+</VideoPlayer>
+```
+
 ## With custom controls
 
 ```jsx live
 <VideoPlayer
   title="GitHub media player"
-  renderControls={() => (
-    <VideoPlayer.ControlsBar>
-      <VideoPlayer.PlayPauseButton />
-      <VideoPlayer.SeekControl />
-    </VideoPlayer.ControlsBar>
-  )}
+  showPlayPauseButton={false}
+  showSeekControl={true}
+  showCCButton={false}
+  showMuteButton={false}
+  showVolumeControl={false}
+  showFullScreenButton={false}
 >
-  <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" />
+  <VideoPlayer.Source
+    src="https://primer.github.io/brand/assets/example.mp4"
+    type="video/mp4"
+  />
   <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
 </VideoPlayer>
 ```
+
+## Hide controls when paused
+
+```jsx live
+<VideoPlayer title="GitHub media player" showControlsWhenPaused={false}>
+  <VideoPlayer.Source
+    src="https://primer.github.io/brand/assets/example.mp4"
+    type="video/mp4"
+  />
+  <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
+</VideoPlayer>
+```
+
+## Minimal
 
 ## Component props
 
@@ -69,16 +95,21 @@ import {VideoPlayer} from '@primer/react-brand'
 
 `VideoPlayer` provides a React alternative to the native HTML `<video />`.
 
-| Name                  | Type                                                               | Default | Required | Description                                                     |
-| :-------------------- | :----------------------------------------------------------------- | :-----: | :------: | :-------------------------------------------------------------- |
-| `children`            | `React.ReactNode`, `React.ReactNode[]`                             |         |  `true`  | Takes `<VideoPlayer.Source>` and `<VideoPlayer.Track>` elements |
-| `title`               | `string`                                                           |         |  `true`  | Sets the title of the video                                     |
-| `visuallyHiddenTitle` | `boolean`                                                          |         | `false`  | Visually hides the title of the video in the upper-left corner  |
-| `showBranding`        | `boolean`                                                          | `true`  | `false`  | Displays GitHub branding next to video title                    |
-| `poster`              | `string`                                                           |         | `false`  | Sets an image as the starting frame for the video element       |
-| `className`           | `string`                                                           |         | `false`  | Sets a custom class on the `<video>` element                    |
-| `renderControls`      | `(props: ControlsProps, context: UseVideoContext) => ReactElement` |         | `false`  | Sets a custom class on the `<video>` element                    |
-| `renderPlayOverlay`   | `() => ReactElement`                                               |         | `false`  | Sets a custom class on the `<video>` element                    |
+| Name                     | Type                                   | Default | Required | Description                                                     |
+| :----------------------- | :------------------------------------- | :-----: | :------: | :-------------------------------------------------------------- |
+| `children`               | `React.ReactNode`, `React.ReactNode[]` |         |  `true`  | Takes `<VideoPlayer.Source>` and `<VideoPlayer.Track>` elements |
+| `title`                  | `string`                               |         |  `true`  | Sets the title of the video                                     |
+| `visuallyHiddenTitle`    | `boolean`                              |         | `false`  | Visually hides the title of the video in the upper-left corner  |
+| `showBranding`           | `boolean`                              | `true`  | `false`  | Displays GitHub branding next to video title                    |
+| `poster`                 | `string`                               |         | `false`  | Sets an image as the starting frame for the video element       |
+| `className`              | `string`                               |         | `false`  | Sets a custom class on the `<video>` element                    |
+| `showControlsWhenPaused` | `boolean`                              | `true`  | `false`  | Show the video controls when paused                             |
+| `showPlayPauseButton`    | `boolean`                              | `true`  | `false`  | Show the play button control                                    |
+| `showSeekControl`        | `boolean`                              | `true`  | `false`  | Show the seek control                                           |
+| `showCCButton`           | `boolean`                              | `true`  | `false`  | Show the closed caption toggle control                          |
+| `showMuteButton`         | `boolean`                              | `true`  | `false`  | Show the mute button control                                    |
+| `showVolumeControl`      | `boolean`                              | `true`  | `false`  | Show the volume control                                         |
+| `showFullScreenButton`   | `boolean`                              | `true`  | `false`  | Show the full screen button control                             |
 
 The component API supports all standard HTML attribute props, while providing some additional behavior as described above.
 
@@ -99,56 +130,3 @@ The component API supports all standard HTML attribute props, while providing so
 | `kind` | `'subtitles'`, `'captions'`, `'descriptions'`, `'chapters'`, `'metadata'` | `'captions'` | `false`  | Sets how the text track is meant to be used |
 
 The component API supports all standard HTML attribute props, while providing some additional behavior as described above.
-
-<h2>useVideo Context</h2>
-
-The `useVideo` context provides a comprehensive API for managing video playback, volume, closed captioning, and fullscreen mode.
-
-The context can be accessed from within the `renderControls` prop using the `context` parameter, or by using the `useVideo` hook directly in any component that is a child of `VideoPlayer`.
-
-Below is a detailed description of each property and method available in the `useVideo` context.
-
-| Name               | Type                                               | Description                                                                                    |
-| :----------------- | :------------------------------------------------- | :--------------------------------------------------------------------------------------------- |
-| `ref`              | `RefObject<HTMLVideoElement>`                      | A reference to the video element.                                                              |
-| `isPlaying`        | `boolean`                                          | Indicates if the video is currently playing.                                                   |
-| `volume`           | `number`                                           | The current volume of the video, ranging from 0 to 1.                                          |
-| `isMuted`          | `boolean`                                          | Indicates if the video is currently muted.                                                     |
-| `volumeBeforeMute` | `number`                                           | The volume of the video before it was muted, allowing for easy unmuting to the previous level. |
-| `duration`         | `number`                                           | The total duration of the video in seconds.                                                    |
-| `ccEnabled`        | `boolean`                                          | Indicates if closed captions are enabled.                                                      |
-| `isFullScreen`     | `boolean`                                          | Indicates if the video is currently in fullscreen mode.                                        |
-| `play`             | `() => void`                                       | Plays the video.                                                                               |
-| `pause`            | `() => void`                                       | Pauses the video.                                                                              |
-| `togglePlaying`    | `() => void`                                       | Toggles between playing and pausing the video.                                                 |
-| `setVolume`        | `(volumeValOrFn: SetStateAction<number>) => void`  | Sets the volume of the video.                                                                  |
-| `mute`             | `() => void`                                       | Mutes the video.                                                                               |
-| `unmute`           | `() => void`                                       | Unmutes the video.                                                                             |
-| `toggleMute`       | `() => void`                                       | Toggles between muting and unmuting the video.                                                 |
-| `setDuration`      | `(duration: number) => void`                       | Sets the duration of the video.                                                                |
-| `seek`             | `(time: number) => void`                           | Seeks the video to a specific time in seconds.                                                 |
-| `seekToPercent`    | `(percent: number) => void`                        | Seeks the video to a specific percentage of its duration.                                      |
-| `seekRelative`     | `(secondsValOrFn: SetStateAction<number>) => void` | Seeks the video forward or backward by a given number of seconds.                              |
-| `enableCC`         | `() => void`                                       | Enables closed captions.                                                                       |
-| `disableCC`        | `() => void`                                       | Disables closed captions.                                                                      |
-| `toggleCC`         | `() => void`                                       | Toggles closed captions on and off.                                                            |
-| `enterFullScreen`  | `() => void`                                       | Enters fullscreen mode.                                                                        |
-| `exitFullScreen`   | `() => void`                                       | Exits fullscreen mode.                                                                         |
-| `toggleFullScreen` | `() => void`                                       | Toggles between entering and exiting fullscreen mode.                                          |
-
-<h2>Keyboard shortcuts</h2>
-
-The `VideoPlayer` component supports the following keyboard shortcuts for controlling video playback:
-
-- `Space` or `k`: Toggles between playing and pausing the video.
-- `m`: Toggles between muting and unmuting the video.
-- `f`: Toggles between entering and exiting fullscreen mode.
-- `c`: Toggles closed captions on and off.
-- `ArrowLeft`: Seeks the video backward by 5 seconds.
-- `ArrowRight`: Seeks the video forward by 5 seconds.
-- `j`: Seeks the video backward by 10 seconds.
-- `l`: Seeks the video forward by 10 seconds.
-- `ArrowUp` or `ArrowDown`: Increases or decreases the volume by 10%.
-- `0-9`: Seeks the video to a specific percentage of its duration.
-
-These shortcuts closely match what is commonly found in popular video players like YouTube and Vimeo.
