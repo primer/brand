@@ -166,4 +166,13 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
+
+  test('SubdomainNavBar / External Link', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--external-link&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
 })
