@@ -6,7 +6,6 @@ import {
   Captions,
   CCButton,
   Controls,
-  type ControlsProps,
   ControlsBar,
   FullScreenButton,
   IconControl,
@@ -29,14 +28,20 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './VideoPlayer.module.css'
 import {useVideoResizeObserver} from './hooks/'
-import {useVideo, type UseVideoContext, VideoProvider} from './hooks/useVideo'
+import {useVideo, VideoProvider} from './hooks/useVideo'
 
 type VideoPlayerProps = {
   title: string
   visuallyHiddenTitle?: boolean
   showBranding?: boolean
   animate?: AnimateProps
-  renderControls?: (props: ControlsProps, context: UseVideoContext) => ReactElement | null
+  showControlsWhenPaused?: boolean
+  showPlayPauseButton?: boolean
+  showSeekControl?: boolean
+  showCCButton?: boolean
+  showMuteButton?: boolean
+  showVolumeControl?: boolean
+  showFullScreenButton?: boolean
   renderPlayOverlay?: () => ReactElement | null
 } & HTMLProps<HTMLVideoElement>
 
@@ -46,12 +51,14 @@ const Root = ({
   showBranding = true,
   children,
   className,
-  renderControls = props => <Controls {...props} />,
-  renderPlayOverlay = () => (
-    <span className={styles.VideoPlayer__playButtonInner}>
-      <PlayIcon />
-    </span>
-  ),
+  showControlsWhenPaused = true,
+  showPlayPauseButton = true,
+  showSeekControl = true,
+  showCCButton = true,
+  showMuteButton = true,
+  showVolumeControl = true,
+  showFullScreenButton = true,
+  renderPlayOverlay = () => <VideoPlayer.PlayIcon className={styles.VideoPlayer__playButtonOverlay} />,
   ...rest
 }: VideoPlayerProps) => {
   const videoWrapperRef = useRef<HTMLDivElement>(null)
@@ -59,15 +66,10 @@ const Root = ({
   const {ccEnabled, isPlaying, ref, togglePlaying} = useVideoContext
   const isSmall = useVideoResizeObserver({videoWrapperRef, className: styles['VideoPlayer__container--small']})
 
+  const hideControls = !isPlaying && !showControlsWhenPaused
+
   return (
-    <div
-      className={clsx(
-        styles.VideoPlayer__container,
-        styles.VideoPlayer__overlays,
-        !isPlaying && styles.VideoPlayer__showOverlays,
-      )}
-      ref={videoWrapperRef}
-    >
+    <div className={styles.VideoPlayer__container} ref={videoWrapperRef}>
       <video ref={ref} title={title} controls={false} className={clsx(styles.VideoPlayer, className)} {...rest}>
         {children}
         <track kind="captions" />
@@ -89,11 +91,15 @@ const Root = ({
       </button>
       <div className={styles.VideoPlayer__controls}>
         {ccEnabled && <Captions />}
-        {renderControls(
-          {
-            isSmall,
-          },
-          useVideoContext,
+        {hideControls ? null : (
+          <ControlsBar>
+            {showPlayPauseButton ? <PlayPauseButton /> : null}
+            {showSeekControl ? <SeekControl /> : null}
+            {showCCButton ? <CCButton /> : null}
+            {showMuteButton ? <MuteButton /> : null}
+            {showVolumeControl && !isSmall ? <VolumeControl /> : null}
+            {showFullScreenButton ? <FullScreenButton /> : null}
+          </ControlsBar>
         )}
       </div>
     </div>

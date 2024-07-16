@@ -4,6 +4,7 @@ import {PlayPauseButton, CCButton, ControlsBar, SeekControl, MuteButton, VolumeC
 
 export type ControlsProps = {
   isSmall?: boolean
+  showControlsWhenPaused?: boolean
 } & HTMLAttributes<HTMLDivElement>
 
 export const Controls = ({isSmall = false, ...rest}: ControlsProps) => (

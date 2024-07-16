@@ -1,5 +1,4 @@
 import {Meta, StoryFn} from '@storybook/react'
-import {fn} from '@storybook/test'
 import React from 'react'
 import posterImage from '../fixtures/images/example-poster.png'
 import {VideoPlayer} from '.'
@@ -11,14 +10,15 @@ export default {
     poster: posterImage,
     title: 'GitHub media player',
     branding: true,
-    onPlay: fn(),
-    onPause: fn(),
-    onEnded: fn(),
-    onSeeked: fn(),
-    onVolumeChange: fn(),
-    onLoadedMetadata: fn(),
-    onPlaying: fn(),
-    onTimeUpdate: fn(),
+    visuallyHiddenTitle: false,
+    showBranding: true,
+    showControlsWhenPaused: true,
+    showPlayPauseButton: true,
+    showSeekControl: true,
+    showCCButton: true,
+    showMuteButton: true,
+    showVolumeControl: true,
+    showFullScreenButton: true,
   },
   argTypes: {
     poster: {
@@ -33,6 +33,27 @@ export default {
       type: 'boolean',
     },
     showBranding: {
+      type: 'boolean',
+    },
+    showControlsWhenPaused: {
+      type: 'boolean',
+    },
+    showPlayPauseButton: {
+      type: 'boolean',
+    },
+    showSeekControl: {
+      type: 'boolean',
+    },
+    showCCButton: {
+      type: 'boolean',
+    },
+    showMuteButton: {
+      type: 'boolean',
+    },
+    showVolumeControl: {
+      type: 'boolean',
+    },
+    showFullScreenButton: {
       type: 'boolean',
     },
   },

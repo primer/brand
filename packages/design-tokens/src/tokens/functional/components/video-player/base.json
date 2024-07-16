@@ -19,13 +19,10 @@
       },
       "playButton": {
         "height": {
-          "value": "24px"
+          "value": "96px"
         },
         "width": {
-          "value": "24px"
-        },
-        "padding": {
-          "value": "25px"
+          "value": "96px"
         }
       },
       "range": {
