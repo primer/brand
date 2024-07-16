@@ -43,14 +43,16 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: transparent;
+  background: #00000033;
   border: none;
   z-index: 1;
 }
 
 .VideoPlayer__playButtonOverlay {
-  height: var(--brand-VideoPlayer-playButton-height);
-  width: var(--brand-VideoPlayer-playButton-width);
+  width: 25%;
+  height: 25%;
+  max-width: var(--brand-VideoPlayer-playButton-width);
+  max-height: var(--brand-VideoPlayer-playButton-height);
   opacity: 0.8;
 }
 
