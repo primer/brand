@@ -149,12 +149,23 @@ function Root({
     [children],
   )
 
+  const hasAllActions: boolean = useMemo(() => {
+    const primaryAction = React.Children.toArray(children).find(
+      child => React.isValidElement(child) && child.type === PrimaryAction,
+    )
+    const secondaryAction = React.Children.toArray(children).find(
+      child => React.isValidElement(child) && child.type === SecondaryAction,
+    )
+    return !!primaryAction && !!secondaryAction
+  }, [children])
+
   return (
     <>
       <div
         className={clsx(
           styles['SubdomainNavBar-outer-container'],
           fixed && styles['SubdomainNavBar-outer-container--fixed'],
+          hasAllActions && styles['SubdomainNavBar-outer-container--has-actions'],
         )}
       >
         <Button
@@ -198,7 +209,9 @@ function Root({
                         aria-label={`${title} home`}
                         className={clsx(styles['SubdomainNavBar-title'])}
                       >
-                        {title}
+                        <Text size="400" weight="semibold">
+                          {title}
+                        </Text>
                       </a>
                     </li>
                   </>
@@ -613,6 +626,7 @@ function PrimaryAction({children, href, ...rest}: PropsWithChildren<CTAActionPro
       className={clsx(styles['SubdomainNavBar-cta-button'])}
       variant="primary"
       hasArrow={false}
+      size="small"
       {...rest}
     >
       {children}
@@ -627,6 +641,7 @@ function SecondaryAction({children, href, ...rest}: PropsWithChildren<CTAActionP
       href={href}
       className={clsx(styles['SubdomainNavBar-cta-button'], styles['SubdomainNavBar-cta-button--secondary'])}
       hasArrow={false}
+      size="small"
       {...rest}
     >
       {children}
