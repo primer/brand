@@ -28,7 +28,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './VideoPlayer.module.css'
-import {useVideoKeypressHandlers, useVideoResizeObserver} from './hooks/'
+import {useVideoResizeObserver} from './hooks/'
 import {useVideo, type UseVideoContext, VideoProvider} from './hooks/useVideo'
 
 type VideoPlayerProps = {
@@ -58,8 +58,6 @@ const Root = ({
   const useVideoContext = useVideo()
   const {ccEnabled, isPlaying, ref, togglePlaying} = useVideoContext
   const isSmall = useVideoResizeObserver({videoWrapperRef, className: styles['VideoPlayer__container--small']})
-
-  useVideoKeypressHandlers(videoWrapperRef)
 
   return (
     <div
