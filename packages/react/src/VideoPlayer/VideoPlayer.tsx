@@ -2,7 +2,22 @@ import React, {useRef, forwardRef, type HTMLProps, type ReactElement} from 'reac
 import clsx from 'clsx'
 import {Text} from '../Text'
 import {type AnimateProps} from '../animation'
-import {Captions, Controls, PlayIcon, type ControlsProps} from './components'
+import {
+  Captions,
+  CCButton,
+  Controls,
+  type ControlsProps,
+  ControlsBar,
+  FullScreenButton,
+  IconControl,
+  MuteButton,
+  PauseIcon,
+  PlayIcon,
+  PlayPauseButton,
+  Range,
+  SeekControl,
+  VolumeControl,
+} from './components'
 import {MarkGithubIcon} from '@primer/octicons-react'
 
 /**
@@ -102,4 +117,17 @@ const RootWithProvider = forwardRef<HTMLVideoElement, VideoPlayerProps>((props, 
 export const VideoPlayer = Object.assign(RootWithProvider, {
   Source: VideoPlayerSource,
   Track: VideoPlayerTrack,
+  Captions,
+  CCButton,
+  Controls,
+  ControlsBar,
+  FullScreenButton,
+  IconControl,
+  MuteButton,
+  PauseIcon,
+  PlayIcon,
+  PlayPauseButton,
+  Range,
+  SeekControl,
+  VolumeControl,
 })

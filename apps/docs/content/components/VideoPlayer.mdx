@@ -9,7 +9,7 @@ description: Use the video player component to enable playback of self-hosted vi
 import {Label} from '@primer/react'
 
 ```js
-import {VideoPlayer, PlayPauseButton, ControlsBar, SeekControl} from '@primer/react-brand'
+import {VideoPlayer} from '@primer/react-brand'
 ```
 
 ## Examples
@@ -26,7 +26,10 @@ import {VideoPlayer, PlayPauseButton, ControlsBar, SeekControl} from '@primer/re
 ## With poster
 
 ```jsx live
-<VideoPlayer poster="https://primer.github.io/brand/assets/example-poster.png" title="GitHub media player">
+<VideoPlayer
+  poster="https://primer.github.io/brand/assets/example-poster.png"
+  title="GitHub media player"
+>
   <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" />
   <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
 </VideoPlayer>
@@ -47,10 +50,10 @@ import {VideoPlayer, PlayPauseButton, ControlsBar, SeekControl} from '@primer/re
 <VideoPlayer
   title="GitHub media player"
   renderControls={() => (
-    <ControlsBar>
-      <PlayPauseButton />
-      <SeekControl />
-    </ControlsBar>
+    <VideoPlayer.ControlsBar>
+      <VideoPlayer.PlayPauseButton />
+      <VideoPlayer.SeekControl />
+    </VideoPlayer.ControlsBar>
   )}
 >
   <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" />

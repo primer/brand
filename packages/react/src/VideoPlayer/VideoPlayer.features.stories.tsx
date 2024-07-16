@@ -1,7 +1,6 @@
 import React from 'react'
 import {Meta} from '@storybook/react'
 import posterImage from '../fixtures/images/example-poster.png'
-import {PlayPauseButton, ControlsBar, SeekControl, PlayIcon, Controls} from './components'
 
 import {VideoPlayer} from '.'
 
@@ -12,8 +11,8 @@ export default {
 
 export const WithPoster = () => (
   <VideoPlayer poster={posterImage} title="GitHub media player">
-    <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" type="video/mp4" />
-    <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
+    <VideoPlayer.Source src="/example.mp4" type="video/mp4" />
+    <VideoPlayer.Track src="/example.vtt" />
   </VideoPlayer>
 )
 
@@ -35,10 +34,10 @@ export const WithCustomControls = () => (
   <VideoPlayer
     title="GitHub media player"
     renderControls={() => (
-      <ControlsBar>
-        <PlayPauseButton />
-        <SeekControl />
-      </ControlsBar>
+      <VideoPlayer.ControlsBar>
+        <VideoPlayer.PlayPauseButton />
+        <VideoPlayer.SeekControl />
+      </VideoPlayer.ControlsBar>
     )}
   >
     <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" type="video/mp4" />
@@ -50,7 +49,7 @@ export const HideControlsUntilPlaying = () => (
   <VideoPlayer
     title="GitHub media player"
     renderControls={(controlsProps, {isPlaying}) => (
-      <Controls
+      <VideoPlayer.Controls
         style={{
           opacity: isPlaying ? 1 : 0,
           transition: 'opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default)',
@@ -67,7 +66,7 @@ export const HideControlsUntilPlaying = () => (
 export const WithCustomPlayButton = () => (
   <VideoPlayer
     title="GitHub media player"
-    renderPlayOverlay={() => <PlayIcon style={{width: 96, height: 96, opacity: 0.8}} />}
+    renderPlayOverlay={() => <VideoPlayer.PlayIcon style={{width: 96, height: 96, opacity: 0.8}} />}
   >
     <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" type="video/mp4" />
     <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
@@ -79,9 +78,9 @@ export const Minimal = () => (
     title="GitHub media player"
     visuallyHiddenTitle
     showBranding={false}
-    renderPlayOverlay={() => <PlayIcon style={{width: 96, height: 96, opacity: 0.8}} />}
+    renderPlayOverlay={() => <VideoPlayer.PlayIcon style={{width: 96, height: 96, opacity: 0.8}} />}
     renderControls={(controlsProps, {isPlaying}) => (
-      <Controls
+      <VideoPlayer.Controls
         style={{
           opacity: isPlaying ? 1 : 0,
           transition: 'opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default)',
