@@ -1,10 +1,10 @@
-import React from 'react'
+import React, {type HTMLAttributes} from 'react'
 import clsx from 'clsx'
 
 import {Text} from '../../../Text'
 import styles from '../../VideoPlayer.module.css'
 
-type VideoTooltipProps = React.HTMLAttributes<HTMLDivElement>
+type VideoTooltipProps = HTMLAttributes<HTMLDivElement>
 
 export const VideoTooltip = ({children, className, ...rest}: VideoTooltipProps) => (
   <div className={clsx(styles.VideoPlayer__tooltip, className)} aria-hidden="true" {...rest}>

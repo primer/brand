@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react'
+import React, {type HTMLAttributes, useEffect, useState} from 'react'
 import clsx from 'clsx'
 
 import {Text} from '../../../Text'
 import styles from './Captions.module.css'
 import {useVideo} from '../../hooks/useVideo'
 
-export const Captions = () => {
+export const Captions = ({className, ...props}: HTMLAttributes<HTMLDivElement>) => {
   const [caption, setCaption] = useState('')
   const {ref} = useVideo()
 
@@ -44,7 +44,7 @@ export const Captions = () => {
   }
 
   return (
-    <div className={clsx(styles.Captions)}>
+    <div className={clsx(className, styles.Captions)} {...props}>
       <Text as="p" className={styles.Captions__text}>
         {caption}
       </Text>

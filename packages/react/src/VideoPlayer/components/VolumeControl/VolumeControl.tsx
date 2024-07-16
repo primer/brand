@@ -1,10 +1,10 @@
 import React from 'react'
 
-import {Range} from '../'
+import {Range, type RangeProps} from '../'
 import styles from './VolumeControl.module.css'
 import {useVideo} from '../../hooks/useVideo'
 
-export const VolumeControl = () => {
+export const VolumeControl = (props: RangeProps) => {
   const {volume, setVolume} = useVideo()
 
   return (
@@ -18,6 +18,7 @@ export const VolumeControl = () => {
       value={volume}
       a11yStep={0.1}
       name="Volume"
+      {...props}
     />
   )
 }
