@@ -1,0 +1,35 @@
+.verticalOffset > div {
+  margin-block-start: calc(var(--base-size-48) * -1);
+}
+
+.noBottomRadius {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.topOfStack {
+  position: relative;
+  z-index: 2;
+}
+
+.portalCustomerCards {
+  --brand-Card-background-default: transparent;
+}
+
+.gitLinesBg {
+  background-size: cover;
+  background-position: center center;
+}
+
+.ctaBanner {
+  --brand-CTABanner-bgColor: var(--brand-color-canvas-subtle);
+}
+
+/* In dotcom, use h-full */
+.fullHeight {
+  height: 100%;
+}
+
+.customerCards {
+  --brand-Grid-spacing-row: var(--base-size-32);
+}
