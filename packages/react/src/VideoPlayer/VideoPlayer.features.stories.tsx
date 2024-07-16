@@ -11,8 +11,8 @@ export default {
 
 export const WithPoster = () => (
   <VideoPlayer poster={posterImage} title="GitHub media player">
-    <VideoPlayer.Source src="/example.mp4" type="video/mp4" />
-    <VideoPlayer.Track src="/example.vtt" />
+    <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" type="video/mp4" />
+    <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
   </VideoPlayer>
 )
 
