@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback, type HTMLAttributes} from 'react'
+import React, {useState, useEffect, useCallback, type HTMLAttributes, type FormEvent} from 'react'
 import clsx from 'clsx'
 
 import {Range} from '../'
@@ -27,7 +27,8 @@ export const SeekControl = ({className, ...rest}: SeekControlProps) => {
   const {ref, duration} = useVideo()
   const [currentTime, setCurrentTime] = useState(0)
   const seek = useCallback(
-    (time: number) => {
+    (e: FormEvent<HTMLInputElement>) => {
+      const time = e.currentTarget.valueAsNumber
       if (ref.current) {
         ref.current.currentTime = time
       }
@@ -57,9 +58,7 @@ export const SeekControl = ({className, ...rest}: SeekControlProps) => {
         min="0"
         max={duration}
         step={0.0001}
-        onInput={e => {
-          seek(e.currentTarget.valueAsNumber)
-        }}
+        onInput={seek}
         value={currentTime}
         className={styles.VideoPlayer__progressBar}
         tooltip
