@@ -23,8 +23,6 @@
   border-radius: var(--brand-borderRadius-medium);
 }
 
-
-
 /* ---------------------------------------------------------- */
 /* 2. Player                                                  */
 /* ---------------------------------------------------------- */
@@ -89,7 +87,6 @@
   background: var(--brand-videoPlayer-title-bgColor);
 }
 
-
 /* ---------------------------------------------------------- */
 /* 5. Controls                                                */
 /* ---------------------------------------------------------- */
@@ -131,7 +128,6 @@
 .VideoPlayer__controls:focus-within .VideoPlayer__controlsBar {
   opacity: 1;
 }
-
 
 .VideoPlayer__iconControl {
   width: auto;
@@ -303,7 +299,7 @@
 
 .VideoPlayer__tooltip::before {
   position: absolute;
-  bottom: calc(var(--base-size-4) * -1));
+  bottom: calc(var(--base-size-4) * -1);
   left: 0;
   width: var(--base-size-12);
   height: var(--base-size-12);
