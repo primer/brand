@@ -13,7 +13,7 @@ export const Controls = ({isSmall = false, ...rest}: ControlsProps) => (
     <SeekControl />
     <CCButton />
     <MuteButton />
-    {isSmall ? null : <VolumeControl />}
+    {!isSmall && <VolumeControl />}
     <FullScreenButton />
   </ControlsBar>
 )

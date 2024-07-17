@@ -85,18 +85,18 @@ const Root = ({
         onClick={togglePlaying}
         aria-label={isPlaying ? 'Pause' : 'Play'}
       >
-        {isPlaying ? null : <VideoPlayer.PlayIcon className={styles.VideoPlayer__playButtonOverlay} />}
+        {!isPlaying && <VideoPlayer.PlayIcon className={styles.VideoPlayer__playButtonOverlay} />}
       </button>
       <div className={styles.VideoPlayer__controls}>
-        {ccEnabled ? <Captions /> : null}
-        {hideControls ? null : (
+        {ccEnabled && <Captions />}
+        {!hideControls && (
           <ControlsBar>
-            {showPlayPauseButton ? <PlayPauseButton /> : null}
-            {showSeekControl ? <SeekControl /> : null}
-            {showCCButton ? <CCButton /> : null}
-            {showMuteButton ? <MuteButton /> : null}
-            {showVolumeControl && !isSmall ? <VolumeControl /> : null}
-            {showFullScreenButton ? <FullScreenButton /> : null}
+            {showPlayPauseButton && <PlayPauseButton />}
+            {showSeekControl && <SeekControl />}
+            {showCCButton && <CCButton />}
+            {showMuteButton && <MuteButton />}
+            {showVolumeControl && !isSmall && <VolumeControl />}
+            {showFullScreenButton && <FullScreenButton />}
           </ControlsBar>
         )}
       </div>
