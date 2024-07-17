@@ -43,7 +43,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: #00000033;
+  background: #00000033; /* TODO Use a token for this once v8 migration has been completed */
   border: none;
   z-index: 1;
 }
