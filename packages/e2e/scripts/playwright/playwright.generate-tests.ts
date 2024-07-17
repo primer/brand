@@ -39,6 +39,7 @@
     'components-subdomainnavbar--search-open': 5500, // for the animation
     'components-subdomainnavbar--search-results-visible': 5500, // for the animation
     'components-subdomainnavbar--overflow-menu-open': 7500, // for the animation
+    'components-subdomainnavbar--longer-title': 1500, // for the animation
     'components-subdomainnavbar--mobile-view': 5500, // for the animation
     'components-subdomainnavbar--mobile-menu-open': 5500, // for all staggered animations
     'components-subdomainnavbar--mobile-menu-open-many-items': 5500, // for all staggered animations

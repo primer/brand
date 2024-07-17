@@ -18,12 +18,14 @@ declare const styles: {
   readonly "SubdomainNavBar-menu-wrapper": string;
   readonly "fade-in-down": string;
   readonly "SubdomainNavBar-menu-wrapper--close": string;
+  readonly "SubdomainNavBar-outer-container--has-actions": string;
   readonly "SubdomainNavBar-primary-nav-list-item": string;
   readonly "fade-in-down-staggered": string;
   readonly "SubdomainNavBar-primary-nav-list-item--visible": string;
   readonly "SubdomainNavBar-primary-nav-list-item--invisible": string;
   readonly "SubdomainNavBar-primary-nav-list-item--overflow": string;
   readonly "SubdomainNavBar-link": string;
+  readonly "SubdomainNavBar-link-text": string;
   readonly "SubdomainNavBar-link--title": string;
   readonly "SubdomainNavBar-overflow-menu-item": string;
   readonly "SubdomainNavBar-more-link": string;

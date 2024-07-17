@@ -58,12 +58,18 @@
   display: inline-flex;
   list-style-type: none;
   align-items: center;
-  gap: 16px;
+  gap: var(--base-size-8);
   padding: 0;
   margin: 0;
   max-width: 340px;
   color: var(--brand-color-text-default);
   padding: var(--base-size-16) 0;
+}
+
+@media screen and (min-width: 63.25rem) {
+  .SubdomainNavBar-title-area {
+    gap: var(--base-size-16);
+  }
 }
 
 .SubdomainNavBar-logo-mark {
@@ -98,11 +104,7 @@
 }
 
 .SubdomainNavBar-title {
-  font-family: var(--brand-heading-fontFamily);
-  font-weight: var(--base-text-weight-semibold);
-  font-size: var(--base-size-24);
   line-height: var(--base-size-32);
-  color: var(--brand-color-text-default);
   text-decoration: none;
   padding-right: var(--base-size-16);
   white-space: nowrap;
@@ -200,6 +202,10 @@
     max-width: 520px;
     margin-right: 80px;
   }
+
+  .SubdomainNavBar-outer-container--has-actions .SubdomainNavBar-primary-nav-list {
+    max-width: 465px;
+  }
 }
 
 .SubdomainNavBar-primary-nav-list-item {
@@ -238,7 +244,10 @@
 
 .SubdomainNavBar-link {
   position: relative;
-  display: block;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--base-size-8);
   color: var(--brand-color-text-default);
   font-family: var(--brand-heading-fontFamily);
   font-weight: var(--base-text-weight-normal);
@@ -250,6 +259,10 @@
 
 .SubdomainNavBar-link:hover {
   text-decoration: none;
+}
+
+.SubdomainNavBar-link-text {
+  position: relative;
 }
 
 @media screen and (max-width: 767px) {
@@ -268,34 +281,32 @@
     font-weight: var(--base-text-weight-semibold);
     font-size: var(--base-size-16);
     line-height: var(--base-size-16);
-    padding: var(--base-size-16) var(--base-size-24);
+    padding: var(--base-size-16) var(--base-size-16);
   }
 
-  .SubdomainNavBar-link::after {
+  .SubdomainNavBar-link-text::after {
     content: '';
     position: absolute;
-    bottom: 10px;
+    bottom: -6px;
     left: 0;
     width: 100%;
     height: 2px;
     background-color: var(--brand-SubdomainNavBar-border-nav-default);
     opacity: 0;
     transition: opacity var(--brand-animation-duration-fast), transform var(--brand-animation-duration-fast);
-    opacity: 1;
     transform: scale(0);
     transform-origin: center;
   }
 
-  .SubdomainNavBar-link:hover::after,
-  .SubdomainNavBar-link:focus::after {
+  .SubdomainNavBar-link:hover .SubdomainNavBar-link-text::after,
+  .SubdomainNavBar-link:focus .SubdomainNavBar-link-text::after {
     opacity: 1;
-    transform: translate3d(0, 0.2em, 0);
-    transform: scale(0.4);
+    transform: scale(0.75);
   }
 
-  .SubdomainNavBar-link:active::after {
+  .SubdomainNavBar-link:active .SubdomainNavBar-link-text::after {
     background-color: var(--brand-SubdomainNavBar-border-nav-pressed);
-    transform: scale(0.6);
+    transform: scale(0.75);
   }
 
   .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link {
@@ -304,7 +315,7 @@
     color: var(--brand-SubdomainNavBar-fg-overflow-default);
   }
 
-  .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link::after {
+  .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link .SubdomainNavBar-link-text::after {
     display: none;
   }
 
@@ -316,6 +327,12 @@
   .SubdomainNavBar-overflow-menu-item .SubdomainNavBar-link:focus-visible {
     box-shadow: inset 0px 0px 0px 2px var(--brand-color-focus);
     outline: none;
+  }
+}
+
+@media screen and (min-width: 63.25rem) {
+  .SubdomainNavBar-link {
+    padding: var(--base-size-16) var(--base-size-24);
   }
 }
 
@@ -476,7 +493,7 @@
 
 .SubdomainNavBar-button-area-inner {
   display: flex;
-  gap: 16px;
+  gap: var(--base-size-8);
   min-width: 0;
 }
 
@@ -512,7 +529,6 @@
 
 .SubdomainNavBar-cta-button {
   white-space: nowrap;
-  min-width: 0;
 }
 
 @media screen and (min-width: 1024px) {
