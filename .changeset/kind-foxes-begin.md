@@ -2,6 +2,8 @@
 '@primer/react-brand': minor
 ---
 
+⚠️ This update contains a breaking change.
+
 Refactored `VideoPlayer` component to make it more modular and customisable.
 
 - The `showTitle` prop has been renamed to `visuallyHiddenTitle` and inverted.
