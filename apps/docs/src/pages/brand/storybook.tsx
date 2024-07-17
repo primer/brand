@@ -7,7 +7,9 @@ import {useEffect} from 'react'
 
 const StorybookRedirect = ({location}) => {
   useEffect(() => {
-    window.location.replace(`http://localhost:6006${location.search}`)
+    if (process.env.NODE_ENV === 'development') {
+      window.location.replace(`http://localhost:6006${location.search}`)
+    }
   }, [])
 
   return null
