@@ -22,8 +22,38 @@ type FormExampleProps = {
 }
 
 export function FormExample({type = 'default', colorMode = ColorModesEnum.LIGHT}: FormExampleProps) {
+  const [value, setValue] = React.useState<'success' | 'error' | '' | undefined>('')
+  const [validationState, setValidationState] = React.useState<'success' | 'error' | undefined>()
+
+  const validate = inputValue => {
+    if (/\s/g.test(inputValue)) {
+      setValidationState('error')
+    } else {
+      setValidationState('success')
+    }
+  }
+
+  const handleChange = event => {
+    event.preventDefault()
+    if (!event.target.value) {
+      setValue(undefined)
+      setValidationState(undefined)
+      return
+    }
+    setValue(event.target.value)
+    validate(event.target.value)
+  }
+
+  const formSubmitHandler = event => {
+    event?.preventDefault()
+    if (!value) {
+      setValidationState('error')
+      return
+    }
+  }
+
   return (
-    <form>
+    <form onSubmit={formSubmitHandler}>
       <>
         <Stack direction="vertical" padding="none" gap={24}>
           <Box
@@ -154,15 +184,23 @@ export function FormExample({type = 'default', colorMode = ColorModesEnum.LIGHT}
           )}
 
           {type === 'extended' && (
-            <FormControl required fullWidth>
+            <FormControl fullWidth validationStatus={validationState}>
               <FormControl.Label>Country</FormControl.Label>
-              <Select defaultValue="">
+              <Select value={value} onChange={handleChange}>
                 <Select.Option value="" disabled>
                   Country
                 </Select.Option>
                 <Select.Option value="us">United States of America</Select.Option>
                 <Select.Option value="uk">United Kingdom</Select.Option>
               </Select>
+              {validationState && validationState === 'error' && (
+                <FormControl.Validation>
+                  Need to select a country. Please select a country from the list.
+                </FormControl.Validation>
+              )}
+              {validationState && validationState === 'success' && (
+                <FormControl.Validation>Valid country</FormControl.Validation>
+              )}
             </FormControl>
           )}
           {type === 'default' && (
