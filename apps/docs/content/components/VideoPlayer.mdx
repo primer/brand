@@ -87,6 +87,21 @@ import {VideoPlayer} from '@primer/react-brand'
 
 ## Minimal
 
+```jsx live
+<VideoPlayer
+  title="GitHub media player"
+  visuallyHiddenTitle
+  showBranding={false}
+  showControlsWhenPaused={false}
+>
+  <VideoPlayer.Source
+    src="https://primer.github.io/brand/assets/example.mp4"
+    type="video/mp4"
+  />
+  <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
+</VideoPlayer>
+```
+
 ## Component props
 
 <h3>
