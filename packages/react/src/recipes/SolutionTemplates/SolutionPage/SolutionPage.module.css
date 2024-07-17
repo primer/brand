@@ -1,0 +1,119 @@
+.hideHorizontalOverflow {
+  overflow-x: clip;
+}
+
+.sectionIntro {
+  display: grid;
+  grid-template-rows: auto;
+  height: 100%;
+  grid-auto-rows: max-content;
+  justify-items: start;
+}
+
+.verticalOffset > div:nth-child(2),
+.verticalOffset > div:nth-child(3) {
+  margin-block-start: calc(var(--base-size-48) * -1);
+}
+
+.topOfStack {
+  position: relative;
+  z-index: 2;
+}
+
+.relative {
+  position: relative;
+  z-index: 1;
+}
+
+.gitLinesBg {
+  background-size: cover;
+  background-position: center center;
+}
+
+.ctaBanner {
+  --brand-CTABanner-bgColor: var(--brand-color-canvas-subtle);
+}
+
+.noBottomRadius {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.jtbd2Section {
+  --brand-RiverStoryScroll-content-inactive-bgColor: var(--brand-color-canvas-subtle);
+}
+
+.cards {
+  --brand-Grid-spacing-row: var(--base-size-32);
+}
+
+.breadcrumbsOffset {
+  margin-top: calc(-1 * var(--base-size-96));
+}
+
+/*
+ * Hero video glow
+ * Opt-in feature. Not officialy-support Primer Brand pattern.
+ */
+
+@keyframes scaleAnimation {
+  0% {
+    opacity: 0.1;
+    transform: translateX(200px) scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(200px) scale(1);
+  }
+}
+
+.heroVideoGlow {
+  position: relative;
+}
+
+.heroVideoGlow::before,
+.heroVideoGlow::after {
+  --diameter: 520px;
+  --radius: 720px;
+  --topOffset: 600px;
+  --leftOffset: 45%;
+
+  position: absolute;
+  top: var(--topOffset);
+  bottom: 0;
+  left: var(--leftOffset);
+  z-index: -1;
+  display: block;
+  width: var(--diameter);
+  height: var(--diameter);
+  transform: translateX(200px) scale(0.99);
+  transform-origin: center 0;
+  content: '';
+  z-index: 0;
+  filter: blur(200px);
+  animation: scaleAnimation 3s var(--brand-animation-easing-default) forwards;
+  animation-delay: 0.5s;
+  opacity: 0;
+  border-radius: var(--radius);
+}
+
+.heroVideoGlow::before {
+  left: calc(var(--leftOffset) - 200px);
+  top: calc(--topOffset - 100px);
+}
+
+[data-color-mode='light'] .heroVideoGlow::before {
+  background: var(--base-color-scale-blue-2);
+}
+
+[data-color-mode='light'] .heroVideoGlow::after {
+  background: var(--base-color-scale-purple-2);
+}
+
+[data-color-mode='dark'] .heroVideoGlow::before {
+  background: var(--base-color-scale-blue-7);
+}
+
+[data-color-mode='dark'] .heroVideoGlow::after {
+  background: var(--base-color-scale-purple-7);
+}

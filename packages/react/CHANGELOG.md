@@ -1,5 +1,98 @@
 # @primer/react-brand
 
+## 0.34.3
+
+### Patch Changes
+
+- [#632](https://github.com/primer/brand/pull/632) [`77b98a4c`](https://github.com/primer/brand/commit/77b98a4c5e399d4e33722ad92e6f54fd730f69d3) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Partial revert of changes to the `LogoSuite` logobar elements.
+
+  To allow optimal treatment of logos based on their respective file formats, `<img>` tag will continue be styled with a CSS filter, whereas inline `<svg>` elements will be styled with CSS fill.
+
+- [#637](https://github.com/primer/brand/pull/637) [`8887dc37`](https://github.com/primer/brand/commit/8887dc377360d0124b27398738a4297a42afa2f2) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Fixes previously non-functional `aspectRatio` prop on `Image` component
+
+- [#636](https://github.com/primer/brand/pull/636) [`3a76bfba`](https://github.com/primer/brand/commit/3a76bfba698051f6530f52c0180e4c1748df14c3) Thanks [@rezrah](https://github.com/rezrah)! - Added `Statistic` component.
+
+  Use the statistic component to display concise numerical information.
+
+  ```jsx
+  <Statistic>
+    <Statistic.Heading>+25%</Statistic.Heading>
+    <Statistic.Description>increase in developer speed</Statistic.Description>
+  </Statistic>
+  ```
+
+  See the [documentation](https://primer.style/brand/components/Statistic) for more usage examples.
+
+## 0.34.2
+
+### Patch Changes
+
+- [#595](https://github.com/primer/brand/pull/595) [`d0c1630`](https://github.com/primer/brand/commit/d0c1630576f5ed2882f0be3d423dc23fe72d0c6d) Thanks [@stamat](https://github.com/stamat)! - `AnchorNav` accessibility improvements.
+
+  - Removed JS-augmented scrolling behavior in `AnchorNav`, reverting to browser-defaults.
+  - Fixed zoom-related bug where certain anchor nav items were not visible.
+
+- [#629](https://github.com/primer/brand/pull/629) [`03237fa`](https://github.com/primer/brand/commit/03237fad26e57d986d390beb123730bf949f11ea) Thanks [@stamat](https://github.com/stamat)! - Updated `FAQGroup` autofocusing conditions
+
+- [#622](https://github.com/primer/brand/pull/622) [`3450e4b`](https://github.com/primer/brand/commit/3450e4bea7b1bf063f4b6eba9bef6f7ec39fa82b) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Improved keyboard navigation in mobile `AnchorNav` component. Arrow key navigation has been replaced with tab navigation.
+
+- [#630](https://github.com/primer/brand/pull/630) [`809960b`](https://github.com/primer/brand/commit/809960bf52b2787b92bc053518e45c21420ed181) Thanks [@joshfarrant](https://github.com/joshfarrant)! - In `Image` component, the `height` prop is now correctly forwarded to the underlying `img` element, when using `as="picture" customization.
+
+## 0.34.1
+
+### Patch Changes
+
+- [#606](https://github.com/primer/brand/pull/606) [`66c3049`](https://github.com/primer/brand/commit/66c3049de040c729c91e44101d1231c689a222d3) Thanks [@rezrah](https://github.com/rezrah)! - Added new `fullWidth` prop to `Card` component for easier placement in narrow viewports. This elimates the requirement for end-users to author additional custom CSS to achieve the same effect.
+
+  ```jsx
+  <Card fullWidth href="https://github.com">
+    <Card.Image />
+    <Card.Heading />
+    <Card.Description />
+  </Card>
+  ```
+
+- [#596](https://github.com/primer/brand/pull/596) [`ae20ce8`](https://github.com/primer/brand/commit/ae20ce841dce3666ee929314c30fcf360e2487a8) Thanks [@stamat](https://github.com/stamat)! - Improved keyboard navigation for tab lists in the `FAQ Groups` component. Now features focus trapping, and `up` and `down` keypress navigation as specified in the ARIA tab panel pattern.
+
+- [#594](https://github.com/primer/brand/pull/594) [`d0fbb4a`](https://github.com/primer/brand/commit/d0fbb4a997f7135c40ae2a46d560585e8e47fc70) Thanks [@stamat](https://github.com/stamat)! - In `Bento`, the `Bento.Visual` will now respect the aspect ratio of the original image instead of cropping it.
+
+  Individual Bento sections will now expand beyond their initial size to fit the content within them.
+
+  If you've previously used this component, please verify that this change doesn't alter the flow of your document.
+
+- [#611](https://github.com/primer/brand/pull/611) [`7e90641`](https://github.com/primer/brand/commit/7e90641b89807f22b9f2e27c02db3dfd931e6af9) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Resolved an issue with the `AnchorNav` component where focus would become trapped on mobile
+
+- [#616](https://github.com/primer/brand/pull/616) [`f12b8b3`](https://github.com/primer/brand/commit/f12b8b35fd791330cfab3209b432c1fbf4ff837d) Thanks [@rezrah](https://github.com/rezrah)! - Updated all instances of `<Text />` in River components to use `muted` color instead of `default` by default, for improved visual hierarchy.
+
+  > **Warning**
+  > This is a visual breaking change to the `River` component. This can lead to reduced contrast in some situations, so please review all usages to ensure minimum contrast requirements are met.
+
+- [#597](https://github.com/primer/brand/pull/597) [`1c4a0f3`](https://github.com/primer/brand/commit/1c4a0f3ef790dfa222e51521280b0cd04c7be33e) Thanks [@stamat](https://github.com/stamat)! - Added `idle` speed to LogoSuite marquee animation
+
+- [#614](https://github.com/primer/brand/pull/614) [`67d0af9`](https://github.com/primer/brand/commit/67d0af9fc3ef5eb81a5c3d49f4b02b1a159ec1f7) Thanks [@rezrah](https://github.com/rezrah)! - Added multiline code block support to `Prose` using `<pre>` and `<code>` HTML elements.
+
+- [#599](https://github.com/primer/brand/pull/599) [`e21a6b1`](https://github.com/primer/brand/commit/e21a6b1b44eca971b5444ef1b5b2e27cf64b628a) Thanks [@rfearing](https://github.com/rfearing)! - Added raster image support to `LogoSuite` component
+
+- [#615](https://github.com/primer/brand/pull/615) [`c8d9117`](https://github.com/primer/brand/commit/c8d91173c51a0c9db951fd664498d43a6f48fdf8) Thanks [@rezrah](https://github.com/rezrah)! - Added `pageAttributesBuilder` prop to `Pagination` component to enable forwarding of custom data attributes to paged items.
+
+  ```jsx live
+  <Pagination
+    pageCount={3}
+    currentPage={1}
+    pageAttributesBuilder={n => {
+      return {
+        'data-custom-attribute': `custom-attribute-${n}`,
+      }
+    }}
+  />
+  ```
+
+  :link: [See documentation for more details](https://primer.style/brand/components/Pagination#custom-data-attributes)
+
+- [#614](https://github.com/primer/brand/pull/614) [`67d0af9`](https://github.com/primer/brand/commit/67d0af9fc3ef5eb81a5c3d49f4b02b1a159ec1f7) Thanks [@rezrah](https://github.com/rezrah)! - Fixed incorrect background color applied to inline `<code>` instances in Prose in dark color mode
+
+- [#610](https://github.com/primer/brand/pull/610) [`cf7e09e`](https://github.com/primer/brand/commit/cf7e09e061d0e94398c081261d18e42ea3439bb7) Thanks [@rezrah](https://github.com/rezrah)! - Fixed line wrapping in `SubNav.Heading`
+
 ## 0.34.0
 
 ### Minor Changes

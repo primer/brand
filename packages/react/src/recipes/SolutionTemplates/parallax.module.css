@@ -1,0 +1,165 @@
+/*
+ * Parallax effect
+ * Opt-in feature. Not officialy-support Primer Brand pattern.
+ */
+
+.hero {
+  --parallax-start-spacing: 74px;
+  --hero-height: 110vh;
+
+  position: relative;
+  height: calc(var(--hero-height) - var(--parallax-start-spacing));
+}
+
+@media screen and (min-height: 600px) {
+  .hero {
+    --hero-height: 100vh;
+  }
+}
+
+@media screen and (min-height: 700px) {
+  .hero {
+    --hero-height: 80vh;
+  }
+}
+
+@media screen and (min-height: 900px) {
+  .hero {
+    --hero-height: 75vh;
+  }
+}
+
+@media screen and (min-height: 1000px) {
+  .hero {
+    --hero-height: 60vh;
+  }
+}
+
+@media screen and (min-height: 1280px) and (min-height: 1000px) {
+  .hero {
+    --hero-height: 60vh;
+  }
+}
+
+.parallax {
+  position: absolute;
+  top: calc(-1 * var(--parallax-start-spacing));
+  width: 100%;
+  height: var(--hero-height);
+  max-height: 600px;
+}
+
+.background,
+.foreground {
+  width: 100%;
+  height: 100vh;
+
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  animation-timeline: scroll();
+  animation-range: 0vh var(--hero-height);
+}
+
+.background {
+  position: absolute;
+}
+
+.foreground {
+  position: relative;
+}
+
+.centeredHero {
+  display: flex;
+  height: var(--hero-height);
+  justify-content: center;
+}
+
+.heroImage {
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.heroImageOverlay {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.lightHero .heroImageOverlay {
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(255, 255, 255, 0.6) 100%
+  );
+}
+
+.darkHero .heroImageOverlay {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.6) 100%);
+}
+
+.heroImageOverlayDark {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.6) 100%);
+}
+
+.foregroundContents {
+  padding: 0;
+  padding-block-start: calc(var(--base-size-20) + var(--parallax-start-spacing));
+  height: 100%;
+}
+
+.articleContents {
+  border-radius: var(--brand-borderRadius-xlarge);
+  margin-top: calc(-1 * var(--brand-borderRadius-xlarge));
+  background-color: var(--brand-color-canvas-default);
+  position: relative;
+  z-index: 90;
+}
+
+.lightHero .articleContents {
+  box-shadow: 0px -2px 49px 0px rgba(0, 0, 0, 0.25);
+}
+
+@keyframes parallax-background {
+  from {
+    top: 0;
+    filter: blur(0px);
+  }
+  to {
+    top: calc(var(--hero-height) * -0.4);
+    filter: blur(0) brightness(0%);
+  }
+}
+
+@keyframes parallax-foreground {
+  from {
+    top: 0;
+  }
+  to {
+    top: calc(calc(var(--hero-height) * 2) * -0.2);
+    filter: blur(10px) brightness(0%);
+  }
+}
+
+/* Progressive enhancement opt-in */
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .parallax {
+      position: fixed;
+      top: 0;
+    }
+
+    .foreground {
+      animation-name: parallax-foreground;
+    }
+
+    .background {
+      animation-name: parallax-background;
+    }
+  }
+}

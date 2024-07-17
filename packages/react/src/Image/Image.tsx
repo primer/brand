@@ -81,7 +81,7 @@ export const Image = ({
           ref={ref}
           alt={alt}
           width={width ?? '100%'}
-          height={width ?? '100%'}
+          height={height ?? '100%'}
           className={clsx(styles.Image, borderRadius && styles[`Image--borderRadius-${borderRadius}`], className)}
           {...objectWithoutKey(rest, 'sources')}
         />

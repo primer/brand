@@ -12,19 +12,19 @@
 }
 
 .Image--aspect-ratio-1-1 {
-  --brand-image-aspectRatio: 1 / 1;
+  aspect-ratio: 1 / 1;
 }
 
 .Image--aspect-ratio-16-9 {
-  --brand-image-aspectRatio: 16 / 9;
+  aspect-ratio: 16 / 9;
 }
 
 .Image--aspect-ratio-16-10 {
-  --brand-image-aspectRatio: 16 / 10;
+  aspect-ratio: 16 / 10;
 }
 
 .Image--aspect-ratio-4-3 {
-  --brand-image-aspectRatio: 4 / 3;
+  aspect-ratio: 4 / 3;
 }
 
 .Image--borderRadius-small {

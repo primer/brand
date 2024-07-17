@@ -68,6 +68,8 @@
       url: /components/River
     - title: Section intro
       url: /components/SectionIntro
+    - title: Statistic
+      url: /components/Statistic
     - title: Subdomain nav bar
       url: /components/SubdomainNavBar
     - title: Sub nav

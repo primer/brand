@@ -80,6 +80,7 @@
   width: 100%;
   position: relative;
   z-index: 91; /* must be higher than subdomain nav bar */
+  max-height: calc(100vh - var(--base-size-12) * 2);
 }
 
 .AnchorNav--with-default-background-color .AnchorNav-inner-container {
@@ -100,6 +101,7 @@
     display: none;
     padding-left: var(--base-size-16);
   }
+
   .AnchorNav--expanded .AnchorNav-link-container {
     display: flex;
     flex-direction: column;
@@ -362,6 +364,10 @@
 }
 
 @media screen and (max-width: 40rem) {
+  .AnchorNav {
+    padding: 0;
+  }
+
   .AnchorNav-action {
     display: none;
   }
@@ -374,6 +380,11 @@
     display: flex;
     width: 100%;
     margin-top: var(--base-size-8);
+  }
+
+  .AnchorNav-inner-container {
+    overflow-y: auto;
+    padding: var(--base-size-12) var(--base-size-16);
   }
 }
 

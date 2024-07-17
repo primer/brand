@@ -88,6 +88,36 @@ test.describe('Visual Comparison: PricingOptions', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('PricingOptions / Collapsed Features', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--collapsed-features&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('PricingOptions / Collapsed Features No Dividers', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--collapsed-features-no-dividers&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for Expanded Narrow', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('PricingOptions / Expanded Narrow', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--expanded-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot()).toMatchSnapshot()
+    })
+  })
   test('PricingOptions / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-pricingoptions--default&viewMode=story')
 

@@ -127,6 +127,23 @@ describe('Image', () => {
     expect(getByAltText(testAltText).getAttribute('width')).toEqual(`${testWidth}`)
   })
 
+  it('should create an picture tag with the custom height and width applied as props', async () => {
+    const testHeight = 100
+    const testWidth = 150
+    const testAltText = 'alternative text'
+    const {getByAltText} = render(
+      <Image
+        as="picture"
+        src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+        alt={testAltText}
+        height={testHeight}
+        width={testWidth}
+      />,
+    )
+    expect(getByAltText(testAltText).getAttribute('height')).toEqual(`${testHeight}`)
+    expect(getByAltText(testAltText).getAttribute('width')).toEqual(`${testWidth}`)
+  })
+
   it('should pass loading and decoding properties correctly to the image tag', async () => {
     const testLoading = 'lazy'
     const testDecoding = 'async'

@@ -1,4 +1,4 @@
-import {ThemeProvider} from '../../../packages/react/src'
+import { ThemeProvider } from '../../../packages/react/src'
 import styles from './preview.module.css'
 import '../../../packages/react/src/css/stylesheets'
 import '../../../packages/react/src/css/utilities.css'
@@ -30,7 +30,7 @@ export const globalTypes = {
           title: 'All',
         },
       ],
-      title: true,
+      title: 'Color mode',
     },
   },
 }

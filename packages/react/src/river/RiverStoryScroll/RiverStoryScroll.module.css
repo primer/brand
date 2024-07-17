@@ -1,0 +1,452 @@
+.RiverStoryScroll {
+  --ease: cubic-bezier(0.22, 0.56, 0.23, 0.89);
+  -webkit-font-smoothing: antialiased;
+  --stackDistance: calc(var(--base-size-24) * -1);
+
+  /* River visual (videos)
+  * UL = unit-less, needed for division in certain scenarios
+  */
+  --visualMaxWidth: 1032px;
+  --visualMaxWidthUL: 1032;
+  --visualMaxHeight: min(690px, 60vh);
+  --visualMaxHeightUL: 690;
+  position: relative;
+
+  @media (max-height: 600px) {
+    --visualMaxHeight: 50vh;
+  }
+
+  @media (max-height: 500px) {
+    --visualMaxHeight: 40vh;
+  }
+}
+
+.RiverStoryScroll__inner {
+  position: relative;
+}
+
+.RiverStoryScroll__visual-cover {
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
+
+.RiverStoryScroll__image {
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+  z-index: 10;
+  position: relative;
+  border-radius: var(--brand-borderRadius-large);
+}
+
+.RiverStoryScroll--enabled .RiverStoryScroll__internal-river {
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.RiverStoryScroll--enabled .RiverStoryScroll__internal-river img,
+.RiverStoryScroll--enabled .RiverStoryScroll__internal-river video {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .RiverStoryScroll {
+    @media (max-height: 720px) {
+      --visualMaxHeight: 55vh;
+    }
+
+    --topOffset: calc((100vh - min(664px, 60vh)) / 3);
+
+    @media (max-width: 542px) {
+      /* --topOffset: calc((100vh - min(664px, 60vh)) / 2);*/
+
+      --topOffset: calc((100vh - min(664px, 60vh)) / 5);
+    }
+    /* Spacing above the visual */
+    --availableWidth: calc(100vw - var(--storyScrollPadding) * 2);
+    --relativeVisualHeight: calc(var(--visualMaxHeightUL) / var(--visualMaxWidthUL) * var(--availableWidth));
+    --visualHeight: min(var(--visualMaxHeight), var(--relativeVisualHeight));
+    --visualWidth: calc(var(--visualHeight) * var(--visualMaxWidthUL) / var(--visualMaxHeightUL));
+    --scrollTextHeight: 58vh;
+    --textToVisualPadding: max(5vh, 40px);
+
+    --topScrollOffset: calc(var(--visualHeight));
+    --bottomScrollOffset: calc(100vh - var(--topOffset) - var(--visualHeight) - var(--textToVisualPadding));
+
+    --extraBottomSpacing: 70px;
+
+    @media (max-width: 768px) and (min-height: 670px) {
+      --extraBottomSpacing: calc(-1 * (100vh - 100vw) / 5);
+    }
+
+    @media (min-width: 542px) and (max-width: 1028px) and (min-height: 670px) {
+      --extraBottomSpacing: calc(-1 * (100vh - 100vw) / 3);
+    }
+
+    @media (min-width: 542px) {
+      --scrollTextHeight: 42vh;
+    }
+    @media (max-height: 520px) {
+      --scrollTextHeight: 70vh;
+    }
+
+    @media (min-width: 768px) {
+    }
+
+    --storyScrollPadding: min(32px, 5vw);
+
+    @media (min-width: 1028px) {
+      --stackDistance: -30px;
+    }
+
+    @media (max-height: 800px) {
+      --stackDistance: -20px;
+    }
+
+    @media (max-height: 500px) {
+      --stackDistance: -15px;
+    }
+
+    .RiverStoryScroll__visual-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+    }
+
+    .RiverStoryScroll__tracker {
+      min-height: var(--scrollTextHeight);
+      position: relative;
+      transition: opacity 0.3s var(--ease);
+    }
+
+    .RiverStoryScroll__tracker:has(+ .in-viewport) {
+      opacity: 0;
+    }
+
+    .RiverStoryScroll__tracker.in-viewport + .outside-viewport {
+      opacity: 0;
+    }
+
+    .RiverStoryScroll {
+      max-width: calc(1032px + var(--storyScrollPadding) * 2);
+      margin-top: min(30vw, 22vh);
+      margin-left: auto;
+      margin-right: auto;
+      padding-right: var(--storyScrollPadding);
+      padding-left: var(--storyScrollPadding);
+    }
+
+    .RiverStoryScroll__content-container--below {
+      padding-top: var(--topScrollOffset);
+      padding-bottom: var(--bottomScrollOffset);
+    }
+
+    .RiverStoryScroll__image {
+      height: auto;
+      width: 100%;
+      max-width: var(--visualWidth);
+      border-radius: var(--brand-borderRadius-large);
+    }
+
+    .RiverStoryScroll__visual-container-inner {
+      position: sticky;
+      pointer-events: none;
+      top: 0;
+      padding-top: var(--topOffset);
+      margin-top: calc(-1 * var(--topOffset));
+      display: flex;
+      z-index: 1;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    /* Enhanced styling if dvh is supported */
+    @supports (height: 100dvh) {
+      .RiverStoryScroll__visual-container-inner {
+        height: 100dvh;
+      }
+    }
+
+    .RiverStoryScroll__visual--below {
+      background-image: linear-gradient(
+        180deg,
+        var(--brand-RiverStoryScroll-content-inactive-bgColor) calc(var(--topOffset) + var(--visualHeight) + 3px),
+        transparent calc(var(--topOffset) + var(--visualHeight) + var(--textToVisualPadding)),
+        transparent 93%,
+        var(--brand-RiverStoryScroll-content-inactive-bgColor) 99%
+      );
+    }
+
+    .RiverStoryScroll__visual--below .story-scroll-text {
+      margin-top: var(--base-size-40);
+    }
+
+    .tracker-outside-viewport {
+      opacity: 0;
+      display: none;
+    }
+
+    /* Show first visual, even when nothing is visible */
+    .tracker-outside-viewport:nth-child(2) {
+      opacity: 1;
+      display: block;
+    }
+
+    .RiverStoryScroll__visual-scroll-responder {
+      transition: 0.5s var(--ease) transform, 0.5s var(--ease) filter, 0.5s var(--ease) opacity;
+      pointer-events: auto;
+    }
+
+    .tracker-outside-viewport:has(~ .tracker-in-viewport) {
+      position: absolute;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      left: 0;
+      right: 0;
+    }
+
+    .tracker-in-viewport + .tracker-outside-viewport {
+      transform: translateY(calc(var(--stackDistance) * -1)) scale(1.015);
+      position: absolute;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      left: 0;
+      right: 0;
+    }
+
+    .tracker-outside-viewport:has(+ .tracker-in-viewport) {
+      transform: translateY(var(--stackDistance)) scale(0.95);
+      filter: brightness(70%);
+      opacity: 1;
+    }
+
+    .tracker-outside-viewport:has(+ .tracker-outside-viewport + .tracker-in-viewport) {
+      transform: translateY(calc(var(--stackDistance) * 2)) scale(0.9);
+      filter: brightness(50%);
+      opacity: 1;
+    }
+
+    .tracker-outside-viewport:has(+ .tracker-outside-viewport + .tracker-outside-viewport + .tracker-in-viewport) {
+      transform: translateY(calc(var(--stackDistance) * 3)) scale(0.85);
+      filter: brightness(30%);
+      opacity: 1;
+    }
+
+    .tracker-outside-viewport:has(
+        + .tracker-outside-viewport + .tracker-outside-viewport + .tracker-outside-viewport + .tracker-in-viewport
+      ) {
+      transform: translateY(calc(var(--stackDistance) * 4)) scale(0.8);
+      filter: brightness(10%);
+      opacity: 1;
+    }
+
+    .tracker-in-viewport {
+      display: block;
+      position: relative;
+    }
+
+    /* 
+    TODO: Re-enable these at a later date
+    
+    .video-controls {
+      --distanceFromEdge: 12px;
+      position: absolute;
+      right: calc((100% - var(--visualWidth)) / 2 + var(--distanceFromEdge));
+      bottom: var(--distanceFromEdge);
+      z-index: 10;
+      pointer-events: auto;
+      transition: opacity 0.3s var(--ease);
+      opacity: 0;
+    }
+
+    @media (min-width: 542px) {
+      .video-controls {
+        --distanceFromEdge: 20px;
+      }
+    }
+
+    .RiverStoryScroll__visual-scroll-responder:hover .video-controls,
+    .video-controls-ended {
+      opacity: 1;
+    }
+
+    .video-control {
+      background-color: rgba(0, 0, 0, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 200px;
+      width: 44px;
+      height: 44px;
+      transition: background-color 0.2s ease;
+    }
+
+    .video-control:hover,
+    .video-control:focus {
+      background-color: rgba(0, 0, 0, 0.35);
+    } */
+
+    .RiverStoryScroll__content-stack {
+      position: sticky;
+      padding-top: var(--textToVisualPadding);
+      top: calc(var(--topOffset) + var(--visualHeight));
+    }
+
+    /* This is a hack to make the sticky behavior exclude the height of itself as it reaches the bottom */
+    /* This makes it possible to calculate the end of the sticky scroll without having to account for text content */
+    .RiverStoryScroll__tracker:last-child .RiverStoryScroll__content-stack {
+      height: 0;
+    }
+
+    .RiverStoryScroll__pagination {
+      display: flex;
+      flex-direction: column;
+      gap: var(--base-size-4);
+      position: absolute;
+      left: calc((100vw - 100%) / 2 * -1 + min(10px, 2.8vw));
+      right: 0;
+      margin: auto;
+      height: var(--visualHeight);
+      justify-content: center;
+    }
+
+    .RiverStoryScroll__pagination-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: var(--brand-borderRadius-large);
+      opacity: 0.55;
+      background: var(--brand-RiverStoryScroll-pagination-fgColor);
+      transition: opacity var(--brand-animation-duration-default) var(--ease),
+        height var(--brand-animation-duration-default) var(--ease);
+    }
+
+    .tracker-in-viewport:nth-child(2) ~ .RiverStoryScroll__pagination .RiverStoryScroll__pagination-dot:nth-child(1) {
+      opacity: 1;
+      height: var(--base-size-24);
+    }
+
+    .tracker-in-viewport:nth-child(3) ~ .RiverStoryScroll__pagination .RiverStoryScroll__pagination-dot:nth-child(2) {
+      opacity: 1;
+      height: var(--base-size-24);
+    }
+
+    .tracker-in-viewport:nth-child(4) ~ .RiverStoryScroll__pagination .RiverStoryScroll__pagination-dot:nth-child(3) {
+      opacity: 1;
+      height: var(--base-size-24);
+    }
+
+    .tracker-in-viewport:nth-child(5) ~ .RiverStoryScroll__pagination .RiverStoryScroll__pagination-dot:nth-child(4) {
+      opacity: 1;
+      height: var(--base-size-24);
+    }
+
+    .tracker-in-viewport:nth-child(6) ~ .RiverStoryScroll__pagination .RiverStoryScroll__pagination-dot:nth-child(5) {
+      opacity: 1;
+      height: var(--base-size-24);
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .RiverStoryScroll__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--base-size-24);
+  }
+
+  .RiverStoryScroll__visual-container {
+    position: sticky;
+    width: 100%;
+    top: 0;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    order: 2;
+  }
+
+  .RiverStoryScroll__visual-container-inner,
+  .RiverStoryScroll__image {
+    width: 100%;
+  }
+
+  .RiverStoryScroll .RiverStoryScroll__visual-scroll-responder {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    right: 0;
+    transition: opacity 0.3s var(--ease);
+    padding-top: 10vh;
+  }
+
+  .RiverStoryScroll__visual-container-inner.RiverStoryScroll__visual--below {
+    position: sticky;
+    top: 0;
+  }
+
+  .RiverStoryScroll__visual-scroll-responder.tracker-outside-viewport {
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    opacity: 0;
+  }
+
+  .RiverStoryScroll__visual-scroll-responder.tracker-in-viewport {
+    z-index: 1;
+    opacity: 1;
+  }
+
+  .RiverStoryScroll__content-container.RiverStoryScroll__content-container--below {
+    padding-top: 10vh;
+  }
+
+  .RiverStoryScroll__content-container.RiverStoryScroll__content-container--below .RiverStoryScroll__tracker {
+    padding: 20vh 0;
+  }
+
+  .RiverStoryScroll__tracker.outside-viewport {
+    position: relative;
+  }
+
+  .RiverStoryScroll__tracker {
+    filter: 0;
+  }
+
+  .RiverStoryScroll__tracker.outside-viewport {
+    filter: blur(1px);
+    transition: filter var(--brand-animation-duration-extended) var(--brand-animation-easing-default);
+  }
+
+  .RiverStoryScroll__tracker::after {
+    content: '';
+    transition: opacity var(--brand-animation-duration-extended) var(--brand-animation-easing-default),
+      visibility var(--brand-animation-duration-extended) var(--brand-animation-easing-default);
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--brand-RiverStoryScroll-content-inactive-bgColor);
+  }
+
+  .RiverStoryScroll__tracker.outside-viewport::after {
+    opacity: 0.7;
+    visibility: visible;
+  }
+}
+
+@media screen and (min-width: 768px) and (min-height: 900px) {
+  .RiverStoryScroll {
+    margin-top: -20vh;
+  }
+
+  .RiverStoryScroll__content-container.RiverStoryScroll__content-container--below {
+    padding-top: 16vh;
+  }
+}
