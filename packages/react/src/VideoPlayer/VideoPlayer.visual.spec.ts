@@ -25,6 +25,42 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('VideoPlayer / With Visually Hidden Title', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--with-visually-hidden-title&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('VideoPlayer / With Custom Controls', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--with-custom-controls&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('VideoPlayer / Hide Controls When Paused', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--hide-controls-when-paused&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('VideoPlayer / Minimal', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--minimal&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('VideoPlayer / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-videoplayer--playground&viewMode=story')
 
