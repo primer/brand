@@ -6,6 +6,12 @@
           "value": "0 auto 15px auto"
         },
         "text": {
+          "fgColor": {
+            "value": "var(--base-color-scale-white-0)"
+          },
+          "bgColor": {
+            "value": "rgba(0, 0, 0, 0.75)"
+          },
           "padding": {
             "value": "10px"
           }
@@ -13,13 +19,10 @@
       },
       "playButton": {
         "height": {
-          "value": "24px"
+          "value": "var(--base-size-96)"
         },
         "width": {
-          "value": "24px"
-        },
-        "padding": {
-          "value": "25px"
+          "value": "var(--base-size-96)"
         }
       },
       "range": {

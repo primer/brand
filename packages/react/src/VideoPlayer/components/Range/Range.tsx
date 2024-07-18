@@ -1,23 +1,23 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, DOMAttributes} from 'react'
 import clsx from 'clsx'
 import {useId} from '@reach/auto-id'
-import {Tooltip} from '../index'
 
+import {VideoTooltip} from '../'
 import styles from '../../VideoPlayer.module.css'
 
-type RangeProps = {
+export type RangeProps = {
   tooltip?: boolean
-  tooltipFormatter?: (value: number | string | readonly string[]) => string
+  tooltipFormatter?: (value: number) => string
   max?: number
   a11yStep?: number
 } & React.HTMLProps<HTMLInputElement>
 
 export const Range = ({
   className,
-  onChange,
+  onChange = x => x,
   value: startValue,
   max,
-  onKeyDown,
+  onKeyDown = x => x,
   a11yStep = 1,
   tooltip,
   tooltipFormatter = value => value.toString(),
@@ -48,13 +48,15 @@ export const Range = ({
     }
   }, [max])
 
-  const handleKeyDown = event => {
-    if (value) {
-      if (event.keyCode === 38) {
-        setValue((value as number) + a11yStep)
-      } else if (event.keyCode === 40) {
-        setValue((value as number) - a11yStep)
-      }
+  const handleKeyDown: DOMAttributes<HTMLInputElement>['onKeyDown'] = event => {
+    if (typeof value !== 'number') return
+
+    if (event.key === 'ArrowUp') {
+      event.stopPropagation()
+      setValue(value + a11yStep)
+    } else if (event.key === 'ArrowDown') {
+      event.stopPropagation()
+      setValue(value - a11yStep)
     }
   }
 
@@ -70,21 +72,19 @@ export const Range = ({
           value={value}
           onChange={e => {
             setValue(e.currentTarget.valueAsNumber)
-            onChange && onChange(e)
+            onChange(e)
           }}
           max={max}
           onKeyDown={e => {
             handleKeyDown(e)
-            onKeyDown && onKeyDown(e)
+            onKeyDown(e)
           }}
           id={inputId}
           name={name}
           {...props}
         />
       </label>
-      {tooltip && !!hoverValue && (
-        <Tooltip style={{left: mousePos}}>{hoverValue ? tooltipFormatter(hoverValue) : ''}</Tooltip>
-      )}
+      {tooltip && hoverValue && <VideoTooltip style={{left: mousePos}}>{tooltipFormatter(hoverValue)}</VideoTooltip>}
     </div>
   )
 }

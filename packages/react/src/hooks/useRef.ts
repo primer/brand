@@ -8,6 +8,7 @@ import React, {useRef} from 'react'
  * @param providedRef The ref to use - if undefined, will use the ref from a call to React.useRef
  * @type TRef The type of the RefObject which should be created.
  */
+
 export function useProvidedRefOrCreate<TRef>(providedRef?: React.RefObject<TRef>): React.RefObject<TRef> {
   const createdRef = useRef<TRef>(null)
 

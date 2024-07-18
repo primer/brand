@@ -1,0 +1,17 @@
+.Captions {
+  max-width: 80ch;
+  padding-inline: var(--base-size-16);
+  margin: var(--brand-VideoPlayer-closedCaption-margin);
+  display: grid;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.Captions__text {
+  color: var(--brand-VideoPlayer-closedCaption-text-fgColor);
+  text-align: center;
+  background: var(--brand-VideoPlayer-closedCaption-text-bgColor);
+  padding: var(--brand-VideoPlayer-closedCaption-text-padding);
+  border-radius: var(--brand-borderRadius-medium);
+  display: inline-block;
+}
