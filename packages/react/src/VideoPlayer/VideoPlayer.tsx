@@ -5,15 +5,11 @@ import {type AnimateProps} from '../animation'
 import {
   Captions,
   CCButton,
-  Controls,
   ControlsBar,
   FullScreenButton,
-  IconControl,
   MuteButton,
-  PauseIcon,
   PlayIcon,
   PlayPauseButton,
-  Range,
   SeekControl,
   VolumeControl,
 } from './components'
@@ -57,6 +53,7 @@ const Root = ({
   showMuteButton = true,
   showVolumeControl = true,
   showFullScreenButton = true,
+
   ...rest
 }: VideoPlayerProps) => {
   const videoWrapperRef = useRef<HTMLDivElement>(null)
@@ -85,7 +82,7 @@ const Root = ({
         onClick={togglePlaying}
         aria-label={isPlaying ? 'Pause' : 'Play'}
       >
-        {!isPlaying && <VideoPlayer.PlayIcon className={styles.VideoPlayer__playButtonOverlay} />}
+        {!isPlaying && <PlayIcon className={styles.VideoPlayer__playButtonOverlay} />}
       </button>
       <div className={styles.VideoPlayer__controls}>
         {ccEnabled && <Captions />}
@@ -119,17 +116,6 @@ const RootWithProvider = forwardRef<HTMLVideoElement, VideoPlayerProps>((props, 
 export const VideoPlayer = Object.assign(RootWithProvider, {
   Source: VideoPlayerSource,
   Track: VideoPlayerTrack,
-  Captions,
-  CCButton,
-  Controls,
-  ControlsBar,
-  FullScreenButton,
-  IconControl,
-  MuteButton,
-  PauseIcon,
-  PlayIcon,
-  PlayPauseButton,
-  Range,
-  SeekControl,
-  VolumeControl,
+  Provider: VideoProvider,
+  WithoutProvider: Root,
 })

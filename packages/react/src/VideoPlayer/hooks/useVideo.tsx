@@ -29,9 +29,8 @@ export type UseVideoContext = VideoState & {
   unmute: () => void
   toggleMute: () => void
   setVolume: (volumeValOrFn: SetStateAction<number>) => void
-  seek: (time: number) => void
   seekToPercent: (percent: number) => void
-  seekRelative: (secondsValOrFn: SetStateAction<number>) => void
+  seek: (secondsValOrFn: SetStateAction<number>) => void
   enableCC: () => void
   disableCC: () => void
   toggleCC: () => void
@@ -103,7 +102,9 @@ export const useVideo = () => {
   const context = useContext(VideoContext)
 
   if (!context) {
-    throw new Error('useVideo must be used within a VideoContext')
+    throw new Error(
+      'useVideo must be used within a VideoContext. Did you forget to wrap your component in a <VideoProvider>?',
+    )
   }
 
   return context
@@ -150,19 +151,14 @@ export const VideoProvider = forwardRef<HTMLVideoElement, VideoProviderProps>(({
     exitFullScreen: () => setIsFullScreen(false),
     toggleFullScreen: () => setIsFullScreen(prev => !prev),
     setDuration: (duration: number) => dispatch({type: 'setDuration', payload: duration}),
-    seek: time => {
-      const videoRef = state.ref.current
-      if (!videoRef) return
 
-      videoRef.currentTime = time
-    },
     seekToPercent: percent => {
       const videoRef = state.ref.current
       if (!videoRef) return
 
       videoRef.currentTime = (percent / 100) * videoRef.duration
     },
-    seekRelative: secondsValOrFn => {
+    seek: secondsValOrFn => {
       const videoRef = state.ref.current
       if (!videoRef) return
 
