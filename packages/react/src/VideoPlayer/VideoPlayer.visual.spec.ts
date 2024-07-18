@@ -34,9 +34,9 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('VideoPlayer / With Custom Controls', async ({page}) => {
+  test('VideoPlayer / With Some Hidden Controls', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--with-custom-controls&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--with-some-hidden-controls&viewMode=story',
     )
 
     await page.waitForTimeout(500)
