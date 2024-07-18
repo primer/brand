@@ -11,3 +11,4 @@ Refactored `VideoPlayer` component to make it more modular and customisable.
   - Where you previously passed `showTitle={false}`, you should now pass `visuallyHiddenTitle={true}`.
 - The `branding` prop has been renamed to `showBranding`.
 - Individual video controls can be optionally hidden by setting any of the `showPlayPauseButton`, `showSeekControl`, `showCCButton`, `showMuteButton`, `showVolumeControl`, and `showFullScreenButton` props to `false`.
+- A custom play icon can be provided using the `playIcon` prop.
