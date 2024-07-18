@@ -4,7 +4,7 @@ import {useVideo} from './useVideo'
 export type KeypressHandler = [KeyboardEvent['key'], (e: KeyboardEvent) => void]
 
 export const useVideoKeypressHandlers = (videoWrapperRef: RefObject<HTMLElement>) => {
-  const {togglePlaying, toggleMute, setVolume, seekToPercent, toggleCC, toggleFullScreen} = useVideo()
+  const {togglePlaying, toggleMute, setVolume, seek, seekToPercent, toggleCC, toggleFullScreen} = useVideo()
 
   const keypressHandlers: KeypressHandler[] = useMemo(
     () => [
@@ -32,7 +32,7 @@ export const useVideoKeypressHandlers = (videoWrapperRef: RefObject<HTMLElement>
       ['ArrowUp', () => setVolume(volume => Math.min(volume + 0.1, 1))],
       ['ArrowDown', () => setVolume(volume => Math.max(volume - 0.1, 0))],
     ],
-    [toggleCC, seekToPercent, setVolume, toggleFullScreen, toggleMute, togglePlaying],
+    [toggleCC, seek, seekToPercent, setVolume, toggleFullScreen, toggleMute, togglePlaying],
   )
 
   useEffect(() => {
