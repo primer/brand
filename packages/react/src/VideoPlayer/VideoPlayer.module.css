@@ -328,3 +328,7 @@
 .VideoPlayer__controlTextColor {
   color: var(--base-color-scale-white-0);
 }
+
+.VideoPlayer__seekTime {
+  white-space: nowrap;
+}

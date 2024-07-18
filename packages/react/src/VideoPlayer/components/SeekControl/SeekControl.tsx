@@ -52,7 +52,7 @@ export const SeekControl = ({className, ...rest}: SeekControlProps) => {
   }, [ref])
 
   return (
-    <div className={clsx(styles['VideoPlayer__seek'], className)} {...rest}>
+    <div className={clsx(styles.VideoPlayer__seek, className)} {...rest}>
       <Range
         type="range"
         min="0"
@@ -66,7 +66,11 @@ export const SeekControl = ({className, ...rest}: SeekControlProps) => {
         name="Seek"
       />
       <div className={styles.VideoPlayer__progressTime}>
-        <Text as="p" className={styles.VideoPlayer__controlTextColor} font="monospace">
+        <Text
+          as="p"
+          className={clsx(styles.VideoPlayer__controlTextColor, styles.VideoPlayer__seekTime)}
+          font="monospace"
+        >
           {formatTime(currentTime)}
           {<span className={styles.VideoPlayer__totalTime}> / {formatTime(duration)}</span>}
         </Text>

@@ -16,7 +16,7 @@ export const useVideoResizeObserver = ({
 
       const breakpoint = videoWrapperRef.current.getBoundingClientRect().width
 
-      const isSmallVideo = Boolean(breakpoint && breakpoint < 650)
+      const isSmallVideo = Boolean(breakpoint && breakpoint < 544)
       setIsSmall(isSmallVideo)
 
       if (isSmallVideo) {
