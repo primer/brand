@@ -1,6 +1,3 @@
-// @ts-nocheck
-// TODO - Fix ResponsivePaddingMap typee and remove ts-nocheck
-
 import React, {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
@@ -45,8 +42,6 @@ describe('Section', () => {
   })
 
   it('applies responsive custom padding when a responsive map is passed to the padding props', () => {
-    const mockPaddingValue = {narrow: 'spacious', regular: 'normal', wide: 'condensed'}
-
     const expectedClasses = [
       'Section-narrow--paddingBlockStart-spacious',
       'Section-narrow--paddingBlockEnd-spacious',
@@ -56,7 +51,12 @@ describe('Section', () => {
       'Section-wide--paddingBlockEnd-condensed',
     ].join(' ')
 
-    const {getByTestId} = render(<Section paddingBlockStart={mockPaddingValue} paddingBlockEnd={mockPaddingValue} />)
+    const {getByTestId} = render(
+      <Section
+        paddingBlockStart={{narrow: 'spacious', regular: 'normal', wide: 'condensed'}}
+        paddingBlockEnd={{narrow: 'spacious', regular: 'normal', wide: 'condensed'}}
+      />,
+    )
     const SectionEl = getByTestId('Section')
 
     expect(SectionEl).toHaveClass(expectedClasses)

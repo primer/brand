@@ -15,7 +15,6 @@ type ResponsiveMap<T> = {
 }
 
 type SectionPaddingVariant = (typeof SectionPaddingVariants)[number]
-type SectionPaddingVariants = SectionPaddingVariant
 type ResponsivePaddingMap = ResponsiveMap<SectionPaddingVariant>
 type ResponsiveBackgroundImageSrcMap = ResponsiveMap<string>
 type ResponsiveBackgroundImagePositionMap = ResponsiveMap<string>
@@ -30,11 +29,11 @@ type SectionProps = {
   /**
    * The padding applied to the start of the section.
    */
-  paddingBlockStart?: SectionPaddingVariants | ResponsivePaddingMap
+  paddingBlockStart?: SectionPaddingVariant | ResponsivePaddingMap
   /**
    * The padding applied to the end of the section.
    */
-  paddingBlockEnd?: SectionPaddingVariants | ResponsivePaddingMap
+  paddingBlockEnd?: SectionPaddingVariant | ResponsivePaddingMap
   /**
    * The background color of the section.
    */
