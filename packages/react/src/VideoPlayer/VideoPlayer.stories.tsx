@@ -10,6 +10,15 @@ export default {
     poster: posterImage,
     title: 'GitHub media player',
     branding: true,
+    visuallyHiddenTitle: false,
+    showBranding: true,
+    showControlsWhenPaused: true,
+    showPlayPauseButton: true,
+    showSeekControl: true,
+    showCCButton: true,
+    showMuteButton: true,
+    showVolumeControl: true,
+    showFullScreenButton: true,
   },
   argTypes: {
     poster: {
@@ -20,7 +29,31 @@ export default {
       type: 'string',
       description: 'Specify the title of the video',
     },
-    branding: {
+    visuallyHiddenTitle: {
+      type: 'boolean',
+    },
+    showBranding: {
+      type: 'boolean',
+    },
+    showControlsWhenPaused: {
+      type: 'boolean',
+    },
+    showPlayPauseButton: {
+      type: 'boolean',
+    },
+    showSeekControl: {
+      type: 'boolean',
+    },
+    showCCButton: {
+      type: 'boolean',
+    },
+    showMuteButton: {
+      type: 'boolean',
+    },
+    showVolumeControl: {
+      type: 'boolean',
+    },
+    showFullScreenButton: {
       type: 'boolean',
     },
   },
@@ -28,8 +61,8 @@ export default {
 
 export const Playground: StoryFn<typeof VideoPlayer> = args => (
   <VideoPlayer {...args}>
-    <VideoPlayer.Source src="/example.mp4" type="video/mp4" />
-    <VideoPlayer.Track src="/example.vtt" />
+    <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" type="video/mp4" />
+    <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" default />
   </VideoPlayer>
 )
 

@@ -11,14 +11,50 @@ export default {
 
 export const WithPoster = () => (
   <VideoPlayer poster={posterImage} title="GitHub media player">
-    <VideoPlayer.Source src="/example.mp4" type="video/mp4" />
-    <VideoPlayer.Track src="/example.vtt" />
+    <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" type="video/mp4" />
+    <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
   </VideoPlayer>
 )
 
 export const WithoutBranding = () => (
-  <VideoPlayer branding={false} title="GitHub media player">
-    <VideoPlayer.Source src="/example.mp4" type="video/mp4" />
-    <VideoPlayer.Track src="/example.vtt" />
+  <VideoPlayer showBranding={false} title="GitHub media player">
+    <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" type="video/mp4" />
+    <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
+  </VideoPlayer>
+)
+
+export const WithVisuallyHiddenTitle = () => (
+  <VideoPlayer visuallyHiddenTitle title="GitHub media player">
+    <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" type="video/mp4" />
+    <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
+  </VideoPlayer>
+)
+
+export const WithSomeHiddenControls = () => (
+  <VideoPlayer
+    title="GitHub media player"
+    showPlayPauseButton={false}
+    showSeekControl={true}
+    showCCButton={false}
+    showMuteButton={false}
+    showVolumeControl={false}
+    showFullScreenButton={false}
+  >
+    <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" type="video/mp4" />
+    <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
+  </VideoPlayer>
+)
+
+export const HideControlsWhenPaused = () => (
+  <VideoPlayer title="GitHub media player" showControlsWhenPaused={false}>
+    <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" type="video/mp4" />
+    <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
+  </VideoPlayer>
+)
+
+export const Minimal = () => (
+  <VideoPlayer title="GitHub media player" visuallyHiddenTitle showBranding={false} showControlsWhenPaused={false}>
+    <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" type="video/mp4" />
+    <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
   </VideoPlayer>
 )

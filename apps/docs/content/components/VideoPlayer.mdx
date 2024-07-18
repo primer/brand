@@ -14,10 +14,6 @@ import {VideoPlayer} from '@primer/react-brand'
 
 ## Examples
 
-<!---
-TODO: Fix asset loading in environments that don't use `pathPrefix`. This is a temporary solution to load assets in production deployments, but currently doesn't work in dev mode or preview URLs
--->
-
 ### Default
 
 ```jsx live
@@ -42,8 +38,66 @@ TODO: Fix asset loading in environments that don't use `pathPrefix`. This is a t
 ## Without branding
 
 ```jsx live
-<VideoPlayer branding={false} title="GitHub media player">
+<VideoPlayer showBranding={false} title="GitHub media player">
   <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" />
+  <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
+</VideoPlayer>
+```
+
+## With visually hidden title
+
+```jsx live
+<VideoPlayer visuallyHiddenTitle title="GitHub media player">
+  <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" />
+  <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
+</VideoPlayer>
+```
+
+## With some hidden controls
+
+```jsx live
+<VideoPlayer
+  title="GitHub media player"
+  showPlayPauseButton={false}
+  showSeekControl={true}
+  showCCButton={false}
+  showMuteButton={false}
+  showVolumeControl={false}
+  showFullScreenButton={false}
+>
+  <VideoPlayer.Source
+    src="https://primer.github.io/brand/assets/example.mp4"
+    type="video/mp4"
+  />
+  <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
+</VideoPlayer>
+```
+
+## Hide controls when paused
+
+```jsx live
+<VideoPlayer title="GitHub media player" showControlsWhenPaused={false}>
+  <VideoPlayer.Source
+    src="https://primer.github.io/brand/assets/example.mp4"
+    type="video/mp4"
+  />
+  <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
+</VideoPlayer>
+```
+
+## Minimal
+
+```jsx live
+<VideoPlayer
+  title="GitHub media player"
+  visuallyHiddenTitle
+  showBranding={false}
+  showControlsWhenPaused={false}
+>
+  <VideoPlayer.Source
+    src="https://primer.github.io/brand/assets/example.mp4"
+    type="video/mp4"
+  />
   <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
 </VideoPlayer>
 ```
@@ -56,13 +110,21 @@ TODO: Fix asset loading in environments that don't use `pathPrefix`. This is a t
 
 `VideoPlayer` provides a React alternative to the native HTML `<video />`.
 
-| Name        | Type                                   | Default | Required | Description                                                          |
-| :---------- | :------------------------------------- | :-----: | :------: | :------------------------------------------------------------------- |
-| `title`     | `string`                               |         |  `true`  | Sets the title of the video                                          |
-| `children`  | `React.ReactNode`, `React.ReactNode[]` |         |  `true`  | Takes `<source>` and `<track>` elements to present video information |
-| `poster`    | `string`                               |         | `false`  | Sets an image as the starting frame for the video element            |
-| `branding`  | `boolean`                              |         | `false`  | Displays GitHub branding next to video title                         |
-| `className` | `string`                               |         | `false`  | Sets a custom class                                                  |
+| Name                     | Type                                   | Default | Required | Description                                                     |
+| :----------------------- | :------------------------------------- | :-----: | :------: | :-------------------------------------------------------------- |
+| `children`               | `React.ReactNode`, `React.ReactNode[]` |         |  `true`  | Takes `<VideoPlayer.Source>` and `<VideoPlayer.Track>` elements |
+| `title`                  | `string`                               |         |  `true`  | Sets the title of the video                                     |
+| `visuallyHiddenTitle`    | `boolean`                              |         | `false`  | Visually hides the title of the video in the upper-left corner  |
+| `showBranding`           | `boolean`                              | `true`  | `false`  | Displays GitHub branding next to video title                    |
+| `poster`                 | `string`                               |         | `false`  | Sets an image as the starting frame for the video element       |
+| `className`              | `string`                               |         | `false`  | Sets a custom class on the `<video>` element                    |
+| `showControlsWhenPaused` | `boolean`                              | `true`  | `false`  | Show the video controls when paused                             |
+| `showPlayPauseButton`    | `boolean`                              | `true`  | `false`  | Show the play button control                                    |
+| `showSeekControl`        | `boolean`                              | `true`  | `false`  | Show the seek control                                           |
+| `showCCButton`           | `boolean`                              | `true`  | `false`  | Show the closed caption toggle control                          |
+| `showMuteButton`         | `boolean`                              | `true`  | `false`  | Show the mute button control                                    |
+| `showVolumeControl`      | `boolean`                              | `true`  | `false`  | Show the volume control                                         |
+| `showFullScreenButton`   | `boolean`                              | `true`  | `false`  | Show the full screen button control                             |
 
 The component API supports all standard HTML attribute props, while providing some additional behavior as described above.
 
@@ -70,14 +132,7 @@ The component API supports all standard HTML attribute props, while providing so
   VideoPlayer.Source <Label>Required</Label>
 </h3>
 
-`VideoPlayer.Source` provides a React alternative to the native HTML `<source />`.
-
-| Name   | Type     | Default | Required | Description                           |
-| :----- | :------- | :-----: | :------: | :------------------------------------ |
-| `src`  | `string` |         |  `true`  | Sets the URL of the video content     |
-| `type` | `string` |         | `false`  | Sets media type for the video content |
-
-The component API supports all standard HTML attribute props, while providing some additional behavior as described above.
+`VideoPlayer.Source` provides a React alternative to the native HTML `<source />`. The component API supports all standard HTML attribute props.
 
 <h3>
   VideoPlayer.Track <Label>Required</Label>
@@ -85,12 +140,8 @@ The component API supports all standard HTML attribute props, while providing so
 
 `VideoPlayer.Track` provides a React alternative to the native HTML `<track />`.
 
-| Name      | Type                                                                      | Default | Required | Description                                                                                                                              |
-| :-------- | :------------------------------------------------------------------------ | :-----: | :------: | :--------------------------------------------------------------------------------------------------------------------------------------- |
-| `src`     | `string`                                                                  |         |  `true`  | Sets the source of the VTT file containing captions                                                                                      |
-| `kind`    | `'subtitles'`, `'captions'`, `'descriptions'`, `'chapters'`, `'metadata'` |         | `false`  | Sets how the text track is meant to be used                                                                                              |
-| `srcLang` | `string`                                                                  |         | `false`  | Language of the text data. It must be a valid [BCP 47](https://r12a.github.io/app-subtags/) language tag.                                |
-| `label`   | `string`                                                                  |         | `false`  | A user-readable title of the text track which is used by the browser when listing available text tracks.                                 |
-| `default` | `boolean`                                                                 |         | `false`  | This attribute indicates that the track should be enabled unless the user's preferences indicate that another track is more appropriate. |
+| Name   | Type                                                                      |   Default    | Required | Description                                 |
+| :----- | :------------------------------------------------------------------------ | :----------: | :------: | :------------------------------------------ |
+| `kind` | `'subtitles'`, `'captions'`, `'descriptions'`, `'chapters'`, `'metadata'` | `'captions'` | `false`  | Sets how the text track is meant to be used |
 
 The component API supports all standard HTML attribute props, while providing some additional behavior as described above.
