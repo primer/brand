@@ -102,6 +102,21 @@ import {VideoPlayer} from '@primer/react-brand'
 </VideoPlayer>
 ```
 
+## Custom play icon
+
+```jsx live
+<VideoPlayer
+  title="GitHub media player"
+  playIcon={() => <PlayIcon size={96} />}
+>
+  <VideoPlayer.Source
+    src="https://primer.github.io/brand/assets/example.mp4"
+    type="video/mp4"
+  />
+  <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
+</VideoPlayer>
+```
+
 ## Controlling programmatically
 
 The `VideoPlayer` component exposes a `useVideo` hook that can be used to control the video programmatically. To use the hook, the `VideoPlayer` component must be wrapped in a `VideoPlayer.Provider` component, which usually is done automatically for convenience.
@@ -111,13 +126,14 @@ If you want to take advantage of the `useVideo` hook, you should use the `VideoP
 Full documentation for the `useVideo` hook can be found [below](#usevideo-context).
 
 ```tsx live
-() => {
+;() => {
   const MyVideoPlayer = () => {
     const {isPlaying, togglePlaying, seek} = useVideo()
 
     return (
       <Stack direction="vertical">
-        <VideoPlayer.WithoutProvider title="GitHub media player"
+        <VideoPlayer.WithoutProvider
+          title="GitHub media player"
           showPlayPauseButton={false}
           showSeekControl={false}
           showCCButton={false}
@@ -125,13 +141,18 @@ Full documentation for the `useVideo` hook can be found [below](#usevideo-contex
           showVolumeControl={false}
           showFullScreenButton={false}
         >
-          <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" type="video/mp4" />
+          <VideoPlayer.Source
+            src="https://primer.github.io/brand/assets/example.mp4"
+            type="video/mp4"
+          />
           <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
         </VideoPlayer.WithoutProvider>
         <Stack direction="horizontal">
-          <Button onClick={() => togglePlaying()}>{isPlaying ? 'Pause' : 'Play'}</Button>
+          <Button onClick={() => togglePlaying()}>
+            {isPlaying ? 'Pause' : 'Play'}
+          </Button>
           <Button onClick={() => seek(0)}>Go to start</Button>
-          <Button onClick={() => seek(t => t + 5)}>Skip 5 seconds</Button>
+          <Button onClick={() => seek((t) => t + 5)}>Skip 5 seconds</Button>
         </Stack>
       </Stack>
     )
@@ -179,7 +200,6 @@ Below is a detailed description of each property and method available in the `us
 | `enterFullScreen`  | `() => void`                                       | Enters fullscreen mode.                                                                        |
 | `exitFullScreen`   | `() => void`                                       | Exits fullscreen mode.                                                                         |
 | `toggleFullScreen` | `() => void`                                       | Toggles between entering and exiting fullscreen mode.                                          |
-
 
 ## Component props
 

@@ -1,4 +1,4 @@
-import React, {useRef, forwardRef, type HTMLProps} from 'react'
+import React, {useRef, forwardRef, type HTMLProps, type FunctionComponent} from 'react'
 import clsx from 'clsx'
 import {Text} from '../Text'
 import {type AnimateProps} from '../animation'
@@ -8,7 +8,7 @@ import {
   ControlsBar,
   FullScreenButton,
   MuteButton,
-  PlayIcon,
+  PlayIcon as DefaultPlayIcon,
   PlayPauseButton,
   SeekControl,
   VolumeControl,
@@ -38,6 +38,7 @@ type VideoPlayerProps = {
   showMuteButton?: boolean
   showVolumeControl?: boolean
   showFullScreenButton?: boolean
+  playIcon?: FunctionComponent
 } & HTMLProps<HTMLVideoElement>
 
 const Root = ({
@@ -53,7 +54,7 @@ const Root = ({
   showMuteButton = true,
   showVolumeControl = true,
   showFullScreenButton = true,
-
+  playIcon: PlayIcon = () => <DefaultPlayIcon className={styles.VideoPlayer__playButtonOverlay} />,
   ...rest
 }: VideoPlayerProps) => {
   const videoWrapperRef = useRef<HTMLDivElement>(null)
@@ -82,7 +83,7 @@ const Root = ({
         onClick={togglePlaying}
         aria-label={isPlaying ? 'Pause' : 'Play'}
       >
-        {!isPlaying && <PlayIcon className={styles.VideoPlayer__playButtonOverlay} />}
+        {!isPlaying && <PlayIcon />}
       </button>
       <div className={styles.VideoPlayer__controls}>
         {ccEnabled && <Captions />}

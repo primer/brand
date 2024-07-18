@@ -6,6 +6,7 @@ import {VideoPlayer} from '.'
 import {Stack} from '../Stack'
 import {Button} from '../Button'
 import {useVideo} from './hooks'
+import {PlayIcon} from '@primer/octicons-react'
 
 export default {
   title: 'Components/VideoPlayer/Features',
@@ -95,3 +96,10 @@ export const ControlledProgrammatically = () => {
     </VideoPlayer.Provider>
   )
 }
+
+export const CustomPlayIcon = () => (
+  <VideoPlayer title="GitHub media player" playIcon={() => <PlayIcon size={96} />}>
+    <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" type="video/mp4" />
+    <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
+  </VideoPlayer>
+)
