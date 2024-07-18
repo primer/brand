@@ -30,7 +30,7 @@ export const WithVisuallyHiddenTitle = () => (
   </VideoPlayer>
 )
 
-export const WithCustomControls = () => (
+export const WithSomeHiddenControls = () => (
   <VideoPlayer
     title="GitHub media player"
     showPlayPauseButton={false}
