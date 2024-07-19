@@ -9,7 +9,6 @@ export default {
   args: {
     poster: posterImage,
     title: 'GitHub media player',
-    branding: true,
     visuallyHiddenTitle: false,
     showBranding: true,
     showControlsWhenPaused: true,

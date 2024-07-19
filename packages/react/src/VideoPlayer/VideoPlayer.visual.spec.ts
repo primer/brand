@@ -61,6 +61,24 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('VideoPlayer / Controlled Programmatically', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--controlled-programmatically&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('VideoPlayer / Custom Play Icon', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--custom-play-icon&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('VideoPlayer / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-videoplayer--playground&viewMode=story')
 

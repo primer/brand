@@ -1,19 +1,15 @@
-import React, {useRef, forwardRef, type HTMLProps} from 'react'
+import React, {useRef, forwardRef, useContext, type HTMLProps, type FunctionComponent} from 'react'
 import clsx from 'clsx'
 import {Text} from '../Text'
 import {type AnimateProps} from '../animation'
 import {
   Captions,
   CCButton,
-  Controls,
   ControlsBar,
   FullScreenButton,
-  IconControl,
   MuteButton,
-  PauseIcon,
-  PlayIcon,
+  PlayIcon as DefaultPlayIcon,
   PlayPauseButton,
-  Range,
   SeekControl,
   VolumeControl,
 } from './components'
@@ -28,7 +24,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './VideoPlayer.module.css'
 import {useVideoResizeObserver} from './hooks/'
-import {useVideo, VideoProvider} from './hooks/useVideo'
+import {useVideo, VideoContext, VideoProvider} from './hooks/useVideo'
 
 type VideoPlayerProps = {
   title: string
@@ -42,6 +38,7 @@ type VideoPlayerProps = {
   showMuteButton?: boolean
   showVolumeControl?: boolean
   showFullScreenButton?: boolean
+  playIcon?: FunctionComponent
 } & HTMLProps<HTMLVideoElement>
 
 const Root = ({
@@ -57,12 +54,14 @@ const Root = ({
   showMuteButton = true,
   showVolumeControl = true,
   showFullScreenButton = true,
+  playIcon: PlayIcon = () => <DefaultPlayIcon className={styles.VideoPlayer__playButtonOverlay} />,
   ...rest
 }: VideoPlayerProps) => {
   const videoWrapperRef = useRef<HTMLDivElement>(null)
+  const isSmall = useVideoResizeObserver({videoWrapperRef, className: styles['VideoPlayer__container--small']})
+
   const useVideoContext = useVideo()
   const {ccEnabled, isPlaying, ref, togglePlaying} = useVideoContext
-  const isSmall = useVideoResizeObserver({videoWrapperRef, className: styles['VideoPlayer__container--small']})
 
   const hideControls = !isPlaying && !showControlsWhenPaused
 
@@ -85,7 +84,7 @@ const Root = ({
         onClick={togglePlaying}
         aria-label={isPlaying ? 'Pause' : 'Play'}
       >
-        {!isPlaying && <VideoPlayer.PlayIcon className={styles.VideoPlayer__playButtonOverlay} />}
+        {!isPlaying && <PlayIcon />}
       </button>
       <div className={styles.VideoPlayer__controls}>
         {ccEnabled && <Captions />}
@@ -110,26 +109,20 @@ const VideoPlayerTrack = ({kind = 'captions', ...rest}: React.HTMLProps<HTMLTrac
   <track kind={kind} {...rest} />
 )
 
-const RootWithProvider = forwardRef<HTMLVideoElement, VideoPlayerProps>((props, ref) => (
-  <VideoProvider ref={ref}>
-    <Root {...props} />
-  </VideoProvider>
-))
+const RootWithProvider = forwardRef<HTMLVideoElement, VideoPlayerProps>((props, ref) => {
+  const context = useContext(VideoContext)
+
+  return context ? (
+    <Root {...props} ref={ref} />
+  ) : (
+    <VideoProvider>
+      <Root {...props} ref={ref} />
+    </VideoProvider>
+  )
+})
 
 export const VideoPlayer = Object.assign(RootWithProvider, {
   Source: VideoPlayerSource,
   Track: VideoPlayerTrack,
-  Captions,
-  CCButton,
-  Controls,
-  ControlsBar,
-  FullScreenButton,
-  IconControl,
-  MuteButton,
-  PauseIcon,
-  PlayIcon,
-  PlayPauseButton,
-  Range,
-  SeekControl,
-  VolumeControl,
+  Provider: VideoProvider,
 })

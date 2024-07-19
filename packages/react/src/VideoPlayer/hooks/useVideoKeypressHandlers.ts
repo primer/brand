@@ -4,7 +4,7 @@ import {useVideo} from './useVideo'
 export type KeypressHandler = [KeyboardEvent['key'], (e: KeyboardEvent) => void]
 
 export const useVideoKeypressHandlers = (videoWrapperRef: RefObject<HTMLElement>) => {
-  const {togglePlaying, toggleMute, setVolume, seekRelative, seekToPercent, toggleCC, toggleFullScreen} = useVideo()
+  const {togglePlaying, toggleMute, setVolume, seek, seekToPercent, toggleCC, toggleFullScreen} = useVideo()
 
   const keypressHandlers: KeypressHandler[] = useMemo(
     () => [
@@ -13,10 +13,10 @@ export const useVideoKeypressHandlers = (videoWrapperRef: RefObject<HTMLElement>
       ['f', () => toggleFullScreen()],
       ['c', () => toggleCC()],
 
-      ['ArrowLeft', () => seekRelative(t => t - 5)],
-      ['ArrowRight', () => seekRelative(t => t + 5)],
-      ['j', () => seekRelative(t => t - 10)],
-      ['l', () => seekRelative(t => t + 10)],
+      ['ArrowLeft', () => seek(t => t - 5)],
+      ['ArrowRight', () => seek(t => t + 5)],
+      ['j', () => seek(t => t - 10)],
+      ['l', () => seek(t => t + 10)],
       ['0', () => seekToPercent(0)],
       ['1', () => seekToPercent(10)],
       ['2', () => seekToPercent(20)],
@@ -32,7 +32,7 @@ export const useVideoKeypressHandlers = (videoWrapperRef: RefObject<HTMLElement>
       ['ArrowUp', () => setVolume(volume => Math.min(volume + 0.1, 1))],
       ['ArrowDown', () => setVolume(volume => Math.max(volume - 0.1, 0))],
     ],
-    [toggleCC, seekRelative, seekToPercent, setVolume, toggleFullScreen, toggleMute, togglePlaying],
+    [toggleCC, seek, seekToPercent, setVolume, toggleFullScreen, toggleMute, togglePlaying],
   )
 
   useEffect(() => {
