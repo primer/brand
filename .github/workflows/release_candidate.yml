@@ -21,7 +21,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v2
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Install dependencies
         run: npm ci
@@ -60,6 +60,28 @@ jobs:
                 target_url: `https://unpkg.com/${package.name}@${package.version}/`
               })
             })
+
+      - name: Get or Create Comment
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs')
+            const body = await fs.readFileSync('.github/release_template.md', 'utf8')
+            const result = await github.rest.issues.listComments({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo
+            });
+            const botComments = result.data.filter(c => c.user.login == 'github-actions[bot]')
+            if (!botComments.length) {
+              await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: body.replace('{{PR_AUTHOR}}', context.payload.sender.login)
+              })
+            }
 
   release-candidate-next-minor:
     if: ${{ github.repository == 'primer/brand' && github.ref_name == 'changeset-release/next-minor' }}
