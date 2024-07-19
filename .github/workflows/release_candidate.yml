@@ -5,6 +5,7 @@ on:
     branches:
       - 'changeset-release/main'
       - 'changeset-release/next-minor'
+      - 'rezrah/release-checklist'
 
 jobs:
   release-candidate:
