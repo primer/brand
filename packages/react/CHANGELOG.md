@@ -1,5 +1,65 @@
 # @primer/react-brand
 
+## 0.35.0
+
+### Minor Changes
+
+- [#634](https://github.com/primer/brand/pull/634) [`598a2c5d`](https://github.com/primer/brand/commit/598a2c5d936397539c58466e18111161297b37de) Thanks [@joshfarrant](https://github.com/joshfarrant)! - ⚠️ This update contains a breaking change.
+
+  Refactored `VideoPlayer` component to make it more modular and customisable.
+
+  - The `showTitle` prop has been renamed to `visuallyHiddenTitle` and inverted.
+    - This prop hides the title visually, but keeps it accessible to screen readers.
+    - Where you previously passed `showTitle={false}`, you should now pass `visuallyHiddenTitle={true}`.
+  - The `branding` prop has been renamed to `showBranding`.
+  - Individual video controls can be optionally hidden by setting any of the `showPlayPauseButton`, `showSeekControl`, `showCCButton`, `showMuteButton`, `showVolumeControl`, and `showFullScreenButton` props to `false`.
+  - A custom play icon can be provided using the `playIcon` prop.
+
+### Patch Changes
+
+- [#623](https://github.com/primer/brand/pull/623) [`8727997c`](https://github.com/primer/brand/commit/8727997c876ec59a2a768c4615509afa492b2aa5) Thanks [@rezrah](https://github.com/rezrah)! - Added `fullWidth` prop to `Hero.Heading` to remove default max-width constraint, and enabling easier placement using a parent `Grid`.
+
+- [#623](https://github.com/primer/brand/pull/623) [`8727997c`](https://github.com/primer/brand/commit/8727997c876ec59a2a768c4615509afa492b2aa5) Thanks [@rezrah](https://github.com/rezrah)! - Added `RiverStoryScroll` component, an experimental layout component that wraps around existing `River` patterns.
+
+  ```jsx
+  <RiverStoryScroll>
+    <River>
+      <River.Visual />
+      <River.Content />
+    </River>
+    <River>
+      <River.Visual />
+      <River.Content />
+    </River>
+    <River>
+      <River.Visual />
+      <River.Content />
+    </River>
+  </RiverStoryScroll>
+  ```
+
+  :link: [See Storybook for more examples.](https://primer.style/brand/storybook/?path=/story/components-riverstoryscroll--default)
+
+- [#647](https://github.com/primer/brand/pull/647) [`39e00cfa`](https://github.com/primer/brand/commit/39e00cfa478d6247c5f769577168a704695e35aa) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Added `isExternal` prop to `SubdomainNavBar.Link` component. When `isExternal` is `true`, a [link-external](https://primer.style/foundations/icons/link-external-16) icon is displayed next to the link.
+
+- [#644](https://github.com/primer/brand/pull/644) [`b3f1f364`](https://github.com/primer/brand/commit/b3f1f364473025aa0cfa46ec49094f521998e8ea) Thanks [@danielguillan](https://github.com/danielguillan)! - Improve the layout responsiveness of SubdomainNavBar
+
+- [#639](https://github.com/primer/brand/pull/639) [`ebf92224`](https://github.com/primer/brand/commit/ebf92224234e6a54a979f58a86727997935adbd3) Thanks [@stamat](https://github.com/stamat)! - Fix cut AnchorNav action button outline due the introduced overflow auto
+
+- [#646](https://github.com/primer/brand/pull/646) [`81e983e6`](https://github.com/primer/brand/commit/81e983e67b34d03dac86f0797b817c8de639b29e) Thanks [@rezrah](https://github.com/rezrah)! - Adds responsive toggling of feature lists in the `PricingOptions` component.
+
+  `PricingOptions.FeatureList` can now be collapsed at regular and wide viewports.
+
+  ```jsx
+  <PricingOptions>
+    <PricingOptions.Item>
+      <PricingOptions.FeatureList expanded={{narrow: true, regular: true, wide: true}} />
+    </PricingOptions.Item>
+  </PricingOptions>
+  ```
+
+- [#623](https://github.com/primer/brand/pull/623) [`8727997c`](https://github.com/primer/brand/commit/8727997c876ec59a2a768c4615509afa492b2aa5) Thanks [@rezrah](https://github.com/rezrah)! - Added `--brand-CTABanner-bgColor` token to `CTABanner` for easier customisation of the banners background color, when enabled.
+
 ## 0.34.3
 
 ### Patch Changes

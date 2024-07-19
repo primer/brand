@@ -1,5 +1,11 @@
 # @primer/brand-primitives
 
+## 0.35.0
+
+### Patch Changes
+
+- [#623](https://github.com/primer/brand/pull/623) [`8727997c`](https://github.com/primer/brand/commit/8727997c876ec59a2a768c4615509afa492b2aa5) Thanks [@rezrah](https://github.com/rezrah)! - Added `--brand-CTABanner-bgColor` token to `CTABanner` for easier customisation of the banners background color, when enabled.
+
 ## 0.34.3
 
 ### Patch Changes
