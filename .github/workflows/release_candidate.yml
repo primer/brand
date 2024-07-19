@@ -9,7 +9,7 @@ on:
 
 jobs:
   release-candidate:
-    if: ${{ github.repository == 'primer/brand' && (github.ref_name == 'changeset-release/main' || github.ref_name == 'rezrah/release-checklist') }}
+    if: ${{ github.repository == 'primer/brand' && github.ref_name == 'changeset-release/main' }}
     name: RC checklist message
     runs-on: ubuntu-latest
     steps:
@@ -63,7 +63,7 @@ jobs:
             })
 
   release-checklist:
-    if: ${{ github.repository == 'primer/brand' && github.ref_name == 'changeset-release/main' }}
+    if: ${{ github.repository == 'primer/brand' && (github.ref_name == 'changeset-release/main' || github.ref_name == 'rezrah/release-checklist') }}
     name: Candidate
     runs-on: ubuntu-latest
     steps:
