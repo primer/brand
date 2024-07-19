@@ -68,7 +68,7 @@ const MyVideoPlayer = () => {
 
   return (
     <Stack direction="vertical">
-      <VideoPlayer.WithoutProvider
+      <VideoPlayer
         title="GitHub media player"
         showPlayPauseButton={false}
         showSeekControl={false}
@@ -79,7 +79,7 @@ const MyVideoPlayer = () => {
       >
         <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" type="video/mp4" />
         <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
-      </VideoPlayer.WithoutProvider>
+      </VideoPlayer>
       <Stack direction="horizontal">
         <Button onClick={() => togglePlaying()}>{isPlaying ? 'Pause' : 'Play'}</Button>
         <Button onClick={() => seek(0)}>Go to start</Button>

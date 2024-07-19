@@ -1,4 +1,4 @@
-import React, {useRef, forwardRef, type HTMLProps, type FunctionComponent} from 'react'
+import React, {useRef, forwardRef, useContext, type HTMLProps, type FunctionComponent} from 'react'
 import clsx from 'clsx'
 import {Text} from '../Text'
 import {type AnimateProps} from '../animation'
@@ -24,7 +24,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './VideoPlayer.module.css'
 import {useVideoResizeObserver} from './hooks/'
-import {useVideo, VideoProvider} from './hooks/useVideo'
+import {useVideo, VideoContext, VideoProvider} from './hooks/useVideo'
 
 type VideoPlayerProps = {
   title: string
@@ -58,9 +58,10 @@ const Root = ({
   ...rest
 }: VideoPlayerProps) => {
   const videoWrapperRef = useRef<HTMLDivElement>(null)
+  const isSmall = useVideoResizeObserver({videoWrapperRef, className: styles['VideoPlayer__container--small']})
+
   const useVideoContext = useVideo()
   const {ccEnabled, isPlaying, ref, togglePlaying} = useVideoContext
-  const isSmall = useVideoResizeObserver({videoWrapperRef, className: styles['VideoPlayer__container--small']})
 
   const hideControls = !isPlaying && !showControlsWhenPaused
 
@@ -108,15 +109,20 @@ const VideoPlayerTrack = ({kind = 'captions', ...rest}: React.HTMLProps<HTMLTrac
   <track kind={kind} {...rest} />
 )
 
-const RootWithProvider = forwardRef<HTMLVideoElement, VideoPlayerProps>((props, ref) => (
-  <VideoProvider ref={ref}>
-    <Root {...props} />
-  </VideoProvider>
-))
+const RootWithProvider = forwardRef<HTMLVideoElement, VideoPlayerProps>((props, ref) => {
+  const context = useContext(VideoContext)
+
+  return context ? (
+    <Root {...props} ref={ref} />
+  ) : (
+    <VideoProvider>
+      <Root {...props} ref={ref} />
+    </VideoProvider>
+  )
+})
 
 export const VideoPlayer = Object.assign(RootWithProvider, {
   Source: VideoPlayerSource,
   Track: VideoPlayerTrack,
   Provider: VideoProvider,
-  WithoutProvider: Root,
 })

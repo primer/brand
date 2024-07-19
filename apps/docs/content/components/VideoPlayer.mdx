@@ -119,20 +119,18 @@ import {VideoPlayer} from '@primer/react-brand'
 
 ## Controlling programmatically
 
-The `VideoPlayer` component exposes a `useVideo` hook that can be used to control the video programmatically. To use the hook, the `VideoPlayer` component must be wrapped in a `VideoPlayer.Provider` component, which usually is done automatically for convenience.
-
-If you want to take advantage of the `useVideo` hook, you should use the `VideoPlayer.WithoutProvider` component instead of the `VideoPlayer` component and manually wrap it in a `VideoPlayer.Provider` component.
+The `VideoPlayer` component exposes a `useVideo` hook that can be used to control the video programmatically. To use the hook, the `VideoPlayer` component must be wrapped in a `VideoPlayer.Provider` component.
 
 Full documentation for the `useVideo` hook can be found [below](#usevideo-context).
 
 ```tsx live
-;() => {
+() => {
   const MyVideoPlayer = () => {
     const {isPlaying, togglePlaying, seek} = useVideo()
 
     return (
       <Stack direction="vertical">
-        <VideoPlayer.WithoutProvider
+        <VideoPlayer
           title="GitHub media player"
           showPlayPauseButton={false}
           showSeekControl={false}
@@ -146,7 +144,7 @@ Full documentation for the `useVideo` hook can be found [below](#usevideo-contex
             type="video/mp4"
           />
           <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
-        </VideoPlayer.WithoutProvider>
+        </VideoPlayer>
         <Stack direction="horizontal">
           <Button onClick={() => togglePlaying()}>
             {isPlaying ? 'Pause' : 'Play'}
@@ -244,3 +242,9 @@ The component API supports all standard HTML attribute props, while providing so
 | `kind` | `'subtitles'`, `'captions'`, `'descriptions'`, `'chapters'`, `'metadata'` | `'captions'` | `false`  | Sets how the text track is meant to be used |
 
 The component API supports all standard HTML attribute props, while providing some additional behavior as described above.
+
+<h3>
+  VideoPlayer.Provider
+</h3>
+
+`VideoPlayer.Provider` is used in conjunction with the `useVideo` hook to provide a comprehensive API for managing video playback, volume, closed captioning, and fullscreen mode.

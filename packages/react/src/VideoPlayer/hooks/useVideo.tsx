@@ -51,7 +51,7 @@ type Action =
   | {type: 'disableCC'}
   | {type: 'setDuration'; payload: number}
 
-const VideoContext = createContext<UseVideoContext | null>(null)
+export const VideoContext = createContext<UseVideoContext | null>(null)
 
 const videoReducer = (state: VideoState, action: Action): VideoState => {
   const video = state.ref.current
@@ -103,7 +103,7 @@ export const useVideo = () => {
 
   if (!context) {
     throw new Error(
-      'useVideo must be used within a VideoContext. Did you forget to wrap your component in a <VideoProvider>?',
+      'useVideo must be used within a VideoProvider. Did you forget to wrap your component in a <VideoProvider>?',
     )
   }
 
