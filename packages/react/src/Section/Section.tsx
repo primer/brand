@@ -5,7 +5,7 @@ import type {BaseProps} from '../component-helpers'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/section/section.css'
 import styles from './Section.module.css'
 
-const SectionPaddingVariants = ['none', 'condensed', 'normal', 'spacious'] as const
+export const SectionPaddingVariants = ['none', 'condensed', 'normal', 'spacious'] as const
 const defaultSectionPadding = SectionPaddingVariants[2]
 
 type ResponsiveMap<T> = {
