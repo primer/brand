@@ -1,12 +1,12 @@
 import React from 'react'
 import {Meta} from '@storybook/react'
-import posterImage from '../fixtures/images/example-poster.png'
+import {PlayIcon} from '@primer/octicons-react'
 
+import posterImage from '../fixtures/images/example-poster.png'
 import {VideoPlayer} from '.'
 import {Stack} from '../Stack'
 import {Button} from '../Button'
 import {useVideo} from './hooks'
-import {PlayIcon} from '@primer/octicons-react'
 
 export default {
   title: 'Components/VideoPlayer/Features',
