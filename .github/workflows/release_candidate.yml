@@ -9,7 +9,7 @@ on:
 
 jobs:
   release-candidate:
-    if: ${{ github.repository == 'primer/brand' && github.ref_name == 'changeset-release/main' }}
+    if: ${{ github.repository == 'primer/brand' && (github.ref_name == 'changeset-release/main' || github.ref_name == 'rezrah/release-checklist') }}
     name: Candidate
     runs-on: ubuntu-latest
     steps:
@@ -61,6 +61,22 @@ jobs:
                 target_url: `https://unpkg.com/${package.name}@${package.version}/`
               })
             })
+
+  release-checklist:
+    if: ${{ github.repository == 'primer/brand' && github.ref_name == 'changeset-release/main' }}
+    name: Candidate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 20
 
       - name: Get or Create Comment
         uses: actions/github-script@v7
