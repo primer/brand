@@ -1,4 +1,4 @@
-name: Pull request
+name: Release conductor checklist
 
 on:
   pull_request:
@@ -25,13 +25,17 @@ jobs:
           script: |
             const fs = require('fs')
             const body = await fs.readFileSync('.github/release_template.md', 'utf8')
+            console.log('body', body)
             const result = await github.rest.issues.listComments({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo
             });
+            console.log('result', result)
             const botComments = result.data.filter(c => c.user.login == 'github-actions[bot]')
             if (!botComments.length) {
+
+            console.log('final body', body.replace('{{PR_AUTHOR}}', context.payload.sender.login))
               await github.rest.issues.createComment({
                 issue_number: context.issue.number,
                 owner: context.repo.owner,
