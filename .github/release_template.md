@@ -2,15 +2,12 @@
 
 Please ensure these items are checked before merging.
 
-### 🔎 Smoke test
+### ✅ Preliminary checks
 
 - [ ] All CI checks pass on this pull request
 - [ ] Docs and Storybook previews open in a browser
-- [ ] Works in CodeSandbox or StackBlitz
-  - [ ] New components render successfully
-  - [ ] (optional) Tested in both SPA and SSR apps if release contains build changes
 
-### 🔌 Integration tests
+### 🔌 Integration smoke tests
 
 #### Dotcom
 
@@ -45,6 +42,12 @@ Please ensure these items are checked before merging.
   - [ ] Run development server and verify no **new** console warnings or regressions are found
   - [ ] Run local build to verify the release compiles correctly
   - [ ] Manually performed side-by-side comparison with production
+
+#### Sandboxes
+
+- [ ] Works in CodeSandbox or StackBlitz
+  - [ ] New components render successfully
+  - [ ] (optional) Tested in both SPA and SSR apps if release contains build changes
 
 ### 🤔 Cross-check (aka sanity test)
 
