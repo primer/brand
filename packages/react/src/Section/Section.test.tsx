@@ -73,9 +73,11 @@ describe('Section', () => {
   })
 
   it('applies custom background image when backgroundImageSrc, backgroundImagePosition, and backgroundImageSize props are provided', () => {
-    const mockSrcValue = 'url("image.jpg")'
+    const mockSrcValue = 'image.jpg'
     const mockPositionValue = 'top right'
     const mockSizeValue = 'contain'
+
+    const expectedSrcValue = `url(${mockSrcValue})`
 
     const {getByTestId} = render(
       <Section
@@ -94,7 +96,7 @@ describe('Section', () => {
       '--brand-Section-background-image-size',
     )
 
-    expect(backgroundImageSrcValue).toBe(mockSrcValue)
+    expect(backgroundImageSrcValue).toBe(expectedSrcValue)
     expect(backgroundImagePositionValue).toBe(mockPositionValue)
     expect(backgroundImageSizeValue).toBe(mockSizeValue)
   })
@@ -116,9 +118,11 @@ describe('Section', () => {
   })
 
   it('applies custom background image when backgroundImageSrc, backgroundImagePosition, and backgroundImageSize props are provided', () => {
-    const mockSrcValue = 'url("image.jpg")'
+    const mockSrcValue = 'image.jpg'
     const mockPositionValue = 'top right'
     const mockSizeValue = 'contain'
+
+    const expectedSrcValue = `url(${mockSrcValue})`
 
     const {getByTestId} = render(
       <Section
@@ -137,7 +141,7 @@ describe('Section', () => {
       '--brand-Section-background-image-size',
     )
 
-    expect(backgroundImageSrcValue).toBe(mockSrcValue)
+    expect(backgroundImageSrcValue).toBe(expectedSrcValue)
     expect(backgroundImagePositionValue).toBe(mockPositionValue)
     expect(backgroundImageSizeValue).toBe(mockSizeValue)
   })
@@ -145,10 +149,17 @@ describe('Section', () => {
   it('applies responsive custom background image when a responsive map is passed to the backgroundImageSrc, backgroundImagePosition, and BackgroundImageSize', () => {
     const mockPositionValue = {narrow: 'top left', regular: '50% 50%', wide: '0 50%'}
     const mockSizeValue = {narrow: 'cover', regular: '100%', wide: 'contain'}
+
     const mockSrcValue = {
-      narrow: 'url("image-1.jpg")',
-      regular: 'url("image-2.jpg")',
-      wide: 'url("image-3.jpg")',
+      narrow: 'image-1.jpg',
+      regular: 'image-2.jpg',
+      wide: 'image-3.jpg',
+    }
+
+    const expectedSrcValues = {
+      narrow: `url(${mockSrcValue.narrow})`,
+      regular: `url(${mockSrcValue.regular})`,
+      wide: `url(${mockSrcValue.wide})`,
     }
 
     const {getByTestId} = render(
@@ -183,9 +194,101 @@ describe('Section', () => {
       )
     }
 
-    expect(backgroundSrcValues).toEqual(mockSrcValue)
+    expect(backgroundSrcValues).toEqual(expectedSrcValues)
     expect(backgroundPositionValues).toEqual(mockPositionValue)
     expect(backgroundSizeValues).toEqual(mockSizeValue)
+  })
+
+  it('applies multiple custom background images when backgroundImageSrc, backgroundImagePosition, and backgroundImageSize props are provided', () => {
+    const mockSrcValue = ['image1.jpg', 'image2.jpg']
+    const mockPositionValue = ['top right', '50%']
+    const mockSizeValue = ['cover', 'contain']
+
+    const expectedSrcValue = mockSrcValue.map(v => `url(${v})`).join()
+    const expectedPositionValue = mockPositionValue.join()
+    const expectedSizeValue = mockSizeValue.join()
+
+    const {getByTestId} = render(
+      <Section
+        backgroundImageSrc={mockSrcValue}
+        backgroundImagePosition={mockPositionValue}
+        backgroundImageSize={mockSizeValue}
+      />,
+    )
+    const SectionEl = getByTestId('Section')
+
+    const backgroundImageSrcValue = getComputedStyle(SectionEl).getPropertyValue('--brand-Section-background-image-src')
+    const backgroundImagePositionValue = getComputedStyle(SectionEl).getPropertyValue(
+      '--brand-Section-background-image-position',
+    )
+    const backgroundImageSizeValue = getComputedStyle(SectionEl).getPropertyValue(
+      '--brand-Section-background-image-size',
+    )
+
+    expect(backgroundImageSrcValue).toBe(expectedSrcValue)
+    expect(backgroundImagePositionValue).toBe(expectedPositionValue)
+    expect(backgroundImageSizeValue).toBe(expectedSizeValue)
+  })
+
+  it('applies multiple responsive custom background images when a responsive map is passed to the backgroundImageSrc, backgroundImagePosition, and BackgroundImageSize', () => {
+    const mockPositionValue = {narrow: ['top left', '50%'], regular: ['50% 50%', '10% 50%'], wide: ['0 50%', '0 0']}
+    const mockSizeValue = {narrow: ['cover', 'contain'], regular: ['100%', '125%'], wide: ['contain', 'cover']}
+    const mockSrcValue = {
+      narrow: ['image-1.jpg', 'image-2.jpg'],
+      regular: ['image-3.jpg', 'image-4.jpg'],
+      wide: ['image-5.jpg', 'image-6.jpg'],
+    }
+
+    const expectedSrcValue = Object.keys(mockSrcValue).reduce((acc, breakpoint) => {
+      acc[breakpoint] = mockSrcValue[breakpoint].map(img => `url(${img})`).join()
+      return acc
+    }, {})
+
+    const expectedPositionValue = Object.keys(mockPositionValue).reduce((acc, breakpoint) => {
+      acc[breakpoint] = mockPositionValue[breakpoint].join()
+      return acc
+    }, {})
+
+    const expectedSizeValue = Object.keys(mockSizeValue).reduce((acc, breakpoint) => {
+      acc[breakpoint] = mockSizeValue[breakpoint].join()
+      return acc
+    }, {})
+
+    const {getByTestId} = render(
+      <Section
+        backgroundImageSrc={mockSrcValue}
+        backgroundImagePosition={mockPositionValue}
+        backgroundImageSize={mockSizeValue}
+      />,
+    )
+
+    const SectionEl = getByTestId('Section')
+
+    const backgroundSrcValues = {}
+    const backgroundSizeValues = {}
+    const backgroundPositionValues = {}
+
+    for (const breakpoint in mockSrcValue) {
+      backgroundSrcValues[breakpoint] = getComputedStyle(SectionEl).getPropertyValue(
+        `--brand-Section-${breakpoint}-background-image-src`,
+      )
+    }
+
+    for (const breakpoint in mockPositionValue) {
+      backgroundPositionValues[breakpoint] = getComputedStyle(SectionEl).getPropertyValue(
+        `--brand-Section-${breakpoint}-background-image-position`,
+      )
+    }
+
+    for (const breakpoint in mockSizeValue) {
+      backgroundSizeValues[breakpoint] = getComputedStyle(SectionEl).getPropertyValue(
+        `--brand-Section-${breakpoint}-background-image-size`,
+      )
+    }
+
+    expect(backgroundSrcValues).toEqual(expectedSrcValue)
+    expect(backgroundPositionValues).toEqual(expectedPositionValue)
+    expect(backgroundSizeValues).toEqual(expectedSizeValue)
   })
 
   it('applies full width class when fullWidth prop is set to true', () => {

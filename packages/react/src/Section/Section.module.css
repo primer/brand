@@ -4,9 +4,10 @@
   --padding-block-end: var(--brand-Section-padding-normal);
   --compensated-padding-block-end: calc(var(--padding-block-end) + var(--rounded-padding-overlap-adjustment));
 
+  background-repeat: no-repeat;
   background-color: var(--brand-Section-narrow-background-color, var(--brand-Section-background-color));
   background-image: var(--brand-Section-narrow-background-image-src, var(--brand-Section-background-image-src));
-  background-size: var(--brand-Section-narrow-background-image-size, var(--brand-Section-background-image-size, cover));
+  background-size: var(--brand-Section-narrow-background-image-size, var(--brand-Section-background-image-size));
 
   background-position: var(
     --brand-Section-narrow-background-image-position,

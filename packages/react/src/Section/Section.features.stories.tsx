@@ -5,6 +5,7 @@ import {Stack, SectionIntro, Text, ThemeProvider} from '..'
 import styles from './Section.features.module.css'
 
 import backgroundStars from '../fixtures/images/background-stars.png'
+import backgroundEnterpriseStack from '../fixtures/images/enterprise-stack.png'
 
 export default {
   title: 'Components/Section/Features',
@@ -104,8 +105,26 @@ export const BackgroundImage: StoryFn<typeof Section> = () => {
   return (
     <ThemeProvider colorMode="dark">
       <Section
-        backgroundImageSrc={`url(${backgroundStars})`}
+        backgroundImageSrc={backgroundStars}
         backgroundImagePosition="top center"
+        backgroundImageSize="cover"
+        style={{minHeight: '800px'}}
+      >
+        <SectionIntro>
+          <SectionIntro.Heading>A section with a custom background image</SectionIntro.Heading>
+        </SectionIntro>
+      </Section>
+    </ThemeProvider>
+  )
+}
+
+export const MultipleBackgroundImages: StoryFn<typeof Section> = () => {
+  return (
+    <ThemeProvider colorMode="dark">
+      <Section
+        backgroundImageSrc={[backgroundEnterpriseStack, backgroundStars]}
+        backgroundImagePosition={['50%', 'top center']}
+        backgroundImageSize={['auto', 'cover']}
         style={{minHeight: '800px'}}
       >
         <SectionIntro>
@@ -119,11 +138,7 @@ export const BackgroundImage: StoryFn<typeof Section> = () => {
 export const Rounded: StoryFn<typeof Section> = () => {
   return (
     <>
-      <Section
-        backgroundImageSrc={`url(${backgroundStars})`}
-        backgroundImagePosition="top center"
-        style={{minHeight: '60vh'}}
-      >
+      <Section backgroundImageSrc={backgroundStars} backgroundImagePosition="top center" style={{minHeight: '60vh'}}>
         <ThemeProvider colorMode="dark">
           <SectionIntro>
             <SectionIntro.Heading>Section 1</SectionIntro.Heading>

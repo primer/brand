@@ -6,6 +6,8 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 import styles from './Section.module.css'
 
 export const SectionPaddingVariants = ['none', 'condensed', 'normal', 'spacious'] as const
+export const SectionBackgroundColors = ['default', 'inset', 'subtle', 'overlay'] as const
+
 const defaultSectionPadding = SectionPaddingVariants[2]
 
 type ResponsiveMap<T> = {
@@ -14,12 +16,13 @@ type ResponsiveMap<T> = {
   wide?: T
 }
 
-type SectionPaddingVariant = (typeof SectionPaddingVariants)[number]
-type ResponsivePaddingMap = ResponsiveMap<SectionPaddingVariant>
-type ResponsiveBackgroundImageSrcMap = ResponsiveMap<string>
-type ResponsiveBackgroundImagePositionMap = ResponsiveMap<string>
-type ResponsiveBackgroundImageSizeMap = ResponsiveMap<string>
-type ResponsiveBackgroundColorMap = ResponsiveMap<string>
+type PaddingVariants = (typeof SectionPaddingVariants)[number]
+type BackgroundColors = (typeof SectionBackgroundColors)[number] | string
+type ResponsiveBackgroundColorMap = ResponsiveMap<BackgroundColors>
+type ResponsiveBackgroundImagePositionMap = ResponsiveMap<string | string[]>
+type ResponsiveBackgroundImageSizeMap = ResponsiveMap<string | string[]>
+type ResponsiveBackgroundImageSrcMap = ResponsiveMap<string | string[]>
+type ResponsivePaddingVariantsMap = ResponsiveMap<PaddingVariants>
 
 type SectionProps = {
   /**
@@ -29,27 +32,27 @@ type SectionProps = {
   /**
    * The padding applied to the start of the section.
    */
-  paddingBlockStart?: SectionPaddingVariant | ResponsivePaddingMap
+  paddingBlockStart?: PaddingVariants | ResponsivePaddingVariantsMap
   /**
    * The padding applied to the end of the section.
    */
-  paddingBlockEnd?: SectionPaddingVariant | ResponsivePaddingMap
+  paddingBlockEnd?: PaddingVariants | ResponsivePaddingVariantsMap
   /**
-   * The background color of the section.
+   * The system-level or custom background color of the section.
    */
-  backgroundColor?: string | ResponsiveBackgroundColorMap
+  backgroundColor?: BackgroundColors | ResponsiveBackgroundColorMap
   /**
    * The background image of the section.
    */
-  backgroundImageSrc?: string | ResponsiveBackgroundImageSrcMap
+  backgroundImageSrc?: string | string[] | ResponsiveBackgroundImageSrcMap
   /**
    * The position of the background image.
    */
-  backgroundImagePosition?: string | ResponsiveBackgroundImagePositionMap
+  backgroundImagePosition?: string | string[] | ResponsiveBackgroundImagePositionMap
   /**
    * The size of the background image.
    */
-  backgroundImageSize?: string | ResponsiveBackgroundImageSizeMap
+  backgroundImageSize?: string | string[] | ResponsiveBackgroundImageSizeMap
   /**
    * Makes the content of the section fill the full width of its parent container.
    */
@@ -70,7 +73,7 @@ const testIds = {
   container: 'Section__container',
 }
 
-const SectionRoot = forwardRef<HTMLDivElement, PropsWithChildren<SectionProps>>(
+export const Section = forwardRef<HTMLDivElement, PropsWithChildren<SectionProps>>(
   (
     {
       as: Component = 'section',
@@ -100,16 +103,24 @@ const SectionRoot = forwardRef<HTMLDivElement, PropsWithChildren<SectionProps>>(
       [],
     )
 
+    const processBackgroundValue = useCallback((value: string | string[], property) => {
+      if (property === 'background-image-src') {
+        return Array.isArray(value) ? value.map(img => `url(${img})`).join() : `url(${value})`
+      }
+
+      return Array.isArray(value) ? value.join() : value
+    }, [])
+
     const createStyles = useCallback(
       (property, value) =>
-        typeof value === 'string'
-          ? {[`--brand-Section-${property}`]: value}
+        typeof value === 'string' || Array.isArray(value)
+          ? {[`--brand-Section-${property}`]: processBackgroundValue(value, property)}
           : {
-              [`--brand-Section-narrow-${property}`]: value?.narrow,
-              [`--brand-Section-regular-${property}`]: value?.regular,
-              [`--brand-Section-wide-${property}`]: value?.wide,
+              [`--brand-Section-narrow-${property}`]: processBackgroundValue(value?.narrow, property),
+              [`--brand-Section-regular-${property}`]: processBackgroundValue(value?.regular, property),
+              [`--brand-Section-wide-${property}`]: processBackgroundValue(value?.wide, property),
             },
-      [],
+      [processBackgroundValue],
     )
 
     const paddingBlockStartClass = useMemo(
@@ -155,5 +166,3 @@ const SectionRoot = forwardRef<HTMLDivElement, PropsWithChildren<SectionProps>>(
     )
   },
 )
-
-export const Section = Object.assign(SectionRoot, {})
