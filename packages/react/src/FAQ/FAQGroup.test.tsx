@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
-import {FAQ, FAQGroup} from './'
+import {FAQ, FAQGroup, type FAQGroupProps} from './'
 
 expect.extend(toHaveNoViolations)
 
@@ -45,8 +45,8 @@ describe('FAQGroup', () => {
     },
   ]
 
-  const Component = () => (
-    <FAQGroup data-testid="root">
+  const Component = (props: FAQGroupProps) => (
+    <FAQGroup data-testid="root" {...props}>
       <FAQGroup.Heading>Frequently asked questions</FAQGroup.Heading>
       {testData.map((group, index) => (
         <FAQ key={index}>
@@ -137,5 +137,29 @@ describe('FAQGroup', () => {
     await userEvent.type(lastTabButton, '{arrowdown}')
     expect(firstTabButton).toHaveAttribute('aria-selected', 'true')
     expect(firstTabButton).not.toHaveAttribute('hidden')
+  })
+
+  it('calls `tabAttributes` with the correct arguments', () => {
+    const mockTabAttributes = jest.fn((_, i) => ({
+      'data-tab-index': i,
+    }))
+
+    render(<Component tabAttributes={mockTabAttributes} />)
+    const mockCalls = mockTabAttributes.mock.calls
+
+    expect(mockTabAttributes).toHaveBeenCalledTimes(2)
+    expect(mockCalls[0]).toEqual(['mock heading 1', 0])
+    expect(mockCalls[1]).toEqual(['mock heading 2', 1])
+  })
+
+  it('adds props to the tabs when `tabAttributes` is provided', () => {
+    const mockTabAttributes = jest.fn(children => ({
+      'data-tab-heading': children,
+    }))
+
+    const {getByRole} = render(<Component tabAttributes={mockTabAttributes} />)
+
+    expect(getByRole('tab', {name: 'mock heading 1'})).toHaveAttribute('data-tab-heading', 'mock heading 1')
+    expect(getByRole('tab', {name: 'mock heading 2'})).toHaveAttribute('data-tab-heading', 'mock heading 2')
   })
 })
