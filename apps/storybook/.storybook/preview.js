@@ -1,4 +1,4 @@
-import { ThemeProvider } from '../../../packages/react/src'
+import {ThemeProvider} from '../../../packages/react/src'
 import styles from './preview.module.css'
 import '../../../packages/react/src/css/stylesheets'
 import '../../../packages/react/src/css/utilities.css'
@@ -77,6 +77,24 @@ export const parameters = {
     matchers: {
       color: /(background|color)$/i,
       date: /Date$/,
+    },
+  },
+  options: {
+    storySort: (a, b) => {
+      const titleCompare = a.title.localeCompare(b.title)
+
+      // Sort top level alphabetically, with nested folders below nested stories
+      if (titleCompare !== 0) {
+        return titleCompare
+      }
+
+      // Put default story above playground in the component folder
+      if (a.name === 'Default') {
+        return -1
+      }
+
+      // Sort features and examples in the order they're written
+      return 0
     },
   },
 }
