@@ -43,6 +43,23 @@ describe('FAQGroup', () => {
         },
       ],
     },
+    {
+      heading: 'mock heading 3',
+      faqs: [
+        {
+          question: 'mock question 7',
+          answer: 'mock answer 7',
+        },
+        {
+          question: 'mock question 8',
+          answer: 'mock answer 8',
+        },
+        {
+          question: 'mock question 9',
+          answer: 'mock answer 9',
+        },
+      ],
+    },
   ]
 
   const Component = (props: FAQGroupProps) => (
@@ -66,49 +83,6 @@ describe('FAQGroup', () => {
 
   afterEach(cleanup)
 
-  it('renders groups of FAQS into the document, showing the first group only', () => {
-    const {getByTestId, getAllByText, getByText} = render(<Component />)
-
-    const rootEl = getByTestId('root')
-    const mainHeading = getByText('Frequently asked questions')
-
-    const [, headingAsTab, headingAsSubHead] = getAllByText('mock heading 1')
-
-    expect(rootEl).toBeInTheDocument()
-    expect(mainHeading).toBeInTheDocument()
-    expect(headingAsTab).toBeInTheDocument()
-    expect(headingAsSubHead).toBeInTheDocument()
-  })
-
-  it('selects the first tab by default', () => {
-    const {getByTestId} = render(<Component />)
-
-    const buttonOneEl = getByTestId('FAQGroup-tab-1')
-    const panelOne = getByTestId('FAQGroup-tab-panel-1')
-    const panelTwo = getByTestId('FAQGroup-tab-panel-2')
-
-    expect(buttonOneEl).toBeInTheDocument()
-    expect(buttonOneEl).toHaveAttribute('aria-selected', 'true')
-    expect(panelOne).toBeVisible()
-    expect(panelTwo).not.toBeVisible()
-  })
-
-  it('selects the first tab by default', () => {
-    const {getByTestId} = render(<Component />)
-
-    const buttonOneEl = getByTestId('FAQGroup-tab-1')
-    const buttonTwoEl = getByTestId('FAQGroup-tab-2')
-    const panelOne = getByTestId('FAQGroup-tab-panel-1')
-    const panelTwo = getByTestId('FAQGroup-tab-panel-2')
-
-    userEvent.click(buttonTwoEl)
-
-    expect(buttonOneEl).toHaveAttribute('aria-selected', 'false')
-    expect(buttonTwoEl).toHaveAttribute('aria-selected', 'true')
-    expect(panelTwo).toBeVisible()
-    expect(panelOne).not.toBeVisible()
-  })
-
   it('has no a11y violations', async () => {
     const {container} = render(<Component />)
     const results = await axe(container)
@@ -116,27 +90,52 @@ describe('FAQGroup', () => {
     expect(results).toHaveNoViolations()
   })
 
+  it('selects the first tab by default', () => {
+    const {getByRole, queryByRole} = render(<Component />)
+
+    expect(getByRole('tab', {name: 'mock heading 1'})).toHaveAttribute('aria-selected', 'true')
+    expect(getByRole('tab', {name: 'mock heading 2'})).toHaveAttribute('aria-selected', 'false')
+    expect(getByRole('tab', {name: 'mock heading 3'})).toHaveAttribute('aria-selected', 'false')
+
+    expect(getByRole('tabpanel', {name: 'mock heading 1'})).toBeVisible()
+    expect(queryByRole('tabpanel', {name: 'mock heading 2'})).not.toBeInTheDocument()
+    expect(queryByRole('tabpanel', {name: 'mock heading 3'})).not.toBeInTheDocument()
+  })
+
   it('changes selected tab on ArrowUp and ArrowDown key presses', () => {
-    const {getByTestId} = render(<Component />)
-    const firstTabButton = getByTestId('FAQGroup-tab-1')
-    const secondTabButton = getByTestId('FAQGroup-tab-2')
-    const lastTabButton = getByTestId(`FAQGroup-tab-2`)
+    const {getByRole, queryByRole} = render(<Component />)
 
-    userEvent.type(firstTabButton, '{arrowdown}')
-    expect(secondTabButton).toHaveAttribute('aria-selected', 'true')
-    expect(getByTestId('FAQGroup-tab-panel-2')).not.toHaveAttribute('hidden')
+    const headings = ['mock heading 1', 'mock heading 2', 'mock heading 3']
+    const assertSelectedTabIndex = (selectedTabIndex: number) => {
+      for (let i = 0; i < headings.length; i++) {
+        const heading = headings[i]
 
-    userEvent.type(secondTabButton, '{arrowup}')
-    expect(firstTabButton).toHaveAttribute('aria-selected', 'true')
-    expect(firstTabButton).not.toHaveAttribute('hidden')
+        if (i === selectedTabIndex) {
+          expect(getByRole('tab', {name: heading})).toHaveAttribute('aria-selected', 'true')
+          expect(getByRole('tabpanel', {name: heading})).toBeVisible()
+        } else {
+          expect(getByRole('tab', {name: heading})).toHaveAttribute('aria-selected', 'false')
+          expect(queryByRole('tabpanel', {name: heading})).not.toBeInTheDocument()
+        }
+      }
+    }
 
-    userEvent.type(firstTabButton, '{arrowup}')
-    expect(lastTabButton).toHaveAttribute('aria-selected', 'true')
-    expect(lastTabButton).not.toHaveAttribute('hidden')
+    assertSelectedTabIndex(0)
 
-    userEvent.type(lastTabButton, '{arrowdown}')
-    expect(firstTabButton).toHaveAttribute('aria-selected', 'true')
-    expect(firstTabButton).not.toHaveAttribute('hidden')
+    userEvent.type(getByRole('tab', {name: 'mock heading 1'}), '{arrowdown}')
+    assertSelectedTabIndex(1)
+
+    userEvent.type(getByRole('tab', {name: 'mock heading 2'}), '{arrowdown}')
+    assertSelectedTabIndex(2)
+
+    userEvent.type(getByRole('tab', {name: 'mock heading 3'}), '{arrowup}')
+    assertSelectedTabIndex(1)
+
+    userEvent.type(getByRole('tab', {name: 'mock heading 2'}), '{arrowup}')
+    assertSelectedTabIndex(0)
+
+    userEvent.type(getByRole('tab', {name: 'mock heading 1'}), '{arrowup}')
+    assertSelectedTabIndex(2)
   })
 
   it('calls `tabAttributes` with the correct arguments', () => {
@@ -147,9 +146,10 @@ describe('FAQGroup', () => {
     render(<Component tabAttributes={mockTabAttributes} />)
     const mockCalls = mockTabAttributes.mock.calls
 
-    expect(mockTabAttributes).toHaveBeenCalledTimes(2)
+    expect(mockTabAttributes).toHaveBeenCalledTimes(3)
     expect(mockCalls[0]).toEqual(['mock heading 1', 0])
     expect(mockCalls[1]).toEqual(['mock heading 2', 1])
+    expect(mockCalls[2]).toEqual(['mock heading 3', 2])
   })
 
   it('adds props to the tabs when `tabAttributes` is provided', () => {
@@ -161,5 +161,6 @@ describe('FAQGroup', () => {
 
     expect(getByRole('tab', {name: 'mock heading 1'})).toHaveAttribute('data-tab-heading', 'mock heading 1')
     expect(getByRole('tab', {name: 'mock heading 2'})).toHaveAttribute('data-tab-heading', 'mock heading 2')
+    expect(getByRole('tab', {name: 'mock heading 3'})).toHaveAttribute('data-tab-heading', 'mock heading 3')
   })
 })
