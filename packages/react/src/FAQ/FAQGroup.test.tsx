@@ -93,7 +93,7 @@ describe('FAQGroup', () => {
     expect(panelTwo).not.toBeVisible()
   })
 
-  it('selects the first tab by default', async () => {
+  it('selects the first tab by default', () => {
     const {getByTestId} = render(<Component />)
 
     const buttonOneEl = getByTestId('FAQGroup-tab-1')
@@ -101,7 +101,7 @@ describe('FAQGroup', () => {
     const panelOne = getByTestId('FAQGroup-tab-panel-1')
     const panelTwo = getByTestId('FAQGroup-tab-panel-2')
 
-    await userEvent.click(buttonTwoEl)
+    userEvent.click(buttonTwoEl)
 
     expect(buttonOneEl).toHaveAttribute('aria-selected', 'false')
     expect(buttonTwoEl).toHaveAttribute('aria-selected', 'true')
@@ -116,25 +116,25 @@ describe('FAQGroup', () => {
     expect(results).toHaveNoViolations()
   })
 
-  it('changes selected tab on ArrowUp and ArrowDown key presses', async () => {
+  it('changes selected tab on ArrowUp and ArrowDown key presses', () => {
     const {getByTestId} = render(<Component />)
     const firstTabButton = getByTestId('FAQGroup-tab-1')
     const secondTabButton = getByTestId('FAQGroup-tab-2')
     const lastTabButton = getByTestId(`FAQGroup-tab-2`)
 
-    await userEvent.type(firstTabButton, '{arrowdown}')
+    userEvent.type(firstTabButton, '{arrowdown}')
     expect(secondTabButton).toHaveAttribute('aria-selected', 'true')
     expect(getByTestId('FAQGroup-tab-panel-2')).not.toHaveAttribute('hidden')
 
-    await userEvent.type(secondTabButton, '{arrowup}')
+    userEvent.type(secondTabButton, '{arrowup}')
     expect(firstTabButton).toHaveAttribute('aria-selected', 'true')
     expect(firstTabButton).not.toHaveAttribute('hidden')
 
-    await userEvent.type(firstTabButton, '{arrowup}')
+    userEvent.type(firstTabButton, '{arrowup}')
     expect(lastTabButton).toHaveAttribute('aria-selected', 'true')
     expect(lastTabButton).not.toHaveAttribute('hidden')
 
-    await userEvent.type(lastTabButton, '{arrowdown}')
+    userEvent.type(lastTabButton, '{arrowdown}')
     expect(firstTabButton).toHaveAttribute('aria-selected', 'true')
     expect(firstTabButton).not.toHaveAttribute('hidden')
   })
