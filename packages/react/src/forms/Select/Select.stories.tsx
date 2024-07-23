@@ -62,4 +62,10 @@ export const Playground: StoryFn<typeof Select> = args => (
   </Select>
 )
 
-Playground.storyName = 'Select - Playground'
+export const Default: StoryFn<typeof Select> = () => (
+  <Select>
+    <Select.Option value="select a handle">Select a handle</Select.Option>
+    <Select.Option value="mona">Monalisa</Select.Option>
+    <Select.Option value="hubot">Hubot</Select.Option>
+  </Select>
+)
