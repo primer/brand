@@ -63,7 +63,7 @@ export const Playground: StoryFn<typeof Select> = args => (
 )
 
 export const Default: StoryFn<typeof Select> = () => (
-  <Select>
+  <Select aria-label="Standalone select input">
     <Select.Option value="select a handle">Select a handle</Select.Option>
     <Select.Option value="mona">Monalisa</Select.Option>
     <Select.Option value="hubot">Hubot</Select.Option>
