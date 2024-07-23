@@ -112,8 +112,14 @@ import {FAQ, FAQGroup} from '@primer/react-brand'
 
 Use `FAQGroup` to display multiple `FAQ` components together.
 
+Use `tabAttributes` to add arbitrary attributes to the tabs. This can be useful for tracking analytics or adding custom attributes.
+
 ```jsx live
-<FAQGroup>
+<FAQGroup
+  tabAttributes={(children, i) => ({
+    'data-analytics': `faq-tab-${i}`,
+  })}
+>
   <FAQGroup.Heading>
     Frequently asked <br /> questions
   </FAQGroup.Heading>
