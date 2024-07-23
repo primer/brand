@@ -433,12 +433,13 @@ render(<App />)
 
 ### FAQGroup
 
-| Name        | Type                                                                                                                           | Default | Description                              |
-| :---------- | :----------------------------------------------------------------------------------------------------------------------------- | :-----: | :--------------------------------------- |
-| `className` | `string`                                                                                                                       |         | Sets a custom class                      |
-| `id`        | `string`                                                                                                                       |         | Sets a custom id                         |
-| `ref`       | `React.RefObject`                                                                                                              |         | Forward a Ref to the underlying DOM node |
-| `children`  | <PropTableValues values={[<a href="#faq-required">FAQ</a>, <a href="#faqgroup-heading">FAQGroup.Heading</a>]} addLineBreaks /> |         | Root element for the FAQGroup component. |
+| Name            | Type                                                                                                                           | Default | Description                                                                   |
+| :-------------- | :----------------------------------------------------------------------------------------------------------------------------- | :-----: | :---------------------------------------------------------------------------- |
+| `className`     | `string`                                                                                                                       |         | Sets a custom class                                                           |
+| `id`            | `string`                                                                                                                       |         | Sets a custom id                                                              |
+| `ref`           | `React.RefObject`                                                                                                              |         | Forward a Ref to the underlying DOM node                                      |
+| `children`      | <PropTableValues values={[<a href="#faq-required">FAQ</a>, <a href="#faqgroup-heading">FAQGroup.Heading</a>]} addLineBreaks /> |         | Root element for the FAQGroup component.                                      |
+| `tabAttributes` | `(children: ReactElement, index: number) => Record<string, unknown>`                                                           |         | Spreads the returned attributes onto the tab that's rendered by the FAQGroup. |
 
 ### FAQGroup.Heading
 
