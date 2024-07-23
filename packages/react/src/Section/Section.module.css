@@ -1,8 +1,8 @@
 .Section {
-  --rounded-radius: 16px; /* TODO should use var(--brand-borderRadius-large) */
   --rounded-padding-overlap-adjustment: 0;
+  --rounded-radius: var(--brand-borderRadius-large);
   --padding-block-end: var(--brand-Section-padding-normal);
-  --compensated-padding-block-end: calc(var(--padding-block-end) + var(--rounded-padding-overlap-adjustment));
+  --adjusted-padding-block-end: calc(var(--padding-block-end) + var(--rounded-padding-overlap-adjustment));
 
   background-repeat: no-repeat;
   background-color: var(--brand-Section-narrow-background-color, var(--brand-Section-background-color));
@@ -15,7 +15,7 @@
   );
 
   padding-block-start: var(--padding-block-start);
-  padding-block-end: var(--compensated-padding-block-end);
+  padding-block-end: var(--adjusted-padding-block-end);
 }
 
 .Section__container {
@@ -31,6 +31,10 @@
 .Section--rounded {
   border-radius: var(--rounded-radius) var(--rounded-radius) 0 0;
   margin-top: calc(-1 * var(--rounded-radius));
+}
+
+.Section:has(+ .Section--rounded) {
+  --rounded-padding-overlap-adjustment: var(--rounded-radius);
 }
 
 .Section--paddingBlockStart-none,
@@ -58,15 +62,15 @@
 
 .Section--paddingBlockEnd-condensed,
 .Section-narrow--paddingBlockEnd-condensed {
-  padding-block-end: var(--brand-Section-padding-condensed);
+  --padding-block-end: var(--brand-Section-padding-condensed);
 }
 .Section--paddingBlockEnd-normal,
 .Section-narrow--paddingBlockEnd-normal {
-  padding-block-end: var(--brand-Section-padding-normal);
+  --padding-block-end: var(--brand-Section-padding-normal);
 }
 .Section--paddingBlockEnd-spacious,
 .Section-narrow--paddingBlockEnd-spaciou {
-  padding-block-end: var(--brand-Section-padding-spacious);
+  --padding-block-end: var(--brand-Section-padding-spacious);
 }
 
 @media screen and (min-width: 40rem) {
@@ -99,13 +103,13 @@
   }
 
   .Section-regular--paddingBlockEnd-condensed {
-    padding-block-end: var(--brand-Section-padding-condensed);
+    --padding-block-end: var(--brand-Section-padding-condensed);
   }
   .Section-regular--paddingBlockEnd-normal {
-    padding-block-end: var(--brand-Section-padding-normal);
+    --padding-block-end: var(--brand-Section-padding-normal);
   }
   .Section-regular--paddingBlockEnd-spacious {
-    padding-block-end: var(--brand-Section-padding-spacious);
+    --padding-block-end: var(--brand-Section-padding-spacious);
   }
 }
 
@@ -140,12 +144,12 @@
   }
 
   .Section-wide--paddingBlockEnd-condensed {
-    padding-block-end: var(--brand-Section-padding-condensed);
+    --padding-block-end: var(--brand-Section-padding-condensed);
   }
   .Section-wide--paddingBlockEnd-normal {
-    padding-block-end: var(--brand-Section-padding-normal);
+    --padding-block-end: var(--brand-Section-padding-normal);
   }
   .Section-wide--paddingBlockEnd-spacious {
-    padding-block-end: var(--brand-Section-padding-spacious);
+    --padding-block-end: var(--brand-Section-padding-spacious);
   }
 }

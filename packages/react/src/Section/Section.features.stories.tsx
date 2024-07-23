@@ -104,12 +104,7 @@ export const BackgroundColor: StoryFn<typeof Section> = () => {
 export const BackgroundImage: StoryFn<typeof Section> = () => {
   return (
     <ThemeProvider colorMode="dark">
-      <Section
-        backgroundImageSrc={backgroundStars}
-        backgroundImagePosition="top center"
-        backgroundImageSize="cover"
-        style={{minHeight: '800px'}}
-      >
+      <Section backgroundImageSrc={backgroundStars} backgroundImagePosition="top center" style={{minHeight: '800px'}}>
         <SectionIntro>
           <SectionIntro.Heading>A section with a custom background image</SectionIntro.Heading>
         </SectionIntro>
@@ -146,7 +141,7 @@ export const Rounded: StoryFn<typeof Section> = () => {
           </SectionIntro>
         </ThemeProvider>
       </Section>
-      <Section backgroundColor="var(--brand-color-canvas-default)" rounded>
+      <Section backgroundColor="rgba(255,255,255,0.8)" rounded>
         <SectionIntro>
           <SectionIntro.Heading>Section 2 is rounded</SectionIntro.Heading>
           <SectionIntro.Description>Section description.</SectionIntro.Description>
