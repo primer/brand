@@ -1,4 +1,4 @@
-import {Meta, StoryFn} from '@storybook/react'
+import {Meta} from '@storybook/react'
 import React from 'react'
 import {ActionMenu} from './ActionMenu'
 
@@ -7,8 +7,8 @@ export default {
   component: ActionMenu,
 } as Meta<typeof ActionMenu>
 
-const Template: StoryFn<typeof ActionMenu> = args => (
-  <ActionMenu {...args} onSelect={newValue => alert(newValue)}>
+export const Default = () => (
+  <ActionMenu onSelect={newValue => alert(newValue)}>
     <ActionMenu.Button>Open menu</ActionMenu.Button>
     <ActionMenu.Overlay aria-label="Actions">
       <ActionMenu.Item value="Copy link pressed" selected>
@@ -20,4 +20,45 @@ const Template: StoryFn<typeof ActionMenu> = args => (
   </ActionMenu>
 )
 
-export const Default = Template.bind({})
+export const Playground = args => (
+  <ActionMenu {...args} onSelect={newValue => alert(newValue)}>
+    <ActionMenu.Button>{args.buttonText}</ActionMenu.Button>
+    <ActionMenu.Overlay aria-label="Actions">
+      {args.items.map(item => (
+        <ActionMenu.Item key={item.value} {...item} />
+      ))}
+    </ActionMenu.Overlay>
+  </ActionMenu>
+)
+Playground.argTypes = {
+  buttonText: {
+    name: 'text',
+    control: {type: 'text'},
+    table: {
+      category: 'ActionMenu.Button',
+    },
+  },
+  items: {
+    name: 'Menu items',
+    control: {type: 'object'},
+    table: {
+      category: 'Story customization',
+    },
+  },
+}
+Playground.args = {
+  selectionVariant: 'none',
+  size: 'medium',
+  disabled: false,
+  menuAlignment: 'start',
+  menuSide: 'outside-bottom',
+  buttonText: 'Open menu',
+  items: [
+    {value: 'Copy link pressed', children: 'Copy link', selected: true, disabled: false},
+    {value: 'Quote reply pressed', children: 'Quote reply', selected: false, disabled: false},
+    {value: 'Edit comment pressed', children: 'Edit comment', selected: false, disabled: false},
+  ],
+}
+Playground.parameters = {
+  controls: {include: ['Menu items', 'text', ...Object.keys(Playground.args)]},
+}
