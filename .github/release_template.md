@@ -74,5 +74,4 @@ Please ensure these items are checked before merging.
 ### 🚢 After merge
 
 - [ ] Issue release comms in `primer brand` Slack channel
-
 - [ ] Add the preview deployment's link to releases as a way of permalinking to old version's docs. [Example](https://github.com/primer/brand/releases/tag/%40primer%2Freact-brand%400.34.3)

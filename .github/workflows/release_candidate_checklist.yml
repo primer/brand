@@ -5,8 +5,7 @@ on:
 
 jobs:
   release-template:
-    # Change to changeset-release/main before PR is merged
-    if: ${{ github.head_ref == 'rezrah/release-checklist' }}
+    if: ${{ github.head_ref == 'changeset-release/main' }}
 
     runs-on: ubuntu-latest
     steps:
@@ -25,7 +24,6 @@ jobs:
           script: |
             const fs = require('fs')
             const body = await fs.readFileSync('.github/release_template.md', 'utf8')
-            console.log('body', body)
             const result = await github.rest.issues.listComments({
               issue_number: context.issue.number,
               owner: context.repo.owner,
