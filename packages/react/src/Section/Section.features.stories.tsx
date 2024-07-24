@@ -1,10 +1,13 @@
 import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 import {Section} from '.'
-import {Stack, SectionIntro, Text, ThemeProvider} from '..'
+import {Hero, Stack, SectionIntro, Text, ThemeProvider} from '..'
 import styles from './Section.features.module.css'
 
-import backgroundStars from '../fixtures/images/background-stars.png'
+import darkHeroBg from '../fixtures/images/background-dark-collaboration.webp'
+import lightHeroBg from '../fixtures/images/background-light-collaboration.webp'
+import backgroundCopilotSection from '../fixtures/images/background-copilot-section-dark.jpg'
+import backgroundCopiloMasktSection from '../fixtures/images/background-copilot-mask-section-dark.svg'
 import backgroundEnterpriseStack from '../fixtures/images/enterprise-stack.png'
 
 export default {
@@ -93,8 +96,8 @@ export const BackgroundColor: StoryFn<typeof Section> = () => {
   return (
     <>
       <Section backgroundColor="inset">
-        <SectionIntro>
-          <SectionIntro.Heading>A section with a custom background color</SectionIntro.Heading>
+        <SectionIntro align="center">
+          <SectionIntro.Heading size="2">A section with a custom background color</SectionIntro.Heading>
         </SectionIntro>
       </Section>
     </>
@@ -103,13 +106,11 @@ export const BackgroundColor: StoryFn<typeof Section> = () => {
 
 export const BackgroundImage: StoryFn<typeof Section> = () => {
   return (
-    <ThemeProvider colorMode="dark">
-      <Section backgroundImageSrc={backgroundStars} backgroundImagePosition="top center" style={{minHeight: '800px'}}>
-        <SectionIntro>
-          <SectionIntro.Heading>A section with a custom background image</SectionIntro.Heading>
-        </SectionIntro>
-      </Section>
-    </ThemeProvider>
+    <Section backgroundColor="default" backgroundImageSrc={lightHeroBg} backgroundImagePosition="top center">
+      <SectionIntro align="center">
+        <SectionIntro.Heading size="2">A section with a background image</SectionIntro.Heading>
+      </SectionIntro>
+    </Section>
   )
 }
 
@@ -117,14 +118,15 @@ export const MultipleBackgroundImages: StoryFn<typeof Section> = () => {
   return (
     <ThemeProvider colorMode="dark">
       <Section
+        paddingBlockStart="spacious"
+        paddingBlockEnd="spacious"
         backgroundColor="default"
-        backgroundImageSrc={[backgroundEnterpriseStack, backgroundStars]}
-        backgroundImagePosition={['50%', 'top center']}
+        backgroundImageSrc={[backgroundCopiloMasktSection, backgroundCopilotSection]}
+        backgroundImagePosition={['bottom center', 'center']}
         backgroundImageSize={['auto', 'cover']}
-        style={{minHeight: '800px'}}
       >
-        <SectionIntro>
-          <SectionIntro.Heading>A section with a custom background image</SectionIntro.Heading>
+        <SectionIntro align="center">
+          <SectionIntro.Heading size="2">A section with multiple custom background images</SectionIntro.Heading>
         </SectionIntro>
       </Section>
     </ThemeProvider>
@@ -135,22 +137,20 @@ export const Rounded: StoryFn<typeof Section> = () => {
   return (
     <>
       <ThemeProvider colorMode="dark">
-        <Section
-          backgroundColor="default"
-          backgroundImageSrc={backgroundStars}
-          backgroundImagePosition="top center"
-          style={{minHeight: '60vh'}}
-        >
-          <SectionIntro>
-            <SectionIntro.Heading>Section 1</SectionIntro.Heading>
-            <SectionIntro.Description>Section description.</SectionIntro.Description>
-          </SectionIntro>
+        <Section backgroundColor="default" backgroundImageSrc={darkHeroBg} backgroundImagePosition="top center">
+          <Hero align="center">
+            <Hero.Heading>Just a regular section</Hero.Heading>
+            <Hero.Description>(See rounded section below)</Hero.Description>
+          </Hero>
         </Section>
       </ThemeProvider>
       <Section backgroundColor="default" rounded>
-        <SectionIntro>
-          <SectionIntro.Heading>Section 2 is rounded</SectionIntro.Heading>
-          <SectionIntro.Description>Section description.</SectionIntro.Description>
+        <SectionIntro align="center">
+          <SectionIntro.Heading>A section with rounded corners</SectionIntro.Heading>
+          <SectionIntro.Description>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+            dolore
+          </SectionIntro.Description>
         </SectionIntro>
       </Section>
     </>
