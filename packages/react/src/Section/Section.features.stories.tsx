@@ -8,7 +8,6 @@ import darkHeroBg from '../fixtures/images/background-dark-collaboration.webp'
 import lightHeroBg from '../fixtures/images/background-light-collaboration.webp'
 import backgroundCopilotSection from '../fixtures/images/background-copilot-section-dark.jpg'
 import backgroundCopiloMasktSection from '../fixtures/images/background-copilot-mask-section-dark.svg'
-import backgroundEnterpriseStack from '../fixtures/images/enterprise-stack.png'
 
 export default {
   title: 'Components/Section/Features',
