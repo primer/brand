@@ -16,8 +16,9 @@ type ResponsiveMap<T> = {
   wide?: T
 }
 
+type AnyString = string & NonNullable<unknown>
+type BackgroundColors = (typeof SectionBackgroundColors)[number] | AnyString
 type PaddingVariants = (typeof SectionPaddingVariants)[number]
-type BackgroundColors = (typeof SectionBackgroundColors)[number] | string
 type ResponsiveBackgroundColorMap = ResponsiveMap<BackgroundColors>
 type ResponsiveBackgroundImagePositionMap = ResponsiveMap<string | string[]>
 type ResponsiveBackgroundImageSizeMap = ResponsiveMap<string | string[]>
@@ -106,6 +107,12 @@ export const Section = forwardRef<HTMLDivElement, PropsWithChildren<SectionProps
     const processBackgroundValue = useCallback((value: string | string[], property) => {
       if (property === 'background-image-src') {
         return Array.isArray(value) ? value.map(img => `url(${img})`).join() : `url(${value})`
+      }
+
+      if (property === 'background-color' && typeof value === 'string') {
+        return SectionBackgroundColors.includes(value as (typeof SectionBackgroundColors)[number])
+          ? `var(--brand-color-canvas-${value})`
+          : value
       }
 
       return Array.isArray(value) ? value.join() : value

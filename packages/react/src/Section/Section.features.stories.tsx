@@ -92,7 +92,7 @@ export const WithFullWidthContainer: StoryFn<typeof Section> = () => {
 export const BackgroundColor: StoryFn<typeof Section> = () => {
   return (
     <>
-      <Section backgroundColor="var(--brand-color-canvas-inset)">
+      <Section backgroundColor="inset">
         <SectionIntro>
           <SectionIntro.Heading>A section with a custom background color</SectionIntro.Heading>
         </SectionIntro>
@@ -117,6 +117,7 @@ export const MultipleBackgroundImages: StoryFn<typeof Section> = () => {
   return (
     <ThemeProvider colorMode="dark">
       <Section
+        backgroundColor="default"
         backgroundImageSrc={[backgroundEnterpriseStack, backgroundStars]}
         backgroundImagePosition={['50%', 'top center']}
         backgroundImageSize={['auto', 'cover']}
@@ -133,15 +134,20 @@ export const MultipleBackgroundImages: StoryFn<typeof Section> = () => {
 export const Rounded: StoryFn<typeof Section> = () => {
   return (
     <>
-      <Section backgroundImageSrc={backgroundStars} backgroundImagePosition="top center" style={{minHeight: '60vh'}}>
-        <ThemeProvider colorMode="dark">
+      <ThemeProvider colorMode="dark">
+        <Section
+          backgroundColor="default"
+          backgroundImageSrc={backgroundStars}
+          backgroundImagePosition="top center"
+          style={{minHeight: '60vh'}}
+        >
           <SectionIntro>
             <SectionIntro.Heading>Section 1</SectionIntro.Heading>
             <SectionIntro.Description>Section description.</SectionIntro.Description>
           </SectionIntro>
-        </ThemeProvider>
-      </Section>
-      <Section backgroundColor="rgba(255,255,255,0.8)" rounded>
+        </Section>
+      </ThemeProvider>
+      <Section backgroundColor="default" rounded>
         <SectionIntro>
           <SectionIntro.Heading>Section 2 is rounded</SectionIntro.Heading>
           <SectionIntro.Description>Section description.</SectionIntro.Description>

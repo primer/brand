@@ -1,6 +1,6 @@
 .Section {
-  --rounded-padding-overlap-adjustment: 0;
-  --rounded-radius: var(--brand-borderRadius-large);
+  --rounded-padding-overlap-adjustment: 0px;
+  --rounded-radius: var(--brand-borderRadius-xlarge);
   --padding-block-end: var(--brand-Section-padding-normal);
   --adjusted-padding-block-end: calc(var(--padding-block-end) + var(--rounded-padding-overlap-adjustment));
 
