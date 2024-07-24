@@ -28,6 +28,7 @@ const decorators = Story => (
 export default {
   title: 'Components/PricingOptions/Features',
   component: PricingOptions,
+  decorators: [decorators],
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,
@@ -104,7 +105,6 @@ export const DefaultVariant: StoryFn<typeof PricingOptions> = () => {
     </PricingOptions>
   )
 }
-DefaultVariant.decorators = [decorators]
 
 export const CardsVariant: StoryFn<typeof PricingOptions> = () => {
   return (
@@ -175,7 +175,6 @@ export const CardsVariant: StoryFn<typeof PricingOptions> = () => {
     </PricingOptions>
   )
 }
-CardsVariant.decorators = [decorators]
 
 export const OneOption: StoryFn<typeof PricingOptions> = () => {
   return (
@@ -196,8 +195,6 @@ export const OneOption: StoryFn<typeof PricingOptions> = () => {
     </PricingOptions>
   )
 }
-
-OneOption.decorators = [decorators]
 
 export const LeadingComponent: StoryFn<typeof PricingOptions> = () => {
   const Image = () => (
@@ -270,7 +267,6 @@ export const LeadingComponent: StoryFn<typeof PricingOptions> = () => {
     </Stack>
   )
 }
-LeadingComponent.decorators = [decorators]
 
 export const TwoOptions: StoryFn<typeof PricingOptions> = () => {
   return (
@@ -314,8 +310,6 @@ export const TwoOptions: StoryFn<typeof PricingOptions> = () => {
     </PricingOptions>
   )
 }
-
-TwoOptions.decorators = [decorators]
 
 export const ThreeOptions: StoryFn<typeof PricingOptions> = () => {
   return (
@@ -386,7 +380,6 @@ export const ThreeOptions: StoryFn<typeof PricingOptions> = () => {
     </PricingOptions>
   )
 }
-ThreeOptions.decorators = [decorators]
 
 export const WithFeatureSets: StoryFn<typeof PricingOptions> = () => {
   return (
@@ -471,7 +464,6 @@ export const WithFeatureSets: StoryFn<typeof PricingOptions> = () => {
     </PricingOptions>
   )
 }
-WithFeatureSets.decorators = [decorators]
 
 export const WithIncludedAndExcludedFeatures: StoryFn<typeof PricingOptions> = () => {
   return (
@@ -564,7 +556,6 @@ export const WithIncludedAndExcludedFeatures: StoryFn<typeof PricingOptions> = (
     </PricingOptions>
   )
 }
-WithIncludedAndExcludedFeatures.decorators = [decorators]
 
 export const WithoutFeatures: StoryFn<typeof PricingOptions> = () => {
   return (
@@ -605,7 +596,6 @@ export const WithoutFeatures: StoryFn<typeof PricingOptions> = () => {
     </PricingOptions>
   )
 }
-WithoutFeatures.decorators = [decorators]
 
 export const CollapsedFeatures: StoryFn<typeof PricingOptions> = () => {
   return (
@@ -677,7 +667,6 @@ export const CollapsedFeatures: StoryFn<typeof PricingOptions> = () => {
     </PricingOptions>
   )
 }
-CollapsedFeatures.decorators = [decorators]
 
 export const CollapsedFeaturesNoDividers: StoryFn<typeof PricingOptions> = () => {
   return (
@@ -746,7 +735,6 @@ export const CollapsedFeaturesNoDividers: StoryFn<typeof PricingOptions> = () =>
     </PricingOptions>
   )
 }
-CollapsedFeaturesNoDividers.decorators = [decorators]
 
 export const ExpandedNarrow: StoryFn<typeof PricingOptions> = () => {
   return (
@@ -820,4 +808,3 @@ ExpandedNarrow.parameters = {
     defaultViewport: 'iphonexr',
   },
 }
-ExpandedNarrow.decorators = [decorators]
