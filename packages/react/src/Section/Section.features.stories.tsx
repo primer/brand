@@ -6,7 +6,7 @@ import styles from './Section.features.module.css'
 
 import darkHeroBg from '../fixtures/images/background-dark-collaboration.webp'
 import lightHeroBg from '../fixtures/images/background-light-collaboration.webp'
-import backgroundCopilotSection from '../fixtures/images/background-copilot-section-dark.jpg'
+import backgroundCopilotSection from '../fixtures/images/background-copilot-section-dark.webp'
 import backgroundCopiloMasktSection from '../fixtures/images/background-copilot-mask-section-dark.svg'
 
 export default {
