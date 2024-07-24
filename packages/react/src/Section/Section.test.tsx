@@ -72,6 +72,16 @@ describe('Section', () => {
     expect(backgroundValue).toBe(mockValue)
   })
 
+  it('applies predefined background color when backgroundColor prop is provided', () => {
+    const mockValue = 'inset'
+    const {getByTestId} = render(<Section backgroundColor={mockValue} />)
+    const SectionEl = getByTestId('Section')
+
+    const backgroundValue = getComputedStyle(SectionEl).getPropertyValue('--brand-Section-background-color')
+
+    expect(backgroundValue).toBe(`var(--brand-color-canvas-${mockValue})`)
+  })
+
   it('applies custom background image when backgroundImageSrc, backgroundImagePosition, and backgroundImageSize props are provided', () => {
     const mockSrcValue = 'image.jpg'
     const mockPositionValue = 'top right'
