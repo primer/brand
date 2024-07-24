@@ -1,5 +1,5 @@
 import React from 'react'
-import {UnderlineNav} from '@primer/react'
+import {UnderlineNav} from '@primer/react/deprecated'
 import {Link as GatsbyLink} from 'gatsby'
 
 export function ComponentPageNav({
