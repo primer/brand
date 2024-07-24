@@ -28,6 +28,7 @@ import {
   VideoPlayer,
   Breadcrumbs,
   Statistic,
+  PricingOptions,
 } from '../../..'
 
 import pinterestLogo from '../../../fixtures/images/logos/pinterest.png'
@@ -563,17 +564,67 @@ export function SolutionPage({
                           </Grid.Column>
                         </Grid>
                       )}
-                      <CTABanner hasBorder hasShadow={false} className={styles.ctaBanner} align="center">
-                        <CTABanner.Heading>Get started</CTABanner.Heading>
-                        <CTABanner.Description>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam
-                          luctus sed turpis felis nam pulvinar risus elementum.
-                        </CTABanner.Description>
-                        <CTABanner.ButtonGroup>
-                          <Button>Primary Action</Button>
-                          <Button>Secondary Action</Button>
-                        </CTABanner.ButtonGroup>
-                      </CTABanner>
+                      {variant === 'size' && args.pricingOptionsVisible && (
+                        <PricingOptions variant="cards">
+                          <PricingOptions.Item>
+                            <PricingOptions.Heading>Lorem ipsum</PricingOptions.Heading>
+                            <PricingOptions.Description>Lorem ipsum dolor sit amet</PricingOptions.Description>
+                            <PricingOptions.Price currencySymbol="$" originalPrice="20" trailingText="per user / month">
+                              10
+                            </PricingOptions.Price>
+                            <PricingOptions.FeatureList>
+                              <PricingOptions.FeatureListItem>Item included</PricingOptions.FeatureListItem>
+                              <PricingOptions.FeatureListItem>Item included</PricingOptions.FeatureListItem>
+                              <PricingOptions.FeatureListItem>Item included</PricingOptions.FeatureListItem>
+                              <PricingOptions.FeatureListItem variant="excluded">
+                                Item not included
+                              </PricingOptions.FeatureListItem>
+                              <PricingOptions.FeatureListItem variant="excluded">
+                                Item not included
+                              </PricingOptions.FeatureListItem>
+                              <PricingOptions.FeatureListItem variant="excluded">
+                                Item not included
+                              </PricingOptions.FeatureListItem>
+                            </PricingOptions.FeatureList>
+                            <PricingOptions.SecondaryAction as="a" href="/contact">
+                              Contact sales
+                            </PricingOptions.SecondaryAction>
+                          </PricingOptions.Item>
+
+                          <PricingOptions.Item>
+                            <PricingOptions.Label>Recommended</PricingOptions.Label>
+                            <PricingOptions.Heading>Lorem ipsum</PricingOptions.Heading>
+                            <PricingOptions.Description>Lorem ipsum dolor sit amet</PricingOptions.Description>
+                            <PricingOptions.Price currencySymbol="$" trailingText="per user / month" originalPrice="49">
+                              39
+                            </PricingOptions.Price>
+                            <PricingOptions.FeatureList>
+                              <PricingOptions.FeatureListItem>Item included</PricingOptions.FeatureListItem>
+                              <PricingOptions.FeatureListItem>Item included</PricingOptions.FeatureListItem>
+                              <PricingOptions.FeatureListItem>Item included</PricingOptions.FeatureListItem>
+                              <PricingOptions.FeatureListItem>Item included</PricingOptions.FeatureListItem>
+                              <PricingOptions.FeatureListItem>Item included</PricingOptions.FeatureListItem>
+                              <PricingOptions.FeatureListItem>Item included</PricingOptions.FeatureListItem>
+                            </PricingOptions.FeatureList>
+                            <PricingOptions.PrimaryAction as="a" href="/buy">
+                              Primary action
+                            </PricingOptions.PrimaryAction>
+                          </PricingOptions.Item>
+                        </PricingOptions>
+                      )}
+                      {variant !== 'size' && args.pricingOptionsVisible && (
+                        <CTABanner hasBorder hasShadow={false} className={styles.ctaBanner} align="center">
+                          <CTABanner.Heading>Get started</CTABanner.Heading>
+                          <CTABanner.Description>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
+                            Aliquam luctus sed turpis felis nam pulvinar risus elementum.
+                          </CTABanner.Description>
+                          <CTABanner.ButtonGroup>
+                            <Button>Primary Action</Button>
+                            <Button>Secondary Action</Button>
+                          </CTABanner.ButtonGroup>
+                        </CTABanner>
+                      )}
                       <Box>
                         <Stack direction="vertical" padding="none" gap={64} alignItems="center">
                           <Heading as="h3" size="3">

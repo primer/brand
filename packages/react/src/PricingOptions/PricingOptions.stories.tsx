@@ -10,7 +10,7 @@ export default {
 
 export const Default = () => (
   <Box
-    backgroundColor="subtle"
+    backgroundColor="default"
     paddingBlockStart="spacious"
     paddingBlockEnd="spacious"
     style={{

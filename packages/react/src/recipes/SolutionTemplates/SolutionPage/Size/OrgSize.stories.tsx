@@ -48,6 +48,7 @@ const maximumArgs = {
   variant: 'size',
   logoBarVisible: true,
   testimonialsVisible: true,
+  pricingOptionsVisible: true,
   faqVisible: true,
   jtbd2Visible: true,
   jtbd3Visible: true,
