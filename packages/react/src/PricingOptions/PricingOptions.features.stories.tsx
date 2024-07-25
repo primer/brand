@@ -9,7 +9,7 @@ import {CopilotIcon} from '@primer/octicons-react'
 
 const decorators = Story => (
   <Box
-    backgroundColor="subtle"
+    backgroundColor="default"
     paddingBlockStart="spacious"
     paddingBlockEnd="spacious"
     style={{
@@ -556,6 +556,7 @@ export const WithIncludedAndExcludedFeatures: StoryFn<typeof PricingOptions> = (
     </PricingOptions>
   )
 }
+
 export const WithoutFeatures: StoryFn<typeof PricingOptions> = () => {
   return (
     <PricingOptions>

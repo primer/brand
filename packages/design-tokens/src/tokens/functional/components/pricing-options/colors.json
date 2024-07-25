@@ -1,0 +1,12 @@
+{
+  "brand": {
+    "PricingOptions": {
+      "item": {
+        "bgColor": {
+          "value": "var(--brand-color-canvas-subtle)",
+          "dark": "var(--brand-color-canvas-subtle)"
+        }
+      }
+    }
+  }
+}

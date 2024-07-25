@@ -20,6 +20,7 @@ import {
  * Design tokens
  */
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/pricing-options/pricing-options.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/pricing-options/colors-with-modes.css'
 
 /**
  * Main stylesheet (as a CSS Module)

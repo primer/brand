@@ -20,7 +20,7 @@
 .PricingOptions--variant-default {
   border-radius: var(--brand-borderRadius-xlarge);
   border: solid var(--brand-borderWidth-thin) var(--brand-color-border-default);
-  background-color: var(--brand-color-canvas-default);
+  background-color: var(--brand-PricingOptions-item-bgColor);
 }
 
 @media (min-width: 63.25rem) {
@@ -72,7 +72,7 @@
   padding-inline: var(--base-size-32);
   border-radius: var(--brand-borderRadius-xlarge);
   border: solid 1px var(--brand-color-border-default);
-  background-color: var(--brand-color-canvas-default);
+  background-color: var(--brand-PricingOptions-item-bgColor);
   padding-block: var(--base-size-32);
 }
 
