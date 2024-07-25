@@ -96,7 +96,19 @@ export const BackgroundColor: StoryFn<typeof Section> = () => {
     <>
       <Section backgroundColor="inset">
         <SectionIntro align="center">
-          <SectionIntro.Heading size="2">A section with a custom background color</SectionIntro.Heading>
+          <SectionIntro.Heading size="2">A section with a predefined background color</SectionIntro.Heading>
+        </SectionIntro>
+      </Section>
+    </>
+  )
+}
+
+export const CustomBackgroundColor: StoryFn<typeof Section> = () => {
+  return (
+    <>
+      <Section backgroundColor="#FFF8F8">
+        <SectionIntro align="center">
+          <SectionIntro.Heading size="2">A section with a predefined background color</SectionIntro.Heading>
         </SectionIntro>
       </Section>
     </>
@@ -121,11 +133,16 @@ export const MultipleBackgroundImages: StoryFn<typeof Section> = () => {
         paddingBlockEnd="spacious"
         backgroundColor="default"
         backgroundImageSrc={[backgroundCopiloMasktSection, backgroundCopilotSection]}
-        backgroundImagePosition={['bottom center', 'center']}
+        backgroundImagePosition={['bottom -1px center', 'center']}
         backgroundImageSize={['auto', 'cover']}
       >
         <SectionIntro align="center">
-          <SectionIntro.Heading size="2">A section with multiple custom background images</SectionIntro.Heading>
+          <SectionIntro.Heading size="2">A section with multiple background images</SectionIntro.Heading>
+        </SectionIntro>
+      </Section>
+      <Section backgroundColor="default">
+        <SectionIntro align="center">
+          <SectionIntro.Heading size="2">Another section</SectionIntro.Heading>
         </SectionIntro>
       </Section>
     </ThemeProvider>
