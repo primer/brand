@@ -84,7 +84,9 @@ export const Range = ({
           {...props}
         />
       </label>
-      {tooltip && hoverValue && <VideoTooltip style={{left: mousePos}}>{tooltipFormatter(hoverValue)}</VideoTooltip>}
+      {tooltip && hoverValue ? (
+        <VideoTooltip style={{left: mousePos}}>{tooltipFormatter(hoverValue)}</VideoTooltip>
+      ) : null}
     </div>
   )
 }
