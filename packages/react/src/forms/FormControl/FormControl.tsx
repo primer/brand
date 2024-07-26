@@ -223,12 +223,12 @@ const FormControlValidation = ({children, validationStatus}: FormControlValidati
       )}
     >
       {validationStatus === 'error' && (
-        <span className={styles['FormControl-validation-icon']}>
+        <span className={styles['FormControl-validation-error-icon']}>
           <AlertFillIcon />
         </span>
       )}
       {validationStatus === 'success' && (
-        <span className={styles['FormControl-validation-icon']}>
+        <span className={styles['FormControl-validation-success-icon']}>
           <CheckCircleFillIcon />
         </span>
       )}

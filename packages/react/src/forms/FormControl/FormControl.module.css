@@ -92,7 +92,12 @@
   color: var(--brand-color-error-fg);
 }
 
-.FormControl-validation-icon {
+.FormControl-validation-success-icon {
+  position: relative;
+  top: -1.6px;
+}
+
+.FormControl-validation-error-icon {
   position: relative;
   top: -1px;
 }
