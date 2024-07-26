@@ -7,6 +7,20 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Statistic', () => {
+  test('Statistic / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-statistic--default&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Statistic / Playground', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-statistic--playground&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Statistic / Boxed Variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-statistic-features--boxed-variant&viewMode=story',
@@ -70,20 +84,6 @@ test.describe('Visual Comparison: Statistic', () => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-statistic-features--custom-intro&viewMode=story',
     )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('Statistic / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-statistic--playground&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('Statistic / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-statistic--default&viewMode=story')
 
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()

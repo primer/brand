@@ -7,6 +7,20 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Pillar', () => {
+  test('Pillar / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar--default&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Pillar / Playground', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar--playground&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Pillar / Icon', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar-features--icon&viewMode=story')
 
@@ -57,20 +71,6 @@ test.describe('Visual Comparison: Pillar', () => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pillar-features--stacked-with-link&viewMode=story',
     )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('Pillar / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar--default&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('Pillar / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar--playground&viewMode=story')
 
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()

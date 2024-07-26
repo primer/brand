@@ -7,6 +7,13 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: FAQ', () => {
+  test('FAQ / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq--default&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('FAQ / All Closed', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq-features--all-closed&viewMode=story')
 
@@ -78,13 +85,6 @@ test.describe('Visual Comparison: FAQ', () => {
 
   test('FAQ / With Prose', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq-features--with-prose&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('FAQ / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq--default&viewMode=story')
 
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()

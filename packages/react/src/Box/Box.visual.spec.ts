@@ -7,6 +7,13 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Box', () => {
+  test('Box / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-box--default&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Box / Padding', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-box-features--padding&viewMode=story')
 
@@ -136,13 +143,6 @@ test.describe('Visual Comparison: Box', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-box-features--animation&viewMode=story')
 
     await page.waitForTimeout(6000)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('Box / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-box--default&viewMode=story')
-
-    await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 })

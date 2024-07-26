@@ -7,6 +7,20 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Image', () => {
+  test('Image / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-image--default&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Image / Playground', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-image--playground&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Image / Custom Picture Aspect Ratio', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-image-features--custom-picture-aspect-ratio&viewMode=story',
@@ -81,20 +95,6 @@ test.describe('Visual Comparison: Image', () => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-image-features--border-radius-options&viewMode=story',
     )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('Image / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-image--playground&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('Image / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-image--default&viewMode=story')
 
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()

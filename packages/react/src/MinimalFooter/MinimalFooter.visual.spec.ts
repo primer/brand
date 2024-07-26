@@ -7,6 +7,20 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: MinimalFooter', () => {
+  test('MinimalFooter / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-minimalfooter--default&viewMode=story')
+
+    await page.waitForTimeout(5000)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Playground', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-minimalfooter--playground&viewMode=story')
+
+    await page.waitForTimeout(5000)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('MinimalFooter / Multiple Footnotes', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--multiple-footnotes&viewMode=story',
@@ -68,20 +82,6 @@ test.describe('Visual Comparison: MinimalFooter', () => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--dark-theme&viewMode=story',
     )
-
-    await page.waitForTimeout(5000)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('MinimalFooter / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-minimalfooter--playground&viewMode=story')
-
-    await page.waitForTimeout(5000)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('MinimalFooter / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-minimalfooter--default&viewMode=story')
 
     await page.waitForTimeout(5000)
     expect(await page.screenshot()).toMatchSnapshot()

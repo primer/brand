@@ -7,6 +7,20 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: VideoPlayer', () => {
+  test('VideoPlayer / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-videoplayer--default&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('VideoPlayer / Playground', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-videoplayer--playground&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('VideoPlayer / With Poster', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--with-poster&viewMode=story',
@@ -74,20 +88,6 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--custom-play-icon&viewMode=story',
     )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('VideoPlayer / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-videoplayer--playground&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('VideoPlayer / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-videoplayer--default&viewMode=story')
 
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
