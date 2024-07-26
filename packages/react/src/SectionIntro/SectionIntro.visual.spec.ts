@@ -7,6 +7,20 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: SectionIntro', () => {
+  test('SectionIntro / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-sectionintro--default&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('SectionIntro / Playground', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-sectionintro--playground&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('SectionIntro / Heading Only', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--heading-only&viewMode=story',
@@ -74,20 +88,6 @@ test.describe('Visual Comparison: SectionIntro', () => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-sectionintro-features--full-width&viewMode=story',
     )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('SectionIntro / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-sectionintro--playground&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('SectionIntro / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-sectionintro--default&viewMode=story')
 
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()

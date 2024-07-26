@@ -7,6 +7,29 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: River', () => {
+  test('River / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-river--default&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('River / Larger Placeholder Image', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-river--larger-placeholder-image&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('River / Copilot', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-river--copilot&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('River / Left', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-river-features--left&viewMode=story')
 
@@ -102,29 +125,6 @@ test.describe('Visual Comparison: River', () => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-river-features--alternating-layout&viewMode=story',
     )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('River / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-river--default&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('River / Larger Placeholder Image', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-river--larger-placeholder-image&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('River / Copilot', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-river--copilot&viewMode=story')
 
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()

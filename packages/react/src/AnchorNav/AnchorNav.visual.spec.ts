@@ -7,6 +7,20 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: AnchorNav', () => {
+  test('AnchorNav / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-anchornav--default&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('AnchorNav / Playground', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-anchornav--playground&viewMode=story')
+
+    await page.waitForTimeout(1000)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('AnchorNav / Fewer anchor links', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--fewer-anchor-links&viewMode=story',
@@ -100,20 +114,6 @@ test.describe('Visual Comparison: AnchorNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('AnchorNav / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-anchornav--default&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('AnchorNav / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-anchornav--playground&viewMode=story')
-
-    await page.waitForTimeout(1000)
     expect(await page.screenshot()).toMatchSnapshot()
   })
 })

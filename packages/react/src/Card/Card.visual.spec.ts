@@ -7,6 +7,20 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Card', () => {
+  test('Card / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-card--default&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Card / Playground', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-card--playground&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Card / Minimal', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--minimal&viewMode=story')
 
@@ -115,20 +129,6 @@ test.describe('Visual Comparison: Card', () => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-card-features--dark-color-mode-effect&viewMode=story',
     )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('Card / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-card--default&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('Card / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-card--playground&viewMode=story')
 
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()

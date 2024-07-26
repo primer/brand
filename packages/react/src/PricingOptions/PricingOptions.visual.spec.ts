@@ -7,6 +7,13 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: PricingOptions', () => {
+  test('PricingOptions / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pricingoptions--default&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('PricingOptions / Default Variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--default-variant&viewMode=story',
@@ -117,11 +124,5 @@ test.describe('Visual Comparison: PricingOptions', () => {
       await page.waitForTimeout(500)
       expect(await page.screenshot()).toMatchSnapshot()
     })
-  })
-  test('PricingOptions / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pricingoptions--default&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
   })
 })

@@ -7,6 +7,13 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: RiverStoryScroll', () => {
+  test('RiverStoryScroll / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-riverstoryscroll--default&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('RiverStoryScroll / With Timeline', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-riverstoryscroll-features--with-timeline&viewMode=story',
@@ -57,11 +64,5 @@ test.describe('Visual Comparison: RiverStoryScroll', () => {
       await page.waitForTimeout(3500)
       expect(await page.screenshot()).toMatchSnapshot()
     })
-  })
-  test('RiverStoryScroll / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-riverstoryscroll--default&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
   })
 })

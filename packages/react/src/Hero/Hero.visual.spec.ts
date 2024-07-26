@@ -7,6 +7,13 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Hero', () => {
+  test('Hero / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero--default&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Hero / Centered', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero-features--centered&viewMode=story')
 
@@ -134,13 +141,6 @@ test.describe('Visual Comparison: Hero', () => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-hero-features--eyebrow-centered&viewMode=story',
     )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('Hero / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-hero--default&viewMode=story')
 
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()

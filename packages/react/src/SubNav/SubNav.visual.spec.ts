@@ -7,6 +7,13 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: SubNav', () => {
+  test('SubNav / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-subnav--default&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('SubNav / Example Usage', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-subnav-features--example-usage&viewMode=story',
@@ -58,13 +65,6 @@ test.describe('Visual Comparison: SubNav', () => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-subnav-features--longer-heading&viewMode=story',
     )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('SubNav / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-subnav--default&viewMode=story')
 
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()

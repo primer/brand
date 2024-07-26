@@ -7,6 +7,20 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: LogoSuite', () => {
+  test('LogoSuite / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-logosuite--default&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('LogoSuite / Playground', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-logosuite--playground&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('LogoSuite / Align Start', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--align-start&viewMode=story',
@@ -65,20 +79,6 @@ test.describe('Visual Comparison: LogoSuite', () => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--with-raster-logos&viewMode=story',
     )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('LogoSuite / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-logosuite--default&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('LogoSuite / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-logosuite--playground&viewMode=story')
 
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()

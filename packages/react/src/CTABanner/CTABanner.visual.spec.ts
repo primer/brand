@@ -7,6 +7,20 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: CTABanner', () => {
+  test('CTABanner / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-ctabanner--default&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('CTABanner / Playground', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-ctabanner--playground&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('CTABanner / With Border', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--with-border&viewMode=story',
@@ -47,20 +61,6 @@ test.describe('Visual Comparison: CTABanner', () => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--custom-shadow&viewMode=story',
     )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('CTABanner / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-ctabanner--playground&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('CTABanner / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-ctabanner--default&viewMode=story')
 
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
