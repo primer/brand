@@ -1,9 +1,9 @@
 import React, {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
+import {axe, toHaveNoViolations} from 'jest-axe'
 
 import {FormControl} from './FormControl'
 import {TextInput} from '../TextInput'
-import {axe, toHaveNoViolations} from 'jest-axe'
 import {Select} from '../Select'
 
 expect.extend(toHaveNoViolations)
