@@ -7,6 +7,20 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Select', () => {
+  test('Select / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-forms-select--default&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Select / Playground', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-forms-select--playground&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Select / Full Width', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-forms-select-features--full-width&viewMode=story',
@@ -63,20 +77,6 @@ test.describe('Visual Comparison: Select', () => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-forms-select-features--validation-error&viewMode=story',
     )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('Select / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-forms-select--playground&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('Select / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-forms-select--default&viewMode=story')
 
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()

@@ -7,6 +7,13 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Radio', () => {
+  test('Radio / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-forms-radio--default&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Radio / w/ labels', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-forms-radio-features--with-form-control&viewMode=story',
@@ -29,13 +36,6 @@ test.describe('Visual Comparison: Radio', () => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-forms-radio-features--on-custom-background-color&viewMode=story',
     )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('Radio / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-forms-radio--default&viewMode=story')
 
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()

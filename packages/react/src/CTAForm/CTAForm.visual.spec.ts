@@ -7,10 +7,8 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: CTAForm', () => {
-  test('CTAForm / With No Confirm', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-ctaform-features--with-no-confirm&viewMode=story',
-    )
+  test('CTAForm / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-ctaform--default&viewMode=story')
 
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
@@ -23,8 +21,10 @@ test.describe('Visual Comparison: CTAForm', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('CTAForm / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-ctaform--default&viewMode=story')
+  test('CTAForm / With No Confirm', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-ctaform-features--with-no-confirm&viewMode=story',
+    )
 
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()

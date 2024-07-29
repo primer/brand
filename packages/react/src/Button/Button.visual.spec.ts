@@ -7,6 +7,20 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Button', () => {
+  test('Button / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button--default&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Button / Playground', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button--playground&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Button / Primary', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--primary&viewMode=story')
 
@@ -188,20 +202,6 @@ test.describe('Visual Comparison: Button', () => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-button-features--with-visuals-and-disabled&viewMode=story',
     )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('Button / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button--playground&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('Button / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button--default&viewMode=story')
 
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()

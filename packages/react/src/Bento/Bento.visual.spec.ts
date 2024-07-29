@@ -7,6 +7,13 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Bento', () => {
+  test('Bento / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento--default&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Bento / Layout Example 1', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-bento-features--layout-example-1&viewMode=story',
@@ -50,13 +57,6 @@ test.describe('Visual Comparison: Bento', () => {
 
   test('Bento / Mixed 3', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento-features--mixed-3&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('Bento / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-bento--default&viewMode=story')
 
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()

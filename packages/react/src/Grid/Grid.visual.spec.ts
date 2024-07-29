@@ -7,6 +7,20 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Grid', () => {
+  test('Grid / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-grid--default&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Grid / Playground', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-grid--playground&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Grid / Asymmetry', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-grid-features--asymmetry&viewMode=story')
 
@@ -60,20 +74,6 @@ test.describe('Visual Comparison: Grid', () => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-grid-features--responsive-min-width&viewMode=story',
     )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('Grid / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-grid--playground&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('Grid / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-grid--default&viewMode=story')
 
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
