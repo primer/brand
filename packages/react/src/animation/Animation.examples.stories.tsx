@@ -9,7 +9,6 @@ import clsx from 'clsx'
 
 export default {
   title: 'Components/AnimationProvider/Examples',
-  component: AnimationProvider,
 } as Meta<typeof AnimationProvider>
 
 export const DiscussionsHero = () => (
@@ -209,18 +208,6 @@ export const LogoBar = () => {
           </Animate>
         </LogoSuite.Logobar>
       </LogoSuite>
-    </AnimationProvider>
-  )
-}
-
-export const AnimationOnPress = () => {
-  return (
-    <AnimationProvider animationTrigger="click">
-      <Stack className={styles.Playground} justifyContent="center" alignItems="center" animate="fade-out">
-        <Text as="p" className={styles.PlaygroundText}>
-          Fade out on press
-        </Text>
-      </Stack>
     </AnimationProvider>
   )
 }
