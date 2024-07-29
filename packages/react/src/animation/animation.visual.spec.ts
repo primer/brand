@@ -7,9 +7,79 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: animation', () => {
+  test('animation / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-animationprovider--default&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('animation / Playground', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-animationprovider--playground&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('animation / Discussions Hero', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-animationprovider-examples--discussions-hero&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('animation / Progress Bars', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-animationprovider-examples--progress-bars&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('animation / Logo Bar', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-animationprovider-examples--logo-bar&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('animation / Timeline Bar', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-animationprovider-examples--timeline-bar&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('animation / Animation On Press', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-animations-examples--animation-on-press&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-animationprovider-features--animation-on-press&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('animation / Intersection Observer', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-animationprovider-features--intersection-observer&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('animation / Advanced Animation', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-animationprovider-features--advanced-animation&viewMode=story',
     )
 
     await page.waitForTimeout(500)
