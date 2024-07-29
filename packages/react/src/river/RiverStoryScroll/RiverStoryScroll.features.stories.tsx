@@ -213,7 +213,7 @@ export const Video = args => (
             src="https://githubnext.com/assets/projects/copilot-workspace/features-river-1.mp4"
             type="video/mp4; codecs=avc1.4d002a"
           />
-          <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" default />
+          <VideoPlayer.Track src="/brand/storybook/example.vtt" default />
         </VideoPlayer>
       </River.Visual>
       <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
@@ -232,7 +232,7 @@ export const Video = args => (
             src="https://githubnext.com/assets/projects/copilot-workspace/features-river-2.mp4"
             type="video/mp4; codecs=avc1.4d002a"
           />
-          <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" default />
+          <VideoPlayer.Track src="/brand/storybook/example.vtt" default />
         </VideoPlayer>
       </River.Visual>
       <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
@@ -251,7 +251,7 @@ export const Video = args => (
             src="https://githubnext.com/assets/projects/copilot-workspace/features-river-3.mp4"
             type="video/mp4; codecs=avc1.4d002a"
           />
-          <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" default />
+          <VideoPlayer.Track src="/brand/storybook/example.vtt" default />
         </VideoPlayer>
       </River.Visual>
       <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
@@ -270,7 +270,7 @@ export const Video = args => (
             src="https://githubnext.com/assets/projects/copilot-workspace/features-river-4.mp4"
             type="video/mp4; codecs=avc1.4d002a"
           />
-          <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" default />
+          <VideoPlayer.Track src="/brand/storybook/example.vtt" default />
         </VideoPlayer>
       </River.Visual>
       <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
