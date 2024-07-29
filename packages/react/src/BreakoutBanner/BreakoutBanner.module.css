@@ -1,0 +1,114 @@
+.BreakoutBanner {
+  position: relative;
+  margin: 0 auto;
+  display: flex;
+  max-width: var(--brand-breakpoint-xlarge);
+  width: 100%;
+  border-radius: var(--brand-borderRadius-xlarge);
+  background-repeat: no-repeat;
+  background-color: var(--brand-BreakoutBanner-narrow-background-color, var(--brand-BreakoutBanner-background-color));
+  background-image: var(
+    --brand-BreakoutBanner-narrow-background-image-src,
+    var(--brand-BreakoutBanner-background-image-src)
+  );
+  background-size: var(
+    --brand-BreakoutBanner-narrow-background-image-size,
+    var(--brand-BreakoutBanner-background-image-size)
+  );
+
+  background-position: var(
+    --brand-BreakoutBanner-narrow-background-image-position,
+    var(--brand-BreakoutBanner-background-image-position, center)
+  );
+}
+
+.BreakoutBanner-container {
+  border-radius: var(--brand-borderRadius-xlarge);
+  padding: var(--base-size-40) var(--base-size-40) var(--base-size-128);
+  z-index: 1;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.BreakoutBanner-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.BreakoutBanner-container--background {
+  background: var(--brand-BreakoutBanner-bgColor);
+}
+
+.BreakoutBanner-container--border {
+  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
+}
+
+.BreakoutBanner-content--center {
+  align-items: center;
+  text-align: center;
+}
+
+.BreakoutBanner__heading {
+  max-width: 20ch;
+}
+
+.BreakoutBanner-description {
+  color: var(--brand-color-text-muted);
+  max-width: 54ch;
+  margin-block-start: var(--base-size-16);
+}
+
+.BreakoutBanner-linkGroup {
+  margin-block-start: var(--base-size-48);
+}
+
+.BreakoutBanner-leadingVisual {
+  margin-block-end: var(--base-size-48);
+}
+
+/* Regular */
+@media screen and (min-width: 48rem) {
+  .BreakoutBanner {
+    background-color: var(
+      --brand-BreakoutBanner-regular-background-color,
+      var(--brand-BreakoutBanner-background-color)
+    );
+    background-image: var(
+      --brand-BreakoutBanner-regular-background-image-src,
+      var(--brand-BreakoutBanner-background-image-src)
+    );
+    background-size: var(
+      --brand-BreakoutBanner-regular-background-image-size,
+      var(--brand-BreakoutBanner-background-image-size)
+    );
+    background-position: var(
+      --brand-BreakoutBanner-regular-background-image-position,
+      var(--brand-BreakoutBanner-background-image-position)
+    );
+  }
+
+  .BreakoutBanner-container {
+    padding: var(--base-size-48);
+  }
+}
+
+/* Wide */
+@media screen and (min-width: 80rem) {
+  .BreakoutBanner {
+    background-color: var(--brand-BreakoutBanner-wide-background-color, var(--brand-BreakoutBanner-background-color));
+    background-image: var(
+      --brand-BreakoutBanner-wide-background-image-src,
+      var(--brand-BreakoutBanner-background-image-src)
+    );
+    background-size: var(
+      --brand-BreakoutBanner-wide-background-image-size,
+      var(--brand-BreakoutBanner-background-image-size)
+    );
+
+    background-position: var(
+      --brand-BreakoutBanner-wide-background-image-position,
+      var(--brand-BreakoutBanner-background-image-position)
+    );
+  }
+}
