@@ -12,7 +12,7 @@ export default {
 
 export const Default = () => (
   <AnimationProvider>
-    <Stack className={styles.Playground} justifyContent="center" alignItems="center" animate="fade-in">
+    <Stack className={styles.Playground} animate="fade-in">
       <Text as="p">fade-in</Text>
     </Stack>
   </AnimationProvider>
@@ -23,13 +23,7 @@ export const Playground = args => {
     <AnimationProvider {...args} key={args.variant}>
       <Stack direction="horizontal">
         {Array.from({length: 3}).map((_, i) => (
-          <Stack
-            key={i}
-            className={styles.Playground}
-            justifyContent="center"
-            alignItems="center"
-            animate={args.variant}
-          >
+          <Stack key={i} className={styles.Playground} animate={args.variant}>
             <Text as="p">{args.variant}</Text>
           </Stack>
         ))}
