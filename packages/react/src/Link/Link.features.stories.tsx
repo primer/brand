@@ -1,13 +1,15 @@
 import React from 'react'
-import {ComponentMeta, ComponentStory} from '@storybook/react'
+import {Meta, StoryFn} from '@storybook/react'
 import {Link} from '.'
 
-export default {
+const meta: Meta<typeof Link> = {
   title: 'Components/Link/features',
   component: Link,
-} as ComponentMeta<typeof Link>
+}
 
-const Template: ComponentStory<typeof Link> = args => <Link {...args} />
+export default meta
+
+const Template: StoryFn<typeof Link> = args => <Link {...args} />
 
 export const Large = Template.bind({})
 Large.args = {

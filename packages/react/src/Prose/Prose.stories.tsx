@@ -1,9 +1,9 @@
 import React from 'react'
-import {ComponentMeta, ComponentStory} from '@storybook/react'
+import {Meta, StoryFn} from '@storybook/react'
 import {Prose} from './Prose'
 import placeholderImage from '../fixtures/images/placeholder-600x400.png'
 
-export default {
+const meta: Meta<typeof Prose> = {
   title: 'Components/Prose',
   component: Prose,
   args: {
@@ -17,7 +17,9 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Prose>
+}
+
+export default meta
 
 const ExampleHtmlMarkup = `
 <h2>Heading level 2</h2>
@@ -57,13 +59,13 @@ const ExampleHtmlMarkup = `
       </li>
       <li>Quisque eu tortor suscipit, congue quam in, bibendum tellus.</li>
     </ol>
-    <p><code>for-each-ref</code> is extremely useful for listing references, finding which references point at a given object (with <code>--points-at</code>), which references have been merged into a given branch (with <code>--merged</code>), or which references contain a given commit (with <code>--contains</code>).</p>    
+    <p><code>for-each-ref</code> is extremely useful for listing references, finding which references point at a given object (with <code>--points-at</code>), which references have been merged into a given branch (with <code>--merged</code>), or which references contain a given commit (with <code>--contains</code>).</p>
     <h6>Heading level 6</h6>
     <p>Pellentesque non ornare ligula. Suspendisse nibh purus, pretium id tortor sit amet, tincidunt gravida augue.</p>
     <p>Nunc velit odio, posuere eu felis eget, consectetur fermentum nisi. Aenean tempor odio id ornare ultrices. Quisque blandit condimentum tellus, semper efficitur sapien dapibus nec. </p>
 `
 
-export const Playground: ComponentStory<typeof Prose> = args => <Prose {...args} html={ExampleHtmlMarkup} />
+export const Playground: StoryFn<typeof Prose> = args => <Prose {...args} html={ExampleHtmlMarkup} />
 
 export const Default = Playground.bind({})
 Default.args = {}
