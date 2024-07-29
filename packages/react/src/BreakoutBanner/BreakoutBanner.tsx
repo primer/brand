@@ -31,23 +31,23 @@ export type BreakoutBannerProps = BaseProps<HTMLElement> &
   React.HTMLAttributes<HTMLElement> & {
     children: React.ReactNode | React.ReactNode[]
     /**
-     * The alignment of the content within the banner.
+     * The alignment of the content within the banner
      */
     align?: 'start' | 'center'
     /**
-     * The system-level or custom background color of the section.
+     * Optional, custom background color
      */
     backgroundColor?: BackgroundColors | ResponsiveBackgroundColorMap
     /**
-     * The background image of the section.
+     * Optional, custom background image
      */
     backgroundImageSrc?: string | string[] | ResponsiveBackgroundImageSrcMap
     /**
-     * The position of the background image.
+     * Optional, custom background position
      */
     backgroundImagePosition?: string | string[] | ResponsiveBackgroundImagePositionMap
     /**
-     * The size of the background image.
+     * Optional, custom background position size
      */
     backgroundImageSize?: string | string[] | ResponsiveBackgroundImageSizeMap
     /**
