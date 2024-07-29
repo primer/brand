@@ -10,6 +10,14 @@ export default {
   component: AnimationProvider,
 } as Meta<typeof AnimationProvider>
 
+export const Default = () => (
+  <AnimationProvider>
+    <Stack className={styles.Playground} justifyContent="center" alignItems="center" animate="fade-in">
+      <Text as="p">fade-in</Text>
+    </Stack>
+  </AnimationProvider>
+)
+
 export const Playground = args => {
   return (
     <AnimationProvider {...args} key={args.variant}>
