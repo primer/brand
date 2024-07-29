@@ -1,7 +1,7 @@
 import React from 'react'
 import {Meta, StoryFn} from '@storybook/react'
 import {Bento} from '.'
-import {Box, Grid, Image, Link, ThemeProvider} from '../'
+import {Box, Grid, Image, Link, ThemeProvider} from '..'
 
 import mercardo from '../fixtures/images/bento/mercado.png'
 
@@ -24,11 +24,11 @@ import testingImage from '../fixtures/images/bento/testing.png'
 import timerImage from '../fixtures/images/bento/timer.png'
 import mixed2GradientBg from '../fixtures/images/bento/mixed-2-gradient-bg.png'
 
-import styles from './Bento.features.stories.module.css'
+import styles from './Bento.stories.module.css'
 import clsx from 'clsx'
 
 export default {
-  title: 'Components/Bento/features',
+  title: 'Components/Bento/Examples',
   component: Bento,
   parameters: {
     layout: 'fullscreen',

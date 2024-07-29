@@ -4,7 +4,7 @@ import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {Bento} from '.'
 import {Label, Link} from '../'
 import placeholderImage from '../fixtures/images/placeholder-600x400.png'
-import styles from './Bento.features.stories.module.css'
+import styles from './Bento.stories.module.css'
 
 export default {
   title: 'Components/Bento/Item',
