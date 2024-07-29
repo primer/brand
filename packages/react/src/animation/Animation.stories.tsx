@@ -6,7 +6,7 @@ import {Text, Stack} from '..'
 import styles from './Animation.stories.module.css'
 
 export default {
-  title: 'Components/Animations',
+  title: 'Components/AnimationProvider',
   component: AnimationProvider,
 } as Meta<typeof AnimationProvider>
 

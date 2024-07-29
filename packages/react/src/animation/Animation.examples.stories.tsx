@@ -8,7 +8,7 @@ import styles from './Animation.stories.module.css'
 import clsx from 'clsx'
 
 export default {
-  title: 'Components/Animations/Examples',
+  title: 'Components/AnimationProvider/Examples',
   component: AnimationProvider,
 } as Meta<typeof AnimationProvider>
 
