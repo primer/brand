@@ -312,3 +312,25 @@ export const RadioPlayground = () => (
 )
 
 RadioPlayground.storyName = 'w/ Radio - Playground'
+
+export const SuccessValidation = () => {
+  return (
+    <FormControl validationStatus="success">
+      <FormControl.Label>Label of input</FormControl.Label>
+      <TextInput validationStatus="success" />
+      <FormControl.Validation>Great! It worked.</FormControl.Validation>
+    </FormControl>
+  )
+}
+SuccessValidation.storyName = 'w/ Success Validation - Playground'
+
+export const ErrorValidation = () => {
+  return (
+    <FormControl validationStatus="error">
+      <FormControl.Label>Label of input</FormControl.Label>
+      <TextInput validationStatus="error" />
+      <FormControl.Validation>This is an error message</FormControl.Validation>
+    </FormControl>
+  )
+}
+ErrorValidation.storyName = 'w/ Error Validation - Playground'
