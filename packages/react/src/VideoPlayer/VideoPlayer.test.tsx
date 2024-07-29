@@ -19,14 +19,8 @@ describe('VideoPlayer', () => {
   it('renders the video element without errors', () => {
     const {getByTitle} = render(
       <VideoPlayer poster="/example-poster.jpg" title="test video">
-        <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
-        <VideoPlayer.Track
-          src="../../../apps/docs/static/example.vtt"
-          default
-          kind="subtitles"
-          srcLang="en"
-          label="English"
-        />
+        <VideoPlayer.Source src="/example.mp4" />
+        <VideoPlayer.Track src="/example.vtt" default kind="subtitles" srcLang="en" label="English" />
       </VideoPlayer>,
     )
 
@@ -36,14 +30,8 @@ describe('VideoPlayer', () => {
   it('renders the overlay play button without errors', () => {
     const {getByRole} = render(
       <VideoPlayer poster="/example-poster.jpg" title="test video">
-        <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
-        <VideoPlayer.Track
-          src="../../../apps/docs/static/example.vtt"
-          default
-          kind="subtitles"
-          srcLang="en"
-          label="English"
-        />
+        <VideoPlayer.Source src="/example.mp4" />
+        <VideoPlayer.Track src="/example.vtt" default kind="subtitles" srcLang="en" label="English" />
       </VideoPlayer>,
     )
 
@@ -53,14 +41,8 @@ describe('VideoPlayer', () => {
   it('renders the play/pause button without errors', () => {
     const {getByRole} = render(
       <VideoPlayer poster="/example-poster.jpg" title="test video">
-        <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
-        <VideoPlayer.Track
-          src="../../../apps/docs/static/example.vtt"
-          default
-          kind="subtitles"
-          srcLang="en"
-          label="English"
-        />
+        <VideoPlayer.Source src="/example.mp4" />
+        <VideoPlayer.Track src="/example.vtt" default kind="subtitles" srcLang="en" label="English" />
       </VideoPlayer>,
     )
 
@@ -70,14 +52,8 @@ describe('VideoPlayer', () => {
   it('renders the enable/disble closed caption button without errors', () => {
     const {getByRole} = render(
       <VideoPlayer poster="/example-poster.jpg" title="test video">
-        <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
-        <VideoPlayer.Track
-          src="../../../apps/docs/static/example.vtt"
-          default
-          kind="subtitles"
-          srcLang="en"
-          label="English"
-        />
+        <VideoPlayer.Source src="/example.mp4" />
+        <VideoPlayer.Track src="/example.vtt" default kind="subtitles" srcLang="en" label="English" />
       </VideoPlayer>,
     )
 
@@ -87,14 +63,8 @@ describe('VideoPlayer', () => {
   it('renders the mute button without errors', () => {
     const {getByRole} = render(
       <VideoPlayer poster="/example-poster.jpg" title="test video">
-        <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
-        <VideoPlayer.Track
-          src="../../../apps/docs/static/example.vtt"
-          default
-          kind="subtitles"
-          srcLang="en"
-          label="English"
-        />
+        <VideoPlayer.Source src="/example.mp4" />
+        <VideoPlayer.Track src="/example.vtt" default kind="subtitles" srcLang="en" label="English" />
       </VideoPlayer>,
     )
 
@@ -104,14 +74,8 @@ describe('VideoPlayer', () => {
   it('renders the full screen button without errors', () => {
     const {getByRole} = render(
       <VideoPlayer poster="/example-poster.jpg" title="test video">
-        <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
-        <VideoPlayer.Track
-          src="../../../apps/docs/static/example.vtt"
-          default
-          kind="subtitles"
-          srcLang="en"
-          label="English"
-        />
+        <VideoPlayer.Source src="/example.mp4" />
+        <VideoPlayer.Track src="/example.vtt" default kind="subtitles" srcLang="en" label="English" />
       </VideoPlayer>,
     )
 
@@ -121,14 +85,8 @@ describe('VideoPlayer', () => {
   it('renders the seek track without errors', () => {
     const {getByRole} = render(
       <VideoPlayer poster="/example-poster.jpg" title="test video">
-        <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
-        <VideoPlayer.Track
-          src="../../../apps/docs/static/example.vtt"
-          default
-          kind="subtitles"
-          srcLang="en"
-          label="English"
-        />
+        <VideoPlayer.Source src="/example.mp4" />
+        <VideoPlayer.Track src="/example.vtt" default kind="subtitles" srcLang="en" label="English" />
       </VideoPlayer>,
     )
 
@@ -138,14 +96,8 @@ describe('VideoPlayer', () => {
   it('renders the volume track without errors', () => {
     const {getByRole} = render(
       <VideoPlayer poster="/example-poster.jpg" title="test video">
-        <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
-        <VideoPlayer.Track
-          src="../../../apps/docs/static/example.vtt"
-          default
-          kind="subtitles"
-          srcLang="en"
-          label="English"
-        />
+        <VideoPlayer.Source src="/example.mp4" />
+        <VideoPlayer.Track src="/example.vtt" default kind="subtitles" srcLang="en" label="English" />
       </VideoPlayer>,
     )
 
@@ -155,14 +107,8 @@ describe('VideoPlayer', () => {
   it('plays the video when the play button is pressed', () => {
     const {getByRole, getByTitle} = render(
       <VideoPlayer poster="/example-poster.jpg" title="test video">
-        <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
-        <VideoPlayer.Track
-          src="../../../apps/docs/static/example.vtt"
-          default
-          kind="subtitles"
-          srcLang="en"
-          label="English"
-        />
+        <VideoPlayer.Source src="/example.mp4" />
+        <VideoPlayer.Track src="/example.vtt" default kind="subtitles" srcLang="en" label="English" />
       </VideoPlayer>,
     )
 
@@ -180,14 +126,8 @@ describe('VideoPlayer', () => {
   it('pauses a playing video when the pause button is pressed', () => {
     const {getByRole, getByTitle} = render(
       <VideoPlayer poster="/example-poster.jpg" title="test video">
-        <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
-        <VideoPlayer.Track
-          src="../../../apps/docs/static/example.vtt"
-          default
-          kind="subtitles"
-          srcLang="en"
-          label="English"
-        />
+        <VideoPlayer.Source src="/example.mp4" />
+        <VideoPlayer.Track src="/example.vtt" default kind="subtitles" srcLang="en" label="English" />
       </VideoPlayer>,
     )
 
@@ -212,14 +152,8 @@ describe('VideoPlayer', () => {
   it('sets the video volume when the volume slider is changed', () => {
     const {getByRole, getByTitle} = render(
       <VideoPlayer poster="/example-poster.jpg" title="test video">
-        <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
-        <VideoPlayer.Track
-          src="../../../apps/docs/static/example.vtt"
-          default
-          kind="subtitles"
-          srcLang="en"
-          label="English"
-        />
+        <VideoPlayer.Source src="/example.mp4" />
+        <VideoPlayer.Track src="/example.vtt" default kind="subtitles" srcLang="en" label="English" />
       </VideoPlayer>,
     )
 
@@ -239,14 +173,8 @@ describe('VideoPlayer', () => {
   it('sets the video seek position when the seek slider is changed', () => {
     const {getByRole, getByTitle} = render(
       <VideoPlayer poster="/example-poster.jpg" title="test video">
-        <VideoPlayer.Source src="../../../apps/docs/static/example.mp4" />
-        <VideoPlayer.Track
-          src="../../../apps/docs/static/example.vtt"
-          default
-          kind="subtitles"
-          srcLang="en"
-          label="English"
-        />
+        <VideoPlayer.Source src="/example.mp4" />
+        <VideoPlayer.Track src="/example.vtt" default kind="subtitles" srcLang="en" label="English" />
       </VideoPlayer>,
     )
 
