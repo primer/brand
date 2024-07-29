@@ -100,7 +100,7 @@
  */
 .Playground {
   background-color: var(--brand-color-neutral-subtle);
-  max-width: 200px;
+  width: 200px;
   min-height: 200px;
 }
 

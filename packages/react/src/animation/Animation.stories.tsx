@@ -13,15 +13,18 @@ export default {
 export const Playground = args => {
   return (
     <AnimationProvider {...args} key={args.variant}>
-      <Stack
-        className={styles.Playground}
-        justifyContent="center"
-        alignItems="center"
-        animate={{
-          variant: args.variant,
-        }}
-      >
-        <Text as="p">{args.variant}</Text>
+      <Stack direction="horizontal">
+        {Array.from({length: 3}).map((_, i) => (
+          <Stack
+            key={i}
+            className={styles.Playground}
+            justifyContent="center"
+            alignItems="center"
+            animate={args.variant}
+          >
+            <Text as="p">{args.variant}</Text>
+          </Stack>
+        ))}
       </Stack>
     </AnimationProvider>
   )
@@ -29,13 +32,25 @@ export const Playground = args => {
 
 Playground.args = {
   variant: 'fade-in',
+  disableAnimations: false,
+  animationTrigger: 'on-visible',
+  runOnce: false,
+  autoStaggerChildren: true,
+  staggerDelayIncrement: 100,
 }
 
 Playground.argTypes = {
   variant: {
-    control: {
-      type: 'inline-radio',
-      options: AnimationVariants,
+    name: 'animate',
+    options: AnimationVariants,
+    control: 'select',
+    table: {
+      category: 'Children',
+    },
+  },
+  visibilityOptions: {
+    table: {
+      disable: true,
     },
   },
 }
