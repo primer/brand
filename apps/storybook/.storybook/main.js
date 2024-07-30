@@ -2,7 +2,7 @@ import {dirname, join} from 'path'
 
 module.exports = {
   stories: ['../../../packages/react/src/**/*.stories.@(js|jsx|ts|tsx)'],
-  staticDirs: ['../static', '../../docs/static'],
+  staticDirs: ['../static'],
   addons: [
     {
       name: getAbsolutePath('@storybook/addon-essentials'),
