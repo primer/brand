@@ -4,6 +4,7 @@ import fs from 'fs'
 import path from 'path'
 import {Result} from 'axe-core'
 
+import type {StoryIndex} from '@storybook/types'
 import {chromium, Browser, Page} from 'playwright'
 import {test, expect} from '@playwright/test'
 import {injectAxe, getViolations} from 'axe-playwright'
@@ -99,7 +100,7 @@ const testsWithCustomDelay = {
 }
 const defaultDelay = 1000
 
-const storybookRoutes = Object.values(IndexData.entries)
+const storybookRoutes = Object.values((IndexData as StoryIndex).entries)
   .map(
     story =>
       ({
