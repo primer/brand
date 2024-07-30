@@ -7,6 +7,13 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Section', () => {
+  test('Section / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-section--default&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Section / Default Padding', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-section-features--default-padding&viewMode=story',
@@ -61,6 +68,24 @@ test.describe('Visual Comparison: Section', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('Section / Custom Background Color', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-section-features--custom-background-color&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
+  test('Section / Responsivem Background Color', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-section-features--responsivem-background-color&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Section / Background Image', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-section-features--background-image&viewMode=story',
@@ -81,13 +106,6 @@ test.describe('Visual Comparison: Section', () => {
 
   test('Section / Rounded', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-section-features--rounded&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('Section / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-section--default&viewMode=story')
 
     await page.waitForTimeout(500)
     expect(await page.screenshot()).toMatchSnapshot()
