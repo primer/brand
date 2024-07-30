@@ -6,7 +6,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 import styles from './Section.module.css'
 
 export const SectionPaddingVariants = ['none', 'condensed', 'normal', 'spacious'] as const
-export const SectionBackgroundColors = ['default', 'inset', 'subtle', 'overlay'] as const
+export const SectionBackgroundColors = ['default', 'subtle'] as const
 
 const defaultSectionPadding = SectionPaddingVariants[2]
 

@@ -14,6 +14,15 @@ describe('Section', () => {
     jest.clearAllMocks()
   })
 
+  it('renders the main element correctly into the document', () => {
+    const {getByTestId} = render(<Section></Section>)
+
+    const rootEl = getByTestId('Section')
+
+    expect(rootEl).toBeInTheDocument()
+    expect(rootEl.tagName).toBe('SECTION')
+  })
+
   it('renders children correctly', () => {
     const expectedClass = 'Section'
 
@@ -23,13 +32,12 @@ describe('Section', () => {
     expect(SectionEl.classList).toContain(expectedClass)
   })
 
-  it('applies default padding when no padding props are provided', () => {
-    const expectedClasses = 'Section--paddingBlockStart-normal Section--paddingBlockEnd-normal'
+  it('should allow setting the element as a div', () => {
+    const {getByTestId} = render(<Section as="div"></Section>)
 
-    const {getByTestId} = render(<Section></Section>)
-    const SectionEl = getByTestId('Section')
+    const rootEl = getByTestId('Section')
 
-    expect(SectionEl).toHaveClass(expectedClasses)
+    expect(rootEl.tagName).toBe('DIV')
   })
 
   it('applies custom padding when padding props are provided', () => {
@@ -73,7 +81,7 @@ describe('Section', () => {
   })
 
   it('applies predefined background color when backgroundColor prop is provided', () => {
-    const mockValue = 'inset'
+    const mockValue = 'subtle'
     const {getByTestId} = render(<Section backgroundColor={mockValue} />)
     const SectionEl = getByTestId('Section')
 

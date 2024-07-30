@@ -94,7 +94,7 @@ export const WithFullWidthContainer: StoryFn<typeof Section> = () => {
 export const BackgroundColor: StoryFn<typeof Section> = () => {
   return (
     <>
-      <Section backgroundColor="inset">
+      <Section backgroundColor="subtle">
         <SectionIntro align="center">
           <SectionIntro.Heading size="2">A section with a predefined background color</SectionIntro.Heading>
         </SectionIntro>
@@ -118,7 +118,7 @@ export const CustomBackgroundColor: StoryFn<typeof Section> = () => {
 export const ResponsivemBackgroundColor: StoryFn<typeof Section> = () => {
   return (
     <>
-      <Section backgroundColor={{narrow: 'inset', regular: '#F8F8Ff', wide: '#FFF8F8'}}>
+      <Section backgroundColor={{narrow: 'subtle', regular: '#F8F8Ff', wide: '#FFF8F8'}}>
         <SectionIntro align="center">
           <SectionIntro.Heading size="2">A section with a custom responsive background colors</SectionIntro.Heading>
         </SectionIntro>

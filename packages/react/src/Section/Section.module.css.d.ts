@@ -18,7 +18,7 @@ declare const styles: {
   readonly "Section--paddingBlockEnd-normal": string;
   readonly "Section-narrow--paddingBlockEnd-normal": string;
   readonly "Section--paddingBlockEnd-spacious": string;
-  readonly "Section-narrow--paddingBlockEnd-spaciou": string;
+  readonly "Section-narrow--paddingBlockEnd-spacious": string;
   readonly "Section-regular--paddingBlockStart-none": string;
   readonly "Section-regular--paddingBlockStart-condensed": string;
   readonly "Section-regular--paddingBlockStart-normal": string;
