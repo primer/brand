@@ -14,6 +14,13 @@ test.describe('Visual Comparison: Section', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
+  test('Section / Playground', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-section--playground&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot()).toMatchSnapshot()
+  })
+
   test('Section / Default Padding', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-section-features--default-padding&viewMode=story',
