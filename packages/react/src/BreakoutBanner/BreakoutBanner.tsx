@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import {Icon} from '@primer/octicons-react'
 
 import type {BaseProps} from '../component-helpers'
-import {Heading, HeadingProps, Text, Stack, Link, LinkProps} from '../'
+import {Heading, HeadingProps, Text, Stack, Link, LinkProps, StackProps} from '../'
 
 /**
  * Design tokens
@@ -27,8 +27,8 @@ type ResponsiveBackgroundColorMap = ResponsiveMap<BackgroundColors>
 type ResponsiveBackgroundImagePositionMap = ResponsiveMap<string | string[]>
 type ResponsiveBackgroundImageSizeMap = ResponsiveMap<string | string[]>
 
-export type BreakoutBannerProps = BaseProps<HTMLElement> &
-  React.HTMLAttributes<HTMLElement> & {
+export type BreakoutBannerProps = BaseProps<HTMLDivElement> &
+  React.HTMLAttributes<HTMLDivElement> & {
     children: React.ReactNode | React.ReactNode[]
     /**
      * The alignment of the content within the banner
@@ -70,11 +70,11 @@ const Root = forwardRef(
       leadingVisual: LeadingVisual,
       ...props
     }: BreakoutBannerProps,
-    ref: Ref<HTMLElement>,
+    ref: Ref<HTMLDivElement>,
   ) => {
     const processBackgroundValue = useCallback((value: string | string[], property) => {
       if (property === 'background-image-src') {
-        return Array.isArray(value) ? value.map(img => `url(${img})`).join() : `url(${value})`
+        return `url(${value})`
       }
 
       if (property === 'background-color' && typeof value === 'string') {
@@ -83,7 +83,7 @@ const Root = forwardRef(
           : value
       }
 
-      return Array.isArray(value) ? value.join() : value
+      return value
     }, [])
 
     const createStyles = useCallback(
@@ -109,7 +109,7 @@ const Root = forwardRef(
     )
 
     return (
-      <section
+      <div
         ref={ref}
         className={clsx(styles.BreakoutBanner, className)}
         style={{...backgroundStyles, ...style}}
@@ -126,7 +126,7 @@ const Root = forwardRef(
             {children}
           </div>
         </div>
-      </section>
+      </div>
     )
   },
 )
@@ -169,7 +169,7 @@ const Description = forwardRef(
 type LinkGroupProps = React.ComponentProps<typeof Stack>
 
 const _LinkGroup = forwardRef(
-  ({className, direction, gap, children, ...props}: LinkGroupProps, ref: Ref<HTMLDivElement>) => {
+  ({className, direction, gap, padding, children, ...props}: LinkGroupProps, ref: Ref<HTMLDivElement>) => {
     const linksToRender = React.Children.toArray(children)
       .map((child, index) => {
         if (React.isValidElement(child) && typeof child.type !== 'string' && child.type === Link) {
@@ -184,20 +184,24 @@ const _LinkGroup = forwardRef(
       .filter(Boolean)
       .slice(0, 2)
 
-    const verticalDirectionDefaultProps = {
-      gap: 'condensed',
-      direction: 'vertical',
-      alignItems: 'start',
-    }
+    const defaultProps: Partial<StackProps> =
+      direction === 'vertical'
+        ? {
+            gap: 'condensed',
+            direction: 'vertical',
+            alignItems: 'flex-start',
+          }
+        : {
+            gap: gap || {narrow: 'normal', regular: 'spacious'},
+            direction: direction || {narrow: 'vertical', regular: 'horizontal'},
+          }
 
     return (
       <Stack
-        padding="none"
-        direction={direction || {narrow: 'vertical', regular: 'horizontal'}}
+        padding={padding || 'none'}
         className={clsx(styles['BreakoutBanner-linkGroup'], className)}
         ref={ref}
-        gap={gap || {narrow: 'normal', regular: 'spacious'}}
-        {...(direction === 'vertical' ? ...verticalDirectionDefaultProps : {})}
+        {...defaultProps}
         {...props}
       >
         {linksToRender}

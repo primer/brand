@@ -25,7 +25,7 @@ describe('BreakoutBanner', () => {
   it('renders correctly into the document', () => {
     const expectedClass = 'BreakoutBanner'
     const expectedCustomClass = 'custom-class'
-    const expectedTag = 'section'
+    const expectedTag = 'div'
     const mockTestId = 'test'
 
     const {getByTestId} = render(
@@ -112,5 +112,133 @@ describe('BreakoutBanner', () => {
     const elLeadingVisual = getByTestId('mock-svg')
 
     expect(elLeadingVisual).toBeInTheDocument()
+  })
+
+  it('provides a way to pass a background image', () => {
+    const mockImage = 'image.jpg'
+
+    const {getByTestId} = render(
+      <BreakoutBanner backgroundImageSrc={mockImage} data-testid="root">
+        <BreakoutBanner.Heading>This is your heading</BreakoutBanner.Heading>
+      </BreakoutBanner>,
+    )
+    const rootElement = getByTestId('root')
+
+    const styles = rootElement.getAttribute('style') as string
+    const styleObject = styles
+      .split(';')
+      .map(style => style.split(':'))
+
+      .reduce((acc, [key, value]) => {
+        if (key && value) {
+          acc[key.trim()] = value.trim()
+        }
+
+        return acc
+      }, {})
+
+    expect(styleObject['--brand-BreakoutBanner-background-image-src']).toBe(`url(${mockImage})`)
+  })
+
+  it('provides a way to pass responsive background images', () => {
+    const mockImages = {
+      narrow: 'narrow-image.jpg',
+      regular: 'regular-image.jpg',
+      wide: 'wide-image.jpg',
+    }
+
+    const {getByTestId} = render(
+      <BreakoutBanner backgroundImageSrc={mockImages} data-testid="root">
+        <BreakoutBanner.Heading>This is your heading</BreakoutBanner.Heading>
+      </BreakoutBanner>,
+    )
+    const rootElement = getByTestId('root')
+
+    const styles = rootElement.getAttribute('style') as string
+    const styleObject = styles
+      .split(';')
+      .map(style => style.split(':'))
+
+      .reduce((acc, [key, value]) => {
+        if (key && value) {
+          acc[key.trim()] = value.trim()
+        }
+
+        return acc
+      }, {})
+
+    for (const [key, value] of Object.entries(mockImages)) {
+      expect(styleObject[`--brand-BreakoutBanner-${key}-background-image-src`]).toBe(`url(${value})`)
+    }
+  })
+
+  it('provides a way to pass an optional background color', () => {
+    const mockColor = 'red'
+
+    const {getByTestId} = render(
+      <BreakoutBanner backgroundColor={mockColor} data-testid="root">
+        <BreakoutBanner.Heading>This is your heading</BreakoutBanner.Heading>
+      </BreakoutBanner>,
+    )
+    const rootElement = getByTestId('root')
+
+    const styles = rootElement.getAttribute('style') as string
+    const styleObject = styles
+      .split(';')
+      .map(style => style.split(':'))
+
+      .reduce((acc, [key, value]) => {
+        if (key && value) {
+          acc[key.trim()] = value.trim()
+        }
+
+        return acc
+      }, {})
+
+    expect(styleObject['--brand-BreakoutBanner-background-color']).toBe(mockColor)
+  })
+
+  it('provides a way to pass responsive background colors', () => {
+    const mockColors = {
+      narrow: 'red',
+      regular: 'yellow',
+      wide: 'blue',
+    }
+
+    const {getByTestId} = render(
+      <BreakoutBanner backgroundColor={mockColors} data-testid="root">
+        <BreakoutBanner.Heading>This is your heading</BreakoutBanner.Heading>
+      </BreakoutBanner>,
+    )
+    const rootElement = getByTestId('root')
+
+    const styles = rootElement.getAttribute('style') as string
+    const styleObject = styles
+      .split(';')
+      .map(style => style.split(':'))
+
+      .reduce((acc, [key, value]) => {
+        if (key && value) {
+          acc[key.trim()] = value.trim()
+        }
+
+        return acc
+      }, {})
+
+    for (const [key, value] of Object.entries(mockColors)) {
+      expect(styleObject[`--brand-BreakoutBanner-${key}-background-color`]).toBe(value)
+    }
+  })
+
+  it('provides a way to render a banner with centred text', () => {
+    const {getByTestId} = render(
+      <BreakoutBanner align="center" data-testid="root">
+        <BreakoutBanner.Heading>This is your heading</BreakoutBanner.Heading>
+      </BreakoutBanner>,
+    )
+    const rootElement = getByTestId('root')
+    const innerChild = rootElement.querySelector('.BreakoutBanner-content')
+
+    expect(innerChild).toHaveClass('BreakoutBanner-content--center')
   })
 })
