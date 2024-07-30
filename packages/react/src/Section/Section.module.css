@@ -57,7 +57,7 @@
 
 .Section--paddingBlockEnd-none,
 .Section-narrow--paddingBlockEnd-none {
-  padding-block-end: 0;
+  --padding-block-end: 0px;
 }
 
 .Section--paddingBlockEnd-condensed,
@@ -99,7 +99,7 @@
   }
 
   .Section-regular--paddingBlockEnd-none {
-    padding-block-end: 0;
+    --padding-block-end: 0px;
   }
 
   .Section-regular--paddingBlockEnd-condensed {
@@ -140,7 +140,7 @@
   }
 
   .Section-wide--paddingBlockEnd-none {
-    padding-block-end: 0;
+    --padding-block-end: 0px;
   }
 
   .Section-wide--paddingBlockEnd-condensed {
