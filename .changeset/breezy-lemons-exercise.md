@@ -18,4 +18,4 @@ Example:
 </Section>
 ```
 
-🔗 [See the documentation for more examples](https://primer.style/brand//components/Section)
+🔗 [See the documentation for more examples](https://primer.style/brand/components/Section)
