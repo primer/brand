@@ -1,0 +1,134 @@
+---
+title: Breakout banner
+status: Experimental
+source: https://github.com/primer/brand/blob/main/packages/react/src/BreakoutBanner/BreakoutBanner.tsx
+storybook: '/brand/storybook/?path=/story/components-breakoutbanner--playground'
+description: Use a breakout banner to highlight important actions or information, making it stand out from the surrounding content.
+---
+
+import {Label} from '@primer/react'
+import ComponentLayout from '../../../src/layouts/component-layout'
+export default ComponentLayout
+
+```js
+import {BreakoutBanner, Link} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<BreakoutBanner>
+  <BreakoutBanner.Heading>
+    Where the most ambitious teams build great things
+  </BreakoutBanner.Heading>
+  <BreakoutBanner.LinkGroup>
+    <Link href="#">Primary Action</Link>
+    <Link href="#">Secondary Action</Link>
+  </BreakoutBanner.LinkGroup>
+</BreakoutBanner>
+```
+
+### Alignment
+
+The content alignment can be changed using the `align` prop on the root `BreakoutBanner`. This can be configured to either `start` or `center`.
+
+```jsx live
+<BreakoutBanner align="center">
+  <BreakoutBanner.Heading>
+    Where the most ambitious teams build great things
+  </BreakoutBanner.Heading>
+  <BreakoutBanner.Description>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
+    ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
+    elementum.
+  </BreakoutBanner.Description>
+  <BreakoutBanner.LinkGroup>
+    <Link href="#">Primary Action</Link>
+    <Link href="#">Secondary Action</Link>
+  </BreakoutBanner.LinkGroup>
+</BreakoutBanner>
+```
+
+### Optional background image
+
+```jsx live
+<BreakoutBanner backgroundImage="url('https://via.placeholder.com/300x450/d3d9df/d3d9df.png')">
+  <BreakoutBanner.Heading>
+    Where the most ambitious teams build great things
+  </BreakoutBanner.Heading>
+  <BreakoutBanner.LinkGroup>
+    <Link href="#">Primary Action</Link>
+    <Link href="#">Secondary Action</Link>
+  </BreakoutBanner.LinkGroup>
+</BreakoutBanner>
+```
+
+### Optional background color
+
+```jsx live
+<BreakoutBanner backgroundColor="lightblue">
+  <BreakoutBanner.Heading>
+    Where the most ambitious teams build great things
+  </BreakoutBanner.Heading>
+  <BreakoutBanner.Description>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
+    ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
+    elementum.
+  </BreakoutBanner.Description>
+  <BreakoutBanner.LinkGroup>
+    <Link href="#">Primary Action</Link>
+    <Link href="#">Secondary Action</Link>
+  </BreakoutBanner.LinkGroup>
+</BreakoutBanner>
+```
+
+## Component props
+
+### BreakoutBanner <Label>Required</Label>
+
+The first row in a table is automatically styled as a table header row.
+
+| name            | type                       | default     | required | description                                                  |
+| --------------- | -------------------------- | ----------- | -------- | ------------------------------------------------------------ |
+| `children`      | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | Content to include within the banner component               |
+| `align`         | `start`, `center`          | `start`     | `true`   | The layout applied to the content wihin the banner component |
+| `hasBorder`     | `boolean`                  | `false`     | `false`  | A flag used to provide a border to the banner component      |
+| `hasShadow`     | `boolean`                  | `true`      | `false`  | A flag used to provide a shadow to the banner component      |
+| `hasBackground` | `boolean`                  | `true`      | `false`  | A flag used to add a background to the banner component      |
+| `className`     | `string`                   |             | `false`  | BreakoutBanner custom class                                  |
+
+### BreakoutBanner.Heading
+
+Optional node that can be used to provide a heading for the banner.
+
+| name        | type                               | default   | required | description                                                           |
+| ----------- | ---------------------------------- | --------- | -------- | --------------------------------------------------------------------- |
+| `className` | `string`                           |           | `false`  | Custom class name for the ComparisonTable.Heading component           |
+| `children`  | `ReactNode`, `ReactNode[]`         | undefined | `true`   | Content to be displayed inside the ComparisonTable.Heading component. |
+| `as`        | `h1`, `h2`, `h3`, `h4`, `h5`, `h6` | `h3`      | `false`  | True symantic element to be use as the text wrapper. cell.            |
+| `size`      | `1`, `2`, `3`, `4`, `5`, `6`       | `2`       | `false`  | Content size to be displayed inside the column                        |
+
+### BreakoutBanner.Description
+
+Optional node that can be used to provide a description for the banner.
+
+| name       | type                       | default   | required | description                                         |
+| ---------- | -------------------------- | --------- | -------- | --------------------------------------------------- |
+| `children` | `ReactNode`, `ReactNode[]` | undefined | `true`   | Content to be displayed inside the banner component |
+
+`id`, `className` and `ref` are forwarded by default to all children.
+
+### BreakoutBanner.LinkGroup
+
+Optional node that can be used to provide a description for the banner.
+
+| name         | type                                   | default   | required | description                                             |
+| ------------ | -------------------------------------- | --------- | -------- | ------------------------------------------------------- |
+| `className`  | `string`                               | undefined | `false`  | Sets a custom class on the root element                 |
+| `children`   | `<Link href="#">`, `<Link href="#">[]` | undefined | `true`   | The buttons to be displayed within the group            |
+| `buttonSize` | `medium`, `large`                      | `large`   | `false`  | The size of the buttons in the group                    |
+| `buttonsAs`  | `ReactElement`                         |           | `false`  | The semantic element that the button will be created as |
+
+`id`, `className` and `ref` are forwarded by default to all children.
