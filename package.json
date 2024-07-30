@@ -28,7 +28,6 @@
   "scripts": {
     "build": "npm run clean --workspaces --if-present && npm run build:lib && npm run build:docs && npm run build:storybook",
     "build:docs": "cd apps/docs && npm run build",
-    "build:docs:preview": "cd apps/docs && npm run build:preview",
     "build:lib": "npm run build --workspace=packages/design-tokens --workspace=packages/react",
     "build:storybook": "npm run build --workspace=apps/storybook",
     "check": "npm run check --workspaces --if-present",
