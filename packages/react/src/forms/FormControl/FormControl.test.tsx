@@ -1,9 +1,10 @@
 import React, {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
+import {axe, toHaveNoViolations} from 'jest-axe'
 
 import {FormControl} from './FormControl'
 import {TextInput} from '../TextInput'
-import {axe, toHaveNoViolations} from 'jest-axe'
+import {Select} from '../Select'
 
 expect.extend(toHaveNoViolations)
 
@@ -86,6 +87,42 @@ describe('FormControl', () => {
     expect(inputNameValue).toEqual(mockFormControlId)
 
     expect(rootEl.getAttribute('id')).toBe(`FormControl--${mockFormControlId}`)
+  })
+
+  it('can forward a name prop to text inputs', async () => {
+    const mockName = 'input-name'
+    const {getByRole} = render(
+      <FormControl>
+        <FormControl.Label>{mockFormControlLabel}</FormControl.Label>
+        <TextInput name={mockName} />
+      </FormControl>,
+    )
+
+    const inputEl = getByRole('textbox')
+
+    const inputNameValue = inputEl.getAttribute('name')
+
+    expect(inputNameValue).toEqual(mockName)
+  })
+
+  it('can forward a name prop to select inputs', async () => {
+    const mockName = 'select-name'
+    const {getByRole} = render(
+      <FormControl>
+        <FormControl.Label>{mockFormControlLabel}</FormControl.Label>
+        <Select name={mockName}>
+          <Select.Option value="">Select a handle</Select.Option>
+          <Select.Option value="mona">Monalisa</Select.Option>
+          <Select.Option value="hubot">Hubot</Select.Option>
+        </Select>
+      </FormControl>,
+    )
+
+    const selectEl = getByRole('combobox')
+
+    const selectNameValue = selectEl.getAttribute('name')
+
+    expect(selectNameValue).toEqual(mockName)
   })
 
   it('applies error state to the inputs and form validation', async () => {

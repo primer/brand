@@ -98,7 +98,7 @@ const Root = ({
             return React.cloneElement(child as React.ReactElement, {
               className: clsx(child.props.className),
               id: inputId,
-              name: inputId,
+              name: child.props.name || inputId,
               required: child.props.required || required,
               validationStatus: child.props.validationStatus || validationStatus,
               fullWidth,
