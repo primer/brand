@@ -3,13 +3,13 @@
     "Section": {
       "padding": {
         "condensed": {
-          "value": "var(--base-size-32)",
+          "value": "var(--base-size-16)",
           "responsive": {
             "768px": {
-              "value": "var(--base-size-48)"
+              "value": "var(--base-size-32)"
             },
             "1024px": {
-              "value": "var(--base-size-64)"
+              "value": "var(--base-size-48)"
             }
           }
         },
