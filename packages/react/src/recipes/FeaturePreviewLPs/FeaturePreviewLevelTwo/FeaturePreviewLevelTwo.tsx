@@ -193,7 +193,6 @@ export function FeaturePreviewLevelTwo({
           backgroundColor={args.heroBg ? 'subtle' : 'default'}
           paddingBlockStart="none"
           paddingBlockEnd={args.heroBg ? 'condensed' : 'none'}
-          // marginBlockEnd={args.heroBg ? 96 : 'none'}
         >
           <Grid enableOverlay={enableGridOverlay}>
             <Grid.Column>
