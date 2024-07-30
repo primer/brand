@@ -62,6 +62,9 @@ type SectionProps = {
    * Adds rounded corners to the top of the section.
    */
   rounded?: boolean
+  /**
+   * Forward inline styles
+   */
   style?: React.CSSProperties
   /**
    * Optional attirbute for testing
