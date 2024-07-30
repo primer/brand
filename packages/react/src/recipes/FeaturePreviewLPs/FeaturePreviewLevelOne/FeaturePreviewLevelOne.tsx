@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import {Box, ColorModesEnum, Grid, Hero, MinimalFooter, SubdomainNavBar, ThemeProvider} from '../../..'
+import {Box, ColorModesEnum, Grid, Hero, MinimalFooter, Section, SubdomainNavBar, ThemeProvider} from '../../..'
 
 import darkBG from '../fixtures/images/other/dark-bg.png'
 import lightBG from '../fixtures/images/other/light-bg.png'
@@ -52,7 +52,14 @@ export function FeaturePreviewLevelOne({accentColor, colorMode, ...args}: Featur
           {enableGridOverlay ? 'Disable' : 'Enable'} grid
         </SubdomainNavBar.PrimaryAction>
       </SubdomainNavBar>
-      <div className={styles['FeaturePreview']} style={{backgroundImage: `url(${bgMap[colorMode as string]})`}}>
+      <Section
+        as="div"
+        className={styles['FeaturePreview']}
+        backgroundImagePosition="top center"
+        backgroundImageSrc={bgMap[colorMode as string]}
+        paddingBlockStart="none"
+        paddingBlockEnd="none"
+      >
         <Grid enableOverlay={enableGridOverlay}>
           <Grid.Column>
             <Hero align="center">
@@ -62,33 +69,32 @@ export function FeaturePreviewLevelOne({accentColor, colorMode, ...args}: Featur
             </Hero>
           </Grid.Column>
         </Grid>
-        <Box>
+
+        <Section paddingBlockStart="none" paddingBlockEnd="none">
           <Grid enableOverlay={enableGridOverlay}>
             <Grid.Column>
-              <section>
-                <Grid enableOverlay={enableGridOverlay}>
-                  <Grid.Column span={{small: 12, xlarge: 8}} start={{xlarge: 3}}>
-                    <Box
-                      backgroundColor="subtle"
-                      borderRadius="large"
-                      borderColor={colorMode === ColorModesEnum.LIGHT ? 'subtle' : 'default'}
-                      borderWidth="thin"
-                      borderStyle="solid"
-                      paddingBlockStart={{narrow: 24, regular: 80}}
-                      paddingBlockEnd={{narrow: 24, regular: 80}}
-                      paddingInlineStart={{narrow: 24, regular: 128}}
-                      paddingInlineEnd={{narrow: 24, regular: 128}}
-                      marginBlockEnd={{narrow: 64, regular: 96}}
-                    >
-                      <FormExample type={args.formType} />
-                    </Box>
-                  </Grid.Column>
-                </Grid>
-              </section>
+              <Grid enableOverlay={enableGridOverlay}>
+                <Grid.Column span={{small: 12, xlarge: 8}} start={{xlarge: 3}}>
+                  <Box
+                    backgroundColor="subtle"
+                    borderRadius="large"
+                    borderColor={colorMode === ColorModesEnum.LIGHT ? 'subtle' : 'default'}
+                    borderWidth="thin"
+                    borderStyle="solid"
+                    paddingBlockStart={{narrow: 24, regular: 80}}
+                    paddingBlockEnd={{narrow: 24, regular: 80}}
+                    paddingInlineStart={{narrow: 24, regular: 128}}
+                    paddingInlineEnd={{narrow: 24, regular: 128}}
+                    marginBlockEnd={{narrow: 64, regular: 96}}
+                  >
+                    <FormExample type={args.formType} />
+                  </Box>
+                </Grid.Column>
+              </Grid>
             </Grid.Column>
           </Grid>
-        </Box>
-      </div>
+        </Section>
+      </Section>
       <MinimalFooter>
         <MinimalFooter.Link href="https://github.com/organizations/enterprise_plan">
           Try GitHub for free

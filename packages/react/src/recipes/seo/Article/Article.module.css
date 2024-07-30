@@ -97,9 +97,6 @@
 }
 
 .articleContents {
-  border-radius: var(--brand-borderRadius-xlarge);
-  margin-top: calc(-1 * var(--brand-borderRadius-xlarge));
-  background-color: var(--brand-color-canvas-default);
   position: relative;
   z-index: 90;
 }
