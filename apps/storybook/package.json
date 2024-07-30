@@ -21,8 +21,7 @@
   "license": "MIT",
   "author": "GitHub, Inc.",
   "scripts": {
-    "build:preview": "npm run clean && scripts/build-storybook preview",
-    "build:prod": "npm run clean && scripts/build-storybook",
+    "build": "npm run clean && scripts/build-storybook",
     "clean": "rm -rf out",
     "start": "storybook dev -p 6006",
     "start:axe": "storybook dev -p 6006 --no-version-updates"
@@ -31,7 +30,6 @@
     "@babel/preset-env": "^7.22.0",
     "@babel/preset-react": "^7.22.0",
     "@babel/preset-typescript": "^7.21.5",
-    "@chromatic-com/storybook": "^1.6.1",
     "@github/axe-github": "^0.5.0",
     "@storybook/addon-a11y": "^8.2.6",
     "@storybook/addon-actions": "^8.2.6",
