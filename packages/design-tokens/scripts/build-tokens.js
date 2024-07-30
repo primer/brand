@@ -167,6 +167,7 @@ const darkJson = require('../src/tokens/base/colors/dark')
     `tokens/functional/components/comparison-table/comparison-table.json`,
     `tokens/functional/components/eyebrow-banner/eyebrow-banner.json`,
     `tokens/functional/components/pricing-options/pricing-options.json`,
+    `tokens/functional/components/section/section.json`,
   ]
 
   for (const path of filesForResponsiveTokens) {

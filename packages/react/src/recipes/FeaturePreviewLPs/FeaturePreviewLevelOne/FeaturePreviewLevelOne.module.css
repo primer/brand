@@ -5,9 +5,6 @@
 
 .FeaturePreview {
   --brand-Hero-regular-padding: var(--brand-Hero-narrow-padding);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: top center;
 }
 
 [data-color-mode='dark'] .FeaturePreview__trailingSection {

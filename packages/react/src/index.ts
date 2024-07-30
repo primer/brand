@@ -43,6 +43,7 @@ export * from './IDE'
 export * from './Breadcrumbs'
 export * from './Pagination'
 export * from './Tooltip'
+export * from './Section'
 export * from './Statistic'
 
 // hooks

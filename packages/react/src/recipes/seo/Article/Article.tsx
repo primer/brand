@@ -16,6 +16,7 @@ import {
   Link,
   MinimalFooter,
   Prose,
+  Section,
   SectionIntro,
   Stack,
   SubdomainNavBar,
@@ -481,7 +482,14 @@ export function Article({
               </header>
             </ThemeProvider>
 
-            <div className={styles.articleContents}>
+            <Section
+              as="div"
+              backgroundColor="default"
+              paddingBlockStart="none"
+              paddingBlockEnd="none"
+              className={styles.articleContents}
+              rounded
+            >
               <Grid enableOverlay={enableGridOverlay}>
                 <Grid.Column span={12}>
                   <article itemProp="articleBody">
@@ -520,7 +528,7 @@ export function Article({
                       <Grid>
                         <Grid.Column span={12}>
                           <Box marginBlockStart={{narrow: 64, wide: 112}}>
-                            <Stack direction="vertical" gap={128} padding="none">
+                            <Section paddingBlockStart="none">
                               <CTABanner align="center" hasShadow={false} hasBorder>
                                 <CTABanner.Heading>Check it out</CTABanner.Heading>
                                 <CTABanner.Description>
@@ -534,7 +542,7 @@ export function Article({
                                   <Button>Sign up</Button>
                                 </CTABanner.ButtonGroup>
                               </CTABanner>
-                              <section>
+                              <Section>
                                 <Stack direction="vertical" gap={64} padding="none">
                                   <SectionIntro align="center">
                                     <SectionIntro.Heading as="h2">More AI resources</SectionIntro.Heading>
@@ -594,8 +602,8 @@ export function Article({
                                     </Grid.Column>
                                   </Grid>
                                 </Stack>
-                              </section>
-                              <section>
+                              </Section>
+                              <Section paddingBlockEnd="none">
                                 <FAQGroup>
                                   <FAQGroup.Heading>
                                     Frequently asked <br /> questions
@@ -664,8 +672,8 @@ export function Article({
                                     </FAQ.Item>
                                   </FAQ>
                                 </FAQGroup>
-                              </section>
-                            </Stack>
+                              </Section>
+                            </Section>
                           </Box>
                         </Grid.Column>
                       </Grid>
@@ -673,7 +681,7 @@ export function Article({
                   </article>
                 </Grid.Column>
               </Grid>
-            </div>
+            </Section>
           </AnimationProvider>
         </section>
       </main>

@@ -17,6 +17,7 @@ import {
   Pillar,
   River,
   RiverBreakout,
+  Section,
   SectionIntro,
   Stack,
   SubNav,
@@ -188,12 +189,10 @@ export function FeaturePreviewLevelTwo({
         </SubNav>
       )}
       <div className={styles.FeaturePreview}>
-        <Box
+        <Section
           backgroundColor={args.heroBg ? 'subtle' : 'default'}
-          className={args.heroBg ? styles['FeaturePreview__heroBg'] : ''}
-          paddingBlockStart={28}
-          paddingBlockEnd={args.heroBg ? 24 : 'none'}
-          marginBlockEnd={args.heroBg ? 96 : 'none'}
+          paddingBlockStart="condensed"
+          paddingBlockEnd={args.heroBg ? 'condensed' : 'none'}
         >
           <Grid enableOverlay={enableGridOverlay}>
             <Grid.Column>
@@ -225,10 +224,11 @@ export function FeaturePreviewLevelTwo({
               </Box>
             </Grid.Column>
           </Grid>
-        </Box>
-        <Grid enableOverlay={enableGridOverlay}>
-          <Grid.Column>
-            <section>
+        </Section>
+
+        <Section paddingBlockStart={args.heroBg ? 'normal' : 'none'} paddingBlockEnd="none">
+          <Grid enableOverlay={enableGridOverlay}>
+            <Grid.Column>
               {args.sectionIntroText && args.sectionIntroVisible && (
                 <Grid enableOverlay={enableGridOverlay}>
                   <Grid.Column
@@ -303,8 +303,13 @@ export function FeaturePreviewLevelTwo({
                   </Grid>
                 </Box>
               )}
-            </section>
-            <Box paddingBlockStart={48} paddingBlockEnd={80}>
+            </Grid.Column>
+          </Grid>
+        </Section>
+
+        <Section paddingBlockStart="condensed">
+          <Grid enableOverlay={enableGridOverlay}>
+            <Grid.Column>
               {args.riverOneVisible && (
                 <>
                   {args.riverOneType === 'breakout' ? (
@@ -365,7 +370,6 @@ export function FeaturePreviewLevelTwo({
                   )}
                 </>
               )}
-
               {args.riverTwoVisible && (
                 <>
                   {args.riverTwoType === 'breakout' ? (
@@ -491,13 +495,14 @@ export function FeaturePreviewLevelTwo({
                   )}
                 </>
               )}
-            </Box>
-          </Grid.Column>
-        </Grid>
-        <Box
+            </Grid.Column>
+          </Grid>
+        </Section>
+
+        <Section
           backgroundColor="subtle"
-          paddingBlockStart={128}
-          paddingBlockEnd={128}
+          paddingBlockStart="spacious"
+          paddingBlockEnd="spacious"
           className={styles['FeaturePreview__trailingSection']}
         >
           <Grid enableOverlay={enableGridOverlay}>
@@ -737,7 +742,7 @@ export function FeaturePreviewLevelTwo({
               )}
             </Grid.Column>
           </Grid>
-        </Box>
+        </Section>
       </div>
       <MinimalFooter>
         <MinimalFooter.Link href="https://github.com/organizations/enterprise_plan">
