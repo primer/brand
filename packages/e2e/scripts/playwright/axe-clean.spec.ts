@@ -4,7 +4,6 @@ import fs from 'fs'
 import path from 'path'
 import {Result} from 'axe-core'
 
-import type {StoryIndex, StoryIndexV3} from '@storybook/types'
 import {chromium, Browser, Page} from 'playwright'
 import {test, expect} from '@playwright/test'
 import {injectAxe, getViolations} from 'axe-playwright'
@@ -13,57 +12,7 @@ import {injectAxe, getViolations} from 'axe-playwright'
 // eslint-disable-next-line import/extensions, import/no-unresolved
 import IndexData from '../../../../apps/storybook/storybook-static/index.json'
 
-export const convertToIndexV3 = (index: StoryIndex): StoryIndexV3 => {
-  const {entries} = index
-  const stories = Object.entries(entries).reduce((acc, [id, entry]) => {
-    const {type, ...rest} = entry
-    acc[id] = {
-      ...rest,
-      kind: rest.title,
-      story: rest.name,
-      parameters: {
-        __id: rest.id,
-        docsOnly: type === 'docs',
-        fileName: rest.importPath,
-      },
-    }
-    return acc
-  }, {} as StoryIndexV3['stories'])
-  return {
-    v: 3,
-    stories,
-  }
-}
-
-const StoriesData = convertToIndexV3(IndexData as StoryIndex)
-
 declare const __dirname: string
-
-type Story = {
-  id: string
-  title: string
-  name: string
-  importPath: string
-  tags: string[]
-  kind: string
-  story: string
-  parameters: {
-    __id: string
-    docsOnly: boolean
-    fileName: string
-  }
-}
-
-type StoriesKey = {
-  [key: string]: Story
-}
-
-type Stories = {
-  v: number
-  stories: StoriesKey
-}
-
-const Stories: Stories = StoriesData
 
 const {describe, beforeAll, afterAll} = test
 
@@ -150,16 +99,15 @@ const testsWithCustomDelay = {
 }
 const defaultDelay = 1000
 
-const storybookRoutes = Object.values(Stories.stories)
+const storybookRoutes = Object.values(IndexData.entries)
   .map(
     story =>
       ({
         id: story.id,
         path: `/story/${story.id}`,
         name: story.title,
-        component: story.parameters.fileName,
-        story: story.story,
-        parameters: story.parameters,
+        component: story.importPath,
+        story: story.name,
       } as const),
   )
   .filter(({id}) => {
