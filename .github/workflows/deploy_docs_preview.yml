@@ -26,7 +26,7 @@ jobs:
         mkdir brand-temp && \
         mv apps/docs/public/* brand-temp && \
         mv brand-temp apps/docs/public/brand && \
-        mv apps/docs/ci-redirect.html apps/docs/public/index.html
+        echo '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Redirecting...</title><script>window.location.href = "/brand";</script></head><body><p>If you are not redirected automatically, follow this <a href="/brand">link to /brand</a>.</p></body></html>' > apps/docs/public/index.html
       output_dir: apps/docs/public
 
   deploy-storybook:
