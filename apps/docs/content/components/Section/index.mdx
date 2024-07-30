@@ -82,16 +82,12 @@ The default `Section` wraps its content in a semantic `<section>` element and pr
     backgroundImageSize="cover"
     backgroundImagePosition="top center"
   >
-    <Grid>
-      <Grid.Column>
-        <SectionIntro align="center">
-          <SectionIntro.Heading size="3">Section</SectionIntro.Heading>
-          <SectionIntro.Description>
-            This section has a custom background image.
-          </SectionIntro.Description>
-        </SectionIntro>
-      </Grid.Column>
-    </Grid>
+    <SectionIntro align="center">
+      <SectionIntro.Heading size="3">Section</SectionIntro.Heading>
+      <SectionIntro.Description>
+        This section has a custom background image.
+      </SectionIntro.Description>
+    </SectionIntro>
   </Section>
 </ThemeProvider>
 ```
@@ -132,17 +128,12 @@ The default `Section` wraps its content in a semantic `<section>` element and pr
     <Section backgroundColor="default"></Section>
   </ThemeProvider>
   <Section backgroundColor="default" rounded>
-    <Grid>
-      <Grid.Column>
-        <SectionIntro align="center">
-          <SectionIntro.Heading size="3">Rounded corners</SectionIntro.Heading>
-          <SectionIntro.Description>
-            This section has rounded top corners that overlap the previous
-            section.
-          </SectionIntro.Description>
-        </SectionIntro>
-      </Grid.Column>
-    </Grid>
+    <SectionIntro align="center">
+      <SectionIntro.Heading size="3">Rounded corners</SectionIntro.Heading>
+        <SectionIntro.Description>
+          This section has rounded top corners that overlap the previous section.
+        </SectionIntro.Description>
+    </SectionIntro>
   </Section>
 ```
 
