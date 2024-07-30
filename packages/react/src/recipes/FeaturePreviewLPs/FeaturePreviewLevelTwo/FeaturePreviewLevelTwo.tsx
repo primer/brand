@@ -191,7 +191,7 @@ export function FeaturePreviewLevelTwo({
       <div className={styles.FeaturePreview}>
         <Section
           backgroundColor={args.heroBg ? 'subtle' : 'default'}
-          paddingBlockStart="none"
+          paddingBlockStart="condensed"
           paddingBlockEnd={args.heroBg ? 'condensed' : 'none'}
         >
           <Grid enableOverlay={enableGridOverlay}>
