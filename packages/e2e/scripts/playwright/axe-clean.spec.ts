@@ -4,13 +4,38 @@ import fs from 'fs'
 import path from 'path'
 import {Result} from 'axe-core'
 
+import type {StoryIndex, StoryIndexV3} from '@storybook/types'
 import {chromium, Browser, Page} from 'playwright'
 import {test, expect} from '@playwright/test'
 import {injectAxe, getViolations} from 'axe-playwright'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 // eslint-disable-next-line import/extensions, import/no-unresolved
-import StoriesData from '../../../../apps/storybook/storybook-static/stories.json'
+import IndexData from '../../../../apps/storybook/storybook-static/index.json'
+
+export const convertToIndexV3 = (index: StoryIndex): StoryIndexV3 => {
+  const {entries} = index
+  const stories = Object.entries(entries).reduce((acc, [id, entry]) => {
+    const {type, ...rest} = entry
+    acc[id] = {
+      ...rest,
+      kind: rest.title,
+      story: rest.name,
+      parameters: {
+        __id: rest.id,
+        docsOnly: type === 'docs',
+        fileName: rest.importPath,
+      },
+    }
+    return acc
+  }, {} as StoryIndexV3['stories'])
+  return {
+    v: 3,
+    stories,
+  }
+}
+
+const StoriesData = convertToIndexV3(IndexData as StoryIndex)
 
 declare const __dirname: string
 
