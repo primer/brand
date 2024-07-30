@@ -176,13 +176,19 @@ const _LinkGroup = forwardRef(
           return React.cloneElement(child, {
             size: child.props.size || 'medium',
             variant: child.props.variant || 'accent',
-            arrowDirection: index === 0 ? 'end' : 'none',
+            arrowDirection: child.props.arrowDirection || index === 0 ? 'end' : 'none',
             ...child.props,
           } as LinkProps)
         }
       })
       .filter(Boolean)
       .slice(0, 2)
+
+    const verticalDirectionDefaultProps = {
+      gap: 'condensed',
+      direction: 'vertical',
+      alignItems: 'start',
+    }
 
     return (
       <Stack
@@ -191,6 +197,7 @@ const _LinkGroup = forwardRef(
         className={clsx(styles['BreakoutBanner-linkGroup'], className)}
         ref={ref}
         gap={gap || {narrow: 'normal', regular: 'spacious'}}
+        {...(direction === 'vertical' ? ...verticalDirectionDefaultProps : {})}
         {...props}
       >
         {linksToRender}

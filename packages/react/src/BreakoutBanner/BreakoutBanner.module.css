@@ -24,7 +24,7 @@
 
 .BreakoutBanner-container {
   border-radius: var(--brand-borderRadius-xlarge);
-  padding: var(--base-size-40) var(--base-size-40) var(--base-size-128);
+  padding: var(--base-size-40) var(--base-size-24) var(--base-size-128);
   z-index: 1;
   width: 100%;
   box-sizing: border-box;

@@ -41,10 +41,6 @@ export default {
 export const Playground: StoryFn<typeof BreakoutBanner> = args => (
   <BreakoutBanner {...args} leadingVisual={<LogoGithubIcon size="medium" />}>
     <BreakoutBanner.Heading>Where the most ambitious teams build great things</BreakoutBanner.Heading>
-    <BreakoutBanner.Description>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
-      felis nam pulvinar risus elementum.
-    </BreakoutBanner.Description>
     <BreakoutBanner.LinkGroup>
       <Link href="#">Primary action</Link>
       <Link href="#">Secondary action</Link>
