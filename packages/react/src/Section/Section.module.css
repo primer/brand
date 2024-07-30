@@ -33,6 +33,7 @@
   margin-top: calc(-1 * var(--rounded-radius));
 }
 
+/* A progressive enhancment to adjust block-end padding to account for adjacent section rounded corners overlap. */
 .Section:has(+ .Section--rounded) {
   --rounded-padding-overlap-adjustment: var(--rounded-radius);
 }

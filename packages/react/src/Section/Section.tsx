@@ -17,7 +17,7 @@ type ResponsiveMap<T> = {
 }
 
 type AnyString = string & NonNullable<unknown>
-type BackgroundColors = (typeof SectionBackgroundColors)[number] | AnyString
+type BackgroundColors = (typeof SectionBackgroundColors)[number] | AnyString // The AnyString union type is a workaround to provide autocompletion for the SectionBackgroundColors values
 type PaddingVariants = (typeof SectionPaddingVariants)[number]
 type ResponsiveBackgroundColorMap = ResponsiveMap<BackgroundColors>
 type ResponsiveBackgroundImagePositionMap = ResponsiveMap<string | string[]>
@@ -55,11 +55,11 @@ type SectionProps = {
    */
   backgroundImageSize?: string | string[] | ResponsiveBackgroundImageSizeMap
   /**
-   * Makes the content of the section fill the full width of its parent container.
+   * Makes the content of the section span the full width of its parent container.
    */
   fullWidth?: boolean
   /**
-   * Adds rounder corners to the top of the section.
+   * Adds rounded corners to the top of the section.
    */
   rounded?: boolean
   style?: React.CSSProperties
