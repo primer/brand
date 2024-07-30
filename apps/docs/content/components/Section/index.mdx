@@ -50,7 +50,7 @@ The default section wraps its content in a semantic section element and provides
 ### With predefined background color
 
 ```jsx live
-<Section backgroundColor="inset">
+<Section backgroundColor="subtle">
   <SectionIntro align="center">
     <SectionIntro.Heading size="3">Predefined background</SectionIntro.Heading>
     <SectionIntro.Description>
@@ -76,12 +76,12 @@ The default section wraps its content in a semantic section element and provides
 ### With background image
 
 ```jsx live
-<Section
-  backgroundImageSrc="https://github.com/user-attachments/assets/068634a3-926d-49b8-b949-0b1e2a204651"
-  backgroundImageSize="cover"
-  backgroundImagePosition="top center"
->
-  <ThemeProvider colorMode="dark">
+<ThemeProvider colorMode="dark">
+  <Section
+    backgroundImageSrc="https://github.com/user-attachments/assets/068634a3-926d-49b8-b949-0b1e2a204651"
+    backgroundImageSize="cover"
+    backgroundImagePosition="top center"
+  >
     <Grid>
       <Grid.Column>
         <SectionIntro align="center">
@@ -92,8 +92,8 @@ The default section wraps its content in a semantic section element and provides
         </SectionIntro>
       </Grid.Column>
     </Grid>
-  </ThemeProvider>
-</Section>
+  </Section>
+</ThemeProvider>
 ```
 
 ### With multiple background images
@@ -115,9 +115,6 @@ The default section wraps its content in a semantic section element and provides
       <SectionIntro.Heading size="3" size="3">
         Multiple background images
       </SectionIntro.Heading>
-      <SectionIntro.Description>
-        This section uses multiple layered background images.
-      </SectionIntro.Description>
     </SectionIntro>
   </Section>
   <Section backgroundColor="default">
@@ -153,11 +150,11 @@ The default section wraps its content in a semantic section element and provides
 
 ### Section
 
-| name                      | type                                                                                  | default    | required | description                                                                                                                                                   |
-| ------------------------- | ------------------------------------------------------------------------------------- | ---------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `paddingBlockStart`       | <PropTableValues values={[...SectionPaddingVariants]} commaSeparated  />              | `'normal'` | `false`  | Control the padding at the top of the section.                                                                                                                |
-| `paddingBlockEnd`         | <PropTableValues values={[...SectionPaddingVariants]} commaSeparated  />              | `'normal'` | `false`  | Control the padding at the bottom of the section.                                                                                                             |
-| `backgroundColor`         | <PropTableValues values={[...SectionBackgroundColors]} commaSeparated  /> \| `string` |            | `false`  | Add a background color. Use a predefined color, a CSS custom property, or a custom color value.                                                               |
-| `backgroundImageSrc`      | `string` \| `string[]`                                                                |            | `false`  | Add one or more background images.                                                                                                                            |
-| `backgroundImageSize`     | `string` \| `string[]`                                                                | `'cover'`  | `false`  | Control the size of the background image(s). This accepts all CSS `background-size` supported values, including keywords like `contain`.                      |
-| `backgroundImagePosition` | `string` \| `string[]`                                                                | `'50%`     | `false`  | Control the position of the background image(s). This accepts all CSS `background-position` supported values, including keywords like `top` and edge offsets. |
+| name                      | type                                                                                                  | default    | required | description                                                                                                                                                   |
+| ------------------------- | ----------------------------------------------------------------------------------------------------- | ---------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `paddingBlockStart`       | <PropTableValues values={[...SectionPaddingVariants]} commaSeparated  /> `ResponsiveMap`              | `'normal'` | `false`  | Control the padding at the top of the section.                                                                                                                |
+| `paddingBlockEnd`         | <PropTableValues values={[...SectionPaddingVariants]} commaSeparated  /> `ResponsiveMap`              | `'normal'` | `false`  | Control the padding at the bottom of the section.                                                                                                             |
+| `backgroundColor`         | <PropTableValues values={[...SectionBackgroundColors]} commaSeparated  /> \| `string` `ResponsiveMap` |            | `false`  | Add a background color. Use a predefined color, a CSS custom property, or a custom color value.                                                               |
+| `backgroundImageSrc`      | `string` \| `string[]` `ResponsiveMap`                                                                |            | `false`  | Add one or more background images.                                                                                                                            |
+| `backgroundImageSize`     | `string` \| `string[]` `ResponsiveMap`                                                                | `'cover'`  | `false`  | Control the size of the background image(s). This accepts all CSS `background-size` supported values, including keywords like `contain`.                      |
+| `backgroundImagePosition` | `string` \| `string[]` `ResponsiveMap`                                                                | `'50%`     | `false`  | Control the position of the background image(s). This accepts all CSS `background-position` supported values, including keywords like `top` and edge offsets. |
