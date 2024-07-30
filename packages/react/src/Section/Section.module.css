@@ -114,7 +114,7 @@
   }
 }
 
-@media screen and (min-width: 63.25rem) {
+@media screen and (min-width: 80rem) {
   .Section {
     background-color: var(--brand-Section-wide-background-color, var(--brand-Section-background-color));
     background-image: var(--brand-Section-wide-background-image-src, var(--brand-Section-background-image-src));
