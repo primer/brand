@@ -74,7 +74,7 @@
   --padding-block-end: var(--brand-Section-padding-spacious);
 }
 
-@media screen and (min-width: 40rem) {
+@media screen and (min-width: 48rem) {
   .Section {
     background-color: var(--brand-Section-regular-background-color, var(--brand-Section-background-color));
     background-image: var(--brand-Section-regular-background-image-src, var(--brand-Section-background-image-src));
