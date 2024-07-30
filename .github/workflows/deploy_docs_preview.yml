@@ -26,9 +26,7 @@ jobs:
         mkdir brand-temp && \
         mv apps/docs/public/* brand-temp && \
         mv brand-temp apps/docs/public/brand && \
-        mv apps/docs/ci-redirect.html apps/docs/public/index.html && \
-        ls apps/docs/public && \
-        cat apps/docs/public/index.html
+        mv apps/docs/ci-redirect.html apps/docs/public/index.html
       output_dir: apps/docs/public
 
   deploy-storybook:
