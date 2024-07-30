@@ -101,7 +101,7 @@ export function FeaturePreviewLevelZero({accentColor, colorMode, ...args}: Featu
         </Grid>
       </Section>
 
-      <Section backgroundColor="default" rounded>
+      <Section backgroundColor="default" paddingBlockStart={{narrow: 'spacious', wide: 'normal'}} rounded>
         <Grid enableOverlay={enableGridOverlay}>
           <Grid.Column span={{large: 6}} start={{large: 4}}>
             <Stack padding="none">
