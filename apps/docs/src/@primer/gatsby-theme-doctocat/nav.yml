@@ -68,6 +68,8 @@
       url: /components/Prose
     - title: River
       url: /components/River
+    - title: Section
+      url: /components/Section
     - title: Section intro
       url: /components/SectionIntro
     - title: Statistic

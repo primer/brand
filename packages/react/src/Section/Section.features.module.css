@@ -1,0 +1,33 @@
+.paddingItem {
+  border: 1px solid var(--base-color-scale-red-2);
+  background-image: linear-gradient(
+    45deg,
+    var(--base-color-scale-red-0) 12.5%,
+    #ffb5b380 12.5%,
+    #ffb5b380 50%,
+    var(--base-color-scale-red-0) 50%,
+    var(--base-color-scale-red-0) 62.5%,
+    #ffb5b380 62.5%,
+    #ffb5b380 100%
+  ) !important;
+  background-size: 5.66px 5.66px !important;
+  background-repeat: repeat !important;
+  overflow: hidden;
+}
+
+.paddingInnerItem {
+  position: relative;
+  z-index: 1;
+  background-color: var(--base-color-scale-white-0);
+}
+
+.paddingInnerItem::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100vw;
+  height: 100%;
+  width: 200vw;
+  background: #fff;
+  z-index: -1;
+}
