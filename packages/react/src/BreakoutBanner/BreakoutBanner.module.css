@@ -4,7 +4,7 @@
   display: flex;
   max-width: var(--brand-breakpoint-xlarge);
   width: 100%;
-  border-radius: var(--brand-borderRadius-xlarge);
+  border-radius: var(--brand-borderRadius-large);
   background-repeat: no-repeat;
   background-color: var(--brand-BreakoutBanner-narrow-background-color, var(--brand-BreakoutBanner-background-color));
   background-image: var(

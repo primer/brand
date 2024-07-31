@@ -51,7 +51,7 @@ export type BreakoutBannerProps = BaseProps<HTMLDivElement> &
      */
     backgroundImageSize?: string | string[] | ResponsiveBackgroundImageSizeMap
     /**
-     * The leading visual appears before the button content
+     * An optional leading visual that appears before the heading
      */
     leadingVisual?: ReactElement | Icon
   }
@@ -62,7 +62,7 @@ const Root = forwardRef(
       align = 'start',
       backgroundColor = 'subtle',
       backgroundImageSrc,
-      backgroundImagePosition = '50%',
+      backgroundImagePosition = 'center',
       backgroundImageSize = 'cover',
       className,
       children,
@@ -107,6 +107,16 @@ const Root = forwardRef(
       }),
       [backgroundColor, backgroundImageSrc, backgroundImagePosition, backgroundImageSize, createStyles],
     )
+
+    const hasHeading = useMemo(
+      () => React.Children.toArray(children).some(child => React.isValidElement(child) && child.type === _Heading),
+      [children],
+    )
+
+    if (!hasHeading && (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test')) {
+      // eslint-disable-next-line no-console
+      console.warn('The `BreakoutBanner` component expects a `BreakoutBanner.Heading` element to be specified.')
+    }
 
     return (
       <div

@@ -26,6 +26,8 @@
       url: /components/Box
     - title: Breadcrumbs
       url: /components/Breadcrumbs
+    - title: Breakout banner
+      url: /components/BreakoutBanner
     - title: Button
       url: /components/Button
     - title: Button group

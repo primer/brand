@@ -38,7 +38,7 @@ export const CustomBackgroundColors = () => (
         <Link href="#">Primary action</Link>
       </BreakoutBanner.LinkGroup>
     </BreakoutBanner>
-    <BreakoutBanner backgroundColor="lightblue">
+    <BreakoutBanner backgroundColor="var(--base-color-scale-blue-0)">
       <BreakoutBanner.Heading>Custom</BreakoutBanner.Heading>
       <BreakoutBanner.LinkGroup>
         <Link href="#">Primary action</Link>

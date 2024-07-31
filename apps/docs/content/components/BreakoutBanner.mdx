@@ -3,15 +3,16 @@ title: Breakout banner
 status: Experimental
 source: https://github.com/primer/brand/blob/main/packages/react/src/BreakoutBanner/BreakoutBanner.tsx
 storybook: '/brand/storybook/?path=/story/components-breakoutbanner--playground'
-description: Use a breakout banner to highlight important actions or information, making it stand out from the surrounding content.
+description: Use a breakout banner to break up content on longer pages and highlight important information.
 ---
 
+import {Link} from 'gatsby'
+import {PropTableValues} from '../../src/components'
 import {Label} from '@primer/react'
-import ComponentLayout from '../../../src/layouts/component-layout'
-export default ComponentLayout
+import {HeadingTags, HeadingSizes} from '@primer/react-brand'
 
 ```js
-import {BreakoutBanner, Link} from '@primer/react-brand'
+import {BreakoutBanner} from '@primer/react-brand'
 ```
 
 ## Examples
@@ -24,8 +25,53 @@ import {BreakoutBanner, Link} from '@primer/react-brand'
     Where the most ambitious teams build great things
   </BreakoutBanner.Heading>
   <BreakoutBanner.LinkGroup>
-    <Link href="#">Primary Action</Link>
-    <Link href="#">Secondary Action</Link>
+    <Link href="#">Primary action</Link>
+  </BreakoutBanner.LinkGroup>
+</BreakoutBanner>
+```
+
+### Optional description
+
+```jsx live
+<BreakoutBanner>
+  <BreakoutBanner.Heading>
+    Where the most ambitious teams build great things
+  </BreakoutBanner.Heading>
+  <BreakoutBanner.Description>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
+    ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
+    elementum.
+  </BreakoutBanner.Description>
+  <BreakoutBanner.LinkGroup>
+    <Link href="#">Primary action</Link>
+  </BreakoutBanner.LinkGroup>
+</BreakoutBanner>
+```
+
+### Additional action
+
+```jsx live
+<BreakoutBanner>
+  <BreakoutBanner.Heading>
+    Where the most ambitious teams build great things
+  </BreakoutBanner.Heading>
+  <BreakoutBanner.LinkGroup>
+    <Link href="#">Primary action</Link>
+    <Link href="#">Secondary action</Link>
+  </BreakoutBanner.LinkGroup>
+</BreakoutBanner>
+```
+
+### Vertically stacked actions
+
+```jsx live
+<BreakoutBanner>
+  <BreakoutBanner.Heading>
+    Where the most ambitious teams build great things
+  </BreakoutBanner.Heading>
+  <BreakoutBanner.LinkGroup direction="vertical">
+    <Link href="#">Primary action</Link>
+    <Link href="#">Secondary action</Link>
   </BreakoutBanner.LinkGroup>
 </BreakoutBanner>
 ```
@@ -45,8 +91,21 @@ The content alignment can be changed using the `align` prop on the root `Breakou
     elementum.
   </BreakoutBanner.Description>
   <BreakoutBanner.LinkGroup>
-    <Link href="#">Primary Action</Link>
-    <Link href="#">Secondary Action</Link>
+    <Link href="#">Primary action</Link>
+    <Link href="#">Secondary action</Link>
+  </BreakoutBanner.LinkGroup>
+</BreakoutBanner>
+```
+
+### Leading visual
+
+```jsx live
+<BreakoutBanner leadingVisual={<LogoGithubIcon size="medium" />}>
+  <BreakoutBanner.Heading>
+    Where the most ambitious teams build great things
+  </BreakoutBanner.Heading>
+  <BreakoutBanner.LinkGroup>
+    <Link href="#">Primary action</Link>
   </BreakoutBanner.LinkGroup>
 </BreakoutBanner>
 ```
@@ -54,21 +113,30 @@ The content alignment can be changed using the `align` prop on the root `Breakou
 ### Optional background image
 
 ```jsx live
-<BreakoutBanner backgroundImage="url('https://via.placeholder.com/300x450/d3d9df/d3d9df.png')">
-  <BreakoutBanner.Heading>
-    Where the most ambitious teams build great things
-  </BreakoutBanner.Heading>
-  <BreakoutBanner.LinkGroup>
-    <Link href="#">Primary Action</Link>
-    <Link href="#">Secondary Action</Link>
-  </BreakoutBanner.LinkGroup>
-</BreakoutBanner>
+<ThemeProvider colorMode="dark">
+  <BreakoutBanner
+    backgroundImageSrc={{
+      narrow:
+        'https://github.com/user-attachments/assets/a28110fd-d019-41a4-8f80-b49ae8895708',
+      regular:
+        'https://github.com/user-attachments/assets/a28110fd-d019-41a4-8f80-b49ae8895708',
+      wide: 'https://github.com/user-attachments/assets/a28110fd-d019-41a4-8f80-b49ae8895708',
+    }}
+  >
+    <BreakoutBanner.Heading>
+      Where the most ambitious teams build great things
+    </BreakoutBanner.Heading>
+    <BreakoutBanner.LinkGroup>
+      <Link href="#">Primary action</Link>
+    </BreakoutBanner.LinkGroup>
+  </BreakoutBanner>
+</ThemeProvider>
 ```
 
 ### Optional background color
 
 ```jsx live
-<BreakoutBanner backgroundColor="lightblue">
+<BreakoutBanner backgroundColor="var(--base-color-scale-blue-0)">
   <BreakoutBanner.Heading>
     Where the most ambitious teams build great things
   </BreakoutBanner.Heading>
@@ -78,8 +146,8 @@ The content alignment can be changed using the `align` prop on the root `Breakou
     elementum.
   </BreakoutBanner.Description>
   <BreakoutBanner.LinkGroup>
-    <Link href="#">Primary Action</Link>
-    <Link href="#">Secondary Action</Link>
+    <Link href="#">Primary action</Link>
+    <Link href="#">Secondary action</Link>
   </BreakoutBanner.LinkGroup>
 </BreakoutBanner>
 ```
@@ -88,47 +156,42 @@ The content alignment can be changed using the `align` prop on the root `Breakou
 
 ### BreakoutBanner <Label>Required</Label>
 
-The first row in a table is automatically styled as a table header row.
+| name                      | type                                                                                                       | default     | required | description                                                      |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- | ----------- | -------- | ---------------------------------------------------------------- |
+| `children`                | `ReactNode`, `ReactNode[]`                                                                                 | `undefined` | `true`   | Content to include within the banner component                   |
+| `align`                   | <PropTableValues values={[`start`, `center`]} addLineBreaks commaSeparated />                              | `'start'`   | `true`   | The horizontal positioning of content wihin the banner component |
+| `backgroundColor`         | <PropTableValues values={['default', 'subtle', 'string', `ResponsiveMap`]} addLineBreaks commaSeparated /> | `'subtle'`  | `false`  | Optional, custom background color                                |
+| `backgroundImageSrc`      | <PropTableValues values={['string' , `ResponsiveMap`]} addLineBreaks commaSeparated />                     | `undefined` | `false`  | Optional, custom background image                                |
+| `backgroundImagePosition` | <PropTableValues values={['string' , `ResponsiveMap`]} addLineBreaks commaSeparated/>                      | `'center'`  | `false`  | Optional, custom background position                             |
+| `backgroundImageSize`     | <PropTableValues values={['string' , `ResponsiveMap`]} addLineBreaks commaSeparated />                     | `'cover'`   | `false`  | Optional, custom background position size                        |
+| `leadingVisual`           | `ReactElement`, `Icon`                                                                                     | `undefined` | `false`  | An optional leading visual that appears before the heading       |
 
-| name            | type                       | default     | required | description                                                  |
-| --------------- | -------------------------- | ----------- | -------- | ------------------------------------------------------------ |
-| `children`      | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | Content to include within the banner component               |
-| `align`         | `start`, `center`          | `start`     | `true`   | The layout applied to the content wihin the banner component |
-| `hasBorder`     | `boolean`                  | `false`     | `false`  | A flag used to provide a border to the banner component      |
-| `hasShadow`     | `boolean`                  | `true`      | `false`  | A flag used to provide a shadow to the banner component      |
-| `hasBackground` | `boolean`                  | `true`      | `false`  | A flag used to add a background to the banner component      |
-| `className`     | `string`                   |             | `false`  | BreakoutBanner custom class                                  |
+### BreakoutBanner.Heading <Label>Required</Label>
 
-### BreakoutBanner.Heading
-
-Optional node that can be used to provide a heading for the banner.
-
-| name        | type                               | default   | required | description                                                           |
-| ----------- | ---------------------------------- | --------- | -------- | --------------------------------------------------------------------- |
-| `className` | `string`                           |           | `false`  | Custom class name for the ComparisonTable.Heading component           |
-| `children`  | `ReactNode`, `ReactNode[]`         | undefined | `true`   | Content to be displayed inside the ComparisonTable.Heading component. |
-| `as`        | `h1`, `h2`, `h3`, `h4`, `h5`, `h6` | `h3`      | `false`  | True symantic element to be use as the text wrapper. cell.            |
-| `size`      | `1`, `2`, `3`, `4`, `5`, `6`       | `2`       | `false`  | Content size to be displayed inside the column                        |
+| name       | type                                                    | default     | required | description                                                           |
+| ---------- | ------------------------------------------------------- | ----------- | -------- | --------------------------------------------------------------------- |
+| `children` | `ReactNode`, `ReactNode[]`                              | `undefined` | `true`   | Content to be displayed inside the `BreakoutBanner.Heading` component |
+| `as`       | <PropTableValues values={HeadingTags} addLineBreaks />  | `h3`        | `false`  | Heading level                                                         |
+| `size`     | <PropTableValues values={HeadingSizes} addLineBreaks /> | `4`         | `false`  | Visual heading size, irrespective of level                            |
 
 ### BreakoutBanner.Description
 
-Optional node that can be used to provide a description for the banner.
+Optional child that can be used to provide additional information.
 
-| name       | type                       | default   | required | description                                         |
-| ---------- | -------------------------- | --------- | -------- | --------------------------------------------------- |
-| `children` | `ReactNode`, `ReactNode[]` | undefined | `true`   | Content to be displayed inside the banner component |
-
-`id`, `className` and `ref` are forwarded by default to all children.
+| name       | type                       | default     | required | description                                         |
+| ---------- | -------------------------- | ----------- | -------- | --------------------------------------------------- |
+| `children` | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | Content to be displayed inside the banner component |
 
 ### BreakoutBanner.LinkGroup
 
-Optional node that can be used to provide a description for the banner.
+| name        | type                                                                                                  | default        | required | description                                  |
+| ----------- | ----------------------------------------------------------------------------------------------------- | -------------- | -------- | -------------------------------------------- |
+| `children`  | `Link`                                                                                                | undefined      | `true`   | The links to be displayed within the group   |
+| `direction` | <PropTableValues values={['horizontal', 'vertical', `ResponsiveMap`]} addLineBreaks commaSeparated /> | `'horizontal'` | `false`  | Positioning of the links across x and y axis |
 
-| name         | type                                   | default   | required | description                                             |
-| ------------ | -------------------------------------- | --------- | -------- | ------------------------------------------------------- |
-| `className`  | `string`                               | undefined | `false`  | Sets a custom class on the root element                 |
-| `children`   | `<Link href="#">`, `<Link href="#">[]` | undefined | `true`   | The buttons to be displayed within the group            |
-| `buttonSize` | `medium`, `large`                      | `large`   | `false`  | The size of the buttons in the group                    |
-| `buttonsAs`  | `ReactElement`                         |           | `false`  | The semantic element that the button will be created as |
+All components forward `id`, `className` and `ref` by default
 
-`id`, `className` and `ref` are forwarded by default to all children.
+## Related components
+
+- <Link to="/components/CTABanner">CTABanner</Link>
+- <Link to="/components/Bento">Bento</Link>
