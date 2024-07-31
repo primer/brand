@@ -7,3 +7,5 @@ declare module '*.png'
 declare module '*.webp'
 declare module '*.mp4'
 declare module '*.svg'
+
+type AnyString = string & NonNullable<unknown>

@@ -22,7 +22,7 @@ type ResponsiveMap<T> = {
 export const BreakoutBannerBackgroundColors = ['default', 'subtle'] as const
 
 type ResponsiveBackgroundImageSrcMap = ResponsiveMap<string | string[]>
-type BackgroundColors = (typeof BreakoutBannerBackgroundColors)[number] | string
+type BackgroundColors = (typeof BreakoutBannerBackgroundColors)[number] | AnyString
 type ResponsiveBackgroundColorMap = ResponsiveMap<BackgroundColors>
 type ResponsiveBackgroundImagePositionMap = ResponsiveMap<string | string[]>
 type ResponsiveBackgroundImageSizeMap = ResponsiveMap<string | string[]>
@@ -41,15 +41,15 @@ export type BreakoutBannerProps = BaseProps<HTMLDivElement> &
     /**
      * Optional, custom background image
      */
-    backgroundImageSrc?: string | string[] | ResponsiveBackgroundImageSrcMap
+    backgroundImageSrc?: string | ResponsiveBackgroundImageSrcMap
     /**
      * Optional, custom background position
      */
-    backgroundImagePosition?: string | string[] | ResponsiveBackgroundImagePositionMap
+    backgroundImagePosition?: string | ResponsiveBackgroundImagePositionMap
     /**
      * Optional, custom background position size
      */
-    backgroundImageSize?: string | string[] | ResponsiveBackgroundImageSizeMap
+    backgroundImageSize?: string | ResponsiveBackgroundImageSizeMap
     /**
      * An optional leading visual that appears before the heading
      */
@@ -220,4 +220,8 @@ const _LinkGroup = forwardRef(
   },
 )
 
+/**
+ * Breakout banner component
+ * {@link https://primer.style/brand/components/BreakoutBanner/ See usage examples}.
+ */
 export const BreakoutBanner = Object.assign(Root, {Heading: _Heading, Description, LinkGroup: _LinkGroup})
