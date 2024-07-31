@@ -348,70 +348,68 @@ export const KeyboardNavigation = () => {
 }
 KeyboardNavigation.storyName = 'Keyboard navigation (autoplays)'
 KeyboardNavigation.play = async ({canvasElement}) => {
-  const activeKeyEl = document.getElementById('active-key')
-
-  activeKeyEl ? (activeKeyEl.style.visibility = 'hidden') : null
-  const canvas = within(canvasElement)
-  const button = canvas.getByRole('button')
+  // Delays are only used for visual purposes to make the test easier to follow
   const delay = async (ms = 1000) => await new Promise(resolve => setTimeout(resolve, ms))
-  // eslint-disable-next-line github/no-inner-html
-  const showEntity = char => (activeKeyEl ? (activeKeyEl.innerHTML = char) : null)
 
-  showEntity(possibleKeysToUnicode['none'])
+  const pressKey = async (key: string) => {
+    const activeKeyEl = document.getElementById('active-key')
 
-  await delay()
+    if (!activeKeyEl) {
+      return
+    }
 
-  activeKeyEl ? (activeKeyEl.style.visibility = 'visible') : null
-  showEntity(possibleKeysToUnicode['tab'])
+    // eslint-disable-next-line github/no-inner-html
+    activeKeyEl.innerHTML = possibleKeysToUnicode[key]
 
-  userEvent.tab()
-  expect(document.activeElement).toBe(button)
+    if (key === 'tab') {
+      await userEvent.tab()
+      return
+    }
 
-  await delay()
-  showEntity(possibleKeysToUnicode['enter'])
-  await userEvent.keyboard('{enter}')
-  await waitFor(() => expect(canvas.getByRole('menu')).toBeVisible())
-
-  const firstItem = canvas.getByTestId(`${ActionMenu.testIds.item}-1`)
-  const secondItem = canvas.getByTestId(`${ActionMenu.testIds.item}-2`)
-  const lastItem = canvas.getByTestId(`${ActionMenu.testIds.item}-3`)
-
-  expect(document.activeElement).toBe(firstItem)
-  await delay()
-
-  for (let i = 0; i < 2; i++) {
-    showEntity(possibleKeysToUnicode['arrowdown'])
-    userEvent.keyboard('{arrowdown}')
-    const currentItem = canvas.getByTestId(`${ActionMenu.testIds.item}-${i + 2}`)
-    await waitFor(() => currentItem)
-    expect(document.activeElement).toBe(currentItem)
-    await waitFor(() => currentItem)
-    await delay()
+    await userEvent.keyboard(`{${key}}`)
   }
 
-  userEvent.keyboard('{arrowdown}')
-  expect(document.activeElement).toBe(firstItem) // loop back to first item
+  const canvas = within(canvasElement)
+  const button = canvas.getByRole('button')
 
   await delay()
 
-  showEntity(possibleKeysToUnicode['arrowup'])
-  userEvent.keyboard('{arrowup}')
-  expect(document.activeElement).toBe(lastItem)
-
-  await delay()
-  userEvent.keyboard('{arrowup}')
-  expect(document.activeElement).toBe(secondItem)
-
-  await delay()
-  userEvent.keyboard('{arrowup}')
-  expect(document.activeElement).toBe(firstItem)
-
-  await delay()
-  showEntity(possibleKeysToUnicode['escape'])
-  userEvent.keyboard('{escape}')
+  await pressKey('tab')
   expect(document.activeElement).toBe(button)
-
   await delay()
-  showEntity(possibleKeysToUnicode['none'])
-  activeKeyEl ? (activeKeyEl.style.visibility = 'hidden') : null
+
+  await pressKey('enter')
+  await waitFor(() => expect(canvas.getByRole('menu')).toBeVisible())
+  await delay()
+
+  const menuItems = canvas.getAllByRole('menuitemradio')
+
+  expect(document.activeElement).toBe(menuItems[0])
+
+  await pressKey('arrowdown')
+  expect(document.activeElement).toBe(menuItems[1])
+  await delay()
+
+  await pressKey('arrowdown')
+  expect(document.activeElement).toBe(menuItems[2])
+  await delay()
+
+  await pressKey('arrowdown')
+  expect(document.activeElement).toBe(menuItems[0])
+  await delay()
+
+  await pressKey('arrowup')
+  expect(document.activeElement).toBe(menuItems[2])
+  await delay()
+
+  await pressKey('arrowup')
+  expect(document.activeElement).toBe(menuItems[1])
+  await delay()
+
+  await pressKey('arrowup')
+  expect(document.activeElement).toBe(menuItems[0])
+  await delay()
+
+  await pressKey('escape')
+  expect(document.activeElement).toBe(button)
 }
