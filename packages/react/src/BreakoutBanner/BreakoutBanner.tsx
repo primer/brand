@@ -42,7 +42,7 @@ export type BreakoutBannerProps = BaseProps<HTMLDivElement> &
      */
     backgroundImagePosition?: string | ResponsiveBackgroundImagePositionMap
     /**
-     * Optional, custom background position size
+     * Optional, custom background size
      */
     backgroundImageSize?: string | ResponsiveBackgroundImageSizeMap
     /**
