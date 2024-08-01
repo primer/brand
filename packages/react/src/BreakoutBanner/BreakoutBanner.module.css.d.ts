@@ -3,7 +3,6 @@ declare const styles: {
   readonly "BreakoutBanner-container": string;
   readonly "BreakoutBanner-content": string;
   readonly "BreakoutBanner-container--background": string;
-  readonly "BreakoutBanner-container--border": string;
   readonly "BreakoutBanner-content--center": string;
   readonly "BreakoutBanner__heading": string;
   readonly "BreakoutBanner-description": string;

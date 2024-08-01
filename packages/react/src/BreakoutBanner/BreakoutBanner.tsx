@@ -5,11 +5,6 @@ import {Icon} from '@primer/octicons-react'
 import type {BaseProps} from '../component-helpers'
 import {Heading, HeadingProps, Text, Stack, Link, LinkProps, StackProps} from '../'
 
-/**
- * Design tokens
- */
-import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/cta-banner/colors-with-modes.css'
-
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './BreakoutBanner.module.css'
 
@@ -169,7 +164,13 @@ type BreakoutBannerDescriptionProps = BaseProps<HTMLParagraphElement> & {
 const Description = forwardRef(
   ({className, children, ...props}: BreakoutBannerDescriptionProps, ref: Ref<HTMLParagraphElement>) => {
     return (
-      <Text ref={ref} className={clsx(styles['BreakoutBanner-description'], className)} as="p" {...props}>
+      <Text
+        ref={ref}
+        as="p"
+        variant="muted"
+        className={clsx(styles['BreakoutBanner-description'], className)}
+        {...props}
+      >
         {children}
       </Text>
     )

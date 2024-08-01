@@ -40,10 +40,6 @@
   background: var(--brand-BreakoutBanner-bgColor);
 }
 
-.BreakoutBanner-container--border {
-  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
-}
-
 .BreakoutBanner-content--center {
   align-items: center;
   text-align: center;
@@ -54,7 +50,6 @@
 }
 
 .BreakoutBanner-description {
-  color: var(--brand-color-text-muted);
   max-width: 54ch;
   margin-block-start: var(--base-size-16);
 }
