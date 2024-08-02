@@ -1,5 +1,85 @@
 # @primer/react-brand
 
+## 0.36.0
+
+### Minor Changes
+
+- [#654](https://github.com/primer/brand/pull/654) [`ca967a49`](https://github.com/primer/brand/commit/ca967a498ae666bad017b18019a1df9a081835f9) Thanks [@danielguillan](https://github.com/danielguillan)! - Added `Section` component
+
+  Example:
+
+  ```jsx
+  <Section
+    paddingBlockStart="condensed"
+    paddingBlockEnd="spacious"
+    backgroundImage="my-background.png"
+    backgroundImageSize="cover"
+    backgroundImagePosition="top center"
+  >
+    {/* Section content */}
+  </Section>
+  ```
+
+  🔗 [See the documentation for more examples](https://primer.style/brand/components/Section)
+
+- [#664](https://github.com/primer/brand/pull/664) [`ccd37a50`](https://github.com/primer/brand/commit/ccd37a50753c71ab5ff33a4da4ccbdfe4caa9168) Thanks [@rezrah](https://github.com/rezrah)! - `PricingOptions` now applies the `subtle` background color by default. This is to ensure adequate contrast on a standard `canvas-default` background.
+
+  To apply the previous `default` background color (or custom color), you may override a new design token that has been provided for this reason: `--brand-PricingOptions-item-bgColor`.
+
+- [#672](https://github.com/primer/brand/pull/672) [`61d72605`](https://github.com/primer/brand/commit/61d726056a675eb5acceaf8817dcb8ab43c6af9d) Thanks [@rezrah](https://github.com/rezrah)! - New breakout banner component generally available
+
+  ```js
+  import {BreakoutBanner} from '@primer/react-brand'
+  ```
+
+  ```jsx
+  <BreakoutBanner>
+    <BreakoutBanner.Heading>Where the most ambitious teams build great things</BreakoutBanner.Heading>
+    <BreakoutBanner.LinkGroup>
+      <Link href="#">Primary action</Link>
+    </BreakoutBanner.LinkGroup>
+  </BreakoutBanner>
+  ```
+
+  :link: [Read the documentation for usage guidelines and examples](https://primer.style/brand/components/BreakoutBanner)
+
+### Patch Changes
+
+- [#659](https://github.com/primer/brand/pull/659) [`6f2949b5`](https://github.com/primer/brand/commit/6f2949b5018fd811743df0e4f098734d42f5ce3e) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Added `tabAttributes` prop to `FAQGroup` component. This prop is used to set arbitrary attributes on the tabs rendered by the `FAQGroup` component.
+
+  For example, the below code will add `data-analytics="tab-0"` to the first tab and `data-analytics="tab-1"` to the second tab.
+
+  ```tsx
+  <FAQGroup
+    tabAttributes={(children, index) => ({
+      'data-analytics': `tab-${index}`,
+    })}
+  >
+    <FAQGroup.Heading>Frequently asked questions</FAQGroup.Heading>
+    <FAQ>
+      <FAQ.Heading>Using GitHub Enterprise</FAQ.Heading>
+      <FAQ.Item>...</FAQ.Item>
+      <FAQ.Item>...</FAQ.Item>
+      <FAQ.Item>...</FAQ.Item>
+    </FAQ>
+
+    <FAQ>
+      <FAQ.Heading>About GitHub Enterprise</FAQ.Heading>
+      <FAQ.Item>...</FAQ.Item>
+      <FAQ.Item>...</FAQ.Item>
+      <FAQ.Item>...</FAQ.Item>
+    </FAQ>
+  </FAQGroup>
+  ```
+
+- [#668](https://github.com/primer/brand/pull/668) [`9cb14ed3`](https://github.com/primer/brand/commit/9cb14ed3cecde3bc0602f72050622fbe65374e90) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Fixed misalignment of FormControl.Validation icon
+
+- [#667](https://github.com/primer/brand/pull/667) [`3010db67`](https://github.com/primer/brand/commit/3010db67a37146808ae397c7e9880024ef031577) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Fixed bug with VideoPlayer component where a '0' could be seen in the bottom-left corner during the first render
+
+- [#669](https://github.com/primer/brand/pull/669) [`67fdd2d6`](https://github.com/primer/brand/commit/67fdd2d62577492dc2e5ecd3b5b8c93a508f8072) Thanks [@rezrah](https://github.com/rezrah)! - Fixed inability to forward `name` props to the `Select` component when used inside a `FormControl`.
+
+- [#660](https://github.com/primer/brand/pull/660) [`8f8181b7`](https://github.com/primer/brand/commit/8f8181b7a1456fd1231fdd5b70edcb77d8de4b3d) Thanks [@rezrah](https://github.com/rezrah)! - Fixed width of the focus outline in the `Select` component to fill the entire width of the control when `fullWidth` option has bene applied.
+
 ## 0.35.0
 
 ### Minor Changes
