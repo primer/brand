@@ -115,7 +115,7 @@ export const CustomBackgroundColor: StoryFn<typeof Section> = () => {
   )
 }
 
-export const ResponsivemBackgroundColor: StoryFn<typeof Section> = () => {
+export const ResponsiveBackgroundColor: StoryFn<typeof Section> = () => {
   return (
     <>
       <Section backgroundColor={{narrow: 'subtle', regular: '#F8F8Ff', wide: '#FFF8F8'}}>

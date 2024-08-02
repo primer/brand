@@ -84,9 +84,9 @@ test.describe('Visual Comparison: Section', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Section / Responsivem Background Color', async ({page}) => {
+  test('Section / Responsive Background Color', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-section-features--responsivem-background-color&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-section-features--responsive-background-color&viewMode=story',
     )
 
     await page.waitForTimeout(500)

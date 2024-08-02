@@ -132,6 +132,15 @@ export const Section = forwardRef<HTMLDivElement, PropsWithChildren<SectionProps
       [processBackgroundValue],
     )
 
+    const addStyle = useCallback(
+      (obj, property, value) => {
+        if (value) {
+          Object.assign(obj, createStyles(property, value))
+        }
+      },
+      [createStyles],
+    )
+
     const paddingBlockStartClass = useMemo(
       () => createPaddingClasses(paddingBlockStart, 'paddingBlockStart'),
       [paddingBlockStart, createPaddingClasses],
@@ -141,15 +150,16 @@ export const Section = forwardRef<HTMLDivElement, PropsWithChildren<SectionProps
       [paddingBlockEnd, createPaddingClasses],
     )
 
-    const backgroundStyles = useMemo(
-      () => ({
-        ...createStyles('background-color', backgroundColor),
-        ...createStyles('background-image-src', backgroundImageSrc),
-        ...createStyles('background-image-position', backgroundImagePosition),
-        ...createStyles('background-image-size', backgroundImageSize),
-      }),
-      [backgroundColor, backgroundImageSrc, backgroundImagePosition, backgroundImageSize, createStyles],
-    )
+    const backgroundStyles = useMemo(() => {
+      const allStyles = {}
+
+      addStyle(allStyles, 'background-color', backgroundColor)
+      addStyle(allStyles, 'background-image-src', backgroundImageSrc)
+      addStyle(allStyles, 'background-image-position', backgroundImagePosition)
+      addStyle(allStyles, 'background-image-size', backgroundImageSize)
+
+      return allStyles
+    }, [addStyle, backgroundColor, backgroundImageSrc, backgroundImagePosition, backgroundImageSize])
 
     return (
       <Component
