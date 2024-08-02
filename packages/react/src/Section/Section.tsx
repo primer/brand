@@ -16,7 +16,6 @@ type ResponsiveMap<T> = {
   wide?: T
 }
 
-type AnyString = string & NonNullable<unknown>
 type BackgroundColors = (typeof SectionBackgroundColors)[number] | AnyString // The AnyString union type is a workaround to provide autocompletion for the SectionBackgroundColors values
 type PaddingVariants = (typeof SectionPaddingVariants)[number]
 type ResponsiveBackgroundColorMap = ResponsiveMap<BackgroundColors>
