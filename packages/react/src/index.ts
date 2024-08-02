@@ -45,6 +45,7 @@ export * from './Pagination'
 export * from './Tooltip'
 export * from './Section'
 export * from './Statistic'
+export * from './BreakoutBanner'
 
 // hooks
 export * from './hooks/useWindowSize'
