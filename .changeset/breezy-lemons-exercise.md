@@ -14,7 +14,7 @@ Example:
   backgroundImageSize="cover"
   backgroundImagePosition="top center"
 >
-  {/* Section content */}>
+  {/* Section content */}
 </Section>
 ```
 
