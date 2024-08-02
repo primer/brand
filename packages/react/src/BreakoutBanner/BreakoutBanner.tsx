@@ -93,15 +93,22 @@ const Root = forwardRef(
       [processBackgroundValue],
     )
 
-    const backgroundStyles = useMemo(
-      () => ({
-        ...createStyles('background-color', backgroundColor),
-        ...createStyles('background-image-src', backgroundImageSrc),
-        ...createStyles('background-image-position', backgroundImagePosition),
-        ...createStyles('background-image-size', backgroundImageSize),
-      }),
-      [backgroundColor, backgroundImageSrc, backgroundImagePosition, backgroundImageSize, createStyles],
-    )
+    const backgroundStyles = useMemo(() => {
+      const allStyles = {}
+
+      const addStyle = (property, value) => {
+        if (value) {
+          Object.assign(allStyles, createStyles(property, value))
+        }
+      }
+
+      addStyle('background-color', backgroundColor)
+      addStyle('background-image-src', backgroundImageSrc)
+      addStyle('background-image-position', backgroundImagePosition)
+      addStyle('background-image-size', backgroundImageSize)
+
+      return allStyles
+    }, [backgroundColor, backgroundImageSrc, backgroundImagePosition, backgroundImageSize, createStyles])
 
     const hasHeading = useMemo(
       () => React.Children.toArray(children).some(child => React.isValidElement(child) && child.type === _Heading),
