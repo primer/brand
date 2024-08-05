@@ -1,10 +1,11 @@
 import {HTMLAttributes} from 'react'
-import React, {render, cleanup, fireEvent} from '@testing-library/react'
+import React, {render, cleanup, fireEvent, within} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 import {SubNav} from './SubNav'
 import '../test-utils/mocks/match-media-mock'
+import userEvent from '@testing-library/user-event'
 
 expect.extend(toHaveNoViolations)
 
@@ -105,5 +106,52 @@ describe('SubNav', () => {
     const results = await axe(container)
 
     expect(results).toHaveNoViolations()
+  })
+
+  it('shows subitems when the submenu toggle is activated', async () => {
+    const {getByRole, getAllByTestId} = render(
+      <SubNav fullWidth>
+        <SubNav.Link href="#" aria-current="page">
+          Copilot
+          <SubNav.SubMenu>
+            <SubNav.Link href="#">Copilot feature page one</SubNav.Link>
+            <SubNav.Link href="#">Copilot feature page two</SubNav.Link>
+            <SubNav.Link href="#">Copilot feature page three</SubNav.Link>
+          </SubNav.SubMenu>
+        </SubNav.Link>
+        <SubNav.Link href="#">Code review</SubNav.Link>
+        <SubNav.Link href="#">Search</SubNav.Link>
+        <SubNav.Action href="#">Call to action</SubNav.Action>
+      </SubNav>,
+    )
+
+    userEvent.tab()
+    expect(getByRole('link', {name: 'Copilot'})).toHaveFocus()
+
+    const toggleSubmenuButton = getByRole('button', {name: 'Open submenu'})
+    expect(toggleSubmenuButton).toHaveAttribute('aria-expanded', 'false')
+
+    userEvent.tab()
+    expect(toggleSubmenuButton).toHaveFocus()
+
+    userEvent.keyboard('{enter}')
+    expect(toggleSubmenuButton).toHaveFocus()
+    expect(toggleSubmenuButton).toHaveAttribute('aria-expanded', 'true')
+
+    const expanded = getAllByTestId('SubNav-root-link')[0]
+
+    userEvent.tab()
+    expect(within(expanded).getByRole('link', {name: 'Copilot feature page one'})).toHaveFocus()
+
+    userEvent.tab()
+    expect(within(expanded).getByRole('link', {name: 'Copilot feature page two'})).toHaveFocus()
+
+    userEvent.tab()
+    expect(within(expanded).getByRole('link', {name: 'Copilot feature page three'})).toHaveFocus()
+
+    userEvent.tab()
+    expect(getByRole('link', {name: 'Code review'})).toHaveFocus()
+
+    expect(toggleSubmenuButton).toHaveAttribute('aria-expanded', 'false')
   })
 })

@@ -17,6 +17,8 @@ declare const styles: {
   readonly "SubNav__overlay-toggle-icon": string;
   readonly "SubNav__overlay-toggle-content": string;
   readonly "SubNav__link-label": string;
+  readonly "SubNav__link--expanded": string;
+  readonly "SubNav__sub-menu-toggle": string;
   readonly "SubNav__link--has-sub-menu": string;
   readonly "fade-in-down": string;
 };

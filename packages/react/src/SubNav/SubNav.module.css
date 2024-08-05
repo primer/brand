@@ -289,17 +289,28 @@
     width: var(--brand-SubNav-width-subMenu);
   }
 
-  .SubNav__link--has-sub-menu:hover .SubNav__sub-menu,
-  .SubNav__link--has-sub-menu:focus-visible .SubNav__sub-menu {
+  .SubNav__link--expanded .SubNav__sub-menu {
     visibility: visible;
     opacity: 1;
     transform: scale(1) translateY(0);
     box-shadow: var(--brand-SubNav-shadow);
   }
 
+  .SubNav__sub-menu-toggle {
+    border: none;
+    padding: 0;
+    margin: 0;
+    background: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
   .SubNav__sub-menu .SubNav__link {
     display: block;
   }
+
   .SubNav__sub-menu .SubNav__link-label {
     color: var(--brand-color-text-default);
     font-weight: var(--brand-text-weight-100);

@@ -1,12 +1,12 @@
 import React, {
   Children,
   isValidElement,
-  useState,
-  PropsWithChildren,
   memo,
-  ReactElement,
-  ReactNode,
   useCallback,
+  useState,
+  type PropsWithChildren,
+  type ReactElement,
+  type ReactNode,
 } from 'react'
 import {Button, ButtonSizes, ButtonVariants, Text} from '..'
 
@@ -16,6 +16,7 @@ import {useId} from '@reach/auto-id'
 import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
 import {useFocusTrap} from '../hooks/useFocusTrap'
 import {useOnClickOutside} from '../hooks/useOnClickOutside'
+import {useIsChildFocused} from '../hooks/useIsChildFocused'
 
 import type {BaseProps} from '../component-helpers'
 
@@ -176,7 +177,7 @@ type SubNavLinkProps = {
 } & PropsWithChildren<React.HTMLProps<HTMLAnchorElement>> &
   BaseProps<HTMLAnchorElement>
 
-const SubNavLink = ({
+const SubNavLinkWithSubmenu = ({
   children,
   href,
   'aria-current': ariaCurrent,
@@ -184,48 +185,86 @@ const SubNavLink = ({
   className,
   ...props
 }: SubNavLinkProps) => {
-  const hasSubMenu = Children.toArray(children).some(child => {
+  const [isExpanded, setIsExpanded] = useState(false)
+  const onFocusChange = useCallback((isFocused: boolean) => {
+    if (!isFocused) {
+      setIsExpanded(false)
+    }
+  }, [])
+  const submenuId = useId()
+  const ref = useIsChildFocused<HTMLDivElement>(onFocusChange)
+
+  const [label, SubMenuChildren] = children as ReactNode[]
+
+  const onKeyDown = useCallback((e: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (['Enter', ' '].includes(e.key)) {
+      setIsExpanded(prev => !prev)
+    }
+  }, [])
+
+  return (
+    // Disabling as the focus and blur events are handled by the useIsChildFocused hook
+    // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
+    <div
+      className={clsx(
+        styles['SubNav__link'],
+        styles['SubNav__link--has-sub-menu'],
+        isExpanded && styles['SubNav__link--expanded'],
+      )}
+      data-testid={testId || testIds.link}
+      ref={ref}
+      onMouseOver={() => setIsExpanded(true)}
+      onMouseOut={() => setIsExpanded(false)}
+    >
+      <a
+        href={href}
+        className={clsx(styles['SubNav__link'], ariaCurrent && styles['SubNav__link--active'], className)}
+        aria-current={ariaCurrent}
+        {...props}
+      >
+        <Text as="span" size="200" className={styles['SubNav__link-label']}>
+          {label}
+        </Text>
+      </a>
+      <button
+        className={styles['SubNav__sub-menu-toggle']}
+        onKeyDown={onKeyDown}
+        aria-expanded={isExpanded ? 'true' : 'false'}
+        aria-controls={submenuId}
+        aria-label={`${isExpanded ? 'Close' : 'Open'} submenu`}
+      >
+        <ChevronDownIcon className={styles['SubNav__sub-menu-icon']} size={16} />
+      </button>
+      <div id={submenuId}>{SubMenuChildren}</div>
+    </div>
+  )
+}
+
+const SubNavLink = (props: SubNavLinkProps) => {
+  const hasSubMenu = Children.toArray(props.children).some(child => {
     if (isValidElement(child)) {
       return child.type === _SubMenu
     }
   })
 
-  const [label, SubMenuChildren] = children as ReactNode[]
+  if (hasSubMenu) {
+    return <SubNavLinkWithSubmenu {...props} />
+  }
+
+  const {children, href, 'aria-current': ariaCurrent, 'data-testid': testId, className, ...rest} = props
 
   return (
-    <>
-      {hasSubMenu ? (
-        <div
-          className={clsx(styles['SubNav__link'], styles['SubNav__link--has-sub-menu'])}
-          data-testid={testId || testIds.link}
-        >
-          <a
-            href={href}
-            className={clsx(styles['SubNav__link'], ariaCurrent && styles['SubNav__link--active'], className)}
-            aria-current={ariaCurrent}
-            {...props}
-          >
-            <Text as="span" size="200" className={styles['SubNav__link-label']}>
-              {label}
-            </Text>
-          </a>
-          <>{SubMenuChildren}</>
-          {<ChevronDownIcon className={styles['SubNav__sub-menu-icon']} size={16} />}
-        </div>
-      ) : (
-        <a
-          href={href}
-          className={clsx(styles['SubNav__link'], ariaCurrent && styles['SubNav__link--active'], className)}
-          aria-current={ariaCurrent}
-          data-testid={testId || testIds.link}
-          {...props}
-        >
-          <Text as="span" size="200" className={styles['SubNav__link-label']}>
-            {children}
-          </Text>
-        </a>
-      )}
-    </>
+    <a
+      href={href}
+      className={clsx(styles['SubNav__link'], ariaCurrent && styles['SubNav__link--active'], className)}
+      aria-current={ariaCurrent}
+      data-testid={testId || testIds.link}
+      {...rest}
+    >
+      <Text as="span" size="200" className={styles['SubNav__link-label']}>
+        {children}
+      </Text>
+    </a>
   )
 }
 
