@@ -1,60 +1,50 @@
 import React from 'react'
 import {Meta, StoryFn} from '@storybook/react'
-import {Image} from './'
+import {Image, ImageBorderRadiusOptions} from './'
 import placeholderImage from '../fixtures/images/placeholder-600x400.png'
 
 export default {
   title: 'Components/Image',
   component: Image,
+  parameters: {
+    controls: {expanded: true},
+  },
   args: {
     src: placeholderImage,
     alt: 'placeholder, blank area with an off-white background color',
-    as: 'img',
-    loading: 'eager',
-    decoding: 'auto',
+    width: '400',
+    height: 'auto',
+    aspectRatio: '16 / 9',
+    borderRadius: 'medium',
+    style: {
+      'aspect-ratio': '16 / 9',
+    },
   },
   argTypes: {
     src: {
-      description: 'Sets the image source',
       control: 'text',
     },
     alt: {
-      description: 'Sets the image alt text',
       control: 'text',
     },
-    as: {
-      description: 'Sets the underlying HTML element',
-      control: 'radio',
-      options: ['img', 'picture'],
-    },
-    aspectRatio: {
-      description: 'Sets the image aspect ratio. A custom ratio can be provided in the design tokens.',
-      control: 'radio',
-      options: ['1:1', '16:9', '16:10', '4:3', 'custom'],
-    },
     width: {
-      description: 'The width of the image',
-      control: 'number',
+      control: 'text',
     },
     height: {
-      description: 'The height of the image',
-      control: 'number',
+      control: 'text',
     },
-    loading: {
-      description:
-        'The loading attribute specifies whether a browser should load an image immediately or to defer loading of off-screen images until for example the user scrolls near them.',
-      control: 'radio',
-      options: ['eager', 'lazy'],
+    style: {
+      description: 'Use this (or `className`) to set aspect ratio.',
+      control: 'object',
     },
-    decoding: {
-      description:
-        'Sets the image decoding strategy. Representing a hint given to the browser on how it should decode the image.',
+    borderRadius: {
+      description: 'Sets the border radius of the image.',
       control: 'radio',
-      options: ['auto', 'sync', 'async'],
+      options: [...ImageBorderRadiusOptions, undefined],
     },
   },
 } as Meta<typeof Image>
 
-export const Playground: StoryFn<typeof Image> = args => <Image {...args} />
+export const Playground: StoryFn<typeof Image> = ({...args}) => <Image {...args} />
 
 export const Default = Playground.bind({})

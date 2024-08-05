@@ -24,6 +24,10 @@
   max-width: unset;
 }
 
+.Card--fullWidth .Card__image {
+  width: 100%;
+}
+
 .Card--variant-minimal {
   padding: 0;
 }
@@ -96,7 +100,6 @@
 
 .Card__image {
   margin-bottom: var(--base-size-28);
-  border-radius: var(--brand-borderRadius-medium);
   overflow: hidden;
   grid-area: image;
 }

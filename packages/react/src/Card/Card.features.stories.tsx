@@ -180,7 +180,10 @@ export const ImageAndLabel: StoryFn<typeof Card> = () => {
 export const ImageUsingPictureElement: StoryFn<typeof Card> = () => {
   return (
     <Card href="https://github.com">
-      <Card.Image as="picture" src={placeholderImage} alt="placeholder, blank area with an gray background color" />
+      <picture>
+        <source srcSet={placeholderImage} media="(min-width: 600px)" />
+        <Card.Image src={placeholderImage} alt="placeholder, blank area with an gray background color" />
+      </picture>
       <Card.Heading>Code search & code view</Card.Heading>
       <Card.Description>
         Enables you to rapidly search, navigate, and understand code, right from GitHub.com.

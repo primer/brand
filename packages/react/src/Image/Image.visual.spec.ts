@@ -91,9 +91,9 @@ test.describe('Visual Comparison: Image', () => {
     expect(await page.screenshot()).toMatchSnapshot()
   })
 
-  test('Image / Border Radius Options', async ({page}) => {
+  test('Image / Border Radius', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-image-features--border-radius-options&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-image-features--border-radius&viewMode=story',
     )
 
     await page.waitForTimeout(500)
