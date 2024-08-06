@@ -20,6 +20,7 @@ import {
 
 import darkHeroBg from '../../../fixtures/images/background-dark-collaboration.webp'
 import darkPlaceholderImage from '../../../fixtures/images/enterprise-stack.png'
+import placeholderImage from '../../../fixtures/images/placeholder-600x400.png'
 
 import styles from './SolutionsOverview.module.css'
 import parallaxStyles from '../parallax.module.css'
@@ -385,7 +386,7 @@ export function SolutionsOverview({
                           <Box>
                             <Card href="#" fullWidth variant="minimal">
                               <Card.Image
-                                src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+                                src={placeholderImage}
                                 alt="placeholder, blank area with an gray background color"
                                 aspectRatio="16:9"
                               />
@@ -399,7 +400,7 @@ export function SolutionsOverview({
                           <Box>
                             <Card href="#" fullWidth variant="minimal">
                               <Card.Image
-                                src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+                                src={placeholderImage}
                                 alt="placeholder, blank area with an gray background color"
                                 aspectRatio="16:9"
                               />
@@ -413,7 +414,7 @@ export function SolutionsOverview({
                           <Box>
                             <Card href="#" fullWidth variant="minimal">
                               <Card.Image
-                                src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+                                src={placeholderImage}
                                 alt="placeholder, blank area with an gray background color"
                                 aspectRatio="16:9"
                               />
