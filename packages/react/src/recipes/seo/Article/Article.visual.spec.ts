@@ -11,21 +11,21 @@ test.describe('Visual Comparison: Article', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=recipes-seo-article-page--playground&viewMode=story')
 
     await page.waitForTimeout(5000)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Article / All Headings', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=recipes-seo-article-page--all-headings&viewMode=story')
 
     await page.waitForTimeout(5000)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Article / Ai Theme', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=recipes-seo-article-page--ai-theme&viewMode=story')
 
     await page.waitForTimeout(5000)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Article / Collaboration Theme', async ({page}) => {
@@ -34,7 +34,7 @@ test.describe('Visual Comparison: Article', () => {
     )
 
     await page.waitForTimeout(5000)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Article / Enterprise Theme', async ({page}) => {
@@ -43,7 +43,7 @@ test.describe('Visual Comparison: Article', () => {
     )
 
     await page.waitForTimeout(5000)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Article / Security Theme', async ({page}) => {
@@ -52,7 +52,7 @@ test.describe('Visual Comparison: Article', () => {
     )
 
     await page.waitForTimeout(5000)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Article / Productivity Theme', async ({page}) => {
@@ -61,7 +61,7 @@ test.describe('Visual Comparison: Article', () => {
     )
 
     await page.waitForTimeout(5000)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Article / Light Hero Image', async ({page}) => {
@@ -70,7 +70,7 @@ test.describe('Visual Comparison: Article', () => {
     )
 
     await page.waitForTimeout(5000)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Article / Dark Hero Image', async ({page}) => {
@@ -79,6 +79,6 @@ test.describe('Visual Comparison: Article', () => {
     )
 
     await page.waitForTimeout(5000)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })

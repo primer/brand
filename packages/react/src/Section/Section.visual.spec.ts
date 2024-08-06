@@ -11,14 +11,14 @@ test.describe('Visual Comparison: Section', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-section--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Section / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-section--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Section / Default Padding', async ({page}) => {
@@ -27,7 +27,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Section / Padding Variants', async ({page}) => {
@@ -36,7 +36,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Section / Independent Padding', async ({page}) => {
@@ -45,7 +45,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Section / Responsive Padding', async ({page}) => {
@@ -54,7 +54,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Section / With Full Width Container', async ({page}) => {
@@ -63,7 +63,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Section / Background Color', async ({page}) => {
@@ -72,7 +72,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Section / Custom Background Color', async ({page}) => {
@@ -81,7 +81,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Section / Responsive Background Color', async ({page}) => {
@@ -90,7 +90,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Section / Background Image', async ({page}) => {
@@ -99,7 +99,7 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Section / Multiple Background Images', async ({page}) => {
@@ -108,13 +108,13 @@ test.describe('Visual Comparison: Section', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Section / Rounded', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-section-features--rounded&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })

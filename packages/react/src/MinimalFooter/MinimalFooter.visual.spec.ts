@@ -11,14 +11,14 @@ test.describe('Visual Comparison: MinimalFooter', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-minimalfooter--default&viewMode=story')
 
     await page.waitForTimeout(5000)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('MinimalFooter / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-minimalfooter--playground&viewMode=story')
 
     await page.waitForTimeout(5000)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('MinimalFooter / Multiple Footnotes', async ({page}) => {
@@ -27,7 +27,7 @@ test.describe('Visual Comparison: MinimalFooter', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('MinimalFooter / Maximum Links (5)', async ({page}) => {
@@ -36,7 +36,7 @@ test.describe('Visual Comparison: MinimalFooter', () => {
     )
 
     await page.waitForTimeout(5000)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('MinimalFooter / Mixed Buttons And Links', async ({page}) => {
@@ -45,7 +45,7 @@ test.describe('Visual Comparison: MinimalFooter', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('MinimalFooter / No Social Links', async ({page}) => {
@@ -54,7 +54,7 @@ test.describe('Visual Comparison: MinimalFooter', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('MinimalFooter / Filtered Social Links', async ({page}) => {
@@ -63,7 +63,7 @@ test.describe('Visual Comparison: MinimalFooter', () => {
     )
 
     await page.waitForTimeout(5000)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   // eslint-disable-next-line i18n-text/no-en
@@ -75,7 +75,7 @@ test.describe('Visual Comparison: MinimalFooter', () => {
       )
 
       await page.waitForTimeout(5000)
-      expect(await page.screenshot()).toMatchSnapshot()
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
     })
   })
   test('MinimalFooter / Dark Theme', async ({page}) => {
@@ -84,6 +84,6 @@ test.describe('Visual Comparison: MinimalFooter', () => {
     )
 
     await page.waitForTimeout(5000)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })

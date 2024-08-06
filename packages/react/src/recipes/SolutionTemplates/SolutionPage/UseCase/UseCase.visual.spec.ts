@@ -13,7 +13,7 @@ test.describe('Visual Comparison: UseCase', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('UseCase / Maximum Dark', async ({page}) => {
@@ -22,7 +22,7 @@ test.describe('Visual Comparison: UseCase', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('UseCase / Minimum Light', async ({page}) => {
@@ -31,7 +31,7 @@ test.describe('Visual Comparison: UseCase', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('UseCase / Minimum Dark', async ({page}) => {
@@ -40,6 +40,6 @@ test.describe('Visual Comparison: UseCase', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })

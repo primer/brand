@@ -11,14 +11,14 @@ test.describe('Visual Comparison: SectionIntro', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-sectionintro--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('SectionIntro / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-sectionintro--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('SectionIntro / Heading Only', async ({page}) => {
@@ -27,7 +27,7 @@ test.describe('Visual Comparison: SectionIntro', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('SectionIntro / With Description', async ({page}) => {
@@ -36,7 +36,7 @@ test.describe('Visual Comparison: SectionIntro', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('SectionIntro / With Action', async ({page}) => {
@@ -45,7 +45,7 @@ test.describe('Visual Comparison: SectionIntro', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('SectionIntro / With Secondary Action', async ({page}) => {
@@ -54,7 +54,7 @@ test.describe('Visual Comparison: SectionIntro', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('SectionIntro / With Label', async ({page}) => {
@@ -63,7 +63,7 @@ test.describe('Visual Comparison: SectionIntro', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('SectionIntro / Aligned Center', async ({page}) => {
@@ -72,7 +72,7 @@ test.describe('Visual Comparison: SectionIntro', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('SectionIntro / With Emphasized Text', async ({page}) => {
@@ -81,7 +81,7 @@ test.describe('Visual Comparison: SectionIntro', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('SectionIntro / Full Width', async ({page}) => {
@@ -90,6 +90,6 @@ test.describe('Visual Comparison: SectionIntro', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })

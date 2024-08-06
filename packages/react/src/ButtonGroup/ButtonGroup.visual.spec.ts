@@ -11,7 +11,7 @@ test.describe('Visual Comparison: ButtonGroup', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-buttongroup--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('ButtonGroup / Single Button Group', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: ButtonGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('ButtonGroup / Large Button Group', async ({page}) => {
@@ -29,7 +29,7 @@ test.describe('Visual Comparison: ButtonGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('ButtonGroup / Link Button Group', async ({page}) => {
@@ -38,6 +38,6 @@ test.describe('Visual Comparison: ButtonGroup', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })

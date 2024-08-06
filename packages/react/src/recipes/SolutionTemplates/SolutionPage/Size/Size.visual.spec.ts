@@ -13,7 +13,7 @@ test.describe('Visual Comparison: Size', () => {
     )
 
     await page.waitForTimeout(3500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Size / Maximum Dark', async ({page}) => {
@@ -22,7 +22,7 @@ test.describe('Visual Comparison: Size', () => {
     )
 
     await page.waitForTimeout(3500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Size / Minimum Light', async ({page}) => {
@@ -31,7 +31,7 @@ test.describe('Visual Comparison: Size', () => {
     )
 
     await page.waitForTimeout(3500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Size / Minimum Dark', async ({page}) => {
@@ -40,6 +40,6 @@ test.describe('Visual Comparison: Size', () => {
     )
 
     await page.waitForTimeout(3500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })

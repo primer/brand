@@ -11,14 +11,14 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-videoplayer--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('VideoPlayer / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-videoplayer--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('VideoPlayer / With Poster', async ({page}) => {
@@ -27,7 +27,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('VideoPlayer / Without Branding', async ({page}) => {
@@ -36,7 +36,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('VideoPlayer / With Visually Hidden Title', async ({page}) => {
@@ -45,7 +45,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('VideoPlayer / With Some Hidden Controls', async ({page}) => {
@@ -54,7 +54,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('VideoPlayer / Hide Controls When Paused', async ({page}) => {
@@ -63,7 +63,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('VideoPlayer / Minimal', async ({page}) => {
@@ -72,7 +72,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('VideoPlayer / Controlled Programmatically', async ({page}) => {
@@ -81,7 +81,7 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('VideoPlayer / Custom Play Icon', async ({page}) => {
@@ -90,6 +90,6 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })

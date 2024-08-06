@@ -11,21 +11,21 @@ test.describe('Visual Comparison: FAQ', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('FAQ / All Closed', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq-features--all-closed&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('FAQ / All Open', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq-features--all-open&viewMode=story')
 
     await page.waitForTimeout(1000)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('FAQ / Reversed Toggles', async ({page}) => {
@@ -34,7 +34,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('FAQ / Heading Left Aligned', async ({page}) => {
@@ -43,7 +43,7 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('FAQ / With Subheadings', async ({page}) => {
@@ -52,14 +52,14 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('FAQ / Groups', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq-features--groups&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   // eslint-disable-next-line i18n-text/no-en
@@ -71,7 +71,7 @@ test.describe('Visual Comparison: FAQ', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot()).toMatchSnapshot()
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
     })
   })
   test('FAQ / Dynamic Data Example', async ({page}) => {
@@ -80,13 +80,13 @@ test.describe('Visual Comparison: FAQ', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('FAQ / With Prose', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-faq-features--with-prose&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })

@@ -11,7 +11,7 @@ test.describe('Visual Comparison: SubNav', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-subnav--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('SubNav / Example Usage', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   // eslint-disable-next-line i18n-text/no-en
@@ -32,21 +32,21 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot()).toMatchSnapshot()
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
     })
   })
   test('SubNav / With Shadow', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-subnav-features--with-shadow&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('SubNav / Full Width', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-subnav-features--full-width&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   // eslint-disable-next-line i18n-text/no-en
@@ -58,7 +58,7 @@ test.describe('Visual Comparison: SubNav', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot()).toMatchSnapshot()
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
     })
   })
   test('SubNav / Longer Heading', async ({page}) => {
@@ -67,6 +67,6 @@ test.describe('Visual Comparison: SubNav', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })

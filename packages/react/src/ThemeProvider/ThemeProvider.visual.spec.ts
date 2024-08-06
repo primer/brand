@@ -11,13 +11,13 @@ test.describe('Visual Comparison: ThemeProvider', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-themeprovider--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('ThemeProvider / Nested', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-themeprovider--nested&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })
