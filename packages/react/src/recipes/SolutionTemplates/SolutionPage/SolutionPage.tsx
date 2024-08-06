@@ -906,8 +906,8 @@ function HeroVideo() {
     <AnimationProvider staggerDelayIncrement={1000} runOnce visibilityOptions={0.2}>
       <Box marginBlockStart={32} animate="scale-in-up">
         <VideoPlayer title="GitHub media player" className={styles.relative}>
-          <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" />
-          <VideoPlayer.Track src="https://primer.github.io/brand/assets/example.vtt" />
+          <VideoPlayer.Source src="/brand/storybook/example.mp4" />
+          <VideoPlayer.Track src="/brand/storybook/example.vtt" />
         </VideoPlayer>
       </Box>
     </AnimationProvider>

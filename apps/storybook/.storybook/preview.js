@@ -79,6 +79,9 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  viewport: {
+    defaultViewport: 'reset',
+  },
   options: {
     storySort: (a, b) => {
       const titleCompare = a.title.localeCompare(b.title)

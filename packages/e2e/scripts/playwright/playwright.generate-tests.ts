@@ -1,7 +1,9 @@
 ;(function () {
   /* eslint import/no-nodejs-modules: ["error", {"allow": ["path", "fs"]}] */
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const {stories} = require('../../../../apps/storybook/storybook-static/stories')
+  const {StoryIndex} = require('@storybook/types')
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const stories = require('../../../../apps/storybook/storybook-static/index')
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const fs = require('fs')
   // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -10,22 +12,6 @@
   const prettier = require('prettier')
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const prettierOptions = require('../../../../.prettierrc')
-
-  type Stories = {
-    [key: string]: {
-      id: string
-      title: string
-      name: string
-      importPath: string
-      kind: string
-      story: string
-      parameters: {
-        __id: string
-        docsOnly: boolean
-        fileName: string
-      }
-    }
-  }
 
   const port = 6006
 
@@ -133,8 +119,8 @@
     'components-riverstoryscroll-features--video', // video makes this too flakey
   ]
 
-  const categorisedStories = Object.keys(stories as Stories).reduce((acc, key) => {
-    const {id, story: storyName, importPath} = stories[key]
+  const categorisedStories = Object.keys((stories as typeof StoryIndex).entries).reduce((acc, key) => {
+    const {id, name: storyName, importPath} = stories.entries[key]
 
     const importPathAsArray = importPath.split('/')
     const groupName = importPathAsArray[importPathAsArray.length - 2]
