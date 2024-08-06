@@ -1,4 +1,4 @@
-import {MoonIcon, SunIcon, ZapIcon} from '@primer/octicons-react'
+import {LogoGithubIcon, MoonIcon, SunIcon, ZapIcon} from '@primer/octicons-react'
 import React, {useCallback, useEffect} from 'react'
 import {
   AnimationProvider,
@@ -29,6 +29,7 @@ import {
   Breadcrumbs,
   Statistic,
   PricingOptions,
+  BreakoutBanner,
 } from '../../..'
 
 import pinterestLogo from '../../../fixtures/images/logos/pinterest.png'
@@ -39,6 +40,11 @@ import vercelLogo from '../../../fixtures/images/logos/vercel.png'
 import lightHeroBg from '../../../fixtures/images/background-light-collaboration.webp'
 import darkHeroBg from '../../../fixtures/images/background-dark-collaboration.webp'
 import ciCdRenderImage from '../../../fixtures/images/ci-cd-render-ui.png'
+
+import lightNarrowBg from '../../../fixtures/images/light-vertical-banner.png'
+import lightWideBg from '../../../fixtures/images/light-horizontal-banner.png'
+import darkNarrowBg from '../../../fixtures/images/dark-vertical-banner.png'
+import darkWideBg from '../../../fixtures/images/dark-horizontal-banner.png'
 
 import clsx from 'clsx'
 
@@ -467,7 +473,7 @@ export function SolutionPage({
                 </Box>
               )}
               {args.statisticsVisible && (
-                <Box paddingBlockEnd={128}>
+                <Box paddingBlockEnd={{narrow: 48, regular: 128}}>
                   <Stack
                     direction={{narrow: 'vertical', regular: 'horizontal'}}
                     padding="none"
@@ -487,6 +493,23 @@ export function SolutionPage({
                       <Statistic.Description variant="accent">Companies actively sponsoring</Statistic.Description>
                     </Statistic>
                   </Stack>
+                </Box>
+              )}
+              {args.breakoutBannerVisible && variant === 'use-case' && (
+                <Box marginBlockEnd={{narrow: 48, regular: 128}}>
+                  <BreakoutBanner
+                    leadingVisual={<LogoGithubIcon size="medium" fill="var(--brand-color-text-default)" />}
+                    backgroundImageSrc={{
+                      narrow: colorMode === 'light' ? lightNarrowBg : darkNarrowBg,
+                      regular: colorMode === 'light' ? lightWideBg : darkWideBg,
+                      wide: colorMode === 'light' ? lightWideBg : darkWideBg,
+                    }}
+                  >
+                    <BreakoutBanner.Heading>Where the most ambitious teams build great things</BreakoutBanner.Heading>
+                    <BreakoutBanner.LinkGroup>
+                      <Link href="#">Primary action</Link>
+                    </BreakoutBanner.LinkGroup>
+                  </BreakoutBanner>
                 </Box>
               )}
               {variant === 'size' && (

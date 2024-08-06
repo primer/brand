@@ -1,8 +1,9 @@
-import {HeartIcon, MoonIcon, StackIcon, StarIcon, SunIcon} from '@primer/octicons-react'
+import {HeartIcon, LogoGithubIcon, MoonIcon, StackIcon, StarIcon, SunIcon} from '@primer/octicons-react'
 import React, {useCallback, useEffect} from 'react'
 import {
   AnimationProvider,
   Box,
+  BreakoutBanner,
   Button,
   Card,
   CTABanner,
@@ -13,11 +14,16 @@ import {
   MinimalFooter,
   Statistic,
   SubdomainNavBar,
+  ColorModesEnum,
+  ThemeProvider,
 } from '../../..'
 
-import styles from './CategoryPage.module.css'
+import lightNarrowBg from '../../../fixtures/images/light-vertical-banner.png'
+import lightWideBg from '../../../fixtures/images/light-horizontal-banner.png'
+import darkNarrowBg from '../../../fixtures/images/dark-vertical-banner.png'
+import darkWideBg from '../../../fixtures/images/dark-horizontal-banner.png'
 
-import {ColorModesEnum, ThemeProvider} from '../../../ThemeProvider'
+import styles from './CategoryPage.module.css'
 
 type CategoryPageProps = {
   variant: 'size' | 'industry' | 'use-case'
@@ -74,7 +80,8 @@ export function CategoryPage({
     <ThemeProvider
       colorMode={selectedColorMode}
       style={{
-        backgroundColor: 'var(--brand-color-canvas-default)',
+        backgroundColor:
+          colorMode === 'light' ? 'var(--brand-color-canvas-default)' : 'var(--brand-color-canvas-subtle)',
       }}
       {...args}
     >
@@ -243,9 +250,26 @@ export function CategoryPage({
                   </Card>
                 </Box>
               </Grid.Column>
+              <Grid.Column>
+                <Box marginBlockStart={{narrow: 32, regular: 96}}>
+                  <BreakoutBanner
+                    leadingVisual={<LogoGithubIcon size="medium" fill="var(--brand-color-text-default)" />}
+                    backgroundImageSrc={{
+                      narrow: colorMode === 'light' ? lightNarrowBg : darkNarrowBg,
+                      regular: colorMode === 'light' ? lightWideBg : darkWideBg,
+                      wide: colorMode === 'light' ? lightWideBg : darkWideBg,
+                    }}
+                  >
+                    <BreakoutBanner.Heading>Where the most ambitious teams build great things</BreakoutBanner.Heading>
+                    <BreakoutBanner.LinkGroup>
+                      <Link href="#">Primary action</Link>
+                    </BreakoutBanner.LinkGroup>
+                  </BreakoutBanner>
+                </Box>
+              </Grid.Column>
             </Grid>
           </section>
-          <Box marginBlockStart={{narrow: 64, regular: 128}} marginBlockEnd={{narrow: 64, regular: 80}}>
+          <Box marginBlockStart={{narrow: 64, regular: 128}} marginBlockEnd={{narrow: 64, regular: 128}}>
             <Grid>
               <Grid.Column span={{medium: 6, large: 3}}>
                 <Box paddingBlockEnd={{narrow: 24, regular: 'none'}}>
@@ -281,7 +305,11 @@ export function CategoryPage({
           </Box>
         </AnimationProvider>
         <div>
-          <Box backgroundColor="default" paddingBlockEnd={112} borderRadius="xlarge">
+          <Box
+            backgroundColor={colorMode === 'light' ? 'default' : 'subtle'}
+            paddingBlockEnd={112}
+            borderRadius="xlarge"
+          >
             <Grid>
               <Grid.Column>
                 <CTABanner
