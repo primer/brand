@@ -28,6 +28,7 @@ export default {
     testimonialsVisible: false,
     faqVisible: false,
     statisticsVisible: false,
+    breakoutBannerVisible: false,
   },
   argTypes: {
     ...sharedArgTypes,
@@ -48,6 +49,7 @@ const maximumArgs = {
   testimonialsVisible: true,
   faqVisible: true,
   statisticsVisible: true,
+  breakoutBannerVisible: true,
 }
 export const Maximum: StoryFn<typeof SolutionPage> = args => <SolutionPage {...args} />
 Maximum.args = {
