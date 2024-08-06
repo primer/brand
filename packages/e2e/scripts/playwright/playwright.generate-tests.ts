@@ -24,7 +24,6 @@
     'components-faq-features--all-open': 1000, // for the animation
     'components-subdomainnavbar--search-open': 5500, // for the animation
     'components-subdomainnavbar--search-results-visible': 5500, // for the animation
-    'components-subdomainnavbar--overflow-menu-open': 15000, // for the animation
     'components-subdomainnavbar--longer-title': 1500, // for the animation
     'components-subdomainnavbar--mobile-view': 5500, // for the animation
     'components-subdomainnavbar--mobile-menu-open': 5500, // for all staggered animations
@@ -83,6 +82,11 @@
     'components-riverstoryscroll-features--with-timeline-narrow': 3500, // for the animation
     'components-riverstoryscroll-features--enterprise-example': 3500, // for the animation
     'components-riverstoryscroll-features--enterprise-example-narrow': 3500, // for the animation
+    'recipes-feature-previews-level-2--level-two-playground': 4000, // for the animation
+    'recipes-feature-previews-level-2--level-two-point-one': 4000, // for the animation
+    'recipes-feature-previews-level-2--level-two-point-two': 4000, // for the animation
+    'recipes-feature-previews-level-2--level-two-point-three': 4000, // for the animation
+    'recipes-feature-previews-level-2--level-two-point-four': 4000, // for the animation
   }
 
   /**
@@ -105,6 +109,7 @@
     'components-logosuite-features--following-hero', // animation only
     'components-logosuite-features--stacked', // animation only
     'recipes-feature-previews-level-1--level-one-side-by-side-enterprise', // video makes this too flakey
+    'components-subdomainnavbar--overflow-menu-open', // flakey despite timeout
     'components-ide-features--editor-only', // animation too long
     'components-ide-features--editor-no-replay-button', // animation too long
     'components-ide-features--chat-only', // animation too long

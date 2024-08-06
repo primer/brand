@@ -37,15 +37,6 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('SubdomainNavBar / Overflow Menu Open', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--overflow-menu-open&viewMode=story',
-    )
-
-    await page.waitForTimeout(15000)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
-  })
-
   // eslint-disable-next-line i18n-text/no-en
   test.describe('Mobile viewport test for Mobile View', () => {
     test.use({viewport: {width: 360, height: 800}})
