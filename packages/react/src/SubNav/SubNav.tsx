@@ -16,7 +16,7 @@ import {useId} from '@reach/auto-id'
 import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
 import {useFocusTrap} from '../hooks/useFocusTrap'
 import {useOnClickOutside} from '../hooks/useOnClickOutside'
-import {useIsChildFocused} from '../hooks/useIsChildFocused'
+import {useIsChildFocused} from './useIsChildFocused'
 
 import type {BaseProps} from '../component-helpers'
 
