@@ -1,16 +1,17 @@
-import {useCallback, useEffect, useRef, useState, type RefObject} from 'react'
+import {useCallback, useEffect, useState, type RefObject} from 'react'
 
 /**
  * Determine if a child element of the provided ref is currently focussed.
+ * @param containerRef The ref to the container element.
  * @param onFocusChange The callback to be called when the focus state changes.
  * @type T The type of the container element.
  * @returns The ref to be applied to the container element.
  */
-export const useIsChildFocused = <T extends HTMLElement>(
+export const useContainsFocus = <T extends HTMLElement>(
+  containerRef?: RefObject<T>,
   onFocusChange?: (isFocussed: boolean) => void,
-): RefObject<T> => {
+) => {
   const [isChildFocused, setIsChildFocused] = useState(false)
-  const containerRef = useRef<T>(null)
 
   const updateState = useCallback(
     (isFocused: boolean) => {
@@ -23,9 +24,14 @@ export const useIsChildFocused = <T extends HTMLElement>(
   )
 
   useEffect(() => {
+    if (!containerRef) {
+      return
+    }
+
     const handleFocusIn = () => {
       updateState(true)
     }
+
     const handleFocusOut = (event: FocusEvent) => {
       if (containerRef.current && !containerRef.current.contains(event.relatedTarget as Node)) {
         updateState(false)
@@ -43,7 +49,5 @@ export const useIsChildFocused = <T extends HTMLElement>(
         container.removeEventListener('focusout', handleFocusOut, true)
       }
     }
-  }, [updateState])
-
-  return containerRef
+  }, [updateState, containerRef])
 }

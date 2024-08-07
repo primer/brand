@@ -3,6 +3,7 @@ import React, {
   isValidElement,
   memo,
   useCallback,
+  useRef,
   useState,
   type PropsWithChildren,
   type ReactElement,
@@ -16,7 +17,7 @@ import {useId} from '@reach/auto-id'
 import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
 import {useFocusTrap} from '../hooks/useFocusTrap'
 import {useOnClickOutside} from '../hooks/useOnClickOutside'
-import {useIsChildFocused} from './useIsChildFocused'
+import {useContainsFocus} from './useContainsFocus'
 
 import type {BaseProps} from '../component-helpers'
 
@@ -185,14 +186,16 @@ const SubNavLinkWithSubmenu = ({
   className,
   ...props
 }: SubNavLinkProps) => {
+  const submenuId = useId()
+
   const [isExpanded, setIsExpanded] = useState(false)
-  const onFocusChange = useCallback((isFocused: boolean) => {
-    if (!isFocused) {
+  const ref = useRef<HTMLDivElement>(null)
+
+  useContainsFocus(ref, (containsFocus: boolean) => {
+    if (!containsFocus) {
       setIsExpanded(false)
     }
-  }, [])
-  const submenuId = useId()
-  const ref = useIsChildFocused<HTMLDivElement>(onFocusChange)
+  })
 
   const [label, SubMenuChildren] = children as ReactNode[]
 
@@ -215,7 +218,7 @@ const SubNavLinkWithSubmenu = ({
       onMouseOut={() => setIsExpanded(false)}
       /**
        * onFocus and onBlur need to be defined to keep the jsx-a11y/mouse-events-have-key-events
-       * eslint rule happy. The focus/blur behaviour is handled by useIsChildFocused
+       * eslint rule happy. The focus/blur behaviour is handled by useContainsFocus
        */
       onFocus={() => null}
       onBlur={() => null}
