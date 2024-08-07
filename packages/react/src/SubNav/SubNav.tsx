@@ -203,8 +203,6 @@ const SubNavLinkWithSubmenu = ({
   }, [])
 
   return (
-    // Disabling as the focus and blur events are handled by the useIsChildFocused hook
-    // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
     <div
       className={clsx(
         styles['SubNav__link'],
@@ -215,6 +213,12 @@ const SubNavLinkWithSubmenu = ({
       ref={ref}
       onMouseOver={() => setIsExpanded(true)}
       onMouseOut={() => setIsExpanded(false)}
+      /**
+       * onFocus and onBlur need to be defined to keep the jsx-a11y/mouse-events-have-key-events
+       * eslint rule happy. The focus/blur behaviour is handled by useIsChildFocused
+       */
+      onFocus={() => null}
+      onBlur={() => null}
     >
       <a
         href={href}
