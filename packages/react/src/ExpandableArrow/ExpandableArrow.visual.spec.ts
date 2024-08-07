@@ -11,14 +11,14 @@ test.describe('Visual Comparison: ExpandableArrow', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-expandablearrow--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('ExpandableArrow / Expanded', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-expandablearrow--expanded&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('ExpandableArrow / Expand On Hover', async ({page}) => {
@@ -27,6 +27,6 @@ test.describe('Visual Comparison: ExpandableArrow', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })

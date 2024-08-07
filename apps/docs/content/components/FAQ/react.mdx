@@ -8,13 +8,11 @@ description: Use the FAQ component to display content in a Q&A format.
 ---
 
 import ComponentLayout from '../../../src/layouts/component-layout'
-export default ComponentLayout
 
-import InlineCode from '@primer/gatsby-theme-doctocat/src/components/inline-code'
 import {HeadingTags} from '@primer/react-brand'
-import {Box as Container} from '@primer/react'
-import {PropTableValues} from '../../../src/components'
 import {Label} from '@primer/react'
+import {PropTableValues} from '../../../src/components'
+export default ComponentLayout
 
 ```js
 import {FAQ, FAQGroup} from '@primer/react-brand'
@@ -114,8 +112,14 @@ import {FAQ, FAQGroup} from '@primer/react-brand'
 
 Use `FAQGroup` to display multiple `FAQ` components together.
 
+Use `tabAttributes` to add arbitrary attributes to the tabs. This can be useful for tracking analytics or adding custom attributes.
+
 ```jsx live
-<FAQGroup>
+<FAQGroup
+  tabAttributes={(children, i) => ({
+    'data-analytics': `faq-tab-${i}`,
+  })}
+>
   <FAQGroup.Heading>
     Frequently asked <br /> questions
   </FAQGroup.Heading>
@@ -433,12 +437,13 @@ render(<App />)
 
 ### FAQGroup
 
-| Name        | Type                                                                                                                           | Default | Description                              |
-| :---------- | :----------------------------------------------------------------------------------------------------------------------------- | :-----: | :--------------------------------------- |
-| `className` | `string`                                                                                                                       |         | Sets a custom class                      |
-| `id`        | `string`                                                                                                                       |         | Sets a custom id                         |
-| `ref`       | `React.RefObject`                                                                                                              |         | Forward a Ref to the underlying DOM node |
-| `children`  | <PropTableValues values={[<a href="#faq-required">FAQ</a>, <a href="#faqgroup-heading">FAQGroup.Heading</a>]} addLineBreaks /> |         | Root element for the FAQGroup component. |
+| Name            | Type                                                                                                                           | Default | Description                                                                   |
+| :-------------- | :----------------------------------------------------------------------------------------------------------------------------- | :-----: | :---------------------------------------------------------------------------- |
+| `className`     | `string`                                                                                                                       |         | Sets a custom class                                                           |
+| `id`            | `string`                                                                                                                       |         | Sets a custom id                                                              |
+| `ref`           | `React.RefObject`                                                                                                              |         | Forward a Ref to the underlying DOM node                                      |
+| `children`      | <PropTableValues values={[<a href="#faq-required">FAQ</a>, <a href="#faqgroup-heading">FAQGroup.Heading</a>]} addLineBreaks /> |         | Root element for the FAQGroup component.                                      |
+| `tabAttributes` | `(children: ReactElement, index: number) => Record<string, unknown>`                                                           |         | Spreads the returned attributes onto the tab that's rendered by the FAQGroup. |
 
 ### FAQGroup.Heading
 

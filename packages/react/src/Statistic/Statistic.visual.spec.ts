@@ -7,13 +7,27 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Statistic', () => {
+  test('Statistic / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-statistic--default&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Statistic / Playground', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-statistic--playground&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('Statistic / Boxed Variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-statistic-features--boxed-variant&viewMode=story',
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Statistic / No Description', async ({page}) => {
@@ -22,14 +36,14 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Statistic / Sizes', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-statistic-features--sizes&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Statistic / Custom Heading Size', async ({page}) => {
@@ -38,14 +52,14 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Statistic / Padding', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-statistic-features--padding&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Statistic / Accent Description', async ({page}) => {
@@ -54,7 +68,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Statistic / Custom Footnote', async ({page}) => {
@@ -63,7 +77,7 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Statistic / Custom Intro', async ({page}) => {
@@ -72,20 +86,6 @@ test.describe('Visual Comparison: Statistic', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('Statistic / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-statistic--playground&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('Statistic / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-statistic--default&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })

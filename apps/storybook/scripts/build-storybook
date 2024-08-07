@@ -2,17 +2,11 @@
 set -e
 
 # Add base url to be able to serve static files
-if [ -n "$1" ]; then
-  echo "Building storybook for preview"
-  echo '<base href="/storybook/" />' >> .storybook/manager-head.html
-else
-  echo "Building storybook for production"
-  echo '<base href="/brand/storybook/" />' >> .storybook/manager-head.html
-fi
+echo '<base href="/brand/storybook/" />' >> .storybook/manager-head.html
 
 mkdir -p ../../apps/docs/public/storybook
 # Build storybook inside docs
-npx storybook build -o ../../apps/docs/public/storybook -s ../../apps/docs/public/static
+npx storybook build -o ../../apps/docs/public/storybook
 
 # Remove manager-head after build to not interfere with dev builds
 rm .storybook/manager-head.html

@@ -20,7 +20,7 @@
 .PricingOptions--variant-default {
   border-radius: var(--brand-borderRadius-xlarge);
   border: solid var(--brand-borderWidth-thin) var(--brand-color-border-default);
-  background-color: var(--brand-color-canvas-default);
+  background-color: var(--brand-PricingOptions-item-bgColor);
 }
 
 @media (min-width: 63.25rem) {
@@ -72,7 +72,7 @@
   padding-inline: var(--base-size-32);
   border-radius: var(--brand-borderRadius-xlarge);
   border: solid 1px var(--brand-color-border-default);
-  background-color: var(--brand-color-canvas-default);
+  background-color: var(--brand-PricingOptions-item-bgColor);
   padding-block: var(--base-size-32);
 }
 
@@ -272,6 +272,10 @@
   flex-direction: column;
   gap: var(--base-size-8);
   grid-row: feature-list;
+  margin-block-start: var(--base-size-24);
+}
+
+.PricingOptions__feature-list--has-divider {
   border-block-start: solid 1px var(--brand-color-border-default);
   margin: 0;
   margin-block-start: var(--base-size-24);
@@ -308,7 +312,7 @@
 
 /* Remove hover effect */
 .PricingOptions__feature-list-accordion::after {
-  content: none;
+  content: none !important;
 }
 
 /* Adjust heading spacing */

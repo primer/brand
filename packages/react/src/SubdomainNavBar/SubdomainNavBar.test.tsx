@@ -161,4 +161,18 @@ describe('SubdomainNavBar', () => {
 
     expect(liveRegion).not.toBeInTheDocument()
   })
+
+  it('renders a trailing icon when the `isExternal` prop is `true`', async () => {
+    const {getByRole} = render(
+      <SubdomainNavBar title="test">
+        <SubdomainNavBar.Link href="#">Collections</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#" isExternal>
+          Topics
+        </SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#">Articles</SubdomainNavBar.Link>
+      </SubdomainNavBar>,
+    )
+
+    expect(getByRole('img', {name: 'External link'})).toBeInTheDocument()
+  })
 })

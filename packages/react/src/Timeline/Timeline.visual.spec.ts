@@ -7,13 +7,20 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Timeline', () => {
+  test('Timeline / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-timeline--default&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('Timeline / With Emphasis', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-timeline-features--with-emphasis&viewMode=story',
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Timeline / With Shorter Text', async ({page}) => {
@@ -22,7 +29,7 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Timeline / With Links', async ({page}) => {
@@ -31,7 +38,7 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Timeline / With Longer Text', async ({page}) => {
@@ -40,13 +47,6 @@ test.describe('Visual Comparison: Timeline', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('Timeline / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-timeline--default&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })

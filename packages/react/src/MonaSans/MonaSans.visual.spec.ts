@@ -11,6 +11,6 @@ test.describe('Visual Comparison: MonaSans', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=misc-monasans--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })

@@ -11,13 +11,13 @@ test.describe('Visual Comparison: IDE', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-ide--default&viewMode=story')
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('IDE / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-ide--playground&viewMode=story')
 
     await page.waitForTimeout(2000)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })

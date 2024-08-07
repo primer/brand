@@ -1,5 +1,168 @@
 # @primer/react-brand
 
+## 0.36.0
+
+### Minor Changes
+
+- [#654](https://github.com/primer/brand/pull/654) [`ca967a49`](https://github.com/primer/brand/commit/ca967a498ae666bad017b18019a1df9a081835f9) Thanks [@danielguillan](https://github.com/danielguillan)! - Added `Section` component
+
+  Example:
+
+  ```jsx
+  <Section
+    paddingBlockStart="condensed"
+    paddingBlockEnd="spacious"
+    backgroundImage="my-background.png"
+    backgroundImageSize="cover"
+    backgroundImagePosition="top center"
+  >
+    {/* Section content */}
+  </Section>
+  ```
+
+  🔗 [See the documentation for more examples](https://primer.style/brand/components/Section)
+
+- [#664](https://github.com/primer/brand/pull/664) [`ccd37a50`](https://github.com/primer/brand/commit/ccd37a50753c71ab5ff33a4da4ccbdfe4caa9168) Thanks [@rezrah](https://github.com/rezrah)! - `PricingOptions` now applies the `subtle` background color by default. This is to ensure adequate contrast on a standard `canvas-default` background.
+
+  To apply the previous `default` background color (or custom color), you may override a new design token that has been provided for this reason: `--brand-PricingOptions-item-bgColor`.
+
+- [#672](https://github.com/primer/brand/pull/672) [`61d72605`](https://github.com/primer/brand/commit/61d726056a675eb5acceaf8817dcb8ab43c6af9d) Thanks [@rezrah](https://github.com/rezrah)! - New breakout banner component generally available
+
+  ```js
+  import {BreakoutBanner} from '@primer/react-brand'
+  ```
+
+  ```jsx
+  <BreakoutBanner>
+    <BreakoutBanner.Heading>Where the most ambitious teams build great things</BreakoutBanner.Heading>
+    <BreakoutBanner.LinkGroup>
+      <Link href="#">Primary action</Link>
+    </BreakoutBanner.LinkGroup>
+  </BreakoutBanner>
+  ```
+
+  :link: [Read the documentation for usage guidelines and examples](https://primer.style/brand/components/BreakoutBanner)
+
+### Patch Changes
+
+- [#659](https://github.com/primer/brand/pull/659) [`6f2949b5`](https://github.com/primer/brand/commit/6f2949b5018fd811743df0e4f098734d42f5ce3e) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Added `tabAttributes` prop to `FAQGroup` component. This prop is used to set arbitrary attributes on the tabs rendered by the `FAQGroup` component.
+
+  For example, the below code will add `data-analytics="tab-0"` to the first tab and `data-analytics="tab-1"` to the second tab.
+
+  ```tsx
+  <FAQGroup
+    tabAttributes={(children, index) => ({
+      'data-analytics': `tab-${index}`,
+    })}
+  >
+    <FAQGroup.Heading>Frequently asked questions</FAQGroup.Heading>
+    <FAQ>
+      <FAQ.Heading>Using GitHub Enterprise</FAQ.Heading>
+      <FAQ.Item>...</FAQ.Item>
+      <FAQ.Item>...</FAQ.Item>
+      <FAQ.Item>...</FAQ.Item>
+    </FAQ>
+
+    <FAQ>
+      <FAQ.Heading>About GitHub Enterprise</FAQ.Heading>
+      <FAQ.Item>...</FAQ.Item>
+      <FAQ.Item>...</FAQ.Item>
+      <FAQ.Item>...</FAQ.Item>
+    </FAQ>
+  </FAQGroup>
+  ```
+
+- [#668](https://github.com/primer/brand/pull/668) [`9cb14ed3`](https://github.com/primer/brand/commit/9cb14ed3cecde3bc0602f72050622fbe65374e90) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Fixed misalignment of FormControl.Validation icon
+
+- [#667](https://github.com/primer/brand/pull/667) [`3010db67`](https://github.com/primer/brand/commit/3010db67a37146808ae397c7e9880024ef031577) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Fixed bug with VideoPlayer component where a '0' could be seen in the bottom-left corner during the first render
+
+- [#669](https://github.com/primer/brand/pull/669) [`67fdd2d6`](https://github.com/primer/brand/commit/67fdd2d62577492dc2e5ecd3b5b8c93a508f8072) Thanks [@rezrah](https://github.com/rezrah)! - Fixed inability to forward `name` props to the `Select` component when used inside a `FormControl`.
+
+- [#660](https://github.com/primer/brand/pull/660) [`8f8181b7`](https://github.com/primer/brand/commit/8f8181b7a1456fd1231fdd5b70edcb77d8de4b3d) Thanks [@rezrah](https://github.com/rezrah)! - Fixed width of the focus outline in the `Select` component to fill the entire width of the control when `fullWidth` option has bene applied.
+
+## 0.35.0
+
+### Minor Changes
+
+- [#634](https://github.com/primer/brand/pull/634) [`598a2c5d`](https://github.com/primer/brand/commit/598a2c5d936397539c58466e18111161297b37de) Thanks [@joshfarrant](https://github.com/joshfarrant)! - ⚠️ This update contains a breaking change.
+
+  Refactored `VideoPlayer` component to make it more modular and customisable.
+
+  - The `showTitle` prop has been renamed to `visuallyHiddenTitle` and inverted.
+    - This prop hides the title visually, but keeps it accessible to screen readers.
+    - Where you previously passed `showTitle={false}`, you should now pass `visuallyHiddenTitle={true}`.
+  - The `branding` prop has been renamed to `showBranding`.
+  - Individual video controls can be optionally hidden by setting any of the `showPlayPauseButton`, `showSeekControl`, `showCCButton`, `showMuteButton`, `showVolumeControl`, and `showFullScreenButton` props to `false`.
+  - A custom play icon can be provided using the `playIcon` prop.
+
+### Patch Changes
+
+- [#623](https://github.com/primer/brand/pull/623) [`8727997c`](https://github.com/primer/brand/commit/8727997c876ec59a2a768c4615509afa492b2aa5) Thanks [@rezrah](https://github.com/rezrah)! - Added `fullWidth` prop to `Hero.Heading` to remove default max-width constraint, and enabling easier placement using a parent `Grid`.
+
+- [#623](https://github.com/primer/brand/pull/623) [`8727997c`](https://github.com/primer/brand/commit/8727997c876ec59a2a768c4615509afa492b2aa5) Thanks [@rezrah](https://github.com/rezrah)! - Added `RiverStoryScroll` component, an experimental layout component that wraps around existing `River` patterns.
+
+  ```jsx
+  <RiverStoryScroll>
+    <River>
+      <River.Visual />
+      <River.Content />
+    </River>
+    <River>
+      <River.Visual />
+      <River.Content />
+    </River>
+    <River>
+      <River.Visual />
+      <River.Content />
+    </River>
+  </RiverStoryScroll>
+  ```
+
+  :link: [See Storybook for more examples.](https://primer.style/brand/storybook/?path=/story/components-riverstoryscroll--default)
+
+- [#647](https://github.com/primer/brand/pull/647) [`39e00cfa`](https://github.com/primer/brand/commit/39e00cfa478d6247c5f769577168a704695e35aa) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Added `isExternal` prop to `SubdomainNavBar.Link` component. When `isExternal` is `true`, a [link-external](https://primer.style/foundations/icons/link-external-16) icon is displayed next to the link.
+
+- [#644](https://github.com/primer/brand/pull/644) [`b3f1f364`](https://github.com/primer/brand/commit/b3f1f364473025aa0cfa46ec49094f521998e8ea) Thanks [@danielguillan](https://github.com/danielguillan)! - Improve the layout responsiveness of SubdomainNavBar
+
+- [#639](https://github.com/primer/brand/pull/639) [`ebf92224`](https://github.com/primer/brand/commit/ebf92224234e6a54a979f58a86727997935adbd3) Thanks [@stamat](https://github.com/stamat)! - Fix cut AnchorNav action button outline due the introduced overflow auto
+
+- [#646](https://github.com/primer/brand/pull/646) [`81e983e6`](https://github.com/primer/brand/commit/81e983e67b34d03dac86f0797b817c8de639b29e) Thanks [@rezrah](https://github.com/rezrah)! - Adds responsive toggling of feature lists in the `PricingOptions` component.
+
+  `PricingOptions.FeatureList` can now be collapsed at regular and wide viewports.
+
+  ```jsx
+  <PricingOptions>
+    <PricingOptions.Item>
+      <PricingOptions.FeatureList expanded={{narrow: true, regular: true, wide: true}} />
+    </PricingOptions.Item>
+  </PricingOptions>
+  ```
+
+- [#623](https://github.com/primer/brand/pull/623) [`8727997c`](https://github.com/primer/brand/commit/8727997c876ec59a2a768c4615509afa492b2aa5) Thanks [@rezrah](https://github.com/rezrah)! - Added `--brand-CTABanner-bgColor` token to `CTABanner` for easier customisation of the banners background color, when enabled.
+
+## 0.34.3
+
+### Patch Changes
+
+- [#632](https://github.com/primer/brand/pull/632) [`77b98a4c`](https://github.com/primer/brand/commit/77b98a4c5e399d4e33722ad92e6f54fd730f69d3) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Partial revert of changes to the `LogoSuite` logobar elements.
+
+  To allow optimal treatment of logos based on their respective file formats, `<img>` tag will continue be styled with a CSS filter, whereas inline `<svg>` elements will be styled with CSS fill.
+
+- [#637](https://github.com/primer/brand/pull/637) [`8887dc37`](https://github.com/primer/brand/commit/8887dc377360d0124b27398738a4297a42afa2f2) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Fixes previously non-functional `aspectRatio` prop on `Image` component
+
+- [#636](https://github.com/primer/brand/pull/636) [`3a76bfba`](https://github.com/primer/brand/commit/3a76bfba698051f6530f52c0180e4c1748df14c3) Thanks [@rezrah](https://github.com/rezrah)! - Added `Statistic` component.
+
+  Use the statistic component to display concise numerical information.
+
+  ```jsx
+  <Statistic>
+    <Statistic.Heading>+25%</Statistic.Heading>
+    <Statistic.Description>increase in developer speed</Statistic.Description>
+  </Statistic>
+  ```
+
+  See the [documentation](https://primer.style/brand/components/Statistic) for more usage examples.
+
 ## 0.34.2
 
 ### Patch Changes

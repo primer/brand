@@ -7,13 +7,27 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: VideoPlayer', () => {
+  test('VideoPlayer / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-videoplayer--default&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('VideoPlayer / Playground', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-videoplayer--playground&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('VideoPlayer / With Poster', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--with-poster&viewMode=story',
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('VideoPlayer / Without Branding', async ({page}) => {
@@ -22,20 +36,60 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('VideoPlayer / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-videoplayer--playground&viewMode=story')
+  test('VideoPlayer / With Visually Hidden Title', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--with-visually-hidden-title&viewMode=story',
+    )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('VideoPlayer / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-videoplayer--default&viewMode=story')
+  test('VideoPlayer / With Some Hidden Controls', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--with-some-hidden-controls&viewMode=story',
+    )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('VideoPlayer / Hide Controls When Paused', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--hide-controls-when-paused&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('VideoPlayer / Minimal', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--minimal&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('VideoPlayer / Controlled Programmatically', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--controlled-programmatically&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('VideoPlayer / Custom Play Icon', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--custom-play-icon&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })

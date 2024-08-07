@@ -7,13 +7,27 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: UnorderedList', () => {
+  test('UnorderedList / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-unorderedlist--default&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('UnorderedList / Playground', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-unorderedlist--playground&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('UnorderedList / Check List', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-unorderedlist-features--check-list&viewMode=story',
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('UnorderedList / X List', async ({page}) => {
@@ -22,7 +36,7 @@ test.describe('Visual Comparison: UnorderedList', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('UnorderedList / Custom Color', async ({page}) => {
@@ -31,7 +45,7 @@ test.describe('Visual Comparison: UnorderedList', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('UnorderedList / Custom Icon', async ({page}) => {
@@ -40,7 +54,7 @@ test.describe('Visual Comparison: UnorderedList', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('UnorderedList / Text Variant', async ({page}) => {
@@ -49,20 +63,6 @@ test.describe('Visual Comparison: UnorderedList', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('UnorderedList / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-unorderedlist--default&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('UnorderedList / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-unorderedlist--playground&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })

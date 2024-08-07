@@ -7,18 +7,32 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Pillar', () => {
+  test('Pillar / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar--default&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Pillar / Playground', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar--playground&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('Pillar / Icon', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar-features--icon&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Pillar / Icon Colors', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar-features--icon-colors&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Pillar / Icon (native)', async ({page}) => {
@@ -27,21 +41,21 @@ test.describe('Visual Comparison: Pillar', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Pillar / Link', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar-features--link&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Pillar / Stacked', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar-features--stacked&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Pillar / Stacked Centered', async ({page}) => {
@@ -50,7 +64,7 @@ test.describe('Visual Comparison: Pillar', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Pillar / Stacked With Link', async ({page}) => {
@@ -59,20 +73,6 @@ test.describe('Visual Comparison: Pillar', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('Pillar / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar--default&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('Pillar / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar--playground&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })

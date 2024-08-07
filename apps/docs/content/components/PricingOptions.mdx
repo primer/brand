@@ -525,9 +525,11 @@ One item per pricing plan to be displayed. Maximum of 3 items.
 
 ### PricingOptions.FeatureList
 
-| Name       | Type                                                                                           |   Default   | required | Description          |
-| :--------- | :--------------------------------------------------------------------------------------------- | :---------: | :------: | :------------------- |
-| `children` | <PropTableValues values={['PricingOptions.Heading', 'PricingOptions.Item', ]} addLineBreaks /> | `undefined` |  `true`  | The list of features |
+| Name         | Type                                                                                           |   Default   | required | Description                                                                                                 |
+| :----------- | :--------------------------------------------------------------------------------------------- | :---------: | :------: | :---------------------------------------------------------------------------------------------------------- |
+| `children`   | <PropTableValues values={['PricingOptions.Heading', 'PricingOptions.Item', ]} addLineBreaks /> | `undefined` |  `true`  | The list of features                                                                                        |
+| `expanded`   | `boolean`                                                                                      |   `true`    | `false`  | Controls visibility of feature items. Accepts Object type for granular control at different viewport sizes. |
+| `hasDivider` | `boolean`                                                                                      |   `true`    | `false`  | Controls visibility of a visual border between feature lists and adjacent actions                           |
 
 ### PricingOptions.FeatureListHeading
 

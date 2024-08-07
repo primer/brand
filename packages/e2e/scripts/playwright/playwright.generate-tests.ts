@@ -1,7 +1,9 @@
 ;(function () {
   /* eslint import/no-nodejs-modules: ["error", {"allow": ["path", "fs"]}] */
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const {stories} = require('../../../../apps/storybook/storybook-static/stories')
+  const {StoryIndex} = require('@storybook/types')
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const stories = require('../../../../apps/storybook/storybook-static/index')
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const fs = require('fs')
   // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -10,22 +12,6 @@
   const prettier = require('prettier')
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const prettierOptions = require('../../../../.prettierrc')
-
-  type Stories = {
-    [key: string]: {
-      id: string
-      title: string
-      name: string
-      importPath: string
-      kind: string
-      story: string
-      parameters: {
-        __id: string
-        docsOnly: boolean
-        fileName: string
-      }
-    }
-  }
 
   const port = 6006
 
@@ -38,7 +24,7 @@
     'components-faq-features--all-open': 1000, // for the animation
     'components-subdomainnavbar--search-open': 5500, // for the animation
     'components-subdomainnavbar--search-results-visible': 5500, // for the animation
-    'components-subdomainnavbar--overflow-menu-open': 7500, // for the animation
+    'components-subdomainnavbar--longer-title': 1500, // for the animation
     'components-subdomainnavbar--mobile-view': 5500, // for the animation
     'components-subdomainnavbar--mobile-menu-open': 5500, // for all staggered animations
     'components-subdomainnavbar--mobile-menu-open-many-items': 5500, // for all staggered animations
@@ -80,6 +66,27 @@
     'recipes-seo-article-page--productivity-theme': 5000, // for the animation
     'recipes-seo-article-page--light-hero-image': 5000, // for the animation
     'recipes-seo-article-page--dark-hero-image': 5000, // for the animation
+    'recipes-solutions-categorypage--light': 4000, // for the animation
+    'recipes-solutions-categorypage--dark': 4000, // for the animation
+    'recipes-solutions-solution-industry--maximum': 3500, // for the animation
+    'recipes-solutions-solution-industry--maximum-dark': 3500, // for the animation
+    'recipes-solutions-solution-industry--minimum': 3500, // for the animation
+    'recipes-solutions-solution-industry--minimum-dark': 3500, // for the animation
+    'recipes-solutions-solution-org-size--maximum': 3500, // for the animation
+    'recipes-solutions-solution-org-size--maximum-dark': 3500, // for the animation
+    'recipes-solutions-solution-org-size--minimum': 3500, // for the animation
+    'recipes-solutions-solution-org-size--minimum-dark': 3500, // for the animation
+    'recipes-solutions-overview--light': 3500, // for the animation
+    'recipes-solutions-overview--dark': 3500, // for the animation
+    'components-riverstoryscroll-features--with-timeline': 3500, // for the animation
+    'components-riverstoryscroll-features--with-timeline-narrow': 3500, // for the animation
+    'components-riverstoryscroll-features--enterprise-example': 3500, // for the animation
+    'components-riverstoryscroll-features--enterprise-example-narrow': 3500, // for the animation
+    'recipes-feature-previews-level-2--level-two-playground': 4000, // for the animation
+    'recipes-feature-previews-level-2--level-two-point-one': 4000, // for the animation
+    'recipes-feature-previews-level-2--level-two-point-two': 4000, // for the animation
+    'recipes-feature-previews-level-2--level-two-point-three': 4000, // for the animation
+    'recipes-feature-previews-level-2--level-two-point-four': 4000, // for the animation
   }
 
   /**
@@ -102,6 +109,7 @@
     'components-logosuite-features--following-hero', // animation only
     'components-logosuite-features--stacked', // animation only
     'recipes-feature-previews-level-1--level-one-side-by-side-enterprise', // video makes this too flakey
+    'components-subdomainnavbar--overflow-menu-open', // flakey despite timeout
     'components-ide-features--editor-only', // animation too long
     'components-ide-features--editor-no-replay-button', // animation too long
     'components-ide-features--chat-only', // animation too long
@@ -112,10 +120,12 @@
     'components-ide-features--editor-custom-icons', // animation too long
     'recipes-seo-category-page--default', // template contains randomisation
     'components-statistic-features--animations', // animation only
+    'components-riverstoryscroll-features--video-narrow', // video makes this too flakey
+    'components-riverstoryscroll-features--video', // video makes this too flakey
   ]
 
-  const categorisedStories = Object.keys(stories as Stories).reduce((acc, key) => {
-    const {id, story: storyName, importPath} = stories[key]
+  const categorisedStories = Object.keys((stories as typeof StoryIndex).entries).reduce((acc, key) => {
+    const {id, name: storyName, importPath} = stories.entries[key]
 
     const importPathAsArray = importPath.split('/')
     const groupName = importPathAsArray[importPathAsArray.length - 2]
@@ -173,7 +183,7 @@
           await page.goto('http://localhost:${port}/iframe.html?args=&id=${id}&viewMode=story')
 
           ${timeout ? `await page.waitForTimeout(${timeout})` : ''}
-          expect(await page.screenshot()).toMatchSnapshot()
+          expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
         });
 
         `

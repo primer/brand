@@ -55,6 +55,10 @@
   text-wrap: balance;
 }
 
+.Hero-heading--fullWidth {
+  max-width: unset;
+}
+
 .Hero-description {
   margin: var(--base-size-24) 0 0;
   max-width: 600px;

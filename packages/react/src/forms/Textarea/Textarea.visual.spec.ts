@@ -7,13 +7,20 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Textarea', () => {
+  test('Textarea / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-forms-textarea--default&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('Textarea / Validation', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-forms-textarea-features--validation&viewMode=story',
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Textarea / w/ labels', async ({page}) => {
@@ -22,7 +29,7 @@ test.describe('Visual Comparison: Textarea', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Textarea / Inactive', async ({page}) => {
@@ -31,7 +38,7 @@ test.describe('Visual Comparison: Textarea', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Textarea / Full Width', async ({page}) => {
@@ -40,13 +47,6 @@ test.describe('Visual Comparison: Textarea', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('Textarea / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-forms-textarea--default&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })

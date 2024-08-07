@@ -13,7 +13,8 @@ declare const styles: {
   readonly "FormControl-validation": string;
   readonly "FormControl-validation--success": string;
   readonly "FormControl-validation--error": string;
-  readonly "FormControl-validation-icon": string;
+  readonly "FormControl-validation-success-icon": string;
+  readonly "FormControl-validation-error-icon": string;
   readonly "FormControl-validation--animate-in": string;
   readonly "FormControlValidationFadeIn": string;
 };

@@ -7,13 +7,27 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Pagination', () => {
+  test('Pagination / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pagination--default&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Pagination / Playground', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pagination--playground&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('Pagination / Larger Page Count Margin', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pagination-features--larger-page-count-margin&viewMode=story',
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Pagination / Hide Page Numbers', async ({page}) => {
@@ -22,7 +36,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Pagination / Hide Page Numbers By Viewport', async ({page}) => {
@@ -31,7 +45,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Pagination / Higher Surrounding Page Count', async ({page}) => {
@@ -40,7 +54,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Pagination / Page Handlers', async ({page}) => {
@@ -49,7 +63,7 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Pagination / Custom Attribute Forwarding', async ({page}) => {
@@ -58,20 +72,6 @@ test.describe('Visual Comparison: Pagination', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('Pagination / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pagination--default&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('Pagination / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pagination--playground&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })

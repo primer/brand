@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {type ReactElement} from 'react'
 import {useId} from '@reach/auto-id'
 import clsx from 'clsx'
 
@@ -25,12 +25,13 @@ function _Heading({children, className, as = 'h3', ...rest}: FAQSubheadingProps)
   )
 }
 
-type FAQGroupProps = React.PropsWithChildren<{
+export type FAQGroupProps = React.PropsWithChildren<{
   id?: string
   defaultSelectedIndex?: number
+  tabAttributes?: (children: ReactElement, index: number) => Record<string, unknown>
 }>
 
-function _FAQGroup({children, id, defaultSelectedIndex = 0, ...rest}: FAQGroupProps) {
+function _FAQGroup({children, id, defaultSelectedIndex = 0, tabAttributes, ...rest}: FAQGroupProps) {
   const [selectedIndex, setSelectedIndex] = React.useState(defaultSelectedIndex)
   const [hasInteracted, setHasInteracted] = React.useState(false)
   const instanceId = useId(id)
@@ -73,8 +74,13 @@ function _FAQGroup({children, id, defaultSelectedIndex = 0, ...rest}: FAQGroupPr
         child => React.isValidElement(child) && child.type === FAQ.Heading,
       )
 
+      const tabContents = React.isValidElement(GroupHeadingChild) && GroupHeadingChild.props.children
+
+      const providedTabAttributes = tabAttributes?.(tabContents, index)
+
       return (
         <Button
+          {...providedTabAttributes}
           variant="subtle"
           hasArrow={false}
           as="button"
@@ -91,7 +97,7 @@ function _FAQGroup({children, id, defaultSelectedIndex = 0, ...rest}: FAQGroupPr
           tabIndex={selectedIndex !== index ? -1 : undefined}
           ref={selectedIndex === index ? selectedTabRef : undefined}
         >
-          {React.isValidElement(GroupHeadingChild) && GroupHeadingChild.props.children}
+          {tabContents}
         </Button>
       )
     }

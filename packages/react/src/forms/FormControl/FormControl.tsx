@@ -98,7 +98,7 @@ const Root = ({
             return React.cloneElement(child as React.ReactElement, {
               className: clsx(child.props.className),
               id: inputId,
-              name: inputId,
+              name: child.props.name || inputId,
               required: child.props.required || required,
               validationStatus: child.props.validationStatus || validationStatus,
               fullWidth,
@@ -223,12 +223,12 @@ const FormControlValidation = ({children, validationStatus}: FormControlValidati
       )}
     >
       {validationStatus === 'error' && (
-        <span className={styles['FormControl-validation-icon']}>
+        <span className={styles['FormControl-validation-error-icon']}>
           <AlertFillIcon />
         </span>
       )}
       {validationStatus === 'success' && (
-        <span className={styles['FormControl-validation-icon']}>
+        <span className={styles['FormControl-validation-success-icon']}>
           <CheckCircleFillIcon />
         </span>
       )}

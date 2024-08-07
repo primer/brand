@@ -7,11 +7,25 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Breadcrumbs', () => {
+  test('Breadcrumbs / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-breadcrumbs--default&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Breadcrumbs / Playground', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-breadcrumbs--playground&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('Breadcrumbs / Accent variant', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-breadcrumbs-features--accent&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Breadcrumbs / Long Links', async ({page}) => {
@@ -20,7 +34,7 @@ test.describe('Visual Comparison: Breadcrumbs', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   // eslint-disable-next-line i18n-text/no-en
@@ -32,20 +46,7 @@ test.describe('Visual Comparison: Breadcrumbs', () => {
       )
 
       await page.waitForTimeout(500)
-      expect(await page.screenshot()).toMatchSnapshot()
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
     })
-  })
-  test('Breadcrumbs / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-breadcrumbs--playground&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('Breadcrumbs / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-breadcrumbs--default&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
   })
 })

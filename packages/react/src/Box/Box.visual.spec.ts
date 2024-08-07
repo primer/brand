@@ -7,11 +7,18 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Box', () => {
+  test('Box / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-box--default&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('Box / Padding', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-box-features--padding&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Box / Directional Padding: Block start (top)', async ({page}) => {
@@ -20,7 +27,7 @@ test.describe('Visual Comparison: Box', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Box / Directional Padding: Inline end (right)', async ({page}) => {
@@ -29,7 +36,7 @@ test.describe('Visual Comparison: Box', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Box / Directional Padding: Block end (bottom)', async ({page}) => {
@@ -38,7 +45,7 @@ test.describe('Visual Comparison: Box', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Box / Directional Padding: Inline start (left)', async ({page}) => {
@@ -47,14 +54,14 @@ test.describe('Visual Comparison: Box', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Box / Margin', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-box-features--margin&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Box / Directional Margin: Block start (top)', async ({page}) => {
@@ -63,7 +70,7 @@ test.describe('Visual Comparison: Box', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Box / Directional Margin: Inline end (right)', async ({page}) => {
@@ -72,7 +79,7 @@ test.describe('Visual Comparison: Box', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Box / Directional Margin: Block end (bottom)', async ({page}) => {
@@ -81,7 +88,7 @@ test.describe('Visual Comparison: Box', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Box / Directional Margin: Inline start (left)', async ({page}) => {
@@ -90,7 +97,7 @@ test.describe('Visual Comparison: Box', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Box / Background Colors', async ({page}) => {
@@ -99,21 +106,21 @@ test.describe('Visual Comparison: Box', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Box / Border Radius', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-box-features--border-radius&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Box / Border Width', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-box-features--border-width&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Box / Directional Border Width', async ({page}) => {
@@ -122,27 +129,20 @@ test.describe('Visual Comparison: Box', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Box / Border Color', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-box-features--border-color&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Box / Animation', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-box-features--animation&viewMode=story')
 
     await page.waitForTimeout(6000)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('Box / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-box--default&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })

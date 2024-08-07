@@ -7,13 +7,27 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Image', () => {
+  test('Image / Default', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-image--default&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Image / Playground', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-image--playground&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('Image / Custom Picture Aspect Ratio', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-image-features--custom-picture-aspect-ratio&viewMode=story',
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Image / Custom Image Aspect Ratio', async ({page}) => {
@@ -22,7 +36,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Image / Custom Image Height', async ({page}) => {
@@ -31,7 +45,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Image / Custom Image Width', async ({page}) => {
@@ -40,7 +54,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Image / Custom Image Width And Height', async ({page}) => {
@@ -49,14 +63,14 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Image / Custom Class', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-image-features--custom-class&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Image / Custom Class On Picture', async ({page}) => {
@@ -65,7 +79,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Image / Custom Class With Aspect Ratio', async ({page}) => {
@@ -74,7 +88,7 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Image / Border Radius Options', async ({page}) => {
@@ -83,20 +97,6 @@ test.describe('Visual Comparison: Image', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('Image / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-image--playground&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('Image / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-image--default&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })

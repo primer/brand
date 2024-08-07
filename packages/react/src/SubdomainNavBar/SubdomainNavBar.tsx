@@ -1,6 +1,6 @@
 import React, {useState, useCallback, useRef, PropsWithChildren, forwardRef, useMemo, useEffect} from 'react'
 import clsx from 'clsx'
-import {ChevronLeftIcon, MarkGithubIcon, SearchIcon, XIcon} from '@primer/octicons-react'
+import {ChevronLeftIcon, LinkExternalIcon, MarkGithubIcon, SearchIcon, XIcon} from '@primer/octicons-react'
 
 import {Button, FormControl, Text, TextInput} from '..'
 import {NavigationVisbilityObserver} from './NavigationVisbilityObserver'
@@ -149,12 +149,23 @@ function Root({
     [children],
   )
 
+  const hasAllActions: boolean = useMemo(() => {
+    const primaryAction = React.Children.toArray(children).find(
+      child => React.isValidElement(child) && child.type === PrimaryAction,
+    )
+    const secondaryAction = React.Children.toArray(children).find(
+      child => React.isValidElement(child) && child.type === SecondaryAction,
+    )
+    return !!primaryAction && !!secondaryAction
+  }, [children])
+
   return (
     <>
       <div
         className={clsx(
           styles['SubdomainNavBar-outer-container'],
           fixed && styles['SubdomainNavBar-outer-container--fixed'],
+          hasAllActions && styles['SubdomainNavBar-outer-container--has-actions'],
         )}
       >
         <Button
@@ -198,7 +209,9 @@ function Root({
                         aria-label={`${title} home`}
                         className={clsx(styles['SubdomainNavBar-title'])}
                       >
-                        {title}
+                        <Text size="400" weight="semibold">
+                          {title}
+                        </Text>
                       </a>
                     </li>
                   </>
@@ -356,13 +369,17 @@ function Root({
   )
 }
 
-type LinkProps = {href: string} & React.DetailedHTMLProps<React.LiHTMLAttributes<HTMLLIElement>, HTMLLIElement>
+type LinkProps = {
+  href: string
+  isExternal?: boolean
+} & React.DetailedHTMLProps<React.LiHTMLAttributes<HTMLLIElement>, HTMLLIElement>
 
-function Link({href, className, children, ...rest}: PropsWithChildren<LinkProps>) {
+function Link({href, className, children, isExternal, ...rest}: PropsWithChildren<LinkProps>) {
   return (
     <li className={clsx(styles['SubdomainNavBar-primary-nav-list-item'], className)} {...rest}>
-      <a href={href} className={clsx(styles['SubdomainNavBar-link'])}>
-        {children}
+      <a href={href} className={styles['SubdomainNavBar-link']}>
+        <span className={styles['SubdomainNavBar-link-text']}>{children}</span>
+        {isExternal && <LinkExternalIcon size={16} aria-label="External link" />}
       </a>
     </li>
   )
@@ -613,6 +630,7 @@ function PrimaryAction({children, href, ...rest}: PropsWithChildren<CTAActionPro
       className={clsx(styles['SubdomainNavBar-cta-button'])}
       variant="primary"
       hasArrow={false}
+      size="small"
       {...rest}
     >
       {children}
@@ -627,6 +645,7 @@ function SecondaryAction({children, href, ...rest}: PropsWithChildren<CTAActionP
       href={href}
       className={clsx(styles['SubdomainNavBar-cta-button'], styles['SubdomainNavBar-cta-button--secondary'])}
       hasArrow={false}
+      size="small"
       {...rest}
     >
       {children}

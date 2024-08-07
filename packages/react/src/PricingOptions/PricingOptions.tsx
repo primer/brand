@@ -1,4 +1,4 @@
-import React, {forwardRef, HTMLAttributes, PropsWithChildren, useMemo, type Ref} from 'react'
+import React, {forwardRef, HTMLAttributes, PropsWithChildren, useMemo, Ref, Dispatch} from 'react'
 import {CheckIcon, ChevronDownIcon, XIcon} from '@primer/octicons-react'
 import clsx from 'clsx'
 import type {BaseProps} from '../component-helpers'
@@ -20,6 +20,7 @@ import {
  * Design tokens
  */
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/pricing-options/pricing-options.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/pricing-options/colors-with-modes.css'
 
 /**
  * Main stylesheet (as a CSS Module)
@@ -46,6 +47,35 @@ const testIds = {
   footnote: 'PricingOptions__footnote',
 }
 
+type PricingOptionsContextValue = {
+  allFeatureListsExpanded: boolean
+  updateFeatureListExpanded: Dispatch<boolean>
+}
+
+const PricingOptionsContext = React.createContext<PricingOptionsContextValue>({
+  allFeatureListsExpanded: false,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  updateFeatureListExpanded: () => {},
+})
+
+const PricingOptionsProvider: React.FC = ({children}) => {
+  const [allFeatureListsExpanded, setAllFeatureListsExpanded] = React.useState(false)
+
+  const updateFeatureListExpanded = newValue => {
+    setAllFeatureListsExpanded(() => newValue)
+  }
+
+  return (
+    <PricingOptionsContext.Provider value={{allFeatureListsExpanded, updateFeatureListExpanded}}>
+      {children}
+    </PricingOptionsContext.Provider>
+  )
+}
+
+const usePricingOptions = (): PricingOptionsContextValue => {
+  return React.useContext(PricingOptionsContext)
+}
+
 const PricingOptionsRoot = forwardRef(
   (
     {children, className, 'data-testid': testId, variant = 'default', ...rest}: PropsWithChildren<PricingOptionsProps>,
@@ -60,19 +90,21 @@ const PricingOptionsRoot = forwardRef(
     ).slice(0, 3)
 
     return (
-      <div
-        className={clsx(
-          styles.PricingOptions,
-          styles[`PricingOptions--variant-${variant}`],
-          styles[`PricingOptions--items${filteredChildren.length}`],
-          className,
-        )}
-        data-testid={testId || testIds.root}
-        ref={ref}
-        {...(rest as HTMLAttributes<HTMLElement>)}
-      >
-        {filteredChildren.filter(child => React.isValidElement(child) && child.type === PricingOptionsItem)}
-      </div>
+      <PricingOptionsProvider>
+        <div
+          className={clsx(
+            styles.PricingOptions,
+            styles[`PricingOptions--variant-${variant}`],
+            styles[`PricingOptions--items${filteredChildren.length}`],
+            className,
+          )}
+          data-testid={testId || testIds.root}
+          ref={ref}
+          {...(rest as HTMLAttributes<HTMLElement>)}
+        >
+          {filteredChildren.filter(child => React.isValidElement(child) && child.type === PricingOptionsItem)}
+        </div>
+      </PricingOptionsProvider>
     )
   },
 )
@@ -314,8 +346,24 @@ const PricingOptionsPrice = forwardRef<HTMLParagraphElement, PricingOptionsPrice
 )
 
 type PricingOptionsFeatureListProps = BaseProps<HTMLUListElement> & {
+  expanded?: ExpandedProp
+  hasDivider?: boolean
   children: React.ReactElement<PricingOptionsFeatureHeadingProps | PricingOptionsFeatureListItemProps>[]
   'data-testid'?: string
+}
+
+type ExpandedProp = boolean | ResponsiveExpandableProps
+
+type ResponsiveExpandableProps = {
+  narrow: boolean
+  regular: boolean
+  wide: boolean
+}
+
+const defaultExpanded: ExpandedProp = {
+  narrow: false,
+  regular: true,
+  wide: true,
 }
 
 type ValidFeatureListChildren = {
@@ -324,10 +372,14 @@ type ValidFeatureListChildren = {
 }[]
 
 const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatureListProps>(
-  ({children, className, 'data-testid': testId, ...rest}, ref) => {
-    const {isLarge} = useWindowSize()
+  ({children, className, 'data-testid': testId, hasDivider = true, expanded = defaultExpanded, ...rest}, ref) => {
+    const runOnce = React.useRef(false)
+    const [isAccordionOpen, setIsAccordionOpen] = React.useState<boolean>(false)
+    const {allFeatureListsExpanded, updateFeatureListExpanded} = usePricingOptions()
 
-    const FilteredChidlrenSets = React.Children.toArray(children).reduce<ValidFeatureListChildren>((acc, child) => {
+    const {isMedium: isRegular, isXLarge: isWide} = useWindowSize()
+
+    const FilteredChildrenSet = React.Children.toArray(children).reduce<ValidFeatureListChildren>((acc, child) => {
       if (React.isValidElement(child) && child.type === PricingOptionsFeatureListItem) {
         if (acc.length === 0) {
           acc.push({Heading: null, Items: []})
@@ -343,7 +395,7 @@ const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatu
       return acc
     }, [])
 
-    const FeatureListItems = FilteredChidlrenSets.map(({Heading: HeadingChild, Items}, index) => (
+    const FeatureListItems = FilteredChildrenSet.map(({Heading: HeadingChild, Items}, index) => (
       <div className={styles['PricingOptions__feature-list-set']} key={index}>
         {HeadingChild}
 
@@ -353,34 +405,52 @@ const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatu
       </div>
     ))
 
+    React.useEffect(() => {
+      if (!runOnce.current) {
+        if (typeof expanded === 'boolean') {
+          return setIsAccordionOpen(expanded)
+        } else if (typeof expanded === 'object') {
+          const {narrow, regular, wide} = expanded
+          if (isRegular) return setIsAccordionOpen(regular)
+          if (isWide) return setIsAccordionOpen(wide)
+          return setIsAccordionOpen(narrow)
+        }
+        runOnce.current = true
+      }
+    }, [expanded, isRegular, isWide])
+
+    React.useEffect(() => {
+      if (isAccordionOpen && !runOnce.current) {
+        updateFeatureListExpanded(true)
+        runOnce.current = true
+      }
+    }, [isAccordionOpen, updateFeatureListExpanded])
+
     return (
       <div
-        className={clsx(styles['PricingOptions__feature-list'], className)}
-        data-testid={testId || testIds.featureList}
         ref={ref}
-      >
-        {!isLarge ? (
-          <Accordion className={styles['PricingOptions__feature-list-accordion']} open={false}>
-            <Accordion.Heading
-              as="h4"
-              className={styles['PricingOptions__feature-list-accordion-heading']}
-              reversedToggles
-            >
-              <ChevronDownIcon className={styles['PricingOptions__feature-list-accordion-chevron']} />
-              What&apos;s included
-            </Accordion.Heading>
-            <Accordion.Content className={styles['PricingOptions__feature-list-accordion-content']}>
-              {FeatureListItems}
-            </Accordion.Content>
-          </Accordion>
-        ) : (
-          <>
-            <Text size="200" variant="muted" className={styles['PricingOptions__feature-list-toggle']}>
-              What&apos;s included:
-            </Text>
-            {FeatureListItems}
-          </>
+        className={clsx(
+          styles['PricingOptions__feature-list'],
+          hasDivider && styles['PricingOptions__feature-list--has-divider'],
+          className,
         )}
+        data-testid={testId || testIds.featureList}
+      >
+        <Accordion
+          className={styles['PricingOptions__feature-list-accordion']}
+          open={allFeatureListsExpanded}
+          handleOpen={newState => {
+            updateFeatureListExpanded(newState)
+          }}
+        >
+          <Accordion.Heading className={styles['PricingOptions__feature-list-accordion-heading']} reversedToggles>
+            <ChevronDownIcon className={styles['PricingOptions__feature-list-accordion-chevron']} />
+            What&apos;s included
+          </Accordion.Heading>
+          <Accordion.Content className={styles['PricingOptions__feature-list-accordion-content']}>
+            {FeatureListItems}
+          </Accordion.Content>
+        </Accordion>
       </div>
     )
   },

@@ -19,5 +19,5 @@ jobs:
     with:
       node_version: 18
       install: npm ci --legacy-peer-deps && cd apps/docs && npm ci --legacy-peer-deps && cd ..
-      build: npm run build && npm run build:docs:preview && npm run build:storybook:preview
+      build: npm run build && npm run build:docs && npm run build:storybook
       output_dir: apps/docs/public/

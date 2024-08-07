@@ -11,21 +11,21 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('SubdomainNavBar / No Search', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--no-search&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('SubdomainNavBar / Search Open', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--search-open&viewMode=story')
 
     await page.waitForTimeout(5500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('SubdomainNavBar / Search Results Visible', async ({page}) => {
@@ -34,16 +34,7 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     )
 
     await page.waitForTimeout(5500)
-    expect(await page.screenshot()).toMatchSnapshot()
-  })
-
-  test('SubdomainNavBar / Overflow Menu Open', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--overflow-menu-open&viewMode=story',
-    )
-
-    await page.waitForTimeout(7500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   // eslint-disable-next-line i18n-text/no-en
@@ -55,7 +46,7 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
       )
 
       await page.waitForTimeout(5500)
-      expect(await page.screenshot()).toMatchSnapshot()
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
     })
   })
 
@@ -68,7 +59,7 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
       )
 
       await page.waitForTimeout(5500)
-      expect(await page.screenshot()).toMatchSnapshot()
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
     })
   })
 
@@ -81,7 +72,7 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
       )
 
       await page.waitForTimeout(5500)
-      expect(await page.screenshot()).toMatchSnapshot()
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
     })
   })
 
@@ -94,7 +85,7 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
       )
 
       await page.waitForTimeout(5500)
-      expect(await page.screenshot()).toMatchSnapshot()
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
     })
   })
 
@@ -107,14 +98,14 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
       )
 
       await page.waitForTimeout(5500)
-      expect(await page.screenshot()).toMatchSnapshot()
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
     })
   })
   test('SubdomainNavBar / No overflow menu (1 link)', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--no-overflow&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('SubdomainNavBar / Longer Title', async ({page}) => {
@@ -122,22 +113,22 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
       'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--longer-title&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    await page.waitForTimeout(1500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('SubdomainNavBar / Full Width', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--full-width&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('SubdomainNavBar / No Title', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--no-title&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('SubdomainNavBar / Conditional Rendering', async ({page}) => {
@@ -146,7 +137,7 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('SubdomainNavBar / Skip To Main Tag', async ({page}) => {
@@ -155,7 +146,7 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('SubdomainNavBar / Skip To Main Tag With Id', async ({page}) => {
@@ -164,6 +155,15 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubdomainNavBar / External Link', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--external-link&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })

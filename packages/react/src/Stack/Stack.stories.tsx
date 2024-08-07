@@ -2,6 +2,7 @@ import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 
 import {Stack} from '.'
+import placeholderImage from '../fixtures/images/placeholder-600x400.png'
 
 export default {
   title: 'Components/Stack',
@@ -39,20 +40,26 @@ const Template: StoryFn<typeof Stack> = args => (
   <Stack {...args} style={{height: '100vh'}}>
     <div>
       <img
-        src="https://via.placeholder.com/300x150/D0D7DE/D0D7DE.png"
+        src={placeholderImage}
         alt="placeholder with gray background and no foreground text"
+        width={300}
+        height={150}
       />
     </div>
     <div>
       <img
-        src="https://via.placeholder.com/300x150/D0D7DE/D0D7DE.png"
+        src={placeholderImage}
         alt="placeholder with gray background and no foreground text"
+        width={300}
+        height={150}
       />
     </div>
     <div>
       <img
-        src="https://via.placeholder.com/300x150/D0D7DE/D0D7DE.png"
+        src={placeholderImage}
         alt="placeholder with gray background and no foreground text"
+        width={300}
+        height={150}
       />
     </div>
   </Stack>
