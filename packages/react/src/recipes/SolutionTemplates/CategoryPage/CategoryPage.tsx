@@ -16,10 +16,12 @@ import {
   SubdomainNavBar,
   ColorModesEnum,
   ThemeProvider,
+  SectionIntro,
 } from '../../..'
 
 import lightNarrowBg from '../../../fixtures/images/light-vertical-banner.png'
 import lightWideBg from '../../../fixtures/images/light-horizontal-banner.png'
+import lightWideAltBG from '../../../fixtures/images/background-light-collaboration.webp'
 import darkNarrowBg from '../../../fixtures/images/dark-vertical-banner.png'
 import darkWideBg from '../../../fixtures/images/dark-horizontal-banner.png'
 
@@ -111,7 +113,7 @@ export function CategoryPage({
           <Box className={styles.customHero}>
             <Grid enableOverlay={enableGridOverlay} className={styles.relative}>
               <Grid.Column>
-                <Hero align="start">
+                <Hero>
                   {args.heroLabel && <Hero.Label>{args.heroLabel}</Hero.Label>}
                   {args.heroTitle && <Hero.Heading>{args.heroTitle}</Hero.Heading>}
                   {args.heroDescription && <Hero.Description>{args.heroDescription}</Hero.Description>}
@@ -127,129 +129,21 @@ export function CategoryPage({
             }}
           >
             <Grid enableOverlay={enableGridOverlay} className={styles.subtleCards}>
-              <Grid.Column span={{large: 4}}>
-                <Box animate="fade-in" className={styles.fullHeight}>
-                  <Card href="#" fullWidth>
-                    <Card.Icon icon={<StackIcon />} color="indigo" hasBackground />
-                    <Card.Heading as="h2">Teams</Card.Heading>
-                    <Card.Description>
-                      Build like the best teams on the planet. With CI/CD, Dependabot, and the world&apos;s largest
-                      developer community, GitHub gives your team everything they need to ship better software faster.
-                    </Card.Description>
-                  </Card>
-                </Box>
-              </Grid.Column>
-              <Grid.Column span={{large: 4}}>
-                <Box animate="fade-in" className={styles.fullHeight}>
-                  <Card href="#" fullWidth>
-                    <Card.Icon icon={<StarIcon />} color="indigo" hasBackground />
-                    <Card.Heading as="h2">Startups</Card.Heading>
-                    <Card.Description>
-                      GitHub for Startups helps your startup go from idea to IPO on the world&apos;s largest and most
-                      advanced developer platform. Eligible startups receive 20 seats of GitHub Enterprise free for 12
-                      months.
-                    </Card.Description>
-                  </Card>
-                </Box>
-              </Grid.Column>
-              <Grid.Column span={{large: 4}}>
-                <Box animate="fade-in" className={styles.fullHeight}>
-                  <Card href="#" fullWidth>
-                    <Card.Icon icon={<HeartIcon />} color="indigo" hasBackground />
-                    <Card.Heading as="h2">Non-Profit</Card.Heading>
-                    <Card.Description>
-                      Empowering the next generation of developers. GitHub Education bridges the gap between coding
-                      education and a tech career, and is accessible to everyone globally at no cost.
-                    </Card.Description>
-                  </Card>
-                </Box>
-              </Grid.Column>
-              <Grid.Column span={{large: 4}}>
-                <Box animate="fade-in" className={styles.fullHeight}>
-                  <Card href="#" fullWidth>
-                    <Card.Icon icon={<StackIcon />} color="indigo" hasBackground />
-                    <Card.Heading as="h2">Teams</Card.Heading>
-                    <Card.Description>
-                      Build like the best teams on the planet. With CI/CD, Dependabot, and the world&apos;s largest
-                      developer community, GitHub gives your team everything they need to ship better software faster.
-                    </Card.Description>
-                  </Card>
-                </Box>
-              </Grid.Column>
-              <Grid.Column span={{large: 4}}>
-                <Box animate="fade-in" className={styles.fullHeight}>
-                  <Card href="#" fullWidth>
-                    <Card.Icon icon={<StarIcon />} color="indigo" hasBackground />
-                    <Card.Heading as="h2">Startups</Card.Heading>
-                    <Card.Description>
-                      GitHub for Startups helps your startup go from idea to IPO on the world&apos;s largest and most
-                      advanced developer platform. Eligible startups receive 20 seats of GitHub Enterprise free for 12
-                      months.
-                    </Card.Description>
-                  </Card>
-                </Box>
-              </Grid.Column>
-              <Grid.Column span={{large: 4}}>
-                <Box animate="fade-in" className={styles.fullHeight}>
-                  <Card href="#" fullWidth>
-                    <Card.Icon icon={<HeartIcon />} color="indigo" hasBackground />
-                    <Card.Heading as="h2">Non-Profit</Card.Heading>
-                    <Card.Description>
-                      Empowering the next generation of developers. GitHub Education bridges the gap between coding
-                      education and a tech career, and is accessible to everyone globally at no cost.
-                    </Card.Description>
-                  </Card>
-                </Box>
+              <Grid.Column span={{large: 12}}>
+                <SectionIntro>
+                  <SectionIntro.Heading>Focus on solving bigger problems</SectionIntro.Heading>
+                  <SectionIntro.Description>
+                    Spend less time creating boilerplate and repetitive code patterns, and more time on what matters:
+                    building great software. Write a comment describing the logic you want and GitHub Copilot will
+                    immediately suggest code to implement the solution.
+                  </SectionIntro.Description>
+                  <SectionIntro.Link href="#">Explore docs</SectionIntro.Link>
+                </SectionIntro>
               </Grid.Column>
             </Grid>
           </Box>
           <section>
             <Grid enableOverlay={enableGridOverlay} className={styles.subtleCards}>
-              <Grid.Column>
-                <Box paddingBlockStart={128} paddingBlockEnd={40}>
-                  <Heading as="h2" size="4">
-                    Related solutions
-                  </Heading>
-                </Box>
-              </Grid.Column>
-
-              <Grid.Column span={{large: 4}}>
-                <Box animate="fade-in" className={styles.fullHeight}>
-                  <Card href="#" fullWidth>
-                    <Card.Icon icon={<StackIcon />} color="indigo" hasBackground />
-                    <Card.Heading as="h2">Teams</Card.Heading>
-                    <Card.Description>
-                      Build like the best teams on the planet. With CI/CD, Dependabot, and the world&apos;s largest
-                      developer community, GitHub gives your team everything they need to ship better software faster.
-                    </Card.Description>
-                  </Card>
-                </Box>
-              </Grid.Column>
-              <Grid.Column span={{large: 4}}>
-                <Box animate="fade-in" className={styles.fullHeight}>
-                  <Card href="#" fullWidth>
-                    <Card.Icon icon={<StarIcon />} color="indigo" hasBackground />
-                    <Card.Heading as="h2">Startups</Card.Heading>
-                    <Card.Description>
-                      GitHub for Startups helps your startup go from idea to IPO on the world&apos;s largest and most
-                      advanced developer platform. Eligible startups receive 20 seats of GitHub Enterprise free for 12
-                      months.
-                    </Card.Description>
-                  </Card>
-                </Box>
-              </Grid.Column>
-              <Grid.Column span={{large: 4}}>
-                <Box animate="fade-in" className={styles.fullHeight}>
-                  <Card href="#" fullWidth>
-                    <Card.Icon icon={<HeartIcon />} color="indigo" hasBackground />
-                    <Card.Heading as="h2">Non-Profit</Card.Heading>
-                    <Card.Description>
-                      Empowering the next generation of developers. GitHub Education bridges the gap between coding
-                      education and a tech career, and is accessible to everyone globally at no cost.
-                    </Card.Description>
-                  </Card>
-                </Box>
-              </Grid.Column>
               <Grid.Column>
                 <Box marginBlockStart={{narrow: 32, regular: 96}}>
                   <BreakoutBanner
@@ -266,43 +160,44 @@ export function CategoryPage({
                     </BreakoutBanner.LinkGroup>
                   </BreakoutBanner>
                 </Box>
+
+                <Box marginBlockStart={{narrow: 64, regular: 128}} marginBlockEnd={{narrow: 64, regular: 128}}>
+                  <Grid>
+                    <Grid.Column span={{medium: 6, large: 3}}>
+                      <Box paddingBlockEnd={{narrow: 24, regular: 'none'}}>
+                        <Statistic size="medium" animate="fade-in">
+                          <Statistic.Heading size="1">$2M+</Statistic.Heading>
+                          <Statistic.Description>Given back to our maintainers</Statistic.Description>
+                        </Statistic>
+                      </Box>
+                    </Grid.Column>
+                    <Grid.Column span={{medium: 6, large: 3}}>
+                      <Box paddingBlockEnd={{narrow: 24, regular: 'none'}}>
+                        <Statistic size="medium" animate="fade-in">
+                          <Statistic.Heading size="1">~25%</Statistic.Heading>
+                          <Statistic.Description>increase in developer speed with GitHub Copilot</Statistic.Description>
+                        </Statistic>
+                      </Box>
+                    </Grid.Column>
+                    <Grid.Column span={{medium: 6, large: 3}}>
+                      <Box paddingBlockEnd={{narrow: 24, regular: 'none'}}>
+                        <Statistic size="medium" animate="fade-in">
+                          <Statistic.Heading size="1">1min</Statistic.Heading>
+                          <Statistic.Description>set-up time for largest repo with Codespaces</Statistic.Description>
+                        </Statistic>
+                      </Box>
+                    </Grid.Column>
+                    <Grid.Column span={{medium: 6, large: 3}}>
+                      <Statistic size="medium" animate="fade-in">
+                        <Statistic.Heading size="1">3.5K+</Statistic.Heading>
+                        <Statistic.Description>Companies actively sponsoring</Statistic.Description>
+                      </Statistic>
+                    </Grid.Column>
+                  </Grid>
+                </Box>
               </Grid.Column>
             </Grid>
           </section>
-          <Box marginBlockStart={{narrow: 64, regular: 128}} marginBlockEnd={{narrow: 64, regular: 128}}>
-            <Grid>
-              <Grid.Column span={{medium: 6, large: 3}}>
-                <Box paddingBlockEnd={{narrow: 24, regular: 'none'}}>
-                  <Statistic size="medium" animate="fade-in">
-                    <Statistic.Heading size="1">$2M+</Statistic.Heading>
-                    <Statistic.Description>Given back to our maintainers</Statistic.Description>
-                  </Statistic>
-                </Box>
-              </Grid.Column>
-              <Grid.Column span={{medium: 6, large: 3}}>
-                <Box paddingBlockEnd={{narrow: 24, regular: 'none'}}>
-                  <Statistic size="medium" animate="fade-in">
-                    <Statistic.Heading size="1">~25%</Statistic.Heading>
-                    <Statistic.Description>increase in developer speed with GitHub Copilot</Statistic.Description>
-                  </Statistic>
-                </Box>
-              </Grid.Column>
-              <Grid.Column span={{medium: 6, large: 3}}>
-                <Box paddingBlockEnd={{narrow: 24, regular: 'none'}}>
-                  <Statistic size="medium" animate="fade-in">
-                    <Statistic.Heading size="1">1min</Statistic.Heading>
-                    <Statistic.Description>set-up time for largest repo with Codespaces</Statistic.Description>
-                  </Statistic>
-                </Box>
-              </Grid.Column>
-              <Grid.Column span={{medium: 6, large: 3}}>
-                <Statistic size="medium" animate="fade-in">
-                  <Statistic.Heading size="1">3.5K+</Statistic.Heading>
-                  <Statistic.Description>Companies actively sponsoring</Statistic.Description>
-                </Statistic>
-              </Grid.Column>
-            </Grid>
-          </Box>
         </AnimationProvider>
         <div>
           <Box
@@ -312,13 +207,7 @@ export function CategoryPage({
           >
             <Grid>
               <Grid.Column>
-                <CTABanner
-                  hasBorder={!isLightMode}
-                  hasBackground
-                  hasShadow={false}
-                  align="center"
-                  className={styles.ctaBanner}
-                >
+                <CTABanner hasBorder={!isLightMode} hasBackground hasShadow={false} className={styles.ctaBanner}>
                   <CTABanner.Heading>Get started</CTABanner.Heading>
                   <CTABanner.Description>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam
