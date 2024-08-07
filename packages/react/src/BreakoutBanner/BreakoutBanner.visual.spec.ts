@@ -11,14 +11,14 @@ test.describe('Visual Comparison: BreakoutBanner', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-breakoutbanner--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('BreakoutBanner / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-breakoutbanner--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('BreakoutBanner / Custom Background Colors', async ({page}) => {
@@ -27,7 +27,7 @@ test.describe('Visual Comparison: BreakoutBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('BreakoutBanner / Responsive Background Image', async ({page}) => {
@@ -36,7 +36,7 @@ test.describe('Visual Comparison: BreakoutBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('BreakoutBanner / Responsive Background Image Dark', async ({page}) => {
@@ -45,7 +45,7 @@ test.describe('Visual Comparison: BreakoutBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('BreakoutBanner / Aligned Center', async ({page}) => {
@@ -54,7 +54,7 @@ test.describe('Visual Comparison: BreakoutBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('BreakoutBanner / Optional Description', async ({page}) => {
@@ -63,7 +63,7 @@ test.describe('Visual Comparison: BreakoutBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('BreakoutBanner / Vertically Stacked Links', async ({page}) => {
@@ -72,6 +72,6 @@ test.describe('Visual Comparison: BreakoutBanner', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })

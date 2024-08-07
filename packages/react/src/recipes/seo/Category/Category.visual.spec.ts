@@ -11,6 +11,6 @@ test.describe('Visual Comparison: Category', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=recipes-seo-category-page--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })

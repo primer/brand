@@ -11,14 +11,14 @@ test.describe('Visual Comparison: LogoSuite', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-logosuite--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('LogoSuite / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-logosuite--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('LogoSuite / Align Start', async ({page}) => {
@@ -27,7 +27,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('LogoSuite / Align Justified', async ({page}) => {
@@ -36,7 +36,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('LogoSuite / With Emphasis', async ({page}) => {
@@ -45,7 +45,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('LogoSuite / Only Heading', async ({page}) => {
@@ -54,7 +54,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('LogoSuite / Heading Hidden', async ({page}) => {
@@ -63,7 +63,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('LogoSuite / With Links', async ({page}) => {
@@ -72,7 +72,7 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('LogoSuite / With Raster Logos', async ({page}) => {
@@ -81,6 +81,6 @@ test.describe('Visual Comparison: LogoSuite', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })

@@ -13,7 +13,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('FormControl / w/ Textarea - Playground', async ({page}) => {
@@ -22,7 +22,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('FormControl / w/ Select - Playground', async ({page}) => {
@@ -31,7 +31,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('FormControl / w/ Checkbox - Playground', async ({page}) => {
@@ -40,7 +40,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('FormControl / w/ Radio - Playground', async ({page}) => {
@@ -49,7 +49,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('FormControl / w/ Success Validation - Playground', async ({page}) => {
@@ -58,7 +58,7 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('FormControl / w/ Error Validation - Playground', async ({page}) => {
@@ -67,6 +67,6 @@ test.describe('Visual Comparison: FormControl', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })

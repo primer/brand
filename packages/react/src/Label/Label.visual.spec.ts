@@ -11,28 +11,28 @@ test.describe('Visual Comparison: Label', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-label--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Label / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-label--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Label / Large', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-label-features--large&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Label / Color', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-label-features--color&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Label / Leading visual (native)', async ({page}) => {
@@ -41,14 +41,14 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Label / With an Octicon', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-label-features--with-octicon&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Label / With an Octicon (large)', async ({page}) => {
@@ -57,7 +57,7 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Label / With an Octicon and color', async ({page}) => {
@@ -66,6 +66,6 @@ test.describe('Visual Comparison: Label', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })

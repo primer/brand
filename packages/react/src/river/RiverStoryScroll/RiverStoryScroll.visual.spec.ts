@@ -11,7 +11,7 @@ test.describe('Visual Comparison: RiverStoryScroll', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-riverstoryscroll--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('RiverStoryScroll / With Timeline', async ({page}) => {
@@ -20,7 +20,7 @@ test.describe('Visual Comparison: RiverStoryScroll', () => {
     )
 
     await page.waitForTimeout(3500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   // eslint-disable-next-line i18n-text/no-en
@@ -32,7 +32,7 @@ test.describe('Visual Comparison: RiverStoryScroll', () => {
       )
 
       await page.waitForTimeout(3500)
-      expect(await page.screenshot()).toMatchSnapshot()
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
     })
   })
   test('RiverStoryScroll / Disabled', async ({page}) => {
@@ -41,7 +41,7 @@ test.describe('Visual Comparison: RiverStoryScroll', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('RiverStoryScroll / Enterprise Example', async ({page}) => {
@@ -50,7 +50,7 @@ test.describe('Visual Comparison: RiverStoryScroll', () => {
     )
 
     await page.waitForTimeout(3500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   // eslint-disable-next-line i18n-text/no-en
@@ -62,7 +62,7 @@ test.describe('Visual Comparison: RiverStoryScroll', () => {
       )
 
       await page.waitForTimeout(3500)
-      expect(await page.screenshot()).toMatchSnapshot()
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
     })
   })
 })

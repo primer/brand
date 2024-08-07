@@ -11,20 +11,20 @@ test.describe('Visual Comparison: InlineLink', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-inlinelink--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('InlineLink / Example', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-inlinelink--example&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('InlineLink / Size Inheritence', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-inlinelink--size-inheritence&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })

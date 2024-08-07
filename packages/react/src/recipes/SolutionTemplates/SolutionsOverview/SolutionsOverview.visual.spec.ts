@@ -11,13 +11,13 @@ test.describe('Visual Comparison: SolutionsOverview', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=recipes-solutions-overview--light&viewMode=story')
 
     await page.waitForTimeout(3500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('SolutionsOverview / Dark', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=recipes-solutions-overview--dark&viewMode=story')
 
     await page.waitForTimeout(3500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })

@@ -40,6 +40,7 @@ import vercelLogo from '../../../fixtures/images/logos/vercel.png'
 import lightHeroBg from '../../../fixtures/images/background-light-collaboration.webp'
 import darkHeroBg from '../../../fixtures/images/background-dark-collaboration.webp'
 import ciCdRenderImage from '../../../fixtures/images/ci-cd-render-ui.png'
+import placeholderImage from '../../../fixtures/images/placeholder-600x400.png'
 
 import lightNarrowBg from '../../../fixtures/images/light-vertical-banner.png'
 import lightWideBg from '../../../fixtures/images/light-horizontal-banner.png'
@@ -387,10 +388,7 @@ export function SolutionPage({
                 <Box paddingBlockEnd={64}>
                   <River>
                     <River.Visual>
-                      <img
-                        src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
-                        alt="placeholder, blank area with an off-white background color"
-                      />
+                      <img src={placeholderImage} alt="placeholder, blank area with an off-white background color" />
                     </River.Visual>
                     <River.Content trailingComponent={variant === 'use-case' ? TimelineExample : undefined}>
                       <Heading>Heading</Heading>
@@ -405,10 +403,7 @@ export function SolutionPage({
                   </River>
                   <River>
                     <River.Visual>
-                      <img
-                        src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
-                        alt="placeholder, blank area with an off-white background color"
-                      />
+                      <img src={placeholderImage} alt="placeholder, blank area with an off-white background color" />
                     </River.Visual>
                     <River.Content trailingComponent={variant === 'use-case' ? TimelineExample : undefined}>
                       <Heading>Heading</Heading>
@@ -423,10 +418,7 @@ export function SolutionPage({
                   </River>
                   <River>
                     <River.Visual>
-                      <img
-                        src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
-                        alt="placeholder, blank area with an off-white background color"
-                      />
+                      <img src={placeholderImage} alt="placeholder, blank area with an off-white background color" />
                     </River.Visual>
                     <River.Content trailingComponent={variant === 'use-case' ? TimelineExample : undefined}>
                       <Heading>Heading</Heading>
@@ -463,10 +455,7 @@ export function SolutionPage({
                         <Link href="#">Read customer story</Link>
                       </Bento.Content>
                       <Bento.Visual position="50% 100%" padding="normal">
-                        <img
-                          alt="placeholder, blank area with an gray background color"
-                          src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
-                        />
+                        <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
                       </Bento.Visual>
                     </Bento.Item>
                   </Bento>
@@ -520,7 +509,7 @@ export function SolutionPage({
                       <Grid.Column span={{xsmall: 12, medium: 4}}>
                         <Card href="https://github.com" variant="minimal" fullWidth>
                           <Card.Image
-                            src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+                            src={placeholderImage}
                             alt="placeholder, blank area with an gray background color"
                             aspectRatio="16:9"
                           />
@@ -533,7 +522,7 @@ export function SolutionPage({
                       <Grid.Column span={{xsmall: 12, medium: 4}}>
                         <Card href="https://github.com" variant="minimal" fullWidth>
                           <Card.Image
-                            src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+                            src={placeholderImage}
                             alt="placeholder, blank area with an gray background color"
                             aspectRatio="16:9"
                           />
@@ -546,7 +535,7 @@ export function SolutionPage({
                       <Grid.Column span={{xsmall: 12, medium: 4}}>
                         <Card href="https://github.com" variant="minimal" fullWidth>
                           <Card.Image
-                            src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+                            src={placeholderImage}
                             alt="placeholder, blank area with an gray background color"
                             aspectRatio="16:9"
                           />
@@ -910,10 +899,7 @@ function StoryScrollExample({align, bentoVisible}) {
                   <Link href="#">Call to action</Link>
                 </Bento.Content>
                 <Bento.Visual position="50% 100%" padding="normal">
-                  <img
-                    alt="placeholder, blank area with an gray background color"
-                    src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
-                  />
+                  <img alt="placeholder, blank area with an gray background color" src={placeholderImage} />
                 </Bento.Visual>
               </Bento.Item>
             </Bento>

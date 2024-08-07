@@ -11,14 +11,14 @@ test.describe('Visual Comparison: Tooltip', () => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-tooltip--default&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Tooltip / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-tooltip--playground&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Tooltip / Anchor Has Margin', async ({page}) => {
@@ -27,14 +27,14 @@ test.describe('Visual Comparison: Tooltip', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Tooltip / Label Type', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-tooltip-features--label-type&viewMode=story')
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Tooltip / All Directions', async ({page}) => {
@@ -43,7 +43,7 @@ test.describe('Visual Comparison: Tooltip', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Tooltip / Multiline Text', async ({page}) => {
@@ -52,7 +52,7 @@ test.describe('Visual Comparison: Tooltip', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Tooltip / Calculated Direction', async ({page}) => {
@@ -61,6 +61,6 @@ test.describe('Visual Comparison: Tooltip', () => {
     )
 
     await page.waitForTimeout(500)
-    expect(await page.screenshot()).toMatchSnapshot()
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })
