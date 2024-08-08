@@ -6,6 +6,7 @@ declare const styles: {
   readonly "SubNav--full-width": string;
   readonly "SubNav__action-container": string;
   readonly "SubNav__sub-menu-icon": string;
+  readonly "SubNav__sub-menu-children": string;
   readonly "SubNav--open": string;
   readonly "fade-in": string;
   readonly "SubNav__links-overlay": string;

@@ -42,6 +42,10 @@
   display: none !important;
 }
 
+.SubNav__sub-menu-children {
+  display: contents;
+}
+
 /*
  * Narrow breakpoint
  */

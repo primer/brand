@@ -238,7 +238,9 @@ const SubNavLinkWithSubmenu = forwardRef<HTMLDivElement, SubNavLinkProps>(
         >
           <ChevronDownIcon className={styles['SubNav__sub-menu-icon']} size={16} />
         </button>
-        <div id={submenuId}>{SubMenuChildren}</div>
+        <div id={submenuId} className={styles['SubNav__sub-menu-children']}>
+          {SubMenuChildren}
+        </div>
       </div>
     )
   },
