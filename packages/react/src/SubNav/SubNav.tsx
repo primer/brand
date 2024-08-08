@@ -1,12 +1,14 @@
 import React, {
   Children,
+  forwardRef,
   isValidElement,
-  useState,
-  PropsWithChildren,
   memo,
-  ReactElement,
-  ReactNode,
   useCallback,
+  useState,
+  type PropsWithChildren,
+  type ReactElement,
+  type ReactNode,
+  type RefObject,
 } from 'react'
 import {Button, ButtonSizes, ButtonVariants, Text} from '..'
 
@@ -16,6 +18,8 @@ import {useId} from '@reach/auto-id'
 import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
 import {useFocusTrap} from '../hooks/useFocusTrap'
 import {useOnClickOutside} from '../hooks/useOnClickOutside'
+import {useProvidedRefOrCreate} from '../hooks/useRef'
+import {useContainsFocus} from './useContainsFocus'
 
 import type {BaseProps} from '../component-helpers'
 
@@ -176,58 +180,100 @@ type SubNavLinkProps = {
 } & PropsWithChildren<React.HTMLProps<HTMLAnchorElement>> &
   BaseProps<HTMLAnchorElement>
 
-const SubNavLink = ({
-  children,
-  href,
-  'aria-current': ariaCurrent,
-  'data-testid': testId,
-  className,
-  ...props
-}: SubNavLinkProps) => {
-  const hasSubMenu = Children.toArray(children).some(child => {
+const SubNavLinkWithSubmenu = forwardRef<HTMLDivElement, SubNavLinkProps>(
+  ({children, href, 'aria-current': ariaCurrent, 'data-testid': testId, className, ...props}, forwardedRef) => {
+    const submenuId = useId()
+
+    const [isExpanded, setIsExpanded] = useState(false)
+    const ref = useProvidedRefOrCreate(forwardedRef as RefObject<HTMLDivElement>)
+
+    useContainsFocus(ref, (containsFocus: boolean) => {
+      if (!containsFocus) {
+        setIsExpanded(false)
+      }
+    })
+
+    const [label, SubMenuChildren] = children as ReactNode[]
+
+    const onKeyDown = useCallback((e: React.KeyboardEvent<HTMLButtonElement>) => {
+      if (['Enter', ' '].includes(e.key)) {
+        setIsExpanded(prev => !prev)
+      }
+    }, [])
+
+    return (
+      <div
+        className={clsx(
+          styles['SubNav__link'],
+          styles['SubNav__link--has-sub-menu'],
+          isExpanded && styles['SubNav__link--expanded'],
+        )}
+        data-testid={testId || testIds.link}
+        ref={ref}
+        onMouseOver={() => setIsExpanded(true)}
+        onMouseOut={() => setIsExpanded(false)}
+        /**
+         * onFocus and onBlur need to be defined to keep the jsx-a11y/mouse-events-have-key-events
+         * eslint rule happy. The focus/blur behaviour is handled by useContainsFocus
+         */
+        onFocus={() => null}
+        onBlur={() => null}
+      >
+        <a
+          href={href}
+          className={clsx(styles['SubNav__link'], ariaCurrent && styles['SubNav__link--active'], className)}
+          aria-current={ariaCurrent}
+          {...props}
+        >
+          <Text as="span" size="200" className={styles['SubNav__link-label']}>
+            {label}
+          </Text>
+        </a>
+        <button
+          className={styles['SubNav__sub-menu-toggle']}
+          onKeyDown={onKeyDown}
+          aria-expanded={isExpanded ? 'true' : 'false'}
+          aria-controls={submenuId}
+          aria-label={`${isExpanded ? 'Close' : 'Open'} submenu`}
+        >
+          <ChevronDownIcon className={styles['SubNav__sub-menu-icon']} size={16} />
+        </button>
+        <div id={submenuId} className={styles['SubNav__sub-menu-children']}>
+          {SubMenuChildren}
+        </div>
+      </div>
+    )
+  },
+)
+
+const SubNavLink = forwardRef<HTMLAnchorElement | HTMLDivElement, SubNavLinkProps>((props, ref) => {
+  const hasSubMenu = Children.toArray(props.children).some(child => {
     if (isValidElement(child)) {
       return child.type === _SubMenu
     }
   })
 
-  const [label, SubMenuChildren] = children as ReactNode[]
+  if (hasSubMenu) {
+    return <SubNavLinkWithSubmenu {...props} ref={ref as RefObject<HTMLDivElement>} />
+  }
+
+  const {children, href, 'aria-current': ariaCurrent, 'data-testid': testId, className, ...rest} = props
 
   return (
-    <>
-      {hasSubMenu ? (
-        <div
-          className={clsx(styles['SubNav__link'], styles['SubNav__link--has-sub-menu'])}
-          data-testid={testId || testIds.link}
-        >
-          <a
-            href={href}
-            className={clsx(styles['SubNav__link'], ariaCurrent && styles['SubNav__link--active'], className)}
-            aria-current={ariaCurrent}
-            {...props}
-          >
-            <Text as="span" size="200" className={styles['SubNav__link-label']}>
-              {label}
-            </Text>
-          </a>
-          <>{SubMenuChildren}</>
-          {<ChevronDownIcon className={styles['SubNav__sub-menu-icon']} size={16} />}
-        </div>
-      ) : (
-        <a
-          href={href}
-          className={clsx(styles['SubNav__link'], ariaCurrent && styles['SubNav__link--active'], className)}
-          aria-current={ariaCurrent}
-          data-testid={testId || testIds.link}
-          {...props}
-        >
-          <Text as="span" size="200" className={styles['SubNav__link-label']}>
-            {children}
-          </Text>
-        </a>
-      )}
-    </>
+    <a
+      href={href}
+      className={clsx(styles['SubNav__link'], ariaCurrent && styles['SubNav__link--active'], className)}
+      aria-current={ariaCurrent}
+      data-testid={testId || testIds.link}
+      ref={ref as RefObject<HTMLAnchorElement>}
+      {...rest}
+    >
+      <Text as="span" size="200" className={styles['SubNav__link-label']}>
+        {children}
+      </Text>
+    </a>
   )
-}
+})
 
 function _SubMenu({children, className, ...props}: PropsWithChildren<BaseProps<HTMLDivElement>>) {
   return (

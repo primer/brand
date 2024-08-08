@@ -6,6 +6,7 @@ declare const styles: {
   readonly "SubNav--full-width": string;
   readonly "SubNav__action-container": string;
   readonly "SubNav__sub-menu-icon": string;
+  readonly "SubNav__sub-menu-children": string;
   readonly "SubNav--open": string;
   readonly "fade-in": string;
   readonly "SubNav__links-overlay": string;
@@ -17,6 +18,8 @@ declare const styles: {
   readonly "SubNav__overlay-toggle-icon": string;
   readonly "SubNav__overlay-toggle-content": string;
   readonly "SubNav__link-label": string;
+  readonly "SubNav__link--expanded": string;
+  readonly "SubNav__sub-menu-toggle": string;
   readonly "SubNav__link--has-sub-menu": string;
   readonly "fade-in-down": string;
 };
