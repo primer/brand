@@ -51,7 +51,7 @@
 
 .Hero-heading {
   margin: 0;
-  max-width: 18ch;
+  max-width: 924px;
 }
 
 .Hero-heading--fullWidth {
@@ -60,7 +60,7 @@
 
 .Hero-description {
   margin: var(--base-size-24) 0 0;
-  max-width: 50ch;
+  max-width: 600px;
 }
 
 .Hero-actions {
