@@ -1,5 +1,20 @@
 # @primer/react-brand
 
+## 0.37.0
+
+### Minor Changes
+
+- [#684](https://github.com/primer/brand/pull/684) [`e382a491`](https://github.com/primer/brand/commit/e382a4919c5f98637cb47c68311e625218b7cd40) Thanks [@danielguillan](https://github.com/danielguillan)! - Extend `Hero.Heading` and `Heading.Description` length.
+
+  > **Warning**
+  > This change can lead to reduced contrast in certain situations. Please manually review all instances of the `Hero` - particularly those that use a background image - to ensure that minimum contrast requirements are met.
+
+### Patch Changes
+
+- [#677](https://github.com/primer/brand/pull/677) [`c76c8c87`](https://github.com/primer/brand/commit/c76c8c871e1f37b1f94a8c679807ddf5a67f8a61) Thanks [@rezrah](https://github.com/rezrah)! - Removed redundant styles in default `Section` and `BreakoutBanner` components
+
+- [#679](https://github.com/primer/brand/pull/679) [`30f717dd`](https://github.com/primer/brand/commit/30f717dd2f196f1c6c5065cf3ad046fa79fc84a7) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Fixed an issue where `SubNav` submenus were not accessible through keyboard navigation
+
 ## 0.36.0
 
 ### Minor Changes
