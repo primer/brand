@@ -20,8 +20,14 @@ export const ArticleToC = ({content = 'real-world'}) => {
   const mergedContent = allContent.join('')
   const headings = mergedContent.match(/<h[2-4].*?>(.*?)<\/h[2-6]>/g) || []
   const toc = headings.map(heading => {
+    const stripTags = input => {
+      const stripped = new DOMParser().parseFromString(input, 'text/html')
+      return stripped.body.textContent || ''
+    }
     const level = parseInt(heading[2])
-    const text = heading.replace(/<[^>]*>/g, '').replace(/[^\w\s-]/g, '')
+    const text = stripTags(heading)
+      .replace(/<[^>]*>/g, '')
+      .replace(/[^\w\s-]/g, '')
     return {
       level,
       text,
