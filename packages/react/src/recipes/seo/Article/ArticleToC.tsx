@@ -20,18 +20,25 @@ export const ArticleToC = ({content = 'real-world'}) => {
   const mergedContent = allContent.join('')
   const headings = mergedContent.match(/<h[2-4].*?>(.*?)<\/h[2-6]>/g) || []
   const toc = headings.map(heading => {
-    const stripTags = input => {
-      const stripped = new DOMParser().parseFromString(input, 'text/html')
-      return stripped.body.textContent || ''
+    const sanitizeHTML = (input: string) => {
+      const doc = new DOMParser().parseFromString(input, 'text/html')
+      const scripts = doc.querySelectorAll('script')
+      for (const script of scripts) {
+        script.remove()
+      }
+      return doc.body.textContent || ''
     }
+
     const level = parseInt(heading[2])
-    const text = stripTags(heading)
-      .replace(/<[^>]*>/g, '')
-      .replace(/[^\w\s-]/g, '')
+    const text = sanitizeHTML(heading)
+
     return {
       level,
       text,
-      id: text.toLowerCase().replace(/\s+/g, '-'),
+      id: text
+        .toLowerCase()
+        .replace(/\s+/g, '-') // Replace spaces with -
+        .replace(/[^\w\s-]/g, ''), // Remove special chars like ? and !
     }
   })
 
