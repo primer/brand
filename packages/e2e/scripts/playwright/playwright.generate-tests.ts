@@ -87,6 +87,10 @@
     'recipes-feature-previews-level-2--level-two-point-two': 4000, // for the animation
     'recipes-feature-previews-level-2--level-two-point-three': 4000, // for the animation
     'recipes-feature-previews-level-2--level-two-point-four': 4000, // for the animation
+    'components-textrevealanimation--playground': 3000, // for the animation
+    'components-textrevealanimation-examples--with-large-testimonial': 3000, // for the animation
+    'components-textrevealanimation-examples--with-hero': 3000, // for the animation
+    'components-textrevealanimation-features--animation-on-scroll': 3000, // for the animation
   }
 
   /**
