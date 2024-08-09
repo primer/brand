@@ -2,4 +2,4 @@
 '@primer/react-brand': patch
 ---
 
-Added experimental TextRevealAnimation component
+Added experimental `TextRevealAnimation` component.
