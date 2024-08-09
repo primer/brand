@@ -47,6 +47,7 @@ module.exports = {
         },
       },
     },
+    `gatsby-plugin-image`,
   ],
   flags: {
     DEV_SSR: false,

@@ -4,10 +4,11 @@ status: Experimental
 figma: https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=539%3A14285&t=RJEWZhVUtrRQ0pKh-0
 source: https://github.com/primer/brand/blob/main/packages/react/src/CTABanner/CTABanner.tsx
 storybook: '/brand/storybook/?path=/story/components-ctabanner--playground'
-description: Use the CTA banner component to draw attention to or create urgency around a user action.
+description: Use the CTA banner component to highlight and create urgency around user actions.
 ---
 
 import {Label} from '@primer/react'
+import {Link} from 'gatsby'
 import ComponentLayout from '../../../src/layouts/component-layout'
 export default ComponentLayout
 
@@ -59,7 +60,7 @@ The content alignment can be changed using the `align` prop on the root `CTABann
 
 ### Optional border
 
-A border can be provided using the `hasBorder` prop on the root `<CTABanner>`. This will render a border around the CTABanner component giving further separation between the foreground and background. Especially when there is no shadow present on the background.
+A border can be provided using the `hasBorder` prop on the root `CTABanner`. This will render a border around the `CTABanner` component giving further separation between the foreground and background. Especially when there is no shadow present on the background.
 
 ```jsx live
 <CTABanner hasBorder>
@@ -80,7 +81,7 @@ A border can be provided using the `hasBorder` prop on the root `<CTABanner>`. T
 
 ### Optional background
 
-A background can be removed using the `hasBackground` prop on the root `<ComparisonTable>`. This will render the CTABanner component without a background allowing it to blend in with its parent.
+A background can be removed using the `hasBackground` prop on the root `CTABanner`. This will render the `CTABanner` component without a background allowing it to blend in with its parent.
 
 ```jsx live
 <CTABanner hasBackground={false} hasShadow={false}>
@@ -99,9 +100,9 @@ A background can be removed using the `hasBackground` prop on the root `<Compari
 </CTABanner>
 ```
 
-### Optional shadow
+### Remove shadow
 
-The shadow can be removed using the `hasShadow` prop on the root `CTABanner`. This will render the component without the background shadow.
+The shadow can be removed using the `hasShadow` prop. This will render the component without the background shadow.
 
 ```jsx live
 <CTABanner hasShadow={false}>
@@ -122,12 +123,7 @@ The shadow can be removed using the `hasShadow` prop on the root `CTABanner`. Th
 
 ### Shadow color customization
 
-The default colors can be customized through dedicated CSS variables.
-
-| Name                                   | Default Light                    | Default Dark                     |
-| :------------------------------------- | :------------------------------- | :------------------------------- |
-| `--brand-CTABanner-shadow-color-start` | `--base-color-scale-green-5-hsl` | `--base-color-scale-green-2-hsl` |
-| `--brand-CTABanner-shadow-color-end`   | `--base-color-scale-blue-5-hsl`  | `--base-color-scale-blue-3-hsl`  |
+The default shadow colors can be customized through their respective CSS variables.
 
 ```javascript live noinline
 const App = () => {
@@ -138,8 +134,8 @@ const App = () => {
      * Modify the value of these tokens.
      * Remember to apply light mode equivalents if you're enabling theme switching.
      */
-    --brand-CTABanner-shadow-color-start: var(--base-color-scale-purple-5-hsl);
-    --brand-CTABanner-shadow-color-end: var(--base-color-scale-red-5-hsl);
+    --brand-CTABanner-shadow-color-start: var(--base-color-scale-purple-5);
+    --brand-CTABanner-shadow-color-end: var(--base-color-scale-red-5);
 
   }
 `
@@ -171,54 +167,38 @@ render(<App />)
 
 ### CTABanner <Label>Required</Label>
 
-The first row in a table is automatically styled as a table header row.
-
-| name            | type                       | default     | required | description                                                  |
-| --------------- | -------------------------- | ----------- | -------- | ------------------------------------------------------------ |
-| `children`      | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | Content to include within the banner component               |
-| `align`         | `start`, `center`          | `start`     | `true`   | The layout applied to the content wihin the banner component |
-| `hasBorder`     | `boolean`                  | `false`     | `false`  | A flag used to provide a border to the banner component      |
-| `hasShadow`     | `boolean`                  | `true`      | `false`  | A flag used to provide a shadow to the banner component      |
-| `hasBackground` | `boolean`                  | `true`      | `false`  | A flag used to add a background to the banner component      |
-| `className`     | `string`                   |             | `false`  | CTABanner custom class                                       |
+| name            | type                       | default     | required | description                                                       |
+| --------------- | -------------------------- | ----------- | -------- | ----------------------------------------------------------------- |
+| `children`      | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | Content to include within the banner component                    |
+| `align`         | `'start'`, `'center'`      | `'start'`   | `true`   | The horizontal positioning of content within the banner component |
+| `hasBorder`     | `boolean`                  | `false`     | `false`  | A flag used to provide a border to the banner component           |
+| `hasShadow`     | `boolean`                  | `true`      | `false`  | A flag used to provide a shadow to the banner component           |
+| `hasBackground` | `boolean`                  | `true`      | `false`  | A flag used to add a background to the banner component           |
 
 ### CTABanner.Heading
 
-Optional node that can be used to provide a heading for the banner.
-
-| name        | type                               | default   | required | description                                                           |
-| ----------- | ---------------------------------- | --------- | -------- | --------------------------------------------------------------------- |
-| `className` | `string`                           |           | `false`  | Custom class name for the ComparisonTable.Heading component           |
-| `children`  | `ReactNode`, `ReactNode[]`         | undefined | `true`   | Content to be displayed inside the ComparisonTable.Heading component. |
-| `as`        | `h1`, `h2`, `h3`, `h4`, `h5`, `h6` | `h3`      | `false`  | True symantic element to be use as the text wrapper. cell.            |
-| `size`      | `1`, `2`, `3`, `4`, `5`, `6`       | `2`       | `false`  | Content size to be displayed inside the column                        |
+| name       | type                                           | default     | required | description                                                      |
+| ---------- | ---------------------------------------------- | ----------- | -------- | ---------------------------------------------------------------- |
+| `children` | `ReactNode`, `ReactNode[]`                     | `undefined` | `true`   | Content to be displayed inside the `CTABanner.Heading` component |
+| `as`       | `'h1'`, `'h2'`, `'h3'`, `'h4'`, `'h5'`, `'h6'` | `'h3'`      | `false`  | Heading level                                                    |
+| `size`     | `'1'`, `'2'`, `'3'`, `'4'`, `'5'`, `'6'`       | `'2'`       | `false`  | Visual heading size, irrespective of level                       |
 
 ### CTABanner.Description
 
-Optional node that can be used to provide a description for the banner.
+| name       | type                       | default     | required | description                                         |
+| ---------- | -------------------------- | ----------- | -------- | --------------------------------------------------- |
+| `children` | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | Content to be displayed inside the banner component |
 
-| name       | type                       | default   | required | description                                         |
-| ---------- | -------------------------- | --------- | -------- | --------------------------------------------------- |
-| `children` | `ReactNode`, `ReactNode[]` | undefined | `true`   | Content to be displayed inside the banner component |
+### CTABanner.ButtonGroup <Label>Required</Label>
 
-`id`, `className` and `ref` are forwarded by default to all children.
-
-### CTABanner.ButtonGroup
-
-Optional node that can be used to provide a description for the banner.
-
-| name         | type                     | default   | required | description                                             |
-| ------------ | ------------------------ | --------- | -------- | ------------------------------------------------------- |
-| `className`  | `string`                 | undefined | `false`  | Sets a custom class on the root element                 |
-| `children`   | `<Button>`, `<Button>[]` | undefined | `true`   | The buttons to be displayed within the group            |
-| `buttonSize` | `medium`, `large`        | `large`   | `false`  | The size of the buttons in the group                    |
-| `buttonsAs`  | `ReactElement`           |           | `false`  | The semantic element that the button will be created as |
+| name         | type                     | default     | required | description                                  |
+| ------------ | ------------------------ | ----------- | -------- | -------------------------------------------- |
+| `children`   | `<Button>`, `<Button>[]` | `undefined` | `true`   | The buttons to be displayed within the group |
+| `buttonSize` | `'medium'`, `'large'`    | `large`     | `false`  | The size of the buttons in the group         |
+| `buttonsAs`  | `'a'`, `'button'`        | `'button'`  | `false`  | Sets underlying HTML element for each button |
 
 `id`, `className` and `ref` are forwarded by default to all children.
 
-## Design tokens
+## Related components
 
-| css                                    | js                                   |
-| -------------------------------------- | ------------------------------------ |
-| `--brand-CTABanner-shadow-color-start` | `brand.CTABanner.shadow.color.start` |
-| `--brand-CTABanner-shadow-color-end`   | `brand.CTABanner.shadow.color.end`   |
+- <Link to="/components/BreakoutBanner">BreakoutBanner</Link>

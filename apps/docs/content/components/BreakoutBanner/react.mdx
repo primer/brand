@@ -1,15 +1,17 @@
 ---
 title: Breakout banner
+description: Use a breakout banner to break up content on longer pages and highlight important information.
 status: Experimental
 source: https://github.com/primer/brand/blob/main/packages/react/src/BreakoutBanner/BreakoutBanner.tsx
 storybook: '/brand/storybook/?path=/story/components-breakoutbanner--playground'
-description: Use a breakout banner to break up content on longer pages and highlight important information.
 ---
 
 import {Link} from 'gatsby'
-import {PropTableValues} from '../../src/components'
 import {Label} from '@primer/react'
 import {HeadingTags, HeadingSizes} from '@primer/react-brand'
+import {PropTableValues} from '../../../src/components'
+import ComponentLayout from '../../../src/layouts/component-layout'
+export default ComponentLayout
 
 ```js
 import {BreakoutBanner} from '@primer/react-brand'
@@ -171,8 +173,8 @@ The content alignment can be changed using the `align` prop on the root `Breakou
 | name       | type                                                    | default     | required | description                                                           |
 | ---------- | ------------------------------------------------------- | ----------- | -------- | --------------------------------------------------------------------- |
 | `children` | `ReactNode`, `ReactNode[]`                              | `undefined` | `true`   | Content to be displayed inside the `BreakoutBanner.Heading` component |
-| `as`       | <PropTableValues values={HeadingTags} addLineBreaks />  | `h3`        | `false`  | Heading level                                                         |
-| `size`     | <PropTableValues values={HeadingSizes} addLineBreaks /> | `4`         | `false`  | Visual heading size, irrespective of level                            |
+| `as`       | <PropTableValues values={HeadingTags} addLineBreaks />  | `'h3'`      | `false`  | Heading level                                                         |
+| `size`     | <PropTableValues values={HeadingSizes} addLineBreaks /> | `'4'`       | `false`  | Visual heading size, irrespective of level                            |
 
 ### BreakoutBanner.Description
 
@@ -186,7 +188,7 @@ Optional child that can be used to provide additional information.
 
 | name        | type                                                                                                  | default        | required | description                                  |
 | ----------- | ----------------------------------------------------------------------------------------------------- | -------------- | -------- | -------------------------------------------- |
-| `children`  | `Link`                                                                                                | undefined      | `true`   | The links to be displayed within the group   |
+| `children`  | `Link`                                                                                                | `undefined`    | `true`   | The links to be displayed within the group   |
 | `direction` | <PropTableValues values={['horizontal', 'vertical', `ResponsiveMap`]} addLineBreaks commaSeparated /> | `'horizontal'` | `false`  | Positioning of the links across x and y axis |
 
 All components forward `id`, `className` and `ref` by default
