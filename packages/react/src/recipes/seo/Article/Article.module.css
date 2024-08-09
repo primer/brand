@@ -144,36 +144,6 @@
   }
 }
 
-@keyframes wipe {
-  from {
-    transform: scaleX(1);
-  }
-  to {
-    transform: scaleX(0);
-  }
-}
-
-.heroLine,
-.heroLineAnimated {
-  width: 100%;
-  min-height: 1lh;
-  position: relative;
-}
-
-.heroLineAnimated::after {
-  content: '';
-  display: inline;
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--brand-color-accent-primary);
-  transform-origin: right;
-  animation: wipe var(--brand-animation-duration-extended) forwards var(--brand-animation-easing-default);
-  animation-delay: var(--animation-delay);
-}
-
 .lede {
   max-width: var(--brand-Prose-lineLength);
   line-height: 1.3;
