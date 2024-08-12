@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect} from 'react'
 import clsx from 'clsx'
-import {useTextRevealAnimation} from './useTextRevealAnimation'
+import {useTextRevealAnimationLines} from './useTextRevealAnimationLines'
 
 import styles from './TextRevealAnimation.module.css'
 import {BaseProps} from '../../component-helpers'
@@ -13,7 +13,7 @@ export type TextRevealAnimationProps = BaseProps<HTMLSpanElement> &
 export function TextRevealAnimation({children, ...rest}: TextRevealAnimationProps) {
   const [animationStarted, setAnimationStarted] = React.useState(false)
   const [hasHeroWipeAnimated, setHasHeroWipeAnimated] = React.useState(false)
-  const {ref, lines} = useTextRevealAnimation(children.toString() || '')
+  const {ref, lines} = useTextRevealAnimationLines(children.toString() || '')
 
   const onLineAnimationEnd = useCallback(
     (i: number) => {

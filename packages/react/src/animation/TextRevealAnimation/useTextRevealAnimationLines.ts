@@ -1,6 +1,6 @@
 import {useRef, useEffect, useState} from 'react'
 
-export const useTextRevealAnimation = (text?: string) => {
+export const useTextRevealAnimationLines = (text?: string) => {
   const ref = useRef<HTMLElement>(null)
   const [lines, setLines] = useState<string[]>()
 
