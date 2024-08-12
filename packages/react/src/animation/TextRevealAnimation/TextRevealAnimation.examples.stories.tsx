@@ -1,9 +1,9 @@
 import React from 'react'
-import {Meta} from '@storybook/react'
+import {Meta, StoryFn} from '@storybook/react'
 import {TextRevealAnimation} from '.'
 import {Testimonial, Box, AnimationProvider, Hero} from '../..'
 
-export default {
+const meta: Meta<typeof TextRevealAnimation> = {
   title: 'Components/TextRevealAnimation/Examples',
   component: TextRevealAnimation,
   decorators: [
@@ -15,9 +15,9 @@ export default {
       </AnimationProvider>
     ),
   ],
-} as Meta<typeof TextRevealAnimation>
+}
 
-export const WithLargeTestimonial = () => (
+export const WithLargeTestimonial: StoryFn = () => (
   <Testimonial size="large" quoteMarkColor="pink">
     <Testimonial.Quote>
       <TextRevealAnimation>
@@ -29,7 +29,7 @@ export const WithLargeTestimonial = () => (
   </Testimonial>
 )
 
-export const WithHero = () => (
+export const WithHero: StoryFn = () => (
   <Hero>
     <Hero.Label>Label</Hero.Label>
     <Hero.Heading>
@@ -42,3 +42,5 @@ export const WithHero = () => (
     <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
   </Hero>
 )
+
+export default meta

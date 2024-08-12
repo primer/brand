@@ -113,7 +113,7 @@ const Root = forwardRef(_Root)
  */
 type QuoteProps = React.HTMLAttributes<HTMLElement> & BaseProps<HTMLElement>
 
-function _Quote({children, className}: PropsWithChildren<QuoteProps>, ref) {
+function _Quote({children, className}: QuoteProps, ref) {
   const childrenArray = useMemo(() => React.Children.toArray(children), [children])
 
   // TODO: when Firefox supports :has() selector, we should use that instead of JS

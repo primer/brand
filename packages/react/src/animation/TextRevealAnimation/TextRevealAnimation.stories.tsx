@@ -1,9 +1,9 @@
 import React from 'react'
-import {Meta} from '@storybook/react'
+import {Meta, StoryFn} from '@storybook/react'
 import {TextRevealAnimation} from '.'
 import {Box, AnimationProvider, Text} from '../../'
 
-export default {
+const meta: Meta<typeof TextRevealAnimation> = {
   title: 'Components/TextRevealAnimation',
   component: TextRevealAnimation,
   args: {
@@ -37,8 +37,10 @@ export default {
   ],
 } as Meta<typeof TextRevealAnimation>
 
-export const Playground = ({text, color, ...rest}) => (
+export const Playground: StoryFn = ({text, color, ...rest}) => (
   <Text as="p" size="700" style={{['--brand-color-accent-primary' as string]: color}}>
     <TextRevealAnimation {...rest}>{text || ''}</TextRevealAnimation>
   </Text>
 )
+
+export default meta

@@ -1,11 +1,11 @@
 import React from 'react'
-import {Meta} from '@storybook/react'
+import {Meta, StoryFn} from '@storybook/react'
 import {ArrowDownIcon} from '@primer/octicons-react'
 import {TextRevealAnimation} from '.'
 import {Testimonial, Box, AnimationProvider, Text, Grid} from '../..'
 import {RedlineBackground} from '../../component-helpers'
 
-export default {
+const meta: Meta<typeof TextRevealAnimation> = {
   title: 'Components/TextRevealAnimation/Features',
   component: TextRevealAnimation,
   decorators: [
@@ -19,7 +19,7 @@ export default {
   ],
 } as Meta<typeof TextRevealAnimation>
 
-export const AnimationOnScroll = () => (
+export const AnimationOnScroll: StoryFn = () => (
   <Grid>
     <Grid.Column>
       <RedlineBackground height={1200}>
@@ -41,3 +41,5 @@ export const AnimationOnScroll = () => (
     </Grid.Column>
   </Grid>
 )
+
+export default meta

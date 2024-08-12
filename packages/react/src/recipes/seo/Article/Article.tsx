@@ -137,11 +137,13 @@ export function Article({
                         <Link href="#" arrowDirection="start">
                           DevOps
                         </Link>
-                        <Box animate="fade-in" marginBlockEnd={64}>
-                          <Heading as="h1" size="1" stretch="condensed" weight="semibold" font="hubot-sans">
-                            <TextRevealAnimation itemProp="name">{heroTitle}</TextRevealAnimation>
-                          </Heading>
-                        </Box>
+                        {heroTitle && (
+                          <Box animate="fade-in" marginBlockEnd={64}>
+                            <Heading as="h1" size="1" stretch="condensed" weight="semibold" font="hubot-sans">
+                              <TextRevealAnimation itemProp="name">{heroTitle}</TextRevealAnimation>
+                            </Heading>
+                          </Box>
+                        )}
                       </Stack>
                     </Grid.Column>
                   </Grid>
