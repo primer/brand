@@ -15,14 +15,11 @@ export function TextRevealAnimation({children, ...rest}: TextRevealAnimationProp
   const [hasHeroWipeAnimated, setHasHeroWipeAnimated] = React.useState(false)
   const {ref, lines} = useTextRevealAnimationLines(children.toString() || '')
 
-  const onLineAnimationEnd = useCallback(
-    (i: number) => {
-      if (lines && i === lines.length - 1) {
-        setHasHeroWipeAnimated(true)
-      }
-    },
-    [lines],
-  )
+  const onLineAnimationEnd = (i: number) => {
+    if (lines && i === lines.length - 1) {
+      setHasHeroWipeAnimated(true)
+    }
+  }
 
   useEffect(() => {
     const el = ref.current
