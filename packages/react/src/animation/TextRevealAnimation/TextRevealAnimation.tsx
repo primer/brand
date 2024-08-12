@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import clsx from 'clsx'
 import {useTextRevealAnimationLines} from './useTextRevealAnimationLines'
 
