@@ -111,10 +111,7 @@ const Root = forwardRef(_Root)
  * Testimonial quote child element
  * <Testimonial.Quote>
  */
-type QuoteProps = {
-  children: string | Array<string | React.ReactElement<HTMLElement>>
-} & React.HTMLAttributes<HTMLElement> &
-  BaseProps<HTMLElement>
+type QuoteProps = React.HTMLAttributes<HTMLElement> & BaseProps<HTMLElement>
 
 function _Quote({children, className}: QuoteProps, ref) {
   const childrenArray = useMemo(() => React.Children.toArray(children), [children])

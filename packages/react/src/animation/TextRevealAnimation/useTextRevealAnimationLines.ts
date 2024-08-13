@@ -1,7 +1,7 @@
 import {useRef, useEffect, useState} from 'react'
 
-export const useWrapLines = (text?: string) => {
-  const ref = useRef<HTMLHeadingElement>(null)
+export const useTextRevealAnimationLines = (text?: string) => {
+  const ref = useRef<HTMLElement>(null)
   const [lines, setLines] = useState<string[]>()
 
   useEffect(() => {
