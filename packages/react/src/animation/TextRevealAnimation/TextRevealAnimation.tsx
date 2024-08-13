@@ -12,12 +12,12 @@ export type TextRevealAnimationProps = BaseProps<HTMLSpanElement> &
 
 export function TextRevealAnimation({children, ...rest}: TextRevealAnimationProps) {
   const [animationStarted, setAnimationStarted] = React.useState(false)
-  const [hasHeroWipeAnimated, setHasHeroWipeAnimated] = React.useState(false)
+  const [hasAnimationCompleted, setHasAnimationCompleted] = React.useState(false)
   const {ref, lines} = useTextRevealAnimationLines(children.toString() || '')
 
   const onLineAnimationEnd = (i: number) => {
     if (lines && i === lines.length - 1) {
-      setHasHeroWipeAnimated(true)
+      setHasAnimationCompleted(true)
     }
   }
 
@@ -66,7 +66,7 @@ export function TextRevealAnimation({children, ...rest}: TextRevealAnimationProp
               styles.TextRevealAnimation,
               animationStarted && styles['TextRevealAnimation--visible'],
               animationStarted &&
-                (hasHeroWipeAnimated ? styles['TextRevealAnimation'] : styles['TextRevealAnimation--animated']),
+                (hasAnimationCompleted ? styles['TextRevealAnimation'] : styles['TextRevealAnimation--animated']),
             )}
             style={{'--animation-delay': `${220 + i * 200}ms`} as React.CSSProperties}
             onAnimationEnd={() => onLineAnimationEnd(i)}
