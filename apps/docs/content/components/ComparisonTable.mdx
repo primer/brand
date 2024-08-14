@@ -124,7 +124,7 @@ For granular control over heading markup or appearance, we recommend using [`Hea
 
 By default, the first data column will be marked as `featured`. This is to draw attention to a particular product as the basis of a comparison against adjacent columns.
 
-Featured columns will have the visually-hidden text `(featured)` appended to their column title. This text is used to identify the featured column to screen reader users and can be customized using the `featuredColumnAccessibleLabel` prop.
+Featured columns will have the visually-hidden text `featured` appended to their column title. This text is used to identify the featured column to screen reader users and can be customized using the `featuredColumnAccessibleLabel` prop.
 
 ```jsx live
 
@@ -360,13 +360,13 @@ This variant is suitable for embedding into long-form content, or in situations 
 
 ### ComparisonTable <Label>Required</Label>
 
-| name                            | type                                                                                    | default      | required | description                                                                                                                                               |
-| ------------------------------- | --------------------------------------------------------------------------------------- | ------------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `children`                      | `ComparisonTable.Row`, `ComparisonTable.Cell`, `ComparisonTable.Footnotes`, `ReactNode` | undefined    | `true`   | Valid children. Accepts `ReactNode` for conditional rendering.                                                                                            |
-| `heading`                       | `string`                                                                                | undefined    | `false`  | Optional heading that appears above table, preconfigured as a `h3`.                                                                                       |
-| `featuredColumn`                | `number`                                                                                | `1`          | `false`  | Indicates that the data column at the specified index is visually important and unique in relation to its adjacent cells, and will be styled accordingly. |
-| `featuredColumnAccessibleLabel` | `string`                                                                                | `(featured)` | `false`  | A visually-hidden label which is appended to the end of the column title. Used to identify the featured column to screen reader users.                    |
-| `variant`                       | `"default"`, `"minimal"`                                                                | `"default"`  | `false`  | Applies alternative presentation.                                                                                                                         |
+| name                            | type                                                                                    | default     | required | description                                                                                                                                               |
+| ------------------------------- | --------------------------------------------------------------------------------------- | ----------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `children`                      | `ComparisonTable.Row`, `ComparisonTable.Cell`, `ComparisonTable.Footnotes`, `ReactNode` | undefined   | `true`   | Valid children. Accepts `ReactNode` for conditional rendering.                                                                                            |
+| `heading`                       | `string`                                                                                | undefined   | `false`  | Optional heading that appears above table, preconfigured as a `h3`.                                                                                       |
+| `featuredColumn`                | `number`                                                                                | `1`         | `false`  | Indicates that the data column at the specified index is visually important and unique in relation to its adjacent cells, and will be styled accordingly. |
+| `featuredColumnAccessibleLabel` | `string`                                                                                | `featured`  | `false`  | A visually-hidden label which is appended to the end of the column title. Used to identify the featured column to screen reader users.                    |
+| `variant`                       | `"default"`, `"minimal"`                                                                | `"default"` | `false`  | Applies alternative presentation.                                                                                                                         |
 
 ### ComparisonTable.Row <Label>Required</Label>
 
