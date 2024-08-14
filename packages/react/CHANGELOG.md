@@ -1,5 +1,26 @@
 # @primer/react-brand
 
+## 0.37.0
+
+### Minor Changes
+
+- [#684](https://github.com/primer/brand/pull/684) [`e382a491`](https://github.com/primer/brand/commit/e382a4919c5f98637cb47c68311e625218b7cd40) Thanks [@danielguillan](https://github.com/danielguillan)! - Extend `Hero.Heading` and `Heading.Description` length.
+
+  > **Warning**
+  > This change can lead to reduced contrast in certain situations. Please manually review all instances of the `Hero` - particularly those that use a background image - to ensure that minimum contrast requirements are met.
+
+### Patch Changes
+
+- [#695](https://github.com/primer/brand/pull/695) [`2bb68ea7`](https://github.com/primer/brand/commit/2bb68ea73febfaf3d4dfae60c8e31e9de26709af) Thanks [@joshfarrant](https://github.com/joshfarrant)! - `ComparisonTable` featured columns now identify themselves to screen readers by appending the text `featured` to the column title. This text can be customized using the `visuallyHiddenFeaturedLabel` prop.
+
+- [#677](https://github.com/primer/brand/pull/677) [`c76c8c87`](https://github.com/primer/brand/commit/c76c8c871e1f37b1f94a8c679807ddf5a67f8a61) Thanks [@rezrah](https://github.com/rezrah)! - Removed redundant styles in default `Section` and `BreakoutBanner` components
+
+- [#688](https://github.com/primer/brand/pull/688) [`55a353c7`](https://github.com/primer/brand/commit/55a353c782c827f2cfbb333b8ddda12d1001f920) Thanks [@rezrah](https://github.com/rezrah)! - Added experimental `TextRevealAnimation` component.
+
+- [#688](https://github.com/primer/brand/pull/688) [`55a353c7`](https://github.com/primer/brand/commit/55a353c782c827f2cfbb333b8ddda12d1001f920) Thanks [@rezrah](https://github.com/rezrah)! - Remove strict, custom typings for `Testimonial.Quote`
+
+- [#679](https://github.com/primer/brand/pull/679) [`30f717dd`](https://github.com/primer/brand/commit/30f717dd2f196f1c6c5065cf3ad046fa79fc84a7) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Fixed an issue where `SubNav` submenus were not accessible through keyboard navigation
+
 ## 0.36.0
 
 ### Minor Changes
