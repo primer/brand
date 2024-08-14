@@ -7,15 +7,26 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: LogoSuite', () => {
-  test('LogoSuite / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-logosuite--default&viewMode=story')
+  test('LogoSuite / Playground', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-logosuite--playground&viewMode=story')
 
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('LogoSuite / Playground', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-logosuite--playground&viewMode=story')
+  test('LogoSuite / Following Hero', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-logosuite-examples--following-hero&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('LogoSuite / With Links', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-logosuite-examples--with-links&viewMode=story',
+    )
 
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
@@ -30,45 +41,72 @@ test.describe('Visual Comparison: LogoSuite', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('LogoSuite / Align Justified', async ({page}) => {
+  test('LogoSuite / Align Center', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--align-justified&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--align-center&viewMode=story',
     )
 
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('LogoSuite / With Emphasis', async ({page}) => {
+  test('LogoSuite / Align Justify', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--with-emphasis&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--align-justify&viewMode=story',
     )
 
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('LogoSuite / Only Heading', async ({page}) => {
+  test('LogoSuite / Default Variant', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--only-heading&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--default-variant&viewMode=story',
     )
 
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('LogoSuite / Heading Hidden', async ({page}) => {
+  test('LogoSuite / Emphasis Variant', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--heading-hidden&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--emphasis-variant&viewMode=story',
     )
 
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('LogoSuite / With Links', async ({page}) => {
+  test('LogoSuite / Muted Variant', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--with-links&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--muted-variant&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('LogoSuite / Without Divider', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--without-divider&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('LogoSuite / Visible Heading', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--visible-heading&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('LogoSuite / Visible Heading With Description', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--visible-heading-with-description&viewMode=story',
     )
 
     await page.waitForTimeout(500)
