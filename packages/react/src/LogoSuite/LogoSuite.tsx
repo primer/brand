@@ -157,15 +157,25 @@ type LogoSuiteLogoBarProps = BaseProps<HTMLDivElement> & {
   /**
    * The stylistic variant of the LogoBar.
    */
-  variant?: 'muted' | 'emphasis'
+  variant?: 'muted' | 'emphasis' | 'default'
 }
 
 const _LogoBar = forwardRef(
   (
-    {className, children, marquee = false, marqueeSpeed = 'normal', variant = 'muted', ...props}: LogoSuiteLogoBarProps,
+    {
+      className,
+      children,
+      marquee = false,
+      marqueeSpeed = 'normal',
+      variant: providedVariant = 'default',
+      ...props
+    }: LogoSuiteLogoBarProps,
     ref: Ref<HTMLDivElement>,
   ) => {
     const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+
+    const childrenCount = React.Children.toArray(children).length
+    const variant = providedVariant === 'default' ? (childrenCount <= 5 ? 'emphasis' : 'muted') : providedVariant
 
     useEffect(() => {
       const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -221,7 +231,7 @@ const _LogoBar = forwardRef(
 )
 
 /**
- * Use LogoSuite to present a list logos, such as sponsors or vendors.
+ * Use LogoSuite to present a list of logos, such as sponsors or vendors.
  * @see https://primer.style/brand/components/LogoSuite
  */
 export const LogoSuite = Object.assign(_LogoSuite, {
