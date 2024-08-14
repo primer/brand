@@ -29,7 +29,7 @@ export const _ComparisonTable = forwardRef(
       className,
       heading,
       featuredColumn = 1,
-      featuredColumnAccessibleLabel = 'featured',
+      visuallyHiddenFeaturedLabel = 'featured',
       variant = 'default',
       style,
       ...props
@@ -74,7 +74,7 @@ export const _ComparisonTable = forwardRef(
                       )}
                     >
                       {rowChild.props.children}
-                      {isFeatured && <span className="visually-hidden">({featuredColumnAccessibleLabel})</span>}
+                      {isFeatured && <span className="visually-hidden">({visuallyHiddenFeaturedLabel})</span>}
                     </span>
                   ),
                 })
