@@ -1,5 +1,5 @@
 import {default as clsx} from 'clsx'
-import React, {PropsWithChildren, Ref, forwardRef, useEffect, useMemo, useState} from 'react'
+import React, {type PropsWithChildren, type Ref, forwardRef, useEffect, useMemo, useState} from 'react'
 import type {BaseProps} from '../component-helpers'
 import {Heading, HeadingProps, defaultHeadingTag, Text, TextProps} from '../'
 
@@ -19,7 +19,7 @@ const testIds = {
   },
 }
 
-type LogoSuiteProps = {
+export type LogoSuiteProps = {
   /**
    * The horizontal alignment of the LogoSuite.
    */
@@ -80,7 +80,7 @@ const _LogoSuite = ({
   )
 }
 
-type LogoSuiteHeadingProps = BaseProps<HTMLHeadingElement> &
+export type LogoSuiteHeadingProps = BaseProps<HTMLHeadingElement> &
   HeadingProps & {
     /**
      * Whether to visually hide the heading.
@@ -119,7 +119,7 @@ const _Heading = forwardRef(
   },
 )
 
-type LogoSuiteDescriptionProps = BaseProps<HTMLParagraphElement> &
+export type LogoSuiteDescriptionProps = BaseProps<HTMLParagraphElement> &
   TextProps & {
     children: React.ReactNode | React.ReactNode[]
   }
@@ -144,7 +144,7 @@ const _Description = forwardRef(
   },
 )
 
-type LogoSuiteLogoBarProps = BaseProps<HTMLDivElement> & {
+export type LogoSuiteLogoBarProps = BaseProps<HTMLDivElement> & {
   children: React.ReactNode | React.ReactNode[]
   /**
    * Enables an optional marquee effect
