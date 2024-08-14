@@ -6,7 +6,12 @@
           "value": "var(--base-size-80)"
         },
         "rowGap": {
-          "value": "var(--base-size-40)"
+          "mobile": {
+            "value": "var(--base-size-40)"
+          },
+          "default": {
+            "value": "var(--base-size-80)"
+          }
         },
         "marquee": {
           "default": {
