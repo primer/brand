@@ -50,10 +50,6 @@
 }
 
 @media screen and (min-width: 48rem) {
-  .LogoSuite__logobar {
-    row-gap: var(--brand-LogoSuite-logobar-rowGap);
-  }
-
   .LogoSuite__logobar--variant-muted svg,
   .LogoSuite__logobar--variant-muted img,
   .LogoSuite__logobar--variant-muted a {
