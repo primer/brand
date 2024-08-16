@@ -6,11 +6,11 @@
           "value": "var(--base-size-80)"
         },
         "rowGap": {
-          "mobile": {
-            "value": "var(--base-size-40)"
-          },
-          "default": {
-            "value": "var(--base-size-80)"
+          "value": "var(--base-size-40)",
+          "responsive": {
+            "768px": {
+              "value": "var(--base-size-80)"
+            }
           }
         },
         "marquee": {
