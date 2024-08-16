@@ -2,7 +2,7 @@
   "codeConnect": {
     "parser": "react",
     "importPaths": {
-      "src/*": "@primer/brand"
+      "src/*": "@primer/react-brand"
     },
     "include": ["src/**/*.figma.tsx", "src/**/*.tsx"],
     "exclude": ["src/**/*.stories.tsx", "src/**/*.test.tsx"]
