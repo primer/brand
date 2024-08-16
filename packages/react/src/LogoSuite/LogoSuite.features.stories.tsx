@@ -53,7 +53,7 @@ export const DefaultVariant = () => (
     <Grid.Column>
       <LogoSuite>
         <LogoSuite.Heading visuallyHidden>Heading</LogoSuite.Heading>
-        <LogoSuite.Logobar variant="default">{logos.slice(0, 4)}</LogoSuite.Logobar>
+        <LogoSuite.Logobar>{logos.slice(0, 4)}</LogoSuite.Logobar>
       </LogoSuite>
     </Grid.Column>
   </Grid>
@@ -86,7 +86,7 @@ export const WithoutDivider = () => (
     <Grid.Column>
       <LogoSuite hasDivider={false}>
         <LogoSuite.Heading visuallyHidden>Heading</LogoSuite.Heading>
-        <LogoSuite.Logobar variant="default">{logos.slice(0, 4)}</LogoSuite.Logobar>
+        <LogoSuite.Logobar>{logos.slice(0, 4)}</LogoSuite.Logobar>
       </LogoSuite>
     </Grid.Column>
   </Grid>

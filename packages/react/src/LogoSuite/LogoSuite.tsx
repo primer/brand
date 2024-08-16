@@ -157,25 +157,18 @@ export type LogoSuiteLogoBarProps = BaseProps<HTMLDivElement> & {
   /**
    * The stylistic variant of the LogoBar.
    */
-  variant?: 'muted' | 'emphasis' | 'default'
+  variant?: 'muted' | 'emphasis'
 }
 
 const _LogoBar = forwardRef(
   (
-    {
-      className,
-      children,
-      marquee = false,
-      marqueeSpeed = 'normal',
-      variant: providedVariant = 'default',
-      ...props
-    }: LogoSuiteLogoBarProps,
+    {className, children, marquee = false, marqueeSpeed = 'normal', variant, ...props}: LogoSuiteLogoBarProps,
     ref: Ref<HTMLDivElement>,
   ) => {
     const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
 
     const childrenCount = React.Children.toArray(children).length
-    const variant = providedVariant === 'default' ? (childrenCount <= 5 ? 'emphasis' : 'muted') : providedVariant
+    variant ??= childrenCount <= 5 ? 'emphasis' : 'muted'
 
     useEffect(() => {
       const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')

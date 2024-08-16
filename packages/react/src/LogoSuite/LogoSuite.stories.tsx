@@ -21,7 +21,7 @@ const meta: Meta<StoryProps> = {
     align: 'center',
     hasDivider: true,
     visuallyHidden: false,
-    variant: 'default',
+    variant: undefined,
     marquee: false,
     marqueeSpeed: 'normal',
     logoCount: 5,
@@ -89,7 +89,7 @@ const meta: Meta<StoryProps> = {
     },
     variant: {
       control: 'radio',
-      options: ['default', 'muted', 'emphasis'],
+      options: [undefined, 'muted', 'emphasis'],
       table: {
         category: 'LogoSuite.Logobar',
       },
