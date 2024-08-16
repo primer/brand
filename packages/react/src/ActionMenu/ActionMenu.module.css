@@ -118,8 +118,6 @@
   flex: 1 0 auto;
   display: grid;
   align-items: center;
-  overflow: hidden;
-  text-overflow: ellipsis;
   grid-template-areas: 'leadingVisual text';
   grid-template-columns: min-content min-content;
   list-style: none;
