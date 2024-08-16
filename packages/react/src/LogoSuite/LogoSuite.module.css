@@ -1,9 +1,9 @@
 .LogoSuite {
-  padding-block-end: var(--brand-LogoSuite-logobar-rowGap-default);
+  padding-block-end: var(--brand-LogoSuite-logobar-rowGap);
 }
 
 .LogoSuite + .LogoSuite {
-  padding-block-start: var(--brand-LogoSuite-logobar-rowGap-default);
+  padding-block-start: var(--brand-LogoSuite-logobar-rowGap);
 }
 
 .LogoSuite__heading + .LogoSuite__description {
@@ -26,7 +26,7 @@
 .LogoSuite__logobar {
   display: flex;
   flex-wrap: wrap;
-  row-gap: var(--brand-LogoSuite-logobar-rowGap-mobile);
+  row-gap: var(--brand-LogoSuite-logobar-rowGap);
   column-gap: var(--brand-LogoSuite-logobar-columnGap);
   justify-content: center;
 }
@@ -51,7 +51,7 @@
 
 @media screen and (min-width: 48rem) {
   .LogoSuite__logobar {
-    row-gap: var(--brand-LogoSuite-logobar-rowGap-default);
+    row-gap: var(--brand-LogoSuite-logobar-rowGap);
   }
 
   .LogoSuite__logobar--variant-muted svg,
