@@ -5,6 +5,6 @@
       "src/*": "@primer/brand"
     },
     "include": ["src/**/*.figma.tsx", "src/**/*.tsx"],
-    "exclude": ["test/**", "docs/**", "build/**"]
+    "exclude": ["src/**/*.stories.tsx", "src/**/*.test.tsx"]
   }
 }
