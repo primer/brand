@@ -57,8 +57,7 @@ export const _ComparisonTable = forwardRef(
               if (rowChild.type === Cell) {
                 const isFeatured = rowChildIndex === featuredColumn
                 return React.cloneElement(rowChild, {
-                  as: 'th',
-                  'aria-hidden': !rowChild.props.children ? 'true' : undefined,
+                  as: rowChild.props.children ? 'th' : 'td',
                   className: clsx(
                     styles['ComparisonTable-cell'],
                     styles[`ComparisonTable-cell-heading`],
