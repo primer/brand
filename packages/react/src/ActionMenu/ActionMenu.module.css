@@ -9,19 +9,27 @@
 .ActionMenu__button {
   /* avoid specificity issues */
   --brand-borderRadius-medium: var(--brand-borderRadius-full);
+  height: auto;
+}
+
+.ActionMenu__button--small {
+  padding: calc(var(--base-size-4) / 2) var(--base-size-12);
+}
+
+.ActionMenu__button--medium {
+  padding: calc(var(--base-size-8) + 2px) var(--base-size-28);
 }
 
 .ActionMenu__button > span:first-of-type {
   max-width: 200px;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .ActionMenu__menu {
   position: absolute;
   z-index: 100;
   padding: var(--base-size-12);
+  min-width: min-content;
 
   visibility: hidden;
   background-color: var(--brand-color-canvas-default);
@@ -114,7 +122,6 @@
   text-overflow: ellipsis;
   grid-template-areas: 'leadingVisual text';
   grid-template-columns: min-content min-content;
-  white-space: pre;
   list-style: none;
   border-radius: var(--brand-borderRadius-medium);
 }
@@ -159,6 +166,7 @@
   grid-area: text / text;
   /* display grid collapses the text line box height for optical alignment */
   display: grid;
+  width: max-content;
 }
 
 .ActionMenu__item-text > span {

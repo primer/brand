@@ -127,6 +127,7 @@ export const OpenByDefault = () => {
   )
 }
 
+/** TODO: Rename this story as reflow is preferred over truncation */
 export const TruncationOfLongValues = () => {
   const [selected, setSelected] = React.useState('Europe, Middle East and Africa')
 
