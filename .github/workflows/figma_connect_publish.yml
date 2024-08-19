@@ -6,7 +6,7 @@ on:
       - packages/react/src/**/*.figma.tsx
     branches:
       - main
-      - rezrah/fix-figma-connect
+  pull_request:
 
 jobs:
   code-connect:
