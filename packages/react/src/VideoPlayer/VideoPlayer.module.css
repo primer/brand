@@ -19,7 +19,6 @@
 .VideoPlayer__container {
   width: 100%;
   position: relative;
-  overflow: hidden;
   border-radius: var(--brand-borderRadius-medium);
 }
 
@@ -56,9 +55,9 @@
   opacity: 0.8;
 }
 
-.VideoPlayer__playButton:focus {
-  border: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
-  box-shadow: 0 0 0 0.125rem var(--brand-color-focus);
+.VideoPlayer__playButton:focus-visible {
+  outline: var(--brand-borderWidth-thicker) solid var(--brand-color-focus);
+  outline-offset: 2px;
 }
 
 .VideoPlayer__playButton svg {
