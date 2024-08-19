@@ -261,4 +261,45 @@ describe('LogoSuite', () => {
     )
     consoleWarnSpy.mockRestore()
   })
+
+  it('renders the `emphasis` variant when 5 logos are provided', () => {
+    const {getByTestId} = render(
+      <LogoSuite>
+        <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
+        <LogoSuite.Logobar data-testid="logobar">
+          <svg />
+          <svg />
+          <svg />
+          <svg />
+          <svg />
+        </LogoSuite.Logobar>
+      </LogoSuite>,
+    )
+
+    const el = getByTestId('logobar')
+    const expectedClass = 'LogoSuite__logobar--variant-emphasis'
+
+    expect(el.classList).toContain(expectedClass)
+  })
+
+  it('renders the `muted` variant when 6 logos are provided', () => {
+    const {getByTestId} = render(
+      <LogoSuite>
+        <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
+        <LogoSuite.Logobar data-testid="logobar">
+          <svg />
+          <svg />
+          <svg />
+          <svg />
+          <svg />
+          <svg />
+        </LogoSuite.Logobar>
+      </LogoSuite>,
+    )
+
+    const el = getByTestId('logobar')
+    const expectedClass = 'LogoSuite__logobar--variant-muted'
+
+    expect(el.classList).toContain(expectedClass)
+  })
 })
