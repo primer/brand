@@ -6,7 +6,6 @@ on:
       - packages/react/src/**/*.figma.tsx
     branches:
       - main
-  pull_request:
 
 jobs:
   code-connect:
@@ -14,12 +13,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Node
         uses: actions/setup-node@v2
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Cache dependencies
         uses: actions/cache@v2
