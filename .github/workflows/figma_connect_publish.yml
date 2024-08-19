@@ -6,12 +6,14 @@ on:
       - packages/react/src/**/*.figma.tsx
     branches:
       - main
+      - rezrah/fix-figma-connect
 
 jobs:
   code-connect:
     name: Code Connect
     runs-on: ubuntu-latest
     steps:
+      - run: npm ci
       - run: npx figma connect publish
         env:
           FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
