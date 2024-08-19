@@ -2,8 +2,6 @@ name: Figma Connect Publish on Change
 
 on:
   push:
-    paths:
-      - packages/react/src/**/*.figma.tsx
     branches:
       - main
 
