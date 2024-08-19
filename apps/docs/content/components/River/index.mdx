@@ -4,6 +4,10 @@ description: Use the river component to introduce a feature using a type and med
 ---
 
 import ComponentLayout from '../../../src/layouts/component-layout'
+
+import doLink from './images/do-link.png'
+import dontLink from './images/dont-link.png'
+
 export default ComponentLayout
 
 ![A river component used to showcase a security feature. The title reads "Get security feedback with every git push" and it includes an image showing screenshots of of a CLI prompt with the git push command and a code scanning screenshot.](https://github.com/primer/brand/assets/912236/e01c2743-54cd-4ed0-9a6e-2afdadabb66e)
@@ -205,7 +209,18 @@ The image is automatically styled to fit the width of the parent container. If y
 
 ### Link
 
-River can include an optional call to action to link to more detailed content about the feature or topic.
+River can include an optional call to action to link to more detailed content about the feature or topic. Avoid using buttons to do so, instead use the regular link built into the component.
+
+<DoDontContainer>
+  <Do>
+    <img alt="" src={doLink} />
+    <Caption>Use the provided link component.</Caption>
+  </Do>
+  <Dont>
+    <img alt="" src={dontLink} />
+    <Caption>Avoid using buttons.</Caption>
+  </Dont>
+</DoDontContainer>
 
 ## Related components
 
