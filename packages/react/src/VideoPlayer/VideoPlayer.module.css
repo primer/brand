@@ -73,7 +73,6 @@
   transition: var(--brand-VideoPlayer-transition);
   top: 0;
   position: absolute;
-  border-radius: var(--brand-borderRadius-medium);
   left: 0;
   width: 100%;
   z-index: 2;
@@ -85,6 +84,12 @@
   grid-gap: var(--base-size-12);
   grid-template-columns: auto auto;
   background: var(--brand-videoPlayer-title-bgColor);
+  transition: all var(--brand-animation-duration-fast) var(--brand-animation-easing-default);
+}
+
+.VideoPlayer__title.VideoPlayer__title--hidden {
+  opacity: 0;
+  visibility: hidden;
 }
 
 /* ---------------------------------------------------------- */
@@ -228,9 +233,8 @@
 }
 
 .VideoPlayer__rangeInput:focus-visible {
-  border-color: var(--brand-color-focus);
-  outline: none;
-  box-shadow: 0 0 0 0.125rem var(--brand-color-focus);
+  outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
+  outline-offset: 4px;
   opacity: 1;
 }
 

@@ -71,14 +71,16 @@ const Root = ({
         {children}
         <track kind="captions" />
       </video>
-      <div className={styles.VideoPlayer__title}>
-        {showBranding && <MarkGithubIcon size={40} />}
-        {!visuallyHiddenTitle && (
-          <Text size="400" weight="medium" className={styles.VideoPlayer__controlTextColor}>
-            {title}
-          </Text>
-        )}
-      </div>
+      {showBranding || !visuallyHiddenTitle ? (
+        <div className={clsx(styles.VideoPlayer__title, isPlaying && styles['VideoPlayer__title--hidden'])}>
+          {showBranding && <MarkGithubIcon size={40} />}
+          {!visuallyHiddenTitle && (
+            <Text size="400" weight="medium" className={styles.VideoPlayer__controlTextColor}>
+              {title}
+            </Text>
+          )}
+        </div>
+      ) : null}
       <button
         className={clsx(
           styles.VideoPlayer__playButtonOverlay,
