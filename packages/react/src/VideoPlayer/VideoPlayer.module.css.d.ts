@@ -1,8 +1,9 @@
 declare const styles: {
   readonly "VideoPlayer__container": string;
   readonly "VideoPlayer": string;
-  readonly "VideoPlayer__playButton": string;
   readonly "VideoPlayer__playButtonOverlay": string;
+  readonly "VideoPlayer__playButtonOverlay--transparent": string;
+  readonly "VideoPlayer__playButton": string;
   readonly "VideoPlayer__title": string;
   readonly "VideoPlayer__controls": string;
   readonly "VideoPlayer__controls--hidden": string;

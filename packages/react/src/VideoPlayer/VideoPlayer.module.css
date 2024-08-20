@@ -36,7 +36,7 @@
 /* 3. Center Play Button                                      */
 /* ---------------------------------------------------------- */
 
-.VideoPlayer__playButton {
+.VideoPlayer__playButtonOverlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -47,20 +47,21 @@
   z-index: 1;
 }
 
-.VideoPlayer__playButtonOverlay {
+.VideoPlayer__playButtonOverlay.VideoPlayer__playButtonOverlay--transparent {
+  background: transparent;
+}
+
+.VideoPlayer__playButtonOverlay:focus-visible {
+  outline: var(--brand-borderWidth-thicker) solid var(--brand-color-focus);
+  outline-offset: 2px;
+}
+
+.VideoPlayer__playButton {
   width: 25%;
   height: 25%;
   max-width: var(--brand-VideoPlayer-playButton-width);
   max-height: var(--brand-VideoPlayer-playButton-height);
   opacity: 0.8;
-}
-
-.VideoPlayer__playButton:focus-visible {
-  outline: var(--brand-borderWidth-thicker) solid var(--brand-color-focus);
-  outline-offset: 2px;
-}
-
-.VideoPlayer__playButton svg {
   color: var(--brand-videoPlayer-playButton-fgColor-rest);
 }
 

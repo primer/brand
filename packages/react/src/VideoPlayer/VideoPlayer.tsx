@@ -54,7 +54,7 @@ const Root = ({
   showMuteButton = true,
   showVolumeControl = true,
   showFullScreenButton = true,
-  playIcon: PlayIcon = () => <DefaultPlayIcon className={styles.VideoPlayer__playButtonOverlay} />,
+  playIcon: PlayIcon = () => <DefaultPlayIcon className={styles.VideoPlayer__playButton} />,
   ...rest
 }: VideoPlayerProps) => {
   const videoWrapperRef = useRef<HTMLDivElement>(null)
@@ -80,7 +80,10 @@ const Root = ({
         )}
       </div>
       <button
-        className={styles.VideoPlayer__playButton}
+        className={clsx(
+          styles.VideoPlayer__playButtonOverlay,
+          isPlaying && styles['VideoPlayer__playButtonOverlay--transparent'],
+        )}
         onClick={togglePlaying}
         aria-label={isPlaying ? 'Pause' : 'Play'}
       >
