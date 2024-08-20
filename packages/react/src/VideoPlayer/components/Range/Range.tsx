@@ -1,4 +1,4 @@
-import React, {useState, useEffect, DOMAttributes} from 'react'
+import React, {useState, useEffect, DOMAttributes, useRef} from 'react'
 import clsx from 'clsx'
 import {useId} from '@reach/auto-id'
 
@@ -30,15 +30,27 @@ export const Range = ({
   const [hoverValue, setHoverValue] = useState(0)
   const generatedId = useId()
   const inputId = id || generatedId
+  const inputRef = useRef<HTMLInputElement | null>(null)
 
   useEffect(() => {
     setValue(startValue)
   }, [startValue])
 
   useEffect(() => {
+    if (!max || !tooltip || !inputRef.current) {
+      return
+    }
+
     const handleMouseMove = event => {
+      if (event.target !== inputRef.current) {
+        setHoverValue(0)
+        setMousePos(0)
+        return
+      }
+
       setMousePos(event.offsetX)
-      if (max) setHoverValue((event.offsetX / event.target.clientWidth) * max)
+
+      setHoverValue((event.offsetX / event.target.clientWidth) * max)
     }
 
     window.addEventListener('mousemove', handleMouseMove)
@@ -46,7 +58,7 @@ export const Range = ({
     return () => {
       window.removeEventListener('mousemove', handleMouseMove)
     }
-  }, [max])
+  }, [max, tooltip, inputRef])
 
   const handleKeyDown: DOMAttributes<HTMLInputElement>['onKeyDown'] = event => {
     if (typeof value !== 'number') return
@@ -81,6 +93,7 @@ export const Range = ({
           }}
           id={inputId}
           name={name}
+          ref={inputRef}
           {...props}
         />
       </label>
