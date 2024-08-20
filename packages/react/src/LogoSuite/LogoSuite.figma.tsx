@@ -544,7 +544,7 @@ figma.connect(LogoSuite, 'https://www.figma.com/design/BJ95AjraesmRCWsKA013GS/Pr
       center: 'center',
     }),
   },
-  variant: {'heading?': true, 'description?': true},
+  variant: {'heading?': false, 'description?': true},
   example: ({description, align}) => (
     <LogoSuite align={align}>
       <LogoSuite.Description>{description}</LogoSuite.Description>
