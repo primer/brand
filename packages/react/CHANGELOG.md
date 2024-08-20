@@ -1,5 +1,20 @@
 # @primer/react-brand
 
+## 0.38.0
+
+### Minor Changes
+
+- [#691](https://github.com/primer/brand/pull/691) [`34e7aa8b`](https://github.com/primer/brand/commit/34e7aa8b5153d5bdb035e2e93119418bd60c0045) Thanks [@joshfarrant](https://github.com/joshfarrant)! - > **Warning**
+
+  > This update contains a breaking visual change to the `LogoSuite` component. `LogoSuite` components without a specified `variant` prop will now automatically apply either `emphasis` or `muted` styles depending on the number of logos in the `LogoBar`.
+
+  - Added new default behaviour to the `variant` prop of the `LogoSuite` component. If `variant` is `undefined` then either `emphasis` or `muted` styles are automatically applied depending on the number of logos in the `LogoBar`. Five or fewer logos apply the `emphasis` style, while six or more use the `muted` style.
+  - Reduced `LogoSuite` size on mobile viewports.
+
+### Patch Changes
+
+- [#694](https://github.com/primer/brand/pull/694) [`5f1181be`](https://github.com/primer/brand/commit/5f1181becf5d32e36176dbf8d83da8794034feef) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Improved screen reader accuracy of column indexes in `ComparisonTable`.
+
 ## 0.37.0
 
 ### Minor Changes
