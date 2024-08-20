@@ -921,7 +921,7 @@ function HeroVideo() {
       <Box marginBlockStart={32} animate="scale-in-up">
         <VideoPlayer visuallyHiddenTitle title="GitHub media player">
           <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
-          <VideoPlayer.Track src="./example.vtt" />
+          <VideoPlayer.Track src="./example.vtt" default />
         </VideoPlayer>
       </Box>
     </AnimationProvider>

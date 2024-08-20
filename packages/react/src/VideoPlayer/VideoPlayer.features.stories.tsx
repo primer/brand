@@ -16,21 +16,21 @@ export default {
 export const WithPoster = () => (
   <VideoPlayer poster={posterImage} title="GitHub media player">
     <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
-    <VideoPlayer.Track src="./example.vtt" />
+    <VideoPlayer.Track src="./example.vtt" default />
   </VideoPlayer>
 )
 
 export const WithoutBranding = () => (
   <VideoPlayer showBranding={false} title="GitHub media player">
     <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
-    <VideoPlayer.Track src="./example.vtt" />
+    <VideoPlayer.Track src="./example.vtt" default />
   </VideoPlayer>
 )
 
 export const WithVisuallyHiddenTitle = () => (
   <VideoPlayer visuallyHiddenTitle title="GitHub media player">
     <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
-    <VideoPlayer.Track src="./example.vtt" />
+    <VideoPlayer.Track src="./example.vtt" default />
   </VideoPlayer>
 )
 
@@ -45,21 +45,21 @@ export const WithSomeHiddenControls = () => (
     showFullScreenButton={false}
   >
     <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
-    <VideoPlayer.Track src="./example.vtt" />
+    <VideoPlayer.Track src="./example.vtt" default />
   </VideoPlayer>
 )
 
 export const HideControlsWhenPaused = () => (
   <VideoPlayer title="GitHub media player" showControlsWhenPaused={false}>
     <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
-    <VideoPlayer.Track src="./example.vtt" />
+    <VideoPlayer.Track src="./example.vtt" default />
   </VideoPlayer>
 )
 
 export const Minimal = () => (
   <VideoPlayer title="GitHub media player" visuallyHiddenTitle showBranding={false} showControlsWhenPaused={false}>
     <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
-    <VideoPlayer.Track src="./example.vtt" />
+    <VideoPlayer.Track src="./example.vtt" default />
   </VideoPlayer>
 )
 
@@ -78,7 +78,7 @@ const MyVideoPlayer = () => {
         showFullScreenButton={false}
       >
         <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
-        <VideoPlayer.Track src="./example.vtt" />
+        <VideoPlayer.Track src="./example.vtt" default />
       </VideoPlayer>
       <Stack direction="horizontal">
         <Button onClick={() => togglePlaying()}>{isPlaying ? 'Pause' : 'Play'}</Button>
@@ -100,6 +100,6 @@ export const ControlledProgrammatically = () => {
 export const CustomPlayIcon = () => (
   <VideoPlayer title="GitHub media player" playIcon={() => <PlayIcon size={96} />}>
     <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
-    <VideoPlayer.Track src="./example.vtt" />
+    <VideoPlayer.Track src="./example.vtt" default />
   </VideoPlayer>
 )
