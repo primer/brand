@@ -7,7 +7,7 @@ const meta: Meta<typeof Footnotes> = {
   component: Footnotes,
   args: {
     as: 'ol',
-    visuallyHiddenTitle: 'Footnotes',
+    visuallyHiddenHeading: 'Footnotes',
   },
   argTypes: {
     as: {
@@ -16,7 +16,7 @@ const meta: Meta<typeof Footnotes> = {
       },
       options: ['ol', 'div'],
     },
-    visuallyHiddenTitle: {
+    visuallyHiddenHeading: {
       control: {
         type: 'text',
       },

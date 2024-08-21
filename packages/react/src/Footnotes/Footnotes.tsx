@@ -21,10 +21,10 @@ type FootnotesRestrictedPolymorphism =
 
 type FootnotesProps = {
   as?: (typeof FootnotesTags)[number]
-  visuallyHiddenTitle?: string
+  visuallyHiddenHeading?: string
 } & FootnotesRestrictedPolymorphism
 
-function Root({as = 'ol', className, children, visuallyHiddenTitle = 'Footnotes', ...rest}: FootnotesProps) {
+function Root({as = 'ol', className, children, visuallyHiddenHeading = 'Footnotes', ...rest}: FootnotesProps) {
   if (as === 'div') {
     const filteredChildren = React.Children.toArray(children).map(child => {
       if (React.isValidElement(child) && typeof child.type !== 'string') {
@@ -39,7 +39,7 @@ function Root({as = 'ol', className, children, visuallyHiddenTitle = 'Footnotes'
     return (
       <>
         <Heading className="visually-hidden" as="h2" id="footnote-label">
-          {visuallyHiddenTitle}
+          {visuallyHiddenHeading}
         </Heading>
         <div
           className={clsx(styles.Footnotes, styles['Footnotes--variant-disclaimer'], className)}
@@ -54,7 +54,7 @@ function Root({as = 'ol', className, children, visuallyHiddenTitle = 'Footnotes'
   return (
     <>
       <Heading className="visually-hidden" as="h2" id="footnote-label">
-        {visuallyHiddenTitle}
+        {visuallyHiddenHeading}
       </Heading>
       <ol
         className={clsx(styles.Footnotes, styles['Footnotes--variant-citations'], className)}
