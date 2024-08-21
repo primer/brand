@@ -134,11 +134,11 @@
 }
 
 .RiverBreakout--muted .River__text {
-  color: var(--brand-color-text-subtle);
+  color: var(--brand-River-color-text-muted);
 }
 
 .RiverBreakout .River__text em {
-  color: var(--brand-color-text-default);
+  color: var(--brand-color-text-emphasis);
   font-style: normal;
 }
 

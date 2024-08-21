@@ -108,6 +108,14 @@
           "value": "var(--base-color-scale-yellow-5)",
           "dark": "var(--base-color-scale-yellow-2)"
         }
+      },
+      "color": {
+        "text": {
+          "muted": {
+            "value": "var(--brand-color-text-subtle)",
+            "dark": "var(--brand-color-text-muted)"
+          }
+        }
       }
     }
   }

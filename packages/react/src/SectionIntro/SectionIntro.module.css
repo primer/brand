@@ -7,12 +7,12 @@
 }
 
 .SectionIntro-heading--muted {
-  color: var(--brand-color-text-muted);
+  color: var(--brand-SectionIntro-color-text-muted);
 }
 
 .SectionIntro-heading--muted em {
   font-style: normal;
-  color: var(--brand-color-text-default);
+  color: var(--brand-color-text-emphasis);
 }
 
 .SectionIntro--align-start {

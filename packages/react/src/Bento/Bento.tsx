@@ -8,6 +8,7 @@ import findElementInChildren from '../findElementInChildren'
 import {Heading, Text, Link, HeadingProps, TextProps, LinkProps, ColorMode as FullColorMode, Image, Label} from '../'
 
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/bento/base.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/bento/colors.css'
 import styles from './Bento.module.css'
 
 type ColorMode = Exclude<FullColorMode, 'auto'>

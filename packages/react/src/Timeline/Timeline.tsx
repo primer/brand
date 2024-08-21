@@ -44,18 +44,14 @@ const Item = ({className, children, ...rest}: PropsWithChildren<TimelineItemProp
   const itemClassName = clsx(styles['Timeline__item'], className)
   const childrenArray = useMemo(() => React.Children.toArray(children), [children])
 
-  const getConditionalVariant = useCallback(() => {
-    if (childrenArray.some(child => React.isValidElement(child) && child.type === 'em')) {
-      return 'muted'
-    }
-    return 'default'
-  }, [childrenArray])
-
-  const defaultColor = childrenArray.length === 1 ? 'default' : getConditionalVariant()
+  const isTextMuted = useCallback(
+    () => childrenArray.length > 1 && childrenArray.some(child => React.isValidElement(child) && child.type === 'em'),
+    [childrenArray],
+  )
 
   return (
     <li className={itemClassName} {...rest}>
-      <Text size="200" variant={defaultColor}>
+      <Text size="200" className={clsx(styles['Timeline__text'], isTextMuted() && styles['Timeline__text--muted'])}>
         {children}
       </Text>
     </li>

@@ -5,6 +5,7 @@ import {useAnimation} from '../../animation'
 import findElementInChildren from '../../findElementInChildren'
 import {Heading} from '../../Heading'
 
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/river/colors.css'
 import styles from '../river-shared.module.css'
 
 type RiverBreakoutProps = Omit<RiverProps, 'align' | 'imageTextRatio'>

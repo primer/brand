@@ -70,12 +70,12 @@
 }
 
 .Bento__heading--muted {
-  color: var(--brand-color-text-muted);
+  color: var(--brand-Bento-color-text-muted);
 }
 
 .Bento__heading--muted em {
   font-style: normal;
-  color: var(--brand-color-text-default);
+  color: var(--brand-color-text-emphasis);
 }
 
 .Bento__heading--with-max-width {

@@ -60,6 +60,10 @@
           "value": "var(--base-color-scale-gray-5)",
           "dark": "var(--base-color-scale-gray-4)"
         },
+        "emphasis": {
+          "value": "var(--base-color-scale-gray-10)",
+          "dark": "var(--base-color-scale-white-0)"
+        },
         "onEmphasis": {
           "value": "var(--base-color-scale-white-0)",
           "dark": "var(--base-color-scale-black-0)"
