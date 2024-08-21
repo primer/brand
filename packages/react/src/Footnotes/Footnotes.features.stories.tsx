@@ -6,8 +6,6 @@ import {InlineLink} from '../'
 const meta: Meta<typeof Footnotes> = {
   title: 'Components/Footnotes/Features',
   component: Footnotes,
-  args: {},
-  argTypes: {},
 }
 
 export const CitationsWithLink = () => (

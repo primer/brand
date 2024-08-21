@@ -6,8 +6,6 @@ import {Box, Grid, Heading, InlineLink, River, RiverBreakout, Section, Text, The
 const meta: Meta<typeof Footnotes> = {
   title: 'Components/Footnotes/Examples',
   component: Footnotes,
-  args: {},
-  argTypes: {},
   parameters: {
     layout: 'fullscreen',
   },
@@ -115,7 +113,7 @@ export const RiversWithCitations = () => (
         <Section as="div" backgroundColor="subtle" paddingBlockStart="none" paddingBlockEnd="none">
           <Grid>
             <Grid.Column>
-              <Footnotes id="">
+              <Footnotes>
                 <Footnotes.Item id="economic-impact" href="#economic-impact-ref">
                   There are now 100 million developers around the world using GitHub.{' '}
                 </Footnotes.Item>
