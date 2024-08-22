@@ -131,7 +131,7 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
           data-testid={testIds.overlay}
         >
           {LinkChildren}
-          {ActionChild && <div className={styles['SubNav__action-container']}>{ActionChild}</div>}
+          {ActionChild && <li className={styles['SubNav__action-container']}>{ActionChild}</li>}
         </ul>
       )}
       <button
