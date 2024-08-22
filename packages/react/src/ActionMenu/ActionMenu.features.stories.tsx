@@ -127,7 +127,7 @@ export const OpenByDefault = () => {
   )
 }
 
-export const TruncationOfLongValues = () => {
+export const LongerButtonText = () => {
   const [selected, setSelected] = React.useState('Europe, Middle East and Africa')
 
   return (

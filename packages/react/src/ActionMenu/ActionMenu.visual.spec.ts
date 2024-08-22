@@ -57,9 +57,9 @@ test.describe('Visual Comparison: ActionMenu', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('ActionMenu / Truncation Of Long Values', async ({page}) => {
+  test('ActionMenu / Longer Button Text', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--truncation-of-long-values&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--longer-button-text&viewMode=story',
     )
 
     await page.waitForTimeout(500)
