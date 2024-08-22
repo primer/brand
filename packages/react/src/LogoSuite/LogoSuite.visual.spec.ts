@@ -104,6 +104,15 @@ test.describe('Visual Comparison: LogoSuite', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('LogoSuite / Heading Level', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--heading-level&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('LogoSuite / Visible Heading With Description', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--visible-heading-with-description&viewMode=story',
