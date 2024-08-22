@@ -99,9 +99,10 @@ import {SubNav} from '@primer/react-brand'
 
 ### SubNav.Heading <Label>Required</Label>
 
-| name   | type     | default | required | description                      |
-| ------ | -------- | ------- | -------- | -------------------------------- |
-| `href` | `string` |         |          | URL of the page the link goes to |
+| name   | type                                                                            | default | required | description                      |
+| ------ | ------------------------------------------------------------------------------- | ------- | -------- | -------------------------------- |
+| `href` | `string`                                                                        |         | `true`   | URL of the page the link goes to |
+| `as`   | <PropTableValues values={['h1', 'h2', 'h3', 'h4', 'h5', 'h6']} addLineBreaks /> | `'h2'`  | `false`  | Heading level                    |
 
 ### SubNav.Link <Label>Required</Label>
 
