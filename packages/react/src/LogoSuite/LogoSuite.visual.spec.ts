@@ -14,15 +14,6 @@ test.describe('Visual Comparison: LogoSuite', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('LogoSuite / Following Hero', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-logosuite-examples--following-hero&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
-  })
-
   test('LogoSuite / With Links', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-logosuite-examples--with-links&viewMode=story',
