@@ -1,4 +1,6 @@
 const defines = require('./babel-defines')
+const path = require('path')
+const fs = require('fs').promises
 
 exports.onCreateWebpackConfig = ({actions, loaders, plugins, getConfig}) => {
   const config = getConfig()
@@ -27,4 +29,28 @@ exports.onCreateWebpackConfig = ({actions, loaders, plugins, getConfig}) => {
   })
 
   actions.replaceWebpackConfig(config)
+}
+
+exports.onPostBootstrap = async ({reporter}) => {
+  // eslint-disable-next-line i18n-text/no-en
+  reporter.info('Running post-bootstrap tasks...')
+
+  if (process.env.NODE_ENV === 'production') {
+    // eslint-disable-next-line i18n-text/no-en
+    reporter.info('No post-bootstrap tasks to run in production environment.')
+    return
+  }
+
+  const srcDir = path.resolve(__dirname, 'static', 'assets')
+  const outDir = path.resolve(__dirname, 'public', 'brand', 'assets')
+
+  try {
+    // eslint-disable-next-line i18n-text/no-en
+    reporter.info(`Copying static assets from ${srcDir} to ${outDir}`)
+    await fs.mkdir(outDir, {recursive: true})
+
+    fs.cp(srcDir, outDir, {recursive: true, overwrite: true})
+  } catch (err) {
+    reporter.error('onPostBootstrap error:', err)
+  }
 }
