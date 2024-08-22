@@ -115,6 +115,14 @@ export const VisibleHeading = () => (
   </LogoSuite>
 )
 
+export const HeadingLevel = () => (
+  <LogoSuite>
+    <LogoSuite.Heading as="h4">Heading</LogoSuite.Heading>
+    <LogoSuite.Description>The heading above is rendered as a h4</LogoSuite.Description>
+    <LogoSuite.Logobar>{logos.slice(0, 4)}</LogoSuite.Logobar>
+  </LogoSuite>
+)
+
 export const VisibleHeadingWithDescription = () => (
   <LogoSuite>
     <LogoSuite.Heading>Heading</LogoSuite.Heading>
