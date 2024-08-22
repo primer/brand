@@ -63,7 +63,7 @@ export type SubNavProps = {
 
 const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullWidth, hasShadow}: SubNavProps) => {
   const navRef = React.useRef<HTMLElement>(null)
-  const overlayRef = React.useRef<HTMLDivElement>(null)
+  const overlayRef = React.useRef<HTMLUListElement>(null)
   const [isOpenAtNarrow, setIsOpenAtNarrow] = useState(false)
   const idForLinkContainer = useId()
 
