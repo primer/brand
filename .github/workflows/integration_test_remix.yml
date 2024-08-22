@@ -44,7 +44,7 @@ jobs:
         run: cd ./packages/react && npm pack
 
       - name: Configuring Remix.run
-        run: npx create-remix --template joshfarrant/indie-stack ${{env.TEST_FOLDER}} --yes
+        run: npx create-remix --template https://github.com/joshfarrant/indie-stack/tree/module-fix ${{env.TEST_FOLDER}} --yes
 
       - name: Retrieving package version
         id: package-version
