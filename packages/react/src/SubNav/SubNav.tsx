@@ -124,7 +124,7 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
     >
       {HeadingChild && <div className={styles['SubNav__heading-container']}>{HeadingChild}</div>}
       {LinkChildren.length && (
-        <div
+        <ul
           ref={overlayRef}
           id={idForLinkContainer}
           className={clsx(styles['SubNav__links-overlay'], isOpenAtNarrow && styles['SubNav__links-overlay--open'])}
@@ -132,7 +132,7 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
         >
           {LinkChildren}
           {ActionChild && <div className={styles['SubNav__action-container']}>{ActionChild}</div>}
-        </div>
+        </ul>
       )}
       <button
         className={styles['SubNav__overlay-toggle']}
@@ -254,32 +254,38 @@ const SubNavLink = forwardRef<HTMLAnchorElement | HTMLDivElement, SubNavLinkProp
   })
 
   if (hasSubMenu) {
-    return <SubNavLinkWithSubmenu {...props} ref={ref as RefObject<HTMLDivElement>} />
+    return (
+      <li>
+        <SubNavLinkWithSubmenu {...props} ref={ref as RefObject<HTMLDivElement>} />
+      </li>
+    )
   }
 
   const {children, href, 'aria-current': ariaCurrent, 'data-testid': testId, className, ...rest} = props
 
   return (
-    <a
-      href={href}
-      className={clsx(styles['SubNav__link'], ariaCurrent && styles['SubNav__link--active'], className)}
-      aria-current={ariaCurrent}
-      data-testid={testId || testIds.link}
-      ref={ref as RefObject<HTMLAnchorElement>}
-      {...rest}
-    >
-      <Text as="span" size="200" className={styles['SubNav__link-label']}>
-        {children}
-      </Text>
-    </a>
+    <li>
+      <a
+        href={href}
+        className={clsx(styles['SubNav__link'], ariaCurrent && styles['SubNav__link--active'], className)}
+        aria-current={ariaCurrent}
+        data-testid={testId || testIds.link}
+        ref={ref as RefObject<HTMLAnchorElement>}
+        {...rest}
+      >
+        <Text as="span" size="200" className={styles['SubNav__link-label']}>
+          {children}
+        </Text>
+      </a>
+    </li>
   )
 })
 
-function _SubMenu({children, className, ...props}: PropsWithChildren<BaseProps<HTMLDivElement>>) {
+function _SubMenu({children, className, ...props}: PropsWithChildren<BaseProps<HTMLUListElement>>) {
   return (
-    <div className={clsx(styles['SubNav__sub-menu'], className)} {...props}>
+    <ul className={clsx(styles['SubNav__sub-menu'], className)} {...props}>
       {children}
-    </div>
+    </ul>
   )
 }
 

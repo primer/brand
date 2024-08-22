@@ -46,6 +46,12 @@
   display: contents;
 }
 
+.SubNav__links-overlay {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 /*
  * Narrow breakpoint
  */
@@ -149,6 +155,8 @@
   }
 
   .SubNav__sub-menu {
+    list-style: none;
+    padding: 0;
     padding-inline-start: var(--base-size-16);
   }
 }
@@ -232,7 +240,7 @@
   .SubNav__link-label::after {
     content: '';
     position: absolute;
-    bottom: -6px;
+    bottom: -9px;
     left: 0;
     width: 100%;
     height: 2px;
