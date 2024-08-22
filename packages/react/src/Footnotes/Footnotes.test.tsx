@@ -19,8 +19,8 @@ describe('Footnotes', () => {
   it('renders the default footnotes correctly', async () => {
     const items = ['Citation 1', 'Citation 2', 'Citation 3']
 
-    const {getByTestId, container} = render(
-      <Footnotes data-testid="footnotes">
+    const {getByRole, getAllByRole, container} = render(
+      <Footnotes>
         {items.map((citation, index) => (
           <Footnotes.Item data-testid={`item-${index}`} key={citation}>
             {citation}
@@ -32,18 +32,17 @@ describe('Footnotes', () => {
     const results = await axe(container)
     expect(results).toHaveNoViolations()
 
-    const rootEl = getByTestId('footnotes')
+    const listEl = getByRole('list')
 
-    expect(rootEl).toBeInTheDocument()
-    expect(rootEl.tagName).toEqual('OL')
+    expect(listEl).toBeInTheDocument()
+    expect(listEl.tagName).toEqual('OL')
 
-    let index = 0
+    const listItems = getAllByRole('listitem')
+
     for (const item of items) {
-      const itemEl = getByTestId(`item-${index}`)
-      expect(itemEl).toHaveTextContent(item)
-      expect(itemEl).toBeInTheDocument()
-      expect(itemEl.tagName).toEqual('LI')
-      index++
+      const el = listItems.find(listitem => listitem.textContent === item) as HTMLElement
+      expect(el).toBeInTheDocument()
+      expect(el.tagName).toBe('LI')
     }
   })
 
@@ -81,15 +80,14 @@ describe('Footnotes', () => {
       </Footnotes>,
     )
 
-    const visuallyHiddenHeading = getByRole('heading', {name: expectedHeading})
+    const visuallyHiddenHeading = getByRole('heading', {name: expectedHeading, level: 2})
     expect(visuallyHiddenHeading).toBeInTheDocument()
-    expect(visuallyHiddenHeading.tagName).toEqual('H2')
     expect(visuallyHiddenHeading.className).toContain('visually-hidden')
   })
 
   it('appends an icon with an aria-label when href is passed', async () => {
     const mockHref = 'https://github.com'
-    const {getByText} = render(
+    const {getByText, getByRole} = render(
       <Footnotes>
         <Footnotes.Item href={mockHref}>{mockItemText} </Footnotes.Item>
       </Footnotes>,
@@ -98,13 +96,11 @@ describe('Footnotes', () => {
     const itemEl = getByText(mockItemText)
     expect(itemEl).toBeInTheDocument()
 
-    const iconLinkEl = itemEl.querySelector('a')
-    expect(iconLinkEl).toBeInTheDocument()
+    const backLink = getByRole('link', {name: 'Back to content'})
+    expect(backLink).toBeInTheDocument()
+    expect(backLink).toHaveAttribute('href', mockHref)
 
-    expect(iconLinkEl).toHaveAttribute('href', mockHref)
-    expect(iconLinkEl).toHaveAttribute('aria-label', 'Back to content')
-
-    const iconEl = iconLinkEl?.querySelector('svg')
+    const iconEl = backLink.querySelector('svg')
     expect(iconEl).toBeInTheDocument()
   })
 })
