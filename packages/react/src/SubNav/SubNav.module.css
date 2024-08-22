@@ -157,6 +157,7 @@
   .SubNav__sub-menu {
     list-style: none;
     padding: 0;
+    margin: 0;
     padding-inline-start: var(--base-size-16);
   }
 }
