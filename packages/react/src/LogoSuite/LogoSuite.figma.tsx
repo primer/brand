@@ -12,9 +12,7 @@ figma.connect(
         false: 'Heading',
       }),
       headingOpeningTag: figma.boolean('heading?', {
-        // eslint-disable-next-line github/unescaped-html-literal
         true: '<LogoSuite.Heading>',
-        // eslint-disable-next-line github/unescaped-html-literal
         false: '<LogoSuite.Heading visuallyHidden>',
       }),
       headingClosingTag: figma.boolean('heading?', {
@@ -26,7 +24,6 @@ figma.connect(
         false: undefined,
       }),
       descriptionOpeningTag: figma.boolean('description?', {
-        // eslint-disable-next-line github/unescaped-html-literal
         true: '<LogoSuite.Description>',
         false: undefined,
       }),

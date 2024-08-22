@@ -172,5 +172,12 @@ module.exports = {
         'no-redeclare': 0,
       },
     },
+    // rules which apply only to Figma code connect files
+    {
+      files: ['**/*.figma.tsx'],
+      rules: {
+        'github/unescaped-html-literal': 0,
+      },
+    },
   ],
 }
