@@ -41,15 +41,15 @@ exports.onPostBootstrap = async ({reporter}) => {
     return
   }
 
-  const staticDir = path.resolve(__dirname, 'static', 'assets')
-  const staticOutDir = path.resolve(__dirname, 'public', 'brand', 'assets')
+  const srcDir = path.resolve(__dirname, 'static', 'assets')
+  const outDir = path.resolve(__dirname, 'public', 'brand', 'assets')
 
   try {
     // eslint-disable-next-line i18n-text/no-en
-    reporter.info(`Copying static assets from ${staticDir} to ${staticOutDir}`)
-    await fs.mkdir(staticOutDir, {recursive: true})
+    reporter.info(`Copying static assets from ${srcDir} to ${outDir}`)
+    await fs.mkdir(outDir, {recursive: true})
 
-    fs.cp(staticDir, staticOutDir, {recursive: true, overwrite: true})
+    fs.cp(srcDir, outDir, {recursive: true, overwrite: true})
   } catch (err) {
     reporter.error('onPostBootstrap error:', err)
   }
