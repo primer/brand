@@ -36,9 +36,6 @@ NarrowPageNumbersHiddenByDefault.parameters = {
   viewport: {
     defaultViewport: 'iphonexr',
   },
-  axe: {
-    timeout: 5000,
-  },
 }
 
 export const HidePageNumbersByViewport = () => (
