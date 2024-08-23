@@ -76,6 +76,7 @@ describe('BreakoutBanner', () => {
   it('renders primary link with arrow by default', () => {
     const {getAllByRole} = render(
       <BreakoutBanner>
+        <BreakoutBanner.Heading>Required heading</BreakoutBanner.Heading>
         <BreakoutBanner.LinkGroup>
           <Link href="#">Primary Action</Link>
           <Link href="#">Secondary Action</Link>
@@ -89,6 +90,7 @@ describe('BreakoutBanner', () => {
   it('renders secondary link without arrow by default', () => {
     const {getAllByRole} = render(
       <BreakoutBanner>
+        <BreakoutBanner.Heading>Required heading</BreakoutBanner.Heading>
         <BreakoutBanner.LinkGroup>
           <Link href="#">Primary Action</Link>
           <Link href="#">Secondary Action</Link>
