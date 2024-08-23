@@ -1,5 +1,6 @@
 import React from 'react'
 import {Meta} from '@storybook/react'
+import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {Pagination} from './Pagination'
 import {Stack} from '../Stack'
 import {Text} from '../Text'
@@ -7,6 +8,11 @@ import {Text} from '../Text'
 export default {
   title: 'Components/Pagination/Features',
   component: Pagination,
+  parameters: {
+    viewport: {
+      viewports: INITIAL_VIEWPORTS,
+    },
+  },
 } as Meta<typeof Pagination>
 
 const handlePageChange = (e: React.MouseEvent, n: number) => {
@@ -22,6 +28,18 @@ export const LargerPageCountMargin = () => (
 export const HidePageNumbers = () => (
   <Pagination pageCount={15} currentPage={5} showPages={false} onPageChange={handlePageChange} />
 )
+
+export const NarrowPageNumbersHiddenByDefault = () => (
+  <Pagination pageCount={15} currentPage={5} marginPageCount={4} onPageChange={handlePageChange} />
+)
+NarrowPageNumbersHiddenByDefault.parameters = {
+  viewport: {
+    defaultViewport: 'iphonexr',
+  },
+  axe: {
+    timeout: 5000,
+  },
+}
 
 export const HidePageNumbersByViewport = () => (
   <Stack direction="vertical" alignItems="center" gap="spacious">
