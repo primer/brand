@@ -25,12 +25,14 @@ type FootnotesProps = {
 } & FootnotesRestrictedPolymorphism
 
 function Root({as = 'ol', className, children, visuallyHiddenHeading = 'Footnotes', ...rest}: FootnotesProps) {
+  const memoizedChildren = React.useMemo(() => React.Children.toArray(children), [children])
+
   if (as === 'div') {
-    const filteredChildren = React.Children.toArray(children).map(child => {
+    const filteredChildren = memoizedChildren.map(child => {
       if (React.isValidElement(child) && typeof child.type !== 'string') {
         if (child.type === Item) {
           return React.cloneElement(child, {
-            variant: 'disclaimer',
+            _variant: 'disclaimer',
             ...child.props,
           })
         }
@@ -69,11 +71,11 @@ function Root({as = 'ol', className, children, visuallyHiddenHeading = 'Footnote
 export const FootnotesItemTags = ['a', 'p'] as const
 
 type DefaultFootnotesItemProps = {
-  variant?: 'disclaimer'
+  _variant?: 'disclaimer'
 }
 
 type CitationFootnotesItemProps = {
-  variant?: 'citation'
+  _variant?: 'citation'
   href?: string
 }
 
@@ -81,8 +83,8 @@ type FootnotesItemProps = (DefaultFootnotesItemProps | CitationFootnotesItemProp
   React.HTMLAttributes<HTMLParagraphElement> &
   BaseProps<HTMLParagraphElement>
 
-function Item({className, children, variant = 'citation', ...rest}: FootnotesItemProps) {
-  if (variant === 'disclaimer') {
+function Item({className, children, _variant = 'citation', ...rest}: FootnotesItemProps) {
+  if (_variant === 'disclaimer') {
     return (
       <Text as="p" variant="muted" size="100" className={clsx(styles.FootnotesItem, className)}>
         {children}
