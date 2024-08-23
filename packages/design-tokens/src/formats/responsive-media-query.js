@@ -1,4 +1,4 @@
-const {StyleDictionary} = require('@primer/primitives/build')
+const StyleDictionary = require('style-dictionary')
 const {fileHeader, sortByReference} = StyleDictionary.formatHelpers
 const createPropertyFormatter = require('style-dictionary/lib/common/formatHelpers/createPropertyFormatter')
 const prettier = require('prettier')

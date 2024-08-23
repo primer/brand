@@ -33,7 +33,7 @@
     "test": "jest"
   },
   "devDependencies": {
-    "@primer/primitives": "^7.15.0",
+    "@primer/primitives": "^9.0.1",
     "color2k": "^2.0.2",
     "style-dictionary": "3.8.0"
   },
