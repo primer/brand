@@ -23,7 +23,7 @@
     "lib"
   ],
   "scripts": {
-    "build": "node scripts/build-tokens.js",
+    "build": "npm run clean && node scripts/build-tokens.js",
     "check": "tsc --noEmit",
     "clean": "rm -rf lib",
     "format": "prettier --check '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
@@ -35,6 +35,8 @@
   "devDependencies": {
     "@primer/primitives": "^7.15.0",
     "color2k": "^2.0.2",
+    "fast-glob": "^3.3.2",
+    "json5": "^2.2.1",
     "style-dictionary": "3.8.0"
   },
   "engines": {

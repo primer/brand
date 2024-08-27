@@ -1,5 +1,5 @@
 const fs = require('fs')
-const {buildPrimitives, StyleDictionary} = require('@primer/primitives/build')
+const {buildPrimitives, StyleDictionary} = require('./style-dictionary')
 
 const mediaQueryFormat = require('../src/formats/responsive-media-query')
 const colorModeFormat = require('../src/formats/color-mode-attributes')
@@ -99,25 +99,25 @@ const darkJson = require('../src/tokens/base/colors/dark')
   //build most tokens
   buildPrimitives({
     source: [`tokens/**/*.json`, `!tokens/**/size-*.json`],
-    namespace,
+    namespace: 'brand',
     outputPath,
   })
 
   buildPrimitives({
     source: [`tokens/functional/size/size-fine.json`, `tokens/base/size/size.json`], //build size fine
-    namespace,
+    namespace: 'brand',
     outputPath,
   })
 
   buildPrimitives({
     source: [`tokens/functional/size/size-coarse.json`, `tokens/base/size/size.json`], //build size coarse
-    namespace,
+    namespace: 'brand',
     outputPath,
   })
 
   buildPrimitives({
     source: [`tokens/base/size/size.json`, `tokens/functional/size/size-fine.json`], // build the special formats
-    namespace,
+    namespace: 'brand',
     outputPath,
     platforms: {
       css: {
@@ -139,7 +139,7 @@ const darkJson = require('../src/tokens/base/colors/dark')
 
   buildPrimitives({
     source: [`tokens/base/size/size.json`, `tokens/functional/size/size-coarse.json`], // build the special formats
-    namespace,
+    namespace: 'brand',
     platforms: {
       css: {
         buildPath: `${outputPath}/css/`,
@@ -176,7 +176,7 @@ const darkJson = require('../src/tokens/base/colors/dark')
 
     buildPrimitives({
       source: [path], // build the special formats
-      namespace,
+      namespace: 'brand',
       platforms: {
         css: {
           buildPath: `${outputPath}/css/`,
@@ -197,7 +197,7 @@ const darkJson = require('../src/tokens/base/colors/dark')
 
   buildPrimitives({
     source: [`tokens/base/colors/color-scales.json`], // build the special formats
-    namespace,
+    namespace: 'brand',
     platforms: {
       css: {
         buildPath: `${outputPath}/css/`,
@@ -253,7 +253,7 @@ const darkJson = require('../src/tokens/base/colors/dark')
 
     buildPrimitives({
       source: [path], // build the special formats
-      namespace,
+      namespace: 'brand',
       platforms: {
         css: {
           buildPath: `${outputPath}/css/`,
@@ -276,5 +276,5 @@ const darkJson = require('../src/tokens/base/colors/dark')
    * Step 4:
    * Clean up the temporary directory
    */
-  fs.rmdirSync(dest, {recursive: true})
+  //fs.rmdirSync(dest, {recursive: true})
 })()
