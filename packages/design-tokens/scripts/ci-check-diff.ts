@@ -4,7 +4,7 @@ const fs = require('fs')
 const cleanLine = (line: string) => line.replace(/\t/g, '').trim()
 
 const beforeAfterArr: {
-  before: string
+  before?: string
   after: string
 }[] = []
 
@@ -19,7 +19,7 @@ try {
       }
     } else {
       if (line.includes('>    --')) {
-        beforeAfterArr.push({before: '', after: line.replace('>    --', '--').trim()})
+        beforeAfterArr.push({after: line.replace('>    --', '--').trim()})
       }
     }
   }
@@ -35,8 +35,12 @@ if (beforeAfterArr.length > 0) {
   <summary>View CSS variable changes</summary>
     ${beforeAfterArr.reduce((acc, {before, after}) => {
       return (acc += `
-\`\`\`diff
-- ${before}
+\`\`\`diff${
+        before
+          ? `
+- ${before}`
+          : ''
+      }
 + ${after}
 \`\`\`
       `)
