@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-commonjs, @typescript-eslint/no-var-requires
 const fs = require('fs')
 
-const cleanLine = (line: string) => line.replace(/\t/g, '').trim()
+const cleanLine = (line: string) => line.trim().replace(/\t/g, '').trim()
 
 const beforeAfterArr: {
   before?: string
@@ -10,7 +10,11 @@ const beforeAfterArr: {
 
 try {
   const data = fs.readFileSync('diff.txt', 'utf8')
+  console.log('Diff raw...')
+  console.log(data)
   const lines = data.split(/\r?\n/).map(cleanLine)
+  console.log('Diff cleaned...')
+  console.log(lines)
   for (const line of lines) {
     if (line.includes('|')) {
       const [before, after] = line.split('|')
