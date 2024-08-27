@@ -51,6 +51,8 @@ if (beforeAfterArr.length > 0) {
   
   `
   try {
+    console.log('writing diff.md')
+    console.log(template.trim())
     fs.writeFileSync('diff.md', template.trim())
     // file written successfully
   } catch (err) {
