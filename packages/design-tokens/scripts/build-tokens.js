@@ -247,6 +247,7 @@ const darkJson = require('../src/tokens/base/colors/dark')
     `tokens/functional/components/pricing-options/colors.json`,
     `tokens/functional/components/river/colors.json`,
     `tokens/functional/components/bento/colors.json`,
+    `tokens/functional/components/section-intro/colors.json`,
   ]
 
   for (const path of filesForColorModes) {
