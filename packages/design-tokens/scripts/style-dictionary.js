@@ -369,29 +369,6 @@ function buildPrimitives(
           }
         },
       },
-      //   {
-      //     pattern: /\.json$/,
-      //     parse: ({filePath, contents}) => {
-      //       // replace $value with value so that style dictionary recognizes it
-      //       try {
-      //         let mutableContent = JSON.stringify(contents)
-      //         mutableContent = mutableContent
-      //           .replace(/["|']?\$?value["|']?:/g, '"value":')
-      //           // convert $description to comment
-      //           .replace(/["|']?\$?description["|']?:/g, '"comment":')
-      //           .replace(/["|']?\$?type["|']?:/g, '"$type":')
-      //           .replace(/["|']?\$?extensions["|']?:/g, '"$extensions":')
-      //         //
-      //         if (filePath.includes('/functional/')) {
-      //           mutableContent = mutableContent.replace(/<namespace>/g, namespace)
-      //         }
-      //         const parsed = JSON.parse(mutableContent)
-      //         return parsed
-      //       } catch (e) {
-      //         throw new Error(`Invalid json5 file "${filePath}".`)
-      //       }
-      //     },
-      //   },
     ],
   }
 
