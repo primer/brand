@@ -336,7 +336,7 @@ function groupBy(collection, iteratee = x => x) {
  *  })
  */
 function buildPrimitives(
-  {source, outputPath = 'tokens-v2-private', include, platforms, namespace = 'primer'},
+  {source, outputPath = 'tokens-v2-private', include, platforms, namespace = 'brand'},
   _StyleDictionary = StyleDictionary,
 ) {
   // eslint-disable-next-line no-console
@@ -505,99 +505,8 @@ function buildPrimitives(
     .buildAllPlatforms()
 }
 
-/**
- * @name init
- * @description
- *   Triggers the build for @primer/primitive default tokens
- *   from an npm script. Internal use only. Use `build` for self-serve.
- * @private
- */
-function _init() {
-  const outputPath = 'tokens-v2-private'
-  //build all tokens
-  buildPrimitives({
-    source: [`tokens/**/*.json`, `!tokens/**/size-*.json`, `!tokens/**/color/*.json`, `!tokens/**/shadow/*.json`],
-    outputPath,
-  })
-
-  //build size fine
-  buildPrimitives({
-    source: [`tokens/functional/size/size-fine.json`, `tokens/base/size/size.json`],
-    outputPath,
-  })
-
-  //build size coarse
-  buildPrimitives({
-    source: [`tokens/functional/size/size-coarse.json`, `tokens/base/size/size.json`],
-    outputPath,
-  })
-
-  buildPrimitives({
-    source: [`tokens/base/size/size.json`, `tokens/functional/size/size-fine.json`],
-    outputPath,
-    platforms: {
-      css: {
-        buildPath: `${outputPath}/css/`,
-        transformGroup: 'css',
-        files: [
-          {
-            destination: `tokens/functional/size/size-fine.css`,
-            format: `css/touch-target-desktop`,
-            filter: token => token.filePath.includes('fine'),
-            options: {
-              outputReferences: true,
-            },
-          },
-        ],
-      },
-    },
-  })
-
-  buildPrimitives({
-    source: [`tokens/base/size/size.json`, `tokens/functional/size/size-coarse.json`],
-    platforms: {
-      css: {
-        buildPath: `${outputPath}/css/`,
-        transformGroup: 'css',
-        files: [
-          {
-            destination: `tokens/functional/size/size-coarse.css`,
-            format: `css/touch-target-mobile`,
-            filter: token => token.filePath.includes('coarse'),
-            options: {
-              outputReferences: true,
-            },
-          },
-        ],
-      },
-    },
-  })
-
-  //build docs data
-  buildPrimitives({
-    source: [`tokens/**/*.json`, `!tokens/**/color/*.json`, `!tokens/**/shadow/*.json`],
-    outputPath,
-    platforms: {
-      docs: {
-        buildPath: `${outputPath}/docs/`,
-        transformGroup: 'css',
-        files: [
-          {
-            format: 'json/docs',
-            destination: 'docValues.json',
-            options: {
-              outputReferences: false,
-            },
-          },
-        ],
-      },
-    },
-  })
-}
-
 module.exports = {
   buildPrimitives,
-  _init,
   StyleDictionary,
   pathToKebabCase,
   pathToDotNotation,

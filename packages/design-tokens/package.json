@@ -25,7 +25,7 @@
   "scripts": {
     "build": "npm run clean && node scripts/build-tokens.js",
     "check": "tsc --noEmit",
-    "clean": "rm -rf lib",
+    "clean": "rm -rf lib && rm -rf tokens",
     "format": "prettier --check '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
     "format:fix": "prettier --write '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
     "lint": "eslint '**/*.{js,ts,tsx,md,mdx}' --max-warnings=0 --config ../../.eslintrc.js",
