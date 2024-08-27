@@ -38,7 +38,7 @@ describe('Timeline', () => {
     )
     const itemTextEl = getByRole('listitem').firstChild
 
-    expect(itemTextEl).toHaveClass(`Text--muted`)
+    expect(itemTextEl).toHaveClass(`Timeline__text--muted`)
   })
 
   it('renders the default color as text-default if a non-<em> child is passed', () => {
