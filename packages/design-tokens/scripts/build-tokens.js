@@ -18,7 +18,7 @@ const darkJson = require('../src/tokens/base/colors/dark')
    * Create a temporary directory with JSON files to convert into tokens
    */
 
-  fs.cpSync('../../node_modules/@primer/primitives/tokens', dest, {recursive: true})
+  fs.cpSync('../../node_modules/@primer/primitives/src/tokens', dest, {recursive: true})
 
   if (fs.existsSync(src)) {
     fs.cpSync(src, dest, {force: true, recursive: true})

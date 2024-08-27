@@ -352,14 +352,12 @@ function buildPrimitives(
           try {
             let mutableContent = JSON.stringify(contents)
 
+            // prettier-ignore
+            // eslint-disable-next-line prettier/prettier, no-useless-escape
+            mutableContent = mutableContent.replace(/\\"\$value\\\"/g, '\\"value\\"')
+
             if (filePath.includes('/functional/')) {
               mutableContent = mutableContent.replace(/<namespace>/g, namespace)
-              mutableContent
-                .replace(/["|']?\$?value["|']?:/g, '"value":')
-                // convert $description to comment
-                .replace(/["|']?\$?description["|']?:/g, '"comment":')
-                .replace(/["|']?\$?type["|']?:/g, '"$type":')
-                .replace(/["|']?\$?extensions["|']?:/g, '"$extensions":')
             }
 
             const parsed = JSON.parse(mutableContent)
