@@ -6,6 +6,7 @@ import {Text} from '../Text'
 import {Label, LabelProps} from '../Label'
 import {useAnimation} from '../animation'
 
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/section-intro/colors.css'
 import styles from './SectionIntro.module.css'
 
 import type {BaseProps} from '../component-helpers'
