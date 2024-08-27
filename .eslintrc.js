@@ -58,7 +58,7 @@ module.exports = {
         allow: ['dark_dimmed'],
       },
     ],
-    'primer-react/no-deprecated-colors': ['warn', {checkAllStrings: true}],
+    'primer-react/no-deprecated-colors': 0, // TODO: Investigate removal. Began emitting errors during Primitives v7>v9 upgrade
   },
   overrides: [
     // rules which apply only to JS

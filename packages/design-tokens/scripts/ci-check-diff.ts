@@ -11,11 +11,16 @@ const beforeAfterArr: {
 try {
   const data = fs.readFileSync('diff.txt', 'utf8')
   const lines = data.split(/\r?\n/).map(cleanLine)
-
   for (const line of lines) {
-    const [before, after] = line.split('|')
-    if (before && after) {
-      beforeAfterArr.push({before: before.trim(), after: after.trim()})
+    if (line.includes('|')) {
+      const [before, after] = line.split('|')
+      if (before && after) {
+        beforeAfterArr.push({before: before.trim(), after: after.trim()})
+      }
+    } else {
+      if (line.includes('>    --')) {
+        beforeAfterArr.push({before: '', after: line.replace('>    --', '--').trim()})
+      }
     }
   }
 } catch (err) {
