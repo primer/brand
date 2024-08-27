@@ -360,7 +360,32 @@ function buildPrimitives(
               mutableContent = mutableContent.replace(/<namespace>/g, namespace)
             }
 
-            const parsed = JSON.parse(mutableContent)
+            let parsed = JSON.parse(mutableContent)
+
+            if (
+              [
+                'functional/size/size.json',
+                'functional/size/size-coarse.json',
+                'functional/size/size-fine.json',
+              ].includes(filePath)
+            ) {
+              // Check if the root key starts with 'brand'
+
+              const rootKey = Object.keys(parsed)[0]
+              console.log('footbs, rootKey', filePath, rootKey)
+
+              if (typeof rootKey === 'string' && !rootKey.startsWith('brand')) {
+                const originalObject = JSON.parse(parsed)
+
+                const wrappedObject = {
+                  brand: originalObject,
+                }
+
+                const outputJsonString = JSON.stringify(wrappedObject, null, 2)
+
+                parsed = outputJsonString
+              }
+            }
 
             return JSON.parse(parsed)
           } catch (error) {
