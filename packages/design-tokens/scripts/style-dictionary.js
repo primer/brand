@@ -1,3 +1,7 @@
+/**
+ * Ported from primer/primitives, as it was removed in v8 release and we still need it
+ */
+
 const glob = require('fast-glob')
 const StyleDictionary = require('style-dictionary')
 

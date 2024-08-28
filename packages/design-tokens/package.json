@@ -25,7 +25,7 @@
   "scripts": {
     "build": "npm run clean && node scripts/build-tokens.js",
     "check": "tsc --noEmit",
-    "clean": "rm -rf lib && rm -rf tokens",
+    "clean": "rm -rf lib",
     "format": "prettier --check '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
     "format:fix": "prettier --write '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
     "lint": "eslint '**/*.{js,ts,tsx,md,mdx}' --max-warnings=0 --config ../../.eslintrc.js",
@@ -33,9 +33,9 @@
     "test": "jest"
   },
   "devDependencies": {
-    "@primer/primitives": "^9.0.2",
+    "@primer/primitives": "9.0.2",
     "color2k": "^2.0.2",
-    "fast-glob": "^3.3.2",
+    "fast-glob": "3.3.2",
     "style-dictionary": "3.8.0"
   },
   "engines": {

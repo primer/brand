@@ -506,7 +506,7 @@ SearchOpen.parameters = {
 }
 SearchOpen.play = async ({canvasElement}) => {
   const canvas = within(canvasElement)
-  await userEvent.click(canvas.getByLabelText('search'))
+  await userEvent.click(canvas.getByLabelText('Toggle search bar'))
 
   await expect(canvas.getByRole('combobox')).toHaveFocus()
 }
@@ -516,7 +516,7 @@ export const SearchResultsVisible = Template.bind({})
 SearchResultsVisible.play = async ({canvasElement}) => {
   const canvas = within(canvasElement)
 
-  await userEvent.click(canvas.getByLabelText('search'))
+  await userEvent.click(canvas.getByLabelText('Toggle search bar'))
   await userEvent.type(canvas.getByRole('combobox'), 'devops')
   await expect(canvas.getByRole('combobox')).toHaveFocus()
 }
@@ -569,7 +569,7 @@ MobileSearchResultsVisible.parameters = {
 MobileSearchResultsVisible.play = async ({canvasElement}) => {
   const canvas = within(canvasElement)
 
-  await userEvent.click(canvas.getByLabelText('search'))
+  await userEvent.click(canvas.getByLabelText('Toggle search bar'))
   await userEvent.type(canvas.getByRole('combobox'), 'devops')
   await expect(canvas.getByRole('combobox')).toHaveFocus()
 }
