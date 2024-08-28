@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-commonjs, @typescript-eslint/no-var-requires
 const fs = require('fs')
 
-const cleanLine = (line: string) => line.trim().replace(/\t/g, '').trim()
+const cleanLine = (line: string) => line.trim().replace(/\s+/g, ' ').replace(/\t/g, '').trim()
 
 const beforeAfterArr: {
   before?: string
@@ -21,10 +21,8 @@ try {
       if (before && after) {
         beforeAfterArr.push({before: before.trim(), after: after.trim()})
       }
-    } else {
-      if (line.includes('>    --')) {
-        beforeAfterArr.push({after: line.replace('>    --', '--').trim()})
-      }
+    } else if (line.includes('> --')) {
+      beforeAfterArr.push({after: line.replace('> --', '--').trim()})
     }
   }
 } catch (err) {
@@ -38,13 +36,19 @@ if (beforeAfterArr.length > 0) {
   <details>
   <summary>View CSS variable changes</summary>
     ${beforeAfterArr.reduce((acc, {before, after}) => {
-      return (acc += `
-\`\`\`diff${
-        before
-          ? `
-- ${before}`
-          : ''
+      console.log('printing line..')
+      console.log(before, after)
+      if (!before) {
+        return (acc += `
+\`\`\`diff
++ ${after}
+\`\`\`
+      `)
       }
+
+      return (acc += `
+\`\`\`diff
+- ${before}
 + ${after}
 \`\`\`
       `)
