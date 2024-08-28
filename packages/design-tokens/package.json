@@ -36,7 +36,6 @@
     "@primer/primitives": "^9.0.2",
     "color2k": "^2.0.2",
     "fast-glob": "^3.3.2",
-    "json5": "^2.2.1",
     "style-dictionary": "3.8.0"
   },
   "engines": {

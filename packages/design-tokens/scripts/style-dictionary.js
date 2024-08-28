@@ -1,6 +1,5 @@
 const glob = require('fast-glob')
 const StyleDictionary = require('style-dictionary')
-const json5Parse = require('json5')
 
 const {fileHeader, formattedVariables} = StyleDictionary.formatHelpers
 

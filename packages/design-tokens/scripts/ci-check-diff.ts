@@ -10,11 +10,9 @@ const beforeAfterArr: {
 
 try {
   const data = fs.readFileSync('diff.txt', 'utf8')
-  console.log('Diff raw...')
-  console.log(data)
+
   const lines = data.split(/\r?\n/).map(cleanLine)
-  console.log('Diff cleaned...')
-  console.log(lines)
+
   for (const line of lines) {
     if (line.includes('|')) {
       const [before, after] = line.split('|')
@@ -36,8 +34,6 @@ if (beforeAfterArr.length > 0) {
   <details>
   <summary>View CSS variable changes</summary>
     ${beforeAfterArr.reduce((acc, {before, after}) => {
-      console.log('printing line..')
-      console.log(before, after)
       if (!before) {
         return (acc += `
 \`\`\`diff
@@ -59,8 +55,6 @@ if (beforeAfterArr.length > 0) {
   
   `
   try {
-    console.log('writing diff.md')
-    console.log(template.trim())
     fs.writeFileSync('diff.md', template.trim())
     // file written successfully
   } catch (err) {

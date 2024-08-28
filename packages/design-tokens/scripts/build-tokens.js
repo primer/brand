@@ -99,25 +99,25 @@ const darkJson = require('../src/tokens/base/colors/dark')
   //build most tokens
   buildPrimitives({
     source: [`tokens/**/*.json`, `!tokens/**/size-*.json`],
-    namespace: 'brand',
+    namespace,
     outputPath,
   })
 
   buildPrimitives({
     source: [`tokens/functional/size/size-fine.json`, `tokens/base/size/size.json`], //build size fine
-    namespace: 'brand',
+    namespace,
     outputPath,
   })
 
   buildPrimitives({
     source: [`tokens/functional/size/size-coarse.json`, `tokens/base/size/size.json`], //build size coarse
-    namespace: 'brand',
+    namespace,
     outputPath,
   })
 
   buildPrimitives({
     source: [`tokens/base/size/size.json`, `tokens/functional/size/size-fine.json`], // build the special formats
-    namespace: 'brand',
+    namespace,
     outputPath,
     platforms: {
       css: {
@@ -139,7 +139,7 @@ const darkJson = require('../src/tokens/base/colors/dark')
 
   buildPrimitives({
     source: [`tokens/base/size/size.json`, `tokens/functional/size/size-coarse.json`], // build the special formats
-    namespace: 'brand',
+    namespace,
     platforms: {
       css: {
         buildPath: `${outputPath}/css/`,
@@ -176,7 +176,7 @@ const darkJson = require('../src/tokens/base/colors/dark')
 
     buildPrimitives({
       source: [path], // build the special formats
-      namespace: 'brand',
+      namespace,
       platforms: {
         css: {
           buildPath: `${outputPath}/css/`,
@@ -197,7 +197,7 @@ const darkJson = require('../src/tokens/base/colors/dark')
 
   buildPrimitives({
     source: [`tokens/base/colors/color-scales.json`], // build the special formats
-    namespace: 'brand',
+    namespace,
     platforms: {
       css: {
         buildPath: `${outputPath}/css/`,
@@ -253,7 +253,7 @@ const darkJson = require('../src/tokens/base/colors/dark')
 
     buildPrimitives({
       source: [path], // build the special formats
-      namespace: 'brand',
+      namespace,
       platforms: {
         css: {
           buildPath: `${outputPath}/css/`,

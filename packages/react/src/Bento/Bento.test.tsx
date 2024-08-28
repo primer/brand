@@ -241,7 +241,7 @@ describe('Bento.Visual', () => {
   it('renders non img children without style', () => {
     const {getByTestId} = render(
       <Bento.Visual data-testid={testId}>
-        <svg />
+        <svg aria-label="Mock SVG" />
       </Bento.Visual>,
     )
 

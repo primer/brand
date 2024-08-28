@@ -102,7 +102,7 @@ describe('BreakoutBanner', () => {
   })
 
   it('provides an escape hatch to render a custom leading visual', () => {
-    const MockLeadingVisual = () => <svg data-testid="mock-svg" />
+    const MockLeadingVisual = () => <svg data-testid="mock-svg" aria-label="Mock SVG" />
 
     const {getByTestId} = render(
       <BreakoutBanner leadingVisual={<MockLeadingVisual />}>
