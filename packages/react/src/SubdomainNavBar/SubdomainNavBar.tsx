@@ -188,7 +188,7 @@ function Root({
             )}
             data-testid={testIds.innerContainer}
           >
-            <nav>
+            <nav aria-label="Header logo and title">
               <ol className={styles['SubdomainNavBar-title-area']}>
                 <li>
                   <a href={logoHref} aria-label="Github Home" className={styles['SubdomainNavBar-logo-mark']}>
