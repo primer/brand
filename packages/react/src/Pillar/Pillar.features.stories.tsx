@@ -45,7 +45,13 @@ export const WithIconSVG = () => (
   <Pillar>
     <Pillar.Icon
       icon={
-        <svg xmlns="http://www.w3.org/2000/svg" height="56" viewBox="0 0 56 56" width="56">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="56"
+          viewBox="0 0 56 56"
+          width="56"
+          aria-label="GitHub Actions marketing icon"
+        >
           <g fill="none" fillRule="evenodd" strokeLinecap="round" strokeWidth="2" transform="translate(5 5)">
             <g strokeLinejoin="round" transform="translate(5 4)">
               <g transform="translate(12)">

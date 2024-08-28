@@ -58,7 +58,6 @@ module.exports = {
         allow: ['dark_dimmed'],
       },
     ],
-    'primer-react/no-deprecated-colors': ['warn', {checkAllStrings: true}],
   },
   overrides: [
     // rules which apply only to JS
@@ -170,6 +169,7 @@ module.exports = {
         '@typescript-eslint/no-unnecessary-condition': 0,
         '@typescript-eslint/no-unused-vars': 0,
         'no-redeclare': 0,
+        'github/a11y-svg-has-accessible-name': 0,
       },
     },
     // rules which apply only to Figma code connect files

@@ -1,21 +1,26 @@
 // eslint-disable-next-line import/no-commonjs, @typescript-eslint/no-var-requires
 const fs = require('fs')
 
-const cleanLine = (line: string) => line.replace(/\t/g, '').trim()
+const cleanLine = (line: string) => line.trim().replace(/\s+/g, ' ').replace(/\t/g, '').trim()
 
 const beforeAfterArr: {
-  before: string
+  before?: string
   after: string
 }[] = []
 
 try {
   const data = fs.readFileSync('diff.txt', 'utf8')
+
   const lines = data.split(/\r?\n/).map(cleanLine)
 
   for (const line of lines) {
-    const [before, after] = line.split('|')
-    if (before && after) {
-      beforeAfterArr.push({before: before.trim(), after: after.trim()})
+    if (line.includes('|')) {
+      const [before, after] = line.split('|')
+      if (before && after) {
+        beforeAfterArr.push({before: before.trim(), after: after.trim()})
+      }
+    } else if (line.includes('> --')) {
+      beforeAfterArr.push({after: line.replace('> --', '--').trim()})
     }
   }
 } catch (err) {
@@ -29,6 +34,14 @@ if (beforeAfterArr.length > 0) {
   <details>
   <summary>View CSS variable changes</summary>
     ${beforeAfterArr.reduce((acc, {before, after}) => {
+      if (!before) {
+        return (acc += `
+\`\`\`diff
++ ${after}
+\`\`\`
+      `)
+      }
+
       return (acc += `
 \`\`\`diff
 - ${before}

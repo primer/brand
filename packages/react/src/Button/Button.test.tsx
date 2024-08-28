@@ -185,7 +185,7 @@ describe('Button', () => {
   it('can optionally render a leading visual', () => {
     const leadingVisualId = Button.testIds.leadingVisual
 
-    const {getByTestId} = render(<Button leadingVisual={<SearchIcon />}>Button</Button>)
+    const {getByTestId} = render(<Button leadingVisual={<SearchIcon aria-label="Search icon" />}>Button</Button>)
 
     const el = getByTestId(leadingVisualId)
 
@@ -233,7 +233,7 @@ describe('Button', () => {
 
   it('accepts a native svg as a valid trailing or leading visual', () => {
     const mockId = 'mock-svg'
-    const mockSvg = <svg data-testid={mockId} />
+    const mockSvg = <svg data-testid={mockId} aria-label="Mock SVG" />
 
     const {getByTestId} = render(
       <Button trailingVisual={mockSvg} leadingVisual={mockSvg}>

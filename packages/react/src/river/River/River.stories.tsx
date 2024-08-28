@@ -101,7 +101,6 @@ export const Video: StoryFn<typeof River> = args => (
           playsInline
           autoPlay
           muted
-          aria-hidden="true"
           poster="https://github.githubassets.com/images/modules/site/issues/issue-tasks-progress-placeholder.png"
         >
           <source
