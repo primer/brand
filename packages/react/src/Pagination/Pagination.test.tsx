@@ -3,12 +3,19 @@ import '@testing-library/jest-dom'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 import {Pagination} from './Pagination'
-import '../test-utils/mocks/match-media-mock'
+import {useWindowSize} from '../hooks/useWindowSize'
+
+jest.mock('../hooks/useWindowSize')
+const mockUseWindowSize = useWindowSize as jest.Mock
+mockUseWindowSize.mockImplementation(() => ({isMedium: true}))
 
 expect.extend(toHaveNoViolations)
 
 describe('Pagination', () => {
-  afterEach(cleanup)
+  afterEach(() => {
+    cleanup()
+    jest.clearAllMocks()
+  })
 
   it('renders the root element correctly into the document', () => {
     const {getByRole} = render(<Pagination pageCount={5} currentPage={1} />)
@@ -49,7 +56,6 @@ describe('Pagination', () => {
   it('can optionally remove paged items', () => {
     const {getByRole} = render(<Pagination pageCount={10} currentPage={5} showPages={false} />)
     const rootEl = getByRole('navigation')
-
     const linksAsVerbatimText = Array.from(rootEl.querySelectorAll('a')).map(link => link.textContent)
     expect(linksAsVerbatimText).toEqual(['Previous', 'Next'])
   })
@@ -123,5 +129,13 @@ describe('Pagination', () => {
         expect(item).toHaveAttribute('aria-label', `Go to page ${index}`)
       }
     }
+  })
+
+  it('does not show paged items by default on narrow viewports', () => {
+    mockUseWindowSize.mockImplementation(() => ({isMedium: false}))
+    const {getByRole} = render(<Pagination pageCount={5} currentPage={1} />)
+    const rootEl = getByRole('navigation')
+    const linksAsVerbatimText = Array.from(rootEl.querySelectorAll('a')).map(link => link.textContent)
+    expect(linksAsVerbatimText).toEqual(['Previous', 'Next'])
   })
 })

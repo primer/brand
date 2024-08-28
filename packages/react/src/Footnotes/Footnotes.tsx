@@ -5,11 +5,6 @@ import clsx from 'clsx'
 import {Heading, InlineLink, Text} from '../'
 import type {BaseProps} from '../component-helpers'
 
-/**
- * Design tokens
- */
-import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/footnotes/colors-with-modes.css'
-
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './Footnotes.module.css'
 

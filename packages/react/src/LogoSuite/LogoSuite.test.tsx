@@ -23,8 +23,8 @@ describe('LogoSuite', () => {
         <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
         <LogoSuite.Description>{mockDescription}</LogoSuite.Description>
         <LogoSuite.Logobar data-testid={testId}>
-          <svg data-testid="svg1" />
-          <svg data-testid="svg2" />
+          <svg data-testid="svg1" aria-label="Mock SVG" />
+          <svg data-testid="svg2" aria-label="Mock SVG" />
         </LogoSuite.Logobar>
       </LogoSuite>,
     )
@@ -42,8 +42,8 @@ describe('LogoSuite', () => {
         <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
         <LogoSuite.Logobar>
           <>
-            <svg data-testid="svg1" />
-            <svg data-testid="svg2" />
+            <svg data-testid="svg1" aria-label="Mock SVG" />
+            <svg data-testid="svg2" aria-label="Mock SVG" />
           </>
         </LogoSuite.Logobar>
       </LogoSuite>,
@@ -97,7 +97,7 @@ describe('LogoSuite', () => {
         <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
         <LogoSuite.Description>{mockDescription}</LogoSuite.Description>
         <LogoSuite.Logobar>
-          <svg />
+          <svg aria-label="Mock SVG" />
           <img src="#" alt="Company Name" />
         </LogoSuite.Logobar>
       </LogoSuite>,
@@ -189,8 +189,8 @@ describe('LogoSuite', () => {
       <LogoSuite>
         <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
         <LogoSuite.Logobar marquee data-testid="logobar">
-          <svg data-testid="svg1" />
-          <svg data-testid="svg2" />
+          <svg data-testid="svg1" aria-label="Mock SVG" />
+          <svg data-testid="svg2" aria-label="Mock SVG" />
         </LogoSuite.Logobar>
       </LogoSuite>,
     )
@@ -206,8 +206,8 @@ describe('LogoSuite', () => {
       <LogoSuite>
         <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
         <LogoSuite.Logobar marquee>
-          <svg data-testid="svg1" />
-          <svg data-testid="svg2" />
+          <svg data-testid="svg1" aria-label="Mock SVG" />
+          <svg data-testid="svg2" aria-label="Mock SVG" />
         </LogoSuite.Logobar>
       </LogoSuite>,
     )
@@ -223,8 +223,8 @@ describe('LogoSuite', () => {
       <LogoSuite>
         <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
         <LogoSuite.Logobar marquee marqueeSpeed="slow">
-          <svg data-testid="svg1" />
-          <svg data-testid="svg2" />
+          <svg data-testid="svg1" aria-label="Mock SVG" />
+          <svg data-testid="svg2" aria-label="Mock SVG" />
         </LogoSuite.Logobar>
       </LogoSuite>,
     )
@@ -240,8 +240,8 @@ describe('LogoSuite', () => {
       <LogoSuite>
         <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
         <LogoSuite.Logobar marquee marqueeSpeed="idle">
-          <svg data-testid="svg1" />
-          <svg data-testid="svg2" />
+          <svg data-testid="svg1" aria-label="Mock SVG" />
+          <svg data-testid="svg2" aria-label="Mock SVG" />
         </LogoSuite.Logobar>
       </LogoSuite>,
     )
@@ -267,11 +267,11 @@ describe('LogoSuite', () => {
       <LogoSuite>
         <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
         <LogoSuite.Logobar data-testid="logobar">
-          <svg />
-          <svg />
-          <svg />
-          <svg />
-          <svg />
+          <svg aria-label="Mock SVG" />
+          <svg aria-label="Mock SVG" />
+          <svg aria-label="Mock SVG" />
+          <svg aria-label="Mock SVG" />
+          <svg aria-label="Mock SVG" />
         </LogoSuite.Logobar>
       </LogoSuite>,
     )
@@ -287,12 +287,12 @@ describe('LogoSuite', () => {
       <LogoSuite>
         <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
         <LogoSuite.Logobar data-testid="logobar">
-          <svg />
-          <svg />
-          <svg />
-          <svg />
-          <svg />
-          <svg />
+          <svg aria-label="Mock SVG" />
+          <svg aria-label="Mock SVG" />
+          <svg aria-label="Mock SVG" />
+          <svg aria-label="Mock SVG" />
+          <svg aria-label="Mock SVG" />
+          <svg aria-label="Mock SVG" />
         </LogoSuite.Logobar>
       </LogoSuite>,
     )

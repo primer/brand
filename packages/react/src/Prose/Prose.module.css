@@ -275,7 +275,7 @@
   padding-top: var(--base-size-64);
 }
 
-@media screen and (min-width: 90rem) {
+@media screen and (min-width: 87.5rem) {
   .Prose--editorial blockquote {
     margin-block: var(--base-size-40);
   }

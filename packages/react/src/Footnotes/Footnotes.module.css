@@ -5,10 +5,6 @@
   gap: var(--base-size-24);
 }
 
-.Footnotes :target {
-  background-color: var(--brand-Footnotes-item-highlight-bgColor);
-}
-
 .Footnotes--variant-citations {
   margin: 0;
   padding-inline-start: var(--base-size-16);

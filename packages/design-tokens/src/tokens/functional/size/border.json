@@ -1,5 +1,5 @@
 {
-  "<namespace>": {
+  "brand": {
     "borderInset": {
       "thin": {
         "value": "inset 0 0 0 {brand.borderWidth.thin}"

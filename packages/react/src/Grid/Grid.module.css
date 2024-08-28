@@ -640,7 +640,7 @@
 }
 
 /* XXLARGE breakpoint */
-@media screen and (min-width: 90rem) {
+@media screen and (min-width: 87.5rem) {
   /* XXLARGE span */
   .Grid__column--xxlarge-span-1 {
     grid-column: auto / span 1;

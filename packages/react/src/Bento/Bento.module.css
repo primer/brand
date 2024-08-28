@@ -1850,7 +1850,7 @@
 }
 
 /* XXLARGE breakpoint */
-@media screen and (min-width: 90rem) {
+@media screen and (min-width: 87.5rem) {
   /* XXLARGE Column Span */
   .Bento__Item--xxlarge-column-span-1 {
     grid-column: auto/span 1;
