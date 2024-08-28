@@ -276,5 +276,5 @@ const darkJson = require('../src/tokens/base/colors/dark')
    * Step 4:
    * Clean up the temporary directory
    */
-  //fs.rmdirSync(dest, {recursive: true})
+  fs.rmdirSync(dest, {recursive: true})
 })()
