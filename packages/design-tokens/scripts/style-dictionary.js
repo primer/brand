@@ -488,8 +488,4 @@ function buildPrimitives(
 module.exports = {
   buildPrimitives,
   StyleDictionary,
-  pathToKebabCase,
-  pathToDotNotation,
-  capitalize,
-  pathToPascalCase,
 }
