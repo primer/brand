@@ -10,7 +10,7 @@ import React, {
   type ReactNode,
   type RefObject,
 } from 'react'
-import {Button, ButtonSizes, ButtonVariants, Text} from '..'
+import {Button, ButtonSizes, ButtonVariants, type HeadingTags, Text} from '..'
 
 import {default as clsx} from 'clsx'
 import {ChevronDownIcon, XIcon} from '@primer/octicons-react'
@@ -158,7 +158,7 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
 type SubNavHeadingProps = {
   href: string
   'data-testid'?: string
-  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+  as?: (typeof HeadingTags)[number]
 } & PropsWithChildren<React.HTMLProps<HTMLAnchorElement>> &
   BaseProps<HTMLAnchorElement>
 
