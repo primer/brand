@@ -23,7 +23,9 @@ const headingLink = '#features'
 const MockSubNavFixture = ({data = mockLinkData, ...rest}) => {
   return (
     <SubNav {...rest}>
-      <SubNav.Heading href={headingLink}>{heading}</SubNav.Heading>
+      <SubNav.Heading>
+        <a href={headingLink}>{heading}</a>
+      </SubNav.Heading>
       {data.map((link, index) => (
         <SubNav.Link
           key={index}
@@ -159,7 +161,9 @@ describe('SubNav', () => {
   it('renders the SubNav.Heading as a `h2` by default', () => {
     const {getByRole} = render(
       <SubNav>
-        <SubNav.Heading href={headingLink}>{heading}</SubNav.Heading>
+        <SubNav.Heading>
+          <a href={headingLink}>{heading}</a>
+        </SubNav.Heading>
       </SubNav>,
     )
     expect(getByRole('heading', {level: 2})).toBeInTheDocument()
@@ -168,8 +172,8 @@ describe('SubNav', () => {
   it('renders the SubNav.Heading as a `h4` when as="h4"', () => {
     const {getByRole} = render(
       <SubNav>
-        <SubNav.Heading href={headingLink} as="h4">
-          {heading}
+        <SubNav.Heading as="h4">
+          <a href={headingLink}>{heading}</a>
         </SubNav.Heading>
       </SubNav>,
     )

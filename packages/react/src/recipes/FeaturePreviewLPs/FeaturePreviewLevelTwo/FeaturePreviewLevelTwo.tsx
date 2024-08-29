@@ -178,7 +178,10 @@ export function FeaturePreviewLevelTwo({
       </SubdomainNavBar>
       {args.subNavVisible && (
         <SubNav>
-          <SubNav.Heading href="#">Heading</SubNav.Heading>
+          <SubNav.Heading>
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+            <a href="#">Heading</a>
+          </SubNav.Heading>
           <SubNav.Link href="#">Link</SubNav.Link>
           <SubNav.Link href="#">Link</SubNav.Link>
           <SubNav.Link href="#">Link</SubNav.Link>

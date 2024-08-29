@@ -21,7 +21,9 @@ import {SubNav} from '@primer/react-brand'
 ```jsx live
 <Container sx={{position: 'relative', height: 100}}>
   <SubNav>
-    <SubNav.Heading href="#">Features</SubNav.Heading>
+    <SubNav.Heading>
+      <a href="#">Features</a>
+    </SubNav.Heading>
     <SubNav.Link href="#">Actions</SubNav.Link>
     <SubNav.Link href="#">Packages</SubNav.Link>
     <SubNav.Link href="#" aria-current="page">
@@ -37,7 +39,9 @@ import {SubNav} from '@primer/react-brand'
 ```jsx live
 <Container sx={{position: 'relative', height: 100}}>
   <SubNav hasShadow>
-    <SubNav.Heading href="#">Features</SubNav.Heading>
+    <SubNav.Heading>
+      <a href="#">Features</a>
+    </SubNav.Heading>
     <SubNav.Link href="#">Actions</SubNav.Link>
     <SubNav.Link href="#">Packages</SubNav.Link>
     <SubNav.Link href="#" aria-current="page">
@@ -53,7 +57,9 @@ import {SubNav} from '@primer/react-brand'
 ```jsx live
 <Container sx={{position: 'relative', height: 100}}>
   <SubNav hasShadow>
-    <SubNav.Heading href="#">Features</SubNav.Heading>
+    <SubNav.Heading>
+      <a href="#">Features</a>
+    </SubNav.Heading>
     <SubNav.Link href="#">Actions</SubNav.Link>
     <SubNav.Link href="#">Packages</SubNav.Link>
     <SubNav.Link href="#" aria-current="page">
@@ -70,7 +76,9 @@ import {SubNav} from '@primer/react-brand'
 ```jsx live
 <Container sx={{position: 'relative', height: 300}}>
   <SubNav hasShadow>
-    <SubNav.Heading href="#">Features</SubNav.Heading>
+    <SubNav.Heading>
+      <a href="#">Features</a>
+    </SubNav.Heading>
     <SubNav.Link href="#">
       Actions
       <SubNav.SubMenu>
@@ -100,10 +108,9 @@ import {SubNav} from '@primer/react-brand'
 
 ### SubNav.Heading <Label>Required</Label>
 
-| name   | type                                                    | default | required | description                      |
-| ------ | ------------------------------------------------------- | ------- | -------- | -------------------------------- |
-| `href` | `string`                                                |         | `true`   | URL of the page the link goes to |
-| `as`   | <PropTableValues values={HeadingTags} commaSeparated /> | `'h2'`  | `false`  | Heading level                    |
+| name | type                                                    | default | required | description   |
+| ---- | ------------------------------------------------------- | ------- | -------- | ------------- |
+| `as` | <PropTableValues values={HeadingTags} commaSeparated /> | `'h2'`  | `false`  | Heading level |
 
 ### SubNav.Link <Label>Required</Label>
 
