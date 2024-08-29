@@ -156,28 +156,16 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
 })
 
 type SubNavHeadingProps = {
-  href: string
-  'data-testid'?: string
   as?: (typeof HeadingTags)[number]
-} & PropsWithChildren<React.HTMLProps<HTMLAnchorElement>> &
-  BaseProps<HTMLAnchorElement>
+} & PropsWithChildren<React.HTMLProps<HTMLHeadingElement>>
 
-const SubNavHeading = ({
-  href,
-  children,
-  className,
-  'data-testid': testID = testIds.heading,
-  as: HeadingComponent = 'h2',
-  ...props
-}: SubNavHeadingProps) => {
-  return (
-    <HeadingComponent className={styles['SubNav__heading-container']}>
-      <a href={href} className={clsx(styles['SubNav__heading'], className)} data-testid={testID} {...props}>
-        {children}
-      </a>
-    </HeadingComponent>
-  )
-}
+const SubNavHeading = ({className, as: HeadingComponent = 'h2', ...props}: SubNavHeadingProps) => (
+  <HeadingComponent
+    className={clsx(className, styles['SubNav__heading-container'])}
+    data-testid={testIds.heading}
+    {...props}
+  />
+)
 
 type SubNavLinkProps = {
   href: string

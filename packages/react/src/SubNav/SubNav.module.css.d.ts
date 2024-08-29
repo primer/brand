@@ -1,6 +1,5 @@
 declare const styles: {
   readonly "SubNav": string;
-  readonly "SubNav__heading": string;
   readonly "SubNav__heading-container": string;
   readonly "SubNav--has-shadow": string;
   readonly "SubNav--full-width": string;
