@@ -241,7 +241,7 @@
   .SubNav__link-label::after {
     content: '';
     position: absolute;
-    bottom: -9px;
+    bottom: calc(var(--base-size-8) * -1);
     left: 0;
     width: 100%;
     height: 2px;
