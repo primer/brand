@@ -7,6 +7,7 @@ description: A sub nav is a secondary navigation element, typically positioned b
 ---
 
 import {Label} from '@primer/react'
+import {HeadingTags} from '@primer/react-brand'
 import {PropTableValues} from '../../src/components'
 
 ```js
@@ -99,10 +100,10 @@ import {SubNav} from '@primer/react-brand'
 
 ### SubNav.Heading <Label>Required</Label>
 
-| name   | type                                                                            | default | required | description                      |
-| ------ | ------------------------------------------------------------------------------- | ------- | -------- | -------------------------------- |
-| `href` | `string`                                                                        |         | `true`   | URL of the page the link goes to |
-| `as`   | <PropTableValues values={['h1', 'h2', 'h3', 'h4', 'h5', 'h6']} addLineBreaks /> | `'h2'`  | `false`  | Heading level                    |
+| name   | type                                                    | default | required | description                      |
+| ------ | ------------------------------------------------------- | ------- | -------- | -------------------------------- |
+| `href` | `string`                                                |         | `true`   | URL of the page the link goes to |
+| `as`   | <PropTableValues values={HeadingTags} commaSeparated /> | `'h2'`  | `false`  | Heading level                    |
 
 ### SubNav.Link <Label>Required</Label>
 
