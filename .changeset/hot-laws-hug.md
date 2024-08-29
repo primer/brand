@@ -2,4 +2,8 @@
 '@primer/react-brand': patch
 ---
 
-Improved constrast of VideoPlayer play overlay focus styles.
+`VideoPlayer` accessibility improvements
+
+- Improved contrast of play overlay focus styles.
+- Improved contrast of controls and title.
+- The title bar now hides while the video is playing.
