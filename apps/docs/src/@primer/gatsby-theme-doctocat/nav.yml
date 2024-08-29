@@ -44,6 +44,8 @@
       url: /components/EyebrowBanner
     - title: FAQ
       url: /components/FAQ
+    - title: Footnotes
+      url: /components/Footnotes
     - title: Hero
       url: /components/Hero
     - title: IDE
