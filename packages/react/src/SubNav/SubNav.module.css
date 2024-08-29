@@ -23,8 +23,8 @@
   z-index: 9998;
   display: inline-block;
   margin-inline-end: var(--base-size-16);
-  font-size: var(--base-size-16);
-  line-height: var(--base-size-24);
+  font-size: var(--brand-text-size-200);
+  line-height: var(--brand-text-size-200);
 }
 
 .SubNav--has-shadow {
