@@ -7,9 +7,9 @@ declare const styles: {
   readonly "SubNav__action-container": string;
   readonly "SubNav__sub-menu-icon": string;
   readonly "SubNav__sub-menu-children": string;
+  readonly "SubNav__links-overlay": string;
   readonly "SubNav--open": string;
   readonly "fade-in": string;
-  readonly "SubNav__links-overlay": string;
   readonly "SubNav__links-overlay--open": string;
   readonly "SubNav__overlay-toggle": string;
   readonly "SubNav__link": string;
