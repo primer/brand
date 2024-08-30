@@ -55,7 +55,7 @@ const Item = ({className, children, ...rest}: PropsWithChildren<TimelineItemProp
 
   return (
     <li className={itemClassName} {...rest}>
-      <Text size="200" variant={defaultColor}>
+      <Text className={styles['Timeline__item-text']} size="200" variant={defaultColor}>
         {children}
       </Text>
     </li>
