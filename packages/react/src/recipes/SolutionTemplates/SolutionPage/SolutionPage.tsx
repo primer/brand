@@ -451,7 +451,7 @@ export function SolutionPage({
                     >
                       <Bento.Content>
                         <Bento.Heading size="4">
-                          <em>This is my super-sweet</em> bento heading
+                          <span>This is my super-sweet</span> bento heading
                         </Bento.Heading>
                         <Link href="#">Read customer story</Link>
                       </Bento.Content>

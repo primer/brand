@@ -137,7 +137,8 @@
   color: var(--brand-color-text-subtle);
 }
 
-.RiverBreakout .River__text em {
+.RiverBreakout .River__text em,
+.RiverBreakout .River__text span {
   color: var(--brand-color-text-default);
   font-style: normal;
 }

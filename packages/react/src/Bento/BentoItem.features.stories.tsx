@@ -29,7 +29,7 @@ export const HeadingWithEmphasizedText: StoryFn<typeof Bento> = () => (
     <Bento.Item rowSpan={5} flow="column">
       <Bento.Content>
         <Bento.Heading size="3">
-          <em>This is my super-sweet</em> bento heading
+          <span>This is my super-sweet</span> bento heading
         </Bento.Heading>
         <Link href="#">Call to action</Link>
       </Bento.Content>
@@ -46,7 +46,7 @@ export const WithLabel: StoryFn<typeof Bento> = () => (
       <Bento.Content>
         <Label color="red">Label</Label>
         <Bento.Heading size="3">
-          <em>This is my super-sweet</em> bento heading
+          <span>This is my super-sweet</span> bento heading
         </Bento.Heading>
         <Link href="#">Call to action</Link>
       </Bento.Content>

@@ -58,7 +58,7 @@
   color: var(--brand-color-text-muted);
 }
 
-.Testimonial-quote em {
+.Testimonial-quote span {
   color: var(--brand-color-text-default);
   font-style: normal;
 }

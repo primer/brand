@@ -134,16 +134,16 @@ export const WithRiver = args => {
               trailingComponent={() => (
                 <Timeline>
                   <Timeline.Item>
-                    <em>Optionally use a timeline </em> to provide context or additional information.
+                    <span>Optionally use a timeline </span> to provide context or additional information.
                   </Timeline.Item>
                   <Timeline.Item>
-                    <em>Keep it concise</em> to ensure the user can quickly understand the content.
+                    <span>Keep it concise</span> to ensure the user can quickly understand the content.
                   </Timeline.Item>
                 </Timeline>
               )}
             >
               <Text>
-                <em>Editor in River Breakout</em> <br />
+                <span>Editor in River Breakout</span> <br />
                 Remember to keep these nice and succinct.
               </Text>
               <Link href="#" onClick={handleReplay}>

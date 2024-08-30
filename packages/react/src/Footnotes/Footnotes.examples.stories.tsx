@@ -78,7 +78,7 @@ export const RiversWithCitations = () => (
                 )}
               >
                 <Text>
-                  <em>Keep developers in the flow.</em> GitHub Advanced Security enables developers to stay in their
+                  <span>Keep developers in the flow.</span> GitHub Advanced Security enables developers to stay in their
                   productivity-and-comfort zone, without demanding a high level of security expertise.
                 </Text>
               </RiverBreakout.Content>
