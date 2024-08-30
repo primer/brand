@@ -1,5 +1,46 @@
 # @primer/react-brand
 
+## 0.39.0
+
+### Minor Changes
+
+- [#717](https://github.com/primer/brand/pull/717) [`24fc6d02`](https://github.com/primer/brand/commit/24fc6d0268ca1b12a9c77874fd980a67bdd11089) Thanks [@rezrah](https://github.com/rezrah)! - Improved a11y labelling in various components.
+
+  Please note these changes could affect any behavioral tests, which rely on accessible matchers such as `getByRole`.
+
+  - `SubdomainNavBar` search button `aria-label` changed from 'search' to 'Toggle search bar'
+  - `SubdomainNavBar` removal of unnecessary `aria-label` 'global breadcrumb'
+  - `Checkbox` addition of new label for `checked` state icon as 'Checkmark'
+  - `Checkbox` addition of new label for `indeterminate` state icon as 'Dash icon'
+
+- [#707](https://github.com/primer/brand/pull/707) [`715dfbb3`](https://github.com/primer/brand/commit/715dfbb3d00527cfc9050195f78c696638bbf7e6) Thanks [@rezrah](https://github.com/rezrah)! - New `Footnotes` component generally available
+
+  ```js
+  import {Footnotes} from '@primer/react-brand'
+  ```
+
+  ```jsx
+  <Footnotes>
+    <Footnotes.Item>There are now 100 million developers around the world using GitHub.</Footnotes.Item>
+  </Footnotes>
+  ```
+
+  :link: [Read the documentation for usage guidelines and examples](https://primer.style/brand/components/Footnotes)
+
+### Patch Changes
+
+- [#711](https://github.com/primer/brand/pull/711) [`1cde8ef2`](https://github.com/primer/brand/commit/1cde8ef2c67794653da13863668c739116bae524) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Updated `SubNav` links and submenus to use `ul` and `li` elements — instead of `div` elements — to communicate the hierarchy of the navigation to assistive technologies.
+
+- [#700](https://github.com/primer/brand/pull/700) [`47908f1e`](https://github.com/primer/brand/commit/47908f1e324d9cb138d7221a25b0e41664e128ff) Thanks [@rezrah](https://github.com/rezrah)! - `ActionMenu` button no longer truncates longer labels. Now follows WCAG criterion around text reflow.
+
+- [#714](https://github.com/primer/brand/pull/714) [`fb1980b1`](https://github.com/primer/brand/commit/fb1980b1c97254576ca03749d89526fbcbbbf336) Thanks [@rezrah](https://github.com/rezrah)! - Hide paged items in Pagination component on narrow viewports to prevent horizontal scrolling and offer improved accessibility by default.
+
+  Use `showPages` to re-enable paged items if required:
+
+  ```jsx
+  <Pagination showPages />
+  ```
+
 ## 0.38.0
 
 ### Minor Changes
