@@ -4,7 +4,7 @@
 
 <h1 align="center">Primer Brand</h1>
 
-<p align="center"><strong>Primer Brand is a GitHub’s design system for creating marketing websites and digital experiences.</strong>
+<p align="center"><strong>Primer Brand is GitHub’s design system for creating marketing websites and digital experiences.</strong>
 </p>
 
 <p align="center">The design system comprises a Figma library and corresponding React components.
