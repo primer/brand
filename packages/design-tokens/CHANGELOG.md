@@ -1,5 +1,31 @@
 # @primer/brand-primitives
 
+## 0.39.0
+
+### Minor Changes
+
+- [#717](https://github.com/primer/brand/pull/717) [`24fc6d02`](https://github.com/primer/brand/commit/24fc6d0268ca1b12a9c77874fd980a67bdd11089) Thanks [@rezrah](https://github.com/rezrah)! - Change to `xxlarge` breakpoint and the addition of two new base scale size tokens.
+
+  Outcome of an upgrade to Primer Primitives `v9` release.
+
+  ```diff
+  + --base-size-2: 0.125rem;
+  ```
+
+  ```diff
+  + --base-size-6: 0.375rem;
+  ```
+
+  ```diff
+  - --brand-breakpoint-xxlarge: 90rem;
+  + --brand-breakpoint-xxlarge: 87.5rem;
+  ```
+
+  ```diff
+  - @custom-media --brand-viewportRange-wide-viewport (min-width: 90rem);
+  + @custom-media --brand-viewportRange-wide-viewport (min-width: 87.5rem);
+  ```
+
 ## 0.38.0
 
 ### Minor Changes
