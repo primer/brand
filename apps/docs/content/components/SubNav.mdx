@@ -7,7 +7,6 @@ description: A sub nav is a secondary navigation element, typically positioned b
 ---
 
 import {Label} from '@primer/react'
-import {HeadingTags} from '@primer/react-brand'
 import {PropTableValues} from '../../src/components'
 
 ```js
@@ -21,9 +20,7 @@ import {SubNav} from '@primer/react-brand'
 ```jsx live
 <Container sx={{position: 'relative', height: 100}}>
   <SubNav>
-    <SubNav.Heading>
-      <a href="#">Features</a>
-    </SubNav.Heading>
+    <SubNav.Heading href="#">Features</SubNav.Heading>
     <SubNav.Link href="#">Actions</SubNav.Link>
     <SubNav.Link href="#">Packages</SubNav.Link>
     <SubNav.Link href="#" aria-current="page">
@@ -39,9 +36,7 @@ import {SubNav} from '@primer/react-brand'
 ```jsx live
 <Container sx={{position: 'relative', height: 100}}>
   <SubNav hasShadow>
-    <SubNav.Heading>
-      <a href="#">Features</a>
-    </SubNav.Heading>
+    <SubNav.Heading href="#">Features</SubNav.Heading>
     <SubNav.Link href="#">Actions</SubNav.Link>
     <SubNav.Link href="#">Packages</SubNav.Link>
     <SubNav.Link href="#" aria-current="page">
@@ -57,9 +52,7 @@ import {SubNav} from '@primer/react-brand'
 ```jsx live
 <Container sx={{position: 'relative', height: 100}}>
   <SubNav hasShadow>
-    <SubNav.Heading>
-      <a href="#">Features</a>
-    </SubNav.Heading>
+    <SubNav.Heading href="#">Features</SubNav.Heading>
     <SubNav.Link href="#">Actions</SubNav.Link>
     <SubNav.Link href="#">Packages</SubNav.Link>
     <SubNav.Link href="#" aria-current="page">
@@ -76,9 +69,7 @@ import {SubNav} from '@primer/react-brand'
 ```jsx live
 <Container sx={{position: 'relative', height: 300}}>
   <SubNav hasShadow>
-    <SubNav.Heading>
-      <a href="#">Features</a>
-    </SubNav.Heading>
+    <SubNav.Heading href="#">Features</SubNav.Heading>
     <SubNav.Link href="#">
       Actions
       <SubNav.SubMenu>
@@ -108,9 +99,9 @@ import {SubNav} from '@primer/react-brand'
 
 ### SubNav.Heading <Label>Required</Label>
 
-| name | type                                                    | default | required | description   |
-| ---- | ------------------------------------------------------- | ------- | -------- | ------------- |
-| `as` | <PropTableValues values={HeadingTags} commaSeparated /> | `'h2'`  | `false`  | Heading level |
+| name   | type     | default | required | description                      |
+| ------ | -------- | ------- | -------- | -------------------------------- |
+| `href` | `string` |         |          | URL of the page the link goes to |
 
 ### SubNav.Link <Label>Required</Label>
 

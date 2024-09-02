@@ -24,10 +24,7 @@ export const ExampleUsage = ({hasShadow, ...args}) => (
   <main>
     <Box paddingBlockStart={64} backgroundColor="subtle" style={{position: 'relative', zIndex: 32}}></Box>
     <SubNav {...args} hasShadow={hasShadow}>
-      <SubNav.Heading>
-        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-        <a href="#">Features</a>
-      </SubNav.Heading>
+      <SubNav.Heading href="#">Features</SubNav.Heading>
       <SubNav.Link href="#">Actions</SubNav.Link>
       <SubNav.Link href="#">Packages</SubNav.Link>
       <SubNav.Link href="#">Security</SubNav.Link>
@@ -88,10 +85,7 @@ WithShadow.parameters = {
 
 export const FullWidth = args => (
   <SubNav {...args} fullWidth>
-    <SubNav.Heading>
-      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-      <a href="#">Features</a>
-    </SubNav.Heading>
+    <SubNav.Heading href="#">Features</SubNav.Heading>
     <SubNav.Link href="#">Actions</SubNav.Link>
     <SubNav.Link href="#">Packages</SubNav.Link>
     <SubNav.Link href="#">Security</SubNav.Link>
@@ -124,10 +118,7 @@ FullWidthNarrow.parameters = {
 
 export const LongerHeading = args => (
   <SubNav {...args} fullWidth>
-    <SubNav.Heading>
-      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-      <a href="#">A longer heading</a>
-    </SubNav.Heading>
+    <SubNav.Heading href="#">A longer heading</SubNav.Heading>
     <SubNav.Link href="#">Actions</SubNav.Link>
     <SubNav.Link href="#">Packages</SubNav.Link>
     <SubNav.Link href="#">Security</SubNav.Link>

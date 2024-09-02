@@ -10,7 +10,7 @@ import React, {
   type ReactNode,
   type RefObject,
 } from 'react'
-import {Button, ButtonSizes, ButtonVariants, type HeadingTags, Text} from '..'
+import {Button, ButtonSizes, ButtonVariants, Text} from '..'
 
 import {default as clsx} from 'clsx'
 import {ChevronDownIcon, XIcon} from '@primer/octicons-react'
@@ -122,7 +122,7 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
       )}
       data-testid={testId || testIds.root}
     >
-      {HeadingChild}
+      {HeadingChild && <div className={styles['SubNav__heading-container']}>{HeadingChild}</div>}
       {LinkChildren.length && (
         <ul
           ref={overlayRef}
@@ -156,16 +156,23 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
 })
 
 type SubNavHeadingProps = {
-  as?: (typeof HeadingTags)[number]
-} & PropsWithChildren<React.HTMLProps<HTMLHeadingElement>>
+  href: string
+  'data-testid'?: string
+} & PropsWithChildren<React.HTMLProps<HTMLAnchorElement>> &
+  BaseProps<HTMLAnchorElement>
 
-const SubNavHeading = ({className, as: HeadingComponent = 'h2', ...props}: SubNavHeadingProps) => (
-  <HeadingComponent
-    className={clsx(className, styles['SubNav__heading-container'])}
-    data-testid={testIds.heading}
-    {...props}
-  />
-)
+const SubNavHeading = ({href, children, className, 'data-testid': testID, ...props}: SubNavHeadingProps) => {
+  return (
+    <a
+      href={href}
+      className={clsx(styles['SubNav__heading'], className)}
+      data-testid={testIds.heading || testID}
+      {...props}
+    >
+      {children}
+    </a>
+  )
+}
 
 type SubNavLinkProps = {
   href: string

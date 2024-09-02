@@ -13,10 +13,7 @@ export default {
 const Template: StoryFn<typeof SubNav> = args => (
   <main>
     <SubNav {...args}>
-      <SubNav.Heading>
-        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-        <a href="#">Heading</a>
-      </SubNav.Heading>
+      <SubNav.Heading href="#">Heading</SubNav.Heading>
       <SubNav.Link href="#">
         Link
         <SubNav.SubMenu>

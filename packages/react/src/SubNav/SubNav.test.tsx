@@ -23,9 +23,7 @@ const headingLink = '#features'
 const MockSubNavFixture = ({data = mockLinkData, ...rest}) => {
   return (
     <SubNav {...rest}>
-      <SubNav.Heading>
-        <a href={headingLink}>{heading}</a>
-      </SubNav.Heading>
+      <SubNav.Heading href={headingLink}>{heading}</SubNav.Heading>
       {data.map((link, index) => (
         <SubNav.Link
           key={index}
@@ -48,7 +46,6 @@ describe('SubNav', () => {
     expect(getByTestId(SubNav.testIds.root)).toBeInTheDocument() // expect the root element to be in the document
     expect(getByTestId(SubNav.testIds.root).tagName).toBe('nav'.toUpperCase()) // expect root to be a <nav> element
   })
-
   it('renders a title as a link', () => {
     const {getByTestId} = render(<MockSubNavFixture />)
 
@@ -156,28 +153,5 @@ describe('SubNav', () => {
     expect(getByRole('link', {name: 'Code review'})).toHaveFocus()
 
     expect(toggleSubmenuButton).toHaveAttribute('aria-expanded', 'false')
-  })
-
-  it('renders the SubNav.Heading as a `h2` by default', () => {
-    const {getByRole} = render(
-      <SubNav>
-        <SubNav.Heading>
-          <a href={headingLink}>{heading}</a>
-        </SubNav.Heading>
-      </SubNav>,
-    )
-    expect(getByRole('heading', {level: 2})).toBeInTheDocument()
-  })
-
-  it('renders the SubNav.Heading as a `h4` when as="h4"', () => {
-    const {getByRole} = render(
-      <SubNav>
-        <SubNav.Heading as="h4">
-          <a href={headingLink}>{heading}</a>
-        </SubNav.Heading>
-      </SubNav>,
-    )
-
-    expect(getByRole('heading', {level: 4})).toBeInTheDocument()
   })
 })
