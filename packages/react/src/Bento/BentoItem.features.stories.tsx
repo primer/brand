@@ -48,7 +48,9 @@ export const WithLabel: StoryFn<typeof Bento> = () => (
       <Bento.Content>
         <Label color="red">Label</Label>
         <Bento.Heading size="3">
-          <span>This is my super-sweet</span> bento heading
+          <DuotoneText>
+            <DuotoneText.Emphasis>This is my super-sweet</DuotoneText.Emphasis> bento heading
+          </DuotoneText>
         </Bento.Heading>
         <Link href="#">Call to action</Link>
       </Bento.Content>

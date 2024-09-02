@@ -19,11 +19,14 @@ export const WithEmphasis: StoryFn<typeof Timeline> = () => {
         </DuotoneText>
       </Timeline.Item>
       <Timeline.Item>
-        <span>GitHub Copilot</span> is your AI pair programmer that empowers you to complete tasks 55% faster by turning
-        natural language prompts into coding suggestions.
+        <DuotoneText.Emphasis>GitHub Copilot</DuotoneText.Emphasis> is your AI pair programmer that empowers you to
+        complete tasks 55% faster by turning natural language prompts into coding suggestions.
       </Timeline.Item>
       <Timeline.Item>
-        <span>GitHub Actions</span> automates your build, test, and deployment workflow with simple and secure CI/CD.
+        <DuotoneText>
+          <DuotoneText.Emphasis>GitHub Actions</DuotoneText.Emphasis> automates your build, test, and deployment
+          workflow with simple and secure CI/CD.
+        </DuotoneText>
       </Timeline.Item>
     </Timeline>
   )

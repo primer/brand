@@ -165,12 +165,12 @@ describe('SectionIntro', () => {
     expect(labelEl).toHaveClass(`Label--color-${expectedColor}`)
   })
 
-  test('renders the default color as muted if <span> or <em> is passed as a child', () => {
+  test('renders the default color as muted if <em> is passed as a child', () => {
     const {getAllByRole} = render(
       <>
         <SectionIntro>
           <SectionIntro.Heading>
-            <span>Expressive headline</span> about an exclusive set of features.
+            <em>Expressive headline</em> about an exclusive set of features.
           </SectionIntro.Heading>
         </SectionIntro>
         <SectionIntro>

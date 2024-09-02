@@ -83,7 +83,9 @@ export const WithEmphasizedText = () => (
 export const FullWidth = () => (
   <SectionIntro fullWidth>
     <SectionIntro.Heading>
-      <span>Expressive headline</span> about an exclusive set of features.
+      <DuotoneText>
+        <DuotoneText.Emphasis>Expressive headline</DuotoneText.Emphasis> about an exclusive set of features.
+      </DuotoneText>
     </SectionIntro.Heading>
   </SectionIntro>
 )
