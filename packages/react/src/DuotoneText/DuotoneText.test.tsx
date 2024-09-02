@@ -4,7 +4,6 @@ import '@testing-library/jest-dom'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 import {DuotoneText} from './DuotoneText'
-import exp from 'constants'
 
 expect.extend(toHaveNoViolations)
 
@@ -36,7 +35,7 @@ describe('DuotoneText', () => {
   })
 
   it('renders the regular and emphasized text as different colors', () => {
-    const {getByText, container} = render(
+    const {getByText} = render(
       <DuotoneText>
         <DuotoneText.Emphasis>{mockEmphasizedText}</DuotoneText.Emphasis>
         {mockRegularText}
