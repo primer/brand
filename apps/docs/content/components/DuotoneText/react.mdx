@@ -1,0 +1,135 @@
+---
+title: DuotoneText
+status: Experimental
+source: https://github.com/primer/brand/tree/main/packages/react/src/DuotoneText/DuotoneText.tsx
+storybook: '/brand/storybook/?path=/story/components-duotonetext--default'
+description: Use the duotone text component to style text with an emphasized portion.
+a11yReviewed: false
+---
+
+import ComponentLayout from '../../../src/layouts/component-layout'
+export default ComponentLayout
+
+```js
+import {DuotoneText} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<Text>
+  <DuotoneText>
+    <DuotoneText.Emphasis>GitHub Codespaces</DuotoneText.Emphasis> offers a
+    complete dev environment in seconds.
+  </DuotoneText>
+</Text>
+```
+
+### With Bento
+
+```jsx live
+<Bento>
+  <Bento.Item rowSpan={5} flow="column">
+    <Bento.Content>
+      <Bento.Heading size="3">
+        <DuotoneText>
+          <DuotoneText.Emphasis>This is my super-sweet</DuotoneText.Emphasis>{' '}
+          bento heading
+        </DuotoneText>
+      </Bento.Heading>
+      <Link href="#">Call to action</Link>
+    </Bento.Content>
+    <Bento.Visual position="50% 100%">
+      <img
+        alt="placeholder, blank area with an gray background color"
+        src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
+      />
+    </Bento.Visual>
+  </Bento.Item>
+</Bento>
+```
+
+### With RiverBreakout
+
+```jsx live
+<RiverBreakout>
+  <RiverBreakout.A11yHeading>
+    River breakout duotone text
+  </RiverBreakout.A11yHeading>
+  <RiverBreakout.Visual>
+    <img
+      src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
+      alt="placeholder, blank area with an off-white background color"
+    />
+  </RiverBreakout.Visual>
+  <RiverBreakout.Content>
+    <Text>
+      <DuotoneText>
+        <DuotoneText.Emphasis>Lorem ipsum dolor sit amet,</DuotoneText.Emphasis>{' '}
+        consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam
+        luctus sed turpis felis nam pulvinar risus elementum.
+      </DuotoneText>
+    </Text>
+    <Link href="#">Call to action</Link>
+  </RiverBreakout.Content>
+</RiverBreakout>
+```
+
+### With SectionIntro
+
+```jsx live
+<SectionIntro>
+  <SectionIntro.Heading>
+    Section intro
+    <DuotoneText>
+      <DuotoneText.Emphasis>GitHub Codespaces</DuotoneText.Emphasis>
+      offers a complete dev environment in seconds.
+    </DuotoneText>
+  </SectionIntro.Heading>
+</SectionIntro>
+```
+
+### With Testimonial
+
+```jsx live
+<Testimonial>
+  <Testimonial.Quote>
+    <DuotoneText>
+      <DuotoneText.Emphasis>
+        GitHub helps us ensure that we have our security controls baked into our
+        pipelines
+      </DuotoneText.Emphasis>{' '}
+      all the way from the first line of code we&apos;re writing.
+    </DuotoneText>
+  </Testimonial.Quote>
+  <Testimonial.Name position="Staff Security Engineer">
+    David Ross
+  </Testimonial.Name>
+
+  <Testimonial.Avatar
+    src="https://avatars.githubusercontent.com/u/92997159?v=4"
+    alt="Circular avatar from David Ross's GitHub profile"
+  />
+</Testimonial>
+```
+
+### With Timeline
+
+```jsx live
+<Timeline>
+  <Timeline.Item>
+    <DuotoneText>
+      <DuotoneText.Emphasis>GitHub Codespaces</DuotoneText.Emphasis> offers a
+      complete dev environment in seconds.
+    </DuotoneText>
+  </Timeline.Item>
+  <Timeline.Item>
+    <DuotoneText>
+      <DuotoneText.Emphasis>GitHub Copilot</DuotoneText.Emphasis> is your AI
+      pair programmer that empowers you to complete tasks.
+    </DuotoneText>
+  </Timeline.Item>
+</Timeline>
+```
