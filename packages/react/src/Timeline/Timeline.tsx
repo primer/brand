@@ -45,7 +45,7 @@ const Item = ({className, children, ...rest}: PropsWithChildren<TimelineItemProp
   const childrenArray = useMemo(() => React.Children.toArray(children), [children])
 
   const getConditionalVariant = useCallback(() => {
-    if (childrenArray.some(child => React.isValidElement(child) && (child.type === 'em' || child.type === 'span'))) {
+    if (childrenArray.some(child => React.isValidElement(child) && child.type === 'em')) {
       return 'muted'
     }
     return 'default'

@@ -2,6 +2,7 @@ import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 
 import {Timeline} from '.'
+import {DuotoneText} from '../'
 
 export default {
   title: 'Components/Timeline/features',
@@ -12,8 +13,10 @@ export const WithEmphasis: StoryFn<typeof Timeline> = () => {
   return (
     <Timeline>
       <Timeline.Item>
-        <span>GitHub Codespaces</span> offers a complete dev environment in seconds, so you can code, build, test, and
-        open pull requests from any repo anywhere.
+        <DuotoneText>
+          <DuotoneText.Emphasis>GitHub Codespaces</DuotoneText.Emphasis> offers a complete dev environment in seconds,
+          so you can code, build, test, and open pull requests from any repo anywhere.
+        </DuotoneText>
       </Timeline.Item>
       <Timeline.Item>
         <span>GitHub Copilot</span> is your AI pair programmer that empowers you to complete tasks 55% faster by turning
@@ -30,13 +33,20 @@ export const WithShorterText: StoryFn<typeof Timeline> = () => {
   return (
     <Timeline>
       <Timeline.Item>
-        <span>GitHub Codespaces</span> offers a complete dev environment in seconds.
+        <DuotoneText>
+          <DuotoneText.Emphasis>GitHub Codespaces</DuotoneText.Emphasis> offers a complete dev environment in seconds.
+        </DuotoneText>
       </Timeline.Item>
       <Timeline.Item>
-        <span>GitHub Copilot</span> is your AI pair programmer that empowers you.
+        <DuotoneText>
+          <DuotoneText.Emphasis>GitHub Copilot</DuotoneText.Emphasis> is your AI pair programmer that empowers you.
+        </DuotoneText>
       </Timeline.Item>
       <Timeline.Item>
-        <span>GitHub Actions</span> automates your build, test, and deployment workflows.
+        <DuotoneText>
+          <DuotoneText.Emphasis>GitHub Actions</DuotoneText.Emphasis> automates your build, test, and deployment
+          workflows.
+        </DuotoneText>
       </Timeline.Item>
     </Timeline>
   )
@@ -46,13 +56,21 @@ export const WithLinks: StoryFn<typeof Timeline> = () => {
   return (
     <Timeline>
       <Timeline.Item>
-        <span>GitHub Codespaces</span> offers a <a href="/">complete dev environment</a> in seconds.
+        <DuotoneText>
+          <DuotoneText.Emphasis>GitHub Codespaces</DuotoneText.Emphasis> offers a{' '}
+          <a href="/">complete dev environment</a> in seconds.
+        </DuotoneText>
       </Timeline.Item>
       <Timeline.Item>
-        <span>GitHub Copilot</span> is your AI pair programmer that empowers you.
+        <DuotoneText>
+          <DuotoneText.Emphasis>GitHub Copilot</DuotoneText.Emphasis> is your AI pair programmer that empowers you.
+        </DuotoneText>
       </Timeline.Item>
       <Timeline.Item>
-        <span>GitHub Actions</span> automates your build, test, and deployment workflows.
+        <DuotoneText>
+          <DuotoneText.Emphasis>GitHub Actions</DuotoneText.Emphasis> automates your build, test, and deployment
+          workflows.
+        </DuotoneText>
       </Timeline.Item>
     </Timeline>
   )

@@ -2,7 +2,7 @@ import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {Bento} from '.'
-import {Label, Link} from '../'
+import {DuotoneText, Label, Link} from '../'
 import placeholderImage from '../fixtures/images/placeholder-600x400.png'
 import styles from './Bento.features.stories.module.css'
 
@@ -29,7 +29,9 @@ export const HeadingWithEmphasizedText: StoryFn<typeof Bento> = () => (
     <Bento.Item rowSpan={5} flow="column">
       <Bento.Content>
         <Bento.Heading size="3">
-          <span>This is my super-sweet</span> bento heading
+          <DuotoneText>
+            <DuotoneText.Emphasis>This is my super-sweet</DuotoneText.Emphasis> bento heading
+          </DuotoneText>
         </Bento.Heading>
         <Link href="#">Call to action</Link>
       </Bento.Content>

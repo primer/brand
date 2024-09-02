@@ -48,8 +48,7 @@
   border-radius: var(--brand-borderRadius-full);
 }
 
-.Timeline__item-text em,
-.Timeline__item-text span {
+.Timeline__item-text em {
   color: var(--brand-color-text-default);
   font-style: normal;
   font-weight: 500; /* TODO: update with token when available */

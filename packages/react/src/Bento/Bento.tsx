@@ -263,7 +263,7 @@ const _Heading = forwardRef(
     const childrenArray = useMemo(() => React.Children.toArray(children), [children])
 
     const getConditionalVariant = useCallback(() => {
-      if (findElementInChildren(children, 'em') || findElementInChildren(children, 'span')) {
+      if (findElementInChildren(children, 'em')) {
         return 'muted'
       }
       return 'default'

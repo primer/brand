@@ -1,6 +1,7 @@
 import React from 'react'
 import {Meta} from '@storybook/react'
 import {SectionIntro} from '.'
+import {DuotoneText} from '../'
 
 export default {
   title: 'Components/SectionIntro/Features',
@@ -72,7 +73,9 @@ export const AlignedCenter = () => (
 export const WithEmphasizedText = () => (
   <SectionIntro>
     <SectionIntro.Heading>
-      <span>Expressive headline</span> about an exclusive set of features.
+      <DuotoneText>
+        <DuotoneText.Emphasis>Expressive headline</DuotoneText.Emphasis> about an exclusive set of features.
+      </DuotoneText>
     </SectionIntro.Heading>
   </SectionIntro>
 )
