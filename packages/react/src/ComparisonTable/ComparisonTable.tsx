@@ -29,6 +29,7 @@ export const _ComparisonTable = forwardRef(
       className,
       heading,
       featuredColumn = 1,
+      visuallyHiddenFeaturedLabel = 'featured',
       variant = 'default',
       style,
       ...props
@@ -54,15 +55,15 @@ export const _ComparisonTable = forwardRef(
             className: clsx(styles['ComparisonTable-row'], child.props.className),
             children: React.Children.map(child.props.children, (rowChild, rowChildIndex) => {
               if (rowChild.type === Cell) {
+                const isFeatured = rowChildIndex === featuredColumn
                 return React.cloneElement(rowChild, {
-                  as: 'th',
-                  'aria-hidden': !rowChild.props.children ? 'true' : undefined,
+                  as: rowChild.props.children ? 'th' : 'td',
                   className: clsx(
                     styles['ComparisonTable-cell'],
                     styles[`ComparisonTable-cell-heading`],
                     styles[`ComparisonTable-cell-heading--${variant}`],
                     rowChildIndex === 0 && styles[`ComparisonTable-cell-heading--first`],
-                    rowChildIndex === featuredColumn && styles[`ComparisonTable-cell-heading--featured`],
+                    isFeatured && styles[`ComparisonTable-cell-heading--featured`],
                     child.props.className,
                   ),
                   children: (
@@ -72,6 +73,7 @@ export const _ComparisonTable = forwardRef(
                       )}
                     >
                       {rowChild.props.children}
+                      {isFeatured && <span className="visually-hidden">({visuallyHiddenFeaturedLabel})</span>}
                     </span>
                   ),
                 })

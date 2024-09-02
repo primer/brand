@@ -62,8 +62,8 @@ export default meta
 
 export const Playground: StoryFn<typeof VideoPlayer> = args => (
   <VideoPlayer {...args}>
-    <VideoPlayer.Source src="/brand/storybook/example.mp4" type="video/mp4" />
-    <VideoPlayer.Track src="/brand/storybook/example.vtt" default />
+    <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
+    <VideoPlayer.Track src="./example.vtt" default />
   </VideoPlayer>
 )
 

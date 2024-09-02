@@ -1,5 +1,44 @@
 # @primer/brand-primitives
 
+## 0.39.0
+
+### Minor Changes
+
+- [#717](https://github.com/primer/brand/pull/717) [`24fc6d02`](https://github.com/primer/brand/commit/24fc6d0268ca1b12a9c77874fd980a67bdd11089) Thanks [@rezrah](https://github.com/rezrah)! - Change to `xxlarge` breakpoint and the addition of two new base scale size tokens.
+
+  Outcome of an upgrade to Primer Primitives `v9` release.
+
+  ```diff
+  + --base-size-2: 0.125rem;
+  ```
+
+  ```diff
+  + --base-size-6: 0.375rem;
+  ```
+
+  ```diff
+  - --brand-breakpoint-xxlarge: 90rem;
+  + --brand-breakpoint-xxlarge: 87.5rem;
+  ```
+
+  ```diff
+  - @custom-media --brand-viewportRange-wide-viewport (min-width: 90rem);
+  + @custom-media --brand-viewportRange-wide-viewport (min-width: 87.5rem);
+  ```
+
+## 0.38.0
+
+### Minor Changes
+
+- [#691](https://github.com/primer/brand/pull/691) [`34e7aa8b`](https://github.com/primer/brand/commit/34e7aa8b5153d5bdb035e2e93119418bd60c0045) Thanks [@joshfarrant](https://github.com/joshfarrant)! - > **Warning**
+
+  > This update contains a breaking visual change to the `LogoSuite` component. `LogoSuite` components without a specified `variant` prop will now automatically apply either `emphasis` or `muted` styles depending on the number of logos in the `LogoBar`.
+
+  - Added new default behaviour to the `variant` prop of the `LogoSuite` component. If `variant` is `undefined` then either `emphasis` or `muted` styles are automatically applied depending on the number of logos in the `LogoBar`. Five or fewer logos apply the `emphasis` style, while six or more use the `muted` style.
+  - Reduced `LogoSuite` size on mobile viewports.
+
+## 0.37.0
+
 ## 0.36.0
 
 ## 0.35.0

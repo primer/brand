@@ -30,6 +30,7 @@ import {
   Statistic,
   PricingOptions,
   BreakoutBanner,
+  TextRevealAnimation,
 } from '../../..'
 
 import pinterestLogo from '../../../fixtures/images/logos/pinterest.png'
@@ -566,13 +567,17 @@ export function SolutionPage({
                       {args.testimonialsVisible && (
                         <Grid>
                           <Grid.Column span={{medium: 10}} start={{medium: 2}}>
-                            <Testimonial size="large" quoteMarkColor="pink">
-                              <Testimonial.Quote>
-                                GitHub helps us ensure that we have our security controls baked into our pipelines all
-                                the way from the first line of code we&apos;re writing.
-                              </Testimonial.Quote>
-                              <Testimonial.Name position="Staff Software Engineer">David Ross</Testimonial.Name>
-                            </Testimonial>
+                            <Box animate="fade-in">
+                              <Testimonial size="large" quoteMarkColor="pink">
+                                <Testimonial.Quote>
+                                  <TextRevealAnimation>
+                                    GitHub helps us ensure that we have our security controls baked into our pipelines
+                                    all the way from the first line of code we&apos;re writing.
+                                  </TextRevealAnimation>
+                                </Testimonial.Quote>
+                                <Testimonial.Name position="Staff Software Engineer">David Ross</Testimonial.Name>
+                              </Testimonial>
+                            </Box>
                           </Grid.Column>
                         </Grid>
                       )}
@@ -914,9 +919,9 @@ function HeroVideo() {
   return (
     <AnimationProvider staggerDelayIncrement={1000} runOnce visibilityOptions={0.2}>
       <Box marginBlockStart={32} animate="scale-in-up">
-        <VideoPlayer title="GitHub media player" className={styles.relative}>
-          <VideoPlayer.Source src="/brand/storybook/example.mp4" />
-          <VideoPlayer.Track src="/brand/storybook/example.vtt" />
+        <VideoPlayer visuallyHiddenTitle title="GitHub media player">
+          <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
+          <VideoPlayer.Track src="./example.vtt" default />
         </VideoPlayer>
       </Box>
     </AnimationProvider>

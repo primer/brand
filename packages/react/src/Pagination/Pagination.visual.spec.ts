@@ -39,6 +39,18 @@ test.describe('Visual Comparison: Pagination', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for Narrow Page Numbers Hidden By Default', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('Pagination / Narrow Page Numbers Hidden By Default', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-pagination-features--narrow-page-numbers-hidden-by-default&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+  })
   test('Pagination / Hide Page Numbers By Viewport', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pagination-features--hide-page-numbers-by-viewport&viewMode=story',

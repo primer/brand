@@ -2,6 +2,8 @@ declare const styles: {
   readonly "ActionMenu": string;
   readonly "ActionMenu--disabled": string;
   readonly "ActionMenu__button": string;
+  readonly "ActionMenu__button--small": string;
+  readonly "ActionMenu__button--medium": string;
   readonly "ActionMenu__menu": string;
   readonly "ActionMenu__menu--small": string;
   readonly "ActionMenu__menu--medium": string;

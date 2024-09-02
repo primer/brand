@@ -1,6 +1,6 @@
 {
   "name": "@primer/react-brand",
-  "version": "0.36.0",
+  "version": "0.39.0",
   "description": "Primer Brand is a GitHub's design system for creating React-based marketing websites and digital experiences.",
   "keywords": [
     "primer",
@@ -47,6 +47,7 @@
     "clsx": "^1.2.1"
   },
   "devDependencies": {
+    "@figma/code-connect": "^1.0.5",
     "@juggle/resize-observer": "^3.4.0",
     "@primer/octicons-react": "^19.8.0",
     "@reach/auto-id": "^0.17.0",

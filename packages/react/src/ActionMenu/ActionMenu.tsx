@@ -320,7 +320,7 @@ const ActionMenuButton = forwardRef<HTMLButtonElement, ActionMenuButtonProps>(
     return (
       <Button
         ref={ref}
-        className={clsx(styles.ActionMenu__button, className)}
+        className={clsx(styles.ActionMenu__button, styles[`ActionMenu__button--${size}`], className)}
         hasArrow={false}
         aria-haspopup="true"
         aria-expanded={menuOpen ? 'true' : 'false'}

@@ -18,6 +18,7 @@ import {
   Stack,
   ButtonGroup,
 } from './'
+
 import '@primer/react-brand/lib/css/main.css'
 
 export default function KitchenSink() {
@@ -26,8 +27,8 @@ export default function KitchenSink() {
   const mockHandler = () => {}
 
   return (
-    <>
-      <SubdomainNavBar title="Subdomain">
+    <ThemeProvider>
+      <SubdomainNavBar title="Subdomain" fixed={false}>
         <SubdomainNavBar.Link href="#">Collections</SubdomainNavBar.Link>
         <SubdomainNavBar.Link href="#">Topics</SubdomainNavBar.Link>
         <SubdomainNavBar.Link href="#">Articles</SubdomainNavBar.Link>
@@ -377,6 +378,6 @@ export default function KitchenSink() {
           </form>
         </div>
       </ThemeProvider>
-    </>
+    </ThemeProvider>
   )
 }

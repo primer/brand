@@ -15,9 +15,6 @@ declare const styles: {
   readonly "articleContents": string;
   readonly "parallax-foreground": string;
   readonly "parallax-background": string;
-  readonly "heroLine": string;
-  readonly "heroLineAnimated": string;
-  readonly "wipe": string;
   readonly "lede": string;
   readonly "asideHeading": string;
   readonly "aside": string;

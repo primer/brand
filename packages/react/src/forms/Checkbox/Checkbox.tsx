@@ -83,7 +83,7 @@ const _Checkbox = (
         className={clsx(styles.Checkbox, indeterminate && styles['Checkbox--indeterminate'], className)}
       >
         {!indeterminate && (
-          <svg viewBox="0 0 100 100" className={clsx(styles['Checkbox-checkmark'])}>
+          <svg viewBox="0 0 100 100" className={clsx(styles['Checkbox-checkmark'])} aria-label="Checkmark icon">
             <path
               className={clsx(styles['Checkbox-checkmark-path'])}
               fill="none"
@@ -103,6 +103,7 @@ const _Checkbox = (
             viewBox="0 0 16 16"
             width="16"
             height="16"
+            aria-label="Dash icon"
           >
             <path fillRule="evenodd" d="M2 7.75A.75.75 0 012.75 7h10a.75.75 0 010 1.5h-10A.75.75 0 012 7.75z"></path>
           </svg>

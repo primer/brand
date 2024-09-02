@@ -1,5 +1,82 @@
 # @primer/react-brand
 
+## 0.39.0
+
+### Minor Changes
+
+- [#717](https://github.com/primer/brand/pull/717) [`24fc6d02`](https://github.com/primer/brand/commit/24fc6d0268ca1b12a9c77874fd980a67bdd11089) Thanks [@rezrah](https://github.com/rezrah)! - Improved a11y labelling in various components.
+
+  Please note these changes could affect any behavioral tests, which rely on accessible matchers such as `getByRole`.
+
+  - `SubdomainNavBar` search button `aria-label` changed from 'search' to 'Toggle search bar'
+  - `SubdomainNavBar` removal of unnecessary `aria-label` 'global breadcrumb'
+  - `Checkbox` addition of new label for `checked` state icon as 'Checkmark'
+  - `Checkbox` addition of new label for `indeterminate` state icon as 'Dash icon'
+
+- [#707](https://github.com/primer/brand/pull/707) [`715dfbb3`](https://github.com/primer/brand/commit/715dfbb3d00527cfc9050195f78c696638bbf7e6) Thanks [@rezrah](https://github.com/rezrah)! - New `Footnotes` component generally available
+
+  ```js
+  import {Footnotes} from '@primer/react-brand'
+  ```
+
+  ```jsx
+  <Footnotes>
+    <Footnotes.Item>There are now 100 million developers around the world using GitHub.</Footnotes.Item>
+  </Footnotes>
+  ```
+
+  :link: [Read the documentation for usage guidelines and examples](https://primer.style/brand/components/Footnotes)
+
+### Patch Changes
+
+- [#711](https://github.com/primer/brand/pull/711) [`1cde8ef2`](https://github.com/primer/brand/commit/1cde8ef2c67794653da13863668c739116bae524) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Updated `SubNav` links and submenus to use `ul` and `li` elements — instead of `div` elements — to communicate the hierarchy of the navigation to assistive technologies.
+
+- [#700](https://github.com/primer/brand/pull/700) [`47908f1e`](https://github.com/primer/brand/commit/47908f1e324d9cb138d7221a25b0e41664e128ff) Thanks [@rezrah](https://github.com/rezrah)! - `ActionMenu` button no longer truncates longer labels. Now follows WCAG criterion around text reflow.
+
+- [#714](https://github.com/primer/brand/pull/714) [`fb1980b1`](https://github.com/primer/brand/commit/fb1980b1c97254576ca03749d89526fbcbbbf336) Thanks [@rezrah](https://github.com/rezrah)! - Hide paged items in Pagination component on narrow viewports to prevent horizontal scrolling and offer improved accessibility by default.
+
+  Use `showPages` to re-enable paged items if required:
+
+  ```jsx
+  <Pagination showPages />
+  ```
+
+## 0.38.0
+
+### Minor Changes
+
+- [#691](https://github.com/primer/brand/pull/691) [`34e7aa8b`](https://github.com/primer/brand/commit/34e7aa8b5153d5bdb035e2e93119418bd60c0045) Thanks [@joshfarrant](https://github.com/joshfarrant)! - > **Warning**
+
+  > This update contains a breaking visual change to the `LogoSuite` component. `LogoSuite` components without a specified `variant` prop will now automatically apply either `emphasis` or `muted` styles depending on the number of logos in the `LogoBar`.
+
+  - Added new default behaviour to the `variant` prop of the `LogoSuite` component. If `variant` is `undefined` then either `emphasis` or `muted` styles are automatically applied depending on the number of logos in the `LogoBar`. Five or fewer logos apply the `emphasis` style, while six or more use the `muted` style.
+  - Reduced `LogoSuite` size on mobile viewports.
+
+### Patch Changes
+
+- [#694](https://github.com/primer/brand/pull/694) [`5f1181be`](https://github.com/primer/brand/commit/5f1181becf5d32e36176dbf8d83da8794034feef) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Improved screen reader accuracy of column indexes in `ComparisonTable`.
+
+## 0.37.0
+
+### Minor Changes
+
+- [#684](https://github.com/primer/brand/pull/684) [`e382a491`](https://github.com/primer/brand/commit/e382a4919c5f98637cb47c68311e625218b7cd40) Thanks [@danielguillan](https://github.com/danielguillan)! - Extend `Hero.Heading` and `Heading.Description` length.
+
+  > **Warning**
+  > This change can lead to reduced contrast in certain situations. Please manually review all instances of the `Hero` - particularly those that use a background image - to ensure that minimum contrast requirements are met.
+
+### Patch Changes
+
+- [#695](https://github.com/primer/brand/pull/695) [`2bb68ea7`](https://github.com/primer/brand/commit/2bb68ea73febfaf3d4dfae60c8e31e9de26709af) Thanks [@joshfarrant](https://github.com/joshfarrant)! - `ComparisonTable` featured columns now identify themselves to screen readers by appending the text `featured` to the column title. This text can be customized using the `visuallyHiddenFeaturedLabel` prop.
+
+- [#677](https://github.com/primer/brand/pull/677) [`c76c8c87`](https://github.com/primer/brand/commit/c76c8c871e1f37b1f94a8c679807ddf5a67f8a61) Thanks [@rezrah](https://github.com/rezrah)! - Removed redundant styles in default `Section` and `BreakoutBanner` components
+
+- [#688](https://github.com/primer/brand/pull/688) [`55a353c7`](https://github.com/primer/brand/commit/55a353c782c827f2cfbb333b8ddda12d1001f920) Thanks [@rezrah](https://github.com/rezrah)! - Added experimental `TextRevealAnimation` component.
+
+- [#688](https://github.com/primer/brand/pull/688) [`55a353c7`](https://github.com/primer/brand/commit/55a353c782c827f2cfbb333b8ddda12d1001f920) Thanks [@rezrah](https://github.com/rezrah)! - Remove strict, custom typings for `Testimonial.Quote`
+
+- [#679](https://github.com/primer/brand/pull/679) [`30f717dd`](https://github.com/primer/brand/commit/30f717dd2f196f1c6c5065cf3ad046fa79fc84a7) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Fixed an issue where `SubNav` submenus were not accessible through keyboard navigation
+
 ## 0.36.0
 
 ### Minor Changes

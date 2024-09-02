@@ -188,7 +188,7 @@ function Root({
             )}
             data-testid={testIds.innerContainer}
           >
-            <nav aria-label="global breadcrumb">
+            <nav aria-label="Header logo and title">
               <ol className={styles['SubdomainNavBar-title-area']}>
                 <li>
                   <a href={logoHref} aria-label="Github Home" className={styles['SubdomainNavBar-logo-mark']}>
@@ -500,12 +500,12 @@ const _SearchInternal = (
     <>
       <div className={clsx(styles['SubdomainNavBar-search-trigger'])}>
         <button
-          aria-label="search"
+          aria-label="Toggle search bar"
           className={styles['SubdomainNavBar-search-button']}
           onClick={handlerFn as (event) => void}
           data-testid="toggle-search"
         >
-          <SearchIcon />
+          <SearchIcon aria-label="Search icon" />
         </button>
       </div>
       {active && (

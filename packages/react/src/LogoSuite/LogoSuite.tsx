@@ -1,5 +1,5 @@
 import {default as clsx} from 'clsx'
-import React, {PropsWithChildren, Ref, forwardRef, useEffect, useMemo, useState} from 'react'
+import React, {type PropsWithChildren, type Ref, forwardRef, useEffect, useMemo, useState} from 'react'
 import type {BaseProps} from '../component-helpers'
 import {Heading, HeadingProps, defaultHeadingTag, Text, TextProps} from '../'
 
@@ -19,7 +19,7 @@ const testIds = {
   },
 }
 
-type LogoSuiteProps = {
+export type LogoSuiteProps = {
   /**
    * The horizontal alignment of the LogoSuite.
    */
@@ -80,7 +80,7 @@ const _LogoSuite = ({
   )
 }
 
-type LogoSuiteHeadingProps = BaseProps<HTMLHeadingElement> &
+export type LogoSuiteHeadingProps = BaseProps<HTMLHeadingElement> &
   HeadingProps & {
     /**
      * Whether to visually hide the heading.
@@ -119,7 +119,7 @@ const _Heading = forwardRef(
   },
 )
 
-type LogoSuiteDescriptionProps = BaseProps<HTMLParagraphElement> &
+export type LogoSuiteDescriptionProps = BaseProps<HTMLParagraphElement> &
   TextProps & {
     children: React.ReactNode | React.ReactNode[]
   }
@@ -144,7 +144,7 @@ const _Description = forwardRef(
   },
 )
 
-type LogoSuiteLogoBarProps = BaseProps<HTMLDivElement> & {
+export type LogoSuiteLogoBarProps = BaseProps<HTMLDivElement> & {
   children: React.ReactNode | React.ReactNode[]
   /**
    * Enables an optional marquee effect
@@ -162,10 +162,13 @@ type LogoSuiteLogoBarProps = BaseProps<HTMLDivElement> & {
 
 const _LogoBar = forwardRef(
   (
-    {className, children, marquee = false, marqueeSpeed = 'normal', variant = 'muted', ...props}: LogoSuiteLogoBarProps,
+    {className, children, marquee = false, marqueeSpeed = 'normal', variant, ...props}: LogoSuiteLogoBarProps,
     ref: Ref<HTMLDivElement>,
   ) => {
     const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+
+    const childrenCount = React.Children.toArray(children).length
+    variant ??= childrenCount <= 5 ? 'emphasis' : 'muted'
 
     useEffect(() => {
       const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -221,7 +224,7 @@ const _LogoBar = forwardRef(
 )
 
 /**
- * Use LogoSuite to present a list logos, such as sponsors or vendors.
+ * Use LogoSuite to present a list of logos, such as sponsors or vendors.
  * @see https://primer.style/brand/components/LogoSuite
  */
 export const LogoSuite = Object.assign(_LogoSuite, {
