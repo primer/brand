@@ -1,14 +1,13 @@
 import {default as clsx} from 'clsx'
-import React, {PropsWithChildren, useMemo} from 'react'
+import React, {type CSSProperties, type HTMLAttributes, useMemo} from 'react'
 import {AnimateProps, useAnimation} from '../animation'
-import type {BaseProps} from '../component-helpers'
 import {BaseSizeScale} from '../constants'
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './Box.module.css'
 
 export const BoxSpacingValues = ['none', 'condensed', 'normal', 'spacious', ...BaseSizeScale] as const
-type SpacingValues = (typeof BoxSpacingValues)[number]
+export type SpacingValues = (typeof BoxSpacingValues)[number]
 
 type ResponsiveSpacingMap = {
   narrow?: SpacingValues
@@ -28,7 +27,14 @@ type BorderWidthOptions = (typeof BoxBorderWidthOptions)[number]
 export const BoxBorderColorOptions = ['default', 'muted', 'subtle'] as const
 type BorderColorOptions = (typeof BoxBorderColorOptions)[number]
 
-type BorderStyleOptions = Extract<React.CSSProperties['borderStyle'], 'solid' | 'none'>
+type BorderStyleOptions = Extract<CSSProperties['borderStyle'], 'solid' | 'none'>
+
+// narrow/regular/wide
+type SizeChar = 'n' | 'r' | 'w'
+// padding/margin block/inline start/end
+type SpacingType = `${'p' | 'm'}${'b' | 'i'}${'s' | 'e'}`
+type VariableType<T extends SpacingType = SpacingType> = `--box-${SizeChar}${T}`
+type VariableMap<T extends SpacingType> = Record<VariableType<T>, string>
 
 type BoxProps = {
   /**
@@ -111,12 +117,7 @@ type BoxProps = {
    * Apply one-off animations to direct children of the Box
    */
   animate?: AnimateProps
-  /**
-   * Test id for the Box
-   */
-  'data-testid'?: string
-} & BaseProps<HTMLDivElement> &
-  React.HTMLAttributes<HTMLDivElement>
+} & HTMLAttributes<HTMLDivElement>
 
 const classBuilder = (
   property: string,
@@ -140,6 +141,44 @@ const classBuilder = (
   }
 }
 
+const isSpacingMap = (spacing?: SpacingValues | ResponsiveSpacingMap): spacing is ResponsiveSpacingMap =>
+  typeof spacing === 'object'
+
+const parseSpacingValues = (spacing?: SpacingValues): string => {
+  if (!spacing || spacing === 'none') {
+    return '0'
+  }
+
+  if (['condensed', 'normal', 'spacious'].includes(spacing as string)) {
+    return `var(--brand-box-spacing-${spacing})`
+  }
+
+  return `var(--base-size-${spacing})`
+}
+
+const parseSpacing = <T extends SpacingType>(
+  type: T,
+  spacing: SpacingValues | ResponsiveSpacingMap = 'none',
+): VariableMap<T> => {
+  if (isSpacingMap(spacing)) {
+    const narrow = spacing.narrow
+    const regular = spacing.regular ?? narrow
+    const wide = spacing.wide ?? regular
+
+    return {
+      [`--box-n${type}`]: parseSpacingValues(narrow),
+      [`--box-r${type}`]: parseSpacingValues(regular),
+      [`--box-w${type}`]: parseSpacingValues(wide),
+    } as VariableMap<T>
+  }
+
+  return {
+    [`--box-n${type}`]: parseSpacingValues(spacing),
+    [`--box-r${type}`]: parseSpacingValues(spacing),
+    [`--box-w${type}`]: parseSpacingValues(spacing),
+  } as VariableMap<T>
+}
+
 /**
  * Use Box to apply fine-grained styling to content.
  * @see https://primer.style/brand/components/Box
@@ -148,7 +187,6 @@ export const Box = ({
   animate,
   children,
   className,
-  'data-testid': testId,
   style,
   padding,
   paddingBlockStart,
@@ -170,28 +208,9 @@ export const Box = ({
   borderColor,
   borderStyle,
   ...rest
-}: PropsWithChildren<BoxProps>) => {
+}: BoxProps) => {
   const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
 
-  const paddingClasses = useMemo(() => classBuilder('padding', padding), [padding])
-  const paddingBlockStartClasses = useMemo(
-    () => classBuilder('paddingBlockStart', paddingBlockStart),
-    [paddingBlockStart],
-  )
-  const paddingInlineEndClasses = useMemo(() => classBuilder('paddingInlineEnd', paddingInlineEnd), [paddingInlineEnd])
-  const paddingBlockEndClasses = useMemo(() => classBuilder('paddingBlockEnd', paddingBlockEnd), [paddingBlockEnd])
-  const paddingInlineStartClasses = useMemo(
-    () => classBuilder('paddingInlineStart', paddingInlineStart),
-    [paddingInlineStart],
-  )
-  const marginClasses = useMemo(() => classBuilder('margin', margin), [margin])
-  const marginBlockStartClasses = useMemo(() => classBuilder('marginBlockStart', marginBlockStart), [marginBlockStart])
-  const marginInlineEndClasses = useMemo(() => classBuilder('marginInlineEnd', marginInlineEnd), [marginInlineEnd])
-  const marginBlockEndClasses = useMemo(() => classBuilder('marginBlockEnd', marginBlockEnd), [marginBlockEnd])
-  const marginInlineStartClasses = useMemo(
-    () => classBuilder('marginInlineStart', marginInlineStart),
-    [marginInlineStart],
-  )
   const backgroundColorClasses = useMemo(() => classBuilder('backgroundColor', backgroundColor), [backgroundColor])
   const borderRadiusClasses = useMemo(() => classBuilder('borderRadius', borderRadius), [borderRadius])
   const borderWidthClasses = useMemo(() => classBuilder('borderWidth', borderWidth), [borderWidth])
@@ -214,20 +233,35 @@ export const Box = ({
   const borderColorClasses = useMemo(() => classBuilder('borderColor', borderColor), [borderColor])
   const borderStyleClasses = useMemo(() => classBuilder('borderStyle', borderStyle), [borderStyle])
 
+  const cssVariables = useMemo(() => {
+    return {
+      ...parseSpacing('pbs', paddingBlockStart ?? padding),
+      ...parseSpacing('pbe', paddingBlockEnd ?? padding),
+      ...parseSpacing('pis', paddingInlineStart ?? padding),
+      ...parseSpacing('pie', paddingInlineEnd ?? padding),
+      ...parseSpacing('mbs', marginBlockStart ?? margin),
+      ...parseSpacing('mbe', marginBlockEnd ?? margin),
+      ...parseSpacing('mis', marginInlineStart ?? margin),
+      ...parseSpacing('mie', marginInlineEnd ?? margin),
+    }
+  }, [
+    padding,
+    paddingBlockStart,
+    paddingBlockEnd,
+    paddingInlineStart,
+    paddingInlineEnd,
+    margin,
+    marginBlockStart,
+    marginBlockEnd,
+    marginInlineStart,
+    marginInlineEnd,
+  ])
+
   return (
     <div
       className={clsx(
+        styles.Box,
         animationClasses,
-        paddingClasses,
-        paddingBlockStartClasses,
-        paddingInlineEndClasses,
-        paddingBlockEndClasses,
-        paddingInlineStartClasses,
-        marginClasses,
-        marginBlockStartClasses,
-        marginInlineEndClasses,
-        marginBlockEndClasses,
-        marginInlineStartClasses,
         backgroundColorClasses,
         borderRadiusClasses,
         borderWidthClasses,
@@ -239,9 +273,9 @@ export const Box = ({
         borderStyleClasses,
         className,
       )}
-      data-testid={testId}
       style={{
         ...animationInlineStyles,
+        ...cssVariables,
         ...style,
       }}
       {...rest}

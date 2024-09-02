@@ -8,9 +8,89 @@ import {
   BoxBackgroundColors,
   BoxBorderColorOptions,
   BoxBorderRadiusOptions,
-  BoxSpacingValues,
   BoxBorderWidthOptions,
+  type SpacingValues,
 } from './Box'
+import {BaseSizeScale} from '../constants'
+
+const testSpacingValues: {size: SpacingValues; variable: string}[] = [
+  {size: 'none', variable: '0'},
+  {size: 'condensed', variable: 'var(--brand-box-spacing-condensed)'},
+  {size: 'normal', variable: 'var(--brand-box-spacing-normal)'},
+  {size: 'spacious', variable: 'var(--brand-box-spacing-spacious)'},
+  ...BaseSizeScale.map(
+    size => ({size, variable: `var(--base-size-${size})`} as {size: SpacingValues; variable: string}),
+  ),
+]
+
+const spacingPropVariableMap: {prop: string; variableNames: string[]}[] = [
+  {
+    prop: 'padding',
+    variableNames: [
+      '--box-npbs',
+      '--box-npbe',
+      '--box-npis',
+      '--box-npie',
+      '--box-rpbs',
+      '--box-rpbe',
+      '--box-rpis',
+      '--box-rpie',
+      '--box-wpbs',
+      '--box-wpbe',
+      '--box-wpis',
+      '--box-wpie',
+    ],
+  },
+  {
+    prop: 'paddingBlockStart',
+    variableNames: ['--box-npbs', '--box-rpbs', '--box-wpbs'],
+  },
+  {
+    prop: 'paddingInlineEnd',
+    variableNames: ['--box-npie', '--box-rpie', '--box-wpie'],
+  },
+  {
+    prop: 'paddingBlockEnd',
+    variableNames: ['--box-npbe', '--box-rpbe', '--box-wpbe'],
+  },
+  {
+    prop: 'paddingInlineStart',
+    variableNames: ['--box-npis', '--box-rpis', '--box-wpis'],
+  },
+  {
+    prop: 'margin',
+    variableNames: [
+      '--box-nmbs',
+      '--box-nmbe',
+      '--box-nmis',
+      '--box-nmie',
+      '--box-rmbs',
+      '--box-rmbe',
+      '--box-rmis',
+      '--box-rmie',
+      '--box-wmbs',
+      '--box-wmbe',
+      '--box-wmis',
+      '--box-wmie',
+    ],
+  },
+  {
+    prop: 'marginBlockStart',
+    variableNames: ['--box-nmbs', '--box-rmbs', '--box-wmbs'],
+  },
+  {
+    prop: 'marginInlineEnd',
+    variableNames: ['--box-nmie', '--box-rmie', '--box-wmie'],
+  },
+  {
+    prop: 'marginBlockEnd',
+    variableNames: ['--box-nmbe', '--box-rmbe', '--box-wmbe'],
+  },
+  {
+    prop: 'marginInlineStart',
+    variableNames: ['--box-nmis', '--box-rmis', '--box-wmis'],
+  },
+]
 
 expect.extend(toHaveNoViolations)
 
@@ -44,130 +124,17 @@ describe('Box', () => {
     expect(getByText('Fragment')).toBeInTheDocument()
   })
 
-  it('will set the correct styles for non-responsive, uniform spacing', () => {
-    for (const size of BoxSpacingValues) {
-      const expectedClass = `Box-padding--${size} Box-margin--${size}`
+  describe.each(spacingPropVariableMap)('when $prop', ({prop, variableNames}) => {
+    describe.each(testSpacingValues)(`equals "$size"`, ({size, variable}) => {
+      it.each(variableNames)(`sets %s to ${variable}`, variableName => {
+        const {getByText} = render(<Box {...{[prop]: size}}>{mockText}</Box>)
 
-      const {getByTestId} = render(
-        <Box data-testid={`box-${size}`} padding={size} margin={size}>
-          {mockText}
-        </Box>,
-      )
+        const boxEl = getByText(mockText)
+        const style = getComputedStyle(boxEl)
 
-      const boxEl = getByTestId(`box-${size}`)
-      expect(boxEl).toHaveClass(expectedClass)
-    }
-  })
-
-  it('will set the correct styles for non-responsive, directional spacing', () => {
-    for (const size of BoxSpacingValues) {
-      const expectedClass = `Box-paddingBlockStart--${size} Box-paddingInlineEnd--${size} Box-paddingBlockEnd--${size} Box-paddingInlineStart--${size} Box-marginBlockStart--${size} Box-marginInlineEnd--${size} Box-marginBlockEnd--${size} Box-marginInlineStart--${size}`
-      const {getByTestId} = render(
-        <Box
-          data-testid={`box-${size}`}
-          paddingBlockEnd={size}
-          paddingBlockStart={size}
-          paddingInlineEnd={size}
-          paddingInlineStart={size}
-          marginBlockEnd={size}
-          marginInlineEnd={size}
-          marginBlockStart={size}
-          marginInlineStart={size}
-        >
-          {mockText}
-        </Box>,
-      )
-
-      const boxEl = getByTestId(`box-${size}`)
-      expect(boxEl).toHaveClass(expectedClass)
-    }
-  })
-
-  it('will set the correct styles for responsive direction when a map of breakpoints is provided', () => {
-    const viewports = ['narrow', 'regular', 'wide']
-    const logicalOperators = [
-      'padding',
-      'margin',
-      'marginInlineStart',
-      'paddingInlineStart',
-      'paddingInlineEnd',
-      'marginInlineEnd',
-      'paddingBlockStart',
-      'paddingBlockEnd',
-      'marginBlockStart',
-      'marginBlockEnd',
-    ]
-
-    let testIdCounter = 0
-
-    for (const viewport of viewports) {
-      for (const logicalOperator of logicalOperators) {
-        for (const size of BoxSpacingValues) {
-          const expectedClasses = `Box-${viewport}-${logicalOperator}--${size}`
-          const nextId = testIdCounter++
-          const {getByTestId} = render(
-            <Box
-              data-testid={nextId.toString()}
-              padding={{
-                narrow: size,
-                regular: size,
-                wide: size,
-              }}
-              margin={{
-                narrow: size,
-                regular: size,
-                wide: size,
-              }}
-              paddingBlockEnd={{
-                narrow: size,
-                regular: size,
-                wide: size,
-              }}
-              paddingBlockStart={{
-                narrow: size,
-                regular: size,
-                wide: size,
-              }}
-              paddingInlineEnd={{
-                narrow: size,
-                regular: size,
-                wide: size,
-              }}
-              paddingInlineStart={{
-                narrow: size,
-                regular: size,
-                wide: size,
-              }}
-              marginBlockEnd={{
-                narrow: size,
-                regular: size,
-                wide: size,
-              }}
-              marginInlineEnd={{
-                narrow: size,
-                regular: size,
-                wide: size,
-              }}
-              marginBlockStart={{
-                narrow: size,
-                regular: size,
-                wide: size,
-              }}
-              marginInlineStart={{
-                narrow: size,
-                regular: size,
-                wide: size,
-              }}
-            >
-              {mockText}
-            </Box>,
-          )
-
-          const boxEl = getByTestId(nextId)
-          expect(boxEl).toHaveClass(expectedClasses)
-        }
-      }
-    }
+        expect(style.getPropertyValue(variableName)).toBe(variable)
+      })
+    })
   })
 
   it('will set the correct styles for background colors', () => {
