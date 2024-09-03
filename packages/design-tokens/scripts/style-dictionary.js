@@ -123,19 +123,6 @@ StyleDictionary.registerFormat({
   },
 })
 
-StyleDictionary.registerFormat({
-  name: 'custom/format/custom-media',
-  formatter({dictionary}) {
-    return dictionary.allProperties
-      .map(prop => {
-        const {value, name} = prop
-
-        return `@custom-media --${name}-viewport ${value};`
-      })
-      .join('\n')
-  },
-})
-
 // format docs
 StyleDictionary.registerFormat({
   name: 'json/docs',
@@ -334,7 +321,7 @@ function buildPrimitives(
         files: [
           {
             filter: token => token.filePath.includes('viewport'),
-            format: 'custom/format/custom-media',
+            format: 'css/customMedia',
             destination: 'viewport.css',
           },
         ],
