@@ -47,40 +47,6 @@ StyleDictionary.registerTransform({
   },
 })
 
-//-----
-
-// ts output
-StyleDictionary.registerTransform({
-  name: 'attribute/typescript',
-  type: 'attribute',
-  transformer: token => {
-    return {
-      typescript: {
-        // these transforms will need to match the ones you use for typescript
-        // or you can "chain" the transforms and use token.name and token.value
-        // like scss and less transforms do.
-        name: token.path.slice(1).join('.'),
-        value: token.value,
-      },
-    }
-  },
-})
-
-// css output
-StyleDictionary.registerTransform({
-  name: 'attribute/css',
-  type: 'attribute',
-  transformer: token => {
-    const tokenName = token.path.slice(1).join('-')
-    return {
-      css: {
-        name: `--${tokenName}`,
-        value: token.value,
-      },
-    }
-  },
-})
-
 // REGISTER THE CUSTOM TRANFORM GROUPS
 
 StyleDictionary.registerTransformGroup({
