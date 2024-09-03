@@ -116,3 +116,8 @@
     transform: translateY(0);
   }
 }
+
+.FormControl-validation-checkbox {
+  position: absolute; 
+  top: 45px; 
+}
