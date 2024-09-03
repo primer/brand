@@ -3,7 +3,9 @@
  */
 
 const glob = require('fast-glob')
-const StyleDictionary = require('style-dictionary')
+const {PrimerStyleDictionary} = require('@primer/primitives/dist/build/PrimerStyleDictionary.js')
+
+const StyleDictionary = PrimerStyleDictionary
 
 const {fileHeader, formattedVariables} = StyleDictionary.formatHelpers
 
@@ -11,55 +13,7 @@ const {fileHeader, formattedVariables} = StyleDictionary.formatHelpers
 // functions to be extracted
 // TODO: extract to a separate files
 
-const pathToKebabCase = token => token.path.join('-')
-
-const pathToDotNotation = token => token.path.join('.')
-
-const capitalize = string => string[0].toUpperCase() + string.slice(1)
-
-const pathToPascalCase = token => token.path.map(tokenPathItems => capitalize(tokenPathItems)).join('')
-
 // REGISTER THE CUSTOM TRANFORMS
-
-/**
- * transform: scss variable names
- * example: `$namespace-item-variant-property-modifier`
- */
-StyleDictionary.registerTransform({
-  name: 'name/scss',
-  type: 'name',
-  transformer: pathToKebabCase,
-})
-
-/**
- * transform: css variable names
- * example: `--namespace-item-variant-property-modifier`
- */
-StyleDictionary.registerTransform({
-  name: 'name/css',
-  type: 'name',
-  transformer: pathToKebabCase,
-})
-
-/**
- * transform: js variable names
- * example: `namespace.item.variant.property.modifier`
- */
-StyleDictionary.registerTransform({
-  name: 'name/js',
-  type: 'name',
-  transformer: pathToDotNotation,
-})
-
-/**
- * transform: js es6 variable names
- * example: `NamespaceItemVariantPropertyModifier`
- */
-StyleDictionary.registerTransform({
-  name: 'name/js/es6',
-  type: 'name',
-  transformer: pathToPascalCase,
-})
 
 // find values with px unit
 function isPx(value) {
@@ -127,34 +81,16 @@ StyleDictionary.registerTransform({
   },
 })
 
-// transform: composite typography to shorthands
-StyleDictionary.registerTransform({
-  name: 'typography/shorthand',
-  type: 'value',
-  transitive: true,
-  matcher: token => token.type === 'typography',
-  transformer: token => {
-    const {value} = token
-
-    // if lineHeight has value, include in shorthand
-    if (value.lineHeight) {
-      return `${value.fontWeight} ${value.fontSize}/${value.lineHeight} ${value.fontFamily}`
-    }
-
-    return `${value.fontWeight} ${value.fontSize} ${value.fontFamily}`
-  },
-})
-
 // REGISTER THE CUSTOM TRANFORM GROUPS
 
 StyleDictionary.registerTransformGroup({
   name: 'css',
-  transforms: ['name/css', 'pxToRem', 'typography/shorthand'],
+  transforms: ['name/pathToKebabCase', 'pxToRem', 'typography/css'],
 })
 
 StyleDictionary.registerTransformGroup({
   name: 'scss',
-  transforms: ['name/scss', 'pxToRem', 'typography/shorthand'],
+  transforms: ['name/pathToKebabCase', 'pxToRem', 'typography/css'],
 })
 
 // REGISTER A CUSTOM FORMAT
@@ -420,7 +356,7 @@ function buildPrimitives(
       },
       js: {
         buildPath: `${outputPath}/js/`,
-        transforms: ['name/js/es6', 'pxToRem'],
+        transforms: ['name/pathToPascalCase', 'pxToRem'],
         // map the array of token file paths to style dictionary output files
         files: files.map(filePath => {
           return {
