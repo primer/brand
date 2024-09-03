@@ -1,32 +1,30 @@
 {
-  "brand": {
-    "PricingOptions": {
-      "items": {
-        "gap": {
-          "value": "var(--base-size-24)"
-        }
+  "PricingOptions": {
+    "items": {
+      "gap": {
+        "value": "var(--base-size-24)"
+      }
+    },
+    "items2": {
+      "gap": {
+        "value": "var(--base-size-96)"
       },
-      "items2": {
-        "gap": {
-          "value": "var(--base-size-96)"
-        },
-        "container": {
-          "padding": {
-            "inline": {
-              "value": "var(--base-size-48)"
-            }
+      "container": {
+        "padding": {
+          "inline": {
+            "value": "var(--base-size-48)"
           }
         }
+      }
+    },
+    "items3": {
+      "gap": {
+        "value": "var(--base-size-64)"
       },
-      "items3": {
-        "gap": {
-          "value": "var(--base-size-64)"
-        },
-        "container": {
-          "padding": {
-            "inline": {
-              "value": "var(--base-size-24)"
-            }
+      "container": {
+        "padding": {
+          "inline": {
+            "value": "var(--base-size-24)"
           }
         }
       }

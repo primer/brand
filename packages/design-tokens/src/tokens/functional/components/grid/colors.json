@@ -1,12 +1,10 @@
 {
-  "brand": {
-    "Grid": {
-      "column": {
-        "bgColor": {
-          "overlay": {
-            "value": "#fb51544d",
-            "dark": "#fb51544d"
-          }
+  "Grid": {
+    "column": {
+      "bgColor": {
+        "overlay": {
+          "value": "#fb51544d",
+          "dark": "#fb51544d"
         }
       }
     }

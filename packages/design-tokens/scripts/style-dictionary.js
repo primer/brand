@@ -6,6 +6,11 @@ const {PrimerStyleDictionary: StyleDictionary} = require('@primer/primitives/dis
 
 const {fileHeader} = StyleDictionary.formatHelpers
 
+const namePathToKebabCasePrefix = require('../src/transforms/namePathToKebabCasePrefix')
+const colorToModeObject = require('../src/transforms/colorToModeObject')
+
+StyleDictionary.registerTransform(namePathToKebabCasePrefix)
+StyleDictionary.registerTransform(colorToModeObject)
 //-----
 // functions to be extracted
 // TODO: extract to a separate files
@@ -14,7 +19,7 @@ const {fileHeader} = StyleDictionary.formatHelpers
 
 StyleDictionary.registerTransformGroup({
   name: 'css',
-  transforms: ['name/pathToKebabCase', 'dimension/rem', 'typography/css'],
+  transforms: ['name/pathToKebabCasePrefix', 'dimension/rem', 'typography/css'],
 })
 
 // REGISTER A CUSTOM FORMAT
@@ -104,9 +109,11 @@ function buildPrimitives(
     ],
   }
 
-  const getConfig = files => {
+  const getConfig = (files, prefix) => {
     const defaultPlatformConfig = {
       css: {
+        prefix,
+        addPrefix: token => token.isSource,
         buildPath: `${outputPath}/css/`,
         transformGroup: 'css',
         // map the array of token file paths to style dictionary output files
@@ -122,6 +129,8 @@ function buildPrimitives(
         }),
       },
       cssViewport: {
+        prefix,
+        addPrefix: token => token.isSource,
         buildPath: `${outputPath}/css/tokens/functional/size/`,
         transformGroup: 'css',
         files: [
@@ -133,6 +142,8 @@ function buildPrimitives(
         ],
       },
       scss: {
+        prefix,
+        addPrefix: token => token.isSource,
         buildPath: `${outputPath}/scss/`,
         transformGroup: 'css',
         // map the array of token file paths to style dictionary output files
@@ -148,6 +159,7 @@ function buildPrimitives(
         }),
       },
       js: {
+        prefix,
         buildPath: `${outputPath}/js/`,
         transforms: ['name/pathToPascalCase', 'dimension/rem'],
         // map the array of token file paths to style dictionary output files
@@ -160,18 +172,20 @@ function buildPrimitives(
         }),
       },
       jsModule: {
+        prefix,
         buildPath: `${outputPath}/js/module/`,
-        transforms: ['dimension/rem'],
+        transforms: ['dimension/rem', 'color/modeObject'],
         // map the array of token file paths to style dictionary output files
         files: files.map(filePath => {
           return {
-            format: `javascript/module`,
+            format: `javascript/commonJs`,
             destination: filePath.replace(`.json`, `.js`),
             filter: token => token.filePath === filePath && token.isSource,
           }
         }),
       },
       tsTypes: {
+        prefix,
         buildPath: `${outputPath}/ts/`,
         transforms: ['dimension/rem'],
         // map the array of token file paths to style dictionary output files
@@ -184,6 +198,7 @@ function buildPrimitives(
         }),
       },
       ts: {
+        prefix,
         buildPath: `${outputPath}/ts/`,
         transforms: ['dimension/rem'],
         // map the array of token file paths to style dictionary output files
@@ -210,7 +225,7 @@ function buildPrimitives(
   //build all tokens
   _StyleDictionary
     .extend({
-      ...getConfig(glob.sync([...source])),
+      ...getConfig(glob.sync([...source]), namespace),
     })
     .buildAllPlatforms()
 }

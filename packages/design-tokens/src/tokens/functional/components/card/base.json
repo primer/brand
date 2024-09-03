@@ -1,17 +1,15 @@
 {
-  "brand": {
-    "Card": {
-      "maxWidth": {
-        "value": "420px",
-        "$type": "dimension"
+  "Card": {
+    "maxWidth": {
+      "value": "420px",
+      "$type": "dimension"
+    },
+    "animation": {
+      "duration": {
+        "value": "600ms"
       },
-      "animation": {
-        "duration": {
-          "value": "600ms"
-        },
-        "easing": {
-          "value": "var(--brand-animation-easing-default)"
-        }
+      "easing": {
+        "value": "var(--brand-animation-easing-default)"
       }
     }
   }

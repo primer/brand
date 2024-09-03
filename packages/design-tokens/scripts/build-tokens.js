@@ -73,11 +73,11 @@ const darkJson = require('../src/tokens/base/colors/dark')
   //build most tokens
   buildPrimitives({
     source: [`tokens/functional/**/*.json`, `!tokens/functional/**/size-*.json`],
-    include: ['tokens/**/*.json'],
+    include: ['tokens/base/**/*.json'],
     namespace,
     outputPath,
   })
-
+  // build base tokens
   buildPrimitives({
     source: [`tokens/base/**/*.json`],
     namespace: undefined,
@@ -85,23 +85,28 @@ const darkJson = require('../src/tokens/base/colors/dark')
   })
 
   buildPrimitives({
-    source: [`tokens/functional/size/size-fine.json`, `tokens/base/size/size.json`], //build size fine
+    source: [`tokens/functional/size/size-fine.json`], //build size fine
+    include: ['tokens/base/size/size.json'],
     namespace,
     outputPath,
   })
 
   buildPrimitives({
-    source: [`tokens/functional/size/size-coarse.json`, `tokens/base/size/size.json`], //build size coarse
+    source: [`tokens/functional/size/size-coarse.json`], //build size coarse
+    include: ['tokens/base/size/size.json'],
     namespace,
     outputPath,
   })
 
   buildPrimitives({
-    source: [`tokens/base/size/size.json`, `tokens/functional/size/size-fine.json`], // build the special formats
+    source: [`tokens/functional/size/size-fine.json`], // build the special formats
+    include: ['tokens/base/size/size.json'],
     namespace,
     outputPath,
     platforms: {
       css: {
+        prefix: namespace,
+        addPrefix: token => token.isSource,
         buildPath: `${outputPath}/css/`,
         transformGroup: 'css',
         files: [
@@ -124,10 +129,13 @@ const darkJson = require('../src/tokens/base/colors/dark')
   })
 
   buildPrimitives({
-    source: [`tokens/base/size/size.json`, `tokens/functional/size/size-coarse.json`], // build the special formats
+    source: [`tokens/functional/size/size-coarse.json`], // build the special formats
+    include: ['tokens/base/size/size.json'],
     namespace,
     platforms: {
       css: {
+        prefix: namespace,
+        addPrefix: token => token.isSource,
         buildPath: `${outputPath}/css/`,
         transformGroup: 'css',
         files: [
@@ -150,7 +158,6 @@ const darkJson = require('../src/tokens/base/colors/dark')
   })
 
   const filesForResponsiveTokens = [
-    `tokens/base/typography/typography.json`,
     `tokens/functional/typography/typography-responsive.json`,
     `tokens/functional/components/grid/grid.json`,
     `tokens/functional/components/river/river.json`,
@@ -167,13 +174,17 @@ const darkJson = require('../src/tokens/base/colors/dark')
 
     buildPrimitives({
       source: [path], // build the special formats
+      include: [`tokens/base/typography/typography.json`],
       namespace,
       platforms: {
         css: {
+          prefix: namespace,
+          addPrefix: token => token.isSource,
           buildPath: `${outputPath}/css/`,
           transformGroup: 'css',
           files: [
             {
+              filter: token => token.isSource,
               destination: `${sansExtension}.css`,
               format: `css/responsive-media-query`,
               options: {
@@ -191,6 +202,7 @@ const darkJson = require('../src/tokens/base/colors/dark')
     namespace,
     platforms: {
       css: {
+        // prefix: namespace,
         buildPath: `${outputPath}/css/`,
         transformGroup: 'css',
         files: [
@@ -206,8 +218,30 @@ const darkJson = require('../src/tokens/base/colors/dark')
     },
   })
 
+  // temp fix until prefix is removed from all component files
+
+  buildPrimitives({
+    source: [`tokens/functional/colors/global.json`],
+    namespace,
+    platforms: {
+      css: {
+        prefix: namespace, // we still need to remove namespace form all component files
+        buildPath: `${outputPath}/css/`,
+        transformGroup: 'css',
+        files: [
+          {
+            destination: `tokens/functional/colors/global-with-modes.css`,
+            format: `css/color-mode-attributes`,
+            options: {
+              outputReferences: false,
+            },
+          },
+        ],
+      },
+    },
+  })
+
   const filesForColorModes = [
-    `tokens/functional/colors/global.json`,
     `tokens/functional/components/button/colors.js`,
     `tokens/functional/components/accordion/colors.js`,
     `tokens/functional/components/faq/colors.json`,
@@ -242,15 +276,20 @@ const darkJson = require('../src/tokens/base/colors/dark')
   for (const path of filesForColorModes) {
     const sansExtension = path.replace(/\.[^/.]+$/, '')
 
+    const prefix = path.split('.').pop() === 'json' ? namespace : undefined
+
     buildPrimitives({
+      include: [`tokens/functional/colors/global.json`],
       source: [path], // build the special formats
       namespace,
       platforms: {
         css: {
+          prefix, // we still need to remove namespace form all component files with .js
           buildPath: `${outputPath}/css/`,
           transformGroup: 'css',
           files: [
             {
+              filter: token => token.isSource,
               destination: `${sansExtension}-with-modes.css`,
               format: `css/color-mode-attributes`,
               options: {

@@ -1,18 +1,16 @@
 {
-  "brand": {
-    "Prose": {
-      "lineLength": {
-        "value": "68ch"
-      },
-      "img": {
-        "spacing": {
-          "value": "var(--base-size-48)"
-        }
-      },
-      "blockquote": {
-        "spacing": {
-          "value": "var(--base-size-24)"
-        }
+  "Prose": {
+    "lineLength": {
+      "value": "68ch"
+    },
+    "img": {
+      "spacing": {
+        "value": "var(--base-size-48)"
+      }
+    },
+    "blockquote": {
+      "spacing": {
+        "value": "var(--base-size-24)"
       }
     }
   }
