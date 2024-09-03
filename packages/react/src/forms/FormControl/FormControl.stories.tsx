@@ -344,7 +344,6 @@ export const ErrorValidationWithCheckbox = () => {
     </FormControl>
   )
 }
-
 ErrorValidationWithCheckbox.storyName = 'w/ Error Validation with Checkbox - Playground'
 
 export const ErrorValidationWithRadio = () => {
@@ -356,5 +355,4 @@ export const ErrorValidationWithRadio = () => {
     </FormControl>
   )
 }
-
-ErrorValidationWithCheckbox.storyName = 'w/ Error Validation with Radio - Playground'
+ErrorValidationWithRadio.storyName = 'w/ Error Validation with Radio - Playground'
