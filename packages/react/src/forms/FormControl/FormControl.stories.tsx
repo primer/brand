@@ -346,3 +346,15 @@ export const ErrorValidationWithCheckbox = () => {
 }
 
 ErrorValidationWithCheckbox.storyName = 'w/ Error Validation with Checkbox - Playground'
+
+export const ErrorValidationWithRadio = () => {
+  return (
+    <FormControl validationStatus="error">
+      <FormControl.Label>Day</FormControl.Label>
+      <Radio name="day" value="" />
+      <FormControl.Validation>Please select at least one day</FormControl.Validation>
+    </FormControl>
+  )
+}
+
+ErrorValidationWithCheckbox.storyName = 'w/ Error Validation with Radio - Playground'
