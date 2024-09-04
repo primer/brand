@@ -14,7 +14,7 @@ import {
 import {BaseSizeScale} from '../constants'
 
 const testSpacingValues: {size: SpacingValues; variable: string}[] = [
-  {size: 'none', variable: '0'},
+  {size: 'none', variable: ''},
   {size: 'condensed', variable: 'var(--brand-box-spacing-condensed)'},
   {size: 'normal', variable: 'var(--brand-box-spacing-normal)'},
   {size: 'spacious', variable: 'var(--brand-box-spacing-spacious)'},
@@ -135,6 +135,25 @@ describe('Box', () => {
         expect(style.getPropertyValue(variableName)).toBe(variable)
       })
     })
+  })
+
+  it('sets the correct spacing variables in nested boxes', () => {
+    const {getByTestId} = render(
+      <Box paddingBlockStart={64} data-testid="outer">
+        <Box paddingInlineStart={96} data-testid="inner"></Box>
+      </Box>,
+    )
+
+    const outerBox = getByTestId('outer')
+    const innerBox = getByTestId('inner')
+    const outerStyle = getComputedStyle(outerBox)
+    const innerStyle = getComputedStyle(innerBox)
+
+    expect(outerStyle.getPropertyValue('--box-npbs')).toBe('var(--base-size-64)')
+    expect(outerStyle.getPropertyValue('--box-npis')).toBe('')
+
+    expect(innerStyle.getPropertyValue('--box-npbs')).toBe('')
+    expect(innerStyle.getPropertyValue('--box-npis')).toBe('var(--base-size-96)')
   })
 
   it('will set the correct styles for background colors', () => {

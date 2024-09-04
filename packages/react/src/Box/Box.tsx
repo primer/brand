@@ -144,9 +144,11 @@ const classBuilder = (
 const isSpacingMap = (spacing?: SpacingValues | ResponsiveSpacingMap): spacing is ResponsiveSpacingMap =>
   typeof spacing === 'object'
 
-const parseSpacingValues = (spacing?: SpacingValues): string => {
-  if (!spacing || spacing === 'none') {
-    return '0'
+const isSpacingSet = (spacing?: SpacingValues | ResponsiveSpacingMap): boolean => Boolean(spacing && spacing !== 'none')
+
+const parseSpacingValues = (spacing?: SpacingValues): string | null => {
+  if (!isSpacingSet(spacing)) {
+    return null
   }
 
   if (['condensed', 'normal', 'spacious'].includes(spacing as string)) {
@@ -160,23 +162,35 @@ const parseSpacing = <T extends SpacingType>(
   type: T,
   spacing: SpacingValues | ResponsiveSpacingMap = 'none',
 ): VariableMap<T> => {
-  if (isSpacingMap(spacing)) {
-    const narrow = spacing.narrow
-    const regular = spacing.regular ?? narrow
-    const wide = spacing.wide ?? regular
+  const variableMap = {} as VariableMap<T>
 
-    return {
-      [`--box-n${type}`]: parseSpacingValues(narrow),
-      [`--box-r${type}`]: parseSpacingValues(regular),
-      [`--box-w${type}`]: parseSpacingValues(wide),
-    } as VariableMap<T>
+  let narrowSpacingValue: string | null
+  let regularSpacingValue: string | null
+  let wideSpacingValue: string | null
+
+  if (isSpacingMap(spacing)) {
+    narrowSpacingValue = parseSpacingValues(spacing.narrow)
+    regularSpacingValue = spacing.regular ? parseSpacingValues(spacing.regular) : narrowSpacingValue
+    wideSpacingValue = spacing.wide ? parseSpacingValues(spacing.wide) : regularSpacingValue
+  } else {
+    narrowSpacingValue = parseSpacingValues(spacing)
+    regularSpacingValue = narrowSpacingValue
+    wideSpacingValue = narrowSpacingValue
   }
 
-  return {
-    [`--box-n${type}`]: parseSpacingValues(spacing),
-    [`--box-r${type}`]: parseSpacingValues(spacing),
-    [`--box-w${type}`]: parseSpacingValues(spacing),
-  } as VariableMap<T>
+  if (narrowSpacingValue) {
+    variableMap[`--box-n${type}`] = narrowSpacingValue
+  }
+
+  if (regularSpacingValue) {
+    variableMap[`--box-r${type}`] = regularSpacingValue
+  }
+
+  if (wideSpacingValue) {
+    variableMap[`--box-w${type}`] = wideSpacingValue
+  }
+
+  return variableMap
 }
 
 /**
