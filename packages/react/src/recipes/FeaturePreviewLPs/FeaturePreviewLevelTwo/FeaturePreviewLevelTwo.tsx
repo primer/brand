@@ -1,5 +1,7 @@
 import {MoonIcon, SunIcon, ZapIcon} from '@primer/octicons-react'
 import React, {useEffect} from 'react'
+
+import clsx from 'clsx'
 import {
   Box,
   Button,
@@ -13,6 +15,7 @@ import {
   Hero,
   Image,
   Link,
+  LogoSuite,
   MinimalFooter,
   Pillar,
   River,
@@ -38,8 +41,13 @@ import emptyBrowserLightFull from '../fixtures/images/fg/empty-browser-full-ligh
 import emptyBrowserDarkFull from '../fixtures/images/fg/empty-browser-full-dark.png'
 import monaAvatar from '../../../fixtures/images/avatar-mona.png'
 import {Themes, themeDetailsMap} from '../helpers'
-import clsx from 'clsx'
 import {files} from '../../../IDE/fixtures/content'
+
+import pinterestLogo from '../../../fixtures/images/logos/pinterest.png'
+import shopifyLogo from '../../../fixtures/images/logos/shopify.png'
+import twilioLogo from '../../../fixtures/images/logos/twilio.png'
+import uberLogo from '../../../fixtures/images/logos/uber.png'
+import vercelLogo from '../../../fixtures/images/logos/vercel.png'
 
 type FeaturePreviewLevelTwoProps = {
   gridOverlay?: boolean
@@ -61,8 +69,10 @@ type FeaturePreviewLevelTwoProps = {
   sectionIntroText: string | React.ReactElement[]
   sectionIntroVisible: boolean
 
-  pillarVisibile: boolean
+  pillarVisible: boolean
   pillarBackground: boolean
+
+  logoSuiteVisible: boolean
 
   riverOneVisible: boolean
   riverOneType: 'start' | 'end' | 'breakout'
@@ -243,7 +253,7 @@ export function FeaturePreviewLevelTwo({
                   </Grid.Column>
                 </Grid>
               )}
-              {args.pillarVisibile && (
+              {args.pillarVisible && (
                 <Box
                   marginBlockEnd={{
                     narrow: 16,
@@ -306,7 +316,28 @@ export function FeaturePreviewLevelTwo({
             </Grid.Column>
           </Grid>
         </Section>
-
+        {args.logoSuiteVisible && (
+          <Section paddingBlockStart="condensed" paddingBlockEnd="none">
+            <Grid>
+              <Grid.Column>
+                <LogoSuite align="start">
+                  <LogoSuite.Heading size="6">Trusted by devs across the world</LogoSuite.Heading>
+                  <LogoSuite.Logobar
+                    variant="muted"
+                    marquee
+                    marqueeSpeed={process.env.NODE_ENV === 'test' ? 'idle' : 'normal'}
+                  >
+                    <Image alt="Uber" src={uberLogo} />
+                    <Image alt="Vercel" src={vercelLogo} />
+                    <Image alt="Shopify" src={shopifyLogo} />
+                    <Image alt="Pinterest" src={pinterestLogo} />
+                    <Image alt="Twilio" src={twilioLogo} />
+                  </LogoSuite.Logobar>
+                </LogoSuite>
+              </Grid.Column>
+            </Grid>
+          </Section>
+        )}
         <Section paddingBlockStart="condensed">
           <Grid enableOverlay={enableGridOverlay}>
             <Grid.Column>
