@@ -9,11 +9,12 @@
   vertical-align: middle;
   align-items: center;
   justify-content: center;
-  border-radius: var(--brand-borderRadius-full);
+  border-radius: var(--brand-borderRadius-xlarge);
   display: inline-flex;
   color: var(--brand-Label-color-start, var(--brand-Label-color, currentColor));
   position: relative;
   background: none;
+  padding-block: var(--base-size-4);
 }
 
 .Label::before {
@@ -34,7 +35,7 @@
 .Label--size-medium {
   padding-left: var(--base-size-16);
   padding-right: var(--base-size-16);
-  height: var(--base-size-28);
+  min-height: var(--base-size-28);
 }
 
 .Label--size-large {
@@ -133,12 +134,8 @@
   box-decoration-break: clone;
 }
 
-.Label--size-medium .Label__text {
-  line-height: var(--brand-text-lineHeight-200);
-}
-
-.Label--size-large .Label__text {
-  line-height: var(--brand-text-lineHeight-300);
+.Label__text {
+  line-height: 1;
 }
 
 .Label__icon-visual {
@@ -155,6 +152,7 @@
 
 .Label__label {
   font-weight: var(--base-text-weight-semibold);
+  line-height: inherit;
 }
 
 @media (forced-colors: active) {

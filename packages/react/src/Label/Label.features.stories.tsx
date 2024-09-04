@@ -1,6 +1,7 @@
 import React from 'react'
 import {Meta} from '@storybook/react'
 import {Label} from '.'
+import {Box} from '../'
 import {CopilotIcon} from '@primer/octicons-react'
 
 export default {
@@ -70,5 +71,12 @@ export const WithOcticonColor = () => (
   <Label color="blue-purple" leadingVisual={<CopilotIcon />}>
     With Octicon
   </Label>
+)
+WithOcticonColor.storyName = 'With an Octicon and color'
+
+export const WithReflow = () => (
+  <Box style={{width: 200}}>
+    <Label color="blue-purple">Label reflow to a new line if the text is long</Label>
+  </Box>
 )
 WithOcticonColor.storyName = 'With an Octicon and color'
