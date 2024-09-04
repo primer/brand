@@ -226,10 +226,9 @@ function buildPrimitives(
     ],
   }
 
-  const getConfig = (files, prefix) => {
+  const getConfig = files => {
     const defaultPlatformConfig = {
       css: {
-        prefix,
         buildPath: `${outputPath}/css/`,
         transformGroup: 'css',
         // map the array of token file paths to style dictionary output files
@@ -245,7 +244,6 @@ function buildPrimitives(
         }),
       },
       cssViewport: {
-        prefix,
         buildPath: `${outputPath}/css/tokens/functional/size/`,
         transformGroup: 'css',
         files: [
@@ -257,7 +255,6 @@ function buildPrimitives(
         ],
       },
       scss: {
-        prefix,
         buildPath: `${outputPath}/scss/`,
         transformGroup: 'css',
         // map the array of token file paths to style dictionary output files
@@ -273,7 +270,6 @@ function buildPrimitives(
         }),
       },
       js: {
-        prefix,
         buildPath: `${outputPath}/js/`,
         transforms: ['name/pathToPascalCase', 'pxToRem'],
         // map the array of token file paths to style dictionary output files
@@ -286,7 +282,6 @@ function buildPrimitives(
         }),
       },
       jsModule: {
-        prefix,
         buildPath: `${outputPath}/js/module/`,
         transforms: ['pxToRem'],
         // map the array of token file paths to style dictionary output files
@@ -299,7 +294,6 @@ function buildPrimitives(
         }),
       },
       tsTypes: {
-        prefix,
         buildPath: `${outputPath}/ts/`,
         transforms: ['pxToRem'],
         // map the array of token file paths to style dictionary output files
@@ -312,7 +306,6 @@ function buildPrimitives(
         }),
       },
       ts: {
-        prefix,
         buildPath: `${outputPath}/ts/`,
         transforms: ['pxToRem'],
         // map the array of token file paths to style dictionary output files
@@ -339,7 +332,7 @@ function buildPrimitives(
   //build all tokens
   _StyleDictionary
     .extend({
-      ...getConfig(glob.sync([...source]), namespace),
+      ...getConfig(glob.sync([...source])),
     })
     .buildAllPlatforms()
 }
