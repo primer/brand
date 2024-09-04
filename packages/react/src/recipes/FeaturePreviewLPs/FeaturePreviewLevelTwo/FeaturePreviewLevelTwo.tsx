@@ -132,7 +132,7 @@ export function FeaturePreviewLevelTwo({
   const renderPiller = () => (
     <Pillar>
       <Pillar.Icon icon={<ZapIcon />} />
-      <Pillar.Heading>Here is a core value proposition of this new feature on one or two lines</Pillar.Heading>
+      <Pillar.Heading as="h3">Here is a core value proposition of this new feature on one or two lines</Pillar.Heading>
       <Pillar.Description>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id aliquam luctus sed turpis.
       </Pillar.Description>
@@ -321,7 +321,9 @@ export function FeaturePreviewLevelTwo({
             <Grid>
               <Grid.Column>
                 <LogoSuite align="start">
-                  <LogoSuite.Heading size="6">Trusted by devs across the world</LogoSuite.Heading>
+                  <LogoSuite.Heading as="h3" size="6">
+                    Trusted by devs across the world
+                  </LogoSuite.Heading>
                   <LogoSuite.Logobar
                     variant="muted"
                     marquee
@@ -589,7 +591,7 @@ export function FeaturePreviewLevelTwo({
               {args.cardsVisible && (
                 <Box marginBlockStart={args.ctaBannerVisible ? 128 : undefined}>
                   <Stack direction="vertical" padding="none" gap={64} alignItems="center">
-                    <Heading as="h3" size="3">
+                    <Heading as="h2" size="3">
                       Go further with these
                     </Heading>
                     <Grid>
@@ -625,7 +627,9 @@ export function FeaturePreviewLevelTwo({
                 <Box marginBlockStart={args.cardsVisible || args.ctaBannerVisible ? 128 : undefined}>
                   {args.faqType === 'single' ? (
                     <FAQ>
-                      <FAQ.Heading>Frequently asked questions</FAQ.Heading>
+                      <FAQ.Heading as="h2" size="3">
+                        Frequently asked questions
+                      </FAQ.Heading>
                       <FAQ.Item>
                         <FAQ.Question>What is this feature?</FAQ.Question>
                         <FAQ.Answer>
@@ -701,7 +705,7 @@ export function FeaturePreviewLevelTwo({
                     </FAQ>
                   ) : (
                     <FAQGroup>
-                      <FAQGroup.Heading>
+                      <FAQGroup.Heading as="h2" size="3">
                         Frequently asked
                         <br />
                         questions
