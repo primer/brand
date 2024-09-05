@@ -76,7 +76,7 @@ WithOcticonColor.storyName = 'With an Octicon and color'
 
 export const WithReflow = () => (
   <Box style={{width: 200}}>
-    <Label color="blue-purple">Label reflow to a new line if the text is long</Label>
+    <Label leadingVisual={<CopilotIcon />}>Label reflows if the text is too long</Label>
   </Box>
 )
 WithOcticonColor.storyName = 'With an Octicon and color'

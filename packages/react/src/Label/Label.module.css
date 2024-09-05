@@ -15,6 +15,7 @@
   position: relative;
   background: none;
   padding-block: var(--base-size-4);
+  text-align: center;
 }
 
 .Label::before {
@@ -35,13 +36,14 @@
 .Label--size-medium {
   padding-left: var(--base-size-16);
   padding-right: var(--base-size-16);
+  height: min-content;
   min-height: var(--base-size-28);
-  max-height: max-content;
 }
 
 .Label--size-large {
   padding-left: var(--base-size-16);
   padding-right: var(--base-size-16);
+  height: min-content;
   min-height: var(--base-size-32);
 }
 
