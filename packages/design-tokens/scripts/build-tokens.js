@@ -98,8 +98,15 @@ const darkJson = require('../src/tokens/base/colors/dark')
 
   //build most tokens
   buildPrimitives({
-    source: [`tokens/**/*.json`, `!tokens/**/size-*.json`],
+    source: [`tokens/functional/**/*.json`, `!tokens/functional/**/size-*.json`],
+    include: ['tokens/**/*.json'],
     namespace,
+    outputPath,
+  })
+
+  buildPrimitives({
+    source: [`tokens/base/**/*.json`],
+    namespace: undefined,
     outputPath,
   })
 
