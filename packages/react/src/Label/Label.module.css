@@ -13,8 +13,10 @@
   display: inline-flex;
   color: var(--brand-Label-color-start, var(--brand-Label-color, currentColor));
   position: relative;
-  background: none;
+  height: min-content;
+  padding-inline: var(--base-size-16);
   padding-block: var(--base-size-4);
+  background: none;
   text-align: center;
 }
 
@@ -34,16 +36,10 @@
 }
 
 .Label--size-medium {
-  padding-left: var(--base-size-16);
-  padding-right: var(--base-size-16);
-  height: min-content;
   min-height: var(--base-size-28);
 }
 
 .Label--size-large {
-  padding-left: var(--base-size-16);
-  padding-right: var(--base-size-16);
-  height: min-content;
   min-height: var(--base-size-32);
 }
 
