@@ -135,7 +135,7 @@
 }
 
 .Label__text {
-  line-height: 1;
+  line-height: var(--base-size-16);
 }
 
 .Label__icon-visual {
