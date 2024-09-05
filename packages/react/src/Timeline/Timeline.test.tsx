@@ -14,13 +14,13 @@ describe('Timeline', () => {
     const {container} = render(
       <Timeline>
         <Timeline.Item>
-          <span>Item 1</span>. Lorem ipsum dolor sit amet.
+          <b>Item 1</b>. Lorem ipsum dolor sit amet.
         </Timeline.Item>
         <Timeline.Item>
-          <span>Item 2</span>. Lorem ipsum dolor sit amet.
+          <base>Item 2</base>. Lorem ipsum dolor sit amet.
         </Timeline.Item>
         <Timeline.Item>
-          <span>Item 3</span>. Lorem ipsum dolor sit amet.
+          <b>Item 3</b>. Lorem ipsum dolor sit amet.
         </Timeline.Item>
       </Timeline>,
     )

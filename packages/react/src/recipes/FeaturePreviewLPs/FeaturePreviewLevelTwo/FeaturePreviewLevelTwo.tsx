@@ -133,9 +133,9 @@ export function FeaturePreviewLevelTwo({
     return (
       <Testimonial size={num === 1 ? 'large' : 'small'} quoteMarkColor="default">
         <Testimonial.Quote>
-          <span>We&apos;ve used GitHub from the inception of Datadog. It&apos;s a high-quality product,</span> and a lot
-          of our engineers contribute to open source so there&apos;s a sense of community there. GitHub is ingrained in
-          the DNA of our engineering, it&apos;s become part of the culture.”
+          <b>We&apos;ve used GitHub from the inception of Datadog. It&apos;s a high-quality product,</b> and a lot of
+          our engineers contribute to open source so there&apos;s a sense of community there. GitHub is ingrained in the
+          DNA of our engineering, it&apos;s become part of the culture.”
         </Testimonial.Quote>
         <Testimonial.Name position="Staff Software Engineer">David Ross</Testimonial.Name>
         <Testimonial.Avatar src={monaAvatar} alt="circular avatar for mona, GitHub's mascot" />
@@ -333,14 +333,12 @@ export function FeaturePreviewLevelTwo({
                           <Box>
                             <Timeline fullWidth>
                               <Timeline.Item>
-                                <span>This is what it is and it&apos;s great. </span>That&apos;s why and how the
-                                greatness happens here, we love sub bullets, they allow for more specific technical
-                                details.
+                                <b>This is what it is and it&apos;s great. </b>That&apos;s why and how the greatness
+                                happens here, we love sub bullets, they allow for more specific technical details.
                               </Timeline.Item>
                               <Timeline.Item>
-                                <span>This is what it is and it&apos;s great. </span>That&apos;s why and how the
-                                greatness happens here, we love sub bullets, they allow for more specific technical
-                                details.
+                                <b>This is what it is and it&apos;s great. </b>That&apos;s why and how the greatness
+                                happens here, we love sub bullets, they allow for more specific technical details.
                               </Timeline.Item>
                             </Timeline>
                           </Box>
@@ -400,14 +398,12 @@ export function FeaturePreviewLevelTwo({
                           <Box>
                             <Timeline fullWidth>
                               <Timeline.Item>
-                                <span>This is what it is and it&apos;s great. </span>That&apos;s why and how the
-                                greatness happens here, we love sub bullets, they allow for more specific technical
-                                details.
+                                <b>This is what it is and it&apos;s great. </b>That&apos;s why and how the greatness
+                                happens here, we love sub bullets, they allow for more specific technical details.
                               </Timeline.Item>
                               <Timeline.Item>
-                                <span>This is what it is and it&apos;s great. </span>That&apos;s why and how the
-                                greatness happens here, we love sub bullets, they allow for more specific technical
-                                details.
+                                <b>This is what it is and it&apos;s great. </b>That&apos;s why and how the greatness
+                                happens here, we love sub bullets, they allow for more specific technical details.
                               </Timeline.Item>
                             </Timeline>
                           </Box>
@@ -462,14 +458,12 @@ export function FeaturePreviewLevelTwo({
                           <Box>
                             <Timeline fullWidth>
                               <Timeline.Item>
-                                <span>This is what it is and it&apos;s great. </span>That&apos;s why and how the
-                                greatness happens here, we love sub bullets, they allow for more specific technical
-                                details.
+                                <b>This is what it is and it&apos;s great. </b>That&apos;s why and how the greatness
+                                happens here, we love sub bullets, they allow for more specific technical details.
                               </Timeline.Item>
                               <Timeline.Item>
-                                <span>This is what it is and it&apos;s great. </span>That&apos;s why and how the
-                                greatness happens here, we love sub bullets, they allow for more specific technical
-                                details.
+                                <b>This is what it is and it&apos;s great. </b>That&apos;s why and how the greatness
+                                happens here, we love sub bullets, they allow for more specific technical details.
                               </Timeline.Item>
                             </Timeline>
                           </Box>
