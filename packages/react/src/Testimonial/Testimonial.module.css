@@ -62,6 +62,7 @@
 .Testimonial-quote b {
   color: var(--brand-color-text-default);
   font-style: normal;
+  font-weight: inherit;
 }
 
 .Testimonial__media {
