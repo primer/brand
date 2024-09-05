@@ -6,7 +6,6 @@ import {
   CTABanner,
   Card,
   ColorModesEnum,
-  DuotoneText,
   FAQ,
   FAQGroup,
   Grid,
@@ -134,13 +133,9 @@ export function FeaturePreviewLevelTwo({
     return (
       <Testimonial size={num === 1 ? 'large' : 'small'} quoteMarkColor="default">
         <Testimonial.Quote>
-          <DuotoneText>
-            <DuotoneText.Emphasis>
-              We&apos;ve used GitHub from the inception of Datadog. It&apos;s a high-quality product,
-            </DuotoneText.Emphasis>{' '}
-            and a lot of our engineers contribute to open source so there&apos;s a sense of community there. GitHub is
-            ingrained in the DNA of our engineering, it&apos;s become part of the culture.”
-          </DuotoneText>
+          <span>We&apos;ve used GitHub from the inception of Datadog. It&apos;s a high-quality product,</span> and a lot
+          of our engineers contribute to open source so there&apos;s a sense of community there. GitHub is ingrained in
+          the DNA of our engineering, it&apos;s become part of the culture.”
         </Testimonial.Quote>
         <Testimonial.Name position="Staff Software Engineer">David Ross</Testimonial.Name>
         <Testimonial.Avatar src={monaAvatar} alt="circular avatar for mona, GitHub's mascot" />
@@ -338,18 +333,14 @@ export function FeaturePreviewLevelTwo({
                           <Box>
                             <Timeline fullWidth>
                               <Timeline.Item>
-                                <DuotoneText>
-                                  <DuotoneText.Emphasis>This is what it is and it&apos;s great. </DuotoneText.Emphasis>
-                                  That&apos;s why and how the greatness happens here, we love sub bullets, they allow
-                                  for more specific technical details.
-                                </DuotoneText>
+                                <span>This is what it is and it&apos;s great. </span>That&apos;s why and how the
+                                greatness happens here, we love sub bullets, they allow for more specific technical
+                                details.
                               </Timeline.Item>
                               <Timeline.Item>
-                                <DuotoneText>
-                                  <DuotoneText.Emphasis>This is what it is and it&apos;s great. </DuotoneText.Emphasis>
-                                  That&apos;s why and how the greatness happens here, we love sub bullets, they allow
-                                  for more specific technical details.
-                                </DuotoneText>
+                                <span>This is what it is and it&apos;s great. </span>That&apos;s why and how the
+                                greatness happens here, we love sub bullets, they allow for more specific technical
+                                details.
                               </Timeline.Item>
                             </Timeline>
                           </Box>
@@ -409,18 +400,14 @@ export function FeaturePreviewLevelTwo({
                           <Box>
                             <Timeline fullWidth>
                               <Timeline.Item>
-                                <DuotoneText>
-                                  <DuotoneText.Emphasis>This is what it is and it&apos;s great. </DuotoneText.Emphasis>
-                                  That&apos;s why and how the greatness happens here, we love sub bullets, they allow
-                                  for more specific technical details.
-                                </DuotoneText>
+                                <span>This is what it is and it&apos;s great. </span>That&apos;s why and how the
+                                greatness happens here, we love sub bullets, they allow for more specific technical
+                                details.
                               </Timeline.Item>
                               <Timeline.Item>
-                                <DuotoneText>
-                                  <DuotoneText.Emphasis>This is what it is and it&apos;s great. </DuotoneText.Emphasis>
-                                  That&apos;s why and how the greatness happens here, we love sub bullets, they allow
-                                  for more specific technical details.
-                                </DuotoneText>
+                                <span>This is what it is and it&apos;s great. </span>That&apos;s why and how the
+                                greatness happens here, we love sub bullets, they allow for more specific technical
+                                details.
                               </Timeline.Item>
                             </Timeline>
                           </Box>
@@ -475,18 +462,14 @@ export function FeaturePreviewLevelTwo({
                           <Box>
                             <Timeline fullWidth>
                               <Timeline.Item>
-                                <DuotoneText>
-                                  <DuotoneText.Emphasis>This is what it is and it&apos;s great. </DuotoneText.Emphasis>
-                                  That&apos;s why and how the greatness happens here, we love sub bullets, they allow
-                                  for more specific technical details.
-                                </DuotoneText>
+                                <span>This is what it is and it&apos;s great. </span>That&apos;s why and how the
+                                greatness happens here, we love sub bullets, they allow for more specific technical
+                                details.
                               </Timeline.Item>
                               <Timeline.Item>
-                                <DuotoneText>
-                                  <DuotoneText.Emphasis>This is what it is and it&apos;s great. </DuotoneText.Emphasis>
-                                  That&apos;s why and how the greatness happens here, we love sub bullets, they allow
-                                  for more specific technical details.
-                                </DuotoneText>
+                                <span>This is what it is and it&apos;s great. </span>That&apos;s why and how the
+                                greatness happens here, we love sub bullets, they allow for more specific technical
+                                details.
                               </Timeline.Item>
                             </Timeline>
                           </Box>

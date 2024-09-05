@@ -119,8 +119,6 @@
       url: /components/Heading
     - title: Text
       url: /components/Text
-    - title: DuotoneText
-      url: /components/DuotoneText
 
 - title: GitHub staff
   children:

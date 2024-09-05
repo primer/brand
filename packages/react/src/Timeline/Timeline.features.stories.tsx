@@ -2,7 +2,6 @@ import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 
 import {Timeline} from '.'
-import {DuotoneText} from '../'
 
 export default {
   title: 'Components/Timeline/features',
@@ -13,20 +12,15 @@ export const WithEmphasis: StoryFn<typeof Timeline> = () => {
   return (
     <Timeline>
       <Timeline.Item>
-        <DuotoneText>
-          <DuotoneText.Emphasis>GitHub Codespaces</DuotoneText.Emphasis> offers a complete dev environment in seconds,
-          so you can code, build, test, and open pull requests from any repo anywhere.
-        </DuotoneText>
+        <b>GitHub Codespaces</b> offers a complete dev environment in seconds, so you can code, build, test, and open
+        pull requests from any repo anywhere.
       </Timeline.Item>
       <Timeline.Item>
-        <DuotoneText.Emphasis>GitHub Copilot</DuotoneText.Emphasis> is your AI pair programmer that empowers you to
-        complete tasks 55% faster by turning natural language prompts into coding suggestions.
+        <b>GitHub Copilot</b> is your AI pair programmer that empowers you to complete tasks 55% faster by turning
+        natural language prompts into coding suggestions.
       </Timeline.Item>
       <Timeline.Item>
-        <DuotoneText>
-          <DuotoneText.Emphasis>GitHub Actions</DuotoneText.Emphasis> automates your build, test, and deployment
-          workflow with simple and secure CI/CD.
-        </DuotoneText>
+        <b>GitHub Actions</b> automates your build, test, and deployment workflow with simple and secure CI/CD.
       </Timeline.Item>
     </Timeline>
   )
@@ -36,20 +30,13 @@ export const WithShorterText: StoryFn<typeof Timeline> = () => {
   return (
     <Timeline>
       <Timeline.Item>
-        <DuotoneText>
-          <DuotoneText.Emphasis>GitHub Codespaces</DuotoneText.Emphasis> offers a complete dev environment in seconds.
-        </DuotoneText>
+        <b>GitHub Codespaces</b> offers a complete dev environment in seconds.
       </Timeline.Item>
       <Timeline.Item>
-        <DuotoneText>
-          <DuotoneText.Emphasis>GitHub Copilot</DuotoneText.Emphasis> is your AI pair programmer that empowers you.
-        </DuotoneText>
+        <b>GitHub Copilot</b> is your AI pair programmer that empowers you.
       </Timeline.Item>
       <Timeline.Item>
-        <DuotoneText>
-          <DuotoneText.Emphasis>GitHub Actions</DuotoneText.Emphasis> automates your build, test, and deployment
-          workflows.
-        </DuotoneText>
+        <b>GitHub Actions</b> automates your build, test, and deployment workflows.
       </Timeline.Item>
     </Timeline>
   )
@@ -59,21 +46,13 @@ export const WithLinks: StoryFn<typeof Timeline> = () => {
   return (
     <Timeline>
       <Timeline.Item>
-        <DuotoneText>
-          <DuotoneText.Emphasis>GitHub Codespaces</DuotoneText.Emphasis> offers a{' '}
-          <a href="/">complete dev environment</a> in seconds.
-        </DuotoneText>
+        <b>GitHub Codespaces</b> offers a <a href="/">complete dev environment</a> in seconds.
       </Timeline.Item>
       <Timeline.Item>
-        <DuotoneText>
-          <DuotoneText.Emphasis>GitHub Copilot</DuotoneText.Emphasis> is your AI pair programmer that empowers you.
-        </DuotoneText>
+        <b>GitHub Copilot</b> is your AI pair programmer that empowers you.
       </Timeline.Item>
       <Timeline.Item>
-        <DuotoneText>
-          <DuotoneText.Emphasis>GitHub Actions</DuotoneText.Emphasis> automates your build, test, and deployment
-          workflows.
-        </DuotoneText>
+        <b>GitHub Actions</b> automates your build, test, and deployment workflows.
       </Timeline.Item>
     </Timeline>
   )

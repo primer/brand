@@ -73,7 +73,8 @@
   color: var(--brand-color-text-muted);
 }
 
-.Bento__heading--muted em {
+.Bento__heading--muted em,
+.Bento__heading--muted b {
   font-style: normal;
   color: var(--brand-color-text-default);
 }

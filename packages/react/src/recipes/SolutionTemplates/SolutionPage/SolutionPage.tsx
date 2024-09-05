@@ -4,7 +4,6 @@ import {
   AnimationProvider,
   Box,
   Card,
-  DuotoneText,
   Grid,
   Heading,
   Hero,
@@ -452,9 +451,7 @@ export function SolutionPage({
                     >
                       <Bento.Content>
                         <Bento.Heading size="4">
-                          <DuotoneText>
-                            <DuotoneText.Emphasis>This is my super-sweet</DuotoneText.Emphasis> bento heading
-                          </DuotoneText>
+                          <span>This is my super-sweet</span> bento heading
                         </Bento.Heading>
                         <Link href="#">Read customer story</Link>
                       </Bento.Content>

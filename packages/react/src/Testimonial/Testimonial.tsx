@@ -118,7 +118,7 @@ function _Quote({children, className}: QuoteProps, ref) {
 
   // TODO: when Firefox supports :has() selector, we should use that instead of JS
   const getConditionalVariant = useCallback(() => {
-    if (findElementInChildren(children, 'em')) {
+    if (findElementInChildren(children, 'b') || findElementInChildren(children, 'em')) {
       return 'muted'
     }
     return 'default'

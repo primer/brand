@@ -13,7 +13,8 @@ const Root = forwardRef(({animate, className, children, style, ...rest}: RiverBr
   const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
 
   // TODO: when Firefox supports :has() selector, we should use that instead of JS
-  const defaultColor = findElementInChildren(children, 'em') ? 'muted' : 'default'
+  const defaultColor =
+    findElementInChildren(children, 'b') || findElementInChildren(children, 'em') ? 'muted' : 'default'
 
   if (!findElementInChildren(children, A11yHeading)) {
     if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {

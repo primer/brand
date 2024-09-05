@@ -1,7 +1,7 @@
 import React from 'react'
 import {Meta, StoryFn} from '@storybook/react'
 import {River} from '.'
-import {DuotoneText, Heading, Label, Link, Stack, Text, Timeline} from '../../'
+import {Heading, Label, Link, Stack, Text, Timeline} from '../../'
 import {Container} from '../../component-helpers'
 import placeholderImage from '../../fixtures/images/placeholder-600x400.png'
 
@@ -153,15 +153,10 @@ const ExampleTrailingComponent = () => (
   <Stack direction="vertical" padding="none" gap="spacious" alignItems="flex-start">
     <Timeline>
       <Timeline.Item>
-        <DuotoneText>
-          <DuotoneText.Emphasis>GitHub Codespaces</DuotoneText.Emphasis> offers a complete dev environment in seconds.
-        </DuotoneText>
+        <b>GitHub Codespaces</b> offers a complete dev environment in seconds.
       </Timeline.Item>
       <Timeline.Item>
-        <DuotoneText>
-          <DuotoneText.Emphasis>GitHub Copilot</DuotoneText.Emphasis> is your AI pair programmer that empowers you to
-          complete tasks.
-        </DuotoneText>
+        <b>GitHub Copilot</b> is your AI pair programmer that empowers you to complete tasks.
       </Timeline.Item>
     </Timeline>
     <Link href="#" variant="accent">

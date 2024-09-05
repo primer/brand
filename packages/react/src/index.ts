@@ -47,7 +47,6 @@ export * from './Section'
 export * from './Statistic'
 export * from './BreakoutBanner'
 export * from './Footnotes'
-export * from './DuotoneText'
 
 // hooks
 export * from './hooks/useWindowSize'

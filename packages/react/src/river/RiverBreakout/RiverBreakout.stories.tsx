@@ -1,7 +1,7 @@
 import React from 'react'
 import {Meta, StoryFn} from '@storybook/react'
 import {RiverBreakout} from '.'
-import {DuotoneText, Link, Text, Timeline} from '../../'
+import {Link, Text, Timeline} from '../../'
 import {Container} from '../../component-helpers'
 import placeholderImage from '../../fixtures/images/placeholder-600x400.png'
 
@@ -13,15 +13,10 @@ export default {
 const TrailingTimeline = () => (
   <Timeline>
     <Timeline.Item>
-      <DuotoneText>
-        <DuotoneText.Emphasis>GitHub Codespaces</DuotoneText.Emphasis> offers a complete dev environment in seconds.
-      </DuotoneText>
+      <b>GitHub Codespaces</b> offers a complete dev environment in seconds.
     </Timeline.Item>
     <Timeline.Item>
-      <DuotoneText>
-        <DuotoneText.Emphasis>GitHub Copilot</DuotoneText.Emphasis> is your AI pair programmer that empowers you to
-        complete tasks.
-      </DuotoneText>
+      <b>GitHub Copilot</b> is your AI pair programmer that empowers you to complete tasks.
     </Timeline.Item>
   </Timeline>
 )
@@ -57,10 +52,8 @@ export const HighlightedPortion: StoryFn<typeof RiverBreakout> = () => (
       </RiverBreakout.Visual>
       <RiverBreakout.Content trailingComponent={TrailingTimeline}>
         <Text>
-          <DuotoneText>
-            <DuotoneText.Emphasis>This first sentence is a river breakout headline.</DuotoneText.Emphasis> And this is
-            where the body copy starts. Remember to keep these nice and succinct.
-          </DuotoneText>
+          <b>This first sentence is a river breakout headline.</b> And this is where the body copy starts. Remember to
+          keep these nice and succinct.
         </Text>
         <Link href="#">Call to action</Link>
       </RiverBreakout.Content>

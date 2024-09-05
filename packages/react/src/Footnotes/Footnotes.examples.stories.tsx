@@ -1,19 +1,7 @@
 import React from 'react'
 import {Meta} from '@storybook/react'
 import {Footnotes} from '.'
-import {
-  Box,
-  DuotoneText,
-  Grid,
-  Heading,
-  InlineLink,
-  River,
-  RiverBreakout,
-  Section,
-  Text,
-  ThemeProvider,
-  Timeline,
-} from '../'
+import {Box, Grid, Heading, InlineLink, River, RiverBreakout, Section, Text, ThemeProvider, Timeline} from '../'
 
 const meta: Meta<typeof Footnotes> = {
   title: 'Components/Footnotes/Examples',
@@ -90,11 +78,8 @@ export const RiversWithCitations = () => (
                 )}
               >
                 <Text>
-                  <DuotoneText>
-                    <DuotoneText.Emphasis>Keep developers in the flow.</DuotoneText.Emphasis> GitHub Advanced Security
-                    enables developers to stay in their productivity-and-comfort zone, without demanding a high level of
-                    security expertise.
-                  </DuotoneText>
+                  <b>Keep developers in the flow.</b> GitHub Advanced Security enables developers to stay in their
+                  productivity-and-comfort zone, without demanding a high level of security expertise.
                 </Text>
               </RiverBreakout.Content>
             </RiverBreakout>

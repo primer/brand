@@ -1,7 +1,6 @@
 import React from 'react'
 import {Meta} from '@storybook/react'
 import {SectionIntro} from '.'
-import {DuotoneText} from '../'
 
 export default {
   title: 'Components/SectionIntro/Features',
@@ -73,9 +72,7 @@ export const AlignedCenter = () => (
 export const WithEmphasizedText = () => (
   <SectionIntro>
     <SectionIntro.Heading>
-      <DuotoneText>
-        <DuotoneText.Emphasis>Expressive headline</DuotoneText.Emphasis> about an exclusive set of features.
-      </DuotoneText>
+      <b>Expressive headline</b> about an exclusive set of features.
     </SectionIntro.Heading>
   </SectionIntro>
 )
@@ -83,9 +80,7 @@ export const WithEmphasizedText = () => (
 export const FullWidth = () => (
   <SectionIntro fullWidth>
     <SectionIntro.Heading>
-      <DuotoneText>
-        <DuotoneText.Emphasis>Expressive headline</DuotoneText.Emphasis> about an exclusive set of features.
-      </DuotoneText>
+      <b>Expressive headline</b> about an exclusive set of features.
     </SectionIntro.Heading>
   </SectionIntro>
 )

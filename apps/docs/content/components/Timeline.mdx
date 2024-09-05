@@ -41,6 +41,28 @@ Timeline requires the `dir` attribute to be set on the `<html>` element to ensur
 </Timeline>
 ```
 
+### With emphasis
+
+Use a `<span>` element within the timeline items to apply a duotone style and emphasize part of the text.
+
+```jsx live
+<Timeline>
+  <Timeline.Item>
+    <span>GitHub Codespaces</span> offers a complete dev environment in seconds,
+    so you can code, build, test, and open pull requests from any repo anywhere.
+  </Timeline.Item>
+  <Timeline.Item>
+    <span>GitHub Copilot</span> is your AI pair programmer that empowers you to
+    complete tasks 55% faster by turning natural language prompts into coding
+    suggestions.
+  </Timeline.Item>
+  <Timeline.Item>
+    <span>GitHub Actions</span> automates your build, test, and deployment
+    workflow with simple and secure CI/CD.
+  </Timeline.Item>
+</Timeline>
+```
+
 ### Timeline
 
 | Name        | Type                               | Default | Description                                  |

@@ -2,7 +2,7 @@ import React from 'react'
 import {Meta} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {Testimonial, TestimonialProps, TestimonialQuoteMarkColors, defaultQuoteMarkColor} from '.'
-import {DuotoneText, Stack} from '../'
+import {Stack} from '../'
 
 export default {
   title: 'Components/Testimonial',
@@ -267,12 +267,8 @@ Large.args = {
 export const LargeHighlightedPortion = args => (
   <Testimonial style={{width: 720}} {...args}>
     <Testimonial.Quote>
-      <DuotoneText>
-        <DuotoneText.Emphasis>
-          GitHub helps us ensure that we have our security controls baked into our pipelines
-        </DuotoneText.Emphasis>{' '}
-        all the way from the first line of code we&apos;re writing.
-      </DuotoneText>
+      <b>GitHub helps us ensure that we have our security controls baked into our pipelines</b> all the way from the
+      first line of code we&apos;re writing.
     </Testimonial.Quote>
     <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
 

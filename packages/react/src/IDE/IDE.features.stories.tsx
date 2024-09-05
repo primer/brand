@@ -7,7 +7,6 @@ import javascript from 'highlight.js/lib/languages/javascript'
 import python from 'highlight.js/lib/languages/python'
 
 import {Box} from '../Box'
-import {DuotoneText} from '../DuotoneText'
 import {Grid} from '../Grid'
 import {Heading} from '../Heading'
 import {Link} from '../Link'
@@ -135,25 +134,17 @@ export const WithRiver = args => {
               trailingComponent={() => (
                 <Timeline>
                   <Timeline.Item>
-                    <DuotoneText>
-                      <DuotoneText.Emphasis>Optionally use a timeline </DuotoneText.Emphasis> to provide context or
-                      additional information.
-                    </DuotoneText>
+                    <b>Optionally use a timeline </b> to provide context or additional information.
                   </Timeline.Item>
                   <Timeline.Item>
-                    <DuotoneText>
-                      <DuotoneText.Emphasis>Keep it concise</DuotoneText.Emphasis> to ensure the user can quickly
-                      understand the content.
-                    </DuotoneText>
+                    <b>Keep it concise</b> to ensure the user can quickly understand the content.
                   </Timeline.Item>
                 </Timeline>
               )}
             >
               <Text>
-                <DuotoneText>
-                  <DuotoneText.Emphasis>Editor in River Breakout</DuotoneText.Emphasis> <br />
-                  Remember to keep these nice and succinct.
-                </DuotoneText>
+                <b>Editor in River Breakout</b> <br />
+                Remember to keep these nice and succinct.
               </Text>
               <Link href="#" onClick={handleReplay}>
                 Replay animation
