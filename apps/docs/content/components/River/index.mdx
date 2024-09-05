@@ -7,6 +7,8 @@ import ComponentLayout from '../../../src/layouts/component-layout'
 
 import doLink from './images/do-link.png'
 import dontLink from './images/dont-link.png'
+import doVisuals from './images/do-visuals-size.png'
+import dontVisuals from './images/dont-visuals-size.png'
 
 export default ComponentLayout
 
@@ -182,6 +184,31 @@ Limit supplemental content to a maximum of 500 characters or two timeline items 
       src="https://github.com/primer/design/assets/175638/8a083960-e12a-4f11-b282-45d663be2e28"
     />
     <Caption>Avoid unbalanced river breakout content.</Caption>
+  </Dont>
+</DoDontContainer>{' '}
+
+### River story scroll
+
+A river story scroll component is used to compose rivers and create a dynamic, scroll-driven presentation. It's a great way to showcase a set of features or topics in an interactive and visually engaging way.
+
+#### Composition
+
+River story scroll functions as a self-contained unit and is often paired with a a section intro. To effectively leverage this pattern, use between three and six rivers. For other configurations, simply stack rivers in a standard layout.
+
+This component should be used sparingly, at most twice per page, and alternated with other content types rather than placed consecutively. This approach enhances user engagement and keeps the spotlight on key information while preventing user fatigue.
+
+#### Content alignment and visuals
+
+Content across the different rivers in a story scroll must share the same alignment; either start or end. This ensures that the content flows smoothly with predictable placement and transitions. Additionally, all visuals in a story should share the same aspect ratio to achieve a consistent effect.
+
+<DoDontContainer>
+  <Do>
+    <img alt="" src={doVisuals} />
+    <Caption>Ensure all visuals maintain a consistent aspect ratio.</Caption>
+  </Do>
+  <Dont>
+    <img alt="" src={dontVisuals} />
+    <Caption>Avoid using visuals with varying aspect ratios.</Caption>
   </Dont>
 </DoDontContainer>
 
