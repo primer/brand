@@ -50,8 +50,10 @@ export default {
     of the feature and why we think it's cool, keep it real.`,
     ],
 
-    pillarVisibile: true,
+    pillarVisible: true,
     pillarBackground: false,
+
+    logoSuiteVisible: true,
 
     riverOneVisible: true,
     riverOneType: 'end',
@@ -217,7 +219,7 @@ export default {
     /**
      * Pillars
      */
-    pillarVisibile: {
+    pillarVisible: {
       control: 'boolean',
       name: 'visible',
       table: {
@@ -229,6 +231,16 @@ export default {
       name: 'hasBackground',
       table: {
         category: 'Section: Pillars',
+      },
+    },
+    /**
+     * LogoSuite
+     */
+    logoSuiteVisible: {
+      control: 'boolean',
+      name: 'visible',
+      table: {
+        category: 'Section: LogoSuite',
       },
     },
     /**
@@ -431,7 +443,8 @@ LevelTwoMinimal.args = {
   heroLabel: undefined,
   heroCtaTextSecondary: undefined,
   sectionIntroVisible: false,
-  pillarVisibile: false,
+  pillarVisible: false,
+  logoSuiteVisible: false,
   riverOneType: 'end',
   riverTwoType: 'end',
   riverOneVisible: false,

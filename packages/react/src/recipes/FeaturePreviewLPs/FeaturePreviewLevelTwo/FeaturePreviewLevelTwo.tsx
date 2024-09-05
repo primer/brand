@@ -1,5 +1,7 @@
 import {MoonIcon, SunIcon, ZapIcon} from '@primer/octicons-react'
 import React, {useEffect} from 'react'
+
+import clsx from 'clsx'
 import {
   Box,
   Button,
@@ -13,6 +15,7 @@ import {
   Hero,
   Image,
   Link,
+  LogoSuite,
   MinimalFooter,
   Pillar,
   River,
@@ -38,8 +41,13 @@ import emptyBrowserLightFull from '../fixtures/images/fg/empty-browser-full-ligh
 import emptyBrowserDarkFull from '../fixtures/images/fg/empty-browser-full-dark.png'
 import monaAvatar from '../../../fixtures/images/avatar-mona.png'
 import {Themes, themeDetailsMap} from '../helpers'
-import clsx from 'clsx'
 import {files} from '../../../IDE/fixtures/content'
+
+import pinterestLogo from '../../../fixtures/images/logos/pinterest.png'
+import shopifyLogo from '../../../fixtures/images/logos/shopify.png'
+import twilioLogo from '../../../fixtures/images/logos/twilio.png'
+import uberLogo from '../../../fixtures/images/logos/uber.png'
+import vercelLogo from '../../../fixtures/images/logos/vercel.png'
 
 type FeaturePreviewLevelTwoProps = {
   gridOverlay?: boolean
@@ -61,8 +69,10 @@ type FeaturePreviewLevelTwoProps = {
   sectionIntroText: string | React.ReactElement[]
   sectionIntroVisible: boolean
 
-  pillarVisibile: boolean
+  pillarVisible: boolean
   pillarBackground: boolean
+
+  logoSuiteVisible: boolean
 
   riverOneVisible: boolean
   riverOneType: 'start' | 'end' | 'breakout'
@@ -122,7 +132,7 @@ export function FeaturePreviewLevelTwo({
   const renderPiller = () => (
     <Pillar>
       <Pillar.Icon icon={<ZapIcon />} />
-      <Pillar.Heading>Here is a core value proposition of this new feature on one or two lines</Pillar.Heading>
+      <Pillar.Heading as="h3">Here is a core value proposition of this new feature on one or two lines</Pillar.Heading>
       <Pillar.Description>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id aliquam luctus sed turpis.
       </Pillar.Description>
@@ -243,7 +253,7 @@ export function FeaturePreviewLevelTwo({
                   </Grid.Column>
                 </Grid>
               )}
-              {args.pillarVisibile && (
+              {args.pillarVisible && (
                 <Box
                   marginBlockEnd={{
                     narrow: 16,
@@ -306,7 +316,30 @@ export function FeaturePreviewLevelTwo({
             </Grid.Column>
           </Grid>
         </Section>
-
+        {args.logoSuiteVisible && (
+          <Section paddingBlockStart="condensed" paddingBlockEnd="none">
+            <Grid>
+              <Grid.Column>
+                <LogoSuite align="start">
+                  <LogoSuite.Heading as="h3" size="6">
+                    Trusted by devs across the world
+                  </LogoSuite.Heading>
+                  <LogoSuite.Logobar
+                    variant="muted"
+                    marquee
+                    marqueeSpeed={process.env.NODE_ENV === 'test' ? 'idle' : 'normal'}
+                  >
+                    <Image alt="Uber" src={uberLogo} />
+                    <Image alt="Vercel" src={vercelLogo} />
+                    <Image alt="Shopify" src={shopifyLogo} />
+                    <Image alt="Pinterest" src={pinterestLogo} />
+                    <Image alt="Twilio" src={twilioLogo} />
+                  </LogoSuite.Logobar>
+                </LogoSuite>
+              </Grid.Column>
+            </Grid>
+          </Section>
+        )}
         <Section paddingBlockStart="condensed">
           <Grid enableOverlay={enableGridOverlay}>
             <Grid.Column>
@@ -558,7 +591,7 @@ export function FeaturePreviewLevelTwo({
               {args.cardsVisible && (
                 <Box marginBlockStart={args.ctaBannerVisible ? 128 : undefined}>
                   <Stack direction="vertical" padding="none" gap={64} alignItems="center">
-                    <Heading as="h3" size="3">
+                    <Heading as="h2" size="3">
                       Go further with these
                     </Heading>
                     <Grid>
@@ -594,7 +627,9 @@ export function FeaturePreviewLevelTwo({
                 <Box marginBlockStart={args.cardsVisible || args.ctaBannerVisible ? 128 : undefined}>
                   {args.faqType === 'single' ? (
                     <FAQ>
-                      <FAQ.Heading>Frequently asked questions</FAQ.Heading>
+                      <FAQ.Heading as="h2" size="3">
+                        Frequently asked questions
+                      </FAQ.Heading>
                       <FAQ.Item>
                         <FAQ.Question>What is this feature?</FAQ.Question>
                         <FAQ.Answer>
@@ -670,7 +705,7 @@ export function FeaturePreviewLevelTwo({
                     </FAQ>
                   ) : (
                     <FAQGroup>
-                      <FAQGroup.Heading>
+                      <FAQGroup.Heading as="h2" size="3">
                         Frequently asked
                         <br />
                         questions
