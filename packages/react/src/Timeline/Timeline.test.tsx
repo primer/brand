@@ -17,7 +17,7 @@ describe('Timeline', () => {
           <b>Item 1</b>. Lorem ipsum dolor sit amet.
         </Timeline.Item>
         <Timeline.Item>
-          <base>Item 2</base>. Lorem ipsum dolor sit amet.
+          <b>Item 2</b>. Lorem ipsum dolor sit amet.
         </Timeline.Item>
         <Timeline.Item>
           <b>Item 3</b>. Lorem ipsum dolor sit amet.
