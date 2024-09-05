@@ -36,12 +36,13 @@
   padding-left: var(--base-size-16);
   padding-right: var(--base-size-16);
   min-height: var(--base-size-28);
+  max-height: max-content;
 }
 
 .Label--size-large {
   padding-left: var(--base-size-16);
   padding-right: var(--base-size-16);
-  height: var(--base-size-32);
+  min-height: var(--base-size-32);
 }
 
 .Label--color-default {
