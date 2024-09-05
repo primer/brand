@@ -8,6 +8,8 @@ jobs:
     if: ${{ github.repository == 'primer/brand' }}
     name: Storybook
     runs-on: ubuntu-latest
+    env:
+      NODE_ENV: test
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
