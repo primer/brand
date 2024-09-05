@@ -12,8 +12,9 @@
 
 .SectionIntro-heading--muted em,
 .SectionIntro-heading--muted b {
-  font-style: normal;
   color: var(--brand-color-text-default);
+  font-style: normal;
+  font-weight: inherit;
 }
 
 .SectionIntro--align-start {
