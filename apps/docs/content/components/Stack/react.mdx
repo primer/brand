@@ -34,19 +34,12 @@ Use the `direction` prop to alternate between `vertical` and `horizontal` direct
 Many `Stack` props - including `direction` - accept both `string` and `Object` values. The former will apply the value across all viewports, while the latter will permit granular control at specific breakpoints. See [Responsive](#Responsive) below for more details.
 
 ```jsx live
-<Stack direction="horizontal">
-  <img
-    src="https://via.placeholder.com/150x75/D0D7DE/D0D7DE.png"
-    alt="placeholder with gray background and no foreground text"
-  />
-  <img
-    src="https://via.placeholder.com/150x75/D0D7DE/D0D7DE.png"
-    alt="placeholder with gray background and no foreground text"
-  />
-  <img
-    src="https://via.placeholder.com/150x75/D0D7DE/D0D7DE.png"
-    alt="placeholder with gray background and no foreground text"
-  />
+<Stack>
+  <Heading size="subhead-large">Code search & code view</Heading>
+  <Text as="p">
+    Enables you to rapidly search, navigate, and understand code, right from
+    GitHub.com.
+  </Text>
 </Stack>
 ```
 
