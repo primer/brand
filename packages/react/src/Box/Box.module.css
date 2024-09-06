@@ -1,55 +1,55 @@
 .Box {
-  --box-npbs: 0;
-  --box-npbe: 0;
-  --box-npis: 0;
-  --box-npie: 0;
-  --box-nmbs: 0;
-  --box-nmbe: 0;
-  --box-nmis: 0;
-  --box-nmie: 0;
+  --box-narrow-padding-block-start: 0;
+  --box-narrow-padding-block-end: 0;
+  --box-narrow-padding-inline-start: 0;
+  --box-narrow-padding-inline-end: 0;
+  --box-narrow-margin-block-start: 0;
+  --box-narrow-margin-block-end: 0;
+  --box-narrow-margin-inline-start: 0;
+  --box-narrow-margin-inline-end: 0;
 
-  padding-block: var(--box-npbs) var(--box-npbe);
-  padding-inline: var(--box-npis) var(--box-npie);
+  padding-block: var(--box-narrow-padding-block-start) var(--box-narrow-padding-block-end);
+  padding-inline: var(--box-narrow-padding-inline-start) var(--box-narrow-padding-inline-end);
 
-  margin-block: var(--box-nmbs) var(--box-nmbe);
-  margin-inline: var(--box-nmis) var(--box-nmie);
+  margin-block: var(--box-narrow-margin-block-start) var(--box-narrow-margin-block-end);
+  margin-inline: var(--box-narrow-margin-inline-start) var(--box-narrow-margin-inline-end);
 }
 
 @media screen and (min-width: 48rem) {
   .Box {
-    --box-rpbs: 0;
-    --box-rpbe: 0;
-    --box-rpis: 0;
-    --box-rpie: 0;
-    --box-rmbs: 0;
-    --box-rmbe: 0;
-    --box-rmis: 0;
-    --box-rmie: 0;
+    --box-regular-padding-block-start: 0;
+    --box-regular-padding-block-end: 0;
+    --box-regular-padding-inline-start: 0;
+    --box-regular-padding-inline-end: 0;
+    --box-regular-margin-block-start: 0;
+    --box-regular-margin-block-end: 0;
+    --box-regular-margin-inline-start: 0;
+    --box-regular-margin-inline-end: 0;
 
-    padding-block: var(--box-rpbs) var(--box-rpbe);
-    padding-inline: var(--box-rpis) var(--box-rpie);
+    padding-block: var(--box-regular-padding-block-start) var(--box-regular-padding-block-end);
+    padding-inline: var(--box-regular-padding-inline-start) var(--box-regular-padding-inline-end);
 
-    margin-block: var(--box-rmbs) var(--box-rmbe);
-    margin-inline: var(--box-rmis) var(--box-rmie);
+    margin-block: var(--box-regular-margin-block-start) var(--box-regular-margin-block-end);
+    margin-inline: var(--box-regular-margin-inline-start) var(--box-regular-margin-inline-end);
   }
 }
 
 @media screen and (min-width: 80rem) {
   .Box {
-    --box-wpbs: 0;
-    --box-wpbe: 0;
-    --box-wpis: 0;
-    --box-wpie: 0;
-    --box-wmbs: 0;
-    --box-wmbe: 0;
-    --box-wmis: 0;
-    --box-wmie: 0;
+    --box-wide-padding-block-start: 0;
+    --box-wide-padding-block-end: 0;
+    --box-wide-padding-inline-start: 0;
+    --box-wide-padding-inline-end: 0;
+    --box-wide-margin-block-start: 0;
+    --box-wide-margin-block-end: 0;
+    --box-wide-margin-inline-start: 0;
+    --box-wide-margin-inline-end: 0;
 
-    padding-block: var(--box-wpbs) var(--box-wpbe);
-    padding-inline: var(--box-wpis) var(--box-wpie);
+    padding-block: var(--box-wide-padding-block-start) var(--box-wide-padding-block-end);
+    padding-inline: var(--box-wide-padding-inline-start) var(--box-wide-padding-inline-end);
 
-    margin-block: var(--box-wmbs) var(--box-wmbe);
-    margin-inline: var(--box-wmis) var(--box-wmie);
+    margin-block: var(--box-wide-margin-block-start) var(--box-wide-margin-block-end);
+    margin-inline: var(--box-wide-margin-inline-start) var(--box-wide-margin-inline-end);
   }
 }
 

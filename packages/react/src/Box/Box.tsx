@@ -29,12 +29,10 @@ type BorderColorOptions = (typeof BoxBorderColorOptions)[number]
 
 type BorderStyleOptions = Extract<CSSProperties['borderStyle'], 'solid' | 'none'>
 
-// narrow/regular/wide
-type SizeChar = 'n' | 'r' | 'w'
-// padding/margin block/inline start/end
-type SpacingType = `${'p' | 'm'}${'b' | 'i'}${'s' | 'e'}`
-type VariableType<T extends SpacingType = SpacingType> = `--box-${SizeChar}${T}`
-type VariableMap<T extends SpacingType> = Record<VariableType<T>, string>
+type Size = 'narrow' | 'regular' | 'wide'
+type Type = `${'padding' | 'margin'}-${'block' | 'inline'}-${'start' | 'end'}`
+type VariableType<T extends Type = Type> = `--box-${Size}-${T}`
+type VariableMap<T extends Type> = Record<VariableType<T>, string>
 
 type BoxProps = {
   /**
@@ -158,7 +156,7 @@ const parseSpacingValues = (spacing?: SpacingValues): string | null => {
   return `var(--base-size-${spacing})`
 }
 
-const parseSpacing = <T extends SpacingType>(
+const parseSpacing = <T extends Type>(
   type: T,
   spacing: SpacingValues | ResponsiveSpacingMap = 'none',
 ): VariableMap<T> => {
@@ -179,15 +177,15 @@ const parseSpacing = <T extends SpacingType>(
   }
 
   if (narrowSpacingValue) {
-    variableMap[`--box-n${type}`] = narrowSpacingValue
+    variableMap[`--box-narrow-${type}`] = narrowSpacingValue
   }
 
   if (regularSpacingValue) {
-    variableMap[`--box-r${type}`] = regularSpacingValue
+    variableMap[`--box-regular-${type}`] = regularSpacingValue
   }
 
   if (wideSpacingValue) {
-    variableMap[`--box-w${type}`] = wideSpacingValue
+    variableMap[`--box-wide-${type}`] = wideSpacingValue
   }
 
   return variableMap
@@ -249,14 +247,14 @@ export const Box = ({
 
   const cssVariables = useMemo(() => {
     return {
-      ...parseSpacing('pbs', paddingBlockStart ?? padding),
-      ...parseSpacing('pbe', paddingBlockEnd ?? padding),
-      ...parseSpacing('pis', paddingInlineStart ?? padding),
-      ...parseSpacing('pie', paddingInlineEnd ?? padding),
-      ...parseSpacing('mbs', marginBlockStart ?? margin),
-      ...parseSpacing('mbe', marginBlockEnd ?? margin),
-      ...parseSpacing('mis', marginInlineStart ?? margin),
-      ...parseSpacing('mie', marginInlineEnd ?? margin),
+      ...parseSpacing('padding-block-start', paddingBlockStart ?? padding),
+      ...parseSpacing('padding-block-end', paddingBlockEnd ?? padding),
+      ...parseSpacing('padding-inline-start', paddingInlineStart ?? padding),
+      ...parseSpacing('padding-inline-end', paddingInlineEnd ?? padding),
+      ...parseSpacing('margin-block-start', marginBlockStart ?? margin),
+      ...parseSpacing('margin-block-end', marginBlockEnd ?? margin),
+      ...parseSpacing('margin-inline-start', marginInlineStart ?? margin),
+      ...parseSpacing('margin-inline-end', marginInlineEnd ?? margin),
     }
   }, [
     padding,

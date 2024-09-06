@@ -27,68 +27,96 @@ const spacingPropVariableMap: {prop: string; variableNames: string[]}[] = [
   {
     prop: 'padding',
     variableNames: [
-      '--box-npbs',
-      '--box-npbe',
-      '--box-npis',
-      '--box-npie',
-      '--box-rpbs',
-      '--box-rpbe',
-      '--box-rpis',
-      '--box-rpie',
-      '--box-wpbs',
-      '--box-wpbe',
-      '--box-wpis',
-      '--box-wpie',
+      '--box-narrow-padding-block-start',
+      '--box-narrow-padding-block-end',
+      '--box-narrow-padding-inline-start',
+      '--box-narrow-padding-inline-end',
+      '--box-regular-padding-block-start',
+      '--box-regular-padding-block-end',
+      '--box-regular-padding-inline-start',
+      '--box-regular-padding-inline-end',
+      '--box-wide-padding-block-start',
+      '--box-wide-padding-block-end',
+      '--box-wide-padding-inline-start',
+      '--box-wide-padding-inline-end',
     ],
   },
   {
     prop: 'paddingBlockStart',
-    variableNames: ['--box-npbs', '--box-rpbs', '--box-wpbs'],
+    variableNames: [
+      '--box-narrow-padding-block-start',
+      '--box-regular-padding-block-start',
+      '--box-wide-padding-block-start',
+    ],
   },
   {
     prop: 'paddingInlineEnd',
-    variableNames: ['--box-npie', '--box-rpie', '--box-wpie'],
+    variableNames: [
+      '--box-narrow-padding-inline-end',
+      '--box-regular-padding-inline-end',
+      '--box-wide-padding-inline-end',
+    ],
   },
   {
     prop: 'paddingBlockEnd',
-    variableNames: ['--box-npbe', '--box-rpbe', '--box-wpbe'],
+    variableNames: [
+      '--box-narrow-padding-block-end',
+      '--box-regular-padding-block-end',
+      '--box-wide-padding-block-end',
+    ],
   },
   {
     prop: 'paddingInlineStart',
-    variableNames: ['--box-npis', '--box-rpis', '--box-wpis'],
+    variableNames: [
+      '--box-narrow-padding-inline-start',
+      '--box-regular-padding-inline-start',
+      '--box-wide-padding-inline-start',
+    ],
   },
   {
     prop: 'margin',
     variableNames: [
-      '--box-nmbs',
-      '--box-nmbe',
-      '--box-nmis',
-      '--box-nmie',
-      '--box-rmbs',
-      '--box-rmbe',
-      '--box-rmis',
-      '--box-rmie',
-      '--box-wmbs',
-      '--box-wmbe',
-      '--box-wmis',
-      '--box-wmie',
+      '--box-narrow-margin-block-start',
+      '--box-narrow-margin-block-end',
+      '--box-narrow-margin-inline-start',
+      '--box-narrow-margin-inline-end',
+      '--box-regular-margin-block-start',
+      '--box-regular-margin-block-end',
+      '--box-regular-margin-inline-start',
+      '--box-regular-margin-inline-end',
+      '--box-wide-margin-block-start',
+      '--box-wide-margin-block-end',
+      '--box-wide-margin-inline-start',
+      '--box-wide-margin-inline-end',
     ],
   },
   {
     prop: 'marginBlockStart',
-    variableNames: ['--box-nmbs', '--box-rmbs', '--box-wmbs'],
+    variableNames: [
+      '--box-narrow-margin-block-start',
+      '--box-regular-margin-block-start',
+      '--box-wide-margin-block-start',
+    ],
   },
   {
     prop: 'marginInlineEnd',
-    variableNames: ['--box-nmie', '--box-rmie', '--box-wmie'],
+    variableNames: [
+      '--box-narrow-margin-inline-end',
+      '--box-regular-margin-inline-end',
+      '--box-wide-margin-inline-end',
+    ],
   },
   {
     prop: 'marginBlockEnd',
-    variableNames: ['--box-nmbe', '--box-rmbe', '--box-wmbe'],
+    variableNames: ['--box-narrow-margin-block-end', '--box-regular-margin-block-end', '--box-wide-margin-block-end'],
   },
   {
     prop: 'marginInlineStart',
-    variableNames: ['--box-nmis', '--box-rmis', '--box-wmis'],
+    variableNames: [
+      '--box-narrow-margin-inline-start',
+      '--box-regular-margin-inline-start',
+      '--box-wide-margin-inline-start',
+    ],
   },
 ]
 
@@ -149,11 +177,11 @@ describe('Box', () => {
     const outerStyle = getComputedStyle(outerBox)
     const innerStyle = getComputedStyle(innerBox)
 
-    expect(outerStyle.getPropertyValue('--box-npbs')).toBe('var(--base-size-64)')
-    expect(outerStyle.getPropertyValue('--box-npis')).toBe('')
+    expect(outerStyle.getPropertyValue('--box-narrow-padding-block-start')).toBe('var(--base-size-64)')
+    expect(outerStyle.getPropertyValue('--box-narrow-padding-inline-start')).toBe('')
 
-    expect(innerStyle.getPropertyValue('--box-npbs')).toBe('')
-    expect(innerStyle.getPropertyValue('--box-npis')).toBe('var(--base-size-96)')
+    expect(innerStyle.getPropertyValue('--box-narrow-padding-block-start')).toBe('')
+    expect(innerStyle.getPropertyValue('--box-narrow-padding-inline-start')).toBe('var(--base-size-96)')
   })
 
   it('will set the correct styles for background colors', () => {
