@@ -67,7 +67,7 @@ type PlaygroundProps = TestimonialProps & {
 const Template = (args: PlaygroundProps) => {
   const {type, width, name, position, quote} = args
   return (
-    <div style={{width}}>
+    <div style={{width, maxWidth: '100%'}}>
       <Testimonial {...args}>
         <Testimonial.Quote>{quote}</Testimonial.Quote>
         {type === 'avatar' && (
@@ -94,7 +94,7 @@ const Template = (args: PlaygroundProps) => {
 export const Playground = Template.bind({})
 
 export const Avatar = () => (
-  <div style={{width: 400}}>
+  <div style={{width: 400, maxWidth: '100%'}}>
     <Testimonial>
       <Testimonial.Quote>
         GitHub helps us ensure that we have our security controls baked into our pipelines all the way from the first
@@ -110,7 +110,7 @@ export const Avatar = () => (
 )
 
 export const Logo = () => (
-  <div style={{width: 400}}>
+  <div style={{width: 400, maxWidth: '100%'}}>
     <Testimonial>
       <Testimonial.Quote>
         GitHub helps us ensure that we have our security controls baked into our pipelines all the way from the first
@@ -228,18 +228,20 @@ export const Trio = args => (
 )
 
 export const ColoredQuoteMark = args => (
-  <Testimonial style={{width: 400}} {...args}>
-    <Testimonial.Quote>
-      GitHub helps us ensure that we have our security controls baked into our pipelines all the way from the first line
-      of code we&apos;re writing.
-    </Testimonial.Quote>
-    <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
+  <div style={{width: 400, maxWidth: '100%'}}>
+    <Testimonial {...args}>
+      <Testimonial.Quote>
+        GitHub helps us ensure that we have our security controls baked into our pipelines all the way from the first
+        line of code we&apos;re writing.
+      </Testimonial.Quote>
+      <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
 
-    <Testimonial.Avatar
-      src="https://avatars.githubusercontent.com/u/92997159?v=4"
-      alt="Circular avatar from David Ross's GitHub profile"
-    />
-  </Testimonial>
+      <Testimonial.Avatar
+        src="https://avatars.githubusercontent.com/u/92997159?v=4"
+        alt="Circular avatar from David Ross's GitHub profile"
+      />
+    </Testimonial>
+  </div>
 )
 
 ColoredQuoteMark.args = {
@@ -247,17 +249,19 @@ ColoredQuoteMark.args = {
 }
 
 export const Large = args => (
-  <Testimonial style={{width: 720}} {...args}>
-    <Testimonial.Quote>
-      GitHub helps us ensure that we have our security controls baked into our pipelines all the way from the first line
-      of code we&apos;re writing.
-    </Testimonial.Quote>
-    <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
-    <Testimonial.Avatar
-      src="https://avatars.githubusercontent.com/u/92997159?v=4"
-      alt="Circular avatar from David Ross's GitHub profile"
-    />
-  </Testimonial>
+  <div style={{width: 720, maxWidth: '100%'}}>
+    <Testimonial {...args}>
+      <Testimonial.Quote>
+        GitHub helps us ensure that we have our security controls baked into our pipelines all the way from the first
+        line of code we&apos;re writing.
+      </Testimonial.Quote>
+      <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
+      <Testimonial.Avatar
+        src="https://avatars.githubusercontent.com/u/92997159?v=4"
+        alt="Circular avatar from David Ross's GitHub profile"
+      />
+    </Testimonial>
+  </div>
 )
 
 Large.args = {
@@ -265,18 +269,20 @@ Large.args = {
 }
 
 export const LargeHighlightedPortion = args => (
-  <Testimonial style={{width: 720}} {...args}>
-    <Testimonial.Quote>
-      <em>GitHub helps us ensure that we have our security controls baked into our pipelines</em> all the way from the
-      first line of code we&apos;re writing.
-    </Testimonial.Quote>
-    <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
+  <div style={{width: 720, maxWidth: '100%'}}>
+    <Testimonial {...args}>
+      <Testimonial.Quote>
+        <em>GitHub helps us ensure that we have our security controls baked into our pipelines</em> all the way from the
+        first line of code we&apos;re writing.
+      </Testimonial.Quote>
+      <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
 
-    <Testimonial.Avatar
-      src="https://avatars.githubusercontent.com/u/92997159?v=4"
-      alt="Circular avatar from David Ross's GitHub profile"
-    />
-  </Testimonial>
+      <Testimonial.Avatar
+        src="https://avatars.githubusercontent.com/u/92997159?v=4"
+        alt="Circular avatar from David Ross's GitHub profile"
+      />
+    </Testimonial>
+  </div>
 )
 
 LargeHighlightedPortion.args = {
