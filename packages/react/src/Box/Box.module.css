@@ -1,55 +1,67 @@
 .Box {
-  --box-narrow-padding-block-start: 0;
-  --box-narrow-padding-block-end: 0;
-  --box-narrow-padding-inline-start: 0;
-  --box-narrow-padding-inline-end: 0;
-  --box-narrow-margin-block-start: 0;
-  --box-narrow-margin-block-end: 0;
-  --box-narrow-margin-inline-start: 0;
-  --box-narrow-margin-inline-end: 0;
+  --box-n-pad: 0;
+  --box-n-padBlockStart: 0;
+  --box-n-padBlockEnd: 0;
+  --box-n-padInlineStart: 0;
+  --box-n-padInlineEnd: 0;
+  --box-n-mar: 0;
+  --box-n-marBlockStart: 0;
+  --box-n-marBlockEnd: 0;
+  --box-n-marInlineStart: 0;
+  --box-n-marInlineEnd: 0;
 
-  padding-block: var(--box-narrow-padding-block-start) var(--box-narrow-padding-block-end);
-  padding-inline: var(--box-narrow-padding-inline-start) var(--box-narrow-padding-inline-end);
+  padding: var(--box-n-pad);
+  padding-block: var(--box-n-padBlockStart) var(--box-n-padBlockEnd);
+  padding-inline: var(--box-n-padInlineStart) var(--box-n-padInlineEnd);
 
-  margin-block: var(--box-narrow-margin-block-start) var(--box-narrow-margin-block-end);
-  margin-inline: var(--box-narrow-margin-inline-start) var(--box-narrow-margin-inline-end);
+  margin: var(--box-n-mar);
+  margin-block: var(--box-n-marBlockStart) var(--box-n-marBlockEnd);
+  margin-inline: var(--box-n-marInlineStart) var(--box-n-marInlineEnd);
 }
 
 @media screen and (min-width: 48rem) {
   .Box {
-    --box-regular-padding-block-start: 0;
-    --box-regular-padding-block-end: 0;
-    --box-regular-padding-inline-start: 0;
-    --box-regular-padding-inline-end: 0;
-    --box-regular-margin-block-start: 0;
-    --box-regular-margin-block-end: 0;
-    --box-regular-margin-inline-start: 0;
-    --box-regular-margin-inline-end: 0;
+    --box-r-pad: 0;
+    --box-r-padBlockStart: 0;
+    --box-r-padBlockEnd: 0;
+    --box-r-padInlineStart: 0;
+    --box-r-padInlineEnd: 0;
+    --box-r-mar: 0;
+    --box-r-marBlockStart: 0;
+    --box-r-marBlockEnd: 0;
+    --box-r-marInlineStart: 0;
+    --box-r-marInlineEnd: 0;
 
-    padding-block: var(--box-regular-padding-block-start) var(--box-regular-padding-block-end);
-    padding-inline: var(--box-regular-padding-inline-start) var(--box-regular-padding-inline-end);
+    padding: var(--box-r-pad);
+    padding-block: var(--box-r-padBlockStart) var(--box-r-padBlockEnd);
+    padding-inline: var(--box-r-padInlineStart) var(--box-r-padInlineEnd);
 
-    margin-block: var(--box-regular-margin-block-start) var(--box-regular-margin-block-end);
-    margin-inline: var(--box-regular-margin-inline-start) var(--box-regular-margin-inline-end);
+    margin: var(--box-r-mar);
+    margin-block: var(--box-r-marBlockStart) var(--box-r-marBlockEnd);
+    margin-inline: var(--box-r-marInlineStart) var(--box-r-marInlineEnd);
   }
 }
 
 @media screen and (min-width: 80rem) {
   .Box {
-    --box-wide-padding-block-start: 0;
-    --box-wide-padding-block-end: 0;
-    --box-wide-padding-inline-start: 0;
-    --box-wide-padding-inline-end: 0;
-    --box-wide-margin-block-start: 0;
-    --box-wide-margin-block-end: 0;
-    --box-wide-margin-inline-start: 0;
-    --box-wide-margin-inline-end: 0;
+    --box-w-pad: 0;
+    --box-w-padBlockStart: 0;
+    --box-w-padBlockEnd: 0;
+    --box-w-padInlineStart: 0;
+    --box-w-padInlineEnd: 0;
+    --box-w-mar: 0;
+    --box-w-marBlockStart: 0;
+    --box-w-marBlockEnd: 0;
+    --box-w-marInlineStart: 0;
+    --box-w-marInlineEnd: 0;
 
-    padding-block: var(--box-wide-padding-block-start) var(--box-wide-padding-block-end);
-    padding-inline: var(--box-wide-padding-inline-start) var(--box-wide-padding-inline-end);
+    padding: var(--box-w-pad);
+    padding-block: var(--box-w-padBlockStart) var(--box-w-padBlockEnd);
+    padding-inline: var(--box-w-padInlineStart) var(--box-w-padInlineEnd);
 
-    margin-block: var(--box-wide-margin-block-start) var(--box-wide-margin-block-end);
-    margin-inline: var(--box-wide-margin-inline-start) var(--box-wide-margin-inline-end);
+    margin: var(--box-w-mar);
+    margin-block: var(--box-w-marBlockStart) var(--box-w-marBlockEnd);
+    margin-inline: var(--box-w-marInlineStart) var(--box-w-marInlineEnd);
   }
 }
 

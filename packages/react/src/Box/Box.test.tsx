@@ -26,53 +26,43 @@ const testSpacingValues: {size: SpacingValues; variable: string}[] = [
 const spacingPropVariableMap: {prop: string; variableNames: string[]}[] = [
   {
     prop: 'padding',
-    variableNames: [
-      '--box-narrow-padding-block-start',
-      '--box-narrow-padding-block-end',
-      '--box-narrow-padding-inline-start',
-      '--box-narrow-padding-inline-end',
-    ],
+    variableNames: ['--box-n-pad'],
   },
   {
     prop: 'paddingBlockStart',
-    variableNames: ['--box-narrow-padding-block-start'],
+    variableNames: ['--box-n-padBlockStart'],
   },
   {
     prop: 'paddingInlineEnd',
-    variableNames: ['--box-narrow-padding-inline-end'],
+    variableNames: ['--box-n-padInlineEnd'],
   },
   {
     prop: 'paddingBlockEnd',
-    variableNames: ['--box-narrow-padding-block-end'],
+    variableNames: ['--box-n-padBlockEnd'],
   },
   {
     prop: 'paddingInlineStart',
-    variableNames: ['--box-narrow-padding-inline-start'],
+    variableNames: ['--box-n-padInlineStart'],
   },
   {
     prop: 'margin',
-    variableNames: [
-      '--box-narrow-margin-block-start',
-      '--box-narrow-margin-block-end',
-      '--box-narrow-margin-inline-start',
-      '--box-narrow-margin-inline-end',
-    ],
+    variableNames: ['--box-n-mar'],
   },
   {
     prop: 'marginBlockStart',
-    variableNames: ['--box-narrow-margin-block-start'],
+    variableNames: ['--box-n-marBlockStart'],
   },
   {
     prop: 'marginInlineEnd',
-    variableNames: ['--box-narrow-margin-inline-end'],
+    variableNames: ['--box-n-marInlineEnd'],
   },
   {
     prop: 'marginBlockEnd',
-    variableNames: ['--box-narrow-margin-block-end'],
+    variableNames: ['--box-n-marBlockEnd'],
   },
   {
     prop: 'marginInlineStart',
-    variableNames: ['--box-narrow-margin-inline-start'],
+    variableNames: ['--box-n-marInlineStart'],
   },
 ]
 
@@ -133,11 +123,11 @@ describe('Box', () => {
     const outerStyle = getComputedStyle(outerBox)
     const innerStyle = getComputedStyle(innerBox)
 
-    expect(outerStyle.getPropertyValue('--box-narrow-padding-block-start')).toBe('var(--base-size-64)')
-    expect(outerStyle.getPropertyValue('--box-narrow-padding-inline-start')).toBe('')
+    expect(outerStyle.getPropertyValue('--box-n-padBlockStart')).toBe('var(--base-size-64)')
+    expect(outerStyle.getPropertyValue('--box-n-padInlineStart')).toBe('')
 
-    expect(innerStyle.getPropertyValue('--box-narrow-padding-block-start')).toBe('')
-    expect(innerStyle.getPropertyValue('--box-narrow-padding-inline-start')).toBe('var(--base-size-96)')
+    expect(innerStyle.getPropertyValue('--box-n-padBlockStart')).toBe('')
+    expect(innerStyle.getPropertyValue('--box-n-padInlineStart')).toBe('var(--base-size-96)')
   })
 
   it('will set the correct styles for background colors', () => {
