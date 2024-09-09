@@ -2,7 +2,7 @@
 '@primer/react-brand': patch
 ---
 
-Added support for emphasized text using `<b>` elements to Bento, RiverBreakout, SectionIntro, Timeline, and Testimonial components.
+Added support for `<b>` elements to `Bento`, `RiverBreakout`, `SectionIntro`, `Timeline`, and `Testimonial` components, as `<em>` is semantically interpreted by screen readers for emphasis, while `<b>` allows duo-tone text to function purely as a visual decoration.
 
 Usage example:
 
