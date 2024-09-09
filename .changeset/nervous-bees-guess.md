@@ -14,5 +14,5 @@ Usage example:
 </SectionIntro>
 ```
 
-> **Warning**
+> **Important**
 > The updated components still support the use of `<em>` elements for backward compatibility, but moving forward, the only recommended element for emphasized text is `<b>`.
