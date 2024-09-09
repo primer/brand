@@ -37,6 +37,7 @@
       },
       "full": {
         "value": "9999px",
+        "$type": "dimension",
         "comment": "Use this border radius for pill shaped elements"
       }
     }
