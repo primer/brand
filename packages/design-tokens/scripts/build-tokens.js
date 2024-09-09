@@ -133,10 +133,15 @@ const darkJson = require('../src/tokens/base/colors/dark')
         files: [
           {
             destination: `tokens/functional/size/size-fine.css`,
-            format: `css/touch-target-desktop`,
+            format: `css/advanced`,
             filter: token => token.filePath.includes('fine'),
             options: {
               outputReferences: true,
+              queries: [
+                {
+                  query: '@media (pointer: fine)',
+                },
+              ],
             },
           },
         ],
@@ -154,10 +159,15 @@ const darkJson = require('../src/tokens/base/colors/dark')
         files: [
           {
             destination: `tokens/functional/size/size-coarse.css`,
-            format: `css/touch-target-mobile`,
+            format: `css/advanced`,
             filter: token => token.filePath.includes('coarse'),
             options: {
               outputReferences: true,
+              queries: [
+                {
+                  query: '@media (pointer: coarse)',
+                },
+              ],
             },
           },
         ],
