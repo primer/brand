@@ -1,5 +1,11 @@
 # @primer/react-brand
 
+## 0.40.0
+
+### Minor Changes
+
+- [#690](https://github.com/primer/brand/pull/690) [`98fa3a2a`](https://github.com/primer/brand/commit/98fa3a2a943211343bac426dd9097d5772aa4d64) Thanks [@rezrah](https://github.com/rezrah)! - Improved React 19 compatibility by treating `react-dom/client` and `react/jsx-runtime` as external dependencies of the project. This change resolved a reported conflict with the latest React 19 release candidate.
+
 ## 0.39.0
 
 ### Minor Changes
