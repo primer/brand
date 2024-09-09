@@ -317,7 +317,7 @@
   background: white;
   box-shadow: 0 var(--base-size-4) var(--base-size-4) #1b1f2433;
   transform: translate3d(-50%, 0, 0);
-  padding: var(--brand-VideoPlayer-tooltip-padding);
+  padding: var(--brand-VideoPlayer-tooltip-padding-block) var(--brand-VideoPlayer-tooltip-padding-inline);
   border-radius: var(--brand-borderRadius-medium);
 }
 

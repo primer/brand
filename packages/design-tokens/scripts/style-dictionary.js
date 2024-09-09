@@ -13,45 +13,11 @@ const {fileHeader, formattedVariables} = StyleDictionary.formatHelpers
 // functions to be extracted
 // TODO: extract to a separate files
 
-// REGISTER THE CUSTOM TRANFORMS
-
-// find values with px unit
-function isPx(value) {
-  return /[\d.]+px$/.test(value)
-}
-
-// transform: px to rem
-StyleDictionary.registerTransform({
-  name: 'pxToRem',
-  type: 'value',
-  transformer: token => {
-    if (isPx(token.value)) {
-      const baseFontSize = 16
-      const floatValue = parseFloat(token.value.replace('px', ''))
-
-      if (isNaN(floatValue)) {
-        return token.value
-      }
-
-      if (floatValue === 0) {
-        return '0'
-      }
-
-      if (token.name.includes('lineHeight')) {
-        return `${floatValue / baseFontSize}`
-      }
-
-      return `${floatValue / baseFontSize}rem`
-    }
-    return token.value
-  },
-})
-
 // REGISTER THE CUSTOM TRANFORM GROUPS
 
 StyleDictionary.registerTransformGroup({
   name: 'css',
-  transforms: ['name/pathToKebabCase', 'pxToRem', 'typography/css'],
+  transforms: ['name/pathToKebabCase', 'dimension/rem', 'typography/css'],
 })
 
 // REGISTER A CUSTOM FORMAT
