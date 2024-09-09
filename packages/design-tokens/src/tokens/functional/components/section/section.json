@@ -38,7 +38,8 @@
       },
       "container": {
         "maxWidth": {
-          "value": "1280px"
+          "value": "1280px",
+          "$type": "dimension"
         }
       }
     }
