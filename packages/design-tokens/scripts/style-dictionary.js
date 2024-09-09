@@ -7,7 +7,7 @@ const {PrimerStyleDictionary} = require('@primer/primitives/dist/build/PrimerSty
 
 const StyleDictionary = PrimerStyleDictionary
 
-const {fileHeader, formattedVariables} = StyleDictionary.formatHelpers
+const {fileHeader} = StyleDictionary.formatHelpers
 
 //-----
 // functions to be extracted
@@ -21,35 +21,6 @@ StyleDictionary.registerTransformGroup({
 })
 
 // REGISTER A CUSTOM FORMAT
-
-// wrap mobile tokens in media query
-StyleDictionary.registerFormat({
-  name: 'css/touch-target-mobile',
-  formatter({dictionary, file, options}) {
-    const {outputReferences} = options
-    return `${fileHeader({file})}
-    @media (pointer: coarse) { :root {\n${formattedVariables({
-      format: 'css',
-      dictionary,
-      outputReferences,
-    })}\n}}\n`
-  },
-})
-
-// wrap desktop tokens in media query
-StyleDictionary.registerFormat({
-  name: 'css/touch-target-desktop',
-  formatter({dictionary, file, options}) {
-    const {outputReferences} = options
-    return `${fileHeader({file})}
-    @media (pointer: fine) { :root {\n${formattedVariables({
-      format: 'css',
-      dictionary,
-      outputReferences,
-    })}\n}}\n`
-  },
-})
-
 /**
  * Replacement format for javascript/module
  */
