@@ -2,7 +2,8 @@
   "brand": {
     "IDE": {
       "height": {
-        "value": "800px"
+        "value": "800px",
+        "$type": "dimension"
       }
     }
   }
