@@ -45,7 +45,14 @@
       },
       "tooltip": {
         "padding": {
-          "value": "5px 10px"
+          "block": {
+            "value": "10px",
+            "$type": "dimension"
+          },
+          "inline": {
+            "value": "5px",
+            "$type": "dimension"
+          }
         }
       }
     }
