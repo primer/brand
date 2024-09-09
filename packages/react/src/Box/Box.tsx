@@ -142,10 +142,8 @@ const classBuilder = (
 const isSpacingMap = (spacing?: SpacingValues | ResponsiveSpacingMap): spacing is ResponsiveSpacingMap =>
   typeof spacing === 'object'
 
-const isSpacingSet = (spacing?: SpacingValues | ResponsiveSpacingMap): boolean => Boolean(spacing && spacing !== 'none')
-
 const parseSpacingValues = (spacing?: SpacingValues): string | null => {
-  if (!isSpacingSet(spacing)) {
+  if (!spacing || spacing === 'none') {
     return null
   }
 
@@ -160,21 +158,17 @@ const parseSpacing = <T extends Type>(
   type: T,
   spacing: SpacingValues | ResponsiveSpacingMap = 'none',
 ): VariableMap<T> => {
-  const variableMap = {} as VariableMap<T>
-
-  let narrowSpacingValue: string | null
-  let regularSpacingValue: string | null
-  let wideSpacingValue: string | null
-
-  if (isSpacingMap(spacing)) {
-    narrowSpacingValue = parseSpacingValues(spacing.narrow)
-    regularSpacingValue = spacing.regular ? parseSpacingValues(spacing.regular) : narrowSpacingValue
-    wideSpacingValue = spacing.wide ? parseSpacingValues(spacing.wide) : regularSpacingValue
-  } else {
-    narrowSpacingValue = parseSpacingValues(spacing)
-    regularSpacingValue = narrowSpacingValue
-    wideSpacingValue = narrowSpacingValue
+  if (!isSpacingMap(spacing)) {
+    return {
+      [`--box-narrow-${type}`]: parseSpacingValues(spacing),
+    } as VariableMap<T>
   }
+
+  const narrowSpacingValue = parseSpacingValues(spacing.narrow)
+  const regularSpacingValue = parseSpacingValues(spacing.regular)
+  const wideSpacingValue = parseSpacingValues(spacing.wide)
+
+  const variableMap: Record<string, string> = {}
 
   if (narrowSpacingValue) {
     variableMap[`--box-narrow-${type}`] = narrowSpacingValue
@@ -188,7 +182,7 @@ const parseSpacing = <T extends Type>(
     variableMap[`--box-wide-${type}`] = wideSpacingValue
   }
 
-  return variableMap
+  return variableMap as VariableMap<T>
 }
 
 /**

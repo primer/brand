@@ -31,47 +31,23 @@ const spacingPropVariableMap: {prop: string; variableNames: string[]}[] = [
       '--box-narrow-padding-block-end',
       '--box-narrow-padding-inline-start',
       '--box-narrow-padding-inline-end',
-      '--box-regular-padding-block-start',
-      '--box-regular-padding-block-end',
-      '--box-regular-padding-inline-start',
-      '--box-regular-padding-inline-end',
-      '--box-wide-padding-block-start',
-      '--box-wide-padding-block-end',
-      '--box-wide-padding-inline-start',
-      '--box-wide-padding-inline-end',
     ],
   },
   {
     prop: 'paddingBlockStart',
-    variableNames: [
-      '--box-narrow-padding-block-start',
-      '--box-regular-padding-block-start',
-      '--box-wide-padding-block-start',
-    ],
+    variableNames: ['--box-narrow-padding-block-start'],
   },
   {
     prop: 'paddingInlineEnd',
-    variableNames: [
-      '--box-narrow-padding-inline-end',
-      '--box-regular-padding-inline-end',
-      '--box-wide-padding-inline-end',
-    ],
+    variableNames: ['--box-narrow-padding-inline-end'],
   },
   {
     prop: 'paddingBlockEnd',
-    variableNames: [
-      '--box-narrow-padding-block-end',
-      '--box-regular-padding-block-end',
-      '--box-wide-padding-block-end',
-    ],
+    variableNames: ['--box-narrow-padding-block-end'],
   },
   {
     prop: 'paddingInlineStart',
-    variableNames: [
-      '--box-narrow-padding-inline-start',
-      '--box-regular-padding-inline-start',
-      '--box-wide-padding-inline-start',
-    ],
+    variableNames: ['--box-narrow-padding-inline-start'],
   },
   {
     prop: 'margin',
@@ -80,43 +56,23 @@ const spacingPropVariableMap: {prop: string; variableNames: string[]}[] = [
       '--box-narrow-margin-block-end',
       '--box-narrow-margin-inline-start',
       '--box-narrow-margin-inline-end',
-      '--box-regular-margin-block-start',
-      '--box-regular-margin-block-end',
-      '--box-regular-margin-inline-start',
-      '--box-regular-margin-inline-end',
-      '--box-wide-margin-block-start',
-      '--box-wide-margin-block-end',
-      '--box-wide-margin-inline-start',
-      '--box-wide-margin-inline-end',
     ],
   },
   {
     prop: 'marginBlockStart',
-    variableNames: [
-      '--box-narrow-margin-block-start',
-      '--box-regular-margin-block-start',
-      '--box-wide-margin-block-start',
-    ],
+    variableNames: ['--box-narrow-margin-block-start'],
   },
   {
     prop: 'marginInlineEnd',
-    variableNames: [
-      '--box-narrow-margin-inline-end',
-      '--box-regular-margin-inline-end',
-      '--box-wide-margin-inline-end',
-    ],
+    variableNames: ['--box-narrow-margin-inline-end'],
   },
   {
     prop: 'marginBlockEnd',
-    variableNames: ['--box-narrow-margin-block-end', '--box-regular-margin-block-end', '--box-wide-margin-block-end'],
+    variableNames: ['--box-narrow-margin-block-end'],
   },
   {
     prop: 'marginInlineStart',
-    variableNames: [
-      '--box-narrow-margin-inline-start',
-      '--box-regular-margin-inline-start',
-      '--box-wide-margin-inline-start',
-    ],
+    variableNames: ['--box-narrow-margin-inline-start'],
   },
 ]
 
