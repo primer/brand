@@ -53,7 +53,7 @@
 
 .VideoPlayer__playButtonOverlay:focus-visible {
   outline: var(--brand-borderWidth-thicker) solid var(--brand-color-focus);
-  outline-offset: 2px;
+  outline-offset: var(--base-size-2);
 }
 
 .VideoPlayer__playButton {
@@ -234,7 +234,7 @@
 
 .VideoPlayer__rangeInput:focus-visible {
   outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
-  outline-offset: 4px;
+  outline-offset: var(--base-size-4);
   opacity: 1;
 }
 
