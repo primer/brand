@@ -2,9 +2,7 @@
  * Ported from primer/primitives, as it was removed in v8 release and we still need it
  */
 const glob = require('fast-glob')
-const {PrimerStyleDictionary} = require('@primer/primitives/dist/build/PrimerStyleDictionary.js')
-
-const StyleDictionary = PrimerStyleDictionary
+const {PrimerStyleDictionary: StyleDictionary} = require('@primer/primitives/dist/build/PrimerStyleDictionary.js')
 
 const {fileHeader} = StyleDictionary.formatHelpers
 

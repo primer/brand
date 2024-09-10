@@ -1,5 +1,5 @@
-const {PrimerStyleDictionary} = require('@primer/primitives/dist/build/PrimerStyleDictionary.js')
-const {fileHeader} = PrimerStyleDictionary.formatHelpers
+const {StyleDictionary} = require('../../scripts/style-dictionary')
+const {fileHeader} = StyleDictionary.formatHelpers
 
 const tsModuleDeclaration = {
   name: 'typescript/module-declarations-v2',
