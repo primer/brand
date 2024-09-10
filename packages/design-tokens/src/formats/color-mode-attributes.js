@@ -1,6 +1,5 @@
 const {StyleDictionary} = require('../../scripts/style-dictionary')
-const {fileHeader, sortByReference} = StyleDictionary.formatHelpers
-const createPropertyFormatter = require('style-dictionary/lib/common/formatHelpers/createPropertyFormatter')
+const {fileHeader, sortByReference, createPropertyFormatter} = StyleDictionary.formatHelpers
 const prettier = require('prettier')
 
 /**
