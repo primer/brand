@@ -1,6 +1,7 @@
 const fs = require('fs')
 const {buildPrimitives, StyleDictionary} = require('./style-dictionary')
 
+const tsModuleDeclaration = require('../src/formats/typescript-module-declarations-v2')
 const mediaQueryFormat = require('../src/formats/responsive-media-query')
 const colorModeFormat = require('../src/formats/color-mode-attributes')
 
@@ -64,37 +65,10 @@ const darkJson = require('../src/tokens/base/colors/dark')
   })
 
   /**
-   * Added to replace the same transform in Primer Primitives
-   * The upstream transform removes rem from lineheight, but this
-   * causes a visual regression in Primer Brand.
-   * @see https://github.com/primer/primitives/blob/b51c743a0fe26ab7885a9cc82420f400ad35cce7/build.js#L66
-   *
-   * TODO: Investigate why unitless lineheight doesn't work
-   *
+   * Replacement format for typescript/module-declarations
+   * Type schema corresponds to javascript/module-v2 format
    */
-  StyleDictionary.registerTransform({
-    name: 'pxToRem',
-    type: 'value',
-    transformer: token => {
-      function isPx(value) {
-        return /[\d.]+px$/.test(value)
-      }
-
-      if (isPx(token.value)) {
-        const baseFontSize = 16
-        const floatValue = parseFloat(token.value.replace('px', ''))
-        if (isNaN(floatValue)) {
-          return token.value
-        }
-        if (floatValue === 0) {
-          return '0'
-        }
-
-        return `${floatValue / baseFontSize}rem`
-      }
-      return token.value
-    },
-  })
+  StyleDictionary.registerFormat(tsModuleDeclaration)
 
   //build most tokens
   buildPrimitives({
