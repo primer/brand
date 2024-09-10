@@ -248,7 +248,7 @@ function buildPrimitives(
         // map the array of token file paths to style dictionary output files
         files: files.map(filePath => {
           return {
-            format: `javascript/module-v2`,
+            format: `javascript/commonJs`,
             destination: filePath.replace(`.json`, `.js`),
             filter: token => token.filePath === filePath && token.isSource,
           }
