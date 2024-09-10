@@ -8,9 +8,117 @@ import {
   BoxBackgroundColors,
   BoxBorderColorOptions,
   BoxBorderRadiusOptions,
-  BoxSpacingValues,
   BoxBorderWidthOptions,
+  type SpacingValues,
 } from './Box'
+import {BaseSizeScale} from '../constants'
+
+const testSpacingValues: {size: SpacingValues; variable: string}[] = [
+  {size: 'none', variable: ''},
+  {size: 'condensed', variable: 'var(--brand-box-spacing-condensed)'},
+  {size: 'normal', variable: 'var(--brand-box-spacing-normal)'},
+  {size: 'spacious', variable: 'var(--brand-box-spacing-spacious)'},
+  ...BaseSizeScale.map(
+    size => ({size, variable: `var(--base-size-${size})`} as {size: SpacingValues; variable: string}),
+  ),
+]
+
+const spacingPropVariableMap: {prop: string; variableNames: string[]}[] = [
+  {
+    prop: 'padding',
+    variableNames: [
+      '--box-narrow-padding-block-start',
+      '--box-narrow-padding-block-end',
+      '--box-narrow-padding-inline-start',
+      '--box-narrow-padding-inline-end',
+      '--box-regular-padding-block-start',
+      '--box-regular-padding-block-end',
+      '--box-regular-padding-inline-start',
+      '--box-regular-padding-inline-end',
+      '--box-wide-padding-block-start',
+      '--box-wide-padding-block-end',
+      '--box-wide-padding-inline-start',
+      '--box-wide-padding-inline-end',
+    ],
+  },
+  {
+    prop: 'paddingBlockStart',
+    variableNames: [
+      '--box-narrow-padding-block-start',
+      '--box-regular-padding-block-start',
+      '--box-wide-padding-block-start',
+    ],
+  },
+  {
+    prop: 'paddingInlineEnd',
+    variableNames: [
+      '--box-narrow-padding-inline-end',
+      '--box-regular-padding-inline-end',
+      '--box-wide-padding-inline-end',
+    ],
+  },
+  {
+    prop: 'paddingBlockEnd',
+    variableNames: [
+      '--box-narrow-padding-block-end',
+      '--box-regular-padding-block-end',
+      '--box-wide-padding-block-end',
+    ],
+  },
+  {
+    prop: 'paddingInlineStart',
+    variableNames: [
+      '--box-narrow-padding-inline-start',
+      '--box-regular-padding-inline-start',
+      '--box-wide-padding-inline-start',
+    ],
+  },
+  {
+    prop: 'margin',
+    variableNames: [
+      '--box-narrow-margin-block-start',
+      '--box-narrow-margin-block-end',
+      '--box-narrow-margin-inline-start',
+      '--box-narrow-margin-inline-end',
+      '--box-regular-margin-block-start',
+      '--box-regular-margin-block-end',
+      '--box-regular-margin-inline-start',
+      '--box-regular-margin-inline-end',
+      '--box-wide-margin-block-start',
+      '--box-wide-margin-block-end',
+      '--box-wide-margin-inline-start',
+      '--box-wide-margin-inline-end',
+    ],
+  },
+  {
+    prop: 'marginBlockStart',
+    variableNames: [
+      '--box-narrow-margin-block-start',
+      '--box-regular-margin-block-start',
+      '--box-wide-margin-block-start',
+    ],
+  },
+  {
+    prop: 'marginInlineEnd',
+    variableNames: [
+      '--box-narrow-margin-inline-end',
+      '--box-regular-margin-inline-end',
+      '--box-wide-margin-inline-end',
+    ],
+  },
+  {
+    prop: 'marginBlockEnd',
+    variableNames: ['--box-narrow-margin-block-end', '--box-regular-margin-block-end', '--box-wide-margin-block-end'],
+  },
+  {
+    prop: 'marginInlineStart',
+    variableNames: [
+      '--box-narrow-margin-inline-start',
+      '--box-regular-margin-inline-start',
+      '--box-wide-margin-inline-start',
+    ],
+  },
+]
 
 expect.extend(toHaveNoViolations)
 
@@ -44,130 +152,36 @@ describe('Box', () => {
     expect(getByText('Fragment')).toBeInTheDocument()
   })
 
-  it('will set the correct styles for non-responsive, uniform spacing', () => {
-    for (const size of BoxSpacingValues) {
-      const expectedClass = `Box-padding--${size} Box-margin--${size}`
+  describe.each(spacingPropVariableMap)('when $prop', ({prop, variableNames}) => {
+    describe.each(testSpacingValues)(`equals "$size"`, ({size, variable}) => {
+      it.each(variableNames)(`sets %s to ${variable}`, variableName => {
+        const {getByText} = render(<Box {...{[prop]: size}}>{mockText}</Box>)
 
-      const {getByTestId} = render(
-        <Box data-testid={`box-${size}`} padding={size} margin={size}>
-          {mockText}
-        </Box>,
-      )
+        const boxEl = getByText(mockText)
+        const style = getComputedStyle(boxEl)
 
-      const boxEl = getByTestId(`box-${size}`)
-      expect(boxEl).toHaveClass(expectedClass)
-    }
+        expect(style.getPropertyValue(variableName)).toBe(variable)
+      })
+    })
   })
 
-  it('will set the correct styles for non-responsive, directional spacing', () => {
-    for (const size of BoxSpacingValues) {
-      const expectedClass = `Box-paddingBlockStart--${size} Box-paddingInlineEnd--${size} Box-paddingBlockEnd--${size} Box-paddingInlineStart--${size} Box-marginBlockStart--${size} Box-marginInlineEnd--${size} Box-marginBlockEnd--${size} Box-marginInlineStart--${size}`
-      const {getByTestId} = render(
-        <Box
-          data-testid={`box-${size}`}
-          paddingBlockEnd={size}
-          paddingBlockStart={size}
-          paddingInlineEnd={size}
-          paddingInlineStart={size}
-          marginBlockEnd={size}
-          marginInlineEnd={size}
-          marginBlockStart={size}
-          marginInlineStart={size}
-        >
-          {mockText}
-        </Box>,
-      )
+  it('sets the correct spacing variables in nested boxes', () => {
+    const {getByTestId} = render(
+      <Box paddingBlockStart={64} data-testid="outer">
+        <Box paddingInlineStart={96} data-testid="inner"></Box>
+      </Box>,
+    )
 
-      const boxEl = getByTestId(`box-${size}`)
-      expect(boxEl).toHaveClass(expectedClass)
-    }
-  })
+    const outerBox = getByTestId('outer')
+    const innerBox = getByTestId('inner')
+    const outerStyle = getComputedStyle(outerBox)
+    const innerStyle = getComputedStyle(innerBox)
 
-  it('will set the correct styles for responsive direction when a map of breakpoints is provided', () => {
-    const viewports = ['narrow', 'regular', 'wide']
-    const logicalOperators = [
-      'padding',
-      'margin',
-      'marginInlineStart',
-      'paddingInlineStart',
-      'paddingInlineEnd',
-      'marginInlineEnd',
-      'paddingBlockStart',
-      'paddingBlockEnd',
-      'marginBlockStart',
-      'marginBlockEnd',
-    ]
+    expect(outerStyle.getPropertyValue('--box-narrow-padding-block-start')).toBe('var(--base-size-64)')
+    expect(outerStyle.getPropertyValue('--box-narrow-padding-inline-start')).toBe('')
 
-    let testIdCounter = 0
-
-    for (const viewport of viewports) {
-      for (const logicalOperator of logicalOperators) {
-        for (const size of BoxSpacingValues) {
-          const expectedClasses = `Box-${viewport}-${logicalOperator}--${size}`
-          const nextId = testIdCounter++
-          const {getByTestId} = render(
-            <Box
-              data-testid={nextId.toString()}
-              padding={{
-                narrow: size,
-                regular: size,
-                wide: size,
-              }}
-              margin={{
-                narrow: size,
-                regular: size,
-                wide: size,
-              }}
-              paddingBlockEnd={{
-                narrow: size,
-                regular: size,
-                wide: size,
-              }}
-              paddingBlockStart={{
-                narrow: size,
-                regular: size,
-                wide: size,
-              }}
-              paddingInlineEnd={{
-                narrow: size,
-                regular: size,
-                wide: size,
-              }}
-              paddingInlineStart={{
-                narrow: size,
-                regular: size,
-                wide: size,
-              }}
-              marginBlockEnd={{
-                narrow: size,
-                regular: size,
-                wide: size,
-              }}
-              marginInlineEnd={{
-                narrow: size,
-                regular: size,
-                wide: size,
-              }}
-              marginBlockStart={{
-                narrow: size,
-                regular: size,
-                wide: size,
-              }}
-              marginInlineStart={{
-                narrow: size,
-                regular: size,
-                wide: size,
-              }}
-            >
-              {mockText}
-            </Box>,
-          )
-
-          const boxEl = getByTestId(nextId)
-          expect(boxEl).toHaveClass(expectedClasses)
-        }
-      }
-    }
+    expect(innerStyle.getPropertyValue('--box-narrow-padding-block-start')).toBe('')
+    expect(innerStyle.getPropertyValue('--box-narrow-padding-inline-start')).toBe('var(--base-size-96)')
   })
 
   it('will set the correct styles for background colors', () => {
