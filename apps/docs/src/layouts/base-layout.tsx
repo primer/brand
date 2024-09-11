@@ -1,7 +1,6 @@
 import {Box as PRCBox} from '@primer/react'
 import React from 'react'
 import Head from '@primer/gatsby-theme-doctocat/src/components/head'
-import Header from '@primer/gatsby-theme-doctocat/src/components/header'
 import Sidebar from '@primer/gatsby-theme-doctocat/src/components/sidebar'
 
 export function BaseLayout({title, description, children}) {

@@ -1,10 +1,12 @@
-import {HeroLayout} from '@primer/gatsby-theme-doctocat'
 import InlineCode from '@primer/gatsby-theme-doctocat/src/components/inline-code'
 
 import {Box as PRCBox} from '@primer/react'
 import {Link, Button, Heading, InlineLink, Text} from '@primer/react-brand'
 import {version} from '../../../packages/react/package.json'
 import {LinkExternalIcon} from '@primer/octicons-react'
+
+import {BaseLayout} from '../src/layouts/base-layout'
+export default BaseLayout
 
 <PRCBox
   sx={{
@@ -71,5 +73,3 @@ import {LinkExternalIcon} from '@primer/octicons-react'
     </Text>
   </PRCBox>
 </PRCBox>
-
-export default HeroLayout

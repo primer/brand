@@ -27,7 +27,7 @@ export default function ComponentLayout({pageContext, children, path}) {
     <BaseLayout title={title} description={description}>
       <PRCBox sx={{maxWidth: 1200, width: '100%', p: [4, 5, 6, 7], mx: 'auto'}}>
         <Heading as="h1" sx={{fontSize: 7}}>
-          {title}
+          {title} TEST EDIT
         </Heading>
         {description ? (
           <Text as="p" sx={{fontSize: 3, m: 0, mb: 3, maxWidth: '60ch'}}>
