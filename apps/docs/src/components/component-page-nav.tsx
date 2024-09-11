@@ -16,14 +16,14 @@ export function ComponentPageNav({
         to={basePath}
         selected={current === 'overview'}
       >
-        Overview
+        OverviewTEST
       </UnderlineNav.Link>
       <UnderlineNav.Link
         as={GatsbyLink}
         to={`${basePath}/react`}
         selected={current === 'react'}
       >
-        React
+        ReactTEST
       </UnderlineNav.Link>
     </UnderlineNav>
   )
