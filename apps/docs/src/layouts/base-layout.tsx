@@ -8,7 +8,7 @@ export function BaseLayout({title, description, children}) {
   return (
     <PRCBox sx={{flexDirection: 'column', minHeight: '100vh', display: 'flex'}}>
       <Head title={title} description={description} />
-      <Header />
+      <div>Header goes here</div>
       <PRCBox
         sx={{
           zIndex: 0,
