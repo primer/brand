@@ -266,7 +266,6 @@
 
 .Card--skew {
   height: 100%;
-  display: inline-block;
   overflow: hidden;
   border-radius: var(--brand-borderRadius-large);
 }
