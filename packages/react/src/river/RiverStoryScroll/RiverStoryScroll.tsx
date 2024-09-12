@@ -1,7 +1,6 @@
 import clsx from 'clsx'
 import React, {useEffect, useRef} from 'react'
-import {River, RiverProps} from '../../'
-import {BaseProps} from '../../component-helpers'
+import type {RiverProps} from '../../'
 import {RiverStoryScrollProvider} from './RiverStoryScrollProvider'
 import {RiverStoryScrollResponder} from './RiverStoryScrollResponder'
 import {RiverStoryScrollTracker} from './RiverStoryScrollTracker'
@@ -22,10 +21,15 @@ export type RiverStoryScrollProps = {
    * Disable the scroll effect.
    */
   disabled?: boolean
-} & BaseProps<HTMLDivElement>
+  /**
+   * Only River components are allowed as children.
+   */
+  children?: React.ReactElement<RiverProps>[]
+}
+
 type Media = {type: 'image' | 'video'; src: string}
 
-export function RiverStoryScroll({children, disabled}: React.PropsWithChildren<RiverStoryScrollProps>) {
+export function RiverStoryScroll({children, disabled}: RiverStoryScrollProps) {
   const visualContainerRef = useRef<HTMLDivElement | null>(null)
   const contentContainerRef = useRef<HTMLDivElement | null>(null)
 
