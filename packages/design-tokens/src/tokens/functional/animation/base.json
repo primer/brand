@@ -31,27 +31,32 @@
       "variant": {
         "slideInUp": {
           "distance": {
-            "value": "15px"
+            "value": "15px",
+            "$type": "dimension"
           }
         },
         "slideInDown": {
           "distance": {
-            "value": "-15px"
+            "value": "-15px",
+            "$type": "dimension"
           }
         },
         "slideInLeft": {
           "distance": {
-            "value": "15px"
+            "value": "15px",
+            "$type": "dimension"
           }
         },
         "slideInRight": {
           "distance": {
-            "value": "-15px"
+            "value": "-15px",
+            "$type": "dimension"
           }
         },
         "scaleInUp": {
           "distance": {
-            "value": "24px"
+            "value": "24px",
+            "$type": "dimension"
           },
           "start": {
             "value": "0.96"
@@ -62,7 +67,8 @@
         },
         "scaleInDown": {
           "distance": {
-            "value": "-50px"
+            "value": "-50px",
+            "$type": "dimension"
           },
           "start": {
             "value": "0"
@@ -86,7 +92,8 @@
         },
         "scaleInRight": {
           "distance": {
-            "value": "-20px"
+            "value": "-20px",
+            "$type": "dimension"
           },
           "start": {
             "value": "0.90"
@@ -97,7 +104,8 @@
         },
         "scaleInLeft": {
           "distance": {
-            "value": "20px"
+            "value": "20px",
+            "$type": "dimension"
           },
           "start": {
             "value": "0.90"

@@ -2,7 +2,8 @@
   "brand": {
     "Card": {
       "maxWidth": {
-        "value": "420px"
+        "value": "420px",
+        "$type": "dimension"
       },
       "animation": {
         "duration": {

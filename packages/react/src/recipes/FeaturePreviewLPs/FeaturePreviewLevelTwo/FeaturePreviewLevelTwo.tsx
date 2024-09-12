@@ -143,7 +143,7 @@ export function FeaturePreviewLevelTwo({
     return (
       <Testimonial size={num === 1 ? 'large' : 'small'} quoteMarkColor="default">
         <Testimonial.Quote>
-          <em>We&apos;ve used GitHub from the inception of Datadog. It&apos;s a high-quality product,</em> and a lot of
+          <b>We&apos;ve used GitHub from the inception of Datadog. It&apos;s a high-quality product,</b> and a lot of
           our engineers contribute to open source so there&apos;s a sense of community there. GitHub is ingrained in the
           DNA of our engineering, it&apos;s become part of the culture.”
         </Testimonial.Quote>
@@ -366,11 +366,11 @@ export function FeaturePreviewLevelTwo({
                           <Box>
                             <Timeline fullWidth>
                               <Timeline.Item>
-                                <em>This is what it is and it&apos;s great. </em>That&apos;s why and how the greatness
+                                <b>This is what it is and it&apos;s great. </b>That&apos;s why and how the greatness
                                 happens here, we love sub bullets, they allow for more specific technical details.
                               </Timeline.Item>
                               <Timeline.Item>
-                                <em>This is what it is and it&apos;s great. </em>That&apos;s why and how the greatness
+                                <b>This is what it is and it&apos;s great. </b>That&apos;s why and how the greatness
                                 happens here, we love sub bullets, they allow for more specific technical details.
                               </Timeline.Item>
                             </Timeline>
@@ -431,11 +431,11 @@ export function FeaturePreviewLevelTwo({
                           <Box>
                             <Timeline fullWidth>
                               <Timeline.Item>
-                                <em>This is what it is and it&apos;s great. </em>That&apos;s why and how the greatness
+                                <b>This is what it is and it&apos;s great. </b>That&apos;s why and how the greatness
                                 happens here, we love sub bullets, they allow for more specific technical details.
                               </Timeline.Item>
                               <Timeline.Item>
-                                <em>This is what it is and it&apos;s great. </em>That&apos;s why and how the greatness
+                                <b>This is what it is and it&apos;s great. </b>That&apos;s why and how the greatness
                                 happens here, we love sub bullets, they allow for more specific technical details.
                               </Timeline.Item>
                             </Timeline>
@@ -491,11 +491,11 @@ export function FeaturePreviewLevelTwo({
                           <Box>
                             <Timeline fullWidth>
                               <Timeline.Item>
-                                <em>This is what it is and it&apos;s great. </em>That&apos;s why and how the greatness
+                                <b>This is what it is and it&apos;s great. </b>That&apos;s why and how the greatness
                                 happens here, we love sub bullets, they allow for more specific technical details.
                               </Timeline.Item>
                               <Timeline.Item>
-                                <em>This is what it is and it&apos;s great. </em>That&apos;s why and how the greatness
+                                <b>This is what it is and it&apos;s great. </b>That&apos;s why and how the greatness
                                 happens here, we love sub bullets, they allow for more specific technical details.
                               </Timeline.Item>
                             </Timeline>

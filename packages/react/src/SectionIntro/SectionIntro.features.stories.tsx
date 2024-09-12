@@ -72,7 +72,7 @@ export const AlignedCenter = () => (
 export const WithEmphasizedText = () => (
   <SectionIntro>
     <SectionIntro.Heading>
-      <em>Expressive headline</em> about an exclusive set of features.
+      <b>Expressive headline</b> about an exclusive set of features.
     </SectionIntro.Heading>
   </SectionIntro>
 )
@@ -80,7 +80,7 @@ export const WithEmphasizedText = () => (
 export const FullWidth = () => (
   <SectionIntro fullWidth>
     <SectionIntro.Heading>
-      <em>Expressive headline</em> about an exclusive set of features.
+      <b>Expressive headline</b> about an exclusive set of features.
     </SectionIntro.Heading>
   </SectionIntro>
 )

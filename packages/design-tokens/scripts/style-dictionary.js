@@ -1,89 +1,23 @@
 /**
  * Ported from primer/primitives, as it was removed in v8 release and we still need it
  */
-
 const glob = require('fast-glob')
-const {PrimerStyleDictionary} = require('@primer/primitives/dist/build/PrimerStyleDictionary.js')
+const {PrimerStyleDictionary: StyleDictionary} = require('@primer/primitives/dist/build/PrimerStyleDictionary.js')
 
-const StyleDictionary = PrimerStyleDictionary
-
-const {fileHeader, formattedVariables} = StyleDictionary.formatHelpers
+const {fileHeader} = StyleDictionary.formatHelpers
 
 //-----
 // functions to be extracted
 // TODO: extract to a separate files
 
-// REGISTER THE CUSTOM TRANFORMS
-
-// find values with px unit
-function isPx(value) {
-  return /[\d.]+px$/.test(value)
-}
-
-// transform: px to rem
-StyleDictionary.registerTransform({
-  name: 'pxToRem',
-  type: 'value',
-  transformer: token => {
-    if (isPx(token.value)) {
-      const baseFontSize = 16
-      const floatValue = parseFloat(token.value.replace('px', ''))
-
-      if (isNaN(floatValue)) {
-        return token.value
-      }
-
-      if (floatValue === 0) {
-        return '0'
-      }
-
-      if (token.name.includes('lineHeight')) {
-        return `${floatValue / baseFontSize}`
-      }
-
-      return `${floatValue / baseFontSize}rem`
-    }
-    return token.value
-  },
-})
-
 // REGISTER THE CUSTOM TRANFORM GROUPS
 
 StyleDictionary.registerTransformGroup({
   name: 'css',
-  transforms: ['name/pathToKebabCase', 'pxToRem', 'typography/css'],
+  transforms: ['name/pathToKebabCase', 'dimension/rem', 'typography/css'],
 })
 
 // REGISTER A CUSTOM FORMAT
-
-// wrap mobile tokens in media query
-StyleDictionary.registerFormat({
-  name: 'css/touch-target-mobile',
-  formatter({dictionary, file, options}) {
-    const {outputReferences} = options
-    return `${fileHeader({file})}
-    @media (pointer: coarse) { :root {\n${formattedVariables({
-      format: 'css',
-      dictionary,
-      outputReferences,
-    })}\n}}\n`
-  },
-})
-
-// wrap desktop tokens in media query
-StyleDictionary.registerFormat({
-  name: 'css/touch-target-desktop',
-  formatter({dictionary, file, options}) {
-    const {outputReferences} = options
-    return `${fileHeader({file})}
-    @media (pointer: fine) { :root {\n${formattedVariables({
-      format: 'css',
-      dictionary,
-      outputReferences,
-    })}\n}}\n`
-  },
-})
-
 /**
  * Replacement format for javascript/module
  */
@@ -111,62 +45,6 @@ StyleDictionary.registerFormat({
     return `${fileHeader({file})}
     
 module.exports = ${JSON.stringify(recursiveleyFlattenDictionary(dictionary.tokens), null, 2)}`
-  },
-})
-
-/**
- * Replacement format for typescript/module-declarations
- * Type schema corresponds to javascript/module-v2 format
- */
-StyleDictionary.registerFormat({
-  name: 'typescript/module-declarations-v2',
-  formatter({dictionary, options, file}) {
-    const {moduleName = `tokens`} = options
-
-    const getType = value => {
-      switch (typeof value) {
-        case 'string':
-          return 'string'
-        case 'number':
-          return 'number'
-        default:
-          return 'any'
-      }
-    }
-
-    const recursiveTypeGeneration = obj => {
-      const tree = {}
-      const shortHandSizes = ['large', 'medium', 'small']
-      if (typeof obj !== 'object' || Array.isArray(obj)) {
-        return obj
-      }
-
-      if (obj.hasOwnProperty('value') && typeof obj.value === 'string') {
-        return getType(obj.value)
-      } else {
-        for (const name in obj) {
-          if ((obj.hasOwnProperty(name) && obj.name === 'shorthand') || shortHandSizes.includes(obj.name)) {
-            for (const shorthandKey in obj.value) {
-              tree[shorthandKey] = getType(obj.value[shorthandKey])
-            }
-            return tree
-          } else if (obj.hasOwnProperty(name)) {
-            tree[name] = recursiveTypeGeneration(obj[name])
-          }
-        }
-      }
-      return tree
-    }
-
-    const output = `${fileHeader({file})}
-    
-declare const ${moduleName}: ${JSON.stringify(recursiveTypeGeneration(dictionary.tokens), null, 2)}
-export default ${moduleName};`
-
-    return output
-      .replace(/"any"/g, 'any')
-      .replace(/"string"/g, 'string')
-      .replace(/"number"/g, 'number')
   },
 })
 
@@ -271,7 +149,7 @@ function buildPrimitives(
       },
       js: {
         buildPath: `${outputPath}/js/`,
-        transforms: ['name/pathToPascalCase', 'pxToRem'],
+        transforms: ['name/pathToPascalCase', 'dimension/rem'],
         // map the array of token file paths to style dictionary output files
         files: files.map(filePath => {
           return {
@@ -283,7 +161,7 @@ function buildPrimitives(
       },
       jsModule: {
         buildPath: `${outputPath}/js/module/`,
-        transforms: ['pxToRem'],
+        transforms: ['dimension/rem'],
         // map the array of token file paths to style dictionary output files
         files: files.map(filePath => {
           return {
@@ -295,7 +173,7 @@ function buildPrimitives(
       },
       tsTypes: {
         buildPath: `${outputPath}/ts/`,
-        transforms: ['pxToRem'],
+        transforms: ['dimension/rem'],
         // map the array of token file paths to style dictionary output files
         files: files.map(filePath => {
           return {
@@ -307,11 +185,11 @@ function buildPrimitives(
       },
       ts: {
         buildPath: `${outputPath}/ts/`,
-        transforms: ['pxToRem'],
+        transforms: ['dimension/rem'],
         // map the array of token file paths to style dictionary output files
         files: files.map(filePath => {
           return {
-            format: `javascript/module-v2`,
+            format: `javascript/commonJs`,
             destination: filePath.replace(`.json`, `.js`),
             filter: token => token.filePath === filePath && token.isSource,
           }
