@@ -2,6 +2,7 @@ import React, {useEffect, useRef, useState} from 'react'
 import {useStoryScrollContext} from './RiverStoryScrollProvider' // Adjust the import path as necessary
 
 import styles from './RiverStoryScroll.module.css'
+import clsx from 'clsx'
 
 type RiverStoryScrollResponderProps = {
   index: number
@@ -23,7 +24,6 @@ export function RiverStoryScrollResponder({
 
   const {visibilityStates} = useStoryScrollContext()
   const isVisible = visibilityStates[index]
-  const dynamicClassName = `${className || ''} ${isVisible ? visibleClassName : hiddenClassName}`
   const videoRef = useRef<HTMLVideoElement>(null)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [videoStatus, setVideoStatus] = useState<'playing' | 'paused' | 'ended'>('paused')
@@ -55,5 +55,5 @@ export function RiverStoryScrollResponder({
     return child
   })
 
-  return <div className={dynamicClassName}>{parsedChildren}</div>
+  return <div className={clsx(className, isVisible ? visibleClassName : hiddenClassName)}>{parsedChildren}</div>
 }

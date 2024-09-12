@@ -1,7 +1,8 @@
 import React, {useEffect, useRef, useState} from 'react'
-import {useStoryScrollContext} from './RiverStoryScrollProvider'
-import {useWindowSize} from '../../'
+import clsx from 'clsx'
 
+import {useWindowSize} from '../../'
+import {useStoryScrollContext} from './RiverStoryScrollProvider'
 import styles from './RiverStoryScroll.module.css'
 
 type RiverStoryScrollTrackerProps = {
@@ -67,10 +68,11 @@ export const RiverStoryScrollTracker = ({index, children, className = ''}: River
     }
   }, [index, isLarge, setVisibilityStates])
 
-  const dynamicClassName = `${className} ${isIntersecting ? styles['in-viewport'] : styles['outside-viewport']}`
-
   return (
-    <div ref={elementRef} className={dynamicClassName}>
+    <div
+      ref={elementRef}
+      className={clsx(className, isIntersecting ? styles['in-viewport'] : styles['outside-viewport'])}
+    >
       {children}
     </div>
   )
