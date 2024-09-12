@@ -102,13 +102,13 @@ export function RiverStoryScroll({children, disabled}: React.PropsWithChildren<R
                 key={index}
                 index={index}
               >
-                {media[index].type === 'video' && (
+                {item.type === 'video' && (
                   <video playsInline={true} muted={true} preload="auto" className={styles['RiverStoryScroll__image']}>
-                    <source src={media[index].src} type="video/mp4; codecs=avc1.4d002a" />
+                    <source src={item.src} type="video/mp4; codecs=avc1.4d002a" />
                   </video>
                 )}
-                {media[index].type === 'image' && (
-                  <img className={styles['RiverStoryScroll__image']} src={`${media[index].src}`} alt="" />
+                {item.type === 'image' && (
+                  <img className={styles['RiverStoryScroll__image']} src={`${item.src}`} alt="" />
                 )}
               </RiverStoryScrollResponder>
             ))}
