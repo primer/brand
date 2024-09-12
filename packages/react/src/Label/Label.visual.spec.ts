@@ -68,4 +68,11 @@ test.describe('Visual Comparison: Label', () => {
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
+
+  test('Label / With Reflow', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-label-features--with-reflow&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
 })
