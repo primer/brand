@@ -59,33 +59,31 @@ export function RiverStoryScroll({children, disabled}: React.PropsWithChildren<R
   }, [])
 
   useEffect(() => {
-    if (disabled || prefersReducedMotion) return
+    if (disabled || prefersReducedMotion || !contentContainerRef.current) return
 
-    if (contentContainerRef.current) {
-      const mediaElements = Array.from(contentContainerRef.current.querySelectorAll('img, video')).filter(element => {
-        return element.tagName === 'IMG' || element.tagName === 'VIDEO'
-      })
+    const mediaElements = Array.from(contentContainerRef.current.querySelectorAll('img, video')).filter(element => {
+      return element.tagName === 'IMG' || element.tagName === 'VIDEO'
+    })
 
-      const newMedia = mediaElements
-        .map((element): {type: 'image' | 'video'; src: string} | undefined => {
-          if (element.tagName === 'IMG') {
-            return {
-              type: 'image',
-              src: (element as HTMLImageElement).src,
-            }
-          } else if (element.tagName === 'VIDEO') {
-            return {
-              type: 'video',
-              src: (element as HTMLVideoElement).querySelector('source')?.src || '',
-            }
+    const newMedia = mediaElements
+      .map((element): {type: 'image' | 'video'; src: string} | undefined => {
+        if (element.tagName === 'IMG') {
+          return {
+            type: 'image',
+            src: (element as HTMLImageElement).src,
           }
-          return undefined
-        })
-        .filter(Boolean) as Array<{type: 'image' | 'video'; src: string}>
+        } else if (element.tagName === 'VIDEO') {
+          return {
+            type: 'video',
+            src: (element as HTMLVideoElement).querySelector('source')?.src || '',
+          }
+        }
+        return undefined
+      })
+      .filter(Boolean) as Array<{type: 'image' | 'video'; src: string}>
 
-      // set new media
-      setMedia(newMedia)
-    }
+    // set new media
+    setMedia(newMedia)
   }, [disabled, prefersReducedMotion])
 
   if (disabled || prefersReducedMotion) {
