@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react'
+import React, {useEffect, useRef} from 'react'
 import {useStoryScrollContext} from './RiverStoryScrollProvider' // Adjust the import path as necessary
 
 import styles from './RiverStoryScroll.module.css'
@@ -19,30 +19,21 @@ export function RiverStoryScrollResponder({
   visibleClassName = styles['tracker-in-viewport'],
   hiddenClassName = styles['tracker-outside-viewport'],
 }: RiverStoryScrollResponderProps) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const isVideo = React.Children.toArray(children).some(child => React.isValidElement(child) && child.type === 'video')
-
   const {visibilityStates} = useStoryScrollContext()
   const isVisible = visibilityStates[index]
   const videoRef = useRef<HTMLVideoElement>(null)
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [videoStatus, setVideoStatus] = useState<'playing' | 'paused' | 'ended'>('paused')
 
   useEffect(() => {
     const videoElement = videoRef.current
     if (videoElement) {
-      videoElement.onended = () => setVideoStatus('ended')
       if (isVisible) {
-        setVideoStatus('playing')
         // eslint-disable-next-line github/no-then
         videoElement.play().catch(error => {
           // eslint-disable-next-line no-console
           console.error('Error playing the video:', error)
-          setVideoStatus('paused')
         })
       } else {
         videoElement.pause()
-        setVideoStatus('paused')
       }
     }
   }, [isVisible])
