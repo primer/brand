@@ -139,13 +139,16 @@
       "subhead": {
         "size": {
           "medium": {
-            "value": "16px"
+            "value": "16px",
+            "$type": "dimension"
           },
           "large": {
             "value": "18px",
+            "$type": "dimension",
             "responsive": {
               "1012px": {
-                "value": "20px"
+                "value": "20px",
+                "$type": "dimension"
               }
             }
           }
@@ -201,82 +204,104 @@
       },
       "size": {
         "100": {
-          "value": "14px"
+          "value": "14px",
+          "$type": "dimension"
         },
         "200": {
-          "value": "16px"
+          "value": "16px",
+          "$type": "dimension"
         },
         "300": {
-          "value": "18px"
+          "value": "18px",
+          "$type": "dimension"
         },
         "400": {
           "value": "20px",
+          "$type": "dimension",
           "responsive": {
             "1012px": {
-              "value": "24px"
+              "value": "24px",
+              "$type": "dimension"
             }
           }
         },
         "500": {
           "value": "22px",
+          "$type": "dimension",
           "responsive": {
             "1012px": {
-              "value": "32px"
+              "value": "32px",
+              "$type": "dimension"
             }
           }
         },
         "600": {
           "value": "24px",
+          "$type": "dimension",
           "responsive": {
             "768px": {
-              "value": "32px"
+              "value": "32px",
+              "$type": "dimension"
             },
             "1012px": {
-              "value": "40px"
+              "value": "40px",
+              "$type": "dimension"
             }
           }
         },
         "700": {
           "value": "28px",
+          "$type": "dimension",
           "responsive": {
             "768px": {
-              "value": "36px"
+              "value": "36px",
+              "$type": "dimension"
             },
             "1012px": {
-              "value": "48px"
+              "value": "48px",
+              "$type": "dimension"
             }
           }
         },
         "800": {
           "value": "32px",
+          "$type": "dimension",
           "responsive": {
             "768px": {
-              "value": "36px"
+              "value": "36px",
+              "$type": "dimension"
             },
             "1012px": {
-              "value": "64px"
+              "value": "64px",
+              "$type": "dimension"
             }
           }
         },
         "900": {
           "value": "36px",
+          "$type": "dimension",
           "responsive": {
             "768px": {
-              "value": "48px"
+              "value": "48px",
+              "$type": "dimension"
             },
             "1012px": {
-              "value": "72px"
+              "value": "72px",
+              "$type": "dimension"
             }
           }
         },
         "1000": {
           "value": "40px",
+          "$type": "dimension",
           "responsive": {
             "768px": {
-              "value": "64px"
+              "value": "64px",
+              "$type": "dimension"
             },
             "1012px": {
-              "value": "96px"
+              "value": "96px",
+              "$type": "dimension"
             }
           }
         }

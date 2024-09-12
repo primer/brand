@@ -13,10 +13,10 @@ export default {
 const TrailingTimeline = () => (
   <Timeline>
     <Timeline.Item>
-      <em>GitHub Codespaces</em> offers a complete dev environment in seconds.
+      <b>GitHub Codespaces</b> offers a complete dev environment in seconds.
     </Timeline.Item>
     <Timeline.Item>
-      <em>GitHub Copilot</em> is your AI pair programmer that empowers you to complete tasks.
+      <b>GitHub Copilot</b> is your AI pair programmer that empowers you to complete tasks.
     </Timeline.Item>
   </Timeline>
 )
@@ -52,7 +52,7 @@ export const HighlightedPortion: StoryFn<typeof RiverBreakout> = () => (
       </RiverBreakout.Visual>
       <RiverBreakout.Content trailingComponent={TrailingTimeline}>
         <Text>
-          <em>This first sentence is a river breakout headline.</em> And this is where the body copy starts. Remember to
+          <b>This first sentence is a river breakout headline.</b> And this is where the body copy starts. Remember to
           keep these nice and succinct.
         </Text>
         <Link href="#">Call to action</Link>

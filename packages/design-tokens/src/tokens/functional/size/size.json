@@ -61,7 +61,8 @@
       },
       "large": {
         "size": {
-          "value": "60px"
+          "value": "60px",
+          "$type": "dimension"
         },
         "lineBoxHeight": {
           "value": "{base.size.20}"

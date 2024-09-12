@@ -12,6 +12,22 @@
     - title: Colors
       url: /primitives/color
 
+- title: Layout
+  children:
+    - title: Box
+      url: /components/Box
+    - title: Grid
+      url: /components/Grid
+    - title: Stack
+      url: /components/Stack
+
+- title: Typography
+  children:
+    - title: Heading
+      url: /components/Heading
+    - title: Text
+      url: /components/Text
+
 - title: Components
   children:
     - title: Action menu
@@ -22,8 +38,6 @@
       url: /components/Avatar
     - title: Bento
       url: /components/Bento
-    - title: Box
-      url: /components/Box
     - title: Breadcrumbs
       url: /components/Breadcrumbs
     - title: Breakout banner
@@ -105,20 +119,6 @@
       url: /components/Textarea
     - title: Text input
       url: /components/TextInput
-
-- title: Layout
-  children:
-    - title: Grid
-      url: /components/Grid
-    - title: Stack
-      url: /components/Stack
-
-- title: Typography
-  children:
-    - title: Heading
-      url: /components/Heading
-    - title: Text
-      url: /components/Text
 
 - title: GitHub staff
   children:

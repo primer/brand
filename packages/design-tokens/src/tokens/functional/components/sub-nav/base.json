@@ -3,7 +3,8 @@
     "SubNav": {
       "width": {
         "subMenu": {
-          "value": "300px"
+          "value": "300px",
+          "$type": "dimension"
         }
       }
     }

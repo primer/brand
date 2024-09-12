@@ -5,14 +5,16 @@
         "value": "var(--base-size-16)",
         "responsive": {
           "768px": {
-            "value": "100px"
+            "value": "100px",
+            "$type": "dimension"
           }
         }
       },
       "spacing": {
         "inner": {
           "block": {
-            "value": "14px"
+            "value": "14px",
+            "$type": "dimension"
           },
           "inline": {
             "value": "var(--base-size-16)",

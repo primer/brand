@@ -153,10 +153,10 @@ const ExampleTrailingComponent = () => (
   <Stack direction="vertical" padding="none" gap="spacious" alignItems="flex-start">
     <Timeline>
       <Timeline.Item>
-        <em>GitHub Codespaces</em> offers a complete dev environment in seconds.
+        <b>GitHub Codespaces</b> offers a complete dev environment in seconds.
       </Timeline.Item>
       <Timeline.Item>
-        <em>GitHub Copilot</em> is your AI pair programmer that empowers you to complete tasks.
+        <b>GitHub Copilot</b> is your AI pair programmer that empowers you to complete tasks.
       </Timeline.Item>
     </Timeline>
     <Link href="#" variant="accent">
