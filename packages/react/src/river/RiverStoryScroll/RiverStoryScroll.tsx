@@ -64,8 +64,8 @@ export function RiverStoryScroll({children, disabled}: RiverStoryScrollProps) {
   useEffect(() => {
     if (disabled || prefersReducedMotion || !contentContainerRef.current) return
 
-    const mediaElements = Array.from(contentContainerRef.current.querySelectorAll('img, video')).filter(
-      element => element instanceof HTMLImageElement || element instanceof HTMLVideoElement,
+    const mediaElements = Array.from(
+      contentContainerRef.current.querySelectorAll<HTMLImageElement | HTMLVideoElement>('img, video'),
     )
 
     const newMedia: Media[] = mediaElements.map(element => {
