@@ -33,7 +33,7 @@ export function RiverStoryScroll({children, disabled}: React.PropsWithChildren<R
   const [media, setMedia] = React.useState<Media[]>([])
 
   const Children = React.Children.map(children, child => {
-    if (React.isValidElement(child) && child.type === River) {
+    if (React.isValidElement(child)) {
       return React.cloneElement(child as React.ReactElement<RiverProps>, {
         className: clsx(styles['RiverStoryScroll__internal-river'], styles['RiverStoryScroll__content-stack']),
       })
