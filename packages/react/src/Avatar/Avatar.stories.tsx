@@ -47,6 +47,4 @@ export default {
 
 export const Playground: StoryFn<typeof Avatar> = args => <Avatar {...args} />
 
-export const Default = () => (
-  <Avatar src="https://avatars.githubusercontent.com/u/92997159?v=4" alt="A random avatar picture" />
-)
+export const Default = () => <Avatar src={placeholderAvatar} alt="A random avatar picture" />
