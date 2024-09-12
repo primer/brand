@@ -25,16 +25,17 @@ export function RiverStoryScrollResponder({
 
   useEffect(() => {
     const videoElement = videoRef.current
-    if (videoElement) {
-      if (isVisible) {
-        // eslint-disable-next-line github/no-then
-        videoElement.play().catch(error => {
-          // eslint-disable-next-line no-console
-          console.error('Error playing the video:', error)
-        })
-      } else {
-        videoElement.pause()
-      }
+
+    if (!videoElement) return
+
+    if (isVisible) {
+      // eslint-disable-next-line github/no-then
+      videoElement.play().catch(error => {
+        // eslint-disable-next-line no-console
+        console.error('Error playing the video:', error)
+      })
+    } else {
+      videoElement.pause()
     }
   }, [isVisible])
 
