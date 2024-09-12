@@ -23,15 +23,14 @@ export type RiverStoryScrollProps = {
    */
   disabled?: boolean
 } & BaseProps<HTMLDivElement>
+type Media = {type: 'image' | 'video'; src: string}
 
 export function RiverStoryScroll({children, disabled}: React.PropsWithChildren<RiverStoryScrollProps>) {
   const visualContainerRef = useRef<HTMLDivElement | null>(null)
   const contentContainerRef = useRef<HTMLDivElement | null>(null)
 
   const [prefersReducedMotion, setPrefersReducedMotion] = React.useState(false)
-  const [media, setMedia] = React.useState<
-    Array<{type: 'image'; src: string} | {type: 'video'; src: string}> | undefined
-  >([])
+  const [media, setMedia] = React.useState<Media[]>([])
 
   const Children = React.Children.map(children, child => {
     if (React.isValidElement(child) && child.type === River) {
@@ -61,28 +60,24 @@ export function RiverStoryScroll({children, disabled}: React.PropsWithChildren<R
   useEffect(() => {
     if (disabled || prefersReducedMotion || !contentContainerRef.current) return
 
-    const mediaElements = Array.from(contentContainerRef.current.querySelectorAll('img, video')).filter(element => {
-      return element.tagName === 'IMG' || element.tagName === 'VIDEO'
+    const mediaElements = Array.from(contentContainerRef.current.querySelectorAll('img, video')).filter(
+      element => element instanceof HTMLImageElement || element instanceof HTMLVideoElement,
+    )
+
+    const newMedia: Media[] = mediaElements.map(element => {
+      if (element instanceof HTMLImageElement) {
+        return {
+          type: 'image',
+          src: element.src,
+        }
+      }
+
+      return {
+        type: 'video',
+        src: element.querySelector('source')?.src || '',
+      }
     })
 
-    const newMedia = mediaElements
-      .map((element): {type: 'image' | 'video'; src: string} | undefined => {
-        if (element.tagName === 'IMG') {
-          return {
-            type: 'image',
-            src: (element as HTMLImageElement).src,
-          }
-        } else if (element.tagName === 'VIDEO') {
-          return {
-            type: 'video',
-            src: (element as HTMLVideoElement).querySelector('source')?.src || '',
-          }
-        }
-        return undefined
-      })
-      .filter(Boolean) as Array<{type: 'image' | 'video'; src: string}>
-
-    // set new media
     setMedia(newMedia)
   }, [disabled, prefersReducedMotion])
 
@@ -101,7 +96,7 @@ export function RiverStoryScroll({children, disabled}: React.PropsWithChildren<R
             )}
           >
             <div className={styles['RiverStoryScroll__visual-cover']} />
-            {media?.map((item, index) => (
+            {media.map((item, index) => (
               <RiverStoryScrollResponder
                 className={styles['RiverStoryScroll__visual-scroll-responder']}
                 key={index}
@@ -118,7 +113,7 @@ export function RiverStoryScroll({children, disabled}: React.PropsWithChildren<R
               </RiverStoryScrollResponder>
             ))}
             <div className={styles['RiverStoryScroll__pagination']}>
-              {media?.map((_, index) => (
+              {media.map((_, index) => (
                 <div className={styles['RiverStoryScroll__pagination-dot']} key={index} />
               ))}
             </div>
