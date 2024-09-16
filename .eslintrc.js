@@ -177,6 +177,7 @@ module.exports = {
       files: ['**/*.figma.tsx'],
       rules: {
         'github/unescaped-html-literal': 0,
+        'i18n-text/no-en': 0,
       },
     },
   ],
