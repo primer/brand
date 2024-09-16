@@ -276,15 +276,13 @@ const darkJson = require('../src/tokens/base/colors/dark')
   for (const path of filesForColorModes) {
     const sansExtension = path.replace(/\.[^/.]+$/, '')
 
-    const prefix = path.split('.').pop() === 'json' ? namespace : undefined
-
     buildPrimitives({
       include: [`tokens/functional/colors/global.json`],
       source: [path], // build the special formats
       namespace,
       platforms: {
         css: {
-          prefix, // we still need to remove namespace form all component files with .js
+          prefix: namespace,
           buildPath: `${outputPath}/css/`,
           transformGroup: 'css',
           files: [
