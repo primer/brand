@@ -54,7 +54,7 @@ const Root = ({
   showMuteButton = true,
   showVolumeControl = true,
   showFullScreenButton = true,
-  playIcon: PlayIcon = () => <DefaultPlayIcon className={styles.VideoPlayer__playButtonOverlay} />,
+  playIcon: PlayIcon = () => <DefaultPlayIcon className={styles.VideoPlayer__playButton} />,
   ...rest
 }: VideoPlayerProps) => {
   const videoWrapperRef = useRef<HTMLDivElement>(null)
@@ -71,16 +71,21 @@ const Root = ({
         {children}
         <track kind="captions" />
       </video>
-      <div className={styles.VideoPlayer__title}>
-        {showBranding && <MarkGithubIcon size={40} />}
-        {!visuallyHiddenTitle && (
-          <Text size="400" weight="medium" className={styles.VideoPlayer__controlTextColor}>
-            {title}
-          </Text>
-        )}
-      </div>
+      {showBranding || !visuallyHiddenTitle ? (
+        <div className={clsx(styles.VideoPlayer__title, isPlaying && styles['VideoPlayer__title--hidden'])}>
+          {showBranding && <MarkGithubIcon size={40} />}
+          {!visuallyHiddenTitle && (
+            <Text size="400" weight="medium" className={styles.VideoPlayer__controlTextColor}>
+              {title}
+            </Text>
+          )}
+        </div>
+      ) : null}
       <button
-        className={styles.VideoPlayer__playButton}
+        className={clsx(
+          styles.VideoPlayer__playButtonOverlay,
+          isPlaying && styles['VideoPlayer__playButtonOverlay--transparent'],
+        )}
         onClick={togglePlaying}
         aria-label={isPlaying ? 'Pause' : 'Play'}
       >

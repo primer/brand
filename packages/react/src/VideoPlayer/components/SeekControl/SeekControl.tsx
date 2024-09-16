@@ -7,7 +7,15 @@ import {Text} from '../../../Text'
 import {useVideo} from '../../hooks/useVideo'
 
 const padTime = (time: number) => time.toString().padStart(2, '0')
-const formatTime = (time: number) => {
+const formatTime = (time: number, duration?: number) => {
+  if (isNaN(time) || time < 0) {
+    return '00:00'
+  }
+
+  if (duration && time > duration) {
+    time = duration
+  }
+
   const minutes = padTime(Math.floor((time % 3600) / 60))
   const seconds = padTime(Math.floor(time % 60))
 
@@ -62,7 +70,7 @@ export const SeekControl = ({className, ...rest}: SeekControlProps) => {
         value={currentTime}
         className={styles.VideoPlayer__progressBar}
         tooltip
-        tooltipFormatter={formatTime}
+        tooltipFormatter={time => formatTime(time, duration)}
         name="Seek"
       />
       <div className={styles.VideoPlayer__progressTime}>
@@ -71,7 +79,7 @@ export const SeekControl = ({className, ...rest}: SeekControlProps) => {
           className={clsx(styles.VideoPlayer__controlTextColor, styles.VideoPlayer__seekTime)}
           font="monospace"
         >
-          {formatTime(currentTime)}
+          {formatTime(currentTime, duration)}
           {<span className={styles.VideoPlayer__totalTime}> / {formatTime(duration)}</span>}
         </Text>
       </div>
