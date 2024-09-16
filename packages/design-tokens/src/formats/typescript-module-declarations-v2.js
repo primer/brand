@@ -3,8 +3,9 @@ const {fileHeader} = StyleDictionary.formatHelpers
 
 const tsModuleDeclaration = {
   name: 'typescript/module-declarations-v2',
-  formatter({dictionary, options, file}) {
+  formatter({dictionary, options, file, platform}) {
     const {moduleName = `tokens`} = options
+    const {prefix} = platform || {}
 
     const getType = value => {
       switch (typeof value) {
@@ -41,9 +42,11 @@ const tsModuleDeclaration = {
       return tree
     }
 
+    const tokens = prefix ? {[prefix]: dictionary.tokens} : dictionary.tokens
+
     const output = `${fileHeader({file})}
     
-declare const ${moduleName}: ${JSON.stringify(recursiveTypeGeneration(dictionary.tokens), null, 2)}
+declare const ${moduleName}: ${JSON.stringify(recursiveTypeGeneration(tokens), null, 2)}
 export default ${moduleName};`
 
     return output

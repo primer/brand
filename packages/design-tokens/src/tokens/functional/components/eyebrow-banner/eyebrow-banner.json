@@ -1,58 +1,56 @@
 {
-  "brand": {
-    "EyebrowBanner": {
-      "borderRadius": {
-        "value": "var(--base-size-16)",
+  "EyebrowBanner": {
+    "borderRadius": {
+      "value": "var(--base-size-16)",
+      "responsive": {
+        "768px": {
+          "value": "100px",
+          "$type": "dimension"
+        }
+      }
+    },
+    "spacing": {
+      "inner": {
+        "block": {
+          "value": "14px",
+          "$type": "dimension"
+        },
+        "inline": {
+          "value": "var(--base-size-16)",
+          "responsive": {
+            "768px": {
+              "value": "var(--base-size-20)"
+            }
+          }
+        }
+      }
+    },
+    "label": {
+      "size": {
+        "value": "var(--brand-text-size-100)",
         "responsive": {
           "768px": {
-            "value": "100px",
-            "$type": "dimension"
+            "value": "var(--brand-text-size-200)"
           }
         }
-      },
-      "spacing": {
-        "inner": {
-          "block": {
-            "value": "14px",
-            "$type": "dimension"
-          },
-          "inline": {
-            "value": "var(--base-size-16)",
-            "responsive": {
-              "768px": {
-                "value": "var(--base-size-20)"
-              }
-            }
+      }
+    },
+    "heading": {
+      "size": {
+        "value": "var(--brand-text-size-100)",
+        "responsive": {
+          "768px": {
+            "value": "var(--brand-text-size-200)"
           }
         }
-      },
-      "label": {
-        "size": {
-          "value": "var(--brand-text-size-100)",
-          "responsive": {
-            "768px": {
-              "value": "var(--brand-text-size-200)"
-            }
-          }
-        }
-      },
-      "heading": {
-        "size": {
-          "value": "var(--brand-text-size-100)",
-          "responsive": {
-            "768px": {
-              "value": "var(--brand-text-size-200)"
-            }
-          }
-        }
-      },
-      "subHeading": {
-        "size": {
-          "value": "var(--brand-text-size-100)",
-          "responsive": {
-            "768px": {
-              "value": "var(--brand-text-size-200)"
-            }
+      }
+    },
+    "subHeading": {
+      "size": {
+        "value": "var(--brand-text-size-100)",
+        "responsive": {
+          "768px": {
+            "value": "var(--brand-text-size-200)"
           }
         }
       }

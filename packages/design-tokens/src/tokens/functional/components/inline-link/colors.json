@@ -1,15 +1,13 @@
 {
-  "brand": {
-    "InlineLink": {
-      "color": {
-        "rest": {
-          "value": "var(--base-color-scale-blue-6)",
-          "dark": "var(--base-color-scale-blue-2)"
-        },
-        "pressed": {
-          "value": "var(--base-color-scale-blue-8)",
-          "dark": "var(--base-color-scale-blue-1)"
-        }
+  "InlineLink": {
+    "color": {
+      "rest": {
+        "value": "var(--base-color-scale-blue-6)",
+        "dark": "var(--base-color-scale-blue-2)"
+      },
+      "pressed": {
+        "value": "var(--base-color-scale-blue-8)",
+        "dark": "var(--base-color-scale-blue-1)"
       }
     }
   }

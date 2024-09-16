@@ -1,168 +1,166 @@
 {
-  "brand": {
-    "control": {
-      "minTarget": {
-        "fine": {
-          "value": "{base.size.16}"
-        },
-        "coarse": {
-          "value": "{base.size.44}"
-        }
+  "control": {
+    "minTarget": {
+      "fine": {
+        "value": "{base.size.16}"
       },
-      "small": {
-        "size": {
-          "value": "{base.size.32}"
-        },
-        "lineBoxHeight": {
-          "value": "{base.size.12}"
-        },
-        "paddingBlock": {
-          "value": "{base.size.8}"
-        },
-        "paddingInline": {
-          "condensed": {
-            "value": "{base.size.8}"
-          },
-          "normal": {
-            "value": "{base.size.12}"
-          },
-          "spacious": {
-            "value": "{base.size.24}"
-          }
-        },
-        "gap": {
-          "value": "{base.size.8}"
-        }
-      },
-      "medium": {
-        "size": {
-          "value": "{base.size.48}"
-        },
-        "lineBoxHeight": {
-          "value": "{base.size.16}"
-        },
-        "paddingBlock": {
-          "value": "{base.size.16}"
-        },
-        "paddingInline": {
-          "condensed": {
-            "value": "{base.size.12}"
-          },
-          "normal": {
-            "value": "{base.size.16}"
-          },
-          "spacious": {
-            "value": "{base.size.28}"
-          }
-        },
-        "gap": {
-          "value": "{base.size.12}"
-        }
-      },
-      "large": {
-        "size": {
-          "value": "60px",
-          "$type": "dimension"
-        },
-        "lineBoxHeight": {
-          "value": "{base.size.20}"
-        },
-        "paddingBlock": {
-          "value": "{base.size.20}"
-        },
-        "paddingInline": {
-          "condensed": {
-            "value": "{base.size.16}"
-          },
-          "normal": {
-            "value": "{base.size.20}"
-          },
-          "spacious": {
-            "value": "{base.size.32}"
-          }
-        },
-        "gap": {
-          "value": "{base.size.16}"
-        }
-      },
-      "animation": {
-        "duration": {
-          "value": "80ms"
-        },
-        "easing": {
-          "value": "var(--brand-animation-easing-glide)"
-        }
+      "coarse": {
+        "value": "{base.size.44}"
       }
     },
-    "box": {
-      "spacing": {
+    "small": {
+      "size": {
+        "value": "{base.size.32}"
+      },
+      "lineBoxHeight": {
+        "value": "{base.size.12}"
+      },
+      "paddingBlock": {
+        "value": "{base.size.8}"
+      },
+      "paddingInline": {
         "condensed": {
-          "value": "{base.size.16}"
+          "value": "{base.size.8}"
         },
         "normal": {
-          "value": "{base.size.24}"
+          "value": "{base.size.12}"
         },
         "spacious": {
-          "value": "{base.size.48}"
-        }
-      }
-    },
-    "stack": {
-      "padding": {
-        "condensed": {
-          "value": "{base.size.16}"
-        },
-        "normal": {
           "value": "{base.size.24}"
-        },
-        "spacious": {
-          "value": "{base.size.48}"
         }
       },
       "gap": {
+        "value": "{base.size.8}"
+      }
+    },
+    "medium": {
+      "size": {
+        "value": "{base.size.48}"
+      },
+      "lineBoxHeight": {
+        "value": "{base.size.16}"
+      },
+      "paddingBlock": {
+        "value": "{base.size.16}"
+      },
+      "paddingInline": {
+        "condensed": {
+          "value": "{base.size.12}"
+        },
+        "normal": {
+          "value": "{base.size.16}"
+        },
+        "spacious": {
+          "value": "{base.size.28}"
+        }
+      },
+      "gap": {
+        "value": "{base.size.12}"
+      }
+    },
+    "large": {
+      "size": {
+        "value": "60px",
+        "$type": "dimension"
+      },
+      "lineBoxHeight": {
+        "value": "{base.size.20}"
+      },
+      "paddingBlock": {
+        "value": "{base.size.20}"
+      },
+      "paddingInline": {
         "condensed": {
           "value": "{base.size.16}"
         },
         "normal": {
-          "value": "{base.size.24}"
+          "value": "{base.size.20}"
         },
         "spacious": {
-          "value": "{base.size.48}"
+          "value": "{base.size.32}"
+        }
+      },
+      "gap": {
+        "value": "{base.size.16}"
+      }
+    },
+    "animation": {
+      "duration": {
+        "value": "80ms"
+      },
+      "easing": {
+        "value": "var(--brand-animation-easing-glide)"
+      }
+    }
+  },
+  "box": {
+    "spacing": {
+      "condensed": {
+        "value": "{base.size.16}"
+      },
+      "normal": {
+        "value": "{base.size.24}"
+      },
+      "spacious": {
+        "value": "{base.size.48}"
+      }
+    }
+  },
+  "stack": {
+    "padding": {
+      "condensed": {
+        "value": "{base.size.16}"
+      },
+      "normal": {
+        "value": "{base.size.24}"
+      },
+      "spacious": {
+        "value": "{base.size.48}"
+      }
+    },
+    "gap": {
+      "condensed": {
+        "value": "{base.size.16}"
+      },
+      "normal": {
+        "value": "{base.size.24}"
+      },
+      "spacious": {
+        "value": "{base.size.48}"
+      }
+    }
+  },
+  "controlStack": {
+    "small": {
+      "gap": {
+        "condensed": {
+          "value": "{base.size.8}"
+        },
+        "spacious": {
+          "value": "{base.size.16}"
         }
       }
     },
-    "controlStack": {
-      "small": {
-        "gap": {
-          "condensed": {
-            "value": "{base.size.8}"
-          },
-          "spacious": {
-            "value": "{base.size.16}"
-          }
+    "medium": {
+      "gap": {
+        "condensed": {
+          "value": "{base.size.8}"
+        },
+        "spacious": {
+          "value": "{base.size.12}"
         }
-      },
-      "medium": {
-        "gap": {
-          "condensed": {
-            "value": "{base.size.8}"
-          },
-          "spacious": {
-            "value": "{base.size.12}"
-          }
-        }
-      },
-      "large": {
-        "gap": {
-          "auto": {
-            "value": "{base.size.8}"
-          },
-          "condensed": {
-            "value": "{base.size.8}"
-          },
-          "spacious": {
-            "value": "{base.size.12}"
-          }
+      }
+    },
+    "large": {
+      "gap": {
+        "auto": {
+          "value": "{base.size.8}"
+        },
+        "condensed": {
+          "value": "{base.size.8}"
+        },
+        "spacious": {
+          "value": "{base.size.12}"
         }
       }
     }

@@ -1,11 +1,9 @@
 {
-  "brand": {
-    "Timeline": {
-      "line": {
-        "color": {
-          "value": "var(--brand-color-border-default)",
-          "dark": "var(--base-color-scale-gray-4)"
-        }
+  "Timeline": {
+    "line": {
+      "color": {
+        "value": "var(--brand-color-border-default)",
+        "dark": "var(--base-color-scale-gray-4)"
       }
     }
   }
