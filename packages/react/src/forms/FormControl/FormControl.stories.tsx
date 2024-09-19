@@ -360,4 +360,3 @@ ErrorValidationWithRadio.args = {
   validationStatus: 'error',
   validationText: 'This is an error message',
 }
-
