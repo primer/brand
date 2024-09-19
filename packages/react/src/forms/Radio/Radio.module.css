@@ -10,6 +10,11 @@
   cursor: pointer;
 }
 
+[class*="FormControl"] .Radio-wrapper,
+[id*="FormControl"] .Radio-wrapper {
+  grid-row: 1; 
+}
+
 .Radio {
   align-items: center;
   background-color: var(--brand-control-radio-bg-default);

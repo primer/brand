@@ -5,6 +5,13 @@
   position: relative;
 }
 
+
+[class*="FormControl"] .Checkbox-wrapper,
+[id*="FormControl"] .Checkbox-wrapper {
+  grid-row: 1; 
+}
+
+
 .Checkbox {
   align-items: center;
   background-color: var(--brand-control-checkbox-bg-default);

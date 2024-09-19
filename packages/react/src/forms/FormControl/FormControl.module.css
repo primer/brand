@@ -10,10 +10,8 @@
 }
 
 .FormControl--checkbox {
-  display: flex;
-  align-items: flex-start;
-  flex-direction: row-reverse;
-  justify-content: flex-end;
+  display: grid;
+  grid-template-columns: auto 1fr;
 }
 
 .FormControl--border {
@@ -118,6 +116,5 @@
 }
 
 .FormControl-validation-checkbox {
-  position: absolute;
-  top: 45px;
+  grid-column: 1 / 3;
 }
