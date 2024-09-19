@@ -5,12 +5,10 @@
   position: relative;
 }
 
-
-[class*="FormControl"] .Checkbox-wrapper,
-[id*="FormControl"] .Checkbox-wrapper {
-  grid-row: 1; 
+[class*='FormControl'] .Checkbox-wrapper,
+[id*='FormControl'] .Checkbox-wrapper {
+  grid-row: 1;
 }
-
 
 .Checkbox {
   align-items: center;

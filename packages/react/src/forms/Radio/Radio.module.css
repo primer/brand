@@ -10,9 +10,9 @@
   cursor: pointer;
 }
 
-[class*="FormControl"] .Radio-wrapper,
-[id*="FormControl"] .Radio-wrapper {
-  grid-row: 1; 
+[class*='FormControl'] .Radio-wrapper,
+[id*='FormControl'] .Radio-wrapper {
+  grid-row: 1;
 }
 
 .Radio {
