@@ -165,20 +165,30 @@ describe('SectionIntro', () => {
     expect(labelEl).toHaveClass(`Label--color-${expectedColor}`)
   })
 
-  test('renders the default color as muted if <em> is passed as a child', () => {
-    const {getByRole} = render(
-      <SectionIntro>
-        <SectionIntro.Heading>
-          <em>Expressive headline</em> about an exclusive set of features.
-        </SectionIntro.Heading>
-      </SectionIntro>,
+  test('renders the default color as muted if <b> or <em> is passed as a child', () => {
+    const {getAllByRole} = render(
+      <>
+        <SectionIntro>
+          <SectionIntro.Heading>
+            <b>Expressive headline</b> about an exclusive set of features.
+          </SectionIntro.Heading>
+        </SectionIntro>
+        <SectionIntro>
+          <SectionIntro.Heading>
+            <em>Expressive headline</em> about an exclusive set of features.
+          </SectionIntro.Heading>
+        </SectionIntro>
+      </>,
     )
-    const headingEl = getByRole('heading')
 
-    expect(headingEl).toHaveClass(`SectionIntro-heading--muted`)
+    const headingEls = getAllByRole('heading')
+
+    for (const headingEl of headingEls) {
+      expect(headingEl).toHaveClass(`SectionIntro-heading--muted`)
+    }
   })
 
-  test('renders the default color as text-default if a non-<em> child is passed', () => {
+  test('renders the default color as text-default if a non-<b> or non-<em> child is passed', () => {
     const {getByRole} = render(
       <SectionIntro>
         <SectionIntro.Heading>

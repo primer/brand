@@ -45,13 +45,15 @@ export default {
     sectionIntroAlign: 'start',
     sectionIntroVisible: true,
     sectionIntroText: [
-      <em key="highlighted-text">Here we explain why this came to be.</em>,
+      <b key="highlighted-text">Here we explain why this came to be.</b>,
       ` This is a short statement about the intention
     of the feature and why we think it's cool, keep it real.`,
     ],
 
-    pillarVisibile: true,
+    pillarVisible: true,
     pillarBackground: false,
+
+    logoSuiteVisible: true,
 
     riverOneVisible: true,
     riverOneType: 'end',
@@ -217,7 +219,7 @@ export default {
     /**
      * Pillars
      */
-    pillarVisibile: {
+    pillarVisible: {
       control: 'boolean',
       name: 'visible',
       table: {
@@ -229,6 +231,16 @@ export default {
       name: 'hasBackground',
       table: {
         category: 'Section: Pillars',
+      },
+    },
+    /**
+     * LogoSuite
+     */
+    logoSuiteVisible: {
+      control: 'boolean',
+      name: 'visible',
+      table: {
+        category: 'Section: LogoSuite',
       },
     },
     /**
@@ -431,7 +443,8 @@ LevelTwoMinimal.args = {
   heroLabel: undefined,
   heroCtaTextSecondary: undefined,
   sectionIntroVisible: false,
-  pillarVisibile: false,
+  pillarVisible: false,
+  logoSuiteVisible: false,
   riverOneType: 'end',
   riverTwoType: 'end',
   riverOneVisible: false,
@@ -476,7 +489,7 @@ LevelTwoPointThree.args = {
   heroBg: true,
   sectionIntroAlign: 'center',
   sectionIntroText: [
-    <em key="highlighted-statement">Highlighted statement in 4-6 words max.</em>,
+    <b key="highlighted-statement">Highlighted statement in 4-6 words max.</b>,
     <br key="separator" />,
     <span key="body-text">The rest of body text should be between 80 to 100 characters.</span>,
   ],

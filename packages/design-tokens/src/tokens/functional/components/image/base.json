@@ -1,9 +1,7 @@
 {
-  "brand": {
-    "image": {
-      "aspectRatio": {
-        "value": "auto"
-      }
+  "image": {
+    "aspectRatio": {
+      "value": "auto"
     }
   }
 }

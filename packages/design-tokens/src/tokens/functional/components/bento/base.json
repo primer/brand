@@ -1,41 +1,39 @@
 {
-  "brand": {
-    "Bento": {
-      "gap": {
-        "large": {
-          "value": "var(--base-size-32)"
+  "Bento": {
+    "gap": {
+      "large": {
+        "value": "var(--base-size-32)"
+      },
+      "medium": {
+        "value": "var(--base-size-32)"
+      },
+      "small": {
+        "value": "var(--base-size-20)"
+      }
+    },
+    "item": {
+      "borderRadius": {
+        "small": {
+          "value": "var(--brand-borderRadius-large)"
         },
         "medium": {
-          "value": "var(--base-size-32)"
+          "value": "var(--brand-borderRadius-xlarge)"
         },
-        "small": {
-          "value": "var(--base-size-20)"
+        "large": {
+          "value": "var(--brand-borderRadius-xlarge)"
         }
-      },
-      "item": {
-        "borderRadius": {
-          "small": {
-            "value": "var(--brand-borderRadius-large)"
-          },
-          "medium": {
-            "value": "var(--brand-borderRadius-xlarge)"
-          },
-          "large": {
-            "value": "var(--brand-borderRadius-xlarge)"
-          }
-        }
-      },
-      "content": {
-        "padding": {
-          "condensed": {
-            "value": "var(--base-size-16)"
-          },
-          "normal": {
-            "value": "var(--base-size-24)"
-          },
-          "spacious": {
-            "value": "3.5rem"
-          }
+      }
+    },
+    "content": {
+      "padding": {
+        "condensed": {
+          "value": "var(--base-size-16)"
+        },
+        "normal": {
+          "value": "var(--base-size-24)"
+        },
+        "spacious": {
+          "value": "3.5rem"
         }
       }
     }

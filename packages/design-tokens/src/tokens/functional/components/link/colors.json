@@ -1,15 +1,13 @@
 {
-  "brand": {
-    "Link": {
-      "color": {
-        "default": {
-          "value": "var(--brand-color-text-default)",
-          "dark": "var(--brand-color-text-default)"
-        },
-        "accent": {
-          "value": "var(--base-color-scale-blue-6)",
-          "dark": "var(--base-color-scale-blue-2)"
-        }
+  "Link": {
+    "color": {
+      "default": {
+        "value": "var(--brand-color-text-default)",
+        "dark": "var(--brand-color-text-default)"
+      },
+      "accent": {
+        "value": "var(--base-color-scale-blue-6)",
+        "dark": "var(--base-color-scale-blue-2)"
       }
     }
   }

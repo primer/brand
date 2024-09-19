@@ -1,6 +1,7 @@
 const fs = require('fs')
 const {buildPrimitives, StyleDictionary} = require('./style-dictionary')
 
+const tsModuleDeclaration = require('../src/formats/typescript-module-declarations-v2')
 const mediaQueryFormat = require('../src/formats/responsive-media-query')
 const colorModeFormat = require('../src/formats/color-mode-attributes')
 
@@ -64,72 +65,62 @@ const darkJson = require('../src/tokens/base/colors/dark')
   })
 
   /**
-   * Added to replace the same transform in Primer Primitives
-   * The upstream transform removes rem from lineheight, but this
-   * causes a visual regression in Primer Brand.
-   * @see https://github.com/primer/primitives/blob/b51c743a0fe26ab7885a9cc82420f400ad35cce7/build.js#L66
-   *
-   * TODO: Investigate why unitless lineheight doesn't work
-   *
+   * Replacement format for typescript/module-declarations
+   * Type schema corresponds to javascript/module-v2 format
    */
-  StyleDictionary.registerTransform({
-    name: 'pxToRem',
-    type: 'value',
-    transformer: token => {
-      function isPx(value) {
-        return /[\d.]+px$/.test(value)
-      }
-
-      if (isPx(token.value)) {
-        const baseFontSize = 16
-        const floatValue = parseFloat(token.value.replace('px', ''))
-        if (isNaN(floatValue)) {
-          return token.value
-        }
-        if (floatValue === 0) {
-          return '0'
-        }
-
-        return `${floatValue / baseFontSize}rem`
-      }
-      return token.value
-    },
-  })
+  StyleDictionary.registerFormat(tsModuleDeclaration)
 
   //build most tokens
   buildPrimitives({
-    source: [`tokens/**/*.json`, `!tokens/**/size-*.json`],
+    source: [`tokens/functional/**/*.json`, `!tokens/functional/**/size-*.json`],
+    include: ['tokens/base/**/*.json'],
+    namespace,
+    outputPath,
+  })
+  // build base tokens
+  buildPrimitives({
+    source: [`tokens/base/**/*.json`],
+    namespace: undefined,
+    outputPath,
+  })
+
+  buildPrimitives({
+    source: [`tokens/functional/size/size-fine.json`], //build size fine
+    include: ['tokens/base/size/size.json'],
     namespace,
     outputPath,
   })
 
   buildPrimitives({
-    source: [`tokens/functional/size/size-fine.json`, `tokens/base/size/size.json`], //build size fine
+    source: [`tokens/functional/size/size-coarse.json`], //build size coarse
+    include: ['tokens/base/size/size.json'],
     namespace,
     outputPath,
   })
 
   buildPrimitives({
-    source: [`tokens/functional/size/size-coarse.json`, `tokens/base/size/size.json`], //build size coarse
-    namespace,
-    outputPath,
-  })
-
-  buildPrimitives({
-    source: [`tokens/base/size/size.json`, `tokens/functional/size/size-fine.json`], // build the special formats
+    source: [`tokens/functional/size/size-fine.json`], // build the special formats
+    include: ['tokens/base/size/size.json'],
     namespace,
     outputPath,
     platforms: {
       css: {
+        prefix: namespace,
+        addPrefix: token => token.isSource,
         buildPath: `${outputPath}/css/`,
         transformGroup: 'css',
         files: [
           {
             destination: `tokens/functional/size/size-fine.css`,
-            format: `css/touch-target-desktop`,
+            format: `css/advanced`,
             filter: token => token.filePath.includes('fine'),
             options: {
               outputReferences: true,
+              queries: [
+                {
+                  query: '@media (pointer: fine)',
+                },
+              ],
             },
           },
         ],
@@ -138,19 +129,27 @@ const darkJson = require('../src/tokens/base/colors/dark')
   })
 
   buildPrimitives({
-    source: [`tokens/base/size/size.json`, `tokens/functional/size/size-coarse.json`], // build the special formats
+    source: [`tokens/functional/size/size-coarse.json`], // build the special formats
+    include: ['tokens/base/size/size.json'],
     namespace,
     platforms: {
       css: {
+        prefix: namespace,
+        addPrefix: token => token.isSource,
         buildPath: `${outputPath}/css/`,
         transformGroup: 'css',
         files: [
           {
             destination: `tokens/functional/size/size-coarse.css`,
-            format: `css/touch-target-mobile`,
+            format: `css/advanced`,
             filter: token => token.filePath.includes('coarse'),
             options: {
               outputReferences: true,
+              queries: [
+                {
+                  query: '@media (pointer: coarse)',
+                },
+              ],
             },
           },
         ],
@@ -159,7 +158,6 @@ const darkJson = require('../src/tokens/base/colors/dark')
   })
 
   const filesForResponsiveTokens = [
-    `tokens/base/typography/typography.json`,
     `tokens/functional/typography/typography-responsive.json`,
     `tokens/functional/components/grid/grid.json`,
     `tokens/functional/components/river/river.json`,
@@ -176,13 +174,17 @@ const darkJson = require('../src/tokens/base/colors/dark')
 
     buildPrimitives({
       source: [path], // build the special formats
+      include: [`tokens/base/typography/typography.json`],
       namespace,
       platforms: {
         css: {
+          prefix: namespace,
+          addPrefix: token => token.isSource,
           buildPath: `${outputPath}/css/`,
           transformGroup: 'css',
           files: [
             {
+              filter: token => token.isSource,
               destination: `${sansExtension}.css`,
               format: `css/responsive-media-query`,
               options: {
@@ -200,6 +202,7 @@ const darkJson = require('../src/tokens/base/colors/dark')
     namespace,
     platforms: {
       css: {
+        // prefix: namespace,
         buildPath: `${outputPath}/css/`,
         transformGroup: 'css',
         files: [
@@ -215,8 +218,30 @@ const darkJson = require('../src/tokens/base/colors/dark')
     },
   })
 
+  // temp fix until prefix is removed from all component files
+
+  buildPrimitives({
+    source: [`tokens/functional/colors/global.json`],
+    namespace,
+    platforms: {
+      css: {
+        prefix: namespace, // we still need to remove namespace form all component files
+        buildPath: `${outputPath}/css/`,
+        transformGroup: 'css',
+        files: [
+          {
+            destination: `tokens/functional/colors/global-with-modes.css`,
+            format: `css/color-mode-attributes`,
+            options: {
+              outputReferences: false,
+            },
+          },
+        ],
+      },
+    },
+  })
+
   const filesForColorModes = [
-    `tokens/functional/colors/global.json`,
     `tokens/functional/components/button/colors.js`,
     `tokens/functional/components/accordion/colors.js`,
     `tokens/functional/components/faq/colors.json`,
@@ -252,14 +277,17 @@ const darkJson = require('../src/tokens/base/colors/dark')
     const sansExtension = path.replace(/\.[^/.]+$/, '')
 
     buildPrimitives({
+      include: [`tokens/functional/colors/global.json`],
       source: [path], // build the special formats
       namespace,
       platforms: {
         css: {
+          prefix: namespace,
           buildPath: `${outputPath}/css/`,
           transformGroup: 'css',
           files: [
             {
+              filter: token => token.isSource,
               destination: `${sansExtension}-with-modes.css`,
               format: `css/color-mode-attributes`,
               options: {
@@ -276,5 +304,5 @@ const darkJson = require('../src/tokens/base/colors/dark')
    * Step 4:
    * Clean up the temporary directory
    */
-  fs.rmdirSync(dest, {recursive: true})
+  fs.rmSync(dest, {recursive: true})
 })()

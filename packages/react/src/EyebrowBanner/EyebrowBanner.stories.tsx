@@ -1,7 +1,9 @@
 import React from 'react'
 import {Meta} from '@storybook/react'
-import {EyebrowBanner, EyebrowBannerIconColors} from '.'
 import {SparkleFillIcon} from '@primer/octicons-react'
+
+import {EyebrowBanner, EyebrowBannerIconColors} from '.'
+import placeholderEyebrow from '../fixtures/images/eyebrow.png'
 
 export default {
   title: 'Components/EyebrowBanner',
@@ -13,7 +15,7 @@ export default {
     variant: 'img',
     showLeadingLabel: false,
     leadingLabelText: 'NEW',
-    visualImageSrc: 'https://github.githubassets.com/assets/eyebrow-23@2x-563f292d9e30.png',
+    visualImageSrc: placeholderEyebrow,
     iconColor: 'blue',
     iconHasBackground: true,
   },

@@ -1,17 +1,15 @@
 {
-  "brand": {
-    "footer": {
-      "bg": {
-        "color": {
-          "value": "var(--base-color-scale-white)",
-          "dark": "var(--base-color-scale-gray-9)"
-        }
-      },
-      "socialIcon": {
-        "hoverFilter": {
-          "value": "brightness(0)",
-          "dark": "brightness(2)"
-        }
+  "footer": {
+    "bg": {
+      "color": {
+        "value": "var(--base-color-scale-white)",
+        "dark": "var(--base-color-scale-gray-9)"
+      }
+    },
+    "socialIcon": {
+      "hoverFilter": {
+        "value": "brightness(0)",
+        "dark": "brightness(2)"
       }
     }
   }

@@ -9,11 +9,15 @@
   vertical-align: middle;
   align-items: center;
   justify-content: center;
-  border-radius: var(--brand-borderRadius-full);
+  border-radius: var(--brand-borderRadius-xlarge);
   display: inline-flex;
   color: var(--brand-Label-color-start, var(--brand-Label-color, currentColor));
   position: relative;
+  height: min-content;
+  padding-inline: var(--base-size-16);
+  padding-block: var(--base-size-4);
   background: none;
+  text-align: center;
 }
 
 .Label::before {
@@ -32,15 +36,11 @@
 }
 
 .Label--size-medium {
-  padding-left: var(--base-size-16);
-  padding-right: var(--base-size-16);
-  height: var(--base-size-28);
+  min-height: var(--base-size-28);
 }
 
 .Label--size-large {
-  padding-left: var(--base-size-16);
-  padding-right: var(--base-size-16);
-  height: var(--base-size-32);
+  min-height: var(--base-size-32);
 }
 
 .Label--color-default {
@@ -133,12 +133,8 @@
   box-decoration-break: clone;
 }
 
-.Label--size-medium .Label__text {
-  line-height: var(--brand-text-lineHeight-200);
-}
-
-.Label--size-large .Label__text {
-  line-height: var(--brand-text-lineHeight-300);
+.Label__text {
+  line-height: var(--base-size-16);
 }
 
 .Label__icon-visual {
@@ -155,6 +151,7 @@
 
 .Label__label {
   font-weight: var(--base-text-weight-semibold);
+  line-height: inherit;
 }
 
 @media (forced-colors: active) {

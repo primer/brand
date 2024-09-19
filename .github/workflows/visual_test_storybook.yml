@@ -8,6 +8,8 @@ jobs:
     if: ${{ github.repository == 'primer/brand' }}
     name: Storybook
     runs-on: ubuntu-latest
+    env:
+      NODE_ENV: test
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -34,11 +36,11 @@ jobs:
         run: npm ci --legacy-peer-deps && cd apps/docs && npm ci --legacy-peer-deps
 
       - name: Build assets
-        run: npm run build:lib && cd apps/storybook && npx storybook build
+        run: NODE_ENV=test npm run build:lib && cd apps/storybook && npx storybook build
 
       - name: Run visual tests
         id: playwright-step
-        run: npx start-server-and-test 'npx http-server ./apps/storybook/storybook-static -p 6006' 6006 'cd packages/e2e && npx playwright test'
+        run: NODE_ENV=test npx start-server-and-test 'npx http-server ./apps/storybook/storybook-static -p 6006' 6006 'cd packages/e2e && npx playwright test'
         continue-on-error: true
 
       - name: Upload error screenshots

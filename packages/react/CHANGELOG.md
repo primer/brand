@@ -1,5 +1,48 @@
 # @primer/react-brand
 
+## 0.40.1
+
+### Patch Changes
+
+- [#754](https://github.com/primer/brand/pull/754) [`d061705c`](https://github.com/primer/brand/commit/d061705c9242be17feb07fe860ac86887b22a079) Thanks [@joshfarrant](https://github.com/joshfarrant)! - The `RiverStoryScroll` component now enforces that its children must be `River` components through type checking, instead of relying on a run-time check.
+
+- [#739](https://github.com/primer/brand/pull/739) [`24bd6338`](https://github.com/primer/brand/commit/24bd63385c95b308f7573e101b0594937f7b7830) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Fixed a bug in the `SubNav` component where the submenu toggle was rendered as an empty button on mobile viewports.
+
+- [#736](https://github.com/primer/brand/pull/736) [`73cf706e`](https://github.com/primer/brand/commit/73cf706ec83c00c19fbdca4ab4349c7fa931e784) Thanks [@lukasoppermann](https://github.com/lukasoppermann)! - Replaced the `--brand-VideoPlayer-tooltip-padding` design token in the `VideoPlayer` component with two new tokens that separately account for padding along each axis: `--brand-VideoPlayer-tooltip-padding-inline` and `--brand-VideoPlayer-tooltip-padding-block`.
+
+  _Note: This update does not introduce any visual changes. Please update any manual references to `--brand-VideoPlayer-tooltip-padding` to use the new tokens._
+
+  ```diff
+  - --brand-VideoPlayer-tooltip-padding
+  + --brand-VideoPlayer-tooltip-padding-inline
+  + --brand-VideoPlayer-tooltip-padding-block
+  ```
+
+- [#722](https://github.com/primer/brand/pull/722) [`99328ce0`](https://github.com/primer/brand/commit/99328ce0a7d48fc5f9c74a48ac687bb988bb9f40) Thanks [@danielguillan](https://github.com/danielguillan)! - Added support for `<b>` elements to `Bento`, `RiverBreakout`, `SectionIntro`, `Timeline`, and `Testimonial` components, as `<em>` is semantically interpreted by screen readers for emphasis, while `<b>` allows duo-tone text to function purely as a visual decoration.
+
+  Usage example:
+
+  ```jsx
+  <SectionIntro>
+    <SectionIntro.Heading>
+      <b>Expressive headline</b> about an exclusive set of features.
+    </SectionIntro.Heading>
+  </SectionIntro>
+  ```
+
+  > **Important**
+  > The updated components still support the use of `<em>` elements for backward compatibility, but moving forward, the only recommended element for emphasized text is `<b>`.
+
+- [#733](https://github.com/primer/brand/pull/733) [`2dcb9bad`](https://github.com/primer/brand/commit/2dcb9badfe3f7bd16731836a6e74df580b652bfe) Thanks [@danielguillan](https://github.com/danielguillan)! - Fixes Label component multiline reflow
+
+- [#746](https://github.com/primer/brand/pull/746) [`4af8db14`](https://github.com/primer/brand/commit/4af8db149e7d9e27b590599355f7437cf3fabf33) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Fixed a bug where `Card` components rendered within a dark colour mode would not take the full width of their container.
+
+## 0.40.0
+
+### Minor Changes
+
+- [#690](https://github.com/primer/brand/pull/690) [`98fa3a2a`](https://github.com/primer/brand/commit/98fa3a2a943211343bac426dd9097d5772aa4d64) Thanks [@rezrah](https://github.com/rezrah)! - Improved React 19 compatibility by treating `react-dom/client` and `react/jsx-runtime` as external dependencies of the project. This change resolved a reported conflict with the latest React 19 release candidate.
+
 ## 0.39.0
 
 ### Minor Changes

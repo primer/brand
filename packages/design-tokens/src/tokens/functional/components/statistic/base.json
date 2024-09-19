@@ -1,16 +1,17 @@
 {
-  "brand": {
-    "Statistic": {
-      "spacing": {
-        "condensed": {
-          "value": "16px"
-        },
-        "normal": {
-          "value": "24px"
-        },
-        "spacious": {
-          "value": "32px"
-        }
+  "Statistic": {
+    "spacing": {
+      "condensed": {
+        "value": "16px",
+        "$type": "dimension"
+      },
+      "normal": {
+        "value": "24px",
+        "$type": "dimension"
+      },
+      "spacious": {
+        "value": "32px",
+        "$type": "dimension"
       }
     }
   }

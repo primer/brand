@@ -1,10 +1,9 @@
 {
-  "brand": {
-    "FAQ": {
-      "maxWidth": {
-        "list": {
-          "value": "816px"
-        }
+  "FAQ": {
+    "maxWidth": {
+      "list": {
+        "value": "816px",
+        "$type": "dimension"
       }
     }
   }

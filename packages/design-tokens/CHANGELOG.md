@@ -1,5 +1,40 @@
 # @primer/brand-primitives
 
+## 0.40.1
+
+### Patch Changes
+
+- [#736](https://github.com/primer/brand/pull/736) [`73cf706e`](https://github.com/primer/brand/commit/73cf706ec83c00c19fbdca4ab4349c7fa931e784) Thanks [@lukasoppermann](https://github.com/lukasoppermann)! - Replaced the `--brand-VideoPlayer-tooltip-padding` design token in the `VideoPlayer` component with two new tokens that separately account for padding along each axis: `--brand-VideoPlayer-tooltip-padding-inline` and `--brand-VideoPlayer-tooltip-padding-block`.
+
+  _Note: This update does not introduce any visual changes. Please update any manual references to `--brand-VideoPlayer-tooltip-padding` to use the new tokens._
+
+  ```diff
+  - --brand-VideoPlayer-tooltip-padding
+  + --brand-VideoPlayer-tooltip-padding-inline
+  + --brand-VideoPlayer-tooltip-padding-block
+  ```
+
+- [#738](https://github.com/primer/brand/pull/738) [`f6bab573`](https://github.com/primer/brand/commit/f6bab573c5c7d690c7f49f8b2bfe4b2e8fa49fa9) Thanks [@lukasoppermann](https://github.com/lukasoppermann)! - Fixed line formatting in `functional/size/size-coarse.css` and `functional/size/size-fine.css`
+
+  E.g.
+
+  ```diff
+  -    @media (pointer: coarse) { :root {
+  -  --brand-controlStack-medium-gap-auto: var(--base-size-12);
+  -  --brand-controlStack-small-gap-auto: var(--base-size-16);
+  -  --brand-control-minTarget-auto: var(--base-size-44);
+  -}}
+  +@media (pointer: coarse) {
+  +  :root {
+  +    --brand-controlStack-medium-gap-auto: var(--base-size-12);
+  +    --brand-controlStack-small-gap-auto: var(--base-size-16);
+  +    --brand-control-minTarget-auto: var(--base-size-44);
+  +  }
+  +}
+  ```
+
+## 0.40.0
+
 ## 0.39.0
 
 ### Minor Changes
