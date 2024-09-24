@@ -166,6 +166,11 @@
       'text trailingComponent'
       'cta trailingComponent';
     grid-template-columns: 5fr 3fr;
+    grid-auto-rows: auto 1fr;
+  }
+
+  .RiverBreakout .River__text {
+    grid-area: text;
   }
 
   .RiverBreakout .River__call-to-action {
@@ -177,9 +182,5 @@
     grid-area: trailingComponent;
     justify-self: end;
     margin-block-start: 0;
-  }
-
-  .RiverBreakout .River__text {
-    grid-area: text;
   }
 }
