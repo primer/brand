@@ -87,6 +87,11 @@
     grid-area: content;
   }
 
+  .River--align-start .River__content,
+  .River--align-end .River__content {
+    padding-inline: var(--base-size-64);
+  }
+
   .River__visual {
     grid-area: visual;
     order: unset;
