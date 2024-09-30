@@ -152,7 +152,7 @@ describe('River', () => {
     expect(visualEl).toHaveClass(expectedClass)
   })
 
-  it('can optionally render content in end alignment visually and semantically', () => {
+  it('can optionally render content in end alignment visually only', () => {
     const rootId = 'root-el'
     const {getByTestId} = render(
       <River data-testid={rootId} align="end">
@@ -169,8 +169,8 @@ describe('River', () => {
     const [elOne, elTwo] = Array.from(rootEl.children)
 
     const expectedRootClass = 'River--align-end'
-    const expectLeftChildClass = 'River__visual'
-    const expectRightChildClass = 'River__content'
+    const expectLeftChildClass = 'River__content'
+    const expectRightChildClass = 'River__visual'
 
     const unexpectedRootClasses = ['River--align-start', 'River--align-center']
 
@@ -184,7 +184,7 @@ describe('River', () => {
     expect(elTwo.classList).toContain(expectRightChildClass) // should be the visual DOM node
   })
 
-  it('can optionally render content using center alignment visually and semantically', () => {
+  it('can optionally render content using center alignment visually only', () => {
     const rootId = 'root-el'
     const {getByTestId} = render(
       <River data-testid={rootId} align="center">

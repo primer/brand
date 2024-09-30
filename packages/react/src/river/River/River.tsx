@@ -70,9 +70,6 @@ const Root = forwardRef(
       {Visual: null, Content: null},
     )
 
-    const orderedChildren =
-      align === 'start' || align === 'center' ? [ContentChild, VisualChild] : [VisualChild, ContentChild]
-
     return (
       <section
         ref={ref}
@@ -86,7 +83,8 @@ const Root = forwardRef(
         style={{...animationInlineStyles, ...style}}
         {...rest}
       >
-        {orderedChildren}
+        {ContentChild}
+        {VisualChild}
       </section>
     )
   },

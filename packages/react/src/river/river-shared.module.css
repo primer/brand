@@ -10,8 +10,7 @@
   text-align: center;
 }
 
-.River__visual {
-  position: relative;
+.River__content {
   order: 2;
 }
 
@@ -61,6 +60,11 @@
   .River {
     grid-template-rows: unset;
   }
+
+  .River__content {
+    order: unset;
+  }
+
   .River--50-50 {
     grid-template-columns: [content] 1fr [visual] 1fr;
   }
@@ -97,7 +101,6 @@
 
   .River__visual {
     grid-area: visual;
-    order: unset;
   }
 
   .River--align-center {
@@ -150,10 +153,6 @@
   color: var(--brand-color-text-default);
   font-style: normal;
   font-weight: inherit;
-}
-
-.RiverBreakout .River__visual {
-  order: unset;
 }
 
 .RiverBreakout__hiddenHeading {
