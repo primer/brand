@@ -166,11 +166,6 @@
   padding: var(--brand-control-small-paddingBlock) var(--brand-control-small-paddingInline-normal);
 }
 
-.Button--label-large {
-  font-size: var(--brand-text-subhead-size-medium);
-  line-height: var(--brand-text-subhead-lineHeight-medium);
-}
-
 .Button--size-medium {
   min-height: var(--brand-control-medium-size);
   padding: var(--brand-control-medium-paddingBlock) var(--brand-control-medium-paddingInline-spacious);
@@ -185,6 +180,11 @@
 .Button--size-large .Button-arrow {
   height: var(--base-size-20);
   width: var(--base-size-20);
+}
+
+.Button--label-medium {
+  font-size: var(--brand-text-subhead-size-medium);
+  line-height: var(--brand-text-subhead-lineHeight-medium);
 }
 
 .Button--label-large {
