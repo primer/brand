@@ -282,11 +282,11 @@ export default function KitchenSink() {
                 </FormControl>
                 <FormControl fullWidth required>
                   <FormControl.Label>First name</FormControl.Label>
-                  <TextInput required />
+                  <TextInput required autoComplete="given-name" />
                 </FormControl>
                 <FormControl fullWidth required>
                   <FormControl.Label>Last name</FormControl.Label>
-                  <TextInput required />
+                  <TextInput required autoComplete="family-name" />
                 </FormControl>
               </div>
 

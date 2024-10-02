@@ -45,11 +45,19 @@ import {TextInput} from '@primer/react-brand'
   </FormControl>
   <FormControl fullWidth>
     <FormControl.Label>Email</FormControl.Label>
-    <TextInput type="email" placeholder="mona@github.com" />
+    <TextInput
+      type="email"
+      autoComplete="email"
+      placeholder="mona@github.com"
+    />
   </FormControl>
   <FormControl fullWidth>
     <FormControl.Label>Password</FormControl.Label>
-    <TextInput type="password" value="monalisa" />
+    <TextInput
+      type="password"
+      autoComplete="current-password"
+      value="monalisa"
+    />
   </FormControl>
   <FormControl fullWidth>
     <FormControl.Label>Month</FormControl.Label>
@@ -57,7 +65,7 @@ import {TextInput} from '@primer/react-brand'
   </FormControl>
   <FormControl fullWidth>
     <FormControl.Label>Telephone</FormControl.Label>
-    <TextInput type="tel" />
+    <TextInput type="tel" autoComplete="tel" />
   </FormControl>
   <FormControl fullWidth>
     <FormControl.Label>Time</FormControl.Label>
@@ -73,7 +81,7 @@ import {TextInput} from '@primer/react-brand'
   </FormControl>
   <FormControl fullWidth>
     <FormControl.Label>URL</FormControl.Label>
-    <TextInput type="url" value="https://github.com" />
+    <TextInput type="url" autoComplete="url" value="https://github.com" />
   </FormControl>
 </Container>
 ```
@@ -81,7 +89,7 @@ import {TextInput} from '@primer/react-brand'
 ### Placeholder
 
 ```jsx live
-<TextInput placeholder="First name" />
+<TextInput placeholder="First name" autoComplete="given-name" />
 ```
 
 ### Use with `FormControl`
@@ -93,7 +101,7 @@ Use `TextInput` alongside `FormControl` to ensure the control always has a corre
 ```jsx live
 <FormControl>
   <FormControl.Label>First name</FormControl.Label>
-  <TextInput />
+  <TextInput autoComplete="given-name" />
 </FormControl>
 ```
 
