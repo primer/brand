@@ -34,17 +34,6 @@ export default {
         category: 'Input',
       },
     },
-    validationStatus: {
-      options: [0, 1, 2], // iterator
-      mapping: [undefined, 'error', 'success'], // values
-      control: {
-        type: 'inline-radio',
-        labels: ['undefined', 'error', 'success'],
-      },
-      table: {
-        category: 'Validation',
-      },
-    },
     fullWidth: {
       description: 'formerly called Block',
       control: {type: 'boolean'},
