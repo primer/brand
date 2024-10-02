@@ -92,6 +92,14 @@ import {TextInput} from '@primer/react-brand'
 <TextInput placeholder="First name" autoComplete="given-name" />
 ```
 
+### Autocomplete
+
+The `autoComplete` prop should be provided wherever possible to allow browsers to autofill the input field. See MDN for [a complete list of autocomplete values](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete).
+
+```jsx live
+<TextInput autoComplete="given-name" />
+```
+
 ### Use with `FormControl`
 
 Use `TextInput` alongside `FormControl` to ensure the control always has a corresponding form label.
