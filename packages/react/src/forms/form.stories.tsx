@@ -58,7 +58,7 @@ export const GitHubEnterprise = args => {
           >
             <FormControl required fullWidth validationStatus={args.validationStatus}>
               <FormControl.Label>First name</FormControl.Label>
-              <TextInput disabled={args.disabled} required />
+              <TextInput disabled={args.disabled} required autoComplete="given-name" />
               {args.validationStatus && args.validationStatus === 'error' && (
                 // eslint-disable-next-line i18n-text/no-en
                 <FormControl.Validation>{args.validationText || 'This is an error message'}</FormControl.Validation>
@@ -69,7 +69,7 @@ export const GitHubEnterprise = args => {
             </FormControl>
             <FormControl required fullWidth validationStatus={args.validationStatus}>
               <FormControl.Label>Last name</FormControl.Label>
-              <TextInput disabled={args.disabled} required />
+              <TextInput disabled={args.disabled} required autoComplete="family-name" />
               {args.validationStatus && args.validationStatus === 'error' && (
                 // eslint-disable-next-line i18n-text/no-en
                 <FormControl.Validation>{args.validationText || 'This is an error message'}</FormControl.Validation>
