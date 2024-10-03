@@ -1,0 +1,125 @@
+.Icon svg {
+  width: var(--base-size-20);
+  height: var(--base-size-20);
+}
+
+.Icon--badge {
+  width: var(--base-size-44);
+  height: var(--base-size-44);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Icon--color-default {
+  color: var(--brand-Icon-color-default);
+}
+
+.Icon--color-default.Icon--badge {
+  background-color: var(--brand-Icon-background-default);
+}
+
+.Icon--color-blue {
+  color: var(--brand-Icon-color-blue);
+}
+
+.Icon--color-blue.Icon--badge {
+  background-color: var(--brand-Icon-background-blue);
+}
+
+.Icon--color-coral {
+  color: var(--brand-Icon-color-coral);
+}
+
+.Icon--color-coral.Icon--badge {
+  background-color: var(--brand-Icon-background-coral);
+}
+
+.Icon--color-green {
+  color: var(--brand-Icon-color-green);
+}
+
+.Icon--color-green.Icon--badge {
+  background-color: var(--brand-Icon-background-green);
+}
+
+.Icon--color-gray {
+  color: var(--brand-Icon-color-gray);
+}
+
+.Icon--color-gray.Icon--badge {
+  background-color: var(--brand-Icon-background-gray);
+}
+
+.Icon--color-indigo {
+  color: var(--brand-Icon-color-indigo);
+}
+
+.Icon--color-indigo.Icon--badge {
+  background-color: var(--brand-Icon-background-indigo);
+}
+
+.Icon--color-lemon {
+  color: var(--brand-Icon-color-lemon);
+}
+
+.Icon--color-lemon.Icon--badge {
+  background-color: var(--brand-Icon-background-lemon);
+}
+
+.Icon--color-lime {
+  color: var(--brand-Label-color-lime);
+}
+
+.Icon--color-lime.Icon--badge {
+  background-color: var(--brand-Icon-background-lime);
+}
+
+.Icon--color-orange {
+  color: var(--brand-Icon-color-orange);
+}
+
+.Icon--color-orange.Icon--badge {
+  background-color: var(--brand-Icon-background-orange);
+}
+
+.Icon--color-pink {
+  color: var(--brand-Icon-color-pink);
+}
+
+.Icon--color-pink.Icon--badge {
+  background-color: var(--brand-Icon-background-pink);
+}
+
+.Icon--color-purple {
+  color: var(--brand-Icon-color-purple);
+}
+
+.Icon--color-purple.Icon--badge {
+  background-color: var(--brand-Icon-background-purple);
+}
+
+.Icon--color-red {
+  color: var(--brand-Icon-color-red);
+}
+
+.Icon--color-red.Icon--badge {
+  background-color: var(--brand-Icon-background-red);
+}
+
+.Icon--color-teal {
+  color: var(--brand-Icon-color-teal);
+}
+
+.Icon--color-teal.Icon--badge {
+  background-color: var(--brand-Icon-background-teal);
+}
+
+.Icon--color-yellow {
+  color: var(--brand-Icon-color-yellow);
+}
+
+.Icon--color-yellow.Icon--badge {
+  background-color: var(--brand-Icon-background-yellow);
+}
