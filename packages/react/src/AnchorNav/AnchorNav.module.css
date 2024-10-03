@@ -356,7 +356,7 @@
   display: flex;
   margin-left: auto;
   white-space: nowrap;
-  padding: var(--base-size-12) var(--base-size-24);
+  padding-inline: var(--base-size-24);
 }
 
 .AnchorNav--expanded .AnchorNav-action {
