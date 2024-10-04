@@ -14,7 +14,7 @@ export const WithNoConfirm: StoryFn<typeof CTAForm> = _args => (
     <CTAForm.Input>
       <FormControl required>
         <FormControl.Label>Your Work Email Address</FormControl.Label>
-        <TextInput placeholder="name" />
+        <TextInput placeholder="email" autoComplete="email" />
       </FormControl>
     </CTAForm.Input>
     <CTAForm.Action>Subscribe</CTAForm.Action>

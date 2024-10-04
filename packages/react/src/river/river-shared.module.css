@@ -10,8 +10,7 @@
   text-align: center;
 }
 
-.River__visual {
-  position: relative;
+.River__content {
   order: 2;
 }
 
@@ -61,6 +60,11 @@
   .River {
     grid-template-rows: unset;
   }
+
+  .River__content {
+    order: unset;
+  }
+
   .River--50-50 {
     grid-template-columns: [content] 1fr [visual] 1fr;
   }
@@ -87,9 +91,16 @@
     grid-area: content;
   }
 
+  .River--align-start .River__content {
+    padding-inline-end: var(--base-size-128);
+  }
+
+  .River--align-end .River__content {
+    padding-inline: var(--base-size-64);
+  }
+
   .River__visual {
     grid-area: visual;
-    order: unset;
   }
 
   .River--align-center {
@@ -144,10 +155,6 @@
   font-weight: inherit;
 }
 
-.RiverBreakout .River__visual {
-  order: unset;
-}
-
 .RiverBreakout__hiddenHeading {
   border: 0;
   clip: rect(1px, 1px, 1px, 1px);
@@ -158,6 +165,10 @@
   width: 1px;
 }
 
+.RiverBreakout .River__call-to-action {
+  margin-block-end: var(--base-size-40);
+}
+
 @media screen and (min-width: 48rem) {
   .RiverBreakout .River__content {
     display: grid;
@@ -166,20 +177,21 @@
       'text trailingComponent'
       'cta trailingComponent';
     grid-template-columns: 5fr 3fr;
+    grid-auto-rows: auto 1fr;
+  }
+
+  .RiverBreakout .River__text {
+    grid-area: text;
   }
 
   .RiverBreakout .River__call-to-action {
     grid-area: cta;
-    margin-block-start: 0;
+    margin-block: 0;
   }
 
   .RiverBreakout .River__trailingComponent {
     grid-area: trailingComponent;
     justify-self: end;
     margin-block-start: 0;
-  }
-
-  .RiverBreakout .River__text {
-    grid-area: text;
   }
 }

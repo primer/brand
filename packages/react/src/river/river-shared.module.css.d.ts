@@ -1,7 +1,7 @@
 declare const styles: {
   readonly "River": string;
   readonly "River--align-center": string;
-  readonly "River__visual": string;
+  readonly "River__content": string;
   readonly "River__visual--fill-media": string;
   readonly "River__visual--rounded": string;
   readonly "River__visual--has-shadow": string;
@@ -15,7 +15,7 @@ declare const styles: {
   readonly "River--60-40": string;
   readonly "River--align-start": string;
   readonly "River--align-end": string;
-  readonly "River__content": string;
+  readonly "River__visual": string;
   readonly "River__body-text": string;
   readonly "RiverBreakout": string;
   readonly "RiverBreakout--muted": string;

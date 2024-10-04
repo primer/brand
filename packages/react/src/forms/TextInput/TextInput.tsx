@@ -1,5 +1,6 @@
-import React, {forwardRef} from 'react'
+import React, {forwardRef, useMemo} from 'react'
 import clsx from 'clsx'
+import {useId} from '@reach/auto-id'
 
 import type {BaseProps} from '../../component-helpers'
 import type {FormInputSizes, FormValidationStatus} from '../form-types'
@@ -75,6 +76,41 @@ const _TextInput = (
   }: TextInputProps,
   ref,
 ) => {
+  const uniqueId = useId()
+
+  const showLeadingText = leadingText && !LeadingVisual
+  const showLeadingVisual = LeadingVisual && !leadingText
+  const showTrailingText = trailingText && !TrailingVisual
+  const showTrailingVisual = TrailingVisual && !trailingText
+
+  const leadingTextId = `${uniqueId}-leading-text`
+  const leadingVisualId = `${uniqueId}-leading-visual`
+  const trailingVisualId = `${uniqueId}-trailing-visual`
+  const trailingTextId = `${uniqueId}-trailing-text`
+
+  const describedBy = useMemo(() => {
+    const elements = [
+      {condition: showLeadingText, id: leadingTextId},
+      {condition: showLeadingVisual, id: leadingVisualId},
+      {condition: showTrailingVisual, id: trailingVisualId},
+      {condition: showTrailingText, id: trailingTextId},
+    ]
+
+    return elements
+      .filter(({condition}) => condition)
+      .map(({id}) => id)
+      .join(' ')
+  }, [
+    showLeadingText,
+    showLeadingVisual,
+    showTrailingVisual,
+    showTrailingText,
+    leadingTextId,
+    leadingVisualId,
+    trailingVisualId,
+    trailingTextId,
+  ])
+
   return (
     <span
       className={clsx(
@@ -87,7 +123,7 @@ const _TextInput = (
         validationStatus && styles[`TextInput-wrapper--${validationStatus}`],
       )}
     >
-      {leadingText && !LeadingVisual && (
+      {showLeadingText && (
         <span
           className={clsx(
             styles['TextInput-leading-text'],
@@ -100,12 +136,13 @@ const _TextInput = (
             size={size === 'large' ? '200' : '100'}
             as="span"
             className={clsx(styles['TextInput-leading-text-inner'], styles[`TextInput-leading-text-inner--${size}`])}
+            id={leadingTextId}
           >
             {leadingText}
           </Text>
         </span>
       )}
-      {LeadingVisual && !leadingText && (
+      {showLeadingVisual && (
         <span className={clsx(styles['TextInput-leading-visual'], styles[`TextInput-leading-visual--${size}`])}>
           {typeof LeadingVisual === 'function' ? (
             <LeadingVisual
@@ -113,6 +150,7 @@ const _TextInput = (
                 styles['TextInput-leading-visual-icon'],
                 styles[`TextInput-leading-visual-icon--${size}`],
               )}
+              id={leadingVisualId}
             />
           ) : (
             React.isValidElement(LeadingVisual) &&
@@ -123,6 +161,7 @@ const _TextInput = (
               ),
               width: size === 'large' ? 20 : 16,
               height: size === 'large' ? 20 : 16,
+              id: leadingVisualId,
             })
           )}
         </span>
@@ -145,9 +184,10 @@ const _TextInput = (
         placeholder={placeholder}
         disabled={disabled}
         aria-invalid={validationStatus === 'error'}
+        aria-describedby={describedBy || undefined}
         {...rest}
       />
-      {TrailingVisual && !trailingText && (
+      {showTrailingVisual && (
         <span className={clsx(styles['TextInput-trailing-visual'], styles[`TextInput-trailing-visual--${size}`])}>
           {typeof TrailingVisual === 'function' ? (
             <TrailingVisual
@@ -155,6 +195,7 @@ const _TextInput = (
                 styles['TextInput-trailing-visual-icon'],
                 styles[`TextInput-trailing-visual-icon--${size}`],
               )}
+              id={trailingVisualId}
             />
           ) : TrailingVisual && React.isValidElement(TrailingVisual) ? (
             React.cloneElement(TrailingVisual as React.ReactElement, {
@@ -164,11 +205,12 @@ const _TextInput = (
               ),
               width: size === 'large' ? 20 : 16,
               height: size === 'large' ? 20 : 16,
+              id: trailingVisualId,
             })
           ) : null}
         </span>
       )}
-      {trailingText && !TrailingVisual && (
+      {showTrailingText && (
         <span
           className={clsx(
             styles['TextInput-trailing-text'],
@@ -181,6 +223,7 @@ const _TextInput = (
             size={size === 'large' ? '200' : '100'}
             as="span"
             className={clsx(styles['TextInput-trailing-text-inner'], styles[`TextInput-trailing-text-inner--${size}`])}
+            id={trailingTextId}
           >
             {trailingText}
           </Text>

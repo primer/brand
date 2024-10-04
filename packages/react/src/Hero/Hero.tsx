@@ -165,9 +165,9 @@ const HeroImage = forwardRef<HTMLImageElement, HeroImageProps>(
 type HeroEyebrowProps = PropsWithChildren<BaseProps<HTMLDivElement>>
 
 const HeroEyebrow = forwardRef<HTMLDivElement, HeroEyebrowProps>(
-  ({children, ...rest}: PropsWithChildren<HeroEyebrowProps>, ref) => {
+  ({children, className, ...rest}: PropsWithChildren<HeroEyebrowProps>, ref) => {
     return (
-      <div ref={ref} className={styles['Hero-eyebrow']} {...rest}>
+      <div ref={ref} className={clsx(styles['Hero-eyebrow'], className)} {...rest}>
         {children}
       </div>
     )
@@ -177,9 +177,9 @@ const HeroEyebrow = forwardRef<HTMLDivElement, HeroEyebrowProps>(
 type HeroLabelProps = LabelProps & BaseProps<HTMLSpanElement>
 
 const HeroLabel = forwardRef<HTMLSpanElement, HeroLabelProps>(
-  ({children, ...rest}: PropsWithChildren<HeroLabelProps>, ref) => {
+  ({children, className, ...rest}: PropsWithChildren<HeroLabelProps>, ref) => {
     return (
-      <Label ref={ref} className={styles['Hero-label']} {...rest}>
+      <Label ref={ref} className={clsx(styles['Hero-label'], className)} {...rest}>
         {children}
       </Label>
     )
