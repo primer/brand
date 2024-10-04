@@ -61,6 +61,8 @@ const Root = ({
     child => React.isValidElement(child) && (child.type === Checkbox || child.type === Radio),
   )
 
+  const containsHint = childrenArr.some(child => React.isValidElement(child) && child.type === FormControlHint)
+
   return (
     <section
       id={`FormControl--${uniqueId}`}
@@ -76,6 +78,8 @@ const Root = ({
       {React.Children.map(children, child => {
         if (!React.isValidElement(child)) return
 
+        const describedBy = containsHint ? `${uniqueId}-hint` : undefined
+
         switch (child.type) {
           case TextInput:
           case Textarea:
@@ -88,6 +92,7 @@ const Root = ({
               validationStatus: child.props.validationStatus || validationStatus,
               fullWidth,
               size,
+              'aria-describedby': describedBy,
             })
 
           case Checkbox:
@@ -97,6 +102,7 @@ const Root = ({
               name: child.props.name || uniqueId,
               required: child.props.required || required,
               validationStatus: child.props.validationStatus || validationStatus,
+              'aria-describedby': describedBy,
             })
 
           case Radio:
@@ -106,6 +112,7 @@ const Root = ({
               name: child.props.name,
               required: child.props.required || required,
               validationStatus: child.props.validationStatus || validationStatus,
+              'aria-describedby': describedBy,
             })
 
           case FormControlLabel:
@@ -123,6 +130,11 @@ const Root = ({
             return React.cloneElement(child as React.ReactElement, {
               className: clsx(isInlineControl && styles['FormControl-validation-checkbox'], child.props.className),
               validationStatus,
+            })
+
+          case FormControlHint:
+            return React.cloneElement(child as React.ReactElement, {
+              id: `${uniqueId}-hint`,
             })
 
           default:
