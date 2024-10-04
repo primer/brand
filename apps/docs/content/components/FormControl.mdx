@@ -11,6 +11,7 @@ import InlineCode from '@primer/gatsby-theme-doctocat/src/components/inline-code
 import {PropTableValues} from '../../src/components'
 import {Label} from '@primer/react'
 import {Heading} from '@primer/react-brand'
+import {SearchIcon} from '@primer/octicons-react'
 import {Link} from 'gatsby'
 
 ```js
@@ -214,10 +215,12 @@ An example of a typical layout composed using `FormControl`:
 
 ### Visually hidden label
 
+Labels should only be visually hidden when the context is clear from the input itself. For example, a search input with a search icon. The majority of the time, labels should be visible.
+
 ```jsx live
 <FormControl>
-  <FormControl.Label visuallyHidden>Name</FormControl.Label>
-  <TextInput autoComplete="name" />
+  <FormControl.Label visuallyHidden>Search</FormControl.Label>
+  <TextInput type="search" trailingVisual={<SearchIcon />} />
 </FormControl>
 ```
 
