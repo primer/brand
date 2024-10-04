@@ -1,35 +1,28 @@
 import React from 'react'
 import {Meta, StoryFn} from '@storybook/react'
 import {Icon, IconColors} from '.'
-import * as Icons from '@primer/octicons-react'
+import {CopilotIcon} from '@primer/octicons-react'
 
 export default {
   title: 'Components/Icon',
   component: Icon,
 } as Meta<typeof Icon>
 
-const Template: StoryFn<typeof Icon> = ({hasBackground, color, icon}) => {
-  const BrandIcon = Icons[icon]
-  return (
-    <Icon hasBackground={hasBackground} icon={<BrandIcon />} color={color} />
-  )
-}
+const Template: StoryFn<typeof Icon> = ({hasBackground, color, icon}) => (
+  <Icon hasBackground={hasBackground} icon={icon} color={color} />
+)
 
 export const Default = Template.bind({})
 Default.args = {
   hasBackground: false,
   color: IconColors[0],
-  icon: 'CopilotIcon',
+  icon: CopilotIcon,
 }
 
 Default.argTypes = {
   icon: {
     name: 'icon',
-    description: 'Icon from @primer/octicons-react',
-    control: {
-      type: 'select',
-    },
-    options: Object.values(Icons).map(icon => icon.displayName)
+    description: 'You can find a list of available icons https://primer.style/foundations/icons',
   },
   hasBackground: {
     name: 'hasBackground',

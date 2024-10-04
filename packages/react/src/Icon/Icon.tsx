@@ -4,13 +4,13 @@ import clsx from 'clsx'
 import {Icon as IconProps} from '@primer/octicons-react'
 import {Colors} from '../constants'
 
-export const IconColors = Colors
-export const defaultIconColor = IconColors[0]
-
 /**
  * Design Tokens
  */
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/icon/colors.css'
+
+export const IconColors = Colors
+export const defaultIconColor = IconColors[0]
 
 type BrandIconProps = HTMLAttributes<HTMLSpanElement> & {
   icon: IconProps
@@ -18,8 +18,17 @@ type BrandIconProps = HTMLAttributes<HTMLSpanElement> & {
   hasBackground?: boolean
 }
 
-export const Icon = ({icon, className, color = defaultIconColor, hasBackground = false, ...rest}: BrandIconProps) => (
-  <span className={clsx(styles.Icon, styles[`Icon--color-${color}`], hasBackground && styles['Icon--badge'], className)} {...rest}>
-    {icon}
+export const Icon = ({
+  icon: BrandIcon,
+  className,
+  color = defaultIconColor,
+  hasBackground = false,
+  ...rest
+}: BrandIconProps) => (
+  <span
+    className={clsx(styles.Icon, styles[`Icon--color-${color}`], hasBackground && styles['Icon--badge'], className)}
+    {...rest}
+  >
+    <BrandIcon />
   </span>
 )
