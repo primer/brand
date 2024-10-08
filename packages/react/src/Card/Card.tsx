@@ -124,7 +124,11 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
     const Tag = colorMode === 'dark' && variant !== 'minimal' ? CardSkewEffect : DefaultCardWrapperComponent
 
     return (
-      <Tag style={style} disableSkew={disableAnimation}>
+      <Tag
+        style={style}
+        disableSkew={disableAnimation}
+        className={clsx(fullWidth ? styles['Card--fullWidth'] : styles['Card--maxWidth'])}
+      >
         <div
           className={clsx(
             styles.Card,
@@ -134,7 +138,6 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
             hasIcon && styles['Card--icon'],
             hasBorder && styles['Card--border'],
             styles[`Card--colorMode-${colorMode}`],
-            fullWidth && styles['Card--fullWidth'],
             className,
           )}
           style={style}
@@ -163,8 +166,8 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
   },
 )
 
-function DefaultCardWrapperComponent({children}) {
-  return <div className={styles['Card__outer']}>{children}</div>
+function DefaultCardWrapperComponent({className, children}) {
+  return <div className={clsx(styles['Card__outer'], className)}>{children}</div>
 }
 
 type CardImageProps = ImageProps
