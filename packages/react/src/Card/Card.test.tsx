@@ -162,17 +162,31 @@ describe('Card', () => {
     expect(cardEl).toHaveClass(classToCheck)
   })
 
-  it('renders a full-width card', async () => {
-    const rootTestId = 'root'
+  it('renders a card with a max-width when fullWidth=false', async () => {
+    const cardTestId = 'card'
     const {getByTestId} = render(
-      <Card href={mockHref} data-testid={rootTestId} fullWidth>
+      <Card href={mockHref} data-testid={cardTestId}>
         <Card.Heading>{mockHeading}</Card.Heading>
         <Card.Description>{mockDescription}</Card.Description>
       </Card>,
     )
 
-    const rootEl = getByTestId(rootTestId)
+    const cardEl = getByTestId(cardTestId)
 
-    expect(rootEl).toHaveClass('Card--fullWidth')
+    expect(cardEl.parentElement).toHaveClass('Card--maxWidth')
+  })
+
+  it('renders a full-width card when fullWidth=true', async () => {
+    const cardTestId = 'card'
+    const {getByTestId} = render(
+      <Card href={mockHref} data-testid={cardTestId} fullWidth>
+        <Card.Heading>{mockHeading}</Card.Heading>
+        <Card.Description>{mockDescription}</Card.Description>
+      </Card>,
+    )
+
+    const cardEl = getByTestId(cardTestId)
+
+    expect(cardEl.parentElement).toHaveClass('Card--fullWidth')
   })
 })
