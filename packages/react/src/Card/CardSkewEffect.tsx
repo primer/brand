@@ -15,6 +15,7 @@ type CardSkewEffectProps = {
 export const CardSkewEffect = ({
   color,
   children,
+  className,
   perspective = 700,
   disableSkew = false,
   ...rest
@@ -72,7 +73,7 @@ export const CardSkewEffect = ({
   }, [disableSkew, perspective, colorMode])
 
   return (
-    <div ref={boundingRef} className={clsx(styles['Card--skew'])} {...rest}>
+    <div ref={boundingRef} className={clsx(styles['Card--skew'], className)} {...rest}>
       <div className={styles['Card__skew-bounding']}>
         {children}
         <div

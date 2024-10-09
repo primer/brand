@@ -64,6 +64,8 @@ The cta text defaults to `Learn more` and can be customized using the `ctaText` 
 
 A border can be provided using the `hasBorder` prop. This will render a border around the Card component giving further separation between the foreground and background. Especially when there is no shadow present on the background.
 
+The `hasBorder` prop has no effect in when using the torchlight effect in dark mode. In this case, the border is always rendered.
+
 ```jsx live
 <Card href="https://github.com" hasBorder>
   <Card.Heading>Code search & code view</Card.Heading>

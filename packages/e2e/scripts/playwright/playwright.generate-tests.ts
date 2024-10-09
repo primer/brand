@@ -78,6 +78,7 @@
     'recipes-solutions-solution-org-size--minimum-dark': 3500, // for the animation
     'recipes-solutions-overview--light': 3500, // for the animation
     'recipes-solutions-overview--dark': 3500, // for the animation
+    'components-riverstoryscroll--default': 3500, // for the animation
     'components-riverstoryscroll-features--with-timeline': 3500, // for the animation
     'components-riverstoryscroll-features--with-timeline-narrow': 3500, // for the animation
     'components-riverstoryscroll-features--enterprise-example': 3500, // for the animation
