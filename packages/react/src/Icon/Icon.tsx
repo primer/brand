@@ -1,7 +1,7 @@
 import React, {HTMLAttributes} from 'react'
 import styles from './Icon.module.css'
 import clsx from 'clsx'
-import {Icon as IconProps} from '@primer/octicons-react'
+import {Icon as OcticonProps} from '@primer/octicons-react'
 import {Colors} from '../constants'
 
 /**
@@ -12,8 +12,8 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 export const IconColors = Colors
 export const defaultIconColor = IconColors[0]
 
-type BrandIconProps = HTMLAttributes<HTMLSpanElement> & {
-  icon: IconProps
+export type IconProps = HTMLAttributes<HTMLSpanElement> & {
+  icon: OcticonProps
   color?: (typeof IconColors)[number]
   hasBackground?: boolean
 }
@@ -24,7 +24,7 @@ export const Icon = ({
   color = defaultIconColor,
   hasBackground = false,
   ...rest
-}: BrandIconProps) => (
+}: IconProps) => (
   <span
     className={clsx(styles.Icon, styles[`Icon--color-${color}`], hasBackground && styles['Icon--badge'], className)}
     {...rest}
