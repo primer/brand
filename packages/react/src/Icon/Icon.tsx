@@ -19,7 +19,7 @@ export type IconProps = HTMLAttributes<HTMLSpanElement> & {
 }
 
 export const Icon = ({
-  icon: BrandIcon,
+  icon: Octicon,
   className,
   color = defaultIconColor,
   hasBackground = false,
@@ -29,6 +29,6 @@ export const Icon = ({
     className={clsx(styles.Icon, styles[`Icon--color-${color}`], hasBackground && styles['Icon--badge'], className)}
     {...rest}
   >
-    <BrandIcon />
+    <Octicon />
   </span>
 )
