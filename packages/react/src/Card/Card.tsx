@@ -121,10 +121,13 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
       child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === CardIcon,
     )
 
-    const Tag = colorMode === 'dark' && variant !== 'minimal' ? CardSkewEffect : DefaultCardWrapperComponent
+    const hasSkewEffect = colorMode === 'dark' && variant !== 'minimal'
+    const showBorder = hasSkewEffect || hasBorder
+
+    const WrapperComponent = hasSkewEffect ? CardSkewEffect : DefaultCardWrapperComponent
 
     return (
-      <Tag
+      <WrapperComponent
         style={style}
         disableSkew={disableAnimation}
         className={clsx(fullWidth ? styles['Card--fullWidth'] : styles['Card--maxWidth'])}
@@ -136,7 +139,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
             styles[`Card--colorMode-${colorMode}`],
             styles[`Card--variant-${variant}`],
             hasIcon && styles['Card--icon'],
-            hasBorder && styles['Card--border'],
+            showBorder && styles['Card--border'],
             styles[`Card--colorMode-${colorMode}`],
             className,
           )}
@@ -161,7 +164,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
             <ExpandableArrow className={stylesLink['Link-arrow']} expanded={isActive} aria-hidden="true" />
           </div>
         </div>
-      </Tag>
+      </WrapperComponent>
     )
   },
 )

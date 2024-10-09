@@ -278,7 +278,6 @@
 }
 
 .Card__skew-bounding {
-  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
   border-radius: var(--brand-borderRadius-large);
   position: relative;
   z-index: 1;
