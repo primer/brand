@@ -312,18 +312,16 @@ export default function KitchenSink() {
               </FormControl>
               <FormControl hasBorder required>
                 <Checkbox />
-                <FormControl.Label>
-                  Contact me about GitHub Enterprise Server{' '}
-                  <FormControl.Hint>
-                    <Text size="200" variant="muted">
-                      I&apos;m interested in learning more about{' '}
-                      <InlineLink href="https://github.com/enterprise" target="_blank">
-                        GitHub Enterprise Server
-                      </InlineLink>{' '}
-                      and would like to be contacted by GitHub’s sales team.
-                    </Text>
-                  </FormControl.Hint>
-                </FormControl.Label>
+                <FormControl.Label>Contact me about GitHub Enterprise Server </FormControl.Label>
+                <FormControl.Hint>
+                  <Text size="200" variant="muted">
+                    I&apos;m interested in learning more about{' '}
+                    <InlineLink href="https://github.com/enterprise" target="_blank">
+                      GitHub Enterprise Server
+                    </InlineLink>{' '}
+                    and would like to be contacted by GitHub’s sales team.
+                  </Text>
+                </FormControl.Hint>
               </FormControl>
               <div
                 style={{
