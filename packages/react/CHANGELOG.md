@@ -1,5 +1,26 @@
 # @primer/react-brand
 
+## 0.40.2
+
+### Patch Changes
+
+- [#776](https://github.com/primer/brand/pull/776) [`06fd8476`](https://github.com/primer/brand/commit/06fd84763527bdb9f99a04b367ab4736fd396b6e) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Added `aria-describedby` attribute to leading/trailing text and visuals in `TextInput` component
+
+- [#781](https://github.com/primer/brand/pull/781) [`ec6ffc36`](https://github.com/primer/brand/commit/ec6ffc363cfa4fcb4ad5fc3c38100cf5d0fbc099) Thanks [@joshfarrant](https://github.com/joshfarrant)! - - `Card` component no longer expands to full width when `fullWidth={false}`
+
+  - `Card` component no longer renders duplicate borders in dark mode when `hasBorder={true}`
+
+- [#774](https://github.com/primer/brand/pull/774) [`a6baf41d`](https://github.com/primer/brand/commit/a6baf41dfbb3ac54b12c41ba196b256be3a9315d) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Fixed issue where `Button` component would reflow and break over multiple lines when its text content exceeded the viewport width.
+
+- [#768](https://github.com/primer/brand/pull/768) [`0270f06d`](https://github.com/primer/brand/commit/0270f06d4e5cc85aea5f671caa2c7e8ab08abe64) Thanks [@danielguillan](https://github.com/danielguillan)! - Improves spacing of RiverBreakout content
+
+- [#760](https://github.com/primer/brand/pull/760) [`6be1118d`](https://github.com/primer/brand/commit/6be1118d4042e5efd78898583f546f46eac4921a) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Fixed a bug where passing a className to `Hero.Label` or `Hero.Eyebrow` would replace the default class.
+
+- [#766](https://github.com/primer/brand/pull/766) [`d10dc535`](https://github.com/primer/brand/commit/d10dc535284effd85966bab7ba1c02452fd1ec8d) Thanks [@danielguillan](https://github.com/danielguillan)! - Adds internal paddings to River content on larger viewports
+
+- [#767](https://github.com/primer/brand/pull/767) [`299ad371`](https://github.com/primer/brand/commit/299ad371ac4de9582fa27c65226bdd7c71f5689d) Thanks [@danielguillan](https://github.com/danielguillan)! - - Update the order of River children to ensure an acccessible markup strucuture.
+  - On narrow viewports, the content and visuals are now flipped, with the visuals always placed first to enhance visual hierarchy.
+
 ## 0.40.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @primer/brand-primitives
 
+## 0.40.2
+
+### Patch Changes
+
+- [#769](https://github.com/primer/brand/pull/769) [`41531950`](https://github.com/primer/brand/commit/4153195009f1a0e37b117546b543b476f970245a) Thanks [@danielguillan](https://github.com/danielguillan)! - Adjust text 800 line height
+
 ## 0.40.1
 
 ### Patch Changes

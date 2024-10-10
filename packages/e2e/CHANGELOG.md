@@ -1,5 +1,11 @@
 # @primer/brand-e2e
 
+## 0.40.2
+
+### Patch Changes
+
+- [#776](https://github.com/primer/brand/pull/776) [`06fd8476`](https://github.com/primer/brand/commit/06fd84763527bdb9f99a04b367ab4736fd396b6e) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Added `aria-describedby` attribute to leading/trailing text and visuals in `TextInput` component
+
 ## 0.40.1
 
 ## 0.40.0
