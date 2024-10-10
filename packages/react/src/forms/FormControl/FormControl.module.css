@@ -10,10 +10,18 @@
 }
 
 .FormControl--checkbox {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-end;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    'control label'
+    '. hint'
+    '. validation';
+  grid-row-gap: 0;
+  grid-column-gap: var(--base-size-8);
+}
+
+.FormControl-control--checkbox {
+  grid-area: control;
 }
 
 .FormControl--border {
@@ -53,6 +61,7 @@
 }
 
 .FormControl-label--checkbox {
+  grid-area: label;
   cursor: pointer;
   font-size: var(--brand-text-size-100);
   font-weight: var(--base-text-weight-semibold);
@@ -67,6 +76,7 @@
 }
 
 .FormControl-hint {
+  grid-area: hint;
   color: var(--brand-color-text-muted);
   display: block;
   font-size: var(--brand-text-size-200);
@@ -77,6 +87,7 @@
 
 /*Validation*/
 .FormControl-validation {
+  grid-area: validation;
   font-weight: var(--base-text-weight-regular);
   font-size: var(--brand-text-size-200);
   line-height: var(--brand-text-lineHeight-200);

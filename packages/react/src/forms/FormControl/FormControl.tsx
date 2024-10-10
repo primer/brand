@@ -97,7 +97,7 @@ const Root = ({
 
           case Checkbox:
             return React.cloneElement(child as React.ReactElement, {
-              className: clsx(child.props.className),
+              className: clsx(child.props.className, styles['FormControl-control--checkbox']),
               id: uniqueId,
               name: child.props.name || uniqueId,
               required: child.props.required || required,
