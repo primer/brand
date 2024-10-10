@@ -178,6 +178,7 @@ export function FormExample({type = 'default', colorMode = ColorModesEnum.LIGHT}
             {type === 'default' && (
               <Box backgroundColor={colorMode === ColorModesEnum.LIGHT ? 'default' : 'subtle'} marginBlockEnd={16}>
                 <FormControl required>
+                  <Checkbox />
                   <FormControl.Label>
                     <Text weight="medium" size="100">
                       Yes, I would like to be emailed with the latest news and happenings, products, and special offers
@@ -189,7 +190,6 @@ export function FormExample({type = 'default', colorMode = ColorModesEnum.LIGHT}
                       </Text>
                     </FormControl.Hint>
                   </FormControl.Label>
-                  <Checkbox />
                 </FormControl>
               </Box>
             )}
@@ -221,19 +221,20 @@ export function FormExample({type = 'default', colorMode = ColorModesEnum.LIGHT}
             {type === 'extended' && (
               <Box backgroundColor={colorMode === ColorModesEnum.LIGHT ? 'default' : 'subtle'}>
                 <FormControl required>
+                  <Checkbox />
                   <FormControl.Label>
                     <Text weight="medium" size="100">
                       I understand that <InlineLink href="#">certain features</InlineLink> are unavailable during the
                       trial experience.
                     </Text>
                   </FormControl.Label>
-                  <Checkbox />
                 </FormControl>
               </Box>
             )}
             {type === 'extended' && (
               <Box backgroundColor={colorMode === ColorModesEnum.LIGHT ? 'default' : 'subtle'}>
                 <FormControl required>
+                  <Checkbox />
                   <FormControl.Label>
                     <Text weight="medium" size="100">
                       I hereby accept the <InlineLink href="#">GitHub Customer Agreement</InlineLink> and confirm that I
@@ -241,7 +242,6 @@ export function FormExample({type = 'default', colorMode = ColorModesEnum.LIGHT}
                       privacy practices, see the <InlineLink href="#">GitHub Privacy Statement</InlineLink>.
                     </Text>
                   </FormControl.Label>
-                  <Checkbox />
                 </FormControl>
               </Box>
             )}
