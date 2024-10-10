@@ -10,7 +10,7 @@ test.describe('Visual Comparison: RiverStoryScroll', () => {
   test('RiverStoryScroll / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-riverstoryscroll--default&viewMode=story')
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(3500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
