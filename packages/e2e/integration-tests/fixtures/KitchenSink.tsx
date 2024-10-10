@@ -311,6 +311,7 @@ export default function KitchenSink() {
                 </Select>
               </FormControl>
               <FormControl hasBorder required>
+                <Checkbox />
                 <FormControl.Label>
                   Contact me about GitHub Enterprise Server{' '}
                   <FormControl.Hint>
@@ -323,7 +324,6 @@ export default function KitchenSink() {
                     </Text>
                   </FormControl.Hint>
                 </FormControl.Label>
-                <Checkbox />
               </FormControl>
               <div
                 style={{
@@ -344,6 +344,7 @@ export default function KitchenSink() {
                 </Text>
               </div>
               <FormControl required>
+                <Checkbox />
                 <FormControl.Label>
                   <Text size="200" variant="muted">
                     I hereby accept the{' '}
@@ -360,8 +361,6 @@ export default function KitchenSink() {
                     </InlineLink>{' '}
                   </Text>
                 </FormControl.Label>
-
-                <Checkbox />
               </FormControl>
               <div
                 style={{
