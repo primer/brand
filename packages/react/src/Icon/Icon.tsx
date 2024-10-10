@@ -1,4 +1,4 @@
-import React, {HTMLAttributes} from 'react'
+import React, {type SVGAttributes} from 'react'
 import styles from './Icon.module.css'
 import clsx from 'clsx'
 import {Icon as OcticonProps} from '@primer/octicons-react'
@@ -12,7 +12,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 export const IconColors = Colors
 export const defaultIconColor = IconColors[0]
 
-export type IconProps = HTMLAttributes<HTMLSpanElement> & {
+export type IconProps = SVGAttributes<SVGElement> & {
   icon: OcticonProps
   color?: (typeof IconColors)[number]
   hasBackground?: boolean
@@ -25,10 +25,9 @@ export const Icon = ({
   hasBackground = false,
   ...rest
 }: IconProps) => (
-  <span
-    className={clsx(styles.Icon, styles[`Icon--color-${color}`], hasBackground && styles['Icon--badge'], className)}
+  <Octicon
+    className={clsx(styles[`Icon--color-${color}`], hasBackground && styles['Icon--badge'], className)}
+    size={20}
     {...rest}
-  >
-    <Octicon />
-  </span>
+  />
 )
