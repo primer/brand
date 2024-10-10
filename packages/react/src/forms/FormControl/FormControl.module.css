@@ -12,8 +12,8 @@
 .FormControl--checkbox {
   display: flex;
   align-items: flex-start;
-  flex-direction: row-reverse;
   justify-content: flex-end;
+  flex-direction: row;
 }
 
 .FormControl--border {
