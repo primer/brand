@@ -115,11 +115,14 @@ describe('CTAForm', () => {
       <CTAForm.Confirm>
         <FormControl>
           <Checkbox />
-          <FormControl.Label>label</FormControl.Label>
+          <FormControl.Label>Test label</FormControl.Label>
         </FormControl>
       </CTAForm.Confirm>,
     )
-    const labelEl = container.querySelector('label')
+
+    // This is required because currently `Checkbox` renders its own label, so we end up with 2 labels in the DOM
+    const labelEl = Array.from(container.querySelectorAll('label')).find(el => el.textContent === 'Test label')
+
     const formControlEl = container.querySelector('section')
     // Testing that the FormControl has the full width class
     expect(formControlEl?.classList).toContain('FormControl--fullWidth')
