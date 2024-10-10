@@ -7,11 +7,15 @@ description: Use the section component to group related content together.
 a11yReviewed: false
 ---
 
-import {PropTableValues} from '../../../src/components'
+import ComponentLayout from '../../../src/layouts/component-layout'
+
+import { PropTableValues } from '../../../src/components'
 import {
   SectionBackgroundColors,
   SectionPaddingVariants,
 } from '@primer/react-brand'
+
+export default ComponentLayout
 
 ```js
 import {Section} from '@primer/react-brand'
@@ -108,7 +112,7 @@ The default `Section` wraps its content in a semantic `<section>` element and pr
     backgroundImageSize={['auto', 'cover']}
   >
     <SectionIntro align="center">
-      <SectionIntro.Heading size="3" size="3">
+      <SectionIntro.Heading size="3">
         Multiple background images
       </SectionIntro.Heading>
     </SectionIntro>
@@ -124,17 +128,19 @@ The default `Section` wraps its content in a semantic `<section>` element and pr
 ### With rounded corners
 
 ```jsx live
-  <ThemeProvider colorMode="dark">
-    <Section backgroundColor="default"></Section>
-  </ThemeProvider>
-  <Section backgroundColor="default" rounded>
-    <SectionIntro align="center">
-      <SectionIntro.Heading size="3">Rounded corners</SectionIntro.Heading>
-        <SectionIntro.Description>
-          This section has rounded top corners that overlap the previous section.
-        </SectionIntro.Description>
-    </SectionIntro>
-  </Section>
+  <>
+    <ThemeProvider colorMode="dark">
+      <Section backgroundColor="default"></Section>
+    </ThemeProvider>
+    <Section backgroundColor="default" rounded>
+      <SectionIntro align="center">
+        <SectionIntro.Heading size="3">Rounded corners</SectionIntro.Heading>
+          <SectionIntro.Description>
+            This section has rounded top corners that overlap the previous section.
+          </SectionIntro.Description>
+      </SectionIntro>
+    </Section>
+  </>
 ```
 
 ## Component props
