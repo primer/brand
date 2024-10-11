@@ -336,7 +336,7 @@ export const ErrorValidation = () => {
 ErrorValidation.storyName = 'w/ Error Validation - Playground'
 
 export const ErrorValidationWithCheckbox = args => <CheckboxPlayground {...args} />
-ErrorValidationWithCheckbox.storyName = 'w/ Error Validation with Checkbox - Playground'
+ErrorValidationWithCheckbox.storyName = 'w/ Checkbox with Error Validation - Playground'
 ErrorValidationWithCheckbox.args = {
   validationStatus: 'error',
   validationText: 'This is an error message',

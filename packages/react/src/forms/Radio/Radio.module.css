@@ -8,6 +8,7 @@
   -ms-user-select: none;
   user-select: none;
   cursor: pointer;
+  grid-row: 1; 
 }
 
 .Radio {

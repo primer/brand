@@ -3,10 +3,6 @@
  */
 .Checkbox-wrapper {
   position: relative;
-}
-
-[class*='FormControl'] .Checkbox-wrapper,
-[id*='FormControl'] .Checkbox-wrapper {
   grid-row: 1;
 }
 
