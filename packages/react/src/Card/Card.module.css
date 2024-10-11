@@ -1,5 +1,4 @@
 .Card {
-  max-width: var(--brand-Card-maxWidth);
   text-decoration: none;
   color: var(--brand-color-text-default);
   border-radius: var(--brand-borderRadius-large);
@@ -20,6 +19,10 @@
   height: 100%;
 }
 
+.Card--maxWidth {
+  max-width: var(--brand-Card-maxWidth);
+}
+
 .Card--fullWidth {
   max-width: unset;
 }
@@ -30,14 +33,6 @@
 
 .Card--colorMode-light {
   background-color: var(--brand-Card-background-default);
-}
-
-.Card:focus-within {
-  outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
-}
-
-.Card--variant-minimal:focus-within {
-  outline-offset: var(--base-size-16);
 }
 
 .Card:hover {
@@ -70,6 +65,15 @@
 
 .Card__outer {
   height: 100%;
+  border-radius: var(--brand-borderRadius-large);
+}
+
+.Card__outer:focus-within {
+  outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
+}
+
+.Card__outer:has(.Card--variant-minimal):focus-within {
+  outline-offset: var(--base-size-16);
 }
 
 .Card--icon {
@@ -266,8 +270,11 @@
 
 .Card--skew {
   height: 100%;
-  overflow: hidden;
   border-radius: var(--brand-borderRadius-large);
+}
+
+.Card--skew:focus-within {
+  outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
 }
 
 .Card--skew:hover .Card__torch {
@@ -275,9 +282,9 @@
 }
 
 .Card__skew-bounding {
-  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
   border-radius: var(--brand-borderRadius-large);
   position: relative;
+  overflow: hidden;
   z-index: 1;
   height: 100%;
   background-color: var(--brand-Card-background-default);
