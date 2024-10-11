@@ -296,24 +296,12 @@ export const CheckboxPlayground = args => {
 
 CheckboxPlayground.storyName = 'w/ Checkbox - Playground'
 
-export const RadioPlayground = args => (
+export const RadioPlayground = () => (
   <>
     <Stack direction={{narrow: 'vertical', regular: 'horizontal'}} gap="condensed" padding="condensed">
-      <FormControl
-        required={args.required}
-        validationStatus={args.validationStatus}
-        fullWidth={args.fullWidth}
-        size={args.size}
-      >
+      <FormControl>
         <FormControl.Label>Radio One</FormControl.Label>
         <Radio name="radio-group" value="radio one" />
-        {args.validationStatus && args.validationStatus === 'error' && (
-          // eslint-disable-next-line i18n-text/no-en
-          <FormControl.Validation>{args.validationText || 'This is an error message'}</FormControl.Validation>
-        )}
-        {args.validationStatus && args.validationStatus === 'success' && (
-          <FormControl.Validation>{args.validationText || 'Great! It worked.'}</FormControl.Validation>
-        )}
       </FormControl>
       <FormControl>
         <FormControl.Label>Radio Two</FormControl.Label>
@@ -350,13 +338,6 @@ ErrorValidation.storyName = 'w/ Error Validation - Playground'
 export const ErrorValidationWithCheckbox = args => <CheckboxPlayground {...args} />
 ErrorValidationWithCheckbox.storyName = 'w/ Error Validation with Checkbox - Playground'
 ErrorValidationWithCheckbox.args = {
-  validationStatus: 'error',
-  validationText: 'This is an error message',
-}
-
-export const ErrorValidationWithRadio = args => <RadioPlayground {...args} />
-ErrorValidationWithRadio.storyName = 'w/ Error Validation with Radio - Playground'
-ErrorValidationWithRadio.args = {
   validationStatus: 'error',
   validationText: 'This is an error message',
 }
