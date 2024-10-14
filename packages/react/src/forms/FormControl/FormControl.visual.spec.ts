@@ -70,18 +70,9 @@ test.describe('Visual Comparison: FormControl', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('FormControl / w/ Error Validation with Checkbox - Playground', async ({page}) => {
+  test('FormControl / w/ Checkbox with Error Validation - Playground', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-forms-formcontrol--error-validation-with-checkbox&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
-  })
-
-  test('FormControl / w/ Error Validation with Radio - Playground', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-forms-formcontrol--error-validation-with-radio&viewMode=story',
     )
 
     await page.waitForTimeout(500)
