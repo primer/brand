@@ -43,6 +43,16 @@ export type FormControlProps = BaseProps<HTMLElement> & {
   validationStatus?: FormValidationStatus
 }
 
+/**
+ * The Checkbox and the Radio components both use the trick of using a <label> to render the visual control,
+ * and visually hiding the <input>. This means that, when you add a FormControl.Label alongside your
+ * Checkbox/Radio, the <input> technically has two <label> elements associated with it.
+ * That doesn't appear to be a problem (it's valid HTML and NVDA announces it correctly) but it does annoy
+ * our Storybook Axe tests because they only seem to look at one of the labels.
+ * To fix this, we recommend that the FormControl.Label always appears before the Checkbox/Radio in the DOM,
+ * even though it visually appears after the Checkbox/Radio, as this keeps Storybook Axe happy.
+ */
+
 const Root = ({
   children,
   className,
