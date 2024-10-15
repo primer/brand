@@ -4,6 +4,8 @@ import {MarkGithubIcon} from '@primer/octicons-react'
 import {Navigation} from '../../../components/navigation/navigation'
 import {SidePanel} from '../../../components/side-panel/side-panel'
 
+export const HEADER_HEIGHT = 56
+
 export default function Header() {
   return (
     <header className={styles.PageHeader}>

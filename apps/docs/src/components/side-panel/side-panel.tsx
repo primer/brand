@@ -55,7 +55,7 @@ export function SidePanel() {
           renderHeader={renderHeader}
           returnFocusRef={openButtonRef}
         >
-          <Sidebar />
+          <Sidebar hideBorder />
         </Dialog>
       )}
     </div>
