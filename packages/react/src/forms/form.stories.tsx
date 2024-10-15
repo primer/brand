@@ -128,34 +128,36 @@ export const GitHubEnterprise = args => {
           {/* Todo convert to a fieldset */}
           <Stack direction={{narrow: 'vertical', regular: 'horizontal'}} padding="none">
             <FormControl>
-              <Radio name="user-band" value="0-99" />
               <FormControl.Label>0-99</FormControl.Label>
+              <Radio name="user-band" value="0-99" />
             </FormControl>
             <FormControl>
-              <Radio name="user-band" value="100-499" />
               <FormControl.Label>100-499</FormControl.Label>
+              <Radio name="user-band" value="100-499" />
             </FormControl>
             <FormControl>
-              <Radio name="user-band" value="500-999" />
               <FormControl.Label>500-999</FormControl.Label>
+              <Radio name="user-band" value="500-999" />
             </FormControl>
             <FormControl>
-              <Radio name="user-band" value="1000+" />
               <FormControl.Label>1000+</FormControl.Label>
+              <Radio name="user-band" value="1000+" />
             </FormControl>
           </Stack>
           <FormControl hasBorder required>
+            <FormControl.Label>
+              Contact me about GitHub Enterprise Server{' '}
+              <FormControl.Hint>
+                <Text size="100" variant="muted">
+                  I&apos;m interested in learning more about{' '}
+                  <InlineLink href="https://github.com/enterprise" target="_blank">
+                    GitHub Enterprise Server
+                  </InlineLink>{' '}
+                  and would like to be contacted by GitHub’s sales team.
+                </Text>
+              </FormControl.Hint>
+            </FormControl.Label>
             <Checkbox disabled={args.disabled} />
-            <FormControl.Label>Contact me about GitHub Enterprise Server </FormControl.Label>
-            <FormControl.Hint>
-              <Text size="100" variant="muted">
-                I&apos;m interested in learning more about{' '}
-                <InlineLink href="https://github.com/enterprise" target="_blank">
-                  GitHub Enterprise Server
-                </InlineLink>{' '}
-                and would like to be contacted by GitHub’s sales team.
-              </Text>
-            </FormControl.Hint>
           </FormControl>
           <div
             style={{
@@ -176,7 +178,6 @@ export const GitHubEnterprise = args => {
             </Text>
           </div>
           <FormControl required>
-            <Checkbox disabled={args.disabled} />
             <FormControl.Label>
               <Text size="100" variant="muted">
                 I hereby accept the{' '}
@@ -190,9 +191,11 @@ export const GitHubEnterprise = args => {
                   target="_blank"
                 >
                   GitHub Privacy Statement.
-                </InlineLink>
+                </InlineLink>{' '}
               </Text>
             </FormControl.Label>
+
+            <Checkbox disabled={args.disabled} />
           </FormControl>
         </Container>
         <Container

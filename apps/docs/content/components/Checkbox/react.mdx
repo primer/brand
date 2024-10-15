@@ -29,20 +29,20 @@ The `Checkbox` component can be used in controlled and uncontrolled modes.
 ```jsx live
 <form>
   <FormControl>
-    <Checkbox />
     <FormControl.Label>Default checkbox</FormControl.Label>
+    <Checkbox />
   </FormControl>
   <FormControl>
-    <Checkbox checked />
     <FormControl.Label>Always checked</FormControl.Label>
+    <Checkbox checked />
   </FormControl>
   <FormControl>
-    <Checkbox checked={false} />
     <FormControl.Label>Always unchecked</FormControl.Label>
+    <Checkbox checked={false} />
   </FormControl>
   <FormControl>
-    <Checkbox checked disabled />
     <FormControl.Label>Inactive</FormControl.Label>
+    <Checkbox checked disabled />
   </FormControl>
 </form>
 ```
@@ -54,8 +54,8 @@ An `indeterminate` checkbox state should be used if the input value is neither `
 ```jsx live
 <form>
   <FormControl>
-    <Checkbox onChange={() => {}} indeterminate={true} />
     <FormControl.Label>Indeterminate checkbox</FormControl.Label>
+    <Checkbox onChange={() => {}} indeterminate={true} />
   </FormControl>
 </form>
 ```
@@ -66,10 +66,10 @@ Apply an optional border using `FormControl` and `hasBorder`.
 
 ```jsx live
 <FormControl hasBorder required>
-  <Checkbox />
   <FormControl.Label>
     Contact me about GitHub Enterprise Server
   </FormControl.Label>
+  <Checkbox />
 </FormControl>
 ```
 
@@ -77,7 +77,6 @@ Apply an optional border using `FormControl` and `hasBorder`.
 
 ```jsx live
 <FormControl required>
-  <Checkbox />
   <FormControl.Label>
     <Text size="200" variant="muted">
       I hereby accept the{' '}
@@ -99,6 +98,7 @@ Apply an optional border using `FormControl` and `hasBorder`.
       </InlineLink>{' '}
     </Text>
   </FormControl.Label>
+  <Checkbox />
 </FormControl>
 ```
 

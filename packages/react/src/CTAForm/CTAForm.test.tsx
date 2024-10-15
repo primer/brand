@@ -114,8 +114,8 @@ describe('CTAForm', () => {
     const {container} = render(
       <CTAForm.Confirm>
         <FormControl>
-          <Checkbox />
           <FormControl.Label>Test label</FormControl.Label>
+          <Checkbox />
         </FormControl>
       </CTAForm.Confirm>,
     )

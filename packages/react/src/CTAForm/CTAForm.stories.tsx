@@ -19,13 +19,13 @@ export const Playground: StoryFn<typeof CTAForm> = _args => (
     </CTAForm.Input>
     <CTAForm.Confirm>
       <FormControl required>
-        <Checkbox name="confirm" />
         <FormControl.Label>
           <Text size="200" variant="muted">
             I agree to the <InlineLink href="https://github.com">Privacy Policy</InlineLink> and{' '}
             <InlineLink href="https://github.com">Terms of Service</InlineLink>
           </Text>
         </FormControl.Label>
+        <Checkbox name="confirm" />
       </FormControl>
     </CTAForm.Confirm>
     <CTAForm.Action>Subscribe</CTAForm.Action>
@@ -42,13 +42,13 @@ export const Default: StoryFn<typeof CTAForm> = _args => (
     </CTAForm.Input>
     <CTAForm.Confirm>
       <FormControl required>
-        <Checkbox name="confirm" />
         <FormControl.Label>
           <Text size="300" variant="muted">
             I agree to the <InlineLink href="https://github.com">Privacy Policy</InlineLink> and{' '}
             <InlineLink href="https://github.com">Terms of Service</InlineLink>
           </Text>
         </FormControl.Label>
+        <Checkbox name="confirm" />
       </FormControl>
     </CTAForm.Confirm>
     <CTAForm.Action>Subscribe</CTAForm.Action>

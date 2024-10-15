@@ -48,8 +48,8 @@ import {FormControl} from '@primer/react-brand'
   </FormControl>
   {/* Checkbox */}
   <FormControl>
-    <Checkbox />
     <FormControl.Label>Checkbox</FormControl.Label>
+    <Checkbox />
     <FormControl.Hint>With an optional message</FormControl.Hint>
   </FormControl>
   {/* Radio */}
@@ -134,10 +134,10 @@ An example of a typical layout composed using `FormControl`:
       </Select>
     </FormControl>
     <FormControl hasBorder required>
-      <Checkbox />
       <FormControl.Label>
         Contact me about GitHub Enterprise Server
       </FormControl.Label>
+      <Checkbox />
       <FormControl.Hint>
         <Text size="200" variant="muted">
           I&apos;m interested in learning more about{' '}
@@ -171,7 +171,6 @@ An example of a typical layout composed using `FormControl`:
       </Text>
     </Container>
     <FormControl required>
-      <Checkbox />
       <FormControl.Label>
         <Text size="200" variant="muted">
           I hereby accept the{' '}
@@ -194,6 +193,8 @@ An example of a typical layout composed using `FormControl`:
           </InlineLink>{' '}
         </Text>
       </FormControl.Label>
+
+      <Checkbox />
     </FormControl>
     <Container
       sx={{

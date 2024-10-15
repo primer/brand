@@ -311,8 +311,8 @@ export default function KitchenSink() {
                 </Select>
               </FormControl>
               <FormControl hasBorder required>
-                <Checkbox />
                 <FormControl.Label>Contact me about GitHub Enterprise Server </FormControl.Label>
+                <Checkbox />
                 <FormControl.Hint>
                   <Text size="200" variant="muted">
                     I&apos;m interested in learning more about{' '}
@@ -342,7 +342,6 @@ export default function KitchenSink() {
                 </Text>
               </div>
               <FormControl required>
-                <Checkbox />
                 <FormControl.Label>
                   <Text size="200" variant="muted">
                     I hereby accept the{' '}
@@ -359,6 +358,8 @@ export default function KitchenSink() {
                     </InlineLink>{' '}
                   </Text>
                 </FormControl.Label>
+
+                <Checkbox />
               </FormControl>
               <div
                 style={{
