@@ -1,0 +1,8 @@
+.SidePanel {
+  position: relative;
+}
+
+.Header {
+  padding: var(--base-size-16);
+  border-bottom: 1px solid var(--borderColor-default, #d1d9e0);
+}
