@@ -62,7 +62,7 @@ const _Checkbox = (
   }, [indeterminate, checked, inputRef])
 
   return (
-    <>
+    <span className={styles['Checkbox-wrapper']}>
       <input
         id={uniqueId}
         aria-invalid={validationStatus === 'error' ? 'true' : 'false'}
@@ -108,7 +108,7 @@ const _Checkbox = (
           </svg>
         )}
       </label>
-    </>
+    </span>
   )
 }
 
