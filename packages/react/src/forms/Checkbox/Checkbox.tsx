@@ -82,7 +82,18 @@ const _Checkbox = (
         htmlFor={uniqueId}
         className={clsx(styles.Checkbox, indeterminate && styles['Checkbox--indeterminate'], className)}
       >
-        {!indeterminate && (
+        {indeterminate ? (
+          <svg
+            className={clsx(styles['Checkbox-checkmark'])}
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16"
+            width="16"
+            height="16"
+            aria-label="Dash icon"
+          >
+            <path fillRule="evenodd" d="M2 7.75A.75.75 0 012.75 7h10a.75.75 0 010 1.5h-10A.75.75 0 012 7.75z"></path>
+          </svg>
+        ) : (
           <svg viewBox="0 0 100 100" className={clsx(styles['Checkbox-checkmark'])} aria-label="Checkmark icon">
             <path
               className={clsx(styles['Checkbox-checkmark-path'])}
@@ -94,18 +105,6 @@ const _Checkbox = (
               strokeMiterlimit="10"
               d="M12.1 52.1l24.4 24.4 53-53"
             />
-          </svg>
-        )}
-        {indeterminate && (
-          <svg
-            className={clsx(styles['Checkbox-checkmark'])}
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 16 16"
-            width="16"
-            height="16"
-            aria-label="Dash icon"
-          >
-            <path fillRule="evenodd" d="M2 7.75A.75.75 0 012.75 7h10a.75.75 0 010 1.5h-10A.75.75 0 012 7.75z"></path>
           </svg>
         )}
       </label>

@@ -183,13 +183,13 @@ export function FormExample({type = 'default', colorMode = ColorModesEnum.LIGHT}
                       Yes, I would like to be emailed with the latest news and happenings, products, and special offers
                       from GitHub.
                     </Text>
-                    <FormControl.Hint>
-                      <Text weight="normal" variant="muted" size="100">
-                        If you change your mind, you can <InlineLink href="#">unsubscribe</InlineLink> at any time.
-                      </Text>
-                    </FormControl.Hint>
                   </FormControl.Label>
                   <Checkbox />
+                  <FormControl.Hint>
+                    <Text weight="normal" variant="muted" size="100">
+                      If you change your mind, you can <InlineLink href="#">unsubscribe</InlineLink> at any time.
+                    </Text>
+                  </FormControl.Hint>
                 </FormControl>
               </Box>
             )}

@@ -11,6 +11,7 @@ import InlineCode from '@primer/gatsby-theme-doctocat/src/components/inline-code
 import {PropTableValues} from '../../src/components'
 import {Label} from '@primer/react'
 import {Heading} from '@primer/react-brand'
+import {SearchIcon} from '@primer/octicons-react'
 import {Link} from 'gatsby'
 
 ```js
@@ -47,16 +48,14 @@ import {FormControl} from '@primer/react-brand'
   </FormControl>
   {/* Checkbox */}
   <FormControl>
-    <FormControl.Label>
-      Checkbox <FormControl.Hint>With an optional message</FormControl.Hint>
-    </FormControl.Label>
+    <FormControl.Label>Checkbox</FormControl.Label>
     <Checkbox />
+    <FormControl.Hint>With an optional message</FormControl.Hint>
   </FormControl>
   {/* Radio */}
   <FormControl>
-    <FormControl.Label>
-      Radio <FormControl.Hint>With an optional message</FormControl.Hint>
-    </FormControl.Label>
+    <FormControl.Label>Radio</FormControl.Label>
+    <FormControl.Hint>With an optional message</FormControl.Hint>
     <Radio />
   </FormControl>
   {/* Textarea */}
@@ -136,22 +135,22 @@ An example of a typical layout composed using `FormControl`:
     </FormControl>
     <FormControl hasBorder required>
       <FormControl.Label>
-        Contact me about GitHub Enterprise Server{' '}
-        <FormControl.Hint>
-          <Text size="200" variant="muted">
-            I&apos;m interested in learning more about{' '}
-            <InlineLink
-              size="200"
-              href="https://github.com/enterprise"
-              target="_blank"
-            >
-              GitHub Enterprise Server
-            </InlineLink>{' '}
-            and would like to be contacted by GitHub’s sales team.
-          </Text>
-        </FormControl.Hint>
+        Contact me about GitHub Enterprise Server
       </FormControl.Label>
       <Checkbox />
+      <FormControl.Hint>
+        <Text size="200" variant="muted">
+          I&apos;m interested in learning more about{' '}
+          <InlineLink
+            size="200"
+            href="https://github.com/enterprise"
+            target="_blank"
+          >
+            GitHub Enterprise Server
+          </InlineLink>{' '}
+          and would like to be contacted by GitHub’s sales team.
+        </Text>
+      </FormControl.Hint>
     </FormControl>
     <Container
       sx={{
@@ -214,10 +213,12 @@ An example of a typical layout composed using `FormControl`:
 
 ### Visually hidden label
 
+Labels should only be visually hidden when the context is clear from the input itself. For example, a search input with a search icon. The majority of the time, labels should be visible.
+
 ```jsx live
 <FormControl>
-  <FormControl.Label visuallyHidden>Name</FormControl.Label>
-  <TextInput autoComplete="name" />
+  <FormControl.Label visuallyHidden>Search</FormControl.Label>
+  <TextInput type="search" trailingVisual={<SearchIcon />} />
 </FormControl>
 ```
 
@@ -278,6 +279,8 @@ render(App)
 ```
 
 ### Hint
+
+`FormControl.Hint` can be used to provide additional context or guidance to the user. `FormControl.Hint` must be a direct child of `FormControl`.
 
 ```jsx live
 <FormControl>

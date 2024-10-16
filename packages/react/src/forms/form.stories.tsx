@@ -145,18 +145,16 @@ export const GitHubEnterprise = args => {
             </FormControl>
           </Stack>
           <FormControl hasBorder required>
-            <FormControl.Label>
-              Contact me about GitHub Enterprise Server{' '}
-              <FormControl.Hint>
-                <Text size="100" variant="muted">
-                  I&apos;m interested in learning more about{' '}
-                  <InlineLink href="https://github.com/enterprise" target="_blank">
-                    GitHub Enterprise Server
-                  </InlineLink>{' '}
-                  and would like to be contacted by GitHub’s sales team.
-                </Text>
-              </FormControl.Hint>
-            </FormControl.Label>
+            <FormControl.Label>Contact me about GitHub Enterprise Server</FormControl.Label>
+            <FormControl.Hint>
+              <Text size="100" variant="muted">
+                I&apos;m interested in learning more about{' '}
+                <InlineLink href="https://github.com/enterprise" target="_blank">
+                  GitHub Enterprise Server
+                </InlineLink>{' '}
+                and would like to be contacted by GitHub’s sales team.
+              </Text>
+            </FormControl.Hint>
             <Checkbox disabled={args.disabled} />
           </FormControl>
           <div
