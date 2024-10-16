@@ -144,6 +144,7 @@ const Root = ({
              * Validation
              */
             return React.cloneElement(child as React.ReactElement, {
+              className: clsx(isInlineControl && styles['FormControl-validation-checkbox'], child.props.className),
               validationStatus,
             })
           } else {
@@ -213,13 +214,14 @@ type FormControlValidationProps = {
   validationStatus?: FormValidationStatus
 } & BaseProps<HTMLSpanElement>
 
-const FormControlValidation = ({children, validationStatus}: FormControlValidationProps) => {
+const FormControlValidation = ({children, validationStatus, className}: FormControlValidationProps) => {
   return (
     <span
       className={clsx(
         styles['FormControl-validation'],
         validationStatus && styles['FormControl-validation--animate-in'],
         validationStatus && styles[`FormControl-validation--${validationStatus}`],
+        className,
       )}
     >
       {validationStatus === 'error' && (
