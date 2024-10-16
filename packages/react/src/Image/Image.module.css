@@ -1,29 +1,26 @@
-.Image__container {
-  display: inline-block;
-}
-
 .Image {
   object-fit: cover;
   display: inline-block;
-}
-
-.Image--aspect-ratio-custom {
   aspect-ratio: var(--brand-image-aspectRatio);
 }
 
-.Image--aspect-ratio-1-1 {
+.Image--aspectRatio-custom {
+  aspect-ratio: var(--brand-image-aspectRatio);
+}
+
+.Image--aspectRatio-1-1 {
   aspect-ratio: 1 / 1;
 }
 
-.Image--aspect-ratio-16-9 {
+.Image--aspectRatio-16-9 {
   aspect-ratio: 16 / 9;
 }
 
-.Image--aspect-ratio-16-10 {
+.Image--aspectRatio-16-10 {
   aspect-ratio: 16 / 10;
 }
 
-.Image--aspect-ratio-4-3 {
+.Image--aspectRatio-4-3 {
   aspect-ratio: 4 / 3;
 }
 
