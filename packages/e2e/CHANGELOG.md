@@ -1,5 +1,13 @@
 # @primer/brand-e2e
 
+## 0.41.0
+
+### Patch Changes
+
+- [#776](https://github.com/primer/brand/pull/776) [`06fd8476`](https://github.com/primer/brand/commit/06fd84763527bdb9f99a04b367ab4736fd396b6e) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Added `aria-describedby` attribute to leading/trailing text and visuals in `TextInput` component
+
+- [#779](https://github.com/primer/brand/pull/779) [`b5c291e2`](https://github.com/primer/brand/commit/b5c291e290313d1c03ae79ef39fb02cb12b05cbe) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Updated KitchenSink to remove `FormControl.Hint` from within `FormControl.Label`
+
 ## 0.40.1
 
 ## 0.40.0
