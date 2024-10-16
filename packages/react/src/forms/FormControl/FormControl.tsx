@@ -43,6 +43,16 @@ export type FormControlProps = BaseProps<HTMLElement> & {
   validationStatus?: FormValidationStatus
 }
 
+/**
+ * The Checkbox and the Radio components both use the trick of using a <label> to render the visual control,
+ * and visually hiding the <input>. This means that, when you add a FormControl.Label alongside your
+ * Checkbox/Radio, the <input> technically has two <label> elements associated with it.
+ * That doesn't appear to be a problem (it's valid HTML and NVDA announces it correctly) but it does annoy
+ * our Storybook Axe tests because they only seem to look at one of the labels.
+ * To fix this, we recommend that the FormControl.Label always appears before the Checkbox/Radio in the DOM,
+ * even though it visually appears after the Checkbox/Radio, as this keeps Storybook Axe happy.
+ */
+
 const Root = ({
   children,
   className,
@@ -54,13 +64,14 @@ const Root = ({
   validationStatus,
   ...rest
 }: PropsWithChildren<FormControlProps>) => {
-  const generatedId = useId(id)
-  const uniqueId = id || generatedId
+  const uniqueId = useId(id)
   const childrenArr = React.Children.toArray(children)
 
   const isInlineControl = childrenArr.some(
     child => React.isValidElement(child) && (child.type === Checkbox || child.type === Radio),
   )
+
+  const containsHint = childrenArr.some(child => React.isValidElement(child) && child.type === FormControlHint)
 
   return (
     <section
@@ -75,80 +86,69 @@ const Root = ({
       {...rest}
     >
       {React.Children.map(children, child => {
-        if (React.isValidElement(child)) {
-          const inputId = `${uniqueId}`
+        if (!React.isValidElement(child)) return
 
-          /**
-           * TextInput
-           */
-          if (child.type === TextInput || child.type === Textarea) {
+        const describedBy = containsHint ? `${uniqueId}-hint` : undefined
+
+        switch (child.type) {
+          case TextInput:
+          case Textarea:
+          case Select:
             return React.cloneElement(child as React.ReactElement, {
               className: clsx(child.props.className),
-              id: inputId,
-              name: child.props.name || inputId,
+              id: uniqueId,
+              name: child.props.name || uniqueId,
               required: child.props.required || required,
               validationStatus: child.props.validationStatus || validationStatus,
               fullWidth,
               size,
+              'aria-describedby': describedBy,
             })
-          } else if (child.type === Select) {
-            /**
-             * Select
-             */
+
+          case Checkbox:
             return React.cloneElement(child as React.ReactElement, {
-              className: clsx(child.props.className),
-              id: inputId,
-              name: child.props.name || inputId,
+              className: clsx(child.props.className, styles['FormControl-control--checkbox']),
+              id: uniqueId,
+              name: child.props.name || uniqueId,
               required: child.props.required || required,
               validationStatus: child.props.validationStatus || validationStatus,
-              fullWidth,
-              size,
+              'aria-describedby': describedBy,
             })
-          } else if (child.type === Checkbox) {
-            /**
-             * Checkbox
-             */
-            return React.cloneElement(child as React.ReactElement, {
-              className: clsx(child.props.className),
-              id: inputId,
-              name: child.props.name || inputId,
-              required: child.props.required || required,
-              validationStatus: child.props.validationStatus || validationStatus,
-            })
-          } else if (child.type === Radio) {
-            /**
-             * Radio
-             */
+
+          case Radio:
             return React.cloneElement(child as React.ReactElement, {
               className: clsx(isInlineControl && styles['FormControl-control--radio'], child.props.className),
-              id: inputId,
+              id: uniqueId,
               name: child.props.name,
               required: child.props.required || required,
               validationStatus: child.props.validationStatus || validationStatus,
+              'aria-describedby': describedBy,
             })
-          } else if (child.type === FormControlLabel) {
-            /**
-             * Label
-             */
+
+          case FormControlLabel:
             return React.cloneElement(child as React.ReactElement, {
               className: clsx(isInlineControl && styles['FormControl-label--checkbox'], child.props.className),
-              htmlFor: inputId,
+              htmlFor: uniqueId,
               children: child.props.children,
               required,
               validationStatus,
               size,
               showRequiredIndicator: isInlineControl ? false : child.props.showRequiredIndicator,
             })
-          } else if (child.type === FormControlValidation) {
-            /**
-             * Validation
-             */
+
+          case FormControlValidation:
             return React.cloneElement(child as React.ReactElement, {
+              className: clsx(isInlineControl && styles['FormControl-validation-checkbox'], child.props.className),
               validationStatus,
             })
-          } else {
+
+          case FormControlHint:
+            return React.cloneElement(child as React.ReactElement, {
+              id: `${uniqueId}-hint`,
+            })
+
+          default:
             return child
-          }
         }
       })}
     </section>
@@ -213,13 +213,14 @@ type FormControlValidationProps = {
   validationStatus?: FormValidationStatus
 } & BaseProps<HTMLSpanElement>
 
-const FormControlValidation = ({children, validationStatus}: FormControlValidationProps) => {
+const FormControlValidation = ({children, validationStatus, className}: FormControlValidationProps) => {
   return (
     <span
       className={clsx(
         styles['FormControl-validation'],
         validationStatus && styles['FormControl-validation--animate-in'],
         validationStatus && styles[`FormControl-validation--${validationStatus}`],
+        className,
       )}
     >
       {validationStatus === 'error' && (

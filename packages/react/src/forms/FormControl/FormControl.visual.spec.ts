@@ -69,4 +69,13 @@ test.describe('Visual Comparison: FormControl', () => {
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
+
+  test('FormControl / w/ Checkbox with Error Validation - Playground', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-forms-formcontrol--error-validation-with-checkbox&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
 })

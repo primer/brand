@@ -16,6 +16,7 @@ declare const styles: {
   readonly "FormControl-validation-success-icon": string;
   readonly "FormControl-validation-error-icon": string;
   readonly "FormControl-validation--animate-in": string;
+  readonly "FormControl-validation-checkbox": string;
   readonly "FormControlValidationFadeIn": string;
 };
 export = styles;

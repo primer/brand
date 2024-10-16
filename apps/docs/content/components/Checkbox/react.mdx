@@ -75,6 +75,8 @@ Apply an optional border using `FormControl` and `hasBorder`.
 
 ## Custom label usage
 
+When using a custom label alongside a checkbox, the `Checkbox` component should always appear after the `FormControl.Label` component in the DOM. This ensures that the checkbox is correctly associated with the label for assistive technologies.
+
 ```jsx live
 <FormControl required>
   <FormControl.Label>

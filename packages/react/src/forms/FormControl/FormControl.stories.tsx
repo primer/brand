@@ -16,6 +16,7 @@ export default {
     required: false,
     leadingVisual: undefined,
     trailingVisual: undefined,
+    hint: 'An optional hint',
   },
   argTypes: {
     label: {
@@ -169,6 +170,14 @@ export default {
         disable: true,
       },
     },
+    hint: {
+      type: 'string',
+      name: 'hint',
+      description: 'string',
+      table: {
+        category: 'Hint',
+      },
+    },
   },
 } as Meta<typeof FormControl>
 
@@ -194,6 +203,7 @@ export const TextInputPlayground = args => {
         placeholder={args.placeholder}
         required={args.required}
       />
+      {args.hint.length ? <FormControl.Hint>{args.hint}</FormControl.Hint> : null}
 
       {args.validationStatus && args.validationStatus === 'error' && (
         // eslint-disable-next-line i18n-text/no-en
@@ -224,6 +234,8 @@ export const TextareaPlayground = args => {
         placeholder={args.placeholder}
         required={args.required}
       />
+
+      {args.hint.length ? <FormControl.Hint>{args.hint}</FormControl.Hint> : null}
 
       {args.validationStatus && args.validationStatus === 'error' && (
         // eslint-disable-next-line i18n-text/no-en
@@ -258,6 +270,8 @@ export const SelectPlayground = args => {
         <Select.Option value="uk">United Kingdom</Select.Option>
       </Select>
 
+      {args.hint.length ? <FormControl.Hint>{args.hint}</FormControl.Hint> : null}
+
       {args.validationStatus && args.validationStatus === 'error' && (
         // eslint-disable-next-line i18n-text/no-en
         <FormControl.Validation>{args.validationText || 'This is an error message'}</FormControl.Validation>
@@ -282,6 +296,8 @@ export const CheckboxPlayground = args => {
     >
       <FormControl.Label visuallyHidden={args.visuallyHidden ? true : false}>{args.label}</FormControl.Label>
       <Checkbox disabled={args.disabled} />
+
+      {args.hint.length ? <FormControl.Hint>{args.hint}</FormControl.Hint> : null}
 
       {args.validationStatus && args.validationStatus === 'error' && (
         // eslint-disable-next-line i18n-text/no-en
@@ -334,3 +350,10 @@ export const ErrorValidation = () => {
   )
 }
 ErrorValidation.storyName = 'w/ Error Validation - Playground'
+
+export const ErrorValidationWithCheckbox = args => <CheckboxPlayground {...args} />
+ErrorValidationWithCheckbox.storyName = 'w/ Checkbox with Error Validation - Playground'
+ErrorValidationWithCheckbox.args = {
+  validationStatus: 'error',
+  validationText: 'This is an error message',
+}

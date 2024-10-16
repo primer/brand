@@ -3,6 +3,7 @@
  */
 .Checkbox-wrapper {
   position: relative;
+  grid-row: 1;
 }
 
 .Checkbox {
