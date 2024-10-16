@@ -1,5 +1,13 @@
 # @primer/brand-primitives
 
+## 0.41.0
+
+### Patch Changes
+
+- [#769](https://github.com/primer/brand/pull/769) [`41531950`](https://github.com/primer/brand/commit/4153195009f1a0e37b117546b543b476f970245a) Thanks [@danielguillan](https://github.com/danielguillan)! - Adjust text 800 line height
+
+- [#778](https://github.com/primer/brand/pull/778) [`5f8d6722`](https://github.com/primer/brand/commit/5f8d6722e00ea2808fc24aab05fe9dabc62789f7) Thanks [@rfearing](https://github.com/rfearing)! - Add Icon component with new color primitives.
+
 ## 0.40.1
 
 ### Patch Changes
