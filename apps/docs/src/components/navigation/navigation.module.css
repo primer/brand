@@ -73,6 +73,10 @@
   display: none;
 }
 
+.Dropdown button {
+  color: var(--fgColor-default, #1f2328);
+}
+
 @media (max-width: 1012px) {
   .HorizontalList {
     display: none;
