@@ -74,7 +74,7 @@ function Sidebar({hideBorder}) {
         position: 'sticky',
         top: HEADER_HEIGHT,
         height: `calc(100vh - ${HEADER_HEIGHT}px)`,
-        width: 260,
+        width: 280,
       }}
     >
       <Box
