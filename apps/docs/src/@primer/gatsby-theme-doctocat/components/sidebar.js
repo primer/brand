@@ -87,7 +87,7 @@ function Sidebar({hideBorder}) {
           height: '100%',
           borderStyle: 'solid',
           borderColor: 'border.subtle',
-          p: 2,
+          padding: 'var(--base-size-24)',
         }}
       >
         <Box sx={{flexDirection: 'column', display: 'flex'}}>
@@ -97,7 +97,9 @@ function Sidebar({hideBorder}) {
             block
             onChange={handleFilterChange}
           />
-          <NavItems items={filteredNavItems} />
+          <Box sx={{marginInline: `calc(var(--base-size-16) * -1)`}}>
+            <NavItems items={filteredNavItems} />
+          </Box>
         </Box>
       </Box>
     </Box>
