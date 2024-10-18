@@ -2,9 +2,9 @@ const path = require('path')
 
 module.exports = {
   siteMetadata: {
-    title: 'Primer Marketing UI',
+    title: 'Primer Brand UI',
     header: {
-      title: 'Primer Marketing UI',
+      title: 'Primer Brand UI',
     },
     shortName: '',
     description: 'React components for GitHub marketing pages',
