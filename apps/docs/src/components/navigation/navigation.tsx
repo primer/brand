@@ -6,13 +6,13 @@ import {ActionList, ActionMenu, Button} from '@primer/react'
 const navItems = [
   {href: 'https://primer.style/', label: 'Product UI'}, // TODO: update to https://primer.style/product when we launch the new docs site
   {href: 'https://primer.style/octicons', label: 'Octicons'},
-  {href: '/', label: 'Marketing UI'},
+  {href: '/', label: 'Brand UI'},
   {href: 'https://brand.github.com/', label: 'Brand Toolkit', external: true},
 ]
 
 export function Navigation() {
-  const activeItem = navItems.find((item) => item.label === 'Marketing UI')
-  const otherItems = navItems.filter((item) => item.label !== 'Marketing UI')
+  const activeItem = navItems.find((item) => item.label === 'Brand UI')
+  const otherItems = navItems.filter((item) => item.label !== 'Brand UI')
   const sortedNavItems = activeItem ? [activeItem, ...otherItems] : otherItems
 
   return (
