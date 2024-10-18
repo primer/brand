@@ -18,7 +18,7 @@ export default function Hero() {
               m: 0,
             }}
           >
-            Primer Brand
+            Primer Brand UI
           </Heading>
           <Text
             as="p"
