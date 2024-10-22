@@ -53,7 +53,7 @@ export function Navigation() {
       </div>
       <ul className={styles.HorizontalList}>
         {sortedNavItems.map((item) => {
-          const active = item.label === 'Marketing UI'
+          const active = item.label === 'Brand UI'
           return (
             <li
               key={item.href}
