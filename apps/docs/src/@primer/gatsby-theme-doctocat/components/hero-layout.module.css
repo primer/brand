@@ -1,0 +1,35 @@
+.HeroPageWrapper {
+  flex-direction: column;
+  min-height: 100vh;
+  display: flex;
+}
+
+.HeroLayoutWrapper {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: row;
+}
+
+.HeroLayoutSidebarWrapper {
+  display: block;
+
+  @media screen and (max-width: 64rem) {
+    display: none;
+  }
+}
+
+.HeroLayoutMain {
+  padding: var(--base-size-24);
+  padding-bottom: var(--base-size-16);
+  width: 100%;
+  @media screen and (max-width: 48rem) {
+    padding-bottom: 0;
+  }
+}
+
+.LandingPageLayout {
+  padding: 0 var(--base-size-48);
+  @media screen and (max-width: 48rem) {
+    padding: 0 0;
+  }
+}
