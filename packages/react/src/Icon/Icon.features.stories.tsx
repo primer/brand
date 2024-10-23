@@ -1,6 +1,6 @@
 import React from 'react'
 import {Meta, StoryFn} from '@storybook/react'
-import {Icon, iconColors, namedIconSizes, numericIconSizes} from '.'
+import {Icon, iconColors} from '.'
 import {CopilotIcon, RocketIcon, ZapIcon} from '@primer/octicons-react'
 import {Heading, Stack} from '../'
 
@@ -17,12 +17,12 @@ export const Colors: StoryFn<typeof Icon> = () => (
   <Stack direction="vertical" gap={16}>
     <Stack direction="horizontal" gap={16} flexWrap="wrap" padding="none">
       {iconColors.map(color => (
-        <Icon key={color} icon={RocketIcon} color={color} />
+        <Icon key={color} icon={RocketIcon} color={color} hasBackground />
       ))}
     </Stack>
     <Stack direction="horizontal" gap={16} flexWrap="wrap" padding="none">
       {iconColors.map(color => (
-        <Icon key={color} icon={RocketIcon} color={color} hasBackground />
+        <Icon key={color} icon={RocketIcon} color={color} size="large" />
       ))}
     </Stack>
   </Stack>
@@ -32,21 +32,31 @@ export const Sizes: StoryFn<typeof Icon> = () => (
   <Stack direction="vertical" gap={48} padding="none">
     <Stack direction="vertical" gap={16} padding="none">
       <Heading size="5" as="h2">
-        Named sizes
+        Small
       </Heading>
       <Stack direction="horizontal" gap={16} flexWrap="wrap" padding="none">
-        {namedIconSizes.map(size => (
-          <Icon key={size} icon={CopilotIcon} size={size} color="green" hasBackground />
+        {iconColors.map(color => (
+          <Icon key={color} icon={CopilotIcon} color={color} size="small" />
         ))}
       </Stack>
     </Stack>
     <Stack direction="vertical" gap={16} padding="none">
       <Heading size="5" as="h2">
-        Numeric sizes
+        Medium
       </Heading>
       <Stack direction="horizontal" gap={16} flexWrap="wrap" padding="none">
-        {numericIconSizes.map(size => (
-          <Icon key={size} icon={CopilotIcon} size={size} color="green" hasBackground />
+        {iconColors.map(color => (
+          <Icon key={color} icon={CopilotIcon} color={color} size="medium" />
+        ))}
+      </Stack>
+    </Stack>
+    <Stack direction="vertical" gap={16} padding="none">
+      <Heading size="5" as="h2">
+        Large
+      </Heading>
+      <Stack direction="horizontal" gap={16} flexWrap="wrap" padding="none">
+        {iconColors.map(color => (
+          <Icon key={color} icon={CopilotIcon} color={color} size="large" />
         ))}
       </Stack>
     </Stack>
