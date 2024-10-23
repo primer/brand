@@ -13,11 +13,8 @@
         }
       },
       "outer": {
-        "value": "var(--base-size-28)",
+        "value": "var(--base-size-36)",
         "responsive": {
-          "768px": {
-            "value": "var(--base-size-36)"
-          },
           "1280px": {
             "value": "var(--base-size-48)"
           }
