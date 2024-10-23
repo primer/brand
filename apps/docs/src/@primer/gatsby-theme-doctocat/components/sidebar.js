@@ -75,6 +75,7 @@ function Sidebar({hideBorder}) {
         top: HEADER_HEIGHT,
         height: `calc(100vh - ${HEADER_HEIGHT}px)`,
         width: 280,
+        fontFamily: 'var(--brand-fontStack-sansSerif)',
       }}
     >
       <Box
