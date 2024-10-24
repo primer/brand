@@ -60,8 +60,11 @@ export const Icon = ({
       className={clsx(
         styles['Icon'],
         styles[`Icon--color-${color}`],
-        hasBackground && styles[`Icon--background-color-${color}`],
-        getIconPaddingClass(iconSize),
+        hasBackground && [
+          styles['Icon--background'],
+          styles[`Icon--background-color-${color}`],
+          getIconPaddingClass(iconSize),
+        ],
         className,
       )}
       size={iconSize}
