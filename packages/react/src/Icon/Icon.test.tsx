@@ -3,7 +3,7 @@ import '@testing-library/jest-dom'
 import {axe, toHaveNoViolations} from 'jest-axe'
 import {GitMergeIcon} from '@primer/octicons-react'
 
-import {Icon, IconSize, iconSizes, numericIconSizes} from './Icon'
+import {Icon} from './Icon'
 
 expect.extend(toHaveNoViolations)
 
