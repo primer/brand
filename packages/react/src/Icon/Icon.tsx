@@ -6,32 +6,53 @@ import {Colors} from '../constants'
 
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/icon/colors.css'
 
-export const iconSizes = ['small', 'medium', 'large'] as const
+export const namedIconSizes = ['small', 'medium', 'large'] as const
+export type NamedIconSize = (typeof namedIconSizes)[number]
+
+export const numericIconSizes = [12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52] as const
+export type NumericIconSize = (typeof numericIconSizes)[number]
+const isNumericIconSize = (size: IconSize): size is NumericIconSize => typeof size === 'number'
+
+export const iconSizes = [...namedIconSizes, ...numericIconSizes] as const
 export type IconSize = (typeof iconSizes)[number]
+
 export const defaultIconSize = iconSizes[0]
-export const iconSizeMap: Record<IconSize, number> = {
+export const iconSizeMap: Record<NamedIconSize, NumericIconSize> = {
   small: 20,
   medium: 32,
   large: 44,
 }
 
+const getIconSize = (size: IconSize): NumericIconSize => {
+  if (isNumericIconSize(size)) {
+    return size
+  }
+
+  return iconSizeMap[size]
+}
+
+const getIconPaddingClass = (size: NumericIconSize): string => {
+  switch (true) {
+    case size < 28:
+      return styles[`Icon--padding-8`]
+    case size < 48:
+      return styles[`Icon--padding-12`]
+    case size < 52:
+      return styles[`Icon--padding-16`]
+    default:
+      return styles[`Icon--padding-20`]
+  }
+}
+
 export const iconColors = Colors
-export type IconColor = (typeof Colors)[number]
-export const defaultIconColor = Colors[0]
+export type IconColor = (typeof iconColors)[number]
+export const defaultIconColor = iconColors[0]
 
 export type IconProps = SVGAttributes<SVGElement> & {
   icon: OcticonProps
   color?: IconColor
   hasBackground?: boolean
   size?: IconSize
-}
-
-const getIconSize = (size: IconSize, hasBackground: boolean): number => {
-  if (hasBackground) {
-    return iconSizeMap.small
-  }
-
-  return iconSizeMap[size]
 }
 
 export const Icon = ({
@@ -41,14 +62,20 @@ export const Icon = ({
   hasBackground = false,
   size = defaultIconSize,
   ...rest
-}: IconProps) => (
-  <Octicon
-    className={clsx(
-      styles[`Icon--color-${color}`],
-      hasBackground ? styles['Icon--background'] : styles['Icon--noBackground'],
-      className,
-    )}
-    size={getIconSize(size, hasBackground)}
-    {...rest}
-  />
-)
+}: IconProps) => {
+  const iconSize = getIconSize(size)
+
+  return (
+    <Octicon
+      className={clsx(
+        styles['Icon'],
+        styles[`Icon--color-${color}`],
+        getIconPaddingClass(iconSize),
+        !hasBackground && styles['Icon--noBackground'],
+        className,
+      )}
+      size={iconSize}
+      {...rest}
+    />
+  )
+}

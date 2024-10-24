@@ -45,7 +45,6 @@ const meta: Meta<typeof Icon> = {
         type: 'inline-radio',
       },
       options: [...iconSizes],
-      if: {arg: 'hasBackground', eq: false},
     },
   },
 }
