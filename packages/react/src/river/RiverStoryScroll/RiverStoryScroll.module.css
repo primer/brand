@@ -326,7 +326,7 @@
     flex-direction: column;
     gap: var(--base-size-4);
     position: absolute;
-    left: calc(var(--base-size-20) * -1);
+    left: calc(var(--base-size-20) * -1 - 2px);
     right: 0;
     margin: auto;
     height: var(--visualHeight);
