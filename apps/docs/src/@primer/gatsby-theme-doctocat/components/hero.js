@@ -13,7 +13,7 @@ export default function Hero() {
     >
       <Stack gap="normal" padding="none">
         <Heading as="h2" size="3">
-          Primer brand
+          Primer Brand UI
         </Heading>
         <Text as="p" variant="muted" size="300">
           Primer Brand is a GitHub's design system for creating React-based
