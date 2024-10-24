@@ -1,6 +1,5 @@
 declare const styles: {
   readonly "Icon": string;
-  readonly "Icon--noBackground": string;
   readonly "Icon--padding-8": string;
   readonly "Icon--padding-12": string;
   readonly "Icon--padding-16": string;
