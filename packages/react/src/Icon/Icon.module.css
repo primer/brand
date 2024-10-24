@@ -1,7 +1,11 @@
 .Icon {
   box-sizing: content-box;
-  border-radius: var(--brand-borderRadius-full);
+  padding: 0;
+}
+
+.Icon--background {
   padding: var(--base-size-12);
+  border-radius: var(--brand-borderRadius-full);
 }
 
 .Icon--padding-8 {
