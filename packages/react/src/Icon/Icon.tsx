@@ -9,7 +9,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 export const namedIconSizes = ['small', 'medium', 'large'] as const
 export type NamedIconSize = (typeof namedIconSizes)[number]
 
-export const numericIconSizes = [12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52] as const
+export const numericIconSizes = [20, 24, 28, 32, 36, 40, 44] as const
 export type NumericIconSize = (typeof numericIconSizes)[number]
 const isNumericIconSize = (size: IconSize): size is NumericIconSize => typeof size === 'number'
 
@@ -31,18 +31,8 @@ const getIconSize = (size: IconSize): NumericIconSize => {
   return iconSizeMap[size]
 }
 
-const getIconPaddingClass = (size: NumericIconSize): string => {
-  switch (true) {
-    case size < 28:
-      return styles[`Icon--padding-8`]
-    case size < 48:
-      return styles[`Icon--padding-12`]
-    case size < 52:
-      return styles[`Icon--padding-16`]
-    default:
-      return styles[`Icon--padding-20`]
-  }
-}
+const getIconPaddingClass = (size: NumericIconSize): string =>
+  size < 28 ? styles[`Icon--padding-8`] : styles[`Icon--padding-12`]
 
 export const iconColors = Colors
 export type IconColor = (typeof iconColors)[number]

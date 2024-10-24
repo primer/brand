@@ -12,14 +12,6 @@
   padding: var(--base-size-12);
 }
 
-.Icon--padding-16 {
-  padding: var(--base-size-16);
-}
-
-.Icon--padding-20 {
-  padding: var(--base-size-20);
-}
-
 .Icon--color-default {
   color: var(--brand-Icon-color-default);
 }

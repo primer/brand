@@ -33,11 +33,11 @@ describe('Icon', () => {
   })
 
   it('sets the size of the icon when `size` is a number', () => {
-    const {getByLabelText} = render(<Icon icon={GitMergeIcon} aria-label="Git merge icon" size={16} />)
+    const {getByLabelText} = render(<Icon icon={GitMergeIcon} aria-label="Git merge icon" size={24} />)
     const icon = getByLabelText('Git merge icon')
 
-    expect(icon.getAttribute('width')).toBe('16')
-    expect(icon.getAttribute('height')).toBe('16')
+    expect(icon.getAttribute('width')).toBe('24')
+    expect(icon.getAttribute('height')).toBe('24')
   })
 
   it.each`
@@ -55,8 +55,6 @@ describe('Icon', () => {
 
   it.each`
     size        | padding
-    ${12}       | ${8}
-    ${16}       | ${8}
     ${20}       | ${8}
     ${24}       | ${8}
     ${28}       | ${12}
@@ -64,8 +62,6 @@ describe('Icon', () => {
     ${36}       | ${12}
     ${40}       | ${12}
     ${44}       | ${12}
-    ${48}       | ${16}
-    ${52}       | ${20}
     ${'small'}  | ${8}
     ${'medium'} | ${12}
     ${'large'}  | ${12}
