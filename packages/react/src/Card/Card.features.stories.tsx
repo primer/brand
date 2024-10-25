@@ -4,6 +4,7 @@ import {Card, CardIconColors} from '.'
 import {Stack, LabelColors, Grid, ThemeProvider, Box} from '..'
 import placeholderImage from '../fixtures/images/placeholder-600x400.png'
 import {CopilotIcon, ZapIcon, RocketIcon, GitBranchIcon, HeartIcon} from '@primer/octicons-react'
+import {CardWithRenderProps} from './CardWithRenderProps'
 
 export default {
   title: 'Components/Card/features',
@@ -155,6 +156,22 @@ export const IconAndLabel: StoryFn<typeof Card> = () => {
         Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
       </Card.Description>
     </Card>
+  )
+}
+
+export const CardWithRenderPropsExample = () => {
+  return (
+    <CardWithRenderProps
+      href="https://github.com"
+      renderIcon={() => <Card.Icon icon={<CopilotIcon />} color="green" hasBackground />}
+      renderLabel={() => <Card.Label color="blue-purple">Beta</Card.Label>}
+      renderHeading={props => <Card.Heading {...props}>Code search & code view</Card.Heading>}
+      renderDescription={() => (
+        <Card.Description>
+          Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
+        </Card.Description>
+      )}
+    />
   )
 }
 
