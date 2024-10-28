@@ -1,5 +1,63 @@
 # @primer/react-brand
 
+## 0.41.0
+
+### Minor Changes
+
+- [#779](https://github.com/primer/brand/pull/779) [`b5c291e2`](https://github.com/primer/brand/commit/b5c291e290313d1c03ae79ef39fb02cb12b05cbe) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Accessibility improvements to the `FormControl.Hint` component.
+
+  - `FormControl.Hint` is now automatically associated with the form field using `aria-describedby`.
+  - Improvements to the styling of `FormControl.Hint` when used alongside a `Checkbox`.
+
+### Patch Changes
+
+- [#791](https://github.com/primer/brand/pull/791) [`8105b6a3`](https://github.com/primer/brand/commit/8105b6a31ad61f90a07ca67417552795cf4237c0) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Increased spacing between `River` components on narrow viewports from `28px` to `36px`
+
+- [#776](https://github.com/primer/brand/pull/776) [`06fd8476`](https://github.com/primer/brand/commit/06fd84763527bdb9f99a04b367ab4736fd396b6e) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Added `aria-describedby` attribute to leading/trailing text and visuals in `TextInput` component
+
+- [#781](https://github.com/primer/brand/pull/781) [`ec6ffc36`](https://github.com/primer/brand/commit/ec6ffc363cfa4fcb4ad5fc3c38100cf5d0fbc099) Thanks [@joshfarrant](https://github.com/joshfarrant)! - - `Card` component no longer expands to full width when `fullWidth={false}`
+
+  - `Card` component no longer renders duplicate borders in dark mode when `hasBorder={true}`
+
+- [#774](https://github.com/primer/brand/pull/774) [`a6baf41d`](https://github.com/primer/brand/commit/a6baf41dfbb3ac54b12c41ba196b256be3a9315d) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Fixed issue where `Button` component would reflow and break over multiple lines when its text content exceeded the viewport width.
+
+  :warning: Breaking changes to the following design tokens:
+
+  ```diff
+  - --brand-control-medium-paddingBlock
+  + --brand-control-medium-paddingBlock-normal
+  ```
+
+  ```diff
+  - --brand-control-large-paddingBlock
+  + --brand-control-large-paddingBlock-normal
+  ```
+
+  Additional tokens added:
+
+  ```diff
+  + --brand-control-medium-paddingBlock-condensed
+  + --brand-control-large-paddingBlock-condensed
+  ```
+
+- [#728](https://github.com/primer/brand/pull/728) [`c6ee839e`](https://github.com/primer/brand/commit/c6ee839e094c7b122ff6804674997994ae7f4ee1) Thanks [@MelissaPastore](https://github.com/MelissaPastore)! - Fixed a bug with the `Checkbox` component where validation messages wouldn't be positioned correctly.
+
+- [#768](https://github.com/primer/brand/pull/768) [`0270f06d`](https://github.com/primer/brand/commit/0270f06d4e5cc85aea5f671caa2c7e8ab08abe64) Thanks [@danielguillan](https://github.com/danielguillan)! - Improves spacing of `RiverBreakout` content
+
+- [#797](https://github.com/primer/brand/pull/797) [`b3e34be5`](https://github.com/primer/brand/commit/b3e34be569a1cb639325ce10220be07c3a35ea84) Thanks [@rezrah](https://github.com/rezrah)! - Fixed visual bug in `RiverStoryScroll` layout on narrow viewports. Also adjusted positioning of the pagination to be closer to the scrolled items.
+
+- [#760](https://github.com/primer/brand/pull/760) [`6be1118d`](https://github.com/primer/brand/commit/6be1118d4042e5efd78898583f546f46eac4921a) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Fixed a bug where passing a className to `Hero.Label` or `Hero.Eyebrow` would replace the default class.
+
+- [#766](https://github.com/primer/brand/pull/766) [`d10dc535`](https://github.com/primer/brand/commit/d10dc535284effd85966bab7ba1c02452fd1ec8d) Thanks [@danielguillan](https://github.com/danielguillan)! - Adds internal paddings to River content on larger viewports
+
+- [#767](https://github.com/primer/brand/pull/767) [`299ad371`](https://github.com/primer/brand/commit/299ad371ac4de9582fa27c65226bdd7c71f5689d) Thanks [@danielguillan](https://github.com/danielguillan)! - - Update the order of River children to ensure an accessible markup structure.
+
+  - On narrow viewports, the content and visuals are now flipped, with the visuals always placed first to enhance visual hierarchy.
+
+    > :warning: This may introduce a visual breaking change, whereby the visual is now displayed earlier in the page than originally intended. Please manually review content adjacent to the `River` components for correctness.
+
+- [#785](https://github.com/primer/brand/pull/785) [`ec7d4023`](https://github.com/primer/brand/commit/ec7d4023ca526c42648322fbb62e2c04fec4ddc0) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Fixed bug in `Card` component which caused the focus outline to not display when in dark-mode
+
 ## 0.40.1
 
 ### Patch Changes
