@@ -40,13 +40,13 @@
 .TextInput--medium {
   font-weight: var(--brand-text-weight-100);
   font-size: var(--brand-text-size-100);
-  padding: var(--brand-control-medium-paddingBlock) var(--brand-control-medium-paddingInline-condensed);
+  padding: var(--brand-control-medium-paddingBlock-normal) var(--brand-control-medium-paddingInline-condensed);
 }
 
 .TextInput--large {
   font-weight: var(--brand-text-weight-200);
   font-size: var(--brand-text-size-200);
-  padding: var(--brand-control-large-paddingBlock) var(--brand-control-large-paddingInline-condensed);
+  padding: var(--brand-control-large-paddingBlock-normal) var(--brand-control-large-paddingInline-condensed);
 }
 
 .TextInput-wrapper--large {

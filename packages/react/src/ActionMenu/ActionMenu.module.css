@@ -125,7 +125,8 @@
 }
 
 .ActionMenu__item--medium {
-  padding: var(--brand-control-medium-paddingBlock) var(--brand-control-medium-paddingInline-normal);
+  padding: var(--brand-control-medium-paddingBlock-condensed) var(--brand-control-medium-paddingInline-normal);
+  min-height: var(--brand-control-medium-size);
 }
 
 .ActionMenu__item--small {

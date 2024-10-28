@@ -163,17 +163,17 @@
 
 .Button--size-small {
   min-height: var(--brand-control-small-size);
-  padding: var(--brand-control-small-paddingBlock) var(--brand-control-small-paddingInline-normal);
+  padding-inline: var(--brand-control-small-paddingInline-normal);
 }
 
 .Button--size-medium {
   min-height: var(--brand-control-medium-size);
-  padding: var(--brand-control-medium-paddingBlock) var(--brand-control-medium-paddingInline-spacious);
+  padding: var(--brand-control-medium-paddingBlock-condensed) var(--brand-control-medium-paddingInline-spacious);
 }
 
 .Button--size-large {
   min-height: var(--brand-control-large-size);
-  padding: var(--brand-control-large-paddingBlock) var(--brand-control-large-paddingInline-spacious);
+  padding: var(--brand-control-large-paddingBlock-condensed) var(--brand-control-large-paddingInline-spacious);
 }
 
 .Button--size-large .Button__icon-visual,
