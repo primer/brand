@@ -4,6 +4,7 @@ import {userEvent, waitFor, within} from '@storybook/test'
 
 import {Button} from '.'
 import {HeartFillIcon, MarkGithubIcon, PlayIcon} from '@primer/octicons-react'
+import {Grid} from '../Grid'
 
 export default {
   title: 'Components/Button/Features',
@@ -255,3 +256,13 @@ export const WithVisualsAndDisabled = () => (
   </Button>
 )
 WithVisualsAndDisabled.storyName = 'With visuals and disabled'
+
+export const WithLongerText = () => (
+  <Grid>
+    <Grid.Column span={2}>
+      <Button hasArrow={false}>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
+      </Button>
+    </Grid.Column>
+  </Grid>
+)

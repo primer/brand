@@ -206,4 +206,13 @@ test.describe('Visual Comparison: Button', () => {
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
+
+  test('Button / With Longer Text', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--with-longer-text&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
 })
