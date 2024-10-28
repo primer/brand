@@ -122,7 +122,6 @@
 
 /* Large breakpoint and up */
 @media screen and (min-width: 63.25rem) {
-
   .River--align-start .River__content {
     padding-inline-end: var(--base-size-128);
   }
@@ -131,7 +130,6 @@
     padding-inline: var(--base-size-64);
   }
 }
-
 
 .RiverBreakout {
   display: flex;
