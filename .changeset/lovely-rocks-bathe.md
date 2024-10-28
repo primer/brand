@@ -2,4 +2,4 @@
 '@primer/react-brand': patch
 ---
 
-Improves spacing of RiverBreakout content
+Improves spacing of `RiverBreakout` content
