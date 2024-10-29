@@ -105,7 +105,7 @@ describe('Card', () => {
 
     const {getByTestId} = render(
       <Card href={mockHref} data-testid={mockTestId}>
-        <Card.Icon icon={<GitMergeIcon />} />
+        <Card.Icon icon={GitMergeIcon} />
         <Card.Heading>{mockHeading}</Card.Heading>
         <Card.Description>{mockDescription}</Card.Description>
       </Card>,
@@ -117,11 +117,11 @@ describe('Card', () => {
 
   it('renders the icon with background correctly into the document', () => {
     const mockTestId = 'test'
-    const classToCheck = 'Card__icon--badge'
+    const classToCheck = 'Icon--background'
 
     const {getByTestId} = render(
       <Card href={mockHref} data-testid={mockTestId}>
-        <Card.Icon hasBackground icon={<GitMergeIcon />} />
+        <Card.Icon hasBackground icon={GitMergeIcon} />
         <Card.Heading>{mockHeading}</Card.Heading>
         <Card.Description>{mockDescription}</Card.Description>
       </Card>,

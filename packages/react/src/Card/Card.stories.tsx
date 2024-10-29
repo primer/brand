@@ -18,17 +18,24 @@ export default {
   },
   argTypes: {
     iconColor: {
+      name: 'color',
       description: 'Color of Icon',
       control: {
         type: 'inline-radio',
       },
       options: [...CardIconColors],
+      table: {
+        category: 'Icon',
+      },
     },
     iconHasBackground: {
-      name: 'iconHasBackground',
+      name: 'hasBackground',
       type: {name: 'boolean', required: false},
       control: {
         type: 'boolean',
+      },
+      table: {
+        category: 'Icon',
       },
     },
     hasBorder: {
@@ -76,11 +83,7 @@ export default {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Template: StoryFn<typeof Card> = (_, storyArgs: any) => (
   <Card href="https://github.com" hasBorder={storyArgs.args.hasBorder} fullWidth={storyArgs.args.fullWidth}>
-    <Card.Icon
-      hasBackground={storyArgs.args.iconHasBackground}
-      icon={<CopilotIcon />}
-      color={storyArgs.args.iconColor}
-    />
+    <Card.Icon hasBackground={storyArgs.args.iconHasBackground} icon={CopilotIcon} color={storyArgs.args.iconColor} />
     <Card.Heading>{storyArgs.args.heading}</Card.Heading>
     <Card.Label color={storyArgs.args.labelColor}>Beta</Card.Label>
     <Card.Description>{storyArgs.args.description}</Card.Description>
