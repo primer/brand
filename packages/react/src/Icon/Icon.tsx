@@ -5,6 +5,7 @@ import {type Icon as OcticonProps} from '@primer/octicons-react'
 import {Colors} from '../constants'
 
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/icon/colors.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/icon/colors-with-modes.css'
 
 export const namedIconSizes = ['small', 'medium', 'large'] as const
 export type NamedIconSize = (typeof namedIconSizes)[number]
