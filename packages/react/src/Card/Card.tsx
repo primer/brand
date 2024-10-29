@@ -1,19 +1,8 @@
 import React, {RefObject, forwardRef, useCallback} from 'react'
 import {isFragment} from 'react-is'
 import clsx from 'clsx'
-import {
-  Heading,
-  HeadingProps,
-  Text,
-  useTheme,
-  CardSkewEffect,
-  Image,
-  type ImageProps,
-  Label,
-  LabelColors,
-  Icon,
-  type IconProps,
-} from '..'
+import {Heading, HeadingProps, Text, useTheme, CardSkewEffect, Image, type ImageProps, Label, LabelColors} from '..'
+import {Icon, type IconProps} from '../Icon'
 import {ExpandableArrow} from '../ExpandableArrow'
 import type {BaseProps} from '../component-helpers'
 import {useProvidedRefOrCreate} from '../hooks/useRef'

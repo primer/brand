@@ -4,18 +4,9 @@ import {useWindowSize, BreakpointSize} from '../hooks/useWindowSize'
 import type {BaseProps} from '../component-helpers'
 import findElementInChildren from '../findElementInChildren'
 
-import {
-  Heading,
-  Text,
-  Link,
-  HeadingProps,
-  TextProps,
-  LinkProps,
-  ColorMode as FullColorMode,
-  Image,
-  Label,
-  type IconProps,
-} from '../'
+import {Heading, Text, Link, HeadingProps, TextProps, LinkProps, ColorMode as FullColorMode, Image, Label} from '../'
+
+import type {IconProps} from '../Icon'
 
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/bento/base.css'
 import styles from './Bento.module.css'

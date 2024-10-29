@@ -10,7 +10,6 @@ import {
   Grid,
   Heading,
   Hero,
-  Icon,
   Image,
   Link,
   MinimalFooter,
@@ -18,6 +17,7 @@ import {
   Stack,
   SubdomainNavBar,
 } from '../../..'
+import {Icon} from '../../../Icon'
 
 import darkHeroBg from '../../../fixtures/images/background-dark-collaboration.webp'
 import darkPlaceholderImage from '../../../fixtures/images/enterprise-stack.png'
