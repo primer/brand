@@ -1,11 +1,21 @@
 import React, {ReactHTML, ReactElement, forwardRef, useCallback, useMemo, Ref, PropsWithChildren} from 'react'
 import clsx from 'clsx'
-import {Icon, IconProps} from '@primer/octicons-react'
 import {useWindowSize, BreakpointSize} from '../hooks/useWindowSize'
 import type {BaseProps} from '../component-helpers'
 import findElementInChildren from '../findElementInChildren'
 
-import {Heading, Text, Link, HeadingProps, TextProps, LinkProps, ColorMode as FullColorMode, Image, Label} from '../'
+import {
+  Heading,
+  Text,
+  Link,
+  HeadingProps,
+  TextProps,
+  LinkProps,
+  ColorMode as FullColorMode,
+  Image,
+  Label,
+  type IconProps,
+} from '../'
 
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/bento/base.css'
 import styles from './Bento.module.css'
@@ -169,7 +179,7 @@ const Item = ({
 }
 
 type BentoContentProps = {
-  leadingVisual?: ReactElement | Icon
+  leadingVisual?: ReactElement<IconProps>
   padding?: Padding | ResponsivePadding
   verticalAlign?: Align | ResponsiveAlign
   horizontalAlign?: Exclude<Align, 'end'> | Partial<Record<Size, Exclude<Align, 'end'>>>
@@ -203,9 +213,9 @@ const Content = ({
   return (
     <div className={clsx(styles[`Bento-padding--${padding}`], ...bentoContentClassArray, className)} {...rest}>
       {React.isValidElement(LeadingVisual) &&
-        React.cloneElement(LeadingVisual as React.ReactElement<IconProps>, {
+        React.cloneElement(LeadingVisual as ReactElement<IconProps>, {
           className: styles['Bento__Content-icon'],
-          size: LeadingVisual['size'] || 44,
+          size: LeadingVisual.props.size || 44,
         })}
 
       {React.isValidElement(LabelChild) &&
