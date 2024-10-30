@@ -459,7 +459,7 @@
   }
 }
 
-@media screen and (min-width: 768px) and (min-height: 900px) {
+@media screen and (min-width: 768px) and (min-height: 900px) and (prefers-reduced-motion: no-preference) {
   .RiverStoryScroll {
     margin-top: -20vh;
   }
