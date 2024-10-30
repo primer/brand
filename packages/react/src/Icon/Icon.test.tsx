@@ -52,22 +52,4 @@ describe('Icon', () => {
     expect(icon.getAttribute('width')).toBe(size.toString())
     expect(icon.getAttribute('height')).toBe(size.toString())
   })
-
-  it.each`
-    size        | padding
-    ${20}       | ${8}
-    ${24}       | ${8}
-    ${28}       | ${12}
-    ${32}       | ${12}
-    ${36}       | ${12}
-    ${40}       | ${12}
-    ${44}       | ${12}
-    ${'small'}  | ${8}
-    ${'medium'} | ${12}
-    ${'large'}  | ${12}
-  `('sets the padding to $padding when `size=$size` and `hasBackground=true`', ({size, padding}) => {
-    const {getByLabelText} = render(<Icon icon={GitMergeIcon} aria-label="Git merge icon" size={size} hasBackground />)
-
-    expect(getByLabelText('Git merge icon')).toHaveClass(`Icon--padding-${padding}`)
-  })
 })

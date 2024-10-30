@@ -32,9 +32,6 @@ const getIconSize = (size: IconSize): NumericIconSize => {
   return iconSizeMap[size]
 }
 
-const getIconPaddingClass = (size: NumericIconSize): string =>
-  size < 28 ? styles[`Icon--padding-8`] : styles[`Icon--padding-12`]
-
 export const iconColors = Colors
 export type IconColor = (typeof iconColors)[number]
 export const defaultIconColor = iconColors[0]
@@ -61,11 +58,7 @@ export const Icon = ({
       className={clsx(
         styles['Icon'],
         styles[`Icon--color-${color}`],
-        hasBackground && [
-          styles['Icon--background'],
-          styles[`Icon--background-color-${color}`],
-          getIconPaddingClass(iconSize),
-        ],
+        hasBackground && [styles['Icon--background'], styles[`Icon--background-color-${color}`]],
         className,
       )}
       size={iconSize}
