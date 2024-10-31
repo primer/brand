@@ -1,11 +1,11 @@
 import React, {RefObject, forwardRef, useCallback} from 'react'
 import {isFragment} from 'react-is'
 import clsx from 'clsx'
-import {Heading, HeadingProps, Text, useTheme, CardSkewEffect} from '..'
+import {Heading, HeadingProps, Text, useTheme, CardSkewEffect, Image, type ImageProps, Label, LabelColors} from '..'
+import {Icon, type IconProps} from '../Icon'
 import {ExpandableArrow} from '../ExpandableArrow'
-import {Label, LabelColors} from '../Label'
-import {Image, ImageProps} from '../Image'
 import type {BaseProps} from '../component-helpers'
+import {useProvidedRefOrCreate} from '../hooks/useRef'
 import {Colors} from '../constants'
 
 /**
@@ -19,8 +19,6 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
  */
 import styles from './Card.module.css'
 import stylesLink from '../Link/Link.module.css'
-import {Icon as IconProps} from '@primer/octicons-react'
-import {useProvidedRefOrCreate} from '../hooks/useRef'
 
 export const CardIconColors = Colors
 
@@ -183,36 +181,11 @@ function CardImage({className, ...rest}: CardImageProps) {
   )
 }
 
-type CardIconProps = BaseProps<HTMLSpanElement> & {
-  icon: React.ReactNode | IconProps
-  color?: (typeof CardIconColors)[number]
-  hasBackground?: boolean
-  ['aria-hidden']?: boolean
-}
+type CardIconProps = IconProps
 
-function CardIcon({
-  'aria-hidden': ariaHidden,
-  icon: Icon,
-  className,
-  color = defaultCardIconColor,
-  hasBackground = false,
-  ...rest
-}: CardIconProps) {
-  return (
-    <span
-      className={clsx(
-        styles.Card__icon,
-        styles[`Card__icon--color-${color}`],
-        hasBackground && styles['Card__icon--badge'],
-        className,
-      )}
-      aria-hidden={ariaHidden || typeof Icon !== 'function'}
-      {...rest}
-    >
-      {typeof Icon === 'function' ? <Icon /> : Icon}
-    </span>
-  )
-}
+const CardIcon = ({className, ...props}: IconProps) => (
+  <Icon className={clsx(styles.Card__icon, className)} {...props} />
+)
 
 type CardLabelProps = BaseProps<HTMLSpanElement> & {
   children: React.ReactNode | React.ReactNode[]

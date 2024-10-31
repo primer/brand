@@ -130,7 +130,7 @@ export function CategoryPage({
               <Grid.Column span={{large: 4}}>
                 <Box animate="fade-in" className={styles.fullHeight}>
                   <Card href="#" fullWidth>
-                    <Card.Icon icon={<StackIcon />} color="indigo" hasBackground />
+                    <Card.Icon icon={StackIcon} color="indigo" hasBackground />
                     <Card.Heading as="h2">Teams</Card.Heading>
                     <Card.Description>
                       Build like the best teams on the planet. With CI/CD, Dependabot, and the world&apos;s largest
@@ -142,7 +142,7 @@ export function CategoryPage({
               <Grid.Column span={{large: 4}}>
                 <Box animate="fade-in" className={styles.fullHeight}>
                   <Card href="#" fullWidth>
-                    <Card.Icon icon={<StarIcon />} color="indigo" hasBackground />
+                    <Card.Icon icon={StarIcon} color="indigo" hasBackground />
                     <Card.Heading as="h2">Startups</Card.Heading>
                     <Card.Description>
                       GitHub for Startups helps your startup go from idea to IPO on the world&apos;s largest and most
@@ -155,7 +155,7 @@ export function CategoryPage({
               <Grid.Column span={{large: 4}}>
                 <Box animate="fade-in" className={styles.fullHeight}>
                   <Card href="#" fullWidth>
-                    <Card.Icon icon={<HeartIcon />} color="indigo" hasBackground />
+                    <Card.Icon icon={HeartIcon} color="indigo" hasBackground />
                     <Card.Heading as="h2">Non-Profit</Card.Heading>
                     <Card.Description>
                       Empowering the next generation of developers. GitHub Education bridges the gap between coding
@@ -167,7 +167,7 @@ export function CategoryPage({
               <Grid.Column span={{large: 4}}>
                 <Box animate="fade-in" className={styles.fullHeight}>
                   <Card href="#" fullWidth>
-                    <Card.Icon icon={<StackIcon />} color="indigo" hasBackground />
+                    <Card.Icon icon={StackIcon} color="indigo" hasBackground />
                     <Card.Heading as="h2">Teams</Card.Heading>
                     <Card.Description>
                       Build like the best teams on the planet. With CI/CD, Dependabot, and the world&apos;s largest
@@ -179,7 +179,7 @@ export function CategoryPage({
               <Grid.Column span={{large: 4}}>
                 <Box animate="fade-in" className={styles.fullHeight}>
                   <Card href="#" fullWidth>
-                    <Card.Icon icon={<StarIcon />} color="indigo" hasBackground />
+                    <Card.Icon icon={StarIcon} color="indigo" hasBackground />
                     <Card.Heading as="h2">Startups</Card.Heading>
                     <Card.Description>
                       GitHub for Startups helps your startup go from idea to IPO on the world&apos;s largest and most
@@ -192,7 +192,7 @@ export function CategoryPage({
               <Grid.Column span={{large: 4}}>
                 <Box animate="fade-in" className={styles.fullHeight}>
                   <Card href="#" fullWidth>
-                    <Card.Icon icon={<HeartIcon />} color="indigo" hasBackground />
+                    <Card.Icon icon={HeartIcon} color="indigo" hasBackground />
                     <Card.Heading as="h2">Non-Profit</Card.Heading>
                     <Card.Description>
                       Empowering the next generation of developers. GitHub Education bridges the gap between coding
@@ -216,7 +216,7 @@ export function CategoryPage({
               <Grid.Column span={{large: 4}}>
                 <Box animate="fade-in" className={styles.fullHeight}>
                   <Card href="#" fullWidth>
-                    <Card.Icon icon={<StackIcon />} color="indigo" hasBackground />
+                    <Card.Icon icon={StackIcon} color="indigo" hasBackground />
                     <Card.Heading as="h2">Teams</Card.Heading>
                     <Card.Description>
                       Build like the best teams on the planet. With CI/CD, Dependabot, and the world&apos;s largest
@@ -228,7 +228,7 @@ export function CategoryPage({
               <Grid.Column span={{large: 4}}>
                 <Box animate="fade-in" className={styles.fullHeight}>
                   <Card href="#" fullWidth>
-                    <Card.Icon icon={<StarIcon />} color="indigo" hasBackground />
+                    <Card.Icon icon={StarIcon} color="indigo" hasBackground />
                     <Card.Heading as="h2">Startups</Card.Heading>
                     <Card.Description>
                       GitHub for Startups helps your startup go from idea to IPO on the world&apos;s largest and most
@@ -241,7 +241,7 @@ export function CategoryPage({
               <Grid.Column span={{large: 4}}>
                 <Box animate="fade-in" className={styles.fullHeight}>
                   <Card href="#" fullWidth>
-                    <Card.Icon icon={<HeartIcon />} color="indigo" hasBackground />
+                    <Card.Icon icon={HeartIcon} color="indigo" hasBackground />
                     <Card.Heading as="h2">Non-Profit</Card.Heading>
                     <Card.Description>
                       Empowering the next generation of developers. GitHub Education bridges the gap between coding

@@ -36,4 +36,11 @@ test.describe('Visual Comparison: Icon', () => {
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
+
+  test('Icon / Accepts JSX', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-icon-features--accepts-jsx&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
 })

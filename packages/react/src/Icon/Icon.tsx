@@ -5,6 +5,7 @@ import {type Icon as OcticonProps} from '@primer/octicons-react'
 import {Colors} from '../constants'
 
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/icon/colors.css'
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/icon/colors-with-modes.css'
 
 export const namedIconSizes = ['small', 'medium', 'large'] as const
 export type NamedIconSize = (typeof namedIconSizes)[number]
@@ -31,15 +32,12 @@ const getIconSize = (size: IconSize): NumericIconSize => {
   return iconSizeMap[size]
 }
 
-const getIconPaddingClass = (size: NumericIconSize): string =>
-  size < 28 ? styles[`Icon--padding-8`] : styles[`Icon--padding-12`]
-
 export const iconColors = Colors
 export type IconColor = (typeof iconColors)[number]
 export const defaultIconColor = iconColors[0]
 
 export type IconProps = SVGAttributes<SVGElement> & {
-  icon: OcticonProps
+  icon: OcticonProps | React.ReactElement<OcticonProps>
   color?: IconColor
   hasBackground?: boolean
   size?: IconSize
@@ -55,20 +53,26 @@ export const Icon = ({
 }: IconProps) => {
   const iconSize = getIconSize(size)
 
-  return (
-    <Octicon
-      className={clsx(
-        styles['Icon'],
-        styles[`Icon--color-${color}`],
-        hasBackground && [
-          styles['Icon--background'],
-          styles[`Icon--background-color-${color}`],
-          getIconPaddingClass(iconSize),
-        ],
-        className,
-      )}
-      size={iconSize}
-      {...rest}
-    />
-  )
+  const iconProps = {
+    className: clsx(
+      styles['Icon'],
+      styles[`Icon--color-${color}`],
+      hasBackground && [styles['Icon--background'], styles[`Icon--background-color-${color}`]],
+      className,
+    ),
+    size: iconSize,
+    ...rest,
+  }
+
+  /**
+   * Ensures that instantiated JSX can continue to be passed as props
+   */
+  if (React.isValidElement(Octicon)) {
+    return React.cloneElement(Octicon as React.ReactElement<OcticonProps>, {
+      ...Octicon.props,
+      ...iconProps,
+    })
+  }
+
+  return <Octicon {...iconProps} />
 }
