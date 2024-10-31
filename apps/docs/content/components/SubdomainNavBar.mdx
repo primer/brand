@@ -1,6 +1,5 @@
 ---
 title: Subdomain nav bar
-status: Experimental
 figma: https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=1024%3A32796
 source: https://github.com/primer/brand/blob/main/packages/react/src/SubdomainNavBar/SubdomainNavBar.tsx
 storybook: '/brand/storybook/?path=/story/components-subdomainnavbar--playground'
@@ -39,8 +38,12 @@ Please refer to our [Storybook examples](https://primer.style/brand/storybook/?p
     <SubdomainNavBar.Link href="#">Video</SubdomainNavBar.Link>
     <SubdomainNavBar.Link href="#">Social</SubdomainNavBar.Link>
     <SubdomainNavBar.Search />
-    <SubdomainNavBar.PrimaryAction href="#">Primary CTA</SubdomainNavBar.PrimaryAction>
-    <SubdomainNavBar.SecondaryAction href="#">Secondary CTA</SubdomainNavBar.SecondaryAction>
+    <SubdomainNavBar.PrimaryAction href="#">
+      Primary CTA
+    </SubdomainNavBar.PrimaryAction>
+    <SubdomainNavBar.SecondaryAction href="#">
+      Secondary CTA
+    </SubdomainNavBar.SecondaryAction>
   </SubdomainNavBar>
 </Container>
 ```
@@ -85,7 +88,7 @@ const App = () => {
     }
   }
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault()
     if (!inputRef.current) return
     if (!inputRef.current.value) {
@@ -99,7 +102,9 @@ const App = () => {
   return (
     <Container sx={{position: 'relative', overflowX: 'scroll'}}>
       <SubdomainNavBar title="Subdomain" fixed={false}>
-        <SubdomainNavBar.Link href="#collections">Collections</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#collections">
+          Collections
+        </SubdomainNavBar.Link>
         <SubdomainNavBar.Link href="#topics">Topics</SubdomainNavBar.Link>
         <SubdomainNavBar.Search
           ref={inputRef}
