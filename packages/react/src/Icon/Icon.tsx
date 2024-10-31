@@ -37,7 +37,7 @@ export type IconColor = (typeof iconColors)[number]
 export const defaultIconColor = iconColors[0]
 
 export type IconProps = SVGAttributes<SVGElement> & {
-  icon: OcticonProps
+  icon: OcticonProps | React.ReactElement<OcticonProps>
   color?: IconColor
   hasBackground?: boolean
   size?: IconSize
@@ -53,16 +53,26 @@ export const Icon = ({
 }: IconProps) => {
   const iconSize = getIconSize(size)
 
-  return (
-    <Octicon
-      className={clsx(
-        styles['Icon'],
-        styles[`Icon--color-${color}`],
-        hasBackground && [styles['Icon--background'], styles[`Icon--background-color-${color}`]],
-        className,
-      )}
-      size={iconSize}
-      {...rest}
-    />
-  )
+  const iconProps = {
+    className: clsx(
+      styles['Icon'],
+      styles[`Icon--color-${color}`],
+      hasBackground && [styles['Icon--background'], styles[`Icon--background-color-${color}`]],
+      className,
+    ),
+    size: iconSize,
+    ...rest,
+  }
+
+  /**
+   * Ensures that instantiated JSX can continue to be passed as props
+   */
+  if (React.isValidElement(Octicon)) {
+    return React.cloneElement(Octicon as React.ReactElement<OcticonProps>, {
+      ...Octicon.props,
+      ...iconProps,
+    })
+  }
+
+  return <Octicon {...iconProps} />
 }

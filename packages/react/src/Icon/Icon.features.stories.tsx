@@ -52,3 +52,5 @@ export const Sizes: StoryFn<typeof Icon> = () => (
     </Stack>
   </Stack>
 )
+
+export const AcceptsJSX: StoryFn<typeof Icon> = () => <Icon icon={<CopilotIcon />} color="green" hasBackground />
