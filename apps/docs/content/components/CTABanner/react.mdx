@@ -11,6 +11,7 @@ import {PropTableValues} from '../../../src/components'
 import {Link} from 'gatsby'
 import ComponentLayout from '../../../src/layouts/component-layout'
 export default ComponentLayout
+import {TextVariants} from '@primer/react-brand'
 
 ```js
 import {CTABanner, Button} from '@primer/react-brand'
@@ -239,9 +240,10 @@ render(<App />)
 
 ### CTABanner.Description
 
-| name       | type                       | default     | required | description                                         |
-| ---------- | -------------------------- | ----------- | -------- | --------------------------------------------------- |
-| `children` | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | Content to be displayed inside the banner component |
+| name       | type                                                    | default     | required                            | description                                         |
+| ---------- | ------------------------------------------------------- | ----------- | ----------------------------------- | --------------------------------------------------- |
+| `children` | `ReactNode`, `ReactNode[]`                              | `undefined` | `true`                              | Content to be displayed inside the banner component |
+| `variant`  | <PropTableValues values={TextVariants} addLineBreaks /> | `'muted'`   | Specify alternative text appearance |
 
 ### CTABanner.ButtonGroup <Label>Required</Label>
 
