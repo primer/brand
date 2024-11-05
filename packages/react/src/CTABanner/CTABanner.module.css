@@ -37,7 +37,16 @@
 }
 
 .CTABanner-container--background {
-  background: var(--brand-CTABanner-bgColor);
+  border-radius: var(--brand-borderRadius-xlarge);
+  background-repeat: no-repeat;
+  background-color: var(--brand-CTABanner-narrow-background-color, var(--brand-CTABanner-background-color));
+  background-image: var(--brand-CTABanner-narrow-background-image-src, var(--brand-CTABanner-background-image-src));
+  background-size: var(--brand-CTABanner-narrow-background-image-size, var(--brand-CTABanner-background-image-size));
+
+  background-position: var(
+    --brand-CTABanner-narrow-background-image-position,
+    var(--brand-CTABanner-background-image-position, center)
+  );
 }
 
 .CTABanner-container--border {
@@ -50,7 +59,6 @@
 }
 
 .CTABanner-description {
-  color: var(--brand-color-text-muted);
   margin-bottom: var(--base-size-16);
 }
 
@@ -65,5 +73,32 @@
 @media screen and (min-width: 63.25rem) {
   .CTABanner-container {
     padding: var(--base-size-128) var(--base-size-64);
+  }
+}
+
+/* Regular */
+@media screen and (min-width: 48rem) {
+  .CTABanner-container--background {
+    background-color: var(--brand-CTABanner-regular-background-color, var(--brand-CTABanner-background-color));
+    background-image: var(--brand-CTABanner-regular-background-image-src, var(--brand-CTABanner-background-image-src));
+    background-size: var(--brand-CTABanner-regular-background-image-size, var(--brand-CTABanner-background-image-size));
+    background-position: var(
+      --brand-CTABanner-regular-background-image-position,
+      var(--brand-CTABanner-background-image-position)
+    );
+  }
+}
+
+/* Wide */
+@media screen and (min-width: 80rem) {
+  .CTABanner-container--background {
+    background-color: var(--brand-CTABanner-wide-background-color, var(--brand-CTABanner-background-color));
+    background-image: var(--brand-CTABanner-wide-background-image-src, var(--brand-CTABanner-background-image-src));
+    background-size: var(--brand-CTABanner-wide-background-image-size, var(--brand-CTABanner-background-image-size));
+
+    background-position: var(
+      --brand-CTABanner-wide-background-image-position,
+      var(--brand-CTABanner-background-image-position)
+    );
   }
 }
