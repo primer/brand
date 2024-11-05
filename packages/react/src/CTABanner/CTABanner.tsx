@@ -46,19 +46,19 @@ export type CTABannerProps = BaseProps<HTMLElement> &
      */
     hasBackground?: boolean
     /**
-     * Optional, custom background color
+     * Optional, custom background color.
      */
     backgroundColor?: BackgroundColors | ResponsiveBackgroundColorMap
     /**
-     * Optional, custom background image
+     * Optional, custom background image.
      */
     backgroundImageSrc?: string | ResponsiveBackgroundImageSrcMap
     /**
-     * Optional, custom background position
+     * Optional, custom background position.
      */
     backgroundImagePosition?: string | ResponsiveBackgroundImagePositionMap
     /**
-     * Optional, custom background size
+     * Optional, custom background size.
      */
     backgroundImageSize?: string | ResponsiveBackgroundImageSizeMap
     /**
