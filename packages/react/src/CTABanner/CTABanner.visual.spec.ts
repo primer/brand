@@ -65,4 +65,31 @@ test.describe('Visual Comparison: CTABanner', () => {
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
+
+  test('CTABanner / Custom Background Colors', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--custom-background-colors&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('CTABanner / Responsive Background Image', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--responsive-background-image&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('CTABanner / Responsive Background Image Dark', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--responsive-background-image-dark&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
 })

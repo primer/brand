@@ -166,4 +166,120 @@ describe('CTABanner', () => {
 
     expect(elTrailing).toBeInTheDocument()
   })
+
+  it('provides a way to pass a background image', () => {
+    const mockImage = 'image.jpg'
+
+    const {getByTestId} = render(
+      <CTABanner backgroundImageSrc={mockImage} data-testid="root">
+        <CTABanner.Heading>This is your heading</CTABanner.Heading>
+      </CTABanner>,
+    )
+    const rootElement = getByTestId('root')
+
+    const styles = rootElement.getAttribute('style') as string
+    const styleObject = styles
+      .split(';')
+      .map(style => style.split(':'))
+
+      .reduce((acc, [key, value]) => {
+        if (key && value) {
+          acc[key.trim()] = value.trim()
+        }
+
+        return acc
+      }, {})
+
+    expect(styleObject['--brand-CTABanner-background-image-src']).toBe(`url(${mockImage})`)
+  })
+
+  it('provides a way to pass responsive background images', () => {
+    const mockImages = {
+      narrow: 'narrow-image.jpg',
+      regular: 'regular-image.jpg',
+      wide: 'wide-image.jpg',
+    }
+
+    const {getByTestId} = render(
+      <CTABanner backgroundImageSrc={mockImages} data-testid="root">
+        <CTABanner.Heading>This is your heading</CTABanner.Heading>
+      </CTABanner>,
+    )
+    const rootElement = getByTestId('root')
+
+    const styles = rootElement.getAttribute('style') as string
+    const styleObject = styles
+      .split(';')
+      .map(style => style.split(':'))
+
+      .reduce((acc, [key, value]) => {
+        if (key && value) {
+          acc[key.trim()] = value.trim()
+        }
+
+        return acc
+      }, {})
+
+    for (const [key, value] of Object.entries(mockImages)) {
+      expect(styleObject[`--brand-CTABanner-${key}-background-image-src`]).toBe(`url(${value})`)
+    }
+  })
+
+  it('provides a way to pass an optional background color', () => {
+    const mockColor = 'red'
+
+    const {getByTestId} = render(
+      <CTABanner backgroundColor={mockColor} data-testid="root">
+        <CTABanner.Heading>This is your heading</CTABanner.Heading>
+      </CTABanner>,
+    )
+    const rootElement = getByTestId('root')
+
+    const styles = rootElement.getAttribute('style') as string
+    const styleObject = styles
+      .split(';')
+      .map(style => style.split(':'))
+
+      .reduce((acc, [key, value]) => {
+        if (key && value) {
+          acc[key.trim()] = value.trim()
+        }
+
+        return acc
+      }, {})
+
+    expect(styleObject['--brand-CTABanner-background-color']).toBe(mockColor)
+  })
+
+  it('provides a way to pass responsive background colors', () => {
+    const mockColors = {
+      narrow: 'red',
+      regular: 'yellow',
+      wide: 'blue',
+    }
+
+    const {getByTestId} = render(
+      <CTABanner backgroundColor={mockColors} data-testid="root">
+        <CTABanner.Heading>This is your heading</CTABanner.Heading>
+      </CTABanner>,
+    )
+    const rootElement = getByTestId('root')
+
+    const styles = rootElement.getAttribute('style') as string
+    const styleObject = styles
+      .split(';')
+      .map(style => style.split(':'))
+
+      .reduce((acc, [key, value]) => {
+        if (key && value) {
+          acc[key.trim()] = value.trim()
+        }
+
+        return acc
+      }, {})
+
+    for (const [key, value] of Object.entries(mockColors)) {
+      expect(styleObject[`--brand-CTABanner-${key}-background-color`]).toBe(value)
+    }
+  })
 })
