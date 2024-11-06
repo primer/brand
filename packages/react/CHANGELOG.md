@@ -1,5 +1,38 @@
 # @primer/react-brand
 
+## 0.42.0
+
+### Minor Changes
+
+- [#811](https://github.com/primer/brand/pull/811) [`6331ae61`](https://github.com/primer/brand/commit/6331ae61b7c4b9bbc0910bab146c1023dd852511) Thanks [@rezrah](https://github.com/rezrah)! - `River` and `SectionIntro` link colors now default to blue (accent) for consistency with `Card`, `Pillar` and similar components that feature blue links.
+
+  :warning: This is a visual breaking change. Please manually review all usages of `River` and `SectionIntro` to ensure there is sufficient contrast with the background color.
+
+### Patch Changes
+
+- [#805](https://github.com/primer/brand/pull/805) [`2928995b`](https://github.com/primer/brand/commit/2928995bffb5994104491a4ee5d1d6d831737161) Thanks [@rezrah](https://github.com/rezrah)! - Disabled all transitions and auto-staggering when `reduced-motion` user preference is enabled
+
+- [#809](https://github.com/primer/brand/pull/809) [`bbb14ce9`](https://github.com/primer/brand/commit/bbb14ce9ed2e7c8e9138e249732d7b4b9de85bc9) Thanks [@rezrah](https://github.com/rezrah)! - Updated `Link` underline to fill entire width
+
+- [#798](https://github.com/primer/brand/pull/798) [`af335d37`](https://github.com/primer/brand/commit/af335d376b25edfda0feddd7afd45dacf549eeac) Thanks [@joshfarrant](https://github.com/joshfarrant)! - - Fixed a bug where the `Bento` `leadingVisual` prop wouldn't honour the provided `size`.
+
+  - Updated the `Card.Icon` internal implementation to use the new `Icon` component.
+
+- [#810](https://github.com/primer/brand/pull/810) [`774b91b0`](https://github.com/primer/brand/commit/774b91b0ed16079d388bbd7cf6edc0d3dbed38e1) Thanks [@rezrah](https://github.com/rezrah)! - Added new background customization options to `CTABanner`
+
+  New props:
+
+  - `backgroundColor`
+  - `backgroundImageSrc`
+  - `backgroundImageSize`
+  - `backgroundImagePosition`
+
+  Also added `variant` prop to `CTABanner.Description`, to achieve higher contrast when using background images.
+
+  :link: [See the documentation for more details and usage examples](https://primer.style/brand/components/CTABanner/react/).
+
+- [#805](https://github.com/primer/brand/pull/805) [`2928995b`](https://github.com/primer/brand/commit/2928995bffb5994104491a4ee5d1d6d831737161) Thanks [@rezrah](https://github.com/rezrah)! - Removed negative margin from `RiverStoryScroll` when `reduced-motion` user preference is enabled
+
 ## 0.41.0
 
 ### Minor Changes

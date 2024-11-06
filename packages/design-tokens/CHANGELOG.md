@@ -1,5 +1,11 @@
 # @primer/brand-primitives
 
+## 0.42.0
+
+### Minor Changes
+
+- [#798](https://github.com/primer/brand/pull/798) [`af335d37`](https://github.com/primer/brand/commit/af335d376b25edfda0feddd7afd45dacf549eeac) Thanks [@joshfarrant](https://github.com/joshfarrant)! - ⚠️ Breaking change: Removed all Card-icon-background/color tokens (eg `--brand-Card-icon-background-blue`, `--brand-Card-icon-color-orange`)
+
 ## 0.41.0
 
 ### Minor Changes
