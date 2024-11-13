@@ -30,9 +30,7 @@ export const Default = () => (
           Push what&apos;s possible with GitHub Copilot, the world&apos;s most trusted and widely adopted AI developer
           tool.
         </Bento.Heading>
-        <Link href="#" variant="default">
-          Learn more about Copilot
-        </Link>
+        <Link href="#">Learn more about Copilot</Link>
       </Bento.Content>
     </Bento.Item>
   </Bento>

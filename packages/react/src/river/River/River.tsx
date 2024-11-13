@@ -185,7 +185,10 @@ export const RiverContent = forwardRef(
         )}
         {React.isValidElement(LinkChild) && (
           <div className={styles['River__call-to-action']}>
-            {React.cloneElement(LinkChild as React.ReactElement<LinkProps>, {size: 'medium'})}
+            {React.cloneElement(LinkChild as React.ReactElement<LinkProps>, {
+              size: 'medium',
+              variant: LinkChild.props.variant || 'accent',
+            })}
           </div>
         )}
         {TrailingComponent && (

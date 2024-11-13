@@ -77,7 +77,7 @@ const Root = forwardRef(
       hasBorder = false,
       hasShadow = true,
       hasBackground = true,
-      backgroundColor = 'var(--brand-CTABanner-bgColor',
+      backgroundColor = 'var(--brand-CTABanner-bgColor)',
       backgroundImageSrc,
       backgroundImagePosition = 'center',
       backgroundImageSize = 'cover',
