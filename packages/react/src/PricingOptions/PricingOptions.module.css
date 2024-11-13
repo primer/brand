@@ -18,11 +18,24 @@
     'footnote'
     ;
 
-  display: grid;
-  grid-template-areas: var(--brand-pricing-options-template-areas);
-  grid-auto-rows: min-content;
+  /* prettier-ignore */
+  --brand-pricing-options-template-areas-single-item: 
+    'leadingComponent actions'
+      'label actions'
+      'heading actions'
+      'description actions'
+      'price actions'
+      'feature-list actions';
 
+  display: grid;
+  row-gap: var(--brand-pricing-options-item-gap);
   padding-inline: var(--brand-pricing-options-container-padding-inline);
+}
+
+@media (min-width: 63.25rem) {
+  .PricingOptions {
+    grid-template-areas: var(--brand-pricing-options-template-areas);
+  }
 }
 
 /* ---------------------------------------------------------- */
@@ -60,7 +73,6 @@
   position: absolute;
   inset-inline: 0;
   height: 1px;
-  margin-block-start: calc(var(--brand-pricing-options-item-gap) * -1);
   background-color: var(--brand-color-border-default);
 }
 
@@ -104,13 +116,7 @@
     grid-template-columns: 1fr 1fr;
     column-gap: calc(var(--base-size-96) * 2);
     grid-template-rows: repeat(auto-fit, minmax(0, 1fr));
-    grid-template-areas:
-      'leadingComponent actions'
-      'label actions'
-      'heading actions'
-      'description actions'
-      'price actions'
-      'feature-list actions';
+    grid-template-areas: var(--brand-pricing-options-template-areas-single-item);
   }
 
   .PricingOptions--items1 .PricingOptions__actions {
@@ -169,9 +175,9 @@
 @supports not (grid-template-rows: subgrid) {
   @media (min-width: 63.28rem) {
     .PricingOptions__item {
+      grid-template-areas: var(--brand-pricing-options-template-areas);
       grid-template-columns: 1fr;
       grid-template-rows: auto;
-      grid-template-areas: var(--brand-pricing-options-template-areas);
     }
   }
 }
