@@ -6,10 +6,22 @@
   --brand-pricing-options-item-gap: var(--brand-PricingOptions-items-gap);
   --brand-pricing-options-container-padding-inline: 0;
 
+  /* prettier-ignore */
+  --brand-pricing-options-template-areas: 
+    'leadingComponent'
+    'label'
+    'heading'
+    'description'
+    'price'
+    'actions'
+    'feature-list'
+    'footnote'
+    ;
+
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto;
-  row-gap: var(--brand-pricing-options-item-gap);
+  grid-template-areas: var(--brand-pricing-options-template-areas);
+  grid-auto-rows: min-content;
+
   padding-inline: var(--brand-pricing-options-container-padding-inline);
 }
 
@@ -113,20 +125,9 @@
 @media (min-width: 63.25rem) {
   .PricingOptions--items2,
   .PricingOptions--items3 {
-    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
     column-gap: var(--brand-pricing-options-item-gap);
     row-gap: 0;
-
-    grid-template-areas:
-      'leadingComponent'
-      'label'
-      'heading'
-      'description'
-      'price'
-      'actions'
-      'feature-list'
-      'footnote';
   }
 
   .PricingOptions--variant-default.PricingOptions--items2 {
@@ -144,9 +145,13 @@
 /* Item inner layout                                       */
 /* ---------------------------------------------------------- */
 
+.PricingOptions__item {
+  display: grid;
+  grid-template-areas: var(--brand-pricing-options-template-areas);
+}
+
 @media (min-width: 63.28rem) {
   .PricingOptions__item {
-    display: grid;
     grid-row: label / footnote;
     grid-template-rows: subgrid;
   }
@@ -166,15 +171,7 @@
     .PricingOptions__item {
       grid-template-columns: 1fr;
       grid-template-rows: auto;
-      grid-template-areas:
-        'leadingComponent'
-        'label'
-        'heading'
-        'description'
-        'price'
-        'actions'
-        'feature-list'
-        'footnote';
+      grid-template-areas: var(--brand-pricing-options-template-areas);
     }
   }
 }
