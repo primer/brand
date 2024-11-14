@@ -6,11 +6,36 @@
   --brand-pricing-options-item-gap: var(--brand-PricingOptions-items-gap);
   --brand-pricing-options-container-padding-inline: 0;
 
+  /* prettier-ignore */
+  --brand-pricing-options-template-areas: 
+    'leadingComponent'
+    'label'
+    'heading'
+    'description'
+    'price'
+    'actions'
+    'feature-list'
+    'footnote'
+    ;
+
+  /* prettier-ignore */
+  --brand-pricing-options-template-areas-single-item: 
+    'leadingComponent actions'
+      'label actions'
+      'heading actions'
+      'description actions'
+      'price actions'
+      'feature-list actions';
+
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto;
   row-gap: var(--brand-pricing-options-item-gap);
   padding-inline: var(--brand-pricing-options-container-padding-inline);
+}
+
+@media (min-width: 63.25rem) {
+  .PricingOptions {
+    grid-template-areas: var(--brand-pricing-options-template-areas);
+  }
 }
 
 /* ---------------------------------------------------------- */
@@ -48,7 +73,6 @@
   position: absolute;
   inset-inline: 0;
   height: 1px;
-  margin-block-start: calc(var(--brand-pricing-options-item-gap) * -1);
   background-color: var(--brand-color-border-default);
 }
 
@@ -92,13 +116,7 @@
     grid-template-columns: 1fr 1fr;
     column-gap: calc(var(--base-size-96) * 2);
     grid-template-rows: repeat(auto-fit, minmax(0, 1fr));
-    grid-template-areas:
-      'leadingComponent actions'
-      'label actions'
-      'heading actions'
-      'description actions'
-      'price actions'
-      'feature-list actions';
+    grid-template-areas: var(--brand-pricing-options-template-areas-single-item);
   }
 
   .PricingOptions--items1 .PricingOptions__actions {
@@ -113,20 +131,9 @@
 @media (min-width: 63.25rem) {
   .PricingOptions--items2,
   .PricingOptions--items3 {
-    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
     column-gap: var(--brand-pricing-options-item-gap);
     row-gap: 0;
-
-    grid-template-areas:
-      'leadingComponent'
-      'label'
-      'heading'
-      'description'
-      'price'
-      'actions'
-      'feature-list'
-      'footnote';
   }
 
   .PricingOptions--variant-default.PricingOptions--items2 {
@@ -144,9 +151,13 @@
 /* Item inner layout                                       */
 /* ---------------------------------------------------------- */
 
+.PricingOptions__item {
+  display: grid;
+  grid-template-areas: var(--brand-pricing-options-template-areas);
+}
+
 @media (min-width: 63.28rem) {
   .PricingOptions__item {
-    display: grid;
     grid-row: label / footnote;
     grid-template-rows: subgrid;
   }
@@ -164,17 +175,9 @@
 @supports not (grid-template-rows: subgrid) {
   @media (min-width: 63.28rem) {
     .PricingOptions__item {
+      grid-template-areas: var(--brand-pricing-options-template-areas);
       grid-template-columns: 1fr;
       grid-template-rows: auto;
-      grid-template-areas:
-        'leadingComponent'
-        'label'
-        'heading'
-        'description'
-        'price'
-        'actions'
-        'feature-list'
-        'footnote';
     }
   }
 }
