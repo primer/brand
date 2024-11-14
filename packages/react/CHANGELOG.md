@@ -1,5 +1,13 @@
 # @primer/react-brand
 
+## 0.42.1
+
+### Patch Changes
+
+- [#812](https://github.com/primer/brand/pull/812) [`8ce76569`](https://github.com/primer/brand/commit/8ce7656991eadee1225173b3d7cd130716789cc8) Thanks [@danielguillan](https://github.com/danielguillan)! - Ensure accessible content order in `PricingOptions` markup
+
+- [#815](https://github.com/primer/brand/pull/815) [`7345cc9d`](https://github.com/primer/brand/commit/7345cc9d4a6c20f963d99d837df88ac404bda496) Thanks [@rezrah](https://github.com/rezrah)! - Fixed corner background overflow bug in `Card` component on Safari browsers
+
 ## 0.42.0
 
 ### Minor Changes
