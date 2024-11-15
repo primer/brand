@@ -328,6 +328,8 @@ Pass the `fullWidth` prop to `FormControl` to provide additional behavior and st
 
 Pass the `required` prop to `FormControl` to provide additional behavior and state context to all `children`, rather than the input only.
 
+When marking a field as required, it is recommended to also provide a corresponding message at the start of the form informing the user that "_all fields marked with an asterisk (\*) are required_".
+
 ```jsx live
 <FormControl required>
   <FormControl.Label>Name</FormControl.Label>
