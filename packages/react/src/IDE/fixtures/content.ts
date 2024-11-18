@@ -2,6 +2,7 @@ import {IDEChatMessage, IDEEditorFile} from '../IDE'
 import hljs from 'highlight.js/lib/core'
 import javascript from 'highlight.js/lib/languages/javascript'
 import python from 'highlight.js/lib/languages/python'
+import monaAvatar from '../../fixtures/images/avatar-mona.png'
 
 hljs.registerLanguage('javascript', javascript)
 hljs.registerLanguage('python', python)
@@ -10,7 +11,7 @@ export const chatScript: IDEChatMessage[] = [
   {
     role: 'user',
     handle: 'monalisa',
-    avatar: 'https://github.com/mona.png',
+    avatar: monaAvatar,
     message: 'How do I concatenate two arrays in JavaScript?',
   },
   {
@@ -27,7 +28,7 @@ export const chatScript: IDEChatMessage[] = [
   {
     role: 'user',
     handle: 'monalisa',
-    avatar: 'https://github.com/mona.png',
+    avatar: monaAvatar,
     message: 'Thanks! How do I check if a variable is an array?',
   },
   {
@@ -44,7 +45,7 @@ export const chatScript: IDEChatMessage[] = [
   {
     role: 'user',
     handle: 'monalisa',
-    avatar: 'https://github.com/mona.png',
+    avatar: monaAvatar,
     message: 'How do I remove a specific element from an array?',
   },
   {
