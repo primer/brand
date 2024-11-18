@@ -238,13 +238,13 @@ const App = () => {
     setValue(event.target.value)
   }
 
-  const containsWhitespace = /\s/g.test(value)
+  const isInvalid = /\s/g.test(value)
 
   return (
-    <FormControl validationStatus={containsWhitespace ? 'error' : 'success'}>
+    <FormControl validationStatus={isInvalid ? 'error' : 'success'}>
       <FormControl.Label>GitHub handle</FormControl.Label>
       <TextInput onChange={handleChange} value={value} fullWidth />
-      {containsWhitespace ? (
+      {isInvalid ? (
         <FormControl.Validation>
           GitHub handles cannot contain spaces.{' '}
           {value && `Did you mean "${value.replaceAll(' ', '')}"`}
