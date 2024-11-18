@@ -91,9 +91,10 @@ const Root = ({
       {React.Children.map(children, child => {
         if (!React.isValidElement(child)) return
 
-        const describedBy = [containsHint && `${uniqueId}-hint`, containsValidation && `${uniqueId}-validation`]
-          .filter(Boolean)
-          .join(' ')
+        const describedBy =
+          [containsHint && `${uniqueId}-hint`, containsValidation && `${uniqueId}-validation`]
+            .filter(Boolean)
+            .join(' ') || undefined
 
         switch (child.type) {
           case TextInput:
