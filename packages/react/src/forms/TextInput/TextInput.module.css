@@ -83,7 +83,12 @@
 }
 
 .TextInput-wrapper--fullWidth {
+  width: 100%;
   display: flex;
+}
+
+.TextInput-wrapper:not(.TextInput-wrapper--fullWidth) {
+  width: min-content;
 }
 
 .TextInput-wrapper--monospace {
