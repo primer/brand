@@ -229,45 +229,24 @@ Try changing the input value to to `monalisa` to show the `success` state.
 
 ```javascript live noinline
 const App = () => {
-  const [value, setValue] = React.useState()
-  const [validationState, setValidationState] = React.useState()
-
-  React.useEffect(() => {
-    const defaultHandle = 'mona lisa'
-    setValue(defaultHandle)
-    validate(defaultHandle)
-  }, [])
-
-  const validate = (inputValue) => {
-    if (/\s/g.test(inputValue)) {
-      setValidationState('error')
-    } else {
-      setValidationState('success')
-    }
-  }
+  const [value, setValue] = React.useState('mona lisa')
 
   const handleChange = (event) => {
-    event.preventDefault()
-    if (!event.target.value) {
-      setValue(undefined)
-      setValidationState(undefined)
-      return
-    }
     setValue(event.target.value)
-    validate(event.target.value)
   }
 
+  const containsWhitespace = /\s/g.test(value)
+
   return (
-    <FormControl validationStatus={validationState}>
+    <FormControl validationStatus={containsWhitespace ? 'error' : 'success'}>
       <FormControl.Label>GitHub handle</FormControl.Label>
       <TextInput onChange={handleChange} value={value} fullWidth />
-      {validationState && validationState === 'error' && (
+      {containsWhitespace ? (
         <FormControl.Validation>
           GitHub handles cannot contain spaces.{' '}
           {value && `Did you mean "${value.replaceAll(' ', '')}"`}
         </FormControl.Validation>
-      )}
-      {validationState && validationState === 'success' && (
+      ) : (
         <FormControl.Validation>Valid name</FormControl.Validation>
       )}
     </FormControl>
