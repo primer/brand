@@ -20,7 +20,6 @@ describe('IDE', () => {
     {
       role: 'assistant',
       handle: 'GitHub Copilot',
-      avatar: 'https://github.com/copilot.png',
       message: "To concatenate two arrays in JavaScript, you can use the `concat` method. Here's an example:",
       codeSnippet:
         'const array1 = [1, 2, 3];\nconst array2 = [4, 5, 6];\nconst resultArray = array1.concat(array2);\nconsole.log(resultArray); // Output: [1, 2, 3, 4, 5, 6]',

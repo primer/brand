@@ -17,7 +17,6 @@ export const chatScript: IDEChatMessage[] = [
   {
     role: 'assistant',
     handle: 'GitHub Copilot',
-    avatar: 'https://github.com/copilot.png',
     message: "To concatenate two arrays in JavaScript, you can use the `concat` method. Here's an example:",
     codeSnippet: hljs.highlight(
       'const array1 = [1, 2, 3];\nconst array2 = [4, 5, 6];\nconst resultArray = array1.concat(array2);\nconsole.log(resultArray); // Output: [1, 2, 3, 4, 5, 6]',
@@ -34,7 +33,6 @@ export const chatScript: IDEChatMessage[] = [
   {
     role: 'assistant',
     handle: 'GitHub Copilot',
-    avatar: 'https://github.com/copilot.png',
     message: "You can use the `Array.isArray()` method to check if a variable is an array. Here's an example:",
     codeSnippet: hljs.highlight(
       "const myVariable = [1, 2, 3];\nif (Array.isArray(myVariable)) {\n  console.log('It is an array!');\n} else {\n  console.log('It is not an array.');\n}",
@@ -51,7 +49,6 @@ export const chatScript: IDEChatMessage[] = [
   {
     role: 'assistant',
     handle: 'GitHub Copilot',
-    avatar: 'https://github.com/copilot.png',
     message: "You can use the `filter` method to remove a specific element from an array. Here's an example:",
     codeSnippet: hljs.highlight(
       'const array = [1, 2, 3, 4, 5];\nconst elementToRemove = 3;\nconst filteredArray = array.filter(item => item !== elementToRemove);\nconsole.log(filteredArray); // Output: [1, 2, 4, 5]',
