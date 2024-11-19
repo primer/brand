@@ -1,5 +1,6 @@
 const {name: libraryName} = require('./package')
 const path = require('path')
+const postcssPresetEnv = require('postcss-preset-env')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
@@ -70,7 +71,18 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
               postcssOptions: {
-                plugins: [['postcss-preset-env', 'autoprefixer']],
+                plugins: [
+                  [
+                    postcssPresetEnv({
+                      features: {
+                        // prevent rewriting these in final output
+                        'logical-properties-and-values': false,
+                        'has-pseudo-class': false,
+                      },
+                    }),
+                    'autoprefixer',
+                  ],
+                ],
               },
             },
           },
