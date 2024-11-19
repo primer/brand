@@ -1,5 +1,5 @@
 import {HTMLAttributes} from 'react'
-import React, {render, cleanup, fireEvent, screen, within, waitFor} from '@testing-library/react'
+import React, {render, cleanup, fireEvent, within} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
@@ -124,10 +124,10 @@ describe('SubNav', () => {
     expect(results).toHaveNoViolations()
   })
 
-  it.only('shows subitems when the submenu toggle is activated at large viewports', async () => {
+  it('shows subitems when the submenu toggle is activated at large viewports', async () => {
     mockUseWindowSize.mockImplementation(() => ({isLarge: true}))
 
-    const {debug, getByRole, getAllByTestId} = render(
+    const {getByRole, getAllByTestId} = render(
       <SubNav fullWidth>
         <SubNav.Link href="#" aria-current="page">
           Copilot
