@@ -129,16 +129,19 @@ type IDEChatProps = {
   'data-testid'?: string
 } & BaseProps<HTMLElement>
 
-type MessageRole = 'user' | 'assistant'
-
-export type IDEChatMessage = {
-  role: MessageRole
-  handle: string
+type IDEChatMessageUser = {
+  role: 'user'
   avatar: string
-  message: string
-  codeSnippet?: string
-  highlighter?: 'hljs' // add additional highlighters as needed
 }
+
+type IDEChatMessageAssistant = {
+  role: 'assistant'
+}
+
+export type IDEChatMessage = {handle: string; message: string; codeSnippet?: string; highlighter?: 'hljs'} & (
+  | IDEChatMessageUser
+  | IDEChatMessageAssistant
+)
 
 const _Chat = memo(({'data-testid': testId, script, animationDelay = 3000, ...rest}: IDEChatProps) => {
   const delay = animationDelay

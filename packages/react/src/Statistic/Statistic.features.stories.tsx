@@ -3,6 +3,7 @@ import {Meta} from '@storybook/react'
 
 import {Statistic} from '.'
 import {AnimationProvider, Box, Grid, Stack, Testimonial, Text} from '../'
+import monaAvatar from '../fixtures/images/avatar-mona.png'
 
 export default {
   title: 'Components/Statistic/Features',
@@ -123,10 +124,7 @@ export const CustomIntro = () => (
                 first line of code we&apos;re writing.
               </Testimonial.Quote>
               <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
-              <Testimonial.Avatar
-                src="https://avatars.githubusercontent.com/u/92997159?v=4"
-                alt="Circular avatar from David Ross's GitHub profile"
-              />
+              <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from David Ross's GitHub profile" />
             </Testimonial>
           </Box>
         )}
