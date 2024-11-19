@@ -1,4 +1,4 @@
-import React, {Ref, PropsWithChildren} from 'react'
+import React, {Ref, PropsWithChildren, CSSProperties} from 'react'
 import {AnimateProps} from './animation/AnimationProvider'
 
 /**
@@ -16,9 +16,15 @@ type RedlineBackgroundProps = {
   height?: number
   hasBorder?: boolean
   className?: string
+  style?: CSSProperties
 }
 
-export function RedlineBackground({height, hasBorder = true, ...rest}: PropsWithChildren<RedlineBackgroundProps>) {
+export function RedlineBackground({
+  height,
+  hasBorder = true,
+  style,
+  ...rest
+}: PropsWithChildren<RedlineBackgroundProps>) {
   return (
     <div
       style={{
@@ -33,6 +39,7 @@ export function RedlineBackground({height, hasBorder = true, ...rest}: PropsWith
         alignItems: 'center',
         width: '100%',
         height,
+        ...style,
       }}
       {...rest}
     />

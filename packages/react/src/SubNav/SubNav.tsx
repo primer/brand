@@ -1,19 +1,24 @@
 import React, {
   Children,
+  createContext,
   forwardRef,
   isValidElement,
   memo,
   useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
   useState,
   type PropsWithChildren,
   type ReactElement,
   type ReactNode,
   type RefObject,
 } from 'react'
-import {Button, ButtonSizes, ButtonVariants, Text} from '..'
+import {Button, ButtonSizes, ButtonVariants, Text, useWindowSize} from '..'
 
 import {default as clsx} from 'clsx'
-import {ChevronDownIcon, XIcon} from '@primer/octicons-react'
+import {ChevronDownIcon, ChevronUpIcon} from '@primer/octicons-react'
 import {useId} from '@reach/auto-id'
 import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
 import {useFocusTrap} from '../hooks/useFocusTrap'
@@ -31,6 +36,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './SubNav.module.css'
+import {createPortal} from 'react-dom'
 
 const testIds = {
   root: 'SubNav-root',
@@ -49,6 +55,26 @@ const testIds = {
   get action() {
     return `${this.root}-action`
   },
+  get subMenu() {
+    return `${this.root}-sub-menu`
+  },
+}
+
+type SubNavContextType = {
+  portalRef: RefObject<HTMLDivElement>
+  isOpenAtNarrow: boolean
+  portalMounted: boolean
+  closeMenu: () => void
+}
+
+const SubNavContext = createContext<SubNavContextType | undefined>(undefined)
+
+export const useSubNavContext = () => {
+  const context = useContext(SubNavContext)
+  if (!context) {
+    throw new Error('useSubNavContext must be used within a SubNavProvider')
+  }
+  return context
 }
 
 export type SubNavProps = {
@@ -61,23 +87,94 @@ export type SubNavProps = {
   'data-testid'?: string
 } & PropsWithChildren<BaseProps<HTMLElement>>
 
-const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullWidth, hasShadow}: SubNavProps) => {
-  const navRef = React.useRef<HTMLElement>(null)
-  const overlayRef = React.useRef<HTMLUListElement>(null)
+function SubNavProvider({children}: {children: React.ReactNode}) {
+  const anchoredNavPortalRef = React.useRef<HTMLDivElement>(null)
+  const [portalMounted, setPortalMounted] = useState(false)
+
   const [isOpenAtNarrow, setIsOpenAtNarrow] = useState(false)
-  const idForLinkContainer = useId()
 
   const closeMenuCallback = useCallback(() => {
     setIsOpenAtNarrow(false)
   }, [])
 
-  const handleMenuToggle = useCallback(() => {
-    setIsOpenAtNarrow(!isOpenAtNarrow)
-  }, [isOpenAtNarrow])
+  useEffect(() => {
+    if (anchoredNavPortalRef.current) {
+      setPortalMounted(true)
+    }
+  }, [])
 
-  useOnClickOutside(navRef, closeMenuCallback)
+  const value = useMemo(
+    () => ({
+      portalRef: anchoredNavPortalRef,
+      portalMounted,
+      isOpenAtNarrow,
+      closeMenu: closeMenuCallback,
+    }),
+    [portalMounted, isOpenAtNarrow, closeMenuCallback],
+  )
+
+  useEffect(() => {
+    const menuContainer = anchoredNavPortalRef.current
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        entry.target.classList.toggle(styles['SubNav__anchor-menu-outer-container--stuck'], entry.intersectionRatio < 1)
+      },
+      {threshold: [1]},
+    )
+
+    if (menuContainer) {
+      observer.observe(menuContainer)
+    }
+
+    return () => {
+      if (menuContainer) {
+        observer.unobserve(menuContainer)
+      }
+    }
+  }, [])
+
+  return (
+    <SubNavContext.Provider value={value}>
+      {children}
+
+      <div className={styles['SubNav__anchor-menu-outer-container']} ref={anchoredNavPortalRef}>
+        <div className={clsx(styles['SubNav__anchor-menu-container'])} />
+      </div>
+    </SubNavContext.Provider>
+  )
+}
+
+const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullWidth, hasShadow}: SubNavProps) => {
+  const rootRef = React.useRef<HTMLDivElement>(null)
+  const navRef = React.useRef<HTMLElement>(null)
+  const overlayRef = React.useRef<HTMLUListElement>(null)
+  const [isOpenAtNarrow, setIsOpenAtNarrow] = useState(false)
+  const idForLinkContainer = useId()
+
+  const {isLarge} = useWindowSize()
+
+  const closeMenuCallback = useCallback(() => {
+    if (isLarge) return
+    setIsOpenAtNarrow(false)
+  }, [isLarge])
+
+  const handleMenuToggle = useCallback(() => {
+    if (isLarge) return
+    setIsOpenAtNarrow(prev => !prev)
+  }, [isLarge])
+
+  useOnClickOutside(rootRef, closeMenuCallback)
   useKeyboardEscape(closeMenuCallback)
   useFocusTrap({containerRef: overlayRef, restoreFocusOnCleanUp: true, disabled: !isOpenAtNarrow})
+
+  useEffect(() => {
+    if (isOpenAtNarrow) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'auto'
+    }
+  }, [isOpenAtNarrow])
 
   const activeLink = Children.toArray(children).find(child => {
     if (isValidElement(child)) {
@@ -89,69 +186,119 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
     heading: HeadingChild,
     links: LinkChildren,
     action: ActionChild,
-  } = Children.toArray(children).reduce(
-    (acc: {heading?: ReactNode; links: ReactElement[]; action?: ReactNode}, child) => {
-      if (isValidElement(child)) {
-        if (child.type === SubNavHeading) {
-          acc.heading = child
-        } else if (child.type === SubNavLink) {
-          acc.links.push(
-            React.cloneElement(child as ReactElement<SubNavLinkProps>, {
-              onClick: child.props['aria-current'] ? handleMenuToggle : child.props.onClick,
-            }),
-          )
-        } else if (child.type === _SubNavAction) {
-          acc.action = child
-        }
-      }
-      return acc
-    },
-    {heading: undefined, links: [], action: undefined},
+  } = useMemo(
+    () =>
+      Children.toArray(children).reduce(
+        (acc: {heading?: ReactNode; links: ReactElement[]; action?: ReactNode}, child) => {
+          if (isValidElement(child)) {
+            if (child.type === SubNavHeading) {
+              acc.heading = child
+            } else if (child.type === SubNavLink) {
+              const [link, subMenu] = child.props.children
+
+              if (subMenu?.props?.variant === 'anchor') {
+                acc.links.push(
+                  React.cloneElement(child as ReactElement<SubNavLinkProps>, {
+                    children: [link],
+                    onClick: child.props['aria-current'] ? closeMenuCallback : child.props.onClick,
+                  }),
+                )
+              } else {
+                acc.links.push(
+                  React.cloneElement(child as ReactElement<SubNavLinkProps>, {
+                    onClick: child.props['aria-current'] ? closeMenuCallback : child.props.onClick,
+                  }),
+                )
+              }
+            } else if (child.type === _SubNavAction) {
+              acc.action = child
+            }
+          }
+          return acc
+        },
+        {heading: undefined, links: [], action: undefined},
+      ),
+    [children, closeMenuCallback],
   )
 
   return (
-    <nav
-      ref={navRef}
-      id={id}
-      className={clsx(
-        styles.SubNav,
-        isOpenAtNarrow && styles['SubNav--open'],
-        hasShadow && styles['SubNav--has-shadow'],
-        fullWidth && styles['SubNav--full-width'],
-        className,
-      )}
-      data-testid={testId || testIds.root}
-    >
-      {HeadingChild && <div className={styles['SubNav__heading-container']}>{HeadingChild}</div>}
-      {LinkChildren.length && (
-        <ul
-          ref={overlayRef}
-          id={idForLinkContainer}
-          className={clsx(styles['SubNav__links-overlay'], isOpenAtNarrow && styles['SubNav__links-overlay--open'])}
-          data-testid={testIds.overlay}
+    <div className={styles['SubNav__container']}>
+      <SubNavProvider>
+        <nav
+          ref={navRef}
+          id={id}
+          className={clsx(
+            styles.SubNav,
+            isOpenAtNarrow && styles['SubNav--open'],
+            hasShadow && styles['SubNav--has-shadow'],
+            fullWidth && styles['SubNav--full-width'],
+            className,
+          )}
+          data-testid={testId || testIds.root}
         >
-          {LinkChildren}
-          {ActionChild && <li className={styles['SubNav__action-container']}>{ActionChild}</li>}
-        </ul>
-      )}
-      <button
-        className={styles['SubNav__overlay-toggle']}
-        data-testid={testIds.button}
-        onClick={handleMenuToggle}
-        aria-expanded={isOpenAtNarrow ? 'true' : 'false'}
-        aria-controls={idForLinkContainer}
-        aria-label={`${isOpenAtNarrow ? 'close' : 'open'} navigation menu`}
-      >
-        {isOpenAtNarrow ? (
-          <XIcon className={styles['SubNav__overlay-toggle-icon']} size={24} />
-        ) : (
-          <div className={styles['SubNav__overlay-toggle-content']}>
-            <Text as="span">{activeLink && activeLink.props.children}</Text>
-            <ChevronDownIcon className={styles['SubNav__overlay-toggle-icon']} size={24} />
+          <div ref={rootRef} className={styles['SubNav--header-container-outer']}>
+            <div className={styles['SubNav__header-container']}>
+              {HeadingChild && <div className={styles['SubNav__heading-container']}>{HeadingChild}</div>}
+              <span role="separator" className={styles['SubNav__heading-separator']} aria-hidden>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="8"
+                  height="16"
+                  viewBox="0 0 8 16"
+                  fill="none"
+                  aria-hidden
+                >
+                  <g clipPath="url(#clip0_50_1307)">
+                    <path d="M0 15.2992L5.472 0.701172H7.632L2.16 15.2992H0Z" fill="currentColor" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_50_1307">
+                      <rect width="7.632" height="14.598" transform="translate(0 0.701172)" />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </span>
+              {activeLink && !isLarge && (
+                <button
+                  className={clsx(
+                    styles['SubNav__overlay-toggle'],
+                    isOpenAtNarrow && styles['SubNav__overlay-toggle--open'],
+                  )}
+                  data-testid={testIds.button}
+                  onClick={isOpenAtNarrow ? closeMenuCallback : handleMenuToggle}
+                  aria-expanded={isOpenAtNarrow ? 'true' : 'false'}
+                  aria-controls={idForLinkContainer}
+                  aria-label={`${isOpenAtNarrow ? 'close' : 'open'} navigation menu`}
+                >
+                  <span className={styles['SubNav__overlay-toggle-content']}>
+                    <Text as="span">{activeLink.props.children}</Text>
+                    {isOpenAtNarrow ? (
+                      <ChevronUpIcon className={styles['SubNav__overlay-toggle-icon']} size={24} />
+                    ) : (
+                      <ChevronDownIcon className={styles['SubNav__overlay-toggle-icon']} size={24} />
+                    )}
+                  </span>
+                </button>
+              )}
+            </div>
+            {LinkChildren.length && (
+              <ul
+                ref={overlayRef}
+                id={idForLinkContainer}
+                className={clsx(
+                  styles['SubNav__links-overlay'],
+                  isOpenAtNarrow && styles['SubNav__links-overlay--open'],
+                )}
+                data-testid={testIds.overlay}
+              >
+                {LinkChildren}
+                {ActionChild && <li className={styles['SubNav__action-container']}>{ActionChild}</li>}
+              </ul>
+            )}
           </div>
-        )}
-      </button>
-    </nav>
+        </nav>
+      </SubNavProvider>
+    </div>
   )
 })
 
@@ -177,12 +324,17 @@ const SubNavHeading = ({href, children, className, 'data-testid': testID, ...pro
 type SubNavLinkProps = {
   href: string
   'data-testid'?: string
+  _variant?: 'dropdown' | 'anchor'
 } & PropsWithChildren<React.HTMLProps<HTMLAnchorElement>> &
   BaseProps<HTMLAnchorElement>
 
 const SubNavLinkWithSubmenu = forwardRef<HTMLDivElement, SubNavLinkProps>(
-  ({children, href, 'aria-current': ariaCurrent, 'data-testid': testId, className, ...props}, forwardedRef) => {
+  (
+    {children, href, 'aria-current': ariaCurrent, 'data-testid': testId, className, _variant, ...props},
+    forwardedRef,
+  ) => {
     const submenuId = useId()
+    const {isLarge} = useWindowSize()
 
     const [isExpanded, setIsExpanded] = useState(false)
     const ref = useProvidedRefOrCreate(forwardedRef as RefObject<HTMLDivElement>)
@@ -208,7 +360,7 @@ const SubNavLinkWithSubmenu = forwardRef<HTMLDivElement, SubNavLinkProps>(
           styles['SubNav__link--has-sub-menu'],
           isExpanded && styles['SubNav__link--expanded'],
         )}
-        data-testid={testId || testIds.link}
+        data-testid={testId || testIds.subMenu}
         ref={ref}
         onMouseOver={() => setIsExpanded(true)}
         onMouseOut={() => setIsExpanded(false)}
@@ -225,19 +377,27 @@ const SubNavLinkWithSubmenu = forwardRef<HTMLDivElement, SubNavLinkProps>(
           aria-current={ariaCurrent}
           {...props}
         >
-          <Text as="span" size="200" className={styles['SubNav__link-label']}>
+          <Text
+            as="span"
+            size="200"
+            className={styles['SubNav__link-label']}
+            variant={ariaCurrent === 'page' ? 'default' : 'muted'}
+          >
             {label}
           </Text>
         </a>
-        <button
-          className={styles['SubNav__sub-menu-toggle']}
-          onKeyDown={onKeyDown}
-          aria-expanded={isExpanded ? 'true' : 'false'}
-          aria-controls={submenuId}
-          aria-label={`${isExpanded ? 'Close' : 'Open'} submenu`}
-        >
-          <ChevronDownIcon className={styles['SubNav__sub-menu-icon']} size={16} />
-        </button>
+        {isLarge && (
+          <button
+            className={styles['SubNav__sub-menu-toggle']}
+            onKeyDown={onKeyDown}
+            aria-expanded={isExpanded ? 'true' : 'false'}
+            aria-controls={submenuId}
+            aria-label={`${isExpanded ? 'Close' : 'Open'} submenu`}
+          >
+            <ChevronDownIcon className={styles['SubNav__sub-menu-icon']} size={16} />
+          </button>
+        )}
+
         <div id={submenuId} className={styles['SubNav__sub-menu-children']}>
           {SubMenuChildren}
         </div>
@@ -247,16 +407,51 @@ const SubNavLinkWithSubmenu = forwardRef<HTMLDivElement, SubNavLinkProps>(
 )
 
 const SubNavLink = forwardRef<HTMLAnchorElement | HTMLDivElement, SubNavLinkProps>((props, ref) => {
-  const hasSubMenu = Children.toArray(props.children).some(child => {
-    if (isValidElement(child)) {
-      return child.type === _SubMenu
+  const [isInView, setIsInView] = useState(false)
+  const MemoizedChildren = React.useMemo(() => Children.toArray(props.children), [props.children])
+
+  const hasSubMenu = useMemo(
+    () =>
+      MemoizedChildren.some(child => {
+        if (isValidElement(child)) {
+          return child.type === _SubMenu
+        }
+      }),
+    [MemoizedChildren],
+  )
+
+  useEffect(() => {
+    if (hasSubMenu) return
+    const targetId = props.href.replace('#', '')
+    const target = document.getElementById(targetId)
+    if (!target) return
+
+    const topOfWindow = '0px 0px -100%'
+    const observerParams = {threshold: 0, root: null, rootMargin: topOfWindow}
+
+    const handleIntersectionUpdate: IntersectionObserverCallback = ([entry]) => {
+      setIsInView(entry.isIntersecting)
     }
-  })
+
+    const observer = new IntersectionObserver(handleIntersectionUpdate, observerParams)
+    observer.observe(target)
+    return () => observer.disconnect()
+  }, [hasSubMenu, props.href])
 
   if (hasSubMenu) {
+    const isAnchorVariantSubMenu = MemoizedChildren.some(child => {
+      if (isValidElement(child)) {
+        return child.type === _SubMenu && child.props.variant === 'anchor'
+      }
+    })
+
     return (
       <li>
-        <SubNavLinkWithSubmenu {...props} ref={ref as RefObject<HTMLDivElement>} />
+        <SubNavLinkWithSubmenu
+          {...props}
+          ref={ref as RefObject<HTMLDivElement>}
+          _variant={isAnchorVariantSubMenu ? 'anchor' : undefined}
+        />
       </li>
     )
   }
@@ -267,13 +462,23 @@ const SubNavLink = forwardRef<HTMLAnchorElement | HTMLDivElement, SubNavLinkProp
     <li>
       <a
         href={href}
-        className={clsx(styles['SubNav__link'], ariaCurrent && styles['SubNav__link--active'], className)}
+        className={clsx(
+          styles['SubNav__link'],
+          ariaCurrent && styles['SubNav__link--active'],
+          isInView && styles['SubNav__link--is-in-view'],
+          className,
+        )}
         aria-current={ariaCurrent}
         data-testid={testId || testIds.link}
         ref={ref as RefObject<HTMLAnchorElement>}
         {...rest}
       >
-        <Text as="span" size="200" className={styles['SubNav__link-label']}>
+        <Text
+          as="span"
+          size="200"
+          className={styles['SubNav__link-label']}
+          variant={ariaCurrent === 'page' ? 'default' : 'muted'}
+        >
           {children}
         </Text>
       </a>
@@ -281,12 +486,78 @@ const SubNavLink = forwardRef<HTMLAnchorElement | HTMLDivElement, SubNavLinkProp
   )
 })
 
-function _SubMenu({children, className, ...props}: PropsWithChildren<BaseProps<HTMLUListElement>>) {
-  return (
-    <ul className={clsx(styles['SubNav__sub-menu'], className)} {...props}>
-      {children}
-    </ul>
-  )
+type SubMenuProps = {
+  variant?: 'dropdown' | 'anchor'
+} & React.HTMLAttributes<HTMLUListElement> &
+  BaseProps<HTMLUListElement>
+
+function _SubMenu({children, className, variant = 'dropdown', ...props}: SubMenuProps) {
+  const context = React.useContext(SubNavContext)
+  const navRef = useRef<HTMLElement>(null)
+
+  /**
+   * Effect is needed to prevent the bubbling of onClick events to the overlay trigger.
+   * Removing this effect will cause clicks on the anchor nav element to toggle the overlay.
+   */
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        return
+      }
+
+      if (!(e.target instanceof HTMLAnchorElement)) {
+        e.stopPropagation()
+      }
+    }
+
+    if (variant === 'anchor') {
+      document.addEventListener('click', handleClick, true) // Capture phase
+    }
+
+    return () => {
+      document.removeEventListener('click', handleClick, true)
+    }
+  }, [variant])
+
+  if (variant === 'anchor' && context?.portalRef.current) {
+    return createPortal(
+      <nav
+        ref={navRef}
+        className={clsx(styles['SubNav__sub-menu'], styles['SubNav__sub-menu--anchor'], className)}
+        role="navigation"
+        aria-label="Sub navigation"
+      >
+        <ul className={styles['SubNav__sub-menu-list']} {...props}>
+          {React.Children.map(children, child => {
+            if (isValidElement(child)) {
+              return React.cloneElement(child as React.ReactElement<SubNavLinkProps>, {
+                onClick: e => {
+                  e.preventDefault()
+                  e.stopPropagation()
+
+                  if (!child.props.href.startsWith('#')) return
+                  const anchor = document.querySelector((child.props as SubNavLinkProps).href)
+                  if (anchor) {
+                    anchor.scrollIntoView({behavior: 'smooth'})
+                  }
+                  if (child.props.onClick) {
+                    child.props.onClick(e)
+                  }
+                },
+              })
+            }
+          })}
+        </ul>
+      </nav>,
+      context.portalRef.current,
+    )
+  } else {
+    return (
+      <ul className={clsx(styles['SubNav__sub-menu'], styles[`SubNav__sub-menu--${variant}`], className)} {...props}>
+        {children}
+      </ul>
+    )
+  }
 }
 
 type SubNavActionProps = {
