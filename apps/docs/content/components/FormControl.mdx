@@ -241,7 +241,7 @@ const App = () => {
   const isInvalid = /\s/g.test(value)
 
   return (
-    <FormControl validationStatus={isInvalid ? 'error' : 'success'}>
+    <FormControl validationStatus={isInvalid ? 'error' : 'success'} fullWidth>
       <FormControl.Label>GitHub handle</FormControl.Label>
       <TextInput onChange={handleChange} value={value} fullWidth />
       {isInvalid ? (
