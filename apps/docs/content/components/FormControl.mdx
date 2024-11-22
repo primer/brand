@@ -232,24 +232,45 @@ Try changing the input value to to `monalisa` to show the `success` state.
 
 ```javascript live noinline
 const App = () => {
-  const [value, setValue] = React.useState('mona lisa')
+  const [value, setValue] = React.useState()
+  const [validationState, setValidationState] = React.useState()
 
-  const handleChange = (event) => {
-    setValue(event.target.value)
+  React.useEffect(() => {
+    const defaultHandle = 'mona lisa'
+    setValue(defaultHandle)
+    validate(defaultHandle)
+  }, [])
+
+  const validate = (inputValue) => {
+    if (/\s/g.test(inputValue)) {
+      setValidationState('error')
+    } else {
+      setValidationState('success')
+    }
   }
 
-  const isInvalid = /\s/g.test(value)
+  const handleChange = (event) => {
+    event.preventDefault()
+    if (!event.target.value) {
+      setValue(undefined)
+      setValidationState(undefined)
+      return
+    }
+    setValue(event.target.value)
+    validate(event.target.value)
+  }
 
   return (
-    <FormControl validationStatus={isInvalid ? 'error' : 'success'} fullWidth>
+    <FormControl validationStatus={validationState} fullWidth>
       <FormControl.Label>GitHub handle</FormControl.Label>
       <TextInput onChange={handleChange} value={value} fullWidth />
-      {isInvalid ? (
+      {validationState && validationState === 'error' && (
         <FormControl.Validation>
           GitHub handles cannot contain spaces.{' '}
           {value && `Did you mean "${value.replaceAll(' ', '')}"`}
         </FormControl.Validation>
-      ) : (
+      )}
+      {validationState && validationState === 'success' && (
         <FormControl.Validation>Valid name</FormControl.Validation>
       )}
     </FormControl>
