@@ -1,4 +1,4 @@
-.InputGroup__container {
+.ControlGroup__container {
   display: flex;
   flex-direction: column;
   gap: var(--base-size-8);
@@ -9,21 +9,21 @@
   padding: 0;
 }
 
-.InputGroup__label {
+.ControlGroup__label {
   font-weight: var(--base-text-weight-semibold);
   margin: 0;
   padding: 0;
   margin-bottom: var(--base-size-8);
 }
 
-.InputGroup__caption {
+.ControlGroup__caption {
   font-size: var(--brand-text-size-200);
   letter-spacing: var(--brand-text-letterSpacing-200);
   line-height: var(--brand-text-lineHeight-200);
   color: var(--brand-color-text-muted);
 }
 
-.InputGroup__validation {
+.ControlGroup__validation {
   display: flex;
   gap: var(--base-size-4);
   font-size: var(--brand-text-size-200);
@@ -31,29 +31,29 @@
   line-height: var(--brand-text-lineHeight-200);
 }
 
-.InputGroup__validation--success {
+.ControlGroup__validation--success {
   color: var(--brand-color-success-fg);
 }
 
-.InputGroup__validation--error {
+.ControlGroup__validation--error {
   color: var(--brand-color-error-fg);
 }
 
-.InputGroup__validation-icon--success {
+.ControlGroup__validation-icon--success {
   position: relative;
   top: -1.6px;
 }
 
-.InputGroup__validation-icon--error {
+.ControlGroup__validation-icon--error {
   position: relative;
   top: -1px;
 }
 
-.InputGroup__validation--animate-in {
-  animation: 170ms InputGroupValidationFadeIn cubic-bezier(0.44, 0.74, 0.36, 1);
+.ControlGroup__validation--animate-in {
+  animation: 170ms ControlGroupValidationFadeIn cubic-bezier(0.44, 0.74, 0.36, 1);
 }
 
-@keyframes InputGroupValidationFadeIn {
+@keyframes ControlGroupValidationFadeIn {
   0% {
     opacity: 0;
     transform: translateY(-100%);

@@ -1,14 +1,14 @@
 import {
-  InputGroup,
-  type InputGroupCaptionProps,
-  type InputGroupLabelProps,
-  type InputGroupProps,
-  type InputGroupValidationProps,
-} from '../InputGroup'
+  ControlGroup,
+  type ControlGroupCaptionProps,
+  type ControlGroupLabelProps,
+  type ControlGroupProps,
+  type ControlGroupValidationProps,
+} from '../ControlGroup'
 
-export type RadioGroupProps = InputGroupProps
-export type RadioGroupLabelProps = InputGroupLabelProps
-export type RadioGroupCaptionProps = InputGroupCaptionProps
-export type RadioGroupValidationProps = InputGroupValidationProps
+export type RadioGroupProps = ControlGroupProps
+export type RadioGroupLabelProps = ControlGroupLabelProps
+export type RadioGroupCaptionProps = ControlGroupCaptionProps
+export type RadioGroupValidationProps = ControlGroupValidationProps
 
-export const RadioGroup = InputGroup
+export const RadioGroup = ControlGroup

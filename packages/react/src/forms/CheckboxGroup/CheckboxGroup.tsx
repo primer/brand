@@ -1,14 +1,14 @@
 import {
-  InputGroup,
-  type InputGroupCaptionProps,
-  type InputGroupLabelProps,
-  type InputGroupProps,
-  type InputGroupValidationProps,
-} from '../InputGroup'
+  ControlGroup,
+  type ControlGroupCaptionProps,
+  type ControlGroupLabelProps,
+  type ControlGroupProps,
+  type ControlGroupValidationProps,
+} from '../ControlGroup'
 
-export type CheckboxGroupProps = InputGroupProps
-export type CheckboxGroupLabelProps = InputGroupLabelProps
-export type CheckboxGroupCaptionProps = InputGroupCaptionProps
-export type CheckboxGroupValidationProps = InputGroupValidationProps
+export type CheckboxGroupProps = ControlGroupProps
+export type CheckboxGroupLabelProps = ControlGroupLabelProps
+export type CheckboxGroupCaptionProps = ControlGroupCaptionProps
+export type CheckboxGroupValidationProps = ControlGroupValidationProps
 
-export const CheckboxGroup = InputGroup
+export const CheckboxGroup = ControlGroup
