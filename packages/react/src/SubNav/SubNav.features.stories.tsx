@@ -4,8 +4,6 @@ import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {linkTo} from '@storybook/addon-links'
 
 import {SubNav} from './SubNav'
-import bgPath from '../fixtures/images/background-stars.png'
-import {ThemeProvider} from '../ThemeProvider'
 import {Box} from '../Box'
 import {Hero} from '../Hero'
 import {Grid} from '../Grid'
@@ -63,15 +61,6 @@ export const DropdownVariant = ({hasShadow, ...args}) => (
 DropdownVariant.parameters = {
   layout: 'fullscreen',
 }
-DropdownVariant.decorators = [
-  Story => (
-    <ThemeProvider colorMode="dark">
-      <div style={{backgroundColor: 'black', height: '100%', minHeight: '100dvh', backgroundImage: `url(${bgPath})`}}>
-        <Story />
-      </div>
-    </ThemeProvider>
-  ),
-]
 
 export const NarrowDropdownVariant = args => <DropdownVariant {...args} />
 NarrowDropdownVariant.parameters = {
@@ -81,26 +70,8 @@ NarrowDropdownVariant.parameters = {
   },
 }
 
-NarrowDropdownVariant.decorators = [
-  Story => (
-    <ThemeProvider colorMode="dark">
-      <div style={{backgroundColor: 'black', height: '100%', minHeight: '100dvh', backgroundImage: `url(${bgPath})`}}>
-        <Story />
-      </div>
-    </ThemeProvider>
-  ),
-]
-
 export const NarrowDropdownVariantMenuOpen = args => <NarrowDropdownVariant {...args} />
-NarrowDropdownVariantMenuOpen.decorators = [
-  Story => (
-    <ThemeProvider colorMode="dark">
-      <div style={{backgroundColor: 'black', height: '100%', minHeight: '100dvh', backgroundImage: `url(${bgPath})`}}>
-        <Story />
-      </div>
-    </ThemeProvider>
-  ),
-]
+
 NarrowDropdownVariantMenuOpen.parameters = {
   layout: 'fullscreen',
   viewport: {
@@ -228,11 +199,22 @@ AnchorNavVariant.parameters = {
   layout: 'fullscreen',
 }
 
+const customViewports = {
+  Narrow: {
+    name: 'Narrow',
+    styles: {
+      width: '280px',
+      height: '600px',
+    },
+  },
+}
+
 export const NarrowAnchorNavVariant = args => <AnchorNavVariant {...args} />
 NarrowAnchorNavVariant.parameters = {
   layout: 'fullscreen',
   viewport: {
-    defaultViewport: 'iphonex',
+    viewports: customViewports,
+    defaultViewport: 'Narrow',
   },
 }
 
@@ -240,7 +222,8 @@ export const NarrowAnchorNavVariantMenuOpen = args => <NarrowAnchorNavVariant {.
 NarrowAnchorNavVariantMenuOpen.parameters = {
   layout: 'fullscreen',
   viewport: {
-    defaultViewport: 'iphonex',
+    viewports: customViewports,
+    defaultViewport: 'Narrow',
   },
 }
 NarrowAnchorNavVariantMenuOpen.play = async ({canvasElement}) => {

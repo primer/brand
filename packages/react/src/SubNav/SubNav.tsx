@@ -62,9 +62,6 @@ const testIds = {
 
 type SubNavContextType = {
   portalRef: RefObject<HTMLDivElement>
-  isOpenAtNarrow: boolean
-  portalMounted: boolean
-  closeMenu: () => void
 }
 
 const SubNavContext = createContext<SubNavContextType | undefined>(undefined)
@@ -77,40 +74,14 @@ export const useSubNavContext = () => {
   return context
 }
 
-export type SubNavProps = {
-  hasShadow?: boolean
-  /**
-   * Allows the SubNav to be used at full width,
-   * removing any internal padding and guttering.
-   */
-  fullWidth?: boolean
-  'data-testid'?: string
-} & PropsWithChildren<BaseProps<HTMLElement>>
-
 function SubNavProvider({children}: {children: React.ReactNode}) {
   const anchoredNavPortalRef = React.useRef<HTMLDivElement>(null)
-  const [portalMounted, setPortalMounted] = useState(false)
-
-  const [isOpenAtNarrow, setIsOpenAtNarrow] = useState(false)
-
-  const closeMenuCallback = useCallback(() => {
-    setIsOpenAtNarrow(false)
-  }, [])
-
-  useEffect(() => {
-    if (anchoredNavPortalRef.current) {
-      setPortalMounted(true)
-    }
-  }, [])
 
   const value = useMemo(
     () => ({
       portalRef: anchoredNavPortalRef,
-      portalMounted,
-      isOpenAtNarrow,
-      closeMenu: closeMenuCallback,
     }),
-    [portalMounted, isOpenAtNarrow, closeMenuCallback],
+    [],
   )
 
   useEffect(() => {
@@ -138,12 +109,22 @@ function SubNavProvider({children}: {children: React.ReactNode}) {
     <SubNavContext.Provider value={value}>
       {children}
 
-      <div className={styles['SubNav__anchor-menu-outer-container']} ref={anchoredNavPortalRef}>
-        <div className={clsx(styles['SubNav__anchor-menu-container'])} />
+      <div className={styles['SubNav__anchor-menu-outer-container']}>
+        <div className={clsx(styles['SubNav__anchor-menu-container'])} ref={anchoredNavPortalRef} />
       </div>
     </SubNavContext.Provider>
   )
 }
+
+export type SubNavProps = {
+  hasShadow?: boolean
+  /**
+   * Allows the SubNav to be used at full width,
+   * removing any internal padding and guttering.
+   */
+  fullWidth?: boolean
+  'data-testid'?: string
+} & PropsWithChildren<BaseProps<HTMLElement>>
 
 const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullWidth, hasShadow}: SubNavProps) => {
   const rootRef = React.useRef<HTMLDivElement>(null)
@@ -172,12 +153,12 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
   useFocusTrap({containerRef: overlayRef, restoreFocusOnCleanUp: true, disabled: !isOpenAtNarrow})
 
   useEffect(() => {
-    if (isOpenAtNarrow) {
+    if (isOpenAtNarrow && !isLarge) {
       document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = 'auto'
     }
-  }, [isOpenAtNarrow])
+  }, [isOpenAtNarrow, isLarge])
 
   const activeLink = memoizedChildren.find(child => {
     if (isValidElement(child)) {
@@ -570,12 +551,14 @@ function _SubMenu({children, className, variant = 'dropdown', ...props}: SubMenu
       context.portalRef.current,
     )
   } else {
+    const Tag = isLarge ? ThemeProvider : React.Fragment
+
     return (
-      <ThemeProvider colorMode={isLarge ? 'light' : 'dark'}>
+      <Tag colorMode={isLarge ? 'light' : 'dark'}>
         <ul className={clsx(styles['SubNav__sub-menu'], styles[`SubNav__sub-menu--${variant}`], className)} {...props}>
           {children}
         </ul>
-      </ThemeProvider>
+      </Tag>
     )
   }
 }
