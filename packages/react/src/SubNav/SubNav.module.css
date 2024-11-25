@@ -1,4 +1,9 @@
 .SubNav__container {
+  position: absolute;
+  width: 100%;
+}
+
+.SubNav__container--with-anchor-nav {
   display: unset;
   position: relative;
 }
@@ -292,6 +297,10 @@
     padding-inline-start: var(--base-size-16);
   }
 
+  .SubNav__sub-menu--dropdown .SubNav__link:hover .SubNav__link-label {
+    color: var(--brand-color-text-default) !important;
+  }
+
   .SubNav__anchor-menu-container {
     z-index: 99;
     overflow-x: auto;
@@ -489,12 +498,8 @@
     display: block;
   }
 
-  .SubNav__sub-menu--dropdown .SubNav__link-label {
-    color: var(--base-color-scale-black-0);
-  }
-
   .SubNav__sub-menu--dropdown .SubNav__link:hover .SubNav__link-label {
-    color: var(--brand-color-text-muted) !important;
+    color: var(--brand-color-text-default) !important;
   }
 
   .SubNav__sub-menu .SubNav__link-label {

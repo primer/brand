@@ -1,5 +1,6 @@
 declare const styles: {
   readonly "SubNav__container": string;
+  readonly "SubNav__container--with-anchor-nav": string;
   readonly "SubNav": string;
   readonly "SubNav__heading": string;
   readonly "SubNav--header-container-outer": string;
@@ -27,11 +28,11 @@ declare const styles: {
   readonly "SubNav__overlay-toggle-content": string;
   readonly "SubNav__action": string;
   readonly "SubNav__sub-menu": string;
+  readonly "SubNav__sub-menu--dropdown": string;
   readonly "SubNav__anchor-menu-container": string;
   readonly "SubNav__overlay-toggle-icon": string;
   readonly "SubNav__heading-label": string;
   readonly "SubNav__link--has-sub-menu": string;
-  readonly "SubNav__sub-menu--dropdown": string;
   readonly "SubNav__link--expanded": string;
   readonly "fade-in-down": string;
 };

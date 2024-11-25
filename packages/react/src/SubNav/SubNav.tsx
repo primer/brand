@@ -15,7 +15,7 @@ import React, {
   type ReactNode,
   type RefObject,
 } from 'react'
-import {Button, ButtonSizes, ButtonVariants, Text, useWindowSize} from '..'
+import {Button, ButtonSizes, ButtonVariants, Text, ThemeProvider, useWindowSize} from '..'
 
 import {default as clsx} from 'clsx'
 import {ChevronDownIcon, ChevronUpIcon} from '@primer/octicons-react'
@@ -151,8 +151,11 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
   const overlayRef = React.useRef<HTMLUListElement>(null)
   const [isOpenAtNarrow, setIsOpenAtNarrow] = useState(false)
   const idForLinkContainer = useId()
+  const [hasAnchoredNav, setHasAnchoredNav] = useState(false)
 
   const {isLarge} = useWindowSize()
+
+  const memoizedChildren = React.useMemo(() => Children.toArray(children), [children])
 
   const closeMenuCallback = useCallback(() => {
     if (isLarge) return
@@ -176,11 +179,24 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
     }
   }, [isOpenAtNarrow])
 
-  const activeLink = Children.toArray(children).find(child => {
+  const activeLink = memoizedChildren.find(child => {
     if (isValidElement(child)) {
       return child.props['aria-current']
     }
   }) as React.ReactElement | undefined
+
+  useEffect(() => {
+    // check if there is an anchored nav in the SubNav.SubMenu child
+    const hasAnchorVariant = memoizedChildren.some(child => {
+      if (isValidElement(child) && child.type === SubNavLink) {
+        const [, subMenu] = child.props.children
+        if (subMenu?.props?.variant === 'anchor') {
+          return true
+        }
+      }
+    })
+    setHasAnchoredNav(hasAnchorVariant)
+  }, [memoizedChildren])
 
   const {
     heading: HeadingChild,
@@ -188,7 +204,7 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
     action: ActionChild,
   } = useMemo(
     () =>
-      Children.toArray(children).reduce(
+      memoizedChildren.reduce(
         (acc: {heading?: ReactNode; links: ReactElement[]; action?: ReactNode}, child) => {
           if (isValidElement(child)) {
             if (child.type === SubNavHeading) {
@@ -218,11 +234,11 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
         },
         {heading: undefined, links: [], action: undefined},
       ),
-    [children, closeMenuCallback],
+    [memoizedChildren, closeMenuCallback],
   )
 
   return (
-    <div className={styles['SubNav__container']}>
+    <div className={clsx(styles['SubNav__container'], hasAnchoredNav && styles['SubNav__container--with-anchor-nav'])}>
       <SubNavProvider>
         <nav
           ref={navRef}
@@ -258,7 +274,7 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
                   </defs>
                 </svg>
               </span>
-              {activeLink && !isLarge && (
+              {activeLink && (
                 <button
                   className={clsx(
                     styles['SubNav__overlay-toggle'],
@@ -408,16 +424,16 @@ const SubNavLinkWithSubmenu = forwardRef<HTMLDivElement, SubNavLinkProps>(
 
 const SubNavLink = forwardRef<HTMLAnchorElement | HTMLDivElement, SubNavLinkProps>((props, ref) => {
   const [isInView, setIsInView] = useState(false)
-  const MemoizedChildren = React.useMemo(() => Children.toArray(props.children), [props.children])
+  const memoizedChildren = React.useMemo(() => Children.toArray(props.children), [props.children])
 
   const hasSubMenu = useMemo(
     () =>
-      MemoizedChildren.some(child => {
+      memoizedChildren.some(child => {
         if (isValidElement(child)) {
           return child.type === _SubMenu
         }
       }),
-    [MemoizedChildren],
+    [memoizedChildren],
   )
 
   useEffect(() => {
@@ -439,7 +455,7 @@ const SubNavLink = forwardRef<HTMLAnchorElement | HTMLDivElement, SubNavLinkProp
   }, [hasSubMenu, props.href])
 
   if (hasSubMenu) {
-    const isAnchorVariantSubMenu = MemoizedChildren.some(child => {
+    const isAnchorVariantSubMenu = memoizedChildren.some(child => {
       if (isValidElement(child)) {
         return child.type === _SubMenu && child.props.variant === 'anchor'
       }
@@ -494,6 +510,8 @@ type SubMenuProps = {
 function _SubMenu({children, className, variant = 'dropdown', ...props}: SubMenuProps) {
   const context = React.useContext(SubNavContext)
   const navRef = useRef<HTMLElement>(null)
+
+  const {isLarge} = useWindowSize()
 
   /**
    * Effect is needed to prevent the bubbling of onClick events to the overlay trigger.
@@ -553,9 +571,11 @@ function _SubMenu({children, className, variant = 'dropdown', ...props}: SubMenu
     )
   } else {
     return (
-      <ul className={clsx(styles['SubNav__sub-menu'], styles[`SubNav__sub-menu--${variant}`], className)} {...props}>
-        {children}
-      </ul>
+      <ThemeProvider colorMode={isLarge ? 'light' : 'dark'}>
+        <ul className={clsx(styles['SubNav__sub-menu'], styles[`SubNav__sub-menu--${variant}`], className)} {...props}>
+          {children}
+        </ul>
+      </ThemeProvider>
     )
   }
 }
