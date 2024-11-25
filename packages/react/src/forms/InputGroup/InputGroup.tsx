@@ -83,6 +83,7 @@ const InputGroupValidation = forwardRef<HTMLSpanElement, InputGroupValidationPro
         id={`${id}-validation`}
         className={clsx(
           styles.InputGroup__validation,
+          styles['InputGroup__validation--animate-in'],
           variant === 'success' && styles['InputGroup__validation--success'],
           variant === 'error' && styles['InputGroup__validation--error'],
           className,
