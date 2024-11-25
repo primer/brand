@@ -2,4 +2,4 @@
 '@primer/react-brand': patch
 ---
 
-add `CheckboxGroup` and `RadioGroup` components
+Added new `CheckboxGroup` and `RadioGroup` components to semantically group related `Checkbox` and `Radio` components respectively.
