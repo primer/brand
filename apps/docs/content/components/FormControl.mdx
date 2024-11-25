@@ -9,7 +9,7 @@ description: Use the form control component to display form inputs alongside lab
 import InlineCode from '@primer/gatsby-theme-doctocat/src/components/inline-code'
 import {PropTableValues} from '../../src/components'
 import {Label} from '@primer/react'
-import {Heading} from '@primer/react-brand'
+import {Heading, Text} from '@primer/react-brand'
 import {SearchIcon} from '@primer/octicons-react'
 import {Link} from 'gatsby'
 
@@ -83,6 +83,9 @@ An example of a typical layout composed using `FormControl`:
       paddingBottom: 3,
     }}
   >
+    <Text as="p" variant="muted" size="100">
+      All fields marked with an asterisk (*) are required
+    </Text>
     <Container
       sx={{
         display: 'grid',
@@ -258,7 +261,7 @@ const App = () => {
   }
 
   return (
-    <FormControl validationStatus={validationState}>
+    <FormControl validationStatus={validationState} fullWidth>
       <FormControl.Label>GitHub handle</FormControl.Label>
       <TextInput onChange={handleChange} value={value} fullWidth />
       {validationState && validationState === 'error' && (
@@ -327,6 +330,8 @@ Pass the `fullWidth` prop to `FormControl` to provide additional behavior and st
 ### Required
 
 Pass the `required` prop to `FormControl` to provide additional behavior and state context to all `children`, rather than the input only.
+
+When marking a field as required, it is recommended to also provide a corresponding message at the start of the form informing the user that "_all fields marked with an asterisk (\*) are required_".
 
 ```jsx live
 <FormControl required>

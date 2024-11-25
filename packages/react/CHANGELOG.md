@@ -1,5 +1,63 @@
 # @primer/react-brand
 
+## 0.43.0
+
+### Minor Changes
+
+- [#825](https://github.com/primer/brand/pull/825) [`2c8e9240`](https://github.com/primer/brand/commit/2c8e9240a1bb36f7753a3e63318e92322a7bf780) Thanks [@rezrah](https://github.com/rezrah)! - Switched to use CSS Logical Properties in compiled output.
+
+  - Compiled styles now directly use CSS logical properties (e.g., `margin-inline-start`, `margin-inline-end`) instead of physical properties (`margin-left`, `margin-right`).
+  - This change simplifies the stylesheet and reduces its overall size (`652kB` > `593kB`)
+
+  Example of the change:
+
+  Source:
+
+  ```css
+  .selector {
+    margin-inline-start: var(--base-size-20);
+  }
+  ```
+
+  <table>
+  <tr>
+  <th> Previous compiled output
+  </th> <th> New compiled output </th>
+  </tr>
+  <tr>
+  <td valign="top">
+
+  ```css
+  [dir='ltr'] .selector {
+    margin-left: 2px;
+  }
+
+  [dir='rtl'] .selector {
+    margin-right: 2px;
+  }
+  ```
+
+   </td>
+  <td valign="top">
+
+  ```css
+  .selector {
+    margin-inline-start: 2px;
+  }
+  ```
+
+  </td>
+  </tr>
+  </table>
+
+### Patch Changes
+
+- [#825](https://github.com/primer/brand/pull/825) [`2c8e9240`](https://github.com/primer/brand/commit/2c8e9240a1bb36f7753a3e63318e92322a7bf780) Thanks [@rezrah](https://github.com/rezrah)! - Fixed errors in compiled CSS stylesheets where selectors with special characters were being unintentionally escaped for compatibility with legacy browsers.
+
+- [#818](https://github.com/primer/brand/pull/818) [`281beb08`](https://github.com/primer/brand/commit/281beb08114f24f0ec5b23b14643324b0be532e6) Thanks [@joshfarrant](https://github.com/joshfarrant)! - `FormControl.Validation` is now associated with the relevant input using `aria-describedby`.
+
+- [#822](https://github.com/primer/brand/pull/822) [`75da350d`](https://github.com/primer/brand/commit/75da350d63b75bd8b4e2c163e681ca4f7f1d4a46) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Updated `IDEChatMessage` type declaration to differentiate between assistant and user messages.
+
 ## 0.42.1
 
 ### Patch Changes
