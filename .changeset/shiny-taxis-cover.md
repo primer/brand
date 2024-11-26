@@ -29,4 +29,4 @@ Updates to SubNav component
 
 - Dropdown submenu's now appear with white and black background and foreground colors respectively, irrespective of color mode.
 
-- Various other visual updates to improve brand-alignment. These include adjustments to font sizes, weight and iconography.
+- Various other visual updates to improve brand-alignment. These include adjustments to text size, weight, color and iconography.

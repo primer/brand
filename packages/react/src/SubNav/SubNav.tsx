@@ -60,6 +60,9 @@ const testIds = {
   },
 }
 
+export const SubNavSubMenuVariants = ['dropdown', 'anchor'] as const
+type SubMenuVariants = (typeof SubNavSubMenuVariants)[number]
+
 type SubNavContextType = {
   portalRef: RefObject<HTMLDivElement>
 }
@@ -328,7 +331,7 @@ const SubNavHeading = ({href, children, className, 'data-testid': testID, ...pro
 type SubNavLinkProps = {
   href: string
   'data-testid'?: string
-  _variant?: 'dropdown' | 'anchor'
+  _variant?: SubMenuVariants
 } & PropsWithChildren<React.HTMLProps<HTMLAnchorElement>> &
   BaseProps<HTMLAnchorElement>
 
@@ -491,7 +494,7 @@ const SubNavLink = forwardRef<HTMLAnchorElement | HTMLDivElement, SubNavLinkProp
 })
 
 type SubMenuProps = {
-  variant?: 'dropdown' | 'anchor'
+  variant?: SubMenuVariants
 } & React.HTMLAttributes<HTMLUListElement> &
   BaseProps<HTMLUListElement>
 
@@ -524,8 +527,6 @@ function _SubMenu({children, className, variant = 'dropdown', ...props}: SubMenu
       document.removeEventListener('click', handleClick, true)
     }
   }, [variant])
-
-  console.log('here')
 
   if (variant === 'anchor' && context?.portalRef.current) {
     return createPortal(
