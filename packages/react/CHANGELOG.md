@@ -592,7 +592,7 @@
 
 ### Patch Changes
 
-- [#568](https://github.com/primer/brand/pull/568) [`40a129d`](https://github.com/primer/brand/commit/40a129d78024612b625238d8a826fc06aa933465) Thanks [@rezrah](https://github.com/rezrah)! - Added support for optional `Button` and sub menu's in `SubNav` component.
+- [#568](https://github.com/primer/brand/pull/568) [`40a129d`](https://github.com/primer/brand/commit/40a129d78024612b625238d8a826fc06aa933465) Thanks [@rezrah](https://github.com/rezrah)! - Added support for optional `Button` and submenu's in `SubNav` component.
 
   Also added `fullWidth` prop to optionally remove the default component padding.
 

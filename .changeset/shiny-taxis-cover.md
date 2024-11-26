@@ -2,7 +2,7 @@
 '@primer/react-brand': minor
 ---
 
-Updates to SubNav component
+Updates to `SubNav` component
 
 - New anchor-based navigation pattern available:
 
@@ -27,6 +27,6 @@ Updates to SubNav component
 
 - Overlay now closes when user clicks outside of it
 
-- Dropdown submenu's now appear with white and black background and foreground colors respectively, irrespective of color mode.
+- Dropdown submenus now appear with white and black background and foreground colors respectively, irrespective of color mode.
 
 - Various other visual updates to improve brand-alignment. These include adjustments to text size, weight, color and iconography.

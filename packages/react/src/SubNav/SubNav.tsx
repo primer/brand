@@ -221,7 +221,7 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
     [memoizedChildren, closeMenuCallback],
   )
 
-  // The values are different types depending on whether a sub menu is present
+  // The values are different types depending on whether a submenu is present
   const activeLinklabel =
     typeof activeLink?.props.children === 'string' ? activeLink.props.children : activeLink?.props.children[0]
   // needed to prevent rendering of anchor subnav inside the narrow <button> element
