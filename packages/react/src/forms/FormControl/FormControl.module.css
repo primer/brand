@@ -71,14 +71,14 @@
   font-size: var(--brand-text-size-100);
   font-weight: var(--base-text-weight-regular);
   letter-spacing: var(--brand-text-letterSpacing-200);
-  line-height: var(--brand-text-lineHeight-200);
+  line-height: var(--brand-text-lineHeight-100);
 }
 
 /*Validation*/
 .FormControl-validation {
   font-weight: var(--base-text-weight-regular);
   font-size: var(--brand-text-size-100);
-  line-height: var(--brand-text-lineHeight-200);
+  line-height: var(--brand-text-lineHeight-100);
   display: flex;
   gap: var(--base-size-4);
 }
