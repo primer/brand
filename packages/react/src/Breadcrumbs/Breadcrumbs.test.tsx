@@ -29,9 +29,7 @@ describe('Breadcrumbs', () => {
       <Breadcrumbs>
         <Breadcrumbs.Item href="/">Resources</Breadcrumbs.Item>
         <Breadcrumbs.Item href="/copilot">GitHub Copilot</Breadcrumbs.Item>
-        <Breadcrumbs.Item href="/copilot/chat" selected>
-          Chat
-        </Breadcrumbs.Item>
+        <Breadcrumbs.Item href="/copilot/chat">Chat</Breadcrumbs.Item>
       </Breadcrumbs>,
     )
 
@@ -54,8 +52,34 @@ describe('Breadcrumbs', () => {
     const item3 = breadcrumbLinkEls[2]
     expect(item3.textContent).toBe('Chat')
     expect(item3.getAttribute('href')).toBe('/copilot/chat')
-    expect(item3.classList).toContain('Breadcrumbs__link--selected')
+  })
+
+  it('renders selected items correctly into the document', () => {
+    const {getByText, getAllByRole} = render(
+      <Breadcrumbs>
+        <Breadcrumbs.Item href="/">Resources</Breadcrumbs.Item>
+        <Breadcrumbs.Item href="/copilot">GitHub Copilot</Breadcrumbs.Item>
+        <Breadcrumbs.Item href="/copilot/chat" selected>
+          Chat
+        </Breadcrumbs.Item>
+      </Breadcrumbs>,
+    )
+
+    const breadcrumbLinkEls = getAllByRole('link')
+    expect(breadcrumbLinkEls).toHaveLength(2)
+
+    const item1 = breadcrumbLinkEls[0]
+    expect(item1.textContent).toBe('Resources')
+    expect(item1.getAttribute('href')).toBe('/')
+
+    const item2 = breadcrumbLinkEls[1]
+    expect(item2.textContent).toBe('GitHub Copilot')
+    expect(item2.getAttribute('href')).toBe('/copilot')
+
+    const item3 = getByText('Chat')
     expect(item3).toHaveAttribute('aria-current', 'page')
+    expect(item3.tagName).toBe('span'.toUpperCase())
+    expect(item3.classList).toContain('Breadcrumbs__link--selected')
   })
 
   it('renders accent variant correctly into the document', () => {
@@ -74,8 +98,8 @@ describe('Breadcrumbs', () => {
   })
 
   it('accepts a custom aria-current value to override the default', () => {
-    const {getByRole} = render(
-      <Breadcrumbs variant="accent">
+    const {getByText} = render(
+      <Breadcrumbs>
         <Breadcrumbs.Item href="/">Resources</Breadcrumbs.Item>
         <Breadcrumbs.Item href="/copilot">GitHub Copilot</Breadcrumbs.Item>
         <Breadcrumbs.Item href="/copilot/chat" selected aria-current="location">
@@ -84,11 +108,8 @@ describe('Breadcrumbs', () => {
       </Breadcrumbs>,
     )
 
-    const breadcrumbsEl = getByRole('navigation')
-    expect(breadcrumbsEl).toHaveClass('Breadcrumbs--accent')
+    const item3 = getByText('Chat')
 
-    const breadcrumbLinkEls = breadcrumbsEl.querySelectorAll('a')
-    const item3 = breadcrumbLinkEls[2]
     expect(item3).toHaveAttribute('aria-current', 'location')
   })
 })
