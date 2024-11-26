@@ -218,6 +218,12 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
     [memoizedChildren, closeMenuCallback],
   )
 
+  // The values are different types depending on whether a sub menu is present
+  const activeLinklabel =
+    typeof activeLink?.props.children === 'string' ? activeLink.props.children : activeLink?.props.children[0]
+  // needed to prevent rendering of anchor subnav inside the narrow <button> element
+  const MaybeSubNav = activeLink?.props.children?.[1]?.props?.variant === 'anchor' && activeLink.props.children?.[1]
+
   return (
     <div className={clsx(styles['SubNav__container'], hasAnchoredNav && styles['SubNav__container--with-anchor-nav'])}>
       <SubNavProvider>
@@ -255,7 +261,7 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
                   </defs>
                 </svg>
               </span>
-              {activeLink && (
+              {activeLink && activeLinklabel && !isLarge && (
                 <button
                   className={clsx(
                     styles['SubNav__overlay-toggle'],
@@ -268,7 +274,7 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
                   aria-label={`${isOpenAtNarrow ? 'close' : 'open'} navigation menu`}
                 >
                   <span className={styles['SubNav__overlay-toggle-content']}>
-                    <Text as="span">{activeLink.props.children}</Text>
+                    <Text as="span">{activeLinklabel}</Text>
                     {isOpenAtNarrow ? (
                       <ChevronUpIcon className={styles['SubNav__overlay-toggle-icon']} size={24} />
                     ) : (
@@ -277,6 +283,7 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
                   </span>
                 </button>
               )}
+              {MaybeSubNav && MaybeSubNav}
             </div>
             {LinkChildren.length && (
               <ul
@@ -518,6 +525,8 @@ function _SubMenu({children, className, variant = 'dropdown', ...props}: SubMenu
     }
   }, [variant])
 
+  console.log('here')
+
   if (variant === 'anchor' && context?.portalRef.current) {
     return createPortal(
       <nav
@@ -554,7 +563,7 @@ function _SubMenu({children, className, variant = 'dropdown', ...props}: SubMenu
     const Tag = isLarge ? ThemeProvider : React.Fragment
 
     return (
-      <Tag colorMode={isLarge ? 'light' : 'dark'}>
+      <Tag {...(isLarge ? {colorMode: 'light'} : {})}>
         <ul className={clsx(styles['SubNav__sub-menu'], styles[`SubNav__sub-menu--${variant}`], className)} {...props}>
           {children}
         </ul>
