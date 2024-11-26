@@ -2,4 +2,4 @@
 '@primer/react-brand': patch
 ---
 
-Remove tab focus from aria-current / selected breadcrumb items
+`selected` breadcrumb items now use non-interactive elements for improved keyboard navigation and correct semantics.
