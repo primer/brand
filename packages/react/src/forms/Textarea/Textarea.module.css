@@ -94,6 +94,10 @@
   display: flex;
 }
 
+.Textarea-wrapper:not(.Textarea-wrapper--fullWidth) {
+  width: min-content;
+}
+
 .Textarea-wrapper--monospace {
   font-family: var(--brand-fontStack-monospace);
 }
