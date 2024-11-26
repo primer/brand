@@ -88,8 +88,6 @@
  */
 
 .Select-wrapper {
-  width: 12.5rem;
-
   border: solid var(--brand-borderWidth-thin, 1px) var(--brand-control-color-border-default);
   border-radius: var(--brand-borderRadius-medium, 6px);
   font-family: var(--brand-body-fontFamily);
