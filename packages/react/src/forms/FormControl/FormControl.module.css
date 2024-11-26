@@ -70,7 +70,7 @@
   display: block;
   font-size: var(--brand-text-size-100);
   font-weight: var(--base-text-weight-regular);
-  letter-spacing: var(--brand-text-letterSpacing-200);
+  letter-spacing: var(--brand-text-letterSpacing-100);
   line-height: var(--brand-text-lineHeight-100);
 }
 
