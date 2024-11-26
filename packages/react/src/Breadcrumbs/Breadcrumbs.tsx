@@ -49,6 +49,7 @@ const _Item = forwardRef<HTMLAnchorElement, ItemProps>(
       <li className={styles.Breadcrumbs__item}>
         {selected ? (
           <Text
+            size="100"
             variant="muted"
             className={clsx(styles.Breadcrumbs__link, styles['Breadcrumbs__link--selected'], className)}
             aria-current={ariaCurrent ? ariaCurrent : 'page'}
