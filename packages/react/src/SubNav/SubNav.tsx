@@ -139,7 +139,7 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
 
   const {isLarge} = useWindowSize()
 
-  const memoizedChildren = React.useMemo(() => Children.toArray(children), [children])
+  const childrenArr = Children.toArray(children)
 
   const closeMenuCallback = useCallback(() => {
     if (isLarge) return
@@ -163,7 +163,7 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
     }
   }, [isOpenAtNarrow, isLarge])
 
-  const activeLink = memoizedChildren.find(child => {
+  const activeLink = childrenArr.find(child => {
     if (isValidElement(child)) {
       return child.props['aria-current']
     }
@@ -171,7 +171,7 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
 
   useEffect(() => {
     // check if there is an anchored nav in the SubNav.SubMenu child
-    const hasAnchorVariant = memoizedChildren.some(child => {
+    const hasAnchorVariant = childrenArr.some(child => {
       if (isValidElement(child) && child.type === SubNavLink) {
         const [, subMenu] = child.props.children
         if (subMenu?.props?.variant === 'anchor') {
@@ -180,45 +180,41 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
       }
     })
     setHasAnchoredNav(hasAnchorVariant)
-  }, [memoizedChildren])
+  }, [childrenArr])
 
   const {
     heading: HeadingChild,
     links: LinkChildren,
     action: ActionChild,
-  } = useMemo(
-    () =>
-      memoizedChildren.reduce(
-        (acc: {heading?: ReactNode; links: ReactElement[]; action?: ReactNode}, child) => {
-          if (isValidElement(child)) {
-            if (child.type === SubNavHeading) {
-              acc.heading = child
-            } else if (child.type === SubNavLink) {
-              const [link, subMenu] = child.props.children
+  } = childrenArr.reduce(
+    (acc: {heading?: ReactNode; links: ReactElement[]; action?: ReactNode}, child) => {
+      if (isValidElement(child)) {
+        if (child.type === SubNavHeading) {
+          acc.heading = child
+        } else if (child.type === SubNavLink) {
+          const [link, subMenu] = child.props.children
 
-              if (subMenu?.props?.variant === 'anchor') {
-                acc.links.push(
-                  React.cloneElement(child as ReactElement<SubNavLinkProps>, {
-                    children: [link],
-                    onClick: child.props['aria-current'] ? closeMenuCallback : child.props.onClick,
-                  }),
-                )
-              } else {
-                acc.links.push(
-                  React.cloneElement(child as ReactElement<SubNavLinkProps>, {
-                    onClick: child.props['aria-current'] ? closeMenuCallback : child.props.onClick,
-                  }),
-                )
-              }
-            } else if (child.type === _SubNavAction) {
-              acc.action = child
-            }
+          if (subMenu?.props?.variant === 'anchor') {
+            acc.links.push(
+              React.cloneElement(child as ReactElement<SubNavLinkProps>, {
+                children: [link],
+                onClick: child.props['aria-current'] ? closeMenuCallback : child.props.onClick,
+              }),
+            )
+          } else {
+            acc.links.push(
+              React.cloneElement(child as ReactElement<SubNavLinkProps>, {
+                onClick: child.props['aria-current'] ? closeMenuCallback : child.props.onClick,
+              }),
+            )
           }
-          return acc
-        },
-        {heading: undefined, links: [], action: undefined},
-      ),
-    [memoizedChildren, closeMenuCallback],
+        } else if (child.type === _SubNavAction) {
+          acc.action = child
+        }
+      }
+      return acc
+    },
+    {heading: undefined, links: [], action: undefined},
   )
 
   // The values are different types depending on whether a submenu is present
@@ -354,10 +350,8 @@ const SubNavLinkWithSubmenu = forwardRef<HTMLDivElement, SubNavLinkProps>(
 
     const [label, SubMenuChildren] = children as ReactNode[]
 
-    const onKeyDown = useCallback((e: React.KeyboardEvent<HTMLButtonElement>) => {
-      if (['Enter', ' '].includes(e.key)) {
-        setIsExpanded(prev => !prev)
-      }
+    const handleOnClick = useCallback(() => {
+      setIsExpanded(prev => !prev)
     }, [])
 
     return (
@@ -396,7 +390,7 @@ const SubNavLinkWithSubmenu = forwardRef<HTMLDivElement, SubNavLinkProps>(
         {isLarge && (
           <button
             className={styles['SubNav__sub-menu-toggle']}
-            onKeyDown={onKeyDown}
+            onClick={handleOnClick}
             aria-expanded={isExpanded ? 'true' : 'false'}
             aria-controls={submenuId}
             aria-label={`${isExpanded ? 'Close' : 'Open'} submenu`}
@@ -415,17 +409,13 @@ const SubNavLinkWithSubmenu = forwardRef<HTMLDivElement, SubNavLinkProps>(
 
 const SubNavLink = forwardRef<HTMLAnchorElement | HTMLDivElement, SubNavLinkProps>((props, ref) => {
   const [isInView, setIsInView] = useState(false)
-  const memoizedChildren = React.useMemo(() => Children.toArray(props.children), [props.children])
+  const childrenArr = Children.toArray(props.children)
 
-  const hasSubMenu = useMemo(
-    () =>
-      memoizedChildren.some(child => {
-        if (isValidElement(child)) {
-          return child.type === _SubMenu
-        }
-      }),
-    [memoizedChildren],
-  )
+  const hasSubMenu = childrenArr.some(child => {
+    if (isValidElement(child)) {
+      return child.type === _SubMenu
+    }
+  })
 
   useEffect(() => {
     if (hasSubMenu) return
@@ -446,7 +436,7 @@ const SubNavLink = forwardRef<HTMLAnchorElement | HTMLDivElement, SubNavLinkProp
   }, [hasSubMenu, props.href])
 
   if (hasSubMenu) {
-    const isAnchorVariantSubMenu = memoizedChildren.some(child => {
+    const isAnchorVariantSubMenu = childrenArr.some(child => {
       if (isValidElement(child)) {
         return child.type === _SubMenu && child.props.variant === 'anchor'
       }
@@ -541,14 +531,6 @@ function _SubMenu({children, className, variant = 'dropdown', ...props}: SubMenu
             if (isValidElement(child)) {
               return React.cloneElement(child as React.ReactElement<SubNavLinkProps>, {
                 onClick: e => {
-                  e.preventDefault()
-                  e.stopPropagation()
-
-                  if (!child.props.href.startsWith('#')) return
-                  const anchor = document.querySelector((child.props as SubNavLinkProps).href)
-                  if (anchor) {
-                    anchor.scrollIntoView({behavior: 'smooth'})
-                  }
                   if (child.props.onClick) {
                     child.props.onClick(e)
                   }

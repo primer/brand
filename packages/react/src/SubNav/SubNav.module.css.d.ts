@@ -26,13 +26,13 @@ declare const styles: {
   readonly "SubNav__links-overlay--open": string;
   readonly "SubNav__overlay-toggle": string;
   readonly "SubNav__overlay-toggle-content": string;
+  readonly "SubNav__link--has-sub-menu": string;
   readonly "SubNav__action": string;
   readonly "SubNav__sub-menu": string;
   readonly "SubNav__sub-menu--dropdown": string;
   readonly "SubNav__anchor-menu-container": string;
   readonly "SubNav__overlay-toggle-icon": string;
   readonly "SubNav__heading-label": string;
-  readonly "SubNav__link--has-sub-menu": string;
   readonly "SubNav__link--expanded": string;
   readonly "fade-in-down": string;
 };

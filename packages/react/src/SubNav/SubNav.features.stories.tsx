@@ -12,6 +12,7 @@ import {Text} from '../Text'
 import {RedlineBackground} from '../component-helpers'
 import {Stack} from '../Stack'
 import {expect, userEvent, within} from '@storybook/test'
+import {Button} from '../Button'
 
 export default {
   title: 'Components/SubNav/Features',
@@ -189,6 +190,7 @@ export const AnchorNavVariant = args => (
           <Stack key={value} id={value} direction="vertical" style={{justifyContent: 'center', height: 1000}}>
             <Heading>{key}</Heading>
             <Text as="p">SubNav is a component that allows users to navigate to different sections of a page.</Text>
+            <Button>Learn more</Button>
           </Stack>
         </RedlineBackground>
       ))}

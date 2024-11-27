@@ -282,6 +282,11 @@
     padding: var(--base-size-8) 0;
     animation: fade-in 0.3s var(--brand-animation-easing-glide) forwards;
   }
+
+  .SubNav__links-overlay--open .SubNav__link--has-sub-menu {
+    padding-block: 0;
+  }
+
   .SubNav__links-overlay--open .SubNav__action-container {
     width: 100%;
   }
