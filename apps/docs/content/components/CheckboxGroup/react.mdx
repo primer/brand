@@ -1,9 +1,9 @@
 ---
-title: CheckboxGroup
+title: Checkbox group
+description: Checkbox group renders a set of checkboxes.
 source: https://github.com/primer/brand/blob/main/packages/react/src/forms/CheckboxGroup/CheckboxGroup.tsx
 figma: 'https://www.figma.com/design/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=10467-3273&t=GA5GtEqPtQ9yeRaN-4'
 storybook: '/brand/storybook/?path=/story/components-forms-checkboxgroup--playground'
-description: Use CheckboxGroup to group related checkbox inputs with supporting content
 ---
 
 import {Label} from '@primer/react'
@@ -15,7 +15,7 @@ import {CheckboxGroup} from '@primer/react-brand'
 
 ## Examples
 
-### Basic
+### Default
 
 `CheckboxGroup` creates a semantic container for multiple related checkboxes.
 
@@ -177,9 +177,9 @@ When space is limited, checkboxes can be arranged horizontally using the [Stack]
 
 ### CheckboxGroup.Validation
 
-| Name       | Type                     | Default | Description                        |
-| :--------- | :----------------------- | :-----: | :--------------------------------- |
-| `children` | `string`                 |         | Validation message                 |
-| `variant`  | `'success'` \| `'error'` |         | Sets the validation state and icon |
+| Name       | Type                                                             | Default | Description                        |
+| :--------- | :--------------------------------------------------------------- | :-----: | :--------------------------------- |
+| `children` | `string`                                                         |         | Validation message                 |
+| `variant`  | <PropTableValues values={['error', 'success' ]} addLineBreaks /> |         | Sets the validation state and icon |
 
 `CheckboxGroup.Validation` extends the `span` element and supports all `span` props.
