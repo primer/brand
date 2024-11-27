@@ -6,44 +6,38 @@ description: Checkbox group renders a set of checkboxes.
 import ComponentLayout from '../../../src/layouts/component-layout'
 export default ComponentLayout
 
+import anatomy from './images/anatomy.png'
+
 ## Usage
 
-The `CheckboxGroup` family of components provide a way to group related [Checkbox](/components/Checkbox) components together with supporting content such as labels, captions, and validation messages. It creates a semantic fieldset structure that helps maintain proper form hierarchy and accessibility.
+Use checkbox group to allow users to select multiple items from a list of individual items, or to mark one individual item as selected.
 
-## Components
+### Best practices
 
-### Root
+- Put checkboxes in a logical order
+- If users are only allowed to select a single option, consider using a [radio group](/components/RadioGroup) instead
+- Each checkbox's state should be independent from other checkboxes in the group. For example: checking one checkbox should not check or disable any other checkboxes
 
-The `CheckboxGroup` component wraps a group of checkboxes in a `fieldset`.
+## Anatomy
 
-### Label
+<img src={anatomy} alt="Anatomy diagram" />
 
-The `CheckboxGroup.Label` component renders as a `legend` and can be used to provide a heading for the group of checkboxes. The label must always be provided for accessibility purposes, but it can be visually hidden.
+**Label:** A title that labels the group of options and helps users understand the relationship between the options in the group.
 
-### Caption
+**Required indicator:** Indicates that a selection is required.
 
-Use `CheckboxGroup.Caption` to provide additional context or instructions for the group of checkboxes. The caption is automatically associated with the group through ARIA attributes.
+**Caption:** May be used to provide additional context about the checkbox group when the label alone is not sufficient
 
-### Validation
+**Options:** A list of options represented using [checkboxes](/components/Checkbox).
 
-The `CheckboxGroup.Validation` component can be used to display success or error messages. It supports two variants:
-
-- `success`: Displays a success message with a check circle icon
-- `error`: Displays an error message with an alert icon
+**Validation message:** A message explaining why the selection failed validation. See the [form pattern documentation](/ui-patterns/forms/overview#validation) for more information on form validation patterns.
 
 ## Accessibility
 
-CheckboxGroup enhances accessibility by:
-
-- Using semantic HTML through the `fieldset` and `legend` elements
-- Automatically associating captions and validation messages with the group using `aria-describedby`
-- Supporting visually hidden labels that remain accessible to screen readers
-- Providing clear visual indicators for validation states with supporting icons
-
-Any checkbox inputs within the group should be given their own appropriate labeling and accessibility attributes.
+Once a user checks an option from a checkbox group, the result should not be saved or applied until the user has explicitly submitted their input using a "save" or "submit" button. See the [saving pattern guidelines](/ui-patterns/saving) for more information.
 
 ## Related components
 
 - [Checkbox](/components/Checkbox): Used to render an individual checkbox control.
 - [FormControl](/components/FormControl): Used to group individual controls with an associated label.
-- [RadioGroup](/components/RadioGroup): Simialr to `CheckboxGroup`, but used for organizing radio controls.
+- [RadioGroup](/components/RadioGroup): Similar to `CheckboxGroup`, but used for organizing radio controls.

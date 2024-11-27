@@ -4,49 +4,49 @@ description: Radio group is used to render a short list of mutually exclusive op
 ---
 
 import ComponentLayout from '../../../src/layouts/component-layout'
+
+import anatomy from './images/anatomy.png'
 export default ComponentLayout
 
 ## Usage
 
-The `RadioGroup` family of components provide a way to group related [Radio](/components/Radio) components together with supporting content such as labels, captions, and validation messages. It creates a semantic fieldset structure that helps maintain proper form hierarchy and accessibility.
+Use radio group to allow users to select a single option from a short list of related options.
 
-> **Important**: When using Radio components within a RadioGroup, ensure you provide the same `name` prop to each Radio. This ensures they are correctly grouped and only one option can be selected at a time.
+### Orientation
 
-## Components
+A vertical orientation makes options easier to visually scan. A horizontal orientation is not yet supported.
 
-### Root
+### Anatomy
 
-The `RadioGroup` component wraps a group of radio inputs in a `fieldset`.
+<img src={anatomy} alt="Anatomy diagram" />
 
-### Label
+**Label:** A title that labels the group of options and helps users understand the relationship between the options in the group
 
-The `RadioGroup.Label` component renders as a `legend` and can be used to provide a heading for the group of radio inputs. The label must always be provided for accessibility purposes, but it can be visually hidden.
+**Required indicator:** Indicates that a selection is required
 
-### Caption
+**Caption:** May be used to provide additional context about the radio group when the label alone is not sufficient
 
-Use `RadioGroup.Caption` to provide additional context or instructions for the group of radio inputs. The caption is automatically associated with the group through ARIA attributes.
+**Options:** A list of mutually exclusive options represented using [radio buttons](/components/Radio)
 
-### Validation
+**Validation message:** A message explaining why the selection failed validation. See the [form pattern documentation](/ui-patterns/forms/overview#validation) for more information on form validation patterns.
 
-The `RadioGroup.Validation` component can be used to display success or error messages. It supports two variants:
+### Best practices
 
-- `success`: Displays a success message with a check circle icon
-- `error`: Displays an error message with an alert icon
+- Put radio buttons in a logical order
+- Only use a radio group for a short list of options: aim for 6 or less options. For longer sets of options, consider using a [select](/components/Select) or an [action menu](/components/ActionMenu)
+- Radio buttons cannot be unchecked, so only use a radio group when a selection is required. Consider the following alternatives:
+  - use a radio group, but with one option that equates to "none of these options"
+  - use a [checkbox group](/components/CheckboxGroup) that fails validation if more than one option is selected
+- If there is an option that's the most likely option to be checked, that option should be checked by default
 
 ## Accessibility
 
-RadioGroup enhances accessibility by:
-
-- Using semantic HTML through the `fieldset` and `legend` elements
-- Automatically associating captions and validation messages with the group using `aria-describedby`
-- Supporting visually hidden labels that remain accessible to screen readers
-- Providing clear visual indicators for validation states with supporting icons
-- Ensuring only one option can be selected when radio inputs share the same `name` attribute
-
-Any radio inputs within the group should be given their own appropriate labeling and accessibility attributes.
+- Once a user checks an option from a radio group, the result should not be saved or applied until the user has explicitly submitted their input using a "save" or "submit" button. A radio group is a single tab stop, and the options can be navigated using the arrow keys: this means assistive technologies like a screen reader cannot "read" an option without selecting it. See the [saving pattern guidelines](/ui-patterns/saving) for more information.
+- Radio groups must be labeled. The label may be visually hidden, but visible labels are preferred.
 
 ## Related components
 
-- [Radio](/components/Radio): Used to render an individual radio control.
-- [FormControl](/components/FormControl): Used to group individual controls with an associated label.
-- [CheckboxGroup](/components/CheckboxGroup): Similar to `RadioGroup`, but used for organizing checkbox controls that allow multiple selections.
+- [FormControl](/components/FormControl): Used to group form controls with labels
+- [Radio](/components/Radio): Individual radio button control
+- [CheckboxGroup](/components/CheckboxGroup): For allowing multiple selections
+- [SegmentedControl](/components/SegmentedControl): For immediate selection outside forms
