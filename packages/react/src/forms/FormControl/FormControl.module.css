@@ -60,6 +60,10 @@
   width: 100%;
 }
 
+:global(.ControlGroup) .FormControl-label {
+  font-weight: var(--base-text-weight-medium);
+}
+
 .FormControl-control--radio {
   margin: 2px 0 0;
 }

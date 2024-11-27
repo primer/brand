@@ -44,7 +44,7 @@ const _ControlGroup = forwardRef<HTMLFieldSetElement, ControlGroupProps>(({class
     <ControlGroupContext.Provider value={{id: uniqueId}}>
       <fieldset
         ref={ref}
-        className={clsx(styles.ControlGroup__container, className)}
+        className={clsx('ControlGroup', styles.ControlGroup__container, className)}
         aria-describedby={describedBy}
         {...props}
       />
