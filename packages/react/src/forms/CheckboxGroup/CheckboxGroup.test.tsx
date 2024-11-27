@@ -33,7 +33,7 @@ describe('CheckboxGroup', () => {
       </CheckboxGroup>,
     )
 
-    expect(getByRole('group', {name: /choices/i})).toBeInTheDocument()
+    expect(getByRole('group', {name: 'Choices'})).toBeInTheDocument()
     expect(getByText('You can only pick one')).toBeInTheDocument()
     expect(getByLabelText('Choice one')).toBeInTheDocument()
     expect(getByLabelText('Choice two')).toBeInTheDocument()
@@ -88,7 +88,7 @@ describe('CheckboxGroup', () => {
         </CheckboxGroup>,
       )
 
-      const fieldset = getByRole('group', {name: /choices/i})
+      const fieldset = getByRole('group', {name: 'Choices'})
       const caption = getByText('You can only pick one')
 
       expect(fieldset).toHaveAttribute('aria-describedby', caption.id)
@@ -115,7 +115,7 @@ describe('CheckboxGroup', () => {
         </CheckboxGroup>,
       )
 
-      const fieldset = getByRole('group', {name: /choices/i})
+      const fieldset = getByRole('group', {name: 'Choices'})
       const validation = getByText('Uh oh!')
 
       expect(fieldset).toHaveAttribute('aria-describedby', validation.id)
@@ -143,7 +143,7 @@ describe('CheckboxGroup', () => {
         </CheckboxGroup>,
       )
 
-      const fieldset = getByRole('group', {name: /choices/i})
+      const fieldset = getByRole('group', {name: 'Choices'})
       const hint = getByText('You can only pick one')
       const validation = getByText('Great job!')
 
