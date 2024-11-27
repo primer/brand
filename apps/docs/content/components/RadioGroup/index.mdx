@@ -1,0 +1,52 @@
+---
+title: RadioGroup
+description: Use RadioGroup to group related radio inputs with supporting content where only one option can be selected
+---
+
+import ComponentLayout from '../../../src/layouts/component-layout'
+export default ComponentLayout
+
+## Usage
+
+The `RadioGroup` family of components provide a way to group related [Radio](/components/Radio) components together with supporting content such as labels, captions, and validation messages. It creates a semantic fieldset structure that helps maintain proper form hierarchy and accessibility.
+
+> **Important**: When using Radio components within a RadioGroup, ensure you provide the same `name` prop to each Radio. This ensures they are correctly grouped and only one option can be selected at a time.
+
+## Components
+
+### Root
+
+The `RadioGroup` component wraps a group of radio inputs in a `fieldset`.
+
+### Label
+
+The `RadioGroup.Label` component renders as a `legend` and can be used to provide a heading for the group of radio inputs. The label must always be provided for accessibility purposes, but it can be visually hidden.
+
+### Caption
+
+Use `RadioGroup.Caption` to provide additional context or instructions for the group of radio inputs. The caption is automatically associated with the group through ARIA attributes.
+
+### Validation
+
+The `RadioGroup.Validation` component can be used to display success or error messages. It supports two variants:
+
+- `success`: Displays a success message with a check circle icon
+- `error`: Displays an error message with an alert icon
+
+## Accessibility
+
+RadioGroup enhances accessibility by:
+
+- Using semantic HTML through the `fieldset` and `legend` elements
+- Automatically associating captions and validation messages with the group using `aria-describedby`
+- Supporting visually hidden labels that remain accessible to screen readers
+- Providing clear visual indicators for validation states with supporting icons
+- Ensuring only one option can be selected when radio inputs share the same `name` attribute
+
+Any radio inputs within the group should be given their own appropriate labeling and accessibility attributes.
+
+## Related components
+
+- [Radio](/components/Radio): Used to render an individual radio control.
+- [FormControl](/components/FormControl): Used to group individual controls with an associated label.
+- [CheckboxGroup](/components/CheckboxGroup): Similar to `RadioGroup`, but used for organizing checkbox controls that allow multiple selections.

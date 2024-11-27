@@ -1,0 +1,49 @@
+---
+title: CheckboxGroup
+description: Use CheckboxGroup to group related checkbox inputs with supporting content
+---
+
+import ComponentLayout from '../../../src/layouts/component-layout'
+export default ComponentLayout
+
+## Usage
+
+The `CheckboxGroup` family of components provide a way to group related [Checkbox](/components/Checkbox) components together with supporting content such as labels, captions, and validation messages. It creates a semantic fieldset structure that helps maintain proper form hierarchy and accessibility.
+
+## Components
+
+### Root
+
+The `CheckboxGroup` component wraps a group of checkboxes in a `fieldset`.
+
+### Label
+
+The `CheckboxGroup.Label` component renders as a `legend` and can be used to provide a heading for the group of checkboxes. The label must always be provided for accessibility purposes, but it can be visually hidden.
+
+### Caption
+
+Use `CheckboxGroup.Caption` to provide additional context or instructions for the group of checkboxes. The caption is automatically associated with the group through ARIA attributes.
+
+### Validation
+
+The `CheckboxGroup.Validation` component can be used to display success or error messages. It supports two variants:
+
+- `success`: Displays a success message with a check circle icon
+- `error`: Displays an error message with an alert icon
+
+## Accessibility
+
+CheckboxGroup enhances accessibility by:
+
+- Using semantic HTML through the `fieldset` and `legend` elements
+- Automatically associating captions and validation messages with the group using `aria-describedby`
+- Supporting visually hidden labels that remain accessible to screen readers
+- Providing clear visual indicators for validation states with supporting icons
+
+Any checkbox inputs within the group should be given their own appropriate labeling and accessibility attributes.
+
+## Related components
+
+- [Checkbox](/components/Checkbox): Used to render an individual checkbox control.
+- [FormControl](/components/FormControl): Used to group individual controls with an associated label.
+- [RadioGroup](/components/RadioGroup): Simialr to `CheckboxGroup`, but used for organizing radio controls.
