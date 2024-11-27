@@ -10,25 +10,15 @@
 }
 
 .ControlGroup__label {
-  font-weight: var(--base-text-weight-semibold);
   margin: 0;
   padding: 0;
-  margin-bottom: var(--base-size-8);
-}
-
-.ControlGroup__caption {
-  font-size: var(--brand-text-size-100);
-  letter-spacing: var(--brand-text-letterSpacing-100);
-  line-height: var(--brand-text-lineHeight-100);
-  color: var(--brand-color-text-muted);
+  margin-block-end: var(--base-size-8);
 }
 
 .ControlGroup__validation {
   display: flex;
   gap: var(--base-size-4);
-  font-size: var(--brand-text-size-100);
-  font-weight: var(--base-text-weight-regular);
-  line-height: var(--brand-text-lineHeight-100);
+  font-weight: var(--base-text-weight-medium);
 }
 
 .ControlGroup__validation--success {
@@ -41,12 +31,12 @@
 
 .ControlGroup__validation-icon--success {
   position: relative;
-  top: -1.6px;
+  top: -1px;
 }
 
 .ControlGroup__validation-icon--error {
   position: relative;
-  top: -1px;
+  top: -0.5px;
 }
 
 .ControlGroup__validation--animate-in {

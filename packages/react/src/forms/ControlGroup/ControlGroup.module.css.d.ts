@@ -1,7 +1,6 @@
 declare const styles: {
   readonly "ControlGroup__container": string;
   readonly "ControlGroup__label": string;
-  readonly "ControlGroup__caption": string;
   readonly "ControlGroup__validation": string;
   readonly "ControlGroup__validation--success": string;
   readonly "ControlGroup__validation--error": string;

@@ -1,10 +1,11 @@
-import clsx from 'clsx'
 import React, {Children, createContext, forwardRef, isValidElement, useContext, type HTMLAttributes} from 'react'
+import clsx from 'clsx'
 import {AlertFillIcon, CheckCircleFillIcon} from '@primer/octicons-react'
-
-import styles from './ControlGroup.module.css'
-import type {FormValidationStatus} from '..'
 import {useId} from '@reach/auto-id'
+
+import type {FormValidationStatus} from '..'
+import {Text} from '../..'
+import styles from './ControlGroup.module.css'
 
 type ControlGroupContext = {
   id?: string
@@ -54,13 +55,17 @@ const _ControlGroup = forwardRef<HTMLFieldSetElement, ControlGroupProps>(({class
 
 export type ControlGroupLabelProps = {visuallyHidden?: boolean} & HTMLAttributes<HTMLLegendElement>
 const ControlGroupLabel = forwardRef<HTMLLegendElement, ControlGroupLabelProps>(
-  ({className, visuallyHidden, ...props}, ref) => {
+  ({children, className, visuallyHidden, ...props}, ref) => {
     return (
       <legend
         ref={ref}
         className={clsx(styles.ControlGroup__label, visuallyHidden && 'visually-hidden', className)}
         {...props}
-      />
+      >
+        <Text as="span" weight="semibold" size="100">
+          {children}
+        </Text>
+      </legend>
     )
   },
 )
@@ -69,7 +74,7 @@ export type ControlGroupCaptionProps = HTMLAttributes<HTMLSpanElement>
 const ControlGroupCaption = forwardRef<HTMLSpanElement, ControlGroupCaptionProps>(({className, ...props}, ref) => {
   const {id} = useControlGroup()
 
-  return <span ref={ref} id={`${id}-caption`} className={clsx(styles.ControlGroup__caption, className)} {...props} />
+  return <Text as="span" size="100" variant="muted" ref={ref} id={`${id}-caption`} className={className} {...props} />
 })
 
 export type ControlGroupValidationProps = {variant: FormValidationStatus} & HTMLAttributes<HTMLSpanElement>
@@ -78,7 +83,9 @@ const ControlGroupValidation = forwardRef<HTMLSpanElement, ControlGroupValidatio
     const {id} = useControlGroup()
 
     return (
-      <span
+      <Text
+        as="span"
+        size="100"
         ref={ref}
         id={`${id}-validation`}
         className={clsx(
@@ -100,9 +107,8 @@ const ControlGroupValidation = forwardRef<HTMLSpanElement, ControlGroupValidatio
             <AlertFillIcon />
           </span>
         )}
-
         {children}
-      </span>
+      </Text>
     )
   },
 )
