@@ -2,7 +2,7 @@ import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 
 import {CheckboxGroup, type CheckboxGroupProps} from '.'
-import {Checkbox, FormControl, type FormValidationStatus, Stack} from '../..'
+import {Checkbox, FormControl, type FormValidationStatus} from '../..'
 
 type CheckboxGroupStoryProps = {
   labelChildren: string
@@ -12,7 +12,7 @@ type CheckboxGroupStoryProps = {
   validationVariant: FormValidationStatus
 }
 
-type MetaProps = CheckboxGroupProps & CheckboxGroupStoryProps
+export type MetaProps = CheckboxGroupProps & CheckboxGroupStoryProps
 
 const meta: Meta<MetaProps> = {
   title: 'Components/Forms/CheckboxGroup',
@@ -87,42 +87,6 @@ export const Playground: Story = {
           <FormControl.Label>Choice three</FormControl.Label>
           <Checkbox value="three" />
         </FormControl>
-
-        {validationChildren ? (
-          <CheckboxGroup.Validation variant={validationVariant}>{validationChildren}</CheckboxGroup.Validation>
-        ) : null}
-      </CheckboxGroup>
-    )
-  },
-}
-
-export const Inline: Story = {
-  args: {
-    labelChildren: 'Inline example',
-    labelVisuallyHidden: true,
-    captionChildren: 'Some inline checkboxes with a visually hidden label',
-    validationChildren: '',
-  },
-  render: ({labelChildren, labelVisuallyHidden, captionChildren, validationChildren, validationVariant}) => {
-    return (
-      <CheckboxGroup>
-        <CheckboxGroup.Label visuallyHidden={labelVisuallyHidden}>{labelChildren}</CheckboxGroup.Label>
-        {captionChildren ? <CheckboxGroup.Caption>{captionChildren}</CheckboxGroup.Caption> : null}
-
-        <Stack direction="horizontal" gap="normal" padding="none">
-          <FormControl>
-            <FormControl.Label>Choice one</FormControl.Label>
-            <Checkbox value="one" defaultChecked />
-          </FormControl>
-          <FormControl>
-            <FormControl.Label>Choice two</FormControl.Label>
-            <Checkbox value="two" defaultChecked />
-          </FormControl>
-          <FormControl>
-            <FormControl.Label>Choice three</FormControl.Label>
-            <Checkbox value="three" />
-          </FormControl>
-        </Stack>
 
         {validationChildren ? (
           <CheckboxGroup.Validation variant={validationVariant}>{validationChildren}</CheckboxGroup.Validation>

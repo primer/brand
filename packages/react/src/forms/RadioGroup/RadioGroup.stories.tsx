@@ -2,7 +2,7 @@ import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 
 import {RadioGroup, type RadioGroupProps} from '.'
-import {Radio, FormControl, type FormValidationStatus, Stack} from '../..'
+import {Radio, FormControl, type FormValidationStatus} from '../..'
 
 type RadioGroupStoryProps = {
   labelChildren: string
@@ -12,7 +12,7 @@ type RadioGroupStoryProps = {
   validationVariant: FormValidationStatus
 }
 
-type MetaProps = RadioGroupProps & RadioGroupStoryProps
+export type MetaProps = RadioGroupProps & RadioGroupStoryProps
 
 const meta: Meta<MetaProps> = {
   title: 'Components/Forms/RadioGroup',
@@ -87,41 +87,6 @@ export const Playground: Story = {
           <FormControl.Label>1000+</FormControl.Label>
           <Radio name="demo" value="three" />
         </FormControl>
-
-        {validationChildren ? (
-          <RadioGroup.Validation variant={validationVariant}>{validationChildren}</RadioGroup.Validation>
-        ) : null}
-      </RadioGroup>
-    )
-  },
-}
-
-export const Inline: Story = {
-  args: {
-    labelVisuallyHidden: true,
-    captionChildren: 'Some inline radios with a visually hidden label',
-    validationChildren: '',
-  },
-  render: ({labelChildren, labelVisuallyHidden, captionChildren, validationChildren, validationVariant}) => {
-    return (
-      <RadioGroup>
-        <RadioGroup.Label visuallyHidden={labelVisuallyHidden}>{labelChildren}</RadioGroup.Label>
-        {captionChildren ? <RadioGroup.Caption>{captionChildren}</RadioGroup.Caption> : null}
-
-        <Stack direction="horizontal" gap="normal" padding="none">
-          <FormControl>
-            <FormControl.Label>0-99</FormControl.Label>
-            <Radio name="demo" value="one" />
-          </FormControl>
-          <FormControl>
-            <FormControl.Label>100-999</FormControl.Label>
-            <Radio name="demo" value="two" defaultChecked />
-          </FormControl>
-          <FormControl>
-            <FormControl.Label>1000+</FormControl.Label>
-            <Radio name="demo" value="three" />
-          </FormControl>
-        </Stack>
 
         {validationChildren ? (
           <RadioGroup.Validation variant={validationVariant}>{validationChildren}</RadioGroup.Validation>
