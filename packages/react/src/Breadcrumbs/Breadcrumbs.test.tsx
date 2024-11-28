@@ -55,7 +55,7 @@ describe('Breadcrumbs', () => {
   })
 
   it('renders selected items correctly into the document', () => {
-    const {getByText, getAllByRole} = render(
+    const {getByText, getByRole, getAllByRole} = render(
       <Breadcrumbs>
         <Breadcrumbs.Item href="/">Resources</Breadcrumbs.Item>
         <Breadcrumbs.Item href="/copilot">GitHub Copilot</Breadcrumbs.Item>
@@ -65,16 +65,9 @@ describe('Breadcrumbs', () => {
       </Breadcrumbs>,
     )
 
-    const breadcrumbLinkEls = getAllByRole('link')
-    expect(breadcrumbLinkEls).toHaveLength(2)
-
-    const item1 = breadcrumbLinkEls[0]
-    expect(item1.textContent).toBe('Resources')
-    expect(item1.getAttribute('href')).toBe('/')
-
-    const item2 = breadcrumbLinkEls[1]
-    expect(item2.textContent).toBe('GitHub Copilot')
-    expect(item2.getAttribute('href')).toBe('/copilot')
+    expect(getAllByRole('link')).toHaveLength(2)
+    expect(getByRole('link', {name: 'Resources'})).toHaveAttribute('href', '/')
+    expect(getByRole('link', {name: 'GitHub Copilot'})).toHaveAttribute('href', '/copilot')
 
     const item3 = getByText('Chat')
     expect(item3).toHaveAttribute('aria-current', 'page')

@@ -43,29 +43,27 @@ type ItemProps = {
 } & BaseProps<HTMLAnchorElement> &
   React.HTMLAttributes<HTMLAnchorElement>
 
-const _Item = forwardRef<HTMLAnchorElement, ItemProps>(
-  ({'aria-current': ariaCurrent, className, children, href, selected, ...rest}, ref) => {
-    return (
-      <li className={styles.Breadcrumbs__item}>
-        {selected ? (
-          <Text
-            size="100"
-            variant="muted"
-            className={clsx(styles.Breadcrumbs__link, styles['Breadcrumbs__link--selected'], className)}
-            aria-current={ariaCurrent ? ariaCurrent : 'page'}
-            {...rest}
-          >
-            {children}
-          </Text>
-        ) : (
-          <InlineLink href={href} ref={ref} className={clsx(styles.Breadcrumbs__link, className)} {...rest}>
-            {children}
-          </InlineLink>
-        )}
-      </li>
-    )
-  },
-)
+const _Item = forwardRef<HTMLAnchorElement, ItemProps>(({className, children, href, selected, ...rest}, ref) => {
+  return (
+    <li className={styles.Breadcrumbs__item}>
+      {selected ? (
+        <Text
+          size="100"
+          variant="muted"
+          className={clsx(styles.Breadcrumbs__link, styles['Breadcrumbs__link--selected'], className)}
+          aria-current="page"
+          {...rest}
+        >
+          {children}
+        </Text>
+      ) : (
+        <InlineLink href={href} ref={ref} className={clsx(styles.Breadcrumbs__link, className)} {...rest}>
+          {children}
+        </InlineLink>
+      )}
+    </li>
+  )
+})
 
 /**
  * Use Breadcrumbs to display the current location within a navigational hierarchy.
