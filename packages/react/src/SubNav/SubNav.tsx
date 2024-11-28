@@ -273,7 +273,9 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
                   aria-label={`${isOpenAtNarrow ? 'close' : 'open'} navigation menu`}
                 >
                   <span className={styles['SubNav__overlay-toggle-content']}>
-                    <Text as="span">{activeLinklabel}</Text>
+                    <Text as="span" size="200">
+                      {activeLinklabel}
+                    </Text>
                     {isOpenAtNarrow ? (
                       <ChevronUpIcon className={styles['SubNav__overlay-toggle-icon']} size={24} />
                     ) : (
@@ -381,6 +383,7 @@ const SubNavLinkWithSubmenu = forwardRef<HTMLDivElement, SubNavLinkProps>(
           <Text
             as="span"
             size="200"
+            weight="semibold"
             className={styles['SubNav__link-label']}
             variant={ariaCurrent === 'page' ? 'default' : 'muted'}
           >
@@ -472,7 +475,8 @@ const SubNavLink = forwardRef<HTMLAnchorElement | HTMLDivElement, SubNavLinkProp
       >
         <Text
           as="span"
-          size="200"
+          size="100"
+          weight="semibold"
           className={styles['SubNav__link-label']}
           variant={ariaCurrent === 'page' ? 'default' : 'muted'}
         >

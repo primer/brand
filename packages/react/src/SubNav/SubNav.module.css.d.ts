@@ -24,9 +24,9 @@ declare const styles: {
   readonly "fade-in": string;
   readonly "SubNav__header-container": string;
   readonly "SubNav__links-overlay--open": string;
+  readonly "SubNav__link--has-sub-menu": string;
   readonly "SubNav__overlay-toggle": string;
   readonly "SubNav__overlay-toggle-content": string;
-  readonly "SubNav__link--has-sub-menu": string;
   readonly "SubNav__action": string;
   readonly "SubNav__sub-menu": string;
   readonly "SubNav__sub-menu--dropdown": string;
