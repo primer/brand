@@ -69,6 +69,8 @@
 .Breadcrumbs__link--selected {
   color: var(--brand-color-text-default);
   pointer-events: none;
+  font-weight: inherit;
+  letter-spacing: inherit;
 }
 .Breadcrumbs--default .Breadcrumbs__link--selected {
   color: var(--brand-color-text-muted);
