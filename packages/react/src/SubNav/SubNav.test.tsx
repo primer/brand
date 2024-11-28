@@ -6,6 +6,11 @@ import {axe, toHaveNoViolations} from 'jest-axe'
 import {SubNav} from './SubNav'
 import '../test-utils/mocks/match-media-mock'
 import userEvent from '@testing-library/user-event'
+import {useWindowSize} from '../hooks/useWindowSize'
+
+jest.mock('../hooks/useWindowSize')
+const mockUseWindowSize = useWindowSize as jest.Mock
+mockUseWindowSize.mockImplementation(() => ({isLarge: false}))
 
 expect.extend(toHaveNoViolations)
 
@@ -38,6 +43,17 @@ const MockSubNavFixture = ({data = mockLinkData, ...rest}) => {
 }
 
 describe('SubNav', () => {
+  beforeEach(() => {
+    // IntersectionObserver isn't available in test environment
+    const mockIntersectionObserver = jest.fn()
+    mockIntersectionObserver.mockReturnValue({
+      observe: () => null,
+      unobserve: () => null,
+      disconnect: () => null,
+    })
+    window.IntersectionObserver = mockIntersectionObserver
+  })
+
   afterEach(cleanup)
 
   it('renders the root element correctly into the document', () => {
@@ -59,10 +75,10 @@ describe('SubNav', () => {
     expect(getByTestId(SubNav.testIds.overlay).querySelectorAll('a').length).toBe(mockLinkData.length)
   })
 
-  it('has a button that opens the menu when clicked', () => {
+  it('has a button that opens the menu when clicked', async () => {
     const {getByTestId} = render(<MockSubNavFixture />)
 
-    const buttonEl = getByTestId(SubNav.testIds.button)
+    const buttonEl = getByTestId('SubNav-root-button')
     const overlayEl = getByTestId(SubNav.testIds.overlay)
 
     expect(buttonEl).toBeInTheDocument()
@@ -70,9 +86,9 @@ describe('SubNav', () => {
     // check aria roles are correct by default
     expect(buttonEl).toHaveAttribute('aria-expanded', 'false')
 
-    fireEvent.click(buttonEl)
-    expect(overlayEl).toHaveClass('SubNav__links-overlay--open')
+    userEvent.click(buttonEl)
 
+    expect(overlayEl).toHaveClass('SubNav__links-overlay--open')
     // check aria roles have updated
     expect(buttonEl).toHaveAttribute('aria-expanded', 'true')
   })
@@ -108,7 +124,9 @@ describe('SubNav', () => {
     expect(results).toHaveNoViolations()
   })
 
-  it('shows subitems when the submenu toggle is activated', async () => {
+  it('shows subitems when the submenu toggle is activated at large viewports', async () => {
+    mockUseWindowSize.mockImplementation(() => ({isLarge: true}))
+
     const {getByRole, getAllByTestId} = render(
       <SubNav fullWidth>
         <SubNav.Link href="#" aria-current="page">
@@ -126,6 +144,7 @@ describe('SubNav', () => {
     )
 
     userEvent.tab()
+
     expect(getByRole('link', {name: 'Copilot'})).toHaveFocus()
 
     const toggleSubmenuButton = getByRole('button', {name: 'Open submenu'})
@@ -138,7 +157,7 @@ describe('SubNav', () => {
     expect(toggleSubmenuButton).toHaveFocus()
     expect(toggleSubmenuButton).toHaveAttribute('aria-expanded', 'true')
 
-    const expanded = getAllByTestId('SubNav-root-link')[0]
+    const expanded = getAllByTestId(SubNav.testIds.subMenu)[0]
 
     userEvent.tab()
     expect(within(expanded).getByRole('link', {name: 'Copilot feature page one'})).toHaveFocus()
