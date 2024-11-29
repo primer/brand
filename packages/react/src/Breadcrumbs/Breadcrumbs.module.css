@@ -24,12 +24,12 @@
 @media screen and (max-width: 63.25rem) {
   .Breadcrumbs__list {
     display: inline-flex;
+    flex-wrap: wrap;
   }
 }
 
 .Breadcrumbs__item {
   display: inline-block;
-  white-space: nowrap;
   list-style: none;
 }
 
@@ -54,12 +54,6 @@
   font-size: var(--brand-text-size-100);
   display: inline-block;
   text-decoration: none;
-}
-
-@media screen and (max-width: 63.25rem) {
-  .Breadcrumbs__link {
-    white-space: nowrap;
-  }
 }
 
 .Breadcrumbs__link:hover,
