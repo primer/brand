@@ -62,6 +62,8 @@
       url: /components/Footnotes
     - title: Hero
       url: /components/Hero
+    - title: Icon
+      url: /components/Icon
     - title: IDE
       url: /components/IDE
     - title: Image
