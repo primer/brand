@@ -214,9 +214,8 @@ function _AnchorNav({children, enableDefaultBgColor = false, hideUntilSticky = f
           <button
             onClick={handleMenuToggle}
             className={clsx(styles['AnchorNav-menu-button'])}
-            aria-expanded={menuOpen ? 'true' : 'false'}
+            aria-expanded={menuOpen}
             aria-controls={idForLinkContainer}
-            aria-label={`${menuOpen ? 'close' : 'open'} anchor navigation menu`}
             data-testid={testIds.menuButton}
           >
             {menuOpen ? (
@@ -224,6 +223,7 @@ function _AnchorNav({children, enableDefaultBgColor = false, hideUntilSticky = f
             ) : (
               <ChevronDownIcon size={16} className={styles['AnchorNav-menu-button-arrow']} fill="currentcolor" />
             )}
+            <span className="visually-hidden">Anchor navigation menu. Currently selected:</span>{' '}
             <Text as="span" className={clsx(styles['AnchorNav-link-label'])}>
               {currentActiveNavItem}
             </Text>
