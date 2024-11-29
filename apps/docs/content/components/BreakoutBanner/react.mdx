@@ -100,8 +100,12 @@ The content alignment can be changed using the `align` prop on the root `Breakou
 
 ### Leading visual
 
+An accessible label should always be provided for the leading visual.
+
 ```jsx live
-<BreakoutBanner leadingVisual={<LogoGithubIcon size="medium" />}>
+<BreakoutBanner
+  leadingVisual={<LogoGithubIcon size="medium" aria-label="GitHub logo" />}
+>
   <BreakoutBanner.Heading>
     Where the most ambitious teams build great things
   </BreakoutBanner.Heading>
