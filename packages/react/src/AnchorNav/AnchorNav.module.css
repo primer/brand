@@ -134,7 +134,7 @@
  */
 .AnchorNav-link {
   display: flex;
-  width: calc(100% - 80px);
+  width: 100%;
   text-decoration: none;
   height: 48px;
   align-items: center;
@@ -206,7 +206,6 @@
   letter-spacing: var(--brand-heading-letterSpacing-200);
   color: var(--brand-color-text-default);
   transition: color var(--brand-animation-easing-glide) var(--brand-animation-duration-faster);
-  white-space: nowrap;
   position: relative;
 }
 
@@ -252,6 +251,10 @@
 
 /* Large breakpoint and up */
 @media screen and (min-width: 63.25rem) {
+  .AnchorNav-link-label {
+    white-space: nowrap;
+  }
+
   .AnchorNav-link-label::after {
     content: '';
     position: absolute;
