@@ -270,8 +270,8 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
                   onClick={isOpenAtNarrow ? closeMenuCallback : handleMenuToggle}
                   aria-expanded={isOpenAtNarrow ? 'true' : 'false'}
                   aria-controls={idForLinkContainer}
-                  aria-label={`${isOpenAtNarrow ? 'close' : 'open'} navigation menu`}
                 >
+                  <span className="visually-hidden">Navigation menu. Current page: </span>
                   <span className={styles['SubNav__overlay-toggle-content']}>
                     <Text as="span" size="200">
                       {activeLinklabel}

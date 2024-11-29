@@ -79,7 +79,7 @@ describe('SubNav', () => {
   it('has a button that opens the menu when clicked', async () => {
     const {getByRole} = render(<MockSubNavFixture />)
 
-    const buttonEl = getByRole('button', {name: 'Open navigation menu. Current page: page three'})
+    const buttonEl = getByRole('button', {name: 'Navigation menu. Current page: page three'})
     const overlayEl = getByRole('list')
 
     expect(overlayEl).not.toHaveClass('SubNav__links-overlay--open')
@@ -94,7 +94,7 @@ describe('SubNav', () => {
   it('closes the overlay when button is pressed again', () => {
     const {getByRole} = render(<MockSubNavFixture />)
 
-    const buttonEl = getByRole('button', {name: 'Open navigation menu. Current page: page three'})
+    const buttonEl = getByRole('button', {name: 'Navigation menu. Current page: page three'})
     const overlayEl = getByRole('list')
 
     userEvent.click(buttonEl)
@@ -104,10 +104,17 @@ describe('SubNav', () => {
     expect(overlayEl).not.toHaveClass('SubNav__links-overlay--open')
   })
 
+  it('includes the aria-current text in the aria-label of the button', () => {
+    const {getByRole} = render(<MockSubNavFixture />)
+
+    const buttonEl = getByRole('button', {name: 'Navigation menu. Current page: page three'})
+    expect(buttonEl).toBeInTheDocument()
+  })
+
   it('shows the aria-current text next to the button by default', () => {
     const {getByRole} = render(<MockSubNavFixture />)
 
-    const buttonEl = getByRole('button', {name: 'Open navigation menu. Current page: page three'})
+    const buttonEl = getByRole('button', {name: 'Navigation menu. Current page: page three'})
     expect(buttonEl).toHaveTextContent('page three')
   })
 
