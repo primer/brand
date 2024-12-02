@@ -223,7 +223,7 @@ function _AnchorNav({children, enableDefaultBgColor = false, hideUntilSticky = f
             ) : (
               <ChevronDownIcon size={16} className={styles['AnchorNav-menu-button-arrow']} fill="currentcolor" />
             )}
-            <span className="visually-hidden">Anchor navigation menu. Currently selected:</span>{' '}
+            <span className="visually-hidden">Anchor navigation menu. Currently selected: </span>
             <Text as="span" className={clsx(styles['AnchorNav-link-label'])}>
               {currentActiveNavItem}
             </Text>
