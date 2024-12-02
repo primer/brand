@@ -197,22 +197,8 @@
 }
 
 @media (forced-colors: active) {
-  .Button--primary,
-  .Button--secondary,
-  .Button--disabled:hover {
-    outline: var(--brand-borderWidth-thick) solid transparent;
-    outline-offset: 2px;
-  }
-
   .Button--disabled {
     outline-color: GrayText;
-  }
-
-  /* Retains focus indicator when in "Windows High Contrast Mode". */
-  .Button:focus:not(.Button--disabled[disabled]) {
-    outline: var(--brand-borderWidth-thick) solid;
-    outline-color: var(--brand-color-focus);
-    outline-offset: 2px;
   }
 
   /* Indicates disabled state in WHCM */
