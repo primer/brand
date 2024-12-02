@@ -98,6 +98,14 @@ export const Tooltip = React.forwardRef(
     }, [tooltipElRef, triggerRef])
 
     useEffect(() => {
+      return () => {
+        if (closeTooltipTimeoutRef.current) {
+          clearTimeout(closeTooltipTimeoutRef.current)
+        }
+      }
+    }, [closeTooltipTimeoutRef])
+
+    useEffect(() => {
       if (!tooltipElRef.current || !triggerRef.current) return
       /*
        * ACCESSIBILITY CHECKS
