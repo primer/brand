@@ -9,7 +9,7 @@ description: Use the form control component to display form inputs alongside lab
 import InlineCode from '@primer/gatsby-theme-doctocat/src/components/inline-code'
 import {PropTableValues} from '../../src/components'
 import {Label} from '@primer/react'
-import {Heading, Text} from '@primer/react-brand'
+import {Button, Heading, Text} from '@primer/react-brand'
 import {SearchIcon} from '@primer/octicons-react'
 import {Link} from 'gatsby'
 
@@ -228,52 +228,54 @@ Labels should only be visually hidden when the context is clear from the input i
 
 The following example demonstrates declarative form validation in [controlled mode](https://reactjs.org/docs/forms.html#controlled-components).
 
-Try changing the input value to to `monalisa` to show the `success` state.
+When the form is submitted with an invalid value, the invalid input receives focus to help the user correct the error. This is especially important for users navigating the form using a screen reader.
+
+More information on form validation best practices can be found in the [Primer UI Patterns documentation](https://primer.style/ui-patterns/forms/overview#validation).
+
+Try changing the input value to `monalisa` and submitting the form to show the `success` state.
 
 ```javascript live noinline
 const App = () => {
-  const [value, setValue] = React.useState()
-  const [validationState, setValidationState] = React.useState()
+  const inputRef = React.useRef(null)
+  const [value, setValue] = React.useState('mona lisa')
+  const [isValid, setIsValid] = React.useState(false)
 
-  React.useEffect(() => {
-    const defaultHandle = 'mona lisa'
-    setValue(defaultHandle)
-    validate(defaultHandle)
-  }, [])
+  const onChange = (e) => setValue(e.target.value)
 
-  const validate = (inputValue) => {
-    if (/\s/g.test(inputValue)) {
-      setValidationState('error')
-    } else {
-      setValidationState('success')
+  const onSubmit = (e) => {
+    e.preventDefault()
+    const valid = !value.includes(' ')
+    setIsValid(valid)
+
+    if (!valid) {
+      inputRef.current.focus()
     }
-  }
-
-  const handleChange = (event) => {
-    event.preventDefault()
-    if (!event.target.value) {
-      setValue(undefined)
-      setValidationState(undefined)
-      return
-    }
-    setValue(event.target.value)
-    validate(event.target.value)
   }
 
   return (
-    <FormControl validationStatus={validationState} fullWidth>
-      <FormControl.Label>GitHub handle</FormControl.Label>
-      <TextInput onChange={handleChange} value={value} fullWidth />
-      {validationState && validationState === 'error' && (
-        <FormControl.Validation>
-          GitHub handles cannot contain spaces.{' '}
-          {value && `Did you mean "${value.replaceAll(' ', '')}"`}
-        </FormControl.Validation>
-      )}
-      {validationState && validationState === 'success' && (
-        <FormControl.Validation>Valid name</FormControl.Validation>
-      )}
-    </FormControl>
+    <form onSubmit={onSubmit}>
+      <Stack gap="normal">
+        <FormControl validationStatus={isValid ? 'success' : 'error'} fullWidth>
+          <FormControl.Label>GitHub handle</FormControl.Label>
+          <TextInput
+            ref={inputRef}
+            fullWidth
+            value={value}
+            onChange={onChange}
+          />
+          {isValid && (
+            <FormControl.Validation>Valid name</FormControl.Validation>
+          )}
+          {!isValid && (
+            <FormControl.Validation>
+              GitHub handles cannot contain spaces.{' '}
+              {value && `Did you mean "${value.replaceAll(' ', '')}"`}
+            </FormControl.Validation>
+          )}
+        </FormControl>
+        <Button type="submit">Submit</Button>
+      </Stack>
+    </form>
   )
 }
 
