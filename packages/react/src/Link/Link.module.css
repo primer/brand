@@ -17,10 +17,9 @@
   bottom: -0.15em;
   left: 0;
   width: calc(100% - var(--arrow-width));
-  height: 2px;
   pointer-events: none;
   content: '';
-  background-color: currentColor;
+  border: 1px solid currentColor;
   transform: scaleX(0);
   transform-origin: 0 0;
 }
@@ -37,7 +36,7 @@
 }
 
 .Link:focus:focus-visible {
-  outline: 4px solid var(--brand-color-focus);
+  outline: 2px solid var(--brand-color-focus);
   outline-offset: 2px;
 }
 
