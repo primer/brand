@@ -7,7 +7,10 @@ description: Use breadcrumbs to enable wayfinding through navigational links
 
 import {Label} from '@primer/react'
 import {BreadcrumbVariants} from '@primer/react-brand'
-import {PropTableValues} from '../../src/components'
+import {PropTableValues} from '../../../src/components'
+
+import doOverflow from './images/do-overflow.png'
+import dontOverflow from './images/dont-overflow.png'
 
 ```js
 import {Breadcrumbs} from '@primer/react-brand'
@@ -38,6 +41,27 @@ import {Breadcrumbs} from '@primer/react-brand'
   </Breadcrumbs.Item>
 </Breadcrumbs>
 ```
+
+## Accessibility
+
+Ensure that the text of each individual Breadcrumb item fits entirely within a 320px wide viewport. Failure to do this violates [WCAG 1.4.10 Reflow](https://github.com/github/accessibility-audit-guide/blob/main/web/WCAG/1.4.10%20Reflow.md).
+
+<DoDontContainer>
+  <Do>
+    <img src={doOverflow} alt="" />
+    <Caption>
+      Use short Breadcrumb item names to ensure they fit within a 320px wide
+      viewport.
+    </Caption>
+  </Do>
+  <Dont>
+    <img src={dontOverflow} alt="" />
+    <Caption>
+      Don't allow Breadcrumb item names to overflow the 320px wide viewport, as
+      this violates WCAG 1.4.10 Reflow.
+    </Caption>
+  </Dont>
+</DoDontContainer>
 
 ## Component props
 
