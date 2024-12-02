@@ -72,20 +72,38 @@ export const Tooltip = React.forwardRef(
     const child = Children.only(children)
     const triggerRef = useProvidedRefOrCreate(forwardedRef as React.RefObject<HTMLElement>)
     const tooltipElRef = useRef<HTMLDivElement>(null)
+    // Used to delay the closing of the tooltip to make sure the user can move the mouse from the trigger to the tooltip
+    const closeTooltipTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+    const tooltipCloseTimeout = 200
 
     const [calculatedDirection, setCalculatedDirection] = useState<TooltipDirection>(direction)
 
     const openTooltip = React.useCallback(() => {
+      if (closeTooltipTimeoutRef.current) {
+        clearTimeout(closeTooltipTimeoutRef.current)
+        closeTooltipTimeoutRef.current = null
+      }
+
       if (tooltipElRef.current && triggerRef.current && !tooltipElRef.current.matches(':popover-open')) {
         tooltipElRef.current.showPopover()
       }
     }, [tooltipElRef, triggerRef])
 
     const closeTooltip = React.useCallback(() => {
-      if (tooltipElRef.current && triggerRef.current && tooltipElRef.current.matches(':popover-open')) {
-        tooltipElRef.current.hidePopover()
-      }
+      closeTooltipTimeoutRef.current = setTimeout(() => {
+        if (tooltipElRef.current && triggerRef.current && tooltipElRef.current.matches(':popover-open')) {
+          tooltipElRef.current.hidePopover()
+        }
+      }, tooltipCloseTimeout)
     }, [tooltipElRef, triggerRef])
+
+    useEffect(() => {
+      return () => {
+        if (closeTooltipTimeoutRef.current) {
+          clearTimeout(closeTooltipTimeoutRef.current)
+        }
+      }
+    }, [closeTooltipTimeoutRef])
 
     useEffect(() => {
       if (!tooltipElRef.current || !triggerRef.current) return
