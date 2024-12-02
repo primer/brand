@@ -66,15 +66,9 @@ import {Icon} from '@primer/react-brand'
 
 ```jsx live
 <Stack direction="vertical">
-  {namedIconSizes.map((size) => (
-    <Icon
-      key={size}
-      icon={CopilotIcon}
-      size={size}
-      color="green"
-      hasBackground
-    />
-  ))}
+  <Icon icon={CopilotIcon} size="small" />
+  <Icon icon={CopilotIcon} size="medium" />
+  <Icon icon={CopilotIcon} size="large" />
 </Stack>
 ```
 
