@@ -4,7 +4,6 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: box-shadow var(--brand-animation-duration-faster);
   text-decoration: none;
   cursor: pointer;
 }
@@ -38,9 +37,8 @@
 }
 
 .Link:focus:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 2px var(--brand-color-canvas-default), 0 0 2px 5px var(--brand-color-focus);
-  transition: none;
+  outline: 4px solid var(--brand-color-focus);
+  outline-offset: 2px;
 }
 
 .Link--default,
