@@ -3,6 +3,7 @@ import {Meta} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {Testimonial, TestimonialProps, TestimonialQuoteMarkColors, defaultQuoteMarkColor} from '.'
 import {Stack} from '../'
+import monaAvatar from '../fixtures/images/avatar-mona.png'
 
 export default {
   title: 'Components/Testimonial',
@@ -71,10 +72,7 @@ const Template = (args: PlaygroundProps) => {
       <Testimonial {...args}>
         <Testimonial.Quote>{quote}</Testimonial.Quote>
         {type === 'avatar' && (
-          <Testimonial.Avatar
-            src="https://avatars.githubusercontent.com/u/92997159?v=4"
-            alt={`Circular avatar from ${name}'s GitHub profile`}
-          />
+          <Testimonial.Avatar src={monaAvatar} alt={`Circular avatar from ${name}'s GitHub profile`} />
         )}
         {type === 'logo' && (
           <Testimonial.Logo>
@@ -101,10 +99,7 @@ export const Avatar = () => (
         line of code we&apos;re writing.
       </Testimonial.Quote>
       <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
-      <Testimonial.Avatar
-        src="https://avatars.githubusercontent.com/u/92997159?v=4"
-        alt="Circular avatar from David Ross's GitHub profile"
-      />
+      <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from David Ross's GitHub profile" />
     </Testimonial>
   </div>
 )
@@ -150,10 +145,7 @@ export const Duo = args => (
       </Testimonial.Quote>
       <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
 
-      <Testimonial.Avatar
-        src="https://avatars.githubusercontent.com/u/92997159?v=4"
-        alt="Circular avatar from David Ross's GitHub profile"
-      />
+      <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from David Ross's GitHub profile" />
     </Testimonial>
     <Testimonial {...args}>
       <Testimonial.Quote>
@@ -162,10 +154,7 @@ export const Duo = args => (
       </Testimonial.Quote>
       <Testimonial.Name position="Pinterest">Engineering Architect</Testimonial.Name>
 
-      <Testimonial.Avatar
-        src="https://avatars.githubusercontent.com/u/92997159?v=4"
-        alt="Circular avatar from David Ross's GitHub profile"
-      />
+      <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from David Ross's GitHub profile" />
     </Testimonial>
   </Stack>
 )
@@ -196,10 +185,7 @@ export const Trio = args => (
       </Testimonial.Quote>
       <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
 
-      <Testimonial.Avatar
-        src="https://avatars.githubusercontent.com/u/92997159?v=4"
-        alt="Circular avatar from David Ross's GitHub profile"
-      />
+      <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from David Ross's GitHub profile" />
     </Testimonial>
     <Testimonial {...args}>
       <Testimonial.Quote>
@@ -208,10 +194,7 @@ export const Trio = args => (
       </Testimonial.Quote>
       <Testimonial.Name position="Pinterest">Engineering Architect</Testimonial.Name>
 
-      <Testimonial.Avatar
-        src="https://avatars.githubusercontent.com/u/92997159?v=4"
-        alt="Circular avatar from David Ross's GitHub profile"
-      />
+      <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from David Ross's GitHub profile" />
     </Testimonial>
     <Testimonial {...args}>
       <Testimonial.Quote>
@@ -219,10 +202,7 @@ export const Trio = args => (
         about the greatness we can achieve through sharing and collaboration.
       </Testimonial.Quote>
       <Testimonial.Name position="Engie">Head of Digital Communities</Testimonial.Name>
-      <Testimonial.Avatar
-        src="https://avatars.githubusercontent.com/u/92997159?v=4"
-        alt="Circular avatar from David Ross's GitHub profile"
-      />
+      <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from David Ross's GitHub profile" />
     </Testimonial>
   </Stack>
 )
@@ -236,10 +216,7 @@ export const ColoredQuoteMark = args => (
       </Testimonial.Quote>
       <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
 
-      <Testimonial.Avatar
-        src="https://avatars.githubusercontent.com/u/92997159?v=4"
-        alt="Circular avatar from David Ross's GitHub profile"
-      />
+      <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from David Ross's GitHub profile" />
     </Testimonial>
   </div>
 )
@@ -256,10 +233,7 @@ export const Large = args => (
         line of code we&apos;re writing.
       </Testimonial.Quote>
       <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
-      <Testimonial.Avatar
-        src="https://avatars.githubusercontent.com/u/92997159?v=4"
-        alt="Circular avatar from David Ross's GitHub profile"
-      />
+      <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from David Ross's GitHub profile" />
     </Testimonial>
   </div>
 )
@@ -276,10 +250,7 @@ export const LargeHighlightedPortion = args => (
         first line of code we&apos;re writing.
       </Testimonial.Quote>
       <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
-      <Testimonial.Avatar
-        src="https://avatars.githubusercontent.com/u/92997159?v=4"
-        alt="Circular avatar from David Ross's GitHub profile"
-      />
+      <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from David Ross's GitHub profile" />
     </Testimonial>
   </div>
 )

@@ -60,8 +60,8 @@
     },
     "color": {
       "default": {
-        "value": "var(--base-color-scale-gray-5)",
-        "dark": "var(--base-color-scale-gray-2)"
+        "value": "var(--brand-color-text-default)",
+        "dark": "var(--brand-color-text-default)"
       },
       "blue": {
         "value": "var(--base-color-scale-blue-5)",

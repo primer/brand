@@ -7,9 +7,9 @@ import {
   Accordion,
   Button,
   ButtonBaseProps,
-  Heading,
+  Heading as HeadingComponent,
   HeadingProps,
-  Label,
+  Label as LabelComponent,
   Text,
   UnorderedList,
   UnorderedListProps,
@@ -126,58 +126,53 @@ const PricingOptionsItem = forwardRef(
     ref: Ref<HTMLDivElement>,
   ) => {
     type FilteredChildren = {
-      Content: React.ReactElement<
-        | PricingOptionsLabelProps
-        | PricingOptionsHeadingProps
-        | PricingOptionsDescriptionProps
-        | PricingOptionsPriceProps
-      >[]
       FeatureList: React.ReactElement<PricingOptionsFeatureListProps> | null
       Actions: React.ReactElement<PricingOptionsActionsProps>[]
       Footnote: React.ReactElement<PricingOptionsFootnoteProps> | null
+      Heading: React.ReactElement<PricingOptionsHeadingProps> | null
+      Description: React.ReactElement<PricingOptionsDescriptionProps> | null
+      Label: React.ReactElement<PricingOptionsLabelProps> | null
+      Price: React.ReactElement<PricingOptionsPriceProps> | null
     }
 
     const memoizedChildren = useMemo(() => React.Children.toArray(children), [children])
 
-    const {Content, FeatureList, Actions, Footnote} = memoizedChildren.reduce<FilteredChildren>(
-      (acc, child) => {
-        if (React.isValidElement(child) && typeof child.type !== 'string') {
-          if (child.type === PricingOptionsFeatureList) {
-            acc.FeatureList = child as React.ReactElement<PricingOptionsFeatureListProps> | null
-          }
+    const {Heading, Description, Label, Price, FeatureList, Actions, Footnote} =
+      memoizedChildren.reduce<FilteredChildren>(
+        (acc, child) => {
+          if (React.isValidElement(child) && typeof child.type !== 'string') {
+            if (child.type === PricingOptionsFeatureList) {
+              acc.FeatureList = child as React.ReactElement<PricingOptionsFeatureListProps> | null
+            }
 
-          if (child.type === PricingOptionsPrimaryAction || child.type === PricingOptionsSecondaryAction) {
-            acc.Actions.push(child as React.ReactElement<PricingOptionsActionsProps>)
-          }
+            if (child.type === PricingOptionsPrimaryAction || child.type === PricingOptionsSecondaryAction) {
+              acc.Actions.push(child as React.ReactElement<PricingOptionsActionsProps>)
+            }
 
-          if (child.type === PricingOptionsFootnote) {
-            acc.Footnote = child as React.ReactElement<PricingOptionsFootnoteProps>
-          }
+            if (child.type === PricingOptionsFootnote) {
+              acc.Footnote = child as React.ReactElement<PricingOptionsFootnoteProps>
+            }
 
-          if (
-            child.type === PricingOptionsLabel ||
-            child.type === PricingOptionsHeading ||
-            child.type === PricingOptionsDescription ||
-            child.type === PricingOptionsPrice
-          ) {
-            acc.Content.push(
-              child as React.ReactElement<
-                | PricingOptionsLabelProps
-                | PricingOptionsDescriptionProps
-                | PricingOptionsHeadingProps
-                | PricingOptionsPriceProps
-              >,
-            )
-          }
-        }
-        return acc
-      },
-      {Content: [], FeatureList: null, Actions: [], Footnote: null},
-    )
+            if (child.type === PricingOptionsHeading) {
+              acc.Heading = child as React.ReactElement<PricingOptionsHeadingProps>
+            }
 
-    if (leadingComponent) {
-      Content.unshift(<div className={styles['PricingOptions__leading-component']}>{leadingComponent}</div>)
-    }
+            if (child.type === PricingOptionsDescription) {
+              acc.Description = child as React.ReactElement<PricingOptionsDescriptionProps>
+            }
+
+            if (child.type === PricingOptionsLabel) {
+              acc.Label = child as React.ReactElement<PricingOptionsLabelProps>
+            }
+
+            if (child.type === PricingOptionsPrice) {
+              acc.Price = child as React.ReactElement<PricingOptionsPriceProps>
+            }
+          }
+          return acc
+        },
+        {FeatureList: null, Actions: [], Footnote: null, Heading: null, Description: null, Label: null, Price: null},
+      )
 
     return (
       <div
@@ -190,7 +185,11 @@ const PricingOptionsItem = forwardRef(
         ref={ref}
         {...(rest as HTMLAttributes<HTMLElement>)}
       >
-        {Content}
+        {Heading}
+        {Label}
+        {Description}
+        {Price}
+        {leadingComponent && <div className={styles['PricingOptions__leading-component']}>{leadingComponent}</div>}
         {Actions.length > 0 && <div className={styles.PricingOptions__actions}>{Actions}</div>}
         {FeatureList}
         {Footnote}
@@ -206,7 +205,7 @@ type PricingOptionsLabelProps = PropsWithChildren<BaseProps<HTMLSpanElement>> & 
 const PricingOptionsLabel = forwardRef<HTMLSpanElement, PricingOptionsLabelProps>(
   ({children, className, 'data-testid': testId, ...rest}, ref) => {
     return (
-      <Label
+      <LabelComponent
         className={clsx(styles.PricingOptions__label, className)}
         data-testid={testId || testIds.label}
         ref={ref}
@@ -214,7 +213,7 @@ const PricingOptionsLabel = forwardRef<HTMLSpanElement, PricingOptionsLabelProps
         {...rest}
       >
         {children}
-      </Label>
+      </LabelComponent>
     )
   },
 )
@@ -249,7 +248,7 @@ type PricingOptionsHeadingProps = PropsWithChildren<BaseProps<HTMLHeadingElement
 const PricingOptionsHeading = forwardRef<HTMLHeadingElement, PricingOptionsHeadingProps>(
   ({as = 'h3', children, 'data-testid': testId, size = '5', className, ...rest}, ref) => {
     return (
-      <Heading
+      <HeadingComponent
         as={as}
         className={clsx(styles.PricingOptions__heading, styles[`PricingOptions__heading--size-${size}`], className)}
         data-testid={testId || testIds.heading}
@@ -258,7 +257,7 @@ const PricingOptionsHeading = forwardRef<HTMLHeadingElement, PricingOptionsHeadi
         {...rest}
       >
         {children}
-      </Heading>
+      </HeadingComponent>
     )
   },
 )
@@ -463,7 +462,7 @@ type PricingOptionsFeatureHeadingProps = PropsWithChildren<BaseProps<HTMLHeading
 const PricingOptionsFeatureHeading = forwardRef<HTMLHeadingElement, PricingOptionsFeatureHeadingProps>(
   ({children, className, 'data-testid': testId, ...rest}, ref) => {
     return (
-      <Heading
+      <HeadingComponent
         as="h4"
         className={clsx(styles['PricingOptions__feature-list-heading'], className)}
         data-testid={testId || testIds.featureListHeading}
@@ -472,7 +471,7 @@ const PricingOptionsFeatureHeading = forwardRef<HTMLHeadingElement, PricingOptio
         {...rest}
       >
         {children}
-      </Heading>
+      </HeadingComponent>
     )
   },
 )

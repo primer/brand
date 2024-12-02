@@ -7,14 +7,14 @@ module.exports = {
           dark: 'var(--brand-color-text-default)',
         },
         active: {
-          value: 'var(--base-color-scale-blue-5)',
-          dark: 'var(--base-color-scale-blue-3)',
+          value: 'var(--brand-color-text-default)',
+          dark: 'var(--brand-color-text-default)',
         },
       },
       subMenu: {
         bgColor: {
           value: 'var(--base-color-scale-white-0)',
-          dark: 'var(--base-color-scale-black-0)',
+          dark: 'var(--base-color-scale-white-0)',
         },
       },
     },

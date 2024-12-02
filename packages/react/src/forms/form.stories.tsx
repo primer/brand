@@ -50,6 +50,9 @@ export const GitHubEnterprise = args => {
             marginBottom: 32,
           }}
         >
+          <Text as="p" variant="muted" size="100">
+            All fields marked with an asterisk (*) are required
+          </Text>
           <div
             style={{
               display: 'flex',

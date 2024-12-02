@@ -1,6 +1,5 @@
 ---
 title: Card
-status: Experimental
 source: https://github.com/primer/brand/tree/main/packages/react/src/Card/Card.tsx
 storybook: '/brand/storybook/?path=/story/components-card--playground'
 description: Use the card component to display information in a compact way and link to other internal pages.
@@ -83,7 +82,7 @@ You can add an `icon` to enhance the visual context. We recommend using an [Octi
 
 ```jsx live
 <Card href="https://github.com">
-  <Card.Icon icon={<CopilotIcon />} color="purple" hasBackground />
+  <Card.Icon icon={CopilotIcon} color="purple" hasBackground />
   <Card.Heading>Code search & code view</Card.Heading>
   <Card.Description>
     Enables you to rapidly search, navigate, and understand code, right from
@@ -113,7 +112,7 @@ Combine `Icon` and `Label` when you need to add more metadata or context to the 
 
 ```jsx live
 <Card href="https://github.com">
-  <Card.Icon icon={<CopilotIcon />} color="green" hasBackground />
+  <Card.Icon icon={CopilotIcon} color="green" hasBackground />
   <Card.Label color="blue-purple">Beta</Card.Label>
   <Card.Heading>Code search & code view</Card.Heading>
   <Card.Description>
@@ -153,7 +152,7 @@ The color of the lit area corrosponds to the nearest active, primary accent colo
   <Box padding="spacious" backgroundColor="default">
     <Stack direction="horizontal" padding="none">
       <Card href="https://github.com">
-        <Card.Icon icon={<CopilotIcon />} color="pink" hasBackground />
+        <Card.Icon icon={CopilotIcon} color="pink" hasBackground />
         <Card.Heading>Code search & code view</Card.Heading>
         <Card.Description>
           Enables you to rapidly search, navigate, and understand code, right
@@ -166,7 +165,7 @@ The color of the lit area corrosponds to the nearest active, primary accent colo
           ['--brand-color-accent-primary']: 'var(--base-color-scale-lime-2)',
         }}
       >
-        <Card.Icon icon={<ZapIcon />} color="lime" hasBackground />
+        <Card.Icon icon={ZapIcon} color="lime" hasBackground />
         <Card.Heading>Code search & code view</Card.Heading>
         <Card.Description>
           Enables you to rapidly search, navigate, and understand code, right
@@ -209,21 +208,21 @@ Use the `Stack` component to stack multiple cards horizontally or vertically.
   gap="normal"
 >
   <Card href="https://github.com">
-    <Card.Icon icon={<CopilotIcon />} color="indigo" hasBackground />
+    <Card.Icon icon={CopilotIcon} color="indigo" hasBackground />
     <Card.Heading>Heading</Card.Heading>
     <Card.Description>
       Everything you need to know about getting started with GitHub Actions.
     </Card.Description>
   </Card>
   <Card href="https://github.com">
-    <Card.Icon icon={<RocketIcon />} color="purple" hasBackground />
+    <Card.Icon icon={RocketIcon} color="purple" hasBackground />
     <Card.Heading>Heading</Card.Heading>
     <Card.Description>
       Everything you need to know about getting started with GitHub Actions.
     </Card.Description>
   </Card>
   <Card href="https://github.com">
-    <Card.Icon icon={<GitBranchIcon />} color="teal" hasBackground />
+    <Card.Icon icon={GitBranchIcon} color="teal" hasBackground />
     <Card.Heading>Heading</Card.Heading>
     <Card.Description>
       Everything you need to know about getting started with GitHub Actions.
@@ -246,7 +245,7 @@ Use the `Stack` component to stack multiple cards horizontally or vertically.
 
 ### Card.Image
 
-Forwards all the props from the [Image component](/components/Image), including `src`, `alt`, and `aspecRatio`.
+Forwards all the props from the [Image component](/components/Image), including `src`, `alt`, and `aspectRatio`.
 
 ### Card.Icon
 

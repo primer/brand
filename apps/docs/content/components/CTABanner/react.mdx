@@ -1,6 +1,5 @@
 ---
 title: CTA banner
-status: Experimental
 figma: https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=539%3A14285&t=RJEWZhVUtrRQ0pKh-0
 source: https://github.com/primer/brand/blob/main/packages/react/src/CTABanner/CTABanner.tsx
 storybook: '/brand/storybook/?path=/story/components-ctabanner--playground'
@@ -8,9 +7,11 @@ description: Use the CTA banner component to highlight and create urgency around
 ---
 
 import {Label} from '@primer/react'
+import {PropTableValues} from '../../../src/components'
 import {Link} from 'gatsby'
 import ComponentLayout from '../../../src/layouts/component-layout'
 export default ComponentLayout
+import {TextVariants} from '@primer/react-brand'
 
 ```js
 import {CTABanner, Button} from '@primer/react-brand'
@@ -54,6 +55,56 @@ The content alignment can be changed using the `align` prop on the root `CTABann
   <CTABanner.ButtonGroup>
     <Button>Primary Action</Button>
     <Button>Secondary Action</Button>
+  </CTABanner.ButtonGroup>
+</CTABanner>
+```
+
+### Optional background image
+
+```jsx live
+<ThemeProvider colorMode="dark">
+  <CTABanner
+    backgroundImageSrc={{
+      narrow:
+        'https://github.com/user-attachments/assets/a28110fd-d019-41a4-8f80-b49ae8895708',
+      regular:
+        'https://github.com/user-attachments/assets/a28110fd-d019-41a4-8f80-b49ae8895708',
+      wide: 'https://github.com/user-attachments/assets/a28110fd-d019-41a4-8f80-b49ae8895708',
+    }}
+    align="center"
+    hasShadow={false}
+  >
+    <CTABanner.Heading>
+      Where the most ambitious teams build great things
+    </CTABanner.Heading>
+    <CTABanner.Description variant="default">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
+      ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
+      elementum.
+    </CTABanner.Description>
+    <CTABanner.ButtonGroup>
+      <Button>Primary Action</Button>
+    </CTABanner.ButtonGroup>
+  </CTABanner>
+</ThemeProvider>
+```
+
+### Optional background colors
+
+`CTABanner` supports `default`, `subtle` and arbitrary `background-color` values
+
+```jsx live
+<CTABanner backgroundColor="subtle" hasShadow={false}>
+  <CTABanner.Heading>
+    Where the most ambitious teams build great things
+  </CTABanner.Heading>
+  <CTABanner.Description>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
+    ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
+    elementum.
+  </CTABanner.Description>
+  <CTABanner.ButtonGroup>
+    <Button>Primary Action</Button>
   </CTABanner.ButtonGroup>
 </CTABanner>
 ```
@@ -167,13 +218,17 @@ render(<App />)
 
 ### CTABanner <Label>Required</Label>
 
-| name            | type                       | default     | required | description                                                       |
-| --------------- | -------------------------- | ----------- | -------- | ----------------------------------------------------------------- |
-| `children`      | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | Content to include within the banner component                    |
-| `align`         | `'start'`, `'center'`      | `'start'`   | `true`   | The horizontal positioning of content within the banner component |
-| `hasBorder`     | `boolean`                  | `false`     | `false`  | A flag used to provide a border to the banner component           |
-| `hasShadow`     | `boolean`                  | `true`      | `false`  | A flag used to provide a shadow to the banner component           |
-| `hasBackground` | `boolean`                  | `true`      | `false`  | A flag used to add a background to the banner component           |
+| name                      | type                                                                                                       | default     | required | description                                                       |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- | ----------- | -------- | ----------------------------------------------------------------- |
+| `children`                | `ReactNode`, `ReactNode[]`                                                                                 | `undefined` | `true`   | Content to include within the banner component                    |
+| `align`                   | `'start'`, `'center'`                                                                                      | `'start'`   | `true`   | The horizontal positioning of content within the banner component |
+| `backgroundColor`         | <PropTableValues values={['default', 'subtle', 'string', `ResponsiveMap`]} addLineBreaks commaSeparated /> | `'default'` | `false`  | Optional, custom background color                                 |
+| `backgroundImageSrc`      | <PropTableValues values={['string' , `ResponsiveMap`]} addLineBreaks commaSeparated />                     | `undefined` | `false`  | Optional, custom background image                                 |
+| `backgroundImagePosition` | <PropTableValues values={['string' , `ResponsiveMap`]} addLineBreaks commaSeparated/>                      | `'center'`  | `false`  | Optional, custom background position                              |
+| `backgroundImageSize`     | <PropTableValues values={['string' , `ResponsiveMap`]} addLineBreaks commaSeparated />                     | `'cover'`   | `false`  | Optional, custom background position size                         |
+| `hasBorder`               | `boolean`                                                                                                  | `false`     | `false`  | A flag used to provide a border to the banner component           |
+| `hasShadow`               | `boolean`                                                                                                  | `true`      | `false`  | A flag used to provide a shadow to the banner component           |
+| `hasBackground`           | `boolean`                                                                                                  | `true`      | `false`  | A flag used to add a background to the banner component           |
 
 ### CTABanner.Heading
 
@@ -185,9 +240,10 @@ render(<App />)
 
 ### CTABanner.Description
 
-| name       | type                       | default     | required | description                                         |
-| ---------- | -------------------------- | ----------- | -------- | --------------------------------------------------- |
-| `children` | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | Content to be displayed inside the banner component |
+| name       | type                                                    | default     | required                            | description                                         |
+| ---------- | ------------------------------------------------------- | ----------- | ----------------------------------- | --------------------------------------------------- |
+| `children` | `ReactNode`, `ReactNode[]`                              | `undefined` | `true`                              | Content to be displayed inside the banner component |
+| `variant`  | <PropTableValues values={TextVariants} addLineBreaks /> | `'muted'`   | Specify alternative text appearance |
 
 ### CTABanner.ButtonGroup <Label>Required</Label>
 

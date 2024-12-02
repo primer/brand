@@ -219,4 +219,51 @@ describe('FormControl', () => {
     expect(labelEl?.classList).toContain('FormControl-label--large')
     expect(inputEl.classList).toContain(`TextInput--large`)
   })
+
+  it('associates the hint with the input', () => {
+    const {getByLabelText, getByText} = render(
+      <FormControl>
+        <FormControl.Label>My Label</FormControl.Label>
+        <TextInput />
+        <FormControl.Hint>A useful hint</FormControl.Hint>
+      </FormControl>,
+    )
+
+    const input = getByLabelText('My Label')
+    const hint = getByText('A useful hint')
+
+    expect(input).toHaveAttribute('aria-describedby', hint.id)
+  })
+
+  it('associates the validation with the input', () => {
+    const {getByLabelText, getByText} = render(
+      <FormControl>
+        <FormControl.Label>My Label</FormControl.Label>
+        <TextInput />
+        <FormControl.Validation>LGTM</FormControl.Validation>
+      </FormControl>,
+    )
+
+    const input = getByLabelText('My Label')
+    const validation = getByText('LGTM')
+
+    expect(input).toHaveAttribute('aria-describedby', validation.id)
+  })
+
+  it('associates both a hint and validation with the input', () => {
+    const {getByLabelText, getByText} = render(
+      <FormControl>
+        <FormControl.Label>My Label</FormControl.Label>
+        <TextInput />
+        <FormControl.Hint>A useful hint</FormControl.Hint>
+        <FormControl.Validation>LGTM</FormControl.Validation>
+      </FormControl>,
+    )
+
+    const input = getByLabelText('My Label')
+    const hint = getByText('A useful hint')
+    const validation = getByText('LGTM')
+
+    expect(input).toHaveAttribute('aria-describedby', `${hint.id} ${validation.id}`)
+  })
 })

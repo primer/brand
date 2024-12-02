@@ -109,13 +109,21 @@ function _Label({children, ...rest}: PropsWithChildren<SectionIntroLabelProps>) 
 
 type SectionIntroLinkProps = Omit<LinkProps, 'size'> & BaseProps<HTMLAnchorElement>
 
-const _Link = forwardRef(({className, children, ...props}: SectionIntroLinkProps, ref: Ref<HTMLAnchorElement>) => {
-  return (
-    <Link ref={ref} className={clsx(styles['SectionIntro-link'], className)} size="medium" {...props}>
-      {children}
-    </Link>
-  )
-})
+const _Link = forwardRef(
+  ({className, children, variant = 'accent', ...props}: SectionIntroLinkProps, ref: Ref<HTMLAnchorElement>) => {
+    return (
+      <Link
+        ref={ref}
+        className={clsx(styles['SectionIntro-link'], className)}
+        size="medium"
+        variant={variant}
+        {...props}
+      >
+        {children}
+      </Link>
+    )
+  },
+)
 
 export const SectionIntro = Object.assign(Root, {
   Heading: _Heading,

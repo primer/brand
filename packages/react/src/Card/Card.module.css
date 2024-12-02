@@ -111,21 +111,12 @@
 }
 
 .Card__icon {
-  margin-bottom: var(--base-size-16);
+  margin-bottom: var(--base-size-24);
   grid-area: icon;
 }
 
-.Card__icon--badge {
-  width: var(--base-size-44);
-  height: var(--base-size-44);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .Card__label {
-  margin-bottom: var(--base-size-16);
+  margin-bottom: var(--base-size-24);
   grid-area: label;
 }
 
@@ -151,126 +142,10 @@
   color: var(--brand-Link-color-accent);
 }
 
-.Card__icon svg {
-  width: var(--base-size-20);
-  height: var(--base-size-20);
-}
-
-.Card__icon--color-default {
-  color: var(--brand-Card-icon-color-default);
-}
-
-.Card__icon--color-default.Card__icon--badge {
-  background-color: var(--brand-Card-icon-background-default);
-}
-
-.Card__icon--color-blue {
-  color: var(--brand-Card-icon-color-blue);
-}
-
-.Card__icon--color-blue.Card__icon--badge {
-  background-color: var(--brand-Card-icon-background-blue);
-}
-
-.Card__icon--color-coral {
-  color: var(--brand-Card-icon-color-coral);
-}
-
-.Card__icon--color-coral.Card__icon--badge {
-  background-color: var(--brand-Card-icon-background-coral);
-}
-
-.Card__icon--color-green {
-  color: var(--brand-Card-icon-color-green);
-}
-
-.Card__icon--color-green.Card__icon--badge {
-  background-color: var(--brand-Card-icon-background-green);
-}
-
-.Card__icon--color-gray {
-  color: var(--brand-Card-icon-color-gray);
-}
-
-.Card__icon--color-gray.Card__icon--badge {
-  background-color: var(--brand-Card-icon-background-gray);
-}
-
-.Card__icon--color-indigo {
-  color: var(--brand-Card-icon-color-indigo);
-}
-
-.Card__icon--color-indigo.Card__icon--badge {
-  background-color: var(--brand-Card-icon-background-indigo);
-}
-
-.Card__icon--color-lemon {
-  color: var(--brand-Card-icon-color-lemon);
-}
-
-.Card__icon--color-lemon.Card__icon--badge {
-  background-color: var(--brand-Card-icon-background-lemon);
-}
-
-.Card__icon--color-lime {
-  color: var(--brand-Label-color-lime);
-}
-
-.Card__icon--color-lime.Card__icon--badge {
-  background-color: var(--brand-Card-icon-background-lime);
-}
-
-.Card__icon--color-orange {
-  color: var(--brand-Card-icon-color-orange);
-}
-
-.Card__icon--color-orange.Card__icon--badge {
-  background-color: var(--brand-Card-icon-background-orange);
-}
-
-.Card__icon--color-pink {
-  color: var(--brand-Card-icon-color-pink);
-}
-
-.Card__icon--color-pink.Card__icon--badge {
-  background-color: var(--brand-Card-icon-background-pink);
-}
-
-.Card__icon--color-purple {
-  color: var(--brand-Card-icon-color-purple);
-}
-
-.Card__icon--color-purple.Card__icon--badge {
-  background-color: var(--brand-Card-icon-background-purple);
-}
-
-.Card__icon--color-red {
-  color: var(--brand-Card-icon-color-red);
-}
-
-.Card__icon--color-red.Card__icon--badge {
-  background-color: var(--brand-Card-icon-background-red);
-}
-
-.Card__icon--color-teal {
-  color: var(--brand-Card-icon-color-teal);
-}
-
-.Card__icon--color-teal.Card__icon--badge {
-  background-color: var(--brand-Card-icon-background-teal);
-}
-
-.Card__icon--color-yellow {
-  color: var(--brand-Card-icon-color-yellow);
-}
-
-.Card__icon--color-yellow.Card__icon--badge {
-  background-color: var(--brand-Card-icon-background-yellow);
-}
-
 .Card--skew {
   height: 100%;
   border-radius: var(--brand-borderRadius-large);
+  overflow: hidden;
 }
 
 .Card--skew:focus-within {

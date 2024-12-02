@@ -9,15 +9,7 @@ export default {
 } as Meta<typeof PricingOptions>
 
 export const Default = () => (
-  <Box
-    backgroundColor="default"
-    paddingBlockStart="spacious"
-    paddingBlockEnd="spacious"
-    style={{
-      ['--brand-color-accent-primary' as string]: 'var(--base-color-scale-purple-5)',
-      minHeight: '100vh',
-    }}
-  >
+  <Box backgroundColor="default" paddingBlockStart="spacious" paddingBlockEnd="spacious" style={{minHeight: '100vh'}}>
     <Grid>
       <Grid.Column span={12}>
         <PricingOptions>

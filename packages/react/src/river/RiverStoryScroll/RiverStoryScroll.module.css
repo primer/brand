@@ -10,13 +10,23 @@
   --visualMaxWidthUL: 1032;
   --visualMaxHeight: min(690px, 60vh);
   --visualMaxHeightUL: 690;
+  --storyScrollPadding: min(32px, 5vw);
   position: relative;
+}
+@media (max-height: 720px) {
+  .RiverStoryScroll {
+    --visualMaxHeight: 55vh;
+  }
+}
 
-  @media (max-height: 600px) {
+@media (max-height: 600px) {
+  .RiverStoryScroll {
     --visualMaxHeight: 50vh;
   }
+}
 
-  @media (max-height: 500px) {
+@media (max-height: 500px) {
+  .RiverStoryScroll {
     --visualMaxHeight: 40vh;
   }
 }
@@ -50,19 +60,58 @@
   display: none;
 }
 
+@media (max-width: 542px) {
+  .RiverStoryScroll {
+    --topOffset: calc((100vh - min(664px, 60vh)) / 5);
+  }
+}
+
+@media (max-width: 768px) and (min-height: 670px) {
+  .RiverStoryScroll {
+    --extraBottomSpacing: calc(-1 * (100vh - 100vw) / 5);
+  }
+}
+
+@media (min-width: 542px) and (max-width: 1028px) and (min-height: 670px) {
+  .RiverStoryScroll {
+    --extraBottomSpacing: calc(-1 * (100vh - 100vw) / 3);
+  }
+}
+
+@media (min-width: 542px) {
+  .RiverStoryScroll {
+    --scrollTextHeight: 42vh;
+  }
+}
+
+@media (max-height: 520px) {
+  .RiverStoryScroll {
+    --scrollTextHeight: 70vh;
+  }
+}
+
+@media (min-width: 1028px) {
+  .RiverStoryScroll {
+    --stackDistance: -30px;
+  }
+}
+
+@media (max-height: 800px) {
+  .RiverStoryScroll {
+    --stackDistance: -20px;
+  }
+}
+
+@media (max-height: 500px) {
+  .RiverStoryScroll {
+    --stackDistance: -15px;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .RiverStoryScroll {
-    @media (max-height: 720px) {
-      --visualMaxHeight: 55vh;
-    }
-
     --topOffset: calc((100vh - min(664px, 60vh)) / 3);
 
-    @media (max-width: 542px) {
-      /* --topOffset: calc((100vh - min(664px, 60vh)) / 2);*/
-
-      --topOffset: calc((100vh - min(664px, 60vh)) / 5);
-    }
     /* Spacing above the visual */
     --availableWidth: calc(100vw - var(--storyScrollPadding) * 2);
     --relativeVisualHeight: calc(var(--visualMaxHeightUL) / var(--visualMaxWidthUL) * var(--availableWidth));
@@ -75,182 +124,151 @@
     --bottomScrollOffset: calc(100vh - var(--topOffset) - var(--visualHeight) - var(--textToVisualPadding));
 
     --extraBottomSpacing: 70px;
+  }
 
-    @media (max-width: 768px) and (min-height: 670px) {
-      --extraBottomSpacing: calc(-1 * (100vh - 100vw) / 5);
-    }
-
-    @media (min-width: 542px) and (max-width: 1028px) and (min-height: 670px) {
-      --extraBottomSpacing: calc(-1 * (100vh - 100vw) / 3);
-    }
-
-    @media (min-width: 542px) {
-      --scrollTextHeight: 42vh;
-    }
-    @media (max-height: 520px) {
-      --scrollTextHeight: 70vh;
-    }
-
-    @media (min-width: 768px) {
-    }
-
-    --storyScrollPadding: min(32px, 5vw);
-
-    @media (min-width: 1028px) {
-      --stackDistance: -30px;
-    }
-
-    @media (max-height: 800px) {
-      --stackDistance: -20px;
-    }
-
-    @media (max-height: 500px) {
-      --stackDistance: -15px;
-    }
-
-    .RiverStoryScroll__visual-container {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      left: 0;
-      top: 0;
-    }
-
-    .RiverStoryScroll__tracker {
-      min-height: var(--scrollTextHeight);
-      position: relative;
-      transition: opacity 0.3s var(--ease);
-    }
-
-    .RiverStoryScroll__tracker:has(+ .in-viewport) {
-      opacity: 0;
-    }
-
-    .RiverStoryScroll__tracker.in-viewport + .outside-viewport {
-      opacity: 0;
-    }
-
-    .RiverStoryScroll {
-      max-width: calc(1032px + var(--storyScrollPadding) * 2);
-      margin-top: min(30vw, 22vh);
-      margin-left: auto;
-      margin-right: auto;
-      padding-right: var(--storyScrollPadding);
-      padding-left: var(--storyScrollPadding);
-    }
-
-    .RiverStoryScroll__content-container--below {
-      padding-top: var(--topScrollOffset);
-      padding-bottom: var(--bottomScrollOffset);
-    }
-
-    .RiverStoryScroll__image {
-      height: auto;
-      width: 100%;
-      max-width: var(--visualWidth);
-      border-radius: var(--brand-borderRadius-large);
-    }
-
+  /* Enhanced styling if dvh is supported */
+  @supports (height: 100dvh) {
     .RiverStoryScroll__visual-container-inner {
-      position: sticky;
-      pointer-events: none;
-      top: 0;
-      padding-top: var(--topOffset);
-      margin-top: calc(-1 * var(--topOffset));
-      display: flex;
-      z-index: 1;
-      flex-direction: column;
-      height: 100vh;
+      height: 100dvh;
     }
+  }
 
-    /* Enhanced styling if dvh is supported */
-    @supports (height: 100dvh) {
-      .RiverStoryScroll__visual-container-inner {
-        height: 100dvh;
-      }
-    }
+  .RiverStoryScroll__visual-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+  }
 
-    .RiverStoryScroll__visual--below {
-      background-image: linear-gradient(
-        180deg,
-        var(--brand-RiverStoryScroll-content-inactive-bgColor) calc(var(--topOffset) + var(--visualHeight) + 3px),
-        transparent calc(var(--topOffset) + var(--visualHeight) + var(--textToVisualPadding)),
-        transparent 93%,
-        var(--brand-RiverStoryScroll-content-inactive-bgColor) 99%
-      );
-    }
+  .RiverStoryScroll__tracker {
+    min-height: var(--scrollTextHeight);
+    position: relative;
+    transition: opacity 0.3s var(--ease);
+  }
 
-    .RiverStoryScroll__visual--below .story-scroll-text {
-      margin-top: var(--base-size-40);
-    }
+  .RiverStoryScroll__tracker:has(+ .in-viewport) {
+    opacity: 0;
+  }
 
-    .tracker-outside-viewport {
-      opacity: 0;
-      display: none;
-    }
+  .RiverStoryScroll__tracker.in-viewport + .outside-viewport {
+    opacity: 0;
+  }
 
-    /* Show first visual, even when nothing is visible */
-    .tracker-outside-viewport:nth-child(2) {
-      opacity: 1;
-      display: block;
-    }
+  .RiverStoryScroll {
+    max-width: calc(1032px + var(--storyScrollPadding) * 2);
+    margin-top: min(30vw, 22vh);
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: var(--storyScrollPadding);
+    padding-left: var(--storyScrollPadding);
+  }
 
-    .RiverStoryScroll__visual-scroll-responder {
-      transition: 0.5s var(--ease) transform, 0.5s var(--ease) filter, 0.5s var(--ease) opacity;
-      pointer-events: auto;
-    }
+  .RiverStoryScroll__content-container--below {
+    padding-top: var(--topScrollOffset);
+    padding-bottom: var(--bottomScrollOffset);
+  }
 
-    .tracker-outside-viewport:has(~ .tracker-in-viewport) {
-      position: absolute;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      left: 0;
-      right: 0;
-    }
+  .RiverStoryScroll__image {
+    height: auto;
+    width: 100%;
+    max-width: var(--visualWidth);
+    border-radius: var(--brand-borderRadius-large);
+  }
 
-    .tracker-in-viewport + .tracker-outside-viewport {
-      transform: translateY(calc(var(--stackDistance) * -1)) scale(1.015);
-      position: absolute;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      left: 0;
-      right: 0;
-    }
+  .RiverStoryScroll__visual-container-inner {
+    position: sticky;
+    pointer-events: none;
+    top: 0;
+    padding-top: var(--topOffset);
+    margin-top: calc(-1 * var(--topOffset));
+    display: flex;
+    z-index: 1;
+    flex-direction: column;
+    height: 100vh;
+  }
 
-    .tracker-outside-viewport:has(+ .tracker-in-viewport) {
-      transform: translateY(var(--stackDistance)) scale(0.95);
-      filter: brightness(70%);
-      opacity: 1;
-    }
+  .RiverStoryScroll__visual--below {
+    background-image: linear-gradient(
+      180deg,
+      var(--brand-RiverStoryScroll-content-inactive-bgColor) calc(var(--topOffset) + var(--visualHeight) + 3px),
+      transparent calc(var(--topOffset) + var(--visualHeight) + var(--textToVisualPadding)),
+      transparent 93%,
+      var(--brand-RiverStoryScroll-content-inactive-bgColor) 99%
+    );
+  }
 
-    .tracker-outside-viewport:has(+ .tracker-outside-viewport + .tracker-in-viewport) {
-      transform: translateY(calc(var(--stackDistance) * 2)) scale(0.9);
-      filter: brightness(50%);
-      opacity: 1;
-    }
+  .RiverStoryScroll__visual--below .story-scroll-text {
+    margin-top: var(--base-size-40);
+  }
 
-    .tracker-outside-viewport:has(+ .tracker-outside-viewport + .tracker-outside-viewport + .tracker-in-viewport) {
-      transform: translateY(calc(var(--stackDistance) * 3)) scale(0.85);
-      filter: brightness(30%);
-      opacity: 1;
-    }
+  .tracker-outside-viewport {
+    opacity: 0;
+    display: none;
+  }
 
-    .tracker-outside-viewport:has(
-        + .tracker-outside-viewport + .tracker-outside-viewport + .tracker-outside-viewport + .tracker-in-viewport
-      ) {
-      transform: translateY(calc(var(--stackDistance) * 4)) scale(0.8);
-      filter: brightness(10%);
-      opacity: 1;
-    }
+  /* Show first visual, even when nothing is visible */
+  .tracker-outside-viewport:nth-child(2) {
+    opacity: 1;
+    display: block;
+  }
 
-    .tracker-in-viewport {
-      display: block;
-      position: relative;
-    }
+  .RiverStoryScroll__visual-scroll-responder {
+    transition: 0.5s var(--ease) transform, 0.5s var(--ease) filter, 0.5s var(--ease) opacity;
+    pointer-events: auto;
+  }
 
-    /* 
+  .tracker-outside-viewport:has(~ .tracker-in-viewport) {
+    position: absolute;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+  }
+
+  .tracker-in-viewport + .tracker-outside-viewport {
+    transform: translateY(calc(var(--stackDistance) * -1)) scale(1.015);
+    position: absolute;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+  }
+
+  .tracker-outside-viewport:has(+ .tracker-in-viewport) {
+    transform: translateY(var(--stackDistance)) scale(0.95);
+    filter: brightness(70%);
+    opacity: 1;
+  }
+
+  .tracker-outside-viewport:has(+ .tracker-outside-viewport + .tracker-in-viewport) {
+    transform: translateY(calc(var(--stackDistance) * 2)) scale(0.9);
+    filter: brightness(50%);
+    opacity: 1;
+  }
+
+  .tracker-outside-viewport:has(+ .tracker-outside-viewport + .tracker-outside-viewport + .tracker-in-viewport) {
+    transform: translateY(calc(var(--stackDistance) * 3)) scale(0.85);
+    filter: brightness(30%);
+    opacity: 1;
+  }
+
+  .tracker-outside-viewport:has(
+      + .tracker-outside-viewport + .tracker-outside-viewport + .tracker-outside-viewport + .tracker-in-viewport
+    ) {
+    transform: translateY(calc(var(--stackDistance) * 4)) scale(0.8);
+    filter: brightness(10%);
+    opacity: 1;
+  }
+
+  .tracker-in-viewport {
+    display: block;
+    position: relative;
+  }
+
+  /* 
     TODO: Re-enable these at a later date
     
     .video-controls {
@@ -291,64 +309,64 @@
       background-color: rgba(0, 0, 0, 0.35);
     } */
 
-    .RiverStoryScroll__content-stack {
-      position: sticky;
-      padding-top: var(--textToVisualPadding);
-      top: calc(var(--topOffset) + var(--visualHeight));
-    }
+  .RiverStoryScroll__content-stack {
+    position: sticky;
+    padding-top: var(--textToVisualPadding);
+    top: calc(var(--topOffset) + var(--visualHeight));
+  }
 
-    /* This is a hack to make the sticky behavior exclude the height of itself as it reaches the bottom */
-    /* This makes it possible to calculate the end of the sticky scroll without having to account for text content */
-    .RiverStoryScroll__tracker:last-child .RiverStoryScroll__content-stack {
-      height: 0;
-    }
+  /* This is a hack to make the sticky behavior exclude the height of itself as it reaches the bottom */
+  /* This makes it possible to calculate the end of the sticky scroll without having to account for text content */
+  .RiverStoryScroll__tracker:last-child .RiverStoryScroll__content-stack {
+    height: 0;
+  }
 
-    .RiverStoryScroll__pagination {
-      display: flex;
-      flex-direction: column;
-      gap: var(--base-size-4);
-      position: absolute;
-      left: calc((100vw - 100%) / 2 * -1 + min(10px, 2.8vw));
-      right: 0;
-      margin: auto;
-      height: var(--visualHeight);
-      justify-content: center;
-    }
+  .RiverStoryScroll__pagination {
+    display: flex;
+    flex-direction: column;
+    gap: var(--base-size-4);
+    position: absolute;
+    left: calc(var(--base-size-20) * -1 - 2px);
+    right: 0;
+    margin: auto;
+    height: var(--visualHeight);
+    justify-content: center;
+    margin-block-start: calc(var(--base-size-20) * -1);
+  }
 
-    .RiverStoryScroll__pagination-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: var(--brand-borderRadius-large);
-      opacity: 0.55;
-      background: var(--brand-RiverStoryScroll-pagination-fgColor);
-      transition: opacity var(--brand-animation-duration-default) var(--ease),
-        height var(--brand-animation-duration-default) var(--ease);
-    }
+  .RiverStoryScroll__pagination-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: var(--brand-borderRadius-large);
+    opacity: 0.55;
+    background: var(--brand-RiverStoryScroll-pagination-fgColor);
+    transition: opacity var(--brand-animation-duration-default) var(--ease),
+      height var(--brand-animation-duration-default) var(--ease);
+  }
 
-    .tracker-in-viewport:nth-child(2) ~ .RiverStoryScroll__pagination .RiverStoryScroll__pagination-dot:nth-child(1) {
-      opacity: 1;
-      height: var(--base-size-24);
-    }
+  .tracker-in-viewport:nth-child(2) ~ .RiverStoryScroll__pagination .RiverStoryScroll__pagination-dot:nth-child(1) {
+    opacity: 1;
+    height: var(--base-size-24);
+  }
 
-    .tracker-in-viewport:nth-child(3) ~ .RiverStoryScroll__pagination .RiverStoryScroll__pagination-dot:nth-child(2) {
-      opacity: 1;
-      height: var(--base-size-24);
-    }
+  .tracker-in-viewport:nth-child(3) ~ .RiverStoryScroll__pagination .RiverStoryScroll__pagination-dot:nth-child(2) {
+    opacity: 1;
+    height: var(--base-size-24);
+  }
 
-    .tracker-in-viewport:nth-child(4) ~ .RiverStoryScroll__pagination .RiverStoryScroll__pagination-dot:nth-child(3) {
-      opacity: 1;
-      height: var(--base-size-24);
-    }
+  .tracker-in-viewport:nth-child(4) ~ .RiverStoryScroll__pagination .RiverStoryScroll__pagination-dot:nth-child(3) {
+    opacity: 1;
+    height: var(--base-size-24);
+  }
 
-    .tracker-in-viewport:nth-child(5) ~ .RiverStoryScroll__pagination .RiverStoryScroll__pagination-dot:nth-child(4) {
-      opacity: 1;
-      height: var(--base-size-24);
-    }
+  .tracker-in-viewport:nth-child(5) ~ .RiverStoryScroll__pagination .RiverStoryScroll__pagination-dot:nth-child(4) {
+    opacity: 1;
+    height: var(--base-size-24);
+  }
 
-    .tracker-in-viewport:nth-child(6) ~ .RiverStoryScroll__pagination .RiverStoryScroll__pagination-dot:nth-child(5) {
-      opacity: 1;
-      height: var(--base-size-24);
-    }
+  .tracker-in-viewport:nth-child(6) ~ .RiverStoryScroll__pagination .RiverStoryScroll__pagination-dot:nth-child(5) {
+    opacity: 1;
+    height: var(--base-size-24);
   }
 }
 
@@ -441,7 +459,7 @@
   }
 }
 
-@media screen and (min-width: 768px) and (min-height: 900px) {
+@media screen and (min-width: 768px) and (min-height: 900px) and (prefers-reduced-motion: no-preference) {
   .RiverStoryScroll {
     margin-top: -20vh;
   }

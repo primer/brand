@@ -1,6 +1,5 @@
 ---
 title: Avatar
-status: Experimental
 figma: 'https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=543%3A19830&t=Be91VGjX2BANJnQc-11'
 source: https://github.com/primer/brand/tree/main/packages/react/src/Avatar/Avatar.tsx
 storybook: '/brand/storybook/?path=/story/components-Avatar--playground'
@@ -23,10 +22,7 @@ import {Avatar, Stack} from '@primer/react-brand'
 ### Default
 
 ```jsx live
-<Avatar
-  src="https://avatars.githubusercontent.com/u/92997159?v=4"
-  alt="Mona profile"
-/>
+<Avatar src="/brand/assets/avatar-mona.png" alt="Mona profile" />
 ```
 
 ### Sizes
@@ -43,27 +39,27 @@ The size of the avatar can be controlled by the `size` prop.
 >
   <Avatar
     size={32}
-    src="https://avatars.githubusercontent.com/u/92997159?v=4"
+    src="/brand/assets/avatar-mona.png"
     alt="Mona avatar at 32px"
   />
   <Avatar
     size={40}
-    src="https://avatars.githubusercontent.com/u/92997159?v=4"
+    src="/brand/assets/avatar-mona.png"
     alt="Mona avatar at 40px"
   />
   <Avatar
     size={48}
-    src="https://avatars.githubusercontent.com/u/92997159?v=4"
+    src="/brand/assets/avatar-mona.png"
     alt="Mona avatar at 48px"
   />
   <Avatar
     size={64}
-    src="https://avatars.githubusercontent.com/u/92997159?v=4"
+    src="/brand/assets/avatar-mona.png"
     alt="Mona avatar at 64px"
   />
   <Avatar
     size={80}
-    src="https://avatars.githubusercontent.com/u/92997159?v=4"
+    src="/brand/assets/avatar-mona.png"
     alt="Mona avatar at 80px"
   />
 </Stack>
@@ -82,7 +78,7 @@ E.g. Providing only `narrow` will apply that value to all larger breakpoints, bu
 ```jsx live
 <Avatar
   size={{narrow: 32, regular: 40, wide: 80}}
-  src="https://avatars.githubusercontent.com/u/92997159?v=4"
+  src="/brand/assets/avatar-mona.png"
   alt="Mona avatar at 32px"
 />
 ```
@@ -102,13 +98,13 @@ The shape of the avatar can be controlled by the `shape` prop.
   <Avatar
     size={64}
     shape="circle"
-    src="https://avatars.githubusercontent.com/u/92997159?v=4"
+    src="/brand/assets/avatar-mona.png"
     alt="A circular avatar picture"
   />
   <Avatar
     size={64}
     shape="square"
-    src="https://avatars.githubusercontent.com/u/92997159?v=4"
+    src="/brand/assets/avatar-mona.png"
     alt="A square avatar picture"
   />
 </Stack>

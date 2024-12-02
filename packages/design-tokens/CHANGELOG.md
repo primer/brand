@@ -1,5 +1,46 @@
 # @primer/brand-primitives
 
+## 0.43.0
+
+## 0.42.1
+
+## 0.42.0
+
+### Minor Changes
+
+- [#798](https://github.com/primer/brand/pull/798) [`af335d37`](https://github.com/primer/brand/commit/af335d376b25edfda0feddd7afd45dacf549eeac) Thanks [@joshfarrant](https://github.com/joshfarrant)! - ⚠️ Breaking change: Removed all Card-icon-background/color tokens (eg `--brand-Card-icon-background-blue`, `--brand-Card-icon-color-orange`)
+
+## 0.41.0
+
+### Minor Changes
+
+- [#774](https://github.com/primer/brand/pull/774) [`a6baf41d`](https://github.com/primer/brand/commit/a6baf41dfbb3ac54b12c41ba196b256be3a9315d) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Fixed issue where `Button` component would reflow and break over multiple lines when its text content exceeded the viewport width.
+
+  :warning: Breaking changes to the following design tokens:
+
+  ```diff
+  - --brand-control-medium-paddingBlock
+  + --brand-control-medium-paddingBlock-normal
+  ```
+
+  ```diff
+  - --brand-control-large-paddingBlock
+  + --brand-control-large-paddingBlock-normal
+  ```
+
+  Additional tokens added:
+
+  ```diff
+  + --brand-control-medium-paddingBlock-condensed
+  + --brand-control-large-paddingBlock-condensed
+  ```
+
+### Patch Changes
+
+- [#791](https://github.com/primer/brand/pull/791) [`8105b6a3`](https://github.com/primer/brand/commit/8105b6a31ad61f90a07ca67417552795cf4237c0) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Increased spacing between `River` components on narrow viewports from `28px` to `36px`
+
+- [#769](https://github.com/primer/brand/pull/769) [`41531950`](https://github.com/primer/brand/commit/4153195009f1a0e37b117546b543b476f970245a) Thanks [@danielguillan](https://github.com/danielguillan)! - Adjust text 800 line height
+
 ## 0.40.1
 
 ### Patch Changes

@@ -1,8 +1,8 @@
-import React, {forwardRef, type Ref} from 'react'
+import React, {forwardRef, useCallback, useMemo, type Ref} from 'react'
 import clsx from 'clsx'
 import type {BaseProps} from '../component-helpers'
 import {Heading, HeadingProps} from '../Heading'
-import {Text} from '../Text'
+import {Text, TextProps} from '../Text'
 import {ButtonGroup} from '../ButtonGroup'
 
 /**
@@ -13,58 +13,130 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './CTABanner.module.css'
 
+export const CTABannerBackgroundColors = ['default', 'subtle'] as const
+
+type ResponsiveMap<T> = {
+  narrow?: T
+  regular?: T
+  wide?: T
+}
+
+type ResponsiveBackgroundImageSrcMap = ResponsiveMap<string | string[]>
+type BackgroundColors = (typeof CTABannerBackgroundColors)[number] | AnyString
+type ResponsiveBackgroundColorMap = ResponsiveMap<BackgroundColors>
+type ResponsiveBackgroundImagePositionMap = ResponsiveMap<string | string[]>
+type ResponsiveBackgroundImageSizeMap = ResponsiveMap<string | string[]>
+
 export type CTABannerProps = BaseProps<HTMLElement> &
   React.HTMLAttributes<HTMLElement> & {
-    children: React.ReactNode | React.ReactNode[]
+    /**
+     * The alignment of the content within the banner.
+     */
     align?: 'start' | 'center'
+    /**
+     * A flag to add a border to the banner.
+     */
     hasBorder?: boolean
+    /**
+     * A flag to remove the shadow from the banner.
+     */
     hasShadow?: boolean
+    /**
+     * A flag to remove the background from the banner.
+     */
     hasBackground?: boolean
+    /**
+     * Optional, custom background color.
+     */
+    backgroundColor?: BackgroundColors | ResponsiveBackgroundColorMap
+    /**
+     * Optional, custom background image.
+     */
+    backgroundImageSrc?: string | ResponsiveBackgroundImageSrcMap
+    /**
+     * Optional, custom background position.
+     */
+    backgroundImagePosition?: string | ResponsiveBackgroundImagePositionMap
+    /**
+     * Optional, custom background size.
+     */
+    backgroundImageSize?: string | ResponsiveBackgroundImageSizeMap
+    /**
+     * Escape-hatch for inserting custom React components.
+     * Warning:
+     *   This prop isn't advertised in our docs but remains part of the public API for edge-cases.
+     *   Need to use this prop? Please check in with #primer-brand first to confirm correct usage.
+     */
     trailingComponent?: React.FunctionComponent
   }
 
 const Root = forwardRef(
   (
     {
-      /**
-       * The alignment of the content within the banner.
-       */
       align = 'start',
-      /**
-       * A flag to add a border to the banner.
-       */
       hasBorder = false,
-      /**
-       * A flag to remove the shadow from the banner.
-       */
       hasShadow = true,
-      /**
-       * A flag to remove the background from the banner.
-       */
       hasBackground = true,
-      /**
-       * Forward a custom HTML class attribute to the root element.
-       */
+      backgroundColor = 'var(--brand-CTABanner-bgColor)',
+      backgroundImageSrc,
+      backgroundImagePosition = 'center',
+      backgroundImageSize = 'cover',
       className,
-      /**
-       * React.ReactNode and React.ReactNode[] are valid children.
-       */
       children,
-      /**
-       * Escape-hatch for inserting custom React components.
-       * Warning:
-       *   This prop isn't advertised in our docs but remains part of the public API for edge-cases.
-       *   Need to use this prop? Please check in with #primer-brand first to confirm correct usage.
-       */
       trailingComponent: TrailingComponent,
+      style,
       ...props
     }: CTABannerProps,
     ref: Ref<HTMLElement>,
   ) => {
+    const processBackgroundValue = useCallback((value: string | string[], property) => {
+      if (property === 'background-image-src') {
+        return `url(${value})`
+      }
+
+      if (property === 'background-color' && typeof value === 'string') {
+        return CTABannerBackgroundColors.includes(value as (typeof CTABannerBackgroundColors)[number])
+          ? `var(--brand-color-canvas-${value})`
+          : value
+      }
+
+      return value
+    }, [])
+
+    const createStyles = useCallback(
+      (property, value) =>
+        typeof value === 'string' || Array.isArray(value)
+          ? {[`--brand-CTABanner-${property}`]: processBackgroundValue(value, property)}
+          : {
+              [`--brand-CTABanner-narrow-${property}`]: processBackgroundValue(value?.narrow, property),
+              [`--brand-CTABanner-regular-${property}`]: processBackgroundValue(value?.regular, property),
+              [`--brand-CTABanner-wide-${property}`]: processBackgroundValue(value?.wide, property),
+            },
+      [processBackgroundValue],
+    )
+
+    const backgroundStyles = useMemo(() => {
+      const allStyles = {}
+
+      const addStyle = (property, value) => {
+        if (value) {
+          Object.assign(allStyles, createStyles(property, value))
+        }
+      }
+
+      addStyle('background-color', backgroundColor)
+      addStyle('background-image-src', backgroundImageSrc)
+      addStyle('background-image-position', backgroundImagePosition)
+      addStyle('background-image-size', backgroundImageSize)
+
+      return allStyles
+    }, [backgroundColor, backgroundImageSrc, backgroundImagePosition, backgroundImageSize, createStyles])
+
     return (
       <section
         ref={ref}
         className={clsx(styles.CTABanner, hasShadow && styles['CTABanner--shadow'], className)}
+        style={{...backgroundStyles, ...style}}
         {...props}
       >
         <div
@@ -105,14 +177,15 @@ const _Heading = forwardRef(
   },
 )
 
-type CTABannerDescriptionProps = BaseProps<HTMLParagraphElement> & {
-  children: React.ReactNode | React.ReactNode[]
-}
+type CTABannerDescriptionProps = React.HtmlHTMLAttributes<HTMLParagraphElement> &
+  BaseProps<HTMLParagraphElement> & {
+    variant?: TextProps['variant']
+  }
 
 const Description = forwardRef(
-  ({className, children, ...props}: CTABannerDescriptionProps, ref: Ref<HTMLParagraphElement>) => {
+  ({className, children, variant = 'muted', ...props}: CTABannerDescriptionProps, ref: Ref<HTMLParagraphElement>) => {
     return (
-      <Text ref={ref} className={clsx(styles['CTABanner-description'], className)} as="p" {...props}>
+      <Text ref={ref} className={clsx(styles['CTABanner-description'], className)} as="p" variant={variant} {...props}>
         {children}
       </Text>
     )

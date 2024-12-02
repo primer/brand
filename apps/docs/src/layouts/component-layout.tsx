@@ -3,11 +3,13 @@ import PageFooter from '@primer/gatsby-theme-doctocat/src/components/page-footer
 import TableOfContents from '@primer/gatsby-theme-doctocat/src/components/table-of-contents'
 import SourceLink from '@primer/gatsby-theme-doctocat/src/components/source-link'
 import StorybookLink from '@primer/gatsby-theme-doctocat/src/components/storybook-link'
-import {AccessibilityLabel, StatusLabel} from '@primer/gatsby-theme-doctocat'
-import {Box as PRCBox, Heading, Label, Text} from '@primer/react'
+import {AccessibilityLabel} from '@primer/gatsby-theme-doctocat'
+import {Box as PRCBox, Heading, Text} from '@primer/react'
 import React from 'react'
 import {BaseLayout} from './base-layout'
 import {ComponentPageNav} from '../components/component-page-nav'
+
+import styles from './component-layout.module.css'
 
 /** Convert a string to sentence case. */
 function sentenceCase(str: string) {
@@ -82,40 +84,40 @@ export default function ComponentLayout({pageContext, children, path}) {
           <PRCBox sx={{minWidth: 0}}>
             {isReactPage && (
               <PRCBox
+                className={styles.container}
                 sx={{
                   display: 'flex',
                   flexDirection: ['column', null, null, null, 'row'],
-                  justifyContent: 'space-between',
                   gap: 3,
                   mb: 4,
                 }}
               >
-                <PRCBox
-                  as={'ul'}
-                  sx={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    gap: 2,
-                    alignItems: 'center',
-                    m: 0,
-                    p: 0,
-                    paddingInline: 0,
-                    listStyle: 'none',
-                    '& > li': {
+                {a11yReviewed && (
+                  <PRCBox
+                    as={'ul'}
+                    sx={{
                       display: 'flex',
-                    },
-                  }}
-                >
-                  <li>
-                    <StatusLabel status={sentenceCase(status)} />
-                  </li>
-                  <li>
-                    <AccessibilityLabel
-                      a11yReviewed={a11yReviewed}
-                      short={false}
-                    />
-                  </li>
-                </PRCBox>
+                      flexWrap: 'wrap',
+                      gap: 2,
+                      alignItems: 'center',
+                      m: 0,
+                      p: 0,
+                      paddingInline: 0,
+                      listStyle: 'none',
+                      '& > li': {
+                        display: 'flex',
+                      },
+                    }}
+                  >
+                    <li>
+                      <AccessibilityLabel
+                        a11yReviewed={a11yReviewed}
+                        short={false}
+                      />
+                    </li>
+                  </PRCBox>
+                )}
+
                 <PRCBox
                   as={'ul'}
                   sx={{

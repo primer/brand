@@ -1,5 +1,162 @@
 # @primer/react-brand
 
+## 0.43.0
+
+### Minor Changes
+
+- [#825](https://github.com/primer/brand/pull/825) [`2c8e9240`](https://github.com/primer/brand/commit/2c8e9240a1bb36f7753a3e63318e92322a7bf780) Thanks [@rezrah](https://github.com/rezrah)! - Switched to use CSS Logical Properties in compiled output.
+
+  - Compiled styles now directly use CSS logical properties (e.g., `margin-inline-start`, `margin-inline-end`) instead of physical properties (`margin-left`, `margin-right`).
+  - This change simplifies the stylesheet and reduces its overall size (`652kB` > `593kB`)
+
+  Example of the change:
+
+  Source:
+
+  ```css
+  .selector {
+    margin-inline-start: var(--base-size-20);
+  }
+  ```
+
+  <table>
+  <tr>
+  <th> Previous compiled output
+  </th> <th> New compiled output </th>
+  </tr>
+  <tr>
+  <td valign="top">
+
+  ```css
+  [dir='ltr'] .selector {
+    margin-left: 2px;
+  }
+
+  [dir='rtl'] .selector {
+    margin-right: 2px;
+  }
+  ```
+
+   </td>
+  <td valign="top">
+
+  ```css
+  .selector {
+    margin-inline-start: 2px;
+  }
+  ```
+
+  </td>
+  </tr>
+  </table>
+
+### Patch Changes
+
+- [#825](https://github.com/primer/brand/pull/825) [`2c8e9240`](https://github.com/primer/brand/commit/2c8e9240a1bb36f7753a3e63318e92322a7bf780) Thanks [@rezrah](https://github.com/rezrah)! - Fixed errors in compiled CSS stylesheets where selectors with special characters were being unintentionally escaped for compatibility with legacy browsers.
+
+- [#818](https://github.com/primer/brand/pull/818) [`281beb08`](https://github.com/primer/brand/commit/281beb08114f24f0ec5b23b14643324b0be532e6) Thanks [@joshfarrant](https://github.com/joshfarrant)! - `FormControl.Validation` is now associated with the relevant input using `aria-describedby`.
+
+- [#822](https://github.com/primer/brand/pull/822) [`75da350d`](https://github.com/primer/brand/commit/75da350d63b75bd8b4e2c163e681ca4f7f1d4a46) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Updated `IDEChatMessage` type declaration to differentiate between assistant and user messages.
+
+## 0.42.1
+
+### Patch Changes
+
+- [#812](https://github.com/primer/brand/pull/812) [`8ce76569`](https://github.com/primer/brand/commit/8ce7656991eadee1225173b3d7cd130716789cc8) Thanks [@danielguillan](https://github.com/danielguillan)! - Ensure accessible content order in `PricingOptions` markup
+
+- [#815](https://github.com/primer/brand/pull/815) [`7345cc9d`](https://github.com/primer/brand/commit/7345cc9d4a6c20f963d99d837df88ac404bda496) Thanks [@rezrah](https://github.com/rezrah)! - Fixed corner background overflow bug in `Card` component on Safari browsers
+
+## 0.42.0
+
+### Minor Changes
+
+- [#811](https://github.com/primer/brand/pull/811) [`6331ae61`](https://github.com/primer/brand/commit/6331ae61b7c4b9bbc0910bab146c1023dd852511) Thanks [@rezrah](https://github.com/rezrah)! - `River` and `SectionIntro` link colors now default to blue (accent) for consistency with `Card`, `Pillar` and similar components that feature blue links.
+
+  :warning: This is a visual breaking change. Please manually review all usages of `River` and `SectionIntro` to ensure there is sufficient contrast with the background color.
+
+### Patch Changes
+
+- [#805](https://github.com/primer/brand/pull/805) [`2928995b`](https://github.com/primer/brand/commit/2928995bffb5994104491a4ee5d1d6d831737161) Thanks [@rezrah](https://github.com/rezrah)! - Disabled all transitions and auto-staggering when `reduced-motion` user preference is enabled
+
+- [#809](https://github.com/primer/brand/pull/809) [`bbb14ce9`](https://github.com/primer/brand/commit/bbb14ce9ed2e7c8e9138e249732d7b4b9de85bc9) Thanks [@rezrah](https://github.com/rezrah)! - Updated `Link` underline to fill entire width
+
+- [#798](https://github.com/primer/brand/pull/798) [`af335d37`](https://github.com/primer/brand/commit/af335d376b25edfda0feddd7afd45dacf549eeac) Thanks [@joshfarrant](https://github.com/joshfarrant)! - - Fixed a bug where the `Bento` `leadingVisual` prop wouldn't honour the provided `size`.
+
+  - Updated the `Card.Icon` internal implementation to use the new `Icon` component.
+
+- [#810](https://github.com/primer/brand/pull/810) [`774b91b0`](https://github.com/primer/brand/commit/774b91b0ed16079d388bbd7cf6edc0d3dbed38e1) Thanks [@rezrah](https://github.com/rezrah)! - Added new background customization options to `CTABanner`
+
+  New props:
+
+  - `backgroundColor`
+  - `backgroundImageSrc`
+  - `backgroundImageSize`
+  - `backgroundImagePosition`
+
+  Also added `variant` prop to `CTABanner.Description`, to achieve higher contrast when using background images.
+
+  :link: [See the documentation for more details and usage examples](https://primer.style/brand/components/CTABanner/react/).
+
+- [#805](https://github.com/primer/brand/pull/805) [`2928995b`](https://github.com/primer/brand/commit/2928995bffb5994104491a4ee5d1d6d831737161) Thanks [@rezrah](https://github.com/rezrah)! - Removed negative margin from `RiverStoryScroll` when `reduced-motion` user preference is enabled
+
+## 0.41.0
+
+### Minor Changes
+
+- [#779](https://github.com/primer/brand/pull/779) [`b5c291e2`](https://github.com/primer/brand/commit/b5c291e290313d1c03ae79ef39fb02cb12b05cbe) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Accessibility improvements to the `FormControl.Hint` component.
+
+  - `FormControl.Hint` is now automatically associated with the form field using `aria-describedby`.
+  - Improvements to the styling of `FormControl.Hint` when used alongside a `Checkbox`.
+
+### Patch Changes
+
+- [#791](https://github.com/primer/brand/pull/791) [`8105b6a3`](https://github.com/primer/brand/commit/8105b6a31ad61f90a07ca67417552795cf4237c0) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Increased spacing between `River` components on narrow viewports from `28px` to `36px`
+
+- [#776](https://github.com/primer/brand/pull/776) [`06fd8476`](https://github.com/primer/brand/commit/06fd84763527bdb9f99a04b367ab4736fd396b6e) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Added `aria-describedby` attribute to leading/trailing text and visuals in `TextInput` component
+
+- [#781](https://github.com/primer/brand/pull/781) [`ec6ffc36`](https://github.com/primer/brand/commit/ec6ffc363cfa4fcb4ad5fc3c38100cf5d0fbc099) Thanks [@joshfarrant](https://github.com/joshfarrant)! - - `Card` component no longer expands to full width when `fullWidth={false}`
+
+  - `Card` component no longer renders duplicate borders in dark mode when `hasBorder={true}`
+
+- [#774](https://github.com/primer/brand/pull/774) [`a6baf41d`](https://github.com/primer/brand/commit/a6baf41dfbb3ac54b12c41ba196b256be3a9315d) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Fixed issue where `Button` component would reflow and break over multiple lines when its text content exceeded the viewport width.
+
+  :warning: Breaking changes to the following design tokens:
+
+  ```diff
+  - --brand-control-medium-paddingBlock
+  + --brand-control-medium-paddingBlock-normal
+  ```
+
+  ```diff
+  - --brand-control-large-paddingBlock
+  + --brand-control-large-paddingBlock-normal
+  ```
+
+  Additional tokens added:
+
+  ```diff
+  + --brand-control-medium-paddingBlock-condensed
+  + --brand-control-large-paddingBlock-condensed
+  ```
+
+- [#728](https://github.com/primer/brand/pull/728) [`c6ee839e`](https://github.com/primer/brand/commit/c6ee839e094c7b122ff6804674997994ae7f4ee1) Thanks [@MelissaPastore](https://github.com/MelissaPastore)! - Fixed a bug with the `Checkbox` component where validation messages wouldn't be positioned correctly.
+
+- [#768](https://github.com/primer/brand/pull/768) [`0270f06d`](https://github.com/primer/brand/commit/0270f06d4e5cc85aea5f671caa2c7e8ab08abe64) Thanks [@danielguillan](https://github.com/danielguillan)! - Improves spacing of `RiverBreakout` content
+
+- [#797](https://github.com/primer/brand/pull/797) [`b3e34be5`](https://github.com/primer/brand/commit/b3e34be569a1cb639325ce10220be07c3a35ea84) Thanks [@rezrah](https://github.com/rezrah)! - Fixed visual bug in `RiverStoryScroll` layout on narrow viewports. Also adjusted positioning of the pagination to be closer to the scrolled items.
+
+- [#760](https://github.com/primer/brand/pull/760) [`6be1118d`](https://github.com/primer/brand/commit/6be1118d4042e5efd78898583f546f46eac4921a) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Fixed a bug where passing a className to `Hero.Label` or `Hero.Eyebrow` would replace the default class.
+
+- [#766](https://github.com/primer/brand/pull/766) [`d10dc535`](https://github.com/primer/brand/commit/d10dc535284effd85966bab7ba1c02452fd1ec8d) Thanks [@danielguillan](https://github.com/danielguillan)! - Adds internal paddings to River content on larger viewports
+
+- [#767](https://github.com/primer/brand/pull/767) [`299ad371`](https://github.com/primer/brand/commit/299ad371ac4de9582fa27c65226bdd7c71f5689d) Thanks [@danielguillan](https://github.com/danielguillan)! - - Update the order of River children to ensure an accessible markup structure.
+
+  - On narrow viewports, the content and visuals are now flipped, with the visuals always placed first to enhance visual hierarchy.
+
+    > :warning: This may introduce a visual breaking change, whereby the visual is now displayed earlier in the page than originally intended. Please manually review content adjacent to the `River` components for correctness.
+
+- [#785](https://github.com/primer/brand/pull/785) [`ec7d4023`](https://github.com/primer/brand/commit/ec7d4023ca526c42648322fbb62e2c04fec4ddc0) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Fixed bug in `Card` component which caused the focus outline to not display when in dark-mode
+
 ## 0.40.1
 
 ### Patch Changes
@@ -435,7 +592,7 @@
 
 ### Patch Changes
 
-- [#568](https://github.com/primer/brand/pull/568) [`40a129d`](https://github.com/primer/brand/commit/40a129d78024612b625238d8a826fc06aa933465) Thanks [@rezrah](https://github.com/rezrah)! - Added support for optional `Button` and sub menu's in `SubNav` component.
+- [#568](https://github.com/primer/brand/pull/568) [`40a129d`](https://github.com/primer/brand/commit/40a129d78024612b625238d8a826fc06aa933465) Thanks [@rezrah](https://github.com/rezrah)! - Added support for optional `Button` and submenu's in `SubNav` component.
 
   Also added `fullWidth` prop to optionally remove the default component padding.
 

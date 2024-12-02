@@ -83,7 +83,7 @@ jobs:
         run: |
           cd ${{env.NEXTJS_FOLDER}}
           cp ../packages/react/primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz ./
-          npm install primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz
+          npm install primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz --legacy-peer-deps
 
       - name: Prefer ESM imports
         run: |

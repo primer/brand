@@ -138,12 +138,10 @@ describe('AnchorNav', () => {
     const {getByTestId} = render(<MockAnchorNavFixture />)
     const menuButton = getByTestId(AnchorNav.testIds.menuButton)
 
-    expect(menuButton).toHaveAttribute('aria-label', 'open anchor navigation menu') // aria label before menu open
     expect(menuButton).toHaveAttribute('aria-expanded', 'false') // aria attribute before menu open
 
     fireEvent.click(menuButton) // toggle menu button
 
-    expect(menuButton).toHaveAttribute('aria-label', 'close anchor navigation menu') // aria label after menu open
     expect(menuButton).toHaveAttribute('aria-expanded', 'true') // aria attribute before menu open
   })
 

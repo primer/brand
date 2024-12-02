@@ -14,9 +14,9 @@ test.describe('Visual Comparison: SubNav', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('SubNav / Example Usage', async ({page}) => {
+  test('SubNav / Dropdown Variant', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-subnav-features--example-usage&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-subnav-features--dropdown-variant&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -24,11 +24,24 @@ test.describe('Visual Comparison: SubNav', () => {
   })
 
   // eslint-disable-next-line i18n-text/no-en
-  test.describe('Mobile viewport test for Narrow Example Usage', () => {
+  test.describe('Mobile viewport test for Narrow Dropdown Variant', () => {
     test.use({viewport: {width: 360, height: 800}})
-    test('SubNav / Narrow Example Usage', async ({page}) => {
+    test('SubNav / Narrow Dropdown Variant', async ({page}) => {
       await page.goto(
-        'http://localhost:6006/iframe.html?args=&id=components-subnav-features--narrow-example-usage&viewMode=story',
+        'http://localhost:6006/iframe.html?args=&id=components-subnav-features--narrow-dropdown-variant&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for Narrow Dropdown Variant Menu Open', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('SubNav / Narrow Dropdown Variant Menu Open', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-subnav-features--narrow-dropdown-variant-menu-open&viewMode=story',
       )
 
       await page.waitForTimeout(500)
@@ -68,5 +81,40 @@ test.describe('Visual Comparison: SubNav', () => {
 
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Anchor Nav Variant', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-subnav-features--anchor-nav-variant&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for Narrow Anchor Nav Variant', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('SubNav / Narrow Anchor Nav Variant', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-subnav-features--narrow-anchor-nav-variant&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for Narrow Anchor Nav Variant Menu Open', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('SubNav / Narrow Anchor Nav Variant Menu Open', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-subnav-features--narrow-anchor-nav-variant-menu-open&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
   })
 })

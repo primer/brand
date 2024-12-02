@@ -1,15 +1,13 @@
 ---
 title: Section
-status: Experimental
 source: https://github.com/primer/brand/tree/main/packages/react/src/Section/Section.tsx
 storybook: '/brand/storybook/?path=/story/components-section--default'
 description: Use the section component to group related content together.
-a11yReviewed: false
 ---
 
 import ComponentLayout from '../../../src/layouts/component-layout'
 
-import { PropTableValues } from '../../../src/components'
+import {PropTableValues} from '../../../src/components'
 import {
   SectionBackgroundColors,
   SectionPaddingVariants,
@@ -128,19 +126,19 @@ The default `Section` wraps its content in a semantic `<section>` element and pr
 ### With rounded corners
 
 ```jsx live
-  <>
-    <ThemeProvider colorMode="dark">
-      <Section backgroundColor="default"></Section>
-    </ThemeProvider>
-    <Section backgroundColor="default" rounded>
-      <SectionIntro align="center">
-        <SectionIntro.Heading size="3">Rounded corners</SectionIntro.Heading>
-          <SectionIntro.Description>
-            This section has rounded top corners that overlap the previous section.
-          </SectionIntro.Description>
-      </SectionIntro>
-    </Section>
-  </>
+<>
+  <ThemeProvider colorMode="dark">
+    <Section backgroundColor="default"></Section>
+  </ThemeProvider>
+  <Section backgroundColor="default" rounded>
+    <SectionIntro align="center">
+      <SectionIntro.Heading size="3">Rounded corners</SectionIntro.Heading>
+      <SectionIntro.Description>
+        This section has rounded top corners that overlap the previous section.
+      </SectionIntro.Description>
+    </SectionIntro>
+  </Section>
+</>
 ```
 
 ## Component props
@@ -156,5 +154,5 @@ The default `Section` wraps its content in a semantic `<section>` element and pr
 | `backgroundImageSize`     | `string` \| `string[]` `ResponsiveMap`                                                                | `'cover'`   | `false`  | Control the size of the background image(s). This accepts all CSS `background-size` supported values, including keywords like `contain`.                      |
 | `backgroundImagePosition` | `string` \| `string[]` `ResponsiveMap`                                                                | `'50%'`     | `false`  | Control the position of the background image(s). This accepts all CSS `background-position` supported values, including keywords like `top` and edge offsets. |
 | `rounded`                 | `boolean`                                                                                             | `false`     | `false`  | Adds rounded conterns to the top of the section.                                                                                                              |
-| `fullWidth`               | `boolean`                                                                                             | `false`     | `false`  | Makes the container fill the entire width of the section.                                                                                                      |
+| `fullWidth`               | `boolean`                                                                                             | `false`     | `false`  | Makes the container fill the entire width of the section.                                                                                                     |
 | `as`                      | `section'`, `'div'`                                                                                   | `'section'` | `false`  | Applies the underlying HTML element.                                                                                                                          |

@@ -91,14 +91,6 @@
     grid-area: content;
   }
 
-  .River--align-start .River__content {
-    padding-inline-end: var(--base-size-128);
-  }
-
-  .River--align-end .River__content {
-    padding-inline: var(--base-size-64);
-  }
-
   .River__visual {
     grid-area: visual;
   }
@@ -125,6 +117,17 @@
 
   .River--align-center .River__content {
     margin-top: var(--brand-River-spacing-inner);
+  }
+}
+
+/* Large breakpoint and up */
+@media screen and (min-width: 63.25rem) {
+  .River--align-start .River__content {
+    padding-inline-end: var(--base-size-128);
+  }
+
+  .River--align-end .River__content {
+    padding-inline: var(--base-size-64);
   }
 }
 

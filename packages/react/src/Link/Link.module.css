@@ -1,4 +1,5 @@
 .Link {
+  --arrow-width: var(--base-size-20);
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -16,7 +17,7 @@
   position: absolute;
   bottom: -0.15em;
   left: 0;
-  width: calc(100% - 1.5em);
+  width: calc(100% - var(--arrow-width));
   height: 2px;
   pointer-events: none;
   content: '';
@@ -65,8 +66,8 @@
 }
 
 .Link--large .Link-arrow {
-  width: 20px;
-  height: 20px;
+  width: var(--arrow-width);
+  height: var(--base-size-20);
 }
 
 .Link--arrow-start::after {

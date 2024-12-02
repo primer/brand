@@ -72,6 +72,9 @@ const Root = ({
   )
 
   const containsHint = childrenArr.some(child => React.isValidElement(child) && child.type === FormControlHint)
+  const containsValidation = childrenArr.some(
+    child => React.isValidElement(child) && child.type === FormControlValidation,
+  )
 
   return (
     <section
@@ -88,7 +91,10 @@ const Root = ({
       {React.Children.map(children, child => {
         if (!React.isValidElement(child)) return
 
-        const describedBy = containsHint ? `${uniqueId}-hint` : undefined
+        const describedBy =
+          [containsHint && `${uniqueId}-hint`, containsValidation && `${uniqueId}-validation`]
+            .filter(Boolean)
+            .join(' ') || undefined
 
         switch (child.type) {
           case TextInput:
@@ -140,6 +146,7 @@ const Root = ({
             return React.cloneElement(child as React.ReactElement, {
               className: clsx(isInlineControl && styles['FormControl-validation-checkbox'], child.props.className),
               validationStatus,
+              id: `${uniqueId}-validation`,
             })
 
           case FormControlHint:
@@ -213,7 +220,7 @@ type FormControlValidationProps = {
   validationStatus?: FormValidationStatus
 } & BaseProps<HTMLSpanElement>
 
-const FormControlValidation = ({children, validationStatus, className}: FormControlValidationProps) => {
+const FormControlValidation = ({children, validationStatus, className, ...props}: FormControlValidationProps) => {
   return (
     <span
       className={clsx(
@@ -222,6 +229,7 @@ const FormControlValidation = ({children, validationStatus, className}: FormCont
         validationStatus && styles[`FormControl-validation--${validationStatus}`],
         className,
       )}
+      {...props}
     >
       {validationStatus === 'error' && (
         <span className={styles['FormControl-validation-error-icon']}>

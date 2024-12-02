@@ -1,7 +1,6 @@
 ---
 title: Breakout banner
 description: Use a breakout banner to break up content on longer pages and highlight important information.
-status: Experimental
 source: https://github.com/primer/brand/blob/main/packages/react/src/BreakoutBanner/BreakoutBanner.tsx
 storybook: '/brand/storybook/?path=/story/components-breakoutbanner--playground'
 ---
@@ -101,8 +100,14 @@ The content alignment can be changed using the `align` prop on the root `Breakou
 
 ### Leading visual
 
+<Note variant="warning">
+  An accessible label should always be provided for the leading visual.
+</Note>
+
 ```jsx live
-<BreakoutBanner leadingVisual={<LogoGithubIcon size="medium" />}>
+<BreakoutBanner
+  leadingVisual={<LogoGithubIcon size="medium" aria-label="GitHub logo" />}
+>
   <BreakoutBanner.Heading>
     Where the most ambitious teams build great things
   </BreakoutBanner.Heading>

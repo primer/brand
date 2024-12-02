@@ -17,6 +17,7 @@ import {
   Stack,
   SubdomainNavBar,
 } from '../../..'
+import {Icon} from '../../../Icon'
 
 import darkHeroBg from '../../../fixtures/images/background-dark-collaboration.webp'
 import darkPlaceholderImage from '../../../fixtures/images/enterprise-stack.png'
@@ -162,7 +163,7 @@ export function SolutionsOverview({
                       <Grid.Column span={{large: 4}}>
                         <Box animate="fade-in" className={styles.fullHeight}>
                           <Card href="#" hasBorder fullWidth>
-                            <Card.Icon icon={<StackIcon />} color="indigo" hasBackground />
+                            <Card.Icon icon={StackIcon} color="indigo" hasBackground />
                             <Card.Heading>Teams</Card.Heading>
                             <Card.Description>
                               Build like the best teams on the planet. With CI/CD, Dependabot, and the world&apos;s
@@ -175,7 +176,7 @@ export function SolutionsOverview({
                       <Grid.Column span={{large: 4}}>
                         <Box animate="fade-in" className={styles.fullHeight}>
                           <Card href="#" hasBorder fullWidth>
-                            <Card.Icon icon={<StarIcon />} color="indigo" hasBackground />
+                            <Card.Icon icon={StarIcon} color="indigo" hasBackground />
                             <Card.Heading>Startups</Card.Heading>
                             <Card.Description>
                               GitHub for Startups helps your startup go from idea to IPO on the world&apos;s largest and
@@ -188,7 +189,7 @@ export function SolutionsOverview({
                       <Grid.Column span={{large: 4}}>
                         <Box animate="fade-in" className={styles.fullHeight}>
                           <Card href="#" hasBorder fullWidth>
-                            <Card.Icon icon={<HeartIcon />} color="indigo" hasBackground />
+                            <Card.Icon icon={HeartIcon} color="indigo" hasBackground />
                             <Card.Heading>Non-Profit</Card.Heading>
                             <Card.Description>
                               Empowering the next generation of developers. GitHub Education bridges the gap between
@@ -218,7 +219,7 @@ export function SolutionsOverview({
                               xsmall: 'normal',
                               medium: 'spacious',
                             }}
-                            leadingVisual={<GlobeIcon />}
+                            leadingVisual={<Icon icon={GlobeIcon} />}
                           >
                             <Bento.Heading size="4">
                               The enterprise-ready platform that developers know and love.
@@ -268,7 +269,7 @@ export function SolutionsOverview({
                       <Grid.Column span={{medium: 4}}>
                         <Box animate="fade-in" className={styles.fullHeight}>
                           <Card href="#" fullWidth>
-                            <Card.Icon icon={<StackIcon />} color="indigo" hasBackground />
+                            <Card.Icon icon={StackIcon} color="indigo" hasBackground />
                             <Card.Heading>DevSecOps</Card.Heading>
                             <Card.Description>
                               With comprehensive security tools built into the developer workflow, you can build,
@@ -280,7 +281,7 @@ export function SolutionsOverview({
                       <Grid.Column span={{medium: 4}}>
                         <Box animate="fade-in" className={styles.fullHeight}>
                           <Card href="#" fullWidth>
-                            <Card.Icon icon={<StarIcon />} color="indigo" hasBackground />
+                            <Card.Icon icon={StarIcon} color="indigo" hasBackground />
                             <Card.Heading>DevOps</Card.Heading>
                             <Card.Description>
                               Build, scale, and deliver more secure software with GitHub&apos;s unified AI-powered
@@ -292,7 +293,7 @@ export function SolutionsOverview({
                       <Grid.Column span={{medium: 4}}>
                         <Box animate="fade-in" className={styles.fullHeight}>
                           <Card href="#" fullWidth>
-                            <Card.Icon icon={<HeartIcon />} color="indigo" hasBackground />
+                            <Card.Icon icon={HeartIcon} color="indigo" hasBackground />
                             <Card.Heading>CI/CD</Card.Heading>
                             <Card.Description>
                               Build, test, and deploy software with simple and secure enterprise CI/CD, all on the
@@ -334,7 +335,7 @@ export function SolutionsOverview({
                       <Grid.Column span={{medium: 4}}>
                         <Box animate="fade-in" className={styles.fullHeight}>
                           <Card href="#" fullWidth hasBorder>
-                            <Card.Icon icon={<StackIcon />} color="indigo" hasBackground />
+                            <Card.Icon icon={StackIcon} color="indigo" hasBackground />
                             <Card.Heading>DevSecOps</Card.Heading>
                             <Card.Description>
                               With comprehensive security tools built into the developer workflow, you can build,
@@ -346,7 +347,7 @@ export function SolutionsOverview({
                       <Grid.Column span={{medium: 4}}>
                         <Box animate="fade-in" className={styles.fullHeight}>
                           <Card href="#" fullWidth hasBorder>
-                            <Card.Icon icon={<StarIcon />} color="indigo" hasBackground />
+                            <Card.Icon icon={StarIcon} color="indigo" hasBackground />
                             <Card.Heading>DevOps</Card.Heading>
                             <Card.Description>
                               Build, scale, and deliver more secure software with GitHub&apos;s unified AI-powered
@@ -358,7 +359,7 @@ export function SolutionsOverview({
                       <Grid.Column span={{medium: 4}}>
                         <Box animate="fade-in" className={styles.fullHeight}>
                           <Card href="#" fullWidth hasBorder>
-                            <Card.Icon icon={<HeartIcon />} color="indigo" hasBackground />
+                            <Card.Icon icon={HeartIcon} color="indigo" hasBackground />
                             <Card.Heading>CI/CD</Card.Heading>
                             <Card.Description>
                               Build, test, and deploy software with simple and secure enterprise CI/CD, all on the

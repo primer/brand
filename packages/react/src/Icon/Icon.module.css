@@ -1,18 +1,18 @@
-.Icon--badge {
-  width: var(--base-size-44);
-  height: var(--base-size-44);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.Icon {
+  box-sizing: content-box;
+  padding: 0;
+}
+
+.Icon--background {
   padding: var(--base-size-12);
+  border-radius: var(--brand-borderRadius-full);
 }
 
 .Icon--color-default {
   color: var(--brand-Icon-color-default);
 }
 
-.Icon--color-default.Icon--badge {
+.Icon--background-color-default {
   background-color: var(--brand-Icon-background-default);
 }
 
@@ -20,7 +20,7 @@
   color: var(--brand-Icon-color-blue);
 }
 
-.Icon--color-blue.Icon--badge {
+.Icon--background-color-blue {
   background-color: var(--brand-Icon-background-blue);
 }
 
@@ -28,7 +28,7 @@
   color: var(--brand-Icon-color-coral);
 }
 
-.Icon--color-coral.Icon--badge {
+.Icon--background-color-coral {
   background-color: var(--brand-Icon-background-coral);
 }
 
@@ -36,7 +36,7 @@
   color: var(--brand-Icon-color-green);
 }
 
-.Icon--color-green.Icon--badge {
+.Icon--background-color-green {
   background-color: var(--brand-Icon-background-green);
 }
 
@@ -44,7 +44,7 @@
   color: var(--brand-Icon-color-gray);
 }
 
-.Icon--color-gray.Icon--badge {
+.Icon--background-color-gray {
   background-color: var(--brand-Icon-background-gray);
 }
 
@@ -52,7 +52,7 @@
   color: var(--brand-Icon-color-indigo);
 }
 
-.Icon--color-indigo.Icon--badge {
+.Icon--background-color-indigo {
   background-color: var(--brand-Icon-background-indigo);
 }
 
@@ -60,15 +60,15 @@
   color: var(--brand-Icon-color-lemon);
 }
 
-.Icon--color-lemon.Icon--badge {
+.Icon--background-color-lemon {
   background-color: var(--brand-Icon-background-lemon);
 }
 
 .Icon--color-lime {
-  color: var(--brand-Label-color-lime);
+  color: var(--brand-Icon-color-lime);
 }
 
-.Icon--color-lime.Icon--badge {
+.Icon--background-color-lime {
   background-color: var(--brand-Icon-background-lime);
 }
 
@@ -76,7 +76,7 @@
   color: var(--brand-Icon-color-orange);
 }
 
-.Icon--color-orange.Icon--badge {
+.Icon--background-color-orange {
   background-color: var(--brand-Icon-background-orange);
 }
 
@@ -84,7 +84,7 @@
   color: var(--brand-Icon-color-pink);
 }
 
-.Icon--color-pink.Icon--badge {
+.Icon--background-color-pink {
   background-color: var(--brand-Icon-background-pink);
 }
 
@@ -92,7 +92,7 @@
   color: var(--brand-Icon-color-purple);
 }
 
-.Icon--color-purple.Icon--badge {
+.Icon--background-color-purple {
   background-color: var(--brand-Icon-background-purple);
 }
 
@@ -100,7 +100,7 @@
   color: var(--brand-Icon-color-red);
 }
 
-.Icon--color-red.Icon--badge {
+.Icon--background-color-red {
   background-color: var(--brand-Icon-background-red);
 }
 
@@ -108,7 +108,7 @@
   color: var(--brand-Icon-color-teal);
 }
 
-.Icon--color-teal.Icon--badge {
+.Icon--background-color-teal {
   background-color: var(--brand-Icon-background-teal);
 }
 
@@ -116,6 +116,6 @@
   color: var(--brand-Icon-color-yellow);
 }
 
-.Icon--color-yellow.Icon--badge {
+.Icon--background-color-yellow {
   background-color: var(--brand-Icon-background-yellow);
 }
