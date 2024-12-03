@@ -17,7 +17,9 @@ test.describe('Visual Comparison: CheckboxGroup', () => {
   })
 
   test('CheckboxGroup / Inline', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-forms-checkboxgroup--inline&viewMode=story')
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-forms-checkboxgroup-examples--inline&viewMode=story',
+    )
 
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
