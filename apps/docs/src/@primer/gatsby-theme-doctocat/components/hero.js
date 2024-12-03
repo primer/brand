@@ -22,7 +22,7 @@ export default function Hero() {
       <div className={styles.HeroImage}>
         <img
           width="256"
-          alt="Mona"
+          alt="3d illustration, showing a side profile of Mona the GitHub Mascot gazing towards the sky"
           src="https://github.com/user-attachments/assets/e9a4d7f8-8e61-4f45-a1a7-466848df6dda"
         />
       </div>
