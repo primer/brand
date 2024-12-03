@@ -6,7 +6,8 @@
   align-items: center;
   padding: var(--base-size-16) var(--base-size-24) var(--base-size-16)
     var(--base-size-24);
-  border-bottom: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  border-bottom: var(--brand-borderWidth-thin) solid
+    var(--brand-color-border-muted);
   background: var(--brand-color-canvas-default);
   z-index: 1;
 }
@@ -24,9 +25,8 @@
 
 .Title {
   display: inline-block;
-  font-size: var(--brand-text-size-400);
   font-weight: var(--base-text-weight-semibold);
-  color: var(--fgColor-default, #1f2328);
+  color: var(--brand-color-text-default);
   font-family: var(--brand-fontStack-sansSerif);
   padding-inline-end: var(--base-size-12);
 }

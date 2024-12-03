@@ -1,4 +1,5 @@
 import {Box, TextInput} from '@primer/react'
+import {Text, Stack} from '@primer/react-brand'
 import {SearchIcon} from '@primer/octicons-react'
 import React, {useState} from 'react'
 import navItems from '../nav.yml'
@@ -91,17 +92,22 @@ function Sidebar({hideBorder}) {
           padding: 'var(--base-size-24)',
         }}
       >
-        <Box sx={{flexDirection: 'column', display: 'flex'}}>
-          <TextInput
-            leadingVisual={SearchIcon}
-            placeholder="Search"
-            block
-            onChange={handleFilterChange}
-          />
-          <Box sx={{marginInline: `calc(var(--base-size-16) * -1)`}}>
-            <NavItems items={filteredNavItems} />
-          </Box>
-        </Box>
+        <Stack padding="none">
+          <Text size="400" weight="semibold">
+            Brand UI
+          </Text>
+          <div>
+            <TextInput
+              leadingVisual={SearchIcon}
+              placeholder="Search"
+              block
+              onChange={handleFilterChange}
+            />
+            <Box sx={{marginInline: `calc(var(--base-size-16) * -1)`}}>
+              <NavItems items={filteredNavItems} />
+            </Box>
+          </div>
+        </Stack>
       </Box>
     </Box>
   )

@@ -27,7 +27,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--fgColor-muted);
+  color: var(--brand-color-text-muted);
   text-decoration: none;
   padding: 0 var(--base-size-12);
   height: var(--base-size-32);
@@ -55,7 +55,7 @@
 }
 
 .Link[data-active] {
-  color: var(--fgColor-default);
+  color: var(--brand-color-text-default);
   font-weight: var(--base-text-weight-semibold);
 }
 
