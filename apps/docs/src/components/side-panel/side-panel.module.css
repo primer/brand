@@ -4,5 +4,7 @@
 
 .Header {
   padding: var(--base-size-16);
-  border-bottom: 1px solid var(--borderColor-default, #d1d9e0);
+  border-bottom: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  display: flex;
+  justify-content: end;
 }
