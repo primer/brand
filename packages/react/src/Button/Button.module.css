@@ -28,7 +28,6 @@
 .Button--disabled:hover,
 .Button--disabled:focus {
   cursor: not-allowed;
-  outline: none;
 }
 
 .Button__text {
