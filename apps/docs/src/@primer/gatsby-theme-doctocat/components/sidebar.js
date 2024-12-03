@@ -30,7 +30,7 @@ function usePersistentScroll(id) {
   }
 }
 
-function Sidebar({hideBorder}) {
+function Sidebar({inSideSheetDialog}) {
   const scrollContainerProps = usePersistentScroll('sidebar')
   const [filter, setFilter] = useState('')
 
@@ -75,21 +75,26 @@ function Sidebar({hideBorder}) {
         position: 'sticky',
         top: HEADER_HEIGHT,
         height: `calc(100vh - ${HEADER_HEIGHT}px)`,
-        width: 280,
+        width: inSideSheetDialog ? 'undefined' : 280,
         fontFamily: 'var(--brand-fontStack-sansSerif)',
+        margin: inSideSheetDialog
+          ? 'calc(var(--base-size-16) * -1)'
+          : undefined,
       }}
     >
       <Box
         {...scrollContainerProps}
-        style={{overflow: 'auto'}}
         sx={{
           borderWidth: 0,
-          borderRightWidth: hideBorder ? 0 : 1,
+          borderRightWidth: inSideSheetDialog ? 0 : 1,
           borderRadius: 0,
           height: '100%',
           borderStyle: 'solid',
           borderColor: 'border.subtle',
-          padding: 'var(--base-size-24)',
+          padding: inSideSheetDialog
+            ? 'var(--base-size-16)'
+            : 'var(--base-size-24)',
+          overflow: 'auto',
         }}
       >
         <Stack padding="none">

@@ -54,8 +54,27 @@ export function SidePanel() {
           position="right"
           renderHeader={renderHeader}
           returnFocusRef={openButtonRef}
+          // When we update to a version of `@primer/react` that supports the `position` prop, we can remove the custom styles below
+          sx={{
+            height: '100dvh',
+            maxHeight: 'unset',
+            borderRadius: 'var(--borderRadius-large, 0.75rem)',
+            borderTopRightRadius: 0,
+            borderBottomRightRadius: 0,
+            position: 'fixed',
+            right: 0,
+            top: 0,
+            bottom: 0,
+            animation:
+              'Overlay--motion-slideInLeft 0.25s cubic-bezier(0.33, 1, 0.68, 1) 0s 1 normal none running',
+            '@keyframes Overlay--motion-slideInLeft': {
+              from: {
+                transform: 'translateX(100%)',
+              },
+            },
+          }}
         >
-          <Sidebar hideBorder />
+          <Sidebar inSideSheetDialog />
         </Dialog>
       )}
     </div>
