@@ -40,7 +40,7 @@
 }
 
 .ControlGroup__validation--animate-in {
-  animation: 170ms ControlGroupValidationFadeIn cubic-bezier(0.44, 0.74, 0.36, 1);
+  animation: 170ms ControlGroupValidationFadeIn var(--brand-animation-easing-glide);
 }
 
 .ControlGroup__container label {
