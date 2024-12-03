@@ -43,6 +43,10 @@
   animation: 170ms ControlGroupValidationFadeIn cubic-bezier(0.44, 0.74, 0.36, 1);
 }
 
+.ControlGroup__container label {
+  font-weight: var(--base-text-weight-medium);
+}
+
 @keyframes ControlGroupValidationFadeIn {
   0% {
     opacity: 0;
