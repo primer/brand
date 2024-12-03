@@ -19,7 +19,7 @@
   width: calc(100% - var(--arrow-width));
   pointer-events: none;
   content: '';
-  border: 1px solid currentColor;
+  border: var(--brand-borderWidth-thin) solid currentColor;
   transform: scaleX(0);
   transform-origin: 0 0;
 }
