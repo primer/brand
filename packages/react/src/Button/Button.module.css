@@ -118,11 +118,6 @@
   color: var(--brand-button-secondary-fgColor-rest);
 }
 
-.Button--secondary .Button__icon-visual,
-.Button--secondary .Button-arrow {
-  color: var(--brand-button-secondary-fgColor-rest);
-}
-
 .Button--secondary:disabled .Button-arrow--disabled,
 .Button--secondary[aria-disabled='true'] .Button-arrow--disabled,
 .Button--secondary.Button--disabled .Button-arrow--disabled,
