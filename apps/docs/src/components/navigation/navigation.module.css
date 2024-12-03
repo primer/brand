@@ -1,17 +1,13 @@
 .Navigation {
   display: flex;
+  list-style: none;
   align-items: center;
   flex-grow: 1;
 }
 
 .Separator {
-  color: var(--borderColor-default, #d1d9e0);
+  color: var(--borderColor-default);
   font-weight: var(--base-text-weight-light);
-  margin-left: var(--base-size-12);
-  margin-right: var(--base-size-12);
-  @media (max-width: 1012px) {
-    margin-right: 0;
-  }
 }
 
 .HorizontalList {
@@ -23,9 +19,6 @@
   padding: 0;
   gap: var(--base-size-2);
   padding-right: var(--base-size-16);
-}
-
-.HorizontalList:not(:has([data-active='true'])) {
   justify-content: flex-end;
 }
 
@@ -34,19 +27,17 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--fgColor-muted, #59636e);
+  color: var(--fgColor-muted);
   text-decoration: none;
-  font-size: var(--text-body-size-large, 1rem);
   padding: 0 var(--base-size-12);
   height: var(--base-size-32);
   border: 1px solid transparent;
-  border-radius: var(--borderRadius-medium, 0.375rem);
+  border-radius: var(--borderRadius-medium);
 }
 
 .DropdownLink {
   font-family: var(--brand-fontStack-sansSerif);
-  color: var(--fgColor-muted, #59636e);
-  font-size: var(--text-body-size-large, 1rem);
+  color: var(--fgColor-muted);
 }
 
 .Icon {
@@ -54,38 +45,29 @@
 }
 
 .Link:hover {
-  background: var(--bgColor-muted, #f6f8fa);
+  background: var(--bgColor-muted);
 }
 
 .Link:focus-visible {
-  outline: 2px solid var(--focus-outlineColor, #0969da);
+  outline: 2px solid var(--focus-outlineColor);
   outline-offset: -2px;
 }
 
 .Link[data-active] {
-  color: var(--fgColor-default, #1f2328);
-  text-decoration: none;
+  color: var(--fgColor-default);
   font-weight: var(--base-text-weight-semibold);
-  padding: 0;
 }
 
-.Dropdown {
+.HorizontalList {
   display: none;
 }
 
-.Dropdown button {
-  color: var(--fgColor-default, #1f2328);
-}
-
-@media (max-width: 1012px) {
+@media (min-width: 1012px) {
   .HorizontalList {
+    display: flex;
+  }
+  .Separator,
+  .Dropdown {
     display: none;
   }
-  .Dropdown {
-    display: block;
-  }
-}
-
-.ActiveLink {
-  margin-right: auto;
 }
