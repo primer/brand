@@ -18,7 +18,7 @@
   text-decoration: none;
 }
 
-.Button:focus-visible:not(.Button[disabled]) {
+.Button:focus-visible {
   transition: none;
   outline: 4px solid var(--brand-color-focus);
   outline-offset: 2px;
