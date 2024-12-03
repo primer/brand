@@ -24,7 +24,7 @@
 
 .Title {
   display: inline-block;
-  font-size: var(--text-body-size-large);
+  font-size: var(--brand-text-size-400);
   font-weight: var(--base-text-weight-semibold);
   color: var(--fgColor-default, #1f2328);
   font-family: var(--brand-fontStack-sansSerif);
