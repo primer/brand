@@ -37,7 +37,8 @@
 
 .DropdownLink {
   font-family: var(--brand-fontStack-sansSerif);
-  color: var(--fgColor-muted);
+  color: var(--brand-color-text-muted);
+  font-size: var(--brand-text-size-400);
 }
 
 .Icon {
