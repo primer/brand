@@ -16,8 +16,7 @@ export default function Hero() {
           Primer Brand UI
         </Heading>
         <Text as="p" variant="muted" size="300">
-          Primer Brand is a GitHub's design system for creating React-based
-          marketing websites and digital experiences.
+          Primer Brand is GitHub's design system for creating marketing websites and digital experiences.
         </Text>
       </Stack>
       <div className={styles.HeroImage}>
