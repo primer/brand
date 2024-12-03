@@ -28,6 +28,7 @@
   font-weight: var(--base-text-weight-semibold);
   color: var(--fgColor-default, #1f2328);
   font-family: var(--brand-fontStack-sansSerif);
+  padding-inline-end: var(--base-size-12);
 }
 
 .SidePanel {
