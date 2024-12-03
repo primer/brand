@@ -67,87 +67,85 @@ describe('RadioGroup', () => {
     expect(results).toHaveNoViolations()
   })
 
-  describe('aria-describedby', () => {
-    it('associates the hint with the input', () => {
-      const {getByRole, getByText} = render(
-        <RadioGroup>
-          <RadioGroup.Label>Choices</RadioGroup.Label>
-          <RadioGroup.Caption>You can only pick one</RadioGroup.Caption>
-          <FormControl>
-            <FormControl.Label>Choice one</FormControl.Label>
-            <Radio name="demo" value="one" defaultChecked />
-          </FormControl>
-          <FormControl>
-            <FormControl.Label>Choice two</FormControl.Label>
-            <Radio name="demo" value="two" />
-          </FormControl>
-          <FormControl>
-            <FormControl.Label>Choice three</FormControl.Label>
-            <Radio name="demo" value="three" />
-          </FormControl>
-        </RadioGroup>,
-      )
+  it('associates the hint with the input using aria-describedby', () => {
+    const {getByRole, getByText} = render(
+      <RadioGroup>
+        <RadioGroup.Label>Choices</RadioGroup.Label>
+        <RadioGroup.Caption>You can only pick one</RadioGroup.Caption>
+        <FormControl>
+          <FormControl.Label>Choice one</FormControl.Label>
+          <Radio name="demo" value="one" defaultChecked />
+        </FormControl>
+        <FormControl>
+          <FormControl.Label>Choice two</FormControl.Label>
+          <Radio name="demo" value="two" />
+        </FormControl>
+        <FormControl>
+          <FormControl.Label>Choice three</FormControl.Label>
+          <Radio name="demo" value="three" />
+        </FormControl>
+      </RadioGroup>,
+    )
 
-      const fieldset = getByRole('group', {name: 'Choices'})
-      const caption = getByText('You can only pick one')
+    const fieldset = getByRole('group', {name: 'Choices'})
+    const caption = getByText('You can only pick one')
 
-      expect(fieldset).toHaveAttribute('aria-describedby', caption.id)
-    })
+    expect(fieldset).toHaveAttribute('aria-describedby', caption.id)
+  })
 
-    it('associates the validation with the input', () => {
-      const {getByRole, getByText} = render(
-        <RadioGroup>
-          <RadioGroup.Label>Choices</RadioGroup.Label>
-          <FormControl>
-            <FormControl.Label>Choice one</FormControl.Label>
-            <Radio name="demo" value="one" defaultChecked />
-          </FormControl>
-          <FormControl>
-            <FormControl.Label>Choice two</FormControl.Label>
-            <Radio name="demo" value="two" />
-          </FormControl>
-          <FormControl>
-            <FormControl.Label>Choice three</FormControl.Label>
-            <Radio name="demo" value="three" />
-          </FormControl>
+  it('associates the validation with the input using aria-describedby', () => {
+    const {getByRole, getByText} = render(
+      <RadioGroup>
+        <RadioGroup.Label>Choices</RadioGroup.Label>
+        <FormControl>
+          <FormControl.Label>Choice one</FormControl.Label>
+          <Radio name="demo" value="one" defaultChecked />
+        </FormControl>
+        <FormControl>
+          <FormControl.Label>Choice two</FormControl.Label>
+          <Radio name="demo" value="two" />
+        </FormControl>
+        <FormControl>
+          <FormControl.Label>Choice three</FormControl.Label>
+          <Radio name="demo" value="three" />
+        </FormControl>
 
-          <RadioGroup.Validation variant="error">Uh oh!</RadioGroup.Validation>
-        </RadioGroup>,
-      )
+        <RadioGroup.Validation variant="error">Uh oh!</RadioGroup.Validation>
+      </RadioGroup>,
+    )
 
-      const fieldset = getByRole('group', {name: 'Choices'})
-      const validation = getByText('Uh oh!')
+    const fieldset = getByRole('group', {name: 'Choices'})
+    const validation = getByText('Uh oh!')
 
-      expect(fieldset).toHaveAttribute('aria-describedby', validation.id)
-    })
+    expect(fieldset).toHaveAttribute('aria-describedby', validation.id)
+  })
 
-    it('associates both a hint and validation with the input', () => {
-      const {getByRole, getByText} = render(
-        <RadioGroup>
-          <RadioGroup.Label>Choices</RadioGroup.Label>
-          <RadioGroup.Caption>You can only pick one</RadioGroup.Caption>
-          <FormControl>
-            <FormControl.Label>Choice one</FormControl.Label>
-            <Radio name="demo" value="one" defaultChecked />
-          </FormControl>
-          <FormControl>
-            <FormControl.Label>Choice two</FormControl.Label>
-            <Radio name="demo" value="two" />
-          </FormControl>
-          <FormControl>
-            <FormControl.Label>Choice three</FormControl.Label>
-            <Radio name="demo" value="three" />
-          </FormControl>
+  it('associates both a hint and validation with the input using aria-describedby', () => {
+    const {getByRole, getByText} = render(
+      <RadioGroup>
+        <RadioGroup.Label>Choices</RadioGroup.Label>
+        <RadioGroup.Caption>You can only pick one</RadioGroup.Caption>
+        <FormControl>
+          <FormControl.Label>Choice one</FormControl.Label>
+          <Radio name="demo" value="one" defaultChecked />
+        </FormControl>
+        <FormControl>
+          <FormControl.Label>Choice two</FormControl.Label>
+          <Radio name="demo" value="two" />
+        </FormControl>
+        <FormControl>
+          <FormControl.Label>Choice three</FormControl.Label>
+          <Radio name="demo" value="three" />
+        </FormControl>
 
-          <RadioGroup.Validation variant="success">Great job!</RadioGroup.Validation>
-        </RadioGroup>,
-      )
+        <RadioGroup.Validation variant="success">Great job!</RadioGroup.Validation>
+      </RadioGroup>,
+    )
 
-      const fieldset = getByRole('group', {name: 'Choices'})
-      const hint = getByText('You can only pick one')
-      const validation = getByText('Great job!')
+    const fieldset = getByRole('group', {name: 'Choices'})
+    const hint = getByText('You can only pick one')
+    const validation = getByText('Great job!')
 
-      expect(fieldset).toHaveAttribute('aria-describedby', `${hint.id} ${validation.id}`)
-    })
+    expect(fieldset).toHaveAttribute('aria-describedby', `${hint.id} ${validation.id}`)
   })
 })

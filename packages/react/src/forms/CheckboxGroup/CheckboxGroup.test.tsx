@@ -67,87 +67,85 @@ describe('CheckboxGroup', () => {
     expect(results).toHaveNoViolations()
   })
 
-  describe('aria-describedby', () => {
-    it('associates the hint with the input', () => {
-      const {getByRole, getByText} = render(
-        <CheckboxGroup>
-          <CheckboxGroup.Label>Choices</CheckboxGroup.Label>
-          <CheckboxGroup.Caption>You can only pick one</CheckboxGroup.Caption>
-          <FormControl>
-            <FormControl.Label>Choice one</FormControl.Label>
-            <Checkbox value="one" defaultChecked />
-          </FormControl>
-          <FormControl>
-            <FormControl.Label>Choice two</FormControl.Label>
-            <Checkbox value="two" />
-          </FormControl>
-          <FormControl>
-            <FormControl.Label>Choice three</FormControl.Label>
-            <Checkbox value="three" />
-          </FormControl>
-        </CheckboxGroup>,
-      )
+  it('associates the hint with the input using aria-describedby', () => {
+    const {getByRole, getByText} = render(
+      <CheckboxGroup>
+        <CheckboxGroup.Label>Choices</CheckboxGroup.Label>
+        <CheckboxGroup.Caption>You can only pick one</CheckboxGroup.Caption>
+        <FormControl>
+          <FormControl.Label>Choice one</FormControl.Label>
+          <Checkbox value="one" defaultChecked />
+        </FormControl>
+        <FormControl>
+          <FormControl.Label>Choice two</FormControl.Label>
+          <Checkbox value="two" />
+        </FormControl>
+        <FormControl>
+          <FormControl.Label>Choice three</FormControl.Label>
+          <Checkbox value="three" />
+        </FormControl>
+      </CheckboxGroup>,
+    )
 
-      const fieldset = getByRole('group', {name: 'Choices'})
-      const caption = getByText('You can only pick one')
+    const fieldset = getByRole('group', {name: 'Choices'})
+    const caption = getByText('You can only pick one')
 
-      expect(fieldset).toHaveAttribute('aria-describedby', caption.id)
-    })
+    expect(fieldset).toHaveAttribute('aria-describedby', caption.id)
+  })
 
-    it('associates the validation with the input', () => {
-      const {getByRole, getByText} = render(
-        <CheckboxGroup>
-          <CheckboxGroup.Label>Choices</CheckboxGroup.Label>
-          <FormControl>
-            <FormControl.Label>Choice one</FormControl.Label>
-            <Checkbox value="one" defaultChecked />
-          </FormControl>
-          <FormControl>
-            <FormControl.Label>Choice two</FormControl.Label>
-            <Checkbox value="two" />
-          </FormControl>
-          <FormControl>
-            <FormControl.Label>Choice three</FormControl.Label>
-            <Checkbox value="three" />
-          </FormControl>
+  it('associates the validation with the input using aria-describedby', () => {
+    const {getByRole, getByText} = render(
+      <CheckboxGroup>
+        <CheckboxGroup.Label>Choices</CheckboxGroup.Label>
+        <FormControl>
+          <FormControl.Label>Choice one</FormControl.Label>
+          <Checkbox value="one" defaultChecked />
+        </FormControl>
+        <FormControl>
+          <FormControl.Label>Choice two</FormControl.Label>
+          <Checkbox value="two" />
+        </FormControl>
+        <FormControl>
+          <FormControl.Label>Choice three</FormControl.Label>
+          <Checkbox value="three" />
+        </FormControl>
 
-          <CheckboxGroup.Validation variant="error">Uh oh!</CheckboxGroup.Validation>
-        </CheckboxGroup>,
-      )
+        <CheckboxGroup.Validation variant="error">Uh oh!</CheckboxGroup.Validation>
+      </CheckboxGroup>,
+    )
 
-      const fieldset = getByRole('group', {name: 'Choices'})
-      const validation = getByText('Uh oh!')
+    const fieldset = getByRole('group', {name: 'Choices'})
+    const validation = getByText('Uh oh!')
 
-      expect(fieldset).toHaveAttribute('aria-describedby', validation.id)
-    })
+    expect(fieldset).toHaveAttribute('aria-describedby', validation.id)
+  })
 
-    it('associates both a hint and validation with the input', () => {
-      const {getByRole, getByText} = render(
-        <CheckboxGroup>
-          <CheckboxGroup.Label>Choices</CheckboxGroup.Label>
-          <CheckboxGroup.Caption>You can only pick one</CheckboxGroup.Caption>
-          <FormControl>
-            <FormControl.Label>Choice one</FormControl.Label>
-            <Checkbox value="one" defaultChecked />
-          </FormControl>
-          <FormControl>
-            <FormControl.Label>Choice two</FormControl.Label>
-            <Checkbox value="two" />
-          </FormControl>
-          <FormControl>
-            <FormControl.Label>Choice three</FormControl.Label>
-            <Checkbox value="three" />
-          </FormControl>
+  it('associates both a hint and validation with the input using aria-describedby', () => {
+    const {getByRole, getByText} = render(
+      <CheckboxGroup>
+        <CheckboxGroup.Label>Choices</CheckboxGroup.Label>
+        <CheckboxGroup.Caption>You can only pick one</CheckboxGroup.Caption>
+        <FormControl>
+          <FormControl.Label>Choice one</FormControl.Label>
+          <Checkbox value="one" defaultChecked />
+        </FormControl>
+        <FormControl>
+          <FormControl.Label>Choice two</FormControl.Label>
+          <Checkbox value="two" />
+        </FormControl>
+        <FormControl>
+          <FormControl.Label>Choice three</FormControl.Label>
+          <Checkbox value="three" />
+        </FormControl>
 
-          <CheckboxGroup.Validation variant="success">Great job!</CheckboxGroup.Validation>
-        </CheckboxGroup>,
-      )
+        <CheckboxGroup.Validation variant="success">Great job!</CheckboxGroup.Validation>
+      </CheckboxGroup>,
+    )
 
-      const fieldset = getByRole('group', {name: 'Choices'})
-      const hint = getByText('You can only pick one')
-      const validation = getByText('Great job!')
+    const fieldset = getByRole('group', {name: 'Choices'})
+    const hint = getByText('You can only pick one')
+    const validation = getByText('Great job!')
 
-      expect(fieldset).toHaveAttribute('aria-describedby', `${hint.id} ${validation.id}`)
-    })
+    expect(fieldset).toHaveAttribute('aria-describedby', `${hint.id} ${validation.id}`)
   })
 })
