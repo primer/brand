@@ -111,10 +111,14 @@
   children:
     - title: Checkbox
       url: /components/Checkbox
+    - title: CheckboxGroup
+      url: /components/CheckboxGroup
     - title: Form control
       url: /components/FormControl
     - title: Radio
       url: /components/Radio
+    - title: RadioGroup
+      url: /components/RadioGroup
     - title: Select
       url: /components/Select
     - title: Textarea
