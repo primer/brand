@@ -1,6 +1,6 @@
 {
     "name": "Primer Brand",
-    "image": "mcr.microsoft.com/vscode/devcontainers/typescript-node:18",
+    "image": "mcr.microsoft.com/vscode/devcontainers/typescript-node:20",
     "extensions": [
         "esbenp.prettier-vscode",
         "dbaeumer.vscode-eslint"
