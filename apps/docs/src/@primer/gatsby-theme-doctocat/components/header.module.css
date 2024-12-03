@@ -6,7 +6,7 @@
   align-items: center;
   padding: var(--base-size-16) var(--base-size-24) var(--base-size-16)
     var(--base-size-24);
-  border-bottom: 1px solid var(--borderColor-default, #d1d9e0);
+  border-bottom: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
   background: var(--brand-color-canvas-default);
   z-index: 1;
 }
