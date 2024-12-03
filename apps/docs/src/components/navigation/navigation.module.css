@@ -3,10 +3,11 @@
   list-style: none;
   align-items: center;
   flex-grow: 1;
+  font-family: var(--brand-fontStack-sansSerif);
 }
 
 .Separator {
-  color: var(--borderColor-default);
+  color: var(--borderColor-default, #d0d7de);
   font-weight: var(--base-text-weight-light);
 }
 
@@ -23,7 +24,6 @@
 }
 
 .Link {
-  font-family: var(--brand-fontStack-sansSerif);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -36,9 +36,11 @@
 }
 
 .DropdownLink {
-  font-family: var(--brand-fontStack-sansSerif);
   color: var(--brand-color-text-muted);
-  font-size: var(--brand-text-size-400);
+}
+
+.Dropdown svg {
+  color: var(--brand-color-text-default);
 }
 
 .Icon {
