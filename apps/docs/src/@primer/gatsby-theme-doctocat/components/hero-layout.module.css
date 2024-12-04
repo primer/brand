@@ -27,7 +27,12 @@
 }
 
 .LandingPageLayout {
-  max-width: 1340px;
+  max-width: var(--breakpoint-xlarge, 80rem);
   margin: 0 auto;
   width: 100%;
+  padding: 0 var(--base-size-48);
+
+  @media screen and (max-width: 64rem) {
+    padding: 0;
+  }
 }
