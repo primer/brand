@@ -37,6 +37,7 @@
 
 .DropdownLink {
   color: var(--brand-color-text-muted);
+  font-size: var(--brand-text-size-200);
 }
 
 .Dropdown svg {
