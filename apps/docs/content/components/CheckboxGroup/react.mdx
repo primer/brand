@@ -1,0 +1,188 @@
+---
+title: Checkbox group
+description: Checkbox group renders a set of checkboxes.
+source: https://github.com/primer/brand/blob/main/packages/react/src/forms/CheckboxGroup/CheckboxGroup.tsx
+figma: 'https://www.figma.com/design/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=10467-3273&t=GA5GtEqPtQ9yeRaN-4'
+storybook: '/brand/storybook/?path=/story/components-forms-checkboxgroup--playground'
+---
+
+import ComponentLayout from '../../../src/layouts/component-layout'
+export default ComponentLayout
+
+import {Label} from '@primer/react'
+import {PropTableValues} from '../../../src/components'
+
+```js
+import {CheckboxGroup} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+`CheckboxGroup` creates a semantic container for multiple related checkboxes.
+
+```jsx live
+<CheckboxGroup>
+  <CheckboxGroup.Label>Choose your favorite features</CheckboxGroup.Label>
+  <FormControl>
+    <FormControl.Label>Actions notifications</FormControl.Label>
+    <Checkbox value="actions" />
+  </FormControl>
+  <FormControl>
+    <FormControl.Label>Packages</FormControl.Label>
+    <Checkbox value="packages" />
+  </FormControl>
+  <FormControl>
+    <FormControl.Label>Codespaces</FormControl.Label>
+    <Checkbox value="codespaces" />
+  </FormControl>
+</CheckboxGroup>
+```
+
+### With caption
+
+Use `CheckboxGroup.Caption` to provide additional context for the group.
+
+```jsx live
+<CheckboxGroup>
+  <CheckboxGroup.Label>Notification preferences</CheckboxGroup.Label>
+  <CheckboxGroup.Caption>
+    Select how you'd like to be notified
+  </CheckboxGroup.Caption>
+  <FormControl>
+    <FormControl.Label>Email notifications</FormControl.Label>
+    <Checkbox value="email" />
+  </FormControl>
+  <FormControl>
+    <FormControl.Label>Browser notifications</FormControl.Label>
+    <Checkbox value="browser" />
+  </FormControl>
+  <FormControl>
+    <FormControl.Label>Mobile notifications</FormControl.Label>
+    <Checkbox value="mobile" />
+  </FormControl>
+</CheckboxGroup>
+```
+
+### With validation
+
+`CheckboxGroup.Validation` can display success or error states with appropriate icons.
+
+```jsx live
+<Stack direction="vertical" gap="spacious">
+  <CheckboxGroup>
+    <CheckboxGroup.Label>Valid selection</CheckboxGroup.Label>
+    <FormControl>
+      <FormControl.Label>Option one</FormControl.Label>
+      <Checkbox value="one" />
+    </FormControl>
+    <FormControl>
+      <FormControl.Label>Option two</FormControl.Label>
+      <Checkbox value="two" />
+    </FormControl>
+    <CheckboxGroup.Validation variant="success">
+      Great choice!
+    </CheckboxGroup.Validation>
+  </CheckboxGroup>
+
+  <CheckboxGroup>
+    <CheckboxGroup.Label>Invalid selection</CheckboxGroup.Label>
+    <FormControl>
+      <FormControl.Label>Option one</FormControl.Label>
+      <Checkbox value="one" />
+    </FormControl>
+    <FormControl>
+      <FormControl.Label>Option two</FormControl.Label>
+      <Checkbox value="two" />
+    </FormControl>
+    <CheckboxGroup.Validation variant="error">
+      Please select at least one option
+    </CheckboxGroup.Validation>
+  </CheckboxGroup>
+</Stack>
+```
+
+### Visually hidden label
+
+When context is clear, labels can be visually hidden while remaining accessible to screen readers.
+
+```jsx live
+<CheckboxGroup>
+  <CheckboxGroup.Label visuallyHidden>Filter options</CheckboxGroup.Label>
+  <Stack direction="vertical" gap="regular">
+    <FormControl>
+      <FormControl.Label>Show all</FormControl.Label>
+      <Checkbox value="all" />
+    </FormControl>
+    <FormControl>
+      <FormControl.Label>Show active only</FormControl.Label>
+      <Checkbox value="active" />
+    </FormControl>
+  </Stack>
+</CheckboxGroup>
+```
+
+### Inline
+
+When space is limited, checkboxes can be arranged horizontally using the [Stack](/components/Stack) component.
+
+```jsx live
+<CheckboxGroup>
+  <CheckboxGroup.Label visuallyHidden>Filter options</CheckboxGroup.Label>
+  <CheckboxGroup.Caption>
+    Some inline checkboxes with a visually hidden label
+  </CheckboxGroup.Caption>
+  <Stack direction="horizontal" gap="normal" padding="none">
+    <FormControl>
+      <FormControl.Label>Choice one</FormControl.Label>
+      <Checkbox value="one" />
+    </FormControl>
+    <FormControl>
+      <FormControl.Label>Choice two</FormControl.Label>
+      <Checkbox value="two" />
+    </FormControl>
+    <FormControl>
+      <FormControl.Label>Choice three</FormControl.Label>
+      <Checkbox value="three" />
+    </FormControl>
+  </Stack>
+</CheckboxGroup>
+```
+
+## Component props
+
+### CheckboxGroup <Label>Required</Label>
+
+| Name       | Type                   | Default | Description                                                      |
+| :--------- | :--------------------- | :-----: | :--------------------------------------------------------------- |
+| `children` | `React.ReactElement[]` |         | CheckboxGroup components and FormControl components              |
+| `id`       | `string`               |         | Sets a custom id. If not provided, a unique id will be generated |
+
+`CheckboxGroup` extends the HTML `fieldset` element and supports all `fieldset` props.
+
+### CheckboxGroup.Label <Label>Required</Label>
+
+| Name             | Type      | Default | Description                             |
+| :--------------- | :-------- | :-----: | :-------------------------------------- |
+| `children`       | `string`  |         | Label text                              |
+| `visuallyHidden` | `boolean` | `false` | Hide label visually but keep accessible |
+
+`CheckboxGroup.Label` extends the HTML `legend` element and supports all `legend` props.
+
+### CheckboxGroup.Caption
+
+| Name       | Type     | Default | Description  |
+| :--------- | :------- | :-----: | :----------- |
+| `children` | `string` |         | Caption text |
+
+`CheckboxGroup.Caption` extends the `span` element and supports all `span` props.
+
+### CheckboxGroup.Validation
+
+| Name       | Type                                                             | Default | Description                        |
+| :--------- | :--------------------------------------------------------------- | :-----: | :--------------------------------- |
+| `children` | `string`                                                         |         | Validation message                 |
+| `variant`  | <PropTableValues values={['error', 'success' ]} addLineBreaks /> |         | Sets the validation state and icon |
+
+`CheckboxGroup.Validation` extends the `span` element and supports all `span` props.

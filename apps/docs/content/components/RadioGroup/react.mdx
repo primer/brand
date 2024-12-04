@@ -1,0 +1,164 @@
+---
+title: Radio group
+description: Radio group is used to render a short list of mutually exclusive options.
+source: https://github.com/primer/brand/blob/main/packages/react/src/forms/RadioGroup/RadioGroup.tsx
+figma: 'https://www.figma.com/design/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=10467-3461&t=GA5GtEqPtQ9yeRaN-4'
+storybook: '/brand/storybook/?path=/story/components-forms-radiogroup--playground'
+---
+
+import ComponentLayout from '../../../src/layouts/component-layout'
+export default ComponentLayout
+
+import {Label} from '@primer/react'
+import {PropTableValues} from '../../../src/components'
+
+```js
+import {RadioGroup} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+`RadioGroup` creates a semantic container for multiple related radio inputs. Note that all radio inputs must share the same `name` prop to function as a group.
+
+```jsx live
+<RadioGroup>
+  <RadioGroup.Label>Choose your primary workspace</RadioGroup.Label>
+  <FormControl>
+    <FormControl.Label>Codespaces</FormControl.Label>
+    <Radio name="workspace" value="codespaces" />
+  </FormControl>
+  <FormControl>
+    <FormControl.Label>Local environment</FormControl.Label>
+    <Radio name="workspace" value="local" />
+  </FormControl>
+  <FormControl>
+    <FormControl.Label>Pen and paper</FormControl.Label>
+    <Radio name="workspace" value="remote" />
+  </FormControl>
+</RadioGroup>
+```
+
+### With caption
+
+Use `RadioGroup.Caption` to provide additional context for the group.
+
+```jsx live
+<RadioGroup>
+  <RadioGroup.Label>Repository visibility</RadioGroup.Label>
+  <RadioGroup.Caption>
+    Choose who can see and access your repository
+  </RadioGroup.Caption>
+  <FormControl>
+    <FormControl.Label>Public</FormControl.Label>
+    <Radio name="visibility" value="public" />
+  </FormControl>
+  <FormControl>
+    <FormControl.Label>Private</FormControl.Label>
+    <Radio name="visibility" value="private" />
+  </FormControl>
+</RadioGroup>
+```
+
+### With validation
+
+`RadioGroup.Validation` can display success or error states with appropriate icons.
+
+```jsx live
+<Stack direction="vertical" gap="spacious">
+  <RadioGroup>
+    <RadioGroup.Label>Valid selection</RadioGroup.Label>
+    <FormControl>
+      <FormControl.Label>Basic plan</FormControl.Label>
+      <Radio name="plan-valid" value="basic" />
+    </FormControl>
+    <FormControl>
+      <FormControl.Label>Pro plan</FormControl.Label>
+      <Radio name="plan-valid" value="pro" defaultChecked />
+    </FormControl>
+    <RadioGroup.Validation variant="success">
+      Great choice!
+    </RadioGroup.Validation>
+  </RadioGroup>
+
+  <RadioGroup>
+    <RadioGroup.Label>Invalid selection</RadioGroup.Label>
+    <FormControl>
+      <FormControl.Label>Basic plan</FormControl.Label>
+      <Radio name="plan-invalid" value="basic" />
+    </FormControl>
+    <FormControl>
+      <FormControl.Label>Pro plan</FormControl.Label>
+      <Radio name="plan-invalid" value="pro" />
+    </FormControl>
+    <RadioGroup.Validation variant="error">
+      Please select a plan to continue
+    </RadioGroup.Validation>
+  </RadioGroup>
+</Stack>
+```
+
+### Inline
+
+When space is limited, radio inputs can be arranged horizontally using the [Stack](/components/Stack) component.
+
+```jsx live
+<RadioGroup>
+  <RadioGroup.Label visuallyHidden>Time period</RadioGroup.Label>
+  <CheckboxGroup.Caption>
+    Some inline radio inputs with a visually hidden label
+  </CheckboxGroup.Caption>
+  <Stack direction="horizontal" gap="normal" padding="none">
+    <FormControl>
+      <FormControl.Label>Last 7 days</FormControl.Label>
+      <Radio name="period" value="week" />
+    </FormControl>
+    <FormControl>
+      <FormControl.Label>Last 30 days</FormControl.Label>
+      <Radio name="period" value="month" defaultChecked />
+    </FormControl>
+    <FormControl>
+      <FormControl.Label>Last year</FormControl.Label>
+      <Radio name="period" value="year" />
+    </FormControl>
+  </Stack>
+</RadioGroup>
+```
+
+## Component props
+
+### RadioGroup <Label>Required</Label>
+
+| Name       | Type                   | Default | Description                                                      |
+| :--------- | :--------------------- | :-----: | :--------------------------------------------------------------- |
+| `children` | `React.ReactElement[]` |         | RadioGroup components and FormControl components                 |
+| `id`       | `string`               |         | Sets a custom id. If not provided, a unique id will be generated |
+
+`RadioGroup` extends the HTML `fieldset` element and supports all `fieldset` props.
+
+### RadioGroup.Label <Label>Required</Label>
+
+| Name             | Type      | Default | Description                             |
+| :--------------- | :-------- | :-----: | :-------------------------------------- |
+| `children`       | `string`  |         | Label text                              |
+| `visuallyHidden` | `boolean` | `false` | Hide label visually but keep accessible |
+
+`RadioGroup.Label` extends the HTML `legend` element and supports all `legend` props.
+
+### RadioGroup.Caption
+
+| Name       | Type     | Default | Description  |
+| :--------- | :------- | :-----: | :----------- |
+| `children` | `string` |         | Caption text |
+
+`RadioGroup.Caption` extends the `span` element and supports all `span` props.
+
+### RadioGroup.Validation
+
+| Name       | Type                                                             | Default | Description                        |
+| :--------- | :--------------------------------------------------------------- | :-----: | :--------------------------------- |
+| `children` | `string`                                                         |         | Validation message                 |
+| `variant`  | <PropTableValues values={['error', 'success' ]} addLineBreaks /> |         | Sets the validation state and icon |
+
+`RadioGroup.Validation` extends the `span` element and supports all `span` props.

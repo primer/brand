@@ -2,8 +2,7 @@ import React from 'react'
 import {Meta} from '@storybook/react'
 import {CopilotIcon} from '@primer/octicons-react'
 import {Bento} from '.'
-import {Link} from '../'
-import {Icon} from '../Icon'
+import {Link, Icon} from '../'
 
 export default {
   title: 'Components/Bento',
