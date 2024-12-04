@@ -100,6 +100,7 @@
 .Button--secondary {
   transition: background-color, border-color 200ms;
   border-color: var(--brand-button-secondary-borderColor-rest);
+  color: var(--brand-button-secondary-fgColor-rest);
 }
 
 .Button--secondary:not(.Button[disabled], .Button[aria-disabled='true'], [aria-expanded='true']):hover {
@@ -111,10 +112,6 @@
 .Button--secondary[aria-expanded='true'] {
   background-color: var(--brand-button-secondary-bgColor-active);
   border-color: var(--brand-button-secondary-borderColor-active);
-}
-
-.Button--label-secondary {
-  color: var(--brand-button-secondary-fgColor-rest);
 }
 
 .Button--secondary:disabled .Button-arrow--disabled,
