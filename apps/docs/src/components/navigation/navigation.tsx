@@ -13,9 +13,6 @@ const navItems = [
 
 export function Navigation() {
   const activeItem = navItems.find((item) => item.label === 'Brand UI')
-  const otherItems = navItems.filter((item) => item.label !== 'Brand UI')
-  const sortedNavItems = activeItem ? [activeItem, ...otherItems] : otherItems
-
   return (
     <nav aria-label="Main navigation" className={styles.Navigation}>
       <div className={styles.Separator}>/</div>
@@ -53,7 +50,7 @@ export function Navigation() {
         </ActionMenu>
       </div>
       <ul className={styles.HorizontalList}>
-        {sortedNavItems.map((item) => {
+        {navItems.map((item) => {
           const active = item.label === 'Brand UI'
           return (
             <li
