@@ -58,7 +58,7 @@ export function SidePanel() {
           sx={{
             height: '100dvh',
             maxHeight: 'unset',
-            borderRadius: 'var(--borderRadius-large, 0.75rem)',
+            borderRadius: 'var(--brand-borderRadius-large, 0.75rem)',
             borderTopRightRadius: 0,
             borderBottomRightRadius: 0,
             position: 'fixed',
@@ -66,7 +66,7 @@ export function SidePanel() {
             top: 0,
             bottom: 0,
             animation:
-              'Overlay--motion-slideInLeft 0.25s cubic-bezier(0.33, 1, 0.68, 1) 0s 1 normal none running',
+              'Overlay--motion-slideInLeft var(--brand-animation-duration-faster) var(--brand-animation-easing-glide) 0s 1 normal none running',
             '@keyframes Overlay--motion-slideInLeft': {
               from: {
                 transform: 'translateX(100%)',
