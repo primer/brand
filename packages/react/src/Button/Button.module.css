@@ -18,7 +18,7 @@
   text-decoration: none;
 }
 
-.Button:focus-visible:not(.Button[disabled]) {
+.Button:focus-visible {
   transition: none;
   outline: 4px solid var(--brand-color-focus);
   outline-offset: 2px;
@@ -28,7 +28,6 @@
 .Button--disabled:hover,
 .Button--disabled:focus {
   cursor: not-allowed;
-  outline: none;
 }
 
 .Button__text {
@@ -101,6 +100,7 @@
 .Button--secondary {
   transition: background-color, border-color 200ms;
   border-color: var(--brand-button-secondary-borderColor-rest);
+  color: var(--brand-button-secondary-fgColor-rest);
 }
 
 .Button--secondary:not(.Button[disabled], .Button[aria-disabled='true'], [aria-expanded='true']):hover {
@@ -112,15 +112,6 @@
 .Button--secondary[aria-expanded='true'] {
   background-color: var(--brand-button-secondary-bgColor-active);
   border-color: var(--brand-button-secondary-borderColor-active);
-}
-
-.Button--label-secondary {
-  color: var(--brand-button-secondary-fgColor-rest);
-}
-
-.Button--secondary .Button__icon-visual,
-.Button--secondary .Button-arrow {
-  color: var(--brand-button-secondary-fgColor-rest);
 }
 
 .Button--secondary:disabled .Button-arrow--disabled,
@@ -197,22 +188,8 @@
 }
 
 @media (forced-colors: active) {
-  .Button--primary,
-  .Button--secondary,
-  .Button--disabled:hover {
-    outline: var(--brand-borderWidth-thick) solid transparent;
-    outline-offset: 2px;
-  }
-
   .Button--disabled {
     outline-color: GrayText;
-  }
-
-  /* Retains focus indicator when in "Windows High Contrast Mode". */
-  .Button:focus:not(.Button--disabled[disabled]) {
-    outline: var(--brand-borderWidth-thick) solid;
-    outline-color: var(--brand-color-focus);
-    outline-offset: 2px;
   }
 
   /* Indicates disabled state in WHCM */
