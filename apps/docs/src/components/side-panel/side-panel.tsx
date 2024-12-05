@@ -58,7 +58,7 @@ export function SidePanel() {
           sx={{
             height: '100dvh',
             maxHeight: 'unset',
-            borderRadius: 'var(--borderRadius-large, 0.75rem)',
+            borderRadius: 'var(--brand-borderRadius-large, 0.75rem)',
             borderTopRightRadius: 0,
             borderBottomRightRadius: 0,
             position: 'fixed',
