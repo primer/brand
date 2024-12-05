@@ -48,6 +48,7 @@ export * from './Statistic'
 export * from './BreakoutBanner'
 export * from './Footnotes'
 export * from './Icon'
+export * from './AnimatedBackground'
 
 // hooks
 export * from './hooks/useWindowSize'
