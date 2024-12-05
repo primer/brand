@@ -6,7 +6,6 @@ declare const styles: {
   readonly "Select--medium": string;
   readonly "Select-wrapper--large": string;
   readonly "Select--large": string;
-  readonly "Select--fullWidth": string;
   readonly "Select-wrapper--fullWidth": string;
   readonly "Select--success": string;
   readonly "Select--error": string;

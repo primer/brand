@@ -84,14 +84,6 @@
 }
 
 /*
- * Visual states
- */
-
-.Select--fullWidth {
-  width: 100%;
-}
-
-/*
  * Select wrapper
  */
 
@@ -128,7 +120,7 @@
 }
 
 .Select-wrapper--fullWidth {
-  display: flex;
+  width: 100%;
 }
 
 /*

@@ -30,10 +30,6 @@
   outline: none;
 }
 
-.Textarea:focus {
-  outline: none;
-}
-
 .Textarea-resize--vertical {
   resize: vertical;
 }
@@ -96,6 +92,10 @@
 
 .Textarea-wrapper--fullWidth {
   display: flex;
+}
+
+.Textarea-wrapper:not(.Textarea-wrapper--fullWidth) {
+  width: min-content;
 }
 
 .Textarea-wrapper--monospace {
