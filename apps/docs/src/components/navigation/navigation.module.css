@@ -32,7 +32,7 @@
   padding: 0 var(--base-size-12);
   height: var(--base-size-32);
   border: 1px solid transparent;
-  border-radius: var(--borderRadius-medium);
+  border-radius: var(--brand-borderRadius-medium);
 }
 
 .DropdownLink {
@@ -49,7 +49,10 @@
 }
 
 .Link:hover {
-  background: var(--bgColor-muted);
+  background: var(
+    --bgColor-muted,
+    #f6f8fa
+  ); /* Note: this color will be wrong when/if we add dark mode Doctocat Primer Brand docs */
 }
 
 .Link:focus-visible {
