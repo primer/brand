@@ -11,6 +11,7 @@ import {Select} from '../Select'
 import {TextInput} from '../TextInput'
 import {Textarea} from '../Textarea'
 import {Radio} from '../Radio'
+import {Text} from '../../Text'
 
 import styles from './FormControl.module.css'
 
@@ -127,7 +128,6 @@ const Root = ({
               id: uniqueId,
               name: child.props.name,
               required: child.props.required || required,
-              validationStatus: child.props.validationStatus || validationStatus,
               'aria-describedby': describedBy,
             })
 
@@ -222,7 +222,10 @@ type FormControlValidationProps = {
 
 const FormControlValidation = ({children, validationStatus, className, ...props}: FormControlValidationProps) => {
   return (
-    <span
+    <Text
+      as="span"
+      size="100"
+      weight="medium"
       className={clsx(
         styles['FormControl-validation'],
         validationStatus && styles['FormControl-validation--animate-in'],
@@ -242,17 +245,22 @@ const FormControlValidation = ({children, validationStatus, className, ...props}
         </span>
       )}
       {children}
-    </span>
+    </Text>
   )
 }
 
 type FormControlHintProps = PropsWithChildren<BaseProps<HTMLSpanElement>>
 
-const FormControlHint = ({children, className, ...rest}: FormControlHintProps) => {
+const FormControlHint = ({className, ...rest}: FormControlHintProps) => {
   return (
-    <span className={clsx(styles['FormControl-hint'], className)} {...rest}>
-      {children}
-    </span>
+    <Text
+      as="span"
+      size="100"
+      weight="medium"
+      variant="muted"
+      className={clsx(styles['FormControl-hint'], className)}
+      {...rest}
+    />
   )
 }
 
