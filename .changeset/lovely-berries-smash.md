@@ -2,5 +2,4 @@
 '@primer/react-brand': minor
 ---
 
-Reduced size of text in `FormControl.Hint` and `FormControl.Validation` components
-
+Reduced the text size in `FormControl.Hint` and `FormControl.Validation` components to match their counterparts in `CheckboxGroup` and `RadioGroup` for improved consistency and visual design accuracy.
