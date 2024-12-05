@@ -4,7 +4,6 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: box-shadow var(--brand-animation-duration-faster);
   text-decoration: none;
   cursor: pointer;
 }
@@ -18,10 +17,9 @@
   bottom: -0.15em;
   left: 0;
   width: calc(100% - var(--arrow-width));
-  height: 2px;
   pointer-events: none;
   content: '';
-  background-color: currentColor;
+  border: var(--brand-borderWidth-thin) solid currentColor;
   transform: scaleX(0);
   transform-origin: 0 0;
 }
@@ -38,9 +36,8 @@
 }
 
 .Link:focus:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 2px var(--brand-color-canvas-default), 0 0 2px 5px var(--brand-color-focus);
-  transition: none;
+  outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
+  outline-offset: var(--base-size-2);
 }
 
 .Link--default,
