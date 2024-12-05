@@ -127,7 +127,6 @@ const Root = ({
               id: uniqueId,
               name: child.props.name,
               required: child.props.required || required,
-              validationStatus: child.props.validationStatus || validationStatus,
               'aria-describedby': describedBy,
             })
 

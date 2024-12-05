@@ -1,0 +1,88 @@
+---
+title: Icon
+source: https://github.com/primer/brand/tree/main/packages/react/src/Icon/Icon.tsx
+storybook: '/brand/storybook/?path=/story/components-icon--playground'
+figma: https://www.figma.com/design/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=15397-35
+description: Use the icon component to display Octicons with an optional background
+---
+
+import {PropTableValues} from '../../src/components'
+import {iconColors, namedIconSizes, numericIconSizes} from '@primer/react-brand'
+
+```js
+import {Icon} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<Icon icon={ZapIcon} />
+```
+
+### Colors
+
+```jsx live
+<Stack direction="horizontal" gap={16} flexWrap="wrap" padding="none">
+  <Icon icon={RocketIcon} color="default" />
+  <Icon icon={RocketIcon} color="blue" />
+  <Icon icon={RocketIcon} color="coral" />
+  <Icon icon={RocketIcon} color="green" />
+  <Icon icon={RocketIcon} color="gray" />
+  <Icon icon={RocketIcon} color="indigo" />
+  <Icon icon={RocketIcon} color="lemon" />
+  <Icon icon={RocketIcon} color="lime" />
+  <Icon icon={RocketIcon} color="orange" />
+  <Icon icon={RocketIcon} color="pink" />
+  <Icon icon={RocketIcon} color="purple" />
+  <Icon icon={RocketIcon} color="red" />
+  <Icon icon={RocketIcon} color="teal" />
+  <Icon icon={RocketIcon} color="yellow" />
+</Stack>
+```
+
+### With background
+
+```jsx live
+<Stack direction="horizontal" gap={16} flexWrap="wrap" padding="none">
+  <Icon icon={RocketIcon} hasBackground color="default" />
+  <Icon icon={RocketIcon} hasBackground color="blue" />
+  <Icon icon={RocketIcon} hasBackground color="coral" />
+  <Icon icon={RocketIcon} hasBackground color="green" />
+  <Icon icon={RocketIcon} hasBackground color="gray" />
+  <Icon icon={RocketIcon} hasBackground color="indigo" />
+  <Icon icon={RocketIcon} hasBackground color="lemon" />
+  <Icon icon={RocketIcon} hasBackground color="lime" />
+  <Icon icon={RocketIcon} hasBackground color="orange" />
+  <Icon icon={RocketIcon} hasBackground color="pink" />
+  <Icon icon={RocketIcon} hasBackground color="purple" />
+  <Icon icon={RocketIcon} hasBackground color="red" />
+  <Icon icon={RocketIcon} hasBackground color="teal" />
+  <Icon icon={RocketIcon} hasBackground color="yellow" />
+</Stack>
+```
+
+### Sizes
+
+```jsx live
+<Stack direction="vertical">
+  <Icon icon={CopilotIcon} size="small" />
+  <Icon icon={CopilotIcon} size="medium" />
+  <Icon icon={CopilotIcon} size="large" />
+</Stack>
+```
+
+## Component props
+
+### Icon
+
+| Name            | Type                                                                                 | Default     | Description                                  |
+| :-------------- | :----------------------------------------------------------------------------------- | :---------- | :------------------------------------------- |
+| `icon`          | `OcticonProps` \| `React.ReactElement<OcticonProps>`                                 |             | The Octicon component to render              |
+| `color`         | <PropTableValues values={iconColors} commaSeparated />                               | `'default'` | The color of the icon                        |
+| `size`          | <PropTableValues values={[...namedIconSizes, ...numericIconSizes]} commaSeparated /> | `'small'`   | The size of the icon                         |
+| `hasBackground` | `boolean`                                                                            | `false`     | Whether to show a background behind the icon |
+| `className`     | `string`                                                                             |             | Additional CSS class for the icon            |
+
+All other props are forwarded to the underlying SVG element.
