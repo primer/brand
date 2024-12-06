@@ -216,16 +216,11 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
     },
     {heading: undefined, links: [], action: undefined},
   )
-  const headingChildLabel = React.isValidElement(HeadingChild) && HeadingChild.props.children
-  // The values are different types depending on whether a submenu is present
-  const activeLinklabel =
-    typeof activeLink?.props.children === 'string'
-      ? activeLink.props.children
-      : activeLink?.props.children[0]
-      ? activeLink.props.children[0]
-      : headingChildLabel
-  // needed to prevent rendering of anchor subnav inside the narrow <button> element
 
+  const activeLinklabel =
+    typeof activeLink?.props.children === 'string' ? activeLink.props.children : activeLink?.props.children[0]
+
+  // needed to prevent rendering of anchor subnav inside the narrow <button> element
   const MaybeSubNav = activeLink?.props.children?.[1]?.props?.variant === 'anchor' && activeLink.props.children?.[1]
   return (
     <div className={clsx(styles['SubNav__container'], hasAnchoredNav && styles['SubNav__container--with-anchor-nav'])}>
@@ -245,26 +240,29 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
           <div ref={rootRef} className={styles['SubNav--header-container-outer']}>
             <div className={styles['SubNav__header-container']}>
               {HeadingChild && <div className={styles['SubNav__heading-container']}>{HeadingChild}</div>}
-              <span role="separator" className={styles['SubNav__heading-separator']} aria-hidden>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="8"
-                  height="16"
-                  viewBox="0 0 8 16"
-                  fill="none"
-                  aria-hidden
-                >
-                  <g clipPath="url(#clip0_50_1307)">
-                    <path d="M0 15.2992L5.472 0.701172H7.632L2.16 15.2992H0Z" fill="currentColor" />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_50_1307">
-                      <rect width="7.632" height="14.598" transform="translate(0 0.701172)" />
-                    </clipPath>
-                  </defs>
-                </svg>
-              </span>
-              {activeLinklabel && !isLarge && (
+              {activeLinklabel && (
+                <span role="separator" className={styles['SubNav__heading-separator']} aria-hidden>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="8"
+                    height="16"
+                    viewBox="0 0 8 16"
+                    fill="none"
+                    aria-hidden
+                  >
+                    <g clipPath="url(#clip0_50_1307)">
+                      <path d="M0 15.2992L5.472 0.701172H7.632L2.16 15.2992H0Z" fill="currentColor" />
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_50_1307">
+                        <rect width="7.632" height="14.598" transform="translate(0 0.701172)" />
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </span>
+              )}
+
+              {!isLarge && (
                 <button
                   className={clsx(
                     styles['SubNav__overlay-toggle'],
@@ -275,11 +273,18 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
                   aria-expanded={isOpenAtNarrow ? 'true' : 'false'}
                   aria-controls={idForLinkContainer}
                 >
-                  <span className="visually-hidden">Navigation menu. Current page: </span>
-                  <span className={styles['SubNav__overlay-toggle-content']}>
-                    <Text as="span" size="200">
-                      {activeLinklabel}
-                    </Text>
+                  {activeLinklabel && <span className="visually-hidden">Navigation menu. Current page: </span>}
+                  <span
+                    className={clsx(
+                      styles['SubNav__overlay-toggle-content'],
+                      !activeLinklabel && styles['SubNav__overlay-toggle-content--end'],
+                    )}
+                  >
+                    {activeLinklabel && (
+                      <Text as="span" size="200">
+                        {activeLinklabel}
+                      </Text>
+                    )}
                     {isOpenAtNarrow ? (
                       <ChevronUpIcon className={styles['SubNav__overlay-toggle-icon']} size={24} />
                     ) : (

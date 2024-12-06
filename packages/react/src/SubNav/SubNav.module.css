@@ -278,10 +278,10 @@
     position: relative;
     width: 100%;
     display: flex;
-
     order: 1;
     z-index: 9999;
     padding-inline: 0;
+    justify-content: end;
   }
 
   .SubNav__overlay-toggle-content {
@@ -404,6 +404,10 @@
   /* optical alignment */
   position: relative;
   top: calc(var(--base-size-4) / 4 * -1);
+}
+
+.SubNav__overlay-toggle-content--end {
+  justify-content: flex-end;
 }
 
 @media screen and (min-width: 48rem) {
