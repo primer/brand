@@ -78,6 +78,7 @@ export const useSubNavContext = () => {
 }
 
 function SubNavProvider({children}: {children: React.ReactNode}) {
+  const anchoredNavOuterPortalRef = React.useRef<HTMLDivElement>(null)
   const anchoredNavPortalRef = React.useRef<HTMLDivElement>(null)
 
   const value = useMemo(
@@ -88,7 +89,7 @@ function SubNavProvider({children}: {children: React.ReactNode}) {
   )
 
   useEffect(() => {
-    const menuContainer = anchoredNavPortalRef.current
+    const menuContainer = anchoredNavOuterPortalRef.current
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -112,7 +113,7 @@ function SubNavProvider({children}: {children: React.ReactNode}) {
     <SubNavContext.Provider value={value}>
       {children}
 
-      <div className={styles['SubNav__anchor-menu-outer-container']}>
+      <div className={styles['SubNav__anchor-menu-outer-container']} ref={anchoredNavOuterPortalRef}>
         <div className={clsx(styles['SubNav__anchor-menu-container'])} ref={anchoredNavPortalRef} />
       </div>
     </SubNavContext.Provider>
