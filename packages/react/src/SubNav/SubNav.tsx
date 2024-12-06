@@ -216,13 +216,17 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
     },
     {heading: undefined, links: [], action: undefined},
   )
-
+  const headingChildLabel = React.isValidElement(HeadingChild) && HeadingChild.props.children
   // The values are different types depending on whether a submenu is present
   const activeLinklabel =
-    typeof activeLink?.props.children === 'string' ? activeLink.props.children : activeLink?.props.children[0]
+    typeof activeLink?.props.children === 'string'
+      ? activeLink.props.children
+      : activeLink?.props.children[0]
+      ? activeLink.props.children[0]
+      : headingChildLabel
   // needed to prevent rendering of anchor subnav inside the narrow <button> element
-  const MaybeSubNav = activeLink?.props.children?.[1]?.props?.variant === 'anchor' && activeLink.props.children?.[1]
 
+  const MaybeSubNav = activeLink?.props.children?.[1]?.props?.variant === 'anchor' && activeLink.props.children?.[1]
   return (
     <div className={clsx(styles['SubNav__container'], hasAnchoredNav && styles['SubNav__container--with-anchor-nav'])}>
       <SubNavProvider>
@@ -260,7 +264,7 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
                   </defs>
                 </svg>
               </span>
-              {activeLink && activeLinklabel && !isLarge && (
+              {activeLinklabel && !isLarge && (
                 <button
                   className={clsx(
                     styles['SubNav__overlay-toggle'],

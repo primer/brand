@@ -1,6 +1,11 @@
+:global(a) {
+  color: blue;
+}
+
 .SubNav__container {
   position: absolute;
   width: 100%;
+  z-index: 2;
 }
 
 .SubNav__container--with-anchor-nav {
