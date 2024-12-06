@@ -27,7 +27,7 @@ jobs:
           node-version: 18
 
       - name: Caching dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -39,7 +39,7 @@ jobs:
       # workflow successfully finishes.
       # See https://github.com/actions/cache
       - name: Cache Cypress binary
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         with:
           path: ~/.cache/Cypress
           key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
