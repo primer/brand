@@ -1,5 +1,109 @@
 # @primer/react-brand
 
+## 0.44.0
+
+### Minor Changes
+
+- [#831](https://github.com/primer/brand/pull/831) [`8c3448d0`](https://github.com/primer/brand/commit/8c3448d0c1d2a0cfd1a2268e3f0cf835f924d540) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Reduced the text size in `FormControl.Hint` and `FormControl.Validation` components to match their counterparts in `CheckboxGroup` and `RadioGroup` for improved consistency and visual design accuracy.
+
+- [#844](https://github.com/primer/brand/pull/844) [`00275979`](https://github.com/primer/brand/commit/00275979c386bd3d5761a4dab2d8d6bb92f03279) Thanks [@joshfarrant](https://github.com/joshfarrant)! - New `Icon` component is generally available.
+
+  Example:
+  <Icon icon={ZapIcon} />
+
+  🔗 [Read the documentation for more usage examples](https://primer.style/brand/components/Icon)
+
+- [#830](https://github.com/primer/brand/pull/830) [`1f9eb72b`](https://github.com/primer/brand/commit/1f9eb72b23148cc7e5180dc691c11e507ef660fa) Thanks [@joshfarrant](https://github.com/joshfarrant)! - New `CheckboxGroup` and `RadioGroup` components to group `Checkbox` and `Radio` components are now available.
+
+  `CheckboxGroup`
+
+  ```jsx
+  <CheckboxGroup>
+    <CheckboxGroup.Label>Choose your favorite features</CheckboxGroup.Label>
+    <FormControl>
+      <FormControl.Label>Actions notifications</FormControl.Label>
+      <Checkbox value="actions" />
+    </FormControl>
+    <FormControl>
+      <FormControl.Label>Packages</FormControl.Label>
+      <Checkbox value="packages" />
+    </FormControl>
+    <FormControl>
+      <FormControl.Label>Codespaces</FormControl.Label>
+      <Checkbox value="codespaces" />
+    </FormControl>
+  </CheckboxGroup>
+  ```
+
+  🔗 [Read the documentation for more `CheckboxGroup` examples](https://primer.style/brand/components/RadioGroup/react)
+
+  `RadioGroup`:
+
+  ```jsx
+  <RadioGroup>
+    <RadioGroup.Label>Choose your primary workspace</RadioGroup.Label>
+    <FormControl>
+      <FormControl.Label>Codespaces</FormControl.Label>
+      <Radio name="workspace" value="codespaces" />
+    </FormControl>
+    <FormControl>
+      <FormControl.Label>Local environment</FormControl.Label>
+      <Radio name="workspace" value="local" />
+    </FormControl>
+    <FormControl>
+      <FormControl.Label>Pen and paper</FormControl.Label>
+      <Radio name="workspace" value="remote" />
+    </FormControl>
+  </RadioGroup>
+  ```
+
+  🔗 [Read the documentation for more `RadioGroup` examples](https://primer.style/brand/components/RadioGroup/react)
+
+- [#824](https://github.com/primer/brand/pull/824) [`6e398ba7`](https://github.com/primer/brand/commit/6e398ba7272d53e4fc8e00f4b4fd46b29a4bc666) Thanks [@rezrah](https://github.com/rezrah)! - Updates to `SubNav` component
+
+  - New anchor-based navigation pattern available:
+
+    Use `variant="anchor"` on `SubNav.SubMenu` to apply anchor navigation as an alternative to the default dropdown-based submenu.
+
+    ```jsx
+    <SubNav>
+      <SubNav.Heading href="#">Heading</SubNav.Heading>
+      <SubNav.Link href="#" aria-current="page">
+        Link with anchor navigation
+        <SubNav.SubMenu variant="anchor">
+          <SubNav.Link href="#">Anchor link one</SubNav.Link>
+          <SubNav.Link href="#">Anchor link two</SubNav.Link>
+          <SubNav.Link href="#">Anchor link three</SubNav.Link>
+          <SubNav.Link href="#">Anchor link four</SubNav.Link>
+        </SubNav.SubMenu>
+      </SubNav.Link>
+      <SubNav.Link href="#">Link</SubNav.Link>
+      <SubNav.Link href="#">Link</SubNav.Link>
+    </SubNav>
+    ```
+
+  - Overlay now closes when user clicks outside of it
+
+  - Dropdown submenus now appear with white and black background and foreground colors respectively, irrespective of color mode.
+
+  - Various other visual updates to improve brand-alignment. These include adjustments to text size, weight, color and iconography.
+
+### Patch Changes
+
+- [#842](https://github.com/primer/brand/pull/842) [`26f79f62`](https://github.com/primer/brand/commit/26f79f629a503bfa0b26f61829cb9c692c6cce5e) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Allow `AnchorNav` links to wrap to the next line in the expanded list on narrow viewports.
+
+- [#843](https://github.com/primer/brand/pull/843) [`7473042c`](https://github.com/primer/brand/commit/7473042c4ea4130f2d3fe9e4de88dd28899ce727) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Added a small (200ms) delay to the closing of the `Tooltip` to make it easier for users to move their cursor to the contents of the `Tooltip`.
+
+- [#847](https://github.com/primer/brand/pull/847) [`c3ca91c8`](https://github.com/primer/brand/commit/c3ca91c898cc222525f28accea0c34243affc72f) Thanks [@stamat](https://github.com/stamat)! - Improved accessibility of `Button` and `Link` components on Windows-based high contrast themes. Outlines are now visible only when focused, and border underlines will appear correctly.
+
+- [#841](https://github.com/primer/brand/pull/841) [`78e82c16`](https://github.com/primer/brand/commit/78e82c160eaeb74cc76f5af6b3cbd1f29c4b4449) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Improved accessibility in `AnchorNav` through clearer navigation menu labelling for screen reader users on narrow viewports.
+
+- [#833](https://github.com/primer/brand/pull/833) [`0f8bfa65`](https://github.com/primer/brand/commit/0f8bfa65876be7febfb37e3b9141f16731445aea) Thanks [@rezrah](https://github.com/rezrah)! - `selected` breadcrumb items now use non-interactive elements for improved keyboard navigation and correct semantics.
+
+- [#838](https://github.com/primer/brand/pull/838) [`bf785d6b`](https://github.com/primer/brand/commit/bf785d6ba409e6e87a57c3c9ce337c4db9f8630c) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Updated the accessible label of the SubNav's open/close toggle button to include the name of the current page.
+
+- [#828](https://github.com/primer/brand/pull/828) [`652e7ff0`](https://github.com/primer/brand/commit/652e7ff0e4ae20728b9f23ce2c83932b9b8afa41) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Fixed bug where `TextInput`, `TextArea`, and `Select` components would expand to the width of a the validation message on the parent `FormControl`.
+
 ## 0.43.0
 
 ### Minor Changes
