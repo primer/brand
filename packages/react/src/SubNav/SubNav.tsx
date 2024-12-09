@@ -239,25 +239,27 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
           <div ref={rootRef} className={styles['SubNav--header-container-outer']}>
             <div className={styles['SubNav__header-container']}>
               {HeadingChild && <div className={styles['SubNav__heading-container']}>{HeadingChild}</div>}
-              <span role="separator" className={styles['SubNav__heading-separator']} aria-hidden>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="8"
-                  height="16"
-                  viewBox="0 0 8 16"
-                  fill="none"
-                  aria-hidden
-                >
-                  <g clipPath="url(#clip0_50_1307)">
-                    <path d="M0 15.2992L5.472 0.701172H7.632L2.16 15.2992H0Z" fill="currentColor" />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_50_1307">
-                      <rect width="7.632" height="14.598" transform="translate(0 0.701172)" />
-                    </clipPath>
-                  </defs>
-                </svg>
-              </span>
+              {(activeLinklabel || isLarge) && (
+                <span role="separator" className={styles['SubNav__heading-separator']} aria-hidden>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="8"
+                    height="16"
+                    viewBox="0 0 8 16"
+                    fill="none"
+                    aria-hidden
+                  >
+                    <g clipPath="url(#clip0_50_1307)">
+                      <path d="M0 15.2992L5.472 0.701172H7.632L2.16 15.2992H0Z" fill="currentColor" />
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_50_1307">
+                        <rect width="7.632" height="14.598" transform="translate(0 0.701172)" />
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </span>
+              )}
 
               {!isLarge && (
                 <button
