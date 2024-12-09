@@ -14,8 +14,9 @@ declare const styles: {
   readonly "SubNav__sub-menu-toggle": string;
   readonly "SubNav__heading-separator": string;
   readonly "SubNav__anchor-menu-outer-container": string;
-  readonly "SubNav__sub-menu--anchor": string;
+  readonly "SubNav__anchor-menu-container": string;
   readonly "SubNav__anchor-menu-outer-container--stuck": string;
+  readonly "SubNav__sub-menu--anchor": string;
   readonly "SubNav__sub-menu-list": string;
   readonly "SubNav__link--is-in-view": string;
   readonly "SubNav__link-label": string;
@@ -30,8 +31,8 @@ declare const styles: {
   readonly "SubNav__action": string;
   readonly "SubNav__sub-menu": string;
   readonly "SubNav__sub-menu--dropdown": string;
-  readonly "SubNav__anchor-menu-container": string;
   readonly "SubNav__overlay-toggle-icon": string;
+  readonly "SubNav__overlay-toggle-content--end": string;
   readonly "SubNav__heading-label": string;
   readonly "SubNav__link--expanded": string;
   readonly "fade-in-down": string;

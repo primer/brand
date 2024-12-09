@@ -1,6 +1,7 @@
 .SubNav__container {
   position: absolute;
   width: 100%;
+  z-index: 2;
 }
 
 .SubNav__container--with-anchor-nav {
@@ -89,14 +90,48 @@
   z-index: 91; /* must be higher than subdomain nav bar */
 }
 
+.SubNav__anchor-menu-container {
+  opacity: 0;
+  background-color: transparent;
+  transform: translateY(var(--brand-animation-variant-slideInDown-distance));
+  transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
+    background-color var(--brand-animation-duration-default) var(--brand-animation-easing-default);
+}
+
+.SubNav__anchor-menu-outer-container--stuck .SubNav__anchor-menu-container {
+  transform: translateY(0);
+  opacity: 1;
+  background-color: var(--brand-color-canvas-default);
+}
+
+.SubNav__anchor-menu-outer-container {
+  height: 0;
+  transition: height var(--brand-animation-duration-default) var(--brand-animation-easing-default);
+}
+
+.SubNav__anchor-menu-outer-container--stuck {
+  height: auto;
+}
+
+.SubNav__sub-menu--anchor {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(var(--brand-animation-variant-slideInDown-distance));
+  transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
+    height var(--brand-animation-duration-default) var(--brand-animation-easing-default),
+    transform var(--brand-animation-duration-default) var(--brand-animation-easing-default);
+}
+
+.SubNav__anchor-menu-outer-container--stuck .SubNav__sub-menu--anchor {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .SubNav__sub-menu--anchor {
   display: flex;
   padding-block-start: var(--base-size-12);
   padding-block-end: var(--base-size-20);
-}
-
-.SubNav__anchor-menu-outer-container--stuck {
-  background-color: var(--brand-color-canvas-default);
 }
 
 .SubNav__sub-menu--anchor .SubNav__sub-menu-list {
@@ -277,10 +312,10 @@
     position: relative;
     width: 100%;
     display: flex;
-
     order: 1;
     z-index: 9999;
     padding-inline: 0;
+    justify-content: end;
   }
 
   .SubNav__overlay-toggle-content {
@@ -340,7 +375,6 @@
   }
 
   .SubNav__anchor-menu-outer-container {
-    overflow: hidden;
     position: sticky;
     top: -1px;
   }
@@ -403,6 +437,10 @@
   /* optical alignment */
   position: relative;
   top: calc(var(--base-size-4) / 4 * -1);
+}
+
+.SubNav__overlay-toggle-content--end {
+  justify-content: flex-end;
 }
 
 @media screen and (min-width: 48rem) {
