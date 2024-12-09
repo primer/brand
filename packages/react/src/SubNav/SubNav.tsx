@@ -21,7 +21,6 @@ import {default as clsx} from 'clsx'
 import {ChevronDownIcon, ChevronUpIcon} from '@primer/octicons-react'
 import {useId} from '@reach/auto-id'
 import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
-import {useFocusTrap} from '../hooks/useFocusTrap'
 import {useOnClickOutside} from '../hooks/useOnClickOutside'
 import {useProvidedRefOrCreate} from '../hooks/useRef'
 import {useContainsFocus} from './useContainsFocus'
@@ -154,7 +153,6 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
 
   useOnClickOutside(rootRef, closeMenuCallback)
   useKeyboardEscape(closeMenuCallback)
-  useFocusTrap({containerRef: overlayRef, restoreFocusOnCleanUp: true, disabled: !isOpenAtNarrow})
 
   useEffect(() => {
     if (isOpenAtNarrow && !isLarge) {
@@ -241,7 +239,7 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
           <div ref={rootRef} className={styles['SubNav--header-container-outer']}>
             <div className={styles['SubNav__header-container']}>
               {HeadingChild && <div className={styles['SubNav__heading-container']}>{HeadingChild}</div>}
-              {activeLinklabel && (
+              {(activeLinklabel || isLarge) && (
                 <span role="separator" className={styles['SubNav__heading-separator']} aria-hidden>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
