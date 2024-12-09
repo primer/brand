@@ -21,7 +21,6 @@ import {default as clsx} from 'clsx'
 import {ChevronDownIcon, ChevronUpIcon} from '@primer/octicons-react'
 import {useId} from '@reach/auto-id'
 import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
-import {useFocusTrap} from '../hooks/useFocusTrap'
 import {useOnClickOutside} from '../hooks/useOnClickOutside'
 import {useProvidedRefOrCreate} from '../hooks/useRef'
 import {useContainsFocus} from './useContainsFocus'
@@ -154,7 +153,6 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
 
   useOnClickOutside(rootRef, closeMenuCallback)
   useKeyboardEscape(closeMenuCallback)
-  useFocusTrap({containerRef: overlayRef, restoreFocusOnCleanUp: true, disabled: !isOpenAtNarrow})
 
   useEffect(() => {
     if (isOpenAtNarrow && !isLarge) {
@@ -241,27 +239,25 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
           <div ref={rootRef} className={styles['SubNav--header-container-outer']}>
             <div className={styles['SubNav__header-container']}>
               {HeadingChild && <div className={styles['SubNav__heading-container']}>{HeadingChild}</div>}
-              {activeLinklabel && (
-                <span role="separator" className={styles['SubNav__heading-separator']} aria-hidden>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="8"
-                    height="16"
-                    viewBox="0 0 8 16"
-                    fill="none"
-                    aria-hidden
-                  >
-                    <g clipPath="url(#clip0_50_1307)">
-                      <path d="M0 15.2992L5.472 0.701172H7.632L2.16 15.2992H0Z" fill="currentColor" />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_50_1307">
-                        <rect width="7.632" height="14.598" transform="translate(0 0.701172)" />
-                      </clipPath>
-                    </defs>
-                  </svg>
-                </span>
-              )}
+              <span role="separator" className={styles['SubNav__heading-separator']} aria-hidden>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="8"
+                  height="16"
+                  viewBox="0 0 8 16"
+                  fill="none"
+                  aria-hidden
+                >
+                  <g clipPath="url(#clip0_50_1307)">
+                    <path d="M0 15.2992L5.472 0.701172H7.632L2.16 15.2992H0Z" fill="currentColor" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_50_1307">
+                      <rect width="7.632" height="14.598" transform="translate(0 0.701172)" />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </span>
 
               {!isLarge && (
                 <button
