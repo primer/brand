@@ -1,0 +1,6 @@
+.HeroImage {
+  flex-shrink: 0;
+  @media screen and (max-width: 64rem) {
+    display: none;
+  }
+}

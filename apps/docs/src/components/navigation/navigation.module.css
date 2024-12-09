@@ -1,0 +1,80 @@
+.Navigation {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  flex-grow: 1;
+  font-family: var(--brand-fontStack-sansSerif);
+}
+
+.Separator {
+  color: var(--borderColor-default, #d0d7de);
+  font-weight: var(--base-text-weight-light);
+}
+
+.HorizontalList {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  flex-grow: 1;
+  margin: 0;
+  padding: 0;
+  gap: var(--base-size-2);
+  padding-right: var(--base-size-16);
+  justify-content: flex-end;
+}
+
+.Link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-color-text-muted);
+  text-decoration: none;
+  padding: 0 var(--base-size-12);
+  height: var(--base-size-32);
+  border: 1px solid transparent;
+  border-radius: var(--brand-borderRadius-medium);
+}
+
+.DropdownLink {
+  color: var(--brand-color-text-muted);
+  font-size: var(--brand-text-size-200);
+}
+
+.Dropdown svg {
+  color: var(--brand-color-text-default);
+}
+
+.Icon {
+  margin-bottom: 6px;
+}
+
+.Link:hover {
+  background: var(
+    --bgColor-muted,
+    #f6f8fa
+  ); /* Note: this color will be wrong when/if we add dark mode Doctocat Primer Brand docs */
+}
+
+.Link:focus-visible {
+  outline: 2px solid var(--focus-outlineColor);
+  outline-offset: -2px;
+}
+
+.Link[data-active] {
+  color: var(--brand-color-text-default);
+  font-weight: var(--base-text-weight-semibold);
+}
+
+.HorizontalList {
+  display: none;
+}
+
+@media (min-width: 1012px) {
+  .HorizontalList {
+    display: flex;
+  }
+  .Separator,
+  .Dropdown {
+    display: none;
+  }
+}

@@ -1,38 +1,31 @@
-import {Box as PRCBox, Heading, Text, ThemeProvider} from '@primer/react'
 import React from 'react'
-import {Container} from '@primer/gatsby-theme-doctocat'
-import heroIllustration from '../primer-components-hero.svg'
-import {version} from '../../../../../../packages/react/package'
+import {Heading, Stack, Text} from '@primer/react-brand'
+import styles from './hero.module.css'
 
 export default function Hero() {
   return (
-    <ThemeProvider colorMode="night" nightScheme="dark_dimmed">
-      <PRCBox bg="canvas.default" py={6}>
-        <Container>
-          <Heading
-            sx={{
-              color: 'accent.fg',
-              fontSize: 7,
-              lineHeight: 'condensed',
-              pb: 3,
-              m: 0,
-            }}
-          >
-            Primer Brand
-          </Heading>
-          <Text
-            as="p"
-            fontFamily="mono"
-            mt={0}
-            mb={2}
-            color="fg.muted"
-            fontSize={2}
-          >
-            v{version}
-          </Text>
-          <img src={heroIllustration} alt="" width="100%" />
-        </Container>
-      </PRCBox>
-    </ThemeProvider>
+    <Stack
+      padding="none"
+      gap="spacious"
+      direction="horizontal"
+      alignItems="center"
+      justifyContent="space-between"
+    >
+      <Stack gap="normal" padding="none">
+        <Heading as="h1" size="3">
+          Primer Brand UI
+        </Heading>
+        <Text as="p" variant="muted" size="300">
+          Primer Brand is GitHub's design system for creating marketing websites and digital experiences.
+        </Text>
+      </Stack>
+      <div className={styles.HeroImage}>
+        <img
+          width="256"
+          alt="3d illustration, showing a side profile of Mona the GitHub Mascot gazing towards the sky"
+          src="https://github.com/user-attachments/assets/e9a4d7f8-8e61-4f45-a1a7-466848df6dda"
+        />
+      </div>
+    </Stack>
   )
 }
