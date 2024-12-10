@@ -22,7 +22,7 @@ import {
 import '@primer/react-brand/lib/css/main.css'
 
 export default function KitchenSink() {
-  const inputRef = useRef()
+  const inputRef = useRef(null)
 
   const mockHandler = () => {}
 
