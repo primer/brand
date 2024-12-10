@@ -90,6 +90,12 @@ jobs:
           rm ./${{env.NEXTJS_FOLDER}}/app/page.tsx
           cp ./packages/e2e/integration-tests/nextjs/page.tsx ./${{env.NEXTJS_FOLDER}}/app
 
+      - name: Copying required files
+        run: |
+          cp ./packages/e2e/cypress.config.js ./${{env.NEXTJS_FOLDER}}
+          mkdir ${{env.NEXTJS_FOLDER}}/integration-tests
+          cp -r ./packages/e2e/integration-tests/tests ./${{env.NEXTJS_FOLDER}}/integration-tests
+
       - name: Excluded cypress tests in-place
         # includes temp workaround for cypress bug. remove when fixed
         # https://github.com/cypress-io/cypress/issues/27448
