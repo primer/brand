@@ -47,15 +47,15 @@ jobs:
         uses: actions/upload-artifact@v4
         if: steps.playwright-step.outcome != 'success'
         with:
-          name: playwright-test-results
-          path: playwright-test-results
+          name: packages/e2e/playwright-test-results
+          path: packages/e2e/playwright-test-results
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
           name: playwright-report
-          path: playwright-report/
+          path: packages/e2e/playwright-report/
           retention-days: 30
 
       - name: Comment on the PR about no visual differences
