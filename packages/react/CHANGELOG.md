@@ -1,5 +1,15 @@
 # @primer/react-brand
 
+## 0.44.1
+
+### Patch Changes
+
+- [#854](https://github.com/primer/brand/pull/854) [`fa277afd`](https://github.com/primer/brand/commit/fa277afdbfa002849d4040ee7d661662cd7c1ca8) Thanks [@rezrah](https://github.com/rezrah)! - `SubNav` accessibility improvements:
+
+  - Removed focus-trapping in the menu overlay on narrow viewports
+  - Added hover state to the `SubNav.Heading`
+  - Added `aria-current` visual indicator parity on narrow viewports
+
 ## 0.44.0
 
 ### Minor Changes
