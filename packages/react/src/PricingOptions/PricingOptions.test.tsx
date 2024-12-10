@@ -111,4 +111,37 @@ describe('PricingOptions.Item', () => {
     expect(getByText(mockFeatureListItem)).toBeInTheDocument()
     expect(getByText(mockFootnote)).toBeInTheDocument()
   })
+
+  it('renders markup in the expected order', () => {
+    const {getByTestId} = render(
+      <PricingOptions.Item data-testid={testId}>
+        <PricingOptions.Footnote>{mockFootnote}</PricingOptions.Footnote>
+        <PricingOptions.Label>{mockLabel}</PricingOptions.Label>
+        <PricingOptions.Description>{mockDescription}</PricingOptions.Description>
+        <PricingOptions.Heading>{mockHeading}</PricingOptions.Heading>
+        <PricingOptions.FeatureList>
+          <PricingOptions.FeatureListHeading>{mockFeaturedListHeading}</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListItem>{mockFeatureListItem}</PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+      </PricingOptions.Item>,
+    )
+
+    const PricingOptionsItemEl = getByTestId(testId)
+
+    const expectedOrder = [
+      'PricingOptions__heading',
+      'PricingOptions__label',
+      'PricingOptions__description',
+      'PricingOptions__featureList',
+      'PricingOptions__footnote',
+    ]
+
+    const elementsWithTestId = PricingOptionsItemEl.querySelectorAll('[data-testid]')
+
+    const testIdsInOrder = Array.from(elementsWithTestId)
+      .map(el => el.getAttribute('data-testid'))
+      .filter(id => id && expectedOrder.includes(id))
+
+    expect(testIdsInOrder).toEqual(expectedOrder)
+  })
 })
