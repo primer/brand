@@ -83,29 +83,12 @@ jobs:
         run: |
           cd ${{env.NEXTJS_FOLDER}}
           cp ../packages/react/primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz ./
-          npm install primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz --legacy-peer-deps
-
-      - name: Prefer ESM imports
-        run: |
-          mv ./packages/e2e/integration-tests/fixtures/index.esm.ts ./packages/e2e/integration-tests/fixtures/index.ts
-          rm ./packages/e2e/integration-tests/fixtures/index.cjs.ts
+          npm install primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz
 
       - name: Copying required files
         run: |
+          rm ./${{env.NEXTJS_FOLDER}}/app/page.tsx
           cp ./packages/e2e/integration-tests/nextjs/page.tsx ./${{env.NEXTJS_FOLDER}}/app
-          cp ./packages/e2e/integration-tests/nextjs/.eslintrc ./${{env.NEXTJS_FOLDER}}
-          cp ./packages/e2e/cypress.config.js ./${{env.NEXTJS_FOLDER}}
-          mkdir ${{env.NEXTJS_FOLDER}}/integration-tests
-          cp -r ./packages/e2e/integration-tests/fixtures ./${{env.NEXTJS_FOLDER}}/integration-tests
-          cp -r ./packages/e2e/integration-tests/tests ./${{env.NEXTJS_FOLDER}}/integration-tests
-
-      # - name: Patching postcss bug in v12 of Next.js
-      #   uses: DamianReeves/write-file-action@master
-      #   with:
-      #     path: ${{env.NEXTJS_FOLDER}}/postcss.config.json
-      #     contents: |
-      #       {"plugins": []}
-      #     write-mode: overwrite
 
       - name: Excluded cypress tests in-place
         # includes temp workaround for cypress bug. remove when fixed
