@@ -26,7 +26,7 @@ test.describe('Visual Comparison: Footnotes', () => {
       'http://localhost:6006/iframe.html?args=&id=components-footnotes-examples--rivers-with-citations&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(3000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
