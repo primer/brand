@@ -47,7 +47,7 @@ jobs:
         uses: actions/upload-artifact@v4
         if: steps.playwright-step.outcome != 'success'
         with:
-          name: packages/e2e/playwright-test-results
+          name: playwright-test-results
           path: packages/e2e/playwright-test-results
 
       - name: Upload test results
