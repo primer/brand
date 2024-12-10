@@ -75,7 +75,7 @@ jobs:
         # Remove yarn when create-react-app supports React 19
         run: |
         npm install --global yarn 
-        yarn create-react-app cra-test --template typescript
+        yarn create-react-app ${{env.CRA_FOLDER}} --template typescript
 
       - name: Retrieving package version
         id: package-version
@@ -85,7 +85,7 @@ jobs:
 
       - name: Installing local build
         run: |
-          cd cra-test
+          cd ${{env.CRA_FOLDER}}
           cp ../packages/react/primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz ./
           npm install primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz
 
@@ -96,18 +96,18 @@ jobs:
 
       - name: Copying required files
         run: |
-          cp ./packages/e2e/integration-tests/create-react-app/App.tsx ./cra-test/src
-          cp ./packages/e2e/cypress.config.js ./cra-test
-          cp -r ./packages/e2e/integration-tests/fixtures ./cra-test/src
-          mkdir cra-test/integration-tests
-          cp -r ./packages/e2e/integration-tests/fixtures ./cra-test/integration-tests
-          cp -r ./packages/e2e/integration-tests/tests ./cra-test/integration-tests
+          cp ./packages/e2e/integration-tests/create-react-app/App.tsx ./${{env.CRA_FOLDER}}/src
+          cp ./packages/e2e/cypress.config.js ./${{env.CRA_FOLDER}}
+          cp -r ./packages/e2e/integration-tests/fixtures ./${{env.CRA_FOLDER}}/src
+          mkdir ${{env.CRA_FOLDER}}/integration-tests
+          cp -r ./packages/e2e/integration-tests/fixtures ./${{env.CRA_FOLDER}}/integration-tests
+          cp -r ./packages/e2e/integration-tests/tests ./${{env.CRA_FOLDER}}/integration-tests
 
       - name: Excluded cypress tests in-place
-        run: npx json -I -f cra-test/tsconfig.json -e 'this.exclude=["node_modules", "**/*.cy.ts"]'
+        run: npx json -I -f ${{env.CRA_FOLDER}}/tsconfig.json -e 'this.exclude=["node_modules", "**/*.cy.ts"]'
 
       - name: Testing compile-time build
-        run: cd cra-test && npm run build
+        run: cd ${{env.CRA_FOLDER}} && npm run build
 
       - name: Test runtime for errors and warnings
-        run: cd cra-test && npx start-server-and-test 'start' 3000 'npx cypress run --spec "./integration-tests/tests/*" --config video=false'
+        run: cd ${{env.CRA_FOLDER}} && npx start-server-and-test 'start' 3000 'npx cypress run --spec "./integration-tests/tests/*" --config video=false'

@@ -98,10 +98,10 @@ jobs:
       - name: Fix monorepo-related linting issues
         run: |
           npm run lint -- --fix
-      
+
       - name: Clean workspace before testing
-            run: |
-              find . -maxdepth 1 -mindepth 1 -not -name ${{env.NEXTJS_FOLDER}} -exec rm -rf {} +
+        run: |
+          find . -maxdepth 1 -mindepth 1 -not -name ${{env.NEXTJS_FOLDER}} -exec rm -rf {} +
 
       - name: Testing compile-time build
         run: cd ${{env.NEXTJS_FOLDER}} && npm run build
