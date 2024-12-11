@@ -24,7 +24,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Caching dependencies
         uses: actions/cache@v4
@@ -85,6 +85,11 @@ jobs:
           cp ../packages/react/primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz ./
           npm install primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz
 
+      - name: Prefer ESM imports
+        run: |
+          mv ./packages/e2e/integration-tests/fixtures/index.esm.ts ./packages/e2e/integration-tests/fixtures/index.ts
+          rm ./packages/e2e/integration-tests/fixtures/index.cjs.ts
+
       - name: Copying required files
         run: |
           rm ./${{env.NEXTJS_FOLDER}}/app/page.tsx
@@ -92,8 +97,11 @@ jobs:
 
       - name: Copying required files
         run: |
+          cp ./packages/e2e/integration-tests/nextjs/page.tsx ./${{env.NEXTJS_FOLDER}}/app
+          cp ./packages/e2e/integration-tests/nextjs/.eslintrc ./${{env.NEXTJS_FOLDER}}
           cp ./packages/e2e/cypress.config.js ./${{env.NEXTJS_FOLDER}}
           mkdir ${{env.NEXTJS_FOLDER}}/integration-tests
+          cp -r ./packages/e2e/integration-tests/fixtures ./${{env.NEXTJS_FOLDER}}/integration-tests
           cp -r ./packages/e2e/integration-tests/tests ./${{env.NEXTJS_FOLDER}}/integration-tests
 
       - name: Excluded cypress tests in-place
@@ -105,6 +113,8 @@ jobs:
         run: |
           npm run lint -- --fix
 
+      # Needed to fix compilation errors and conflicts between TS and React type defs.
+      # All subsequent steps should not be dependent on the primer/brand repo contents.
       - name: Clean workspace before testing
         run: |
           find . -maxdepth 1 -mindepth 1 -not -name ${{env.NEXTJS_FOLDER}} -exec rm -rf {} +
