@@ -1,8 +1,0 @@
-{
-  "extends": "next",
-  "rules": {
-    "eslint-comments/no-unlimited-disable": "off",
-    "eslint-comments/no-use": "off",
-    "react/react-in-jsx-scope": "off"
-  }
-}
