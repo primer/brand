@@ -8,6 +8,7 @@ import startShape from '../fixtures/images/testimonial-bg-1.png'
 import endShape from '../fixtures/images/testimonial-bg-2.png'
 
 import styles from './Pillar.stories.module.css'
+import placeholderImage from '../fixtures/images/placeholder-600x400.png'
 
 export default {
   title: 'Components/Pillar/features',
@@ -18,6 +19,22 @@ export const Icon: StoryFn<typeof Pillar> = () => {
   return (
     <Pillar>
       <Pillar.Icon icon={<RocketIcon />} />
+      <Pillar.Heading>Code search & code view</Pillar.Heading>
+      <Pillar.Description>
+        Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
+      </Pillar.Description>
+    </Pillar>
+  )
+}
+
+export const Image: StoryFn<typeof Pillar> = () => {
+  return (
+    <Pillar>
+      <Pillar.Image
+        aspectRatio="16:10"
+        src={placeholderImage}
+        alt="placeholder, blank area with a gray background color"
+      />
       <Pillar.Heading>Code search & code view</Pillar.Heading>
       <Pillar.Description>
         Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
