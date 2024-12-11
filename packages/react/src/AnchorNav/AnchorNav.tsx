@@ -3,7 +3,7 @@ import React, {ReactElement, useCallback, useEffect, useMemo, useRef, useState} 
 import {ChevronDownIcon, ChevronUpIcon} from '@primer/octicons-react'
 import {useId} from '@reach/auto-id'
 
-import {Button, ButtonBaseProps, ButtonProps, Text} from '../'
+import {Button, ButtonBaseProps, Text} from '../'
 import {useWindowSize} from '../hooks/useWindowSize'
 import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
 import {useExpandedMenu} from './useExpandedMenu'
