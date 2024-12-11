@@ -98,7 +98,6 @@ jobs:
       - name: Copying required files
         run: |
           cp ./packages/e2e/integration-tests/nextjs/page.tsx ./${{env.NEXTJS_FOLDER}}/app
-          cp ./packages/e2e/integration-tests/nextjs/.eslintrc ./${{env.NEXTJS_FOLDER}}
           cp ./packages/e2e/cypress.config.js ./${{env.NEXTJS_FOLDER}}
           mkdir ${{env.NEXTJS_FOLDER}}/integration-tests
           cp -r ./packages/e2e/integration-tests/fixtures ./${{env.NEXTJS_FOLDER}}/integration-tests
