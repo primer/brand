@@ -22,9 +22,9 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Caching dependencies
         uses: actions/cache@v4
@@ -71,7 +71,11 @@ jobs:
         run: cd ./packages/react && npm pack
 
       - name: Configuring Create React App
-        run: npx create-react-app ${{env.CRA_FOLDER}} --template typescript
+        # Lack of React 19 support broke CRA. See https://github.com/facebook/create-react-app/issues/13717. 
+        # Remove yarn when create-react-app supports React 19
+        run: |
+        npm install --global yarn 
+        yarn create-react-app ${{env.CRA_FOLDER}} --template typescript
 
       - name: Retrieving package version
         id: package-version

@@ -21,6 +21,7 @@
    * Manual lookup for tests that need animation or side-effects to complete before tests start
    */
   const waitForTimeoutLookup = {
+    'components-faq-features--with-prose': 2000, // for the animation
     'components-faq-features--all-open': 1000, // for the animation
     'components-subdomainnavbar--search-open': 5500, // for the animation
     'components-subdomainnavbar--search-results-visible': 5500, // for the animation
@@ -35,15 +36,15 @@
     'components-button-features--with-hover-interaction': 2000, // for the interaction test
     'components-button-features--secondary-with-hover-interaction': 2000, // for the interaction test
     'components-button-features--subtle-with-hover-interaction': 2000, // for the interaction test
-    'components-anchornav--playground': 1000, // for the animation
-    'components-anchornav-features--fewer-anchor-links': 1000, // for the animation
-    'components-anchornav-features--custom-background': 1000, // for the animation
-    'components-anchornav-features--shorter-labels': 1000, // for the animation
-    'components-anchornav-features--narrow-view': 1000, // for the interaction test
-    'components-anchornav-features--narrow-view-menu-open': 1000, // for the interaction test
-    'components-anchornav-features--regular-view': 1000, // for the interaction test
-    'components-anchornav-features--regular-view-menu-open': 1000, // for the interaction test
-    'components-anchornav-features--longer-labels': 1000, // for the animation
+    'components-anchornav--playground': 2000, // for the animation
+    'components-anchornav-features--fewer-anchor-links': 2000, // for the animation
+    'components-anchornav-features--custom-background': 2000, // for the animation
+    'components-anchornav-features--shorter-labels': 2000, // for the animation
+    'components-anchornav-features--narrow-view': 2000, // for the interaction test
+    'components-anchornav-features--narrow-view-menu-open': 2000, // for the interaction test
+    'components-anchornav-features--regular-view': 2000, // for the interaction test
+    'components-anchornav-features--regular-view-menu-open': 2000, // for the interaction test
+    'components-anchornav-features--longer-labels': 2000, // for the animation
     'components-minimalfooter--default': 5000, // for external social imagery to load
     'components-minimalfooter--playground': 5000, // for external social imagery to load
     'components-minimalfooter-features--dark-theme': 5000, // for external social imagery to load
@@ -92,6 +93,7 @@
     'components-textrevealanimation-examples--with-large-testimonial': 3000, // for the animation
     'components-textrevealanimation-examples--with-hero': 3000, // for the animation
     'components-textrevealanimation-features--animation-on-scroll': 3000, // for the animation
+    'components-footnotes-examples--rivers-with-citations': 3000, // for the images
   }
 
   /**

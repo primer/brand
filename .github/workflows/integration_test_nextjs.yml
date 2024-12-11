@@ -22,9 +22,9 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Caching dependencies
         uses: actions/cache@v4
@@ -83,7 +83,7 @@ jobs:
         run: |
           cd ${{env.NEXTJS_FOLDER}}
           cp ../packages/react/primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz ./
-          npm install primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz --legacy-peer-deps
+          npm install primer-react-brand-${{ steps.package-version.outputs.current-version}}.tgz
 
       - name: Prefer ESM imports
         run: |
@@ -92,20 +92,16 @@ jobs:
 
       - name: Copying required files
         run: |
+          rm ./${{env.NEXTJS_FOLDER}}/app/page.tsx
           cp ./packages/e2e/integration-tests/nextjs/page.tsx ./${{env.NEXTJS_FOLDER}}/app
-          cp ./packages/e2e/integration-tests/nextjs/.eslintrc ./${{env.NEXTJS_FOLDER}}
+
+      - name: Copying required files
+        run: |
+          cp ./packages/e2e/integration-tests/nextjs/page.tsx ./${{env.NEXTJS_FOLDER}}/app
           cp ./packages/e2e/cypress.config.js ./${{env.NEXTJS_FOLDER}}
           mkdir ${{env.NEXTJS_FOLDER}}/integration-tests
           cp -r ./packages/e2e/integration-tests/fixtures ./${{env.NEXTJS_FOLDER}}/integration-tests
           cp -r ./packages/e2e/integration-tests/tests ./${{env.NEXTJS_FOLDER}}/integration-tests
-
-      # - name: Patching postcss bug in v12 of Next.js
-      #   uses: DamianReeves/write-file-action@master
-      #   with:
-      #     path: ${{env.NEXTJS_FOLDER}}/postcss.config.json
-      #     contents: |
-      #       {"plugins": []}
-      #     write-mode: overwrite
 
       - name: Excluded cypress tests in-place
         # includes temp workaround for cypress bug. remove when fixed
@@ -115,6 +111,12 @@ jobs:
       - name: Fix monorepo-related linting issues
         run: |
           npm run lint -- --fix
+
+      # Needed to fix compilation errors and conflicts between TS and React type defs.
+      # All subsequent steps should not be dependent on the primer/brand repo contents.
+      - name: Clean workspace before testing
+        run: |
+          find . -maxdepth 1 -mindepth 1 -not -name ${{env.NEXTJS_FOLDER}} -exec rm -rf {} +
 
       - name: Testing compile-time build
         run: cd ${{env.NEXTJS_FOLDER}} && npm run build
