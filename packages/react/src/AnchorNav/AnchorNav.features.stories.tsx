@@ -262,3 +262,94 @@ HideUntilSticky.args = {
   hideUntilSticky: true,
 }
 HideUntilSticky.storyName = 'Hide until sticky'
+
+export const AnchorNavPrimaryActions = () => {
+  const data = ['link1', 'link2', 'link3']
+  return (
+    <>
+      <AnchorNav>
+        {data.map((link, index) => (
+          <AnchorNav.Link href={link} key={index}>
+            {link}
+          </AnchorNav.Link>
+        ))}
+        <AnchorNav.Action variant="primary" href="#">
+          Get started
+        </AnchorNav.Action>
+      </AnchorNav>
+      <Stack
+        direction="vertical"
+        justifyContent="space-around"
+        gap="none"
+        style={{marginBottom: '100px'}}
+        padding="none"
+      >
+        {data.map(key => (
+          <RedlineBackground key={key}>
+            <Stack
+              key={key}
+              id={key}
+              direction="vertical"
+              style={{
+                padding: `${1000 / 2}px var(--base-size-24)`,
+              }}
+            >
+              <Heading>First action as primary</Heading>
+              <Text as="p">
+                AnchorNav is a component that allows users to navigate to different sections of a page.
+              </Text>
+            </Stack>
+          </RedlineBackground>
+        ))}
+      </Stack>
+    </>
+  )
+}
+AnchorNavPrimaryActions.storyName = 'With optional primary CTA'
+
+export const AnchorNavLargerActions = () => {
+  const data = ['link1', 'link2', 'link3']
+  return (
+    <>
+      <AnchorNav>
+        {data.map((link, index) => (
+          <AnchorNav.Link href={link} key={index}>
+            {link}
+          </AnchorNav.Link>
+        ))}
+        <AnchorNav.Action size="medium" href="#">
+          Primary action
+        </AnchorNav.Action>
+        <AnchorNav.SecondaryAction size="medium" href="#">
+          Secondary action
+        </AnchorNav.SecondaryAction>
+      </AnchorNav>
+      <Stack
+        direction="vertical"
+        justifyContent="space-around"
+        gap="none"
+        style={{marginBottom: '100px'}}
+        padding="none"
+      >
+        {data.map(key => (
+          <RedlineBackground key={key}>
+            <Stack
+              key={key}
+              id={key}
+              direction="vertical"
+              style={{
+                padding: `${1000 / 2}px var(--base-size-24)`,
+              }}
+            >
+              <Heading>First action as primary</Heading>
+              <Text as="p">
+                AnchorNav is a component that allows users to navigate to different sections of a page.
+              </Text>
+            </Stack>
+          </RedlineBackground>
+        ))}
+      </Stack>
+    </>
+  )
+}
+AnchorNavLargerActions.storyName = 'With larger CTAs'

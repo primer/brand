@@ -116,4 +116,22 @@ test.describe('Visual Comparison: AnchorNav', () => {
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
+
+  test('AnchorNav / With optional primary CTA', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--anchor-nav-primary-actions&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / With larger CTAs', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--anchor-nav-larger-actions&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
 })
