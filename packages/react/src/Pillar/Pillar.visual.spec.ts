@@ -28,6 +28,13 @@ test.describe('Visual Comparison: Pillar', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('Pillar / Image', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar-features--image&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('Pillar / Icon Colors', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar-features--icon-colors&viewMode=story')
 
