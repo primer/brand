@@ -4,6 +4,9 @@ description: Use the pillar component to group related content together.
 ---
 
 import ComponentLayout from '../../../src/layouts/component-layout'
+import doStackImages from './images/do-stack-images.png'
+import dontStackImages from './images/dont-stack-images.png'
+
 export default ComponentLayout
 
 ## Anatomy
@@ -17,34 +20,35 @@ export default ComponentLayout
 
 ## Usage
 
-Use pillars to group similar features or benefits together to easily scan and read. Pillars display content in a familiar and recognizable style.
+Use pillars to display a collection of features or benefits, making them easier to scan and read. Pillars present content in a familiar and recognizable style.
 
 ### Stacked
 
-Pillars should be stacked to display a list of items that are related to each other. Use consistent pillar sizes within a row or group. A group or a row of content pillars is more visually appealing when the widths and heights of all elements match, so keep the content lenght of each pillar consistent.
+Stack multiple pillars to create a collection of items. Ensure that all the items in a group have consistent content lengths so that their width and height match, making the content more visually appealing. When displaying a visual, create a balanced layout by using the same type for each pillar, either an icon or an image.
 
 <DoDontContainer>
   <Do>
     <img src="https://github.com/primer/brand/assets/912236/cd9679ab-cfa0-4c6d-8a55-21d16668f1ca" />
     <Caption>
-      Use a similar content size to achieve a visually balanced layout.
+      Use similar content lengths to achieve a visually balanced layout.
     </Caption>
   </Do>
   <Dont>
     <img src="https://github.com/primer/brand/assets/912236/cd6e471f-98cf-4c70-801f-c0aeb4d2bdf5" />
     <Caption>
-      Don't use different length sizes for the title or the description.
+      Avoid varying content lengths for the title and description.
     </Caption>
   </Dont>
 </DoDontContainer>
 
-If displaying an icon, do so for all cards to achieve a visually balanced layout.
+Use pillars with images only for groups of a maximum of three to six items. Avoid stacking multiple sections that each contain groups of six pillars.
 
 <DoDontContainer>
   <Do>
     <img src="https://github.com/primer/brand/assets/912236/cdceda67-a911-40a0-839a-4620c83fe510" />
     <Caption>
-      Use icons either for all pillars or none for a visually balanced layout.
+      When using icons, add them to all pillars to create a visually balanced
+      layout.
     </Caption>
   </Do>
   <Dont>
@@ -53,9 +57,23 @@ If displaying an icon, do so for all cards to achieve a visually balanced layout
   </Dont>
 </DoDontContainer>
 
-When presenting more than four pillars, we recommend displaying them in multiple rows. You can use the [Grid](/components/Grid) or the [Stack](/components/Stack) component to achieve this. We recommend using a grid with 3 or 4 columns and balancing the number of pillars on each row.
+<DoDontContainer>
+  <Do>
+    <img alt="" src={doStackImages} />
+    <Caption>
+      When using images, add them to all pillars to create a visually balanced
+      layout.
+    </Caption>
+  </Do>
+  <Dont>
+    <img alt="" src={dontStackImages} />
+    <Caption>Don't use images with different aspect ratios.</Caption>
+  </Dont>
+</DoDontContainer>
 
-![An image showing a group of numerous Pillars stacked in a 3 column grid.](https://github.com/primer/brand/assets/912236/350c5eab-bd21-450c-a7a3-60e29c828a3f)
+When presenting more than four pillars, we recommend displaying them in multiple rows. You can use the [Grid](/components/Grid) or the [Stack](/components/Stack) component to achieve this. We recommend using a grid with three or four columns and balancing the number of pillars on each row.
+
+![An image showing a group of numerous Pillars stacked in a three column grid.](https://github.com/primer/brand/assets/912236/350c5eab-bd21-450c-a7a3-60e29c828a3f)
 
 ### Pillar and Card
 
@@ -71,18 +89,18 @@ Cards should be used for noteworthy information to immediately draw user attenti
 
 #### Group size
 
-Cards should be used in small groups (3, 4 or 5 items maximum), whereas Pillars can be used in larger (more than 5 items) or smaller groups. As users encounter an increasing number of items within a group, the distinctiveness of each individual element diminishes.
+Cards should be used in small groups of three to five items, while Pillars can accommodate larger groups of up to six items. The more items in a group, the less distinctive each individual element becomes.
 
 <DoDontContainer>
   <Do>
     <img src="https://github.com/primer/brand/assets/912236/bc33c846-71c2-4af6-a3ac-f886bad71995" />
-    <Caption>Pillars are more suitable for groups of 5 or more items.</Caption>
+    <Caption>Pillars are suitable for groups of up to six items.</Caption>
   </Do>
   <Dont>
     <img src="https://github.com/primer/brand/assets/912236/302dbc4d-6199-4c0c-96d5-76ac2e35fdea" />
     <Caption>
-      Don't use Cards for groups of 5 or more items. Use them sparingly in
-      groups of 3 or 4.
+      Don't use Cards for groups of five or more items. Use them sparingly in
+      groups of three or four.
     </Caption>
   </Dont>
 </DoDontContainer>
