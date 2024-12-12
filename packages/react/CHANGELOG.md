@@ -1,5 +1,14 @@
 # @primer/react-brand
 
+## 0.44.2
+
+### Patch Changes
+
+- [#859](https://github.com/primer/brand/pull/859) [`cd18615f`](https://github.com/primer/brand/commit/cd18615f0ea9d4d904166a5a5ba426d650304ce1) Thanks [@rezrah](https://github.com/rezrah)! - `AnchorNav` component updates:
+
+  - `AnchorNav.Action` and `AnchorNav.SecondaryAction` now appear visually smaller by default. Use `size="medium"` if the previous, larger buttons are needed.
+  - `AnchorNav.Action` and `AnchorNav.SecondaryAction` each support a `variant` prop, allowing primary `Button` visuals to be optionally applied.
+
 ## 0.44.1
 
 ### Patch Changes
