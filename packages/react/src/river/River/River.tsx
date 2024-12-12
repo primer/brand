@@ -168,7 +168,7 @@ export const RiverContent = forwardRef(
             {React.cloneElement(HeadingChild as React.ReactElement<HeadingProps>, {
               // as uses h3 default, but can be overridden
               as: HeadingChild.props.as || 'h3',
-              size: HeadingChild.props.size || '4',
+              size: HeadingChild.props.size || '5',
               weight: HeadingChild.props.weight,
             })}
           </div>

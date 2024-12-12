@@ -71,11 +71,11 @@ jobs:
         run: cd ./packages/react && npm pack
 
       - name: Configuring Create React App
-        # Lack of React 19 support broke CRA. See https://github.com/facebook/create-react-app/issues/13717. 
+        # Lack of React 19 support broke CRA. See https://github.com/facebook/create-react-app/issues/13717.
         # Remove yarn when create-react-app supports React 19
         run: |
-        npm install --global yarn 
-        yarn create-react-app ${{env.CRA_FOLDER}} --template typescript
+          npm install --global yarn 
+          yarn create-react-app ${{env.CRA_FOLDER}} --template typescript
 
       - name: Retrieving package version
         id: package-version
