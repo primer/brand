@@ -1,6 +1,6 @@
 import React, {forwardRef, PropsWithChildren, HTMLAttributes, type Ref} from 'react'
 import clsx from 'clsx'
-import {Heading, HeadingProps, Text, Link, LinkProps} from '..'
+import {Heading, HeadingProps, Text, Image, type ImageProps, Link, LinkProps} from '..'
 import type {BaseProps} from '../component-helpers'
 import {Colors} from '../constants'
 import {useAnimation} from '../animation'
@@ -40,6 +40,7 @@ const PillarRoot = forwardRef(
     const filteredChildren = React.Children.toArray(children).filter(child => {
       if (React.isValidElement(child) && typeof child.type !== 'string') {
         if (
+          child.type === PillarImage ||
           child.type === PillarIcon ||
           child.type === PillarHeading ||
           child.type === PillarDescription ||
@@ -66,6 +67,16 @@ const PillarRoot = forwardRef(
     )
   },
 )
+
+type PillarImageProps = ImageProps
+
+function PillarImage({className, ...rest}: PillarImageProps) {
+  return (
+    <div className={styles.Pillar__image}>
+      <Image className={className} {...rest} />
+    </div>
+  )
+}
 
 type PillarIconProps = BaseProps<HTMLSpanElement> & {
   icon: React.ReactNode | IconProps
@@ -148,6 +159,7 @@ const PillarLink = forwardRef(({className, children, href, ...props}: PillarLink
  */
 export const Pillar = Object.assign(PillarRoot, {
   Icon: PillarIcon,
+  Image: PillarImage,
   Heading: PillarHeading,
   Description: PillarDescription,
   Link: PillarLink,
