@@ -89,6 +89,12 @@
 
 /* Up to large breakpoint */
 @media screen and (max-width: 63.25rem) {
+  .AnchorNav:not(.AnchorNav--expanded) .AnchorNav-inner-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   .AnchorNav {
     background-color: var(--brand-color-canvas-default);
   }
@@ -105,6 +111,14 @@
   .AnchorNav--expanded .AnchorNav-link-container {
     display: flex;
     flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 40rem) and (max-width: 63.25rem) {
+  .AnchorNav__actionsContainer:not(.AnchorNav__actionsContainer--no-offset) {
+    position: absolute;
+    top: var(--base-size-8);
+    right: 0;
   }
 }
 
@@ -388,14 +402,6 @@
   .AnchorNav-inner-container {
     overflow-y: auto;
     padding: var(--base-size-12) var(--base-size-16);
-  }
-}
-
-@media screen and (min-width: 40rem) and (max-width: 63.25rem) {
-  .AnchorNav__actionsContainer {
-    position: absolute;
-    top: 0;
-    right: 0;
   }
 }
 
