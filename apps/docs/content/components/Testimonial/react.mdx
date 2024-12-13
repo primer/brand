@@ -9,7 +9,11 @@ description: Use the testimonial component to display a quote from a customer or
 import ComponentLayout from '../../../src/layouts/component-layout'
 export default ComponentLayout
 
-import {TestimonialQuoteMarkColors} from '@primer/react-brand'
+import {
+  TestimonialQuoteMarkColors,
+  TestimonialVariants,
+  defaultTestimonialVariant,
+} from '@primer/react-brand'
 import {Box as Container, Label} from '@primer/react'
 import {PropTableValues} from '../../../src/components'
 
@@ -35,6 +39,41 @@ import {Testimonial} from '@primer/react-brand'
     alt="Circular avatar from David Ross's GitHub profile"
   />
 </Testimonial>
+```
+
+### Variants
+
+For an alternative visual appearance and layout, without altering semantic meaning.
+
+```jsx live
+<Stack direction="horizontal" gap="spacious" padding="none">
+  <Testimonial variant="default">
+    <Testimonial.Quote>
+      GitHub helps us ensure that we have our security controls baked into our
+      pipelines all the way from the first line of code we&apos;re writing.
+    </Testimonial.Quote>
+    <Testimonial.Name position="Staff Security Engineer">
+      David Ross
+    </Testimonial.Name>
+    <Testimonial.Avatar
+      src="/brand/assets/avatar-mona.png"
+      alt="Circular avatar from David Ross's GitHub profile"
+    />
+  </Testimonial>
+  <Testimonial variant="subtle">
+    <Testimonial.Quote>
+      GitHub helps us ensure that we have our security controls baked into our
+      pipelines all the way from the first line of code we&apos;re writing.
+    </Testimonial.Quote>
+    <Testimonial.Name position="Staff Security Engineer">
+      David Ross
+    </Testimonial.Name>
+    <Testimonial.Avatar
+      src="/brand/assets/avatar-mona.png"
+      alt="Circular avatar from David Ross's GitHub profile"
+    />
+  </Testimonial>
+</Stack>
 ```
 
 ### Logo
@@ -129,6 +168,7 @@ Pass additional content about the testimonial provider using `position`.
 | `ref`            | `React.RefObject`                                                                                                                                            |             | Forward a Ref to the underlying DOM node      |
 | `size`           | <PropTableValues addLineBreaks values={['small','large']}/>                                                                                                  |  `'small'`  | Set size of quote's text                      |
 | `quoteMarkColor` | <PropTableValues addLineBreaks values={TestimonialQuoteMarkColors}/>                                                                                         | `'default'` | Color or gradient fill of the the quote mark. |
+| `variant`        | <PropTableValues addLineBreaks values={TestimonialVariants}/>                                                                                                | `'minimal'` | Alternative visual appearance                 |
 
 <h3 id="Testimonial-name">
   Testimonial.Name <Label>Required</Label>
