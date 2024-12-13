@@ -1,6 +1,6 @@
 {
   "FrostedGlassVFX": {
-    "blueIntensity": {
+    "blurIntensity": {
       "low": {
         "value": "var(--base-size-12)"
       },

@@ -9,15 +9,15 @@
 }
 
 .FrostedGlassVFX--intensity-low {
-  backdrop-filter: blur(var(--brand-FrostedGlassVFX-blueIntensity-low));
+  backdrop-filter: blur(var(--brand-FrostedGlassVFX-blurIntensity-low));
 }
 
 .FrostedGlassVFX--intensity-medium {
-  backdrop-filter: blur(var(--brand-FrostedGlassVFX-blueIntensity-medium));
+  backdrop-filter: blur(var(--brand-FrostedGlassVFX-blurIntensity-medium));
 }
 
 .FrostedGlassVFX--intensity-high {
-  backdrop-filter: blur(var(--brand-FrostedGlassVFX-blueIntensity-high));
+  backdrop-filter: blur(var(--brand-FrostedGlassVFX-blurIntensity-high));
 }
 
 .FrostedGlassVFX::before {
