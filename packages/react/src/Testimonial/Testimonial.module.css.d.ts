@@ -1,7 +1,9 @@
 declare const styles: {
   readonly "Testimonial": string;
-  readonly "Testimonial__quoteMark": string;
+  readonly "Testimonial--variant-subtle": string;
+  readonly "Testimonial--variant-default": string;
   readonly "Testimonial--size-large": string;
+  readonly "Testimonial__quoteMark": string;
   readonly "Testimonial-quote": string;
   readonly "Testimonial-quote--muted": string;
   readonly "Testimonial__media": string;

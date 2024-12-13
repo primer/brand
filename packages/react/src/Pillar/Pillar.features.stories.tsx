@@ -1,7 +1,7 @@
 import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 import {Pillar, PillarIconColors} from '.'
-import {Stack, Grid} from '..'
+import {Stack, Grid, FrostedGlassVFX, Box, ThemeProvider} from '..'
 import {CopilotIcon, RocketIcon, GitBranchIcon} from '@primer/octicons-react'
 
 export default {
@@ -198,4 +198,49 @@ export const StackedWithLink: StoryFn<typeof Pillar> = () => {
       })}
     </Stack>
   )
+}
+
+export const FrostedGlassEffect: StoryFn<typeof Pillar> = () => {
+  return (
+    <Stack direction={{narrow: 'vertical', regular: 'horizontal'}} gap="spacious" padding="spacious">
+      {fixtureData.map(({heading, description, icon, iconColor}, id) => {
+        return (
+          <FrostedGlassVFX key={id}>
+            <Box backgroundColor="subtle" borderRadius="xlarge" padding="normal">
+              <Pillar key={id} style={{flex: 1}}>
+                <Pillar.Icon icon={icon} color={iconColor} />
+                <Pillar.Heading>{heading}</Pillar.Heading>
+                <Pillar.Description>{description}</Pillar.Description>
+              </Pillar>
+            </Box>
+          </FrostedGlassVFX>
+        )
+      })}
+    </Stack>
+  )
+}
+FrostedGlassEffect.decorators = [
+  Story => (
+    <ThemeProvider colorMode="light">
+      <div
+        style={{
+          backgroundImage: `url(https://github.com/primer/brand/assets/13340707/7fe496dc-f6e0-417e-9453-32cec638ca68)`,
+          backgroundSize: '100%',
+          backgroundPosition: 'center',
+          minHeight: '100dvh',
+          overflow: 'hidden',
+          paddingTop: 'var(--base-size-112)',
+        }}
+      >
+        <Grid>
+          <Grid.Column>
+            <Story />
+          </Grid.Column>
+        </Grid>
+      </div>
+    </ThemeProvider>
+  ),
+]
+FrostedGlassEffect.parameters = {
+  layout: 'full',
 }

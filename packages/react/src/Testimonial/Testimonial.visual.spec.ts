@@ -14,29 +14,31 @@ test.describe('Visual Comparison: Testimonial', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('Testimonial / Avatar', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-testimonial--avatar&viewMode=story')
+  test('Testimonial / With Frosted Glass', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-testimonial-examples--with-frosted-glass&viewMode=story',
+    )
 
-    await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
-  })
-
-  test('Testimonial / Logo', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-testimonial--logo&viewMode=story')
-
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(4000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Testimonial / Duo', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-testimonial--duo&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-testimonial-examples--duo&viewMode=story')
 
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Testimonial / Trio', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-testimonial--trio&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-testimonial-examples--trio&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Testimonial / Avatar', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-testimonial-features--avatar&viewMode=story')
 
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
@@ -44,7 +46,7 @@ test.describe('Visual Comparison: Testimonial', () => {
 
   test('Testimonial / Colored Quote Mark', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-testimonial--colored-quote-mark&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-testimonial-features--colored-quote-mark&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -52,7 +54,7 @@ test.describe('Visual Comparison: Testimonial', () => {
   })
 
   test('Testimonial / Large', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-testimonial--large&viewMode=story')
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-testimonial-features--large&viewMode=story')
 
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
@@ -60,7 +62,16 @@ test.describe('Visual Comparison: Testimonial', () => {
 
   test('Testimonial / Large Highlighted Portion', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-testimonial--large-highlighted-portion&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-testimonial-features--large-highlighted-portion&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Testimonial / Testimonial Variants', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-testimonial-features--testimonial-variants&viewMode=story',
     )
 
     await page.waitForTimeout(500)

@@ -1,0 +1,42 @@
+.FrostedGlassVFX {
+  position: relative;
+  background: var(--brand-FrostedGlassVFX-bgColor);
+  box-shadow: var(--brand-FrostedGlassVFX-boxShadow);
+}
+
+.FrostedGlassVFX--rounded-corners {
+  border-radius: var(--brand-borderRadius-xlarge);
+}
+
+.FrostedGlassVFX--intensity-low {
+  backdrop-filter: blur(var(--brand-FrostedGlassVFX-blueIntensity-low));
+}
+
+.FrostedGlassVFX--intensity-medium {
+  backdrop-filter: blur(var(--brand-FrostedGlassVFX-blueIntensity-medium));
+}
+
+.FrostedGlassVFX--intensity-high {
+  backdrop-filter: blur(var(--brand-FrostedGlassVFX-blueIntensity-high));
+}
+
+.FrostedGlassVFX::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  content: '';
+  border-radius: inherit;
+  mask-image: var(--brand-FrostedGlassVFX-borderMask);
+  border: 1px solid var(--brand-color-border-default);
+}
+
+.FrostedGlassVFX > * {
+  background-color: transparent;
+}
+
+.FrostedGlassVFX > *::before {
+  border-color: transparent;
+}
