@@ -5,8 +5,8 @@ import clsx from 'clsx'
 import {Testimonial, TestimonialProps} from '.'
 import {Box, FrostedGlassVFX, Grid, Image, Stack, ThemeProvider} from '../'
 import monaAvatar from '../fixtures/images/avatar-mona.png'
-import startShape from '../fixtures/images/testimonial-bg-1.webp'
-import endShape from '../fixtures/images/testimonial-bg-2.webp'
+import startShape from '../fixtures/images/testimonial-bg-1.png'
+import endShape from '../fixtures/images/testimonial-bg-2.png'
 
 import styles from './Testimonial.stories.module.css'
 
