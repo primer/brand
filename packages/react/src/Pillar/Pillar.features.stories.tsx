@@ -226,7 +226,7 @@ export const FrostedGlassEffect: StoryFn<typeof Pillar> = () => {
 }
 FrostedGlassEffect.decorators = [
   Story => (
-    <ThemeProvider colorMode="light" className={styles.container}>
+    <ThemeProvider colorMode="light" className={styles.container} tabIndex={0}>
       <Box backgroundColor="subtle" paddingBlockStart={128} paddingBlockEnd={128} className={styles.innerContainer}>
         <Image src={startShape} alt="Starting shape" className={clsx(styles.exampleShape)} width={612} />
         <Image src={endShape} alt="Ending shape" className={styles.exampleShape} width={612} />
