@@ -1,7 +1,14 @@
 import React from 'react'
 import {Meta} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
-import {Testimonial, TestimonialProps, TestimonialQuoteMarkColors, defaultQuoteMarkColor} from '.'
+import {
+  Testimonial,
+  TestimonialProps,
+  TestimonialQuoteMarkColors,
+  TestimonialVariants,
+  defaultQuoteMarkColor,
+  defaultTestimonialVariant,
+} from '.'
 import monaAvatar from '../fixtures/images/avatar-mona.png'
 
 export default {
@@ -16,6 +23,7 @@ export default {
     size: 'small',
     type: 'avatar',
     width: 400,
+    variant: defaultTestimonialVariant,
   },
   argTypes: {
     quoteMarkColor: {
@@ -47,6 +55,10 @@ export default {
         max: 1200,
         step: 10,
       },
+    },
+    variant: {
+      options: [...TestimonialVariants],
+      control: {type: 'radio'},
     },
   },
   parameters: {

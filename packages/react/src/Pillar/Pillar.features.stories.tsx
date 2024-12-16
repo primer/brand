@@ -1,8 +1,13 @@
 import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
+import clsx from 'clsx'
 import {Pillar, PillarIconColors} from '.'
-import {Stack, Grid, FrostedGlassVFX, Box, ThemeProvider} from '..'
+import {Stack, Grid, FrostedGlassVFX, Box, ThemeProvider, Image} from '..'
 import {CopilotIcon, RocketIcon, GitBranchIcon} from '@primer/octicons-react'
+import startShape from '../fixtures/images/testimonial-bg-1.png'
+import endShape from '../fixtures/images/testimonial-bg-2.png'
+
+import styles from './Pillar.stories.module.css'
 
 export default {
   title: 'Components/Pillar/features',
@@ -221,23 +226,16 @@ export const FrostedGlassEffect: StoryFn<typeof Pillar> = () => {
 }
 FrostedGlassEffect.decorators = [
   Story => (
-    <ThemeProvider colorMode="light">
-      <div
-        style={{
-          backgroundImage: `url(https://github.com/primer/brand/assets/13340707/7fe496dc-f6e0-417e-9453-32cec638ca68)`,
-          backgroundSize: '100%',
-          backgroundPosition: 'center',
-          minHeight: '100dvh',
-          overflow: 'hidden',
-          paddingTop: 'var(--base-size-112)',
-        }}
-      >
+    <ThemeProvider colorMode="light" className={styles.container}>
+      <Box backgroundColor="subtle" paddingBlockStart={128} paddingBlockEnd={128} className={styles.innerContainer}>
+        <Image src={startShape} alt="Starting shape" className={clsx(styles.exampleShape)} width={612} />
+        <Image src={endShape} alt="Ending shape" className={styles.exampleShape} width={612} />
         <Grid>
           <Grid.Column>
             <Story />
           </Grid.Column>
         </Grid>
-      </div>
+      </Box>
     </ThemeProvider>
   ),
 ]
