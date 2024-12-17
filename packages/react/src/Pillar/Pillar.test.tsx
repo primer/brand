@@ -91,7 +91,7 @@ describe('Pillar', () => {
 
     const {getByAltText} = render(
       <Pillar data-testid={mockTestId}>
-        <Pillar.Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt={testAltText} />
+        <Pillar.Image src={mockImage} alt={testAltText} />
         <Pillar.Heading>{mockHeading}</Pillar.Heading>
         <Pillar.Description>{mockDescription}</Pillar.Description>
       </Pillar>,
