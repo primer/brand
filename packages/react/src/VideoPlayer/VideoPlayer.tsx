@@ -1,4 +1,4 @@
-import React, {useRef, forwardRef, useContext, type HTMLProps, type FunctionComponent} from 'react'
+import React, {useEffect, useState, useRef, forwardRef, useContext, type HTMLProps, type FunctionComponent} from 'react'
 import clsx from 'clsx'
 import {Text} from '../Text'
 import {type AnimateProps} from '../animation'
@@ -63,7 +63,37 @@ const Root = ({
   const useVideoContext = useVideo()
   const {ccEnabled, isPlaying, ref, togglePlaying} = useVideoContext
 
-  const hideControls = !isPlaying && !showControlsWhenPaused
+  const [hasFocusOrMouse, setHasFocusOrMouse] = useState(false)
+
+  useEffect(() => {
+    const videoWrapper = videoWrapperRef.current
+
+    if (!videoWrapper) {
+      return
+    }
+
+    const showControls = () => {
+      setHasFocusOrMouse(true)
+    }
+
+    const hideControls = () => {
+      setHasFocusOrMouse(false)
+    }
+
+    videoWrapper.addEventListener('mousemove', showControls)
+    videoWrapper.addEventListener('mouseleave', hideControls)
+    videoWrapper.addEventListener('focusin', showControls)
+    videoWrapper.addEventListener('focusout', hideControls)
+
+    return () => {
+      videoWrapper.removeEventListener('mousemove', showControls)
+      videoWrapper.removeEventListener('mouseleave', hideControls)
+      videoWrapper.removeEventListener('focusin', showControls)
+      videoWrapper.removeEventListener('focusout', hideControls)
+    }
+  }, [videoWrapperRef])
+
+  const showControls = hasFocusOrMouse || (showControlsWhenPaused && !isPlaying)
 
   return (
     <div className={styles.VideoPlayer__container} ref={videoWrapperRef}>
@@ -93,16 +123,14 @@ const Root = ({
       </button>
       <div className={styles.VideoPlayer__controls}>
         {ccEnabled && <Captions />}
-        {!hideControls && (
-          <ControlsBar>
-            {showPlayPauseButton && <PlayPauseButton />}
-            {showSeekControl && <SeekControl />}
-            {showCCButton && <CCButton />}
-            {showMuteButton && <MuteButton />}
-            {showVolumeControl && !isSmall && <VolumeControl />}
-            {showFullScreenButton && <FullScreenButton />}
-          </ControlsBar>
-        )}
+        <ControlsBar className={clsx(!showControls && styles['VideoPlayer__controlsBar--fade'])}>
+          {showPlayPauseButton && <PlayPauseButton />}
+          {showSeekControl && <SeekControl />}
+          {showCCButton && <CCButton />}
+          {showMuteButton && <MuteButton />}
+          {showVolumeControl && !isSmall && <VolumeControl />}
+          {showFullScreenButton && <FullScreenButton />}
+        </ControlsBar>
       </div>
     </div>
   )

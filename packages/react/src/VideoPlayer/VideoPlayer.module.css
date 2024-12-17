@@ -120,8 +120,14 @@
   left: 0;
   width: 100%;
   background: var(--brand-videoPlayer-controls-bgColor);
-  padding: var(--base-size-16) var(--base-size-24);
+  padding: var(--base-size-12) var(--base-size-16);
   pointer-events: all;
+  opacity: 1;
+}
+
+.VideoPlayer__controlsBar--fade {
+  transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default);
+  opacity: 0;
 }
 
 .VideoPlayer__controls:focus,

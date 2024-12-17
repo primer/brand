@@ -9,6 +9,7 @@ declare const styles: {
   readonly "VideoPlayer__controls": string;
   readonly "VideoPlayer__controls--hidden": string;
   readonly "VideoPlayer__controlsBar": string;
+  readonly "VideoPlayer__controlsBar--fade": string;
   readonly "VideoPlayer__iconControl": string;
   readonly "VideoPlayer__tooltip": string;
   readonly "VideoPlayer__seek": string;
