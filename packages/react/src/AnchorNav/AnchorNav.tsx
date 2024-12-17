@@ -3,7 +3,7 @@ import React, {ReactElement, useCallback, useEffect, useMemo, useRef, useState} 
 import {ChevronDownIcon, ChevronUpIcon} from '@primer/octicons-react'
 import {useId} from '@reach/auto-id'
 
-import {Button, Text} from '../'
+import {Button, ButtonBaseProps, Text} from '../'
 import {useWindowSize} from '../hooks/useWindowSize'
 import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
 import {useExpandedMenu} from './useExpandedMenu'
@@ -177,6 +177,18 @@ function _AnchorNav({children, enableDefaultBgColor = false, hideUntilSticky = f
     return null
   }).filter(Boolean)
 
+  const hasLargerSizeActions =
+    Action.some(action => {
+      if (React.isValidElement<AnchorNavActionProps>(action) && action.props.size) {
+        return action.props.size !== 'small'
+      }
+    }) ||
+    SecondaryAction.some(action => {
+      if (React.isValidElement<AnchorNavActionProps>(action) && action.props.size) {
+        return action.props.size !== 'small'
+      }
+    })
+
   /* On page load, the rootMargin positions and/or thresholds of the IntersectionObserver
    * may not be met depending on the position of the AnchorNav on the page.
    * The following useEffect ensures that the first link always marked as the active link, until
@@ -241,6 +253,7 @@ function _AnchorNav({children, enableDefaultBgColor = false, hideUntilSticky = f
             data-forward-focus="true"
             className={clsx(
               styles['AnchorNav__actionsContainer'],
+              hasLargerSizeActions && styles['AnchorNav__actionsContainer--no-offset'],
               hasTwoActions && styles['AnchorNav__actionsContainer--multiple'],
             )}
           >
@@ -379,17 +392,19 @@ type AnchorNavActionProps = {
    * Required path or location for the action button to link to.
    */
   href: string
-} & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>
+} & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> &
+  ButtonBaseProps
 
-function _AnchorNavAction({children, href, ...rest}: AnchorNavActionProps) {
+function _AnchorNavAction({children, href, variant = 'secondary', size = 'small', ...rest}: AnchorNavActionProps) {
   return (
     <Button
       as="a"
-      variant="secondary"
+      variant={variant}
       className={clsx(styles['AnchorNav-action'])}
       href={href}
       hasArrow={false}
       data-testid={testIds.action}
+      size={size}
       {...rest}
     >
       {children}
@@ -397,15 +412,22 @@ function _AnchorNavAction({children, href, ...rest}: AnchorNavActionProps) {
   )
 }
 
-function _AnchorNavActionSecondary({children, href, ...rest}: AnchorNavActionProps) {
+function _AnchorNavActionSecondary({
+  children,
+  href,
+  variant = 'secondary',
+  size = 'small',
+  ...rest
+}: AnchorNavActionProps) {
   return (
     <Button
       as="a"
-      variant="secondary"
+      variant={variant}
       className={clsx(styles['AnchorNav-action'])}
       href={href}
       hasArrow={false}
       data-testid={testIds.secondaryAction}
+      size={size}
       {...rest}
     >
       {children}

@@ -7,6 +7,8 @@ declare const styles: {
   readonly "AnchorNav-link-container": string;
   readonly "AnchorNav-inner-container": string;
   readonly "AnchorNav-inner-container--expanded": string;
+  readonly "AnchorNav__actionsContainer": string;
+  readonly "AnchorNav__actionsContainer--no-offset": string;
   readonly "AnchorNav-link": string;
   readonly "fade-in": string;
   readonly "AnchorNav-link--is-active": string;
@@ -17,7 +19,6 @@ declare const styles: {
   readonly "AnchorNav-menu-button": string;
   readonly "AnchorNav-menu-button-arrow": string;
   readonly "AnchorNav-overlay--expanded": string;
-  readonly "AnchorNav__actionsContainer": string;
   readonly "AnchorNav-action": string;
   readonly "AnchorNav__actionsContainer--multiple": string;
 };
