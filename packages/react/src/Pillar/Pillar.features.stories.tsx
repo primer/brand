@@ -15,7 +15,7 @@ export default {
   component: Pillar,
 } as Meta<typeof Pillar>
 
-export const Icon: StoryFn<typeof Pillar> = () => {
+export const WithIcon: StoryFn<typeof Pillar> = () => {
   return (
     <Pillar>
       <Pillar.Icon icon={<RocketIcon />} />
@@ -27,7 +27,7 @@ export const Icon: StoryFn<typeof Pillar> = () => {
   )
 }
 
-export const Image: StoryFn<typeof Pillar> = () => {
+export const WithImage: StoryFn<typeof Pillar> = () => {
   return (
     <Pillar>
       <Pillar.Image
@@ -43,7 +43,7 @@ export const Image: StoryFn<typeof Pillar> = () => {
   )
 }
 
-export const IconColors: StoryFn<typeof Pillar> = () => {
+export const WithIconColors: StoryFn<typeof Pillar> = () => {
   return (
     <Grid>
       {PillarIconColors.map((color, id) => {
