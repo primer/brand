@@ -2,4 +2,7 @@
 '@primer/react-brand': patch
 ---
 
-Added an underline to active links in the `SubNav` component
+Style improvements to the `SubNav` component
+
+- A `SubNav.Link` with `aria-current` will now be underlined to indicate the current page
+- The vertical spacing around the `SubNav` component has been slightly reduced
