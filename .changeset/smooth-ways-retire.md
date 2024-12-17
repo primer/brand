@@ -21,4 +21,4 @@ Usage example:
 </FrostedGlassVFX>
 ```
 
-🔗 (See Storybook for a working example)[https://primer.style/brand/storybook/?path=/story/components-testimonial-examples--with-frosted-glass]
+🔗 (See Storybook for an example)[https://primer.style/brand/storybook/?path=/story/components-testimonial-examples--with-frosted-glass]

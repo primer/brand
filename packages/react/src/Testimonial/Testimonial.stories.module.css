@@ -1,7 +1,14 @@
 .container {
   position: relative;
   overflow-x: hidden;
+}
+
+.container--light {
   background-color: var(--brand-color-canvas-subtle);
+}
+
+.container--dark {
+  background-color: var(--brand-color-canvas-default);
 }
 
 .innerContainer {
@@ -13,25 +20,45 @@
 
 .exampleShape {
   position: absolute;
+}
 
+.container--light .exampleShape {
   transform-origin: center;
 }
 
-.exampleShape:nth-child(1) {
-  animation: exampleShape1 3s forwards alternate;
+.container--light .exampleShape:nth-child(1) {
+  animation: exampleShape1Light 3s forwards alternate;
   animation-timing-function: cubic-bezier(0.1, 0.7, 0.22, 1);
   top: var(--base-size-64);
   left: -320px;
 }
 
-.exampleShape:nth-child(2) {
-  animation: exampleShape2 3s forwards alternate;
+.container--light .exampleShape:nth-child(2) {
+  animation: exampleShape2Light 3s forwards alternate;
   animation-timing-function: cubic-bezier(0.1, 0.7, 0.22, 1);
   top: 50px;
   right: -250px;
 }
 
-@keyframes exampleShape1 {
+.container--dark .exampleShape:nth-child(1) {
+  animation: exampleShape1Dark 3s forwards alternate;
+  animation-timing-function: cubic-bezier(0.1, 0.7, 0.22, 1);
+  top: var(--base-size-80);
+  left: -320px;
+  width: 662px;
+  height: auto;
+}
+
+.container--dark .exampleShape:nth-child(2) {
+  animation: exampleShape2Dark 3s forwards alternate;
+  animation-timing-function: cubic-bezier(0.1, 0.7, 0.22, 1);
+  top: var(--base-size-64);
+  right: -250px;
+  width: 1080px;
+  height: auto;
+}
+
+@keyframes exampleShape1Light {
   0% {
     opacity: 0;
     transform: rotate(-120deg) translateX(-20%);
@@ -42,7 +69,7 @@
   }
 }
 
-@keyframes exampleShape2 {
+@keyframes exampleShape2Light {
   0% {
     opacity: 0;
     transform: rotate(-25deg) translateX(-20%) scale(0.66);
@@ -50,5 +77,27 @@
   100% {
     opacity: 1;
     transform: scale(1.1);
+  }
+}
+
+@keyframes exampleShape1Dark {
+  0% {
+    opacity: 0;
+    transform: rotate(160deg) translateX(-20%) scale(0.66);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(150deg);
+  }
+}
+
+@keyframes exampleShape2Dark {
+  0% {
+    opacity: 0;
+    transform: rotate(160deg) translateX(20%) scale(0.66);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(150deg);
   }
 }

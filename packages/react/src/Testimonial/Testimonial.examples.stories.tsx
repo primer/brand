@@ -5,8 +5,10 @@ import clsx from 'clsx'
 import {Testimonial, TestimonialProps} from '.'
 import {Box, FrostedGlassVFX, Grid, Image, Stack, ThemeProvider} from '../'
 import monaAvatar from '../fixtures/images/avatar-mona.png'
-import startShape from '../fixtures/images/testimonial-bg-1.png'
-import endShape from '../fixtures/images/testimonial-bg-2.png'
+import startShapeLight from '../fixtures/images/testimonial-bg-1.png'
+import endShapeLight from '../fixtures/images/testimonial-bg-2.png'
+import startShapeDark from '../fixtures/images/testimonial-bg-1-dark.png'
+import endShapeDark from '../fixtures/images/testimonial-bg-2-dark.png'
 
 import styles from './Testimonial.stories.module.css'
 
@@ -22,11 +24,32 @@ export const WithFrostedGlass: Story = {
     layout: 'full',
   },
   decorators: [
-    Story => (
-      <ThemeProvider colorMode="light" className={styles.container}>
-        <Box backgroundColor="subtle" paddingBlockStart={128} paddingBlockEnd={128} className={styles.innerContainer}>
-          <Image src={startShape} alt="Starting shape" className={clsx(styles.exampleShape)} width={612} />
-          <Image src={endShape} alt="Ending shape" className={styles.exampleShape} width={612} />
+    (Story, context) => (
+      <ThemeProvider
+        colorMode={context.globals.colorMode}
+        className={clsx(
+          styles.container,
+          context.globals.colorMode === 'light' ? styles['container--light'] : styles['container--dark'],
+        )}
+      >
+        <Box
+          backgroundColor={context.globals.colorMode === 'light' ? 'subtle' : 'default'}
+          paddingBlockStart={128}
+          paddingBlockEnd={128}
+          className={styles.innerContainer}
+        >
+          <Image
+            src={context.globals.colorMode === 'light' ? startShapeLight : startShapeDark}
+            alt="Starting shape"
+            className={clsx(styles.exampleShape)}
+            width={612}
+          />
+          <Image
+            src={context.globals.colorMode === 'light' ? endShapeLight : endShapeDark}
+            alt="Ending shape"
+            className={styles.exampleShape}
+            width={612}
+          />
           <Grid>
             <Grid.Column>
               <Story />
@@ -40,6 +63,41 @@ export const WithFrostedGlass: Story = {
     return (
       <FrostedGlassVFX>
         <Testimonial size="large" variant="default" quoteMarkColor="purple">
+          <Testimonial.Quote>
+            GitHub helps us ensure that we have our security controls baked into our pipelines all the way from the
+            first line of code we&apos;re writing.
+          </Testimonial.Quote>
+          <Testimonial.Name>David Ross</Testimonial.Name>
+          <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from David Ross's GitHub profile" />
+        </Testimonial>
+      </FrostedGlassVFX>
+    )
+  },
+}
+
+export const WithFrostedGlassDark: Story = {
+  parameters: {
+    layout: 'full',
+  },
+  decorators: [
+    Story => (
+      <ThemeProvider colorMode="dark" className={clsx(styles.container, styles['container--dark'])}>
+        <Box backgroundColor="default" paddingBlockStart={128} paddingBlockEnd={128} className={styles.innerContainer}>
+          <Image src={startShapeDark} alt="Starting shape" className={clsx(styles.exampleShape)} width={612} />
+          <Image src={endShapeDark} alt="Ending shape" className={styles.exampleShape} width={612} />
+          <Grid>
+            <Grid.Column>
+              <Story />
+            </Grid.Column>
+          </Grid>
+        </Box>
+      </ThemeProvider>
+    ),
+  ],
+  render: () => {
+    return (
+      <FrostedGlassVFX>
+        <Testimonial size="large" variant="default" quoteMarkColor="green">
           <Testimonial.Quote>
             GitHub helps us ensure that we have our security controls baked into our pipelines all the way from the
             first line of code we&apos;re writing.

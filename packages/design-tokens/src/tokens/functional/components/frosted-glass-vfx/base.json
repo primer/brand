@@ -8,7 +8,7 @@
         "value": "var(--base-size-48)"
       },
       "high": {
-        "value": "var(--base-size-72)"
+        "value": "var(--base-size-80)"
       }
     }
   }

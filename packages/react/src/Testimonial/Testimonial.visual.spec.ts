@@ -23,6 +23,15 @@ test.describe('Visual Comparison: Testimonial', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('Testimonial / With Frosted Glass Dark', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-testimonial-examples--with-frosted-glass-dark&viewMode=story',
+    )
+
+    await page.waitForTimeout(4000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('Testimonial / Duo', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-testimonial-examples--duo&viewMode=story')
 
