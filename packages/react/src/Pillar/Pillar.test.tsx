@@ -85,6 +85,7 @@ describe('Pillar', () => {
 
   it('renders the image correctly into the document', () => {
     const mockTestId = 'test'
+    const mockImage = 'mock.png'
     const classToCheck = 'Image'
     const testAltText = 'alternative text'
 
