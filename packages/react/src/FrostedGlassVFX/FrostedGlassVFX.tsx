@@ -20,7 +20,7 @@ export type FrostedGlassVFXProps = BaseProps<HTMLDivElement> &
     /**
      * Applies rounded corners
      */
-    roundedCorners?: boolean
+    hasBorderRadius?: boolean
     /**
      * Controls the blur amount
      */
@@ -32,7 +32,7 @@ export type FrostedGlassVFXProps = BaseProps<HTMLDivElement> &
  * {@link https://primer.style/brand/components/FrostedGlassVFX/ See usage examples}.
  */
 export function FrostedGlassVFX({
-  roundedCorners = true,
+  hasBorderRadius = true,
   children,
   className,
   intensity = defaultFrostedGlassVFXIntensity,
@@ -42,7 +42,7 @@ export function FrostedGlassVFX({
     <div
       className={clsx(
         styles.FrostedGlassVFX,
-        roundedCorners && styles['FrostedGlassVFX--rounded-corners'],
+        hasBorderRadius && styles['FrostedGlassVFX--rounded-corners'],
         styles[`FrostedGlassVFX--intensity-${intensity}`],
         className,
       )}
