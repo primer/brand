@@ -63,21 +63,29 @@ const Root = ({
   const useVideoContext = useVideo()
   const {ccEnabled, isPlaying, ref, togglePlaying} = useVideoContext
 
-  const [hasFocusOrMouse, setHasFocusOrMouse] = useState(false)
+  const [isInteracting, setIsInteracting] = useState(false)
 
   useEffect(() => {
     const videoWrapper = videoWrapperRef.current
+    let hideControlsTimeout: NodeJS.Timeout
+    const inactivityTimeout = 3000
 
     if (!videoWrapper) {
       return
     }
 
     const showControls = () => {
-      setHasFocusOrMouse(true)
+      setIsInteracting(true)
+
+      clearTimeout(hideControlsTimeout)
+
+      hideControlsTimeout = setTimeout(() => {
+        setIsInteracting(false)
+      }, inactivityTimeout)
     }
 
     const hideControls = () => {
-      setHasFocusOrMouse(false)
+      setIsInteracting(false)
     }
 
     videoWrapper.addEventListener('mousemove', showControls)
@@ -90,10 +98,12 @@ const Root = ({
       videoWrapper.removeEventListener('mouseleave', hideControls)
       videoWrapper.removeEventListener('focusin', showControls)
       videoWrapper.removeEventListener('focusout', hideControls)
+
+      clearTimeout(hideControlsTimeout)
     }
   }, [videoWrapperRef])
 
-  const showControls = hasFocusOrMouse || (showControlsWhenPaused && !isPlaying)
+  const showControls = isInteracting || (showControlsWhenPaused && !isPlaying)
 
   return (
     <div className={styles.VideoPlayer__container} ref={videoWrapperRef}>
