@@ -4,7 +4,9 @@
 
 Added a new `FrostedGlassVFX` component for applying a frosted glass-effect texture to nested components.
 
-⚠️ This is an experimental component, and not tested for compatibility with all existing Primer Brand components.
+⚠️ This is an experimental component, and not tested for compatibility with other Primer Brand components.
+
+When using this component, ensure there is sufficient contrast between the foreground text and the background imagery, as the frosted glass effect can significantly reduce legibility.
 
 Usage example:
 

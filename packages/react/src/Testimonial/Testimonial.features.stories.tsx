@@ -81,7 +81,7 @@ export const LargeHighlightedPortion: Story = {
   ),
 }
 
-export const TestimonialVariants: Story = {
+export const Variants: Story = {
   parameters: {
     layout: 'full',
   },

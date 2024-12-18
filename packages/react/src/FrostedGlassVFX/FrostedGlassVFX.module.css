@@ -7,36 +7,16 @@
   border-radius: var(--brand-borderRadius-xlarge);
 }
 
-@supports (backdrop-filter: blur(var(--brand-FrostedGlassVFX-blurIntensity-low))) or
-  (-webkit-backdrop-filter: blur(var(--brand-FrostedGlassVFX-blurIntensity-low))) {
-  .FrostedGlassVFX--intensity-low {
-    backdrop-filter: blur(var(--brand-FrostedGlassVFX-blurIntensity-low));
-  }
-
-  .FrostedGlassVFX--intensity-medium {
-    backdrop-filter: blur(var(--brand-FrostedGlassVFX-blurIntensity-medium));
-  }
-
-  .FrostedGlassVFX--intensity-high {
-    backdrop-filter: blur(var(--brand-FrostedGlassVFX-blurIntensity-high));
-  }
+.FrostedGlassVFX--intensity-low {
+  backdrop-filter: blur(var(--brand-FrostedGlassVFX-blurIntensity-low));
 }
 
-@supports not (backdrop-filter: blur(var(--brand-FrostedGlassVFX-blurIntensity-low))) {
-  .FrostedGlassVFX--intensity-low::after,
-  .FrostedGlassVFX--intensity-medium::after,
-  .FrostedGlassVFX--intensity-high::after {
-    position: absolute;
-    inset: 0;
-    content: '';
-    background-color: var(--brand-color-canvas-default);
-    z-index: 0;
-    border-radius: var(--brand-borderRadius-xlarge);
-  }
+.FrostedGlassVFX--intensity-medium {
+  backdrop-filter: blur(var(--brand-FrostedGlassVFX-blurIntensity-medium));
+}
 
-  .FrostedGlassVFX > * {
-    z-index: 1;
-  }
+.FrostedGlassVFX--intensity-high {
+  backdrop-filter: blur(var(--brand-FrostedGlassVFX-blurIntensity-high));
 }
 
 .FrostedGlassVFX::before {
@@ -58,6 +38,7 @@
   background-color: transparent;
 }
 
+.FrostedGlassVFX > *,
 .FrostedGlassVFX > *::before {
   border-color: transparent;
 }
