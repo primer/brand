@@ -94,6 +94,9 @@
     'components-textrevealanimation-examples--with-hero': 3000, // for the animation
     'components-textrevealanimation-features--animation-on-scroll': 3000, // for the animation
     'components-footnotes-examples--rivers-with-citations': 3000, // for the images
+    'components-pillar-features--frosted-glass-effect': 3000, // for image to load
+    'components-testimonial-examples--with-frosted-glass': 4000, // for animation to complete
+    'components-testimonial-examples--with-frosted-glass-dark': 4000, // for animation to complete
   }
 
   /**

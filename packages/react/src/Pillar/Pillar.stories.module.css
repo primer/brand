@@ -1,0 +1,54 @@
+.container {
+  position: relative;
+  overflow-x: hidden;
+  background-color: var(--brand-color-canvas-subtle);
+}
+
+.innerContainer {
+  min-height: 100dvh;
+  max-width: 1680px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.exampleShape {
+  position: absolute;
+
+  transform-origin: center;
+}
+
+.exampleShape:nth-child(1) {
+  animation: exampleShape1 3s forwards alternate;
+  animation-timing-function: cubic-bezier(0.1, 0.7, 0.22, 1);
+  top: var(--base-size-24);
+  left: -320px;
+}
+
+.exampleShape:nth-child(2) {
+  animation: exampleShape2 3s forwards alternate;
+  animation-timing-function: cubic-bezier(0.1, 0.7, 0.22, 1);
+  top: 0;
+  right: -250px;
+}
+
+@keyframes exampleShape1 {
+  0% {
+    opacity: 0;
+    transform: rotate(-120deg) translateX(-20%);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes exampleShape2 {
+  0% {
+    opacity: 0;
+    transform: rotate(-25deg) translateX(-20%) scale(0.66);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}

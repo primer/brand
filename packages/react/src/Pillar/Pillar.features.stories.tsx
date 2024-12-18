@@ -1,8 +1,13 @@
 import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
+import clsx from 'clsx'
 import {Pillar, PillarIconColors} from '.'
-import {Stack, Grid} from '..'
+import {Stack, Grid, FrostedGlassVFX, Box, ThemeProvider, Image} from '..'
 import {CopilotIcon, RocketIcon, GitBranchIcon} from '@primer/octicons-react'
+import startShape from '../fixtures/images/testimonial-bg-1.png'
+import endShape from '../fixtures/images/testimonial-bg-2.png'
+
+import styles from './Pillar.stories.module.css'
 
 export default {
   title: 'Components/Pillar/features',
@@ -198,4 +203,50 @@ export const StackedWithLink: StoryFn<typeof Pillar> = () => {
       })}
     </Stack>
   )
+}
+
+export const FrostedGlassEffect: StoryFn<typeof Pillar> = () => {
+  return (
+    <Stack direction={{narrow: 'vertical', regular: 'horizontal'}} gap="spacious" padding="spacious">
+      {fixtureData.map(({heading, description, icon, iconColor}, id) => {
+        return (
+          <FrostedGlassVFX key={id}>
+            <Box backgroundColor="subtle" borderRadius="xlarge" padding="normal">
+              <Pillar key={id} style={{flex: 1}}>
+                <Pillar.Icon icon={icon} color={iconColor} />
+                <Pillar.Heading>{heading}</Pillar.Heading>
+                <Pillar.Description>{description}</Pillar.Description>
+              </Pillar>
+            </Box>
+          </FrostedGlassVFX>
+        )
+      })}
+    </Stack>
+  )
+}
+FrostedGlassEffect.decorators = [
+  Story => (
+    <ThemeProvider colorMode="light" className={styles.container}>
+      <Box
+        backgroundColor="subtle"
+        paddingBlockStart={128}
+        paddingBlockEnd={128}
+        className={styles.innerContainer}
+        role="region"
+        tabIndex={0}
+        aria-label="Scrollable content"
+      >
+        <Image src={startShape} alt="Starting shape" className={clsx(styles.exampleShape)} width={612} />
+        <Image src={endShape} alt="Ending shape" className={styles.exampleShape} width={612} />
+        <Grid>
+          <Grid.Column>
+            <Story />
+          </Grid.Column>
+        </Grid>
+      </Box>
+    </ThemeProvider>
+  ),
+]
+FrostedGlassEffect.parameters = {
+  layout: 'full',
 }

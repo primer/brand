@@ -1,5 +1,15 @@
 {
   "Testimonial": {
+    "borderMask": {
+      "default": {
+        "value": "linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3))",
+        "dark": "linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1))"
+      },
+      "subtle": {
+        "value": "linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3))",
+        "dark": "linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1))"
+      }
+    },
     "quoteMarkColor": {
       "default": {
         "value": "var(--brand-color-text-default)",

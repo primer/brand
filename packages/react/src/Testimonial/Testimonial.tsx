@@ -22,10 +22,17 @@ import {Colors, Gradients} from '../constants'
 type TestimonialSize = 'small' | 'large'
 
 export const TestimonialQuoteMarkColors = [...Colors, ...Gradients] as const
-
 export const defaultQuoteMarkColor = TestimonialQuoteMarkColors[0]
 
+export const TestimonialVariants = ['subtle', 'default', 'minimal'] as const
+type TestimonialVariant = (typeof TestimonialVariants)[number]
+export const defaultTestimonialVariant: TestimonialVariant = 'minimal'
+
 export type TestimonialProps = {
+  /**
+   * Sets alternative appearance for the testimonial
+   */
+  variant?: TestimonialVariant
   /**
    * Valid children include Testimonial.Name, Testimonial.Avatar, and Testimonial.Name
    */
@@ -49,7 +56,16 @@ export type TestimonialProps = {
  * <Testimonial>
  */
 function _Root(
-  {quoteMarkColor = 'default', animate, className, children, size, style, ...rest}: PropsWithChildren<TestimonialProps>,
+  {
+    quoteMarkColor = 'default',
+    animate,
+    className,
+    children,
+    variant = 'minimal',
+    size,
+    style,
+    ...rest
+  }: PropsWithChildren<TestimonialProps>,
   ref,
 ) {
   const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
@@ -57,7 +73,13 @@ function _Root(
   return (
     <figure
       ref={ref}
-      className={clsx(animationClasses, styles['Testimonial'], size && styles[`Testimonial--size-${size}`], className)}
+      className={clsx(
+        animationClasses,
+        styles['Testimonial'],
+        styles[`Testimonial--variant-${variant}`],
+        size && styles[`Testimonial--size-${size}`],
+        className,
+      )}
       style={{
         ...animationInlineStyles,
         ...style,
