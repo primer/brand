@@ -151,7 +151,6 @@
 .SubNav__link:focus-visible .SubNav__link-label::after,
 .SubNav__link[aria-current]:not([aria-current='false']) .SubNav__link-label::after {
   opacity: 1;
-  transform: translate3d(0, 0.2em, 0);
   transform: scale(0.8, 1);
 }
 
@@ -427,8 +426,17 @@
     position: relative;
   }
 
-  .SubNav .SubNav__link--has-sub-menu:hover .SubNav__sub-menu-children .SubNav__link-label::after {
-    display: none;
+  .SubNav .SubNav__link-label::after {
+    opacity: 0;
+    transform: scale(0);
+    bottom: 0;
+  }
+
+  .SubNav__link:hover .SubNav__link-label::after,
+  .SubNav__link:focus-visible .SubNav__link-label::after,
+  .SubNav__link[aria-current]:not([aria-current='false']) .SubNav__link-label::after {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
@@ -522,7 +530,7 @@
     text-decoration: none !important; /* dotcom override */
     transition: color 0.2s var(--brand-animation-easing-glide);
     position: relative;
-    padding: 4px 0;
+    padding: var(--base-size-4) 0;
   }
 
   .SubNav__link-label {
@@ -530,8 +538,12 @@
     line-height: var(--brand-text-lineHeight-100);
   }
 
+  .SubNav__link--has-sub-menu {
+    padding: var(--base-size-4) 0;
+  }
+
   /* To fix hover distance between link and dropdown */
-  .SubNav__link.SubNav__link--has-sub-menu::after {
+  .SubNav__link--has-sub-menu::after {
     content: '';
     position: absolute;
     bottom: calc(var(--base-size-12) * -1);
@@ -596,14 +608,35 @@
   }
 
   .SubNav__sub-menu--dropdown .SubNav__link-label::after {
-    display: none;
+    opacity: 1;
+    transform: scale(0);
   }
 
   .SubNav__link--has-sub-menu {
+    position: relative;
     display: inline-flex;
     align-items: center;
     gap: var(--base-size-4);
     cursor: pointer;
+  }
+
+  .SubNav__sub-menu--dropdown .SubNav__link-label {
+    position: relative;
+    padding: var(--base-size-4) 0;
+  }
+
+  /* Show underline on submenu parent when child has aria-current */
+  .SubNav__link--has-sub-menu:has(.SubNav__link[aria-current]:not([aria-current='false']))
+    > .SubNav__link
+    .SubNav__link-label::after {
+    opacity: 1;
+    transform: scale(0.8, 1);
+  }
+
+  .SubNav__link--has-sub-menu .SubNav__link[aria-current]:not([aria-current='false']) .SubNav__link-label::after,
+  .SubNav__link--has-sub-menu .SubNav__link:hover .SubNav__link-label::after {
+    opacity: 1;
+    transform: scale(1);
   }
 
   .SubNav__sub-menu-icon {
