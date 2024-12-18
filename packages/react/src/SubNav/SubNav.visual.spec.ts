@@ -117,4 +117,12 @@ test.describe('Visual Comparison: SubNav', () => {
       expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
     })
   })
+  test('SubNav / Anchor Nav Default Link Variant', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-subnav-features--anchor-nav-default-link-variant&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
 })

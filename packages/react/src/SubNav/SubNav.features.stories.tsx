@@ -235,3 +235,28 @@ NarrowAnchorNavVariantMenuOpen.play = async ({canvasElement}) => {
   const firstLink = within(overlayMenu).getAllByRole('link')[0]
   expect(firstLink).toHaveFocus()
 }
+
+export const AnchorNavDefaultLinkVariant = args => (
+  <SubNav {...args}>
+    <SubNav.Heading href="#">Heading</SubNav.Heading>
+    <SubNav.Link href="#" variant="default">
+      Link
+    </SubNav.Link>
+    <SubNav.Link href="#" variant="default">
+      Link
+    </SubNav.Link>
+    <SubNav.Link href="#" variant="default">
+      Link
+    </SubNav.Link>
+    <SubNav.Link href="#" variant="default">
+      Link
+    </SubNav.Link>
+    <SubNav.Link href="#" variant="default">
+      Link
+    </SubNav.Link>
+    <SubNav.Link href="#" variant="default">
+      Link
+    </SubNav.Link>
+    <SubNav.Action href="#">Primary CTA</SubNav.Action>
+  </SubNav>
+)
