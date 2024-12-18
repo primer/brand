@@ -530,12 +530,16 @@
     text-decoration: none !important; /* dotcom override */
     transition: color 0.2s var(--brand-animation-easing-glide);
     position: relative;
-    padding: 4px 0;
+    padding: var(--base-size-4) 0;
   }
 
   .SubNav__link-label {
     font-size: var(--brand-text-size-100);
     line-height: var(--brand-text-lineHeight-100);
+  }
+
+  .SubNav__link--has-sub-menu {
+    padding: var(--base-size-4) 0;
   }
 
   /* To fix hover distance between link and dropdown */
