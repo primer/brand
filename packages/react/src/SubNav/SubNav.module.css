@@ -618,11 +618,7 @@
 
   .SubNav__sub-menu--dropdown .SubNav__link-label {
     position: relative;
-    padding: 4px 0;
-  }
-
-  .SubNav__sub-menu--dropdown .SubNav__link-label::after {
-    /* bottom: 0; */
+    padding: var(--base-size-4) 0;
   }
 
   /* Show underline on submenu parent when child has aria-current */
