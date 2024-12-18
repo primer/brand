@@ -129,10 +129,11 @@ Submenus appear as a dropdown by default.
 
 ### SubNav.Link <Label>Required</Label>
 
-| name           | type     | default | required | description                                     |
-| -------------- | -------- | ------- | -------- | ----------------------------------------------- |
-| `aria-current` | `string` |         | `true`   | Required for indicating the current active link |
-| `href`         | `string` |         | `true`   | URL of the page the link goes to                |
+| name           | type                                                            | default | required | description                                                          |
+| -------------- | --------------------------------------------------------------- | ------- | -------- | -------------------------------------------------------------------- |
+| `aria-current` | `string`                                                        |         | `true`   | Required for indicating the current active link                      |
+| `href`         | `string`                                                        |         | `true`   | URL of the page the link goes to                                     |
+| `variant`      | <PropTableValues values={['default', 'muted']} addLineBreaks /> | `muted` | `false`  | Alternative idle text appearance. Recommended for improving contrast |
 
 ### SubNav.Action
 
