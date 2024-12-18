@@ -78,9 +78,9 @@ test.describe('Visual Comparison: Testimonial', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('Testimonial / Testimonial Variants', async ({page}) => {
+  test('Testimonial / Variants', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-testimonial-features--testimonial-variants&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-testimonial-features--variants&viewMode=story',
     )
 
     await page.waitForTimeout(500)
