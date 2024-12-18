@@ -1,0 +1,15 @@
+{
+  "FrostedGlassVFX": {
+    "blurIntensity": {
+      "low": {
+        "value": "var(--base-size-12)"
+      },
+      "medium": {
+        "value": "var(--base-size-48)"
+      },
+      "high": {
+        "value": "var(--base-size-80)"
+      }
+    }
+  }
+}

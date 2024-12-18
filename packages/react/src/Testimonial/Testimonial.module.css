@@ -4,6 +4,57 @@
   font-family: var(--brand-fontStack-sansSerif);
 }
 
+.Testimonial--variant-subtle,
+.Testimonial--variant-default {
+  position: relative;
+  border-radius: var(--brand-borderRadius-xlarge);
+  padding: var(--base-size-48) var(--base-size-32);
+}
+
+@media screen and (min-width: 48rem) {
+  .Testimonial--variant-subtle,
+  .Testimonial--variant-default {
+    padding: var(--base-size-48);
+  }
+}
+
+@media screen and (min-width: 63.25rem) {
+  .Testimonial--variant-subtle.Testimonial--size-large,
+  .Testimonial--variant-default.Testimonial--size-large {
+    padding: var(--base-size-96) var(--base-size-128);
+  }
+}
+
+.Testimonial--variant-subtle {
+  background-color: var(--brand-color-canvas-subtle);
+}
+
+.Testimonial--variant-default {
+  background-color: var(--brand-color-canvas-default);
+}
+
+.Testimonial--variant-subtle::before,
+.Testimonial--variant-default::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  content: '';
+  border-radius: inherit;
+}
+
+.Testimonial--variant-subtle::before {
+  mask-image: var(--brand-Testimonial-borderMask-subtle);
+  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
+}
+
+.Testimonial--variant-default::before {
+  mask-image: var(--brand-Testimonial-borderMask-default);
+  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
+}
+
 .Testimonial__quoteMark {
   --brand-Testimonial-quoteMarkColor-gradient: radial-gradient(
     circle at top left,
