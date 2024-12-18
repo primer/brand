@@ -278,6 +278,10 @@
     z-index: 9998;
   }
 
+  .SubNav__heading-separator:not(.SubNav__heading-separator--has-adjacent-label) {
+    display: none;
+  }
+
   .SubNav__links-overlay {
     position: relative;
     display: flex;

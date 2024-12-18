@@ -32,6 +32,18 @@ export const Centered: StoryFn<typeof Hero> = _args => (
   </Hero>
 )
 
+export const WithMutedDescriptions: StoryFn<typeof Hero> = _args => (
+  <Hero align="center">
+    <Hero.Label>Label</Hero.Label>
+    <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+    <Hero.Description variant="muted">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+      felis nam pulvinar risus elementum.
+    </Hero.Description>
+    <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+  </Hero>
+)
+
 export const WithImageBlockEndDefault: StoryFn<typeof Hero> = _args => (
   <Grid>
     <Grid.Column>

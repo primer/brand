@@ -24,6 +24,7 @@ declare const styles: {
   readonly "SubNav--open": string;
   readonly "fade-in": string;
   readonly "SubNav__header-container": string;
+  readonly "SubNav__heading-separator--has-adjacent-label": string;
   readonly "SubNav__links-overlay--open": string;
   readonly "SubNav__link--has-sub-menu": string;
   readonly "SubNav__overlay-toggle": string;
