@@ -370,11 +370,7 @@ const SubNavLinkWithSubmenu = forwardRef<HTMLDivElement, SubNavLinkProps>(
 
     return (
       <div
-        className={clsx(
-          styles['SubNav__link'],
-          styles['SubNav__link--has-sub-menu'],
-          isExpanded && styles['SubNav__link--expanded'],
-        )}
+        className={clsx(styles['SubNav__link--has-sub-menu'], isExpanded && styles['SubNav__link--expanded'])}
         data-testid={testId || testIds.subMenu}
         ref={ref}
         onMouseOver={() => setIsExpanded(true)}
