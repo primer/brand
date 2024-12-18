@@ -1,5 +1,57 @@
 # @primer/react-brand
 
+## 0.45.0
+
+### Minor Changes
+
+- [#860](https://github.com/primer/brand/pull/860) [`2502f658`](https://github.com/primer/brand/commit/2502f6581686a23c0ce642e864a89c131ae31ae6) Thanks [@rezrah](https://github.com/rezrah)! - Decreased the default heading size in `River` component. Use `size="4"` to restore the previous text size, if needed.
+
+- [#863](https://github.com/primer/brand/pull/863) [`00ef0694`](https://github.com/primer/brand/commit/00ef06945e2f856335d7b6d613c69e376f28ee0c) Thanks [@rezrah](https://github.com/rezrah)! - Added a new `FrostedGlassVFX` component for applying a frosted glass-effect texture to nested components.
+
+  ⚠️ This is an experimental component, and not tested for compatibility with other Primer Brand components.
+
+  When using this component, ensure there is sufficient contrast between the foreground text and the background imagery, as the frosted glass effect can significantly reduce legibility.
+
+  Usage example:
+
+  ```jsx
+  <FrostedGlassVFX>
+    <Testimonial variant="default">
+      <Testimonial.Quote>
+        GitHub helps us ensure that we have our security controls baked into our pipelines all the way from the first
+        line of code we&apos;re writing.
+      </Testimonial.Quote>
+      <Testimonial.Name />
+      <Testimonial.Avatar />
+    </Testimonial>
+  </FrostedGlassVFX>
+  ```
+
+  🔗 (See Storybook for an example)[https://primer.style/brand/storybook/?path=/story/components-testimonial-examples--with-frosted-glass]
+
+### Patch Changes
+
+- [#859](https://github.com/primer/brand/pull/859) [`cd18615f`](https://github.com/primer/brand/commit/cd18615f0ea9d4d904166a5a5ba426d650304ce1) Thanks [@rezrah](https://github.com/rezrah)! - `AnchorNav` component updates:
+
+  - `AnchorNav.Action` and `AnchorNav.SecondaryAction` now appear visually smaller by default. Use `size="medium"` if the previous, larger buttons are needed.
+  - `AnchorNav.Action` and `AnchorNav.SecondaryAction` each support a `variant` prop, allowing primary `Button` visuals to be optionally applied.
+
+- [#866](https://github.com/primer/brand/pull/866) [`8223135d`](https://github.com/primer/brand/commit/8223135d47ec05832f702c6d9e5bfbe92fef5d21) Thanks [@rezrah](https://github.com/rezrah)! - Fixed delayed appearance of heading separator in `SubNav`.
+
+- [#865](https://github.com/primer/brand/pull/865) [`0401cc5c`](https://github.com/primer/brand/commit/0401cc5c9e0390392b74722cbb97f67ef055e8f9) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Style improvements to the `SubNav` component.
+
+  - Fixed a bug in `SubNav.Link` elements with `aria-current`, which caused inconsistent appearance across viewports.
+
+- [#863](https://github.com/primer/brand/pull/863) [`00ef0694`](https://github.com/primer/brand/commit/00ef06945e2f856335d7b6d613c69e376f28ee0c) Thanks [@rezrah](https://github.com/rezrah)! - Added new `Testimonial` variants.
+
+  Use `variant="default"` or `variant="subtle"` for an alternative visual appearance. The current design will be referred to as `minimal` going forward.
+
+  🔗 [See the documentation for usage examples](https://primer.style/brand/components/Testimonial/react#variants)
+
+- [#867](https://github.com/primer/brand/pull/867) [`4bac3868`](https://github.com/primer/brand/commit/4bac386849bcf7fca5cb2c21661af4a312224471) Thanks [@rezrah](https://github.com/rezrah)! - `Hero.Description` updated to support `variant="muted"`
+
+- [#868](https://github.com/primer/brand/pull/868) [`c0aa598d`](https://github.com/primer/brand/commit/c0aa598d4a403f61662d3eb1b5bc718f5fe3a232) Thanks [@rezrah](https://github.com/rezrah)! - `SubNav.Link` now supports `variant="default"` to help increase contrast and legibility on non-standard backgrounds.
+
 ## 0.44.1
 
 ### Patch Changes

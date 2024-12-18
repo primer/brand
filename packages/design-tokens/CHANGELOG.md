@@ -1,5 +1,24 @@
 # @primer/brand-primitives
 
+## 0.45.0
+
+### Patch Changes
+
+- [#863](https://github.com/primer/brand/pull/863) [`00ef0694`](https://github.com/primer/brand/commit/00ef06945e2f856335d7b6d613c69e376f28ee0c) Thanks [@rezrah](https://github.com/rezrah)! - Added new design tokens for `Testimonial` and `FrostedGlassVFX` components
+
+  ```
+  :root {
+    --brand-Testimonial-borderMask-default
+    --brand-Testimonial-borderMask-subtle
+    --brand-FrostedGlassVFX-bgColor
+    --brand-FrostedGlassVFX-boxShadow
+    --brand-FrostedGlassVFX-borderMask
+    --brand-FrostedGlassVFX-blurIntensity-high
+    --brand-FrostedGlassVFX-blurIntensity-medium
+    --brand-FrostedGlassVFX-blurIntensity-low
+  }
+  ```
+
 ## 0.44.1
 
 ## 0.44.0
