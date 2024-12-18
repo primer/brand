@@ -31,6 +31,9 @@ export const WithFrostedGlass: Story = {
           styles.container,
           context.globals.colorMode === 'light' ? styles['container--light'] : styles['container--dark'],
         )}
+        role="region"
+        tabIndex={0}
+        aria-label="Scrollable content"
       >
         <Box
           backgroundColor={context.globals.colorMode === 'light' ? 'subtle' : 'default'}
@@ -81,7 +84,13 @@ export const WithFrostedGlassDark: Story = {
   },
   decorators: [
     Story => (
-      <ThemeProvider colorMode="dark" className={clsx(styles.container, styles['container--dark'])}>
+      <ThemeProvider
+        colorMode="dark"
+        className={clsx(styles.container, styles['container--dark'])}
+        role="region"
+        tabIndex={0}
+        aria-label="Scrollable content"
+      >
         <Box backgroundColor="default" paddingBlockStart={128} paddingBlockEnd={128} className={styles.innerContainer}>
           <Image src={startShapeDark} alt="Starting shape" className={clsx(styles.exampleShape)} width={612} />
           <Image src={endShapeDark} alt="Ending shape" className={styles.exampleShape} width={612} />
