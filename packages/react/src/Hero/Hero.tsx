@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import styles from './Hero.module.css'
 import {Button, ButtonBaseProps} from '../Button'
 import {Heading, HeadingProps} from '../Heading'
-import {Text, TextSizes, TextWeightVariants, ResponsiveWeightMap} from '../Text'
+import {Text, TextSizes, TextWeightVariants, ResponsiveWeightMap, TextProps} from '../Text'
 import {Label, LabelProps} from '../Label'
 import {Image, ImageProps} from '../Image'
 import {Grid} from '../Grid'
@@ -133,12 +133,20 @@ const HeroHeading = forwardRef<HTMLHeadingElement, HeroHeadingProps>(({children,
 type HeroDescriptionProps = {
   size?: (typeof TextSizes)[number]
   weight?: TextWeightVariants | ResponsiveWeightMap
-} & BaseProps<HTMLParagraphElement>
+} & BaseProps<HTMLParagraphElement> &
+  TextProps
 
 const HeroDescription = forwardRef<HTMLParagraphElement, PropsWithChildren<HeroDescriptionProps>>(
-  ({size = '200', weight, children, className}: PropsWithChildren<HeroDescriptionProps>, ref) => {
+  ({size = '200', weight, children, variant = 'default', className}: PropsWithChildren<HeroDescriptionProps>, ref) => {
     return (
-      <Text ref={ref} className={clsx(styles['Hero-description'], className)} as="p" size={size} weight={weight}>
+      <Text
+        ref={ref}
+        className={clsx(styles['Hero-description'], className)}
+        as="p"
+        size={size}
+        weight={weight}
+        variant={variant}
+      >
         {children}
       </Text>
     )

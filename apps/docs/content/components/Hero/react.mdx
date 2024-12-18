@@ -16,6 +16,8 @@ import {
   HeadingStretch,
   defaultHeadingTag,
   HeadingLetterSpacing,
+  TextVariants,
+  defaultTextVariant,
 } from '@primer/react-brand'
 import {Label} from '@primer/react'
 import {PropTableValues} from '../../../src/components'
@@ -121,9 +123,10 @@ Forwards all props from the [Heading component](/components/Heading), including 
 
 ### Hero.Description
 
-| name        | type     | default | description             |
-| ----------- | -------- | ------- | ----------------------- |
-| `className` | `string` |         | Sets a custom CSS class |
+| name        | type                                                    | default                                           | description                         |
+| ----------- | ------------------------------------------------------- | ------------------------------------------------- | ----------------------------------- |
+| `className` | `string`                                                |                                                   | Sets a custom CSS class             |
+| `variant`   | <PropTableValues values={TextVariants} addLineBreaks /> | <PropTableValues values={[defaultTextVariant]} /> | Specify alternative text appearance |
 
 Forwards `size` and `weight` props from the [Text component](/components/Text).
 
