@@ -16,7 +16,7 @@
 }
 
 .Pillar__image {
-  margin-bottom: var(--base-size-32);
+  margin-bottom: var(--base-size-28);
   border-radius: var(--brand-borderRadius-medium);
   overflow: hidden;
 }
