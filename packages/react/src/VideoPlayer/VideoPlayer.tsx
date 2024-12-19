@@ -1,4 +1,4 @@
-import React, {useRef, forwardRef, useContext, type HTMLProps, type FunctionComponent} from 'react'
+import React, {useEffect, useState, useRef, forwardRef, useContext, type HTMLProps, type FunctionComponent} from 'react'
 import clsx from 'clsx'
 import {Text} from '../Text'
 import {type AnimateProps} from '../animation'
@@ -54,7 +54,7 @@ const Root = ({
   showMuteButton = true,
   showVolumeControl = true,
   showFullScreenButton = true,
-  playIcon: PlayIcon = () => <DefaultPlayIcon className={styles.VideoPlayer__playButtonOverlay} />,
+  playIcon: PlayIcon = () => <DefaultPlayIcon className={styles.VideoPlayer__playButton} />,
   ...rest
 }: VideoPlayerProps) => {
   const videoWrapperRef = useRef<HTMLDivElement>(null)
@@ -63,7 +63,47 @@ const Root = ({
   const useVideoContext = useVideo()
   const {ccEnabled, isPlaying, ref, togglePlaying} = useVideoContext
 
-  const hideControls = !isPlaying && !showControlsWhenPaused
+  const [isInteracting, setIsInteracting] = useState(false)
+
+  useEffect(() => {
+    const videoWrapper = videoWrapperRef.current
+    let hideControlsTimeout: NodeJS.Timeout
+    const inactivityTimeout = 3000
+
+    if (!videoWrapper) {
+      return
+    }
+
+    const showControls = () => {
+      setIsInteracting(true)
+
+      clearTimeout(hideControlsTimeout)
+
+      hideControlsTimeout = setTimeout(() => {
+        setIsInteracting(false)
+      }, inactivityTimeout)
+    }
+
+    const hideControls = () => {
+      setIsInteracting(false)
+    }
+
+    videoWrapper.addEventListener('mousemove', showControls)
+    videoWrapper.addEventListener('mouseleave', hideControls)
+    videoWrapper.addEventListener('focusin', showControls)
+    videoWrapper.addEventListener('focusout', hideControls)
+
+    return () => {
+      videoWrapper.removeEventListener('mousemove', showControls)
+      videoWrapper.removeEventListener('mouseleave', hideControls)
+      videoWrapper.removeEventListener('focusin', showControls)
+      videoWrapper.removeEventListener('focusout', hideControls)
+
+      clearTimeout(hideControlsTimeout)
+    }
+  }, [videoWrapperRef])
+
+  const showControls = isInteracting || (showControlsWhenPaused && !isPlaying)
 
   return (
     <div className={styles.VideoPlayer__container} ref={videoWrapperRef}>
@@ -71,16 +111,21 @@ const Root = ({
         {children}
         <track kind="captions" />
       </video>
-      <div className={styles.VideoPlayer__title}>
-        {showBranding && <MarkGithubIcon size={40} />}
-        {!visuallyHiddenTitle && (
-          <Text size="400" weight="medium" className={styles.VideoPlayer__controlTextColor}>
-            {title}
-          </Text>
-        )}
-      </div>
+      {showBranding || !visuallyHiddenTitle ? (
+        <div className={clsx(styles.VideoPlayer__title, isPlaying && styles['VideoPlayer__title--hidden'])}>
+          {showBranding && <MarkGithubIcon size={40} />}
+          {!visuallyHiddenTitle && (
+            <Text size="400" weight="medium" className={styles.VideoPlayer__controlTextColor}>
+              {title}
+            </Text>
+          )}
+        </div>
+      ) : null}
       <button
-        className={styles.VideoPlayer__playButton}
+        className={clsx(
+          styles.VideoPlayer__playButtonOverlay,
+          isPlaying && styles['VideoPlayer__playButtonOverlay--transparent'],
+        )}
         onClick={togglePlaying}
         aria-label={isPlaying ? 'Pause' : 'Play'}
       >
@@ -88,16 +133,14 @@ const Root = ({
       </button>
       <div className={styles.VideoPlayer__controls}>
         {ccEnabled && <Captions />}
-        {!hideControls && (
-          <ControlsBar>
-            {showPlayPauseButton && <PlayPauseButton />}
-            {showSeekControl && <SeekControl />}
-            {showCCButton && <CCButton />}
-            {showMuteButton && <MuteButton />}
-            {showVolumeControl && !isSmall && <VolumeControl />}
-            {showFullScreenButton && <FullScreenButton />}
-          </ControlsBar>
-        )}
+        <ControlsBar className={clsx(!showControls && styles['VideoPlayer__controlsBar--fade'])}>
+          {showPlayPauseButton && <PlayPauseButton />}
+          {showSeekControl && <SeekControl />}
+          {showCCButton && <CCButton />}
+          {showMuteButton && <MuteButton />}
+          {showVolumeControl && !isSmall && <VolumeControl />}
+          {showFullScreenButton && <FullScreenButton />}
+        </ControlsBar>
       </div>
     </div>
   )

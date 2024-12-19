@@ -7,6 +7,7 @@ import {VideoPlayer} from '.'
 import {Stack} from '../Stack'
 import {Button} from '../Button'
 import {useVideo} from './hooks'
+import styles from './VideoPlayer.stories.module.css'
 
 export default {
   title: 'Components/VideoPlayer/Features',
@@ -98,7 +99,7 @@ export const ControlledProgrammatically = () => {
 }
 
 export const CustomPlayIcon = () => (
-  <VideoPlayer title="GitHub media player" playIcon={() => <PlayIcon size={96} />}>
+  <VideoPlayer title="GitHub media player" playIcon={() => <PlayIcon size={96} className={styles.customPlayIcon} />}>
     <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
     <VideoPlayer.Track src="./example.vtt" default />
   </VideoPlayer>
