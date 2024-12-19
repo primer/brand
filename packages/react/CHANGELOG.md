@@ -1,5 +1,16 @@
 # @primer/react-brand
 
+## 0.45.1
+
+### Patch Changes
+
+- [#703](https://github.com/primer/brand/pull/703) [`621d8ee2`](https://github.com/primer/brand/commit/621d8ee25e15a4a67281be5e4ec6116fa89a6fa0) Thanks [@joshfarrant](https://github.com/joshfarrant)! - `VideoPlayer` accessibility improvements
+
+  - Improved contrast of play overlay focus styles.
+  - Improved contrast of controls and title.
+  - The title bar now hides while the video is playing.
+  - The controls bar now hides when the cursor or keyboard focus leaves the video player, or after a few seconds of inactivity, and reappears when the cursor or keyboard focus returns.
+
 ## 0.45.0
 
 ### Minor Changes
