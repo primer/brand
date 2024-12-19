@@ -17,16 +17,16 @@ Please ensure these items are checked before merging.
   - [ ] Run development server
   - [ ] Manually verify release-specific bugfixes and/or features on the following pages:
     - `/features/copilot`
+    - `/features/copilot/getting-started`
+    - `/features/preview`
     - `/enterprise`
     - `/enterprise/advanced-security`
+    - `/enterprise/contact`
     - `/articles/security`
     - `/articles/security/what-is-security-testing`
-    - `/features/preview`
-    - `/features/copilot/getting-started` and `/features/copilot`
     - `/solutions/devops`
     - `/education`
     - `/mobile`
-    - `/contact-sales`
     - `/about/diversity`
   - [ ] Manually compare production site to local instance for any non-release specific regressions
 
