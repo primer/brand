@@ -49,6 +49,24 @@ You can add an `icon` to enhance the visual context. We recommend using an [Octi
 </Pillar>
 ```
 
+### Image
+
+You can add an image to enhance the visual context.
+
+```jsx live
+<Pillar>
+  <Pillar.Image
+    src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+    alt="placeholder, blank area with an gray background color"
+  />
+  <Pillar.Heading>Code search & code view</Pillar.Heading>
+  <Pillar.Description>
+    Enables you to rapidly search, navigate, and understand code, right from
+    GitHub.com.
+  </Pillar.Description>
+</Pillar>
+```
+
 ### Link
 
 You can add an external link to the Pillar using the `Link` component.
@@ -129,6 +147,10 @@ Use the `Stack` component to stack multiple Pillars horizontally or vertically.
 | ------- | ----------------------------------------------------------- | --------- | -------- | ---------------------------- |
 | `icon`  | `React.Node`                                                |           | `true`   | Octicon                      |
 | `color` | <PropTableValues values={PillarIconColors} addLineBreaks /> | `default` | `false`  | The color of the Pillar icon |
+
+### Pillar.Image
+
+Forwards all the props from the [Image component](/components/Image), including `src`, `alt`, and `aspectRatio`.
 
 ### Pillar.Heading
 
