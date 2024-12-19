@@ -19,7 +19,6 @@
 .VideoPlayer__container {
   width: 100%;
   position: relative;
-  overflow: hidden;
   border-radius: var(--brand-borderRadius-medium);
 }
 
@@ -37,7 +36,7 @@
 /* 3. Center Play Button                                      */
 /* ---------------------------------------------------------- */
 
-.VideoPlayer__playButton {
+.VideoPlayer__playButtonOverlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -48,20 +47,21 @@
   z-index: 1;
 }
 
-.VideoPlayer__playButtonOverlay {
+.VideoPlayer__playButtonOverlay.VideoPlayer__playButtonOverlay--transparent {
+  background: transparent;
+}
+
+.VideoPlayer__playButtonOverlay:focus-visible {
+  outline: var(--brand-borderWidth-thicker) solid var(--brand-color-focus);
+  outline-offset: var(--base-size-2);
+}
+
+.VideoPlayer__playButton {
   width: 25%;
   height: 25%;
   max-width: var(--brand-VideoPlayer-playButton-width);
   max-height: var(--brand-VideoPlayer-playButton-height);
   opacity: 0.8;
-}
-
-.VideoPlayer__playButton:focus {
-  border: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
-  box-shadow: 0 0 0 0.125rem var(--brand-color-focus);
-}
-
-.VideoPlayer__playButton svg {
   color: var(--brand-videoPlayer-playButton-fgColor-rest);
 }
 
@@ -73,7 +73,6 @@
   transition: var(--brand-VideoPlayer-transition);
   top: 0;
   position: absolute;
-  border-radius: var(--brand-borderRadius-medium);
   left: 0;
   width: 100%;
   z-index: 2;
@@ -85,6 +84,12 @@
   grid-gap: var(--base-size-12);
   grid-template-columns: auto auto;
   background: var(--brand-videoPlayer-title-bgColor);
+  transition: all var(--brand-animation-duration-fast) var(--brand-animation-easing-default);
+}
+
+.VideoPlayer__title.VideoPlayer__title--hidden {
+  opacity: 0;
+  visibility: hidden;
 }
 
 /* ---------------------------------------------------------- */
@@ -115,8 +120,14 @@
   left: 0;
   width: 100%;
   background: var(--brand-videoPlayer-controls-bgColor);
-  padding: var(--base-size-16) var(--base-size-24);
+  padding: var(--base-size-12) var(--base-size-16);
   pointer-events: all;
+  opacity: 1;
+}
+
+.VideoPlayer__controlsBar--fade {
+  transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default);
+  opacity: 0;
 }
 
 .VideoPlayer__controls:focus,
@@ -228,9 +239,8 @@
 }
 
 .VideoPlayer__rangeInput:focus-visible {
-  border-color: var(--brand-color-focus);
-  outline: none;
-  box-shadow: 0 0 0 0.125rem var(--brand-color-focus);
+  outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
+  outline-offset: var(--base-size-4);
   opacity: 1;
 }
 
