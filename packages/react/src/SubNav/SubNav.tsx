@@ -15,7 +15,7 @@ import React, {
   type ReactNode,
   type RefObject,
 } from 'react'
-import {Button, ButtonSizes, ButtonVariants, Text, ThemeProvider, useWindowSize} from '..'
+import {Button, ButtonSizes, ButtonVariants, Text, TextProps, ThemeProvider, useWindowSize} from '..'
 
 import {default as clsx} from 'clsx'
 import {ChevronDownIcon, ChevronUpIcon} from '@primer/octicons-react'
@@ -341,13 +341,14 @@ const SubNavHeading = ({href, children, className, 'data-testid': testID, ...pro
 type SubNavLinkProps = {
   href: string
   'data-testid'?: string
-  _variant?: SubMenuVariants
+  variant?: TextProps['variant']
+  _subMenuVariant?: SubMenuVariants
 } & PropsWithChildren<React.HTMLProps<HTMLAnchorElement>> &
   BaseProps<HTMLAnchorElement>
 
 const SubNavLinkWithSubmenu = forwardRef<HTMLDivElement, SubNavLinkProps>(
   (
-    {children, href, 'aria-current': ariaCurrent, 'data-testid': testId, className, _variant, ...props},
+    {children, href, 'aria-current': ariaCurrent, 'data-testid': testId, className, _subMenuVariant, variant, ...props},
     forwardedRef,
   ) => {
     const submenuId = useId()
@@ -393,7 +394,7 @@ const SubNavLinkWithSubmenu = forwardRef<HTMLDivElement, SubNavLinkProps>(
             size="200"
             weight="semibold"
             className={styles['SubNav__link-label']}
-            variant={ariaCurrent === 'page' ? 'default' : 'muted'}
+            variant={ariaCurrent === 'page' || variant === 'default' ? 'default' : 'muted'}
           >
             {label}
           </Text>
@@ -458,13 +459,13 @@ const SubNavLink = forwardRef<HTMLAnchorElement | HTMLDivElement, SubNavLinkProp
         <SubNavLinkWithSubmenu
           {...props}
           ref={ref as RefObject<HTMLDivElement>}
-          _variant={isAnchorVariantSubMenu ? 'anchor' : undefined}
+          _subMenuVariant={isAnchorVariantSubMenu ? 'anchor' : undefined}
         />
       </li>
     )
   }
 
-  const {children, href, 'aria-current': ariaCurrent, 'data-testid': testId, className, ...rest} = props
+  const {children, href, 'aria-current': ariaCurrent, 'data-testid': testId, variant, className, ...rest} = props
 
   return (
     <li>
@@ -486,7 +487,7 @@ const SubNavLink = forwardRef<HTMLAnchorElement | HTMLDivElement, SubNavLinkProp
           size="100"
           weight="semibold"
           className={styles['SubNav__link-label']}
-          variant={ariaCurrent === 'page' ? 'default' : 'muted'}
+          variant={ariaCurrent === 'page' || variant === 'default' ? 'default' : 'muted'}
         >
           {children}
         </Text>
