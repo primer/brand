@@ -1,5 +1,32 @@
 # @primer/react-brand
 
+## 0.45.1
+
+### Patch Changes
+
+- [#703](https://github.com/primer/brand/pull/703) [`621d8ee2`](https://github.com/primer/brand/commit/621d8ee25e15a4a67281be5e4ec6116fa89a6fa0) Thanks [@joshfarrant](https://github.com/joshfarrant)! - `VideoPlayer` accessibility improvements
+
+  - Improved contrast of play overlay focus styles.
+  - Improved contrast of controls and title.
+  - The title bar now hides while the video is playing.
+  - The controls bar now hides when the cursor or keyboard focus leaves the video player, or after a few seconds of inactivity, and reappears when the cursor or keyboard focus returns.
+
+- [#862](https://github.com/primer/brand/pull/862) [`eba0c530`](https://github.com/primer/brand/commit/eba0c53043133239006807a2694b05e9852da169) Thanks [@danielguillan](https://github.com/danielguillan)! - Added image support to `Pillar` component
+
+  Usage example:
+
+  ```jsx
+  <Pillar>
+    <Pillar.Image src="/path/to/your/image.jpg" alt="Required alternative text" />
+    <Pillar.Heading>Code search & code view</Pillar.Heading>
+    <Pillar.Description>
+      Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
+    </Pillar.Description>
+  </Pillar>
+  ```
+
+  🔗 (See Storybook for an example)[https://primer.style/brand/storybook/?path=/story/components-pillar-features--with-image]
+
 ## 0.45.0
 
 ### Minor Changes
