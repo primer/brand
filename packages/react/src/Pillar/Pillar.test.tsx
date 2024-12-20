@@ -83,6 +83,24 @@ describe('Pillar', () => {
     expect(pillarEl).toHaveClass(classToCheck)
   })
 
+  it('renders the image correctly into the document', () => {
+    const mockTestId = 'test'
+    const mockImage = 'mock.png'
+    const classToCheck = 'Image'
+    const testAltText = 'alternative text'
+
+    const {getByAltText} = render(
+      <Pillar data-testid={mockTestId}>
+        <Pillar.Image src={mockImage} alt={testAltText} />
+        <Pillar.Heading>{mockHeading}</Pillar.Heading>
+        <Pillar.Description>{mockDescription}</Pillar.Description>
+      </Pillar>,
+    )
+
+    const pillarEl = getByAltText(testAltText)
+    expect(pillarEl).toHaveClass(classToCheck)
+  })
+
   it('renders the link correctly into the document', () => {
     const mockTestId = 'test'
     const classToCheckLink = 'Pillar__link'

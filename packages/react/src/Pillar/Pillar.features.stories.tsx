@@ -8,13 +8,14 @@ import startShape from '../fixtures/images/testimonial-bg-1.png'
 import endShape from '../fixtures/images/testimonial-bg-2.png'
 
 import styles from './Pillar.stories.module.css'
+import placeholderImage from '../fixtures/images/placeholder-600x400.png'
 
 export default {
   title: 'Components/Pillar/features',
   component: Pillar,
 } as Meta<typeof Pillar>
 
-export const Icon: StoryFn<typeof Pillar> = () => {
+export const WithIcon: StoryFn<typeof Pillar> = () => {
   return (
     <Pillar>
       <Pillar.Icon icon={<RocketIcon />} />
@@ -26,7 +27,23 @@ export const Icon: StoryFn<typeof Pillar> = () => {
   )
 }
 
-export const IconColors: StoryFn<typeof Pillar> = () => {
+export const WithImage: StoryFn<typeof Pillar> = () => {
+  return (
+    <Pillar>
+      <Pillar.Image
+        aspectRatio="16:10"
+        src={placeholderImage}
+        alt="placeholder, blank area with a gray background color"
+      />
+      <Pillar.Heading>Code search & code view</Pillar.Heading>
+      <Pillar.Description>
+        Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
+      </Pillar.Description>
+    </Pillar>
+  )
+}
+
+export const WithIconColors: StoryFn<typeof Pillar> = () => {
   return (
     <Grid>
       {PillarIconColors.map((color, id) => {

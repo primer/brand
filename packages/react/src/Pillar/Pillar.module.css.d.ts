@@ -2,6 +2,7 @@ declare const styles: {
   readonly "Pillar": string;
   readonly "Pillar--align-center": string;
   readonly "Pillar--align-start": string;
+  readonly "Pillar__image": string;
   readonly "Pillar__icon": string;
   readonly "Pillar__heading": string;
   readonly "Pillar__description": string;
