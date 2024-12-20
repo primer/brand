@@ -18,10 +18,11 @@ export const CCButton = ({className, ...props}: HTMLAttributes<HTMLButtonElement
         !ccEnabled && styles.VideoPlayer__ccOff,
       )}
       onClick={toggleCC}
-      aria-label={ccEnabled ? 'Disable captions' : 'Enable captions'}
       {...props}
     >
-      <Text className={styles.VideoPlayer__ccText}>CC</Text>
+      <Text className={styles.VideoPlayer__ccText} aria-hidden="true">
+        CC
+      </Text>
       <VideoTooltip>{ccEnabled ? 'Disable captions' : 'Enable captions'}</VideoTooltip>
     </button>
   )
