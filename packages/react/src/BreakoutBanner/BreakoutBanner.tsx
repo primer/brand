@@ -1,55 +1,15 @@
-import React, {forwardRef, ReactElement, useCallback, useMemo, type Ref} from 'react'
+import React, {forwardRef, useCallback, useMemo, type Ref} from 'react'
 import clsx from 'clsx'
-import {Icon} from '@primer/octicons-react'
-
-import type {BaseProps} from '../component-helpers'
-import {Heading, HeadingProps, Text, Stack, Link, LinkProps, StackProps} from '../'
+import {Heading, Text, Stack, Link, LinkProps, StackProps} from '../'
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './BreakoutBanner.module.css'
-
-type ResponsiveMap<T> = {
-  narrow?: T
-  regular?: T
-  wide?: T
-}
-
-export const BreakoutBannerBackgroundColors = ['default', 'subtle'] as const
-
-type ResponsiveBackgroundImageSrcMap = ResponsiveMap<string | string[]>
-type BackgroundColors = (typeof BreakoutBannerBackgroundColors)[number] | AnyString
-type ResponsiveBackgroundColorMap = ResponsiveMap<BackgroundColors>
-type ResponsiveBackgroundImagePositionMap = ResponsiveMap<string | string[]>
-type ResponsiveBackgroundImageSizeMap = ResponsiveMap<string | string[]>
-
-export type BreakoutBannerProps = BaseProps<HTMLDivElement> &
-  React.HTMLAttributes<HTMLDivElement> & {
-    children: React.ReactNode | React.ReactNode[]
-    /**
-     * The alignment of the content within the banner
-     */
-    align?: 'start' | 'center'
-    /**
-     * Optional, custom background color
-     */
-    backgroundColor?: BackgroundColors | ResponsiveBackgroundColorMap
-    /**
-     * Optional, custom background image
-     */
-    backgroundImageSrc?: string | ResponsiveBackgroundImageSrcMap
-    /**
-     * Optional, custom background position
-     */
-    backgroundImagePosition?: string | ResponsiveBackgroundImagePositionMap
-    /**
-     * Optional, custom background size
-     */
-    backgroundImageSize?: string | ResponsiveBackgroundImageSizeMap
-    /**
-     * An optional leading visual that appears before the heading
-     */
-    leadingVisual?: ReactElement | Icon
-  }
+import {
+  BreakoutBannerBackgroundColors,
+  BreakoutBannerDescriptionProps,
+  BreakoutBannerHeadingProps,
+  BreakoutBannerProps,
+} from './BreakoutBanner.types'
 
 const Root = forwardRef(
   (
@@ -145,10 +105,6 @@ const Root = forwardRef(
 
 const defaultHeadingLevel = 'h3'
 
-type BreakoutBannerHeadingProps = BaseProps<HTMLHeadingElement> & {
-  children: React.ReactNode | React.ReactNode[]
-} & HeadingProps
-
 const defaultHeadingSize = '4'
 
 const _Heading = forwardRef(
@@ -163,10 +119,6 @@ const _Heading = forwardRef(
     )
   },
 )
-
-type BreakoutBannerDescriptionProps = BaseProps<HTMLParagraphElement> & {
-  children: React.ReactNode | React.ReactNode[]
-}
 
 const Description = forwardRef(
   ({className, children, ...props}: BreakoutBannerDescriptionProps, ref: Ref<HTMLParagraphElement>) => {
