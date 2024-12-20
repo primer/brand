@@ -335,6 +335,10 @@
   color: var(--base-color-scale-gray-9);
 }
 
+.VideoPlayer__tooltip-visible {
+  opacity: 1;
+}
+
 .VideoPlayer__controlTextColor {
   color: var(--base-color-scale-white-0);
 }
