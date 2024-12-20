@@ -9,9 +9,8 @@ type IconControlProps = {
 } & HTMLAttributes<HTMLButtonElement>
 
 export const IconControl = ({tooltip, children, className, ...rest}: IconControlProps) => (
-  <button className={clsx(styles.VideoPlayer__iconControl, className)} {...rest} aria-label={tooltip}>
+  <button className={clsx(styles.VideoPlayer__iconControl, className)} {...rest}>
     {children}
-    <span className="visually-hidden">{tooltip}</span>
     <VideoTooltip>{tooltip}</VideoTooltip>
   </button>
 )
