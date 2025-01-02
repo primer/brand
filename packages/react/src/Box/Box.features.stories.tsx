@@ -18,6 +18,30 @@ export default {
   component: Box,
 } as Meta<typeof Box>
 
+export const Responsive = () => (
+  <div className={styles.paddingItem}>
+    <Box padding={{regular: 48, wide: 96}}></Box>
+  </div>
+)
+
+export const Nested = () => (
+  <Box paddingBlockStart={64} style={{background: 'red'}}>
+    <Box paddingInlineStart={128} style={{background: 'cyan'}}>
+      Hi
+    </Box>
+  </Box>
+)
+
+export const Weird = () => (
+  <div className={styles.paddingItem}>
+    <Box paddingBlockStart={{narrow: 64}} padding={{wide: 128}}>
+      <Text size="100" className={styles.paddingInnerItem}>
+        Hello
+      </Text>
+    </Box>
+  </div>
+)
+
 export const Padding = () => (
   <Stack direction="horizontal" alignItems="center" className={styles.spacingContainer}>
     {BoxSpacingValues.map(value => (

@@ -1,67 +1,43 @@
 .Box {
-  --box-n-pad: 0;
-  --box-n-padBlockStart: 0;
-  --box-n-padBlockEnd: 0;
-  --box-n-padInlineStart: 0;
-  --box-n-padInlineEnd: 0;
-  --box-n-mar: 0;
-  --box-n-marBlockStart: 0;
-  --box-n-marBlockEnd: 0;
-  --box-n-marInlineStart: 0;
-  --box-n-marInlineEnd: 0;
+  --box-n-padBlock: 0;
+  --box-n-padInline: 0;
+  --box-n-marBlock: 0;
+  --box-n-marInline: 0;
 
-  padding: var(--box-n-pad);
-  padding-block: var(--box-n-padBlockStart) var(--box-n-padBlockEnd);
-  padding-inline: var(--box-n-padInlineStart) var(--box-n-padInlineEnd);
+  padding-block: var(--box-n-padBlock);
+  padding-inline: var(--box-n-padInline);
 
-  margin: var(--box-n-mar);
-  margin-block: var(--box-n-marBlockStart) var(--box-n-marBlockEnd);
-  margin-inline: var(--box-n-marInlineStart) var(--box-n-marInlineEnd);
+  margin-block: var(--box-n-marBlock);
+  margin-inline: var(--box-n-marInline);
 }
 
 @media screen and (min-width: 48rem) {
   .Box {
-    --box-r-pad: 0;
-    --box-r-padBlockStart: 0;
-    --box-r-padBlockEnd: 0;
-    --box-r-padInlineStart: 0;
-    --box-r-padInlineEnd: 0;
-    --box-r-mar: 0;
-    --box-r-marBlockStart: 0;
-    --box-r-marBlockEnd: 0;
-    --box-r-marInlineStart: 0;
-    --box-r-marInlineEnd: 0;
+    --box-r-padBlock: 0;
+    --box-r-padInline: 0;
+    --box-r-marBlock: 0;
+    --box-r-marInline: 0;
 
-    padding: var(--box-r-pad);
-    padding-block: var(--box-r-padBlockStart) var(--box-r-padBlockEnd);
-    padding-inline: var(--box-r-padInlineStart) var(--box-r-padInlineEnd);
+    padding-block: var(--box-r-padBlock);
+    padding-inline: var(--box-r-padInline);
 
-    margin: var(--box-r-mar);
-    margin-block: var(--box-r-marBlockStart) var(--box-r-marBlockEnd);
-    margin-inline: var(--box-r-marInlineStart) var(--box-r-marInlineEnd);
+    margin-block: var(--box-r-marBlock);
+    margin-inline: var(--box-r-marInline);
   }
 }
 
 @media screen and (min-width: 80rem) {
   .Box {
-    --box-w-pad: 0;
-    --box-w-padBlockStart: 0;
-    --box-w-padBlockEnd: 0;
-    --box-w-padInlineStart: 0;
-    --box-w-padInlineEnd: 0;
-    --box-w-mar: 0;
-    --box-w-marBlockStart: 0;
-    --box-w-marBlockEnd: 0;
-    --box-w-marInlineStart: 0;
-    --box-w-marInlineEnd: 0;
+    --box-w-padBlock: 0;
+    --box-w-padInline: 0;
+    --box-w-marBlock: 0;
+    --box-w-marInline: 0;
 
-    padding: var(--box-w-pad);
-    padding-block: var(--box-w-padBlockStart) var(--box-w-padBlockEnd);
-    padding-inline: var(--box-w-padInlineStart) var(--box-w-padInlineEnd);
+    padding-block: var(--box-w-padBlock);
+    padding-inline: var(--box-w-padInline);
 
-    margin: var(--box-w-mar);
-    margin-block: var(--box-w-marBlockStart) var(--box-w-marBlockEnd);
-    margin-inline: var(--box-w-marInlineStart) var(--box-w-marInlineEnd);
+    margin-block: var(--box-w-marBlock);
+    margin-inline: var(--box-w-marInline);
   }
 }
 

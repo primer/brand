@@ -29,9 +29,11 @@ type BorderColorOptions = (typeof BoxBorderColorOptions)[number]
 
 type BorderStyleOptions = Extract<CSSProperties['borderStyle'], 'solid' | 'none'>
 
-type Size = 'n' | 'r' | 'w'
+const sizes = ['n', 'r', 'w'] as const
+type Size = (typeof sizes)[number]
 type SpacingType = `${'pad' | 'mar'}`
-type Type = `${SpacingType}${'Block' | 'Inline'}${'Start' | 'End'}` | SpacingType
+type SpacingAxis = `${'Block' | 'Inline'}`
+type Type = `${SpacingType}${SpacingAxis}` | SpacingType
 type VariableType<T extends Type = Type> = `--box-${Size}-${T}`
 type VariableMap<T extends Type> = Record<VariableType<T>, string>
 
@@ -143,9 +145,9 @@ const classBuilder = (
 const isSpacingMap = (spacing?: SpacingValues | ResponsiveSpacingMap): spacing is ResponsiveSpacingMap =>
   typeof spacing === 'object'
 
-const parseSpacingValues = (spacing?: SpacingValues): string | null => {
+const parseSpacingValues = (spacing?: SpacingValues): string | undefined => {
   if (!spacing || spacing === 'none') {
-    return null
+    return undefined
   }
 
   if (['condensed', 'normal', 'spacious'].includes(spacing as string)) {
@@ -155,35 +157,36 @@ const parseSpacingValues = (spacing?: SpacingValues): string | null => {
   return `var(--base-size-${spacing})`
 }
 
-const parseSpacing = <T extends Type>(
-  type: T,
-  spacing: SpacingValues | ResponsiveSpacingMap = 'none',
-): VariableMap<T> => {
+const normalizeSpacing = (spacing?: SpacingValues | ResponsiveSpacingMap): (string | undefined)[] => {
   if (!isSpacingMap(spacing)) {
-    return {
-      [`--box-n-${type}`]: parseSpacingValues(spacing),
-    } as VariableMap<T>
+    const parsedSpacing = parseSpacingValues(spacing)
+    return parsedSpacing ? [parsedSpacing] : []
   }
 
-  const narrowSpacingValue = parseSpacingValues(spacing.narrow)
-  const regularSpacingValue = parseSpacingValues(spacing.regular)
-  const wideSpacingValue = parseSpacingValues(spacing.wide)
+  return [parseSpacingValues(spacing.narrow), parseSpacingValues(spacing.regular), parseSpacingValues(spacing.wide)]
+}
 
-  const variableMap: Record<string, string> = {}
+const parseSpacings = <T extends Type>(
+  type: T,
+  spacings: (SpacingValues | ResponsiveSpacingMap | undefined)[],
+  fallback?: SpacingValues | ResponsiveSpacingMap,
+): VariableMap<T> => {
+  const normalizedSpacings = spacings.map(spacing => normalizeSpacing(spacing ?? fallback))
+  const variableMap = {} as VariableMap<T>
 
-  if (narrowSpacingValue) {
-    variableMap[`--box-n-${type}`] = narrowSpacingValue
+  for (const sizeIdx in sizes) {
+    const values = normalizedSpacings.map(spacing => spacing[sizeIdx] ?? 0)
+
+    const allZero = values.every(x => x === 0)
+    if (allZero) continue
+
+    const variableName: VariableType<T> = `--box-${sizes[sizeIdx]}-${type}`
+    const allValuesAreEqual = values.every(x => x === values[0])
+
+    variableMap[variableName] = allValuesAreEqual ? (values[0] as string) : values.join(' ')
   }
 
-  if (regularSpacingValue) {
-    variableMap[`--box-r-${type}`] = regularSpacingValue
-  }
-
-  if (wideSpacingValue) {
-    variableMap[`--box-w-${type}`] = wideSpacingValue
-  }
-
-  return variableMap as VariableMap<T>
+  return variableMap
 }
 
 /**
@@ -242,16 +245,10 @@ export const Box = ({
 
   const cssVariables = useMemo(() => {
     return {
-      ...parseSpacing('pad', padding),
-      ...parseSpacing('padBlockStart', paddingBlockStart),
-      ...parseSpacing('padBlockEnd', paddingBlockEnd),
-      ...parseSpacing('padInlineStart', paddingInlineStart),
-      ...parseSpacing('padInlineEnd', paddingInlineEnd),
-      ...parseSpacing('mar', margin),
-      ...parseSpacing('marBlockStart', marginBlockStart),
-      ...parseSpacing('marBlockEnd', marginBlockEnd),
-      ...parseSpacing('marInlineStart', marginInlineStart),
-      ...parseSpacing('marInlineEnd', marginInlineEnd),
+      ...parseSpacings('padBlock', [paddingBlockStart, paddingBlockEnd], padding),
+      ...parseSpacings('padInline', [paddingInlineStart, paddingInlineEnd], padding),
+      ...parseSpacings('marBlock', [marginBlockStart, marginBlockEnd], margin),
+      ...parseSpacings('marInline', [marginInlineStart, marginInlineEnd], margin),
     }
   }, [
     padding,

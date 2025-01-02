@@ -11,59 +11,12 @@ import {
   BoxBorderWidthOptions,
   type SpacingValues,
 } from './Box'
-import {BaseSizeScale} from '../constants'
 
 const testSpacingValues: {size: SpacingValues; variable: string}[] = [
   {size: 'none', variable: ''},
   {size: 'condensed', variable: 'var(--brand-box-spacing-condensed)'},
   {size: 'normal', variable: 'var(--brand-box-spacing-normal)'},
   {size: 'spacious', variable: 'var(--brand-box-spacing-spacious)'},
-  ...BaseSizeScale.map(
-    size => ({size, variable: `var(--base-size-${size})`} as {size: SpacingValues; variable: string}),
-  ),
-]
-
-const spacingPropVariableMap: {prop: string; variableNames: string[]}[] = [
-  {
-    prop: 'padding',
-    variableNames: ['--box-n-pad'],
-  },
-  {
-    prop: 'paddingBlockStart',
-    variableNames: ['--box-n-padBlockStart'],
-  },
-  {
-    prop: 'paddingInlineEnd',
-    variableNames: ['--box-n-padInlineEnd'],
-  },
-  {
-    prop: 'paddingBlockEnd',
-    variableNames: ['--box-n-padBlockEnd'],
-  },
-  {
-    prop: 'paddingInlineStart',
-    variableNames: ['--box-n-padInlineStart'],
-  },
-  {
-    prop: 'margin',
-    variableNames: ['--box-n-mar'],
-  },
-  {
-    prop: 'marginBlockStart',
-    variableNames: ['--box-n-marBlockStart'],
-  },
-  {
-    prop: 'marginInlineEnd',
-    variableNames: ['--box-n-marInlineEnd'],
-  },
-  {
-    prop: 'marginBlockEnd',
-    variableNames: ['--box-n-marBlockEnd'],
-  },
-  {
-    prop: 'marginInlineStart',
-    variableNames: ['--box-n-marInlineStart'],
-  },
 ]
 
 expect.extend(toHaveNoViolations)
@@ -80,12 +33,12 @@ describe('Box', () => {
     expect(results).toHaveNoViolations()
   })
 
-  it('will render the box into the document on load', () => {
+  it('renders the box into the document on load', () => {
     const {getByText} = render(<Box>{mockText}</Box>)
     expect(getByText(mockText)).toBeInTheDocument()
   })
 
-  it('will render multiple, different react children', () => {
+  it('renders multiple, different react children', () => {
     const {getByText} = render(
       <Box>
         <div>{mockText}</div>
@@ -98,23 +51,217 @@ describe('Box', () => {
     expect(getByText('Fragment')).toBeInTheDocument()
   })
 
-  describe.each(spacingPropVariableMap)('when $prop', ({prop, variableNames}) => {
-    describe.each(testSpacingValues)(`equals "$size"`, ({size, variable}) => {
-      it.each(variableNames)(`sets %s to ${variable}`, variableName => {
-        const {getByText} = render(<Box {...{[prop]: size}}>{mockText}</Box>)
+  it.each(testSpacingValues)('sets the correct styles for named spacing value: $size', ({size, variable}) => {
+    const {getByText} = render(<Box padding={size}>{mockText}</Box>)
 
-        const boxEl = getByText(mockText)
-        const style = getComputedStyle(boxEl)
+    const style = getComputedStyle(getByText(mockText))
 
-        expect(style.getPropertyValue(variableName)).toBe(variable)
-      })
+    expect(style.getPropertyValue('--box-n-padBlock')).toBe(variable)
+    expect(style.getPropertyValue('--box-n-padInline')).toBe(variable)
+  })
+
+  describe('padding props', () => {
+    it('sets the correct styles for paddingBlockStart', () => {
+      const {getByText} = render(<Box paddingBlockStart={64}>{mockText}</Box>)
+
+      const style = getComputedStyle(getByText(mockText))
+
+      expect(style.getPropertyValue('--box-n-padBlock')).toBe('var(--base-size-64) 0')
+      expect(style.getPropertyValue('--box-n-padInline')).toBe('')
+    })
+
+    it('sets the correct styles for paddingBlockEnd', () => {
+      const {getByText} = render(<Box paddingBlockEnd={64}>{mockText}</Box>)
+
+      const style = getComputedStyle(getByText(mockText))
+
+      expect(style.getPropertyValue('--box-n-padBlock')).toBe('0 var(--base-size-64)')
+      expect(style.getPropertyValue('--box-n-padInline')).toBe('')
+    })
+
+    it('sets the correct styles for paddingInlineStart', () => {
+      const {getByText} = render(<Box paddingInlineStart={64}>{mockText}</Box>)
+
+      const style = getComputedStyle(getByText(mockText))
+
+      expect(style.getPropertyValue('--box-n-padBlock')).toBe('')
+      expect(style.getPropertyValue('--box-n-padInline')).toBe('var(--base-size-64) 0')
+    })
+
+    it('sets the correct styles for paddingInlineEnd', () => {
+      const {getByText} = render(<Box paddingInlineEnd={64}>{mockText}</Box>)
+
+      const style = getComputedStyle(getByText(mockText))
+
+      expect(style.getPropertyValue('--box-n-padBlock')).toBe('')
+      expect(style.getPropertyValue('--box-n-padInline')).toBe('0 var(--base-size-64)')
+    })
+
+    it('sets the correct styles for padding', () => {
+      const {getByText} = render(<Box padding={64}>{mockText}</Box>)
+
+      const style = getComputedStyle(getByText(mockText))
+
+      expect(style.getPropertyValue('--box-n-padBlock')).toBe('var(--base-size-64)')
+      expect(style.getPropertyValue('--box-n-padInline')).toBe('var(--base-size-64)')
+    })
+
+    it('sets the correct styles for paddingBlockStart and paddingBlockEnd', () => {
+      const {getByText} = render(
+        <Box paddingBlockStart={64} paddingBlockEnd={96}>
+          {mockText}
+        </Box>,
+      )
+
+      const style = getComputedStyle(getByText(mockText))
+
+      expect(style.getPropertyValue('--box-n-padBlock')).toBe('var(--base-size-64) var(--base-size-96)')
+      expect(style.getPropertyValue('--box-n-padInline')).toBe('')
+    })
+
+    it('sets the correct styles for paddingInlineStart and paddingInlineEnd', () => {
+      const {getByText} = render(
+        <Box paddingInlineStart={64} paddingInlineEnd={96}>
+          {mockText}
+        </Box>,
+      )
+
+      const style = getComputedStyle(getByText(mockText))
+
+      expect(style.getPropertyValue('--box-n-padBlock')).toBe('')
+      expect(style.getPropertyValue('--box-n-padInline')).toBe('var(--base-size-64) var(--base-size-96)')
+    })
+
+    it('sets the correct styles for paddingBlockStart and paddingInlineEnd', () => {
+      const {getByText} = render(
+        <Box paddingBlockStart={64} paddingInlineEnd={96}>
+          {mockText}
+        </Box>,
+      )
+
+      const style = getComputedStyle(getByText(mockText))
+
+      expect(style.getPropertyValue('--box-n-padBlock')).toBe('var(--base-size-64) 0')
+      expect(style.getPropertyValue('--box-n-padInline')).toBe('0 var(--base-size-96)')
+    })
+
+    it('sets the correct styles for paddingBlockEnd and paddingInlineStart', () => {
+      const {getByText} = render(
+        <Box paddingBlockEnd={64} paddingInlineStart={96}>
+          {mockText}
+        </Box>,
+      )
+
+      const style = getComputedStyle(getByText(mockText))
+
+      expect(style.getPropertyValue('--box-n-padBlock')).toBe('0 var(--base-size-64)')
+      expect(style.getPropertyValue('--box-n-padInline')).toBe('var(--base-size-96) 0')
+    })
+  })
+
+  describe('margin props', () => {
+    it('sets the correct styles for marginBlockStart', () => {
+      const {getByText} = render(<Box marginBlockStart={64}>{mockText}</Box>)
+
+      const style = getComputedStyle(getByText(mockText))
+
+      expect(style.getPropertyValue('--box-n-marBlock')).toBe('var(--base-size-64) 0')
+      expect(style.getPropertyValue('--box-n-marInline')).toBe('')
+    })
+
+    it('sets the correct styles for marginBlockEnd', () => {
+      const {getByText} = render(<Box marginBlockEnd={64}>{mockText}</Box>)
+
+      const style = getComputedStyle(getByText(mockText))
+
+      expect(style.getPropertyValue('--box-n-marBlock')).toBe('0 var(--base-size-64)')
+      expect(style.getPropertyValue('--box-n-marInline')).toBe('')
+    })
+
+    it('sets the correct styles for marginInlineStart', () => {
+      const {getByText} = render(<Box marginInlineStart={64}>{mockText}</Box>)
+
+      const style = getComputedStyle(getByText(mockText))
+
+      expect(style.getPropertyValue('--box-n-marBlock')).toBe('')
+      expect(style.getPropertyValue('--box-n-marInline')).toBe('var(--base-size-64) 0')
+    })
+
+    it('sets the correct styles for marginInlineEnd', () => {
+      const {getByText} = render(<Box marginInlineEnd={64}>{mockText}</Box>)
+
+      const style = getComputedStyle(getByText(mockText))
+
+      expect(style.getPropertyValue('--box-n-marBlock')).toBe('')
+      expect(style.getPropertyValue('--box-n-marInline')).toBe('0 var(--base-size-64)')
+    })
+
+    it('sets the correct styles for margin', () => {
+      const {getByText} = render(<Box margin={64}>{mockText}</Box>)
+
+      const style = getComputedStyle(getByText(mockText))
+
+      expect(style.getPropertyValue('--box-n-marBlock')).toBe('var(--base-size-64)')
+      expect(style.getPropertyValue('--box-n-marInline')).toBe('var(--base-size-64)')
+    })
+
+    it('sets the correct styles for marginBlockStart and marginBlockEnd', () => {
+      const {getByText} = render(
+        <Box marginBlockStart={64} marginBlockEnd={96}>
+          {mockText}
+        </Box>,
+      )
+
+      const style = getComputedStyle(getByText(mockText))
+
+      expect(style.getPropertyValue('--box-n-marBlock')).toBe('var(--base-size-64) var(--base-size-96)')
+      expect(style.getPropertyValue('--box-n-marInline')).toBe('')
+    })
+
+    it('sets the correct styles for marginInlineStart and marginInlineEnd', () => {
+      const {getByText} = render(
+        <Box marginInlineStart={64} marginInlineEnd={96}>
+          {mockText}
+        </Box>,
+      )
+
+      const style = getComputedStyle(getByText(mockText))
+
+      expect(style.getPropertyValue('--box-n-marBlock')).toBe('')
+      expect(style.getPropertyValue('--box-n-marInline')).toBe('var(--base-size-64) var(--base-size-96)')
+    })
+
+    it('sets the correct styles for marginBlockStart and marginInlineEnd', () => {
+      const {getByText} = render(
+        <Box marginBlockStart={64} marginInlineEnd={96}>
+          {mockText}
+        </Box>,
+      )
+
+      const style = getComputedStyle(getByText(mockText))
+
+      expect(style.getPropertyValue('--box-n-marBlock')).toBe('var(--base-size-64) 0')
+      expect(style.getPropertyValue('--box-n-marInline')).toBe('0 var(--base-size-96)')
+    })
+
+    it('sets the correct styles for marginBlockEnd and marginInlineStart', () => {
+      const {getByText} = render(
+        <Box marginBlockEnd={64} marginInlineStart={96}>
+          {mockText}
+        </Box>,
+      )
+
+      const style = getComputedStyle(getByText(mockText))
+
+      expect(style.getPropertyValue('--box-n-marBlock')).toBe('0 var(--base-size-64)')
+      expect(style.getPropertyValue('--box-n-marInline')).toBe('var(--base-size-96) 0')
     })
   })
 
   it('sets the correct spacing variables in nested boxes', () => {
     const {getByTestId} = render(
       <Box paddingBlockStart={64} data-testid="outer">
-        <Box paddingInlineStart={96} data-testid="inner"></Box>
+        <Box paddingInlineEnd={96} data-testid="inner"></Box>
       </Box>,
     )
 
@@ -123,14 +270,14 @@ describe('Box', () => {
     const outerStyle = getComputedStyle(outerBox)
     const innerStyle = getComputedStyle(innerBox)
 
-    expect(outerStyle.getPropertyValue('--box-n-padBlockStart')).toBe('var(--base-size-64)')
-    expect(outerStyle.getPropertyValue('--box-n-padInlineStart')).toBe('')
+    expect(outerStyle.getPropertyValue('--box-n-padBlock')).toBe('var(--base-size-64) 0')
+    expect(outerStyle.getPropertyValue('--box-n-padInline')).toBe('')
 
-    expect(innerStyle.getPropertyValue('--box-n-padBlockStart')).toBe('')
-    expect(innerStyle.getPropertyValue('--box-n-padInlineStart')).toBe('var(--base-size-96)')
+    expect(innerStyle.getPropertyValue('--box-n-padBlock')).toBe('')
+    expect(innerStyle.getPropertyValue('--box-n-padInline')).toBe('0 var(--base-size-96)')
   })
 
-  it('will set the correct styles for background colors', () => {
+  it('sets the correct styles for background colors', () => {
     for (const color of BoxBackgroundColors) {
       const expectedClass = `Box-backgroundColor--${color}`
 
@@ -147,7 +294,7 @@ describe('Box', () => {
     }
   })
 
-  it('will set the correct styles for border colors', () => {
+  it('sets the correct styles for border colors', () => {
     for (const color of BoxBorderColorOptions) {
       const expectedClass = `Box-borderColor--${color}`
 
@@ -164,7 +311,7 @@ describe('Box', () => {
     }
   })
 
-  it('will set the correct styles for border radius', () => {
+  it('sets the correct styles for border radius', () => {
     for (const radius of BoxBorderRadiusOptions) {
       const expectedClass = `Box-borderRadius--${radius}`
 
@@ -181,7 +328,7 @@ describe('Box', () => {
     }
   })
 
-  it('will set the correct styles for directional border width', () => {
+  it('sets the correct styles for directional border width', () => {
     const borderDirections = [
       'borderBlockStartWidth',
       'borderInlineEndWidth',
