@@ -29,12 +29,12 @@ type BorderColorOptions = (typeof BoxBorderColorOptions)[number]
 
 type BorderStyleOptions = Extract<CSSProperties['borderStyle'], 'solid' | 'none'>
 
-const sizes = ['n', 'r', 'w'] as const
+const sizes = ['n', 'r', 'w'] as const // narrow, regular, wide
 type Size = (typeof sizes)[number]
-type SpacingType = `${'pad' | 'mar'}`
+type SpacingType = `${'pad' | 'mar'}` // padding or margin
 type SpacingAxis = `${'Block' | 'Inline'}`
-type Type = `${SpacingType}${SpacingAxis}` | SpacingType
-type VariableType<T extends Type = Type> = `--box-${Size}-${T}`
+type Type = `${SpacingType}${SpacingAxis}` | SpacingType // e.g. padBlock, marInline, pad
+type VariableType<T extends Type = Type> = `--box-${Size}-${T}` // e.g. --box-r-padBlock
 type VariableMap<T extends Type> = Record<VariableType<T>, string>
 
 type BoxProps = {
@@ -145,7 +145,7 @@ const classBuilder = (
 const isSpacingMap = (spacing?: SpacingValues | ResponsiveSpacingMap): spacing is ResponsiveSpacingMap =>
   typeof spacing === 'object'
 
-const parseSpacingValues = (spacing?: SpacingValues): string | undefined => {
+const parseSpacingValue = (spacing?: SpacingValues): string | undefined => {
   if (!spacing || spacing === 'none') {
     return undefined
   }
@@ -159,14 +159,14 @@ const parseSpacingValues = (spacing?: SpacingValues): string | undefined => {
 
 const normalizeSpacing = (spacing?: SpacingValues | ResponsiveSpacingMap): (string | undefined)[] => {
   if (!isSpacingMap(spacing)) {
-    const parsedSpacing = parseSpacingValues(spacing)
+    const parsedSpacing = parseSpacingValue(spacing)
     return parsedSpacing ? [parsedSpacing] : []
   }
 
-  return [parseSpacingValues(spacing.narrow), parseSpacingValues(spacing.regular), parseSpacingValues(spacing.wide)]
+  return [parseSpacingValue(spacing.narrow), parseSpacingValue(spacing.regular), parseSpacingValue(spacing.wide)]
 }
 
-const parseSpacings = <T extends Type>(
+const spacingToCssVariables = <T extends Type>(
   type: T,
   spacings: (SpacingValues | ResponsiveSpacingMap | undefined)[],
   fallback?: SpacingValues | ResponsiveSpacingMap,
@@ -245,10 +245,10 @@ export const Box = ({
 
   const cssVariables = useMemo(() => {
     return {
-      ...parseSpacings('padBlock', [paddingBlockStart, paddingBlockEnd], padding),
-      ...parseSpacings('padInline', [paddingInlineStart, paddingInlineEnd], padding),
-      ...parseSpacings('marBlock', [marginBlockStart, marginBlockEnd], margin),
-      ...parseSpacings('marInline', [marginInlineStart, marginInlineEnd], margin),
+      ...spacingToCssVariables('padBlock', [paddingBlockStart, paddingBlockEnd], padding),
+      ...spacingToCssVariables('padInline', [paddingInlineStart, paddingInlineEnd], padding),
+      ...spacingToCssVariables('marBlock', [marginBlockStart, marginBlockEnd], margin),
+      ...spacingToCssVariables('marInline', [marginInlineStart, marginInlineEnd], margin),
     }
   }, [
     padding,
