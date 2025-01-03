@@ -1,43 +1,25 @@
 .Box {
-  --box-n-padBlock: 0;
-  --box-n-padInline: 0;
-  --box-n-marBlock: 0;
-  --box-n-marInline: 0;
-
   padding-block: var(--box-n-padBlock);
   padding-inline: var(--box-n-padInline);
-
   margin-block: var(--box-n-marBlock);
   margin-inline: var(--box-n-marInline);
 }
 
 @media screen and (min-width: 48rem) {
   .Box {
-    --box-r-padBlock: 0;
-    --box-r-padInline: 0;
-    --box-r-marBlock: 0;
-    --box-r-marInline: 0;
-
-    padding-block: var(--box-r-padBlock);
-    padding-inline: var(--box-r-padInline);
-
-    margin-block: var(--box-r-marBlock);
-    margin-inline: var(--box-r-marInline);
+    padding-block: var(--box-r-padBlock, var(--box-n-padBlock));
+    padding-inline: var(--box-r-padInline, var(--box-n-padInline));
+    margin-block: var(--box-r-marBlock, var(--box-n-marBlock));
+    margin-inline: var(--box-r-marInline, var(--box-n-marInline));
   }
 }
 
 @media screen and (min-width: 80rem) {
   .Box {
-    --box-w-padBlock: 0;
-    --box-w-padInline: 0;
-    --box-w-marBlock: 0;
-    --box-w-marInline: 0;
-
-    padding-block: var(--box-w-padBlock);
-    padding-inline: var(--box-w-padInline);
-
-    margin-block: var(--box-w-marBlock);
-    margin-inline: var(--box-w-marInline);
+    padding-block: var(--box-w-padBlock, var(--box-r-padBlock, var(--box-n-padBlock)));
+    padding-inline: var(--box-w-padInline, var(--box-r-padInline, var(--box-n-padInline)));
+    margin-block: var(--box-w-marBlock, var(--box-r-marBlock, var(--box-n-marBlock)));
+    margin-inline: var(--box-w-marInline, var(--box-r-marInline, var(--box-n-marInline)));
   }
 }
 

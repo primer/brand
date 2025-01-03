@@ -20,18 +20,26 @@ export default {
 
 export const Responsive = () => (
   <div className={styles.paddingItem}>
-    <Box padding={{regular: 48, wide: 96}}></Box>
+    <Box padding={{regular: 48, wide: 96}}>
+      <Text size="100" className={styles.paddingInnerItem}>
+        Hello
+      </Text>
+    </Box>
   </div>
 )
 
+// TODO This doesn't work on all viewports :/
 export const Nested = () => (
   <Box paddingBlockStart={64} style={{background: 'red'}}>
     <Box paddingInlineStart={128} style={{background: 'cyan'}}>
-      Hi
+      <Text size="100" className={styles.paddingInnerItem}>
+        Hello
+      </Text>
     </Box>
   </Box>
 )
 
+// TODO Should the narrow padding apply to wider viewports?
 export const Weird = () => (
   <div className={styles.paddingItem}>
     <Box paddingBlockStart={{narrow: 64}} padding={{wide: 128}}>
