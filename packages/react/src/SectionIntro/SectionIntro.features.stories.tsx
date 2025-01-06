@@ -1,7 +1,6 @@
 import React from 'react'
 import {Meta} from '@storybook/react'
 import {SectionIntro} from '.'
-import {Box} from '../Box'
 import {CopilotIcon} from '@primer/octicons-react'
 
 export default {
