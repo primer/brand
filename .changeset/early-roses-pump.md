@@ -12,4 +12,4 @@ Added `leadingComponent` slot to `SectionIntro` for inserting arbitrary visuals 
 </SectionIntro>
 ```
 
-🔗 [See Storybook example](https://stunning-chainsaw-j82glqz.pages.github.io/?path=/story/components-sectionintro-features--leading-component)
+🔗 [See Storybook example](https://primer.style/brand/storybook?path=/story/components-sectionintro-features--leading-component)
