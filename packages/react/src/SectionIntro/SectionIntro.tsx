@@ -13,11 +13,30 @@ import type {BaseProps} from '../component-helpers'
 export type SectionIntroProps = {
   align?: 'start' | 'center'
   fullWidth?: boolean
+  /**
+   * Escape-hatch for inserting custom React components.
+   * Warning:
+   *   This prop isn't advertised in our docs but remains part of the public API for edge-cases.
+   *   Need to use this prop? Please check in with #primer-brand first to confirm correct usage.
+   */
+  leadingComponent?: React.FunctionComponent
 } & React.HTMLAttributes<HTMLHeadingElement> &
   BaseProps<HTMLHeadingElement>
 
 const Root = forwardRef<HTMLHeadingElement, PropsWithChildren<SectionIntroProps>>(
-  ({align = 'start', animate, className, children, fullWidth = false, style, ...props}, ref) => {
+  (
+    {
+      align = 'start',
+      animate,
+      className,
+      children,
+      fullWidth = false,
+      leadingComponent: LeadingComponent,
+      style,
+      ...props
+    },
+    ref,
+  ) => {
     const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
 
     return (
@@ -33,6 +52,7 @@ const Root = forwardRef<HTMLHeadingElement, PropsWithChildren<SectionIntroProps>
         {...props}
         style={{...animationInlineStyles, ...style}}
       >
+        {LeadingComponent && <LeadingComponent />}
         {children}
       </header>
     )
