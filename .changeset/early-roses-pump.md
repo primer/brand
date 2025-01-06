@@ -5,7 +5,7 @@
 Added `leadingComponent` slot to `SectionIntro` for inserting arbitrary visuals and JSX above the heading.
 
 ```jsx
-<SectionIntro leadingComponent={() => <img src={mockImage} alt="mock" />}>
+<SectionIntro leadingComponent={() => <img src="leading-visual.png" alt="description of your leading visual" />}>
   <SectionIntro.Heading>...</SectionIntro.Heading>
   <SectionIntro.Description>...</SectionIntro.Description>
   <SectionIntro.Link>...</SectionIntro.Link>
