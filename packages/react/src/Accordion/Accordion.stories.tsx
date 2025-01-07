@@ -1,7 +1,7 @@
 import {Meta} from '@storybook/react'
 import React from 'react'
-import {Accordion} from '.'
-import {UnorderedList} from '../'
+import {Accordion, AccordionToggleColors} from '.'
+import {Box, Grid, ThemeProvider, UnorderedList} from '../'
 
 export default {
   title: 'Components/Accordion',
@@ -16,6 +16,39 @@ export const Default = () => (
       <p>Some description</p>
     </Accordion.Content>
   </Accordion>
+)
+
+export const ToggleColors = () => (
+  <Grid>
+    <Grid.Column span={{xsmall: 12, medium: 6}}>
+      <ThemeProvider colorMode="light">
+        <Box backgroundColor="default" padding="condensed">
+          {AccordionToggleColors.map(color => (
+            <Accordion key={color}>
+              <Accordion.Heading toggleColor={color}>Toggle color: {color}</Accordion.Heading>
+              <Accordion.Content>
+                <p>Description</p>
+              </Accordion.Content>
+            </Accordion>
+          ))}
+        </Box>
+      </ThemeProvider>
+    </Grid.Column>
+    <Grid.Column span={{xsmall: 12, medium: 6}}>
+      <ThemeProvider colorMode="dark">
+        <Box backgroundColor="default" padding="condensed">
+          {AccordionToggleColors.map(color => (
+            <Accordion key={color}>
+              <Accordion.Heading toggleColor={color}>Toggle color: {color}</Accordion.Heading>
+              <Accordion.Content>
+                <p>Description</p>
+              </Accordion.Content>
+            </Accordion>
+          ))}
+        </Box>
+      </ThemeProvider>
+    </Grid.Column>
+  </Grid>
 )
 
 export const Composition = () => (

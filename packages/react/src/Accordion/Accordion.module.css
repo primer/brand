@@ -87,6 +87,101 @@
   background-clip: text;
 }
 
+.Accordion__summary--toggleColor-default {
+  --brand-Accordion-toggle-color-start: var(--brand-Accordion-toggle-color-default);
+  --brand-Accordion-toggle-color-end: var(--brand-Accordion-toggle-color-default);
+}
+
+.Accordion__summary--toggleColor-blue {
+  --brand-Accordion-toggle-color-start: var(--brand-Accordion-toggle-color-blue);
+  --brand-Accordion-toggle-color-end: var(--brand-Accordion-toggle-color-blue);
+}
+
+.Accordion__summary--toggleColor-blue-purple {
+  --brand-Accordion-toggle-color-start: var(--brand-Accordion-toggle-color-blue-purple-start);
+  --brand-Accordion-toggle-color-end: var(--brand-Accordion-toggle-color-blue-purple-end);
+}
+
+.Accordion__summary--toggleColor-coral {
+  --brand-Accordion-toggle-color-start: var(--brand-Accordion-toggle-color-coral);
+  --brand-Accordion-toggle-color-end: var(--brand-Accordion-toggle-color-coral);
+}
+
+.Accordion__summary--toggleColor-green {
+  --brand-Accordion-toggle-color-start: var(--brand-Accordion-toggle-color-green);
+  --brand-Accordion-toggle-color-end: var(--brand-Accordion-toggle-color-green);
+}
+
+.Accordion__summary--toggleColor-green-blue {
+  --brand-Accordion-toggle-color-start: var(--brand-Accordion-toggle-color-green-blue-start);
+  --brand-Accordion-toggle-color-end: var(--brand-Accordion-toggle-color-green-blue-end);
+}
+
+.Accordion__summary--toggleColor-gray {
+  --brand-Accordion-toggle-color-start: var(--brand-Accordion-toggle-color-gray);
+  --brand-Accordion-toggle-color-end: var(--brand-Accordion-toggle-color-gray);
+}
+
+.Accordion__summary--toggleColor-indigo {
+  --brand-Accordion-toggle-color-start: var(--brand-Accordion-toggle-color-indigo);
+  --brand-Accordion-toggle-color-end: var(--brand-Accordion-toggle-color-indigo);
+}
+
+.Accordion__summary--toggleColor-lemon {
+  --brand-Accordion-toggle-color-start: var(--brand-Accordion-toggle-color-lemon);
+  --brand-Accordion-toggle-color-end: var(--brand-Accordion-toggle-color-lemon);
+}
+
+.Accordion__summary--toggleColor-lime {
+  --brand-Accordion-toggle-color-start: var(--brand-Accordion-toggle-color-lime);
+  --brand-Accordion-toggle-color-end: var(--brand-Accordion-toggle-color-lime);
+}
+
+.Accordion__summary--toggleColor-orange {
+  --brand-Accordion-toggle-color-start: var(--brand-Accordion-toggle-color-orange);
+  --brand-Accordion-toggle-color-end: var(--brand-Accordion-toggle-color-orange);
+}
+
+.Accordion__summary--toggleColor-pink {
+  --brand-Accordion-toggle-color-start: var(--brand-Accordion-toggle-color-pink);
+  --brand-Accordion-toggle-color-end: var(--brand-Accordion-toggle-color-pink);
+}
+
+.Accordion__summary--toggleColor-pink-blue {
+  --brand-Accordion-toggle-color-start: var(--brand-Accordion-toggle-color-pink-blue-start);
+  --brand-Accordion-toggle-color-end: var(--brand-Accordion-toggle-color-pink-blue-end);
+}
+
+.Accordion__summary--toggleColor-purple {
+  --brand-Accordion-toggle-color-start: var(--brand-Accordion-toggle-color-purple);
+  --brand-Accordion-toggle-color-end: var(--brand-Accordion-toggle-color-purple);
+}
+
+.Accordion__summary--toggleColor-purple-red {
+  --brand-Accordion-toggle-color-start: var(--brand-Accordion-toggle-color-purple-red-start);
+  --brand-Accordion-toggle-color-end: var(--brand-Accordion-toggle-color-purple-red-end);
+}
+
+.Accordion__summary--toggleColor-red {
+  --brand-Accordion-toggle-color-start: var(--brand-Accordion-toggle-color-red);
+  --brand-Accordion-toggle-color-end: var(--brand-Accordion-toggle-color-red);
+}
+
+.Accordion__summary--toggleColor-red-orange {
+  --brand-Accordion-toggle-color-start: var(--brand-Accordion-toggle-color-red-orange-start);
+  --brand-Accordion-toggle-color-end: var(--brand-Accordion-toggle-color-red-orange-end);
+}
+
+.Accordion__summary--toggleColor-teal {
+  --brand-Accordion-toggle-color-start: var(--brand-Accordion-toggle-color-teal);
+  --brand-Accordion-toggle-color-end: var(--brand-Accordion-toggle-color-teal);
+}
+
+.Accordion__summary--toggleColor-yellow {
+  --brand-Accordion-toggle-color-start: var(--brand-Accordion-toggle-color-yellow);
+  --brand-Accordion-toggle-color-end: var(--brand-Accordion-toggle-color-yellow);
+}
+
 .Accordion__summary--default .Accordion__summary--collapsed::before {
   font-weight: var(--base-text-weight-medium);
   content: '–';
