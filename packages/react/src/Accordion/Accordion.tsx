@@ -85,7 +85,6 @@ export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
 )
 
 export const AccordionToggleColors = [...Colors, ...Gradients] as const
-export const defaultAccordionToggleColor = AccordionToggleColors[0]
 
 type AccordionHeadingProps = PropsWithChildren<BaseProps<HTMLHeadingElement>> &
   React.HTMLAttributes<HTMLDetailsElement> & {

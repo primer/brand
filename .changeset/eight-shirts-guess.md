@@ -20,4 +20,4 @@ Added `toggleColor` prop to `FAQ.Question` and `Accordion.Heading`
 </Accordion>
 ```
 
-🔗 [See the documentation examples and available color options](https://primer.style/brand/components/FAQ/react#toggle-color-customization)
+🔗 [See the documentation for examples and color options](https://primer.style/brand/components/FAQ/react#toggle-color-customization)
