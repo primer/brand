@@ -1,5 +1,6 @@
 declare const styles: {
   readonly "Pillar": string;
+  readonly "Pillar--has-border": string;
   readonly "Pillar--align-center": string;
   readonly "Pillar--align-start": string;
   readonly "Pillar__image": string;

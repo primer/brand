@@ -118,4 +118,19 @@ describe('Pillar', () => {
     expect(pillarEl).toHaveClass(classToCheckLink)
     expect(pillarEl).toHaveClass(classToCheckLinkColor)
   })
+
+  it('renders a border class correctly into the document', () => {
+    const mockTestId = 'test'
+    const classToCheck = 'Pillar--has-border'
+
+    const {getByTestId} = render(
+      <Pillar data-testid={mockTestId} hasBorder>
+        <Pillar.Heading>{mockHeading}</Pillar.Heading>
+        <Pillar.Description>{mockDescription}</Pillar.Description>
+      </Pillar>,
+    )
+
+    const pillarEl = getByTestId(mockTestId)
+    expect(pillarEl).toHaveClass(classToCheck)
+  }
 })
