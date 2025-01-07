@@ -132,5 +132,5 @@ describe('Pillar', () => {
 
     const pillarEl = getByTestId(mockTestId)
     expect(pillarEl).toHaveClass(classToCheck)
-  }
+  })
 })
