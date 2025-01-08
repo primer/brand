@@ -177,7 +177,7 @@
   .RiverBreakout .River__content {
     display: grid;
     gap: var(--brand-River-spacing-inner);
-    row-gap: var(--base-size-32);
+    row-gap: var(--brand-River-spacing-innerY);
     grid-template-areas:
       'text trailingComponent'
       'cta trailingComponent';
