@@ -87,7 +87,7 @@ export const FullWidth = () => (
 )
 
 export const LeadingComponent = () => {
-  const Image = () => <CopilotIcon size={64} />
+  const Image = () => <CopilotIcon size={40} />
 
   return (
     <SectionIntro leadingComponent={Image} align="center">
