@@ -1,6 +1,7 @@
 import React from 'react'
 import {Meta} from '@storybook/react'
 import {SectionIntro} from '.'
+import {CopilotIcon} from '@primer/octicons-react'
 
 export default {
   title: 'Components/SectionIntro/Features',
@@ -84,3 +85,15 @@ export const FullWidth = () => (
     </SectionIntro.Heading>
   </SectionIntro>
 )
+
+export const LeadingComponent = () => {
+  const Image = () => <CopilotIcon size={40} />
+
+  return (
+    <SectionIntro leadingComponent={Image} align="center">
+      <SectionIntro.Heading>
+        <b>Expressive headline</b> about an exclusive set of features.
+      </SectionIntro.Heading>
+    </SectionIntro>
+  )
+}
