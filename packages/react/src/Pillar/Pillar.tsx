@@ -28,11 +28,24 @@ export type PillarProps<C extends keyof JSX.IntrinsicElements = 'div'> = React.H
    * Aligns the pillar content
    */
   align?: 'start' | 'center'
+  /**
+   * Enables optional border around the pillar content
+   */
+  hasBorder?: boolean
 } & (C extends 'article' ? PropsWithChildren<BaseProps<HTMLElement>> : PropsWithChildren<BaseProps<HTMLDivElement>>)
 
 const PillarRoot = forwardRef(
   (
-    {children, className, animate, as = 'div', align = 'start', style, ...rest}: PropsWithChildren<PillarProps>,
+    {
+      children,
+      className,
+      animate,
+      as = 'div',
+      align = 'start',
+      style,
+      hasBorder = false,
+      ...rest
+    }: PropsWithChildren<PillarProps>,
     ref: Ref<HTMLDivElement>,
   ) => {
     const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
@@ -57,7 +70,13 @@ const PillarRoot = forwardRef(
 
     return (
       <Component
-        className={clsx(styles.Pillar, styles[`Pillar--align-${align}`], animationClasses, className)}
+        className={clsx(
+          styles.Pillar,
+          styles[`Pillar--align-${align}`],
+          hasBorder && styles['Pillar--has-border'],
+          animationClasses,
+          className,
+        )}
         ref={ref}
         {...(rest as HTMLAttributes<HTMLElement>)}
         style={{...animationInlineStyles, ...style}}
