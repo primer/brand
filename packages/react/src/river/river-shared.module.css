@@ -140,6 +140,7 @@
 }
 
 .RiverBreakout .River__text {
+  max-width: 37.5rem; /* 600px */
   color: var(--brand-color-text-default);
   font-size: var(--brand-text-size-500);
   font-weight: var(--brand-heading-weight-500);
@@ -176,6 +177,7 @@
   .RiverBreakout .River__content {
     display: grid;
     gap: var(--brand-River-spacing-inner);
+    row-gap: var(--base-size-32);
     grid-template-areas:
       'text trailingComponent'
       'cta trailingComponent';
