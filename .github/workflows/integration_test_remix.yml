@@ -44,7 +44,7 @@ jobs:
         run: cd ./packages/react && npm pack
 
       - name: Configuring Remix.run
-        run: npx create-remix@latest ./${{env.TEST_FOLDER}} --yes --debug
+        run: npx create-remix@latest ./${{env.TEST_FOLDER}} --yes --debug --no-git-init
 
       - name: Retrieving package version
         id: package-version
