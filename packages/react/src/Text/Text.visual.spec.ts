@@ -21,6 +21,13 @@ test.describe('Visual Comparison: Text', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('Text / Anti Aliasing Off', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--anti-aliasing-off&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('Text / Scale', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-text--scale&viewMode=story')
 

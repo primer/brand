@@ -23,3 +23,8 @@
 .InlineLink:active > span {
   color: var(--brand-InlineLink-color-pressed);
 }
+
+[data-color-mode='dark'] .InlineLink {
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: auto;
+}

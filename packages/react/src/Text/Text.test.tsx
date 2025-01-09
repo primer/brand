@@ -160,4 +160,52 @@ describe('Text', () => {
       }
     }
   })
+  it('should not apply antialiasing when disabled', () => {
+    const mockId = 'mock-id'
+    const {getByText} = render(
+      <Text data-testid={mockId} weight="light" antialiasing={false}>
+        AA disabled
+      </Text>,
+    )
+    const el = getByText('AA disabled')
+    expect(el).not.toHaveClass('Text--antialiased')
+  })
+
+  it('should not apply antialiasing for light weight and small sizes', () => {
+    const {getByText} = render(
+      <>
+        <Text weight="light" size="100">
+          light 100
+        </Text>
+        <Text weight="light" size="200">
+          light 200
+        </Text>
+        <Text weight="extralight" size="100">
+          extralight 100
+        </Text>
+        <Text weight="extralight" size="200">
+          extralight 200
+        </Text>
+      </>,
+    )
+
+    expect(getByText('light 100')).not.toHaveClass('Text--antialiased')
+    expect(getByText('light 200')).not.toHaveClass('Text--antialiased')
+    expect(getByText('extralight 100')).not.toHaveClass('Text--antialiased')
+    expect(getByText('extralight 200')).not.toHaveClass('Text--antialiased')
+  })
+
+  it('should not apply antialiasing for size 100', () => {
+    const {getByText} = render(<Text size="100">size 100</Text>)
+    expect(getByText('size 100')).not.toHaveClass('Text--antialiased')
+  })
+
+  it('should apply antialiasing by default for other combinations', () => {
+    const {getByText} = render(
+      <Text size="300" weight="medium">
+        medium 300
+      </Text>,
+    )
+    expect(getByText('medium 300')).toHaveClass('Text--antialiased')
+  })
 })

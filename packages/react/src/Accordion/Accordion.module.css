@@ -144,6 +144,11 @@ details[open] > .Accordion__summary.Accordion__summary--default .Accordion__summ
   line-height: var(--brand-text-lineHeight-200);
 }
 
+[data-color-mode='dark'] .Accordion__content {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: auto;
+}
+
 .Accordion__content p:not(:first-child) {
   margin-block-start: var(--base-size-16);
 }
