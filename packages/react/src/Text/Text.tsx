@@ -101,10 +101,14 @@ export function Text({
           .join(' ')
   }, [weight])
 
-  const dontApplyAA =
+  const dontApplyAA = Boolean(
+    // When explicitly disabled
     !antialiasing ||
-    (weight && ['light', 'extralight'].includes(weight as string) && ['100', '200'].includes(size)) ||
-    size === '100'
+      // When selected font weight is not suitable for anti-aliasing
+      (weight && ['light', 'extralight'].includes(weight as TextWeightVariants) && ['100', '200'].includes(size)) ||
+      // When size is too small
+      size === '100',
+  )
 
   const textClassName = clsx(
     animationClasses,
