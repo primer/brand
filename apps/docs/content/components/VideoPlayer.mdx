@@ -35,7 +35,12 @@ The audio description can be provided as part of the existing soundtrack, or via
     <VideoPlayer.Source src="/brand/assets/example.mp4" />
     <VideoPlayer.Track src="/brand/assets/example.vtt" default />
   </VideoPlayer>
-  <Link href="#">Watch with audio description</Link>
+  <Stack direction="horizontal" gap={12} padding="none" alignItems="center">
+    <Link href="#" arrowDirection="none">
+      Watch with audio description
+    </Link>
+    <LinkExternalIcon size={16} />
+  </Stack>
 </Stack>
 ```
 
