@@ -214,4 +214,23 @@ describe('SectionIntro', () => {
 
     expect(results).toHaveNoViolations()
   })
+
+  it('accepts a leading component that renders in the correct location', () => {
+    const mockImage = 'mockImage.png'
+
+    const {getByRole, container} = render(
+      <SectionIntro leadingComponent={() => <img src={mockImage} alt="mock" />}>
+        <SectionIntro.Heading>{mockHeading}</SectionIntro.Heading>
+        <SectionIntro.Description>{mockDescription}</SectionIntro.Description>
+        <SectionIntro.Link href="#">{mockLinkText}</SectionIntro.Link>
+      </SectionIntro>,
+    )
+
+    const imgEl = getByRole('img')
+    expect(imgEl).toBeInTheDocument()
+    expect(imgEl).toHaveAttribute('src', mockImage)
+
+    const sectionIntroEl = container.firstChild
+    expect(sectionIntroEl?.firstChild).toBe(imgEl)
+  })
 })
