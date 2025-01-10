@@ -7,16 +7,18 @@ import styles from './Link.module.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/link/colors-with-modes.css'
 
 export const LinkVariants = ['default', 'accent'] as const
+export const LinkSizes = ['medium', 'large'] as const
+export const LinkArrowDirections = ['start', 'end', 'none'] as const
 
 export type LinkProps = {
   /**
    * The size variations available in Link
    */
-  size?: 'medium' | 'large'
+  size?: (typeof LinkSizes)[number]
   /**
    * Position of the arrow.
    */
-  arrowDirection?: 'start' | 'end' | 'none'
+  arrowDirection?: (typeof LinkArrowDirections)[number]
   /**
    * Specify alternative link appearance
    */
