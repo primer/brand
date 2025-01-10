@@ -19,7 +19,7 @@ jobs:
       labels: ubuntu-latest-16-cores
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -44,7 +44,7 @@ jobs:
         run: cd ./packages/react && npm pack
 
       - name: Configuring Remix.run
-        run: npx create-remix@latest ./${{env.TEST_FOLDER}} --yes
+        run: npx create-remix@latest ./${{env.TEST_FOLDER}} --yes --debug --no-git-init
 
       - name: Retrieving package version
         id: package-version
