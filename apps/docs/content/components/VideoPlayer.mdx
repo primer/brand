@@ -17,7 +17,7 @@ import {VideoPlayer} from '@primer/react-brand'
 
 ```jsx live
 <VideoPlayer title="GitHub media player">
-  <VideoPlayer.Source src="/brand/assets/example.mp4" />
+  <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" />
   <VideoPlayer.Track src="/brand/assets/example.vtt" default />
 </VideoPlayer>
 ```
@@ -29,7 +29,7 @@ import {VideoPlayer} from '@primer/react-brand'
   poster="/brand/assets/example-poster.png"
   title="GitHub media player"
 >
-  <VideoPlayer.Source src="/brand/assets/example.mp4" />
+  <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" />
   <VideoPlayer.Track src="/brand/assets/example.vtt" default />
 </VideoPlayer>
 ```
@@ -38,7 +38,7 @@ import {VideoPlayer} from '@primer/react-brand'
 
 ```jsx live
 <VideoPlayer showBranding={false} title="GitHub media player">
-  <VideoPlayer.Source src="/brand/assets/example.mp4" />
+  <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" />
   <VideoPlayer.Track src="/brand/assets/example.vtt" default />
 </VideoPlayer>
 ```
@@ -47,7 +47,7 @@ import {VideoPlayer} from '@primer/react-brand'
 
 ```jsx live
 <VideoPlayer visuallyHiddenTitle title="GitHub media player">
-  <VideoPlayer.Source src="/brand/assets/example.mp4" />
+  <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" />
   <VideoPlayer.Track src="/brand/assets/example.vtt" default />
 </VideoPlayer>
 ```
@@ -64,7 +64,10 @@ import {VideoPlayer} from '@primer/react-brand'
   showVolumeControl={false}
   showFullScreenButton={false}
 >
-  <VideoPlayer.Source src="/brand/assets/example.mp4" type="video/mp4" />
+  <VideoPlayer.Source
+    src="https://primer.github.io/brand/assets/example.mp4"
+    type="video/mp4"
+  />
   <VideoPlayer.Track src="/brand/assets/example.vtt" default />
 </VideoPlayer>
 ```
@@ -73,7 +76,10 @@ import {VideoPlayer} from '@primer/react-brand'
 
 ```jsx live
 <VideoPlayer title="GitHub media player" showControlsWhenPaused={false}>
-  <VideoPlayer.Source src="/brand/assets/example.mp4" type="video/mp4" />
+  <VideoPlayer.Source
+    src="https://primer.github.io/brand/assets/example.mp4"
+    type="video/mp4"
+  />
   <VideoPlayer.Track src="/brand/assets/example.vtt" default />
 </VideoPlayer>
 ```
@@ -87,7 +93,10 @@ import {VideoPlayer} from '@primer/react-brand'
   showBranding={false}
   showControlsWhenPaused={false}
 >
-  <VideoPlayer.Source src="/brand/assets/example.mp4" type="video/mp4" />
+  <VideoPlayer.Source
+    src="https://primer.github.io/brand/assets/example.mp4"
+    type="video/mp4"
+  />
   <VideoPlayer.Track src="/brand/assets/example.vtt" default />
 </VideoPlayer>
 ```
@@ -99,7 +108,10 @@ import {VideoPlayer} from '@primer/react-brand'
   title="GitHub media player"
   playIcon={() => <PlayIcon size={96} />}
 >
-  <VideoPlayer.Source src="/brand/assets/example.mp4" type="video/mp4" />
+  <VideoPlayer.Source
+    src="https://primer.github.io/brand/assets/example.mp4"
+    type="video/mp4"
+  />
   <VideoPlayer.Track src="/brand/assets/example.vtt" default />
 </VideoPlayer>
 ```
@@ -111,7 +123,7 @@ The `VideoPlayer` component exposes a `useVideo` hook that can be used to contro
 Full documentation for the `useVideo` hook can be found [below](#usevideo-context).
 
 ```tsx live
-() => {
+;() => {
   const MyVideoPlayer = () => {
     const {isPlaying, togglePlaying, seek} = useVideo()
 
@@ -127,7 +139,7 @@ Full documentation for the `useVideo` hook can be found [below](#usevideo-contex
           showFullScreenButton={false}
         >
           <VideoPlayer.Source
-            src="/brand/assets/example.mp4"
+            src="https://primer.github.io/brand/assets/example.mp4"
             type="video/mp4"
           />
           <VideoPlayer.Track src="/brand/assets/example.vtt" default />

@@ -78,3 +78,7 @@
   margin-left: auto;
   margin-right: 4px;
 }
+
+.Link.Link--arrow-none::after {
+  width: 100%;
+}

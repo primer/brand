@@ -21,8 +21,15 @@ test.describe('Visual Comparison: Link', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('Link / Reversed', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-link-features--reversed&viewMode=story')
+  test('Link / Arrow Start', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-link-features--arrow-start&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Link / No Arrow', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-link-features--no-arrow&viewMode=story')
 
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()

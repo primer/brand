@@ -6,6 +6,7 @@ declare const styles: {
   readonly "Link-arrow": string;
   readonly "Link--large": string;
   readonly "Link--arrow-start": string;
+  readonly "Link--arrow-none": string;
 };
 export = styles;
 

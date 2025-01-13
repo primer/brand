@@ -1,35 +1,37 @@
-import React from 'react'
-import {Meta, StoryFn} from '@storybook/react'
-import {Link} from '.'
+import type {Meta, StoryObj} from '@storybook/react'
 
-const meta: Meta<typeof Link> = {
-  title: 'Components/Link/features',
-  component: Link,
-}
+import {type LinkProps} from '.'
+import baseMeta from './Link.stories'
 
+const meta: Meta<LinkProps> = {...baseMeta, title: 'Components/Link/Features'}
 export default meta
 
-const Template: StoryFn<typeof Link> = args => <Link {...args} />
+type Story = StoryObj<LinkProps>
 
-export const Large = Template.bind({})
-Large.args = {
-  size: 'large',
-  href: '#',
-  children: 'Large size',
+export const Large: Story = {
+  args: {
+    size: 'large',
+    href: '#',
+    children: 'Large size',
+  },
 }
 
-export const Reversed = Template.bind({})
-Reversed.args = {
-  size: 'medium',
-  href: '#',
-  children: 'Back to schedule',
-  arrowDirection: 'start',
+export const ArrowStart: Story = {
+  args: {
+    children: 'Back to schedule',
+    arrowDirection: 'start',
+  },
 }
 
-export const Accent = Template.bind({})
-Accent.args = {
-  size: 'medium',
-  variant: 'accent',
-  href: '#',
-  children: 'Accent color',
+export const NoArrow: Story = {
+  args: {
+    arrowDirection: 'none',
+  },
+}
+
+export const Accent: Story = {
+  args: {
+    variant: 'accent',
+    children: 'Accent variant',
+  },
 }

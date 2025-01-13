@@ -1,7 +1,7 @@
 .Card {
   text-decoration: none;
   color: var(--brand-color-text-default);
-  border-radius: var(--brand-borderRadius-large);
+  border-radius: var(--brand-borderRadius-xlarge);
   transition: transform var(--brand-Card-animation-duration) var(--brand-Card-animation-easing);
   padding: var(--base-size-32);
   display: grid;
@@ -65,7 +65,7 @@
 
 .Card__outer {
   height: 100%;
-  border-radius: var(--brand-borderRadius-large);
+  border-radius: var(--brand-borderRadius-xlarge);
 }
 
 .Card__outer:focus-within {
@@ -144,7 +144,7 @@
 
 .Card--skew {
   height: 100%;
-  border-radius: var(--brand-borderRadius-large);
+  border-radius: var(--brand-borderRadius-xlarge);
   overflow: hidden;
 }
 
@@ -157,7 +157,7 @@
 }
 
 .Card__skew-bounding {
-  border-radius: var(--brand-borderRadius-large);
+  border-radius: var(--brand-borderRadius-xlarge);
   position: relative;
   overflow: hidden;
   z-index: 1;
