@@ -25,6 +25,7 @@ declare const styles: {
   readonly "VideoPlayer__rangeProgress": string;
   readonly "VideoPlayer__tooltipContent": string;
   readonly "VideoPlayer__tooltipText": string;
+  readonly "VideoPlayer__tooltip-visible": string;
   readonly "VideoPlayer__controlTextColor": string;
   readonly "VideoPlayer__seekTime": string;
 };
