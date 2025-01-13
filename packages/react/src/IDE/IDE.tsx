@@ -1,13 +1,13 @@
 import {CopilotIcon, PaperAirplaneIcon, SyncIcon} from '@primer/octicons-react'
-import {default as clsx} from 'clsx'
+import clsx from 'clsx'
 import React, {
   Children,
   forwardRef,
   isValidElement,
   memo,
-  PropsWithChildren,
-  Ref,
-  RefObject,
+  type PropsWithChildren,
+  type Ref,
+  type RefObject,
   useCallback,
   useEffect,
   useMemo,
@@ -44,19 +44,9 @@ const testIds = {
   get editorTabs() {
     return `${this.editor}-tab`
   },
-  get altText() {
-    return `${this.root}-sr-only-message`
-  },
 }
 
 export type IDEProps = {
-  /**
-   * Alternative description of the IDE for users of assistive technologies.
-   * IDE is considered a decorative element, so this description is important
-   * for accurately describing what the user is being presented.
-   * This text will be visually hidden.
-   */
-  alternativeText: string
   /**
    * Test id for the IDE
    */
@@ -72,15 +62,7 @@ export type IDEProps = {
 } & BaseProps<HTMLDivElement>
 
 const _IDERoot = memo(
-  ({
-    alternativeText,
-    children,
-    className,
-    'data-testid': testId,
-    height,
-    variant = 'default',
-    ...rest
-  }: PropsWithChildren<IDEProps>) => {
+  ({children, className, 'data-testid': testId, height, variant = 'default', ...rest}: PropsWithChildren<IDEProps>) => {
     const uniqueId = useId()
 
     const childrenArray = useMemo(() => Children.toArray(children), [children])
@@ -95,7 +77,7 @@ const _IDERoot = memo(
         data-testid={testId || testIds.root}
         className={clsx(styles[`IDE--${variant}`], ChatChild && EditorChild && styles['IDE--full-exp'], className)}
       >
-        <div aria-hidden {...rest}>
+        <div {...rest}>
           <div
             className={styles['IDE__inner']}
             style={{['--brand-IDE-height' as string]: height ? `${height}px` : undefined}}
@@ -105,9 +87,6 @@ const _IDERoot = memo(
               {EditorChild && <>{EditorChild}</>}
             </div>
           </div>
-        </div>
-        <div id={`${uniqueId}-IDE-sr-only-message`} className="visually-hidden" data-testid={testIds.altText}>
-          {alternativeText}
         </div>
       </section>
     )
@@ -119,6 +98,10 @@ type IDEChatProps = {
    * The chat script
    */
   script: IDEChatMessage[]
+  /**
+   * Alternative description of the chat script for users of assistive technologies.
+   */
+  alternativeText: string
   /**
    * The delay between messages
    */
@@ -143,7 +126,7 @@ export type IDEChatMessage = {handle: string; message: string; codeSnippet?: str
   | IDEChatMessageAssistant
 )
 
-const _Chat = memo(({'data-testid': testId, script, animationDelay = 3000, ...rest}: IDEChatProps) => {
+const _Chat = memo(({'data-testid': testId, script, animationDelay = 3000, alternativeText, ...rest}: IDEChatProps) => {
   const delay = animationDelay
   const messagesRef = useRef<HTMLDivElement>(null)
 
@@ -209,52 +192,55 @@ const _Chat = memo(({'data-testid': testId, script, animationDelay = 3000, ...re
 
   return (
     <section className={styles.IDE__Chat} data-testid={testId || testIds.chat} {...rest}>
-      <div ref={messagesRef} className={styles['IDE__Chat-messages']}>
-        {script.length &&
-          script.map((message, index) => (
-            <div
-              id={`IDE__Chat-message-${index}`}
-              key={index}
-              className={clsx(
-                styles['IDE__Chat-message'],
-                message.role === 'user' && styles['IDE__Chat-message--user'],
-              )}
-            >
-              <div className={styles['IDE__Chat-message-user']}>
-                {message.role === 'user' ? (
-                  <Avatar src={message.avatar} alt={message.handle} />
-                ) : (
-                  <CopilotIcon size={24} />
+      <span className="visually-hidden">{alternativeText}</span>
+      <div className={styles['IDE__Chat-wrapper']} aria-hidden>
+        <div ref={messagesRef} className={styles['IDE__Chat-messages']}>
+          {script.length &&
+            script.map((message, index) => (
+              <div
+                id={`IDE__Chat-message-${index}`}
+                key={index}
+                className={clsx(
+                  styles['IDE__Chat-message'],
+                  message.role === 'user' && styles['IDE__Chat-message--user'],
                 )}
-                <Text as="p" size="100" weight="bold" className={styles['IDE__Chat-message-handle']}>
-                  {message.handle}
-                </Text>
-              </div>
-              <div className={styles['IDE__Chat-message-content']}>
-                <div className={styles['IDE__Chat-message-text']}>{message.message}</div>
+              >
+                <div className={styles['IDE__Chat-message-user']}>
+                  {message.role === 'user' ? (
+                    <Avatar src={message.avatar} alt={message.handle} />
+                  ) : (
+                    <CopilotIcon size={24} />
+                  )}
+                  <Text as="p" size="100" weight="bold" className={styles['IDE__Chat-message-handle']}>
+                    {message.handle}
+                  </Text>
+                </div>
+                <div className={styles['IDE__Chat-message-content']}>
+                  <div className={styles['IDE__Chat-message-text']}>{message.message}</div>
 
-                {message.highlighter && message.codeSnippet && (
-                  <pre
-                    className={styles['IDE__Chat-message-snippet']}
-                    dangerouslySetInnerHTML={{__html: message.codeSnippet}}
-                  />
-                )}
+                  {message.highlighter && message.codeSnippet && (
+                    <pre
+                      className={styles['IDE__Chat-message-snippet']}
+                      dangerouslySetInnerHTML={{__html: message.codeSnippet}}
+                    />
+                  )}
 
-                {!message.highlighter && message.codeSnippet && (
-                  <pre className={styles['IDE__Chat-message-snippet']}>{message.codeSnippet}</pre>
-                )}
+                  {!message.highlighter && message.codeSnippet && (
+                    <pre className={styles['IDE__Chat-message-snippet']}>{message.codeSnippet}</pre>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
-      </div>
-      <div className={styles['IDE__Chat-input-area']}>
-        <TextInput
-          disabled
-          className={styles['IDE__Chat-input']}
-          fullWidth
-          placeholder="Ask a question or type '/' for commands."
-          trailingVisual={<PaperAirplaneIcon className={styles['IDE__Chat-input-icon']} />}
-        />
+            ))}
+        </div>
+        <div className={styles['IDE__Chat-input-area']}>
+          <TextInput
+            disabled
+            className={styles['IDE__Chat-input']}
+            fullWidth
+            placeholder="Ask a question or type '/' for commands."
+            trailingVisual={<PaperAirplaneIcon className={styles['IDE__Chat-input-icon']} />}
+          />
+        </div>
       </div>
     </section>
   )
@@ -303,6 +289,10 @@ type IDEEditorProps = {
 
 export type IDEEditorFile = {
   name: string
+  /**
+   * Alternative description of the code for users of assistive technologies.
+   */
+  alternativeText: string
   /**
    * Controls line at which the Copilot suggestion begins
    */
@@ -508,72 +498,75 @@ const _Editor = memo(
             })}
           </div>
           <div className={styles['IDE__Editor-content']}>
-            {showLineNumbers && (
-              <div className={styles['IDE__Editor-lineNumbers']}>
-                {Array.isArray(files[activeFile].code) &&
-                  (files[activeFile].code as string[]).map((_, index) => (
-                    <div key={index} className={styles['IDE__Editor-lineNumber']}>
-                      {index + 1}
-                    </div>
-                  ))}
-                {typeof files[activeFile].code === 'string' &&
-                  (files[activeFile].code as string).split('\n').map((_, index) => (
-                    <div key={index} className={styles['IDE__Editor-lineNumber']}>
-                      {index + 1}
-                    </div>
-                  ))}
-              </div>
-            )}
-            {Array.isArray(files[activeFile].code) && (
-              <div ref={presRef} data-testid={testIds.editorContent}>
-                {(files[activeFile].code as string[]).map((line, index) => {
-                  const hasSuggestion = index + 1 >= (files[activeFile].suggestedLineStart ?? Infinity)
-                  return (
-                    <React.Fragment key={line + index}>
-                      <pre
-                        key={index}
-                        className={clsx(
-                          styles['IDE__Editor-pane'],
-                          index + 1 < (files[activeFile].suggestedLineStart ?? Infinity) &&
-                            animationStyles['Animation--slide-in-right'],
-                          hasSuggestion && animationStyles['Animation--slide-in-down'],
-                          hasSuggestion && styles['IDE__Editor-pane--suggested'],
-                        )}
-                        dangerouslySetInnerHTML={{__html: line}}
-                        data-has-suggestion={hasSuggestion}
-                      />
-                      {hasSuggestion && index === files[activeFile].code.length - 1 && (
-                        <pre
-                          className={clsx(
-                            animationStyles['Animation--slide-in-down'],
-                            styles['IDE__Chat-copilot-indicator'],
-                          )}
-                          data-has-suggestion={hasSuggestion}
-                        >
-                          <CopilotIcon size={24} className={styles['IDE__Chat-copilot-indicator-label']} />
-                          <Text as="span" className={styles['IDE__Chat-copilot-indicator-label']}>
-                            Copilot
-                          </Text>
-                        </pre>
-                      )}
-                    </React.Fragment>
-                  )
-                })}
-              </div>
-            )}
+            <span className="visually-hidden">{files[activeFile].alternativeText}</span>
+            <div aria-hidden>
+              {showLineNumbers && (
+                <div className={styles['IDE__Editor-lineNumbers']}>
+                  {Array.isArray(files[activeFile].code) &&
+                    (files[activeFile].code as string[]).map((_, index) => (
+                      <div key={index} className={styles['IDE__Editor-lineNumber']}>
+                        {index + 1}
+                      </div>
+                    ))}
+                  {typeof files[activeFile].code === 'string' &&
+                    (files[activeFile].code as string).split('\n').map((_, index) => (
+                      <div key={index} className={styles['IDE__Editor-lineNumber']}>
+                        {index + 1}
+                      </div>
+                    ))}
+                </div>
+              )}
 
-            {typeof files[activeFile].code === 'string' && (
-              <div ref={presRef} data-testid={testIds.editorContent}>
-                <pre
-                  className={clsx(styles['IDE__Editor-pane'], animationStyles['Animation--slide-in-right'])}
-                  dangerouslySetInnerHTML={{__html: files[activeFile].code}}
-                />
-              </div>
-            )}
+              {Array.isArray(files[activeFile].code) && (
+                <div ref={presRef} data-testid={testIds.editorContent}>
+                  {(files[activeFile].code as string[]).map((line, index) => {
+                    const hasSuggestion = index + 1 >= (files[activeFile].suggestedLineStart ?? Infinity)
+                    return (
+                      <React.Fragment key={line + index}>
+                        <pre
+                          key={index}
+                          className={clsx(
+                            styles['IDE__Editor-pane'],
+                            index + 1 < (files[activeFile].suggestedLineStart ?? Infinity) &&
+                              animationStyles['Animation--slide-in-right'],
+                            hasSuggestion && animationStyles['Animation--slide-in-down'],
+                            hasSuggestion && styles['IDE__Editor-pane--suggested'],
+                          )}
+                          dangerouslySetInnerHTML={{__html: line}}
+                          data-has-suggestion={hasSuggestion}
+                        />
+                        {hasSuggestion && index === files[activeFile].code.length - 1 && (
+                          <pre
+                            className={clsx(
+                              animationStyles['Animation--slide-in-down'],
+                              styles['IDE__Chat-copilot-indicator'],
+                            )}
+                            data-has-suggestion={hasSuggestion}
+                          >
+                            <CopilotIcon size={24} className={styles['IDE__Chat-copilot-indicator-label']} />
+                            <Text as="span" className={styles['IDE__Chat-copilot-indicator-label']}>
+                              Copilot
+                            </Text>
+                          </pre>
+                        )}
+                      </React.Fragment>
+                    )
+                  })}
+                </div>
+              )}
+
+              {typeof files[activeFile].code === 'string' && (
+                <div ref={presRef} data-testid={testIds.editorContent}>
+                  <pre
+                    className={clsx(styles['IDE__Editor-pane'], animationStyles['Animation--slide-in-right'])}
+                    dangerouslySetInnerHTML={{__html: files[activeFile].code}}
+                  />
+                </div>
+              )}
+            </div>
           </div>
           {showReplayButton && (
             <Button
-              tabIndex={-1}
               ref={buttonRef}
               variant="subtle"
               hasArrow={false}

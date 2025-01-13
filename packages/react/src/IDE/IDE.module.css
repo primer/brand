@@ -66,6 +66,10 @@
   }
 }
 
+.IDE__Chat-wrapper {
+  display: contents;
+}
+
 .IDE__Chat-message-user {
   display: inline-flex;
   gap: var(--base-size-8);

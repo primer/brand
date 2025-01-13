@@ -5,6 +5,7 @@ declare const styles: {
   readonly "IDE--default": string;
   readonly "IDE__Chat": string;
   readonly "IDE--full-exp": string;
+  readonly "IDE__Chat-wrapper": string;
   readonly "IDE__Chat-message-user": string;
   readonly "IDE__Chat-messages": string;
   readonly "IDE__Chat-input-area": string;
