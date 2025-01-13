@@ -12,6 +12,17 @@
           }
         }
       },
+      "innerY": {
+        "value": "var(--base-size-24)",
+        "responsive": {
+          "768px": {
+            "value": "var(--base-size-24)"
+          },
+          "1280px": {
+            "value": "var(--base-size-32)"
+          }
+        }
+      },
       "outer": {
         "value": "var(--base-size-36)",
         "responsive": {
