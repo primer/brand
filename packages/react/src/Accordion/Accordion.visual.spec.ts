@@ -14,6 +14,13 @@ test.describe('Visual Comparison: Accordion', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('Accordion / Toggle Colors', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-accordion--toggle-colors&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('Accordion / Composition', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-accordion--composition&viewMode=story')
 
