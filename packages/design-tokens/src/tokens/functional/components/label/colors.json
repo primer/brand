@@ -49,6 +49,7 @@
         },
         "4": {
           "value": "#8250DF" 
+        }
       },
       "gray": {
         "value": "var(--base-color-scale-gray-5)",
