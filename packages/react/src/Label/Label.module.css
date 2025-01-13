@@ -117,8 +117,6 @@
   --brand-Label-color-stop-2: var(--brand-Label-color-green-blue-purple-2);
   --brand-Label-color-stop-3: var(--brand-Label-color-green-blue-purple-3);
   --brand-Label-color-stop-4: var(--brand-Label-color-green-blue-purple-4);
-  --brand-Label-color-stop-5: var(--brand-Label-color-green-blue-purple-5);
-  --brand-Label-color-stop-6: var(--brand-Label-color-green-blue-purple-6);
 }
 
 .Label--color-purple {
