@@ -7,18 +7,15 @@ import React, {
   memo,
   type PropsWithChildren,
   type Ref,
-  type RefObject,
   useCallback,
   useEffect,
   useMemo,
   useRef,
   useState,
 } from 'react'
-import {useId} from '@reach/auto-id'
 
 import {Avatar, Button, Text, TextInput} from '..'
 import type {BaseProps} from '../component-helpers'
-import {useProvidedRefOrCreate} from '../hooks/useRef'
 
 /**
  * Design tokens
@@ -63,8 +60,6 @@ export type IDEProps = {
 
 const _IDERoot = memo(
   ({children, className, 'data-testid': testId, height, variant = 'default', ...rest}: PropsWithChildren<IDEProps>) => {
-    const uniqueId = useId()
-
     const childrenArray = useMemo(() => Children.toArray(children), [children])
 
     const ChatChild = childrenArray.find(child => isValidElement(child) && child.type === IDE.Chat)
@@ -72,8 +67,6 @@ const _IDERoot = memo(
     const EditorChild = childrenArray.find(child => isValidElement(child) && child.type === IDE.Editor)
     return (
       <section
-        aria-labelledby={`${uniqueId}-IDE-sr-only-message`}
-        role="application"
         data-testid={testId || testIds.root}
         className={clsx(styles[`IDE--${variant}`], ChatChild && EditorChild && styles['IDE--full-exp'], className)}
       >
@@ -334,7 +327,7 @@ const _Editor = memo(
         activeTab = 0,
         'data-testid': testId,
         files,
-        triggerAnimation,
+        triggerAnimation = false,
         showLineNumbers = true,
         showReplayButton = true,
         size = 'medium',
@@ -343,145 +336,99 @@ const _Editor = memo(
       }: IDEEditorProps,
       ref: Ref<HTMLDivElement>,
     ) => {
-      const rootRef = useProvidedRefOrCreate(ref as RefObject<HTMLDivElement>)
-      const [localAnimationCouner, setLocalAnimationCounter] = useState(0)
       const presRef = useRef<HTMLDivElement>(null)
-      const buttonRef = useRef<HTMLButtonElement>(null)
-      const tabsRef = useRef<HTMLDivElement>(null)
       const [activeFile, setActiveFile] = useState(activeTab)
-      const [animationIsActive, setAnimationIsActive] = useState(triggerAnimation)
+      const [isAnimating, setIsAnimating] = useState(false)
+      const [hasAnimated, setHasAnimated] = useState(false)
+      const [timeouts, setTimeouts] = useState<NodeJS.Timeout[]>([])
 
-      const handlePress = useCallback(
-        (index: number) => {
-          setActiveFile(index)
-        },
-        [setActiveFile],
-      )
+      const clearAllTimeouts = useCallback(() => {
+        for (const timeout of timeouts) {
+          clearTimeout(timeout)
+        }
+      }, [timeouts])
+
+      useEffect(() => {
+        return () => {
+          clearAllTimeouts()
+        }
+      }, [clearAllTimeouts])
 
       const resetAnimation = useCallback(() => {
+        setHasAnimated(false)
+        setIsAnimating(false)
+        clearAllTimeouts()
+
         const pres = presRef.current?.querySelectorAll('pre')
         if (pres) {
-          for (const pre of Array.from(pres)) {
+          for (const pre of pres) {
             pre.classList.remove(animationStyles['Animation--active'])
           }
         }
-      }, [])
+      }, [clearAllTimeouts])
 
-      const handleReplayButton = useCallback(() => {
-        resetAnimation()
-        setLocalAnimationCounter(prev => prev + 1)
-      }, [setLocalAnimationCounter, resetAnimation])
+      const switchFile = useCallback(
+        (index: number) => {
+          setActiveFile(index)
+
+          resetAnimation()
+        },
+        [setActiveFile, resetAnimation],
+      )
 
       useEffect(() => {
-        if (animationIsActive) return
+        if (isAnimating || hasAnimated || !presRef.current) return
 
-        setAnimationIsActive(true)
-        rootRef.current?.setAttribute('data-animation-active', 'true')
-        const pres = presRef.current?.querySelectorAll('pre')
+        setIsAnimating(true)
+        const pres = presRef.current.querySelectorAll('pre')
 
-        let fixedDelay = 0
-        let totalDelay = 0
+        let delay = 0
+        let copilotSuggestionDelay = 0
 
-        // disable button
-        if (showReplayButton) {
-          if (buttonRef.current) {
-            buttonRef.current.disabled = true
+        for (const pre of pres) {
+          const isCopilotSuggestion = pre.getAttribute('data-has-suggestion') === 'true'
+
+          if (isCopilotSuggestion) {
+            if (copilotSuggestionDelay === 0) {
+              copilotSuggestionDelay = delay * 1.5
+            }
+
+            delay = copilotSuggestionDelay
           }
+
+          const timeout = setTimeout(() => {
+            pre.classList.add(animationStyles['Animation--active'])
+          }, delay)
+
+          setTimeouts(prev => [...prev, timeout])
+
+          delay += 200
         }
 
-        // disable other tabs
-        if (tabsRef.current) {
-          const tabs = tabsRef.current.querySelectorAll('button')
-          let tabIndex = 0
-          for (const tab of Array.from(tabs)) {
-            if (tabIndex !== activeFile) {
-              tab.disabled = true
-            }
-            tabIndex++
-          }
-        }
+        const animationEndTimeout = setTimeout(() => {
+          setHasAnimated(true)
+          setIsAnimating(false)
+        }, delay)
 
-        // incrementally make each line visible
-        if (pres) {
-          let index = 0
-          let delay = 0
-          const presArray = Array.from(pres)
-          for (const pre of presArray) {
-            if (pre.getAttribute('data-has-suggestion') === 'true' && fixedDelay === 0) {
-              delay = 200 * index * 1.5
-              fixedDelay = delay
-              setTimeout(() => {
-                pre.classList.add(animationStyles['Animation--active'])
-              }, fixedDelay)
-            } else if (pre.getAttribute('data-has-suggestion') === 'true' && fixedDelay > 0) {
-              setTimeout(() => {
-                pre.classList.add(animationStyles['Animation--active'])
-              }, fixedDelay)
-              delay = fixedDelay
-            } else {
-              setTimeout(() => {
-                pre.classList.add(animationStyles['Animation--active'])
-              }, 200 * index)
-              delay = 200 * index
-            }
-            index++
-          }
-          totalDelay += delay
-        }
-        setAnimationIsActive(false)
-
-        setTimeout(() => {
-          rootRef.current?.setAttribute('data-animation-active', 'false')
-          // reenable button
-          if (showReplayButton) {
-            if (buttonRef.current) {
-              buttonRef.current.disabled = false
-            }
-          }
-          // reenable other tabs
-          if (tabsRef.current) {
-            const tabs = tabsRef.current.querySelectorAll('button')
-            for (const tab of Array.from(tabs)) {
-              tab.disabled = false
-            }
-          }
-        }, totalDelay)
-
-        return () => {
-          if (pres) {
-            for (const pre of Array.from(pres)) {
-              pre.classList.remove(animationStyles['Animation--active'])
-            }
-          }
-        }
-      }, [
-        activeFile,
-        activeTab,
-        triggerAnimation,
-        animationIsActive,
-        localAnimationCouner,
-        buttonRef,
-        showReplayButton,
-        rootRef,
-      ])
+        setTimeouts(prev => [...prev, animationEndTimeout])
+      }, [isAnimating, hasAnimated, triggerAnimation])
 
       return (
         <div
           className={clsx(styles.IDE__Editor, styles[`IDE__Editor--${size}`])}
-          ref={rootRef}
+          ref={ref}
           data-testid={testId || testIds.editor}
           {...rest}
         >
-          <div className={styles['IDE__Editor-tabs']} ref={tabsRef} data-testid={testIds.editorTabs}>
+          <div className={styles['IDE__Editor-tabs']} data-testid={testIds.editorTabs}>
             {files.map((file, index) => {
               const language = file.name.split('.').pop()
 
               return (
                 <button
-                  tabIndex={-1}
                   key={index}
                   className={clsx(styles['IDE__Editor-tab'], activeFile === index && styles.active)}
-                  onClick={() => handlePress(index)}
+                  onClick={() => switchFile(index)}
                 >
                   {language && (
                     <img
@@ -532,7 +479,7 @@ const _Editor = memo(
                             hasSuggestion && animationStyles['Animation--slide-in-down'],
                             hasSuggestion && styles['IDE__Editor-pane--suggested'],
                           )}
-                          dangerouslySetInnerHTML={{__html: line}}
+                          dangerouslySetInnerHTML={{__html: line === '' ? '&nbsp;' : line}}
                           data-has-suggestion={hasSuggestion}
                         />
                         {hasSuggestion && index === files[activeFile].code.length - 1 && (
@@ -567,13 +514,13 @@ const _Editor = memo(
           </div>
           {showReplayButton && (
             <Button
-              ref={buttonRef}
               variant="subtle"
               hasArrow={false}
               className={styles['IDE__Editor-replay']}
-              onClick={handleReplayButton}
+              onClick={resetAnimation}
               leadingVisual={<SyncIcon size={24} />}
               size="small"
+              disabled={!hasAnimated}
             >
               Replay
             </Button>
