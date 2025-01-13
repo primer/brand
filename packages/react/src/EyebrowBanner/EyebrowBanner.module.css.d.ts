@@ -24,6 +24,7 @@ declare const styles: {
   readonly "EyebrowBanner__leadingLabel--color-red-orange": string;
   readonly "EyebrowBanner__leadingLabel--color-teal": string;
   readonly "EyebrowBanner__leadingLabel--color-yellow": string;
+  readonly "EyebrowBanner__leadingLabel--color-green-blue-purple": string;
   readonly "EyebrowBanner__heading": string;
   readonly "EyebrowBanner__subHeading": string;
   readonly "EyebrowBanner__icon--badge": string;
