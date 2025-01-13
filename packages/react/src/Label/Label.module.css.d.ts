@@ -15,6 +15,7 @@ declare const styles: {
   readonly "Label--color-orange": string;
   readonly "Label--color-pink": string;
   readonly "Label--color-pink-blue": string;
+  readonly "Label--color-green-blue-purple": string;
   readonly "Label--color-purple": string;
   readonly "Label--color-purple-red": string;
   readonly "Label--color-red": string;

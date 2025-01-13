@@ -19,6 +19,7 @@ export const Color = () => (
     <Label color="coral">Coral</Label>
     <Label color="green">Green</Label>
     <Label color="green-blue">Green blue</Label>
+    <Label color="green-blue-purple">Green blue purple</Label>
     <Label color="gray">Gray</Label>
     <Label color="indigo">Indigo</Label>
     <Label color="lemon">Lemon</Label>
