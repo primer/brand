@@ -16,6 +16,11 @@
   z-index: 1;
 }
 
+[data-color-mode='dark'] .SubNav {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .SubNav__heading {
   font-weight: var(--base-text-weight-semibold);
   color: var(--brand-color-text-default);

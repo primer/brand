@@ -67,6 +67,10 @@ export type TextProps = {
    * Note: Only applies to block elements.
    */
   align?: 'start' | 'center' | 'end'
+  /**
+   * Toggle antialiasing on or off
+   */
+  hasAntiAliasing?: boolean
 } & TextTags
 
 export function Text({
@@ -80,6 +84,7 @@ export function Text({
   variant = defaultTextVariant,
   weight,
   style,
+  hasAntiAliasing = true,
   ...rest
 }: PropsWithChildren<TextProps>) {
   const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
@@ -96,12 +101,22 @@ export function Text({
           .join(' ')
   }, [weight])
 
+  const dontApplyAA = Boolean(
+    // When explicitly disabled
+    !hasAntiAliasing ||
+      // When selected font weight is not suitable for anti-aliasing
+      (weight && ['light', 'extralight'].includes(weight as TextWeightVariants) && ['100', '200'].includes(size)) ||
+      // When size is too small
+      size === '100',
+  )
+
   const textClassName = clsx(
     animationClasses,
     styles.Text,
     styles[`Text-font--${font}`],
     styles[`Text--${variant}`],
     styles[`Text--${size}`],
+    !dontApplyAA && styles['Text--antialiased'],
     weight && weightClass,
     align && styles[`Text-align--${align}`],
     className,

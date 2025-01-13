@@ -20,6 +20,11 @@
   text-align: center;
 }
 
+[data-color-mode='dark'] .Label {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: auto;
+}
+
 .Label::before {
   content: '';
   position: absolute;
