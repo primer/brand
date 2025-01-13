@@ -2,4 +2,4 @@
 '@primer/react-brand': patch
 ---
 
-Added `green-blue-purple` label `color` variant to `Label` component
+Added new `green-blue-purple` `color` option to `Label` component
