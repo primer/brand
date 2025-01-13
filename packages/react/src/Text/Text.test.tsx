@@ -163,7 +163,7 @@ describe('Text', () => {
   it('should not apply antialiasing when disabled', () => {
     const mockId = 'mock-id'
     const {getByText} = render(
-      <Text data-testid={mockId} weight="light" antialiasing={false}>
+      <Text data-testid={mockId} weight="light" hasAntiAliasing={false}>
         AA disabled
       </Text>,
     )

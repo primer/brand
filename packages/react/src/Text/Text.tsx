@@ -70,7 +70,7 @@ export type TextProps = {
   /**
    * Toggle antialiasing on or off
    */
-  antialiasing?: boolean
+  hasAntiAliasing?: boolean
 } & TextTags
 
 export function Text({
@@ -84,7 +84,7 @@ export function Text({
   variant = defaultTextVariant,
   weight,
   style,
-  antialiasing = true,
+  hasAntiAliasing = true,
   ...rest
 }: PropsWithChildren<TextProps>) {
   const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
@@ -103,7 +103,7 @@ export function Text({
 
   const dontApplyAA = Boolean(
     // When explicitly disabled
-    !antialiasing ||
+    !hasAntiAliasing ||
       // When selected font weight is not suitable for anti-aliasing
       (weight && ['light', 'extralight'].includes(weight as TextWeightVariants) && ['100', '200'].includes(size)) ||
       // When size is too small
