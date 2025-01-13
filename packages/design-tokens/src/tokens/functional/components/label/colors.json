@@ -39,16 +39,16 @@
       },
       "green-blue-purple": {
         "1": {
-          "value": "#000AFF" 
+          "value": "#000AFF"
         },
         "2": {
-          "value": "#096BDE" 
+          "value": "#096BDE"
         },
         "3": {
-          "value": "#00FF46" 
+          "value": "#00FF46"
         },
         "4": {
-          "value": "#8250DF" 
+          "value": "#8250DF"
         }
       },
       "gray": {
