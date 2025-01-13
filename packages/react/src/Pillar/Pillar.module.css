@@ -5,6 +5,12 @@
   flex-direction: column;
 }
 
+.Pillar--has-border {
+  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
+  border-radius: var(--brand-borderRadius-xlarge);
+  padding: var(--base-size-32);
+}
+
 .Pillar.Pillar--align-center {
   align-items: center;
   text-align: center;
@@ -35,7 +41,7 @@
   margin-bottom: var(--base-size-16);
 }
 
-.Pillar__description {
+.Pillar__description:not(.Pillar--has-border .Pillar__description:last-child) {
   margin-bottom: var(--base-size-24);
 }
 

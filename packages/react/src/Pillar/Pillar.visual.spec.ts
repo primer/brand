@@ -93,4 +93,11 @@ test.describe('Visual Comparison: Pillar', () => {
     await page.waitForTimeout(3000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
+
+  test('Pillar / With Border', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pillar-features--with-border&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
 })
