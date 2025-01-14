@@ -11,10 +11,10 @@
   },
   "dependencies": {
     "@primer/gatsby-theme-doctocat": "^4.6.3",
-    "@primer/octicons-react": "^19.8.0",
+    "@primer/octicons-react": "19.14.0",
     "@primer/react": "^35.1.0",
     "color2k": "^2.0.0",
-    "cross-env": "7.0.2",
+    "cross-env": "7.0.3",
     "gatsby": "^3.7.2",
     "gatsby-plugin-alias-imports": "^1.0.5",
     "gatsby-plugin-image": "3.14.0",
