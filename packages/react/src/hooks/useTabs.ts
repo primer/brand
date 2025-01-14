@@ -1,4 +1,4 @@
-import {useCallback, useState, useRef} from 'react'
+import {useCallback, useState, useRef, type HTMLAttributes, type KeyboardEvent} from 'react'
 import {useId} from '@reach/auto-id'
 
 type TabOrientation = 'horizontal' | 'vertical'
@@ -6,6 +6,7 @@ type TabOrientation = 'horizontal' | 'vertical'
 type UseTabsOptions = {
   defaultTab?: string
   autoActivate?: boolean
+  onTabActivate?: (id: string) => void
   orientation?: TabOrientation
 }
 
@@ -20,14 +21,43 @@ type TabListProps = {
   labelledBy?: string
 }
 
-export const useTabs = ({defaultTab, autoActivate = true, orientation = 'horizontal'}: UseTabsOptions = {}) => {
+type UseTabs = {
+  activeTab: string | null
+  focusedTab: string | null
+  activateTab: (id: string) => void
+  focusTab: (id: string) => void
+  getTabListProps: (props?: TabListProps) => HTMLAttributes<HTMLElement>
+  getTabProps: (id: string) => HTMLAttributes<HTMLElement>
+  getTabPanelProps: (id: string) => HTMLAttributes<HTMLElement>
+}
+
+export const useTabs = ({
+  defaultTab,
+  autoActivate = true,
+  orientation = 'horizontal',
+  onTabActivate,
+}: UseTabsOptions = {}): UseTabs => {
   const uniqueId = useId()
-  const [state, setState] = useState<TabState>({
+  const [state, _setState] = useState<TabState>({
     activeTab: defaultTab || null,
     focusedTab: null,
     tabs: new Set(),
   })
-  const [currentOrientation, setOrientation] = useState<TabOrientation>(orientation)
+
+  const setState = useCallback(
+    (updater: (state: TabState) => TabState) => {
+      _setState(prev => {
+        const nextState = updater(prev)
+
+        if (nextState.activeTab && nextState.activeTab !== prev.activeTab) {
+          onTabActivate?.(nextState.activeTab)
+        }
+
+        return nextState
+      })
+    },
+    [onTabActivate],
+  )
 
   // Refs to store tab elements for focus management
   const tabRefs = useRef<Map<string, HTMLElement>>(new Map())
@@ -35,53 +65,58 @@ export const useTabs = ({defaultTab, autoActivate = true, orientation = 'horizon
   const getTabId = useCallback((id: string) => `tabs-${uniqueId}-tab-${id}`, [uniqueId])
   const getPanelId = useCallback((id: string) => `tabs-${uniqueId}-panel-${id}`, [uniqueId])
 
-  const registerTab = useCallback((id: string, element: HTMLElement) => {
-    tabRefs.current.set(id, element)
-    setState(prev => ({
-      ...prev,
-      tabs: new Set([...prev.tabs, id]),
-      activeTab: prev.activeTab || id, // Set as active if no active tab
-    }))
+  const registerTab = useCallback(
+    (id: string, element: HTMLElement) => {
+      if (tabRefs.current.has(id)) {
+        return
+      }
 
-    return () => {
-      tabRefs.current.delete(id)
+      tabRefs.current.set(id, element)
       setState(prev => ({
         ...prev,
-        tabs: new Set([...prev.tabs].filter(tabId => tabId !== id)),
+        tabs: new Set([...prev.tabs, id]),
+        activeTab: prev.activeTab || id, // Set as active if no active tab
       }))
-    }
-  }, [])
+    },
+    [setState],
+  )
 
-  const focusTab = useCallback((id: string) => {
-    const element = tabRefs.current.get(id)
-    if (element) {
-      element.focus()
+  const focusTab = useCallback(
+    (id: string) => {
+      const element = tabRefs.current.get(id)
+      if (element) {
+        element.focus()
+        setState(prev => ({
+          ...prev,
+          focusedTab: id,
+        }))
+      }
+    },
+    [setState],
+  )
+
+  const activateTab = useCallback(
+    (id: string) => {
       setState(prev => ({
         ...prev,
+        activeTab: id,
         focusedTab: id,
       }))
-    }
-  }, [])
-
-  const activateTab = useCallback((id: string) => {
-    setState(prev => ({
-      ...prev,
-      activeTab: id,
-      focusedTab: id,
-    }))
-  }, [])
+    },
+    [setState],
+  )
 
   const getNextTabIdx = useCallback((idx: number, tabs: string[]) => (idx + 1) % tabs.length, [])
   const getPrevTabIdx = useCallback((idx: number, tabs: string[]) => (idx - 1 + tabs.length) % tabs.length, [])
 
   const onTabKeyDown = useCallback(
-    (event: React.KeyboardEvent, id: string) => {
+    (event: KeyboardEvent, id: string) => {
       const tabs = [...state.tabs]
       const currentIndex = tabs.indexOf(id)
 
       switch (true) {
-        case event.key === 'ArrowLeft' && currentOrientation === 'horizontal':
-        case event.key === 'ArrowUp' && currentOrientation === 'vertical': {
+        case event.key === 'ArrowLeft' && orientation === 'horizontal':
+        case event.key === 'ArrowUp' && orientation === 'vertical': {
           event.preventDefault()
           const prevIdx = getPrevTabIdx(currentIndex, tabs)
           const prevTab = tabs[prevIdx]
@@ -90,8 +125,8 @@ export const useTabs = ({defaultTab, autoActivate = true, orientation = 'horizon
           break
         }
 
-        case event.key === 'ArrowRight' && currentOrientation === 'horizontal':
-        case event.key === 'ArrowDown' && currentOrientation === 'vertical': {
+        case event.key === 'ArrowRight' && orientation === 'horizontal':
+        case event.key === 'ArrowDown' && orientation === 'vertical': {
           event.preventDefault()
           const nextIdx = getNextTabIdx(currentIndex, tabs)
           const nextTab = tabs[nextIdx]
@@ -122,7 +157,7 @@ export const useTabs = ({defaultTab, autoActivate = true, orientation = 'horizon
         }
       }
     },
-    [state.tabs, currentOrientation, getPrevTabIdx, focusTab, autoActivate, activateTab, getNextTabIdx],
+    [state.tabs, orientation, getPrevTabIdx, focusTab, autoActivate, activateTab, getNextTabIdx],
   )
 
   const onTabClick = useCallback(
@@ -132,21 +167,24 @@ export const useTabs = ({defaultTab, autoActivate = true, orientation = 'horizon
     [activateTab],
   )
 
-  const onTabFocus = useCallback((id: string) => {
-    setState(prev => ({
-      ...prev,
-      focusedTab: id,
-    }))
-  }, [])
+  const onTabFocus = useCallback(
+    (id: string) => {
+      setState(prev => ({
+        ...prev,
+        focusedTab: id,
+      }))
+    },
+    [setState],
+  )
 
   const getTabListProps = useCallback(
     ({label, labelledBy}: TabListProps = {}) => ({
       role: 'tablist',
-      'aria-orientation': currentOrientation,
+      'aria-orientation': orientation,
       ...(label && {'aria-label': label}),
       ...(labelledBy && {'aria-labelledby': labelledBy}),
     }),
-    [currentOrientation],
+    [orientation],
   )
 
   const getTabProps = useCallback(
@@ -157,7 +195,7 @@ export const useTabs = ({defaultTab, autoActivate = true, orientation = 'horizon
       'aria-selected': id === state.activeTab,
       tabIndex: id === state.activeTab ? 0 : -1,
       onClick: () => onTabClick(id),
-      onKeyDown: (event: React.KeyboardEvent) => onTabKeyDown(event, id),
+      onKeyDown: (event: KeyboardEvent) => onTabKeyDown(event, id),
       onFocus: () => onTabFocus(id),
       ref: (element: HTMLElement | null) => {
         if (element) registerTab(id, element)
@@ -178,29 +216,14 @@ export const useTabs = ({defaultTab, autoActivate = true, orientation = 'horizon
   )
 
   return {
-    // State
     activeTab: state.activeTab,
     focusedTab: state.focusedTab,
 
-    // Registration
-    registerTab,
-
-    // Event handlers
-    onTabKeyDown,
-    onTabClick,
-    onTabFocus,
-
-    // Prop getters
-    getTabListProps,
-    getTabProps,
-    getTabPanelProps,
-
-    // Actions
     activateTab,
     focusTab,
 
-    // Configuration
-    orientation: currentOrientation,
-    setOrientation,
+    getTabListProps,
+    getTabProps,
+    getTabPanelProps,
   }
 }
