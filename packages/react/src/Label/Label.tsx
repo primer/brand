@@ -5,7 +5,7 @@ import {Text} from '../Text'
 import {useAnimation} from '../animation'
 
 import type {BaseProps} from '../component-helpers'
-import {Colors, Gradients} from '../constants'
+import {Colors, BiColorGradients, TriColorGradients} from '../constants'
 
 /**
  * Design tokens
@@ -14,6 +14,8 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './Label.module.css'
+
+const Gradients = [...BiColorGradients, ...TriColorGradients] as const
 
 export const LabelColors = [...Colors, ...Gradients] as const
 export const LabelSizes = ['medium', 'large'] as const
