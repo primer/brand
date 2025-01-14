@@ -417,11 +417,7 @@ export function FeaturePreviewLevelTwo({
                         }}
                       >
                         <Box padding={48} paddingBlockEnd={4}>
-                          <IDE
-                            height={600}
-                            variant="glass"
-                            alternativeText="A code editor showing animated JavaScript appearing line-by-line, ending in a Copilot autosuggest"
-                          >
+                          <IDE height={600} variant="glass">
                             <IDE.Editor files={files} />
                           </IDE>
                         </Box>
