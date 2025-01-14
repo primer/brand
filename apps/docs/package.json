@@ -10,19 +10,19 @@
     "build:animation": "node scripts/animation-support.js"
   },
   "dependencies": {
-    "@primer/gatsby-theme-doctocat": "^4.6.3",
+    "@primer/gatsby-theme-doctocat": "4.7.1",
     "@primer/octicons-react": "19.14.0",
-    "@primer/react": "^35.1.0",
+    "@primer/react": "35.32.2",
     "color2k": "^2.0.0",
     "cross-env": "7.0.3",
-    "gatsby": "^3.7.2",
+    "gatsby": "3.15.0",
     "gatsby-plugin-alias-imports": "^1.0.5",
     "gatsby-plugin-image": "3.14.0",
     "gatsby-plugin-postcss": "6.14.0",
     "gatsby-plugin-typescript": "5.14.0",
-    "react": "^17.0.2",
+    "react": "18.3.1",
     "react-docgen-typescript": "2.2.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "18.3.1"
   },
   "devDependencies": {
     "css-to-string-loader": "^0.1.3",
