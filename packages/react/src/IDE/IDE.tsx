@@ -26,6 +26,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 /** * Main Stylesheet (as a CSS Module) */
 import animationStyles from '../animation/Animation.module.css'
 import styles from './IDE.module.css'
+import {useTabs} from '../hooks/useTabs'
 
 const testIds = {
   root: 'IDE',
@@ -337,7 +338,6 @@ const _Editor = memo(
       ref: Ref<HTMLDivElement>,
     ) => {
       const presRef = useRef<HTMLDivElement>(null)
-      const [activeFile, setActiveFile] = useState(activeTab)
       const [isAnimating, setIsAnimating] = useState(false)
       const [hasAnimated, setHasAnimated] = useState(false)
       const [timeouts, setTimeouts] = useState<NodeJS.Timeout[]>([])
@@ -367,16 +367,7 @@ const _Editor = memo(
         }
       }, [clearAllTimeouts])
 
-      const switchFile = useCallback(
-        (index: number) => {
-          setActiveFile(index)
-
-          resetAnimation()
-        },
-        [setActiveFile, resetAnimation],
-      )
-
-      useEffect(() => {
+      const runAnimation = useCallback(() => {
         if (isAnimating || hasAnimated || !presRef.current) return
 
         setIsAnimating(true)
@@ -411,7 +402,21 @@ const _Editor = memo(
         }, delay)
 
         setTimeouts(prev => [...prev, animationEndTimeout])
-      }, [isAnimating, hasAnimated, triggerAnimation])
+      }, [hasAnimated, isAnimating])
+
+      const onTabActivate = useCallback(() => {
+        resetAnimation()
+      }, [resetAnimation])
+
+      const tabs = useTabs({
+        defaultTab: files[activeTab].name,
+        autoActivate: true,
+        onTabActivate,
+      })
+
+      useEffect(() => {
+        runAnimation()
+      }, [runAnimation, triggerAnimation])
 
       return (
         <div
@@ -420,97 +425,90 @@ const _Editor = memo(
           data-testid={testId || testIds.editor}
           {...rest}
         >
-          <div className={styles['IDE__Editor-tabs']} data-testid={testIds.editorTabs}>
-            {files.map((file, index) => {
+          <div className={styles['IDE__Editor-tabs']} data-testid={testIds.editorTabs} {...tabs.getTabListProps()}>
+            {files.map(file => {
               const language = file.name.split('.').pop()
+              const isActiveTab = tabs.activeTab === file.name
 
               return (
                 <button
-                  key={index}
-                  className={clsx(styles['IDE__Editor-tab'], activeFile === index && styles.active)}
-                  onClick={() => switchFile(index)}
+                  {...tabs.getTabProps(file.name)}
+                  key={file.name}
+                  className={clsx(styles['IDE__Editor-tab'], isActiveTab && styles.active)}
                 >
                   {language && (
                     <img
                       className={styles['IDE__Editor-tab-icon']}
-                      alt={`Logo for ${language}`}
+                      alt=""
                       width={16}
                       height={16}
                       src={tabIcons[language]}
                     />
-                  )}{' '}
+                  )}
                   {file.name}
                 </button>
               )
             })}
           </div>
           <div className={styles['IDE__Editor-content']}>
-            <span className="visually-hidden">{files[activeFile].alternativeText}</span>
-            <div aria-hidden>
-              {showLineNumbers && (
-                <div className={styles['IDE__Editor-lineNumbers']}>
-                  {Array.isArray(files[activeFile].code) &&
-                    (files[activeFile].code as string[]).map((_, index) => (
-                      <div key={index} className={styles['IDE__Editor-lineNumber']}>
-                        {index + 1}
-                      </div>
-                    ))}
-                  {typeof files[activeFile].code === 'string' &&
-                    (files[activeFile].code as string).split('\n').map((_, index) => (
-                      <div key={index} className={styles['IDE__Editor-lineNumber']}>
-                        {index + 1}
-                      </div>
-                    ))}
-                </div>
-              )}
-
-              {Array.isArray(files[activeFile].code) && (
-                <div ref={presRef} data-testid={testIds.editorContent}>
-                  {(files[activeFile].code as string[]).map((line, index) => {
-                    const hasSuggestion = index + 1 >= (files[activeFile].suggestedLineStart ?? Infinity)
-                    return (
-                      <React.Fragment key={line + index}>
-                        <pre
-                          key={index}
-                          className={clsx(
-                            styles['IDE__Editor-pane'],
-                            index + 1 < (files[activeFile].suggestedLineStart ?? Infinity) &&
-                              animationStyles['Animation--slide-in-right'],
-                            hasSuggestion && animationStyles['Animation--slide-in-down'],
-                            hasSuggestion && styles['IDE__Editor-pane--suggested'],
-                          )}
-                          dangerouslySetInnerHTML={{__html: line === '' ? '&nbsp;' : line}}
-                          data-has-suggestion={hasSuggestion}
-                        />
-                        {hasSuggestion && index === files[activeFile].code.length - 1 && (
-                          <pre
-                            className={clsx(
-                              animationStyles['Animation--slide-in-down'],
-                              styles['IDE__Chat-copilot-indicator'],
+            {files.map(file => (
+              <div {...tabs.getTabPanelProps(file.name)} key={file.name}>
+                <span className="visually-hidden">{file.alternativeText}</span>
+                <div aria-hidden>
+                  {showLineNumbers && (
+                    <div className={styles['IDE__Editor-lineNumbers']}>
+                      {(Array.isArray(file.code) ? file.code : file.code.split('\n')).map((_, index) => (
+                        <div key={index} className={styles['IDE__Editor-lineNumber']}>
+                          {index + 1}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  <div ref={tabs.activeTab === file.name ? presRef : null} data-testid={testIds.editorContent}>
+                    {Array.isArray(file.code) ? (
+                      (file.code as string[]).map((line, index) => {
+                        const isSuggestion = index + 1 >= (file.suggestedLineStart ?? Infinity)
+                        return (
+                          <React.Fragment key={line + index}>
+                            <pre
+                              key={index}
+                              className={clsx(
+                                styles['IDE__Editor-pane'],
+                                index + 1 < (file.suggestedLineStart ?? Infinity) &&
+                                  animationStyles['Animation--slide-in-right'],
+                                isSuggestion && animationStyles['Animation--slide-in-down'],
+                                isSuggestion && styles['IDE__Editor-pane--suggested'],
+                              )}
+                              dangerouslySetInnerHTML={{__html: line === '' ? '&nbsp;' : line}}
+                              data-has-suggestion={isSuggestion}
+                            />
+                            {isSuggestion && index === file.code.length - 1 && (
+                              <pre
+                                className={clsx(
+                                  animationStyles['Animation--slide-in-down'],
+                                  styles['IDE__Chat-copilot-indicator'],
+                                )}
+                                data-has-suggestion={isSuggestion}
+                              >
+                                <CopilotIcon size={24} className={styles['IDE__Chat-copilot-indicator-label']} />
+                                <Text as="span" className={styles['IDE__Chat-copilot-indicator-label']}>
+                                  Copilot
+                                </Text>
+                              </pre>
                             )}
-                            data-has-suggestion={hasSuggestion}
-                          >
-                            <CopilotIcon size={24} className={styles['IDE__Chat-copilot-indicator-label']} />
-                            <Text as="span" className={styles['IDE__Chat-copilot-indicator-label']}>
-                              Copilot
-                            </Text>
-                          </pre>
-                        )}
-                      </React.Fragment>
-                    )
-                  })}
+                          </React.Fragment>
+                        )
+                      })
+                    ) : (
+                      <pre
+                        className={clsx(styles['IDE__Editor-pane'], animationStyles['Animation--slide-in-right'])}
+                        dangerouslySetInnerHTML={{__html: file.code}}
+                      />
+                    )}
+                  </div>
                 </div>
-              )}
-
-              {typeof files[activeFile].code === 'string' && (
-                <div ref={presRef} data-testid={testIds.editorContent}>
-                  <pre
-                    className={clsx(styles['IDE__Editor-pane'], animationStyles['Animation--slide-in-right'])}
-                    dangerouslySetInnerHTML={{__html: files[activeFile].code}}
-                  />
-                </div>
-              )}
-            </div>
+              </div>
+            ))}
           </div>
           {showReplayButton && (
             <Button
