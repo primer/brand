@@ -181,12 +181,6 @@
   --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-yellow);
 }
 
-.EyebrowBanner__leadingLabel--color-green-blue-purple {
-  --brand-EyebrowBanner-leadingLabel-color-start: var(--brand-Eyebrowbanner-fgColor-green);
-  --brand-EyebrowBanner-leadingLabel-color-middle: var(--brand-Eyebrowbanner-fgColor-blue);
-  --brand-EyebrowBanner-leadingLabel-color-end: var(--brand-Eyebrowbanner-fgColor-purplew);
-}
-
 .EyebrowBanner__heading {
   display: block;
   color: var(--brand-Eyebrowbanner-heading-fgColor);
