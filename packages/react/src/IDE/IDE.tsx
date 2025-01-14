@@ -428,7 +428,7 @@ const _Editor = memo(
           <div className={styles['IDE__Editor-tabs']} data-testid={testIds.editorTabs} {...tabs.getTabListProps()}>
             {files.map((file, i) => {
               const language = file.name.split('.').pop()
-              const isActiveTab = tabs.activeTab === file.name
+              const isActiveTab = tabs.activeTab === i.toString()
 
               return (
                 <button
@@ -464,7 +464,7 @@ const _Editor = memo(
                       ))}
                     </div>
                   )}
-                  <div ref={tabs.activeTab === file.name ? presRef : null} data-testid={testIds.editorContent}>
+                  <div ref={tabs.activeTab === i.toString() ? presRef : null} data-testid={testIds.editorContent}>
                     {Array.isArray(file.code) ? (
                       (file.code as string[]).map((line, index) => {
                         const isSuggestion = index + 1 >= (file.suggestedLineStart ?? Infinity)
