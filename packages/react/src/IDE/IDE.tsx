@@ -409,7 +409,7 @@ const _Editor = memo(
       }, [resetAnimation])
 
       const tabs = useTabs({
-        defaultTab: files[activeTab].name,
+        defaultTab: activeTab.toString(),
         autoActivate: true,
         onTabActivate,
       })
@@ -426,13 +426,13 @@ const _Editor = memo(
           {...rest}
         >
           <div className={styles['IDE__Editor-tabs']} data-testid={testIds.editorTabs} {...tabs.getTabListProps()}>
-            {files.map(file => {
+            {files.map((file, i) => {
               const language = file.name.split('.').pop()
               const isActiveTab = tabs.activeTab === file.name
 
               return (
                 <button
-                  {...tabs.getTabProps(file.name)}
+                  {...tabs.getTabProps(i.toString())}
                   key={file.name}
                   className={clsx(styles['IDE__Editor-tab'], isActiveTab && styles.active)}
                 >
@@ -451,10 +451,10 @@ const _Editor = memo(
             })}
           </div>
           <div className={styles['IDE__Editor-content']}>
-            {files.map(file => (
-              <div {...tabs.getTabPanelProps(file.name)} key={file.name}>
+            {files.map((file, i) => (
+              <div {...tabs.getTabPanelProps(i.toString())} key={file.name}>
                 <span className="visually-hidden">{file.alternativeText}</span>
-                <div aria-hidden>
+                <div aria-hidden="true">
                   {showLineNumbers && (
                     <div className={styles['IDE__Editor-lineNumbers']}>
                       {(Array.isArray(file.code) ? file.code : file.code.split('\n')).map((_, index) => (
