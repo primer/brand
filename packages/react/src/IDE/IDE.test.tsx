@@ -5,7 +5,6 @@ import '@testing-library/jest-dom'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 import {IDE, IDEChatMessage, IDEEditorFile} from './IDE'
-import {chatScriptAlt} from './fixtures/content'
 
 expect.extend(toHaveNoViolations)
 
@@ -31,6 +30,8 @@ describe('IDE', () => {
       message: 'Thanks! How do I check if a variable is an array?',
     },
   ]
+
+  const chatScriptAlt = 'A conversation about JavaScript arrays between a user and GitHub Copilot.'
 
   const files: IDEEditorFile[] = [
     {name: 'File 1', alternativeText: 'Alt for File 1', code: 'Code for File 1'},
