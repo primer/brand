@@ -426,13 +426,13 @@ const _Editor = memo(
           {...rest}
         >
           <div className={styles['IDE__Editor-tabs']} data-testid={testIds.editorTabs} {...tabs.getTabListProps()}>
-            {files.map((file, i) => {
+            {files.map((file, index) => {
               const language = file.name.split('.').pop()
-              const isActiveTab = tabs.activeTab === i.toString()
+              const isActiveTab = tabs.activeTab === index.toString()
 
               return (
                 <button
-                  {...tabs.getTabProps(i.toString())}
+                  {...tabs.getTabProps(index.toString())}
                   key={file.name}
                   className={clsx(styles['IDE__Editor-tab'], isActiveTab && styles.active)}
                 >
@@ -451,8 +451,8 @@ const _Editor = memo(
             })}
           </div>
           <div className={styles['IDE__Editor-content']}>
-            {files.map((file, i) => (
-              <div {...tabs.getTabPanelProps(i.toString())} key={file.name}>
+            {files.map((file, fileIndex) => (
+              <div {...tabs.getTabPanelProps(fileIndex.toString())} key={file.name}>
                 <span className="visually-hidden">{file.alternativeText}</span>
                 <div aria-hidden="true">
                   {showLineNumbers && (
@@ -464,7 +464,10 @@ const _Editor = memo(
                       ))}
                     </div>
                   )}
-                  <div ref={tabs.activeTab === i.toString() ? presRef : null} data-testid={testIds.editorContent}>
+                  <div
+                    ref={tabs.activeTab === fileIndex.toString() ? presRef : null}
+                    data-testid={testIds.editorContent}
+                  >
                     {Array.isArray(file.code) ? (
                       (file.code as string[]).map((line, index) => {
                         const isSuggestion = index + 1 >= (file.suggestedLineStart ?? Infinity)
