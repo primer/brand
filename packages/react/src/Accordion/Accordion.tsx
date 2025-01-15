@@ -4,6 +4,7 @@ import clsx from 'clsx'
 import {Heading} from '../'
 import type {BaseProps} from '../component-helpers'
 import {ChevronDownIcon, ChevronUpIcon} from '@primer/octicons-react'
+import {Colors, Gradients} from '../constants'
 
 /**
  * Design tokens
@@ -83,19 +84,35 @@ export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
   },
 )
 
-type AccordionHeadingProps = PropsWithChildren<BaseProps<HTMLHeadingElement>> & {
-  className?: string
-  as?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
-  reversedToggles?: boolean
-  variant?: 'default' | 'emphasis'
-  open?: boolean // private prop passed from AccordionRoot
-  handleOpen?: (boolean) => void // private prop passed from AccordionRoot
-  parentRef?: React.RefObject<HTMLDetailsElement> // private prop passed from AccordionRoot
-}
+export const AccordionToggleColors = [...Colors, ...Gradients] as const
+
+type AccordionHeadingProps = PropsWithChildren<BaseProps<HTMLHeadingElement>> &
+  React.HTMLAttributes<HTMLDetailsElement> & {
+    className?: string
+    as?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+    reversedToggles?: boolean
+    variant?: 'default' | 'emphasis'
+    open?: boolean // private prop passed from AccordionRoot
+    handleOpen?: (boolean) => void // private prop passed from AccordionRoot
+    parentRef?: React.RefObject<HTMLDetailsElement> // private prop passed from AccordionRoot
+    toggleColor?: (typeof AccordionToggleColors)[number]
+  }
 
 export const AccordionHeading = forwardRef<HTMLHeadingElement, AccordionHeadingProps>(
   (
-    {children, className, as = 'h4', variant = 'default', reversedToggles, open, handleOpen, parentRef, ...rest},
+    {
+      children,
+      className,
+      as = 'h4',
+      variant = 'default',
+      toggleColor,
+      reversedToggles,
+      open,
+      handleOpen,
+      parentRef,
+      style,
+      ...rest
+    },
     ref,
   ) => {
     const handleClick = useCallback(
@@ -130,6 +147,7 @@ export const AccordionHeading = forwardRef<HTMLHeadingElement, AccordionHeadingP
           styles.Accordion__summary,
           reversedToggles && styles['Accordion__summary--reversed-toggles'],
           styles[`Accordion__summary--${variant}`],
+          toggleColor && styles[`Accordion__summary--toggleColor-${toggleColor}`],
           className,
         )}
         ref={ref}

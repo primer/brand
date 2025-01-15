@@ -92,4 +92,13 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
+
+  test('VideoPlayer / Tooltip Visible On Focus', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--tooltip-visible-on-focus&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
 })

@@ -8,7 +8,7 @@ description: Use the FAQ component to display content in a Q&A format.
 
 import ComponentLayout from '../../../src/layouts/component-layout'
 
-import {HeadingTags} from '@primer/react-brand'
+import {HeadingTags, AccordionToggleColors} from '@primer/react-brand'
 import {Label} from '@primer/react'
 import {PropTableValues} from '../../../src/components'
 export default ComponentLayout
@@ -292,30 +292,30 @@ const App = () => {
 render(<App />)
 ```
 
-### Color customization
+### Toggle color customization
 
-`FAQ` surfaces component-specific css variables that can be used to adjust the color where needed.
+`FAQ.Question` toggle colors can be adjusted using one of the following approaches:
+
+1. Override the global `--brand-color-accent-primary` CSS variable (recommended).
+2. Use the `toggleColor` prop on `FAQ.Question`.
+
+Available options for `toggleColor` are:
+
+<p>
+  <PropTableValues
+    values={AccordionToggleColors}
+    commaSeparated
+    removeApostrophes
+  />
+</p>
+
+[See Storybook for all color options](https://primer.style/brand/storybook/?path=/story/components-accordion--toggle-colors).
 
 ```javascript live noinline
 const App = () => {
-  const designTokenOverrides = `
-  .custom-colors[data-color-mode='dark'] {
-
-    /*
-     * Modify the value of these tokens.
-     * Remember to apply light mode equivalents if you're enabling theme switching.
-     */
-    --brand-Accordion-toggle-color-start: var(--base-color-scale-green-1);
-    --brand-Accordion-toggle-color-end: var(--base-color-scale-blue-3);
-    --brand-FAQ-color-heading: linear-gradient(271.72deg, var(--base-color-scale-green-1) 7.09%, var(--base-color-scale-blue-3) 96.61%);
-
-    padding: 3rem;
-    background-color: var(--brand-color-canvas-default);
-  }
-
-
+  const customStyles = `
   .custom-heading {
-    background: var(--brand-FAQ-color-heading);
+    background: linear-gradient(271.72deg, var(--brand-Accordion-toggle-color-green-blue-start) 7.09%, var(--brand-Accordion-toggle-color-green-blue-end) 96.61%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -324,45 +324,51 @@ const App = () => {
 
   return (
     <ThemeProvider colorMode="dark" className="custom-colors">
-      <style>{designTokenOverrides}</style>
-      <FAQ>
-        <FAQ.Heading className="custom-heading">
-          Frequently asked questions
-        </FAQ.Heading>
-        <FAQ.Subheading>Subscriptions & Payments</FAQ.Subheading>
-        <FAQ.Item>
-          <FAQ.Question>
-            What are the differences between GitHub Free, GitHub Pro, GitHub
-            Team and GitHub Enterprise plans?
-          </FAQ.Question>
-          <FAQ.Answer>
-            <p>
-              GitHub Free is our basic plan created for individuals and small
-              teams to collaborate on private and public repositories.
-            </p>
-          </FAQ.Answer>
-        </FAQ.Item>
-        <FAQ.Item>
-          <FAQ.Question>How do I view and manage my subscription?</FAQ.Question>
-          <FAQ.Answer>
-            <p>
-              You can view your account's subscription, your other paid features
-              and products, and your next billing date in your account's billing
-              settings.
-            </p>
-          </FAQ.Answer>
-        </FAQ.Item>
-        <FAQ.Item>
-          <FAQ.Question>How can I change my GitHub subscription?</FAQ.Question>
-          <FAQ.Answer>
-            <p>
-              You can upgrade or downgrade your subscription, add and remove
-              seats, or change the billing cadence on
-              https://github.com/settings/billing.
-            </p>
-          </FAQ.Answer>
-        </FAQ.Item>
-      </FAQ>
+      <Box padding="spacious" backgroundColor="default">
+        <style>{customStyles}</style>
+        <FAQ>
+          <FAQ.Heading className="custom-heading">
+            Frequently asked questions
+          </FAQ.Heading>
+          <FAQ.Subheading>Subscriptions & Payments</FAQ.Subheading>
+          <FAQ.Item>
+            <FAQ.Question toggleColor="green-blue">
+              What are the differences between GitHub Free, GitHub Pro, GitHub
+              Team and GitHub Enterprise plans?
+            </FAQ.Question>
+            <FAQ.Answer>
+              <p>
+                GitHub Free is our basic plan created for individuals and small
+                teams to collaborate on private and public repositories.
+              </p>
+            </FAQ.Answer>
+          </FAQ.Item>
+          <FAQ.Item>
+            <FAQ.Question toggleColor="green-blue">
+              How do I view and manage my subscription?
+            </FAQ.Question>
+            <FAQ.Answer>
+              <p>
+                You can view your account's subscription, your other paid
+                features and products, and your next billing date in your
+                account's billing settings.
+              </p>
+            </FAQ.Answer>
+          </FAQ.Item>
+          <FAQ.Item>
+            <FAQ.Question toggleColor="green-blue">
+              How can I change my GitHub subscription?
+            </FAQ.Question>
+            <FAQ.Answer>
+              <p>
+                You can upgrade or downgrade your subscription, add and remove
+                seats, or change the billing cadence on
+                https://github.com/settings/billing.
+              </p>
+            </FAQ.Answer>
+          </FAQ.Item>
+        </FAQ>
+      </Box>
     </ThemeProvider>
   )
 }
@@ -385,15 +391,16 @@ render(<App />)
   FAQ.Heading <Label>Required</Label>
 </h3>
 
-| Name        | Type                                                            |  Default   | Description                              |
-| :---------- | :-------------------------------------------------------------- | :--------: | :--------------------------------------- |
-| `align`     | <PropTableValues values={['start', 'center' ]} addLineBreaks /> | `'center'` | Heading text alignment                   |
-| `children`  | `string`                                                        |            | Heading text                             |
-| `className` | `string`                                                        |            | Heading custom class                     |
-| `id`        | `string`                                                        |            | Sets a custom id                         |
-| `ref`       | `React.RefObject`                                               |            | Forward a Ref to the underlying DOM node |
-| `size`      | <PropTableValues values={['medium', 'large' ]} addLineBreaks /> | `'medium'` | Heading text size                        |
-| `as`        | <PropTableValues values={HeadingTags} addLineBreaks />          |            | Applies the underlying HTML element      |
+| Name          | Type                                                             |  Default   | Description                              |
+| :------------ | :--------------------------------------------------------------- | :--------: | :--------------------------------------- |
+| `align`       | <PropTableValues values={['start', 'center' ]} addLineBreaks />  | `'center'` | Heading text alignment                   |
+| `children`    | `string`                                                         |            | Heading text                             |
+| `className`   | `string`                                                         |            | Heading custom class                     |
+| `id`          | `string`                                                         |            | Sets a custom id                         |
+| `ref`         | `React.RefObject`                                                |            | Forward a Ref to the underlying DOM node |
+| `size`        | <PropTableValues values={['medium', 'large' ]} addLineBreaks />  | `'medium'` | Heading text size                        |
+| `as`          | <PropTableValues values={HeadingTags} addLineBreaks />           |            | Applies the underlying HTML element      |
+| `toggleColor` | <PropTableValues values={AccordionToggleColors} addLineBreaks /> |            | Sets the accordion toggle color          |
 
 <h3 id="faq-subheading">FAQ.Subheading</h3>
 

@@ -1,5 +1,6 @@
 declare const styles: {
   readonly "Text": string;
+  readonly "Text--antialiased": string;
   readonly "Text--default": string;
   readonly "Text--muted": string;
   readonly "Text-font--mona-sans": string;

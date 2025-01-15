@@ -37,12 +37,14 @@ export const Range = ({
   }, [startValue])
 
   useEffect(() => {
-    if (!max || !tooltip || !inputRef.current) {
+    const input = inputRef.current
+
+    if (!max || !tooltip || !input) {
       return
     }
 
     const handleMouseMove = event => {
-      if (event.target !== inputRef.current) {
+      if (event.target !== input) {
         setHoverValue(0)
         setMousePos(0)
         return
@@ -53,10 +55,10 @@ export const Range = ({
       setHoverValue((event.offsetX / event.target.clientWidth) * max)
     }
 
-    window.addEventListener('mousemove', handleMouseMove)
+    input.addEventListener('mousemove', handleMouseMove)
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove)
+      input.removeEventListener('mousemove', handleMouseMove)
     }
   }, [max, tooltip, inputRef])
 
