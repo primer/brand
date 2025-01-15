@@ -106,8 +106,8 @@ export const useTabs = ({
     [setState],
   )
 
-  const getNextTabIdx = useCallback((idx: number, tabs: string[]) => (idx + 1) % tabs.length, [])
-  const getPrevTabIdx = useCallback((idx: number, tabs: string[]) => (idx - 1 + tabs.length) % tabs.length, [])
+  const getNextTabIndex = useCallback((index: number, tabs: string[]) => (index + 1) % tabs.length, [])
+  const getPrevTabIndex = useCallback((index: number, tabs: string[]) => (index - 1 + tabs.length) % tabs.length, [])
 
   const onTabKeyDown = useCallback(
     (event: KeyboardEvent, id: string) => {
@@ -118,8 +118,8 @@ export const useTabs = ({
         case event.key === 'ArrowLeft' && orientation === 'horizontal':
         case event.key === 'ArrowUp' && orientation === 'vertical': {
           event.preventDefault()
-          const prevIdx = getPrevTabIdx(currentIndex, tabs)
-          const prevTab = tabs[prevIdx]
+          const prevIndex = getPrevTabIndex(currentIndex, tabs)
+          const prevTab = tabs[prevIndex]
           focusTab(prevTab)
           if (autoActivate) activateTab(prevTab)
           break
@@ -128,8 +128,8 @@ export const useTabs = ({
         case event.key === 'ArrowRight' && orientation === 'horizontal':
         case event.key === 'ArrowDown' && orientation === 'vertical': {
           event.preventDefault()
-          const nextIdx = getNextTabIdx(currentIndex, tabs)
-          const nextTab = tabs[nextIdx]
+          const nextIndex = getNextTabIndex(currentIndex, tabs)
+          const nextTab = tabs[nextIndex]
           focusTab(nextTab)
           if (autoActivate) activateTab(nextTab)
           break
@@ -157,7 +157,7 @@ export const useTabs = ({
         }
       }
     },
-    [state.tabs, orientation, getPrevTabIdx, focusTab, autoActivate, activateTab, getNextTabIdx],
+    [state.tabs, orientation, getPrevTabIndex, focusTab, autoActivate, activateTab, getNextTabIndex],
   )
 
   const onTabClick = useCallback(
