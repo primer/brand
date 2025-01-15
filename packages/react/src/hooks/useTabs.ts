@@ -38,15 +38,15 @@ export const useTabs = ({
   onTabActivate,
 }: UseTabsOptions = {}): UseTabs => {
   const uniqueId = useId()
-  const [state, _setState] = useState<TabState>({
+  const [tabState, _setTabState] = useState<TabState>({
     activeTab: defaultTab || null,
     focusedTab: null,
     tabs: new Set(),
   })
 
-  const setState = useCallback(
+  const setTabState = useCallback(
     (updater: (state: TabState) => TabState) => {
-      _setState(prev => {
+      _setTabState(prev => {
         const nextState = updater(prev)
 
         if (nextState.activeTab && nextState.activeTab !== prev.activeTab) {
@@ -72,13 +72,13 @@ export const useTabs = ({
       }
 
       tabRefs.current.set(id, element)
-      setState(prev => ({
+      setTabState(prev => ({
         ...prev,
         tabs: new Set([...prev.tabs, id]),
         activeTab: prev.activeTab || id, // Set as active if no active tab
       }))
     },
-    [setState],
+    [setTabState],
   )
 
   const focusTab = useCallback(
@@ -86,24 +86,24 @@ export const useTabs = ({
       const element = tabRefs.current.get(id)
       if (element) {
         element.focus()
-        setState(prev => ({
+        setTabState(prev => ({
           ...prev,
           focusedTab: id,
         }))
       }
     },
-    [setState],
+    [setTabState],
   )
 
   const activateTab = useCallback(
     (id: string) => {
-      setState(prev => ({
+      setTabState(prev => ({
         ...prev,
         activeTab: id,
         focusedTab: id,
       }))
     },
-    [setState],
+    [setTabState],
   )
 
   const getNextTabIndex = useCallback((index: number, tabs: string[]) => (index + 1) % tabs.length, [])
@@ -111,7 +111,7 @@ export const useTabs = ({
 
   const onTabKeyDown = useCallback(
     (event: KeyboardEvent, id: string) => {
-      const tabs = [...state.tabs]
+      const tabs = [...tabState.tabs]
       const currentIndex = tabs.indexOf(id)
 
       switch (true) {
@@ -157,7 +157,7 @@ export const useTabs = ({
         }
       }
     },
-    [state.tabs, orientation, getPrevTabIndex, focusTab, autoActivate, activateTab, getNextTabIndex],
+    [tabState.tabs, orientation, getPrevTabIndex, focusTab, autoActivate, activateTab, getNextTabIndex],
   )
 
   const onTabClick = useCallback(
@@ -169,12 +169,12 @@ export const useTabs = ({
 
   const onTabFocus = useCallback(
     (id: string) => {
-      setState(prev => ({
+      setTabState(prev => ({
         ...prev,
         focusedTab: id,
       }))
     },
-    [setState],
+    [setTabState],
   )
 
   const getTabListProps = useCallback(
@@ -192,8 +192,8 @@ export const useTabs = ({
       role: 'tab',
       id: getTabId(id),
       'aria-controls': getPanelId(id),
-      'aria-selected': id === state.activeTab,
-      tabIndex: id === state.activeTab ? 0 : -1,
+      'aria-selected': id === tabState.activeTab,
+      tabIndex: id === tabState.activeTab ? 0 : -1,
       onClick: () => onTabClick(id),
       onKeyDown: (event: KeyboardEvent) => onTabKeyDown(event, id),
       onFocus: () => onTabFocus(id),
@@ -201,7 +201,7 @@ export const useTabs = ({
         if (element) registerTab(id, element)
       },
     }),
-    [state.activeTab, getTabId, getPanelId, onTabClick, onTabKeyDown, onTabFocus, registerTab],
+    [tabState.activeTab, getTabId, getPanelId, onTabClick, onTabKeyDown, onTabFocus, registerTab],
   )
 
   const getTabPanelProps = useCallback(
@@ -209,15 +209,15 @@ export const useTabs = ({
       role: 'tabpanel',
       id: getPanelId(id),
       'aria-labelledby': getTabId(id),
-      hidden: id !== state.activeTab,
+      hidden: id !== tabState.activeTab,
       tabIndex: 0,
     }),
-    [state.activeTab, getPanelId, getTabId],
+    [tabState.activeTab, getPanelId, getTabId],
   )
 
   return {
-    activeTab: state.activeTab,
-    focusedTab: state.focusedTab,
+    activeTab: tabState.activeTab,
+    focusedTab: tabState.focusedTab,
 
     activateTab,
     focusTab,
