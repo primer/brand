@@ -19,7 +19,7 @@ Alternative text should now be provided in the following ways:
     />
   </IDE>
   ```
-- Via `alternativeText` property on each file provided to the `IDE.Editor`.
+- Via the `alternativeText` property on each file provided to the `IDE.Editor`.
   ```tsx
   <IDE>
     <IDE.Editor
