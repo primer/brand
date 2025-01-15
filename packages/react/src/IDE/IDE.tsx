@@ -16,6 +16,7 @@ import React, {
 
 import {Avatar, Button, Text, TextInput} from '..'
 import type {BaseProps} from '../component-helpers'
+import {useTabs} from '../hooks/useTabs'
 
 /**
  * Design tokens
@@ -26,7 +27,6 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 /** * Main Stylesheet (as a CSS Module) */
 import animationStyles from '../animation/Animation.module.css'
 import styles from './IDE.module.css'
-import {useTabs} from '../hooks/useTabs'
 
 const testIds = {
   root: 'IDE',
