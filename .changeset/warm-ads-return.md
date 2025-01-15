@@ -8,30 +8,80 @@ Enabled keyboard navigation in the `IDE` component and made the contents navigab
 
 The `alternativeText` prop on the `IDE` component has been removed in favour of more granular descriptive text.
 
-Alternative text should now be provided in the following ways:
+<table width="100%">
+<tr>
+<th> Before</th>
+</tr>
+<tr>
+<td valign="top">
 
-- Via the `alternativeText` prop on the `IDE.Chat` component.
-  ```tsx
-  <IDE>
-    <IDE.Chat
-      alternativeText="A user asks how to concatenate arrays in JavaScript, Copilot demonstrates using the concat method, and the user confirms it worked."
-      // ...
-    />
-  </IDE>
-  ```
-- Via the `alternativeText` property on each file provided to the `IDE.Editor`.
-  ```tsx
-  <IDE>
-    <IDE.Editor
-      files={[
-        {
-          name: 'index.js',
-          alternativeText: 'TypeScript sentiment analysis function with D3.js visualization.',
-          // ...
-        },
-      ]}
-    />
-  </IDE>
-  ```
+```tsx
+<IDE alternativeText="A user asks how to concatenate arrays in JavaScript, Copilot demonstrates using the concat method, and the user confirms it worked.">
+  <IDE.Chat />
+</IDE>
+```
+
+ </td>
+</tr>
+<tr>
+<th> After</th>
+</tr>
+<tr>
+<td valign="top">
+
+```tsx
+<IDE>
+  <IDE.Chat alternativeText="A user asks how to concatenate arrays in JavaScript, Copilot demonstrates using the concat method, and the user confirms it worked." />
+</IDE>
+```
+
+</td>
+</tr>
+</table>
+
+<table width="100%">
+<tr>
+<th> Before</th>
+</tr>
+<tr>
+<td valign="top">
+
+```tsx
+<IDE alternativeText="TypeScript sentiment analysis function with D3.js visualization.">
+  <IDE.Editor
+    files={[
+      {
+        name: 'index.js',
+      },
+    ]}
+  />
+</IDE>
+```
+
+ </td>
+</tr>
+<tr>
+<th> After</th>
+</tr>
+<tr>
+<td valign="top">
+
+```tsx
+<IDE>
+  <IDE.Editor
+    files={[
+      {
+        name: 'index.js',
+        alternativeText: 'TypeScript sentiment analysis function with D3.js visualization.',
+        // ...
+      },
+    ]}
+  />
+</IDE>
+```
+
+</td>
+</tr>
+</table>
 
 🔗 [See the documentation for example usage, and more information on accessibility in the `IDE` component](https://primer.style/brand/components/IDE#accessibility)
