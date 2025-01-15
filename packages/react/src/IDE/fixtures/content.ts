@@ -7,6 +7,9 @@ import monaAvatar from '../../fixtures/images/avatar-mona.png'
 hljs.registerLanguage('javascript', javascript)
 hljs.registerLanguage('python', python)
 
+export const chatScriptAlt =
+  'A conversation about JavaScript arrays between a user and GitHub Copilot. The user asks three questions: how to concatenate arrays, how to check if something is an array, and how to remove elements from an array. Copilot provides code examples for each, demonstrating concat(), Array.isArray(), and filter() methods respectively.'
+
 export const chatScript: IDEChatMessage[] = [
   {
     role: 'user',
@@ -62,6 +65,8 @@ export const defaultFiles: IDEEditorFile[] = [
   {
     name: 'index.js',
     suggestedLineStart: 6,
+    alternativeText:
+      'JavaScript code with a function declaration and a D3.js scatterplot visualization. Copilot suggests implementing the scatterplot data binding and circle attributes.',
     code: `import { fetch } from "fetch-h2";
 
 async function isPositive(text: string): Promise<boolean> {
@@ -83,6 +88,8 @@ export const singleFile: IDEEditorFile[] = [
   {
     name: 'sentiments.ts',
     suggestedLineStart: 6,
+    alternativeText:
+      'TypeScript function analyzing text sentiment with a D3.js scatterplot visualization. Copilot suggests completing the scatterplot implementation with data binding.',
     code: `async function isPositive(text: string): Promise<boolean> {
 const response = await fetch(...)
 const drawScatterplot = (data, height, width) => {
@@ -105,8 +112,10 @@ export const files: IDEEditorFile[] = [
   {
     name: 'sentiments.ts',
     suggestedLineStart: 10,
+    alternativeText:
+      'TypeScript sentiment analysis function with D3.js visualization. Copilot suggests completing the scatterplot with SVG creation and circle attributes.',
     code: `import { fetch } from "fetch-h2";
-    
+
 async function isPositive(text: string): Promise<boolean> {
   const response = await fetch(...)
   const drawScatterplot = (data, height, width) => {
@@ -131,6 +140,8 @@ async function isPositive(text: string): Promise<boolean> {
   },
   {
     name: 'draw_scatterplot.js',
+    alternativeText:
+      'D3.js scatterplot visualization function which creates an SVG element and binds data to circles with position and size attributes.',
     code: `import d3 from "d3"
 const drawScatterplot = (data, height, width) => {
   const svg = d3.select("#scatterplot")
@@ -152,10 +163,12 @@ const drawScatterplot = (data, height, width) => {
 
   {
     name: 'parse_expenses.py',
+    alternativeText:
+      'Python function parsing expense records from a string format. Copilot suggests implementing date parsing logic and expense record processing.',
     suggestedLineStart: 2,
     code: hljs.highlight(
       `import datetime
-  
+
 def parse_expenses(expenses_string):
 """Parse the list of expenses and return the list of triples (date, value, currency).
 Ignore lines starting with #.

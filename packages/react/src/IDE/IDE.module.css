@@ -66,6 +66,10 @@
   }
 }
 
+.IDE__Chat-wrapper {
+  display: contents;
+}
+
 .IDE__Chat-message-user {
   display: inline-flex;
   gap: var(--base-size-8);
@@ -206,6 +210,7 @@
 
 .IDE__Editor-tab.active {
   color: var(--brand-color-text-default);
+  z-index: 1;
 }
 
 .IDE--default .IDE__Editor-tab.active {

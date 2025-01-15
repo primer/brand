@@ -1,4 +1,5 @@
-import React, {render, cleanup, act, fireEvent} from '@testing-library/react'
+import React, {render, cleanup, act} from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom'
 
 import {axe, toHaveNoViolations} from 'jest-axe'
@@ -8,8 +9,6 @@ import {IDE, IDEChatMessage, IDEEditorFile} from './IDE'
 expect.extend(toHaveNoViolations)
 
 describe('IDE', () => {
-  const mockAltText = 'This is an alternative text'
-
   const chatScript: IDEChatMessage[] = [
     {
       role: 'user',
@@ -32,18 +31,20 @@ describe('IDE', () => {
     },
   ]
 
+  const chatScriptAlt = 'A conversation about JavaScript arrays between a user and GitHub Copilot.'
+
   const files: IDEEditorFile[] = [
-    {name: 'File 1', code: 'Code for File 1'},
-    {name: 'File 2', code: 'Code for File 2'},
-    {name: 'File 3', code: 'Code for File 3'},
+    {name: 'File 1', alternativeText: 'Alt for File 1', code: 'Code for File 1'},
+    {name: 'File 2', alternativeText: 'Alt for File 2', code: 'Code for File 2'},
+    {name: 'File 3', alternativeText: 'Alt for File 3', code: 'Code for File 3'},
   ]
 
   afterEach(cleanup)
 
   it('renders main elements correctly into the document', () => {
     const {getByTestId} = render(
-      <IDE alternativeText={mockAltText}>
-        <IDE.Chat script={chatScript}></IDE.Chat>
+      <IDE>
+        <IDE.Chat script={chatScript} alternativeText={chatScriptAlt}></IDE.Chat>
         <IDE.Editor size="large" activeTab={0} files={files} />
       </IDE>,
     )
@@ -59,8 +60,8 @@ describe('IDE', () => {
 
   it('has no a11y violations by default', async () => {
     const {container} = render(
-      <IDE alternativeText={mockAltText}>
-        <IDE.Chat script={chatScript}></IDE.Chat>
+      <IDE>
+        <IDE.Chat script={chatScript} alternativeText={chatScriptAlt}></IDE.Chat>
         <IDE.Editor size="large" activeTab={0} files={files} />
       </IDE>,
     )
@@ -69,28 +70,12 @@ describe('IDE', () => {
     expect(results).toHaveNoViolations()
   })
 
-  it('shows the alternative text for assistive technology users and sets correct presentational role on priamry elements', () => {
-    const {getByTestId} = render(
-      <IDE alternativeText={mockAltText}>
-        <IDE.Chat script={chatScript}></IDE.Chat>
-        <IDE.Editor size="large" activeTab={0} files={files} />
-      </IDE>,
-    )
-
-    const rootEl = getByTestId(IDE.testIds.root)
-
-    const altTextEl = getByTestId(IDE.testIds.altText)
-    expect(rootEl).toHaveAttribute('aria-labelledby', altTextEl.id)
-    expect(altTextEl).toHaveTextContent(mockAltText)
-    expect(rootEl).toHaveAttribute('role', 'application')
-  })
-
   it('sets the default variant correctly', async () => {
     const expectedVariant = 'default'
 
     const {getByTestId} = render(
-      <IDE alternativeText={mockAltText}>
-        <IDE.Chat script={chatScript}></IDE.Chat>
+      <IDE>
+        <IDE.Chat script={chatScript} alternativeText={chatScriptAlt}></IDE.Chat>
         <IDE.Editor size="large" activeTab={0} files={files} />
       </IDE>,
     )
@@ -101,8 +86,8 @@ describe('IDE', () => {
 
   it('shows the correct number of chat messages', () => {
     const {getByTestId} = render(
-      <IDE alternativeText={mockAltText}>
-        <IDE.Chat script={chatScript} />
+      <IDE>
+        <IDE.Chat script={chatScript} alternativeText={chatScriptAlt} />
       </IDE>,
     )
 
@@ -116,7 +101,7 @@ describe('IDE', () => {
 
   it(`shows the correct number of editor files`, () => {
     const {getByTestId} = render(
-      <IDE alternativeText={mockAltText}>
+      <IDE>
         <IDE.Editor size="large" activeTab={0} files={files} />
       </IDE>,
     )
@@ -130,13 +115,13 @@ describe('IDE', () => {
   })
 
   it('renders the correct editor file content in a single block', () => {
-    const {getByTestId} = render(
-      <IDE alternativeText={mockAltText}>
+    const {getAllByTestId} = render(
+      <IDE>
         <IDE.Editor size="large" activeTab={0} files={files} />
       </IDE>,
     )
 
-    const editorContent = getByTestId(IDE.testIds.editorContent)
+    const editorContent = getAllByTestId(IDE.testIds.editorContent)[0]
 
     // check direct child is a single <pre>
     expect(editorContent.children.length).toBe(1)
@@ -168,7 +153,7 @@ describe('IDE', () => {
     ]
 
     const {getByTestId} = render(
-      <IDE alternativeText={mockAltText}>
+      <IDE>
         <IDE.Editor size="large" activeTab={0} files={mockFileData} />
       </IDE>,
     )
@@ -183,55 +168,55 @@ describe('IDE', () => {
   })
 
   it('changes the editor content when clicking on tabs', () => {
-    const mockFiles = [
-      {name: 'File 1', code: 'Code for File 1'},
-      {name: 'File 2', code: 'Code for File 2'},
-      {name: 'File 3', code: 'Code for File 3'},
+    const mockFiles: IDEEditorFile[] = [
+      {name: 'File 1', alternativeText: 'Alt for File 1', code: 'Code for File 1'},
+      {name: 'File 2', alternativeText: 'Alt for File 2', code: 'Code for File 2'},
+      {name: 'File 3', alternativeText: 'Alt for File 3', code: 'Code for File 3'},
     ]
 
-    const {getByTestId} = render(
-      <IDE alternativeText={mockAltText}>
+    const {getByRole} = render(
+      <IDE>
         <IDE.Editor size="large" activeTab={0} files={mockFiles} />
       </IDE>,
     )
 
-    const editorContent = getByTestId(IDE.testIds.editorContent)
-    const tabsEl = getByTestId(IDE.testIds.editorTabs)
+    expect(getByRole('tabpanel')).toHaveTextContent('Alt for File 1')
 
-    // Click on the next tab
-    fireEvent.click(tabsEl.children[1])
+    userEvent.click(getByRole('tab', {name: 'File 2'}))
 
-    //
-    expect(editorContent.children[0].textContent).toBe(files[1].code)
+    expect(getByRole('tabpanel')).toHaveTextContent('Alt for File 2')
   })
 
   it('shows copilot suggestion when suggestedLineStart is used', () => {
-    const codeAsArr = `First line\nSecond line\nThird line\nFourth line\nFifth line`.split('\n').map(line => line)
-    const mockFiles = [
+    const codeAsArr = ['First line', 'Second line', 'Third line', 'Fourth line', 'Fifth line']
+    const mockFiles: IDEEditorFile[] = [
       {
         name: 'File 1',
+        alternativeText: 'Alt for File 1',
         code: codeAsArr,
         suggestedLineStart: 2,
       },
       {
         name: 'File 2',
+        alternativeText: 'Alt for File 2',
         code: codeAsArr,
         suggestedLineStart: 2,
       },
       {
         name: 'File 3',
+        alternativeText: 'Alt for File 3',
         code: codeAsArr,
         suggestedLineStart: 2,
       },
     ]
 
-    const {getByTestId} = render(
-      <IDE alternativeText={mockAltText}>
+    const {getAllByTestId} = render(
+      <IDE>
         <IDE.Editor size="large" activeTab={0} files={mockFiles} />
       </IDE>,
     )
 
-    const editorContent = getByTestId(IDE.testIds.editorContent)
+    const editorContent = getAllByTestId(IDE.testIds.editorContent)[0]
 
     expect(editorContent.children.length).toBe(codeAsArr.length + 1) // to account for additional copilot <pre>
     expect(editorContent.children[0].tagName).toBe('PRE')
