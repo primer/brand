@@ -38,7 +38,9 @@
   margin-top: var(--base-size-24);
 }
 
-.River__text strong {
+.River__text strong,
+.River__text b {
+  font-weight: var(--base-text-weight-semibold);
   color: var(--brand-color-text-default);
 }
 

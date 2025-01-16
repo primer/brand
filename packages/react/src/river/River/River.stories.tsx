@@ -73,7 +73,7 @@ export const Copilot: StoryFn<typeof River> = args => (
         <PlaceholderImage />
       </River.Visual>
       <River.Content>
-        <Text variant="default">
+        <Text size="300">
           <strong> Convert comments to code.</strong> Write a comment describing the logic you want, and let GitHub
           Copilot assemble the code for you.
         </Text>
@@ -84,7 +84,7 @@ export const Copilot: StoryFn<typeof River> = args => (
         <PlaceholderImage />
       </River.Visual>
       <River.Content>
-        <Text variant="default">
+        <Text size="300">
           <strong>Autofill for repetitive code.</strong> GitHub Copilot works great for quickly producing boilerplate
           and repetitive code patterns. Feed it a few examples and let it generate the rest!
         </Text>
