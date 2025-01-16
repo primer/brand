@@ -71,8 +71,8 @@ module.exports = {
       },
       borderColor: {
         rest: {
-          value: 'var(--brand-color-border-default)',
-          dark: 'var(--brand-color-border-default)',
+          value: 'var(--brand-color-text-default)',
+          dark: 'var(--brand-color-text-default)',
         },
         hover: {
           value: 'var(--base-color-scale-gray-9)',

@@ -114,6 +114,10 @@
   border-color: var(--brand-button-secondary-borderColor-active);
 }
 
+.Button--secondary:disabled {
+  border-color: var(--brand-button-secondary-fgColor-disabled);
+}
+
 .Button--secondary:disabled .Button-arrow--disabled,
 .Button--secondary[aria-disabled='true'] .Button-arrow--disabled,
 .Button--secondary.Button--disabled .Button-arrow--disabled,
