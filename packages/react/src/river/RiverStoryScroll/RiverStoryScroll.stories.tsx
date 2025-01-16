@@ -2,7 +2,7 @@ import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 
 import {RiverStoryScroll} from '.'
-import {Heading, Text, Link, River, Box} from '../..'
+import {Text, Link, River, Box} from '../..'
 import {Container} from '../../component-helpers'
 
 export default {
