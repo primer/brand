@@ -51,6 +51,13 @@ test.describe('Visual Comparison: River', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('River / Duo Tone', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-river-features--duo-tone&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('River / 60:40 image ratio', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-river-features--column-ratio-6040&viewMode=story',

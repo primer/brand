@@ -62,6 +62,21 @@ export const Center: StoryFn<typeof River> = () => (
   </River>
 )
 
+export const DuoTone: StoryFn<typeof River> = () => (
+  <River>
+    <River.Visual>
+      <PlaceholderImage />
+    </River.Visual>
+    <River.Content>
+      <Text size="300">
+        <b>This first sentence is highlighted</b> and here is where the body copy starts. Remember to keep this nice and
+        succinct.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </River.Content>
+  </River>
+)
+
 export const ColumnRatio6040: StoryFn<typeof River> = () => (
   <Container>
     <River imageTextRatio="60:40">

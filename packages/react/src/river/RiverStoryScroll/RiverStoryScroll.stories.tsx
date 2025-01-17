@@ -2,7 +2,7 @@ import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 
 import {RiverStoryScroll} from '.'
-import {Heading, Text, Link, River, Box} from '../..'
+import {Text, Link, River, Box} from '../..'
 import {Container} from '../../component-helpers'
 
 export default {
@@ -22,10 +22,9 @@ const Template: StoryFn<typeof RiverStoryScroll> = args => (
             />
           </River.Visual>
           <River.Content>
-            <Heading>Heading 1</Heading>
-            <Text>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-              turpis felis nam pulvinar risus elementum.
+            <Text size="300">
+              <b>This first sentence is highlighted</b> and here is where the body copy starts. Remember to keep this
+              nice and succinct.
             </Text>
             <Link href="#">Call to action</Link>
           </River.Content>
@@ -38,10 +37,9 @@ const Template: StoryFn<typeof RiverStoryScroll> = args => (
             />
           </River.Visual>
           <River.Content>
-            <Heading>Heading 2</Heading>
-            <Text>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-              turpis felis nam pulvinar risus elementum.
+            <Text size="300">
+              <b>This first sentence is highlighted</b> and here is where the body copy starts. Remember to keep this
+              nice and succinct.
             </Text>
             <Link href="#">Call to action</Link>
           </River.Content>
@@ -54,10 +52,9 @@ const Template: StoryFn<typeof RiverStoryScroll> = args => (
             />
           </River.Visual>
           <River.Content>
-            <Heading>Heading 3 </Heading>
-            <Text>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-              turpis felis nam pulvinar risus elementum.
+            <Text size="300">
+              <b>This first sentence is highlighted</b> and here is where the body copy starts. Remember to keep this
+              nice and succinct.
             </Text>
             <Link href="#">Call to action</Link>
           </River.Content>
@@ -70,10 +67,9 @@ const Template: StoryFn<typeof RiverStoryScroll> = args => (
             />
           </River.Visual>
           <River.Content>
-            <Heading>Heading 4</Heading>
-            <Text>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-              turpis felis nam pulvinar risus elementum.
+            <Text size="300">
+              <b>This first sentence is highlighted</b> and here is where the body copy starts. Remember to keep this
+              nice and succinct.
             </Text>
             <Link href="#">Call to action</Link>
           </River.Content>
