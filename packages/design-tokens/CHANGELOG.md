@@ -1,5 +1,48 @@
 # @primer/brand-primitives
 
+## 0.46.0
+
+### Minor Changes
+
+- [#893](https://github.com/primer/brand/pull/893) [`d3c1ee2a`](https://github.com/primer/brand/commit/d3c1ee2a5fb3d35b9d34d4d11a920cbd8ae7183e) Thanks [@rezrah](https://github.com/rezrah)! - Updated secondary `Button` variant borders from `subtle` to `default` color for improved contrast.
+
+### Patch Changes
+
+- [#883](https://github.com/primer/brand/pull/883) [`965a7865`](https://github.com/primer/brand/commit/965a7865f8f2aa4fd5c6a150ae58bf72c0a457c9) Thanks [@rezrah](https://github.com/rezrah)! - Added new token for river breakout vertical spacing:
+
+  ```
+  --brand-River-spacing-innerY
+  ```
+
+- [#879](https://github.com/primer/brand/pull/879) [`4f92311f`](https://github.com/primer/brand/commit/4f92311fbae6f6738b12113d0125608bc3d2faa8) Thanks [@rezrah](https://github.com/rezrah)! - Added new accordion toggle color variables
+
+  ```
+  --brand-Accordion-toggle-color-default;
+  --brand-Accordion-toggle-color-blue;
+  --brand-Accordion-toggle-color-blue-purple-start;
+  --brand-Accordion-toggle-color-blue-purple-end;
+  --brand-Accordion-toggle-color-coral;
+  --brand-Accordion-toggle-color-green;
+  --brand-Accordion-toggle-color-green-blue-start;
+  --brand-Accordion-toggle-color-green-blue-end;
+  --brand-Accordion-toggle-color-gray;
+  --brand-Accordion-toggle-color-indigo;
+  --brand-Accordion-toggle-color-lemon;
+  --brand-Accordion-toggle-color-lime;
+  --brand-Accordion-toggle-color-orange;
+  --brand-Accordion-toggle-color-pink;
+  --brand-Accordion-toggle-color-pink-blue-start;
+  --brand-Accordion-toggle-color-pink-blue-end;
+  --brand-Accordion-toggle-color-purple;
+  --brand-Accordion-toggle-color-purple-red-start;
+  --brand-Accordion-toggle-color-purple-red-end;
+  --brand-Accordion-toggle-color-red;
+  --brand-Accordion-toggle-color-red-orange-start;
+  --brand-Accordion-toggle-color-red-orange-end;
+  --brand-Accordion-toggle-color-teal;
+  --brand-Accordion-toggle-color-yellow;
+  ```
+
 ## 0.45.1
 
 ## 0.45.0
