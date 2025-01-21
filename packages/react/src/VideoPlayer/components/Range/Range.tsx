@@ -10,7 +10,7 @@ export type RangeProps = {
   tooltipFormatter?: (value: number) => string
   max?: number
   a11yStep?: number
-  name: string
+  name?: string
 } & React.HTMLProps<HTMLInputElement>
 
 export const Range = ({
