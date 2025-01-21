@@ -139,10 +139,10 @@ describe('EyebrowBanner', () => {
       </EyebrowBanner>,
     )
 
-    userEvent.hover(getByTestId(EyebrowBanner.testIds.root))
+    await userEvent.hover(getByTestId(EyebrowBanner.testIds.root))
     expect(getByTestId(EyebrowBanner.testIds.expandableArrow).classList).toContain(expectedClass)
 
-    userEvent.unhover(getByTestId(EyebrowBanner.testIds.root))
+    await userEvent.unhover(getByTestId(EyebrowBanner.testIds.root))
     expect(getByTestId(EyebrowBanner.testIds.expandableArrow).classList).not.toContain(expectedClass)
   })
 
@@ -156,12 +156,11 @@ describe('EyebrowBanner', () => {
     )
 
     const rootEl = getByTestId(EyebrowBanner.testIds.root)
-    rootEl.focus()
+    await userEvent.tab()
 
     expect(getByTestId(EyebrowBanner.testIds.expandableArrow).classList).toContain(expectedClass)
 
-    // eslint-disable-next-line github/no-blur
-    rootEl.blur()
+    await userEvent.click(document.body)
     expect(getByTestId(EyebrowBanner.testIds.expandableArrow).classList).not.toContain(expectedClass)
   })
 })

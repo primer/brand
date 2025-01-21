@@ -1,6 +1,6 @@
 import React, {forwardRef, useMemo} from 'react'
 import clsx from 'clsx'
-import {useId} from '@reach/auto-id'
+import {useId} from '../../hooks/useId'
 
 import type {BaseProps} from '../../component-helpers'
 import type {FormInputSizes, FormValidationStatus} from '../form-types'
@@ -144,26 +144,17 @@ const _TextInput = (
       )}
       {showLeadingVisual && (
         <span className={clsx(styles['TextInput-leading-visual'], styles[`TextInput-leading-visual--${size}`])}>
-          {typeof LeadingVisual === 'function' ? (
-            <LeadingVisual
-              className={clsx(
-                styles['TextInput-leading-visual-icon'],
-                styles[`TextInput-leading-visual-icon--${size}`],
-              )}
-              id={leadingVisualId}
-            />
-          ) : (
-            React.isValidElement(LeadingVisual) &&
-            React.cloneElement(LeadingVisual as React.ReactElement, {
-              className: clsx(
-                styles['TextInput-leading-visual-icon'],
-                styles[`TextInput-leading-visual-icon--${size}`],
-              ),
-              width: size === 'large' ? 20 : 16,
-              height: size === 'large' ? 20 : 16,
-              id: leadingVisualId,
-            })
-          )}
+          {LeadingVisual && React.isValidElement(LeadingVisual)
+            ? React.cloneElement(LeadingVisual as React.ReactElement, {
+                className: clsx(
+                  styles['TextInput-leading-visual-icon'],
+                  styles[`TextInput-leading-visual-icon--${size}`],
+                ),
+                width: size === 'large' ? 20 : 16,
+                height: size === 'large' ? 20 : 16,
+                id: leadingVisualId,
+              })
+            : null}
         </span>
       )}
       <input
@@ -189,25 +180,17 @@ const _TextInput = (
       />
       {showTrailingVisual && (
         <span className={clsx(styles['TextInput-trailing-visual'], styles[`TextInput-trailing-visual--${size}`])}>
-          {typeof TrailingVisual === 'function' ? (
-            <TrailingVisual
-              className={clsx(
-                styles['TextInput-trailing-visual-icon'],
-                styles[`TextInput-trailing-visual-icon--${size}`],
-              )}
-              id={trailingVisualId}
-            />
-          ) : TrailingVisual && React.isValidElement(TrailingVisual) ? (
-            React.cloneElement(TrailingVisual as React.ReactElement, {
-              className: clsx(
-                styles['TextInput-trailing-visual-icon'],
-                styles[`TextInput-trailing-visual-icon--${size}`],
-              ),
-              width: size === 'large' ? 20 : 16,
-              height: size === 'large' ? 20 : 16,
-              id: trailingVisualId,
-            })
-          ) : null}
+          {TrailingVisual && React.isValidElement(TrailingVisual)
+            ? React.cloneElement(TrailingVisual as React.ReactElement, {
+                className: clsx(
+                  styles['TextInput-trailing-visual-icon'],
+                  styles[`TextInput-trailing-visual-icon--${size}`],
+                ),
+                width: size === 'large' ? 20 : 16,
+                height: size === 'large' ? 20 : 16,
+                id: trailingVisualId,
+              })
+            : null}
         </span>
       )}
       {showTrailingText && (

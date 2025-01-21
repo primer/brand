@@ -1,6 +1,6 @@
 import React, {useState, useEffect, DOMAttributes, useRef} from 'react'
 import clsx from 'clsx'
-import {useId} from '@reach/auto-id'
+import {useId} from '../../../hooks/useId'
 
 import {VideoTooltip} from '../'
 import styles from '../../VideoPlayer.module.css'
@@ -10,6 +10,7 @@ export type RangeProps = {
   tooltipFormatter?: (value: number) => string
   max?: number
   a11yStep?: number
+  name: string
 } & React.HTMLProps<HTMLInputElement>
 
 export const Range = ({
@@ -79,26 +80,26 @@ export const Range = ({
       <progress aria-hidden="true" className={styles.VideoPlayer__rangeProgress} value={value} max={max} />
       <label htmlFor={inputId}>
         <span className="visually-hidden">{name}</span>
-        <input
-          tabIndex={0}
-          type="range"
-          className={clsx(styles.VideoPlayer__rangeInput, styles.VideoPlayer__progressBar)}
-          value={value}
-          onChange={e => {
-            setValue(e.currentTarget.valueAsNumber)
-            onChange(e)
-          }}
-          max={max}
-          onKeyDown={e => {
-            handleKeyDown(e)
-            onKeyDown(e)
-          }}
-          id={inputId}
-          name={name}
-          ref={inputRef}
-          {...props}
-        />
       </label>
+      <input
+        tabIndex={0}
+        type="range"
+        className={clsx(styles.VideoPlayer__rangeInput, styles.VideoPlayer__progressBar)}
+        value={value}
+        onChange={e => {
+          setValue(e.currentTarget.valueAsNumber)
+          onChange(e)
+        }}
+        max={max}
+        onKeyDown={e => {
+          handleKeyDown(e)
+          onKeyDown(e)
+        }}
+        id={inputId}
+        name={name}
+        ref={inputRef}
+        {...props}
+      />
       {tooltip && hoverValue ? (
         <VideoTooltip style={{left: mousePos}}>{tooltipFormatter(hoverValue)}</VideoTooltip>
       ) : null}

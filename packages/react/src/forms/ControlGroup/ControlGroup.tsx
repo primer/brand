@@ -1,7 +1,7 @@
 import React, {Children, createContext, forwardRef, isValidElement, useContext, type HTMLAttributes} from 'react'
 import clsx from 'clsx'
 import {AlertFillIcon, CheckCircleFillIcon} from '@primer/octicons-react'
-import {useId} from '@reach/auto-id'
+import {useId} from '../../hooks/useId'
 
 import type {FormValidationStatus} from '..'
 import {Text} from '../..'

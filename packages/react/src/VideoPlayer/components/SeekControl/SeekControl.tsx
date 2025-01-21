@@ -37,7 +37,7 @@ export const SeekControl = ({className, ...rest}: SeekControlProps) => {
   const seek = useCallback(
     (e: FormEvent<HTMLInputElement>) => {
       const time = e.currentTarget.valueAsNumber
-      if (ref.current) {
+      if (ref?.current) {
         ref.current.currentTime = time
       }
     },
@@ -45,7 +45,7 @@ export const SeekControl = ({className, ...rest}: SeekControlProps) => {
   )
 
   useEffect(() => {
-    const videoRef = ref.current
+    const videoRef = ref?.current
     if (!videoRef) return
 
     const onTimeUpdate = () => {

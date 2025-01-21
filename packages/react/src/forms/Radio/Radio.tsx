@@ -1,6 +1,6 @@
 import React, {forwardRef, InputHTMLAttributes, ReactElement, RefObject, useRef} from 'react'
 import clsx from 'clsx'
-import {useId} from '@reach/auto-id' // TODO: Replace with useId from React v18 after upgrade
+import {useId} from '../../hooks/useId'
 
 import type {BaseProps} from '../../component-helpers'
 

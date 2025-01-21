@@ -85,22 +85,22 @@ describe('SubNav', () => {
     expect(overlayEl).not.toHaveClass('SubNav__links-overlay--open')
     expect(buttonEl).toHaveAttribute('aria-expanded', 'false')
 
-    userEvent.click(buttonEl)
+    await userEvent.click(buttonEl)
 
     expect(overlayEl).toHaveClass('SubNav__links-overlay--open')
     expect(buttonEl).toHaveAttribute('aria-expanded', 'true')
   })
 
-  it('closes the overlay when button is pressed again', () => {
+  it('closes the overlay when button is pressed again', async () => {
     const {getByRole} = render(<MockSubNavFixture />)
 
     const buttonEl = getByRole('button', {name: 'Navigation menu. Current page: page three'})
     const overlayEl = getByRole('list')
 
-    userEvent.click(buttonEl)
+    await userEvent.click(buttonEl)
     expect(overlayEl).toHaveClass('SubNav__links-overlay--open')
 
-    userEvent.click(buttonEl)
+    await userEvent.click(buttonEl)
     expect(overlayEl).not.toHaveClass('SubNav__links-overlay--open')
   })
 
@@ -144,30 +144,30 @@ describe('SubNav', () => {
       </SubNav>,
     )
 
-    userEvent.tab()
+    await userEvent.tab()
 
     expect(getByRole('link', {name: 'Copilot'})).toHaveFocus()
 
     const toggleSubmenuButton = getByRole('button', {name: 'Open submenu'})
     expect(toggleSubmenuButton).toHaveAttribute('aria-expanded', 'false')
 
-    userEvent.tab()
+    await userEvent.tab()
     expect(toggleSubmenuButton).toHaveFocus()
 
-    userEvent.keyboard('{enter}')
+    await userEvent.keyboard('{enter}')
     expect(toggleSubmenuButton).toHaveFocus()
     expect(toggleSubmenuButton).toHaveAttribute('aria-expanded', 'true')
 
-    userEvent.tab()
+    await userEvent.tab()
     expect(getByRole('link', {name: 'Copilot feature page one'})).toHaveFocus()
 
-    userEvent.tab()
+    await userEvent.tab()
     expect(getByRole('link', {name: 'Copilot feature page two'})).toHaveFocus()
 
-    userEvent.tab()
+    await userEvent.tab()
     expect(getByRole('link', {name: 'Copilot feature page three'})).toHaveFocus()
 
-    userEvent.tab()
+    await userEvent.tab()
     expect(getByRole('link', {name: 'Code review'})).toHaveFocus()
 
     expect(toggleSubmenuButton).toHaveAttribute('aria-expanded', 'false')

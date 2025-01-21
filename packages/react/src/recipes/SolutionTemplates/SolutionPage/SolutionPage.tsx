@@ -60,13 +60,34 @@ type SolutionPageProps = {
   gridOverlay?: boolean
   colorMode?: ColorModesEnum.LIGHT | ColorModesEnum.DARK
 
+  heroImage?: boolean
+  heroVideo?: boolean
   heroLabel: string
   heroTitle: string
   heroDescription: string
   heroCtaTextPrimary: string
   heroCtaTextSecondary: string
 
+  sectionIntroText?: string
+  sectionIntroCTAText?: string
+
   introVariant: 'pillars' | 'editorial list'
+
+  logoBarVisible?: boolean
+
+  jtbd1Visible?: boolean
+  jtbd2Visible?: boolean
+  jtbd3Visible?: boolean
+  jtbdBentosVisible?: boolean
+
+  testimonialsVisible?: boolean
+  pricingOptionsVisible?: boolean
+  statisticsVisible?: boolean
+  breakoutBannerVisible?: boolean
+  customerStoryVisible?: boolean
+  riverVisible?: boolean
+  faqVisible?: boolean
+  breadcrumbsVisible?: boolean
 
   [key: string]: unknown
 }

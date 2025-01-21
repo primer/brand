@@ -1,5 +1,5 @@
 import React, {type ReactElement} from 'react'
-import {useId} from '@reach/auto-id'
+import {useId} from '../hooks/useId'
 import clsx from 'clsx'
 
 import {FAQSubheadingProps, FAQRootProps, FAQ} from './'

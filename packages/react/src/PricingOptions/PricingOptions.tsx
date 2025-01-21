@@ -58,7 +58,7 @@ const PricingOptionsContext = React.createContext<PricingOptionsContextValue>({
   updateFeatureListExpanded: () => {},
 })
 
-const PricingOptionsProvider: React.FC = ({children}) => {
+const PricingOptionsProvider = ({children}) => {
   const [allFeatureListsExpanded, setAllFeatureListsExpanded] = React.useState(false)
 
   const updateFeatureListExpanded = newValue => {

@@ -1,6 +1,6 @@
 import React, {Children, useEffect, useRef, useState} from 'react'
 import clsx from 'clsx'
-import {useId} from '@reach/auto-id'
+import {useId} from '../hooks/useId'
 import {getAnchoredPosition} from '@primer/behaviors'
 import type {AnchorSide, AnchorAlignment} from '@primer/behaviors'
 // @oddbird/popover-polyfill/fn import is mysteriously failing in eslint despite resolving correctly in the build
