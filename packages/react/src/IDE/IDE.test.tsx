@@ -39,7 +39,14 @@ describe('IDE', () => {
     {name: 'File 3', alternativeText: 'Alt for File 3', code: 'Code for File 3'},
   ]
 
-  afterEach(cleanup)
+  beforeEach(() => {
+    Element.prototype.scrollIntoView = jest.fn()
+  })
+
+  afterEach(() => {
+    cleanup()
+    jest.clearAllMocks()
+  })
 
   it('renders main elements correctly into the document', () => {
     const {getByTestId} = render(
