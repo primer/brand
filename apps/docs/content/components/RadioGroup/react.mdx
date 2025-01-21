@@ -109,7 +109,13 @@ When space is limited, radio inputs can be arranged horizontally using the [Stac
   <CheckboxGroup.Caption>
     Some inline radio inputs with a visually hidden label
   </CheckboxGroup.Caption>
-  <Stack direction="horizontal" gap="normal" padding="none" flexWrap="wrap">
+  <Stack
+    direction="horizontal"
+    gap="normal"
+    padding="none"
+    flexWrap="wrap"
+    style={{rowGap: 'var(--base-size-8)'}}
+  >
     <FormControl>
       <FormControl.Label>Last 7 days</FormControl.Label>
       <Radio name="period" value="week" />

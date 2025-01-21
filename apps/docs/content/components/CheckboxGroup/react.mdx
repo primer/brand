@@ -133,7 +133,13 @@ When space is limited, checkboxes can be arranged horizontally using the [Stack]
   <CheckboxGroup.Caption>
     Some inline checkboxes with a visually hidden label
   </CheckboxGroup.Caption>
-  <Stack direction="horizontal" gap="normal" padding="none" flexWrap="wrap">
+  <Stack
+    direction="horizontal"
+    gap="normal"
+    padding="none"
+    flexWrap="wrap"
+    style={{rowGap: 'var(--base-size-8)'}}
+  >
     <FormControl>
       <FormControl.Label>Choice one</FormControl.Label>
       <Checkbox value="one" />

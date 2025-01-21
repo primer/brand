@@ -23,7 +23,13 @@ export const Inline: Story = {
         <CheckboxGroup.Label visuallyHidden={labelVisuallyHidden}>{labelChildren}</CheckboxGroup.Label>
         {captionChildren ? <CheckboxGroup.Caption>{captionChildren}</CheckboxGroup.Caption> : null}
 
-        <Stack direction="horizontal" gap="normal" padding="none" flexWrap="wrap">
+        <Stack
+          direction="horizontal"
+          gap="normal"
+          padding="none"
+          flexWrap="wrap"
+          style={{rowGap: 'var(--base-size-8)'}}
+        >
           <FormControl>
             <FormControl.Label>Choice one</FormControl.Label>
             <Checkbox value="one" defaultChecked />
