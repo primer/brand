@@ -155,7 +155,6 @@ describe('EyebrowBanner', () => {
       </EyebrowBanner>,
     )
 
-    const rootEl = getByTestId(EyebrowBanner.testIds.root)
     await userEvent.tab()
 
     expect(getByTestId(EyebrowBanner.testIds.expandableArrow).classList).toContain(expectedClass)
