@@ -1,4 +1,5 @@
 .IDE__inner {
+  --brand-IDE-lineNumber-width: 45px;
   background: var(--brand-IDE-default-bgColor);
   border: var(--brand-borderWidth-thin) solid var(--brand-IDE-borderColor);
 }
@@ -170,7 +171,7 @@
 }
 
 .IDE--default .IDE__Editor {
-  margin-left: var(--base-size-20);
+  padding-left: var(--base-size-20);
 }
 
 .IDE__Editor-tabs {
@@ -262,6 +263,7 @@ img.IDE__Editor-tab-icon {
 .IDE__Editor-content {
   height: 100%;
   padding-top: var(--base-size-16);
+  overflow-x: auto;
 }
 
 .IDE--default .IDE__Editor-content {
@@ -279,6 +281,14 @@ img.IDE__Editor-tab-icon {
 
 .IDE__Editor-pane {
   margin: 0;
+}
+
+.IDE__Editor-content-wrapper {
+  display: flex;
+}
+
+.IDE__Editor-content-inner {
+  flex: 1;
 }
 
 .IDE__Editor--small .IDE__Editor-pane,
@@ -300,18 +310,19 @@ img.IDE__Editor-tab-icon {
 }
 
 .IDE__Editor-pane--suggested {
+  margin-left: calc(-1 * var(--base-size-64));
+  padding-left: calc((var(--base-size-64) * 2) - var(--brand-IDE-lineNumber-width)) !important;
   background-color: var(--brand-IDE-autoSuggestLine-bgColor);
 }
 
 .IDE__Editor-lineNumbers {
-  position: absolute;
   z-index: 1;
   font-family: var(--brand-fontStack-monospace);
   font-weight: var(--brand-text-weight-200);
   font-feature-settings: 'liga' 0, 'calt' 0;
   font-variation-settings: normal;
   letter-spacing: 0;
-  width: 45px;
+  flex: 0 0 var(--brand-IDE-lineNumber-width);
 }
 
 .IDE__Editor-lineNumber {
@@ -341,20 +352,17 @@ img.IDE__Editor-tab-icon {
 .IDE__Editor pre {
   color: var(--brand-color-text-default);
   font-family: var(--brand-fontStack-monospace);
-  padding-left: var(--base-size-64);
+  padding-left: calc(var(--base-size-64) - var(--brand-IDE-lineNumber-width));
 }
 
 pre.IDE__Chat-copilot-indicator {
   background-color: var(--brand-IDE-autoSuggest-bgColor);
   padding-left: 0;
-  position: absolute;
   display: inline-flex;
   padding: var(--base-size-8) var(--base-size-24);
   border-radius: var(--brand-borderRadius-small);
   gap: var(--base-size-16);
-  margin: 0;
-  margin-left: 60px;
-  margin-top: var(--base-size-4);
+  margin: var(--base-size-4) 0 0 var(--base-size-16);
 
   box-shadow: -9px 10px 39px 0px rgba(0, 0, 0, 0.25);
 }

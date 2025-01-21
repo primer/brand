@@ -422,6 +422,7 @@ const _Editor = memo(
         <div
           className={clsx(styles.IDE__Editor, styles[`IDE__Editor--${size}`])}
           ref={ref}
+          data-hello="world"
           data-testid={testId || testIds.editor}
           {...rest}
         >
@@ -454,7 +455,7 @@ const _Editor = memo(
             {files.map((file, fileIndex) => (
               <div {...tabs.getTabPanelProps(fileIndex.toString())} key={file.name}>
                 <span className="visually-hidden">{file.alternativeText}</span>
-                <div aria-hidden="true">
+                <div className={styles['IDE__Editor-content-wrapper']} aria-hidden="true">
                   {showLineNumbers && (
                     <div className={styles['IDE__Editor-lineNumbers']}>
                       {(Array.isArray(file.code) ? file.code : file.code.split('\n')).map((_, index) => (
@@ -467,6 +468,7 @@ const _Editor = memo(
                   <div
                     ref={tabs.activeTab === fileIndex.toString() ? presRef : null}
                     data-testid={testIds.editorContent}
+                    className={styles['IDE__Editor-content-inner']}
                   >
                     {Array.isArray(file.code) ? (
                       (file.code as string[]).map((line, index) => {
