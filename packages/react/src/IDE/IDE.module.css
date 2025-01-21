@@ -175,6 +175,7 @@
 }
 
 .IDE__Editor-tabs {
+  overflow-x: auto;
   display: inline-flex;
   background: var(--brand-IDE-default-editor-tabs-bgColor);
 }
@@ -188,6 +189,7 @@
 }
 
 .IDE__Editor-tab {
+  flex-shrink: 0;
   display: flex;
   padding: var(--base-size-8) var(--base-size-12);
   align-items: center;
