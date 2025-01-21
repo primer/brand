@@ -16,7 +16,7 @@ import React, {
 
 import {Avatar, Button, Text, TextInput} from '..'
 import type {BaseProps} from '../component-helpers'
-import {useTabs} from '../hooks/useTabs'
+import {useTabs, type OnTabActivate} from '../hooks/useTabs'
 
 /**
  * Design tokens
@@ -404,9 +404,13 @@ const _Editor = memo(
         setTimeouts(prev => [...prev, animationEndTimeout])
       }, [hasAnimated, isAnimating])
 
-      const onTabActivate = useCallback(() => {
-        resetAnimation()
-      }, [resetAnimation])
+      const onTabActivate = useCallback<OnTabActivate>(
+        (_, activeTabRef) => {
+          activeTabRef?.scrollIntoView({behavior: 'smooth'})
+          resetAnimation()
+        },
+        [resetAnimation],
+      )
 
       const tabs = useTabs({
         defaultTab: activeTab.toString(),
