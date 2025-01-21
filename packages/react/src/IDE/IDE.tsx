@@ -406,7 +406,7 @@ const _Editor = memo(
 
       const onTabActivate = useCallback<OnTabActivate>(
         (_, activeTabRef) => {
-          activeTabRef?.scrollIntoView({behavior: 'smooth'})
+          activeTabRef?.scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'start'})
           resetAnimation()
         },
         [resetAnimation],
