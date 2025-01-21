@@ -80,26 +80,27 @@ export const Range = ({
       <progress aria-hidden="true" className={styles.VideoPlayer__rangeProgress} value={value} max={max} />
       <label htmlFor={inputId}>
         <span className="visually-hidden">{name}</span>
+        <input
+          tabIndex={0}
+          type="range"
+          className={clsx(styles.VideoPlayer__rangeInput, styles.VideoPlayer__progressBar)}
+          value={value}
+          onChange={e => {
+            setValue(e.currentTarget.valueAsNumber)
+            onChange(e)
+          }}
+          max={max}
+          onKeyDown={e => {
+            handleKeyDown(e)
+            onKeyDown(e)
+          }}
+          id={inputId}
+          name={name}
+          ref={inputRef}
+          {...props}
+        />
       </label>
-      <input
-        tabIndex={0}
-        type="range"
-        className={clsx(styles.VideoPlayer__rangeInput, styles.VideoPlayer__progressBar)}
-        value={value}
-        onChange={e => {
-          setValue(e.currentTarget.valueAsNumber)
-          onChange(e)
-        }}
-        max={max}
-        onKeyDown={e => {
-          handleKeyDown(e)
-          onKeyDown(e)
-        }}
-        id={inputId}
-        name={name}
-        ref={inputRef}
-        {...props}
-      />
+
       {tooltip && hoverValue ? (
         <VideoTooltip style={{left: mousePos}}>{tooltipFormatter(hoverValue)}</VideoTooltip>
       ) : null}

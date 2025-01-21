@@ -79,6 +79,8 @@
     "webpack-cli": "^4.10.0"
   },
   "peerDependencies": {
+    "@types/react": ">=18 <20",
+    "@types/react-dom": ">=18 <20",
     "react": ">=18 <20",
     "react-dom": ">=18 <20"
   },
