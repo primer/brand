@@ -47,9 +47,9 @@
     "clsx": "^1.2.1"
   },
   "devDependencies": {
-    "@figma/code-connect": "^1.0.5",
+    "@figma/code-connect": "1.2.4",
     "@juggle/resize-observer": "^3.4.0",
-    "@primer/octicons-react": "^19.8.0",
+    "@primer/octicons-react": "19.14.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "6.6.3",
     "@testing-library/react": "16.2.0",
@@ -61,7 +61,7 @@
     "@types/webpack": "^5.28.1",
     "autoprefixer": "^9.8.8",
     "axe-playwright": "^1.2.3",
-    "color2k": "^2.0.2",
+    "color2k": "2.0.3",
     "css-loader": "^6.7.4",
     "identity-obj-proxy": "^3.0.0",
     "jest-axe": "9.0.0",
