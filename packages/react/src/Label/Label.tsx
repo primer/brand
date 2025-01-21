@@ -14,6 +14,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './Label.module.css'
+import {Icon} from '@primer/octicons-react'
 
 export const LabelColors = [...Colors, ...Gradients] as const
 export const LabelSizes = ['medium', 'large'] as const
@@ -25,7 +26,7 @@ export type LabelProps = BaseProps<HTMLSpanElement> & {
   /**
    * The leading visual appears before the Label content
    */
-  leadingVisual?: React.ReactNode
+  leadingVisual?: React.ReactNode | Icon
   /**
    * The color variations available in Label
    */

@@ -7,8 +7,9 @@ import type {FormInputSizes, FormValidationStatus} from '../form-types'
 import {Text} from '../../Text'
 
 import styles from './TextInput.module.css'
+import {Icon} from '@primer/octicons-react'
 
-type VisualType = React.ReactElement | React.ReactNode
+type VisualType = React.ReactElement | React.ReactNode | Icon
 
 export type TextInputProps = {
   /**
