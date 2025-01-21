@@ -426,7 +426,6 @@ const _Editor = memo(
         <div
           className={clsx(styles.IDE__Editor, styles[`IDE__Editor--${size}`])}
           ref={ref}
-          data-hello="world"
           data-testid={testId || testIds.editor}
           {...rest}
         >
