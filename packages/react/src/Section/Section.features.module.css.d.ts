@@ -1,6 +1,6 @@
 declare const styles: {
-  readonly "paddingItem": string;
   readonly "paddingInnerItem": string;
+  readonly "paddingItem": string;
 };
 export = styles;
 
