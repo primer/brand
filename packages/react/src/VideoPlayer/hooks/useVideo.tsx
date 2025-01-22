@@ -12,7 +12,7 @@ import {useProvidedRefOrCreate} from '../../hooks/useRef'
 import {useIsElementFullScreen} from './useIsElementFullScreen'
 
 type VideoState = {
-  ref: RefObject<HTMLVideoElement>
+  ref?: RefObject<HTMLVideoElement>
   isPlaying: boolean
   isMuted: boolean
   volume: number
@@ -54,7 +54,7 @@ type Action =
 export const VideoContext = createContext<UseVideoContext | null>(null)
 
 const videoReducer = (state: VideoState, action: Action): VideoState => {
-  const video = state.ref.current
+  const video = state.ref?.current
 
   if (!video) {
     // eslint-disable-next-line no-console
@@ -110,7 +110,7 @@ export const useVideo = () => {
   return context
 }
 
-type VideoProviderProps = PropsWithChildren<Record<string, unknown>>
+type VideoProviderProps = PropsWithChildren
 
 export const VideoProvider = forwardRef<HTMLVideoElement, VideoProviderProps>(({children}, forwardedRef) => {
   const ref = useProvidedRefOrCreate(forwardedRef as RefObject<HTMLVideoElement>)
@@ -153,13 +153,13 @@ export const VideoProvider = forwardRef<HTMLVideoElement, VideoProviderProps>(({
     setDuration: (duration: number) => dispatch({type: 'setDuration', payload: duration}),
 
     seekToPercent: percent => {
-      const videoRef = state.ref.current
+      const videoRef = state.ref?.current
       if (!videoRef) return
 
       videoRef.currentTime = (percent / 100) * videoRef.duration
     },
     seek: secondsValOrFn => {
-      const videoRef = state.ref.current
+      const videoRef = state.ref?.current
       if (!videoRef) return
 
       videoRef.currentTime =
@@ -168,7 +168,7 @@ export const VideoProvider = forwardRef<HTMLVideoElement, VideoProviderProps>(({
   }
 
   useEffect(() => {
-    const videoRef = state.ref.current
+    const videoRef = state.ref?.current
 
     if (!videoRef) return
 

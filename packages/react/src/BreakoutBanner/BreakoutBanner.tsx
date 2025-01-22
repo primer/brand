@@ -134,7 +134,11 @@ const Root = forwardRef(
               align === 'center' && styles['BreakoutBanner-content--center'],
             )}
           >
-            {LeadingVisual && <div className={clsx(styles['BreakoutBanner-leadingVisual'])}>{LeadingVisual}</div>}
+            {LeadingVisual && (
+              <div className={clsx(styles['BreakoutBanner-leadingVisual'])}>
+                {typeof LeadingVisual === 'function' ? <LeadingVisual /> : LeadingVisual}
+              </div>
+            )}
             {children}
           </div>
         </div>

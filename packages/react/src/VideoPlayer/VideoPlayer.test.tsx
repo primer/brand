@@ -104,7 +104,7 @@ describe('VideoPlayer', () => {
     expect(getByRole('slider', {name: 'Volume'})).toBeInTheDocument()
   })
 
-  it('plays the video when the play button is pressed', () => {
+  it('plays the video when the play button is pressed', async () => {
     const {getByRole, getByTitle} = render(
       <VideoPlayer poster="/example-poster.jpg" title="test video">
         <VideoPlayer.Source src="/example.mp4" />
@@ -116,14 +116,14 @@ describe('VideoPlayer', () => {
 
     expect(video.paused).toBe(true)
 
-    userEvent.click(getByRole('button', {name: 'Play video'}))
+    await userEvent.click(getByRole('button', {name: 'Play video'}))
 
     waitFor(() => {
       expect(video.paused).toBe(false)
     })
   })
 
-  it('pauses a playing video when the pause button is pressed', () => {
+  it('pauses a playing video when the pause button is pressed', async () => {
     const {getByRole, getByTitle} = render(
       <VideoPlayer poster="/example-poster.jpg" title="test video">
         <VideoPlayer.Source src="/example.mp4" />
@@ -137,14 +137,14 @@ describe('VideoPlayer', () => {
 
     const playButton = getByRole('button', {name: 'Play video'})
 
-    userEvent.click(playButton)
+    await userEvent.click(playButton)
 
     waitFor(() => {
       expect(video.paused).toBe(false)
     })
 
-    waitFor(() => {
-      userEvent.click(getByRole('button', {name: 'Pause video'}))
+    waitFor(async () => {
+      await userEvent.click(getByRole('button', {name: 'Pause video'}))
       expect(video.paused).toBe(true)
     })
   })

@@ -102,7 +102,7 @@ describe('FAQGroup', () => {
     expect(queryByRole('tabpanel', {name: 'mock heading 3'})).not.toBeInTheDocument()
   })
 
-  it('changes selected tab on ArrowUp and ArrowDown key presses', () => {
+  it('changes selected tab on ArrowUp and ArrowDown key presses', async () => {
     const {getByRole, queryByRole} = render(<Component />)
 
     const headings = ['mock heading 1', 'mock heading 2', 'mock heading 3']
@@ -122,19 +122,19 @@ describe('FAQGroup', () => {
 
     assertSelectedTabIndex(0)
 
-    userEvent.type(getByRole('tab', {name: 'mock heading 1'}), '{arrowdown}')
+    await userEvent.type(getByRole('tab', {name: 'mock heading 1'}), '{arrowdown}')
     assertSelectedTabIndex(1)
 
-    userEvent.type(getByRole('tab', {name: 'mock heading 2'}), '{arrowdown}')
+    await userEvent.type(getByRole('tab', {name: 'mock heading 2'}), '{arrowdown}')
     assertSelectedTabIndex(2)
 
-    userEvent.type(getByRole('tab', {name: 'mock heading 3'}), '{arrowup}')
+    await userEvent.type(getByRole('tab', {name: 'mock heading 3'}), '{arrowup}')
     assertSelectedTabIndex(1)
 
-    userEvent.type(getByRole('tab', {name: 'mock heading 2'}), '{arrowup}')
+    await userEvent.type(getByRole('tab', {name: 'mock heading 2'}), '{arrowup}')
     assertSelectedTabIndex(0)
 
-    userEvent.type(getByRole('tab', {name: 'mock heading 1'}), '{arrowup}')
+    await userEvent.type(getByRole('tab', {name: 'mock heading 1'}), '{arrowup}')
     assertSelectedTabIndex(2)
   })
 

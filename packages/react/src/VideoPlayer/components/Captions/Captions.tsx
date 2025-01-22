@@ -9,7 +9,7 @@ export const Captions = ({className, ...props}: HTMLAttributes<HTMLDivElement>) 
   const [caption, setCaption] = useState('')
   const {ref} = useVideo()
 
-  const videoRef = ref.current
+  const videoRef = ref?.current
   const trackInformation = videoRef?.textTracks[0]?.cues
 
   useEffect(() => {

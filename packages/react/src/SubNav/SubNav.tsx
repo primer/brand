@@ -19,7 +19,7 @@ import {Button, ButtonSizes, ButtonVariants, Text, TextProps, ThemeProvider, use
 
 import {default as clsx} from 'clsx'
 import {ChevronDownIcon, ChevronUpIcon} from '@primer/octicons-react'
-import {useId} from '@reach/auto-id'
+import {useId} from '../hooks/useId'
 import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
 import {useOnClickOutside} from '../hooks/useOnClickOutside'
 import {useProvidedRefOrCreate} from '../hooks/useRef'

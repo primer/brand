@@ -25,7 +25,7 @@ export type AccordionRootProps = BaseProps<HTMLDetailsElement> & {
 
 type ValidRootChildren = {
   AccordionHeading: React.ReactElement<AccordionHeadingProps> | null
-  AccordionContent: React.ReactElement<AccordionContentProps> | typeof React.Fragment | null
+  AccordionContent: React.ReactElement<AccordionContentProps> | null
 }
 
 export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
@@ -187,7 +187,7 @@ export function AccordionContent({children, className, open, handleOpen, parentR
         if (contentRef.current && contentRef.current.contains(focusedElement)) {
           // Close the accordion
           if (handleOpen) handleOpen(false)
-          if (parentRef && parentRef.current) {
+          if (parentRef?.current) {
             const summary = parentRef.current.querySelector('summary')
             if (summary) summary.focus()
           }

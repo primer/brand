@@ -19,7 +19,7 @@ import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
 
 import {default as clsx} from 'clsx'
 import {CheckIcon, ChevronDownIcon} from '@primer/octicons-react'
-import {useId} from '@reach/auto-id'
+import {useId} from '../hooks/useId'
 
 import {FocusKeys, PositionSettings, focusZone} from '@primer/behaviors'
 import type {BaseProps} from '../component-helpers'

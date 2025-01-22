@@ -1,5 +1,5 @@
 import {useCallback, useState, useRef, type HTMLAttributes, type KeyboardEvent} from 'react'
-import {useId} from '@reach/auto-id'
+import {useId} from '../hooks/useId'
 
 type TabOrientation = 'horizontal' | 'vertical'
 

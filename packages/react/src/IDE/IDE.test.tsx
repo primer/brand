@@ -167,7 +167,7 @@ describe('IDE', () => {
     expect(editorContent.children[0].textContent).toBe(mockFileData[0].code[0])
   })
 
-  it('changes the editor content when clicking on tabs', () => {
+  it('changes the editor content when clicking on tabs', async () => {
     const mockFiles: IDEEditorFile[] = [
       {name: 'File 1', alternativeText: 'Alt for File 1', code: 'Code for File 1'},
       {name: 'File 2', alternativeText: 'Alt for File 2', code: 'Code for File 2'},
@@ -182,7 +182,7 @@ describe('IDE', () => {
 
     expect(getByRole('tabpanel')).toHaveTextContent('Alt for File 1')
 
-    userEvent.click(getByRole('tab', {name: 'File 2'}))
+    await userEvent.click(getByRole('tab', {name: 'File 2'}))
 
     expect(getByRole('tabpanel')).toHaveTextContent('Alt for File 2')
   })

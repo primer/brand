@@ -12,7 +12,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './Grid.module.css'
-import {useId} from '@reach/auto-id'
+import {useId} from '../hooks/useId'
 
 const testIds = {
   root: 'Grid',

@@ -1,4 +1,4 @@
-import React, {render, cleanup} from '@testing-library/react'
+import React, {render, cleanup, act} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 
@@ -63,14 +63,15 @@ describe('Button', () => {
   it('triggers focus event if not disabled and aria-disabled equals false', async () => {
     const consoleSpy = jest.spyOn(global.console, 'log').mockImplementation()
 
-    const {getByRole} = render(
+    render(
       // eslint-disable-next-line no-console
       <Button variant="primary" size="medium" aria-disabled="false" onFocus={() => console.log('Focused')}>
         Primary Button
       </Button>,
     )
-    const btnEl = getByRole('button')
-    btnEl.focus()
+    await act(async () => {
+      await userEvent.tab()
+    })
 
     expect(consoleSpy).toHaveBeenCalled()
   })
@@ -78,14 +79,15 @@ describe('Button', () => {
   it('does not trigger focus event if disabled', async () => {
     const consoleSpy = jest.spyOn(global.console, 'log').mockImplementation()
 
-    const {getByRole} = render(
+    render(
       // eslint-disable-next-line no-console
       <Button variant="primary" size="medium" disabled onFocus={() => console.log('Focused')}>
         Primary Button
       </Button>,
     )
-    const btnEl = getByRole('button')
-    btnEl.focus()
+    await act(async () => {
+      await userEvent.tab()
+    })
 
     expect(consoleSpy).toHaveBeenCalled()
   })
@@ -93,14 +95,15 @@ describe('Button', () => {
   it('does not trigger event if aria-disabled', async () => {
     const consoleSpy = jest.spyOn(global.console, 'log').mockImplementation()
 
-    const {getByRole} = render(
+    render(
       // eslint-disable-next-line no-console
       <Button variant="primary" size="medium" aria-disabled="true" onFocus={() => console.log('Focused')}>
         Primary Button
       </Button>,
     )
-    const btnEl = getByRole('button')
-    btnEl.focus()
+    await act(async () => {
+      await userEvent.tab()
+    })
 
     expect(consoleSpy).toHaveBeenCalled()
   })
@@ -124,28 +127,37 @@ describe('Button', () => {
     const expectedClass = 'ExpandableArrow--expanded'
     const {getByRole, getByTestId} = render(<Button>Button</Button>)
 
-    userEvent.hover(getByRole('button'))
-    expect(getByTestId(Button.testIds.expandableArrow).classList).toContain(expectedClass)
+    const el = getByTestId(Button.testIds.expandableArrow)
 
-    userEvent.unhover(getByRole('button'))
-    expect(getByTestId(Button.testIds.expandableArrow).classList).not.toContain(expectedClass)
+    await act(async () => {
+      await userEvent.hover(getByRole('button'))
+    })
+    expect(el.classList).toContain(expectedClass)
+
+    await act(async () => {
+      await userEvent.unhover(getByRole('button'))
+    })
+    expect(el.classList).not.toContain(expectedClass)
   })
 
   it('does not trigger a hover event on expandable arrow if button is disabled', async () => {
     const expectedClass = 'ExpandableArrow--expanded'
     const {getByRole, getByTestId} = render(<Button disabled>Button</Button>)
 
-    userEvent.hover(getByRole('button'))
+    await act(async () => {
+      await userEvent.hover(getByRole('button'))
+    })
 
     expect(getByTestId(Button.testIds.expandableArrow).classList).not.toContain(expectedClass)
   })
 
   it('does not trigger a focus event on expandable arrow if button is disabled', async () => {
     const expectedClass = 'ExpandableArrow--expanded'
-    const {getByTestId, getByRole} = render(<Button disabled>Button</Button>)
+    const {getByTestId} = render(<Button disabled>Button</Button>)
 
-    const btnEl = getByRole('button')
-    btnEl.focus()
+    await act(async () => {
+      await userEvent.tab()
+    })
 
     const expandableArrowEl = getByTestId(Button.testIds.expandableArrow)
 
@@ -154,17 +166,19 @@ describe('Button', () => {
 
   it('applies expected logic to expandable arrow on focus', async () => {
     const expectedClass = 'ExpandableArrow--expanded'
-    const {getByTestId, getByRole} = render(<Button>Button</Button>)
+    const {getByTestId} = render(<Button>Button</Button>)
 
-    const btnEl = getByRole('button')
-    btnEl.focus()
+    await act(async () => {
+      await userEvent.tab()
+    })
 
     const expandableArrowEl = getByTestId(Button.testIds.expandableArrow)
 
     expect(expandableArrowEl.classList).toContain(expectedClass)
 
-    // eslint-disable-next-line github/no-blur
-    btnEl.blur()
+    await act(async () => {
+      await userEvent.click(document.body)
+    })
 
     expect(expandableArrowEl.classList).not.toContain(expectedClass)
   })

@@ -1,5 +1,5 @@
 import React, {PropsWithChildren} from 'react'
-import {useId} from '@reach/auto-id' // TODO: Replace with useId from React v18 after upgrade
+import {useId} from '../../hooks/useId'
 import clsx from 'clsx'
 import {AlertFillIcon, CheckCircleFillIcon} from '@primer/octicons-react'
 

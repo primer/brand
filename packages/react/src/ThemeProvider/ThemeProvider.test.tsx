@@ -1,6 +1,5 @@
 import React, {useContext} from 'react'
-import {render, cleanup} from '@testing-library/react'
-import {renderHook} from '@testing-library/react-hooks'
+import {render, renderHook, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
 import {ColorMode, ThemeContext, ThemeProvider} from './ThemeProvider'
