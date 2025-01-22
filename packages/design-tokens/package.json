@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@primer/primitives": "9.1.1",
-    "fast-glob": "3.3.2"
+    "fast-glob": "3.3.3"
   },
   "engines": {
     "node": ">=16.0.0",
