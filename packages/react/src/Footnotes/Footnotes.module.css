@@ -20,6 +20,10 @@
   padding-inline-start: var(--base-size-12);
 }
 
+.FootnotesItem {
+  scroll-margin-top: 80px;
+}
+
 .FootnotesItem__citationIcon {
   transform: scaleY(-1);
   margin-inline-start: var(--base-size-4);
