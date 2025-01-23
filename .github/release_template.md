@@ -14,6 +14,7 @@ Please ensure these items are checked before merging.
 - Performed successful integration test with `github/github`, as a primary consumer of Primer Brand
   - [ ] Install RC: `bin/npm install --save --save-exact @primer/react-brand@{RC_VERSION}`
         Important: Verify that each workspace package has been updated correctly in their respective `package.json` files
+  - [ ] Enable feature flags: `bin/toggle-feature-flag enable contentful_lp_newsroom -F contentful_lp_seo_pages -F contentful_lp_solution_pages -F contentful_lp_whitepapers`
   - [ ] Run development server
   - [ ] Manually verify release-specific bugfixes and/or features on the following pages:
     - `/features/copilot`
@@ -28,6 +29,14 @@ Please ensure these items are checked before merging.
     - `/education`
     - `/mobile`
     - `/about/diversity`
+    - `/resources/articles`
+    - `/resources/articles/software-development`
+    - `/resources/articles/software-development/what-is-cloud-native`
+    - `/resources/whitepapers`
+    - `/resources/whitepapers/how-the-c-suite-can-lead-ai-innovation`
+    - `/solutions`
+    - `/solutions/use-case/`
+    - `/solutions/use-case/devops`
   - [ ] Manually compare production site to local instance for any non-release specific regressions
 
 #### Subdomain sites
