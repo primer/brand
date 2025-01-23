@@ -23,6 +23,8 @@ declare const styles: {
   readonly "IDE__Editor-tab-icon": string;
   readonly "IDE__Editor-content": string;
   readonly "IDE__Editor-pane": string;
+  readonly "IDE__Editor-content-wrapper": string;
+  readonly "IDE__Editor-content-inner": string;
   readonly "IDE__Editor--small": string;
   readonly "IDE__Editor-lineNumbers": string;
   readonly "IDE__Editor--medium": string;
