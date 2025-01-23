@@ -213,6 +213,8 @@
 
 .IDE__Editor-tab.active {
   color: var(--brand-color-text-default);
+  border-top: 1px solid var(--brand-IDE-default-editor-tab-borderColor);
+  margin-top: -1px;
   z-index: 1;
 }
 
@@ -315,6 +317,8 @@ img.IDE__Editor-tab-icon {
   margin-left: calc(-1 * var(--base-size-64));
   padding-left: calc((var(--base-size-64) * 2) - var(--brand-IDE-lineNumber-width)) !important;
   background-color: var(--brand-IDE-autoSuggestLine-bgColor);
+  border-left: 1px solid var(--brand-IDE-autoSuggest-borderColor);
+  margin-left: -1px;
 }
 
 .IDE__Editor-lineNumbers {
