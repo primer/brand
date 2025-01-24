@@ -28,6 +28,7 @@ Please ensure these items are checked before merging.
     - `/education`
     - `/mobile`
     - `/about/diversity`
+    - `/newsroom`
     - `/resources/articles`
     - `/resources/articles/software-development`
     - `/resources/articles/software-development/what-is-cloud-native`
