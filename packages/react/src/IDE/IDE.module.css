@@ -213,6 +213,7 @@
 
 .IDE__Editor-tab.active {
   color: var(--brand-color-text-default);
+  border-top: var(--brand-borderWidth-thin) solid var(--brand-IDE-default-editor-tab-borderColor);
   z-index: 1;
 }
 
@@ -312,9 +313,10 @@ img.IDE__Editor-tab-icon {
 }
 
 .IDE__Editor-pane--suggested {
-  margin-left: calc(-1 * var(--base-size-64));
-  padding-left: calc((var(--base-size-64) * 2) - var(--brand-IDE-lineNumber-width)) !important;
+  margin-left: calc(-1 * var(--brand-IDE-lineNumber-width));
+  padding-left: calc(var(--base-size-64) - 1px) !important;
   background-color: var(--brand-IDE-autoSuggestLine-bgColor);
+  border-left: var(--brand-borderWidth-thin) solid var(--brand-IDE-autoSuggest-borderColor);
 }
 
 .IDE__Editor-lineNumbers {

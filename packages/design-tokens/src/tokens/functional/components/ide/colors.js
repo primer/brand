@@ -27,6 +27,10 @@ module.exports = {
               dark: '#242538',
             },
           },
+          borderColor: {
+            value: 'var(--base-color-scale-blue-5)',
+            dark: 'var(--base-color-scale-blue-5)',
+          },
         },
       },
     },
@@ -80,6 +84,10 @@ module.exports = {
       fgColor: {
         value: 'var(--base-color-scale-white-0)',
         dark: 'var(--base-color-scale-white-0)',
+      },
+      borderColor: {
+        value: 'var(--base-color-scale-blue-5)',
+        dark: 'var(--base-color-scale-blue-5)',
       },
     },
     autoSuggestLine: {
