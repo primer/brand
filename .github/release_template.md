@@ -28,6 +28,15 @@ Please ensure these items are checked before merging.
     - `/education`
     - `/mobile`
     - `/about/diversity`
+    - `/newsroom`
+    - `/resources/articles`
+    - `/resources/articles/software-development`
+    - `/resources/articles/software-development/what-is-cloud-native`
+    - `/resources/whitepapers`
+    - `/resources/whitepapers/how-the-c-suite-can-lead-ai-innovation`
+    - `/solutions`
+    - `/solutions/use-case/`
+    - `/solutions/use-case/devops`
   - [ ] Manually compare production site to local instance for any non-release specific regressions
 
 #### Subdomain sites
