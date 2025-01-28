@@ -68,7 +68,7 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: var(--base-size-16);
+  gap: var(--base-size-8) var(--base-size-16);
 }
 
 .Hero-trailing {
