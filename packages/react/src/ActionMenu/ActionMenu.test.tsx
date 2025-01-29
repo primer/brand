@@ -349,4 +349,23 @@ describe('ActionMenu', () => {
       {timeout: 100},
     )
   })
+
+  it('should allow falsey items to be selected', () => {
+    const mockOnSelect = jest.fn()
+
+    const {getByRole} = render(
+      <ActionMenu onSelect={mockOnSelect} selectionVariant="single">
+        <ActionMenu.Button>Open menu</ActionMenu.Button>
+        <ActionMenu.Overlay aria-label="Actions">
+          <ActionMenu.Item value="test">Test string</ActionMenu.Item>
+          <ActionMenu.Item value="">Empty string</ActionMenu.Item>
+        </ActionMenu.Overlay>
+      </ActionMenu>,
+    )
+
+    fireEvent.click(getByRole('button', {name: 'Open menu'}))
+    fireEvent.click(getByRole('menuitemradio', {name: 'Empty string'}))
+
+    expect(mockOnSelect).toHaveBeenCalledWith('')
+  })
 })
