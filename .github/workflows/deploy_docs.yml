@@ -26,8 +26,8 @@ jobs:
   build_deploy:
     if: ${{ github.repository == 'primer/brand' }}
     name: Production
-    # SHA for security hardening. Points at last verified HEAD of main branch.
-    uses: primer/.github/.github/workflows/deploy.yml@rezrah/fix-prod-deployment
+    # SHA for security hardening. Points at 2.1.1 release
+    uses: primer/.github/.github/workflows/deploy.yml@2a60f4cc62889bd218f3019ce4a090ff89b71cca
     with:
       node_version: 18
       install: npm ci --legacy-peer-deps && cd apps/docs && npm ci --legacy-peer-deps && cd ..
