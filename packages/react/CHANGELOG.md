@@ -1,5 +1,26 @@
 # @primer/react-brand
 
+## 0.47.0
+
+### Minor Changes
+
+- [#896](https://github.com/primer/brand/pull/896) [`ce6c8b6`](https://github.com/primer/brand/commit/ce6c8b64667a3b699a00d8bc21734434fce02028) Thanks [@rezrah](https://github.com/rezrah)! - Updated minimum, compatible version of `react` and `react-dom` to `v18`
+
+### Patch Changes
+
+- [#896](https://github.com/primer/brand/pull/896) [`ce6c8b6`](https://github.com/primer/brand/commit/ce6c8b64667a3b699a00d8bc21734434fce02028) Thanks [@rezrah](https://github.com/rezrah)! - Updated `leadingVisual` prop in `Label` to accept `Icon` children from the `@primer/octicons-react` package.
+
+- [#896](https://github.com/primer/brand/pull/896) [`ce6c8b6`](https://github.com/primer/brand/commit/ce6c8b64667a3b699a00d8bc21734434fce02028) Thanks [@rezrah](https://github.com/rezrah)! - Replaced usage of `@reach/auto-id` with native `useId` in `react@v18`
+
+- [#896](https://github.com/primer/brand/pull/896) [`ce6c8b6`](https://github.com/primer/brand/commit/ce6c8b64667a3b699a00d8bc21734434fce02028) Thanks [@rezrah](https://github.com/rezrah)! - Add `peerDependenciesMeta` configuration, preventing unnecessary peer dependency warnings
+
+- [#899](https://github.com/primer/brand/pull/899) [`bc24d7a`](https://github.com/primer/brand/commit/bc24d7a7beafaf54aaf79619c6e13c48b7940f68) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Added a scroll margin to `Footnote.Item` to prevent it from being hidden behind fixed navigation during automatic scrolling.
+
+- [#897](https://github.com/primer/brand/pull/897) [`1c47b76`](https://github.com/primer/brand/commit/1c47b76f982df42d8ada0dde6ab683c6b5fd983d) Thanks [@joshfarrant](https://github.com/joshfarrant)! - `IDE` component accessibility improvements
+
+  - Added 1px border to identify active tab and start/end of Copilot suggestion. The colours of these borders can be customised via the `--brand-IDE-default-editor-tab-borderColor` and `--brand-IDE-autoSuggest-borderColor` CSS variables.
+  - Added horizontal scrolling to `IDE` component when viewed on small viewports
+
 ## 0.46.0
 
 ### Minor Changes
