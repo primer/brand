@@ -1,0 +1,75 @@
+---
+title: Breadcrumbs
+description: Breadcrumbs display the current page within the site's hierarchy, allowing users to easily navigate to a different level.
+---
+
+import ComponentLayout from '../../../src/layouts/component-layout'
+
+import anatomy from './images/anatomy.png'
+import variants from './images/variants.png'
+import doOverflow from './images/do-overflow.png'
+import dontOverflow from './images/dont-overflow.png'
+
+export default ComponentLayout
+
+## Anatomy
+
+<img
+  src={anatomy}
+  alt="Breadcrumbs with location-based annotations for parent-level links, divider, and current page."
+/>
+
+## Usage
+
+Use breadcrumbs to display a user's path within a site's hierarchy, helping them understand their location and easily navigate back to higher-level pages, especially on sites with deep structures.
+
+Breadcrumbs are most appropriate on pages that:
+
+- Do not have a section-level navigation
+- May need the ability to quickly go back to the previous (parent) page
+
+### Placement
+
+Place breadcrumbs at the top of the page, below the header and any navigation bar, to ensure they are immediately visible and accessible to users as they begin navigating the page.
+
+Align breadcrumbs with the main content area to maintain a consistent and orderly layout, helping users easily associate the breadcrumbs with the content they are navigating.
+
+Use consistent placement across all pages of the site so that users can rely on breadcrumbs as a stable navigation tool.
+
+## Accessibility
+
+Ensure that the text of each individual Breadcrumb item fits entirely within a 320px wide viewport. Failure to do this violates [WCAG 1.4.10 Reflow](https://github.com/github/accessibility-audit-guide/blob/main/web/WCAG/1.4.10%20Reflow.md).
+
+<DoDontContainer>
+  <Do>
+    <img src={doOverflow} alt="" />
+    <Caption>
+      Use short Breadcrumb item names to ensure they fit within a 320px wide
+      viewport.
+    </Caption>
+  </Do>
+  <Dont>
+    <img src={dontOverflow} alt="" />
+    <Caption>
+      Don't allow Breadcrumb item names to overflow the 320px wide viewport, as
+      this violates WCAG 1.4.10 Reflow.
+    </Caption>
+  </Dont>
+</DoDontContainer>
+
+## Options
+
+### Variants
+
+The breadcrumbs component is available in two variants: a default variant, where links use the standard text color, positioning the navigation as a secondary element on the page, and an accent variant, which emphasizes parent links with an accent color. The default variant is suitable for most scenarios, while the accent variant should be reserved for pages where the breadcrumbs are essential for navigation.
+
+<img
+  src={variants}
+  alt="The two breadcrumbs variants available: default and accent"
+/>
+
+## Related components
+
+- [Anchor nav](/components/AnchorNav): To display navigation for different sections of a page.
+- [Pagination](/components/Pagination): To display navigation for content that is split into sequential pages.
+- [Sub nav](/components/SubNav): To display the secondary navigation of a site.
