@@ -26,6 +26,7 @@ import mixed2GradientBg from '../fixtures/images/bento/mixed-2-gradient-bg.png'
 
 import styles from './Bento.features.stories.module.css'
 import clsx from 'clsx'
+import {CopilotIcon, ZapIcon} from '@primer/octicons-react'
 
 export default {
   title: 'Components/Bento/features',
@@ -578,6 +579,81 @@ Mixed3.decorators = [
         borderRadius="large"
         className={styles.Mixed3}
       >
+        <Grid>
+          <Grid.Column>
+            <Story />
+          </Grid.Column>
+        </Grid>
+      </Box>
+    </ThemeProvider>
+  ),
+]
+
+type CustomElementProps = {
+  icon: 'copilot' | 'zap'
+  align?: 'start' | 'center'
+}
+
+const CustomElement = ({icon = 'copilot', align = 'start'}: CustomElementProps) => (
+  <div className={clsx(styles.CustomElement, styles[`CustomElement--${align}`])}>
+    <span className={clsx(styles['CustomElement__icon'])}>
+      {icon === 'zap' && <ZapIcon size={48} />}
+      {icon === 'copilot' && <CopilotIcon size={48} />}
+    </span>
+  </div>
+)
+
+export const CustomVisual: StoryFn<typeof Bento> = () => (
+  <Bento>
+    <Bento.Item
+      columnSpan={{
+        xsmall: 12,
+        medium: 6,
+      }}
+      rowSpan={{xsmall: 4, large: 5}}
+      bgColor="default"
+      className={styles.CustomVisual__item}
+    >
+      <Bento.Visual>
+        <CustomElement icon="zap" />
+      </Bento.Visual>
+      <Bento.Content padding="spacious" verticalAlign="end">
+        <Bento.Heading as="h3" size="display">
+          75%
+        </Bento.Heading>
+        <Bento.Heading as="h4" size="6" weight="medium" variant="muted">
+          Faster builds
+        </Bento.Heading>
+      </Bento.Content>
+    </Bento.Item>
+    <Bento.Item
+      columnSpan={{
+        xsmall: 12,
+        medium: 6,
+      }}
+      rowSpan={{xsmall: 4, large: 5}}
+      bgColor="default"
+      className={styles.CustomVisual__item}
+    >
+      <Bento.Visual horizontalAlign="center">
+        <CustomElement icon="copilot" align="center" />
+      </Bento.Visual>
+      <Bento.Content padding="spacious" horizontalAlign="center" verticalAlign="end">
+        <Bento.Heading as="h3" size="display">
+          55%
+        </Bento.Heading>
+        <Bento.Heading as="h4" size="6" weight="medium" variant="muted">
+          Faster coding
+        </Bento.Heading>
+      </Bento.Content>
+    </Bento.Item>
+  </Bento>
+)
+
+CustomVisual.decorators = [
+  Story => (
+    <ThemeProvider colorMode="dark">
+      <Box backgroundColor="subtle" paddingBlockStart="spacious" paddingBlockEnd="spacious" borderRadius="large">
         <Grid>
           <Grid.Column>
             <Story />

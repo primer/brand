@@ -59,6 +59,8 @@
   align-items: flex-start;
   height: 100%;
   color: var(--brand-color-text-default);
+  position: relative;
+  z-index: 1;
 }
 
 .Bento__Content-icon {
