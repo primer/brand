@@ -1,6 +1,6 @@
 .ButtonGroup {
   display: inline-flex;
-  gap: var(--base-size-8);
+  gap: var(--base-size-8) var(--base-size-16);
   flex-direction: row;
   flex-wrap: wrap;
 }

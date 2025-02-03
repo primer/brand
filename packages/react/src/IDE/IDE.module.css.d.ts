@@ -20,6 +20,8 @@ declare const styles: {
   readonly "IDE__Editor--medium": string;
   readonly "IDE__Editor--small": string;
   readonly "IDE__Editor-content": string;
+  readonly "IDE__Editor-content-inner": string;
+  readonly "IDE__Editor-content-wrapper": string;
   readonly "IDE__Editor-lineNumber": string;
   readonly "IDE__Editor-lineNumber-text": string;
   readonly "IDE__Editor-lineNumbers": string;

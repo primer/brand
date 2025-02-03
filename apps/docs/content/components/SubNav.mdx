@@ -91,22 +91,24 @@ Submenus appear as a dropdown by default.
 ### Optional anchor-based submenu
 
 ```jsx live
-<Container sx={{position: 'relative', height: 300}}>
-  <SubNav>
-    <SubNav.Heading href="#">Features</SubNav.Heading>
-    <SubNav.Link href="#" aria-current="page">
-      Actions
-      <SubNav.SubMenu variant="anchor">
-        <SubNav.Link href="#">Actions feature one</SubNav.Link>
-        <SubNav.Link href="#">Actions feature two</SubNav.Link>
-        <SubNav.Link href="#">Actions feature three</SubNav.Link>
-        <SubNav.Link href="#">Actions feature four</SubNav.Link>
-      </SubNav.SubMenu>
-    </SubNav.Link>
-    <SubNav.Link href="#">Packages</SubNav.Link>
-    <SubNav.Link href="#">Copilot</SubNav.Link>
-    <SubNav.Link href="#">Code review</SubNav.Link>
-  </SubNav>
+<Container sx={{position: 'relative', height: 300, overflowY: 'scroll'}}>
+  <Box style={{height: 1000}}>
+    <SubNav>
+      <SubNav.Heading href="#">Features</SubNav.Heading>
+      <SubNav.Link href="#" aria-current="page">
+        Actions
+        <SubNav.SubMenu variant="anchor">
+          <SubNav.Link href="#">Actions feature one</SubNav.Link>
+          <SubNav.Link href="#">Actions feature two</SubNav.Link>
+          <SubNav.Link href="#">Actions feature three</SubNav.Link>
+          <SubNav.Link href="#">Actions feature four</SubNav.Link>
+        </SubNav.SubMenu>
+      </SubNav.Link>
+      <SubNav.Link href="#">Packages</SubNav.Link>
+      <SubNav.Link href="#">Copilot</SubNav.Link>
+      <SubNav.Link href="#">Code review</SubNav.Link>
+    </SubNav>
+  </Box>
 </Container>
 ```
 

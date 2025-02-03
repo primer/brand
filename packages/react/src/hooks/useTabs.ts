@@ -1,27 +1,27 @@
 import {useCallback, useState, useRef, type HTMLAttributes, type KeyboardEvent} from 'react'
 import {useId} from '../hooks/useId'
 
-type TabOrientation = 'horizontal' | 'vertical'
+export type OnTabActivate = (id: string, activeTabRef?: HTMLElement) => void
 
-type UseTabsOptions = {
+export type UseTabsOptions = {
   defaultTab?: string
   autoActivate?: boolean
-  onTabActivate?: (id: string) => void
-  orientation?: TabOrientation
+  onTabActivate?: OnTabActivate
+  orientation?: 'horizontal' | 'vertical'
 }
 
-type TabState = {
+export type TabState = {
   activeTab: string | null
   focusedTab: string | null
   tabs: Set<string>
 }
 
-type TabListProps = {
+export type TabListProps = {
   label?: string
   labelledBy?: string
 }
 
-type UseTabs = {
+export type UseTabs = {
   activeTab: string | null
   focusedTab: string | null
   activateTab: (id: string) => void
@@ -50,7 +50,7 @@ export const useTabs = ({
         const nextState = updater(prev)
 
         if (nextState.activeTab && nextState.activeTab !== prev.activeTab) {
-          onTabActivate?.(nextState.activeTab)
+          onTabActivate?.(nextState.activeTab, tabRefs.current.get(nextState.activeTab))
         }
 
         return nextState
