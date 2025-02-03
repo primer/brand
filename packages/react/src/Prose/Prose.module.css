@@ -186,6 +186,7 @@
   color: var(--brand-InlineLink-color-rest);
   position: relative;
   text-decoration: underline;
+  text-decoration-color: var(--brand-InlineLink-color-rest);
   text-decoration-thickness: var(--brand-borderWidth-thin);
   text-underline-position: under;
 }
