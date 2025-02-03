@@ -57,11 +57,18 @@ module.exports = {
         test: /\.css$/i,
         exclude: [/utilities.css/],
         use: [
-          MiniCssExtractPlugin.loader,
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              defaultExport: true,
+            },
+          },
           {
             loader: 'css-loader',
             options: {
+              esModule: true,
               modules: {
+                namedExport: true,
                 localIdentName: 'Primer_Brand__[name]__[local]___[hash:base64:5]',
               },
               importLoaders: 1,
