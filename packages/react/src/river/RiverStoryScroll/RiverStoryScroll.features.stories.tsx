@@ -134,6 +134,16 @@ Disabled.args = {
   disabled: true,
 }
 
+export const DisabledNarrow = args => <Disabled withTrailingComponent {...args} />
+DisabledNarrow.args = {
+  disabled: true,
+}
+DisabledNarrow.parameters = {
+  viewport: {
+    defaultViewport: 'iphonexr',
+  },
+}
+
 export const EnterpriseExample = () => (
   <RiverStoryScroll>
     <River>
