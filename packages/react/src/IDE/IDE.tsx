@@ -438,7 +438,7 @@ const _Editor = memo(
                 <button
                   {...tabs.getTabProps(index.toString())}
                   key={file.name}
-                  className={clsx(styles['IDE__Editor-tab'], isActiveTab && styles.active)}
+                  className={clsx(styles['IDE__Editor-tab'], isActiveTab && styles['IDE__Editor-tab--active'])}
                 >
                   {language && (
                     <img
