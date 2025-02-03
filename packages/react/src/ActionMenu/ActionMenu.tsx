@@ -166,11 +166,9 @@ const _ActionMenuRoot = memo(
 
     const handleItemSelection = useCallback(
       (newValue: string) => {
-        if (newValue) {
-          handleOnSelect(newValue)
-          toggleMenu()
-          anchorElementRef.current?.focus()
-        }
+        handleOnSelect(newValue)
+        toggleMenu()
+        anchorElementRef.current?.focus()
       },
       [handleOnSelect, toggleMenu, anchorElementRef],
     )
