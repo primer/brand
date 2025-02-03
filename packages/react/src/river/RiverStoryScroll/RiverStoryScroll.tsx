@@ -87,7 +87,6 @@ export function RiverStoryScroll({children, disabled}: RiverStoryScrollProps) {
 
     setMedia(newMedia)
   }, [disabled, prefersReducedMotion])
-  console.log(disabled)
   if (disabled || prefersReducedMotion) {
     return <div className={clsx(styles.RiverStoryScroll, styles['RiverStoryScroll--disabled'])}>{Children}</div>
   }
