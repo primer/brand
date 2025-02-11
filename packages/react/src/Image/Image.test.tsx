@@ -10,11 +10,7 @@ expect.extend(toHaveNoViolations)
 describe('Image', () => {
   it('no a11y violations', async () => {
     const {container} = render(
-      <Image
-        src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
-        alt="alternative text"
-        aspectRatio={undefined}
-      />,
+      <Image src="/brand/assets/placeholder-600x400.png" alt="alternative text" aspectRatio={undefined} />,
     )
     const results = await axe(container)
 
@@ -26,7 +22,7 @@ describe('Image', () => {
 
     const {container} = render(
       <Image
-        src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+        src="/brand/assets/placeholder-600x400.png"
         alt="alternative text"
         className={testClass}
         aspectRatio={undefined}
@@ -38,11 +34,7 @@ describe('Image', () => {
 
   it('should return only an img element if no aspectRatio is provided and as is not picture', async () => {
     const {container, getByRole} = render(
-      <Image
-        src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
-        alt="alternative text"
-        aspectRatio={undefined}
-      />,
+      <Image src="/brand/assets/placeholder-600x400.png" alt="alternative text" aspectRatio={undefined} />,
     )
 
     expect(container.querySelector('.Image__container')).not.toBeInTheDocument()
@@ -54,7 +46,7 @@ describe('Image', () => {
 
   it('should return an img element in a span tag if aspectRatio is provided and as is not equal to picture', async () => {
     const {container, getByRole} = render(
-      <Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt="alternative text" aspectRatio={'1:1'} />,
+      <Image src="/brand/assets/placeholder-600x400.png" alt="alternative text" aspectRatio={'1:1'} />,
     )
 
     expect(container.querySelector('.Image__container')).toBeInTheDocument()
@@ -66,12 +58,7 @@ describe('Image', () => {
 
   it('should return an img element in a picture tag if aspectRatio is provided and picture is set', async () => {
     const {container} = render(
-      <Image
-        src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
-        alt="alternative text"
-        as="picture"
-        aspectRatio={'1:1'}
-      />,
+      <Image src="/brand/assets/placeholder-600x400.png" alt="alternative text" as="picture" aspectRatio={'1:1'} />,
     )
 
     expect(container.querySelector('.Image__container')).toBeInTheDocument()
@@ -83,7 +70,7 @@ describe('Image', () => {
 
   it('should return an img element in a picture tag if aspectRatio is not provided and as is equal to picture', async () => {
     const {container} = render(
-      <Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt="alternative text" as="picture" />,
+      <Image src="/brand/assets/placeholder-600x400.png" alt="alternative text" as="picture" />,
     )
 
     expect(container.querySelector('.Image__container')).toBeInTheDocument()
@@ -95,7 +82,7 @@ describe('Image', () => {
 
   it('should use the custom aspect ratio provided in design-tokens', async () => {
     const {container} = render(
-      <Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt="alternative text" aspectRatio="custom" />,
+      <Image src="/brand/assets/placeholder-600x400.png" alt="alternative text" aspectRatio="custom" />,
     )
 
     expect(container.querySelector('span')?.classList.contains('Image--aspect-ratio-custom')).toBe(true)
@@ -103,9 +90,7 @@ describe('Image', () => {
 
   it('should set the height and width of the image to null if no specific width is set', async () => {
     const testAltText = 'alternative text'
-    const {getByAltText} = render(
-      <Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt={testAltText} />,
-    )
+    const {getByAltText} = render(<Image src="/brand/assets/placeholder-600x400.png" alt={testAltText} />)
 
     expect(getByAltText(testAltText).getAttribute('height')).toEqual(null)
     expect(getByAltText(testAltText).getAttribute('width')).toEqual(null)
@@ -116,12 +101,7 @@ describe('Image', () => {
     const testWidth = 150
     const testAltText = 'alternative text'
     const {getByAltText} = render(
-      <Image
-        src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
-        alt={testAltText}
-        height={testHeight}
-        width={testWidth}
-      />,
+      <Image src="/brand/assets/placeholder-600x400.png" alt={testAltText} height={testHeight} width={testWidth} />,
     )
     expect(getByAltText(testAltText).getAttribute('height')).toEqual(`${testHeight}`)
     expect(getByAltText(testAltText).getAttribute('width')).toEqual(`${testWidth}`)
@@ -134,7 +114,7 @@ describe('Image', () => {
     const {getByAltText} = render(
       <Image
         as="picture"
-        src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+        src="/brand/assets/placeholder-600x400.png"
         alt={testAltText}
         height={testHeight}
         width={testWidth}
@@ -150,7 +130,7 @@ describe('Image', () => {
     const testAltText = 'alternative text'
     const {getByAltText} = render(
       <Image
-        src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+        src="/brand/assets/placeholder-600x400.png"
         alt={testAltText}
         loading={testLoading}
         decoding={testDecoding}
@@ -166,7 +146,7 @@ describe('Image', () => {
     const testAltText = 'alternative text'
     const {getByAltText} = render(
       <Image
-        src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+        src="/brand/assets/placeholder-600x400.png"
         alt={testAltText}
         loading={testLoading}
         decoding={testDecoding}
@@ -183,7 +163,7 @@ describe('Image', () => {
     const testAltText = 'alternative text'
     const {getByAltText} = render(
       <Image
-        src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+        src="/brand/assets/placeholder-600x400.png"
         alt={testAltText}
         loading={testLoading}
         decoding={testDecoding}
@@ -197,7 +177,7 @@ describe('Image', () => {
   it('should create a picture element when a custom height and width is provided', async () => {
     const {container} = render(
       <Image
-        src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+        src="/brand/assets/placeholder-600x400.png"
         alt="alternative text"
         width={200}
         height={200}
@@ -212,7 +192,7 @@ describe('Image', () => {
   it('should create a span element when a custom height and width is provided and aspectRatio is provided', async () => {
     const {container} = render(
       <Image
-        src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+        src="/brand/assets/placeholder-600x400.png"
         alt="alternative text"
         width={200}
         height={300}
@@ -225,11 +205,10 @@ describe('Image', () => {
   })
 
   it('should set the srcSet property correctly on the img component', async () => {
-    const testSrcSet =
-      'https://via.placeholder.com/600x400/d3d9df/d3d9df.png, https://via.placeholder.com/1200x800/d3d9df/d3d9df.png 2x'
+    const testSrcSet = '/brand/assets/placeholder-600x400.png, /brand/assets/placeholder-600x400.png 2x'
     const testAltText = 'alternative text'
     const {getByAltText} = render(
-      <Image src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png" alt={testAltText} srcSet={testSrcSet} />,
+      <Image src="/brand/assets/placeholder-600x400.png" alt={testAltText} srcSet={testSrcSet} />,
     )
 
     expect(getByAltText(testAltText).getAttribute('srcset')).toEqual(testSrcSet)
@@ -238,12 +217,12 @@ describe('Image', () => {
   it('should create a source element when as is equal to picture and the srcSet property is set.', async () => {
     const {container} = render(
       <Image
-        src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+        src="/brand/assets/placeholder-600x400.png"
         as="picture"
         alt="alternative text"
         sources={[
           {
-            srcset: 'https://via.placeholder.com/600x400/d3d9df/d3d9df.png',
+            srcset: '/brand/assets/placeholder-600x400.png',
             media: '(min-width: 600px)',
           },
         ]}
@@ -257,11 +236,7 @@ describe('Image', () => {
     let index = 0
     for (const size of ImageBorderRadiusOptions) {
       const {getAllByRole} = render(
-        <Image
-          src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
-          alt="alternative text"
-          borderRadius={size}
-        />,
+        <Image src="/brand/assets/placeholder-600x400.png" alt="alternative text" borderRadius={size} />,
       )
       expect(getAllByRole('img')[index]).toHaveClass(`Image--borderRadius-${size}`)
       index++
