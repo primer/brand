@@ -1,5 +1,164 @@
 # @primer/react-brand
 
+## 0.47.0
+
+### Minor Changes
+
+- [#896](https://github.com/primer/brand/pull/896) [`ce6c8b6`](https://github.com/primer/brand/commit/ce6c8b64667a3b699a00d8bc21734434fce02028) Thanks [@rezrah](https://github.com/rezrah)! - Updated minimum, compatible version of `react` and `react-dom` to `v18`
+
+### Patch Changes
+
+- [#896](https://github.com/primer/brand/pull/896) [`ce6c8b6`](https://github.com/primer/brand/commit/ce6c8b64667a3b699a00d8bc21734434fce02028) Thanks [@rezrah](https://github.com/rezrah)! - Updated `leadingVisual` prop in `Label` to accept `Icon` children from the `@primer/octicons-react` package.
+
+- [#896](https://github.com/primer/brand/pull/896) [`ce6c8b6`](https://github.com/primer/brand/commit/ce6c8b64667a3b699a00d8bc21734434fce02028) Thanks [@rezrah](https://github.com/rezrah)! - Replaced usage of `@reach/auto-id` with native `useId` in `react@v18`
+
+- [#896](https://github.com/primer/brand/pull/896) [`ce6c8b6`](https://github.com/primer/brand/commit/ce6c8b64667a3b699a00d8bc21734434fce02028) Thanks [@rezrah](https://github.com/rezrah)! - Add `peerDependenciesMeta` configuration, preventing unnecessary peer dependency warnings
+
+- [#899](https://github.com/primer/brand/pull/899) [`bc24d7a`](https://github.com/primer/brand/commit/bc24d7a7beafaf54aaf79619c6e13c48b7940f68) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Added a scroll margin to `Footnote.Item` to prevent it from being hidden behind fixed navigation during automatic scrolling.
+
+- [#897](https://github.com/primer/brand/pull/897) [`1c47b76`](https://github.com/primer/brand/commit/1c47b76f982df42d8ada0dde6ab683c6b5fd983d) Thanks [@joshfarrant](https://github.com/joshfarrant)! - `IDE` component accessibility improvements
+
+  - Added 1px border to identify active tab and start/end of Copilot suggestion. The colours of these borders can be customised via the `--brand-IDE-default-editor-tab-borderColor` and `--brand-IDE-autoSuggest-borderColor` CSS variables.
+  - Added horizontal scrolling to `IDE` component when viewed on small viewports
+
+## 0.46.0
+
+### Minor Changes
+
+- [#884](https://github.com/primer/brand/pull/884) [`bbdf7f2f`](https://github.com/primer/brand/commit/bbdf7f2fe99038bf8544c76af2dbd863d364d124) Thanks [@rezrah](https://github.com/rezrah)! - Anti-aliasing is now applied automatically to all `Text` instances _except_ under these conditions:
+
+  - When explicitly disabled via `hasAntiAliasing={false}`
+  - When font weight is `light` or `extralight` AND size is `'100'` or `'200'`
+  - When size is `100` (regardless of weight)
+
+- [#893](https://github.com/primer/brand/pull/893) [`d3c1ee2a`](https://github.com/primer/brand/commit/d3c1ee2a5fb3d35b9d34d4d11a920cbd8ae7183e) Thanks [@rezrah](https://github.com/rezrah)! - Updated secondary `Button` variant borders from `subtle` to `default` color for improved contrast.
+
+- [#890](https://github.com/primer/brand/pull/890) [`4692aeea`](https://github.com/primer/brand/commit/4692aeeac23b95ff3a2e15536364ac7c1c7cc520) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Enabled keyboard navigation in the `IDE` component and made the contents navigable by screen readers.
+
+  ⚠️ Breaking changes
+
+  The `alternativeText` prop on the `IDE` component has been removed in favour of more granular descriptive text.
+
+  <table width="100%">
+  <tr>
+  <th> Before</th>
+  </tr>
+  <tr>
+  <td valign="top">
+
+  ```tsx
+  <IDE alternativeText="A user asks how to concatenate arrays in JavaScript, Copilot demonstrates using the concat method, and the user confirms it worked.">
+    <IDE.Chat />
+  </IDE>
+  ```
+
+   </td>
+  </tr>
+  <tr>
+  <th> After</th>
+  </tr>
+  <tr>
+  <td valign="top">
+
+  ```tsx
+  <IDE>
+    <IDE.Chat alternativeText="A user asks how to concatenate arrays in JavaScript, Copilot demonstrates using the concat method, and the user confirms it worked." />
+  </IDE>
+  ```
+
+  </td>
+  </tr>
+  </table>
+
+  <table width="100%">
+  <tr>
+  <th> Before</th>
+  </tr>
+  <tr>
+  <td valign="top">
+
+  ```tsx
+  <IDE alternativeText="TypeScript sentiment analysis function with D3.js visualization.">
+    <IDE.Editor
+      files={[
+        {
+          name: 'index.js',
+        },
+      ]}
+    />
+  </IDE>
+  ```
+
+   </td>
+  </tr>
+  <tr>
+  <th> After</th>
+  </tr>
+  <tr>
+  <td valign="top">
+
+  ```tsx
+  <IDE>
+    <IDE.Editor
+      files={[
+        {
+          name: 'index.js',
+          alternativeText: 'TypeScript sentiment analysis function with D3.js visualization.',
+          // ...
+        },
+      ]}
+    />
+  </IDE>
+  ```
+
+  </td>
+  </tr>
+  </table>
+
+  🔗 [See the documentation for example usage, and more information on accessibility in the `IDE` component](https://primer.style/brand/components/IDE#accessibility)
+
+### Patch Changes
+
+- [#887](https://github.com/primer/brand/pull/887) [`8a49db27`](https://github.com/primer/brand/commit/8a49db27ff2b6de1e5f8516e6f1a84fbff1eaf25) Thanks [@joshfarrant](https://github.com/joshfarrant)! - `Link` component improvements.
+
+  - Fixed a bug in the `Link` component where the underline wouldn't take the full width when `arrowDirection='none'`.
+  - Prop options are also now exported from the package root, specifically:
+    - `LinkSizes`
+    - `LinkArrowDirections`
+
+- [#879](https://github.com/primer/brand/pull/879) [`4f92311f`](https://github.com/primer/brand/commit/4f92311fbae6f6738b12113d0125608bc3d2faa8) Thanks [@rezrah](https://github.com/rezrah)! - Added `toggleColor` prop to `FAQ.Question` and `Accordion.Heading`
+
+  ```jsx
+  <FAQ>
+    <FAQ.Item>
+      <FAQ.Question toggleColor="green-blue">...</FAQ.Question>
+      <FAQ.Answer>...</FAQ.Answer>
+    </FAQ.Item>
+  </FAQ>
+  ```
+
+  ```jsx
+  <Accordion>
+    <Accordion.Heading toggleColor="green-blue">...</Accordion.Heading>
+    <Accordion.Content>...</Accordion.Content>
+  </Accordion>
+  ```
+
+  🔗 [See the documentation for examples and color options](https://primer.style/brand/components/FAQ/react#toggle-color-customization)
+
+- [#894](https://github.com/primer/brand/pull/894) [`aecc8d8f`](https://github.com/primer/brand/commit/aecc8d8f18243185545f3c4a45651fb3da71fb35) Thanks [@rezrah](https://github.com/rezrah)! - Improvements to duotone text in `River` component. Now supports `<b>` elements using a semi-bold font weight.
+
+  🔗 [See documentation for usage examples](https://primer.style/brand/components/River/react#duotone)
+
+- [#892](https://github.com/primer/brand/pull/892) [`e85c7316`](https://github.com/primer/brand/commit/e85c731674bf9e50cd7392c5e9ba1c72a9257e55) Thanks [@rezrah](https://github.com/rezrah)! - Upgraded dev dependencies for `@types/node` and `eslint-plugin-github`
+
+- [#883](https://github.com/primer/brand/pull/883) [`965a7865`](https://github.com/primer/brand/commit/965a7865f8f2aa4fd5c6a150ae58bf72c0a457c9) Thanks [@rezrah](https://github.com/rezrah)! - Visual spacing updates to `RiverBreakout`
+
+  - Reduced vertical gap between the main text and link.
+  - Applied a maximum width to the main text.
+
+- [#872](https://github.com/primer/brand/pull/872) [`872bdcf0`](https://github.com/primer/brand/commit/872bdcf0f832a82ce75e6cd70bdfa07014a49121) Thanks [@joshfarrant](https://github.com/joshfarrant)! - `VideoPlayer` tooltips now show when the associated control receives focus.
+
 ## 0.45.1
 
 ### Patch Changes

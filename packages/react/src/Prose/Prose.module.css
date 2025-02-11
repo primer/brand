@@ -34,6 +34,8 @@
 /* ---------------------------------------------------------- */
 
 .Prose * + * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: auto;
   margin-block-start: var(--spacing, 1em);
 }
 

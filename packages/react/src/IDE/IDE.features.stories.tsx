@@ -17,7 +17,7 @@ import {River, RiverBreakout} from '../river'
 import {Text} from '../Text'
 import {ThemeProvider, useTheme} from '../ThemeProvider'
 import {Timeline} from '../Timeline'
-import {chatScript, files, singleFile} from './fixtures/content'
+import {chatScript, chatScriptAlt, files, singleFile} from './fixtures/content'
 import storyStyles from './IDE.stories.module.css'
 
 import './IDE.stories.hljs.theme.css'
@@ -93,7 +93,7 @@ EditorNoReplayButton.storyName = 'Editor Only (no replay button)'
 export const ChatOnly = args => {
   return (
     <IDE {...args}>
-      <IDE.Chat script={chatScript}></IDE.Chat>
+      <IDE.Chat script={chatScript} alternativeText={chatScriptAlt}></IDE.Chat>
     </IDE>
   )
 }
@@ -184,7 +184,7 @@ export const WithRiver = args => {
                 className={storyStyles.riverVisual}
               >
                 <IDE {...args} height={700} variant="glass">
-                  <IDE.Chat script={chatScript}></IDE.Chat>
+                  <IDE.Chat script={chatScript} alternativeText={chatScriptAlt}></IDE.Chat>
                 </IDE>
               </Box>
             </River.Visual>
@@ -237,7 +237,7 @@ PerspectiveExampleLight.decorators = [
 
 export const AllGlass = args => (
   <IDE {...args} variant="glass">
-    <IDE.Chat script={chatScript}></IDE.Chat>
+    <IDE.Chat script={chatScript} alternativeText={chatScriptAlt}></IDE.Chat>
     <IDE.Editor size="large" files={files} showReplayButton={false} />
   </IDE>
 )

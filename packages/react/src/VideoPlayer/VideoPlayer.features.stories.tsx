@@ -8,6 +8,7 @@ import {Stack} from '../Stack'
 import {Button} from '../Button'
 import {useVideo} from './hooks'
 import styles from './VideoPlayer.stories.module.css'
+import {expect, userEvent, waitFor, within} from '@storybook/test'
 
 export default {
   title: 'Components/VideoPlayer/Features',
@@ -104,3 +105,20 @@ export const CustomPlayIcon = () => (
     <VideoPlayer.Track src="./example.vtt" default />
   </VideoPlayer>
 )
+
+export const TooltipVisibleOnFocus = () => (
+  <VideoPlayer title="GitHub media player">
+    <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
+    <VideoPlayer.Track src="./example.vtt" default />
+  </VideoPlayer>
+)
+TooltipVisibleOnFocus.play = async ({canvasElement}) => {
+  const {getByText} = within(canvasElement)
+
+  await waitFor(() => expect(getByText('Play video')).not.toBeVisible())
+
+  await userEvent.tab()
+  await userEvent.tab()
+
+  await waitFor(() => expect(getByText('Play video')).toBeVisible())
+}

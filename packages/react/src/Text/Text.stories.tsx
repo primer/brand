@@ -1,7 +1,7 @@
 import {Meta, StoryFn} from '@storybook/react'
 import React from 'react'
 import {Text, TextFontVariants, TextSizes, TextWeights} from '.'
-import {Stack, Box, Grid} from '../'
+import {Stack, Box, Grid, ThemeProvider} from '../'
 
 import styles from './Text.stories.module.css'
 
@@ -41,6 +41,23 @@ Playground.argTypes = {
 Playground.args = {
   children: 'Text',
   size: '200',
+}
+
+export const AntiAliasingOff = () => (
+  <ThemeProvider colorMode="dark">
+    <Box padding="spacious" backgroundColor="default">
+      <Text as="p" size="200" weight="light">
+        Anti aliasing is disabled for light text at 16px or smaller on a dark backgrounds.
+      </Text>
+      <Text as="p" size="200">
+        Anti aliasing is enabled for medium text at 16px or larger on a dark backgrounds.
+      </Text>
+    </Box>
+  </ThemeProvider>
+)
+AntiAliasingOff.args = {
+  size: '200',
+  weight: 'light',
 }
 
 export const Scale: StoryFn<typeof Text> = args => (

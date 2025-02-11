@@ -10,7 +10,8 @@ jobs:
   release:
     if: github.ref_name == 'main'
     name: Release
-    uses: primer/.github/.github/workflows/release.yml@v1.0.0
+
+    uses: primer/.github/.github/workflows/release.yml@2a60f4cc62889bd218f3019ce4a090ff89b71cca # SHA for security hardening. Points at v2.1.1 release
     secrets:
       gh_token: ${{ secrets.GPR_AUTH_TOKEN_SHARED }}
       npm_token: ${{ secrets.NPM_AUTH_TOKEN_SHARED }}
@@ -18,7 +19,7 @@ jobs:
   release-next-minor:
     if: github.ref_name == 'next-minor'
     name: Next minor
-    uses: primer/.github/.github/workflows/release.yml@v1.0.0
+    uses: primer/.github/.github/workflows/release.yml@2a60f4cc62889bd218f3019ce4a090ff89b71cca # SHA for security hardening. Points at v2.1.1 release
     with:
       title: Release tracking (next minor)
     secrets:

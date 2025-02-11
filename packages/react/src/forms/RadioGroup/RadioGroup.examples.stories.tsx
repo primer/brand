@@ -23,7 +23,7 @@ export const Inline: Story = {
         <RadioGroup.Label visuallyHidden={labelVisuallyHidden}>{labelChildren}</RadioGroup.Label>
         {captionChildren ? <RadioGroup.Caption>{captionChildren}</RadioGroup.Caption> : null}
 
-        <Stack direction="horizontal" gap="normal" padding="none">
+        <Stack direction="horizontal" gap="normal" padding="none" flexWrap="wrap">
           <FormControl>
             <FormControl.Label>0-99</FormControl.Label>
             <Radio name="demo" value="one" />

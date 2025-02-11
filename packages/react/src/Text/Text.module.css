@@ -2,6 +2,11 @@
   font-family: var(--brand-body-fontFamily);
 }
 
+[data-color-mode='dark'] .Text--antialiased {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: auto;
+}
+
 .Text--default {
   color: var(--brand-color-text-default);
 }

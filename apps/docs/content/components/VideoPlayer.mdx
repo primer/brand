@@ -6,6 +6,7 @@ description: Use the video player component to enable playback of self-hosted vi
 ---
 
 import {Label} from '@primer/react'
+import {Link, Stack, VideoPlayer} from '@primer/react-brand'
 
 ```js
 import {VideoPlayer} from '@primer/react-brand'
@@ -20,6 +21,27 @@ import {VideoPlayer} from '@primer/react-brand'
   <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" />
   <VideoPlayer.Track src="/brand/assets/example.vtt" default />
 </VideoPlayer>
+```
+
+## With Audio Description
+
+Videos with important visual information must include an audio description to ensure that the content is accessible to all users.
+
+The audio description can be provided as part of the existing soundtrack, or via a link to an alternate audio-described version.
+
+```jsx live
+<Stack gap="normal" alignItems="center">
+  <VideoPlayer title="GitHub media player">
+    <VideoPlayer.Source src="/brand/assets/example.mp4" />
+    <VideoPlayer.Track src="/brand/assets/example.vtt" default />
+  </VideoPlayer>
+  <Stack direction="horizontal" gap={12} padding="none" alignItems="center">
+    <Link href="#" arrowDirection="none">
+      Watch with audio description
+    </Link>
+    <LinkExternalIcon size={16} />
+  </Stack>
+</Stack>
 ```
 
 ## With poster
@@ -106,7 +128,7 @@ import {VideoPlayer} from '@primer/react-brand'
 ```jsx live
 <VideoPlayer
   title="GitHub media player"
-  playIcon={() => <PlayIcon size={96} />}
+  playIcon={() => <PlayIcon fill="white" size={96} />}
 >
   <VideoPlayer.Source
     src="https://primer.github.io/brand/assets/example.mp4"
@@ -122,45 +144,45 @@ The `VideoPlayer` component exposes a `useVideo` hook that can be used to contro
 
 Full documentation for the `useVideo` hook can be found [below](#usevideo-context).
 
-```tsx live
-;() => {
-  const MyVideoPlayer = () => {
-    const {isPlaying, togglePlaying, seek} = useVideo()
-
-    return (
-      <Stack direction="vertical">
-        <VideoPlayer
-          title="GitHub media player"
-          showPlayPauseButton={false}
-          showSeekControl={false}
-          showCCButton={false}
-          showMuteButton={false}
-          showVolumeControl={false}
-          showFullScreenButton={false}
-        >
-          <VideoPlayer.Source
-            src="https://primer.github.io/brand/assets/example.mp4"
-            type="video/mp4"
-          />
-          <VideoPlayer.Track src="/brand/assets/example.vtt" default />
-        </VideoPlayer>
-        <Stack direction="horizontal">
-          <Button onClick={() => togglePlaying()}>
-            {isPlaying ? 'Pause' : 'Play'}
-          </Button>
-          <Button onClick={() => seek(0)}>Go to start</Button>
-          <Button onClick={() => seek((t) => t + 5)}>Skip 5 seconds</Button>
-        </Stack>
-      </Stack>
-    )
-  }
+```javascript live noinline
+const CustomVideoPlayer = () => {
+  const {isPlaying, togglePlaying, seek} = useVideo()
 
   return (
-    <VideoPlayer.Provider>
-      <MyVideoPlayer />
-    </VideoPlayer.Provider>
+    <Stack direction="vertical">
+      <VideoPlayer
+        title="GitHub media player"
+        showPlayPauseButton={false}
+        showSeekControl={false}
+        showCCButton={false}
+        showMuteButton={false}
+        showVolumeControl={false}
+        showFullScreenButton={false}
+      >
+        <VideoPlayer.Source
+          src="https://primer.github.io/brand/assets/example.mp4"
+          type="video/mp4"
+        />
+        <VideoPlayer.Track src="/brand/assets/example.vtt" default />
+      </VideoPlayer>
+      <Stack direction="horizontal">
+        <Button onClick={() => togglePlaying()}>
+          {isPlaying ? 'Pause' : 'Play'}
+        </Button>
+        <Button onClick={() => seek(0)}>Go to start</Button>
+        <Button onClick={() => seek((t) => t + 5)}>Skip 5 seconds</Button>
+      </Stack>
+    </Stack>
   )
 }
+
+const App = () => (
+  <VideoPlayer.Provider>
+    <CustomVideoPlayer />
+  </VideoPlayer.Provider>
+)
+
+render(<App />)
 ```
 
 ## useVideo Context

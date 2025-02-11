@@ -39,6 +39,8 @@ type SolutionsOverviewProps = {
   heroCtaTextPrimary: string
   heroCtaTextSecondary: string
 
+  sectionIntroText: string
+
   introVariant: 'pillars' | 'editorial prose' | 'editorial list'
 
   [key: string]: unknown

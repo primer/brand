@@ -1,24 +1,22 @@
 import {CopilotIcon, PaperAirplaneIcon, SyncIcon} from '@primer/octicons-react'
-import {default as clsx} from 'clsx'
+import clsx from 'clsx'
 import React, {
   Children,
   forwardRef,
   isValidElement,
   memo,
-  PropsWithChildren,
-  Ref,
-  RefObject,
+  type PropsWithChildren,
+  type Ref,
   useCallback,
   useEffect,
   useMemo,
   useRef,
   useState,
 } from 'react'
-import {useId} from '@reach/auto-id'
 
 import {Avatar, Button, Text, TextInput} from '..'
 import type {BaseProps} from '../component-helpers'
-import {useProvidedRefOrCreate} from '../hooks/useRef'
+import {useTabs, type OnTabActivate} from '../hooks/useTabs'
 
 /**
  * Design tokens
@@ -44,19 +42,9 @@ const testIds = {
   get editorTabs() {
     return `${this.editor}-tab`
   },
-  get altText() {
-    return `${this.root}-sr-only-message`
-  },
 }
 
 export type IDEProps = {
-  /**
-   * Alternative description of the IDE for users of assistive technologies.
-   * IDE is considered a decorative element, so this description is important
-   * for accurately describing what the user is being presented.
-   * This text will be visually hidden.
-   */
-  alternativeText: string
   /**
    * Test id for the IDE
    */
@@ -72,17 +60,7 @@ export type IDEProps = {
 } & BaseProps<HTMLDivElement>
 
 const _IDERoot = memo(
-  ({
-    alternativeText,
-    children,
-    className,
-    'data-testid': testId,
-    height,
-    variant = 'default',
-    ...rest
-  }: PropsWithChildren<IDEProps>) => {
-    const uniqueId = useId()
-
+  ({children, className, 'data-testid': testId, height, variant = 'default', ...rest}: PropsWithChildren<IDEProps>) => {
     const childrenArray = useMemo(() => Children.toArray(children), [children])
 
     const ChatChild = childrenArray.find(child => isValidElement(child) && child.type === IDE.Chat)
@@ -90,12 +68,10 @@ const _IDERoot = memo(
     const EditorChild = childrenArray.find(child => isValidElement(child) && child.type === IDE.Editor)
     return (
       <section
-        aria-labelledby={`${uniqueId}-IDE-sr-only-message`}
-        role="application"
         data-testid={testId || testIds.root}
         className={clsx(styles[`IDE--${variant}`], ChatChild && EditorChild && styles['IDE--full-exp'], className)}
       >
-        <div aria-hidden {...rest}>
+        <div {...rest}>
           <div
             className={styles['IDE__inner']}
             style={{['--brand-IDE-height' as string]: height ? `${height}px` : undefined}}
@@ -105,9 +81,6 @@ const _IDERoot = memo(
               {EditorChild && <>{EditorChild}</>}
             </div>
           </div>
-        </div>
-        <div id={`${uniqueId}-IDE-sr-only-message`} className="visually-hidden" data-testid={testIds.altText}>
-          {alternativeText}
         </div>
       </section>
     )
@@ -119,6 +92,10 @@ type IDEChatProps = {
    * The chat script
    */
   script: IDEChatMessage[]
+  /**
+   * Alternative description of the chat script for users of assistive technologies.
+   */
+  alternativeText: string
   /**
    * The delay between messages
    */
@@ -143,7 +120,7 @@ export type IDEChatMessage = {handle: string; message: string; codeSnippet?: str
   | IDEChatMessageAssistant
 )
 
-const _Chat = memo(({'data-testid': testId, script, animationDelay = 3000, ...rest}: IDEChatProps) => {
+const _Chat = memo(({'data-testid': testId, script, animationDelay = 3000, alternativeText, ...rest}: IDEChatProps) => {
   const delay = animationDelay
   const messagesRef = useRef<HTMLDivElement>(null)
 
@@ -209,52 +186,55 @@ const _Chat = memo(({'data-testid': testId, script, animationDelay = 3000, ...re
 
   return (
     <section className={styles.IDE__Chat} data-testid={testId || testIds.chat} {...rest}>
-      <div ref={messagesRef} className={styles['IDE__Chat-messages']}>
-        {script.length &&
-          script.map((message, index) => (
-            <div
-              id={`IDE__Chat-message-${index}`}
-              key={index}
-              className={clsx(
-                styles['IDE__Chat-message'],
-                message.role === 'user' && styles['IDE__Chat-message--user'],
-              )}
-            >
-              <div className={styles['IDE__Chat-message-user']}>
-                {message.role === 'user' ? (
-                  <Avatar src={message.avatar} alt={message.handle} />
-                ) : (
-                  <CopilotIcon size={24} />
+      <span className="visually-hidden">{alternativeText}</span>
+      <div className={styles['IDE__Chat-wrapper']} aria-hidden>
+        <div ref={messagesRef} className={styles['IDE__Chat-messages']}>
+          {script.length &&
+            script.map((message, index) => (
+              <div
+                id={`IDE__Chat-message-${index}`}
+                key={index}
+                className={clsx(
+                  styles['IDE__Chat-message'],
+                  message.role === 'user' && styles['IDE__Chat-message--user'],
                 )}
-                <Text as="p" size="100" weight="bold" className={styles['IDE__Chat-message-handle']}>
-                  {message.handle}
-                </Text>
-              </div>
-              <div className={styles['IDE__Chat-message-content']}>
-                <div className={styles['IDE__Chat-message-text']}>{message.message}</div>
+              >
+                <div className={styles['IDE__Chat-message-user']}>
+                  {message.role === 'user' ? (
+                    <Avatar src={message.avatar} alt={message.handle} />
+                  ) : (
+                    <CopilotIcon size={24} />
+                  )}
+                  <Text as="p" size="100" weight="bold" className={styles['IDE__Chat-message-handle']}>
+                    {message.handle}
+                  </Text>
+                </div>
+                <div className={styles['IDE__Chat-message-content']}>
+                  <div className={styles['IDE__Chat-message-text']}>{message.message}</div>
 
-                {message.highlighter && message.codeSnippet && (
-                  <pre
-                    className={styles['IDE__Chat-message-snippet']}
-                    dangerouslySetInnerHTML={{__html: message.codeSnippet}}
-                  />
-                )}
+                  {message.highlighter && message.codeSnippet && (
+                    <pre
+                      className={styles['IDE__Chat-message-snippet']}
+                      dangerouslySetInnerHTML={{__html: message.codeSnippet}}
+                    />
+                  )}
 
-                {!message.highlighter && message.codeSnippet && (
-                  <pre className={styles['IDE__Chat-message-snippet']}>{message.codeSnippet}</pre>
-                )}
+                  {!message.highlighter && message.codeSnippet && (
+                    <pre className={styles['IDE__Chat-message-snippet']}>{message.codeSnippet}</pre>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
-      </div>
-      <div className={styles['IDE__Chat-input-area']}>
-        <TextInput
-          disabled
-          className={styles['IDE__Chat-input']}
-          fullWidth
-          placeholder="Ask a question or type '/' for commands."
-          trailingVisual={<PaperAirplaneIcon className={styles['IDE__Chat-input-icon']} />}
-        />
+            ))}
+        </div>
+        <div className={styles['IDE__Chat-input-area']}>
+          <TextInput
+            disabled
+            className={styles['IDE__Chat-input']}
+            fullWidth
+            placeholder="Ask a question or type '/' for commands."
+            trailingVisual={<PaperAirplaneIcon className={styles['IDE__Chat-input-icon']} />}
+          />
+        </div>
       </div>
     </section>
   )
@@ -304,6 +284,10 @@ type IDEEditorProps = {
 export type IDEEditorFile = {
   name: string
   /**
+   * Alternative description of the code for users of assistive technologies.
+   */
+  alternativeText: string
+  /**
    * Controls line at which the Copilot suggestion begins
    */
   suggestedLineStart?: number
@@ -344,7 +328,7 @@ const _Editor = memo(
         activeTab = 0,
         'data-testid': testId,
         files,
-        triggerAnimation,
+        triggerAnimation = false,
         showLineNumbers = true,
         showReplayButton = true,
         size = 'medium',
@@ -353,234 +337,196 @@ const _Editor = memo(
       }: IDEEditorProps,
       ref: Ref<HTMLDivElement>,
     ) => {
-      const rootRef = useProvidedRefOrCreate(ref as RefObject<HTMLDivElement>)
-      const [localAnimationCouner, setLocalAnimationCounter] = useState(0)
       const presRef = useRef<HTMLDivElement>(null)
-      const buttonRef = useRef<HTMLButtonElement>(null)
-      const tabsRef = useRef<HTMLDivElement>(null)
-      const [activeFile, setActiveFile] = useState(activeTab)
-      const [animationIsActive, setAnimationIsActive] = useState(triggerAnimation)
+      const [isAnimating, setIsAnimating] = useState(false)
+      const [hasAnimated, setHasAnimated] = useState(false)
+      const [timeouts, setTimeouts] = useState<NodeJS.Timeout[]>([])
 
-      const handlePress = useCallback(
-        (index: number) => {
-          setActiveFile(index)
-        },
-        [setActiveFile],
-      )
+      const clearAllTimeouts = useCallback(() => {
+        for (const timeout of timeouts) {
+          clearTimeout(timeout)
+        }
+      }, [timeouts])
+
+      useEffect(() => {
+        return () => {
+          clearAllTimeouts()
+        }
+      }, [clearAllTimeouts])
 
       const resetAnimation = useCallback(() => {
+        setHasAnimated(false)
+        setIsAnimating(false)
+        clearAllTimeouts()
+
         const pres = presRef.current?.querySelectorAll('pre')
         if (pres) {
-          for (const pre of Array.from(pres)) {
+          for (const pre of pres) {
             pre.classList.remove(animationStyles['Animation--active'])
           }
         }
-      }, [])
+      }, [clearAllTimeouts])
 
-      const handleReplayButton = useCallback(() => {
-        resetAnimation()
-        setLocalAnimationCounter(prev => prev + 1)
-      }, [setLocalAnimationCounter, resetAnimation])
+      const runAnimation = useCallback(() => {
+        if (isAnimating || hasAnimated || !presRef.current) return
+
+        setIsAnimating(true)
+        const pres = presRef.current.querySelectorAll('pre')
+
+        let delay = 0
+        let copilotSuggestionDelay = 0
+
+        for (const pre of pres) {
+          const isCopilotSuggestion = pre.getAttribute('data-has-suggestion') === 'true'
+
+          if (isCopilotSuggestion) {
+            if (copilotSuggestionDelay === 0) {
+              copilotSuggestionDelay = delay * 1.5
+            }
+
+            delay = copilotSuggestionDelay
+          }
+
+          const timeout = setTimeout(() => {
+            pre.classList.add(animationStyles['Animation--active'])
+          }, delay)
+
+          setTimeouts(prev => [...prev, timeout])
+
+          delay += 200
+        }
+
+        const animationEndTimeout = setTimeout(() => {
+          setHasAnimated(true)
+          setIsAnimating(false)
+        }, delay)
+
+        setTimeouts(prev => [...prev, animationEndTimeout])
+      }, [hasAnimated, isAnimating])
+
+      const onTabActivate = useCallback<OnTabActivate>(
+        (_, activeTabRef) => {
+          activeTabRef?.scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'start'})
+          resetAnimation()
+        },
+        [resetAnimation],
+      )
+
+      const tabs = useTabs({
+        defaultTab: activeTab.toString(),
+        autoActivate: true,
+        onTabActivate,
+      })
 
       useEffect(() => {
-        if (animationIsActive) return
-
-        setAnimationIsActive(true)
-        rootRef.current?.setAttribute('data-animation-active', 'true')
-        const pres = presRef.current?.querySelectorAll('pre')
-
-        let fixedDelay = 0
-        let totalDelay = 0
-
-        // disable button
-        if (showReplayButton) {
-          if (buttonRef.current) {
-            buttonRef.current.disabled = true
-          }
-        }
-
-        // disable other tabs
-        if (tabsRef.current) {
-          const tabs = tabsRef.current.querySelectorAll('button')
-          let tabIndex = 0
-          for (const tab of Array.from(tabs)) {
-            if (tabIndex !== activeFile) {
-              tab.disabled = true
-            }
-            tabIndex++
-          }
-        }
-
-        // incrementally make each line visible
-        if (pres) {
-          let index = 0
-          let delay = 0
-          const presArray = Array.from(pres)
-          for (const pre of presArray) {
-            if (pre.getAttribute('data-has-suggestion') === 'true' && fixedDelay === 0) {
-              delay = 200 * index * 1.5
-              fixedDelay = delay
-              setTimeout(() => {
-                pre.classList.add(animationStyles['Animation--active'])
-              }, fixedDelay)
-            } else if (pre.getAttribute('data-has-suggestion') === 'true' && fixedDelay > 0) {
-              setTimeout(() => {
-                pre.classList.add(animationStyles['Animation--active'])
-              }, fixedDelay)
-              delay = fixedDelay
-            } else {
-              setTimeout(() => {
-                pre.classList.add(animationStyles['Animation--active'])
-              }, 200 * index)
-              delay = 200 * index
-            }
-            index++
-          }
-          totalDelay += delay
-        }
-        setAnimationIsActive(false)
-
-        setTimeout(() => {
-          rootRef.current?.setAttribute('data-animation-active', 'false')
-          // reenable button
-          if (showReplayButton) {
-            if (buttonRef.current) {
-              buttonRef.current.disabled = false
-            }
-          }
-          // reenable other tabs
-          if (tabsRef.current) {
-            const tabs = tabsRef.current.querySelectorAll('button')
-            for (const tab of Array.from(tabs)) {
-              tab.disabled = false
-            }
-          }
-        }, totalDelay)
-
-        return () => {
-          if (pres) {
-            for (const pre of Array.from(pres)) {
-              pre.classList.remove(animationStyles['Animation--active'])
-            }
-          }
-        }
-      }, [
-        activeFile,
-        activeTab,
-        triggerAnimation,
-        animationIsActive,
-        localAnimationCouner,
-        buttonRef,
-        showReplayButton,
-        rootRef,
-      ])
+        runAnimation()
+      }, [runAnimation, triggerAnimation])
 
       return (
         <div
           className={clsx(styles.IDE__Editor, styles[`IDE__Editor--${size}`])}
-          ref={rootRef}
+          ref={ref}
           data-testid={testId || testIds.editor}
           {...rest}
         >
-          <div className={styles['IDE__Editor-tabs']} ref={tabsRef} data-testid={testIds.editorTabs}>
+          <div className={styles['IDE__Editor-tabs']} data-testid={testIds.editorTabs} {...tabs.getTabListProps()}>
             {files.map((file, index) => {
               const language = file.name.split('.').pop()
+              const isActiveTab = tabs.activeTab === index.toString()
 
               return (
                 <button
-                  tabIndex={-1}
-                  key={index}
-                  className={clsx(styles['IDE__Editor-tab'], activeFile === index && styles.active)}
-                  onClick={() => handlePress(index)}
+                  {...tabs.getTabProps(index.toString())}
+                  key={file.name}
+                  className={clsx(styles['IDE__Editor-tab'], isActiveTab && styles.active)}
                 >
                   {language && (
                     <img
                       className={styles['IDE__Editor-tab-icon']}
-                      alt={`Logo for ${language}`}
+                      alt=""
                       width={16}
                       height={16}
                       src={tabIcons[language]}
                     />
-                  )}{' '}
+                  )}
                   {file.name}
                 </button>
               )
             })}
           </div>
           <div className={styles['IDE__Editor-content']}>
-            {showLineNumbers && (
-              <div className={styles['IDE__Editor-lineNumbers']}>
-                {Array.isArray(files[activeFile].code) &&
-                  (files[activeFile].code as string[]).map((_, index) => (
-                    <div key={index} className={styles['IDE__Editor-lineNumber']}>
-                      {index + 1}
+            {files.map((file, fileIndex) => (
+              <div {...tabs.getTabPanelProps(fileIndex.toString())} key={file.name}>
+                <span className="visually-hidden">{file.alternativeText}</span>
+                <div className={styles['IDE__Editor-content-wrapper']} aria-hidden="true">
+                  {showLineNumbers && (
+                    <div className={styles['IDE__Editor-lineNumbers']}>
+                      {(Array.isArray(file.code) ? file.code : file.code.split('\n')).map((_, index) => (
+                        <div key={index} className={styles['IDE__Editor-lineNumber']}>
+                          {index + 1}
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                {typeof files[activeFile].code === 'string' &&
-                  (files[activeFile].code as string).split('\n').map((_, index) => (
-                    <div key={index} className={styles['IDE__Editor-lineNumber']}>
-                      {index + 1}
-                    </div>
-                  ))}
-              </div>
-            )}
-            {Array.isArray(files[activeFile].code) && (
-              <div ref={presRef} data-testid={testIds.editorContent}>
-                {(files[activeFile].code as string[]).map((line, index) => {
-                  const hasSuggestion = index + 1 >= (files[activeFile].suggestedLineStart ?? Infinity)
-                  return (
-                    <React.Fragment key={line + index}>
+                  )}
+                  <div
+                    ref={tabs.activeTab === fileIndex.toString() ? presRef : null}
+                    data-testid={testIds.editorContent}
+                    className={styles['IDE__Editor-content-inner']}
+                  >
+                    {Array.isArray(file.code) ? (
+                      (file.code as string[]).map((line, index) => {
+                        const isSuggestion = index + 1 >= (file.suggestedLineStart ?? Infinity)
+                        return (
+                          <React.Fragment key={line + index}>
+                            <pre
+                              key={index}
+                              className={clsx(
+                                styles['IDE__Editor-pane'],
+                                index + 1 < (file.suggestedLineStart ?? Infinity) &&
+                                  animationStyles['Animation--slide-in-right'],
+                                isSuggestion && animationStyles['Animation--slide-in-down'],
+                                isSuggestion && styles['IDE__Editor-pane--suggested'],
+                              )}
+                              dangerouslySetInnerHTML={{__html: line === '' ? '&nbsp;' : line}}
+                              data-has-suggestion={isSuggestion}
+                            />
+                            {isSuggestion && index === file.code.length - 1 && (
+                              <pre
+                                className={clsx(
+                                  animationStyles['Animation--slide-in-down'],
+                                  styles['IDE__Chat-copilot-indicator'],
+                                )}
+                                data-has-suggestion={isSuggestion}
+                              >
+                                <CopilotIcon size={24} className={styles['IDE__Chat-copilot-indicator-label']} />
+                                <Text as="span" className={styles['IDE__Chat-copilot-indicator-label']}>
+                                  Copilot
+                                </Text>
+                              </pre>
+                            )}
+                          </React.Fragment>
+                        )
+                      })
+                    ) : (
                       <pre
-                        key={index}
-                        className={clsx(
-                          styles['IDE__Editor-pane'],
-                          index + 1 < (files[activeFile].suggestedLineStart ?? Infinity) &&
-                            animationStyles['Animation--slide-in-right'],
-                          hasSuggestion && animationStyles['Animation--slide-in-down'],
-                          hasSuggestion && styles['IDE__Editor-pane--suggested'],
-                        )}
-                        dangerouslySetInnerHTML={{__html: line}}
-                        data-has-suggestion={hasSuggestion}
+                        className={clsx(styles['IDE__Editor-pane'], animationStyles['Animation--slide-in-right'])}
+                        dangerouslySetInnerHTML={{__html: file.code}}
                       />
-                      {hasSuggestion && index === files[activeFile].code.length - 1 && (
-                        <pre
-                          className={clsx(
-                            animationStyles['Animation--slide-in-down'],
-                            styles['IDE__Chat-copilot-indicator'],
-                          )}
-                          data-has-suggestion={hasSuggestion}
-                        >
-                          <CopilotIcon size={24} className={styles['IDE__Chat-copilot-indicator-label']} />
-                          <Text as="span" className={styles['IDE__Chat-copilot-indicator-label']}>
-                            Copilot
-                          </Text>
-                        </pre>
-                      )}
-                    </React.Fragment>
-                  )
-                })}
+                    )}
+                  </div>
+                </div>
               </div>
-            )}
-
-            {typeof files[activeFile].code === 'string' && (
-              <div ref={presRef} data-testid={testIds.editorContent}>
-                <pre
-                  className={clsx(styles['IDE__Editor-pane'], animationStyles['Animation--slide-in-right'])}
-                  dangerouslySetInnerHTML={{__html: files[activeFile].code}}
-                />
-              </div>
-            )}
+            ))}
           </div>
           {showReplayButton && (
             <Button
-              tabIndex={-1}
-              ref={buttonRef}
               variant="subtle"
               hasArrow={false}
               className={styles['IDE__Editor-replay']}
-              onClick={handleReplayButton}
+              onClick={resetAnimation}
               leadingVisual={<SyncIcon size={24} />}
               size="small"
+              disabled={!hasAnimated}
             >
               Replay
             </Button>

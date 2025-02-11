@@ -38,7 +38,9 @@
   margin-top: var(--base-size-24);
 }
 
-.River__text strong {
+.River__text strong,
+.River__text b {
+  font-weight: var(--base-text-weight-semibold);
   color: var(--brand-color-text-default);
 }
 
@@ -140,6 +142,7 @@
 }
 
 .RiverBreakout .River__text {
+  max-width: 37.5rem; /* 600px */
   color: var(--brand-color-text-default);
   font-size: var(--brand-text-size-500);
   font-weight: var(--brand-heading-weight-500);
@@ -176,6 +179,7 @@
   .RiverBreakout .River__content {
     display: grid;
     gap: var(--brand-River-spacing-inner);
+    row-gap: var(--brand-River-spacing-innerY);
     grid-template-areas:
       'text trailingComponent'
       'cta trailingComponent';

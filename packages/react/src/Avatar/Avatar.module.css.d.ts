@@ -2,7 +2,6 @@ declare const styles: {
   readonly "Avatar": string;
   readonly "Avatar--shape-circle": string;
   readonly "Avatar--shape-square": string;
-  readonly "Avatar__image": string;
   readonly "Avatar--size-32": string;
   readonly "Avatar--size-40": string;
   readonly "Avatar--size-48": string;
@@ -21,6 +20,7 @@ declare const styles: {
   readonly "Avatar-wide--size-48": string;
   readonly "Avatar-wide--size-64": string;
   readonly "Avatar-wide--size-80": string;
+  readonly "Avatar__image": string;
 };
 export = styles;
 

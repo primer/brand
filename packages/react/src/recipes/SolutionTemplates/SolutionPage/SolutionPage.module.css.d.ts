@@ -1,17 +1,17 @@
 declare const styles: {
-  readonly "hideHorizontalOverflow": string;
-  readonly "sectionIntro": string;
-  readonly "verticalOffset": string;
-  readonly "topOfStack": string;
-  readonly "relative": string;
-  readonly "gitLinesBg": string;
-  readonly "ctaBanner": string;
-  readonly "noBottomRadius": string;
-  readonly "jtbd2Section": string;
-  readonly "cards": string;
   readonly "breadcrumbsOffset": string;
+  readonly "cards": string;
+  readonly "ctaBanner": string;
+  readonly "gitLinesBg": string;
   readonly "heroVideoGlow": string;
+  readonly "hideHorizontalOverflow": string;
+  readonly "jtbd2Section": string;
+  readonly "noBottomRadius": string;
+  readonly "relative": string;
   readonly "scaleAnimation": string;
+  readonly "sectionIntro": string;
+  readonly "topOfStack": string;
+  readonly "verticalOffset": string;
 };
 export = styles;
 

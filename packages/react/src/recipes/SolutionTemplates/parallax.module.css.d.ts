@@ -1,18 +1,18 @@
 declare const styles: {
-  readonly "hero": string;
-  readonly "parallax": string;
+  readonly "articleContents": string;
   readonly "background": string;
-  readonly "foreground": string;
   readonly "centeredHero": string;
+  readonly "darkHero": string;
+  readonly "foreground": string;
+  readonly "foregroundContents": string;
+  readonly "hero": string;
   readonly "heroImage": string;
   readonly "heroImageOverlay": string;
-  readonly "lightHero": string;
-  readonly "darkHero": string;
   readonly "heroImageOverlayDark": string;
-  readonly "foregroundContents": string;
-  readonly "articleContents": string;
-  readonly "parallax-foreground": string;
+  readonly "lightHero": string;
+  readonly "parallax": string;
   readonly "parallax-background": string;
+  readonly "parallax-foreground": string;
 };
 export = styles;
 

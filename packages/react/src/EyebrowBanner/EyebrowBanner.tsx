@@ -191,7 +191,7 @@ const EyebrowBannerVisual = forwardRef<HTMLSpanElement, EyebrowBannerVisual>(
         aria-hidden={ariaHidden || typeof Icon !== 'function'}
         {...rest}
       >
-        {Icon ? Icon : children}
+        {Icon ? typeof Icon === 'function' ? <Icon /> : Icon : children}
       </span>
     )
   },

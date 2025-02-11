@@ -7,7 +7,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/animati
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from '../Animation.module.css'
-import {useId} from '@reach/auto-id'
+import {useId} from '../../hooks/useId'
 
 export const AnimationVariants = [
   'fade-in',

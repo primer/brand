@@ -16,7 +16,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './SubdomainNavBar.module.css'
-import {useId} from '@reach/auto-id'
+import {useId} from '../hooks/useId'
 
 export type SubdomainNavBarProps = {
   /**
@@ -393,230 +393,231 @@ export type SubdomainNavBarSearchResultProps = {
   category?: string
 }
 
+type HandlerEvent = MouseEvent | TouchEvent | FocusEvent
+
 type SearchProps = {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   ref: React.RefObject<HTMLInputElement>
   active?: boolean
   title?: string
-  handlerFn?: (event: MouseEvent | TouchEvent | FocusEvent) => void
+  handlerFn?: (event: HandlerEvent) => void
   autoComplete?: boolean
   searchResults?: SubdomainNavBarSearchResultProps[]
   searchTerm?: string
 }
 
-const _SearchInternal = (
-  {active, title, searchResults, searchTerm, handlerFn, onSubmit, onChange}: SearchProps,
-  ref,
-) => {
-  const dialogRef = useRef<HTMLDivElement | null>(null)
+const _SearchInternal = forwardRef<HTMLDivElement, SearchProps>(
+  ({active, title, searchResults, searchTerm, handlerFn, onSubmit, onChange}, ref) => {
+    const dialogRef = useRef<HTMLDivElement | null>(null)
 
-  useFocusTrap({containerRef: dialogRef, restoreFocusOnCleanUp: true, disabled: !active})
-  useOnClickOutside(dialogRef, handlerFn)
+    useFocusTrap({containerRef: dialogRef, restoreFocusOnCleanUp: true, disabled: !active})
+    useOnClickOutside(dialogRef, handlerFn)
 
-  const [activeDescendant, setActiveDescendant] = useState<number>(-1)
-  const [listboxActive, setListboxActive] = useState<boolean>()
-  const [liveRegion, setLiveRegion] = useState<boolean>(false)
+    const [activeDescendant, setActiveDescendant] = useState<number>(-1)
+    const [listboxActive, setListboxActive] = useState<boolean>()
+    const [liveRegion, setLiveRegion] = useState<boolean>(false)
 
-  const handleClose = useCallback(
-    (event = null) => {
-      if (handlerFn) handlerFn(event)
-      setActiveDescendant(-1)
-    },
-    [handlerFn],
-  )
+    const handleClose = useCallback(
+      (event?: React.MouseEvent<HTMLButtonElement, MouseEvent> | HandlerEvent | null) => {
+        if (handlerFn) handlerFn(event as HandlerEvent)
+        setActiveDescendant(-1)
+      },
+      [handlerFn],
+    )
 
-  useOnClickOutside(dialogRef, handleClose)
-  useKeyboardEscape(() => {
-    // Close the dialog if combobox is already collapsed
-    if (!listboxActive && active) {
-      handleClose()
-      return false
-    }
-
-    setListboxActive(false)
-    setActiveDescendant(-1)
-  })
-
-  const handleAriaFocus = useCallback(
-    event => {
-      const supportedKeys = ['ArrowDown', 'ArrowUp', 'Escape', 'Enter']
-      const currentCount = activeDescendant
-      const searchResultsLength = searchResults ? searchResults.length : 0
-      const dialog = dialogRef.current
-      let count
-
-      // Prevent any other keys outside of supported from being prevented.
-      // Only prevent "Enter" if activeDescendant is greater than -1.
-      if (!supportedKeys.includes(event.key) || (event.key === 'Enter' && activeDescendant === -1) || !dialog) {
+    useOnClickOutside(dialogRef, handleClose as (event) => void)
+    useKeyboardEscape(() => {
+      // Close the dialog if combobox is already collapsed
+      if (!listboxActive && active) {
+        handleClose()
         return false
       }
 
-      event.preventDefault()
+      setListboxActive(false)
+      setActiveDescendant(-1)
+    })
 
-      if (event.key === 'ArrowDown') {
-        // If count reaches last search result item, reset to -1
-        count = currentCount < searchResultsLength - 1 ? currentCount + 1 : -1
-        setActiveDescendant(count)
-      } else if (event.key === 'ArrowUp') {
-        // Reset to last search result item if
-        count = currentCount === -1 ? searchResultsLength - 1 : currentCount - 1
-        setActiveDescendant(count)
-      }
+    const handleAriaFocus = useCallback(
+      event => {
+        const supportedKeys = ['ArrowDown', 'ArrowUp', 'Escape', 'Enter']
+        const currentCount = activeDescendant
+        const searchResultsLength = searchResults ? searchResults.length : 0
+        const dialog = dialogRef.current
+        let count
 
-      if (['ArrowDown', 'ArrowUp'].includes(event.key)) {
-        dialog.querySelector(`#subdomainnavbar-search-result-${count}`)?.scrollIntoView()
-      }
+        // Prevent any other keys outside of supported from being prevented.
+        // Only prevent "Enter" if activeDescendant is greater than -1.
+        if (!supportedKeys.includes(event.key) || (event.key === 'Enter' && activeDescendant === -1) || !dialog) {
+          return false
+        }
 
-      if (event.key === 'Enter') {
-        const link = dialog.querySelector(`#subdomainnavbar-search-result-${activeDescendant} a`) as HTMLAnchorElement
-        link.click()
-      }
-    },
-    [searchResults, activeDescendant],
-  )
+        event.preventDefault()
 
-  const searchLiveRegion = useCallback(() => {
-    // Adding a non-breaking space and then removing it will force screen readers to announce the text,
-    // as it thinks that there was a change within the live region.
-    setLiveRegion(true)
+        if (event.key === 'ArrowDown') {
+          // If count reaches last search result item, reset to -1
+          count = currentCount < searchResultsLength - 1 ? currentCount + 1 : -1
+          setActiveDescendant(count)
+        } else if (event.key === 'ArrowUp') {
+          // Reset to last search result item if
+          count = currentCount === -1 ? searchResultsLength - 1 : currentCount - 1
+          setActiveDescendant(count)
+        }
 
-    setTimeout(() => {
-      if (active) setLiveRegion(false)
-    }, 200)
-  }, [active])
+        if (['ArrowDown', 'ArrowUp'].includes(event.key)) {
+          dialog.querySelector(`#subdomainnavbar-search-result-${count}`)?.scrollIntoView()
+        }
 
-  useEffect(() => {
-    // We want to set "listboxActive" when search results are present,
-    // or the user pressed "Escape". We watch for "searchTerm", as we -
-    // want the listbox to become active if they pressed "Escape", and -
-    // adjusted their existing value.
-    const search = searchResults && searchResults.length ? true : false
-    setListboxActive(search)
-    searchLiveRegion()
-  }, [searchResults, searchTerm, searchLiveRegion])
+        if (event.key === 'Enter') {
+          const link = dialog.querySelector(`#subdomainnavbar-search-result-${activeDescendant} a`) as HTMLAnchorElement
+          link.click()
+        }
+      },
+      [searchResults, activeDescendant],
+    )
 
-  return (
-    <>
-      <div className={clsx(styles['SubdomainNavBar-search-trigger'])}>
-        <button
-          aria-label="Toggle search bar"
-          className={styles['SubdomainNavBar-search-button']}
-          onClick={handlerFn as (event) => void}
-          data-testid="toggle-search"
-        >
-          <SearchIcon aria-label="Search icon" />
-        </button>
-      </div>
-      {active && (
-        <div
-          ref={dialogRef}
-          role="dialog"
-          aria-label={`Search ${title}`}
-          aria-modal="true"
-          tabIndex={-1}
-          className={clsx(styles['SubdomainNavBar-search-dialog'])}
-        >
-          <div className={clsx(styles['SubdomainNavBar-search-dialog-control-area'])}>
-            <form className={clsx(styles['SubdomainNavBar-search-form'])} onSubmit={onSubmit} role="search">
-              <FormControl fullWidth size="medium">
-                <FormControl.Label visuallyHidden>Search</FormControl.Label>
-                <TextInput
-                  ref={ref}
-                  className={clsx(styles['SubdomainNavBar-search-text-input'])}
-                  name="search"
-                  role="combobox"
-                  aria-expanded={listboxActive}
-                  aria-controls="listbox-search-results"
-                  placeholder={`Search ${title}`}
-                  onChange={onChange}
-                  defaultValue={searchTerm}
-                  invisible
-                  leadingVisual={<SearchIcon size={16} />}
-                  aria-activedescendant={
-                    activeDescendant === -1 ? undefined : `subdomainnavbar-search-result-${activeDescendant}`
-                  }
-                  onKeyDown={handleAriaFocus}
-                />
-              </FormControl>
-            </form>
-            <button
-              aria-label="Close"
-              className={clsx(styles['SubdomainNavBar-menu-button'], styles['SubdomainNavBar-menu-button--close'])}
-              onClick={handleClose}
-            >
-              <XIcon size={24} />
-            </button>
-          </div>
+    const searchLiveRegion = useCallback(() => {
+      // Adding a non-breaking space and then removing it will force screen readers to announce the text,
+      // as it thinks that there was a change within the live region.
+      setLiveRegion(true)
 
-          <div id="listbox-search-results">
-            {listboxActive && (
-              <div className={clsx(styles['SubdomainNavBar-search-results-container'])}>
-                <Text
-                  id="subdomainnavbar-search-results-heading"
-                  className={styles['SubdomainNavBar-search-results-heading']}
-                >
-                  Results for &ldquo;{searchTerm}&rdquo;
-                </Text>
-                <ul
-                  role="listbox"
-                  tabIndex={0}
-                  aria-labelledby="subdomainnavbar-search-results-heading"
-                  className={clsx(styles['SubdomainNavBar-search-results'])}
-                >
-                  {searchResults?.map((result, index) => (
-                    <li
-                      key={`${result.title}-${index}`}
-                      id={`subdomainnavbar-search-result-${index}`}
-                      className={styles['SubdomainNavBar-search-result-item']}
-                      role="option"
-                      aria-selected={index === activeDescendant}
-                    >
-                      <div className={styles['SubdomainNavBar-search-result-item-container']}>
-                        <a href={result.url}>{result.title}</a>
-                      </div>
+      setTimeout(() => {
+        if (active) setLiveRegion(false)
+      }, 200)
+    }, [active])
 
-                      <Text
-                        as="p"
-                        size="200"
-                        id={`subdomainnavbar-search-result-item-desc${index}`}
-                        className={styles['SubdomainNavBar-search-result-item-desc']}
+    useEffect(() => {
+      // We want to set "listboxActive" when search results are present,
+      // or the user pressed "Escape". We watch for "searchTerm", as we -
+      // want the listbox to become active if they pressed "Escape", and -
+      // adjusted their existing value.
+      const search = searchResults && searchResults.length ? true : false
+      setListboxActive(search)
+      searchLiveRegion()
+    }, [searchResults, searchTerm, searchLiveRegion])
+
+    return (
+      <>
+        <div className={clsx(styles['SubdomainNavBar-search-trigger'])}>
+          <button
+            aria-label="Toggle search bar"
+            className={styles['SubdomainNavBar-search-button']}
+            onClick={handlerFn as (event) => void}
+            data-testid="toggle-search"
+          >
+            <SearchIcon aria-label="Search icon" />
+          </button>
+        </div>
+        {active && (
+          <div
+            ref={dialogRef}
+            role="dialog"
+            aria-label={`Search ${title}`}
+            aria-modal="true"
+            tabIndex={-1}
+            className={clsx(styles['SubdomainNavBar-search-dialog'])}
+          >
+            <div className={clsx(styles['SubdomainNavBar-search-dialog-control-area'])}>
+              <form className={clsx(styles['SubdomainNavBar-search-form'])} onSubmit={onSubmit} role="search">
+                <FormControl fullWidth size="medium">
+                  <FormControl.Label visuallyHidden>Search</FormControl.Label>
+                  <TextInput
+                    ref={ref}
+                    className={clsx(styles['SubdomainNavBar-search-text-input'])}
+                    name="search"
+                    role="combobox"
+                    aria-expanded={listboxActive}
+                    aria-controls="listbox-search-results"
+                    placeholder={`Search ${title}`}
+                    onChange={onChange}
+                    defaultValue={searchTerm}
+                    invisible
+                    leadingVisual={<SearchIcon size={16} />}
+                    aria-activedescendant={
+                      activeDescendant === -1 ? undefined : `subdomainnavbar-search-result-${activeDescendant}`
+                    }
+                    onKeyDown={handleAriaFocus}
+                  />
+                </FormControl>
+              </form>
+              <button
+                aria-label="Close"
+                className={clsx(styles['SubdomainNavBar-menu-button'], styles['SubdomainNavBar-menu-button--close'])}
+                onClick={handleClose}
+              >
+                <XIcon size={24} />
+              </button>
+            </div>
+
+            <div id="listbox-search-results">
+              {listboxActive && (
+                <div className={clsx(styles['SubdomainNavBar-search-results-container'])}>
+                  <Text
+                    id="subdomainnavbar-search-results-heading"
+                    className={styles['SubdomainNavBar-search-results-heading']}
+                  >
+                    Results for &ldquo;{searchTerm}&rdquo;
+                  </Text>
+                  <ul
+                    role="listbox"
+                    tabIndex={0}
+                    aria-labelledby="subdomainnavbar-search-results-heading"
+                    className={clsx(styles['SubdomainNavBar-search-results'])}
+                  >
+                    {searchResults?.map((result, index) => (
+                      <li
+                        key={`${result.title}-${index}`}
+                        id={`subdomainnavbar-search-result-${index}`}
+                        className={styles['SubdomainNavBar-search-result-item']}
+                        role="option"
+                        aria-selected={index === activeDescendant}
                       >
-                        {result.description}
-                      </Text>
-                      <div>
-                        <Text size="100" className={styles['SubdomainNavBar-search-result-item-desc']}>
-                          {result.date}
+                        <div className={styles['SubdomainNavBar-search-result-item-container']}>
+                          <a href={result.url}>{result.title}</a>
+                        </div>
+
+                        <Text
+                          as="p"
+                          size="200"
+                          id={`subdomainnavbar-search-result-item-desc${index}`}
+                          className={styles['SubdomainNavBar-search-result-item-desc']}
+                        >
+                          {result.description}
                         </Text>
-                        {result.category && (
-                          <>
-                            <Text size="100" className={styles['SubdomainNavBar-search-result-item-desc']}>
-                              {' '}
-                              •{' '}
-                            </Text>
-                            <Text size="100" className={styles['SubdomainNavBar-search-result-item-desc']}>
-                              {result.category}
-                            </Text>
-                          </>
-                        )}
-                      </div>
-                    </li>
-                  ))}
-                </ul>
+                        <div>
+                          <Text size="100" className={styles['SubdomainNavBar-search-result-item-desc']}>
+                            {result.date}
+                          </Text>
+                          {result.category && (
+                            <>
+                              <Text size="100" className={styles['SubdomainNavBar-search-result-item-desc']}>
+                                {' '}
+                                •{' '}
+                              </Text>
+                              <Text size="100" className={styles['SubdomainNavBar-search-result-item-desc']}>
+                                {result.category}
+                              </Text>
+                            </>
+                          )}
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              <div aria-live="polite" aria-atomic="true" data-testid={testIds.liveRegion} className="visually-hidden">
+                {`${searchResults?.length} suggestions.`}
+                {liveRegion && <span>&nbsp;</span>}
               </div>
-            )}
-            <div aria-live="polite" aria-atomic="true" data-testid={testIds.liveRegion} className="visually-hidden">
-              {`${searchResults?.length} suggestions.`}
-              {liveRegion && <span>&nbsp;</span>}
             </div>
           </div>
-        </div>
-      )}
-    </>
-  )
-}
+        )}
+      </>
+    )
+  },
+)
 
-const Search = forwardRef(_SearchInternal)
+const Search = _SearchInternal
 
 type CTAActionProps = {
   href: string

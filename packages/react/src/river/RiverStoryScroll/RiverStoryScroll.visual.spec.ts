@@ -44,6 +44,18 @@ test.describe('Visual Comparison: RiverStoryScroll', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for Disabled Narrow', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('RiverStoryScroll / Disabled Narrow', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-riverstoryscroll-features--disabled-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+  })
   test('RiverStoryScroll / Enterprise Example', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-riverstoryscroll-features--enterprise-example&viewMode=story',

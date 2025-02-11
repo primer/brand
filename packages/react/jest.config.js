@@ -30,7 +30,7 @@ module.exports = {
   },
   preset: 'ts-jest',
   setupFilesAfterEnv: ['./src/test-utils/setupTests.ts'],
-  testEnvironment: 'jest-environment-jsdom',
+  testEnvironment: 'jsdom',
   testMatch: ['<rootDir>/(src)/**/*.test.[jt]s?(x)'],
   globals: {
     window: {},

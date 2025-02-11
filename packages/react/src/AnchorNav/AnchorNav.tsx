@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import React, {ReactElement, useCallback, useEffect, useMemo, useRef, useState} from 'react'
 import {ChevronDownIcon, ChevronUpIcon} from '@primer/octicons-react'
-import {useId} from '@reach/auto-id'
+import {useId} from '../hooks/useId'
 
 import {Button, ButtonBaseProps, Text} from '../'
 import {useWindowSize} from '../hooks/useWindowSize'
