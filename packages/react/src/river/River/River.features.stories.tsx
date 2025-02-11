@@ -10,9 +10,7 @@ export default {
   component: River,
 } as Meta<typeof River>
 
-const PlaceholderImage = () => (
-  <img src={placeholderImage} alt="placeholder, blank area with a gray background color" />
-)
+const PlaceholderImage = () => <img src={placeholderImage} alt="placeholder, blank area with a gray background color" />
 
 export const Left: StoryFn<typeof River> = () => (
   <River align="start">

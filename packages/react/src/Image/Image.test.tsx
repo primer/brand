@@ -69,9 +69,7 @@ describe('Image', () => {
   })
 
   it('should return an img element in a picture tag if aspectRatio is not provided and as is equal to picture', async () => {
-    const {container} = render(
-      <Image src="/brand/assets/placeholder.png" alt="alternative text" as="picture" />,
-    )
+    const {container} = render(<Image src="/brand/assets/placeholder.png" alt="alternative text" as="picture" />)
 
     expect(container.querySelector('.Image__container')).toBeInTheDocument()
     expect(container.querySelector('span')).not.toBeInTheDocument()
@@ -129,12 +127,7 @@ describe('Image', () => {
     const testDecoding = 'async'
     const testAltText = 'alternative text'
     const {getByAltText} = render(
-      <Image
-        src="/brand/assets/placeholder.png"
-        alt={testAltText}
-        loading={testLoading}
-        decoding={testDecoding}
-      />,
+      <Image src="/brand/assets/placeholder.png" alt={testAltText} loading={testLoading} decoding={testDecoding} />,
     )
     expect(getByAltText(testAltText).getAttribute('loading')).toEqual(testLoading)
     expect(getByAltText(testAltText).getAttribute('decoding')).toEqual(testDecoding)
@@ -176,13 +169,7 @@ describe('Image', () => {
 
   it('should create a picture element when a custom height and width is provided', async () => {
     const {container} = render(
-      <Image
-        src="/brand/assets/placeholder.png"
-        alt="alternative text"
-        width={200}
-        height={200}
-        as="picture"
-      />,
+      <Image src="/brand/assets/placeholder.png" alt="alternative text" width={200} height={200} as="picture" />,
     )
 
     // Can't test the actual height and width because without a loading image it's not possible to get the actual height and width
@@ -191,13 +178,7 @@ describe('Image', () => {
 
   it('should create a span element when a custom height and width is provided and aspectRatio is provided', async () => {
     const {container} = render(
-      <Image
-        src="/brand/assets/placeholder.png"
-        alt="alternative text"
-        width={200}
-        height={300}
-        aspectRatio="1:1"
-      />,
+      <Image src="/brand/assets/placeholder.png" alt="alternative text" width={200} height={300} aspectRatio="1:1" />,
     )
 
     // Can't test the actual height and width because without a loading image it's not possible to get the actual height and width - can't test that this overrides either because the height and width are not receivable.
@@ -207,9 +188,7 @@ describe('Image', () => {
   it('should set the srcSet property correctly on the img component', async () => {
     const testSrcSet = '/brand/assets/placeholder.png, /brand/assets/placeholder.png 2x'
     const testAltText = 'alternative text'
-    const {getByAltText} = render(
-      <Image src="/brand/assets/placeholder.png" alt={testAltText} srcSet={testSrcSet} />,
-    )
+    const {getByAltText} = render(<Image src="/brand/assets/placeholder.png" alt={testAltText} srcSet={testSrcSet} />)
 
     expect(getByAltText(testAltText).getAttribute('srcset')).toEqual(testSrcSet)
   })
