@@ -41,7 +41,7 @@ import vercelLogo from '../../../fixtures/images/logos/vercel.png'
 import lightHeroBg from '../../../fixtures/images/background-light-collaboration.webp'
 import darkHeroBg from '../../../fixtures/images/background-dark-collaboration.webp'
 import ciCdRenderImage from '../../../fixtures/images/ci-cd-render-ui.png'
-import placeholderImage from '../../../fixtures/images/placeholder-600x400.png'
+import placeholderImage from '../../../fixtures/images/placeholder.png'
 
 import lightNarrowBg from '../../../fixtures/images/light-vertical-banner.png'
 import lightWideBg from '../../../fixtures/images/light-horizontal-banner.png'

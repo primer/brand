@@ -21,7 +21,7 @@ import {Icon} from '../../../Icon'
 
 import darkHeroBg from '../../../fixtures/images/background-dark-collaboration.webp'
 import darkPlaceholderImage from '../../../fixtures/images/enterprise-stack.png'
-import placeholderImage from '../../../fixtures/images/placeholder-600x400.png'
+import placeholderImage from '../../../fixtures/images/placeholder.png'
 
 import styles from './SolutionsOverview.module.css'
 import parallaxStyles from '../parallax.module.css'

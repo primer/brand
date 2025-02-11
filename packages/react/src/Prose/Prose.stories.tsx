@@ -1,7 +1,7 @@
 import React from 'react'
 import {Meta, StoryFn} from '@storybook/react'
 import {Prose} from './Prose'
-import placeholderImage from '../fixtures/images/placeholder-600x400.png'
+import placeholderImage from '../fixtures/images/placeholder.png'
 
 const meta: Meta<typeof Prose> = {
   title: 'Components/Prose',

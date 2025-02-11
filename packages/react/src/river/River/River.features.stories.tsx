@@ -3,7 +3,7 @@ import {Meta, StoryFn} from '@storybook/react'
 import {River} from '.'
 import {Heading, Label, Link, Stack, Text, Timeline} from '../../'
 import {Container} from '../../component-helpers'
-import placeholderImage from '../../fixtures/images/placeholder-600x400.png'
+import placeholderImage from '../../fixtures/images/placeholder.png'
 
 export default {
   title: 'Components/River/features',

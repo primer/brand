@@ -1,7 +1,7 @@
 import React from 'react'
 import {Meta, StoryFn} from '@storybook/react'
 
-import placeholderImage from '../fixtures/images/placeholder-600x400.png'
+import placeholderImage from '../fixtures/images/placeholder.png'
 import style from './Image.stories.module.css'
 
 import {Image, ImageBorderRadiusOptions} from './Image'

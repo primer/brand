@@ -2,7 +2,7 @@ import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {HeartFillIcon, StarFillIcon} from '@primer/octicons-react'
-import placeholderImage from '../fixtures/images/placeholder-600x400.png'
+import placeholderImage from '../fixtures/images/placeholder.png'
 
 import {Hero} from '.'
 import {ActionMenu} from '../ActionMenu'

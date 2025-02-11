@@ -14,7 +14,7 @@ describe('Prose', () => {
       <p>Build community around your code.</p>
 
       <img
-        src="/brand/assets/placeholder-600x400.png"
+        src="/brand/assets/placeholder.png"
         alt="placeholder, blank area with an off-white background color"
       />
 

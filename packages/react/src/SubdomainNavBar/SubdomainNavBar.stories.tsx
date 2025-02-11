@@ -4,7 +4,7 @@ import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 
 import React, {useEffect, useState} from 'react'
 import {Hero, River, Heading, Text, Link} from '../'
-import placeholderImage from '../fixtures/images/placeholder-600x400.png'
+import placeholderImage from '../fixtures/images/placeholder.png'
 
 import {SubdomainNavBar, SubdomainNavBarProps} from '.'
 import {waitFor} from '@testing-library/dom'

@@ -4,7 +4,7 @@ import {StoryFn, Meta} from '@storybook/react'
 import {River} from '.'
 import {Heading, Text, Link} from '../../'
 import {Container} from '../../component-helpers'
-import placeholderImage from '../../fixtures/images/placeholder-600x400.png'
+import placeholderImage from '../../fixtures/images/placeholder.png'
 
 import styles from './River.stories.module.css'
 import clsx from 'clsx'

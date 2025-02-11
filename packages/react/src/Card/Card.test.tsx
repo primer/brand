@@ -137,7 +137,7 @@ describe('Card', () => {
 
     const {getByAltText} = render(
       <Card href={mockHref}>
-        <Card.Image src="/brand/assets/placeholder-600x400.png" alt={testAltText} />
+        <Card.Image src="/brand/assets/placeholder.png" alt={testAltText} />
         <Card.Heading>{mockHeading}</Card.Heading>
         <Card.Description>{mockDescription}</Card.Description>
       </Card>,
