@@ -29,9 +29,7 @@ const TrailingTimeline = () => (
   </Timeline>
 )
 
-const PlaceholderImage = () => (
-  <img src={placeholderImage} alt="placeholder, blank area with an off-white background color" />
-)
+const PlaceholderImage = () => <img src={placeholderImage} alt="placeholder, blank area with a gray background color" />
 
 export const Default: StoryFn<typeof RiverBreakout> = () => (
   <RiverBreakout>

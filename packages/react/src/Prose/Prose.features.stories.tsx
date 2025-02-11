@@ -39,7 +39,7 @@ const ExampleHtmlMarkup = `
     <p>Pellentesque non ornare ligula. Suspendisse nibh purus, pretium id tortor sit amet, tincidunt gravida augue. Ut malesuada, nisl vel dignissim mollis</p>
     <img
       src="${placeholderImage}"
-      alt="placeholder, blank area with an off-white background color"
+      alt="placeholder, blank area with a gray background color"
       />
     <h4>Heading level  4</h4>
     <p>
@@ -58,7 +58,7 @@ const ExampleHtmlMarkup = `
     </ol>
     <h6>Heading level 6</h6>
     <p>Pellentesque non ornare ligula. Suspendisse nibh purus, pretium id tortor sit amet, tincidunt gravida augue.</p>
-    <p><code>for-each-ref</code> is extremely useful for listing references, finding which references point at a given object (with <code>--points-at</code>), which references have been merged into a given branch (with <code>--merged</code>), or which references contain a given commit (with <code>--contains</code>).</p>        
+    <p><code>for-each-ref</code> is extremely useful for listing references, finding which references point at a given object (with <code>--points-at</code>), which references have been merged into a given branch (with <code>--merged</code>), or which references contain a given commit (with <code>--contains</code>).</p>
     <p>Nunc velit odio, posuere eu felis eget, consectetur fermentum nisi. Aenean tempor odio id ornare ultrices. Quisque blandit condimentum tellus, semper efficitur sapien dapibus nec. </p>
 `
 

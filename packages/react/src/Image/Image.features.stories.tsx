@@ -15,38 +15,33 @@ export default {
 export const CustomPictureAspectRatio: StoryFn<typeof Image> = () => (
   <Image
     src={placeholderImage}
-    alt="placeholder, blank area with an off-white background color"
+    alt="placeholder, blank area with a gray background color"
     aspectRatio="custom"
     as="picture"
   />
 )
 
 export const CustomImageAspectRatio: StoryFn<typeof Image> = () => (
-  <Image src={placeholderImage} alt="placeholder, blank area with an off-white background color" aspectRatio="custom" />
+  <Image src={placeholderImage} alt="placeholder, blank area with a gray background color" aspectRatio="custom" />
 )
 
 export const CustomImageHeight: StoryFn<typeof Image> = () => (
-  <Image src={placeholderImage} alt="placeholder, blank area with an off-white background color" height={200} />
+  <Image src={placeholderImage} alt="placeholder, blank area with a gray background color" height={200} />
 )
 
 export const CustomImageWidth: StoryFn<typeof Image> = () => (
-  <Image src={placeholderImage} alt="placeholder, blank area with an off-white background color" width={200} />
+  <Image src={placeholderImage} alt="placeholder, blank area with a gray background color" width={200} />
 )
 
 export const CustomImageWidthAndHeight: StoryFn<typeof Image> = () => (
-  <Image
-    src={placeholderImage}
-    alt="placeholder, blank area with an off-white background color"
-    height={200}
-    width={200}
-  />
+  <Image src={placeholderImage} alt="placeholder, blank area with a gray background color" height={200} width={200} />
 )
 
 export const CustomClass: StoryFn<typeof Image> = () => (
   <Image
     src={placeholderImage}
     className={style['custom-image']}
-    alt="placeholder, blank area with an off-white background color"
+    alt="placeholder, blank area with a gray background color"
     height={200}
     width={200}
   />
@@ -56,7 +51,7 @@ export const CustomClassOnPicture: StoryFn<typeof Image> = () => (
   <Image
     src={placeholderImage}
     className={style['custom-image']}
-    alt="placeholder, blank area with an off-white background color"
+    alt="placeholder, blank area with a gray background color"
     height={200}
     width={200}
     as="picture"
@@ -67,7 +62,7 @@ export const CustomClassWithAspectRatio: StoryFn<typeof Image> = () => (
   <Image
     src={placeholderImage}
     className={style['custom-image']}
-    alt="placeholder, blank area with an off-white background color"
+    alt="placeholder, blank area with a gray background color"
     aspectRatio="custom"
   />
 )
@@ -80,7 +75,7 @@ export const BorderRadiusOptions: StoryFn<typeof Image> = () => (
         src={placeholderImage}
         width={200}
         height={200}
-        alt="placeholder, blank area with an off-white background color"
+        alt="placeholder, blank area with a gray background color"
         borderRadius={borderRadius}
       />
     ))}

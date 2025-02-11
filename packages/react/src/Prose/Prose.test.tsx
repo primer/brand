@@ -15,7 +15,7 @@ describe('Prose', () => {
 
       <img
         src="/brand/assets/placeholder.png"
-        alt="placeholder, blank area with an off-white background color"
+        alt="placeholder, blank area with a gray background color"
       />
 
       <h2>Automation and CI/CD</h2>

@@ -11,7 +11,7 @@ export default {
 } as Meta<typeof River>
 
 const PlaceholderImage = () => (
-  <img src={placeholderImage} alt="placeholder, blank area with an off-white background color" />
+  <img src={placeholderImage} alt="placeholder, blank area with a gray background color" />
 )
 
 export const Left: StoryFn<typeof River> = () => (

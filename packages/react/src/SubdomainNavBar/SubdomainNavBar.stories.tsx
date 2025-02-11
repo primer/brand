@@ -453,7 +453,7 @@ const Template: StoryFn<Args> = args => {
           </Heading>
           <River>
             <River.Visual>
-              <img src={placeholderImage} alt="placeholder, blank area with an off-white background color" />
+              <img src={placeholderImage} alt="placeholder, blank area with a gray background color" />
             </River.Visual>
             <River.Content>
               <Heading>Heading</Heading>
@@ -466,7 +466,7 @@ const Template: StoryFn<Args> = args => {
           </River>
           <River align="end">
             <River.Visual>
-              <img src={placeholderImage} alt="placeholder, blank area with an off-white background color" />
+              <img src={placeholderImage} alt="placeholder, blank area with a gray background color" />
             </River.Visual>
             <River.Content>
               <Heading>Heading</Heading>

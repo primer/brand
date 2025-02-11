@@ -92,7 +92,7 @@ export function FeaturePreviewLevelZero({accentColor, colorMode, ...args}: Featu
                 <Hero.Image
                   position={args.heroVisualPosition}
                   src={placeholderImage}
-                  alt="placeholder, blank area with an off-white background color"
+                  alt="placeholder, blank area with a gray background color"
                   height="100%"
                 />
               )}

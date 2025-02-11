@@ -14,9 +14,7 @@ export default {
   component: River,
 } as Meta<typeof River>
 
-const PlaceholderImage = () => (
-  <img src={placeholderImage} alt="placeholder, blank area with an off-white background color" />
-)
+const PlaceholderImage = () => <img src={placeholderImage} alt="placeholder, blank area with a gray background color" />
 const Template: StoryFn<typeof River> = args => (
   <Container>
     <River {...args}>
