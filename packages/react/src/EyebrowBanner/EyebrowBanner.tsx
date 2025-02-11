@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import {Icon as IconProps} from '@primer/octicons-react'
 
 import {Text} from '../Text'
-import {Colors, Gradients} from '../constants'
+import {Colors, BiColorGradients} from '../constants'
 
 import type {BaseProps} from '../component-helpers'
 import {ExpandableArrow} from '../ExpandableArrow'
@@ -197,7 +197,7 @@ const EyebrowBannerVisual = forwardRef<HTMLSpanElement, EyebrowBannerVisual>(
   },
 )
 
-export const EyebrowBannerLabelColors = [...Gradients, ...Colors] as const
+export const EyebrowBannerLabelColors = [...BiColorGradients, ...Colors] as const
 
 type EyebrowBannerLabel = BaseProps<HTMLSpanElement> & {
   /**

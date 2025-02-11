@@ -1,10 +1,24 @@
 .Label {
-  --brand-Label-gradient: radial-gradient(
+  --brand-Label-gradient-radial: radial-gradient(
     circle at top left,
     var(--brand-Label-color-start),
     var(--brand-Label-color-end)
   );
-  --brand-Label-background: var(--brand-Label-gradient, var(--brand-Label-color, currentColor));
+
+  --brand-Label-gradient-conical: conic-gradient(
+    from 90deg at center,
+    var(--brand-Label-color-stop-1) 0deg,
+    var(--brand-Label-color-stop-2) 160deg,
+    var(--brand-Label-color-stop-3) 175deg,
+    var(--brand-Label-color-stop-4) 200deg,
+    var(--brand-Label-color-stop-4) 350deg,
+    var(--brand-Label-color-stop-1) 360deg
+  );
+
+  --brand-Label-background: var(
+    --brand-Label-gradient-conical,
+    var(--brand-Label-gradient-radial, var(--brand-Label-color, currentColor))
+  );
 
   vertical-align: middle;
   align-items: center;
@@ -101,6 +115,13 @@
 .Label--color-pink-blue {
   --brand-Label-color-start: var(--brand-Label-color-pink-blue-start);
   --brand-Label-color-end: var(--brand-Label-color-pink-blue-end);
+}
+
+.Label--color-green-blue-purple {
+  --brand-Label-color-stop-1: var(--brand-Label-color-green-blue-purple-1);
+  --brand-Label-color-stop-2: var(--brand-Label-color-green-blue-purple-2);
+  --brand-Label-color-stop-3: var(--brand-Label-color-green-blue-purple-3);
+  --brand-Label-color-stop-4: var(--brand-Label-color-green-blue-purple-4);
 }
 
 .Label--color-purple {

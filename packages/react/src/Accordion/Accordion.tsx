@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import {Heading} from '../'
 import type {BaseProps} from '../component-helpers'
 import {ChevronDownIcon, ChevronUpIcon} from '@primer/octicons-react'
-import {Colors, Gradients} from '../constants'
+import {Colors, BiColorGradients as Gradients} from '../constants'
 
 /**
  * Design tokens

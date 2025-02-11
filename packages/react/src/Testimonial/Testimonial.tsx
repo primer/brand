@@ -17,11 +17,11 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/testimonial/colors-with-modes.css'
 
 import styles from './Testimonial.module.css'
-import {Colors, Gradients} from '../constants'
+import {Colors, BiColorGradients} from '../constants'
 
 type TestimonialSize = 'small' | 'large'
 
-export const TestimonialQuoteMarkColors = [...Colors, ...Gradients] as const
+export const TestimonialQuoteMarkColors = [...Colors, ...BiColorGradients] as const
 export const defaultQuoteMarkColor = TestimonialQuoteMarkColors[0]
 
 export const TestimonialVariants = ['subtle', 'default', 'minimal'] as const
