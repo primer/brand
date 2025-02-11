@@ -23,7 +23,7 @@ This component uses the `img` element by default.
 
 ```jsx live
 <Image
-  src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+  src="/brand/assets/placeholder-600x400.png"
   alt="placeholder, blank area with an off-white background color"
 />
 ```
@@ -35,7 +35,7 @@ The `as` prop can be used to set the container of the image to use `picture`.
 ```jsx live
 <Image
   as="picture"
-  src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+  src="/brand/assets/placeholder-600x400.png"
   alt="placeholder, blank area with an off-white background color"
 />
 ```
@@ -47,15 +47,15 @@ The `sources` prop can be used to set the source elements within the `picture` c
 ```jsx live
 <Image
   as="picture"
-  src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+  src="/brand/assets/placeholder-600x400.png"
   alt="placeholder, blank area with an off-white background color"
   sources={[
     {
-      srcset: 'https://via.placeholder.com/600x400/d3d9df/d3d9df.png',
+      srcset: '/brand/assets/placeholder-600x400.png',
       media: '(min-width: 600px)',
     },
     {
-      srcset: 'https://via.placeholder.com/900x600/d3d9df/d3d9df.png',
+      srcset: '/brand/assets/placeholder-600x400.png',
       media: '(min-width: 900px)',
     },
   ]}
@@ -68,8 +68,8 @@ The `srcSet` prop can be used to set the srcSet of the image. This can only be u
 
 ```jsx live
 <Image
-  src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
-  srcSet="https://via.placeholder.com/600x400/d3d9df/d3d9df.png, https://via.placeholder.com/900x600/d3d9df/d3d9df.png 1.5x"
+  src="/brand/assets/placeholder-600x400.png"
+  srcSet="/brand/assets/placeholder-600x400.png, /brand/assets/placeholder-600x400.png 1.5x"
   alt="placeholder, blank area with an off-white background color"
 />
 ```
@@ -80,7 +80,7 @@ The `aspectRatio` prop can be used to set the aspect ratio of the image. This is
 
 ```jsx live
 <Image
-  src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+  src="/brand/assets/placeholder-600x400.png"
   alt="placeholder, blank area with an off-white background color"
   aspectRatio="16:9"
 />
@@ -92,7 +92,7 @@ The `height` prop can be used to set the height of the image. This can be used a
 
 ```jsx live
 <Image
-  src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+  src="/brand/assets/placeholder-600x400.png"
   alt="placeholder, blank area with an off-white background color"
   height={200}
   aspectRatio="16:9"
@@ -106,35 +106,35 @@ The `borderRadius` prop can be used to apply rounded corners to images using pre
 ```jsx live
 <Stack direction="horizontal">
   <Image
-    src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+    src="/brand/assets/placeholder-600x400.png"
     alt="placeholder, blank area with an off-white background color"
     height={100}
     width={100}
     borderRadius="small"
   />
   <Image
-    src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+    src="/brand/assets/placeholder-600x400.png"
     alt="placeholder, blank area with an off-white background color"
     height={100}
     width={100}
     borderRadius="medium"
   />
   <Image
-    src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+    src="/brand/assets/placeholder-600x400.png"
     alt="placeholder, blank area with an off-white background color"
     height={100}
     width={100}
     borderRadius="large"
   />
   <Image
-    src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+    src="/brand/assets/placeholder-600x400.png"
     alt="placeholder, blank area with an off-white background color"
     height={100}
     width={100}
     borderRadius="xlarge"
   />
   <Image
-    src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+    src="/brand/assets/placeholder-600x400.png"
     alt="placeholder, blank area with an off-white background color"
     height={100}
     width={100}
@@ -149,7 +149,7 @@ The `width` prop can be used to set the width of the image. This can be used alo
 
 ```jsx live
 <Image
-  src="https://via.placeholder.com/600x400/d3d9df/d3d9df.png"
+  src="/brand/assets/placeholder-600x400.png"
   alt="placeholder, blank area with an off-white background color"
   width={200}
   aspectRatio="16:9"
