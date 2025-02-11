@@ -7,13 +7,13 @@ declare const styles: {
   readonly "Label--color-gray": string;
   readonly "Label--color-green": string;
   readonly "Label--color-green-blue": string;
+  readonly "Label--color-green-blue-purple": string;
   readonly "Label--color-indigo": string;
   readonly "Label--color-lemon": string;
   readonly "Label--color-lime": string;
   readonly "Label--color-orange": string;
   readonly "Label--color-pink": string;
   readonly "Label--color-pink-blue": string;
-  readonly "Label--color-green-blue-purple": string;
   readonly "Label--color-purple": string;
   readonly "Label--color-purple-red": string;
   readonly "Label--color-red": string;
