@@ -40,7 +40,11 @@ async function findCssFiles(dir: string): Promise<string[]> {
     const fullPath = path.join(dir, entry.name)
     if (entry.isDirectory()) {
       files.push(...(await findCssFiles(fullPath)))
-    } else if (entry.name.endsWith('.module.css') && !entry.name.includes('stories')) {
+    } else if (
+      entry.name.endsWith('.module.css') &&
+      !entry.name.includes('stories') &&
+      !entry.name.includes('features')
+    ) {
       files.push(fullPath)
     }
   }
