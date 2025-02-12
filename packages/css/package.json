@@ -1,0 +1,42 @@
+{
+  "name": "@primer/brand-css",
+  "version": "0.47.0",
+  "description": "CSS stylesheets for Primer Brand components",
+  "keywords": [
+    "primer",
+    "css",
+    "components",
+    "library",
+    "design-system"
+  ],
+  "type": "module",
+  "homepage": "https://primer.style/brand",
+  "bugs": {
+    "url": "https://github.com/primer/brand/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/primer/brand.git"
+  },
+  "license": "MIT",
+  "author": "GitHub, Inc.",
+  "files": [
+    "components"
+  ],
+  "scripts": {
+    "clean": "rm -rf components",
+    "check": "tsc --noEmit",
+    "build": "npm run clean && tsx scripts/build.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "autoprefixer": "10.4.20",
+    "postcss": "8.5.1",
+    "tsx": "^4.19.2",
+    "typescript": "5.7.3"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  }
+}

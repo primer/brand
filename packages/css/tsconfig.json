@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "target": "esnext",
+    "allowJs": true,
+    "module": "esnext",
+    "lib": ["esnext", "dom"],
+    "emitDeclarationOnly": false,
+    "skipLibCheck": false,
+    "sourceMap": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "outDir": "lib",
+    "resolveJsonModule": true
+  },
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
+  },
+  "include": ["scripts/**/*"],
+  "exclude": ["node_modules"]
+}
