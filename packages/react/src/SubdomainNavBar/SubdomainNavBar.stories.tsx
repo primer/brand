@@ -4,7 +4,7 @@ import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 
 import React, {useEffect, useState} from 'react'
 import {Hero, River, Heading, Text, Link} from '../'
-import placeholderImage from '../fixtures/images/placeholder-600x400.png'
+import placeholderImage from '../fixtures/images/placeholder.png'
 
 import {SubdomainNavBar, SubdomainNavBarProps} from '.'
 import {waitFor} from '@testing-library/dom'
@@ -453,7 +453,7 @@ const Template: StoryFn<Args> = args => {
           </Heading>
           <River>
             <River.Visual>
-              <img src={placeholderImage} alt="placeholder, blank area with an off-white background color" />
+              <img src={placeholderImage} alt="placeholder, blank area with a gray background color" />
             </River.Visual>
             <River.Content>
               <Heading>Heading</Heading>
@@ -466,7 +466,7 @@ const Template: StoryFn<Args> = args => {
           </River>
           <River align="end">
             <River.Visual>
-              <img src={placeholderImage} alt="placeholder, blank area with an off-white background color" />
+              <img src={placeholderImage} alt="placeholder, blank area with a gray background color" />
             </River.Visual>
             <River.Content>
               <Heading>Heading</Heading>

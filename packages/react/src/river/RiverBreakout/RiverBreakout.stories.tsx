@@ -2,7 +2,7 @@ import React from 'react'
 import {Meta, StoryFn} from '@storybook/react'
 import {RiverBreakout} from '.'
 import {Grid, Link, Text, Timeline} from '../../'
-import placeholderImage from '../../fixtures/images/placeholder-600x400.png'
+import placeholderImage from '../../fixtures/images/placeholder.png'
 
 export default {
   title: 'Components/RiverBreakout',
@@ -29,9 +29,7 @@ const TrailingTimeline = () => (
   </Timeline>
 )
 
-const PlaceholderImage = () => (
-  <img src={placeholderImage} alt="placeholder, blank area with an off-white background color" />
-)
+const PlaceholderImage = () => <img src={placeholderImage} alt="placeholder, blank area with a gray background color" />
 
 export const Default: StoryFn<typeof RiverBreakout> = () => (
   <RiverBreakout>

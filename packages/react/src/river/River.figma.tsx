@@ -33,7 +33,10 @@ figma.connect(River, 'https://www.figma.com/design/BJ95AjraesmRCWsKA013GS/Primer
         </>
       </River.Content>
       <River.Visual rounded>
-        <img src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png" alt="alt description" />
+        <img
+          src="https://raw.githubusercontent.com/primer/brand/refs/heads/main/apps/docs/static/assets/placeholder.png"
+          alt="alt description"
+        />
       </River.Visual>
     </River>
   ),

@@ -21,7 +21,7 @@ export const RiversWithCitations = () => (
               <River.Visual>
                 <img
                   src="https://github.com/images/modules/site/enterprise/2023/platform.png"
-                  alt="placeholder, blank area with an off-white background color"
+                  alt="placeholder, blank area with a gray background color"
                 />
               </River.Visual>
               <River.Content
@@ -53,7 +53,7 @@ export const RiversWithCitations = () => (
               <RiverBreakout.Visual>
                 <img
                   src="https://images.ctfassets.net/8aevphvgewt8/6Ia7O6lk8a6gu4xyNCoIY7/306a31600b13f49a59abb3d106703e51/advisories.webp"
-                  alt="placeholder, blank area with an off-white background color"
+                  alt="placeholder, blank area with a gray background color"
                 />
               </RiverBreakout.Visual>
               <RiverBreakout.Content
@@ -87,7 +87,7 @@ export const RiversWithCitations = () => (
               <River.Visual>
                 <img
                   src="https://github.com/images/modules/site/enterprise/2023/ai.png"
-                  alt="placeholder, blank area with an off-white background color"
+                  alt="placeholder, blank area with a gray background color"
                 />
               </River.Visual>
               <River.Content>

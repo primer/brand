@@ -227,7 +227,7 @@ export function FeaturePreviewLevelTwo({
                   {args.showHeroVisual && (
                     <Hero.Image
                       src={isLightMode ? emptyBrowser : emptyBrowserDark}
-                      alt="placeholder, blank area with an off-white background color"
+                      alt="placeholder, blank area with a gray background color"
                     />
                   )}
                 </Hero>
@@ -358,7 +358,7 @@ export function FeaturePreviewLevelTwo({
                       >
                         <Image
                           src={isLightMode ? emptyBrowserLightFull : emptyBrowserDarkFull}
-                          alt="placeholder, blank area with an off-white background color"
+                          alt="placeholder, blank area with a gray background color"
                         />
                       </RiverBreakout.Visual>
                       <RiverBreakout.Content
@@ -391,7 +391,7 @@ export function FeaturePreviewLevelTwo({
                       >
                         <Image
                           src={isLightMode ? emptyBrowserLightFull : emptyBrowserDarkFull}
-                          alt="placeholder, blank area with an off-white background color"
+                          alt="placeholder, blank area with a gray background color"
                         />
                       </River.Visual>
                       <River.Content className={clsx(args.riverOneType === 'end' && styles.RiverContent)}>
@@ -452,7 +452,7 @@ export function FeaturePreviewLevelTwo({
                       >
                         <Image
                           src={isLightMode ? emptyBrowserLightFull : emptyBrowserDarkFull}
-                          alt="placeholder, blank area with an off-white background color"
+                          alt="placeholder, blank area with a gray background color"
                         />
                       </River.Visual>
                       <River.Content className={clsx(args.riverTwoType === 'end' && styles.RiverContent)}>
@@ -479,7 +479,7 @@ export function FeaturePreviewLevelTwo({
                       >
                         <Image
                           src={isLightMode ? emptyBrowserLightFull : emptyBrowserDarkFull}
-                          alt="placeholder, blank area with an off-white background color"
+                          alt="placeholder, blank area with a gray background color"
                         />
                       </RiverBreakout.Visual>
                       <RiverBreakout.Content
@@ -512,7 +512,7 @@ export function FeaturePreviewLevelTwo({
                       >
                         <Image
                           src={isLightMode ? emptyBrowserLightFull : emptyBrowserDarkFull}
-                          alt="placeholder, blank area with an off-white background color"
+                          alt="placeholder, blank area with a gray background color"
                         />
                       </River.Visual>
                       <River.Content className={clsx(args.riverThreeType === 'end' && styles.RiverContent)}>

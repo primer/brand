@@ -18,7 +18,7 @@ import {
 import {Themes, themeDetailsMap} from '../helpers'
 import styles from './FeaturePreviewLevelZero.module.css'
 
-import placeholderImage from '../../../fixtures/images/placeholder-600x400.png'
+import placeholderImage from '../../../fixtures/images/placeholder.png'
 
 type FeaturePreviewLevelZeroProps = {
   colorMode?: ColorModesEnum.LIGHT | ColorModesEnum.DARK
@@ -92,7 +92,7 @@ export function FeaturePreviewLevelZero({accentColor, colorMode, ...args}: Featu
                 <Hero.Image
                   position={args.heroVisualPosition}
                   src={placeholderImage}
-                  alt="placeholder, blank area with an off-white background color"
+                  alt="placeholder, blank area with a gray background color"
                   height="100%"
                 />
               )}

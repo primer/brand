@@ -1,7 +1,7 @@
 import React from 'react'
 import {Meta, StoryFn} from '@storybook/react'
 import {Prose} from './Prose'
-import placeholderImage from '../fixtures/images/placeholder-600x400.png'
+import placeholderImage from '../fixtures/images/placeholder.png'
 
 const meta: Meta<typeof Prose> = {
   title: 'Components/Prose',
@@ -43,7 +43,7 @@ const ExampleHtmlMarkup = `
     <p>Pellentesque non ornare ligula. Suspendisse nibh purus, pretium id tortor sit amet, tincidunt gravida augue. Ut malesuada, nisl vel dignissim mollis</p>
     <img
       src="${placeholderImage}"
-      alt="placeholder, blank area with an off-white background color"
+      alt="placeholder, blank area with a gray background color"
       />
     <h4>Heading level  4</h4>
     <p>

@@ -51,10 +51,7 @@ export default function KitchenSink() {
         </Hero>
         <River>
           <River.Visual>
-            <img
-              src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
-              alt="placeholder, blank area with an off-white background color"
-            />
+            <img src="/brand/assets/placeholder.png" alt="placeholder, blank area with a gray background color" />
           </River.Visual>
           <River.Content>
             <Heading>Heading</Heading>
@@ -67,10 +64,7 @@ export default function KitchenSink() {
         </River>
         <River align="end">
           <River.Visual>
-            <img
-              src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
-              alt="placeholder, blank area with an off-white background color"
-            />
+            <img src="/brand/assets/placeholder.png" alt="placeholder, blank area with a gray background color" />
           </River.Visual>
           <River.Content>
             <Heading>Heading</Heading>
@@ -83,10 +77,7 @@ export default function KitchenSink() {
         </River>
         <River align="center">
           <River.Visual>
-            <img
-              src="https://via.placeholder.com/600x400/f5f5f5/f5f5f5.png"
-              alt="placeholder, blank area with an off-white background color"
-            />
+            <img src="/brand/assets/placeholder.png" alt="placeholder, blank area with a gray background color" />
           </River.Visual>
           <River.Content>
             <Heading>Heading</Heading>
