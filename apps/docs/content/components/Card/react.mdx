@@ -148,30 +148,21 @@ The color of the lit area corrosponds to the nearest active, primary accent colo
 
 ```jsx live
 <ThemeProvider colorMode="dark">
-  <Box padding="spacious" backgroundColor="default">
-    <Stack direction="horizontal" padding="none">
-      <Card href="https://github.com">
-        <Card.Icon icon={CopilotIcon} color="pink" hasBackground />
-        <Card.Heading>Code search & code view</Card.Heading>
-        <Card.Description>
-          Enables you to rapidly search, navigate, and understand code, right
-          from GitHub.com.
-        </Card.Description>
-      </Card>
-      <Card
-        href="https://github.com"
-        style={{
-          ['--brand-color-accent-primary']: 'var(--base-color-scale-lime-2)',
-        }}
-      >
-        <Card.Icon icon={ZapIcon} color="lime" hasBackground />
-        <Card.Heading>Code search & code view</Card.Heading>
-        <Card.Description>
-          Enables you to rapidly search, navigate, and understand code, right
-          from GitHub.com.
-        </Card.Description>
-      </Card>
-    </Stack>
+  <Box backgroundColor="default" padding="condensed">
+    <Card
+      href="https://github.com"
+      fullWidth
+      style={{
+        ['--brand-color-accent-primary']: 'var(--base-color-scale-lime-2)',
+      }}
+    >
+      <Card.Icon icon={ZapIcon} color="lime" hasBackground />
+      <Card.Heading>Code search & code view</Card.Heading>
+      <Card.Description>
+        Enables you to rapidly search, navigate, and understand code, right from
+        GitHub.com.
+      </Card.Description>
+    </Card>
   </Box>
 </ThemeProvider>
 ```
