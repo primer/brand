@@ -4,7 +4,6 @@ import type {BaseProps} from '../component-helpers'
 import styles from './Prose.module.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/prose/base.css'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/prose/colors-with-modes.css'
-import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/inline-link/base.css'
 
 export type ProseProps = {
   /**
