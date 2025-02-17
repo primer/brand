@@ -3,16 +3,14 @@ import {Meta, StoryFn} from '@storybook/react'
 import {River} from '.'
 import {Heading, Label, Link, Stack, Text, Timeline} from '../../'
 import {Container} from '../../component-helpers'
-import placeholderImage from '../../fixtures/images/placeholder-600x400.png'
+import placeholderImage from '../../fixtures/images/placeholder.png'
 
 export default {
   title: 'Components/River/features',
   component: River,
 } as Meta<typeof River>
 
-const PlaceholderImage = () => (
-  <img src={placeholderImage} alt="placeholder, blank area with an off-white background color" />
-)
+const PlaceholderImage = () => <img src={placeholderImage} alt="placeholder, blank area with a gray background color" />
 
 export const Left: StoryFn<typeof River> = () => (
   <River align="start">

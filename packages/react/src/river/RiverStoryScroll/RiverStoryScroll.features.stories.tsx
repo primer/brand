@@ -46,7 +46,7 @@ const Template: StoryFn<TemplateProps> = args => {
         <River.Visual>
           <img
             src="https://placehold.co/600x400/FF5733/ffffff?text=1"
-            alt="placeholder, blank area with an off-white background color"
+            alt="placeholder, blank area with a gray background color"
           />
         </River.Visual>
         <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
@@ -61,7 +61,7 @@ const Template: StoryFn<TemplateProps> = args => {
         <River.Visual>
           <img
             src="https://placehold.co/600x400/AF7AC5/ffffff?text=2"
-            alt="placeholder, blank area with an off-white background color"
+            alt="placeholder, blank area with a gray background color"
           />
         </River.Visual>
         <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
@@ -76,7 +76,7 @@ const Template: StoryFn<TemplateProps> = args => {
         <River.Visual>
           <img
             src="https://placehold.co/600x400/FFC300/ffffff?text=3"
-            alt="placeholder, blank area with an off-white background color"
+            alt="placeholder, blank area with a gray background color"
           />
         </River.Visual>
         <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
@@ -91,7 +91,7 @@ const Template: StoryFn<TemplateProps> = args => {
         <River.Visual>
           <img
             src="https://placehold.co/600x400/48C9B0/ffffff?text=4"
-            alt="placeholder, blank area with an off-white background color"
+            alt="placeholder, blank area with a gray background color"
           />
         </River.Visual>
         <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
@@ -150,7 +150,7 @@ export const EnterpriseExample = () => (
       <River.Visual>
         <img
           src="https://github.com/images/modules/site/enterprise/2023/devops.png"
-          alt="placeholder, blank area with an off-white background color"
+          alt="placeholder, blank area with a gray background color"
         />
       </River.Visual>
       <River.Content>
@@ -166,7 +166,7 @@ export const EnterpriseExample = () => (
       <River.Visual>
         <img
           src="https://github.com/images/modules/site/enterprise/2023/platform.png"
-          alt="placeholder, blank area with an off-white background color"
+          alt="placeholder, blank area with a gray background color"
         />
       </River.Visual>
       <River.Content
@@ -190,7 +190,7 @@ export const EnterpriseExample = () => (
       <River.Visual>
         <img
           src="https://github.com/images/modules/site/enterprise/2023/ai.png"
-          alt="placeholder, blank area with an off-white background color"
+          alt="placeholder, blank area with a gray background color"
         />
       </River.Visual>
       <River.Content>

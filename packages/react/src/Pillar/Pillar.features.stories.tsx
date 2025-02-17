@@ -8,7 +8,7 @@ import startShape from '../fixtures/images/testimonial-bg-1.png'
 import endShape from '../fixtures/images/testimonial-bg-2.png'
 
 import styles from './Pillar.stories.module.css'
-import placeholderImage from '../fixtures/images/placeholder-600x400.png'
+import placeholderImage from '../fixtures/images/placeholder.png'
 
 export default {
   title: 'Components/Pillar/features',
