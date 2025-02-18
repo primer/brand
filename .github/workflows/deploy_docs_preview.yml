@@ -21,8 +21,6 @@ jobs:
       install: npm ci --legacy-peer-deps && cd apps/docs && npm ci --legacy-peer-deps && cd ..
       build: |
         npm run build && \
-        npm run build:docs && \
-        npm run build:storybook && \
         mkdir brand-temp && \
         mv apps/docs/public/* brand-temp && \
         mv brand-temp apps/docs/public/brand && \

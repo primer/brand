@@ -22,9 +22,12 @@
   "author": "GitHub, Inc.",
   "type": "module",
   "scripts": {
+    "clean": "rm -rf out",
     "dev": "next dev",
     "check": "tsc --noEmit",
     "build": "rm -rf out && next build",
+    "build:prod": "scripts/build",
+    "build:preview": "IS_PREVIEW=true scripts/build",
     "lint": "eslint '**/*.{js,ts,tsx,md,mdx}' --max-warnings=0 --config ./.eslintrc.cjs",
     "start": "next start"
   },
