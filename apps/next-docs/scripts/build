@@ -1,5 +1,3 @@
-echo "IS_PREVIEW: $IS_PREVIEW"
-
 rm -rf ../../apps/docs/public/next
 mkdir -p ../../apps/docs/public/next
 npm run clean
