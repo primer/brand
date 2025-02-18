@@ -106,9 +106,9 @@ describe('Pagination', () => {
     const pagedItems = Array.from(rootEl.querySelectorAll('a')).slice(1, -1) // remove the previous and next links
 
     for (const item of pagedItems) {
-      expect(item).toHaveClass('Pagination__item--hidden-narrow')
-      expect(item).toHaveClass('Pagination__item--visible-regular')
-      expect(item).toHaveClass('Pagination__item--visible-wide')
+      expect(item).toHaveClass('Pagination__hidden-narrow')
+      expect(item).toHaveClass('Pagination__visible-regular')
+      expect(item).toHaveClass('Pagination__visible-wide')
     }
   })
 
