@@ -1,5 +1,5 @@
 import React, {memo, PropsWithChildren, useCallback} from 'react'
-import {Link, useWindowSize} from '..'
+import {Link, Text, useWindowSize} from '..'
 
 import {default as clsx} from 'clsx'
 
@@ -76,6 +76,23 @@ export const Pagination = memo(
       surroundingPageCount,
     })
 
+    const getSummaryClasses = useCallback(() => {
+      if (showPages === true) {
+        return styles['Pagination--hidden']
+      }
+
+      if (typeof showPages === 'object') {
+        return Object.entries(showPages).reduce<string[]>((acc, [key, value]) => {
+          if (value) {
+            acc.push(styles[`Pagination__hidden-${key as 'narrow' | 'regular' | 'wide'}`])
+          } else {
+            acc.push(styles[`Pagination__visible-${key as 'narrow' | 'regular' | 'wide'}`])
+          }
+          return acc
+        }, [])
+      }
+    }, [showPages])
+
     return (
       <nav
         ref={navRef}
@@ -85,6 +102,9 @@ export const Pagination = memo(
         aria-label={ariaLabel || 'Pagination'}
         {...rest}
       >
+        <Text className={clsx(styles.Pagination__summary, getSummaryClasses())}>
+          {`Showing page ${currentPage} of ${pageCount}`}
+        </Text>
         <div className={clsx(styles.Pagination__inner)}>{pageElements}</div>
       </nav>
     )
@@ -123,15 +143,15 @@ export function usePaginationPages({
 
   const getPagesClasses = useCallback(() => {
     if (typeof showPages === 'boolean') {
-      return !showPages ? styles['Pagination__item--hidden'] : undefined
+      return !showPages ? styles['Pagination--hidden'] : undefined
     }
 
     if (typeof showPages === 'object') {
       return Object.entries(showPages).reduce<string[]>((acc, [key, value]) => {
         if (value) {
-          acc.push(styles[`Pagination__item--visible-${key as 'narrow' | 'regular' | 'wide'}`])
+          acc.push(styles[`Pagination__visible-${key as 'narrow' | 'regular' | 'wide'}`])
         } else {
-          acc.push(styles[`Pagination__item--hidden-${key as 'narrow' | 'regular' | 'wide'}`])
+          acc.push(styles[`Pagination__hidden-${key as 'narrow' | 'regular' | 'wide'}`])
         }
         return acc
       }, [])
