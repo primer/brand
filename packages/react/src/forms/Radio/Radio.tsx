@@ -50,8 +50,8 @@ const _Radio = (
         value={value}
         {...rest}
       />
-      <label htmlFor={uniqueId} className={clsx(styles.Radio, className)}>
-        <span className={styles['Radio-dot']} />
+      <label htmlFor={uniqueId} className={clsx(styles.Radio, className)} aria-label={value}>
+        <span className={styles['Radio-dot']}></span>
       </label>
     </span>
   )

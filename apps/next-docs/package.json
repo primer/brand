@@ -1,0 +1,56 @@
+{
+  "name": "@primer/brand-docs",
+  "version": "0.47.1",
+  "private": true,
+  "description": "Primer Brand Documentation",
+  "keywords": [
+    "primer",
+    "react",
+    "components",
+    "library",
+    "design-system"
+  ],
+  "homepage": "https://primer.style/brand",
+  "bugs": {
+    "url": "https://github.com/primer/brand/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/primer/brand.git"
+  },
+  "license": "MIT",
+  "author": "GitHub, Inc.",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "check": "tsc --noEmit",
+    "build": "rm -rf out && next build",
+    "lint": "eslint '**/*.{js,ts,tsx,md,mdx}' --max-warnings=0 --config ./.eslintrc.cjs",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@primer/doctocat-nextjs": "^0.0.0-20250218165045",
+    "@primer/octicons-react": "19.15.0",
+    "next": "15.1.6",
+    "react": ">=17 <= 18",
+    "react-dom": ">=17 <= 18"
+  },
+  "devDependencies": {
+    "@github/prettier-config": "^0.0.6",
+    "@primer/brand-primitives": "^0.47.1",
+    "@primer/react": "37.11.2",
+    "@primer/react-brand": "0.47.1",
+    "@types/node": "18.11.10",
+    "eslint-config-next": "15.1.6",
+    "prettier": "^3.5.1",
+    "typescript": "5.7.3"
+  },
+  "peerDependencies": {
+    "react": ">=17 <= 18",
+    "react-dom": ">=17 <= 18"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  }
+}

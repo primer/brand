@@ -103,11 +103,11 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
       if (React.isValidElement(child) && typeof child.type !== 'string') {
         if (
           isFragment(child) ||
-          child.type === CardImage ||
-          child.type === CardIcon ||
-          child.type === CardLabel ||
-          child.type === CardHeading ||
-          child.type === CardDescription
+          (child as React.ReactElement).type === CardImage ||
+          (child as React.ReactElement).type === CardIcon ||
+          (child as React.ReactElement).type === CardLabel ||
+          (child as React.ReactElement).type === CardHeading ||
+          (child as React.ReactElement).type === CardDescription
         ) {
           return true
         }
