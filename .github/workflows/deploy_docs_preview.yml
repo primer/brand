@@ -27,6 +27,10 @@ jobs:
         # This is a client-side redirect that only applies to preview deployments. Workaround for lack of path prefixing.
         echo '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Redirecting...</title><script>window.location.href = "/brand";</script></head><body><p>If you are not redirected automatically, follow this <a href="/brand">link to /brand</a>.</p></body></html>' > apps/docs/public/index.html
       output_dir: apps/docs/public
+    env:
+      NEXT_PUBLIC_SITE_TITLE: Brand UI
+      NEXT_PUBLIC_REPO: https://github.com/primer/brand
+      NEXT_PUBLIC_REPO_SRC_PATH: app/next-docs
 
   deploy-storybook:
     if: ${{ github.repository == 'primer/brand' }}
