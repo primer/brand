@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import React, {createContext, type ReactNode, useContext, useEffect, useState} from 'react'
 
 export enum BreakpointSize {
   XSMALL = 'xsmall',
@@ -21,7 +21,9 @@ type WindowSize = {
   currentBreakpointSize?: BreakpointSize
 }
 
-export function useWindowSize() {
+const WindowSizeContext = createContext<WindowSize | undefined>(undefined)
+
+export const WindowSizeProvider = ({children}: {children: ReactNode}) => {
   const [windowSize, setWindowSize] = useState<WindowSize>({
     width: undefined, // undefined to avoid client/server mismatch on initial mount
     height: undefined, // undefined to avoid client/server mismatch on initial mount,
@@ -35,15 +37,10 @@ export function useWindowSize() {
   })
 
   useEffect(() => {
-    // should only execute all the code below on client
-    function handleResize() {
+    const handleResize = () => {
       setWindowSize({
         width: window.innerWidth,
         height: window.innerHeight,
-        /*
-         * Maps to large breakpoint
-         * TODO: replace with design token. Requires remToPx util.
-         */
         isXSmall: window.innerWidth >= 320,
         isSmall: window.innerWidth >= 544,
         isMedium: window.innerWidth >= 768,
@@ -56,13 +53,22 @@ export function useWindowSize() {
 
     // eslint-disable-next-line github/prefer-observers
     window.addEventListener('resize', handleResize)
-
     handleResize()
 
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  return windowSize
+  return <WindowSizeContext.Provider value={windowSize}>{children}</WindowSizeContext.Provider>
+}
+
+export const useWindowSize = () => {
+  const context = useContext(WindowSizeContext)
+
+  if (context === undefined) {
+    throw new Error('useWindowSize must be used within a WindowSizeProvider')
+  }
+
+  return context
 }
 
 const breakpointSwitch = (value: number) => {

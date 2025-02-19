@@ -1,4 +1,4 @@
-import {ThemeProvider} from '../../../packages/react/src'
+import {ThemeProvider, WindowSizeProvider} from '../../../packages/react/src'
 import styles from './preview.module.css'
 import '../../../packages/react/src/css/stylesheets'
 import '../../../packages/react/src/css/utilities.css'
@@ -70,7 +70,13 @@ const ThemeProviderDecorator = (Story, context) => {
   )
 }
 
-export const decorators = [ThemeProviderDecorator]
+const WindowSizeProviderDecorator = (Story, context) => (
+  <WindowSizeProvider>
+    <Story {...context} />
+  </WindowSizeProvider>
+)
+
+export const decorators = [ThemeProviderDecorator, WindowSizeProviderDecorator]
 
 export const parameters = {
   controls: {
