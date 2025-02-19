@@ -78,10 +78,8 @@ export const Pagination = memo(
 
     const getSummaryClasses = useCallback(() => {
       if (showPages === true) {
-        return styles['Pagination--hidden']
-      }
-
-      if (typeof showPages === 'object') {
+        return styles['Pagination__hidden']
+      } else if (typeof showPages === 'object') {
         return Object.entries(showPages).reduce<string[]>((acc, [key, value]) => {
           if (value) {
             acc.push(styles[`Pagination__hidden-${key as 'narrow' | 'regular' | 'wide'}`])
@@ -91,6 +89,8 @@ export const Pagination = memo(
           return acc
         }, [])
       }
+
+      return styles['Pagination__visible']
     }, [showPages])
 
     return (
@@ -142,8 +142,8 @@ export function usePaginationPages({
   )
 
   const getPagesClasses = useCallback(() => {
-    if (typeof showPages === 'boolean') {
-      return !showPages ? styles['Pagination--hidden'] : undefined
+    if (showPages === false) {
+      return styles['Pagination--hidden']
     }
 
     if (typeof showPages === 'object') {
