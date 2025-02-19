@@ -5,6 +5,9 @@ import {useColorTheme, availableModes} from './ColorThemeContext'
 
 export function ColorThemePicker() {
   const [colorTheme, setColorTheme] = useColorTheme()
+
+  console.log(1, colorTheme)
+
   return (
     <PRCBox
       sx={{
@@ -13,8 +16,9 @@ export function ColorThemePicker() {
         gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
       }}
     >
-      {availableModes.map(key => (
+      {availableModes.map((key, index) => (
         <PRCBox
+          htmlFor={`${key}-mode-toggle`}
           as="label"
           key={key}
           sx={{
@@ -28,9 +32,9 @@ export function ColorThemePicker() {
           <ColorThemePreview colorTheme={key} />
           <PRCBox sx={{p: 2}}>
             <input
+              key={`${key}-mode-toggle`}
               type="radio"
-              id={key}
-              name="drone"
+              id={`${key}-mode-toggle`}
               value={key}
               checked={colorTheme === key}
               onChange={event => {

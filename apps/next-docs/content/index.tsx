@@ -1,7 +1,8 @@
 'use client'
-import {Grid, Card, Stack, Text, Heading} from '@primer/react-brand/lib'
+import {Grid, Card, Stack, Text, Heading, Link} from '@primer/react-brand/lib'
 import clsx from 'clsx'
 import Image from 'next/image'
+import NextLink from 'next/link'
 
 import mona from '../src/images/mona-home.png'
 
@@ -36,37 +37,54 @@ export default function HomepageComponent() {
             <Stack padding="none" gap="normal" className={styles.CardGridContainer}>
               <Grid>
                 <Grid.Column span={{xsmall: 12, large: 6, xlarge: 4}}>
-                  <Card href="/product/getting-started" hasBorder fullWidth>
-                    <Card.Heading>Getting started</Card.Heading>
-                    <Card.Description>Standards, guidelines, and tools to get started with Primer.</Card.Description>
-                  </Card>
+                  <NextLink href="/getting-started/introduction" legacyBehavior passHref>
+                    <Card href="/getting-started/introduction" hasBorder fullWidth>
+                      <Card.Heading>Getting started</Card.Heading>
+                      <Card.Description>
+                        Standards, guidelines, and tools to get started with Primer Brand.
+                      </Card.Description>
+                    </Card>
+                  </NextLink>
                 </Grid.Column>
                 <Grid.Column span={{xsmall: 12, large: 6, xlarge: 4}}>
-                  <Card href="/product/components" hasBorder fullWidth>
-                    <Card.Heading>Components</Card.Heading>
-                    <Card.Description>Design and development guidelines for Primer components.</Card.Description>
-                  </Card>
+                  <NextLink href="/components" legacyBehavior passHref>
+                    <Card href="/components" hasBorder fullWidth>
+                      <Card.Heading>Components</Card.Heading>
+                      <Card.Description>
+                        Design and development guidelines for Primer Brand components.
+                      </Card.Description>
+                    </Card>
+                  </NextLink>
                 </Grid.Column>
+
                 <Grid.Column span={{xsmall: 12, large: 6, xlarge: 4}}>
-                  <Card href="/product/primitives" hasBorder fullWidth>
-                    <Card.Heading>Primitives</Card.Heading>
-                    <Card.Description>Design tokens for color, spacing, and typography.</Card.Description>
-                  </Card>
+                  <NextLink href="/getting-started/theming" legacyBehavior passHref>
+                    <Card href="/getting-started/theming" hasBorder fullWidth>
+                      <Card.Heading>Theming</Card.Heading>
+                      <Card.Description>Learn how to use Primer Brand's built-in color modes.</Card.Description>
+                    </Card>
+                  </NextLink>
                 </Grid.Column>
+
                 <Grid.Column span={{xsmall: 12, large: 6, xlarge: 4}}>
-                  <Card href="/product/ui-patterns" hasBorder fullWidth>
-                    <Card.Heading>Patterns</Card.Heading>
-                    <Card.Description>Design guidelines covering common user workflows.</Card.Description>
-                  </Card>
+                  <NextLink href="/getting-started/animation" legacyBehavior passHref>
+                    <Card href="/getting-started/animation" hasBorder fullWidth>
+                      <Card.Heading>Animation</Card.Heading>
+                      <Card.Description>
+                        Add visual interest and interactivity to a web page or application.
+                      </Card.Description>
+                    </Card>
+                  </NextLink>
                 </Grid.Column>
+
                 <Grid.Column span={{xsmall: 12, large: 6, xlarge: 4}}>
-                  <Card href="/octicons" hasBorder fullWidth>
+                  <Card href="https://primer.style/foundations/icons" hasBorder fullWidth>
                     <Card.Heading>Octicons</Card.Heading>
                     <Card.Description>A scalable set of icons handcrafted by GitHub for GitHub</Card.Description>
                   </Card>
                 </Grid.Column>
                 <Grid.Column span={{xsmall: 12, large: 6, xlarge: 4}}>
-                  <Card href="/product/contribute" hasBorder fullWidth>
+                  <Card href="https://github.com/primer/brand/blob/main/CONTRIBUTING.md" hasBorder fullWidth>
                     <Card.Heading>Contributing</Card.Heading>
                     <Card.Description>Guidelines for contributing to the Product UI library.</Card.Description>
                   </Card>

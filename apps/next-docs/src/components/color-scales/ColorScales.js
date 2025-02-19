@@ -7,7 +7,7 @@ import {readableColor} from 'color2k'
 import {ColorModesEnum} from '../../../../../packages/react/src/ThemeProvider'
 import {useColorTheme} from './ColorThemeContext'
 
-const availableColorModes = Object.values(ColorModesEnum)
+const availableColorModes = ['light', 'dark']
 
 export function ColorScales() {
   const [colorTheme, setCurrentMode] = useColorTheme()
@@ -61,7 +61,7 @@ export function ColorScales() {
         colorTheme === ColorModesEnum.LIGHT ? 'day' : colorTheme === ColorModesEnum.DARK ? 'night' : ColorModesEnum.AUTO
       }
     >
-      <PRCThemeProvider colorMode="day">
+      {/* <PRCThemeProvider colorMode="day">
         <PRCBox
           sx={{
             paddingTop: 2,
@@ -77,18 +77,16 @@ export function ColorScales() {
 
             <ActionMenu.Overlay>
               <ActionList selectionVariant="single">
-                {availableColorModes
-                  .filter(mode => mode !== 'auto')
-                  .map(mode => (
-                    <ActionList.Item key={mode} selected={colorTheme === mode} onSelect={() => setCurrentMode(mode)}>
-                      {mode}
-                    </ActionList.Item>
-                  ))}
+                {availableColorModes.map(mode => (
+                  <ActionList.Item key={mode} selected={colorTheme === mode} onSelect={() => setCurrentMode(mode)}>
+                    {mode}
+                  </ActionList.Item>
+                ))}
               </ActionList>
             </ActionMenu.Overlay>
           </ActionMenu>
         </PRCBox>
-      </PRCThemeProvider>
+      </PRCThemeProvider> */}
       <PRCBox
         sx={{
           display: 'grid',
