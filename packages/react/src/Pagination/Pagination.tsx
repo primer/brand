@@ -1,5 +1,5 @@
 import React, {memo, PropsWithChildren, useCallback} from 'react'
-import {Link, Text, useWindowSize} from '..'
+import {Link, Text} from '..'
 
 import {default as clsx} from 'clsx'
 
@@ -56,14 +56,12 @@ export const Pagination = memo(
     hrefBuilder = defaultHrefBuilder,
     pageAttributesBuilder,
     marginPageCount = 1,
-    showPages,
+    showPages = {narrow: false, regular: true, wide: true},
     surroundingPageCount = 2,
     'aria-label': ariaLabel,
     'data-testid': testId,
     ...rest
   }: PaginationProps) => {
-    const {isMedium} = useWindowSize()
-
     const navRef = React.useRef<HTMLElement>(null)
     const pageElements = usePaginationPages({
       pageCount,
@@ -72,7 +70,7 @@ export const Pagination = memo(
       hrefBuilder,
       pageAttributesBuilder,
       marginPageCount,
-      showPages: showPages !== undefined ? showPages : isMedium ? true : false,
+      showPages,
       surroundingPageCount,
     })
 
@@ -118,7 +116,7 @@ type UsePaginationPagesParameters = {
   hrefBuilder: (n: number) => string
   pageAttributesBuilder?: (n: number) => {[key: string]: string}
   marginPageCount: number
-  showPages?: PaginationProps['showPages']
+  showPages: PaginationProps['showPages']
   surroundingPageCount: number
 }
 
