@@ -2,7 +2,7 @@
 import {ColorThemeProvider} from '../../src/components/color-scales/ColorThemeContext'
 import {ColorThemePicker} from '../../src/components/color-scales/ColorThemePicker'
 import {ColorScales} from '../../src/components/color-scales/ColorScales'
-import {Box, Heading, Stack} from '@primer/react-brand'
+import {Heading, Stack} from '@primer/react-brand'
 
 export function ColorScalesPlayground() {
   return (

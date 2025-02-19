@@ -6,8 +6,6 @@ import {useColorTheme, availableModes} from './ColorThemeContext'
 export function ColorThemePicker() {
   const [colorTheme, setColorTheme] = useColorTheme()
 
-  console.log(1, colorTheme)
-
   return (
     <PRCBox
       sx={{
@@ -16,7 +14,7 @@ export function ColorThemePicker() {
         gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
       }}
     >
-      {availableModes.map((key, index) => (
+      {availableModes.map(key => (
         <PRCBox
           htmlFor={`${key}-mode-toggle`}
           as="label"

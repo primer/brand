@@ -1,16 +1,14 @@
 'use client'
 import colors from '@primer/brand-primitives/lib/design-tokens/js/module/tokens/base/colors/light'
 import React from 'react'
-import {Box as PRCBox, ActionMenu, ActionList, Text, ThemeProvider as PRCThemeProvider} from '@primer/react'
+import {Box as PRCBox, Text, ThemeProvider as PRCThemeProvider} from '@primer/react'
 import {readableColor} from 'color2k'
 // eslint-disable-next-line import/no-unresolved
 import {ColorModesEnum} from '../../../../../packages/react/src/ThemeProvider'
 import {useColorTheme} from './ColorThemeContext'
 
-const availableColorModes = ['light', 'dark']
-
 export function ColorScales() {
-  const [colorTheme, setCurrentMode] = useColorTheme()
+  const [colorTheme] = useColorTheme()
 
   const predicateFn = colorEntry => ['black', 'white'].includes(colorEntry[0])
 
@@ -61,32 +59,6 @@ export function ColorScales() {
         colorTheme === ColorModesEnum.LIGHT ? 'day' : colorTheme === ColorModesEnum.DARK ? 'night' : ColorModesEnum.AUTO
       }
     >
-      {/* <PRCThemeProvider colorMode="day">
-        <PRCBox
-          sx={{
-            paddingTop: 2,
-            paddingLeft: 2,
-            paddingRight: 2,
-            marginBottom: 3,
-            display: 'flex',
-            justifyContent: 'flex-end',
-          }}
-        >
-          <ActionMenu>
-            <ActionMenu.Button>Change color mode</ActionMenu.Button>
-
-            <ActionMenu.Overlay>
-              <ActionList selectionVariant="single">
-                {availableColorModes.map(mode => (
-                  <ActionList.Item key={mode} selected={colorTheme === mode} onSelect={() => setCurrentMode(mode)}>
-                    {mode}
-                  </ActionList.Item>
-                ))}
-              </ActionList>
-            </ActionMenu.Overlay>
-          </ActionMenu>
-        </PRCBox>
-      </PRCThemeProvider> */}
       <PRCBox
         sx={{
           display: 'grid',

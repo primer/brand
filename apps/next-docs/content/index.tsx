@@ -1,5 +1,5 @@
 'use client'
-import {Grid, Card, Stack, Text, Heading, Link} from '@primer/react-brand/lib'
+import {Grid, Card, Stack, Text, Heading} from '@primer/react-brand/lib'
 import clsx from 'clsx'
 import Image from 'next/image'
 import NextLink from 'next/link'
