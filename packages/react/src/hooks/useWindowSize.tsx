@@ -88,3 +88,11 @@ const breakpointSwitch = (value: number) => {
   }
   return current
 }
+
+export type ReponsiveProp<T> = Record<'narrow' | 'regular' | 'wide', T>
+export const useResponsiveProp = <T,>(responsiveProp: ReponsiveProp<T>): T => {
+  const {isMedium, isXLarge} = useWindowSize()
+  if (isXLarge) return responsiveProp.wide
+  if (isMedium) return responsiveProp.regular
+  return responsiveProp.narrow
+}
