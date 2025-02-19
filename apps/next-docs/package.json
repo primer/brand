@@ -26,7 +26,7 @@
     "dev": "next dev",
     "check": "tsc --noEmit",
     "build": "rm -rf out && next build",
-    "build:prod": "IS_PROD=true scripts/build",
+    "build:prod": "scripts/build",
     "lint": "eslint '**/*.{js,ts,tsx,md,mdx}' --max-warnings=0 --config ./.eslintrc.cjs",
     "start": "next start"
   },

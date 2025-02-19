@@ -4,4 +4,5 @@ npm run clean
 mkdir -p ../../apps/docs/public/next
 npm run clean
 npm run build
-cp -r out/ ../../apps/docs/public/next
+
+cp -r ./out/. ../../apps/docs/public/next/
