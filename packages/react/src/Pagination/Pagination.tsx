@@ -101,7 +101,7 @@ export const Pagination = memo(
         {...rest}
       >
         <Text className={clsx(styles.Pagination__summary, getSummaryClasses())}>
-          {`Showing page ${currentPage} of ${pageCount}`}
+          {`Page ${currentPage} of ${pageCount}`}
         </Text>
         <div className={clsx(styles.Pagination__inner)}>{pageElements}</div>
       </nav>
