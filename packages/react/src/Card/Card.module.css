@@ -181,3 +181,11 @@
   right: 0;
   z-index: -1;
 }
+
+.Card:has(.Card__link:hover) .Card--expandableArrow {
+  transform: translateX(4px);
+}
+
+.Card:has(.Card__link:hover) .Card--expandableArrow path:nth-of-type(2) {
+  stroke-dashoffset: 20;
+}

@@ -1,4 +1,4 @@
-import React, {RefObject, forwardRef, useCallback} from 'react'
+import React, {RefObject, forwardRef} from 'react'
 import {isFragment} from 'react-is'
 import clsx from 'clsx'
 import {Heading, HeadingProps, Text, useTheme, CardSkewEffect, Image, type ImageProps, Label, LabelColors} from '..'
@@ -81,23 +81,6 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
   ) => {
     const cardRef = useProvidedRefOrCreate(ref as RefObject<HTMLDivElement>)
     const {colorMode} = useTheme()
-    const [isActive, setIsActive] = React.useState(false)
-
-    const handleActiveCard = useCallback(
-      (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-        setIsActive(true)
-        onMouseEnter?.(event)
-      },
-      [onMouseEnter, setIsActive],
-    )
-
-    const handleInactiveCard = useCallback(
-      (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-        setIsActive(false)
-        onMouseLeave?.(event)
-      },
-      [onMouseLeave, setIsActive],
-    )
 
     const filteredChildren = React.Children.toArray(children).filter(child => {
       if (React.isValidElement(child) && typeof child.type !== 'string') {
@@ -148,8 +131,6 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
           {React.Children.map(filteredChildren, child => {
             if (React.isValidElement(child) && typeof child.type !== 'string' && child.type === CardHeading) {
               return React.cloneElement<CardHeadingProps>(child as React.ReactElement<CardHeadingProps>, {
-                onMouseEnter: handleActiveCard,
-                onMouseLeave: handleInactiveCard,
                 href,
               })
             }
@@ -159,7 +140,10 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
             <Text as="span" size="200" className={clsx(stylesLink['Link--label'])}>
               {ctaText}
             </Text>
-            <ExpandableArrow className={stylesLink['Link-arrow']} expanded={isActive} aria-hidden="true" />
+            <ExpandableArrow
+              className={clsx(stylesLink['Link-arrow'], styles['Card--expandableArrow'])}
+              aria-hidden="true"
+            />
           </div>
         </div>
       </WrapperComponent>

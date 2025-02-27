@@ -4,6 +4,7 @@ declare const styles: {
   readonly "Card--colorMode-dark": string;
   readonly "Card--colorMode-light": string;
   readonly "Card--disableAnimation": string;
+  readonly "Card--expandableArrow": string;
   readonly "Card--fullWidth": string;
   readonly "Card--icon": string;
   readonly "Card--maxWidth": string;
