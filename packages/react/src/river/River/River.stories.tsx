@@ -4,7 +4,7 @@ import {StoryFn, Meta} from '@storybook/react'
 import {River} from '.'
 import {Heading, Text, Link} from '../../'
 import {Container} from '../../component-helpers'
-import placeholderImage from '../../fixtures/images/placeholder-600x400.png'
+import placeholderImage from '../../fixtures/images/placeholder.png'
 
 import styles from './River.stories.module.css'
 import clsx from 'clsx'
@@ -14,9 +14,7 @@ export default {
   component: River,
 } as Meta<typeof River>
 
-const PlaceholderImage = () => (
-  <img src={placeholderImage} alt="placeholder, blank area with an off-white background color" />
-)
+const PlaceholderImage = () => <img src={placeholderImage} alt="placeholder, blank area with a gray background color" />
 const Template: StoryFn<typeof River> = args => (
   <Container>
     <River {...args}>

@@ -1,5 +1,19 @@
 # @primer/react-brand
 
+## 0.47.1
+
+### Patch Changes
+
+- [#901](https://github.com/primer/brand/pull/901) [`d9a95b2`](https://github.com/primer/brand/commit/d9a95b233c0a48d8b925e5d720b135f9506dd061) Thanks [@rezrah](https://github.com/rezrah)! - Updated the following library depedencies: `@oddbird/popover-polyfill`, `autoprefixer`, `css-loader`, `mini-css-extract-plugin`, `postcss`, `postcss-loader`, `postcss-preset-env`, `style-loader`, `typed-css-modules`, `typescript-plugin-css-modules`, `webpack-cli`, `fast-glob`.
+
+  These updates should not affect the library’s visuals or component APIs. **In most cases, no additional action is required**. Please note however, that the compiled output may be slightly different due to changes in the bundling process.
+
+- [#912](https://github.com/primer/brand/pull/912) [`5966728`](https://github.com/primer/brand/commit/596672818f7bc95e0b1be128f7ade25f4840ff8a) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Fixed a bug in the `ActionMenu` component where items with falsy values (eg `""`) would not trigger the `onSelect` callback when selected.
+
+- [#909](https://github.com/primer/brand/pull/909) [`c5f2d40`](https://github.com/primer/brand/commit/c5f2d40ff3a7ed2087bb4545bb808017217990ca) Thanks [@danielguillan](https://github.com/danielguillan)! - Increased the gap between primary and secondary buttons in `Hero`, `CTABanner` and `ButtonGroup` components from `8px` to `16px`.
+
+- [#918](https://github.com/primer/brand/pull/918) [`65f7a92`](https://github.com/primer/brand/commit/65f7a92c374bbb98102ab6257dd4678e49f4cbcd) Thanks [@rezrah](https://github.com/rezrah)! - Fix `RiverStoryScroll` scrolling bug when `disabled={true}`. Now renders `children` 1:1.
+
 ## 0.47.0
 
 ### Minor Changes
