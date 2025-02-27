@@ -2,7 +2,7 @@ import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 import {Card, CardIconColors} from '.'
 import {Stack, LabelColors, Grid, ThemeProvider, Box} from '..'
-import placeholderImage from '../fixtures/images/placeholder-600x400.png'
+import placeholderImage from '../fixtures/images/placeholder.png'
 import {CopilotIcon, ZapIcon, RocketIcon, GitBranchIcon, HeartIcon} from '@primer/octicons-react'
 import {IconProps} from '../Icon'
 

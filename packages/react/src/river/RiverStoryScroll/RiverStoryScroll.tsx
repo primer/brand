@@ -89,7 +89,7 @@ export function RiverStoryScroll({children, disabled}: RiverStoryScrollProps) {
   }, [disabled, prefersReducedMotion])
 
   if (disabled || prefersReducedMotion) {
-    return <div className={clsx(styles.RiverStoryScroll, styles['RiverStoryScroll--disabled'])}>{Children}</div>
+    return <>{children}</>
   }
 
   return (

@@ -41,7 +41,7 @@ import vercelLogo from '../../../fixtures/images/logos/vercel.png'
 import lightHeroBg from '../../../fixtures/images/background-light-collaboration.webp'
 import darkHeroBg from '../../../fixtures/images/background-dark-collaboration.webp'
 import ciCdRenderImage from '../../../fixtures/images/ci-cd-render-ui.png'
-import placeholderImage from '../../../fixtures/images/placeholder-600x400.png'
+import placeholderImage from '../../../fixtures/images/placeholder.png'
 
 import lightNarrowBg from '../../../fixtures/images/light-vertical-banner.png'
 import lightWideBg from '../../../fixtures/images/light-horizontal-banner.png'
@@ -177,7 +177,7 @@ export function SolutionPage({
                       <Hero.Image
                         position="block-end"
                         src={ciCdRenderImage}
-                        alt="placeholder, blank area with an off-white background color"
+                        alt="placeholder, blank area with a gray background color"
                       />
                     )}
                   </Hero>
@@ -224,7 +224,7 @@ export function SolutionPage({
                           <Hero.Image
                             position="block-end"
                             src={ciCdRenderImage}
-                            alt="placeholder, blank area with an off-white background color"
+                            alt="placeholder, blank area with a gray background color"
                           />
                         )}
                       </Hero>
@@ -410,7 +410,7 @@ export function SolutionPage({
                 <Box paddingBlockEnd={64}>
                   <River>
                     <River.Visual>
-                      <img src={placeholderImage} alt="placeholder, blank area with an off-white background color" />
+                      <img src={placeholderImage} alt="placeholder, blank area with a gray background color" />
                     </River.Visual>
                     <River.Content trailingComponent={variant === 'use-case' ? TimelineExample : undefined}>
                       <Heading>Heading</Heading>
@@ -425,7 +425,7 @@ export function SolutionPage({
                   </River>
                   <River>
                     <River.Visual>
-                      <img src={placeholderImage} alt="placeholder, blank area with an off-white background color" />
+                      <img src={placeholderImage} alt="placeholder, blank area with a gray background color" />
                     </River.Visual>
                     <River.Content trailingComponent={variant === 'use-case' ? TimelineExample : undefined}>
                       <Heading>Heading</Heading>
@@ -440,7 +440,7 @@ export function SolutionPage({
                   </River>
                   <River>
                     <River.Visual>
-                      <img src={placeholderImage} alt="placeholder, blank area with an off-white background color" />
+                      <img src={placeholderImage} alt="placeholder, blank area with a gray background color" />
                     </River.Visual>
                     <River.Content trailingComponent={variant === 'use-case' ? TimelineExample : undefined}>
                       <Heading>Heading</Heading>
@@ -858,7 +858,7 @@ function StoryScrollExample({align, bentoVisible}) {
           <River.Visual>
             <img
               src="https://placehold.co/600x400/FF5733/ffffff?text=1"
-              alt="placeholder, blank area with an off-white background color"
+              alt="placeholder, blank area with a gray background color"
             />
           </River.Visual>
           <River.Content trailingComponent={TimelineExample}>
@@ -874,7 +874,7 @@ function StoryScrollExample({align, bentoVisible}) {
           <River.Visual>
             <img
               src="https://placehold.co/600x400/AF7AC5/ffffff?text=2"
-              alt="placeholder, blank area with an off-white background color"
+              alt="placeholder, blank area with a gray background color"
             />
           </River.Visual>
           <River.Content trailingComponent={TimelineExample}>
@@ -890,7 +890,7 @@ function StoryScrollExample({align, bentoVisible}) {
           <River.Visual>
             <img
               src="https://placehold.co/600x400/FFC300/ffffff?text=3"
-              alt="placeholder, blank area with an off-white background color"
+              alt="placeholder, blank area with a gray background color"
             />
           </River.Visual>
           <River.Content trailingComponent={TimelineExample}>
