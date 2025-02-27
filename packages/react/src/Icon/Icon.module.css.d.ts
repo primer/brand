@@ -29,6 +29,13 @@ declare const styles: {
   readonly "Icon--color-red": string;
   readonly "Icon--color-teal": string;
   readonly "Icon--color-yellow": string;
+  readonly "Icon--size-20": string;
+  readonly "Icon--size-24": string;
+  readonly "Icon--size-28": string;
+  readonly "Icon--size-32": string;
+  readonly "Icon--size-36": string;
+  readonly "Icon--size-40": string;
+  readonly "Icon--size-44": string;
 };
 export = styles;
 

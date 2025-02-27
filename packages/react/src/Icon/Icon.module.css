@@ -1,6 +1,42 @@
 .Icon {
+  display: block;
   box-sizing: content-box;
   padding: 0;
+}
+
+.Icon--size-20 {
+  width: var(--base-size-20);
+  height: var(--base-size-20);
+}
+
+.Icon--size-24 {
+  width: var(--base-size-24);
+  height: var(--base-size-24);
+}
+
+.Icon--size-28 {
+  width: var(--base-size-28);
+  height: var(--base-size-28);
+}
+
+.Icon--size-32 {
+  width: var(--base-size-32);
+  height: var(--base-size-32);
+}
+
+.Icon--size-36 {
+  width: var(--base-size-36);
+  height: var(--base-size-36);
+}
+
+.Icon--size-40 {
+  width: var(--base-size-40);
+  height: var(--base-size-40);
+}
+
+.Icon--size-44 {
+  width: var(--base-size-44);
+  height: var(--base-size-44);
 }
 
 .Icon--background {
