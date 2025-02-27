@@ -68,7 +68,7 @@ export const Icon = ({
   )
 
   return (
-    <span
+    <div
       className={clsx(
         styles['Icon'],
         styles[`Icon--size-${iconSize}`],
@@ -78,6 +78,6 @@ export const Icon = ({
       )}
     >
       {iconComponent}
-    </span>
+    </div>
   )
 }
