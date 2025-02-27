@@ -45,7 +45,8 @@
           "value": "#096BDE"
         },
         "3": {
-          "value": "#00FF46"
+          "value": "var(--base-color-scale-green-5)",
+          "dark": "#00FF46"
         },
         "4": {
           "value": "#8250DF"
