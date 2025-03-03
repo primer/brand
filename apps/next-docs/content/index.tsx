@@ -97,8 +97,8 @@ export default function HomepageComponent() {
                   Need help?&nbsp;
                 </Text>
                 If you found a bug on this website, please{' '}
-                <a href="https://github.com/github/primer-docs/issues/new?template=Blank+issue">open a new issue</a>{' '}
-                with as much detail as possible.
+                <a href="https://github.com/primer/brand/issues/new?template=BUG-REPORT.yml">open a new issue</a> with
+                as much detail as possible.
               </Text>
             </div>
           </Stack>

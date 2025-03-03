@@ -2,12 +2,22 @@
 export default {
   github: {
     type: 'page',
-    href: 'https://github.com/primer/doctocat-nextjs',
+    href: 'https://github.com/primer/brand',
     title: 'GitHub',
   },
-  primer: {
+  product: {
     type: 'page',
     href: 'https://primer.style',
-    title: 'Primer',
+    title: 'Product UI',
+  },
+  toolkit: {
+    type: 'page',
+    href: 'https://brand.github.com',
+    title: 'Brand Toolkit',
+  },
+  octicons: {
+    type: 'page',
+    href: 'https://primer.style/octicons',
+    title: 'Octicons',
   },
 }
