@@ -2,8 +2,6 @@ import React from 'react'
 import {Meta} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {Pagination} from './Pagination'
-import {Stack} from '../Stack'
-import {Text} from '../Text'
 
 export default {
   title: 'Components/Pagination/Features',
