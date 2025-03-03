@@ -62,8 +62,14 @@ export const Pagination = memo(
     'data-testid': testId,
     ...rest
   }: PaginationProps) => {
-    // Support legacy object-based showPages prop. If any of the values are true, showPages is true
-    showPages = typeof showPages === 'object' ? Object.values(showPages).some(x => x) : showPages
+    if (typeof showPages === 'object') {
+      showPages = Object.values(showPages).some(x => x)
+
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        // eslint-disable-next-line no-console
+        console.warn('The responsive object value for `showPages` is deprecated. Please use a boolean value instead.')
+      }
+    }
 
     // On mobile, limit the number of visible numbers
     const {width} = useWindowSize()

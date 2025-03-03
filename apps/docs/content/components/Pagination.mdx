@@ -52,16 +52,6 @@ render(<App />)
 <Pagination pageCount={15} currentPage={5} showPages={false} />
 ```
 
-### Hide page numbers at specific breakpoints
-
-```jsx live
-<Pagination
-  pageCount={15}
-  currentPage={5}
-  showPages={{narrow: false, regular: true, wide: true}}
-/>
-```
-
 ### Custom href
 
 ```jsx live
@@ -90,13 +80,13 @@ render(<App />)
 
 ### Pagination <Label>Required</Label>
 
-| name                    | type                                                                                   | default | required | description                                                                       |
-| ----------------------- | -------------------------------------------------------------------------------------- | ------- | -------- | --------------------------------------------------------------------------------- |
-| `pageCount`             | `number`                                                                               |         | `true`   | The total number of pages                                                         |
-| `currentPage`           | `number`                                                                               |         | `true`   | The current page number                                                           |
-| `onPageChange`          | `(e: React.MouseEvent, n: number) => void`                                             |         | `false`  | Callback function for when the page changes                                       |
-| `hrefBuilder`           | `(n: number) => string`                                                                |         | `false`  | Function to build the href for each page                                          |
-| `pageAttributesBuilder` | `(n: number) => {[attributeName: string]: string}`                                     |         | `false`  | Forward custom attributes to pagination links.                                    |
-| `marginPageCount`       | `number`                                                                               |         | `false`  | Defines how many pages are to be displayed on the left and right of the component |
-| `showPages`             | <PropTableValues values={['boolean', 'ResponsivePageVisibilityMap'] } addLineBreaks /> |         | `false`  | Whether to show the page numbers                                                  |
-| `surroundingPageCount`  | `number`                                                                               |         | `false`  | The number of pages to show on each side of the current page                      |
+| name                    | type                                               | default | required | description                                                                       |
+| ----------------------- | -------------------------------------------------- | ------- | -------- | --------------------------------------------------------------------------------- |
+| `pageCount`             | `number`                                           |         | `true`   | The total number of pages                                                         |
+| `currentPage`           | `number`                                           |         | `true`   | The current page number                                                           |
+| `onPageChange`          | `(e: React.MouseEvent, n: number) => void`         |         | `false`  | Callback function for when the page changes                                       |
+| `hrefBuilder`           | `(n: number) => string`                            |         | `false`  | Function to build the href for each page                                          |
+| `pageAttributesBuilder` | `(n: number) => {[attributeName: string]: string}` |         | `false`  | Forward custom attributes to pagination links.                                    |
+| `marginPageCount`       | `number`                                           |         | `false`  | Defines how many pages are to be displayed on the left and right of the component |
+| `showPages`             | `boolean`                                          |         | `false`  | Whether to show the page numbers                                                  |
+| `surroundingPageCount`  | `number`                                           |         | `false`  | The number of pages to show on each side of the current page                      |

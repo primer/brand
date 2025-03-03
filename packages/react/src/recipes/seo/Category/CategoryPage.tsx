@@ -255,12 +255,7 @@ export function CategoryPage({accentColor, variant, gridOverlay = false, colorMo
                 ))}
               </Grid>
             </Box>
-            <Pagination
-              pageCount={10}
-              currentPage={currentPage}
-              onPageChange={handlePageChange}
-              showPages={{narrow: false, regular: true, wide: true}}
-            />
+            <Pagination pageCount={10} currentPage={currentPage} onPageChange={handlePageChange} />
           </Grid.Column>
           <Grid.Column></Grid.Column>
         </Grid>

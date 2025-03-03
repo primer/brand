@@ -38,65 +38,6 @@ NarrowPageNumbersHiddenByDefault.parameters = {
   },
 }
 
-export const HidePageNumbersByViewport = () => (
-  <Stack direction="vertical" alignItems="center" gap="spacious">
-    <div>
-      <Text as="p" align="center">
-        Page numbers always hidden on all viewports.
-      </Text>
-      <Pagination
-        pageCount={15}
-        currentPage={5}
-        showPages={{narrow: false, regular: false, wide: false}}
-        onPageChange={handlePageChange}
-        aria-label="Pagination with hidden page numbers on all viewports"
-      />
-    </div>
-    <div>
-      <Text as="p" align="center">
-        Page numbers are hidden on narrow viewports only.
-      </Text>
-      <Pagination
-        pageCount={15}
-        currentPage={5}
-        showPages={{narrow: false, regular: true, wide: true}}
-        onPageChange={handlePageChange}
-        aria-label="Pagination with hidden page numbers on narrow viewports"
-      />
-    </div>
-    <div>
-      <Text as="p" align="center">
-        Page numbers are hidden on narrow and regular viewports only.
-      </Text>
-      <Pagination
-        pageCount={15}
-        currentPage={5}
-        showPages={{narrow: false, regular: false, wide: true}}
-        onPageChange={handlePageChange}
-        aria-label="Pagination with hidden page numbers on narrow and regular viewports"
-      />
-    </div>
-    <div>
-      <Text as="p" align="center">
-        Page numbers never hidden on any viewport.
-      </Text>
-      <Pagination
-        pageCount={15}
-        currentPage={5}
-        showPages={{narrow: true, regular: true, wide: true}}
-        onPageChange={handlePageChange}
-        aria-label="Pagination with visible page numbers on all viewports"
-      />
-    </div>
-  </Stack>
-)
-
-HidePageNumbersByViewport.parameters = {
-  viewport: {
-    defaultViewport: 'small',
-  },
-}
-
 export const HigherSurroundingPageCount = () => (
   <Pagination pageCount={15} currentPage={5} surroundingPageCount={4} onPageChange={handlePageChange} />
 )
