@@ -1,5 +1,5 @@
 import React, {memo, PropsWithChildren, useCallback} from 'react'
-import {Link, Text} from '..'
+import {Link, useWindowSize} from '..'
 
 import {default as clsx} from 'clsx'
 
@@ -56,12 +56,22 @@ export const Pagination = memo(
     hrefBuilder = defaultHrefBuilder,
     pageAttributesBuilder,
     marginPageCount = 1,
-    showPages = {narrow: false, regular: true, wide: true},
+    showPages = true,
     surroundingPageCount = 2,
     'aria-label': ariaLabel,
     'data-testid': testId,
     ...rest
   }: PaginationProps) => {
+    // Support legacy object-based showPages prop. If any of the values are true, showPages is true
+    showPages = typeof showPages === 'object' ? Object.values(showPages).some(x => x) : showPages
+
+    // On mobile, limit the number of visible numbers
+    const {width} = useWindowSize()
+    if (width && width < 768) {
+      marginPageCount = 1
+      surroundingPageCount = 0
+    }
+
     const navRef = React.useRef<HTMLElement>(null)
     const pageElements = usePaginationPages({
       pageCount,
@@ -74,35 +84,15 @@ export const Pagination = memo(
       surroundingPageCount,
     })
 
-    const getSummaryClasses = useCallback(() => {
-      if (showPages === true) {
-        return styles['Pagination__hidden']
-      } else if (typeof showPages === 'object') {
-        return Object.entries(showPages).reduce<string[]>((acc, [key, value]) => {
-          if (value) {
-            acc.push(styles[`Pagination__hidden-${key as 'narrow' | 'regular' | 'wide'}`])
-          } else {
-            acc.push(styles[`Pagination__visible-${key as 'narrow' | 'regular' | 'wide'}`])
-          }
-          return acc
-        }, [])
-      }
-
-      return styles['Pagination__visible']
-    }, [showPages])
-
     return (
       <nav
         ref={navRef}
         id={id}
-        className={clsx(styles.Pagination, className)}
+        className={clsx(styles.Pagination, showPages && styles['Pagination__showPages'], className)}
         data-testid={testId}
         aria-label={ariaLabel || 'Pagination'}
         {...rest}
       >
-        <Text className={clsx(styles.Pagination__summary, getSummaryClasses())}>
-          {`Page ${currentPage} of ${pageCount}`}
-        </Text>
         <div className={clsx(styles.Pagination__inner)}>{pageElements}</div>
       </nav>
     )
@@ -116,7 +106,7 @@ type UsePaginationPagesParameters = {
   hrefBuilder: (n: number) => string
   pageAttributesBuilder?: (n: number) => {[key: string]: string}
   marginPageCount: number
-  showPages: PaginationProps['showPages']
+  showPages: boolean
   surroundingPageCount: number
 }
 
@@ -138,23 +128,6 @@ export function usePaginationPages({
     },
     [onPageChange],
   )
-
-  const getPagesClasses = useCallback(() => {
-    if (showPages === false) {
-      return styles['Pagination--hidden']
-    }
-
-    if (typeof showPages === 'object') {
-      return Object.entries(showPages).reduce<string[]>((acc, [key, value]) => {
-        if (value) {
-          acc.push(styles[`Pagination__visible-${key as 'narrow' | 'regular' | 'wide'}`])
-        } else {
-          acc.push(styles[`Pagination__hidden-${key as 'narrow' | 'regular' | 'wide'}`])
-        }
-        return acc
-      }, [])
-    }
-  }, [showPages])
 
   const model = React.useMemo(() => {
     return buildPaginationModel(pageCount, currentPage, !!showPages, marginPageCount, surroundingPageCount)
@@ -181,12 +154,16 @@ export function usePaginationPages({
         )
       }
 
+      if (!showPages) {
+        return
+      }
+
       return (
         <Link
           key={key}
           size="medium"
           arrowDirection="none"
-          className={clsx(styles.Pagination__item, getPagesClasses())}
+          className={styles.Pagination__item}
           role="button"
           tabIndex={0}
           {...props}
@@ -196,7 +173,7 @@ export function usePaginationPages({
         </Link>
       )
     })
-  }, [model, hrefBuilder, pageChange, getPagesClasses, pageAttributesBuilder])
+  }, [model, hrefBuilder, pageChange, pageAttributesBuilder, showPages])
 
   return children
 }

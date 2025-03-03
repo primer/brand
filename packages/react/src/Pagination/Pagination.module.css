@@ -12,10 +12,12 @@
 .Pagination__inner {
   display: inline-flex;
   align-items: center;
+  gap: var(--base-size-8);
 }
 
 .Pagination__item {
-  min-width: var(--base-size-36);
+  min-width: var(--base-size-32);
+  height: var(--base-size-32);
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
@@ -23,46 +25,14 @@
   user-select: none;
   text-decoration: none;
   padding: var(--base-size-4) var(--base-size-8);
-  margin-right: var(--base-size-8);
   border: var(--brand-borderWidth-thick) solid transparent;
   border-radius: var(--brand-borderRadius-medium);
   transition: border-color var(--brand-animation-duration-fast) var(--brand-animation-easing-default);
 }
 
-.Pagination__hidden,
-.Pagination__hidden-narrow,
-.Pagination__hidden-regular,
-.Pagination__hidden-wide {
-  display: none;
-}
-
-.Pagination__visible,
-.Pagination__visible-narrow {
-  display: block;
-}
-
-@media screen and (min-width: 48rem) {
-  .Pagination__hidden-regular {
-    display: none;
-  }
-
-  .Pagination__visible-regular {
-    display: block;
-  }
-}
-
-@media screen and (min-width: 80rem) {
-  .Pagination__hidden-wide {
-    display: none;
-  }
-
-  .Pagination__visible-wide {
-    display: block;
-  }
-}
-
-.Pagination__item:last-child {
-  margin-right: 0;
+.Pagination__item * {
+  font-size: 14px !important;
+  line-height: 20px !important;
 }
 
 .Pagination__item:hover,
@@ -112,9 +82,24 @@
   color: inherit;
 }
 
-.Pagination__item[rel='prev'] {
-  margin-inline-end: var(--base-size-16);
+.Pagination__showPages .Pagination__item[rel='prev'] span,
+.Pagination__showPages .Pagination__item[rel='next'] span {
+  display: none;
 }
-.Pagination__item[rel='next'] {
-  margin-inline-start: var(--base-size-16);
+
+.Pagination__item[rel='prev'] svg,
+.Pagination__item[rel='next'] svg {
+  margin-inline: 0;
+}
+
+@media screen and (min-width: 48rem) {
+  .Pagination__item[rel='prev'] span,
+  .Pagination__item[rel='next'] span {
+    display: block !important;
+  }
+
+  .Pagination__item[rel='prev'] svg,
+  .Pagination__item[rel='next'] svg {
+    margin-inline: unset;
+  }
 }
