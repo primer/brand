@@ -4,11 +4,6 @@
   text-align: center;
 }
 
-.Pagination__summary {
-  display: block;
-  margin-bottom: var(--base-size-8);
-}
-
 .Pagination__inner {
   display: inline-flex;
   align-items: center;
