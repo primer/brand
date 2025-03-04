@@ -27,7 +27,7 @@ figma.connect(
       </PricingOptions.Item>
     ),
   },
-<)
+)
 
 figma.connect(
   PricingOptions.FeatureList,
@@ -36,6 +36,7 @@ figma.connect(
     props: {
       children: figma.children('Item*'),
     },
+    // @ts-expect-error - PricingOptions.FeatureList expects an array but figma.children returns a single JSX.Element
     example: ({children}) => <PricingOptions.FeatureList>{children}</PricingOptions.FeatureList>,
   },
 )
