@@ -1,0 +1,132 @@
+---
+title: Theming
+---
+
+Primer Brand defines various global styling defaults using CSS variables, while also allowing app-level customization through its `ThemeProvider`.
+
+CSS variables are available for most styling dimensions such as typography, color and sizing. They are defined in the primary stylesheet: `main.css`.
+
+`ThemeProvider` extends theming capabilities at runtime by enabling real-time color mode switching among other things.
+
+Using the CSS stylesheet and `ThemeProvider` in tandem is crucial to make theming work correctly.
+
+## Configure the `ThemeProvider`
+
+The `ThemeProvider` should wrap your React application root to enable theming correctly. It can also be nested to apply isolated behavior to `children`.
+
+```js
+import {ThemeProvider} from '@primer/react-brand'
+
+function App() {
+  return (
+    <ThemeProvider>
+      <div>...</div>
+    </ThemeProvider>
+  )
+}
+```
+
+## Load the stylesheet
+
+The stylesheet contains all of the required rules for design tokens and components. It also includes a CSS reset, so we recommend loading this as early as possible in your HTML `<head>` to minimize undesirable rendering behavior.
+
+```js
+import '@primer/react-brand/lib/css/main.css'
+```
+
+## Set a color mode
+
+Primer Brand supports the following color modes through a dedicated prop by applying HTML `data-*` attributes:
+
+| Theme | `colorMode` prop value | Data attribute applied    |
+| ----- | ---------------------- | ------------------------- |
+| Light | `light`                | `data-color-mode="light"` |
+| Dark  | `dark`                 | `data-color-mode="dark"`  |
+
+The `ThemeProvider` applies the data attributes and handles state-changes internally.
+
+**`ThemeProvider` will apply `light` mode by default if the `colorMode` is not specified. This is recommended for top-level placement.**
+
+The following example demonstrates how `light` mode will enable by default, and can also be changed to `dark` declaratively:
+
+```javascript live noinline
+const Example = () => {
+  const [colorMode, setColorMode] = React.useState()
+
+  const handleChange = event => {
+    event.preventDefault()
+    setColorMode('dark')
+  }
+
+  return (
+    <ThemeProvider colorMode={colorMode} style={{backgroundColor: 'var(--brand-color-canvas-default)'}}>
+      <River>
+        <River.Visual>
+          <img src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
+        </River.Visual>
+        <River.Content>
+          <Heading>Heading</Heading>
+          <Text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis nam pulvinar risus elementum.
+          </Text>
+          <Link href="#" onClick={handleChange}>
+            {colorMode === 'dark' ? "I'm in dark mode now" : 'Switch to dark mode'}
+          </Link>
+        </River.Content>
+      </River>
+    </ThemeProvider>
+  )
+}
+
+render(Example)
+```
+
+### Locking the color mode
+
+For tighter control over appearance - such as forcing areas of a layout to appear in dark mode - we recommend nesting `ThemeProvider` and explicitly applying a color mode.
+
+```jsx live
+<Stack direction="vertical" padding="none">
+  <ThemeProvider
+    colorMode="dark"
+    style={{
+      backgroundColor: 'var(--brand-color-canvas-default)',
+    }}
+  >
+    <River align="center">
+      <River.Visual>
+        <img src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
+      </River.Visual>
+      <River.Content>
+        <Heading>Heading</Heading>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </River.Content>
+    </River>
+  </ThemeProvider>
+  <ThemeProvider
+    colorMode="light"
+    style={{
+      backgroundColor: 'var(--brand-color-canvas-default)',
+    }}
+  >
+    <River align="right">
+      <River.Visual>
+        <img src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
+      </River.Visual>
+      <River.Content>
+        <Heading>Heading</Heading>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Text>
+        <Link href="#">Call to action</Link>
+      </River.Content>
+    </River>
+  </ThemeProvider>
+</Stack>
+```

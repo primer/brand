@@ -1,0 +1,177 @@
+---
+title: Stack
+description: Use the stack component to create a layout for its immediate children along the vertical or horizontal axis.
+keywords: ['layout']
+show-tabs: true
+tab-label: React
+ready: true
+source: https://github.com/primer/brand/blob/main/packages/react/src/Box/Box.tsx
+storybook: '/brand/storybook/?path=/story/components-box--default'
+---
+
+import {
+  StackSpacingValueProp,
+  StackDirectionValueProp,
+  StackJustifyContentValueProp,
+  StackAlignItemsValueProp,
+  defaultStackDirection,
+  defaultStackSpacing,
+} from './react.tsx'
+
+```js
+import {Stack} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+`Stack` is a layout helper component intended for rendering `children` in a single direction.
+
+Use the `direction` prop to alternate between `vertical` and `horizontal` directions.
+
+Many `Stack` props - including `direction` - accept both `string` and `Object` values. The former will apply the value across all viewports, while the latter will permit granular control at specific breakpoints. See [Responsive](#Responsive) below for more details.
+
+```jsx live
+<Stack>
+  <Heading size="subhead-large">Code search & code view</Heading>
+  <Text as="p">Enables you to rapidly search, navigate, and understand code, right from GitHub.com.</Text>
+</Stack>
+```
+
+### Alignment
+
+`Stack` provides `alignItems` and `justifyContent` props for determining the rendering direction on the cross-axis and main-axis respectively.
+
+Use the playground below to experiment with the various options.
+
+```javascript live noinline
+const App = () => {
+  const [alignItemsValue, setAlignItemsValue] = React.useState('center')
+  const [justifyContentValue, setJustifyContentValue] = React.useState('space-between')
+
+  const handleMainAxisChange = event => setJustifyContentValue(event.target.value)
+  const handleCrossAxisChange = event => setAlignItemsValue(event.target.value)
+
+  return (
+    <Container>
+      <Stack
+        direction="horizontal"
+        alignItems={alignItemsValue}
+        justifyContent={justifyContentValue}
+        style={{height: 400}}
+      >
+        <img
+          src="/images/placeholder.png"
+          alt="placeholder with gray background and no foreground text"
+          style={{width: 150, height: 75}}
+        />
+        <img
+          src="/images/placeholder.png"
+          alt="placeholder with gray background and no foreground text"
+          style={{width: 150, height: 75}}
+        />
+        <img
+          src="/images/placeholder.png"
+          alt="placeholder with gray background and no foreground text"
+          style={{width: 150, height: 75}}
+        />
+      </Stack>
+
+      <Stack direction="horizontal" gap="spacious" justifyContent="center">
+        <FormControl>
+          <FormControl.Label>Main axis</FormControl.Label>
+          <Select defaultValue={justifyContentValue} onChange={handleMainAxisChange}>
+            <Select.Option value="center">center</Select.Option>
+            <Select.Option value="flex-start">flex-start</Select.Option>
+            <Select.Option value="flex-end">flex-end</Select.Option>
+            <Select.Option value="space-between">space-between</Select.Option>
+            <Select.Option value="space-around">space-around</Select.Option>
+            <Select.Option value="space-evenly">space-evenly</Select.Option>
+          </Select>
+        </FormControl>
+
+        <FormControl>
+          <FormControl.Label>Cross axis</FormControl.Label>
+          <Select defaultValue={alignItemsValue} onChange={handleCrossAxisChange}>
+            <Select.Option value="center">center</Select.Option>
+            <Select.Option value="flex-start">flex-start</Select.Option>
+            <Select.Option value="flex-end">flex-end</Select.Option>
+          </Select>
+        </FormControl>
+      </Stack>
+    </Container>
+  )
+}
+
+render(App)
+```
+
+### Responsive
+
+Passing an Object of a particular shape will allow granular control of `direction`, `gap`, `alignItems`, `justifyContent` and `padding` at various supported breakpoints.
+
+Supported breakpoints are `narrow`, `regular` and `wide`.
+
+The Object value does not require all properties be passed, but rather operates on the basis of `min-width`.
+
+E.g. Providing only `narrow` will apply that value to all larger breakpoints, but not the other way.
+
+```jsx live
+<Stack
+  style={{height: 400}}
+  direction={{
+    narrow: 'vertical',
+    regular: 'vertical',
+    wide: 'horizontal',
+  }}
+  gap={{
+    narrow: 'condensed',
+    regular: 'normal',
+    wide: 'spacious',
+  }}
+  padding={{
+    narrow: 'condensed',
+    regular: 'normal',
+    wide: 'spacious',
+  }}
+  alignItems={{
+    narrow: 'flex-start',
+    regular: 'center',
+    wide: 'center',
+  }}
+  justifyContent={{
+    narrow: 'center',
+    regular: 'center',
+    wide: 'space-between',
+  }}
+>
+  <img
+    src="/images/placeholder.png"
+    alt="placeholder with gray background and no foreground text"
+    style={{width: 150, height: 75}}
+  />
+  <img
+    src="/images/placeholder.png"
+    alt="placeholder with gray background and no foreground text"
+    style={{width: 150, height: 75}}
+  />
+  <img
+    src="/images/placeholder.png"
+    alt="placeholder with gray background and no foreground text"
+    style={{width: 150, height: 75}}
+  />
+</Stack>
+```
+
+## Component props
+
+### Stack
+
+| Name             | Type                             |                       Default                        | Description                                |
+| :--------------- | :------------------------------- | :--------------------------------------------------: | :----------------------------------------- |
+| `direction`      | <StackDirectionValueProp  />     | <PropTableValues values={[defaultStackDirection]} /> | Determines layout direction                |
+| `gap`            | <StackSpacingValueProp />        |  <PropTableValues values={[defaultStackSpacing]} />  | Determines gap between items               |
+| `padding`        | <StackSpacingValueProp />        |  <PropTableValues values={[defaultStackSpacing]} />  | Determines padding applied to Stack parent |
+| `justifyContent` | <StackJustifyContentValueProp /> |                                                      | Determines rendering on the main-axis      |
+| `alignItems`     | <StackAlignItemsValueProp />     |                                                      | Determines rendering on the cross-axis     |

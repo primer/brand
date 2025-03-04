@@ -1,0 +1,24 @@
+.ProductLayout {
+  padding: 0 var(--base-size-48);
+  margin: 0 auto;
+  max-width: var(--breakpoint-xlarge);
+  width: 100%;
+  @media screen and (max-width: 48rem) {
+    padding: 0 0;
+  }
+}
+
+.header {
+  max-width: 81.75rem;
+}
+
+.footer {
+  padding-top: var(--base-size-24);
+}
+
+.landingPageImage {
+  flex-shrink: 0;
+  @media screen and (max-width: 64rem) {
+    display: none;
+  }
+}
