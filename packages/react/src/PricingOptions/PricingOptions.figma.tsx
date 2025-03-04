@@ -7,13 +7,13 @@ figma.connect(
   'https://www.figma.com/design/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=12709-17402&t=hNiuAeHKuuLZeXnj-11',
   {
     props: {
-      heading: figma.textContent('Heading'),
-      value: figma.textContent('Value'),
-      trailingText: figma.textContent('TrailingText'),
+      featureList: figma.children('Feature list'),
       footnotes: figma.textContent('Footnotes'),
+      heading: figma.textContent('Heading'),
       primaryAction: figma.nestedProps('Primary Action', {text: figma.textContent('Text')}),
       secondaryAction: figma.nestedProps('Secondary Action', {text: figma.textContent('Text')}),
-      featureList: figma.children('Feature list'),
+      trailingText: figma.textContent('TrailingText'),
+      value: figma.textContent('Value'),
     },
     example: ({heading, value, footnotes, primaryAction, featureList, trailingText}) => (
       <PricingOptions.Item>

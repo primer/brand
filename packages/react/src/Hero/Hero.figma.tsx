@@ -7,19 +7,16 @@ figma.connect(
   'https://www.figma.com/design/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=134-5526&t=hNiuAeHKuuLZeXnj-11',
   {
     props: {
-      heading: figma.string('heading'),
-      description: figma.boolean('description?', {
-        true: <Hero.Description>{figma.string('description')}</Hero.Description>,
-        false: undefined,
-      }),
-
       align: figma.enum('align', {
         start: 'start',
         center: 'center',
       }),
+      description: figma.boolean('description?', {
+        true: <Hero.Description>{figma.string('description')}</Hero.Description>,
+        false: undefined,
+      }),
+      heading: figma.string('heading'),
       primaryAction: figma.nestedProps('PrimaryAction', {text: figma.string('text')}),
-      secondaryAction: figma.nestedProps('SecondaryAction', {text: figma.string('text')}),
-
       primaryActionOpeningTag: figma.boolean('actions?', {
         true: '<Hero.PrimaryAction href="#">',
         false: undefined,
@@ -28,14 +25,13 @@ figma.connect(
         true: '</Hero.PrimaryAction>',
         false: undefined,
       }),
-
+      secondaryAction: figma.nestedProps('SecondaryAction', {text: figma.string('text')}),
       secondaryActionOpeningTag: figma.nestedProps('ButtonGroup', {
         tag: figma.boolean('secondary?', {
           true: '<Hero.SecondaryAction href="#">',
           false: undefined,
         }),
       }),
-
       secondaryActionClosingTag: figma.nestedProps('ButtonGroup', {
         tag: figma.boolean('secondary?', {
           true: '</Hero.SecondaryAction>',
@@ -44,15 +40,15 @@ figma.connect(
       }),
     },
     example: ({
-      primaryAction,
-      primaryActionOpeningTag,
-      primaryActionClosingTag,
-      secondaryAction,
-      secondaryActionOpeningTag,
-      secondaryActionClosingTag,
       align,
-      heading,
       description,
+      heading,
+      primaryAction,
+      primaryActionClosingTag,
+      primaryActionOpeningTag,
+      secondaryAction,
+      secondaryActionClosingTag,
+      secondaryActionOpeningTag,
     }) => (
       <Hero align={align}>
         <Hero.Heading>{heading}</Hero.Heading>
