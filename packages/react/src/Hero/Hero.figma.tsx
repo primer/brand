@@ -11,8 +11,13 @@ figma.connect(
         start: 'start',
         center: 'center',
       }),
-      description: figma.boolean('description?', {
-        true: <Hero.Description>{figma.string('description')}</Hero.Description>,
+      description: figma.string('description'),
+      descriptionOpeningTag: figma.boolean('description?', {
+        true: '<Hero.Description>',
+        false: undefined,
+      }),
+      descriptionClosingTag: figma.boolean('description?', {
+        true: '</Hero.Description>',
         false: undefined,
       }),
       heading: figma.string('heading'),
@@ -42,6 +47,8 @@ figma.connect(
     example: ({
       align,
       description,
+      descriptionOpeningTag,
+      descriptionClosingTag,
       heading,
       primaryAction,
       primaryActionClosingTag,
@@ -52,7 +59,9 @@ figma.connect(
     }) => (
       <Hero align={align}>
         <Hero.Heading>{heading}</Hero.Heading>
+        {descriptionOpeningTag}
         {description}
+        {descriptionClosingTag}
         {primaryActionOpeningTag}
         {primaryAction.text}
         {primaryActionClosingTag}

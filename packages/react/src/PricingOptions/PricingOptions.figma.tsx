@@ -58,7 +58,7 @@ figma.connect(
   'https://www.figma.com/design/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=12643-10718&t=hNiuAeHKuuLZeXnj-11',
   {
     props: {
-      children: figma.children('*'),
+      children: figma.children('Item*'),
     },
     example: ({children}) => <PricingOptions>{children}</PricingOptions>,
   },
