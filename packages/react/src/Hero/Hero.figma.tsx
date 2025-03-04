@@ -8,23 +8,15 @@ figma.connect(
   {
     props: {
       heading: figma.string('heading'),
-      descriptionText: figma.boolean('description?', {
-        true: figma.string('description'),
+      description: figma.boolean('description?', {
+        true: <Hero.Description>{figma.string('description')}</Hero.Description>,
         false: undefined,
       }),
-      descriptionOpeningTag: figma.boolean('description?', {
-        true: '<Hero.Description>',
-        false: undefined,
-      }),
-      descriptionClosingTag: figma.boolean('description?', {
-        true: '</Hero.Description>',
-        false: undefined,
-      }),
+
       align: figma.enum('align', {
         start: 'start',
         center: 'center',
       }),
-      actions: figma.children('ButtonGroup'),
       primaryAction: figma.nestedProps('PrimaryAction', {text: figma.string('text')}),
       secondaryAction: figma.nestedProps('SecondaryAction', {text: figma.string('text')}),
 
@@ -60,15 +52,11 @@ figma.connect(
       secondaryActionClosingTag,
       align,
       heading,
-      descriptionText,
-      descriptionOpeningTag,
-      descriptionClosingTag,
+      description,
     }) => (
       <Hero align={align}>
         <Hero.Heading>{heading}</Hero.Heading>
-        {descriptionOpeningTag}
-        {descriptionText}
-        {descriptionClosingTag}
+        {description}
         {primaryActionOpeningTag}
         {primaryAction.text}
         {primaryActionClosingTag}

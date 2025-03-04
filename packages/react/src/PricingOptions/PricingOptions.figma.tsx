@@ -9,15 +9,16 @@ figma.connect(
     props: {
       heading: figma.textContent('Heading'),
       value: figma.textContent('Value'),
+      trailingText: figma.textContent('TrailingText'),
       footnotes: figma.textContent('Footnotes'),
       primaryAction: figma.nestedProps('Primary Action', {text: figma.textContent('Text')}),
       secondaryAction: figma.nestedProps('Secondary Action', {text: figma.textContent('Text')}),
       featureList: figma.children('Feature list'),
     },
-    example: ({heading, value, footnotes, primaryAction, featureList}) => (
+    example: ({heading, value, footnotes, primaryAction, featureList, trailingText}) => (
       <PricingOptions.Item>
         <PricingOptions.Heading>{heading}</PricingOptions.Heading>
-        <PricingOptions.Price>{value}</PricingOptions.Price>
+        <PricingOptions.Price trailingText={trailingText}>{value}</PricingOptions.Price>
         <PricingOptions.Footnote>{footnotes}</PricingOptions.Footnote>
         <PricingOptions.PrimaryAction href="#" as="a">
           {primaryAction.text}
@@ -26,14 +27,14 @@ figma.connect(
       </PricingOptions.Item>
     ),
   },
-)
+<)
 
 figma.connect(
   PricingOptions.FeatureList,
   'https://www.figma.com/design/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=12642-10494&t=WdxoBaPDOhrkV5oD-11',
   {
     props: {
-      children: figma.children('*'),
+      children: figma.children('Item*'),
     },
     example: ({children}) => <PricingOptions.FeatureList>{children}</PricingOptions.FeatureList>,
   },
