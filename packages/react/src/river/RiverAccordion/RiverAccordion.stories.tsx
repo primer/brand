@@ -1,59 +1,80 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 
-import placeholderImage from '../../fixtures/images/placeholder.png'
-import {Heading, Link, River, RiverAccordion, type RiverAccordionProps, Text} from '../../'
+// import placeholderImage from '../../fixtures/images/placeholder.png'
+import {Link, RiverAccordion, type RiverAccordionProps, Text} from '../../'
 
-type RiverAccordionStoryProps = {
-  test?: string
-}
-
-export type MetaProps = RiverAccordionProps & RiverAccordionStoryProps
+export type MetaProps = RiverAccordionProps
 
 const meta: Meta<MetaProps> = {
   title: 'Components/RiverAccordion',
   component: RiverAccordion,
-  args: {},
-  argTypes: {},
+  args: {
+    align: 'start',
+  },
+  argTypes: {
+    align: {
+      options: ['start', 'end'],
+      control: {type: 'inline-radio'},
+    },
+  },
 }
 
 export default meta
 
 type Story = StoryObj<MetaProps>
 
-const PlaceholderImage = () => <img src={placeholderImage} alt="placeholder, blank area with a gray background color" />
-
 export const Playground: Story = {
-  render: () => {
+  render: args => {
     return (
-      <RiverAccordion>
-        <River>
-          <River.Visual>
-            <PlaceholderImage />
-          </River.Visual>
-          <River.Content>
-            <Heading>Heading</Heading>
-            <Text>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-              turpis felis nam pulvinar risus elementum.
-            </Text>
-            <Link href="#">Call to action</Link>
-          </River.Content>
-        </River>
+      <RiverAccordion {...args}>
+        <RiverAccordion.Item>
+          <RiverAccordion.Heading>Heading 1</RiverAccordion.Heading>
+          <RiverAccordion.Visual
+            src="https://picsum.photos/seed/hello/1000/800"
+            alt="placeholder, blank area with a gray background color"
+          />
 
-        <River>
-          <River.Visual>
-            <PlaceholderImage />
-          </River.Visual>
-          <River.Content>
-            <Heading>Heading</Heading>
+          <RiverAccordion.Content>
             <Text>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
               turpis felis nam pulvinar risus elementum.
             </Text>
             <Link href="#">Call to action</Link>
-          </River.Content>
-        </River>
+          </RiverAccordion.Content>
+        </RiverAccordion.Item>
+
+        <RiverAccordion.Item>
+          <RiverAccordion.Heading>Heading 2</RiverAccordion.Heading>
+          <RiverAccordion.Visual
+            src="https://picsum.photos/seed/beans/1000/800"
+            alt="placeholder, blank area with a gray background color"
+          />
+
+          <RiverAccordion.Content>
+            <Text>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+              turpis felis nam pulvinar risus elementum.
+            </Text>
+            <Link href="#">Call to action</Link>
+          </RiverAccordion.Content>
+        </RiverAccordion.Item>
+
+        <RiverAccordion.Item>
+          <RiverAccordion.Heading>Heading 3</RiverAccordion.Heading>
+          <RiverAccordion.Visual
+            src="https://picsum.photos/seed/badger/1000/800"
+            alt="placeholder, blank area with a gray background color"
+          />
+
+          <RiverAccordion.Content>
+            <Text>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+              turpis felis nam pulvinar risus elementum.
+            </Text>
+            <Link href="#">Call to action</Link>
+          </RiverAccordion.Content>
+        </RiverAccordion.Item>
       </RiverAccordion>
     )
   },
