@@ -22,14 +22,14 @@ describe('Icon', () => {
     expect(getByLabelText('Git merge icon')).toBeInTheDocument()
   })
 
-  it('forwards className to the icon', () => {
+  it('forwards className to the wrapper element', () => {
     const {getByLabelText} = render(<Icon icon={GitMergeIcon} aria-label="Git merge icon" className="custom-class" />)
-    expect(getByLabelText('Git merge icon')).toHaveClass('custom-class')
+    expect(getByLabelText('Git merge icon').parentElement).toHaveClass('custom-class')
   })
 
   it('sets the color of the icon', () => {
     const {getByLabelText} = render(<Icon icon={GitMergeIcon} aria-label="Git merge icon" color="blue" />)
-    expect(getByLabelText('Git merge icon')).toHaveClass('Icon--color-blue')
+    expect(getByLabelText('Git merge icon').parentElement).toHaveClass('Icon--color-blue')
   })
 
   it('sets the size of the icon when `size` is a number', () => {
