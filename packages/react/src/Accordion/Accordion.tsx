@@ -86,7 +86,7 @@ export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
 
 export const AccordionToggleColors = [...Colors, ...Gradients] as const
 
-type AccordionHeadingProps = PropsWithChildren<BaseProps<HTMLHeadingElement>> &
+export type AccordionHeadingProps = PropsWithChildren<BaseProps<HTMLHeadingElement>> &
   React.HTMLAttributes<HTMLDetailsElement> & {
     className?: string
     as?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
@@ -169,7 +169,7 @@ export const AccordionHeading = forwardRef<HTMLHeadingElement, AccordionHeadingP
   },
 )
 
-type AccordionContentProps = BaseProps<HTMLElement> & {
+export type AccordionContentProps = BaseProps<HTMLElement> & {
   children: React.ReactElement | React.ReactElement[]
   open?: boolean // private prop passed from AccordionRoot
   handleOpen?: (boolean) => void // private prop passed from AccordionRoot
