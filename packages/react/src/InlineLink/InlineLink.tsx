@@ -6,7 +6,6 @@ import type {BaseProps} from '../component-helpers'
  * Design tokens
  */
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/inline-link/colors-with-modes.css'
-import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/inline-link/base.css'
 
 /**
  * Main stylesheet (as a CSS Module)
