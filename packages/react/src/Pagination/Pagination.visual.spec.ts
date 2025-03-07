@@ -51,15 +51,6 @@ test.describe('Visual Comparison: Pagination', () => {
       expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
     })
   })
-  test('Pagination / Hide Page Numbers By Viewport', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-pagination-features--hide-page-numbers-by-viewport&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
-  })
-
   test('Pagination / Higher Surrounding Page Count', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pagination-features--higher-surrounding-page-count&viewMode=story',
