@@ -438,8 +438,8 @@ const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatu
         <Accordion
           className={styles['PricingOptions__feature-list-accordion']}
           open={allFeatureListsExpanded}
-          handleOpen={newState => {
-            updateFeatureListExpanded(newState)
+          onToggle={event => {
+            updateFeatureListExpanded(event.currentTarget.open)
           }}
         >
           <Accordion.Heading className={styles['PricingOptions__feature-list-accordion-heading']} reversedToggles>
