@@ -21,7 +21,7 @@ export type AccordionRootProps = BaseProps<HTMLDetailsElement> & {
   variant?: 'default' | 'emphasis'
   ref?: React.RefObject<HTMLDetailsElement>
   handleOpen?: (boolean) => void
-} & React.HTMLAttributes<HTMLDetailsElement>
+} & React.DetailsHTMLAttributes<HTMLDetailsElement>
 
 type ValidRootChildren = {
   AccordionHeading: React.ReactElement<AccordionHeadingProps> | null
@@ -67,9 +67,11 @@ export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
     )
 
     useEffect(() => {
+      console.debug('open (useEffect): ', open)
       setIsOpen(open)
     }, [open])
 
+    console.debug('open: ', open)
     return (
       <details
         className={clsx(styles.Accordion, styles[`Accordion--${variant}`], className)}

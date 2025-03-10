@@ -1,154 +1,69 @@
-import React, {forwardRef, useEffect, useId, type HTMLAttributes, type PropsWithChildren} from 'react'
+import React, {isValidElement, useEffect, useRef, useState, type PropsWithChildren} from 'react'
 import clsx from 'clsx'
 
-import {Accordion} from '../../'
-import {
-  RiverAccordionProvider,
-  RiverAccordionItemProvider,
-  useRiverAccordionContext,
-  useRiverAccordionItemContext,
-  type RiverContentData,
-  type RiverVisualData,
-  type RiverHeadingData,
-} from './RiverAccordion.provider'
+import {Accordion, River} from '../../'
 
 import styles from './RiverAccordion.module.css'
+import sharedStyles from '../river-shared.module.css'
 
-export type RiverAccordionProps = PropsWithChildren<{
+type RiverAccordionProps = PropsWithChildren<{
   align?: 'start' | 'end'
-}> &
-  HTMLAttributes<HTMLDivElement>
+}>
 
-const Root = forwardRef<HTMLDivElement, RiverAccordionProps>(({align, children, ...rest}, forwardedRef) => {
+type RiverElements = {
+  content: HTMLDivElement
+  visual: HTMLDivElement
+  heading: HTMLHeadingElement
+}
+
+export const RiverAccordion = ({children, align}: RiverAccordionProps) => {
+  const [openIndex, setOpenIndex] = useState(0)
+  const [riversElements, setRiversElements] = useState<RiverElements[]>([])
+  const riversContainerRef = useRef<HTMLDivElement>(null)
+
+  const riverChildren = React.Children.toArray(children).filter(child => isValidElement(child) && child.type === River)
+
+  useEffect(() => {
+    const riversContainer = riversContainerRef.current
+    if (!riversContainer) return
+
+    const rivers: RiverElements[] = Array.from(riversContainer.children).flatMap(river => {
+      const content = river.querySelector<HTMLDivElement>('[data-pb-type="river-content"]')
+      const visual = river.querySelector<HTMLDivElement>('[data-pb-type="river-visual"]')
+      const heading = river.querySelector<HTMLHeadingElement>('h1,h2,h3,h4,h5,h6')
+
+      if (!content || !visual || !heading) return []
+
+      content.querySelector<HTMLHeadingElement>('h1,h2,h3,h4,h5,h6')?.remove()
+
+      return {content, heading, visual}
+    })
+
+    setRiversElements(rivers)
+
+    // Clear the rivers container now that we have the elements
+    riversContainer.replaceChildren()
+  }, [riversContainerRef])
+
   return (
-    <RiverAccordionProvider align={align}>
-      <div aria-hidden className="visually-hidden">
-        {children}
+    <>
+      {/* Render the river children in a hidden container so that the content can be extracted */}
+      <div className="visually-hidden" aria-hidden="true" ref={riversContainerRef}>
+        {riverChildren}
       </div>
-      <div ref={forwardedRef} className={clsx(styles['RiverAccordion'])} {...rest}>
-        <AccordionRenderer />
-        <VisualRenderer />
-      </div>
-    </RiverAccordionProvider>
+
+      {riversElements.map(({content, heading}, index) => {
+        if (index !== 0) return
+        return (
+          <Accordion key={index} open={index === openIndex}>
+            <Accordion.Heading>{heading.textContent}</Accordion.Heading>
+            <Accordion.Content>
+              {/* eslint-disable-next-line github/no-inner-html */}
+              <div dangerouslySetInnerHTML={{__html: content.innerHTML}} />
+            </Accordion.Content>
+          </Accordion>
+        )
+      })}
+    </>
   )
-})
-
-const AccordionRenderer = () => {
-  const {visuals, headings, contents, expandedId, setExpandedId} = useRiverAccordionContext()
-
-  const itemIds = Array.from(new Set([...visuals.keys(), ...headings.keys(), ...contents.keys()])).sort()
-
-  useEffect(() => {
-    if (!expandedId) {
-      setExpandedId(itemIds[0])
-    }
-  }, [expandedId, itemIds, setExpandedId])
-
-  return itemIds.map(itemId => {
-    const heading = headings.get(itemId)
-    const content = contents.get(itemId)
-    const visual = visuals.get(itemId)
-
-    if (!heading || !content || !visual) return
-
-    return (
-      <Accordion
-        key={itemId}
-        open={itemId === expandedId}
-        handleOpen={isOpen => {
-          if (isOpen) {
-            setExpandedId(itemId)
-          }
-          if (!isOpen && itemId === expandedId) {
-            return
-          }
-        }}
-      >
-        <Accordion.Heading {...heading.props} />
-        <Accordion.Content {...content.props} />
-      </Accordion>
-    )
-  })
 }
-
-const VisualRenderer = () => {
-  const {visuals, expandedId} = useRiverAccordionContext()
-
-  if (!expandedId) return null
-
-  const visual = visuals.get(expandedId)
-  if (!visual) return null
-
-  const {alt, ...props} = visual.props
-  return <img key={visual.id} alt={alt} {...props} />
-}
-
-const Item = ({children}) => {
-  const itemId = useId()
-
-  return <RiverAccordionItemProvider itemId={itemId}>{children}</RiverAccordionItemProvider>
-}
-
-const Heading = (props: RiverHeadingData['props']) => {
-  const {itemId} = useRiverAccordionItemContext()
-  const {registerHeading, unregisterHeading} = useRiverAccordionContext()
-
-  useEffect(() => {
-    registerHeading({
-      type: 'heading',
-      id: itemId,
-      props,
-    })
-
-    return () => {
-      unregisterHeading(itemId)
-    }
-  }, [itemId, props, registerHeading, unregisterHeading])
-
-  return null
-}
-
-const Visual = (props: RiverVisualData['props']) => {
-  const {itemId} = useRiverAccordionItemContext()
-  const {registerVisual, unregisterVisual} = useRiverAccordionContext()
-
-  useEffect(() => {
-    registerVisual({
-      type: 'image',
-      id: itemId,
-      props,
-    })
-
-    return () => {
-      unregisterVisual(itemId)
-    }
-  }, [itemId, registerVisual, unregisterVisual, props])
-
-  return null
-}
-
-const Content = (props: RiverContentData['props']) => {
-  const {itemId} = useRiverAccordionItemContext()
-  const {registerContent, unregisterContent} = useRiverAccordionContext()
-
-  useEffect(() => {
-    registerContent({
-      type: 'content',
-      id: itemId,
-      props,
-    })
-
-    return () => {
-      unregisterContent(itemId)
-    }
-  }, [itemId, props, registerContent, unregisterContent])
-
-  return null
-}
-
-export const RiverAccordion = Object.assign(Root, {
-  Content,
-  Heading,
-  Item,
-  Visual,
-})
