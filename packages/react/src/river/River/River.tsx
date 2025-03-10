@@ -149,6 +149,7 @@ export const RiverContent = forwardRef(
         className={clsx(animationClasses, styles.River__content, className)}
         style={{...animationInlineStyles, ...style}}
         {...rest}
+        data-pb-type="river-content"
         ref={ref}
       >
         {React.isValidElement(LabelChild) && !LeadingComponent && (
@@ -249,6 +250,7 @@ const Visual = forwardRef(
         )}
         {...rest}
         ref={ref}
+        data-pb-type="river-visual"
       >
         {children}
       </div>
