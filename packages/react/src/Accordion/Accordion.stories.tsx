@@ -1,22 +1,55 @@
-import {Meta} from '@storybook/react'
 import React from 'react'
-import {Accordion, AccordionToggleColors} from '.'
+import type {Meta, StoryObj} from '@storybook/react'
+import {Accordion, AccordionHeadingProps, AccordionRootProps, AccordionToggleColors} from '.'
 import {Box, Grid, ThemeProvider, UnorderedList} from '../'
 
-export default {
+type AccordionStoryProps = AccordionRootProps & Pick<AccordionHeadingProps, 'toggleColor'>
+
+const meta: Meta<AccordionStoryProps> = {
   title: 'Components/Accordion',
   component: Accordion,
-} as Meta<typeof Accordion>
+  args: {
+    open: false,
+    variant: 'default',
+    toggleColor: 'default',
+  },
+  argTypes: {
+    open: {
+      name: 'Open',
+      type: {name: 'boolean', required: false},
+      control: {
+        type: 'boolean',
+      },
+    },
+    variant: {
+      name: 'Variant',
+      options: ['default', 'emphasis'],
+      control: {type: 'inline-radio'},
+    },
+    toggleColor: {
+      name: 'Toggle color',
+      options: AccordionToggleColors,
+      control: {type: 'select'},
+    },
+  },
+}
+export default meta
 
-export const Default = () => (
-  <Accordion>
-    <Accordion.Heading>Heading</Accordion.Heading>
-    <Accordion.Content>
-      <p>Some description</p>
-      <p>Some description</p>
-    </Accordion.Content>
-  </Accordion>
-)
+type Story = StoryObj<AccordionStoryProps>
+
+export const Default: Story = {
+  render: ({toggleColor, ...props}) => {
+    return (
+      <Accordion {...props}>
+        <Accordion.Heading toggleColor={toggleColor}>Heading</Accordion.Heading>
+        <Accordion.Content>
+          <p>Some description</p>
+          <p>Some description</p>
+        </Accordion.Content>
+      </Accordion>
+    )
+  },
+}
 
 export const ToggleColors = () => (
   <Grid>
