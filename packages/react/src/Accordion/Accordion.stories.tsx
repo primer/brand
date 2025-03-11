@@ -15,7 +15,6 @@ const meta: Meta<AccordionStoryProps> = {
   argTypes: {
     open: {
       name: 'Open',
-      type: {name: 'boolean', required: false},
       control: {
         type: 'boolean',
       },
