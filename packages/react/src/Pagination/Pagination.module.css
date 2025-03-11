@@ -26,8 +26,8 @@
 }
 
 .Pagination__item * {
-  font-size: 14px !important;
-  line-height: 20px !important;
+  font-size: var(--brand-text-size-100);
+  line-height: 20px;
 }
 
 .Pagination__item:hover,
