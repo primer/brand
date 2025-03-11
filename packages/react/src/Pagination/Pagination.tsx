@@ -14,12 +14,6 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './Pagination.module.css'
 
-type ResponsivePageVisibilityMap = {
-  narrow?: boolean
-  regular?: boolean
-  wide?: boolean
-}
-
 export type PaginationProps = {
   /* The total number of pages */
   pageCount: number
@@ -34,7 +28,7 @@ export type PaginationProps = {
   /* Defines how many pages are to to be displayed on the left and right of the component */
   marginPageCount?: number
   /* Whether to show the page numbers */
-  showPages?: boolean | ResponsivePageVisibilityMap
+  showPages?: boolean
   /* The number of pages to show on each side of the current page */
   surroundingPageCount?: number
   'data-testid'?: string
@@ -62,15 +56,6 @@ export const Pagination = memo(
     'data-testid': testId,
     ...rest
   }: PaginationProps) => {
-    if (typeof showPages === 'object') {
-      showPages = Object.values(showPages).some(x => x)
-
-      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
-        // eslint-disable-next-line no-console
-        console.warn('The responsive object value for `showPages` is deprecated. Please use a boolean value instead.')
-      }
-    }
-
     // On mobile, limit the number of visible numbers
     const {width} = useWindowSize()
     if (width && width < 768) {
@@ -136,7 +121,7 @@ export function usePaginationPages({
   )
 
   const model = React.useMemo(() => {
-    return buildPaginationModel(pageCount, currentPage, !!showPages, marginPageCount, surroundingPageCount)
+    return buildPaginationModel(pageCount, currentPage, showPages, marginPageCount, surroundingPageCount)
   }, [pageCount, currentPage, showPages, marginPageCount, surroundingPageCount])
 
   const children = React.useMemo(() => {
