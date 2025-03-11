@@ -85,6 +85,15 @@
 .Pagination__item[rel='prev'] svg,
 .Pagination__item[rel='next'] svg {
   margin-inline: 0;
+  position: relative;
+}
+
+.Pagination__item[rel='prev'] svg {
+  left: 2px;
+}
+
+.Pagination__item[rel='next'] svg {
+  right: 2px;
 }
 
 @media screen and (min-width: 48rem) {
@@ -96,6 +105,8 @@
   .Pagination__item[rel='prev'] svg,
   .Pagination__item[rel='next'] svg {
     margin-inline: unset;
+    left: 0;
+    right: 0;
   }
 
   .Pagination__item[rel='prev'][aria-disabled] svg,
