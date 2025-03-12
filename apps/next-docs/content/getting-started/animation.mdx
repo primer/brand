@@ -1,0 +1,119 @@
+---
+title: Animation
+storybook: '/brand/storybook/?path=/story/components-animations--playground'
+description: Use animations to add visual interest and interactivity to a web page or application.
+options:
+  disablePageAnimation: true
+---
+
+### Animate component
+
+You can alternatively compose animations into your React application using the `Animate` wrapper component. This can be useful in situations where you need to animate native HTML elements, or components that don't support the `animate` prop.
+
+```js
+import {Animate} from '@primer/react-brand'
+```
+
+```js
+<AnimationProvider>
+  <Animate animate="fade-in">
+    <Text>This text will fade-in</Text>
+  </Animate>
+</AnimationProvider>
+```
+
+### AnimationProvider
+
+An `AnimationProvider` is first required to enable animations on the page. This component should wrap specific parts of your application code, or the entire app.
+The `AnimationProvider` assumes responsibility for triggering animations and automatically applying effects such as staggering.
+
+By default, the `AnimationProvider` will stagger animations in order of DOM appearance. This behavior can be turned off by setting `autoStaggerChildren` to `false`.
+
+The increment delta can also be increased or decreased using `staggerDelayIncrement`, which is set to 100ms by default.
+
+```js
+import {AnimationProvider} from '@primer/react-brand'
+```
+
+## Examples
+
+Animations should be used sparingly. The examples below demonstrate some valid use-cases.
+
+### River
+
+Apply animation to `River.Content` instead of the entire element.
+
+```jsx
+<AnimationProvider>
+  <River>
+    <River.Visual>
+      <img src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
+    </River.Visual>
+    <River.Content animate="slide-in-right">
+      <Heading>Heading</Heading>
+      <Text>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </River.Content>
+  </River>
+</AnimationProvider>
+```
+
+### Cards and staggering
+
+`AnimationProvider` automatically applies a delay increment to all `children` that have `animation` presets defined. Extend the duration of each delay using `staggerDelayIncrement`.
+
+Alternatively, use `delay` to stagger animations on adjacent elements if this feature is toggled off.
+
+```jsx
+<Grid>
+  <Grid.Column
+    span={{
+      xsmall: 12,
+      large: 6,
+    }}
+  >
+    <Animate animate="scale-in-up">
+      <Card href="https://github.com">
+        <Card.Icon icon={CopilotIcon} color="indigo" hasBackground />
+        <Card.Label>Limited</Card.Label>
+        <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
+        <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
+      </Card>
+    </Animate>
+  </Grid.Column>
+  <Grid.Column
+    span={{
+      xsmall: 12,
+      large: 6,
+    }}
+  >
+    <Animate animate="scale-in-up">
+      <Card href="https://github.com">
+        <Card.Icon icon={RocketIcon} hasBackground color="blue" />
+        <Card.Label>Limited</Card.Label>
+        <Card.Heading>GitHub Actions cheat sheet and more</Card.Heading>
+        <Card.Description>In a recent study, 70% of organizations reported they had adopted DevOps.</Card.Description>
+      </Card>
+    </Animate>
+  </Grid.Column>
+</Grid>
+```
+
+[See Storybook for more examples of animation](/brand/storybook/?path=/story/components-animations--playground).
+
+## Props
+
+### AnimationProvider <Label>Required</Label>
+
+| Name                    | Type                                                                                                            | Default              | Required | Description                                                                    |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------- | -------------------- | -------- | ------------------------------------------------------------------------------ |
+| `children`              | `ReactNode`                                                                                                     |                      | `true`   | The children to render within the `AnimationProvider`                          |
+| `disableAnimations`     | `boolean`                                                                                                       |                      | `false`  | Prevents animations from running inside the provider                           |
+| `animationTrigger`      | <PropTableValues values={['click', 'on-visible']} addLineBreaks />                                              | `'on-visible'`       | `false`  | Controls the trigger method for the animation. One of `click` or `on-visible`. |
+| `visibilityOptions`     | <PropTableValues values={['bottom-of-screen', 'middle-of-screen', 'about-to-leave', 'number']} addLineBreaks /> | `'bottom-of-screen'` | `false`  | Controls the intersection observer options for the animation.                  |
+| `runOnce`               | `boolean`                                                                                                       | `false`              | `false`  | Will persist the animation end-state after the animation has completed.        |
+| `autoStaggerChildren`   | `boolean`                                                                                                       | `true`               |          | Will stagger the animations of the children using an incrementing delay        |
+| `staggerDelayIncrement` | `number`                                                                                                        | `100`                |          | Stagger delay increment. Should be used alongside `autoStaggerChildren`.       |

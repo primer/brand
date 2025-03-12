@@ -1,0 +1,48 @@
+---
+title: Box
+description: Use a box to simplify the process of applying one-off styles to an element
+keywords: ['layout']
+show-tabs: true
+tab-label: Guidelines
+---
+
+## Usage
+
+The box component is a versatile layout component that is intended to simplify the process of adding one-off styles such as padding, margin, background color, and border to (or around) an element.
+
+The box provides convenient and comprehensive access to Primer Brand's underlying Primitives, such as the spacing scale and functional design tokens for color and borders.
+
+While the box component is highly customizable and can be used to create complex layouts, it is important to use it judiciously and only when necessary.
+
+## Options
+
+### Padding
+
+Inner spacing is configurable on all sides or specific directions. Box utilises the CSS padding specification, using logical operators to aid bi-directional reading support.
+
+Additionally, fine-grained control over padding at specific viewports is available to ensure optimal, responsive layout on different screen sizes.
+
+### Margin
+
+Outer spacing is also configurable on all sides or specific directions. Box utilises the CSS margin specification, similarly using logical operators to aid bi-directional reading support.
+
+### Background color
+
+Box enables first-class customisation of its background-color property. Options are limited to background-oriented, functional design tokens such as `default` and `subtle`, to ensure maximum color contrast with foreground text.
+
+### Border
+
+Box offers various border customisations options, including configuration of `border-style`, `border-radius` and `border-colors`.
+
+In most cases, the available options corrospond to border-oriented design tokens available within the system. The exception is border style, which is limited to a subset of the official CSS `border-style` values.
+
+## Accessibility
+
+Box is a purely decorative element by default. It sets no intrinsic roles, ARIA attributes, or keyboard shortcuts.
+
+Any interactive content within a box should be given their own appropriate accessibility treatment based on the specific workflow of your application.
+
+## Related components
+
+- [Stack](/components/Stack): to enable layout of its immediate children along the vertical or horizontal axis.
+- [Grid](/components/Grid): to create flexible and responsive grid-based layouts.
