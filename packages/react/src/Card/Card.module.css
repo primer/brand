@@ -127,7 +127,7 @@
 }
 
 .Card__description {
-  max-width: 400px;
+  max-width: var(--brand-Card-maxWidth);
   margin-bottom: var(--base-size-32);
   grid-area: description;
 }
