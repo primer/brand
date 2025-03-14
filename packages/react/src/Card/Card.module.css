@@ -121,15 +121,21 @@
 }
 
 .Card__heading {
-  max-width: 320px;
   margin-bottom: var(--base-size-20);
   grid-area: heading;
 }
 
+.Card--fullWidth .Card__heading {
+  max-width: 320px;
+}
+
 .Card__description {
-  max-width: var(--brand-Card-maxWidth);
   margin-bottom: var(--base-size-32);
   grid-area: description;
+}
+
+.Card--fullWidth .Card__description {
+  max-width: 400px;
 }
 
 .Card__action {
