@@ -1,5 +1,13 @@
 # @primer/react-brand
 
+## 0.47.3
+
+### Patch Changes
+
+- [#943](https://github.com/primer/brand/pull/943) [`16b0cc7`](https://github.com/primer/brand/commit/16b0cc796489bc7ea90411a86f8e2f0ac710854e) Thanks [@danielguillan](https://github.com/danielguillan)! - Sets the maximum widths for the heading and description of the `Card` component.
+
+- [#942](https://github.com/primer/brand/pull/942) [`5f31936`](https://github.com/primer/brand/commit/5f319362d85ea79fabf6b5239848cc30503b1ccd) Thanks [@danielguillan](https://github.com/danielguillan)! - Update the default `primary` and `secondary` accent color tokens from `pink` and `purple` to `green` and `yellow`, respectively.
+
 ## 0.47.2
 
 ### Patch Changes
