@@ -589,7 +589,7 @@ export function SolutionPage({
                         <Grid>
                           <Grid.Column span={{medium: 10}} start={{medium: 2}}>
                             <Box animate="fade-in">
-                              <Testimonial size="large" quoteMarkColor="pink">
+                              <Testimonial size="large" quoteMarkColor="green">
                                 <Testimonial.Quote>
                                   <TextRevealAnimation>
                                     GitHub helps us ensure that we have our security controls baked into our pipelines
@@ -832,7 +832,7 @@ function TimelineExample() {
 function PillarExample() {
   return (
     <Pillar>
-      <Pillar.Icon color="pink" icon={<ZapIcon />} />
+      <Pillar.Icon color="green" icon={<ZapIcon />} />
       <Pillar.Heading>Here is a core value proposition of this new feature on one or two lines</Pillar.Heading>
       <Pillar.Description>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id aliquam luctus sed turpis.

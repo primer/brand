@@ -38,12 +38,12 @@
     },
     "accent": {
       "primary": {
-        "value": "var(--base-color-scale-pink-5)",
-        "dark": "var(--base-color-scale-pink-3)"
+        "value": "var(--base-color-scale-green-5)",
+        "dark": "var(--base-color-scale-green-3)"
       },
       "secondary": {
-        "value": "var(--base-color-scale-purple-5)",
-        "dark": "var(--base-color-scale-purple-3)"
+        "value": "var(--base-color-scale-yellow-5)",
+        "dark": "var(--base-color-scale-yellow-3)"
       }
     },
     "text": {
