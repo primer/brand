@@ -27,7 +27,7 @@
 
 .Pagination__item * {
   font-size: var(--brand-text-size-100);
-  line-height: 20px;
+  line-height: var(--base-size-20);
 }
 
 .Pagination__item:hover,
@@ -89,11 +89,11 @@
 }
 
 .Pagination__item[rel='prev'] svg {
-  left: 2px;
+  left: var(--base-size-2);
 }
 
 .Pagination__item[rel='next'] svg {
-  right: 2px;
+  right: var(--base-size-2);
 }
 
 @media screen and (min-width: 48rem) {
