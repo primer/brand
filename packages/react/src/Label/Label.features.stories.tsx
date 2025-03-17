@@ -1,7 +1,7 @@
 import React from 'react'
 import {Meta} from '@storybook/react'
 import {Label} from '.'
-import {Box} from '../'
+import {Box, Stack} from '../'
 import {CopilotIcon} from '@primer/octicons-react'
 
 export default {
@@ -12,13 +12,14 @@ export default {
 export const Large = () => <Label size="large">Large</Label>
 
 export const Color = () => (
-  <>
+  <Stack alignItems="flex-start" direction="horizontal" flexWrap="wrap">
     <Label>Default</Label>
     <Label color="blue">Blue</Label>
     <Label color="blue-purple">Blue purple</Label>
     <Label color="coral">Coral</Label>
     <Label color="green">Green</Label>
     <Label color="green-blue">Green blue</Label>
+    <Label color="green-blue-purple">Green blue purple</Label>
     <Label color="gray">Gray</Label>
     <Label color="indigo">Indigo</Label>
     <Label color="lemon">Lemon</Label>
@@ -32,7 +33,7 @@ export const Color = () => (
     <Label color="red-orange">Red orange</Label>
     <Label color="teal">Teal</Label>
     <Label color="yellow">Yellow</Label>
-  </>
+  </Stack>
 )
 
 export const WithLeadingVisualSVG = () => (

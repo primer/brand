@@ -125,9 +125,17 @@
   grid-area: heading;
 }
 
+.Card--fullWidth .Card__heading {
+  max-width: 320px;
+}
+
 .Card__description {
   margin-bottom: var(--base-size-32);
   grid-area: description;
+}
+
+.Card--fullWidth .Card__description {
+  max-width: 400px;
 }
 
 .Card__action {
@@ -180,4 +188,12 @@
   bottom: 0;
   right: 0;
   z-index: -1;
+}
+
+.Card:has(.Card__link:hover) .Card--expandableArrow {
+  transform: translateX(var(--base-size-4));
+}
+
+.Card:has(.Card__link:hover) .Card--expandableArrow path:nth-of-type(2) {
+  stroke-dashoffset: 20;
 }
