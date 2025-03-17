@@ -38,6 +38,9 @@ module.exports = {
   typescript: {
     reactDocgen: 'react-docgen-typescript',
   },
+  core: {
+    disableWhatsNewNotifications: true,
+  },
 }
 
 function getAbsolutePath(value) {
