@@ -25,7 +25,7 @@
   transition: border-color var(--brand-animation-duration-fast) var(--brand-animation-easing-default);
 }
 
-.Pagination__item * {
+.Pagination__item span {
   font-size: var(--brand-text-size-100);
   line-height: var(--base-size-20);
 }
