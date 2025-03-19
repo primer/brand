@@ -197,3 +197,15 @@
 .Card:has(.Card__link:hover) .Card--expandableArrow path:nth-of-type(2) {
   stroke-dashoffset: 20;
 }
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  .Card,
+  .Card::before,
+  .Card::after,
+  .Card * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
