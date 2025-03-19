@@ -14,12 +14,6 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './Pagination.module.css'
 
-type ResponsivePageVisibilityMap = {
-  narrow?: boolean
-  regular?: boolean
-  wide?: boolean
-}
-
 export type PaginationProps = {
   /* The total number of pages */
   pageCount: number
@@ -34,7 +28,7 @@ export type PaginationProps = {
   /* Defines how many pages are to to be displayed on the left and right of the component */
   marginPageCount?: number
   /* Whether to show the page numbers */
-  showPages?: boolean | ResponsivePageVisibilityMap
+  showPages?: boolean
   /* The number of pages to show on each side of the current page */
   surroundingPageCount?: number
   'data-testid'?: string
@@ -56,13 +50,18 @@ export const Pagination = memo(
     hrefBuilder = defaultHrefBuilder,
     pageAttributesBuilder,
     marginPageCount = 1,
-    showPages,
+    showPages = true,
     surroundingPageCount = 2,
     'aria-label': ariaLabel,
     'data-testid': testId,
     ...rest
   }: PaginationProps) => {
-    const {isMedium} = useWindowSize()
+    // On mobile, limit the number of visible numbers
+    const {width} = useWindowSize()
+    if (width && width < 768) {
+      marginPageCount = 1
+      surroundingPageCount = 0
+    }
 
     const navRef = React.useRef<HTMLElement>(null)
     const pageElements = usePaginationPages({
@@ -72,7 +71,7 @@ export const Pagination = memo(
       hrefBuilder,
       pageAttributesBuilder,
       marginPageCount,
-      showPages: showPages !== undefined ? showPages : isMedium ? true : false,
+      showPages,
       surroundingPageCount,
     })
 
@@ -80,7 +79,7 @@ export const Pagination = memo(
       <nav
         ref={navRef}
         id={id}
-        className={clsx(styles.Pagination, className)}
+        className={clsx(styles.Pagination, showPages && styles['Pagination__showPages'], className)}
         data-testid={testId}
         aria-label={ariaLabel || 'Pagination'}
         {...rest}
@@ -98,7 +97,7 @@ type UsePaginationPagesParameters = {
   hrefBuilder: (n: number) => string
   pageAttributesBuilder?: (n: number) => {[key: string]: string}
   marginPageCount: number
-  showPages?: PaginationProps['showPages']
+  showPages: boolean
   surroundingPageCount: number
 }
 
@@ -121,25 +120,8 @@ export function usePaginationPages({
     [onPageChange],
   )
 
-  const getPagesClasses = useCallback(() => {
-    if (typeof showPages === 'boolean') {
-      return !showPages ? styles['Pagination__item--hidden'] : undefined
-    }
-
-    if (typeof showPages === 'object') {
-      return Object.entries(showPages).reduce<string[]>((acc, [key, value]) => {
-        if (value) {
-          acc.push(styles[`Pagination__item--visible-${key as 'narrow' | 'regular' | 'wide'}`])
-        } else {
-          acc.push(styles[`Pagination__item--hidden-${key as 'narrow' | 'regular' | 'wide'}`])
-        }
-        return acc
-      }, [])
-    }
-  }, [showPages])
-
   const model = React.useMemo(() => {
-    return buildPaginationModel(pageCount, currentPage, !!showPages, marginPageCount, surroundingPageCount)
+    return buildPaginationModel(pageCount, currentPage, showPages, marginPageCount, surroundingPageCount)
   }, [pageCount, currentPage, showPages, marginPageCount, surroundingPageCount])
 
   const children = React.useMemo(() => {
@@ -163,12 +145,16 @@ export function usePaginationPages({
         )
       }
 
+      if (!showPages) {
+        return
+      }
+
       return (
         <Link
           key={key}
           size="medium"
           arrowDirection="none"
-          className={clsx(styles.Pagination__item, getPagesClasses())}
+          className={styles.Pagination__item}
           role="button"
           tabIndex={0}
           {...props}
@@ -178,7 +164,7 @@ export function usePaginationPages({
         </Link>
       )
     })
-  }, [model, hrefBuilder, pageChange, getPagesClasses, pageAttributesBuilder])
+  }, [model, hrefBuilder, pageChange, pageAttributesBuilder, showPages])
 
   return children
 }

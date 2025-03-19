@@ -89,29 +89,6 @@ describe('Pagination', () => {
     expect(onChange).toHaveBeenCalledTimes(1)
   })
 
-  it('can hide paged items at different viewports', () => {
-    const {getByRole} = render(
-      <Pagination
-        pageCount={5}
-        currentPage={1}
-        showPages={{
-          narrow: false,
-          regular: true,
-          wide: true,
-        }}
-      />,
-    )
-
-    const rootEl = getByRole('navigation')
-    const pagedItems = Array.from(rootEl.querySelectorAll('a')).slice(1, -1) // remove the previous and next links
-
-    for (const item of pagedItems) {
-      expect(item).toHaveClass('Pagination__item--hidden-narrow')
-      expect(item).toHaveClass('Pagination__item--visible-regular')
-      expect(item).toHaveClass('Pagination__item--visible-wide')
-    }
-  })
-
   it('applies custom attributes to pagination items correctly using pageAttributesBuilder', () => {
     const customAttributes = n => ({
       'data-custom-attr': `custom-value-${n}`,
@@ -129,13 +106,5 @@ describe('Pagination', () => {
         expect(item).toHaveAttribute('aria-label', `Go to page ${index}`)
       }
     }
-  })
-
-  it('does not show paged items by default on narrow viewports', () => {
-    mockUseWindowSize.mockImplementation(() => ({isMedium: false}))
-    const {getByRole} = render(<Pagination pageCount={5} currentPage={1} />)
-    const rootEl = getByRole('navigation')
-    const linksAsVerbatimText = Array.from(rootEl.querySelectorAll('a')).map(link => link.textContent)
-    expect(linksAsVerbatimText).toEqual(['Previous', 'Next'])
   })
 })
