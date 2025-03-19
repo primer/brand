@@ -10,7 +10,7 @@ const meta: Meta<AccordionStoryProps> = {
   args: {
     open: false,
     variant: 'default',
-    toggleColor: 'default',
+    toggleColor: undefined,
   },
   argTypes: {
     open: {
