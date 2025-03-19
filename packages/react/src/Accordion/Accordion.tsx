@@ -4,10 +4,13 @@ import React, {
   useCallback,
   useContext,
   useMemo,
+  useEffect,
   type DetailsHTMLAttributes,
   type HTMLAttributes,
+  type KeyboardEvent,
   type ReactElement,
   type RefObject,
+  type SyntheticEvent,
 } from 'react'
 import clsx from 'clsx'
 
@@ -47,43 +50,52 @@ const useAccordionContext = (): AccordionContextType => {
 }
 
 export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
-  (
-    {className, variant = 'default', open, onToggle: _onToggle, onKeyDown: _onKeyDown, handleOpen, ...rest},
-    forwardedRef,
-  ) => {
+  ({className, variant = 'default', open, onToggle, onKeyDown, handleOpen, ...rest}, forwardedRef) => {
     const ref = useProvidedRefOrCreate(forwardedRef as RefObject<HTMLDetailsElement>)
     const accordionContextValue = useMemo(() => ({variant}), [variant])
 
-    const onToggle = useCallback<NonNullable<AccordionRootProps['onToggle']>>(
+    const handleToggle = useCallback<(event: Event) => void>(
       event => {
-        _onToggle?.(event)
-        handleOpen?.(event.currentTarget.open)
+        const toggleEvent = event as unknown as SyntheticEvent<HTMLDetailsElement>
+        onToggle?.(toggleEvent)
+        handleOpen?.(toggleEvent.currentTarget.open)
       },
-      [_onToggle, handleOpen],
+      [onToggle, handleOpen],
     )
 
-    const onKeyDown = useCallback<NonNullable<AccordionRootProps['onKeyDown']>>(
+    const handleKeyDown = useCallback<EventListener>(
       event => {
-        _onKeyDown?.(event)
+        const keyboardEvent = event as unknown as KeyboardEvent<HTMLDetailsElement>
+        onKeyDown?.(keyboardEvent)
 
         const details = ref.current
 
-        if (event.key === 'Escape' && details?.open) {
+        if (keyboardEvent.key === 'Escape' && details?.open) {
           details.open = false
           details.querySelector('summary')?.focus()
         }
       },
-      [_onKeyDown, ref],
+      [onKeyDown, ref],
     )
+
+    useEffect(() => {
+      const detailsElement = ref.current
+      if (!detailsElement) return
+
+      detailsElement.addEventListener('toggle', handleToggle)
+      detailsElement.addEventListener('keydown', handleKeyDown)
+
+      return () => {
+        detailsElement.removeEventListener('toggle', handleToggle)
+        detailsElement.removeEventListener('keydown', handleKeyDown)
+      }
+    }, [handleToggle, handleKeyDown, ref])
 
     return (
       <AccordionContext.Provider value={accordionContextValue}>
-        {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
         <details
           className={clsx(styles.Accordion, styles[`Accordion--${variant}`], className)}
           ref={ref}
-          onToggle={onToggle}
-          onKeyDown={onKeyDown}
           open={open}
           {...rest}
         />
