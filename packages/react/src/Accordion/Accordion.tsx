@@ -14,11 +14,15 @@ import clsx from 'clsx'
 import {Heading, type HeadingProps} from '../'
 import {ChevronDownIcon, ChevronUpIcon} from '@primer/octicons-react'
 import {Colors, BiColorGradients as Gradients} from '../constants'
+import {useProvidedRefOrCreate} from '../hooks/useRef'
 
+/**
+ * Design tokens
+ */
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/accordion/colors-with-modes.css'
 
+/** * Main Stylesheet (as a CSS Module) */
 import styles from './Accordion.module.css'
-import {useProvidedRefOrCreate} from '../hooks/useRef'
 
 export type AccordionRootProps = DetailsHTMLAttributes<HTMLDetailsElement> & {
   children: ReactElement<AccordionHeadingProps | AccordionContentProps>[]
