@@ -7,10 +7,11 @@ declare const styles: {
   readonly "VideoPlayer__container--small": string;
   readonly "VideoPlayer__controlTextColor": string;
   readonly "VideoPlayer__controls": string;
-  readonly "VideoPlayer__controls--hidden": string;
   readonly "VideoPlayer__controlsBar": string;
-  readonly "VideoPlayer__controlsBar--fade": string;
+  readonly "VideoPlayer__controlsBar__row1": string;
+  readonly "VideoPlayer__controlsBar__row2": string;
   readonly "VideoPlayer__iconControl": string;
+  readonly "VideoPlayer__overlayContainer": string;
   readonly "VideoPlayer__playButton": string;
   readonly "VideoPlayer__playButtonOverlay": string;
   readonly "VideoPlayer__playButtonOverlay--transparent": string;

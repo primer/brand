@@ -1,17 +1,14 @@
 .Captions {
-  max-width: 80ch;
-  padding-inline: var(--base-size-16);
-  margin: var(--brand-VideoPlayer-closedCaption-margin);
-  display: grid;
+  flex: 0 0 var(--base-size-64);
+  width: 100%;
+  padding: var(--base-size-8) var(--base-size-16) 0;
+  display: flex;
+  align-items: center;
   justify-content: center;
   pointer-events: none;
+  background: #000000;
 }
 
 .Captions__text {
   color: var(--brand-VideoPlayer-closedCaption-text-fgColor);
-  text-align: center;
-  background: var(--brand-VideoPlayer-closedCaption-text-bgColor);
-  padding: var(--brand-VideoPlayer-closedCaption-text-padding);
-  border-radius: var(--brand-borderRadius-medium);
-  display: inline-block;
 }

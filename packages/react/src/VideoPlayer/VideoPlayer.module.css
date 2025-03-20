@@ -18,8 +18,17 @@
 
 .VideoPlayer__container {
   width: 100%;
-  position: relative;
   border-radius: var(--brand-borderRadius-medium);
+  overflow: hidden;
+  background: black;
+  display: flex;
+  flex-direction: column;
+}
+
+.VideoPlayer__overlayContainer {
+  flex: 1;
+  position: relative;
+  height: 100%;
 }
 
 /* ---------------------------------------------------------- */
@@ -27,9 +36,17 @@
 /* ---------------------------------------------------------- */
 
 .VideoPlayer {
+  /* Private variable used for internal calculations */
+  --brand-VideoPlayer-controls-min-height: 56px;
   width: 100%;
-  max-height: 100%;
+  max-height: calc(100vh - var(--brand-VideoPlayer-controls-min-height));
+  margin: 0 auto;
   display: block;
+}
+
+.VideoPlayer__container[data-is-fullscreen] .VideoPlayer {
+  position: absolute;
+  height: 100%;
 }
 
 /* ---------------------------------------------------------- */
@@ -45,6 +62,11 @@
   background: #00000033; /* TODO Use a token for this once v8 migration has been completed */
   border: none;
   z-index: 1;
+}
+
+.VideoPlayer__playButtonOverlay svg {
+  position: relative;
+  top: calc(var(--brand-VideoPlayer-controls-min-height) / 2);
 }
 
 .VideoPlayer__playButtonOverlay.VideoPlayer__playButtonOverlay--transparent {
@@ -96,48 +118,47 @@
 /* 5. Controls                                                */
 /* ---------------------------------------------------------- */
 
-.VideoPlayer__controls {
-  transition: var(--brand-VideoPlayer-transition);
-  bottom: 0;
-  position: absolute;
-  z-index: 2;
-  width: 100%;
-  pointer-events: none;
-  opacity: 1;
-  transition: opacity 2s ease-in-out;
-}
-
-.VideoPlayer__controls--hidden {
-  opacity: 0;
-}
-
 .VideoPlayer__controlsBar {
-  display: flex;
-  gap: var(--base-size-16);
+  min-height: var(--brand-VideoPlayer-controls-min-height);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-flow: column;
+  justify-content: space-between;
   align-items: center;
+  gap: var(--base-size-16);
   border-bottom-right-radius: var(--brand-borderRadius-medium);
   border-bottom-left-radius: var(--brand-borderRadius-medium);
-  left: 0;
   width: 100%;
-  background: var(--brand-videoPlayer-controls-bgColor);
   padding: var(--base-size-12) var(--base-size-16);
   pointer-events: all;
   opacity: 1;
 }
 
-.VideoPlayer__controlsBar--fade {
-  transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default);
-  opacity: 0;
+.VideoPlayer__controlsBar__row1,
+.VideoPlayer__controlsBar__row2 {
+  display: flex;
+  align-items: center;
+  gap: var(--base-size-16);
+}
+
+@media (max-width: 30rem) {
+  .VideoPlayer__controlsBar {
+    grid-template-columns: 1fr;
+    grid-auto-flow: row;
+    grid-template-rows: auto auto;
+    gap: var(--base-size-12);
+  }
+
+  .VideoPlayer__controlsBar__row2 {
+    justify-self: space-evenly;
+    justify-content: space-evenly;
+    width: 100%;
+  }
 }
 
 .VideoPlayer__controls:focus,
 .VideoPlayer__controls:focus-within {
   bottom: 0;
-}
-
-.VideoPlayer__controls:focus .VideoPlayer__controlsBar,
-.VideoPlayer__controls:focus-within .VideoPlayer__controlsBar {
-  opacity: 1;
 }
 
 .VideoPlayer__iconControl {
@@ -200,6 +221,7 @@
 
 .VideoPlayer__ccText {
   color: var(--brand-videoPlayer-closedCaption-fgColor-enabled);
+  line-height: 25px; /* visual alignment */
 }
 
 .VideoPlayer__ccOff .VideoPlayer__ccText {
@@ -345,6 +367,22 @@
 
 .VideoPlayer__seekTime {
   white-space: nowrap;
+}
+
+.VideoPlayer__container--small .VideoPlayer__title span {
+  font-weight: var(--brand-text-weight-300);
+  font-size: var(--brand-text-size-300);
+  line-height: var(--brand-text-lineHeight-300);
+  letter-spacing: var(--brand-text-letterSpacing-300);
+}
+
+.VideoPlayer__container--small .VideoPlayer__title svg {
+  width: var(--base-size-24);
+  height: var(--base-size-24);
+}
+
+.VideoPlayer__container--small .VideoPlayer__controls {
+  position: initial;
 }
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */

@@ -4,6 +4,7 @@ import React, {
   useContext,
   useEffect,
   useReducer,
+  useRef,
   type PropsWithChildren,
   type SetStateAction,
   type RefObject,
@@ -39,6 +40,7 @@ export type UseVideoContext = VideoState & {
   toggleFullScreen: () => void
   setDuration: (duration: number) => void
   isFullScreen: boolean
+  fullscreenRef: RefObject<HTMLDivElement>
 }
 
 type Action =
@@ -114,22 +116,24 @@ type VideoProviderProps = PropsWithChildren
 
 export const VideoProvider = forwardRef<HTMLVideoElement, VideoProviderProps>(({children}, forwardedRef) => {
   const ref = useProvidedRefOrCreate(forwardedRef as RefObject<HTMLVideoElement>)
+  const fullscreenRef = useRef<HTMLDivElement>(null)
 
   const [state, dispatch] = useReducer(videoReducer, {
     isPlaying: false,
     isMuted: false,
     volume: 1,
     volumeBeforeMute: null,
-    ccEnabled: true,
+    ccEnabled: false,
     ref,
     duration: 0,
   })
 
-  const [isFullScreen, setIsFullScreen] = useIsElementFullScreen(ref.current?.parentElement)
+  const [isFullScreen, setIsFullScreen] = useIsElementFullScreen(fullscreenRef.current)
 
   const value: UseVideoContext = {
     ...state,
     isFullScreen,
+    fullscreenRef,
     play: () => dispatch({type: 'play'}),
     pause: () => dispatch({type: 'pause'}),
     togglePlaying: () => dispatch({type: state.isPlaying ? 'pause' : 'play'}),

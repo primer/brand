@@ -9,6 +9,12 @@ export const useIsElementFullScreen = (element?: HTMLElement | null): [boolean, 
     const handleFullScreenChange = () => {
       const isCurrentlyFullScreen = document.fullscreenElement === element
 
+      if (isCurrentlyFullScreen) {
+        element.setAttribute('data-is-fullscreen', 'true')
+      } else {
+        element.removeAttribute('data-is-fullscreen')
+      }
+
       _setIsFullScreen(isCurrentlyFullScreen)
     }
 
