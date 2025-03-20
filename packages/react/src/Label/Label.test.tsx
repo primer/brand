@@ -1,7 +1,7 @@
 import React, {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
-import {Label} from './Label'
+import {Label, LabelSizes} from './Label'
 import {axe, toHaveNoViolations} from 'jest-axe'
 import {CopilotIcon} from '@primer/octicons-react'
 
@@ -33,13 +33,12 @@ describe('Label', () => {
   })
 
   it('renders the correct size', () => {
-    const expectedSize = `large`
-    const expectedSizeClass = `Label--size-${expectedSize}`
+    for (const size of LabelSizes) {
+      const {getByTestId} = render(<Label size={size}>{mockText}</Label>)
+      const labelEl = getByTestId(Label.testIds.root)
 
-    const {getByTestId} = render(<Label size={expectedSize}>{mockText}</Label>)
-
-    const labelEl = getByTestId(Label.testIds.root)
-    expect(labelEl.classList).toContain(expectedSizeClass)
+      expect(labelEl.classList).toContain(`Label--size-${size}`)
+    }
   })
 
   it('renders the correct default color', () => {
