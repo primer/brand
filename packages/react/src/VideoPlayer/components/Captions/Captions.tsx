@@ -39,13 +39,13 @@ export const Captions = ({className, ...props}: HTMLAttributes<HTMLDivElement>) 
     return () => videoRef.removeEventListener('timeupdate', compareAndSetCaption)
   }, [videoRef, trackInformation])
 
-  if (!caption) {
+  if (!trackInformation) {
     return null
   }
 
   return (
     <div className={clsx(className, styles.Captions)} {...props}>
-      <Text as="p" className={styles.Captions__text}>
+      <Text as="p" className={styles.Captions__text} align="center">
         {caption}
       </Text>
     </div>

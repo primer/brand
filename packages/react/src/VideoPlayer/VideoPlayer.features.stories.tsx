@@ -51,15 +51,18 @@ export const WithSomeHiddenControls = () => (
   </VideoPlayer>
 )
 
-export const HideControlsWhenPaused = () => (
-  <VideoPlayer title="GitHub media player" showControlsWhenPaused={false}>
-    <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
-    <VideoPlayer.Track src="./example.vtt" default />
-  </VideoPlayer>
-)
-
 export const Minimal = () => (
-  <VideoPlayer title="GitHub media player" visuallyHiddenTitle showBranding={false} showControlsWhenPaused={false}>
+  <VideoPlayer
+    title="GitHub media player"
+    visuallyHiddenTitle
+    showBranding={false}
+    showPlayPauseButton={false}
+    showSeekControl={true}
+    showCCButton={false}
+    showMuteButton={false}
+    showVolumeControl={false}
+    showFullScreenButton={false}
+  >
     <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
     <VideoPlayer.Track src="./example.vtt" default />
   </VideoPlayer>

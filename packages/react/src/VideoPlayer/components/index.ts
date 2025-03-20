@@ -1,6 +1,5 @@
 export * from './Captions'
 export * from './CCButton'
-export * from './Controls'
 export * from './ControlsBar'
 export * from './FullScreenButton'
 export * from './IconControl'
