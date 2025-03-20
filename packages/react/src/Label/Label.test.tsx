@@ -32,13 +32,11 @@ describe('Label', () => {
     expect(labelEl.classList).toContain(expectedShapeClass)
   })
 
-  it('renders the correct size', () => {
-    for (const size of LabelSizes) {
-      const {getByTestId} = render(<Label size={size}>{mockText}</Label>)
-      const labelEl = getByTestId(Label.testIds.root)
+  it.each(LabelSizes)('renders the correct size: %s', size => {
+    const {getByTestId} = render(<Label size={size}>{mockText}</Label>)
+    const labelEl = getByTestId(Label.testIds.root)
 
-      expect(labelEl.classList).toContain(`Label--size-${size}`)
-    }
+    expect(labelEl.classList).toContain(`Label--size-${size}`)
   })
 
   it('renders the correct default color', () => {
