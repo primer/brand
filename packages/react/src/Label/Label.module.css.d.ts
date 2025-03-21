@@ -23,6 +23,7 @@ declare const styles: {
   readonly "Label--gradient": string;
   readonly "Label--size-large": string;
   readonly "Label--size-medium": string;
+  readonly "Label--size-small": string;
   readonly "Label__icon-visual": string;
   readonly "Label__label": string;
   readonly "Label__leading-visual": string;
