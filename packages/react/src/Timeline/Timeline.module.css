@@ -62,7 +62,6 @@
   text-decoration-color: var(--brand-InlineLink-color-rest);
   text-decoration-thickness: var(--brand-borderWidth-thin);
   text-underline-position: under;
-  transition: var(--brand-InlineLink-transition-timing) text-decoration;
 }
 
 .Timeline__item a:hover {

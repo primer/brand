@@ -1,9 +1,0 @@
-{
-  "InlineLink": {
-    "transition": {
-      "timing": {
-        "value": "var(--brand-animation-duration-fast)"
-      }
-    }
-  }
-}
