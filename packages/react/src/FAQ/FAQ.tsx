@@ -26,9 +26,9 @@ const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, style, animate
     if (React.isValidElement(child) && typeof child.type !== 'string') {
       if (
         isFragment(child) ||
-        child.type === FAQHeading ||
-        child.type === FAQSubheading ||
-        child.type === AccordionRoot
+        (child as React.ReactElement).type === FAQHeading ||
+        (child as React.ReactElement).type === FAQSubheading ||
+        (child as React.ReactElement).type === AccordionRoot
       ) {
         return true
       }
