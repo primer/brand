@@ -21,8 +21,8 @@ test.describe('Visual Comparison: Label', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('Label / Large', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-label-features--large&viewMode=story')
+  test('Label / Sizes', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-label-features--sizes&viewMode=story')
 
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()

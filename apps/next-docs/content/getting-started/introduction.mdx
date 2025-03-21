@@ -1,0 +1,92 @@
+---
+title: Introduction
+description: Learn how to create a new site with Doctocat
+keywords: ['accessibility', 'introduction', 'simple']
+---
+
+Primer Brand is [open-sourced on GitHub](https://github.com/primer/brand) and [available on npm](https://www.npmjs.com/package/@primer/react-brand).
+
+### 1. Install Primer Brand
+
+Install Primer Brand with [npm](https://www.npmjs.com/).
+
+```shell
+npm install @primer/react-brand
+```
+
+### 2. Import global stylesheets
+
+Primer Brand requires a global stylesheet to be loaded ahead-of-time.
+
+#### a. Using an application bundler (e.g. Webpack)
+
+Import the `main` stylesheet at the earliest rendering opportunity:
+
+```js
+import '@primer/react-brand/lib/css/main.css'
+```
+
+or
+
+#### b. Using a static stylesheet
+
+Load the static stylesheet if you're unable to import stylesheets using a bundler
+
+```html
+<link href="https://unpkg.com/browse/@primer/react-brand@<version>/lib/css/main.css" rel="stylesheet" />
+```
+
+### 3. (Optional) Import the custom font assets
+
+Primer Brand references the `Mona Sans` typeface, which will need to be loaded alongside the main stylesheet.
+
+```js
+import '@primer/react-brand/fonts/fonts.css'
+```
+
+or
+
+```html
+<link href="https://unpkg.com/browse/@primer/react-brand@<version>/fonts/fonts.css" rel="stylesheet" />
+```
+
+### 4. Use the ThemeProvider
+
+You must add the `ThemeProvider` to the root of your application for theming to work correctly.
+
+E.g.
+
+```js
+import {ThemeProvider} from '@primer/react-brand'
+
+function App() {
+  return (
+    <ThemeProvider>
+      <div>...</div>
+    </ThemeProvider>
+  )
+}
+```
+
+### 5. Import components
+
+Components can be imported into any React-based application.
+
+E.g.
+
+```js
+import {Hero} from '@primer/react-brand'
+```
+
+```jsx
+<Hero>
+  <Hero.Label>Label</Hero.Label>
+  <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+  <Hero.Description>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+    felis nam pulvinar risus elementum.
+  </Hero.Description>
+  <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+  <Hero.SecondaryAction href="#">Secondary action</Hero.SecondaryAction>
+</Hero>
+```

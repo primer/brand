@@ -9,7 +9,13 @@ export default {
   component: Label,
 } as Meta<typeof Label>
 
-export const Large = () => <Label size="large">Large</Label>
+export const Sizes = () => (
+  <Stack direction="horizontal" flexWrap="wrap">
+    <Label size="small">Small</Label>
+    <Label size="medium">Medium</Label>
+    <Label size="large">Large</Label>
+  </Stack>
+)
 
 export const Color = () => (
   <Stack alignItems="flex-start" direction="horizontal" flexWrap="wrap">

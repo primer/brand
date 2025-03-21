@@ -28,8 +28,6 @@
   color: var(--brand-Label-color-start, var(--brand-Label-color, currentColor));
   position: relative;
   height: min-content;
-  padding-inline: var(--base-size-16);
-  padding-block: var(--base-size-4);
   background: none;
   text-align: center;
 }
@@ -54,12 +52,26 @@
   mask-composite: exclude;
 }
 
+.Label--size-small {
+  min-height: var(--base-size-20);
+  padding-inline: var(--base-size-8);
+  padding-block: var(--base-size-2);
+}
+
+.Label--size-small .Label__label {
+  font-size: var(--base-size-12) !important; /* Font size not available in the typographic scale */
+}
+
 .Label--size-medium {
   min-height: var(--base-size-28);
+  padding-inline: var(--base-size-16);
+  padding-block: var(--base-size-4);
 }
 
 .Label--size-large {
   min-height: var(--base-size-32);
+  padding-inline: var(--base-size-16);
+  padding-block: var(--base-size-4);
 }
 
 .Label--color-default {
