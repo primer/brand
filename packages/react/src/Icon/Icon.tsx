@@ -1,4 +1,4 @@
-import React, {cloneElement, isValidElement, type ReactElement, type SVGAttributes} from 'react'
+import React, {type ReactElement, type SVGAttributes} from 'react'
 import styles from './Icon.module.css'
 import clsx from 'clsx'
 import {type Icon as OcticonProps} from '@primer/octicons-react'
@@ -58,8 +58,8 @@ export const Icon = ({
     ...rest,
   }
 
-  const iconComponent = isValidElement(Octicon) ? (
-    cloneElement(Octicon as ReactElement<OcticonProps>, {
+  const iconComponent = React.isValidElement(Octicon) ? (
+    React.cloneElement(Octicon as ReactElement<OcticonProps>, {
       ...Octicon.props,
       ...iconProps,
     })
