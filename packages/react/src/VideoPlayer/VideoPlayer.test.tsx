@@ -49,7 +49,7 @@ describe('VideoPlayer', () => {
     expect(getByRole('button', {name: 'Play video'})).toBeInTheDocument()
   })
 
-  it('renders the enable/disble closed caption button without errors', () => {
+  it('renders the enable/disable closed caption button without errors', () => {
     const {getByRole} = render(
       <VideoPlayer poster="/example-poster.jpg" title="test video">
         <VideoPlayer.Source src="/example.mp4" />
@@ -57,7 +57,7 @@ describe('VideoPlayer', () => {
       </VideoPlayer>,
     )
 
-    expect(getByRole('button', {name: 'Disable captions'})).toBeInTheDocument()
+    expect(getByRole('button', {name: 'Enable captions'})).toBeInTheDocument()
   })
 
   it('renders the mute button without errors', () => {
