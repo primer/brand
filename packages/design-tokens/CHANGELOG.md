@@ -1,5 +1,11 @@
 # @primer/brand-primitives
 
+## 0.48.0
+
+### Patch Changes
+
+- [#942](https://github.com/primer/brand/pull/942) [`5f31936`](https://github.com/primer/brand/commit/5f319362d85ea79fabf6b5239848cc30503b1ccd) Thanks [@danielguillan](https://github.com/danielguillan)! - Update the default `primary` and `secondary` accent color tokens from `pink` and `purple` to `green` and `yellow`, respectively.
+
 ## 0.47.2
 
 ## 0.47.1
