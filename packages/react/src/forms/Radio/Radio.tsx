@@ -50,8 +50,10 @@ const _Radio = (
         value={value}
         {...rest}
       />
-      <label htmlFor={uniqueId} className={clsx(styles.Radio, className)} aria-label={value}>
-        <span className={styles['Radio-dot']}></span>
+      {/** Disabled as Radio's should always be used inside FormControl per our documented guidance */}
+      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+      <label htmlFor={uniqueId} className={clsx(styles.Radio, className)}>
+        <span className={styles['Radio-dot']} />
       </label>
     </span>
   )
