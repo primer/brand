@@ -110,3 +110,15 @@ Fixes safari bug where outline doesn't respect border-radius
   border-color: var(--brand-control-color-border-disabled);
   opacity: 1;
 }
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  .Radio,
+  .Radio::before,
+  .Radio::after,
+  .Radio * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -158,3 +158,13 @@
     opacity: 1;
   }
 }
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  .Tooltip,
+  .Tooltip::before,
+  .Tooltip::after,
+  .Tooltip * {
+    animation-duration: 0s !important;
+  }
+}

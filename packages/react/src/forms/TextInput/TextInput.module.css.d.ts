@@ -1,4 +1,5 @@
 declare const styles: {
+  readonly "Checkbox": string;
   readonly "TextInput": string;
   readonly "TextInput--fullWidth": string;
   readonly "TextInput--has-leading-text": string;

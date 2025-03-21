@@ -183,3 +183,15 @@
 .ActionMenu__item-icon--disabled {
   fill: var(--base-color-scale-gray-3);
 }
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  .ActionMenu,
+  .ActionMenu::before,
+  .ActionMenu::after,
+  .ActionMenu * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

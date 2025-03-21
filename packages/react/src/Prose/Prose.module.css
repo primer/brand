@@ -184,29 +184,16 @@
 
 .Prose a {
   color: var(--brand-InlineLink-color-rest);
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-color: var(--brand-InlineLink-color-rest);
+  text-decoration-thickness: var(--brand-borderWidth-thin);
+  text-underline-position: under;
+  transition: var(--brand-InlineLink-transition-timing) text-decoration;
   position: relative;
 }
 
 .Prose a:hover {
-  text-decoration: none;
-}
-
-.Prose a::after {
-  content: '';
-  border-bottom: var(--brand-borderWidth-thin) solid var(--brand-InlineLink-color-rest);
-  height: 0;
-  transition: var(--brand-InlineLink-transition-timing) transform;
-  transform: scaleY(var(--brand-InlineLink-transition-scale-start));
-  transform-origin: 50% 100%;
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-}
-
-.Prose a:hover::after {
-  transform: scaleY(var(--brand-InlineLink-transition-scale-end));
+  text-decoration-thickness: var(--brand-borderWidth-thick);
 }
 
 .Prose a:active::after {
@@ -329,4 +316,14 @@
   margin-block-start: var(--spacing);
   margin-block-end: var(--spacing);
   border: 1px solid var(--brand-color-border-muted);
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  .Prose a,
+  .Prose a::before,
+  .Prose a::after,
+  .Prose a * {
+    transition: none !important;
+  }
 }

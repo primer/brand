@@ -82,3 +82,15 @@
 .Link.Link--arrow-none::after {
   width: 100%;
 }
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  .Link,
+  .Link::before,
+  .Link::after,
+  .Link * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

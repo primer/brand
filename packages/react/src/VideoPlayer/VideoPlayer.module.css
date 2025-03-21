@@ -346,3 +346,15 @@
 .VideoPlayer__seekTime {
   white-space: nowrap;
 }
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  .VideoPlayer,
+  .VideoPlayer::before,
+  .VideoPlayer::after,
+  .VideoPlayer * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

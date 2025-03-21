@@ -77,3 +77,15 @@
 .Timeline__item a:active {
   color: var(--brand-InlineLink-color-pressed);
 }
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  .Timeline__item,
+  .Timeline__item::before,
+  .Timeline__item::after,
+  .Timeline__item * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
