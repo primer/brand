@@ -1,0 +1,140 @@
+---
+title: Section
+description: Use the section component to group related content together.
+keywords: ['layout', 'container', 'content', 'structure', 'page']
+show-tabs: true
+tab-label: React
+source: https://github.com/primer/brand/tree/main/packages/react/src/Section/Section.tsx
+storybook: '/brand/storybook/?path=/story/components-section--default'
+---
+
+import {SectionPaddingBlockStartProp, SectionPaddingBlockEndProp, SectionBackgroundColorProp} from './react'
+
+```js
+import {Section} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+The default `Section` wraps its content in a semantic `<section>` element and provides default paddings.
+
+```jsx live
+<Section>
+  <SectionIntro align="center">
+    <SectionIntro.Heading size="3">Default section</SectionIntro.Heading>
+    <SectionIntro.Description>This content is wrapped in a Section component.</SectionIntro.Description>
+  </SectionIntro>
+</Section>
+```
+
+### With independent block paddings
+
+```jsx live
+<Section paddingBlockStart="none" paddingBlockEnd="spacious">
+  <SectionIntro align="center">
+    <SectionIntro.Heading size="3">Custom paddings</SectionIntro.Heading>
+    <SectionIntro.Description>This section has a custom padding at the top and bottom.</SectionIntro.Description>
+  </SectionIntro>
+</Section>
+```
+
+### With predefined background color
+
+```jsx live
+<Section backgroundColor="subtle">
+  <SectionIntro align="center">
+    <SectionIntro.Heading size="3">Predefined background</SectionIntro.Heading>
+    <SectionIntro.Description>This section has a predefined background color.</SectionIntro.Description>
+  </SectionIntro>
+</Section>
+```
+
+### With custom background color
+
+```jsx live
+<Section backgroundColor="#2AA198">
+  <SectionIntro align="center">
+    <SectionIntro.Heading size="3">Custom background color</SectionIntro.Heading>
+  </SectionIntro>
+</Section>
+```
+
+### With background image
+
+```jsx live
+<ThemeProvider colorMode="dark">
+  <Section
+    backgroundImageSrc="https://github.com/user-attachments/assets/068634a3-926d-49b8-b949-0b1e2a204651"
+    backgroundImageSize="cover"
+    backgroundImagePosition="top center"
+  >
+    <SectionIntro align="center">
+      <SectionIntro.Heading size="3">Section</SectionIntro.Heading>
+      <SectionIntro.Description>This section has a custom background image.</SectionIntro.Description>
+    </SectionIntro>
+  </Section>
+</ThemeProvider>
+```
+
+### With multiple background images
+
+```jsx live
+<ThemeProvider colorMode="dark">
+  <Section
+    paddingBlockStart="spacious"
+    paddingBlockEnd="spacious"
+    backgroundColor="default"
+    backgroundImageSrc={[
+      'https://github.com/user-attachments/assets/a7340dea-2076-42da-87a9-057f953beb83',
+      'https://github.com/user-attachments/assets/a28110fd-d019-41a4-8f80-b49ae8895708',
+    ]}
+    backgroundImagePosition={['bottom -1px center', 'center']}
+    backgroundImageSize={['auto', 'cover']}
+  >
+    <SectionIntro align="center">
+      <SectionIntro.Heading size="3">Multiple background images</SectionIntro.Heading>
+    </SectionIntro>
+  </Section>
+  <Section backgroundColor="default">
+    <SectionIntro align="center">
+      <SectionIntro.Heading size="4">Another section</SectionIntro.Heading>
+    </SectionIntro>
+  </Section>
+</ThemeProvider>
+```
+
+### With rounded corners
+
+```jsx live
+<>
+  <ThemeProvider colorMode="dark">
+    <Section backgroundColor="default"></Section>
+  </ThemeProvider>
+  <Section backgroundColor="default" rounded>
+    <SectionIntro align="center">
+      <SectionIntro.Heading size="3">Rounded corners</SectionIntro.Heading>
+      <SectionIntro.Description>
+        This section has rounded top corners that overlap the previous section.
+      </SectionIntro.Description>
+    </SectionIntro>
+  </Section>
+</>
+```
+
+## Component props
+
+### Section
+
+| name                      | type                                   | default     | required | description                                                                                                                                                   |
+| ------------------------- | -------------------------------------- | ----------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `paddingBlockStart`       | <SectionPaddingBlockStartProp />       | `'normal'`  | `false`  | Control the padding at the top of the section.                                                                                                                |
+| `paddingBlockEnd`         | <SectionPaddingBlockEndProp />         | `'normal'`  | `false`  | Control the padding at the bottom of the section.                                                                                                             |
+| `backgroundColor`         | <SectionBackgroundColorProp />         |             | `false`  | Add a background color. Use a predefined color, a CSS custom property, or a custom color value.                                                               |
+| `backgroundImageSrc`      | `string` \| `string[]` `ResponsiveMap` |             | `false`  | Add one or more background images.                                                                                                                            |
+| `backgroundImageSize`     | `string` \| `string[]` `ResponsiveMap` | `'cover'`   | `false`  | Control the size of the background image(s). This accepts all CSS `background-size` supported values, including keywords like `contain`.                      |
+| `backgroundImagePosition` | `string` \| `string[]` `ResponsiveMap` | `'50%'`     | `false`  | Control the position of the background image(s). This accepts all CSS `background-position` supported values, including keywords like `top` and edge offsets. |
+| `rounded`                 | `boolean`                              | `false`     | `false`  | Adds rounded conterns to the top of the section.                                                                                                              |
+| `fullWidth`               | `boolean`                              | `false`     | `false`  | Makes the container fill the entire width of the section.                                                                                                     |
+| `as`                      | `section'`, `'div'`                    | `'section'` | `false`  | Applies the underlying HTML element.                                                                                                                          |

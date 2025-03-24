@@ -1,0 +1,72 @@
+---
+title: Tooltip
+description: Use the tooltip component to display a short message when a user hovers or focuses an interactive element.
+keywords: ['tooltip', 'help', 'popup', 'information', 'hint']
+source: https://github.com/primer/brand/tree/main/packages/react/src/Tooltip/Tooltip.tsx
+storybook: '/brand/storybook/?path=/story/components-tooltip--playground'
+show-tabs: true
+tab-label: React
+---
+
+import {ScreenFullIcon} from '@primer/octicons-react'
+import {TooltipDirectionProps, TooltipTypeProps} from './react.tsx'
+
+{/* TODO Remove once linter doesn't fail to recognize usage within jsx live code blocks' */}
+
+<ScreenFullIcon style={{display: 'none'}} />
+
+```js
+import {Tooltip} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<Tooltip text="Sample tooltip content">
+  <Button>Action</Button>
+</Tooltip>
+```
+
+### Custom direction
+
+By default, tooltips appear below the element. You can change the direction by passing the `direction` prop with a value of `n`, `e`, `s`, or `w`.
+
+As long as there is enough room in the viewport, the tooltip will appear in the specified direction. If there is not enough room, the tooltip will appear in whatever direction it can place the tooltip without overflowing the viewport.
+
+```jsx live
+<Tooltip text="Sample tooltip content" direction="e">
+  <Button>Action</Button>
+</Tooltip>
+```
+
+### Substitute a visible label
+
+If a ubiquitously understood icon is used in place of a text label, you can use the `type` to provide a text label for assistive technologies such as screen readers.
+
+Use this with caution. It is generally better to use a visible label for better usability and accessibility.
+
+```jsx live
+<Tooltip text="Go fullscreen" type="label">
+  <Button hasArrow={false}>
+    <ScreenFullIcon />
+  </Button>
+</Tooltip>
+```
+
+## Component props
+
+| name        | type                      | default         | required | description                                                                                                                                                                                                |
+| ----------- | ------------------------- | --------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `direction` | <TooltipDirectionProps /> | `'s'`           | `false`  | The side the tooltip appears on                                                                                                                                                                            |
+| `text`      | `string`                  | `undefined`     | `true`   | The text to be displayed in the tooltip                                                                                                                                                                    |
+| `type`      | <TooltipTypeProps />      | `'description'` | `false`  | The type of tooltip. `label` is used for labelling the element that triggers tooltip. `description` is used for describing or adding a supplementary information to the element that triggers the tooltip. |
+
+## Related components
+
+- [Popover](/components/Popover): For displaying more complex interactive content that appears when triggered
+- [Button](/components/Button): Often used in conjunction with tooltips
+
+- [Popover](/components/Popover): For displaying more complex interactive content that appears when triggered
+- [Button](/components/Button): Often used in conjunction with tooltips

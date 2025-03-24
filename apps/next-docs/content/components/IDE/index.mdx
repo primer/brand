@@ -1,0 +1,284 @@
+---
+title: IDE
+description: Use the IDE to showcase a simulated integrated developer environment, complete with a code editor and AI chat that's intended to enhance code representation in marketing contexts.
+keywords: ['code', 'editor', 'chat', 'suggestions', 'AI']
+show-tabs: true
+tab-label: React
+source: https://github.com/primer/brand/tree/main/packages/react/src/IDE/IDE.tsx
+storybook: '/brand/storybook/?path=/story/components-ide--playground'
+---
+
+import {Label} from '@primer/react'
+
+import {IDEVariantProp, IDEEditorSizeProp, IDEFileExtensionsList} from './react'
+
+```js
+import {IDE} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+> The `IDE` does not automatically apply syntax highlighting to code snippets. Usage of this component in GitHub.com is expected to use the proprietary tokenizer and highlighter, the output of which can be passed directly into `IDE` as a parameter.
+
+> See Storybook for examples of `IDE` using `highlight.js` syntax highlighter. [See syntax highlighter examples](https://primer.style/brand/storybook/?path=/story/components-ide--default)
+
+```jsx live
+<IDE height={500}>
+  <IDE.Editor
+    showReplayButton={false}
+    files={[
+      {
+        name: 'index.js',
+        alternativeText: 'TypeScript sentiment analysis function with D3.js visualization.',
+        code: `import { fetch } from "fetch-h2";
+
+async function isPositive(text: string): Promise<boolean> {
+  const response = await fetch(...)
+  const drawScatterplot = (data, height, width) => {
+    const svg = d3.select("#scatterplot")
+      .data(data)
+      .attr("cx", d => d.x)
+      .attr("cy", d => d.y)
+      .attr("r", 5)
+  }
+  const json = await response.json();
+  return json.label === "pos";
+}`,
+      },
+      {
+        name: 'parse_expenses.py',
+        alternativeText:
+          'Python function that converts financial transaction strings into structured data, parsing dates, amounts, and currencies while skipping comments',
+        code: `import datetime
+
+def parse_expenses(expenses_string):
+Ignore lines starting with #.
+Parse the date using datetime.
+Example expenses_string:
+2016-01-02 -34.01 USD
+2016-01-03 2.59 DKK
+2016-01-03 -2.72 EUR
+"""
+expenses = []
+for line in expenses_string.splitlines():
+if line.startswith("#"):
+continue
+date, value, currency = line.split(" ")
+expenses.append((datetime.datetime.strptime(date, "%Y-%m-%d"),
+          float(value),
+          currency))
+return expenses`,
+      },
+    ]}
+  />
+</IDE>
+```
+
+### Animations
+
+Line-by-line animations can be enabled using pre-formatted prop values. A replay button is enabled by default.
+
+```jsx live
+<IDE height={500}>
+  <IDE.Editor
+    files={[
+      {
+        name: 'index.js',
+        alternativeText: 'TypeScript sentiment analysis function with D3.js visualization.',
+
+        code: `import { fetch } from "fetch-h2";
+
+async function isPositive(text: string): Promise<boolean> {
+  const response = await fetch(...)
+  const drawScatterplot = (data, height, width) => {
+    const svg = d3.select("#scatterplot")
+      .data(data)
+      .attr("cx", d => d.x)
+      .attr("cy", d => d.y)
+      .attr("r", 5)
+  }
+  const json = await response.json();
+  return json.label === "pos";
+}`
+          .split('\n')
+          .map(line => line || ' '),
+      },
+    ]}
+  />
+</IDE>
+```
+
+### GitHub Copilot suggestions
+
+Simulate GitHub Copilot suggestions using the `suggestedLineStart` property.
+
+```jsx live
+<IDE height={500}>
+  <IDE.Editor
+    files={[
+      {
+        name: 'index.js',
+        // Line number at which the suggestion will apply
+        suggestedLineStart: 6,
+        alternativeText:
+          'TypeScript sentiment analysis function with D3.js visualization. Copilot suggests completing the scatterplot with SVG creation and circle attributes.',
+
+        code: `import { fetch } from "fetch-h2";
+
+async function isPositive(text: string): Promise<boolean> {
+  const response = await fetch(...)
+  const drawScatterplot = (data, height, width) => {
+    const svg = d3.select("#scatterplot")
+      .data(data)
+      .attr("cx", d => d.x)
+      .attr("cy", d => d.y)
+      .attr("r", 5)
+  }
+  const json = await response.json();
+  return json.label === "pos";
+}`
+          .split('\n')
+          .map(line => line || ' '),
+      },
+    ]}
+  />
+</IDE>
+```
+
+### GitHub Copilot chat
+
+Simulate GitHub Copilot Chat using the `IDE.Chat` sub-component. The script is fully customizable, and code snippets will require pre-formatting to enable syntax highlighting.
+
+> See Storybook for a comprehensive example of the Chat feature, inclusive of syntax highlighting. [See Chat example in Storybook](https://primer.style/brand/storybook/?path=/story/components-ide-features--chat-only)
+
+```jsx live
+<IDE height={700}>
+  <IDE.Chat
+    alternativeText="A user asks how to concatenate arrays in JavaScript, Copilot demonstrates using the concat method, and the user confirms it worked."
+    script={[
+      {
+        role: 'user',
+        handle: 'monalisa',
+        avatar: '/brand/assets/avatar-mona.png',
+        message: 'How do I concatenate two arrays in JavaScript?',
+      },
+      {
+        role: 'assistant',
+        handle: 'GitHub Copilot',
+        message: "To concatenate two arrays in JavaScript, you can use the `concat` method. Here's an example:",
+        codeSnippet: `const array1 = [1, 2, 3];\nconst array2 = [4, 5, 6];\nconst resultArray = array1.concat(array2);\nconsole.log(resultArray); // Output: [1, 2, 3, 4, 5, 6]`,
+      },
+      {
+        role: 'user',
+        handle: 'monalisa',
+        avatar: '/brand/assets/avatar-mona.png',
+        message: 'It worked!',
+      },
+    ]}
+  />
+</IDE>
+```
+
+### Glass variant
+
+A `glass` variant is available to simplify placement of the `IDE` on background images. This variant adds alpha transparency and background blurring.
+
+When using the `glass` variant, pay close attention to the background image behind the tabs of the `IDE.Editor`. Ensure there is sufficient contrast between the text and the background on inactive tabs.
+
+```jsx live
+<Box
+  padding={48}
+  borderRadius="large"
+  style={{
+    backgroundImage: `url(https://github.com/primer/brand/assets/13340707/7fe496dc-f6e0-417e-9453-32cec638ca68)`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  }}
+>
+  <IDE height={400} variant="glass">
+    <IDE.Editor
+      showReplayButton={false}
+      files={[
+        {
+          name: 'index.js',
+          alternativeText: 'TypeScript sentiment analysis function with D3.js visualization.',
+          code: `import { fetch } from "fetch-h2";
+
+async function isPositive(text: string): Promise<boolean> {
+  const response = await fetch(...)
+  const drawScatterplot = (data, height, width) => {
+    const svg = d3.select("#scatterplot")
+      .data(data)
+      .attr("cx", d => d.x)
+      .attr("cy", d => d.y)
+      .attr("r", 5)
+  }
+  const json = await response.json();
+  return json.label === "pos";
+}`,
+        },
+        {
+          name: 'parse_expenses.py',
+          alternativeText:
+            'Python function description and docstring showing how to parse financial transactions with example date, amount, and currency formats.',
+
+          code: `import datetime
+
+def parse_expenses(expenses_string):
+Ignore lines starting with #.
+Parse the date using datetime.
+Example expenses_string:
+2016-01-02 -34.01 USD
+2016-01-03 2.59 DKK
+2016-01-03 -2.72 EUR
+"""`,
+        },
+      ]}
+    />
+  </IDE>
+</Box>
+```
+
+## Accessibility
+
+The full contents of `IDE.Chat` and `IDE.Editor` are intentionally not made available to users of assistive technologies. Summaries of the content — which must be provided using the `alternativeText` prop — are made available instead.
+
+When writing `alternativeText`, consider the following:
+
+- The `IDE.Chat` script should be summarized in a way that conveys the essential information of the conversation.
+- The `IDE.Editor` code should be summarized in a way that conveys the essential information of the code snippet, specifically noting any suggestions made by Copilot.
+
+In both cases, the goal is to provide a meaningful summary of the content that will allow users of assistive technologies to understand the purpose and scope of the conversation or code snippet, without needing to understand the full content.
+
+## Component props
+
+### IDE <Label>Required</Label>
+
+| name      | type               | default   | required | description                                   |
+| --------- | ------------------ | --------- | -------- | --------------------------------------------- |
+| `height`  | `number`           | `800`     | `false`  | The optionally configurable height of the IDE |
+| `variant` | <IDEVariantProp /> | `default` | `false`  | Alternative presentation of the IDE           |
+
+### IDE.Editor
+
+| name               | type                   | default | required | description                     |
+| ------------------ | ---------------------- | ------- | -------- | ------------------------------- |
+| `activeTab`        | `number`               |         | `false`  | Active tab index                |
+| `files`            | [`IDEEditorFile[]`](#) |         | `true`   | Array of editor files           |
+| `showLineNumbers`  | `boolean`              |         | `false`  | Show line numbers in the editor |
+| `size`             | <IDEEditorSizeProp />  |         | `false`  | Controls editor text size       |
+| `triggerAnimation` | `boolean`              |         | `false`  | Trigger animation externally    |
+| `showReplayButton` | `boolean`              |         | `false`  | Show replay button              |
+
+Supported file extensions in the editor include: <IDEFileExtensionsList />
+
+### IDE.Chat
+
+| name              | type                    | default | required | description                                                                    |
+| ----------------- | ----------------------- | ------- | -------- | ------------------------------------------------------------------------------ |
+| `script`          | [`IDEChatMessage[]`](#) |         | `true`   | Array of chat messages                                                         |
+| `alternativeText` | `string`                |         | `true`   | Alternative description of the chat script for users of assistive technologies |
+| `animationDelay`  | `number`                | `3000`  | `false`  | Delay for the chat animation                                                   |

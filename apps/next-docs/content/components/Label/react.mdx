@@ -1,0 +1,86 @@
+---
+title: Label
+description: Use the label component to add metadata or indicate the status of items.
+keywords: ['badge', 'tag', 'metadata', 'status', 'indicator']
+show-tabs: true
+tab-label: React
+figma: 'https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=6084-28401'
+source: https://github.com/primer/brand/blob/main/packages/react/src/Label/Label.tsx
+storybook: '/brand/storybook/?path=/story/components-label--playground'
+a11yReviewed: true
+---
+
+import {StarIcon, CopilotIcon} from '@primer/octicons-react'
+
+import {LabelColorProp, LabelSizeProp} from './react'
+
+{/* TODO Remove once linter doesn't fail to recognize usage within jsx live code blocks' */}
+
+<StarIcon style={{display: 'none'}} />
+<CopilotIcon style={{display: 'none'}} />
+
+```js
+import {Label} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+This is the default variant for the `Label`component. It corresponds to the `medium` size and `default` color.
+
+```jsx live
+<Label>Default</Label>
+```
+
+### Sizes
+
+Use the `size` prop to adjust the size of the `Label` component. The `small` size is ideal for body text. The `medium` size is recommended for small headings and `large` is suitable for large headings or section intros.
+
+```jsx live
+<Stack direction="horizontal" alignItems="flex-start" padding="none">
+  <Label size="small">Small</Label>
+  <Label size="medium">Medium</Label>
+  <Label size="large">Large</Label>
+</Stack>
+```
+
+### Color
+
+Use the `color` prop to change the color of the `Label` component. The `default` color is recommended for use with neutral backgrounds.
+
+```jsx live
+<Stack direction="horizontal" alignItems="flex-start" padding="none">
+  <Label color="blue">Blue</Label>
+  <Label color="red">Red</Label>
+  <Label color="green-blue">Green blue</Label>
+  <Label color="red">Red</Label>
+  <Label color="pink-blue">Pink blue</Label>
+  <Label color="orange">Orange</Label>
+</Stack>
+```
+
+### Leading visual
+
+You can add a leading icon to enhance the visual context. It is recommended you use an [Octicon](https://primer.style/octicons) here.
+
+```jsx live
+<Stack direction="horizontal" alignItems="flex-start" padding="none">
+  <Label color="yellow" leadingVisual={<StarIcon />}>
+    Starred
+  </Label>
+  <Label color="blue-purple" leadingVisual={<CopilotIcon />}>
+    Copilot
+  </Label>
+</Stack>
+```
+
+## Component props
+
+### Label
+
+| Name            | Type               |   Default   | Description                                         |
+| :-------------- | :----------------- | :---------: | :-------------------------------------------------- |
+| `leadingVisual` | `ReactElement`     | `undefined` | The leading visual appears before the Label content |
+| `size`          | <LabelSizeProp />  | `'medium'`  | The size variations available in Label              |
+| `color`         | <LabelColorProp /> | `'default'` | The color variations available in Label             |

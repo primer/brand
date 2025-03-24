@@ -1,0 +1,380 @@
+---
+title: Pricing options
+description: Use the pricing options to display pricing plan information on a page.
+keywords: ['pricing', 'plans', 'options', 'features']
+show-tabs: true
+tab-label: React
+source: https://github.com/primer/brand/blob/main/packages/react/src/PricingOptions/PricingOptions.tsx
+storybook: '/brand/storybook/?path=/story/components-pricingoptions--default'
+---
+
+import {Label} from '@primer/react'
+
+import {
+  PricingOptionsAsProp,
+  PricingOptionsVariantProp,
+  PricingOptionsItemChildrenProp,
+  PricingOptionsFeatureListChildrenProp,
+  PricingOptionsFeatureListItemVariantProp,
+} from './react'
+
+import {StarIcon, CopilotIcon} from '@primer/octicons-react'
+
+{/* TODO Remove once linter doesn't fail to recognize usage within jsx live code blocks' */}
+
+<StarIcon style={{display: 'none'}} />
+<CopilotIcon style={{display: 'none'}} />
+
+## Examples
+
+### Default
+
+```jsx live
+<PricingOptions>
+  <PricingOptions.Item>
+    <PricingOptions.Label>Recommended</PricingOptions.Label>
+    <PricingOptions.Heading>Copilot</PricingOptions.Heading>
+    <PricingOptions.Description>Copilot in the coding environment.</PricingOptions.Description>
+    <PricingOptions.Price currencySymbol="$" originalPrice="20" trailingText="per month / $100 per year">
+      10
+    </PricingOptions.Price>
+    <PricingOptions.FeatureList>
+      <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
+    <PricingOptions.PrimaryAction href="/buy">Buy now</PricingOptions.PrimaryAction>
+    <PricingOptions.SecondaryAction href="/contact">Contact sales</PricingOptions.SecondaryAction>
+  </PricingOptions.Item>
+
+  <PricingOptions.Item>
+    <PricingOptions.Label>Recommended</PricingOptions.Label>
+    <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+    <PricingOptions.Description>
+      Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
+      Enterprise Cloud.
+    </PricingOptions.Description>
+    <PricingOptions.Price currencySymbol="$" trailingText="per user / month" originalPrice="49">
+      39
+    </PricingOptions.Price>
+    <PricingOptions.FeatureList>
+      <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
+    <PricingOptions.PrimaryAction href="/buy">Join waitlist</PricingOptions.PrimaryAction>
+  </PricingOptions.Item>
+</PricingOptions>
+```
+
+### Cards variant
+
+```jsx live
+<PricingOptions variant="cards">
+  <PricingOptions.Item>
+    <PricingOptions.Label>Recommended</PricingOptions.Label>
+    <PricingOptions.Heading>Copilot</PricingOptions.Heading>
+    <PricingOptions.Description>Copilot in the coding environment.</PricingOptions.Description>
+    <PricingOptions.Price currencySymbol="$" trailingText="per month / $100 per year">
+      10
+    </PricingOptions.Price>
+    <PricingOptions.FeatureList>
+      <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
+    <PricingOptions.PrimaryAction href="/buy">Buy now</PricingOptions.PrimaryAction>
+    <PricingOptions.SecondaryAction href="/contact">Contact sales</PricingOptions.SecondaryAction>
+  </PricingOptions.Item>
+
+  <PricingOptions.Item>
+    <PricingOptions.Label>Recommended</PricingOptions.Label>
+    <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+    <PricingOptions.Description>
+      Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
+      Enterprise Cloud.
+    </PricingOptions.Description>
+    <PricingOptions.Price currencySymbol="$" trailingText="per user / month">
+      39
+    </PricingOptions.Price>
+    <PricingOptions.FeatureList>
+      <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
+    <PricingOptions.PrimaryAction href="/buy">Join waitlist</PricingOptions.PrimaryAction>
+  </PricingOptions.Item>
+</PricingOptions>
+```
+
+### One option
+
+This is the one-option layout for the pricing options component
+
+```jsx live
+<PricingOptions>
+  <PricingOptions.Item>
+    <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+    <PricingOptions.Description>
+      Code completions, Chat, and more for indie developers and freelancers.
+    </PricingOptions.Description>
+    <PricingOptions.Price currencySymbol="$" trailingText="per month / $100 per year">
+      10
+    </PricingOptions.Price>
+    <PricingOptions.PrimaryAction href="/buy">Buy now</PricingOptions.PrimaryAction>
+    <PricingOptions.SecondaryAction href="/contact">Contact sales</PricingOptions.SecondaryAction>
+  </PricingOptions.Item>
+</PricingOptions>
+```
+
+### Two options
+
+This is the two-item layout for the pricing options component.
+
+```jsx live
+<PricingOptions>
+  <PricingOptions.Item>
+    <PricingOptions.Label>Recommended</PricingOptions.Label>
+    <PricingOptions.Heading>Copilot</PricingOptions.Heading>
+    <PricingOptions.Description>Copilot in the coding environment.</PricingOptions.Description>
+    <PricingOptions.Price currencySymbol="$" trailingText="per month / $100 per year">
+      10
+    </PricingOptions.Price>
+    <PricingOptions.FeatureList>
+      <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
+    <PricingOptions.PrimaryAction href="/buy">Buy now</PricingOptions.PrimaryAction>
+    <PricingOptions.SecondaryAction href="/contact">Contact sales</PricingOptions.SecondaryAction>
+  </PricingOptions.Item>
+
+  <PricingOptions.Item>
+    <PricingOptions.Label>Recommended</PricingOptions.Label>
+    <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+    <PricingOptions.Description>
+      Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
+      Enterprise Cloud.
+    </PricingOptions.Description>
+    <PricingOptions.Price currencySymbol="$" trailingText="per user / month">
+      39
+    </PricingOptions.Price>
+    <PricingOptions.FeatureList>
+      <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
+    <PricingOptions.PrimaryAction href="/buy">Join waitlist</PricingOptions.PrimaryAction>
+  </PricingOptions.Item>
+</PricingOptions>
+```
+
+### Three options
+
+This is the three-option layout for the pricing options component.
+
+> `PricingOptions` is designed to fill the width of the page's main container, thus it cannot be accurately represented within the narrower container of this documentation.
+> Please refer to our [Storybook examples](https://primer.style/brand/storybook/?path=/story/components-pricingoptions-features--three-options) to see the component in a full-width context as originally intended.
+
+### Feature list sets
+
+Use `PricingOptions.FeatureListHeading` to group feature items together.
+
+```jsx live
+<PricingOptions>
+  <PricingOptions.Item>
+    <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+    <PricingOptions.Description>
+      Code completions, Chat, and more for indie developers and freelancers.
+    </PricingOptions.Description>
+    <PricingOptions.Price currencySymbol="$" trailingText="per month / $100 per year">
+      10
+    </PricingOptions.Price>
+    <PricingOptions.FeatureList>
+      <PricingOptions.FeatureListHeading>Base features</PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
+
+      <PricingOptions.FeatureListHeading>Security</PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
+
+    <PricingOptions.Footnote>
+      Free for verified students, teachers, and maintainers of popular open source projects.
+    </PricingOptions.Footnote>
+
+    <PricingOptions.PrimaryAction href="/buy">Start a free trial</PricingOptions.PrimaryAction>
+  </PricingOptions.Item>
+
+  <PricingOptions.Item>
+    <PricingOptions.Label>Recommended</PricingOptions.Label>
+    <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+    <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
+    <PricingOptions.Price currencySymbol="$" trailingText="per user / month">
+      19
+    </PricingOptions.Price>
+    <PricingOptions.PrimaryAction href="/buy">Buy now</PricingOptions.PrimaryAction>
+    <PricingOptions.SecondaryAction href="/contact">Contact sales</PricingOptions.SecondaryAction>
+    <PricingOptions.FeatureList>
+      <PricingOptions.FeatureListHeading>Base features</PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListItem>Everything in Copilot Individual</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Code referencing</PricingOptions.FeatureListItem>
+
+      <PricingOptions.FeatureListHeading>Security</PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Public code filter</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>IP indemnity</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Enterprise-grade security, safety, and privacy</PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
+  </PricingOptions.Item>
+</PricingOptions>
+```
+
+### Included and excluded features
+
+Use `PricingOptions.FeatureListItem` with `variant="included"` and `variant="excluded"` to list included and excluded features.
+
+```jsx live
+<PricingOptions>
+  <PricingOptions.Item>
+    <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+    <PricingOptions.Description>
+      Code completions, Chat, and more for indie developers and freelancers.
+    </PricingOptions.Description>
+    <PricingOptions.Price currencySymbol="$" trailingText="per month / $100 per year">
+      10
+    </PricingOptions.Price>
+    <PricingOptions.FeatureList>
+      <PricingOptions.FeatureListHeading>Chat</PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListItem>Unlimited messages, interactions, and history</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Context-aware coding support and explanations</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem variant="excluded">
+        Debugging and security remediation assistance
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem variant="excluded">
+        Repository-based semantic search
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem variant="excluded">Access your knowledge base</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListHeading>Code completion</PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListItem>Code suggestions as you type</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Comments to code</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem variant="excluded">
+        Fine-tuned models (coming soon)
+      </PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
+
+    <PricingOptions.Footnote>
+      Free for verified students, teachers, and maintainers of popular open source projects.
+    </PricingOptions.Footnote>
+
+    <PricingOptions.PrimaryAction href="/buy">Start a free trial</PricingOptions.PrimaryAction>
+  </PricingOptions.Item>
+
+  <PricingOptions.Item>
+    <PricingOptions.Label>Available Feb 2024</PricingOptions.Label>
+    <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
+    <PricingOptions.Description>
+      Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
+      Enterprise Cloud.
+    </PricingOptions.Description>
+    <PricingOptions.Price currencySymbol="$" trailingText="per user / month">
+      39
+    </PricingOptions.Price>
+    <PricingOptions.FeatureList>
+      <PricingOptions.FeatureListHeading>Chat</PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListItem>Unlimited messages, interactions, and history</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Context-aware coding support and explanations</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Debugging and security remediation assistance</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Repository-based semantic search</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Access your knowledge base</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListHeading>Code completion</PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListItem>Code suggestions as you type</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Comments to code</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Fine-tuned models (coming soon)</PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
+    <PricingOptions.PrimaryAction href="/waitlist">Join waitlist</PricingOptions.PrimaryAction>
+  </PricingOptions.Item>
+</PricingOptions>
+```
+
+## Component props
+
+### PricingOptions <Label>Required</Label>
+
+| Name       | Type                                                                                          |  Default  | required | Description                         |
+| :--------- | :-------------------------------------------------------------------------------------------- | :-------: | :------: | :---------------------------------- |
+| `as`       | <PricingOptionsAsProp /><PropTableValues values={[`section`, `div` ]} addLineBreaks />        | `section` | `false`  | Applies the underlying HTML element |
+| `children` | `PricingOptions.Item`                                                                         |           |  `true`  | Applies the underlying HTML element |
+| `variant`  | <PricingOptionsVariantProp /><PropTableValues values={[`default`, `cards` ]} addLineBreaks /> |           | `false`  | The variant styling                 |
+
+### PricingOptions.Item <Label>Required</Label>
+
+One item per pricing plan to be displayed. Maximum of 3 items.
+
+| Name       | Type                                                                                                                                                                                                             |   Default   | required | Description              |
+| :--------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------: | :------: | :----------------------- |
+| `children` | <PricingOptionsItemChildrenProp /><PropTableValues values={['PricingOptions.Heading', 'PricingOptions.Label', 'PricingOptions.Price', 'PricingOptions.FeatureList', 'PricingOptions.Footnote']} addLineBreaks /> | `undefined` |  `true`  | The contents of the item |
+
+### PricingOptions.Heading <Label>Required</Label>
+
+| Name       | Type             |   Default   | required | Description                                       |
+| :--------- | :--------------- | :---------: | :------: | :------------------------------------------------ |
+| `as`       | `h3, h4, h5, h6` |    `h3`     | `false`  | Applies the underlying HTML heading level element |
+| `children` | `ReactNode`      | `undefined` |  `true`  | The heading of the item                           |
+
+### PricingOptions.Label
+
+| Name       | Type        |   Default   | required | Description           |
+| :--------- | :---------- | :---------: | :------: | :-------------------- |
+| `children` | `ReactNode` | `undefined` |  `true`  | The label of the item |
+
+### PricingOptions.Description
+
+| Name       | Type        |   Default   | required | Description                 |
+| :--------- | :---------- | :---------: | :------: | :-------------------------- |
+| `children` | `ReactNode` | `undefined` |  `true`  | The description of the item |
+
+### PricingOptions.Price
+
+| Name             | Type        |   Default   | required | Description                                        |
+| :--------------- | :---------- | :---------: | :------: | :------------------------------------------------- |
+| `children`       | `ReactNode` | `undefined` |  `true`  | The price of the item                              |
+| `currencyCode`   | `string`    |    `USD`    | `false`  | The currency code                                  |
+| `currencySymbol` | `string`    |     `$`     | `false`  | The currency symbol                                |
+| `originalPrice`  | `string`    | `undefined` | `false`  | The initial price before any discounts are applied |
+| `trailingText`   | `string`    |             | `false`  | The trailing text                                  |
+
+### PricingOptions.FeatureList
+
+| Name         | Type                                                                                                                                    |   Default   | required | Description                                                                                                 |
+| :----------- | :-------------------------------------------------------------------------------------------------------------------------------------- | :---------: | :------: | :---------------------------------------------------------------------------------------------------------- |
+| `children`   | <PricingOptionsFeatureListChildrenProp /><PropTableValues values={['PricingOptions.Heading', 'PricingOptions.Item', ]} addLineBreaks /> | `undefined` |  `true`  | The list of features                                                                                        |
+| `expanded`   | `boolean`                                                                                                                               |   `true`    | `false`  | Controls visibility of feature items. Accepts Object type for granular control at different viewport sizes. |
+| `hasDivider` | `boolean`                                                                                                                               |   `true`    | `false`  | Controls visibility of a visual border between feature lists and adjacent actions                           |
+
+### PricingOptions.FeatureListHeading
+
+| Name       | Type         |   Default   | required | Description                                       |
+| :--------- | :----------- | :---------: | :------: | :------------------------------------------------ |
+| `as`       | `h4, h5, h6` |    `h4`     | `false`  | Applies the underlying HTML heading level element |
+| `children` | `ReactNode`  | `undefined` |  `true`  | The heading of the feature list set               |
+
+### PricingOptions.FeatureListItem
+
+| Name       | Type                                                                                                             |   Default   | required | Description                         |
+| :--------- | :--------------------------------------------------------------------------------------------------------------- | :---------: | :------: | :---------------------------------- |
+| `children` | `ReactNode`                                                                                                      | `undefined` |  `true`  | The item of the feature list set    |
+| `variant`  | <PricingOptionsFeatureListItemVariantProp /><PropTableValues values={[`included`, `excluded` ]} addLineBreaks /> | `included`  | `false`  | The variant of the feature list set |
+
+### PricingOptions.Footnote
+
+| Name       | Type        |   Default   | required | Description              |
+| :--------- | :---------- | :---------: | :------: | :----------------------- |
+| `children` | `ReactNode` | `undefined` |  `true`  | The footnote of the item |

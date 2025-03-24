@@ -1,0 +1,140 @@
+---
+title: Button
+description: Use the button component for the main actions on a page or form.
+keywords: ['action', 'cta', 'control', 'interactive', 'click']
+show-tabs: true
+tab-label: Guidelines
+---
+
+![An image showing different button types.](https://github.com/primer/brand/assets/6951037/fcc3b962-1b4a-416b-be29-4a70ef503f2a)
+
+## Usage
+
+Buttons allow users to initiate an action or command when clicked. The button's label or text description indicates the purpose of the action to the user. Most of the time, we use the "Default" button type, but other types of buttons may be used to indicate something special about the button's hierarchy or functionality.
+
+<DoDontContainer>
+  <Do>
+    <img src="https://github.com/primer/brand/assets/6951037/83f703f5-d02c-45f1-82d2-e819613a6638" alt="" />
+    <Caption>Keep button labels succinct with no line breaks.</Caption>
+  </Do>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/6951037/e0b67dea-712b-4483-9222-0b499e539415" alt="" />
+    <Caption>Buttons should never contain line breaks and lose their button shape.</Caption>
+  </Dont>
+</DoDontContainer>
+
+<DoDontContainer>
+  <Do>
+    <img src="https://github.com/primer/brand/assets/6951037/96da1bd5-d537-40c1-9103-96254813648f" alt="" />
+    <Caption>Show focus styles on keyboard :focus</Caption>
+  </Do>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/6951037/edc931cf-06ed-4814-8ad0-24a8344902c0" alt="" />
+    <Caption>Don't remove default button :focus styles.</Caption>
+  </Dont>
+</DoDontContainer>
+
+<DoDontContainer>
+  <Do>
+    <img src="https://github.com/primer/brand/assets/6951037/56824212-3622-4546-b437-53dbced734a6" alt="" />
+    <Caption>Use sentence case for labels.</Caption>
+  </Do>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/6951037/515e833e-fad2-44fd-aae8-fae6301974c1" alt="" />
+    <Caption>Don't use all-caps or other text formats.</Caption>
+  </Dont>
+</DoDontContainer>
+
+## Anatomy
+
+![An image showing the different parts of a button with annotations.](https://github.com/primer/brand/assets/6951037/ef74e834-2650-424e-b382-bdcd4a09c113)
+
+## Options
+
+### Variants
+
+#### Primary
+
+Primary buttons have top priority in visual hierarchy, and using too many of them on a single view dilutes their effectiveness. We recommend to limit the primary button to one button per view, and place it in the visible section, whenever possible, to indicate its emphasis relative to other actions. Use multiple primary buttons only when the action is repeated in multiple places of the same page. E,g a "Log in" button in the header and in the footer area.
+
+![An image showing all primary states.](https://github.com/primer/brand/assets/6951037/dfad0124-4cdc-4230-b442-4ee9c747d0f0)
+
+#### Secondary
+
+Secondary buttons are the default button type. Use them for the main actions on a page or form. Secondary buttons are the most common button type and should be used in most cases. They can be paired with a primary button to perform a secondary action, or used on their own.
+
+![An image showing all secondary states.](https://github.com/primer/brand/assets/6951037/71f5a85d-4e63-4a3b-b7fc-2492ceae2b30)
+
+#### Subtle
+
+Subtle buttons have a transparent background with translucent hover and active states, making them useful for compound components like [Button Group](/components/ButtonGroup) when paired with secondary or primary variants.
+
+![An image showing all subtle states.](https://github.com/primer/brand/assets/912236/7420969a-e561-4fd6-9bef-7340e2b0a7e8)
+
+#### Block
+
+Turning on the block option for button allows the button to span the full width of its container. This feature can be particularly useful when you want the button to occupy more space. Block button can continue to pair with secondary or primary variants.
+
+![An image showing block button with all subtle states.](https://github.com/primer/brand/assets/6951037/2fe48284-7c3d-4262-9992-3fc029237fe6)
+
+### Trailing and leading icons
+
+You can place an icon inside the button in either the leading or the trailing position to enhance the visual context. It is recommended to use an use an [Octicon](https://primer.style/octicons) here.
+
+Use a trailing visual if the button action involves selecting items (dropdown, select, filter, etc), and a leading visual to provide visual context to the adjacent label. E.g. Use a search icon for a search field submit action.
+
+<DoDontContainer>
+  <Do>
+    <img src="https://github.com/primer/brand/assets/6951037/558dd2c0-22b9-4e0b-aa0d-6394eae29e6c" alt="" />
+    <Caption>Use a leading icon that provides context and reinforces the label.</Caption>
+  </Do>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/6951037/2b4b06e5-5e54-4d8d-885a-b0d3faaa1298" alt="" />
+    <Caption>
+      Don't use a trailing icons to add a visual cue to the label. Use the leading icon for better scanability.
+    </Caption>
+  </Dont>
+</DoDontContainer>
+
+<DoDontContainer>
+  <Do>
+    <img src="https://github.com/primer/brand/assets/6951037/5e534c85-0dcd-44b2-8c21-f80f2f14a4d0" alt="" />
+    <Caption>Use a trailing icon for select, dropdown, or filter actions to reinforce its direction.</Caption>
+  </Do>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/6951037/2b3ad072-d3dd-4b34-b7fa-a915fd84d03d" alt="" />
+    <Caption>Don't use a leading icon or the arrow for select, dropdown, or filter actions.</Caption>
+  </Dont>
+</DoDontContainer>
+
+### Size
+
+Button default to a medium size. Medium is suitable for most interfaces and is considered the preferred size.
+
+Large buttons increase the significance of an action and should be used sparingly. Use the large option when you need to emphasize the button on a big sized heading, for example in a [Hero](/components/Hero) component.
+
+Small buttons are meant to be used sparingly. Some use cases can be:
+
+- Contained inside other components like dropdowns or small popups.
+- Areas where very low priority information might display a CTA.
+- Brand presence inside products where information is compact. For example for in-product banner.
+
+### Arrow
+
+The arrow is shown by default in all buttons. Hide the arrow only to save horizontal space or to diminish the importance of the button.
+
+When used in a group, the arrow should be used or hide consistently across all buttons.
+
+## Accessibility
+
+### Descriptive buttons
+
+Labeling buttons properly lets users know what will happen when they activate the control, lessens errors, and increases confidence.
+
+Read more about [descriptive buttons](https://primer.style/design/guides/accessibility/descriptive-buttons/).
+
+## Related components
+
+- [ButtonGroup](/components/ButtonGroup): To display a group of related buttons.
+- [Link](/components/Link): To display a link that navigates to another page.
+- [Hero](/components/Hero): To display a large heading and a description with a ButtonGroup.
