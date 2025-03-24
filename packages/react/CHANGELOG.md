@@ -1,5 +1,50 @@
 # @primer/react-brand
 
+## 0.48.0
+
+### Minor Changes
+
+- [#945](https://github.com/primer/brand/pull/945) [`13b84de`](https://github.com/primer/brand/commit/13b84deefa7c3cdf309275a82723d260d2b979aa) Thanks [@rezrah](https://github.com/rezrah)! - Removed global CSS overrides for `reduced-motion` user preferences with local, component equivalents.
+
+  > [!WARNING]
+  > Users who relied on this functionality should now implement their own override mechanisms at the component or page level.
+
+- [#926](https://github.com/primer/brand/pull/926) [`b11c431`](https://github.com/primer/brand/commit/b11c431d762ada206179eb81257b85d86a9e7f58) Thanks [@joshfarrant](https://github.com/joshfarrant)! - - Updated the `Pagination` component to ensure consistent behaviour across all viewports by displaying a condensed pagination on narrow viewports.
+
+  - ⚠️ Deprecated responsive object support in the `showPages` prop. The `showPages` prop now only accepts a boolean value which will hide/show the page numbers across all viewports.
+
+    ```diff
+      <Pagination
+    -   showPages={{narrow: true, regular: true, wide: true}}
+    +   showPages
+      />
+
+      // Or
+
+      <Pagination
+    -   showPages={{narrow: false, regular: false, wide: false}}
+    +   showPages={false}
+      />
+    ```
+
+### Patch Changes
+
+- [#931](https://github.com/primer/brand/pull/931) [`c309912`](https://github.com/primer/brand/commit/c3099124855ee87963e42781edfb7893e94c6eac) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Fixed a bug in Safari where an `Icon` component with `hasBackground={true}` would cut off the corners of the rendered SVG. To resolve this the `Icon` component now wraps the rendered SVG in a div.
+
+- [#927](https://github.com/primer/brand/pull/927) [`91c10c5`](https://github.com/primer/brand/commit/91c10c59bef556d99b0710d02c5f133fe10eb32c) Thanks [@rezrah](https://github.com/rezrah)! - Improved typings to various components. This update should not affect the end-user API's.
+
+- [#945](https://github.com/primer/brand/pull/945) [`13b84de`](https://github.com/primer/brand/commit/13b84deefa7c3cdf309275a82723d260d2b979aa) Thanks [@rezrah](https://github.com/rezrah)! - Fixed hover states for inline links in the `Prose` component. Links now behave identically to `InlineLink` component.
+
+- [#946](https://github.com/primer/brand/pull/946) [`010578b`](https://github.com/primer/brand/commit/010578b49daf0b071bf6cd145c0fc91acb8bf14b) Thanks [@danielguillan](https://github.com/danielguillan)! - Added a new `small` size option for `Label`
+
+  🔗 [See documentation for usage examples](https://primer.style/brand/components/Label/react#sizes)
+
+- [#943](https://github.com/primer/brand/pull/943) [`16b0cc7`](https://github.com/primer/brand/commit/16b0cc796489bc7ea90411a86f8e2f0ac710854e) Thanks [@danielguillan](https://github.com/danielguillan)! - Sets the maximum widths for the heading and description of the `Card` component.
+
+- [#940](https://github.com/primer/brand/pull/940) [`cca78a1`](https://github.com/primer/brand/commit/cca78a17b1266b1b0276c84c18983832d6c7fc94) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Updated the `Accordion` component to support additional state handling methods. All changes are backwards compatible. Refer to Storybook for examples of these additional `Accordion` features.
+
+- [#942](https://github.com/primer/brand/pull/942) [`5f31936`](https://github.com/primer/brand/commit/5f319362d85ea79fabf6b5239848cc30503b1ccd) Thanks [@danielguillan](https://github.com/danielguillan)! - Update the default `primary` and `secondary` accent color tokens from `pink` and `purple` to `green` and `yellow`, respectively.
+
 ## 0.47.2
 
 ### Patch Changes
