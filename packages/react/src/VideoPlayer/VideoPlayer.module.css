@@ -141,7 +141,7 @@
   gap: var(--base-size-16);
 }
 
-@media (max-width: 30rem) {
+@media (max-width: 34rem) {
   .VideoPlayer__controlsBar {
     grid-template-columns: 1fr;
     grid-auto-flow: row;
