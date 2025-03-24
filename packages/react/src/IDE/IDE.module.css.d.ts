@@ -1,4 +1,5 @@
 declare const styles: {
+  readonly "IDE": string;
   readonly "IDE--default": string;
   readonly "IDE--full-exp": string;
   readonly "IDE--glass": string;
