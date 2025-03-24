@@ -45,6 +45,7 @@
     "@types/node": "18.11.10",
     "eslint-config-next": "15.1.6",
     "prettier": "^3.5.1",
+    "styled-components": "^5.3.11",
     "typescript": "5.7.3"
   },
   "peerDependencies": {
