@@ -14,8 +14,8 @@ jobs:
   deploy:
     if: ${{ github.repository == 'primer/brand' }}
     name: Preview
-    # SHA for security hardening. Points at 2.1.1 release
-    uses: primer/.github/.github/workflows/deploy_preview.yml@2a60f4cc62889bd218f3019ce4a090ff89b71cca
+    # SHA for security hardening. Points at 2.2.0 release
+    uses: primer/.github/.github/workflows/deploy_preview.yml@91fde6cc969a502562fdacdac48e35859b3a40b4
     with:
       node_version: 20
       install: npm ci --legacy-peer-deps && cd apps/docs && npm ci --legacy-peer-deps && cd ..
