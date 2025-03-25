@@ -1,5 +1,5 @@
 ---
-'@primer/react-brand': patch
+'@primer/react-brand': minor
 ---
 
 - Improved `VideoPlayer` appearance on narrow viewports.
