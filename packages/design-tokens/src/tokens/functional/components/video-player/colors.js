@@ -26,8 +26,8 @@ module.exports = {
     },
     controls: {
       bgColor: {
-        value: '#000000bf',
-        dark: '#000000bf',
+        value: 'var(--base-color-scale-black-0)',
+        dark: 'var(--base-color-scale-black-0)',
       },
       fgColor: {
         value: 'var(--base-color-scale-gray-0)',

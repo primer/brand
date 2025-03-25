@@ -1,4 +1,5 @@
 import {useCallback, useEffect, useState, type Dispatch, type SetStateAction} from 'react'
+import styles from '../VideoPlayer.module.css'
 
 export const useIsElementFullScreen = (element?: HTMLElement | null): [boolean, Dispatch<SetStateAction<boolean>>] => {
   const [isFullScreen, _setIsFullScreen] = useState(false)
@@ -8,6 +9,14 @@ export const useIsElementFullScreen = (element?: HTMLElement | null): [boolean, 
 
     const handleFullScreenChange = () => {
       const isCurrentlyFullScreen = document.fullscreenElement === element
+
+      const fullscreenClass = styles['VideoPlayer__container--fullscreen']
+
+      if (isCurrentlyFullScreen) {
+        element.classList.add(fullscreenClass)
+      } else {
+        element.classList.remove(fullscreenClass)
+      }
 
       _setIsFullScreen(isCurrentlyFullScreen)
     }
