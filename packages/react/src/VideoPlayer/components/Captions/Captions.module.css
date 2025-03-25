@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
   pointer-events: none;
-  background: #000000;
+  background-color: var(--base-color-scale-black-0);
 }
 
 .Captions__text {

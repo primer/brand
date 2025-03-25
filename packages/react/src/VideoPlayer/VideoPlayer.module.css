@@ -20,7 +20,7 @@
   width: 100%;
   border-radius: var(--brand-borderRadius-medium);
   overflow: hidden;
-  background: #000000;
+  background-color: var(--base-color-scale-black-0);
   display: flex;
   flex-direction: column;
 }
