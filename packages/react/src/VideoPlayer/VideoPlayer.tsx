@@ -55,8 +55,8 @@ const Root = ({
   playIcon: PlayIcon = () => <DefaultPlayIcon className={styles.VideoPlayer__playButton} />,
   ...rest
 }: VideoPlayerProps) => {
-  const useVideoContext = useVideo()
-  const {ccEnabled, fullscreenRef, isPlaying, ref, togglePlaying} = useVideoContext
+  const videoContext = useVideo()
+  const {ccEnabled, fullscreenRef, isPlaying, ref, togglePlaying} = videoContext
 
   const isSmall = useVideoResizeObserver({
     videoWrapperRef: fullscreenRef,
