@@ -44,7 +44,7 @@
   display: block;
 }
 
-:global(.is-fullscreen).VideoPlayer__container .VideoPlayer {
+.VideoPlayer__container--fullscreen .VideoPlayer {
   position: absolute;
   height: 100%;
 }
