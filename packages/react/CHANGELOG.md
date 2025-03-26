@@ -1,5 +1,12 @@
 # @primer/react-brand
 
+## 0.49.0
+
+### Minor Changes
+
+- [#947](https://github.com/primer/brand/pull/947) [`646cccf`](https://github.com/primer/brand/commit/646cccfc502973f52bc662dbc11a29d059a46bda) Thanks [@joshfarrant](https://github.com/joshfarrant)! - - Improved `VideoPlayer` appearance on narrow viewports.
+  - This necessitated the removal of the `showControlsWhenPaused` prop to prevent the height of the `VideoPlayer` from changing when the video is played/paused.
+
 ## 0.48.0
 
 ### Minor Changes
