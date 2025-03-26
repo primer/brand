@@ -11,7 +11,6 @@ const meta: Meta<typeof VideoPlayer> = {
     title: 'GitHub media player',
     visuallyHiddenTitle: false,
     showBranding: true,
-    showControlsWhenPaused: true,
     showPlayPauseButton: true,
     showSeekControl: true,
     showCCButton: true,
@@ -32,9 +31,6 @@ const meta: Meta<typeof VideoPlayer> = {
       type: 'boolean',
     },
     showBranding: {
-      type: 'boolean',
-    },
-    showControlsWhenPaused: {
       type: 'boolean',
     },
     showPlayPauseButton: {
