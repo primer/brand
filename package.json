@@ -26,7 +26,7 @@
     "!apps/docs"
   ],
   "scripts": {
-    "build": "npm run clean --workspaces --if-present && npm run build:lib && npm run build:docs && npm run build:storybook && npm run build:next-docs",
+    "build": "npm run clean --workspaces --if-present && npm run build:lib && npm run build:docs && npm run build:storybook",
     "build:docs": "cd apps/docs && npm run build",
     "build:next-docs": "cd apps/next-docs && npm run build:prod",
     "build:lib": "npm run build --workspace=packages/design-tokens --workspace=packages/react",
