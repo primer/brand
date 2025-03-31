@@ -6,6 +6,8 @@ description: Use the button component for the main actions on a page or form.
 import ComponentLayout from '../../../src/layouts/component-layout'
 export default ComponentLayout
 
+import buttonAccent from './images/button_accent.png'
+
 ![An image showing different button types.](https://github.com/primer/brand/assets/6951037/fcc3b962-1b4a-416b-be29-4a70ef503f2a)
 
 ## Usage
@@ -60,6 +62,12 @@ Buttons allow users to initiate an action or command when clicked. The button's 
 Primary buttons have top priority in visual hierarchy, and using too many of them on a single view dilutes their effectiveness. We recommend to limit the primary button to one button per view, and place it in the visible section, whenever possible, to indicate its emphasis relative to other actions. Use multiple primary buttons only when the action is repeated in multiple places of the same page. E,g a "Log in" button in the header and in the footer area.
 
 ![An image showing all primary states.](https://github.com/primer/brand/assets/6951037/dfad0124-4cdc-4230-b442-4ee9c747d0f0)
+
+#### Accent
+
+Accent buttons share a similar hierarchical priority, and should also be used sparingly to avoid diluting its effectiveness. Crucially, accent buttons should only be used in the [hero](../../Hero) and [CTA banner](../../CTABanner) components.
+
+<img src={buttonAccent} alt="An image showing all accent states." />
 
 #### Secondary
 
@@ -127,7 +135,7 @@ Large buttons increase the significance of an action and should be used sparingl
 Small buttons are meant to be used sparingly. Some use cases can be:
 
 - Contained inside other components like dropdowns or small popups.
-- Areas where very low priority information might display a CTA. 
+- Areas where very low priority information might display a CTA.
 - Brand presence inside products where information is compact. For example for in-product banner.
 
 ### Arrow
