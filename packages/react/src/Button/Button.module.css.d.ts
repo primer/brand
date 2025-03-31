@@ -1,8 +1,10 @@
 declare const styles: {
   readonly "Button": string;
+  readonly "Button--accent": string;
   readonly "Button--block": string;
   readonly "Button--disabled": string;
   readonly "Button--label": string;
+  readonly "Button--label-accent": string;
   readonly "Button--label-large": string;
   readonly "Button--label-medium": string;
   readonly "Button--label-primary": string;

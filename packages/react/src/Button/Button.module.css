@@ -95,6 +95,43 @@
   color: var(--brand-button-primary-fgColor-disabled);
 }
 
+/* accent */
+
+.Button--accent {
+  color: var(--brand-button-accent-fgColor-rest);
+  background-color: var(--brand-button-accent-bgColor-rest);
+}
+
+.Button--accent:not(.Button[disabled], .Button[aria-disabled='true'], [aria-expanded='true']):hover {
+  background: var(--brand-button-accent-bgColor-hover);
+}
+
+.Button--accent:not(.Button[disabled], .Button[aria-disabled='true']):active,
+.Button--accent[aria-expanded='true'] {
+  background-color: var(--brand-button-accent-bgColor-active);
+  border-color: var(--brand-button-accent-borderColor-active);
+}
+
+.Button--label-accent {
+  color: var(--brand-button-accent-fgColor-rest);
+}
+
+.Button--accent:disabled,
+.Button--accent[aria-disabled='true'],
+.Button--accent.Button--disabled {
+  background-color: var(--brand-button-accent-bgColor-disabled);
+}
+
+.Button--accent:disabled .Button-arrow--disabled,
+.Button--accent[aria-disabled='true'] .Button-arrow--disabled,
+.Button--accent.Button--disabled .Button-arrow--disabled,
+.Button--accent:disabled .Button__icon-visual--disabled,
+.Button--accent[aria-disabled='true'] .Button__icon-visual--disabled,
+.Button--accent.Button--disabled .Button__icon-visual--disabled,
+.Button--label-accent.Button-label--disabled {
+  color: var(--brand-button-accent-fgColor-disabled);
+}
+
 /* secondary */
 
 .Button--secondary {

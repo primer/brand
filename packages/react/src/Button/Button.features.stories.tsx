@@ -5,6 +5,7 @@ import {userEvent, waitFor, within} from '@storybook/test'
 import {Button} from '.'
 import {HeartFillIcon, MarkGithubIcon, PlayIcon} from '@primer/octicons-react'
 import {Grid} from '../Grid'
+import {Box} from '../Box'
 
 export default {
   title: 'Components/Button/Features',
@@ -76,6 +77,27 @@ export const Subtle = () => (
 export const SubtleDisabled = () => (
   <Button as="button" disabled variant="subtle">
     Disabled subtle button
+  </Button>
+)
+
+export const Accent = () => (
+  <>
+    <Box backgroundColor="subtle" padding="spacious">
+      <Button variant="accent" size="medium">
+        Accent action
+      </Button>
+    </Box>
+    <Box backgroundColor="default" padding="spacious">
+      <Button variant="accent" size="medium">
+        Accent action
+      </Button>
+    </Box>
+  </>
+)
+
+export const AccentDisabled = () => (
+  <Button as="button" disabled variant="accent">
+    Disabled accent button
   </Button>
 )
 

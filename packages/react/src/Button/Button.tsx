@@ -11,7 +11,7 @@ import {useAnimation} from '../'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/button/colors-with-modes.css'
 import styles from './Button.module.css'
 
-export const ButtonVariants = ['primary', 'secondary', 'subtle'] as const
+export const ButtonVariants = ['primary', 'secondary', 'subtle', 'accent'] as const
 export const ButtonSizes = ['small', 'medium', 'large'] as const
 
 export const defaultButtonVariant = ButtonVariants[1]

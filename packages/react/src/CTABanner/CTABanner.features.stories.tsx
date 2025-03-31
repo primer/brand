@@ -18,6 +18,18 @@ export default {
   component: CTABanner,
 } as Meta<typeof CTABanner>
 
+export const WithAccentButton = () => (
+  <CTABanner hasShadow={false} align="center">
+    <CTABanner.Heading size="2">Start coding in seconds with Codespaces</CTABanner.Heading>
+    <CTABanner.ButtonGroup>
+      <Button variant="accent" hasArrow={false}>
+        Get started for free
+      </Button>
+      <Button>View docs</Button>
+    </CTABanner.ButtonGroup>
+  </CTABanner>
+)
+
 export const WithBorder = () => (
   <CTABanner hasBorder>
     <CTABanner.Heading>Where the most ambitious teams build great things</CTABanner.Heading>

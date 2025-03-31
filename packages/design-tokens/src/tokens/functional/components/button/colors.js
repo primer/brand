@@ -54,6 +54,36 @@ module.exports = {
         },
       },
     },
+    accent: {
+      bgColor: {
+        rest: {
+          value: '#08872B',
+          dark: '#5FED83',
+        },
+        hover: {
+          value: '#399F55',
+          dark: '#4CBE69',
+        },
+        active: {
+          value: '#08872B',
+          dark: '#5FED83',
+        },
+        disabled: {
+          value: '#A6CDAB',
+          dark: '#307742',
+        },
+      },
+      fgColor: {
+        rest: {
+          value: 'var(--base-color-scale-white-0)',
+          dark: 'var(--base-color-scale-black-0)',
+        },
+        disabled: {
+          value: 'var(--base-color-scale-white-0)',
+          dark: 'var(--base-color-scale-black-0)',
+        },
+      },
+    },
     secondary: {
       bgColor: {
         rest: {
