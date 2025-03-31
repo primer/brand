@@ -45,6 +45,85 @@ export const CTAText: StoryFn<typeof Card> = () => {
   )
 }
 
+export const Padding: StoryFn<typeof Card> = () => {
+  return (
+    <Stack padding={'none'} direction="vertical" gap="normal" style={{flexWrap: 'wrap'}}>
+      <Card href="https://github.com" padding="condensed">
+        <Card.Heading>Condensed (default)</Card.Heading>
+        <Card.Description>
+          In a recent TechTarget study, 70 percent of organizations reported they had adopted DevOps.
+        </Card.Description>
+      </Card>
+      <Card href="https://github.com" padding="normal">
+        <Card.Heading>Normal</Card.Heading>
+        <Card.Description>
+          In a recent TechTarget study, 70 percent of organizations reported they had adopted DevOps.
+        </Card.Description>
+      </Card>
+      <Card href="https://github.com" padding="spacious">
+        <Card.Heading>Spacious</Card.Heading>
+        <Card.Description>
+          In a recent TechTarget study, 70 percent of organizations reported they had adopted DevOps.
+        </Card.Description>
+      </Card>
+    </Stack>
+  )
+}
+
+export const CenterAligned: StoryFn<typeof Card> = () => {
+  return (
+    <Grid>
+      <Grid.Column span={{xsmall: 12, medium: 6}}>
+        <Card hasBorder padding="spacious" fullWidth align="center" href="https://github.com">
+          <Card.Icon icon={GitBranchIcon} color="purple" hasBackground />
+          <Card.Heading>Code search & code view</Card.Heading>
+          <Card.Description>
+            In a recent TechTarget study, 70 percent of organizations reported they had adopted DevOps.
+          </Card.Description>
+        </Card>
+      </Grid.Column>
+      <Grid.Column span={{xsmall: 12, medium: 6}}>
+        <Card hasBorder padding="spacious" fullWidth align="center" href="https://github.com">
+          <Card.Icon icon={GitBranchIcon} color="purple" hasBackground />
+          <Card.Heading>Code search & code view</Card.Heading>
+          <Card.Description>
+            In a recent TechTarget study, 70 percent of organizations reported they had adopted DevOps.
+          </Card.Description>
+        </Card>
+      </Grid.Column>
+    </Grid>
+  )
+}
+CenterAligned.storyName = '50:50 center aligned w/ spacious padding'
+
+export const StartAligned: StoryFn<typeof Card> = () => {
+  return (
+    <Grid>
+      <Grid.Column span={{xsmall: 12, medium: 6}}>
+        <Card hasBorder padding="normal" fullWidth href="https://github.com">
+          <Card.Icon icon={GitBranchIcon} color="purple" hasBackground />
+          <Card.Label color="blue-purple">Beta</Card.Label>
+          <Card.Heading>Code search & code view</Card.Heading>
+          <Card.Description>
+            In a recent TechTarget study, 70 percent of organizations reported they had adopted DevOps.
+          </Card.Description>
+        </Card>
+      </Grid.Column>
+      <Grid.Column span={{xsmall: 12, medium: 6}}>
+        <Card hasBorder padding="normal" fullWidth href="https://github.com">
+          <Card.Label color="blue-purple">Beta</Card.Label>
+          <Card.Icon icon={GitBranchIcon} color="purple" hasBackground />
+          <Card.Heading>Code search & code view</Card.Heading>
+          <Card.Description>
+            In a recent TechTarget study, 70 percent of organizations reported they had adopted DevOps.
+          </Card.Description>
+        </Card>
+      </Grid.Column>
+    </Grid>
+  )
+}
+StartAligned.storyName = '50:50 start aligned w/ normal padding'
+
 export const FullWidth: StoryFn<typeof Card> = () => {
   return (
     <Card href="https://github.com" fullWidth hasBorder>

@@ -1,5 +1,6 @@
 declare const styles: {
   readonly "Card": string;
+  readonly "Card--align-center": string;
   readonly "Card--border": string;
   readonly "Card--colorMode-dark": string;
   readonly "Card--colorMode-light": string;
@@ -8,6 +9,9 @@ declare const styles: {
   readonly "Card--fullWidth": string;
   readonly "Card--icon": string;
   readonly "Card--maxWidth": string;
+  readonly "Card--padding-condensed": string;
+  readonly "Card--padding-normal": string;
+  readonly "Card--padding-spacious": string;
   readonly "Card--skew": string;
   readonly "Card--variant-default": string;
   readonly "Card--variant-minimal": string;

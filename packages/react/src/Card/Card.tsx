@@ -20,9 +20,13 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 import styles from './Card.module.css'
 import stylesLink from '../Link/Link.module.css'
 
+export const CardPaddingSizes = ['condensed', 'normal', 'spacious'] as const
 export const CardIconColors = Colors
 
 export const defaultCardIconColor = CardIconColors[0]
+
+type CardPaddingSizes = (typeof CardPaddingSizes)[number]
+
 export type CardProps = {
   /**
    * Specify alternative card appearance
@@ -55,6 +59,14 @@ export type CardProps = {
    * Fills the width of the parent container and removes the default max-width.
    */
   fullWidth?: boolean
+  /**
+   * Aligns the card content
+   */
+  align?: 'start' | 'center'
+  /**
+   * Optionally control the padding of the card
+   */
+  padding?: CardPaddingSizes
 } & Omit<BaseProps<HTMLDivElement>, 'animate'> &
   Omit<React.ComponentPropsWithoutRef<'div'>, 'onMouseEnter' | 'onMouseLeave' | 'onFocus' | 'onBlur'> &
   Pick<React.ComponentPropsWithoutRef<'a'>, 'onMouseEnter' | 'onMouseLeave' | 'onFocus' | 'onBlur'>
@@ -62,6 +74,7 @@ export type CardProps = {
 const CardRoot = forwardRef<HTMLDivElement, CardProps>(
   (
     {
+      align = 'start',
       onMouseEnter,
       onMouseLeave,
       onFocus,
@@ -75,6 +88,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
       hasBorder = false,
       style,
       variant = 'default',
+      padding = 'condensed',
       ...props
     },
     ref,
@@ -111,7 +125,10 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
       <WrapperComponent
         style={style}
         disableSkew={disableAnimation}
-        className={clsx(fullWidth ? styles['Card--fullWidth'] : styles['Card--maxWidth'])}
+        className={clsx(
+          fullWidth ? styles['Card--fullWidth'] : styles['Card--maxWidth'],
+          styles[`Card--align-${align}`],
+        )}
       >
         <div
           className={clsx(
@@ -122,6 +139,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
             hasIcon && styles['Card--icon'],
             showBorder && styles['Card--border'],
             styles[`Card--colorMode-${colorMode}`],
+            styles[`Card--padding-${padding}`],
             className,
           )}
           style={style}
