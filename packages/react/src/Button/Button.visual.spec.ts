@@ -196,6 +196,15 @@ test.describe('Visual Comparison: Button', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('Button / With optional arrows', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--with-optional-arrows&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('Button / With an Octicon', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-button-features--with-octicon&viewMode=story',

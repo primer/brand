@@ -6,6 +6,7 @@ import {Button} from '.'
 import {HeartFillIcon, MarkGithubIcon, PlayIcon} from '@primer/octicons-react'
 import {Grid} from '../Grid'
 import {Box} from '../Box'
+import {Stack} from '../Stack'
 
 export default {
   title: 'Components/Button/Features',
@@ -257,6 +258,24 @@ export const WithLeadingAndTrailingVisualSVG = () => (
   </Button>
 )
 WithLeadingAndTrailingVisualSVG.storyName = 'Leading and trailing visual (native)'
+
+export const WithOptionalArrows = () => (
+  <Stack direction="horizontal">
+    <Button variant="primary" hasArrow>
+      Primary
+    </Button>
+    <Button variant="secondary" hasArrow>
+      Secondary
+    </Button>
+    <Button variant="subtle" hasArrow>
+      Subtle
+    </Button>
+    <Button variant="accent" hasArrow>
+      Accent
+    </Button>
+  </Stack>
+)
+WithOptionalArrows.storyName = 'With optional arrows'
 
 export const WithOcticon = () => (
   <Button variant="subtle" leadingVisual={<PlayIcon />} hasArrow={false}>
