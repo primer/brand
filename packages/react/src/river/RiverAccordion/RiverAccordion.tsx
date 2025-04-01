@@ -1,4 +1,4 @@
-import React, {createContext, forwardRef, useCallback, useContext, useMemo, useState, useRef} from 'react'
+import React, {createContext, forwardRef, useCallback, useContext, useMemo, useState} from 'react'
 import clsx from 'clsx'
 import {PlusIcon} from '@primer/octicons-react'
 
@@ -51,35 +51,33 @@ const useRiverAccordionItemContext = (): RiverAccordionItemContextType => {
   return context
 }
 
-const getAccordionComponents = (children: React.ReactNode) => {
-  return React.Children.toArray(children).reduce<{
-    items: React.ReactElement<RiverAccordionItemProps>[]
-    visuals: React.ReactElement<RiverAccordionVisualProps>[]
-  }>(
-    (acc, child) => {
-      if (!isRiverAccordionItem(child)) {
-        return acc
-      }
-
-      const visualChild = React.Children.toArray(child.props.children).find(isRiverAccordionVisual)
-
-      if (visualChild) {
-        acc.items.push(child)
-        acc.visuals.push(visualChild)
-      }
-
-      return acc
-    },
-    {items: [], visuals: []},
-  )
-}
-
 const RiverAccordionRoot = forwardRef<HTMLDivElement, RiverAccordionProps>(
   ({align = 'start', children, className, ...rest}, forwardedRef) => {
     const containerRef = useProvidedRefOrCreate<HTMLDivElement>(forwardedRef as React.RefObject<HTMLDivElement>)
     const [openIndex, setOpenIndex] = useState(0)
 
-    const accordionComponents = getAccordionComponents(children)
+    const accordionComponents = useMemo(() => {
+      return React.Children.toArray(children).reduce<{
+        items: React.ReactElement<RiverAccordionItemProps>[]
+        visuals: React.ReactElement<RiverAccordionVisualProps>[]
+      }>(
+        (acc, child) => {
+          if (!isRiverAccordionItem(child)) {
+            return acc
+          }
+
+          const visualChild = React.Children.toArray(child.props.children).find(isRiverAccordionVisual)
+
+          if (visualChild) {
+            acc.items.push(child)
+            acc.visuals.push(visualChild)
+          }
+
+          return acc
+        },
+        {items: [], visuals: []},
+      )
+    }, [children])
 
     const items = accordionComponents.items.map((item, index) => React.cloneElement(item, {key: index, index}))
     const visuals = accordionComponents.visuals.map((visual, index) =>
@@ -126,28 +124,30 @@ const RiverAccordionItem = ({className, index, children, ...props}: RiverAccordi
     [panelId, index, isOpen],
   )
 
-  const {heading, content, visual} = React.Children.toArray(children).reduce<{
-    heading: React.ReactElement<RiverAccordionHeadingProps> | null
-    content: React.ReactElement<RiverAccordionContentProps> | null
-    visual: React.ReactElement<RiverAccordionVisualProps> | null
-  }>(
-    (acc, child) => {
-      if (isRiverAccordionHeading(child)) {
-        acc.heading = child
-      }
+  const {heading, content, visual} = useMemo(() => {
+    return React.Children.toArray(children).reduce<{
+      heading: React.ReactElement<RiverAccordionHeadingProps> | null
+      content: React.ReactElement<RiverAccordionContentProps> | null
+      visual: React.ReactElement<RiverAccordionVisualProps> | null
+    }>(
+      (acc, child) => {
+        if (isRiverAccordionHeading(child)) {
+          acc.heading = child
+        }
 
-      if (isRiverAccordionContent(child)) {
-        acc.content = child
-      }
+        if (isRiverAccordionContent(child)) {
+          acc.content = child
+        }
 
-      if (isRiverAccordionVisual(child)) {
-        acc.visual = child
-      }
+        if (isRiverAccordionVisual(child)) {
+          acc.visual = child
+        }
 
-      return acc
-    },
-    {heading: null, content: null, visual: null},
-  )
+        return acc
+      },
+      {heading: null, content: null, visual: null},
+    )
+  }, [children])
 
   if (!heading || !content || !visual) {
     return null
@@ -175,7 +175,6 @@ const RiverAccordionItem = ({className, index, children, ...props}: RiverAccordi
 }
 
 const RiverAccordionHeading = ({className, children, ...props}: RiverAccordionHeadingProps) => {
-  const ref = useRef<HTMLButtonElement>(null)
   const {setOpenIndex} = useRiverAccordionContext()
   const {id, index, isOpen} = useRiverAccordionItemContext()
 
@@ -189,7 +188,6 @@ const RiverAccordionHeading = ({className, children, ...props}: RiverAccordionHe
     <Heading size="6" as="h3" className={clsx(styles.RiverAccordion__heading, className)} {...props}>
       <button
         type="button"
-        ref={ref}
         className={styles.RiverAccordion__trigger}
         onClick={onClick}
         aria-disabled={isOpen}
@@ -211,13 +209,10 @@ const RiverAccordionVisual = ({className, ...props}: RiverAccordionVisualProps) 
   return <div className={clsx(styles.RiverAccordion__visual, className)} {...props} />
 }
 
-export const isValidReactElement = (element: unknown): element is React.ReactElement =>
-  React.isValidElement(element) && typeof element.type !== 'string'
-
 const createComponentTypeGuard =
   <T,>(componentType: React.ComponentType<T>) =>
   (element: unknown): element is React.ReactElement<T> =>
-    isValidReactElement(element) && element.type === componentType
+    React.isValidElement(element) && element.type === componentType
 
 const isRiverAccordionItem = createComponentTypeGuard(RiverAccordionItem)
 const isRiverAccordionContent = createComponentTypeGuard(RiverAccordionContent)
