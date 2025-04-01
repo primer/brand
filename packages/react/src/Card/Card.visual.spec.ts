@@ -42,24 +42,10 @@ test.describe('Visual Comparison: Card', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('Card / Padding', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--padding&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
-  })
-
-  test('Card / 50:50 center aligned w/ spacious padding', async ({page}) => {
+  test('Card / Align center', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-card-features--center-aligned&viewMode=story',
     )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
-  })
-
-  test('Card / 50:50 start aligned w/ normal padding', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--start-aligned&viewMode=story')
 
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()

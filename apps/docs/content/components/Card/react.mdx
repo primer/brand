@@ -9,14 +9,11 @@ a11yReviewed: true
 import ComponentLayout from '../../../src/layouts/component-layout'
 export default ComponentLayout
 
-import {
-  LabelColors,
-  CardIconColors,
-  CardPaddingSizes,
-} from '@primer/react-brand'
+import {LabelColors, CardIconColors} from '@primer/react-brand'
 import {IconColors} from '@primer/react-brand'
 import {PropTableValues} from '../../../src/components'
 import {CopilotIcon, RocketIcon, GitBranchIcon} from '@primer/octicons-react'
+import InlineCode from '@primer/gatsby-theme-doctocat/src/components/inline-code'
 
 ```js
 import {Card} from '@primer/react-brand'
@@ -50,9 +47,9 @@ The `minimal` card variant applies alternative presentation to the default card.
 </Card>
 ```
 
-### Cta text
+### CTA text
 
-The cta text defaults to `Learn more` and can be customized using the `ctaText` component.
+The call to action text defaults to `Learn more` and can be customized using the `ctaText` component.
 
 ```jsx live
 <Card ctaText="Discover how" href="https://github.com">
@@ -190,37 +187,15 @@ Combine `Image` and `Label` when you need to add more metadata or context to the
 </Card>
 ```
 
-### Stacked cards (2)
+### Stacked cards (2/3)
 
-Use the `Stack` or `Grid` component to stack two cards horizontally. Note that in this arrangement, both `fullWidth` and `padding` options should be uniquely applied.
+Use the `Stack` or `Grid` components to stack up to three cards horizontally in center alignment. Do not use center alignment for 4 or more stacked cards.
 
-#### Start alignment
-
-```jsx live
-<Stack
-  direction="horizontal"
-  alignItems="center"
-  justifyContent="center"
-  gap="normal"
->
-  <Card href="https://github.com" hasBorder padding="normal" fullWidth>
-    <Card.Icon icon={CopilotIcon} color="indigo" hasBackground />
-    <Card.Heading>Heading</Card.Heading>
-    <Card.Description>
-      Everything you need to know about getting started with GitHub Actions.
-    </Card.Description>
-  </Card>
-  <Card href="https://github.com" hasBorder padding="normal" fullWidth>
-    <Card.Icon icon={RocketIcon} color="purple" hasBackground />
-    <Card.Heading>Heading</Card.Heading>
-    <Card.Description>
-      Everything you need to know about getting started with GitHub Actions.
-    </Card.Description>
-  </Card>
-</Stack>
-```
-
-#### Center alignment
+<Note>
+  Note that in this arrangement, both <InlineCode>fullWidth</InlineCode> and{' '}
+  <InlineCode>hasBorder</InlineCode> options should be applied alongside{' '}
+  <InlineCode>align="center"</InlineCode>.
+</Note>
 
 ```jsx live
 <Stack
@@ -229,62 +204,15 @@ Use the `Stack` or `Grid` component to stack two cards horizontally. Note that i
   justifyContent="center"
   gap="normal"
 >
-  <Card
-    href="https://github.com"
-    hasBorder
-    padding="spacious"
-    fullWidth
-    align="center"
-  >
+  <Card href="https://github.com" hasBorder fullWidth align="center">
     <Card.Icon icon={CopilotIcon} color="indigo" hasBackground />
     <Card.Heading>Heading</Card.Heading>
     <Card.Description>
       Everything you need to know about getting started with GitHub Actions.
     </Card.Description>
   </Card>
-  <Card
-    href="https://github.com"
-    hasBorder
-    padding="spacious"
-    fullWidth
-    align="center"
-  >
+  <Card href="https://github.com" hasBorder fullWidth align="center">
     <Card.Icon icon={RocketIcon} color="purple" hasBackground />
-    <Card.Heading>Heading</Card.Heading>
-    <Card.Description>
-      Everything you need to know about getting started with GitHub Actions.
-    </Card.Description>
-  </Card>
-</Stack>
-```
-
-### Stacked cards (3+)
-
-Use the `Stack` component to stack multiple cards horizontally or vertically.
-
-```jsx live
-<Stack
-  direction="horizontal"
-  alignItems="center"
-  justifyContent="center"
-  gap="normal"
->
-  <Card href="https://github.com">
-    <Card.Icon icon={CopilotIcon} color="indigo" hasBackground />
-    <Card.Heading>Heading</Card.Heading>
-    <Card.Description>
-      Everything you need to know about getting started with GitHub Actions.
-    </Card.Description>
-  </Card>
-  <Card href="https://github.com">
-    <Card.Icon icon={RocketIcon} color="purple" hasBackground />
-    <Card.Heading>Heading</Card.Heading>
-    <Card.Description>
-      Everything you need to know about getting started with GitHub Actions.
-    </Card.Description>
-  </Card>
-  <Card href="https://github.com">
-    <Card.Icon icon={GitBranchIcon} color="teal" hasBackground />
     <Card.Heading>Heading</Card.Heading>
     <Card.Description>
       Everything you need to know about getting started with GitHub Actions.
@@ -311,12 +239,11 @@ Forwards all the props from the [Image component](/components/Image), including 
 
 ### Card.Icon
 
-| name            | type                                                        | default     | required | description                                                  |
-| --------------- | ----------------------------------------------------------- | ----------- | -------- | ------------------------------------------------------------ |
-| `icon`          | React.Node                                                  |             | `true`   | Octicon                                                      |
-| `color`         | <PropTableValues values={CardIconColors} addLineBreaks />   | `default`   | `false`  | The color of the icon                                        |
-| `padding`       | <PropTableValues values={CardPaddingSizes} addLineBreaks /> | `condensed` | `false`  | The internal spacing separating outer and inner card content |
-| `hasBackground` | boolean                                                     | `false`     | `false`  | Adds a filled colored background to the icon                 |
+| name            | type                                                      | default   | required | description                                  |
+| --------------- | --------------------------------------------------------- | --------- | -------- | -------------------------------------------- |
+| `icon`          | React.Node                                                |           | `true`   | Octicon                                      |
+| `color`         | <PropTableValues values={CardIconColors} addLineBreaks /> | `default` | `false`  | The color of the icon                        |
+| `hasBackground` | boolean                                                   | `false`   | `false`  | Adds a filled colored background to the icon |
 
 ### Card.Label
 

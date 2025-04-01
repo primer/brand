@@ -3,6 +3,7 @@
   color: var(--brand-color-text-default);
   border-radius: var(--brand-borderRadius-xlarge);
   transition: transform var(--brand-Card-animation-duration) var(--brand-Card-animation-easing);
+  padding: var(--base-size-32);
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
@@ -18,30 +19,15 @@
   height: 100%;
 }
 
-.Card--padding-condensed,
-.Card--padding-normal,
-.Card--padding-spacious {
-  padding: var(--base-size-32);
-}
-
-@media screen and (min-width: 48rem) {
-  .Card--padding-normal {
-    padding: var(--base-size-64);
-  }
-
-  .Card--padding-spacious {
-    padding: var(--base-size-64);
-  }
+.Card--align-center .Card {
+  text-align: center;
+  padding: var(--base-size-64) var(--base-size-40);
 }
 
 @media screen and (min-width: 64rem) {
-  .Card--padding-spacious {
-    padding: var(--base-size-96);
+  .Card--align-center .Card {
+    padding: var(--base-size-64) var(--base-size-80);
   }
-}
-
-.Card--align-center {
-  text-align: center;
 }
 
 .Card--align-center .Card {
