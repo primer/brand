@@ -6,9 +6,10 @@ description: Use the button component for the main actions on a page or form.
 import ComponentLayout from '../../../src/layouts/component-layout'
 export default ComponentLayout
 
+import header from './images/button_header.png'
 import buttonAccent from './images/button_accent.png'
 
-![An image showing different button types.](https://github.com/primer/brand/assets/6951037/fcc3b962-1b4a-416b-be29-4a70ef503f2a)
+<img src={header} alt="An image showing different button types" />
 
 ## Usage
 
@@ -140,9 +141,7 @@ Small buttons are meant to be used sparingly. Some use cases can be:
 
 ### Arrow
 
-The arrow is shown by default in all buttons. Hide the arrow only to save horizontal space or to diminish the importance of the button.
-
-When used in a group, the arrow should be used or hide consistently across all buttons.
+The arrow is hidden by default for all button variants except subtle. You can optionally show the arrow when you need to draw attention to a specific, singular button on a page. However, use arrows sparingly on primary actions to avoid diluting their impact. Multiple arrows on the same page will reduce their effectiveness as directional cues.
 
 ## Accessibility
 
