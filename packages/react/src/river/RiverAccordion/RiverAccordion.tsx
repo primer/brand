@@ -1,17 +1,4 @@
-import React, {
-  forwardRef,
-  type HTMLAttributes,
-  type PropsWithChildren,
-  type ReactElement,
-  type ReactNode,
-  type RefObject,
-  useCallback,
-  useContext,
-  useMemo,
-  useState,
-  createContext,
-  useRef,
-} from 'react'
+import React, {createContext, forwardRef, useCallback, useContext, useMemo, useState, useRef} from 'react'
 import clsx from 'clsx'
 import {PlusIcon} from '@primer/octicons-react'
 
@@ -20,16 +7,16 @@ import styles from './RiverAccordion.module.css'
 import {useProvidedRefOrCreate} from '../../hooks/useRef'
 import {useId} from '../../hooks/useId'
 
-export type RiverAccordionProps = PropsWithChildren<{
+export type RiverAccordionProps = React.PropsWithChildren<{
   align?: 'start' | 'end'
 }> &
-  HTMLAttributes<HTMLDivElement>
+  React.HTMLAttributes<HTMLDivElement>
 
-export type RiverAccordionVisualProps = HTMLAttributes<HTMLDivElement>
+export type RiverAccordionVisualProps = React.HTMLAttributes<HTMLDivElement>
 export type RiverAccordionHeadingProps = HeadingProps
-export type RiverAccordionContentProps = HTMLAttributes<HTMLDivElement>
-export type RiverAccordionItemProps = HTMLAttributes<HTMLDivElement> & {
-  children: ReactElement<RiverAccordionHeadingProps | RiverAccordionContentProps>[]
+export type RiverAccordionContentProps = React.HTMLAttributes<HTMLDivElement>
+export type RiverAccordionItemProps = React.HTMLAttributes<HTMLDivElement> & {
+  children: React.ReactElement<RiverAccordionHeadingProps | RiverAccordionContentProps>[]
   index?: number
 }
 
@@ -64,10 +51,10 @@ const useRiverAccordionItemContext = (): RiverAccordionItemContextType => {
   return context
 }
 
-const getAccordionComponents = (children: ReactNode) => {
+const getAccordionComponents = (children: React.ReactNode) => {
   return React.Children.toArray(children).reduce<{
-    items: ReactElement<RiverAccordionItemProps>[]
-    visuals: ReactElement<RiverAccordionVisualProps>[]
+    items: React.ReactElement<RiverAccordionItemProps>[]
+    visuals: React.ReactElement<RiverAccordionVisualProps>[]
   }>(
     (acc, child) => {
       if (!isRiverAccordionItem(child)) {
@@ -89,7 +76,7 @@ const getAccordionComponents = (children: ReactNode) => {
 
 const RiverAccordionRoot = forwardRef<HTMLDivElement, RiverAccordionProps>(
   ({align = 'start', children, className, ...rest}, forwardedRef) => {
-    const containerRef = useProvidedRefOrCreate<HTMLDivElement>(forwardedRef as RefObject<HTMLDivElement>)
+    const containerRef = useProvidedRefOrCreate<HTMLDivElement>(forwardedRef as React.RefObject<HTMLDivElement>)
     const [openIndex, setOpenIndex] = useState(0)
 
     const accordionComponents = getAccordionComponents(children)
@@ -140,9 +127,9 @@ const RiverAccordionItem = ({className, index, children, ...props}: RiverAccordi
   )
 
   const {heading, content, visual} = React.Children.toArray(children).reduce<{
-    heading: ReactElement<RiverAccordionHeadingProps> | null
-    content: ReactElement<RiverAccordionContentProps> | null
-    visual: ReactElement<RiverAccordionVisualProps> | null
+    heading: React.ReactElement<RiverAccordionHeadingProps> | null
+    content: React.ReactElement<RiverAccordionContentProps> | null
+    visual: React.ReactElement<RiverAccordionVisualProps> | null
   }>(
     (acc, child) => {
       if (isRiverAccordionHeading(child)) {
@@ -224,7 +211,7 @@ const RiverAccordionVisual = ({className, ...props}: RiverAccordionVisualProps) 
   return <div className={clsx(styles.RiverAccordion__visual, className)} {...props} />
 }
 
-export const isValidReactElement = (element: unknown): element is ReactElement =>
+export const isValidReactElement = (element: unknown): element is React.ReactElement =>
   React.isValidElement(element) && typeof element.type !== 'string'
 
 const createComponentTypeGuard =
