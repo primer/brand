@@ -169,12 +169,17 @@
 
 .Button--subtle {
   color: var(--brand-color-text-default);
-  border-color: var(--brand-button-subtle-borderColor-rest);
   transition: background-color, border-color var(--brand-animation-duration-faster);
 }
 
-.Button--subtle:hover:not(.Button[disabled]) {
-  border-color: var(--brand-button-subtle-borderColor-hover);
+.Button--subtle:not(.Button[disabled], .Button[aria-disabled='true'], [aria-expanded='true']):hover {
+  background-color: var(--brand-button-subtle-bgColor-hover);
+}
+
+.Button--subtle:not(.Button[disabled], .Button[aria-disabled='true']):active,
+.Button--subtle[aria-expanded='true'] {
+  background-color: var(--brand-button-subtle-bgColor-active);
+  border-color: var(--brand-button-subtle-borderColor-active);
 }
 
 .Button--label-subtle {

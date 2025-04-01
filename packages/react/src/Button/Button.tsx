@@ -17,6 +17,8 @@ export const ButtonSizes = ['small', 'medium', 'large'] as const
 export const defaultButtonVariant = ButtonVariants[1]
 export const defaultButtonSize = ButtonSizes[1]
 
+type ButtonVariant = (typeof ButtonVariants)[number]
+
 export type ButtonBaseProps = {
   /**
    * The leading visual appears before the button content
@@ -29,7 +31,7 @@ export type ButtonBaseProps = {
   /**
    * The styling variations available in Button
    */
-  variant?: (typeof ButtonVariants)[number]
+  variant?: ButtonVariant
   /**
    * The size variations available in Button
    */
@@ -43,6 +45,8 @@ export type ButtonBaseProps = {
    */
   block?: boolean
 }
+
+const variantsWithArrow = ['subtle']
 
 export type ButtonProps<C extends React.ElementType> = BaseProps<C> & {
   as?: C
@@ -93,6 +97,8 @@ export const _Button = forwardRef(
       disabled || ariaDisabled === 'true' || (typeof ariaDisabled === 'boolean' && ariaDisabled === true)
 
     const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
+
+    const showArrow = hasArrow && variantsWithArrow.includes(variant)
 
     const returnValidComponent = useCallback((component?: ReactElement | Icon) => {
       if (React.isValidElement(component)) {
@@ -194,7 +200,7 @@ export const _Button = forwardRef(
           </Text>
         </span>
 
-        {!TrailingVisual && hasArrow && (
+        {!TrailingVisual && showArrow && (
           <span className={clsx(styles['Button__trailing-visual'])}>
             <ExpandableArrow
               hidden
