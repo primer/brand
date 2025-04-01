@@ -1,8 +1,7 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 
-// import placeholderImage from '../../fixtures/images/placeholder.png'
-import {Link, RiverAccordion, type RiverAccordionProps, Stack, Text} from '../../'
+import {Link, RiverAccordion, type RiverAccordionProps, Text} from '../../'
 
 export type MetaProps = RiverAccordionProps
 
@@ -18,13 +17,6 @@ const meta: Meta<MetaProps> = {
       control: {type: 'inline-radio'},
     },
   },
-}
-
-export default meta
-
-type Story = StoryObj<MetaProps>
-
-export const Playground: Story = {
   render: args => {
     return (
       <RiverAccordion {...args}>
@@ -42,8 +34,8 @@ export const Playground: Story = {
 
           <RiverAccordion.Visual>
             <img
-              src="https://picsum.photos/seed/hello/1000/800"
-              alt="placeholder, blank area with a gray background color"
+              src="https://placehold.co/600x400/FF5733/ffffff?text=1"
+              alt="placeholder, blank area with an orange background color and a white number 1 in the center"
             />
           </RiverAccordion.Visual>
         </RiverAccordion.Item>
@@ -62,8 +54,8 @@ export const Playground: Story = {
 
           <RiverAccordion.Visual>
             <img
-              src="https://picsum.photos/seed/beans/1000/800"
-              alt="placeholder, blank area with a gray background color"
+              src="https://placehold.co/600x400/AF7AC5/ffffff?text=2"
+              alt="placeholder, blank area with a purple background color and a white number 2 in the center"
             />
           </RiverAccordion.Visual>
         </RiverAccordion.Item>
@@ -82,12 +74,22 @@ export const Playground: Story = {
 
           <RiverAccordion.Visual>
             <img
-              src="https://picsum.photos/seed/badger/1000/800"
-              alt="placeholder, blank area with a gray background color"
+              src="https://placehold.co/600x400/48C9B0/ffffff?text=3"
+              alt="placeholder, blank area with a green background color and a white number 3 in the center"
             />
           </RiverAccordion.Visual>
         </RiverAccordion.Item>
       </RiverAccordion>
     )
+  },
+}
+
+export default meta
+
+type Story = StoryObj<MetaProps>
+
+export const Playground: Story = {
+  args: {
+    align: 'start',
   },
 }
