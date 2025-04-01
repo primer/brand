@@ -123,7 +123,7 @@ describe('Button', () => {
     expect(consoleSpy).toHaveBeenCalled()
   })
 
-  it.each(ButtonVariants)('hides the arrow for all button variants except subtle', variant => {
+  it.each(ButtonVariants)('hides the arrow by default for all button variants except subtle', variant => {
     const variantsWithArrow = ['subtle']
 
     const {getByRole} = render(<Button variant={variant}>{variant}</Button>)
@@ -133,6 +133,17 @@ describe('Button', () => {
     } else {
       expect(btnEl.querySelector('.ExpandableArrow')).not.toBeInTheDocument()
     }
+  })
+
+  it.each(ButtonVariants)('can apply optional arrow for all variants', variant => {
+    const {getByRole} = render(
+      <Button variant={variant} hasArrow>
+        {variant}
+      </Button>,
+    )
+    const btnEl = getByRole('button')
+
+    expect(btnEl.querySelector('.ExpandableArrow')).toBeInTheDocument()
   })
 
   it('triggers correct animations on button arrow during a hover event', async () => {
