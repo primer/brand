@@ -3,7 +3,7 @@ import {StoryFn, Meta} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 
 import {PricingOptions} from '.'
-import {Box, Grid, Stack} from '..'
+import {Box, Grid, InlineLink, Stack} from '..'
 import imageExample from '../fixtures/images/bento/3.png'
 import {CopilotIcon} from '@primer/octicons-react'
 
@@ -28,94 +28,37 @@ export default {
   },
 } as Meta<typeof PricingOptions>
 
-export const DefaultVariant: StoryFn<typeof PricingOptions> = () => {
+export const CardsVariant: StoryFn<typeof PricingOptions> = () => {
   return (
-    <PricingOptions>
+    <PricingOptions variant="cards">
       <PricingOptions.Item>
-        <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+        <PricingOptions.Heading>Free</PricingOptions.Heading>
         <PricingOptions.Description>
-          Code completions, Chat, and more for indie developers and freelancers.
+          For developers looking to get started with GitHub Copilot.
         </PricingOptions.Description>
-        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
-        <PricingOptions.FeatureList>
+        <PricingOptions.Price>0</PricingOptions.Price>
+        <PricingOptions.FeatureList expanded={false} hasDivider={false}>
           <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-        <PricingOptions.Footnote>
-          Free for verified students, teachers, and maintainers of popular open source projects.
-        </PricingOptions.Footnote>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Start a free trial
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
-
-      <PricingOptions.Item>
-        <PricingOptions.Label>Recommended</PricingOptions.Label>
-        <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
-        <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
-        <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Buy now
-        </PricingOptions.PrimaryAction>
-        <PricingOptions.SecondaryAction as="a" href="#">
-          Contact sales
-        </PricingOptions.SecondaryAction>
-        <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListItem>Everything in Copilot Individual plus:</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Code referencing</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Public code filter</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>IP indemnity</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>
-            Enterprise-grade security, safety, and privacy
-          </PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-      </PricingOptions.Item>
-
-      <PricingOptions.Item>
-        <PricingOptions.Label>Available Feb 2024</PricingOptions.Label>
-        <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
-        <PricingOptions.Description>
-          Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
-          Enterprise Cloud.
-        </PricingOptions.Description>
-        <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
-        <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
         </PricingOptions.FeatureList>
         <PricingOptions.PrimaryAction as="a" href="#">
           Join waitlist
         </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
-    </PricingOptions>
-  )
-}
-
-export const CardsVariant: StoryFn<typeof PricingOptions> = () => {
-  return (
-    <PricingOptions variant="cards">
       <PricingOptions.Item>
         <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
         <PricingOptions.Description>
           Code completions, Chat, and more for indie developers and freelancers.
         </PricingOptions.Description>
         <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
-        <PricingOptions.FeatureList>
+        <PricingOptions.FeatureList expanded={false} hasDivider={false}>
           <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
         </PricingOptions.FeatureList>
-        <PricingOptions.Footnote>
-          Free for verified students, teachers, and maintainers of popular open source projects.
-        </PricingOptions.Footnote>
         <PricingOptions.PrimaryAction as="a" href="#">
           Start a free trial
         </PricingOptions.PrimaryAction>
@@ -132,7 +75,7 @@ export const CardsVariant: StoryFn<typeof PricingOptions> = () => {
         <PricingOptions.SecondaryAction as="a" href="#">
           Contact sales
         </PricingOptions.SecondaryAction>
-        <PricingOptions.FeatureList>
+        <PricingOptions.FeatureList expanded={false} hasDivider={false}>
           <PricingOptions.FeatureListItem>Everything in Copilot Individual plus:</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
@@ -145,16 +88,14 @@ export const CardsVariant: StoryFn<typeof PricingOptions> = () => {
           </PricingOptions.FeatureListItem>
         </PricingOptions.FeatureList>
       </PricingOptions.Item>
-
       <PricingOptions.Item>
         <PricingOptions.Label>Available Feb 2024</PricingOptions.Label>
         <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
         <PricingOptions.Description>
-          Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
-          Enterprise Cloud.
+          Copilot personalized to your organization throughout the software development lifecycle.
         </PricingOptions.Description>
         <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
-        <PricingOptions.FeatureList>
+        <PricingOptions.FeatureList expanded={false} hasDivider={false}>
           <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
@@ -373,6 +314,91 @@ export const ThreeOptions: StoryFn<typeof PricingOptions> = () => {
   )
 }
 
+export const FourOptions: StoryFn<typeof PricingOptions> = () => {
+  return (
+    <PricingOptions>
+      <PricingOptions.Item>
+        <PricingOptions.Heading>Free</PricingOptions.Heading>
+        <PricingOptions.Description>
+          For developers looking to get started with GitHub Copilot.
+        </PricingOptions.Description>
+        <PricingOptions.Price>0</PricingOptions.Price>
+        <PricingOptions.FeatureList>
+          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Join waitlist
+        </PricingOptions.PrimaryAction>
+      </PricingOptions.Item>
+      <PricingOptions.Item>
+        <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+        <PricingOptions.Description>
+          Code completions, Chat, and more for indie developers and freelancers.
+        </PricingOptions.Description>
+        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
+        <PricingOptions.FeatureList>
+          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+        <PricingOptions.Footnote>
+          Free for verified students, teachers, and maintainers of popular open source projects.
+        </PricingOptions.Footnote>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Start a free trial
+        </PricingOptions.PrimaryAction>
+      </PricingOptions.Item>
+
+      <PricingOptions.Item>
+        <PricingOptions.Label>Recommended</PricingOptions.Label>
+        <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+        <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
+        <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Buy now
+        </PricingOptions.PrimaryAction>
+        <PricingOptions.SecondaryAction as="a" href="#">
+          Contact sales
+        </PricingOptions.SecondaryAction>
+        <PricingOptions.FeatureList>
+          <PricingOptions.FeatureListItem>Everything in Copilot Individual plus:</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Code referencing</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Public code filter</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>IP indemnity</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>
+            Enterprise-grade security, safety, and privacy
+          </PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+      </PricingOptions.Item>
+      <PricingOptions.Item>
+        <PricingOptions.Label>Available Feb 2024</PricingOptions.Label>
+        <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
+        <PricingOptions.Description>
+          Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
+          Enterprise Cloud.
+        </PricingOptions.Description>
+        <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
+        <PricingOptions.FeatureList>
+          <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Join waitlist
+        </PricingOptions.PrimaryAction>
+      </PricingOptions.Item>
+    </PricingOptions>
+  )
+}
+
 export const WithFeatureSets: StoryFn<typeof PricingOptions> = () => {
   return (
     <PricingOptions>
@@ -466,7 +492,7 @@ export const WithIncludedAndExcludedFeatures: StoryFn<typeof PricingOptions> = (
           Code completions, Chat, and more for indie developers and freelancers.
         </PricingOptions.Description>
         <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
-        <PricingOptions.FeatureList>
+        <PricingOptions.FeatureList accordionAs="h6">
           <PricingOptions.FeatureListHeading>Chat</PricingOptions.FeatureListHeading>
           <PricingOptions.FeatureListItem>Unlimited messages, interactions, and history</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Context-aware coding support and explanations</PricingOptions.FeatureListItem>
@@ -486,7 +512,8 @@ export const WithIncludedAndExcludedFeatures: StoryFn<typeof PricingOptions> = (
         </PricingOptions.FeatureList>
 
         <PricingOptions.Footnote>
-          Free for verified students, teachers, and maintainers of popular open source projects.
+          Free for verified students, teachers, and maintainers of <InlineLink href="#">popular open source</InlineLink>{' '}
+          projects.
         </PricingOptions.Footnote>
 
         <PricingOptions.PrimaryAction as="a" href="#">
@@ -581,6 +608,82 @@ export const WithoutFeatures: StoryFn<typeof PricingOptions> = () => {
           Enterprise Cloud.
         </PricingOptions.Description>
         <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Join waitlist
+        </PricingOptions.PrimaryAction>
+      </PricingOptions.Item>
+    </PricingOptions>
+  )
+}
+
+export const CenterAligned: StoryFn<typeof PricingOptions> = () => {
+  return (
+    <PricingOptions align="center">
+      <PricingOptions.Item>
+        <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+        <PricingOptions.Description>
+          Code completions, Chat, and more for indie developers and freelancers.
+        </PricingOptions.Description>
+        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
+        <PricingOptions.FeatureList>
+          <PricingOptions.FeatureListHeading>Chat</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListItem>Unlimited messages, interactions, and history</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Context-aware coding support and explanations</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Debugging and security remediation assistance</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Repository-based semantic search</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Access your knowledge base</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListHeading>Code completion</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListItem>Code suggestions as you type</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Comments to code</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Fine-tuned models (coming soon)</PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Start a free trial
+        </PricingOptions.PrimaryAction>
+      </PricingOptions.Item>
+
+      <PricingOptions.Item>
+        <PricingOptions.Label>Recommended</PricingOptions.Label>
+        <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+        <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
+        <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
+        <PricingOptions.FeatureList>
+          <PricingOptions.FeatureListHeading>Chat</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListItem>Unlimited messages, interactions, and history</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Context-aware coding support and explanations</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Debugging and security remediation assistance</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Repository-based semantic search</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Access your knowledge base</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListHeading>Code completion</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListItem>Code suggestions as you type</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Comments to code</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Fine-tuned models (coming soon)</PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Buy now
+        </PricingOptions.PrimaryAction>
+      </PricingOptions.Item>
+
+      <PricingOptions.Item>
+        <PricingOptions.Label>Available Feb 2024</PricingOptions.Label>
+        <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
+        <PricingOptions.Description>
+          Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
+          Enterprise Cloud.
+        </PricingOptions.Description>
+        <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
+        <PricingOptions.FeatureList>
+          <PricingOptions.FeatureListHeading>Chat</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListItem>Unlimited messages, interactions, and history</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Context-aware coding support and explanations</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Debugging and security remediation assistance</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Repository-based semantic search</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Access your knowledge base</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListHeading>Code completion</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListItem>Code suggestions as you type</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Comments to code</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Fine-tuned models (coming soon)</PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
         <PricingOptions.PrimaryAction as="a" href="#">
           Join waitlist
         </PricingOptions.PrimaryAction>

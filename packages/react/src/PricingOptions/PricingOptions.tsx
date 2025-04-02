@@ -28,6 +28,7 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 import styles from './PricingOptions.module.css'
 
 export type PricingOptionsProps = {
+  align?: 'start' | 'center'
   variant?: 'default' | 'cards'
   ['data-testid']?: string
 } & PropsWithChildren<BaseProps<HTMLDivElement>>
@@ -47,18 +48,22 @@ const testIds = {
   footnote: 'PricingOptions__footnote',
 }
 
+type AlignOptions = 'start' | 'center'
+
 type PricingOptionsContextValue = {
+  align: AlignOptions
   allFeatureListsExpanded: boolean
   updateFeatureListExpanded: Dispatch<boolean>
 }
 
 const PricingOptionsContext = React.createContext<PricingOptionsContextValue>({
+  align: 'start',
   allFeatureListsExpanded: false,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   updateFeatureListExpanded: () => {},
 })
 
-const PricingOptionsProvider = ({children}) => {
+const PricingOptionsProvider = ({children, align = 'start'}: PropsWithChildren<{align: AlignOptions}>) => {
   const [allFeatureListsExpanded, setAllFeatureListsExpanded] = React.useState(false)
 
   const updateFeatureListExpanded = newValue => {
@@ -66,7 +71,7 @@ const PricingOptionsProvider = ({children}) => {
   }
 
   return (
-    <PricingOptionsContext.Provider value={{allFeatureListsExpanded, updateFeatureListExpanded}}>
+    <PricingOptionsContext.Provider value={{allFeatureListsExpanded, updateFeatureListExpanded, align}}>
       {children}
     </PricingOptionsContext.Provider>
   )
@@ -78,7 +83,14 @@ const usePricingOptions = (): PricingOptionsContextValue => {
 
 const PricingOptionsRoot = forwardRef(
   (
-    {children, className, 'data-testid': testId, variant = 'default', ...rest}: PropsWithChildren<PricingOptionsProps>,
+    {
+      align = 'start',
+      children,
+      className,
+      'data-testid': testId,
+      variant = 'default',
+      ...rest
+    }: PropsWithChildren<PricingOptionsProps>,
     ref: Ref<HTMLDivElement>,
   ) => {
     const filteredChildren = useMemo(
@@ -87,10 +99,10 @@ const PricingOptionsRoot = forwardRef(
           child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === PricingOptionsItem,
         ),
       [children],
-    ).slice(0, 3)
+    ).slice(0, 4)
 
     return (
-      <PricingOptionsProvider>
+      <PricingOptionsProvider align={align}>
         <div
           className={clsx(
             styles.PricingOptions,
@@ -120,20 +132,22 @@ export type PricingOptionsItem = {
   leadingComponent?: React.ReactElement
 } & PropsWithChildren<BaseProps<HTMLDivElement>>
 
+type FilteredChildren = {
+  FeatureList: React.ReactElement<PricingOptionsFeatureListProps> | null
+  Actions: React.ReactElement<PricingOptionsActionsProps>[]
+  Footnote: React.ReactElement<PricingOptionsFootnoteProps> | null
+  Heading: React.ReactElement<PricingOptionsHeadingProps> | null
+  Description: React.ReactElement<PricingOptionsDescriptionProps> | null
+  Label: React.ReactElement<PricingOptionsLabelProps> | null
+  Price: React.ReactElement<PricingOptionsPriceProps> | null
+}
+
 const PricingOptionsItem = forwardRef(
   (
     {'data-testid': testId, children, className, leadingComponent, ...rest}: PropsWithChildren<PricingOptionsItem>,
     ref: Ref<HTMLDivElement>,
   ) => {
-    type FilteredChildren = {
-      FeatureList: React.ReactElement<PricingOptionsFeatureListProps> | null
-      Actions: React.ReactElement<PricingOptionsActionsProps>[]
-      Footnote: React.ReactElement<PricingOptionsFootnoteProps> | null
-      Heading: React.ReactElement<PricingOptionsHeadingProps> | null
-      Description: React.ReactElement<PricingOptionsDescriptionProps> | null
-      Label: React.ReactElement<PricingOptionsLabelProps> | null
-      Price: React.ReactElement<PricingOptionsPriceProps> | null
-    }
+    const {align} = usePricingOptions()
 
     const memoizedChildren = useMemo(() => React.Children.toArray(children), [children])
 
@@ -179,6 +193,7 @@ const PricingOptionsItem = forwardRef(
         className={clsx(
           styles.PricingOptions__item,
           leadingComponent && styles['PricingOptions__item--has-leading-component'],
+          styles[`PricingOptions__item--align-${align}`],
           className,
         )}
         data-testid={testId || testIds.item}
@@ -241,7 +256,6 @@ const PricingOptionsDescription = forwardRef<HTMLParagraphElement, PricingOption
 )
 
 type PricingOptionsHeadingProps = PropsWithChildren<BaseProps<HTMLHeadingElement>> & {
-  as?: Exclude<HeadingProps['as'], 'h1' | 'h2'>
   'data-testid'?: string
 } & HeadingProps
 
@@ -345,6 +359,8 @@ const PricingOptionsPrice = forwardRef<HTMLParagraphElement, PricingOptionsPrice
 )
 
 type PricingOptionsFeatureListProps = BaseProps<HTMLUListElement> & {
+  accordionAs?: HeadingProps['as']
+  accordionSize?: HeadingProps['size']
   expanded?: ExpandedProp
   hasDivider?: boolean
   children: React.ReactElement<PricingOptionsFeatureHeadingProps | PricingOptionsFeatureListItemProps>[]
@@ -371,7 +387,18 @@ type ValidFeatureListChildren = {
 }[]
 
 const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatureListProps>(
-  ({children, className, 'data-testid': testId, hasDivider = true, expanded = defaultExpanded, ...rest}, ref) => {
+  (
+    {
+      children,
+      className,
+      'data-testid': testId,
+      hasDivider = true,
+      expanded = defaultExpanded,
+      accordionAs = 'h4',
+      ...rest
+    },
+    ref,
+  ) => {
     const runOnce = React.useRef(false)
     const [isAccordionOpen, setIsAccordionOpen] = React.useState<boolean>(false)
     const {allFeatureListsExpanded, updateFeatureListExpanded} = usePricingOptions()
@@ -442,7 +469,11 @@ const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatu
             updateFeatureListExpanded(event.currentTarget.open)
           }}
         >
-          <Accordion.Heading className={styles['PricingOptions__feature-list-accordion-heading']} reversedToggles>
+          <Accordion.Heading
+            as={accordionAs}
+            className={styles['PricingOptions__feature-list-accordion-heading']}
+            reversedToggles
+          >
             <ChevronDownIcon className={styles['PricingOptions__feature-list-accordion-chevron']} />
             What&apos;s included
           </Accordion.Heading>

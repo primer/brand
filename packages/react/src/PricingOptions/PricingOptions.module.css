@@ -128,9 +128,18 @@
 /* Multiple items                                          */
 /* ---------------------------------------------------------- */
 
+@media (min-width: 48rem) {
+  .PricingOptions--variant-cards.PricingOptions--items4 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: var(--brand-pricing-options-item-gap);
+    row-gap: var(--brand-pricing-options-item-gap);
+  }
+}
 @media (min-width: 63.25rem) {
   .PricingOptions--items2,
-  .PricingOptions--items3 {
+  .PricingOptions--items3,
+  .PricingOptions--items4 {
     grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
     column-gap: var(--brand-pricing-options-item-gap);
     row-gap: 0;
@@ -145,6 +154,17 @@
     --brand-pricing-options-item-gap: var(--brand-PricingOptions-items3-gap);
     --brand-pricing-options-container-padding-inline: var(--brand-PricingOptions-items3-container-padding-inline);
   }
+  .PricingOptions--variant-default.PricingOptions--items4 {
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    --brand-pricing-options-item-gap: var(--brand-PricingOptions-items4-gap);
+    --brand-pricing-options-container-padding-inline: var(--brand-PricingOptions-items4-container-padding-inline);
+  }
+  .PricingOptions--variant-cards.PricingOptions--items4 {
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 80rem) {
 }
 
 /* ---------------------------------------------------------- */
@@ -165,6 +185,20 @@
   .PricingOptions__item--has-leading-component {
     grid-row: leadingComponent / footnote;
   }
+}
+
+.PricingOptions__item--align-center {
+  justify-items: center;
+}
+
+.PricingOptions__item--align-center .PricingOptions__price,
+.PricingOptions__item--align-center .PricingOptions__description {
+  text-align: center;
+  justify-content: center;
+}
+
+.PricingOptions__item--align-center .PricingOptions__label {
+  justify-self: center;
 }
 
 /*
@@ -215,6 +249,7 @@
 .PricingOptions__price {
   display: flex;
   flex-wrap: wrap;
+  align-content: flex-start;
   column-gap: var(--base-size-12);
   grid-row: price;
   padding-block: var(--base-size-24);
@@ -259,10 +294,7 @@
 
 .PricingOptions__footnote {
   grid-row: footnote;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: var(--base-size-24);
+  display: block;
   margin-block-start: var(--base-size-40);
 }
 
@@ -276,6 +308,7 @@
   gap: var(--base-size-8);
   grid-row: feature-list;
   margin-block-start: var(--base-size-24);
+  width: 100%;
 }
 
 .PricingOptions__feature-list--has-divider {
@@ -327,7 +360,7 @@
 }
 
 /* Accordion heading styling */
-.PricingOptions__feature-list-accordion .PricingOptions__feature-list-accordion-heading h4 {
+.PricingOptions__feature-list-accordion .PricingOptions__feature-list-accordion-heading :is(h1, h2, h3, h4, h5, h6) {
   color: var(--brand-color-text-muted);
   font-size: var(--brand-text-size-300);
   line-height: var(--brand-text-lineHeight-300);
