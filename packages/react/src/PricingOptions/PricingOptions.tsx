@@ -360,7 +360,6 @@ const PricingOptionsPrice = forwardRef<HTMLParagraphElement, PricingOptionsPrice
 
 type PricingOptionsFeatureListProps = BaseProps<HTMLUListElement> & {
   accordionAs?: HeadingProps['as']
-  accordionSize?: HeadingProps['size']
   expanded?: ExpandedProp
   hasDivider?: boolean
   children: React.ReactElement<PricingOptionsFeatureHeadingProps | PricingOptionsFeatureListItemProps>[]

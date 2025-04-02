@@ -155,16 +155,9 @@
     --brand-pricing-options-container-padding-inline: var(--brand-PricingOptions-items3-container-padding-inline);
   }
   .PricingOptions--variant-default.PricingOptions--items4 {
-    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
     --brand-pricing-options-item-gap: var(--brand-PricingOptions-items4-gap);
     --brand-pricing-options-container-padding-inline: var(--brand-PricingOptions-items4-container-padding-inline);
   }
-  .PricingOptions--variant-cards.PricingOptions--items4 {
-    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 80rem) {
 }
 
 /* ---------------------------------------------------------- */
