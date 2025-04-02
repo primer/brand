@@ -492,7 +492,7 @@ export const WithIncludedAndExcludedFeatures: StoryFn<typeof PricingOptions> = (
           Code completions, Chat, and more for indie developers and freelancers.
         </PricingOptions.Description>
         <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
-        <PricingOptions.FeatureList accordionAs="h6">
+        <PricingOptions.FeatureList>
           <PricingOptions.FeatureListHeading>Chat</PricingOptions.FeatureListHeading>
           <PricingOptions.FeatureListItem>Unlimited messages, interactions, and history</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Context-aware coding support and explanations</PricingOptions.FeatureListItem>
