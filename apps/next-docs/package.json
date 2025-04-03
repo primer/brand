@@ -31,7 +31,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@primer/doctocat-nextjs": "0.0.0-20250403152652",
+    "@primer/doctocat-nextjs": "0.3.0-rc.0fe5c68",
     "@primer/octicons-react": "19.15.1",
     "next": "15.2.4",
     "react": ">=17 <= 18",
