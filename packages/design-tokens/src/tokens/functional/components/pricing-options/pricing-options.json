@@ -28,6 +28,18 @@
           }
         }
       }
+    },
+    "items4": {
+      "gap": {
+        "value": "var(--base-size-48)"
+      },
+      "container": {
+        "padding": {
+          "inline": {
+            "value": "var(--base-size-24)"
+          }
+        }
+      }
     }
   }
 }
