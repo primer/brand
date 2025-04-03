@@ -302,7 +302,7 @@ const PricingOptionsPrice = forwardRef<HTMLParagraphElement, PricingOptionsPrice
       <Text
         as="p"
         className={clsx(styles.PricingOptions__price, className)}
-        data-tesstid={testId || testIds.price}
+        data-testid={testId || testIds.price}
         ref={ref}
         weight="normal"
         {...rest}

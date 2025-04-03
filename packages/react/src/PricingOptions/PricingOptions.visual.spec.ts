@@ -134,4 +134,17 @@ test.describe('Visual Comparison: PricingOptions', () => {
       expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
     })
   })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Tablet viewport test for Expanded Tablet', () => {
+    test.use({viewport: {width: 834, height: 1112}})
+    test('PricingOptions / Expanded Tablet', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--expanded-tablet&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+  })
 })

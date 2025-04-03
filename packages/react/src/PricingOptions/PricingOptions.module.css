@@ -32,6 +32,13 @@
   padding-inline: var(--brand-pricing-options-container-padding-inline);
 }
 
+@media screen and (max-width: 63.24rem) {
+  .PricingOptions {
+    margin-inline: auto;
+    max-width: 488px;
+  }
+}
+
 @media (min-width: 63.25rem) {
   .PricingOptions {
     grid-template-areas: var(--brand-pricing-options-template-areas);
@@ -131,11 +138,11 @@
 @media (min-width: 48rem) {
   :where(.PricingOptions--variant-cards).PricingOptions--items4 {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
     column-gap: var(--brand-pricing-options-item-gap);
     row-gap: var(--brand-pricing-options-item-gap);
   }
 }
+
 @media (min-width: 63.25rem) {
   .PricingOptions--items2,
   .PricingOptions--items3,
@@ -169,7 +176,7 @@
   grid-template-areas: var(--brand-pricing-options-template-areas);
 }
 
-@media (min-width: 63.28rem) {
+@media (min-width: 63.25rem) {
   .PricingOptions__item {
     grid-row: label / footnote;
     grid-template-rows: subgrid;

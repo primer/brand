@@ -903,3 +903,10 @@ ExpandedNarrow.parameters = {
     defaultViewport: 'iphonexr',
   },
 }
+
+export const ExpandedTablet = () => <ExpandedNarrow />
+ExpandedTablet.parameters = {
+  viewport: {
+    defaultViewport: 'ipad',
+  },
+}

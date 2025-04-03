@@ -152,11 +152,10 @@ describe('PricingOptions.Item', () => {
       </PricingOptions.Item>,
     )
 
-    const PricingOptionsItemEl = getByRole('heading')
-    expect(PricingOptionsItemEl.tagName).toBe('H3')
+    expect(getByRole('heading', {level: 3})).toBeInTheDocument()
   })
 
-  it.each<'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'>(['h1', 'h2', 'h3', 'h4', 'h5', 'h6'])(
+  it.each(['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const)(
     'optionally renders the PricingOptions.Heading with different levels',
     size => {
       const {getByRole} = render(
