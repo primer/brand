@@ -9,7 +9,7 @@ import {Label} from '@primer/react'
 import {StarIcon, CopilotIcon} from '@primer/octicons-react'
 
 import {PropTableValues} from '../../src/components'
-import {PricingOptions} from '@primer/react-brand'
+import {PricingOptions, HeadingTags} from '@primer/react-brand'
 
 ## Examples
 
@@ -156,6 +156,47 @@ import {PricingOptions} from '@primer/react-brand'
 </PricingOptions>
 ```
 
+### Center alignment
+
+```jsx live
+<PricingOptions variant="cards" align="center">
+  <PricingOptions.Item>
+    <PricingOptions.Label>Recommended</PricingOptions.Label>
+    <PricingOptions.Heading>Copilot</PricingOptions.Heading>
+    <PricingOptions.Description>
+      Copilot in the coding environment.
+    </PricingOptions.Description>
+    <PricingOptions.Price
+      currencySymbol="$"
+      trailingText="per month / $100 per year"
+    >
+      10
+    </PricingOptions.Price>
+    <PricingOptions.PrimaryAction href="#">
+      Buy now
+    </PricingOptions.PrimaryAction>
+  </PricingOptions.Item>
+
+  <PricingOptions.Item>
+    <PricingOptions.Label>Recommended</PricingOptions.Label>
+    <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+    <PricingOptions.Description>
+      Copilot personalized to your organization throughout the software
+      development lifecycle. Requires GitHub Enterprise Cloud.
+    </PricingOptions.Description>
+    <PricingOptions.Price currencySymbol="$" trailingText="per user / month">
+      39
+    </PricingOptions.Price>
+    <PricingOptions.PrimaryAction href="#">
+      Join waitlist
+    </PricingOptions.PrimaryAction>
+    <PricingOptions.SecondaryAction href="#">
+      Contact sales
+    </PricingOptions.SecondaryAction>
+  </PricingOptions.Item>
+</PricingOptions>
+```
+
 ### One option
 
 This is the one-option layout for the pricing options component
@@ -254,19 +295,19 @@ This is the two-item layout for the pricing options component.
 </PricingOptions>
 ```
 
-### Three options
+### Three and four options
 
-This is the three-option layout for the pricing options component.
+`PricingOptions` supports a maximum of four items in both `default` and `card` layouts.
+
+Please refer to our [Storybook
+examples](https://primer.style/brand/storybook/?path=/story/components-pricingoptions-features--three-options)
+to see the component in a full-width context as originally intended.
 
 <Note>
 
 `PricingOptions` is designed to fill the width of the page's main container,
 thus it cannot be accurately represented within the narrower container of this
 documentation.
-
-Please refer to our [Storybook
-examples](https://primer.style/brand/storybook/?path=/story/components-pricingoptions-features--three-options)
-to see the component in a full-width context as originally intended.
 
 </Note>
 
@@ -494,10 +535,10 @@ One item per pricing plan to be displayed. Maximum of 3 items.
 
 ### PricingOptions.Heading <Label>Required</Label>
 
-| Name       | Type             |   Default   | required | Description                                       |
-| :--------- | :--------------- | :---------: | :------: | :------------------------------------------------ |
-| `as`       | `h3, h4, h5, h6` |    `h3`     | `false`  | Applies the underlying HTML heading level element |
-| `children` | `ReactNode`      | `undefined` |  `true`  | The heading of the item                           |
+| Name       | Type                                                   |   Default   | required | Description                                       |
+| :--------- | :----------------------------------------------------- | :---------: | :------: | :------------------------------------------------ |
+| `as`       | <PropTableValues values={HeadingTags} addLineBreaks /> |    `h3`     | `false`  | Applies the underlying HTML heading level element |
+| `children` | `ReactNode`                                            | `undefined` |  `true`  | The heading of the item                           |
 
 ### PricingOptions.Label
 
@@ -523,11 +564,12 @@ One item per pricing plan to be displayed. Maximum of 3 items.
 
 ### PricingOptions.FeatureList
 
-| Name         | Type                                                                                           |   Default   | required | Description                                                                                                 |
-| :----------- | :--------------------------------------------------------------------------------------------- | :---------: | :------: | :---------------------------------------------------------------------------------------------------------- |
-| `children`   | <PropTableValues values={['PricingOptions.Heading', 'PricingOptions.Item', ]} addLineBreaks /> | `undefined` |  `true`  | The list of features                                                                                        |
-| `expanded`   | `boolean`                                                                                      |   `true`    | `false`  | Controls visibility of feature items. Accepts Object type for granular control at different viewport sizes. |
-| `hasDivider` | `boolean`                                                                                      |   `true`    | `false`  | Controls visibility of a visual border between feature lists and adjacent actions                           |
+| Name          | Type                                                                                           |   Default   | required | Description                                                                                                 |
+| :------------ | :--------------------------------------------------------------------------------------------- | :---------: | :------: | :---------------------------------------------------------------------------------------------------------- |
+| `children`    | <PropTableValues values={['PricingOptions.Heading', 'PricingOptions.Item', ]} addLineBreaks /> | `undefined` |  `true`  | The list of features                                                                                        |
+| `accordionAs` | <PropTableValues values={HeadingTags} addLineBreaks />                                         |    `h4`     | `false`  | Applies the underlying HTML heading level element                                                           |
+| `expanded`    | `boolean`                                                                                      |   `true`    | `false`  | Controls visibility of feature items. Accepts Object type for granular control at different viewport sizes. |
+| `hasDivider`  | `boolean`                                                                                      |   `true`    | `false`  | Controls visibility of a visual border between feature lists and adjacent actions                           |
 
 ### PricingOptions.FeatureListHeading
 
