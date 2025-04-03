@@ -27,8 +27,10 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
  */
 import styles from './PricingOptions.module.css'
 
+type AlignOptions = 'start' | 'center'
+
 export type PricingOptionsProps = {
-  align?: 'start' | 'center'
+  align?: AlignOptions
   variant?: 'default' | 'cards'
   ['data-testid']?: string
 } & PropsWithChildren<BaseProps<HTMLDivElement>>
@@ -47,8 +49,6 @@ const testIds = {
   featureListHeading: 'PricingOptions__featureListHeading',
   footnote: 'PricingOptions__footnote',
 }
-
-type AlignOptions = 'start' | 'center'
 
 type PricingOptionsContextValue = {
   align: AlignOptions
