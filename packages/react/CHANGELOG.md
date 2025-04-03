@@ -1,5 +1,47 @@
 # @primer/react-brand
 
+## 0.50.0
+
+### Minor Changes
+
+- [#955](https://github.com/primer/brand/pull/955) [`2daaff8`](https://github.com/primer/brand/commit/2daaff87503192af74cb54bf37f3eb696c699a23) Thanks [@rezrah](https://github.com/rezrah)! - `Button` arrows are now hidden by default for all variants except `subtle` as part of a Core Brand refresh.
+
+  To optionally re-enable arrows, use the `hasArrow` prop.
+
+  ```jsx
+  <Button variant="primary" hasArrow>
+    Learn more
+  </Button>
+  ```
+
+### Patch Changes
+
+- [#958](https://github.com/primer/brand/pull/958) [`3b391a5`](https://github.com/primer/brand/commit/3b391a5d2577f5bdd108b78f04bc8ef444118c44) Thanks [@rezrah](https://github.com/rezrah)! - Updates to `PricingOptions` component:
+
+  - New center-aligned layout available via `align` prop.
+  - Added support for 4 pricing options. Previous maximum of 3.
+  - Removed heading level constraint to `as` prop in `PricingOptions.Heading`. Now accepts all heading levels, while retaining the previous `h3` default.
+  - Added `accordionAs`prop to `PricingOptions.FeatureList` for granular control over heading size.
+  - All pricing items under `1011px` now have a max width and centered positioning
+  - Fixed layout alignment bug when trailing text is not present under price.
+  - Fixed layout bug when footnote contains an inline link.
+
+- [#955](https://github.com/primer/brand/pull/955) [`2daaff8`](https://github.com/primer/brand/commit/2daaff87503192af74cb54bf37f3eb696c699a23) Thanks [@rezrah](https://github.com/rezrah)! - Visual update to `subtle` button variants. Borders on hover interactions have been replaced with a solid background color.
+
+- [#955](https://github.com/primer/brand/pull/955) [`2daaff8`](https://github.com/primer/brand/commit/2daaff87503192af74cb54bf37f3eb696c699a23) Thanks [@rezrah](https://github.com/rezrah)! - Added new `accent` button variant.
+
+  ```jsx
+  <Button variant="accent">Register now</Button>
+  ```
+
+  🔗 [See documentation for design guidelines and usage examples](https://primer.style/brand/components/Button)
+
+- [#955](https://github.com/primer/brand/pull/955) [`2daaff8`](https://github.com/primer/brand/commit/2daaff87503192af74cb54bf37f3eb696c699a23) Thanks [@rezrah](https://github.com/rezrah)! - Increased content spacing on wide breakpoints in `CTABanner` from `16px` to `32px`
+
+- [#957](https://github.com/primer/brand/pull/957) [`fbe8f17`](https://github.com/primer/brand/commit/fbe8f17b8c01d347a2af75f58e1a7d36e1e1a80d) Thanks [@rezrah](https://github.com/rezrah)! - Added an `align` prop to the `Card` component with `start` (default) or `center` alignment options. Refer to our documentation for examples on when the latter should be used.
+
+  No breaking changes are introduced as part of this change
+
 ## 0.49.0
 
 ### Minor Changes
