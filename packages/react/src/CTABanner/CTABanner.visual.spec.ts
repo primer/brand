@@ -21,6 +21,15 @@ test.describe('Visual Comparison: CTABanner', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('CTABanner / With Accent Button', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--with-accent-button&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('CTABanner / With Border', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-ctabanner-features--with-border&viewMode=story',

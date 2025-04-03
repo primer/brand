@@ -11,11 +11,13 @@ import {useAnimation} from '../'
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/button/colors-with-modes.css'
 import styles from './Button.module.css'
 
-export const ButtonVariants = ['primary', 'secondary', 'subtle'] as const
+export const ButtonVariants = ['primary', 'secondary', 'subtle', 'accent'] as const
 export const ButtonSizes = ['small', 'medium', 'large'] as const
 
 export const defaultButtonVariant = ButtonVariants[1]
 export const defaultButtonSize = ButtonSizes[1]
+
+type ButtonVariant = (typeof ButtonVariants)[number]
 
 export type ButtonBaseProps = {
   /**
@@ -29,7 +31,7 @@ export type ButtonBaseProps = {
   /**
    * The styling variations available in Button
    */
-  variant?: (typeof ButtonVariants)[number]
+  variant?: ButtonVariant
   /**
    * The size variations available in Button
    */
@@ -43,6 +45,8 @@ export type ButtonBaseProps = {
    */
   block?: boolean
 }
+
+const variantsWithArrow = ['subtle']
 
 export type ButtonProps<C extends React.ElementType> = BaseProps<C> & {
   as?: C
@@ -69,7 +73,7 @@ export const _Button = forwardRef(
       as,
       variant = defaultButtonVariant,
       size = defaultButtonSize,
-      hasArrow = true,
+      hasArrow = false,
       block = false,
       className,
       children,
@@ -93,6 +97,8 @@ export const _Button = forwardRef(
       disabled || ariaDisabled === 'true' || (typeof ariaDisabled === 'boolean' && ariaDisabled === true)
 
     const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
+
+    const showArrow = variantsWithArrow.includes(variant) || hasArrow
 
     const returnValidComponent = useCallback((component?: ReactElement | Icon) => {
       if (React.isValidElement(component)) {
@@ -194,7 +200,7 @@ export const _Button = forwardRef(
           </Text>
         </span>
 
-        {!TrailingVisual && hasArrow && (
+        {!TrailingVisual && showArrow && (
           <span className={clsx(styles['Button__trailing-visual'])}>
             <ExpandableArrow
               hidden

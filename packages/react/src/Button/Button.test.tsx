@@ -2,7 +2,7 @@ import React, {render, cleanup, act} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 
-import {Button, ButtonSizes} from './Button'
+import {Button, ButtonSizes, ButtonVariants} from './Button'
 import {axe, toHaveNoViolations} from 'jest-axe'
 import {SearchIcon} from '@primer/octicons-react'
 
@@ -123,9 +123,32 @@ describe('Button', () => {
     expect(consoleSpy).toHaveBeenCalled()
   })
 
+  it.each(ButtonVariants)('hides the arrow by default for all button variants except subtle', variant => {
+    const variantsWithArrow = ['subtle']
+
+    const {getByRole} = render(<Button variant={variant}>{variant}</Button>)
+    const btnEl = getByRole('button')
+    if (variantsWithArrow.includes(variant)) {
+      expect(btnEl.querySelector('.ExpandableArrow')).toBeInTheDocument()
+    } else {
+      expect(btnEl.querySelector('.ExpandableArrow')).not.toBeInTheDocument()
+    }
+  })
+
+  it.each(ButtonVariants)('can apply optional arrow for all variants', variant => {
+    const {getByRole} = render(
+      <Button variant={variant} hasArrow>
+        {variant}
+      </Button>,
+    )
+    const btnEl = getByRole('button')
+
+    expect(btnEl.querySelector('.ExpandableArrow')).toBeInTheDocument()
+  })
+
   it('triggers correct animations on button arrow during a hover event', async () => {
     const expectedClass = 'ExpandableArrow--expanded'
-    const {getByRole, getByTestId} = render(<Button>Button</Button>)
+    const {getByRole, getByTestId} = render(<Button hasArrow>Button</Button>)
 
     const el = getByTestId(Button.testIds.expandableArrow)
 
@@ -142,7 +165,11 @@ describe('Button', () => {
 
   it('does not trigger a hover event on expandable arrow if button is disabled', async () => {
     const expectedClass = 'ExpandableArrow--expanded'
-    const {getByRole, getByTestId} = render(<Button disabled>Button</Button>)
+    const {getByRole, getByTestId} = render(
+      <Button hasArrow disabled>
+        Button
+      </Button>,
+    )
 
     await act(async () => {
       await userEvent.hover(getByRole('button'))
@@ -153,7 +180,11 @@ describe('Button', () => {
 
   it('does not trigger a focus event on expandable arrow if button is disabled', async () => {
     const expectedClass = 'ExpandableArrow--expanded'
-    const {getByTestId} = render(<Button disabled>Button</Button>)
+    const {getByTestId} = render(
+      <Button disabled hasArrow>
+        Button
+      </Button>,
+    )
 
     await act(async () => {
       await userEvent.tab()
@@ -166,7 +197,7 @@ describe('Button', () => {
 
   it('applies expected logic to expandable arrow on focus', async () => {
     const expectedClass = 'ExpandableArrow--expanded'
-    const {getByTestId} = render(<Button>Button</Button>)
+    const {getByTestId} = render(<Button hasArrow>Button</Button>)
 
     await act(async () => {
       await userEvent.tab()

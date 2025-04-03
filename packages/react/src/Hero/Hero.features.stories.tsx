@@ -1,7 +1,7 @@
 import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
-import {HeartFillIcon, StarFillIcon} from '@primer/octicons-react'
+import {HeartFillIcon, PlayIcon, StarFillIcon} from '@primer/octicons-react'
 import placeholderImage from '../fixtures/images/placeholder.png'
 
 import {Hero} from '.'
@@ -41,6 +41,23 @@ export const WithMutedDescriptions: StoryFn<typeof Hero> = _args => (
       felis nam pulvinar risus elementum.
     </Hero.Description>
     <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+  </Hero>
+)
+
+export const WithAccentButton: StoryFn<typeof Hero> = _args => (
+  <Hero align="center">
+    <Hero.Label>GitHub Issues</Hero.Label>
+    <Hero.Heading>Project planning for developers</Hero.Heading>
+    <Hero.Description variant="muted">
+      Create issues, break them into tasks, track relationships, add custom fields, and have conversations. Visualize
+      large projects as tables, boards, or roadmaps, and automate everything with code.
+    </Hero.Description>
+    <Hero.PrimaryAction variant="accent" href="#" hasArrow={false}>
+      Start using projects
+    </Hero.PrimaryAction>
+    <Hero.SecondaryAction href="#" trailingVisual={<PlayIcon />}>
+      What is GitHub Issues
+    </Hero.SecondaryAction>
   </Hero>
 )
 
