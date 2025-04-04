@@ -1,8 +1,18 @@
 module.exports = {
-  //extends: ['next/core-web-vitals'], // To reenable after upgrading prettier to v3+
+  // extends: ['next/core-web-vitals'], // Reenable after upgrading prettier to v3+
   parserOptions: {
     tsconfigRootDir: __dirname,
   },
+  overrides: [
+    {
+      files: ['*.mdx'],
+      extends: ['plugin:mdx/recommended'],
+      rules: {
+        // Disable unused vars rule for MDX code usage
+        // 'no-unused-vars': 'off',
+      },
+    },
+  ],
   rules: {
     'import/extensions': [
       'error',
