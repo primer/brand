@@ -7,7 +7,6 @@
     'accordion';
   gap: 0;
   position: relative;
-  interpolate-size: allow-keywords;
 }
 
 @media (min-width: 48rem) {
@@ -129,8 +128,9 @@
 }
 
 .RiverAccordion__panel {
-  height: 0;
-  transition: height var(--brand-animation-duration-default) var(--brand-animation-easing-default),
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--brand-animation-duration-default) var(--brand-animation-easing-default),
     margin-block-start var(--brand-animation-duration-default) var(--brand-animation-easing-default),
     padding-block-end var(--brand-animation-duration-default) var(--brand-animation-easing-default);
   margin-block-start: var(--base-size-32);
@@ -140,13 +140,14 @@
 .RiverAccordion__item--open .RiverAccordion__panel {
   margin-block-start: var(--base-size-12);
   padding-block-end: var(--base-size-32);
-  height: auto;
+  grid-template-rows: 1fr;
 }
 
 .RiverAccordion__content {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  min-height: 0;
   gap: var(--base-size-20);
   color: var(--brand-color-text-muted);
   font-family: var(--brand-body-fontFamily);
@@ -154,9 +155,6 @@
   font-size: var(--brand-text-size-200);
   line-height: var(--brand-text-lineHeight-200);
   letter-spacing: var(--brand-text-letterSpacing-200);
-}
-
-.RiverAccordion__item--open {
 }
 
 .RiverAccordion__icon {
