@@ -1,5 +1,38 @@
 # @primer/brand-primitives
 
+## 0.50.0
+
+### Patch Changes
+
+- [#958](https://github.com/primer/brand/pull/958) [`3b391a5`](https://github.com/primer/brand/commit/3b391a5d2577f5bdd108b78f04bc8ef444118c44) Thanks [@rezrah](https://github.com/rezrah)! - Added new design tokens for a fourth pricing option item
+
+  ```css
+  --brand-PricingOptions-items4-container-padding-inline
+  --brand-PricingOptions-items4-gap
+  ```
+
+- [#955](https://github.com/primer/brand/pull/955) [`2daaff8`](https://github.com/primer/brand/commit/2daaff87503192af74cb54bf37f3eb696c699a23) Thanks [@rezrah](https://github.com/rezrah)! - Added tokens for `accent` and `subtle` button variants.
+
+  ```css
+    --brand-button-accent-bgColor-rest
+    --brand-button-accent-bgColor-hover
+    --brand-button-accent-bgColor-active
+    --brand-button-accent-bgColor-disabled
+    --brand-button-accent-fgColor-rest
+    --brand-button-accent-fgColor-disabled
+    --brand-button-subtle-bgColor-rest
+    --brand-button-subtle-bgColor-hover
+    --brand-button-subtle-bgColor-active
+  ```
+
+  Removed the following tokens for `subtle` variant as they are no longer needed:
+
+  ```css
+  --brand-button-subtle-borderColor-rest
+  --brand-button-subtle-borderColor-hover
+  --brand-button-subtle-borderColor-active
+  ```
+
 ## 0.49.0
 
 ## 0.48.0
