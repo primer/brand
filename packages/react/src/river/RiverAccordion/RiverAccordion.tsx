@@ -7,19 +7,6 @@ import styles from './RiverAccordion.module.css'
 import {useProvidedRefOrCreate} from '../../hooks/useRef'
 import {useId} from '../../hooks/useId'
 
-export type RiverAccordionProps = React.PropsWithChildren<{
-  align?: 'start' | 'end'
-}> &
-  React.HTMLAttributes<HTMLDivElement>
-
-export type RiverAccordionVisualProps = React.HTMLAttributes<HTMLDivElement>
-export type RiverAccordionHeadingProps = HeadingProps
-export type RiverAccordionContentProps = React.HTMLAttributes<HTMLDivElement>
-export type RiverAccordionItemProps = React.HTMLAttributes<HTMLDivElement> & {
-  children: React.ReactElement<RiverAccordionHeadingProps | RiverAccordionContentProps>[]
-  index?: number
-}
-
 type RiverAccordionContextType = {
   openIndex: number
   setOpenIndex: (index: number) => void
@@ -50,6 +37,11 @@ const useRiverAccordionItemContext = (): RiverAccordionItemContextType => {
   }
   return context
 }
+
+export type RiverAccordionProps = React.PropsWithChildren<{
+  align?: 'start' | 'end'
+}> &
+  React.HTMLAttributes<HTMLDivElement>
 
 const RiverAccordionRoot = forwardRef<HTMLDivElement, RiverAccordionProps>(
   ({align = 'start', children, className, ...rest}, forwardedRef) => {
@@ -108,6 +100,11 @@ const RiverAccordionRoot = forwardRef<HTMLDivElement, RiverAccordionProps>(
     )
   },
 )
+
+export type RiverAccordionItemProps = React.HTMLAttributes<HTMLDivElement> & {
+  children: React.ReactElement<RiverAccordionHeadingProps | RiverAccordionContentProps>[]
+  index?: number
+}
 
 const RiverAccordionItem = ({className, index, children, ...props}: RiverAccordionItemProps) => {
   const {openIndex} = useRiverAccordionContext()
@@ -174,6 +171,8 @@ const RiverAccordionItem = ({className, index, children, ...props}: RiverAccordi
   )
 }
 
+export type RiverAccordionHeadingProps = HeadingProps
+
 const RiverAccordionHeading = ({className, children, ...props}: RiverAccordionHeadingProps) => {
   const {setOpenIndex} = useRiverAccordionContext()
   const {id, index, isOpen} = useRiverAccordionItemContext()
@@ -201,9 +200,13 @@ const RiverAccordionHeading = ({className, children, ...props}: RiverAccordionHe
   )
 }
 
+export type RiverAccordionContentProps = React.HTMLAttributes<HTMLDivElement>
+
 const RiverAccordionContent = ({className, ...props}: RiverAccordionContentProps) => {
   return <div className={clsx(styles.RiverAccordion__content, className)} {...props} />
 }
+
+export type RiverAccordionVisualProps = React.HTMLAttributes<HTMLDivElement>
 
 const RiverAccordionVisual = ({className, ...props}: RiverAccordionVisualProps) => {
   return <div className={clsx(styles.RiverAccordion__visual, className)} {...props} />
