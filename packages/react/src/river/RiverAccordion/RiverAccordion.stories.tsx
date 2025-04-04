@@ -88,6 +88,8 @@ export default meta
 
 type Story = StoryObj<MetaProps>
 
+export const Default: Story = {}
+
 export const Playground: Story = {
   args: {
     align: 'start',
