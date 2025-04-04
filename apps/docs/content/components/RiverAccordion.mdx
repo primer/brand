@@ -83,7 +83,7 @@ import {RiverAccordion} from '@primer/react-brand'
 
 ### Visual alignment
 
-Use the `align` prop to control the position of the visuals. Setting `align="end"` will position the visuals on the right side of the content.
+Use the `align` prop to control the position of the visuals. Setting `align="end"` will invert the default position of the visuals and content.
 
 ```jsx live
 <RiverAccordion align="end">
@@ -153,18 +153,18 @@ Use the `align` prop to control the position of the visuals. Setting `align="end
 
 ### RiverAccordion <Label>Required</Label>
 
-| Name       | Type                                                        |  Default  | Description                                                            |
-| :--------- | :---------------------------------------------------------- | :-------: | :--------------------------------------------------------------------- |
-| `children` | `React.ReactElement[]`                                      |           | RiverAccordion.Item components                                         |
-| `align`    | <PropTableValues values={['start', 'end']} addLineBreaks /> | `'start'` | Controls the position of the visuals relative to the accordion content |
+| Name       | Type                                                                                                          |  Default  | Description                                                            |
+| :--------- | :------------------------------------------------------------------------------------------------------------ | :-------: | :--------------------------------------------------------------------- |
+| `children` | <PropTableValues values={[<a href="#riveraccordionitem-required">RiverAccordion.Item[]</a>]} addLineBreaks /> |           | Multiple RiverAccordion.Item components                                |
+| `align`    | <PropTableValues values={['start', 'end']} addLineBreaks />                                                   | `'start'` | Controls the position of the visuals relative to the accordion content |
 
 `RiverAccordion` extends the HTML `div` element and supports all `div` props.
 
 ### RiverAccordion.Item <Label>Required</Label>
 
-| Name       | Type                   | Default | Description                                          |
-| :--------- | :--------------------- | :-----: | :--------------------------------------------------- |
-| `children` | `React.ReactElement[]` |         | Must include Heading, Content, and Visual components |
+| Name       | Type                                                                                                                                                                                                                                                       | Default | Description                              |
+| :--------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----: | :--------------------------------------- |
+| `children` | <PropTableValues values={[<a href="#riveraccordionheading-required">RiverAccordion.Heading</a>,<a href="#riveraccordioncontent-required">RiverAccordion.Content</a>, <a href="#riveraccordionvisual-required">RiverAccordion.Visual</a>]} addLineBreaks /> |         | Must include all three listed components |
 
 `RiverAccordion.Item` extends the HTML `div` element and supports all `div` props.
 
@@ -174,7 +174,7 @@ Use the `align` prop to control the position of the visuals. Setting `align="end
 | :--------- | :------- | :-----: | :----------- |
 | `children` | `string` |         | Heading text |
 
-`RiverAccordion.Heading` extends the [`Heading`](/components/Stack) component and supports all `Heading` props.
+`RiverAccordion.Heading` extends the [`Heading`](/components/Heading) component and supports all `Heading` props.
 
 ### RiverAccordion.Content <Label>Required</Label>
 

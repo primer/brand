@@ -130,14 +130,16 @@
 
 .RiverAccordion__panel {
   height: 0;
-  transition: all var(--brand-animation-duration-default) var(--brand-animation-easing-default);
-  margin-block-start: 32px;
+  transition: height var(--brand-animation-duration-default) var(--brand-animation-easing-default),
+    margin-block-start var(--brand-animation-duration-default) var(--brand-animation-easing-default),
+    padding-block-end var(--brand-animation-duration-default) var(--brand-animation-easing-default);
+  margin-block-start: var(--base-size-32);
   overflow-y: clip;
 }
 
 .RiverAccordion__item--open .RiverAccordion__panel {
-  margin-block-start: 12px;
-  padding-block-end: 32px;
+  margin-block-start: var(--base-size-12);
+  padding-block-end: var(--base-size-32);
   height: auto;
 }
 
