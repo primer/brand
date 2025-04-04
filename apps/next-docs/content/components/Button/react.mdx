@@ -9,9 +9,15 @@ figma: 'https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=2
 source: https://github.com/primer/brand/blob/main/packages/react/src/Button/Button.tsx
 storybook: '/brand/storybook/?path=/story/components-button--playground'
 ---
-import {Label} from '@primer/react'
+
 import {ButtonVariantsProp, ButtonSizesProp} from './react.tsx'
 import {SearchIcon, ChevronDownIcon, FilterIcon} from '@primer/octicons-react'
+
+{/* TODO Remove once linter doesn't fail to recognize usage within jsx live code blocks' */}
+
+<SearchIcon style={{display: 'none'}} />
+<ChevronDownIcon style={{display: 'none'}} />
+<FilterIcon style={{display: 'none'}} />
 
 ```js
 import {Button} from '@primer/react-brand'
@@ -20,6 +26,7 @@ import {Button} from '@primer/react-brand'
 ## Examples
 
 ### Default
+
 This is the default variant for the Button component. It corresponds to the `secondary` variant appearance.
 
 ```jsx live
@@ -27,6 +34,7 @@ This is the default variant for the Button component. It corresponds to the `sec
 ```
 
 ### Primary
+
 The `primary` variant of Button indicates that the action is of high priority, and should be used sparingly.
 
 ```jsx live
@@ -34,6 +42,7 @@ The `primary` variant of Button indicates that the action is of high priority, a
 ```
 
 ### Subtle
+
 The `subtle` variant of Button indicates that the action is a low priority one.
 
 ```jsx live
@@ -41,6 +50,7 @@ The `subtle` variant of Button indicates that the action is a low priority one.
 ```
 
 ### Sizes
+
 ```jsx live
 <Stack direction="vertical" alignItems="flex-start">
   <Button size="small">Register now</Button>
@@ -50,11 +60,13 @@ The `subtle` variant of Button indicates that the action is a low priority one.
 ```
 
 ### Block
+
 ```jsx live
 <Button block>Full-width button</Button>
 ```
 
 ### Removing the arrow
+
 The animated arrow indicator can be removed using the `hasArrow` prop.
 
 ```jsx live
@@ -62,6 +74,7 @@ The animated arrow indicator can be removed using the `hasArrow` prop.
 ```
 
 ### Using an icon
+
 You can place an icon inside the Button in either the leading or the trailing position to enhance the visual context. It is recommended to use an [Octicon](https://primer.style/octicons) here.
 
 ```jsx live
@@ -75,6 +88,7 @@ You can place an icon inside the Button in either the leading or the trailing po
 ```
 
 ### Polymorphism
+
 The `Button` component can render as a `button` or `a` HTML element. By default, it will render as a `button`.
 
 ```jsx live
@@ -86,11 +100,12 @@ The `Button` component can render as a `button` or `a` HTML element. By default,
 ## Component props
 
 ### Button
-| Name             | Type               | Default      | Description                                          |
-| :--------------- | :----------------- | :----------: | :--------------------------------------------------- |
-| `leadingVisual`  | `ReactElement`     | `undefined`  | The leading visual appears before the button content |
-| `trailingVisual` | `ReactElement`     | `undefined`  | The trailing visual appears after the button content |
-| `variants`       | <ButtonVariantsProp /> | `'secondary'` | The styling variations available in Button      |
-| `size`           | <ButtonSizesProp /> | `'medium'`   | The size variations available in Button             |
-| `block`          | `boolean`          | `false`      | The full-width option available in Button            |
-| `hasArrow`       | `boolean`          | `true`       | A flag to show/hide the arrow icon                   |
+
+| Name             | Type                   |    Default    | Description                                          |
+| :--------------- | :--------------------- | :-----------: | :--------------------------------------------------- |
+| `leadingVisual`  | `ReactElement`         |  `undefined`  | The leading visual appears before the button content |
+| `trailingVisual` | `ReactElement`         |  `undefined`  | The trailing visual appears after the button content |
+| `variants`       | <ButtonVariantsProp /> | `'secondary'` | The styling variations available in Button           |
+| `size`           | <ButtonSizesProp />    |  `'medium'`   | The size variations available in Button              |
+| `block`          | `boolean`              |    `false`    | The full-width option available in Button            |
+| `hasArrow`       | `boolean`              |    `true`     | A flag to show/hide the arrow icon                   |
