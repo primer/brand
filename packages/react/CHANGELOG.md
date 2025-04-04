@@ -1,5 +1,99 @@
 # @primer/react-brand
 
+## 0.50.0
+
+### Minor Changes
+
+- [#955](https://github.com/primer/brand/pull/955) [`2daaff8`](https://github.com/primer/brand/commit/2daaff87503192af74cb54bf37f3eb696c699a23) Thanks [@rezrah](https://github.com/rezrah)! - `Button` arrows are now hidden by default for all variants except `subtle` as part of a Core Brand refresh.
+
+  To optionally re-enable arrows, use the `hasArrow` prop.
+
+  ```jsx
+  <Button variant="primary" hasArrow>
+    Learn more
+  </Button>
+  ```
+
+### Patch Changes
+
+- [#958](https://github.com/primer/brand/pull/958) [`3b391a5`](https://github.com/primer/brand/commit/3b391a5d2577f5bdd108b78f04bc8ef444118c44) Thanks [@rezrah](https://github.com/rezrah)! - Updates to `PricingOptions` component:
+
+  - New center-aligned layout available via `align` prop.
+  - Added support for 4 pricing options. Previous maximum of 3.
+  - Removed heading level constraint to `as` prop in `PricingOptions.Heading`. Now accepts all heading levels, while retaining the previous `h3` default.
+  - Added `accordionAs`prop to `PricingOptions.FeatureList` for granular control over heading size.
+  - All pricing items under `1011px` now have a max width and centered positioning
+  - Fixed layout alignment bug when trailing text is not present under price.
+  - Fixed layout bug when footnote contains an inline link.
+
+- [#955](https://github.com/primer/brand/pull/955) [`2daaff8`](https://github.com/primer/brand/commit/2daaff87503192af74cb54bf37f3eb696c699a23) Thanks [@rezrah](https://github.com/rezrah)! - Visual update to `subtle` button variants. Borders on hover interactions have been replaced with a solid background color.
+
+- [#955](https://github.com/primer/brand/pull/955) [`2daaff8`](https://github.com/primer/brand/commit/2daaff87503192af74cb54bf37f3eb696c699a23) Thanks [@rezrah](https://github.com/rezrah)! - Added new `accent` button variant.
+
+  ```jsx
+  <Button variant="accent">Register now</Button>
+  ```
+
+  🔗 [See documentation for design guidelines and usage examples](https://primer.style/brand/components/Button)
+
+- [#955](https://github.com/primer/brand/pull/955) [`2daaff8`](https://github.com/primer/brand/commit/2daaff87503192af74cb54bf37f3eb696c699a23) Thanks [@rezrah](https://github.com/rezrah)! - Increased content spacing on wide breakpoints in `CTABanner` from `16px` to `32px`
+
+- [#957](https://github.com/primer/brand/pull/957) [`fbe8f17`](https://github.com/primer/brand/commit/fbe8f17b8c01d347a2af75f58e1a7d36e1e1a80d) Thanks [@rezrah](https://github.com/rezrah)! - Added an `align` prop to the `Card` component with `start` (default) or `center` alignment options. Refer to our documentation for examples on when the latter should be used.
+
+  No breaking changes are introduced as part of this change
+
+## 0.49.0
+
+### Minor Changes
+
+- [#947](https://github.com/primer/brand/pull/947) [`646cccf`](https://github.com/primer/brand/commit/646cccfc502973f52bc662dbc11a29d059a46bda) Thanks [@joshfarrant](https://github.com/joshfarrant)! - - Improved `VideoPlayer` appearance on narrow viewports.
+  - This necessitated the removal of the `showControlsWhenPaused` prop to prevent the height of the `VideoPlayer` from changing when the video is played/paused.
+
+## 0.48.0
+
+### Minor Changes
+
+- [#945](https://github.com/primer/brand/pull/945) [`13b84de`](https://github.com/primer/brand/commit/13b84deefa7c3cdf309275a82723d260d2b979aa) Thanks [@rezrah](https://github.com/rezrah)! - Removed global CSS overrides for `reduced-motion` user preferences with local, component equivalents.
+
+  > [!WARNING]
+  > Users who relied on this functionality should now implement their own override mechanisms at the component or page level.
+
+- [#926](https://github.com/primer/brand/pull/926) [`b11c431`](https://github.com/primer/brand/commit/b11c431d762ada206179eb81257b85d86a9e7f58) Thanks [@joshfarrant](https://github.com/joshfarrant)! - - Updated the `Pagination` component to ensure consistent behaviour across all viewports by displaying a condensed pagination on narrow viewports.
+
+  - ⚠️ Deprecated responsive object support in the `showPages` prop. The `showPages` prop now only accepts a boolean value which will hide/show the page numbers across all viewports.
+
+    ```diff
+      <Pagination
+    -   showPages={{narrow: true, regular: true, wide: true}}
+    +   showPages
+      />
+
+      // Or
+
+      <Pagination
+    -   showPages={{narrow: false, regular: false, wide: false}}
+    +   showPages={false}
+      />
+    ```
+
+### Patch Changes
+
+- [#931](https://github.com/primer/brand/pull/931) [`c309912`](https://github.com/primer/brand/commit/c3099124855ee87963e42781edfb7893e94c6eac) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Fixed a bug in Safari where an `Icon` component with `hasBackground={true}` would cut off the corners of the rendered SVG. To resolve this the `Icon` component now wraps the rendered SVG in a div.
+
+- [#927](https://github.com/primer/brand/pull/927) [`91c10c5`](https://github.com/primer/brand/commit/91c10c59bef556d99b0710d02c5f133fe10eb32c) Thanks [@rezrah](https://github.com/rezrah)! - Improved typings to various components. This update should not affect the end-user API's.
+
+- [#945](https://github.com/primer/brand/pull/945) [`13b84de`](https://github.com/primer/brand/commit/13b84deefa7c3cdf309275a82723d260d2b979aa) Thanks [@rezrah](https://github.com/rezrah)! - Fixed hover states for inline links in the `Prose` component. Links now behave identically to `InlineLink` component.
+
+- [#946](https://github.com/primer/brand/pull/946) [`010578b`](https://github.com/primer/brand/commit/010578b49daf0b071bf6cd145c0fc91acb8bf14b) Thanks [@danielguillan](https://github.com/danielguillan)! - Added a new `small` size option for `Label`
+
+  🔗 [See documentation for usage examples](https://primer.style/brand/components/Label/react#sizes)
+
+- [#943](https://github.com/primer/brand/pull/943) [`16b0cc7`](https://github.com/primer/brand/commit/16b0cc796489bc7ea90411a86f8e2f0ac710854e) Thanks [@danielguillan](https://github.com/danielguillan)! - Sets the maximum widths for the heading and description of the `Card` component.
+
+- [#940](https://github.com/primer/brand/pull/940) [`cca78a1`](https://github.com/primer/brand/commit/cca78a17b1266b1b0276c84c18983832d6c7fc94) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Updated the `Accordion` component to support additional state handling methods. All changes are backwards compatible. Refer to Storybook for examples of these additional `Accordion` features.
+
+- [#942](https://github.com/primer/brand/pull/942) [`5f31936`](https://github.com/primer/brand/commit/5f319362d85ea79fabf6b5239848cc30503b1ccd) Thanks [@danielguillan](https://github.com/danielguillan)! - Update the default `primary` and `secondary` accent color tokens from `pink` and `purple` to `green` and `yellow`, respectively.
+
 ## 0.47.2
 
 ### Patch Changes

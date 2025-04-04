@@ -54,6 +54,36 @@ module.exports = {
         },
       },
     },
+    accent: {
+      bgColor: {
+        rest: {
+          value: 'var(--base-color-scale-green-5)',
+          dark: 'var(--base-color-scale-green-1)',
+        },
+        hover: {
+          value: 'var(--base-color-scale-green-4)',
+          dark: 'var(--base-color-scale-green-3)',
+        },
+        active: {
+          value: 'var(--base-color-scale-green-5)',
+          dark: 'var(--base-color-scale-green-1)',
+        },
+        disabled: {
+          value: 'var(--base-color-scale-gray-4)',
+          dark: 'var(--base-color-scale-gray-4)',
+        },
+      },
+      fgColor: {
+        rest: {
+          value: 'var(--base-color-scale-white-0)',
+          dark: 'var(--base-color-scale-black-0)',
+        },
+        disabled: {
+          value: 'var(--base-color-scale-gray-2)',
+          dark: 'var(--base-color-scale-gray-2)',
+        },
+      },
+    },
     secondary: {
       bgColor: {
         rest: {
@@ -95,18 +125,18 @@ module.exports = {
       },
     },
     subtle: {
-      borderColor: {
+      bgColor: {
         rest: {
           value: 'transparent',
           dark: 'transparent',
         },
         hover: {
-          value: 'var(--base-color-scale-gray-9)',
-          dark: 'var(--base-color-scale-white-0)',
+          value: '#b7bfc833',
+          dark: '#8a939e33',
         },
         active: {
-          value: 'var(--base-color-scale-gray-9)',
-          dark: 'var(--base-color-scale-white-0)',
+          value: '#b7bfc866',
+          dark: '#8a939e66',
         },
       },
       fgColor: {

@@ -23,6 +23,7 @@ import stylesLink from '../Link/Link.module.css'
 export const CardIconColors = Colors
 
 export const defaultCardIconColor = CardIconColors[0]
+
 export type CardProps = {
   /**
    * Specify alternative card appearance
@@ -55,6 +56,10 @@ export type CardProps = {
    * Fills the width of the parent container and removes the default max-width.
    */
   fullWidth?: boolean
+  /**
+   * Aligns the card content
+   */
+  align?: 'start' | 'center'
 } & Omit<BaseProps<HTMLDivElement>, 'animate'> &
   Omit<React.ComponentPropsWithoutRef<'div'>, 'onMouseEnter' | 'onMouseLeave' | 'onFocus' | 'onBlur'> &
   Pick<React.ComponentPropsWithoutRef<'a'>, 'onMouseEnter' | 'onMouseLeave' | 'onFocus' | 'onBlur'>
@@ -62,6 +67,7 @@ export type CardProps = {
 const CardRoot = forwardRef<HTMLDivElement, CardProps>(
   (
     {
+      align = 'start',
       onMouseEnter,
       onMouseLeave,
       onFocus,
@@ -111,7 +117,10 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
       <WrapperComponent
         style={style}
         disableSkew={disableAnimation}
-        className={clsx(fullWidth ? styles['Card--fullWidth'] : styles['Card--maxWidth'])}
+        className={clsx(
+          fullWidth ? styles['Card--fullWidth'] : styles['Card--maxWidth'],
+          styles[`Card--align-${align}`],
+        )}
       >
         <div
           className={clsx(

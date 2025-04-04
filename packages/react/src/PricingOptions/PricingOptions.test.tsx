@@ -144,4 +144,76 @@ describe('PricingOptions.Item', () => {
 
     expect(testIdsInOrder).toEqual(expectedOrder)
   })
+
+  it('renders the PricingOptions.Heading with a h3 by default', () => {
+    const {getByRole} = render(
+      <PricingOptions.Item>
+        <PricingOptions.Heading>Mock heading</PricingOptions.Heading>
+      </PricingOptions.Item>,
+    )
+
+    expect(getByRole('heading', {level: 3})).toBeInTheDocument()
+  })
+
+  it.each(['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const)(
+    'optionally renders the PricingOptions.Heading with different levels',
+    size => {
+      const {getByRole} = render(
+        <PricingOptions.Item>
+          <PricingOptions.Heading as={size}>Mock heading</PricingOptions.Heading>
+        </PricingOptions.Item>,
+      )
+
+      const PricingOptionsItemEl = getByRole('heading')
+      expect(PricingOptionsItemEl.tagName).toBe(size.toUpperCase())
+    },
+  )
+
+  it('renders the PricingOptions.FeatureList accordion heading with the correct default level', () => {
+    const expectedHeadingTag = 'h4'
+
+    const {getByRole} = render(
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+          <PricingOptions.Description>
+            Code completions, Chat, and more for indie developers and freelancers.
+          </PricingOptions.Description>
+          <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListHeading>Chat</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem>
+              Unlimited messages, interactions, and history
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+        </PricingOptions.Item>
+      </PricingOptions>,
+    )
+    const PricingOptionsItemEl = getByRole('heading', {name: "What's included"})
+    expect(PricingOptionsItemEl.tagName).toBe(expectedHeadingTag.toUpperCase())
+  })
+
+  it('renders the PricingOptions.FeatureList accordion heading with an alternative level', () => {
+    const expectedHeadingTag = 'h6'
+
+    const {getByRole} = render(
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+          <PricingOptions.Description>
+            Code completions, Chat, and more for indie developers and freelancers.
+          </PricingOptions.Description>
+          <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
+          <PricingOptions.FeatureList accordionAs={expectedHeadingTag}>
+            <PricingOptions.FeatureListHeading>Chat</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem>
+              Unlimited messages, interactions, and history
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+        </PricingOptions.Item>
+      </PricingOptions>,
+    )
+    const PricingOptionsItemEl = getByRole('heading', {name: "What's included"})
+    expect(PricingOptionsItemEl.tagName).toBe(expectedHeadingTag.toUpperCase())
+  })
 })

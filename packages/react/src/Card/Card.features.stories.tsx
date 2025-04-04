@@ -1,7 +1,7 @@
 import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 import {Card, CardIconColors} from '.'
-import {Stack, LabelColors, Grid, ThemeProvider, Box} from '..'
+import {Stack, LabelColors, Grid, ThemeProvider, Box, Section} from '..'
 import placeholderImage from '../fixtures/images/placeholder.png'
 import {CopilotIcon, ZapIcon, RocketIcon, GitBranchIcon, HeartIcon} from '@primer/octicons-react'
 import {IconProps} from '../Icon'
@@ -45,22 +45,89 @@ export const CTAText: StoryFn<typeof Card> = () => {
   )
 }
 
+export const CenterAligned: StoryFn<typeof Card> = () => {
+  return (
+    <>
+      <Section backgroundColor="default">
+        <Grid>
+          <Grid.Column span={{xsmall: 12, medium: 6}}>
+            <Card hasBorder fullWidth align="center" href="https://github.com">
+              <Card.Icon icon={GitBranchIcon} color="purple" hasBackground />
+              <Card.Heading>Code search & code view</Card.Heading>
+              <Card.Description>
+                In a recent TechTarget study, 70 percent of organizations reported they had adopted DevOps.
+              </Card.Description>
+            </Card>
+          </Grid.Column>
+          <Grid.Column span={{xsmall: 12, medium: 6}}>
+            <Card hasBorder fullWidth align="center" href="https://github.com">
+              <Card.Icon icon={GitBranchIcon} color="purple" hasBackground />
+              <Card.Heading>Code search & code view</Card.Heading>
+              <Card.Description>
+                In a recent TechTarget study, 70 percent of organizations reported they had adopted DevOps.
+              </Card.Description>
+            </Card>
+          </Grid.Column>
+        </Grid>
+      </Section>
+      <Section backgroundColor="subtle">
+        <Grid>
+          <Grid.Column span={{xsmall: 12, medium: 4}}>
+            <Card hasBorder fullWidth align="center" href="https://github.com">
+              <Card.Icon icon={GitBranchIcon} color="purple" hasBackground />
+              <Card.Heading>Code search & code view</Card.Heading>
+              <Card.Description>
+                In a recent TechTarget study, 70 percent of organizations reported they had adopted DevOps.
+              </Card.Description>
+            </Card>
+          </Grid.Column>
+          <Grid.Column span={{xsmall: 12, medium: 4}}>
+            <Card hasBorder fullWidth align="center" href="https://github.com">
+              <Card.Icon icon={GitBranchIcon} color="purple" hasBackground />
+              <Card.Heading>Code search & code view</Card.Heading>
+              <Card.Description>
+                In a recent TechTarget study, 70 percent of organizations reported they had adopted DevOps.
+              </Card.Description>
+            </Card>
+          </Grid.Column>
+          <Grid.Column span={{xsmall: 12, medium: 4}}>
+            <Card hasBorder fullWidth align="center" href="https://github.com">
+              <Card.Icon icon={GitBranchIcon} color="purple" hasBackground />
+              <Card.Heading>Code search & code view</Card.Heading>
+              <Card.Description>
+                In a recent TechTarget study, 70 percent of organizations reported they had adopted DevOps.
+              </Card.Description>
+            </Card>
+          </Grid.Column>
+        </Grid>
+      </Section>
+    </>
+  )
+}
+CenterAligned.storyName = 'Align center'
+
 export const FullWidth: StoryFn<typeof Card> = () => {
   return (
-    <Card href="https://github.com" fullWidth hasBorder>
-      <Card.Image
-        aspectRatio="16:10"
-        src={placeholderImage}
-        alt="placeholder, blank area with an gray background color"
-      />
-      <Card.Heading>GitHub Actions cheat sheet</Card.Heading>
-      <Card.Description>
-        Integer pellentesque lorem ex, et ultricies tellus commodo vitae. In fringilla facilisis odio et interdum. Nulla
-        imperdiet facilisis erat, at gravida erat rutrum a. Nullam hendrerit est in arcu dapibus rhoncus. Ut a nisi
-        massa. Suspendisse id interdum risus, pretium consectetur sapien. Nullam ac elit nisi. Vivamus justo libero,
-        rutrum id semper ac, varius ut nisl. Nulla quis vehicula risus.
-      </Card.Description>
-    </Card>
+    <Section>
+      <Grid>
+        <Grid.Column>
+          <Card href="https://github.com" fullWidth hasBorder>
+            <Card.Image
+              aspectRatio="16:10"
+              src={placeholderImage}
+              alt="placeholder, blank area with an gray background color"
+            />
+            <Card.Heading>GitHub Actions cheat sheet</Card.Heading>
+            <Card.Description>
+              Integer pellentesque lorem ex, et ultricies tellus commodo vitae. In fringilla facilisis odio et interdum.
+              Nulla imperdiet facilisis erat, at gravida erat rutrum a. Nullam hendrerit est in arcu dapibus rhoncus. Ut
+              a nisi massa. Suspendisse id interdum risus, pretium consectetur sapien. Nullam ac elit nisi. Vivamus
+              justo libero, rutrum id semper ac, varius ut nisl. Nulla quis vehicula risus.
+            </Card.Description>
+          </Card>
+        </Grid.Column>
+      </Grid>
+    </Section>
   )
 }
 
@@ -102,7 +169,7 @@ export const Border: StoryFn<typeof Card> = () => {
 
 export const IconColors: StoryFn<typeof Card> = () => {
   return (
-    <Stack padding={'none'} direction="horizontal" gap={'normal'} style={{flexWrap: 'wrap'}}>
+    <Stack padding="none" direction="horizontal" gap="normal" style={{flexWrap: 'wrap'}}>
       {CardIconColors.map((color, id) => {
         return (
           <Card key={id} href="https://github.com">

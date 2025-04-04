@@ -71,6 +71,9 @@
 
 /* Large breakpoint and up */
 @media screen and (min-width: 63.25rem) {
+  .CTABanner-content {
+    gap: var(--base-size-32);
+  }
   .CTABanner-container {
     padding: var(--base-size-128) var(--base-size-64);
   }

@@ -1,6 +1,6 @@
 {
   "name": "@primer/brand-docs",
-  "version": "0.47.1",
+  "version": "0.50.0",
   "private": true,
   "description": "Primer Brand Documentation",
   "keywords": [
@@ -31,22 +31,23 @@
     "start": "next start"
   },
   "dependencies": {
-    "@primer/doctocat-nextjs": "^0.0.0-20250218165045",
-    "@primer/octicons-react": "19.15.0",
-    "next": "15.1.6",
+    "@primer/doctocat-nextjs": "0.3.0",
+    "@primer/octicons-react": "19.15.1",
+    "next": "15.2.4",
     "react": ">=17 <= 18",
     "react-dom": ">=17 <= 18"
   },
   "devDependencies": {
     "@github/prettier-config": "^0.0.6",
-    "@primer/brand-primitives": "^0.47.1",
+    "@primer/brand-primitives": "^0.50.0",
     "@primer/react": "37.11.2",
-    "@primer/react-brand": "0.47.1",
+    "@primer/react-brand": "0.50.0",
     "@types/node": "18.11.10",
-    "eslint-config-next": "15.1.6",
+    "eslint-config-next": "15.2.4",
     "eslint-plugin-mdx": "^3.3.2",
     "prettier": "^3.5.1",
-    "typescript": "5.7.3"
+    "styled-components": "^5.3.11",
+    "typescript": "5.8.2"
   },
   "peerDependencies": {
     "react": ">=17 <= 18",
