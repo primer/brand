@@ -86,6 +86,8 @@
       url: /components/Prose
     - title: River
       url: /components/River
+    - title: River accordion
+      url: /components/RiverAccordion
     - title: Section
       url: /components/Section
     - title: Section intro
