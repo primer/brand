@@ -2,6 +2,9 @@ import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 
 import {Link, RiverAccordion, type RiverAccordionProps, Text} from '../../'
+import placeholder1 from '../../fixtures/images/placeholder-1.png'
+import placeholder2 from '../../fixtures/images/placeholder-2.png'
+import placeholder3 from '../../fixtures/images/placeholder-3.png'
 
 export type MetaProps = RiverAccordionProps
 
@@ -34,7 +37,7 @@ const meta: Meta<MetaProps> = {
 
           <RiverAccordion.Visual>
             <img
-              src="https://placehold.co/600x400/FF5733/ffffff?text=1"
+              src={placeholder1}
               alt="placeholder, blank area with an orange background color and a white number 1 in the center"
             />
           </RiverAccordion.Visual>
@@ -54,7 +57,7 @@ const meta: Meta<MetaProps> = {
 
           <RiverAccordion.Visual>
             <img
-              src="https://placehold.co/600x400/AF7AC5/ffffff?text=2"
+              src={placeholder2}
               alt="placeholder, blank area with a purple background color and a white number 2 in the center"
             />
           </RiverAccordion.Visual>
@@ -74,7 +77,7 @@ const meta: Meta<MetaProps> = {
 
           <RiverAccordion.Visual>
             <img
-              src="https://placehold.co/600x400/48C9B0/ffffff?text=3"
+              src={placeholder3}
               alt="placeholder, blank area with a green background color and a white number 3 in the center"
             />
           </RiverAccordion.Visual>
