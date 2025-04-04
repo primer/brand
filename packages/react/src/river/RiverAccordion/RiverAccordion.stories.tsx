@@ -26,10 +26,8 @@ const meta: Meta<MetaProps> = {
         <RiverAccordion.Item>
           <RiverAccordion.Heading>Heading 1</RiverAccordion.Heading>
           <RiverAccordion.Content>
-            <Text as="p" variant="muted" weight="medium" size="200">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-              turpis felis nam pulvinar risus elementum.
-            </Text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis nam pulvinar risus elementum.
             <Link href="#" variant="accent">
               Call to action
             </Link>
@@ -46,10 +44,8 @@ const meta: Meta<MetaProps> = {
         <RiverAccordion.Item>
           <RiverAccordion.Heading>Heading 2</RiverAccordion.Heading>
           <RiverAccordion.Content>
-            <Text as="p" variant="muted" weight="medium" size="200">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-              turpis felis nam pulvinar risus elementum.
-            </Text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis nam pulvinar risus elementum.
             <Link href="#" variant="accent">
               Call to action
             </Link>
@@ -66,10 +62,8 @@ const meta: Meta<MetaProps> = {
         <RiverAccordion.Item>
           <RiverAccordion.Heading>Heading 3</RiverAccordion.Heading>
           <RiverAccordion.Content>
-            <Text as="p" variant="muted" weight="medium" size="200">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-              turpis felis nam pulvinar risus elementum.
-            </Text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis nam pulvinar risus elementum.
             <Link href="#" variant="accent">
               Call to action
             </Link>
