@@ -1,5 +1,13 @@
 # @primer/react-brand
 
+## 0.50.1
+
+### Patch Changes
+
+- [#960](https://github.com/primer/brand/pull/960) [`1203906`](https://github.com/primer/brand/commit/12039063f3b80d7dc0bee7f0b501ab1a0e3d613a) Thanks [@rezrah](https://github.com/rezrah)! - Updating various project dependencies.
+
+  No planned changes to Primer Brand component APIs, although minor visual changes to certain icons could be visible due to an internal update of the Primer Octicons dependency.
+
 ## 0.50.0
 
 ### Minor Changes
