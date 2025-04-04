@@ -222,6 +222,10 @@ const isRiverAccordionContent = createComponentTypeGuard(RiverAccordionContent)
 const isRiverAccordionHeading = createComponentTypeGuard(RiverAccordionHeading)
 const isRiverAccordionVisual = createComponentTypeGuard(RiverAccordionVisual)
 
+/**
+ * Use the RiverAccordion to create collapsible content panels with associated visuals.
+ * @see https://primer.style/brand/components/RiverAccordion
+ */
 export const RiverAccordion = Object.assign(RiverAccordionRoot, {
   Content: RiverAccordionContent,
   Heading: RiverAccordionHeading,
