@@ -1,7 +1,7 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 
-import {Link, RiverAccordion, type RiverAccordionProps, Text} from '../../'
+import {Link, RiverAccordion, type RiverAccordionProps} from '../../'
 import placeholder1 from '../../fixtures/images/placeholder-1.png'
 import placeholder2 from '../../fixtures/images/placeholder-2.png'
 import placeholder3 from '../../fixtures/images/placeholder-3.png'
