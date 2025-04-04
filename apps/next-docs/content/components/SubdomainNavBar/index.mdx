@@ -1,0 +1,139 @@
+---
+title: Subdomain nav bar
+description: Use the subdomain nav bar component for top level navigation for subdomain sites.
+keywords: ['navigation', 'top level']
+show-tabs: true
+tab-label: React
+figma: https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=1024%3A32796
+source: https://github.com/primer/brand/blob/main/packages/react/src/SubdomainNavBar/SubdomainNavBar.tsx
+storybook: '/brand/storybook/?path=/story/components-subdomainnavbar--playground'
+---
+
+import {Label} from '@primer/react'
+import {SubdomainNavBarChildrenProp} from './react'
+
+```js
+import {SubdomainNavBar} from '@primer/react-brand'
+```
+
+## Examples
+
+> `SubdomainNavBar` is designed to fix to the top of the viewport. Please refer to our [Storybook examples](https://primer.style/brand/storybook/?path=/story/components-subdomainnavbar--playground) to see the component in a full-screen browser as originally intended.
+
+### Basic
+
+```jsx live
+<SubdomainNavBar title="Subdomain" fixed={false}>
+  <SubdomainNavBar.Link href="#">Collections</SubdomainNavBar.Link>
+  <SubdomainNavBar.Link href="#">Topics</SubdomainNavBar.Link>
+  <SubdomainNavBar.Link href="#">Articles</SubdomainNavBar.Link>
+  <SubdomainNavBar.Link href="#">Events</SubdomainNavBar.Link>
+  <SubdomainNavBar.Link href="#">Video</SubdomainNavBar.Link>
+  <SubdomainNavBar.Link href="#">Social</SubdomainNavBar.Link>
+  <SubdomainNavBar.Search />
+  <SubdomainNavBar.PrimaryAction href="#">Primary CTA</SubdomainNavBar.PrimaryAction>
+  <SubdomainNavBar.SecondaryAction href="#">Secondary CTA</SubdomainNavBar.SecondaryAction>
+</SubdomainNavBar>
+```
+
+### Search
+
+`SubdomainNavBar` offers an optional search form control. The form can operate in both `onSubmit` and `onChange` modes, with the latter facilitating inline results to appear.
+
+```javascript live noinline
+const App = () => {
+  const inputRef = React.useRef(null)
+  const [searchResults, setSearchResults] = React.useState([])
+  const [searchTerm, setSearchTerm] = React.useState('')
+
+  const mockSearchData = [
+    {
+      title: 'How to transform your business in a digital world',
+      description:
+        'GitHub Enterprise empowers developers with tools they already know and love, accelerates high-quality software development and secure delivery, and enhances the speed and power of innovation.\n',
+      url: 'https://resources.github.com/devops/github-enterprise-ebook',
+      date: '2022-08-29T00:00+02:00',
+    },
+    {
+      title: 'The fundamentals of continuous deployment in DevOps',
+      description:
+        'What is continuous deployment?\nContinuous deployment (CD) is an automated software release practice where code changes are deployed to different stages as they pass predefined tests. The goal of CD is to facilitate faster releases by using automation to help remove the need for human intervention as much as possible during the deployment process.',
+      url: 'https://resources.github.com/devops/fundamentals/ci-cd/deployment',
+      date: '2022-05-23T12:00+00:00',
+    },
+  ]
+
+  const handleChange = () => {
+    if (!inputRef.current) return
+    if (inputRef.current.value.length === 0) {
+      setSearchResults(undefined)
+      return
+    }
+    if (inputRef.current.value.length > 2) {
+      setTimeout(() => setSearchResults(mockSearchData), 1000)
+      setSearchTerm(inputRef.current.value)
+      return
+    }
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    if (!inputRef.current) return
+    if (!inputRef.current.value) {
+      alert(`Enter a value and try again.`)
+      return
+    }
+
+    alert(`Name: ${inputRef.current.value}`)
+  }
+
+  return (
+    <Container sx={{position: 'relative', overflowX: 'scroll'}}>
+      <SubdomainNavBar title="Subdomain" fixed={false}>
+        <SubdomainNavBar.Link href="#collections">Collections</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#topics">Topics</SubdomainNavBar.Link>
+        <SubdomainNavBar.Search
+          ref={inputRef}
+          searchTerm={searchTerm}
+          onSubmit={handleSubmit}
+          onChange={handleChange}
+          searchResults={searchResults}
+        />
+      </SubdomainNavBar>
+    </Container>
+  )
+}
+
+render(App)
+```
+
+## Component props
+
+### SubdomainNavBar <Label>Required</Label>
+
+| Name        | Type                            |       Default       | Description                                                                                                                            |
+| :---------- | :------------------------------ | :-----------------: | :------------------------------------------------------------------------------------------------------------------------------------- |
+| `children`  | <SubdomainNavBarChildrenProp /> |                     | Valid child nodes                                                                                                                      |
+| `className` | `string`                        |                     | Sets a custom class                                                                                                                    |
+| `id`        | `string`                        |                     | Sets a custom id                                                                                                                       |
+| `logoHref`  | `string`                        | `https//github.com` | Optionally change the URL of the logo                                                                                                  |
+| `title`     | `string`                        |                     | The title or name of the subdomain. Appears adjacent to the logo and is required for communicating content to assisitive technologies. |
+| `titleHref` | `string`                        |         `/`         | The URL for the site. Typically used to link the title prop value to the site root.                                                    |
+| `ref`       | `React.RefObject`               |                     | Forward a Ref to the underlying DOM node                                                                                               |
+
+<h3 id="SubdomainNavBar-link">
+  SubdomainNavBar.Link <Label>Required</Label>
+</h3>
+
+`SubdomainNavBar.Link` are anchor links.
+
+| Name         | Type              | Default | Description                                               |
+| :----------- | :---------------- | :-----: | :-------------------------------------------------------- |
+| `children`   | `string`          |         | Label text                                                |
+| `className`  | `string`          |         | Applies a custom class                                    |
+| `href`       | `string`          |         | Destination path for the anchor element                   |
+| `id`         | `string`          |         | Sets a custom id                                          |
+| `ref`        | `React.RefObject` |         | Forward a Ref to the underlying DOM node                  |
+| `isExternal` | `boolean`         | `false` | When true, renders a external link icon after to the link |
+
+Additional props can be passed to the `<a>` element. [See MDN for a list of props](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#attributes) accepted by the `<anchor>` element.

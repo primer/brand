@@ -1,0 +1,102 @@
+---
+title: CTA form
+description: Use the CTA form component to create a form that is used to collect minimal information from users.
+keywords: ['call to action', 'form', 'input']
+show-tabs: true
+tab-label: React
+source: https://github.com/primer/brand/tree/main/packages/react/src/CTAForm/CTAForm.tsx
+figma: 'https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=1377%3A30754'
+storybook: '/brand/storybook/?path=/story/components-CTAForm--playground'
+---
+
+```js
+import {CTAForm} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<CTAForm>
+  <CTAForm.Input>
+    <FormControl required>
+      <FormControl.Label>Your work email address</FormControl.Label>
+      <TextInput placeholder="email" autoComplete="email" />
+    </FormControl>
+  </CTAForm.Input>
+  <CTAForm.Confirm>
+    <FormControl required>
+      <FormControl.Label>
+        <Text size="300" variant="muted">
+          I agree to the <InlineLink href="www.github.com">Privacy Policy</InlineLink> and{' '}
+          <InlineLink href="www.github.com">Terms of Service</InlineLink>
+        </Text>
+      </FormControl.Label>
+      <Checkbox name="confirm" />
+    </FormControl>
+  </CTAForm.Confirm>
+  <CTAForm.Action>Subscribe</CTAForm.Action>
+</CTAForm>
+```
+
+### Component without confirm block
+
+```jsx live
+<CTAForm>
+  <CTAForm.Input>
+    <FormControl required>
+      <FormControl.Label>Your work email address</FormControl.Label>
+      <TextInput placeholder="email" autoComplete="email" />
+    </FormControl>
+  </CTAForm.Input>
+  <CTAForm.Action>Subscribe</CTAForm.Action>
+</CTAForm>
+```
+
+### Using onChange & onSubmit handlers
+
+```jsx live
+<CTAForm onSubmit={() => alert('onSubmit event triggered')}>
+  <CTAForm.Input onChange={() => console.log('onChange event triggered')}>
+    <FormControl required>
+      <FormControl.Label>Your work email address</FormControl.Label>
+      <TextInput placeholder="email" autoComplete="email" />
+    </FormControl>
+  </CTAForm.Input>
+  <CTAForm.Action>Subscribe</CTAForm.Action>
+</CTAForm>
+```
+
+## Component props
+
+### CTAForm
+
+| name        | type     | default     | required | description                                                        |
+| ----------- | -------- | ----------- | -------- | ------------------------------------------------------------------ |
+| `action`    | `string` | `undefined` | `false`  | The URL that processes the form submission                         |
+| `method`    | `string` | `undefined` | `false`  | The HTTP method to submit the form with                            |
+| `target`    | `string` | `undefined` | `false`  | Indicates where to display the response after submitting the form. |
+| `className` | `string` | `undefined` | `false`  | Sets a custom class                                                |
+
+Additional props can be passed to the `<form>` element. [See MDN for a list of props](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) accepted by the `<form>` element.
+
+### CTAForm.Input
+
+| name        | type     | default     | required | description         |
+| ----------- | -------- | ----------- | -------- | ------------------- |
+| `className` | `string` | `undefined` | `false`  | Sets a custom class |
+
+### CTAForm.Confirm
+
+| name        | type     | default     | required | description         |
+| ----------- | -------- | ----------- | -------- | ------------------- |
+| `className` | `string` | `undefined` | `false`  | Sets a custom class |
+
+### CTAForm.Action
+
+| name        | type     | default     | required | description         |
+| ----------- | -------- | ----------- | -------- | ------------------- |
+| `className` | `string` | `undefined` | `false`  | Sets a custom class |
+
+{/* TODO: Add all button properties here */}

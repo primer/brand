@@ -1,0 +1,106 @@
+---
+title: Section intro
+description: Use the section intro component to provide a title, optional description and link to a new section in the page.
+keywords: ['heading', 'intro', 'section']
+show-tabs: true
+tab-label: React
+figma: https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=3891%3A17104&t=j6zvLXblgsO36Wmu-11
+source: https://github.com/primer/brand/blob/main/packages/react/src/SectionIntro/SectionIntro.tsx
+storybook: '/brand/storybook/?path=/story/components-SectionIntro--playground'
+---
+
+import {Label} from '@primer/react'
+
+```js
+import {SectionIntro} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<section>
+  <SectionIntro>
+    <SectionIntro.Label>Label</SectionIntro.Label>
+    <SectionIntro.Heading>Focus on solving bigger problems</SectionIntro.Heading>
+    <SectionIntro.Description>
+      Spend less time creating boilerplate and repetitive code patterns, and more time on what matters: building great
+      software. Write a comment describing the logic you want and GitHub Copilot will immediately suggest code to
+      implement the solution.
+    </SectionIntro.Description>
+    <SectionIntro.Link href="#">Explore docs</SectionIntro.Link>
+  </SectionIntro>
+</section>
+```
+
+### Alignment
+
+The content alignment can be changed using the `align` prop on the root `SectionIntro`. This can be configured to either `start` or `center`.
+
+```jsx live
+<section>
+  <SectionIntro align="center">
+    <SectionIntro.Label>Label</SectionIntro.Label>
+    <SectionIntro.Heading>Focus on solving bigger problems</SectionIntro.Heading>
+    <SectionIntro.Description>
+      Spend less time creating boilerplate and repetitive code patterns, and more time on what matters: building great
+      software. Write a comment describing the logic you want and GitHub Copilot will immediately suggest code to
+      implement the solution.
+    </SectionIntro.Description>
+    <SectionIntro.Link href="#">Explore docs</SectionIntro.Link>
+  </SectionIntro>
+</section>
+```
+
+## Component props
+
+### SectionIntro <Label>Required</Label>
+
+| name        | type                       | default     | required | description                                                   |
+| ----------- | -------------------------- | ----------- | -------- | ------------------------------------------------------------- |
+| `children`  | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | Content to include within the section intro component         |
+| `align`     | `start`, `center`          | `start`     | `true`   | The layout applied to the content wihin the section component |
+| `className` | `string`                   |             | `false`  | SectionIntro custom class                                     |
+| `fullWidth` | `boolean`                  |             | `false`  | Fills available space                                         |
+
+### Hero.Label
+
+| name        | type              | default | description                                  |
+| ----------- | ----------------- | ------- | -------------------------------------------- |
+| `className` | `string`          |         | Sets a custom class on the root of the label |
+| `id`        | `string`          |         | Sets a custom id on the root of the label    |
+| `ref`       | `React.RefObject` |         | Forward a Ref to the underlying DOM node     |
+
+Forwards all props from the [Label component](/components/Label), including `size` and `color`.
+
+### SectionIntro.Heading <Label>Required</Label>
+
+Required node that is used to provide a heading for the section.
+
+| name        | type                       | default     | required | description                                           |
+| ----------- | -------------------------- | ----------- | -------- | ----------------------------------------------------- |
+| `className` | `string`                   |             | `false`  | Custom class name for the heading component           |
+| `children`  | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | Content to be displayed inside the heading component. |
+
+Forwards all props from the [Heading component](/components/Heading), including `as`, `size`, and `weight`.
+
+### SectionIntro.Description
+
+Optional node that can be used to provide a description for the section.
+
+| name       | type                       | default     | required | description                                                |
+| ---------- | -------------------------- | ----------- | -------- | ---------------------------------------------------------- |
+| `children` | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | Content to be displayed inside the section intro component |
+
+`id`, `className` and `ref` are forwarded by default to all children.
+
+### SectionIntro.Link
+
+Optional node that can be used to provide a link.
+
+| name        | type     | default     | required | description                             |
+| ----------- | -------- | ----------- | -------- | --------------------------------------- |
+| `className` | `string` | `undefined` | `false`  | Sets a custom class on the root element |
+
+`id`, `className` and `ref` are forwarded by default to all children.

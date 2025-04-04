@@ -1,0 +1,151 @@
+---
+title: Footnotes
+description: Use footnotes to display contextual information and cite sources in the page content.
+keywords: ['content', 'footnotes', 'citations', 'contextual information']
+show-tabs: true
+tab-label: React
+source: https://github.com/primer/brand/tree/main/packages/react/src/Footnotes/Footnotes.tsx
+storybook: '/brand/storybook/?path=/story/components-footnotes--default'
+---
+
+import {Label} from '@primer/react'
+
+import {FootnotesAsProp} from './react'
+
+```js
+import {Footnotes} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<Footnotes>
+  <Footnotes.Item>
+    "Automating your workflow with GitHub Actions," GitHub Docs{' '}
+    <InlineLink href="https://docs.github.com/en/actions">https://docs.github.com/en/actions</InlineLink>.
+  </Footnotes.Item>
+  <Footnotes.Item>
+    "About Issues," GitHub Docs{' '}
+    <InlineLink href="https://docs.github.com/en/issues">https://docs.github.com/en/issues</InlineLink>.
+  </Footnotes.Item>
+  <Footnotes.Item>
+    "GitHub Copilot: Your AI pair programmer," GitHub{' '}
+    <InlineLink href="https://github.com/features/copilot/">https://github.com/features/copilot/</InlineLink>.
+  </Footnotes.Item>
+  <Footnotes.Item>
+    "Explore the GitHub Marketplace," GitHub Docs{' '}
+    <InlineLink href="https://github.com/marketplace">https://github.com/marketplace</InlineLink>.
+  </Footnotes.Item>
+  <Footnotes.Item>
+    "GitHub Pages basics," GitHub Docs{' '}
+    <InlineLink href="https://docs.github.com/en/pages">https://docs.github.com/en/pages</InlineLink>.
+  </Footnotes.Item>
+</Footnotes>
+```
+
+### Paragraphs
+
+```jsx live
+<Footnotes as="div">
+  <Footnotes.Item>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non facilisis tortor. Pellentesque rhoncus blandit
+    posuere. Sed eget mi finibus, fermentum turpis vitae, eleifend dolor. Maecenas viverra neque at cursus faucibus. Nam
+    tempus enim quis augue pulvinar finibus. Integer accumsan turpis eget mauris pretium, non dapibus orci cursus. Ut in
+    sollicitudin dui, eu tincidunt nunc. Donec ut placerat ex. In ullamcorper nibh eu sapien convallis bibendum. Sed
+    diam leo, rhoncus non viverra nec, ullamcorper quis arcu.
+  </Footnotes.Item>
+  <Footnotes.Item>
+    Etiam scelerisque turpis at massa pellentesque, ut pretium lorem iaculis. Pellentesque feugiat nisi quis viverra
+    posuere. Integer eu pulvinar ligula, lacinia sollicitudin libero. Etiam in cursus lacus, vitae vestibulum elit.
+    Fusce quis purus a urna placerat dignissim non id lectus. Suspendisse malesuada nisi eget nibh tempus, et
+    sollicitudin tortor posuere. Fusce id consectetur purus, sit amet faucibus orci. Lorem ipsum dolor sit amet,
+    consectetur adipiscing elit. Phasellus sollicitudin nisl vel felis tempor, quis porttitor diam elementum. Integer
+    vel enim eget urna ullamcorper euismod eget quis nisl. Pellentesque nec erat tincidunt, dignissim ligula ut,
+    consectetur lectus. Sed scelerisque urna maximus varius mollis. Ut dictum sed nibh id fermentum. Ut hendrerit
+    accumsan tortor, eu tincidunt mauris blandit in. Suspendisse ut velit in felis molestie euismod. Nam vitae dui a
+    justo lacinia semper.
+  </Footnotes.Item>
+</Footnotes>
+```
+
+### Citations with return links
+
+```jsx live
+<>
+  <River>
+    <River.Visual>
+      <img src="/brand/assets/placeholder.png" alt="placeholder, blank area with a gray background color" />
+    </River.Visual>
+    <River.Content
+      trailingComponent={() => (
+        <Box marginBlockStart={24} paddingBlockStart={24}>
+          <Heading as="h4" size="3">
+            17,000+
+          </Heading>
+          <Text as="p" size="300" weight="light" variant="muted">
+            Third-party tools support your favorite languages and frameworks{' '}
+            <Text size="100" weight="light">
+              <sup>
+                <InlineLink href="#economic-impact" id="economic-impact-ref">
+                  1
+                </InlineLink>
+              </sup>
+            </Text>
+          </Text>
+        </Box>
+      )}
+    >
+      <Heading size="5" as="h3" weight="medium">
+        Leverage the industry&apos;s most flexible secure development platform.
+      </Heading>
+    </River.Content>
+  </River>
+  <River>
+    <River.Visual>
+      <img src="/brand/assets/placeholder.png" alt="placeholder, blank area with a gray background color" />
+    </River.Visual>
+    <River.Content>
+      <Heading size="5" as="h3" weight="medium">
+        Unlocking innovation at scale with AI-driven software development.
+      </Heading>
+      <Text as="p" size="200" weight="light" variant="muted">
+        The world&apos;s most widely adopted AI developer tool.{' '}
+        <Text size="100" weight="light">
+          <sup>
+            <InlineLink href="#ai" id="ai-ref">
+              2
+            </InlineLink>
+          </sup>
+        </Text>
+      </Text>
+    </River.Content>
+  </River>
+
+  <Footnotes>
+    <Footnotes.Item id="economic-impact" href="#economic-impact-ref">
+      There are now 100 million developers around the world using GitHub.{' '}
+    </Footnotes.Item>
+    <Footnotes.Item id="ai" href="#ai-ref">
+      This factor is based on data from the industry&apos;s <InlineLink href="#">longest running analysis</InlineLink>{' '}
+      by Acme Corp.
+    </Footnotes.Item>
+  </Footnotes>
+</>
+```
+
+## Component props
+
+### Footnotes <Label>Required</Label>
+
+| name                    | type                | default       | required | description                                                  |
+| ----------------------- | ------------------- | ------------- | -------- | ------------------------------------------------------------ |
+| `as`                    | <FootnotesAsProp /> | `'ol'`        | `false`  | Determines the underlying HTML element                       |
+| `visuallyHiddenHeading` | `string`            | `'Footnotes'` | `false`  | Visually hidden title, which introduces the footnote content |
+
+### Footnotes.Item <Label>Required</Label>
+
+| name   | type     | default | required | description                                                                   |
+| ------ | -------- | ------- | -------- | ----------------------------------------------------------------------------- |
+| `href` | `string` |         | `false`  | Applies a return URL icon to the original content attributed to this citation |

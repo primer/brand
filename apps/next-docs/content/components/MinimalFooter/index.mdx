@@ -1,0 +1,97 @@
+---
+title: Minimal footer
+description: Use the minimal footer component to provide a global footer featuring legal links, GitHub logomarks and footnotes.
+keywords: ['legal', 'copyright', 'social', 'links', 'footnotes']
+show-tabs: true
+tab-label: React
+source: https://github.com/primer/brand/blob/main/packages/react/src/MinimalFooter/MinimalFooter.tsx
+figma: https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=4686%3A30927&t=QKh20cPDVIFtBCHj-0
+storybook: '/brand/storybook/?path=/story/components-minimalfooter--playground'
+---
+
+import {MinimalFooterChildrenProp} from './react'
+
+```js
+import {MinimalFooter} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<MinimalFooter />
+```
+
+### Footer links
+
+```jsx live
+<MinimalFooter>
+  <MinimalFooter.Link href="https://github.com/organizations/enterprise_plan">Try GitHub for free</MinimalFooter.Link>
+  <MinimalFooter.Link href="https://github.com/enterprise">Enterprise</MinimalFooter.Link>
+  <MinimalFooter.Link href="https://github.com/enterprise/contact">Email us</MinimalFooter.Link>
+</MinimalFooter>
+```
+
+### Footnotes
+
+```jsx live
+<MinimalFooter>
+  <MinimalFooter.Footnotes>
+    <Text>
+      <sup>1</sup>By signing up, GitHub may use your information to personalize and measure the effectiveness of
+      enterprise business ads, including those you see off of GitHub, promotional communications or marketing you
+      receive related to the Enterprise Marketing Pages. We will send you relevant emails and promotional information
+      based on your GitHub profile and any additional information provided in the sign-up form. If you change your mind,
+      you can unsubscribe at any time (an unsubscribe link is provided in every email). For more information on how
+      GitHub uses your personal information, please see the{' '}
+      <InlineLink
+        href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement"
+        target="_blank"
+      >
+        GitHub Privacy Statement
+      </InlineLink>
+      .
+    </Text>
+  </MinimalFooter.Footnotes>
+</MinimalFooter>
+```
+
+### Footer social links
+
+`MinimalFooter` will render all supported social links by default. Social links can be removed however, by passing `socialLinks={false}`. Alteratively, pass an array of valid social links to filter the default list.
+
+```jsx live
+<>
+  Hide all social links:
+  <MinimalFooter socialLinks={false} />
+  <br />
+  Only show GitHub social link:
+  <MinimalFooter socialLinks={['github']} />
+</>
+```
+
+## Component props
+
+### MinimalFooter
+
+| Name                 | Type                                                                                             |                                        Default                                        | Description                                            |
+| :------------------- | :----------------------------------------------------------------------------------------------- | :-----------------------------------------------------------------------------------: | :----------------------------------------------------- |
+| `className`          | `string`                                                                                         |                                                                                       | Sets a custom class on the root element                |
+| `children`           | <MinimalFooterChildrenProp />                                                                    |                                      `undefined`                                      | Valid child components                                 |
+| `copyrightStatement` | `string` \| `ReactElement`                                                                       |                                                                                       | The copyright statement to be displayed in the footer. |
+| `logoHref`           | `string`                                                                                         |                                `'https://github.com'`                                 | The href for the GitHub logo.                          |
+| `socialLinks`        | `['x', 'github', 'linkedin', 'youtube', 'facebook', 'twitch', 'tiktok', 'instagram']` \| `false` | `['x', 'github', 'linkedin', 'youtube', 'facebook', 'twitch', 'tiktok', 'instagram']` | Array of valid strings or `false` to hide all links    |
+
+### MinimalFooter.Link
+
+| Name       | Type              |   Default   | Description                         |
+| :--------- | :---------------- | :---------: | :---------------------------------- |
+| `as`       | `'a'`, `'button'` |    `'a'`    | Applies the underlying HTML element |
+| `children` | `string`          | `undefined` | Link label text                     |
+
+### MinimalFooter.Footnotes
+
+| Name       | Type         |   Default   | Description                                                           |
+| :--------- | :----------- | :---------: | :-------------------------------------------------------------------- |
+| `children` | ReactElement | `undefined` | Use Primer Brand `Text` components to benefit from inherited styling. |
