@@ -44,7 +44,6 @@
     "@primer/react-brand": "0.50.0",
     "@types/node": "18.11.10",
     "eslint-config-next": "15.2.4",
-    "eslint-plugin-mdx": "^3.3.2",
     "prettier": "^3.5.1",
     "styled-components": "^5.3.11",
     "typescript": "5.8.2"

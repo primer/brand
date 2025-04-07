@@ -7,6 +7,7 @@ tab-label: React
 source: https://github.com/primer/brand/tree/main/packages/react/src/ButtonGroup/ButtonGroup.tsx
 storybook: '/brand/storybook/?path=/story/components-buttongroup--playground'
 ---
+
 import {ButtonGroupSizesProp, ButtonGroupAsProp} from './react.tsx'
 
 ```js
@@ -16,6 +17,7 @@ import {ButtonGroup, Button} from '@primer/react-brand'
 ## Examples
 
 ### Default
+
 This is the default variant for the ButtonGroup component. The first button in the group is the primary button and the second button is the secondary button.
 
 ```jsx live
@@ -26,6 +28,7 @@ This is the default variant for the ButtonGroup component. The first button in t
 ```
 
 ### Sizes
+
 The ButtonGroup component can be rendered in different sizes in `medium` and `large` sizes. The default size is `medium`.
 
 ```jsx live
@@ -36,6 +39,7 @@ The ButtonGroup component can be rendered in different sizes in `medium` and `la
 ```
 
 ### Polymorphism
+
 The `Button` component can render as a `button` or `a` HTML element. By default, it will render as a `button`.
 
 ```jsx live
@@ -48,7 +52,8 @@ The `Button` component can render as a `button` or `a` HTML element. By default,
 ## Component props
 
 ### ButtonGroup
-| Name         | Type                    | Default    | Description                             |
-| :----------- | :---------------------- | :--------: | :-------------------------------------- |
+
+| Name         | Type                     |  Default   | Description                             |
+| :----------- | :----------------------- | :--------: | :-------------------------------------- |
 | `buttonSize` | <ButtonGroupSizesProp /> | `'medium'` | The size variations available in Button |
-| `buttonsAs`  | <ButtonGroupAsProp />   | `'button'` | The HTML variations available in Button |
+| `buttonsAs`  | <ButtonGroupAsProp />    | `'button'` | The HTML variations available in Button |
