@@ -20,9 +20,11 @@ import {IDE} from '@primer/react-brand'
 
 ### Default
 
-> The `IDE` does not automatically apply syntax highlighting to code snippets. Usage of this component in GitHub.com is expected to use the proprietary tokenizer and highlighter, the output of which can be passed directly into `IDE` as a parameter.
+<Note variant="warning">
 
-> See Storybook for examples of `IDE` using `highlight.js` syntax highlighter. [See syntax highlighter examples](https://primer.style/brand/storybook/?path=/story/components-ide--default)
+The `IDE` does not automatically apply syntax highlighting to code snippets. Usage of this component in GitHub.com is expected to use the proprietary tokenizer and highlighter, the output of which can be passed directly into `IDE` as a parameter.
+
+</Note>
 
 ```jsx live
 <IDE height={500}>
@@ -151,7 +153,15 @@ async function isPositive(text: string): Promise<boolean> {
 
 Simulate GitHub Copilot Chat using the `IDE.Chat` sub-component. The script is fully customizable, and code snippets will require pre-formatting to enable syntax highlighting.
 
-> See Storybook for a comprehensive example of the Chat feature, inclusive of syntax highlighting. [See Chat example in Storybook](https://primer.style/brand/storybook/?path=/story/components-ide-features--chat-only)
+<Note variant="info">
+
+See Storybook for a comprehensive example of the Chat feature, inclusive of syntax highlighting.
+
+<a href="https://primer.style/brand/storybook/?path=/story/components-ide-features--chat-only">
+  See Chat example in Storybook
+</a>
+
+</Note>
 
 ```jsx live
 <IDE height={700}>

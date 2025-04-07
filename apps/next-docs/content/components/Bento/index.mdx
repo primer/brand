@@ -66,7 +66,10 @@ import {Bento} from '@primer/react-brand'
 Use `columnSpan`, `rowSpan`, `columnStart`, `rowStart`, `flow`, `verticalAlign`, `horizontalAlign` with an `Object` of breakpoint-specific keys and values corresponding to each type to enable responsive behavior for each of these properties.
 Breakpoints use `min-width`, where it will also apply your chosen `span` value to all larger breakpoints.
 
-> Bento items can render in a different source order to what is presented visually. It's important to ensure that the content of each item is self-contained and can be read independently of its adjacent items.
+<Note>
+  Bento items can render in a different source order to what is presented visually. It's important to ensure that the
+  content of each item is self-contained and can be read independently of its adjacent items.
+</Note>
 
 ```jsx live
 <Box style={{backgroundColor: 'var(--base-color-scale-gray-2)'}} padding="normal">
