@@ -4,6 +4,7 @@ description: Use the river component to introduce a feature using a type and med
 keywords: ['feature', 'showcase', 'highlight', 'story']
 show-tabs: true
 tab-label: React
+ready: true
 figma: https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=418%3A8416
 source: https://github.com/primer/brand/blob/main/packages/react/src/River/River.tsx
 storybook: '/brand/storybook/?path=/story/components-river--default'
@@ -22,7 +23,7 @@ import {River, RiverBreakout} from '@primer/react-brand'
 ### Default
 
 ```jsx live
-<>
+<Stack>
   <River>
     <River.Visual>
       <img src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
@@ -63,13 +64,13 @@ import {River, RiverBreakout} from '@primer/react-brand'
       <Link href="#">Call to action</Link>
     </River.Content>
   </River>
-</>
+</Stack>
 ```
 
 ### Image to text ratio
 
 ```jsx live
-<>
+<Stack>
   {/* 50/50 (default) example */}
   <River>
     <River.Visual>
@@ -92,7 +93,7 @@ import {River, RiverBreakout} from '@primer/react-brand'
       <Text>This example applies an optional 60/40 image to text split.</Text>
     </River.Content>
   </River>
-</>
+</Stack>
 ```
 
 ### Video

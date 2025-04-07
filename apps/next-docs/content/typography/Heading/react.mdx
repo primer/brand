@@ -34,7 +34,7 @@ import {Heading} from '@primer/react-brand'
 ### Scale
 
 ```jsx live
-<>
+<Stack gap="condensed" style={{width: '100%'}}>
   <Heading size="display">Display: 96px</Heading>
   <Heading size="1">1: 72px</Heading>
   <Heading size="2">2: 64px</Heading>
@@ -44,7 +44,7 @@ import {Heading} from '@primer/react-brand'
   <Heading size="6">6: 24px</Heading>
   <Heading size="subhead-large">subhead-large: 20px</Heading>
   <Heading size="subhead-medium">subhead-medium: 16px</Heading>
-</>
+</Stack>
 ```
 
 ### Levels
@@ -54,13 +54,13 @@ The `Heading` level can be assigned using the `as` prop, which accepts any valid
 Its visual appearance corresponds to the `1-6` scale values, but can be overridden using the `size` prop.
 
 ```jsx live
-<>
+<Stack gap="condensed" style={{width: '100%'}}>
   <Heading as="h6">This is my super sweet heading as a h6</Heading>
 
   <Heading as="h2" size="4">
     This h2 will appear visually identical to a h4
   </Heading>
-</>
+</Stack>
 ```
 
 ### Weight
@@ -70,7 +70,7 @@ The recommended text weight is automatically applied to Headings based on their 
 Use the `weight` prop to override the default visual appearance if required.
 
 ```jsx live
-<>
+<Stack gap="condensed" style={{width: '100%'}}>
   <Heading as="h3" weight="heavy">
     heavy
   </Heading>
@@ -106,7 +106,7 @@ Use the `weight` prop to override the default visual appearance if required.
   >
     Responsive
   </Heading>
-</>
+</Stack>
 ```
 
 ### Width / Stretch
@@ -116,7 +116,7 @@ The recommended text width value is automatically applied to Headings based on t
 Use the `stretch` prop to override the default visual appearance if required.
 
 ```jsx live
-<>
+<Stack gap="condensed" style={{width: '100%'}}>
   <Heading as="h3" stretch="condensed">
     condensed
   </Heading>
@@ -140,7 +140,7 @@ Use the `stretch` prop to override the default visual appearance if required.
   >
     Responsive
   </Heading>
-</>
+</Stack>
 ```
 
 ### Letter spacing
@@ -150,7 +150,7 @@ The recommended character letter spacing is automatically applied to Headings ba
 Use the `letterSpacing` prop to override the default settings if required.
 
 ```jsx live
-<>
+<Stack gap="condensed" style={{width: '100%'}}>
   <Heading as="h3" letterSpacing="condensed">
     condensed
   </Heading>
@@ -174,7 +174,7 @@ Use the `letterSpacing` prop to override the default settings if required.
   >
     Responsive
   </Heading>
-</>
+</Stack>
 ```
 
 ## Component props
