@@ -1,7 +1,6 @@
 'use client'
 import {PropTableValues} from '@primer/doctocat-nextjs/components'
 
-
 export const CardVariantsProp = () => <PropTableValues values={['default', 'minimal']} commaSeparated />
 
 export const CardIconColorsProp = () => (
