@@ -45,6 +45,8 @@ import {Testimonial} from '@primer/react-brand'
 
 For an alternative visual appearance and layout, without altering semantic meaning.
 
+Borders can be added/removed using the `hasBorder` prop.
+
 ```jsx live
 <Stack direction="horizontal" gap="spacious" padding="none">
   <Testimonial variant="default">
@@ -160,15 +162,16 @@ Pass additional content about the testimonial provider using `position`.
 
 `Testimonial` passes contextual data to its child inputs, labels, validation messaging and more.
 
-| Name             | Type                                                                                                                                                         |   Default   | Description                                   |
-| :--------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------: | :-------------------------------------------- |
-| `children`       | <PropTableValues addLineBreaks values={['Testimonial.Quote','Testimonial.Name','Testimonial.Logo','Testimonial.Avatar','React.ReactNode' ]} addLineBreaks /> |             | Valid child nodes                             |
-| `className`      | `string`                                                                                                                                                     |             | Sets a custom class                           |
-| `id`             | `string`                                                                                                                                                     |             | Sets a custom id                              |
-| `ref`            | `React.RefObject`                                                                                                                                            |             | Forward a Ref to the underlying DOM node      |
-| `size`           | <PropTableValues addLineBreaks values={['small','large']}/>                                                                                                  |  `'small'`  | Set size of quote's text                      |
-| `quoteMarkColor` | <PropTableValues addLineBreaks values={TestimonialQuoteMarkColors}/>                                                                                         | `'default'` | Color or gradient fill of the the quote mark. |
-| `variant`        | <PropTableValues addLineBreaks values={TestimonialVariants}/>                                                                                                | `'minimal'` | Alternative visual appearance                 |
+| Name             | Type                                                                                                                                                         |   Default   | Description                                            |
+| :--------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------: | :----------------------------------------------------- |
+| `children`       | <PropTableValues addLineBreaks values={['Testimonial.Quote','Testimonial.Name','Testimonial.Logo','Testimonial.Avatar','React.ReactNode' ]} addLineBreaks /> |             | Valid child nodes                                      |
+| `className`      | `string`                                                                                                                                                     |             | Sets a custom class                                    |
+| `id`             | `string`                                                                                                                                                     |             | Sets a custom id                                       |
+| `ref`            | `React.RefObject`                                                                                                                                            |             | Forward a Ref to the underlying DOM node               |
+| `size`           | <PropTableValues addLineBreaks values={['small','large']}/>                                                                                                  |  `'small'`  | Set size of quote's text                               |
+| `quoteMarkColor` | <PropTableValues addLineBreaks values={TestimonialQuoteMarkColors}/>                                                                                         | `'default'` | Color or gradient fill of the the quote mark.          |
+| `variant`        | <PropTableValues addLineBreaks values={TestimonialVariants}/>                                                                                                | `'minimal'` | Alternative visual appearance                          |
+| `hasBorder`      | `boolean`                                                                                                                                                    |   `true`    | Applies an optional border where a variant supports it |
 
 <h3 id="Testimonial-name">
   Testimonial.Name <Label>Required</Label>
