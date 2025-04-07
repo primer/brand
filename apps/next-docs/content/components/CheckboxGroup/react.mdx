@@ -9,106 +9,171 @@ figma: 'https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=1
 storybook: '/brand/storybook/?path=/story/components-forms-checkbox--playground'
 ---
 
-import {ValidationStatusProp} from './react.tsx'
+import {CheckboxGroupValidationVariantProp} from './react'
+
+```js
+import {CheckboxGroup} from '@primer/react-brand'
+```
 
 ## Examples
 
-> **Please use [FormControl](/components/FormControl) to display accessible checkboxes in the UI**. This `Checkbox` component is intended only as an ingredient for other custom components, or as a drop-in replacement for native HTML checkboxes outside of form use-cases.
-> If you intend to use this component as part of another component, it should always be accompanied by a corresponding `<label>` to improve support for assistive technologies.
+### Default
 
-The `Checkbox` component can be used in controlled and uncontrolled modes.
+`CheckboxGroup` creates a semantic container for multiple related checkboxes.
 
 ```jsx live
-<form>
+<CheckboxGroup>
+  <CheckboxGroup.Label>Choose your favorite features</CheckboxGroup.Label>
   <FormControl>
-    <FormControl.Label>Default checkbox</FormControl.Label>
-    <Checkbox />
+    <FormControl.Label>Actions notifications</FormControl.Label>
+    <Checkbox value="actions" />
   </FormControl>
   <FormControl>
-    <FormControl.Label>Always checked</FormControl.Label>
-    <Checkbox checked />
+    <FormControl.Label>Packages</FormControl.Label>
+    <Checkbox value="packages" />
   </FormControl>
   <FormControl>
-    <FormControl.Label>Always unchecked</FormControl.Label>
-    <Checkbox checked={false} />
+    <FormControl.Label>Codespaces</FormControl.Label>
+    <Checkbox value="codespaces" />
   </FormControl>
-  <FormControl>
-    <FormControl.Label>Inactive</FormControl.Label>
-    <Checkbox checked disabled />
-  </FormControl>
-</form>
+</CheckboxGroup>
 ```
 
-## Indeterminate
+### With caption
 
-An `indeterminate` checkbox state should be used if the input value is neither `true` nor `false`. This can be useful in situations where you are required to display an incomplete state, or one that is dependent on other input selections to determine a value.
+Use `CheckboxGroup.Caption` to provide additional context for the group.
 
 ```jsx live
-<form>
+<CheckboxGroup>
+  <CheckboxGroup.Label>Notification preferences</CheckboxGroup.Label>
+  <CheckboxGroup.Caption>Select how you'd like to be notified</CheckboxGroup.Caption>
   <FormControl>
-    <FormControl.Label>Indeterminate checkbox</FormControl.Label>
-    <Checkbox onChange={() => {}} indeterminate={true} />
+    <FormControl.Label>Email notifications</FormControl.Label>
+    <Checkbox value="email" />
   </FormControl>
-</form>
+  <FormControl>
+    <FormControl.Label>Browser notifications</FormControl.Label>
+    <Checkbox value="browser" />
+  </FormControl>
+  <FormControl>
+    <FormControl.Label>Mobile notifications</FormControl.Label>
+    <Checkbox value="mobile" />
+  </FormControl>
+</CheckboxGroup>
 ```
 
-## Optional border
+### With validation
 
-Apply an optional border using `FormControl` and `hasBorder`.
+`CheckboxGroup.Validation` can display success or error states with appropriate icons.
 
 ```jsx live
-<FormControl hasBorder required>
-  <FormControl.Label>Contact me about GitHub Enterprise Server</FormControl.Label>
-  <Checkbox />
-</FormControl>
+<Stack direction="vertical" gap="spacious">
+  <CheckboxGroup>
+    <CheckboxGroup.Label>Valid selection</CheckboxGroup.Label>
+    <FormControl>
+      <FormControl.Label>Option one</FormControl.Label>
+      <Checkbox value="one" />
+    </FormControl>
+    <FormControl>
+      <FormControl.Label>Option two</FormControl.Label>
+      <Checkbox value="two" />
+    </FormControl>
+    <CheckboxGroup.Validation variant="success">Great choice!</CheckboxGroup.Validation>
+  </CheckboxGroup>
+
+  <CheckboxGroup>
+    <CheckboxGroup.Label>Invalid selection</CheckboxGroup.Label>
+    <FormControl>
+      <FormControl.Label>Option one</FormControl.Label>
+      <Checkbox value="one" />
+    </FormControl>
+    <FormControl>
+      <FormControl.Label>Option two</FormControl.Label>
+      <Checkbox value="two" />
+    </FormControl>
+    <CheckboxGroup.Validation variant="error">Please select at least one option</CheckboxGroup.Validation>
+  </CheckboxGroup>
+</Stack>
 ```
 
-## Custom label usage
+### Visually hidden label
 
-When using a custom label alongside a checkbox, the `Checkbox` component should always appear after the `FormControl.Label` component in the DOM. This ensures that the checkbox is correctly associated with the label for assistive technologies.
+When context is clear, labels can be visually hidden while remaining accessible to screen readers.
 
 ```jsx live
-<FormControl required>
-  <FormControl.Label>
-    <Text size="200" variant="muted">
-      I hereby accept the{' '}
-      <InlineLink size="200" href="https://github.com/customer-terms" target="_blank">
-        GitHub Customer Agreement
-      </InlineLink>{' '}
-      on behalf of my organization and confirm that I have the authority to do so. For more information about
-      GitHub&apos;s privacy practices, see the{' '}
-      <InlineLink
-        size="200"
-        href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement"
-        target="_blank"
-      >
-        GitHub Privacy Statement.
-      </InlineLink>{' '}
-    </Text>
-  </FormControl.Label>
-  <Checkbox />
-</FormControl>
+<CheckboxGroup>
+  <CheckboxGroup.Label visuallyHidden>Filter options</CheckboxGroup.Label>
+  <Stack direction="vertical" gap="regular">
+    <FormControl>
+      <FormControl.Label>Show all</FormControl.Label>
+      <Checkbox value="all" />
+    </FormControl>
+    <FormControl>
+      <FormControl.Label>Show active only</FormControl.Label>
+      <Checkbox value="active" />
+    </FormControl>
+  </Stack>
+</CheckboxGroup>
+```
+
+### Inline
+
+When space is limited, checkboxes can be arranged horizontally using the [Stack](/components/Stack) component.
+
+```jsx live
+<CheckboxGroup>
+  <CheckboxGroup.Label visuallyHidden>Filter options</CheckboxGroup.Label>
+  <CheckboxGroup.Caption>Some inline checkboxes with a visually hidden label</CheckboxGroup.Caption>
+  <Stack direction="horizontal" gap="normal" padding="none" flexWrap="wrap">
+    <FormControl>
+      <FormControl.Label>Choice one</FormControl.Label>
+      <Checkbox value="one" />
+    </FormControl>
+    <FormControl>
+      <FormControl.Label>Choice two</FormControl.Label>
+      <Checkbox value="two" />
+    </FormControl>
+    <FormControl>
+      <FormControl.Label>Choice three</FormControl.Label>
+      <Checkbox value="three" />
+    </FormControl>
+  </Stack>
+</CheckboxGroup>
 ```
 
 ## Component props
 
-`Checkbox` provides a React alternative to the native HTML `<input type="checkbox">`.
+### CheckboxGroup <Label>Required</Label>
 
-The component API supports all standard HTML attribute props, while providing some additional behavior as described below.
+| Name       | Type                   | Default | Description                                                      |
+| :--------- | :--------------------- | :-----: | :--------------------------------------------------------------- |
+| `children` | `React.ReactElement[]` |         | CheckboxGroup components and FormControl components              |
+| `id`       | `string`               |         | Sets a custom id. If not provided, a unique id will be generated |
 
-| Name               | Type                     | Default | Description                                                                                                                                   |
-| :----------------- | :----------------------- | :-----: | :-------------------------------------------------------------------------------------------------------------------------------------------- |
-| `checked`          | `boolean`                |         | Modifies true/false value of the native checkbox                                                                                              |
-| `className`        | `string`                 |         | Sets a custom class                                                                                                                           |
-| `defaultChecked`   | `boolean`                |         | Checks the input by default in uncontrolled mode                                                                                              |
-| `disabled`         | `boolean`                |         | Modifies the native disabled state of the native checkbox                                                                                     |
-| `id`               | `string`                 |         | Sets a custom id                                                                                                                              |
-| `indeterminate`    | `boolean`                |         | Applies an [indeterminate state](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#attr-indeterminate) to the checkbox |
-| `ref`              | `React.RefObject`        |         | Forward a Ref to the underlying DOM node                                                                                                      |
-| `validationStatus` | <ValidationStatusProp /> |         | Ussed to inform ARIA attributes. Individual checkboxes do not have validation styles.                                                         |
+`CheckboxGroup` extends the HTML `fieldset` element and supports all `fieldset` props.
 
-Additional props can be passed to the `<input>` element. [See MDN for a list of props](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) accepted by the `<input>` element.
+### CheckboxGroup.Label <Label>Required</Label>
 
-## Related components
+| Name             | Type      | Default | Description                             |
+| :--------------- | :-------- | :-----: | :-------------------------------------- |
+| `children`       | `string`  |         | Label text                              |
+| `visuallyHidden` | `boolean` | `false` | Hide label visually but keep accessible |
 
-- <Link to="/components/FormControl">FormControl</Link>
+`CheckboxGroup.Label` extends the HTML `legend` element and supports all `legend` props.
+
+### CheckboxGroup.Caption
+
+| Name       | Type     | Default | Description  |
+| :--------- | :------- | :-----: | :----------- |
+| `children` | `string` |         | Caption text |
+
+`CheckboxGroup.Caption` extends the `span` element and supports all `span` props.
+
+### CheckboxGroup.Validation
+
+| Name       | Type                                  | Default | Description                        |
+| :--------- | :------------------------------------ | :-----: | :--------------------------------- |
+| `children` | `string`                              |         | Validation message                 |
+| `variant`  | <ChecboxGroupValidationVariantProp /> |         | Sets the validation state and icon |
+
+`CheckboxGroup.Validation` extends the `span` element and supports all `span` props.
