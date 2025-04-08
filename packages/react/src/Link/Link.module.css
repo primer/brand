@@ -1,11 +1,26 @@
 .Link {
-  --arrow-width: var(--base-size-20);
+  --visual-width: var(--external-icon-size, var(--arrow-size, 0));
+  --gap: var(--base-size-4);
   position: relative;
   display: inline-flex;
+  column-gap: var(--gap);
   align-items: center;
   justify-content: center;
   text-decoration: none;
   cursor: pointer;
+}
+
+.Link--arrow-start,
+.Link--arrow-end {
+  --arrow-size: var(--base-size-20);
+}
+
+.Link--is-external {
+  --external-icon-size: var(--base-size-16);
+}
+
+.Link--is-external.Link--large {
+  --external-icon-size: var(--base-size-20);
 }
 
 .Link:hover {
@@ -16,7 +31,7 @@
   position: absolute;
   bottom: -0.15em;
   left: 0;
-  width: calc(100% - var(--arrow-width));
+  width: calc(100% - var(--gap) - var(--visual-width));
   pointer-events: none;
   content: '';
   border: var(--brand-borderWidth-thin) solid currentColor;
@@ -54,16 +69,12 @@
   font-weight: var(--base-text-weight-semibold);
 }
 
-.Link-arrow {
-  margin-left: 4px;
-}
-
 .Link--large .Link--label {
   font-size: var(--base-size-20);
 }
 
 .Link--large .Link-arrow {
-  width: var(--arrow-width);
+  width: var(--visual-width);
   height: var(--base-size-20);
 }
 
@@ -71,12 +82,6 @@
   left: auto;
   right: 0;
   transform-origin: right 0;
-  width: calc(100% - var(--base-size-20));
-}
-
-.Link--arrow-start .Link-arrow {
-  margin-left: auto;
-  margin-right: 4px;
 }
 
 .Link.Link--arrow-none::after {
