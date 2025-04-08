@@ -172,9 +172,6 @@
   align-items: center;
 }
 
-.Card__action-label {
-}
-
 .Card--align-center .Card__action {
   justify-content: center;
 }
