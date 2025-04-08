@@ -74,8 +74,8 @@
 }
 
 .Link--large .Link-arrow {
-  width: var(--visual-width);
-  height: var(--base-size-20);
+  width: var(--arrow-size);
+  height: var(--arrow-size);
 }
 
 .Link--arrow-start::after {
