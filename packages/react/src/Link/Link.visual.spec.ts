@@ -41,4 +41,11 @@ test.describe('Visual Comparison: Link', () => {
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
+
+  test('Link / External Link', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-link-features--external-link&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
 })
