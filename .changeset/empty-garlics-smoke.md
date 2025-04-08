@@ -34,6 +34,6 @@
   </RiverAccordion>
   ```
 
-- Fixed a bug in the `Heading` component where the component would be re-mounted each render, causing it to lose focus when used inside a focusable element.
+  🔗 [See the documentation for more usage examples](https://primer.style/brand/components/RiverAccordion)
 
-🔗 [See the documentation for more usage examples](https://primer.style/brand/components/RiverAccordion)
+- Fixed a bug in the `Heading` component where the component would be re-mounted each render, causing it to lose focus when used inside a focusable element.
