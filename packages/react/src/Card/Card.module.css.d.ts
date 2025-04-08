@@ -13,7 +13,6 @@ declare const styles: {
   readonly "Card--variant-default": string;
   readonly "Card--variant-minimal": string;
   readonly "Card__action": string;
-  readonly "Card__action-label": string;
   readonly "Card__description": string;
   readonly "Card__heading": string;
   readonly "Card__icon": string;
