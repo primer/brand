@@ -1,7 +1,7 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 
-import {Link, RiverAccordion, type RiverAccordionProps} from '../../'
+import {Link, RiverAccordion, type RiverAccordionProps, Text} from '../../'
 import placeholder1 from '../../fixtures/images/placeholder-1.png'
 import placeholder2 from '../../fixtures/images/placeholder-2.png'
 import placeholder3 from '../../fixtures/images/placeholder-3.png'
@@ -26,7 +26,7 @@ const meta: Meta<MetaProps> = {
         <RiverAccordion.Item>
           <RiverAccordion.Heading>Heading 1</RiverAccordion.Heading>
           <RiverAccordion.Content>
-            <Text as="p" variant="muted" weight="medium" size="200">
+            <Text>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
               turpis felis nam pulvinar risus elementum.
             </Text>
@@ -46,7 +46,7 @@ const meta: Meta<MetaProps> = {
         <RiverAccordion.Item>
           <RiverAccordion.Heading>Heading 2</RiverAccordion.Heading>
           <RiverAccordion.Content>
-            <Text as="p" variant="muted" weight="medium" size="200">
+            <Text>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
               turpis felis nam pulvinar risus elementum.
             </Text>
@@ -66,7 +66,7 @@ const meta: Meta<MetaProps> = {
         <RiverAccordion.Item>
           <RiverAccordion.Heading>Heading 3</RiverAccordion.Heading>
           <RiverAccordion.Content>
-            <Text as="p" variant="muted" weight="medium" size="200">
+            <Text>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
               turpis felis nam pulvinar risus elementum.
             </Text>

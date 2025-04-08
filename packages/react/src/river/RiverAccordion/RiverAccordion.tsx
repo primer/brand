@@ -2,7 +2,7 @@ import React, {createContext, forwardRef, useCallback, useContext, useMemo, useS
 import clsx from 'clsx'
 import {PlusIcon} from '@primer/octicons-react'
 
-import {Heading, type HeadingProps} from '../..'
+import {Heading, type HeadingProps, Text} from '../..'
 import styles from './RiverAccordion.module.css'
 import {useProvidedRefOrCreate} from '../../hooks/useRef'
 import {useId} from '../../hooks/useId'
@@ -202,8 +202,27 @@ const RiverAccordionHeading = ({className, children, ...props}: RiverAccordionHe
 
 export type RiverAccordionContentProps = React.HTMLAttributes<HTMLDivElement>
 
-const RiverAccordionContent = ({className, ...props}: RiverAccordionContentProps) => {
-  return <div className={clsx(styles.RiverAccordion__content, className)} {...props} />
+const RiverAccordionContent = ({className, children, ...props}: RiverAccordionContentProps) => {
+  const childrenWithStyledText = useMemo(() => {
+    return React.Children.toArray(children).map(child => {
+      if (!isText(child)) {
+        return child
+      }
+
+      return React.cloneElement(child, {
+        as: 'p',
+        variant: 'muted',
+        weight: 'medium',
+        size: '200',
+      })
+    })
+  }, [children])
+
+  return (
+    <div className={clsx(styles.RiverAccordion__content, className)} {...props}>
+      {childrenWithStyledText}
+    </div>
+  )
 }
 
 export type RiverAccordionVisualProps = React.HTMLAttributes<HTMLDivElement>
@@ -221,6 +240,7 @@ const isRiverAccordionItem = createComponentTypeGuard(RiverAccordionItem)
 const isRiverAccordionContent = createComponentTypeGuard(RiverAccordionContent)
 const isRiverAccordionHeading = createComponentTypeGuard(RiverAccordionHeading)
 const isRiverAccordionVisual = createComponentTypeGuard(RiverAccordionVisual)
+const isText = createComponentTypeGuard(Text)
 
 /**
  * Use the RiverAccordion to create collapsible content panels with associated visuals.
