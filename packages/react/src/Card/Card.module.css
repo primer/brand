@@ -172,6 +172,9 @@
   align-items: center;
 }
 
+.Card__action-label {
+}
+
 .Card--align-center .Card__action {
   justify-content: center;
 }
@@ -219,6 +222,10 @@
   bottom: 0;
   right: 0;
   z-index: -1;
+}
+
+.Card--expandableArrow {
+  margin-left: var(--base-size-4);
 }
 
 .Card:has(.Card__link:hover) .Card--expandableArrow {
