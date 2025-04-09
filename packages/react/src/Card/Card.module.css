@@ -222,7 +222,7 @@
 }
 
 .Card--expandableArrow {
-  margin-left: var(--base-size-4);
+  margin-inline-start: var(--base-size-4);
 }
 
 .Card:has(.Card__link:hover) .Card--expandableArrow {
