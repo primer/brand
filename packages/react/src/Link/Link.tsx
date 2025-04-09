@@ -92,9 +92,9 @@ export function Link({
       className={clsx(
         styles.Link,
         styles[`Link--${size}`],
-        !isExternal && styles[`Link--${variant}`],
-        !isExternal && styles[`Link--arrow-${arrowDirection}`],
-        isExternal && styles['Link--is-external'],
+        isExternal
+          ? styles['Link--is-external']
+          : [styles[`Link--${variant}`], styles[`Link--arrow-${arrowDirection}`]],
         className,
       )}
       onMouseEnter={handleMouseEnter}
