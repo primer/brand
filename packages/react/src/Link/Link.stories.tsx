@@ -36,3 +36,5 @@ const meta: Meta<LinkProps> = {
 export default meta
 
 type Story = StoryObj<LinkProps>
+
+export const Default: Story = {}
