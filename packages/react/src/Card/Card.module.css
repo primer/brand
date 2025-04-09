@@ -221,6 +221,10 @@
   z-index: -1;
 }
 
+.Card--expandableArrow {
+  margin-inline-start: var(--base-size-4);
+}
+
 .Card:has(.Card__link:hover) .Card--expandableArrow {
   transform: translateX(var(--base-size-4));
 }
