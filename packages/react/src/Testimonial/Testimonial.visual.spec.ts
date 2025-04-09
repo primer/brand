@@ -86,4 +86,13 @@ test.describe('Visual Comparison: Testimonial', () => {
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
+
+  test('Testimonial / Variants Without Border', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-testimonial-features--variants-without-border&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
 })

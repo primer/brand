@@ -34,6 +34,10 @@ export type TestimonialProps = {
    */
   variant?: TestimonialVariant
   /**
+   * Applies an optional border where a variant supports it
+   */
+  hasBorder?: boolean
+  /**
    * Valid children include Testimonial.Name, Testimonial.Avatar, and Testimonial.Name
    */
   children:
@@ -62,6 +66,7 @@ function _Root(
     className,
     children,
     variant = 'minimal',
+    hasBorder = true,
     size,
     style,
     ...rest
@@ -78,6 +83,7 @@ function _Root(
         styles['Testimonial'],
         styles[`Testimonial--variant-${variant}`],
         size && styles[`Testimonial--size-${size}`],
+        hasBorder && styles['Testimonial--border'],
         className,
       )}
       style={{
