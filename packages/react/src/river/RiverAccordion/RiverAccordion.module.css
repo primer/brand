@@ -11,17 +11,23 @@
 
 @media (min-width: 48rem) {
   .RiverAccordion {
+    --gap-width: var(--brand-Grid-spacing-column-gap);
+    --column-and-gap-width: calc((100% + var(--gap-width)) / 12);
+
+    --4-grid-columns: calc(4 * var(--column-and-gap-width));
+    --7-grid-columns-minus-last-gap: calc((7 * var(--column-and-gap-width)) - var(--gap-width));
+
     grid-template-rows: auto;
-    gap: 8.33%; /* 100% ÷ 12 = 8.33%, or 1 grid unit */
+    gap: var(--column-and-gap-width);
   }
 
   .RiverAccordion__align-start {
-    grid-template-columns: 4fr 7fr; /* 12 columns, minus 1 for the gap */
+    grid-template-columns: var(--4-grid-columns) var(--7-grid-columns-minus-last-gap);
     grid-template-areas: 'accordion visual';
   }
 
   .RiverAccordion__align-end {
-    grid-template-columns: 7fr 4fr; /* 12 columns, minus 1 for the gap */
+    grid-template-columns: var(--7-grid-columns-minus-last-gap) var(--4-grid-columns);
     grid-template-areas: 'visual accordion';
   }
 }
