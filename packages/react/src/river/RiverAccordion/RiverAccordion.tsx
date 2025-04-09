@@ -173,7 +173,7 @@ const RiverAccordionItem = ({className, index, children, ...props}: RiverAccordi
 
 export type RiverAccordionHeadingProps = HeadingProps
 
-const RiverAccordionHeading = ({className, children, ...props}: RiverAccordionHeadingProps) => {
+const RiverAccordionHeading = ({as = 'h3', children, className, size = '6', ...props}: RiverAccordionHeadingProps) => {
   const {setOpenIndex} = useRiverAccordionContext()
   const {id, index, isOpen} = useRiverAccordionItemContext()
 
@@ -184,7 +184,7 @@ const RiverAccordionHeading = ({className, children, ...props}: RiverAccordionHe
   }, [index, isOpen, setOpenIndex])
 
   return (
-    <Heading size="6" as="h3" className={clsx(styles.RiverAccordion__heading, className)} {...props}>
+    <Heading size={size} as={as} className={clsx(styles.RiverAccordion__heading, className)} {...props}>
       <button
         type="button"
         className={styles.RiverAccordion__trigger}
