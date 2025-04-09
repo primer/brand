@@ -11,7 +11,7 @@ export const globalTypes = {
     description: 'Color mode (light, dark, auto, all)',
     defaultValue: 'light',
     toolbar: {
-      icon: 'globe',
+      icon: 'paintbrush',
       // array of colorMode items
       items: [
         {
@@ -32,6 +32,24 @@ export const globalTypes = {
         },
       ],
       title: 'Color mode',
+    },
+  },
+  showGrid: {
+    description: 'Show grid overlay',
+    defaultValue: false,
+    toolbar: {
+      title: 'Grid overlay',
+      icon: 'contrast',
+      items: [
+        {
+          value: true,
+          title: 'Show',
+        },
+        {
+          value: false,
+          title: 'Hide',
+        },
+      ],
     },
   },
 }
@@ -72,13 +90,47 @@ const ThemeProviderDecorator = (Story, context) => {
   )
 }
 
-export const decorators = [ThemeProviderDecorator]
+export const GridOverlayDecorator = (Story, context) => {
+  const showGrid = context.parameters?.showGrid || context.globals.showGrid
+
+  const grid = (
+    <div className={styles.grid}>
+      <div className={styles.column}></div>
+      <div className={styles.column}></div>
+      <div className={styles.column}></div>
+      <div className={styles.column}></div>
+      <div className={styles.column}></div>
+      <div className={styles.column}></div>
+      <div className={styles.column}></div>
+      <div className={styles.column}></div>
+      <div className={styles.column}></div>
+      <div className={styles.column}></div>
+      <div className={styles.column}></div>
+      <div className={styles.column}></div>
+    </div>
+  )
+
+  return (
+    <>
+      {showGrid && grid}
+      <Story {...context} />
+    </>
+  )
+}
+
+export const decorators = [GridOverlayDecorator, ThemeProviderDecorator]
 
 export const parameters = {
   controls: {
     matchers: {
       color: /(background|color)$/i,
       date: /Date$/,
+    },
+  },
+  backgrounds: {
+    grid: {
+      // Disable Storybook's built-in grid as it doesn't conform to our grid
+      disable: true,
     },
   },
   viewport: {
