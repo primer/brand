@@ -1,4 +1,5 @@
 import React from 'react'
+import clsx from 'clsx'
 import {ThemeProvider} from '../../../packages/react/src'
 import styles from './preview.module.css'
 import '../../../packages/react/src/css/stylesheets'
@@ -34,20 +35,32 @@ export const globalTypes = {
       title: 'Color mode',
     },
   },
-  showGrid: {
+  gridOverlay: {
     description: 'Show grid overlay',
-    defaultValue: false,
+    defaultValue: 'off',
     toolbar: {
       title: 'Grid overlay',
       icon: 'contrast',
       items: [
         {
-          value: true,
-          title: 'Show',
+          value: 'off',
+          title: 'Off',
         },
         {
-          value: false,
-          title: 'Hide',
+          value: 'limited-width',
+          title: 'Limited width',
+        },
+        {
+          value: 'limited-width-no-padding',
+          title: 'Limited width (no padding)',
+        },
+        {
+          value: 'full-width',
+          title: 'Full width',
+        },
+        {
+          value: 'full-width-no-padding',
+          title: 'Full width (no padding)',
         },
       ],
     },
@@ -91,10 +104,22 @@ const ThemeProviderDecorator = (Story, context) => {
 }
 
 export const GridOverlayDecorator = (Story, context) => {
-  const showGrid = context.parameters?.showGrid || context.globals.showGrid
+  const gridOverlay = context.parameters?.gridOverlay || context.globals.gridOverlay
+
+  if (gridOverlay === 'off') {
+    return <Story {...context} />
+  }
 
   const grid = (
-    <div className={styles.grid}>
+    <div
+      className={clsx(
+        styles.grid,
+        gridOverlay === 'limited-width' && styles['grid--limited-width'],
+        gridOverlay === 'limited-width-no-padding' && styles['grid--limited-width-no-padding'],
+        gridOverlay === 'full-width' && styles['grid--full-width'],
+        gridOverlay === 'full-width-no-padding' && styles['grid--full-width-no-padding'],
+      )}
+    >
       <div className={styles.column}></div>
       <div className={styles.column}></div>
       <div className={styles.column}></div>
@@ -112,7 +137,7 @@ export const GridOverlayDecorator = (Story, context) => {
 
   return (
     <>
-      {showGrid && grid}
+      {grid}
       <Story {...context} />
     </>
   )

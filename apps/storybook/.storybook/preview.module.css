@@ -14,13 +14,13 @@ body {
 
 :global(#storybook-root):has(.grid) {
   position: relative;
-  height: 100%;
 }
 
 .grid {
   position: absolute;
   top: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   grid-row-gap: var(--brand-Grid-spacing-row);
@@ -29,6 +29,25 @@ body {
   width: 100%;
   height: 100%;
   z-index: 9999999;
+  padding-inline: var(--brand-Grid-spacing-margin);
+}
+
+.grid--limited-width {
+  max-width: 1280px;
+}
+
+.grid--limited-width-no-padding {
+  max-width: 1280px;
+  padding-inline: 0;
+}
+
+.grid--full-width {
+  max-width: 100%;
+}
+
+.grid--full-width-no-padding {
+  max-width: 100%;
+  padding-inline: 0;
 }
 
 .column {
