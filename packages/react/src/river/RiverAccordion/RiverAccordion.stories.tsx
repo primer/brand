@@ -30,9 +30,7 @@ const meta: Meta<MetaProps> = {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
               turpis felis nam pulvinar risus elementum.
             </Text>
-            <Link href="#" variant="accent">
-              Call to action
-            </Link>
+            <Link href="#">Call to action</Link>
           </RiverAccordion.Content>
 
           <RiverAccordion.Visual>
@@ -50,9 +48,7 @@ const meta: Meta<MetaProps> = {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
               turpis felis nam pulvinar risus elementum.
             </Text>
-            <Link href="#" variant="accent">
-              Call to action
-            </Link>
+            <Link href="#">Call to action</Link>
           </RiverAccordion.Content>
 
           <RiverAccordion.Visual>
@@ -70,9 +66,7 @@ const meta: Meta<MetaProps> = {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
               turpis felis nam pulvinar risus elementum.
             </Text>
-            <Link href="#" variant="accent">
-              Call to action
-            </Link>
+            <Link href="#">Call to action</Link>
           </RiverAccordion.Content>
 
           <RiverAccordion.Visual>
