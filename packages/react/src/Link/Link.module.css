@@ -1,6 +1,6 @@
 .Link {
-  --visual-width: var(--external-icon-size, var(--arrow-size, 0));
-  --gap: var(--base-size-4);
+  --visual-width: var(--external-icon-size, var(--arrow-size, 0px));
+  --gap: 0px;
   position: relative;
   display: inline-flex;
   column-gap: var(--gap);
@@ -12,10 +12,17 @@
 
 .Link--arrow-start,
 .Link--arrow-end {
+  --gap: var(--base-size-4);
+  --arrow-size: var(--base-size-16);
+}
+
+.Link--arrow-start.Link--large,
+.Link--arrow-end.Link--large {
   --arrow-size: var(--base-size-20);
 }
 
 .Link--is-external {
+  --gap: var(--base-size-4);
   --external-icon-size: var(--base-size-16);
 }
 
@@ -82,10 +89,6 @@
   left: auto;
   right: 0;
   transform-origin: right 0;
-}
-
-.Link.Link--arrow-none::after {
-  width: 100%;
 }
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
