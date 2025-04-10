@@ -1,0 +1,97 @@
+---
+title: CTA form
+description: Use CTA form to capture user input and call to action button.
+keywords: ['call to action', 'form', 'input']
+show-tabs: true
+tab-label: Guidelines
+---
+
+## Anatomy
+
+![An image displaying a the CTA form anatomy, with a label on top of an input form, followed by a CTA button and optional checkbox underneath the input.](https://github.com/primer/brand/assets/6951037/d018c27f-847d-4011-b920-d15acb1e5efc)
+
+- Label: Short text that describes the required input form.
+- Text input: Single-line text field
+- Action: Call-to-action button that corresponds after completing the input form.
+- Checkbox: An optional checkbox to request additional behavior.
+
+## Usage
+
+The CTA form is designed to capture user input and call to actions on a website. It serves as an efficient tool to prompt user engagement and action. While it can be placed throughout the page, it is encouraged to be positioned at the bottom to conclude the user journey, summarize key information, and encourage users to take action.
+
+The CTA form presents a concise label, prompting users to provide specific input in the form field. Once users enter the required information, they can trigger the call-to-action through the button. Additionally, the CTA form supports an optional checkbox to seek additional user behavior or acknowledge certain terms.
+
+By adopting the same guidelines as the respective [text input](/components/TextInput) component, [button](/components/Button) component, and [checkbox](/components/Checkbox) component, the CTA form ensures consistency in design and enhances user familiarity with the interface.
+
+We recommend the CTA form over the [CTA banner](/components/CTABanner) when the main action for a user to take is to submit a form (e.g subscribe to a newsletter) vs taking actions (sign in or bring the user to a pricing page).
+
+<DoDontContainer stacked>
+  <Do>
+    <img src="https://github.com/primer/brand/assets/6951037/220b211e-f61f-4afb-83de-6a58980cdd6f" alt="" />
+    <Caption>
+      Place the CTA form near the end of the page to conclude the user journey and encourage users to take action.
+    </Caption>
+  </Do>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/6951037/3f202055-75ae-44be-82ca-f5388d0d3a1c" alt="" />
+    <Caption>Don't place the CTA Form early on in the user journey. Use the Hero instead for early on.</Caption>
+  </Dont>
+</DoDontContainer>
+
+### Setting Context
+
+Keep the CTA Form simple and intuitive to minimize friction and encourage user engagement. Ensure there is enough context surrounding the component. Utilize the label as a description of the form input.
+
+<DoDontContainer stacked>
+  <Do>
+    <img src="https://github.com/primer/brand/assets/6951037/04aeb96e-2c24-413e-94be-3608a0e41ec7" alt="" />
+    <Caption>Include context in areas surrounding the CTA Form to encourage user engagement.</Caption>
+  </Do>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/6951037/f0daf653-30ef-42d1-afac-354959c112c7" alt="" />
+    <Caption>
+      Don't use the CTA Form without context. The label should be used to describe the input, not to provide context.
+    </Caption>
+  </Dont>
+</DoDontContainer>
+
+### Component length
+
+When implementing CTA form, it's important to consider the length of the input field in order to maintain consistency and enhance user familiarity with the interface. Keeping the string length (width) of the component relative to the expected input is a recommended practice. Pair the component with additional information or context instead of spanning in wide viewports.
+
+<DoDontContainer stacked>
+  <Do>
+    <img src="https://github.com/primer/brand/assets/6951037/ba970b9c-cef8-4cf3-987f-15a11d6e27d2" alt="" />
+    <Caption>Keep the string length (width) of the component relative to the expected input.</Caption>
+  </Do>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/6951037/199c7caa-e605-4f53-9f41-e3d2460f7c55" alt="" />
+    <Caption>Don't over extend or compress the CTA form when possible.</Caption>
+  </Dont>
+</DoDontContainer>
+
+## Options
+
+### Checkbox
+
+Use the checkbox property in the CTA form to prompt additional user behavior or seek acknowledgment– examples include to gather consent, confirm agreement to terms, or request optional actions.
+
+It is crucial to provide a clear description of the checkbox's purpose and hyperlink to relevant resources. When using the checkbox, completion of the checkbox must be a requirement (not optional) to proceed with the CTA.
+
+<DoDontContainer>
+  <Do>
+    <img src="https://github.com/primer/brand/assets/6951037/0db61c2b-ad25-4dee-9c6f-eea294315d22" alt="" />
+    <Caption>Use short and concise text for the checkbox and inline links to relevant resources.</Caption>
+  </Do>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/6951037/59f8566f-8679-46b3-8b10-148c9fec104a" alt="" />
+    <Caption>Don't use lengthy text or unstlyed links.</Caption>
+  </Dont>
+</DoDontContainer>
+
+## Related components
+
+- [Button](/components/Button): To display a button that preforms an action.
+- [Text input](/components/TextInput): To create an input form for single-line text field.
+- [Checkbox](/components/Checkbox): To select options or acknowledge information.
+- [CTA Banner](/components/CTABanner): To draw attention to or create urgency around a user action.

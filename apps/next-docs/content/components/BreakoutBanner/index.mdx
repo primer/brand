@@ -1,0 +1,150 @@
+---
+title: Breakout banner
+description: Use a breakout banner to break up content on longer pages and highlight important information.
+keywords: ['banner', 'promo', 'callout', 'attention', 'highlight']
+show-tabs: true
+tab-label: Guidelines
+---
+
+import anatomy from './images/anatomy.png'
+import doAlign from './images/do-align.png'
+import dontAlign from './images/dont-align.png'
+import doLength from './images/do-length.png'
+import dontLength from './images/dont-length.png'
+import doBg from './images/do-bg.png'
+import dontBg from './images/dont-bg.png'
+import doLeadingVisual from './images/do-leading-visual.png'
+import dontLeadingVisual from './images/dont-leading-visual.png'
+import doLeadingVisualColor from './images/do-leading-visual-color.png'
+import doPosition from './images/do-position.png'
+import dontPosition from './images/dont-position.png'
+import doUseSparingly from './images/do-use-sparingly.png'
+import dontStack from './images/dont-stack.png'
+import dontLeadingVisualColor from './images/dont-leading-visual-color.png'
+
+Use breakout banners to promote important information and actions in-between blocks of content.
+Whereas the CTA banner is intended to redirect users to their respective conversion outlets, links in the breakout banner should only cross-link to supporting content.
+
+## Anatomy
+
+<img
+  src={anatomy.src}
+  alt="Breakout banner with location-based annotations for heading, description, leading visual and link groups"
+/>
+
+## Usage
+
+Breakout banners should be used in the middle of a page to break up long blocks of content. Avoid using the breakout banner at the beginning or towards the end of a page.
+
+<DoDontContainer>
+  <Do>
+    <img src={doPosition.src} alt="" />
+    <Caption>Use breakout banners to break up longer pages.</Caption>
+  </Do>
+  <Dont>
+    <img src={dontPosition.src} alt="" />
+    <Caption>
+      Don't use the breakout banner too early or late in the page (E.g. near the footer). Prefer CTA banner in case of
+      the latter. Also avoid placing the breakout banner too close to related components like the CTA banner.
+    </Caption>
+  </Dont>
+</DoDontContainer>
+
+### Alignment
+
+The breakout banner content can be aligned to the start or center of the parent element, with the former being the default. Use the center alignment if context calls for it.
+E.g. Use center alignment if the breakout banner is placed between two sections that are also centered aligned to avoid breaking the visual flow.
+
+<DoDontContainer>
+  <Do>
+    <img src={doAlign.src} alt="" />
+    <Caption>Use start alignment when possible.</Caption>
+  </Do>
+  <Dont>
+    <img src={dontAlign.src} alt="" />
+    <Caption>Don't use start alignment when adjacent content is center aligned.</Caption>
+  </Dont>
+</DoDontContainer>
+
+### Use sparingly
+
+Breakout banners should be used sparingly, at most once per page. This is to avoid diluting the impact of the spotlighted content or links in the context of the wider page.
+
+<DoDontContainer>
+  <Do>
+    <img alt="" src={doUseSparingly.src} />
+    <Caption>Use breakout banner sparingly.</Caption>
+  </Do>
+  <Dont>
+    <img alt="" src={dontStack.src} />
+    <Caption>Don't stack multiple breakout banners, prefer Bento instead.</Caption>
+  </Dont>
+</DoDontContainer>
+
+### Use concise headings
+
+Both heading and optional descriptions in the breakout banner should be short and focussed. Heading should be not be longer than 3 lines, and description should be no longer than 3-4 lines.
+
+<DoDontContainer>
+  <Do>
+    <img alt="" src={doLength.src} />
+    <Caption>Use concise, but impactful heading and description text.</Caption>
+  </Do>
+  <Dont>
+    <img alt="" src={dontLength.src} />
+    <Caption>
+      Don't use longer form content in the heading or description. Consider using Bento as an alternative.
+    </Caption>
+  </Dont>
+</DoDontContainer>
+
+### Background visuals
+
+Background images should be abstract and low fidelity to not compete with the foreground text.
+
+<DoDontContainer>
+  <Do>
+    <img alt="" src={doBg.src} />
+    <Caption>Use approved wallpapers that provide space and contrast with the foreground text.</Caption>
+  </Do>
+  <Dont>
+    <img alt="" src={dontBg.src} />
+    <Caption>Don't use images of people's faces, real objects, etc.</Caption>
+  </Dont>
+</DoDontContainer>
+
+### Leading visuals
+
+<DoDontContainer>
+  <Do>
+    <img alt="" src={doLeadingVisual.src} />
+    <Caption>Use logos or icons that are related to the adjacent banner content.</Caption>
+  </Do>
+  <Dont>
+    <img alt="" src={dontLeadingVisual.src} />
+    <Caption>Don't use decorative imagery as a leading visual. Use the background image to apply decoration.</Caption>
+  </Dont>
+</DoDontContainer>
+
+<DoDontContainer>
+  <Do>
+    <img alt="" src={doLeadingVisualColor.src} />
+    <Caption>Use monochrome colors, which correspond to the text color of the current, active color mode.</Caption>
+  </Do>
+  <Dont>
+    <img alt="" src={dontLeadingVisualColor.src} />
+    <Caption>Don't use full color visuals.</Caption>
+  </Dont>
+</DoDontContainer>
+
+## Accessibility
+
+- Ensure proper color contrast between text and background
+- Make sure leading visuals include proper aria labels
+- Use semantic heading elements with appropriate heading levels
+- Ensure links have descriptive text that makes sense out of context
+
+## Related components
+
+- [CTABanner](/components/CTABanner): To highlight important information and actions towards the end of a page
+- [Bento](/components/Bento): For more complex layout needs when presenting multiple content blocks

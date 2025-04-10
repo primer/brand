@@ -1,0 +1,118 @@
+---
+title: Grid
+description: Use the grid component to create flexible and responsive grid-based layouts.
+keywords: ['layout', 'responsive', 'columns', 'rows', 'spacing']
+show-tabs: true
+tab-label: React
+source: https://github.com/primer/brand/tree/main/packages/react/src/Grid/Grid.tsx
+storybook: '/brand/storybook/?path=/story/components-grid--playground'
+---
+
+import {Label} from '@primer/react'
+import {GridColumnAsProp, GridColumnSpanProp, GridColumnStartProp} from './react'
+
+```js
+import {Grid} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+The `Grid` component uses a 12-column layout system. Use `span` to control the number of columns that should be displayed.
+
+```jsx live
+<Grid enableOverlay>
+  <Grid.Column span={1}></Grid.Column>
+  <Grid.Column span={11}></Grid.Column>
+  <Grid.Column span={2}></Grid.Column>
+  <Grid.Column span={10}></Grid.Column>
+  <Grid.Column span={3}></Grid.Column>
+  <Grid.Column span={9}></Grid.Column>
+  <Grid.Column span={4}></Grid.Column>
+  <Grid.Column span={8}></Grid.Column>
+  <Grid.Column span={5}></Grid.Column>
+  <Grid.Column span={7}></Grid.Column>
+  <Grid.Column span={6}></Grid.Column>
+  <Grid.Column span={6}></Grid.Column>
+  <Grid.Column span={7}></Grid.Column>
+  <Grid.Column span={5}></Grid.Column>
+  <Grid.Column span={8}></Grid.Column>
+  <Grid.Column span={4}></Grid.Column>
+  <Grid.Column span={9}></Grid.Column>
+  <Grid.Column span={3}></Grid.Column>
+  <Grid.Column span={10}></Grid.Column>
+  <Grid.Column span={2}></Grid.Column>
+</Grid>
+```
+
+### Nested grids
+
+```jsx live
+<Grid enableOverlay>
+  <Grid.Column>
+    <Grid enableOverlay>
+      <Grid.Column span={4}></Grid.Column>
+      <Grid.Column span={4}></Grid.Column>
+      <Grid.Column span={4}></Grid.Column>
+    </Grid>
+  </Grid.Column>
+</Grid>
+```
+
+### Responsive behavior
+
+Use `span` with an `Object` of breakpoint-specific keys and `number` values to enable responsive behavior.
+
+Breakpoints use `min-width`, where it will also apply your chosen `span` value to all larger breakpoints.
+
+```jsx live
+<Grid enableOverlay>
+  <Grid.Column span={{xsmall: 12, small: 12, medium: 6, large: 4, xlarge: 3, xxlarge: 2}} />
+  <Grid.Column span={{xsmall: 6, small: 6, medium: 6, large: 4, xlarge: 3, xxlarge: 2}} />
+  <Grid.Column span={{xsmall: 6, small: 6, medium: 6, large: 4, xlarge: 3, xxlarge: 2}} />
+  <Grid.Column span={{xsmall: 12, small: 12, medium: 6, large: 4, xlarge: 3, xxlarge: 2}} />
+  <Grid.Column span={{xsmall: 6, small: 6, medium: 6, large: 4, xlarge: 3, xxlarge: 2}} />
+  <Grid.Column span={{xsmall: 6, small: 6, medium: 6, large: 4, xlarge: 3, xxlarge: 2}} />
+  <Grid.Column span={{xsmall: 12, small: 12, medium: 6, large: 4, xlarge: 3, xxlarge: 2}} />
+  <Grid.Column span={{xsmall: 6, small: 6, medium: 6, large: 4, xlarge: 3, xxlarge: 2}} />
+  <Grid.Column span={{xsmall: 6, small: 6, medium: 6, large: 4, xlarge: 3, xxlarge: 2}} />
+  <Grid.Column span={{xsmall: 12, small: 12, medium: 6, large: 4, xlarge: 3, xxlarge: 2}} />
+  <Grid.Column span={{xsmall: 6, small: 6, medium: 6, large: 4, xlarge: 3, xxlarge: 2}} />
+  <Grid.Column span={{xsmall: 6, small: 6, medium: 6, large: 4, xlarge: 3, xxlarge: 2}} />
+</Grid>
+```
+
+### Column offset
+
+Use `start` to provide a positioning offset.
+
+```jsx live
+<Grid enableOverlay>
+  <Grid.Column span={3}></Grid.Column>
+  <Grid.Column span={5} start={8}></Grid.Column>
+</Grid>
+```
+
+## Component props
+
+### Grid <Label>Required</Label>
+
+| name            | type                                                                  | default | required | description                               |
+| --------------- | --------------------------------------------------------------------- | ------- | -------- | ----------------------------------------- |
+| `as`            | <PropTableValues values={['div', 'section', 'span']} addLineBreaks /> | `'div'` | `false`  | The HTML element used to render the grid. |
+| `enableOverlay` | `boolean`                                                             | `false` | `false`  | Visual aid to help with alignment.        |
+| `className`     | `string`                                                              |         | `false`  | Sets a custom class on the element.       |
+| `children`      | `Grid.Column`                                                         |         | `true`   |
+| `id`            | `string`                                                              |         | `false`  | Sets a custom `id` attribute.             |
+
+### Grid.Column <Label>Required</Label>
+
+| name        | type                    | default | required | description                                                        |
+| ----------- | ----------------------- | ------- | -------- | ------------------------------------------------------------------ |
+| `as`        | <GridColumnAsProp />    | `'div'` | `false`  | The HTML element used to render the column.                        |
+| `span`      | <GridColumnSpanProp />  | `12`    | `false`  | The number of columns the element should span or a responsive map. |
+| `start`     | <GridColumnStartProp /> |         | `false`  | The column index to start the element or a responsive map.         |
+| `className` | `string`                |         | `false`  | Sets a custom class on the element                                 |
+| `children`  | `ReactElement`          |         | `false`  |
+| `id`        | `string`                |         | `false`  | Sets a custom `id`                                                 |

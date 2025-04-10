@@ -1,0 +1,64 @@
+---
+title: Footnotes
+description: Use footnotes to display contextual information and cite sources in the page content.
+keywords: ['content', 'footnotes', 'citations', 'contextual information']
+show-tabs: true
+tab-label: Guidelines
+---
+
+import anatomy from './images/anatomy.png'
+import doPosition from './images/do-position.png'
+import doReturnLinks from './images/do-use-return-urls.png'
+import dontReturnLinks from './images/dont-use-return-urls.png'
+import doUseDisclaimer from './images/do-use-disclaimer.png'
+import dontUseDisclaimer from './images/dont-use-disclaimer.png'
+
+## Anatomy
+
+<img
+  src={anatomy.src}
+  alt="Footnotes as an ordered list of citations, with visual indicators marking items and return urls"
+/>
+
+## Usage
+
+### Position
+
+Footnotes should generally appear at the bottom of the page.
+
+<DoDontContainer stacked>
+  <Do>
+    <img src={doPosition.src} alt="" />
+    <Caption>Place footnotes towards the end of a page.</Caption>
+  </Do>
+</DoDontContainer>
+
+### Return links
+
+Citations in the format of a numbered list should feature both a local description and a link to return the user to the original context.
+
+<DoDontContainer>
+  <Do>
+    <img src={doReturnLinks.src} alt="" />
+    <Caption>Include sufficient descriptions for each citation, alongside a return link.</Caption>
+  </Do>
+  <Dont>
+    <img src={dontReturnLinks.src} alt="" />
+    <Caption>Don't require users to manually locate the original context for each citation.</Caption>
+  </Dont>
+</DoDontContainer>
+
+### Paragraphs
+
+Use paragraphs to present disclaimers or similar types of content.
+
+<DoDontContainer>
+  <Do>
+    <img alt="" src={doUseDisclaimer.src} />
+    <Caption>Use paragraphs for context-agnostic items of text.</Caption>
+  </Do>
+  <Dont>
+    <img alt="" src={dontUseDisclaimer.src} />
+    <Caption>Don't use paragraphs to represent citations or numbered lists.</Caption>
+  </Dont>
+</DoDontContainer>

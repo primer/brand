@@ -1,0 +1,58 @@
+---
+title: Breadcrumbs
+description: Breadcrumbs display the current page within the site's hierarchy, allowing users to easily navigate to a different level.
+keywords: ['navigation']
+show-tabs: true
+tab-label: React
+ready: true
+source: https://github.com/primer/brand/tree/main/packages/react/src/Breadcrumbs/Breadcrumbs.tsx
+storybook: '/brand/storybook/?path=/story/components-breadcrumbs--playground'
+---
+
+import {Label} from '@primer/react'
+import {BreadcrumbsVariantProps} from './react'
+
+```js
+import {Breadcrumbs} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<Breadcrumbs>
+  <Breadcrumbs.Item href="/">Resources</Breadcrumbs.Item>
+  <Breadcrumbs.Item href="/copilot">GitHub Copilot</Breadcrumbs.Item>
+  <Breadcrumbs.Item href="/copilot/chat" selected>
+    Chat
+  </Breadcrumbs.Item>
+</Breadcrumbs>
+```
+
+### Accent
+
+```jsx live
+<Breadcrumbs variant="accent">
+  <Breadcrumbs.Item href="/">Resources</Breadcrumbs.Item>
+  <Breadcrumbs.Item href="/copilot">GitHub Copilot</Breadcrumbs.Item>
+  <Breadcrumbs.Item href="/copilot/chat" selected>
+    Chat
+  </Breadcrumbs.Item>
+</Breadcrumbs>
+```
+
+## Component props
+
+### Breadcrumbs <Label>Required</Label>
+
+| name      | type                        | default | required | description                               |
+| --------- | --------------------------- | ------- | -------- | ----------------------------------------- |
+| `variant` | <BreadcrumbsVariantProps /> |         | `false`  | Specify alternative breadcrumb appearance |
+
+### Breadcrumbs.Item <Label>Required</Label>
+
+| name       | type      | default | required | description                         |
+| ---------- | --------- | ------- | -------- | ----------------------------------- |
+| `selected` | `boolean` |         | `false`  | Used for indicating the active link |
+| `href`     | `string`  |         | `true`   | URL of the page the link goes to    |

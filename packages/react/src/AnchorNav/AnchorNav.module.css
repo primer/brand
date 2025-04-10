@@ -1,36 +1,16 @@
 /*
  * AnchorNav
  *
- * 1. Globals
- * 2. AnchorNav root and inner bounding containers
- * 3. AnchorNav links
- * 4. AnchorNav link labels
- * 5. AnchorNav menu toggle button (narrow)
- * 6. AnchorNav action
- * 7. Custom animations
+ * 1. AnchorNav root and inner bounding containers
+ * 2. AnchorNav links
+ * 3. AnchorNav link labels
+ * 4. AnchorNav menu toggle button (narrow)
+ * 5. AnchorNav action
+ * 6. Custom animations
  */
 
 /*
- * 1. Globals
- * TODO: Move into global reset
- */
-:global(html) {
-  scroll-behavior: smooth;
-}
-
-@media screen and (prefers-reduced-motion: reduce) {
-  :global(html) {
-    scroll-behavior: auto;
-  }
-}
-
-:global(.AnchorNav--no-bg-scroll) {
-  overflow: hidden;
-  height: 100vh;
-}
-
-/*
- * 2. AnchorNav root and inner bounding containers
+ * 1. AnchorNav root and inner bounding containers
  */
 .AnchorNav {
   display: flex;
@@ -41,6 +21,11 @@
   right: 0;
   padding: var(--base-size-12) var(--base-size-16);
   z-index: 91; /* must be higher than subdomain nav bar */
+}
+
+.AnchorNav--no-bg-scroll {
+  overflow: hidden;
+  height: 100vh;
 }
 
 .AnchorNav--hide-until-sticky:not(.AnchorNav--stuck) {
@@ -144,7 +129,7 @@
 }
 
 /*
- * 3. AnchorNav links
+ * 2. AnchorNav links
  */
 .AnchorNav-link {
   display: flex;
@@ -210,7 +195,7 @@
 }
 
 /*
- * 4. AnchorNav link labels
+ * 3. AnchorNav link labels
  */
 .AnchorNav-link-label {
   font-weight: var(--brand-text-weight-400);
@@ -308,7 +293,7 @@
 }
 
 /*
- * 5. AnchorNav menu toggle button (narrow)
+ * 4. AnchorNav menu toggle button (narrow)
  */
 .AnchorNav-menu-button {
   display: none;
@@ -360,7 +345,7 @@
 }
 
 /*
- * 6. AnchorNav action
+ * 5. AnchorNav action
  */
 
 .AnchorNav__actionsContainer {
@@ -416,7 +401,7 @@
 }
 
 /*
- * 7. Custom animations
+ * 6. Custom animations
  */
 @keyframes fade-in {
   0% {
