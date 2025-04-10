@@ -1,5 +1,4 @@
 'use client'
-import CustomVideoPlayer from '../../../../docs/src/components/custom-video-player'
 import {PropTableValues} from '@primer/doctocat-nextjs/components'
 
 import {
@@ -10,15 +9,6 @@ import {
   defaultHeadingTag,
   HeadingLetterSpacing,
 } from '@primer/react-brand'
-
-export const ResponsiveHeadingVideo = () => (
-  <div>
-    <CustomVideoPlayer
-      width="100%"
-      src="https://github.com/primer/brand/assets/912236/d0e7ef2b-d52f-413e-8580-579a9129696c"
-    />
-  </div>
-)
 
 export const HeadingAsProp = () => <PropTableValues values={[...HeadingTags]} addLineBreaks />
 export const HeadingAsPropDefault = () => <PropTableValues values={[defaultHeadingTag]} />
