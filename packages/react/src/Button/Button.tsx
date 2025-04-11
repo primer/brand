@@ -100,7 +100,6 @@ export const _Button = forwardRef(
 
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     const showArrow = variantsWithArrow.includes(variant) && hasArrow !== false // required for disabling buttons where hasArrow is optionally false
-    console.log(hasArrow, showArrow)
 
     const returnValidComponent = useCallback((component?: ReactElement | Icon) => {
       if (React.isValidElement(component)) {
