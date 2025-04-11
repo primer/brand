@@ -81,88 +81,97 @@ export const LargeHighlightedPortion: Story = {
   ),
 }
 
+const VariantsGrid = ({hasBorder}: TestimonialProps) => (
+  <Stack
+    direction={{
+      narrow: 'vertical',
+      wide: 'horizontal',
+    }}
+    padding="none"
+    gap="none"
+  >
+    <ThemeProvider colorMode="dark">
+      <Box
+        backgroundColor="default"
+        paddingBlockStart={128}
+        paddingBlockEnd={128}
+        paddingInlineStart={48}
+        paddingInlineEnd={48}
+      >
+        <Testimonial variant="subtle" hasBorder={hasBorder}>
+          <Testimonial.Quote>
+            <b>GitHub helps us ensure that we have our security controls baked into our pipelines</b> all the way from
+            the first line of code we&apos;re writing.
+          </Testimonial.Quote>
+          <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
+          <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from David Ross's GitHub profile" />
+        </Testimonial>
+      </Box>
+      <Box
+        backgroundColor="subtle"
+        paddingBlockStart={128}
+        paddingBlockEnd={128}
+        paddingInlineStart={48}
+        paddingInlineEnd={48}
+      >
+        <Testimonial variant="default" hasBorder={hasBorder}>
+          <Testimonial.Quote>
+            <b>GitHub helps us ensure that we have our security controls baked into our pipelines</b> all the way from
+            the first line of code we&apos;re writing.
+          </Testimonial.Quote>
+          <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
+          <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from David Ross's GitHub profile" />
+        </Testimonial>
+      </Box>
+    </ThemeProvider>
+
+    <ThemeProvider>
+      <Box
+        backgroundColor="default"
+        paddingBlockStart={128}
+        paddingBlockEnd={128}
+        paddingInlineStart={48}
+        paddingInlineEnd={48}
+      >
+        <Testimonial variant="subtle" hasBorder={hasBorder}>
+          <Testimonial.Quote>
+            <b>GitHub helps us ensure that we have our security controls baked into our pipelines</b> all the way from
+            the first line of code we&apos;re writing.
+          </Testimonial.Quote>
+          <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
+          <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from David Ross's GitHub profile" />
+        </Testimonial>
+      </Box>
+      <Box
+        backgroundColor="subtle"
+        paddingBlockStart={128}
+        paddingBlockEnd={128}
+        paddingInlineStart={48}
+        paddingInlineEnd={48}
+      >
+        <Testimonial variant="default" hasBorder={hasBorder}>
+          <Testimonial.Quote>
+            <b>GitHub helps us ensure that we have our security controls baked into our pipelines</b> all the way from
+            the first line of code we&apos;re writing.
+          </Testimonial.Quote>
+          <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
+          <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from David Ross's GitHub profile" />
+        </Testimonial>
+      </Box>
+    </ThemeProvider>
+  </Stack>
+)
+
 export const Variants: Story = {
   parameters: {
     layout: 'full',
   },
-  render: () => (
-    <Stack
-      direction={{
-        narrow: 'vertical',
-        wide: 'horizontal',
-      }}
-      padding="none"
-      gap="none"
-    >
-      <ThemeProvider colorMode="dark">
-        <Box
-          backgroundColor="default"
-          paddingBlockStart={128}
-          paddingBlockEnd={128}
-          paddingInlineStart={48}
-          paddingInlineEnd={48}
-        >
-          <Testimonial variant="subtle">
-            <Testimonial.Quote>
-              <b>GitHub helps us ensure that we have our security controls baked into our pipelines</b> all the way from
-              the first line of code we&apos;re writing.
-            </Testimonial.Quote>
-            <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
-            <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from David Ross's GitHub profile" />
-          </Testimonial>
-        </Box>
-        <Box
-          backgroundColor="subtle"
-          paddingBlockStart={128}
-          paddingBlockEnd={128}
-          paddingInlineStart={48}
-          paddingInlineEnd={48}
-        >
-          <Testimonial variant="default">
-            <Testimonial.Quote>
-              <b>GitHub helps us ensure that we have our security controls baked into our pipelines</b> all the way from
-              the first line of code we&apos;re writing.
-            </Testimonial.Quote>
-            <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
-            <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from David Ross's GitHub profile" />
-          </Testimonial>
-        </Box>
-      </ThemeProvider>
+  render: args => <VariantsGrid {...args} />,
+}
 
-      <ThemeProvider>
-        <Box
-          backgroundColor="default"
-          paddingBlockStart={128}
-          paddingBlockEnd={128}
-          paddingInlineStart={48}
-          paddingInlineEnd={48}
-        >
-          <Testimonial variant="subtle">
-            <Testimonial.Quote>
-              <b>GitHub helps us ensure that we have our security controls baked into our pipelines</b> all the way from
-              the first line of code we&apos;re writing.
-            </Testimonial.Quote>
-            <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
-            <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from David Ross's GitHub profile" />
-          </Testimonial>
-        </Box>
-        <Box
-          backgroundColor="subtle"
-          paddingBlockStart={128}
-          paddingBlockEnd={128}
-          paddingInlineStart={48}
-          paddingInlineEnd={48}
-        >
-          <Testimonial variant="default">
-            <Testimonial.Quote>
-              <b>GitHub helps us ensure that we have our security controls baked into our pipelines</b> all the way from
-              the first line of code we&apos;re writing.
-            </Testimonial.Quote>
-            <Testimonial.Name position="Staff Security Engineer">David Ross</Testimonial.Name>
-            <Testimonial.Avatar src={monaAvatar} alt="Circular avatar from David Ross's GitHub profile" />
-          </Testimonial>
-        </Box>
-      </ThemeProvider>
-    </Stack>
-  ),
+export const VariantsWithoutBorder: Story = {
+  parameters: {
+    layout: 'full',
+  },
+  render: args => <VariantsGrid hasBorder={false} {...args} />,
 }
