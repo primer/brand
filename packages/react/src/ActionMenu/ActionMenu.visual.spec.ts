@@ -32,6 +32,24 @@ test.describe('Visual Comparison: ActionMenu', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('ActionMenu / Split Button Mode', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--split-button-mode&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('ActionMenu / Split Button Mode In Hero', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--split-button-mode-in-hero&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('ActionMenu / In Stack', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--in-stack&viewMode=story',

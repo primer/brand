@@ -73,7 +73,7 @@ export const _Button = forwardRef(
       as,
       variant = defaultButtonVariant,
       size = defaultButtonSize,
-      hasArrow = false,
+      hasArrow,
       block = false,
       className,
       children,
@@ -98,7 +98,9 @@ export const _Button = forwardRef(
 
     const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
 
-    const showArrow = variantsWithArrow.includes(variant) || hasArrow
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+    const showArrow = variantsWithArrow.includes(variant) && hasArrow !== false // required for disabling buttons where hasArrow is optionally false
+    console.log(hasArrow, showArrow)
 
     const returnValidComponent = useCallback((component?: ReactElement | Icon) => {
       if (React.isValidElement(component)) {
