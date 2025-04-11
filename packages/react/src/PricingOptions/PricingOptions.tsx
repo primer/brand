@@ -10,6 +10,7 @@ import {
   Heading as HeadingComponent,
   HeadingProps,
   Label as LabelComponent,
+  LabelProps,
   Text,
   UnorderedList,
   UnorderedListProps,
@@ -215,7 +216,7 @@ const PricingOptionsItem = forwardRef(
 
 type PricingOptionsLabelProps = PropsWithChildren<BaseProps<HTMLSpanElement>> & {
   'data-testid'?: string
-}
+} & LabelProps
 
 const PricingOptionsLabel = forwardRef<HTMLSpanElement, PricingOptionsLabelProps>(
   ({children, className, 'data-testid': testId, ...rest}, ref) => {
