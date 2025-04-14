@@ -5,6 +5,7 @@ declare const styles: {
   readonly "Hero-actions": string;
   readonly "Hero-content": string;
   readonly "Hero-description": string;
+  readonly "Hero-description--custom-size": string;
   readonly "Hero-eyebrow": string;
   readonly "Hero-grid": string;
   readonly "Hero-grid--block-end": string;

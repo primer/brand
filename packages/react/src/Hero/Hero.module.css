@@ -63,6 +63,11 @@
   max-width: 600px;
 }
 
+.Hero-description:not(.Hero-description--custom-size) {
+  font-size: var(--brand-text-subhead-size-large);
+  line-height: var(--brand-text-subhead-lineHeight-large);
+}
+
 .Hero-actions {
   margin-block-start: var(--base-size-32);
   display: flex;
