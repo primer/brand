@@ -7,6 +7,7 @@ declare const styles: {
   readonly "ActionMenu__button--small": string;
   readonly "ActionMenu__button--split-button": string;
   readonly "ActionMenu__innerButton--disabled": string;
+  readonly "ActionMenu__innerButton--medium": string;
   readonly "ActionMenu__innerButton--split-button": string;
   readonly "ActionMenu__innerButton--subtle": string;
   readonly "ActionMenu__item": string;

@@ -283,7 +283,7 @@ const _ActionMenuRoot = memo(
             disabled,
             id: `${instanceId}-button`,
             size,
-            type: mode,
+            _mode: mode,
           })
         } else if (child.type === ActionMenuOverlay) {
           acc['Overlay'] = cloneElement(child as ReactElement<ActionMenuOverlayProps>, {
@@ -341,7 +341,7 @@ type ActionMenuButtonProps = PropsWithChildren<Ref<HTMLButtonElement>> & {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
   'data-testid'?: string
   size?: ActionMenuSizes
-  type?: ActionMenuButtonModes
+  _mode?: ActionMenuButtonModes
   variant?: ButtonProps<'a'>['variant']
   leadingVisual?: ButtonProps<'a'>['leadingVisual']
 }
@@ -357,7 +357,7 @@ const ActionMenuButton = forwardRef<HTMLButtonElement, ActionMenuButtonProps>(
       disabled,
       menuOpen,
       size,
-      type = 'default',
+      _mode = 'default',
       onClick,
       leadingVisual,
       variant = 'primary',
@@ -365,7 +365,7 @@ const ActionMenuButton = forwardRef<HTMLButtonElement, ActionMenuButtonProps>(
     },
     ref,
   ) => {
-    if (type === 'split-button') {
+    if (_mode === 'split-button') {
       return (
         <div className={clsx(styles.ActionMenu__button, styles[`ActionMenu__button--${size}`], className)}>
           <Button
@@ -374,6 +374,7 @@ const ActionMenuButton = forwardRef<HTMLButtonElement, ActionMenuButtonProps>(
             className={clsx(
               styles['ActionMenu__innerButton--split-button'],
               styles[`ActionMenu__innerButton--${variant}`],
+              styles[`ActionMenu__innerButton--${size}`],
               disabled && styles['ActionMenu__innerButton--disabled'],
             )}
             variant={variant}
@@ -435,7 +436,7 @@ type ActionMenuItemBaseProps = {
 
 type ActionMenuItemAnchorProps = ActionMenuItemBaseProps & {
   as: 'a'
-} & Omit<ComponentPropsWithoutRef<'a'>, keyof ActionMenuItemBaseProps | 'as'>
+} & Omit<React.HTMLProps<HTMLAnchorElement>, keyof ActionMenuItemBaseProps | 'as'>
 
 // Type for when 'as' is not set or is anything other than 'a'
 type ActionMenuItemDefaultProps = ActionMenuItemBaseProps & {

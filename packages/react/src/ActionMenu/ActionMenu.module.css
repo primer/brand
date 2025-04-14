@@ -55,6 +55,11 @@
   border-inline-end-color: var(--brand-color-border-onEmphasis) !important;
 }
 
+.ActionMenu__innerButton--medium.ActionMenu__innerButton--split-button,
+.ActionMenu__innerButton--split-button:last-child {
+  padding: var(--brand-control-medium-paddingBlock-condensed) var(--brand-control-medium-paddingInline-normal); /* Override the default button padding */
+}
+
 .ActionMenu__innerButton--split-button:last-child {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
