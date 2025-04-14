@@ -44,6 +44,20 @@ export const WithMutedDescriptions: StoryFn<typeof Hero> = _args => (
   </Hero>
 )
 
+export const WithCustomHeadingAndDescriptionSizes: StoryFn<typeof Hero> = _args => (
+  <Hero align="center">
+    <Hero.Heading size="3">This is my super sweet hero heading</Hero.Heading>
+    <Hero.Description size="200">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+      felis nam pulvinar risus elementum.
+    </Hero.Description>
+    <Hero.PrimaryAction href="#">Primary action with leading icon</Hero.PrimaryAction>
+    <Hero.SecondaryAction href="#" variant="subtle">
+      Subtle action with trailing icon
+    </Hero.SecondaryAction>
+  </Hero>
+)
+
 export const WithAccentButton: StoryFn<typeof Hero> = _args => (
   <Hero align="center">
     <Hero.Label>GitHub Issues</Hero.Label>
