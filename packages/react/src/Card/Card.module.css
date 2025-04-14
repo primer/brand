@@ -133,6 +133,7 @@
 }
 
 .Card__image img,
+.Card__image picture,
 .Card__image span {
   display: block;
 }

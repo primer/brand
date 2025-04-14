@@ -1,6 +1,6 @@
 {
   "name": "@primer/brand-docs",
-  "version": "0.50.0",
+  "version": "0.51.0",
   "private": true,
   "description": "Primer Brand Documentation",
   "keywords": [
@@ -39,9 +39,9 @@
   },
   "devDependencies": {
     "@github/prettier-config": "^0.0.6",
-    "@primer/brand-primitives": "^0.50.0",
+    "@primer/brand-primitives": "^0.51.0",
     "@primer/react": "37.11.2",
-    "@primer/react-brand": "0.50.0",
+    "@primer/react-brand": "0.51.0",
     "@types/node": "18.11.10",
     "eslint-config-next": "15.2.4",
     "prettier": "^3.5.1",

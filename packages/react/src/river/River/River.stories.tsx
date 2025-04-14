@@ -2,7 +2,7 @@ import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 
 import {River} from '.'
-import {Heading, Text, Link} from '../../'
+import {Heading, Text, Link, Image} from '../../'
 import {Container} from '../../component-helpers'
 import placeholderImage from '../../fixtures/images/placeholder.png'
 
@@ -39,7 +39,7 @@ export const LargerPlaceholderImage: StoryFn<typeof River> = args => (
   <Container>
     <River {...args} imageTextRatio="60:40">
       <River.Visual>
-        <PlaceholderImage />
+        <Image as="picture" src={placeholderImage} alt="placeholder, blank area with a gray background color" />
       </River.Visual>
       <River.Content>
         <Heading as="h3">Heading</Heading>

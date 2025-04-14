@@ -228,13 +228,22 @@ export const IconAndLabel: StoryFn<typeof Card> = () => {
 
 export const Image: StoryFn<typeof Card> = () => {
   return (
-    <Card href="https://github.com">
-      <Card.Image src={placeholderImage} alt="placeholder, blank area with an gray background color" />
-      <Card.Heading>Code search & code view</Card.Heading>
-      <Card.Description>
-        Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
-      </Card.Description>
-    </Card>
+    <Stack direction="horizontal">
+      <Card href="https://github.com">
+        <Card.Image src={placeholderImage} alt="placeholder, blank area with an gray background color" />
+        <Card.Heading>Code search & code view</Card.Heading>
+        <Card.Description>
+          Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
+        </Card.Description>
+      </Card>
+      <Card href="https://github.com">
+        <Card.Image as="picture" src={placeholderImage} alt="placeholder, blank area with an gray background color" />
+        <Card.Heading>Code search & code view</Card.Heading>
+        <Card.Description>
+          Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
+        </Card.Description>
+      </Card>
+    </Stack>
   )
 }
 
