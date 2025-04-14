@@ -62,20 +62,20 @@ export const SplitButtonMode = () => {
   return (
     <ActionMenu mode="split-button">
       <ActionMenu.Button variant="primary" as="a" href="#option1" leadingVisual={<VisualStudioCodeLogo />}>
-        Primary Option
+        Install Copilot in Visual Studio Code
       </ActionMenu.Button>
       <ActionMenu.Overlay aria-label="Alternative options">
         <ActionMenu.Item as="a" href="#0" leadingVisual={<VisualStudioCodeLogo />}>
-          Option 1
+          Visual Studio Code
         </ActionMenu.Item>
         <ActionMenu.Item as="a" href="#1" leadingVisual={<VisualStudioLogo />}>
-          Option 2
+          Visual Studio
         </ActionMenu.Item>
         <ActionMenu.Item as="a" href="#2" leadingVisual={<NeoVimLogo />}>
-          Option 3
+          Neovim
         </ActionMenu.Item>
         <ActionMenu.Item as="a" href="#3" leadingVisual={<JetBrainsLogo />}>
-          Option 4
+          JetBrains
         </ActionMenu.Item>
       </ActionMenu.Overlay>
     </ActionMenu>
@@ -86,20 +86,20 @@ export const SplitButtonModeDisabled = () => {
   return (
     <ActionMenu mode="split-button" disabled>
       <ActionMenu.Button variant="primary" as="a" href="#option1" leadingVisual={<VisualStudioCodeLogo />}>
-        Primary Option
+        Install Copilot in Visual Studio Code
       </ActionMenu.Button>
       <ActionMenu.Overlay aria-label="Alternative options">
         <ActionMenu.Item as="a" href="#0" leadingVisual={<VisualStudioCodeLogo />}>
-          Option 1
+          Visual Studio Code
         </ActionMenu.Item>
         <ActionMenu.Item as="a" href="#1" leadingVisual={<VisualStudioLogo />}>
-          Option 2
+          Visual Studio
         </ActionMenu.Item>
         <ActionMenu.Item as="a" href="#2" leadingVisual={<NeoVimLogo />}>
-          Option 3
+          Neovim
         </ActionMenu.Item>
         <ActionMenu.Item as="a" href="#3" leadingVisual={<JetBrainsLogo />}>
-          Option 4
+          JetBrains
         </ActionMenu.Item>
       </ActionMenu.Overlay>
     </ActionMenu>
@@ -110,20 +110,20 @@ export const SplitButtonModeOpen = () => {
   return (
     <ActionMenu mode="split-button" open>
       <ActionMenu.Button variant="primary" as="a" href="#option1" leadingVisual={<VisualStudioCodeLogo />}>
-        Primary Option
+        Install Copilot in Visual Studio Code
       </ActionMenu.Button>
       <ActionMenu.Overlay aria-label="Alternative options">
         <ActionMenu.Item as="a" href="#0" leadingVisual={<VisualStudioCodeLogo />}>
-          Option 1
+          Visual Studio Code
         </ActionMenu.Item>
         <ActionMenu.Item as="a" href="#1" leadingVisual={<VisualStudioLogo />}>
-          Option 2
+          Visual Studio
         </ActionMenu.Item>
         <ActionMenu.Item as="a" href="#2" leadingVisual={<NeoVimLogo />}>
-          Option 3
+          Neovim
         </ActionMenu.Item>
         <ActionMenu.Item as="a" href="#3" leadingVisual={<JetBrainsLogo />}>
-          Option 4
+          JetBrains
         </ActionMenu.Item>
       </ActionMenu.Overlay>
     </ActionMenu>
@@ -133,20 +133,20 @@ export const SplitButtonModeOpen = () => {
 export const SplitButtonMenuAlignment = () => (
   <ActionMenu mode="split-button" open menuAlignment="end">
     <ActionMenu.Button variant="primary" as="a" href="#option1" leadingVisual={<VisualStudioCodeLogo />}>
-      Primary Option
+      Install Copilot in Visual Studio Code
     </ActionMenu.Button>
     <ActionMenu.Overlay aria-label="Alternative options">
       <ActionMenu.Item as="a" href="#0" leadingVisual={<VisualStudioCodeLogo />}>
-        Option 1
+        Visual Studio Code
       </ActionMenu.Item>
       <ActionMenu.Item as="a" href="#1" leadingVisual={<VisualStudioLogo />}>
-        Option 2
+        Visual Studio
       </ActionMenu.Item>
       <ActionMenu.Item as="a" href="#2" leadingVisual={<NeoVimLogo />}>
-        Option 3
+        Neovim
       </ActionMenu.Item>
       <ActionMenu.Item as="a" href="#3" leadingVisual={<JetBrainsLogo />}>
-        Option 4
+        JetBrains
       </ActionMenu.Item>
     </ActionMenu.Overlay>
   </ActionMenu>
