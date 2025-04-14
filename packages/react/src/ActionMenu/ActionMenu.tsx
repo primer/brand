@@ -374,10 +374,11 @@ const ActionMenuButton = forwardRef<HTMLButtonElement, ActionMenuButtonProps>(
             className={clsx(
               styles['ActionMenu__innerButton--split-button'],
               styles[`ActionMenu__innerButton--${variant}`],
+              disabled && styles['ActionMenu__innerButton--disabled'],
             )}
             variant={variant}
             hasArrow={false}
-            disabled={disabled}
+            aria-disabled={disabled}
             data-testid={testId || testIds.button}
             size={size}
             leadingVisual={leadingVisual}
@@ -395,6 +396,7 @@ const ActionMenuButton = forwardRef<HTMLButtonElement, ActionMenuButtonProps>(
             size={size}
             aria-expanded={menuOpen ? 'true' : 'false'}
             onClick={onClick}
+            disabled={disabled}
             {...props}
           >
             <ChevronDownIcon />
@@ -445,6 +447,7 @@ type ActionMenuItemDefaultProps = ActionMenuItemBaseProps & {
 const roleTypeMap = {
   none: 'menuitem',
   single: 'menuitemradio',
+  link: 'menuitem',
 }
 
 const ActionMenuItem = ({
@@ -472,7 +475,7 @@ const ActionMenuItem = ({
         size && styles[`ActionMenu__item--${size}`],
         className,
       )}
-      role={roleTypeMap[type || 'single']}
+      role={isAnchor ? undefined : roleTypeMap[type || 'single']}
       aria-checked={as === 'a' || type === 'none' ? undefined : selected ? 'true' : 'false'}
       aria-disabled={disabled ? 'true' : 'false'}
       onClick={!isAnchor && handler && !disabled ? () => handler(String(value)) : undefined}
@@ -486,8 +489,9 @@ const ActionMenuItem = ({
       <InnerTag
         {...(isAnchor
           ? {
-              className: clsx(styles['ActionMenu__item-anchor']),
+              className: clsx(styles['ActionMenu__item-anchor'], disabled && styles['ActionMenu__item--disabled']),
               href: props.href,
+              role: roleTypeMap[type || 'single'],
             }
           : {})}
       >

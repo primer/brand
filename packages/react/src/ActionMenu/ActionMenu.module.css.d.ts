@@ -6,6 +6,7 @@ declare const styles: {
   readonly "ActionMenu__button--medium": string;
   readonly "ActionMenu__button--small": string;
   readonly "ActionMenu__button--split-button": string;
+  readonly "ActionMenu__innerButton--disabled": string;
   readonly "ActionMenu__innerButton--split-button": string;
   readonly "ActionMenu__innerButton--subtle": string;
   readonly "ActionMenu__item": string;
@@ -13,6 +14,7 @@ declare const styles: {
   readonly "ActionMenu__item--selection-type-single": string;
   readonly "ActionMenu__item--small": string;
   readonly "ActionMenu__item-anchor": string;
+  readonly "ActionMenu__item-anchor--disabled": string;
   readonly "ActionMenu__item-content--disabled": string;
   readonly "ActionMenu__item-icon": string;
   readonly "ActionMenu__item-icon--disabled": string;

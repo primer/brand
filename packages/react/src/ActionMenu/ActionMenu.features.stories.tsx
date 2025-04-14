@@ -59,6 +59,100 @@ export const SingleSelectionSmallOpen = () => {
 }
 
 export const SplitButtonMode = () => {
+  return (
+    <ActionMenu mode="split-button">
+      <ActionMenu.Button variant="primary" as="a" href="#option1" leadingVisual={<VisualStudioCodeLogo />}>
+        Primary Option
+      </ActionMenu.Button>
+      <ActionMenu.Overlay aria-label="Alternative options">
+        <ActionMenu.Item as="a" href="#0" leadingVisual={<VisualStudioCodeLogo />}>
+          Option 1
+        </ActionMenu.Item>
+        <ActionMenu.Item as="a" href="#1" leadingVisual={<VisualStudioLogo />}>
+          Option 2
+        </ActionMenu.Item>
+        <ActionMenu.Item as="a" href="#2" leadingVisual={<NeoVimLogo />}>
+          Option 3
+        </ActionMenu.Item>
+        <ActionMenu.Item as="a" href="#3" leadingVisual={<JetBrainsLogo />}>
+          Option 4
+        </ActionMenu.Item>
+      </ActionMenu.Overlay>
+    </ActionMenu>
+  )
+}
+
+export const SplitButtonModeDisabled = () => {
+  return (
+    <ActionMenu mode="split-button" disabled>
+      <ActionMenu.Button variant="primary" as="a" href="#option1" leadingVisual={<VisualStudioCodeLogo />}>
+        Primary Option
+      </ActionMenu.Button>
+      <ActionMenu.Overlay aria-label="Alternative options">
+        <ActionMenu.Item as="a" href="#0" leadingVisual={<VisualStudioCodeLogo />}>
+          Option 1
+        </ActionMenu.Item>
+        <ActionMenu.Item as="a" href="#1" leadingVisual={<VisualStudioLogo />}>
+          Option 2
+        </ActionMenu.Item>
+        <ActionMenu.Item as="a" href="#2" leadingVisual={<NeoVimLogo />}>
+          Option 3
+        </ActionMenu.Item>
+        <ActionMenu.Item as="a" href="#3" leadingVisual={<JetBrainsLogo />}>
+          Option 4
+        </ActionMenu.Item>
+      </ActionMenu.Overlay>
+    </ActionMenu>
+  )
+}
+
+export const SplitButtonModeOpen = () => {
+  return (
+    <ActionMenu mode="split-button" open>
+      <ActionMenu.Button variant="primary" as="a" href="#option1" leadingVisual={<VisualStudioCodeLogo />}>
+        Primary Option
+      </ActionMenu.Button>
+      <ActionMenu.Overlay aria-label="Alternative options">
+        <ActionMenu.Item as="a" href="#0" leadingVisual={<VisualStudioCodeLogo />}>
+          Option 1
+        </ActionMenu.Item>
+        <ActionMenu.Item as="a" href="#1" leadingVisual={<VisualStudioLogo />}>
+          Option 2
+        </ActionMenu.Item>
+        <ActionMenu.Item as="a" href="#2" leadingVisual={<NeoVimLogo />}>
+          Option 3
+        </ActionMenu.Item>
+        <ActionMenu.Item as="a" href="#3" leadingVisual={<JetBrainsLogo />}>
+          Option 4
+        </ActionMenu.Item>
+      </ActionMenu.Overlay>
+    </ActionMenu>
+  )
+}
+
+export const SplitButtonMenuAlignment = () => (
+  <ActionMenu mode="split-button" open menuAlignment="end">
+    <ActionMenu.Button variant="primary" as="a" href="#option1" leadingVisual={<VisualStudioCodeLogo />}>
+      Primary Option
+    </ActionMenu.Button>
+    <ActionMenu.Overlay aria-label="Alternative options">
+      <ActionMenu.Item as="a" href="#0" leadingVisual={<VisualStudioCodeLogo />}>
+        Option 1
+      </ActionMenu.Item>
+      <ActionMenu.Item as="a" href="#1" leadingVisual={<VisualStudioLogo />}>
+        Option 2
+      </ActionMenu.Item>
+      <ActionMenu.Item as="a" href="#2" leadingVisual={<NeoVimLogo />}>
+        Option 3
+      </ActionMenu.Item>
+      <ActionMenu.Item as="a" href="#3" leadingVisual={<JetBrainsLogo />}>
+        Option 4
+      </ActionMenu.Item>
+    </ActionMenu.Overlay>
+  </ActionMenu>
+)
+
+export const SplitButtonModeAllVariants = () => {
   /**
    * TODO: Only show examples for action menu button variants that are design approved
    */

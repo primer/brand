@@ -62,6 +62,11 @@
   z-index: 0;
 }
 
+.ActionMenu__innerButton--disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .ActionMenu__menu {
   position: absolute;
   z-index: 100;
@@ -165,6 +170,11 @@
   align-items: center;
   gap: var(--base-size-8);
   text-decoration: none;
+}
+
+.ActionMenu__item-anchor--disabled {
+  pointer-events: none;
+  cursor: not-allowed;
 }
 
 .ActionMenu__item-anchor:focus-visible {
