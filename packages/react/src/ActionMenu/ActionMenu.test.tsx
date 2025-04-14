@@ -517,17 +517,17 @@ describe('ActionMenu', () => {
         </ActionMenu.Overlay>
       </ActionMenu>,
     )
-
     const menu = getByLabelText('Additional options')
     expect(menu).toBeInTheDocument()
 
     const menuItems = getAllByRole('menuitem')
-
     expect(menuItems.length).toBe(2)
 
     let index = 1
     for (const item of menuItems) {
-      expect(item).toHaveAttribute('href', `#option${index}`)
+      const link = item.querySelector('a')
+
+      expect(link).toHaveAttribute('href', `#option${index}`)
       index++
     }
   })
@@ -688,7 +688,10 @@ describe('ActionMenu', () => {
     await waitFor(
       () => {
         const [firstItem] = getAllByRole('menuitem')
-        expect(document.activeElement).toBe(firstItem)
+
+        const linkEl = firstItem.querySelector('a')
+
+        expect(document.activeElement).toBe(linkEl)
       },
       {timeout: 100},
     )
@@ -698,7 +701,8 @@ describe('ActionMenu', () => {
     await waitFor(
       () => {
         const [, secondItem] = getAllByRole('menuitem')
-        expect(document.activeElement).toBe(secondItem)
+        const linkEl = secondItem.querySelector('a')
+        expect(document.activeElement).toBe(linkEl)
       },
       {timeout: 100},
     )
@@ -708,7 +712,9 @@ describe('ActionMenu', () => {
     await waitFor(
       () => {
         const [, , thirdItem] = getAllByRole('menuitem')
-        expect(document.activeElement).toBe(thirdItem)
+
+        const linkEl = thirdItem.querySelector('a')
+        expect(document.activeElement).toBe(linkEl)
       },
       {timeout: 100},
     )

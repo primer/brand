@@ -170,6 +170,7 @@
   align-items: center;
   gap: var(--base-size-8);
   text-decoration: none;
+  color: var(--brand-color-text-default);
 }
 
 .ActionMenu__item-anchor--disabled {

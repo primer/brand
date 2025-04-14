@@ -475,7 +475,7 @@ const ActionMenuItem = ({
         size && styles[`ActionMenu__item--${size}`],
         className,
       )}
-      role={isAnchor ? undefined : roleTypeMap[type || 'single']}
+      role={roleTypeMap[type || 'single']}
       aria-checked={as === 'a' || type === 'none' ? undefined : selected ? 'true' : 'false'}
       aria-disabled={disabled ? 'true' : 'false'}
       onClick={!isAnchor && handler && !disabled ? () => handler(String(value)) : undefined}
@@ -491,7 +491,6 @@ const ActionMenuItem = ({
           ? {
               className: clsx(styles['ActionMenu__item-anchor'], disabled && styles['ActionMenu__item--disabled']),
               href: props.href,
-              role: roleTypeMap[type || 'single'],
             }
           : {})}
       >

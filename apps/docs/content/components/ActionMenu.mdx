@@ -8,7 +8,10 @@ description: Use the action menu component to display a list of actions or selec
 
 import {Label} from '@primer/react'
 import {PropTableValues} from '../../src/components'
-import {actionMenuOverlaySides} from '@primer/react-brand'
+import {
+  actionMenuOverlaySides,
+  ActionMenuButtonModes,
+} from '@primer/react-brand'
 
 ```js
 import {ActionMenu} from '@primer/react-brand'
@@ -70,6 +73,53 @@ const App = () => {
 render(<App />)
 ```
 
+### Split-button layout
+
+In this `mode`, the `ActionMenu` can be shown as a split button with an action (left) and dropdown button (right) with an additional list of actions.
+
+```jsx live
+<ActionMenu mode="split-button" open>
+  <ActionMenu.Button
+    variant="subtle"
+    as="a"
+    href="#location-for-link"
+    leadingVisual={<StarIcon />}
+  >
+    Action 1
+  </ActionMenu.Button>
+  <ActionMenu.Overlay aria-label="Alternative actions">
+    <ActionMenu.Item
+      as="a"
+      href="#location-for-link"
+      leadingVisual={<StarIcon />}
+    >
+      Action 1
+    </ActionMenu.Item>
+    <ActionMenu.Item
+      as="a"
+      href="#location-for-link-2"
+      leadingVisual={<StarIcon />}
+    >
+      Action 2
+    </ActionMenu.Item>
+    <ActionMenu.Item
+      as="a"
+      href="#location-for-link-3"
+      leadingVisual={<StarIcon />}
+    >
+      Action 3
+    </ActionMenu.Item>
+    <ActionMenu.Item
+      as="a"
+      href="#location-for-link-4"
+      leadingVisual={<StarIcon />}
+    >
+      Action 4
+    </ActionMenu.Item>
+  </ActionMenu.Overlay>
+</ActionMenu>
+```
+
 ### Sizes
 
 `ActionMenu` is currently available in `small` and `medium` sizes, with the latter being the default.
@@ -106,6 +156,7 @@ render(<App />)
 | `menuAlignment`    | <PropTableValues values={['start', 'end']} addLineBreaks />       | `start`     | `false`  | Horizontal alignment of the menu relative to the bottom of the button |
 | `size`             | <PropTableValues values={['small', 'medium']} addLineBreaks />    | `medium`    | `false`  | Size configuration of the ActionMenu                                  |
 | `menuSide`         | <PropTableValues values={actionMenuOverlaySides} addLineBreaks /> | `undefined` | `false`  | Location of the menu overlay                                          |
+| `mode`             | <PropTableValues values={ActionMenuButtonModes} addLineBreaks />  | `default`   | `false`  | Alternative behavior for the button and menu items                    |
 
 ### ActionMenu.Button <Label>Required</Label>
 
