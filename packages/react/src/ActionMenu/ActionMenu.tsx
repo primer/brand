@@ -11,7 +11,6 @@ import React, {
   memo,
   Ref,
   ReactElement,
-  ComponentPropsWithoutRef,
 } from 'react'
 import {Button, ButtonProps, Text, ThemeProvider, useTheme} from '../'
 import {useAnchoredPosition} from '../hooks/useAnchoredPosition'
