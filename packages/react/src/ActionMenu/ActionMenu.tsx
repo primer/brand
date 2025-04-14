@@ -381,19 +381,21 @@ const ActionMenuButton = forwardRef<HTMLButtonElement, ActionMenuButtonProps>(
             data-testid={testId || testIds.button}
             size={size}
             leadingVisual={leadingVisual}
-            {...props}
           >
             <span className={styles['ActionMenu__button-text']}>{children}</span>
           </Button>
           <Button
+            ref={ref}
+            as="button"
             className={styles['ActionMenu__innerButton--split-button']}
             variant={variant}
             hasArrow={false}
-            ref={ref}
             aria-haspopup="true"
+            aria-label={`${menuOpen ? 'Close' : 'Open'} menu`}
             size={size}
             aria-expanded={menuOpen ? 'true' : 'false'}
             onClick={onClick}
+            {...props}
           >
             <ChevronDownIcon />
           </Button>
@@ -473,11 +475,9 @@ const ActionMenuItem = ({
       role={roleTypeMap[type || 'single']}
       aria-checked={as === 'a' || type === 'none' ? undefined : selected ? 'true' : 'false'}
       aria-disabled={disabled ? 'true' : 'false'}
-      onClick={!isAnchor && value && handler && !disabled ? () => handler(String(value)) : undefined}
+      onClick={!isAnchor && handler && !disabled ? () => handler(String(value)) : undefined}
       onKeyDown={
-        !isAnchor && value && handler && !disabled
-          ? event => event.key === 'Enter' && handler(String(value))
-          : undefined
+        !isAnchor && handler && !disabled ? event => event.key === 'Enter' && handler(String(value)) : undefined
       }
       tabIndex={0}
       data-value={value}

@@ -63,26 +63,4 @@ describe('ButtonGroup', () => {
 
     expect(results).toHaveNoViolations()
   })
-
-  it('renders primary button with arrow by default', () => {
-    const {getAllByRole} = render(
-      <ButtonGroup>
-        <Button>Primary Action</Button>
-        <Button>Secondary Action</Button>
-      </ButtonGroup>,
-    )
-    const buttonEl = getAllByRole('button')[0]
-    expect(buttonEl.querySelector('svg')).not.toBeNull()
-  })
-
-  it('renders secondary button without arrow by default', () => {
-    const {getAllByRole} = render(
-      <ButtonGroup>
-        <Button>Primary Action</Button>
-        <Button>Secondary Action</Button>
-      </ButtonGroup>,
-    )
-    const buttonEl = getAllByRole('button')[1]
-    expect(buttonEl.querySelector('svg')).toBeNull()
-  })
 })

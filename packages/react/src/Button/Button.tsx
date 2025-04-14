@@ -98,8 +98,7 @@ export const _Button = forwardRef(
 
     const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
 
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-    const showArrow = variantsWithArrow.includes(variant) && hasArrow !== false // required for disabling buttons where hasArrow is optionally false
+    const showArrow = variantsWithArrow.includes(variant) ? hasArrow !== false : Boolean(hasArrow)
 
     const returnValidComponent = useCallback((component?: ReactElement | Icon) => {
       if (React.isValidElement(component)) {

@@ -10,6 +10,22 @@ expect.extend(toHaveNoViolations)
 describe('ActionMenu', () => {
   afterEach(cleanup)
 
+  beforeAll(() => {
+    Object.defineProperty(window, 'matchMedia', {
+      writable: true,
+      value: jest.fn().mockImplementation(query => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        addListener: jest.fn(), // Deprecated
+        removeListener: jest.fn(), // Deprecated
+        dispatchEvent: jest.fn(),
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn(),
+      })),
+    })
+  })
+
   it('has no a11y violations on initial render', async () => {
     const {container} = render(
       <ActionMenu onSelect={newValue => alert(newValue)}>
