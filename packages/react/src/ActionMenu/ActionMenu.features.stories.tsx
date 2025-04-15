@@ -130,8 +130,8 @@ export const SplitButtonModeOpen = () => {
   )
 }
 
-export const SplitButtonMenuAlignment = () => (
-  <ActionMenu mode="split-button" open menuAlignment="end">
+export const SplitButtonAlternativeMenuAlignment = () => (
+  <ActionMenu mode="split-button" open menuAlignment="start">
     <ActionMenu.Button variant="primary" as="a" href="#option1" leadingVisual={<VisualStudioCodeLogo />}>
       Install Copilot in Visual Studio Code
     </ActionMenu.Button>

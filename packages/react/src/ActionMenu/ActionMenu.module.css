@@ -43,16 +43,26 @@
   z-index: 1;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-  border-inline-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
-  border-inline-end-color: var(--brand-color-border-muted) !important;
 }
 
-.ActionMenu__innerButton--subtle.ActionMenu__innerButton--split-button:first-child {
-  border-inline-end-width: var(--brand-borderWidth-thick) !important;
+.ActionMenu__innerButton--split-button:first-child::before,
+.ActionMenu__innerButton--split-button:hover:first-child::before {
+  content: '';
+  position: absolute;
+  top: calc(var(--base-size-2) / -2);
+  right: calc(var(--base-size-2) * -1);
+  width: var(--brand-borderWidth-thin);
+  height: calc(100% + var(--base-size-2));
+  background-color: var(--brand-color-border-muted);
 }
 
-.ActionMenu__innerButton--subtle.ActionMenu__innerButton--split-button:first-child:active {
-  border-inline-end-color: var(--brand-color-border-onEmphasis) !important;
+.ActionMenu__innerButton--subtle.ActionMenu__innerButton--split-button::before {
+  top: calc(var(--base-size-2) * -1);
+  height: calc(100% + var(--base-size-4));
+}
+
+.ActionMenu__innerButton--subtle.ActionMenu__innerButton--split-button:active:first-child::before {
+  width: 0;
 }
 
 .ActionMenu__innerButton--medium.ActionMenu__innerButton--split-button,

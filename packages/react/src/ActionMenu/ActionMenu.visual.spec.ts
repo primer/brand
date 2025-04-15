@@ -59,9 +59,9 @@ test.describe('Visual Comparison: ActionMenu', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('ActionMenu / Split Button Menu Alignment', async ({page}) => {
+  test('ActionMenu / Split Button Alternative Menu Alignment', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--split-button-menu-alignment&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-actionmenu-features--split-button-alternative-menu-alignment&viewMode=story',
     )
 
     await page.waitForTimeout(500)

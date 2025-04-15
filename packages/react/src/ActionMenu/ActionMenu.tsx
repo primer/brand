@@ -145,7 +145,7 @@ const _ActionMenuRoot = memo(
     disabled,
     open = false,
     selectionVariant = 'none',
-    menuAlignment = 'start',
+    menuAlignment = 'end',
     size = 'medium',
     menuSide,
     onSelect,
