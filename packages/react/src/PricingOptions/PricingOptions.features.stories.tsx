@@ -763,6 +763,80 @@ export const CollapsedFeatures: StoryFn<typeof PricingOptions> = () => {
   )
 }
 
+export const WithCustomFeatureListTitle: StoryFn<typeof PricingOptions> = () => {
+  return (
+    <PricingOptions>
+      <PricingOptions.Item>
+        <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+        <PricingOptions.Description>
+          Code completions, Chat, and more for indie developers and freelancers.
+        </PricingOptions.Description>
+        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
+        <PricingOptions.FeatureList>
+          <PricingOptions.FeatureListTitle>Base features</PricingOptions.FeatureListTitle>
+          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+        <PricingOptions.Footnote>
+          Free for verified students, teachers, and maintainers of popular open source projects.
+        </PricingOptions.Footnote>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Start a free trial
+        </PricingOptions.PrimaryAction>
+      </PricingOptions.Item>
+
+      <PricingOptions.Item>
+        <PricingOptions.Label>Recommended</PricingOptions.Label>
+        <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+        <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
+        <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Buy now
+        </PricingOptions.PrimaryAction>
+        <PricingOptions.SecondaryAction as="a" href="#">
+          Contact sales
+        </PricingOptions.SecondaryAction>
+
+        <PricingOptions.FeatureList>
+          <PricingOptions.FeatureListTitle>Extended features</PricingOptions.FeatureListTitle>
+          <PricingOptions.FeatureListItem>Everything in Copilot Individual plus:</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Code referencing</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Public code filter</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>IP indemnity</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>
+            Enterprise-grade security, safety, and privacy
+          </PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+      </PricingOptions.Item>
+
+      <PricingOptions.Item>
+        <PricingOptions.Label>Available Feb 2024</PricingOptions.Label>
+        <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
+        <PricingOptions.Description>
+          Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
+          Enterprise Cloud.
+        </PricingOptions.Description>
+        <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
+        <PricingOptions.FeatureList>
+          <PricingOptions.FeatureListTitle>Enterprise-only features</PricingOptions.FeatureListTitle>
+          <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Join waitlist
+        </PricingOptions.PrimaryAction>
+      </PricingOptions.Item>
+    </PricingOptions>
+  )
+}
+
 export const CollapsedFeaturesNoDividers: StoryFn<typeof PricingOptions> = () => {
   return (
     <PricingOptions>
