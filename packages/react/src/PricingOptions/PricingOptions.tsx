@@ -408,13 +408,13 @@ const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatu
 
     const {isMedium: isRegular, isXLarge: isWide} = useWindowSize()
 
-    let FeatureListTitle = () => (
+    let FeatureListTitle = (
       <PricingOptions.FeatureListTitle>{pricingOptionsDefaultFeatureListTitle}</PricingOptions.FeatureListTitle>
     )
 
     const FilteredChildrenSet = React.Children.toArray(children).reduce<ValidFeatureListChildren>((acc, child) => {
       if (React.isValidElement(child) && child.type === PricingOptionsFeatureListTitle) {
-        FeatureListTitle = () => child
+        FeatureListTitle = child
       } else if (React.isValidElement(child) && child.type === PricingOptionsFeatureListItem) {
         if (acc.length === 0) {
           acc.push({Heading: null, Items: []})
@@ -484,7 +484,7 @@ const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatu
             reversedToggles
           >
             <ChevronDownIcon className={styles['PricingOptions__feature-list-accordion-chevron']} />
-            <FeatureListTitle />
+            {FeatureListTitle}
           </Accordion.Heading>
           <Accordion.Content className={styles['PricingOptions__feature-list-accordion-content']}>
             {FeatureListItems}
