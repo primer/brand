@@ -72,7 +72,7 @@ export const Heading = forwardRef(
       animate,
       className,
       children,
-      as = defaultHeadingTag,
+      as: HeadingComponent = defaultHeadingTag,
       size,
       letterSpacing,
       weight,
@@ -104,7 +104,7 @@ export const Heading = forwardRef(
       animationClasses,
       styles.Heading,
       styles[`Heading-font--${font}`],
-      !size && styles[`Heading--${classMap[as]}`],
+      !size && styles[`Heading--${classMap[HeadingComponent]}`],
       size && styles[`Heading--${size}`],
       weight && weightClass,
       stretch && stretchClass,
@@ -112,18 +112,11 @@ export const Heading = forwardRef(
       className,
     )
 
-    const HeadingComponent = React.useCallback(
-      ({...props}: React.HTMLAttributes<HTMLHeadingElement>) => {
-        if (!HeadingTags.includes(as)) {
-          // eslint-disable-next-line no-console
-          console.error(`Heading: 'as' prop must be one of ${HeadingTags.join(', ')}`)
-          return null
-        }
-
-        return React.createElement(as, props, children)
-      },
-      [as, children],
-    )
+    if (!HeadingTags.includes(HeadingComponent)) {
+      // eslint-disable-next-line no-console
+      console.error(`Heading: 'as' prop must be one of ${HeadingTags.join(', ')}`)
+      return null
+    }
 
     return (
       <HeadingComponent className={headingClassNames} style={{...animationInlineStyles, ...style}} ref={ref} {...rest}>

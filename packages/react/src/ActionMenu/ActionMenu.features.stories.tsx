@@ -1,11 +1,15 @@
 import {Meta} from '@storybook/react'
 import React from 'react'
 import {expect, userEvent, within, waitFor} from '@storybook/test'
-import {ActionMenu, actionMenuOverlaySides, ActionMenuProps} from './ActionMenu'
+import {ActionMenu, actionMenuOverlaySides, ActionMenuProps, ActionMenuSizes} from './ActionMenu'
 import {countries} from '../test-utils/fixtures/data'
-import {Heading, Stack, Text, OrderedList, Box, Grid} from '../'
+import {Heading, Stack, Text, OrderedList, Box, Grid, Section, ThemeProvider, Button, ButtonVariants, Hero} from '../'
 
 import styles from './ActionMenu.stories.module.css'
+import {VisualStudioCodeLogo} from '../fixtures/third-party-logos/VisualStudioCodeLogo'
+import {VisualStudioLogo} from '../fixtures/third-party-logos/VisualStudioLogo'
+import {JetBrainsLogo} from '../fixtures/third-party-logos/JetBrainsLogo'
+import {NeoVimLogo} from '../fixtures/third-party-logos/NeoVimLogo'
 
 export default {
   title: 'Components/ActionMenu/Features',
@@ -51,6 +55,241 @@ export const SingleSelectionSmallOpen = () => {
         </ActionMenu.Item>
       </ActionMenu.Overlay>
     </ActionMenu>
+  )
+}
+
+export const SplitButtonMode = () => {
+  return (
+    <ActionMenu mode="split-button">
+      <ActionMenu.Button variant="primary" as="a" href="#option1" leadingVisual={<VisualStudioCodeLogo />}>
+        Install Copilot in Visual Studio Code
+      </ActionMenu.Button>
+      <ActionMenu.Overlay aria-label="Alternative options">
+        <ActionMenu.Item as="a" href="#0" leadingVisual={<VisualStudioCodeLogo />}>
+          Visual Studio Code
+        </ActionMenu.Item>
+        <ActionMenu.Item as="a" href="#1" leadingVisual={<VisualStudioLogo />}>
+          Visual Studio
+        </ActionMenu.Item>
+        <ActionMenu.Item as="a" href="#2" leadingVisual={<NeoVimLogo />}>
+          Neovim
+        </ActionMenu.Item>
+        <ActionMenu.Item as="a" href="#3" leadingVisual={<JetBrainsLogo />}>
+          JetBrains
+        </ActionMenu.Item>
+      </ActionMenu.Overlay>
+    </ActionMenu>
+  )
+}
+
+export const SplitButtonModeDisabled = () => {
+  return (
+    <ActionMenu mode="split-button" disabled>
+      <ActionMenu.Button variant="primary" as="a" href="#option1" leadingVisual={<VisualStudioCodeLogo />}>
+        Install Copilot in Visual Studio Code
+      </ActionMenu.Button>
+      <ActionMenu.Overlay aria-label="Alternative options">
+        <ActionMenu.Item as="a" href="#0" leadingVisual={<VisualStudioCodeLogo />}>
+          Visual Studio Code
+        </ActionMenu.Item>
+        <ActionMenu.Item as="a" href="#1" leadingVisual={<VisualStudioLogo />}>
+          Visual Studio
+        </ActionMenu.Item>
+        <ActionMenu.Item as="a" href="#2" leadingVisual={<NeoVimLogo />}>
+          Neovim
+        </ActionMenu.Item>
+        <ActionMenu.Item as="a" href="#3" leadingVisual={<JetBrainsLogo />}>
+          JetBrains
+        </ActionMenu.Item>
+      </ActionMenu.Overlay>
+    </ActionMenu>
+  )
+}
+
+export const SplitButtonModeOpen = () => {
+  return (
+    <ActionMenu mode="split-button" open>
+      <ActionMenu.Button variant="primary" as="a" href="#option1" leadingVisual={<VisualStudioCodeLogo />}>
+        Install Copilot in Visual Studio Code
+      </ActionMenu.Button>
+      <ActionMenu.Overlay aria-label="Alternative options">
+        <ActionMenu.Item as="a" href="#0" leadingVisual={<VisualStudioCodeLogo />}>
+          Visual Studio Code
+        </ActionMenu.Item>
+        <ActionMenu.Item as="a" href="#1" leadingVisual={<VisualStudioLogo />}>
+          Visual Studio
+        </ActionMenu.Item>
+        <ActionMenu.Item as="a" href="#2" leadingVisual={<NeoVimLogo />}>
+          Neovim
+        </ActionMenu.Item>
+        <ActionMenu.Item as="a" href="#3" leadingVisual={<JetBrainsLogo />}>
+          JetBrains
+        </ActionMenu.Item>
+      </ActionMenu.Overlay>
+    </ActionMenu>
+  )
+}
+
+export const SplitButtonAlternativeMenuAlignment = () => (
+  <ActionMenu mode="split-button" open menuAlignment="start">
+    <ActionMenu.Button variant="primary" as="a" href="#option1" leadingVisual={<VisualStudioCodeLogo />}>
+      Install Copilot in Visual Studio Code
+    </ActionMenu.Button>
+    <ActionMenu.Overlay aria-label="Alternative options">
+      <ActionMenu.Item as="a" href="#0" leadingVisual={<VisualStudioCodeLogo />}>
+        Visual Studio Code
+      </ActionMenu.Item>
+      <ActionMenu.Item as="a" href="#1" leadingVisual={<VisualStudioLogo />}>
+        Visual Studio
+      </ActionMenu.Item>
+      <ActionMenu.Item as="a" href="#2" leadingVisual={<NeoVimLogo />}>
+        Neovim
+      </ActionMenu.Item>
+      <ActionMenu.Item as="a" href="#3" leadingVisual={<JetBrainsLogo />}>
+        JetBrains
+      </ActionMenu.Item>
+    </ActionMenu.Overlay>
+  </ActionMenu>
+)
+
+export const SplitButtonModeAllVariants = () => {
+  /**
+   * TODO: Only show examples for action menu button variants that are design approved
+   */
+  const filteredButtonsVariants = ButtonVariants.filter(variant => !['accent', 'secondary'].includes(variant))
+
+  return (
+    <>
+      <ThemeProvider colorMode="light">
+        <Section backgroundColor="subtle">
+          <Stack direction="vertical">
+            {filteredButtonsVariants.map(variant => (
+              <Stack
+                direction={{
+                  narrow: 'vertical',
+                  regular: 'horizontal',
+                  wide: 'horizontal',
+                }}
+                gap={{
+                  narrow: 'condensed',
+                  regular: 'condensed',
+                  wide: 112,
+                }}
+                key={variant}
+              >
+                {ActionMenuSizes.map(size => (
+                  <ActionMenu mode="split-button" size={size} key={size}>
+                    <ActionMenu.Button variant={variant} as="a" href="#vscode" leadingVisual={<VisualStudioCodeLogo />}>
+                      Install Copilot in Visual Studio Code
+                    </ActionMenu.Button>
+                    <ActionMenu.Overlay aria-label="Alternative editors">
+                      <ActionMenu.Item as="a" href="#0" leadingVisual={<VisualStudioCodeLogo />}>
+                        Visual Studio Code
+                      </ActionMenu.Item>
+                      <ActionMenu.Item as="a" href="#1" leadingVisual={<VisualStudioLogo />}>
+                        Visual Studio
+                      </ActionMenu.Item>
+                      <ActionMenu.Item as="a" href="#2" leadingVisual={<NeoVimLogo />}>
+                        Neovim
+                      </ActionMenu.Item>
+                      <ActionMenu.Item as="a" href="#3" leadingVisual={<JetBrainsLogo />}>
+                        JetBrains
+                      </ActionMenu.Item>
+                    </ActionMenu.Overlay>
+                  </ActionMenu>
+                ))}
+              </Stack>
+            ))}
+          </Stack>
+        </Section>
+      </ThemeProvider>
+      <ThemeProvider colorMode="dark">
+        <Section backgroundColor="subtle">
+          <Stack direction="vertical">
+            {filteredButtonsVariants.map(variant => (
+              <Stack
+                direction={{
+                  narrow: 'vertical',
+                  regular: 'horizontal',
+                  wide: 'horizontal',
+                }}
+                gap={{
+                  narrow: 'condensed',
+                  regular: 'condensed',
+                  wide: 112,
+                }}
+                key={variant}
+              >
+                {ActionMenuSizes.map(size => (
+                  <ActionMenu mode="split-button" size={size} key={size}>
+                    <ActionMenu.Button variant={variant} as="a" href="#vscode" leadingVisual={<VisualStudioCodeLogo />}>
+                      Install Copilot in Visual Studio Code
+                    </ActionMenu.Button>
+                    <ActionMenu.Overlay aria-label="Alternative editors">
+                      <ActionMenu.Item as="a" href="#0" leadingVisual={<VisualStudioCodeLogo />}>
+                        Visual Studio Code
+                      </ActionMenu.Item>
+                      <ActionMenu.Item as="a" href="#1" leadingVisual={<VisualStudioLogo />}>
+                        Visual Studio
+                      </ActionMenu.Item>
+                      <ActionMenu.Item as="a" href="#2" leadingVisual={<NeoVimLogo />}>
+                        Neovim
+                      </ActionMenu.Item>
+                      <ActionMenu.Item as="a" href="#3" leadingVisual={<JetBrainsLogo />}>
+                        JetBrains
+                      </ActionMenu.Item>
+                    </ActionMenu.Overlay>
+                  </ActionMenu>
+                ))}
+              </Stack>
+            ))}
+          </Stack>
+        </Section>
+      </ThemeProvider>
+    </>
+  )
+}
+
+export const SplitButtonModeInHero = () => {
+  return (
+    <ThemeProvider colorMode="dark">
+      <Section backgroundColor="subtle">
+        <Hero
+          align="center"
+          trailingComponent={() => (
+            <Stack direction={{narrow: 'vertical', regular: 'horizontal'}} gap="condensed" padding="none">
+              <ActionMenu mode="split-button">
+                <ActionMenu.Button variant="primary" as="a" href="#vscode" leadingVisual={<VisualStudioCodeLogo />}>
+                  Install Copilot in Visual Studio Code
+                </ActionMenu.Button>
+                <ActionMenu.Overlay aria-label="Alternative editors">
+                  <ActionMenu.Item as="a" href="#0" leadingVisual={<VisualStudioCodeLogo />}>
+                    Visual Studio Code
+                  </ActionMenu.Item>
+                  <ActionMenu.Item as="a" href="#1" leadingVisual={<VisualStudioLogo />}>
+                    Visual Studio
+                  </ActionMenu.Item>
+                  <ActionMenu.Item as="a" href="#2" leadingVisual={<NeoVimLogo />}>
+                    Neovim
+                  </ActionMenu.Item>
+                  <ActionMenu.Item as="a" href="#3" leadingVisual={<JetBrainsLogo />}>
+                    JetBrains
+                  </ActionMenu.Item>
+                </ActionMenu.Overlay>
+              </ActionMenu>
+              <Button variant="secondary">See plans & pricing</Button>
+            </Stack>
+          )}
+        >
+          <Hero.Label>Label</Hero.Label>
+          <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+          <Hero.Description>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+            turpis felis nam pulvinar risus elementum.
+          </Hero.Description>
+        </Hero>
+      </Section>
+    </ThemeProvider>
   )
 }
 

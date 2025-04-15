@@ -133,6 +133,7 @@
 }
 
 .Card__image img,
+.Card__image picture,
 .Card__image span {
   display: block;
 }
@@ -219,6 +220,10 @@
   bottom: 0;
   right: 0;
   z-index: -1;
+}
+
+.Card--expandableArrow {
+  margin-inline-start: var(--base-size-4);
 }
 
 .Card:has(.Card__link:hover) .Card--expandableArrow {

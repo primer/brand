@@ -73,7 +73,7 @@ export const _Button = forwardRef(
       as,
       variant = defaultButtonVariant,
       size = defaultButtonSize,
-      hasArrow = false,
+      hasArrow,
       block = false,
       className,
       children,
@@ -98,7 +98,7 @@ export const _Button = forwardRef(
 
     const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
 
-    const showArrow = variantsWithArrow.includes(variant) || hasArrow
+    const showArrow = variantsWithArrow.includes(variant) ? hasArrow !== false : Boolean(hasArrow)
 
     const returnValidComponent = useCallback((component?: ReactElement | Icon) => {
       if (React.isValidElement(component)) {

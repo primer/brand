@@ -1,5 +1,6 @@
 declare const styles: {
   readonly "Testimonial": string;
+  readonly "Testimonial--border": string;
   readonly "Testimonial--size-large": string;
   readonly "Testimonial--variant-default": string;
   readonly "Testimonial--variant-subtle": string;

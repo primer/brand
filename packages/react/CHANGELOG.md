@@ -1,5 +1,81 @@
 # @primer/react-brand
 
+## 0.51.0
+
+### Minor Changes
+
+- [#939](https://github.com/primer/brand/pull/939) [`7f0a119`](https://github.com/primer/brand/commit/7f0a11931f63e98f8c3ed4053d5a61d2a185a4c8) Thanks [@joshfarrant](https://github.com/joshfarrant)! - - Added a new `RiverAccordion` component.
+
+  Usage example:
+
+  ```tsx
+  <RiverAccordion>
+    <RiverAccordion.Item>
+      <RiverAccordion.Heading>A Heading</RiverAccordion.Heading>
+      <RiverAccordion.Content>Some content</RiverAccordion.Content>
+      <RiverAccordion.Visual>
+        <img src="placeholder.png" alt="placeholder" />
+      </RiverAccordion.Visual>
+    </RiverAccordion.Item>
+
+    <RiverAccordion.Item>
+      <RiverAccordion.Heading>Another Heading</RiverAccordion.Heading>
+      <RiverAccordion.Content>Some content</RiverAccordion.Content>
+      <RiverAccordion.Visual>
+        <img src="placeholder.png" alt="placeholder" />
+      </RiverAccordion.Visual>
+    </RiverAccordion.Item>
+
+    <RiverAccordion.Item>
+      <RiverAccordion.Heading>One More Heading</RiverAccordion.Heading>
+      <RiverAccordion.Content>Some content</RiverAccordion.Content>
+      <RiverAccordion.Visual>
+        <img src="placeholder.png" alt="placeholder" />
+      </RiverAccordion.Visual>
+    </RiverAccordion.Item>
+  </RiverAccordion>
+  ```
+
+  🔗 [See the documentation for more usage examples](https://primer.style/brand/components/RiverAccordion)
+
+  - Fixed a bug in the `Heading` component where the component would be re-mounted each render, causing it to lose focus when used inside a focusable element.
+
+### Patch Changes
+
+- [#974](https://github.com/primer/brand/pull/974) [`aea5ea4`](https://github.com/primer/brand/commit/aea5ea4c64132c3e08f0bf68aa32531b8de9384a) Thanks [@rezrah](https://github.com/rezrah)! - Removed `clsx` as a library dependency. Now treated as `devDependency`.
+
+- [#966](https://github.com/primer/brand/pull/966) [`25db725`](https://github.com/primer/brand/commit/25db725f6be013137fadb0b3d4fca9a708a48fce) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Fixed a bug with the `SubNav` component where the `SubNav.Heading` and the current `SubNav.Link` were vertically misaligned in Safari on mobile viewports.
+
+- [#971](https://github.com/primer/brand/pull/971) [`9de3349`](https://github.com/primer/brand/commit/9de33493a42b668bcf887dbcf0ff93de8fa6dff8) Thanks [@rezrah](https://github.com/rezrah)! - Fixed border radius inconsistency in the `River` component where `picture` elements were only showing rounded corners at the top but not the bottom.
+
+- [#973](https://github.com/primer/brand/pull/973) [`c2d5b34`](https://github.com/primer/brand/commit/c2d5b34fdd735b493813291e7e78c536fbd2976b) Thanks [@rezrah](https://github.com/rezrah)! - Fixed type definitions for `PricingOptions.Label`. Now inclusive of all props in `Label`.
+
+- [#967](https://github.com/primer/brand/pull/967) [`b1ff17b`](https://github.com/primer/brand/commit/b1ff17be1c92d8506bce6c198a1397346dd1b1dd) Thanks [@danielguillan](https://github.com/danielguillan)! - Added spacing between the label and the arrow in the next and previous links in `Pagination`.
+
+- [#965](https://github.com/primer/brand/pull/965) [`9fdf1bf`](https://github.com/primer/brand/commit/9fdf1bf382645c761336323cf43fa153d7392b3f) Thanks [@rezrah](https://github.com/rezrah)! - Added a `hasBorder` prop to `Testimonial` component. Use `hasBorder={false}` to remove the default border applied by certain `variant` options.
+
+  ```jsx
+  <Testimonial variant="default" hasBorder={false} />
+  ```
+
+- [#967](https://github.com/primer/brand/pull/967) [`b1ff17b`](https://github.com/primer/brand/commit/b1ff17be1c92d8506bce6c198a1397346dd1b1dd) Thanks [@danielguillan](https://github.com/danielguillan)! - Added a new `isExternal` prop to `Link` to display an external link icon.
+
+  E.g.,
+
+  ```jsx
+  <Link href="https://github.com" isExternal>
+    My external link
+  </Link>
+  ```
+
+- [#971](https://github.com/primer/brand/pull/971) [`9de3349`](https://github.com/primer/brand/commit/9de33493a42b668bcf887dbcf0ff93de8fa6dff8) Thanks [@rezrah](https://github.com/rezrah)! - `River` headings and body text now have a maximum width of `400px` on default 50:50 layouts.
+
+- [#971](https://github.com/primer/brand/pull/971) [`9de3349`](https://github.com/primer/brand/commit/9de33493a42b668bcf887dbcf0ff93de8fa6dff8) Thanks [@rezrah](https://github.com/rezrah)! - Fixed border radius inconsistency in the `Card` component where `picture` elements were only showing rounded corners at the top but not the bottom.
+
+- [#960](https://github.com/primer/brand/pull/960) [`1203906`](https://github.com/primer/brand/commit/12039063f3b80d7dc0bee7f0b501ab1a0e3d613a) Thanks [@rezrah](https://github.com/rezrah)! - Updating various project dependencies.
+
+  No planned changes to Primer Brand component APIs, although minor visual changes to certain icons could be visible due to an internal update of the Primer Octicons dependency.
+
 ## 0.50.0
 
 ### Minor Changes

@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import React, {useCallback} from 'react'
 import {ExpandableArrow} from '../ExpandableArrow'
+import {LinkExternalIcon} from '@primer/octicons-react'
 import {Text} from '../Text'
 
 import styles from './Link.module.css'
@@ -20,6 +21,10 @@ export type LinkProps = {
    */
   arrowDirection?: (typeof LinkArrowDirections)[number]
   /**
+   * Show an external link icon
+   */
+  isExternal?: boolean
+  /**
    * Specify alternative link appearance
    */
   variant?: (typeof LinkVariants)[number]
@@ -34,6 +39,7 @@ export function Link({
   variant = 'default',
   className,
   children,
+  isExternal,
   onMouseEnter,
   onMouseLeave,
   onFocus,
@@ -87,7 +93,7 @@ export function Link({
         styles.Link,
         styles[`Link--${size}`],
         styles[`Link--${variant}`],
-        styles[`Link--arrow-${arrowDirection}`],
+        isExternal ? styles['Link--is-external'] : styles[`Link--arrow-${arrowDirection}`],
         className,
       )}
       onMouseEnter={handleMouseEnter}
@@ -96,15 +102,19 @@ export function Link({
       onBlur={handleOnBlur}
       {...props}
     >
-      {arrowDirection === 'start' && (
+      {arrowDirection === 'start' && !isExternal && (
         <ExpandableArrow className={styles['Link-arrow']} expanded={isHovered || isFocused} reverse hidden />
       )}
+
       <Text as="span" size={sizeMap[size]} className={clsx(styles['Link--label'])}>
         {children}
       </Text>
-      {arrowDirection === 'end' && (
+
+      {arrowDirection === 'end' && !isExternal && (
         <ExpandableArrow className={styles['Link-arrow']} expanded={isHovered || isFocused} hidden />
       )}
+
+      {isExternal && <LinkExternalIcon size={size === 'large' ? 20 : 16} aria-label="External link" />}
     </a>
   )
 }
