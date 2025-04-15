@@ -366,7 +366,7 @@ type PricingOptionsFeatureListProps = BaseProps<HTMLUListElement> & {
   accordionAs?: HeadingProps['as']
   expanded?: ExpandedProp
   hasDivider?: boolean
-  children: React.ReactElement<PricingOptionsFeatureHeadingProps | PricingOptionsFeatureListItemProps>[]
+  children: React.ReactElement<PricingOptionsFeatureListHeadingProps | PricingOptionsFeatureListItemProps>[]
   'data-testid'?: string
 }
 
@@ -385,7 +385,7 @@ const defaultExpanded: ExpandedProp = {
 }
 
 type ValidFeatureListChildren = {
-  Heading: React.ReactElement<PricingOptionsFeatureHeadingProps> | null
+  Heading: React.ReactElement<PricingOptionsFeatureListHeadingProps> | null
   Items: React.ReactElement<PricingOptionsFeatureListItemProps>[]
 }[]
 
@@ -420,9 +420,9 @@ const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatu
           acc.push({Heading: null, Items: []})
         }
         acc[acc.length - 1].Items.push(child as React.ReactElement<PricingOptionsFeatureListItemProps>)
-      } else if (React.isValidElement(child) && child.type === PricingOptionsFeatureHeading) {
+      } else if (React.isValidElement(child) && child.type === PricingOptionsFeatureListHeading) {
         acc.push({
-          Heading: child as React.ReactElement<PricingOptionsFeatureHeadingProps>,
+          Heading: child as React.ReactElement<PricingOptionsFeatureListHeadingProps>,
           Items: [],
         })
       }
@@ -509,11 +509,11 @@ const PricingOptionsFeatureListTitle = forwardRef<HTMLDivElement, PricingOptions
   },
 )
 
-type PricingOptionsFeatureHeadingProps = PropsWithChildren<BaseProps<HTMLHeadingElement>> & {
+type PricingOptionsFeatureListHeadingProps = PropsWithChildren<BaseProps<HTMLHeadingElement>> & {
   'data-testid'?: string
 }
 
-const PricingOptionsFeatureHeading = forwardRef<HTMLHeadingElement, PricingOptionsFeatureHeadingProps>(
+const PricingOptionsFeatureListHeading = forwardRef<HTMLHeadingElement, PricingOptionsFeatureListHeadingProps>(
   ({children, className, 'data-testid': testId, ...rest}, ref) => {
     return (
       <HeadingComponent
@@ -640,7 +640,7 @@ export const PricingOptions = Object.assign(PricingOptionsRoot, {
   Description: PricingOptionsDescription,
   FeatureList: PricingOptionsFeatureList,
   FeatureListTitle: PricingOptionsFeatureListTitle,
-  FeatureListHeading: PricingOptionsFeatureHeading,
+  FeatureListHeading: PricingOptionsFeatureListHeading,
   FeatureListItem: PricingOptionsFeatureListItem,
   Footnote: PricingOptionsFootnote,
   Heading: PricingOptionsHeading,
