@@ -46,6 +46,7 @@ const testIds = {
   primaryAction: 'PricingOptions__primaryAction',
   secondaryAction: 'PricingOptions__secondaryAction',
   featureList: 'PricingOptions__featureList',
+  featureListTitle: 'PricingOptions__featureListTitle',
   featureListItem: 'PricingOptions__featureListItem',
   featureListHeading: 'PricingOptions__featureListHeading',
   footnote: 'PricingOptions__footnote',
@@ -81,6 +82,8 @@ const PricingOptionsProvider = ({children, align = 'start'}: PropsWithChildren<{
 const usePricingOptions = (): PricingOptionsContextValue => {
   return React.useContext(PricingOptionsContext)
 }
+
+const pricingOptionsDefaultFeatureListTitle = "What's included"
 
 const PricingOptionsRoot = forwardRef(
   (
@@ -363,7 +366,7 @@ type PricingOptionsFeatureListProps = BaseProps<HTMLUListElement> & {
   accordionAs?: HeadingProps['as']
   expanded?: ExpandedProp
   hasDivider?: boolean
-  children: React.ReactElement<PricingOptionsFeatureHeadingProps | PricingOptionsFeatureListItemProps>[]
+  children: React.ReactElement<PricingOptionsFeatureListHeadingProps | PricingOptionsFeatureListItemProps>[]
   'data-testid'?: string
 }
 
@@ -382,7 +385,7 @@ const defaultExpanded: ExpandedProp = {
 }
 
 type ValidFeatureListChildren = {
-  Heading: React.ReactElement<PricingOptionsFeatureHeadingProps> | null
+  Heading: React.ReactElement<PricingOptionsFeatureListHeadingProps> | null
   Items: React.ReactElement<PricingOptionsFeatureListItemProps>[]
 }[]
 
@@ -405,15 +408,21 @@ const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatu
 
     const {isMedium: isRegular, isXLarge: isWide} = useWindowSize()
 
+    let FeatureListTitle = (
+      <PricingOptions.FeatureListTitle>{pricingOptionsDefaultFeatureListTitle}</PricingOptions.FeatureListTitle>
+    )
+
     const FilteredChildrenSet = React.Children.toArray(children).reduce<ValidFeatureListChildren>((acc, child) => {
-      if (React.isValidElement(child) && child.type === PricingOptionsFeatureListItem) {
+      if (React.isValidElement(child) && child.type === PricingOptionsFeatureListTitle) {
+        FeatureListTitle = child
+      } else if (React.isValidElement(child) && child.type === PricingOptionsFeatureListItem) {
         if (acc.length === 0) {
           acc.push({Heading: null, Items: []})
         }
         acc[acc.length - 1].Items.push(child as React.ReactElement<PricingOptionsFeatureListItemProps>)
-      } else if (React.isValidElement(child) && child.type === PricingOptionsFeatureHeading) {
+      } else if (React.isValidElement(child) && child.type === PricingOptionsFeatureListHeading) {
         acc.push({
-          Heading: child as React.ReactElement<PricingOptionsFeatureHeadingProps>,
+          Heading: child as React.ReactElement<PricingOptionsFeatureListHeadingProps>,
           Items: [],
         })
       }
@@ -475,7 +484,7 @@ const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatu
             reversedToggles
           >
             <ChevronDownIcon className={styles['PricingOptions__feature-list-accordion-chevron']} />
-            What&apos;s included
+            {FeatureListTitle}
           </Accordion.Heading>
           <Accordion.Content className={styles['PricingOptions__feature-list-accordion-content']}>
             {FeatureListItems}
@@ -486,11 +495,25 @@ const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatu
   },
 )
 
-type PricingOptionsFeatureHeadingProps = PropsWithChildren<BaseProps<HTMLHeadingElement>> & {
+type PricingOptionsFeatureListTitleProps = PropsWithChildren<BaseProps<HTMLDivElement>> & {
   'data-testid'?: string
 }
 
-const PricingOptionsFeatureHeading = forwardRef<HTMLHeadingElement, PricingOptionsFeatureHeadingProps>(
+const PricingOptionsFeatureListTitle = forwardRef<HTMLDivElement, PricingOptionsFeatureListTitleProps>(
+  ({children, className, 'data-testid': testId, ...rest}, ref) => {
+    return (
+      <div className={className} data-testid={testId || testIds.featureListTitle} ref={ref} {...rest}>
+        {children}
+      </div>
+    )
+  },
+)
+
+type PricingOptionsFeatureListHeadingProps = PropsWithChildren<BaseProps<HTMLHeadingElement>> & {
+  'data-testid'?: string
+}
+
+const PricingOptionsFeatureListHeading = forwardRef<HTMLHeadingElement, PricingOptionsFeatureListHeadingProps>(
   ({children, className, 'data-testid': testId, ...rest}, ref) => {
     return (
       <HeadingComponent
@@ -616,7 +639,8 @@ const PricingOptionsFootnote = forwardRef<HTMLParagraphElement, PricingOptionsFo
 export const PricingOptions = Object.assign(PricingOptionsRoot, {
   Description: PricingOptionsDescription,
   FeatureList: PricingOptionsFeatureList,
-  FeatureListHeading: PricingOptionsFeatureHeading,
+  FeatureListTitle: PricingOptionsFeatureListTitle,
+  FeatureListHeading: PricingOptionsFeatureListHeading,
   FeatureListItem: PricingOptionsFeatureListItem,
   Footnote: PricingOptionsFootnote,
   Heading: PricingOptionsHeading,
