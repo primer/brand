@@ -2,7 +2,7 @@
 '@primer/react-brand': patch
 ---
 
-Added the ability to customize the `PricingOptions` feature list title.
+Added the option to customize the title of the `PricingOptions` feature list.
 
 E.g.,
 
