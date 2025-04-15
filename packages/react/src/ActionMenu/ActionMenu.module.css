@@ -1,4 +1,5 @@
 .ActionMenu {
+  --focus-outline-width: 3px;
   position: relative;
 }
 
@@ -7,9 +8,12 @@
 }
 
 .ActionMenu__button {
+  height: auto;
+}
+
+.ActionMenu__button--default {
   /* avoid specificity issues */
   --brand-borderRadius-medium: var(--brand-borderRadius-full);
-  height: auto;
 }
 
 .ActionMenu__button--small {
@@ -25,12 +29,64 @@
   overflow: hidden;
 }
 
+.ActionMenu__button--split-button {
+  display: inline-flex;
+  padding: 0;
+  border-radius: var(--brand-borderRadius-medium);
+  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+  background-color: var(--brand-color-canvas-default);
+}
+
+.ActionMenu__innerButton--split-button:first-child,
+.ActionMenu__innerButton--split-button:first-child:hover {
+  position: relative;
+  z-index: 1;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.ActionMenu__innerButton--split-button:first-child::before,
+.ActionMenu__innerButton--split-button:hover:first-child::before {
+  content: '';
+  position: absolute;
+  top: calc(var(--base-size-2) / -2);
+  right: calc(var(--base-size-2) * -1);
+  width: var(--brand-borderWidth-thin);
+  height: calc(100% + var(--base-size-2));
+  background-color: var(--brand-color-border-muted);
+}
+
+.ActionMenu__innerButton--subtle.ActionMenu__innerButton--split-button::before {
+  top: calc(var(--base-size-2) * -1);
+  height: calc(100% + var(--base-size-4));
+}
+
+.ActionMenu__innerButton--subtle.ActionMenu__innerButton--split-button:active:first-child::before {
+  width: 0;
+}
+
+.ActionMenu__innerButton--medium.ActionMenu__innerButton--split-button,
+.ActionMenu__innerButton--split-button:last-child {
+  padding: var(--brand-control-medium-paddingBlock-condensed) var(--brand-control-medium-paddingInline-normal); /* Override the default button padding */
+}
+
+.ActionMenu__innerButton--split-button:last-child {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  position: relative;
+  z-index: 0;
+}
+
+.ActionMenu__innerButton--disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .ActionMenu__menu {
   position: absolute;
   z-index: 100;
   padding: var(--base-size-12);
   min-width: min-content;
-
   visibility: hidden;
   background-color: var(--brand-color-canvas-default);
   border: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
@@ -124,6 +180,30 @@
   border-radius: var(--brand-borderRadius-medium);
 }
 
+.ActionMenu__item-anchor {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--base-size-8);
+  text-decoration: none;
+  color: var(--brand-color-text-default);
+}
+
+.ActionMenu__item-anchor--disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.ActionMenu__item-anchor:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.ActionMenu__item:has(.ActionMenu__item-anchor:focus-visible) {
+  outline: none;
+  box-shadow: 0 0 0 var(--focus-outline-width) var(--brand-color-focus);
+  transition: none;
+}
+
 .ActionMenu__item--medium {
   padding: var(--brand-control-medium-paddingBlock-condensed) var(--brand-control-medium-paddingInline-normal);
   min-height: var(--brand-control-medium-size);
@@ -148,7 +228,7 @@
 
 .ActionMenu__item:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px var(--brand-color-focus);
+  box-shadow: 0 0 0 var(--focus-outline-width) var(--brand-color-focus);
   transition: none;
 }
 
