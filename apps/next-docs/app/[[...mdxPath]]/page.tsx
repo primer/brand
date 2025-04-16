@@ -1,4 +1,5 @@
 import {generateStaticParamsFor, importPage} from '@primer/doctocat-nextjs'
+// eslint-disable-next-line import/extensions
 import {useMDXComponents as getMDXComponents} from '../../mdx-components.js'
 
 export const generateStaticParams = generateStaticParamsFor('mdxPath')

@@ -2,6 +2,7 @@ import * as DoctocatComponents from '@primer/doctocat-nextjs/components'
 import {HeadingLink} from '@primer/doctocat-nextjs/components'
 import NextLink from 'next/link'
 
+// eslint-disable-next-line import/extensions
 import {Pre} from './src/components/Pre/Pre.tsx'
 
 export const Link = ({href = '', ...props}) => <NextLink href={href} {...props} />

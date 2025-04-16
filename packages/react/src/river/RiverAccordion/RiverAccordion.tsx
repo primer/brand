@@ -162,9 +162,9 @@ const RiverAccordionItem = ({className, index, children, ...props}: RiverAccordi
           id={panelId}
           aria-hidden={!isOpen}
           /**
-           * Asserting a string value for inert to avoid a type mismatch in React for this attribute.
+           * Asserting a string value for inert to avoid a type mismatch in React versions for this attribute.
            * https://github.com/facebook/react/issues/17157#issuecomment-2003750544
-           * TODO: Remove assertion when React 19 is released.
+           * TODO: Remove assertion when Primer Brand fully switches to React 19
            */
           {...((!isOpen && {inert: 'true'}) as Record<string, string>)}
         >

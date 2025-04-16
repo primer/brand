@@ -1,5 +1,6 @@
 module.exports = {
   // extends: ['next/core-web-vitals'], // Reenable after upgrading prettier to v3+
+  ignorePatterns: ['out/', '.next/', 'node_modules/'],
   parserOptions: {
     tsconfigRootDir: __dirname,
   },
@@ -14,13 +15,6 @@ module.exports = {
     },
   ],
   rules: {
-    'import/extensions': [
-      'error',
-      'ignorePackages',
-      {
-        js: 'always',
-      },
-    ],
     '@next/next/no-img-element': 'off',
     'primer-react/no-system-props': 'off',
     'react/react-in-jsx-scope': 'off', // TODO remove once next/core-web-vitals is reenabled
