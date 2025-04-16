@@ -162,11 +162,11 @@ const RiverAccordionItem = ({className, index, children, ...props}: RiverAccordi
           id={panelId}
           aria-hidden={!isOpen}
           /**
-           * Casting as boolean values for inert values were not supported in React 18.
+           * Asserting a string value for inert to avoid a type mismatch in React for this attribute.
            * https://github.com/facebook/react/issues/17157#issuecomment-2003750544
-           * TODO: Remove casting when React 19 is released.
+           * TODO: Remove assertion when React 19 is released.
            */
-          {...({inert: isOpen ? undefined : true} as React.HTMLAttributes<HTMLDivElement>)}
+          {...((!isOpen && {inert: 'true'}) as Record<string, string>)}
         >
           {content}
           {visual}
