@@ -94,7 +94,7 @@ const App = () => {
   }
 
   return (
-    <Container sx={{position: 'relative', overflowX: 'scroll'}}>
+    <div style={{position: 'relative', overflowX: 'scroll'}}>
       <SubdomainNavBar title="Subdomain" fixed={false}>
         <SubdomainNavBar.Link href="#collections">Collections</SubdomainNavBar.Link>
         <SubdomainNavBar.Link href="#topics">Topics</SubdomainNavBar.Link>
@@ -106,7 +106,7 @@ const App = () => {
           searchResults={searchResults}
         />
       </SubdomainNavBar>
-    </Container>
+    </div>
   )
 }
 

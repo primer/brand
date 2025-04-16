@@ -54,7 +54,7 @@ const App = () => {
   const handleCrossAxisChange = event => setAlignItemsValue(event.target.value)
 
   return (
-    <Container>
+    <>
       <Stack
         direction="horizontal"
         alignItems={alignItemsValue}
@@ -100,7 +100,7 @@ const App = () => {
           </Select>
         </FormControl>
       </Stack>
-    </Container>
+    </>
   )
 }
 

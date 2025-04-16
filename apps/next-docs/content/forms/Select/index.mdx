@@ -90,7 +90,7 @@ Use `Select` alongside `FormControl` to ensure the control has a corresponding f
 ### Validation
 
 ```jsx live
-<Container sx={{display: 'inline-grid', gap: 3}}>
+<div style={{display: 'inline-grid', gap: 3}}>
   <FormControl validationStatus="error">
     <FormControl.Label>Error</FormControl.Label>
     <Select>
@@ -107,7 +107,7 @@ Use `Select` alongside `FormControl` to ensure the control has a corresponding f
     </Select>
     <FormControl.Validation>This is a success message</FormControl.Validation>
   </FormControl>
-</Container>
+</div>
 ```
 
 ### Full width
@@ -124,7 +124,7 @@ Use `Select` alongside `FormControl` to ensure the control has a corresponding f
 `FormControl` can appear in `medium` and `large` dimensions using the `size` prop.
 
 ```jsx live
-<Container sx={{display: 'inline-grid', gap: 3}}>
+<div style={{display: 'inline-grid', gap: 3}}>
   <FormControl size="medium">
     <FormControl.Label>Medium</FormControl.Label>
     <Select>
@@ -140,7 +140,7 @@ Use `Select` alongside `FormControl` to ensure the control has a corresponding f
       <Select.Option value="hubot">Hubot</Select.Option>
     </Select>
   </FormControl>
-</Container>
+</div>
 ```
 
 ### Required
@@ -177,8 +177,8 @@ const App = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Container
-        sx={{
+      <div
+        style={{
           display: 'grid',
           gap: 'var(--base-size-16)',
           maxWidth: 400,
@@ -198,7 +198,7 @@ const App = () => {
         <Button type="submit" variant="primary">
           Submit
         </Button>
-      </Container>
+      </div>
     </form>
   )
 }
