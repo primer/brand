@@ -2,5 +2,5 @@
 
 import {defaultRiverImageTextRatio, defaultRiverAlign} from '../../../../../packages/react/src/river/River'
 
-export const RiverAlignPropDefault = () => <>{defaultRiverAlign}</>
-export const RiverImageTextRatioDefault = () => <>{defaultRiverImageTextRatio}</>
+export const RiverAlignProp = () => <>{defaultRiverAlign}</>
+export const RiverImageTextRatio = () => <>{defaultRiverImageTextRatio}</>
