@@ -9,6 +9,7 @@ figma: 'https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=1
 storybook: '/brand/storybook/?path=/story/components-forms-checkbox--playground'
 ---
 
+import {Label} from '@primer/react'
 import {CheckboxGroupValidationVariantProp} from './react'
 
 ```js
@@ -171,9 +172,9 @@ When space is limited, checkboxes can be arranged horizontally using the [Stack]
 
 ### CheckboxGroup.Validation
 
-| Name       | Type                                  | Default | Description                        |
-| :--------- | :------------------------------------ | :-----: | :--------------------------------- |
-| `children` | `string`                              |         | Validation message                 |
-| `variant`  | <ChecboxGroupValidationVariantProp /> |         | Sets the validation state and icon |
+| Name       | Type                                   | Default | Description                        |
+| :--------- | :------------------------------------- | :-----: | :--------------------------------- |
+| `children` | `string`                               |         | Validation message                 |
+| `variant`  | <CheckboxGroupValidationVariantProp /> |         | Sets the validation state and icon |
 
 `CheckboxGroup.Validation` extends the `span` element and supports all `span` props.

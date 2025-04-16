@@ -11,8 +11,7 @@ storybook: '/brand/storybook/?path=/story/components-river--default'
 ---
 
 import {Label} from '@primer/react'
-
-import {RiverAlignProp, RiverImageTextRatio} from './react'
+import {RiverAlignPropDefault, RiverImageTextRatioDefault} from './react'
 
 ```js
 import {River, RiverBreakout} from '@primer/react-brand'
@@ -192,13 +191,13 @@ import {River, RiverBreakout} from '@primer/react-brand'
 
 ### River <Label>Required</Label>
 
-| Name             | Type                           |         Default         | Description                                                                                                 |
-| :--------------- | :----------------------------- | :---------------------: | :---------------------------------------------------------------------------------------------------------- |
-| `align`          | `'start'`, `'end'`, `'center'` |   <RiverAlignProp />    | Alignment of text content relative to the Visual position                                                   |
-| `imageTextRatio` | `'50:50'`, `'60:40'`           | <RiverImageTextRatio /> | The aspect ratio applied to the image in relation to the adjacent text. Affects overall layout proportions. |
-| `className`      | `string`                       |                         | Sets a custom class on the root element                                                                     |
-| `id`             | `string`                       |                         | Sets a custom id                                                                                            |
-| `ref`            | `React.RefObject`              |                         | Forward a Ref to the underlying DOM node                                                                    |
+| Name             | Type                           |            Default             | Description                                                                                                 |
+| :--------------- | :----------------------------- | :----------------------------: | :---------------------------------------------------------------------------------------------------------- |
+| `align`          | `'start'`, `'end'`, `'center'` |   <RiverAlignPropDefault />    | Alignment of text content relative to the Visual position                                                   |
+| `imageTextRatio` | `'50:50'`, `'60:40'`           | <RiverImageTextRatioDefault /> | The aspect ratio applied to the image in relation to the adjacent text. Affects overall layout proportions. |
+| `className`      | `string`                       |                                | Sets a custom class on the root element                                                                     |
+| `id`             | `string`                       |                                | Sets a custom id                                                                                            |
+| `ref`            | `React.RefObject`              |                                | Forward a Ref to the underlying DOM node                                                                    |
 
 ### River.Visual and RiverBreakout.Visual <Label>Required</Label>
 
