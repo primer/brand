@@ -13,12 +13,13 @@ import {Label} from '@primer/react'
 import {
   PricingOptionsAsProp,
   PricingOptionsVariantProp,
+  PricingOptionsHeadingAsProp,
   PricingOptionsItemChildrenProp,
   PricingOptionsFeatureListChildrenProp,
+  PricingOptionsFeatureListAccordionAsProp,
   PricingOptionsFeatureListItemVariantProp,
-} from './react'
 
-import {StarIcon, CopilotIcon} from '@primer/octicons-react'
+} from './react'
 
 ## Examples
 
@@ -106,6 +107,36 @@ import {StarIcon, CopilotIcon} from '@primer/octicons-react'
 </PricingOptions>
 ```
 
+### Center alignment
+
+```jsx live
+<PricingOptions variant="cards" align="center">
+  <PricingOptions.Item>
+    <PricingOptions.Label>Recommended</PricingOptions.Label>
+    <PricingOptions.Heading>Copilot</PricingOptions.Heading>
+    <PricingOptions.Description>Copilot in the coding environment.</PricingOptions.Description>
+    <PricingOptions.Price currencySymbol="$" trailingText="per month / $100 per year">
+      10
+    </PricingOptions.Price>
+    <PricingOptions.PrimaryAction href="#">Buy now</PricingOptions.PrimaryAction>
+  </PricingOptions.Item>
+
+  <PricingOptions.Item>
+    <PricingOptions.Label>Recommended</PricingOptions.Label>
+    <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+    <PricingOptions.Description>
+      Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
+      Enterprise Cloud.
+    </PricingOptions.Description>
+    <PricingOptions.Price currencySymbol="$" trailingText="per user / month">
+      39
+    </PricingOptions.Price>
+    <PricingOptions.PrimaryAction href="#">Join waitlist</PricingOptions.PrimaryAction>
+    <PricingOptions.SecondaryAction href="#">Contact sales</PricingOptions.SecondaryAction>
+  </PricingOptions.Item>
+</PricingOptions>
+```
+
 ### One option
 
 This is the one-option layout for the pricing options component
@@ -170,9 +201,13 @@ This is the two-item layout for the pricing options component.
 </PricingOptions>
 ```
 
-### Three options
+### Three and four options
 
-This is the three-option layout for the pricing options component.
+PricingOptions`supports a maximum of four items in both`default`and`card` layouts.
+
+Please refer to our [Storybook
+examples](https://primer.style/brand/storybook/?path=/story/components-pricingoptions-features--three-options)
+to see the component in a full-width context as originally intended.
 
 <Note>
 
@@ -308,26 +343,26 @@ Use `PricingOptions.FeatureListItem` with `variant="included"` and `variant="exc
 
 ### PricingOptions <Label>Required</Label>
 
-| Name       | Type                                                                                          |  Default  | required | Description                         |
-| :--------- | :-------------------------------------------------------------------------------------------- | :-------: | :------: | :---------------------------------- |
-| `as`       | <PricingOptionsAsProp /><PropTableValues values={[`section`, `div` ]} addLineBreaks />        | `section` | `false`  | Applies the underlying HTML element |
-| `children` | `PricingOptions.Item`                                                                         |           |  `true`  | Applies the underlying HTML element |
-| `variant`  | <PricingOptionsVariantProp /><PropTableValues values={[`default`, `cards` ]} addLineBreaks /> |           | `false`  | The variant styling                 |
+| Name       | Type                          |  Default  | required | Description                         |
+| :--------- | :---------------------------- | :-------: | :------: | :---------------------------------- |
+| `as`       | <PricingOptionsAsProp />      | `section` | `false`  | Applies the underlying HTML element |
+| `children` | `PricingOptions.Item`         |           |  `true`  | Applies the underlying HTML element |
+| `variant`  | <PricingOptionsVariantProp /> |           | `false`  | The variant styling                 |
 
 ### PricingOptions.Item <Label>Required</Label>
 
 One item per pricing plan to be displayed. Maximum of 3 items.
 
-| Name       | Type                                                                                                                                                                                                             |   Default   | required | Description              |
-| :--------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------: | :------: | :----------------------- |
-| `children` | <PricingOptionsItemChildrenProp /><PropTableValues values={['PricingOptions.Heading', 'PricingOptions.Label', 'PricingOptions.Price', 'PricingOptions.FeatureList', 'PricingOptions.Footnote']} addLineBreaks /> | `undefined` |  `true`  | The contents of the item |
+| Name       | Type                               |   Default   | required | Description              |
+| :--------- | :--------------------------------- | :---------: | :------: | :----------------------- |
+| `children` | <PricingOptionsItemChildrenProp /> | `undefined` |  `true`  | The contents of the item |
 
 ### PricingOptions.Heading <Label>Required</Label>
 
-| Name       | Type             |   Default   | required | Description                                       |
-| :--------- | :--------------- | :---------: | :------: | :------------------------------------------------ |
-| `as`       | `h3, h4, h5, h6` |    `h3`     | `false`  | Applies the underlying HTML heading level element |
-| `children` | `ReactNode`      | `undefined` |  `true`  | The heading of the item                           |
+| Name       | Type                            |   Default   | required | Description                                       |
+| :--------- | :------------------------------ | :---------: | :------: | :------------------------------------------------ |
+| `as`       | <PricingOptionsHeadingAsProp /> |    `h3`     | `false`  | Applies the underlying HTML heading level element |
+| `children` | `ReactNode`                     | `undefined` |  `true`  | The heading of the item                           |
 
 ### PricingOptions.Label
 
@@ -353,11 +388,12 @@ One item per pricing plan to be displayed. Maximum of 3 items.
 
 ### PricingOptions.FeatureList
 
-| Name         | Type                                                                                                                                    |   Default   | required | Description                                                                                                 |
-| :----------- | :-------------------------------------------------------------------------------------------------------------------------------------- | :---------: | :------: | :---------------------------------------------------------------------------------------------------------- |
-| `children`   | <PricingOptionsFeatureListChildrenProp /><PropTableValues values={['PricingOptions.Heading', 'PricingOptions.Item', ]} addLineBreaks /> | `undefined` |  `true`  | The list of features                                                                                        |
-| `expanded`   | `boolean`                                                                                                                               |   `true`    | `false`  | Controls visibility of feature items. Accepts Object type for granular control at different viewport sizes. |
-| `hasDivider` | `boolean`                                                                                                                               |   `true`    | `false`  | Controls visibility of a visual border between feature lists and adjacent actions                           |
+| Name          | Type                                         |   Default   | required | Description                                                                                                 |
+| :------------ | :------------------------------------------- | :---------: | :------: | :---------------------------------------------------------------------------------------------------------- |
+| `children`    | <PricingOptionsFeatureListChildrenProp />    | `undefined` |  `true`  | The list of features                                                                                        |
+| `accordionAs` | <PricingOptionsFeatureListAccordionAsProp /> |    `h4`     | `false`  | Applies the underlying HTML heading level element                                                           |
+| `expanded`    | `boolean`                                    |   `true`    | `false`  | Controls visibility of feature items. Accepts Object type for granular control at different viewport sizes. |
+| `hasDivider`  | `boolean`                                    |   `true`    | `false`  | Controls visibility of a visual border between feature lists and adjacent actions                           |
 
 ### PricingOptions.FeatureListHeading
 
@@ -368,10 +404,10 @@ One item per pricing plan to be displayed. Maximum of 3 items.
 
 ### PricingOptions.FeatureListItem
 
-| Name       | Type                                                                                                             |   Default   | required | Description                         |
-| :--------- | :--------------------------------------------------------------------------------------------------------------- | :---------: | :------: | :---------------------------------- |
-| `children` | `ReactNode`                                                                                                      | `undefined` |  `true`  | The item of the feature list set    |
-| `variant`  | <PricingOptionsFeatureListItemVariantProp /><PropTableValues values={[`included`, `excluded` ]} addLineBreaks /> | `included`  | `false`  | The variant of the feature list set |
+| Name       | Type                                         |   Default   | required | Description                         |
+| :--------- | :------------------------------------------- | :---------: | :------: | :---------------------------------- |
+| `children` | `ReactNode`                                  | `undefined` |  `true`  | The item of the feature list set    |
+| `variant`  | <PricingOptionsFeatureListItemVariantProp /> | `included`  | `false`  | The variant of the feature list set |
 
 ### PricingOptions.Footnote
 

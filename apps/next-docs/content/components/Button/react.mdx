@@ -30,10 +30,18 @@ This is the default variant for the Button component. It corresponds to the `sec
 
 ### Primary
 
-The `primary` variant of Button indicates that the action is of high priority, and should be used sparingly.
+The `primary` variant of `Button` indicates that the action is of high priority, and should be used sparingly.
 
 ```jsx live
 <Button variant="primary">Primary</Button>
+```
+
+### Accent
+
+The `accent` variant is equally high priority, and should be used only in [Hero](../../Hero) or [CTABanner](../../CTABanner) components.
+
+```jsx live
+<Button variant="accent">Accent</Button>
 ```
 
 ### Subtle
@@ -70,7 +78,7 @@ The animated arrow indicator can be removed using the `hasArrow` prop.
 
 ### Using an icon
 
-You can place an icon inside the Button in either the leading or the trailing position to enhance the visual context. It is recommended to use an [Octicon](https://primer.style/octicons) here.
+You can place an icon inside the `Button` in either the leading or the trailing position to enhance the visual context. It is recommended to use an [Octicon](https://primer.style/octicons) here.
 
 ```jsx live
 <Stack direction="vertical" alignItems="flex-start">

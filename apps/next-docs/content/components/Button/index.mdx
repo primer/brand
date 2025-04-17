@@ -6,7 +6,10 @@ show-tabs: true
 tab-label: Guidelines
 ---
 
-![An image showing different button types.](https://github.com/primer/brand/assets/6951037/fcc3b962-1b4a-416b-be29-4a70ef503f2a)
+import header from './images/button_header.png'
+import buttonAccent from './images/button_accent.png'
+
+<img src={header} alt="The different button types" />
 
 ## Usage
 
@@ -58,6 +61,12 @@ Buttons allow users to initiate an action or command when clicked. The button's 
 Primary buttons have top priority in visual hierarchy, and using too many of them on a single view dilutes their effectiveness. We recommend to limit the primary button to one button per view, and place it in the visible section, whenever possible, to indicate its emphasis relative to other actions. Use multiple primary buttons only when the action is repeated in multiple places of the same page. E,g a "Log in" button in the header and in the footer area.
 
 ![An image showing all primary states.](https://github.com/primer/brand/assets/6951037/dfad0124-4cdc-4230-b442-4ee9c747d0f0)
+
+#### Accent
+
+Accent buttons share a similar hierarchical priority, and should also be used sparingly to avoid diluting their effectiveness. Crucially, accent buttons should only be used in the [hero](/components/Hero) and [CTA banner](/components/CTABanner) components.
+
+<img src={buttonAccent} alt="All accent button states." />
 
 #### Secondary
 
@@ -121,9 +130,7 @@ Small buttons are meant to be used sparingly. Some use cases can be:
 
 ### Arrow
 
-The arrow is shown by default in all buttons. Hide the arrow only to save horizontal space or to diminish the importance of the button.
-
-When used in a group, the arrow should be used or hide consistently across all buttons.
++The arrow is hidden by default for all button variants except subtle. You can optionally show the arrow when you need to draw attention to a specific, singular button on a page. However, use arrows sparingly on primary actions to avoid diluting their impact. Multiple arrows on the same page will reduce their effectiveness as directional cues.
 
 ## Accessibility
 

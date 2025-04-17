@@ -44,7 +44,7 @@ The `minimal` card variant applies alternative presentation to the default card.
 
 ### CTA text
 
-The CTA text defaults to `Learn more` and can be customized using the `ctaText` component.
+The call to action text defaults to `Learn more` and can be customized using the `ctaText` property.
 
 ```jsx live
 <Card ctaText="Discover how" href="https://github.com">
@@ -168,22 +168,22 @@ Combine `Image` and `Label` when you need to add more metadata or context to the
 
 ### Stacked cards
 
-Use the `Stack` component to stack multiple cards horizontally or vertically.
+Use the `Stack` or `Grid` components to stack up to three cards horizontally in center alignment. Do not use center alignment for 4 or more stacked cards.
+
+<Note>
+  Note that in this arrangement, both <InlineCode>fullWidth</InlineCode> and <InlineCode>hasBorder</InlineCode> options
+  should be applied alongside <InlineCode>align="center"</InlineCode>.
+</Note>
 
 ```jsx live
 <Stack direction="horizontal" alignItems="center" justifyContent="center" gap="normal">
-  <Card href="https://github.com">
+  <Card href="https://github.com" hasBorder fullWidth align="center">
     <Card.Icon icon={CopilotIcon} color="indigo" hasBackground />
     <Card.Heading>Heading</Card.Heading>
     <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
   </Card>
-  <Card href="https://github.com">
+  <Card href="https://github.com" hasBorder fullWidth align="center">
     <Card.Icon icon={RocketIcon} color="purple" hasBackground />
-    <Card.Heading>Heading</Card.Heading>
-    <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
-  </Card>
-  <Card href="https://github.com">
-    <Card.Icon icon={GitBranchIcon} color="teal" hasBackground />
     <Card.Heading>Heading</Card.Heading>
     <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
   </Card>

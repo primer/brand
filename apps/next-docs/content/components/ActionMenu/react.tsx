@@ -1,11 +1,13 @@
 'use client'
 import {PropTableValues} from '@primer/doctocat-nextjs/components'
 
+import {ActionMenuButtonModes} from '../../../../../packages/react/src/ActionMenu/ActionMenu'
+
 export const ActionMenuSizesProp = () => <PropTableValues values={['small', 'medium']} commaSeparated />
 export const ActionMenuSelectionVariantProp = () => <PropTableValues values={['single', 'none']} commaSeparated />
-export const ActionMenuAlignmentProp = () => <PropTableValues values={['start', 'end']} commaSeparated />
+export const ActionMenuMenuAlignmentProp = () => <PropTableValues values={['start', 'end']} commaSeparated />
 
-export const ActionMenuOverlaySidesProp = () => (
+export const ActionMenuMenuSideProp = () => (
   <PropTableValues
     values={[
       'bottom',
@@ -24,3 +26,5 @@ export const ActionMenuOverlaySidesProp = () => (
     commaSeparated
   />
 )
+
+export const ActionMenuModeProp = () => <PropTableValues values={[...ActionMenuButtonModes]} addLineBreaks />

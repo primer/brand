@@ -1,5 +1,6 @@
 'use client'
 import {PropTableValues} from '@primer/doctocat-nextjs/components'
+import {HeadingTags} from '../../../../../packages/react/src/'
 
 export const PricingOptionsAsProp = () => <PropTableValues values={[`section`, `div`]} addLineBreaks />
 export const PricingOptionsVariantProp = () => <PropTableValues values={[`default`, `cards`]} addLineBreaks />
@@ -23,4 +24,10 @@ export const PricingOptionsFeatureListChildrenProp = () => (
 
 export const PricingOptionsFeatureListItemVariantProp = () => (
   <PropTableValues values={[`included`, `excluded`]} addLineBreaks />
+)
+
+export const PricingOptionsHeadingAsProp = () => <PropTableValues values={[...HeadingTags]} addLineBreaks />
+
+export const PricingOptionsFeatureListAccordionAsProp = () => (
+  <PropTableValues values={[...HeadingTags]} addLineBreaks />
 )
