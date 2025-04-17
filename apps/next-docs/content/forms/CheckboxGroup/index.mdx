@@ -1,0 +1,43 @@
+---
+title: Checkbox group
+description: Checkbox group renders a set of checkboxes.
+keywords: ['form', 'control', 'selection', 'choices']
+show-tabs: true
+tab-label: Guidelines
+---
+
+import anatomy from './images/anatomy.png'
+
+## Usage
+
+Use checkbox group to allow users to select multiple items from a list of individual items, or to mark one individual item as selected.
+
+### Best practices
+
+- Put checkboxes in a logical order
+- If users are only allowed to select a single option, consider using a [radio group](/components/RadioGroup) instead
+- Each checkbox's state should be independent from other checkboxes in the group. For example: checking one checkbox should not check or disable any other checkboxes
+
+## Anatomy
+
+<img src={anatomy.src} alt="Anatomy diagram" />
+
+**Label:** A title that labels the group of options and helps users understand the relationship between the options in the group.
+
+**Required indicator:** Indicates that a selection is required.
+
+**Caption:** May be used to provide additional context about the checkbox group when the label alone is not sufficient
+
+**Options:** A list of options represented using [checkboxes](/components/Checkbox).
+
+**Validation message:** A message explaining why the selection failed validation. See the [form pattern documentation](https://primer.style/ui-patterns/forms/overview#validation-message) for more information on form validation patterns.
+
+## Accessibility
+
+Once a user checks an option from a checkbox group, the result should not be saved or applied until the user has explicitly submitted their input using a "save" or "submit" button. See the [saving pattern guidelines](https://primer.style/ui-patterns/saving) for more information.
+
+## Related components
+
+- [Checkbox](/components/Checkbox): Used to render an individual checkbox control.
+- [FormControl](/components/FormControl): Used to group individual controls with an associated label.
+- [RadioGroup](/components/RadioGroup): Similar to `CheckboxGroup`, but used for organizing radio controls.

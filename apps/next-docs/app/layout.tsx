@@ -3,6 +3,7 @@ import Theme, {getPageMap} from '@primer/doctocat-nextjs'
 
 import type {FC, ReactNode} from 'react'
 import '@primer/doctocat-nextjs/css/global.css'
+import '../../../packages/react/lib/css/main.css'
 import '../src/global.css'
 
 // eslint-disable-next-line i18n-text/no-en

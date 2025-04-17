@@ -2,6 +2,7 @@ declare const styles: {
   readonly "AnchorNav": string;
   readonly "AnchorNav--expanded": string;
   readonly "AnchorNav--hide-until-sticky": string;
+  readonly "AnchorNav--no-bg-scroll": string;
   readonly "AnchorNav--stuck": string;
   readonly "AnchorNav--with-default-background-color": string;
   readonly "AnchorNav-action": string;

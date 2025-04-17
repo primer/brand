@@ -1,0 +1,73 @@
+---
+title: Timeline
+description: Use the timeline component to display a list of connected items as a vertical timeline.
+show-tabs: false
+ready: true
+source: https://github.com/primer/brand/tree/main/packages/react/src/Timeline/Timeline.tsx
+storybook: '/brand/storybook/?path=/story/components-timeline--default'
+---
+
+```js
+import {Timeline} from '@primer/react-brand'
+```
+
+## Examples
+
+<Note>
+
+Timeline requires the `dir` attribute to be set on the `<html>` element to ensure the correct visual appearance of timeline items.
+
+</Note>
+
+### Default
+
+```jsx live
+<Timeline>
+  <Timeline.Item>
+    GitHub Codespaces offers a complete dev environment in seconds, so you can code, build, test, and open pull requests
+    from any repo anywhere.
+  </Timeline.Item>
+  <Timeline.Item>
+    GitHub Copilot is your AI pair programmer that empowers you to complete tasks 55% faster by turning natural language
+    prompts into coding suggestions.
+  </Timeline.Item>
+  <Timeline.Item>
+    GitHub Actions automates your build, test, and deployment workflow with simple and secure CI/CD.
+  </Timeline.Item>
+</Timeline>
+```
+
+### With emphasis
+
+Use a `<b>` element within the timeline items to apply a duotone style and emphasize part of the text.
+
+```jsx live
+<Timeline>
+  <Timeline.Item>
+    <b>GitHub Codespaces</b> offers a complete dev environment in seconds, so you can code, build, test, and open pull
+    requests from any repo anywhere.
+  </Timeline.Item>
+  <Timeline.Item>
+    <b>GitHub Copilot</b> is your AI pair programmer that empowers you to complete tasks 55% faster by turning natural
+    language prompts into coding suggestions.
+  </Timeline.Item>
+  <Timeline.Item>
+    <b>GitHub Actions</b> automates your build, test, and deployment workflow with simple and secure CI/CD.
+  </Timeline.Item>
+</Timeline>
+```
+
+### Timeline
+
+| Name        | Type                               | Default | Description                                  |
+| :---------- | :--------------------------------- | :-----: | :------------------------------------------- |
+| `className` | `string`                           |         | Sets a custom class on the root element      |
+| `children`  | `Timeline.Item`, `Timeline.Item[]` |         | Content to be displayed within the component |
+| `fullWidth` | `boolean`                          | `false` | Fills available space                        |
+
+### Timeline.Item
+
+| Name        | Type                                   | Default | Description                              |
+| :---------- | :------------------------------------- | :-----: | :--------------------------------------- |
+| `className` | `string`                               |         | Sets a custom class on the root element  |
+| `children`  | `React.ReactNode`, `React.ReactNode[]` |         | Content to be displayed within the item. |

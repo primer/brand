@@ -1,0 +1,164 @@
+---
+title: Action menu
+description: Use the action menu component to display a list of actions or selections that expand through a trigger button.
+keywords: ['dropdown', 'select', 'menu', 'options', 'popup']
+show-tabs: false
+ready: true
+figma: 'https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=4912%3A32799'
+source: https://github.com/primer/brand/tree/main/packages/react/src/ActionMenu/ActionMenu.tsx
+storybook: '/brand/storybook/?path=/story/components-actionmenu--default'
+---
+
+import {Label} from '@primer/react'
+
+import {
+  ActionMenuSizesProp,
+  ActionMenuSelectionVariantProp,
+  ActionMenuMenuAlignmentProp,
+  ActionMenuMenuSideProp,
+  ActionMenuModeProp,
+} from './react'
+
+```js
+import {ActionMenu} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<ActionMenu onSelect={newValue => alert(`Pressed ${newValue}`)}>
+  <ActionMenu.Button>Open menu</ActionMenu.Button>
+  <ActionMenu.Overlay aria-label="GitHub features">
+    <ActionMenu.Item value="Copilot" selected>
+      Copilot
+    </ActionMenu.Item>
+    <ActionMenu.Item value="Codespaces">Codespaces</ActionMenu.Item>
+    <ActionMenu.Item value="CodeQL">CodeQL</ActionMenu.Item>
+  </ActionMenu.Overlay>
+</ActionMenu>
+```
+
+### Single selection
+
+In single selection mode it is important to apply an `aria-label` to the
+`ActionMenu.Button` child. This provides the user with important and durable
+context on the selection they need to make.
+
+```javascript live noinline
+const App = () => {
+  const [selection, setSelection] = React.useState('Copilot')
+
+  return (
+    <ActionMenu onSelect={newValue => setSelection(newValue)} selectionVariant="single">
+      <ActionMenu.Button aria-label="Select a GitHub feature">{selection}</ActionMenu.Button>
+      <ActionMenu.Overlay>
+        <ActionMenu.Item value="Copilot" selected={'Copilot' === selection}>
+          Copilot
+        </ActionMenu.Item>
+        <ActionMenu.Item value="Codespaces" selected={'Codespaces' === selection}>
+          Codespaces
+        </ActionMenu.Item>
+        <ActionMenu.Item value="CodeQL" selected={'CodeQL' === selection}>
+          CodeQL
+        </ActionMenu.Item>
+      </ActionMenu.Overlay>
+    </ActionMenu>
+  )
+}
+
+render(<App />)
+```
+
+### Split-button layout
+
+In this `mode`, the `ActionMenu` can be shown as a split button with an action (left) and dropdown button (right) with an additional list of actions.
+
+```jsx live
+<ActionMenu mode="split-button">
+  <ActionMenu.Button variant="subtle" as="a" href="#location-for-link" leadingVisual={<StarIcon />}>
+    Action 1
+  </ActionMenu.Button>
+  <ActionMenu.Overlay aria-label="Alternative actions">
+    <ActionMenu.Item as="a" href="#location-for-link" leadingVisual={<StarIcon />}>
+      Action 1
+    </ActionMenu.Item>
+    <ActionMenu.Item as="a" href="#location-for-link-2" leadingVisual={<StarIcon />}>
+      Action 2
+    </ActionMenu.Item>
+    <ActionMenu.Item as="a" href="#location-for-link-3" leadingVisual={<StarIcon />}>
+      Action 3
+    </ActionMenu.Item>
+    <ActionMenu.Item as="a" href="#location-for-link-4" leadingVisual={<StarIcon />}>
+      Action 4
+    </ActionMenu.Item>
+  </ActionMenu.Overlay>
+</ActionMenu>
+```
+
+### Sizes
+
+`ActionMenu` is currently available in `small` and `medium` sizes, with the latter being the default.
+
+```jsx live
+<Stack direction="horizontal" alignItems="center" gap={112}>
+  <ActionMenu size="small">
+    <ActionMenu.Button>Small</ActionMenu.Button>
+    <ActionMenu.Overlay aria-label="Menu items">
+      <ActionMenu.Item value="Item 1">Item 1</ActionMenu.Item>
+      <ActionMenu.Item value="Item 2">Item 2</ActionMenu.Item>
+    </ActionMenu.Overlay>
+  </ActionMenu>
+  <ActionMenu size="medium">
+    <ActionMenu.Button>Medium</ActionMenu.Button>
+    <ActionMenu.Overlay aria-label="Menu items">
+      <ActionMenu.Item value="Item 1">Item 1</ActionMenu.Item>
+      <ActionMenu.Item value="Item 2">Item 2</ActionMenu.Item>
+    </ActionMenu.Overlay>
+  </ActionMenu>
+</Stack>
+```
+
+## Component props
+
+### ActionMenu <Label>Required</Label>
+
+| name               | type                               | default     | required | description                                                           |
+| ------------------ | ---------------------------------- | ----------- | -------- | --------------------------------------------------------------------- |
+| `disabled`         | `boolean`                          | `false`     | `false`  | Controls the ActionMenu active/inactive state                         |
+| `open`             | `boolean`                          | `false`     | `false`  | Determines whether the ActionMenu is open by default                  |
+| `onSelect`         | `(newValue: string) => void`       |             | `false`  | Callback that is called when an item is selected                      |
+| `selectionVariant` | <ActionMenuSelectionVariantProp /> | `'none'`    | `false`  | The selection variant of the ActionMenu                               |
+| `menuAlignment`    | <ActionMenuMenuAlignmentProp />    | `start`     | `false`  | Horizontal alignment of the menu relative to the bottom of the button |
+| `size`             | <ActionMenuSizesProp />            | `medium`    | `false`  | Size configuration of the ActionMenu                                  |
+| `menuSide`         | <ActionMenuMenuSideProp />         | `undefined` | `false`  | Location of the menu overlay                                          |
+| `mode`             | <ActionMenuModeProp />             | `default`   | `false`  | Alternative behavior for the button and menu items                    |
+
+### ActionMenu.Button <Label>Required</Label>
+
+| name        | type           | default | required | description                        |
+| ----------- | -------------- | ------- | -------- | ---------------------------------- |
+| `className` | `string`       |         |          | Sets a custom class on the element |
+| `children`  | `ReactElement` |         |          |
+| `id`        | `string`       |         |          | Sets a custom `id`                 |
+
+### ActionMenu.Overlay <Label>Required</Label>
+
+| name         | type           | default | required | description                                                      |
+| ------------ | -------------- | ------- | -------- | ---------------------------------------------------------------- |
+| `aria-label` | `string`       |         | `true`   | Required for describing the relationship between button and menu |
+| `className`  | `string`       |         |          | Sets a custom class on the element                               |
+| `children`   | `ReactElement` |         |          |
+| `id`         | `string`       |         |          | Sets a custom `id`                                               |
+
+### ActionMenu.Item <Label>Required</Label>
+
+| name        | type           | default | required | description                                                   |
+| ----------- | -------------- | ------- | -------- | ------------------------------------------------------------- |
+| `className` | `string`       |         |          | Sets a custom class on the element                            |
+| `children`  | `ReactElement` |         |          |
+| `disabled`  | `boolean`      | `false` | `false`  | Allows control over an individual items active/inactive state |
+| `id`        | `string`       |         |          | Sets a custom `id`                                            |
+| `selected`  | `boolean`      |         |          | Indicates the item is selected in `single` selection mode     |
+| `value`     | `string`       |         |          | The underlying value passed to the selection handler          |

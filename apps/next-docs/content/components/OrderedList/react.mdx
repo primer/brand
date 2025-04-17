@@ -1,0 +1,41 @@
+---
+title: Ordered list
+figma: https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/branch/NzBMPIfPrFU9I87d3k7KVq/Primer-Brand?node-id=4045%3A17560&t=W8B9ArDngbzJCC2m-0
+source: https://github.com/primer/brand/blob/main/packages/react/src/list/OrderedList/OrderedList.tsx
+storybook: '/brand/storybook/?path=/story/components-orderedlist--playground'
+description: Use the ordered list component to display a list of numbered items.
+---
+
+```js
+import {OrderedList} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<OrderedList>
+  <OrderedList.Item>Automatic security and version updates</OrderedList.Item>
+  <OrderedList.Item>GitHub Security Advisories</OrderedList.Item>
+  <OrderedList.Item>Code and secret scanning</OrderedList.Item>
+  <OrderedList.Item>Dependency review</OrderedList.Item>
+  <OrderedList.Item>Automated authentication and identity management</OrderedList.Item>
+</OrderedList>
+```
+
+## Component props
+
+### OrderedList
+
+| Name        | Type                                   |  Default  | Description                                              |
+| :---------- | :------------------------------------- | :-------: | :------------------------------------------------------- |
+| `className` | `string`                               |           | Sets a custom class on the root element                  |
+| `children`  | `React.ReactNode`, `React.ReactNode[]` | `default` | Content to be displayed within the OrderedList component |
+
+### OrderedList.Item
+
+| Name        | Type                                   |  Default  | Description                                              |
+| :---------- | :------------------------------------- | :-------: | :------------------------------------------------------- |
+| `className` | `string`                               |           | Sets a custom class on the root element                  |
+| `children`  | `React.ReactNode`, `React.ReactNode[]` | `default` | Content to be displayed within the OrderedList component |
