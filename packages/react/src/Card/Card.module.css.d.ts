@@ -3,7 +3,6 @@ declare const styles: {
   readonly "Card--align-center": string;
   readonly "Card--border": string;
   readonly "Card--colorMode-dark": string;
-  readonly "Card--colorMode-light": string;
   readonly "Card--disableAnimation": string;
   readonly "Card--expandableArrow": string;
   readonly "Card--fullWidth": string;
@@ -12,6 +11,7 @@ declare const styles: {
   readonly "Card--skew": string;
   readonly "Card--variant-default": string;
   readonly "Card--variant-minimal": string;
+  readonly "Card--variant-torchlight": string;
   readonly "Card__action": string;
   readonly "Card__description": string;
   readonly "Card__heading": string;

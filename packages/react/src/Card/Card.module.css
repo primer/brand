@@ -54,7 +54,7 @@
   padding: 0;
 }
 
-.Card--colorMode-light {
+.Card--variant-default {
   background-color: var(--brand-Card-background-default);
 }
 
@@ -121,7 +121,7 @@
   align-self: center;
 }
 
-.Card:not(.Card--disableAnimation, .Card--variant-default.Card--colorMode-dark):hover {
+.Card:not(.Card--disableAnimation, .Card--variant-torchlight.Card--colorMode-dark):hover {
   transform: scale3d(1.025, 1.025, 1);
 }
 

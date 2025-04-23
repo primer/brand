@@ -164,7 +164,7 @@ export function SolutionsOverview({
                     <Grid enableOverlay={enableGridOverlay}>
                       <Grid.Column span={{large: 4}}>
                         <Box animate="fade-in" className={styles.fullHeight}>
-                          <Card href="#" hasBorder fullWidth>
+                          <Card href="#" hasBorder fullWidth variant="torchlight">
                             <Card.Icon icon={StackIcon} color="indigo" hasBackground />
                             <Card.Heading>Teams</Card.Heading>
                             <Card.Description>
@@ -177,7 +177,7 @@ export function SolutionsOverview({
                       </Grid.Column>
                       <Grid.Column span={{large: 4}}>
                         <Box animate="fade-in" className={styles.fullHeight}>
-                          <Card href="#" hasBorder fullWidth>
+                          <Card href="#" hasBorder fullWidth variant="torchlight">
                             <Card.Icon icon={StarIcon} color="indigo" hasBackground />
                             <Card.Heading>Startups</Card.Heading>
                             <Card.Description>
@@ -190,7 +190,7 @@ export function SolutionsOverview({
                       </Grid.Column>
                       <Grid.Column span={{large: 4}}>
                         <Box animate="fade-in" className={styles.fullHeight}>
-                          <Card href="#" hasBorder fullWidth>
+                          <Card href="#" hasBorder fullWidth variant="torchlight">
                             <Card.Icon icon={HeartIcon} color="indigo" hasBackground />
                             <Card.Heading>Non-Profit</Card.Heading>
                             <Card.Description>
