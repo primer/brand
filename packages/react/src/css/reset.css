@@ -70,7 +70,3 @@ select {
     scroll-behavior: auto;
   }
 }
-
-html {
-  scroll-behavior: smooth;
-}
