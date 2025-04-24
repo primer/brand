@@ -4,10 +4,10 @@ on:
   pull_request:
 
 jobs:
-  ci:
+  visual-test:
     if: ${{ github.repository == 'primer/brand' }}
     name: Storybook
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest-16-cores
     env:
       NODE_ENV: test
     steps:
@@ -27,20 +27,24 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Install Playwright
-        run: |
-          npx playwright install chromium 
-          npx playwright install
-
       - name: Install dependencies
         run: npm ci --legacy-peer-deps && cd apps/docs && npm ci --legacy-peer-deps
+
+      - name: Install Playwright
+        run: |
+          npx playwright install chromium
+          npx playwright install-deps chromium
 
       - name: Build assets
         run: NODE_ENV=test npm run build:lib && cd apps/storybook && npx storybook build
 
       - name: Run visual tests
         id: playwright-step
-        run: NODE_ENV=test npx start-server-and-test 'npx http-server ./apps/storybook/storybook-static -p 6006' 6006 'cd packages/e2e && npx playwright test'
+        run: |
+          NODE_ENV=test npx start-server-and-test \
+            'npx http-server ./apps/storybook/storybook-static -p 6006' \
+            6006 \
+            'cd packages/e2e && npx playwright test'
         continue-on-error: true
 
       - name: Upload error screenshots
@@ -58,8 +62,16 @@ jobs:
           path: packages/e2e/playwright-report/
           retention-days: 30
 
-      - name: Comment on the PR about no visual differences
-        if: steps.playwright-step.outcome != 'success'
+  report:
+    needs: visual-test
+    if: ${{ always() && github.repository == 'primer/brand' }}
+    runs-on: ubuntu-latest-16-cores
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Comment on the PR about visual differences
+        if: ${{ contains(needs.visual-test.result, 'failure') }}
         uses: phulsechinmay/rewritable-pr-comment@v0.2.1
         with:
           message: |
@@ -85,7 +97,7 @@ jobs:
           COMMENT_IDENTIFIER: 'visual-comparison-diff'
 
       - name: Comment on the PR about no visual differences
-        if: steps.playwright-step.outcome == 'success'
+        if: ${{ needs.visual-test.result == 'success' }}
         uses: phulsechinmay/rewritable-pr-comment@v0.2.1
         with:
           message: |
