@@ -29,8 +29,7 @@ jobs:
 
       - name: Install Playwright
         run: |
-          npx playwright install
-          npx playwright install-deps chromium
+          npx playwright install --with-deps --no-shell
 
       - name: Install dependencies
         run: npm ci --legacy-peer-deps && cd apps/docs && npm ci --legacy-peer-deps
