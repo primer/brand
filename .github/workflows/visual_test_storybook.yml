@@ -4,10 +4,25 @@ on:
   pull_request:
 
 jobs:
-  ci:
+  setup:
     if: ${{ github.repository == 'primer/brand' }}
-    name: Storybook
+    name: Setup
     runs-on: ubuntu-24.04
+    outputs:
+      shardCount: 4
+    steps:
+      - name: Determine shard count
+        run: echo "Using 4 shards for VRT"
+
+  visual-test:
+    needs: setup
+    if: ${{ github.repository == 'primer/brand' }}
+    name: Storybook (Shard ${{ matrix.shard }}/${{ needs.setup.outputs.shardCount }})
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4] # Creates 4 parallel jobs
     env:
       NODE_ENV: test
     steps:
@@ -37,28 +52,40 @@ jobs:
       - name: Build assets
         run: NODE_ENV=test npm run build:lib && cd apps/storybook && npx storybook build
 
-      - name: Run visual tests
+      - name: Run visual tests (sharded)
         id: playwright-step
-        run: NODE_ENV=test npx start-server-and-test 'npx http-server ./apps/storybook/storybook-static -p 6006' 6006 'cd packages/e2e && npx playwright test'
+        run: |
+          NODE_ENV=test npx start-server-and-test \
+            'npx http-server ./apps/storybook/storybook-static -p 6006' \
+            6006 \
+            'cd packages/e2e && npx playwright test --shard=${{ matrix.shard }}/${{ needs.setup.outputs.shardCount }}'
         continue-on-error: true
 
       - name: Upload error screenshots
         uses: actions/upload-artifact@v4
         if: steps.playwright-step.outcome != 'success'
         with:
-          name: playwright-test-results
+          name: playwright-test-results-shard-${{ matrix.shard }}
           path: packages/e2e/playwright-test-results
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
-          name: playwright-report
+          name: playwright-report-shard-${{ matrix.shard }}
           path: packages/e2e/playwright-report/
           retention-days: 30
 
-      - name: Comment on the PR about no visual differences
-        if: steps.playwright-step.outcome != 'success'
+  report:
+    needs: visual-test
+    if: ${{ always() && github.repository == 'primer/brand' }}
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Comment on the PR about visual differences
+        if: ${{ contains(needs.visual-test.result, 'failure') || contains(needs.visual-test.result, 'cancelled') }}
         uses: phulsechinmay/rewritable-pr-comment@v0.2.1
         with:
           message: |
@@ -84,7 +111,7 @@ jobs:
           COMMENT_IDENTIFIER: 'visual-comparison-diff'
 
       - name: Comment on the PR about no visual differences
-        if: steps.playwright-step.outcome == 'success'
+        if: ${{ needs.visual-test.result == 'success' }}
         uses: phulsechinmay/rewritable-pr-comment@v0.2.1
         with:
           message: |
