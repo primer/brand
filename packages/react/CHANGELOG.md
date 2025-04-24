@@ -1,5 +1,17 @@
 # @primer/react-brand
 
+## 0.51.1
+
+### Patch Changes
+
+- [#972](https://github.com/primer/brand/pull/972) [`663a4c1`](https://github.com/primer/brand/commit/663a4c1c4ace65e45ed0e58ff604cf578c04f5e4) Thanks [@rezrah](https://github.com/rezrah)! - Add mode="split-button" variant to `ActionMenu` component
+
+- [#972](https://github.com/primer/brand/pull/972) [`663a4c1`](https://github.com/primer/brand/commit/663a4c1c4ace65e45ed0e58ff604cf578c04f5e4) Thanks [@rezrah](https://github.com/rezrah)! - Removed default arrow visibility in the `ButtonGroup` and `CTABanner` components.
+
+  Use `hasArrow` on individual `Button` elements to restore the previous arrow appearance.
+
+- [#972](https://github.com/primer/brand/pull/972) [`663a4c1`](https://github.com/primer/brand/commit/663a4c1c4ace65e45ed0e58ff604cf578c04f5e4) Thanks [@rezrah](https://github.com/rezrah)! - `ActionMenu` overlay alignment now defaults to `end`, where it was previously `start`. Use the `menuAlignment` prop in `ActionMenu` to restore previous behavior if required.
+
 ## 0.51.0
 
 ### Minor Changes
