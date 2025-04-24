@@ -1,0 +1,158 @@
+---
+title: Eyebrow banner
+keywords: ['call to action', 'banner', 'highlight']
+show-tabs: false
+ready: true
+source: https://github.com/primer/brand/blob/main/packages/react/src/EyebrowBanner/EyebrowBanner.tsx
+storybook: '/brand/storybook/?path=/story/components-eyebrowbanner--playground'
+description: Use the eyebrow banner to highlight important information at the top of a page.
+---
+
+import {Label} from '@primer/react'
+import {EyebrowBannerIconnProp, EyebrowBannerIconColorProp, EyebrowBannerLabelColorProp} from './react'
+import {StarIcon, CopilotIcon} from '@primer/octicons-react'
+
+```js
+import {EyebrowBanner} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+This is the default variant for the eyebrow banner component.
+
+```jsx live
+<EyebrowBanner href="http://githubuniverse.com">
+  <EyebrowBanner.Visual>
+    <img
+      src="https://github.githubassets.com/assets/eyebrow-23@2x-563f292d9e30.png"
+      alt="Badge featuring a GitHub logo surrounded by Universe-themed shapes"
+    />
+  </EyebrowBanner.Visual>
+  <EyebrowBanner.Heading>GitHub Universe: Dive in to AI, security, and DevEx</EyebrowBanner.Heading>
+  <EyebrowBanner.SubHeading>Get your tickets now to join us on Nov. 8-9.</EyebrowBanner.SubHeading>
+</EyebrowBanner>
+```
+
+### Color modes
+
+Use `ThemeProvider` to automatically adjust the visual presentation of the component to light or dark variants.
+
+```jsx live
+<Stack gap="none" padding="none">
+  <ThemeProvider colorMode="light">
+    <Box backgroundColor="default" padding="normal" borderWidth="thin" borderStyle="solid" borderColor="default">
+      <EyebrowBanner href="http://githubuniverse.com">
+        <EyebrowBanner.Visual>
+          <img
+            src="https://github.githubassets.com/assets/eyebrow-23@2x-563f292d9e30.png"
+            alt="Badge featuring a GitHub logo surrounded by Universe-themed shapes"
+          />
+        </EyebrowBanner.Visual>
+        <EyebrowBanner.Heading>GitHub Universe: Dive in to AI, security, and DevEx</EyebrowBanner.Heading>
+        <EyebrowBanner.SubHeading>Get your tickets now to join us on Nov. 8-9.</EyebrowBanner.SubHeading>
+      </EyebrowBanner>
+    </Box>
+  </ThemeProvider>
+  <ThemeProvider colorMode="dark">
+    <Box backgroundColor="default" padding="normal">
+      <EyebrowBanner href="http://githubuniverse.com">
+        <EyebrowBanner.Visual>
+          <img
+            src="https://github.githubassets.com/assets/eyebrow-23@2x-563f292d9e30.png"
+            alt="Badge featuring a GitHub logo surrounded by Universe-themed shapes"
+          />
+        </EyebrowBanner.Visual>
+        <EyebrowBanner.Heading>GitHub Universe: Dive in to AI, security, and DevEx</EyebrowBanner.Heading>
+        <EyebrowBanner.SubHeading>Get your tickets now to join us on Nov. 8-9.</EyebrowBanner.SubHeading>
+      </EyebrowBanner>
+    </Box>
+  </ThemeProvider>
+</Stack>
+```
+
+### Text labels
+
+Use `EyebrowBanner.Label` to display a leading text for additional context.
+
+A `color` prop is available to customise the color of the label.
+
+```jsx live
+<Stack>
+  <EyebrowBanner href="http://githubuniverse.com">
+    <EyebrowBanner.Label>NEW</EyebrowBanner.Label>
+    <EyebrowBanner.Heading>GitHub Copilot now available for Business</EyebrowBanner.Heading>
+  </EyebrowBanner>
+  <EyebrowBanner href="http://githubuniverse.com">
+    <EyebrowBanner.Label color="blue-purple">NEW</EyebrowBanner.Label>
+    <EyebrowBanner.Heading>GitHub Copilot now available for Business</EyebrowBanner.Heading>
+  </EyebrowBanner>
+  <EyebrowBanner href="http://githubuniverse.com">
+    <EyebrowBanner.Label color="red">NEW</EyebrowBanner.Label>
+    <EyebrowBanner.Heading>GitHub Copilot now available for Business</EyebrowBanner.Heading>
+  </EyebrowBanner>
+</Stack>
+```
+
+### Icon visuals
+
+Use `EyebrowBanner.Visual` with an `icon` prop to display a leading icon for additional context.
+
+Icons can be SVGs or ideally Octicons. If using Octicons, import the icon from `@primer/octicons-react` and pass it as the `icon` prop.
+
+A `color` option is available to customise the color of the icon.
+
+An optional `hasBackground` prop can be used to fill the surrounding circle with the lighter hue of the selected color.
+
+```jsx live
+<Stack>
+  <EyebrowBanner href="/">
+    <EyebrowBanner.Visual icon={<StarIcon />} color="blue" hasBackground />
+    <EyebrowBanner.Heading>GitHub Universe: Dive in to AI, security, and DevEx</EyebrowBanner.Heading>
+    <EyebrowBanner.SubHeading>Get your tickets now to join us on Nov. 8-9.</EyebrowBanner.SubHeading>
+  </EyebrowBanner>
+  <EyebrowBanner href="/">
+    <EyebrowBanner.Visual icon={<CopilotIcon />} color="blue" />
+    <EyebrowBanner.Heading>GitHub Copilot now available for Business</EyebrowBanner.Heading>
+  </EyebrowBanner>
+</Stack>
+```
+
+## Component props
+
+### EyebrowBanner <Label>Required</Label>
+
+| Name   | Type     |   Default   | required | Description                               |
+| :----- | :------- | :---------: | :------: | :---------------------------------------- |
+| `href` | `string` | `undefined` |  `true`  | The URL that the eyebrow banner points to |
+
+### EyebrowBanner.Heading <Label>Required</Label>
+
+Please note that this is not a HTML-based heading element.
+
+| Name       | Type        |   Default   | required | Description                                             |
+| :--------- | :---------- | :---------: | :------: | :------------------------------------------------------ |
+| `children` | `ReactNode` | `undefined` |  `true`  | The primary messaging that appears on the top-most line |
+
+### EyebrowBanner.SubHeading
+
+| Name       | Type        |   Default   | required | Description                                                   |
+| :--------- | :---------- | :---------: | :------: | :------------------------------------------------------------ |
+| `children` | `ReactNode` | `undefined` | `false`  | Optional secondary messaging that appears beneath the heading |
+
+### EyebrowBanner.Visual
+
+| Name            | Type                           |   Default   | required | Description                                 |
+| :-------------- | :----------------------------- | :---------: | :------: | :------------------------------------------ |
+| `icon`          | <EyebrowBannerIconnProp />     | `undefined` | `false`  | Optional icon. Accepts React-based Octicons |
+| `color`         | <EyebrowBannerIconColorProp /> | `undefined` | `false`  | Optional icon color.                        |
+| `hasBackground` | `boolean`                      | `undefined` | `false`  | Optional background color.                  |
+| `children`      | `ReactNode`                    | `undefined` | `false`  | Accepts `img`, `picture` or `svg` elements  |
+
+### EyebrowBanner.Label
+
+| Name       | Type                            |   Default   | required | Description                      |
+| :--------- | :------------------------------ | :---------: | :------: | :------------------------------- |
+| `color`    | <EyebrowBannerLabelColorProp /> | `undefined` | `false`  | Optional label color.            |
+| `children` | `ReactNode`                     | `undefined` | `false`  | Text to appear in the label slot |

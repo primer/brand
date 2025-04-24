@@ -1,0 +1,237 @@
+---
+title: River
+description: Use the river component to introduce a feature using a type and media pairing.
+keywords: ['feature', 'showcase', 'highlight', 'story']
+show-tabs: true
+tab-label: React
+ready: true
+figma: https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=418%3A8416
+source: https://github.com/primer/brand/blob/main/packages/react/src/River/River.tsx
+storybook: '/brand/storybook/?path=/story/components-river--default'
+---
+
+import {Label} from '@primer/react'
+import {RiverAlignProp, RiverImageTextRatio} from './react'
+
+```js
+import {River, RiverBreakout} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<Stack>
+  <River>
+    <River.Visual>
+      <img src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
+    </River.Visual>
+    <River.Content>
+      <Heading>Heading</Heading>
+      <Text>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </River.Content>
+  </River>
+  <River align="end">
+    <River.Visual>
+      <img src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
+    </River.Visual>
+    <River.Content>
+      <Heading>Heading</Heading>
+      <Text>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </River.Content>
+  </River>
+  <River align="center">
+    <River.Visual>
+      <img src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
+    </River.Visual>
+    <River.Content>
+      <Label>Label</Label>
+      <Heading>Heading</Heading>
+      <Text>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </River.Content>
+  </River>
+</Stack>
+```
+
+### Image to text ratio
+
+```jsx live
+<Stack>
+  {/* 50/50 (default) example */}
+  <River>
+    <River.Visual>
+      <img src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
+    </River.Visual>
+    <River.Content>
+      <Heading>50/50</Heading>
+      <Text>
+        <strong>By default</strong>, River applies a 50/50 image to text split.
+      </Text>
+    </River.Content>
+  </River>
+  {/* 60/40 example */}
+  <River imageTextRatio="60:40">
+    <River.Visual>
+      <img src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
+    </River.Visual>
+    <River.Content>
+      <Heading>60/40</Heading>
+      <Text>This example applies an optional 60/40 image to text split.</Text>
+    </River.Content>
+  </River>
+</Stack>
+```
+
+### Video
+
+```jsx live
+<River imageTextRatio="60:40">
+  <River.Visual hasShadow={false}>
+    <video
+      loop
+      playsInline
+      autoPlay
+      muted
+      poster="https://github.githubassets.com/images/modules/site/issues/issue-tasks-progress-placeholder.png"
+    >
+      <source
+        type="video/mp4; codecs=hevc,mp4a.40.2"
+        src="https://github.githubassets.com/images/modules/site/issues/issue-tasks-progress.hevc.mp4"
+      />
+      <source
+        type="video/mp4; codecs=avc1.4D401E,mp4a.40.2"
+        src="https://github.githubassets.com/images/modules/site/issues/issue-tasks-progress.h264.mp4"
+      />
+    </video>
+  </River.Visual>
+  <River.Content>
+    <Heading>Break issues into actionable tasks</Heading>
+    <Text>
+      Tackle complex issues with task lists and track their status with new progress indicators. Convert tasks into
+      their own issues and navigate your work hierarchy.
+    </Text>
+  </River.Content>
+</River>
+```
+
+### Alternative heading levels
+
+```jsx live
+<River imageTextRatio="60:40">
+  <River.Visual>
+    <img src="/images/placeholder.png" alt="placeholder with a gray background color" />
+  </River.Visual>
+  <River.Content>
+    <Heading as="h1">Alternative heading levels</Heading>
+    <Text>Use the 'as' prop to specify alternative heading levels. The default is 'h3'.</Text>
+  </River.Content>
+</River>
+```
+
+### Duotone
+
+```jsx live
+<River>
+  <River.Visual>
+    <img src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
+  </River.Visual>
+  <River.Content>
+    <Text size="300">
+      <b>This first sentence is highlighted</b> and here is where the body copy starts. Remember to keep this nice and
+      succinct.
+    </Text>
+    <Link href="#">Call to action</Link>
+  </River.Content>
+</River>
+```
+
+### River breakout
+
+```jsx live
+<RiverBreakout>
+  <RiverBreakout.A11yHeading>Accelerate workflows</RiverBreakout.A11yHeading>
+  <RiverBreakout.Visual>
+    <img src="/images/placeholder.png" alt="placeholder, blank area with a gray background color" />
+  </RiverBreakout.Visual>
+  <RiverBreakout.Content
+    trailingComponent={() => (
+      <Timeline>
+        <Timeline.Item>
+          <b>GitHub Codespaces</b> offers a complete dev environment in seconds.
+        </Timeline.Item>
+        <Timeline.Item>
+          <b>GitHub Copilot</b> is your AI pair programmer that empowers you to complete tasks.
+        </Timeline.Item>
+      </Timeline>
+    )}
+  >
+    <Text>
+      <b>This first sentence is a river breakout headline.</b> And this is where the body copy starts. Remember to keep
+      these nice and succinct.
+    </Text>
+    <Link href="#">Call to action</Link>
+  </RiverBreakout.Content>
+</RiverBreakout>
+```
+
+## Component props
+
+### River <Label>Required</Label>
+
+| Name             | Type                           |         Default         | Description                                                                                                 |
+| :--------------- | :----------------------------- | :---------------------: | :---------------------------------------------------------------------------------------------------------- |
+| `align`          | `'start'`, `'end'`, `'center'` |   <RiverAlignProp />    | Alignment of text content relative to the Visual position                                                   |
+| `imageTextRatio` | `'50:50'`, `'60:40'`           | <RiverImageTextRatio /> | The aspect ratio applied to the image in relation to the adjacent text. Affects overall layout proportions. |
+| `className`      | `string`                       |                         | Sets a custom class on the root element                                                                     |
+| `id`             | `string`                       |                         | Sets a custom id                                                                                            |
+| `ref`            | `React.RefObject`              |                         | Forward a Ref to the underlying DOM node                                                                    |
+
+### River.Visual and RiverBreakout.Visual <Label>Required</Label>
+
+| Name        | Type              | Default | Description                                                                                                                                   |
+| :---------- | :---------------- | :-----: | :-------------------------------------------------------------------------------------------------------------------------------------------- |
+| `fillMedia` | `boolean`         |  true   | Automatically styles images and video to fill and fit the width of the parent. Disable this setting if you have bespoke styling requirements. |
+| `children`  | `ReactElement`    |         | Bring your own component (BYOC) `img` or `ReactElement` (E.g. Next.js `Image` component)                                                      |
+| `hasShadow` | `boolean`         | `false` | Shadow applied to the `children`. Set be `false` when the child node has a transparent background.                                            |
+| `className` | `string`          |         | Sets a custom class on the root element                                                                                                       |
+| `id`        | `string`          |         | Sets a custom id                                                                                                                              |
+| `ref`       | `React.RefObject` |         | Forward a Ref to the underlying DOM node                                                                                                      |
+| `rounded`   | `boolean`         | `true`  | Toggle visually rounded corners. Enabled by default.                                                                                          |
+
+### River.Content and RiverBreakout.Content <Label>Required</Label>
+
+[`Label`](https://primer.style/brand/components/Label), [`Text`](https://primer.style/brand/components/Text),[`Heading`](https://primer.style/brand/components/Heading), [`Link`](https://primer.style/brand/components/Link) are the only `children` accepted. They can be composed in any order, but their rendered output will always be in a predetermined order.
+
+| Name        | Type                                                                                                                                                                  | Default | Description                                      |
+| :---------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----: | :----------------------------------------------- |
+| `children`  | [`Text`](https://primer.style/brand/components/Text),[`Heading`](https://primer.style/brand/components/Heading), [`Link`](https://primer.style/brand/components/Link) |         | Content that corrosponds to the adjacent visual. |
+| `className` | `string`                                                                                                                                                              |         | Sets a custom class on the root element          |
+| `id`        | `string`                                                                                                                                                              |         | Sets a custom id                                 |
+| `ref`       | `React.RefObject`                                                                                                                                                     |         | Forward a Ref to the underlying DOM node         |
+
+### RiverBreakout
+
+| Name        | Type              | Default | Description                              |
+| :---------- | :---------------- | :-----: | :--------------------------------------- |
+| `className` | `string`          |         | Sets a custom class on the root element  |
+| `id`        | `string`          |         | Sets a custom id                         |
+| `ref`       | `React.RefObject` |         | Forward a Ref to the underlying DOM node |
+
+### RiverBreakout.A11yHeading <Label>Required</Label>
+
+| Name       | Type        | Default | Description                                                                         |
+| :--------- | :---------- | :-----: | :---------------------------------------------------------------------------------- |
+| `children` | `ReactNode` |         | The heading text that will be read aloud to screen readers, but is visually hidden. |

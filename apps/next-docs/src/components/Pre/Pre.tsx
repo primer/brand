@@ -4,7 +4,7 @@ import React, {PropsWithChildren} from 'react'
 import {CodeBlock} from '@primer/doctocat-nextjs/components'
 
 // eslint-disable-next-line import/no-namespace
-import * as PrimerComponents from '@primer/react-brand/lib'
+import * as PrimerComponents from '../../../../../packages/react'
 // eslint-disable-next-line import/no-namespace
 import * as Octicons from '@primer/octicons-react'
 

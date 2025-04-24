@@ -1,0 +1,137 @@
+---
+title: Text
+description: Use the text component create a range of body text
+keywords: ['body', 'content', 'copy', 'paragraph']
+show-tabs: true
+tab-label: React
+figma: 'https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=354%3A9513'
+source: https://github.com/primer/brand/blob/main/packages/react/src/Text/Text.tsx
+storybook: '/brand/storybook/?path=/story/components-text--playground'
+---
+
+import {
+  TextAsProp,
+  TextSizeProp,
+  TextVariantProp,
+  TextWeightProp,
+  TextAsPropDefault,
+  TextSizePropDefault,
+  TextVariantPropDefault,
+} from './react'
+
+```js
+import {Text} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<Text>With GitHub Copilot, you’re always in charge.</Text>
+```
+
+### Scale
+
+```jsx live
+<>
+  {TextSizes.map(size => (
+    <Text key={size} size={size} as="p">
+      Text {size}
+    </Text>
+  ))}
+</>
+```
+
+### Variants
+
+```jsx live
+<>
+  <Text as="p">With GitHub Copilot, you’re always in charge.</Text>
+  <Text as="p" variant="muted">
+    With GitHub Copilot, you’re always in charge.
+  </Text>
+</>
+```
+
+### Alignment
+
+Use `align` to set the horizontal alignment of content inside a block element.
+
+```jsx live
+<Stack direction="vertical">
+  <Text as="p" align="start">
+    Start
+  </Text>
+  <Text as="p" align="center">
+    Center
+  </Text>
+  <Text as="p" align="end">
+    End
+  </Text>
+</Stack>
+```
+
+### Polymorphism
+
+The `Text` component can render as a `span`, `p` or `div` HTML element.
+
+```jsx live
+<Text as="p">With GitHub Copilot, you’re always in charge.</Text>
+```
+
+### Weight
+
+The recommended text weight is automatically applied through Text based on its position on the type scale.
+Use the `weight` prop to adjust the default visual appearance if required.
+
+```jsx live
+<>
+  <Text as="p" weight="heavy">
+    heavy
+  </Text>
+  <Text as="p" weight="extrabold">
+    extrabold
+  </Text>
+  <Text as="p" weight="bold">
+    bold
+  </Text>
+  <Text as="p" weight="semibold">
+    semibold
+  </Text>
+  <Text as="p" weight="medium">
+    medium
+  </Text>
+  <Text as="p" weight="regular">
+    regular
+  </Text>
+  <Text as="p" weight="light">
+    light
+  </Text>
+
+  {/* Responsive */}
+  <br />
+  <br />
+  <Text
+    as="p"
+    weight={{
+      narrow: 'heavy',
+      regular: 'semibold',
+      wide: 'light',
+    }}
+  >
+    Responsive
+  </Text>
+</>
+```
+
+## Component props
+
+### Text
+
+| Name      | Type                |          Default           | Description                             |
+| :-------- | :------------------ | :------------------------: | :-------------------------------------- |
+| `as`      | <TextAsProp />      |   <TextAsPropDefault />    | Applies the underlying HTML element     |
+| `size`    | <TextSizeProp />    |  <TextSizePropDefault />   | Specify the text size                   |
+| `variant` | <TextVariantProp /> | <TextVariantPropDefault /> | Specify alternative text appearance     |
+| `weight`  | <TextWeightProp />  |                            | Override the default visual text weight |
