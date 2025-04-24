@@ -6,7 +6,7 @@ on:
 jobs:
   visual-test:
     if: ${{ github.repository == 'primer/brand' }}
-    name: Storybook Visual Tests
+    name: Storybook
     runs-on: ubuntu-latest-16-cores
     env:
       NODE_ENV: test
