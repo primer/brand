@@ -6,6 +6,8 @@ const config = {
   workers: process.env.CI ? 4 : undefined, // Use workers in Actions only
   use: {
     screenshot: 'only-on-failure',
+    headless: false,
+    channel: 'chromium',
     env: {
       NODE_ENV: 'test',
     },

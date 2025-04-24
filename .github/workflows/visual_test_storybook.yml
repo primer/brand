@@ -47,7 +47,8 @@ jobs:
 
       - name: Install Playwright
         run: |
-          npx playwright install --with-deps --no-shell
+          npx playwright install chromium
+          npx playwright install-deps chromium
 
       - name: Build assets
         run: NODE_ENV=test npm run build:lib && cd apps/storybook && npx storybook build
