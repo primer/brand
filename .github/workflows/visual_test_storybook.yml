@@ -27,12 +27,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps && cd apps/docs && npm ci --legacy-peer-deps
+
       - name: Install Playwright
         run: |
           npx playwright install --with-deps --no-shell
-
-      - name: Install dependencies
-        run: npm ci --legacy-peer-deps && cd apps/docs && npm ci --legacy-peer-deps
 
       - name: Build assets
         run: NODE_ENV=test npm run build:lib && cd apps/storybook && npx storybook build
