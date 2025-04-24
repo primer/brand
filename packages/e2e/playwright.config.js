@@ -3,7 +3,7 @@ const config = {
   testDir: '../../packages/react',
   testMatch: /.*\.visual.spec\.ts/,
   outputDir: './playwright-test-results',
-  workers: process.env.CI ? 2 : undefined, // Use workers in Actions only
+  workers: process.env.CI ? 16 : undefined, // Use all available cores in GitHub Actions
   use: {
     screenshot: 'only-on-failure',
     headless: true,
