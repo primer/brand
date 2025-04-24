@@ -54,8 +54,6 @@ jobs:
 
       - name: Print playwright browser location
         run: |
-          echo "Playwright browser location:"
-          npx playwright show-trace --browser=chromium --trace-dir=./trace
           echo "Show cache"
           ls -al /home/runner/.cache/ms-playwright/
 
