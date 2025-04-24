@@ -7,7 +7,6 @@ const config = {
   use: {
     screenshot: 'only-on-failure',
     headless: true,
-    channel: 'chromium',
     env: {
       NODE_ENV: 'test',
     },
