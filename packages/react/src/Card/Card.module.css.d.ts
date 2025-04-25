@@ -3,6 +3,7 @@ declare const styles: {
   readonly "Card--align-center": string;
   readonly "Card--border": string;
   readonly "Card--colorMode-dark": string;
+  readonly "Card--colorMode-light": string;
   readonly "Card--disableAnimation": string;
   readonly "Card--expandableArrow": string;
   readonly "Card--fullWidth": string;

@@ -54,7 +54,8 @@
   padding: 0;
 }
 
-.Card--variant-default {
+.Card--variant-default,
+.Card--variant-torchlight.Card--colorMode-light {
   background-color: var(--brand-Card-background-default);
 }
 
