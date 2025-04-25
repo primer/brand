@@ -1,0 +1,98 @@
+---
+title: Label
+description: Use the label component to add metadata or indicate the status of items.
+keywords: ['badge', 'tag', 'metadata', 'status', 'indicator']
+show-tabs: true
+tab-label: Guidelines
+---
+
+import {Box as Container} from '@primer/react'
+
+![An image showing a group of labels with different styles, colors, leading icons and content.](https://github.com/primer/brand/assets/6951037/1c9c6b81-0a2a-4a56-a9f5-a9608f89e220)
+
+## Usage
+
+Use labels to indicate the status of an item or to help oraganize and categorize them. E.g, using "New" or "Recommended". Labels aren't meant to be used as interactive elements. Instead use the [Button](/components/Button) component.
+
+<DoDontContainer>
+  <Do>
+    <img src="https://github.com/primer/brand/assets/6951037/5da25ec0-a780-4add-972a-246bf9462e07" alt="" />
+    <Caption>Use labels to categorize an item.</Caption>
+  </Do>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/6951037/976d645c-17ba-45ff-97ea-03c81a4c3b53" alt="" />
+    <Caption>Don't use labels as an interactive or navigational element. Use a button or a link component.</Caption>
+  </Dont>
+</DoDontContainer>
+
+Position the labels to clearly identify the object they’re informing.
+
+<DoDontContainer>
+  <Do>
+    <img src="https://github.com/primer/brand/assets/6951037/467449ad-013d-4b9c-9eec-a4655c4d13ec" alt="" />
+    <Caption>
+      Give labels enough space to be clearly identified. Use size or color to differentiate them if needed.
+    </Caption>
+  </Do>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/6951037/5a32b608-2bc7-417b-b064-42c2308075ea" alt="" />
+    <Caption>When used along with other items, don't place the label too close to them.</Caption>
+  </Dont>
+</DoDontContainer>
+
+### Content
+
+Use Label with with short, scannable text. If possible, use a single word to describe the status of an object. Use two or more words if you need to describe a complex state or category. For example, “Limited availability" or "Enterprise only".
+
+## Options
+
+### Size
+
+Labels come in two sizes: `medium`, and `large`.
+
+### Medium
+
+Use the `medium` size when paired with medium-sized headings or in components such as `Card`.
+
+<div>
+  <img src="https://github.com/primer/brand/assets/912236/2bca5ddd-2422-41a1-a32c-dc6be243f9ce" alt="" />
+  <Caption>
+    The Card component allows for a medium label to provide extra meta data to the content. In a group of stacked cards,
+    the label helps to quickly scan certain items.
+  </Caption>
+</div>
+<div>
+  <img src="https://github.com/primer/brand/assets/6951037/c51e151c-d93a-42f8-bf73-6bd15b1c3781" alt="" />
+  <Caption>
+    Medium labels are great for headings that introduce a section. They help categorize the main topic and provide a
+    visual break.
+  </Caption>
+</div>
+
+### Large
+
+Use the `large` size when paired with large headings, such as in the `Hero` component.
+
+<div>
+  <img src="https://github.com/primer/brand/assets/6951037/13f9debc-3b20-4f77-a509-b8291ca677ae" alt="" />
+  <Caption>
+    Use large labels with headings that introduce a page. Use it to introduce the main topic or application.
+  </Caption>
+</div>
+
+### Color
+
+The label offers color options from the [Primer Brand color palette](/primitives/color). These color choices are carefully curated to ensure optimal contrast with the background or surrounding elements. Colors options doesn't follow a strict functional meaning. We recommend using the colors that best fit the context of your application. For example, blue and purple gradient for `Copilot` examples.
+
+![An image showing multiple label options with different colors.](https://github.com/primer/brand/assets/6951037/41817520-87bb-41bc-9586-95155604b83d)
+
+### Leading visual
+
+You can add a leading icon to enhance the visual context. It is recommended you use an [Octicon](https://primer.style/octicons). Use an icon that reinforces the meaning of the label. For example, a `StarIcon` for a "Starred" label.
+
+![An image showing multiple label options with different leading visuals.](https://github.com/primer/brand/assets/6951037/d5fdf463-f5ce-4806-886d-1b8f44278308)
+
+## Related components
+
+- [Button](/components/Button): To provide an action.
+- [Link](/components/Link): To provide navigation.

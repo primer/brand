@@ -1,0 +1,153 @@
+---
+title: Sub nav
+description: A sub nav is a secondary navigation element, typically positioned beneath a primary navigation.
+keywords: ['navigation', 'secondary', 'second level']
+show-tabs: false
+ready: true
+source: https://github.com/primer/brand/tree/main/packages/react/src/SubNav/SubNav.tsx
+storybook: '/brand/storybook/?path=/story/components-subnav--default'
+---
+
+import {Label} from '@primer/react'
+import {SubNavLinkVariantProp, SubNavSubMenuVariantProp} from './react'
+
+```js
+import {SubNav} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<div style={{position: 'relative', height: 100, width: '100%'}}>
+  <SubNav>
+    <SubNav.Heading href="#">Features</SubNav.Heading>
+    <SubNav.Link href="#">Actions</SubNav.Link>
+    <SubNav.Link href="#">Packages</SubNav.Link>
+    <SubNav.Link href="#" aria-current="page">
+      Copilot
+    </SubNav.Link>
+    <SubNav.Link href="#">Code review</SubNav.Link>
+  </SubNav>
+</div>
+```
+
+### Shadow
+
+```jsx live
+<div style={{position: 'relative', height: 100, width: '100%'}}>
+  <SubNav hasShadow>
+    <SubNav.Heading href="#">Features</SubNav.Heading>
+    <SubNav.Link href="#">Actions</SubNav.Link>
+    <SubNav.Link href="#">Packages</SubNav.Link>
+    <SubNav.Link href="#" aria-current="page">
+      Copilot
+    </SubNav.Link>
+    <SubNav.Link href="#">Code review</SubNav.Link>
+  </SubNav>
+</div>
+```
+
+### Optional CTA
+
+```jsx live
+<div style={{position: 'relative', height: 100, width: '100%'}}>
+  <SubNav hasShadow>
+    <SubNav.Heading href="#">Features</SubNav.Heading>
+    <SubNav.Link href="#">Actions</SubNav.Link>
+    <SubNav.Link href="#">Packages</SubNav.Link>
+    <SubNav.Link href="#" aria-current="page">
+      Copilot
+    </SubNav.Link>
+    <SubNav.Link href="#">Code review</SubNav.Link>
+    <SubNav.Action href="#">CTA</SubNav.Action>
+  </SubNav>
+</div>
+```
+
+### Optional submenu
+
+Submenus appear as a dropdown by default.
+
+```jsx live
+<div style={{position: 'relative', height: 300, width: '100%'}}>
+  <SubNav hasShadow>
+    <SubNav.Heading href="#">Features</SubNav.Heading>
+    <SubNav.Link href="#" aria-current="page">
+      Actions
+      <SubNav.SubMenu>
+        <SubNav.Link href="#">Actions feature one</SubNav.Link>
+        <SubNav.Link href="#">Actions feature two</SubNav.Link>
+        <SubNav.Link href="#">Actions feature three</SubNav.Link>
+        <SubNav.Link href="#">Actions feature four</SubNav.Link>
+      </SubNav.SubMenu>
+    </SubNav.Link>
+    <SubNav.Link href="#">Packages</SubNav.Link>
+    <SubNav.Link href="#">Copilot</SubNav.Link>
+    <SubNav.Link href="#">Code review</SubNav.Link>
+  </SubNav>
+</div>
+```
+
+### Optional anchor-based submenu
+
+```jsx live
+<div style={{position: 'relative', height: 300, width: '100%', overflowY: 'scroll'}}>
+  <Box style={{height: 1000}}>
+    <SubNav>
+      <SubNav.Heading href="#">Features</SubNav.Heading>
+      <SubNav.Link href="#" aria-current="page">
+        Actions
+        <SubNav.SubMenu variant="anchor">
+          <SubNav.Link href="#">Actions feature one</SubNav.Link>
+          <SubNav.Link href="#">Actions feature two</SubNav.Link>
+          <SubNav.Link href="#">Actions feature three</SubNav.Link>
+          <SubNav.Link href="#">Actions feature four</SubNav.Link>
+        </SubNav.SubMenu>
+      </SubNav.Link>
+      <SubNav.Link href="#">Packages</SubNav.Link>
+      <SubNav.Link href="#">Copilot</SubNav.Link>
+      <SubNav.Link href="#">Code review</SubNav.Link>
+    </SubNav>
+  </Box>
+</div>
+```
+
+## Component props
+
+### SubNav <Label>Required</Label>
+
+| name        | type      | default | required | description                                                                   |
+| ----------- | --------- | ------- | -------- | ----------------------------------------------------------------------------- |
+| `hasShadow` | `boolean` | `false` | `false`  | Applies optional shadow, along with a fixed background color                  |
+| `fullWidth` | `boolean` | `false` | `false`  | Allows the SubNav to be used at full width, removing default internal padding |
+
+### SubNav.Heading <Label>Required</Label>
+
+`SubNav.Heading` is a styled `a` tag which describes the overarching category of the other links within the SubNav. The `SubNav.Heading` is structurally identical to a `SubNav.Link` and differs only in visual styling.
+
+| name   | type     | default | required | description                      |
+| ------ | -------- | ------- | -------- | -------------------------------- |
+| `href` | `string` |         |          | URL of the page the link goes to |
+
+### SubNav.Link <Label>Required</Label>
+
+| name           | type                      | default | required | description                                     |
+| -------------- | ------------------------- | ------- | -------- | ----------------------------------------------- |
+| `aria-current` | `string`                  |         | `true`   | Required for indicating the current active link |
+| `href`         | `string`                  |         | `true`   | URL of the page the link goes to                |
+| `variant`      | <SubNavLinkVariantProp /> | `muted` | `false`  | Alternative idle text appearance                |
+
+### SubNav.Action
+
+| name   | type     | default | required | description                        |
+| ------ | -------- | ------- | -------- | ---------------------------------- |
+| `href` | `string` |         | `false`  | URL of the page the action goes to |
+
+### SubNav.SubMenu
+
+| name       | type                         | default     | required | description                           |
+| ---------- | ---------------------------- | ----------- | -------- | ------------------------------------- |
+| `children` | `SubNav.Link`                |             | `false`  | Container for submenu links           |
+| `variant`  | <SubNavSubMenuVariantProp /> | `'default'` | `false`  | Alternative presentation for submenus |

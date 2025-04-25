@@ -1,0 +1,137 @@
+---
+title: Card
+description: Use the card component to display information in a compact way and link to other internal pages.
+keywords: ['card', 'link', 'summary', 'content', 'information']
+show-tabs: true
+tab-label: Guidelines
+---
+
+import centerAlignDo from './images/cardstackedmaxdo.png'
+import centerAlignDont from './images/cardstackedmaxdont.png'
+
+![An image showing a card with a Copilot Octicon.](https://github.com/primer/brand/assets/6951037/5bb4e3dd-8f53-44c5-a5ed-987c732eaf8f)
+
+## Usage
+
+Use cards to summarize the central idea behind some content and provide a link to its corresponding detailed resource. It is important to present the information in a concise manner, avoiding lengthy and complex descriptions.
+
+Cards should always be used in groups of two or more related concepts.
+
+<DoDontContainer>
+  <Do>
+    <img src="https://github.com/primer/brand/assets/6951037/139deb0e-0143-4051-a8c8-49b854b58727" alt="" />
+    <Caption>Use cards in groups to display related information.</Caption>
+  </Do>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/6951037/1f009b98-01b8-4cb3-af30-83ccac31c8c9" alt="" />
+    <Caption>Don't use isolated cards. Consider using a CTABanner instead.</Caption>
+  </Dont>
+</DoDontContainer>
+
+### Stacked
+
+Cards should be stacked to display a list of items that are related to each other. When displaying a visual asset, ensure it is consistent across all cards to create a visually balanced layout. The visual asset should be the same type for each card, either an icon or an image.
+
+For a better visual experience, we recommend using similar length size for the heading and description in all stacked cards.
+
+<DoDontContainer>
+  <Do>
+    <img src="https://github.com/primer/brand/assets/6951037/28b8dbfa-9ed5-40ba-b1a3-d501ac3be4b8" alt="" />
+    <Caption>Use the same type of visual asset for all cards and a similar length size for the content.</Caption>
+  </Do>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/6951037/6d494165-312e-4e84-94df-199d1d82fd50" alt="" />
+    <Caption>Don't use different length sizes for the title or the description.</Caption>
+  </Dont>
+</DoDontContainer>
+
+When using an image as the visual asset, we recommend using the same aspect ratio for all images. This will create a more balanced visual experience.
+
+<DoDontContainer>
+  <Do>
+    <img src="https://github.com/primer/brand/assets/6951037/1a6decfc-a840-440b-8ec7-bf25b7716711" alt="" />
+    <Caption>Use the same image ratio and a similar length sizes for the content.</Caption>
+  </Do>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/6951037/cffafadf-2e9d-47f0-a6db-6f89fb48fabe" alt="" />
+    <Caption>Don't use different image ratios and a different length size for the content.</Caption>
+  </Dont>
+</DoDontContainer>
+
+Cards typically appear in groups of three or four in desktop viewports. For smaller viewports, or when more than four cards are needed, we recommend stacking the cards vertically. You can use the [Grid](/components/Grid) or the [Stack](/components/Stack) component to achieve this.
+
+Use center alignment when stacking multiple cards up to a maximum of three. For four (or more) use start alignment.
+
+<DoDontContainer>
+  <Do>
+    <img src={centerAlignDo.src} alt="" />    
+    <Caption>
+      Use center alignment when presenting up to three cards in single row.
+    </Caption>
+
+  </Do>
+  <Dont>    
+    <img src={centerAlignDont.src} alt="" />
+    <Caption>
+      Don't use center alignment when presenting more than three cards.
+    </Caption>
+
+  </Dont>
+</DoDontContainer>
+
+<div>
+  <video width="100%" src="https://github.com/primer/brand/assets/6951037/a9ceec00-59c9-4471-a274-f516790f43c9" />
+  <Caption>Stack cards vertically so that the content has enough line length.</Caption>
+</div>
+
+## Anatomy
+
+![An image showing the card anatomy with an icon as a visual asset, a heading, a description and a CTA text in a vertical order.](https://github.com/primer/brand/assets/6951037/2ae395d0-227d-4794-8e0b-f709a431e636)
+
+### Visual asset
+
+The visual asset is optional and can be an image or an icon. It can be used to provide a visual cue to the user about the content of the card. To avoid visual noise, we recommend using only one icon or image, but not both in the same card.
+
+![An image showing two cards, one with an Icon and another with an Image as the visual assets options.](https://github.com/primer/brand/assets/6951037/21623e82-2ea5-499a-a78f-82b09915af16)
+
+<DoDontContainer>
+  <Do>
+    <img src="https://github.com/primer/brand/assets/6951037/e5494fd3-76b1-45fd-8aa7-4acfe834b159" alt="" />
+    <Caption>Use only one visual asset per card.</Caption>
+  </Do>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/6951037/bc29b10b-ee0b-421d-8bc4-0a95fad3791b" alt="" />
+    <Caption>Don't use both icon and image as the visual asset.</Caption>
+  </Dont>
+</DoDontContainer>
+
+### Label
+
+The label can be used to indicate the type of content or its status. For example, use it to indicate that the content is `new` or that it is a `beta` feature. The label is optional and can be used along with a visual asset.
+
+![An image showing two cards, one with a Label and another one with Label and Icon.](https://github.com/primer/brand/assets/6951037/3e16bb51-9e19-4a98-a9c2-e289d4bf540c)
+
+### Heading
+
+The heading is the main title of the card. It should be short and concise.
+
+### Description
+
+The description is an optional short text that extends the information provided by the heading.
+
+### Call to action
+
+The call to action label indicates the action or resource the card links to. It defaults to "Learn more".
+
+## Options
+
+### Border
+
+Card offers a variation with a border. Border is disabled by default.
+
+## Related components
+
+- [Pillar](/components/Pillar): To display related content with less visual emphasis.
+- [River](/components/River): To display a list of content items with a visual asset.
+- [CTABanner](/components/CTABanner): To display a single block of content to draw attention or create urgency around a user action.
+- [UnorderedList](/components/UnorderedList) or the [OrderedList](/components/OrderedList): to display a list of plain content items.

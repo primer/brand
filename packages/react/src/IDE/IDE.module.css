@@ -171,6 +171,7 @@
 }
 
 .IDE--default .IDE__Editor {
+  width: 100%;
   padding-left: var(--base-size-20);
 }
 
