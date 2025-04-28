@@ -21,6 +21,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+:where(.SubNav a, .SubNav button):focus-visible {
+  outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
+  outline-offset: 2px;
+}
+
 .SubNav__heading {
   display: block;
   font-weight: var(--base-text-weight-semibold);
