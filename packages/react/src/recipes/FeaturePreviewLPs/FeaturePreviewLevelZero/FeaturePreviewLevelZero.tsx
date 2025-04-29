@@ -86,7 +86,9 @@ export function FeaturePreviewLevelZero({accentColor, colorMode, ...args}: Featu
               {args.heroDescription && <Hero.Description>{args.heroDescription}</Hero.Description>}
               {args.heroCtaTextPrimary && <Hero.PrimaryAction href="#">{args.heroCtaTextPrimary}</Hero.PrimaryAction>}
               {args.heroCtaTextSecondary && (
-                <Hero.SecondaryAction href="#">{args.heroCtaTextSecondary}</Hero.SecondaryAction>
+                <Hero.SecondaryAction variant="subtle" href="#">
+                  {args.heroCtaTextSecondary}
+                </Hero.SecondaryAction>
               )}
               {args.showHeroVisual && (
                 <Hero.Image
