@@ -2,4 +2,4 @@
 '@primer/react-brand': patch
 ---
 
-The focus outline color of `SubNav` links can now be set using `var(--brand-color-focus);`
+The focus outline color of `SubNav` links is now set to `var(--brand-color-focus);`
