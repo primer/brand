@@ -75,8 +75,8 @@ module.exports = {
       },
       borderColor: {
         active: {
-          value: 'var(--base-color-scale-green-4)',
-          dark: 'var(--base-color-scale-green-4)',
+          value: 'var(--base-color-scale-green-6)',
+          dark: 'var(--base-color-scale-green-6)',
         },
       },
       fgColor: {
@@ -96,14 +96,6 @@ module.exports = {
           value: 'transparent',
           dark: 'transparent',
         },
-        hover: {
-          value: '#b7bfc833',
-          dark: '#8a939e33',
-        },
-        active: {
-          value: '#b7bfc866',
-          dark: '#8a939e66',
-        },
       },
       borderColor: {
         rest: {
@@ -111,12 +103,12 @@ module.exports = {
           dark: '#ffffff29', // ffffff at 16% opacity
         },
         hover: {
-          value: '#0D111750', // 0D1117 at 50% opacity
-          dark: '#ffffff50', // ffffff at 50% opacity
+          value: '#0D111752', // 0D1117 at 32% opacity
+          dark: '#ffffff52', // ffffff at 32% opacity
         },
         active: {
-          value: '#0D111750', // 0D1117 at 50% opacity
-          dark: '#ffffff50', // ffffff at 50% opacity
+          value: '#0D111752', // 0D1117 at 32% opacity
+          dark: '#ffffff52', // ffffff at 32% opacity
         },
       },
       fgColor: {
