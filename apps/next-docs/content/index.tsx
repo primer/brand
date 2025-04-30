@@ -1,5 +1,5 @@
 'use client'
-import {Grid, Card, Stack, Text, Heading} from '@primer/react-brand/lib'
+import {Grid, Card, Stack, InlineLink, Text, Heading} from '@primer/react-brand/lib'
 import clsx from 'clsx'
 import Image from 'next/image'
 import NextLink from 'next/link'
@@ -37,8 +37,8 @@ export default function HomepageComponent() {
             <Stack padding="none" gap="normal" className={styles.CardGridContainer}>
               <Grid>
                 <Grid.Column span={{xsmall: 12, large: 6, xlarge: 4}}>
-                  <NextLink href="/getting-started/introduction" legacyBehavior passHref>
-                    <Card href="/getting-started/introduction" hasBorder fullWidth>
+                  <NextLink href="/introduction/getting-started" legacyBehavior passHref>
+                    <Card href="/introduction/getting-started" hasBorder fullWidth>
                       <Card.Heading>Getting started</Card.Heading>
                       <Card.Description>
                         Standards, guidelines, and tools to get started with Primer Brand.
@@ -58,8 +58,8 @@ export default function HomepageComponent() {
                 </Grid.Column>
 
                 <Grid.Column span={{xsmall: 12, large: 6, xlarge: 4}}>
-                  <NextLink href="/getting-started/theming" legacyBehavior passHref>
-                    <Card href="/getting-started/theming" hasBorder fullWidth>
+                  <NextLink href="/introduction/theming" legacyBehavior passHref>
+                    <Card href="/introduction/theming" hasBorder fullWidth>
                       <Card.Heading>Theming</Card.Heading>
                       <Card.Description>Learn how to use Primer Brand's built-in color modes.</Card.Description>
                     </Card>
@@ -67,8 +67,8 @@ export default function HomepageComponent() {
                 </Grid.Column>
 
                 <Grid.Column span={{xsmall: 12, large: 6, xlarge: 4}}>
-                  <NextLink href="/getting-started/animation" legacyBehavior passHref>
-                    <Card href="/getting-started/animation" hasBorder fullWidth>
+                  <NextLink href="/introduction/animation" legacyBehavior passHref>
+                    <Card href="/introduction/animation" hasBorder fullWidth>
                       <Card.Heading>Animation</Card.Heading>
                       <Card.Description>
                         Add visual interest and interactivity to a web page or application.
@@ -97,8 +97,10 @@ export default function HomepageComponent() {
                   Need help?&nbsp;
                 </Text>
                 If you found a bug on this website, please{' '}
-                <a href="https://github.com/primer/brand/issues/new?template=BUG-REPORT.yml">open a new issue</a> with
-                as much detail as possible.
+                <InlineLink href="https://github.com/primer/brand/issues/new?template=BUG-REPORT.yml">
+                  open a new issue
+                </InlineLink>{' '}
+                with as much detail as possible.
               </Text>
             </div>
           </Stack>

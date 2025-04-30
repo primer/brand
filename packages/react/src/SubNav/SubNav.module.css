@@ -459,6 +459,14 @@
   justify-content: flex-end;
 }
 
+.SubNav__link:focus-visible,
+.SubNav__heading:focus-visible,
+.SubNav__sub-menu-toggle:focus-visible,
+.SubNav__overlay-toggle:focus-visible {
+  outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
+  outline-offset: var(--base-size-2);
+}
+
 @media screen and (min-width: 48rem) {
   .SubNav {
     padding: var(--base-size-16) var(--base-size-24);

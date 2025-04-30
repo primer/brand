@@ -22,7 +22,7 @@ jobs:
       build: |
         export NEXT_PUBLIC_SITE_TITLE='Brand UI'
         export NEXT_PUBLIC_REPO='https://github.com/primer/brand'
-        export NEXT_PUBLIC_REPO_SRC_PATH='app/next-docs'
+        export NEXT_PUBLIC_REPO_SRC_PATH='apps/next-docs'
         npm run build && \
         mkdir brand-temp && \
         mv apps/docs/public/* brand-temp && \
