@@ -134,9 +134,9 @@ test.describe('Visual Comparison: Card', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('Card / Dark Color Mode Effect', async ({page}) => {
+  test('Card / Torchlight Variant', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-card-features--dark-color-mode-effect&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-card-features--torchlight-variant&viewMode=story',
     )
 
     await page.waitForTimeout(500)

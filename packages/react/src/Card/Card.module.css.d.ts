@@ -12,6 +12,7 @@ declare const styles: {
   readonly "Card--skew": string;
   readonly "Card--variant-default": string;
   readonly "Card--variant-minimal": string;
+  readonly "Card--variant-torchlight": string;
   readonly "Card__action": string;
   readonly "Card__description": string;
   readonly "Card__heading": string;
