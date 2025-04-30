@@ -9,7 +9,7 @@ a11yReviewed: true
 import ComponentLayout from '../../../src/layouts/component-layout'
 export default ComponentLayout
 
-import {LabelColors, CardIconColors} from '@primer/react-brand'
+import {LabelColors, CardIconColors, CardVariants} from '@primer/react-brand'
 import {IconColors} from '@primer/react-brand'
 import {PropTableValues} from '../../../src/components'
 import {CopilotIcon, RocketIcon, GitBranchIcon} from '@primer/octicons-react'
@@ -64,7 +64,7 @@ The call to action text defaults to `Learn more` and can be customized using the
 
 A border can be provided using the `hasBorder` prop. This will render a border around the Card component giving further separation between the foreground and background. Especially when there is no shadow present on the background.
 
-The `hasBorder` prop has no effect in when using the torchlight effect in dark mode. In this case, the border is always rendered.
+The `hasBorder` prop has no effect in when using the torchlight variant in dark mode. In this case, the border is always rendered.
 
 ```jsx live
 <Card href="https://github.com" hasBorder>
@@ -143,14 +143,17 @@ Use the `Image` component to add an image to the `Card`. The `Image` component i
 
 ### Torchlight effect
 
-`Card` components in dark mode feature a unique "torchlight" effect.
+`Card` components in dark mode feature a unique "torchlight" effect in dark color modes.
 
-The color of the lit area corrosponds to the nearest active, primary accent color. The color can modified by changing the value of the respective CSS variable.
+The color of the lit area corresponds to the nearest active, primary accent color. The color can modified by changing the value of the respective CSS variable.
+
+Use `variant="torchlight"` to enable this effect in dark mode.
 
 ```jsx live
 <ThemeProvider colorMode="dark">
   <Box backgroundColor="default" padding="condensed">
     <Card
+      variant="torchlight"
       href="https://github.com"
       fullWidth
       style={{
@@ -225,13 +228,14 @@ Use the `Stack` or `Grid` components to stack up to three cards horizontally in 
 
 ### Card
 
-| name               | type      | default     | required | description                                                      |
-| ------------------ | --------- | ----------- | -------- | ---------------------------------------------------------------- |
-| `ctaText`          | `string`  | `Read more` | `false`  | Label of the link at the bottom of the card                      |
-| `disableAnimation` | `boolean` | `false`     | `false`  | A flag to disable the default hover animation effect of the card |
-| `fullWidth`        | `boolean` | `false`     | `false`  | A flag to optionally fill the width of the parent container      |
-| `hasBorder`        | `boolean` | `false`     | `false`  | A flag used to provide a border to the card                      |
-| `href`             | `string`  |             | `true`   | URL to the card content                                          |
+| name               | type                                                    | default     | required | description                                                      |
+| ------------------ | ------------------------------------------------------- | ----------- | -------- | ---------------------------------------------------------------- |
+| `ctaText`          | `string`                                                | `Read more` | `false`  | Label of the link at the bottom of the card                      |
+| `disableAnimation` | `boolean`                                               | `false`     | `false`  | A flag to disable the default hover animation effect of the card |
+| `fullWidth`        | `boolean`                                               | `false`     | `false`  | A flag to optionally fill the width of the parent container      |
+| `hasBorder`        | `boolean`                                               | `false`     | `false`  | A flag used to provide a border to the card                      |
+| `href`             | `string`                                                |             | `true`   | URL to the card content                                          |
+| `variant`          | <PropTableValues values={CardVariants} addLineBreaks /> | `'default'` | `false`  | Specify alternative card appearance                              |
 
 ### Card.Image
 
