@@ -367,6 +367,7 @@ const SubNavLinkWithSubmenu = forwardRef<HTMLDivElement, SubNavLinkProps>(
     const collapse = useCallback(() => setIsExpanded(false), [])
     const toggleExpanded = useCallback(() => setIsExpanded(prev => !prev), [])
 
+    useKeyboardEscape(collapse)
 
     const [label, SubMenuChildren] = children as ReactNode[]
 
