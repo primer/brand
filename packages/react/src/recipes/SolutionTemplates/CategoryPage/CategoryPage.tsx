@@ -129,7 +129,7 @@ export function CategoryPage({
             <Grid enableOverlay={enableGridOverlay} className={styles.subtleCards}>
               <Grid.Column span={{large: 4}}>
                 <Box animate="fade-in" className={styles.fullHeight}>
-                  <Card href="#" fullWidth>
+                  <Card href="#" fullWidth variant="torchlight">
                     <Card.Icon icon={StackIcon} color="indigo" hasBackground />
                     <Card.Heading as="h2">Teams</Card.Heading>
                     <Card.Description>
@@ -141,7 +141,7 @@ export function CategoryPage({
               </Grid.Column>
               <Grid.Column span={{large: 4}}>
                 <Box animate="fade-in" className={styles.fullHeight}>
-                  <Card href="#" fullWidth>
+                  <Card href="#" fullWidth variant="torchlight">
                     <Card.Icon icon={StarIcon} color="indigo" hasBackground />
                     <Card.Heading as="h2">Startups</Card.Heading>
                     <Card.Description>
@@ -154,7 +154,7 @@ export function CategoryPage({
               </Grid.Column>
               <Grid.Column span={{large: 4}}>
                 <Box animate="fade-in" className={styles.fullHeight}>
-                  <Card href="#" fullWidth>
+                  <Card href="#" fullWidth variant="torchlight">
                     <Card.Icon icon={HeartIcon} color="indigo" hasBackground />
                     <Card.Heading as="h2">Non-Profit</Card.Heading>
                     <Card.Description>
@@ -166,7 +166,7 @@ export function CategoryPage({
               </Grid.Column>
               <Grid.Column span={{large: 4}}>
                 <Box animate="fade-in" className={styles.fullHeight}>
-                  <Card href="#" fullWidth>
+                  <Card href="#" fullWidth variant="torchlight">
                     <Card.Icon icon={StackIcon} color="indigo" hasBackground />
                     <Card.Heading as="h2">Teams</Card.Heading>
                     <Card.Description>
@@ -178,7 +178,7 @@ export function CategoryPage({
               </Grid.Column>
               <Grid.Column span={{large: 4}}>
                 <Box animate="fade-in" className={styles.fullHeight}>
-                  <Card href="#" fullWidth>
+                  <Card href="#" fullWidth variant="torchlight">
                     <Card.Icon icon={StarIcon} color="indigo" hasBackground />
                     <Card.Heading as="h2">Startups</Card.Heading>
                     <Card.Description>
@@ -191,7 +191,7 @@ export function CategoryPage({
               </Grid.Column>
               <Grid.Column span={{large: 4}}>
                 <Box animate="fade-in" className={styles.fullHeight}>
-                  <Card href="#" fullWidth>
+                  <Card href="#" fullWidth variant="torchlight">
                     <Card.Icon icon={HeartIcon} color="indigo" hasBackground />
                     <Card.Heading as="h2">Non-Profit</Card.Heading>
                     <Card.Description>
@@ -215,7 +215,7 @@ export function CategoryPage({
 
               <Grid.Column span={{large: 4}}>
                 <Box animate="fade-in" className={styles.fullHeight}>
-                  <Card href="#" fullWidth>
+                  <Card href="#" fullWidth variant="torchlight">
                     <Card.Icon icon={StackIcon} color="indigo" hasBackground />
                     <Card.Heading as="h2">Teams</Card.Heading>
                     <Card.Description>
@@ -227,7 +227,7 @@ export function CategoryPage({
               </Grid.Column>
               <Grid.Column span={{large: 4}}>
                 <Box animate="fade-in" className={styles.fullHeight}>
-                  <Card href="#" fullWidth>
+                  <Card href="#" fullWidth variant="torchlight">
                     <Card.Icon icon={StarIcon} color="indigo" hasBackground />
                     <Card.Heading as="h2">Startups</Card.Heading>
                     <Card.Description>
@@ -240,7 +240,7 @@ export function CategoryPage({
               </Grid.Column>
               <Grid.Column span={{large: 4}}>
                 <Box animate="fade-in" className={styles.fullHeight}>
-                  <Card href="#" fullWidth>
+                  <Card href="#" fullWidth variant="torchlight">
                     <Card.Icon icon={HeartIcon} color="indigo" hasBackground />
                     <Card.Heading as="h2">Non-Profit</Card.Heading>
                     <Card.Description>

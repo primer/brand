@@ -4,11 +4,28 @@ import '@testing-library/jest-dom'
 import {Card} from './Card'
 import {axe, toHaveNoViolations} from 'jest-axe'
 import {GitMergeIcon} from '@primer/octicons-react'
+import {ThemeProvider} from '../ThemeProvider'
 
 expect.extend(toHaveNoViolations)
 
 describe('Card', () => {
   afterEach(cleanup)
+
+  beforeAll(() => {
+    Object.defineProperty(window, 'matchMedia', {
+      writable: true,
+      value: jest.fn().mockImplementation(query => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        addListener: jest.fn(), // Deprecated
+        removeListener: jest.fn(), // Deprecated
+        dispatchEvent: jest.fn(),
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn(),
+      })),
+    })
+  })
 
   const mockHref = '#'
   const mockLabel = 'This is a mock label'
@@ -31,6 +48,7 @@ describe('Card', () => {
     const mockTestId = 'test'
     const expectedClass = 'Card'
     const expectedCustomClass = 'custom-class'
+    const defaultVariantClass = 'Card--variant-default'
     const expectedTag = 'div'
 
     const {getByTestId} = render(
@@ -43,7 +61,46 @@ describe('Card', () => {
     const cardEl = getByTestId(mockTestId)
     expect(cardEl.tagName).toBe(expectedTag.toUpperCase())
     expect(cardEl.classList).toContain(expectedClass)
+    expect(cardEl.classList).toContain(defaultVariantClass)
     expect(cardEl.classList).toContain(expectedCustomClass)
+  })
+
+  it('can optionally render a minimal variant', () => {
+    const mockTestId = 'test'
+
+    const {getByTestId} = render(
+      <Card variant="minimal" href={mockHref} data-testid={mockTestId}>
+        <Card.Heading>{mockHeading}</Card.Heading>
+      </Card>,
+    )
+    const cardEl = getByTestId(mockTestId)
+    expect(cardEl.classList).toContain('Card--variant-minimal')
+  })
+
+  it('can optionally render a torchlight variant', () => {
+    const mockTestId = 'test'
+
+    const {getByTestId} = render(
+      <Card variant="torchlight" href={mockHref} data-testid={mockTestId}>
+        <Card.Heading>{mockHeading}</Card.Heading>
+      </Card>,
+    )
+    const cardEl = getByTestId(mockTestId)
+    expect(cardEl.classList).toContain('Card--variant-torchlight')
+  })
+
+  it('renders a default variant in dark mode and not torchlight', () => {
+    const mockTestId = 'test'
+
+    const {getByTestId} = render(
+      <ThemeProvider colorMode="dark">
+        <Card href={mockHref} data-testid={mockTestId}>
+          <Card.Heading>{mockHeading}</Card.Heading>
+        </Card>
+      </ThemeProvider>,
+    )
+    const cardEl = getByTestId(mockTestId)
+    expect(cardEl.classList).not.toContain('Card--variant-torchlight')
   })
 
   it('renders the correct default heading type', () => {
