@@ -27,6 +27,27 @@
   font-family: var(--brand-fontStack-monospace);
 }
 
+.Text--1000 {
+  font-weight: var(--brand-text-weight-1000);
+  font-size: var(--brand-text-size-1000);
+  line-height: var(--brand-text-lineHeight-1000);
+  letter-spacing: var(--brand-text-letterSpacing-1000);
+}
+
+.Text--900 {
+  font-weight: var(--brand-text-weight-900);
+  font-size: var(--brand-text-size-900);
+  line-height: var(--brand-text-lineHeight-900);
+  letter-spacing: var(--brand-text-letterSpacing-900);
+}
+
+.Text--800 {
+  font-weight: var(--brand-text-weight-800);
+  font-size: var(--brand-text-size-800);
+  line-height: var(--brand-text-lineHeight-800);
+  letter-spacing: var(--brand-text-letterSpacing-800);
+}
+
 .Text--700 {
   font-weight: var(--brand-text-weight-700);
   font-size: var(--brand-text-size-700);
