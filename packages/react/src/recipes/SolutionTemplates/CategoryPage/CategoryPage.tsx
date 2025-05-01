@@ -274,7 +274,7 @@ export function CategoryPage({
               <Grid.Column span={{medium: 6, large: 3}}>
                 <Box paddingBlockEnd={{narrow: 24, regular: 'none'}}>
                   <Statistic size="medium" animate="fade-in">
-                    <Statistic.Heading size="1">$2M+</Statistic.Heading>
+                    <Statistic.Heading size="900">$2M+</Statistic.Heading>
                     <Statistic.Description>Given back to our maintainers</Statistic.Description>
                   </Statistic>
                 </Box>
@@ -282,7 +282,7 @@ export function CategoryPage({
               <Grid.Column span={{medium: 6, large: 3}}>
                 <Box paddingBlockEnd={{narrow: 24, regular: 'none'}}>
                   <Statistic size="medium" animate="fade-in">
-                    <Statistic.Heading size="1">~25%</Statistic.Heading>
+                    <Statistic.Heading size="900">~25%</Statistic.Heading>
                     <Statistic.Description>increase in developer speed with GitHub Copilot</Statistic.Description>
                   </Statistic>
                 </Box>
@@ -290,14 +290,14 @@ export function CategoryPage({
               <Grid.Column span={{medium: 6, large: 3}}>
                 <Box paddingBlockEnd={{narrow: 24, regular: 'none'}}>
                   <Statistic size="medium" animate="fade-in">
-                    <Statistic.Heading size="1">1min</Statistic.Heading>
+                    <Statistic.Heading size="900">1min</Statistic.Heading>
                     <Statistic.Description>set-up time for largest repo with Codespaces</Statistic.Description>
                   </Statistic>
                 </Box>
               </Grid.Column>
               <Grid.Column span={{medium: 6, large: 3}}>
                 <Statistic size="medium" animate="fade-in">
-                  <Statistic.Heading size="1">3.5K+</Statistic.Heading>
+                  <Statistic.Heading size="900">3.5K+</Statistic.Heading>
                   <Statistic.Description>Companies actively sponsoring</Statistic.Description>
                 </Statistic>
               </Grid.Column>

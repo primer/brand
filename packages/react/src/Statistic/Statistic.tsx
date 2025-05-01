@@ -1,7 +1,7 @@
 import React, {PropsWithChildren, forwardRef, useMemo} from 'react'
 import clsx from 'clsx'
 
-import {Text, Heading, HeadingProps, TextProps, useAnimation} from '../'
+import {Text, TextProps, useAnimation} from '../'
 
 import type {BaseProps} from '../component-helpers'
 
@@ -65,11 +65,11 @@ const testIds = {
 }
 
 const _HeadingSizeMap: {
-  [key in StatisticSize]: HeadingProps['size']
+  [key in StatisticSize]: TextProps['size']
 } = {
-  small: '4',
-  medium: '2',
-  large: 'display',
+  small: '600',
+  medium: '800',
+  large: '1000',
 }
 
 const classBuilder = (property: string, value?: StatisticSpacingValues | ResponsiveMap<StatisticSpacingValues>) => {
@@ -129,10 +129,10 @@ const _Statistic = forwardRef<HTMLDivElement, PropsWithChildren<StatisticProps>>
      */
     if (DescriptionChild) {
       const updatedHeadingChild = React.isValidElement(HeadingChild)
-        ? React.cloneElement(HeadingChild as React.ReactElement<HeadingProps>, {
+        ? React.cloneElement(HeadingChild as React.ReactElement<TextProps>, {
             children: (
               <>
-                {HeadingChild.props.children}
+                {`${HeadingChild.props.children} `}
                 {DescriptionChild}
               </>
             ),
@@ -153,7 +153,7 @@ const _Statistic = forwardRef<HTMLDivElement, PropsWithChildren<StatisticProps>>
         {LeadingComponent && <LeadingComponent />}
 
         {React.isValidElement(HeadingChild) &&
-          React.cloneElement(HeadingChild as React.ReactElement<HeadingProps>, {
+          React.cloneElement(HeadingChild as React.ReactElement<TextProps>, {
             size: HeadingChild.props.size || _HeadingSizeMap[size],
           })}
 
@@ -163,35 +163,22 @@ const _Statistic = forwardRef<HTMLDivElement, PropsWithChildren<StatisticProps>>
   },
 )
 
-type StatisticHeadingProps = HeadingProps
+type StatisticHeadingProps = TextProps
 
-const StatisticHeading = forwardRef<HTMLHeadingElement, StatisticHeadingProps>(
-  (
-    {
-      as = 'h3',
-      className,
-      children,
-      font = 'hubot-sans',
-      weight = 'semibold',
-      stretch = 'condensed',
-      size = 'display',
-      ...rest
-    },
-    ref,
-  ) => {
+const StatisticHeading = forwardRef<HTMLParagraphElement, StatisticHeadingProps>(
+  ({as = 'p', className, children, font = 'hubot-sans', weight = 'semibold', size = '1000', ...rest}, ref) => {
     return (
-      <Heading
+      <Text
         as={as}
         ref={ref}
         className={clsx(styles[`Statistic__heading`], className)}
         font={font}
         weight={weight}
-        stretch={stretch}
         size={size}
         {...rest}
       >
         {children}
-      </Heading>
+      </Text>
     )
   },
 )
