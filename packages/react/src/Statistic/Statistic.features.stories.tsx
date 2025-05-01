@@ -47,8 +47,8 @@ export const Sizes = args => (
 export const CustomHeadingSize = () => (
   <Stack direction="vertical" gap="spacious" padding="none">
     <Statistic size="small">
-      <Statistic.Heading size="1">Smallest size</Statistic.Heading>
-      <Statistic.Description>w/ size 1 heading override</Statistic.Description>
+      <Statistic.Heading size="100">Smallest size</Statistic.Heading>
+      <Statistic.Description>w/ size 100 text override</Statistic.Description>
     </Statistic>
   </Stack>
 )

@@ -172,4 +172,32 @@ describe('SubNav', () => {
 
     expect(toggleSubmenuButton).toHaveAttribute('aria-expanded', 'false')
   })
+
+  it('hides a hovered submenu when escape is pressed', async () => {
+    mockUseWindowSize.mockImplementation(() => ({isLarge: true}))
+
+    const {getByRole, queryByRole} = render(
+      <SubNav fullWidth>
+        <SubNav.Link href="#" aria-current="page">
+          Copilot
+          <SubNav.SubMenu>
+            <SubNav.Link href="#">Copilot feature page one</SubNav.Link>
+            <SubNav.Link href="#">Copilot feature page two</SubNav.Link>
+            <SubNav.Link href="#">Copilot feature page three</SubNav.Link>
+          </SubNav.SubMenu>
+        </SubNav.Link>
+        <SubNav.Link href="#">Code review</SubNav.Link>
+        <SubNav.Link href="#">Search</SubNav.Link>
+        <SubNav.Action href="#">Call to action</SubNav.Action>
+      </SubNav>,
+    )
+
+    await userEvent.hover(getByRole('link', {name: 'Copilot'}))
+
+    expect(getByRole('link', {name: 'Copilot feature page one'})).toBeVisible()
+
+    await userEvent.keyboard('{escape}')
+
+    expect(queryByRole('link', {name: 'Copilot feature page one'})).not.toBeInTheDocument()
+  })
 })

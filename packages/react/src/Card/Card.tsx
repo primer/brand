@@ -20,15 +20,19 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 import styles from './Card.module.css'
 import stylesLink from '../Link/Link.module.css'
 
+export const CardVariants = ['default', 'minimal', 'torchlight'] as const
+
 export const CardIconColors = Colors
 
 export const defaultCardIconColor = CardIconColors[0]
+
+export type CardVariants = (typeof CardVariants)[number]
 
 export type CardProps = {
   /**
    * Specify alternative card appearance
    */
-  variant?: 'default' | 'minimal'
+  variant?: CardVariants
   /**
    * Valid children include Card.Image, Card.Heading, and Card.Description
    */
@@ -108,7 +112,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
       child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === CardIcon,
     )
 
-    const hasSkewEffect = colorMode === 'dark' && variant !== 'minimal'
+    const hasSkewEffect = colorMode === 'dark' && variant === 'torchlight'
     const showBorder = hasSkewEffect || hasBorder
 
     const WrapperComponent = hasSkewEffect ? CardSkewEffect : DefaultCardWrapperComponent

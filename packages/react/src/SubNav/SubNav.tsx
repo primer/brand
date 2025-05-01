@@ -363,19 +363,21 @@ const SubNavLinkWithSubmenu = forwardRef<HTMLDivElement, SubNavLinkProps>(
       }
     })
 
-    const [label, SubMenuChildren] = children as ReactNode[]
+    const expand = useCallback(() => setIsExpanded(true), [])
+    const collapse = useCallback(() => setIsExpanded(false), [])
+    const toggleExpanded = useCallback(() => setIsExpanded(prev => !prev), [])
 
-    const handleOnClick = useCallback(() => {
-      setIsExpanded(prev => !prev)
-    }, [])
+    useKeyboardEscape(collapse)
+
+    const [label, SubMenuChildren] = children as ReactNode[]
 
     return (
       <div
         className={clsx(styles['SubNav__link--has-sub-menu'], isExpanded && styles['SubNav__link--expanded'])}
         data-testid={testId || testIds.subMenu}
         ref={ref}
-        onMouseOver={() => setIsExpanded(true)}
-        onMouseOut={() => setIsExpanded(false)}
+        onMouseOver={expand}
+        onMouseOut={collapse}
         /**
          * onFocus and onBlur need to be defined to keep the jsx-a11y/mouse-events-have-key-events
          * eslint rule happy. The focus/blur behaviour is handled by useContainsFocus
@@ -402,7 +404,7 @@ const SubNavLinkWithSubmenu = forwardRef<HTMLDivElement, SubNavLinkProps>(
         {isLarge && (
           <button
             className={styles['SubNav__sub-menu-toggle']}
-            onClick={handleOnClick}
+            onClick={toggleExpanded}
             aria-expanded={isExpanded ? 'true' : 'false'}
             aria-controls={submenuId}
             aria-label={`${isExpanded ? 'Close' : 'Open'} submenu`}
@@ -411,7 +413,7 @@ const SubNavLinkWithSubmenu = forwardRef<HTMLDivElement, SubNavLinkProps>(
           </button>
         )}
 
-        <div id={submenuId} className={styles['SubNav__sub-menu-children']}>
+        <div id={submenuId} className={styles['SubNav__sub-menu-children']} aria-hidden={!isExpanded}>
           {SubMenuChildren}
         </div>
       </div>

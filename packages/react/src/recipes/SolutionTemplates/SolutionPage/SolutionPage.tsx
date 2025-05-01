@@ -674,7 +674,7 @@ export function SolutionPage({
                           </Heading>
                           <Grid>
                             <Grid.Column span={{medium: 4}}>
-                              <Card href="#">
+                              <Card href="#" variant="torchlight">
                                 <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
                                 <Card.Description>
                                   Everything you need to know about getting started with GitHub Actions.
@@ -682,7 +682,7 @@ export function SolutionPage({
                               </Card>
                             </Grid.Column>
                             <Grid.Column span={{medium: 4}}>
-                              <Card href="#">
+                              <Card href="#" variant="torchlight">
                                 <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
                                 <Card.Description>
                                   Everything you need to know about getting started with GitHub Actions.
@@ -690,7 +690,7 @@ export function SolutionPage({
                               </Card>
                             </Grid.Column>
                             <Grid.Column span={{medium: 4}}>
-                              <Card href="#">
+                              <Card href="#" variant="torchlight">
                                 <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
                                 <Card.Description>
                                   Everything you need to know about getting started with GitHub Actions.

@@ -338,7 +338,7 @@ export const Stacked: StoryFn<typeof Card> = () => {
   )
 }
 
-export const DarkColorModeEffect = () => {
+export const TorchlightVariant = () => {
   return (
     <>
       <Stack
@@ -348,12 +348,13 @@ export const DarkColorModeEffect = () => {
         }}
         gap={36}
       >
-        <Card href="https://github.com">
+        <Card variant="torchlight" href="https://github.com">
           <Card.Icon icon={ZapIcon} hasBackground />
           <Card.Heading>Collaboration is the key to DevOps success</Card.Heading>
           <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
         </Card>
         <Card
+          variant="torchlight"
           href="https://github.com"
           style={{['--brand-color-accent-primary' as string]: 'var(--base-color-scale-indigo-2)'}}
         >
@@ -363,6 +364,7 @@ export const DarkColorModeEffect = () => {
         </Card>
 
         <Card
+          variant="torchlight"
           href="https://github.com"
           style={{['--brand-color-accent-primary' as string]: 'var(--base-color-scale-yellow-2)'}}
         >
@@ -379,6 +381,7 @@ export const DarkColorModeEffect = () => {
         gap={36}
       >
         <Card
+          variant="torchlight"
           href="https://github.com"
           style={{['--brand-color-accent-primary' as string]: 'var(--base-color-scale-red-2)'}}
         >
@@ -388,6 +391,7 @@ export const DarkColorModeEffect = () => {
         </Card>
 
         <Card
+          variant="torchlight"
           href="https://github.com"
           style={{['--brand-color-accent-primary' as string]: 'var(--base-color-scale-orange-2)'}}
         >
@@ -396,6 +400,7 @@ export const DarkColorModeEffect = () => {
           <Card.Description>Everything you need to know about getting started with GitHub Actions.</Card.Description>
         </Card>
         <Card
+          variant="torchlight"
           href="https://github.com"
           style={{['--brand-color-accent-primary' as string]: 'var(--base-color-scale-lime-2)'}}
         >
@@ -408,7 +413,7 @@ export const DarkColorModeEffect = () => {
   )
 }
 
-DarkColorModeEffect.decorators = [
+TorchlightVariant.decorators = [
   Story => (
     <ThemeProvider colorMode="dark">
       <Box backgroundColor="default">
