@@ -23,6 +23,7 @@
 }
 
 .FAQGroup__tablist-button {
+  background-color: transparent;
   justify-content: flex-start;
 }
 

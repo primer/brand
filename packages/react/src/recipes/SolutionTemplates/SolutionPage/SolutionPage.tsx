@@ -171,7 +171,9 @@ export function SolutionPage({
                       <Hero.PrimaryAction href="#">{args.heroCtaTextPrimary}</Hero.PrimaryAction>
                     )}
                     {args.heroCtaTextSecondary && (
-                      <Hero.SecondaryAction href="#">{args.heroCtaTextSecondary}</Hero.SecondaryAction>
+                      <Hero.SecondaryAction href="#" variant="subtle">
+                        {args.heroCtaTextSecondary}
+                      </Hero.SecondaryAction>
                     )}
                     {args.heroImage && (
                       <Hero.Image
@@ -218,7 +220,9 @@ export function SolutionPage({
                           <Hero.PrimaryAction href="#">{args.heroCtaTextPrimary}</Hero.PrimaryAction>
                         )}
                         {args.heroCtaTextSecondary && (
-                          <Hero.SecondaryAction href="#">{args.heroCtaTextSecondary}</Hero.SecondaryAction>
+                          <Hero.SecondaryAction href="#" variant="subtle">
+                            {args.heroCtaTextSecondary}
+                          </Hero.SecondaryAction>
                         )}
                         {args.heroImage && (
                           <Hero.Image

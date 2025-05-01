@@ -102,6 +102,10 @@
   background-color: var(--brand-button-accent-bgColor-rest);
 }
 
+.Button--size-small.Button--accent {
+  border-width: var(--brand-borderWidth-thin);
+}
+
 .Button--accent:not(.Button[disabled], .Button[aria-disabled='true'], [aria-expanded='true']):hover {
   background: var(--brand-button-accent-bgColor-hover);
 }
@@ -141,13 +145,11 @@
 }
 
 .Button--secondary:not(.Button[disabled], .Button[aria-disabled='true'], [aria-expanded='true']):hover {
-  background-color: var(--brand-button-secondary-bgColor-hover);
   border-color: var(--brand-button-secondary-borderColor-hover);
 }
 
 .Button--secondary:not(.Button[disabled], .Button[aria-disabled='true']):active,
 .Button--secondary[aria-expanded='true'] {
-  background-color: var(--brand-button-secondary-bgColor-active);
   border-color: var(--brand-button-secondary-borderColor-active);
 }
 
@@ -168,6 +170,7 @@
 /* subtle */
 
 .Button--subtle {
+  background-color: var(--brand-button-subtle-bgColor-rest);
   color: var(--brand-color-text-default);
   transition: background-color, border-color var(--brand-animation-duration-faster);
 }
@@ -179,7 +182,7 @@
 .Button--subtle:not(.Button[disabled], .Button[aria-disabled='true']):active,
 .Button--subtle[aria-expanded='true'] {
   background-color: var(--brand-button-subtle-bgColor-active);
-  border-color: var(--brand-button-subtle-borderColor-active);
+  border-color: transparent;
 }
 
 .Button--label-subtle {
