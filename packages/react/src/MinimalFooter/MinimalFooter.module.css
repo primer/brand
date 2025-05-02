@@ -61,9 +61,6 @@
 
 .Footer__social-link {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .Footer__social-link::before {
