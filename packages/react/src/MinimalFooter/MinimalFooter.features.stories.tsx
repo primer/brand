@@ -78,7 +78,7 @@ export const MixedButtonsAndLinks = () => (
 
 export const NoSocialLinks = () => <MinimalFooter socialLinks={false} />
 
-export const FilteredSocialLinks = () => <MinimalFooter socialLinks={['facebook', 'x']} />
+export const FilteredSocialLinks = () => <MinimalFooter socialLinks={['facebook', 'x', 'tiktok', 'youtube']} />
 
 export const DefaultNarrow = () => (
   <MinimalFooter>
