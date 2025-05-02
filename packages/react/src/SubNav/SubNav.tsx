@@ -273,7 +273,7 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
                   )}
                   data-testid={testIds.button}
                   onClick={isOpenAtNarrow ? closeMenuCallback : handleMenuToggle}
-                  aria-expanded={isOpenAtNarrow ? 'true' : 'false'}
+                  aria-expanded={isOpenAtNarrow}
                   aria-controls={idForLinkContainer}
                 >
                   {activeLinklabel && <span className="visually-hidden">Navigation menu. Current page: </span>}
@@ -405,9 +405,9 @@ const SubNavLinkWithSubmenu = forwardRef<HTMLDivElement, SubNavLinkProps>(
           <button
             className={styles['SubNav__sub-menu-toggle']}
             onClick={toggleExpanded}
-            aria-expanded={isExpanded ? 'true' : 'false'}
+            aria-expanded={isExpanded}
             aria-controls={submenuId}
-            aria-label={`${isExpanded ? 'Close' : 'Open'} submenu`}
+            aria-label={`${label} submenu`}
           >
             <ChevronDownIcon className={styles['SubNav__sub-menu-icon']} size={16} />
           </button>
