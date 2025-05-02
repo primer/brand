@@ -8,6 +8,6 @@ To re-enable the torchlight effect, use `variant="torchlight"`. Note this effect
 
 ```jsx
 <ThemeProvider colorMode="dark">
-  <Card variant="torchlight" {...} />
+  <Card variant="torchlight" />
 </ThemeProvider>
 ```
