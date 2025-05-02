@@ -431,7 +431,7 @@ describe('ActionMenu', () => {
     expect(getByText('Primary Action')).toBeInTheDocument()
 
     // Check dropdown button exists
-    expect(getByLabelText('Open menu')).toBeInTheDocument()
+    expect(getByLabelText('Action menu')).toBeInTheDocument()
   })
 
   it('should render the main button with correct href attribute', () => {
@@ -472,7 +472,7 @@ describe('ActionMenu', () => {
       </ActionMenu>,
     )
 
-    const chevronButton = getByLabelText('Open menu')
+    const chevronButton = getByLabelText('Action menu')
 
     // Initially, menu should not be visible
     expect(queryByLabelText('Additional options')).not.toBeInTheDocument()
@@ -488,7 +488,7 @@ describe('ActionMenu', () => {
     )
 
     expect(chevronButton).toHaveAttribute('aria-expanded', 'true')
-    expect(chevronButton).toHaveAttribute('aria-label', 'Close menu')
+    expect(chevronButton).toHaveAttribute('aria-label', 'Action menu')
 
     // close it
     fireEvent.click(chevronButton)
@@ -594,7 +594,7 @@ describe('ActionMenu', () => {
     const mainButton = getByText('Primary Action').closest('a')
     expect(mainButton).toHaveAttribute('href', '#option1')
 
-    const chevronButton = getByLabelText('Open menu')
+    const chevronButton = getByLabelText('Action menu')
     fireEvent.click(chevronButton)
 
     await waitFor(
@@ -629,7 +629,7 @@ describe('ActionMenu', () => {
     expect(mainButtonLink).toHaveAttribute('aria-disabled', 'true')
     expect(mainButtonLink).toHaveClass('Button--disabled')
 
-    const dropdownButton = getByLabelText('Open menu')
+    const dropdownButton = getByLabelText('Action menu')
     expect(dropdownButton).toBeDisabled()
   })
 
@@ -656,7 +656,7 @@ describe('ActionMenu', () => {
     const buttonIcon = getByLabelText(accessibleText)
     expect(buttonIcon).toBeInTheDocument()
 
-    const chevronButton = getByLabelText('Open menu')
+    const chevronButton = getByLabelText('Action menu')
     fireEvent.click(chevronButton)
 
     const overlay = getByLabelText('Additional options')
@@ -723,7 +723,7 @@ describe('ActionMenu', () => {
     fireEvent.keyDown(document.activeElement as Element, {key: 'Escape'})
     await waitFor(
       () => {
-        expect(document.activeElement).toBe(getByLabelText('Open menu'))
+        expect(document.activeElement).toBe(getByLabelText('Action menu'))
       },
       {timeout: 100},
     )
