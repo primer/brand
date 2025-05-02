@@ -82,6 +82,7 @@
 .Footer__social-icon {
   width: 24px;
   height: auto;
+  filter: brightness(95%) saturate(100%);
 }
 
 /**
