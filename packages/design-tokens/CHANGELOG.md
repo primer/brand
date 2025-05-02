@@ -1,5 +1,15 @@
 # @primer/brand-primitives
 
+## 0.52.0
+
+### Patch Changes
+
+- [#986](https://github.com/primer/brand/pull/986) [`c9f10ec`](https://github.com/primer/brand/commit/c9f10ec9d5b40a686bb9f5e88ccb22b47153a047) Thanks [@rezrah](https://github.com/rezrah)! - Visual updates to `Button` and `ActionMenu` components.
+
+  - `secondary` button variants now feature lighter border colors.
+  - `subtle` button variants now feature a semi-transparent background color in `rest` state.
+  - `accent` button variants in dark mode now use a darker hue for parity with its GitHub product counterpart.
+
 ## 0.51.1
 
 ## 0.51.0

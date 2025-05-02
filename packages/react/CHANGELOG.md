@@ -1,5 +1,47 @@
 # @primer/react-brand
 
+## 0.52.0
+
+### Minor Changes
+
+- [#991](https://github.com/primer/brand/pull/991) [`c083863`](https://github.com/primer/brand/commit/c083863bf4d6c2bb24147e2a9cece4975d0db09d) Thanks [@rezrah](https://github.com/rezrah)! - Updated the underlying HTML elements in the `Statistic` component for improved accessibility. Now a paragraph by default, where it was previously a heading. It can optionally also be set as a `<span>` using the `as` prop.
+
+  ⚠️ Breaking changes:
+
+  - `stretch` prop in `Statistic.Heading` has been removed.
+  - `as` prop now accepts `p` and `span` only
+  - `size` prop now accepts `1000`, `900`, `800`, `700`, `600`, `500`, `400`, `300`, `200`
+
+- [`05aee45`](https://github.com/primer/brand/commit/05aee45ddcd87b2e7e95ec7d8d27d9153addf635) Thanks [@rezrah](https://github.com/rezrah)! - The torchlight visual effect on dark mode `Card` components is now optional. The new default effect is now similar to its `light` mode counterpart.
+
+  To re-enable the torchlight effect, use `variant="torchlight"`. Note this effect continues to only work in `dark` color modes.
+
+  ```jsx
+  <ThemeProvider colorMode="dark">
+    <Card variant="torchlight" />
+  </ThemeProvider>
+  ```
+
+### Patch Changes
+
+- [#989](https://github.com/primer/brand/pull/989) [`bb24a54`](https://github.com/primer/brand/commit/bb24a5456c3e96b81324c1d061f5c53e81e3f605) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Allow hovered `SubNav.SubMenu` menus to be closed using <kbd>Escape</kbd> key
+
+- [#986](https://github.com/primer/brand/pull/986) [`c9f10ec`](https://github.com/primer/brand/commit/c9f10ec9d5b40a686bb9f5e88ccb22b47153a047) Thanks [@rezrah](https://github.com/rezrah)! - Visual updates to `Button` and `ActionMenu` components.
+
+  - `secondary` button variants now feature lighter border colors.
+  - `subtle` button variants now feature a semi-transparent background color in `rest` state.
+  - `accent` button variants in dark mode now use a darker hue for parity with its GitHub product counterpart.
+
+- [#991](https://github.com/primer/brand/pull/991) [`c083863`](https://github.com/primer/brand/commit/c083863bf4d6c2bb24147e2a9cece4975d0db09d) Thanks [@rezrah](https://github.com/rezrah)! - Additional `size` options available in the `Text` component: `800`, `900`, `1000`.
+
+- [#985](https://github.com/primer/brand/pull/985) [`6364954`](https://github.com/primer/brand/commit/63649542577e14d4b66355c352d21625bf933aee) Thanks [@joshfarrant](https://github.com/joshfarrant)! - The focus outline color of `SubNav` links is now set to `var(--brand-color-focus);`
+
+- [#961](https://github.com/primer/brand/pull/961) [`b43d15d`](https://github.com/primer/brand/commit/b43d15d6fffdb31d138d5a8a007bf58849d9c517) Thanks [@danielguillan](https://github.com/danielguillan)! - Noop update to smooth-scrolling behavior in `main.css`. Previous `scroll-behavior: smooth;` is still applied, but location in the compiled stylesheet has been updated.
+
+- [#961](https://github.com/primer/brand/pull/961) [`b43d15d`](https://github.com/primer/brand/commit/b43d15d6fffdb31d138d5a8a007bf58849d9c517) Thanks [@danielguillan](https://github.com/danielguillan)! - Patched a type mismatch between React 18.x and 19.x for `inert` prop in `RiverAccordion` component. Refer to the [following source file for more details](https://github.com/primer/brand/blob/main/packages/react/src/river/RiverAccordion/RiverAccordion.tsx).
+
+- [#961](https://github.com/primer/brand/pull/961) [`b43d15d`](https://github.com/primer/brand/commit/b43d15d6fffdb31d138d5a8a007bf58849d9c517) Thanks [@danielguillan](https://github.com/danielguillan)! - Updated `IDE` to use the full container width.
+
 ## 0.51.1
 
 ### Patch Changes
