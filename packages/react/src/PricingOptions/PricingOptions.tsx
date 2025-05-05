@@ -46,9 +46,9 @@ const testIds = {
   primaryAction: 'PricingOptions__primaryAction',
   secondaryAction: 'PricingOptions__secondaryAction',
   featureList: 'PricingOptions__featureList',
-  featureListTitle: 'PricingOptions__featureListTitle',
-  featureListItem: 'PricingOptions__featureListItem',
   featureListHeading: 'PricingOptions__featureListHeading',
+  featureListItem: 'PricingOptions__featureListItem',
+  featureListGroupHeading: 'PricingOptions__featureListGroupHeading',
   footnote: 'PricingOptions__footnote',
 }
 
@@ -83,7 +83,7 @@ const usePricingOptions = (): PricingOptionsContextValue => {
   return React.useContext(PricingOptionsContext)
 }
 
-const pricingOptionsDefaultFeatureListTitle = "What's included"
+const pricingOptionsDefaultFeatureListHeading = "What's included"
 
 const PricingOptionsRoot = forwardRef(
   (
@@ -366,7 +366,7 @@ type PricingOptionsFeatureListProps = BaseProps<HTMLUListElement> & {
   accordionAs?: HeadingProps['as']
   expanded?: ExpandedProp
   hasDivider?: boolean
-  children: React.ReactElement<PricingOptionsFeatureListHeadingProps | PricingOptionsFeatureListItemProps>[]
+  children: React.ReactElement<PricingOptionsFeatureListGroupHeadingProps | PricingOptionsFeatureListItemProps>[]
   'data-testid'?: string
 }
 
@@ -385,7 +385,7 @@ const defaultExpanded: ExpandedProp = {
 }
 
 type ValidFeatureListChildren = {
-  Heading: React.ReactElement<PricingOptionsFeatureListHeadingProps> | null
+  Heading: React.ReactElement<PricingOptionsFeatureListGroupHeadingProps> | null
   Items: React.ReactElement<PricingOptionsFeatureListItemProps>[]
 }[]
 
@@ -408,21 +408,23 @@ const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatu
 
     const {isMedium: isRegular, isXLarge: isWide} = useWindowSize()
 
-    let FeatureListTitle = (
-      <PricingOptions.FeatureListTitle>{pricingOptionsDefaultFeatureListTitle}</PricingOptions.FeatureListTitle>
+    let FeatureListHeading = (
+      <PricingOptions.FeatureListGroupHeading>
+        {pricingOptionsDefaultFeatureListHeading}
+      </PricingOptions.FeatureListGroupHeading>
     )
 
     const FilteredChildrenSet = React.Children.toArray(children).reduce<ValidFeatureListChildren>((acc, child) => {
-      if (React.isValidElement(child) && child.type === PricingOptionsFeatureListTitle) {
-        FeatureListTitle = child
+      if (React.isValidElement(child) && child.type === PricingOptionsFeatureListHeading) {
+        FeatureListHeading = child
       } else if (React.isValidElement(child) && child.type === PricingOptionsFeatureListItem) {
         if (acc.length === 0) {
           acc.push({Heading: null, Items: []})
         }
         acc[acc.length - 1].Items.push(child as React.ReactElement<PricingOptionsFeatureListItemProps>)
-      } else if (React.isValidElement(child) && child.type === PricingOptionsFeatureListHeading) {
+      } else if (React.isValidElement(child) && child.type === PricingOptionsFeatureListGroupHeading) {
         acc.push({
-          Heading: child as React.ReactElement<PricingOptionsFeatureListHeadingProps>,
+          Heading: child as React.ReactElement<PricingOptionsFeatureListGroupHeadingProps>,
           Items: [],
         })
       }
@@ -484,7 +486,7 @@ const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatu
             reversedToggles
           >
             <ChevronDownIcon className={styles['PricingOptions__feature-list-accordion-chevron']} />
-            {FeatureListTitle}
+            {FeatureListHeading}
           </Accordion.Heading>
           <Accordion.Content className={styles['PricingOptions__feature-list-accordion-content']}>
             {FeatureListItems}
@@ -495,40 +497,41 @@ const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatu
   },
 )
 
-type PricingOptionsFeatureListTitleProps = PropsWithChildren<BaseProps<HTMLDivElement>> & {
+type PricingOptionsFeatureListHeading = PropsWithChildren<BaseProps<HTMLDivElement>> & {
   'data-testid'?: string
 }
 
-const PricingOptionsFeatureListTitle = forwardRef<HTMLDivElement, PricingOptionsFeatureListTitleProps>(
+const PricingOptionsFeatureListHeading = forwardRef<HTMLDivElement, PricingOptionsFeatureListHeading>(
   ({children, className, 'data-testid': testId, ...rest}, ref) => {
     return (
-      <div className={className} data-testid={testId || testIds.featureListTitle} ref={ref} {...rest}>
+      <div className={className} data-testid={testId || testIds.featureListHeading} ref={ref} {...rest}>
         {children}
       </div>
     )
   },
 )
 
-type PricingOptionsFeatureListHeadingProps = PropsWithChildren<BaseProps<HTMLHeadingElement>> & {
+type PricingOptionsFeatureListGroupHeadingProps = PropsWithChildren<BaseProps<HTMLHeadingElement>> & {
   'data-testid'?: string
 }
 
-const PricingOptionsFeatureListHeading = forwardRef<HTMLHeadingElement, PricingOptionsFeatureListHeadingProps>(
-  ({children, className, 'data-testid': testId, ...rest}, ref) => {
-    return (
-      <HeadingComponent
-        as="h4"
-        className={clsx(styles['PricingOptions__feature-list-heading'], className)}
-        data-testid={testId || testIds.featureListHeading}
-        ref={ref}
-        size="subhead-medium"
-        {...rest}
-      >
-        {children}
-      </HeadingComponent>
-    )
-  },
-)
+const PricingOptionsFeatureListGroupHeading = forwardRef<
+  HTMLHeadingElement,
+  PricingOptionsFeatureListGroupHeadingProps
+>(({children, className, 'data-testid': testId, ...rest}, ref) => {
+  return (
+    <HeadingComponent
+      as="h4"
+      className={clsx(styles['PricingOptions__feature-list-group-heading'], className)}
+      data-testid={testId || testIds.featureListGroupHeading}
+      ref={ref}
+      size="subhead-medium"
+      {...rest}
+    >
+      {children}
+    </HeadingComponent>
+  )
+})
 
 type PricingOptionsFeatureListItemProps = PropsWithChildren<BaseProps<HTMLLIElement>> & {
   'data-testid'?: string
@@ -639,8 +642,8 @@ const PricingOptionsFootnote = forwardRef<HTMLParagraphElement, PricingOptionsFo
 export const PricingOptions = Object.assign(PricingOptionsRoot, {
   Description: PricingOptionsDescription,
   FeatureList: PricingOptionsFeatureList,
-  FeatureListTitle: PricingOptionsFeatureListTitle,
   FeatureListHeading: PricingOptionsFeatureListHeading,
+  FeatureListGroupHeading: PricingOptionsFeatureListGroupHeading,
   FeatureListItem: PricingOptionsFeatureListItem,
   Footnote: PricingOptionsFootnote,
   Heading: PricingOptionsHeading,

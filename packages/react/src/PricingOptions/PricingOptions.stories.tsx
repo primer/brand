@@ -22,7 +22,7 @@ export const Default = () => (
               10
             </PricingOptions.Price>
             <PricingOptions.FeatureList>
-              <PricingOptions.FeatureListHeading>Chat</PricingOptions.FeatureListHeading>
+              <PricingOptions.FeatureListGroupHeading>Chat</PricingOptions.FeatureListGroupHeading>
               <PricingOptions.FeatureListItem>
                 Unlimited messages, interactions, and history
               </PricingOptions.FeatureListItem>
@@ -38,7 +38,7 @@ export const Default = () => (
               <PricingOptions.FeatureListItem variant="excluded">
                 Access your knowledge base
               </PricingOptions.FeatureListItem>
-              <PricingOptions.FeatureListHeading>Code completion</PricingOptions.FeatureListHeading>
+              <PricingOptions.FeatureListGroupHeading>Code completion</PricingOptions.FeatureListGroupHeading>
               <PricingOptions.FeatureListItem>Code suggestions as you type</PricingOptions.FeatureListItem>
               <PricingOptions.FeatureListItem>Comments to code</PricingOptions.FeatureListItem>
               <PricingOptions.FeatureListItem variant="excluded">
@@ -69,7 +69,7 @@ export const Default = () => (
               Contact sales
             </PricingOptions.SecondaryAction>
             <PricingOptions.FeatureList>
-              <PricingOptions.FeatureListHeading>Chat</PricingOptions.FeatureListHeading>
+              <PricingOptions.FeatureListGroupHeading>Chat</PricingOptions.FeatureListGroupHeading>
               <PricingOptions.FeatureListItem>
                 Unlimited messages, interactions, and history
               </PricingOptions.FeatureListItem>
@@ -83,7 +83,7 @@ export const Default = () => (
               <PricingOptions.FeatureListItem variant="excluded">
                 Access your knowledge base
               </PricingOptions.FeatureListItem>
-              <PricingOptions.FeatureListHeading>Code completion</PricingOptions.FeatureListHeading>
+              <PricingOptions.FeatureListGroupHeading>Code completion</PricingOptions.FeatureListGroupHeading>
               <PricingOptions.FeatureListItem>Code suggestions as you type</PricingOptions.FeatureListItem>
               <PricingOptions.FeatureListItem>Comments to code</PricingOptions.FeatureListItem>
               <PricingOptions.FeatureListItem variant="excluded">
@@ -103,7 +103,7 @@ export const Default = () => (
               39
             </PricingOptions.Price>
             <PricingOptions.FeatureList>
-              <PricingOptions.FeatureListHeading>Chat</PricingOptions.FeatureListHeading>
+              <PricingOptions.FeatureListGroupHeading>Chat</PricingOptions.FeatureListGroupHeading>
               <PricingOptions.FeatureListItem>
                 Unlimited messages, interactions, and history
               </PricingOptions.FeatureListItem>
@@ -115,7 +115,7 @@ export const Default = () => (
               </PricingOptions.FeatureListItem>
               <PricingOptions.FeatureListItem>Repository-based semantic search</PricingOptions.FeatureListItem>
               <PricingOptions.FeatureListItem>Access your knowledge base</PricingOptions.FeatureListItem>
-              <PricingOptions.FeatureListHeading>Code completion</PricingOptions.FeatureListHeading>
+              <PricingOptions.FeatureListGroupHeading>Code completion</PricingOptions.FeatureListGroupHeading>
               <PricingOptions.FeatureListItem>Code suggestions as you type</PricingOptions.FeatureListItem>
               <PricingOptions.FeatureListItem>Comments to code</PricingOptions.FeatureListItem>
               <PricingOptions.FeatureListItem>Fine-tuned models (coming soon)</PricingOptions.FeatureListItem>

@@ -409,12 +409,12 @@ export const WithFeatureSets: StoryFn<typeof PricingOptions> = () => {
         </PricingOptions.Description>
         <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
         <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListHeading>Base features</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListGroupHeading>Base features</PricingOptions.FeatureListGroupHeading>
           <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
 
-          <PricingOptions.FeatureListHeading>Security</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListGroupHeading>Security</PricingOptions.FeatureListGroupHeading>
           <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
         </PricingOptions.FeatureList>
 
@@ -439,11 +439,11 @@ export const WithFeatureSets: StoryFn<typeof PricingOptions> = () => {
           Contact sales
         </PricingOptions.SecondaryAction>
         <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListHeading>Base features</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListGroupHeading>Base features</PricingOptions.FeatureListGroupHeading>
           <PricingOptions.FeatureListItem>Everything in Copilot Individual</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Code referencing</PricingOptions.FeatureListItem>
 
-          <PricingOptions.FeatureListHeading>Security</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListGroupHeading>Security</PricingOptions.FeatureListGroupHeading>
           <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Public code filter</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>IP indemnity</PricingOptions.FeatureListItem>
@@ -462,12 +462,12 @@ export const WithFeatureSets: StoryFn<typeof PricingOptions> = () => {
         </PricingOptions.Description>
         <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
         <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListHeading>Base features</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListGroupHeading>Base features</PricingOptions.FeatureListGroupHeading>
           <PricingOptions.FeatureListItem>Everything in Copilot Business</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Documentation search and summaries</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Pull request summaries</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Code review skills</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListHeading>Security</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListGroupHeading>Security</PricingOptions.FeatureListGroupHeading>
           <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Public code filter</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>IP indemnity</PricingOptions.FeatureListItem>
@@ -493,7 +493,7 @@ export const WithIncludedAndExcludedFeatures: StoryFn<typeof PricingOptions> = (
         </PricingOptions.Description>
         <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
         <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListHeading>Chat</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListGroupHeading>Chat</PricingOptions.FeatureListGroupHeading>
           <PricingOptions.FeatureListItem>Unlimited messages, interactions, and history</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Context-aware coding support and explanations</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem variant="excluded">
@@ -503,7 +503,7 @@ export const WithIncludedAndExcludedFeatures: StoryFn<typeof PricingOptions> = (
             Repository-based semantic search
           </PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem variant="excluded">Access your knowledge base</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListHeading>Code completion</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListGroupHeading>Code completion</PricingOptions.FeatureListGroupHeading>
           <PricingOptions.FeatureListItem>Code suggestions as you type</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Comments to code</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem variant="excluded">
@@ -533,13 +533,13 @@ export const WithIncludedAndExcludedFeatures: StoryFn<typeof PricingOptions> = (
           Contact sales
         </PricingOptions.SecondaryAction>
         <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListHeading>Chat</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListGroupHeading>Chat</PricingOptions.FeatureListGroupHeading>
           <PricingOptions.FeatureListItem>Unlimited messages, interactions, and history</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Context-aware coding support and explanations</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Debugging and security remediation assistance</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Repository-based semantic search</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem variant="excluded">Access your knowledge base</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListHeading>Code completion</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListGroupHeading>Code completion</PricingOptions.FeatureListGroupHeading>
           <PricingOptions.FeatureListItem>Code suggestions as you type</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Comments to code</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem variant="excluded">
@@ -557,13 +557,13 @@ export const WithIncludedAndExcludedFeatures: StoryFn<typeof PricingOptions> = (
         </PricingOptions.Description>
         <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
         <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListHeading>Chat</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListGroupHeading>Chat</PricingOptions.FeatureListGroupHeading>
           <PricingOptions.FeatureListItem>Unlimited messages, interactions, and history</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Context-aware coding support and explanations</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Debugging and security remediation assistance</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Repository-based semantic search</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Access your knowledge base</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListHeading>Code completion</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListGroupHeading>Code completion</PricingOptions.FeatureListGroupHeading>
           <PricingOptions.FeatureListItem>Code suggestions as you type</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Comments to code</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Fine-tuned models (coming soon)</PricingOptions.FeatureListItem>
@@ -626,13 +626,13 @@ export const CenterAligned: StoryFn<typeof PricingOptions> = () => {
         </PricingOptions.Description>
         <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
         <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListHeading>Chat</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListGroupHeading>Chat</PricingOptions.FeatureListGroupHeading>
           <PricingOptions.FeatureListItem>Unlimited messages, interactions, and history</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Context-aware coding support and explanations</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Debugging and security remediation assistance</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Repository-based semantic search</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Access your knowledge base</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListHeading>Code completion</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListGroupHeading>Code completion</PricingOptions.FeatureListGroupHeading>
           <PricingOptions.FeatureListItem>Code suggestions as you type</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Comments to code</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Fine-tuned models (coming soon)</PricingOptions.FeatureListItem>
@@ -648,13 +648,13 @@ export const CenterAligned: StoryFn<typeof PricingOptions> = () => {
         <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
         <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
         <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListHeading>Chat</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListGroupHeading>Chat</PricingOptions.FeatureListGroupHeading>
           <PricingOptions.FeatureListItem>Unlimited messages, interactions, and history</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Context-aware coding support and explanations</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Debugging and security remediation assistance</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Repository-based semantic search</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Access your knowledge base</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListHeading>Code completion</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListGroupHeading>Code completion</PricingOptions.FeatureListGroupHeading>
           <PricingOptions.FeatureListItem>Code suggestions as you type</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Comments to code</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Fine-tuned models (coming soon)</PricingOptions.FeatureListItem>
@@ -673,13 +673,13 @@ export const CenterAligned: StoryFn<typeof PricingOptions> = () => {
         </PricingOptions.Description>
         <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
         <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListHeading>Chat</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListGroupHeading>Chat</PricingOptions.FeatureListGroupHeading>
           <PricingOptions.FeatureListItem>Unlimited messages, interactions, and history</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Context-aware coding support and explanations</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Debugging and security remediation assistance</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Repository-based semantic search</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Access your knowledge base</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListHeading>Code completion</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListGroupHeading>Code completion</PricingOptions.FeatureListGroupHeading>
           <PricingOptions.FeatureListItem>Code suggestions as you type</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Comments to code</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Fine-tuned models (coming soon)</PricingOptions.FeatureListItem>
@@ -763,7 +763,7 @@ export const CollapsedFeatures: StoryFn<typeof PricingOptions> = () => {
   )
 }
 
-export const WithCustomFeatureListTitle: StoryFn<typeof PricingOptions> = () => {
+export const WithCustomFeatureListHeading: StoryFn<typeof PricingOptions> = () => {
   return (
     <PricingOptions>
       <PricingOptions.Item>
@@ -773,7 +773,7 @@ export const WithCustomFeatureListTitle: StoryFn<typeof PricingOptions> = () => 
         </PricingOptions.Description>
         <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
         <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListTitle>Base features</PricingOptions.FeatureListTitle>
+          <PricingOptions.FeatureListHeading>Base features</PricingOptions.FeatureListHeading>
           <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
@@ -800,7 +800,7 @@ export const WithCustomFeatureListTitle: StoryFn<typeof PricingOptions> = () => 
         </PricingOptions.SecondaryAction>
 
         <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListTitle>Extended features</PricingOptions.FeatureListTitle>
+          <PricingOptions.FeatureListHeading>Extended features</PricingOptions.FeatureListHeading>
           <PricingOptions.FeatureListItem>Everything in Copilot Individual plus:</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
@@ -823,7 +823,7 @@ export const WithCustomFeatureListTitle: StoryFn<typeof PricingOptions> = () => 
         </PricingOptions.Description>
         <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
         <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListTitle>Enterprise-only features</PricingOptions.FeatureListTitle>
+          <PricingOptions.FeatureListHeading>Enterprise-only features</PricingOptions.FeatureListHeading>
           <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>

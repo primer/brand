@@ -95,8 +95,8 @@ describe('PricingOptions.Item', () => {
           {mockSecondaryAction}
         </PricingOptions.SecondaryAction>
         <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListTitle>{mockFeaturedListTitle}</PricingOptions.FeatureListTitle>
-          <PricingOptions.FeatureListHeading>{mockFeaturedListHeading}</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListHeading>{mockFeaturedListTitle}</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListGroupHeading>{mockFeaturedListHeading}</PricingOptions.FeatureListGroupHeading>
           <PricingOptions.FeatureListItem>{mockFeatureListItem}</PricingOptions.FeatureListItem>
         </PricingOptions.FeatureList>
         <PricingOptions.Footnote>{mockFootnote}</PricingOptions.Footnote>
@@ -123,7 +123,7 @@ describe('PricingOptions.Item', () => {
         <PricingOptions.Description>{mockDescription}</PricingOptions.Description>
         <PricingOptions.Heading>{mockHeading}</PricingOptions.Heading>
         <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListHeading>{mockFeaturedListHeading}</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListGroupHeading>{mockFeaturedListHeading}</PricingOptions.FeatureListGroupHeading>
           <PricingOptions.FeatureListItem>{mockFeatureListItem}</PricingOptions.FeatureListItem>
         </PricingOptions.FeatureList>
       </PricingOptions.Item>,
@@ -184,7 +184,7 @@ describe('PricingOptions.Item', () => {
           </PricingOptions.Description>
           <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
           <PricingOptions.FeatureList>
-            <PricingOptions.FeatureListHeading>Chat</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListGroupHeading>Chat</PricingOptions.FeatureListGroupHeading>
             <PricingOptions.FeatureListItem>
               Unlimited messages, interactions, and history
             </PricingOptions.FeatureListItem>
@@ -208,7 +208,7 @@ describe('PricingOptions.Item', () => {
           </PricingOptions.Description>
           <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
           <PricingOptions.FeatureList accordionAs={expectedHeadingTag}>
-            <PricingOptions.FeatureListHeading>Chat</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListGroupHeading>Chat</PricingOptions.FeatureListGroupHeading>
             <PricingOptions.FeatureListItem>
               Unlimited messages, interactions, and history
             </PricingOptions.FeatureListItem>
