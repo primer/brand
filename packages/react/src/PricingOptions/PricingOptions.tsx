@@ -409,9 +409,7 @@ const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatu
     const {isMedium: isRegular, isXLarge: isWide} = useWindowSize()
 
     let FeatureListHeading = (
-      <PricingOptions.FeatureListGroupHeading>
-        {pricingOptionsDefaultFeatureListHeading}
-      </PricingOptions.FeatureListGroupHeading>
+      <PricingOptions.FeatureListHeading>{pricingOptionsDefaultFeatureListHeading}</PricingOptions.FeatureListHeading>
     )
 
     const FilteredChildrenSet = React.Children.toArray(children).reduce<ValidFeatureListChildren>((acc, child) => {
