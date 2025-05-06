@@ -1,4 +1,4 @@
-import React, {forwardRef, InputHTMLAttributes, ReactElement, RefObject, useRef} from 'react'
+import React, {forwardRef, InputHTMLAttributes, ReactElement, RefObject} from 'react'
 import clsx from 'clsx'
 import {useId} from '../../hooks/useId'
 
