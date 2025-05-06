@@ -18,5 +18,10 @@ export function useMDXComponents(customComponents) {
     h5: props => <HeadingLink tag="h5" {...props} />,
     h6: props => <HeadingLink tag="h6" {...props} />,
     pre: props => <Pre {...props} />,
+    table: props => (
+      <DoctocatComponents.TableWrapper>
+        <table {...props} />
+      </DoctocatComponents.TableWrapper>
+    ),
   }
 }
