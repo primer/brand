@@ -1,12 +1,17 @@
 ---
-'@primer/react-brand': patch
+'@primer/react-brand': minor
 ---
 
 ⚠️ Breaking changes
 
 The `PricingOptions.FeatureListHeading` component has been renamed to `PricingOptions.FeatureListGroupHeading`. `PricingOptions.FeatureListHeading` is now used to optionally customize the heading of the `PricingOptions` feature list accordion.
 
-E.g.,
+```diff
+- <PricingOptions.FeatureListHeading />
++ <PricingOptions.FeatureListGroupHeading />
+```
+
+Full example with customizable accordion heading:,
 
 ```jsx
 <PricinOptions>
