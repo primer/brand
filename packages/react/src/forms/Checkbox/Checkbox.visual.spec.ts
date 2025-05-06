@@ -20,4 +20,11 @@ test.describe('Visual Comparison: Checkbox', () => {
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
+
+  test('Checkbox / Checkbox - Ref Callback', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-forms-checkbox--ref-callback&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
 })

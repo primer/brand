@@ -7,6 +7,7 @@ import type {FormValidationStatus} from '../form-types'
 import useLayoutEffect from '../../hooks/useIsomorphicLayoutEffect'
 
 import styles from './Checkbox.module.css'
+import {useProvidedRefOrCreate} from '../../hooks/useRef'
 
 export type CheckboxProps = {
   /**
@@ -52,7 +53,7 @@ const _Checkbox = (
   }: CheckboxProps,
   ref,
 ): ReactElement => {
-  const inputRef: RefObject<HTMLInputElement> | null = useRef<HTMLInputElement>(ref || null)
+  const inputRef: RefObject<HTMLInputElement> | null = useProvidedRefOrCreate<HTMLInputElement>(ref || null)
   const uniqueId = useId(id)
 
   useLayoutEffect(() => {

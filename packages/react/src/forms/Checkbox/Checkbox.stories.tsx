@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useCallback, useEffect} from 'react'
 import {Meta, StoryFn} from '@storybook/react'
 import {Checkbox} from '.'
 
@@ -44,3 +44,22 @@ export const Variants = () => (
   </>
 )
 Variants.storyName = 'Checkbox - Variants'
+
+export const RefCallback = () => {
+  const checkboxRef = React.useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    if (checkboxRef.current) {
+      checkboxRef.current.checked = true
+    }
+  }, [checkboxRef])
+
+  const handleRefCallback = useCallback(() => {
+    if (checkboxRef.current) {
+      alert(checkboxRef.current.checked)
+    }
+  }, [checkboxRef])
+
+  return <Checkbox ref={checkboxRef} onChange={handleRefCallback} />
+}
+RefCallback.storyName = 'Checkbox - Ref Callback'
