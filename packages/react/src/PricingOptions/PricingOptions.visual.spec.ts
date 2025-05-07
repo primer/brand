@@ -113,6 +113,15 @@ test.describe('Visual Comparison: PricingOptions', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('PricingOptions / With Custom Feature List Heading', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--with-custom-feature-list-heading&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('PricingOptions / Collapsed Features No Dividers', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--collapsed-features-no-dividers&viewMode=story',

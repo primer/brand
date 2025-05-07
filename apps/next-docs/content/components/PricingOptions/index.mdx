@@ -203,7 +203,7 @@ This is the two-item layout for the pricing options component.
 
 ### Three and four options
 
-PricingOptions`supports a maximum of four items in both`default`and`card` layouts.
+`PricingOptions` supports a maximum of four items in both `default` and `card` layouts.
 
 Please refer to our [Storybook
 examples](https://primer.style/brand/storybook/?path=/story/components-pricingoptions-features--three-options)
@@ -219,7 +219,7 @@ documentation.
 
 ### Feature list sets
 
-Use `PricingOptions.FeatureListHeading` to group feature items together.
+Use `PricingOptions.FeatureListGroupHeading` to group feature items together.
 
 ```jsx live
 <PricingOptions>
@@ -232,12 +232,12 @@ Use `PricingOptions.FeatureListHeading` to group feature items together.
       10
     </PricingOptions.Price>
     <PricingOptions.FeatureList>
-      <PricingOptions.FeatureListHeading>Base features</PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListGroupHeading>Base features</PricingOptions.FeatureListGroupHeading>
       <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
       <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
       <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
 
-      <PricingOptions.FeatureListHeading>Security</PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListGroupHeading>Security</PricingOptions.FeatureListGroupHeading>
       <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
     </PricingOptions.FeatureList>
 
@@ -258,11 +258,11 @@ Use `PricingOptions.FeatureListHeading` to group feature items together.
     <PricingOptions.PrimaryAction href="/buy">Buy now</PricingOptions.PrimaryAction>
     <PricingOptions.SecondaryAction href="/contact">Contact sales</PricingOptions.SecondaryAction>
     <PricingOptions.FeatureList>
-      <PricingOptions.FeatureListHeading>Base features</PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListGroupHeading>Base features</PricingOptions.FeatureListGroupHeading>
       <PricingOptions.FeatureListItem>Everything in Copilot Individual</PricingOptions.FeatureListItem>
       <PricingOptions.FeatureListItem>Code referencing</PricingOptions.FeatureListItem>
 
-      <PricingOptions.FeatureListHeading>Security</PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListGroupHeading>Security</PricingOptions.FeatureListGroupHeading>
       <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
       <PricingOptions.FeatureListItem>Public code filter</PricingOptions.FeatureListItem>
       <PricingOptions.FeatureListItem>IP indemnity</PricingOptions.FeatureListItem>
@@ -287,7 +287,7 @@ Use `PricingOptions.FeatureListItem` with `variant="included"` and `variant="exc
       10
     </PricingOptions.Price>
     <PricingOptions.FeatureList>
-      <PricingOptions.FeatureListHeading>Chat</PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListGroupHeading>Chat</PricingOptions.FeatureListGroupHeading>
       <PricingOptions.FeatureListItem>Unlimited messages, interactions, and history</PricingOptions.FeatureListItem>
       <PricingOptions.FeatureListItem>Context-aware coding support and explanations</PricingOptions.FeatureListItem>
       <PricingOptions.FeatureListItem variant="excluded">
@@ -297,7 +297,7 @@ Use `PricingOptions.FeatureListItem` with `variant="included"` and `variant="exc
         Repository-based semantic search
       </PricingOptions.FeatureListItem>
       <PricingOptions.FeatureListItem variant="excluded">Access your knowledge base</PricingOptions.FeatureListItem>
-      <PricingOptions.FeatureListHeading>Code completion</PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListGroupHeading>Code completion</PricingOptions.FeatureListGroupHeading>
       <PricingOptions.FeatureListItem>Code suggestions as you type</PricingOptions.FeatureListItem>
       <PricingOptions.FeatureListItem>Comments to code</PricingOptions.FeatureListItem>
       <PricingOptions.FeatureListItem variant="excluded">
@@ -323,13 +323,13 @@ Use `PricingOptions.FeatureListItem` with `variant="included"` and `variant="exc
       39
     </PricingOptions.Price>
     <PricingOptions.FeatureList>
-      <PricingOptions.FeatureListHeading>Chat</PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListGroupHeading>Chat</PricingOptions.FeatureListGroupHeading>
       <PricingOptions.FeatureListItem>Unlimited messages, interactions, and history</PricingOptions.FeatureListItem>
       <PricingOptions.FeatureListItem>Context-aware coding support and explanations</PricingOptions.FeatureListItem>
       <PricingOptions.FeatureListItem>Debugging and security remediation assistance</PricingOptions.FeatureListItem>
       <PricingOptions.FeatureListItem>Repository-based semantic search</PricingOptions.FeatureListItem>
       <PricingOptions.FeatureListItem>Access your knowledge base</PricingOptions.FeatureListItem>
-      <PricingOptions.FeatureListHeading>Code completion</PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListGroupHeading>Code completion</PricingOptions.FeatureListGroupHeading>
       <PricingOptions.FeatureListItem>Code suggestions as you type</PricingOptions.FeatureListItem>
       <PricingOptions.FeatureListItem>Comments to code</PricingOptions.FeatureListItem>
       <PricingOptions.FeatureListItem>Fine-tuned models (coming soon)</PricingOptions.FeatureListItem>
@@ -395,7 +395,13 @@ One item per pricing plan to be displayed. Maximum of 3 items.
 | `expanded`    | `boolean`                                    |   `true`    | `false`  | Controls visibility of feature items. Accepts Object type for granular control at different viewport sizes. |
 | `hasDivider`  | `boolean`                                    |   `true`    | `false`  | Controls visibility of a visual border between feature lists and adjacent actions                           |
 
-### PricingOptions.FeatureListHeading
+### PricingOptions.FeatureListGroupHeading
+
+| Name       | Type        |       Default       | required | Description                         |
+| :--------- | :---------- | :-----------------: | :------: | :---------------------------------- |
+| `children` | `ReactNode` | `"What's included"` | `false`  | A custom title for the feature list |
+
+### PricingOptions.FeatureListGroupHeading
 
 | Name       | Type         |   Default   | required | Description                                       |
 | :--------- | :----------- | :---------: | :------: | :------------------------------------------------ |

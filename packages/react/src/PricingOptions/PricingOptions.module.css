@@ -323,7 +323,7 @@
   margin-block-start: var(--base-size-24);
 }
 
-.PricingOptions__feature-list-heading {
+.PricingOptions__feature-list-group-heading {
   color: var(--brand-color-accent-primary);
   margin-block-end: var(--base-size-8);
 }
@@ -332,7 +332,7 @@
   color: var(--brand-color-text-muted);
 }
 
-.PricingOptions__feature-list + .PricingOptions__feature-list-heading {
+.PricingOptions__feature-list + .PricingOptions__feature-list-group-heading {
   margin-block-start: var(--base-size-24);
 }
 

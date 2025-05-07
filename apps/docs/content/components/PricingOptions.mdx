@@ -313,7 +313,7 @@ documentation.
 
 ### Feature list sets
 
-Use `PricingOptions.FeatureListHeading` to group feature items together.
+Use `PricingOptions.FeatureListGroupHeading` to group feature items together.
 
 ```jsx live
 <PricingOptions>
@@ -329,9 +329,9 @@ Use `PricingOptions.FeatureListHeading` to group feature items together.
       10
     </PricingOptions.Price>
     <PricingOptions.FeatureList>
-      <PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListGroupHeading>
         Base features
-      </PricingOptions.FeatureListHeading>
+      </PricingOptions.FeatureListGroupHeading>
       <PricingOptions.FeatureListItem>
         Code completions
       </PricingOptions.FeatureListItem>
@@ -342,9 +342,9 @@ Use `PricingOptions.FeatureListHeading` to group feature items together.
         CLI assistance
       </PricingOptions.FeatureListItem>
 
-      <PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListGroupHeading>
         Security
-      </PricingOptions.FeatureListHeading>
+      </PricingOptions.FeatureListGroupHeading>
       <PricingOptions.FeatureListItem>
         Security vulnerability filter
       </PricingOptions.FeatureListItem>
@@ -376,9 +376,9 @@ Use `PricingOptions.FeatureListHeading` to group feature items together.
       Contact sales
     </PricingOptions.SecondaryAction>
     <PricingOptions.FeatureList>
-      <PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListGroupHeading>
         Base features
-      </PricingOptions.FeatureListHeading>
+      </PricingOptions.FeatureListGroupHeading>
       <PricingOptions.FeatureListItem>
         Everything in Copilot Individual
       </PricingOptions.FeatureListItem>
@@ -386,9 +386,9 @@ Use `PricingOptions.FeatureListHeading` to group feature items together.
         Code referencing
       </PricingOptions.FeatureListItem>
 
-      <PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListGroupHeading>
         Security
-      </PricingOptions.FeatureListHeading>
+      </PricingOptions.FeatureListGroupHeading>
       <PricingOptions.FeatureListItem>
         Security vulnerability filter
       </PricingOptions.FeatureListItem>
@@ -424,9 +424,9 @@ Use `PricingOptions.FeatureListItem` with `variant="included"` and `variant="exc
       10
     </PricingOptions.Price>
     <PricingOptions.FeatureList>
-      <PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListGroupHeading>
         Chat
-      </PricingOptions.FeatureListHeading>
+      </PricingOptions.FeatureListGroupHeading>
       <PricingOptions.FeatureListItem>
         Unlimited messages, interactions, and history
       </PricingOptions.FeatureListItem>
@@ -442,9 +442,9 @@ Use `PricingOptions.FeatureListItem` with `variant="included"` and `variant="exc
       <PricingOptions.FeatureListItem variant="excluded">
         Access your knowledge base
       </PricingOptions.FeatureListItem>
-      <PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListGroupHeading>
         Code completion
-      </PricingOptions.FeatureListHeading>
+      </PricingOptions.FeatureListGroupHeading>
       <PricingOptions.FeatureListItem>
         Code suggestions as you type
       </PricingOptions.FeatureListItem>
@@ -477,9 +477,9 @@ Use `PricingOptions.FeatureListItem` with `variant="included"` and `variant="exc
       39
     </PricingOptions.Price>
     <PricingOptions.FeatureList>
-      <PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListGroupHeading>
         Chat
-      </PricingOptions.FeatureListHeading>
+      </PricingOptions.FeatureListGroupHeading>
       <PricingOptions.FeatureListItem>
         Unlimited messages, interactions, and history
       </PricingOptions.FeatureListItem>
@@ -495,9 +495,9 @@ Use `PricingOptions.FeatureListItem` with `variant="included"` and `variant="exc
       <PricingOptions.FeatureListItem>
         Access your knowledge base
       </PricingOptions.FeatureListItem>
-      <PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListGroupHeading>
         Code completion
-      </PricingOptions.FeatureListHeading>
+      </PricingOptions.FeatureListGroupHeading>
       <PricingOptions.FeatureListItem>
         Code suggestions as you type
       </PricingOptions.FeatureListItem>
@@ -573,7 +573,13 @@ Forwards all props from the [Label component](/components/Label).
 | `expanded`    | `boolean`                                                                                      |   `true`    | `false`  | Controls visibility of feature items. Accepts Object type for granular control at different viewport sizes. |
 | `hasDivider`  | `boolean`                                                                                      |   `true`    | `false`  | Controls visibility of a visual border between feature lists and adjacent actions                           |
 
-### PricingOptions.FeatureListHeading
+### PricingOptions.FeatureListGroupHeading
+
+| Name       | Type        |       Default       | required | Description                         |
+| :--------- | :---------- | :-----------------: | :------: | :---------------------------------- |
+| `children` | `ReactNode` | `"What's included"` | `false`  | A custom title for the feature list |
+
+### PricingOptions.FeatureListGroupHeading
 
 | Name       | Type         |   Default   | required | Description                                       |
 | :--------- | :----------- | :---------: | :------: | :------------------------------------------------ |
