@@ -18,6 +18,7 @@ declare const styles: {
   readonly "PricingOptions__feature-list-item--excluded": string;
   readonly "PricingOptions__feature-list-set": string;
   readonly "PricingOptions__footnote": string;
+  readonly "PricingOptions__header": string;
   readonly "PricingOptions__heading": string;
   readonly "PricingOptions__item": string;
   readonly "PricingOptions__item--align-center": string;

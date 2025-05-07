@@ -205,8 +205,10 @@ const PricingOptionsItem = forwardRef(
         ref={ref}
         {...(rest as HTMLAttributes<HTMLElement>)}
       >
-        {Heading}
-        {Label}
+        <div className={styles['PricingOptions__header']}>
+          {Heading}
+          {Label}
+        </div>
         {Description}
         {Price}
         {leadingComponent && <div className={styles['PricingOptions__leading-component']}>{leadingComponent}</div>}

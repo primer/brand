@@ -9,8 +9,7 @@
   /* prettier-ignore */
   --brand-pricing-options-template-areas: 
     'leadingComponent'
-    'label'
-    'heading'
+    'header'
     'description'
     'price'
     'actions'
@@ -178,7 +177,7 @@
 
 @media (min-width: 63.25rem) {
   .PricingOptions__item {
-    grid-row: label / footnote;
+    grid-row: header / footnote;
     grid-template-rows: subgrid;
   }
 
@@ -224,6 +223,14 @@
   grid-row: leadingComponent;
 }
 
+.PricingOptions__header {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  align-items: center;
+  grid-area: header;
+  column-gap: var(--base-size-16);
+}
+
 .PricingOptions__label {
   /* Sets the color of the label to the primary accent color, if it exists */
   --brand-Label-color: var(--brand-color-accent-primary);
@@ -233,13 +240,22 @@
   --brand-Label-color-start: var(--brand-color-accent-primary-start);
   --brand-Label-color-end: var(--brand-color-accent-primary-end);
 
-  grid-row: label;
-  justify-self: flex-start;
+  flex: 0 0 auto;
+  order: 2;
 }
 
 .PricingOptions__heading {
-  grid-row: heading;
   margin-block: var(--base-size-16);
+  flex: 0 1 auto; /* Minimum width before wrapping */
+  order: 1;
+  align-self: flex-start;
+}
+
+/* When not enough space, let label drop to next row and span both columns */
+.PricingOptions__label:only-child,
+.PricingOptions__label:has(+ .PricingOptions__heading[style*='display: block']) {
+  grid-column: 1 / -1;
+  grid-row: 1;
 }
 
 .PricingOptions__description {
