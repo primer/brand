@@ -66,6 +66,15 @@ test.describe('Visual Comparison: MinimalFooter', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('MinimalFooter / Reversed Social Links', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--reversed-social-links&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   // eslint-disable-next-line i18n-text/no-en
   test.describe('Mobile viewport test for Default (Narrow viewport)', () => {
     test.use({viewport: {width: 360, height: 800}})
