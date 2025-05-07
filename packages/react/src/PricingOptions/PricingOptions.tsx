@@ -1,6 +1,7 @@
 import React, {forwardRef, HTMLAttributes, PropsWithChildren, useMemo, Ref, Dispatch} from 'react'
 import {CheckIcon, ChevronDownIcon, XIcon} from '@primer/octicons-react'
 import clsx from 'clsx'
+import type {ListItemProps} from '../list/ListItem/ListItem'
 import type {BaseProps} from '../component-helpers'
 
 import {
@@ -534,14 +535,19 @@ const PricingOptionsFeatureListGroupHeading = forwardRef<
 type PricingOptionsFeatureListItemProps = PropsWithChildren<BaseProps<HTMLLIElement>> & {
   'data-testid'?: string
   variant?: 'included' | 'excluded'
-}
+} & Omit<ListItemProps, 'variant'>
 
 const PricingOptionsFeatureListItem = forwardRef<HTMLLIElement, PricingOptionsFeatureListItemProps>(
-  ({children, className, variant = 'included', 'data-testid': testId, ...rest}, ref) => {
-    const itemLeadingVisual = variant === 'included' ? CheckIcon : XIcon
+  (
+    {children, className, leadingVisual, leadingVisualFill, variant = 'included', 'data-testid': testId, ...rest},
+    ref,
+  ) => {
+    const itemLeadingVisual = leadingVisual ?? (variant === 'included' ? CheckIcon : XIcon)
     const itemLeadingVisualAriaLabel = variant === 'included' ? 'Includes' : 'Does not include'
+
     const itemLeadingVisualFill =
-      variant === 'included' ? 'var(--brand-color-accent-primary)' : 'var(--brand-color-text-muted'
+      leadingVisualFill ??
+      (variant === 'included' ? 'var(--brand-color-accent-primary)' : 'var(--brand-color-text-muted')
 
     return (
       <UnorderedList.Item
