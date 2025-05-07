@@ -377,7 +377,7 @@
 /* Adjust content paddings */
 .PricingOptions__feature-list-accordion .PricingOptions__feature-list-accordion-content {
   padding: 0;
-  padding-block-start: var(--base-size-40);
+  padding-block-start: var(--base-size-8);
   padding-inline-start: 0 !important;
 }
 
