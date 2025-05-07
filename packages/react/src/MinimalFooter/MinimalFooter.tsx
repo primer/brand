@@ -200,7 +200,9 @@ function Footnotes({children, className}: PropsWithChildren<FootnoteProps>) {
   )
 }
 
-const SocialLink = ({name}: {name: SocialLinkName}) => {
+type SocialLinkProps = {name: SocialLinkName}
+
+const SocialLink = ({name}: SocialLinkProps) => {
   const link = socialLinkData[name]
   return (
     <li key={name}>
