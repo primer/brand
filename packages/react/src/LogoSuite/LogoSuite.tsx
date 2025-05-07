@@ -229,6 +229,10 @@ const _LogoBar = forwardRef(
       }
     }, [])
 
+    useEffect(() => {
+      setIsPlaying(marquee && !prefersReducedMotion)
+    }, [marquee, prefersReducedMotion])
+
     const defaultProps = {
       ref,
       className: clsx(styles['LogoSuite__logobar'], styles[`LogoSuite__logobar--variant-${variant}`], className),
