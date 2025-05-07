@@ -1,7 +1,7 @@
 import {default as clsx} from 'clsx'
 import React, {type PropsWithChildren, type Ref, forwardRef, useCallback, useEffect, useMemo, useState} from 'react'
 import type {BaseProps} from '../component-helpers'
-import {Heading, HeadingProps, defaultHeadingTag, Text, TextProps, Button} from '../'
+import {Heading, HeadingProps, defaultHeadingTag, Text, TextProps} from '../'
 
 /**
  * Design tokens
@@ -162,17 +162,14 @@ const PlayIcon = () => (
 )
 
 type PlayPauseButtonProps = {
-  initialPlaying?: boolean
+  isPlaying?: boolean
   onPlayPause?: (isPlaying: boolean) => void
 }
 
-const PlayPauseButton = ({initialPlaying = true, onPlayPause}: PlayPauseButtonProps) => {
-  const [playing, setPlaying] = useState(initialPlaying)
-
+const PlayPauseButton = ({isPlaying = true, onPlayPause}: PlayPauseButtonProps) => {
   const onClick = useCallback(() => {
-    setPlaying(!playing)
-    onPlayPause?.(!playing)
-  }, [onPlayPause, playing])
+    onPlayPause?.(!isPlaying)
+  }, [onPlayPause, isPlaying])
 
   /**
    * aria-pressed is intentionally not used here to prevent potentially confusing screen reader announcements
@@ -183,9 +180,9 @@ const PlayPauseButton = ({initialPlaying = true, onPlayPause}: PlayPauseButtonPr
       className={styles['LogoSuite__logobar-playPauseButton']}
       type="button"
       onClick={onClick}
-      aria-label={playing ? 'Pause animation' : 'Play animation'}
+      aria-label={isPlaying ? 'Pause animation' : 'Play animation'}
     >
-      {playing ? <PauseIcon /> : <PlayIcon />}
+      {isPlaying ? <PauseIcon /> : <PlayIcon />}
     </button>
   )
 }
@@ -199,7 +196,7 @@ export type LogoSuiteLogoBarProps = BaseProps<HTMLDivElement> & {
   /**
    * The speed of the marquee effect
    */
-  marqueeSpeed?: 'slow' | 'normal' | 'idle'
+  marqueeSpeed?: 'slow' | 'normal'
   /**
    * The stylistic variant of the LogoBar.
    */
@@ -269,7 +266,7 @@ const _LogoBar = forwardRef(
               {children}
             </div>
           </div>
-          <PlayPauseButton onPlayPause={setIsPlaying} />
+          <PlayPauseButton onPlayPause={setIsPlaying} isPlaying={isPlaying} />
         </div>
       )
     }

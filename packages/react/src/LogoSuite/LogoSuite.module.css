@@ -141,8 +141,7 @@
   }
 }
 
-.LogoSuite__logobar-marquee:hover .LogoSuite__logobar-marqueeGroup,
-.LogoSuite__logobar-marqueeGroup--speed-idle {
+.LogoSuite__logobar-marquee:hover .LogoSuite__logobar-marqueeGroup {
   animation-play-state: paused;
 }
 
