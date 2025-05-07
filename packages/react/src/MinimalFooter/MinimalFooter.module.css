@@ -79,6 +79,9 @@
 .Footer__social-icon {
   width: 24px;
   height: auto;
+}
+
+[data-color-mode='light'] .Footer__social-icon {
   filter: brightness(95%) saturate(100%);
 }
 
