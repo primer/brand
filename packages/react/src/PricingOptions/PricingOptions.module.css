@@ -324,7 +324,7 @@
 }
 
 .PricingOptions__feature-list-group-heading {
-  color: var(--brand-color-accent-primary);
+  color: var(--brand-PricingOptions-featureList-group-heading-color);
   margin-block-end: var(--base-size-8);
 }
 

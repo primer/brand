@@ -5,6 +5,16 @@
         "value": "var(--brand-color-canvas-subtle)",
         "dark": "var(--brand-color-canvas-subtle)"
       }
+    },
+    "featureList": {
+      "group": {
+        "heading": {
+          "color": {
+            "value": "var(--brand-color-text-default)",
+            "dark": "var(--brand-color-text-default)"
+          }
+        }
+      }
     }
   }
 }
