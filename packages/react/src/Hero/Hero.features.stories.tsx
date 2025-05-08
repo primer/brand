@@ -207,6 +207,23 @@ export const WithCustomClassnames: StoryFn<typeof Hero> = _args => (
   </Hero>
 )
 
+export const WithCustomHeadingAndDescriptionSizes: StoryFn<typeof Hero> = _args => (
+  <Hero className="test-class" align="center">
+    <Hero.Label>Label</Hero.Label>
+    <Hero.Heading size="4">This is my super sweet hero heading</Hero.Heading>
+    <Hero.Description size="200">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+      felis nam pulvinar risus elementum.
+    </Hero.Description>
+    <Hero.PrimaryAction href="#" className="test-class">
+      Primary action
+    </Hero.PrimaryAction>
+    <Hero.SecondaryAction href="#" className="test-class">
+      Secondary action
+    </Hero.SecondaryAction>
+  </Hero>
+)
+
 export const WithCustomIconAndVariant: StoryFn<typeof Hero> = _args => (
   <Hero align="center">
     <Hero.Label>Label</Hero.Label>

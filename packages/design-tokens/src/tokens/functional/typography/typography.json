@@ -67,6 +67,9 @@
       "300": {
         "value": "var(--base-text-weight-normal)"
       },
+      "350": {
+        "value": "var(--base-text-weight-semibold)"
+      },
       "400": {
         "value": "var(--base-text-weight-semibold)"
       },
@@ -98,6 +101,14 @@
       },
       "300": {
         "value": "18px"
+      },
+      "350": {
+        "value": "18x",
+        "responsive": {
+          "1012px": {
+            "value": "20px"
+          }
+        }
       },
       "400": {
         "value": "20px",
@@ -180,6 +191,9 @@
       },
       "300": {
         "value": "1.5"
+      },
+      "350": {
+        "value": "1.3"
       },
       "400": {
         "value": "1.3"

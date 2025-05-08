@@ -137,7 +137,16 @@ type HeroDescriptionProps = {
   TextProps
 
 const HeroDescription = forwardRef<HTMLParagraphElement, PropsWithChildren<HeroDescriptionProps>>(
-  ({size = '200', weight, children, variant = 'default', className}: PropsWithChildren<HeroDescriptionProps>, ref) => {
+  (
+    {
+      size = '350',
+      weight = 'normal',
+      children,
+      variant = 'default',
+      className,
+    }: PropsWithChildren<HeroDescriptionProps>,
+    ref,
+  ) => {
     return (
       <Text
         ref={ref}
