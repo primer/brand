@@ -87,10 +87,10 @@ import {PricingOptions, HeadingTags} from '@primer/react-brand'
 </PricingOptions>
 ```
 
-### Cards variant
+### Gradient appearance
 
 ```jsx live
-<PricingOptions variant="cards">
+<PricingOptions appearance="gradient">
   <PricingOptions.Item>
     <PricingOptions.Label>Recommended</PricingOptions.Label>
     <PricingOptions.Heading>Copilot</PricingOptions.Heading>
@@ -519,11 +519,12 @@ Use `PricingOptions.FeatureListItem` with `variant="included"` and `variant="exc
 
 ### PricingOptions <Label>Required</Label>
 
-| Name       | Type                                                             |  Default  | required | Description                         |
-| :--------- | :--------------------------------------------------------------- | :-------: | :------: | :---------------------------------- |
-| `as`       | <PropTableValues values={[`section`, `div` ]} addLineBreaks />   | `section` | `false`  | Applies the underlying HTML element |
-| `children` | `PricingOptions.Item`                                            |           |  `true`  | Applies the underlying HTML element |
-| `variant`  | <PropTableValues values={[`default`, `cards` ]} addLineBreaks /> |           | `false`  | The variant styling                 |
+| Name         | Type                                                              |  Default  | required | Description                         |
+| :----------- | :---------------------------------------------------------------- | :-------: | :------: | :---------------------------------- |
+| `as`         | <PropTableValues values={[`section`, `div` ]} addLineBreaks />    | `section` | `false`  | Applies the underlying HTML element |
+| `appearance` | <PropTableValues values={[`solid`, `gradient` ]} addLineBreaks /> | `"solid"` | `false`  | Sets the container's' appearance    |
+| `children`   | `PricingOptions.Item`                                             |           |  `true`  | The items to be displayed           |
+| `variant`    | <PropTableValues values={[`default`, `cards` ]} addLineBreaks />  |           | `false`  | Sets the layout variant             |
 
 ### PricingOptions.Item <Label>Required</Label>
 

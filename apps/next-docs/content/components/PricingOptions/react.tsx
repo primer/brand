@@ -31,3 +31,5 @@ export const PricingOptionsHeadingAsProp = () => <PropTableValues values={[...He
 export const PricingOptionsFeatureListAccordionAsProp = () => (
   <PropTableValues values={[...HeadingTags]} addLineBreaks />
 )
+
+export const PricingOptionsAppearanceProp = () => <PropTableValues values={['solid', 'gradient']} addLineBreaks />
