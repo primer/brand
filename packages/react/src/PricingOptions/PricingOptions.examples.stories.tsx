@@ -27,7 +27,7 @@ export default {
   },
 } as Meta<typeof PricingOptions>
 
-export const Example: StoryFn<typeof PricingOptions> = () => {
+export const Example1: StoryFn<typeof PricingOptions> = () => {
   return (
     <PricingOptions appearance="gradient">
       <PricingOptions.Item>
@@ -81,9 +81,7 @@ export const Example: StoryFn<typeof PricingOptions> = () => {
       <PricingOptions.Item>
         <PricingOptions.Heading>Pro+</PricingOptions.Heading>
         <PricingOptions.Description>Maximum flexibility and model choice.</PricingOptions.Description>
-        <PricingOptions.Price originalPrice="49" trailingText="per month or $390 per year">
-          39
-        </PricingOptions.Price>
+        <PricingOptions.Price trailingText="per month or $390 per year">39</PricingOptions.Price>
         <PricingOptions.PrimaryAction as="a" href="#" variant="accent">
           Get started
         </PricingOptions.PrimaryAction>
