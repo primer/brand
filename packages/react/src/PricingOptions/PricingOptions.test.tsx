@@ -52,6 +52,7 @@ describe('PricingOptions.Item', () => {
   const mockPrice = 'Mock price'
   const mockPrimaryAction = 'Mock primary action'
   const mockSecondaryAction = 'Mock secondary action'
+  const mockFeaturedListTitle = 'Mock featured list title'
   const mockFeaturedListHeading = 'Mock featured list heading'
   const mockFeatureListItem = 'Mock feature list item'
   const mockFootnote = 'Mock footnote'
@@ -94,7 +95,8 @@ describe('PricingOptions.Item', () => {
           {mockSecondaryAction}
         </PricingOptions.SecondaryAction>
         <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListHeading>{mockFeaturedListHeading}</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListHeading>{mockFeaturedListTitle}</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListGroupHeading>{mockFeaturedListHeading}</PricingOptions.FeatureListGroupHeading>
           <PricingOptions.FeatureListItem>{mockFeatureListItem}</PricingOptions.FeatureListItem>
         </PricingOptions.FeatureList>
         <PricingOptions.Footnote>{mockFootnote}</PricingOptions.Footnote>
@@ -107,6 +109,7 @@ describe('PricingOptions.Item', () => {
     expect(getByText(mockPrice)).toBeInTheDocument()
     expect(getByText(mockPrimaryAction)).toBeInTheDocument()
     expect(getByText(mockSecondaryAction)).toBeInTheDocument()
+    expect(getByText(mockFeaturedListTitle)).toBeInTheDocument()
     expect(getByText(mockFeaturedListHeading)).toBeInTheDocument()
     expect(getByText(mockFeatureListItem)).toBeInTheDocument()
     expect(getByText(mockFootnote)).toBeInTheDocument()
@@ -120,7 +123,7 @@ describe('PricingOptions.Item', () => {
         <PricingOptions.Description>{mockDescription}</PricingOptions.Description>
         <PricingOptions.Heading>{mockHeading}</PricingOptions.Heading>
         <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListHeading>{mockFeaturedListHeading}</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListGroupHeading>{mockFeaturedListHeading}</PricingOptions.FeatureListGroupHeading>
           <PricingOptions.FeatureListItem>{mockFeatureListItem}</PricingOptions.FeatureListItem>
         </PricingOptions.FeatureList>
       </PricingOptions.Item>,
@@ -181,7 +184,7 @@ describe('PricingOptions.Item', () => {
           </PricingOptions.Description>
           <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
           <PricingOptions.FeatureList>
-            <PricingOptions.FeatureListHeading>Chat</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListGroupHeading>Chat</PricingOptions.FeatureListGroupHeading>
             <PricingOptions.FeatureListItem>
               Unlimited messages, interactions, and history
             </PricingOptions.FeatureListItem>
@@ -205,7 +208,7 @@ describe('PricingOptions.Item', () => {
           </PricingOptions.Description>
           <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
           <PricingOptions.FeatureList accordionAs={expectedHeadingTag}>
-            <PricingOptions.FeatureListHeading>Chat</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListGroupHeading>Chat</PricingOptions.FeatureListGroupHeading>
             <PricingOptions.FeatureListItem>
               Unlimited messages, interactions, and history
             </PricingOptions.FeatureListItem>
