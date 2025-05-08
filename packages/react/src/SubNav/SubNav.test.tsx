@@ -208,7 +208,7 @@ describe('SubNav', () => {
     const expectedText = 'Subheading'
     const expectedLink = '#subheading'
     const {getByText} = render(
-      <SubNav fullWidth>
+      <SubNav>
         <SubNav.Heading href={headingLink}>{heading}</SubNav.Heading>
         <SubNav.SubHeading href={expectedLink}>{expectedText}</SubNav.SubHeading>
         <SubNav.Link href="#">Link</SubNav.Link>
