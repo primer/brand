@@ -14,9 +14,9 @@ test.describe('Visual Comparison: PricingOptions', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('PricingOptions / Example', async ({page}) => {
+  test('PricingOptions / Example 1', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-examples--example&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-examples--example-1&viewMode=story',
     )
 
     await page.waitForTimeout(500)
