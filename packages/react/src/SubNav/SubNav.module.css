@@ -541,11 +541,6 @@
     line-height: var(--base-size-24);
   }
 
-  .SubNav__header-container {
-    display: inline-flex;
-    align-items: center;
-  }
-
   .SubNav__heading-separator {
     margin-inline-end: var(--base-size-20);
   }
