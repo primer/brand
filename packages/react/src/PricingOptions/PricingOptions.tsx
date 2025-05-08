@@ -321,7 +321,7 @@ const PricingOptionsPrice = forwardRef<HTMLParagraphElement, PricingOptionsPrice
           as="span"
           className={styles['PricingOptions__price-currency-symbol']}
           font="hubot-sans"
-          size="500"
+          size="700"
           weight="normal"
         >
           {currencySymbol}
@@ -335,7 +335,7 @@ const PricingOptionsPrice = forwardRef<HTMLParagraphElement, PricingOptionsPrice
           as="span"
           className={styles['PricingOptions__price-currency-code']}
           font="hubot-sans"
-          size="500"
+          size="100"
           weight="normal"
         >
           {currencyCode}
@@ -349,7 +349,7 @@ const PricingOptionsPrice = forwardRef<HTMLParagraphElement, PricingOptionsPrice
             <Text
               className={styles['PricingOptions__price-original-price-value']}
               font="hubot-sans"
-              size="500"
+              size="400"
               variant="muted"
               weight="normal"
             >
