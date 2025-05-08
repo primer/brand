@@ -234,7 +234,7 @@ const PricingOptionsLabel = forwardRef<HTMLSpanElement, PricingOptionsLabelProps
         className={clsx(styles.PricingOptions__label, className)}
         data-testid={testId || testIds.label}
         ref={ref}
-        size="medium"
+        size="small"
         {...rest}
       >
         {children}

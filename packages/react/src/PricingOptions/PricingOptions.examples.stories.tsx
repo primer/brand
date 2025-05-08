@@ -57,7 +57,6 @@ export const Examnple1: StoryFn<typeof PricingOptions> = () => {
         <PricingOptions.Description>
           Unlimited completions and chat with access to more models.
         </PricingOptions.Description>
-
         <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
         <PricingOptions.PrimaryAction as="a" href="#" variant="accent">
           Get started
@@ -97,6 +96,51 @@ export const Examnple1: StoryFn<typeof PricingOptions> = () => {
           </PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>
             Enterprise-grade security, safety, and privacy
+          </PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+      </PricingOptions.Item>
+    </PricingOptions>
+  )
+}
+export const Examnple2: StoryFn<typeof PricingOptions> = () => {
+  return (
+    <PricingOptions appearance="gradient">
+      <PricingOptions.Item>
+        <PricingOptions.Heading>Business</PricingOptions.Heading>
+        <PricingOptions.Description>Accelerate workflows with GitHub Copilot.</PricingOptions.Description>
+        <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
+        <PricingOptions.FeatureList>
+          <PricingOptions.FeatureListItem>Unlimited agent mode and chats with GPT-4o</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>
+            Access to code review, Claude 3.5/3.7 Sonnet, o1, and more
+          </PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>
+            300 premium requests to use latest models per user, with the option to buy more1
+          </PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>User management and usage metrics</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>IP indemnity and data privacy</PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+        <PricingOptions.PrimaryAction as="a" href="#" variant="accent">
+          Get started
+        </PricingOptions.PrimaryAction>
+      </PricingOptions.Item>
+
+      <PricingOptions.Item>
+        <PricingOptions.Heading>Enterprise</PricingOptions.Heading>
+        <PricingOptions.Label>Best value</PricingOptions.Label>
+        <PricingOptions.Description>Scale with AI agents and comprehensive model access.</PricingOptions.Description>
+        <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
+        <PricingOptions.PrimaryAction as="a" href="#" variant="accent">
+          Get started
+        </PricingOptions.PrimaryAction>
+        <PricingOptions.SecondaryAction as="a" href="#" variant="subtle" hasArrow={false}>
+          Open in VS Code
+        </PricingOptions.SecondaryAction>
+        <PricingOptions.FeatureList>
+          <PricingOptions.FeatureListHeading>Everything in Buisiness and:</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListItem>Access to all models, including GPT-4.5</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem>
+            3.33x more premium requests to use latest models than Business, with the option to buy more1
           </PricingOptions.FeatureListItem>
         </PricingOptions.FeatureList>
       </PricingOptions.Item>

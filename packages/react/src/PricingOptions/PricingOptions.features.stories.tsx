@@ -146,7 +146,6 @@ export const LeadingComponent: StoryFn<typeof PricingOptions> = () => {
     <Stack direction="vertical">
       <PricingOptions variant="cards">
         <PricingOptions.Item leadingComponent={<Image />}>
-          <PricingOptions.Label>Recommended</PricingOptions.Label>
           <PricingOptions.Heading>Copilot</PricingOptions.Heading>
           <PricingOptions.Description>Copilot in the coding environment.</PricingOptions.Description>
           <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
@@ -205,7 +204,6 @@ export const TwoOptions: StoryFn<typeof PricingOptions> = () => {
   return (
     <PricingOptions>
       <PricingOptions.Item>
-        <PricingOptions.Label>Recommended</PricingOptions.Label>
         <PricingOptions.Heading>Copilot</PricingOptions.Heading>
         <PricingOptions.Description>Copilot in the coding environment.</PricingOptions.Description>
         <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
