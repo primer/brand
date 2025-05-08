@@ -93,7 +93,7 @@ WithShadow.parameters = {
 }
 
 export const SubHeading = args => (
-  <SubNav {...args} fullWidth>
+  <SubNav {...args}>
     <SubNav.Heading href="#">AI</SubNav.Heading>
     <SubNav.SubHeading href="#">Copilot</SubNav.SubHeading>
     <SubNav.Link href="#">For business</SubNav.Link>
@@ -139,7 +139,7 @@ SubHeadingNarrowOpen.play = async ({canvasElement}) => {
 }
 
 export const ActiveSubHeading = args => (
-  <SubNav {...args} fullWidth>
+  <SubNav {...args}>
     <SubNav.Heading href="#">AI</SubNav.Heading>
     <SubNav.SubHeading href="#" aria-current="page">
       Copilot
