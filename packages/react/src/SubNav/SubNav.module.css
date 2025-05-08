@@ -183,7 +183,8 @@
   text-decoration: none !important; /* dotcom override */
 }
 
-.SubNav__link-label::after {
+.SubNav__link-label::after,
+.SubNav__subHeading::after {
   content: '';
   position: absolute;
   bottom: calc(var(--base-size-2) * -1);
@@ -305,6 +306,11 @@
     padding-block-end: var(--base-size-16);
   }
 
+  .SubNav--has-sub-heading .SubNav__links-overlay--open {
+    border-top: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
+    margin-block-start: var(--base-size-16);
+  }
+
   .SubNav__links-overlay--open .SubNav__link:hover .SubNav__link-label {
     color: var(--brand-color-text-default);
   }
@@ -324,6 +330,10 @@
     z-index: 9999;
     padding: 0;
     justify-content: end;
+  }
+
+  .SubNav--has-sub-heading:not(.SubNav--subHeadingActive) .SubNav__overlay-toggle {
+    margin-block-start: var(--base-size-12);
   }
 
   .SubNav__overlay-toggle-content {
@@ -461,10 +471,27 @@
 
 .SubNav__link:focus-visible,
 .SubNav__heading:focus-visible,
+.SubNav__subHeading:focus-visible,
 .SubNav__sub-menu-toggle:focus-visible,
 .SubNav__overlay-toggle:focus-visible {
   outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
   outline-offset: var(--base-size-2);
+}
+
+.SubNav__subHeading {
+  display: block;
+  position: relative;
+}
+
+.SubNav__subHeading[aria-current]:not([aria-current='false'])::after,
+.SubNav__subHeading:hover::after {
+  border-color: var(--brand-color-text-default);
+  opacity: 1;
+  transform: scale(0.8, 1);
+}
+
+.SubNav__subHeading:focus-visible::after {
+  opacity: 0;
 }
 
 @media screen and (min-width: 48rem) {
@@ -514,6 +541,11 @@
     line-height: var(--base-size-24);
   }
 
+  .SubNav__header-container {
+    display: inline-flex;
+    align-items: center;
+  }
+
   .SubNav__heading-separator {
     margin-inline-end: var(--base-size-20);
   }
@@ -525,6 +557,11 @@
 
   .SubNav__heading-container {
     margin-inline-end: var(--base-size-20);
+  }
+
+  .SubNav__subHeading {
+    font-size: var(--brand-text-size-100);
+    line-height: var(--brand-text-lineHeight-100);
   }
 
   .SubNav__links-overlay {
