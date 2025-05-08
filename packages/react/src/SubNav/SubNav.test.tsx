@@ -79,14 +79,14 @@ describe('SubNav', () => {
   it('has a button that opens the menu when clicked', async () => {
     const {getByRole} = render(<MockSubNavFixture />)
 
-    const buttonEl = getByRole('button', {name: 'Navigation menu. Current page: page three'})
+    let buttonEl = getByRole('button', {name: 'Navigation menu. Current page: page three'})
     const overlayEl = getByRole('list')
-
     expect(overlayEl).not.toHaveClass('SubNav__links-overlay--open')
     expect(buttonEl).toHaveAttribute('aria-expanded', 'false')
 
     await userEvent.click(buttonEl)
 
+    buttonEl = getByRole('button', {name: 'Navigation menu. Current page: page three'})
     expect(overlayEl).toHaveClass('SubNav__links-overlay--open')
     expect(buttonEl).toHaveAttribute('aria-expanded', 'true')
   })
@@ -94,13 +94,16 @@ describe('SubNav', () => {
   it('closes the overlay when button is pressed again', async () => {
     const {getByRole} = render(<MockSubNavFixture />)
 
-    const buttonEl = getByRole('button', {name: 'Navigation menu. Current page: page three'})
+    let buttonEl = getByRole('button', {name: 'Navigation menu. Current page: page three'})
     const overlayEl = getByRole('list')
 
     await userEvent.click(buttonEl)
     expect(overlayEl).toHaveClass('SubNav__links-overlay--open')
 
+    buttonEl = getByRole('button', {name: 'Navigation menu. Current page: page three'})
+
     await userEvent.click(buttonEl)
+
     expect(overlayEl).not.toHaveClass('SubNav__links-overlay--open')
   })
 
@@ -199,5 +202,22 @@ describe('SubNav', () => {
     await userEvent.keyboard('{escape}')
 
     expect(queryByRole('link', {name: 'Copilot feature page one'})).not.toBeInTheDocument()
+  })
+
+  it('renders an optional subheading into the document', () => {
+    const expectedText = 'Subheading'
+    const expectedLink = '#subheading'
+    const {getByText} = render(
+      <SubNav fullWidth>
+        <SubNav.Heading href={headingLink}>{heading}</SubNav.Heading>
+        <SubNav.SubHeading href={expectedLink}>{expectedText}</SubNav.SubHeading>
+        <SubNav.Link href="#">Link</SubNav.Link>
+      </SubNav>,
+    )
+
+    const el = getByText(expectedText)
+
+    expect(el).toBeInTheDocument()
+    expect(el).toHaveAttribute('href', expectedLink)
   })
 })
