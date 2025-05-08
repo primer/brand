@@ -406,6 +406,7 @@
 
 .PricingOptions__feature-list-group-heading {
   color: var(--brand-PricingOptions-featureList-group-heading-color);
+  margin-block-start: var(--base-size-12);
   margin-block-end: var(--base-size-8);
 }
 
