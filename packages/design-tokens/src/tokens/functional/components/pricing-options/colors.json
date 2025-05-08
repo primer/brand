@@ -1,9 +1,25 @@
 {
   "PricingOptions": {
+    "borderMask": {
+      "value": "linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3))",
+      "dark": "linear-gradient(180deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.4))"
+    },
     "item": {
       "bgColor": {
-        "value": "var(--brand-color-canvas-subtle)",
-        "dark": "var(--brand-color-canvas-subtle)"
+        "solid": {
+          "value": "var(--brand-color-canvas-subtle)",
+          "dark": "var(--brand-color-canvas-subtle)"
+        },
+        "gradient": {
+          "start": {
+            "value": "var(--brand-color-canvas-subtle)",
+            "dark": "var(--brand-color-canvas-subtle)"
+          },
+          "end": {
+            "value": "var(--brand-color-canvas-default)",
+            "dark": "var(--brand-color-canvas-default)"
+          }
+        }
       }
     },
     "featureList": {

@@ -49,9 +49,31 @@
 /* ---------------------------------------------------------- */
 
 .PricingOptions--variant-default {
+  position: relative;
   border-radius: var(--brand-borderRadius-xlarge);
-  border: solid var(--brand-borderWidth-thin) var(--brand-color-border-default);
-  background-color: var(--brand-PricingOptions-item-bgColor);
+}
+
+.PricingOptions--variant-default.PricingOptions--appearance-solid {
+  border: solid 1px var(--brand-color-border-default);
+  background-color: var(--brand-PricingOptions-item-bgColor-solid);
+}
+
+.PricingOptions--variant-default.PricingOptions--appearance-gradient {
+  background: linear-gradient(
+    180deg,
+    var(--brand-PricingOptions-item-bgColor-gradient-start) 0%,
+    var(--brand-PricingOptions-item-bgColor-gradient-end) 100%
+  );
+}
+
+.PricingOptions--variant-default.PricingOptions--appearance-gradient::before {
+  position: absolute;
+  content: '';
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  mask-image: var(--brand-PricingOptions-borderMask);
+  border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
 }
 
 @media (min-width: 63.25rem) {
@@ -92,6 +114,10 @@
     margin-block-start: 0;
     margin-inline-start: calc(var(--brand-pricing-options-item-gap) / 2 * -1);
   }
+
+  .PricingOptions--variant-default.PricingOptions--appearance-gradient .PricingOptions__item:nth-child(n + 2)::before {
+    mask-image: var(--brand-PricingOptions-borderMask);
+  }
 }
 
 /* ---------------------------------------------------------- */
@@ -101,9 +127,12 @@
 .PricingOptions--variant-cards .PricingOptions__item {
   padding-inline: var(--base-size-32);
   border-radius: var(--brand-borderRadius-xlarge);
-  border: solid 1px var(--brand-color-border-default);
-  background-color: var(--brand-PricingOptions-item-bgColor);
   padding-block: var(--base-size-32);
+}
+
+.PricingOptions--variant-cards.PricingOptions--appearance-solid .PricingOptions__item {
+  background-color: var(--brand-PricingOptions-item-bgColor-solid);
+  border: solid 1px var(--brand-color-border-default);
 }
 
 /* ---------------------------------------------------------- */

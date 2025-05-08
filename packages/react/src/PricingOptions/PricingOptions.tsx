@@ -33,6 +33,7 @@ type AlignOptions = 'start' | 'center'
 
 export type PricingOptionsProps = {
   align?: AlignOptions
+  appearance?: 'solid' | 'gradient'
   variant?: 'default' | 'cards'
   ['data-testid']?: string
 } & PropsWithChildren<BaseProps<HTMLDivElement>>
@@ -90,6 +91,7 @@ const PricingOptionsRoot = forwardRef(
   (
     {
       align = 'start',
+      appearance = 'solid',
       children,
       className,
       'data-testid': testId,
@@ -113,6 +115,7 @@ const PricingOptionsRoot = forwardRef(
             styles.PricingOptions,
             styles[`PricingOptions--variant-${variant}`],
             styles[`PricingOptions--items${filteredChildren.length}`],
+            styles[`PricingOptions--appearance-${appearance}`],
             className,
           )}
           data-testid={testId || testIds.root}
