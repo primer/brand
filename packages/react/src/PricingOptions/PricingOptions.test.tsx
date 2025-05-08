@@ -25,6 +25,15 @@ describe('PricingOptions', () => {
     expect(PricingOptionsEl.classList).toContain(expectedClass)
   })
 
+  it('adds the class for default solid appearance', () => {
+    const solidAppearanceClass = 'PricingOptions--appearance-solid'
+
+    const {getByTestId} = render(<PricingOptions data-testid={testId}></PricingOptions>)
+
+    const PricingOptionsEl = getByTestId(testId)
+    expect(PricingOptionsEl.classList).toContain(solidAppearanceClass)
+  })
+
   it('adds the class for cards variant', () => {
     const cardsVariantClass = 'PricingOptions--variant-cards'
 
@@ -32,6 +41,15 @@ describe('PricingOptions', () => {
 
     const PricingOptionsEl = getByTestId(testId)
     expect(PricingOptionsEl.classList).toContain(cardsVariantClass)
+  })
+
+  it('adds the class for gradient appearance', () => {
+    const gradientAppearanceClass = 'PricingOptions--appearance-gradient'
+
+    const {getByTestId} = render(<PricingOptions data-testid={testId} appearance="gradient"></PricingOptions>)
+
+    const PricingOptionsEl = getByTestId(testId)
+    expect(PricingOptionsEl.classList).toContain(gradientAppearanceClass)
   })
 
   it('has no a11y violations', async () => {
