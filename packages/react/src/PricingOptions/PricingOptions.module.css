@@ -297,14 +297,6 @@
   grid-row: leadingComponent;
 }
 
-.PricingOptions__header {
-  display: flex;
-  flex-wrap: wrap-reverse;
-  align-items: center;
-  grid-area: header;
-  column-gap: var(--base-size-16);
-}
-
 .PricingOptions__label {
   /* Sets the color of the label to the primary accent color, if it exists */
   --brand-Label-color: var(--brand-color-accent-primary);

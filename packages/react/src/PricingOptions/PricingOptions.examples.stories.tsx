@@ -27,7 +27,7 @@ export default {
   },
 } as Meta<typeof PricingOptions>
 
-export const Examnple1: StoryFn<typeof PricingOptions> = () => {
+export const Example: StoryFn<typeof PricingOptions> = () => {
   return (
     <PricingOptions appearance="gradient">
       <PricingOptions.Item>
@@ -102,7 +102,7 @@ export const Examnple1: StoryFn<typeof PricingOptions> = () => {
     </PricingOptions>
   )
 }
-export const Examnple2: StoryFn<typeof PricingOptions> = () => {
+export const Example2: StoryFn<typeof PricingOptions> = () => {
   return (
     <PricingOptions appearance="gradient">
       <PricingOptions.Item>
@@ -137,7 +137,7 @@ export const Examnple2: StoryFn<typeof PricingOptions> = () => {
           Open in VS Code
         </PricingOptions.SecondaryAction>
         <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListHeading>Everything in Buisiness and:</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListHeading>Everything in Business and:</PricingOptions.FeatureListHeading>
           <PricingOptions.FeatureListItem>Access to all models, including GPT-4.5</PricingOptions.FeatureListItem>
           <PricingOptions.FeatureListItem>
             3.33x more premium requests to use latest models than Business, with the option to buy more1

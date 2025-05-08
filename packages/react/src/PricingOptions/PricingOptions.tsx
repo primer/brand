@@ -552,7 +552,7 @@ const PricingOptionsFeatureListItem = forwardRef<HTMLLIElement, PricingOptionsFe
 
     const itemLeadingVisualFill =
       leadingVisualFill ??
-      (variant === 'included' ? 'var(--brand-color-accent-primary)' : 'var(--brand-color-text-muted')
+      (variant === 'included' ? 'var(--brand-color-accent-primary)' : 'var(--brand-color-text-muted)')
 
     return (
       <UnorderedList.Item
