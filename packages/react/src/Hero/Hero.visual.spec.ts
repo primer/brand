@@ -116,6 +116,15 @@ test.describe('Visual Comparison: Hero', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('Hero / With Custom Heading And Description Sizes', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-custom-heading-and-description-sizes&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('Hero / With custom icon and variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-custom-icon-and-variant&viewMode=story',

@@ -4,6 +4,7 @@ declare const styles: {
   readonly "Text--1000": string;
   readonly "Text--200": string;
   readonly "Text--300": string;
+  readonly "Text--350": string;
   readonly "Text--400": string;
   readonly "Text--500": string;
   readonly "Text--600": string;
