@@ -4,7 +4,7 @@
 
 Add support for deeper link nesting in `SubNav`
 
-Use `SubNav.SubHeading` to represent another tier of content between the `SubNav.Heading` and `SubNav.Link` sub-components.
+Use `SubNav.SubHeading` to present another tier of content between the `SubNav.Heading` and `SubNav.Link` sub-components.
 
 Usage example:
 
