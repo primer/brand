@@ -47,17 +47,17 @@
 /* Layout: default                                         */
 /* ---------------------------------------------------------- */
 
-.PricingOptions--variant-default {
+.PricingOptions--layout-default {
   position: relative;
   border-radius: var(--brand-borderRadius-xlarge);
 }
 
-.PricingOptions--variant-default.PricingOptions--appearance-solid {
+.PricingOptions--layout-default.PricingOptions--appearance-solid {
   border: solid 1px var(--brand-color-border-default);
   background-color: var(--brand-PricingOptions-item-bgColor-solid);
 }
 
-.PricingOptions--variant-default.PricingOptions--appearance-gradient {
+.PricingOptions--layout-default.PricingOptions--appearance-gradient {
   background: linear-gradient(
     180deg,
     var(--brand-PricingOptions-item-bgColor-gradient-start) 0%,
@@ -65,7 +65,7 @@
   );
 }
 
-.PricingOptions--variant-default.PricingOptions--appearance-gradient::before {
+.PricingOptions--layout-default.PricingOptions--appearance-gradient::before {
   position: absolute;
   content: '';
   inset: 0;
@@ -76,26 +76,26 @@
 }
 
 @media (min-width: 63.25rem) {
-  .PricingOptions--variant-default {
+  .PricingOptions--layout-default {
     padding-inline: var(--brand-pricing-options-container-padding-inline);
   }
 }
 
-.PricingOptions--variant-default .PricingOptions__item {
+.PricingOptions--layout-default .PricingOptions__item {
   position: relative; /* Used for positioning the divider between items */
   padding-inline: var(--base-size-24);
   padding-block: var(--base-size-20);
 }
 
 @media (min-width: 63.25rem) {
-  .PricingOptions--variant-default .PricingOptions__item {
+  .PricingOptions--layout-default .PricingOptions__item {
     padding-inline: 0;
     padding-block: var(--base-size-40);
   }
 }
 
 /* Horizontal divider between items on small viewports */
-.PricingOptions--variant-default .PricingOptions__item:nth-child(n + 2)::before {
+.PricingOptions--layout-default .PricingOptions__item:nth-child(n + 2)::before {
   content: '';
   position: absolute;
   inset-inline: 0;
@@ -105,7 +105,7 @@
 
 /* Vertical divider between items on larger viewports */
 @media (min-width: 63.25rem) {
-  .PricingOptions--variant-default .PricingOptions__item:nth-child(n + 2)::before {
+  .PricingOptions--layout-default .PricingOptions__item:nth-child(n + 2)::before {
     inset-inline: 0;
     inset-block: 0;
     width: 1px;
@@ -114,7 +114,7 @@
     margin-inline-start: calc(var(--brand-pricing-options-item-gap) / 2 * -1);
   }
 
-  .PricingOptions--variant-default.PricingOptions--appearance-gradient .PricingOptions__item:nth-child(n + 2)::before {
+  .PricingOptions--layout-default.PricingOptions--appearance-gradient .PricingOptions__item:nth-child(n + 2)::before {
     mask-image: var(--brand-PricingOptions-borderMask);
   }
 }
@@ -123,13 +123,13 @@
 /* Layout: cards                                           */
 /* ---------------------------------------------------------- */
 
-.PricingOptions--variant-cards .PricingOptions__item {
+.PricingOptions--layout-cards .PricingOptions__item {
   padding-inline: var(--base-size-32);
   border-radius: var(--brand-borderRadius-xlarge);
   padding-block: var(--base-size-32);
 }
 
-.PricingOptions--variant-cards.PricingOptions--appearance-solid .PricingOptions__item {
+.PricingOptions--layout-cards.PricingOptions--appearance-solid .PricingOptions__item {
   background-color: var(--brand-PricingOptions-item-bgColor-solid);
   border: solid 1px var(--brand-color-border-default);
 }
@@ -163,7 +163,7 @@
 /* ---------------------------------------------------------- */
 
 @media (min-width: 48rem) {
-  :where(.PricingOptions--variant-cards).PricingOptions--items4 {
+  :where(.PricingOptions--layout-cards).PricingOptions--items4 {
     display: grid;
     column-gap: var(--brand-pricing-options-item-gap);
     row-gap: var(--brand-pricing-options-item-gap);
@@ -179,16 +179,16 @@
     row-gap: 0;
   }
 
-  .PricingOptions--variant-default.PricingOptions--items2 {
+  .PricingOptions--layout-default.PricingOptions--items2 {
     --brand-pricing-options-item-gap: var(--brand-PricingOptions-items2-gap);
     --brand-pricing-options-container-padding-inline: var(--brand-PricingOptions-items2-container-padding-inline);
   }
 
-  .PricingOptions--variant-default.PricingOptions--items3 {
+  .PricingOptions--layout-default.PricingOptions--items3 {
     --brand-pricing-options-item-gap: var(--brand-PricingOptions-items3-gap);
     --brand-pricing-options-container-padding-inline: var(--brand-PricingOptions-items3-container-padding-inline);
   }
-  .PricingOptions--variant-default.PricingOptions--items4 {
+  .PricingOptions--layout-default.PricingOptions--items4 {
     --brand-pricing-options-item-gap: var(--brand-PricingOptions-items4-gap);
     --brand-pricing-options-container-padding-inline: var(--brand-PricingOptions-items4-container-padding-inline);
   }

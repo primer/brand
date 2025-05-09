@@ -111,7 +111,7 @@ const PricingOptionsRoot = forwardRef(
         <div
           className={clsx(
             styles.PricingOptions,
-            styles[`PricingOptions--variant-${variant}`],
+            styles[`PricingOptions--layout-${variant.includes('default') ? 'default' : 'cards'}`],
             styles[`PricingOptions--items${filteredChildren.length}`],
             styles[`PricingOptions--appearance-${variant.includes('gradient') ? 'gradient' : 'solid'}`],
             className,

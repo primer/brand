@@ -25,24 +25,32 @@ describe('PricingOptions', () => {
     expect(PricingOptionsEl.classList).toContain(expectedClass)
   })
 
-  it('adds the class for cards variant', () => {
-    const cardsVariantClass = 'PricingOptions--variant-cards'
+  it('applies the correct layout classes for each variant', () => {
+    const defaultLayout = 'PricingOptions--layout-default'
+    const cardsLayout = 'PricingOptions--layout-cards'
 
-    const {getByTestId} = render(<PricingOptions data-testid={testId} variant="cards"></PricingOptions>)
+    const {getByTestId, rerender} = render(<PricingOptions data-testid={testId} variant="default" />)
+    expect(getByTestId(testId).classList).toContain(defaultLayout)
 
-    const PricingOptionsEl = getByTestId(testId)
-    expect(PricingOptionsEl.classList).toContain(cardsVariantClass)
+    rerender(<PricingOptions data-testid={testId} variant="default-gradient" />)
+    expect(getByTestId(testId).classList).toContain(defaultLayout)
+
+    rerender(<PricingOptions data-testid={testId} variant="cards" />)
+    expect(getByTestId(testId).classList).toContain(cardsLayout)
+
+    rerender(<PricingOptions data-testid={testId} variant="cards-gradient" />)
+    expect(getByTestId(testId).classList).toContain(cardsLayout)
   })
 
   it('applies the correct appearance classes for each variant', () => {
-    const solidVariantº = 'PricingOptions--appearance-solid'
+    const solidVariant = 'PricingOptions--appearance-solid'
     const gradientVariant = 'PricingOptions--appearance-gradient'
 
     const {getByTestId, rerender} = render(<PricingOptions data-testid={testId} variant="default" />)
-    expect(getByTestId(testId).classList).toContain(solidVariantº)
+    expect(getByTestId(testId).classList).toContain(solidVariant)
 
     rerender(<PricingOptions data-testid={testId} variant="cards" />)
-    expect(getByTestId(testId).classList).toContain(solidVariantº)
+    expect(getByTestId(testId).classList).toContain(solidVariant)
 
     rerender(<PricingOptions data-testid={testId} variant="default-gradient" />)
     expect(getByTestId(testId).classList).toContain(gradientVariant)

@@ -6,8 +6,8 @@ declare const styles: {
   readonly "PricingOptions--items2": string;
   readonly "PricingOptions--items3": string;
   readonly "PricingOptions--items4": string;
-  readonly "PricingOptions--variant-cards": string;
-  readonly "PricingOptions--variant-default": string;
+  readonly "PricingOptions--layout-cards": string;
+  readonly "PricingOptions--layout-default": string;
   readonly "PricingOptions__actions": string;
   readonly "PricingOptions__description": string;
   readonly "PricingOptions__feature-list": string;
