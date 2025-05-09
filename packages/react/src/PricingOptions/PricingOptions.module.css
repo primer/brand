@@ -274,6 +274,13 @@
   align-self: flex-start;
 }
 
+@media (min-width: 63.24rem) {
+  .PricingOptions__item:not(.PricingOptions__item--align-center) .PricingOptions__heading {
+    margin-block-start: 0;
+    margin-block-end: var(--base-size-16);
+  }
+}
+
 /* When item is centered, stack the label on top the heading */
 .PricingOptions__item--align-center .PricingOptions__header {
   flex-direction: column;
@@ -326,18 +333,20 @@
   flex-wrap: wrap;
   align-content: flex-start;
   grid-row: price;
-  padding-block: var(--base-size-20);
+  padding-block-start: var(--base-size-20);
+  padding-block-end: var(--base-size-8);
 }
 
-.PricingOptions__price-currency-symbol {
+@media (max-width: 63.25rem) {
+  .PricingOptions__price-value,
+  .PricingOptions__price-currency-symbol {
+    font-size: var(--brand-text-size-900);
+  }
 }
 
 .PricingOptions__price-currency-code {
   margin-inline-start: var(--base-size-4);
   color: var(--brand-color-text-muted);
-}
-
-.PricingOptions__price-value {
 }
 
 .PricingOptions__price-original-price {
@@ -368,7 +377,7 @@
 .PricingOptions__footnote {
   grid-row: footnote;
   display: block;
-  margin-block-start: var(--base-size-40);
+  margin-block-start: var(--base-size-8);
 }
 
 /* ---------------------------------------------------------- */
@@ -381,6 +390,7 @@
   gap: var(--base-size-8);
   grid-row: feature-list;
   margin-block-start: var(--base-size-20);
+  padding-block-start: var(--base-size-20);
   width: 100%;
 }
 
@@ -414,7 +424,7 @@
  * Accordion component overrides
  */
 
-/* Remove paddings and borders */
+/*  paddings and borders */
 .PricingOptions__feature-list-accordion {
   border: 0;
   padding: 0;
