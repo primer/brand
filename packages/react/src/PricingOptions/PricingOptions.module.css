@@ -134,7 +134,7 @@
 
 .PricingOptions--layout-cards.PricingOptions--appearance-solid .PricingOptions__item {
   background-color: var(--brand-PricingOptions-item-bgColor-solid);
-  border: solid 1px var(--brand-color-border-default);
+  border: solid var(--brand-borderWidth-thin) var(--brand-color-border-default);
 }
 
 /* ---------------------------------------------------------- */
