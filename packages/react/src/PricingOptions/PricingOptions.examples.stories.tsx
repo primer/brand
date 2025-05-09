@@ -100,7 +100,7 @@ export const CopilotIndividualPlans: StoryFn<typeof PricingOptions> = () => {
     </PricingOptions>
   )
 }
-export const CopilotBusinessPlans: StoryFn<typeof PricingOptions> = () => {```
+export const CopilotBusinessPlans: StoryFn<typeof PricingOptions> = () => {
   return (
     <PricingOptions variant="default-gradient">
       <PricingOptions.Item>

@@ -253,7 +253,7 @@
 .PricingOptions__header {
   display: flex;
   grid-area: header;
-  row-gap: var(--base-size-8);
+  row-gap: var(--base-size-16);
 }
 
 /* When item is left-aligned, place the label next to the heading if it fits, and stack it if it doesn't */
@@ -289,6 +289,7 @@
 .PricingOptions__item--align-center .PricingOptions__header {
   flex-direction: column;
   align-items: center;
+  justify-content: flex-end;
 }
 
 .PricingOptions__item--align-center .PricingOptions__label {
@@ -300,7 +301,8 @@
 }
 
 .PricingOptions__item--align-center .PricingOptions__heading {
-  margin-block: var(--base-size-16);
+  margin-block-start: 0;
+  margin-block-end: var(--base-size-16);
   order: 2;
 }
 
