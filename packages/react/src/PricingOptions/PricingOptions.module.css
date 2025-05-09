@@ -57,7 +57,8 @@
   background-color: var(--brand-PricingOptions-item-bgColor-solid);
 }
 
-.PricingOptions--layout-default.PricingOptions--appearance-gradient {
+.PricingOptions--layout-default.PricingOptions--appearance-gradient,
+.PricingOptions--layout-cards.PricingOptions--appearance-gradient .PricingOptions__item {
   background: linear-gradient(
     180deg,
     var(--brand-PricingOptions-item-bgColor-gradient-start) 0%,
@@ -65,7 +66,8 @@
   );
 }
 
-.PricingOptions--layout-default.PricingOptions--appearance-gradient::before {
+.PricingOptions--layout-default.PricingOptions--appearance-gradient::before,
+.PricingOptions--layout-cards.PricingOptions--appearance-gradient .PricingOptions__item::before {
   position: absolute;
   content: '';
   inset: 0;
@@ -124,6 +126,7 @@
 /* ---------------------------------------------------------- */
 
 .PricingOptions--layout-cards .PricingOptions__item {
+  position: relative;
   padding-inline: var(--base-size-32);
   border-radius: var(--brand-borderRadius-xlarge);
   padding-block: var(--base-size-32);
