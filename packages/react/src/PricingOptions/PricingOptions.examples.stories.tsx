@@ -27,7 +27,7 @@ export default {
   },
 } as Meta<typeof PricingOptions>
 
-export const Example1: StoryFn<typeof PricingOptions> = () => {
+export const CopilotIndividualPlans: StoryFn<typeof PricingOptions> = () => {
   return (
     <PricingOptions variant="default-gradient">
       <PricingOptions.Item>
