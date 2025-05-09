@@ -8,6 +8,4 @@ export const LogoSuiteLogobarChildrenProp = () => (
   <PropTableValues values={[`SVGElement`, `SVGElement[]`, `HTMLImageElement`, `HTMLImageElement[]`]} addLineBreaks />
 )
 
-export const LogoSuiteLogobarMarqueeSpeedProp = () => (
-  <PropTableValues values={['slow', 'normal', 'idle']} addLineBreaks />
-)
+export const LogoSuiteLogobarMarqueeSpeedProp = () => <PropTableValues values={['slow', 'normal']} addLineBreaks />
