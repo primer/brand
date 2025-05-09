@@ -1,11 +1,13 @@
 declare const styles: {
   readonly "PricingOptions": string;
+  readonly "PricingOptions--appearance-gradient": string;
+  readonly "PricingOptions--appearance-solid": string;
   readonly "PricingOptions--items1": string;
   readonly "PricingOptions--items2": string;
   readonly "PricingOptions--items3": string;
   readonly "PricingOptions--items4": string;
-  readonly "PricingOptions--variant-cards": string;
-  readonly "PricingOptions--variant-default": string;
+  readonly "PricingOptions--layout-cards": string;
+  readonly "PricingOptions--layout-default": string;
   readonly "PricingOptions__actions": string;
   readonly "PricingOptions__description": string;
   readonly "PricingOptions__feature-list": string;
@@ -18,6 +20,7 @@ declare const styles: {
   readonly "PricingOptions__feature-list-item--excluded": string;
   readonly "PricingOptions__feature-list-set": string;
   readonly "PricingOptions__footnote": string;
+  readonly "PricingOptions__header": string;
   readonly "PricingOptions__heading": string;
   readonly "PricingOptions__item": string;
   readonly "PricingOptions__item--align-center": string;

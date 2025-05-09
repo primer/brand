@@ -1,6 +1,7 @@
 import React, {forwardRef, HTMLAttributes, PropsWithChildren, useMemo, Ref, Dispatch} from 'react'
 import {CheckIcon, ChevronDownIcon, XIcon} from '@primer/octicons-react'
 import clsx from 'clsx'
+import type {ListItemProps} from '../list/ListItem/ListItem'
 import type {BaseProps} from '../component-helpers'
 
 import {
@@ -32,7 +33,7 @@ type AlignOptions = 'start' | 'center'
 
 export type PricingOptionsProps = {
   align?: AlignOptions
-  variant?: 'default' | 'cards'
+  variant?: 'default' | 'default-gradient' | 'cards' | 'cards-gradient'
   ['data-testid']?: string
 } & PropsWithChildren<BaseProps<HTMLDivElement>>
 
@@ -110,8 +111,9 @@ const PricingOptionsRoot = forwardRef(
         <div
           className={clsx(
             styles.PricingOptions,
-            styles[`PricingOptions--variant-${variant}`],
+            styles[`PricingOptions--layout-${variant.includes('default') ? 'default' : 'cards'}`],
             styles[`PricingOptions--items${filteredChildren.length}`],
+            styles[`PricingOptions--appearance-${variant.includes('gradient') ? 'gradient' : 'solid'}`],
             className,
           )}
           data-testid={testId || testIds.root}
@@ -204,8 +206,10 @@ const PricingOptionsItem = forwardRef(
         ref={ref}
         {...(rest as HTMLAttributes<HTMLElement>)}
       >
-        {Heading}
-        {Label}
+        <div className={styles['PricingOptions__header']}>
+          {Heading}
+          {Label}
+        </div>
         {Description}
         {Price}
         {leadingComponent && <div className={styles['PricingOptions__leading-component']}>{leadingComponent}</div>}
@@ -228,7 +232,7 @@ const PricingOptionsLabel = forwardRef<HTMLSpanElement, PricingOptionsLabelProps
         className={clsx(styles.PricingOptions__label, className)}
         data-testid={testId || testIds.label}
         ref={ref}
-        size="medium"
+        size="small"
         {...rest}
       >
         {children}
@@ -315,7 +319,7 @@ const PricingOptionsPrice = forwardRef<HTMLParagraphElement, PricingOptionsPrice
           as="span"
           className={styles['PricingOptions__price-currency-symbol']}
           font="hubot-sans"
-          size="500"
+          size="700"
           weight="normal"
         >
           {currencySymbol}
@@ -329,7 +333,7 @@ const PricingOptionsPrice = forwardRef<HTMLParagraphElement, PricingOptionsPrice
           as="span"
           className={styles['PricingOptions__price-currency-code']}
           font="hubot-sans"
-          size="500"
+          size="100"
           weight="normal"
         >
           {currencyCode}
@@ -343,7 +347,7 @@ const PricingOptionsPrice = forwardRef<HTMLParagraphElement, PricingOptionsPrice
             <Text
               className={styles['PricingOptions__price-original-price-value']}
               font="hubot-sans"
-              size="500"
+              size="400"
               variant="muted"
               weight="normal"
             >
@@ -534,14 +538,19 @@ const PricingOptionsFeatureListGroupHeading = forwardRef<
 type PricingOptionsFeatureListItemProps = PropsWithChildren<BaseProps<HTMLLIElement>> & {
   'data-testid'?: string
   variant?: 'included' | 'excluded'
-}
+} & Omit<ListItemProps, 'variant'>
 
 const PricingOptionsFeatureListItem = forwardRef<HTMLLIElement, PricingOptionsFeatureListItemProps>(
-  ({children, className, variant = 'included', 'data-testid': testId, ...rest}, ref) => {
-    const itemLeadingVisual = variant === 'included' ? CheckIcon : XIcon
+  (
+    {children, className, leadingVisual, leadingVisualFill, variant = 'included', 'data-testid': testId, ...rest},
+    ref,
+  ) => {
+    const itemLeadingVisual = leadingVisual ?? (variant === 'included' ? CheckIcon : XIcon)
     const itemLeadingVisualAriaLabel = variant === 'included' ? 'Includes' : 'Does not include'
+
     const itemLeadingVisualFill =
-      variant === 'included' ? 'var(--brand-color-accent-primary)' : 'var(--brand-color-text-muted'
+      leadingVisualFill ??
+      (variant === 'included' ? 'var(--brand-color-accent-primary)' : 'var(--brand-color-text-muted)')
 
     return (
       <UnorderedList.Item

@@ -28,7 +28,6 @@ import {
 ```jsx live
 <PricingOptions>
   <PricingOptions.Item>
-    <PricingOptions.Label>Recommended</PricingOptions.Label>
     <PricingOptions.Heading>Copilot</PricingOptions.Heading>
     <PricingOptions.Description>Copilot in the coding environment.</PricingOptions.Description>
     <PricingOptions.Price currencySymbol="$" originalPrice="20" trailingText="per month / $100 per year">
@@ -70,7 +69,47 @@ import {
 ```jsx live
 <PricingOptions variant="cards">
   <PricingOptions.Item>
+    <PricingOptions.Heading>Copilot</PricingOptions.Heading>
+    <PricingOptions.Description>Copilot in the coding environment.</PricingOptions.Description>
+    <PricingOptions.Price currencySymbol="$" trailingText="per month / $100 per year">
+      10
+    </PricingOptions.Price>
+    <PricingOptions.FeatureList>
+      <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
+    <PricingOptions.PrimaryAction href="/buy">Buy now</PricingOptions.PrimaryAction>
+    <PricingOptions.SecondaryAction href="/contact">Contact sales</PricingOptions.SecondaryAction>
+  </PricingOptions.Item>
+
+  <PricingOptions.Item>
     <PricingOptions.Label>Recommended</PricingOptions.Label>
+    <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+    <PricingOptions.Description>
+      Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
+      Enterprise Cloud.
+    </PricingOptions.Description>
+    <PricingOptions.Price currencySymbol="$" trailingText="per user / month">
+      39
+    </PricingOptions.Price>
+    <PricingOptions.FeatureList>
+      <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
+    <PricingOptions.PrimaryAction href="/buy">Join waitlist</PricingOptions.PrimaryAction>
+  </PricingOptions.Item>
+</PricingOptions>
+```
+
+### Gradient variant
+
+```jsx live
+<PricingOptions variant="default-gradient">
+  <PricingOptions.Item>
     <PricingOptions.Heading>Copilot</PricingOptions.Heading>
     <PricingOptions.Description>Copilot in the coding environment.</PricingOptions.Description>
     <PricingOptions.Price currencySymbol="$" trailingText="per month / $100 per year">
@@ -112,7 +151,6 @@ import {
 ```jsx live
 <PricingOptions variant="cards" align="center">
   <PricingOptions.Item>
-    <PricingOptions.Label>Recommended</PricingOptions.Label>
     <PricingOptions.Heading>Copilot</PricingOptions.Heading>
     <PricingOptions.Description>Copilot in the coding environment.</PricingOptions.Description>
     <PricingOptions.Price currencySymbol="$" trailingText="per month / $100 per year">
@@ -122,7 +160,6 @@ import {
   </PricingOptions.Item>
 
   <PricingOptions.Item>
-    <PricingOptions.Label>Recommended</PricingOptions.Label>
     <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
     <PricingOptions.Description>
       Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
@@ -164,7 +201,6 @@ This is the two-item layout for the pricing options component.
 ```jsx live
 <PricingOptions>
   <PricingOptions.Item>
-    <PricingOptions.Label>Recommended</PricingOptions.Label>
     <PricingOptions.Heading>Copilot</PricingOptions.Heading>
     <PricingOptions.Description>Copilot in the coding environment.</PricingOptions.Description>
     <PricingOptions.Price currencySymbol="$" trailingText="per month / $100 per year">
@@ -347,7 +383,7 @@ Use `PricingOptions.FeatureListItem` with `variant="included"` and `variant="exc
 | :--------- | :---------------------------- | :-------: | :------: | :---------------------------------- |
 | `as`       | <PricingOptionsAsProp />      | `section` | `false`  | Applies the underlying HTML element |
 | `children` | `PricingOptions.Item`         |           |  `true`  | Applies the underlying HTML element |
-| `variant`  | <PricingOptionsVariantProp /> |           | `false`  | The variant styling                 |
+| `variant`  | <PricingOptionsVariantProp /> |           | `false`  | Sets the style variant              |
 
 ### PricingOptions.Item <Label>Required</Label>
 

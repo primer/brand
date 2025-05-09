@@ -5,7 +5,7 @@ import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {PricingOptions} from '.'
 import {Box, Grid, InlineLink, Stack} from '..'
 import imageExample from '../fixtures/images/bento/3.png'
-import {CopilotIcon} from '@primer/octicons-react'
+import {CopilotIcon, SparkleFillIcon} from '@primer/octicons-react'
 
 const decorators = Story => (
   <Box backgroundColor="default" paddingBlockStart="spacious" paddingBlockEnd="spacious" style={{minHeight: '100vh'}}>
@@ -109,6 +109,62 @@ export const CardsVariant: StoryFn<typeof PricingOptions> = () => {
   )
 }
 
+export const DefaultGradientVariant: StoryFn<typeof PricingOptions> = () => {
+  return (
+    <PricingOptions variant="default-gradient">
+      <PricingOptions.Item>
+        <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+        <PricingOptions.Description>
+          Code completions, Chat, and more for indie developers and freelancers.
+        </PricingOptions.Description>
+        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
+
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Start a free trial
+        </PricingOptions.PrimaryAction>
+      </PricingOptions.Item>
+
+      <PricingOptions.Item>
+        <PricingOptions.Label>Recommended</PricingOptions.Label>
+        <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+        <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
+        <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Buy now
+        </PricingOptions.PrimaryAction>
+      </PricingOptions.Item>
+    </PricingOptions>
+  )
+}
+
+export const CardsGradientVariant: StoryFn<typeof PricingOptions> = () => {
+  return (
+    <PricingOptions variant="cards-gradient">
+      <PricingOptions.Item>
+        <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+        <PricingOptions.Description>
+          Code completions, Chat, and more for indie developers and freelancers.
+        </PricingOptions.Description>
+        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
+
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Start a free trial
+        </PricingOptions.PrimaryAction>
+      </PricingOptions.Item>
+
+      <PricingOptions.Item>
+        <PricingOptions.Label>Recommended</PricingOptions.Label>
+        <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+        <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
+        <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Buy now
+        </PricingOptions.PrimaryAction>
+      </PricingOptions.Item>
+    </PricingOptions>
+  )
+}
+
 export const OneOption: StoryFn<typeof PricingOptions> = () => {
   return (
     <PricingOptions>
@@ -146,7 +202,6 @@ export const LeadingComponent: StoryFn<typeof PricingOptions> = () => {
     <Stack direction="vertical">
       <PricingOptions variant="cards">
         <PricingOptions.Item leadingComponent={<Image />}>
-          <PricingOptions.Label>Recommended</PricingOptions.Label>
           <PricingOptions.Heading>Copilot</PricingOptions.Heading>
           <PricingOptions.Description>Copilot in the coding environment.</PricingOptions.Description>
           <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
@@ -205,7 +260,6 @@ export const TwoOptions: StoryFn<typeof PricingOptions> = () => {
   return (
     <PricingOptions>
       <PricingOptions.Item>
-        <PricingOptions.Label>Recommended</PricingOptions.Label>
         <PricingOptions.Heading>Copilot</PricingOptions.Heading>
         <PricingOptions.Description>Copilot in the coding environment.</PricingOptions.Description>
         <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
@@ -837,6 +891,112 @@ export const WithCustomFeatureListHeading: StoryFn<typeof PricingOptions> = () =
   )
 }
 
+export const WithCustomFeatureListItemLeadingVisual: StoryFn<typeof PricingOptions> = () => {
+  return (
+    <PricingOptions>
+      <PricingOptions.Item>
+        <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+        <PricingOptions.Description>
+          Code completions, Chat, and more for indie developers and freelancers.
+        </PricingOptions.Description>
+        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
+        <PricingOptions.FeatureList hasDivider={false}>
+          <PricingOptions.FeatureListItem
+            leadingVisual={SparkleFillIcon}
+            leadingVisualFill="var(--base-color-scale-purple-5)"
+          >
+            Code completions
+          </PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem
+            leadingVisual={SparkleFillIcon}
+            leadingVisualFill="var(--base-color-scale-purple-5)"
+          >
+            Chat in IDE and Mobile
+          </PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem
+            leadingVisual={SparkleFillIcon}
+            leadingVisualFill="var(--base-color-scale-purple-5)"
+          >
+            CLI assistance
+          </PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem
+            leadingVisual={SparkleFillIcon}
+            leadingVisualFill="var(--base-color-scale-purple-5)"
+          >
+            Security vulnerability filter
+          </PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+        <PricingOptions.Footnote>
+          Free for verified students, teachers, and maintainers of popular open source projects.
+        </PricingOptions.Footnote>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Start a free trial
+        </PricingOptions.PrimaryAction>
+      </PricingOptions.Item>
+
+      <PricingOptions.Item>
+        <PricingOptions.Label>Recommended</PricingOptions.Label>
+        <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+        <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
+        <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Buy now
+        </PricingOptions.PrimaryAction>
+
+        <PricingOptions.FeatureList expanded={false} hasDivider={false}>
+          <PricingOptions.FeatureListItem
+            leadingVisual={SparkleFillIcon}
+            leadingVisualFill="var(--base-color-scale-purple-5)"
+          >
+            Everything in Copilot Individual plus:
+          </PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem
+            leadingVisual={SparkleFillIcon}
+            leadingVisualFill="var(--base-color-scale-purple-5)"
+          >
+            Chat in IDE and Mobile
+          </PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem
+            leadingVisual={SparkleFillIcon}
+            leadingVisualFill="var(--base-color-scale-purple-5)"
+          >
+            CLI assistance
+          </PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem
+            leadingVisual={SparkleFillIcon}
+            leadingVisualFill="var(--base-color-scale-purple-5)"
+          >
+            Security vulnerability filter
+          </PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem
+            leadingVisual={SparkleFillIcon}
+            leadingVisualFill="var(--base-color-scale-purple-5)"
+          >
+            Code referencing
+          </PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem
+            leadingVisual={SparkleFillIcon}
+            leadingVisualFill="var(--base-color-scale-purple-5)"
+          >
+            Public code filter
+          </PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem
+            leadingVisual={SparkleFillIcon}
+            leadingVisualFill="var(--base-color-scale-purple-5)"
+          >
+            IP indemnity
+          </PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem
+            leadingVisual={SparkleFillIcon}
+            leadingVisualFill="var(--base-color-scale-purple-5)"
+          >
+            Enterprise-grade security, safety, and privacy
+          </PricingOptions.FeatureListItem>
+        </PricingOptions.FeatureList>
+      </PricingOptions.Item>
+    </PricingOptions>
+  )
+}
 export const CollapsedFeaturesNoDividers: StoryFn<typeof PricingOptions> = () => {
   return (
     <PricingOptions>
