@@ -15,24 +15,75 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
  */
 import styles from './MinimalFooter.module.css'
 
-export const MinimalFooterSocialLinks = [
-  'x',
-  'github',
-  'linkedin',
-  'youtube',
-  'facebook',
-  'twitch',
-  'tiktok',
-  'instagram',
-] as const
+const socialLinkData = {
+  x: {
+    fullName: 'X',
+    url: 'https://x.com/github',
+    icon: 'https://github.githubassets.com/images/modules/site/icons/footer/x.svg',
+    iconWidth: 20,
+    iconHeight: 16,
+  },
+  github: {
+    fullName: 'GitHub',
+    url: 'https://github.com/github',
+    icon: 'https://github.githubassets.com/images/modules/site/icons/footer/github-mark.svg',
+    iconWidth: 20,
+    iconHeight: 20,
+  },
+  linkedin: {
+    fullName: 'LinkedIn',
+    url: 'https://www.linkedin.com/company/github',
+    icon: 'https://github.githubassets.com/images/modules/site/icons/footer/linkedin.svg',
+    iconWidth: 19,
+    iconHeight: 18,
+  },
+  youtube: {
+    fullName: 'YouTube',
+    url: 'https://www.youtube.com/github',
+    icon: 'https://github.githubassets.com/images/modules/site/icons/footer/youtube.svg',
+    iconWidth: 23,
+    iconHeight: 16,
+  },
+  facebook: {
+    fullName: 'Facebook',
+    url: 'https://www.facebook.com/GitHub',
+    icon: 'https://github.githubassets.com/images/modules/site/icons/footer/facebook.svg',
+    iconWidth: 18,
+    iconHeight: 18,
+  },
+  twitch: {
+    fullName: 'Twitch',
+    url: 'https://www.twitch.tv/github',
+    icon: 'https://github.githubassets.com/images/modules/site/icons/footer/twitch.svg',
+    iconWidth: 18,
+    iconHeight: 18,
+  },
+  tiktok: {
+    fullName: 'TikTok',
+    url: 'https://www.tiktok.com/@github',
+    icon: 'https://github.githubassets.com/images/modules/site/icons/footer/tiktok.svg',
+    iconWidth: 18,
+    iconHeight: 18,
+  },
+  instagram: {
+    fullName: 'Instagram',
+    url: 'https://www.instagram.com/github/',
+    icon: 'https://github.githubassets.com/images/modules/site/icons/footer/instagram.svg',
+    iconWidth: 24,
+    iconHeight: 24,
+  },
+} as const
 
-type SocialLinks = (typeof MinimalFooterSocialLinks)[number]
+type SocialLinkName = keyof typeof socialLinkData
+type SocialLink = (typeof socialLinkData)[SocialLinkName]
+
+const socialLinkNames = Object.keys(socialLinkData) as SocialLinkName[]
 
 export type MinimalFooterProps = {
   /**
    * An array of social links to be displayed in the footer.
    */
-  socialLinks?: SocialLinks[] | false
+  socialLinks?: SocialLinkName[] | false
   /**
    * The href for the GitHub logo.
    */
@@ -149,103 +200,39 @@ function Footnotes({children, className}: PropsWithChildren<FootnoteProps>) {
   )
 }
 
+type SocialLinkProps = {name: SocialLinkName}
+
+const SocialLink = ({name}: SocialLinkProps) => {
+  const link = socialLinkData[name]
+  return (
+    <li key={name}>
+      <a
+        href={link.url}
+        className={styles['Footer__social-link']}
+        data-analytics-event={`{"category":"Footer","action":"go to ${link.fullName}","label":"text:${name}"}`}
+      >
+        <img
+          className={styles['Footer__social-icon']}
+          src={link.icon}
+          height={link.iconHeight}
+          width={link.iconWidth}
+          loading="lazy"
+          decoding="async"
+          alt=""
+        />
+        <span className="visually-hidden">GitHub on {link.fullName}</span>
+      </a>
+    </li>
+  )
+}
+
 type SocialLogomarksProps = {
-  socialLinks?: SocialLinks[] | false
+  socialLinks?: SocialLinkName[] | false
   logoHref?: string
 }
 
-function SocialLogomarks({socialLinks, logoHref}: SocialLogomarksProps) {
+function SocialLogomarks({socialLinks = socialLinkNames, logoHref}: SocialLogomarksProps) {
   const {colorMode} = useTheme()
-
-  const socialLinkData = [
-    {
-      name: 'x',
-      fullName: 'X',
-      url: 'https://x.com/github',
-      icon: 'https://github.githubassets.com/images/modules/site/icons/footer/x.svg',
-      iconWidth: 20,
-      iconHeight: 16,
-    },
-    {
-      name: 'github',
-      fullName: 'GitHub',
-      url: 'https://github.com/github',
-      icon: 'https://github.githubassets.com/images/modules/site/icons/footer/github-mark.svg',
-      iconWidth: 20,
-      iconHeight: 20,
-    },
-    {
-      name: 'linkedin',
-      fullName: 'LinkedIn',
-      url: 'https://www.linkedin.com/company/github',
-      icon: 'https://github.githubassets.com/images/modules/site/icons/footer/linkedin.svg',
-      iconWidth: 19,
-      iconHeight: 18,
-    },
-    {
-      name: 'youtube',
-      fullName: 'YouTube',
-      url: 'https://www.youtube.com/github',
-      icon: 'https://github.githubassets.com/images/modules/site/icons/footer/youtube.svg',
-      iconWidth: 23,
-      iconHeight: 16,
-    },
-    {
-      name: 'facebook',
-      fullName: 'Facebook',
-      url: 'https://www.facebook.com/GitHub',
-      icon: 'https://github.githubassets.com/images/modules/site/icons/footer/facebook.svg',
-      iconWidth: 18,
-      iconHeight: 18,
-    },
-    {
-      name: 'twitch',
-      fullName: 'Twitch',
-      url: 'https://www.twitch.tv/github',
-      icon: 'https://github.githubassets.com/images/modules/site/icons/footer/twitch.svg',
-      iconWidth: 18,
-      iconHeight: 18,
-    },
-    {
-      name: 'tiktok',
-      fullName: 'TikTok',
-      url: 'https://www.tiktok.com/@github',
-      icon: 'https://github.githubassets.com/images/modules/site/icons/footer/tiktok.svg',
-      iconWidth: 18,
-      iconHeight: 18,
-    },
-    {
-      name: 'instagram',
-      fullName: 'Instagram',
-      url: 'https://www.instagram.com/github/',
-      icon: 'https://github.githubassets.com/images/modules/site/icons/footer/instagram.svg',
-      iconWidth: 24,
-      iconHeight: 24,
-    },
-  ]
-
-  const renderLink = (link: (typeof socialLinkData)[number]) => {
-    return (
-      <li key={link.name}>
-        <a
-          href={link.url}
-          className={styles['Footer__social-link']}
-          data-analytics-event={`{"category":"Footer","action":"go to ${link.fullName}","label":"text:${link.name}"}`}
-        >
-          <img
-            className={styles['Footer__social-icon']}
-            src={link.icon}
-            height={link.iconHeight}
-            width={link.iconWidth}
-            loading="lazy"
-            decoding="async"
-            alt=""
-          />
-          <span className="visually-hidden">GitHub on {link.fullName}</span>
-        </a>
-      </li>
-    )
-  }
 
   return (
     <section className={clsx(styles['Footer__logomarks'])}>
@@ -266,18 +253,13 @@ function SocialLogomarks({socialLinks, logoHref}: SocialLogomarksProps) {
               <LogoGithubIcon fill={colorMode === ColorModesEnum.DARK ? 'white' : 'black'} size="medium" />
             </a>
           </div>
-          {socialLinks !== false ? (
+          {socialLinks ? (
             <ul className={styles['Footer__social-links']}>
-              {socialLinkData.map((link: (typeof socialLinkData)[number]) => {
-                if (socialLinks && !socialLinks.includes(link.name as SocialLinks)) {
-                  return null
-                }
-                return renderLink(link)
-              })}
+              {socialLinks.map(name => (
+                <SocialLink key={name} name={name} />
+              ))}
             </ul>
-          ) : (
-            <></>
-          )}
+          ) : null}
         </Stack>
       </div>
     </section>

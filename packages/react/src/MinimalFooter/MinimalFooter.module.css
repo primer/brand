@@ -59,6 +59,18 @@
   padding-bottom: var(--base-size-48);
 }
 
+.Footer__social-link {
+  position: relative;
+}
+
+.Footer__social-link::before {
+  content: '';
+  display: block;
+  position: absolute;
+  min-width: var(--base-size-24);
+  min-height: var(--base-size-24);
+}
+
 .Footer__social-link:hover .Footer__social-icon,
 .Footer__social-link:focus-visible .Footer__social-icon {
   filter: var(--brand-footer-socialIcon-hoverFilter);
@@ -67,6 +79,10 @@
 .Footer__social-icon {
   width: 24px;
   height: auto;
+}
+
+[data-color-mode='light'] .Footer__social-icon {
+  filter: brightness(95%) saturate(100%);
 }
 
 /**

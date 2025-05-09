@@ -80,6 +80,10 @@ export const NoSocialLinks = () => <MinimalFooter socialLinks={false} />
 
 export const FilteredSocialLinks = () => <MinimalFooter socialLinks={['facebook', 'x']} />
 
+export const ReversedSocialLinks = () => (
+  <MinimalFooter socialLinks={['x', 'github', 'linkedin', 'youtube', 'facebook', 'twitch', 'tiktok', 'instagram']} />
+)
+
 export const DefaultNarrow = () => (
   <MinimalFooter>
     <MinimalFooter.Footnotes>
