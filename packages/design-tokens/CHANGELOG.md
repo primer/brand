@@ -1,5 +1,44 @@
 # @primer/brand-primitives
 
+## 0.53.0
+
+### Patch Changes
+
+- [#976](https://github.com/primer/brand/pull/976) [`4cdb794`](https://github.com/primer/brand/commit/4cdb7943f5759c7a0bb5dd1499a5c71f7e9c9c6f) Thanks [@danielguillan](https://github.com/danielguillan)! - Added a new `350` step to the typographic scale.
+
+  E.g.
+
+  ```css
+  .Some-text {
+    font-weight: var(--brand-text-weight-350);
+    font-size: var(--brand-text-size-350);
+    line-height: var(--brand-text-lineHeight-350);
+    letter-spacing: var(--brand-text-letterSpacing-350);
+  }
+  ```
+
+- [#1002](https://github.com/primer/brand/pull/1002) [`84d8e52`](https://github.com/primer/brand/commit/84d8e52f4b3f4c9a49cb9417f1f4a6c96649264e) Thanks [@danielguillan](https://github.com/danielguillan)! - - Updated styles and layout in `PricingOptions` for a more condensed design.
+
+  - Added new `variant` options to support `gradient` styling in `PricingOptions`: `default-gradient` and `cards-gradient`.
+
+  Usage example:
+
+  ```jsx
+  <PricingOptions variant="default-gradient">{/*...*/}</PricingOptions>
+  ```
+
+- [#1005](https://github.com/primer/brand/pull/1005) [`dcfdb2c`](https://github.com/primer/brand/commit/dcfdb2c75e76158efb8e9a06898ce652881a55e4) Thanks [@rezrah](https://github.com/rezrah)! - Updated dark mode color values for `canvas.default` and `black.0`
+
+  ```diff
+  - --base-color-scale-black-0: #0d1117
+  + --base-color-scale-black-0: #000000
+  ```
+
+  ```diff
+  - --brand-color-canvas-default: var(--base-color-scale-gray-9)
+  + --brand-color-canvas-default: var(--base-color-scale-black-0)
+  ```
+
 ## 0.52.0
 
 ### Patch Changes

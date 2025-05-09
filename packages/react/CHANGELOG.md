@@ -1,5 +1,77 @@
 # @primer/react-brand
 
+## 0.53.0
+
+### Minor Changes
+
+- [#978](https://github.com/primer/brand/pull/978) [`d33f300`](https://github.com/primer/brand/commit/d33f30029d83d9464c42b57f13ebfcc17eaa41cf) Thanks [@danielguillan](https://github.com/danielguillan)! - ⚠️ Breaking changes
+
+  The `PricingOptions.FeatureListHeading` component has been renamed to `PricingOptions.FeatureListGroupHeading`. `PricingOptions.FeatureListHeading` is now used to optionally customize the heading of the `PricingOptions` feature list accordion.
+
+  ```diff
+  - <PricingOptions.FeatureListHeading />
+  + <PricingOptions.FeatureListGroupHeading />
+  ```
+
+  Full example with customizable accordion heading:,
+
+  ```jsx
+  <PricinOptions>
+    <PricingOptions.FeatureList>
+      <PricingOptions.FeatureListHeading>My custom title</PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListGroupHeading>Feature set 1</PricingOptions.FeatureListGroupHeading>
+      <PricingOptions.FeatureListItem>Feature A</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Feature B</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Feature C</PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
+  </PricinOptions>
+  ```
+
+### Patch Changes
+
+- [#1002](https://github.com/primer/brand/pull/1002) [`84d8e52`](https://github.com/primer/brand/commit/84d8e52f4b3f4c9a49cb9417f1f4a6c96649264e) Thanks [@danielguillan](https://github.com/danielguillan)! - - Updated styles and layout in `PricingOptions` for a more condensed design.
+
+  - Added new `variant` options to support `gradient` styling in `PricingOptions`: `default-gradient` and `cards-gradient`.
+
+  Usage example:
+
+  ```jsx
+  <PricingOptions variant="default-gradient">{/*...*/}</PricingOptions>
+  ```
+
+- [#1003](https://github.com/primer/brand/pull/1003) [`ab4d480`](https://github.com/primer/brand/commit/ab4d480fe0eb162c3913344019ec4264565e5b4c) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Fixed an accessibility issue in the `SubNav` component where items within the `SubNav.SubMenu` weren't accessible to assistive technologies on narrow viewports.
+
+- [#1001](https://github.com/primer/brand/pull/1001) [`0adad57`](https://github.com/primer/brand/commit/0adad575bddcfaa8eb8eb71b6afd0aeeaf3a757c) Thanks [@rezrah](https://github.com/rezrah)! - Add support for deeper link nesting in `SubNav`
+
+  Use `SubNav.SubHeading` to present another tier of content between the `SubNav.Heading` and `SubNav.Link` sub-components.
+
+  Usage example:
+
+  ```jsx
+  <SubNav>
+    <SubNav.Heading href="#">Top-level page</SubNav.Heading>
+    <SubNav.SubHeading href="#">Sub-level page</SubNav.SubHeading>
+    <SubNav.Link href="#">Child page</SubNav.Link>
+    <SubNav.Link href="#">Child page</SubNav.Link>
+    <SubNav.Link href="#">Child page</SubNav.Link>
+    <SubNav.Link href="#">Child page</SubNav.Link>
+  </SubNav>
+  ```
+
+- [#976](https://github.com/primer/brand/pull/976) [`4cdb794`](https://github.com/primer/brand/commit/4cdb7943f5759c7a0bb5dd1499a5c71f7e9c9c6f) Thanks [@danielguillan](https://github.com/danielguillan)! - Added a new `350` `size` option to the `Text` component.
+
+  E.g.
+
+  ```jsx
+  <Text size="350">A new text size available</Text>
+  ```
+
+- [#976](https://github.com/primer/brand/pull/976) [`4cdb794`](https://github.com/primer/brand/commit/4cdb7943f5759c7a0bb5dd1499a5c71f7e9c9c6f) Thanks [@danielguillan](https://github.com/danielguillan)! - Increased the default text size for the `Hero` description and set its default font weight to "normal".
+
+- [#1005](https://github.com/primer/brand/pull/1005) [`dcfdb2c`](https://github.com/primer/brand/commit/dcfdb2c75e76158efb8e9a06898ce652881a55e4) Thanks [@rezrah](https://github.com/rezrah)! - Updated default background color in dark mode from `#0d1117` (dark gray) to `#000000` (black) across all components as part of a revised visual design strategy.
+
+- [#998](https://github.com/primer/brand/pull/998) [`fcade91`](https://github.com/primer/brand/commit/fcade91402d73592f84ec2e2f033099af949b41c) Thanks [@rezrah](https://github.com/rezrah)! - Fixed a `forwardRef` bug in `Checkbox`. An external `ref` can now be passed correctly to the component.
+
 ## 0.52.0
 
 ### Minor Changes
