@@ -41,18 +41,18 @@ test.describe('Visual Comparison: PricingOptions', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('PricingOptions / Gradient Variant', async ({page}) => {
+  test('PricingOptions / Default Gradient Variant', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--gradient-variant&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--default-gradient-variant&viewMode=story',
     )
 
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('PricingOptions / Gradient Cards Variant', async ({page}) => {
+  test('PricingOptions / Cards Gradient Variant', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--gradient-cards-variant&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--cards-gradient-variant&viewMode=story',
     )
 
     await page.waitForTimeout(500)
