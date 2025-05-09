@@ -413,7 +413,7 @@ const SubNavLinkWithSubmenu = forwardRef<HTMLDivElement, SubNavLinkProps>(
           </button>
         )}
 
-        <div id={submenuId} className={styles['SubNav__sub-menu-children']} aria-hidden={!isExpanded}>
+        <div id={submenuId} className={styles['SubNav__sub-menu-children']} aria-hidden={isLarge && !isExpanded}>
           {SubMenuChildren}
         </div>
       </div>
