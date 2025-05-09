@@ -42,6 +42,22 @@ const MockSubNavFixture = ({data = mockLinkData, ...rest}) => {
   )
 }
 
+const MockSubNavFixtureWithSubMenu = () => (
+  <SubNav fullWidth>
+    <SubNav.Link href="#" aria-current="page">
+      Copilot
+      <SubNav.SubMenu>
+        <SubNav.Link href="#">Copilot feature page one</SubNav.Link>
+        <SubNav.Link href="#">Copilot feature page two</SubNav.Link>
+        <SubNav.Link href="#">Copilot feature page three</SubNav.Link>
+      </SubNav.SubMenu>
+    </SubNav.Link>
+    <SubNav.Link href="#">Code review</SubNav.Link>
+    <SubNav.Link href="#">Search</SubNav.Link>
+    <SubNav.Action href="#">Call to action</SubNav.Action>
+  </SubNav>
+)
+
 describe('SubNav', () => {
   beforeEach(() => {
     // IntersectionObserver isn't available in test environment
@@ -153,24 +169,28 @@ describe('SubNav', () => {
     expect(results).toHaveNoViolations()
   })
 
+  it('does not hide submenu items on narrow viewports', async () => {
+    const {getByRole} = render(<MockSubNavFixtureWithSubMenu />)
+
+    const buttonEl = getByRole('button', {name: 'Navigation menu. Current page: Copilot'})
+
+    await userEvent.click(buttonEl)
+
+    expect(getByRole('link', {name: 'Copilot feature page one'})).toBeInTheDocument()
+  })
+
+  it('hides collapsed submenu items on large viewports', async () => {
+    mockUseWindowSize.mockImplementation(() => ({isLarge: true}))
+
+    const {queryByRole} = render(<MockSubNavFixtureWithSubMenu />)
+
+    expect(queryByRole('link', {name: 'Copilot feature page one'})).not.toBeInTheDocument()
+  })
+
   it('shows subitems when the submenu toggle is activated at large viewports', async () => {
     mockUseWindowSize.mockImplementation(() => ({isLarge: true}))
 
-    const {getByRole} = render(
-      <SubNav fullWidth>
-        <SubNav.Link href="#" aria-current="page">
-          Copilot
-          <SubNav.SubMenu>
-            <SubNav.Link href="#">Copilot feature page one</SubNav.Link>
-            <SubNav.Link href="#">Copilot feature page two</SubNav.Link>
-            <SubNav.Link href="#">Copilot feature page three</SubNav.Link>
-          </SubNav.SubMenu>
-        </SubNav.Link>
-        <SubNav.Link href="#">Code review</SubNav.Link>
-        <SubNav.Link href="#">Search</SubNav.Link>
-        <SubNav.Action href="#">Call to action</SubNav.Action>
-      </SubNav>,
-    )
+    const {getByRole} = render(<MockSubNavFixtureWithSubMenu />)
 
     await userEvent.tab()
 
@@ -204,21 +224,7 @@ describe('SubNav', () => {
   it('hides a hovered submenu when escape is pressed', async () => {
     mockUseWindowSize.mockImplementation(() => ({isLarge: true}))
 
-    const {getByRole, queryByRole} = render(
-      <SubNav fullWidth>
-        <SubNav.Link href="#" aria-current="page">
-          Copilot
-          <SubNav.SubMenu>
-            <SubNav.Link href="#">Copilot feature page one</SubNav.Link>
-            <SubNav.Link href="#">Copilot feature page two</SubNav.Link>
-            <SubNav.Link href="#">Copilot feature page three</SubNav.Link>
-          </SubNav.SubMenu>
-        </SubNav.Link>
-        <SubNav.Link href="#">Code review</SubNav.Link>
-        <SubNav.Link href="#">Search</SubNav.Link>
-        <SubNav.Action href="#">Call to action</SubNav.Action>
-      </SubNav>,
-    )
+    const {getByRole, queryByRole} = render(<MockSubNavFixtureWithSubMenu />)
 
     await userEvent.hover(getByRole('link', {name: 'Copilot'}))
 
