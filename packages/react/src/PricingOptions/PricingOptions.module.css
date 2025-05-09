@@ -250,6 +250,7 @@
 .PricingOptions__header {
   display: flex;
   grid-area: header;
+  row-gap: var(--base-size-8);
 }
 
 /* When item is left-aligned, place the label next to the heading if it fits, and stack it if it doesn't */
@@ -257,6 +258,7 @@
   flex-wrap: wrap-reverse;
   align-items: center;
   column-gap: var(--base-size-16);
+  margin-block-end: var(--base-size-16);
 }
 
 .PricingOptions__item:not(.PricingOptions__item--align-center) .PricingOptions__label {
@@ -276,8 +278,7 @@
 
 @media (min-width: 63.24rem) {
   .PricingOptions__item:not(.PricingOptions__item--align-center) .PricingOptions__heading {
-    margin-block-start: 0;
-    margin-block-end: var(--base-size-16);
+    margin-block: 0;
   }
 }
 
