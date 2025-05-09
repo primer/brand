@@ -109,7 +109,7 @@ export const CardsVariant: StoryFn<typeof PricingOptions> = () => {
   )
 }
 
-export const GradientVariant: StoryFn<typeof PricingOptions> = () => {
+export const DefaultGradientVariant: StoryFn<typeof PricingOptions> = () => {
   return (
     <PricingOptions variant="default-gradient">
       <PricingOptions.Item>
@@ -137,9 +137,9 @@ export const GradientVariant: StoryFn<typeof PricingOptions> = () => {
   )
 }
 
-export const GradientCardsVariant: StoryFn<typeof PricingOptions> = () => {
+export const CardsGradientVariant: StoryFn<typeof PricingOptions> = () => {
   return (
-    <PricingOptions variant="default-gradient">
+    <PricingOptions variant="cards-gradient">
       <PricingOptions.Item>
         <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
         <PricingOptions.Description>
