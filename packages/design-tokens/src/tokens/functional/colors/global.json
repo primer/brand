@@ -85,7 +85,7 @@
     "canvas": {
       "default": {
         "value": "var(--base-color-scale-white-0)",
-        "dark": "var(--base-color-scale-gray-9)"
+        "dark": "var(--base-color-scale-black-0)"
       },
       "overlay": {
         "value": "var(--base-color-scale-white-0)",
