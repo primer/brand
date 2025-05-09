@@ -14,18 +14,18 @@ test.describe('Visual Comparison: PricingOptions', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('PricingOptions / Example 1', async ({page}) => {
+  test('PricingOptions / Copilot Individual Plans', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-examples--example-1&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-examples--copilot-individual-plans&viewMode=story',
     )
 
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('PricingOptions / Example 2', async ({page}) => {
+  test('PricingOptions / Copilot Business Plans', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-examples--example-2&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-examples--copilot-business-plans&viewMode=story',
     )
 
     await page.waitForTimeout(500)
