@@ -29,7 +29,7 @@ export default {
 
 export const Example1: StoryFn<typeof PricingOptions> = () => {
   return (
-    <PricingOptions appearance="gradient">
+    <PricingOptions variant="default-gradient">
       <PricingOptions.Item>
         <PricingOptions.Heading>Free</PricingOptions.Heading>
         <PricingOptions.Description>A fast way to get started with GitHub Copilot.</PricingOptions.Description>
@@ -102,7 +102,7 @@ export const Example1: StoryFn<typeof PricingOptions> = () => {
 }
 export const Example2: StoryFn<typeof PricingOptions> = () => {
   return (
-    <PricingOptions appearance="gradient">
+    <PricingOptions variant="default-gradient">
       <PricingOptions.Item>
         <PricingOptions.Heading>Business</PricingOptions.Heading>
         <PricingOptions.Description>Accelerate workflows with GitHub Copilot.</PricingOptions.Description>

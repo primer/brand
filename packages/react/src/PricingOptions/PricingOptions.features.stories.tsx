@@ -109,6 +109,62 @@ export const CardsVariant: StoryFn<typeof PricingOptions> = () => {
   )
 }
 
+export const GradientVariant: StoryFn<typeof PricingOptions> = () => {
+  return (
+    <PricingOptions variant="default-gradient">
+      <PricingOptions.Item>
+        <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+        <PricingOptions.Description>
+          Code completions, Chat, and more for indie developers and freelancers.
+        </PricingOptions.Description>
+        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
+
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Start a free trial
+        </PricingOptions.PrimaryAction>
+      </PricingOptions.Item>
+
+      <PricingOptions.Item>
+        <PricingOptions.Label>Recommended</PricingOptions.Label>
+        <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+        <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
+        <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Buy now
+        </PricingOptions.PrimaryAction>
+      </PricingOptions.Item>
+    </PricingOptions>
+  )
+}
+
+export const GradientCardsVariant: StoryFn<typeof PricingOptions> = () => {
+  return (
+    <PricingOptions variant="default-gradient">
+      <PricingOptions.Item>
+        <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+        <PricingOptions.Description>
+          Code completions, Chat, and more for indie developers and freelancers.
+        </PricingOptions.Description>
+        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
+
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Start a free trial
+        </PricingOptions.PrimaryAction>
+      </PricingOptions.Item>
+
+      <PricingOptions.Item>
+        <PricingOptions.Label>Recommended</PricingOptions.Label>
+        <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+        <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
+        <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
+        <PricingOptions.PrimaryAction as="a" href="#">
+          Buy now
+        </PricingOptions.PrimaryAction>
+      </PricingOptions.Item>
+    </PricingOptions>
+  )
+}
+
 export const OneOption: StoryFn<typeof PricingOptions> = () => {
   return (
     <PricingOptions>
@@ -1003,34 +1059,6 @@ export const CollapsedFeaturesNoDividers: StoryFn<typeof PricingOptions> = () =>
         </PricingOptions.FeatureList>
         <PricingOptions.PrimaryAction as="a" href="#">
           Join waitlist
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
-    </PricingOptions>
-  )
-}
-
-export const WithGradientAppearance: StoryFn<typeof PricingOptions> = () => {
-  return (
-    <PricingOptions appearance="gradient">
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
-        <PricingOptions.Description>
-          Code completions, Chat, and more for indie developers and freelancers.
-        </PricingOptions.Description>
-        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
-
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Start a free trial
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
-
-      <PricingOptions.Item>
-        <PricingOptions.Label>Recommended</PricingOptions.Label>
-        <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
-        <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
-        <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Buy now
         </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
     </PricingOptions>

@@ -87,75 +87,6 @@ import {PricingOptions, HeadingTags} from '@primer/react-brand'
 </PricingOptions>
 ```
 
-### Gradient appearance
-
-```jsx live
-<PricingOptions appearance="gradient">
-  <PricingOptions.Item>
-    <PricingOptions.Label>Recommended</PricingOptions.Label>
-    <PricingOptions.Heading>Copilot</PricingOptions.Heading>
-    <PricingOptions.Description>
-      Copilot in the coding environment.
-    </PricingOptions.Description>
-    <PricingOptions.Price
-      currencySymbol="$"
-      trailingText="per month / $100 per year"
-    >
-      10
-    </PricingOptions.Price>
-    <PricingOptions.FeatureList>
-      <PricingOptions.FeatureListItem>
-        Everything in Copilot Business plus:
-      </PricingOptions.FeatureListItem>
-      <PricingOptions.FeatureListItem>
-        Chat in IDE and Mobile
-      </PricingOptions.FeatureListItem>
-      <PricingOptions.FeatureListItem>
-        CLI assistance
-      </PricingOptions.FeatureListItem>
-      <PricingOptions.FeatureListItem>
-        Code completions
-      </PricingOptions.FeatureListItem>
-    </PricingOptions.FeatureList>
-    <PricingOptions.PrimaryAction href="/buy">
-      Buy now
-    </PricingOptions.PrimaryAction>
-    <PricingOptions.SecondaryAction href="/contact">
-      Contact sales
-    </PricingOptions.SecondaryAction>
-  </PricingOptions.Item>
-
-  <PricingOptions.Item>
-    <PricingOptions.Label>Recommended</PricingOptions.Label>
-    <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
-    <PricingOptions.Description>
-      Copilot personalized to your organization throughout the software
-      development lifecycle. Requires GitHub Enterprise Cloud.
-    </PricingOptions.Description>
-    <PricingOptions.Price currencySymbol="$" trailingText="per user / month">
-      39
-    </PricingOptions.Price>
-    <PricingOptions.FeatureList>
-      <PricingOptions.FeatureListItem>
-        Everything in Copilot Business plus:
-      </PricingOptions.FeatureListItem>
-      <PricingOptions.FeatureListItem>
-        Chat in IDE and Mobile
-      </PricingOptions.FeatureListItem>
-      <PricingOptions.FeatureListItem>
-        CLI assistance
-      </PricingOptions.FeatureListItem>
-      <PricingOptions.FeatureListItem>
-        Code completions
-      </PricingOptions.FeatureListItem>
-    </PricingOptions.FeatureList>
-    <PricingOptions.PrimaryAction href="/buy">
-      Join waitlist
-    </PricingOptions.PrimaryAction>
-  </PricingOptions.Item>
-</PricingOptions>
-```
-
 ### Center alignment
 
 ```jsx live
@@ -519,12 +450,11 @@ Use `PricingOptions.FeatureListItem` with `variant="included"` and `variant="exc
 
 ### PricingOptions <Label>Required</Label>
 
-| Name         | Type                                                              |  Default  | required | Description                         |
-| :----------- | :---------------------------------------------------------------- | :-------: | :------: | :---------------------------------- |
-| `as`         | <PropTableValues values={[`section`, `div` ]} addLineBreaks />    | `section` | `false`  | Applies the underlying HTML element |
-| `appearance` | <PropTableValues values={[`solid`, `gradient` ]} addLineBreaks /> | `"solid"` | `false`  | Sets the container's' appearance    |
-| `children`   | `PricingOptions.Item`                                             |           |  `true`  | The items to be displayed           |
-| `variant`    | <PropTableValues values={[`default`, `cards` ]} addLineBreaks />  |           | `false`  | Sets the layout variant             |
+| Name       | Type                                                                                                   |  Default  | required | Description                         |
+| :--------- | :----------------------------------------------------------------------------------------------------- | :-------: | :------: | :---------------------------------- |
+| `as`       | <PropTableValues values={[`section`, `div` ]} addLineBreaks />                                         | `section` | `false`  | Applies the underlying HTML element |
+| `children` | `PricingOptions.Item`                                                                                  |           |  `true`  | The items to be displayed           |
+| `variant`  | <PropTableValues values={[`default`, `default-gradient`, `cards`, `cards-gradient` ]} addLineBreaks /> |           | `false`  | Sets the style variant              |
 
 ### PricingOptions.Item <Label>Required</Label>
 

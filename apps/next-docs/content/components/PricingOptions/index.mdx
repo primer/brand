@@ -12,7 +12,6 @@ import {Label} from '@primer/react'
 
 import {
   PricingOptionsAsProp,
-  PricingOptionsAppearanceProp,
   PricingOptionsVariantProp,
   PricingOptionsHeadingAsProp,
   PricingOptionsItemChildrenProp,
@@ -111,7 +110,7 @@ import {
 ### Gradient appearance
 
 ```jsx live
-<PricingOptions appearance="gradient">
+<PricingOptions variant="default-gradient">
   <PricingOptions.Item>
     <PricingOptions.Label>Recommended</PricingOptions.Label>
     <PricingOptions.Heading>Copilot</PricingOptions.Heading>
@@ -386,12 +385,11 @@ Use `PricingOptions.FeatureListItem` with `variant="included"` and `variant="exc
 
 ### PricingOptions <Label>Required</Label>
 
-| Name         | Type                             |  Default  | required | Description                         |
-| :----------- | :------------------------------- | :-------: | :------: | :---------------------------------- |
-| `as`         | <PricingOptionsAsProp />         | `section` | `false`  | Applies the underlying HTML element |
-| `appearance` | <PricingOptionsAppearanceProp /> | `"solid"` | `false`  | Sets the container's' appearance    |
-| `children`   | `PricingOptions.Item`            |           |  `true`  | Applies the underlying HTML element |
-| `variant`    | <PricingOptionsVariantProp />    |           | `false`  | Sets the layout variant             |
+| Name       | Type                          |  Default  | required | Description                         |
+| :--------- | :---------------------------- | :-------: | :------: | :---------------------------------- |
+| `as`       | <PricingOptionsAsProp />      | `section` | `false`  | Applies the underlying HTML element |
+| `children` | `PricingOptions.Item`         |           |  `true`  | Applies the underlying HTML element |
+| `variant`  | <PricingOptionsVariantProp /> |           | `false`  | Sets the style variant              |
 
 ### PricingOptions.Item <Label>Required</Label>
 

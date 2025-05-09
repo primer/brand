@@ -3,7 +3,9 @@ import {PropTableValues} from '@primer/doctocat-nextjs/components'
 import {HeadingTags} from '../../../../../packages/react/src/'
 
 export const PricingOptionsAsProp = () => <PropTableValues values={[`section`, `div`]} addLineBreaks />
-export const PricingOptionsVariantProp = () => <PropTableValues values={[`default`, `cards`]} addLineBreaks />
+export const PricingOptionsVariantProp = () => (
+  <PropTableValues values={[`default`, `default-gradient`, `cards`, `cards-gradient`]} addLineBreaks />
+)
 
 export const PricingOptionsItemChildrenProp = () => (
   <PropTableValues
@@ -31,5 +33,3 @@ export const PricingOptionsHeadingAsProp = () => <PropTableValues values={[...He
 export const PricingOptionsFeatureListAccordionAsProp = () => (
   <PropTableValues values={[...HeadingTags]} addLineBreaks />
 )
-
-export const PricingOptionsAppearanceProp = () => <PropTableValues values={['solid', 'gradient']} addLineBreaks />

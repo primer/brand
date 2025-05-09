@@ -25,15 +25,6 @@ describe('PricingOptions', () => {
     expect(PricingOptionsEl.classList).toContain(expectedClass)
   })
 
-  it('adds the class for default solid appearance', () => {
-    const solidAppearanceClass = 'PricingOptions--appearance-solid'
-
-    const {getByTestId} = render(<PricingOptions data-testid={testId}></PricingOptions>)
-
-    const PricingOptionsEl = getByTestId(testId)
-    expect(PricingOptionsEl.classList).toContain(solidAppearanceClass)
-  })
-
   it('adds the class for cards variant', () => {
     const cardsVariantClass = 'PricingOptions--variant-cards'
 
@@ -43,13 +34,21 @@ describe('PricingOptions', () => {
     expect(PricingOptionsEl.classList).toContain(cardsVariantClass)
   })
 
-  it('adds the class for gradient appearance', () => {
-    const gradientAppearanceClass = 'PricingOptions--appearance-gradient'
+  it('applies the correct appearance classes for each variant', () => {
+    const solidVariantº = 'PricingOptions--appearance-solid'
+    const gradientVariant = 'PricingOptions--appearance-gradient'
 
-    const {getByTestId} = render(<PricingOptions data-testid={testId} appearance="gradient"></PricingOptions>)
+    const {getByTestId, rerender} = render(<PricingOptions data-testid={testId} variant="default" />)
+    expect(getByTestId(testId).classList).toContain(solidVariantº)
 
-    const PricingOptionsEl = getByTestId(testId)
-    expect(PricingOptionsEl.classList).toContain(gradientAppearanceClass)
+    rerender(<PricingOptions data-testid={testId} variant="cards" />)
+    expect(getByTestId(testId).classList).toContain(solidVariantº)
+
+    rerender(<PricingOptions data-testid={testId} variant="default-gradient" />)
+    expect(getByTestId(testId).classList).toContain(gradientVariant)
+
+    rerender(<PricingOptions data-testid={testId} variant="cards-gradient" />)
+    expect(getByTestId(testId).classList).toContain(gradientVariant)
   })
 
   it('has no a11y violations', async () => {
