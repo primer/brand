@@ -119,6 +119,34 @@ function SubNavProvider({children}: {children: React.ReactNode}) {
   )
 }
 
+type SeparatorProps = {
+  activeLinklabel?: string
+} & BaseProps<HTMLSpanElement>
+
+function Separator({activeLinklabel}: SeparatorProps) {
+  return (
+    <span
+      role="separator"
+      className={clsx(
+        styles['SubNav__heading-separator'],
+        activeLinklabel && styles['SubNav__heading-separator--has-adjacent-label'],
+      )}
+      aria-hidden
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="16" viewBox="0 0 8 16" fill="none" aria-hidden>
+        <g clipPath="url(#clip0_50_1307)">
+          <path d="M0 15.2992L5.472 0.701172H7.632L2.16 15.2992H0Z" fill="currentColor" />
+        </g>
+        <defs>
+          <clipPath id="clip0_50_1307">
+            <rect width="7.632" height="14.598" transform="translate(0 0.701172)" />
+          </clipPath>
+        </defs>
+      </svg>
+    </span>
+  )
+}
+
 export type SubNavProps = {
   hasShadow?: boolean
   /**
@@ -133,6 +161,7 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
   const rootRef = React.useRef<HTMLDivElement>(null)
   const navRef = React.useRef<HTMLElement>(null)
   const overlayRef = React.useRef<HTMLUListElement>(null)
+  const narrowButtonRef = useRef<HTMLButtonElement>(null)
   const [isOpenAtNarrow, setIsOpenAtNarrow] = useState(false)
   const idForLinkContainer = useId()
   const [hasAnchoredNav, setHasAnchoredNav] = useState(false)
@@ -183,13 +212,16 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
 
   const {
     heading: HeadingChild,
+    subheading: SubHeadingChild,
     links: LinkChildren,
     action: ActionChild,
   } = childrenArr.reduce(
-    (acc: {heading?: ReactNode; links: ReactElement[]; action?: ReactNode}, child) => {
+    (acc: {heading?: ReactNode; subheading?: ReactNode; links: ReactElement[]; action?: ReactNode}, child) => {
       if (isValidElement(child)) {
         if (child.type === SubNavHeading) {
           acc.heading = child
+        } else if (child.type === SubNavSubHeading) {
+          acc.subheading = child
         } else if (child.type === SubNavLink) {
           const [link, subMenu] = child.props.children
 
@@ -213,7 +245,7 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
       }
       return acc
     },
-    {heading: undefined, links: [], action: undefined},
+    {heading: undefined, subheading: undefined, links: [], action: undefined},
   )
 
   const activeLinklabel =
@@ -221,8 +253,51 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
 
   // needed to prevent rendering of anchor subnav inside the narrow <button> element
   const MaybeSubNav = activeLink?.props.children?.[1]?.props?.variant === 'anchor' && activeLink.props.children?.[1]
+
+  const subHeadingIsActive = isValidElement(SubHeadingChild) && SubHeadingChild.props['aria-current']
+
+  const NarrowButton = useMemo(
+    () => (
+      <button
+        ref={narrowButtonRef}
+        className={clsx(styles['SubNav__overlay-toggle'], isOpenAtNarrow && styles['SubNav__overlay-toggle--open'])}
+        data-testid={testIds.button}
+        onClick={isOpenAtNarrow ? closeMenuCallback : handleMenuToggle}
+        aria-expanded={isOpenAtNarrow ? 'true' : 'false'}
+        aria-controls={idForLinkContainer}
+      >
+        {activeLinklabel && <span className="visually-hidden">Navigation menu. Current page: </span>}
+        <span
+          className={clsx(
+            styles['SubNav__overlay-toggle-content'],
+            !activeLinklabel && styles['SubNav__overlay-toggle-content--end'],
+          )}
+        >
+          {activeLinklabel && (
+            <Text as="span" size="200">
+              {activeLinklabel}
+            </Text>
+          )}
+          {isOpenAtNarrow ? (
+            <ChevronUpIcon className={styles['SubNav__overlay-toggle-icon']} size={24} />
+          ) : (
+            <ChevronDownIcon className={styles['SubNav__overlay-toggle-icon']} size={24} />
+          )}
+        </span>
+      </button>
+    ),
+    [activeLinklabel, closeMenuCallback, handleMenuToggle, idForLinkContainer, isOpenAtNarrow],
+  )
+
   return (
-    <div className={clsx(styles['SubNav__container'], hasAnchoredNav && styles['SubNav__container--with-anchor-nav'])}>
+    <div
+      className={clsx(
+        styles['SubNav__container'],
+        SubHeadingChild && styles['SubNav--has-sub-heading'],
+        SubHeadingChild && subHeadingIsActive && styles['SubNav--subHeadingActive'],
+        hasAnchoredNav && styles['SubNav__container--with-anchor-nav'],
+      )}
+    >
       <SubNavProvider>
         <nav
           ref={navRef}
@@ -239,65 +314,19 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
           <div ref={rootRef} className={styles['SubNav--header-container-outer']}>
             <div className={styles['SubNav__header-container']}>
               {HeadingChild && <div className={styles['SubNav__heading-container']}>{HeadingChild}</div>}
-              <span
-                role="separator"
-                className={clsx(
-                  styles['SubNav__heading-separator'],
-                  activeLinklabel && styles['SubNav__heading-separator--has-adjacent-label'],
-                )}
-                aria-hidden
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="8"
-                  height="16"
-                  viewBox="0 0 8 16"
-                  fill="none"
-                  aria-hidden
-                >
-                  <g clipPath="url(#clip0_50_1307)">
-                    <path d="M0 15.2992L5.472 0.701172H7.632L2.16 15.2992H0Z" fill="currentColor" />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_50_1307">
-                      <rect width="7.632" height="14.598" transform="translate(0 0.701172)" />
-                    </clipPath>
-                  </defs>
-                </svg>
-              </span>
-              {!isLarge && (
-                <button
-                  className={clsx(
-                    styles['SubNav__overlay-toggle'],
-                    isOpenAtNarrow && styles['SubNav__overlay-toggle--open'],
-                  )}
-                  data-testid={testIds.button}
-                  onClick={isOpenAtNarrow ? closeMenuCallback : handleMenuToggle}
-                  aria-expanded={isOpenAtNarrow ? 'true' : 'false'}
-                  aria-controls={idForLinkContainer}
-                >
-                  {activeLinklabel && <span className="visually-hidden">Navigation menu. Current page: </span>}
-                  <span
-                    className={clsx(
-                      styles['SubNav__overlay-toggle-content'],
-                      !activeLinklabel && styles['SubNav__overlay-toggle-content--end'],
-                    )}
-                  >
-                    {activeLinklabel && (
-                      <Text as="span" size="200">
-                        {activeLinklabel}
-                      </Text>
-                    )}
-                    {isOpenAtNarrow ? (
-                      <ChevronUpIcon className={styles['SubNav__overlay-toggle-icon']} size={24} />
-                    ) : (
-                      <ChevronDownIcon className={styles['SubNav__overlay-toggle-icon']} size={24} />
-                    )}
-                  </span>
-                </button>
+              <Separator activeLinklabel={activeLinklabel} />
+              {SubHeadingChild && (isLarge || !subHeadingIsActive) && (
+                <>
+                  <div className={styles['SubNav__heading-container']}>{SubHeadingChild}</div>
+                  <Separator activeLinklabel={activeLinklabel} />
+                </>
               )}
+
+              {!isLarge && (!SubHeadingChild || subHeadingIsActive) && NarrowButton}
+
               {MaybeSubNav && MaybeSubNav}
             </div>
+            {!isLarge && SubHeadingChild && !subHeadingIsActive && NarrowButton}
             {LinkChildren.length && (
               <ul
                 ref={overlayRef}
@@ -330,6 +359,25 @@ const SubNavHeading = ({href, children, className, 'data-testid': testID, ...pro
     <a
       href={href}
       className={clsx(styles['SubNav__heading'], className)}
+      data-testid={testIds.heading || testID}
+      {...props}
+    >
+      {children}
+    </a>
+  )
+}
+
+type SubNavSubHeadingProps = {
+  href: string
+  'data-testid'?: string
+} & PropsWithChildren<React.HTMLProps<HTMLAnchorElement>> &
+  BaseProps<HTMLAnchorElement>
+
+const SubNavSubHeading = ({href, children, className, 'data-testid': testID, ...props}: SubNavSubHeadingProps) => {
+  return (
+    <a
+      href={href}
+      className={clsx(styles['SubNav__heading'], styles['SubNav__link'], styles['SubNav__subHeading'], className)}
       data-testid={testIds.heading || testID}
       {...props}
     >
@@ -413,7 +461,7 @@ const SubNavLinkWithSubmenu = forwardRef<HTMLDivElement, SubNavLinkProps>(
           </button>
         )}
 
-        <div id={submenuId} className={styles['SubNav__sub-menu-children']} aria-hidden={!isExpanded}>
+        <div id={submenuId} className={styles['SubNav__sub-menu-children']} aria-hidden={isLarge && !isExpanded}>
           {SubMenuChildren}
         </div>
       </div>
@@ -608,6 +656,7 @@ function _SubNavAction({children, href, variant = 'primary', size = 'small', ...
  */
 export const SubNav = Object.assign(_SubNavRoot, {
   Heading: SubNavHeading,
+  SubHeading: SubNavSubHeading,
   Link: SubNavLink,
   Action: _SubNavAction,
   SubMenu: _SubMenu,

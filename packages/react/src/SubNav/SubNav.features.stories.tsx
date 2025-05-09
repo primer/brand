@@ -92,6 +92,98 @@ WithShadow.parameters = {
   layout: 'fullscreen',
 }
 
+export const SubHeading = args => (
+  <SubNav {...args}>
+    <SubNav.Heading href="#">AI</SubNav.Heading>
+    <SubNav.SubHeading href="#">Copilot</SubNav.SubHeading>
+    <SubNav.Link href="#">For business</SubNav.Link>
+    <SubNav.Link href="#" aria-current="page">
+      Extensions
+    </SubNav.Link>
+    <SubNav.Link href="#">Tutorials</SubNav.Link>
+    <SubNav.Link href="#">
+      What&apos;s new
+      <SubNav.SubMenu>
+        <SubNav.Link href="#">Sub-feature page one</SubNav.Link>
+        <SubNav.Link href="#">Sub-feature page two</SubNav.Link>
+        <SubNav.Link href="#">Sub-feature page three</SubNav.Link>
+        <SubNav.Link href="#">Sub-feature page four</SubNav.Link>
+      </SubNav.SubMenu>
+    </SubNav.Link>
+    <SubNav.Link href="#">Plans & pricing</SubNav.Link>
+    <SubNav.Action href="#">Call to action</SubNav.Action>
+  </SubNav>
+)
+SubHeading.parameters = {
+  layout: 'fullscreen',
+}
+
+export const SubHeadingNarrow = args => <SubHeading {...args} />
+SubHeadingNarrow.parameters = {
+  layout: 'fullscreen',
+  viewport: {
+    defaultViewport: 'iphonex',
+  },
+}
+
+export const SubHeadingNarrowOpen = args => <SubHeading {...args} />
+SubHeadingNarrowOpen.parameters = {
+  layout: 'fullscreen',
+  viewport: {
+    defaultViewport: 'iphonex',
+  },
+}
+SubHeadingNarrowOpen.play = async ({canvasElement}) => {
+  const canvas = within(canvasElement)
+  await userEvent.click(canvas.getByTestId('SubNav-root-button'))
+}
+
+export const ActiveSubHeading = args => (
+  <SubNav {...args}>
+    <SubNav.Heading href="#">AI</SubNav.Heading>
+    <SubNav.SubHeading href="#" aria-current="page">
+      Copilot
+    </SubNav.SubHeading>
+    <SubNav.Link href="#">For business</SubNav.Link>
+    <SubNav.Link href="#">Extensions</SubNav.Link>
+    <SubNav.Link href="#">Tutorials</SubNav.Link>
+    <SubNav.Link href="#">
+      What&apos;s new
+      <SubNav.SubMenu>
+        <SubNav.Link href="#">Sub-feature page one</SubNav.Link>
+        <SubNav.Link href="#">Sub-feature page two</SubNav.Link>
+        <SubNav.Link href="#">Sub-feature page three</SubNav.Link>
+        <SubNav.Link href="#">Sub-feature page four</SubNav.Link>
+      </SubNav.SubMenu>
+    </SubNav.Link>
+    <SubNav.Link href="#">Plans & pricing</SubNav.Link>
+    <SubNav.Action href="#">Call to action</SubNav.Action>
+  </SubNav>
+)
+ActiveSubHeading.parameters = {
+  layout: 'fullscreen',
+}
+
+export const ActiveSubHeadingNarrow = args => <ActiveSubHeading {...args} />
+ActiveSubHeadingNarrow.parameters = {
+  layout: 'fullscreen',
+  viewport: {
+    defaultViewport: 'iphonex',
+  },
+}
+
+export const ActiveSubHeadingNarrowOpen = args => <ActiveSubHeading {...args} />
+ActiveSubHeadingNarrowOpen.parameters = {
+  layout: 'fullscreen',
+  viewport: {
+    defaultViewport: 'iphonex',
+  },
+}
+ActiveSubHeadingNarrowOpen.play = async ({canvasElement}) => {
+  const canvas = within(canvasElement)
+  await userEvent.click(canvas.getByTestId('SubNav-root-button'))
+}
+
 export const FullWidth = args => (
   <SubNav {...args} fullWidth>
     <SubNav.Heading href="#">Features</SubNav.Heading>
