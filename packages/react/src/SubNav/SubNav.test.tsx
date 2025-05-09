@@ -91,6 +91,31 @@ describe('SubNav', () => {
     expect(buttonEl).toHaveAttribute('aria-expanded', 'true')
   })
 
+  it('retains focus on the button after opening the menu', async () => {
+    const {getByRole} = render(<MockSubNavFixture />)
+
+    const buttonEl = getByRole('button', {name: 'Navigation menu. Current page: page three'})
+
+    await userEvent.click(buttonEl)
+
+    expect(buttonEl).toHaveFocus()
+    expect(buttonEl).toHaveAttribute('aria-expanded', 'true')
+  })
+
+  it('retains focus on the button after closing the menu', async () => {
+    const {getByRole} = render(<MockSubNavFixture />)
+
+    const buttonEl = getByRole('button', {name: 'Navigation menu. Current page: page three'})
+
+    await userEvent.click(buttonEl)
+    expect(buttonEl).toHaveAttribute('aria-expanded', 'true')
+
+    await userEvent.click(buttonEl)
+
+    expect(buttonEl).toHaveFocus()
+    expect(buttonEl).toHaveAttribute('aria-expanded', 'false')
+  })
+
   it('closes the overlay when button is pressed again', async () => {
     const {getByRole} = render(<MockSubNavFixture />)
 
@@ -207,7 +232,7 @@ describe('SubNav', () => {
   it('renders an optional subheading into the document', () => {
     const expectedText = 'Subheading'
     const expectedLink = '#subheading'
-    const {getByText} = render(
+    const {getByRole} = render(
       <SubNav>
         <SubNav.Heading href={headingLink}>{heading}</SubNav.Heading>
         <SubNav.SubHeading href={expectedLink}>{expectedText}</SubNav.SubHeading>
@@ -215,7 +240,7 @@ describe('SubNav', () => {
       </SubNav>,
     )
 
-    const el = getByText(expectedText)
+    const el = getByRole('link', {name: expectedText})
 
     expect(el).toBeInTheDocument()
     expect(el).toHaveAttribute('href', expectedLink)

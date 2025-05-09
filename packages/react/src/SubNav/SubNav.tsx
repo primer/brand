@@ -191,13 +191,6 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
     }
   }, [isOpenAtNarrow, isLarge])
 
-  // On narrow viewports the focus should be retained on the button when menu is open
-  useEffect(() => {
-    if (!isLarge && narrowButtonRef.current && isOpenAtNarrow) {
-      narrowButtonRef.current.focus()
-    }
-  }, [isOpenAtNarrow, isLarge])
-
   const activeLink = childrenArr.find(child => {
     if (isValidElement(child)) {
       return child.props['aria-current']
@@ -263,7 +256,7 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
 
   const subHeadingIsActive = isValidElement(SubHeadingChild) && SubHeadingChild.props['aria-current']
 
-  const NarrowButton = useCallback(
+  const NarrowButton = useMemo(
     () => (
       <button
         ref={narrowButtonRef}
@@ -293,7 +286,7 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
         </span>
       </button>
     ),
-    [isOpenAtNarrow, closeMenuCallback, handleMenuToggle, idForLinkContainer, activeLinklabel],
+    [activeLinklabel, closeMenuCallback, handleMenuToggle, idForLinkContainer, isOpenAtNarrow],
   )
 
   return (
@@ -329,11 +322,11 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
                 </>
               )}
 
-              {!isLarge && (!SubHeadingChild || subHeadingIsActive) && <NarrowButton />}
+              {!isLarge && (!SubHeadingChild || subHeadingIsActive) && NarrowButton}
 
               {MaybeSubNav && MaybeSubNav}
             </div>
-            {!isLarge && SubHeadingChild && !subHeadingIsActive && <NarrowButton />}
+            {!isLarge && SubHeadingChild && !subHeadingIsActive && NarrowButton}
             {LinkChildren.length && (
               <ul
                 ref={overlayRef}
