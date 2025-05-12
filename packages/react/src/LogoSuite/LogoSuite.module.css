@@ -100,6 +100,7 @@
 }
 
 .LogoSuite__logobar--has-marquee {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--base-size-40);
@@ -140,8 +141,7 @@
   }
 }
 
-.LogoSuite__logobar--has-marquee:hover .LogoSuite__logobar-marqueeGroup,
-.LogoSuite__logobar-marqueeGroup--speed-idle {
+.LogoSuite__logobar-marquee:hover .LogoSuite__logobar-marqueeGroup {
   animation-play-state: paused;
 }
 
@@ -150,7 +150,7 @@
   overflow: hidden;
   user-select: none;
   gap: var(--brand-LogoSuite-logobar-marquee-gap);
-  width: 100%;
+  width: calc(100% - var(--base-size-40));
   -webkit-mask-image: linear-gradient(
     to right,
     hsl(0 0% 0% / 0),
@@ -159,4 +159,43 @@
     hsl(0 0% 0% / 0)
   );
   mask-image: linear-gradient(to right, hsl(0 0% 0% / 0), hsl(0 0% 0% / 1) 20%, hsl(0 0% 0% / 1) 80%, hsl(0 0% 0% / 0));
+}
+
+.LogoSuite__logobar--paused * {
+  animation-play-state: paused !important;
+}
+
+.LogoSuite__logobar-playPauseButton {
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--base-size-48);
+  height: var(--base-size-48);
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: var(--base-size-48);
+  background-color: var(--brand-button-subtle-bgColor-rest);
+  transition: background-color var(--brand-animation-duration-faster);
+}
+
+.LogoSuite__logobar-playPauseButton:hover {
+  background-color: var(--brand-button-subtle-bgColor-hover);
+}
+
+.LogoSuite__logobar-playPauseButton:focus-visible {
+  outline: var(--base-size-4) solid var(--brand-color-focus);
+  outline-offset: var(--base-size-2);
+}
+
+.LogoSuite__logobar-playPauseButton svg {
+  width: var(--base-size-16);
+  height: var(--base-size-16);
+}
+
+.LogoSuite__logobar-playPauseButton path {
+  fill: var(--brand-button-subtle-fgColor-rest);
 }
