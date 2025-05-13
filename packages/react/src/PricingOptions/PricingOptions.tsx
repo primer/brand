@@ -500,6 +500,7 @@ const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatu
 )
 
 type PricingOptionsFeatureListHeading = PropsWithChildren<BaseProps<HTMLDivElement>> & {
+  as?: Exclude<HeadingProps['as'], 'h1'>
   'data-testid'?: string
 }
 
@@ -514,6 +515,7 @@ const PricingOptionsFeatureListHeading = forwardRef<HTMLDivElement, PricingOptio
 )
 
 type PricingOptionsFeatureListGroupHeadingProps = PropsWithChildren<BaseProps<HTMLHeadingElement>> & {
+  as?: Exclude<HeadingProps['as'], 'h1' | 'h2'>
   'data-testid'?: string
 }
 
