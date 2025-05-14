@@ -1,5 +1,24 @@
 # @primer/react-brand
 
+## 0.54.0
+
+### Minor Changes
+
+- [#994](https://github.com/primer/brand/pull/994) [`61a1fa6`](https://github.com/primer/brand/commit/61a1fa688ee0da45878777f70711f4fccf025bc6) Thanks [@joshfarrant](https://github.com/joshfarrant)! - `MinimalFooter` now respects the ordering of the `socialLinks` prop when rendering social links, e.g. `<MinimalFooter socialLinks={['x', 'tiktok', 'youtube']} />` will render the links in that order.
+
+  Note: This may constitute a visual breaking change if you were relying on the social link order to _not_ be respected.
+
+- [#920](https://github.com/primer/brand/pull/920) [`2af9c78`](https://github.com/primer/brand/commit/2af9c78f0c4dd191802598567c5e8a0a853fc704) Thanks [@joshfarrant](https://github.com/joshfarrant)! - - Added play/pause button to `LogoSuite` component.
+  - Removed `"idle"` value from `LogoSuite.LogoBar` component's `marqueeSpeed` prop.
+    - This prop was introduced to enable custom play/pause buttons but is no longer necessary as the play/pause button is now built into the component.
+
+### Patch Changes
+
+- [#1008](https://github.com/primer/brand/pull/1008) [`91073c0`](https://github.com/primer/brand/commit/91073c06a96f71cc13e624b7d20b105181291900) Thanks [@danielguillan](https://github.com/danielguillan)! - Added missing types in `PricingOptions.FeatureListGroupHeading`
+
+- [#994](https://github.com/primer/brand/pull/994) [`61a1fa6`](https://github.com/primer/brand/commit/61a1fa688ee0da45878777f70711f4fccf025bc6) Thanks [@joshfarrant](https://github.com/joshfarrant)! - - Increased minimum touch target size of social icons in the `MinimalFooter` component to 24px.
+  - Increased contrast of social icons in the `MinimalFooter` component to over 3:1.
+
 ## 0.53.0
 
 ### Minor Changes
