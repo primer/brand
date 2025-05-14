@@ -1,5 +1,6 @@
 import React, {render, cleanup, fireEvent} from '@testing-library/react'
 import '@testing-library/jest-dom'
+import userEvent from '@testing-library/user-event'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 import {Pagination} from './Pagination'
@@ -106,5 +107,39 @@ describe('Pagination', () => {
         expect(item).toHaveAttribute('aria-label', `Go to page ${index}`)
       }
     }
+  })
+
+  it('focuses the elements in the correct order', async () => {
+    const user = userEvent.setup()
+    const {getByRole} = render(<Pagination pageCount={10} currentPage={4} />)
+
+    await user.tab()
+    expect(getByRole('button', {name: 'Previous Page'})).toHaveFocus()
+
+    await user.tab()
+    expect(getByRole('button', {name: 'Page 1'})).toHaveFocus()
+
+    await user.tab()
+    expect(getByRole('button', {name: 'Page 2'})).toHaveFocus()
+
+    await user.tab()
+    expect(getByRole('button', {name: 'Page 3'})).toHaveFocus()
+
+    await user.tab()
+    expect(getByRole('button', {name: 'Page 4'})).toHaveFocus()
+
+    await user.tab()
+    expect(getByRole('button', {name: 'Page 5'})).toHaveFocus()
+
+    await user.tab()
+    expect(getByRole('button', {name: 'Page 6...'})).toHaveFocus()
+
+    // Note that the ellipsis button is not focusable
+
+    await user.tab()
+    expect(getByRole('button', {name: 'Page 10'})).toHaveFocus()
+
+    await user.tab()
+    expect(getByRole('button', {name: 'Next Page'})).toHaveFocus()
   })
 })
