@@ -1,4 +1,4 @@
-import React, {render, cleanup, fireEvent} from '@testing-library/react'
+import React, {render, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 import {axe, toHaveNoViolations} from 'jest-axe'
@@ -79,13 +79,13 @@ describe('Pagination', () => {
     expect(results).toHaveNoViolations()
   })
 
-  it('accepts an onchange handler', () => {
+  it('accepts an onchange handler', async () => {
+    const user = userEvent.setup()
     const onChange = jest.fn()
-    const {getByRole} = render(<Pagination pageCount={5} currentPage={1} onPageChange={onChange} />)
-    const rootEl = getByRole('navigation')
 
-    const nextButton = rootEl.querySelector('a[rel="next"]') as HTMLAnchorElement
-    fireEvent.click(nextButton)
+    const {getByRole} = render(<Pagination pageCount={5} currentPage={1} onPageChange={onChange} />)
+
+    await user.click(getByRole('button', {name: 'Next Page'}))
 
     expect(onChange).toHaveBeenCalledTimes(1)
   })
