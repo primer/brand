@@ -499,11 +499,11 @@ const PricingOptionsFeatureList = forwardRef<HTMLDivElement, PricingOptionsFeatu
   },
 )
 
-type PricingOptionsFeatureListHeading = PropsWithChildren<BaseProps<HTMLDivElement>> & {
+type PricingOptionsFeatureListHeadingProps = PropsWithChildren<BaseProps<HTMLDivElement>> & {
   'data-testid'?: string
 }
 
-const PricingOptionsFeatureListHeading = forwardRef<HTMLDivElement, PricingOptionsFeatureListHeading>(
+const PricingOptionsFeatureListHeading = forwardRef<HTMLDivElement, PricingOptionsFeatureListHeadingProps>(
   ({children, className, 'data-testid': testId, ...rest}, ref) => {
     return (
       <div className={className} data-testid={testId || testIds.featureListHeading} ref={ref} {...rest}>
@@ -514,6 +514,7 @@ const PricingOptionsFeatureListHeading = forwardRef<HTMLDivElement, PricingOptio
 )
 
 type PricingOptionsFeatureListGroupHeadingProps = PropsWithChildren<BaseProps<HTMLHeadingElement>> & {
+  as?: Exclude<HeadingProps['as'], 'h1' | 'h2'>
   'data-testid'?: string
 }
 
