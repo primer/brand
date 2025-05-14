@@ -2,4 +2,4 @@
 '@primer/react-brand': patch
 ---
 
-Added missing types in `PricingOptionsFeature.ListHeading` and `PricingOptions.FeatureListGroupHeading`
+Added missing types in `PricingOptions.FeatureListGroupHeading`
