@@ -54,6 +54,20 @@ describe('Pagination', () => {
     expect(linksAsVerbatimText).toEqual(['Previous', '1', '…', '3', '4', '5', '6', '7', '…', '10', 'Next'])
   })
 
+  it('applies the correct attributes to the ellipsis button', () => {
+    const {container} = render(<Pagination pageCount={10} currentPage={1} />)
+
+    // Teting library can't find this element as it's presentation-only, so we need to use querySelector
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const ellipsisButton = container.querySelector('a[role="presentation"]')!
+
+    expect(ellipsisButton).toBeInTheDocument()
+    expect(ellipsisButton).toHaveTextContent('…')
+    expect(ellipsisButton).toHaveAttribute('role', 'presentation')
+    expect(ellipsisButton).not.toHaveAttribute('href')
+    expect(ellipsisButton).not.toHaveAttribute('aria-current')
+  })
+
   it('can optionally remove paged items', () => {
     const {getByRole} = render(<Pagination pageCount={10} currentPage={5} showPages={false} />)
     const rootEl = getByRole('navigation')
@@ -79,15 +93,28 @@ describe('Pagination', () => {
     expect(results).toHaveNoViolations()
   })
 
-  it('accepts an onchange handler', async () => {
+  it('calls onPageChange when the page changes', async () => {
     const user = userEvent.setup()
-    const onChange = jest.fn()
+    const onPageChange = jest.fn()
 
-    const {getByRole} = render(<Pagination pageCount={5} currentPage={1} onPageChange={onChange} />)
+    const {getByRole} = render(<Pagination pageCount={5} currentPage={1} onPageChange={onPageChange} />)
 
     await user.click(getByRole('button', {name: 'Next Page'}))
 
-    expect(onChange).toHaveBeenCalledTimes(1)
+    expect(onPageChange).toHaveBeenCalledTimes(1)
+  })
+
+  it('does not call the onPageChange callback when clicking an ellipsis button', async () => {
+    const user = userEvent.setup()
+    const onPageChange = jest.fn()
+
+    const {container} = render(<Pagination pageCount={10} currentPage={1} onPageChange={onPageChange} />)
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const ellipsisButton = container.querySelector('a[role="presentation"]')!
+
+    await user.click(ellipsisButton)
+
+    expect(onPageChange).not.toHaveBeenCalled()
   })
 
   it('applies custom attributes to pagination items correctly using pageAttributesBuilder', () => {
@@ -99,7 +126,7 @@ describe('Pagination', () => {
     const {getByRole} = render(<Pagination pageCount={3} currentPage={1} pageAttributesBuilder={customAttributes} />)
     const rootEl = getByRole('navigation')
 
-    const pagedItems = Array.from(rootEl.querySelectorAll('a'))
+    const pagedItems = rootEl.querySelectorAll('a')
 
     for (const [index, item] of pagedItems.entries()) {
       if (index !== 0 && index !== pagedItems.length - 1) {
@@ -141,5 +168,99 @@ describe('Pagination', () => {
 
     await user.tab()
     expect(getByRole('button', {name: 'Next Page'})).toHaveFocus()
+  })
+
+  it('applies `role="button"` to all items', () => {
+    const {getAllByRole} = render(<Pagination pageCount={5} currentPage={1} />)
+    expect(getAllByRole('button')).toHaveLength(7) // 5 pages + prev + next
+  })
+
+  it('applies the correct "rel" to prev/next buttons', () => {
+    const {getByRole} = render(<Pagination pageCount={5} currentPage={1} />)
+
+    expect(getByRole('button', {name: 'Previous Page'})).toHaveAttribute('rel', 'prev')
+    expect(getByRole('button', {name: 'Next Page'})).toHaveAttribute('rel', 'next')
+  })
+
+  it('does not apply "rel" to page buttons', () => {
+    const {getByRole} = render(<Pagination pageCount={5} currentPage={1} />)
+
+    expect(getByRole('button', {name: 'Page 1'})).not.toHaveAttribute('rel')
+    expect(getByRole('button', {name: 'Page 2'})).not.toHaveAttribute('rel')
+    expect(getByRole('button', {name: 'Page 3'})).not.toHaveAttribute('rel')
+    expect(getByRole('button', {name: 'Page 4'})).not.toHaveAttribute('rel')
+    expect(getByRole('button', {name: 'Page 5...'})).not.toHaveAttribute('rel')
+  })
+
+  it('only applies `aria-current="page"` to the selected page button', () => {
+    const {getByRole} = render(<Pagination pageCount={5} currentPage={3} />)
+
+    expect(getByRole('button', {name: 'Previous Page'})).not.toHaveAttribute('aria-current')
+    expect(getByRole('button', {name: 'Page 1'})).not.toHaveAttribute('aria-current')
+    expect(getByRole('button', {name: 'Page 2'})).not.toHaveAttribute('aria-current')
+    expect(getByRole('button', {name: 'Page 3'})).toHaveAttribute('aria-current', 'page')
+    expect(getByRole('button', {name: 'Page 4'})).not.toHaveAttribute('aria-current')
+    expect(getByRole('button', {name: 'Page 5...'})).not.toHaveAttribute('aria-current')
+    expect(getByRole('button', {name: 'Next Page'})).not.toHaveAttribute('aria-current')
+  })
+
+  it('applies the correct hrefs to all buttons', () => {
+    const {getByRole} = render(<Pagination pageCount={5} currentPage={3} />)
+
+    expect(getByRole('button', {name: 'Previous Page'})).toHaveAttribute('href', '#2')
+    expect(getByRole('button', {name: 'Page 1'})).toHaveAttribute('href', '#1')
+    expect(getByRole('button', {name: 'Page 2'})).toHaveAttribute('href', '#2')
+    expect(getByRole('button', {name: 'Page 3'})).toHaveAttribute('href', '#3')
+    expect(getByRole('button', {name: 'Page 4'})).toHaveAttribute('href', '#4')
+    expect(getByRole('button', {name: 'Page 5...'})).toHaveAttribute('href', '#5')
+    expect(getByRole('button', {name: 'Next Page'})).toHaveAttribute('href', '#4')
+  })
+
+  it('sets the correct text content for all buttons', () => {
+    const {getByRole} = render(<Pagination pageCount={5} currentPage={3} />)
+
+    expect(getByRole('button', {name: 'Previous Page'})).toHaveTextContent('Previous')
+    expect(getByRole('button', {name: 'Page 1'})).toHaveTextContent('1')
+    expect(getByRole('button', {name: 'Page 2'})).toHaveTextContent('2')
+    expect(getByRole('button', {name: 'Page 3'})).toHaveTextContent('3')
+    expect(getByRole('button', {name: 'Page 4'})).toHaveTextContent('4')
+    expect(getByRole('button', {name: 'Page 5...'})).toHaveTextContent('5')
+    expect(getByRole('button', {name: 'Next Page'})).toHaveTextContent('Next')
+  })
+
+  it('sets "aria-disabled" to true for just the "Previous" button when on the first page', () => {
+    const {getByRole} = render(<Pagination pageCount={5} currentPage={1} />)
+
+    expect(getByRole('button', {name: 'Previous Page'})).toHaveAttribute('aria-disabled', 'true')
+    expect(getByRole('button', {name: 'Page 1'})).not.toHaveAttribute('aria-disabled')
+    expect(getByRole('button', {name: 'Page 2'})).not.toHaveAttribute('aria-disabled')
+    expect(getByRole('button', {name: 'Page 3'})).not.toHaveAttribute('aria-disabled')
+    expect(getByRole('button', {name: 'Page 4'})).not.toHaveAttribute('aria-disabled')
+    expect(getByRole('button', {name: 'Page 5...'})).not.toHaveAttribute('aria-disabled')
+    expect(getByRole('button', {name: 'Next Page'})).not.toHaveAttribute('aria-disabled')
+  })
+
+  it('sets "aria-disabled" to true for just the "Next" button when on the last page', () => {
+    const {getByRole} = render(<Pagination pageCount={5} currentPage={5} />)
+
+    expect(getByRole('button', {name: 'Previous Page'})).not.toHaveAttribute('aria-disable')
+    expect(getByRole('button', {name: 'Page 1'})).not.toHaveAttribute('aria-disabled')
+    expect(getByRole('button', {name: 'Page 2'})).not.toHaveAttribute('aria-disabled')
+    expect(getByRole('button', {name: 'Page 3'})).not.toHaveAttribute('aria-disabled')
+    expect(getByRole('button', {name: 'Page 4'})).not.toHaveAttribute('aria-disabled')
+    expect(getByRole('button', {name: 'Page 5...'})).not.toHaveAttribute('aria-disabled')
+    expect(getByRole('button', {name: 'Next Page'})).toHaveAttribute('aria-disabled', 'true')
+  })
+
+  it('removes the "href" from the "Previous" button when on the first page', () => {
+    const {getByRole} = render(<Pagination pageCount={5} currentPage={1} />)
+
+    expect(getByRole('button', {name: 'Previous Page'})).not.toHaveAttribute('href')
+  })
+
+  it('removes the "href" from the "Next" button when on the last page', () => {
+    const {getByRole} = render(<Pagination pageCount={5} currentPage={5} />)
+
+    expect(getByRole('button', {name: 'Next Page'})).not.toHaveAttribute('href')
   })
 })
