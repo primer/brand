@@ -70,6 +70,7 @@ const _Checkbox = (
         id={uniqueId}
         aria-invalid={validationStatus === 'error' ? 'true' : 'false'}
         aria-required={required ? 'true' : 'false'}
+        aria-checked={indeterminate ? 'mixed' : checked}
         checked={indeterminate ? false : checked}
         className={clsx(styles['Checkbox-input'])}
         disabled={disabled}
