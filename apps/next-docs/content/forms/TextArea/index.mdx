@@ -35,7 +35,7 @@ const TextareaExample = () => {
     setValue(event.target.value)
   }
 
-  return <Textarea placeholder="Enter a description" onChange={handleChange} value={value} />
+  return <Textarea aria-label="Description" placeholder="Enter a description" onChange={handleChange} value={value} />
 }
 
 render(<TextareaExample />)
@@ -64,6 +64,7 @@ const TextareaExample = () => {
         rows={8}
         ref={ref}
         defaultValue="Set the initial state in uncontrolled mode using the defaultValue prop"
+        aria-label="Demo Textarea"
       />
       <br /> <br />
       <Button variant="primary" type="submit">
@@ -100,7 +101,9 @@ render(<TextareaExample />)
 ### Inactive
 
 ```jsx live
-<Textarea disabled>This text is inactive</Textarea>
+<Textarea disabled aria-label="Demo Textarea">
+  This text is inactive
+</Textarea>
 ```
 
 ### Resize
@@ -108,7 +111,7 @@ render(<TextareaExample />)
 By default, `Textarea` can be resized by the user vertically and horizontally. Resizing can be prevented by setting `resize` to `none`
 
 ```jsx live
-<Textarea resize="none" />
+<Textarea resize="none" aria-label="Resizable Textarea" />
 ```
 
 ## Props
