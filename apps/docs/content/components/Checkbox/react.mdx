@@ -28,20 +28,20 @@ The `Checkbox` component can be used in controlled and uncontrolled modes.
 ```jsx live
 <form>
   <FormControl>
-    <FormControl.Label>Default checkbox</FormControl.Label>
     <Checkbox />
+    <FormControl.Label>Default checkbox</FormControl.Label>
   </FormControl>
   <FormControl>
-    <FormControl.Label>Always checked</FormControl.Label>
     <Checkbox checked />
+    <FormControl.Label>Always checked</FormControl.Label>
   </FormControl>
   <FormControl>
-    <FormControl.Label>Always unchecked</FormControl.Label>
     <Checkbox checked={false} />
+    <FormControl.Label>Always unchecked</FormControl.Label>
   </FormControl>
   <FormControl>
-    <FormControl.Label>Inactive</FormControl.Label>
     <Checkbox checked disabled />
+    <FormControl.Label>Inactive</FormControl.Label>
   </FormControl>
 </form>
 ```
@@ -53,8 +53,8 @@ An `indeterminate` checkbox state should be used if the input value is neither `
 ```jsx live
 <form>
   <FormControl>
-    <FormControl.Label>Indeterminate checkbox</FormControl.Label>
     <Checkbox onChange={() => {}} indeterminate={true} />
+    <FormControl.Label>Indeterminate checkbox</FormControl.Label>
   </FormControl>
 </form>
 ```
@@ -65,10 +65,10 @@ Apply an optional border using `FormControl` and `hasBorder`.
 
 ```jsx live
 <FormControl hasBorder required>
+  <Checkbox />
   <FormControl.Label>
     Contact me about GitHub Enterprise Server
   </FormControl.Label>
-  <Checkbox />
 </FormControl>
 ```
 
@@ -78,6 +78,7 @@ When using a custom label alongside a checkbox, the `Checkbox` component should 
 
 ```jsx live
 <FormControl required>
+  <Checkbox />
   <FormControl.Label>
     <Text size="200" variant="muted">
       I hereby accept the{' '}
@@ -96,10 +97,9 @@ When using a custom label alongside a checkbox, the `Checkbox` component should 
         target="_blank"
       >
         GitHub Privacy Statement.
-      </InlineLink>{' '}
+      </InlineLink>
     </Text>
   </FormControl.Label>
-  <Checkbox />
 </FormControl>
 ```
 
