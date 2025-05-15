@@ -60,6 +60,6 @@ export const RefCallback = () => {
     }
   }, [checkboxRef])
 
-  return <Checkbox ref={checkboxRef} onChange={handleRefCallback} />
+  return <Checkbox ref={checkboxRef} onChange={handleRefCallback} aria-label="Checkbox with ref" />
 }
 RefCallback.storyName = 'Checkbox - Ref Callback'
