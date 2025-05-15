@@ -21,7 +21,7 @@ import {Select} from '@primer/react-brand'
 ### Default
 
 ```jsx live
-<Select>
+<Select aria-label="Select a handle">
   <Select.Option value="mona">Monalisa</Select.Option>
   <Select.Option value="hubot">Hubot</Select.Option>
 </Select>
@@ -30,7 +30,7 @@ import {Select} from '@primer/react-brand'
 ### Placeholder
 
 ```jsx live
-<Select defaultValue="">
+<Select defaultValue="" aria-label="Select a handle">
   <Select.Option value="" disabled>
     Select a handle
   </Select.Option>
@@ -42,7 +42,7 @@ import {Select} from '@primer/react-brand'
 ### Option groups
 
 ```jsx live
-<Select defaultValue="">
+<Select defaultValue="" aria-label="Select a country">
   <Select.Option value="" disabled>
     Select a country
   </Select.Option>
@@ -113,7 +113,7 @@ Use `Select` alongside `FormControl` to ensure the control has a corresponding f
 ### Full width
 
 ```jsx live
-<Select fullWidth>
+<Select fullWidth aria-label="Select a handle">
   <Select.Option value="mona">Monalisa</Select.Option>
   <Select.Option value="hubot">Hubot</Select.Option>
 </Select>
@@ -148,7 +148,7 @@ Use `Select` alongside `FormControl` to ensure the control has a corresponding f
 Pass the `required` prop to ensure that the input field must be filled out before submitting the form.
 
 ```jsx live
-<Select required defaultValue="">
+<Select required defaultValue="" aria-label="Select a handle">
   <Select.Option value="" disabled>
     Select a handle
   </Select.Option>

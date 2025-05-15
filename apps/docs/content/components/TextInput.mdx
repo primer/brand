@@ -20,7 +20,7 @@ import {TextInput} from '@primer/react-brand'
 ### Default
 
 ```jsx live
-<TextInput />
+<TextInput aria-label="Demo TextInput" />
 ```
 
 ### Variants
@@ -112,7 +112,10 @@ Use `TextInput` alongside `FormControl` to ensure the control always has a corre
 The `autoComplete` prop should be provided wherever possible to allow browsers to autofill the input field. See MDN for [a complete list of autocomplete values](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete).
 
 ```jsx live
-<TextInput autoComplete="given-name" />
+<FormControl fullWidth>
+  <FormControl.Label>First name</FormControl.Label>
+  <TextInput autoComplete="given-name" />
+</FormControl>
 ```
 
 ### Validation
@@ -135,7 +138,7 @@ The `autoComplete` prop should be provided wherever possible to allow browsers t
 ### Full width
 
 ```jsx live
-<TextInput fullWidth />
+<TextInput fullWidth aria-label="Full width TextInput" />
 ```
 
 ### Sizes
@@ -144,9 +147,9 @@ The `autoComplete` prop should be provided wherever possible to allow browsers t
 
 ```jsx live
 <Container sx={{display: 'inline-grid', gap: 3}}>
-  <TextInput size="medium" />
+  <TextInput size="medium" aria-label="Medium TextInput" />
 
-  <TextInput size="large" />
+  <TextInput size="large" aria-label="Large TextInput" />
 </Container>
 ```
 
@@ -155,7 +158,7 @@ The `autoComplete` prop should be provided wherever possible to allow browsers t
 Pass the `required` prop to ensure that the input field must be filled out before submitting the form.
 
 ```jsx live
-<TextInput required />
+<TextInput required aria-label="Required TextInput" />
 ```
 
 ### Using `refs`
