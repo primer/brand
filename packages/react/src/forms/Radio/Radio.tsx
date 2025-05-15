@@ -1,6 +1,7 @@
-import React, {forwardRef, InputHTMLAttributes, ReactElement, RefObject, useRef} from 'react'
+import React, {forwardRef, useCallback, type InputHTMLAttributes, type ReactElement, type RefObject} from 'react'
 import clsx from 'clsx'
 import {useId} from '../../hooks/useId'
+import {useProvidedRefOrCreate} from '../../hooks/useRef'
 
 import type {BaseProps} from '../../component-helpers'
 
@@ -11,10 +12,6 @@ export type RadioProps = {
    * Apply inactive visual appearance to the Radio
    */
   disabled?: boolean
-  /**
-   * Forward a ref to the underlying input element
-   */
-  ref?: React.RefObject<HTMLInputElement>
   /**
    * Indicates whether the Radio must be checked
    */
@@ -31,8 +28,14 @@ const _Radio = (
   {checked, className, disabled, id, onChange, required, value, ...rest}: RadioProps,
   ref,
 ): ReactElement => {
-  const inputRef: RefObject<HTMLInputElement> | null = useRef<HTMLInputElement>(ref || null)
+  const inputRef: RefObject<HTMLInputElement> | null = useProvidedRefOrCreate<HTMLInputElement>(ref || null)
   const uniqueId = useId(id)
+
+  const onClick = useCallback(() => {
+    if (!disabled && inputRef.current) {
+      inputRef.current.click()
+    }
+  }, [disabled, inputRef])
 
   return (
     <span className={styles['Radio-wrapper']}>
@@ -50,11 +53,9 @@ const _Radio = (
         value={value}
         {...rest}
       />
-      {/** Disabled as Radio's should always be used inside FormControl per our documented guidance */}
-      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-      <label htmlFor={uniqueId} className={clsx(styles.Radio, className)}>
+      <span className={clsx(styles.Radio, className)} onClick={onClick} tabIndex={-1} aria-hidden="true">
         <span className={styles['Radio-dot']} />
-      </label>
+      </span>
     </span>
   )
 }
