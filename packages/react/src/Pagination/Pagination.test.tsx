@@ -57,7 +57,7 @@ describe('Pagination', () => {
   it('applies the correct attributes to the ellipsis button', () => {
     const {container} = render(<Pagination pageCount={10} currentPage={1} />)
 
-    // Teting library can't find this element as it's presentation-only, so we need to use querySelector
+    // Testing library can't find this element as it's presentation-only, so we need to use querySelector
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const ellipsisButton = container.querySelector('a[role="presentation"]')!
 
@@ -243,7 +243,7 @@ describe('Pagination', () => {
   it('sets "aria-disabled" to true for just the "Next" button when on the last page', () => {
     const {getByRole} = render(<Pagination pageCount={5} currentPage={5} />)
 
-    expect(getByRole('button', {name: 'Previous Page'})).not.toHaveAttribute('aria-disable')
+    expect(getByRole('button', {name: 'Previous Page'})).not.toHaveAttribute('aria-disabled')
     expect(getByRole('button', {name: 'Page 1'})).not.toHaveAttribute('aria-disabled')
     expect(getByRole('button', {name: 'Page 2'})).not.toHaveAttribute('aria-disabled')
     expect(getByRole('button', {name: 'Page 3'})).not.toHaveAttribute('aria-disabled')
