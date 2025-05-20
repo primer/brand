@@ -630,9 +630,13 @@
   }
 
   .SubNav__sub-menu-toggle {
+    width: var(--base-size-24);
+    height: var(--base-size-24);
     border: none;
     padding: 0;
     margin: 0;
+    padding-inline-end: var(--base-size-8);
+    margin-inline-end: calc(-1 * var(--base-size-8));
     background: none;
     display: inline-flex;
     align-items: center;
