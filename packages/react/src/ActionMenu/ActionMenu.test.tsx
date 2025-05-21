@@ -754,4 +754,56 @@ describe('ActionMenu', () => {
       {timeout: 100},
     )
   })
+
+  it('should call the onClick callback when an item is clicked in split-button mode when as="a"', async () => {
+    const mockOnClick = jest.fn()
+
+    const {getByRole} = render(
+      <ActionMenu mode="split-button" open>
+        <ActionMenu.Button as="a" href="#option1">
+          Primary Action
+        </ActionMenu.Button>
+        <ActionMenu.Overlay aria-label="Additional options">
+          <ActionMenu.Item as="a" href="#option1" onClick={mockOnClick}>
+            Option 1
+          </ActionMenu.Item>
+          <ActionMenu.Item as="a" href="#option2">
+            Option 2
+          </ActionMenu.Item>
+        </ActionMenu.Overlay>
+      </ActionMenu>,
+    )
+
+    const option1 = getByRole('menuitem', {name: 'Option 1'})
+    fireEvent.click(option1)
+
+    expect(mockOnClick).toHaveBeenCalled()
+  })
+
+  it('should call the onKeyDown callback when a key is pressed in split-button mode when as="a"', async () => {
+    const mockOnKeyDown = jest.fn()
+
+    const {getByRole} = render(
+      <ActionMenu mode="split-button" open>
+        <ActionMenu.Button as="a" href="#option1">
+          Primary Action
+        </ActionMenu.Button>
+        <ActionMenu.Overlay aria-label="Additional options">
+          <ActionMenu.Item as="a" href="#option1" onKeyDown={mockOnKeyDown}>
+            Option 1
+          </ActionMenu.Item>
+          <ActionMenu.Item as="a" href="#option2">
+            Option 2
+          </ActionMenu.Item>
+        </ActionMenu.Overlay>
+      </ActionMenu>,
+    )
+
+    const option1 = getByRole('menuitem', {name: 'Option 1'})
+    fireEvent.focus(option1)
+
+    fireEvent.keyDown(option1, {key: 'Enter'})
+
+    expect(mockOnKeyDown).toHaveBeenCalled()
+  })
 })
