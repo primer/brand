@@ -317,7 +317,6 @@ function _AnchorNavLink({
   const [intersectionEntry, setIntersectionEntry] = useState<IntersectionObserverEntry>()
 
   const isAnchor = /^#/.test(href)
-  const sansAnchor = isAnchor ? href.replace(/^#/, '') : href
   const anchoredContentIsVisible = !!intersectionEntry?.isIntersecting
 
   const handleIntersectionUpdate = ([nextEntry]: IntersectionObserverEntry[]): void => {
@@ -367,7 +366,6 @@ function _AnchorNavLink({
         anchoredContentIsVisible && styles['AnchorNav-link--is-active'],
       )}
       href={isAnchor ? href : `#${href}`}
-      aria-describedby={sansAnchor}
       aria-current={anchoredContentIsVisible && 'true'}
       data-first={isActive}
       data-active={anchoredContentIsVisible ? 'true' : 'false'}
