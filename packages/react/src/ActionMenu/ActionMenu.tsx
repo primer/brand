@@ -468,7 +468,7 @@ const ActionMenuItem = ({
   const {size} = useActionMenuContext()
 
   const handleClick = useCallback(
-    e => {
+    (e: React.MouseEvent<HTMLLIElement>) => {
       onClick?.(e)
 
       if (!disabled) {
@@ -499,13 +499,11 @@ const ActionMenuItem = ({
       ),
       role: roleTypeMap[type || 'single'],
       'aria-disabled': disabled,
-      onClick: handleClick,
-      onKeyDown: handleKeyDown,
-      tabIndex: 0,
+      tabIndex: -1,
       'data-value': value,
       ...props,
     }),
-    [props, type, size, className, handleClick, handleKeyDown, disabled, value],
+    [props, type, size, className, disabled, value],
   )
 
   const contents = useMemo(
@@ -544,7 +542,14 @@ const ActionMenuItem = ({
 
   if (as === 'a') {
     return (
-      <li {...liProps}>
+      <li
+        // This role will be overridden by the role prop in `liProps`. It's just here to keep the linter happy
+        role="menuitem"
+        {...liProps}
+        // Intentionally not calling handle[Click/KeyDown] here so as to not call the handler
+        onClick={onClick}
+        onKeyDown={onKeyDown}
+      >
         <a
           className={clsx(styles['ActionMenu__item-anchor'], disabled && styles['ActionMenu__item--disabled'])}
           href={props.href}
@@ -556,7 +561,14 @@ const ActionMenuItem = ({
   }
 
   return (
-    <li {...liProps} aria-checked={type === 'none' ? undefined : selected ? 'true' : 'false'}>
+    <li
+      // This role will be overridden by the role prop in `liProps`. It's just here to keep the linter happy
+      role="menuitem"
+      {...liProps}
+      aria-checked={type === 'none' ? undefined : selected ? 'true' : 'false'}
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
+    >
       {contents}
     </li>
   )
