@@ -11,6 +11,7 @@ import React, {
   memo,
   Ref,
   ReactElement,
+  useMemo,
 } from 'react'
 import {Button, ButtonProps, Text, ThemeProvider, useTheme} from '../'
 import {useAnchoredPosition} from '../hooks/useAnchoredPosition'
@@ -459,41 +460,57 @@ const ActionMenuItem = ({
   selected,
   type,
   value,
+  onClick,
+  onKeyDown,
   leadingVisual: LeadingVisual,
   ...props
 }: ActionMenuItemAnchorProps | ActionMenuItemDefaultProps) => {
   const {size} = useActionMenuContext()
 
-  const isAnchor = as === 'a'
-  const InnerTag = isAnchor ? 'a' : React.Fragment
+  const handleClick = useCallback(
+    e => {
+      onClick?.(e)
 
-  return (
-    <li
-      className={clsx(
+      if (!disabled) {
+        handler?.(String(value))
+      }
+    },
+    [handler, value, disabled, onClick],
+  )
+
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLLIElement>) => {
+      onKeyDown?.(e)
+
+      if (!disabled && e.key === 'Enter') {
+        handler?.(String(value))
+      }
+    },
+    [handler, value, disabled, onKeyDown],
+  )
+
+  const liProps = useMemo<React.HTMLProps<HTMLLIElement> & {'data-value': unknown}>(
+    () => ({
+      className: clsx(
         styles.ActionMenu__item,
         type === 'single' && styles[`ActionMenu__item--selection-type-${type}`],
         size && styles[`ActionMenu__item--${size}`],
         className,
-      )}
-      role={roleTypeMap[type || 'single']}
-      aria-checked={as === 'a' || type === 'none' ? undefined : selected ? 'true' : 'false'}
-      aria-disabled={disabled ? 'true' : 'false'}
-      onClick={!isAnchor && handler && !disabled ? () => handler(String(value)) : undefined}
-      onKeyDown={
-        !isAnchor && handler && !disabled ? event => event.key === 'Enter' && handler(String(value)) : undefined
-      }
-      tabIndex={0}
-      data-value={value}
-      {...(isAnchor ? {} : props)}
-    >
-      <InnerTag
-        {...(isAnchor
-          ? {
-              className: clsx(styles['ActionMenu__item-anchor'], disabled && styles['ActionMenu__item--disabled']),
-              href: props.href,
-            }
-          : {})}
-      >
+      ),
+      role: roleTypeMap[type || 'single'],
+      'aria-disabled': disabled,
+      onClick: handleClick,
+      onKeyDown: handleKeyDown,
+      tabIndex: 0,
+      'data-value': value,
+      ...props,
+    }),
+    [props, type, size, className, handleClick, handleKeyDown, disabled, value],
+  )
+
+  const contents = useMemo(
+    () => (
+      <>
         {LeadingVisual && React.isValidElement(LeadingVisual)
           ? React.cloneElement(LeadingVisual as React.ReactElement, {
               width: LeadingVisual.props.width || 20,
@@ -520,7 +537,27 @@ const ActionMenuItem = ({
             {children}
           </Text>
         </span>
-      </InnerTag>
+      </>
+    ),
+    [LeadingVisual, children, selected, disabled, size, type],
+  )
+
+  if (as === 'a') {
+    return (
+      <li {...liProps}>
+        <a
+          className={clsx(styles['ActionMenu__item-anchor'], disabled && styles['ActionMenu__item--disabled'])}
+          href={props.href}
+        >
+          {contents}
+        </a>
+      </li>
+    )
+  }
+
+  return (
+    <li {...liProps} aria-checked={type === 'none' ? undefined : selected ? 'true' : 'false'}>
+      {contents}
     </li>
   )
 }
