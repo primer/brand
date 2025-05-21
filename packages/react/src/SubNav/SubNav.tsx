@@ -314,13 +314,14 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
           <div ref={rootRef} className={styles['SubNav--header-container-outer']}>
             <div className={styles['SubNav__header-container']}>
               {HeadingChild && <div className={styles['SubNav__heading-container']}>{HeadingChild}</div>}
-              <Separator activeLinklabel={activeLinklabel} />
               {SubHeadingChild && (isLarge || !subHeadingIsActive) && (
                 <>
-                  <div className={styles['SubNav__heading-container']}>{SubHeadingChild}</div>
                   <Separator activeLinklabel={activeLinklabel} />
+                  <div className={styles['SubNav__heading-container']}>{SubHeadingChild}</div>
                 </>
               )}
+
+              {activeLinklabel ? <Separator activeLinklabel={activeLinklabel} /> : null}
 
               {!isLarge && (!SubHeadingChild || subHeadingIsActive) && NarrowButton}
 
