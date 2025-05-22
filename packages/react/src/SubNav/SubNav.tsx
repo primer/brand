@@ -323,7 +323,7 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
                 </>
               )}
 
-              {activeLinklabel ? <Separator activeLinklabel={activeLinklabel} /> : null}
+              {isLarge || activeLinklabel ? <Separator activeLinklabel={activeLinklabel} /> : null}
 
               {!isLarge && (!SubHeadingChild || subHeadingIsActive) && NarrowButton}
 
