@@ -1,5 +1,27 @@
 # @primer/react-brand
 
+## 0.54.1
+
+### Patch Changes
+
+- [#1025](https://github.com/primer/brand/pull/1025) [`667d820`](https://github.com/primer/brand/commit/667d82065ae71bab332252bb3da5e726f3f56e69) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Removed `aria-describedby` from `AnchorNav.Link` component.
+
+- [#1015](https://github.com/primer/brand/pull/1015) [`1afeeae`](https://github.com/primer/brand/commit/1afeeaeb9329251b79a3f737dbec118006e91e20) Thanks [@danielguillan](https://github.com/danielguillan)! - Fixed an issue in `ActionMenu` where anchor links in `split-button` mode were only clickable on the text. Now, the clickable area covers the full width and height of the item.
+
+- [#1024](https://github.com/primer/brand/pull/1024) [`97b7a97`](https://github.com/primer/brand/commit/97b7a97719af118419f278fade092b387a0ee2b7) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Improved accessibility of `SubNav` component when no active link — denoted by `aria-current="page"` — is present.
+
+  - Hide last separator (on large viewports only) when there is no active link
+  - Set a fallback accessible label on the overlay toggle when there is no active link
+
+- [#1020](https://github.com/primer/brand/pull/1020) [`584280e`](https://github.com/primer/brand/commit/584280e339c6e1bf039f66a9f1040dd4db29aa25) Thanks [@joshfarrant](https://github.com/joshfarrant)! - `ActionMenu` bugfixes:
+
+  - Fixed a bug in `ActionMenu.Item` where provided `onClick` and `onKeyDown` handlers wouldn't be called.
+  - Fixed a bug which allowed <kbd>Tab</kbd> to cycle through the list of `ActionMenu.Item` elements which resulted in unpredictable focus behaviour. The intended way to navigate through the list is by using the arrow keys.
+
+- [#1012](https://github.com/primer/brand/pull/1012) [`ce945a2`](https://github.com/primer/brand/commit/ce945a2f7f2095cc58dbbd5665b23d3c3e60a711) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Removed the `Checkbox` and `Radio` components' built-in `<label>` as it was only used for styling and would result in inputs having two associated labels when used inside a `FormControl`.
+
+- [#1017](https://github.com/primer/brand/pull/1017) [`dd93551`](https://github.com/primer/brand/commit/dd9355102da60eb5ecd89db0f3b2e478b7dab6d6) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Increased the touch target size of `SubNav.SubMenu` toggle button
+
 ## 0.54.0
 
 ### Minor Changes
