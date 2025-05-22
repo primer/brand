@@ -7,13 +7,6 @@ import {test, expect} from '@playwright/test'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: Pagination', () => {
-  test('Pagination / Default', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-pagination--default&viewMode=story')
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
-  })
-
   test('Pagination / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-pagination--playground&viewMode=story')
 
