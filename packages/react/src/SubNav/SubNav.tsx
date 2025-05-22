@@ -266,7 +266,9 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
         aria-expanded={isOpenAtNarrow ? 'true' : 'false'}
         aria-controls={idForLinkContainer}
       >
-        {activeLinklabel && <span className="visually-hidden">Navigation menu. Current page: </span>}
+        <span className="visually-hidden">
+          {activeLinklabel ? 'Navigation menu. Current page: ' : 'Navigation menu'}
+        </span>
         <span
           className={clsx(
             styles['SubNav__overlay-toggle-content'],
@@ -314,13 +316,14 @@ const _SubNavRoot = memo(({id, children, className, 'data-testid': testId, fullW
           <div ref={rootRef} className={styles['SubNav--header-container-outer']}>
             <div className={styles['SubNav__header-container']}>
               {HeadingChild && <div className={styles['SubNav__heading-container']}>{HeadingChild}</div>}
-              <Separator activeLinklabel={activeLinklabel} />
               {SubHeadingChild && (isLarge || !subHeadingIsActive) && (
                 <>
-                  <div className={styles['SubNav__heading-container']}>{SubHeadingChild}</div>
                   <Separator activeLinklabel={activeLinklabel} />
+                  <div className={styles['SubNav__heading-container']}>{SubHeadingChild}</div>
                 </>
               )}
+
+              {activeLinklabel ? <Separator activeLinklabel={activeLinklabel} /> : null}
 
               {!isLarge && (!SubHeadingChild || subHeadingIsActive) && NarrowButton}
 
