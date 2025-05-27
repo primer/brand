@@ -228,7 +228,7 @@ describe('SubNav', () => {
 
     expect(getByRole('link', {name: 'Copilot'})).toHaveFocus()
 
-    const toggleSubmenuButton = getByRole('button', {name: 'Open submenu'})
+    const toggleSubmenuButton = getByRole('button', {name: 'Copilot submenu'})
     expect(toggleSubmenuButton).toHaveAttribute('aria-expanded', 'false')
 
     await userEvent.tab()
