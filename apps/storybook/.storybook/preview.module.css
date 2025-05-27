@@ -11,3 +11,48 @@
 body {
   background-color: var(--brand-color-canvas-default);
 }
+
+:global(#storybook-root):has(.grid) {
+  position: relative;
+}
+
+.grid {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-row-gap: var(--brand-Grid-spacing-row);
+  grid-column-gap: var(--brand-Grid-spacing-column-gap);
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  z-index: 9999999;
+  padding-inline: var(--brand-Grid-spacing-margin);
+}
+
+.grid--limited-width {
+  max-width: 1280px;
+}
+
+.grid--limited-width-no-padding {
+  max-width: 1280px;
+  padding-inline: 0;
+}
+
+.grid--full-width {
+  max-width: 100%;
+}
+
+.grid--full-width-no-padding {
+  max-width: 100%;
+  padding-inline: 0;
+}
+
+.column {
+  background-color: var(--brand-Grid-column-bgColor-overlay);
+  mix-blend-mode: difference;
+  filter: contrast(1.5) brightness(1.2);
+  min-height: var(--base-size-24);
+}
