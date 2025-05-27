@@ -166,4 +166,13 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
+
+  test('SubdomainNavBar / Reversed Button Order', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--reversed-button-order&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
 })
