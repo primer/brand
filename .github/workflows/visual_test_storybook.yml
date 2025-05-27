@@ -62,16 +62,8 @@ jobs:
           path: packages/e2e/playwright-report/
           retention-days: 30
 
-  report:
-    needs: visual-test
-    if: ${{ always() && github.repository == 'primer/brand' }}
-    runs-on: ubuntu-latest-16-cores
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
       - name: Comment on the PR about visual differences
-        if: ${{ contains(needs.visual-test.result, 'failure') }}
+        if: steps.playwright-step.outcome != 'success'
         uses: phulsechinmay/rewritable-pr-comment@v0.2.1
         with:
           message: |
@@ -97,7 +89,7 @@ jobs:
           COMMENT_IDENTIFIER: 'visual-comparison-diff'
 
       - name: Comment on the PR about no visual differences
-        if: ${{ needs.visual-test.result == 'success' }}
+        if: steps.playwright-step.outcome == 'success'
         uses: phulsechinmay/rewritable-pr-comment@v0.2.1
         with:
           message: |
