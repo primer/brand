@@ -721,3 +721,14 @@ export const ReversedButtonOrder = () => {
     </SubdomainNavBar>
   )
 }
+
+export const ReversedButtonOrderNarrow = () => <ReversedButtonOrder />
+ReversedButtonOrderNarrow.parameters = {
+  viewport: {
+    defaultViewport: 'iphonex',
+  },
+}
+ReversedButtonOrderNarrow.play = async ({canvasElement}) => {
+  const canvas = within(canvasElement)
+  await userEvent.click(canvas.getByLabelText('Menu'))
+}

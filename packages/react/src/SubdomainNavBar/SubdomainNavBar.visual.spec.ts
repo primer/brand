@@ -175,4 +175,17 @@ test.describe('Visual Comparison: SubdomainNavBar', () => {
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for Reversed Button Order Narrow', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('SubdomainNavBar / Reversed Button Order Narrow', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-subdomainnavbar--reversed-button-order-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(5500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+  })
 })
