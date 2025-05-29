@@ -1,5 +1,5 @@
-import {HTMLAttributes} from 'react'
-import React, {render, cleanup, within} from '@testing-library/react'
+import React, {HTMLAttributes, useEffect} from 'react'
+import {render, cleanup, within} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
@@ -282,5 +282,30 @@ describe('SubNav', () => {
 
     expect(el).toBeInTheDocument()
     expect(el).toHaveAttribute('href', expectedLink)
+  })
+
+  it('allows passing a ref to enable programmatic access to the underlying element', () => {
+    const expectedClass = 'test-class'
+    const MockComponent = () => {
+      const ref = React.useRef<HTMLDivElement>(null)
+
+      useEffect(() => {
+        if (ref.current) {
+          ref.current.classList.add(expectedClass)
+        }
+      }, [ref])
+
+      return (
+        <SubNav ref={ref}>
+          <SubNav.Heading href={headingLink}>{heading}</SubNav.Heading>
+          <SubNav.Link href="#">Link</SubNav.Link>
+        </SubNav>
+      )
+    }
+
+    const {container} = render(<MockComponent />)
+
+    const el = container.querySelector('.SubNav__container')
+    expect(el).toHaveClass(expectedClass)
   })
 })
