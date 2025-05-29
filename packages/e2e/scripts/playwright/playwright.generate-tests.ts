@@ -31,6 +31,7 @@
     'components-subdomainnavbar--mobile-menu-open-many-items': 5500, // for all staggered animations
     'components-subdomainnavbar--mobile-search-results-visible': 5500, // for the animation
     'components-subdomainnavbar--mobile-no-links': 5500, // for the animation
+    'components-subdomainnavbar--reversed-button-order-narrow': 5500, // for the animation
     'components-button-features--primary-focus-non-standard-bg': 2000, // for the interaction test
     'components-button-features--primary-focus': 2000, // for the interaction test
     'components-button-features--with-hover-interaction': 2000, // for the interaction test

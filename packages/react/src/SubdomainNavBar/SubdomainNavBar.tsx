@@ -278,18 +278,7 @@ function Root({
                     {React.Children.toArray(children)
                       .map(child => {
                         if (React.isValidElement(child) && typeof child.type !== 'string') {
-                          if (child.type === PrimaryAction) {
-                            return child
-                          }
-                          return null
-                        }
-                      })
-                      .filter(Boolean)}
-
-                    {React.Children.toArray(children)
-                      .map(child => {
-                        if (React.isValidElement(child) && typeof child.type !== 'string') {
-                          if (child.type === SecondaryAction) {
+                          if (child.type === PrimaryAction || child.type === SecondaryAction) {
                             return child
                           }
                           return null
@@ -338,18 +327,7 @@ function Root({
                       {React.Children.toArray(children)
                         .map(child => {
                           if (React.isValidElement(child) && typeof child.type !== 'string') {
-                            if (child.type === PrimaryAction) {
-                              return child
-                            }
-                            return null
-                          }
-                        })
-                        .filter(Boolean)}
-
-                      {React.Children.toArray(children)
-                        .map(child => {
-                          if (React.isValidElement(child) && typeof child.type !== 'string') {
-                            if (child.type === SecondaryAction) {
+                            if (child.type === PrimaryAction || child.type === SecondaryAction) {
                               return child
                             }
                             return null

@@ -704,3 +704,31 @@ export const ExternalLink = () => {
     </SubdomainNavBar>
   )
 }
+
+export const ReversedButtonOrder = () => {
+  return (
+    <SubdomainNavBar title="Subdomain">
+      <SubdomainNavBar.Link href="#Collections">Collections</SubdomainNavBar.Link>
+      <SubdomainNavBar.Link href="#Topics" isExternal>
+        Topics
+      </SubdomainNavBar.Link>
+      <SubdomainNavBar.Link href="#Articles">Articles</SubdomainNavBar.Link>
+      <SubdomainNavBar.Link href="#Events">Events</SubdomainNavBar.Link>
+      <SubdomainNavBar.Link href="#Video">Video</SubdomainNavBar.Link>
+
+      <SubdomainNavBar.SecondaryAction href="#">Secondary CTA</SubdomainNavBar.SecondaryAction>
+      <SubdomainNavBar.PrimaryAction href="#">Primary CTA</SubdomainNavBar.PrimaryAction>
+    </SubdomainNavBar>
+  )
+}
+
+export const ReversedButtonOrderNarrow = () => <ReversedButtonOrder />
+ReversedButtonOrderNarrow.parameters = {
+  viewport: {
+    defaultViewport: 'iphonex',
+  },
+}
+ReversedButtonOrderNarrow.play = async ({canvasElement}) => {
+  const canvas = within(canvasElement)
+  await userEvent.click(canvas.getByLabelText('Menu'))
+}
