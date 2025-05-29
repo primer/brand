@@ -303,9 +303,9 @@ describe('SubNav', () => {
       )
     }
 
-    const {getByTestId} = render(<MockComponent />)
+    const {container} = render(<MockComponent />)
 
-    const el = getByTestId(SubNav.testIds.root)
+    const el = container.querySelector('.SubNav__container')
     expect(el).toHaveClass(expectedClass)
   })
 })
