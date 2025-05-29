@@ -1,11 +1,5 @@
-import {LinkProps} from '../Link'
-
-type PaginationModel =
-  | {type: string; num: number}
-  | {type: string; num: number; selected: boolean; precedesBreak: boolean}
-
-type PageType = {
-  type: string
+export type PageType = {
+  type: 'PREV' | 'NEXT' | 'NUM' | 'BREAK'
   num: number
   disabled?: boolean
   selected?: boolean
@@ -18,8 +12,8 @@ export function buildPaginationModel(
   showPages: boolean,
   marginPageCount: number,
   surroundingPageCount: number,
-) {
-  const pages: PaginationModel[] = []
+): PageType[] {
+  const pages: PageType[] = []
 
   if (showPages) {
     const pageNums: Array<number> = []
@@ -135,75 +129,7 @@ export function buildPaginationModel(
     }
   }
 
-  const prev = {type: 'PREV', num: currentPage - 1, disabled: currentPage === 1}
-  const next = {type: 'NEXT', num: currentPage + 1, disabled: currentPage === pageCount}
+  const prev: PageType = {type: 'PREV', num: currentPage - 1, disabled: currentPage === 1}
+  const next: PageType = {type: 'NEXT', num: currentPage + 1, disabled: currentPage === pageCount}
   return [prev, ...pages, next]
-}
-
-export function buildComponentData(
-  page: PageType,
-  hrefBuilder: (n: number) => string,
-  onClick: (e: React.MouseEvent) => void,
-): {
-  props: LinkProps
-  key: string
-  content: string
-} {
-  const props = {}
-  let content = ''
-  let key = ''
-
-  switch (page.type) {
-    case 'PREV': {
-      key = 'page-prev'
-      content = 'Previous'
-      if (page.disabled) {
-        Object.assign(props, {rel: 'prev', as: 'button', 'aria-disabled': 'true'})
-      } else {
-        Object.assign(props, {
-          rel: 'prev',
-          href: hrefBuilder(page.num),
-          'aria-label': 'Previous Page',
-          onClick,
-        })
-      }
-      break
-    }
-    case 'NEXT': {
-      key = 'page-next'
-      content = 'Next'
-      if (page.disabled) {
-        Object.assign(props, {rel: 'next', as: 'button', 'aria-disabled': 'true'})
-      } else {
-        Object.assign(props, {
-          rel: 'next',
-          href: hrefBuilder(page.num),
-          'aria-label': 'Next Page',
-          onClick,
-        })
-      }
-      break
-    }
-    case 'NUM': {
-      key = `page-${page.num}`
-      content = String(page.num)
-      Object.assign(props, {
-        href: hrefBuilder(page.num),
-        // We append "..." to the aria-label for pages that preceed a break because screen readers will
-        // change the tone the text is read in.
-        // This is a slightly nicer experience than skipping a bunch of numbers unexpectedly.
-        'aria-label': `Page ${page.num}${page.precedesBreak ? '...' : ''}`,
-        onClick,
-        'aria-current': page.selected ? 'page' : undefined,
-      })
-      break
-    }
-    case 'BREAK': {
-      key = `page-${page.num}-break`
-      content = '…'
-      Object.assign(props, {as: 'span', role: 'presentation'})
-    }
-  }
-
-  return {props, key, content}
 }
