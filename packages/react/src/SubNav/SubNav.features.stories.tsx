@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {Meta} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {linkTo} from '@storybook/addon-links'
@@ -352,3 +352,34 @@ export const AnchorNavDefaultLinkVariant = args => (
     <SubNav.Action href="#">Primary CTA</SubNav.Action>
   </SubNav>
 )
+
+export const ForwardedRefs = () => {
+  const subNavRef = React.useRef<HTMLDivElement>(null)
+  const [height, setHeight] = React.useState<number | null>(null)
+
+  useEffect(() => {
+    if (subNavRef.current) {
+      setHeight(subNavRef.current.offsetHeight)
+    }
+  }, [subNavRef])
+
+  return (
+    <>
+      <SubNav ref={subNavRef}>
+        <SubNav.Heading href="#">Heading</SubNav.Heading>
+        <SubNav.Link href="#">Link </SubNav.Link>
+        <SubNav.Link href="#">Link</SubNav.Link>
+        <SubNav.Link href="#">Link</SubNav.Link>
+        <SubNav.Link href="#">Link</SubNav.Link>
+        <SubNav.Link href="#">Link</SubNav.Link>
+        <SubNav.Link href="#">Link</SubNav.Link>
+        <SubNav.Action href="#">Primary CTA</SubNav.Action>
+      </SubNav>
+      <Box paddingBlockStart={64}>
+        <Text as="p" align="center">
+          SubNav rendered height: {height}px
+        </Text>
+      </Box>
+    </>
+  )
+}
