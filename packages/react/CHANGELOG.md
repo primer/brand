@@ -1,5 +1,24 @@
 # @primer/react-brand
 
+## 0.54.2
+
+### Patch Changes
+
+- [#1030](https://github.com/primer/brand/pull/1030) [`4ee490d`](https://github.com/primer/brand/commit/4ee490d0ade8d057d147a9f012af77f5a35d7455) Thanks [@rezrah](https://github.com/rezrah)! - Fixed `SubdomainNavBar` to preserve the original ordering of actions in JSX, allowing more flexibility in CTA placement.
+
+  ```jsx
+  <SubdomainNavBar title="Subdomain">
+    <SubdomainNavBar.Link />
+    <SubdomainNavBar.SecondaryAction href="#">Secondary CTA</SubdomainNavBar.SecondaryAction>
+    {/* Primary actions can now render at the end */}
+    <SubdomainNavBar.PrimaryAction href="#">Primary CTA</SubdomainNavBar.PrimaryAction>
+  </SubdomainNavBar>
+  ```
+
+- [#1031](https://github.com/primer/brand/pull/1031) [`094cdf4`](https://github.com/primer/brand/commit/094cdf4977a8a749625317c27aa1290380d24bc5) Thanks [@rezrah](https://github.com/rezrah)! - `SubNav` component now correctly forwards refs to the underlying element.
+
+- [#1034](https://github.com/primer/brand/pull/1034) [`0d3a198`](https://github.com/primer/brand/commit/0d3a1988a39ec97fa92c56815ccead7d22a41e78) Thanks [@rezrah](https://github.com/rezrah)! - Increased contrast on `LogoSuite.Logobar` play/pause button in `marquee` mode.
+
 ## 0.54.1
 
 ### Patch Changes

@@ -1,5 +1,16 @@
 # @primer/brand-primitives
 
+## 0.54.2
+
+### Patch Changes
+
+- [#1034](https://github.com/primer/brand/pull/1034) [`0d3a198`](https://github.com/primer/brand/commit/0d3a1988a39ec97fa92c56815ccead7d22a41e78) Thanks [@rezrah](https://github.com/rezrah)! - Added new tokens for LogoSuite play/pause controls for improved visual contrast and granular customization
+
+  ```diff
+  + --brand-LogoSuite-color-control-rest
+  + --brand-LogoSuite-color-control-hover
+  ```
+
 ## 0.54.1
 
 ## 0.54.0
