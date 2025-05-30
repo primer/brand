@@ -178,12 +178,12 @@
   padding: 0;
   border: none;
   border-radius: var(--base-size-48);
-  background-color: var(--brand-button-subtle-bgColor-rest);
+  background-color: var(--brand-LogoSuite-color-controls-button-rest);
   transition: background-color var(--brand-animation-duration-faster);
 }
 
 .LogoSuite__logobar-playPauseButton:hover {
-  background-color: var(--brand-button-subtle-bgColor-hover);
+  background-color: var(--brand-LogoSuite-color-controls-button-hover);
 }
 
 .LogoSuite__logobar-playPauseButton:focus-visible {

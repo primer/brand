@@ -1,6 +1,18 @@
 {
   "LogoSuite": {
     "color": {
+      "controls": {
+        "button": {
+          "rest": {
+            "value": "var(--base-color-scale-gray-1)",
+            "dark": "var(--base-color-scale-gray-5)"
+          },
+          "hover": {
+            "value": "var(--base-color-scale-gray-2)",
+            "dark": "var(--base-color-scale-gray-4)"
+          }
+        }
+      },
       "logo": {
         "muted": {
           "value": "var(--brand-color-text-muted)",
