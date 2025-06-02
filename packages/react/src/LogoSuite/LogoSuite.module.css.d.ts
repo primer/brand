@@ -8,6 +8,8 @@ declare const styles: {
   readonly "LogoSuite__heading": string;
   readonly "LogoSuite__heading--visually-hidden": string;
   readonly "LogoSuite__logobar": string;
+  readonly "LogoSuite__logobar--gap-condensed": string;
+  readonly "LogoSuite__logobar--gap-default": string;
   readonly "LogoSuite__logobar--has-marquee": string;
   readonly "LogoSuite__logobar--paused": string;
   readonly "LogoSuite__logobar--variant-emphasis": string;

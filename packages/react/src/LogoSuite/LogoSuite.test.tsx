@@ -329,4 +329,43 @@ describe('LogoSuite', () => {
 
     expect(el.classList).toContain(expectedClass)
   })
+
+  it('applies the correct class for the default gap', () => {
+    const defaultGapClass = 'LogoSuite__logobar--gap-default'
+
+    const {getByTestId} = render(
+      <LogoSuite>
+        <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
+        <LogoSuite.Logobar data-testid="logobar">
+          <svg aria-label="Mock SVG" />
+          <svg aria-label="Mock SVG" />
+          <svg aria-label="Mock SVG" />
+          <svg aria-label="Mock SVG" />
+          <svg aria-label="Mock SVG" />
+          <svg aria-label="Mock SVG" />
+        </LogoSuite.Logobar>
+      </LogoSuite>,
+    )
+
+    expect(getByTestId('logobar').classList).toContain(defaultGapClass)
+  })
+
+  it('applies the correct class for the condensed gap', () => {
+    const condensedGapClass = 'LogoSuite__logobar--gap-condensed'
+    const {getByTestId} = render(
+      <LogoSuite>
+        <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
+        <LogoSuite.Logobar data-testid="logobar" gap="condensed">
+          <svg aria-label="Mock SVG" />
+          <svg aria-label="Mock SVG" />
+          <svg aria-label="Mock SVG" />
+          <svg aria-label="Mock SVG" />
+          <svg aria-label="Mock SVG" />
+          <svg aria-label="Mock SVG" />
+        </LogoSuite.Logobar>
+      </LogoSuite>,
+    )
+
+    expect(getByTestId('logobar').classList).toContain(condensedGapClass)
+  })
 })

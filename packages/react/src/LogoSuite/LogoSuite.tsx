@@ -190,6 +190,10 @@ const PlayPauseButton = ({isPlaying = true, onPlayPause}: PlayPauseButtonProps) 
 export type LogoSuiteLogoBarProps = BaseProps<HTMLDivElement> & {
   children: React.ReactNode | React.ReactNode[]
   /**
+   * The gap between logos
+   */
+  gap?: 'default' | 'condensed'
+  /**
    * Enables an optional marquee effect
    */
   marquee?: boolean
@@ -205,7 +209,15 @@ export type LogoSuiteLogoBarProps = BaseProps<HTMLDivElement> & {
 
 const _LogoBar = forwardRef(
   (
-    {className, children, marquee = false, marqueeSpeed = 'normal', variant, ...props}: LogoSuiteLogoBarProps,
+    {
+      className,
+      children,
+      gap = 'default',
+      marquee = false,
+      marqueeSpeed = 'normal',
+      variant,
+      ...props
+    }: LogoSuiteLogoBarProps,
     ref: Ref<HTMLDivElement>,
   ) => {
     const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
@@ -235,7 +247,12 @@ const _LogoBar = forwardRef(
 
     const defaultProps = {
       ref,
-      className: clsx(styles['LogoSuite__logobar'], styles[`LogoSuite__logobar--variant-${variant}`], className),
+      className: clsx(
+        styles['LogoSuite__logobar'],
+        styles[`LogoSuite__logobar--variant-${variant}`],
+        styles[`LogoSuite__logobar--gap-${gap}`],
+        className,
+      ),
       ...props,
     }
 

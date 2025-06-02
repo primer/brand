@@ -27,8 +27,15 @@
   display: flex;
   flex-wrap: wrap;
   row-gap: var(--brand-LogoSuite-logobar-rowGap);
-  column-gap: var(--brand-LogoSuite-logobar-columnGap);
   justify-content: center;
+}
+
+.LogoSuite__logobar--gap-default {
+  column-gap: var(--brand-LogoSuite-logobar-gap-columnGap-default);
+}
+
+.LogoSuite__logobar--gap-condensed {
+  column-gap: var(--brand-LogoSuite-logobar-gap-columnGap-condensed);
 }
 
 .LogoSuite:not(.LogoSuite + .LogoSuite)
