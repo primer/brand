@@ -86,6 +86,15 @@ test.describe('Visual Comparison: LogoSuite', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('LogoSuite / Condensed Gap', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--condensed-gap&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('LogoSuite / Visible Heading', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--visible-heading&viewMode=story',
