@@ -55,15 +55,11 @@ describe('Pagination', () => {
   })
 
   it('applies the correct attributes to the ellipsis button', () => {
-    const {container} = render(<Pagination pageCount={10} currentPage={1} />)
+    const {getByRole} = render(<Pagination pageCount={10} currentPage={1} />)
 
-    // Testing library can't find this element as it's presentation-only, so we need to use querySelector
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const ellipsisButton = container.querySelector('a[role="presentation"]')!
+    const ellipsisButton = getByRole('presentation')
 
-    expect(ellipsisButton).toBeInTheDocument()
     expect(ellipsisButton).toHaveTextContent('…')
-    expect(ellipsisButton).toHaveAttribute('role', 'presentation')
     expect(ellipsisButton).not.toHaveAttribute('href')
     expect(ellipsisButton).not.toHaveAttribute('aria-current')
   })
@@ -108,9 +104,8 @@ describe('Pagination', () => {
     const user = userEvent.setup()
     const onPageChange = jest.fn()
 
-    const {container} = render(<Pagination pageCount={10} currentPage={1} onPageChange={onPageChange} />)
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const ellipsisButton = container.querySelector('a[role="presentation"]')!
+    const {getByRole} = render(<Pagination pageCount={10} currentPage={1} onPageChange={onPageChange} />)
+    const ellipsisButton = getByRole('presentation')
 
     await user.click(ellipsisButton)
 
