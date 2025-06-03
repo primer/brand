@@ -25,6 +25,13 @@ const meta: Meta<typeof Pagination> = {
 export default meta
 type Story = StoryObj<typeof Pagination>
 
+export const Default: Story = {
+  args: {
+    pageCount: 100,
+    currentPage: 2,
+  },
+}
+
 export const Playground: Story = {
   args: {
     pageCount: 100,
