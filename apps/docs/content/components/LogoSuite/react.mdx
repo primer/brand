@@ -539,7 +539,7 @@ LogoBar supports both `default` and `condensed` gap between logos.
 <>
   <LogoSuite>
     <LogoSuite.Heading visuallyHidden>Default gap</LogoSuite.Heading>
-    <LogoSuite.Description>Muted</LogoSuite.Description>
+    <LogoSuite.Description>Default gap</LogoSuite.Description>
     <LogoSuite.Logobar variant="muted">
       <svg
         role="img"
@@ -622,7 +622,7 @@ LogoBar supports both `default` and `condensed` gap between logos.
   <br />
   <LogoSuite>
     <LogoSuite.Heading visuallyHidden>Condensed gap</LogoSuite.Heading>
-    <LogoSuite.Description>Muted</LogoSuite.Description>
+    <LogoSuite.Description>Condensed gap</LogoSuite.Description>
     <LogoSuite.Logobar variant="muted" gap="condensed">
       <svg
         role="img"
@@ -733,5 +733,5 @@ Forwards all props from the [Text component](/components/Text), including `as`, 
 | `children`     | <PropTableValues values={[`SVGElement`, `SVGElement[]`, `HTMLImageElement`, `HTMLImageElement[]`]} addLineBreaks /> | `undefined` | Logobar requires SVG or Image elements to render correctly |
 | `marquee`      | `boolean`                                                                                                           | `false`     | Enables an optional marquee effect.                        |
 | `marqueeSpeed` | <PropTableValues values={['slow', 'normal']} addLineBreaks />                                                       | `'normal'`  | The speed of the marquee effect.                           |
-| `gap`          | <PropTableValues values={['default', 'condensed']} addLineBreaks />                                                 | `'normal'`  | The gap between the logos.                                 |
+| `gap`          | <PropTableValues values={['default', 'condensed']} addLineBreaks />                                                 | `'normal'`  | The gap between logos.                                     |
 | `variant`      | <PropTableValues values={['muted', 'emphasis']} addLineBreaks />                                                    | `undefined` | The stylistic variant of the LogoBar.                      |
