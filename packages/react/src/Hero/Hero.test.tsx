@@ -140,7 +140,6 @@ describe('Hero', () => {
             <VideoPlayer.Source src="/example.mp4" />
             <VideoPlayer.Track src="/example.vtt" default kind="subtitles" srcLang="en" label="English" />
           </VideoPlayer>
-          ,
         </Hero.Video>
       </Hero>,
     )

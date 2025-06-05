@@ -191,7 +191,7 @@ export const WithYoutubeVideoBlockEndDefault: StoryFn<typeof Hero> = _args => (
     </Grid.Column>
   </Grid>
 )
-WithYoutubeVideoBlockEndDefault.storyName = 'With a Youtube video (bottom)'
+WithYoutubeVideoBlockEndDefault.storyName = 'With a YouTube video (bottom)'
 
 export const WithVideoInlineEnd: StoryFn<typeof Hero> = _args => (
   <Grid>
@@ -239,7 +239,7 @@ export const WithYoutubeVideoInlineEnd: StoryFn<typeof Hero> = _args => (
     </Grid.Column>
   </Grid>
 )
-WithYoutubeVideoInlineEnd.storyName = 'With a Youtube video (right)'
+WithYoutubeVideoInlineEnd.storyName = 'With a YouTube video (right)'
 
 export const WithoutDescription: StoryFn<typeof Hero> = _args => (
   <Hero>
