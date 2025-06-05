@@ -2,121 +2,121 @@
   "color": {
     "success": {
       "fg": {
-        "value": "hotpink",
-        "dark": "hotpink"
+        "value": "var(--base-color-scale-green-5)",
+        "dark": "var(--base-color-scale-green-3)"
       },
       "emphasis": {
-        "value": "hotpink",
-        "dark": "hotpink"
+        "value": "var(--base-color-scale-green-4)",
+        "dark": "var(--base-color-scale-green-5)"
       },
       "muted": {
-        "value": "hotpink",
-        "dark": "hotpink"
+        "value": "#4bc36b99",
+        "dark": "#2e9e4299"
       },
       "subtle": {
-        "value": "hotpink",
-        "dark": "hotpink"
+        "value": "var(--base-color-scale-green-0)",
+        "dark": "#2e9e42d9"
       }
     },
     "error": {
       "fg": {
-        "value": "hotpink",
-        "dark": "hotpink"
+        "value": "var(--base-color-scale-red-5)",
+        "dark": "var(--base-color-scale-red-4)"
       },
       "emphasis": {
-        "value": "hotpink",
-        "dark": "hotpink"
+        "value": "var(--base-color-scale-red-5)",
+        "dark": "var(--base-color-scale-red-5)"
       },
       "muted": {
-        "value": "hotpink",
-        "dark": "hotpink"
+        "value": "#ff878599",
+        "dark": "#f8524999"
       },
       "subtle": {
-        "value": "hotpink",
-        "dark": "hotpink"
+        "value": "var(--base-color-scale-red-0)",
+        "dark": "#f85249d9"
       }
     },
     "accent": {
       "primary": {
-        "value": "hotpink",
-        "dark": "hotpink"
+        "value": "var(--base-color-scale-green-5)",
+        "dark": "var(--base-color-scale-green-3)"
       },
       "secondary": {
-        "value": "hotpink",
-        "dark": "hotpink"
+        "value": "var(--base-color-scale-yellow-5)",
+        "dark": "var(--base-color-scale-yellow-3)"
       }
     },
     "text": {
       "default": {
-        "value": "hotpink",
-        "dark": "hotpink"
+        "value": "var(--base-color-scale-gray-9)",
+        "dark": "var(--base-color-scale-white-0)"
       },
       "muted": {
-        "value": "hotpink",
-        "dark": "hotpink"
+        "value": "var(--base-color-scale-gray-6)",
+        "dark": "var(--base-color-scale-gray-3)"
       },
       "subtle": {
-        "value": "hotpink",
-        "dark": "hotpink"
+        "value": "var(--base-color-scale-gray-5)",
+        "dark": "var(--base-color-scale-gray-4)"
       },
       "onEmphasis": {
-        "value": "hotpink",
-        "dark": "hotpink"
+        "value": "var(--base-color-scale-white-0)",
+        "dark": "var(--base-color-scale-black-0)"
       }
     },
     "neutral": {
       "emphasisPlus": {
-        "value": "hotpink",
-        "dark": "hotpink"
+        "value": "var(--base-color-scale-gray-9)",
+        "dark": "var(--base-color-scale-gray-4)"
       },
       "emphasis": {
-        "value": "hotpink",
-        "dark": "hotpink"
+        "value": "var(--base-color-scale-gray-5)",
+        "dark": "var(--base-color-scale-gray-4)"
       },
       "muted": {
-        "value": "hotpink",
-        "dark": "hotpink"
+        "value": "#b7bfc8fe",
+        "dark": "#6e7681fe"
       },
       "subtle": {
-        "value": "hotpink",
-        "dark": "hotpink"
+        "value": "#e9edf1fe",
+        "dark": "#6e7681ff"
       }
     },
     "canvas": {
       "default": {
-        "value": "hotpink",
-        "dark": "hotpink"
+        "value": "var(--base-color-scale-white-0)",
+        "dark": "var(--base-color-scale-black-0)"
       },
       "overlay": {
-        "value": "hotpink",
-        "dark": "hotpink"
+        "value": "var(--base-color-scale-white-0)",
+        "dark": "var(--base-color-scale-gray-8)"
       },
       "inset": {
-        "value": "hotpink",
-        "dark": "hotpink"
+        "value": "var(--base-color-scale-gray-0)",
+        "dark": "var(--base-color-scale-black-0)"
       },
       "subtle": {
-        "value": "hotpink",
-        "dark": "hotpink"
+        "value": "var(--base-color-scale-gray-0)",
+        "dark": "var(--base-color-scale-gray-8)"
       }
     },
     "border": {
       "default": {
-        "value": "hotpink",
-        "dark": "hotpink"
+        "value": "var(--base-color-scale-gray-3)",
+        "dark": "var(--base-color-scale-gray-6)"
       },
       "muted": {
-        "value": "hotpink",
-        "dark": "hotpink"
+        "value": "#d3d9dffe",
+        "dark": "var(--base-color-scale-gray-7)"
       },
       "subtle": {
-        "value": "hotpink",
-        "dark": "hotpink"
+        "value": "#e9edf1fe",
+        "dark": "var(--base-color-scale-gray-8)"
       }
     },
     "focus": {
-      "value": "hotpink",
-      "dark": "hotpink"
+      "value": "var(--base-color-scale-blue-5)",
+      "dark": "var(--base-color-scale-blue-3)"
     }
   }
 }
