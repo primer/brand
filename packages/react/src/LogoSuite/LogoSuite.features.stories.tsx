@@ -97,7 +97,13 @@ export const CondensedGap = () => (
     <Grid.Column>
       <LogoSuite>
         <LogoSuite.Heading visuallyHidden>Heading</LogoSuite.Heading>
-        <LogoSuite.Logobar gap="condensed">{logos.slice(0, 4)}</LogoSuite.Logobar>
+        <LogoSuite.Logobar gap="condensed">{logos.slice(0, 6)}</LogoSuite.Logobar>
+      </LogoSuite>
+      <LogoSuite>
+        <LogoSuite.Heading visuallyHidden>Heading</LogoSuite.Heading>
+        <LogoSuite.Logobar gap="condensed" marquee>
+          {logos.slice(0, 12)}
+        </LogoSuite.Logobar>
       </LogoSuite>
     </Grid.Column>
   </Grid>
