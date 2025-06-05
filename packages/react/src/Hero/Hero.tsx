@@ -4,7 +4,6 @@ import {Button, ButtonBaseProps} from '../Button'
 import {Heading, HeadingProps} from '../Heading'
 import {Text, TextSizes, TextWeightVariants, ResponsiveWeightMap, TextProps} from '../Text'
 import {Label, LabelProps} from '../Label'
-import {Image, ImageProps} from '../Image'
 import {Grid} from '../Grid'
 import {Stack} from '../Stack'
 import type {BaseProps} from '../component-helpers'
@@ -21,8 +20,8 @@ import styles from './Hero.module.css'
 
 const testIds = {
   root: 'Hero',
-  get video() {
-    return `${this.root}-video`
+  get media() {
+    return `${this.root}-media`
   },
 }
 
@@ -54,48 +53,40 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
     },
     ref,
   ) => {
-    const {HeroActions, HeroChildren, HeroImageChild, HeroVideoChild} = useMemo(() => {
+    const {HeroActions, HeroChildren, HeroMediaChild} = useMemo(() => {
       const result = React.Children.toArray(children).reduce<{
         HeroActions: React.ReactElement[]
-        HeroImageChild?: React.ReactElement
-        HeroVideoChild?: React.ReactElement
+        HeroMediaChild?: React.ReactElement
         HeroChildren: React.ReactElement[]
       }>(
         (acc, child) => {
           if (React.isValidElement(child)) {
             if (child.type === HeroPrimaryAction || child.type === HeroSecondaryAction) {
               acc.HeroActions.push(child)
-            } else if (child.type === HeroImage) {
-              acc.HeroImageChild = child
-            } else if (child.type === HeroVideo) {
-              acc.HeroVideoChild = child
+            } else if (child.type === HeroMedia) {
+              acc.HeroMediaChild = child
             } else {
               acc.HeroChildren.push(child)
             }
           }
           return acc
         },
-        {HeroActions: [], HeroChildren: [], HeroImageChild: undefined, HeroVideoChild: undefined},
+        {HeroActions: [], HeroChildren: [], HeroMediaChild: undefined},
       )
-
-      // Users shouldn't be able to have two types of media, prefer Hero.Image
-      if (result.HeroImageChild && result.HeroVideoChild) {
-        result.HeroVideoChild = undefined
-      }
 
       return result
     }, [children])
 
-    const mediaPosition = HeroImageChild?.props?.position || HeroVideoChild?.props?.position || 'block-end'
+    const mediaPosition = HeroMediaChild?.props?.position || 'block-end'
 
-    const heroLayoutClass = HeroImageChild ? styles['Hero--layout-image'] : styles['Hero--layout-default']
+    const heroLayoutClass = HeroMediaChild ? styles['Hero--layout-image'] : styles['Hero--layout-default']
     return (
       <section
         className={clsx(
           styles.Hero,
           mediaPosition !== 'inline-end' && styles[`Hero--align-${align}`],
           heroLayoutClass,
-          (HeroImageChild || HeroVideoChild) && styles[`Hero--image-pos-${mediaPosition}`],
+          HeroMediaChild && styles[`Hero--image-pos-${mediaPosition}`],
           className,
         )}
         ref={ref}
@@ -104,7 +95,7 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
         {...rest}
       >
         <Grid fullWidth className={clsx(styles['Hero-grid'], styles[`Hero-grid--${mediaPosition}`])}>
-          <Grid.Column span={{medium: (HeroImageChild || HeroVideoChild) && mediaPosition === 'inline-end' ? 6 : 12}}>
+          <Grid.Column span={{medium: HeroMediaChild && mediaPosition === 'inline-end' ? 6 : 12}}>
             <Stack
               direction="vertical"
               gap="none"
@@ -121,22 +112,14 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
               )}
             </Stack>
           </Grid.Column>
-          {HeroImageChild && (
+
+          {HeroMediaChild && (
             <Grid.Column
               span={{medium: mediaPosition === 'inline-end' ? 6 : 12}}
               className={imageContainerClassName}
               style={{...imageContainerStyle}}
             >
-              {HeroImageChild}
-            </Grid.Column>
-          )}
-          {HeroVideoChild && (
-            <Grid.Column
-              span={{medium: mediaPosition === 'inline-end' ? 6 : 12}}
-              className={imageContainerClassName}
-              style={{...imageContainerStyle}}
-            >
-              {HeroVideoChild}
+              {HeroMediaChild}
             </Grid.Column>
           )}
         </Grid>
@@ -195,37 +178,20 @@ const HeroDescription = forwardRef<HTMLParagraphElement, PropsWithChildren<HeroD
   },
 )
 
-type HeroImageProps = {
-  position?: 'inline-end' | 'block-end'
-} & ImageProps &
-  BaseProps<HTMLImageElement>
-
-const HeroImage = forwardRef<HTMLImageElement, HeroImageProps>(
-  ({position = 'block-end', className, ...rest}: PropsWithChildren<HeroImageProps>, ref) => {
-    return (
-      <Image
-        ref={ref}
-        className={clsx(styles['Hero-image'], styles[`Hero-image--pos-${position}`], className)}
-        {...rest}
-      />
-    )
-  },
-)
-
-type HeroVideoProps = {
+type HeroMediaProps = {
   position?: 'inline-end' | 'block-end'
   'data-testid'?: string
 } & PropsWithChildren<BaseProps<HTMLDivElement>>
 
-const HeroVideo = forwardRef<HTMLDivElement, HeroVideoProps>(
-  ({className, children, 'data-testid': testId, ...rest}: HeroVideoProps, ref) => {
+const HeroMedia = forwardRef<HTMLDivElement, HeroMediaProps>(
+  ({className, children, 'data-testid': testId, ...rest}: HeroMediaProps, ref) => {
     const containerRef = useProvidedRefOrCreate(ref as React.RefObject<HTMLDivElement>)
 
     return (
       <div
-        className={clsx(styles['Hero-video'], className)}
+        className={clsx(styles['Hero-media'], className)}
         ref={containerRef}
-        data-testid={testId || testIds.video}
+        data-testid={testId || testIds.media}
         {...rest}
       >
         {children}
@@ -293,8 +259,7 @@ export const Hero = Object.assign(Root, {
   Description: HeroDescription,
   PrimaryAction: HeroPrimaryAction,
   SecondaryAction: HeroSecondaryAction,
-  Image: HeroImage,
-  Video: HeroVideo,
+  Media: HeroMedia,
   Label: HeroLabel,
   Eyebrow: HeroEyebrow,
   testIds,

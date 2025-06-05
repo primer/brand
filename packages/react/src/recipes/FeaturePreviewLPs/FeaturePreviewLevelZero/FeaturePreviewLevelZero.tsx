@@ -5,6 +5,7 @@ import {
   Grid,
   Heading,
   Hero,
+  Image,
   InlineLink,
   MinimalFooter,
   Section,
@@ -91,12 +92,13 @@ export function FeaturePreviewLevelZero({accentColor, colorMode, ...args}: Featu
                 </Hero.SecondaryAction>
               )}
               {args.showHeroVisual && (
-                <Hero.Image
-                  position={args.heroVisualPosition}
-                  src={placeholderImage}
-                  alt="placeholder, blank area with a gray background color"
-                  height="100%"
-                />
+                <Hero.Media position={args.heroVisualPosition}>
+                  <Image
+                    src={placeholderImage}
+                    alt="placeholder, blank area with a gray background color"
+                    height="100%"
+                  />
+                </Hero.Media>
               )}
             </Hero>
           </Grid.Column>

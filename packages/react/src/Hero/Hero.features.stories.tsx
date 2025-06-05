@@ -8,6 +8,7 @@ import posterImage from '../fixtures/images/example-poster.png'
 import {Hero} from '.'
 import {ActionMenu} from '../ActionMenu'
 import {Grid} from '../Grid'
+import {Image} from '../Image'
 import {EyebrowBanner} from '../EyebrowBanner'
 import {VideoPlayer} from '../VideoPlayer'
 
@@ -76,7 +77,9 @@ export const WithImageBlockEndDefault: StoryFn<typeof Hero> = _args => (
           turpis felis nam pulvinar risus elementum.
         </Hero.Description>
         <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
-        <Hero.Image src={placeholderImage} alt="placeholder image, blank with gray solid fill" />
+        <Hero.Media>
+          <Image src={placeholderImage} alt="placeholder image, blank with gray solid fill" />
+        </Hero.Media>
       </Hero>
     </Grid.Column>
   </Grid>
@@ -93,7 +96,9 @@ export const WithImageBlockEndCenter: StoryFn<typeof Hero> = _args => (
           turpis felis nam pulvinar risus elementum.
         </Hero.Description>
         <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
-        <Hero.Image src={placeholderImage} alt="placeholder image, blank with gray solid fill" />
+        <Hero.Media>
+          <Image src={placeholderImage} alt="placeholder image, blank with gray solid fill" />
+        </Hero.Media>
       </Hero>
     </Grid.Column>
   </Grid>
@@ -111,7 +116,9 @@ export const WithImageInlineEnd: StoryFn<typeof Hero> = _args => (
           turpis felis nam pulvinar risus elementum.
         </Hero.Description>
         <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
-        <Hero.Image position="inline-end" src={placeholderImage} alt="placeholder image, blank with gray solid fill" />
+        <Hero.Media position="inline-end">
+          <Image src={placeholderImage} alt="placeholder image, blank with gray solid fill" />
+        </Hero.Media>
       </Hero>
     </Grid.Column>
   </Grid>
@@ -129,12 +136,12 @@ export const WithVideoBlockEndDefault: StoryFn<typeof Hero> = _args => (
           turpis felis nam pulvinar risus elementum.
         </Hero.Description>
         <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
-        <Hero.Video>
+        <Hero.Media>
           <VideoPlayer title="GitHub media player" poster={posterImage}>
             <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
             <VideoPlayer.Track src="./example.vtt" default />
           </VideoPlayer>
-        </Hero.Video>
+        </Hero.Media>
       </Hero>
     </Grid.Column>
   </Grid>
@@ -152,13 +159,13 @@ export const WithNativeBlockEndDefault: StoryFn<typeof Hero> = _args => (
           turpis felis nam pulvinar risus elementum.
         </Hero.Description>
         <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
-        <Hero.Video>
+        <Hero.Media>
           <video title="Example title" controls poster={posterImage} className={styles.customVideo}>
             <source src="./example.mp4" type="video/mp4" />
             <track src="./example.vtt" kind="captions" srcLang="en" label="English" default />
             Your browser does not support the video tag.
           </video>
-        </Hero.Video>
+        </Hero.Media>
       </Hero>
     </Grid.Column>
   </Grid>
@@ -176,7 +183,7 @@ export const WithYoutubeVideoBlockEndDefault: StoryFn<typeof Hero> = _args => (
           turpis felis nam pulvinar risus elementum.
         </Hero.Description>
         <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
-        <Hero.Video>
+        <Hero.Media>
           <iframe
             src="https://www.youtube.com/embed/EPyyyB23NUU"
             title="YouTube video player"
@@ -186,7 +193,7 @@ export const WithYoutubeVideoBlockEndDefault: StoryFn<typeof Hero> = _args => (
             allowFullScreen
             className={styles.customVideo}
           ></iframe>
-        </Hero.Video>
+        </Hero.Media>
       </Hero>
     </Grid.Column>
   </Grid>
@@ -203,12 +210,12 @@ export const WithVideoInlineEnd: StoryFn<typeof Hero> = _args => (
           turpis felis nam pulvinar risus elementum.
         </Hero.Description>
         <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
-        <Hero.Video position="inline-end">
+        <Hero.Media position="inline-end">
           <VideoPlayer title="GitHub media player" poster={posterImage}>
             <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
             <VideoPlayer.Track src="./example.vtt" default />
           </VideoPlayer>
-        </Hero.Video>
+        </Hero.Media>
       </Hero>
     </Grid.Column>
   </Grid>
@@ -225,7 +232,7 @@ export const WithYoutubeVideoInlineEnd: StoryFn<typeof Hero> = _args => (
           turpis felis nam pulvinar risus elementum.
         </Hero.Description>
         <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
-        <Hero.Video position="inline-end">
+        <Hero.Media position="inline-end">
           <iframe
             src="https://www.youtube.com/embed/EPyyyB23NUU"
             title="YouTube video player"
@@ -234,7 +241,7 @@ export const WithYoutubeVideoInlineEnd: StoryFn<typeof Hero> = _args => (
             allowFullScreen
             style={{width: '100%', height: 'auto', aspectRatio: '16/9'}}
           ></iframe>
-        </Hero.Video>
+        </Hero.Media>
       </Hero>
     </Grid.Column>
   </Grid>

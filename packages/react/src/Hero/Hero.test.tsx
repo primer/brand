@@ -3,6 +3,7 @@ import '@testing-library/jest-dom'
 
 import {Hero} from './Hero'
 import {axe, toHaveNoViolations} from 'jest-axe'
+import {Image} from '../Image'
 import {VideoPlayer} from '../VideoPlayer'
 
 expect.extend(toHaveNoViolations)
@@ -83,13 +84,14 @@ describe('Hero', () => {
     const {getByAltText} = render(
       <Hero>
         <Hero.Heading>{mockHeading}</Hero.Heading>
-        <Hero.Image src="mock.png" alt={mockAltText} />
+        <Hero.Media>
+          <Image src="mock.png" alt={mockAltText} />
+        </Hero.Media>
       </Hero>,
     )
     const imageEl = getByAltText(mockAltText)
 
     expect(imageEl).toBeInTheDocument()
-    expect(imageEl).toHaveClass('Hero-image--pos-block-end')
   })
 
   test('it has a slot for videos', () => {
@@ -97,7 +99,7 @@ describe('Hero', () => {
     const {getByTestId} = render(
       <Hero>
         <Hero.Heading>{mockHeading}</Hero.Heading>
-        <Hero.Video data-testid={mockTestId} />
+        <Hero.Media data-testid={mockTestId} />
       </Hero>,
     )
 
@@ -112,13 +114,13 @@ describe('Hero', () => {
     const {getByTitle, getByRole} = render(
       <Hero>
         <Hero.Heading>{mockHeading}</Hero.Heading>
-        <Hero.Video data-testid={mockTestId}>
+        <Hero.Media data-testid={mockTestId}>
           <video title={mockTitle}>
             <source src="./example.mp4" type="video/mp4" />
             <track src="./example.vtt" kind="captions" srcLang="en" label="English" default />
             Your browser does not support the video tag.
           </video>
-        </Hero.Video>
+        </Hero.Media>
       </Hero>,
     )
 
@@ -135,12 +137,12 @@ describe('Hero', () => {
     const {getByTitle, getByRole} = render(
       <Hero>
         <Hero.Heading>{mockHeading}</Hero.Heading>
-        <Hero.Video data-testid={mockTestId}>
+        <Hero.Media data-testid={mockTestId}>
           <VideoPlayer poster="/example-poster.jpg" title={mockTitle}>
             <VideoPlayer.Source src="/example.mp4" />
             <VideoPlayer.Track src="/example.vtt" default kind="subtitles" srcLang="en" label="English" />
           </VideoPlayer>
-        </Hero.Video>
+        </Hero.Media>
       </Hero>,
     )
 
@@ -157,7 +159,7 @@ describe('Hero', () => {
     const {getByTitle, getByRole} = render(
       <Hero>
         <Hero.Heading>{mockHeading}</Hero.Heading>
-        <Hero.Video data-testid={mockTestId}>
+        <Hero.Media data-testid={mockTestId}>
           <iframe
             src="https://www.youtube.com/not-real-video"
             title={mockTitle}
@@ -166,7 +168,7 @@ describe('Hero', () => {
             referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen
           ></iframe>
-        </Hero.Video>
+        </Hero.Media>
       </Hero>,
     )
 
@@ -182,13 +184,14 @@ describe('Hero', () => {
     const {getByAltText} = render(
       <Hero>
         <Hero.Heading>{mockHeading}</Hero.Heading>
-        <Hero.Image position="inline-end" src="mock.png" alt={mockAltText} />
+        <Hero.Media position="inline-end">
+          <Image src="mock.png" alt={mockAltText} />
+        </Hero.Media>
       </Hero>,
     )
     const imageEl = getByAltText(mockAltText)
 
     expect(imageEl).toBeInTheDocument()
-    expect(imageEl).toHaveClass('Hero-image--pos-inline-end')
   })
 
   test('it can optionally render a video in inline-end alignment', () => {
@@ -197,13 +200,13 @@ describe('Hero', () => {
     const {getByTitle, getByRole} = render(
       <Hero>
         <Hero.Heading>{mockHeading}</Hero.Heading>
-        <Hero.Video position="inline-end" data-testid={mockTestId}>
+        <Hero.Media position="inline-end" data-testid={mockTestId}>
           <video title={mockTitle}>
             <source src="./example.mp4" type="video/mp4" />
             <track src="./example.vtt" kind="captions" srcLang="en" label="English" default />
             Your browser does not support the video tag.
           </video>
-        </Hero.Video>
+        </Hero.Media>
       </Hero>,
     )
 
@@ -264,7 +267,8 @@ describe('Hero', () => {
     expect(results).toHaveNoViolations()
   })
 
-  test('it prevents rendering multiple media types, preferring images by default', () => {
+  // Now redundant
+  test.skip('it prevents rendering multiple media types, preferring images by default', () => {
     const mockAltText = 'placeholder image, blank with gray solid fill'
     const mockVideoTestId = 'hero-video'
     const mockVideoTitle = 'Mock video title'
@@ -272,14 +276,13 @@ describe('Hero', () => {
     const {getByAltText, queryByTitle, queryByTestId} = render(
       <Hero>
         <Hero.Heading>{mockHeading}</Hero.Heading>
-        <Hero.Image src="mock.png" alt={mockAltText} />
-        <Hero.Video data-testid={mockVideoTestId}>
+        <Hero.Media data-testid={mockVideoTestId}>
           <video title={mockVideoTitle}>
             <source src="./example.mp4" type="video/mp4" />
             <track src="./example.vtt" kind="captions" srcLang="en" label="English" default />
             Your browser does not support the video tag.
           </video>
-        </Hero.Video>
+        </Hero.Media>
       </Hero>,
     )
 

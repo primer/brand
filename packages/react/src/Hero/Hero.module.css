@@ -40,13 +40,9 @@
   align-items: center;
 }
 
-.Hero-image {
-  border-radius: var(--brand-borderRadius-large);
-  width: 100%;
-}
-
-.Hero-video video,
-.Hero-video iframe {
+.Hero-media video,
+.Hero-media iframe,
+.Hero-media img {
   width: 100%;
   border-radius: var(--brand-borderRadius-large);
 }

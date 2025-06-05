@@ -11,10 +11,9 @@ declare const styles: {
   readonly "Hero-grid--inline-end": string;
   readonly "Hero-heading": string;
   readonly "Hero-heading--fullWidth": string;
-  readonly "Hero-image": string;
   readonly "Hero-label": string;
+  readonly "Hero-media": string;
   readonly "Hero-trailing": string;
-  readonly "Hero-video": string;
 };
 export = styles;
 

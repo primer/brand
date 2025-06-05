@@ -225,10 +225,12 @@ export function FeaturePreviewLevelTwo({
                     <Hero.SecondaryAction href="#">{args.heroCtaTextSecondary}</Hero.SecondaryAction>
                   )}
                   {args.showHeroVisual && (
-                    <Hero.Image
-                      src={isLightMode ? emptyBrowser : emptyBrowserDark}
-                      alt="placeholder, blank area with a gray background color"
-                    />
+                    <Hero.Media>
+                      <Image
+                        src={isLightMode ? emptyBrowser : emptyBrowserDark}
+                        alt="placeholder, blank area with a gray background color"
+                      />
+                    </Hero.Media>
                   )}
                 </Hero>
               </Box>

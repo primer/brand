@@ -176,11 +176,9 @@ export function SolutionPage({
                       </Hero.SecondaryAction>
                     )}
                     {args.heroImage && (
-                      <Hero.Image
-                        position="block-end"
-                        src={ciCdRenderImage}
-                        alt="placeholder, blank area with a gray background color"
-                      />
+                      <Hero.Media position="block-end">
+                        <Image src={ciCdRenderImage} alt="placeholder, blank area with a gray background color" />
+                      </Hero.Media>
                     )}
                   </Hero>
                 </Grid.Column>
@@ -225,11 +223,9 @@ export function SolutionPage({
                           </Hero.SecondaryAction>
                         )}
                         {args.heroImage && (
-                          <Hero.Image
-                            position="block-end"
-                            src={ciCdRenderImage}
-                            alt="placeholder, blank area with a gray background color"
-                          />
+                          <Hero.Media position="block-end">
+                            <Image src={ciCdRenderImage} alt="placeholder, blank area with a gray background color" />
+                          </Hero.Media>
                         )}
                       </Hero>
                     </Box>
