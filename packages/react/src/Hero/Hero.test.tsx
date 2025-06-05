@@ -3,6 +3,7 @@ import '@testing-library/jest-dom'
 
 import {Hero} from './Hero'
 import {axe, toHaveNoViolations} from 'jest-axe'
+import {VideoPlayer} from '../VideoPlayer'
 
 expect.extend(toHaveNoViolations)
 
@@ -91,6 +92,91 @@ describe('Hero', () => {
     expect(imageEl).toHaveClass('Hero-image--pos-block-end')
   })
 
+  test('it has a slot for videos', () => {
+    const mockTestId = 'hero-video'
+    const {getByTestId} = render(
+      <Hero>
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.Video data-testid={mockTestId} />
+      </Hero>,
+    )
+
+    const videoElSlot = getByTestId(mockTestId)
+    expect(videoElSlot).toBeInTheDocument()
+    expect(videoElSlot.tagName).toBe('DIV')
+  })
+
+  test('it can render a native video in block-end alignment by default', () => {
+    const mockTestId = 'hero-video'
+    const mockTitle = 'Mock title'
+    const {getByTitle, getByRole} = render(
+      <Hero>
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.Video data-testid={mockTestId}>
+          <video title={mockTitle}>
+            <source src="./example.mp4" type="video/mp4" />
+            <track src="./example.vtt" kind="captions" srcLang="en" label="English" default />
+            Your browser does not support the video tag.
+          </video>
+        </Hero.Video>
+      </Hero>,
+    )
+
+    const rootEl = getByRole('region')
+    expect(rootEl).toHaveClass('Hero--image-pos-block-end')
+
+    const videoEl = getByTitle(mockTitle)
+    expect(videoEl).toBeInTheDocument()
+  })
+
+  test('it can render custom VideoPlayer in block-end alignment by default', () => {
+    const mockTestId = 'hero-video'
+    const mockTitle = 'Mock title'
+    const {getByTitle, getByRole} = render(
+      <Hero>
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.Video data-testid={mockTestId}>
+          <VideoPlayer poster="/example-poster.jpg" title={mockTitle}>
+            <VideoPlayer.Source src="/example.mp4" />
+            <VideoPlayer.Track src="/example.vtt" default kind="subtitles" srcLang="en" label="English" />
+          </VideoPlayer>
+          ,
+        </Hero.Video>
+      </Hero>,
+    )
+
+    const rootEl = getByRole('region')
+    expect(rootEl).toHaveClass('Hero--image-pos-block-end')
+
+    const videoEl = getByTitle(mockTitle)
+    expect(videoEl).toBeInTheDocument()
+  })
+
+  test('it can render a Youtube video in block-end alignment by default', () => {
+    const mockTestId = 'hero-video'
+    const mockTitle = 'Mock title'
+    const {getByTitle, getByRole} = render(
+      <Hero>
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.Video data-testid={mockTestId}>
+          <iframe
+            src="https://www.youtube.com/not-real-video"
+            title={mockTitle}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          ></iframe>
+        </Hero.Video>
+      </Hero>,
+    )
+
+    const rootEl = getByRole('region')
+    expect(rootEl).toHaveClass('Hero--image-pos-block-end')
+    const videoEl = getByTitle(mockTitle)
+    expect(videoEl).toBeInTheDocument()
+  })
+
   test('it can optionally render an image in inline end alignment', () => {
     const mockAltText = 'placeholder image, blank with gray solid fill'
 
@@ -104,6 +190,29 @@ describe('Hero', () => {
 
     expect(imageEl).toBeInTheDocument()
     expect(imageEl).toHaveClass('Hero-image--pos-inline-end')
+  })
+
+  test('it can optionally render a video in inline-end alignment', () => {
+    const mockTestId = 'hero-video'
+    const mockTitle = 'Mock title'
+    const {getByTitle, getByRole} = render(
+      <Hero>
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.Video position="inline-end" data-testid={mockTestId}>
+          <video title={mockTitle}>
+            <source src="./example.mp4" type="video/mp4" />
+            <track src="./example.vtt" kind="captions" srcLang="en" label="English" default />
+            Your browser does not support the video tag.
+          </video>
+        </Hero.Video>
+      </Hero>,
+    )
+
+    const rootEl = getByRole('region')
+    expect(rootEl).toHaveClass('Hero--image-pos-inline-end')
+
+    const videoEl = getByTitle(mockTitle)
+    expect(videoEl).toBeInTheDocument()
   })
 
   test('renders a label with default colors and size', () => {
@@ -154,5 +263,34 @@ describe('Hero', () => {
     const results = await axe(container)
 
     expect(results).toHaveNoViolations()
+  })
+
+  test('it prevents rendering multiple media types, preferring images by default', () => {
+    const mockAltText = 'placeholder image, blank with gray solid fill'
+    const mockVideoTestId = 'hero-video'
+    const mockVideoTitle = 'Mock video title'
+
+    const {getByAltText, queryByTitle, queryByTestId} = render(
+      <Hero>
+        <Hero.Heading>{mockHeading}</Hero.Heading>
+        <Hero.Image src="mock.png" alt={mockAltText} />
+        <Hero.Video data-testid={mockVideoTestId}>
+          <video title={mockVideoTitle}>
+            <source src="./example.mp4" type="video/mp4" />
+            <track src="./example.vtt" kind="captions" srcLang="en" label="English" default />
+            Your browser does not support the video tag.
+          </video>
+        </Hero.Video>
+      </Hero>,
+    )
+
+    const imageEl = getByAltText(mockAltText)
+    expect(imageEl).toBeInTheDocument()
+
+    const videoContainer = queryByTestId(mockVideoTestId)
+    expect(videoContainer).not.toBeInTheDocument()
+
+    const videoEl = queryByTitle(mockVideoTitle)
+    expect(videoEl).not.toBeInTheDocument()
   })
 })
