@@ -42,7 +42,7 @@ function Root({
   const {variant} = useContext(ListContext)
 
   const _leadingVisual = () => {
-    const iconProps = {fill: leadingVisualFill, 'aria-label': leadingVisualAriaLabel}
+    const iconProps = {fill: leadingVisualFill, 'aria-label': leadingVisualAriaLabel, style: {fill: leadingVisualFill}}
 
     if (LeadingVisual) {
       return (
