@@ -44,9 +44,13 @@ The ButtonGroup component can be rendered in different sizes in `medium` and `la
 The `Button` component can render as a `button` or `a` HTML element. By default, it will render as a `button`.
 
 ```jsx live
-<ButtonGroup buttonsAs="a">
-  <Button>This is one link</Button>
-  <Button>This is another link</Button>
+<ButtonGroup>
+  <Button as="a" href="#">
+    This is one link
+  </Button>
+  <Button as="a" href="#">
+    This is another link
+  </Button>
 </ButtonGroup>
 ```
 

@@ -75,6 +75,11 @@ render(<App />)
 
 In this `mode`, the `ActionMenu` can be shown as a split button with an action (left) and dropdown button (right) with an additional list of actions.
 
+<Note>
+  In split-button mode, each action must be rendered as a link element using the as="a" prop, including the main button
+  and all menu items.
+</Note>
+
 ```jsx live
 <ActionMenu mode="split-button">
   <ActionMenu.Button variant="subtle" as="a" href="#location-for-link" leadingVisual={<StarIcon />}>
