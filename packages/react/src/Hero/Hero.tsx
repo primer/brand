@@ -1,6 +1,5 @@
 import React, {forwardRef, PropsWithChildren, useMemo} from 'react'
 import clsx from 'clsx'
-import styles from './Hero.module.css'
 import {Button, ButtonBaseProps} from '../Button'
 import {Heading, HeadingProps} from '../Heading'
 import {Text, TextSizes, TextWeightVariants, ResponsiveWeightMap, TextProps} from '../Text'
@@ -8,11 +7,17 @@ import {Label, LabelProps} from '../Label'
 import {Image, ImageProps} from '../Image'
 import {Grid} from '../Grid'
 import {Stack} from '../Stack'
-
 import type {BaseProps} from '../component-helpers'
 
-import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/hero/base.css'
 import {useProvidedRefOrCreate} from '../hooks/useRef'
+
+/**
+ * Design tokens
+ */
+import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/hero/base.css'
+
+/** * Main Stylesheet (as a CSS Module) */
+import styles from './Hero.module.css'
 
 const testIds = {
   root: 'Hero',

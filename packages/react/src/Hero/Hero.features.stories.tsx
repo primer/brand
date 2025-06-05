@@ -153,7 +153,7 @@ export const WithNativeBlockEndDefault: StoryFn<typeof Hero> = _args => (
         </Hero.Description>
         <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
         <Hero.Video>
-          <video controls poster={posterImage} className={styles.customVideo}>
+          <video title="Example title" controls poster={posterImage} className={styles.customVideo}>
             <source src="./example.mp4" type="video/mp4" />
             <track src="./example.vtt" kind="captions" srcLang="en" label="English" default />
             Your browser does not support the video tag.
