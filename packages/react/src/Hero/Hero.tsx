@@ -1,6 +1,5 @@
 import React, {forwardRef, PropsWithChildren, useMemo} from 'react'
 import clsx from 'clsx'
-import styles from './Hero.module.css'
 import {Button, ButtonBaseProps} from '../Button'
 import {Heading, HeadingProps} from '../Heading'
 import {Text, TextSizes, TextWeightVariants, ResponsiveWeightMap, TextProps} from '../Text'
@@ -8,10 +7,24 @@ import {Label, LabelProps} from '../Label'
 import {Image, ImageProps} from '../Image'
 import {Grid} from '../Grid'
 import {Stack} from '../Stack'
-
 import type {BaseProps} from '../component-helpers'
 
+import {useProvidedRefOrCreate} from '../hooks/useRef'
+
+/**
+ * Design tokens
+ */
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/hero/base.css'
+
+/** * Main Stylesheet (as a CSS Module) */
+import styles from './Hero.module.css'
+
+const testIds = {
+  root: 'Hero',
+  get video() {
+    return `${this.root}-video`
+  },
+}
 
 export type HeroProps = BaseProps<HTMLElement> & {
   align?: 'start' | 'center'
@@ -24,6 +37,7 @@ export type HeroProps = BaseProps<HTMLElement> & {
    *   Need to use this prop? Please check in with #primer-brand first to confirm correct usage.
    */
   trailingComponent?: React.FunctionComponent
+  'data-testid'?: string
 }
 
 const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
@@ -35,58 +49,68 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
       imageContainerClassName,
       imageContainerStyle,
       trailingComponent: TrailingComponent,
+      'data-testid': testId,
       ...rest
     },
     ref,
   ) => {
-    const {HeroActions, HeroChildren, HeroImageChild} = useMemo(
-      () =>
-        React.Children.toArray(children).reduce<{
-          HeroActions: React.ReactElement[]
-          HeroImageChild?: React.ReactElement
-          HeroChildren: React.ReactElement[]
-        }>(
-          (acc, child) => {
-            if (React.isValidElement(child)) {
-              if (child.type === HeroPrimaryAction || child.type === HeroSecondaryAction) {
-                acc.HeroActions.push(child)
-              } else if (child.type === HeroImage) {
-                acc.HeroImageChild = child
-              } else {
-                acc.HeroChildren.push(child)
-              }
+    const {HeroActions, HeroChildren, HeroImageChild, HeroVideoChild} = useMemo(() => {
+      const result = React.Children.toArray(children).reduce<{
+        HeroActions: React.ReactElement[]
+        HeroImageChild?: React.ReactElement
+        HeroVideoChild?: React.ReactElement
+        HeroChildren: React.ReactElement[]
+      }>(
+        (acc, child) => {
+          if (React.isValidElement(child)) {
+            if (child.type === HeroPrimaryAction || child.type === HeroSecondaryAction) {
+              acc.HeroActions.push(child)
+            } else if (child.type === HeroImage) {
+              acc.HeroImageChild = child
+            } else if (child.type === HeroVideo) {
+              acc.HeroVideoChild = child
+            } else {
+              acc.HeroChildren.push(child)
             }
-            return acc
-          },
-          {HeroActions: [], HeroChildren: [], HeroImageChild: undefined},
-        ),
-      [children],
-    )
+          }
+          return acc
+        },
+        {HeroActions: [], HeroChildren: [], HeroImageChild: undefined, HeroVideoChild: undefined},
+      )
 
-    const imagePosition = HeroImageChild?.props?.position || 'block-end'
+      // Users shouldn't be able to have two types of media, prefer Hero.Image
+      if (result.HeroImageChild && result.HeroVideoChild) {
+        result.HeroVideoChild = undefined
+      }
+
+      return result
+    }, [children])
+
+    const mediaPosition = HeroImageChild?.props?.position || HeroVideoChild?.props?.position || 'block-end'
 
     const heroLayoutClass = HeroImageChild ? styles['Hero--layout-image'] : styles['Hero--layout-default']
     return (
       <section
         className={clsx(
           styles.Hero,
-          imagePosition !== 'inline-end' && styles[`Hero--align-${align}`],
+          mediaPosition !== 'inline-end' && styles[`Hero--align-${align}`],
           heroLayoutClass,
-          HeroImageChild && styles[`Hero--image-pos-${imagePosition}`],
+          (HeroImageChild || HeroVideoChild) && styles[`Hero--image-pos-${mediaPosition}`],
           className,
         )}
         ref={ref}
         aria-labelledby="hero-section-brand-heading"
+        data-testid={testId || testIds.root}
         {...rest}
       >
-        <Grid fullWidth className={clsx(styles['Hero-grid'], styles[`Hero-grid--${imagePosition}`])}>
-          <Grid.Column span={{medium: HeroImageChild && imagePosition === 'inline-end' ? 6 : 12}}>
+        <Grid fullWidth className={clsx(styles['Hero-grid'], styles[`Hero-grid--${mediaPosition}`])}>
+          <Grid.Column span={{medium: (HeroImageChild || HeroVideoChild) && mediaPosition === 'inline-end' ? 6 : 12}}>
             <Stack
               direction="vertical"
               gap="none"
               padding="none"
-              alignItems={imagePosition === 'inline-end' || align === 'start' ? 'flex-start' : 'center'}
-              justifyContent={imagePosition === 'inline-end' ? undefined : align === 'start' ? 'flex-start' : 'center'}
+              alignItems={mediaPosition === 'inline-end' || align === 'start' ? 'flex-start' : 'center'}
+              justifyContent={mediaPosition === 'inline-end' ? undefined : align === 'start' ? 'flex-start' : 'center'}
             >
               {HeroChildren}
               {HeroActions.length > 0 && <div className={styles['Hero-actions']}>{HeroActions}</div>}
@@ -99,11 +123,20 @@ const Root = forwardRef<HTMLElement, PropsWithChildren<HeroProps>>(
           </Grid.Column>
           {HeroImageChild && (
             <Grid.Column
-              span={{medium: imagePosition === 'inline-end' ? 6 : 12}}
+              span={{medium: mediaPosition === 'inline-end' ? 6 : 12}}
               className={imageContainerClassName}
               style={{...imageContainerStyle}}
             >
               {HeroImageChild}
+            </Grid.Column>
+          )}
+          {HeroVideoChild && (
+            <Grid.Column
+              span={{medium: mediaPosition === 'inline-end' ? 6 : 12}}
+              className={imageContainerClassName}
+              style={{...imageContainerStyle}}
+            >
+              {HeroVideoChild}
             </Grid.Column>
           )}
         </Grid>
@@ -179,6 +212,28 @@ const HeroImage = forwardRef<HTMLImageElement, HeroImageProps>(
   },
 )
 
+type HeroVideoProps = {
+  position?: 'inline-end' | 'block-end'
+  'data-testid'?: string
+} & PropsWithChildren<BaseProps<HTMLDivElement>>
+
+const HeroVideo = forwardRef<HTMLDivElement, HeroVideoProps>(
+  ({className, children, 'data-testid': testId, ...rest}: HeroVideoProps, ref) => {
+    const containerRef = useProvidedRefOrCreate(ref as React.RefObject<HTMLDivElement>)
+
+    return (
+      <div
+        className={clsx(styles['Hero-video'], className)}
+        ref={containerRef}
+        data-testid={testId || testIds.video}
+        {...rest}
+      >
+        {children}
+      </div>
+    )
+  },
+)
+
 type HeroEyebrowProps = PropsWithChildren<BaseProps<HTMLDivElement>>
 
 const HeroEyebrow = forwardRef<HTMLDivElement, HeroEyebrowProps>(
@@ -239,6 +294,8 @@ export const Hero = Object.assign(Root, {
   PrimaryAction: HeroPrimaryAction,
   SecondaryAction: HeroSecondaryAction,
   Image: HeroImage,
+  Video: HeroVideo,
   Label: HeroLabel,
   Eyebrow: HeroEyebrow,
+  testIds,
 })

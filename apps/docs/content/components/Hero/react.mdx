@@ -76,6 +76,36 @@ import {Hero} from '@primer/react-brand'
 </>
 ```
 
+### Video
+
+`Hero` includes support for inserting videos.
+
+Use [VideoPlayer](/components/VideoPlayer), a native `<video>` element or a YouTube embed as valid `children`. Similarly to `Hero.Image`, use the `position` prop to alternate between various layouts.
+
+```jsx live
+<Hero>
+  <Hero.Label>Label</Hero.Label>
+  <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+  <Hero.Description>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit
+    ullamcorper id. Aliquam luctus sed turpis felis nam pulvinar risus
+    elementum.
+  </Hero.Description>
+  <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+  <Hero.Video>
+    <iframe
+      src="https://www.youtube.com/embed/fHwtrOcLAnI"
+      title="YouTube video player"
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerPolicy="strict-origin-when-cross-origin"
+      allowFullScreen
+      style={{width: '100%', height: 'auto', aspectRatio: '16/10'}}
+    ></iframe>
+  </Hero.Video>
+</Hero>
+```
+
 ### Alignment
 
 `Hero` text alignment can be adjusted by changing the `align` prop.
@@ -158,3 +188,9 @@ Forwards all props from the [Button component](/components/Button).
 | `position` | <PropTableValues values={['inline-end', 'block-end']} addLineBreaks /> | `'block-end'` | Controls positioning of the foreground image |
 
 Forwards all props from the [Image component](/components/Image), including `src`, `alt`, and `aspectRatio`.
+
+### Hero.Video
+
+| name       | type                                                                   | default       | description                                     |
+| ---------- | ---------------------------------------------------------------------- | ------------- | ----------------------------------------------- |
+| `position` | <PropTableValues values={['inline-end', 'block-end']} addLineBreaks /> | `'block-end'` | Controls positioning of the child video element |

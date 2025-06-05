@@ -134,6 +134,9 @@
     'components-statistic-features--animations', // animation only
     'components-riverstoryscroll-features--video-narrow', // video makes this too flakey
     'components-riverstoryscroll-features--video', // video makes this too flakey
+    'components-hero-features--with-native-block-end-default', // for being non-deterministic due to video buffering
+    'components-hero-features--with-youtube-video-block-end-default', // for loading a remote video
+    'components-hero-features--with-youtube-video-inline-end', // for loading a remote video
   ]
 
   const categorisedStories = Object.keys((stories as typeof StoryIndex).entries).reduce((acc, key) => {

@@ -14,6 +14,7 @@ declare const styles: {
   readonly "Hero-image": string;
   readonly "Hero-label": string;
   readonly "Hero-trailing": string;
+  readonly "Hero-video": string;
 };
 export = styles;
 
