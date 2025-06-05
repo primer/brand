@@ -32,12 +32,12 @@
 
 .LogoSuite__logobar--gap-default {
   --marquee-gap: var(--brand-LogoSuite-logobar-marquee-gap-default);
-  column-gap: var(--brand-LogoSuite-logobar-gap-columnGap-default);
+  column-gap: var(--brand-LogoSuite-logobar-columnGap-default);
 }
 
 .LogoSuite__logobar--gap-condensed {
   --marquee-gap: var(--brand-LogoSuite-logobar-marquee-gap-condensed);
-  column-gap: var(--brand-LogoSuite-logobar-gap-columnGap-condensed);
+  column-gap: var(--brand-LogoSuite-logobar-columnGap-condensed);
 }
 
 .LogoSuite:not(.LogoSuite + .LogoSuite)

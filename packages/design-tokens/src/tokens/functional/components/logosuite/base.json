@@ -1,14 +1,12 @@
 {
   "LogoSuite": {
     "logobar": {
-      "gap": {
-        "columnGap": {
-          "default": {
-            "value": "var(--base-size-80)"
-          },
-          "condensed": {
-            "value": "var(--base-size-40)"
-          }
+      "columnGap": {
+        "default": {
+          "value": "var(--base-size-80)"
+        },
+        "condensed": {
+          "value": "var(--base-size-40)"
         }
       },
       "rowGap": {
