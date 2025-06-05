@@ -1,5 +1,22 @@
 # @primer/brand-primitives
 
+## 0.55.0
+
+### Minor Changes
+
+- [#1035](https://github.com/primer/brand/pull/1035) [`4b854e6`](https://github.com/primer/brand/commit/4b854e69b5bd9d76a4e5500535716a72802f06f5) Thanks [@danielguillan](https://github.com/danielguillan)! - :warning: Breaking changes to the following design tokens:
+
+  ```diff
+  - --brand-LogoSuite-logobar-columnGap
+  + --brand-LogoSuite-logobar-columnGap-default
+  + --brand-LogoSuite-logobar-columnGap-condensed
+
+  - --brand-LogoSuite-logobar-marquee-gap
+  + --brand-LogoSuite-logobar-marquee-gap-default
+  + --brand-LogoSuite-logobar-marquee-gap-condensed
+
+  ```
+
 ## 0.54.2
 
 ### Patch Changes
