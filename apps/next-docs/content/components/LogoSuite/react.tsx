@@ -2,6 +2,7 @@
 import {PropTableValues} from '@primer/doctocat-nextjs/components'
 
 export const LogoSuiteAlignProp = () => <PropTableValues values={['start', 'center', 'justify']} addLineBreaks />
+export const LogoSuiteLogobarGapProp = () => <PropTableValues values={['default', 'condensed']} addLineBreaks />
 export const LogoSuiteLogobarVariantProp = () => <PropTableValues values={['muted', 'emphasis']} addLineBreaks />
 
 export const LogoSuiteLogobarChildrenProp = () => (
