@@ -27,7 +27,7 @@
           "value": "60s"
         },
         "gap": {
-           "default": {
+          "default": {
             "value": "var(--base-size-96)"
           },
           "condensed": {
