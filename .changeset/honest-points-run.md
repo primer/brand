@@ -1,5 +1,5 @@
 ---
-'@primer/brand-primitives': patch
+'@primer/brand-primitives': minor
 ---
 
 :warning: Breaking changes to the following design tokens:
