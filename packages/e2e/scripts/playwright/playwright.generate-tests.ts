@@ -115,6 +115,7 @@
     'components-animations-examples--timeline-bar', // animation only
     'components-animations--playground', // animation only
     'components-logosuite-examples--following-hero', // animation only
+    'components-logosuite-features--condensed-gap', // animation only
     'components-logosuite-features--marquee', // animation only
     'components-logosuite-features--slower-marquee-speed', // animation only
     'components-logosuite-features--mixed-width', // animation only
