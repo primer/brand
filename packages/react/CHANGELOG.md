@@ -1,5 +1,46 @@
 # @primer/react-brand
 
+## 0.55.0
+
+### Patch Changes
+
+- [#1044](https://github.com/primer/brand/pull/1044) [`8a1bb23`](https://github.com/primer/brand/commit/8a1bb23681c79813b2d74a6907b957c9ab6ff55e) Thanks [@rezrah](https://github.com/rezrah)! - Increase specificity of custom fill styles in `PricingOptions.FeatureListItem` and `UnorderedList.Item`. This update ensures that the value of `leadingVisualFill` takes a higher precedence over rules that might otherwise override it.
+
+- [#1042](https://github.com/primer/brand/pull/1042) [`50705e3`](https://github.com/primer/brand/commit/50705e37517f7a8286be6f35aaabee8c75daf4be) Thanks [@rezrah](https://github.com/rezrah)! - Add `Hero.Video` slot to `Hero` for inserting custom videos.
+
+  ```jsx
+  <Hero>
+    <Hero.Heading>Your super sweet hero heading</Hero.Heading>
+    <Hero.Video>
+      <VideoPlayer title="Your custom video">
+        <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
+        <VideoPlayer.Track src="./example.vtt" default />
+      </VideoPlayer>
+    </Hero.Video>
+  </Hero>
+  ```
+
+  Refer to Storybook for more usage examples.
+
+- [#993](https://github.com/primer/brand/pull/993) [`1e970b6`](https://github.com/primer/brand/commit/1e970b6953ed5153e6c71ef2aec0ea6bc1f28007) Thanks [@joshfarrant](https://github.com/joshfarrant)! - - Update accessible label of `SubNav` submenu toggle button
+
+  - Update accessible label of `ActionMenu` dropdown toggle button
+
+- [#1009](https://github.com/primer/brand/pull/1009) [`b3ba1dc`](https://github.com/primer/brand/commit/b3ba1dcd1d78b6bc3b157d705cb0b5803c959738) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Accessibility fixes to `Pagination` component
+
+  - Fixed a bug where the "..." button was focusable
+  - Fixed a bug where the "Previous" and "Next" buttons had the role `"link"` instead of `"button"`
+  - Fixed a bug where the "Previous" and "Next" buttons lost their `aria-label` when disabled
+
+- [#1035](https://github.com/primer/brand/pull/1035) [`4b854e6`](https://github.com/primer/brand/commit/4b854e69b5bd9d76a4e5500535716a72802f06f5) Thanks [@danielguillan](https://github.com/danielguillan)! - Added a `gap` prop with a new `condensed` option to `LogoSuite.Logobar`.
+
+  ```jsx
+  <LogoSuite>
+    <LogoSuite.Heading visuallyHidden>Heading</LogoSuite.Heading>
+    <LogoSuite.Logobar gap="condensed">{/* ... */}</LogoSuite.Logobar>
+  </LogoSuite>
+  ```
+
 ## 0.54.2
 
 ### Patch Changes
