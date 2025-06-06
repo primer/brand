@@ -16,6 +16,7 @@ Please ensure these items are checked before merging.
         Important: Verify that each workspace package has been updated correctly in their respective `package.json` files
   - [ ] Run development server
   - [ ] Manually verify release-specific bugfixes and/or features on the following pages:
+    - `/home`
     - `/features/copilot`
     - `/features/copilot/tutorials`
     - `/features/preview`
@@ -34,6 +35,8 @@ Please ensure these items are checked before merging.
     - `/solutions`
     - `/solutions/use-case/`
     - `/solutions/use-case/devops`
+    - `/contentful-lp-tests/flex-example-dark` (requires a flag)
+    - `/contentful-lp-tests/flex-example-light` (requires a flag)
   - [ ] Manually compare production site to local instance for any non-release specific regressions
 
 #### Subdomain sites
