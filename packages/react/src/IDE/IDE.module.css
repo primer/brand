@@ -212,13 +212,13 @@
   background: var(--brand-IDE-glass-editor-tab-bgColor-rest);
 }
 
-.IDE__Editor-tab.active {
+.IDE__Editor-tab--active {
   color: var(--brand-color-text-default);
   border-top: var(--brand-borderWidth-thin) solid var(--brand-IDE-default-editor-tab-borderColor);
   z-index: 1;
 }
 
-.IDE--default .IDE__Editor-tab.active {
+.IDE--default .IDE__Editor-tab--active {
   background: var(--brand-IDE-default-editor-tab-bgColor-active);
 }
 
@@ -227,12 +227,12 @@
   color: var(--brand-color-text-subtle);
 }
 
-.IDE--glass .IDE__Editor-tab.active {
+.IDE--glass .IDE__Editor-tab--active {
   color: var(--brand-color-text-default);
   background: var(--brand-IDE-glass-editor-tab-bgColor-active);
 }
 
-.IDE--full-exp.IDE--glass .IDE__Editor-tab.active {
+.IDE--full-exp.IDE--glass .IDE__Editor-tab--active {
   background: var(--brand-IDE-default-editor-bgColor);
 }
 

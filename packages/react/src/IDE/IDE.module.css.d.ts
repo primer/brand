@@ -30,12 +30,12 @@ declare const styles: {
   readonly "IDE__Editor-pane--suggested": string;
   readonly "IDE__Editor-replay": string;
   readonly "IDE__Editor-tab": string;
+  readonly "IDE__Editor-tab--active": string;
   readonly "IDE__Editor-tab-close-icon": string;
   readonly "IDE__Editor-tab-icon": string;
   readonly "IDE__Editor-tabs": string;
   readonly "IDE__inner": string;
   readonly "IDE__main": string;
-  readonly "active": string;
 };
 export = styles;
 
