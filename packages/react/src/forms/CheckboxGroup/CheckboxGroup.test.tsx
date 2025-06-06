@@ -156,4 +156,52 @@ describe('CheckboxGroup', () => {
     expect(hint).toBeInTheDocument()
     expect(validation).toBeInTheDocument()
   })
+
+  // Edge case tests
+  it('works with only label (no caption or validation)', () => {
+    const {getByRole} = render(
+      <CheckboxGroup>
+        <CheckboxGroup.Label>Choices</CheckboxGroup.Label>
+        <FormControl>
+          <FormControl.Label>Choice one</FormControl.Label>
+          <Checkbox value="one" />
+        </FormControl>
+      </CheckboxGroup>
+    )
+
+    // Should still have the fieldset with just the label text
+    expect(getByRole('group', {name: 'Choices'})).toBeInTheDocument()
+  })
+
+  it('works with only caption (no validation)', () => {
+    const {getByRole} = render(
+      <CheckboxGroup>
+        <CheckboxGroup.Label>Choices</CheckboxGroup.Label>
+        <CheckboxGroup.Caption>Pick one</CheckboxGroup.Caption>
+        <FormControl>
+          <FormControl.Label>Choice one</FormControl.Label>
+          <Checkbox value="one" />
+        </FormControl>
+      </CheckboxGroup>
+    )
+
+    // Should have label + caption
+    expect(getByRole('group', {name: 'Choices Pick one'})).toBeInTheDocument()
+  })
+
+  it('works with only validation (no caption)', () => {
+    const {getByRole} = render(
+      <CheckboxGroup>
+        <CheckboxGroup.Label>Choices</CheckboxGroup.Label>
+        <FormControl>
+          <FormControl.Label>Choice one</FormControl.Label>
+          <Checkbox value="one" />
+        </FormControl>
+        <CheckboxGroup.Validation variant="error">Error!</CheckboxGroup.Validation>
+      </CheckboxGroup>
+    )
+
+    // Should have label + validation
+    expect(getByRole('group', {name: 'Choices Error!'})).toBeInTheDocument()
+  })
 })
