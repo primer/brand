@@ -34,6 +34,8 @@ Please ensure these items are checked before merging.
     - `/solutions`
     - `/solutions/use-case/`
     - `/solutions/use-case/devops`
+    - `/contentful-lp-tests/flex-example-dark` (requires a flag)
+    - `/contentful-lp-tests/flex-example-light` (requires a flag)
   - [ ] Manually compare production site to local instance for any non-release specific regressions
 
 #### Subdomain sites
