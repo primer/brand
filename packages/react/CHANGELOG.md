@@ -1,5 +1,11 @@
 # @primer/react-brand
 
+## 0.55.1
+
+### Patch Changes
+
+- [#917](https://github.com/primer/brand/pull/917) [`0ca0f08`](https://github.com/primer/brand/commit/0ca0f0818be9a0a28031a057da034f8b61b6342d) Thanks [@rezrah](https://github.com/rezrah)! - Internal change to CSS module type definitions in the `IDE` component. No user-facing updates to `IDE` presentation or functionality are expected.
+
 ## 0.55.0
 
 ### Patch Changes
