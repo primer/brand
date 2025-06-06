@@ -1,6 +1,6 @@
 {
   "name": "@primer/brand-css",
-  "version": "0.47.0",
+  "version": "0.54.2",
   "description": "CSS stylesheets for Primer Brand components",
   "keywords": [
     "primer",
@@ -33,10 +33,10 @@
     "autoprefixer": "10.4.20",
     "postcss": "8.5.1",
     "tsx": "^4.19.2",
-    "typescript": "5.7.3"
+    "typescript": "5.8.2"
   },
   "engines": {
-    "node": ">=16.0.0",
+    "node": ">=20.0.0",
     "npm": ">=8.0.0"
   }
 }
