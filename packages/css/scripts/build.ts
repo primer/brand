@@ -1,4 +1,3 @@
-import {pathToFileURL} from 'node:url'
 import path from 'path'
 import fs from 'fs/promises'
 import postcss from 'postcss'
@@ -6,6 +5,8 @@ import autoprefixer from 'autoprefixer'
 
 const SOURCE_DIR = '../react/src'
 const OUTPUT_DIR = 'components'
+// Add folder names in packages/react that are not official components or should not be compiled
+const SKIP_FOLDERS = ['recipes']
 
 async function build(): Promise<void> {
   await fs.mkdir(OUTPUT_DIR, {recursive: true})
@@ -39,12 +40,11 @@ async function findCssFiles(dir: string): Promise<string[]> {
   for (const entry of entries) {
     const fullPath = path.join(dir, entry.name)
     if (entry.isDirectory()) {
+      if (SKIP_FOLDERS.includes(entry.name)) {
+        continue
+      }
       files.push(...(await findCssFiles(fullPath)))
-    } else if (
-      entry.name.endsWith('.module.css') &&
-      !entry.name.includes('stories') &&
-      !entry.name.includes('features')
-    ) {
+    } else if (entry.name.endsWith('.module.css') && !entry.name.match(/.*\..*\.module\.css$/)) {
       files.push(fullPath)
     }
   }
