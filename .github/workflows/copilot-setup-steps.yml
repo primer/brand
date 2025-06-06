@@ -1,0 +1,35 @@
+name: 'Copilot Setup Steps'
+
+on: workflow_dispatch
+
+jobs:
+  copilot-setup-steps:
+    runs-on:
+      labels: ubuntu-latest-16-cores
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Build dependencies
+        run: npm run build:lib && cd apps/storybook && npx storybook build
+
+      - name: Serve Storybook and run tests
+        run: npx start-server-and-test 'npm run start:axe --workspace=apps/storybook' 6006 'npm run test:axe'
