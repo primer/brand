@@ -29,26 +29,48 @@ export type ControlGroupProps = HTMLAttributes<HTMLFieldSetElement>
 const _ControlGroup = forwardRef<HTMLFieldSetElement, ControlGroupProps>(({className, id, ...props}, ref) => {
   const uniqueId = useId(id)
 
-  const containsCaption = Children.toArray(props.children).some(
-    child => isValidElement(child) && child.type === ControlGroupCaption,
-  )
-  const containsValidation = Children.toArray(props.children).some(
-    child => isValidElement(child) && child.type === ControlGroupValidation,
-  )
+  // Reorganize children to move Caption and Validation inside the Label
+  const reorganizedChildren = React.Children.map(props.children, (child) => {
+    if (React.isValidElement(child)) {
+      // If this is the Label, we need to inject Caption and Validation as its children
+      if (child.type === ControlGroupLabel) {
+        // Find Caption and Validation from all children
+        const allChildren = React.Children.toArray(props.children)
+        const captionChild = allChildren.find(
+          (c) => React.isValidElement(c) && c.type === ControlGroupCaption
+        )
+        const validationChild = allChildren.find(
+          (c) => React.isValidElement(c) && c.type === ControlGroupValidation
+        )
 
-  const describedBy =
-    [containsCaption && `${uniqueId}-caption`, containsValidation && `${uniqueId}-validation`]
-      .filter(Boolean)
-      .join(' ') || undefined
+        // Clone the Label element and add Caption/Validation as children
+        return React.cloneElement(child as React.ReactElement<ControlGroupLabelProps>, {
+          children: (
+            <>
+              {child.props.children}
+              {captionChild}
+              {validationChild}
+            </>
+          )
+        })
+      }
+      // Skip Caption and Validation as they're now inside Label
+      else if (child.type === ControlGroupCaption || child.type === ControlGroupValidation) {
+        return null
+      }
+    }
+    return child
+  })
 
   return (
     <ControlGroupContext.Provider value={{id: uniqueId}}>
       <fieldset
         ref={ref}
         className={clsx(styles.ControlGroup__container, className)}
-        aria-describedby={describedBy}
         {...props}
-      />
+      >
+        {reorganizedChildren}
+      </fieldset>
     </ControlGroupContext.Provider>
   )
 })
@@ -72,22 +94,17 @@ const ControlGroupLabel = forwardRef<HTMLLegendElement, ControlGroupLabelProps>(
 
 export type ControlGroupCaptionProps = HTMLAttributes<HTMLSpanElement>
 const ControlGroupCaption = forwardRef<HTMLSpanElement, ControlGroupCaptionProps>(({className, ...props}, ref) => {
-  const {id} = useControlGroup()
-
-  return <Text as="span" size="100" variant="muted" ref={ref} id={`${id}-caption`} className={className} {...props} />
+  return <Text as="span" size="100" variant="muted" ref={ref} className={className} {...props} />
 })
 
 export type ControlGroupValidationProps = {variant: FormValidationStatus} & HTMLAttributes<HTMLSpanElement>
 const ControlGroupValidation = forwardRef<HTMLSpanElement, ControlGroupValidationProps>(
   ({className, variant, children, ...props}, ref) => {
-    const {id} = useControlGroup()
-
     return (
       <Text
         as="span"
         size="100"
         ref={ref}
-        id={`${id}-validation`}
         className={clsx(
           styles.ControlGroup__validation,
           styles['ControlGroup__validation--animate-in'],

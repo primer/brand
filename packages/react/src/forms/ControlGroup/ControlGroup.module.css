@@ -15,6 +15,11 @@
   margin-block-end: var(--base-size-8);
 }
 
+.ControlGroup__label > span + span {
+  display: block;
+  margin-block-start: var(--base-size-4);
+}
+
 .ControlGroup__validation {
   display: flex;
   gap: var(--base-size-4);
