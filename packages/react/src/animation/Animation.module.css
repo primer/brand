@@ -190,3 +190,15 @@
 .Animation--fill-in-top.Animation--active {
   transform: scaleY(1);
 }
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  .Animation,
+  .Animation::before,
+  .Animation::after,
+  .Animation * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

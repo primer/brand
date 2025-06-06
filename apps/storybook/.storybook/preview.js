@@ -1,3 +1,4 @@
+import React from 'react'
 import {ThemeProvider} from '../../../packages/react/src'
 import styles from './preview.module.css'
 import '../../../packages/react/src/css/stylesheets'
@@ -36,16 +37,17 @@ export const globalTypes = {
 }
 
 const ThemeProviderDecorator = (Story, context) => {
+  const colorMode = context.parameters?.colorMode || context.globals.colorMode
   // from Storybook v7, this can't be applied as a side effect
-  if (context.globals.colorMode === 'auto') {
+  if (colorMode === 'auto') {
     document.body.removeAttribute('data-color-mode')
   }
 
-  if (['light', 'dark'].includes(context.globals.colorMode)) {
-    document.body.setAttribute('data-color-mode', context.globals.colorMode)
+  if (['light', 'dark'].includes(colorMode)) {
+    document.body.setAttribute('data-color-mode', colorMode)
   }
 
-  if (context && context.globals.colorMode === 'all') {
+  if (context && colorMode === 'all') {
     return (
       <div className={styles['color-mode-all']}>
         <style
@@ -64,7 +66,7 @@ const ThemeProviderDecorator = (Story, context) => {
   }
 
   return (
-    <ThemeProvider colorMode={context.globals.colorMode}>
+    <ThemeProvider colorMode={colorMode}>
       <Story {...context} />
     </ThemeProvider>
   )

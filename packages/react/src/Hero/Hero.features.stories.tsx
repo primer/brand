@@ -1,13 +1,17 @@
 import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
-import {HeartFillIcon, StarFillIcon} from '@primer/octicons-react'
-import placeholderImage from '../fixtures/images/placeholder-600x400.png'
+import {HeartFillIcon, PlayIcon, StarFillIcon} from '@primer/octicons-react'
+import placeholderImage from '../fixtures/images/placeholder.png'
+import posterImage from '../fixtures/images/example-poster.png'
 
 import {Hero} from '.'
 import {ActionMenu} from '../ActionMenu'
 import {Grid} from '../Grid'
 import {EyebrowBanner} from '../EyebrowBanner'
+import {VideoPlayer} from '../VideoPlayer'
+
+import styles from './Hero.stories.module.css'
 
 export default {
   title: 'Components/Hero/Features',
@@ -41,6 +45,23 @@ export const WithMutedDescriptions: StoryFn<typeof Hero> = _args => (
       felis nam pulvinar risus elementum.
     </Hero.Description>
     <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+  </Hero>
+)
+
+export const WithAccentButton: StoryFn<typeof Hero> = _args => (
+  <Hero align="center">
+    <Hero.Label>GitHub Issues</Hero.Label>
+    <Hero.Heading>Project planning for developers</Hero.Heading>
+    <Hero.Description variant="muted">
+      Create issues, break them into tasks, track relationships, add custom fields, and have conversations. Visualize
+      large projects as tables, boards, or roadmaps, and automate everything with code.
+    </Hero.Description>
+    <Hero.PrimaryAction variant="accent" href="#" hasArrow={false}>
+      Start using projects
+    </Hero.PrimaryAction>
+    <Hero.SecondaryAction href="#" trailingVisual={<PlayIcon />}>
+      What is GitHub Issues
+    </Hero.SecondaryAction>
   </Hero>
 )
 
@@ -96,6 +117,129 @@ export const WithImageInlineEnd: StoryFn<typeof Hero> = _args => (
   </Grid>
 )
 WithImageInlineEnd.storyName = 'With an image (right)'
+
+export const WithVideoBlockEndDefault: StoryFn<typeof Hero> = _args => (
+  <Grid>
+    <Grid.Column>
+      <Hero>
+        <Hero.Label>Label</Hero.Label>
+        <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+        <Hero.Description>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Hero.Description>
+        <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+        <Hero.Video>
+          <VideoPlayer title="GitHub media player" poster={posterImage}>
+            <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
+            <VideoPlayer.Track src="./example.vtt" default />
+          </VideoPlayer>
+        </Hero.Video>
+      </Hero>
+    </Grid.Column>
+  </Grid>
+)
+WithVideoBlockEndDefault.storyName = 'With a VideoPlayer (bottom)'
+
+export const WithNativeBlockEndDefault: StoryFn<typeof Hero> = _args => (
+  <Grid>
+    <Grid.Column>
+      <Hero>
+        <Hero.Label>Label</Hero.Label>
+        <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+        <Hero.Description>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Hero.Description>
+        <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+        <Hero.Video>
+          <video title="Example title" controls poster={posterImage} className={styles.customVideo}>
+            <source src="./example.mp4" type="video/mp4" />
+            <track src="./example.vtt" kind="captions" srcLang="en" label="English" default />
+            Your browser does not support the video tag.
+          </video>
+        </Hero.Video>
+      </Hero>
+    </Grid.Column>
+  </Grid>
+)
+WithNativeBlockEndDefault.storyName = 'With a HTML video (bottom)'
+
+export const WithYoutubeVideoBlockEndDefault: StoryFn<typeof Hero> = _args => (
+  <Grid>
+    <Grid.Column>
+      <Hero>
+        <Hero.Label>Label</Hero.Label>
+        <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+        <Hero.Description>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Hero.Description>
+        <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+        <Hero.Video>
+          <iframe
+            src="https://www.youtube.com/embed/EPyyyB23NUU"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+            className={styles.customVideo}
+          ></iframe>
+        </Hero.Video>
+      </Hero>
+    </Grid.Column>
+  </Grid>
+)
+WithYoutubeVideoBlockEndDefault.storyName = 'With a YouTube video (bottom)'
+
+export const WithVideoInlineEnd: StoryFn<typeof Hero> = _args => (
+  <Grid>
+    <Grid.Column>
+      <Hero align="center">
+        <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+        <Hero.Description>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Hero.Description>
+        <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+        <Hero.Video position="inline-end">
+          <VideoPlayer title="GitHub media player" poster={posterImage}>
+            <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
+            <VideoPlayer.Track src="./example.vtt" default />
+          </VideoPlayer>
+        </Hero.Video>
+      </Hero>
+    </Grid.Column>
+  </Grid>
+)
+WithVideoInlineEnd.storyName = 'With a VideoPlayer (right)'
+
+export const WithYoutubeVideoInlineEnd: StoryFn<typeof Hero> = _args => (
+  <Grid>
+    <Grid.Column>
+      <Hero align="center">
+        <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+        <Hero.Description>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
+          turpis felis nam pulvinar risus elementum.
+        </Hero.Description>
+        <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+        <Hero.Video position="inline-end">
+          <iframe
+            src="https://www.youtube.com/embed/EPyyyB23NUU"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+            style={{width: '100%', height: 'auto', aspectRatio: '16/9'}}
+          ></iframe>
+        </Hero.Video>
+      </Hero>
+    </Grid.Column>
+  </Grid>
+)
+WithYoutubeVideoInlineEnd.storyName = 'With a YouTube video (right)'
 
 export const WithoutDescription: StoryFn<typeof Hero> = _args => (
   <Hero>
@@ -178,6 +322,23 @@ export const WithCustomClassnames: StoryFn<typeof Hero> = _args => (
     <Hero.Label>Label</Hero.Label>
     <Hero.Heading className="test-class">This is my super sweet hero heading</Hero.Heading>
     <Hero.Description className="test-class">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+      felis nam pulvinar risus elementum.
+    </Hero.Description>
+    <Hero.PrimaryAction href="#" className="test-class">
+      Primary action
+    </Hero.PrimaryAction>
+    <Hero.SecondaryAction href="#" className="test-class">
+      Secondary action
+    </Hero.SecondaryAction>
+  </Hero>
+)
+
+export const WithCustomHeadingAndDescriptionSizes: StoryFn<typeof Hero> = _args => (
+  <Hero className="test-class" align="center">
+    <Hero.Label>Label</Hero.Label>
+    <Hero.Heading size="4">This is my super sweet hero heading</Hero.Heading>
+    <Hero.Description size="200">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
       felis nam pulvinar risus elementum.
     </Hero.Description>

@@ -14,9 +14,18 @@ test.describe('Visual Comparison: PricingOptions', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('PricingOptions / Default Variant', async ({page}) => {
+  test('PricingOptions / Copilot Individual Plans', async ({page}) => {
     await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--default-variant&viewMode=story',
+      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-examples--copilot-individual-plans&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('PricingOptions / Copilot Business Plans', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-examples--copilot-business-plans&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -26,6 +35,24 @@ test.describe('Visual Comparison: PricingOptions', () => {
   test('PricingOptions / Cards Variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--cards-variant&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('PricingOptions / Default Gradient Variant', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--default-gradient-variant&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('PricingOptions / Cards Gradient Variant', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--cards-gradient-variant&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -68,6 +95,15 @@ test.describe('Visual Comparison: PricingOptions', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('PricingOptions / Four Options', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--four-options&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('PricingOptions / With Feature Sets', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--with-feature-sets&viewMode=story',
@@ -95,9 +131,36 @@ test.describe('Visual Comparison: PricingOptions', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('PricingOptions / Center Aligned', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--center-aligned&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('PricingOptions / Collapsed Features', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--collapsed-features&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('PricingOptions / With Custom Feature List Heading', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--with-custom-feature-list-heading&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('PricingOptions / With Custom Feature List Item Leading Visual', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--with-custom-feature-list-item-leading-visual&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -119,6 +182,19 @@ test.describe('Visual Comparison: PricingOptions', () => {
     test('PricingOptions / Expanded Narrow', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--expanded-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Tablet viewport test for Expanded Tablet', () => {
+    test.use({viewport: {width: 834, height: 1112}})
+    test('PricingOptions / Expanded Tablet', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--expanded-tablet&viewMode=story',
       )
 
       await page.waitForTimeout(500)

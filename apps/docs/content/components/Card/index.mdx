@@ -7,6 +7,9 @@ import CustomVideoPlayer from '../../../src/components/custom-video-player'
 import ComponentLayout from '../../../src/layouts/component-layout'
 export default ComponentLayout
 
+import centerAlignDo from './images/cardstackedmaxdo.png'
+import centerAlignDont from './images/cardstackedmaxdont.png'
+
 ![An image showing a card with a Copilot Octicon.](https://github.com/primer/brand/assets/6951037/5bb4e3dd-8f53-44c5-a5ed-987c732eaf8f)
 
 ## Usage
@@ -69,6 +72,25 @@ When using an image as the visual asset, we recommend using the same aspect rati
 </DoDontContainer>
 
 Cards typically appear in groups of three or four in desktop viewports. For smaller viewports, or when more than four cards are needed, we recommend stacking the cards vertically. You can use the [Grid](/components/Grid) or the [Stack](/components/Stack) component to achieve this.
+
+Use center alignment when stacking multiple cards up to a maximum of three. For four (or more) use start alignment.
+
+<DoDontContainer>
+  <Do>
+    <img src={centerAlignDo} alt="" />    
+    <Caption>
+      Use center alignment when presenting up to three cards in single row.
+    </Caption>
+
+  </Do>
+  <Dont>    
+    <img src={centerAlignDont} alt="" />
+    <Caption>
+      Don't use center alignment when presenting more than three cards.
+    </Caption>
+
+  </Dont>
+</DoDontContainer>
 
 <div>
   <CustomVideoPlayer

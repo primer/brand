@@ -45,6 +45,12 @@
   width: 100%;
 }
 
+.Hero-video video,
+.Hero-video iframe {
+  width: 100%;
+  border-radius: var(--brand-borderRadius-large);
+}
+
 .Hero-label {
   margin-block-end: var(--base-size-24);
 }

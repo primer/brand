@@ -4,10 +4,10 @@ import styles from './navigation.module.css'
 import {ActionList, ActionMenu, Button} from '@primer/react'
 
 const navItems = [
-  {href: 'https://primer.style/', label: 'Product UI'}, // TODO: update to https://primer.style/product when we launch the new docs site
+  {href: 'https://primer.style/product', label: 'Product UI'},
   {href: '/', label: 'Brand UI'},
   {href: 'https://primer.style/octicons', label: 'Octicons'},
-  {href: 'https://primer.style/guides/accessibility', label: 'Accessibility'}, // TODO: update to https://primer.style/accessibility when we launch the new docs site
+  {href: 'https://primer.style/accessibility', label: 'Accessibility'},
   {href: 'https://brand.github.com/', label: 'Brand Toolkit', external: true},
 ]
 

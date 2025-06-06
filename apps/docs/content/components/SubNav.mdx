@@ -31,6 +31,22 @@ import {SubNav} from '@primer/react-brand'
 </Container>
 ```
 
+### Subheading
+
+```jsx live
+<Container sx={{position: 'relative', height: 100}}>
+  <SubNav>
+    <SubNav.Heading href="#">AI</SubNav.Heading>
+    <SubNav.SubHeading href="#" aria-current="page">
+      Copilot
+    </SubNav.SubHeading>
+    <SubNav.Link href="#">What&apos;s new</SubNav.Link>
+    <SubNav.Link href="#">Plans &amp; pricing</SubNav.Link>
+    <SubNav.Link href="#">For business</SubNav.Link>
+  </SubNav>
+</Container>
+```
+
 ### Shadow
 
 ```jsx live
@@ -90,6 +106,8 @@ Submenus appear as a dropdown by default.
 
 ### Optional anchor-based submenu
 
+Ensure that the text of each `SubNav.Link` within the anchor-based submenu fits entirely within a 320px-wide viewport. Failure to do this violates [WCAG 1.4.10 Reflow](https://github.com/github/accessibility-audit-guide/blob/main/web/WCAG/1.4.10%20Reflow.md).
+
 ```jsx live
 <Container sx={{position: 'relative', height: 300, overflowY: 'scroll'}}>
   <Box style={{height: 1000}}>
@@ -124,6 +142,12 @@ Submenus appear as a dropdown by default.
 ### SubNav.Heading <Label>Required</Label>
 
 `SubNav.Heading` is a styled `a` tag which describes the overarching category of the other links within the SubNav. The `SubNav.Heading` is structurally identical to a `SubNav.Link` and differs only in visual styling.
+
+| name   | type     | default | required | description                      |
+| ------ | -------- | ------- | -------- | -------------------------------- |
+| `href` | `string` |         |          | URL of the page the link goes to |
+
+### SubNav.SubHeading
 
 | name   | type     | default | required | description                      |
 | ------ | -------- | ------- | -------- | -------------------------------- |

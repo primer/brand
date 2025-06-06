@@ -57,15 +57,6 @@ test.describe('Visual Comparison: VideoPlayer', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('VideoPlayer / Hide Controls When Paused', async ({page}) => {
-    await page.goto(
-      'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--hide-controls-when-paused&viewMode=story',
-    )
-
-    await page.waitForTimeout(500)
-    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
-  })
-
   test('VideoPlayer / Minimal', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-videoplayer-features--minimal&viewMode=story',

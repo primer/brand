@@ -1,0 +1,67 @@
+---
+title: Stack
+description: Use the stack component to create a layout for its immediate children along the vertical or horizontal axis.
+keywords: ['layout']
+show-tabs: true
+tab-label: Guidelines
+---
+
+![](https://github.com/primer/brand/assets/912236/f04a87ce-a4ca-403b-8732-a8575a39437a)
+
+## Usage
+
+Use the stack component to distribute space and alignment between items in a vertical or horizontal direction (one-dimensional layout)[^1]. If you need both vertical and horizontal layout (two-dimensional layout), use the [grid](/components/Grid) component instead. When in doubt, we recommend reading the [grid vs stack](/components/Grid#grid-vs-stack) documentation.
+
+We recommend using the stack component for inline or text based elements. Stack enables items to scale, wrap, and shrink depending on each item's content and the available space.
+
+[^1]: The stack component is implemented using the [CSS Flexbox Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout) specification.
+
+<DoDontContainer>
+  <Do>
+    <img src="https://github.com/primer/brand/assets/912236/3cfb1fc3-071c-478e-8104-543dcc823927" alt="" />
+    <Caption>
+      Use the stack component for inline or text based elements. Like a navigational list or a button group.
+    </Caption>
+  </Do>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/912236/53436826-515f-49d6-b33c-d84124f29aa4" alt="" />
+    <Caption>Don't use the stack component to create a grid of items. Use the grid component instead.</Caption>
+  </Dont>
+</DoDontContainer>
+
+## Options
+
+### Gap
+
+Use the gap to change the space between items. Use small values when grouping closed related items, and larger values to separate sections or non-related items between them.
+
+<DoDontContainer>
+  <Do>
+    <img src="https://github.com/primer/brand/assets/912236/dd508033-0435-48af-9b0b-ab1881608d8e" alt="" />
+    <Caption>Use large gap values to separate sections or non-related items.</Caption>
+  </Do>
+  <Dont>
+    <img src="https://github.com/primer/brand/assets/912236/3e6974eb-2f80-4fee-9000-dc9fa31432a7" alt="" />
+    <Caption>Don't use large gap values for related items.</Caption>
+  </Dont>
+</DoDontContainer>
+
+### Direction, alignment, and justification
+
+Use the direction to control the rendering direction of items. The direction can be adjusted on different viewports. For example, an icon and a label might be rendered horizontally on large viewports, but vertically on small viewports for better readability and composition.
+
+Use the align and justify options for determining the rendering alignment on the cross-axis and main-axis respectively. Taking the example above, the icon and label might be aligned to the center on mobile viewports, but aligned to the start on large viewports.
+
+<div>
+  <video width="100%" autoPlay muted loop playsInline>
+    <source src="https://github.com/primer/brand/assets/912236/cd8eb55f-0f7e-40fd-bfdb-47ab8507370f" type="video/mp4" />
+  </video>
+  <Caption>
+    Use vertical layout on small viewports to ensure that the content is readable. Combine it with center alignment if
+    the text is short and the context calls for it.
+  </Caption>
+</div>
+
+## Related components
+
+- [Grid](/components/Grid): Use the grid component to create flexible and responsive grid-based layouts.

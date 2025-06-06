@@ -1,0 +1,179 @@
+---
+title: Hero
+description: Use the hero component to render a full-width banner at the top of a page.
+keywords: ['heading', 'intro', 'cta', 'banner']
+show-tabs: true
+tab-label: React
+ready: true
+figma: https://www.figma.com/file/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=431%3A8481
+source: https://github.com/primer/brand/blob/main/packages/react/src/Hero/Hero.tsx
+storybook: '/brand/storybook/?path=/story/components-hero--default'
+---
+
+import {HeroDescriptionVariantProp, HeroDescriptionVariantPropDefault, HeroImagePositionProp} from './react'
+
+```js
+import {Hero} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<Hero>
+  <Hero.Label>Label</Hero.Label>
+  <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+  <Hero.Description>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+    felis nam pulvinar risus elementum.
+  </Hero.Description>
+  <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+  <Hero.SecondaryAction href="#">Secondary action</Hero.SecondaryAction>
+</Hero>
+```
+
+### Images
+
+`Hero` can display an optional foreground image. Use `position` to alternate between various layouts.
+
+```jsx live
+<Stack>
+  <Hero>
+    <Hero.Label>Actions</Hero.Label>
+    <Hero.Heading>Automate your workflow from idea to production</Hero.Heading>
+    <Hero.PrimaryAction href="#">Get started with Actions</Hero.PrimaryAction>
+    <Hero.Image src="/brand/assets/placeholder.png" alt="placeholder, blank area with a gray background color" />
+  </Hero>
+  <br />
+  <Hero align="center">
+    <Hero.Label>Actions</Hero.Label>
+    <Hero.Heading size="2">Automate your workflow from idea to production</Hero.Heading>
+    <Hero.PrimaryAction href="#">Get started with Actions</Hero.PrimaryAction>
+    <Hero.Image
+      position="inline-end"
+      src="/brand/assets/placeholder.png"
+      alt="placeholder, blank area with a gray background color"
+      style={{height: '100%'}}
+    />
+  </Hero>
+</Stack>
+```
+
+### Video
+
+`Hero` includes support for inserting videos.
+
+Use [VideoPlayer](/components/VideoPlayer), a native `<video>` element or a YouTube embed as valid `children`. Similarly to `Hero.Image`, use the `position` prop to alternate between various layouts.
+
+```jsx live
+<Hero>
+  <Hero.Label>Label</Hero.Label>
+  <Hero.Heading>This is my super sweet hero heading</Hero.Heading>
+  <Hero.Description>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+    felis nam pulvinar risus elementum.
+  </Hero.Description>
+  <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+  <Hero.Video>
+    <iframe
+      src="https://www.youtube.com/embed/fHwtrOcLAnI"
+      title="YouTube video player"
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerPolicy="strict-origin-when-cross-origin"
+      allowFullScreen
+      style={{width: '100%', height: 'auto', aspectRatio: '16/10'}}
+    ></iframe>
+  </Hero.Video>
+</Hero>
+```
+
+### Alignment
+
+`Hero` text alignment can be adjusted by changing the `align` prop.
+
+```jsx live
+<Hero align="center">
+  <Hero.Label>Label</Hero.Label>
+  <Hero.Heading>
+    Blazing fast cloud
+    <br />
+    developer environments
+  </Hero.Heading>
+  <Hero.PrimaryAction href="#">Primary action</Hero.PrimaryAction>
+</Hero>
+```
+
+## Component props
+
+### Hero
+
+| Name        | Type                  |  Default  | Description                              |
+| :---------- | :-------------------- | :-------: | :--------------------------------------- |
+| `align`     | `'center'`, `'start'` | `'start'` | Optional text alignment                  |
+| `className` | `string`              |           | Sets a custom class on the root element  |
+| `ref`       | `React.RefObject`     |           | Forward a Ref to the underlying DOM node |
+
+### Hero.Label
+
+| name        | type              | default | description                                  |
+| ----------- | ----------------- | ------- | -------------------------------------------- |
+| `className` | `string`          |         | Sets a custom class on the root of the label |
+| `id`        | `string`          |         | Sets a custom id on the root of the label    |
+| `ref`       | `React.RefObject` |         | Forward a Ref to the underlying DOM node     |
+
+Forwards all props from the [Label component](/components/Label), including `size` and `color`.
+
+### Hero.Heading
+
+| name        | type              | default | description                              |
+| ----------- | ----------------- | ------- | ---------------------------------------- |
+| `className` | `string`          |         | Sets a custom class on the root element  |
+| `id`        | `string`          |         | Sets a custom id                         |
+| `ref`       | `React.RefObject` |         | Forward a Ref to the underlying DOM node |
+
+Forwards all props from the [Heading component](/components/Heading), including `as`, `size`, and `weight`.
+
+### Hero.Description
+
+| name        | type                           | default                               | description                         |
+| ----------- | ------------------------------ | ------------------------------------- | ----------------------------------- |
+| `className` | `string`                       |                                       | Sets a custom CSS class             |
+| `variant`   | <HeroDescriptionVariantProp /> | <HeroDescriptionVariantPropDefault /> | Specify alternative text appearance |
+
+Forwards `size` and `weight` props from the [Text component](/components/Text).
+
+### Hero.PrimaryAction
+
+| name        | type          | default | description                         |
+| ----------- | ------------- | ------- | ----------------------------------- |
+| `className` | `string`      |         | Primary link custom class           |
+| `href`      | `string`      |         | `href` for primary link             |
+| `as`        | `a`, `button` | `a`     | Applies the underlying HTML element |
+
+Forwards all props from the [Button component](/components/Button).
+
+### Hero.SecondaryAction
+
+| name        | type          | default | description                         |
+| ----------- | ------------- | ------- | ----------------------------------- |
+| `className` | `string`      |         | Secondary link custom class         |
+| `href`      | `string`      |         | `href` for secondary link           |
+| `as`        | `a`, `button` | `a`     | Applies the underlying HTML element |
+
+Forwards all props from the [Button component](/components/Button).
+
+### Hero.Image
+
+| name       | type                      | default       | description                                  |
+| ---------- | ------------------------- | ------------- | -------------------------------------------- |
+| `position` | <HeroImagePositionProp /> | `'block-end'` | Controls positioning of the foreground image |
+
+Forwards all props from the [Image component](/components/Image), including `src`, `alt`, and `aspectRatio`.
+
+### Hero.Video
+
+| name       | type                      | default       | description                                     |
+| ---------- | ------------------------- | ------------- | ----------------------------------------------- |
+| `position` | <HeroImagePositionProp /> | `'block-end'` | Controls positioning of the child video element |

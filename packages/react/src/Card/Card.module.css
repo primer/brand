@@ -19,6 +19,29 @@
   height: 100%;
 }
 
+.Card--align-center .Card {
+  text-align: center;
+  padding: var(--base-size-64) var(--base-size-40);
+}
+
+@media screen and (min-width: 64rem) {
+  .Card--align-center .Card {
+    padding: var(--base-size-64) var(--base-size-80);
+  }
+}
+
+.Card--align-center .Card {
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'image'
+    'icon'
+    'label'
+    'heading'
+    'description'
+    'action';
+  justify-items: center;
+}
+
 .Card--maxWidth {
   max-width: var(--brand-Card-maxWidth);
 }
@@ -31,7 +54,8 @@
   padding: 0;
 }
 
-.Card--colorMode-light {
+.Card--variant-default,
+.Card--variant-torchlight.Card--colorMode-light {
   background-color: var(--brand-Card-background-default);
 }
 
@@ -89,12 +113,16 @@
   justify-self: flex-end;
 }
 
+.Card--align-center .Card--icon .Card__label {
+  justify-self: center;
+}
+
 .Card--icon .Card__label,
 .Card--icon .Card__icon {
   align-self: center;
 }
 
-.Card:not(.Card--disableAnimation, .Card--variant-default.Card--colorMode-dark):hover {
+.Card:not(.Card--disableAnimation, .Card--variant-torchlight.Card--colorMode-dark):hover {
   transform: scale3d(1.025, 1.025, 1);
 }
 
@@ -106,6 +134,7 @@
 }
 
 .Card__image img,
+.Card__image picture,
 .Card__image span {
   display: block;
 }
@@ -125,9 +154,17 @@
   grid-area: heading;
 }
 
+.Card--fullWidth:not(.Card--align-center) .Card__heading {
+  max-width: 320px;
+}
+
 .Card__description {
   margin-bottom: var(--base-size-32);
   grid-area: description;
+}
+
+.Card--fullWidth:not(.Card--align-center) .Card__description {
+  max-width: 400px;
 }
 
 .Card__action {
@@ -135,6 +172,10 @@
   margin-top: auto;
   display: inline-flex;
   align-items: center;
+}
+
+.Card--align-center .Card__action {
+  justify-content: center;
 }
 
 .Card__action,
@@ -180,4 +221,28 @@
   bottom: 0;
   right: 0;
   z-index: -1;
+}
+
+.Card--expandableArrow {
+  margin-inline-start: var(--base-size-4);
+}
+
+.Card:has(.Card__link:hover) .Card--expandableArrow {
+  transform: translateX(var(--base-size-4));
+}
+
+.Card:has(.Card__link:hover) .Card--expandableArrow path:nth-of-type(2) {
+  stroke-dashoffset: 20;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  .Card,
+  .Card::before,
+  .Card::after,
+  .Card * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -35,3 +35,10 @@ export const Accent: Story = {
     children: 'Accent variant',
   },
 }
+
+export const ExternalLink: Story = {
+  args: {
+    isExternal: true,
+    children: 'External link',
+  },
+}

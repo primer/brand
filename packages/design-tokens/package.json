@@ -1,6 +1,6 @@
 {
   "name": "@primer/brand-primitives",
-  "version": "0.47.0",
+  "version": "0.54.2",
   "description": "Color, spacing, and typography primitives for the Primer Brand Design System  ",
   "keywords": [
     "primer",
@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@primer/primitives": "9.1.1",
-    "fast-glob": "3.3.2"
+    "fast-glob": "3.3.3"
   },
   "engines": {
     "node": ">=16.0.0",

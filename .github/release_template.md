@@ -17,14 +17,11 @@ Please ensure these items are checked before merging.
   - [ ] Run development server
   - [ ] Manually verify release-specific bugfixes and/or features on the following pages:
     - `/features/copilot`
-    - `/features/copilot/getting-started`
+    - `/features/copilot/tutorials`
     - `/features/preview`
     - `/enterprise`
-    - `/enterprise/advanced-security`
     - `/enterprise/contact`
-    - `/articles/security`
-    - `/articles/security/what-is-security-testing`
-    - `/solutions/devops`
+    - `/security/advanced-security`
     - `/education`
     - `/mobile`
     - `/about/diversity`

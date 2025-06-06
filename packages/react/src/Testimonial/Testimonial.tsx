@@ -17,11 +17,11 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/components/testimonial/colors-with-modes.css'
 
 import styles from './Testimonial.module.css'
-import {Colors, Gradients} from '../constants'
+import {Colors, BiColorGradients} from '../constants'
 
 type TestimonialSize = 'small' | 'large'
 
-export const TestimonialQuoteMarkColors = [...Colors, ...Gradients] as const
+export const TestimonialQuoteMarkColors = [...Colors, ...BiColorGradients] as const
 export const defaultQuoteMarkColor = TestimonialQuoteMarkColors[0]
 
 export const TestimonialVariants = ['subtle', 'default', 'minimal'] as const
@@ -33,6 +33,10 @@ export type TestimonialProps = {
    * Sets alternative appearance for the testimonial
    */
   variant?: TestimonialVariant
+  /**
+   * Applies an optional border where a variant supports it
+   */
+  hasBorder?: boolean
   /**
    * Valid children include Testimonial.Name, Testimonial.Avatar, and Testimonial.Name
    */
@@ -62,6 +66,7 @@ function _Root(
     className,
     children,
     variant = 'minimal',
+    hasBorder = true,
     size,
     style,
     ...rest
@@ -78,6 +83,7 @@ function _Root(
         styles['Testimonial'],
         styles[`Testimonial--variant-${variant}`],
         size && styles[`Testimonial--size-${size}`],
+        hasBorder && styles['Testimonial--border'],
         className,
       )}
       style={{

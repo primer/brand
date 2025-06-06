@@ -9,7 +9,7 @@ import {Label} from '@primer/react'
 import {StarIcon, CopilotIcon} from '@primer/octicons-react'
 
 import {PropTableValues} from '../../src/components'
-import {PricingOptions} from '@primer/react-brand'
+import {PricingOptions, HeadingTags} from '@primer/react-brand'
 
 ## Examples
 
@@ -18,7 +18,6 @@ import {PricingOptions} from '@primer/react-brand'
 ```jsx live
 <PricingOptions>
   <PricingOptions.Item>
-    <PricingOptions.Label>Recommended</PricingOptions.Label>
     <PricingOptions.Heading>Copilot</PricingOptions.Heading>
     <PricingOptions.Description>
       Copilot in the coding environment.
@@ -92,7 +91,6 @@ import {PricingOptions} from '@primer/react-brand'
 ```jsx live
 <PricingOptions variant="cards">
   <PricingOptions.Item>
-    <PricingOptions.Label>Recommended</PricingOptions.Label>
     <PricingOptions.Heading>Copilot</PricingOptions.Heading>
     <PricingOptions.Description>
       Copilot in the coding environment.
@@ -152,6 +150,113 @@ import {PricingOptions} from '@primer/react-brand'
     <PricingOptions.PrimaryAction href="/buy">
       Join waitlist
     </PricingOptions.PrimaryAction>
+  </PricingOptions.Item>
+</PricingOptions>
+```
+
+### Gradient variant
+
+```jsx live
+<PricingOptions variant="default-gradient">
+  <PricingOptions.Item>
+    <PricingOptions.Heading>Copilot</PricingOptions.Heading>
+    <PricingOptions.Description>
+      Copilot in the coding environment.
+    </PricingOptions.Description>
+    <PricingOptions.Price
+      currencySymbol="$"
+      trailingText="per month / $100 per year"
+    >
+      10
+    </PricingOptions.Price>
+    <PricingOptions.FeatureList>
+      <PricingOptions.FeatureListItem>
+        Everything in Copilot Business plus:
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
+        Chat in IDE and Mobile
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
+        CLI assistance
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
+        Code completions
+      </PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
+    <PricingOptions.PrimaryAction href="/buy">
+      Buy now
+    </PricingOptions.PrimaryAction>
+    <PricingOptions.SecondaryAction href="/contact">
+      Contact sales
+    </PricingOptions.SecondaryAction>
+  </PricingOptions.Item>
+
+  <PricingOptions.Item>
+    <PricingOptions.Label>Recommended</PricingOptions.Label>
+    <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+    <PricingOptions.Description>
+      Copilot personalized to your organization throughout the software
+      development lifecycle. Requires GitHub Enterprise Cloud.
+    </PricingOptions.Description>
+    <PricingOptions.Price currencySymbol="$" trailingText="per user / month">
+      39
+    </PricingOptions.Price>
+    <PricingOptions.FeatureList>
+      <PricingOptions.FeatureListItem>
+        Everything in Copilot Business plus:
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
+        Chat in IDE and Mobile
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
+        CLI assistance
+      </PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>
+        Code completions
+      </PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
+    <PricingOptions.PrimaryAction href="/buy">
+      Join waitlist
+    </PricingOptions.PrimaryAction>
+  </PricingOptions.Item>
+</PricingOptions>
+```
+
+### Center alignment
+
+```jsx live
+<PricingOptions variant="cards" align="center">
+  <PricingOptions.Item>
+    <PricingOptions.Heading>Copilot</PricingOptions.Heading>
+    <PricingOptions.Description>
+      Copilot in the coding environment.
+    </PricingOptions.Description>
+    <PricingOptions.Price
+      currencySymbol="$"
+      trailingText="per month / $100 per year"
+    >
+      10
+    </PricingOptions.Price>
+    <PricingOptions.PrimaryAction href="#">
+      Buy now
+    </PricingOptions.PrimaryAction>
+  </PricingOptions.Item>
+
+  <PricingOptions.Item>
+    <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+    <PricingOptions.Description>
+      Copilot personalized to your organization throughout the software
+      development lifecycle. Requires GitHub Enterprise Cloud.
+    </PricingOptions.Description>
+    <PricingOptions.Price currencySymbol="$" trailingText="per user / month">
+      39
+    </PricingOptions.Price>
+    <PricingOptions.PrimaryAction href="#">
+      Join waitlist
+    </PricingOptions.PrimaryAction>
+    <PricingOptions.SecondaryAction href="#">
+      Contact sales
+    </PricingOptions.SecondaryAction>
   </PricingOptions.Item>
 </PricingOptions>
 ```
@@ -190,7 +295,6 @@ This is the two-item layout for the pricing options component.
 ```jsx live
 <PricingOptions>
   <PricingOptions.Item>
-    <PricingOptions.Label>Recommended</PricingOptions.Label>
     <PricingOptions.Heading>Copilot</PricingOptions.Heading>
     <PricingOptions.Description>
       Copilot in the coding environment.
@@ -254,9 +358,13 @@ This is the two-item layout for the pricing options component.
 </PricingOptions>
 ```
 
-### Three options
+### Three and four options
 
-This is the three-option layout for the pricing options component.
+`PricingOptions` supports a maximum of four items in both `default` and `card` layouts.
+
+Please refer to our [Storybook
+examples](https://primer.style/brand/storybook/?path=/story/components-pricingoptions-features--three-options)
+to see the component in a full-width context as originally intended.
 
 <Note>
 
@@ -264,15 +372,11 @@ This is the three-option layout for the pricing options component.
 thus it cannot be accurately represented within the narrower container of this
 documentation.
 
-Please refer to our [Storybook
-examples](https://primer.style/brand/storybook/?path=/story/components-pricingoptions-features--three-options)
-to see the component in a full-width context as originally intended.
-
 </Note>
 
 ### Feature list sets
 
-Use `PricingOptions.FeatureListHeading` to group feature items together.
+Use `PricingOptions.FeatureListGroupHeading` to group feature items together.
 
 ```jsx live
 <PricingOptions>
@@ -288,9 +392,9 @@ Use `PricingOptions.FeatureListHeading` to group feature items together.
       10
     </PricingOptions.Price>
     <PricingOptions.FeatureList>
-      <PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListGroupHeading>
         Base features
-      </PricingOptions.FeatureListHeading>
+      </PricingOptions.FeatureListGroupHeading>
       <PricingOptions.FeatureListItem>
         Code completions
       </PricingOptions.FeatureListItem>
@@ -301,9 +405,9 @@ Use `PricingOptions.FeatureListHeading` to group feature items together.
         CLI assistance
       </PricingOptions.FeatureListItem>
 
-      <PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListGroupHeading>
         Security
-      </PricingOptions.FeatureListHeading>
+      </PricingOptions.FeatureListGroupHeading>
       <PricingOptions.FeatureListItem>
         Security vulnerability filter
       </PricingOptions.FeatureListItem>
@@ -335,9 +439,9 @@ Use `PricingOptions.FeatureListHeading` to group feature items together.
       Contact sales
     </PricingOptions.SecondaryAction>
     <PricingOptions.FeatureList>
-      <PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListGroupHeading>
         Base features
-      </PricingOptions.FeatureListHeading>
+      </PricingOptions.FeatureListGroupHeading>
       <PricingOptions.FeatureListItem>
         Everything in Copilot Individual
       </PricingOptions.FeatureListItem>
@@ -345,9 +449,9 @@ Use `PricingOptions.FeatureListHeading` to group feature items together.
         Code referencing
       </PricingOptions.FeatureListItem>
 
-      <PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListGroupHeading>
         Security
-      </PricingOptions.FeatureListHeading>
+      </PricingOptions.FeatureListGroupHeading>
       <PricingOptions.FeatureListItem>
         Security vulnerability filter
       </PricingOptions.FeatureListItem>
@@ -383,9 +487,9 @@ Use `PricingOptions.FeatureListItem` with `variant="included"` and `variant="exc
       10
     </PricingOptions.Price>
     <PricingOptions.FeatureList>
-      <PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListGroupHeading>
         Chat
-      </PricingOptions.FeatureListHeading>
+      </PricingOptions.FeatureListGroupHeading>
       <PricingOptions.FeatureListItem>
         Unlimited messages, interactions, and history
       </PricingOptions.FeatureListItem>
@@ -401,9 +505,9 @@ Use `PricingOptions.FeatureListItem` with `variant="included"` and `variant="exc
       <PricingOptions.FeatureListItem variant="excluded">
         Access your knowledge base
       </PricingOptions.FeatureListItem>
-      <PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListGroupHeading>
         Code completion
-      </PricingOptions.FeatureListHeading>
+      </PricingOptions.FeatureListGroupHeading>
       <PricingOptions.FeatureListItem>
         Code suggestions as you type
       </PricingOptions.FeatureListItem>
@@ -436,9 +540,9 @@ Use `PricingOptions.FeatureListItem` with `variant="included"` and `variant="exc
       39
     </PricingOptions.Price>
     <PricingOptions.FeatureList>
-      <PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListGroupHeading>
         Chat
-      </PricingOptions.FeatureListHeading>
+      </PricingOptions.FeatureListGroupHeading>
       <PricingOptions.FeatureListItem>
         Unlimited messages, interactions, and history
       </PricingOptions.FeatureListItem>
@@ -454,9 +558,9 @@ Use `PricingOptions.FeatureListItem` with `variant="included"` and `variant="exc
       <PricingOptions.FeatureListItem>
         Access your knowledge base
       </PricingOptions.FeatureListItem>
-      <PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListGroupHeading>
         Code completion
-      </PricingOptions.FeatureListHeading>
+      </PricingOptions.FeatureListGroupHeading>
       <PricingOptions.FeatureListItem>
         Code suggestions as you type
       </PricingOptions.FeatureListItem>
@@ -478,11 +582,11 @@ Use `PricingOptions.FeatureListItem` with `variant="included"` and `variant="exc
 
 ### PricingOptions <Label>Required</Label>
 
-| Name       | Type                                                             |  Default  | required | Description                         |
-| :--------- | :--------------------------------------------------------------- | :-------: | :------: | :---------------------------------- |
-| `as`       | <PropTableValues values={[`section`, `div` ]} addLineBreaks />   | `section` | `false`  | Applies the underlying HTML element |
-| `children` | `PricingOptions.Item`                                            |           |  `true`  | Applies the underlying HTML element |
-| `variant`  | <PropTableValues values={[`default`, `cards` ]} addLineBreaks /> |           | `false`  | The variant styling                 |
+| Name       | Type                                                                                                   |  Default  | required | Description                         |
+| :--------- | :----------------------------------------------------------------------------------------------------- | :-------: | :------: | :---------------------------------- |
+| `as`       | <PropTableValues values={[`section`, `div` ]} addLineBreaks />                                         | `section` | `false`  | Applies the underlying HTML element |
+| `children` | `PricingOptions.Item`                                                                                  |           |  `true`  | The items to be displayed           |
+| `variant`  | <PropTableValues values={[`default`, `default-gradient`, `cards`, `cards-gradient` ]} addLineBreaks /> |           | `false`  | Sets the style variant              |
 
 ### PricingOptions.Item <Label>Required</Label>
 
@@ -494,16 +598,18 @@ One item per pricing plan to be displayed. Maximum of 3 items.
 
 ### PricingOptions.Heading <Label>Required</Label>
 
-| Name       | Type             |   Default   | required | Description                                       |
-| :--------- | :--------------- | :---------: | :------: | :------------------------------------------------ |
-| `as`       | `h3, h4, h5, h6` |    `h3`     | `false`  | Applies the underlying HTML heading level element |
-| `children` | `ReactNode`      | `undefined` |  `true`  | The heading of the item                           |
+| Name       | Type                                                   |   Default   | required | Description                                       |
+| :--------- | :----------------------------------------------------- | :---------: | :------: | :------------------------------------------------ |
+| `as`       | <PropTableValues values={HeadingTags} addLineBreaks /> |    `h3`     | `false`  | Applies the underlying HTML heading level element |
+| `children` | `ReactNode`                                            | `undefined` |  `true`  | The heading of the item                           |
 
 ### PricingOptions.Label
 
 | Name       | Type        |   Default   | required | Description           |
 | :--------- | :---------- | :---------: | :------: | :-------------------- |
 | `children` | `ReactNode` | `undefined` |  `true`  | The label of the item |
+
+Forwards all props from the [Label component](/components/Label).
 
 ### PricingOptions.Description
 
@@ -523,13 +629,20 @@ One item per pricing plan to be displayed. Maximum of 3 items.
 
 ### PricingOptions.FeatureList
 
-| Name         | Type                                                                                           |   Default   | required | Description                                                                                                 |
-| :----------- | :--------------------------------------------------------------------------------------------- | :---------: | :------: | :---------------------------------------------------------------------------------------------------------- |
-| `children`   | <PropTableValues values={['PricingOptions.Heading', 'PricingOptions.Item', ]} addLineBreaks /> | `undefined` |  `true`  | The list of features                                                                                        |
-| `expanded`   | `boolean`                                                                                      |   `true`    | `false`  | Controls visibility of feature items. Accepts Object type for granular control at different viewport sizes. |
-| `hasDivider` | `boolean`                                                                                      |   `true`    | `false`  | Controls visibility of a visual border between feature lists and adjacent actions                           |
+| Name          | Type                                                                                           |   Default   | required | Description                                                                                                 |
+| :------------ | :--------------------------------------------------------------------------------------------- | :---------: | :------: | :---------------------------------------------------------------------------------------------------------- |
+| `children`    | <PropTableValues values={['PricingOptions.Heading', 'PricingOptions.Item', ]} addLineBreaks /> | `undefined` |  `true`  | The list of features                                                                                        |
+| `accordionAs` | <PropTableValues values={HeadingTags} addLineBreaks />                                         |    `h4`     | `false`  | Applies the underlying HTML heading level element                                                           |
+| `expanded`    | `boolean`                                                                                      |   `true`    | `false`  | Controls visibility of feature items. Accepts Object type for granular control at different viewport sizes. |
+| `hasDivider`  | `boolean`                                                                                      |   `true`    | `false`  | Controls visibility of a visual border between feature lists and adjacent actions                           |
 
-### PricingOptions.FeatureListHeading
+### PricingOptions.FeatureListGroupHeading
+
+| Name       | Type        |       Default       | required | Description                         |
+| :--------- | :---------- | :-----------------: | :------: | :---------------------------------- |
+| `children` | `ReactNode` | `"What's included"` | `false`  | A custom title for the feature list |
+
+### PricingOptions.FeatureListGroupHeading
 
 | Name       | Type         |   Default   | required | Description                                       |
 | :--------- | :----------- | :---------: | :------: | :------------------------------------------------ |

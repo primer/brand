@@ -92,6 +92,23 @@ export const WithoutDivider = () => (
   </Grid>
 )
 
+export const CondensedGap = () => (
+  <Grid>
+    <Grid.Column>
+      <LogoSuite>
+        <LogoSuite.Heading visuallyHidden>Heading</LogoSuite.Heading>
+        <LogoSuite.Logobar gap="condensed">{logos.slice(0, 6)}</LogoSuite.Logobar>
+      </LogoSuite>
+      <LogoSuite>
+        <LogoSuite.Heading visuallyHidden>Heading</LogoSuite.Heading>
+        <LogoSuite.Logobar gap="condensed" marquee>
+          {logos.slice(0, 12)}
+        </LogoSuite.Logobar>
+      </LogoSuite>
+    </Grid.Column>
+  </Grid>
+)
+
 export const Marquee = () => (
   <LogoSuite>
     <LogoSuite.Heading visuallyHidden>Heading</LogoSuite.Heading>
