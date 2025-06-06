@@ -294,8 +294,8 @@ export const CheckboxPlayground = args => {
       fullWidth={args.fullWidth}
       size={args.size}
     >
-      <FormControl.Label visuallyHidden={args.visuallyHidden ? true : false}>{args.label}</FormControl.Label>
       <Checkbox disabled={args.disabled} />
+      <FormControl.Label visuallyHidden={args.visuallyHidden ? true : false}>{args.label}</FormControl.Label>
 
       {args.hint.length ? <FormControl.Hint>{args.hint}</FormControl.Hint> : null}
 

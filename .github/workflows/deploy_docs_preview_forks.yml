@@ -14,8 +14,8 @@ jobs:
   deploy:
     if: ${{ github.repository != github.event.pull_request.head.repo.full_name }}
     name: Preview
-    # SHA for security hardening. Points at last verified HEAD of main branch.
-    uses: primer/.github/.github/workflows/deploy_preview.yml@cd223835608ca5e9401e0ffe6081f6d2fcc912f3
+    # SHA for security hardening. Points at 2.2.0 release
+    uses: primer/.github/.github/workflows/deploy_preview.yml@91fde6cc969a502562fdacdac48e35859b3a40b4
     with:
       node_version: 18
       install: npm ci --legacy-peer-deps && cd apps/docs && npm ci --legacy-peer-deps && cd ..

@@ -1,5 +1,542 @@
 # @primer/react-brand
 
+## 0.54.2
+
+### Patch Changes
+
+- [#1030](https://github.com/primer/brand/pull/1030) [`4ee490d`](https://github.com/primer/brand/commit/4ee490d0ade8d057d147a9f012af77f5a35d7455) Thanks [@rezrah](https://github.com/rezrah)! - Fixed `SubdomainNavBar` to preserve the original ordering of actions in JSX, allowing more flexibility in CTA placement.
+
+  ```jsx
+  <SubdomainNavBar title="Subdomain">
+    <SubdomainNavBar.Link />
+    <SubdomainNavBar.SecondaryAction href="#">Secondary CTA</SubdomainNavBar.SecondaryAction>
+    {/* Primary actions can now render at the end */}
+    <SubdomainNavBar.PrimaryAction href="#">Primary CTA</SubdomainNavBar.PrimaryAction>
+  </SubdomainNavBar>
+  ```
+
+- [#1031](https://github.com/primer/brand/pull/1031) [`094cdf4`](https://github.com/primer/brand/commit/094cdf4977a8a749625317c27aa1290380d24bc5) Thanks [@rezrah](https://github.com/rezrah)! - `SubNav` component now correctly forwards refs to the underlying element.
+
+- [#1034](https://github.com/primer/brand/pull/1034) [`0d3a198`](https://github.com/primer/brand/commit/0d3a1988a39ec97fa92c56815ccead7d22a41e78) Thanks [@rezrah](https://github.com/rezrah)! - Increased contrast on `LogoSuite.Logobar` play/pause button in `marquee` mode.
+
+## 0.54.1
+
+### Patch Changes
+
+- [#1025](https://github.com/primer/brand/pull/1025) [`667d820`](https://github.com/primer/brand/commit/667d82065ae71bab332252bb3da5e726f3f56e69) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Removed `aria-describedby` from `AnchorNav.Link` component.
+
+- [#1015](https://github.com/primer/brand/pull/1015) [`1afeeae`](https://github.com/primer/brand/commit/1afeeaeb9329251b79a3f737dbec118006e91e20) Thanks [@danielguillan](https://github.com/danielguillan)! - Fixed an issue in `ActionMenu` where anchor links in `split-button` mode were only clickable on the text. Now, the clickable area covers the full width and height of the item.
+
+- [#1024](https://github.com/primer/brand/pull/1024) [`97b7a97`](https://github.com/primer/brand/commit/97b7a97719af118419f278fade092b387a0ee2b7) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Improved accessibility of `SubNav` component when no active link — denoted by `aria-current="page"` — is present.
+
+  - Hide last separator (on large viewports only) when there is no active link
+  - Set a fallback accessible label on the overlay toggle when there is no active link
+
+- [#1020](https://github.com/primer/brand/pull/1020) [`584280e`](https://github.com/primer/brand/commit/584280e339c6e1bf039f66a9f1040dd4db29aa25) Thanks [@joshfarrant](https://github.com/joshfarrant)! - `ActionMenu` bugfixes:
+
+  - Fixed a bug in `ActionMenu.Item` where provided `onClick` and `onKeyDown` handlers wouldn't be called.
+  - Fixed a bug which allowed <kbd>Tab</kbd> to cycle through the list of `ActionMenu.Item` elements which resulted in unpredictable focus behaviour. The intended way to navigate through the list is by using the arrow keys.
+
+- [#1012](https://github.com/primer/brand/pull/1012) [`ce945a2`](https://github.com/primer/brand/commit/ce945a2f7f2095cc58dbbd5665b23d3c3e60a711) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Removed the `Checkbox` and `Radio` components' built-in `<label>` as it was only used for styling and would result in inputs having two associated labels when used inside a `FormControl`.
+
+- [#1017](https://github.com/primer/brand/pull/1017) [`dd93551`](https://github.com/primer/brand/commit/dd9355102da60eb5ecd89db0f3b2e478b7dab6d6) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Increased the touch target size of `SubNav.SubMenu` toggle button
+
+## 0.54.0
+
+### Minor Changes
+
+- [#994](https://github.com/primer/brand/pull/994) [`61a1fa6`](https://github.com/primer/brand/commit/61a1fa688ee0da45878777f70711f4fccf025bc6) Thanks [@joshfarrant](https://github.com/joshfarrant)! - `MinimalFooter` now respects the ordering of the `socialLinks` prop when rendering social links, e.g. `<MinimalFooter socialLinks={['x', 'tiktok', 'youtube']} />` will render the links in that order.
+
+  Note: This may constitute a visual breaking change if you were relying on the social link order to _not_ be respected.
+
+- [#920](https://github.com/primer/brand/pull/920) [`2af9c78`](https://github.com/primer/brand/commit/2af9c78f0c4dd191802598567c5e8a0a853fc704) Thanks [@joshfarrant](https://github.com/joshfarrant)! - - Added play/pause button to `LogoSuite` component.
+  - Removed `"idle"` value from `LogoSuite.LogoBar` component's `marqueeSpeed` prop.
+    - This prop was introduced to enable custom play/pause buttons but is no longer necessary as the play/pause button is now built into the component.
+
+### Patch Changes
+
+- [#1008](https://github.com/primer/brand/pull/1008) [`91073c0`](https://github.com/primer/brand/commit/91073c06a96f71cc13e624b7d20b105181291900) Thanks [@danielguillan](https://github.com/danielguillan)! - Added missing types in `PricingOptions.FeatureListGroupHeading`
+
+- [#994](https://github.com/primer/brand/pull/994) [`61a1fa6`](https://github.com/primer/brand/commit/61a1fa688ee0da45878777f70711f4fccf025bc6) Thanks [@joshfarrant](https://github.com/joshfarrant)! - - Increased minimum touch target size of social icons in the `MinimalFooter` component to 24px.
+  - Increased contrast of social icons in the `MinimalFooter` component to over 3:1.
+
+## 0.53.0
+
+### Minor Changes
+
+- [#978](https://github.com/primer/brand/pull/978) [`d33f300`](https://github.com/primer/brand/commit/d33f30029d83d9464c42b57f13ebfcc17eaa41cf) Thanks [@danielguillan](https://github.com/danielguillan)! - ⚠️ Breaking changes
+
+  The `PricingOptions.FeatureListHeading` component has been renamed to `PricingOptions.FeatureListGroupHeading`. `PricingOptions.FeatureListHeading` is now used to optionally customize the heading of the `PricingOptions` feature list accordion.
+
+  ```diff
+  - <PricingOptions.FeatureListHeading />
+  + <PricingOptions.FeatureListGroupHeading />
+  ```
+
+  Full example with customizable accordion heading:,
+
+  ```jsx
+  <PricinOptions>
+    <PricingOptions.FeatureList>
+      <PricingOptions.FeatureListHeading>My custom title</PricingOptions.FeatureListHeading>
+      <PricingOptions.FeatureListGroupHeading>Feature set 1</PricingOptions.FeatureListGroupHeading>
+      <PricingOptions.FeatureListItem>Feature A</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Feature B</PricingOptions.FeatureListItem>
+      <PricingOptions.FeatureListItem>Feature C</PricingOptions.FeatureListItem>
+    </PricingOptions.FeatureList>
+  </PricinOptions>
+  ```
+
+### Patch Changes
+
+- [#1002](https://github.com/primer/brand/pull/1002) [`84d8e52`](https://github.com/primer/brand/commit/84d8e52f4b3f4c9a49cb9417f1f4a6c96649264e) Thanks [@danielguillan](https://github.com/danielguillan)! - - Updated styles and layout in `PricingOptions` for a more condensed design.
+
+  - Added new `variant` options to support `gradient` styling in `PricingOptions`: `default-gradient` and `cards-gradient`.
+
+  Usage example:
+
+  ```jsx
+  <PricingOptions variant="default-gradient">{/*...*/}</PricingOptions>
+  ```
+
+- [#1003](https://github.com/primer/brand/pull/1003) [`ab4d480`](https://github.com/primer/brand/commit/ab4d480fe0eb162c3913344019ec4264565e5b4c) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Fixed an accessibility issue in the `SubNav` component where items within the `SubNav.SubMenu` weren't accessible to assistive technologies on narrow viewports.
+
+- [#1001](https://github.com/primer/brand/pull/1001) [`0adad57`](https://github.com/primer/brand/commit/0adad575bddcfaa8eb8eb71b6afd0aeeaf3a757c) Thanks [@rezrah](https://github.com/rezrah)! - Add support for deeper link nesting in `SubNav`
+
+  Use `SubNav.SubHeading` to present another tier of content between the `SubNav.Heading` and `SubNav.Link` sub-components.
+
+  Usage example:
+
+  ```jsx
+  <SubNav>
+    <SubNav.Heading href="#">Top-level page</SubNav.Heading>
+    <SubNav.SubHeading href="#">Sub-level page</SubNav.SubHeading>
+    <SubNav.Link href="#">Child page</SubNav.Link>
+    <SubNav.Link href="#">Child page</SubNav.Link>
+    <SubNav.Link href="#">Child page</SubNav.Link>
+    <SubNav.Link href="#">Child page</SubNav.Link>
+  </SubNav>
+  ```
+
+- [#976](https://github.com/primer/brand/pull/976) [`4cdb794`](https://github.com/primer/brand/commit/4cdb7943f5759c7a0bb5dd1499a5c71f7e9c9c6f) Thanks [@danielguillan](https://github.com/danielguillan)! - Added a new `350` `size` option to the `Text` component.
+
+  E.g.
+
+  ```jsx
+  <Text size="350">A new text size available</Text>
+  ```
+
+- [#976](https://github.com/primer/brand/pull/976) [`4cdb794`](https://github.com/primer/brand/commit/4cdb7943f5759c7a0bb5dd1499a5c71f7e9c9c6f) Thanks [@danielguillan](https://github.com/danielguillan)! - Increased the default text size for the `Hero` description and set its default font weight to "normal".
+
+- [#1005](https://github.com/primer/brand/pull/1005) [`dcfdb2c`](https://github.com/primer/brand/commit/dcfdb2c75e76158efb8e9a06898ce652881a55e4) Thanks [@rezrah](https://github.com/rezrah)! - Updated default background color in dark mode from `#0d1117` (dark gray) to `#000000` (black) across all components as part of a revised visual design strategy.
+
+- [#998](https://github.com/primer/brand/pull/998) [`fcade91`](https://github.com/primer/brand/commit/fcade91402d73592f84ec2e2f033099af949b41c) Thanks [@rezrah](https://github.com/rezrah)! - Fixed a `forwardRef` bug in `Checkbox`. An external `ref` can now be passed correctly to the component.
+
+## 0.52.0
+
+### Minor Changes
+
+- [#991](https://github.com/primer/brand/pull/991) [`c083863`](https://github.com/primer/brand/commit/c083863bf4d6c2bb24147e2a9cece4975d0db09d) Thanks [@rezrah](https://github.com/rezrah)! - Updated the underlying HTML elements in the `Statistic` component for improved accessibility. Now a paragraph by default, where it was previously a heading. It can optionally also be set as a `<span>` using the `as` prop.
+
+  ⚠️ Breaking changes:
+
+  - `stretch` prop in `Statistic.Heading` has been removed.
+  - `as` prop now accepts `p` and `span` only
+  - `size` prop now accepts `1000`, `900`, `800`, `700`, `600`, `500`, `400`, `300`, `200`
+
+- [`05aee45`](https://github.com/primer/brand/commit/05aee45ddcd87b2e7e95ec7d8d27d9153addf635) Thanks [@rezrah](https://github.com/rezrah)! - The torchlight visual effect on dark mode `Card` components is now optional. The new default effect is now similar to its `light` mode counterpart.
+
+  To re-enable the torchlight effect, use `variant="torchlight"`. Note this effect continues to only work in `dark` color modes.
+
+  ```jsx
+  <ThemeProvider colorMode="dark">
+    <Card variant="torchlight" />
+  </ThemeProvider>
+  ```
+
+### Patch Changes
+
+- [#989](https://github.com/primer/brand/pull/989) [`bb24a54`](https://github.com/primer/brand/commit/bb24a5456c3e96b81324c1d061f5c53e81e3f605) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Allow hovered `SubNav.SubMenu` menus to be closed using <kbd>Escape</kbd> key
+
+- [#986](https://github.com/primer/brand/pull/986) [`c9f10ec`](https://github.com/primer/brand/commit/c9f10ec9d5b40a686bb9f5e88ccb22b47153a047) Thanks [@rezrah](https://github.com/rezrah)! - Visual updates to `Button` and `ActionMenu` components.
+
+  - `secondary` button variants now feature lighter border colors.
+  - `subtle` button variants now feature a semi-transparent background color in `rest` state.
+  - `accent` button variants in dark mode now use a darker hue for parity with its GitHub product counterpart.
+
+- [#991](https://github.com/primer/brand/pull/991) [`c083863`](https://github.com/primer/brand/commit/c083863bf4d6c2bb24147e2a9cece4975d0db09d) Thanks [@rezrah](https://github.com/rezrah)! - Additional `size` options available in the `Text` component: `800`, `900`, `1000`.
+
+- [#985](https://github.com/primer/brand/pull/985) [`6364954`](https://github.com/primer/brand/commit/63649542577e14d4b66355c352d21625bf933aee) Thanks [@joshfarrant](https://github.com/joshfarrant)! - The focus outline color of `SubNav` links is now set to `var(--brand-color-focus);`
+
+- [#961](https://github.com/primer/brand/pull/961) [`b43d15d`](https://github.com/primer/brand/commit/b43d15d6fffdb31d138d5a8a007bf58849d9c517) Thanks [@danielguillan](https://github.com/danielguillan)! - Noop update to smooth-scrolling behavior in `main.css`. Previous `scroll-behavior: smooth;` is still applied, but location in the compiled stylesheet has been updated.
+
+- [#961](https://github.com/primer/brand/pull/961) [`b43d15d`](https://github.com/primer/brand/commit/b43d15d6fffdb31d138d5a8a007bf58849d9c517) Thanks [@danielguillan](https://github.com/danielguillan)! - Patched a type mismatch between React 18.x and 19.x for `inert` prop in `RiverAccordion` component. Refer to the [following source file for more details](https://github.com/primer/brand/blob/main/packages/react/src/river/RiverAccordion/RiverAccordion.tsx).
+
+- [#961](https://github.com/primer/brand/pull/961) [`b43d15d`](https://github.com/primer/brand/commit/b43d15d6fffdb31d138d5a8a007bf58849d9c517) Thanks [@danielguillan](https://github.com/danielguillan)! - Updated `IDE` to use the full container width.
+
+## 0.51.1
+
+### Patch Changes
+
+- [#972](https://github.com/primer/brand/pull/972) [`663a4c1`](https://github.com/primer/brand/commit/663a4c1c4ace65e45ed0e58ff604cf578c04f5e4) Thanks [@rezrah](https://github.com/rezrah)! - Add mode="split-button" variant to `ActionMenu` component
+
+- [#972](https://github.com/primer/brand/pull/972) [`663a4c1`](https://github.com/primer/brand/commit/663a4c1c4ace65e45ed0e58ff604cf578c04f5e4) Thanks [@rezrah](https://github.com/rezrah)! - Removed default arrow visibility in the `ButtonGroup` and `CTABanner` components.
+
+  Use `hasArrow` on individual `Button` elements to restore the previous arrow appearance.
+
+- [#972](https://github.com/primer/brand/pull/972) [`663a4c1`](https://github.com/primer/brand/commit/663a4c1c4ace65e45ed0e58ff604cf578c04f5e4) Thanks [@rezrah](https://github.com/rezrah)! - `ActionMenu` overlay alignment now defaults to `end`, where it was previously `start`. Use the `menuAlignment` prop in `ActionMenu` to restore previous behavior if required.
+
+## 0.51.0
+
+### Minor Changes
+
+- [#939](https://github.com/primer/brand/pull/939) [`7f0a119`](https://github.com/primer/brand/commit/7f0a11931f63e98f8c3ed4053d5a61d2a185a4c8) Thanks [@joshfarrant](https://github.com/joshfarrant)! - - Added a new `RiverAccordion` component.
+
+  Usage example:
+
+  ```tsx
+  <RiverAccordion>
+    <RiverAccordion.Item>
+      <RiverAccordion.Heading>A Heading</RiverAccordion.Heading>
+      <RiverAccordion.Content>Some content</RiverAccordion.Content>
+      <RiverAccordion.Visual>
+        <img src="placeholder.png" alt="placeholder" />
+      </RiverAccordion.Visual>
+    </RiverAccordion.Item>
+
+    <RiverAccordion.Item>
+      <RiverAccordion.Heading>Another Heading</RiverAccordion.Heading>
+      <RiverAccordion.Content>Some content</RiverAccordion.Content>
+      <RiverAccordion.Visual>
+        <img src="placeholder.png" alt="placeholder" />
+      </RiverAccordion.Visual>
+    </RiverAccordion.Item>
+
+    <RiverAccordion.Item>
+      <RiverAccordion.Heading>One More Heading</RiverAccordion.Heading>
+      <RiverAccordion.Content>Some content</RiverAccordion.Content>
+      <RiverAccordion.Visual>
+        <img src="placeholder.png" alt="placeholder" />
+      </RiverAccordion.Visual>
+    </RiverAccordion.Item>
+  </RiverAccordion>
+  ```
+
+  🔗 [See the documentation for more usage examples](https://primer.style/brand/components/RiverAccordion)
+
+  - Fixed a bug in the `Heading` component where the component would be re-mounted each render, causing it to lose focus when used inside a focusable element.
+
+### Patch Changes
+
+- [#974](https://github.com/primer/brand/pull/974) [`aea5ea4`](https://github.com/primer/brand/commit/aea5ea4c64132c3e08f0bf68aa32531b8de9384a) Thanks [@rezrah](https://github.com/rezrah)! - Removed `clsx` as a library dependency. Now treated as `devDependency`.
+
+- [#966](https://github.com/primer/brand/pull/966) [`25db725`](https://github.com/primer/brand/commit/25db725f6be013137fadb0b3d4fca9a708a48fce) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Fixed a bug with the `SubNav` component where the `SubNav.Heading` and the current `SubNav.Link` were vertically misaligned in Safari on mobile viewports.
+
+- [#971](https://github.com/primer/brand/pull/971) [`9de3349`](https://github.com/primer/brand/commit/9de33493a42b668bcf887dbcf0ff93de8fa6dff8) Thanks [@rezrah](https://github.com/rezrah)! - Fixed border radius inconsistency in the `River` component where `picture` elements were only showing rounded corners at the top but not the bottom.
+
+- [#973](https://github.com/primer/brand/pull/973) [`c2d5b34`](https://github.com/primer/brand/commit/c2d5b34fdd735b493813291e7e78c536fbd2976b) Thanks [@rezrah](https://github.com/rezrah)! - Fixed type definitions for `PricingOptions.Label`. Now inclusive of all props in `Label`.
+
+- [#967](https://github.com/primer/brand/pull/967) [`b1ff17b`](https://github.com/primer/brand/commit/b1ff17be1c92d8506bce6c198a1397346dd1b1dd) Thanks [@danielguillan](https://github.com/danielguillan)! - Added spacing between the label and the arrow in the next and previous links in `Pagination`.
+
+- [#965](https://github.com/primer/brand/pull/965) [`9fdf1bf`](https://github.com/primer/brand/commit/9fdf1bf382645c761336323cf43fa153d7392b3f) Thanks [@rezrah](https://github.com/rezrah)! - Added a `hasBorder` prop to `Testimonial` component. Use `hasBorder={false}` to remove the default border applied by certain `variant` options.
+
+  ```jsx
+  <Testimonial variant="default" hasBorder={false} />
+  ```
+
+- [#967](https://github.com/primer/brand/pull/967) [`b1ff17b`](https://github.com/primer/brand/commit/b1ff17be1c92d8506bce6c198a1397346dd1b1dd) Thanks [@danielguillan](https://github.com/danielguillan)! - Added a new `isExternal` prop to `Link` to display an external link icon.
+
+  E.g.,
+
+  ```jsx
+  <Link href="https://github.com" isExternal>
+    My external link
+  </Link>
+  ```
+
+- [#971](https://github.com/primer/brand/pull/971) [`9de3349`](https://github.com/primer/brand/commit/9de33493a42b668bcf887dbcf0ff93de8fa6dff8) Thanks [@rezrah](https://github.com/rezrah)! - `River` headings and body text now have a maximum width of `400px` on default 50:50 layouts.
+
+- [#971](https://github.com/primer/brand/pull/971) [`9de3349`](https://github.com/primer/brand/commit/9de33493a42b668bcf887dbcf0ff93de8fa6dff8) Thanks [@rezrah](https://github.com/rezrah)! - Fixed border radius inconsistency in the `Card` component where `picture` elements were only showing rounded corners at the top but not the bottom.
+
+- [#960](https://github.com/primer/brand/pull/960) [`1203906`](https://github.com/primer/brand/commit/12039063f3b80d7dc0bee7f0b501ab1a0e3d613a) Thanks [@rezrah](https://github.com/rezrah)! - Updating various project dependencies.
+
+  No planned changes to Primer Brand component APIs, although minor visual changes to certain icons could be visible due to an internal update of the Primer Octicons dependency.
+
+## 0.50.0
+
+### Minor Changes
+
+- [#955](https://github.com/primer/brand/pull/955) [`2daaff8`](https://github.com/primer/brand/commit/2daaff87503192af74cb54bf37f3eb696c699a23) Thanks [@rezrah](https://github.com/rezrah)! - `Button` arrows are now hidden by default for all variants except `subtle` as part of a Core Brand refresh.
+
+  To optionally re-enable arrows, use the `hasArrow` prop.
+
+  ```jsx
+  <Button variant="primary" hasArrow>
+    Learn more
+  </Button>
+  ```
+
+### Patch Changes
+
+- [#958](https://github.com/primer/brand/pull/958) [`3b391a5`](https://github.com/primer/brand/commit/3b391a5d2577f5bdd108b78f04bc8ef444118c44) Thanks [@rezrah](https://github.com/rezrah)! - Updates to `PricingOptions` component:
+
+  - New center-aligned layout available via `align` prop.
+  - Added support for 4 pricing options. Previous maximum of 3.
+  - Removed heading level constraint to `as` prop in `PricingOptions.Heading`. Now accepts all heading levels, while retaining the previous `h3` default.
+  - Added `accordionAs`prop to `PricingOptions.FeatureList` for granular control over heading size.
+  - All pricing items under `1011px` now have a max width and centered positioning
+  - Fixed layout alignment bug when trailing text is not present under price.
+  - Fixed layout bug when footnote contains an inline link.
+
+- [#955](https://github.com/primer/brand/pull/955) [`2daaff8`](https://github.com/primer/brand/commit/2daaff87503192af74cb54bf37f3eb696c699a23) Thanks [@rezrah](https://github.com/rezrah)! - Visual update to `subtle` button variants. Borders on hover interactions have been replaced with a solid background color.
+
+- [#955](https://github.com/primer/brand/pull/955) [`2daaff8`](https://github.com/primer/brand/commit/2daaff87503192af74cb54bf37f3eb696c699a23) Thanks [@rezrah](https://github.com/rezrah)! - Added new `accent` button variant.
+
+  ```jsx
+  <Button variant="accent">Register now</Button>
+  ```
+
+  🔗 [See documentation for design guidelines and usage examples](https://primer.style/brand/components/Button)
+
+- [#955](https://github.com/primer/brand/pull/955) [`2daaff8`](https://github.com/primer/brand/commit/2daaff87503192af74cb54bf37f3eb696c699a23) Thanks [@rezrah](https://github.com/rezrah)! - Increased content spacing on wide breakpoints in `CTABanner` from `16px` to `32px`
+
+- [#957](https://github.com/primer/brand/pull/957) [`fbe8f17`](https://github.com/primer/brand/commit/fbe8f17b8c01d347a2af75f58e1a7d36e1e1a80d) Thanks [@rezrah](https://github.com/rezrah)! - Added an `align` prop to the `Card` component with `start` (default) or `center` alignment options. Refer to our documentation for examples on when the latter should be used.
+
+  No breaking changes are introduced as part of this change
+
+## 0.49.0
+
+### Minor Changes
+
+- [#947](https://github.com/primer/brand/pull/947) [`646cccf`](https://github.com/primer/brand/commit/646cccfc502973f52bc662dbc11a29d059a46bda) Thanks [@joshfarrant](https://github.com/joshfarrant)! - - Improved `VideoPlayer` appearance on narrow viewports.
+  - This necessitated the removal of the `showControlsWhenPaused` prop to prevent the height of the `VideoPlayer` from changing when the video is played/paused.
+
+## 0.48.0
+
+### Minor Changes
+
+- [#945](https://github.com/primer/brand/pull/945) [`13b84de`](https://github.com/primer/brand/commit/13b84deefa7c3cdf309275a82723d260d2b979aa) Thanks [@rezrah](https://github.com/rezrah)! - Removed global CSS overrides for `reduced-motion` user preferences with local, component equivalents.
+
+  > [!WARNING]
+  > Users who relied on this functionality should now implement their own override mechanisms at the component or page level.
+
+- [#926](https://github.com/primer/brand/pull/926) [`b11c431`](https://github.com/primer/brand/commit/b11c431d762ada206179eb81257b85d86a9e7f58) Thanks [@joshfarrant](https://github.com/joshfarrant)! - - Updated the `Pagination` component to ensure consistent behaviour across all viewports by displaying a condensed pagination on narrow viewports.
+
+  - ⚠️ Deprecated responsive object support in the `showPages` prop. The `showPages` prop now only accepts a boolean value which will hide/show the page numbers across all viewports.
+
+    ```diff
+      <Pagination
+    -   showPages={{narrow: true, regular: true, wide: true}}
+    +   showPages
+      />
+
+      // Or
+
+      <Pagination
+    -   showPages={{narrow: false, regular: false, wide: false}}
+    +   showPages={false}
+      />
+    ```
+
+### Patch Changes
+
+- [#931](https://github.com/primer/brand/pull/931) [`c309912`](https://github.com/primer/brand/commit/c3099124855ee87963e42781edfb7893e94c6eac) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Fixed a bug in Safari where an `Icon` component with `hasBackground={true}` would cut off the corners of the rendered SVG. To resolve this the `Icon` component now wraps the rendered SVG in a div.
+
+- [#927](https://github.com/primer/brand/pull/927) [`91c10c5`](https://github.com/primer/brand/commit/91c10c59bef556d99b0710d02c5f133fe10eb32c) Thanks [@rezrah](https://github.com/rezrah)! - Improved typings to various components. This update should not affect the end-user API's.
+
+- [#945](https://github.com/primer/brand/pull/945) [`13b84de`](https://github.com/primer/brand/commit/13b84deefa7c3cdf309275a82723d260d2b979aa) Thanks [@rezrah](https://github.com/rezrah)! - Fixed hover states for inline links in the `Prose` component. Links now behave identically to `InlineLink` component.
+
+- [#946](https://github.com/primer/brand/pull/946) [`010578b`](https://github.com/primer/brand/commit/010578b49daf0b071bf6cd145c0fc91acb8bf14b) Thanks [@danielguillan](https://github.com/danielguillan)! - Added a new `small` size option for `Label`
+
+  🔗 [See documentation for usage examples](https://primer.style/brand/components/Label/react#sizes)
+
+- [#943](https://github.com/primer/brand/pull/943) [`16b0cc7`](https://github.com/primer/brand/commit/16b0cc796489bc7ea90411a86f8e2f0ac710854e) Thanks [@danielguillan](https://github.com/danielguillan)! - Sets the maximum widths for the heading and description of the `Card` component.
+
+- [#940](https://github.com/primer/brand/pull/940) [`cca78a1`](https://github.com/primer/brand/commit/cca78a17b1266b1b0276c84c18983832d6c7fc94) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Updated the `Accordion` component to support additional state handling methods. All changes are backwards compatible. Refer to Storybook for examples of these additional `Accordion` features.
+
+- [#942](https://github.com/primer/brand/pull/942) [`5f31936`](https://github.com/primer/brand/commit/5f319362d85ea79fabf6b5239848cc30503b1ccd) Thanks [@danielguillan](https://github.com/danielguillan)! - Update the default `primary` and `secondary` accent color tokens from `pink` and `purple` to `green` and `yellow`, respectively.
+
+## 0.47.2
+
+### Patch Changes
+
+- [#934](https://github.com/primer/brand/pull/934) [`645fa5d`](https://github.com/primer/brand/commit/645fa5d89f7ab46e05e2c2da718979204573875c) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Fixed a bug where Card components would need to be tapped twice in iOS Safari to trigger navigation
+
+- [#889](https://github.com/primer/brand/pull/889) [`34e444e`](https://github.com/primer/brand/commit/34e444ee2734f5cddb5428ae230c758079237b41) Thanks [@danielguillan](https://github.com/danielguillan)! - Added new `green-blue-purple` `color` option to `Label` component
+
+## 0.47.1
+
+### Patch Changes
+
+- [#901](https://github.com/primer/brand/pull/901) [`d9a95b2`](https://github.com/primer/brand/commit/d9a95b233c0a48d8b925e5d720b135f9506dd061) Thanks [@rezrah](https://github.com/rezrah)! - Updated the following library depedencies: `@oddbird/popover-polyfill`, `autoprefixer`, `css-loader`, `mini-css-extract-plugin`, `postcss`, `postcss-loader`, `postcss-preset-env`, `style-loader`, `typed-css-modules`, `typescript-plugin-css-modules`, `webpack-cli`, `fast-glob`.
+
+  These updates should not affect the library’s visuals or component APIs. **In most cases, no additional action is required**. Please note however, that the compiled output may be slightly different due to changes in the bundling process.
+
+- [#912](https://github.com/primer/brand/pull/912) [`5966728`](https://github.com/primer/brand/commit/596672818f7bc95e0b1be128f7ade25f4840ff8a) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Fixed a bug in the `ActionMenu` component where items with falsy values (eg `""`) would not trigger the `onSelect` callback when selected.
+
+- [#909](https://github.com/primer/brand/pull/909) [`c5f2d40`](https://github.com/primer/brand/commit/c5f2d40ff3a7ed2087bb4545bb808017217990ca) Thanks [@danielguillan](https://github.com/danielguillan)! - Increased the gap between primary and secondary buttons in `Hero`, `CTABanner` and `ButtonGroup` components from `8px` to `16px`.
+
+- [#918](https://github.com/primer/brand/pull/918) [`65f7a92`](https://github.com/primer/brand/commit/65f7a92c374bbb98102ab6257dd4678e49f4cbcd) Thanks [@rezrah](https://github.com/rezrah)! - Fix `RiverStoryScroll` scrolling bug when `disabled={true}`. Now renders `children` 1:1.
+
+## 0.47.0
+
+### Minor Changes
+
+- [#896](https://github.com/primer/brand/pull/896) [`ce6c8b6`](https://github.com/primer/brand/commit/ce6c8b64667a3b699a00d8bc21734434fce02028) Thanks [@rezrah](https://github.com/rezrah)! - Updated minimum, compatible version of `react` and `react-dom` to `v18`
+
+### Patch Changes
+
+- [#896](https://github.com/primer/brand/pull/896) [`ce6c8b6`](https://github.com/primer/brand/commit/ce6c8b64667a3b699a00d8bc21734434fce02028) Thanks [@rezrah](https://github.com/rezrah)! - Updated `leadingVisual` prop in `Label` to accept `Icon` children from the `@primer/octicons-react` package.
+
+- [#896](https://github.com/primer/brand/pull/896) [`ce6c8b6`](https://github.com/primer/brand/commit/ce6c8b64667a3b699a00d8bc21734434fce02028) Thanks [@rezrah](https://github.com/rezrah)! - Replaced usage of `@reach/auto-id` with native `useId` in `react@v18`
+
+- [#896](https://github.com/primer/brand/pull/896) [`ce6c8b6`](https://github.com/primer/brand/commit/ce6c8b64667a3b699a00d8bc21734434fce02028) Thanks [@rezrah](https://github.com/rezrah)! - Add `peerDependenciesMeta` configuration, preventing unnecessary peer dependency warnings
+
+- [#899](https://github.com/primer/brand/pull/899) [`bc24d7a`](https://github.com/primer/brand/commit/bc24d7a7beafaf54aaf79619c6e13c48b7940f68) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Added a scroll margin to `Footnote.Item` to prevent it from being hidden behind fixed navigation during automatic scrolling.
+
+- [#897](https://github.com/primer/brand/pull/897) [`1c47b76`](https://github.com/primer/brand/commit/1c47b76f982df42d8ada0dde6ab683c6b5fd983d) Thanks [@joshfarrant](https://github.com/joshfarrant)! - `IDE` component accessibility improvements
+
+  - Added 1px border to identify active tab and start/end of Copilot suggestion. The colours of these borders can be customised via the `--brand-IDE-default-editor-tab-borderColor` and `--brand-IDE-autoSuggest-borderColor` CSS variables.
+  - Added horizontal scrolling to `IDE` component when viewed on small viewports
+
+## 0.46.0
+
+### Minor Changes
+
+- [#884](https://github.com/primer/brand/pull/884) [`bbdf7f2f`](https://github.com/primer/brand/commit/bbdf7f2fe99038bf8544c76af2dbd863d364d124) Thanks [@rezrah](https://github.com/rezrah)! - Anti-aliasing is now applied automatically to all `Text` instances _except_ under these conditions:
+
+  - When explicitly disabled via `hasAntiAliasing={false}`
+  - When font weight is `light` or `extralight` AND size is `'100'` or `'200'`
+  - When size is `100` (regardless of weight)
+
+- [#893](https://github.com/primer/brand/pull/893) [`d3c1ee2a`](https://github.com/primer/brand/commit/d3c1ee2a5fb3d35b9d34d4d11a920cbd8ae7183e) Thanks [@rezrah](https://github.com/rezrah)! - Updated secondary `Button` variant borders from `subtle` to `default` color for improved contrast.
+
+- [#890](https://github.com/primer/brand/pull/890) [`4692aeea`](https://github.com/primer/brand/commit/4692aeeac23b95ff3a2e15536364ac7c1c7cc520) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Enabled keyboard navigation in the `IDE` component and made the contents navigable by screen readers.
+
+  ⚠️ Breaking changes
+
+  The `alternativeText` prop on the `IDE` component has been removed in favour of more granular descriptive text.
+
+  <table width="100%">
+  <tr>
+  <th> Before</th>
+  </tr>
+  <tr>
+  <td valign="top">
+
+  ```tsx
+  <IDE alternativeText="A user asks how to concatenate arrays in JavaScript, Copilot demonstrates using the concat method, and the user confirms it worked.">
+    <IDE.Chat />
+  </IDE>
+  ```
+
+   </td>
+  </tr>
+  <tr>
+  <th> After</th>
+  </tr>
+  <tr>
+  <td valign="top">
+
+  ```tsx
+  <IDE>
+    <IDE.Chat alternativeText="A user asks how to concatenate arrays in JavaScript, Copilot demonstrates using the concat method, and the user confirms it worked." />
+  </IDE>
+  ```
+
+  </td>
+  </tr>
+  </table>
+
+  <table width="100%">
+  <tr>
+  <th> Before</th>
+  </tr>
+  <tr>
+  <td valign="top">
+
+  ```tsx
+  <IDE alternativeText="TypeScript sentiment analysis function with D3.js visualization.">
+    <IDE.Editor
+      files={[
+        {
+          name: 'index.js',
+        },
+      ]}
+    />
+  </IDE>
+  ```
+
+   </td>
+  </tr>
+  <tr>
+  <th> After</th>
+  </tr>
+  <tr>
+  <td valign="top">
+
+  ```tsx
+  <IDE>
+    <IDE.Editor
+      files={[
+        {
+          name: 'index.js',
+          alternativeText: 'TypeScript sentiment analysis function with D3.js visualization.',
+          // ...
+        },
+      ]}
+    />
+  </IDE>
+  ```
+
+  </td>
+  </tr>
+  </table>
+
+  🔗 [See the documentation for example usage, and more information on accessibility in the `IDE` component](https://primer.style/brand/components/IDE#accessibility)
+
+### Patch Changes
+
+- [#887](https://github.com/primer/brand/pull/887) [`8a49db27`](https://github.com/primer/brand/commit/8a49db27ff2b6de1e5f8516e6f1a84fbff1eaf25) Thanks [@joshfarrant](https://github.com/joshfarrant)! - `Link` component improvements.
+
+  - Fixed a bug in the `Link` component where the underline wouldn't take the full width when `arrowDirection='none'`.
+  - Prop options are also now exported from the package root, specifically:
+    - `LinkSizes`
+    - `LinkArrowDirections`
+
+- [#879](https://github.com/primer/brand/pull/879) [`4f92311f`](https://github.com/primer/brand/commit/4f92311fbae6f6738b12113d0125608bc3d2faa8) Thanks [@rezrah](https://github.com/rezrah)! - Added `toggleColor` prop to `FAQ.Question` and `Accordion.Heading`
+
+  ```jsx
+  <FAQ>
+    <FAQ.Item>
+      <FAQ.Question toggleColor="green-blue">...</FAQ.Question>
+      <FAQ.Answer>...</FAQ.Answer>
+    </FAQ.Item>
+  </FAQ>
+  ```
+
+  ```jsx
+  <Accordion>
+    <Accordion.Heading toggleColor="green-blue">...</Accordion.Heading>
+    <Accordion.Content>...</Accordion.Content>
+  </Accordion>
+  ```
+
+  🔗 [See the documentation for examples and color options](https://primer.style/brand/components/FAQ/react#toggle-color-customization)
+
+- [#894](https://github.com/primer/brand/pull/894) [`aecc8d8f`](https://github.com/primer/brand/commit/aecc8d8f18243185545f3c4a45651fb3da71fb35) Thanks [@rezrah](https://github.com/rezrah)! - Improvements to duotone text in `River` component. Now supports `<b>` elements using a semi-bold font weight.
+
+  🔗 [See documentation for usage examples](https://primer.style/brand/components/River/react#duotone)
+
+- [#892](https://github.com/primer/brand/pull/892) [`e85c7316`](https://github.com/primer/brand/commit/e85c731674bf9e50cd7392c5e9ba1c72a9257e55) Thanks [@rezrah](https://github.com/rezrah)! - Upgraded dev dependencies for `@types/node` and `eslint-plugin-github`
+
+- [#883](https://github.com/primer/brand/pull/883) [`965a7865`](https://github.com/primer/brand/commit/965a7865f8f2aa4fd5c6a150ae58bf72c0a457c9) Thanks [@rezrah](https://github.com/rezrah)! - Visual spacing updates to `RiverBreakout`
+
+  - Reduced vertical gap between the main text and link.
+  - Applied a maximum width to the main text.
+
+- [#872](https://github.com/primer/brand/pull/872) [`872bdcf0`](https://github.com/primer/brand/commit/872bdcf0f832a82ce75e6cd70bdfa07014a49121) Thanks [@joshfarrant](https://github.com/joshfarrant)! - `VideoPlayer` tooltips now show when the associated control receives focus.
+
 ## 0.45.1
 
 ### Patch Changes

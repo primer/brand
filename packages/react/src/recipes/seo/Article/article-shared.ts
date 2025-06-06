@@ -66,7 +66,7 @@ const realWorldContent = [
     <img
         width="100%"
         src=${placeholderImage}
-        alt="placeholder, blank area with an off-white background color"
+        alt="placeholder, blank area with a gray background color"
     />
     <figcaption>Image caption</figcaption>
     </figure>

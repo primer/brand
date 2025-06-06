@@ -4,6 +4,7 @@ import React, {
   useContext,
   useEffect,
   useReducer,
+  useRef,
   type PropsWithChildren,
   type SetStateAction,
   type RefObject,
@@ -12,7 +13,7 @@ import {useProvidedRefOrCreate} from '../../hooks/useRef'
 import {useIsElementFullScreen} from './useIsElementFullScreen'
 
 type VideoState = {
-  ref: RefObject<HTMLVideoElement>
+  ref?: RefObject<HTMLVideoElement>
   isPlaying: boolean
   isMuted: boolean
   volume: number
@@ -39,6 +40,7 @@ export type UseVideoContext = VideoState & {
   toggleFullScreen: () => void
   setDuration: (duration: number) => void
   isFullScreen: boolean
+  fullscreenRef: RefObject<HTMLDivElement>
 }
 
 type Action =
@@ -54,7 +56,7 @@ type Action =
 export const VideoContext = createContext<UseVideoContext | null>(null)
 
 const videoReducer = (state: VideoState, action: Action): VideoState => {
-  const video = state.ref.current
+  const video = state.ref?.current
 
   if (!video) {
     // eslint-disable-next-line no-console
@@ -110,26 +112,28 @@ export const useVideo = () => {
   return context
 }
 
-type VideoProviderProps = PropsWithChildren<Record<string, unknown>>
+type VideoProviderProps = PropsWithChildren
 
 export const VideoProvider = forwardRef<HTMLVideoElement, VideoProviderProps>(({children}, forwardedRef) => {
   const ref = useProvidedRefOrCreate(forwardedRef as RefObject<HTMLVideoElement>)
+  const fullscreenRef = useRef<HTMLDivElement>(null)
 
   const [state, dispatch] = useReducer(videoReducer, {
     isPlaying: false,
     isMuted: false,
     volume: 1,
     volumeBeforeMute: null,
-    ccEnabled: true,
+    ccEnabled: false,
     ref,
     duration: 0,
   })
 
-  const [isFullScreen, setIsFullScreen] = useIsElementFullScreen(ref.current?.parentElement)
+  const [isFullScreen, setIsFullScreen] = useIsElementFullScreen(fullscreenRef.current)
 
   const value: UseVideoContext = {
     ...state,
     isFullScreen,
+    fullscreenRef,
     play: () => dispatch({type: 'play'}),
     pause: () => dispatch({type: 'pause'}),
     togglePlaying: () => dispatch({type: state.isPlaying ? 'pause' : 'play'}),
@@ -153,13 +157,13 @@ export const VideoProvider = forwardRef<HTMLVideoElement, VideoProviderProps>(({
     setDuration: (duration: number) => dispatch({type: 'setDuration', payload: duration}),
 
     seekToPercent: percent => {
-      const videoRef = state.ref.current
+      const videoRef = state.ref?.current
       if (!videoRef) return
 
       videoRef.currentTime = (percent / 100) * videoRef.duration
     },
     seek: secondsValOrFn => {
-      const videoRef = state.ref.current
+      const videoRef = state.ref?.current
       if (!videoRef) return
 
       videoRef.currentTime =
@@ -168,7 +172,7 @@ export const VideoProvider = forwardRef<HTMLVideoElement, VideoProviderProps>(({
   }
 
   useEffect(() => {
-    const videoRef = state.ref.current
+    const videoRef = state.ref?.current
 
     if (!videoRef) return
 

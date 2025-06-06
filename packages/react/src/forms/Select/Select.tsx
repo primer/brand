@@ -20,6 +20,10 @@ export type SelectProps = {
    */
   size?: FormInputSizes
   /**
+   * Placeholder text to display when no value is selected
+   */
+  placeholder?: string
+  /**
    *
    */
   validationStatus?: FormValidationStatus
@@ -59,10 +63,14 @@ const _SelectRoot = (
           className,
         )}
         disabled={disabled}
-        placeholder={placeholder}
         ref={ref}
         {...rest}
       >
+        {placeholder && (
+          <option value="" disabled={disabled}>
+            {placeholder}
+          </option>
+        )}
         {children}
       </select>
     </span>

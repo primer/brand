@@ -14,15 +14,16 @@ jobs:
   deploy:
     if: ${{ github.repository == 'primer/brand' }}
     name: Preview
-    # SHA for security hardening. Points at last verified HEAD of main branch.
-    uses: primer/.github/.github/workflows/deploy_preview.yml@cd223835608ca5e9401e0ffe6081f6d2fcc912f3
+    # SHA for security hardening. Points at 2.2.0 release
+    uses: primer/.github/.github/workflows/deploy_preview.yml@91fde6cc969a502562fdacdac48e35859b3a40b4
     with:
-      node_version: 18
+      node_version: 20
       install: npm ci --legacy-peer-deps && cd apps/docs && npm ci --legacy-peer-deps && cd ..
       build: |
+        export NEXT_PUBLIC_SITE_TITLE='Brand UI'
+        export NEXT_PUBLIC_REPO='https://github.com/primer/brand'
+        export NEXT_PUBLIC_REPO_SRC_PATH='apps/next-docs'
         npm run build && \
-        npm run build:docs && \
-        npm run build:storybook && \
         mkdir brand-temp && \
         mv apps/docs/public/* brand-temp && \
         mv brand-temp apps/docs/public/brand && \

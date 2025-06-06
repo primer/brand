@@ -37,6 +37,21 @@
           "dark": "var(--base-color-scale-blue-2)"
         }
       },
+      "green-blue-purple": {
+        "1": {
+          "value": "#000AFF"
+        },
+        "2": {
+          "value": "#096BDE"
+        },
+        "3": {
+          "value": "var(--base-color-scale-green-5)",
+          "dark": "#00FF46"
+        },
+        "4": {
+          "value": "#8250DF"
+        }
+      },
       "gray": {
         "value": "var(--base-color-scale-gray-5)",
         "dark": "var(--base-color-scale-gray-2)"

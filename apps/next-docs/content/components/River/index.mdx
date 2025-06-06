@@ -1,0 +1,200 @@
+---
+title: River
+description: Use the river component to introduce a feature using a type and media pairing.
+keywords: ['feature', 'showcase', 'highlight', 'story']
+show-tabs: true
+tab-label: Guidelines
+---
+
+import doLink from './images/do-link.png'
+import dontLink from './images/dont-link.png'
+import doVisuals from './images/do-visuals-size.png'
+import dontVisuals from './images/dont-visuals-size.png'
+
+![A river component used to showcase a security feature. The title reads "Get security feedback with every git push" and it includes an image showing screenshots of of a CLI prompt with the git push command and a code scanning screenshot.](https://github.com/primer/brand/assets/912236/e01c2743-54cd-4ed0-9a6e-2afdadabb66e)
+
+## Usage
+
+Use rivers to showcase features and introduce topics. Rivers are composed of images or videos paired alongside text content like headings, paragraphs, and links.
+
+A river’s content should be short and concise, no longer than 3 or 4 sentences and in a single paragraph when possible.
+
+<DoDontContainer>
+  <Do>
+    <img alt="" src="https://github.com/primer/brand/assets/912236/55e56aa1-2a04-4cc4-b708-08c480ba5943" />
+    <Caption>Write short and concise text content.</Caption>
+  </Do>
+  <Dont>
+    <img alt="" src="https://github.com/primer/brand/assets/912236/bd3585bc-a79b-4ca2-bbc4-ff59bc8c75cf" />
+    <Caption>Don't overload the river with too much content.</Caption>
+  </Dont>
+</DoDontContainer>
+
+### Stacked
+
+Two or more rivers can be stacked to guide the user through a set of features. When stacking rivers, alternate between left and right alignments to create a more dynamic reading flow. When alternating alignments, use a `40:60` image to text ratio, otherwise keep the ratio to `50:50`.
+
+It is possible to use 2 or more following left or right river to create a simple alignment promoting easy scroll scan.
+
+<DoDontContainer>
+  <Do>
+    <img alt="" src="https://github.com/primer/brand/assets/912236/a7f8bca8-78e6-4e29-a44b-5a305ffeeeae" />
+    <Caption>Alternate rivers with left and right alignments.</Caption>
+  </Do>
+  <Dont>
+    <img alt="" src="https://github.com/primer/brand/assets/6951037/169d5c19-67f4-4f15-8e3b-80c877b34af1" />
+    <Caption>Don't break the flow in a stack of rivers that would otherwise stay aligned.</Caption>
+  </Dont>
+</DoDontContainer>
+
+Note that too many rivers can make the design feel repetitive. In that situation, consider introducing a breakout section or break the content with a different component, such as [pillar](/components/Pillar) or [card](/components/Card) to provide a better visual hierarchy and experience. For example, use the river for the top features you want to highlight and then use pillars to showcase the rest.
+
+<DoDontContainer>
+  <Do>
+    <img alt="" src="https://github.com/primer/brand/assets/912236/12739a14-1775-44ff-b5a5-d87a8820a29e" />
+    <Caption>Use pillars or cards to breakout a multiple river section and provide a better visual hierarchy.</Caption>
+  </Do>
+  <Dont>
+    <img alt="" src="https://github.com/primer/brand/assets/912236/a2e43864-3cde-441e-b992-05e7c037e306" />
+    <Caption>
+      Don't stack numerous rivers without breaking the content to avoid repetitive a layout that can make the design
+      feel repetitive.
+    </Caption>
+  </Dont>
+</DoDontContainer>
+
+### Sections with rivers
+
+A single river component acts as a section and it should not include any child sections within in. Multiple rivers can be used to conform a section. In that case, the section should include a [section intro](/components/SectionIntro) that introduces the main topic or features.
+
+<DoDontContainer>
+  <Do>
+    <img alt="" src="https://github.com/primer/brand/assets/912236/67cd0c85-ab9a-4736-ae29-bcb4d2ec7845" />
+    <Caption>Use a section intro to introduce multiple rivers.</Caption>
+  </Do>
+  <Dont>
+    <img alt="" src="https://github.com/primer/brand/assets/912236/7654c23c-8337-4ab1-af82-ec4b6934b3b7" />
+    <Caption>Don't add child sections or other components to the river body content.</Caption>
+  </Dont>
+</DoDontContainer>
+
+### River breakout
+
+A river breakout component has an image that fills the width of the container while providing more space for content such as text and lists.
+
+This is useful when you want to create a highlight which can be used to create more emphasis or simply break a monotonous vertical flow of left/right rivers. It can also be helpful on smaller viewports to avoid stacking two images or two chunks of text from adjacent river components.
+
+As its name suggest, a river breakout should not be the first in the stack, it should be positioned in-between two standard rivers.
+
+Some examples of when to use a river breakout:
+
+- Expand on more complex feature that require more room for content
+- Give designer a tool to emphasize the feature story
+- Use a branded wallpaper in a more cinematic way than the standard 50/50 or 60/40 text-to-image column ratios
+
+<DoDontContainer>
+  <Do>
+    <img alt="" src="https://github.com/primer/brand/assets/6951037/409b7e4e-a7b4-4126-b1ff-91e038565bc3" />
+    <Caption>Use a river breakout to emphasize a part of the river or break up a series of river components.</Caption>
+  </Do>
+  <Dont>
+    <img alt="" src="https://github.com/primer/brand/assets/6951037/eda1e0fa-7424-4ad4-8484-7c89c9c09192" />
+    <Caption>
+      Don't stack river breakouts on top of other river breakout components or center-aligned river components. These
+      both show a full-width image. This diminishes the visual impact the river breakout is intended to provide.
+    </Caption>
+  </Dont>
+</DoDontContainer>
+
+The leading content in a river breakout component must always be present, but the trailing content is optional.
+
+<DoDontContainer>
+  <Do>
+    <img alt="" src="https://github.com/primer/brand/assets/2313998/433b1fba-4505-452b-8f8c-7cda69cc316d" />
+    <Caption>Always provide leading content.</Caption>
+  </Do>
+  <Dont>
+    <img alt="" src="https://github.com/primer/brand/assets/2313998/62cf1c98-6b7d-46e9-a2d4-6d211a9103ad" />
+    <Caption>Don't exclude the leading content.</Caption>
+  </Dont>
+</DoDontContainer>
+
+Limit trailing content to a maximum of 500 characters (or two timeline items) to avoid overwhelming the user and disrupting the layout's balance.
+
+<DoDontContainer>
+  <Do>
+    <img alt="" src="https://github.com/primer/brand/assets/175638/c5879e94-09c3-4494-aa42-87543570dfb4" />
+    <Caption>Limit high character counts in trailing content to preserve visual balance.</Caption>
+  </Do>
+  <Dont>
+    <img alt="" src="https://github.com/primer/design/assets/175638/8a083960-e12a-4f11-b282-45d663be2e28" />
+    <Caption>Avoid using high character counts in trailing content.</Caption>
+  </Dont>
+</DoDontContainer>
+
+### River story scroll
+
+A river story scroll component is used to compose rivers and create a dynamic, scroll-driven presentation. It's a great way to showcase a set of features or topics in an interactive and visually engaging way.
+
+#### Composition
+
+River story scroll functions as a self-contained unit and is often paired with a a section intro. To effectively leverage this pattern, use between three and six rivers. For other configurations, simply stack rivers in a standard layout.
+
+This component should be used sparingly, at most twice per page, and alternated with other content types rather than placed consecutively. This approach enhances user engagement and keeps the spotlight on key information while preventing user fatigue.
+
+#### Content alignment and visuals
+
+Content across the different rivers in a story scroll must share the same alignment; either start or end. This ensures that the content flows smoothly with predictable placement and transitions. Additionally, all visuals in a story should share the same aspect ratio to achieve a consistent effect.
+
+<DoDontContainer>
+  <Do>
+    <img alt="" src={doVisuals.src} />
+    <Caption>Ensure all visuals maintain a consistent aspect ratio.</Caption>
+  </Do>
+  <Dont>
+    <img alt="" src={dontVisuals.src} />
+    <Caption>Avoid using visuals with varying aspect ratios.</Caption>
+  </Dont>
+</DoDontContainer>
+
+## Anatomy
+
+![A river component used to showcase a security feature. The title reads "Get security feedback with every git push" and it includes an image showing screenshots of of a CLI prompt with the git push command and a code scanning screenshot.](https://github.com/primer/brand/assets/10632534/bf32364f-02b7-4f0d-8784-471eaf97b4bb)
+
+### Content
+
+River provides a heading as the main title and a body text as the main content that describes the adjacent visual. The heading should be short and concise and the body should describe the feature or topic in a short paragraph.
+
+### Visual
+
+A river can include either an image or video to illustrate the feature or topic. The media should be relevant to the content and should not be used as a decorative element.
+
+Always use high quality images and videos. Avoid using images with text or single logos. Ensure the image fills the provided container.
+
+The image is automatically styled to fit the width of the parent container. If you have bespoke styling requirements, you can disable the provided default styles and style the image manually.
+
+### Additional guidance
+
+- We recommend using a river left as the first river of the flow to start with a visual and avoid stacking text with above section on mobile
+- River components stacks create a unit, the set should be considered to be the main parent section. The parent section should be spaced as a regular section with the largest spacing while internal elements should use smaller spacing
+- If the image is critical for the user to understand the message, default to right aligned. If the text is critical for the user to understand the image, choose left aligned.
+
+### Link
+
+River can include an optional call to action to link to more detailed content about the feature or topic. Avoid using buttons to do so, instead use the regular link built into the component.
+
+<DoDontContainer>
+  <Do>
+    <img alt="" src={doLink.src} />
+    <Caption>Use the provided link component.</Caption>
+  </Do>
+  <Dont>
+    <img alt="" src={dontLink.src} />
+    <Caption>Avoid using buttons.</Caption>
+  </Dont>
+</DoDontContainer>
+
+## Related components
+
+- [Pillar](/components/Pillar): To display non-navigational related content in a compact way.
+- [Card](/components/Card): To display navigational related content in a compact way.

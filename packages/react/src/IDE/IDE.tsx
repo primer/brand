@@ -16,7 +16,7 @@ import React, {
 
 import {Avatar, Button, Text, TextInput} from '..'
 import type {BaseProps} from '../component-helpers'
-import {useTabs} from '../hooks/useTabs'
+import {useTabs, type OnTabActivate} from '../hooks/useTabs'
 
 /**
  * Design tokens
@@ -404,9 +404,13 @@ const _Editor = memo(
         setTimeouts(prev => [...prev, animationEndTimeout])
       }, [hasAnimated, isAnimating])
 
-      const onTabActivate = useCallback(() => {
-        resetAnimation()
-      }, [resetAnimation])
+      const onTabActivate = useCallback<OnTabActivate>(
+        (_, activeTabRef) => {
+          activeTabRef?.scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'start'})
+          resetAnimation()
+        },
+        [resetAnimation],
+      )
 
       const tabs = useTabs({
         defaultTab: activeTab.toString(),
@@ -454,7 +458,7 @@ const _Editor = memo(
             {files.map((file, fileIndex) => (
               <div {...tabs.getTabPanelProps(fileIndex.toString())} key={file.name}>
                 <span className="visually-hidden">{file.alternativeText}</span>
-                <div aria-hidden="true">
+                <div className={styles['IDE__Editor-content-wrapper']} aria-hidden="true">
                   {showLineNumbers && (
                     <div className={styles['IDE__Editor-lineNumbers']}>
                       {(Array.isArray(file.code) ? file.code : file.code.split('\n')).map((_, index) => (
@@ -467,6 +471,7 @@ const _Editor = memo(
                   <div
                     ref={tabs.activeTab === fileIndex.toString() ? presRef : null}
                     data-testid={testIds.editorContent}
+                    className={styles['IDE__Editor-content-inner']}
                   >
                     {Array.isArray(file.code) ? (
                       (file.code as string[]).map((line, index) => {

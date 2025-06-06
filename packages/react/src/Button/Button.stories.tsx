@@ -15,7 +15,7 @@ export default {
     children: 'Button',
     disabled: false,
     'aria-disabled': false,
-    hasArrow: true,
+    hasArrow: false,
     leadingVisual: false,
     trailingVisual: false,
   },

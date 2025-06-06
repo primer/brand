@@ -17,17 +17,23 @@ Please ensure these items are checked before merging.
   - [ ] Run development server
   - [ ] Manually verify release-specific bugfixes and/or features on the following pages:
     - `/features/copilot`
-    - `/features/copilot/getting-started`
+    - `/features/copilot/tutorials`
     - `/features/preview`
     - `/enterprise`
-    - `/enterprise/advanced-security`
     - `/enterprise/contact`
-    - `/articles/security`
-    - `/articles/security/what-is-security-testing`
-    - `/solutions/devops`
+    - `/security/advanced-security`
     - `/education`
     - `/mobile`
     - `/about/diversity`
+    - `/newsroom`
+    - `/resources/articles`
+    - `/resources/articles/software-development`
+    - `/resources/articles/software-development/what-is-cloud-native`
+    - `/resources/whitepapers`
+    - `/resources/whitepapers/how-the-c-suite-can-lead-ai-innovation`
+    - `/solutions`
+    - `/solutions/use-case/`
+    - `/solutions/use-case/devops`
   - [ ] Manually compare production site to local instance for any non-release specific regressions
 
 #### Subdomain sites

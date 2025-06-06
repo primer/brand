@@ -6,6 +6,10 @@ import {RiverStoryScroll, RiverStoryScrollProps} from '.'
 import {Heading, Text, Link, River, Box, Timeline, VideoPlayer} from '../..'
 import {Container} from '../../component-helpers'
 
+import placeholder1 from '../../fixtures/images/placeholder-1.png'
+import placeholder2 from '../../fixtures/images/placeholder-2.png'
+import placeholder3 from '../../fixtures/images/placeholder-3.png'
+
 export default {
   title: 'Components/RiverStoryScroll/features',
   component: RiverStoryScroll,
@@ -45,15 +49,14 @@ const Template: StoryFn<TemplateProps> = args => {
       <River>
         <River.Visual>
           <img
-            src="https://placehold.co/600x400/FF5733/ffffff?text=1"
-            alt="placeholder, blank area with an off-white background color"
+            src={placeholder1}
+            alt="placeholder, blank area with an orange background color and a white number 1 in the center"
           />
         </River.Visual>
         <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
-          <Heading>Heading 1</Heading>
-          <Text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-            turpis felis nam pulvinar risus elementum.
+          <Text size="300">
+            <b>This first sentence is highlighted</b> and here is where the body copy starts. Remember to keep this nice
+            and succinct.
           </Text>
           <Link href="#">Call to action</Link>
         </River.Content>
@@ -61,15 +64,14 @@ const Template: StoryFn<TemplateProps> = args => {
       <River>
         <River.Visual>
           <img
-            src="https://placehold.co/600x400/AF7AC5/ffffff?text=2"
-            alt="placeholder, blank area with an off-white background color"
+            src={placeholder2}
+            alt="placeholder, blank area with a purple background color and a white number 2 in the center"
           />
         </River.Visual>
         <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
-          <Heading>Heading 2</Heading>
-          <Text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-            turpis felis nam pulvinar risus elementum.
+          <Text size="300">
+            <b>This first sentence is highlighted</b> and here is where the body copy starts. Remember to keep this nice
+            and succinct.
           </Text>
           <Link href="#">Call to action</Link>
         </River.Content>
@@ -77,31 +79,14 @@ const Template: StoryFn<TemplateProps> = args => {
       <River>
         <River.Visual>
           <img
-            src="https://placehold.co/600x400/FFC300/ffffff?text=3"
-            alt="placeholder, blank area with an off-white background color"
+            src={placeholder3}
+            alt="placeholder, blank area with a turquoise background color and a white number 3 in the center"
           />
         </River.Visual>
         <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
-          <Heading>Heading 3 </Heading>
-          <Text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-            turpis felis nam pulvinar risus elementum.
-          </Text>
-          <Link href="#">Call to action</Link>
-        </River.Content>
-      </River>
-      <River>
-        <River.Visual>
-          <img
-            src="https://placehold.co/600x400/48C9B0/ffffff?text=4"
-            alt="placeholder, blank area with an off-white background color"
-          />
-        </River.Visual>
-        <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
-          <Heading>Heading 4</Heading>
-          <Text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
-            turpis felis nam pulvinar risus elementum.
+          <Text size="300">
+            <b>This first sentence is highlighted</b> and here is where the body copy starts. Remember to keep this nice
+            and succinct.
           </Text>
           <Link href="#">Call to action</Link>
         </River.Content>
@@ -138,13 +123,23 @@ Disabled.args = {
   disabled: true,
 }
 
+export const DisabledNarrow = args => <Disabled withTrailingComponent {...args} />
+DisabledNarrow.args = {
+  disabled: true,
+}
+DisabledNarrow.parameters = {
+  viewport: {
+    defaultViewport: 'iphonexr',
+  },
+}
+
 export const EnterpriseExample = () => (
   <RiverStoryScroll>
     <River>
       <River.Visual>
         <img
           src="https://github.com/images/modules/site/enterprise/2023/devops.png"
-          alt="placeholder, blank area with an off-white background color"
+          alt="placeholder, blank area with a gray background color"
         />
       </River.Visual>
       <River.Content>
@@ -160,7 +155,7 @@ export const EnterpriseExample = () => (
       <River.Visual>
         <img
           src="https://github.com/images/modules/site/enterprise/2023/platform.png"
-          alt="placeholder, blank area with an off-white background color"
+          alt="placeholder, blank area with a gray background color"
         />
       </River.Visual>
       <River.Content
@@ -184,7 +179,7 @@ export const EnterpriseExample = () => (
       <River.Visual>
         <img
           src="https://github.com/images/modules/site/enterprise/2023/ai.png"
-          alt="placeholder, blank area with an off-white background color"
+          alt="placeholder, blank area with a gray background color"
         />
       </River.Visual>
       <River.Content>
@@ -218,7 +213,7 @@ export const Video = args => (
       </River.Visual>
       <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
         <Heading>Heading 1</Heading>
-        <Text>
+        <Text size="300">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
           turpis felis nam pulvinar risus elementum.
         </Text>
@@ -237,7 +232,7 @@ export const Video = args => (
       </River.Visual>
       <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
         <Heading>Heading 2</Heading>
-        <Text>
+        <Text size="300">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
           turpis felis nam pulvinar risus elementum.
         </Text>
@@ -256,7 +251,7 @@ export const Video = args => (
       </River.Visual>
       <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
         <Heading>Heading 3 </Heading>
-        <Text>
+        <Text size="300">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
           turpis felis nam pulvinar risus elementum.
         </Text>
@@ -275,7 +270,7 @@ export const Video = args => (
       </River.Visual>
       <River.Content trailingComponent={args.withTrailingComponent ? TimelineExample : undefined}>
         <Heading>Heading 4</Heading>
-        <Text>
+        <Text size="300">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed
           turpis felis nam pulvinar risus elementum.
         </Text>

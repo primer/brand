@@ -38,12 +38,12 @@
     },
     "accent": {
       "primary": {
-        "value": "var(--base-color-scale-pink-5)",
-        "dark": "var(--base-color-scale-pink-3)"
+        "value": "var(--base-color-scale-green-5)",
+        "dark": "var(--base-color-scale-green-3)"
       },
       "secondary": {
-        "value": "var(--base-color-scale-purple-5)",
-        "dark": "var(--base-color-scale-purple-3)"
+        "value": "var(--base-color-scale-yellow-5)",
+        "dark": "var(--base-color-scale-yellow-3)"
       }
     },
     "text": {
@@ -85,7 +85,7 @@
     "canvas": {
       "default": {
         "value": "var(--base-color-scale-white-0)",
-        "dark": "var(--base-color-scale-gray-9)"
+        "dark": "var(--base-color-scale-black-0)"
       },
       "overlay": {
         "value": "var(--base-color-scale-white-0)",

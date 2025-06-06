@@ -1,0 +1,167 @@
+.RiverAccordion {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    'visual'
+    'accordion';
+  gap: 0;
+  position: relative;
+}
+
+@media (min-width: 48rem) {
+  .RiverAccordion {
+    --gap-width: var(--brand-Grid-spacing-column-gap);
+    --column-and-gap-width: calc((100% + var(--gap-width)) / 12);
+
+    --4-grid-columns: calc(4 * var(--column-and-gap-width));
+    --7-grid-columns-minus-last-gap: calc((7 * var(--column-and-gap-width)) - var(--gap-width));
+
+    grid-template-rows: auto;
+    gap: var(--column-and-gap-width);
+  }
+
+  .RiverAccordion__align-start {
+    grid-template-columns: var(--4-grid-columns) var(--7-grid-columns-minus-last-gap);
+    grid-template-areas: 'accordion visual';
+  }
+
+  .RiverAccordion__align-end {
+    grid-template-columns: var(--7-grid-columns-minus-last-gap) var(--4-grid-columns);
+    grid-template-areas: 'visual accordion';
+  }
+}
+
+.RiverAccordion__accordionContainer {
+  grid-area: accordion;
+}
+
+.RiverAccordion__visualsContainer {
+  grid-area: visual;
+}
+
+.RiverAccordion__visualsWrapper {
+  overflow: hidden;
+  border-radius: var(--brand-borderRadius-xlarge);
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-template-rows: subgrid;
+}
+
+.RiverAccordion__visualsWrapper > .RiverAccordion__visual {
+  grid-column: 1;
+  grid-row: 1;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  scale: 1.05;
+  transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
+    scale var(--brand-animation-duration-default) var(--brand-animation-easing-default);
+}
+
+.RiverAccordion__visualsWrapper > .RiverAccordion__visual > * {
+  width: 100%;
+  object-fit: contain;
+}
+
+/* Show the visual when the corresponding accordion item is open */
+.RiverAccordion:has(.RiverAccordion__item--open:nth-child(1)) .RiverAccordion__visualsContainer .RiverAccordion__visual:nth-child(1),
+.RiverAccordion:has(.RiverAccordion__item--open:nth-child(2)) .RiverAccordion__visualsContainer .RiverAccordion__visual:nth-child(2),
+.RiverAccordion:has(.RiverAccordion__item--open:nth-child(3)) .RiverAccordion__visualsContainer .RiverAccordion__visual:nth-child(3),
+.RiverAccordion:has(.RiverAccordion__item--open:nth-child(4)) .RiverAccordion__visualsContainer .RiverAccordion__visual:nth-child(4),
+.RiverAccordion:has(.RiverAccordion__item--open:nth-child(5)) .RiverAccordion__visualsContainer .RiverAccordion__visual:nth-child(5),
+.RiverAccordion:has(.RiverAccordion__item--open:nth-child(6)) .RiverAccordion__visualsContainer .RiverAccordion__visual:nth-child(6),
+.RiverAccordion:has(.RiverAccordion__item--open:nth-child(7)) .RiverAccordion__visualsContainer .RiverAccordion__visual:nth-child(7),
+.RiverAccordion:has(.RiverAccordion__item--open:nth-child(8)) .RiverAccordion__visualsContainer .RiverAccordion__visual:nth-child(8),
+.RiverAccordion:has(.RiverAccordion__item--open:nth-child(9)) .RiverAccordion__visualsContainer .RiverAccordion__visual:nth-child(9),
+.RiverAccordion:has(.RiverAccordion__item--open:nth-child(10)) .RiverAccordion__visualsContainer .RiverAccordion__visual:nth-child(10),
+/* Just in case all accordions are somehow closed, show the first visual */
+.RiverAccordion:not(:has(.RiverAccordion__item--open)) .RiverAccordion__visualsContainer .RiverAccordion__visual:nth-child(1) {
+  opacity: 1;
+  scale: 1;
+  z-index: 1;
+}
+
+/* Visually hide visuals inside the accordion */
+.RiverAccordion__accordionContainer .RiverAccordion__visual {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  word-wrap: normal;
+  border: 0;
+}
+
+.RiverAccordion__item {
+  position: relative;
+  padding-block-start: var(--base-size-32);
+  border-bottom: var(--brand-borderWidth-thin) solid var(--brand-color-border-muted);
+}
+
+.RiverAccordion__item:not(.RiverAccordion__item--open) .RiverAccordion__heading {
+  color: var(--brand-color-text-muted);
+}
+
+.RiverAccordion__trigger {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--base-size-4);
+  margin: calc(var(--base-size-4) * -1);
+}
+
+.RiverAccordion__item--open .RiverAccordion__trigger {
+  cursor: initial;
+}
+
+.RiverAccordion__item:not(.RiverAccordion__item--open) .RiverAccordion__trigger::after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.RiverAccordion__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--brand-animation-duration-default) var(--brand-animation-easing-default),
+    margin-block-start var(--brand-animation-duration-default) var(--brand-animation-easing-default),
+    padding-block-end var(--brand-animation-duration-default) var(--brand-animation-easing-default);
+  margin-block-start: var(--base-size-32);
+  overflow-y: clip;
+}
+
+.RiverAccordion__item--open .RiverAccordion__panel {
+  margin-block-start: var(--base-size-12);
+  padding-block-end: var(--base-size-32);
+  grid-template-rows: 1fr;
+}
+
+.RiverAccordion__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 0;
+  gap: var(--base-size-20);
+}
+
+.RiverAccordion__icon {
+  opacity: 1;
+  transition: opacity var(--brand-animation-duration-fast) var(--brand-animation-easing-default);
+}
+
+.RiverAccordion__item--open .RiverAccordion__icon {
+  opacity: 0;
+}

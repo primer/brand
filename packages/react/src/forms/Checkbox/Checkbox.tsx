@@ -1,12 +1,13 @@
-import React, {forwardRef, InputHTMLAttributes, ReactElement, RefObject, useRef} from 'react'
+import React, {forwardRef, useCallback, type InputHTMLAttributes, type ReactElement, type RefObject} from 'react'
 import clsx from 'clsx'
-import {useId} from '@reach/auto-id' // TODO: Replace with useId from React v18 after upgrade
+import {useId} from '../../hooks/useId'
 
 import type {BaseProps} from '../../component-helpers'
 import type {FormValidationStatus} from '../form-types'
 import useLayoutEffect from '../../hooks/useIsomorphicLayoutEffect'
 
 import styles from './Checkbox.module.css'
+import {useProvidedRefOrCreate} from '../../hooks/useRef'
 
 export type CheckboxProps = {
   /**
@@ -17,10 +18,6 @@ export type CheckboxProps = {
    * Apply inactive visual appearance to the checkbox
    */
   disabled?: boolean
-  /**
-   * Forward a ref to the underlying input element
-   */
-  ref?: React.RefObject<HTMLInputElement>
   /**
    * Indicates whether the checkbox must be checked
    */
@@ -52,7 +49,7 @@ const _Checkbox = (
   }: CheckboxProps,
   ref,
 ): ReactElement => {
-  const inputRef: RefObject<HTMLInputElement> | null = useRef<HTMLInputElement>(ref || null)
+  const inputRef: RefObject<HTMLInputElement> | null = useProvidedRefOrCreate<HTMLInputElement>(ref || null)
   const uniqueId = useId(id)
 
   useLayoutEffect(() => {
@@ -61,12 +58,19 @@ const _Checkbox = (
     }
   }, [indeterminate, checked, inputRef])
 
+  const onClick = useCallback(() => {
+    if (!disabled && inputRef.current) {
+      inputRef.current.click()
+    }
+  }, [disabled, inputRef])
+
   return (
     <span className={styles['Checkbox-wrapper']}>
       <input
         id={uniqueId}
         aria-invalid={validationStatus === 'error' ? 'true' : 'false'}
         aria-required={required ? 'true' : 'false'}
+        aria-checked={indeterminate ? 'mixed' : checked}
         checked={indeterminate ? false : checked}
         className={clsx(styles['Checkbox-input'])}
         disabled={disabled}
@@ -78,9 +82,11 @@ const _Checkbox = (
         value={value}
         {...rest}
       />
-      <label
-        htmlFor={uniqueId}
-        className={clsx(styles.Checkbox, indeterminate && styles['Checkbox--indeterminate'], className)}
+      <span
+        className={clsx(styles['Checkbox'], indeterminate && styles['Checkbox--indeterminate'], className)}
+        onClick={onClick}
+        tabIndex={-1}
+        aria-hidden="true"
       >
         {indeterminate ? (
           <svg
@@ -89,12 +95,12 @@ const _Checkbox = (
             viewBox="0 0 16 16"
             width="16"
             height="16"
-            aria-label="Dash icon"
+            aria-hidden="true"
           >
             <path fillRule="evenodd" d="M2 7.75A.75.75 0 012.75 7h10a.75.75 0 010 1.5h-10A.75.75 0 012 7.75z"></path>
           </svg>
         ) : (
-          <svg viewBox="0 0 100 100" className={clsx(styles['Checkbox-checkmark'])} aria-label="Checkmark icon">
+          <svg viewBox="0 0 100 100" className={clsx(styles['Checkbox-checkmark'])} aria-hidden="true">
             <path
               className={clsx(styles['Checkbox-checkmark-path'])}
               fill="none"
@@ -107,7 +113,7 @@ const _Checkbox = (
             />
           </svg>
         )}
-      </label>
+      </span>
     </span>
   )
 }

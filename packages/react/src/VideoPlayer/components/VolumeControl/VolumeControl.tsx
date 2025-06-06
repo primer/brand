@@ -4,7 +4,7 @@ import {Range, type RangeProps} from '../'
 import styles from './VolumeControl.module.css'
 import {useVideo} from '../../hooks/useVideo'
 
-export const VolumeControl = (props: RangeProps) => {
+export const VolumeControl = ({name = 'Volume', ...rest}: RangeProps) => {
   const {volume, setVolume} = useVideo()
 
   return (
@@ -17,8 +17,8 @@ export const VolumeControl = (props: RangeProps) => {
       onInput={e => setVolume(e.currentTarget.valueAsNumber)}
       value={volume}
       a11yStep={0.1}
-      name="Volume"
-      {...props}
+      name={name}
+      {...rest}
     />
   )
 }

@@ -95,6 +95,47 @@
   color: var(--brand-button-primary-fgColor-disabled);
 }
 
+/* accent */
+
+.Button--accent {
+  color: var(--brand-button-accent-fgColor-rest);
+  background-color: var(--brand-button-accent-bgColor-rest);
+}
+
+.Button--size-small.Button--accent {
+  border-width: var(--brand-borderWidth-thin);
+}
+
+.Button--accent:not(.Button[disabled], .Button[aria-disabled='true'], [aria-expanded='true']):hover {
+  background: var(--brand-button-accent-bgColor-hover);
+}
+
+.Button--accent:not(.Button[disabled], .Button[aria-disabled='true']):active,
+.Button--accent[aria-expanded='true'] {
+  background-color: var(--brand-button-accent-bgColor-active);
+  border-color: var(--brand-button-accent-borderColor-active);
+}
+
+.Button--label-accent {
+  color: var(--brand-button-accent-fgColor-rest);
+}
+
+.Button--accent:disabled,
+.Button--accent[aria-disabled='true'],
+.Button--accent.Button--disabled {
+  background-color: var(--brand-button-accent-bgColor-disabled);
+}
+
+.Button--accent:disabled .Button-arrow--disabled,
+.Button--accent[aria-disabled='true'] .Button-arrow--disabled,
+.Button--accent.Button--disabled .Button-arrow--disabled,
+.Button--accent:disabled .Button__icon-visual--disabled,
+.Button--accent[aria-disabled='true'] .Button__icon-visual--disabled,
+.Button--accent.Button--disabled .Button__icon-visual--disabled,
+.Button--label-accent.Button-label--disabled {
+  color: var(--brand-button-accent-fgColor-disabled);
+}
+
 /* secondary */
 
 .Button--secondary {
@@ -104,14 +145,16 @@
 }
 
 .Button--secondary:not(.Button[disabled], .Button[aria-disabled='true'], [aria-expanded='true']):hover {
-  background-color: var(--brand-button-secondary-bgColor-hover);
   border-color: var(--brand-button-secondary-borderColor-hover);
 }
 
 .Button--secondary:not(.Button[disabled], .Button[aria-disabled='true']):active,
 .Button--secondary[aria-expanded='true'] {
-  background-color: var(--brand-button-secondary-bgColor-active);
   border-color: var(--brand-button-secondary-borderColor-active);
+}
+
+.Button--secondary:disabled {
+  border-color: var(--brand-button-secondary-fgColor-disabled);
 }
 
 .Button--secondary:disabled .Button-arrow--disabled,
@@ -127,13 +170,19 @@
 /* subtle */
 
 .Button--subtle {
+  background-color: var(--brand-button-subtle-bgColor-rest);
   color: var(--brand-color-text-default);
-  border-color: var(--brand-button-subtle-borderColor-rest);
   transition: background-color, border-color var(--brand-animation-duration-faster);
 }
 
-.Button--subtle:hover:not(.Button[disabled]) {
-  border-color: var(--brand-button-subtle-borderColor-hover);
+.Button--subtle:not(.Button[disabled], .Button[aria-disabled='true'], [aria-expanded='true']):hover {
+  background-color: var(--brand-button-subtle-bgColor-hover);
+}
+
+.Button--subtle:not(.Button[disabled], .Button[aria-disabled='true']):active,
+.Button--subtle[aria-expanded='true'] {
+  background-color: var(--brand-button-subtle-bgColor-active);
+  border-color: transparent;
 }
 
 .Button--label-subtle {
@@ -195,5 +244,17 @@
   /* Indicates disabled state in WHCM */
   .Button--label.Button-label--disabled {
     color: GrayText;
+  }
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  .Button,
+  .Button::before,
+  .Button::after,
+  .Button * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
   }
 }

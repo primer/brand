@@ -2,9 +2,9 @@ import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 
 import {River} from '.'
-import {Heading, Text, Link} from '../../'
+import {Heading, Text, Link, Image} from '../../'
 import {Container} from '../../component-helpers'
-import placeholderImage from '../../fixtures/images/placeholder-600x400.png'
+import placeholderImage from '../../fixtures/images/placeholder.png'
 
 import styles from './River.stories.module.css'
 import clsx from 'clsx'
@@ -14,9 +14,7 @@ export default {
   component: River,
 } as Meta<typeof River>
 
-const PlaceholderImage = () => (
-  <img src={placeholderImage} alt="placeholder, blank area with an off-white background color" />
-)
+const PlaceholderImage = () => <img src={placeholderImage} alt="placeholder, blank area with a gray background color" />
 const Template: StoryFn<typeof River> = args => (
   <Container>
     <River {...args}>
@@ -41,7 +39,7 @@ export const LargerPlaceholderImage: StoryFn<typeof River> = args => (
   <Container>
     <River {...args} imageTextRatio="60:40">
       <River.Visual>
-        <PlaceholderImage />
+        <Image as="picture" src={placeholderImage} alt="placeholder, blank area with a gray background color" />
       </River.Visual>
       <River.Content>
         <Heading as="h3">Heading</Heading>
@@ -73,9 +71,9 @@ export const Copilot: StoryFn<typeof River> = args => (
         <PlaceholderImage />
       </River.Visual>
       <River.Content>
-        <Text variant="default">
-          <strong> Convert comments to code.</strong> Write a comment describing the logic you want, and let GitHub
-          Copilot assemble the code for you.
+        <Text size="300">
+          <b> Convert comments to code.</b> Write a comment describing the logic you want, and let GitHub Copilot
+          assemble the code for you.
         </Text>
       </River.Content>
     </River>
@@ -84,9 +82,9 @@ export const Copilot: StoryFn<typeof River> = args => (
         <PlaceholderImage />
       </River.Visual>
       <River.Content>
-        <Text variant="default">
-          <strong>Autofill for repetitive code.</strong> GitHub Copilot works great for quickly producing boilerplate
-          and repetitive code patterns. Feed it a few examples and let it generate the rest!
+        <Text size="300">
+          <b>Autofill for repetitive code.</b> GitHub Copilot works great for quickly producing boilerplate and
+          repetitive code patterns. Feed it a few examples and let it generate the rest!
         </Text>
       </River.Content>
     </River>

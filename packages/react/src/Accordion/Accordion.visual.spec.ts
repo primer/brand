@@ -14,15 +14,46 @@ test.describe('Visual Comparison: Accordion', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('Accordion / Toggle Colors', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-accordion--toggle-colors&viewMode=story')
+  test('Accordion / Composition', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-accordion-features--composition&viewMode=story',
+    )
 
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('Accordion / Composition', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-accordion--composition&viewMode=story')
+  test('Accordion / Toggle Colors', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-accordion-features--toggle-colors&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Accordion / Always Exactly One Panel Open', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-accordion-features--always-exactly-one-panel-open&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Accordion / Exclusive Using Name Attribute', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-accordion-features--exclusive-using-name-attribute&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Accordion / Exclusive Without Using Name Attribute', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-accordion-features--exclusive-without-using-name-attribute&viewMode=story',
+    )
 
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()

@@ -39,7 +39,10 @@ export function RiverStoryScroll({children, disabled}: RiverStoryScrollProps) {
   const Children = React.Children.map(children, child => {
     if (React.isValidElement(child)) {
       return React.cloneElement(child as React.ReactElement<RiverProps>, {
-        className: clsx(styles['RiverStoryScroll__internal-river'], styles['RiverStoryScroll__content-stack']),
+        className: clsx(
+          styles['RiverStoryScroll__internal-river'],
+          !disabled && styles['RiverStoryScroll__content-stack'],
+        ),
       })
     }
   })
@@ -86,7 +89,7 @@ export function RiverStoryScroll({children, disabled}: RiverStoryScrollProps) {
   }, [disabled, prefersReducedMotion])
 
   if (disabled || prefersReducedMotion) {
-    return <div className={clsx(styles.RiverStoryScroll, styles['RiverStoryScroll--disabled'])}>{Children}</div>
+    return <>{children}</>
   }
 
   return (

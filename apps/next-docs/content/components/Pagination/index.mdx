@@ -1,0 +1,83 @@
+---
+title: Pagination
+description: Use Pagination to display a sequence of links that allow navigation to discrete, related pages.
+keywords: ['page numbers', 'page navigation']
+show-tabs: false
+ready: true
+source: https://github.com/primer/brand/tree/main/packages/react/src/Pagination/Pagination.tsx
+storybook: '/brand/storybook/?path=/story/components-pagination--playground'
+---
+
+import {Label} from '@primer/react'
+
+```js
+import {Pagination} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```javascript live noinline
+const App = () => {
+  const [currentPage, setCurrentPage] = React.useState(5)
+  const totalPages = 10
+
+  const handlePageChange = (e, pageNumber) => {
+    if (pageNumber === currentPage + 1 && currentPage < totalPages) {
+      // Next page handler
+      setCurrentPage(currentPage + 1)
+    } else if (pageNumber === currentPage - 1 && currentPage > 1) {
+      // Previous page handler
+      setCurrentPage(currentPage - 1)
+    } else if (pageNumber >= 1 && pageNumber <= totalPages) {
+      setCurrentPage(pageNumber)
+    }
+  }
+
+  return <Pagination pageCount={10} currentPage={currentPage} onPageChange={handlePageChange} />
+}
+
+render(<App />)
+```
+
+### Hide page numbers
+
+```jsx live
+<Pagination pageCount={15} currentPage={5} showPages={false} />
+```
+
+### Custom href
+
+```jsx live
+<Pagination pageCount={3} currentPage={1} hrefBuilder={n => `https://primer.style/brand/page/${n}`} />
+```
+
+### Custom data attributes
+
+```jsx live
+<Pagination
+  pageCount={3}
+  currentPage={1}
+  pageAttributesBuilder={n => {
+    return {
+      'data-custom-attribute': `custom-attribute-${n}`,
+    }
+  }}
+/>
+```
+
+## Component props
+
+### Pagination <Label>Required</Label>
+
+| name                    | type                                               | default | required | description                                                                                                             |
+| ----------------------- | -------------------------------------------------- | ------- | -------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `pageCount`             | `number`                                           |         | `true`   | The total number of pages                                                                                               |
+| `currentPage`           | `number`                                           |         | `true`   | The current page number                                                                                                 |
+| `onPageChange`          | `(e: React.MouseEvent, n: number) => void`         |         | `false`  | Callback function for when the page changes                                                                             |
+| `hrefBuilder`           | `(n: number) => string`                            |         | `false`  | Function to build the href for each page                                                                                |
+| `pageAttributesBuilder` | `(n: number) => {[attributeName: string]: string}` |         | `false`  | Forward custom attributes to pagination links.                                                                          |
+| `marginPageCount`       | `number`                                           |         | `false`  | Defines how many pages are to be displayed on the left and right of the component. Will be reduced on narrow viewports. |
+| `showPages`             | `boolean`                                          |         | `false`  | Whether to show the page numbers                                                                                        |
+| `surroundingPageCount`  | `number`                                           |         | `false`  | The number of pages to show on each side of the current page. Will be hidden on narrow viewports.                       |

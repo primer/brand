@@ -25,13 +25,38 @@ describe('PricingOptions', () => {
     expect(PricingOptionsEl.classList).toContain(expectedClass)
   })
 
-  it('adds the class for cards variant', () => {
-    const cardsVariantClass = 'PricingOptions--variant-cards'
+  it('applies the correct layout classes for each variant', () => {
+    const defaultLayout = 'PricingOptions--layout-default'
+    const cardsLayout = 'PricingOptions--layout-cards'
 
-    const {getByTestId} = render(<PricingOptions data-testid={testId} variant="cards"></PricingOptions>)
+    const {getByTestId, rerender} = render(<PricingOptions data-testid={testId} variant="default" />)
+    expect(getByTestId(testId).classList).toContain(defaultLayout)
 
-    const PricingOptionsEl = getByTestId(testId)
-    expect(PricingOptionsEl.classList).toContain(cardsVariantClass)
+    rerender(<PricingOptions data-testid={testId} variant="default-gradient" />)
+    expect(getByTestId(testId).classList).toContain(defaultLayout)
+
+    rerender(<PricingOptions data-testid={testId} variant="cards" />)
+    expect(getByTestId(testId).classList).toContain(cardsLayout)
+
+    rerender(<PricingOptions data-testid={testId} variant="cards-gradient" />)
+    expect(getByTestId(testId).classList).toContain(cardsLayout)
+  })
+
+  it('applies the correct appearance classes for each variant', () => {
+    const solidVariant = 'PricingOptions--appearance-solid'
+    const gradientVariant = 'PricingOptions--appearance-gradient'
+
+    const {getByTestId, rerender} = render(<PricingOptions data-testid={testId} variant="default" />)
+    expect(getByTestId(testId).classList).toContain(solidVariant)
+
+    rerender(<PricingOptions data-testid={testId} variant="cards" />)
+    expect(getByTestId(testId).classList).toContain(solidVariant)
+
+    rerender(<PricingOptions data-testid={testId} variant="default-gradient" />)
+    expect(getByTestId(testId).classList).toContain(gradientVariant)
+
+    rerender(<PricingOptions data-testid={testId} variant="cards-gradient" />)
+    expect(getByTestId(testId).classList).toContain(gradientVariant)
   })
 
   it('has no a11y violations', async () => {
@@ -52,6 +77,7 @@ describe('PricingOptions.Item', () => {
   const mockPrice = 'Mock price'
   const mockPrimaryAction = 'Mock primary action'
   const mockSecondaryAction = 'Mock secondary action'
+  const mockFeaturedListTitle = 'Mock featured list title'
   const mockFeaturedListHeading = 'Mock featured list heading'
   const mockFeatureListItem = 'Mock feature list item'
   const mockFootnote = 'Mock footnote'
@@ -94,7 +120,8 @@ describe('PricingOptions.Item', () => {
           {mockSecondaryAction}
         </PricingOptions.SecondaryAction>
         <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListHeading>{mockFeaturedListHeading}</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListHeading>{mockFeaturedListTitle}</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListGroupHeading>{mockFeaturedListHeading}</PricingOptions.FeatureListGroupHeading>
           <PricingOptions.FeatureListItem>{mockFeatureListItem}</PricingOptions.FeatureListItem>
         </PricingOptions.FeatureList>
         <PricingOptions.Footnote>{mockFootnote}</PricingOptions.Footnote>
@@ -107,6 +134,7 @@ describe('PricingOptions.Item', () => {
     expect(getByText(mockPrice)).toBeInTheDocument()
     expect(getByText(mockPrimaryAction)).toBeInTheDocument()
     expect(getByText(mockSecondaryAction)).toBeInTheDocument()
+    expect(getByText(mockFeaturedListTitle)).toBeInTheDocument()
     expect(getByText(mockFeaturedListHeading)).toBeInTheDocument()
     expect(getByText(mockFeatureListItem)).toBeInTheDocument()
     expect(getByText(mockFootnote)).toBeInTheDocument()
@@ -120,7 +148,7 @@ describe('PricingOptions.Item', () => {
         <PricingOptions.Description>{mockDescription}</PricingOptions.Description>
         <PricingOptions.Heading>{mockHeading}</PricingOptions.Heading>
         <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListHeading>{mockFeaturedListHeading}</PricingOptions.FeatureListHeading>
+          <PricingOptions.FeatureListGroupHeading>{mockFeaturedListHeading}</PricingOptions.FeatureListGroupHeading>
           <PricingOptions.FeatureListItem>{mockFeatureListItem}</PricingOptions.FeatureListItem>
         </PricingOptions.FeatureList>
       </PricingOptions.Item>,
@@ -143,5 +171,77 @@ describe('PricingOptions.Item', () => {
       .filter(id => id && expectedOrder.includes(id))
 
     expect(testIdsInOrder).toEqual(expectedOrder)
+  })
+
+  it('renders the PricingOptions.Heading with a h3 by default', () => {
+    const {getByRole} = render(
+      <PricingOptions.Item>
+        <PricingOptions.Heading>Mock heading</PricingOptions.Heading>
+      </PricingOptions.Item>,
+    )
+
+    expect(getByRole('heading', {level: 3})).toBeInTheDocument()
+  })
+
+  it.each(['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const)(
+    'optionally renders the PricingOptions.Heading with different levels',
+    size => {
+      const {getByRole} = render(
+        <PricingOptions.Item>
+          <PricingOptions.Heading as={size}>Mock heading</PricingOptions.Heading>
+        </PricingOptions.Item>,
+      )
+
+      const PricingOptionsItemEl = getByRole('heading')
+      expect(PricingOptionsItemEl.tagName).toBe(size.toUpperCase())
+    },
+  )
+
+  it('renders the PricingOptions.FeatureList accordion heading with the correct default level', () => {
+    const expectedHeadingTag = 'h4'
+
+    const {getByRole} = render(
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+          <PricingOptions.Description>
+            Code completions, Chat, and more for indie developers and freelancers.
+          </PricingOptions.Description>
+          <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListGroupHeading>Chat</PricingOptions.FeatureListGroupHeading>
+            <PricingOptions.FeatureListItem>
+              Unlimited messages, interactions, and history
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+        </PricingOptions.Item>
+      </PricingOptions>,
+    )
+    const PricingOptionsItemEl = getByRole('heading', {name: "What's included"})
+    expect(PricingOptionsItemEl.tagName).toBe(expectedHeadingTag.toUpperCase())
+  })
+
+  it('renders the PricingOptions.FeatureList accordion heading with an alternative level', () => {
+    const expectedHeadingTag = 'h6'
+
+    const {getByRole} = render(
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+          <PricingOptions.Description>
+            Code completions, Chat, and more for indie developers and freelancers.
+          </PricingOptions.Description>
+          <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
+          <PricingOptions.FeatureList accordionAs={expectedHeadingTag}>
+            <PricingOptions.FeatureListGroupHeading>Chat</PricingOptions.FeatureListGroupHeading>
+            <PricingOptions.FeatureListItem>
+              Unlimited messages, interactions, and history
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+        </PricingOptions.Item>
+      </PricingOptions>,
+    )
+    const PricingOptionsItemEl = getByRole('heading', {name: "What's included"})
+    expect(PricingOptionsItemEl.tagName).toBe(expectedHeadingTag.toUpperCase())
   })
 })

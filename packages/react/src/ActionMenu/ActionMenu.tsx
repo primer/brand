@@ -11,15 +11,16 @@ import React, {
   memo,
   Ref,
   ReactElement,
+  useMemo,
 } from 'react'
-import {Button, Text} from '../'
+import {Button, ButtonProps, Text, ThemeProvider, useTheme} from '../'
 import {useAnchoredPosition} from '../hooks/useAnchoredPosition'
 import {useOnClickOutside} from '../hooks/useOnClickOutside'
 import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
 
 import {default as clsx} from 'clsx'
-import {CheckIcon, ChevronDownIcon} from '@primer/octicons-react'
-import {useId} from '@reach/auto-id'
+import {CheckIcon, ChevronDownIcon, Icon} from '@primer/octicons-react'
+import {useId} from '../hooks/useId'
 
 import {FocusKeys, PositionSettings, focusZone} from '@primer/behaviors'
 import type {BaseProps} from '../component-helpers'
@@ -62,7 +63,12 @@ export const actionMenuOverlaySides = [
   'outside-right',
 ] as PositionSettings['side'][]
 
-export type ActionMenuSizes = 'small' | 'medium'
+export const ActionMenuSizes = ['small', 'medium'] as const
+
+export const ActionMenuButtonModes = ['default', 'split-button'] as const
+export type ActionMenuButtonModes = (typeof ActionMenuButtonModes)[number]
+
+export type ActionMenuSizes = (typeof ActionMenuSizes)[number]
 
 export type ActionMenuProps = {
   /**
@@ -107,6 +113,12 @@ export type ActionMenuProps = {
    * Side the menu overlay appears
    */
   menuSide?: PositionSettings['side']
+  /**
+   * Alternative behavior for the button and menu items
+   * - `default`: The button and menu items behave as a standard button and menu item.
+   * - `split-button`: The button behaves as a split button, and the menu items behave as links.
+   */
+  mode?: ActionMenuButtonModes
 } & BaseProps<HTMLDivElement>
 
 type ActionMenuContextType = {
@@ -134,10 +146,11 @@ const _ActionMenuRoot = memo(
     disabled,
     open = false,
     selectionVariant = 'none',
-    menuAlignment = 'start',
+    menuAlignment = 'end',
     size = 'medium',
     menuSide,
     onSelect,
+    mode = 'default',
   }: ActionMenuProps) => {
     const [showMenu, setShowMenu] = useState(open)
     const floatingElementRef = useRef<HTMLUListElement>(null)
@@ -166,11 +179,9 @@ const _ActionMenuRoot = memo(
 
     const handleItemSelection = useCallback(
       (newValue: string) => {
-        if (newValue) {
-          handleOnSelect(newValue)
-          toggleMenu()
-          anchorElementRef.current?.focus()
-        }
+        handleOnSelect(newValue)
+        toggleMenu()
+        anchorElementRef.current?.focus()
       },
       [handleOnSelect, toggleMenu, anchorElementRef],
     )
@@ -178,19 +189,26 @@ const _ActionMenuRoot = memo(
     useEffect(() => {
       if (showMenu && floatingElementRef.current) {
         const floatingElement = floatingElementRef.current
+        const isSplitLayout = mode === 'split-button'
+        const splitLayoutFilter = isSplitLayout ? element => element.tagName === 'A' : undefined
 
         focusZone(floatingElementRef.current, {
           bindKeys: FocusKeys.ArrowVertical,
+          focusableElementFilter: splitLayoutFilter,
+          focusInStrategy: isSplitLayout ? 'first' : undefined,
         })
 
         // enter selects item
         floatingElement.addEventListener('keydown', event => {
           if (event.key === 'Enter') {
-            const target = event.target as HTMLLIElement
+            const target = event.target as HTMLElement
 
-            if (target.getAttribute('aria-disabled') === 'true') return
+            // Get the proper element containing the data-value
+            const targetElement = target.tagName === 'A' ? target.closest('li') : target
 
-            const value = target.getAttribute('data-value')
+            if (!targetElement || targetElement.getAttribute('aria-disabled') === 'true') return
+
+            const value = targetElement.getAttribute('data-value')
             if (value) {
               handleOnSelect(value)
               setShowMenu(false)
@@ -201,37 +219,43 @@ const _ActionMenuRoot = memo(
           }
         })
 
+        const targetSelector = isSplitLayout ? 'a' : 'li'
+
         // focusses first item
-        const firstItem = floatingElementRef.current.querySelector('li')
+        const firstItem = floatingElementRef.current.querySelector(targetSelector)
         if (firstItem) {
           setTimeout(() => {
             firstItem.focus()
           }, 10)
         }
 
-        const lastItem = floatingElement.querySelectorAll('li')[floatingElement.querySelectorAll('li').length - 1]
-        lastItem.addEventListener('keydown', event => {
-          if (event.key === 'ArrowDown') {
-            event.preventDefault()
+        const lastItem =
+          floatingElement.querySelectorAll(targetSelector)[floatingElement.querySelectorAll(targetSelector).length - 1]
+        lastItem.addEventListener('keydown', (event: Event) => {
+          const keyboardEvent = event as KeyboardEvent
+          if (keyboardEvent.key === 'ArrowDown') {
+            keyboardEvent.preventDefault()
             firstItem?.focus()
           }
         })
 
-        firstItem?.addEventListener('keydown', event => {
-          if (event.key === 'ArrowUp') {
-            event.preventDefault()
+        firstItem?.addEventListener('keydown', (event: Event) => {
+          const keyboardEvent = event as KeyboardEvent
+          if (keyboardEvent.key === 'ArrowUp') {
+            keyboardEvent.preventDefault()
             lastItem.focus()
           }
         })
 
         //on escape refocus
-        floatingElement.addEventListener('keydown', event => {
-          if (event.key === 'Escape') {
+        floatingElement.addEventListener('keydown', (event: Event) => {
+          const keyboardEvent = event as KeyboardEvent
+          if (keyboardEvent.key === 'Escape') {
             anchorElementRef.current?.focus()
           }
         })
       }
-    }, [showMenu, floatingElementRef, handleItemSelection, toggleMenu, handleOnSelect])
+    }, [showMenu, floatingElementRef, mode, handleItemSelection, toggleMenu, handleOnSelect])
 
     // Calculate the position of the menu
     const {position} = useAnchoredPosition(
@@ -254,11 +278,12 @@ const _ActionMenuRoot = memo(
           acc['Button'] = cloneElement(child as ReactElement<ActionMenuButtonProps>, {
             onClick: toggleMenu,
             ref: anchorElementRef as React.RefObject<HTMLButtonElement>,
-            className: clsx(child.props.className, showMenu),
+            className: clsx(child.props.className, styles[`ActionMenu__button--${mode}`], showMenu),
             menuOpen: showMenu,
             disabled,
             id: `${instanceId}-button`,
             size,
+            _mode: mode,
           })
         } else if (child.type === ActionMenuOverlay) {
           acc['Overlay'] = cloneElement(child as ReactElement<ActionMenuOverlayProps>, {
@@ -268,6 +293,7 @@ const _ActionMenuRoot = memo(
               position && styles['ActionMenu__menu--visible'],
               position && styles[`ActionMenu__menu--pos-${position.anchorSide}`],
               styles[`ActionMenu__menu--${size}`],
+              mode === 'split-button' && 'ActionMenu__menu--split',
             ),
             style: {
               top: `${position?.top ?? 0}px`,
@@ -276,9 +302,9 @@ const _ActionMenuRoot = memo(
             id: `${instanceId}-menu`,
             children: Children.map(child.props.children, item => {
               if (isValidElement(item)) {
-                return cloneElement(item as ReactElement<ActionMenuItemProps>, {
+                return cloneElement(item as ReactElement<ActionMenuItemBaseProps>, {
                   handler: handleItemSelection,
-                  type: selectionVariant,
+                  type: mode === 'split-button' ? 'link' : selectionVariant,
                 })
               }
               return item
@@ -306,6 +332,8 @@ const _ActionMenuRoot = memo(
 
 type ActionMenuButtonProps = PropsWithChildren<Ref<HTMLButtonElement>> & {
   id?: string
+  as?: ButtonProps<'a'>['as']
+  href?: ButtonProps<'a'>['href']
   ref?: React.RefObject<HTMLButtonElement>
   className?: string
   menuOpen?: boolean
@@ -313,10 +341,71 @@ type ActionMenuButtonProps = PropsWithChildren<Ref<HTMLButtonElement>> & {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
   'data-testid'?: string
   size?: ActionMenuSizes
+  _mode?: ActionMenuButtonModes
+  variant?: ButtonProps<'a'>['variant']
+  leadingVisual?: ButtonProps<'a'>['leadingVisual']
 }
 
 const ActionMenuButton = forwardRef<HTMLButtonElement, ActionMenuButtonProps>(
-  ({children, className, 'data-testid': testId, disabled, menuOpen, size, ...props}, ref) => {
+  (
+    {
+      as,
+      href,
+      children,
+      className,
+      'data-testid': testId,
+      disabled,
+      menuOpen,
+      size,
+      _mode = 'default',
+      onClick,
+      leadingVisual,
+      variant = 'primary',
+      ...props
+    },
+    ref,
+  ) => {
+    if (_mode === 'split-button') {
+      return (
+        <div className={clsx(styles.ActionMenu__button, styles[`ActionMenu__button--${size}`], className)}>
+          <Button
+            as={as}
+            href={href}
+            className={clsx(
+              styles['ActionMenu__innerButton--split-button'],
+              styles[`ActionMenu__innerButton--${variant}`],
+              styles[`ActionMenu__innerButton--${size}`],
+              disabled && styles['ActionMenu__innerButton--disabled'],
+            )}
+            variant={variant}
+            hasArrow={false}
+            aria-disabled={disabled}
+            data-testid={testId || testIds.button}
+            size={size}
+            leadingVisual={leadingVisual}
+          >
+            <span className={styles['ActionMenu__button-text']}>{children}</span>
+          </Button>
+          <Button
+            ref={ref}
+            as="button"
+            className={styles['ActionMenu__innerButton--split-button']}
+            variant={variant}
+            hasArrow={false}
+            aria-haspopup="true"
+            aria-label="Menu"
+            size={size}
+            aria-expanded={menuOpen ? 'true' : 'false'}
+            onClick={onClick}
+            disabled={disabled}
+            {...props}
+          >
+            <ChevronDownIcon />
+          </Button>
+        </div>
+      )
+    }
+
     return (
       <Button
         ref={ref}
@@ -324,10 +413,11 @@ const ActionMenuButton = forwardRef<HTMLButtonElement, ActionMenuButtonProps>(
         hasArrow={false}
         aria-haspopup="true"
         aria-expanded={menuOpen ? 'true' : 'false'}
-        trailingVisual={<ChevronDownIcon />}
         disabled={disabled}
         data-testid={testId || testIds.button}
         size={size}
+        trailingVisual={<ChevronDownIcon />}
+        onClick={onClick}
         {...props}
       >
         <span className={styles['ActionMenu__button-text']}>{children}</span>
@@ -336,21 +426,33 @@ const ActionMenuButton = forwardRef<HTMLButtonElement, ActionMenuButtonProps>(
   },
 )
 
-type ActionMenuItemProps = {
-  value: string
+type ActionMenuItemBaseProps = {
   handler?: (newValue: string) => void
-  selected?: boolean
-  type?: 'none' | 'single'
+  type?: 'none' | 'single' | 'link'
   disabled?: boolean
   size?: ActionMenuSizes
+  leadingVisual?: React.ReactElement | React.ReactNode | Icon
 } & PropsWithChildren<React.HTMLProps<HTMLLIElement>>
+
+type ActionMenuItemAnchorProps = ActionMenuItemBaseProps & {
+  as: 'a'
+} & Omit<React.HTMLProps<HTMLAnchorElement>, keyof ActionMenuItemBaseProps | 'as'>
+
+// Type for when 'as' is not set or is anything other than 'a'
+type ActionMenuItemDefaultProps = ActionMenuItemBaseProps & {
+  as?: string
+  value?: string
+  selected?: boolean
+} & Omit<React.HTMLProps<HTMLLIElement>, keyof ActionMenuItemBaseProps | 'as'>
 
 const roleTypeMap = {
   none: 'menuitem',
   single: 'menuitemradio',
+  link: 'menuitem',
 }
 
 const ActionMenuItem = ({
+  as,
   children,
   className,
   disabled,
@@ -358,47 +460,116 @@ const ActionMenuItem = ({
   selected,
   type,
   value,
+  onClick,
+  onKeyDown,
+  leadingVisual: LeadingVisual,
   ...props
-}: ActionMenuItemProps) => {
+}: ActionMenuItemAnchorProps | ActionMenuItemDefaultProps) => {
   const {size} = useActionMenuContext()
 
-  return (
-    <li
-      className={clsx(
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLLIElement>) => {
+      onClick?.(e)
+
+      if (!disabled) {
+        handler?.(String(value))
+      }
+    },
+    [handler, value, disabled, onClick],
+  )
+
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLLIElement>) => {
+      onKeyDown?.(e)
+
+      if (!disabled && e.key === 'Enter') {
+        handler?.(String(value))
+      }
+    },
+    [handler, value, disabled, onKeyDown],
+  )
+
+  const liProps = useMemo<React.HTMLProps<HTMLLIElement> & {'data-value': unknown}>(
+    () => ({
+      className: clsx(
         styles.ActionMenu__item,
         type === 'single' && styles[`ActionMenu__item--selection-type-${type}`],
         size && styles[`ActionMenu__item--${size}`],
         className,
-      )}
-      role={roleTypeMap[type || 'single']}
-      aria-checked={type === 'none' ? undefined : selected ? 'true' : 'false'}
-      aria-disabled={disabled ? 'true' : 'false'}
-      onClick={handler && !disabled ? () => handler(value) : undefined}
-      onKeyDown={handler && !disabled ? event => event.key === 'Enter' && handler(value) : undefined}
-      tabIndex={0}
-      data-value={value}
-      {...props}
-    >
-      {type !== 'none' && (
-        <span className={styles['ActionMenu__item-leadingVisual']}>
-          {selected && (
-            <CheckIcon
-              className={clsx(styles['ActionMenu__item-icon'], disabled && styles['ActionMenu__item-icon--disabled'])}
-              size={16}
-            />
-          )}
-        </span>
-      )}
+      ),
+      role: roleTypeMap[type || 'single'],
+      'aria-disabled': disabled,
+      tabIndex: -1,
+      'data-value': value,
+      ...props,
+    }),
+    [props, type, size, className, disabled, value],
+  )
 
-      <span className={styles['ActionMenu__item-text']}>
-        <Text
-          variant={disabled ? 'muted' : 'default'}
-          size={size === 'medium' ? '200' : '100'}
-          className={clsx(disabled && styles['ActionMenu__item-content--disabled'])}
+  const contents = useMemo(
+    () => (
+      <>
+        {LeadingVisual && React.isValidElement(LeadingVisual)
+          ? React.cloneElement(LeadingVisual as React.ReactElement, {
+              width: LeadingVisual.props.width || 20,
+              height: LeadingVisual.props.width || 20,
+            })
+          : null}
+        {type === 'single' && (
+          <span className={styles['ActionMenu__item-leadingVisual']}>
+            {selected && (
+              <CheckIcon
+                className={clsx(styles['ActionMenu__item-icon'], disabled && styles['ActionMenu__item-icon--disabled'])}
+                size={16}
+              />
+            )}
+          </span>
+        )}
+
+        <span className={styles['ActionMenu__item-text']}>
+          <Text
+            variant={disabled ? 'muted' : 'default'}
+            size={size === 'medium' ? '200' : '100'}
+            className={clsx(disabled && styles['ActionMenu__item-content--disabled'])}
+          >
+            {children}
+          </Text>
+        </span>
+      </>
+    ),
+    [LeadingVisual, children, selected, disabled, size, type],
+  )
+
+  if (as === 'a') {
+    return (
+      <li
+        // This role will be overridden by the role prop in `liProps`. It's just here to keep the linter happy
+        role="menuitem"
+        {...liProps}
+        // Intentionally not calling handle[Click/KeyDown] here so as to not call the handler
+        onClick={onClick}
+        onKeyDown={onKeyDown}
+      >
+        <a
+          className={clsx(styles['ActionMenu__item-anchor'], disabled && styles['ActionMenu__item--disabled'])}
+          href={props.href}
         >
-          {children}
-        </Text>
-      </span>
+          {contents}
+        </a>
+      </li>
+    )
+  }
+
+  return (
+    <li
+      // This role will be overridden by the role prop in `liProps`. It's just here to keep the linter happy
+      role="menuitem"
+      {...liProps}
+      aria-checked={type === 'none' ? undefined : selected ? 'true' : 'false'}
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
+    >
+      {contents}
     </li>
   )
 }
@@ -415,10 +586,16 @@ type ActionMenuOverlayProps = PropsWithChildren<Ref<HTMLUListElement>> & {
 
 const ActionMenuOverlay = forwardRef<HTMLUListElement, ActionMenuOverlayProps>(
   ({children, className, 'data-testid': testId, menuOpen, ...rest}, ref) => {
+    const {colorMode: defaultColorMode} = useTheme()
+
+    const colorMode = className?.includes('ActionMenu__menu--split') ? 'light' : defaultColorMode
+
     return (
-      <ul ref={ref} className={clsx(className)} role="menu" data-testid={testId || testIds.list} {...rest}>
-        {children}
-      </ul>
+      <ThemeProvider colorMode={colorMode}>
+        <ul ref={ref} className={clsx(className)} role="menu" data-testid={testId || testIds.list} {...rest}>
+          {children}
+        </ul>
+      </ThemeProvider>
     )
   },
 )

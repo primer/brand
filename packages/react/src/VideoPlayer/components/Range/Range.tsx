@@ -1,6 +1,6 @@
 import React, {useState, useEffect, DOMAttributes, useRef} from 'react'
 import clsx from 'clsx'
-import {useId} from '@reach/auto-id'
+import {useId} from '../../../hooks/useId'
 
 import {VideoTooltip} from '../'
 import styles from '../../VideoPlayer.module.css'
@@ -10,6 +10,7 @@ export type RangeProps = {
   tooltipFormatter?: (value: number) => string
   max?: number
   a11yStep?: number
+  name?: string
 } & React.HTMLProps<HTMLInputElement>
 
 export const Range = ({
@@ -99,6 +100,7 @@ export const Range = ({
           {...props}
         />
       </label>
+
       {tooltip && hoverValue ? (
         <VideoTooltip style={{left: mousePos}}>{tooltipFormatter(hoverValue)}</VideoTooltip>
       ) : null}

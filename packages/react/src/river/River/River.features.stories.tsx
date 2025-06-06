@@ -3,16 +3,14 @@ import {Meta, StoryFn} from '@storybook/react'
 import {River} from '.'
 import {Heading, Label, Link, Stack, Text, Timeline} from '../../'
 import {Container} from '../../component-helpers'
-import placeholderImage from '../../fixtures/images/placeholder-600x400.png'
+import placeholderImage from '../../fixtures/images/placeholder.png'
 
 export default {
   title: 'Components/River/features',
   component: River,
 } as Meta<typeof River>
 
-const PlaceholderImage = () => (
-  <img src={placeholderImage} alt="placeholder, blank area with an off-white background color" />
-)
+const PlaceholderImage = () => <img src={placeholderImage} alt="placeholder, blank area with a gray background color" />
 
 export const Left: StoryFn<typeof River> = () => (
   <River align="start">
@@ -56,6 +54,21 @@ export const Center: StoryFn<typeof River> = () => (
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
         felis nam pulvinar risus elementum.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </River.Content>
+  </River>
+)
+
+export const DuoTone: StoryFn<typeof River> = () => (
+  <River>
+    <River.Visual>
+      <PlaceholderImage />
+    </River.Visual>
+    <River.Content>
+      <Text size="300">
+        <b>This first sentence is highlighted</b> and here is where the body copy starts. Remember to keep this nice and
+        succinct.
       </Text>
       <Link href="#">Call to action</Link>
     </River.Content>

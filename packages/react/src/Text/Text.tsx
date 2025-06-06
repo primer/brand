@@ -4,7 +4,7 @@ import {useAnimation} from '../'
 import styles from './Text.module.css'
 import {BaseProps} from '../component-helpers'
 
-export const TextSizes = ['700', '600', '500', '400', '300', '200', '100'] as const
+export const TextSizes = ['1000', '900', '800', '700', '600', '500', '400', '350', '300', '200', '100'] as const
 export const TextTags = ['p', 'span', 'div', 'strong', 'em'] as const
 export const TextVariants = ['default', 'muted'] as const
 export const TextWeights = [
@@ -20,7 +20,7 @@ export const TextWeights = [
 export const TextFontVariants = ['mona-sans', 'hubot-sans', 'monospace'] as const
 
 export const defaultTextTag = TextTags[1]
-export const defaultTextSize = TextSizes[5]
+export const defaultTextSize = TextSizes[9]
 export const defaultTextVariant = TextVariants[0]
 export const defaultFontVariant = TextFontVariants[0]
 

@@ -1,4 +1,5 @@
 import React, {render, cleanup} from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom'
 
 import {LogoSuite} from './LogoSuite'
@@ -235,21 +236,47 @@ describe('LogoSuite', () => {
     expect(el.classList).toContain(expectedClass)
   })
 
-  it('can optionally render an idle marquee', () => {
-    const {getByTestId} = render(
+  it('renders a pause button when the marquee prop is true', () => {
+    const {getByRole} = render(
       <LogoSuite>
         <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
-        <LogoSuite.Logobar marquee marqueeSpeed="idle">
+        <LogoSuite.Logobar marquee>
           <svg data-testid="svg1" aria-label="Mock SVG" />
           <svg data-testid="svg2" aria-label="Mock SVG" />
         </LogoSuite.Logobar>
       </LogoSuite>,
     )
 
-    const el = getByTestId(LogoSuite.testIds.marqueeGroup)
-    const expectedClass = 'LogoSuite__logobar-marqueeGroup--speed-idle'
+    const pauseButton = getByRole('button', {name: 'Pause animation'})
+    expect(pauseButton).toBeInTheDocument()
+  })
 
-    expect(el.classList).toContain(expectedClass)
+  it('pauses the marquee when the pause button is pressed and resumes when pressed again', async () => {
+    const user = userEvent.setup()
+
+    const {container, getByRole, queryByRole} = render(
+      <LogoSuite>
+        <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
+        <LogoSuite.Logobar marquee>
+          <svg data-testid="svg1" aria-label="Mock SVG" />
+          <svg data-testid="svg2" aria-label="Mock SVG" />
+        </LogoSuite.Logobar>
+      </LogoSuite>,
+    )
+
+    expect(getByRole('button', {name: 'Pause animation'})).toBeInTheDocument()
+
+    await user.click(getByRole('button', {name: 'Pause animation'}))
+
+    expect(getByRole('button', {name: 'Play animation'})).toBeInTheDocument()
+    expect(queryByRole('button', {name: 'Pause animation'})).not.toBeInTheDocument()
+    expect(container.querySelector('.LogoSuite__logobar--paused')).toBeInTheDocument()
+
+    await user.click(getByRole('button', {name: 'Play animation'}))
+
+    expect(getByRole('button', {name: 'Pause animation'})).toBeInTheDocument()
+    expect(queryByRole('button', {name: 'Play animation'})).not.toBeInTheDocument()
+    expect(container.querySelector('.LogoSuite__logobar--paused')).not.toBeInTheDocument()
   })
 
   it('logs a warning message when HeadingChild is not provided', () => {
@@ -301,5 +328,44 @@ describe('LogoSuite', () => {
     const expectedClass = 'LogoSuite__logobar--variant-muted'
 
     expect(el.classList).toContain(expectedClass)
+  })
+
+  it('applies the correct class for the default gap', () => {
+    const defaultGapClass = 'LogoSuite__logobar--gap-default'
+
+    const {getByTestId} = render(
+      <LogoSuite>
+        <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
+        <LogoSuite.Logobar data-testid="logobar">
+          <svg aria-label="Mock SVG" />
+          <svg aria-label="Mock SVG" />
+          <svg aria-label="Mock SVG" />
+          <svg aria-label="Mock SVG" />
+          <svg aria-label="Mock SVG" />
+          <svg aria-label="Mock SVG" />
+        </LogoSuite.Logobar>
+      </LogoSuite>,
+    )
+
+    expect(getByTestId('logobar').classList).toContain(defaultGapClass)
+  })
+
+  it('applies the correct class for the condensed gap', () => {
+    const condensedGapClass = 'LogoSuite__logobar--gap-condensed'
+    const {getByTestId} = render(
+      <LogoSuite>
+        <LogoSuite.Heading>{mockHeading}</LogoSuite.Heading>
+        <LogoSuite.Logobar data-testid="logobar" gap="condensed">
+          <svg aria-label="Mock SVG" />
+          <svg aria-label="Mock SVG" />
+          <svg aria-label="Mock SVG" />
+          <svg aria-label="Mock SVG" />
+          <svg aria-label="Mock SVG" />
+          <svg aria-label="Mock SVG" />
+        </LogoSuite.Logobar>
+      </LogoSuite>,
+    )
+
+    expect(getByTestId('logobar').classList).toContain(condensedGapClass)
   })
 })

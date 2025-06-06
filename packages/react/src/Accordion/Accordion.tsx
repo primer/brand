@@ -1,10 +1,23 @@
-import React, {forwardRef, PropsWithChildren, useCallback, useEffect, useRef} from 'react'
+import React, {
+  createContext,
+  forwardRef,
+  useCallback,
+  useContext,
+  useMemo,
+  useEffect,
+  type DetailsHTMLAttributes,
+  type HTMLAttributes,
+  type KeyboardEvent,
+  type ReactElement,
+  type RefObject,
+  type SyntheticEvent,
+} from 'react'
 import clsx from 'clsx'
 
-import {Heading} from '../'
-import type {BaseProps} from '../component-helpers'
+import {Heading, type HeadingProps} from '../'
 import {ChevronDownIcon, ChevronUpIcon} from '@primer/octicons-react'
-import {Colors, Gradients} from '../constants'
+import {Colors, BiColorGradients as Gradients} from '../constants'
+import {useProvidedRefOrCreate} from '../hooks/useRef'
 
 /**
  * Design tokens
@@ -13,133 +26,95 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './Accordion.module.css'
-import {useProvidedRefOrCreate} from '../hooks/useRef'
 
-export type AccordionRootProps = BaseProps<HTMLDetailsElement> & {
-  open?: boolean // Manually declared due to known issue with the native open attribute: https://github.com/facebook/react/issues/15486
-  children: React.ReactElement<AccordionHeadingProps | AccordionContentProps>[]
+export type AccordionRootProps = DetailsHTMLAttributes<HTMLDetailsElement> & {
+  children: ReactElement<AccordionHeadingProps | AccordionContentProps>[]
   variant?: 'default' | 'emphasis'
-  ref?: React.RefObject<HTMLDetailsElement>
-  handleOpen?: (boolean) => void
-} & React.HTMLAttributes<HTMLDetailsElement>
+  handleOpen?: (isOpen: boolean) => void
+}
 
-type ValidRootChildren = {
-  AccordionHeading: React.ReactElement<AccordionHeadingProps> | null
-  AccordionContent: React.ReactElement<AccordionContentProps> | typeof React.Fragment | null
+type AccordionContextType = {
+  variant: 'default' | 'emphasis'
+}
+
+const AccordionContext = createContext<AccordionContextType | null>(null)
+
+const useAccordionContext = (): AccordionContextType => {
+  const context = useContext(AccordionContext)
+
+  if (context === null) {
+    throw new Error('Unable to find Accordion provider. Did you forget to wrap your component in an Accordion?')
+  }
+
+  return context
 }
 
 export const AccordionRoot = forwardRef<HTMLDetailsElement, AccordionRootProps>(
-  ({children, className, open = false, variant = 'default', handleOpen, ...rest}, ref) => {
-    const detailsRef = useProvidedRefOrCreate(ref as React.RefObject<HTMLDetailsElement>)
-    const [isOpen, setIsOpen] = React.useState(open)
+  ({className, variant = 'default', open, onToggle, onKeyDown, handleOpen, ...rest}, forwardedRef) => {
+    const ref = useProvidedRefOrCreate(forwardedRef as RefObject<HTMLDetailsElement>)
+    const accordionContextValue = useMemo(() => ({variant}), [variant])
 
-    const {AccordionHeading: HeadingChild, AccordionContent: AccordionContentChild} = React.Children.toArray(
-      children,
-    ).reduce<ValidRootChildren>(
-      (acc, child) => {
-        if (React.isValidElement(child) && typeof child.type !== 'string') {
-          if (child.type === AccordionContent) {
-            acc.AccordionContent = React.cloneElement(child as React.ReactElement<AccordionContentProps>, {
-              open: isOpen,
-              handleOpen: (newValue: boolean) => {
-                setIsOpen(newValue)
-              },
-              parentRef: detailsRef,
-            }) as React.ReactElement<AccordionContentProps>
-          }
-          if (child.type === AccordionHeading) {
-            acc.AccordionHeading = React.cloneElement(child as React.ReactElement, {
-              variant,
-              open: isOpen,
-              handleOpen: (newValue: boolean) => {
-                if (handleOpen) {
-                  handleOpen(newValue)
-                }
-                setIsOpen(newValue)
-              },
-              parentRef: detailsRef,
-            }) as React.ReactElement<AccordionHeadingProps>
-          }
-        }
-        return acc
+    const handleToggle = useCallback<(event: Event) => void>(
+      event => {
+        const toggleEvent = event as unknown as SyntheticEvent<HTMLDetailsElement>
+        onToggle?.(toggleEvent)
+        handleOpen?.(toggleEvent.currentTarget.open)
       },
-      {AccordionHeading: null, AccordionContent: null},
+      [onToggle, handleOpen],
+    )
+
+    const handleKeyDown = useCallback<EventListener>(
+      event => {
+        const keyboardEvent = event as unknown as KeyboardEvent<HTMLDetailsElement>
+        onKeyDown?.(keyboardEvent)
+
+        const details = ref.current
+
+        if (keyboardEvent.key === 'Escape' && details?.open) {
+          details.open = false
+          details.querySelector('summary')?.focus()
+        }
+      },
+      [onKeyDown, ref],
     )
 
     useEffect(() => {
-      setIsOpen(open)
-    }, [open])
+      const detailsElement = ref.current
+      if (!detailsElement) return
+
+      detailsElement.addEventListener('toggle', handleToggle)
+      detailsElement.addEventListener('keydown', handleKeyDown)
+
+      return () => {
+        detailsElement.removeEventListener('toggle', handleToggle)
+        detailsElement.removeEventListener('keydown', handleKeyDown)
+      }
+    }, [handleToggle, handleKeyDown, ref])
 
     return (
-      <details
-        className={clsx(styles.Accordion, styles[`Accordion--${variant}`], className)}
-        open={isOpen}
-        {...rest}
-        ref={detailsRef}
-      >
-        {HeadingChild}
-        {AccordionContentChild}
-      </details>
+      <AccordionContext.Provider value={accordionContextValue}>
+        <details
+          className={clsx(styles.Accordion, styles[`Accordion--${variant}`], className)}
+          ref={ref}
+          open={open}
+          {...rest}
+        />
+      </AccordionContext.Provider>
     )
   },
 )
 
 export const AccordionToggleColors = [...Colors, ...Gradients] as const
 
-type AccordionHeadingProps = PropsWithChildren<BaseProps<HTMLHeadingElement>> &
-  React.HTMLAttributes<HTMLDetailsElement> & {
-    className?: string
-    as?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
-    reversedToggles?: boolean
-    variant?: 'default' | 'emphasis'
-    open?: boolean // private prop passed from AccordionRoot
-    handleOpen?: (boolean) => void // private prop passed from AccordionRoot
-    parentRef?: React.RefObject<HTMLDetailsElement> // private prop passed from AccordionRoot
-    toggleColor?: (typeof AccordionToggleColors)[number]
-  }
+export type AccordionHeadingProps = HTMLAttributes<HTMLElement> & {
+  as?: HeadingProps['as']
+  reversedToggles?: boolean
+  toggleColor?: (typeof AccordionToggleColors)[number]
+}
 
 export const AccordionHeading = forwardRef<HTMLHeadingElement, AccordionHeadingProps>(
-  (
-    {
-      children,
-      className,
-      as = 'h4',
-      variant = 'default',
-      toggleColor,
-      reversedToggles,
-      open,
-      handleOpen,
-      parentRef,
-      style,
-      ...rest
-    },
-    ref,
-  ) => {
-    const handleClick = useCallback(
-      (event: React.MouseEvent<HTMLDetailsElement, MouseEvent>) => {
-        event.preventDefault()
-
-        if (handleOpen) {
-          handleOpen(!open)
-        }
-      },
-      [handleOpen, open],
-    )
-
-    const handleKeyPress = useCallback(
-      (event: React.KeyboardEvent<HTMLDetailsElement>) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault()
-          if (handleOpen) handleOpen(!open)
-        }
-
-        if (event.key === 'Escape') {
-          event.preventDefault()
-          if (handleOpen) handleOpen(false)
-        }
-      },
-      [handleOpen, open],
-    )
+  ({children, className, as = 'h4', toggleColor, reversedToggles, ...rest}, ref) => {
+    const {variant} = useAccordionContext()
 
     return (
       <summary
@@ -152,8 +127,6 @@ export const AccordionHeading = forwardRef<HTMLHeadingElement, AccordionHeadingP
         )}
         ref={ref}
         {...rest}
-        onClick={handleClick}
-        onKeyDown={handleKeyPress}
       >
         <span aria-hidden="true" className={styles['Accordion__summary--collapsed']}>
           {variant === 'emphasis' && <ChevronDownIcon size={24} fill="var(--brand-color-text-default)" />}
@@ -169,55 +142,10 @@ export const AccordionHeading = forwardRef<HTMLHeadingElement, AccordionHeadingP
   },
 )
 
-type AccordionContentProps = BaseProps<HTMLElement> & {
-  children: React.ReactElement | React.ReactElement[]
-  open?: boolean // private prop passed from AccordionRoot
-  handleOpen?: (boolean) => void // private prop passed from AccordionRoot
-  parentRef?: React.RefObject<HTMLDetailsElement> // private prop passed from AccordionRoot
-}
+export type AccordionContentProps = HTMLAttributes<HTMLElement>
 
-export function AccordionContent({children, className, open, handleOpen, parentRef, ...rest}: AccordionContentProps) {
-  const contentRef = useRef<HTMLElement>(null)
+export const AccordionContent = ({className, ...rest}: AccordionContentProps) => (
+  <section className={clsx(styles.Accordion__content, className)} {...rest} />
+)
 
-  const handleKeyPress = useCallback(
-    (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        event.preventDefault()
-        const focusedElement = document.activeElement
-        if (contentRef.current && contentRef.current.contains(focusedElement)) {
-          // Close the accordion
-          if (handleOpen) handleOpen(false)
-          if (parentRef && parentRef.current) {
-            const summary = parentRef.current.querySelector('summary')
-            if (summary) summary.focus()
-          }
-        }
-      }
-    },
-    [parentRef, handleOpen],
-  )
-
-  useEffect(() => {
-    const contentEl = contentRef.current as HTMLElement | null
-
-    if (open && contentEl) {
-      contentEl.addEventListener('keydown', ev => handleKeyPress(ev))
-    }
-    return () => {
-      if (open && contentEl) {
-        contentEl.removeEventListener('keydown', ev => handleKeyPress(ev))
-      }
-    }
-  }, [open, handleKeyPress])
-
-  return (
-    <section className={clsx(styles.Accordion__content, className)} {...rest} ref={contentRef}>
-      {children}
-    </section>
-  )
-}
-
-/**
- * Branded Accordion component
- */
 export const Accordion = Object.assign(AccordionRoot, {Content: AccordionContent, Heading: AccordionHeading})

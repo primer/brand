@@ -59,6 +59,18 @@
   padding-bottom: var(--base-size-48);
 }
 
+.Footer__social-link {
+  position: relative;
+}
+
+.Footer__social-link::before {
+  content: '';
+  display: block;
+  position: absolute;
+  min-width: var(--base-size-24);
+  min-height: var(--base-size-24);
+}
+
 .Footer__social-link:hover .Footer__social-icon,
 .Footer__social-link:focus-visible .Footer__social-icon {
   filter: var(--brand-footer-socialIcon-hoverFilter);
@@ -67,6 +79,10 @@
 .Footer__social-icon {
   width: 24px;
   height: auto;
+}
+
+[data-color-mode='light'] .Footer__social-icon {
+  filter: brightness(95%) saturate(100%);
 }
 
 /**
@@ -113,4 +129,16 @@
   color: var(--brand-color-text-default);
   border-bottom-color: var(--brand-color-text-muted);
   text-decoration: none;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  .Footer,
+  .Footer::before,
+  .Footer::after,
+  .Footer * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
 }

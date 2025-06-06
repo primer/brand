@@ -1,0 +1,4 @@
+.next/
+out/
+*.tsbuildinfo
+!.env

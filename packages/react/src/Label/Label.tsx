@@ -5,7 +5,7 @@ import {Text} from '../Text'
 import {useAnimation} from '../animation'
 
 import type {BaseProps} from '../component-helpers'
-import {Colors, Gradients} from '../constants'
+import {Colors, BiColorGradients, TriColorGradients} from '../constants'
 
 /**
  * Design tokens
@@ -14,18 +14,21 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 
 /** * Main Stylesheet (as a CSS Module) */
 import styles from './Label.module.css'
+import {Icon} from '@primer/octicons-react'
+
+const Gradients = [...BiColorGradients, ...TriColorGradients] as const
 
 export const LabelColors = [...Colors, ...Gradients] as const
-export const LabelSizes = ['medium', 'large'] as const
+export const LabelSizes = ['small', 'medium', 'large'] as const
 
 export const defaultLabelColor = LabelColors[0]
-export const defaultLabelSize = LabelSizes[0]
+export const defaultLabelSize = LabelSizes[1]
 
 export type LabelProps = BaseProps<HTMLSpanElement> & {
   /**
    * The leading visual appears before the Label content
    */
-  leadingVisual?: React.ReactNode
+  leadingVisual?: React.ReactNode | Icon
   /**
    * The color variations available in Label
    */
@@ -81,7 +84,7 @@ const _Label = forwardRef<HTMLSpanElement, LabelProps>(
         {LeadingVisual && (
           <span className={styles['Label__leading-visual']} data-testid={testIds.leadingVisual}>
             {typeof LeadingVisual === 'function' ? (
-              <LeadingVisual className={clsx(styles['Label__icon-visual'])} aria-hidden />
+              <LeadingVisual />
             ) : (
               React.isValidElement(LeadingVisual) &&
               React.cloneElement(LeadingVisual as React.ReactElement, {
@@ -92,7 +95,7 @@ const _Label = forwardRef<HTMLSpanElement, LabelProps>(
           </span>
         )}
         <span className={clsx(styles['Label__text'])}>
-          <Text as="span" size={size === 'medium' ? '100' : '200'} className={clsx(styles['Label__label'])}>
+          <Text as="span" size={size === 'large' ? '200' : '100'} className={clsx(styles['Label__label'])}>
             {children}
           </Text>
         </span>

@@ -30,6 +30,15 @@ test.describe('Visual Comparison: Hero', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('Hero / With Accent Button', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-accent-button&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('Hero / With an image (left + bottom)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-image-block-end-default&viewMode=story',
@@ -51,6 +60,24 @@ test.describe('Visual Comparison: Hero', () => {
   test('Hero / With an image (right)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-image-inline-end&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Hero / With a VideoPlayer (bottom)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-video-block-end-default&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Hero / With a VideoPlayer (right)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-video-inline-end&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -101,6 +128,15 @@ test.describe('Visual Comparison: Hero', () => {
   test('Hero / With Custom Classnames', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-custom-classnames&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Hero / With Custom Heading And Description Sizes', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-hero-features--with-custom-heading-and-description-sizes&viewMode=story',
     )
 
     await page.waitForTimeout(500)

@@ -1,11 +1,11 @@
 declare const styles: {
-  readonly "hideHorizontalOverflow": string;
-  readonly "subtleCards": string;
-  readonly "customHero": string;
-  readonly "scaleAnimation": string;
-  readonly "relative": string;
   readonly "ctaBanner": string;
+  readonly "customHero": string;
   readonly "fullHeight": string;
+  readonly "hideHorizontalOverflow": string;
+  readonly "relative": string;
+  readonly "scaleAnimation": string;
+  readonly "subtleCards": string;
 };
 export = styles;
 
