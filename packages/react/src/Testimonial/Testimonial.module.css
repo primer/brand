@@ -45,12 +45,12 @@
   border-radius: inherit;
 }
 
-.Testimonial--variant-subtle::before {
+.Testimonial--variant-subtle.Testimonial--border::before {
   mask-image: var(--brand-Testimonial-borderMask-subtle);
   border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
 }
 
-.Testimonial--variant-default::before {
+.Testimonial--variant-default.Testimonial--border::before {
   mask-image: var(--brand-Testimonial-borderMask-default);
   border: var(--brand-borderWidth-thin) solid var(--brand-color-border-default);
 }

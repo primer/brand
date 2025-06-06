@@ -7,10 +7,12 @@
 .Pagination__inner {
   display: inline-flex;
   align-items: center;
+  gap: var(--base-size-8);
 }
 
 .Pagination__item {
-  min-width: var(--base-size-36);
+  min-width: var(--base-size-32);
+  height: var(--base-size-32);
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
@@ -18,46 +20,14 @@
   user-select: none;
   text-decoration: none;
   padding: var(--base-size-4) var(--base-size-8);
-  margin-right: var(--base-size-8);
   border: var(--brand-borderWidth-thick) solid transparent;
   border-radius: var(--brand-borderRadius-medium);
   transition: border-color var(--brand-animation-duration-fast) var(--brand-animation-easing-default);
 }
 
-.Pagination__item--hidden,
-.Pagination__item--hidden-narrow,
-.Pagination__item--hidden-regular,
-.Pagination__item--hidden-wide {
-  display: none;
-}
-
-.Pagination__item--visible,
-.Pagination__item--visible-narrow {
-  display: block;
-}
-
-@media screen and (min-width: 48rem) {
-  .Pagination__item--hidden-regular {
-    display: none;
-  }
-
-  .Pagination__item--visible-regular {
-    display: block;
-  }
-}
-
-@media screen and (min-width: 80rem) {
-  .Pagination__item--hidden-wide {
-    display: none;
-  }
-
-  .Pagination__item--visible-wide {
-    display: block;
-  }
-}
-
-.Pagination__item:last-child {
-  margin-right: 0;
+.Pagination__item span {
+  font-size: var(--brand-text-size-100);
+  line-height: var(--base-size-20);
 }
 
 .Pagination__item:hover,
@@ -107,9 +77,52 @@
   color: inherit;
 }
 
-.Pagination__item[rel='prev'] {
-  margin-inline-end: var(--base-size-16);
+.Pagination__showPages .Pagination__item[rel='prev'] span,
+.Pagination__showPages .Pagination__item[rel='next'] span {
+  display: none;
 }
-.Pagination__item[rel='next'] {
-  margin-inline-start: var(--base-size-16);
+
+.Pagination__item[rel='prev'] svg,
+.Pagination__item[rel='next'] svg {
+  margin-inline: 0;
+  position: relative;
+}
+
+.Pagination__item[rel='prev'] svg {
+  left: var(--base-size-2);
+}
+
+.Pagination__item[rel='next'] svg {
+  right: var(--base-size-2);
+}
+
+@media screen and (min-width: 48rem) {
+  .Pagination__item[rel='prev'] span,
+  .Pagination__item[rel='next'] span {
+    display: block !important;
+  }
+
+  .Pagination__item[rel='prev'] svg,
+  .Pagination__item[rel='next'] svg {
+    margin-inline: unset;
+    left: 0;
+    right: 0;
+  }
+
+  .Pagination__item[rel='prev'][aria-disabled] svg,
+  .Pagination__item[rel='next'][aria-disabled] svg {
+    display: none;
+  }
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  .Pagination,
+  .Pagination::before,
+  .Pagination::after,
+  .Pagination * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
 }

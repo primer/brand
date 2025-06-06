@@ -1,4 +1,4 @@
-import React, {RefObject, forwardRef, useCallback} from 'react'
+import React, {RefObject, forwardRef} from 'react'
 import {isFragment} from 'react-is'
 import clsx from 'clsx'
 import {Heading, HeadingProps, Text, useTheme, CardSkewEffect, Image, type ImageProps, Label, LabelColors} from '..'
@@ -20,14 +20,19 @@ import '@primer/brand-primitives/lib/design-tokens/css/tokens/functional/compone
 import styles from './Card.module.css'
 import stylesLink from '../Link/Link.module.css'
 
+export const CardVariants = ['default', 'minimal', 'torchlight'] as const
+
 export const CardIconColors = Colors
 
 export const defaultCardIconColor = CardIconColors[0]
+
+export type CardVariants = (typeof CardVariants)[number]
+
 export type CardProps = {
   /**
    * Specify alternative card appearance
    */
-  variant?: 'default' | 'minimal'
+  variant?: CardVariants
   /**
    * Valid children include Card.Image, Card.Heading, and Card.Description
    */
@@ -55,6 +60,10 @@ export type CardProps = {
    * Fills the width of the parent container and removes the default max-width.
    */
   fullWidth?: boolean
+  /**
+   * Aligns the card content
+   */
+  align?: 'start' | 'center'
 } & Omit<BaseProps<HTMLDivElement>, 'animate'> &
   Omit<React.ComponentPropsWithoutRef<'div'>, 'onMouseEnter' | 'onMouseLeave' | 'onFocus' | 'onBlur'> &
   Pick<React.ComponentPropsWithoutRef<'a'>, 'onMouseEnter' | 'onMouseLeave' | 'onFocus' | 'onBlur'>
@@ -62,6 +71,7 @@ export type CardProps = {
 const CardRoot = forwardRef<HTMLDivElement, CardProps>(
   (
     {
+      align = 'start',
       onMouseEnter,
       onMouseLeave,
       onFocus,
@@ -81,33 +91,16 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
   ) => {
     const cardRef = useProvidedRefOrCreate(ref as RefObject<HTMLDivElement>)
     const {colorMode} = useTheme()
-    const [isActive, setIsActive] = React.useState(false)
-
-    const handleActiveCard = useCallback(
-      (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-        setIsActive(true)
-        onMouseEnter?.(event)
-      },
-      [onMouseEnter, setIsActive],
-    )
-
-    const handleInactiveCard = useCallback(
-      (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-        setIsActive(false)
-        onMouseLeave?.(event)
-      },
-      [onMouseLeave, setIsActive],
-    )
 
     const filteredChildren = React.Children.toArray(children).filter(child => {
       if (React.isValidElement(child) && typeof child.type !== 'string') {
         if (
           isFragment(child) ||
-          child.type === CardImage ||
-          child.type === CardIcon ||
-          child.type === CardLabel ||
-          child.type === CardHeading ||
-          child.type === CardDescription
+          (child as React.ReactElement).type === CardImage ||
+          (child as React.ReactElement).type === CardIcon ||
+          (child as React.ReactElement).type === CardLabel ||
+          (child as React.ReactElement).type === CardHeading ||
+          (child as React.ReactElement).type === CardDescription
         ) {
           return true
         }
@@ -119,7 +112,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
       child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === CardIcon,
     )
 
-    const hasSkewEffect = colorMode === 'dark' && variant !== 'minimal'
+    const hasSkewEffect = colorMode === 'dark' && variant === 'torchlight'
     const showBorder = hasSkewEffect || hasBorder
 
     const WrapperComponent = hasSkewEffect ? CardSkewEffect : DefaultCardWrapperComponent
@@ -128,7 +121,10 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
       <WrapperComponent
         style={style}
         disableSkew={disableAnimation}
-        className={clsx(fullWidth ? styles['Card--fullWidth'] : styles['Card--maxWidth'])}
+        className={clsx(
+          fullWidth ? styles['Card--fullWidth'] : styles['Card--maxWidth'],
+          styles[`Card--align-${align}`],
+        )}
       >
         <div
           className={clsx(
@@ -148,8 +144,6 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
           {React.Children.map(filteredChildren, child => {
             if (React.isValidElement(child) && typeof child.type !== 'string' && child.type === CardHeading) {
               return React.cloneElement<CardHeadingProps>(child as React.ReactElement<CardHeadingProps>, {
-                onMouseEnter: handleActiveCard,
-                onMouseLeave: handleInactiveCard,
                 href,
               })
             }
@@ -159,7 +153,10 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
             <Text as="span" size="200" className={clsx(stylesLink['Link--label'])}>
               {ctaText}
             </Text>
-            <ExpandableArrow className={stylesLink['Link-arrow']} expanded={isActive} aria-hidden="true" />
+            <ExpandableArrow
+              className={clsx(stylesLink['Link-arrow'], styles['Card--expandableArrow'])}
+              aria-hidden="true"
+            />
           </div>
         </div>
       </WrapperComponent>

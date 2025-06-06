@@ -1,5 +1,118 @@
 # @primer/brand-primitives
 
+## 0.54.2
+
+### Patch Changes
+
+- [#1034](https://github.com/primer/brand/pull/1034) [`0d3a198`](https://github.com/primer/brand/commit/0d3a1988a39ec97fa92c56815ccead7d22a41e78) Thanks [@rezrah](https://github.com/rezrah)! - Added new tokens for LogoSuite play/pause controls for improved visual contrast and granular customization
+
+  ```diff
+  + --brand-LogoSuite-color-control-rest
+  + --brand-LogoSuite-color-control-hover
+  ```
+
+## 0.54.1
+
+## 0.54.0
+
+## 0.53.0
+
+### Patch Changes
+
+- [#976](https://github.com/primer/brand/pull/976) [`4cdb794`](https://github.com/primer/brand/commit/4cdb7943f5759c7a0bb5dd1499a5c71f7e9c9c6f) Thanks [@danielguillan](https://github.com/danielguillan)! - Added a new `350` step to the typographic scale.
+
+  E.g.
+
+  ```css
+  .Some-text {
+    font-weight: var(--brand-text-weight-350);
+    font-size: var(--brand-text-size-350);
+    line-height: var(--brand-text-lineHeight-350);
+    letter-spacing: var(--brand-text-letterSpacing-350);
+  }
+  ```
+
+- [#1002](https://github.com/primer/brand/pull/1002) [`84d8e52`](https://github.com/primer/brand/commit/84d8e52f4b3f4c9a49cb9417f1f4a6c96649264e) Thanks [@danielguillan](https://github.com/danielguillan)! - - Updated styles and layout in `PricingOptions` for a more condensed design.
+
+  - Added new `variant` options to support `gradient` styling in `PricingOptions`: `default-gradient` and `cards-gradient`.
+
+  Usage example:
+
+  ```jsx
+  <PricingOptions variant="default-gradient">{/*...*/}</PricingOptions>
+  ```
+
+- [#1005](https://github.com/primer/brand/pull/1005) [`dcfdb2c`](https://github.com/primer/brand/commit/dcfdb2c75e76158efb8e9a06898ce652881a55e4) Thanks [@rezrah](https://github.com/rezrah)! - Updated dark mode color values for `canvas.default` and `black.0`
+
+  ```diff
+  - --base-color-scale-black-0: #0d1117
+  + --base-color-scale-black-0: #000000
+  ```
+
+  ```diff
+  - --brand-color-canvas-default: var(--base-color-scale-gray-9)
+  + --brand-color-canvas-default: var(--base-color-scale-black-0)
+  ```
+
+## 0.52.0
+
+### Patch Changes
+
+- [#986](https://github.com/primer/brand/pull/986) [`c9f10ec`](https://github.com/primer/brand/commit/c9f10ec9d5b40a686bb9f5e88ccb22b47153a047) Thanks [@rezrah](https://github.com/rezrah)! - Visual updates to `Button` and `ActionMenu` components.
+
+  - `secondary` button variants now feature lighter border colors.
+  - `subtle` button variants now feature a semi-transparent background color in `rest` state.
+  - `accent` button variants in dark mode now use a darker hue for parity with its GitHub product counterpart.
+
+## 0.51.1
+
+## 0.51.0
+
+## 0.50.0
+
+### Patch Changes
+
+- [#958](https://github.com/primer/brand/pull/958) [`3b391a5`](https://github.com/primer/brand/commit/3b391a5d2577f5bdd108b78f04bc8ef444118c44) Thanks [@rezrah](https://github.com/rezrah)! - Added new design tokens for a fourth pricing option item
+
+  ```css
+  --brand-PricingOptions-items4-container-padding-inline
+  --brand-PricingOptions-items4-gap
+  ```
+
+- [#955](https://github.com/primer/brand/pull/955) [`2daaff8`](https://github.com/primer/brand/commit/2daaff87503192af74cb54bf37f3eb696c699a23) Thanks [@rezrah](https://github.com/rezrah)! - Added tokens for `accent` and `subtle` button variants.
+
+  ```css
+    --brand-button-accent-bgColor-rest
+    --brand-button-accent-bgColor-hover
+    --brand-button-accent-bgColor-active
+    --brand-button-accent-bgColor-disabled
+    --brand-button-accent-fgColor-rest
+    --brand-button-accent-fgColor-disabled
+    --brand-button-subtle-bgColor-rest
+    --brand-button-subtle-bgColor-hover
+    --brand-button-subtle-bgColor-active
+  ```
+
+  Removed the following tokens for `subtle` variant as they are no longer needed:
+
+  ```css
+  --brand-button-subtle-borderColor-rest
+  --brand-button-subtle-borderColor-hover
+  --brand-button-subtle-borderColor-active
+  ```
+
+## 0.49.0
+
+## 0.48.0
+
+### Patch Changes
+
+- [#942](https://github.com/primer/brand/pull/942) [`5f31936`](https://github.com/primer/brand/commit/5f319362d85ea79fabf6b5239848cc30503b1ccd) Thanks [@danielguillan](https://github.com/danielguillan)! - Update the default `primary` and `secondary` accent color tokens from `pink` and `purple` to `green` and `yellow`, respectively.
+
+## 0.47.2
+
+## 0.47.1
+
 ## 0.47.0
 
 ## 0.46.0

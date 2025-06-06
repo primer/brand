@@ -29,10 +29,16 @@ export const VideoTooltip = ({children, className, ...rest}: VideoTooltipProps) 
       setHasFocus(isFocused)
     }
 
+    const onClick = () => {
+      // Close tooltip when element is clicked
+      setHasFocus(false)
+    }
+
     parent.addEventListener('focus', checkFocus)
     parent.addEventListener('blur', checkFocus)
     parent.addEventListener('focusin', checkFocus)
     parent.addEventListener('focusout', checkFocus)
+    parent.addEventListener('click', onClick)
     window.addEventListener('keydown', handleKeyDown)
 
     return () => {
@@ -40,6 +46,7 @@ export const VideoTooltip = ({children, className, ...rest}: VideoTooltipProps) 
       parent.removeEventListener('blur', checkFocus)
       parent.removeEventListener('focusin', checkFocus)
       parent.removeEventListener('focusout', checkFocus)
+      parent.removeEventListener('click', onClick)
       window.removeEventListener('keydown', handleKeyDown)
     }
   }, [tooltipRef])

@@ -19,6 +19,9 @@ const meta: Meta<LinkProps> = {
       options: LinkArrowDirections,
       control: {type: 'inline-radio'},
     },
+    isExternal: {
+      control: {type: 'boolean'},
+    },
     size: {
       options: LinkSizes,
       control: {type: 'inline-radio'},

@@ -1,0 +1,160 @@
+---
+title: River accordion
+description: Use the river accordion to create expandable content panels with associated visuals.
+keywords: ['expandable', 'features', 'panels', 'visual']
+show-tabs: false
+ready: true
+source: https://github.com/primer/brand/blob/main/packages/react/src/river/RiverAccordion/RiverAccordion.tsx
+figma: 'https://www.figma.com/design/BJ95AjraesmRCWsKA013GS/Primer-Brand?node-id=16649-1564&t=hUxfzn1hD1LwE1aQ-4'
+storybook: '/brand/storybook/?path=/story/components-riveraccordion--default'
+---
+
+import {Label} from '@primer/react'
+import {RiverAccordionChildrenProp, RiverAccordionAlignProp, RiverAccordionItemChildrenProp} from './react'
+
+```js
+import {RiverAccordion} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<RiverAccordion>
+  <RiverAccordion.Item>
+    <RiverAccordion.Heading>Heading 1</RiverAccordion.Heading>
+    <RiverAccordion.Content>
+      <Text>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </RiverAccordion.Content>
+    <RiverAccordion.Visual>
+      <img src="/brand/assets/placeholder-1.png" alt="Visual content for item 2" />
+    </RiverAccordion.Visual>
+  </RiverAccordion.Item>
+
+  <RiverAccordion.Item>
+    <RiverAccordion.Heading>Heading 2</RiverAccordion.Heading>
+    <RiverAccordion.Content>
+      <Text>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </RiverAccordion.Content>
+    <RiverAccordion.Visual>
+      <img src="/brand/assets/placeholder-2.png" alt="Visual content for item 2" />
+    </RiverAccordion.Visual>
+  </RiverAccordion.Item>
+
+  <RiverAccordion.Item>
+    <RiverAccordion.Heading>Heading 3</RiverAccordion.Heading>
+    <RiverAccordion.Content>
+      <Text>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </RiverAccordion.Content>
+    <RiverAccordion.Visual>
+      <img src="/brand/assets/placeholder-3.png" alt="Visual content for item 3" />
+    </RiverAccordion.Visual>
+  </RiverAccordion.Item>
+</RiverAccordion>
+```
+
+### Visual alignment
+
+Use the `align` prop to control the position of the visuals. Setting `align="end"` will invert the default position of the visuals and content.
+
+```jsx live
+<RiverAccordion align="end">
+  <RiverAccordion.Item>
+    <RiverAccordion.Heading>Heading 1</RiverAccordion.Heading>
+    <RiverAccordion.Content>
+      <Text>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </RiverAccordion.Content>
+    <RiverAccordion.Visual>
+      <img src="/brand/assets/placeholder-1.png" alt="Visual content for item 1" />
+    </RiverAccordion.Visual>
+  </RiverAccordion.Item>
+
+  <RiverAccordion.Item>
+    <RiverAccordion.Heading>Heading 2</RiverAccordion.Heading>
+    <RiverAccordion.Content>
+      <Text>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </RiverAccordion.Content>
+    <RiverAccordion.Visual>
+      <img src="/brand/assets/placeholder-2.png" alt="Visual content for item 2" />
+    </RiverAccordion.Visual>
+  </RiverAccordion.Item>
+
+  <RiverAccordion.Item>
+    <RiverAccordion.Heading>Heading 3</RiverAccordion.Heading>
+    <RiverAccordion.Content>
+      <Text>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+        felis nam pulvinar risus elementum.
+      </Text>
+      <Link href="#">Call to action</Link>
+    </RiverAccordion.Content>
+    <RiverAccordion.Visual>
+      <img src="/brand/assets/placeholder-3.png" alt="Visual content for item 3" />
+    </RiverAccordion.Visual>
+  </RiverAccordion.Item>
+</RiverAccordion>
+```
+
+## Component props
+
+### RiverAccordion <Label>Required</Label>
+
+| Name       | Type                           |  Default  | Description                                                            |
+| :--------- | :----------------------------- | :-------: | :--------------------------------------------------------------------- |
+| `children` | <RiverAccordionChildrenProp /> |           | Multiple RiverAccordion.Item components                                |
+| `align`    | <RiverAccordionAlignProp />    | `'start'` | Controls the position of the visuals relative to the accordion content |
+
+`RiverAccordion` extends the HTML `div` element and supports all `div` props.
+
+### RiverAccordion.Item <Label>Required</Label>
+
+| Name       | Type                               | Default | Description                              |
+| :--------- | :--------------------------------- | :-----: | :--------------------------------------- |
+| `children` | <RiverAccordionItemChildrenProp /> |         | Must include all three listed components |
+
+`RiverAccordion.Item` extends the HTML `div` element and supports all `div` props.
+
+### RiverAccordion.Heading <Label>Required</Label>
+
+| Name       | Type     | Default | Description  |
+| :--------- | :------- | :-----: | :----------- |
+| `children` | `string` |         | Heading text |
+
+`RiverAccordion.Heading` extends the [`Heading`](/components/Heading) component and supports all `Heading` props.
+
+### RiverAccordion.Content <Label>Required</Label>
+
+| Name       | Type                   | Default | Description        |
+| :--------- | :--------------------- | :-----: | :----------------- |
+| `children` | `React.ReactElement[]` |         | Content components |
+
+`RiverAccordion.Content` extends the HTML `div` element and supports all `div` props.
+
+### RiverAccordion.Visual <Label>Required</Label>
+
+| Name       | Type                 | Default | Description                  |
+| :--------- | :------------------- | :-----: | :--------------------------- |
+| `children` | `React.ReactElement` |         | Visual content (e.g., image) |
+
+`RiverAccordion.Visual` extends the HTML `div` element and supports all `div` props.

@@ -2,7 +2,7 @@ import React from 'react'
 import {StoryFn, Meta} from '@storybook/react'
 
 import {Stack} from '.'
-import placeholderImage from '../fixtures/images/placeholder-600x400.png'
+import placeholderImage from '../fixtures/images/placeholder.png'
 
 export default {
   title: 'Components/Stack',

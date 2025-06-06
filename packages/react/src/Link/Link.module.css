@@ -1,11 +1,33 @@
 .Link {
-  --arrow-width: var(--base-size-20);
+  --visual-width: var(--external-icon-size, var(--arrow-size, 0px));
+  --gap: 0px;
   position: relative;
   display: inline-flex;
+  column-gap: var(--gap);
   align-items: center;
   justify-content: center;
   text-decoration: none;
   cursor: pointer;
+}
+
+.Link--arrow-start,
+.Link--arrow-end {
+  --gap: var(--base-size-4);
+  --arrow-size: var(--base-size-16);
+}
+
+.Link--arrow-start.Link--large,
+.Link--arrow-end.Link--large {
+  --arrow-size: var(--base-size-20);
+}
+
+.Link--is-external {
+  --gap: var(--base-size-4);
+  --external-icon-size: var(--base-size-16);
+}
+
+.Link--is-external.Link--large {
+  --external-icon-size: var(--base-size-20);
 }
 
 .Link:hover {
@@ -16,7 +38,7 @@
   position: absolute;
   bottom: -0.15em;
   left: 0;
-  width: calc(100% - var(--arrow-width));
+  width: calc(100% - var(--gap) - var(--visual-width));
   pointer-events: none;
   content: '';
   border: var(--brand-borderWidth-thin) solid currentColor;
@@ -54,31 +76,29 @@
   font-weight: var(--base-text-weight-semibold);
 }
 
-.Link-arrow {
-  margin-left: 4px;
-}
-
 .Link--large .Link--label {
   font-size: var(--base-size-20);
 }
 
 .Link--large .Link-arrow {
-  width: var(--arrow-width);
-  height: var(--base-size-20);
+  width: var(--arrow-size);
+  height: var(--arrow-size);
 }
 
 .Link--arrow-start::after {
   left: auto;
   right: 0;
   transform-origin: right 0;
-  width: calc(100% - var(--base-size-20));
 }
 
-.Link--arrow-start .Link-arrow {
-  margin-left: auto;
-  margin-right: 4px;
-}
-
-.Link.Link--arrow-none::after {
-  width: 100%;
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  .Link,
+  .Link::before,
+  .Link::after,
+  .Link * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -7,6 +7,7 @@ declare const styles: {
   readonly "Label--color-gray": string;
   readonly "Label--color-green": string;
   readonly "Label--color-green-blue": string;
+  readonly "Label--color-green-blue-purple": string;
   readonly "Label--color-indigo": string;
   readonly "Label--color-lemon": string;
   readonly "Label--color-lime": string;
@@ -22,6 +23,7 @@ declare const styles: {
   readonly "Label--gradient": string;
   readonly "Label--size-large": string;
   readonly "Label--size-medium": string;
+  readonly "Label--size-small": string;
   readonly "Label__icon-visual": string;
   readonly "Label__label": string;
   readonly "Label__leading-visual": string;

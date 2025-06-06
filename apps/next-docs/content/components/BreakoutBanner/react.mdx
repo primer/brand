@@ -1,0 +1,186 @@
+---
+title: Breakout banner
+description: Use a breakout banner to break up content on longer pages and highlight important information.
+keywords: ['banner', 'promo', 'callout', 'attention', 'highlight']
+source: https://github.com/primer/brand/blob/main/packages/react/src/BreakoutBanner/BreakoutBanner.tsx
+storybook: '/brand/storybook/?path=/story/components-breakoutbanner--playground'
+show-tabs: true
+tab-label: React
+ready: true
+---
+
+import {Label} from '@primer/react'
+import {
+  BreakoutBannerAlignmentProps,
+  BreakoutBannerBackgroundColorProps,
+  BreakoutBannerBackgroundImageProps,
+  BreakoutBannerLinkDirectionProps,
+  HeadingTagsProps,
+  HeadingSizesProps,
+} from './react.tsx'
+
+```js
+import {BreakoutBanner} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<BreakoutBanner>
+  <BreakoutBanner.Heading>Where the most ambitious teams build great things</BreakoutBanner.Heading>
+  <BreakoutBanner.LinkGroup>
+    <Link href="#">Primary action</Link>
+  </BreakoutBanner.LinkGroup>
+</BreakoutBanner>
+```
+
+### Optional description
+
+```jsx live
+<BreakoutBanner>
+  <BreakoutBanner.Heading>Where the most ambitious teams build great things</BreakoutBanner.Heading>
+  <BreakoutBanner.Description>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+    felis nam pulvinar risus elementum.
+  </BreakoutBanner.Description>
+  <BreakoutBanner.LinkGroup>
+    <Link href="#">Primary action</Link>
+  </BreakoutBanner.LinkGroup>
+</BreakoutBanner>
+```
+
+### Additional action
+
+```jsx live
+<BreakoutBanner>
+  <BreakoutBanner.Heading>Where the most ambitious teams build great things</BreakoutBanner.Heading>
+  <BreakoutBanner.LinkGroup>
+    <Link href="#">Primary action</Link>
+    <Link href="#">Secondary action</Link>
+  </BreakoutBanner.LinkGroup>
+</BreakoutBanner>
+```
+
+### Vertically stacked actions
+
+```jsx live
+<BreakoutBanner>
+  <BreakoutBanner.Heading>Where the most ambitious teams build great things</BreakoutBanner.Heading>
+  <BreakoutBanner.LinkGroup direction="vertical">
+    <Link href="#">Primary action</Link>
+    <Link href="#">Secondary action</Link>
+  </BreakoutBanner.LinkGroup>
+</BreakoutBanner>
+```
+
+### Alignment
+
+The content alignment can be changed using the `align` prop on the root `BreakoutBanner`. This can be configured to either `start` or `center`.
+
+```jsx live
+<BreakoutBanner align="center">
+  <BreakoutBanner.Heading>Where the most ambitious teams build great things</BreakoutBanner.Heading>
+  <BreakoutBanner.Description>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+    felis nam pulvinar risus elementum.
+  </BreakoutBanner.Description>
+  <BreakoutBanner.LinkGroup>
+    <Link href="#">Primary action</Link>
+    <Link href="#">Secondary action</Link>
+  </BreakoutBanner.LinkGroup>
+</BreakoutBanner>
+```
+
+### Leading visual
+
+<Note variant="warning">An accessible label should always be provided for the leading visual.</Note>
+
+```jsx live
+<BreakoutBanner leadingVisual={<LogoGithubIcon size="medium" aria-label="GitHub logo" />}>
+  <BreakoutBanner.Heading>Where the most ambitious teams build great things</BreakoutBanner.Heading>
+  <BreakoutBanner.LinkGroup>
+    <Link href="#">Primary action</Link>
+  </BreakoutBanner.LinkGroup>
+</BreakoutBanner>
+```
+
+### Optional background image
+
+```jsx live
+<ThemeProvider colorMode="dark">
+  <BreakoutBanner
+    backgroundImageSrc={{
+      narrow: 'https://github.com/user-attachments/assets/a28110fd-d019-41a4-8f80-b49ae8895708',
+      regular: 'https://github.com/user-attachments/assets/a28110fd-d019-41a4-8f80-b49ae8895708',
+      wide: 'https://github.com/user-attachments/assets/a28110fd-d019-41a4-8f80-b49ae8895708',
+    }}
+  >
+    <BreakoutBanner.Heading>Where the most ambitious teams build great things</BreakoutBanner.Heading>
+    <BreakoutBanner.LinkGroup>
+      <Link href="#">Primary action</Link>
+    </BreakoutBanner.LinkGroup>
+  </BreakoutBanner>
+</ThemeProvider>
+```
+
+### Optional background color
+
+```jsx live
+<BreakoutBanner backgroundColor="var(--base-color-scale-blue-0)">
+  <BreakoutBanner.Heading>Where the most ambitious teams build great things</BreakoutBanner.Heading>
+  <BreakoutBanner.Description>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id. Aliquam luctus sed turpis
+    felis nam pulvinar risus elementum.
+  </BreakoutBanner.Description>
+  <BreakoutBanner.LinkGroup>
+    <Link href="#">Primary action</Link>
+    <Link href="#">Secondary action</Link>
+  </BreakoutBanner.LinkGroup>
+</BreakoutBanner>
+```
+
+## Component props
+
+### BreakoutBanner <Label>Required</Label>
+
+| name                      | type                                   | default     | required | description                                                      |
+| ------------------------- | -------------------------------------- | ----------- | -------- | ---------------------------------------------------------------- |
+| `children`                | `ReactNode`, `ReactNode[]`             | `undefined` | `true`   | Content to include within the banner component                   |
+| `align`                   | <BreakoutBannerAlignmentProps />       | `'start'`   | `true`   | The horizontal positioning of content wihin the banner component |
+| `backgroundColor`         | <BreakoutBannerBackgroundColorProps /> | `'subtle'`  | `false`  | Optional, custom background color                                |
+| `backgroundImageSrc`      | <BreakoutBannerBackgroundImageProps /> | `undefined` | `false`  | Optional, custom background image                                |
+| `backgroundImagePosition` | <BreakoutBannerBackgroundImageProps /> | `'center'`  | `false`  | Optional, custom background position                             |
+| `backgroundImageSize`     | <BreakoutBannerBackgroundImageProps /> | `'cover'`   | `false`  | Optional, custom background position size                        |
+| `leadingVisual`           | `ReactElement`, `Icon`                 | `undefined` | `false`  | An optional leading visual that appears before the heading       |
+
+### BreakoutBanner.Heading <Label>Required</Label>
+
+| name       | type                       | default     | required | description                                                           |
+| ---------- | -------------------------- | ----------- | -------- | --------------------------------------------------------------------- |
+| `children` | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | Content to be displayed inside the `BreakoutBanner.Heading` component |
+| `as`       | <HeadingTagsProps />       | `'h3'`      | `false`  | Heading level                                                         |
+| `size`     | <HeadingSizesProps />      | `'4'`       | `false`  | Visual heading size, irrespective of level                            |
+
+### BreakoutBanner.Description
+
+Optional child that can be used to provide additional information.
+
+| name       | type                       | default     | required | description                                         |
+| ---------- | -------------------------- | ----------- | -------- | --------------------------------------------------- |
+| `children` | `ReactNode`, `ReactNode[]` | `undefined` | `true`   | Content to be displayed inside the banner component |
+
+### BreakoutBanner.LinkGroup
+
+| name        | type                                 | default        | required | description                                  |
+| ----------- | ------------------------------------ | -------------- | -------- | -------------------------------------------- |
+| `children`  | `Link`                               | `undefined`    | `true`   | The links to be displayed within the group   |
+| `direction` | <BreakoutBannerLinkDirectionProps /> | `'horizontal'` | `false`  | Positioning of the links across x and y axis |
+
+All components forward `id`, `className` and `ref` by default
+
+## Related components
+
+- [CTABanner](/components/CTABanner): For highlighting important information and actions towards the end of a page
+- [Bento](/components/Bento): For more complex layout needs when presenting multiple content blocks

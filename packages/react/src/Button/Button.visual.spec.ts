@@ -96,6 +96,22 @@ test.describe('Visual Comparison: Button', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('Button / Accent', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--accent&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Button / Accent Disabled', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--accent-disabled&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('Button / Small', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-button-features--small&viewMode=story')
 
@@ -174,6 +190,15 @@ test.describe('Visual Comparison: Button', () => {
   test('Button / Leading and trailing visual (native)', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-button-features--with-leading-and-trailing-visual-svg&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('Button / With optional arrows', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-button-features--with-optional-arrows&viewMode=story',
     )
 
     await page.waitForTimeout(500)

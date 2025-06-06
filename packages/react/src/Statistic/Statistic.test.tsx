@@ -9,11 +9,11 @@ import '../test-utils/mocks/match-media-mock'
 
 expect.extend(toHaveNoViolations)
 
-describe('EyebrowBanner', () => {
+describe('Statistic', () => {
   const mockHeading = '$100M+'
   const mockDescription = 'developers'
 
-  const mockReadAloudText = `${mockHeading} ${mockDescription}`
+  const expectedReadAloudText = `${mockHeading} ${mockDescription}`
 
   afterEach(() => {
     cleanup()
@@ -21,34 +21,62 @@ describe('EyebrowBanner', () => {
   })
 
   it('renders the default component', async () => {
-    const {getByRole, container} = render(
+    const {getByText, container} = render(
       <Statistic>
         <Statistic.Heading>{mockHeading}</Statistic.Heading>
         <Statistic.Description>{mockDescription}</Statistic.Description>
       </Statistic>,
     )
 
-    expect(getByRole('heading', {name: mockReadAloudText})).toBeInTheDocument()
+    expect(getByText(mockHeading)).toBeInTheDocument()
+    expect(getByText(mockDescription)).toBeInTheDocument()
 
     const results = await axe(container)
 
     expect(results).toHaveNoViolations()
   })
 
-  it('renders the default heading level and size correctly', async () => {
-    const expectedSize = 'display'
-    const expectedLevel = 'H3'
-
-    const {getByText, getByRole} = render(
+  it('renders the combined heading and description text', async () => {
+    const {getByTestId} = render(
       <Statistic>
         <Statistic.Heading>{mockHeading}</Statistic.Heading>
         <Statistic.Description>{mockDescription}</Statistic.Description>
       </Statistic>,
     )
 
-    expect(getByRole('heading', {name: mockReadAloudText}).tagName).toBe(expectedLevel)
-    expect(getByRole('heading', {name: mockReadAloudText}).classList).toContain(`Heading--${expectedSize}`)
-    expect(getByText(mockHeading).tagName).toBe(expectedLevel)
+    const el = getByTestId(Statistic.testIds.root)
+
+    expect(el.textContent).toBe(expectedReadAloudText)
+  })
+
+  it('renders the Statistic.Heading with a paragraph element by default', async () => {
+    const expectedTagName = 'P'
+    const expectedSize = '1000'
+
+    const {getByText} = render(
+      <Statistic>
+        <Statistic.Heading>{mockHeading}</Statistic.Heading>
+        <Statistic.Description>{mockDescription}</Statistic.Description>
+      </Statistic>,
+    )
+
+    expect(getByText(mockHeading).tagName).toBe(expectedTagName)
+    expect(getByText(mockHeading).classList).toContain(`Text--${expectedSize}`)
+  })
+
+  it('renders the Statistic.Heading with a span element when as="span" is passed', async () => {
+    const expectedTagName = 'SPAN'
+    const expectedSize = '1000'
+
+    const {getByText} = render(
+      <Statistic>
+        <Statistic.Heading as="span">{mockHeading}</Statistic.Heading>
+        <Statistic.Description>{mockDescription}</Statistic.Description>
+      </Statistic>,
+    )
+
+    expect(getByText(mockHeading).tagName).toBe(expectedTagName)
+    expect(getByText(mockHeading).classList).toContain(`Text--${expectedSize}`)
   })
 
   it('renders the Statistic with custom padding', async () => {
@@ -110,16 +138,16 @@ describe('EyebrowBanner', () => {
   })
 
   it('renders the Statistic with custom heading size', async () => {
-    const {getByRole} = render(
+    const {getByText} = render(
       <Statistic>
-        <Statistic.Heading size="2">{mockHeading}</Statistic.Heading>
+        <Statistic.Heading size="600">{mockHeading}</Statistic.Heading>
         <Statistic.Description>{mockDescription}</Statistic.Description>
       </Statistic>,
     )
 
-    const heading = getByRole('heading', {name: mockReadAloudText})
+    const heading = getByText(mockHeading)
 
-    expect(heading).toHaveClass('Heading--2')
+    expect(heading).toHaveClass('Text--600')
   })
 
   it('renders the Statistic with custom description variant', async () => {

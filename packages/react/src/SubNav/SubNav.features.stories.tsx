@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {Meta} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {linkTo} from '@storybook/addon-links'
@@ -90,6 +90,98 @@ NarrowDropdownVariantMenuOpen.play = async ({canvasElement}) => {
 export const WithShadow = args => <DropdownVariant {...args} hasShadow={true} />
 WithShadow.parameters = {
   layout: 'fullscreen',
+}
+
+export const SubHeading = args => (
+  <SubNav {...args}>
+    <SubNav.Heading href="#">AI</SubNav.Heading>
+    <SubNav.SubHeading href="#">Copilot</SubNav.SubHeading>
+    <SubNav.Link href="#">For business</SubNav.Link>
+    <SubNav.Link href="#" aria-current="page">
+      Extensions
+    </SubNav.Link>
+    <SubNav.Link href="#">Tutorials</SubNav.Link>
+    <SubNav.Link href="#">
+      What&apos;s new
+      <SubNav.SubMenu>
+        <SubNav.Link href="#">Sub-feature page one</SubNav.Link>
+        <SubNav.Link href="#">Sub-feature page two</SubNav.Link>
+        <SubNav.Link href="#">Sub-feature page three</SubNav.Link>
+        <SubNav.Link href="#">Sub-feature page four</SubNav.Link>
+      </SubNav.SubMenu>
+    </SubNav.Link>
+    <SubNav.Link href="#">Plans & pricing</SubNav.Link>
+    <SubNav.Action href="#">Call to action</SubNav.Action>
+  </SubNav>
+)
+SubHeading.parameters = {
+  layout: 'fullscreen',
+}
+
+export const SubHeadingNarrow = args => <SubHeading {...args} />
+SubHeadingNarrow.parameters = {
+  layout: 'fullscreen',
+  viewport: {
+    defaultViewport: 'iphonex',
+  },
+}
+
+export const SubHeadingNarrowOpen = args => <SubHeading {...args} />
+SubHeadingNarrowOpen.parameters = {
+  layout: 'fullscreen',
+  viewport: {
+    defaultViewport: 'iphonex',
+  },
+}
+SubHeadingNarrowOpen.play = async ({canvasElement}) => {
+  const canvas = within(canvasElement)
+  await userEvent.click(canvas.getByTestId('SubNav-root-button'))
+}
+
+export const ActiveSubHeading = args => (
+  <SubNav {...args}>
+    <SubNav.Heading href="#">AI</SubNav.Heading>
+    <SubNav.SubHeading href="#" aria-current="page">
+      Copilot
+    </SubNav.SubHeading>
+    <SubNav.Link href="#">For business</SubNav.Link>
+    <SubNav.Link href="#">Extensions</SubNav.Link>
+    <SubNav.Link href="#">Tutorials</SubNav.Link>
+    <SubNav.Link href="#">
+      What&apos;s new
+      <SubNav.SubMenu>
+        <SubNav.Link href="#">Sub-feature page one</SubNav.Link>
+        <SubNav.Link href="#">Sub-feature page two</SubNav.Link>
+        <SubNav.Link href="#">Sub-feature page three</SubNav.Link>
+        <SubNav.Link href="#">Sub-feature page four</SubNav.Link>
+      </SubNav.SubMenu>
+    </SubNav.Link>
+    <SubNav.Link href="#">Plans & pricing</SubNav.Link>
+    <SubNav.Action href="#">Call to action</SubNav.Action>
+  </SubNav>
+)
+ActiveSubHeading.parameters = {
+  layout: 'fullscreen',
+}
+
+export const ActiveSubHeadingNarrow = args => <ActiveSubHeading {...args} />
+ActiveSubHeadingNarrow.parameters = {
+  layout: 'fullscreen',
+  viewport: {
+    defaultViewport: 'iphonex',
+  },
+}
+
+export const ActiveSubHeadingNarrowOpen = args => <ActiveSubHeading {...args} />
+ActiveSubHeadingNarrowOpen.parameters = {
+  layout: 'fullscreen',
+  viewport: {
+    defaultViewport: 'iphonex',
+  },
+}
+ActiveSubHeadingNarrowOpen.play = async ({canvasElement}) => {
+  const canvas = within(canvasElement)
+  await userEvent.click(canvas.getByTestId('SubNav-root-button'))
 }
 
 export const FullWidth = args => (
@@ -260,3 +352,34 @@ export const AnchorNavDefaultLinkVariant = args => (
     <SubNav.Action href="#">Primary CTA</SubNav.Action>
   </SubNav>
 )
+
+export const ForwardedRefs = () => {
+  const subNavRef = React.useRef<HTMLDivElement>(null)
+  const [height, setHeight] = React.useState<number | null>(null)
+
+  useEffect(() => {
+    if (subNavRef.current) {
+      setHeight(subNavRef.current.offsetHeight)
+    }
+  }, [subNavRef])
+
+  return (
+    <>
+      <SubNav ref={subNavRef}>
+        <SubNav.Heading href="#">Heading</SubNav.Heading>
+        <SubNav.Link href="#">Link </SubNav.Link>
+        <SubNav.Link href="#">Link</SubNav.Link>
+        <SubNav.Link href="#">Link</SubNav.Link>
+        <SubNav.Link href="#">Link</SubNav.Link>
+        <SubNav.Link href="#">Link</SubNav.Link>
+        <SubNav.Link href="#">Link</SubNav.Link>
+        <SubNav.Action href="#">Primary CTA</SubNav.Action>
+      </SubNav>
+      <Box paddingBlockStart={64}>
+        <Text as="p" align="center">
+          SubNav rendered height: {height}px
+        </Text>
+      </Box>
+    </>
+  )
+}

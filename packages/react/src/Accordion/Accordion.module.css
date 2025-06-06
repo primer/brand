@@ -303,3 +303,15 @@ details[open] > .Accordion__summary--reversed-toggles + .Accordion__content {
     opacity: 1;
   }
 }
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  .Accordion,
+  .Accordion::before,
+  .Accordion::after,
+  .Accordion * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

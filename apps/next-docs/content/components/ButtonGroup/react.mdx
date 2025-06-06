@@ -1,0 +1,64 @@
+---
+title: Button group
+description: Use the button group component to group related buttons together.
+keywords: ['buttons', 'control', 'action', 'group', 'paired']
+show-tabs: true
+tab-label: React
+ready: true
+source: https://github.com/primer/brand/tree/main/packages/react/src/ButtonGroup/ButtonGroup.tsx
+storybook: '/brand/storybook/?path=/story/components-buttongroup--playground'
+---
+
+import {ButtonGroupSizesProp, ButtonGroupAsProp} from './react.tsx'
+
+```js
+import {ButtonGroup, Button} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+This is the default variant for the ButtonGroup component. The first button in the group is the primary button and the second button is the secondary button.
+
+```jsx live
+<ButtonGroup>
+  <Button>This is one button</Button>
+  <Button>This is another button</Button>
+</ButtonGroup>
+```
+
+### Sizes
+
+The ButtonGroup component can be rendered in different sizes in `medium` and `large` sizes. The default size is `medium`.
+
+```jsx live
+<ButtonGroup buttonSize="large">
+  <Button>This is one large button</Button>
+  <Button>This is another large button</Button>
+</ButtonGroup>
+```
+
+### Polymorphism
+
+The `Button` component can render as a `button` or `a` HTML element. By default, it will render as a `button`.
+
+```jsx live
+<ButtonGroup>
+  <Button as="a" href="#">
+    This is one link
+  </Button>
+  <Button as="a" href="#">
+    This is another link
+  </Button>
+</ButtonGroup>
+```
+
+## Component props
+
+### ButtonGroup
+
+| Name         | Type                     |  Default   | Description                             |
+| :----------- | :----------------------- | :--------: | :-------------------------------------- |
+| `buttonSize` | <ButtonGroupSizesProp /> | `'medium'` | The size variations available in Button |
+| `buttonsAs`  | <ButtonGroupAsProp />    | `'button'` | The HTML variations available in Button |

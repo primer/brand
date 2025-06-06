@@ -19,17 +19,8 @@ module.exports = {
   ],
   framework: {
     name: getAbsolutePath('@storybook/react-webpack5'),
-    options: {builder: {useSWC: true}},
+    options: {},
   },
-  swc: () => ({
-    jsc: {
-      transform: {
-        react: {
-          runtime: 'automatic',
-        },
-      },
-    },
-  }),
   features: {
     buildStoriesJson: true,
     disableTelemetry: true,
@@ -37,6 +28,9 @@ module.exports = {
   docs: {},
   typescript: {
     reactDocgen: 'react-docgen-typescript',
+  },
+  core: {
+    disableWhatsNewNotifications: true,
   },
 }
 

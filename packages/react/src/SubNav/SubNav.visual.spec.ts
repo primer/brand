@@ -55,6 +55,72 @@ test.describe('Visual Comparison: SubNav', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('SubNav / Sub Heading', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-subnav-features--sub-heading&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for Sub Heading Narrow', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('SubNav / Sub Heading Narrow', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-subnav-features--sub-heading-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for Sub Heading Narrow Open', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('SubNav / Sub Heading Narrow Open', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-subnav-features--sub-heading-narrow-open&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+  })
+  test('SubNav / Active Sub Heading', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-subnav-features--active-sub-heading&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for Active Sub Heading Narrow', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('SubNav / Active Sub Heading Narrow', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-subnav-features--active-sub-heading-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+  })
+
+  // eslint-disable-next-line i18n-text/no-en
+  test.describe('Mobile viewport test for Active Sub Heading Narrow Open', () => {
+    test.use({viewport: {width: 360, height: 800}})
+    test('SubNav / Active Sub Heading Narrow Open', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?args=&id=components-subnav-features--active-sub-heading-narrow-open&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+  })
   test('SubNav / Full Width', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-subnav-features--full-width&viewMode=story')
 
@@ -120,6 +186,15 @@ test.describe('Visual Comparison: SubNav', () => {
   test('SubNav / Anchor Nav Default Link Variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-subnav-features--anchor-nav-default-link-variant&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Forwarded Refs', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-subnav-features--forwarded-refs&viewMode=story',
     )
 
     await page.waitForTimeout(500)

@@ -69,12 +69,8 @@ select {
   html:focus-within {
     scroll-behavior: auto;
   }
+}
 
-  *,
-  *::before,
-  *::after {
-    animation: none !important;
-    transition: none !important;
-    scroll-behavior: auto !important;
-  }
+html {
+  scroll-behavior: smooth;
 }

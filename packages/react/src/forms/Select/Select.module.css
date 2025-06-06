@@ -134,3 +134,15 @@
 .Select--error {
   border-color: var(--brand-color-error-fg);
 }
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  .Select,
+  .Select::before,
+  .Select::after,
+  .Select * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,235 @@
+---
+title: Video player
+description: Use the video player component to enable playback of self-hosted videos
+keywords: ['playback', 'media']
+show-tabs: false
+ready: true
+source: https://github.com/primer/brand/blob/main/packages/react/src/VideoPlayer/VideoPlayer.tsx
+storybook: '/brand/storybook/?path=/story/components-videoplayer--playground'
+---
+
+```js
+import {VideoPlayer} from '@primer/react-brand'
+```
+
+## Examples
+
+### Default
+
+```jsx live
+<VideoPlayer title="GitHub media player">
+  <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" />
+  <VideoPlayer.Track src="/brand/assets/example.vtt" default />
+</VideoPlayer>
+```
+
+## With Audio Description
+
+Videos with important visual information must include an audio description to ensure that the content is accessible to all users.
+
+The audio description can be provided as part of the existing soundtrack, or via a link to an alternate audio-described version.
+
+```jsx live
+<Stack gap="normal" alignItems="center">
+  <VideoPlayer title="GitHub media player">
+    <VideoPlayer.Source src="/brand/assets/example.mp4" />
+    <VideoPlayer.Track src="/brand/assets/example.vtt" default />
+  </VideoPlayer>
+  <Stack direction="horizontal" gap={12} padding="none" alignItems="center">
+    <Link href="#" arrowDirection="none">
+      Watch with audio description
+    </Link>
+    <LinkExternalIcon size={16} />
+  </Stack>
+</Stack>
+```
+
+## With poster
+
+```jsx live
+<VideoPlayer poster="/brand/assets/example-poster.png" title="GitHub media player">
+  <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" />
+  <VideoPlayer.Track src="/brand/assets/example.vtt" default />
+</VideoPlayer>
+```
+
+## Without branding
+
+```jsx live
+<VideoPlayer showBranding={false} title="GitHub media player">
+  <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" />
+  <VideoPlayer.Track src="/brand/assets/example.vtt" default />
+</VideoPlayer>
+```
+
+## With visually hidden title
+
+```jsx live
+<VideoPlayer visuallyHiddenTitle title="GitHub media player">
+  <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" />
+  <VideoPlayer.Track src="/brand/assets/example.vtt" default />
+</VideoPlayer>
+```
+
+## With some hidden controls
+
+```jsx live
+<VideoPlayer
+  title="GitHub media player"
+  showPlayPauseButton={false}
+  showSeekControl={true}
+  showCCButton={false}
+  showMuteButton={false}
+  showVolumeControl={false}
+  showFullScreenButton={false}
+>
+  <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" type="video/mp4" />
+  <VideoPlayer.Track src="/brand/assets/example.vtt" default />
+</VideoPlayer>
+```
+
+## Hide controls when paused
+
+```jsx live
+<VideoPlayer title="GitHub media player" showControlsWhenPaused={false}>
+  <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" type="video/mp4" />
+  <VideoPlayer.Track src="/brand/assets/example.vtt" default />
+</VideoPlayer>
+```
+
+## Minimal
+
+```jsx live
+<VideoPlayer title="GitHub media player" visuallyHiddenTitle showBranding={false} showControlsWhenPaused={false}>
+  <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" type="video/mp4" />
+  <VideoPlayer.Track src="/brand/assets/example.vtt" default />
+</VideoPlayer>
+```
+
+## Custom play icon
+
+```jsx live
+<VideoPlayer title="GitHub media player" playIcon={() => <PlayIcon fill="white" size={96} />}>
+  <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" type="video/mp4" />
+  <VideoPlayer.Track src="/brand/assets/example.vtt" default />
+</VideoPlayer>
+```
+
+## Controlling programmatically
+
+The `VideoPlayer` component exposes a `useVideo` hook that can be used to control the video programmatically. To use the hook, the `VideoPlayer` component must be wrapped in a `VideoPlayer.Provider` component.
+
+Full documentation for the `useVideo` hook can be found [below](#usevideo-context).
+
+```javascript live noinline
+const CustomVideoPlayer = () => {
+  const {isPlaying, togglePlaying, seek} = useVideo()
+
+  return (
+    <Stack direction="vertical">
+      <VideoPlayer
+        title="GitHub media player"
+        showPlayPauseButton={false}
+        showSeekControl={false}
+        showCCButton={false}
+        showMuteButton={false}
+        showVolumeControl={false}
+        showFullScreenButton={false}
+      >
+        <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" type="video/mp4" />
+        <VideoPlayer.Track src="/brand/assets/example.vtt" default />
+      </VideoPlayer>
+      <Stack direction="horizontal">
+        <Button onClick={() => togglePlaying()}>{isPlaying ? 'Pause' : 'Play'}</Button>
+        <Button onClick={() => seek(0)}>Go to start</Button>
+        <Button onClick={() => seek(t => t + 5)}>Skip 5 seconds</Button>
+      </Stack>
+    </Stack>
+  )
+}
+
+const App = () => (
+  <VideoPlayer.Provider>
+    <CustomVideoPlayer />
+  </VideoPlayer.Provider>
+)
+
+render(<App />)
+```
+
+## useVideo Context
+
+The `useVideo` context provides a comprehensive API for managing video playback, volume, closed captioning, and fullscreen mode.
+
+The context can be accessed by using the `useVideo` hook in any component that is a child of `VideoPlayer.Provider`.
+
+Below is a detailed description of each property and method available in the `useVideo` context.
+
+| Name               | Type                                               | Description                                                                                    |
+| :----------------- | :------------------------------------------------- | :--------------------------------------------------------------------------------------------- |
+| `ref`              | `RefObject<HTMLVideoElement>`                      | A reference to the video element.                                                              |
+| `isPlaying`        | `boolean`                                          | Indicates if the video is currently playing.                                                   |
+| `volume`           | `number`                                           | The current volume of the video, ranging from 0 to 1.                                          |
+| `isMuted`          | `boolean`                                          | Indicates if the video is currently muted.                                                     |
+| `volumeBeforeMute` | `number`                                           | The volume of the video before it was muted, allowing for easy unmuting to the previous level. |
+| `duration`         | `number`                                           | The total duration of the video in seconds.                                                    |
+| `ccEnabled`        | `boolean`                                          | Indicates if closed captions are enabled.                                                      |
+| `isFullScreen`     | `boolean`                                          | Indicates if the video is currently in fullscreen mode.                                        |
+| `play`             | `() => void`                                       | Plays the video.                                                                               |
+| `pause`            | `() => void`                                       | Pauses the video.                                                                              |
+| `togglePlaying`    | `() => void`                                       | Toggles between playing and pausing the video.                                                 |
+| `setVolume`        | `(volumeValOrFn: SetStateAction<number>) => void`  | Sets the volume of the video.                                                                  |
+| `mute`             | `() => void`                                       | Mutes the video.                                                                               |
+| `unmute`           | `() => void`                                       | Unmutes the video.                                                                             |
+| `toggleMute`       | `() => void`                                       | Toggles between muting and unmuting the video.                                                 |
+| `setDuration`      | `(duration: number) => void`                       | Sets the duration of the video.                                                                |
+| `seekToPercent`    | `(percent: number) => void`                        | Seeks the video to a specific percentage of its duration.                                      |
+| `seek`             | `(secondsValOrFn: SetStateAction<number>) => void` | Seeks the video to an absolute time, or to a relative time if passed a function.               |
+| `enableCC`         | `() => void`                                       | Enables closed captions.                                                                       |
+| `disableCC`        | `() => void`                                       | Disables closed captions.                                                                      |
+| `toggleCC`         | `() => void`                                       | Toggles closed captions on and off.                                                            |
+| `enterFullScreen`  | `() => void`                                       | Enters fullscreen mode.                                                                        |
+| `exitFullScreen`   | `() => void`                                       | Exits fullscreen mode.                                                                         |
+| `toggleFullScreen` | `() => void`                                       | Toggles between entering and exiting fullscreen mode.                                          |
+
+## Component props
+
+### VideoPlayer <Label>Required</Label>
+
+`VideoPlayer` provides a React alternative to the native HTML `<video />`.
+
+| Name                     | Type                                   | Default | Required | Description                                                     |
+| :----------------------- | :------------------------------------- | :-----: | :------: | :-------------------------------------------------------------- |
+| `children`               | `React.ReactNode`, `React.ReactNode[]` |         |  `true`  | Takes `<VideoPlayer.Source>` and `<VideoPlayer.Track>` elements |
+| `title`                  | `string`                               |         |  `true`  | Sets the title of the video                                     |
+| `visuallyHiddenTitle`    | `boolean`                              |         | `false`  | Visually hides the title of the video in the upper-left corner  |
+| `showBranding`           | `boolean`                              | `true`  | `false`  | Displays GitHub branding next to video title                    |
+| `poster`                 | `string`                               |         | `false`  | Sets an image as the starting frame for the video element       |
+| `className`              | `string`                               |         | `false`  | Sets a custom class on the `<video>` element                    |
+| `showControlsWhenPaused` | `boolean`                              | `true`  | `false`  | Show the video controls when paused                             |
+| `showPlayPauseButton`    | `boolean`                              | `true`  | `false`  | Show the play button control                                    |
+| `showSeekControl`        | `boolean`                              | `true`  | `false`  | Show the seek control                                           |
+| `showCCButton`           | `boolean`                              | `true`  | `false`  | Show the closed caption toggle control                          |
+| `showMuteButton`         | `boolean`                              | `true`  | `false`  | Show the mute button control                                    |
+| `showVolumeControl`      | `boolean`                              | `true`  | `false`  | Show the volume control                                         |
+| `showFullScreenButton`   | `boolean`                              | `true`  | `false`  | Show the full screen button control                             |
+
+The component API supports all standard HTML attribute props, while providing some additional behavior as described above.
+
+### VideoPlayer.Source <Label>Required</Label>
+
+`VideoPlayer.Source` provides a React alternative to the native HTML `<source />`. The component API supports all standard HTML attribute props.
+
+### VideoPlayer.Track <Label>Required</Label>
+
+`VideoPlayer.Track` provides a React alternative to the native HTML `<track />`.
+
+| Name   | Type                                                                      |   Default    | Required | Description                                 |
+| :----- | :------------------------------------------------------------------------ | :----------: | :------: | :------------------------------------------ |
+| `kind` | `'subtitles'`, `'captions'`, `'descriptions'`, `'chapters'`, `'metadata'` | `'captions'` | `false`  | Sets how the text track is meant to be used |
+
+The component API supports all standard HTML attribute props, while providing some additional behavior as described above.
+
+### VideoPlayer.Provider
+
+`VideoPlayer.Provider` can be used in conjunction with the `useVideo` hook to enable programmatic access to features such as video playback, volume, closed captioning, and fullscreen mode.

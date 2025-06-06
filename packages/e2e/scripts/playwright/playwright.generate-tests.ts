@@ -31,6 +31,7 @@
     'components-subdomainnavbar--mobile-menu-open-many-items': 5500, // for all staggered animations
     'components-subdomainnavbar--mobile-search-results-visible': 5500, // for the animation
     'components-subdomainnavbar--mobile-no-links': 5500, // for the animation
+    'components-subdomainnavbar--reversed-button-order-narrow': 5500, // for the animation
     'components-button-features--primary-focus-non-standard-bg': 2000, // for the interaction test
     'components-button-features--primary-focus': 2000, // for the interaction test
     'components-button-features--with-hover-interaction': 2000, // for the interaction test
@@ -114,6 +115,7 @@
     'components-animations-examples--timeline-bar', // animation only
     'components-animations--playground', // animation only
     'components-logosuite-examples--following-hero', // animation only
+    'components-logosuite-features--condensed-gap', // animation only
     'components-logosuite-features--marquee', // animation only
     'components-logosuite-features--slower-marquee-speed', // animation only
     'components-logosuite-features--mixed-width', // animation only
@@ -133,6 +135,9 @@
     'components-statistic-features--animations', // animation only
     'components-riverstoryscroll-features--video-narrow', // video makes this too flakey
     'components-riverstoryscroll-features--video', // video makes this too flakey
+    'components-hero-features--with-native-block-end-default', // for being non-deterministic due to video buffering
+    'components-hero-features--with-youtube-video-block-end-default', // for loading a remote video
+    'components-hero-features--with-youtube-video-inline-end', // for loading a remote video
   ]
 
   const categorisedStories = Object.keys((stories as typeof StoryIndex).entries).reduce((acc, key) => {
