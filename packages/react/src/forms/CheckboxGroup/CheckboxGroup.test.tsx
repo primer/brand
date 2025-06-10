@@ -33,7 +33,6 @@ describe('CheckboxGroup', () => {
       </CheckboxGroup>,
     )
 
-    // The group name now includes the label, caption, and validation text
     expect(getByRole('group', {name: 'Choices You can only pick one Great job!'})).toBeInTheDocument()
     expect(getByText('You can only pick one')).toBeInTheDocument()
     expect(getByLabelText('Choice one')).toBeInTheDocument()
@@ -90,8 +89,7 @@ describe('CheckboxGroup', () => {
 
     const fieldset = getByRole('group', {name: 'Choices You can only pick one'})
     const caption = getByText('You can only pick one')
-    
-    // The caption should be in the legend, not referenced by aria-describedby
+
     expect(fieldset).not.toHaveAttribute('aria-describedby')
     expect(caption).toBeInTheDocument()
   })
@@ -120,7 +118,6 @@ describe('CheckboxGroup', () => {
     const fieldset = getByRole('group', {name: 'Choices Uh oh!'})
     const validation = getByText('Uh oh!')
 
-    // The validation should be in the legend, not referenced by aria-describedby
     expect(fieldset).not.toHaveAttribute('aria-describedby')
     expect(validation).toBeInTheDocument()
   })
@@ -151,13 +148,11 @@ describe('CheckboxGroup', () => {
     const hint = getByText('You can only pick one')
     const validation = getByText('Great job!')
 
-    // Both caption and validation should be in the legend, not referenced by aria-describedby
     expect(fieldset).not.toHaveAttribute('aria-describedby')
     expect(hint).toBeInTheDocument()
     expect(validation).toBeInTheDocument()
   })
 
-  // Edge case tests
   it('works with only label (no caption or validation)', () => {
     const {getByRole} = render(
       <CheckboxGroup>
@@ -166,10 +161,9 @@ describe('CheckboxGroup', () => {
           <FormControl.Label>Choice one</FormControl.Label>
           <Checkbox value="one" />
         </FormControl>
-      </CheckboxGroup>
+      </CheckboxGroup>,
     )
 
-    // Should still have the fieldset with just the label text
     expect(getByRole('group', {name: 'Choices'})).toBeInTheDocument()
   })
 
@@ -182,10 +176,9 @@ describe('CheckboxGroup', () => {
           <FormControl.Label>Choice one</FormControl.Label>
           <Checkbox value="one" />
         </FormControl>
-      </CheckboxGroup>
+      </CheckboxGroup>,
     )
 
-    // Should have label + caption
     expect(getByRole('group', {name: 'Choices Pick one'})).toBeInTheDocument()
   })
 
@@ -198,10 +191,9 @@ describe('CheckboxGroup', () => {
           <Checkbox value="one" />
         </FormControl>
         <CheckboxGroup.Validation variant="error">Error!</CheckboxGroup.Validation>
-      </CheckboxGroup>
+      </CheckboxGroup>,
     )
 
-    // Should have label + validation
     expect(getByRole('group', {name: 'Choices Error!'})).toBeInTheDocument()
   })
 })

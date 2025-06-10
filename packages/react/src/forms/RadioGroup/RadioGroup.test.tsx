@@ -33,7 +33,6 @@ describe('RadioGroup', () => {
       </RadioGroup>,
     )
 
-    // The group name now includes the label, caption, and validation text
     expect(getByRole('group', {name: 'Choices You can only pick one Great job!'})).toBeInTheDocument()
     expect(getByText('You can only pick one')).toBeInTheDocument()
     expect(getByLabelText('Choice one')).toBeInTheDocument()
@@ -90,8 +89,7 @@ describe('RadioGroup', () => {
 
     const fieldset = getByRole('group', {name: 'Choices You can only pick one'})
     const caption = getByText('You can only pick one')
-    
-    // The caption should be in the legend, not referenced by aria-describedby
+
     expect(fieldset).not.toHaveAttribute('aria-describedby')
     expect(caption).toBeInTheDocument()
   })
@@ -120,7 +118,6 @@ describe('RadioGroup', () => {
     const fieldset = getByRole('group', {name: 'Choices Uh oh!'})
     const validation = getByText('Uh oh!')
 
-    // The validation should be in the legend, not referenced by aria-describedby
     expect(fieldset).not.toHaveAttribute('aria-describedby')
     expect(validation).toBeInTheDocument()
   })
@@ -151,7 +148,6 @@ describe('RadioGroup', () => {
     const hint = getByText('You can only pick one')
     const validation = getByText('Great job!')
 
-    // Both caption and validation should be in the legend, not referenced by aria-describedby
     expect(fieldset).not.toHaveAttribute('aria-describedby')
     expect(hint).toBeInTheDocument()
     expect(validation).toBeInTheDocument()
