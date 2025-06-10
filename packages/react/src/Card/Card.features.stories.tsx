@@ -260,6 +260,21 @@ export const ImageAndLabel: StoryFn<typeof Card> = () => {
   )
 }
 
+export const ImageAndLabelWithFragment: StoryFn<typeof Card> = () => {
+  return (
+    <Card href="https://github.com">
+      <>
+        <Card.Image src={placeholderImage} alt="placeholder, blank area with an gray background color" />
+        <Card.Heading>Code search & code view</Card.Heading>
+        <Card.Label color="blue-purple">Beta</Card.Label>
+        <Card.Description>
+          Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
+        </Card.Description>
+      </>
+    </Card>
+  )
+}
+
 export const ImageUsingPictureElement: StoryFn<typeof Card> = () => {
   return (
     <Card href="https://github.com">
