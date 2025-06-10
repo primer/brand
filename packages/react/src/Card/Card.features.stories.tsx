@@ -226,6 +226,21 @@ export const IconAndLabel: StoryFn<typeof Card> = () => {
   )
 }
 
+export const IconAndLabelWithFragment: StoryFn<typeof Card> = () => {
+  return (
+    <Card href="https://github.com">
+      <>
+        <Card.Heading>Code search & code view</Card.Heading>
+        <Card.Label color="blue-purple">Beta</Card.Label>
+        <Card.Icon icon={ZapIcon} color="purple" hasBackground />
+        <Card.Description>
+          Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
+        </Card.Description>
+      </>
+    </Card>
+  )
+}
+
 export const Image: StoryFn<typeof Card> = () => {
   return (
     <Stack direction="horizontal">
