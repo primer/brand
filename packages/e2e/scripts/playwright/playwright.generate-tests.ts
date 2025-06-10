@@ -23,6 +23,7 @@
   const waitForTimeoutLookup = {
     'components-faq-features--with-prose': 2000, // for the animation
     'components-faq-features--all-open': 1000, // for the animation
+    'components-faq-features--reversed-toggles': 4000, // for the animation
     'components-subdomainnavbar--search-open': 5500, // for the animation
     'components-subdomainnavbar--search-results-visible': 5500, // for the animation
     'components-subdomainnavbar--longer-title': 1500, // for the animation
@@ -98,6 +99,8 @@
     'components-pillar-features--frosted-glass-effect': 3000, // for image to load
     'components-testimonial-examples--with-frosted-glass': 4000, // for animation to complete
     'components-testimonial-examples--with-frosted-glass-dark': 4000, // for animation to complete
+    'components-logosuite-features--condensed-gap': 5000, // animation only
+    'components-logosuite-features--marquee': 5000, // animation only
   }
 
   /**
@@ -115,8 +118,6 @@
     'components-animations-examples--timeline-bar', // animation only
     'components-animations--playground', // animation only
     'components-logosuite-examples--following-hero', // animation only
-    'components-logosuite-features--condensed-gap', // animation only
-    'components-logosuite-features--marquee', // animation only
     'components-logosuite-features--slower-marquee-speed', // animation only
     'components-logosuite-features--mixed-width', // animation only
     'components-logosuite-features--following-hero', // animation only
