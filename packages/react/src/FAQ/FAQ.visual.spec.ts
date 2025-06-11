@@ -33,7 +33,7 @@ test.describe('Visual Comparison: FAQ', () => {
       'http://localhost:6006/iframe.html?args=&id=components-faq-features--reversed-toggles&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(4000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 

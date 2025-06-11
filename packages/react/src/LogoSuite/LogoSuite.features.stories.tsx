@@ -1,5 +1,6 @@
 import React from 'react'
 import {Meta} from '@storybook/react'
+import {userEvent, within} from '@storybook/test'
 import {LogoSuite} from './LogoSuite'
 import {Grid} from '../Grid'
 import {Image} from '../'
@@ -108,6 +109,14 @@ export const CondensedGap = () => (
     </Grid.Column>
   </Grid>
 )
+CondensedGap.play = async ({canvasElement}) => {
+  const canvas = within(canvasElement)
+
+  await new Promise(resolve => setTimeout(resolve, 3000))
+
+  const pauseButton = canvas.getByLabelText('Pause animation')
+  await userEvent.click(pauseButton)
+}
 
 export const Marquee = () => (
   <LogoSuite>
@@ -115,6 +124,15 @@ export const Marquee = () => (
     <LogoSuite.Logobar marquee>{logos.slice(0, 12)}</LogoSuite.Logobar>
   </LogoSuite>
 )
+
+Marquee.play = async ({canvasElement}) => {
+  const canvas = within(canvasElement)
+
+  await new Promise(resolve => setTimeout(resolve, 3000))
+
+  const pauseButton = canvas.getByLabelText('Pause animation')
+  await userEvent.click(pauseButton)
+}
 
 export const SlowerMarqueeSpeed = () => (
   <LogoSuite>
