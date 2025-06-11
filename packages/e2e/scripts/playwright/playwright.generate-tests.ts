@@ -99,8 +99,8 @@
     'components-pillar-features--frosted-glass-effect': 3000, // for image to load
     'components-testimonial-examples--with-frosted-glass': 4000, // for animation to complete
     'components-testimonial-examples--with-frosted-glass-dark': 4000, // for animation to complete
-    'components-logosuite-features--condensed-gap': 5000, // animation only
-    'components-logosuite-features--marquee': 5000, // animation only
+    'components-logosuite-features--condensed-gap': 6000, // animation only
+    'components-logosuite-features--marquee': 6000, // animation only
   }
 
   /**
