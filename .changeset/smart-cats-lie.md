@@ -2,4 +2,4 @@
 '@primer/react-brand': patch
 ---
 
-Added `aria-label` to GitHub logo in `VideoPlayer` component
+Added an `aria-label` to the GitHub logo in the `VideoPlayer` component

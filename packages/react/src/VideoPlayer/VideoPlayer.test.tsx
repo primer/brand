@@ -190,14 +190,14 @@ describe('VideoPlayer', () => {
   })
 
   it('shows the GitHub branding when showBranding is true', () => {
-    const {getByLabelText} = render(
+    const {getByRole} = render(
       <VideoPlayer poster="/example-poster.jpg" title="test video" showBranding>
         <VideoPlayer.Source src="/example.mp4" />
         <VideoPlayer.Track src="/example.vtt" default kind="subtitles" srcLang="en" label="English" />
       </VideoPlayer>,
     )
 
-    expect(getByLabelText('GitHub logo')).toBeInTheDocument()
+    expect(getByRole('img', {name: 'GitHub logo'})).toBeInTheDocument()
   })
 
   it('does not show the GitHub branding when showBranding is false', () => {
