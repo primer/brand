@@ -141,52 +141,50 @@ describe('Card', () => {
   })
 
   it('renders the label correctly into the document', () => {
-    const mockTestId = 'test'
+    const mockTestId = 'label'
     const classToCheck = 'Card__label'
 
     const {getByTestId} = render(
-      <Card href={mockHref} data-testid={mockTestId}>
-        <Card.Label>{mockLabel}</Card.Label>
+      <Card href={mockHref}>
+        <Card.Label data-testid={mockTestId}>{mockLabel}</Card.Label>
         <Card.Heading>{mockHeading}</Card.Heading>
         <Card.Description>{mockDescription}</Card.Description>
       </Card>,
     )
 
-    const cardEl = getByTestId(mockTestId).firstChild
-    expect(cardEl).toHaveClass(classToCheck)
-    expect(cardEl).toHaveTextContent(mockLabel)
+    const labelEl = getByTestId(mockTestId)
+    expect(labelEl).toHaveClass(classToCheck)
+    expect(labelEl).toHaveTextContent(mockLabel)
   })
 
   it('renders the icon correctly into the document', () => {
-    const mockTestId = 'test'
+    const mockTestId = 'icon'
     const classToCheck = 'Card__icon'
 
     const {getByTestId} = render(
-      <Card href={mockHref} data-testid={mockTestId}>
-        <Card.Icon icon={GitMergeIcon} />
+      <Card href={mockHref}>
+        <Card.Icon icon={mockIcon} data-testid={mockTestId} />
         <Card.Heading>{mockHeading}</Card.Heading>
         <Card.Description>{mockDescription}</Card.Description>
       </Card>,
     )
 
-    const cardEl = getByTestId(mockTestId).firstChild
-    expect(cardEl).toHaveClass(classToCheck)
+    expect(getByTestId(mockTestId).parentElement).toHaveClass(classToCheck)
   })
 
   it('renders the icon with background correctly into the document', () => {
-    const mockTestId = 'test'
+    const mockTestId = 'icon'
     const classToCheck = 'Icon--background'
 
     const {getByTestId} = render(
-      <Card href={mockHref} data-testid={mockTestId}>
-        <Card.Icon hasBackground icon={GitMergeIcon} />
+      <Card href={mockHref}>
+        <Card.Icon hasBackground icon={mockIcon} data-testid={mockTestId} />
         <Card.Heading>{mockHeading}</Card.Heading>
         <Card.Description>{mockDescription}</Card.Description>
       </Card>,
     )
 
-    const cardEl = getByTestId(mockTestId).firstChild
-    expect(cardEl).toHaveClass(classToCheck)
+    expect(getByTestId(mockTestId).parentElement).toHaveClass(classToCheck)
   })
 
   it('renders the image correctly into the document', () => {
