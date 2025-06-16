@@ -85,7 +85,9 @@ export const VideoTooltip = ({children, className, ...rest}: VideoTooltipProps) 
             {children}
           </Text>
         </span>
-      ) : null}
+      ) : (
+        <span className="visually-hidden">{children}</span>
+      )}
     </div>
   )
 }
