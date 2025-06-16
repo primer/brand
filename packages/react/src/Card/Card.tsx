@@ -76,7 +76,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
       onMouseLeave,
       onFocus,
       onBlur,
-      children,
+      children: childrenMaybeWrappedInFragment,
       className,
       ctaText = 'Learn more',
       disableAnimation = false,
@@ -92,17 +92,33 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
     const cardRef = useProvidedRefOrCreate(ref as RefObject<HTMLDivElement>)
     const {colorMode} = useTheme()
 
-    const filteredChildren = React.Children.toArray(children).filter(
-      child =>
-        isFragment(child) ||
-        isCardImage(child) ||
-        isCardIcon(child) ||
-        isCardLabel(child) ||
-        isCardHeading(child) ||
-        isCardDescription(child),
-    )
+    const children = isFragment(childrenMaybeWrappedInFragment)
+      ? childrenMaybeWrappedInFragment.props.children
+      : childrenMaybeWrappedInFragment
 
-    const hasIcon = React.Children.toArray(children).some(isCardIcon)
+    const {cardImage, cardIcon, cardLabel, cardHeading, cardDescription} = React.Children.toArray(children).reduce<{
+      cardHeading?: ReturnType<typeof CardHeading>
+      cardImage?: ReturnType<typeof CardImage>
+      cardIcon?: ReturnType<typeof CardIcon>
+      cardLabel?: ReturnType<typeof CardLabel>
+      cardDescription?: ReturnType<typeof CardDescription>
+    }>((acc, child) => {
+      if (isCardHeading(child)) {
+        acc.cardHeading = React.cloneElement(child, {
+          href,
+        })
+      } else if (isCardImage(child)) {
+        acc.cardImage = child
+      } else if (isCardIcon(child)) {
+        acc.cardIcon = child
+      } else if (isCardLabel(child)) {
+        acc.cardLabel = child
+      } else if (isCardDescription(child)) {
+        acc.cardDescription = child
+      }
+
+      return acc
+    }, {})
 
     const hasSkewEffect = colorMode === 'dark' && variant === 'torchlight'
     const showBorder = hasSkewEffect || hasBorder
@@ -124,7 +140,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
             disableAnimation && styles['Card--disableAnimation'],
             styles[`Card--colorMode-${colorMode}`],
             styles[`Card--variant-${variant}`],
-            hasIcon && styles['Card--icon'],
+            cardIcon && styles['Card--icon'],
             showBorder && styles['Card--border'],
             styles[`Card--colorMode-${colorMode}`],
             className,
@@ -133,14 +149,12 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
           ref={cardRef}
           {...props}
         >
-          {React.Children.map(filteredChildren, child => {
-            if (isCardHeading(child)) {
-              return React.cloneElement<CardHeadingProps>(child as React.ReactElement<CardHeadingProps>, {
-                href,
-              })
-            }
-            return child
-          })}
+          {cardHeading}
+          {cardImage}
+          {cardIcon}
+          {cardLabel}
+          {cardDescription}
+
           <div className={styles.Card__action}>
             <Text as="span" size="200" className={clsx(stylesLink['Link--label'])}>
               {ctaText}
