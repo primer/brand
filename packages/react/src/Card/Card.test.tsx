@@ -31,6 +31,7 @@ describe('Card', () => {
   const mockLabel = 'This is a mock label'
   const mockHeading = 'This is a mock heading'
   const mockDescription = 'This is a mock description'
+  const mockIcon = <GitMergeIcon aria-label="Git merge icon" />
 
   it('no a11y violations', async () => {
     const {container} = render(
@@ -245,5 +246,31 @@ describe('Card', () => {
     const cardEl = getByTestId(cardTestId)
 
     expect(cardEl.parentElement).toHaveClass('Card--fullWidth')
+  })
+
+  it('renders card contents in a logical order, regardless of the order they are passed in', () => {
+    const {getByText, getByAltText, getByLabelText} = render(
+      <Card href={mockHref}>
+        <Card.Description>{mockDescription}</Card.Description>
+        <Card.Label>{mockLabel}</Card.Label>
+        <Card.Heading>{mockHeading}</Card.Heading>
+        <Card.Image src="/brand/assets/placeholder.png" alt="placeholder" />
+        <Card.Icon icon={mockIcon} />
+      </Card>,
+    )
+
+    const description = getByText(mockDescription)
+    const label = getByText(mockLabel)
+    const heading = getByText(mockHeading)
+    const image = getByAltText('placeholder')
+    const icon = getByLabelText('Git merge icon')
+
+    const isAfter = (a: Element, b: Element): boolean =>
+      a.compareDocumentPosition(b) === Node.DOCUMENT_POSITION_FOLLOWING
+
+    expect(isAfter(heading, image)).toBe(true)
+    expect(isAfter(image, icon)).toBe(true)
+    expect(isAfter(icon, label)).toBe(true)
+    expect(isAfter(label, description)).toBe(true)
   })
 })
