@@ -9,7 +9,7 @@ type VideoTooltipProps = HTMLAttributes<HTMLDivElement>
 export const VideoTooltip = ({children, className, ...rest}: VideoTooltipProps) => {
   const tooltipRef = useRef<HTMLDivElement>(null)
   const [hasFocus, setHasFocus] = useState(false)
-  const mouseenterTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const mouseenterTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     const tooltip = tooltipRef.current
