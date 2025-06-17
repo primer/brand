@@ -91,14 +91,16 @@ test.describe('Visual Comparison: LogoSuite', () => {
       'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--condensed-gap&viewMode=story',
     )
 
-    await page.waitForTimeout(6000)
+    await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
-  test('LogoSuite / Marquee', async ({page}) => {
-    await page.goto('http://localhost:6006/iframe.html?args=&id=components-logosuite-features--marquee&viewMode=story')
+  test('LogoSuite / Idle Marquee Speed', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-logosuite-features--idle-marquee-speed&viewMode=story',
+    )
 
-    await page.waitForTimeout(6000)
+    await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 

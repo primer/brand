@@ -236,6 +236,45 @@ describe('LogoSuite', () => {
     expect(el.classList).toContain(expectedClass)
   })
 
+  it('can render a marquee logobar sans-animation using the idle speed option', () => {
+    const {container, getByRole} = render(
+      <LogoSuite>
+        <LogoSuite.Heading visuallyHidden>{mockHeading}</LogoSuite.Heading>
+        <LogoSuite.Logobar marquee marqueeSpeed="idle">
+          <svg data-testid="svg1" aria-label="Mock SVG" />
+          <svg data-testid="svg2" aria-label="Mock SVG" />
+        </LogoSuite.Logobar>
+      </LogoSuite>,
+    )
+
+    const playButton = getByRole('button', {name: 'Play animation'})
+    expect(playButton).toBeInTheDocument()
+    expect(container.querySelector('.LogoSuite__logobar--paused')).toBeInTheDocument()
+  })
+
+  it('can start the animation on idle marquee speed settings by pressing the play button', async () => {
+    const user = userEvent.setup()
+
+    const {container, getByRole} = render(
+      <LogoSuite>
+        <LogoSuite.Heading visuallyHidden>{mockHeading}</LogoSuite.Heading>
+        <LogoSuite.Logobar marquee marqueeSpeed="idle">
+          <svg data-testid="svg1" aria-label="Mock SVG" />
+          <svg data-testid="svg2" aria-label="Mock SVG" />
+        </LogoSuite.Logobar>
+      </LogoSuite>,
+    )
+
+    const playButtonEl = getByRole('button', {name: 'Play animation'})
+
+    await user.click(playButtonEl)
+
+    const pauseButtonEl = getByRole('button', {name: 'Pause animation'})
+
+    expect(pauseButtonEl).toBeInTheDocument()
+    expect(container.querySelector('.LogoSuite__logobar--paused')).not.toBeInTheDocument()
+  })
+
   it('renders a pause button when the marquee prop is true', () => {
     const {getByRole} = render(
       <LogoSuite>
