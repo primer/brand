@@ -56,6 +56,26 @@ const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, style, animate
               weight: hasSubheading ? 'semibold' : child.props.weight,
             })
           }
+
+          // If there is a subheading, ensure that the FAQ.Question is rendered as a h5
+          if (hasSubheading && child.type === FAQ.Item) {
+            const grandChildren = React.Children.map(child.props.children, grandChild => {
+              if (
+                React.isValidElement(grandChild) &&
+                typeof grandChild.type !== 'string' &&
+                grandChild.type === FAQ.Question
+              ) {
+                return React.cloneElement(grandChild as React.ReactElement, {
+                  as: 'h5',
+                })
+              }
+              return grandChild
+            })
+
+            return React.cloneElement(child as React.ReactElement, {
+              children: grandChildren,
+            })
+          }
         }
         return child
       })}
