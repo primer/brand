@@ -200,7 +200,7 @@ export type LogoSuiteLogoBarProps = BaseProps<HTMLDivElement> & {
   /**
    * The speed of the marquee effect
    */
-  marqueeSpeed?: 'slow' | 'normal'
+  marqueeSpeed?: 'slow' | 'normal' | 'idle'
   /**
    * The stylistic variant of the LogoBar.
    */
@@ -221,7 +221,7 @@ const _LogoBar = forwardRef(
     ref: Ref<HTMLDivElement>,
   ) => {
     const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
-    const [isPlaying, setIsPlaying] = useState(marquee && !prefersReducedMotion)
+    const [isPlaying, setIsPlaying] = useState(marquee && !prefersReducedMotion && marqueeSpeed !== 'idle')
 
     const childrenCount = React.Children.toArray(children).length
     variant ??= childrenCount <= 5 ? 'emphasis' : 'muted'
@@ -242,8 +242,8 @@ const _LogoBar = forwardRef(
     }, [])
 
     useEffect(() => {
-      setIsPlaying(marquee && !prefersReducedMotion)
-    }, [marquee, prefersReducedMotion])
+      setIsPlaying(marquee && !prefersReducedMotion && marqueeSpeed !== 'idle')
+    }, [marquee, prefersReducedMotion, marqueeSpeed])
 
     const defaultProps = {
       ref,

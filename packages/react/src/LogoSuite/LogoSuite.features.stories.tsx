@@ -102,21 +102,13 @@ export const CondensedGap = () => (
       </LogoSuite>
       <LogoSuite>
         <LogoSuite.Heading visuallyHidden>Heading</LogoSuite.Heading>
-        <LogoSuite.Logobar gap="condensed" marquee>
+        <LogoSuite.Logobar gap="condensed" marquee marqueeSpeed="idle">
           {logos.slice(0, 12)}
         </LogoSuite.Logobar>
       </LogoSuite>
     </Grid.Column>
   </Grid>
 )
-CondensedGap.play = async ({canvasElement}) => {
-  const canvas = within(canvasElement)
-
-  await new Promise(resolve => setTimeout(resolve, 3000))
-
-  const pauseButton = canvas.getByLabelText('Pause animation')
-  await userEvent.click(pauseButton)
-}
 
 export const Marquee = () => (
   <LogoSuite>
@@ -133,6 +125,15 @@ Marquee.play = async ({canvasElement}) => {
   const pauseButton = canvas.getByLabelText('Pause animation')
   await userEvent.click(pauseButton)
 }
+
+export const IdleMarqueeSpeed = () => (
+  <LogoSuite>
+    <LogoSuite.Heading visuallyHidden>Heading</LogoSuite.Heading>
+    <LogoSuite.Logobar marquee marqueeSpeed="idle">
+      {logos.slice(0, 12)}
+    </LogoSuite.Logobar>
+  </LogoSuite>
+)
 
 export const SlowerMarqueeSpeed = () => (
   <LogoSuite>
