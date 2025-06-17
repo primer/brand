@@ -95,7 +95,7 @@ export type FAQSubheadingProps = BaseProps<HTMLHeadingElement> & {
 function FAQSubheading({
   children,
   className,
-  as = 'h3',
+  as = 'h4',
   size = 'subhead-large',
   weight = 'medium',
   ...rest
