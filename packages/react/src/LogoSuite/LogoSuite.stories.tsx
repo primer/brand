@@ -97,7 +97,7 @@ const meta: Meta<StoryProps> = {
 
     marqueeSpeed: {
       control: 'radio',
-      options: ['slow', 'normal'],
+      options: ['slow', 'normal', 'idle'],
       table: {
         category: 'LogoSuite.Logobar',
       },

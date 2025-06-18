@@ -76,7 +76,7 @@ const Root = ({
         </video>
         {showBranding || !visuallyHiddenTitle ? (
           <div className={clsx(styles.VideoPlayer__title, isPlaying && styles['VideoPlayer__title--hidden'])}>
-            {showBranding && <MarkGithubIcon size={40} />}
+            {showBranding && <MarkGithubIcon size={40} aria-label="GitHub logo" />}
             {!visuallyHiddenTitle && (
               <Text size="400" weight="medium" className={styles.VideoPlayer__controlTextColor}>
                 {title}

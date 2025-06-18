@@ -99,8 +99,6 @@
     'components-pillar-features--frosted-glass-effect': 3000, // for image to load
     'components-testimonial-examples--with-frosted-glass': 4000, // for animation to complete
     'components-testimonial-examples--with-frosted-glass-dark': 4000, // for animation to complete
-    'components-logosuite-features--condensed-gap': 6000, // animation only
-    'components-logosuite-features--marquee': 6000, // animation only
   }
 
   /**
@@ -139,6 +137,7 @@
     'components-hero-features--with-native-block-end-default', // for being non-deterministic due to video buffering
     'components-hero-features--with-youtube-video-block-end-default', // for loading a remote video
     'components-hero-features--with-youtube-video-inline-end', // for loading a remote video
+    'components-logosuite-features--marquee', // for the animation
   ]
 
   const categorisedStories = Object.keys((stories as typeof StoryIndex).entries).reduce((acc, key) => {
