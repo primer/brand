@@ -13,6 +13,7 @@ import {RedlineBackground} from '../component-helpers'
 import {Stack} from '../Stack'
 import {expect, userEvent, within} from '@storybook/test'
 import {Button} from '../Button'
+import {waitFor} from '@testing-library/dom'
 
 export default {
   title: 'Components/SubNav/Features',
@@ -382,4 +383,74 @@ export const ForwardedRefs = () => {
       </Box>
     </>
   )
+}
+
+export const KeyboardNavigation = args => <NarrowDropdownVariant {...args} />
+
+KeyboardNavigation.parameters = {
+  layout: 'fullscreen',
+  viewport: {
+    defaultViewport: 'iphonex',
+  },
+}
+KeyboardNavigation.play = async ({canvasElement}) => {
+  const {getByRole} = within(canvasElement)
+
+  const expandButton = getByRole('button', {name: 'Navigation menu. Current page: Copilot'})
+  await userEvent.click(expandButton)
+  expect(expandButton).toHaveFocus()
+
+  await userEvent.tab()
+  expect(getByRole('link', {name: 'Actions'})).toHaveFocus()
+
+  await userEvent.tab()
+  expect(getByRole('link', {name: 'Packages'})).toHaveFocus()
+
+  await userEvent.tab()
+  expect(getByRole('link', {name: 'Security'})).toHaveFocus()
+
+  await userEvent.tab()
+  expect(getByRole('link', {name: 'Codespaces'})).toHaveFocus()
+
+  await userEvent.tab()
+  expect(getByRole('link', {name: 'Copilot'})).toHaveFocus()
+
+  await userEvent.tab()
+  expect(getByRole('link', {name: 'Copilot feature page one'})).toHaveFocus()
+
+  await userEvent.tab()
+  expect(getByRole('link', {name: 'Copilot feature page two'})).toHaveFocus()
+
+  await userEvent.tab()
+  expect(getByRole('link', {name: 'Copilot feature page three'})).toHaveFocus()
+
+  await userEvent.tab()
+  expect(getByRole('link', {name: 'Copilot feature page four'})).toHaveFocus()
+
+  await userEvent.tab()
+  expect(getByRole('link', {name: 'Code review'})).toHaveFocus()
+
+  await userEvent.tab()
+  expect(getByRole('link', {name: 'Search'})).toHaveFocus()
+
+  await userEvent.tab()
+  expect(getByRole('link', {name: 'Issues'})).toHaveFocus()
+
+  await userEvent.tab()
+  expect(getByRole('link', {name: 'Discussions'})).toHaveFocus()
+
+  await userEvent.tab()
+  // We have to wait here because the focus trap we're using takes a moment to update the focus
+  waitFor(() => {
+    expect(getByRole('link', {name: 'Features'})).toHaveFocus()
+  })
+
+  await userEvent.tab()
+  expect(expandButton).toHaveFocus()
+
+  await userEvent.tab({shift: true})
+  expect(getByRole('link', {name: 'Features'})).toHaveFocus()
+
+  await userEvent.tab({shift: true})
+  expect(getByRole('link', {name: 'Discussions'})).toHaveFocus()
 }
