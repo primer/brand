@@ -19,6 +19,13 @@ export const VideoTooltip = ({children, className, ...rest}: VideoTooltipProps) 
       return
     }
 
+    const clearTimeoutAndRef = () => {
+      if (mouseenterTimeoutRef.current) {
+        clearTimeout(mouseenterTimeoutRef.current)
+        mouseenterTimeoutRef.current = null
+      }
+    }
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setHasFocus(false)
@@ -36,16 +43,12 @@ export const VideoTooltip = ({children, className, ...rest}: VideoTooltipProps) 
     }
 
     const onMouseEnterTooltip = () => {
-      if (mouseenterTimeoutRef.current) {
-        clearTimeout(mouseenterTimeoutRef.current)
-      }
+      clearTimeoutAndRef()
       setHasFocus(true)
     }
 
     const onMouseLeaveTooltip = () => {
-      if (mouseenterTimeoutRef.current) {
-        clearTimeout(mouseenterTimeoutRef.current)
-      }
+      clearTimeoutAndRef()
 
       mouseenterTimeoutRef.current = setTimeout(() => {
         setHasFocus(false)
@@ -62,6 +65,8 @@ export const VideoTooltip = ({children, className, ...rest}: VideoTooltipProps) 
     window.addEventListener('keydown', handleKeyDown)
 
     return () => {
+      clearTimeoutAndRef()
+
       parent.removeEventListener('focus', checkFocus)
       parent.removeEventListener('blur', checkFocus)
       parent.removeEventListener('focusin', checkFocus)
