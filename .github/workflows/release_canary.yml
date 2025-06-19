@@ -49,7 +49,7 @@ jobs:
         uses: actions/github-script@v4.0.2
         with:
           script: |
-            const paths = ['react', 'design-tokens'].forEach((path) => {
+            const paths = ['react', 'design-tokens', 'css'].forEach((path) => {
               const package = require(`${process.env.GITHUB_WORKSPACE}/packages/${path}/package.json`)
               github.repos.createCommitStatus({
                 owner: context.repo.owner,
