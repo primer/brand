@@ -33,7 +33,7 @@ describe('RadioGroup', () => {
       </RadioGroup>,
     )
 
-    expect(getByRole('group', {name: 'Choices'})).toBeInTheDocument()
+    expect(getByRole('group', {name: 'Choices You can only pick one Great job!'})).toBeInTheDocument()
     expect(getByText('You can only pick one')).toBeInTheDocument()
     expect(getByLabelText('Choice one')).toBeInTheDocument()
     expect(getByLabelText('Choice two')).toBeInTheDocument()
@@ -67,7 +67,7 @@ describe('RadioGroup', () => {
     expect(results).toHaveNoViolations()
   })
 
-  it('associates the hint with the input using aria-describedby', () => {
+  it('includes the caption in the legend for screen readers', () => {
     const {getByRole, getByText} = render(
       <RadioGroup>
         <RadioGroup.Label>Choices</RadioGroup.Label>
@@ -87,13 +87,14 @@ describe('RadioGroup', () => {
       </RadioGroup>,
     )
 
-    const fieldset = getByRole('group', {name: 'Choices'})
+    const fieldset = getByRole('group', {name: 'Choices You can only pick one'})
     const caption = getByText('You can only pick one')
 
-    expect(fieldset).toHaveAttribute('aria-describedby', caption.id)
+    expect(fieldset).not.toHaveAttribute('aria-describedby')
+    expect(caption).toBeInTheDocument()
   })
 
-  it('associates the validation with the input using aria-describedby', () => {
+  it('includes the validation in the legend for screen readers', () => {
     const {getByRole, getByText} = render(
       <RadioGroup>
         <RadioGroup.Label>Choices</RadioGroup.Label>
@@ -114,13 +115,14 @@ describe('RadioGroup', () => {
       </RadioGroup>,
     )
 
-    const fieldset = getByRole('group', {name: 'Choices'})
+    const fieldset = getByRole('group', {name: 'Choices Uh oh!'})
     const validation = getByText('Uh oh!')
 
-    expect(fieldset).toHaveAttribute('aria-describedby', validation.id)
+    expect(fieldset).not.toHaveAttribute('aria-describedby')
+    expect(validation).toBeInTheDocument()
   })
 
-  it('associates both a hint and validation with the input using aria-describedby', () => {
+  it('includes both caption and validation in the legend for screen readers', () => {
     const {getByRole, getByText} = render(
       <RadioGroup>
         <RadioGroup.Label>Choices</RadioGroup.Label>
@@ -142,10 +144,12 @@ describe('RadioGroup', () => {
       </RadioGroup>,
     )
 
-    const fieldset = getByRole('group', {name: 'Choices'})
+    const fieldset = getByRole('group', {name: 'Choices You can only pick one Great job!'})
     const hint = getByText('You can only pick one')
     const validation = getByText('Great job!')
 
-    expect(fieldset).toHaveAttribute('aria-describedby', `${hint.id} ${validation.id}`)
+    expect(fieldset).not.toHaveAttribute('aria-describedby')
+    expect(hint).toBeInTheDocument()
+    expect(validation).toBeInTheDocument()
   })
 })
