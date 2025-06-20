@@ -31,6 +31,7 @@ describe('Card', () => {
   const mockLabel = 'This is a mock label'
   const mockHeading = 'This is a mock heading'
   const mockDescription = 'This is a mock description'
+  const mockIcon = <GitMergeIcon aria-label="Git merge icon" />
 
   it('no a11y violations', async () => {
     const {container} = render(
@@ -140,52 +141,50 @@ describe('Card', () => {
   })
 
   it('renders the label correctly into the document', () => {
-    const mockTestId = 'test'
+    const mockTestId = 'label'
     const classToCheck = 'Card__label'
 
     const {getByTestId} = render(
-      <Card href={mockHref} data-testid={mockTestId}>
-        <Card.Label>{mockLabel}</Card.Label>
+      <Card href={mockHref}>
+        <Card.Label data-testid={mockTestId}>{mockLabel}</Card.Label>
         <Card.Heading>{mockHeading}</Card.Heading>
         <Card.Description>{mockDescription}</Card.Description>
       </Card>,
     )
 
-    const cardEl = getByTestId(mockTestId).firstChild
-    expect(cardEl).toHaveClass(classToCheck)
-    expect(cardEl).toHaveTextContent(mockLabel)
+    const labelEl = getByTestId(mockTestId)
+    expect(labelEl).toHaveClass(classToCheck)
+    expect(labelEl).toHaveTextContent(mockLabel)
   })
 
   it('renders the icon correctly into the document', () => {
-    const mockTestId = 'test'
+    const mockTestId = 'icon'
     const classToCheck = 'Card__icon'
 
     const {getByTestId} = render(
-      <Card href={mockHref} data-testid={mockTestId}>
-        <Card.Icon icon={GitMergeIcon} />
+      <Card href={mockHref}>
+        <Card.Icon icon={mockIcon} data-testid={mockTestId} />
         <Card.Heading>{mockHeading}</Card.Heading>
         <Card.Description>{mockDescription}</Card.Description>
       </Card>,
     )
 
-    const cardEl = getByTestId(mockTestId).firstChild
-    expect(cardEl).toHaveClass(classToCheck)
+    expect(getByTestId(mockTestId).parentElement).toHaveClass(classToCheck)
   })
 
   it('renders the icon with background correctly into the document', () => {
-    const mockTestId = 'test'
+    const mockTestId = 'icon'
     const classToCheck = 'Icon--background'
 
     const {getByTestId} = render(
-      <Card href={mockHref} data-testid={mockTestId}>
-        <Card.Icon hasBackground icon={GitMergeIcon} />
+      <Card href={mockHref}>
+        <Card.Icon hasBackground icon={mockIcon} data-testid={mockTestId} />
         <Card.Heading>{mockHeading}</Card.Heading>
         <Card.Description>{mockDescription}</Card.Description>
       </Card>,
     )
 
-    const cardEl = getByTestId(mockTestId).firstChild
-    expect(cardEl).toHaveClass(classToCheck)
+    expect(getByTestId(mockTestId).parentElement).toHaveClass(classToCheck)
   })
 
   it('renders the image correctly into the document', () => {
@@ -245,5 +244,31 @@ describe('Card', () => {
     const cardEl = getByTestId(cardTestId)
 
     expect(cardEl.parentElement).toHaveClass('Card--fullWidth')
+  })
+
+  it('renders card contents in a logical order, regardless of the order they are passed in', () => {
+    const {getByText, getByAltText, getByLabelText} = render(
+      <Card href={mockHref}>
+        <Card.Description>{mockDescription}</Card.Description>
+        <Card.Label>{mockLabel}</Card.Label>
+        <Card.Heading>{mockHeading}</Card.Heading>
+        <Card.Image src="/brand/assets/placeholder.png" alt="placeholder" />
+        <Card.Icon icon={mockIcon} />
+      </Card>,
+    )
+
+    const description = getByText(mockDescription)
+    const label = getByText(mockLabel)
+    const heading = getByText(mockHeading)
+    const image = getByAltText('placeholder')
+    const icon = getByLabelText('Git merge icon')
+
+    const isAfter = (a: Element, b: Element): boolean =>
+      a.compareDocumentPosition(b) === Node.DOCUMENT_POSITION_FOLLOWING
+
+    expect(isAfter(heading, image)).toBe(true)
+    expect(isAfter(image, icon)).toBe(true)
+    expect(isAfter(icon, label)).toBe(true)
+    expect(isAfter(label, description)).toBe(true)
   })
 })
