@@ -1,5 +1,28 @@
 # @primer/react-brand
 
+## 0.56.0
+
+### Patch Changes
+
+- [#1052](https://github.com/primer/brand/pull/1052) [`7c16517`](https://github.com/primer/brand/commit/7c16517c710124fb716f78e59e028f5ed6ab0675) Thanks [@joshfarrant](https://github.com/joshfarrant)! - The `SubNav` component now traps focus inside the expanded menu on narrow viewports.
+
+- [#1051](https://github.com/primer/brand/pull/1051) [`2946071`](https://github.com/primer/brand/commit/2946071e02a526c56eb0404266b991c7c48f3e43) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Tooltips in the `VideoPlayer` component now remain briefly visible after the pointer is moved away from the toggle. This small delay improves general usability and helps meet the [WCAG 1.4.13 criterion](https://www.w3.org/TR/WCAG22/#content-on-hover-or-focus) for accessible hover interactions with tooltips.
+
+- [#917](https://github.com/primer/brand/pull/917) [`0ca0f08`](https://github.com/primer/brand/commit/0ca0f0818be9a0a28031a057da034f8b61b6342d) Thanks [@rezrah](https://github.com/rezrah)! - Internal change to CSS module type definitions in the `IDE` component. No user-facing updates to `IDE` presentation or functionality are expected.
+
+- [#1050](https://github.com/primer/brand/pull/1050) [`6772b34`](https://github.com/primer/brand/commit/6772b34a0d969f8c067308048cc9a1d63eb08e92) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Added an `aria-label` to the GitHub logo in the `VideoPlayer` component
+
+- [#1055](https://github.com/primer/brand/pull/1055) [`3419824`](https://github.com/primer/brand/commit/3419824d3869a90c2e0c7ed3cbc638ed141669e7) Thanks [@rezrah](https://github.com/rezrah)! - Restore `idle` option to `LogoSuite.Logobar` for enabling a default paused state, and programmatic control over animation.
+
+  Use `marqueeSpeed="idle"` to display a logo bar that is initially paused.
+
+  ```jsx
+  <LogoSuite>
+    <LogoSuite.Heading />
+    <LogoSuite.Logobar marquee marqueeSpeed="idle" />
+  </LogoSuite>
+  ```
+
 ## 0.55.0
 
 ### Patch Changes

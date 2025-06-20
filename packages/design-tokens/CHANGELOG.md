@@ -1,5 +1,7 @@
 # @primer/brand-primitives
 
+## 0.56.0
+
 ## 0.55.0
 
 ### Minor Changes
