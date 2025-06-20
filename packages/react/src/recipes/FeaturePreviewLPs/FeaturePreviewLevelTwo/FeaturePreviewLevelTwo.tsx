@@ -623,7 +623,7 @@ export function FeaturePreviewLevelTwo({
                         Frequently asked questions
                       </FAQ.Heading>
                       <FAQ.Item>
-                        <FAQ.Question>What is this feature?</FAQ.Question>
+                        <FAQ.Question as="h3">What is this feature?</FAQ.Question>
                         <FAQ.Answer>
                           <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
@@ -632,7 +632,7 @@ export function FeaturePreviewLevelTwo({
                         </FAQ.Answer>
                       </FAQ.Item>
                       <FAQ.Item>
-                        <FAQ.Question>When is it release planned?</FAQ.Question>
+                        <FAQ.Question as="h3">When is it release planned?</FAQ.Question>
                         <FAQ.Answer>
                           <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
@@ -641,7 +641,7 @@ export function FeaturePreviewLevelTwo({
                         </FAQ.Answer>
                       </FAQ.Item>
                       <FAQ.Item>
-                        <FAQ.Question>Where is it available?</FAQ.Question>
+                        <FAQ.Question as="h3">Where is it available?</FAQ.Question>
                         <FAQ.Answer>
                           <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
@@ -650,7 +650,7 @@ export function FeaturePreviewLevelTwo({
                         </FAQ.Answer>
                       </FAQ.Item>
                       <FAQ.Item>
-                        <FAQ.Question>Who is it for?</FAQ.Question>
+                        <FAQ.Question as="h3">Who is it for?</FAQ.Question>
                         <FAQ.Answer>
                           <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
@@ -659,7 +659,7 @@ export function FeaturePreviewLevelTwo({
                         </FAQ.Answer>
                       </FAQ.Item>
                       <FAQ.Item>
-                        <FAQ.Question>What can I expect?</FAQ.Question>
+                        <FAQ.Question as="h3">What can I expect?</FAQ.Question>
                         <FAQ.Answer>
                           <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
@@ -668,7 +668,7 @@ export function FeaturePreviewLevelTwo({
                         </FAQ.Answer>
                       </FAQ.Item>
                       <FAQ.Item>
-                        <FAQ.Question>What&apos;s the difference between this & that?</FAQ.Question>
+                        <FAQ.Question as="h3">What&apos;s the difference between this & that?</FAQ.Question>
                         <FAQ.Answer>
                           <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
@@ -677,7 +677,7 @@ export function FeaturePreviewLevelTwo({
                         </FAQ.Answer>
                       </FAQ.Item>
                       <FAQ.Item>
-                        <FAQ.Question>Is this free?</FAQ.Question>
+                        <FAQ.Question as="h3">Is this free?</FAQ.Question>
                         <FAQ.Answer>
                           <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
@@ -686,7 +686,7 @@ export function FeaturePreviewLevelTwo({
                         </FAQ.Answer>
                       </FAQ.Item>
                       <FAQ.Item>
-                        <FAQ.Question>Is this release invite-only?</FAQ.Question>
+                        <FAQ.Question as="h3">Is this release invite-only?</FAQ.Question>
                         <FAQ.Answer>
                           <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sapien sit ullamcorper id.
@@ -703,7 +703,7 @@ export function FeaturePreviewLevelTwo({
                         questions
                       </FAQGroup.Heading>
                       <FAQ>
-                        <FAQ.Heading>Using GitHub Enterprise</FAQ.Heading>
+                        <FAQ.Heading as="h3">Using GitHub Enterprise</FAQ.Heading>
                         <FAQ.Item>
                           <FAQ.Question>What is GitHub Enterprise?</FAQ.Question>
                           <FAQ.Answer>

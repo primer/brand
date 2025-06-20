@@ -153,12 +153,12 @@ describe('FAQ', () => {
       </FAQ>,
     )
 
-    const subheadingEl = getByRole('heading', {level: 3, name: mockSubheading})
+    const subheadingEl = getByRole('heading', {level: 4, name: mockSubheading})
 
     expect(subheadingEl).toBeInTheDocument()
   })
 
-  it('renders alternative headling levels', () => {
+  it('renders alternative heading levels', () => {
     const mockSubheading = 'this is a mock subheading'
     const {getByRole} = render(
       <FAQ>
@@ -166,6 +166,50 @@ describe('FAQ', () => {
         <FAQ.Subheading as="h4">{mockSubheading}</FAQ.Subheading>
         <FAQ.Item>
           <FAQ.Question as="h5">{mockQuestion}</FAQ.Question>
+          <FAQ.Answer>
+            <p>{mockFAQAnswer}</p>
+          </FAQ.Answer>
+        </FAQ.Item>
+      </FAQ>,
+    )
+
+    const mainheadingEl = getByRole('heading', {level: 3, name: mockHeading})
+    const subheadingEl = getByRole('heading', {level: 4, name: mockSubheading})
+    const questionheadingEl = getByRole('heading', {level: 5, name: mockQuestion})
+
+    expect(mainheadingEl).toBeInTheDocument()
+    expect(subheadingEl).toBeInTheDocument()
+    expect(questionheadingEl).toBeInTheDocument()
+  })
+
+  it('renders the heading as a h3 and the question as a h4 by default', () => {
+    const {getByRole} = render(
+      <FAQ>
+        <FAQ.Heading>{mockHeading}</FAQ.Heading>
+        <FAQ.Item>
+          <FAQ.Question>{mockQuestion}</FAQ.Question>
+          <FAQ.Answer>
+            <p>{mockFAQAnswer}</p>
+          </FAQ.Answer>
+        </FAQ.Item>
+      </FAQ>,
+    )
+
+    const mainheadingEl = getByRole('heading', {level: 3, name: mockHeading})
+    const questionheadingEl = getByRole('heading', {level: 4, name: mockQuestion})
+
+    expect(mainheadingEl).toBeInTheDocument()
+    expect(questionheadingEl).toBeInTheDocument()
+  })
+
+  it('renders the heading as a h3, the subheading as a h4, and the question as a h5 when there is a subheading present', () => {
+    const mockSubheading = 'this is a mock subheading'
+    const {getByRole} = render(
+      <FAQ>
+        <FAQ.Heading>{mockHeading}</FAQ.Heading>
+        <FAQ.Subheading>{mockSubheading}</FAQ.Subheading>
+        <FAQ.Item>
+          <FAQ.Question>{mockQuestion}</FAQ.Question>
           <FAQ.Answer>
             <p>{mockFAQAnswer}</p>
           </FAQ.Answer>

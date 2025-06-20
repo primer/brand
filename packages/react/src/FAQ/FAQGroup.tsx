@@ -110,9 +110,9 @@ function _FAQGroup({children, id, defaultSelectedIndex = 0, tabAttributes, ...re
         React.isValidElement(child) && child.type !== FAQ.Heading ? child : null,
       )
 
-      const FAQItemHeadingText = React.Children.map(faqChild.props.children, child =>
-        React.isValidElement(child) && child.type === FAQ.Heading ? child.props.children : null,
-      )
+      const FAQItemHeading = React.Children.toArray(faqChild.props.children).find(
+        child => React.isValidElement(child) && child.type === FAQ.Heading,
+      ) as ReactElement | undefined
 
       return (
         <div
@@ -123,13 +123,12 @@ function _FAQGroup({children, id, defaultSelectedIndex = 0, tabAttributes, ...re
           key={index}
           data-testid={`FAQGroup-tab-panel-${index + 1}`}
         >
-          {FAQItemHeadingText && (
+          {FAQItemHeading && (
             <FAQ.Subheading
+              {...FAQItemHeading.props}
               data-testid={`FAQGroup-tab-panel-heading-${index + 1}`}
-              className={clsx(styles['FAQGroup__panel-subHeading'])}
-            >
-              {FAQItemHeadingText}
-            </FAQ.Subheading>
+              className={clsx(styles['FAQGroup__panel-subHeading'], FAQItemHeading.props.className)}
+            />
           )}
           {FAQItemChild}
         </div>
