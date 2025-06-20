@@ -183,10 +183,6 @@
   color: var(--brand-videoPlayer-controls-fgColor);
 }
 
-.VideoPlayer__iconControl:hover .VideoPlayer__tooltip {
-  opacity: 1;
-}
-
 .VideoPlayer__seek {
   flex: 1;
   display: flex;
@@ -238,10 +234,6 @@
   height: var(--brand-VideoPlayer-range-height);
   background-color: var(--brand-videoPlayer-range-bgColor-default);
   border-radius: var(--brand-VideoPlayer-range-borderRadius);
-}
-
-.VideoPlayer__range:hover .VideoPlayer__tooltip {
-  opacity: 1;
 }
 
 .VideoPlayer__rangeInput {
@@ -323,10 +315,8 @@
   width: var(--base-size-8);
   height: var(--base-size-8);
   margin-bottom: var(--base-size-16);
-  pointer-events: none;
   opacity: 0;
   transform: translate(-50%, 50%);
-  transition: transform var(--brand-animation-duration-default) var(--brand-animation-easing-default);
 }
 
 .VideoPlayer__tooltip::before {

@@ -9,6 +9,7 @@ type VideoTooltipProps = HTMLAttributes<HTMLDivElement>
 export const VideoTooltip = ({children, className, ...rest}: VideoTooltipProps) => {
   const tooltipRef = useRef<HTMLDivElement>(null)
   const [hasFocus, setHasFocus] = useState(false)
+  const mouseenterTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     const tooltip = tooltipRef.current
@@ -16,6 +17,13 @@ export const VideoTooltip = ({children, className, ...rest}: VideoTooltipProps) 
 
     if (!tooltip || !parent) {
       return
+    }
+
+    const clearTimeoutAndRef = () => {
+      if (mouseenterTimeoutRef.current) {
+        clearTimeout(mouseenterTimeoutRef.current)
+        mouseenterTimeoutRef.current = null
+      }
     }
 
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -34,19 +42,38 @@ export const VideoTooltip = ({children, className, ...rest}: VideoTooltipProps) 
       setHasFocus(false)
     }
 
+    const onMouseEnterTooltip = () => {
+      clearTimeoutAndRef()
+      setHasFocus(true)
+    }
+
+    const onMouseLeaveTooltip = () => {
+      clearTimeoutAndRef()
+
+      mouseenterTimeoutRef.current = setTimeout(() => {
+        setHasFocus(false)
+      }, 100)
+    }
+
     parent.addEventListener('focus', checkFocus)
     parent.addEventListener('blur', checkFocus)
     parent.addEventListener('focusin', checkFocus)
     parent.addEventListener('focusout', checkFocus)
     parent.addEventListener('click', onClick)
+    parent.addEventListener('mouseenter', onMouseEnterTooltip)
+    parent.addEventListener('mouseleave', onMouseLeaveTooltip)
     window.addEventListener('keydown', handleKeyDown)
 
     return () => {
+      clearTimeoutAndRef()
+
       parent.removeEventListener('focus', checkFocus)
       parent.removeEventListener('blur', checkFocus)
       parent.removeEventListener('focusin', checkFocus)
       parent.removeEventListener('focusout', checkFocus)
       parent.removeEventListener('click', onClick)
+      parent.removeEventListener('mouseenter', onMouseEnterTooltip)
+      parent.removeEventListener('mouseleave', onMouseLeaveTooltip)
       window.removeEventListener('keydown', handleKeyDown)
     }
   }, [tooltipRef])
@@ -57,11 +84,15 @@ export const VideoTooltip = ({children, className, ...rest}: VideoTooltipProps) 
       ref={tooltipRef}
       {...rest}
     >
-      <span className={styles.VideoPlayer__tooltipContent}>
-        <Text className={styles.VideoPlayer__tooltipText} weight="medium">
-          {children}
-        </Text>
-      </span>
+      {hasFocus ? (
+        <span className={styles.VideoPlayer__tooltipContent}>
+          <Text className={styles.VideoPlayer__tooltipText} weight="medium">
+            {children}
+          </Text>
+        </span>
+      ) : (
+        <span className="visually-hidden">{children}</span>
+      )}
     </div>
   )
 }

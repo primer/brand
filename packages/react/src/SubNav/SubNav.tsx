@@ -22,6 +22,7 @@ import {ChevronDownIcon, ChevronUpIcon} from '@primer/octicons-react'
 import {useId} from '../hooks/useId'
 import {useKeyboardEscape} from '../hooks/useKeyboardEscape'
 import {useOnClickOutside} from '../hooks/useOnClickOutside'
+import {useFocusTrap} from '../hooks/useFocusTrap'
 import {useProvidedRefOrCreate} from '../hooks/useRef'
 import {useContainsFocus} from './useContainsFocus'
 
@@ -170,6 +171,8 @@ const _SubNavRoot = memo(
       const [hasAnchoredNav, setHasAnchoredNav] = useState(false)
 
       const {isLarge} = useWindowSize()
+
+      useFocusTrap({containerRef: innerRootRef, disabled: !isOpenAtNarrow})
 
       const childrenArr = Children.toArray(children)
 

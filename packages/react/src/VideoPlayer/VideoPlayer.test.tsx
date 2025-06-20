@@ -210,4 +210,33 @@ describe('VideoPlayer', () => {
 
     expect(queryByLabelText('GitHub logo')).not.toBeInTheDocument()
   })
+
+  it('keeps tooltips visible for 100ms after the user stops hovering over the associated control', async () => {
+    const user = userEvent.setup()
+
+    const {getByRole, getByText} = render(
+      <VideoPlayer poster="/example-poster.jpg" title="test video">
+        <VideoPlayer.Source src="/example.mp4" />
+        <VideoPlayer.Track src="/example.vtt" default kind="subtitles" srcLang="en" label="English" />
+      </VideoPlayer>,
+    )
+
+    const captionsButton = getByRole('button', {name: 'Enable captions'})
+
+    await user.hover(captionsButton)
+
+    const tooltip = getByText('Enable captions')
+
+    expect(tooltip).toBeVisible()
+
+    await user.unhover(captionsButton)
+    expect(tooltip).toBeVisible()
+
+    await waitFor(
+      () => {
+        expect(tooltip).not.toBeVisible()
+      },
+      {timeout: 100},
+    )
+  })
 })
