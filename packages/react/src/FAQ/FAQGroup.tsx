@@ -106,9 +106,26 @@ function _FAQGroup({children, id, defaultSelectedIndex = 0, tabAttributes, ...re
 
   const TabPanels = React.Children.map(faqChildren, (faqChild, index) => {
     if (React.isValidElement<FAQRootProps>(faqChild) && faqChild.props.children) {
-      const FAQItemChild = React.Children.map(faqChild.props.children, child =>
-        React.isValidElement(child) && child.type !== FAQ.Heading ? child : null,
-      )
+      const FAQItemChild = React.Children.map(faqChild.props.children, child => {
+        if (!React.isValidElement(child) || child.type === FAQ.Heading) {
+          return null
+        }
+
+        // Make sure that the FAQ.Question is rendered as a h5
+        const grandChildren = React.Children.map(child.props.children, grandChild => {
+          if (grandChild.type === FAQ.Question) {
+            return React.cloneElement(grandChild as React.ReactElement, {
+              as: 'h5',
+              ...grandChild.props,
+            })
+          }
+          return grandChild
+        })
+
+        return React.cloneElement(child as React.ReactElement, {
+          children: grandChildren,
+        })
+      })
 
       const FAQItemHeading = React.Children.toArray(faqChild.props.children).find(
         child => React.isValidElement(child) && child.type === FAQ.Heading,
