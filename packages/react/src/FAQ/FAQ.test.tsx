@@ -10,6 +10,7 @@ describe('FAQ', () => {
   const questionRoot = 'question-root'
 
   const mockHeading = 'This is a mock heading'
+  const mockSubheading = 'this is a mock subheading'
   const mockQuestion = 'What is a mock question?'
   const mockFAQAnswer = 'mock answer'
 
@@ -137,7 +138,6 @@ describe('FAQ', () => {
   })
 
   it('can render groups of FAQs using an optional sub-heading', () => {
-    const mockSubheading = 'this is a mock subheading'
     const invalidChild = <div>This is an invalid child</div>
     const {getByRole} = render(
       <FAQ>
@@ -153,13 +153,12 @@ describe('FAQ', () => {
       </FAQ>,
     )
 
-    const subheadingEl = getByRole('heading', {level: 3, name: mockSubheading})
+    const subheadingEl = getByRole('heading', {level: 4, name: mockSubheading})
 
     expect(subheadingEl).toBeInTheDocument()
   })
 
-  it('renders alternative headling levels', () => {
-    const mockSubheading = 'this is a mock subheading'
+  it('renders alternative heading levels', () => {
     const {getByRole} = render(
       <FAQ>
         <FAQ.Heading as="h3">{mockHeading}</FAQ.Heading>
@@ -180,5 +179,97 @@ describe('FAQ', () => {
     expect(mainheadingEl).toBeInTheDocument()
     expect(subheadingEl).toBeInTheDocument()
     expect(questionheadingEl).toBeInTheDocument()
+  })
+
+  it('renders the heading as a h3 and the question as a h4 by default', () => {
+    const {getByRole} = render(
+      <FAQ>
+        <FAQ.Heading>{mockHeading}</FAQ.Heading>
+        <FAQ.Item>
+          <FAQ.Question>{mockQuestion}</FAQ.Question>
+          <FAQ.Answer>
+            <p>{mockFAQAnswer}</p>
+          </FAQ.Answer>
+        </FAQ.Item>
+      </FAQ>,
+    )
+
+    const mainheadingEl = getByRole('heading', {level: 3, name: mockHeading})
+    const questionheadingEl = getByRole('heading', {level: 4, name: mockQuestion})
+
+    expect(mainheadingEl).toBeInTheDocument()
+    expect(questionheadingEl).toBeInTheDocument()
+  })
+
+  it('renders the heading as a h3, the subheading as a h4, and the question as a h5 when there is a subheading present', () => {
+    const {getByRole} = render(
+      <FAQ>
+        <FAQ.Heading>{mockHeading}</FAQ.Heading>
+        <FAQ.Subheading>{mockSubheading}</FAQ.Subheading>
+        <FAQ.Item>
+          <FAQ.Question>{mockQuestion}</FAQ.Question>
+          <FAQ.Answer>
+            <p>{mockFAQAnswer}</p>
+          </FAQ.Answer>
+        </FAQ.Item>
+      </FAQ>,
+    )
+
+    const mainheadingEl = getByRole('heading', {level: 3, name: mockHeading})
+    const subheadingEl = getByRole('heading', {level: 4, name: mockSubheading})
+    const questionheadingEl = getByRole('heading', {level: 5, name: mockQuestion})
+
+    expect(mainheadingEl).toBeInTheDocument()
+    expect(subheadingEl).toBeInTheDocument()
+    expect(questionheadingEl).toBeInTheDocument()
+  })
+
+  it('renders the heading as a h3, the subheading as a h4, and the question as a h5 when there is a subheading present, and the FAQ.Item is wrapped in a Fragment', () => {
+    const {getByRole} = render(
+      <FAQ>
+        <FAQ.Heading>{mockHeading}</FAQ.Heading>
+        <FAQ.Subheading>{mockSubheading}</FAQ.Subheading>
+        <>
+          <FAQ.Item key="item-1">
+            <FAQ.Question>{mockQuestion}</FAQ.Question>
+            <FAQ.Answer>
+              <p>{mockFAQAnswer}</p>
+            </FAQ.Answer>
+          </FAQ.Item>
+        </>
+      </FAQ>,
+    )
+
+    const mainheadingEl = getByRole('heading', {level: 3, name: mockHeading})
+    const subheadingEl = getByRole('heading', {level: 4, name: mockSubheading})
+    const questionheadingEl = getByRole('heading', {level: 5, name: mockQuestion})
+
+    expect(mainheadingEl).toBeInTheDocument()
+    expect(subheadingEl).toBeInTheDocument()
+    expect(questionheadingEl).toBeInTheDocument()
+  })
+
+  it('renders the heading as a h3, the subheading as a h4, and the question as a h5 when there is a subheading present, FAQ.Items are wrapped in a Fragment, and all FAQ.Items are wrapped in an array', () => {
+    const {getByRole} = render(
+      <FAQ>
+        <FAQ.Heading>{mockHeading}</FAQ.Heading>
+        <FAQ.Subheading>{mockSubheading}</FAQ.Subheading>
+        <>
+          {[1, 2].map(item => {
+            return (
+              <FAQ.Item key={`item-${item}`}>
+                <FAQ.Question>Question {item}</FAQ.Question>
+                <FAQ.Answer>Answer {item}</FAQ.Answer>
+              </FAQ.Item>
+            )
+          })}
+        </>
+      </FAQ>,
+    )
+
+    expect(getByRole('heading', {level: 3, name: mockHeading})).toBeInTheDocument()
+    expect(getByRole('heading', {level: 4, name: mockSubheading})).toBeInTheDocument()
+    expect(getByRole('heading', {level: 5, name: 'Question 1'})).toBeInTheDocument()
+    expect(getByRole('heading', {level: 5, name: 'Question 2'})).toBeInTheDocument()
   })
 })
