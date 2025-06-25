@@ -102,6 +102,15 @@ test.describe('Visual Comparison: Card', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('Card / Icon And Label With Fragment', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-card-features--icon-and-label-with-fragment&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('Card / Image', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-card-features--image&viewMode=story')
 

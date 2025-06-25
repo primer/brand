@@ -76,7 +76,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
       onMouseLeave,
       onFocus,
       onBlur,
-      children,
+      children: childrenMaybeWrappedInFragment,
       className,
       ctaText = 'Learn more',
       disableAnimation = false,
@@ -92,25 +92,33 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
     const cardRef = useProvidedRefOrCreate(ref as RefObject<HTMLDivElement>)
     const {colorMode} = useTheme()
 
-    const filteredChildren = React.Children.toArray(children).filter(child => {
-      if (React.isValidElement(child) && typeof child.type !== 'string') {
-        if (
-          isFragment(child) ||
-          (child as React.ReactElement).type === CardImage ||
-          (child as React.ReactElement).type === CardIcon ||
-          (child as React.ReactElement).type === CardLabel ||
-          (child as React.ReactElement).type === CardHeading ||
-          (child as React.ReactElement).type === CardDescription
-        ) {
-          return true
-        }
-      }
-      return false
-    })
+    const children = isFragment(childrenMaybeWrappedInFragment)
+      ? childrenMaybeWrappedInFragment.props.children
+      : childrenMaybeWrappedInFragment
 
-    const hasIcon = React.Children.toArray(children).some(
-      child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === CardIcon,
-    )
+    const {cardImage, cardIcon, cardLabel, cardHeading, cardDescription} = React.Children.toArray(children).reduce<{
+      cardHeading?: ReturnType<typeof CardHeading>
+      cardImage?: ReturnType<typeof CardImage>
+      cardIcon?: ReturnType<typeof CardIcon>
+      cardLabel?: ReturnType<typeof CardLabel>
+      cardDescription?: ReturnType<typeof CardDescription>
+    }>((acc, child) => {
+      if (isCardHeading(child)) {
+        acc.cardHeading = React.cloneElement(child, {
+          href,
+        })
+      } else if (isCardImage(child)) {
+        acc.cardImage = child
+      } else if (isCardIcon(child)) {
+        acc.cardIcon = child
+      } else if (isCardLabel(child)) {
+        acc.cardLabel = child
+      } else if (isCardDescription(child)) {
+        acc.cardDescription = child
+      }
+
+      return acc
+    }, {})
 
     const hasSkewEffect = colorMode === 'dark' && variant === 'torchlight'
     const showBorder = hasSkewEffect || hasBorder
@@ -132,7 +140,7 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
             disableAnimation && styles['Card--disableAnimation'],
             styles[`Card--colorMode-${colorMode}`],
             styles[`Card--variant-${variant}`],
-            hasIcon && styles['Card--icon'],
+            cardIcon && styles['Card--icon'],
             showBorder && styles['Card--border'],
             styles[`Card--colorMode-${colorMode}`],
             className,
@@ -141,14 +149,12 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(
           ref={cardRef}
           {...props}
         >
-          {React.Children.map(filteredChildren, child => {
-            if (React.isValidElement(child) && typeof child.type !== 'string' && child.type === CardHeading) {
-              return React.cloneElement<CardHeadingProps>(child as React.ReactElement<CardHeadingProps>, {
-                href,
-              })
-            }
-            return child
-          })}
+          {cardHeading}
+          {cardImage}
+          {cardIcon}
+          {cardLabel}
+          {cardDescription}
+
           <div className={styles.Card__action}>
             <Text as="span" size="200" className={clsx(stylesLink['Link--label'])}>
               {ctaText}
@@ -238,6 +244,17 @@ const CardDescription = forwardRef<HTMLParagraphElement, CardDescriptionProps>(
     )
   },
 )
+
+const createComponentTypeGuard =
+  <T,>(componentType: React.ComponentType<T>) =>
+  (element: unknown): element is React.ReactElement<T> =>
+    React.isValidElement(element) && element.type === componentType
+
+const isCardImage = createComponentTypeGuard(CardImage)
+const isCardLabel = createComponentTypeGuard(CardLabel)
+const isCardIcon = createComponentTypeGuard(CardIcon)
+const isCardHeading = createComponentTypeGuard(CardHeading)
+const isCardDescription = createComponentTypeGuard(CardDescription)
 
 /**
  * Card component:
