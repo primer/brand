@@ -10,6 +10,7 @@ describe('FAQ', () => {
   const questionRoot = 'question-root'
 
   const mockHeading = 'This is a mock heading'
+  const mockSubheading = 'this is a mock subheading'
   const mockQuestion = 'What is a mock question?'
   const mockFAQAnswer = 'mock answer'
 
@@ -137,7 +138,6 @@ describe('FAQ', () => {
   })
 
   it('can render groups of FAQs using an optional sub-heading', () => {
-    const mockSubheading = 'this is a mock subheading'
     const invalidChild = <div>This is an invalid child</div>
     const {getByRole} = render(
       <FAQ>
@@ -159,7 +159,6 @@ describe('FAQ', () => {
   })
 
   it('renders alternative heading levels', () => {
-    const mockSubheading = 'this is a mock subheading'
     const {getByRole} = render(
       <FAQ>
         <FAQ.Heading as="h3">{mockHeading}</FAQ.Heading>
@@ -203,7 +202,6 @@ describe('FAQ', () => {
   })
 
   it('renders the heading as a h3, the subheading as a h4, and the question as a h5 when there is a subheading present', () => {
-    const mockSubheading = 'this is a mock subheading'
     const {getByRole} = render(
       <FAQ>
         <FAQ.Heading>{mockHeading}</FAQ.Heading>
