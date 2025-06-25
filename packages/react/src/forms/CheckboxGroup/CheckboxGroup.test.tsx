@@ -33,7 +33,7 @@ describe('CheckboxGroup', () => {
       </CheckboxGroup>,
     )
 
-    expect(getByRole('group', {name: 'Choices'})).toBeInTheDocument()
+    expect(getByRole('group', {name: 'Choices You can only pick one Great job!'})).toBeInTheDocument()
     expect(getByText('You can only pick one')).toBeInTheDocument()
     expect(getByLabelText('Choice one')).toBeInTheDocument()
     expect(getByLabelText('Choice two')).toBeInTheDocument()
@@ -67,7 +67,7 @@ describe('CheckboxGroup', () => {
     expect(results).toHaveNoViolations()
   })
 
-  it('associates the hint with the input using aria-describedby', () => {
+  it('includes the caption in the legend for screen readers', () => {
     const {getByRole, getByText} = render(
       <CheckboxGroup>
         <CheckboxGroup.Label>Choices</CheckboxGroup.Label>
@@ -87,13 +87,14 @@ describe('CheckboxGroup', () => {
       </CheckboxGroup>,
     )
 
-    const fieldset = getByRole('group', {name: 'Choices'})
+    const fieldset = getByRole('group', {name: 'Choices You can only pick one'})
     const caption = getByText('You can only pick one')
 
-    expect(fieldset).toHaveAttribute('aria-describedby', caption.id)
+    expect(fieldset).not.toHaveAttribute('aria-describedby')
+    expect(caption).toBeInTheDocument()
   })
 
-  it('associates the validation with the input using aria-describedby', () => {
+  it('includes the validation in the legend for screen readers', () => {
     const {getByRole, getByText} = render(
       <CheckboxGroup>
         <CheckboxGroup.Label>Choices</CheckboxGroup.Label>
@@ -114,13 +115,14 @@ describe('CheckboxGroup', () => {
       </CheckboxGroup>,
     )
 
-    const fieldset = getByRole('group', {name: 'Choices'})
+    const fieldset = getByRole('group', {name: 'Choices Uh oh!'})
     const validation = getByText('Uh oh!')
 
-    expect(fieldset).toHaveAttribute('aria-describedby', validation.id)
+    expect(fieldset).not.toHaveAttribute('aria-describedby')
+    expect(validation).toBeInTheDocument()
   })
 
-  it('associates both a hint and validation with the input using aria-describedby', () => {
+  it('includes both caption and validation in the legend for screen readers', () => {
     const {getByRole, getByText} = render(
       <CheckboxGroup>
         <CheckboxGroup.Label>Choices</CheckboxGroup.Label>
@@ -142,10 +144,56 @@ describe('CheckboxGroup', () => {
       </CheckboxGroup>,
     )
 
-    const fieldset = getByRole('group', {name: 'Choices'})
+    const fieldset = getByRole('group', {name: 'Choices You can only pick one Great job!'})
     const hint = getByText('You can only pick one')
     const validation = getByText('Great job!')
 
-    expect(fieldset).toHaveAttribute('aria-describedby', `${hint.id} ${validation.id}`)
+    expect(fieldset).not.toHaveAttribute('aria-describedby')
+    expect(hint).toBeInTheDocument()
+    expect(validation).toBeInTheDocument()
+  })
+
+  it('works with only label (no caption or validation)', () => {
+    const {getByRole} = render(
+      <CheckboxGroup>
+        <CheckboxGroup.Label>Choices</CheckboxGroup.Label>
+        <FormControl>
+          <FormControl.Label>Choice one</FormControl.Label>
+          <Checkbox value="one" />
+        </FormControl>
+      </CheckboxGroup>,
+    )
+
+    expect(getByRole('group', {name: 'Choices'})).toBeInTheDocument()
+  })
+
+  it('works with only caption (no validation)', () => {
+    const {getByRole} = render(
+      <CheckboxGroup>
+        <CheckboxGroup.Label>Choices</CheckboxGroup.Label>
+        <CheckboxGroup.Caption>Pick one</CheckboxGroup.Caption>
+        <FormControl>
+          <FormControl.Label>Choice one</FormControl.Label>
+          <Checkbox value="one" />
+        </FormControl>
+      </CheckboxGroup>,
+    )
+
+    expect(getByRole('group', {name: 'Choices Pick one'})).toBeInTheDocument()
+  })
+
+  it('works with only validation (no caption)', () => {
+    const {getByRole} = render(
+      <CheckboxGroup>
+        <CheckboxGroup.Label>Choices</CheckboxGroup.Label>
+        <FormControl>
+          <FormControl.Label>Choice one</FormControl.Label>
+          <Checkbox value="one" />
+        </FormControl>
+        <CheckboxGroup.Validation variant="error">Error!</CheckboxGroup.Validation>
+      </CheckboxGroup>,
+    )
+
+    expect(getByRole('group', {name: 'Choices Error!'})).toBeInTheDocument()
   })
 })
