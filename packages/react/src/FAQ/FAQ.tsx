@@ -47,7 +47,11 @@ const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, style, animate
       style={{...animationInlineStyles, ...style}}
       {...rest}
     >
-      {React.Children.toArray(filteredChildren).map(child => {
+      {React.Children.toArray(filteredChildren).map(childMaybeFragment => {
+        const child = (
+          isFragment(childMaybeFragment) ? childMaybeFragment.props.children : childMaybeFragment
+        ) as typeof childMaybeFragment
+
         if (React.isValidElement(child) && typeof child.type !== 'string') {
           if (child.type === FAQHeading) {
             return React.cloneElement(child as React.ReactElement, {
