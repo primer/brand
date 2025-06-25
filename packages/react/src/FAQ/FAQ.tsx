@@ -22,19 +22,30 @@ export type FAQRootProps = PropsWithChildren<BaseProps<HTMLElement>> & React.HTM
 const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, style, animate, className, ...rest}, ref) => {
   const {classes: animationClasses, styles: animationInlineStyles} = useAnimation(animate)
 
-  const filteredChildren = React.Children.toArray(children).filter(child => {
-    if (React.isValidElement(child) && typeof child.type !== 'string') {
-      if (
-        isFragment(child) ||
-        (child as React.ReactElement).type === FAQHeading ||
-        (child as React.ReactElement).type === FAQSubheading ||
-        (child as React.ReactElement).type === AccordionRoot
-      ) {
-        return true
+  const filteredChildren = React.Children.toArray(children)
+    .filter(child => {
+      if (React.isValidElement(child) && typeof child.type !== 'string') {
+        if (
+          isFragment(child) ||
+          (child as React.ReactElement).type === FAQHeading ||
+          (child as React.ReactElement).type === FAQSubheading ||
+          (child as React.ReactElement).type === AccordionRoot
+        ) {
+          return true
+        }
       }
-    }
-    return false
-  })
+      return false
+    })
+    .map(childMaybeFragment => {
+      /**
+       * If children are wrapped in a Fragment, extract the children.
+       * Children may also be an array of FAQ.Item components, so we call
+       * `toArray` to ensure we always have an array.
+       */
+      return React.Children.toArray(
+        isFragment(childMaybeFragment) ? childMaybeFragment.props.children : childMaybeFragment,
+      )
+    })
 
   const hasSubheading = React.Children.toArray(children).some(
     child => React.isValidElement(child) && typeof child.type !== 'string' && child.type === FAQSubheading,
@@ -47,12 +58,12 @@ const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, style, animate
       style={{...animationInlineStyles, ...style}}
       {...rest}
     >
-      {React.Children.toArray(filteredChildren).map(childMaybeFragment => {
-        const child = (
-          isFragment(childMaybeFragment) ? childMaybeFragment.props.children : childMaybeFragment
-        ) as typeof childMaybeFragment
+      {filteredChildren.map(childArr => {
+        return childArr.map(child => {
+          if (!React.isValidElement(child) || typeof child.type === 'string') {
+            return child
+          }
 
-        if (React.isValidElement(child) && typeof child.type !== 'string') {
           if (child.type === FAQHeading) {
             return React.cloneElement(child as React.ReactElement, {
               align: hasSubheading ? 'start' : child.props.align,
@@ -77,8 +88,9 @@ const FAQRoot = forwardRef<HTMLElement, FAQRootProps>(({children, style, animate
               children: grandChildren,
             })
           }
-        }
-        return child
+
+          return child
+        })
       })}
     </section>
   )

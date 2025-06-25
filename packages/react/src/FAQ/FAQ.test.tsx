@@ -248,4 +248,28 @@ describe('FAQ', () => {
     expect(subheadingEl).toBeInTheDocument()
     expect(questionheadingEl).toBeInTheDocument()
   })
+
+  it('renders the heading as a h3, the subheading as a h4, and the question as a h5 when there is a subheading present, FAQ.Items are wrapped in a Fragment, and all FAQ.Items are wrapped in an array', () => {
+    const {getByRole} = render(
+      <FAQ>
+        <FAQ.Heading>{mockHeading}</FAQ.Heading>
+        <FAQ.Subheading>{mockSubheading}</FAQ.Subheading>
+        <>
+          {[1, 2].map(item => {
+            return (
+              <FAQ.Item key={`item-${item}`}>
+                <FAQ.Question>Question {item}</FAQ.Question>
+                <FAQ.Answer>Answer {item}</FAQ.Answer>
+              </FAQ.Item>
+            )
+          })}
+        </>
+      </FAQ>,
+    )
+
+    expect(getByRole('heading', {level: 3, name: mockHeading})).toBeInTheDocument()
+    expect(getByRole('heading', {level: 4, name: mockSubheading})).toBeInTheDocument()
+    expect(getByRole('heading', {level: 5, name: 'Question 1'})).toBeInTheDocument()
+    expect(getByRole('heading', {level: 5, name: 'Question 2'})).toBeInTheDocument()
+  })
 })
