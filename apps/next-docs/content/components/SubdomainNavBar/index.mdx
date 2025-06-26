@@ -48,7 +48,7 @@ Please refer to our [Storybook examples](https://primer.style/brand/storybook/?p
 
 `SubdomainNavBar` offers an optional search form control. The form can operate in both `onSubmit` and `onChange` modes, with the latter facilitating inline results to appear.
 
-```javascript live noinline
+```jsx filename="noinline"
 const App = () => {
   const inputRef = React.useRef(null)
   const [searchResults, setSearchResults] = React.useState([])
@@ -96,19 +96,17 @@ const App = () => {
   }
 
   return (
-    <div style={{position: 'relative', overflowX: 'scroll'}}>
-      <SubdomainNavBar title="Subdomain" fixed={false}>
-        <SubdomainNavBar.Link href="#collections">Collections</SubdomainNavBar.Link>
-        <SubdomainNavBar.Link href="#topics">Topics</SubdomainNavBar.Link>
-        <SubdomainNavBar.Search
-          ref={inputRef}
-          searchTerm={searchTerm}
-          onSubmit={handleSubmit}
-          onChange={handleChange}
-          searchResults={searchResults}
-        />
-      </SubdomainNavBar>
-    </div>
+    <SubdomainNavBar title="Subdomain" fixed={false}>
+      <SubdomainNavBar.Link href="#collections">Collections</SubdomainNavBar.Link>
+      <SubdomainNavBar.Link href="#topics">Topics</SubdomainNavBar.Link>
+      <SubdomainNavBar.Search
+        ref={inputRef}
+        searchTerm={searchTerm}
+        onSubmit={handleSubmit}
+        onChange={handleChange}
+        searchResults={searchResults}
+      />
+    </SubdomainNavBar>
   )
 }
 

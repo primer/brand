@@ -26,7 +26,7 @@ Use the [FormControl](./FormControl) component to render a Textarea with a corre
 
 ### Controlled mode
 
-```javascript live noinline
+```jsx filename="noinline"
 const TextareaExample = () => {
   // Running in controlled mode (recommended)
   const [value, setValue] = React.useState('This value was initially set through state.')
@@ -43,7 +43,7 @@ render(<TextareaExample />)
 
 ### Uncontrolled mode
 
-```javascript live noinline
+```jsx filename="noinline"
 const TextareaExample = () => {
   const ref = React.useRef()
 

@@ -227,7 +227,7 @@ More information on form validation best practices can be found in the [Primer U
 
 Try changing the input value to `monalisa` and submitting the form to show the `success` state.
 
-```javascript live noinline
+```jsx filename="noinline"
 const App = () => {
   const inputRef = React.useRef(null)
   const [value, setValue] = React.useState('mona lisa')
@@ -331,7 +331,7 @@ When marking a field as required, it is recommended to also provide a correspond
 
 `FormControl` inputs can be used in [uncontrolled mode](https://reactjs.org/docs/uncontrolled-components.html) by forwarding a `ref` to the underlying element.
 
-```javascript live noinline
+```jsx filename="noinline"
 const App = () => {
   const inputRef = React.useRef(null)
 

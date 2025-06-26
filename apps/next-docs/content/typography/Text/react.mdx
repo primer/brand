@@ -34,24 +34,24 @@ import {Text} from '@primer/react-brand'
 ### Scale
 
 ```jsx live
-<>
+<div>
   {TextSizes.map(size => (
     <Text key={size} size={size} as="p">
       Text {size}
     </Text>
   ))}
-</>
+</div>
 ```
 
 ### Variants
 
 ```jsx live
-<>
+<div>
   <Text as="p">With GitHub Copilot, you’re always in charge.</Text>
   <Text as="p" variant="muted">
     With GitHub Copilot, you’re always in charge.
   </Text>
-</>
+</div>
 ```
 
 ### Alignment
@@ -86,7 +86,7 @@ The recommended text weight is automatically applied through Text based on its p
 Use the `weight` prop to adjust the default visual appearance if required.
 
 ```jsx live
-<>
+<div>
   <Text as="p" weight="heavy">
     heavy
   </Text>
@@ -122,7 +122,7 @@ Use the `weight` prop to adjust the default visual appearance if required.
   >
     Responsive
   </Text>
-</>
+</div>
 ```
 
 ## Component props
