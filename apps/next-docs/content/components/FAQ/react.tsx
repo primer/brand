@@ -4,25 +4,24 @@ import {HeadingTags} from '../../../../../packages/react/src/Heading/Heading'
 import {AccordionToggleColors} from '../../../../../packages/react/src/Accordion/Accordion'
 
 export const FAQChildrenProp = () => (
-  <PropTableValues
-    values={['FAQ.Heading (#faq-heading)', 'FAQ.Subheading (#faq-subheading)', 'FAQ.Item (#faq-item)']}
-    addLineBreaks
-  />
+  <PropTableValues values={['FAQ.Heading', 'FAQ.Subheading', 'FAQ.Item']} addLineBreaks commaSeparated />
 )
 
-export const FAQHeadingAlignProp = () => <PropTableValues values={['start', 'center']} addLineBreaks />
-export const FAQHeadingSizeProp = () => <PropTableValues values={['medium', 'large']} addLineBreaks />
-export const FAQHeadingAsProp = () => <PropTableValues values={[...HeadingTags]} addLineBreaks />
-export const FAQHeadingToggleColorProp = () => <PropTableValues values={[...AccordionToggleColors]} addLineBreaks />
-export const FAQSubheadingAsProp = () => <PropTableValues values={HeadingTags.slice(1)} addLineBreaks />
-export const FAQQuestionAsProp = () => <PropTableValues values={HeadingTags.slice(1)} addLineBreaks />
+export const FAQHeadingAlignProp = () => <PropTableValues values={['start', 'center']} addLineBreaks commaSeparated />
+export const FAQHeadingSizeProp = () => <PropTableValues values={['medium', 'large']} addLineBreaks commaSeparated />
+export const FAQHeadingAsProp = () => <PropTableValues values={[...HeadingTags]} addLineBreaks commaSeparated />
+export const FAQHeadingToggleColorProp = () => (
+  <PropTableValues values={[...AccordionToggleColors]} addLineBreaks commaSeparated />
+)
+export const FAQSubheadingAsProp = () => <PropTableValues values={HeadingTags.slice(1)} addLineBreaks commaSeparated />
+export const FAQQuestionAsProp = () => <PropTableValues values={HeadingTags.slice(1)} addLineBreaks commaSeparated />
 
 export const FAQGroupChildrenProp = () => (
-  <PropTableValues values={['FAQ (#faq-required)', 'FAQGroup.Heading (#faqgroup-heading)']} addLineBreaks />
+  <PropTableValues values={['FAQ', 'FAQGroup.Heading']} addLineBreaks commaSeparated />
 )
 
 export const FAQItemChildrenProp = () => (
-  <PropTableValues values={['FAQ.Question (#faq-question)', 'FAQ.Answer (#faq-answer)']} addLineBreaks />
+  <PropTableValues values={['FAQ.Question', 'FAQ.Answer']} addLineBreaks commaSeparated />
 )
 
-export const FAQGroupHeadingAsProp = () => <PropTableValues values={[...HeadingTags]} addLineBreaks />
+export const FAQGroupHeadingAsProp = () => <PropTableValues values={[...HeadingTags]} addLineBreaks commaSeparated />

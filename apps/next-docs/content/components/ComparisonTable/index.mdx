@@ -131,7 +131,7 @@ The default colors can be customized through dedicated CSS variables.
 | `--brand-ComparisonTable-featured-color-start` | `--base-color-scale-pink-4`   |
 | `--brand-ComparisonTable-featured-color-end`   | `--base-color-scale-indigo-5` |
 
-```javascript live noinline
+```jsx filename="noinline"
 const App = () => {
   const designTokenOverrides = `
   .custom-colors[data-color-mode='dark'] {
@@ -221,7 +221,7 @@ Comparison tables are typically generated using data from an API or content mana
 
 `ComparisonTable` accepts `ReactNode` as a valid child, to facilitate conditional and dynamic rendering.
 
-```javascript live noinline
+```jsx filename="noinline"
 const App = () => {
   const comparisonTableData = {
     heading: 'GitHub vs Jenkins',

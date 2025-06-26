@@ -45,7 +45,7 @@ Many `Stack` props - including `direction` - accept both `string` and `Object` v
 
 Use the playground below to experiment with the various options.
 
-```javascript live noinline
+```jsx filename="noinline"
 const App = () => {
   const [alignItemsValue, setAlignItemsValue] = React.useState('center')
   const [justifyContentValue, setJustifyContentValue] = React.useState('space-between')
@@ -54,7 +54,7 @@ const App = () => {
   const handleCrossAxisChange = event => setAlignItemsValue(event.target.value)
 
   return (
-    <>
+    <div>
       <Stack
         direction="horizontal"
         alignItems={alignItemsValue}
@@ -100,7 +100,7 @@ const App = () => {
           </Select>
         </FormControl>
       </Stack>
-    </>
+    </div>
   )
 }
 
