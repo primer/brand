@@ -1,5 +1,7 @@
 # @primer/brand-css
 
+## 0.56.1
+
 ## 0.56.0
 
 ### Minor Changes
