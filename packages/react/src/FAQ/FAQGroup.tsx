@@ -113,10 +113,14 @@ function _FAQGroup({children, id, defaultSelectedIndex = 0, tabAttributes, ...re
 
         // Make sure that the FAQ.Question is rendered as a h5
         const grandChildren = React.Children.map(child.props.children, grandChild => {
+          if (!React.isValidElement(grandChild) || typeof grandChild.type === 'string') {
+            return grandChild
+          }
+
           if (grandChild.type === FAQ.Question) {
             return React.cloneElement(grandChild as React.ReactElement, {
               as: 'h5',
-              ...grandChild.props,
+              ...(grandChild as React.ReactElement).props,
             })
           }
           return grandChild
