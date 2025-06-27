@@ -20,20 +20,20 @@ type ThemeProps = Parameters<typeof Theme>[0]
 
 const headerLinks: ThemeProps['headerLinks'] = [
   {
-    href: 'https://primer.style/product',
+    href: 'https://primer.style/product/',
     title: 'Product UI',
   },
   {
-    href: 'https://primer.style/brand',
+    href: 'https://primer.style/brand/',
     title: 'Brand UI',
     isActive: true,
   },
   {
-    href: 'https://primer.style/octicons',
+    href: 'https://primer.style/octicons/',
     title: 'Octicons',
   },
   {
-    href: 'https://primer.style/accessibility',
+    href: 'https://primer.style/accessibility/',
     title: 'Accessibility',
   },
   {
