@@ -182,4 +182,30 @@ describe('FAQGroup', () => {
       expect(faqHeading).toBeInTheDocument()
     }
   })
+
+  it('does not throw an error if an FAQGroup contains an FAQ which contains a fragment wrapping a falsey value', () => {
+    const {getByTestId} = render(
+      <FAQGroup data-testid="root">
+        <FAQGroup.Heading>Frequently asked questions</FAQGroup.Heading>
+        {testData.map((group, index) => (
+          <FAQ key={index}>
+            <FAQ.Heading>{group.heading}</FAQ.Heading>
+            <>
+              {false}
+              {group.faqs.map((faq, childIndex) => (
+                <FAQ.Item key={childIndex}>
+                  <FAQ.Question>{faq.question}</FAQ.Question>
+                  <FAQ.Answer>
+                    <p>{faq.answer}</p>
+                  </FAQ.Answer>
+                </FAQ.Item>
+              ))}
+            </>
+          </FAQ>
+        ))}
+      </FAQGroup>,
+    )
+
+    expect(getByTestId('root')).toBeInTheDocument()
+  })
 })
