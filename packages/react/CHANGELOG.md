@@ -1,5 +1,17 @@
 # @primer/react-brand
 
+## 0.56.1
+
+### Patch Changes
+
+- [#1048](https://github.com/primer/brand/pull/1048) [`3512d15`](https://github.com/primer/brand/commit/3512d15d3c0e52d1dbecb3d363fa9dd54b640e8e) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Children passed to `Card` component now appear in the DOM in a predefined order to improve the experience of screen reader users.
+
+- [#1053](https://github.com/primer/brand/pull/1053) [`fe19fe9`](https://github.com/primer/brand/commit/fe19fe9cde2fe4258f406845a00f3462b3924b1d) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Improved default heading levels in the `FAQ` component.
+
+  - Updated `FAQ.Subheading` heading level from `h3` to `h4`.
+  - `FAQ.Question` now renders as a `h5` if there is a `FAQ.Subheading` present, or if rendered inside a `FAQGroup`.
+  - `FAQGroup` now respects all provided `FAQ.Heading` props, not just children.
+
 ## 0.56.0
 
 ### Patch Changes
