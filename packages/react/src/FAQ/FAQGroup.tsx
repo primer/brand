@@ -152,11 +152,11 @@ function _FAQGroup({children, id, defaultSelectedIndex = 0, tabAttributes, ...re
 
       if (!FAQItemChild) return null
 
+      const GroupHeadingChildProps = React.isValidElement(GroupHeadingChild) ? GroupHeadingChild.props : {}
+
       return (
         <Accordion key={index} variant="emphasis">
-          <Accordion.Heading>
-            {React.isValidElement(GroupHeadingChild) && GroupHeadingChild.props.children}
-          </Accordion.Heading>
+          <Accordion.Heading {...GroupHeadingChildProps} />
           <Accordion.Content>{FAQItemChild}</Accordion.Content>
         </Accordion>
       )
