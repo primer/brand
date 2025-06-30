@@ -1,5 +1,13 @@
 # @primer/react-brand
 
+## 0.56.1
+
+### Patch Changes
+
+- [#1048](https://github.com/primer/brand/pull/1048) [`3512d15`](https://github.com/primer/brand/commit/3512d15d3c0e52d1dbecb3d363fa9dd54b640e8e) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Children passed to `Card` component now appear in the DOM in a predefined order to improve the experience of screen reader users.
+
+- [#1070](https://github.com/primer/brand/pull/1070) [`86e8e8c`](https://github.com/primer/brand/commit/86e8e8c1332fdd97dda654ee986f0f7088e77b01) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Fixed a bug where an `FAQ.Heading` used within an `FAQGroup` wouldn't respect the provided `as` prop.
+
 ## 0.56.0
 
 ### Patch Changes
