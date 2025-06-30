@@ -106,34 +106,13 @@ function _FAQGroup({children, id, defaultSelectedIndex = 0, tabAttributes, ...re
 
   const TabPanels = React.Children.map(faqChildren, (faqChild, index) => {
     if (React.isValidElement<FAQRootProps>(faqChild) && faqChild.props.children) {
-      const FAQItemChild = React.Children.map(faqChild.props.children, child => {
-        if (!React.isValidElement(child) || child.type === FAQ.Heading) {
-          return null
-        }
+      const FAQItemChild = React.Children.map(faqChild.props.children, child =>
+        React.isValidElement(child) && child.type !== FAQ.Heading ? child : null,
+      )
 
-        // Make sure that the FAQ.Question is rendered as a h5
-        const grandChildren = React.Children.map(child.props.children, grandChild => {
-          if (!React.isValidElement(grandChild) || typeof grandChild.type === 'string') {
-            return grandChild
-          }
-
-          if (grandChild.type === FAQ.Question) {
-            return React.cloneElement(grandChild as React.ReactElement, {
-              as: 'h5',
-              ...(grandChild as React.ReactElement).props,
-            })
-          }
-          return grandChild
-        })
-
-        return React.cloneElement(child as React.ReactElement, {
-          children: grandChildren,
-        })
-      })
-
-      const FAQItemHeading = React.Children.toArray(faqChild.props.children).find(
-        child => React.isValidElement(child) && child.type === FAQ.Heading,
-      ) as ReactElement | undefined
+      const FAQItemHeadingText = React.Children.map(faqChild.props.children, child =>
+        React.isValidElement(child) && child.type === FAQ.Heading ? child.props.children : null,
+      )
 
       return (
         <div
@@ -144,12 +123,13 @@ function _FAQGroup({children, id, defaultSelectedIndex = 0, tabAttributes, ...re
           key={index}
           data-testid={`FAQGroup-tab-panel-${index + 1}`}
         >
-          {FAQItemHeading && (
+          {FAQItemHeadingText && (
             <FAQ.Subheading
-              {...FAQItemHeading.props}
               data-testid={`FAQGroup-tab-panel-heading-${index + 1}`}
-              className={clsx(styles['FAQGroup__panel-subHeading'], FAQItemHeading.props.className)}
-            />
+              className={clsx(styles['FAQGroup__panel-subHeading'])}
+            >
+              {FAQItemHeadingText}
+            </FAQ.Subheading>
           )}
           {FAQItemChild}
         </div>
@@ -172,11 +152,11 @@ function _FAQGroup({children, id, defaultSelectedIndex = 0, tabAttributes, ...re
 
       if (!FAQItemChild) return null
 
+      const GroupHeadingChildProps = React.isValidElement(GroupHeadingChild) ? GroupHeadingChild.props : {}
+
       return (
         <Accordion key={index} variant="emphasis">
-          <Accordion.Heading>
-            {React.isValidElement(GroupHeadingChild) && GroupHeadingChild.props.children}
-          </Accordion.Heading>
+          <Accordion.Heading {...GroupHeadingChildProps} />
           <Accordion.Content>{FAQItemChild}</Accordion.Content>
         </Accordion>
       )

@@ -164,48 +164,36 @@ describe('FAQGroup', () => {
     expect(getByRole('tab', {name: 'mock heading 3'})).toHaveAttribute('data-tab-heading', 'mock heading 3')
   })
 
-  it('renders the FAQGroup.Heading as a h3, the FAQ.Heading as a h4, and the question as a h5', () => {
-    const {getByRole, getAllByRole} = render(<Component />)
-
-    const faqGroupHeading = getByRole('heading', {level: 3, name: 'Frequently asked questions'})
-    const questionHeading = getByRole('heading', {level: 5, name: 'mock question 1'})
-
-    expect(faqGroupHeading).toBeInTheDocument()
-    expect(questionHeading).toBeInTheDocument()
-
-    /**
-     * We use getAllByRole here as we render two h4 elements with the same text content and hide one with media queries.
-     * Since our test suite doesn't render styles, Testing Library finds both of them, so we check both even though one is hidden.
-     */
-    const faqHeadings = getAllByRole('heading', {level: 4, name: 'mock heading 1'})
-    for (const faqHeading of faqHeadings) {
-      expect(faqHeading).toBeInTheDocument()
-    }
-  })
-
-  it('does not throw an error if an FAQGroup contains an FAQ which contains a fragment wrapping a falsey value', () => {
-    const {getByTestId} = render(
-      <FAQGroup data-testid="root">
-        <FAQGroup.Heading>Frequently asked questions</FAQGroup.Heading>
-        {testData.map((group, index) => (
-          <FAQ key={index}>
-            <FAQ.Heading>{group.heading}</FAQ.Heading>
-            <>
-              {false}
-              {group.faqs.map((faq, childIndex) => (
-                <FAQ.Item key={childIndex}>
-                  <FAQ.Question>{faq.question}</FAQ.Question>
-                  <FAQ.Answer>
-                    <p>{faq.answer}</p>
-                  </FAQ.Answer>
-                </FAQ.Item>
-              ))}
-            </>
-          </FAQ>
-        ))}
+  it('allows heading levels to be customized', () => {
+    const {getByRole, getAllByRole} = render(
+      <FAQGroup>
+        <FAQGroup.Heading as="h4">Frequently asked questions</FAQGroup.Heading>
+        <FAQ>
+          <FAQ.Heading as="h5">Mock heading</FAQ.Heading>
+          <FAQ.Item>
+            <FAQ.Question as="h6">Mock question</FAQ.Question>
+            <FAQ.Answer>
+              <p>Mock answer</p>
+            </FAQ.Answer>
+          </FAQ.Item>
+        </FAQ>
       </FAQGroup>,
     )
 
-    expect(getByTestId('root')).toBeInTheDocument()
+    expect(getByRole('heading', {level: 4, name: 'Frequently asked questions'})).toBeInTheDocument()
+
+    /**
+     * We use getAllByRole here as we sometimes render two elements with the same text content and hide one with media queries.
+     * Since our test suite doesn't render styles, Testing Library finds both of them, so we check both even though one is hidden.
+     */
+    const faqHeadings = getAllByRole('heading', {level: 5, name: 'Mock heading'})
+    for (const faqHeading of faqHeadings) {
+      expect(faqHeading).toBeInTheDocument()
+    }
+
+    const faqQuestions = getAllByRole('heading', {level: 6, name: 'Mock question'})
+    for (const faqQuestion of faqQuestions) {
+      expect(faqQuestion).toBeInTheDocument()
+    }
   })
 })
