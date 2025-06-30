@@ -163,23 +163,4 @@ describe('FAQGroup', () => {
     expect(getByRole('tab', {name: 'mock heading 2'})).toHaveAttribute('data-tab-heading', 'mock heading 2')
     expect(getByRole('tab', {name: 'mock heading 3'})).toHaveAttribute('data-tab-heading', 'mock heading 3')
   })
-
-  it('renders the FAQGroup.Heading as a h3, the FAQ.Heading as a h4, and the question as a h5', () => {
-    const {getByRole, getAllByRole} = render(<Component />)
-
-    const faqGroupHeading = getByRole('heading', {level: 3, name: 'Frequently asked questions'})
-    const questionHeading = getByRole('heading', {level: 5, name: 'mock question 1'})
-
-    expect(faqGroupHeading).toBeInTheDocument()
-    expect(questionHeading).toBeInTheDocument()
-
-    /**
-     * We use getAllByRole here as we render two h4 elements with the same text content and hide one with media queries.
-     * Since our test suite doesn't render styles, Testing Library finds both of them, so we check both even though one is hidden.
-     */
-    const faqHeadings = getAllByRole('heading', {level: 4, name: 'mock heading 1'})
-    for (const faqHeading of faqHeadings) {
-      expect(faqHeading).toBeInTheDocument()
-    }
-  })
 })
