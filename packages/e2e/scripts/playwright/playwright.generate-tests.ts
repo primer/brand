@@ -99,6 +99,8 @@
     'components-pillar-features--frosted-glass-effect': 3000, // for image to load
     'components-testimonial-examples--with-frosted-glass': 4000, // for animation to complete
     'components-testimonial-examples--with-frosted-glass-dark': 4000, // for animation to complete
+    'components-prose--playground': 4000, // for videos to load
+    'components-prose--default': 4000, // for videos to load
   }
 
   /**
