@@ -543,6 +543,8 @@
 
   .SubNav__heading-separator {
     margin-inline-end: var(--base-size-20);
+    display: inline-flex;
+    top: 0;
   }
 
   .SubNav--header-container-outer {
@@ -552,6 +554,11 @@
 
   .SubNav__heading-container {
     margin-inline-end: var(--base-size-20);
+  }
+
+  .SubNav__header-container {
+    display: flex;
+    align-items: center;
   }
 
   .SubNav__subHeading {
