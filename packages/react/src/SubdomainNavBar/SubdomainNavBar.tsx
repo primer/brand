@@ -52,6 +52,10 @@ export type SubdomainNavBarProps = {
    * Optionally change the URL of the logo
    */
   logoHref?: string
+  /**
+   * When the mobile menu is opened or closed, this callback is called with the new open state.
+   */
+  onMobileMenuToggle?: (isOpen: boolean) => void
 }
 const testIds = {
   root: 'SubdomainNavBar',
@@ -77,6 +81,7 @@ function Root({
   logoHref = 'https://github.com',
   title,
   titleHref = '/',
+  onMobileMenuToggle,
   ...rest
 }: SubdomainNavBarProps) {
   const [menuHidden, setMenuHidden] = useState(true)
@@ -86,7 +91,12 @@ function Root({
   const mainElRef = useRef<HTMLElement | null>(null)
   const startOfContentID = useId('start-of-content')
 
-  const handleMobileMenuClick = () => setMenuHidden(!menuHidden)
+  const handleMobileMenuClick = () => {
+    const nextMenuHidden = !menuHidden
+    setMenuHidden(nextMenuHidden)
+
+    onMobileMenuToggle?.(!nextMenuHidden)
+  }
   const handleSearchVisibility = () => setSearchVisible(!searchVisible)
   const focusTrapRef = useRef<HTMLDivElement | null>(null)
 
@@ -101,13 +111,15 @@ function Root({
   useFocusTrap({containerRef: focusTrapRef, restoreFocusOnCleanUp: true, disabled: menuHidden})
   useKeyboardEscape(() => {
     setMenuHidden(true)
+    onMobileMenuToggle?.(false)
   })
 
   useEffect(() => {
     if (isMedium) {
       setMenuHidden(true)
+      onMobileMenuToggle?.(false)
     }
-  }, [isMedium, menuHidden])
+  }, [isMedium, menuHidden, onMobileMenuToggle])
 
   useEffect(() => {
     const newOverflowState = menuHidden ? 'auto' : 'hidden'
