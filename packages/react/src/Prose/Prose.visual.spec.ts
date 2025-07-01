@@ -10,14 +10,14 @@ test.describe('Visual Comparison: Prose', () => {
   test('Prose / Default', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-prose--default&viewMode=story')
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(4000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
   test('Prose / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-prose--playground&viewMode=story')
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(4000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
