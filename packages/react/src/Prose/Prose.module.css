@@ -80,11 +80,11 @@
 }
 
 .Prose h3 {
-  font-weight: var(--brand-heading-weight-400);
-  font-size: var(--brand-text-size-400);
-  line-height: var(--brand-heading-lineHeight-400);
+  font-weight: var(--brand-heading-weight-500);
+  font-size: var(--brand-text-size-500);
+  line-height: var(--brand-heading-lineHeight-500);
   font-family: var(--brand-heading-fontFamily);
-  letter-spacing: var(--brand-heading-letterSpacing-400);
+  letter-spacing: var(--brand-heading-letterSpacing-500);
 }
 
 .Prose--lineLength h1 {
@@ -93,20 +93,20 @@
 
 .Prose h4 {
   --spacing: var(--base-size-48);
-  font-weight: var(--brand-text-weight-350);
-  font-size: var(--brand-text-size-300);
-  line-height: var(--brand-text-lineHeight-300);
+  font-weight: var(--brand-heading-weight-400);
+  font-size: var(--brand-text-size-400);
+  line-height: var(--brand-text-lineHeight-400);
   font-family: var(--brand-heading-fontFamily);
-  letter-spacing: var(--brand-heading-letterSpacing-300);
+  letter-spacing: var(--brand-heading-letterSpacing-400);
 }
 
 .Prose h5 {
   --spacing: var(--base-size-48);
-  font-weight: var(--brand-text-subhead-weight-medium);
-  font-size: var(--brand-text-subhead-size-medium);
-  line-height: var(--brand-text-subhead-lineHeight-medium);
+  font-weight: var(--brand-text-subhead-weight-large);
+  font-size: var(--brand-text-subhead-size-large);
+  line-height: var(--brand-text-subhead-lineHeight-large);
   font-family: var(--brand-heading-fontFamily);
-  letter-spacing: var(--brand-heading-letterSpacing-200);
+  letter-spacing: var(--brand-heading-letterSpacing-300);
 }
 
 .Prose h6 {
