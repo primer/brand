@@ -18,6 +18,8 @@ export default {
 } as Meta
 
 const ExampleHtmlMarkup = `
+    <h1>Heading level 1</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempor lectus ipsum, consectetur convallis diam pretium quis. Proin ut felis ut eros tristique tincidunt.</p>
     <h2>Heading level 2</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempor lectus ipsum, consectetur convallis diam pretium quis. Proin ut felis ut eros tristique tincidunt.</p>
     <figure>
