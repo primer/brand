@@ -2,6 +2,7 @@ import React from 'react'
 import {Meta, StoryFn} from '@storybook/react'
 import {Prose} from './Prose'
 import placeholderImage from '../fixtures/images/placeholder.png'
+import posterImage from '../fixtures/images/example-poster.png'
 
 const meta: Meta<typeof Prose> = {
   title: 'Components/Prose',
@@ -63,7 +64,22 @@ const ExampleHtmlMarkup = `
     <h6>Heading level 6</h6>
     <p>Pellentesque non ornare ligula. Suspendisse nibh purus, pretium id tortor sit amet, tincidunt gravida augue.</p>
     <p>Nunc velit odio, posuere eu felis eget, consectetur fermentum nisi. Aenean tempor odio id ornare ultrices. Quisque blandit condimentum tellus, semper efficitur sapien dapibus nec. </p>
-`
+    <h6>Youtube video embed</h6>
+     <p>Pellentesque non ornare ligula. Suspendisse nibh purus, pretium id tortor sit amet, tincidunt gravida augue.</p>
+    <p>Nunc velit odio, posuere eu felis eget, consectetur fermentum nisi. Aenean tempor odio id ornare ultrices. Quisque blandit condimentum tellus, semper efficitur sapien dapibus nec. </p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/pBy1zgt0XPc?si=oPJ2zmFp6efpN15N" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+     <p>Pellentesque non ornare ligula. Suspendisse nibh purus, pretium id tortor sit amet, tincidunt gravida augue.</p>
+    <p>Nunc velit odio, posuere eu felis eget, consectetur fermentum nisi. Aenean tempor odio id ornare ultrices. Quisque blandit condimentum tellus, semper efficitur sapien dapibus nec. </p>
+    <h6>Native video</h6>
+     <p>Pellentesque non ornare ligula. Suspendisse nibh purus, pretium id tortor sit amet, tincidunt gravida augue.</p>
+    <p>Nunc velit odio, posuere eu felis eget, consectetur fermentum nisi. Aenean tempor odio id ornare ultrices. Quisque blandit condimentum tellus, semper efficitur sapien dapibus nec. </p>
+    <video controls poster="${posterImage}">
+      <source src="./example.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+     <p>Pellentesque non ornare ligula. Suspendisse nibh purus, pretium id tortor sit amet, tincidunt gravida augue.</p>
+    <p>Nunc velit odio, posuere eu felis eget, consectetur fermentum nisi. Aenean tempor odio id ornare ultrices. Quisque blandit condimentum tellus, semper efficitur sapien dapibus nec. </p>
+    `
 
 export const Playground: StoryFn<typeof Prose> = args => <Prose {...args} html={ExampleHtmlMarkup} />
 

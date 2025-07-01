@@ -318,6 +318,32 @@
   border: 1px solid var(--brand-color-border-muted);
 }
 
+.Prose video {
+  --spacing: var(--brand-Prose-img-spacing);
+
+  border-radius: var(--brand-borderRadius-medium);
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-block-end: var(--spacing);
+}
+
+.Prose iframe[src*='youtube.com'],
+.Prose iframe[src*='youtu.be'] {
+  --spacing: var(--brand-Prose-img-spacing);
+
+  border-radius: var(--brand-borderRadius-medium);
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  margin-left: auto;
+  margin-right: auto;
+  margin-block-end: var(--spacing);
+}
+
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
   .Prose a,
