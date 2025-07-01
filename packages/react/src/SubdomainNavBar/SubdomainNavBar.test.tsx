@@ -4,10 +4,19 @@ import '@testing-library/jest-dom'
 import {SubdomainNavBar, SubdomainNavBarSearchResultProps} from './SubdomainNavBar'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
+import {useWindowSize} from '../hooks/useWindowSize'
+
 expect.extend(toHaveNoViolations)
 
+jest.mock('../hooks/useWindowSize')
+const mockUseWindowSize = useWindowSize as jest.Mock
+mockUseWindowSize.mockImplementation(() => ({isSmall: false, isMedium: false}))
+
 describe('SubdomainNavBar', () => {
-  afterEach(cleanup)
+  afterEach(() => {
+    cleanup()
+    jest.clearAllMocks()
+  })
 
   beforeEach(() => {
     // IntersectionObserver isn't available in test environment
@@ -174,5 +183,29 @@ describe('SubdomainNavBar', () => {
     )
 
     expect(getByRole('img', {name: 'External link'})).toBeInTheDocument()
+  })
+
+  it('calls onMobileMenuToggle when the mobile menu is toggled', async () => {
+    mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: false}))
+
+    const mockonMobileMenuToggle = jest.fn()
+    const {getByTestId} = render(
+      <SubdomainNavBar title="test" onMobileMenuToggle={mockonMobileMenuToggle}>
+        <SubdomainNavBar.Link href="#">Collections</SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#" isExternal>
+          Topics
+        </SubdomainNavBar.Link>
+        <SubdomainNavBar.Link href="#">Articles</SubdomainNavBar.Link>
+      </SubdomainNavBar>,
+    )
+
+    const menuButtonEl = getByTestId(SubdomainNavBar.testIds.menuButton)
+    fireEvent.click(menuButtonEl)
+
+    expect(mockonMobileMenuToggle).toHaveBeenCalledWith(true)
+
+    fireEvent.click(menuButtonEl)
+
+    expect(mockonMobileMenuToggle).toHaveBeenCalledWith(false)
   })
 })
