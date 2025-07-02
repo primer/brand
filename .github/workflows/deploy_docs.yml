@@ -21,7 +21,7 @@ jobs:
       node_version: 20
       install: npm ci --legacy-peer-deps && cd apps/docs && npm ci --legacy-peer-deps && cd ..
       build: |
-        export NEXT_PUBLIC_SITE_TITLE='Brand UI'
+        export NEXT_PUBLIC_SITE_TITLE='Primer'
         export NEXT_PUBLIC_REPO='https://github.com/primer/brand'
         export NEXT_PUBLIC_REPO_SRC_PATH='apps/next-docs'
         npm run build
