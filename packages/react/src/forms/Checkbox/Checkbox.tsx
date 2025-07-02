@@ -1,13 +1,13 @@
-import React, {forwardRef, useCallback, type InputHTMLAttributes, type ReactElement, type RefObject} from 'react'
+import React, {forwardRef, useCallback, useRef, type InputHTMLAttributes, type ReactElement} from 'react'
 import clsx from 'clsx'
 import {useId} from '../../hooks/useId'
 
 import type {BaseProps} from '../../component-helpers'
 import type {FormValidationStatus} from '../form-types'
 import useLayoutEffect from '../../hooks/useIsomorphicLayoutEffect'
+import {useMergedRefs} from '../../hooks/useRef'
 
 import styles from './Checkbox.module.css'
-import {useProvidedRefOrCreate} from '../../hooks/useRef'
 
 export type CheckboxProps = {
   /**
@@ -47,22 +47,24 @@ const _Checkbox = (
     value,
     ...rest
   }: CheckboxProps,
-  ref,
+  forwardedRef,
 ): ReactElement => {
-  const inputRef: RefObject<HTMLInputElement> | null = useProvidedRefOrCreate<HTMLInputElement>(ref || null)
+  const internalRef = useRef<HTMLInputElement | null>(null)
+  const mergedRef = useMergedRefs(internalRef, forwardedRef)
+
   const uniqueId = useId(id)
 
   useLayoutEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.indeterminate = indeterminate || false
+    if (internalRef.current) {
+      internalRef.current.indeterminate = indeterminate || false
     }
-  }, [indeterminate, checked, inputRef])
+  }, [indeterminate, checked, internalRef])
 
   const onClick = useCallback(() => {
-    if (!disabled && inputRef.current) {
-      inputRef.current.click()
+    if (!disabled && internalRef.current) {
+      internalRef.current.click()
     }
-  }, [disabled, inputRef])
+  }, [disabled, internalRef])
 
   return (
     <span className={styles['Checkbox-wrapper']}>
@@ -76,7 +78,7 @@ const _Checkbox = (
         disabled={disabled}
         name={value}
         onChange={onChange}
-        ref={inputRef}
+        ref={mergedRef}
         required={required}
         type="checkbox"
         value={value}
