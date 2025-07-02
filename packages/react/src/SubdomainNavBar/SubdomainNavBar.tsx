@@ -53,7 +53,7 @@ export type SubdomainNavBarProps = {
    */
   logoHref?: string
   /**
-   * When the mobile menu is opened or closed, this callback is called with the new open state.
+   * When the menu is opened or closed on narrow viewports, this callback is called with the new open state.
    */
   onNarrowMenuToggle?: (isOpen: boolean) => void
 }
