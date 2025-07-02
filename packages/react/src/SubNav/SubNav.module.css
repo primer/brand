@@ -552,6 +552,10 @@
     top: 0;
   }
 
+  .SubNav__container--with-anchor-nav .SubNav__heading-separator {
+    top: -1px;
+  }
+
   .SubNav--header-container-outer {
     display: flex;
     align-items: center;
