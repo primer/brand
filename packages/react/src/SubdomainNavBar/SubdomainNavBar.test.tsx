@@ -185,12 +185,12 @@ describe('SubdomainNavBar', () => {
     expect(getByRole('img', {name: 'External link'})).toBeInTheDocument()
   })
 
-  it('calls onMobileMenuToggle when the mobile menu is toggled', async () => {
+  it('calls onNarrowMenuToggle when the mobile menu is toggled', async () => {
     mockUseWindowSize.mockImplementation(() => ({isSmall: true, isMedium: false}))
 
-    const mockonMobileMenuToggle = jest.fn()
+    const mockonNarrowMenuToggle = jest.fn()
     const {getByTestId} = render(
-      <SubdomainNavBar title="test" onMobileMenuToggle={mockonMobileMenuToggle}>
+      <SubdomainNavBar title="test" onNarrowMenuToggle={mockonNarrowMenuToggle}>
         <SubdomainNavBar.Link href="#">Collections</SubdomainNavBar.Link>
         <SubdomainNavBar.Link href="#" isExternal>
           Topics
@@ -202,10 +202,10 @@ describe('SubdomainNavBar', () => {
     const menuButtonEl = getByTestId(SubdomainNavBar.testIds.menuButton)
     fireEvent.click(menuButtonEl)
 
-    expect(mockonMobileMenuToggle).toHaveBeenCalledWith(true)
+    expect(mockonNarrowMenuToggle).toHaveBeenCalledWith(true)
 
     fireEvent.click(menuButtonEl)
 
-    expect(mockonMobileMenuToggle).toHaveBeenCalledWith(false)
+    expect(mockonNarrowMenuToggle).toHaveBeenCalledWith(false)
   })
 })
