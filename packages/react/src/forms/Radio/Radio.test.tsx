@@ -1,6 +1,7 @@
 import React from 'react'
 import {Radio} from '..'
 import {render, fireEvent} from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import {toHaveNoViolations} from 'jest-axe'
 import '@testing-library/jest-dom'
 
@@ -129,5 +130,24 @@ describe('Radio', () => {
     rerender(<Radio {...defaultProps} checked={true} onChange={handleChange} />)
 
     expect(radio).toHaveAttribute('aria-checked', 'true')
+  })
+
+  it('toggles the radio when the associated span is clicked and a functional ref is passed', async () => {
+    const user = userEvent.setup()
+    const mockRef = jest.fn()
+    const handleChange = jest.fn()
+
+    const {getByRole, container} = render(<Radio {...defaultProps} onChange={handleChange} ref={mockRef} />)
+
+    const radio = getByRole('radio')
+    expect(mockRef).toHaveBeenCalledWith(radio)
+
+    const span = container.querySelector('span.Radio') as HTMLSpanElement
+    expect(span).toBeInTheDocument()
+
+    expect(radio).not.toBeChecked()
+
+    await user.click(span)
+    expect(radio).toBeChecked()
   })
 })
