@@ -1,7 +1,7 @@
-import React, {forwardRef, useCallback, type InputHTMLAttributes, type ReactElement, type RefObject} from 'react'
+import React, {forwardRef, useCallback, useRef, type InputHTMLAttributes, type ReactElement} from 'react'
 import clsx from 'clsx'
 import {useId} from '../../hooks/useId'
-import {useProvidedRefOrCreate} from '../../hooks/useRef'
+import {useMergedRefs} from '../../hooks/useRef'
 
 import type {BaseProps} from '../../component-helpers'
 
@@ -26,16 +26,17 @@ export type RadioProps = {
 
 const _Radio = (
   {checked, className, disabled, id, onChange, required, value, ...rest}: RadioProps,
-  ref,
+  forwardedRef,
 ): ReactElement => {
-  const inputRef: RefObject<HTMLInputElement> | null = useProvidedRefOrCreate<HTMLInputElement>(ref || null)
+  const internalRef = useRef<HTMLInputElement | null>(null)
+  const mergedRef = useMergedRefs(internalRef, forwardedRef)
   const uniqueId = useId(id)
 
   const onClick = useCallback(() => {
-    if (!disabled && inputRef.current) {
-      inputRef.current.click()
+    if (!disabled && internalRef.current) {
+      internalRef.current.click()
     }
-  }, [disabled, inputRef])
+  }, [disabled, internalRef])
 
   return (
     <span className={styles['Radio-wrapper']}>
@@ -47,7 +48,7 @@ const _Radio = (
         disabled={disabled}
         name={value}
         onChange={onChange}
-        ref={inputRef}
+        ref={mergedRef}
         required={required}
         type="radio"
         value={value}
