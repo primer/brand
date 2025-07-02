@@ -14,3 +14,29 @@ export function useProvidedRefOrCreate<TRef>(providedRef?: React.RefObject<TRef>
 
   return providedRef ?? createdRef
 }
+
+/**
+ * Combines multiple refs into a single callback ref that can be attached to a DOM element.
+ * This is useful when a component needs to maintain its own internal ref while also supporting
+ * a forwarded ref from a parent component. All provided refs will point to the same DOM element.
+ * @param refs Refs to merge - can be MutableRefObjects, callback refs, or null/undefined
+ * @type T The type of the DOM element or component instance that the refs will reference.
+ */
+export function useMergedRefs<T = HTMLElement>(
+  ...refs: (React.MutableRefObject<T | null> | React.RefCallback<T> | undefined | null)[]
+) {
+  return (node: T | null) => {
+    for (const ref of refs) {
+      if (!ref) {
+        // Refs can be null or undefined — e.g. on initial render — so skip in that case
+        continue
+      }
+
+      if (typeof ref === 'function') {
+        ref(node)
+      } else {
+        ref.current = node
+      }
+    }
+  }
+}
