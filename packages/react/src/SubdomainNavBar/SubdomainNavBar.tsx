@@ -52,6 +52,10 @@ export type SubdomainNavBarProps = {
    * Optionally change the URL of the logo
    */
   logoHref?: string
+  /**
+   * When the menu is opened or closed on narrow viewports, this callback is called with the new open state.
+   */
+  onNarrowMenuToggle?: (isOpen: boolean) => void
 }
 const testIds = {
   root: 'SubdomainNavBar',
@@ -77,6 +81,7 @@ function Root({
   logoHref = 'https://github.com',
   title,
   titleHref = '/',
+  onNarrowMenuToggle,
   ...rest
 }: SubdomainNavBarProps) {
   const [menuHidden, setMenuHidden] = useState(true)
@@ -86,7 +91,12 @@ function Root({
   const mainElRef = useRef<HTMLElement | null>(null)
   const startOfContentID = useId('start-of-content')
 
-  const handleMobileMenuClick = () => setMenuHidden(!menuHidden)
+  const handleMobileMenuClick = () => {
+    const nextMenuHidden = !menuHidden
+    setMenuHidden(nextMenuHidden)
+
+    onNarrowMenuToggle?.(!nextMenuHidden)
+  }
   const handleSearchVisibility = () => setSearchVisible(!searchVisible)
   const focusTrapRef = useRef<HTMLDivElement | null>(null)
 
@@ -101,13 +111,15 @@ function Root({
   useFocusTrap({containerRef: focusTrapRef, restoreFocusOnCleanUp: true, disabled: menuHidden})
   useKeyboardEscape(() => {
     setMenuHidden(true)
+    onNarrowMenuToggle?.(false)
   })
 
   useEffect(() => {
     if (isMedium) {
       setMenuHidden(true)
+      onNarrowMenuToggle?.(false)
     }
-  }, [isMedium, menuHidden])
+  }, [isMedium, menuHidden, onNarrowMenuToggle])
 
   useEffect(() => {
     const newOverflowState = menuHidden ? 'auto' : 'hidden'
