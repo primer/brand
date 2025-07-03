@@ -5,8 +5,9 @@ import React, {useRef, useMemo} from 'react'
  * or hook as a prop. However, due to the `rules-of-hooks`, we cannot conditionally make a call to `React.useRef`
  * only in the situations where the ref is not provided as a prop.
  * This hook aims to encapsulate that logic, so the consumer doesn't need to be concerned with violating `rules-of-hooks`.
- * @param providedRef The ref to use - if undefined, will use the ref from a call to React.useRef
+ * @param providedRef The ref to use - can be a RefObject, RefCallback (functional ref), or undefined.
  * @type TRef The type of the RefObject which should be created.
+ * @returns A RefObject that either uses the provided ref, wraps a functional ref, or creates a new one
  */
 export function useProvidedRefOrCreate<TRef>(
   providedRef?: React.RefObject<TRef> | React.RefCallback<TRef>,
