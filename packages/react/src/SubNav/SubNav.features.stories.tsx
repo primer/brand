@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import {Meta} from '@storybook/react'
+import type {Meta, StoryFn} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {linkTo} from '@storybook/addon-links'
 
@@ -250,7 +250,7 @@ const AnchorNavVariantData = {
   ['Reliability']: 'reliability',
 }
 
-export const AnchorNavVariant = args => (
+export const AnchorNavVariantTemplate: StoryFn<typeof SubNav> = args => (
   <main>
     <Box paddingBlockStart={64} backgroundColor="subtle" style={{position: 'relative', zIndex: 32}}></Box>
     <SubNav {...args}>
@@ -290,6 +290,9 @@ export const AnchorNavVariant = args => (
     </Box>
   </main>
 )
+
+const AnchorNavVariant = AnchorNavVariantTemplate.bind({})
+
 AnchorNavVariant.parameters = {
   layout: 'fullscreen',
 }
