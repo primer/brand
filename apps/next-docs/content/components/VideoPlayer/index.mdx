@@ -20,8 +20,8 @@ import {VideoPlayer} from '@primer/react-brand'
 
 ```jsx live
 <VideoPlayer title="GitHub media player">
-  <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" />
-  <VideoPlayer.Track src="/brand/assets/example.vtt" default />
+  <VideoPlayer.Source src="/example.mp4" />
+  <VideoPlayer.Track src="/example.vtt" default />
 </VideoPlayer>
 ```
 
@@ -34,8 +34,8 @@ The audio description can be provided as part of the existing soundtrack, or via
 ```jsx live
 <Stack gap="normal" alignItems="center">
   <VideoPlayer title="GitHub media player">
-    <VideoPlayer.Source src="/brand/assets/example.mp4" />
-    <VideoPlayer.Track src="/brand/assets/example.vtt" default />
+    <VideoPlayer.Source src="/example.mp4" />
+    <VideoPlayer.Track src="/example.vtt" default />
   </VideoPlayer>
   <Stack direction="horizontal" gap={12} padding="none" alignItems="center">
     <Link href="#" arrowDirection="none">
@@ -49,9 +49,9 @@ The audio description can be provided as part of the existing soundtrack, or via
 ## With poster
 
 ```jsx live
-<VideoPlayer poster="/brand/assets/example-poster.png" title="GitHub media player">
-  <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" />
-  <VideoPlayer.Track src="/brand/assets/example.vtt" default />
+<VideoPlayer poster="/images/example-poster.png" title="GitHub media player">
+  <VideoPlayer.Source src="/example.mp4" />
+  <VideoPlayer.Track src="/example.vtt" default />
 </VideoPlayer>
 ```
 
@@ -59,8 +59,8 @@ The audio description can be provided as part of the existing soundtrack, or via
 
 ```jsx live
 <VideoPlayer showBranding={false} title="GitHub media player">
-  <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" />
-  <VideoPlayer.Track src="/brand/assets/example.vtt" default />
+  <VideoPlayer.Source src="/example.mp4" />
+  <VideoPlayer.Track src="/example.vtt" default />
 </VideoPlayer>
 ```
 
@@ -68,8 +68,8 @@ The audio description can be provided as part of the existing soundtrack, or via
 
 ```jsx live
 <VideoPlayer visuallyHiddenTitle title="GitHub media player">
-  <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" />
-  <VideoPlayer.Track src="/brand/assets/example.vtt" default />
+  <VideoPlayer.Source src="/example.mp4" />
+  <VideoPlayer.Track src="/example.vtt" default />
 </VideoPlayer>
 ```
 
@@ -85,8 +85,8 @@ The audio description can be provided as part of the existing soundtrack, or via
   showVolumeControl={false}
   showFullScreenButton={false}
 >
-  <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" type="video/mp4" />
-  <VideoPlayer.Track src="/brand/assets/example.vtt" default />
+  <VideoPlayer.Source src="/example.mp4" type="video/mp4" />
+  <VideoPlayer.Track src="/example.vtt" default />
 </VideoPlayer>
 ```
 
@@ -94,8 +94,8 @@ The audio description can be provided as part of the existing soundtrack, or via
 
 ```jsx live
 <VideoPlayer title="GitHub media player" showControlsWhenPaused={false}>
-  <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" type="video/mp4" />
-  <VideoPlayer.Track src="/brand/assets/example.vtt" default />
+  <VideoPlayer.Source src="/example.mp4" type="video/mp4" />
+  <VideoPlayer.Track src="/example.vtt" default />
 </VideoPlayer>
 ```
 
@@ -103,8 +103,8 @@ The audio description can be provided as part of the existing soundtrack, or via
 
 ```jsx live
 <VideoPlayer title="GitHub media player" visuallyHiddenTitle showBranding={false} showControlsWhenPaused={false}>
-  <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" type="video/mp4" />
-  <VideoPlayer.Track src="/brand/assets/example.vtt" default />
+  <VideoPlayer.Source src="/example.mp4" type="video/mp4" />
+  <VideoPlayer.Track src="/example.vtt" default />
 </VideoPlayer>
 ```
 
@@ -112,8 +112,8 @@ The audio description can be provided as part of the existing soundtrack, or via
 
 ```jsx live
 <VideoPlayer title="GitHub media player" playIcon={() => <PlayIcon fill="white" size={96} />}>
-  <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" type="video/mp4" />
-  <VideoPlayer.Track src="/brand/assets/example.vtt" default />
+  <VideoPlayer.Source src="/example.mp4" type="video/mp4" />
+  <VideoPlayer.Track src="/example.vtt" default />
 </VideoPlayer>
 ```
 
@@ -138,8 +138,8 @@ const CustomVideoPlayer = () => {
         showVolumeControl={false}
         showFullScreenButton={false}
       >
-        <VideoPlayer.Source src="https://primer.github.io/brand/assets/example.mp4" type="video/mp4" />
-        <VideoPlayer.Track src="/brand/assets/example.vtt" default />
+        <VideoPlayer.Source src="/example.mp4" type="video/mp4" />
+        <VideoPlayer.Track src="/example.vtt" default />
       </VideoPlayer>
       <Stack direction="horizontal">
         <Button onClick={() => togglePlaying()}>{isPlaying ? 'Pause' : 'Play'}</Button>
