@@ -34,9 +34,7 @@ export function useProvidedRefOrCreate<TRef>(
           set current(value: TRef | null) {
             currentVal = value
 
-            if (callbackRef.current) {
-              callbackRef.current(value)
-            }
+            providedRef(value)
           },
         }
       }
