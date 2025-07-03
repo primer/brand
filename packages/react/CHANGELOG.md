@@ -1,5 +1,28 @@
 # @primer/react-brand
 
+## 0.56.2
+
+### Patch Changes
+
+- [#1075](https://github.com/primer/brand/pull/1075) [`a2c84fd`](https://github.com/primer/brand/commit/a2c84fd6847f02a88bfbd61969590db3a759a703) Thanks [@joshfarrant](https://github.com/joshfarrant)! - Added `onNarrowMenuToggle` prop to `SubdomainNavBar`. When the menu is opened or closed on narrow viewports, the provided `onNarrowMenuToggle` callback is called with the new open state.
+
+  This prop can be used to ensure the main content area is hidden from assistive technologies when the menu is open.
+
+- [#1074](https://github.com/primer/brand/pull/1074) [`bcf5bda`](https://github.com/primer/brand/commit/bcf5bda8d3d32137bd00ad885756b0bb539dee56) Thanks [@rezrah](https://github.com/rezrah)! - Improved styling for `<video>` elements and Youtube embeds in the `Prose` component
+
+- [#1081](https://github.com/primer/brand/pull/1081) [`b2ed501`](https://github.com/primer/brand/commit/b2ed50150c213ce4fd2865a1c43edf84d69116e5) Thanks [@rezrah](https://github.com/rezrah)! - Updated `useProvidedRefOrCreate` to support functional refs. Backwards compatibility with `RefObject` remains unchanged.
+
+  This update improves support for functional refs in the following components: `Accordion`, `Checkbox`, `Radio`, `SubNav`, `Tooltip` and `VideoPlayer`.
+
+- [#1073](https://github.com/primer/brand/pull/1073) [`cfe8c0b`](https://github.com/primer/brand/commit/cfe8c0bcb61308b5f45a7c9436d7e7528220e43d) Thanks [@rezrah](https://github.com/rezrah)! - Updated visual heading hierarchy in the `Prose` component.
+
+  - `h3` reduced from `size-500` to `size-400`
+  - `h4` reduced from `size-400` to `size-300`
+  - `h5` reduced from `subhead-large` to `subhead-medium`
+  - `h2` and `h6` are unchanged
+
+  This update makes it easier to visually distinguish between `h2` and `h3` elements on the page, which were previously too similar in size.
+
 ## 0.56.1
 
 ### Patch Changes
