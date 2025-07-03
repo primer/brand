@@ -13,11 +13,7 @@ export function useProvidedRefOrCreate<TRef>(
   providedRef?: React.RefObject<TRef> | React.RefCallback<TRef> | null,
 ): React.RefObject<TRef> {
   const createdRef = useRef<TRef>(null)
-  const callbackRef = useRef<React.RefCallback<TRef> | null>(null)
   const wrapperRef = useRef<React.MutableRefObject<TRef | null> | null>(null)
-
-  // needed to keep the callback ref up-to-date between renders
-  callbackRef.current = typeof providedRef === 'function' ? providedRef : null
 
   const finalRef = useMemo(() => {
     // Handle function refs
