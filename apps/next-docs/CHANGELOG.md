@@ -1,5 +1,11 @@
 # @primer/brand-docs
 
+## 0.56.2
+
+### Patch Changes
+
+- [#1076](https://github.com/primer/brand/pull/1076) [`9beec45`](https://github.com/primer/brand/commit/9beec457db4255da8e9bfd536754aff0c62763fe) Thanks [@danielguillan](https://github.com/danielguillan)! - Updated documentation site title to "Primer"
+
 ## 0.56.1
 
 ## 0.56.0
