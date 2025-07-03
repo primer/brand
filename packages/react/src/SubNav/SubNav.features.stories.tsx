@@ -457,3 +457,54 @@ KeyboardNavigation.play = async ({canvasElement}) => {
   await userEvent.tab({shift: true})
   expect(getByRole('link', {name: 'Discussions'})).toHaveFocus()
 }
+
+export const AnchorNavVariantKeyboardNavigation = AnchorNavVariant.bind({})
+
+AnchorNavVariantKeyboardNavigation.play = async ({canvasElement}) => {
+  const {getByRole, getAllByRole} = within(canvasElement)
+
+  await userEvent.tab()
+  expect(getByRole('link', {name: 'Enterprise'})).toHaveFocus()
+
+  await userEvent.tab()
+  expect(getByRole('link', {name: 'Overview'})).toHaveFocus()
+
+  await userEvent.tab()
+  expect(getByRole('link', {name: 'Advanced Security'})).toHaveFocus()
+
+  await userEvent.tab()
+  expect(getByRole('link', {name: 'Copilot Enterprise'})).toHaveFocus()
+
+  await userEvent.tab()
+  expect(getByRole('link', {name: 'Premium Support'})).toHaveFocus()
+
+  await userEvent.tab()
+  expect(getByRole('link', {name: 'Scale'})).toHaveFocus()
+
+  await userEvent.tab()
+  expect(getByRole('link', {name: 'AI'})).toHaveFocus()
+
+  await userEvent.tab()
+  expect(getByRole('link', {name: 'Security'})).toHaveFocus()
+
+  await userEvent.tab()
+  expect(getByRole('link', {name: 'Reliability'})).toHaveFocus()
+
+  await userEvent.tab()
+  expect(getAllByRole('button', {name: 'Learn more'})[0]).toHaveFocus()
+
+  await userEvent.tab({shift: true})
+  expect(getByRole('link', {name: 'Reliability'})).toHaveFocus()
+
+  await userEvent.tab({shift: true})
+  expect(getByRole('link', {name: 'Security'})).toHaveFocus()
+
+  await userEvent.tab({shift: true})
+  expect(getByRole('link', {name: 'AI'})).toHaveFocus()
+
+  await userEvent.tab({shift: true})
+  expect(getByRole('link', {name: 'Scale'})).toHaveFocus()
+
+  await userEvent.tab({shift: true})
+  expect(getByRole('link', {name: 'Premium Support'})).toHaveFocus()
+}
