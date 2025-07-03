@@ -23,7 +23,7 @@ export default function HomepageComponent() {
               justifyContent="space-between"
             >
               <Stack gap="normal" padding="none">
-                <Heading as="h2" size="3">
+                <Heading as="h1" size="3">
                   Primer Brand UI
                 </Heading>
                 <Text as="p" variant="muted" size="300">
