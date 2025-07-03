@@ -4,9 +4,9 @@ set -e
 # Add base url to be able to serve static files
 echo '<base href="/brand/storybook/" />' >> .storybook/manager-head.html
 
-mkdir -p ../../apps/docs/public/storybook
+mkdir -p ../../apps/next-docs/out/storybook
 # Build storybook inside docs
-npx storybook build -o ../../apps/docs/public/storybook
+npx storybook build -o ../../apps/next-docs/out/storybook
 
 # Remove manager-head after build to not interfere with dev builds
 rm .storybook/manager-head.html

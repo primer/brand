@@ -26,8 +26,7 @@
     "!apps/docs"
   ],
   "scripts": {
-    "build": "npm run clean --workspaces --if-present && npm run build:lib && npm run build:docs && npm run build:storybook && npm run build:next-docs",
-    "build:docs": "cd apps/docs && npm run build",
+    "build": "npm run clean --workspaces --if-present && npm run build:lib && npm run build:next-docs && npm run build:storybook",
     "build:next-docs": "cd apps/next-docs && npm run build:prod",
     "build:lib": "npm run build --workspace=packages/design-tokens --workspace=packages/react --workspace=packages/css",
     "build:storybook": "npm run build --workspace=apps/storybook",
@@ -39,7 +38,7 @@
     "lint": "npm run lint --workspaces --if-present",
     "release": "npm run build:lib && changeset publish",
     "start": "npm run build:lib && npm run start:storybook & npm run start:lib",
-    "start:docs": "cd apps/docs && npm run start",
+    "start:docs": "cd apps/next-docs && npm run dev",
     "start:lib": "npm run start --workspace=packages/react",
     "start:storybook": "npm run build:lib && npm run start --workspace=apps/storybook",
     "test": "npm run test --workspaces --if-present",

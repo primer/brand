@@ -18,6 +18,6 @@ jobs:
     uses: primer/.github/.github/workflows/deploy_preview.yml@91fde6cc969a502562fdacdac48e35859b3a40b4
     with:
       node_version: 18
-      install: npm ci --legacy-peer-deps && cd apps/docs && npm ci --legacy-peer-deps && cd ..
-      build: npm run build && npm run build:docs && npm run build:storybook
-      output_dir: apps/docs/public/
+      install: npm ci --legacy-peer-deps
+      build: npm run build
+      output_dir: apps/next-docs/out/

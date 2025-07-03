@@ -18,18 +18,18 @@ jobs:
     uses: primer/.github/.github/workflows/deploy_preview.yml@91fde6cc969a502562fdacdac48e35859b3a40b4
     with:
       node_version: 20
-      install: npm ci --legacy-peer-deps && cd apps/docs && npm ci --legacy-peer-deps && cd ..
+      install: npm ci --legacy-peer-deps
       build: |
         export NEXT_PUBLIC_SITE_TITLE='Primer'
         export NEXT_PUBLIC_REPO='https://github.com/primer/brand'
         export NEXT_PUBLIC_REPO_SRC_PATH='apps/next-docs'
         npm run build && \
         mkdir brand-temp && \
-        mv apps/docs/public/* brand-temp && \
-        mv brand-temp apps/docs/public/brand && \
+        mv apps/next-docs/out/* brand-temp && \
+        mv brand-temp apps/next-docs/out/brand && \
         # This is a client-side redirect that only applies to preview deployments. Workaround for lack of path prefixing.
-        echo '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Redirecting...</title><script>window.location.href = "/brand";</script></head><body><p>If you are not redirected automatically, follow this <a href="/brand">link to /brand</a>.</p></body></html>' > apps/docs/public/index.html
-      output_dir: apps/docs/public
+        echo '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Redirecting...</title><script>window.location.href = "/brand";</script></head><body><p>If you are not redirected automatically, follow this <a href="/brand">link to /brand</a>.</p></body></html>' > apps/next-docs/out/index.html
+      output_dir: apps/next-docs/out/
 
   deploy-storybook:
     if: ${{ github.repository == 'primer/brand' }}
