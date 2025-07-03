@@ -5,12 +5,12 @@ import React, {useRef, useMemo} from 'react'
  * or hook as a prop. However, due to the `rules-of-hooks`, we cannot conditionally make a call to `React.useRef`
  * only in the situations where the ref is not provided as a prop.
  * This hook aims to encapsulate that logic, so the consumer doesn't need to be concerned with violating `rules-of-hooks`.
- * @param providedRef The ref to use - can be a RefObject, RefCallback (functional ref), or undefined.
+ * @param providedRef The ref to use - can be a RefObject, RefCallback (functional ref), null or undefined.
  * @type TRef The type of the RefObject which should be created.
  * @returns A RefObject that either uses the provided ref, wraps a functional ref, or creates a new one
  */
 export function useProvidedRefOrCreate<TRef>(
-  providedRef?: React.RefObject<TRef> | React.RefCallback<TRef>,
+  providedRef?: React.RefObject<TRef> | React.RefCallback<TRef> | null,
 ): React.RefObject<TRef> {
   const createdRef = useRef<TRef>(null)
   const callbackRef = useRef<React.RefCallback<TRef> | null>(null)
@@ -20,18 +20,6 @@ export function useProvidedRefOrCreate<TRef>(
   callbackRef.current = typeof providedRef === 'function' ? providedRef : null
 
   const finalRef = useMemo(() => {
-    // Return a new ref if no ref was provided
-    if (!providedRef) {
-      wrapperRef.current = null
-      return createdRef
-    }
-
-    // Return the provided ref if it's a RefObject
-    if (typeof providedRef === 'object' && providedRef.current !== undefined) {
-      wrapperRef.current = null
-      return providedRef
-    }
-
     // Handle function refs
     // We wrap it in a MutableRefObject to ensure we can set the current value
     // and also call the callback with the latest value
@@ -56,6 +44,13 @@ export function useProvidedRefOrCreate<TRef>(
     }
 
     wrapperRef.current = null
+
+    // Return the provided ref if it's a RefObject
+    if (providedRef && typeof providedRef === 'object' && providedRef.current !== undefined) {
+      return providedRef
+    }
+
+    // Return a new ref if it's neither a function nor a RefObject
     return createdRef
   }, [providedRef, createdRef])
 
