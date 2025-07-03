@@ -121,7 +121,6 @@
 
 .SubNav__sub-menu--anchor {
   opacity: 0;
-  visibility: hidden;
   transform: translateY(var(--brand-animation-variant-slideInDown-distance));
   transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
     height var(--brand-animation-duration-default) var(--brand-animation-easing-default),
