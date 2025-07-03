@@ -5,7 +5,7 @@ export default {
   ...withDoctocat({
     transpilePackages: ['@primer/doctocat-nextjs'],
     output: 'export',
-    basePath: process.env.GITHUB_ACTIONS === 'true' ? '/brand/next' : '',
+    basePath: process.env.GITHUB_ACTIONS === 'true' ? '/brand' : '',
     typescript: {
       tsconfigPath: './tsconfig.json',
     },

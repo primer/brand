@@ -1,18 +1,8 @@
 {
-    "name": "Primer Brand",
-    "image": "mcr.microsoft.com/vscode/devcontainers/typescript-node:20",
-    "extensions": [
-        "esbenp.prettier-vscode",
-        "dbaeumer.vscode-eslint"
-    ],
-    "forwardPorts": [
-        8000,
-        6006
-    ],
-    "postCreateCommand": [
-        "/bin/bash",
-        "-c",
-        "pushd apps/docs && npm install --legacy-peer-deps && popd && npm install"
-    ],
-    "remoteUser": "node"
+  "name": "Primer Brand",
+  "image": "mcr.microsoft.com/vscode/devcontainers/typescript-node:20",
+  "extensions": ["esbenp.prettier-vscode", "dbaeumer.vscode-eslint"],
+  "forwardPorts": [8000, 6006],
+  "postCreateCommand": ["/bin/bash", "-c", "npm install"],
+  "remoteUser": "node"
 }

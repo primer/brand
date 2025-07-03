@@ -51,7 +51,7 @@ You can add an image to enhance the visual context.
 
 ```jsx live
 <Pillar>
-  <Pillar.Image src="/brand/assets/placeholder.png" alt="placeholder, blank area with an gray background color" />
+  <Pillar.Image src="/images/placeholder.png" alt="placeholder, blank area with an gray background color" />
   <Pillar.Heading>Code search & code view</Pillar.Heading>
   <Pillar.Description>
     Enables you to rapidly search, navigate, and understand code, right from GitHub.com.
@@ -112,12 +112,12 @@ Use the `Stack` component to stack multiple Pillars horizontally or vertically.
     <Pillar.Description>Everything you need to know about getting started with GitHub Actions.</Pillar.Description>
   </Pillar>
   <Pillar>
-    <Pillar.Icon icon={RocketIcon} color="blue" />
+    <Pillar.Icon icon={<RocketIcon />} color="blue" />
     <Pillar.Heading>Heading</Pillar.Heading>
     <Pillar.Description>Everything you need to know about getting started with GitHub Actions.</Pillar.Description>
   </Pillar>
   <Pillar>
-    <Pillar.Icon icon={GitBranchIcon} color="blue" />
+    <Pillar.Icon icon={<GitBranchIcon />} color="blue" />
     <Pillar.Heading>Heading</Pillar.Heading>
     <Pillar.Description>Everything you need to know about getting started with GitHub Actions.</Pillar.Description>
   </Pillar>

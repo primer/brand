@@ -38,7 +38,6 @@
     "release": "npm run build && changeset publish",
     "start": "npm run start:css-types",
     "start:css-types": "tcm -w -p 'src/**/*.css' .",
-    "start:docs": "npm run build && cd apps/docs && npm run develop",
     "test": "jest"
   },
   "dependencies": {

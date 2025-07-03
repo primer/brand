@@ -22,7 +22,7 @@
   "author": "GitHub, Inc.",
   "type": "module",
   "scripts": {
-    "clean": "rm -rf out",
+    "clean": "rm -rf out .next",
     "dev": "next dev",
     "check": "tsc --noEmit",
     "build": "rm -rf out .next && next build",
