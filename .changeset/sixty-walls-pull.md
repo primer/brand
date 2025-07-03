@@ -2,4 +2,4 @@
 '@primer/react-brand': patch
 ---
 
-Update useProvidedRefOrCreate to support functional refs
+Update `useProvidedRefOrCreate` to support functional refs
