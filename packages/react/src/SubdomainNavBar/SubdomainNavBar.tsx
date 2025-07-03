@@ -322,7 +322,6 @@ function Root({
                     )}
                     {hasLinks && !menuHidden && (
                       <NavigationVisbilityObserver
-                        showOnlyOnNarrow
                         className={clsx(styles['SubdomainNavBar-primary-nav-list--visible'])}
                       >
                         {menuItems}
