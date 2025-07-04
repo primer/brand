@@ -70,7 +70,7 @@ const Root = ({
   return (
     <div className={styles.VideoPlayer__container} ref={fullscreenRef}>
       <div className={styles.VideoPlayer__overlayContainer}>
-        <video ref={ref} title={title} controls={false} className={clsx(styles.VideoPlayer, className)} {...rest}>
+        <video title={title} controls={false} className={clsx(styles.VideoPlayer, className)} {...rest} ref={ref}>
           {children}
           <track kind="captions" />
         </video>
