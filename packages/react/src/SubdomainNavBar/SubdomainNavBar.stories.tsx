@@ -368,7 +368,7 @@ const mockSearchData = [
   },
 ]
 
-const Template: StoryFn<Args> = args => {
+const Template: StoryFn<Args> = ({showSearch, numLinks, ...args}) => {
   const inputRef = React.useRef<HTMLInputElement | null>(null)
   const [searchResults, setSearchResults] = React.useState<
     {title: string; description: string; date: string; url: string}[] | undefined
@@ -405,7 +405,7 @@ const Template: StoryFn<Args> = args => {
       <div>
         <SubdomainNavBar {...args} title={args.title}>
           {['collections', 'topics', 'articles', 'events', 'video', 'social', 'podcasts', 'books', 'guides', 'webcasts']
-            .slice(0, args.numLinks)
+            .slice(0, numLinks)
             .map(link => {
               return (
                 <SubdomainNavBar.Link key={link} href={`#${link}`}>
@@ -417,7 +417,7 @@ const Template: StoryFn<Args> = args => {
                 </SubdomainNavBar.Link>
               )
             })}
-          {args.showSearch && (
+          {showSearch && (
             <SubdomainNavBar.Search
               ref={inputRef}
               searchTerm={searchTerm}
