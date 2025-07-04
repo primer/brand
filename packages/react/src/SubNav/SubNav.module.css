@@ -104,6 +104,7 @@
     background-color var(--brand-animation-duration-default) var(--brand-animation-easing-default);
 }
 
+.SubNav__anchor-menu-outer-container:focus-within .SubNav__anchor-menu-container,
 .SubNav__anchor-menu-outer-container--stuck .SubNav__anchor-menu-container {
   transform: translateY(0);
   opacity: 1;
@@ -115,19 +116,20 @@
   transition: height var(--brand-animation-duration-default) var(--brand-animation-easing-default);
 }
 
+.SubNav__anchor-menu-outer-container:focus-within,
 .SubNav__anchor-menu-outer-container--stuck {
   height: auto;
 }
 
 .SubNav__sub-menu--anchor {
   opacity: 0;
-  visibility: hidden;
   transform: translateY(var(--brand-animation-variant-slideInDown-distance));
   transition: opacity var(--brand-animation-duration-default) var(--brand-animation-easing-default),
     height var(--brand-animation-duration-default) var(--brand-animation-easing-default),
     transform var(--brand-animation-duration-default) var(--brand-animation-easing-default);
 }
 
+.SubNav__anchor-menu-outer-container:focus-within .SubNav__sub-menu--anchor,
 .SubNav__anchor-menu-outer-container--stuck .SubNav__sub-menu--anchor {
   visibility: visible;
   opacity: 1;
