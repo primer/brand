@@ -78,7 +78,7 @@
   color: var(--brand-InlineLink-color-pressed);
 }
 
-.Timeline__item a:focus {
+.Timeline__item a:focus-visible {
   outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
   outline-offset: var(--base-size-2);
 }
