@@ -175,7 +175,16 @@ Use the `Stack` or `Grid` components to stack up to three cards horizontally in 
 </Note>
 
 ```jsx live
-<Stack direction="horizontal" alignItems="center" justifyContent="center" gap="normal">
+<Stack
+  direction={{
+    narrow: 'vertical',
+    regular: 'horizontal',
+    wide: 'horizontal',
+  }}
+  alignItems="center"
+  justifyContent="center"
+  gap="normal"
+>
   <Card href="https://github.com" hasBorder fullWidth align="center">
     <Card.Icon icon={CopilotIcon} color="indigo" hasBackground />
     <Card.Heading>Heading</Card.Heading>
