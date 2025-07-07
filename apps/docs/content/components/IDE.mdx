@@ -36,7 +36,6 @@ See Storybook for examples of `IDE` using `highlight.js` syntax highlighter.
 ```jsx live
 <IDE height={500}>
   <IDE.Editor
-    showReplayButton={false}
     files={[
       {
         name: 'index.js',
@@ -220,7 +219,6 @@ When using the `glass` variant, pay close attention to the background image behi
 >
   <IDE height={400} variant="glass">
     <IDE.Editor
-      showReplayButton={false}
       files={[
         {
           name: 'index.js',
@@ -292,7 +290,6 @@ In both cases, the goal is to provide a meaningful summary of the content that w
 | `showLineNumbers`  | `boolean`                                                                 |         | `false`  | Show line numbers in the editor |
 | `size`             | <PropTableValues values={['small' , 'medium' , 'large']} addLineBreaks /> |         | `false`  | Controls editor text size       |
 | `triggerAnimation` | `boolean`                                                                 |         | `false`  | Trigger animation externally    |
-| `showReplayButton` | `boolean`                                                                 |         | `false`  | Show replay button              |
 
 Supported file extensions in the editor include: <PropTableValues values={IDEFileExtensions} removeApostrophes commaSeparated />
 

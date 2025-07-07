@@ -267,11 +267,6 @@ type IDEEditorProps = {
   triggerAnimation?: boolean
 
   /**
-   * Determines whether the replay button should be shown.
-   */
-  showReplayButton?: boolean
-
-  /**
    * Test id for the IDE.
    */
   'data-testid'?: string
@@ -330,7 +325,6 @@ const _Editor = memo(
         files,
         triggerAnimation = false,
         showLineNumbers = true,
-        showReplayButton = true,
         size = 'medium',
         tabIcons = IDEDefaultIconMap,
         ...rest
@@ -518,19 +512,17 @@ const _Editor = memo(
               </div>
             ))}
           </div>
-          {showReplayButton && (
-            <Button
-              variant="subtle"
-              hasArrow={false}
-              className={styles['IDE__Editor-replay']}
-              onClick={resetAnimation}
-              leadingVisual={<SyncIcon size={24} />}
-              size="small"
-              disabled={!hasAnimated}
-            >
-              Replay
-            </Button>
-          )}
+          <Button
+            variant="subtle"
+            hasArrow={false}
+            className={styles['IDE__Editor-replay']}
+            onClick={resetAnimation}
+            leadingVisual={<SyncIcon size={24} />}
+            size="small"
+            disabled={!hasAnimated}
+          >
+            Replay
+          </Button>
         </div>
       )
     },

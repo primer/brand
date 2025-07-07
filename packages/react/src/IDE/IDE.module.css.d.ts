@@ -28,7 +28,6 @@ declare const styles: {
   readonly "IDE__Editor-lineNumbers": string;
   readonly "IDE__Editor-pane": string;
   readonly "IDE__Editor-pane--suggested": string;
-  readonly "IDE__Editor-replay": string;
   readonly "IDE__Editor-tab": string;
   readonly "IDE__Editor-tab--active": string;
   readonly "IDE__Editor-tab-close-icon": string;

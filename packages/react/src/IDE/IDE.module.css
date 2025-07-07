@@ -377,19 +377,6 @@ pre.IDE__Chat-copilot-indicator {
   fill: var(--brand-IDE-autoSuggest-fgColor);
 }
 
-.IDE__Editor-replay {
-  margin-block-start: var(--base-size-24);
-  margin-block-end: var(--base-size-16);
-  align-self: center;
-  position: relative;
-  z-index: 1;
-}
-
-.IDE__Editor-replay[disabled] {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
   .IDE,
