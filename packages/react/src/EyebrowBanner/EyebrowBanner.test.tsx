@@ -162,4 +162,16 @@ describe('EyebrowBanner', () => {
     await userEvent.click(document.body)
     expect(getByTestId(EyebrowBanner.testIds.expandableArrow).classList).not.toContain(expectedClass)
   })
+
+  it('includes non-breaking spaces between text items to improve screen reader announcements', () => {
+    const {container} = render(
+      <EyebrowBanner href="/">
+        <EyebrowBanner.Label>Mock label</EyebrowBanner.Label>
+        <EyebrowBanner.Heading>{mockHeading}</EyebrowBanner.Heading>
+        <EyebrowBanner.SubHeading>{mockSubHeading}</EyebrowBanner.SubHeading>
+      </EyebrowBanner>,
+    )
+
+    expect(container).toHaveTextContent('Mock label Mock heading Mock sub-heading')
+  })
 })
