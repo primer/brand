@@ -78,6 +78,11 @@
   color: var(--brand-InlineLink-color-pressed);
 }
 
+.Timeline__item a:focus-visible {
+  outline: var(--brand-borderWidth-thick) solid var(--brand-color-focus);
+  outline-offset: var(--base-size-2);
+}
+
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
   .Timeline__item,
