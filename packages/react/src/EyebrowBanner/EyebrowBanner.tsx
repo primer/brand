@@ -67,9 +67,15 @@ const _EyebrowBanner = forwardRef<HTMLAnchorElement, EyebrowBannerProps>(
       [onBlur, isFocused],
     )
 
-    const HeadingChildren = React.Children.toArray(children).filter(child => {
+    const HeadingChild = React.Children.toArray(children).filter(child => {
       if (React.isValidElement(child)) {
-        return child.type === EyebrowBannerHeading || child.type === EyebrowBannerSubHeading
+        return child.type === EyebrowBannerHeading
+      }
+    })
+
+    const SubHeadingChild = React.Children.toArray(children).filter(child => {
+      if (React.isValidElement(child)) {
+        return child.type === EyebrowBannerSubHeading
       }
     })
 
@@ -99,8 +105,14 @@ const _EyebrowBanner = forwardRef<HTMLAnchorElement, EyebrowBannerProps>(
       >
         <span className={styles['EyebrowBanner__inner']}>
           {VisualChild && <span className={styles['EyebrowBanner__leadingVisual']}>{VisualChild}</span>}
+          <span className="visually-hidden">&nbsp;</span>
           {LabelChild && !VisualChild && <>{LabelChild}</>}
-          <span className={styles['EyebrowBanner__headings']}>{HeadingChildren}</span>
+          <span className="visually-hidden">&nbsp;</span>
+          <span className={styles['EyebrowBanner__headings']}>
+            {HeadingChild}
+            <span className="visually-hidden">&nbsp;</span>
+            {SubHeadingChild}
+          </span>
 
           <span className={styles['EyebrowBanner__trailingVisual']}>
             <ExpandableArrow
