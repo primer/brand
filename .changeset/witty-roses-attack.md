@@ -2,4 +2,4 @@
 '@primer/react-brand': patch
 ---
 
-Added non-breaking spaces between adjacent spans in EyebrowBanner component to prevent adjacent text from being announced without a pause by some screen readers.
+Added visually-hidden, non-breaking spaces between each text item in the `EyebrowBanner` component. This improves announcements in screen readers, where they would previously be announced without a pause.
