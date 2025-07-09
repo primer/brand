@@ -1,10 +1,10 @@
 import React, {Suspense, useEffect} from 'react'
 import {I18nextProvider} from 'react-i18next'
 import {ThemeProvider} from '../../../packages/react/src'
+import i18n from './i18n'
 import styles from './preview.module.css'
 import '../../../packages/react/src/css/stylesheets'
 import '../../../packages/react/src/css/utilities.css'
-import i18n from './i18n'
 
 import '@primer/brand-fonts/fonts.css'
 
