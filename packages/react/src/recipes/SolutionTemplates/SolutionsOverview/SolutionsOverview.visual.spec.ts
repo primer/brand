@@ -14,8 +14,98 @@ test.describe('Visual Comparison: SolutionsOverview', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('SolutionsOverview / Light (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=recipes-solutions-overview--light&viewMode=story',
+    )
+
+    await page.waitForTimeout(3500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SolutionsOverview / Light (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=recipes-solutions-overview--light&viewMode=story',
+    )
+
+    await page.waitForTimeout(3500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SolutionsOverview / Light (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=recipes-solutions-overview--light&viewMode=story',
+    )
+
+    await page.waitForTimeout(3500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SolutionsOverview / Light (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=recipes-solutions-overview--light&viewMode=story',
+    )
+
+    await page.waitForTimeout(3500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SolutionsOverview / Light (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=recipes-solutions-overview--light&viewMode=story',
+    )
+
+    await page.waitForTimeout(3500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('SolutionsOverview / Dark', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=recipes-solutions-overview--dark&viewMode=story')
+
+    await page.waitForTimeout(3500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SolutionsOverview / Dark (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=recipes-solutions-overview--dark&viewMode=story',
+    )
+
+    await page.waitForTimeout(3500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SolutionsOverview / Dark (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=recipes-solutions-overview--dark&viewMode=story',
+    )
+
+    await page.waitForTimeout(3500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SolutionsOverview / Dark (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=recipes-solutions-overview--dark&viewMode=story',
+    )
+
+    await page.waitForTimeout(3500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SolutionsOverview / Dark (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=recipes-solutions-overview--dark&viewMode=story',
+    )
+
+    await page.waitForTimeout(3500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SolutionsOverview / Dark (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=recipes-solutions-overview--dark&viewMode=story',
+    )
 
     await page.waitForTimeout(3500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()

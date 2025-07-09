@@ -14,8 +14,98 @@ test.describe('Visual Comparison: AnchorNav', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('AnchorNav / Default (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-anchornav--default&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / Default (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-anchornav--default&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / Default (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-anchornav--default&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / Default (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-anchornav--default&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / Default (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-anchornav--default&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('AnchorNav / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-anchornav--playground&viewMode=story')
+
+    await page.waitForTimeout(2000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / Playground (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-anchornav--playground&viewMode=story',
+    )
+
+    await page.waitForTimeout(2000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / Playground (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-anchornav--playground&viewMode=story',
+    )
+
+    await page.waitForTimeout(2000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / Playground (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-anchornav--playground&viewMode=story',
+    )
+
+    await page.waitForTimeout(2000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / Playground (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-anchornav--playground&viewMode=story',
+    )
+
+    await page.waitForTimeout(2000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / Playground (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-anchornav--playground&viewMode=story',
+    )
 
     await page.waitForTimeout(2000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
@@ -24,6 +114,51 @@ test.describe('Visual Comparison: AnchorNav', () => {
   test('AnchorNav / Fewer anchor links', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--fewer-anchor-links&viewMode=story',
+    )
+
+    await page.waitForTimeout(2000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / Fewer anchor links (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-anchornav-features--fewer-anchor-links&viewMode=story',
+    )
+
+    await page.waitForTimeout(2000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / Fewer anchor links (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-anchornav-features--fewer-anchor-links&viewMode=story',
+    )
+
+    await page.waitForTimeout(2000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / Fewer anchor links (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-anchornav-features--fewer-anchor-links&viewMode=story',
+    )
+
+    await page.waitForTimeout(2000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / Fewer anchor links (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-anchornav-features--fewer-anchor-links&viewMode=story',
+    )
+
+    await page.waitForTimeout(2000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / Fewer anchor links (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-anchornav-features--fewer-anchor-links&viewMode=story',
     )
 
     await page.waitForTimeout(2000)
@@ -39,9 +174,99 @@ test.describe('Visual Comparison: AnchorNav', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('AnchorNav / Shorter labels (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-anchornav-features--shorter-labels&viewMode=story',
+    )
+
+    await page.waitForTimeout(2000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / Shorter labels (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-anchornav-features--shorter-labels&viewMode=story',
+    )
+
+    await page.waitForTimeout(2000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / Shorter labels (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-anchornav-features--shorter-labels&viewMode=story',
+    )
+
+    await page.waitForTimeout(2000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / Shorter labels (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-anchornav-features--shorter-labels&viewMode=story',
+    )
+
+    await page.waitForTimeout(2000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / Shorter labels (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-anchornav-features--shorter-labels&viewMode=story',
+    )
+
+    await page.waitForTimeout(2000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('AnchorNav / Longer labels', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--longer-labels&viewMode=story',
+    )
+
+    await page.waitForTimeout(2000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / Longer labels (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-anchornav-features--longer-labels&viewMode=story',
+    )
+
+    await page.waitForTimeout(2000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / Longer labels (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-anchornav-features--longer-labels&viewMode=story',
+    )
+
+    await page.waitForTimeout(2000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / Longer labels (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-anchornav-features--longer-labels&viewMode=story',
+    )
+
+    await page.waitForTimeout(2000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / Longer labels (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-anchornav-features--longer-labels&viewMode=story',
+    )
+
+    await page.waitForTimeout(2000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / Longer labels (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-anchornav-features--longer-labels&viewMode=story',
     )
 
     await page.waitForTimeout(2000)
@@ -57,12 +282,102 @@ test.describe('Visual Comparison: AnchorNav', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('AnchorNav / Custom Background (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-anchornav-features--custom-background&viewMode=story',
+    )
+
+    await page.waitForTimeout(2000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / Custom Background (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-anchornav-features--custom-background&viewMode=story',
+    )
+
+    await page.waitForTimeout(2000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / Custom Background (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-anchornav-features--custom-background&viewMode=story',
+    )
+
+    await page.waitForTimeout(2000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / Custom Background (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-anchornav-features--custom-background&viewMode=story',
+    )
+
+    await page.waitForTimeout(2000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / Custom Background (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-anchornav-features--custom-background&viewMode=story',
+    )
+
+    await page.waitForTimeout(2000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   // eslint-disable-next-line i18n-text/no-en
   test.describe('Mobile viewport test for Narrow view, menu closed (mobile)', () => {
     test.use({viewport: {width: 360, height: 800}})
     test('AnchorNav / Narrow view, menu closed (mobile)', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--narrow-view&viewMode=story',
+      )
+
+      await page.waitForTimeout(2000)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('AnchorNav / Narrow view, menu closed (mobile) (fr)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-anchornav-features--narrow-view&viewMode=story',
+      )
+
+      await page.waitForTimeout(2000)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('AnchorNav / Narrow view, menu closed (mobile) (de)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-anchornav-features--narrow-view&viewMode=story',
+      )
+
+      await page.waitForTimeout(2000)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('AnchorNav / Narrow view, menu closed (mobile) (ja)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-anchornav-features--narrow-view&viewMode=story',
+      )
+
+      await page.waitForTimeout(2000)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('AnchorNav / Narrow view, menu closed (mobile) (es)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-anchornav-features--narrow-view&viewMode=story',
+      )
+
+      await page.waitForTimeout(2000)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('AnchorNav / Narrow view, menu closed (mobile) (pt-BR)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-anchornav-features--narrow-view&viewMode=story',
       )
 
       await page.waitForTimeout(2000)
@@ -81,6 +396,51 @@ test.describe('Visual Comparison: AnchorNav', () => {
       await page.waitForTimeout(2000)
       expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
     })
+
+    test('AnchorNav / Narrow view, menu open (mobile) (fr)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-anchornav-features--narrow-view-menu-open&viewMode=story',
+      )
+
+      await page.waitForTimeout(2000)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('AnchorNav / Narrow view, menu open (mobile) (de)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-anchornav-features--narrow-view-menu-open&viewMode=story',
+      )
+
+      await page.waitForTimeout(2000)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('AnchorNav / Narrow view, menu open (mobile) (ja)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-anchornav-features--narrow-view-menu-open&viewMode=story',
+      )
+
+      await page.waitForTimeout(2000)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('AnchorNav / Narrow view, menu open (mobile) (es)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-anchornav-features--narrow-view-menu-open&viewMode=story',
+      )
+
+      await page.waitForTimeout(2000)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('AnchorNav / Narrow view, menu open (mobile) (pt-BR)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-anchornav-features--narrow-view-menu-open&viewMode=story',
+      )
+
+      await page.waitForTimeout(2000)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
   })
 
   // eslint-disable-next-line i18n-text/no-en
@@ -89,6 +449,51 @@ test.describe('Visual Comparison: AnchorNav', () => {
     test('AnchorNav / Regular view, menu closed (tablet)', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--regular-view&viewMode=story',
+      )
+
+      await page.waitForTimeout(2000)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('AnchorNav / Regular view, menu closed (tablet) (fr)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-anchornav-features--regular-view&viewMode=story',
+      )
+
+      await page.waitForTimeout(2000)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('AnchorNav / Regular view, menu closed (tablet) (de)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-anchornav-features--regular-view&viewMode=story',
+      )
+
+      await page.waitForTimeout(2000)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('AnchorNav / Regular view, menu closed (tablet) (ja)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-anchornav-features--regular-view&viewMode=story',
+      )
+
+      await page.waitForTimeout(2000)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('AnchorNav / Regular view, menu closed (tablet) (es)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-anchornav-features--regular-view&viewMode=story',
+      )
+
+      await page.waitForTimeout(2000)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('AnchorNav / Regular view, menu closed (tablet) (pt-BR)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-anchornav-features--regular-view&viewMode=story',
       )
 
       await page.waitForTimeout(2000)
@@ -107,10 +512,100 @@ test.describe('Visual Comparison: AnchorNav', () => {
       await page.waitForTimeout(2000)
       expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
     })
+
+    test('AnchorNav / Regular view, menu open (tablet) (fr)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-anchornav-features--regular-view-menu-open&viewMode=story',
+      )
+
+      await page.waitForTimeout(2000)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('AnchorNav / Regular view, menu open (tablet) (de)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-anchornav-features--regular-view-menu-open&viewMode=story',
+      )
+
+      await page.waitForTimeout(2000)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('AnchorNav / Regular view, menu open (tablet) (ja)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-anchornav-features--regular-view-menu-open&viewMode=story',
+      )
+
+      await page.waitForTimeout(2000)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('AnchorNav / Regular view, menu open (tablet) (es)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-anchornav-features--regular-view-menu-open&viewMode=story',
+      )
+
+      await page.waitForTimeout(2000)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('AnchorNav / Regular view, menu open (tablet) (pt-BR)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-anchornav-features--regular-view-menu-open&viewMode=story',
+      )
+
+      await page.waitForTimeout(2000)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
   })
   test('AnchorNav / Hide until sticky', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--hide-until-sticky&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / Hide until sticky (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-anchornav-features--hide-until-sticky&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / Hide until sticky (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-anchornav-features--hide-until-sticky&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / Hide until sticky (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-anchornav-features--hide-until-sticky&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / Hide until sticky (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-anchornav-features--hide-until-sticky&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / Hide until sticky (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-anchornav-features--hide-until-sticky&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -126,9 +621,99 @@ test.describe('Visual Comparison: AnchorNav', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('AnchorNav / With optional primary CTA (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-anchornav-features--anchor-nav-primary-actions&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / With optional primary CTA (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-anchornav-features--anchor-nav-primary-actions&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / With optional primary CTA (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-anchornav-features--anchor-nav-primary-actions&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / With optional primary CTA (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-anchornav-features--anchor-nav-primary-actions&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / With optional primary CTA (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-anchornav-features--anchor-nav-primary-actions&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('AnchorNav / With larger CTAs', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-anchornav-features--anchor-nav-larger-actions&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / With larger CTAs (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-anchornav-features--anchor-nav-larger-actions&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / With larger CTAs (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-anchornav-features--anchor-nav-larger-actions&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / With larger CTAs (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-anchornav-features--anchor-nav-larger-actions&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / With larger CTAs (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-anchornav-features--anchor-nav-larger-actions&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('AnchorNav / With larger CTAs (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-anchornav-features--anchor-nav-larger-actions&viewMode=story',
     )
 
     await page.waitForTimeout(500)

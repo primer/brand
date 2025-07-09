@@ -17,6 +17,8 @@
 
   const defaultTimeout = 500 // Storybook 7 introduced a small delay in loading stories. This is to migigate the spinner showing up in screenshots.
 
+  const languages = ['en', 'fr', 'de', 'ja', 'es', 'pt-BR']
+
   /**
    * Manual lookup for tests that need animation or side-effects to complete before tests start
    */
@@ -193,25 +195,34 @@
         )
 
         const requiresTabletViewport = storyName.toLowerCase().includes('tablet')
+
         if (skipTestLookup.includes(id)) {
           return acc
         }
 
-        const testCase = `test('${groupName} / ${storyName}', async ({page}) => {
-          await page.goto('http://localhost:${port}/iframe.html?args=&id=${id}&viewMode=story')
+        const generateTestForLanguage = (language: string) => {
+          const localeParam = language === 'en' ? '?' : `?globals=locale%3A${language}&`
+          const testName =
+            language === 'en' ? `${groupName} / ${storyName}` : `${groupName} / ${storyName} (${language})`
 
-          ${timeout ? `await page.waitForTimeout(${timeout})` : ''}
-          expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
-        });
+          return `test('${testName}', async ({page}) => {
+            await page.goto('http://localhost:${port}/iframe.html${localeParam}args=&id=${id}&viewMode=story')
 
-        `
+            ${timeout ? `await page.waitForTimeout(${timeout})` : ''}
+            expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+          });
+
+          `
+        }
+
+        const allLanguageTests = languages.map(language => generateTestForLanguage(language)).join('')
 
         if (requiresMobileViewport) {
           return (acc += `
           // eslint-disable-next-line i18n-text/no-en
           test.describe('Mobile viewport test for ${storyName}', () => {
             test.use({ viewport: { width: 360, height: 800 } });
-            ${testCase}
+            ${allLanguageTests}
           });
           `)
         }
@@ -221,12 +232,12 @@
           // eslint-disable-next-line i18n-text/no-en
           test.describe('Tablet viewport test for ${storyName}', () => {
             test.use({ viewport: { width: 834, height: 1112 } });
-            ${testCase}
+            ${allLanguageTests}
           });
           `)
         }
 
-        return (acc += testCase)
+        return (acc += allLanguageTests)
       }, '')}
 
     })

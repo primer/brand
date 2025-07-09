@@ -1,8 +1,11 @@
-import React from 'react'
+import React, {Suspense, useEffect} from 'react'
+import {I18nextProvider} from 'react-i18next'
 import {ThemeProvider} from '../../../packages/react/src'
 import styles from './preview.module.css'
 import '../../../packages/react/src/css/stylesheets'
 import '../../../packages/react/src/css/utilities.css'
+import i18n from './i18n'
+
 import '@primer/brand-fonts/fonts.css'
 
 export const globalTypes = {
@@ -34,6 +37,40 @@ export const globalTypes = {
       title: 'Color mode',
     },
   },
+  locale: {
+    name: 'Locale',
+    description: 'Internationalization locale',
+    defaultValue: 'en',
+    toolbar: {
+      icon: 'globe',
+      items: [
+        {value: 'en', title: 'English'},
+        {value: 'de', title: 'Deutsch'},
+        {value: 'es', title: 'Español'},
+        {value: 'fr', title: 'Français'},
+        {value: 'ja', title: '日本語'},
+        {value: 'pt-BR', title: 'Português (Brasil)'},
+      ],
+      showName: true,
+      title: 'Language selector',
+    },
+  },
+}
+
+const withI18next = (Story, context) => {
+  const {locale} = context.globals
+
+  useEffect(() => {
+    i18n.changeLanguage(locale)
+  }, [locale])
+
+  return (
+    <Suspense fallback={<div>loading translations...</div>}>
+      <I18nextProvider i18n={i18n}>
+        <Story />
+      </I18nextProvider>
+    </Suspense>
+  )
 }
 
 const ThemeProviderDecorator = (Story, context) => {
@@ -72,7 +109,7 @@ const ThemeProviderDecorator = (Story, context) => {
   )
 }
 
-export const decorators = [ThemeProviderDecorator]
+export const decorators = [ThemeProviderDecorator, withI18next]
 
 export const parameters = {
   controls: {

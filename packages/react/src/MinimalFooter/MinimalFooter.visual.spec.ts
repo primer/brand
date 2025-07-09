@@ -14,8 +14,98 @@ test.describe('Visual Comparison: MinimalFooter', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('MinimalFooter / Default (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-minimalfooter--default&viewMode=story',
+    )
+
+    await page.waitForTimeout(5000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Default (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-minimalfooter--default&viewMode=story',
+    )
+
+    await page.waitForTimeout(5000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Default (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-minimalfooter--default&viewMode=story',
+    )
+
+    await page.waitForTimeout(5000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Default (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-minimalfooter--default&viewMode=story',
+    )
+
+    await page.waitForTimeout(5000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Default (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-minimalfooter--default&viewMode=story',
+    )
+
+    await page.waitForTimeout(5000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('MinimalFooter / Playground', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-minimalfooter--playground&viewMode=story')
+
+    await page.waitForTimeout(5000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Playground (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-minimalfooter--playground&viewMode=story',
+    )
+
+    await page.waitForTimeout(5000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Playground (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-minimalfooter--playground&viewMode=story',
+    )
+
+    await page.waitForTimeout(5000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Playground (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-minimalfooter--playground&viewMode=story',
+    )
+
+    await page.waitForTimeout(5000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Playground (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-minimalfooter--playground&viewMode=story',
+    )
+
+    await page.waitForTimeout(5000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Playground (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-minimalfooter--playground&viewMode=story',
+    )
 
     await page.waitForTimeout(5000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
@@ -24,6 +114,51 @@ test.describe('Visual Comparison: MinimalFooter', () => {
   test('MinimalFooter / Multiple Footnotes', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--multiple-footnotes&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Multiple Footnotes (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-minimalfooter-features--multiple-footnotes&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Multiple Footnotes (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-minimalfooter-features--multiple-footnotes&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Multiple Footnotes (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-minimalfooter-features--multiple-footnotes&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Multiple Footnotes (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-minimalfooter-features--multiple-footnotes&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Multiple Footnotes (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-minimalfooter-features--multiple-footnotes&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -39,9 +174,99 @@ test.describe('Visual Comparison: MinimalFooter', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('MinimalFooter / Maximum Links (5) (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-minimalfooter-features--maximum-links&viewMode=story',
+    )
+
+    await page.waitForTimeout(5000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Maximum Links (5) (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-minimalfooter-features--maximum-links&viewMode=story',
+    )
+
+    await page.waitForTimeout(5000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Maximum Links (5) (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-minimalfooter-features--maximum-links&viewMode=story',
+    )
+
+    await page.waitForTimeout(5000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Maximum Links (5) (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-minimalfooter-features--maximum-links&viewMode=story',
+    )
+
+    await page.waitForTimeout(5000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Maximum Links (5) (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-minimalfooter-features--maximum-links&viewMode=story',
+    )
+
+    await page.waitForTimeout(5000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('MinimalFooter / Mixed Buttons And Links', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--mixed-buttons-and-links&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Mixed Buttons And Links (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-minimalfooter-features--mixed-buttons-and-links&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Mixed Buttons And Links (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-minimalfooter-features--mixed-buttons-and-links&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Mixed Buttons And Links (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-minimalfooter-features--mixed-buttons-and-links&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Mixed Buttons And Links (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-minimalfooter-features--mixed-buttons-and-links&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Mixed Buttons And Links (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-minimalfooter-features--mixed-buttons-and-links&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -57,6 +282,51 @@ test.describe('Visual Comparison: MinimalFooter', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('MinimalFooter / No Social Links (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-minimalfooter-features--no-social-links&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / No Social Links (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-minimalfooter-features--no-social-links&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / No Social Links (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-minimalfooter-features--no-social-links&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / No Social Links (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-minimalfooter-features--no-social-links&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / No Social Links (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-minimalfooter-features--no-social-links&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('MinimalFooter / Filtered Social Links', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--filtered-social-links&viewMode=story',
@@ -66,9 +336,99 @@ test.describe('Visual Comparison: MinimalFooter', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('MinimalFooter / Filtered Social Links (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-minimalfooter-features--filtered-social-links&viewMode=story',
+    )
+
+    await page.waitForTimeout(5000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Filtered Social Links (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-minimalfooter-features--filtered-social-links&viewMode=story',
+    )
+
+    await page.waitForTimeout(5000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Filtered Social Links (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-minimalfooter-features--filtered-social-links&viewMode=story',
+    )
+
+    await page.waitForTimeout(5000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Filtered Social Links (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-minimalfooter-features--filtered-social-links&viewMode=story',
+    )
+
+    await page.waitForTimeout(5000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Filtered Social Links (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-minimalfooter-features--filtered-social-links&viewMode=story',
+    )
+
+    await page.waitForTimeout(5000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('MinimalFooter / Reversed Social Links', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--reversed-social-links&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Reversed Social Links (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-minimalfooter-features--reversed-social-links&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Reversed Social Links (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-minimalfooter-features--reversed-social-links&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Reversed Social Links (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-minimalfooter-features--reversed-social-links&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Reversed Social Links (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-minimalfooter-features--reversed-social-links&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Reversed Social Links (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-minimalfooter-features--reversed-social-links&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -86,10 +446,100 @@ test.describe('Visual Comparison: MinimalFooter', () => {
       await page.waitForTimeout(5000)
       expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
     })
+
+    test('MinimalFooter / Default (Narrow viewport) (fr)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-minimalfooter-features--default-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(5000)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('MinimalFooter / Default (Narrow viewport) (de)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-minimalfooter-features--default-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(5000)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('MinimalFooter / Default (Narrow viewport) (ja)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-minimalfooter-features--default-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(5000)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('MinimalFooter / Default (Narrow viewport) (es)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-minimalfooter-features--default-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(5000)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('MinimalFooter / Default (Narrow viewport) (pt-BR)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-minimalfooter-features--default-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(5000)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
   })
   test('MinimalFooter / Dark Theme', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-minimalfooter-features--dark-theme&viewMode=story',
+    )
+
+    await page.waitForTimeout(5000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Dark Theme (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-minimalfooter-features--dark-theme&viewMode=story',
+    )
+
+    await page.waitForTimeout(5000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Dark Theme (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-minimalfooter-features--dark-theme&viewMode=story',
+    )
+
+    await page.waitForTimeout(5000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Dark Theme (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-minimalfooter-features--dark-theme&viewMode=story',
+    )
+
+    await page.waitForTimeout(5000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Dark Theme (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-minimalfooter-features--dark-theme&viewMode=story',
+    )
+
+    await page.waitForTimeout(5000)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('MinimalFooter / Dark Theme (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-minimalfooter-features--dark-theme&viewMode=story',
     )
 
     await page.waitForTimeout(5000)
