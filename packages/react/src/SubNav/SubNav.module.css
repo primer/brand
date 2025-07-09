@@ -536,6 +536,10 @@
     display: none;
   }
 
+  .SubNav__container--with-anchor-nav .SubNav__heading {
+    padding-block-end: 1px;
+  }
+
   .SubNav__heading {
     font-size: calc(var(--base-size-20) - 2px);
     line-height: var(--base-size-24);
@@ -543,6 +547,12 @@
 
   .SubNav__heading-separator {
     margin-inline-end: var(--base-size-20);
+    display: inline-flex;
+    top: 0;
+  }
+
+  .SubNav__container--with-anchor-nav .SubNav__heading-separator {
+    top: -1px;
   }
 
   .SubNav--header-container-outer {
@@ -552,6 +562,11 @@
 
   .SubNav__heading-container {
     margin-inline-end: var(--base-size-20);
+  }
+
+  .SubNav__header-container {
+    display: flex;
+    align-items: center;
   }
 
   .SubNav__subHeading {
