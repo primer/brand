@@ -204,7 +204,7 @@
         }
 
         const generateTestForLanguage = (language: string) => {
-          const localeParam = language === 'en' ? '' : `globals=locale%3A${language}&`
+          const localeParam = language === 'en' ? '' : `globals=${encodeURIComponent(`locale:${language}`)}&`
           const base = `${groupName} / ${storyName}`
           const testName = language === 'en' ? base : `${base} (${language})`
 
