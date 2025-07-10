@@ -1,7 +1,0 @@
-.container:has(> *:nth-child(2)) {
-  justify-content: space-between;
-}
-
-.container:not(:has(> *:nth-child(2))) {
-  justify-content: flex-end;
-}
