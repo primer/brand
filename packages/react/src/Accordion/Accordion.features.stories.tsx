@@ -62,16 +62,10 @@ export const Composition: StoryObj = {
           </Accordion.Content>
         </Accordion>
         <Accordion>
-          <Accordion.Heading>
-            {t(
-              'How can my organization become a GitHub for Startups partner?',
-              'How can my organization become a GitHub for Startups partner?',
-            )}
-          </Accordion.Heading>
+          <Accordion.Heading>{t('How can my organization become a GitHub for Startups partner?')}</Accordion.Heading>
           <Accordion.Content>
             <p>
               {t(
-                'Any investor, accelerator, or startup support organization is eligible to apply for the GitHub for Startups program.',
                 'Any investor, accelerator, or startup support organization is eligible to apply for the GitHub for Startups program.',
               )}
             </p>
