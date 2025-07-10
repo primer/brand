@@ -128,6 +128,25 @@ const VideoPlayerTrack = ({kind = 'captions', ...rest}: React.HTMLProps<HTMLTrac
 const RootWithProvider = forwardRef<HTMLVideoElement, VideoPlayerProps>((props, ref) => {
   const context = useContext(VideoContext)
 
+  if (context && ref && (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test')) {
+    // eslint-disable-next-line no-console
+    console.warn(
+      `When using VideoPlayer.Provider you should pass your ref to VideoPlayer.Provider instead of VideoPlayer, e.g.
+
+  // Do this ✅
+  <VideoPlayer.Provider ref={ref}>
+    <VideoPlayer />
+  </VideoPlayer.Provider>
+
+  // Instead of this ❌
+  <VideoPlayer.Provider>
+    <VideoPlayer ref={ref} />
+  </VideoPlayer.Provider>
+
+Refs passed to a VideoPlayer inside VideoPlayer.Provider will be ignored.`,
+    )
+  }
+
   return context ? (
     <Root {...props} />
   ) : (
