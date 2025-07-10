@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import {Meta} from '@storybook/react'
+import type {Meta, StoryFn} from '@storybook/react'
 import {INITIAL_VIEWPORTS} from '@storybook/addon-viewport'
 import {linkTo} from '@storybook/addon-links'
 
@@ -250,7 +250,7 @@ const AnchorNavVariantData = {
   ['Reliability']: 'reliability',
 }
 
-export const AnchorNavVariant = args => (
+export const AnchorNavVariantTemplate: StoryFn<typeof SubNav> = args => (
   <main>
     <Box paddingBlockStart={64} backgroundColor="subtle" style={{position: 'relative', zIndex: 32}}></Box>
     <SubNav {...args}>
@@ -290,6 +290,9 @@ export const AnchorNavVariant = args => (
     </Box>
   </main>
 )
+
+const AnchorNavVariant = AnchorNavVariantTemplate.bind({})
+
 AnchorNavVariant.parameters = {
   layout: 'fullscreen',
 }
@@ -453,4 +456,55 @@ KeyboardNavigation.play = async ({canvasElement}) => {
 
   await userEvent.tab({shift: true})
   expect(getByRole('link', {name: 'Discussions'})).toHaveFocus()
+}
+
+export const AnchorNavVariantKeyboardNavigation = AnchorNavVariant.bind({})
+
+AnchorNavVariantKeyboardNavigation.play = async ({canvasElement}) => {
+  const {getByRole, getAllByRole} = within(canvasElement)
+
+  await userEvent.tab()
+  expect(getByRole('link', {name: 'Enterprise'})).toHaveFocus()
+
+  await userEvent.tab()
+  expect(getByRole('link', {name: 'Overview'})).toHaveFocus()
+
+  await userEvent.tab()
+  expect(getByRole('link', {name: 'Advanced Security'})).toHaveFocus()
+
+  await userEvent.tab()
+  expect(getByRole('link', {name: 'Copilot Enterprise'})).toHaveFocus()
+
+  await userEvent.tab()
+  expect(getByRole('link', {name: 'Premium Support'})).toHaveFocus()
+
+  await userEvent.tab()
+  expect(getByRole('link', {name: 'Scale'})).toHaveFocus()
+
+  await userEvent.tab()
+  expect(getByRole('link', {name: 'AI'})).toHaveFocus()
+
+  await userEvent.tab()
+  expect(getByRole('link', {name: 'Security'})).toHaveFocus()
+
+  await userEvent.tab()
+  expect(getByRole('link', {name: 'Reliability'})).toHaveFocus()
+
+  await userEvent.tab()
+  expect(getAllByRole('button', {name: 'Learn more'})[0]).toHaveFocus()
+
+  await userEvent.tab({shift: true})
+  expect(getByRole('link', {name: 'Reliability'})).toHaveFocus()
+
+  await userEvent.tab({shift: true})
+  expect(getByRole('link', {name: 'Security'})).toHaveFocus()
+
+  await userEvent.tab({shift: true})
+  expect(getByRole('link', {name: 'AI'})).toHaveFocus()
+
+  await userEvent.tab({shift: true})
+  expect(getByRole('link', {name: 'Scale'})).toHaveFocus()
+
+  await userEvent.tab({shift: true})
+  expect(getByRole('link', {name: 'Premium Support'})).toHaveFocus()
 }
