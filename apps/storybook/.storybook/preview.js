@@ -1,4 +1,4 @@
-import React, {Suspense, useEffect} from 'react'
+import React, {Suspense} from 'react'
 import {I18nextProvider} from 'react-i18next'
 import {ThemeProvider} from '../../../packages/react/src'
 import i18n from './i18n'
@@ -60,9 +60,7 @@ export const globalTypes = {
 const withI18next = (Story, context) => {
   const {locale} = context.globals
 
-  useEffect(() => {
-    i18n.changeLanguage(locale)
-  }, [locale])
+  i18n.changeLanguage(locale)
 
   return (
     <Suspense fallback={<div>loading translations...</div>}>
