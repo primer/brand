@@ -320,7 +320,8 @@
 
 .Prose video,
 .Prose iframe[src*='youtube.com'],
-.Prose iframe[src*='youtu.be'] {
+.Prose iframe[src*='youtu.be'],
+.Prose iframe[src*='youtube-nocookie.com'] {
   --spacing: var(--brand-Prose-img-spacing);
 
   border-radius: var(--brand-borderRadius-medium);
@@ -336,7 +337,8 @@
 }
 
 .Prose iframe[src*='youtube.com'],
-.Prose iframe[src*='youtu.be'] {
+.Prose iframe[src*='youtu.be'],
+.Prose iframe[src*='youtube-nocookie.com'] {
   width: 100%;
   aspect-ratio: 16 / 9;
 }
