@@ -1,5 +1,5 @@
-import React from 'react'
-import {Meta} from '@storybook/react'
+import React, {useRef} from 'react'
+import {Meta, StoryObj} from '@storybook/react'
 import {PlayIcon} from '@primer/octicons-react'
 
 import posterImage from '../fixtures/images/example-poster.png'
@@ -125,3 +125,76 @@ TooltipVisibleOnFocus.play = async ({canvasElement}) => {
 
   await waitFor(() => expect(getByText('Play video')).toBeVisible())
 }
+
+const customRefPlayFunction: StoryObj<typeof VideoPlayer>['play'] = async ({canvasElement}) => {
+  const {getByRole, getByTitle} = within(canvasElement)
+
+  const video = getByTitle<HTMLVideoElement>('GitHub media player')
+
+  expect(video).toHaveProperty('paused', true)
+  expect(video).toHaveProperty('currentTime', 0)
+
+  // Keep things quiet so we don't startle the user
+  await userEvent.click(getByRole('button', {name: 'Mute'}))
+
+  await userEvent.click(getByRole('button', {name: 'Play'}))
+
+  await waitFor(() => expect(video).toHaveProperty('paused', false))
+  await waitFor(() => expect(video.currentTime).toBeGreaterThan(0))
+
+  await userEvent.click(getByRole('button', {name: 'Reset using ref'}))
+
+  // Check that the video has been successfully reset
+  expect(video).toHaveProperty('paused', true)
+  expect(video).toHaveProperty('currentTime', 0)
+}
+
+export const WithCustomRef = () => {
+  const ref = useRef<HTMLVideoElement>(null)
+
+  return (
+    <>
+      <VideoPlayer title="GitHub media player" ref={ref}>
+        <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
+        <VideoPlayer.Track src="./example.vtt" default />
+      </VideoPlayer>
+      <Button
+        onClick={() => {
+          if (!ref.current) return
+          ref.current.pause()
+          ref.current.currentTime = 0
+        }}
+      >
+        Reset using ref
+      </Button>
+    </>
+  )
+}
+WithCustomRef.play = customRefPlayFunction
+WithCustomRef.storyName = 'With Custom Ref (autoplays)'
+
+export const WithCustomRefAndProvider = () => {
+  const ref = useRef<HTMLVideoElement>(null)
+
+  return (
+    <>
+      <VideoPlayer.Provider ref={ref}>
+        <VideoPlayer title="GitHub media player">
+          <VideoPlayer.Source src="./example.mp4" type="video/mp4" />
+          <VideoPlayer.Track src="./example.vtt" default />
+        </VideoPlayer>
+      </VideoPlayer.Provider>
+      <Button
+        onClick={() => {
+          if (!ref.current) return
+          ref.current.pause()
+          ref.current.currentTime = 0
+        }}
+      >
+        Reset using ref
+      </Button>
+    </>
+  )
+}
+WithCustomRefAndProvider.play = customRefPlayFunction
+WithCustomRefAndProvider.storyName = 'With Custom Ref and Provider (autoplays)'
