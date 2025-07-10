@@ -3,6 +3,7 @@ import {Grid, Card, Stack, InlineLink, Text, Heading} from '@primer/react-brand/
 import clsx from 'clsx'
 import Image from 'next/image'
 import NextLink from 'next/link'
+import packageInfo from '../package.json'
 
 import mona from '../src/images/mona-home.png'
 
@@ -84,24 +85,42 @@ export default function HomepageComponent() {
                   </Card>
                 </Grid.Column>
                 <Grid.Column span={{xsmall: 12, large: 6, xlarge: 4}}>
-                  <Card href="https://github.com/primer/brand/blob/main/CONTRIBUTING.md" hasBorder fullWidth>
-                    <Card.Heading as="h2">Contributing</Card.Heading>
-                    <Card.Description>Guidelines for contributing to the Product UI library.</Card.Description>
+                  <Card href="https://primer.style/brand/storybook" hasBorder fullWidth ctaText="Go to Storybook">
+                    <Card.Heading as="h2">Storybook</Card.Heading>
+                    <Card.Description>For GitHub Staff only</Card.Description>
                   </Card>
                 </Grid.Column>
               </Grid>
             </Stack>
             <div className={styles.footer}>
-              <Text as="p" size="300">
-                <Text as="span" size="300" weight="bold">
-                  Need help?&nbsp;
+              <Stack direction="vertical" gap="condensed">
+                <Text as="p" size="300">
+                  <Text as="span" size="300" weight="bold">
+                    Need help?&nbsp;
+                  </Text>
+                  If you found a bug on this website, please{' '}
+                  <InlineLink href="https://github.com/primer/brand/issues/new?template=BUG-REPORT.yml">
+                    open a new issue
+                  </InlineLink>{' '}
+                  with as much detail as possible.
                 </Text>
-                If you found a bug on this website, please{' '}
-                <InlineLink href="https://github.com/primer/brand/issues/new?template=BUG-REPORT.yml">
-                  open a new issue
-                </InlineLink>{' '}
-                with as much detail as possible.
-              </Text>
+
+                <Text as="p" size="300">
+                  <Text as="span" size="300" weight="bold">
+                    Latest release:
+                  </Text>{' '}
+                  <Text size="100" font="monospace">
+                    <InlineLink
+                      href={`https://github.com/primer/brand/releases/tag/${encodeURIComponent(
+                        `@primer/react-brand@${packageInfo.version}`,
+                      )}`}
+                      target="_blank"
+                    >
+                      v{packageInfo.version}
+                    </InlineLink>
+                  </Text>
+                </Text>
+              </Stack>
             </div>
           </Stack>
         </Grid.Column>
