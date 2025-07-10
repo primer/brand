@@ -34,7 +34,15 @@ export const RiversWithCitations = () => (
                       Third-party tools support your favorite languages and frameworks{' '}
                       <Text size="100" weight="light">
                         <sup>
-                          <InlineLink href="#economic-impact" id="economic-impact-ref">
+                          <InlineLink
+                            href="#economic-impact"
+                            id="economic-impact-ref"
+                            style={{
+                              display: 'inline-block',
+                              minWidth: 'var(--base-size-12)',
+                              minHeight: 'var(--base-size-24)',
+                            }}
+                          >
                             1
                           </InlineLink>
                         </sup>
@@ -63,7 +71,15 @@ export const RiversWithCitations = () => (
                       <Text variant="muted" size="100">
                         Fix vulnerabilities up to 7x faster than those using third-party tools.{' '}
                         <sup>
-                          <InlineLink href="#third-party" id="third-party-ref">
+                          <InlineLink
+                            href="#third-party"
+                            id="third-party-ref"
+                            style={{
+                              display: 'inline-block',
+                              minWidth: 'var(--base-size-12)',
+                              minHeight: 'var(--base-size-24)',
+                            }}
+                          >
                             2
                           </InlineLink>
                         </sup>

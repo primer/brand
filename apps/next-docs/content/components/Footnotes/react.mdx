@@ -73,6 +73,8 @@ import {Footnotes} from '@primer/react-brand'
 
 ### Citations with return links
 
+When linking to `Footnotes` via a citation, ensure that the touch target is large enough to be easily clickable.
+
 ```jsx live
 <Stack>
   <River>
@@ -89,7 +91,11 @@ import {Footnotes} from '@primer/react-brand'
             Third-party tools support your favorite languages and frameworks{' '}
             <Text size="100" weight="light">
               <sup>
-                <InlineLink href="#economic-impact" id="economic-impact-ref">
+                <InlineLink
+                  href="#economic-impact"
+                  id="economic-impact-ref"
+                  style={{display: 'inline-block', minWidth: 'var(--base-size-12)', minHeight: 'var(--base-size-24)'}}
+                >
                   1
                 </InlineLink>
               </sup>
@@ -112,10 +118,14 @@ import {Footnotes} from '@primer/react-brand'
         Unlocking innovation at scale with AI-driven software development.
       </Heading>
       <Text as="p" size="200" weight="light" variant="muted">
-        The world&apos;s most widely adopted AI developer tool.{' '}
+        The most widely adopted AI developer tool.{' '}
         <Text size="100" weight="light">
           <sup>
-            <InlineLink href="#ai" id="ai-ref">
+            <InlineLink
+              href="#ai"
+              id="ai-ref"
+              style={{display: 'inline-block', minWidth: 'var(--base-size-12)', minHeight: 'var(--base-size-24)'}}
+            >
               2
             </InlineLink>
           </sup>
