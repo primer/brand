@@ -115,7 +115,7 @@ export const useVideo = () => {
 type VideoProviderProps = PropsWithChildren
 
 export const VideoProvider = forwardRef<HTMLVideoElement, VideoProviderProps>(({children}, forwardedRef) => {
-  const ref = useProvidedRefOrCreate(forwardedRef as RefObject<HTMLVideoElement>)
+  const ref = useProvidedRefOrCreate(forwardedRef)
   const fullscreenRef = useRef<HTMLDivElement>(null)
 
   const [state, dispatch] = useReducer(videoReducer, {
