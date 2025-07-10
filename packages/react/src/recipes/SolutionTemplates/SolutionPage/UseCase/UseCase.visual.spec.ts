@@ -12,7 +12,7 @@ test.describe('Visual Comparison: UseCase', () => {
       'http://localhost:6006/iframe.html?args=&id=recipes-solutions-solution-use-case--maximum&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(2000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -21,7 +21,7 @@ test.describe('Visual Comparison: UseCase', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=recipes-solutions-solution-use-case--maximum&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(2000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -30,7 +30,7 @@ test.describe('Visual Comparison: UseCase', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=recipes-solutions-solution-use-case--maximum&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(2000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -39,7 +39,7 @@ test.describe('Visual Comparison: UseCase', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=recipes-solutions-solution-use-case--maximum&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(2000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -48,7 +48,7 @@ test.describe('Visual Comparison: UseCase', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=recipes-solutions-solution-use-case--maximum&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(2000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -57,7 +57,7 @@ test.describe('Visual Comparison: UseCase', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=recipes-solutions-solution-use-case--maximum&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(2000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -66,7 +66,7 @@ test.describe('Visual Comparison: UseCase', () => {
       'http://localhost:6006/iframe.html?args=&id=recipes-solutions-solution-use-case--maximum-dark&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(2000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -75,7 +75,7 @@ test.describe('Visual Comparison: UseCase', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=recipes-solutions-solution-use-case--maximum-dark&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(2000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -84,7 +84,7 @@ test.describe('Visual Comparison: UseCase', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=recipes-solutions-solution-use-case--maximum-dark&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(2000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -93,7 +93,7 @@ test.describe('Visual Comparison: UseCase', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=recipes-solutions-solution-use-case--maximum-dark&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(2000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -102,7 +102,7 @@ test.describe('Visual Comparison: UseCase', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=recipes-solutions-solution-use-case--maximum-dark&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(2000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -111,7 +111,7 @@ test.describe('Visual Comparison: UseCase', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=recipes-solutions-solution-use-case--maximum-dark&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(2000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -120,7 +120,7 @@ test.describe('Visual Comparison: UseCase', () => {
       'http://localhost:6006/iframe.html?args=&id=recipes-solutions-solution-use-case--minimum&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(2000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -129,7 +129,7 @@ test.describe('Visual Comparison: UseCase', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=recipes-solutions-solution-use-case--minimum&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(2000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -138,7 +138,7 @@ test.describe('Visual Comparison: UseCase', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=recipes-solutions-solution-use-case--minimum&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(2000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -147,7 +147,7 @@ test.describe('Visual Comparison: UseCase', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=recipes-solutions-solution-use-case--minimum&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(2000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -156,7 +156,7 @@ test.describe('Visual Comparison: UseCase', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=recipes-solutions-solution-use-case--minimum&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(2000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -165,7 +165,7 @@ test.describe('Visual Comparison: UseCase', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=recipes-solutions-solution-use-case--minimum&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(2000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -174,7 +174,7 @@ test.describe('Visual Comparison: UseCase', () => {
       'http://localhost:6006/iframe.html?args=&id=recipes-solutions-solution-use-case--minimum-dark&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(2000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -183,7 +183,7 @@ test.describe('Visual Comparison: UseCase', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=recipes-solutions-solution-use-case--minimum-dark&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(2000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -192,7 +192,7 @@ test.describe('Visual Comparison: UseCase', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=recipes-solutions-solution-use-case--minimum-dark&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(2000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -201,7 +201,7 @@ test.describe('Visual Comparison: UseCase', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=recipes-solutions-solution-use-case--minimum-dark&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(2000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -210,7 +210,7 @@ test.describe('Visual Comparison: UseCase', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=recipes-solutions-solution-use-case--minimum-dark&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(2000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
@@ -219,7 +219,7 @@ test.describe('Visual Comparison: UseCase', () => {
       'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=recipes-solutions-solution-use-case--minimum-dark&viewMode=story',
     )
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(2000)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 })

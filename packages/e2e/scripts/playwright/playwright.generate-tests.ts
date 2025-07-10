@@ -81,6 +81,10 @@
     'recipes-solutions-solution-org-size--maximum-dark': 3500, // for the animation
     'recipes-solutions-solution-org-size--minimum': 3500, // for the animation
     'recipes-solutions-solution-org-size--minimum-dark': 3500, // for the animation
+    'recipes-solutions-solution-use-case--minimum': 2000, // for the footer logos
+    'recipes-solutions-solution-use-case--minimum-dark': 2000, // for the footer logos
+    'recipes-solutions-solution-use-case--maximum-dark': 2000, // for the footer logos
+    'recipes-solutions-solution-use-case--maximum': 2000, // for the footer logos
     'recipes-solutions-overview--light': 3500, // for the animation
     'recipes-solutions-overview--dark': 3500, // for the animation
     'components-riverstoryscroll--default': 3500, // for the animation
@@ -195,18 +199,17 @@
         )
 
         const requiresTabletViewport = storyName.toLowerCase().includes('tablet')
-
         if (skipTestLookup.includes(id)) {
           return acc
         }
 
         const generateTestForLanguage = (language: string) => {
-          const localeParam = language === 'en' ? '?' : `?globals=locale%3A${language}&`
-          const testName =
-            language === 'en' ? `${groupName} / ${storyName}` : `${groupName} / ${storyName} (${language})`
+          const localeParam = language === 'en' ? '' : `globals=locale%3A${language}&`
+          const base = `${groupName} / ${storyName}`
+          const testName = language === 'en' ? base : `${base} (${language})`
 
           return `test('${testName}', async ({page}) => {
-            await page.goto('http://localhost:${port}/iframe.html${localeParam}args=&id=${id}&viewMode=story')
+            await page.goto('http://localhost:${port}/iframe.html?${localeParam}args=&id=${id}&viewMode=story')
 
             ${timeout ? `await page.waitForTimeout(${timeout})` : ''}
             expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
