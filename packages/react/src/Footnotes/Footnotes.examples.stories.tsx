@@ -37,7 +37,11 @@ export const RiversWithCitations = () => (
                           <InlineLink
                             href="#economic-impact"
                             id="economic-impact-ref"
-                            style={{display: 'inline-block', minWidth: 'var(--base-size-24)'}}
+                            style={{
+                              display: 'inline-block',
+                              minWidth: 'var(--base-size-12)',
+                              minHeight: 'var(--base-size-24)',
+                            }}
                           >
                             1
                           </InlineLink>
@@ -70,7 +74,11 @@ export const RiversWithCitations = () => (
                           <InlineLink
                             href="#third-party"
                             id="third-party-ref"
-                            style={{display: 'inline-block', minWidth: 'var(--base-size-24)'}}
+                            style={{
+                              display: 'inline-block',
+                              minWidth: 'var(--base-size-12)',
+                              minHeight: 'var(--base-size-24)',
+                            }}
                           >
                             2
                           </InlineLink>
