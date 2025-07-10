@@ -16,6 +16,6 @@
     "plugins": [{"name": "typescript-plugin-css-modules"}],
     "resolveJsonModule": true
   },
-  "include": ["src/**/*", "scripts/**/*", "docs/**/*"],
+  "include": ["src/**/*", "scripts/**/*"],
   "exclude": ["integration-tests/**/*"]
 }

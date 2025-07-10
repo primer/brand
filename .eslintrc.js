@@ -20,7 +20,6 @@ module.exports = {
     'node_modules',
     '.cache',
     'coverage/**/*',
-    'docs/public/**/*',
     'storybook-static/**/*',
     'dist/**/*',
     'lib/**/*',
