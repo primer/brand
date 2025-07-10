@@ -3,6 +3,7 @@ import {Grid, Card, Stack, InlineLink, Text, Heading} from '@primer/react-brand/
 import clsx from 'clsx'
 import Image from 'next/image'
 import NextLink from 'next/link'
+// eslint-disable-next-line import/extensions
 import packageInfo from '../package.json'
 
 import mona from '../src/images/mona-home.png'
@@ -10,6 +11,10 @@ import mona from '../src/images/mona-home.png'
 import styles from './index.module.css'
 
 export default function HomepageComponent() {
+  const releaseUrl = `https://github.com/primer/brand/releases/tag/${encodeURIComponent(
+    `@primer/react-brand@${packageInfo.version}`,
+  )}`
+
   return (
     <div className={clsx(styles.home, 'custom-component')}>
       <Grid>
@@ -110,12 +115,7 @@ export default function HomepageComponent() {
                     Latest release:
                   </Text>{' '}
                   <Text size="100" font="monospace">
-                    <InlineLink
-                      href={`https://github.com/primer/brand/releases/tag/${encodeURIComponent(
-                        `@primer/react-brand@${packageInfo.version}`,
-                      )}`}
-                      target="_blank"
-                    >
+                    <InlineLink href={releaseUrl} target="_blank">
                       v{packageInfo.version}
                     </InlineLink>
                   </Text>
