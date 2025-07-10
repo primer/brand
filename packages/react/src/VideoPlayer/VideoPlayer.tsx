@@ -38,7 +38,7 @@ type VideoPlayerProps = {
   showVolumeControl?: boolean
   showFullScreenButton?: boolean
   playIcon?: FunctionComponent
-} & HTMLProps<HTMLVideoElement>
+} & Omit<HTMLProps<HTMLVideoElement>, 'ref'>
 
 const Root = ({
   title,
@@ -129,10 +129,10 @@ const RootWithProvider = forwardRef<HTMLVideoElement, VideoPlayerProps>((props, 
   const context = useContext(VideoContext)
 
   return context ? (
-    <Root {...props} ref={ref} />
+    <Root {...props} />
   ) : (
-    <VideoProvider>
-      <Root {...props} ref={ref} />
+    <VideoProvider ref={ref}>
+      <Root {...props} />
     </VideoProvider>
   )
 })
