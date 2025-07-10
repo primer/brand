@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {createRef} from 'react'
 import {render, cleanup, waitFor, fireEvent} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
@@ -238,5 +238,99 @@ describe('VideoPlayer', () => {
       },
       {timeout: 100},
     )
+  })
+
+  it('sets a functional ref passed to the VideoPlayer when implicitly wrapped in a VideoPlayer.Provider', () => {
+    const mockRef = jest.fn()
+
+    const {getByTitle} = render(
+      <VideoPlayer poster="/example-poster.jpg" title="test video" ref={mockRef}>
+        <VideoPlayer.Source src="/example.mp4" />
+        <VideoPlayer.Track src="/example.vtt" default kind="subtitles" srcLang="en" label="English" />
+      </VideoPlayer>,
+    )
+
+    const video = getByTitle('test video')
+
+    expect(mockRef).toHaveBeenCalledWith(video)
+  })
+
+  it('sets a RefObject ref passed to the VideoPlayer when implicitly wrapped in a VideoPlayer.Provider', () => {
+    const mockRef = createRef<HTMLVideoElement>()
+
+    const {getByTitle} = render(
+      <VideoPlayer poster="/example-poster.jpg" title="test video" ref={mockRef}>
+        <VideoPlayer.Source src="/example.mp4" />
+        <VideoPlayer.Track src="/example.vtt" default kind="subtitles" srcLang="en" label="English" />
+      </VideoPlayer>,
+    )
+
+    const video = getByTitle('test video')
+
+    expect(mockRef).toEqual({current: video})
+  })
+
+  it('does not set a functional ref passed to the VideoPlayer when explicitly wrapped in a VideoPlayer.Provider', () => {
+    const mockRef = jest.fn()
+
+    render(
+      <VideoPlayer.Provider>
+        <VideoPlayer poster="/example-poster.jpg" title="test video" ref={mockRef}>
+          <VideoPlayer.Source src="/example.mp4" />
+          <VideoPlayer.Track src="/example.vtt" default kind="subtitles" srcLang="en" label="English" />
+        </VideoPlayer>
+      </VideoPlayer.Provider>,
+    )
+
+    expect(mockRef).not.toHaveBeenCalled()
+  })
+
+  it('does not set a RefObject ref passed to the VideoPlayer when explicitly wrapped in a VideoPlayer.Provider', () => {
+    const mockRef = createRef<HTMLVideoElement>()
+
+    render(
+      <VideoPlayer.Provider>
+        <VideoPlayer poster="/example-poster.jpg" title="test video" ref={mockRef}>
+          <VideoPlayer.Source src="/example.mp4" />
+          <VideoPlayer.Track src="/example.vtt" default kind="subtitles" srcLang="en" label="English" />
+        </VideoPlayer>
+      </VideoPlayer.Provider>,
+    )
+
+    expect(mockRef).toEqual({current: null})
+  })
+
+  it('sets a functional ref passed to the VideoPlayer.Provider', () => {
+    const mockRef = jest.fn()
+
+    const {getByTitle} = render(
+      <VideoPlayer.Provider ref={mockRef}>
+        <VideoPlayer poster="/example-poster.jpg" title="test video">
+          <VideoPlayer.Source src="/example.mp4" />
+          <VideoPlayer.Track src="/example.vtt" default kind="subtitles" srcLang="en" label="English" />
+        </VideoPlayer>
+      </VideoPlayer.Provider>,
+    )
+
+    const video = getByTitle('test video')
+
+    expect(mockRef).toHaveBeenCalledWith(video)
+  })
+
+  it('sets a RefObject ref passed to the VideoPlayer.Provider', () => {
+    const mockRef = createRef<HTMLVideoElement>()
+
+    const {getByTitle} = render(
+      <VideoPlayer.Provider ref={mockRef}>
+        <VideoPlayer poster="/example-poster.jpg" title="test video">
+          <VideoPlayer.Source src="/example.mp4" />
+          <VideoPlayer.Track src="/example.vtt" default kind="subtitles" srcLang="en" label="English" />
+        </VideoPlayer>
+      </VideoPlayer.Provider>,
+    )
+
+    const video = getByTitle('test video')
+
+    expect(mockRef).toEqual({current: video})
   })
 })
