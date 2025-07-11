@@ -106,5 +106,15 @@ module.exports = {
         dark: 'var(--base-color-scale-gray-5)',
       },
     },
+    playPauseControl: {
+      rest: {
+        value: 'var(--base-color-scale-gray-2)',
+        dark: '#4d4e6a',
+      },
+      hover: {
+        value: 'var(--base-color-scale-gray-3)',
+        dark: '#5a5b7c',
+      },
+    },
   },
 }
