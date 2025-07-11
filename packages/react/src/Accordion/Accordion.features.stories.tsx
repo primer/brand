@@ -2,6 +2,7 @@ import React, {useCallback, useRef} from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 import {Accordion, AccordionRootProps, AccordionToggleColors} from '.'
 import {Box, Stack, UnorderedList} from '../'
+import {useTranslation} from 'react-i18next'
 
 const meta: Meta = {
   title: 'Components/Accordion/Features',
@@ -10,79 +11,82 @@ const meta: Meta = {
 export default meta
 
 export const Composition: StoryObj = {
-  render: () => (
-    <>
-      <Accordion>
-        <Accordion.Heading>What&apos;s included in the GitHub for Startups offer?</Accordion.Heading>
-        <Accordion.Content>
-          <p>
-            All GitHub for Startups companies receive up to 20 seats of GitHub Enterprise for free for year one and 50%
-            off year two. Learn more about the features and capabilities of GitHub Enterprise{' '}
-            <a href="https://copilot.github.com/" target="_blank" rel="noreferrer">
-              here
-            </a>
-            .
-          </p>
-        </Accordion.Content>
-      </Accordion>
-      <Accordion>
-        <Accordion.Heading>Who is eligible to apply?</Accordion.Heading>
-        <Accordion.Content>
-          <p>Startups who meet the following criteria are eligible to apply for the program:</p>
-          <UnorderedList>
-            <UnorderedList.Item>Must be associated with a current GitHub for Startups partner.</UnorderedList.Item>
-            <UnorderedList.Item>Self-funded or funded (Seed-Series A)</UnorderedList.Item>
-            <UnorderedList.Item>Not a current GitHub Enterprise customer</UnorderedList.Item>
-            <UnorderedList.Item>Must not have previously received credits for GitHub Enterprise</UnorderedList.Item>
-          </UnorderedList>
-        </Accordion.Content>
-      </Accordion>
-      <Accordion>
-        <Accordion.Heading>What if my startup is not eligible? Are there other resources for me?</Accordion.Heading>
-        <Accordion.Content>
-          <p>
-            If you’re not currently eligible for the GitHub for Startups but would like to try GitHub Enterprise, please
-            feel to sign up for a trial{' '}
-            <a href="https://copilot.github.com/" target="_blank" rel="noreferrer">
-              here
-            </a>
-            .
-          </p>
-        </Accordion.Content>
-      </Accordion>
-      <Accordion>
-        <Accordion.Heading>How can my organization become a GitHub for Startups partner?</Accordion.Heading>
-        <Accordion.Content>
-          <p>
-            Any investor, accelerator, or startup support organization is eligible to apply for the GitHub for Startups
-            program.
-          </p>
-          <p>
-            {' '}
-            <a href="https://copilot.github.com/" target="_blank" rel="noreferrer">
-              Apply here
-            </a>
-            .
-          </p>
-        </Accordion.Content>
-      </Accordion>
-    </>
-  ),
+  render: function CompositionComponent() {
+    const {t} = useTranslation('Accordion')
+
+    return (
+      <>
+        <Accordion>
+          <Accordion.Heading>{t('github_startups_offer')}</Accordion.Heading>
+          <Accordion.Content>
+            <p>
+              {t('github_startups_offer_answer')}{' '}
+              <a href="https://copilot.github.com/" target="_blank" rel="noreferrer">
+                {t('here')}
+              </a>
+              .
+            </p>
+          </Accordion.Content>
+        </Accordion>
+        <Accordion>
+          <Accordion.Heading>{t('who_eligible')}</Accordion.Heading>
+          <Accordion.Content>
+            <p>{t('who_eligible_answer')}</p>
+            <UnorderedList>
+              <UnorderedList.Item>{t('must_be_associated')}</UnorderedList.Item>
+              <UnorderedList.Item>{t('self_funded')}</UnorderedList.Item>
+              <UnorderedList.Item>{t('not_current_customer')}</UnorderedList.Item>
+              <UnorderedList.Item>{t('no_previous_credits')}</UnorderedList.Item>
+            </UnorderedList>
+          </Accordion.Content>
+        </Accordion>
+        <Accordion>
+          <Accordion.Heading>{t('startup_not_eligible')}</Accordion.Heading>
+          <Accordion.Content>
+            <p>
+              {t('startup_not_eligible_answer')}{' '}
+              <a href="https://copilot.github.com/" target="_blank" rel="noreferrer">
+                {t('here')}
+              </a>
+              .
+            </p>
+          </Accordion.Content>
+        </Accordion>
+        <Accordion>
+          <Accordion.Heading>{t('become_partner')}</Accordion.Heading>
+          <Accordion.Content>
+            <p>{t('become_partner_answer')}</p>
+            <p>
+              {' '}
+              <a href="https://copilot.github.com/" target="_blank" rel="noreferrer">
+                {t('apply_here')}
+              </a>
+              .
+            </p>
+          </Accordion.Content>
+        </Accordion>
+      </>
+    )
+  },
 }
 
 export const ToggleColors: StoryObj = {
   parameters: {
     colorMode: 'all',
   },
-  render: () => {
+  render: function ToggleColorsComponent() {
+    const {t} = useTranslation('Accordion')
+
     return (
       <Stack direction="vertical">
         <Box backgroundColor="default" padding="condensed">
           {AccordionToggleColors.map(color => (
             <Accordion key={color}>
-              <Accordion.Heading toggleColor={color}>Toggle color: {color}</Accordion.Heading>
+              <Accordion.Heading toggleColor={color}>
+                {t('Toggle color')}: {color}
+              </Accordion.Heading>
               <Accordion.Content>
-                <p>Description</p>
+                <p>{t('Description')}</p>
               </Accordion.Content>
             </Accordion>
           ))}
@@ -100,11 +104,10 @@ const headings = [
 ]
 
 export const AlwaysExactlyOnePanelOpen: StoryObj = {
-  render: () => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+  render: function AlwaysExactlyOnePanelOpenComponent() {
+    const {t} = useTranslation('Accordion')
     const containerRef = useRef<HTMLDivElement>(null)
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const onClick = useCallback<NonNullable<AccordionRootProps['onClick']>>(e => {
       // Prevent closing of an open accordion
       if (e.currentTarget.open) {
@@ -123,7 +126,6 @@ export const AlwaysExactlyOnePanelOpen: StoryObj = {
       }
     }, [])
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const onKeyDownCapture = useCallback<NonNullable<AccordionRootProps['onKeyDownCapture']>>(e => {
       // Prevent the escape key from closing the accordion
       if (e.key === 'Escape') {
@@ -136,13 +138,9 @@ export const AlwaysExactlyOnePanelOpen: StoryObj = {
       <div ref={containerRef}>
         {headings.map((heading, index) => (
           <Accordion key={index} open={index === 0} onClick={onClick} onKeyDownCapture={onKeyDownCapture}>
-            <Accordion.Heading>{heading}</Accordion.Heading>
+            <Accordion.Heading>{String(t(heading))}</Accordion.Heading>
             <Accordion.Content>
-              <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis quidem veniam vero omnis
-                consequuntur cum quae libero dolor dicta odio in, corporis perspiciatis nesciunt facere. Eius vero culpa
-                quae itaque?
-              </p>
+              <p>{t('lorem_ipsum')}</p>
             </Accordion.Content>
           </Accordion>
         ))}
@@ -152,29 +150,29 @@ export const AlwaysExactlyOnePanelOpen: StoryObj = {
 }
 
 export const ExclusiveUsingNameAttribute: StoryObj = {
-  render: () => (
-    <>
-      {headings.map((heading, index) => (
-        <Accordion key={index} name="exclusive">
-          <Accordion.Heading>{heading}</Accordion.Heading>
-          <Accordion.Content>
-            <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis quidem veniam vero omnis consequuntur
-              cum quae libero dolor dicta odio in, corporis perspiciatis nesciunt facere. Eius vero culpa quae itaque?
-            </p>
-          </Accordion.Content>
-        </Accordion>
-      ))}
-    </>
-  ),
+  render: function ExclusiveUsingNameAttributeComponent() {
+    const {t} = useTranslation('Accordion')
+
+    return (
+      <>
+        {headings.map((heading, index) => (
+          <Accordion key={index} name="exclusive">
+            <Accordion.Heading>{String(t(heading))}</Accordion.Heading>
+            <Accordion.Content>
+              <p>{t('lorem_ipsum')}</p>
+            </Accordion.Content>
+          </Accordion>
+        ))}
+      </>
+    )
+  },
 }
 
 export const ExclusiveWithoutUsingNameAttribute: StoryObj = {
-  render: () => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+  render: function ExclusiveWithoutUsingNameAttributeComponent() {
+    const {t} = useTranslation('Accordion')
     const containerRef = useRef<HTMLDivElement>(null)
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const onClick = useCallback<NonNullable<AccordionRootProps['onClick']>>(e => {
       if (!containerRef.current) return
 
@@ -191,13 +189,9 @@ export const ExclusiveWithoutUsingNameAttribute: StoryObj = {
       <div ref={containerRef}>
         {headings.map((heading, index) => (
           <Accordion key={index} onClick={onClick}>
-            <Accordion.Heading>{heading}</Accordion.Heading>
+            <Accordion.Heading>{String(t(heading))}</Accordion.Heading>
             <Accordion.Content>
-              <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis quidem veniam vero omnis
-                consequuntur cum quae libero dolor dicta odio in, corporis perspiciatis nesciunt facere. Eius vero culpa
-                quae itaque?
-              </p>
+              <p>{t('lorem_ipsum')}</p>
             </Accordion.Content>
           </Accordion>
         ))}

@@ -14,9 +14,99 @@ test.describe('Visual Comparison: SubNav', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('SubNav / Default (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subnav--default&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Default (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subnav--default&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Default (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subnav--default&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Default (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subnav--default&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Default (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subnav--default&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('SubNav / Dropdown Variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-subnav-features--dropdown-variant&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Dropdown Variant (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subnav-features--dropdown-variant&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Dropdown Variant (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subnav-features--dropdown-variant&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Dropdown Variant (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subnav-features--dropdown-variant&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Dropdown Variant (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subnav-features--dropdown-variant&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Dropdown Variant (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subnav-features--dropdown-variant&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -29,6 +119,51 @@ test.describe('Visual Comparison: SubNav', () => {
     test('SubNav / Narrow Dropdown Variant', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-subnav-features--narrow-dropdown-variant&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Narrow Dropdown Variant (fr)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subnav-features--narrow-dropdown-variant&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Narrow Dropdown Variant (de)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subnav-features--narrow-dropdown-variant&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Narrow Dropdown Variant (ja)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subnav-features--narrow-dropdown-variant&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Narrow Dropdown Variant (es)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subnav-features--narrow-dropdown-variant&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Narrow Dropdown Variant (pt-BR)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subnav-features--narrow-dropdown-variant&viewMode=story',
       )
 
       await page.waitForTimeout(500)
@@ -47,9 +182,99 @@ test.describe('Visual Comparison: SubNav', () => {
       await page.waitForTimeout(500)
       expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
     })
+
+    test('SubNav / Narrow Dropdown Variant Menu Open (fr)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subnav-features--narrow-dropdown-variant-menu-open&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Narrow Dropdown Variant Menu Open (de)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subnav-features--narrow-dropdown-variant-menu-open&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Narrow Dropdown Variant Menu Open (ja)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subnav-features--narrow-dropdown-variant-menu-open&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Narrow Dropdown Variant Menu Open (es)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subnav-features--narrow-dropdown-variant-menu-open&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Narrow Dropdown Variant Menu Open (pt-BR)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subnav-features--narrow-dropdown-variant-menu-open&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
   })
   test('SubNav / With Shadow', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-subnav-features--with-shadow&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / With Shadow (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subnav-features--with-shadow&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / With Shadow (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subnav-features--with-shadow&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / With Shadow (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subnav-features--with-shadow&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / With Shadow (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subnav-features--with-shadow&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / With Shadow (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subnav-features--with-shadow&viewMode=story',
+    )
 
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
@@ -62,12 +287,102 @@ test.describe('Visual Comparison: SubNav', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('SubNav / Sub Heading (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subnav-features--sub-heading&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Sub Heading (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subnav-features--sub-heading&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Sub Heading (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subnav-features--sub-heading&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Sub Heading (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subnav-features--sub-heading&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Sub Heading (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subnav-features--sub-heading&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   // eslint-disable-next-line i18n-text/no-en
   test.describe('Mobile viewport test for Sub Heading Narrow', () => {
     test.use({viewport: {width: 360, height: 800}})
     test('SubNav / Sub Heading Narrow', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-subnav-features--sub-heading-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Sub Heading Narrow (fr)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subnav-features--sub-heading-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Sub Heading Narrow (de)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subnav-features--sub-heading-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Sub Heading Narrow (ja)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subnav-features--sub-heading-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Sub Heading Narrow (es)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subnav-features--sub-heading-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Sub Heading Narrow (pt-BR)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subnav-features--sub-heading-narrow&viewMode=story',
       )
 
       await page.waitForTimeout(500)
@@ -86,10 +401,100 @@ test.describe('Visual Comparison: SubNav', () => {
       await page.waitForTimeout(500)
       expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
     })
+
+    test('SubNav / Sub Heading Narrow Open (fr)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subnav-features--sub-heading-narrow-open&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Sub Heading Narrow Open (de)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subnav-features--sub-heading-narrow-open&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Sub Heading Narrow Open (ja)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subnav-features--sub-heading-narrow-open&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Sub Heading Narrow Open (es)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subnav-features--sub-heading-narrow-open&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Sub Heading Narrow Open (pt-BR)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subnav-features--sub-heading-narrow-open&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
   })
   test('SubNav / Active Sub Heading', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-subnav-features--active-sub-heading&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Active Sub Heading (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subnav-features--active-sub-heading&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Active Sub Heading (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subnav-features--active-sub-heading&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Active Sub Heading (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subnav-features--active-sub-heading&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Active Sub Heading (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subnav-features--active-sub-heading&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Active Sub Heading (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subnav-features--active-sub-heading&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -102,6 +507,51 @@ test.describe('Visual Comparison: SubNav', () => {
     test('SubNav / Active Sub Heading Narrow', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-subnav-features--active-sub-heading-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Active Sub Heading Narrow (fr)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subnav-features--active-sub-heading-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Active Sub Heading Narrow (de)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subnav-features--active-sub-heading-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Active Sub Heading Narrow (ja)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subnav-features--active-sub-heading-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Active Sub Heading Narrow (es)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subnav-features--active-sub-heading-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Active Sub Heading Narrow (pt-BR)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subnav-features--active-sub-heading-narrow&viewMode=story',
       )
 
       await page.waitForTimeout(500)
@@ -120,9 +570,99 @@ test.describe('Visual Comparison: SubNav', () => {
       await page.waitForTimeout(500)
       expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
     })
+
+    test('SubNav / Active Sub Heading Narrow Open (fr)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subnav-features--active-sub-heading-narrow-open&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Active Sub Heading Narrow Open (de)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subnav-features--active-sub-heading-narrow-open&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Active Sub Heading Narrow Open (ja)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subnav-features--active-sub-heading-narrow-open&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Active Sub Heading Narrow Open (es)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subnav-features--active-sub-heading-narrow-open&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Active Sub Heading Narrow Open (pt-BR)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subnav-features--active-sub-heading-narrow-open&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
   })
   test('SubNav / Full Width', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-subnav-features--full-width&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Full Width (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subnav-features--full-width&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Full Width (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subnav-features--full-width&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Full Width (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subnav-features--full-width&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Full Width (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subnav-features--full-width&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Full Width (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subnav-features--full-width&viewMode=story',
+    )
 
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
@@ -139,10 +679,100 @@ test.describe('Visual Comparison: SubNav', () => {
       await page.waitForTimeout(500)
       expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
     })
+
+    test('SubNav / Full Width Narrow (fr)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subnav-features--full-width-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Full Width Narrow (de)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subnav-features--full-width-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Full Width Narrow (ja)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subnav-features--full-width-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Full Width Narrow (es)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subnav-features--full-width-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Full Width Narrow (pt-BR)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subnav-features--full-width-narrow&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
   })
   test('SubNav / Longer Heading', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-subnav-features--longer-heading&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Longer Heading (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subnav-features--longer-heading&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Longer Heading (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subnav-features--longer-heading&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Longer Heading (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subnav-features--longer-heading&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Longer Heading (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subnav-features--longer-heading&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Longer Heading (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subnav-features--longer-heading&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -158,12 +788,102 @@ test.describe('Visual Comparison: SubNav', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('SubNav / Anchor Nav Variant (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subnav-features--anchor-nav-variant&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Anchor Nav Variant (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subnav-features--anchor-nav-variant&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Anchor Nav Variant (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subnav-features--anchor-nav-variant&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Anchor Nav Variant (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subnav-features--anchor-nav-variant&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Anchor Nav Variant (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subnav-features--anchor-nav-variant&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   // eslint-disable-next-line i18n-text/no-en
   test.describe('Mobile viewport test for Narrow Anchor Nav Variant', () => {
     test.use({viewport: {width: 360, height: 800}})
     test('SubNav / Narrow Anchor Nav Variant', async ({page}) => {
       await page.goto(
         'http://localhost:6006/iframe.html?args=&id=components-subnav-features--narrow-anchor-nav-variant&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Narrow Anchor Nav Variant (fr)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subnav-features--narrow-anchor-nav-variant&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Narrow Anchor Nav Variant (de)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subnav-features--narrow-anchor-nav-variant&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Narrow Anchor Nav Variant (ja)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subnav-features--narrow-anchor-nav-variant&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Narrow Anchor Nav Variant (es)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subnav-features--narrow-anchor-nav-variant&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Narrow Anchor Nav Variant (pt-BR)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subnav-features--narrow-anchor-nav-variant&viewMode=story',
       )
 
       await page.waitForTimeout(500)
@@ -182,10 +902,100 @@ test.describe('Visual Comparison: SubNav', () => {
       await page.waitForTimeout(500)
       expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
     })
+
+    test('SubNav / Narrow Anchor Nav Variant Menu Open (fr)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subnav-features--narrow-anchor-nav-variant-menu-open&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Narrow Anchor Nav Variant Menu Open (de)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subnav-features--narrow-anchor-nav-variant-menu-open&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Narrow Anchor Nav Variant Menu Open (ja)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subnav-features--narrow-anchor-nav-variant-menu-open&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Narrow Anchor Nav Variant Menu Open (es)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subnav-features--narrow-anchor-nav-variant-menu-open&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
+
+    test('SubNav / Narrow Anchor Nav Variant Menu Open (pt-BR)', async ({page}) => {
+      await page.goto(
+        'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subnav-features--narrow-anchor-nav-variant-menu-open&viewMode=story',
+      )
+
+      await page.waitForTimeout(500)
+      expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+    })
   })
   test('SubNav / Anchor Nav Default Link Variant', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-subnav-features--anchor-nav-default-link-variant&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Anchor Nav Default Link Variant (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subnav-features--anchor-nav-default-link-variant&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Anchor Nav Default Link Variant (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subnav-features--anchor-nav-default-link-variant&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Anchor Nav Default Link Variant (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subnav-features--anchor-nav-default-link-variant&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Anchor Nav Default Link Variant (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subnav-features--anchor-nav-default-link-variant&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Anchor Nav Default Link Variant (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subnav-features--anchor-nav-default-link-variant&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -201,9 +1011,99 @@ test.describe('Visual Comparison: SubNav', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('SubNav / Forwarded Refs (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subnav-features--forwarded-refs&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Forwarded Refs (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subnav-features--forwarded-refs&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Forwarded Refs (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subnav-features--forwarded-refs&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Forwarded Refs (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subnav-features--forwarded-refs&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Forwarded Refs (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subnav-features--forwarded-refs&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('SubNav / Keyboard Navigation', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-subnav-features--keyboard-navigation&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Keyboard Navigation (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-subnav-features--keyboard-navigation&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Keyboard Navigation (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-subnav-features--keyboard-navigation&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Keyboard Navigation (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-subnav-features--keyboard-navigation&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Keyboard Navigation (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-subnav-features--keyboard-navigation&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('SubNav / Keyboard Navigation (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-subnav-features--keyboard-navigation&viewMode=story',
     )
 
     await page.waitForTimeout(500)

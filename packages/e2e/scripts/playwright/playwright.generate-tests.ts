@@ -12,6 +12,8 @@
   const prettier = require('prettier')
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const prettierOptions = require('../../../../.prettierrc')
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const {SUPPORTED_LANGUAGES: languages} = require('../../../../apps/storybook/src/constants')
 
   const port = 6006
 
@@ -79,6 +81,10 @@
     'recipes-solutions-solution-org-size--maximum-dark': 3500, // for the animation
     'recipes-solutions-solution-org-size--minimum': 3500, // for the animation
     'recipes-solutions-solution-org-size--minimum-dark': 3500, // for the animation
+    'recipes-solutions-solution-use-case--minimum': 2000, // for the footer logos
+    'recipes-solutions-solution-use-case--minimum-dark': 2000, // for the footer logos
+    'recipes-solutions-solution-use-case--maximum-dark': 2000, // for the footer logos
+    'recipes-solutions-solution-use-case--maximum': 2000, // for the footer logos
     'recipes-solutions-overview--light': 3500, // for the animation
     'recipes-solutions-overview--dark': 3500, // for the animation
     'components-riverstoryscroll--default': 3500, // for the animation
@@ -197,21 +203,29 @@
           return acc
         }
 
-        const testCase = `test('${groupName} / ${storyName}', async ({page}) => {
-          await page.goto('http://localhost:${port}/iframe.html?args=&id=${id}&viewMode=story')
+        const generateTestForLanguage = (language: string) => {
+          const localeParam = language === 'en' ? '' : `globals=${encodeURIComponent(`locale:${language}`)}&`
+          const base = `${groupName} / ${storyName}`
+          const testName = language === 'en' ? base : `${base} (${language})`
 
-          ${timeout ? `await page.waitForTimeout(${timeout})` : ''}
-          expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
-        });
+          return `test('${testName}', async ({page}) => {
+            await page.goto('http://localhost:${port}/iframe.html?${localeParam}args=&id=${id}&viewMode=story')
 
-        `
+            ${timeout ? `await page.waitForTimeout(${timeout})` : ''}
+            expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+          });
+
+          `
+        }
+
+        const allLanguageTests = languages.map(language => generateTestForLanguage(language)).join('')
 
         if (requiresMobileViewport) {
           return (acc += `
           // eslint-disable-next-line i18n-text/no-en
           test.describe('Mobile viewport test for ${storyName}', () => {
             test.use({ viewport: { width: 360, height: 800 } });
-            ${testCase}
+            ${allLanguageTests}
           });
           `)
         }
@@ -221,12 +235,12 @@
           // eslint-disable-next-line i18n-text/no-en
           test.describe('Tablet viewport test for ${storyName}', () => {
             test.use({ viewport: { width: 834, height: 1112 } });
-            ${testCase}
+            ${allLanguageTests}
           });
           `)
         }
 
-        return (acc += testCase)
+        return (acc += allLanguageTests)
       }, '')}
 
     })
