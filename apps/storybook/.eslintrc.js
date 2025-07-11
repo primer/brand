@@ -1,7 +1,5 @@
-import base from '../../.eslintrc'
-
-export default {
-  ...base,
+module.exports = {
+  extends: ['../../.eslintrc.js'],
   parserOptions: {
     tsconfigRootDir: __dirname,
   },
@@ -11,6 +9,7 @@ export default {
       rules: {
         'no-console': 'off',
         'import/no-nodejs-modules': 'off',
+        'import/no-namespace': 'off',
       },
     },
   ],
