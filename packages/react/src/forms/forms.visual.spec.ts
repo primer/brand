@@ -15,4 +15,49 @@ test.describe('Visual Comparison: forms', () => {
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
+
+  test('forms / GitHub Enterprise sign up form (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-forms-examples--git-hub-enterprise&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('forms / GitHub Enterprise sign up form (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-forms-examples--git-hub-enterprise&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('forms / GitHub Enterprise sign up form (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-forms-examples--git-hub-enterprise&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('forms / GitHub Enterprise sign up form (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-forms-examples--git-hub-enterprise&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('forms / GitHub Enterprise sign up form (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-forms-examples--git-hub-enterprise&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
 })

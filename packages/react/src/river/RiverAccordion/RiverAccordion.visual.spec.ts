@@ -14,6 +14,51 @@ test.describe('Visual Comparison: RiverAccordion', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('RiverAccordion / Default (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-riveraccordion--default&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('RiverAccordion / Default (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-riveraccordion--default&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('RiverAccordion / Default (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-riveraccordion--default&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('RiverAccordion / Default (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-riveraccordion--default&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('RiverAccordion / Default (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-riveraccordion--default&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('RiverAccordion / Align Start', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-riveraccordion-features--align-start&viewMode=story',
@@ -23,9 +68,99 @@ test.describe('Visual Comparison: RiverAccordion', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('RiverAccordion / Align Start (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-riveraccordion-features--align-start&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('RiverAccordion / Align Start (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-riveraccordion-features--align-start&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('RiverAccordion / Align Start (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-riveraccordion-features--align-start&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('RiverAccordion / Align Start (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-riveraccordion-features--align-start&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('RiverAccordion / Align Start (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-riveraccordion-features--align-start&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('RiverAccordion / Align End', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-riveraccordion-features--align-end&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('RiverAccordion / Align End (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-riveraccordion-features--align-end&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('RiverAccordion / Align End (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-riveraccordion-features--align-end&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('RiverAccordion / Align End (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-riveraccordion-features--align-end&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('RiverAccordion / Align End (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-riveraccordion-features--align-end&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('RiverAccordion / Align End (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-riveraccordion-features--align-end&viewMode=story',
     )
 
     await page.waitForTimeout(500)

@@ -14,9 +14,99 @@ test.describe('Visual Comparison: River', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('River / Default (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-river--default&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Default (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-river--default&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Default (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-river--default&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Default (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-river--default&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Default (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-river--default&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('River / Larger Placeholder Image', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-river--larger-placeholder-image&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Larger Placeholder Image (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-river--larger-placeholder-image&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Larger Placeholder Image (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-river--larger-placeholder-image&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Larger Placeholder Image (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-river--larger-placeholder-image&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Larger Placeholder Image (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-river--larger-placeholder-image&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Larger Placeholder Image (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-river--larger-placeholder-image&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -30,8 +120,98 @@ test.describe('Visual Comparison: River', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('River / Copilot (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-river--copilot&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Copilot (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-river--copilot&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Copilot (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-river--copilot&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Copilot (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-river--copilot&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Copilot (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-river--copilot&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('River / Left', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-river-features--left&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Left (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-river-features--left&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Left (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-river-features--left&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Left (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-river-features--left&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Left (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-river-features--left&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Left (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-river-features--left&viewMode=story',
+    )
 
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
@@ -44,8 +224,98 @@ test.describe('Visual Comparison: River', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('River / Right (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-river-features--right&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Right (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-river-features--right&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Right (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-river-features--right&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Right (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-river-features--right&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Right (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-river-features--right&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('River / Center', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-river-features--center&viewMode=story')
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Center (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-river-features--center&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Center (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-river-features--center&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Center (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-river-features--center&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Center (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-river-features--center&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Center (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-river-features--center&viewMode=story',
+    )
 
     await page.waitForTimeout(500)
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
@@ -58,9 +328,99 @@ test.describe('Visual Comparison: River', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('River / Duo Tone (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-river-features--duo-tone&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Duo Tone (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-river-features--duo-tone&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Duo Tone (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-river-features--duo-tone&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Duo Tone (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-river-features--duo-tone&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Duo Tone (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-river-features--duo-tone&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('River / 60:40 image ratio', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-river-features--column-ratio-6040&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / 60:40 image ratio (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-river-features--column-ratio-6040&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / 60:40 image ratio (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-river-features--column-ratio-6040&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / 60:40 image ratio (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-river-features--column-ratio-6040&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / 60:40 image ratio (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-river-features--column-ratio-6040&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / 60:40 image ratio (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-river-features--column-ratio-6040&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -76,9 +436,99 @@ test.describe('Visual Comparison: River', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('River / 50:50 image ratio (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-river-features--column-ratio-5050&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / 50:50 image ratio (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-river-features--column-ratio-5050&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / 50:50 image ratio (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-river-features--column-ratio-5050&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / 50:50 image ratio (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-river-features--column-ratio-5050&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / 50:50 image ratio (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-river-features--column-ratio-5050&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('River / Alternative Heading Level', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-river-features--alternative-heading-level&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Alternative Heading Level (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-river-features--alternative-heading-level&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Alternative Heading Level (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-river-features--alternative-heading-level&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Alternative Heading Level (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-river-features--alternative-heading-level&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Alternative Heading Level (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-river-features--alternative-heading-level&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Alternative Heading Level (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-river-features--alternative-heading-level&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -94,9 +544,99 @@ test.describe('Visual Comparison: River', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('River / No Rounded Visual Corners (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-river-features--no-rounded-visual-corners&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / No Rounded Visual Corners (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-river-features--no-rounded-visual-corners&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / No Rounded Visual Corners (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-river-features--no-rounded-visual-corners&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / No Rounded Visual Corners (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-river-features--no-rounded-visual-corners&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / No Rounded Visual Corners (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-river-features--no-rounded-visual-corners&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('River / Alternative Heading Size', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-river-features--alternative-heading-size&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Alternative Heading Size (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-river-features--alternative-heading-size&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Alternative Heading Size (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-river-features--alternative-heading-size&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Alternative Heading Size (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-river-features--alternative-heading-size&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Alternative Heading Size (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-river-features--alternative-heading-size&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Alternative Heading Size (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-river-features--alternative-heading-size&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -110,9 +650,99 @@ test.describe('Visual Comparison: River', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('River / With Label (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-river-features--with-label&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / With Label (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-river-features--with-label&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / With Label (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-river-features--with-label&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / With Label (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-river-features--with-label&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / With Label (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-river-features--with-label&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('River / Custom trailing content', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-river-features--custom-trailing-content&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Custom trailing content (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-river-features--custom-trailing-content&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Custom trailing content (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-river-features--custom-trailing-content&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Custom trailing content (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-river-features--custom-trailing-content&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Custom trailing content (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-river-features--custom-trailing-content&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Custom trailing content (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-river-features--custom-trailing-content&viewMode=story',
     )
 
     await page.waitForTimeout(500)
@@ -128,9 +758,99 @@ test.describe('Visual Comparison: River', () => {
     expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
   })
 
+  test('River / Custom trailing content w/ divider (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-river-features--custom-trailing-content-with-divider&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Custom trailing content w/ divider (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-river-features--custom-trailing-content-with-divider&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Custom trailing content w/ divider (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-river-features--custom-trailing-content-with-divider&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Custom trailing content w/ divider (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-river-features--custom-trailing-content-with-divider&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Custom trailing content w/ divider (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-river-features--custom-trailing-content-with-divider&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
   test('River / Alternating Layout', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-river-features--alternating-layout&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Alternating Layout (fr)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Afr&args=&id=components-river-features--alternating-layout&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Alternating Layout (de)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Ade&args=&id=components-river-features--alternating-layout&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Alternating Layout (ja)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aja&args=&id=components-river-features--alternating-layout&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Alternating Layout (es)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Aes&args=&id=components-river-features--alternating-layout&viewMode=story',
+    )
+
+    await page.waitForTimeout(500)
+    expect(await page.screenshot({fullPage: true})).toMatchSnapshot()
+  })
+
+  test('River / Alternating Layout (pt-BR)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?globals=locale%3Apt-BR&args=&id=components-river-features--alternating-layout&viewMode=story',
     )
 
     await page.waitForTimeout(500)
