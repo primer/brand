@@ -23,9 +23,13 @@
   "scripts": {
     "build": "npm run check-translations && npm run clean && scripts/build-storybook",
     "clean": "rm -rf out",
+    "check": "tsc --noEmit",
     "start": "npm run check-translations && storybook dev -p 6006",
     "start:axe": "storybook dev -p 6006 --no-version-updates",
-    "check-translations": "tsx scripts/validate-translation-keys.ts"
+    "check-translations": "tsx scripts/validate-translation-keys.ts",
+    "format": "prettier --check '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
+    "format:fix": "prettier --write '**/*.{js,jsx,ts,tsx,md,mdx,css,json}'",
+    "lint": "eslint '**/*.{js,ts,tsx,md,mdx}' --max-warnings=0 --config ./.eslintrc.js"
   },
   "devDependencies": {
     "@babel/preset-env": "7.26.9",

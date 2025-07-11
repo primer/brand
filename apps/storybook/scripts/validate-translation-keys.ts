@@ -4,11 +4,12 @@
  *   2. That all translation files have the same keys across all languages.
  */
 
-const fs = require('fs')
-const path = require('path')
+import * as fs from 'fs'
+import * as path from 'path'
 
-type SupportedLanguage = 'en' | 'es' | 'fr' | 'de' | 'pt-BR' | 'ja'
-type TranslationContent = Record<string, any>
+import {SUPPORTED_LANGUAGES} from '../src/supported-languages'
+
+type TranslationContent = Record<string, string>
 type TranslationFiles = Record<string, Record<string, string>>
 type KeysByLanguage = Record<string, Set<string>>
 
@@ -28,7 +29,6 @@ type ComponentValidationSummary = {
   hasErrors: boolean
 }
 
-const SUPPORTED_LANGUAGES = ['en', 'es', 'fr', 'de', 'pt-BR', 'ja'] as const
 const REFERENCE_LANGUAGE = 'en' as const
 const LANGUAGES_DIR = path.join(__dirname, '..', 'static', 'locales')
 
@@ -40,7 +40,7 @@ const LANGUAGES_DIR = path.join(__dirname, '..', 'static', 'locales')
   const translationFiles = getTranslationFiles(LANGUAGES_DIR)
   const componentNames = Object.keys(translationFiles)
 
-  if (!componentNames.length) {
+  if (componentNames.length === 0) {
     console.error(`❌ No translation files found in ${LANGUAGES_DIR}. Something's wrong.`)
     process.exit(1)
   }
@@ -80,7 +80,7 @@ function getLanguageDirs(languagesDir: string): string[] {
     return []
   }
 
-  const dirs = fs.readdirSync(languagesDir).filter(item => {
+  const dirs = fs.readdirSync(languagesDir).filter((item: string) => {
     const itemPath = path.join(languagesDir, item)
     return fs.statSync(itemPath).isDirectory()
   })
@@ -89,7 +89,7 @@ function getLanguageDirs(languagesDir: string): string[] {
 }
 
 function getTranslationFilesForLanguage(languagePath: string): string[] {
-  return fs.readdirSync(languagePath).filter(file => file.endsWith('.json'))
+  return fs.readdirSync(languagePath).filter((file: string) => file.endsWith('.json'))
 }
 
 function checkEnLangIsPresent(languages: string[]): void {
@@ -118,8 +118,8 @@ function validateLanguageKeys(
   referenceKeys: Set<string>,
   componentName: string,
 ): ValidationResult {
-  const missingKeys = [...referenceKeys].filter(key => !currentKeys.has(key))
-  const extraKeys = [...currentKeys].filter(key => !referenceKeys.has(key))
+  const missingKeys = Array.from(referenceKeys).filter(key => !currentKeys.has(key))
+  const extraKeys = Array.from(currentKeys).filter(key => !referenceKeys.has(key))
 
   return {
     componentName,
@@ -167,7 +167,8 @@ function getTranslationFiles(languagesDir: string): TranslationFiles {
       const componentName = path.basename(file, '.json')
       const filePath = path.join(languagePath, file)
 
-      if (!files[componentName]) {
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+      if (files[componentName] === undefined) {
         files[componentName] = {}
       }
 
@@ -216,7 +217,7 @@ function validateEachComponentTranslationFile(
     const filePath = languageFiles[language]
     const content = loadJsonFile(filePath)
 
-    if (content) {
+    if (content !== null) {
       const keys = Object.keys(content)
       keysByLanguage[language] = new Set(keys)
     } else {
@@ -227,7 +228,8 @@ function validateEachComponentTranslationFile(
   const referenceLanguage = REFERENCE_LANGUAGE
   const referenceKeys = keysByLanguage[referenceLanguage]
 
-  if (!referenceKeys) {
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  if (referenceKeys === undefined) {
     console.error(`❌ Failed to load reference language '${referenceLanguage}' for ${componentName}`)
     return {
       componentName,
@@ -247,7 +249,8 @@ function validateEachComponentTranslationFile(
     if (language === referenceLanguage) continue
 
     const currentKeys = keysByLanguage[language]
-    if (!currentKeys) continue
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+    if (currentKeys === undefined) continue
 
     const result = validateLanguageKeys(language, currentKeys, referenceKeys, componentName)
     results.push(result)

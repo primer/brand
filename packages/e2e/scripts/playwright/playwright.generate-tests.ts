@@ -12,12 +12,12 @@
   const prettier = require('prettier')
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const prettierOptions = require('../../../../.prettierrc')
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const languages = require('../../../../apps/storybook/src/supported-languages')
 
   const port = 6006
 
   const defaultTimeout = 500 // Storybook 7 introduced a small delay in loading stories. This is to migigate the spinner showing up in screenshots.
-
-  const languages = ['en', 'fr', 'de', 'ja', 'es', 'pt-BR']
 
   /**
    * Manual lookup for tests that need animation or side-effects to complete before tests start
