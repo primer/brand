@@ -17,56 +17,49 @@ export const Composition: StoryObj = {
     return (
       <>
         <Accordion>
-          <Accordion.Heading>{t('faq.github_startups_offer')}</Accordion.Heading>
+          <Accordion.Heading>{t('github_startups_offer')}</Accordion.Heading>
           <Accordion.Content>
             <p>
-              {t('faq.github_startups_offer_answer')}{' '}
+              {t('github_startups_offer_answer')}{' '}
               <a href="https://copilot.github.com/" target="_blank" rel="noreferrer">
-                {t('faq.here')}
+                {t('here')}
               </a>
               .
             </p>
           </Accordion.Content>
         </Accordion>
         <Accordion>
-          <Accordion.Heading>{t('faq.who_eligible')}</Accordion.Heading>
+          <Accordion.Heading>{t('who_eligible')}</Accordion.Heading>
           <Accordion.Content>
-            <p>{t('faq.who_eligible_answer')}</p>
+            <p>{t('who_eligible_answer')}</p>
             <UnorderedList>
-              <UnorderedList.Item>{t('faq.must_be_associated')}</UnorderedList.Item>
-              <UnorderedList.Item>{t('faq.self_funded')}</UnorderedList.Item>
-              <UnorderedList.Item>{t('faq.not_current_customer')}</UnorderedList.Item>
-              <UnorderedList.Item>{t('faq.no_previous_credits')}</UnorderedList.Item>
+              <UnorderedList.Item>{t('must_be_associated')}</UnorderedList.Item>
+              <UnorderedList.Item>{t('self_funded')}</UnorderedList.Item>
+              <UnorderedList.Item>{t('not_current_customer')}</UnorderedList.Item>
+              <UnorderedList.Item>{t('no_previous_credits')}</UnorderedList.Item>
             </UnorderedList>
           </Accordion.Content>
         </Accordion>
         <Accordion>
-          <Accordion.Heading>
-            {t('What if my startup is not eligible? Are there other resources for me?')}
-          </Accordion.Heading>
+          <Accordion.Heading>{t('startup_not_eligible')}</Accordion.Heading>
           <Accordion.Content>
             <p>
-              If you’re not currently eligible for the GitHub for Startups but would like to try GitHub Enterprise,
-              please feel to sign up for a trial{' '}
+              {t('startup_not_eligible_answer')}{' '}
               <a href="https://copilot.github.com/" target="_blank" rel="noreferrer">
-                here
+                {t('here')}
               </a>
               .
             </p>
           </Accordion.Content>
         </Accordion>
         <Accordion>
-          <Accordion.Heading>{t('How can my organization become a GitHub for Startups partner?')}</Accordion.Heading>
+          <Accordion.Heading>{t('become_partner')}</Accordion.Heading>
           <Accordion.Content>
-            <p>
-              {t(
-                'Any investor, accelerator, or startup support organization is eligible to apply for the GitHub for Startups program.',
-              )}
-            </p>
+            <p>{t('become_partner_answer')}</p>
             <p>
               {' '}
               <a href="https://copilot.github.com/" target="_blank" rel="noreferrer">
-                {t('Apply here')}
+                {t('apply_here')}
               </a>
               .
             </p>
@@ -147,7 +140,7 @@ export const AlwaysExactlyOnePanelOpen: StoryObj = {
           <Accordion key={index} open={index === 0} onClick={onClick} onKeyDownCapture={onKeyDownCapture}>
             <Accordion.Heading>{String(t(heading))}</Accordion.Heading>
             <Accordion.Content>
-              <p>{t('faq.lorem_ipsum')}</p>
+              <p>{t('lorem_ipsum')}</p>
             </Accordion.Content>
           </Accordion>
         ))}
@@ -166,7 +159,7 @@ export const ExclusiveUsingNameAttribute: StoryObj = {
           <Accordion key={index} name="exclusive">
             <Accordion.Heading>{String(t(heading))}</Accordion.Heading>
             <Accordion.Content>
-              <p>{t('faq.lorem_ipsum')}</p>
+              <p>{t('lorem_ipsum')}</p>
             </Accordion.Content>
           </Accordion>
         ))}
@@ -198,7 +191,7 @@ export const ExclusiveWithoutUsingNameAttribute: StoryObj = {
           <Accordion key={index} onClick={onClick}>
             <Accordion.Heading>{String(t(heading))}</Accordion.Heading>
             <Accordion.Content>
-              <p>{t('faq.lorem_ipsum')}</p>
+              <p>{t('lorem_ipsum')}</p>
             </Accordion.Content>
           </Accordion>
         ))}
