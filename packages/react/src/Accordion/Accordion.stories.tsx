@@ -38,14 +38,14 @@ type Story = StoryObj<AccordionStoryProps>
 
 export const Default: Story = {
   render: function Component({toggleColor, ...props}) {
-    const {t} = useTranslation()
+    const {t} = useTranslation('Accordion')
 
     return (
       <Accordion {...props}>
-        <Accordion.Heading toggleColor={toggleColor}>{t('Heading')}</Accordion.Heading>
+        <Accordion.Heading toggleColor={toggleColor}>{t('heading')}</Accordion.Heading>
         <Accordion.Content>
-          <p>{t('Some description')}</p>
-          <p>{t('Some description')}</p>
+          <p>{t('description')}</p>
+          <p>{t('description')}</p>
         </Accordion.Content>
       </Accordion>
     )

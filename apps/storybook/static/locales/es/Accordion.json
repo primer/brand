@@ -1,0 +1,23 @@
+{
+  "heading": "Título",
+  "description": "Alguna descripción",
+  "faq": {
+    "github_startups_offer": "¿Qué incluye la oferta de GitHub para Startups?",
+    "github_startups_offer_answer": "Todas las empresas de GitHub para Startups reciben hasta 20 puestos de GitHub Enterprise gratis para el primer año y 50% de descuento para el segundo año. Aprenda más sobre las características y capacidades de GitHub Enterprise",
+    "here": "aquí",
+    "who_eligible": "¿Quién es elegible para aplicar?",
+    "who_eligible_answer": "Las startups que cumplen con los siguientes criterios son elegibles para aplicar al programa:",
+    "must_be_associated": "Debe estar asociada con un socio actual de GitHub para Startups.",
+    "self_funded": "Autofinanciada o financiada (Seed-Series A)",
+    "not_current_customer": "No es un cliente actual de GitHub Enterprise",
+    "no_previous_credits": "No debe haber recibido previamente créditos para GitHub Enterprise",
+    "startup_not_eligible": "¿Qué pasa si mi startup no es elegible? ¿Hay otros recursos para mí?",
+    "startup_not_eligible_answer": "Si actualmente no es elegible para GitHub para Startups pero le gustaría probar GitHub Enterprise, no dude en registrarse para una prueba",
+    "become_partner": "¿Cómo puede mi organización convertirse en un socio de GitHub para Startups?",
+    "become_partner_answer": "Cualquier inversor, acelerador u organización de apoyo a startups es elegible para aplicar al programa de GitHub para Startups.",
+    "apply_here": "Aplicar aquí",
+    "toggle_color": "Color de alternar",
+    "description_label": "Descripción",
+    "lorem_ipsum": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis quidem veniam vero omnis consequuntur cum quae libero dolor dicta odio in, corporis perspiciatis nesciunt facere. Eius vero culpa quae itaque?"
+  }
+}

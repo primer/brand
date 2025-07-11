@@ -1,0 +1,23 @@
+{
+  "heading": "Titre",
+  "description": "Une description",
+  "faq": {
+    "github_startups_offer": "Qu'est-ce qui est inclus dans l'offre GitHub pour les startups ?",
+    "github_startups_offer_answer": "Toutes les entreprises GitHub pour les startups reçoivent jusqu'à 20 sièges de GitHub Enterprise gratuitement pour la première année et 50% de réduction pour la deuxième année. Découvrez les fonctionnalités et capacités de GitHub Enterprise",
+    "here": "ici",
+    "who_eligible": "Qui est éligible pour postuler ?",
+    "who_eligible_answer": "Les startups qui répondent aux critères suivants sont éligibles pour postuler au programme :",
+    "must_be_associated": "Doit être associée à un partenaire actuel de GitHub pour les startups.",
+    "self_funded": "Autofinancée ou financée (Seed-Series A)",
+    "not_current_customer": "Pas un client actuel de GitHub Enterprise",
+    "no_previous_credits": "Ne doit pas avoir reçu auparavant de crédits pour GitHub Enterprise",
+    "startup_not_eligible": "Que se passe-t-il si ma startup n'est pas éligible ? Y a-t-il d'autres ressources pour moi ?",
+    "startup_not_eligible_answer": "Si vous n'êtes actuellement pas éligible pour GitHub pour les startups mais souhaitez essayer GitHub Enterprise, n'hésitez pas à vous inscrire pour un essai",
+    "become_partner": "Comment mon organisation peut-elle devenir un partenaire GitHub pour les startups ?",
+    "become_partner_answer": "Tout investisseur, accélérateur ou organisation de soutien aux startups est éligible pour postuler au programme GitHub pour les startups.",
+    "apply_here": "Postuler ici",
+    "toggle_color": "Couleur de bascule",
+    "description_label": "Description",
+    "lorem_ipsum": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis quidem veniam vero omnis consequuntur cum quae libero dolor dicta odio in, corporis perspiciatis nesciunt facere. Eius vero culpa quae itaque?"
+  }
+}

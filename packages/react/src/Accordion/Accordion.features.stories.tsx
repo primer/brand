@@ -12,37 +12,31 @@ export default meta
 
 export const Composition: StoryObj = {
   render: function CompositionComponent() {
-    const {t} = useTranslation()
+    const {t} = useTranslation('Accordion')
 
     return (
       <>
         <Accordion>
-          <Accordion.Heading>{t("What's included in the GitHub for Startups offer?")}</Accordion.Heading>
+          <Accordion.Heading>{t('faq.github_startups_offer')}</Accordion.Heading>
           <Accordion.Content>
             <p>
-              {t(
-                'All GitHub for Startups companies receive up to 20 seats of GitHub Enterprise for free for year one and 50% off year two. Learn more about the features and capabilities of GitHub Enterprise',
-              )}{' '}
+              {t('faq.github_startups_offer_answer')}{' '}
               <a href="https://copilot.github.com/" target="_blank" rel="noreferrer">
-                {t('here')}
+                {t('faq.here')}
               </a>
               .
             </p>
           </Accordion.Content>
         </Accordion>
         <Accordion>
-          <Accordion.Heading>{t('Who is eligible to apply?')}</Accordion.Heading>
+          <Accordion.Heading>{t('faq.who_eligible')}</Accordion.Heading>
           <Accordion.Content>
-            <p>{t('Startups who meet the following criteria are eligible to apply for the program:')}</p>
+            <p>{t('faq.who_eligible_answer')}</p>
             <UnorderedList>
-              <UnorderedList.Item>
-                {t('Must be associated with a current GitHub for Startups partner.')}
-              </UnorderedList.Item>
-              <UnorderedList.Item>{t('Self-funded or funded (Seed-Series A)')}</UnorderedList.Item>
-              <UnorderedList.Item>{t('Not a current GitHub Enterprise customer')}</UnorderedList.Item>
-              <UnorderedList.Item>
-                {t('Must not have previously received credits for GitHub Enterprise')}
-              </UnorderedList.Item>
+              <UnorderedList.Item>{t('faq.must_be_associated')}</UnorderedList.Item>
+              <UnorderedList.Item>{t('faq.self_funded')}</UnorderedList.Item>
+              <UnorderedList.Item>{t('faq.not_current_customer')}</UnorderedList.Item>
+              <UnorderedList.Item>{t('faq.no_previous_credits')}</UnorderedList.Item>
             </UnorderedList>
           </Accordion.Content>
         </Accordion>
@@ -88,7 +82,7 @@ export const ToggleColors: StoryObj = {
     colorMode: 'all',
   },
   render: function ToggleColorsComponent() {
-    const {t} = useTranslation()
+    const {t} = useTranslation('Accordion')
 
     return (
       <Stack direction="vertical">
@@ -118,7 +112,7 @@ const headings = [
 
 export const AlwaysExactlyOnePanelOpen: StoryObj = {
   render: function AlwaysExactlyOnePanelOpenComponent() {
-    const {t} = useTranslation()
+    const {t} = useTranslation('Accordion')
     const containerRef = useRef<HTMLDivElement>(null)
 
     const onClick = useCallback<NonNullable<AccordionRootProps['onClick']>>(e => {
@@ -153,11 +147,7 @@ export const AlwaysExactlyOnePanelOpen: StoryObj = {
           <Accordion key={index} open={index === 0} onClick={onClick} onKeyDownCapture={onKeyDownCapture}>
             <Accordion.Heading>{String(t(heading))}</Accordion.Heading>
             <Accordion.Content>
-              <p>
-                {t(
-                  'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis quidem veniam vero omnis consequuntur cum quae libero dolor dicta odio in, corporis perspiciatis nesciunt facere. Eius vero culpa quae itaque?',
-                )}
-              </p>
+              <p>{t('faq.lorem_ipsum')}</p>
             </Accordion.Content>
           </Accordion>
         ))}
@@ -168,7 +158,7 @@ export const AlwaysExactlyOnePanelOpen: StoryObj = {
 
 export const ExclusiveUsingNameAttribute: StoryObj = {
   render: function ExclusiveUsingNameAttributeComponent() {
-    const {t} = useTranslation()
+    const {t} = useTranslation('Accordion')
 
     return (
       <>
@@ -176,11 +166,7 @@ export const ExclusiveUsingNameAttribute: StoryObj = {
           <Accordion key={index} name="exclusive">
             <Accordion.Heading>{String(t(heading))}</Accordion.Heading>
             <Accordion.Content>
-              <p>
-                {t(
-                  'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis quidem veniam vero omnis consequuntur cum quae libero dolor dicta odio in, corporis perspiciatis nesciunt facere. Eius vero culpa quae itaque?',
-                )}
-              </p>
+              <p>{t('faq.lorem_ipsum')}</p>
             </Accordion.Content>
           </Accordion>
         ))}
@@ -191,7 +177,7 @@ export const ExclusiveUsingNameAttribute: StoryObj = {
 
 export const ExclusiveWithoutUsingNameAttribute: StoryObj = {
   render: function ExclusiveWithoutUsingNameAttributeComponent() {
-    const {t} = useTranslation()
+    const {t} = useTranslation('Accordion')
     const containerRef = useRef<HTMLDivElement>(null)
 
     const onClick = useCallback<NonNullable<AccordionRootProps['onClick']>>(e => {
@@ -212,11 +198,7 @@ export const ExclusiveWithoutUsingNameAttribute: StoryObj = {
           <Accordion key={index} onClick={onClick}>
             <Accordion.Heading>{String(t(heading))}</Accordion.Heading>
             <Accordion.Content>
-              <p>
-                {t(
-                  'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis quidem veniam vero omnis consequuntur cum quae libero dolor dicta odio in, corporis perspiciatis nesciunt facere. Eius vero culpa quae itaque?',
-                )}
-              </p>
+              <p>{t('faq.lorem_ipsum')}</p>
             </Accordion.Content>
           </Accordion>
         ))}

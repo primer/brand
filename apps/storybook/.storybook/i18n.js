@@ -1,17 +1,25 @@
 import i18n from 'i18next'
 import Backend from 'i18next-http-backend'
-import LanguageDetector from 'i18next-browser-languagedetector'
 
 i18n
   .use(Backend) // loads the translations from /static/locales
-  .use(LanguageDetector)
   .init({
-    fallbackLng: 'en',
+    lng: 'en', // default language
+    fallbackLng: false, // disable fallback
+    ns: [], // start with empty namespaces
+    defaultNS: false, // disable default namespace
     debug: false,
     backend: {
-      loadPath: window.location.pathname.startsWith('/brand/storybook/')
-        ? '/brand/storybook/locales/{{lng}}/{{ns}}.json'
-        : '/locales/{{lng}}/{{ns}}.json',
+      loadPath: (lngs, namespaces) => {
+        // Component-specific translations only
+        const namespace = namespaces[0]
+        const lng = lngs[0]
+
+        const basePath = window.location.pathname.startsWith('/brand/storybook/')
+          ? '/brand/storybook/locales'
+          : '/locales'
+        return `${basePath}/${lng}/${namespace}.json`
+      },
     },
     interpolation: {
       escapeValue: false,
