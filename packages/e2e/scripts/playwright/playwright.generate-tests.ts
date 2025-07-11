@@ -13,7 +13,7 @@
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const prettierOptions = require('../../../../.prettierrc')
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const languages = require('../../../../apps/storybook/src/supported-languages')
+  const {SUPPORTED_LANGUAGES: languages} = require('../../../../apps/storybook/src/constants')
 
   const port = 6006
 
