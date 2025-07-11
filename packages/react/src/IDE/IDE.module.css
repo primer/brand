@@ -377,6 +377,54 @@ pre.IDE__Chat-copilot-indicator {
   fill: var(--brand-IDE-autoSuggest-fgColor);
 }
 
+.IDE__play-pause-button {
+  cursor: pointer;
+  position: absolute;
+  bottom: var(--base-size-16);
+  right: var(--base-size-16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--base-size-48);
+  height: var(--base-size-48);
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: var(--base-size-48);
+  background-color: var(--brand-IDE-playPauseControl-rest);
+  transition: background-color var(--brand-animation-duration-faster);
+}
+
+.IDE__play-pause-button:hover {
+  background-color: var(--brand-IDE-playPauseControl-hover);
+}
+
+.IDE__play-pause-button:focus-visible {
+  outline: var(--base-size-4) solid var(--brand-color-focus);
+  outline-offset: var(--base-size-2);
+}
+
+.IDE__play-pause-button svg {
+  width: var(--base-size-16);
+  height: var(--base-size-16);
+}
+
+.IDE__play-pause-button path {
+  fill: var(--brand-button-subtle-fgColor-rest);
+}
+
+.IDE--chat-only .IDE__Chat-input-area {
+  width: calc(100% - var(--base-size-64));
+}
+
+.IDE--chat-only .IDE__play-pause-button {
+  background-color: var(--brand-IDE-playPauseControl-rest);
+}
+
+.IDE--chat-only .IDE__play-pause-button:hover {
+  background-color: var(--brand-IDE-playPauseControl-hover);
+}
+
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
   .IDE,

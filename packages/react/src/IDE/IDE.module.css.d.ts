@@ -1,5 +1,6 @@
 declare const styles: {
   readonly "IDE": string;
+  readonly "IDE--chat-only": string;
   readonly "IDE--default": string;
   readonly "IDE--full-exp": string;
   readonly "IDE--glass": string;
@@ -35,6 +36,7 @@ declare const styles: {
   readonly "IDE__Editor-tabs": string;
   readonly "IDE__inner": string;
   readonly "IDE__main": string;
+  readonly "IDE__play-pause-button": string;
 };
 export = styles;
 
