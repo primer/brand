@@ -141,9 +141,9 @@ function logValidationResult(result: ValidationResult): void {
   }
 
   if (extraKeys.length > 0) {
-    console.warn(`⚠️ ${language} has ${extraKeys.length} extra translation(s):`)
+    console.warn(`❌ ${language} has ${extraKeys.length} extra translation(s) and/or typos in the key name:`)
     for (const key of extraKeys) {
-      console.warn(`  + ${key}`)
+      console.warn(`   - Extra and/or typo: ${key}`)
     }
   }
 
