@@ -305,6 +305,8 @@ const _Chat = memo(
       }, [script, delay])
 
       const resetAnimation = useCallback(() => {
+        setAnimationIsDone?.(false)
+
         // Reset all message visibility states
         const allMessages = document.querySelectorAll(`.${styles['IDE__Chat-message']}`)
         for (const message of allMessages) {
@@ -318,7 +320,7 @@ const _Chat = memo(
 
         // Reschedule animations when resetting
         scheduleAnimations()
-      }, [scheduleAnimations])
+      }, [scheduleAnimations, setAnimationIsDone])
 
       useImperativeHandle(ref, () => {
         if (!ref.current) {
@@ -564,6 +566,7 @@ export const IDEFileExtensions = Object.keys(IDEDefaultIconMap)
 type IDEAnimation = {
   delay: number
   isDone?: boolean
+  tab: string | null
 } & ({element: HTMLElement} | {isDone: true})
 
 type IDEChatAnimation = {
@@ -617,6 +620,15 @@ const _Editor = memo(
       const presRef = useRef<HTMLDivElement>(null)
       const [scheduledAnimations, setScheduledAnimations] = useState<IDEAnimation[]>([])
 
+      const tabs = useTabs({
+        defaultTab: activeTab.toString(),
+        autoActivate: true,
+        onTabActivate: (_, activeTabRef) => {
+          activeTabRef?.scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'start'})
+          resetAnimation()
+        },
+      })
+
       const scheduleAnimations = useCallback(() => {
         if (!presRef.current) return
 
@@ -630,18 +642,23 @@ const _Editor = memo(
           animations.push({
             delay: isCopilotSuggestion ? 300 : 200,
             element: pre,
+            tab: tabs.activeTab,
           })
         }
 
         animations.push({
           delay: 200,
           isDone: true,
+          tab: tabs.activeTab,
         })
 
         setScheduledAnimations(animations)
-      }, [])
+      }, [tabs.activeTab])
 
       const resetAnimation = useCallback(() => {
+        setScheduledAnimations([])
+        setAnimationIsDone?.(false)
+
         const pres = presRef.current?.querySelectorAll('pre')
         if (pres) {
           for (const pre of pres) {
@@ -651,7 +668,7 @@ const _Editor = memo(
 
         // Reschedule animations when resetting
         scheduleAnimations()
-      }, [scheduleAnimations])
+      }, [scheduleAnimations, setAnimationIsDone])
 
       useImperativeHandle(ref, () => {
         if (!ref.current) {
@@ -675,7 +692,7 @@ const _Editor = memo(
         let animationId: number
 
         const animate: FrameRequestCallback = timestamp => {
-          if (scheduledAnimations.length === 0) {
+          if (scheduledAnimations.length === 0 || tabs.activeTab === null) {
             return
           }
 
@@ -696,6 +713,10 @@ const _Editor = memo(
             return
           }
 
+          if (nextAnimation.tab !== tabs.activeTab) {
+            return
+          }
+
           nextAnimation.delay -= diff
 
           if (nextAnimation.delay <= 0) {
@@ -713,21 +734,7 @@ const _Editor = memo(
             cancelAnimationFrame(animationId)
           }
         }
-      }, [scheduledAnimations, animationIsPaused, setAnimationIsDone])
-
-      const onTabActivate = useCallback<OnTabActivate>(
-        (_, activeTabRef) => {
-          activeTabRef?.scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'start'})
-          resetAnimation()
-        },
-        [resetAnimation],
-      )
-
-      const tabs = useTabs({
-        defaultTab: activeTab.toString(),
-        autoActivate: true,
-        onTabActivate,
-      })
+      }, [scheduledAnimations, animationIsPaused, setAnimationIsDone, tabs.activeTab])
 
       return (
         <div
