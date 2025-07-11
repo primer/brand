@@ -7,7 +7,7 @@
 import * as fs from 'fs'
 import * as path from 'path'
 
-import {SUPPORTED_LANGUAGES} from '../src/supported-languages'
+import {SUPPORTED_LANGUAGES} from '../src/constants'
 
 type TranslationContent = Record<string, string>
 type TranslationFiles = Record<string, Record<string, string>>
