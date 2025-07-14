@@ -153,6 +153,12 @@ export const _Button = forwardRef(
       [isDisabled, onBlur],
     )
 
+    let disabledProp
+
+    if (isDisabled) {
+      disabledProp = Component === 'button' ? {disabled: true} : {'aria-disabled': true}
+    }
+
     return (
       <Component
         ref={ref}
@@ -169,8 +175,7 @@ export const _Button = forwardRef(
         onMouseLeave={handleOnMouseLeave}
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
-        disabled={disabled}
-        aria-disabled={ariaDisabled}
+        {...disabledProp}
         style={{...animationInlineStyles, ...style}}
         {...props}
       >
