@@ -1,4 +1,4 @@
-import React, {render, cleanup, act, waitFor, prettyDOM} from '@testing-library/react'
+import React, {render, cleanup, act, waitFor} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom'
 

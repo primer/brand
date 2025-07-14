@@ -16,7 +16,7 @@ import React, {
 
 import {Avatar, Text, TextInput} from '..'
 import type {BaseProps} from '../component-helpers'
-import {useTabs, type OnTabActivate} from '../hooks/useTabs'
+import {useTabs} from '../hooks/useTabs'
 
 /**
  * Design tokens
